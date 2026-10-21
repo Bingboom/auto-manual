@@ -1,5 +1,4 @@
 /* Deliverables page; layered on workspace.css (shell, sidebar) and system-workspace.css (hero, tiles, badges). */
-.dl-tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 16px; }
 .dl-toolbar { display: flex; align-items: center; gap: 10px 16px; flex-wrap: wrap; margin-bottom: 12px; }
 .dl-select { display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; color: #5d636e; }
 .dl-select select { font: inherit; font-size: 13px; color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; max-width: 280px; }
@@ -43,8 +42,66 @@
   .dl-region { font-weight: 600; }
 }
 @media (max-width: 660px) {
-  .dl-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .dl-select { width: 100%; }
   /* A select is as wide as its longest option unless told it may shrink. */
   .dl-select select { flex: 1 1 0; width: 0; min-width: 0; max-width: none; }
 }
+
+/* 网页说明书进度 (web_progress.html): Web manuals only. Orange is online, its tint
+   a market version short of languages, dashed grey a market with SKUs and no Web manual yet. */
+.wp { --wp-full: #b44a0f; --wp-partial: #f1c4a5; --wp-gap: #e3e6eb; --wp-blue: #1f5fae; --wp-grey: #7d838e; }
+.wp-kpis { margin-top: 0; }
+.wp-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr)); gap: 14px; margin: 14px 0 22px; }
+.wp-card { background: #fff; border: 1px solid var(--line); border-radius: 11px; padding: 16px 18px; min-width: 0; display: grid; gap: 8px; align-content: start; }
+.wp-card h3, .wp-matrix h3 { margin: 0; font-size: 15px; font-weight: 600; }
+.wp-note { margin: 0; font-size: 12.5px; line-height: 1.6; color: #8a8f99; }
+.wp-empty { margin: 8px 0 0; font-size: 13px; color: #8a8f99; }
+.wp-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; margin: 0; padding: 0; list-style: none; font-size: 12.5px; color: #6c727d; }
+.wp-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; }
+.wp-legend .is-full, .wp-legend .is-langs { background: var(--wp-full); }
+.wp-legend .is-partial { background: var(--wp-partial); }
+.wp-legend .is-gap { background: var(--wp-gap); outline: 1px dashed #b5b9c1; outline-offset: -1px; }
+.wp-legend .is-editions { background: var(--wp-blue); }
+.wp-legend .is-models { background: var(--wp-grey); }
+.wp-trend { position: relative; min-height: 210px; }
+.wp-trend svg { display: block; width: 100%; overflow: visible; }
+.wp-trend text { font-size: 12px; fill: #8a8f99; font-variant-numeric: tabular-nums; }
+.wp-trend .wp-end { fill: #3a3f48; font-weight: 600; }
+.wp-tip { position: absolute; pointer-events: none; z-index: 2; background: #fff; border: 1px solid var(--line); border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(20, 24, 31, .12); padding: 6px 9px; font-size: 12.5px; line-height: 1.55; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.wp-tip b { display: block; font-weight: 600; color: #6c727d; }
+.wp-bars { display: grid; gap: 9px; margin-top: 4px; }
+.wp-bar-row { display: grid; grid-template-columns: 3.6em minmax(0, 1fr) auto; gap: 10px; align-items: center; font-size: 12.5px; }
+.wp-bar-label { color: #3a3f48; font-weight: 600; white-space: nowrap; }
+.wp-bar { display: flex; height: 14px; border-radius: 4px; overflow: hidden; background: #f6f7f9; }
+.wp-bar i { display: block; height: 100%; }
+.wp-bar .is-full { background: var(--wp-full); }
+.wp-bar .is-partial { background: var(--wp-partial); }
+.wp-bar .is-gap { background: repeating-linear-gradient(135deg, var(--wp-gap) 0 5px, #f3f4f6 5px 9px); }
+.wp-bar-value { color: #6c727d; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.wp-matrix { display: grid; gap: 8px; }
+.wp-check { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; color: #5d636e; }
+.wp-table { width: 100%; min-width: 760px; border-collapse: collapse; font-size: 12.5px; font-variant-numeric: tabular-nums; }
+.wp-table thead th { text-align: center; font-size: 12.5px; font-weight: 600; color: #858b96; padding: 9px 8px; border-bottom: 1px solid #f0f1f4; white-space: nowrap; }
+.wp-table thead th:first-child { text-align: left; padding-left: 14px; }
+.wp-table thead th small { display: block; font-size: 11.5px; font-weight: 500; color: #a3a8b1; }
+.wp-table tbody th { text-align: left; padding: 6px 14px; border-bottom: 1px solid #f0f1f4; font-weight: 400; min-width: 150px; }
+.wp-table tr.wp-group th { background: #fafbfc; padding: 9px 14px 6px; font-size: 13px; font-weight: 650; color: #3a3f48; }
+.wp-table tr.wp-group th span { display: inline; margin-left: 8px; font-weight: 500; color: #8a8f99; }
+.wp-table tbody th b { display: block; font-size: 13px; font-weight: 650; }
+.wp-table tbody th span { display: block; color: #6c727d; }
+.wp-table td { text-align: center; padding: 6px 8px; border-bottom: 1px solid #f0f1f4; }
+.wp-table .wp-n { text-align: right; padding-right: 14px; color: #6c727d; }
+.wp-chip { display: inline-flex; align-items: baseline; gap: 4px; padding: 2px 8px; border-radius: 999px; white-space: nowrap; font-size: 12.5px; line-height: 1.45; text-decoration: none; }
+.wp-chip em { font-style: normal; font-size: 11px; color: #8a5a3c; }
+a.wp-chip.is-full { background: #fdf3ec; color: #b44a0f; border: 1px solid #e9b896; }
+a.wp-chip.is-partial { background: #fff; color: #b44a0f; border: 1px dashed #d98b5c; }
+a.wp-chip:hover, a.wp-chip:focus-visible { text-decoration: underline; text-underline-offset: 2px; }
+span.wp-chip.is-gap { color: #8a8f99; border: 1px dashed #c4c8cf; }
+.wp-table tr[hidden], .wp-table tbody[hidden] { display: none; }
+.dl-details > summary { cursor: pointer; list-style: none; }
+.dl-details > summary::-webkit-details-marker { display: none; }
+.dl-details > summary .dl-section-title { display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; margin-bottom: 12px; }
+.dl-details > summary .dl-section-title > span { color: #8a8f99; font-size: 13px; }
+.dl-details > summary h2::before { content: "▸"; display: inline-block; width: 1.1em; color: #a3a8b1; }
+.dl-details[open] > summary h2::before { content: "▾"; }

@@ -13,7 +13,8 @@ WEB_STYLESHEET_PARTS = (
     "web_fcc_components.css", "web_fcc_statement.css",
     "web_inbox_components.css",
     "web_safety_components.css", "web_symbols_fcc_components.css",
-    "web_app_components.css", "web_registration_components.css",
+    "web_app_components.css", "web_app_control_labels.css",
+    "web_registration_components.css",
     "web_base_art_components.css", "web_operation_clock.css", "web_source_panels.css",
 )
 

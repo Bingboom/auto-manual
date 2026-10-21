@@ -1,5 +1,7 @@
 # Build guide: Web profile rendering and components
 
+App 四按钮示意图复用现有底图；网页标签按引线分为左右两列（左列右对齐、右列左对齐），并随面板宽度缩放。规则由共享 `web_app_control_labels.css` 提供，经 `tools/web/stylesheets.py` 装配；验收检查桌面与手机的文字间距、换行及灰底保留。旧冻结发布包须重新生成、核验并封存后才能采用更新样式。
+
 Part of the [build guide](../build_doc_guide.md); its index lists the other topics.
 Add new notes for this topic here, not to the hub.
 
@@ -48,6 +50,7 @@ Add new notes for this topic here, not to the hub.
   whole-document tests project every embedded instance through the registered
   Web, LaTeX, IDML and Word adapters; each renderer still owns its geometry.
   See
+  [presentation layer inheritance](../dev/web_presentation_overlay_plan_2026-09.md),
   [the bounded execution record](../dev/ir_document_closeout.md),
   [v2 plan](../dev/manual_ir_v2_neutral_flow_plan.md), and
   [embedded-component record](../dev/manual_ir_embedded_components_plan.md),

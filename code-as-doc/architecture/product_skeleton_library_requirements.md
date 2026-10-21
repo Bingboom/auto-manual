@@ -36,17 +36,18 @@ DITA **concept model** is adopted; the DITA **XML toolchain is not**.
   > and the highest-value first cut is language-block parameterization.
 - DITA is the industry prior art for exactly this shape of problem. Naming the
   correspondence gives the program a shared vocabulary and a tested reference
-  model — while the strategy boundary ("the enemy is template forks, not
-  templates") decides what we take and what we refuse.
+  model — while the strategy boundary ("the enemy is uncontrolled template forks,
+  not templates or versioned derivatives") decides what we take and what we
+  refuse.
 
 ## 2. Concept mapping (Decision D1: adopt the model, not the toolchain)
 
 | DITA concept | This repo's counterpart | Status today |
 | --- | --- | --- |
-| map (topic sequence + hierarchy) | page manifest `docs/manifests/manual_*.yaml` (the skeleton) | 17 files, effectively **one** chapter skeleton |
-| map family / branch reuse | [`family/index.yaml`](../../docs/manifests/family/index.yaml) anchors + JSON-Pointer diffs | live mechanism, 2 anchors, verification-only |
+| map (topic sequence + hierarchy) | page manifest `docs/manifests/manual_*.yaml` (the skeleton) | 54 files (2026-10-18); at drafting 17, effectively **one** chapter skeleton |
+| map family / branch reuse | [`family/index.yaml`](../../docs/manifests/family/index.yaml) anchors + JSON-Pointer diffs | live mechanism, 6 anchors (2026-10-18; 2 at drafting), verification-only |
 | topic (reusable content unit) | page template / section module | whole-page granularity only; the section-module layer is an empty shell |
-| conref / keyref (transclusion, key indirection) | snippets registry, `{{ copy:* }}` keys, `\|PIPE\|` placeholders | placeholders and copy keys live; snippets registry literally empty |
+| conref / keyref (transclusion, key indirection) | snippets registry, `{{ copy:* }}` keys, `\|PIPE\|` placeholders | placeholders and copy keys live; snippets registry holds one module since skeleton slice S3 (`battery_long_storage_advisory`, four languages) |
 | props + DITAVAL (conditional filtering) | capability gates, `lang_blocks`, per-model language trims | live; boolean subtraction only |
 | specialization (domain vocabularies) | per-category structure vocabularies: `Row_key`/`Slot_key` dictionaries, capability vocabulary, intake field-mapping rule sets | hardcoded to the power-station category |
 

@@ -19,12 +19,13 @@ from tools.rtd.design_system import (
     PAGE as DESIGN_PAGE, TEMPLATE as DESIGN_TEMPLATE, design_page_context, template_context, write_design_system,
 )
 from tools.rtd.feedback import context_text, manual_feedback_markup, normalize_channels
+from tools.rtd.knowledge_updates import PAGES as UPDATE_PAGES, load_updates, updates_view
 from tools.rtd.product_voc import normalize_endpoint, page_markup
 from tools.rtd.product_matrix import PAGE as MATRIX_PAGE, TEMPLATE as MATRIX_TEMPLATE, product_matrix_page_context
 from tools.rtd.page_metadata import (
     head_markup, normalize_site_base_url, page_description, page_title, portal_head_markup,
 )
-from tools.rtd.system_data import PAGE as DATA_PAGE, TEMPLATE as DATA_TEMPLATE, system_data_page_context
+from tools.rtd.system_data import system_data_page_context
 from tools.rtd.system_workspace import SYSTEM_PAGE, SYSTEM_TEMPLATE, system_page_context
 from tools.safe_copy import copytree_replace_no_symlinks
 
@@ -302,7 +303,7 @@ def cached_design_context(app):
 
 
 def cached_data_context(app):
-    """Build the system-data context once per build; the sidebar and the page share it."""
+    """Build the workbench statistics context once per build."""
     cached = getattr(app, "_rtd_data_context", _UNSET)
     if cached is _UNSET:
         cached = system_data_page_context(app, portal_data(app)[0])
@@ -324,13 +325,11 @@ def site_nav(app) -> dict:
     """Optional sidebar entries for the shared site shell (see _site_shell.html)."""
     if manuals_only(app):
         # The public shell hides internal entries; do not build their contexts at all.
-        return dict.fromkeys(("share", "system", "deliverables", "design", "data", "matrix"), False)
+        return dict.fromkeys(("system", "deliverables", "design", "matrix"), False)
     return {
-        "share": (workspace_content(app) / "ai-share" / "00_打开分享.html").is_file(),
         "system": cached_system_context(app) is not None,
         "deliverables": True,
         "design": cached_design_context(app) is not None,
-        "data": cached_data_context(app) is not None,
         "matrix": cached_matrix_context(app) is not None,
     }
 
@@ -343,8 +342,9 @@ def collect_workspace_pages(app):
     The deliverables page always renders
     (a missing input shows as 无数据); the system page drops out on an authoring
     error. The AI sharing package is an optional entry, so moving or withdrawing
-    it hides only its own links. The data and product-matrix pages likewise drop
-    out, with their links, when their inputs are unreadable.
+    it hides only its own links. The product-matrix page likewise drops out,
+    with its links, when its inputs are unreadable. The former data URL always
+    forwards to the workbench statistics tab, even when its inputs are unreadable.
     """
     if manuals_only(app):
         return
@@ -358,31 +358,49 @@ def collect_workspace_pages(app):
     deliverables = deliverables_page_context(app, ASSETS, names, list(settings.get("language_labels") or {}))
     from tools.rtd.product_learning import PAGE, TEMPLATE, learning_context
 
-    yield PAGE, {**learning_context(ASSETS, settings, products), "site_nav": site_nav(app)}, TEMPLATE
-    from tools.rtd.market_policy import PAGE as MARKET_PAGE, TEMPLATE as MARKET_TEMPLATE, market_context
+    learning = learning_context(ASSETS, settings, products)
+    yield PAGE, {**learning, "site_nav": site_nav(app)}, TEMPLATE
+    from sphinx.util import logging as sphinx_logging
+    from tools.rtd.market_policy import (
+        PAGE as MARKET_PAGE, TEMPLATE as MARKET_TEMPLATE, market_context, missing_knowledge_anchors,
+    )
 
-    yield MARKET_PAGE, {**market_context(workspace_content(app)), "site_nav": site_nav(app)}, MARKET_TEMPLATE
+    market = market_context(workspace_content(app))
+    # A renamed topic strands policy links; warn only, since malformed data already fails the build.
+    for record, anchor in missing_knowledge_anchors(market["records"], {t["id"] for t in learning["topics"]}):
+        sphinx_logging.getLogger(__name__).warning(
+            "Market policy record %s links to unknown product knowledge topic #%s", record, anchor)
+    yield MARKET_PAGE, {**market, "site_nav": site_nav(app)}, MARKET_TEMPLATE
+    entries, problems = load_updates(ASSETS)
+    for problem in problems:
+        sphinx_logging.getLogger(__name__).warning("Knowledge home update skipped: %s", problem)
+    # 最近更新 links only to what this build made; the other pages always build.
+    built = {**dict.fromkeys(UPDATE_PAGES, True), "share": has_share, "product-matrix": matrix is not None,
+             "system": system is not None, "design-system": design is not None}
     yield "workspace/index", {
         "share_entry": "../ai-share/00_打开分享.html" if has_share else "",
         "system_entry": system is not None,
         "deliverables_entry": True,
         "design_entry": design is not None,
-        "data_entry": data is not None,
         "matrix_entry": matrix is not None,
+        "updates": updates_view(entries, built),
     }, "workspace_portal.html"
     if system is not None:
         from tools.rtd.workspace_revision import page_revision
 
-        yield SYSTEM_PAGE, {**system, "has_share": has_share, "deliverables_entry": True,
-                            "design_entry": design is not None, "data_entry": data is not None,
+        yield SYSTEM_PAGE, {**system, "deliverables_entry": True,
+                            "design_entry": design is not None,
                             "matrix_entry": matrix is not None, "workspace_revision": page_revision(app)}, SYSTEM_TEMPLATE
-    yield DELIVERABLES_PAGE, {**deliverables, "has_share": has_share, "system_entry": system is not None,
-                              "design_entry": design is not None, "data_entry": data is not None,
-                              "matrix_entry": matrix is not None}, DELIVERABLES_TEMPLATE
+    yield DELIVERABLES_PAGE, {**deliverables, "system_entry": system is not None,
+                              "design_entry": design is not None,
+                              "matrix_entry": matrix is not None, "statistics": data}, DELIVERABLES_TEMPLATE
     if design is not None:
         yield DESIGN_PAGE, {**template_context(design), "site_nav": site_nav(app)}, DESIGN_TEMPLATE
-    if data is not None:
-        yield DATA_PAGE, {**data, "site_nav": site_nav(app)}, DATA_TEMPLATE
+    # Keep old shared URLs working after removing 系统数据 from the knowledge base.
+    yield "workspace/data/index", {
+        "moved_target": f"{DELIVERABLES_PAGE}#statistics",
+        "moved_title": "说明书工作台「数据统计」",
+    }, "moved_page.html"
     if matrix is not None:
         yield MATRIX_PAGE, {**matrix, "site_nav": site_nav(app)}, MATRIX_TEMPLATE
 

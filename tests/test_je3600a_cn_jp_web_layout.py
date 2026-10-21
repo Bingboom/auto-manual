@@ -15,6 +15,7 @@ from unittest import mock
 
 from bs4 import BeautifulSoup
 
+from tests.historical_app_styles import pre_four_control_styles
 from tools.manual_ir.hashing import file_sha256
 from tools.utils.path_utils import PathSegments
 
@@ -187,6 +188,7 @@ class WebLayoutEditionTests(unittest.TestCase):
                 self.assertEqual((EDITIONS['JP']['package'] / relative).read_bytes(),
                                  (EDITIONS['CN']['package'] / relative).read_bytes())
 
+    @pre_four_control_styles
     def test_frozen_web_is_the_cold_replay(self):
         for region, edition in EDITIONS.items():
             with self.subTest(region=region):

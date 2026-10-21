@@ -1,6 +1,6 @@
 # Architecture Documentation Map
 
-Updated: 2026-07-31
+Updated: 2026-10-18
 
 Use this directory for architecture and integration boundaries.
 Not every file here is equally current.
@@ -12,6 +12,9 @@ Not every file here is equally current.
 - [`system_evolution_history.md`](system_evolution_history.md)
   - retrospective narrative of how the system actually evolved (kernel + ten
     rings, dated); the backward-looking counterpart of the Strategy doc
+- [`platform_evolution_roadmap.md`](platform_evolution_roadmap.md)
+  - platform maturity assessment, capacity-driven phases and exit criteria; the
+    execution roadmap stays in [`../optimization_project.md`](../optimization_project.md)
 - [`Hello_Docs_Architecture.md`](Hello_Docs_Architecture.md)
   - current repository component map and ownership split
 - [`OpenClaw_Control_Layer_Plan.md`](OpenClaw_Control_Layer_Plan.md)

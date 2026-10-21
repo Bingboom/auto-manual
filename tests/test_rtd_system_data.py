@@ -9,8 +9,8 @@ from unittest.mock import patch
 
 from tools.rtd import system_data
 from tools.rtd.system_data import (
-    SystemDataError, count_lines, read_assets, read_published, read_targets, review_page_counts,
-    system_data_context, system_data_page_context, tracked_files,
+    SystemDataError, published_targets, read_assets, read_published, read_targets, review_page_counts,
+    system_data_context, system_data_page_context,
 )
 from tools.utils.path_utils import Paths, repo_root
 
@@ -52,14 +52,13 @@ class SystemDataTests(unittest.TestCase):
             target("JE-A", "EU", "en"), target("JE-A", "EU", "fr", "2026-10-05T00:00:00+00:00"), target("JE-B", "JP", "ja"),
         ])
 
-    def context(self, manifest_path: Path | None = None, files: list[str] | None = None):
-        return system_data_context(self.root, manifest_path or self.manifest, {"en": "English", "ja": "日本語"},
-                                   list_files=lambda root: files)
+    def context(self, manifest_path: Path | None = None):
+        return system_data_context(self.root, manifest_path or self.manifest, {"en": "English", "ja": "日本語"})
 
     def test_counts_and_rows_come_from_the_repository_files(self):
         context = self.context()
         self.assertEqual(context["summary"], {
-            "manuals": 3, "models": 2, "languages": 3, "regions": 2, "targets": 3,
+            "variants": 3, "books": 2, "models": 2, "languages": 3, "regions": 2, "targets": 3,
             "review_targets": 1, "assets": 3, "ready_share": "33.3%",
         })
         self.assertEqual(context["built_on"], "2026-10-09")
@@ -78,13 +77,42 @@ class SystemDataTests(unittest.TestCase):
         self.assertEqual(payload["assets"][1], {"category": "图标", "status": "隔离", "model": "ALL", "region": "ALL"})
         self.assertEqual(payload["language_labels"], {"en": "English", "ja": "日本語"})
 
-    def test_a_missing_manifest_leaves_only_the_publication_cards_empty(self):
+    def test_capability_rows_list_only_published_models(self):
+        # JE-C has no published 说明书, so its target drops out; JE-A keeps JE-A_US beside its published JE-A_EU.
+        (self.paths.data_dir / "model_capabilities.csv").write_text(CAPABILITIES + "JE-C_EU,P3,TRUE,TRUE\n",
+                                                                     encoding="utf-8")
+        context = self.context()
+        self.assertEqual([row["key"] for row in json.loads(context["data_json"])["targets"]],
+                         ["JE-A_EU", "JE-A_US", "JE-B_JP"])
+        self.assertEqual((context["summary"]["targets"], context["summary"]["review_targets"]), (3, 1))
+        self.assertNotIn("JE-C", context["models"])
+        rows = [{"model": "JE-A"}, {"model": "JE-C"}]
+        self.assertEqual(published_targets(rows, [target("JE-A", "EU", "en")]), [{"model": "JE-A"}])
+        # An empty catalog publishes no model; no catalog leaves the published models unknown.
+        self.assertEqual(published_targets(rows, []), [])
+        self.assertIsNone(published_targets(rows, None))
+
+    def test_a_missing_manifest_leaves_the_publication_and_capability_cards_empty(self):
         context = self.context(self.root / "missing.json")
         self.assertIsNone(context["published"])
-        self.assertIsNone(context["summary"]["manuals"])
-        self.assertEqual(context["summary"]["targets"], 3)
-        self.assertIsNone(json.loads(context["data_json"])["published"])
+        self.assertIsNone(context["targets"])
+        self.assertEqual((context["summary"]["variants"], context["summary"]["books"]), (None, None))
+        self.assertEqual((context["summary"]["targets"], context["summary"]["review_targets"]), (None, None))
+        self.assertEqual(context["summary"]["assets"], 3)
+        payload = json.loads(context["data_json"])
+        self.assertEqual((payload["published"], payload["targets"]), (None, None))
         self.assertEqual(read_published(self.root / "missing.json"), (None, ""))
+
+    def test_the_headline_counts_each_language_version_and_book_once(self):
+        # A second route of one language version (a legacy alias) is one more table row, not one more version.
+        path = manifest(self.root / "aliased.json", [
+            target("JE-A", "EU", "en"), {**target("JE-A", "EU", "en"), "route": "JE-A/EU/en/legacy"},
+            target("JE-A", "EU", "fr"), target("JE-B", "JP", "ja"),
+        ])
+        context = self.context(path)
+        self.assertEqual(len(context["published"]), 4)
+        self.assertEqual((context["summary"]["variants"], context["summary"]["books"], context["summary"]["models"]),
+                         (3, 2, 2))
 
     def test_the_json_block_cannot_close_its_script_element(self):
         path = self.paths.data_dir / "model_capabilities.csv"
@@ -115,50 +143,14 @@ class SystemDataTests(unittest.TestCase):
                         self.context()
             (self.paths.data_dir / name).write_text(original, encoding="utf-8")
 
-    def test_the_page_drops_out_with_a_warning_on_drifted_data(self):
+    def test_drifted_data_leaves_the_workbench_tab_empty_with_a_warning(self):
         (self.paths.data_dir / "model_capabilities.csv").write_text("Document_key\nJE-A_EU\n", encoding="utf-8")
         app = SimpleNamespace(srcdir=str(self.root / "web"))
         with patch.object(system_data, "repo_root", return_value=self.root), \
                 patch("sphinx.util.logging.getLogger") as get_logger:
             self.assertIsNone(system_data_page_context(app, {}))
         get_logger.return_value.warning.assert_called_once()
-        self.assertIn("System data page skipped", get_logger.return_value.warning.call_args.args[0])
-
-    def test_code_size_counts_lines_per_directory_and_file_type(self):
-        files = {
-            "tools/a.py": "x\ny\n", "tools/b.py": "z", "docs/page.md": "a\n", "README.md": "a\nb\n",
-            "data/t.csv": "h\n1\n2\n", "configs/c.yml": "k: v\n", "image.png": "png",
-        }
-        for name, text in files.items():
-            (self.root / name).parent.mkdir(parents=True, exist_ok=True)
-            (self.root / name).write_text(text, encoding="utf-8")
-        # A listed file missing from disk (a sparse checkout) is skipped, as is any other suffix.
-        context = self.context(files=[*files, "tools/missing.py"])
-        self.assertEqual(context["codebase_total"], {"files": 6, "lines": 10})
-        payload = json.loads(context["data_json"])
-        self.assertEqual(payload["file_types"], ["Python", "Markdown 文档", "RST 模板/页面", "YAML 配置", "CSV 数据"])
-        self.assertEqual(payload["codebase"], [
-            {"area": "data", "type": "CSV 数据", "files": 1, "lines": 3},
-            {"area": "tools", "type": "Python", "files": 2, "lines": 3},
-            {"area": "(根目录)", "type": "Markdown 文档", "files": 1, "lines": 2},
-            {"area": "configs", "type": "YAML 配置", "files": 1, "lines": 1},
-            {"area": "docs", "type": "Markdown 文档", "files": 1, "lines": 1},
-        ])
-
-    def test_without_a_git_file_list_only_the_code_card_is_empty(self):
-        context = self.context(files=None)
-        self.assertIsNone(context["codebase_total"])
-        self.assertIsNone(json.loads(context["data_json"])["codebase"])
-        self.assertEqual(context["summary"]["manuals"], 3)
-        # Outside a checkout git has nothing to list.
-        self.assertIsNone(tracked_files(self.root))
-
-    def test_lines_are_counted_like_an_editor(self):
-        self.assertEqual([count_lines(data) for data in (b"", b"a", b"a\n", b"a\nb", b"\n\n")], [0, 1, 1, 2, 2])
-
-    @unittest.skipUnless((repo_root() / ".git").exists(), "needs a git checkout")
-    def test_the_checkout_lists_its_tracked_files(self):
-        self.assertIn("tools/rtd/system_data.py", tracked_files(repo_root()))
+        self.assertIn("Workbench statistics show no data", get_logger.return_value.warning.call_args.args[0])
 
     def test_review_pages_are_counted_per_model_and_region(self):
         self.assertEqual(dict(review_page_counts(self.paths.review_dir)), {"JE-A_EU": 2})

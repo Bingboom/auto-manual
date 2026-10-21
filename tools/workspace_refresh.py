@@ -35,10 +35,47 @@ def _check_identity(assets: Path, kind: str, source: dict) -> None:
         raise ValueError("unexpected source identity")
 
 
-def refresh(kind: str, *, root: Path, log: Path, cli_bin: str, identity: str, run=None) -> dict:
+def _export(kind: str, *, assets: Path, root: Path, reader, today: dt.date, previous, history):
+    """One read-only export: ``(candidate, source identity, validator)``; checks the bound source first."""
     from tools.rtd import deliverables as delivery
     from tools.rtd import system_workspace as corpus
+    from tools.rtd import web_progress
     from tools.lang_asset_sweep import TM_SENTENCE_TABLE, TM_TERMS_TABLE
+
+    if kind == "deliverables":
+        names = ("FEISHU_PHASE2_BASE_TOKEN", "FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID",
+                 "FEISHU_PHASE2_MODEL_CAPABILITIES_TABLE_ID")
+        values = [os.environ.get(name, "") for name in names]
+        source = {"identity_sha256": digest(values)}
+        if not all(values):
+            raise ValueError("missing source configuration")
+        _check_identity(assets, kind, source)
+        return (delivery.export_snapshot(run=reader, base_token=values[0], build_table=values[1],
+                                         key_table=values[2], today=today), source, delivery.snapshot_problems)
+    if kind == "web_progress":
+        values = [os.environ.get(name, "") for name in ("FEISHU_PUBLISHED_DOCS_BASE_TOKEN", "FEISHU_PUBLISHED_DOCS_WEB_TABLE_ID")]
+        if not all(values):
+            raise ValueError("missing web progress source configuration")
+        source = {"identity_sha256": digest(values)}
+        _check_identity(assets, kind, source)
+        # The timeline needs this checkout's full first-parent history (fetch-depth: 0).
+        timeline = (history or web_progress.manifest_history)(root)
+        return (web_progress.export_snapshot(run=reader, base_token=values[0], table_id=values[1],
+                                             timeline=timeline, today=today), source, web_progress.snapshot_problems)
+    base = os.environ.get("FEISHU_TRANSLATION_MEMORY_BASE_TOKEN", "")
+    if not base:
+        raise ValueError("missing corpus source configuration")
+    source = {"identity_sha256": digest([base, TM_SENTENCE_TABLE, TM_TERMS_TABLE])}
+    _check_identity(assets, kind, source)
+    contract = corpus.load_contract(assets / corpus.CONTRACT_NAME)
+    codes = [lang["code"] for lang in contract["corpus"]["languages"]]
+    return (corpus.corpus_export(contract, run=reader, base_token=base, today=today, previous=previous), source,
+            lambda value: corpus.corpus_problems(value, codes))
+
+
+def refresh(kind: str, *, root: Path, log: Path, cli_bin: str, identity: str, run=None, history=None) -> dict:
+    """Export ``kind`` once and save it if sound; ``history`` stands in for the manifest's git history in tests."""
+    from tools.rtd import system_workspace as corpus
 
     assets = root / "tools" / "rtd_portal_assets"
     path = snapshot_path(assets, NAMES[kind])
@@ -56,27 +93,8 @@ def refresh(kind: str, *, root: Path, log: Path, cli_bin: str, identity: str, ru
             report["last_success"] = previous.get("exported_at", "")
         today = dt.datetime.now(dt.timezone.utc).date()
         reader = run or corpus.lark_runner(cli_bin, identity)
-        if kind == "deliverables":
-            names = ("FEISHU_PHASE2_BASE_TOKEN", "FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID",
-                     "FEISHU_PHASE2_MODEL_CAPABILITIES_TABLE_ID")
-            values = [os.environ.get(name, "") for name in names]
-            source = {"identity_sha256": digest(values)}
-            validate = delivery.snapshot_problems
-            if not all(values):
-                raise ValueError("missing source configuration")
-            _check_identity(assets, kind, source)
-            candidate = delivery.export_snapshot(run=reader, base_token=values[0], build_table=values[1],
-                                                 key_table=values[2], today=today)
-        else:
-            base = os.environ.get("FEISHU_TRANSLATION_MEMORY_BASE_TOKEN", "")
-            if not base:
-                raise ValueError("missing corpus source configuration")
-            source = {"identity_sha256": digest([base, TM_SENTENCE_TABLE, TM_TERMS_TABLE])}
-            _check_identity(assets, kind, source)
-            contract = corpus.load_contract(assets / corpus.CONTRACT_NAME)
-            codes = [lang["code"] for lang in contract["corpus"]["languages"]]
-            validate = lambda value: corpus.corpus_problems(value, codes)
-            candidate = corpus.corpus_export(contract, run=reader, base_token=base, today=today, previous=previous)
+        candidate, source, validate = _export(kind, assets=assets, root=root, reader=reader, today=today,
+                                              previous=previous, history=history)
         report["stage"] = "snapshot-validation"
         if previous and validate(previous):
             raise ValueError("invalid previous snapshot")

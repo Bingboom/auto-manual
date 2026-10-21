@@ -252,14 +252,15 @@ jumps the queue. Until then it stays `deferred` and exerts no pressure.
 
 - [ ] PR K3: Route new binary artifacts to Git LFS (T3)
   - Status: `deferred`
-  - Trigger: repo-size / clone-time / CI-checkout pain becomes visible (the
-    repo-health metric on the ops dashboard), or the operator makes the
-    storage-policy call proactively. **Provisional Tier 2 placement** (not in
-    the operator's 2026-07-17 triage): the new-binaries-only half is cheap,
-    but the policy decision and the LFS interaction with the Hello-Docs
-    mirror / CI checkout make it more than a filler slice — re-tier if wrong.
-    Caveat: history grows every week this waits; the trigger should be read
-    generously.
+  - Trigger: a dated storage-risk review records material binary-history growth,
+    checkout/clone degradation, a delivery-budget issue, or an operator storage
+    decision. A release/RTD size breach triggers diagnosis, **not** automatic
+    Git LFS adoption. K3 begins only when the operator selects LFS as the
+    appropriate mitigation. While deferred, record current measurements,
+    safeguards and the next review condition in the roadmap Phase 0 exit
+    assessment. Thresholds without measurements or an operator's risk
+    judgment remain unknown, not "no risk". **Provisional Tier 2 placement**;
+    re-tier if the observed storage risk warrants it.
   - Note: operator-gated twice over — it changes `.gitattributes` storage
     policy for `docs/_build` (adjacent to Deferred 5, but storage-only: no
     workflow-semantics change), and the history-rewrite question (pack already
@@ -420,7 +421,7 @@ semantic change sitting in the tree while business work resumes.
 - [x] PR K15: Review-branch propagation design doc (V — design gate only)
   - Status: `done` (operator approved 2026-07-31)
   - Trigger: dedicated capacity for sustained design + review attention
-    (roadmap Phase 2 entry: Workstream T exit criteria passed). Business pain
+    (roadmap Phase 2 implementation entry: Phase 0 capability exit accepted with recorded evidence, plus this approved design). Business pain
     accelerates it: when the dashboard shows template-fix propagation
     measurably eating delivery capacity, this jumps the queue.
   - Note: the frozen-copy review-branch model is the review's #1 scale wall

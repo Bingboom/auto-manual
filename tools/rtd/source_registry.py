@@ -4,7 +4,8 @@
 domain (REV-44; design in ``code-as-doc/dev/ssot_source_registry_design.md``).
 The system and deliverables pages take snapshot names, freshness limits and
 fallback text from it instead of hardcoding them; the system page lists it
-publicly as 数据来源; agents look up a fact's authority here.
+as 数据来源 (its site is private for now but can be made public at any time,
+so entries stay publishable); agents look up a fact's authority here.
 
 A registry that cannot be read or breaks these rules is an authoring error:
 the system page drops out with a Sphinx warning, like a broken status
@@ -26,8 +27,8 @@ REGISTRY_NAME = "source_registry.yaml"
 REGISTRY_SCHEMA = "hello-docs-source-registry/v1"
 READ_LABELS = {"build": "构建时读", "snapshot": "读快照"}
 # The domains the workspace pages read; each must be registered.
-PAGE_DOMAINS = ("publications", "ledger", "corpus", "deliverables_feishu", "skeletons", "tooling",
-                "capabilities", "focus")
+PAGE_DOMAINS = ("publications", "ledger", "corpus", "deliverables_feishu", "web_progress", "skeletons", "tooling",
+                "capabilities", "focus", "codebase")
 
 _ID = re.compile(r"^[a-z][a-z0-9_]*$")
 _SNAPSHOT = re.compile(r"^[A-Za-z0-9_.-]+\.json$")
@@ -131,7 +132,7 @@ def stale_reason(domain: dict[str, Any], exported: dt.date, today: dt.date) -> s
 
 def sources_view(registry: Registry, *, assets: Path, today: dt.date,
                  link: Callable[[str], dict[str, str]]) -> list[dict[str, Any]]:
-    """Rows for the public 数据来源 table, in registry order.
+    """Rows for the system page's 数据来源 table, in registry order.
 
     ``link`` turns a ``file:<repo>:<path>`` ref into the page's evidence link,
     labelled with the full path (two directories may share a basename); any

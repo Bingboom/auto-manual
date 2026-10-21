@@ -1,0 +1,363 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="14.968002319335938" height="9.285003662109375" viewBox="126.19200134277344 205.38699340820312 14.968002319335938 9.285003662109375"><defs>
+<clipPath id="clip_1">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M0 524.659H368.754V0H0Z" />
+</clipPath>
+<clipPath id="clip_2">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M0 524.659H368.754V0H0Z" />
+</clipPath>
+<clipPath id="clip_3">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M0 524.659H368.754V0H0Z" />
+</clipPath>
+<clipPath id="clip_4">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M0 524.659H368.754V0H0Z" />
+</clipPath>
+<clipPath id="clip_5">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M0 524.659H368.754V0H0Z" />
+</clipPath>
+<clipPath id="clip_6">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M130.866 318.653C128.629 318.653 126.815 316.851 126.815 314.629 126.815 312.407 128.629 310.606 130.866 310.606H133.048V311.103H130.869C128.907 311.103 127.317 312.682 127.317 314.631 127.317 316.579 128.907 318.159 130.869 318.159H136.488C138.45 318.159 140.041 316.579 140.041 314.631 140.041 312.682 138.45 311.103 136.488 311.103H134.294V310.606H136.485C138.722 310.606 140.537 312.407 140.537 314.629 140.537 316.851 138.722 318.653 136.485 318.653Z" />
+</clipPath>
+<clipPath id="clip_7">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M0 524.659H368.754V0H0Z" />
+</clipPath>
+<clipPath id="clip_8">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M135.373 315.517 135.001 314.91 134.628 315.517H134.287L134.83 314.631 134.253 313.693H134.597L135.001 314.352 135.405 313.693H135.749L135.174 314.631 135.717 315.517Z" />
+</clipPath>
+<clipPath id="clip_9">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M0 524.659H368.754V0H0Z" />
+</clipPath>
+<clipPath id="clip_10">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M136.802 316.302 136.616 316.12 136.842 315.896H137.877L138.104 316.12 137.921 316.302ZM136.363 315.87V314.9L136.569 314.699 136.774 314.9V315.829L136.546 316.052ZM136.842 314.833 136.638 314.631 136.842 314.428H137.877L138.083 314.631 137.877 314.833ZM137.947 314.36V313.431L138.173 313.209 138.357 313.39V314.36L138.154 314.562ZM136.842 313.364 136.616 313.141 136.802 312.958H137.921L138.104 313.141 137.877 313.364Z" />
+</clipPath>
+<clipPath id="clip_11">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M0 524.659H368.754V0H0Z" />
+</clipPath>
+<clipPath id="clip_12">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M0 524.659H368.754V0H0Z" />
+</clipPath>
+<clipPath id="clip_13">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M0 524.659H368.754V0H0Z" />
+</clipPath>
+<clipPath id="clip_14">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M0 524.659H368.754V0H0Z" />
+</clipPath>
+<clipPath id="clip_15">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M217.178 168.804H257.012V216.49H217.178Z" />
+</clipPath>
+<clipPath id="clip_16">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M287.89 52.66H327.72303V100.347H287.89Z" />
+</clipPath>
+<clipPath id="clip_17">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M0 524.659H368.754V0H0Z" />
+</clipPath>
+<clipPath id="clip_18">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M525.347 139.935C525.347 127.658 517.902 117.123 507.281 112.585L515.582 95.615 502.172 110.941C500.062 110.466 497.872 110.21 495.619 110.21 479.198 110.21 465.891 123.518 465.891 139.935 465.891 156.356 479.198 169.665 495.619 169.665 512.036 169.665 525.347 156.356 525.347 139.935" />
+</clipPath>
+<clipPath id="clip_19">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M304.527 410.124 304.549 407.89 306.026 407.897 306.004 410.131Z" />
+</clipPath>
+<clipPath id="clip_20">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M306.13 409.799 306.148 407.983 307.701 407.991 307.683 409.806Z" />
+</clipPath>
+<clipPath id="clip_21">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M309.43 410.31 309.452 408.142 310.874 408.148 310.851 410.316Z" />
+</clipPath>
+<clipPath id="clip_22">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M310.778 410.031 310.797 408.196 312.332 408.203 312.314 410.039Z" />
+</clipPath>
+<clipPath id="clip_23">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M307.814 409.892 307.833 408.048 309.33 408.055 309.311 409.9Z" />
+</clipPath>
+<clipPath id="clip_24">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M313.555 410.131 313.581 407.648 314.985 407.654 314.958 410.137Z" />
+</clipPath>
+<clipPath id="clip_25">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M312.465 410.059 312.484 408.289 313.422 408.294 313.403 410.063Z" />
+</clipPath>
+<clipPath id="clip_26">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M0 524.659H368.754V0H0Z" />
+</clipPath>
+<clipPath id="clip_27">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M305.25 436.585 306.703 436.582 306.661 438.716 305.209 438.721Z" />
+</clipPath>
+<clipPath id="clip_28">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M306.823 436.663 308.346 436.659 308.31 438.393 306.788 438.397Z" />
+</clipPath>
+<clipPath id="clip_29">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M310.058 436.792 311.446 436.789 311.401 438.852 310.014 438.857Z" />
+</clipPath>
+<clipPath id="clip_30">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M311.371 436.834 312.868 436.83 312.828 438.576 311.333 438.581Z" />
+</clipPath>
+<clipPath id="clip_31">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M308.475 436.713 309.94 436.711 309.902 438.468 308.438 438.474Z" />
+</clipPath>
+<clipPath id="clip_32">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M314.088 436.294 315.451 436.29 315.396 438.647 314.034 438.653Z" />
+</clipPath>
+<clipPath id="clip_33">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M313.014 436.911 313.926 436.909 313.888 438.59 312.975 438.593Z" />
+</clipPath>
+<clipPath id="clip_34">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M0 524.659H368.754V0H0Z" />
+</clipPath>
+<clipPath id="clip_35">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M305.178 464.476 306.623 464.467 306.581 466.561 305.137 466.572Z" />
+</clipPath>
+<clipPath id="clip_36">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M306.742 464.546 308.257 464.537 308.221 466.238 306.706 466.249Z" />
+</clipPath>
+<clipPath id="clip_37">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M309.962 464.66 311.344 464.651 311.299 466.679 309.918 466.689Z" />
+</clipPath>
+<clipPath id="clip_38">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M311.27 464.696 312.761 464.686 312.721 466.402 311.232 466.412Z" />
+</clipPath>
+<clipPath id="clip_39">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M308.386 464.589 309.844 464.58 309.807 466.307 308.349 466.317Z" />
+</clipPath>
+<clipPath id="clip_40">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M313.977 464.154 315.336 464.146 315.281 466.464 313.923 466.474Z" />
+</clipPath>
+<clipPath id="clip_41">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M312.906 464.765 313.816 464.76 313.777 466.412 312.868 466.419Z" />
+</clipPath>
+<clipPath id="clip_42">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M0 524.659H368.754V0H0Z" />
+</clipPath>
+<clipPath id="clip_43">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M146.121 409.646 146.145 407.41 147.636 407.417 147.613 409.653Z" />
+</clipPath>
+<clipPath id="clip_44">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M147.741 409.32 147.759 407.503 149.328 407.51 149.31 409.327Z" />
+</clipPath>
+<clipPath id="clip_45">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M151.075 409.831 151.096 407.661 152.531 407.668 152.51 409.837Z" />
+</clipPath>
+<clipPath id="clip_46">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M152.437 409.552 152.455 407.714 154.005 407.722 153.988 409.559Z" />
+</clipPath>
+<clipPath id="clip_47">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M149.443 409.414 149.461 407.568 150.972 407.574 150.955 409.421Z" />
+</clipPath>
+<clipPath id="clip_48">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M155.242 409.651 155.264 407.165 156.682 407.173 156.659 409.658Z" />
+</clipPath>
+<clipPath id="clip_49">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M154.14 409.579 154.157 407.808 155.105 407.812 155.089 409.584Z" />
+</clipPath>
+<clipPath id="clip_50">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M0 524.659H368.754V0H0Z" />
+</clipPath>
+<clipPath id="clip_51">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M146.952 436.225 148.438 436.219 148.414 438.349 146.928 438.356Z" />
+</clipPath>
+<clipPath id="clip_52">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M148.56 436.3 150.119 436.296 150.1 438.025 148.54 438.032Z" />
+</clipPath>
+<clipPath id="clip_53">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M151.872 436.425 153.293 436.421 153.272 438.482 151.851 438.488Z" />
+</clipPath>
+<clipPath id="clip_54">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M153.217 436.466 154.749 436.46 154.731 438.205 153.199 438.211Z" />
+</clipPath>
+<clipPath id="clip_55">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M150.251 436.349 151.751 436.344 151.732 438.099 150.232 438.106Z" />
+</clipPath>
+<clipPath id="clip_56">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M155.991 435.924 157.386 435.92 157.363 438.274 155.967 438.28Z" />
+</clipPath>
+<clipPath id="clip_57">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M154.899 436.541 155.834 436.538 155.817 438.217 154.882 438.222Z" />
+</clipPath>
+<clipPath id="clip_58">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M0 524.659H368.754V0H0Z" />
+</clipPath>
+<clipPath id="clip_59">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M61.5478 169.148H63.1372V171.476H61.5478Z" />
+</clipPath>
+<clipPath id="clip_60">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M63.3079 169.237H65.0189V171.121H63.3079Z" />
+</clipPath>
+<clipPath id="clip_61">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M67.0053 169.372H68.5998V171.631H67.0053Z" />
+</clipPath>
+<clipPath id="clip_62">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M68.4919 169.409H70.211V171.331H68.4919Z" />
+</clipPath>
+<clipPath id="clip_63">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M65.1852 169.286H66.8486V171.212H65.1852Z" />
+</clipPath>
+<clipPath id="clip_64">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M71.6058 168.811H73.1843V171.416H71.6058Z" />
+</clipPath>
+<clipPath id="clip_65">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M70.3972 169.498H71.427V171.352H70.3972Z" />
+</clipPath>
+<clipPath id="clip_66">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M75.5642 158.547H82.5196V166.323H75.5642Z" />
+</clipPath>
+<clipPath id="clip_67">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M55.9385 161.959H56.4183V162.476H55.9385Z" />
+</clipPath>
+<clipPath id="clip_68">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M61.1208 158.8H73.6845V165.064H61.1208Z" />
+</clipPath>
+<clipPath id="clip_69">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M78.4285 164.124H78.5485V164.874H78.4285Z" />
+</clipPath>
+<clipPath id="clip_70">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M78.4285 163.516H79.673V164.289H78.4285Z" />
+</clipPath>
+<clipPath id="clip_71">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M79.5535 164.17H79.6738V164.919H79.5535Z" />
+</clipPath>
+<clipPath id="clip_72">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M78.429 164.754H79.6738V164.919H78.429Z" />
+</clipPath>
+<clipPath id="clip_73">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M78.5523 162.352H79.5462V162.979H78.5523Z" />
+</clipPath>
+<clipPath id="clip_74">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M78.5523 161.88H79.5462V162.508H78.5523Z" />
+</clipPath>
+<clipPath id="clip_75">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M76.557 159.602H77.9147V161.051H76.557Z" />
+</clipPath>
+<clipPath id="clip_76">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M77.0882 160.218H78.4451V161.668H77.0882Z" />
+</clipPath>
+<clipPath id="clip_77">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M79.6492 160.275H81.0045V161.829H79.6492Z" />
+</clipPath>
+<clipPath id="clip_78">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M79.6492 159.706H80.2968V160.395H79.6492Z" />
+</clipPath>
+<clipPath id="clip_79">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M80.1773 159.706H81.5317V161.26H80.1773Z" />
+</clipPath>
+<clipPath id="clip_80">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M80.885 161.14H81.5317V161.829H80.885Z" />
+</clipPath>
+<clipPath id="clip_81">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M63.4724 149.344H67.4775V153.915H63.4724Z" />
+</clipPath>
+<clipPath id="clip_82">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M68.533 149.596H72.5052V154.153H68.533Z" />
+</clipPath>
+<clipPath id="clip_83">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M73.5612 149.846H77.5019V154.389H73.5612Z" />
+</clipPath>
+<clipPath id="clip_84">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M78.5543 150.095H82.4736V154.623H78.5543Z" />
+</clipPath>
+<clipPath id="clip_85">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M60.2209 157.866H74.5853V165.999H60.2209Z" />
+</clipPath>
+<clipPath id="clip_86">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M55.64 152.173H56.9308V152.801H55.64Z" />
+</clipPath>
+<clipPath id="clip_87">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M52.5804 152.026H53.8757V152.656H52.5804Z" />
+</clipPath>
+<clipPath id="clip_88">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M55.7051 160.212H56.6633V162.733H55.7051Z" />
+</clipPath>
+<clipPath id="clip_89">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M58.9183 151.8H59.3953V152.314H58.9183Z" />
+</clipPath>
+<clipPath id="clip_90">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M58.6868 150.071H59.6367V152.569H58.6868Z" />
+</clipPath>
+<clipPath id="clip_91">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M61.4182 151.924H61.894V152.437H61.4182Z" />
+</clipPath>
+<clipPath id="clip_92">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M61.1874 150.197H62.1333V152.691H61.1874Z" />
+</clipPath>
+<clipPath id="clip_93">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M52.3354 149.108H54.1706V150.138H52.3354Z" />
+</clipPath>
+<clipPath id="clip_94">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M52.4534 149.4H54.053V149.846H52.4534Z" />
+</clipPath>
+<clipPath id="clip_95">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M55.4096 149.261H57.2373V150.289H55.4096Z" />
+</clipPath>
+<clipPath id="clip_96">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M55.5269 149.553H57.1204V149.998H55.5269Z" />
+</clipPath>
+<clipPath id="clip_97">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M151.786 157.119H153.339V159.475H151.786Z" />
+</clipPath>
+<clipPath id="clip_98">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M153.47 157.217H155.113V159.121H153.47Z" />
+</clipPath>
+<clipPath id="clip_99">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M156.968 157.365H158.467V159.638H156.968Z" />
+</clipPath>
+<clipPath id="clip_100">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M158.383 157.411H160V159.341H158.383Z" />
+</clipPath>
+<clipPath id="clip_101">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M155.256 157.274H156.837V159.215H155.256Z" />
+</clipPath>
+<clipPath id="clip_102">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M161.309 156.82H162.792V159.433H161.309Z" />
+</clipPath>
+<clipPath id="clip_103">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M160.162 157.505H161.153V159.366H160.162Z" />
+</clipPath>
+<clipPath id="clip_104">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M151.24 124.142H152.783V126.527H151.24Z" />
+</clipPath>
+<clipPath id="clip_105">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M152.916 124.303H154.546V126.239H152.916Z" />
+</clipPath>
+<clipPath id="clip_106">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M156.399 124.553H157.89V126.837H156.399Z" />
+</clipPath>
+<clipPath id="clip_107">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M157.8 124.679H159.407V126.609H157.8Z" />
+</clipPath>
+<clipPath id="clip_108">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M154.692 124.427H156.261V126.37H154.692Z" />
+</clipPath>
+<clipPath id="clip_109">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M160.708 124.172H162.171V126.83H160.708Z" />
+</clipPath>
+<clipPath id="clip_110">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M159.577 124.811H160.543V126.703H159.577Z" />
+</clipPath>
+<clipPath id="clip_111">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M127.323 189.298H128.705V191.353H127.323Z" />
+</clipPath>
+<clipPath id="clip_112">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M128.832 189.387H130.293V191.046H128.832Z" />
+</clipPath>
+<clipPath id="clip_113">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M131.958 189.521H133.289V191.496H131.958Z" />
+</clipPath>
+<clipPath id="clip_114">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M133.209 189.566H134.641V191.239H133.209Z" />
+</clipPath>
+<clipPath id="clip_115">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M130.427 189.44H131.833V191.128H130.427Z" />
+</clipPath>
+<clipPath id="clip_116">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M135.798 189.059H137.099V191.32H135.798Z" />
+</clipPath>
+<clipPath id="clip_117">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M134.79 189.649H135.655V191.262H134.79Z" />
+</clipPath>
+</defs>
+<g><g clip-path="url(#clip_5)"><path transform="matrix(1,0,0,-1,133.2013,211.6206)" d="M0 0C0-.068-.056-.124-.125-.124H-.581L-.922 .094H-2.704L-2.97-.124H-3.581C-3.65-.124-3.706-.068-3.706 0V3.139C-3.706 3.207-3.65 3.263-3.581 3.263H-.125C-.056 3.263 0 3.207 0 3.139ZM-.125 3.758H-3.581C-3.926 3.758-4.205 3.481-4.205 3.139V0C-4.205-.342-3.926-.619-3.581-.619H-2.791L-2.525-.401H-1.068L-.728-.619H-.125C.22-.619 .499-.342 .499 0V3.139C.499 3.481 .22 3.758-.125 3.758" fill="#49494b" fill-rule="evenodd" />
+<path transform="matrix(1,0,0,-1,132.4484,209.73651)" d="M0 0H-2.203V.576C-2.203 .577-2.202 .577-2.202 .577H0ZM0 .949H-2.202C-2.409 .949-2.576 .782-2.576 .577V0C-2.576-.205-2.409-.371-2.202-.371H0C.206-.371 .374-.205 .374 0V.577C.374 .782 .206 .949 0 .949" fill="#49494b" fill-rule="evenodd" />
+<path transform="matrix(1,0,0,-1,136.4851,206.0061)" d="M0 0C2.237 0 4.051-1.801 4.051-4.023 4.051-6.245 2.237-8.047 0-8.047H-2.19V-7.55H.003C1.965-7.55 3.555-5.97 3.555-4.022 3.555-2.073 1.965-.494 .003-.494H-5.616C-7.578-.494-9.169-2.073-9.169-4.022-9.169-5.97-7.578-7.55-5.616-7.55H-3.437V-8.047H-5.619C-7.856-8.047-9.67-6.245-9.67-4.023-9.67-1.801-7.856 0-5.619 0Z" fill="#49494b" fill-rule="evenodd" />
+</g><g clip-path="url(#clip_6)"><path transform="matrix(1,0,0,-1,0,524.659)" d="M126.192 319.272H141.16V309.987H126.192Z" fill="#49494b" />
+</g><g clip-path="url(#clip_7)"><path transform="matrix(1,0,0,-1,135.7486,210.96619)" d="M0 0-.575 .938-.031 1.824H-.375L-.748 1.217-1.121 1.824H-1.462L-.919 .938-1.496 0H-1.152L-.748 .659-.344 0Z" fill="#49494b" />
+</g><g clip-path="url(#clip_8)"><path transform="matrix(1,0,0,-1,0,524.659)" d="M133.629 316.136H136.371V313.07398H133.629Z" fill="#49494b" />
+</g><g clip-path="url(#clip_9)"><path transform="matrix(1,0,0,-1,136.8017,208.35681)" d="M0 0-.185-.182 .041-.406H1.076L1.302-.182 1.118 0ZM-.439-.432V-1.402L-.233-1.603-.028-1.402V-.473L-.255-.25ZM.041-1.47-.164-1.671 .041-1.874H1.076L1.281-1.671 1.076-1.47ZM1.146-1.942V-2.871L1.372-3.093 1.555-2.912V-1.942L1.352-1.74ZM.041-2.939-.185-3.162 0-3.344H1.118L1.302-3.162 1.076-2.939Z" fill="#49494b" fill-rule="evenodd" />
+</g><g clip-path="url(#clip_10)"><path transform="matrix(1,0,0,-1,0,524.659)" d="M135.739 316.921H138.98V312.339H135.739Z" fill="#49494b" />
+</g></g></svg>

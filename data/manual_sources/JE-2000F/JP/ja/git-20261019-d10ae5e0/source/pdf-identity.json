@@ -1,0 +1,84 @@
+{
+  "filename": "Jackery ポータブル電源 2000 New取扱説明書V2.0-2026-06-24.pdf",
+  "sha256": "d10ae5e04ad48907538f5cf18f3afa964ac261fceb40684b6fc1ee0963003e95",
+  "size_bytes": 6805723,
+  "page_count": 28,
+  "models": [
+    "JE-2000F",
+    "JE-2000F-SG",
+    "JE-2000F-WH"
+  ],
+  "region": "JP",
+  "language": "ja",
+  "printed_version": "V2",
+  "filename_revision": "V2.0-2026-06-24",
+  "archive_parts": [
+    {
+      "path": "source/pdf-archive/part-0001.bin",
+      "size": 1000000,
+      "sha256": "df43dcf1e3e8ed997c432852025767500218ab5ee1b79642d3caed52e14375ae"
+    },
+    {
+      "path": "source/pdf-archive/part-0002.bin",
+      "size": 1000000,
+      "sha256": "041dd540180c9ffa741818d7b8d6f0bb59c377fd1e311ed5a8717f685659975c"
+    },
+    {
+      "path": "source/pdf-archive/part-0003.bin",
+      "size": 1000000,
+      "sha256": "61da5ebc9ca5a507f3126b244f6879629e1dd345ce8c5dc13f28279b07f45850"
+    },
+    {
+      "path": "source/pdf-archive/part-0004.bin",
+      "size": 1000000,
+      "sha256": "16dc28d0b89ce67e6c3ba35d21e893d1359f307d281341515ce5afd2b3efebee"
+    },
+    {
+      "path": "source/pdf-archive/part-0005.bin",
+      "size": 1000000,
+      "sha256": "59e2202c66e629c4cdc576d88304ded4c3ab55126e5aff9e929e3db32b75c4c7"
+    },
+    {
+      "path": "source/pdf-archive/part-0006.bin",
+      "size": 1000000,
+      "sha256": "0b41ec2cbbd08a59003d1211eb2440d43ad7006d8eefbc4b442fb68eb25aae35"
+    },
+    {
+      "path": "source/pdf-archive/part-0007.bin",
+      "size": 805723,
+      "sha256": "8c73e88748cd7c61cbd2e606be70b6fbb2945d0c0f202c4256f95dd777061a94"
+    }
+  ],
+  "body_pages": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26
+  ],
+  "excluded_pages": {
+    "1": "print cover retained in archive; product identity becomes document metadata",
+    "2": "printed contents replaced by Web chapter navigation",
+    "27": "blank",
+    "28": "back-cover repeats App download information from page 25"
+  }
+}

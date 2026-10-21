@@ -1,0 +1,446 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "target": {
+    "model": "JA-AD500A-SIL",
+    "region": "US",
+    "languages": [
+      "fr",
+      "es"
+    ],
+    "technical_version": "git-20261016-28c58312-solar-voc"
+  },
+  "original_source": {
+    "filename": "Jackery DC Input Module User Manual V2.0-2026-05-25.pdf",
+    "path": "source/original.pdf",
+    "sha256": "28c58312ffafae322161d17701869ede8f6b87e58799379a84fad2850c638530",
+    "physical_page_count": 22
+  },
+  "printed_manual_version": null,
+  "source_authority": "Operator-supplied PDF; visual transcription of native outlined text, LED table crosschecked with embedded PDF text",
+  "baseline_main": "07859f7eae1fe90b72ee950025b28b12cf2c36ff",
+  "source_role": "Git-only French/Spanish solar-Voc correction edition of the approved release",
+  "live_bitable_dependency": false,
+  "publication_eligible": true,
+  "page_order": {
+    "fr": [
+      "box_contents_fr.rst",
+      "product_overview_fr.rst",
+      "charging_fr.rst",
+      "spec_fr.rst",
+      "warranty_fr.rst",
+      "contact_fr.rst"
+    ],
+    "es": [
+      "box_contents_es.rst",
+      "product_overview_es.rst",
+      "charging_es.rst",
+      "spec_es.rst",
+      "warranty_es.rst",
+      "contact_es.rst"
+    ]
+  },
+  "required_components": {
+    "HB-SPECIAL-INBOX": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE": 3,
+    "HB-CALLOUT-STRIP": 3,
+    "HB-TABLE-SPEC": 2,
+    "HB-WARRANTY-LEAD": 1,
+    "HB-WARRANTY-SECTION": 5,
+    "HB-WARRANTY-YEARS": 1
+  },
+  "chapter_source_panels": {
+    "fr": {
+      "box_contents": [
+        10
+      ],
+      "product_overview": [
+        11
+      ],
+      "charging": [
+        12,
+        13,
+        14
+      ],
+      "spec": [
+        14
+      ],
+      "warranty": [
+        14,
+        15
+      ],
+      "contact": [
+        22
+      ]
+    },
+    "es": {
+      "box_contents": [
+        16
+      ],
+      "product_overview": [
+        17
+      ],
+      "charging": [
+        18,
+        19,
+        20
+      ],
+      "spec": [
+        20
+      ],
+      "warranty": [
+        20,
+        21
+      ],
+      "contact": [
+        22
+      ]
+    }
+  },
+  "normalizations": [
+    "source wrapping joined",
+    "drawn DC sign represented by Unicode ⎓",
+    "native × and en-dash used for measurement/range signs",
+    "print page numbers/blank panel excluded; generated Web navigation replaces print TOC",
+    "source heading case retained; warranty continuation is one section",
+    "Solar DC8020 retained in original artwork by operator instruction; no duplicate live label",
+    "No added CONTACT US chapter: original back-cover contact copy remains in an untitled page-end block, per operator correction",
+    "LED Light is a source-authored bold table label, not a bullet subsection; native three-column table declares the existing shared grid presentation",
+    "Operator removed the added Model and US / English / User Manual introduction lines; Web body begins at WHAT'S IN THE BOX",
+    "Operator requested a smaller complete product overview; source-authored display width is bounded at 40rem and scales to the phone width, with original artwork bytes unchanged",
+    "Operator requested the car-cable note on one desktop line with a compact capsule; its source-bound live-copy rectangle is widened and shortened, without forcing phone nowrap or altering words/art",
+    "Product overview external annotations are native editable Web text on one und-locale base art; immutable Jackery product markings and complete leaders remain in the drawing",
+    "Native FR/ES PDF text; joined source line wraps; drawn DC sign rendered ⎓; paragraph and numeric meaning unchanged",
+    "Localized LED table header padding reduced from 0.6rem to 0.4rem so Couleur remains one word at 390px; column widths and all body words unchanged."
+  ],
+  "source_concerns": [
+    {
+      "language": "fr",
+      "pdf_page": 11,
+      "issue": "Oiture and English Double to in native overview",
+      "disposition": "native wording retained"
+    },
+    {
+      "language": "fr",
+      "pdf_page": 14,
+      "issue": "Sortie CC labels 11–16/16–60 input rows; Entrée CC labels 42–58 output row",
+      "disposition": "preserved as printed; requires operator/source-owner correction decision"
+    },
+    {
+      "language": "es",
+      "pdf_page": 21,
+      "issue": "DERECHOS DE INTERPRETACIÓN repeats original-buyer/non-transfer clause",
+      "disposition": "native copy retained"
+    },
+    {
+      "language": "fr/es",
+      "pdf_pages": [
+        13,
+        19
+      ],
+      "issue": "PV Voc guidance refers to downstream FridgeGuard/Battery Pack ranges",
+      "disposition": "corrected in this edition's prepared pages on operator instruction 2026-10-15; native_copy.json keeps the printed wording"
+    },
+    {
+      "language": "fr/es",
+      "pdf_pages": [
+        15,
+        21
+      ],
+      "issue": "Battery-cell charging condition in module warranty",
+      "disposition": "retained per operator instruction 你先不用删"
+    }
+  ],
+  "build_boundary": "New target is not registered in phase2. Existing prepared RST → manual-ir/v2 → shared Web/MyST pipeline validates this body. build.py check of a historical fixture is a repository regression only.",
+  "pending_source_review": [],
+  "inputs": [
+    {
+      "path": "README.md",
+      "size": 2267,
+      "sha256": "b30f13d482f5d76888dbee3272210768f972cd37eec380b55867b90b059f9f89"
+    },
+    {
+      "path": "assets/car.png",
+      "size": 89548,
+      "sha256": "c8237a9bc6433746f86bdbd7e6de26895f426b4fa3d0abf4320f8cbae3662dd2"
+    },
+    {
+      "path": "assets/contact-qr.png",
+      "size": 2217,
+      "sha256": "98dd52bc02290abea21f6bfdaa105dfe77a831b99c845ce8f44e2adc9009deaa"
+    },
+    {
+      "path": "assets/inbox-manual.png",
+      "size": 11774,
+      "sha256": "93420c29dca6c234752aafc094f1f342eb61547215ad73b1fa667785a54f2290"
+    },
+    {
+      "path": "assets/inbox-module.png",
+      "size": 14353,
+      "sha256": "3c140171d4ae33f68026b81db880318d28ccf3ecd4d4d201c0ec9015080db49d"
+    },
+    {
+      "path": "assets/overview-textless.png",
+      "size": 72743,
+      "sha256": "910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2"
+    },
+    {
+      "path": "assets/solar.png",
+      "size": 222637,
+      "sha256": "0db544e58c9043e70d74311a01ca46edb3b174f5962a28b523da348064df5dfd"
+    },
+    {
+      "path": "derive_solar_voc.py",
+      "size": 7678,
+      "sha256": "5b19e0aa20ef8c7cc2a5f96a89f769d20206681f30b08c6ee7bb327d21d5c8e8"
+    },
+    {
+      "path": "render.py",
+      "size": 7781,
+      "sha256": "15e87cd7edbbcc267a3a20076997f7efef3534205499d63e994e0af70793e0ea"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 4055,
+      "sha256": "9f76d4df535e4134cada0b0fd9dca4accbb86a1779c99350c5ac41b260c319ce"
+    },
+    {
+      "path": "source/differences.md",
+      "size": 2647,
+      "sha256": "7e4428a1bb5efbfc02bdb9eabecc83c205c53fee5ef0b4d83ee5ba20a36e726c"
+    },
+    {
+      "path": "source/native_copy.json",
+      "size": 13561,
+      "sha256": "b1bae9a035d05389ba9cb42b85f62079ea152c803895e4b3ba7e7a8ba6054b19"
+    },
+    {
+      "path": "source/original.pdf",
+      "size": 3410276,
+      "sha256": "28c58312ffafae322161d17701869ede8f6b87e58799379a84fad2850c638530"
+    },
+    {
+      "path": "source/page/box_contents_es.rst",
+      "size": 325,
+      "sha256": "9c1a41ed40e55292f47ad8474c06b9061d7a72fc23e4eaaa89b3131b18fd802d"
+    },
+    {
+      "path": "source/page/box_contents_fr.rst",
+      "size": 334,
+      "sha256": "78801518c24f331a4e04f909986cb5a45c53efd837d0f1fdc6dd7636e1b6c747"
+    },
+    {
+      "path": "source/page/charging_es.rst",
+      "size": 3505,
+      "sha256": "614fc0f530931b40457ed957400711c3401f1648320ba4f1b417301fdafa73c0"
+    },
+    {
+      "path": "source/page/charging_fr.rst",
+      "size": 3653,
+      "sha256": "e3cb27f5e986c8907dda38c84345a22b61e80e7ffcda6cb3544d5fb3ab530047"
+    },
+    {
+      "path": "source/page/contact_es.rst",
+      "size": 662,
+      "sha256": "4df0572685a176f1ab801372a919b8109759cc37e595df57f6f298ef2ad877cb"
+    },
+    {
+      "path": "source/page/contact_fr.rst",
+      "size": 662,
+      "sha256": "4df0572685a176f1ab801372a919b8109759cc37e595df57f6f298ef2ad877cb"
+    },
+    {
+      "path": "source/page/product_overview_es.rst",
+      "size": 4145,
+      "sha256": "f4830f2f0079f184f177389a5a04224e7c3431b041cbc5cc7fe70d5fbf857e33"
+    },
+    {
+      "path": "source/page/product_overview_fr.rst",
+      "size": 4097,
+      "sha256": "6fbd7193f9be54a3e822fc68373c2b1d9fd9afe24f1c35c1023ce52fb9463b7c"
+    },
+    {
+      "path": "source/page/spec_es.rst",
+      "size": 879,
+      "sha256": "bb4db5db468038dc67e15a2ff007631f49d2d5515f456bb3ed7a4eeb7927a65e"
+    },
+    {
+      "path": "source/page/spec_fr.rst",
+      "size": 854,
+      "sha256": "48b7512256d5bfc6ab4232e8b97f390a37920de8a428cbffe90aa758cb24c691"
+    },
+    {
+      "path": "source/page/warranty_es.rst",
+      "size": 3220,
+      "sha256": "8f824dfc1ad7af0f713820b8fc525c98f9f2ac9ccf9babf3a14b6c2860428547"
+    },
+    {
+      "path": "source/page/warranty_fr.rst",
+      "size": 3390,
+      "sha256": "bb237bfdb36aa0c285cac61a55c199d54a781b35b89abe444b2b53bd709443c8"
+    },
+    {
+      "path": "source_manifest.json",
+      "size": 12841,
+      "sha256": "820e4e06f7c35499dc4d17ef02d365000bbf16c7f97c4eda5ae0402aef70bb9e"
+    },
+    {
+      "path": "web/es/_static/web_manual.css",
+      "size": 123623,
+      "sha256": "4c01adf9222e7faa8fb5552490d8b8fa4ebba550b4ef2a1e7171a1b9a6538434"
+    },
+    {
+      "path": "web/es/assets/ir/0db544e58c9043e70d74311a01ca46edb3b174f5962a28b523da348064df5dfd/solar.png",
+      "size": 222637,
+      "sha256": "0db544e58c9043e70d74311a01ca46edb3b174f5962a28b523da348064df5dfd"
+    },
+    {
+      "path": "web/es/assets/ir/3c140171d4ae33f68026b81db880318d28ccf3ecd4d4d201c0ec9015080db49d/inbox-module.png",
+      "size": 14353,
+      "sha256": "3c140171d4ae33f68026b81db880318d28ccf3ecd4d4d201c0ec9015080db49d"
+    },
+    {
+      "path": "web/es/assets/ir/910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2/overview-textless.png",
+      "size": 72743,
+      "sha256": "910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2"
+    },
+    {
+      "path": "web/es/assets/ir/93420c29dca6c234752aafc094f1f342eb61547215ad73b1fa667785a54f2290/inbox-manual.png",
+      "size": 11774,
+      "sha256": "93420c29dca6c234752aafc094f1f342eb61547215ad73b1fa667785a54f2290"
+    },
+    {
+      "path": "web/es/assets/ir/98dd52bc02290abea21f6bfdaa105dfe77a831b99c845ce8f44e2adc9009deaa/contact-qr.png",
+      "size": 2217,
+      "sha256": "98dd52bc02290abea21f6bfdaa105dfe77a831b99c845ce8f44e2adc9009deaa"
+    },
+    {
+      "path": "web/es/assets/ir/c8237a9bc6433746f86bdbd7e6de26895f426b4fa3d0abf4320f8cbae3662dd2/car.png",
+      "size": 89548,
+      "sha256": "c8237a9bc6433746f86bdbd7e6de26895f426b4fa3d0abf4320f8cbae3662dd2"
+    },
+    {
+      "path": "web/es/conf.py",
+      "size": 818,
+      "sha256": "d41f44d83b0040d61d3faae5d257a07ab57458f2a4ce539ce736573bd52a3d7b"
+    },
+    {
+      "path": "web/es/index.md",
+      "size": 83,
+      "sha256": "30c015e71623fd51c39aedca23935c4d5656651f577bc9863a8566e946665851"
+    },
+    {
+      "path": "web/es/manual.ir.json",
+      "size": 224509,
+      "sha256": "993504c9a534cd99323bb4831728f6dcf15d58bf97b273435f985d1763b8cf00"
+    },
+    {
+      "path": "web/es/manual_bundle.html",
+      "size": 20663,
+      "sha256": "9161484c1735b54bc32d4c76282c576165374a0641ac759c32cfd4802cfa7b26"
+    },
+    {
+      "path": "web/es/manual_jaad500asil_us_es.md",
+      "size": 19163,
+      "sha256": "afa93ce18a86452e15fd7def12caa6f8c92e303fd35d20744b64773bfd869110"
+    },
+    {
+      "path": "web/fr/_static/web_manual.css",
+      "size": 123623,
+      "sha256": "4c01adf9222e7faa8fb5552490d8b8fa4ebba550b4ef2a1e7171a1b9a6538434"
+    },
+    {
+      "path": "web/fr/assets/ir/0db544e58c9043e70d74311a01ca46edb3b174f5962a28b523da348064df5dfd/solar.png",
+      "size": 222637,
+      "sha256": "0db544e58c9043e70d74311a01ca46edb3b174f5962a28b523da348064df5dfd"
+    },
+    {
+      "path": "web/fr/assets/ir/3c140171d4ae33f68026b81db880318d28ccf3ecd4d4d201c0ec9015080db49d/inbox-module.png",
+      "size": 14353,
+      "sha256": "3c140171d4ae33f68026b81db880318d28ccf3ecd4d4d201c0ec9015080db49d"
+    },
+    {
+      "path": "web/fr/assets/ir/910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2/overview-textless.png",
+      "size": 72743,
+      "sha256": "910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2"
+    },
+    {
+      "path": "web/fr/assets/ir/93420c29dca6c234752aafc094f1f342eb61547215ad73b1fa667785a54f2290/inbox-manual.png",
+      "size": 11774,
+      "sha256": "93420c29dca6c234752aafc094f1f342eb61547215ad73b1fa667785a54f2290"
+    },
+    {
+      "path": "web/fr/assets/ir/98dd52bc02290abea21f6bfdaa105dfe77a831b99c845ce8f44e2adc9009deaa/contact-qr.png",
+      "size": 2217,
+      "sha256": "98dd52bc02290abea21f6bfdaa105dfe77a831b99c845ce8f44e2adc9009deaa"
+    },
+    {
+      "path": "web/fr/assets/ir/c8237a9bc6433746f86bdbd7e6de26895f426b4fa3d0abf4320f8cbae3662dd2/car.png",
+      "size": 89548,
+      "sha256": "c8237a9bc6433746f86bdbd7e6de26895f426b4fa3d0abf4320f8cbae3662dd2"
+    },
+    {
+      "path": "web/fr/conf.py",
+      "size": 818,
+      "sha256": "b9afdce6c7e96748663258050f26e6f9d0ccc7b145a837961146a3d0e78e47b0"
+    },
+    {
+      "path": "web/fr/index.md",
+      "size": 83,
+      "sha256": "87788b370ff520c2ee7b561611d1358a6f54c20041e4f8aff84126e9f02ba2b0"
+    },
+    {
+      "path": "web/fr/manual.ir.json",
+      "size": 225309,
+      "sha256": "50e380c82bb1ba8dbff0f50d8f9496a7c4b1b486edc6956d26784587ba5157f8"
+    },
+    {
+      "path": "web/fr/manual_bundle.html",
+      "size": 20946,
+      "sha256": "9ba415e960c3e1d868fb0ee65f6bb5634efb8f3eb1fddc29671f204f087f6079"
+    },
+    {
+      "path": "web/fr/manual_jaad500asil_us_fr.md",
+      "size": 19446,
+      "sha256": "b1cc4de942132d7c83d9b033a2f574d16596d5fb4d832ac8a75739e30ecf6266"
+    }
+  ],
+  "repo_inputs": [
+    {
+      "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
+      "sha256": "6337f537ac3b8b7248e00632d9f3d899a410fbadad4319a718b0e39905717a9d"
+    }
+  ],
+  "web_roots": {
+    "fr": "web/fr",
+    "es": "web/es"
+  },
+  "english_baseline": {
+    "path": "manual_sources/JA-AD500A-SIL/US/en/git-20261006-a6d1659e-reviewed",
+    "manifest_sha256": "d24e3a11daf168221d9061eada6a0ba475cdd3be8ee8846508b67eb7d1529eba",
+    "source_commit": "ba0f95313d7cc763d5360549e081a413cb89a4eb",
+    "structure": "same chapter order, component types/counts, table geometry, reference IDs and art hashes; native text governs all copy"
+  },
+  "filename_version_label": "V2.0-2026-05-25; filename metadata only, no printed version located",
+  "publication_status": "operator-approved-git-only-release",
+  "derived_from": {
+    "package": "git-20261007-28c58312-reviewed",
+    "authorization": "MA-262",
+    "manifest_sha256": "6874e191f6102d52bdf99f113443ec236215e073ecf0816934b33c6a7c8faef4"
+  },
+  "text_corrections": [
+    {
+      "page": "source/page/charging_fr.rst",
+      "approved": "Il est recommandé d’utiliser le panneau solaire Jackery pour charger le Jackery FridgeGuard et Jackery Battery Pack. Assurez-vous que la tension en circuit ouvert (Voc) du panneau solaire se situe dans la plage d’entrée CC (36.8 V–56 V) du Jackery FridgeGuard ou dans la plage d’entrée CC (40 V–57.6 V) du Jackery Battery Pack. Jackery décline toute responsabilité en cas de pertes causées par l’utilisation de panneaux solaires d’autres marques.",
+      "corrected": "Il est recommandé d’utiliser des panneaux solaires Jackery pour charger le produit connecté via le Jackery DC Input Module. Assurez-vous que la tension en circuit ouvert (Voc) des panneaux solaires connectés se situe dans la plage de tension d’entrée CC du module (16 V–60 V). Jackery décline toute responsabilité en cas de pertes causées par l’utilisation de panneaux solaires d’autres marques.",
+      "reason": "Solar panels connect through the Jackery DC Input Module; the panel Voc limit is the module's DC input voltage range (16V–60V), not the downstream FridgeGuard / Battery Pack ranges cited by the printed source.",
+      "instruction": "operator, 2026-10-15: replace the paragraph (整段替换), keep the disclaimer (不删免责句); the printed source and its transcription stay unchanged"
+    },
+    {
+      "page": "source/page/charging_es.rst",
+      "approved": "Se recomienda usar el panel solar Jackery para cargar el Jackery Battery Pack y Jackery FridgeGuard. Asegúrese de que el voltaje de circuito abierto (Voc) del panel solar esté dentro del rango de entrada de CC (36.8 V–56 V) del Jackery FridgeGuard o del rango de entrada de CC (40 V–57.6 V) del Jackery Battery Pack. Jackery no se hace responsable de pérdidas causadas por el uso de paneles solares de otras marcas.",
+      "corrected": "Se recomienda usar paneles solares Jackery para cargar el producto conectado a través del Jackery DC Input Module. Asegúrese de que el voltaje en circuito abierto (Voc) de los paneles solares conectados esté dentro del rango de voltaje de entrada de CC del módulo (16 V–60 V). Jackery no se hace responsable de pérdidas causadas por el uso de paneles solares de otras marcas.",
+      "reason": "Solar panels connect through the Jackery DC Input Module; the panel Voc limit is the module's DC input voltage range (16V–60V), not the downstream FridgeGuard / Battery Pack ranges cited by the printed source.",
+      "instruction": "operator, 2026-10-15: replace the paragraph (整段替换), keep the disclaimer (不删免责句); the printed source and its transcription stay unchanged"
+    }
+  ]
+}

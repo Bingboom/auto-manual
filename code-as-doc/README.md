@@ -1,6 +1,6 @@
 # code-as-doc Documentation Map
 
-Updated: 2026-10-13
+Updated: 2026-10-18
 
 This directory is the maintainer-facing documentation area.
 Use it to find the single current source of truth for the topic you are changing.
@@ -78,6 +78,12 @@ Use these together; do not split operator guidance across older phase plans.
 
 - [`../optimization_project.md`](optimization_project.md)
   - current repo roadmap and active workstreams
+- [`architecture/platform_evolution_roadmap.md`](architecture/platform_evolution_roadmap.md)
+  - platform maturity assessment, capacity-driven phases and exit criteria
+- [`manual_production_revitalization_plan.md`](manual_production_revitalization_plan.md)
+  - manual production revitalization plan (v3.1): scope, planning windows and batch acceptance
+- [`dev/manual_revitalization_execution.md`](dev/manual_revitalization_execution.md)
+  - execution ledger: the only per-item (REV) state, dependencies and acceptance evidence
 - [`next_optimization_checklist.md`](next_optimization_checklist.md)
   - active optimization checklist: shared update rules and an index of one page per milestone
 - [`dev/style_component_contract_v2_plan.md`](dev/style_component_contract_v2_plan.md)

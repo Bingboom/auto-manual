@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <meta name="description" content="设计系统：说明书网页版的颜色、字体与组件，共享图标素材和印刷规格；数值与预览在构建时读自仓库。">
-  <title>设计系统</title>
+  <meta name="description" content="设计规范：说明书网页版的颜色、字体与组件，共享图标素材和印刷规格；数值与预览在构建时读自仓库。">
+  <title>设计规范</title>
   <link rel="stylesheet" href="{{ pathto('_static/workspace.css', 1) }}">
   <link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
   <link rel="stylesheet" href="{{ pathto('_static/design-system.css', 1) }}">
@@ -15,11 +15,11 @@
 <body class="app design-system">
 {{ site_sidebar('design-system', site_nav) }}
 <div class="app-content">
-  {{ site_topbar('知识库', '设计系统') }}
+  {{ site_topbar('知识库', '设计规范') }}
 
   <main id="top">
     <section class="page-head">
-      <h1>设计系统<span>.</span></h1>
+      <h1>设计规范<span>.</span></h1>
       <p>{{ lead|e }}</p>
     </section>
 
@@ -31,7 +31,7 @@
     </div>
     <p class="ds-versions">样式表版本 <code>{{ stylesheet_sha256[:8]|e }}</code>（web_manual.css 的 SHA-256）· 印刷参数版本 <code>{{ print.sha256[:8]|e }}</code>（data/layout_params.csv）</p>
 
-    <nav class="page-tabs" role="tablist" aria-label="设计系统分区">
+    <nav class="page-tabs" role="tablist" aria-label="设计规范分区">
       <a role="tab" href="#overview" data-tab="overview" aria-selected="true">概览</a>
       <a role="tab" href="#colors" data-tab="colors">颜色</a>
       <a role="tab" href="#type" data-tab="type">字体</a>

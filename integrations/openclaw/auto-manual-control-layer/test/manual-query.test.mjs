@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import test from "node:test";
+import { readFile } from "node:fs/promises";
 import { createKnowledgeClient, siteBase, validateCorpus } from "../lib/manual-query/client.mjs";
 import { readSection, searchManuals } from "../lib/manual-query/search.mjs";
 import { registerManualQuery, renderQueryResult } from "../lib/manual-query/plugin.mjs";
@@ -355,4 +356,76 @@ test("host words neither narrow a parameter question nor a comparison", () => {
   const compared = searchManuals(f, { query: "容量最大的储能电源是哪个", compare: true });
   assert.deepEqual(compared.results.map((row) => row.section_id), ["a-spec", "a-spec"]);
   assert.equal(searchManuals(f, { query: "JE-T1 host" }).status, "manuals", "a host word alone is no search term");
+});
+
+
+test("version directory is retained in verified downloads, search, comparison and evidence URLs", async () => {
+  for (const suffix of ["/en/latest", "/en/latest/"]) {
+    const transport = fetcher(() => fixture());
+    const snapshot = await createKnowledgeClient({ baseUrl: origin + suffix, fetchImpl: transport.fetchImpl }).load();
+    assert.equal(snapshot.origin, origin + "/en/latest");
+    assert.deepEqual(transport.calls.map(({ url }) => new URL(url).pathname), [
+      "/en/latest/manual-deployment.json", "/en/latest/manual-knowledge.json", "/en/latest/manual-deployment.json",
+    ]);
+    const manualUrl = origin + "/en/latest/JE-TEST/EU/en/md/manual.html";
+    const search = searchManuals(snapshot, { query: "JE-TEST output" });
+    const hit = search.results[0];
+    assert.equal(hit.url, manualUrl + "#specifications");
+    assert.equal(searchManuals(snapshot, { model: "JE-TEST", query: "" }).manuals[0].url, manualUrl);
+    assert.equal(searchManuals(snapshot, { query: "output", compare: true }).results[0].url,
+      manualUrl + "#specifications");
+    const section = readSection(snapshot, { document_id: hit.document_id, section_id: hit.section_id,
+      snapshot_id: search.publication.snapshot_id });
+    assert.equal(section.status, "evidence");
+    assert.equal(section.url, manualUrl + "#specifications");
+  }
+});
+
+test("version-directory clients still reject cross-origin redirects and tampered exports", async () => {
+  let calls = 0;
+  await assert.rejects(createKnowledgeClient({ baseUrl: origin + "/en/latest/", fetchImpl: async () => {
+    calls++;
+    return new Response(null, { status: 302, headers: { location: "https://other.example/en/latest/manual-deployment.json" } });
+  } }).load(), /Cross-origin/);
+  assert.equal(calls, 1);
+  const tampered = fixture(); tampered.bytes = Buffer.from("{}");
+  await assert.rejects(createKnowledgeClient({ baseUrl: origin + "/en/latest/",
+    ...fetcher(() => tampered) }).load(), /does not match/);
+});
+
+test("shared routing guidance covers slash text and RTD, and config reload replaces the client", async () => {
+  const hooks = []; const tools = []; const addresses = [];
+  const api = { pluginConfig: { manualQueryBaseUrl: origin },
+    on: (name, handler) => hooks.push({ name, handler }),
+    registerTool: (tool) => tools.push(tool), registerCommand() {} };
+  registerManualQuery(api, { clientFactory: ({ baseUrl }) => {
+    addresses.push(baseUrl); return { load: async () => fixture() };
+  } });
+  assert.equal(hooks[0].name, "before_prompt_build");
+  assert.equal(hooks[0].handler({ prompt: "build JE-TEST" }), undefined);
+  const guidance = hooks[0].handler({ prompt: "/manual-query JE-TEST" }).prependSystemContext;
+  for (const prompt of ["查 rtd 啊", "Read the Docs", "读取机读语料",
+    "查一下 JBP-2000B 适用主机", "JBP-2000B compatible hosts", "JE-2000F USB-C 输出功率",
+    "目前容量最大的产品是哪个", "JE-2000F 节能模式怎么关闭？"]) {
+    assert.match(hooks[0].handler({ prompt }).prependSystemContext, /manual_search/);
+  }
+  for (const prompt of ["修复 JBP-2000B 构建脚本", "查询 JE-2000F 构建状态", "今天有哪些会议？"]) {
+    assert.equal(hooks[0].handler({ prompt }), undefined);
+  }
+  assert.match(guidance, /本轮工具调用结果/);
+  assert.match(guidance, /不得把型号自行等同/);
+  assert.match(guidance, /RTD/); assert.match(guidance, /\/manual-query/);
+  assert.match(guidance, /manual_search/); assert.match(guidance, /manual_section/);
+  await tools[0].execute("one", { query: "JE-TEST output" });
+  await tools[0].execute("two", { query: "JE-TEST output" });
+  api.pluginConfig.manualQueryBaseUrl = origin + "/en/latest/";
+  await tools[0].execute("three", { query: "JE-TEST output" });
+  assert.deepEqual(addresses, [origin, origin + "/en/latest/"]);
+});
+
+
+test("manifest eagerly activates the plugin so commands and routing hooks exist before a tool call", async () => {
+  const manifest = JSON.parse(await readFile(new URL("../openclaw.plugin.json", import.meta.url), "utf8"));
+  assert.equal(manifest.activation.onStartup, true);
+  assert.deepEqual(manifest.contracts.tools, ["manual_search", "manual_section"]);
 });

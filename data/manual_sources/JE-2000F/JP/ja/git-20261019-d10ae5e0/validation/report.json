@@ -1,0 +1,40 @@
+{
+  "model": "JE-2000F",
+  "region": "JP",
+  "language": "ja",
+  "source_pages": 28,
+  "web_chapters": 13,
+  "source_lines": 932,
+  "live_copy_lines": 783,
+  "unmapped_source_lines": [],
+  "missing_live_copy_lines": [],
+  "source_line_roles": {
+    "print-only": 34,
+    "live-copy": 783,
+    "printed-folio": 24,
+    "printed-card-number": 3,
+    "embedded-art": 85,
+    "printed-frequency-label": 2,
+    "fixed-button-marking": 1
+  },
+  "shared_asset_reuses": 44,
+  "extracted_source_illustrations": 20,
+  "shared_style_issues": [],
+  "cold_import_equal": true,
+  "cold_replay_equal": true,
+  "bound_resource_references": 77,
+  "strict_html": {
+    "chapters": 13,
+    "images": 77,
+    "missing_image_files": []
+  },
+  "browser_visual_qa": {
+    "status": "unverified",
+    "viewports": [
+      1280,
+      390
+    ],
+    "reason": "Browser denied localhost navigation because the admin-enforced policy could not be verified; no bypass attempted."
+  },
+  "publication": "candidate only; no merge or publication authorization"
+}

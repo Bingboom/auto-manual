@@ -1,0 +1,486 @@
+[
+  {
+    "key": "inbox-unit",
+    "page": 8,
+    "crop": [
+      42,
+      91,
+      122,
+      157
+    ],
+    "mode": "native-art",
+    "reason": "JE-1000F chassis differs; EU source socket is not JP",
+    "drop_text": [],
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots"
+  },
+  {
+    "key": "overview-front",
+    "page": 8,
+    "crop": [
+      27,
+      327,
+      345,
+      498
+    ],
+    "mode": "dense-labeled-diagram",
+    "reason": "JP three-AC-port figure differs from EU socket; 2000 chassis differs from 1000",
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots"
+  },
+  {
+    "key": "overview-right",
+    "page": 9,
+    "crop": [
+      27,
+      39,
+      346,
+      180
+    ],
+    "mode": "dense-labeled-diagram",
+    "reason": "authoritative JP DC8020 and AC input ratings differ from sibling",
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots"
+  },
+  {
+    "key": "lcd-map",
+    "page": 9,
+    "crop": [
+      40,
+      307,
+      316,
+      483
+    ],
+    "mode": "numbered-display-map",
+    "reason": "25-number JP layout differs from the JE-1000F reference",
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots"
+  },
+  {
+    "key": "power-operation",
+    "page": 12,
+    "crop": [
+      44,
+      90,
+      268,
+      182
+    ],
+    "mode": "native-art",
+    "reason": "2000 chassis; external on/off copy stays live HTML",
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots",
+    "drop_frames": [
+      [
+        158,
+        165,
+        323,
+        216
+      ],
+      [
+        216.5,
+        121.8,
+        255.6,
+        123
+      ],
+      [
+        256.3,
+        107.1,
+        266,
+        133.9
+      ]
+    ]
+  },
+  {
+    "key": "ac-operation",
+    "page": 12,
+    "crop": [
+      36,
+      326,
+      334,
+      483
+    ],
+    "mode": "native-art",
+    "reason": "JP AC outlets and 2000 chassis; live on/off instructions",
+    "drop_text": [
+      [
+        269,
+        330,
+        345,
+        390
+      ]
+    ],
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots",
+    "drop_frames": [
+      [
+        244.2,
+        358.1,
+        274.2,
+        359.3
+      ],
+      [
+        274.9,
+        346.4,
+        285.1,
+        370.2
+      ]
+    ]
+  },
+  {
+    "key": "frequency-displays",
+    "page": 13,
+    "crop": [
+      56,
+      135,
+      312,
+      207
+    ],
+    "mode": "display-art",
+    "reason": "source display geometry and symbols; 50/60 Hz instruction stays live",
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots"
+  },
+  {
+    "key": "usb-operation",
+    "page": 13,
+    "crop": [
+      36,
+      260,
+      334,
+      405
+    ],
+    "mode": "native-art",
+    "reason": "2000 USB/AC layout; captions outside artwork",
+    "drop_text": [
+      [
+        293,
+        250,
+        343,
+        306
+      ]
+    ],
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots",
+    "drop_frames": [
+      [
+        248.5,
+        277.5,
+        277.6,
+        278.6
+      ],
+      [
+        278.8,
+        267,
+        293.1,
+        288.4
+      ]
+    ]
+  },
+  {
+    "key": "led-operation",
+    "page": 15,
+    "crop": [
+      40,
+      188,
+      207,
+      282
+    ],
+    "mode": "native-art",
+    "reason": "2000 chassis; three LED operations become live numbered text",
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots",
+    "keep_text": [
+      "LIGHT"
+    ]
+  },
+  {
+    "key": "lcd-operation",
+    "page": 15,
+    "crop": [
+      35,
+      326,
+      150,
+      434
+    ],
+    "mode": "native-art",
+    "reason": "2000 chassis; state/action table is a shared LCD mode component",
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots"
+  },
+  {
+    "key": "ups",
+    "page": 16,
+    "crop": [
+      43,
+      266,
+      332,
+      469
+    ],
+    "mode": "native-art",
+    "reason": "JP AC plug and three-port body differ from EU and JE-1000F",
+    "drop_frames": [
+      [
+        149,
+        409,
+        332,
+        454
+      ]
+    ],
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots"
+  },
+  {
+    "key": "ac-charge",
+    "page": 18,
+    "crop": [
+      28,
+      25,
+      342,
+      159
+    ],
+    "mode": "native-art",
+    "reason": "JP socket/cable and 2000 body",
+    "drop_text": [
+      [
+        193,
+        159,
+        334,
+        179
+      ]
+    ],
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots"
+  },
+  {
+    "key": "solar-direct",
+    "page": 19,
+    "crop": [
+      28,
+      25,
+      342,
+      163
+    ],
+    "mode": "native-art",
+    "reason": "2000 body and target two-panel wiring; SolarSaga product markings stay",
+    "drop_text": [
+      [
+        220,
+        155,
+        337,
+        180
+      ]
+    ],
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots"
+  },
+  {
+    "key": "solar-adapter",
+    "page": 19,
+    "crop": [
+      28,
+      224,
+      342,
+      397
+    ],
+    "mode": "native-art",
+    "reason": "2000 body and four-panel wiring; captions remain live",
+    "drop_text": [
+      [
+        125,
+        372,
+        340,
+        395
+      ]
+    ],
+    "drop_frames": [
+      [
+        131,
+        372,
+        338,
+        393
+      ]
+    ],
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots"
+  },
+  {
+    "key": "car-charge",
+    "page": 20,
+    "crop": [
+      28,
+      204,
+      342,
+      355
+    ],
+    "mode": "native-art",
+    "reason": "2000 body and cigarette-lighter wiring",
+    "drop_text": [
+      [
+        194,
+        315,
+        337,
+        343
+      ]
+    ],
+    "drop_frames": [
+      [
+        197,
+        315,
+        335,
+        340
+      ]
+    ],
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots"
+  },
+  {
+    "key": "app-store",
+    "page": 25,
+    "crop": [
+      28,
+      103,
+      94,
+      150
+    ],
+    "mode": "store-badges",
+    "reason": "compare JE-1000F combined panel: layout differs, extract the two source badges",
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots"
+  },
+  {
+    "key": "app-qr",
+    "page": 25,
+    "crop": [
+      228,
+      98,
+      280,
+      149
+    ],
+    "mode": "qr",
+    "reason": "bind the actual source QR, without guessing a URL",
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots"
+  },
+  {
+    "key": "app-phones",
+    "page": 25,
+    "crop": [
+      86,
+      236,
+      264,
+      403
+    ],
+    "mode": "ui-screenshot",
+    "reason": "source device identifies 2000 New; do not import 1000 New screenshots",
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots"
+  },
+  {
+    "key": "app-control",
+    "page": 25,
+    "crop": [
+      42,
+      415,
+      326,
+      490
+    ],
+    "mode": "dense-labeled-diagram",
+    "reason": "2000 chassis and exact three source control labels",
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots"
+  },
+  {
+    "key": "app-results",
+    "page": 26,
+    "crop": [
+      62,
+      138,
+      305,
+      284
+    ],
+    "mode": "ui-screenshot",
+    "reason": "Use the target PDF's own illustrative UI screenshots and model labels; do not substitute the reference manual's screenshots",
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots"
+  }
+]

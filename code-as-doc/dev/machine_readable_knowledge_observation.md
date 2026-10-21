@@ -315,7 +315,8 @@ JBP-2000B/EU/de 的两条 `HINWEISE` 渲染为表格，JS-100I/EU/en 的两条�
 
 - `kind` 取值：同区域跨产品的 `exact_reuse`、`near_reuse`、`product_specific`，同产品同区域
   跨语言的 `language_parity`；两类比较各用各的规则，不共用一种相似度（上位计划 §9）。
-  `semantic_variant` 在 2a 不自动判定，`region_specific` 属于 2b，契约保留的 `unknown` 目前不产出。
+  `semantic_variant`（2a 不自动判定）、`region_specific`（属于 2b）与 `unknown` 都只是契约保留的名称，
+  [`relations.py`](../../tools/manual_knowledge/relations.py) 只产出上述四种。
 - 成员保留完整身份与来源，禁止把多条合并成一句而丢失来源。`observation_id` 由类型、类别、
   成员的 `knowledge_id` 与 `absent_in` 的版本内容寻址。
 - **跨产品**（同语言、同类别）：`exact_reuse` 是标签与正文完全相同、出现在两个及以上型号的

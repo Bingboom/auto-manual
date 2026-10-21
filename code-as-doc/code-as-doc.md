@@ -1,6 +1,6 @@
 # Documentation Maintenance Policy
 
-Updated: 2026-09-28
+Updated: 2026-10-18
 
 This file defines how documentation must be maintained together with code and data changes.
 The goal is simple:
@@ -73,6 +73,7 @@ Must update:
 - [`code-as-doc/code_style_guide.md`](code_style_guide.md)
 - [`code-as-doc/code-as-doc.md`](code-as-doc.md)
 - [`code-as-doc/code_optimization_log.md`](code_optimization_log.md)
+- [`code-as-doc/architecture/System Evolution Strategy.md`](architecture/System%20Evolution%20Strategy.md) when the change meets one of its §2 stability rules
 
 ### 3.3 Data Contract Changes
 

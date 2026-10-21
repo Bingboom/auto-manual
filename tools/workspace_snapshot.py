@@ -11,7 +11,8 @@ from typing import Any
 
 from tools.utils.path_utils import PathSegments
 
-NAMES = {"deliverables": "deliverables_snapshot.json", "corpus": "system_workspace_corpus.json"}
+NAMES = {"deliverables": "deliverables_snapshot.json", "corpus": "system_workspace_corpus.json",
+         "web_progress": "web_progress_snapshot.json"}
 
 
 def data_dir(root: Path) -> Path:
@@ -143,6 +144,8 @@ def loss_problems(candidate: dict, previous: dict | None) -> list[str]:
         return []
     if "documents" in candidate:
         return _delivery_losses(candidate, previous)
+    if "timeline" in candidate:
+        return []  # 网页说明书进度: a withdrawn route or a cleared 核对 tick may shrink it legitimately
     problems = []
     for kind in ("sentence_pairs", "terms"):
         before, after = previous[kind]["total"], candidate[kind]["total"]

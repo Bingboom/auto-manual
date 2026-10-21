@@ -9,7 +9,7 @@ import unittest
 
 from tools.rtd.production_evidence import (
     NOT_APPLICABLE, NOT_TRACKED, UNAVAILABLE, activity_windows,
-    component_references, metric, production_context, production_metrics, read_publications, skeleton_total,
+    component_references, metric, production_context, production_metrics, publication_facts, read_publications,
 )
 from tools.rtd.source_registry import load_registry
 from tools.rtd.deliverables import ASSETS, load_snapshot
@@ -38,6 +38,30 @@ class ProductionEvidenceTests(unittest.TestCase):
         self.assertEqual(results["print"]["value"], 1)
         self.assertEqual(results["idml"]["display"], NOT_TRACKED)
         self.assertEqual(results["pdf"]["display"], NOT_TRACKED)
+
+    def test_publication_facts_count_books_and_language_versions_once(self):
+        # A second route of one language version (a legacy alias) counts once.
+        aliased = [self.target, dict(self.target, route="M/EU/en/legacy", built_at="2026-10-12T07:00:00+00:00")]
+        facts = publication_facts(aliased)
+        self.assertEqual((facts["books"], facts["variants"], facts["models"]), (1, 1, 1))
+        self.assertEqual(facts["last_published"], "2026-10-12")
+        # Two languages of one book: one 说明书, two 语言版本.
+        facts = publication_facts([self.target, dict(self.target, lang="de")])
+        self.assertEqual((facts["books"], facts["variants"]), (1, 2))
+        self.assertEqual(facts["book_ids"], [("M", "EU")])
+        self.assertEqual(facts["variant_ids"], [("M", "EU", "de"), ("M", "EU", "en")])
+        catalog = [*aliased, dict(self.target, lang="de"), dict(self.target, region="US"),
+                   dict(self.target, model="N"), dict(self.target, model="N", lang="fr")]
+        facts = publication_facts(catalog)
+        self.assertEqual((facts["books"], facts["variants"], facts["models"]), (3, 5, 2))
+        self.assertEqual(facts["books_by_region"], {"EU": 2, "US": 1})
+        # The workbench KPI reads the same identities.
+        results = self.metrics(catalog, None)
+        self.assertEqual((results["manuals"]["value"], results["variants"]["value"]), (3, 5))
+        self.assertEqual(results["manuals"]["objects"], ["M / EU", "M / US", "N / EU"])
+        empty = publication_facts([])
+        self.assertEqual((empty["books"], empty["variants"], empty["models"], empty["books_by_region"],
+                          empty["last_published"]), (0, 0, 0, {}, ""))
 
     def test_unknown_language_does_not_invent_variant(self):
         docs = [dict(model="M", region="EU", lang="", formats={"word": {}})]
@@ -84,21 +108,6 @@ class ProductionEvidenceTests(unittest.TestCase):
         with TemporaryDirectory() as temp:
             self.assertEqual(component_references(Paths(root=Path(temp))), (None, None))
 
-    def test_skeleton_copies_do_not_add_assets_and_missing_identity_is_not_a_filename(self):
-        with TemporaryDirectory() as temp:
-            root = Path(temp)
-            from tools.utils.path_utils import skeletons_of
-            directory = skeletons_of(root)
-            directory.mkdir(parents=True)
-            self.assertEqual(skeleton_total(root), 0)
-            for name in ("original", "renamed-copy"):
-                path = directory / name / "blueprint.yaml"
-                path.parent.mkdir()
-                path.write_text("schema_version: skeleton-blueprint/v1\nskeleton_id: same\n")
-            self.assertEqual(skeleton_total(root), 1)
-            path.write_text("schema_version: skeleton-blueprint/v1\n")
-            self.assertIsNone(skeleton_total(root))
-
     def test_windows_are_utc_half_open_and_not_snapshot_events(self):
         windows = activity_windows(dt.date(2026, 10, 2))
         self.assertEqual([(w["start"], w["end"]) for w in windows],
@@ -115,7 +124,9 @@ class ProductionEvidenceTests(unittest.TestCase):
                                          registry=registry, today=dt.date(2027, 1, 1), delivery_stale=["交付快照已过期"])
         self.assertIn("交付快照已过期", context["alerts"])
         self.assertTrue(any("发布目录 Unavailable" in alert for alert in context["alerts"]))
-        self.assertTrue(any("语料快照" in alert for alert in context["alerts"]))
+        # Corpus and skeleton totals belong to 系统建设; the workbench neither counts nor alerts on them.
+        self.assertFalse(any("语料快照" in alert for alert in context["alerts"]))
+        self.assertEqual([item["id"] for item in context["assets"]], ["components", "specs", "artwork"])
         for item in context["overview"] + context["assets"] + [context["reference_metric"]]:
             for key in ("scope", "rule", "unit", "denominator", "sources", "guide"):
                 self.assertIn(key, item)

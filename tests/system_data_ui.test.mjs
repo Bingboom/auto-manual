@@ -34,7 +34,8 @@ const plain = value => JSON.parse(JSON.stringify(value));
 
 test('without a filter the counts cover every row', () => {
   const counts = load().summary(data, all);
-  assert.equal(counts.manuals, 4);
+  assert.equal(counts.variants, 4);
+  assert.equal(counts.books, 3);
   assert.equal(counts.models, 2);
   assert.equal(counts.languages, 2);
   assert.equal(counts.regions, 2);
@@ -47,20 +48,37 @@ test('without a filter the counts cover every row', () => {
 test('region and model filters narrow every count; shared assets stay in', () => {
   const model = load();
   const counts = model.summary(data, {region: 'EU', model: 'A'});
-  assert.equal(counts.manuals, 2);
+  assert.equal(counts.variants, 2);
+  assert.equal(counts.books, 1);
   assert.equal(counts.targets, 1);
   // A's EU asset plus the ALL/ALL asset; B's US asset is out.
   assert.equal(counts.assets, 2);
   assert.equal(model.summary(data, {region: 'US', model: ''}).assets, 2);
-  assert.equal(model.summary(data, {region: 'JP', model: ''}).manuals, 0);
+  assert.equal(model.summary(data, {region: 'JP', model: ''}).variants, 0);
+  assert.equal(model.summary(data, {region: 'JP', model: ''}).books, 0);
   assert.equal(model.summary(data, {region: 'JP', model: ''}).ready_share, 1);
 });
 
-test('a missing publish manifest keeps the publication counts empty', () => {
-  const counts = load().summary({...data, published: null}, all);
-  assert.equal(counts.manuals, null);
+test('a missing publish manifest keeps the publication and capability counts empty', () => {
+  // Targets list published models only, so without a manifest they are null as well.
+  const counts = load().summary({...data, published: null, targets: null}, all);
+  assert.equal(counts.variants, null);
+  assert.equal(counts.books, null);
   assert.equal(counts.languages, null);
-  assert.equal(counts.targets, 3);
+  assert.equal(counts.targets, null);
+  assert.equal(counts.review_targets, null);
+  assert.equal(counts.assets, 3);
+});
+
+test('a repeated route counts once, and a filter recounts language versions and books together', () => {
+  const model = load();
+  const aliased = {...data, published: [...data.published, {model: 'A', region: 'EU', lang: 'en'}]};
+  const counts = model.summary(aliased, all);
+  assert.deepEqual([counts.variants, counts.books], [4, 3]);
+  const eu = model.summary(aliased, {region: 'EU', model: ''});
+  assert.deepEqual([eu.variants, eu.books], [3, 2]);
+  const a = model.summary(aliased, {region: '', model: 'A'});
+  assert.deepEqual([a.variants, a.books], [3, 2]);
 });
 
 test('the matrix keeps every model of the region and orders languages by use', () => {
@@ -75,19 +93,9 @@ test('coverage is the supported share of the filtered targets', () => {
   assert.deepEqual(plain(model.coverage(data, all).map(c => [c.label, c.supported, c.targets])), [['UPS', 2, 3], ['LED', 1, 3]]);
   assert.deepEqual(plain(model.coverage(data, {region: '', model: 'A'}).map(c => c.share)), [1, 0.5]);
   assert.deepEqual(plain(model.coverage(data, {region: 'JP', model: ''}).map(c => c.targets)), [0, 0]);
+  assert.deepEqual(plain(model.coverage({...data, targets: null}, all)), []);
 });
 
 test('counts are ordered by size, then label', () => {
   assert.deepEqual(plain(load().countBy(data.assets, 'status').map(c => [c.label, c.n])), [['成品', 2], ['缺失', 1]]);
-});
-
-test('code size is grouped by directory, largest first, in file-type order', () => {
-  const rows = [
-    {area: 'docs', type: 'Markdown 文档', files: 2, lines: 50},
-    {area: 'tools', type: 'Python', files: 3, lines: 80},
-    {area: 'docs', type: 'Python', files: 1, lines: 40},
-  ];
-  const areas = load().codeAreas(rows, ['Python', 'Markdown 文档']);
-  assert.deepEqual(plain(areas.map(a => [a.area, a.files, a.lines])), [['docs', 3, 90], ['tools', 3, 80]]);
-  assert.deepEqual(plain(areas[0].parts.map(p => [p.type, p.lines])), [['Python', 40], ['Markdown 文档', 50]]);
 });

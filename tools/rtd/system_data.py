@@ -1,43 +1,39 @@
-"""Build-time 系统数据 page: published manuals, model capabilities and assets, filterable by region and model.
+"""Build-time 数据统计 of 说明书工作台: published manuals, model capabilities and assets, filterable by region and model.
 
-``/workspace/data/`` reads, at build time and from the repository only:
+The 数据统计 tab of ``/workspace/deliverables/`` reads, at build time and from
+the repository only:
 
 - ``docs/publish/publish_manifest.json``: one row per published Web route
-  (model, region, language, version, build date), as the deliverables page
+  (model, region, language, version, build date), as the deliverables matrix
   reads it;
 - ``data/model_capabilities.csv``: the capability switches of every
-  ``<model>_<region>`` target;
+  ``<model>_<region>`` target; the tab lists the targets of published models
+  only (a model with at least one published 说明书);
 - ``data/model_languages.csv``: the languages registered for a target;
 - ``docs/_review/<model>/<region>``: the review pages on this commit;
 - ``data/asset_registry.csv``: category, status, model and region of every
-  registered asset;
-- ``git ls-files``: the files and lines per top-level directory and file type
-  for the 工程规模 card (a shallow clone still lists every tracked file).
+  registered asset.
 
 The rows travel to the browser as one JSON block; ``_static/system-data.js``
 filters them by region and model and draws the charts. Without JavaScript the
 whole-repository counts and the publication table still show. A missing
-publish manifest shows the publication cards as 无数据, and without git (or
-outside a checkout) the 工程规模 card does the same; an unreadable or
-malformed CSV is an authoring error that skips the page (and its sidebar entry)
-with a Sphinx warning.
+publish manifest shows the publication and capability cards as 无数据, since
+the published models are unknown; an unreadable or malformed CSV is an
+authoring error that empties the tab with a Sphinx warning.
+The former ``/workspace/data/`` URL redirects to the tab through ``portal.py``.
 """
 from __future__ import annotations
 
 import csv
 import json
 import re
-import subprocess
 from collections import Counter
-from collections.abc import Callable, Iterable
 from pathlib import Path, PurePosixPath
 from typing import Any
 
-from tools.rtd.production_evidence import read_publications
+from tools.rtd.production_evidence import publication_facts, read_publications
 from tools.utils.path_utils import Paths, PathSegments, repo_root
 
-PAGE = "workspace/data/index"
-TEMPLATE = "system_data.html"
 CAPABILITIES_CSV = "model_capabilities.csv"
 LANGUAGES_CSV = "model_languages.csv"
 ASSET_REGISTRY_CSV = "asset_registry.csv"
@@ -46,13 +42,6 @@ PROJECT = "Project"
 # Asset rows whose model or region is ALL apply to every model or region.
 SHARED = "ALL"
 SWITCH = {"TRUE": 1, "FALSE": 0}
-# The file types the 工程规模 card counts, by suffix; their order fixes each type's colour.
-FILE_TYPES = {
-    ".py": "Python", ".md": "Markdown 文档", ".rst": "RST 模板/页面",
-    ".yaml": "YAML 配置", ".yml": "YAML 配置", ".csv": "CSV 数据",
-}
-TYPE_ORDER = list(dict.fromkeys(FILE_TYPES.values()))
-ROOT_AREA = "(根目录)"
 
 _STATUS_MARK = re.compile(r"^\W+")
 
@@ -144,42 +133,6 @@ def read_published(manifest: Path) -> tuple[list[dict[str, str]] | None, str]:
     return rows, built_at[:10]
 
 
-def tracked_files(root: Path) -> list[str] | None:
-    """Repository-relative paths git tracks; None without git or outside a checkout."""
-    try:
-        result = subprocess.run(
-            ["git", "-C", str(root), "ls-files", "-z"], capture_output=True, check=True, timeout=120,
-        )
-    except (OSError, subprocess.SubprocessError):
-        return None
-    return [name for name in result.stdout.decode("utf-8", "surrogateescape").split("\0") if name]
-
-
-def count_lines(data: bytes) -> int:
-    """Lines as an editor counts them: a last line without a newline still counts."""
-    return data.count(b"\n") + (1 if data and not data.endswith(b"\n") else 0)
-
-
-def codebase_rows(root: Path, files: Iterable[str] | None) -> list[dict[str, Any]] | None:
-    """Files and lines per top-level directory and file type, largest first; None without a file list."""
-    if files is None:
-        return None
-    totals: dict[tuple[str, str], list[int]] = {}
-    for name in files:
-        relative = PurePosixPath(name)
-        kind = FILE_TYPES.get(relative.suffix.lower())
-        path = root / relative
-        # A sparse or partial checkout may list files that are not on disk; links are not counted twice.
-        if kind is None or path.is_symlink() or not path.is_file():
-            continue
-        area = relative.parts[0] if len(relative.parts) > 1 else ROOT_AREA
-        entry = totals.setdefault((area, kind), [0, 0])
-        entry[0] += 1
-        entry[1] += count_lines(path.read_bytes())
-    ordered = sorted(totals.items(), key=lambda item: (-item[1][1], item[0]))
-    return [{"area": area, "type": kind, "files": files_, "lines": lines} for (area, kind), (files_, lines) in ordered]
-
-
 def _facets(*groups: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], list[str]]:
     regions: Counter = Counter()
     models: set[str] = set()
@@ -193,68 +146,82 @@ def _facets(*groups: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], list[s
     return [{"code": code, "rows": count} for code, count in ordered], sorted(models)
 
 
-def summary(published: list[dict[str, str]] | None, targets: list[dict[str, Any]],
+def published_targets(targets: list[dict[str, Any]],
+                      published: list[dict[str, str]] | None) -> list[dict[str, Any]] | None:
+    """The targets of published models, or None without a publish manifest.
+
+    A model is published when it has at least one 说明书 (model × region) in the
+    manifest, counted by ``publication_facts``; all its targets stay, an
+    unpublished model's drop out.
+    """
+    if published is None:
+        return None
+    models = {model for model, _region in publication_facts(published)["book_ids"]}
+    return [target for target in targets if target["model"] in models]
+
+
+def summary(published: list[dict[str, str]] | None, targets: list[dict[str, Any]] | None,
             assets: list[dict[str, str]]) -> dict[str, Any]:
-    """The whole-repository counts the page shows before (or without) any filter."""
+    """The whole-repository counts the tab shows before (or without) any filter.
+
+    语言版本 and 说明书 are counted as on every other page; the table lists one row per route.
+    Without a publish manifest the publication counts and the published-model targets are None.
+    """
     ready = sum(1 for asset in assets if asset["status"] == "成品")
+    web = publication_facts(published) if published is not None else None
     return {
-        "manuals": len(published) if published is not None else None,
-        "models": len({row["model"] for row in published}) if published is not None else None,
+        "variants": web["variants"] if web is not None else None,
+        "books": web["books"] if web is not None else None,
+        "models": web["models"] if web is not None else None,
         "languages": len({row["lang"] for row in published}) if published is not None else None,
         "regions": len({row["region"] for row in published}) if published is not None else None,
-        "targets": len(targets),
-        "review_targets": sum(1 for target in targets if target["review_pages"]),
+        "targets": len(targets) if targets is not None else None,
+        "review_targets": sum(1 for target in targets if target["review_pages"]) if targets is not None else None,
         "assets": len(assets),
         "ready_share": f"{ready / len(assets):.1%}" if assets else None,
     }
 
 
-def system_data_context(root: Path, manifest: Path, language_labels: dict[str, str],
-                        list_files: Callable[[Path], Iterable[str] | None] = tracked_files) -> dict[str, Any]:
+def system_data_context(root: Path, manifest: Path, language_labels: dict[str, str]) -> dict[str, Any]:
     paths = Paths(root)
-    names, targets = read_targets(
+    names, every_target = read_targets(
         paths.data_dir / CAPABILITIES_CSV, paths.data_dir / LANGUAGES_CSV, paths.review_dir,
     )
     assets = read_assets(paths.data_dir / ASSET_REGISTRY_CSV)
     published, built_on = read_published(manifest)
-    regions, models = _facets(published or [], targets, assets)
-    codebase = codebase_rows(root, list_files(root))
-    used_languages = sorted({row["lang"] for row in published or []} | {code for t in targets for code in t["langs"]})
+    targets = published_targets(every_target, published)
+    regions, models = _facets(published or [], targets or [], assets)
+    registered = {code for target in targets or [] for code in target["langs"]}
+    used_languages = sorted({row["lang"] for row in published or []} | registered)
     payload = {
         "capabilities": names,
         "published": [{key: row[key] for key in ("model", "region", "lang")} for row in published]
         if published is not None else None,
         "targets": targets, "assets": assets, "regions": regions, "models": models,
-        "codebase": codebase, "file_types": TYPE_ORDER,
         "language_labels": {code: language_labels[code] for code in used_languages if code in language_labels},
     }
     return {
         "summary": summary(published, targets, assets),
-        "published": published, "built_on": built_on,
+        "published": published, "built_on": built_on, "targets": targets,
         "capability_count": len(names), "regions": regions, "models": models,
-        "file_types": TYPE_ORDER,
-        "codebase_total": None if codebase is None else {
-            "files": sum(row["files"] for row in codebase), "lines": sum(row["lines"] for row in codebase),
-        },
         # Safe inside <script type="application/json">: no "<" survives to close the element.
         "data_json": json.dumps(payload, ensure_ascii=False, separators=(",", ":")).replace("<", "\\u003c"),
     }
 
 
 def system_data_page_context(app, settings: dict[str, Any]) -> dict[str, Any] | None:
-    """Context for PAGE, or None (with a warning) when the committed data has drifted."""
+    """Context for the workbench 数据统计 tab, or None (with a warning) when the committed data has drifted."""
     from sphinx.util import logging as sphinx_logging
 
     manifest = Path(app.srcdir).parent / PathSegments.PUBLISH_MANIFEST_JSON
     try:
         return system_data_context(repo_root(), manifest, dict(settings.get("language_labels") or {}))
     except (ValueError, OSError, KeyError, csv.Error) as exc:
-        sphinx_logging.getLogger(__name__).warning("System data page skipped: %s", exc)
+        sphinx_logging.getLogger(__name__).warning("Workbench statistics show no data: %s", exc)
         return None
 
 
 __all__ = [
-    "FILE_TYPES", "PAGE", "SystemDataError", "TEMPLATE", "codebase_rows", "count_lines", "read_assets",
-    "read_published", "read_targets", "review_page_counts", "summary", "system_data_context",
-    "system_data_page_context", "tracked_files",
+    "SystemDataError", "published_targets", "read_assets", "read_published", "read_targets",
+    "review_page_counts", "summary", "system_data_context", "system_data_page_context",
 ]

@@ -1,4 +1,4 @@
-"""Shared pieces of the 设计系统 page: its error type, its notes file and inline formatting.
+"""Shared pieces of the 设计规范 page: its error type, its notes file and inline formatting.
 
 The notes are committed data (tools/rtd_portal_assets/design_system/content.yaml);
 every value the page shows is read from the repository at build time by

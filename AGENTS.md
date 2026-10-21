@@ -30,6 +30,7 @@ Document boundary (open the others only when the task needs them; see §10):
 ## 3. Workflow Rules
 
 - Before any manual-to-Web asset work, follow the [Web artwork reuse order](docs/renderers/contracts/STYLE_DEFINITION/web-artwork-reuse.md#共用图标优先web-插图选材规则): inventory existing assets and record reuse decisions before extracting; preserve complete panels and App screenshot frames. A new language or source PDF alone is not a reason to recrop.
+- Web packages use shared components and the shared theme, never source-drawn styles. Before converting a manual to Web, map every printed block (symbol, LCD, button, troubleshooting, specification, inbox, callout, App) to its shared component and record the map in the package; an unmappable block is a plain table declared with its reason, never a package colour, border or `ht-*` class. Review pages show the shared reference edition (e.g. the same model's EU Web) beside the new one. The [prepared-document shared-style gate](code-as-doc/dev/web_publish_pipeline/shared-component-admission.md#prepared-document-shared-style-admission) enforces it.
 - Do not create one config per model just because the model changed.
 - Keep the shared family config pattern with [`configs/config.us.yaml`](configs/config.us.yaml) and [`configs/config.ja.yaml`](configs/config.ja.yaml).
 - If a target is already in review, prefer `sync-review` over `review --refresh-review` for data-driven updates.
@@ -51,8 +52,9 @@ Document boundary (open the others only when the task needs them; see §10):
 ## 5. Documentation
 
 - Update docs in the same change when behavior changes.
-- Minimum set: [`README.md`](README.md) and the owning topic pages under [`code-as-doc/build_doc_guide/`](code-as-doc/build_doc_guide.md) and [`user-guide/hello_auto-doc/`](user-guide/hello_auto-doc.md). The two guide files themselves are indexes: edit them only to add, rename or re-scope a page, never to append notes. Split a page that passes ~400 lines and update its index row.
-- [`README.md`](README.md) is the workflow roadmap + quickstart + navigation map only. Touch it when the stable workflow topology, an entry point, a navigation pointer, or an editing-surface rule changes; behavior and contract details go to the owning document, with at most a one-line pointer in the README. Treat a README beyond ~350 lines as documentation debt.
+- Update the affected owning topic pages under [`code-as-doc/build_doc_guide/`](code-as-doc/build_doc_guide.md) and [`user-guide/hello_auto-doc/`](user-guide/hello_auto-doc.md); there is no mandatory README edit for an ordinary behavior change. The two guide files themselves are indexes: edit them only to add, rename or re-scope a page, never to append notes. Split a page that passes ~400 lines and update its index row.
+- [`README.md`](README.md) owns project positioning, the stable workflow roadmap, quickstart and top-level navigation. Edit it only when one of those changes. Link to a topic hub rather than listing its subpages; extend an existing navigation row before adding another. Keep the page concise; the ~350-line ceiling is a backstop, not a content allowance.
+- Do not append feature announcements, model/language intake or acceptance records, field/flag contracts, implementation details, temporary status or per-PR evidence to README, even as one-line links. Put them in the owning guide, review record or execution ledger and link from that topic hub. When removing README detail, verify that the owning topic remains reachable from the retained navigation.
 - If a code change affects the current workflow, editing surface, environment setup, or release flow, update the owning page of [`user-guide/hello_auto-doc.md`](user-guide/hello_auto-doc.md) in the same change.
 - If a code change affects the happy-path example, onboarding steps, or target-specific sample commands, update the owning page of [`user-guide/quick_start_guide.md`](user-guide/quick_start_guide.md) in the same change.
 - When a phase or workstream from [`code-as-doc/optimization_project.md`](code-as-doc/optimization_project.md) is completed, add a matching maintenance record at the top of [`code-as-doc/code_optimization_log.md`](code-as-doc/code_optimization_log.md); older records live in its archive.
@@ -159,6 +161,7 @@ The PR cannot be opened until the validation set that matches the change passes 
 | logic in `tools/`, `build.py`, `tests/` | `python -m unittest` |
 | `tools/utils/**` types | `python -m mypy tools/utils` |
 | `tools/` boundary, `build.py`, `tools/build/docs.py`, `tools/build_queue/process_build_queue.py` | `python -m tools.check_maintainability_guardrails` |
+| a frozen source package under `manual_sources/` or `data/manual_sources/`, or a shared file one pins | `python -m tools.check_maintainability_guardrails`; register a new package or record drift with `python -m tools.web.frozen_package_registry` |
 | any `code-as-doc/**` or `user-guide/**` docs | `python -m tools.check_doc_link_integrity` |
 | build / quality-gate behaviour | `python build.py check --config configs/config.us-en.yaml --model JE-1000F --region US` |
 | JP review or publish behaviour | `python build.py check --config configs/config.ja.yaml --model JE-1000F --region JP` |

@@ -1,6 +1,7 @@
 # Backport rendered-baseline design (approach C)
 
-Status: **design / not yet implemented.** Refines the diff foundation of
+Status: **design; Phases 1–2 shipped, Phase 3 mostly shipped, Phase 4 next (§11).**
+Refines the diff foundation of
 [`Feishu_Cloud_Doc_Backport_Design.md`](Feishu_Cloud_Doc_Backport_Design.md). The
 locate/worktree/route machinery (resolver, `run-review-branch`, sparse worktrees,
 F2/F3/F6) already shipped; this doc fixes **what the backport diffs against**.

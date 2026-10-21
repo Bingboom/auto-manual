@@ -1,4 +1,4 @@
-"""Read-only 设计系统 page: the live Web stylesheet, asset library and print tokens.
+"""Read-only 设计规范 page: the live Web stylesheet, asset library and print tokens.
 
 Colours, type and component previews are read from the web_manual.css that
 tools/web/stylesheets.py assembles, the 图标与素材 gallery from the shared asset
@@ -228,7 +228,7 @@ def preview_document(item: dict) -> str:
         '<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
         '<meta name="viewport" content="width=device-width,initial-scale=1">\n'
         '<meta name="robots" content="noindex,nofollow">\n'
-        f'<title>{escape(item["title"])} · 设计系统预览</title>\n' + "\n".join(links) + "\n</head>\n"
+        f'<title>{escape(item["title"])} · 设计规范预览</title>\n' + "\n".join(links) + "\n</head>\n"
         f'<body class="{body}">\n<main id="furo-main-content"{stage}>\n{item["markup"]}</main>\n</body>\n</html>\n'
     )
 

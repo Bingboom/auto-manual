@@ -1,0 +1,26 @@
+[
+  {
+    "language": "fr",
+    "physical_page": 42,
+    "bbox": [
+      179.0097,
+      74.7121,
+      286.5837,
+      80.8001
+    ],
+    "text": "Affichez et surveillez en temps réel la",
+    "reason": "Visible line drawn as vector outlines; absent from the PDF text layer. Transcribed from source pixels; glyph-path box."
+  },
+  {
+    "language": "fr",
+    "physical_page": 42,
+    "bbox": [
+      179.0103,
+      110.8425,
+      317.6213,
+      116.9305
+    ],
+    "text": "Affichez l'alimentation électrique actuelle de la",
+    "reason": "Visible line drawn as vector outlines; absent from the PDF text layer. Transcribed from source pixels (straight apostrophe as printed); glyph-path box."
+  }
+]

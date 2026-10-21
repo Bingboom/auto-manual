@@ -12,7 +12,7 @@ change, long-term directions and cross-cutting maintenance history. The two
 panels remain directly accessible through the shared tabs without repeating a
 current-state overview or navigation-hint paragraphs. The evolution introduction
 shows only its title and narrative; update metadata and provenance are available
-under 「入口与数据来源」.
+under 「数据来源」.
 
 The 「系统架构」 tab (`#tab-architecture`) reads optional `architecture` from
 the same marked history summary as System Evolution. Each node has a status
@@ -45,8 +45,9 @@ Existing capabilities name actual repository skills for file pretranslation,
 AI-file diagnosis/renumbering, PDF QC annotations, backport and builds. Hook
 entries distinguish Claude PostToolUse configuration from Git pre-push scripts
 that require core.hooksPath activation. The installed PDF multilingual audit
-skill is explicitly local, outside mirror distribution. Personal Product Knowledge
-and Market Policy pages are not part of this architecture view. Future access and
+skill is explicitly local, outside mirror distribution. The 产品知识 and 市场与政策
+pages are knowledge-base pages for product readers and are not part of this
+architecture view. Future access and
 cross-format IR directions extend the existing stages without fabricated dates;
 review-experience accumulation remains the knowledge-feedback direction.
 
@@ -118,43 +119,63 @@ frozen inputs only. The build never contacts Feishu or GitHub; browser version
 checks read only the already-published same-origin receipt.
 
 - `tools/rtd_portal_assets/system_workspace.yaml` is the curated status
-  contract: focus lanes, capability cards, production-flow links, gate labels
-  and entry links. It is maintained in auto-manual and reaches Hello-Docs
-  through the mirror.
-- `docs/publish/publish_manifest.json` is the source of the publication counts.
-  It uses the REV-04 caliber: a book is one model × region, and language
-  editions are counted separately.
+  contract: focus lanes, capability cards, production-flow links and gate
+  labels. It is maintained in auto-manual and reaches Hello-Docs through the
+  mirror.
+- `docs/publish/publish_manifest.json` gives the publication counts, which
+  说明书工作台 owns; this page shows none and links there below its metric
+  row. The REV-04 caliber is the site's vocabulary: a 说明书 (unit 本) is one
+  model × region, a 语言版本 (unit 个) one model × region × language; a
+  repeated route, version or rebuild counts once, and 份 is never a unit.
+  `publication_facts` in `tools/rtd/production_evidence.py` is the single
+  count for 说明书工作台 (its 数据统计 tab included, whose filters recount
+  distinct values in the browser) and 产品矩阵; this page wraps it for the
+  `publications` and `regions` lane metrics, with `editions` = `variants`.
 - The execution ledger named by `now_next.source` supplies REV statuses, the
   gate composition and each lane's progress. The page reads them and never
   restates a REV status.
 - The skeleton blueprints under `docs/manifests/skeletons/*/blueprint.yaml`
   say which product families already generate their manual structure from a
-  skeleton. The mirror carries them, so RTD reads the same files.
+  skeleton. The mirror carries them, so RTD reads the same files. A skeleton
+  is its `skeleton_id`: copies count once, and a blueprint without one makes
+  the figure 无数据. This page owns the figure.
 - The agent skills under `.agents/skills` and `.claude/skills`, the Claude Code
   hooks in `.claude/settings.json` and the steps of `.githooks/pre-push` feed
   the skills and hooks block; see [Skills and hooks](#skills-and-hooks).
+- `git ls-files` lists the checkout's tracked files for the 工程规模 block; see
+  [Engineering scale](#engineering-scale).
 - `tools/rtd_portal_assets/source_registry.yaml` is the source registry. For
   every data domain on the page, it records where the fact is decided, how it
   is read, how fresh it must be and what shows without it. The page takes its
   snapshot names, freshness limits and fallback text from it, and lists it
-  publicly as 数据来源; see [Source registry](#source-registry).
+  as 数据来源; see [Source registry](#source-registry).
 
-The page is public, on the same RTD project as the manuals. `noindex` is not
-access control, so the contract holds only publishable facts. Gap narratives
-and resource needs belong to the Feishu internal page, not this file. The
-workspace sidebar shows the entry only when the page was built.
+The page is built only by the combined RTD project, which also serves the
+manuals; the manuals-only public project leaves it out (see
+[site role](knowledge-pages.md#public-manuals-project-site-role)). Since
+2026-10-13 the combined site has been private (Read the Docs for Business,
+login required), but the operator can make it public at any time, and
+`noindex` is not access control. The contract and the page therefore hold only
+publishable facts. Gap narratives and resource needs belong to the Feishu
+internal page, not this file. The sidebar lists it under 说明书生产 only when
+the page was built.
 
 ### Current focus
 
 The operator decides the focus. Since 2026-09-26 the sequence is:
 
-1. Web publication and real maintenance: REV-07 → REV-09 → G1 acceptance → G2 pilot.
+1. Web publication and real maintenance: REV-09 → G1 acceptance → G2 pilot
+   (REV-07 accepted 2026-10-19).
 2. Corpus reuse and SSOT support that work concurrently. REV-18 checks actual
    translation hits/corrections; source authority, writers, approvers and frozen
    release inputs are established as real data needs arise.
-3. Shared IR: settle REV-39 boundaries, then accept a representative REV-40 target
-   and its dependencies before expansion. IDML acceptance does not block Web.
-4. Expand skeletons and coverage once production and maintenance are stable.
+3. Shared IR is deferred (REV-39, operator 2026-10-19); the #1278 boundary draft
+   stays as input. It restarts when REV-20 or REV-40 starts, shared-layer
+   consolidation starts, or a shared change cannot reach frozen packages for
+   lack of a common semantic contract. IDML acceptance does not block Web.
+4. Skeleton expansion is deferred by the REV-41 decision (done 2026-10-19):
+   existing skeletons are maintained, and the decision record's §4 restart
+   conditions reopen it.
 5. Multi-agent work remains a design reference, reconsidered only after persistent
    handoff or concurrency bottlenecks. It is absent from the current-work list.
 
@@ -167,11 +188,11 @@ Each lane in `focus.lanes` declares:
   lists, carries the lane's tag further down the page;
 - `items`: capability items shown with their status inside the lane;
 - `metrics`, computed at build time:
-  - `publications`: books and language editions from the publish manifest;
-  - `regions`: books per region, labelled by `focus.regions`;
   - `corpus`: sentence pairs, terms and approved share from the corpus snapshot;
-  - `skeletons`: blueprints per family, in `focus.skeleton_families` order, with
-    未建 for a declared family that has none;
+  - `skeletons`: distinct `skeleton_id`s per family, in
+    `focus.skeleton_families` order, with 未建 for a declared family that has none;
+  - `publications` (books, 语言版本) and `regions` (books per region): no
+    shipped lane lists them, since 说明书工作台 owns those counts;
 - progress: `gates` (ids from `now_next.gates`), `revs` (ledger rows, ranges
   allowed), or both. A lane with neither shows 尚未入执行台账, except a deferred
   design reference, which intentionally carries no execution progress.
@@ -197,8 +218,9 @@ success and served page. A webhook returning 200 is only trigger acceptance.
 `tools/rtd/workspace_revision.py` stamps the HTML and
 `_static/system-workspace-revision.json` with the same checkout SHA and UTC build
 time. On RTD the SHA belongs to the Hello-Docs checkout, not auto-manual/main.
-The system page's 「页面版本与更新」 disclosure sits inside 「入口与数据来源」;
-it no longer occupies the page header.
+The system page's 「页面版本与更新」 disclosure sits inside 「数据来源」;
+it no longer occupies the page header. The tab opens with a pointer to the
+daily entries (知识库首页, 说明书工作台「工作入口」).
 The page displays that identity. Its JS probes only the same-origin deployed
 receipt on entry, every minute while visible, and on returning to the tab.
 A different, later-built receipt offers **刷新到新版本**, preserving the URL anchor
@@ -241,8 +263,8 @@ the same month replaces that month's figures. If the snapshot being replaced
 cannot be read or is malformed, the export stops, so history is never dropped.
 A language added to the contract later does not block the carry.
 
-A snapshot older than the `stale_after_days` of the source registry's `corpus`
-domain (45) shows 待复核. The registry also names the snapshot file. An
+A snapshot older than the `stale_after_days` of the `corpus` domain in
+`source_registry.yaml` shows 待复核. The registry also names the snapshot file. An
 unreadable or malformed snapshot shows 无数据 for this block only, with a
 Sphinx warning; the rest of the page still renders. `check` reports both
 cases.
@@ -278,6 +300,25 @@ none of it is hand-listed.
 `check` warns about unregistered copies, frontmatter gaps, missing hook scripts
 and hooks without tests. A lane mapping that names a missing skill is an error.
 
+### Engineering scale
+
+The 工程规模 block (`#codebase`) follows 技能与钩子 in the 工具与工程规模 tab.
+At build time `tools/rtd/system_tooling.py` lists the checkout with
+`git ls-files` and counts the lines of every tracked `.py`, `.md`, `.rst`,
+`.yaml`/`.yml` and `.csv` file per top-level directory and file type, as an
+editor counts them. Root files count as (根目录); links and listed files missing
+from disk (a sparse checkout) are skipped. Nothing is snapshotted or committed
+for it; a change appears on the next RTD build.
+
+- The block draws the 10 directories with the most lines as server-rendered
+  bars split by file type, one fixed colour per type, measured against the
+  largest directory; the totals below the bars cover the whole repository.
+- Git history (branches, commits) is not shown: RTD clones shallowly, so it is
+  not reliable at build time; `git ls-files` lists every tracked file in a
+  shallow clone too.
+- Without git, or outside a checkout, the block shows 无数据 with the
+  registry's `codebase` fallback; the rest of the page still renders.
+
 ### Source registry
 
 `tools/rtd_portal_assets/source_registry.yaml` registers each data domain the
@@ -298,7 +339,7 @@ records:
 - The system page and the deliverables page take snapshot names, freshness
   limits and fallback text from the registry. None of them is written in page
   code or in the status contract any more.
-- The system page lists every domain publicly under 数据来源, with each
+- The system page lists every domain under 数据来源, with each
   snapshot's date, and 待复核 once a snapshot is past its limit.
 - `check` fails on an unsound registry, an unregistered page domain, or a
   `file:auto-manual:` authority that does not exist. It warns about a stale or

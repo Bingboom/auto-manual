@@ -1,0 +1,35 @@
+{
+  "status": "local-candidate-validated-pending-operator-review",
+  "date": "2026-10-19",
+  "target": {
+    "model": "JE-2000E",
+    "region": "JP",
+    "language": "ja"
+  },
+  "source_pdf_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661",
+  "source_comparison": "source/text_coverage_review.json",
+  "strict_sphinx": "passed (-W -b html)",
+  "shared_style_admission": "passed; geometry-only package stylesheet; one declared threshold table exception",
+  "maintainability_guardrails": "passed; 73 hotspots; registered candidate; zero new shared-input drift",
+  "repository_regression": {
+    "command": "python3 build.py check --config configs/config.ja.yaml --model JE-1000F --region JP --data-root tests/fixtures/phase2",
+    "status": "passed; pre-existing JA-HALFWIDTH-KANA and JA-RANGE-TILDE warnings",
+    "scope": "JP family fixture regression, not validation of JE-2000E body"
+  },
+  "cold_replay": "passed; 75 files byte-identical",
+  "tamper_rejection": "original PDF and packaged illustration mutation both rejected before output creation",
+  "caption_frame_admission": "passed; 2 caption fills have 0.0 baked fill fraction",
+  "browser": {
+    "widths": [
+      1280,
+      390
+    ],
+    "images": 82,
+    "broken_images": 0,
+    "page_overflow": false,
+    "declared_label_or_step_clipping": false,
+    "visual_review": "source figures, controls, port labels, connection panels, phone frames, tables, mobile reflow inspected"
+  },
+  "publication": "not merged or published; no RTD deployment claim",
+  "online_table_writes": false
+}

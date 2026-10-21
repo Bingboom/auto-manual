@@ -15,6 +15,49 @@
 <path d="M170 39 H195 V82 H220" marker-end="url(#arrow-{{ topic.id }})"/>
 <path d="M170 144 H195 V110 H220" marker-end="url(#arrow-{{ topic.id }})"/>
 <text class="diagram-note" x="210" y="215">两条供电路径 · 切换期间可能短暂中断</text>
+{% elif topic.id == 'split-phase' %}
+<text x="80" y="38">L1 火线</text><path d="M30 50 H230" style="stroke:#ce783d;stroke-width:3"/>
+<text x="80" y="108">N 零线</text><path d="M30 120 H230" style="stroke:#687481;stroke-width:3"/>
+<text x="80" y="178">L2 火线</text><path d="M30 190 H230" style="stroke:#3d7cc9;stroke-width:3"/>
+<path d="M270 56 V114" marker-start="url(#arrow-{{ topic.id }})" marker-end="url(#arrow-{{ topic.id }})"/>
+<path d="M270 126 V184" marker-start="url(#arrow-{{ topic.id }})" marker-end="url(#arrow-{{ topic.id }})"/>
+<path d="M345 56 V184" marker-start="url(#arrow-{{ topic.id }})" marker-end="url(#arrow-{{ topic.id }})"/>
+<text x="302" y="90">100V</text><text x="302" y="160">100V</text><text x="385" y="125">200V</text>
+<text class="diagram-note" x="210" y="228">100V 电器接 L–N · 200V 电器接 L1–L2</text>
+{% elif topic.id == 'nema-sockets' %}
+<rect x="12" y="40" width="80" height="100" rx="20"/>
+<rect x="34" y="72" width="5" height="24" style="fill:#23262b;stroke:none"/><rect x="25" y="82" width="11" height="5" style="fill:#23262b;stroke:none"/><rect x="65" y="74" width="5" height="20" style="fill:#23262b;stroke:none"/>
+<path d="M47 104 H57 V109 A5 5 0 0 1 47 109 Z" style="fill:#23262b;stroke:none"/>
+<rect x="117" y="40" width="80" height="100" rx="20"/>
+<rect x="130" y="82" width="18" height="5" style="fill:#23262b;stroke:none"/><rect x="130" y="73" width="5" height="19" style="fill:#23262b;stroke:none"/><rect x="166" y="82" width="18" height="5" style="fill:#23262b;stroke:none"/>
+<path d="M152 104 H162 V109 A5 5 0 0 1 152 109 Z" style="fill:#23262b;stroke:none"/>
+<rect x="222" y="40" width="80" height="100" rx="20"/>
+<path d="M257 66 H267 V61 A5 5 0 0 0 257 61 Z" style="fill:#23262b;stroke:none"/>
+<rect x="238" y="74" width="5" height="24" style="fill:#23262b;stroke:none"/><rect x="281" y="74" width="5" height="24" style="fill:#23262b;stroke:none"/><rect x="259.5" y="104" width="5" height="18" style="fill:#23262b;stroke:none"/>
+<circle cx="367" cy="90" r="44" fill="#f4f6f8" stroke="#bac2cb" stroke-width="1.5"/>
+<path d="M343.4 76.9 A27 27 0 0 1 353.9 66.4 M380.1 66.4 A27 27 0 0 1 390.6 76.9 M390.6 103.1 A27 27 0 0 1 380.1 113.6 M353.9 113.6 A27 27 0 0 1 343.4 103.1 M353.9 66.4 L358.3 74.3" style="stroke:#23262b;stroke-width:5"/>
+<text x="52" y="162">5-20R</text><text x="157" y="162">6-20R</text><text x="262" y="162">14-50R</text><text x="367" y="162">L14-30R</text>
+<text class="diagram-note" x="52" y="182">L＋N＋地</text><text class="diagram-note" x="157" y="182">L1＋L2＋地</text><text class="diagram-note" x="262" y="182">L1＋L2＋N＋地</text><text class="diagram-note" x="367" y="182">L1＋L2＋N＋地</text>
+<text class="diagram-note" x="52" y="198">低压</text><text class="diagram-note" x="157" y="198">高压</text><text class="diagram-note" x="262" y="198">低压＋高压 · 直插</text><text class="diagram-note" x="367" y="198">低压＋高压 · 锁紧</text>
+<text class="diagram-note" x="210" y="228">低压：日本 100V／美国 120V · 高压：日本 200V／美国 240V</text>
+{% elif topic.id == 'region-grid' %}
+<text class="diagram-note" x="110" y="22">美国 120V／240V</text><text class="diagram-note" x="310" y="22">日本 100V／200V</text>
+<text class="diagram-note" x="210" y="48">同样 15A 的插座</text>
+<rect x="15" y="58" width="190" height="44" rx="5"/><text x="110" y="85">120V × 15A ＝ 1800W</text>
+<rect class="source" x="215" y="58" width="190" height="44" rx="5"/><text x="310" y="85">100V × 15A ＝ 1500W</text>
+<text class="diagram-note" x="210" y="130">同样 4000W 的大电流口</text>
+<rect x="15" y="140" width="190" height="44" rx="5"/><text x="110" y="167">240V × 16.7A ≈ 4000W</text>
+<rect class="source" x="215" y="140" width="190" height="44" rx="5"/><text x="310" y="167">200V × 20A ＝ 4000W</text>
+<text x="210" y="222">功率 ＝ 电压 × 电流</text>
+{% elif topic.id == 'transfer-switch' %}
+<rect x="10" y="20" width="150" height="48" rx="5"/><text x="85" y="50">电网（市电）</text>
+<rect class="source" x="10" y="150" width="150" height="48" rx="5"/><text x="85" y="180">储能电源</text>
+<rect x="200" y="85" width="110" height="56" rx="5"/><text x="255" y="118">切换开关</text>
+<rect x="330" y="85" width="80" height="56" rx="5"/><text x="370" y="118">家庭回路</text>
+<path d="M160 44 H180 V100 H197" marker-end="url(#arrow-{{ topic.id }})"/>
+<path d="M160 174 H180 V126 H197" marker-end="url(#arrow-{{ topic.id }})"/>
+<path d="M310 113 H327" marker-end="url(#arrow-{{ topic.id }})"/>
+<text class="diagram-note" x="210" y="228">同一时刻只接一路 · 防止电倒送回电网</text>
 {% else %}
 {% for node in topic.diagram_nodes %}
 <rect{% if loop.first %} class="source"{% endif %} x="45" y="{{ 8 + loop.index0 * 80 }}" width="330" height="52" rx="5"/>

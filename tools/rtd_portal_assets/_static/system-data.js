@@ -1,7 +1,8 @@
 'use strict';
-// 系统数据 page: filter the build-time rows by region and model and redraw every
-// card. The rows come from the page's JSON block; without JavaScript the
-// whole-repository counts and the publication table stay as rendered.
+// 说明书工作台「数据统计」 tab: filter the build-time rows by region and model and
+// redraw every card. The rows come from the tab's JSON block; without JavaScript
+// the whole-repository counts and the publication table stay as rendered.
+// The tab is hidden at load, so its charts redraw whenever its width changes.
 // The counting functions are pure and exposed as SystemDataModel for tests.
 (() => {
   const SHARED = 'ALL';
@@ -20,16 +21,19 @@
       .sort((a, b) => b.n - a.n || String(a.label).localeCompare(String(b.label)));
   };
 
+  // Without a publish manifest both published and targets (published models only) are null.
   const summary = (data, sel) => {
     const published = data.published ? data.published.filter(row => fits(row, sel)) : null;
-    const targets = data.targets.filter(row => fits(row, sel));
+    const targets = data.targets ? data.targets.filter(row => fits(row, sel)) : null;
     const assets = data.assets.filter(row => assetFits(row, sel));
-    const distinct = key => (published ? new Set(published.map(row => row[key])).size : null);
+    // Distinct identities, as production_evidence.publication_facts counts them for every page:
+    // 语言版本 = model × region × language, 说明书 = model × region; a repeated route counts once.
+    const distinct = (...keys) => (published ? new Set(published.map(row => keys.map(key => row[key]).join('\u0000'))).size : null);
     return {
-      manuals: published ? published.length : null,
+      variants: distinct('model', 'region', 'lang'), books: distinct('model', 'region'),
       models: distinct('model'), languages: distinct('lang'), regions: distinct('region'),
-      targets: targets.length,
-      review_targets: targets.filter(row => row.review_pages > 0).length,
+      targets: targets ? targets.length : null,
+      review_targets: targets ? targets.filter(row => row.review_pages > 0).length : null,
       assets: assets.length,
       ready_share: assets.length ? assets.filter(row => row.status === READY).length / assets.length : null,
     };
@@ -54,6 +58,7 @@
   };
 
   const coverage = (data, sel) => {
+    if (!data.targets) return [];
     const targets = data.targets.filter(row => fits(row, sel));
     return data.capabilities.map((name, index) => {
       const supported = targets.filter(row => row.caps[index] === 1).length;
@@ -61,22 +66,7 @@
     }).sort((a, b) => b.share - a.share);
   };
 
-  // Lines per top-level directory, largest first, each split into its file types in the given order.
-  const codeAreas = (rows, types) => {
-    const areas = new Map();
-    for (const row of rows) {
-      const area = areas.get(row.area) || {area: row.area, files: 0, lines: 0, parts: new Map()};
-      area.files += row.files;
-      area.lines += row.lines;
-      area.parts.set(row.type, {type: row.type, files: row.files, lines: row.lines});
-      areas.set(row.area, area);
-    }
-    return [...areas.values()]
-      .map(area => ({...area, parts: types.filter(type => area.parts.has(type)).map(type => area.parts.get(type))}))
-      .sort((a, b) => b.lines - a.lines || a.area.localeCompare(b.area));
-  };
-
-  const model = {fits, assetFits, countBy, summary, matrix, coverage, codeAreas};
+  const model = {fits, assetFits, countBy, summary, matrix, coverage};
   globalThis.SystemDataModel = model;
 
   const source = typeof document !== 'undefined' && document.getElementById('system-data-json');
@@ -90,6 +80,8 @@
 
   const NS = 'http://www.w3.org/2000/svg';
   const $ = id => document.getElementById(id);
+  // The tab panel that holds the JSON block; its KPIs are the only [data-kpi] this script fills.
+  const panel = source.closest('.tab-panel') || document.body;
   const number = new Intl.NumberFormat('zh-CN');
   const percent = new Intl.NumberFormat('zh-CN', {style: 'percent', minimumFractionDigits: 1, maximumFractionDigits: 1});
   const languageName = code => (data.language_labels[code] ? `${code} · ${data.language_labels[code]}` : code);
@@ -220,7 +212,7 @@
           width: cell - 3, height: rowHeight - 4, rx: 3,
         });
         tip(rect, found
-          ? [`${entry.model} · ${languageName(code)}`, `区域：${[...found.regions].sort().join(' · ')}`, `说明书：${found.manuals} 份`]
+          ? [`${entry.model} · ${languageName(code)}`, `区域：${[...found.regions].sort().join(' · ')}`, `语言版本：${found.manuals} 个`]
           : [`${entry.model} · ${languageName(code)}`, '未发布']);
         row.appendChild(rect);
       });
@@ -232,7 +224,7 @@
 
   const drawCapabilities = () => {
     const box = $('sd-caps');
-    if (!box) return;
+    if (!box || !data.targets) return;
     const targets = data.targets.filter(row => fits(row, sel))
       .sort((a, b) => a.model.localeCompare(b.model) || a.region.localeCompare(b.region));
     if (!targets.length) {
@@ -282,7 +274,7 @@
       const published = data.published.filter(row => fits(row, sel));
       const langs = countBy(published, 'lang').map(item => ({...item, value: item.n}));
       const box = $('sd-langs');
-      if (box) bars(box, langs, {format: n => number.format(n), title: item => [languageName(item.label), `${item.value} 份`]});
+      if (box) bars(box, langs, {format: n => number.format(n), title: item => [languageName(item.label), `${item.value} 个语言版本`]});
       const regions = countBy(data.published.filter(row => sel.model === '' || row.model === sel.model), 'region')
         .map(item => ({...item, value: item.n}));
       const regionBox = $('sd-regions');
@@ -292,7 +284,7 @@
           picked: item => item.label === sel.region,
           dim: item => sel.region !== '' && item.label !== sel.region,
           onClick: item => setSelection({region: sel.region === item.label ? '' : item.label}),
-          title: item => [item.label, `${item.value} 份`],
+          title: item => [item.label, `${item.value} 个语言版本`],
         });
       }
     }
@@ -336,44 +328,9 @@
     }
   };
 
-  // Not filtered: the repository's size does not depend on a region or model.
-  const drawCode = () => {
-    const box = $('sd-code');
-    if (!box || !data.codebase) return;
-    const areas = codeAreas(data.codebase, data.file_types).slice(0, 10);
-    if (!areas.length) {
-      note(box, '没有可统计的文件。');
-      return;
-    }
-    const rowHeight = 26, barHeight = 14;
-    const {root, width} = stage(box, areas.length * rowHeight);
-    const labelW = labelWidth(root, areas.map(area => area.area), 'sd-label') + 10;
-    const valueW = labelWidth(root, areas.map(area => number.format(area.lines))) + 10;
-    const span = Math.max(10, width - labelW - valueW);
-    const max = areas[0].lines || 1;
-    areas.forEach((area, index) => {
-      const row = svg('g', {class: 'sd-row', transform: `translate(0,${index * rowHeight})`});
-      row.appendChild(svg('rect', {class: 'sd-row-bg', width, height: rowHeight, rx: 4}));
-      row.appendChild(svg('text', {class: 'sd-label', x: labelW - 10, y: rowHeight / 2, dy: '0.35em', 'text-anchor': 'end'}, area.area));
-      let x = labelW;
-      for (const part of area.parts) {
-        const length = (part.lines / max) * span;
-        row.appendChild(svg('rect', {
-          class: `sd-seg sd-type-${data.file_types.indexOf(part.type)}`, x, y: (rowHeight - barHeight) / 2,
-          width: Math.max(1, length - 1), height: barHeight, rx: 2,
-        }));
-        x += length;
-      }
-      row.appendChild(svg('text', {class: 'sd-value', x: labelW + Math.max(2, (area.lines / max) * span) + 6, y: rowHeight / 2, dy: '0.35em'}, number.format(area.lines)));
-      tip(row, [`${area.area} · ${number.format(area.files)} 个文件`,
-        ...area.parts.map(part => `${part.type}：${number.format(part.lines)} 行（${number.format(part.files)} 个文件）`)]);
-      root.appendChild(row);
-    });
-  };
-
   const fillCounts = () => {
     const counts = summary(data, sel);
-    document.querySelectorAll('[data-kpi]').forEach(node => {
+    panel.querySelectorAll('[data-kpi]').forEach(node => {
       const value = counts[node.dataset.kpi];
       node.textContent = value === null || value === undefined ? '—'
         : node.dataset.kpi === 'ready_share' ? percent.format(value) : number.format(value);
@@ -399,7 +356,7 @@
       row.hidden = !visible;
       if (visible) shown += 1;
     }
-    $('sd-count').textContent = shown === rows.length ? `${rows.length} 份` : `${shown} / ${rows.length} 份`;
+    $('sd-count').textContent = shown === rows.length ? `${rows.length} 个语言版本` : `${shown} / ${rows.length} 个语言版本`;
   };
   const sortTable = () => {
     const {column, direction} = sortState;
@@ -443,17 +400,19 @@
     drawMatrix();
     drawCapabilities();
     drawBars();
-    drawCode();
     filterTable();
   }
 
   render();
+  // A hidden tab has no width, so its first charts fall back to 260px and unmeasured labels:
+  // redraw when the panel shows or changes width (height changes, from drawing included, do not count).
   let pending = 0;
-  let lastWidth = document.documentElement.clientWidth;
-  window.addEventListener('resize', () => {
-    if (document.documentElement.clientWidth === lastWidth) return;
-    lastWidth = document.documentElement.clientWidth;
+  let lastWidth = panel.clientWidth;
+  new ResizeObserver(() => {
+    const width = panel.clientWidth;
+    if (!width || width === lastWidth) return;
+    lastWidth = width;
     cancelAnimationFrame(pending);
     pending = requestAnimationFrame(render);
-  });
+  }).observe(panel);
 })();

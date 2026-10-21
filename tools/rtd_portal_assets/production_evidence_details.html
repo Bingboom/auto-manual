@@ -13,6 +13,7 @@
   <p class="pe-intro">各类资产保留各自单位；登记、引用和实际消费分别标注。新增量需要事件历史，不能用文件数量、复制或月度净变化代替。窄屏可左右滑动表格。</p>
   <div class="pe-table-wrap" role="region" aria-label="资产总览，可横向滚动" tabindex="0"><table class="pe-table"><thead><tr><th>Asset / Current Total</th><th>Added This Period<br>7 / 30 天</th><th>Consuming Targets</th><th>Consumption Evidence</th></tr></thead><tbody>
   {% for item in production.assets %}<tr><td><b>{{ item.label|e }}</b><p>{{ item.display|e }} · {{ item.unit|e }}</p>{{ metric_details(item) }}</td><td>Not tracked yet</td><td>Not tracked yet{% if item.references %}<p>配置引用目标：{{ item.references.display|e }}</p>{% endif %}</td><td>{% if item.references %}<a href="#reuse">查看引用证据 ↑</a>{% else %}尚未建立可核验消费关系{% endif %}</td></tr>{% endfor %}
+  {% if system_entry %}<tr><td colspan="4">语料（句对、术语）与产品骨架的规模见<a href="{{ pathto('workspace/system/index') }}#tab-corpus">系统建设「语言资产」</a>和<a href="{{ pathto('workspace/system/index') }}#lane-skeletons">「骨架扩展」→</a></td></tr>{% endif %}
   </tbody></table></div>
 </section>
 <section class="sw-section pe-section" id="agent-results">

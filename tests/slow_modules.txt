@@ -6,12 +6,16 @@
 test_jhp5000c_us_web_layout                        # 112s (cold replay, admissions, derivation)
 test_jhp3000d_us_web_layout                        # 40s (admissions, derivation, cold replay)
 test_je3600a_cn_jp_web_layout                      # 37s (admissions, derivation, cold replay)
+test_ja_ts02a_us_fr_es_web                         # 45s (fr/es intake reproduction, cold replay, admissions)
+test_jbp3600a_us_web                               # 34s (en/fr/es intake reproduction, cold replay, admissions)
 test_web_presentation                              # 21.6s
 test_idml_rst_comments                             # 21.4s
 test_export_idml_golden                            # 18.7s
+test_jbp3600a_jp_ja_web                            # 18s (intake and artwork reproduction, cold replay)
 test_frozen_ai_table_components                    # 17.9s
 test_je3000c_0915_warnings                         # 15.7s
 test_ja_ts02a_us_en_web                            # 14s (intake reproduction, cold replay, admissions)
+test_je300e_eu_en_web                              # 14s (intake reproduction, cold replay, accepted-copy admissions)
 test_rtd_feedback                                  # 13.7s
 test_component_spec_manual_sections                # 11.8s
 test_authored_table_components                     # 11.7s

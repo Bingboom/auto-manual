@@ -17,7 +17,7 @@ from tools.workspace_refresh_publish import command
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--kind", required=True, choices=("deliverables", "corpus", "publication", "mirror"))
+    parser.add_argument("--kind", required=True, choices=("deliverables", "corpus", "web_progress", "publication", "mirror"))
     parser.add_argument("--report", type=Path, required=True)
     parser.add_argument("--failed", action="store_true")
     args = parser.parse_args()

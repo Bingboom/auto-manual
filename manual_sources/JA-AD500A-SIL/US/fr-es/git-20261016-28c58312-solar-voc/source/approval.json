@@ -1,0 +1,129 @@
+{
+ "schema_version": "source-operator-acceptance/v1",
+ "target": {
+  "model": "JA-AD500A-SIL",
+  "region": "US",
+  "languages": [
+   "fr",
+   "es"
+  ]
+ },
+ "operator_quote": "全部验收并发布上线；然后全部 要发布上线 这四本 验收记录 允许你写",
+ "date": "2026-10-16",
+ "merge_authorization": "MA-312",
+ "reviewed_source_commit": "cebdc754",
+ "operator_decisions": [
+  "整段替换（太阳能板 Voc 段改为引用 Jackery DC Input Module 的 DC 输入电压范围 16V–60V）",
+  "不删免责句",
+  "都统一成 DC input voltage range；power station 改为 the connected product"
+ ],
+ "original_source_sha256": "28c58312ffafae322161d17701869ede8f6b87e58799379a84fad2850c638530",
+ "reviewed_inputs": [
+  {
+   "path": "assets/car.png",
+   "size": 89548,
+   "sha256": "c8237a9bc6433746f86bdbd7e6de26895f426b4fa3d0abf4320f8cbae3662dd2"
+  },
+  {
+   "path": "assets/contact-qr.png",
+   "size": 2217,
+   "sha256": "98dd52bc02290abea21f6bfdaa105dfe77a831b99c845ce8f44e2adc9009deaa"
+  },
+  {
+   "path": "assets/inbox-manual.png",
+   "size": 11774,
+   "sha256": "93420c29dca6c234752aafc094f1f342eb61547215ad73b1fa667785a54f2290"
+  },
+  {
+   "path": "assets/inbox-module.png",
+   "size": 14353,
+   "sha256": "3c140171d4ae33f68026b81db880318d28ccf3ecd4d4d201c0ec9015080db49d"
+  },
+  {
+   "path": "assets/overview-textless.png",
+   "size": 72743,
+   "sha256": "910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2"
+  },
+  {
+   "path": "assets/solar.png",
+   "size": 222637,
+   "sha256": "0db544e58c9043e70d74311a01ca46edb3b174f5962a28b523da348064df5dfd"
+  },
+  {
+   "path": "source/differences.md",
+   "size": 2647,
+   "sha256": "7e4428a1bb5efbfc02bdb9eabecc83c205c53fee5ef0b4d83ee5ba20a36e726c"
+  },
+  {
+   "path": "source/native_copy.json",
+   "size": 13561,
+   "sha256": "b1bae9a035d05389ba9cb42b85f62079ea152c803895e4b3ba7e7a8ba6054b19"
+  },
+  {
+   "path": "source/original.pdf",
+   "size": 3410276,
+   "sha256": "28c58312ffafae322161d17701869ede8f6b87e58799379a84fad2850c638530"
+  },
+  {
+   "path": "source/page/box_contents_es.rst",
+   "size": 325,
+   "sha256": "9c1a41ed40e55292f47ad8474c06b9061d7a72fc23e4eaaa89b3131b18fd802d"
+  },
+  {
+   "path": "source/page/box_contents_fr.rst",
+   "size": 334,
+   "sha256": "78801518c24f331a4e04f909986cb5a45c53efd837d0f1fdc6dd7636e1b6c747"
+  },
+  {
+   "path": "source/page/charging_es.rst",
+   "size": 3505,
+   "sha256": "614fc0f530931b40457ed957400711c3401f1648320ba4f1b417301fdafa73c0"
+  },
+  {
+   "path": "source/page/charging_fr.rst",
+   "size": 3653,
+   "sha256": "e3cb27f5e986c8907dda38c84345a22b61e80e7ffcda6cb3544d5fb3ab530047"
+  },
+  {
+   "path": "source/page/contact_es.rst",
+   "size": 662,
+   "sha256": "4df0572685a176f1ab801372a919b8109759cc37e595df57f6f298ef2ad877cb"
+  },
+  {
+   "path": "source/page/contact_fr.rst",
+   "size": 662,
+   "sha256": "4df0572685a176f1ab801372a919b8109759cc37e595df57f6f298ef2ad877cb"
+  },
+  {
+   "path": "source/page/product_overview_es.rst",
+   "size": 4145,
+   "sha256": "f4830f2f0079f184f177389a5a04224e7c3431b041cbc5cc7fe70d5fbf857e33"
+  },
+  {
+   "path": "source/page/product_overview_fr.rst",
+   "size": 4097,
+   "sha256": "6fbd7193f9be54a3e822fc68373c2b1d9fd9afe24f1c35c1023ce52fb9463b7c"
+  },
+  {
+   "path": "source/page/spec_es.rst",
+   "size": 879,
+   "sha256": "bb4db5db468038dc67e15a2ff007631f49d2d5515f456bb3ed7a4eeb7927a65e"
+  },
+  {
+   "path": "source/page/spec_fr.rst",
+   "size": 854,
+   "sha256": "48b7512256d5bfc6ab4232e8b97f390a37920de8a428cbffe90aa758cb24c691"
+  },
+  {
+   "path": "source/page/warranty_es.rst",
+   "size": 3220,
+   "sha256": "8f824dfc1ad7af0f713820b8fc525c98f9f2ac9ccf9babf3a14b6c2860428547"
+  },
+  {
+   "path": "source/page/warranty_fr.rst",
+   "size": 3390,
+   "sha256": "bb237bfdb36aa0c285cac61a55c199d54a781b35b89abe444b2b53bd709443c8"
+  }
+ ],
+ "scope": "Git-only Web release of the solar-Voc correction edition git-20261016-28c58312-solar-voc; base editions, printed sources and their release evidence unchanged; no Feishu/Base/source-table, queue, asset-registry or HTML_link writes."
+}

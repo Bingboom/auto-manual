@@ -1,0 +1,43 @@
+/* JA-TS02A French and Spanish source geometry only. The shared Web theme owns every colour,
+   border, fill, heading, callout, table and figure style (prepared-document shared-style gate).
+   Figures are selected by their shared data attributes, images by their packaged file names. */
+
+/* Complete print panels keep the print's own width; no visible caption. */
+#furo-main-content .hb-reference-figure { max-width: 680px; margin-left: auto; margin-right: auto; }
+#furo-main-content .hb-reference-figure img { width: 100% !important; height: auto !important; }
+#furo-main-content .hb-reference-figure:is([data-reference-id="package-list"], [data-reference-id="optional-tools"],
+  [data-reference-id="dimensions"], [data-reference-id="mounting-template"], [data-reference-id="mounting-fasteners"],
+  [data-reference-id="external-emergency-stop"], [data-reference-id="deadfront-installation"],
+  [data-reference-id="app-wifi"], [data-reference-id="app-voltage-menu"], [data-reference-id="app-circuit-list"],
+  [data-reference-id="app-circuit-name"], [data-reference-id="app-circuits"]) { max-width: 620px; }
+#furo-main-content .hb-reference-figure:is([data-reference-id="locking-panel"], [data-reference-id="iot-pairing"]) { max-width: 420px; }
+#furo-main-content .hb-reference-figure[data-reference-id="mounting-brackets"] { max-width: 400px; }
+/* App screenshots at phone size. */
+#furo-main-content .hb-reference-figure:is([data-reference-id="app-add-device"], [data-reference-id="app-dashboard"],
+  [data-reference-id="app-working-modes"], [data-reference-id="app-backup-only"],
+  [data-reference-id="app-backup-priority"], [data-reference-id="app-ups-mode"]) { max-width: 260px; }
+
+/* Inline App controls at text size. */
+#furo-main-content :is(p, li) > img[src*="inline-"] {
+  display: inline-block; width: 1.25em !important; height: 1.25em !important;
+  margin: 0 0.1em !important; vertical-align: -0.22em; object-fit: contain;
+}
+
+/* Symbol glyphs at the print's size: the ingestion-hazard mark beside its list, the table icons in their cells. */
+#furo-main-content img[src*="symbol_ingestion_hazard"] { float: left; width: 2.2rem !important; height: auto !important; margin: 0.2rem 0.6rem 0 0 !important; }
+#furo-main-content img[src*="symbol_ingestion_hazard"] + ul { display: flow-root; margin-top: 0; }
+#furo-main-content td > img[src*="symbol_"] { width: 2.1rem !important; height: auto !important; margin: 0 auto !important; display: block; }
+
+/* Room for two-digit step numbers (the print's 1-24 safety list). */
+#furo-main-content ol { padding-left: 2.4em; }
+
+/* Print case for subheadings (the print sets them in bold title case); shared markers stay. */
+#furo-main-content h2:not(.hb-spec-section), #furo-main-content :is(h3, h4) { text-transform: none; }
+
+/* Phones: the plain tables fit the screen as in the English edition (R8); the six-column torque table still scrolls. */
+@media (max-width: 760px) {
+  #furo-main-content table[class="manual-table"] { min-width: 0 !important; }
+}
+@media (max-width: 420px) {
+  #furo-main-content table[class="manual-table"] :is(td, th) { padding: 0.42rem 0.4rem !important; }
+}

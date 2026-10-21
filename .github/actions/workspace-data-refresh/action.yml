@@ -2,7 +2,7 @@ name: Refresh workspace frozen data
 description: Export once, validate, and submit a content PR without rebuilding manuals.
 inputs:
   kind:
-    description: deliverables or corpus
+    description: deliverables, corpus or web_progress
     required: true
 runs:
   using: composite

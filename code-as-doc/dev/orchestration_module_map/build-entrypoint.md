@@ -35,6 +35,13 @@ the business-owned policy snapshot; the portal renders its list and copies sourc
 images. Neither module calls Feishu or runs publication. See
 [knowledge and policy pages](../rtd_manual_portal.md#产品知识本地预览).
 
+[`tools/rtd/knowledge_updates.py`](../../../tools/rtd/knowledge_updates.py) reads the
+curated `knowledge_updates.yaml` behind the 知识库首页's 最近更新 list, drops
+unusable entries with a reason and orders the rows whose page the build made;
+`rtd_portal` tells it which pages exist and logs the reasons as warnings. It
+reads no git history and no page data. See
+[knowledge home](../rtd_manual_portal/knowledge-pages.md#personal-workspace-entry).
+
 [`tools/manual_knowledge/`](../../../tools/manual_knowledge/) owns the rendered EU
 manual reading model: semantic HTML/table extraction and the bounded JSON export.
 `rtd_portal` runs its writer after HTML and before the deployment receipt.
@@ -57,7 +64,7 @@ shell owns tab navigation. It neither writes history nor infers execution status
 See [system workspace](../rtd_manual_portal/system-workspace.md#system-workspace-page).
 
 [`tools/rtd/design_system.py`](../../../tools/rtd/design_system.py) owns the
-read-only 设计系统 page context and its build-finished writer. Each reader
+read-only 设计规范 page context and its build-finished writer. Each reader
 covers one source:
 
 - [`design_system_css.py`](../../../tools/rtd/design_system_css.py) reads the live
@@ -73,11 +80,13 @@ writer. Nothing here writes a stylesheet, an asset, a manifest or the token
 table. See [design system page](../rtd_manual_portal/knowledge-pages.md#design-system-page).
 
 [`tools/rtd/system_data.py`](../../../tools/rtd/system_data.py) owns the read-only
-系统数据 page context: it reads the publish manifest, the capability, language
-and asset CSVs, the review page counts and the line counts of the files
-`git ls-files` lists, and hands the rows to the page as
-JSON for `_static/system-data.js` to filter. `rtd_portal` only registers the
-page. See [system data page](../rtd_manual_portal/knowledge-pages.md#system-data-page).
+context of the 说明书工作台 数据统计 tab: it reads the publish manifest, the
+capability, language and asset CSVs and the review page counts, keeps the
+capability rows of published models only (`published_targets`), and hands the
+rows to the tab as JSON for `_static/system-data.js` to filter. `rtd_portal`
+passes it to the deliverables page as `statistics` and builds a minimal
+`moved_page.html` redirect for the retired `/workspace/data/` URL; `product_matrix.py` reuses
+`read_targets`. See [数据统计](../rtd_manual_portal/knowledge-pages.md#数据统计).
 
 [`tools/rtd/product_matrix.py`](../../../tools/rtd/product_matrix.py) owns the
 read-only 产品矩阵 page context: it reads the publish manifest, the spec table

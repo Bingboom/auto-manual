@@ -9,9 +9,8 @@
   <article class="pe-library" id="library-corpus">
     <header><span>复用文字</span><h3>语料库</h3><p>维护翻译句对、术语和各语言表达。</p></header>
     <div class="pe-library-management"><h4>资产管理</h4>
-      {{ inventory('sentence_pairs', '条句对记录') }}
-      {{ inventory('terms', '条术语记录') }}
-      <p>查看已有译文，补充或修订句对、术语；数量来自语料快照。</p>
+      {% if system_entry %}<p class="sw-pointer">句对与术语的规模、各语言覆盖见<a href="{{ pathto('workspace/system/index') }}#tab-corpus">系统建设「语言资产」→</a></p>{% endif %}
+      <p>查看已有译文，补充或修订句对、术语。</p>
       <div class="pe-links"><a href="https://xcn57j1urbe6.feishu.cn/wiki/FRUywcjrPiMoPrkxnadcQhhenmb" target="_blank" rel="noopener">打开语料库 ↗</a><a href="{{ engineering }}/blob/main/user-guide/closed_loop_ops_guide.md" target="_blank" rel="noopener">维护指引 ↗</a></div>
     </div>
     <div class="pe-library-usage"><h4>资产消费</h4><p>哪些手册采用了哪些句对和术语？</p><b>最终采用情况尚未记录</b><small>库中有译文、预翻译命中，都不能直接算作成品采用。</small></div>
@@ -31,7 +30,7 @@
   <article class="pe-library" id="library-templates">
     <header><span>复用手册结构</span><h3>模板与骨架</h3><p>维护产品家族的章节结构、共享页面和装配规则。</p></header>
     <div class="pe-library-management"><h4>资产管理</h4>
-      {{ inventory('skeletons', '个已登记骨架') }}
+      {% if system_entry %}<p class="sw-pointer">骨架覆盖见<a href="{{ pathto('workspace/system/index') }}#lane-skeletons">系统建设「骨架扩展」→</a></p>{% endif %}
       <p>选择适用骨架，维护共享模板。模板尚无统一去重计数，不按文件数累加。</p>
       <div class="pe-links"><a href="{{ engineering }}/tree/main/docs/manifests/skeletons" target="_blank" rel="noopener">打开骨架库 ↗</a><a href="{{ engineering }}/tree/main/docs/templates" target="_blank" rel="noopener">打开模板库 ↗</a><a href="{{ engineering }}/blob/main/code-as-doc/manual_family_guide.md" target="_blank" rel="noopener">维护指引 ↗</a></div>
     </div>

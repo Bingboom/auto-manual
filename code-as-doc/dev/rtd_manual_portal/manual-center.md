@@ -48,16 +48,21 @@ its market list from the same settings, and CN/JP display their own market notes
 
 ## Page layout
 
-Every portal page (manual library root, 知识库 overview, 系统建设, 说明书工作台, 设计系统, 系统数据, 产品矩阵)
+Every portal page (manual library root, 知识库首页, 产品知识, 市场与政策, 系统建设, 说明书工作台, 设计规范, 产品矩阵)
 shares one site shell from `tools/rtd_portal_assets/_site_shell.html` and
 `_static/site-shell.css`. The public manual library passes `internal=false` to
 both shell macros: its sidebar contains only 说明书资料库 and 搜索说明书正文,
 and its top bar keeps the breadcrumb and region selector. It has no internal
-knowledge links or 知识库 / 工作资料 switch. Internal pages retain their
-知识库 group (产品知识, 产品矩阵, 市场与政策, 概览, 分享资料, 系统建设, 说明书工作台, 设计系统,
-系统数据, 最近更新) and the page switch. Optional entries follow the same rules as before: 分享资料 only
-with the sharing package, 系统建设, 设计系统, 系统数据 and 产品矩阵 only when their context builds (each computed once
-per build and shared with the sidebar). Page stylesheets style only what
+knowledge links or 知识库 / 说明书资料库 switch. Internal pages add three groups
+after 说明书: 知识库 (首页), 产品与市场 (产品知识, 产品矩阵, 市场与政策) and
+说明书生产 (说明书工作台, 系统建设, 设计规范), plus the switch. Their breadcrumb section is 知识库,
+and 工作资料 is only the brand. The root keeps 工作资料 as title, crumb and footer,
+and renders byte-identically in both roles. Every sidebar entry is a page and carries
+`aria-current="page"` on that page; 分享资料 and 最近更新 are sections of the
+知识库首页 (`workspace/index.html#shares`, `#updates`), not sidebar entries.
+Optional entries follow the same rules as before: 系统建设, 设计规范 and
+产品矩阵 only when their context builds (each computed once per build and shared
+with the sidebar). Page stylesheets style only what
 sits inside `.app-content`; the brand accent is the shared `--brand` orange.
 The Furo search page and manual pages keep their theme.
 
@@ -66,11 +71,12 @@ row (`.kpi-row`) and page tabs (`.page-tabs` /
 `.tab-panel`, wired by `site_script()`). Tabs are anchors over panels, so
 without JavaScript every panel shows; any in-page link or URL hash that
 points inside a panel opens that panel. 系统建设 tabs: 当前工作, 系统架构,
-能力与流程, 语言资产, 技能与钩子, 系统演变, 入口与数据来源. The unfolded
+能力与流程, 语言资产, 工具与工程规模, 系统演变, 数据来源. The unfolded
 stage gates form the metric row inside 当前工作; other tabs do not repeat it.
+A pointer below the row leads to 说明书工作台, which owns the publication counts.
 说明书工作台 tabs: 交付物 (the deliverables matrix, open by
-default), 工作入口, 生产与资产, with web manuals, language editions, Word and
-print counts as the metric row. The 工作入口 tab draws the content-authority map (`manual_workbench.html`)
+default), 数据统计, 工作入口, 生产与资产, with web manuals (books per region beneath),
+language editions, Word and print counts as the metric row. The 工作入口 tab draws the content-authority map (`manual_workbench.html`)
 and states current maturity rather than a target architecture:
 CONTENT AUTHORITY 当前内容权威源 offers two alternatives, 01 结构化内容源
 (规格 · 文案 · 语料 · 资产) or 02 Git 原生说明书源 (RST · MyST · Components ·

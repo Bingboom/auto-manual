@@ -1,0 +1,377 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "target": {
+    "model": "JA-AD500A-SIL",
+    "region": "JP",
+    "languages": [
+      "ja"
+    ],
+    "technical_version": "git-20261016-ac3a1f82-solar-voc"
+  },
+  "original_source": {
+    "filename": "Jackery DC Input Module取扱説明書V2.0-20260525.pdf",
+    "path": "source/original.pdf",
+    "sha256": "ac3a1f820d94277f6c1a667bafddfa930363b1d74fb084eb7bed43b1c3749777",
+    "physical_page_count": 10
+  },
+  "printed_manual_version": null,
+  "source_authority": "operator-designated Japanese PDF; original Japanese governs all technical/legal copy. Web-layout edition of the approved package git-20261008-ac3a1f82-reviewed (MA-272) on operator instruction 2026-10-09 (「开新窗口 把这个的版面也调整了」, applying the JBP-1000B-WH JP rules 「全部修，一次做完」「封面和目录 不用体现在web版面上」「你参考 资料库里 现有的je-1000f的日语网页说明书」); operator accepted reviewed candidate 618c31e for public Git-only JP/ja release on 2026-10-09 (「上线提交发布」; merge by operator review). Acceptance is hash-bound in source/approval.json.",
+  "baseline_main": "eb00c120a16c4d50781ff341064961bea16e6083",
+  "language_scope": "single",
+  "source_role": "Git-only Japanese solar-Voc correction edition of the approved Web-layout edition",
+  "live_bitable_dependency": false,
+  "publication_eligible": true,
+  "page_order": [
+    "00_preface_ja.rst",
+    "box_contents_ja.rst",
+    "product_overview_ja.rst",
+    "charging_ja.rst",
+    "spec_ja.rst",
+    "warranty_ja.rst",
+    "contact_ja.rst"
+  ],
+  "required_components": {
+    "HB-SPECIAL-INBOX": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE": 3,
+    "HB-CALLOUT-STRIP": 2,
+    "HB-TABLE-SPEC": 2,
+    "HB-WARRANTY-LEAD": 1,
+    "HB-WARRANTY-SECTION": 6
+  },
+  "chapter_source_panels": {
+    "00_preface_ja.rst": [
+      1
+    ],
+    "box_contents_ja.rst": [
+      2
+    ],
+    "product_overview_ja.rst": [
+      3
+    ],
+    "charging_ja.rst": [
+      4,
+      5,
+      6
+    ],
+    "spec_ja.rst": [
+      7
+    ],
+    "warranty_ja.rst": [
+      7,
+      8,
+      9
+    ],
+    "contact_ja.rst": [
+      9,
+      10
+    ]
+  },
+  "normalizations": [
+    "Japanese source wraps joined; decorative bullets expressed as native lists; print page numbers omitted",
+    "source 出カ, halfwidth ｼｶﾞｰｿｹｯﾄ, commas/hyphens/numerals retained",
+    "cover repeated inside booklet artwork kept in image only; primary cover copy remains selectable",
+    "external diagram labels editable through shared ReferenceFigure; product markings retained",
+    "no added contact chapter",
+    "Web layout: printed cover identity lines (physical 1) are not part of the Web edition; the welcome lead and its four reader instructions remain at the top.",
+    "Web layout: rich-text structure, print line breaks, grey panels/capsules and source.css follow the PDF; no Japanese wording is edited."
+  ],
+  "source_concerns": [
+    {
+      "issue": "filename V2.0-20260525 vs PDF metadata 2026-05-06; no printed version",
+      "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate"
+    },
+    {
+      "issue": "cover refers to safety chapter absent as standalone heading",
+      "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate"
+    },
+    {
+      "issue": "DC input 8A versus 12V/10A vehicle text; host ranges differ from module range",
+      "disposition": "solar Voc host ranges corrected in this edition on operator instruction 2026-10-16; the 8A versus 12V/10A vehicle text is preserved verbatim; native_pages.json keeps the printed wording"
+    },
+    {
+      "issue": "spec labels use 出カ",
+      "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate"
+    },
+    {
+      "issue": "voltage warning and geographic warranty scope concatenate phrases",
+      "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate"
+    },
+    {
+      "issue": "warranty refers to portable power products",
+      "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate"
+    }
+  ],
+  "build_boundary": "New target is not registered in phase2. Existing prepared RST → manual-ir/v2 → shared Web/MyST pipeline validates this body. build.py check of a historical fixture is a repository regression only.",
+  "pending_source_review": [],
+  "inputs": [
+    {
+      "path": "README.md",
+      "size": 3228,
+      "sha256": "3567bce4d6dd500f3640d05ab15a6d9eb32c9c73161f25178e121fa045c1f92a"
+    },
+    {
+      "path": "assets/car.png",
+      "size": 91687,
+      "sha256": "29f7b772d7e313cac5527f2d81b82b00716586375fa6bfd562556030a50319fb"
+    },
+    {
+      "path": "assets/contact-qr.png",
+      "size": 3197,
+      "sha256": "aaa58d773ab76092d7d3236a2a90ebcad33f992eaeb6491e37bb1c51c5c2ba10"
+    },
+    {
+      "path": "assets/inbox-manual.png",
+      "size": 15546,
+      "sha256": "f01512af441ad341022a4116ac908c865d15f29660688fc2801c8b46c7b4dcfa"
+    },
+    {
+      "path": "assets/inbox-module.png",
+      "size": 14353,
+      "sha256": "3c140171d4ae33f68026b81db880318d28ccf3ecd4d4d201c0ec9015080db49d"
+    },
+    {
+      "path": "assets/overview-textless.pdf",
+      "size": 1016968,
+      "sha256": "daea42641b87e4d3a7a838645858b852b609c8146a7703c834425fbd30cd0891"
+    },
+    {
+      "path": "assets/overview-textless.png",
+      "size": 72743,
+      "sha256": "910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2"
+    },
+    {
+      "path": "assets/solar.png",
+      "size": 214039,
+      "sha256": "434a3768abbb54d3f148e55fbe2475ce1a38906a18518ce96f266538e72080d8"
+    },
+    {
+      "path": "derive_solar_voc.py",
+      "size": 14421,
+      "sha256": "14913c49036cc2739e0a5b7d72a551975ea1d7161e0120d1cf25e4f526d5eb68"
+    },
+    {
+      "path": "render.py",
+      "size": 7533,
+      "sha256": "b769eb76a1a88dd4d1e5e4cd2037404b79b436a021a33a1338ce3c8cb20b45f5"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 3844,
+      "sha256": "78189d94debadf114247fd0188e0cf587bf7836564ba25b5ed5bcf0da0c88394"
+    },
+    {
+      "path": "source/asset_recipe.json",
+      "size": 8152,
+      "sha256": "cc4cfb583d3d45701f780c94112241acde56f81da44d889189a1a5e49f843f5e"
+    },
+    {
+      "path": "source/differences.md",
+      "size": 2742,
+      "sha256": "2e07d8b79cf106d6397e902dc923aca8506af3442bfa85b5f05f54e8cb601f74"
+    },
+    {
+      "path": "source/native_pages.json",
+      "size": 46041,
+      "sha256": "6628ad196c0206fc5165ce498827bb61c5f4c8d27636251fcc25c5237ed698f5"
+    },
+    {
+      "path": "source/original.pdf",
+      "size": 1263748,
+      "sha256": "ac3a1f820d94277f6c1a667bafddfa930363b1d74fb084eb7bed43b1c3749777"
+    },
+    {
+      "path": "source/page/00_preface_ja.rst",
+      "size": 510,
+      "sha256": "3338d9644c7cfb685a9f25df7c5a1707bc398009c028dd4c7792b2c902e350cd"
+    },
+    {
+      "path": "source/page/box_contents_ja.rst",
+      "size": 391,
+      "sha256": "660112948d06424916a348f00569eadbfc4409be87f38c1f29a6a46ecf70835a"
+    },
+    {
+      "path": "source/page/charging_ja.rst",
+      "size": 5871,
+      "sha256": "839e073a4ea07a30e9bb61401d6e3e5a379a803cb3df16284c2b30b9d90ee922"
+    },
+    {
+      "path": "source/page/contact_ja.rst",
+      "size": 473,
+      "sha256": "f5311ed63bb1be847c0a2cf1c80e6acd12242c2fe0bb359258c2f587a0f94a1e"
+    },
+    {
+      "path": "source/page/product_overview_ja.rst",
+      "size": 2173,
+      "sha256": "aad4fdf23fa7cbe4527515aa8db725442b71583feb1502b9534cc7a76dc71644"
+    },
+    {
+      "path": "source/page/spec_ja.rst",
+      "size": 974,
+      "sha256": "28e998906c15162efb8db76c69eaaebdc0764217de5bd4e3139e40ce6e2e3a7e"
+    },
+    {
+      "path": "source/page/warranty_ja.rst",
+      "size": 4507,
+      "sha256": "5bcffdd906357eb26d84eed3bbc61c5bc79568666fc49c37760bbaa36aaecde7"
+    },
+    {
+      "path": "source/presentation.css",
+      "size": 3066,
+      "sha256": "864cd07ff86972ebdb6463c1781b1911c3f8b04080370a978b73a9691b756e70"
+    },
+    {
+      "path": "source_manifest.json",
+      "size": 12388,
+      "sha256": "0f4bbda63f7ab784f11f3c763e8aa6dd490748eec17aaa35a57ba58497b9e7fd"
+    },
+    {
+      "path": "web/ja/_static/source.css",
+      "size": 3066,
+      "sha256": "864cd07ff86972ebdb6463c1781b1911c3f8b04080370a978b73a9691b756e70"
+    },
+    {
+      "path": "web/ja/_static/web_manual.css",
+      "size": 123623,
+      "sha256": "4c01adf9222e7faa8fb5552490d8b8fa4ebba550b4ef2a1e7171a1b9a6538434"
+    },
+    {
+      "path": "web/ja/assets/ir/29f7b772d7e313cac5527f2d81b82b00716586375fa6bfd562556030a50319fb/car.png",
+      "size": 91687,
+      "sha256": "29f7b772d7e313cac5527f2d81b82b00716586375fa6bfd562556030a50319fb"
+    },
+    {
+      "path": "web/ja/assets/ir/3c140171d4ae33f68026b81db880318d28ccf3ecd4d4d201c0ec9015080db49d/inbox-module.png",
+      "size": 14353,
+      "sha256": "3c140171d4ae33f68026b81db880318d28ccf3ecd4d4d201c0ec9015080db49d"
+    },
+    {
+      "path": "web/ja/assets/ir/434a3768abbb54d3f148e55fbe2475ce1a38906a18518ce96f266538e72080d8/solar.png",
+      "size": 214039,
+      "sha256": "434a3768abbb54d3f148e55fbe2475ce1a38906a18518ce96f266538e72080d8"
+    },
+    {
+      "path": "web/ja/assets/ir/910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2/overview-textless.png",
+      "size": 72743,
+      "sha256": "910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2"
+    },
+    {
+      "path": "web/ja/assets/ir/aaa58d773ab76092d7d3236a2a90ebcad33f992eaeb6491e37bb1c51c5c2ba10/contact-qr.png",
+      "size": 3197,
+      "sha256": "aaa58d773ab76092d7d3236a2a90ebcad33f992eaeb6491e37bb1c51c5c2ba10"
+    },
+    {
+      "path": "web/ja/assets/ir/f01512af441ad341022a4116ac908c865d15f29660688fc2801c8b46c7b4dcfa/inbox-manual.png",
+      "size": 15546,
+      "sha256": "f01512af441ad341022a4116ac908c865d15f29660688fc2801c8b46c7b4dcfa"
+    },
+    {
+      "path": "web/ja/conf.py",
+      "size": 818,
+      "sha256": "e9b2ad14300680dc7c9723f547a17d9bf18c65f4dcad7b9b877f031d3fedf40b"
+    },
+    {
+      "path": "web/ja/index.md",
+      "size": 83,
+      "sha256": "d18299d9eec5e1ae4d4115bbb6a8efdd3f306383a09884e33943947f9df82f66"
+    },
+    {
+      "path": "web/ja/manual.ir.json",
+      "size": 261737,
+      "sha256": "e12112cc72236035d7566103968f1e4328c1883a632841bd2929688adcc5b5aa"
+    },
+    {
+      "path": "web/ja/manual_bundle.html",
+      "size": 23365,
+      "sha256": "7e9ee81a80059aa492be3bcd71ae3afa6912c398d9b967ee90633034e751e5f7"
+    },
+    {
+      "path": "web/ja/manual_jaad500asil_jp_ja.md",
+      "size": 25054,
+      "sha256": "f4571e1c4d395ae49b354de033793df6bf5c53b6927f9cb7a4006b49f6d7181e"
+    }
+  ],
+  "repo_inputs": [
+    {
+      "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
+      "sha256": "6337f537ac3b8b7248e00632d9f3d899a410fbadad4319a718b0e39905717a9d"
+    }
+  ],
+  "filename_version": "V2.0-20260525",
+  "web_roots": {
+    "ja": "web/ja"
+  },
+  "reused_assets": [
+    {
+      "path": "assets/overview-textless.png",
+      "original_path": "manual_sources/JA-AD500A-SIL/US/en/git-20261006-a6d1659e-reviewed/assets/overview-textless.png",
+      "sha256": "910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2",
+      "region_difference_audited": true,
+      "locale": "und"
+    },
+    {
+      "path": "assets/overview-textless.pdf",
+      "original_path": "manual_sources/JA-AD500A-SIL/US/en/git-20261006-a6d1659e-reviewed/assets/overview-textless.pdf",
+      "sha256": "daea42641b87e4d3a7a838645858b852b609c8146a7703c834425fbd30cd0891",
+      "region_difference_audited": true,
+      "locale": "und"
+    },
+    {
+      "path": "assets/inbox-module.png",
+      "original_path": "manual_sources/JA-AD500A-SIL/US/en/git-20261006-a6d1659e-reviewed/assets/inbox-module.png",
+      "sha256": "3c140171d4ae33f68026b81db880318d28ccf3ecd4d4d201c0ec9015080db49d",
+      "region_difference_audited": true,
+      "locale": "und"
+    }
+  ],
+  "publication_status": "operator-approved-git-only-release",
+  "derived_from": {
+    "package": "git-20261009-ac3a1f82-web-layout",
+    "authorization": "operator review and merge of #1467 (AGENTS.md §8.6); base approval MA-272",
+    "manifest_sha256": "f6c7c1174acd557ff981324ae54d6ccbb0fa4c1ad4fda302123958ff24ff5a75"
+  },
+  "web_exclusions": [
+    {
+      "physical_page": 1,
+      "role": "printed cover",
+      "lines": [
+        "取扱説明書",
+        "Jackery DC Input Module",
+        "型番:JA-AD500A-SIL",
+        "国内専用/For use only in Japan",
+        "写真はイメージです。実際の商品とは異なる場合があります。",
+        "カスタマーサポート: jackery.jp@jackery.com"
+      ]
+    }
+  ],
+  "text_corrections": [
+    {
+      "page": "source/page/charging_ja.rst",
+      "approved": "Jackeryブランド以外の付属品を使用して充電しないでください。ソーラーパネルの開放電圧（Voc）が、Jackery SlimPower H1 のDC入力範囲（36.8V～56V）または Jackery Battery PackのDC入力範囲（40V～57.6V）内であることを確認してください。",
+      "corrected": "Jackery DC Input Moduleを介して接続した製品を充電する場合は、Jackery製ソーラーパネルの使用を推奨します。接続するソーラーパネルの開放電圧（Voc）が、本モジュールのDC入力電圧範囲（16V～60V）内であることを確認してください。",
+      "reason": "Solar panels connect through the Jackery DC Input Module; the panel Voc limit is the module's DC input voltage range (16V～60V), not the downstream SlimPower H1 / Battery Pack ranges cited by the printed source.",
+      "instruction": "operator, 2026-10-15/16: replace the paragraph (整段替换), keep the disclaimer (不删免责句); the opening accessory warning is dropped (删掉第①句, 2026-10-16); the printed source and its transcription stay unchanged"
+    }
+  ],
+  "shared_component_exceptions": [
+    {
+      "language": "ja",
+      "page_id": "product_overview_ja.rst",
+      "kind": "table",
+      "text_sha256": "7410f90222f775cd54decfa20f107c35a8f73f326520548687d7d7c2bf6b1f38",
+      "reason": "module LED status/colour/meaning table: no shared ComponentSpec covers an LED-state table; it uses the shared hb-source-status-table classes"
+    }
+  ],
+  "style_migration": {
+    "gate": "prepared-document-shared-styles/v1",
+    "pages": [
+      "source/page/00_preface_ja.rst",
+      "source/page/charging_ja.rst",
+      "source/page/contact_ja.rst",
+      "source/page/product_overview_ja.rst",
+      "source/page/spec_ja.rst"
+    ],
+    "stylesheet": "source/presentation.css",
+    "reason": "re-frozen for the solar-Voc correction, the locale must pass the shared-style gate: page-local classes, inline styles and stylesheet paint replaced by shared theme classes; visible copy unchanged",
+    "instruction": "operator, 2026-10-16: 889 日规 也要删掉第一句 (fix the inherited style issues)"
+  }
+}

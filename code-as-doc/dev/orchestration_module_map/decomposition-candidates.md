@@ -74,4 +74,4 @@ Prepared Web admission: `tools/web/component_admission.py` owns fresh-publicatio
 
 ### RTD 产品知识
 
-`tools/rtd/product_learning.py` 将工程维护的通用课程词条与冻结产品目录关联；`tools/rtd/portal.py` 只注册页面。首页 `navigation` 是产品定位分组的同一来源，知识页不建立第二份型号定位表。
+`tools/rtd/product_learning.py` 将工程维护的通用课程词条与冻结产品目录关联；`tools/rtd/portal.py` 只注册页面。产品定位分组以首页 `navigation` 为底，由 `tools/rtd/product_matrix.py` 的 `positioning_groups` 补上 `product_matrix.json` 的产品线与 `assign`；知识页复用这一层，不建立第二份型号定位表。

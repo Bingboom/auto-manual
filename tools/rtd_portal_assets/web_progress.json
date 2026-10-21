@@ -1,0 +1,6 @@
+{
+  "_comment": "网页说明书进度 (tools/rtd/web_progress.py): market columns in display order, and the market each SKU code counts toward. EU editions also cover the UK and US editions Canada, as the Feishu 网页文档 table's 欧英规 and 美规 do. Codes not listed are ignored.",
+  "markets": ["EU", "US", "JP", "CN", "TW", "KR", "AU", "BR"],
+  "sku_markets": {"EU": "EU", "UK": "EU", "DE": "EU", "FR": "EU", "US": "US", "CA": "US", "JP": "JP", "CN": "CN",
+                  "TW": "TW", "KR": "KR", "AU": "AU", "BR": "BR"}
+}

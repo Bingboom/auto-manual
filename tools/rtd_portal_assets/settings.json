@@ -23,7 +23,7 @@
   "category_prefixes": {"JE-": "Power stations", "JBP-": "Battery packs", "JS-": "Solar panels"},
   "navigation": {
     "needs": [
-      {"id": "portable", "title": "随身供电", "note": "手机、电脑、摄影设备", "models": ["JE-100C", "JE-300D"]},
+      {"id": "portable", "title": "随身供电", "note": "手机、电脑、摄影设备", "models": ["JE-100C", "JE-300D", "JE-300E"]},
       {"id": "appliance", "title": "通用电器供电", "note": "露营、移动作业、临时备电", "models": ["JE-500A", "JE-1000F", "JE-2000F", "JE-3000C"]},
       {"id": "expandable", "title": "可扩容储能", "note": "需要更长续航，后续可增加电池", "models": ["JE-1000H", "JE-2000E", "JE-3600A"]},
       {"id": "dedicated", "title": "专用场景备电", "note": "围绕特定设备保障供电", "models": ["JE-1000E-SIL"]}

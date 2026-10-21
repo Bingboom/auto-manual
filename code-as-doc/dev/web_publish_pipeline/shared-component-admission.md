@@ -48,6 +48,13 @@ component first. Do not add a per-language stylesheet or relabel a screenshot
 as a semantic table. Rebuild into a new immutable version; do not edit the
 historical package. A library fix alone does not update already frozen books:
 rebuild and republish every affected language, then verify the live routes.
+The maintainability guardrails keep that visible: a change to a shared input
+that frozen packages pin fails until each affected package's handling is
+recorded in `data/frozen_package_registry.json` (`keep-frozen` or
+`rebuild-pending`, with a reason). Run
+`python -m tools.web.frozen_package_registry report --changed <path>` before
+changing a shared file to see which packages pin it; see the
+[CI guide](../../build_doc_guide/ci-and-guardrails.md).
 
 Regression coverage includes the ten reviewed native imports (JE-1000F four
 languages and JE-2000F/E three each), the actual pre-fix four-language snapshot,
@@ -55,3 +62,41 @@ and correctly rehashed IR with a removed binding. The pre-fix snapshot fails
 admission; the corrected ten books pass. These checks establish component
 coverage, not translation correctness or pixel-perfect layout: desktop/mobile
 preview and source comparison remain part of release acceptance.
+
+## Prepared-document shared-style admission
+
+Packages replayed from reviewed flow (`source: prepared-document`) have no
+native semantic chapters, so the table above cannot apply to them. They used
+to bypass shared presentation entirely: the released JE-3600A CN/JP Web-layout
+editions drew their symbol, LCD, inbox and specification tables with
+source-local `ht-*` CSS. [`prepared_style_audit.py`](../../../tools/web/prepared_style_audit.py)
+closes that gap from the style side. Outside registered components:
+
+- every class must be defined by the shared Web theme
+  (`docs/renderers/contracts/*.css`) or be a generic docutils/Sphinx
+  structure class;
+- no flow node carries an inline `style`;
+- a table is declared in the package manifest's `shared_component_exceptions`
+  (`language`, `page_id`, `kind: table`, `text_sha256`, `reason`): the reason
+  names why no shared component fits, and a declaration that matches nothing
+  fails;
+- the package stylesheet (`source_stylesheet`) holds geometry only: no colour,
+  background, border, fill, stroke, shadow or outline.
+
+`tests/test_prepared_document_shared_styles.py` runs it over every frozen
+prepared-document locale in the repository on each CI run, so a package that
+draws its own styles cannot land. `require_prepared_style_admission` is the
+seal-time entry point; it is not yet called from `seal_frozen_web_evidence`,
+because released packages pin that module's bytes and a change there needs a
+coordinated re-pin.
+
+Locales frozen before the gate are listed in
+[`prepared_style_baseline.json`](../../../docs/renderers/contracts/prepared_style_baseline.json),
+bound to their exact IR content hash. The released editions stay as they are.
+A re-frozen locale no longer matches its entry and must pass, and an entry
+whose locale now passes must be removed. The list may shrink, never grow; the
+test caps its size.
+
+When the gate fails, use the shared component for the block. If none fits,
+declare the plain table with its reason, or define and validate the shared
+component first. A per-package colour or border is never the fix.

@@ -36,7 +36,7 @@ from collections.abc import Iterable
 from pathlib import Path
 from typing import Any
 
-from tools.rtd.production_evidence import read_publications
+from tools.rtd.production_evidence import publication_facts, read_publications
 from tools.rtd.system_data import CAPABILITIES_CSV, LANGUAGES_CSV, read_targets
 from tools.utils.path_utils import Paths, PathSegments, repo_root
 
@@ -207,6 +207,38 @@ def load_config(assets: Path, settings: dict[str, Any]) -> dict[str, Any]:
     if not tiers or any("below" not in tier for tier in tiers[:-1]) or "below" in tiers[-1]:
         raise ProductMatrixError(f"{CONFIG}: every tier but the last needs 'below', and the last none")
     return {**config, "lines": lines, "accessories": accessories, "assign": assign}
+
+
+def positioning_groups(assets: Path, settings: dict[str, Any]) -> dict[str, set[str]]:
+    """Each group id with the models placed there: navigation, the config's lines and groups, then ``assign``.
+
+    The 产品知识 page reads this, so a model the navigation does not list still
+    finds its knowledge. A navigation-listed model keeps its navigation group and
+    a ``same_as`` model joins the groups of the model it names, as on the matrix page.
+    Only the config is read: an evidence line keeps its assigned models here, and
+    the quote is checked where the manual is read. Any missing, unreadable or
+    malformed config raises ProductMatrixError.
+    """
+    try:
+        config = load_config(assets, settings)
+    except ProductMatrixError:
+        raise
+    except (OSError, ValueError, KeyError, TypeError, AttributeError) as exc:
+        raise ProductMatrixError(f"{CONFIG} is unreadable or malformed: {type(exc).__name__}: {exc}") from exc
+    groups = {group["id"]: set(group["models"]) for rows in (settings.get("navigation") or {}).values() for group in rows}
+    for entry in config["lines"] + config["accessories"]:
+        groups.setdefault(entry["id"], set()).update(entry["models"])
+    placed = set().union(*groups.values())
+    for model, entry in config["assign"].items():
+        if model in placed:
+            continue
+        if "same_as" in entry:
+            keys = [key for key, members in groups.items() if entry["same_as"] in members]
+        else:
+            keys = [entry["line"]]
+        for key in keys:
+            groups[key].add(model)
+    return groups
 
 
 def _order(values: Iterable[str], preferred: list[str]) -> list[str]:
@@ -474,10 +506,11 @@ def matrix_context(root: Path, srcdir: Path, manifest: Path, assets: Path, setti
     capability_names, capabilities = capability_rows(root, products, config)
     line_ids = {line["id"] for line in config["lines"]}
     pending = [row["model"] for row in capabilities if row["model"] not in products]
+    web = publication_facts(targets)
     return {
         "built_on": built_at[:10],
         "facts": {
-            "models": len(products), "routes": len(targets),
+            "models": web["models"], "books": web["books"], "variants": web["variants"],
             "energy": sum(1 for p in products.values() if p["group"] in line_ids),
             "accessories": sum(1 for p in products.values() if p["group"] not in line_ids),
             "pending": len(pending),
@@ -516,6 +549,6 @@ def product_matrix_page_context(app, assets: Path, settings: dict[str, Any],
 
 __all__ = [
     "PAGE", "ProductMatrixError", "TEMPLATE", "capability_rows", "display_name", "load_config", "matrix_context",
-    "number", "pairings", "plain_text", "positioning", "product_matrix_page_context", "read_products",
-    "read_specs", "spec_pairs", "spec_rows",
+    "number", "pairings", "plain_text", "positioning", "positioning_groups", "product_matrix_page_context",
+    "read_products", "read_specs", "spec_pairs", "spec_rows",
 ]
