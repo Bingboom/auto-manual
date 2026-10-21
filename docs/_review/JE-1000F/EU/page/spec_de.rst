@@ -25,7 +25,7 @@
    \hline
    \HBTypeSpecLabel{Abmessungen} & \HBTypeSpecValue{31,4 x 20,1 x 23,4 cm} \\
    \hline
-   \HBTypeSpecLabel{Zykluslebensdauer} & \HBTypeSpecValue{6000 Zyklen bei über 70 \% Restkapazität} \\
+   \HBTypeSpecLabel{Zykluslebensdauer} & \HBTypeSpecValue{4000 Zyklen bei über 70 \% Restkapazität} \\
    \end{tabularx}
    \end{spectable}
 
@@ -124,7 +124,7 @@
           </tr>
           <tr>
             <th scope="row" class="hb-spec-label">Zykluslebensdauer</th>
-            <td class="hb-spec-value">6000 Zyklen bei über 70 % Restkapazität</td>
+            <td class="hb-spec-value">4000 Zyklen bei über 70 % Restkapazität</td>
           </tr>
         </tbody>
       </table>
