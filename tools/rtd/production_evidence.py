@@ -51,20 +51,25 @@ def metric(key: str, label: str, value: int | None, *, unit: str, rule: str,
             "denominator": NOT_APPLICABLE, "guide": GUIDE}
 
 
+def publication_targets(data: Any) -> list[dict[str, Any]]:
+    """A parsed manifest's targets, each naming its model, region, lang, route and manual."""
+    targets = data.get("targets") if isinstance(data, dict) else None
+    if not isinstance(targets, list):
+        raise ValueError("targets must be a list")
+    for target in targets:
+        if not isinstance(target, dict) or not all(
+            isinstance(target.get(k), str) and target[k].strip()
+            for k in ("model", "region", "lang", "route", "manual")
+        ):
+            raise ValueError("incomplete target identity")
+    return targets
+
+
 def read_publications(path: Path) -> tuple[list[dict[str, Any]] | None, str]:
     """A valid empty catalog is zero; unreadable/malformed data is unavailable."""
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
-        targets = data["targets"]
-        if not isinstance(targets, list):
-            raise ValueError("targets must be a list")
-        for target in targets:
-            if not isinstance(target, dict) or not all(
-                isinstance(target.get(k), str) and target[k].strip()
-                for k in ("model", "region", "lang", "route", "manual")
-            ):
-                raise ValueError("incomplete target identity")
-        return targets, str(data.get("built_at") or "")
+        return publication_targets(data), str(data.get("built_at") or "")
     except (OSError, ValueError, TypeError, KeyError):
         return None, ""
 
