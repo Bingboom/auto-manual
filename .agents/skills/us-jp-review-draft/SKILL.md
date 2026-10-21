@@ -75,11 +75,21 @@ operator-requested Feishu wiki upload.
     HTML, assets, registers, xlsx and an updated `README.md`/`review.zh.md`;
     send it to the operator. Upload to the Feishu wiki only when asked
     (`references/feishu-io.md`), next to the original, then read back.
-12. **Publish to the private 审核稿 site** when asked: commit the version
-    directory with a `draft.json` manifest to `Bingboom/Hello-Docs-Review` under
-    `docs/review-drafts/<MODEL>/<REGION>/<version>/` (newest version plus
-    milestones; drop superseded in-between versions). The private RTD project
-    rebuilds the list. Manifest and rules:
+12. **Write in the private repository.** A draft line in
+    `Bingboom/Hello-Docs-Review` is one working directory,
+    `docs/review-drafts/<MODEL>/<REGION>/` (its `draft.json` names the current
+    version), plus frozen `milestones/<version>/` copies. Never add a version
+    directory there: the site build refuses a `draft.json` anywhere else. Copy the
+    working directory (without `milestones/`) to the scratchpad as the previous
+    version, build the next one from it as above, put the new files back in place
+    (keep `milestones/`), update `draft.json` (version, date, status, summary,
+    `rd_open`), commit `<MODEL> <REGION> vX.YY: <summary>` to its `main` and push.
+    Freeze a milestone only when the operator names one: copy the working directory
+    (without `milestones/`) to `milestones/<version>/` and set its `milestone`. The
+    private RTD project (<https://ht-docs-review-doc-lib.readthedocs-hosted.com/>)
+    rebuilds the overview and the line page. Touch nothing outside
+    `docs/review-drafts/` there (the mirror sync owns the rest). A zip goes to the
+    operator only when asked. Rules:
     [`review-drafts-site.md`](../../../code-as-doc/dev/rtd_manual_portal/review-drafts-site.md).
 
 One operator instruction = one version: a `make_vNNN.py` that copies the last
