@@ -13,8 +13,9 @@ fails if that changes. Everything outside is passed in: the Feishu calls
 - ``delivery``: the pending push kept outside the checkout until a send is acknowledged.
 - ``feishu``: lark-cli calls and complete table reads.
 - ``files``: atomic replacement of the files the package writes.
+- ``wiki``: the Markdown view beside the intake, for Obsidian and llm_wiki.
 - ``policies``: the ``market-policy`` records policy events join by ID.
-- ``cli``: ``python -m tools.intel sync|push``.
+- ``cli``: ``python -m tools.intel sync|push|wiki``.
 
 The host repository renders the research page and the optional product lens
 from the package's snapshot and digest; the package never imports them. To
