@@ -1,7 +1,7 @@
 # Product Intelligence Demo — Execution Plan
 
 Status: active
-Implementation: three phases integrated, then revised event-first (Phase 4); local validation complete; private RTD deployment pending.
+Implementation: three phases integrated, then revised event-first (Phase 4) and given a hand-run collection loop (Phase 5); local validation complete; hosted RTD verification and the loop's operator trial pending.
 Branch: `feat/product-intelligence-demo`
 Scope: three phases, one integration branch, one PR; do not modify the README positioning or merge to main until reviewed.
 
@@ -60,6 +60,14 @@ Review direction: external information is collected first and pushed for decisio
 - [x] Lay the page out as an event index in digest order: one row per event (market, kind, title, decision, owner, due date, states) that opens to its details, quick tiles over the filters, no slogan or explanatory header; the lens is a collapsed appendix inside the event with not-configured/unavailable/invalid/evaluated states and compact rows for unknown/excluded variants.
 - [x] Degrade only the lens when product inputs fail; skip only this page when the events file is malformed; validate the flag once at start-up.
 - [x] Fix review findings: revision allow-lists, real evidence paths and byte hashes, per-edition warnings, whole-number facts, lens vocabulary checks, anchor prefixes, shared manifest/row helpers, one read per manual, generic `preview/*` RTD rule that forces the flag off elsewhere.
+
+## Phase 5 — Hand-run collection loop (2026-10-21)
+Operator decisions: collect in a Feishu table; push to a Feishu group on workdays, right after a sync; capture decisions in the table; everything, decisions included, goes to Hello-Docs; no workflow change in this step.
+- [x] Sync the 外部情报 table read-only into `events.json` as append-only revisions bound by `intake_record_id`; hand-written events are adopted by ID.
+- [x] Count a judgment only when its 复核日期 is on or after the revision it judges; keep an unusable row's event at its last state and report it; never delete an event because its row is gone.
+- [x] Push the digest as one Feishu post built from `items` (literal text, validated links): overdue, due within seven days, other pending, judgments recorded and rows to fix. Dry run by default; `--write --push` writes then sends.
+- [ ] Operator trial: create the table, give the bot read access and group membership, run a dry run, then `--write --push`, and commit `events.json` to Hello-Docs as a content PR.
+- [ ] Schedule the loop on workdays (workflow, content PR, push after sync): a separately approved workflow change.
 
 ## Parallel execution contract
 Agent A owns product knowledge contract + extraction tests. Agent B owns event/association module + tests. Agent C owns RTD templates/assets + UI tests. Integration owner alone changes shared builders/registration and resolves contracts. A minimal contract must be agreed first; B/C can implement against fixtures while A completes.

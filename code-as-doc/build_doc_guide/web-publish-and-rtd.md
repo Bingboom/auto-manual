@@ -4,7 +4,8 @@ Part of the [build guide](../build_doc_guide.md); its index lists the other topi
 Add new notes for this topic here, not to the hub.
 
 The opt-in external-intelligence preview collects business-owned events and exports a
-decision digest; frozen product knowledge is only an optional lens, and the production
+decision digest, which a hand-run command can also sync from a Feishu table and push
+to a group; frozen product knowledge is only an optional lens, and the production
 pipeline is unchanged. See the [consumer contracts and checks](../dev/product-intelligence-contract.md)
 and [local preview guide](../../user-guide/hello_auto-doc/product-intelligence-demo.md).
 

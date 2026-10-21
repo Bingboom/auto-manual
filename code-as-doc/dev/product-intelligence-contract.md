@@ -56,11 +56,16 @@ Each entry has `id`, `title`, `kind` (policy/market/competitor), `market`,
 - Entry, revision, review and lens fields are allow-listed, so a revision cannot
   replace an event's identity, market or lens. The event is built field by field
   from the entry and its latest revision.
+- `intake_record_id` (optional, unique, `rec…`) names the Feishu table row an
+  event is synced from; it is carried to the event and the digest item as the
+  row link, and is absent from hand-written events.
 
 Reviewed revisions require a decision, reviewer and ISO review date. Later pending
 revisions preserve earlier human judgments in history without inheriting approval.
 `compare_event_snapshots(previous, current)` returns a new receipt; neither
-snapshot changes and review stays pending.
+snapshot changes and review stays pending. `events_snapshot(payload, knowledge_root)`
+builds the same snapshot from file bytes, and `encode_intake(document)` gives the
+bytes a document is written as, so a sync candidate hashes as it will be committed.
 
 ## Layer 2: decision digest (push)
 
@@ -106,6 +111,52 @@ unverified events cannot produce candidates. EU publication availability is not
 proof of a country's sales or compliance. `compare_lens_snapshots` reports
 knowledge, event, lens and association changes without touching either snapshot.
 
+## Collection loop: table sync and group push (hand-run)
+
+`tools.rtd.intelligence_sync` reads the Feishu 外部情报 table, one row per event,
+through `workspace_snapshot.complete_rows` (complete pages or nothing); a table
+missing any column of `COLUMNS` raises `TableShapeError`. It never writes the
+table. `merge(previous, rows, *, today, policy_ids=None)` returns a new intake
+document and a report, leaving both inputs unchanged:
+
+- A row's event is the one bound to its record (`intake_record_id`), else the
+  event with the row's 事件ID when it is hand-written or its row is gone
+  (adopted with its history), else a new event with that ID or `ev-` plus ten
+  hex digits of the record ID's SHA-256. Event ID, source kind and policy record
+  are fixed once synced.
+- A revision is appended only when the row's facts (decision fields; status,
+  summary, boundary and sources for an external event) or its judgment changed.
+  It is dated `today` (the sync date, China Standard Time) and its reason is the
+  row's 变更说明 when that changed, else a default. Title, kind, market and
+  occurrence date update the entry without a revision; rows never touch
+  `product_lens`.
+- A complete judgment counts only when its 复核日期 is on or after the date of
+  the revision it judges; otherwise that revision stays pending and the report
+  carries a notice.
+- The report names each row's change (`added`, `revised`, `judged`, `reopened`,
+  `relabelled`) and counts `unchanged`. A row that cannot be used is a `problem`
+  and its event keeps its last state; a stale judgment or a policy ID missing
+  from `policy_ids` is a `notice`; an event whose row is gone is kept and listed
+  in `gone`. An invalid previous intake, or a `today` before its newest
+  revision, raises `ValueError`.
+
+`tools.rtd.intelligence_push.post_content(digest, *, today, record_url, page_url,
+report)` builds one Feishu post from the digest `items`: pending events grouped
+overdue, due within seven days, then the rest (at most `MAX_LISTED`, text cut at
+`MAX_TEXT`), the judgments a sync recorded and the rows to fix. Intake text is
+only ever a literal text element. Only validated HTTPS URLs become links, and a
+row link is the operator's `record_url` with a checked record ID. It returns
+`None` when nothing is pending and the report is empty. `send` runs `lark-cli im
++messages-send --msg-type post` with an idempotency key derived from chat,
+content and day; its receipt names no chat.
+
+`python -m tools.rtd.intelligence_loop sync|push` is the hand-run entry: `sync`
+is a dry run unless `--write`, and `--push` sends right after a written sync (it
+only prints after a dry run). Transport errors carry the command line, so only
+their type is printed. Configuration comes from flags or `FEISHU_EXTERNAL_INTEL_*`
+and `EXTERNAL_INTEL_SITE_URL`; nothing secret is written to a file. No workflow
+runs the loop yet; scheduling it is a separate, approved workflow change.
+
 ## Page, exports and ownership
 
 - Intake and digest: `tools/rtd/intelligence_events.py`, `tools/rtd/decision_digest.py`,
@@ -115,6 +166,9 @@ knowledge, event, lens and association changes without touching either snapshot.
 - Page: `tools/rtd/product_research.py`, its template/CSS/JS and Python/Node tests.
 - Build: `tools/rtd/research_build.py` and the portal registration, with
   `tests/test_product_intelligence_build.py`.
+- Loop: `tools/rtd/intelligence_sync.py`, `tools/rtd/intelligence_push.py`,
+  `tools/rtd/intelligence_loop.py`, with `tests/test_intelligence_sync.py`,
+  `tests/test_intelligence_push.py` and `tests/test_intelligence_loop.py`.
 
 The page route is `research/product-intelligence.html`, combined sites only.
 Enable with Sphinx `rtd_product_intelligence_demo` or `RTD_PRODUCT_INTELLIGENCE_DEMO`
@@ -140,7 +194,8 @@ initialization only the page and these five exports are removed, so a disabled o
 manuals-only rebuild in the same output directory cannot keep stale research.
 
 No production templates, source tables, publication snapshots or GitHub workflows
-are edited. No new service, crawler, graph database or dependency is required.
+are edited; the loop reads its own table and sends one group message per run. No
+new service, crawler, graph database or dependency is required.
 
 ## Safety net and verification
 
