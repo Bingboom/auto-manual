@@ -1,7 +1,7 @@
 """Run the external intelligence loop by hand: sync the 外部情报 table, then push the digest.
 
-    python -m tools.rtd.intelligence_loop sync --knowledge-dir DIR [--write [--push]]
-    python -m tools.rtd.intelligence_loop push --knowledge-dir DIR [--dry-run]
+    python -m tools.intel sync --knowledge-dir DIR [--write [--push]]
+    python -m tools.intel push --knowledge-dir DIR [--dry-run]
 
 ``sync`` reads the Feishu table (never writes it) and prints what would change in
 ``DIR/external-intel/events.json``; ``--write`` writes the file and ``--push`` then
@@ -17,15 +17,16 @@ import json
 import os
 from pathlib import Path
 import sys
-import tempfile
 
-from tools.rtd import intelligence_push as push
-from tools.rtd import intelligence_sync as sync
-from tools.rtd import intelligence_delivery as delivery
-from tools.rtd.decision_digest import decision_digest, safe_external_url
-from tools.rtd.intelligence_events import CONTENT_DIR, EVENTS_FILE, encode_intake, events_snapshot
-from tools.rtd.market_policy import market_context
+from . import delivery, push, sync
+from .digest import decision_digest, safe_external_url
+from .events import CONTENT_DIR, EVENTS_FILE, encode_intake, events_snapshot
+from .feishu import LarkError, runner
+from .files import write_atomic as _write
+from .policies import read_policies
 
+# Where the host renders the research page; digest links point at its event anchors.
+PAGE = "research/product-intelligence"
 ENV = {"base": "FEISHU_EXTERNAL_INTEL_BASE_TOKEN", "table": "FEISHU_EXTERNAL_INTEL_TABLE_ID",
        "chat": "FEISHU_EXTERNAL_INTEL_CHAT_ID", "record_url": "FEISHU_EXTERNAL_INTEL_RECORD_URL",
        "identity": "FEISHU_EXTERNAL_INTEL_IDENTITY", "site_url": "EXTERNAL_INTEL_SITE_URL"}
@@ -37,18 +38,6 @@ def _iso_date(value: str) -> str:
         return dt.date.fromisoformat(value).isoformat()
     except ValueError:
         raise argparse.ArgumentTypeError(f"not an ISO date: {value!r}") from None
-
-
-def _write(path: Path, payload: bytes) -> None:
-    """Replace ``path`` with ``payload`` in one step, so a failed write keeps the last good file."""
-    path.parent.mkdir(parents=True, exist_ok=True)
-    fd, temporary = tempfile.mkstemp(prefix="." + path.name, dir=path.parent)
-    try:
-        with os.fdopen(fd, "wb") as stream:
-            stream.write(payload)
-        os.replace(temporary, path)
-    finally:
-        Path(temporary).unlink(missing_ok=True)
 
 
 def _summary(report: dict) -> list[str]:
@@ -63,11 +52,12 @@ def _summary(report: dict) -> list[str]:
 
 def _runner(args):
     """The injected ``run`` (tests), else lark-cli under the chosen identity."""
-    if args.run is not None:
-        return args.run
-    from tools.rtd.system_workspace import lark_runner
+    return args.run if args.run is not None else runner(args.cli_bin, args.identity)
 
-    return lark_runner(args.cli_bin, args.identity)
+
+def _failure(exc: Exception) -> str:
+    """What a failed call may print: a ``LarkError`` names no argument; any other transport only its type."""
+    return str(exc) if isinstance(exc, LarkError) else type(exc).__name__
 
 
 def _send_pending(args, job: dict) -> int:
@@ -83,7 +73,7 @@ def _send_pending(args, job: dict) -> int:
             raise RuntimeError("send returned no message acknowledgment")
         delivery.acknowledge(args.knowledge_dir, job)
     except (RuntimeError, OSError, ValueError) as exc:
-        print(f"ERROR   push failed ({type(exc).__name__}); pending candidate/message retained; "
+        print(f"ERROR   push failed ({_failure(exc)}); pending candidate/message retained; "
               f"{_TRANSPORT_HINT}; retry the same command with the original configuration")
         return 1
     print(json.dumps({**receipt, "events_snapshot_id": job["events_snapshot_id"]}, ensure_ascii=False))
@@ -106,8 +96,6 @@ def _store(args, payload: bytes | None, before: bytes | None) -> None:
 def _deliver(args, intel: dict, report: dict | None, *, send: bool,
              payload: bytes | None = None, before: bytes | None = None) -> int:
     """Send (or, when not ``send``, print) the digest message of ``intel``."""
-    from tools.rtd.product_research import PAGE
-
     site = args.site_url.rstrip("/")
     digest = decision_digest(intel, page=PAGE, base_url=site)
     content = push.post_content(digest, today=args.today, record_url=args.record_url,
@@ -126,11 +114,12 @@ def _deliver(args, intel: dict, report: dict | None, *, send: bool,
     return _send_pending(args, job)
 
 
-def _policy_ids(root: Path) -> set[str] | None:
+def _policies(root: Path) -> list[dict] | None:
+    """The policy records, or ``None`` with a warning when they cannot be read."""
     try:
-        return {record["id"] for record in market_context(root)["records"]}
-    except (OSError, ValueError, KeyError):
-        print("WARNING market-policy records are unreadable; policy ids are not checked")
+        return read_policies(root)
+    except (OSError, ValueError) as exc:
+        print(f"WARNING market-policy records are unreadable ({exc}); policy ids are not checked")
         return None
 
 
@@ -148,11 +137,12 @@ def run_sync(args) -> int:
         print(f"ERROR   {exc}; see the field list in the operator guide")
         return 1
     except (RuntimeError, OSError, ValueError) as exc:
-        # Transport errors carry the whole command line, base token included; print only their type.
-        print(f"ERROR   table read failed ({type(exc).__name__}); {_TRANSPORT_HINT}")
+        print(f"ERROR   table read failed ({_failure(exc)}); {_TRANSPORT_HINT}")
         return 1
+    policies = _policies(args.knowledge_dir)
     try:
-        document, report = sync.merge(previous, rows, today=args.today, policy_ids=_policy_ids(args.knowledge_dir))
+        document, report = sync.merge(previous, rows, today=args.today,
+                                      policy_ids=None if policies is None else {record["id"] for record in policies})
     except ValueError as exc:
         print(f"ERROR   {path.name} cannot take this sync: {exc}")
         return 1
@@ -161,19 +151,17 @@ def run_sync(args) -> int:
     if not args.push:
         _store(args, payload, before)
         return 0
-    try:
-        intel = events_snapshot(payload, args.knowledge_dir)
-    except (OSError, ValueError) as exc:
-        print(f"ERROR   cannot build the digest: {exc}")
+    if policies is None:
+        print("ERROR   cannot build the digest: policy events need readable market-policy records")
         return 1
-    return _deliver(args, intel, report, send=args.write, payload=payload, before=before)
+    return _deliver(args, events_snapshot(payload, policies), report, send=args.write, payload=payload, before=before)
 
 
 def run_push(args) -> int:
     path = args.knowledge_dir / CONTENT_DIR / EVENTS_FILE
     try:
         payload = path.read_bytes() if path.is_file() else None
-        intel = events_snapshot(payload, args.knowledge_dir)
+        intel = events_snapshot(payload, read_policies(args.knowledge_dir) if payload is not None else [])
     except (OSError, ValueError) as exc:
         print(f"ERROR   cannot read {path}: {exc}")
         return 1

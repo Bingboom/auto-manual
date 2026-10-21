@@ -4,8 +4,8 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 
-from tools.rtd.decision_digest import SCHEMA_VERSION, decision_digest, safe_external_url
-from tools.rtd.intelligence_events import CONTENT_DIR, EVENTS_FILE, load_events
+from tools.intel.digest import SCHEMA_VERSION, decision_digest, safe_external_url
+from tools.intel.events import CONTENT_DIR, EVENTS_FILE, load_events
 
 FIXTURE = Path(__file__).resolve().parent / "fixtures" / "external_intel" / "events.json"
 PAGE = "research/product-intelligence"

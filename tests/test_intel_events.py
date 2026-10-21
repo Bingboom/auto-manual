@@ -6,10 +6,11 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 
-from tools.rtd.intelligence_events import (
+from tools.intel.events import (
     CONTENT_DIR, EVENTS_FILE, SCHEMA_VERSION, compare_event_snapshots, content_hash, encode_intake,
     events_snapshot, load_events,
 )
+from tools.intel.policies import read_policies
 
 FIXTURE = Path(__file__).resolve().parent / "fixtures" / "external_intel" / "events.json"
 
@@ -88,8 +89,35 @@ class IntakeTests(unittest.TestCase):
         self.assertEqual(json.loads(payload), self.data)
         self.assertTrue(payload.endswith(b"\n"))
         self.path.write_bytes(payload)
-        self.assertEqual(events_snapshot(payload, self.root), load_events(self.root))
-        self.assertEqual(events_snapshot(None, self.root)["snapshot_id"], load_events(None)["snapshot_id"])
+        write_policy(self.root)
+        self.assertEqual(events_snapshot(payload, read_policies(self.root)), load_events(self.root))
+        self.assertEqual(events_snapshot(None)["snapshot_id"], load_events(None)["snapshot_id"])
+
+    def test_injected_policy_records_are_the_ones_joined(self):
+        write_policy(self.root, summary="Fact from the file")
+        self.path.write_text(json.dumps(self.data, ensure_ascii=False), encoding="utf-8")
+        host = [{**read_policies(self.root)[0], "change": "Fact the host validated"}]
+        event = self.event(load_events(self.root, policies=host), "nl-self-consumption-research")
+        self.assertEqual(event["summary"], "Fact the host validated")
+        self.assertEqual(self.event(load_events(self.root, policies=[]), "nl-self-consumption-research")["status"],
+                         "missing")
+
+    def test_policy_reader_checks_only_what_the_join_uses(self):
+        record = write_policy(self.root)
+        self.assertEqual(read_policies(self.root), [record])
+        self.assertEqual(read_policies(None), [])
+        source = self.root / "market-policy" / "records.json"
+        # Free-text review notes and records without sources are valid business data.
+        source.write_text(json.dumps({"records": [{**record, "reviewed": "适用条件尚待补核 · 2026-10-06",
+                                                   "sources": []}]}), encoding="utf-8")
+        self.assertEqual(read_policies(self.root)[0]["reviewed"], "适用条件尚待补核 · 2026-10-06")
+        for broken in ({"records": "x"}, {"records": [{**record, "status": "rumour"}]},
+                       {"records": [{**record, "reviewed": " "}]}, {"records": [{**record, "boundary": 3}]},
+                       {"records": [{**record, "sources": ["https://example.org"]}]}):
+            with self.subTest(broken=broken):
+                source.write_text(json.dumps(broken), encoding="utf-8")
+                with self.assertRaises(ValueError):
+                    read_policies(self.root)
 
     def test_observed_judgment_hash_is_optional_validated_and_not_a_public_review(self):
         revision = self.us["revisions"][-1]

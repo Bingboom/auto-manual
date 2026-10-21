@@ -15,7 +15,7 @@ import hashlib
 import json
 import re
 
-from tools.rtd.decision_digest import STATUS_LABELS, safe_external_url
+from .digest import STATUS_LABELS, safe_external_url
 
 DUE_SOON_DAYS = 7
 MAX_LISTED = 20

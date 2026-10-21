@@ -6,7 +6,7 @@ happened, its sources and verification, the decision it asks for and who
 decides; nothing here reads product data. ``product_lens`` is an optional
 research rule that a separate step may evaluate against product knowledge.
 ``intake_record_id`` names the Feishu table row an event is synced from
-(``tools.rtd.intelligence_sync``); an event written by hand has none.
+(``sync``); an event written by hand has none.
 """
 from __future__ import annotations
 
@@ -16,10 +16,10 @@ import hashlib
 import json
 from pathlib import Path
 import re
-from typing import Any
+from typing import Any, Iterable
 from urllib.parse import urlsplit
 
-from tools.rtd.market_policy import market_context
+from .policies import read_policies
 
 SCHEMA_VERSION = "external-intel/v1"
 INTAKE_SCHEMA = "external-intel-events/v1"
@@ -249,29 +249,34 @@ def encode_intake(data: dict) -> bytes:
     return (json.dumps(data, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
 
 
-def events_snapshot(payload: bytes | None, knowledge_root: Path | None) -> dict:
+def events_snapshot(payload: bytes | None, policies: Iterable[dict] = ()) -> dict:
     """The intake snapshot of events-file bytes; ``None`` is an empty intake.
 
-    Policy events join existing ``market-policy`` records by ID and never copy
-    policy facts into the intake. Malformed content raises ValueError.
+    Policy events join the ``policies`` records by ID and never copy policy
+    facts into the intake. Malformed content raises ValueError.
     """
     events: list[dict] = []
     source = None
     if payload is not None:
         cases = validated_cases(json.loads(payload))
-        records = market_context(knowledge_root)["records"] if knowledge_root is not None else []
-        policies = {record["id"]: record for record in records}
+        joined = {record["id"]: record for record in policies}
         source = {"path": f"{CONTENT_DIR}/{EVENTS_FILE}", "sha256": hashlib.sha256(payload).hexdigest()}
-        events = [_event(case, policies, source) for case in cases]
+        events = [_event(case, joined, source) for case in cases]
     result = {"schema_version": SCHEMA_VERSION, "source": source, "events": events,
               "history": [row for event in events for row in event["history"]]}
     return {**result, "snapshot_id": content_hash(result)}
 
 
-def load_events(knowledge_root: Path | None) -> dict:
-    """The intake snapshot of ``<knowledge_root>/external-intel/events.json``; no file is an empty intake."""
+def load_events(knowledge_root: Path | None, *, policies: Iterable[dict] | None = None) -> dict:
+    """The intake snapshot of ``<knowledge_root>/external-intel/events.json``; no file is an empty intake.
+
+    ``policies`` defaults to the knowledge root's ``market-policy`` records (``policies.read_policies``).
+    """
     path = knowledge_root / CONTENT_DIR / EVENTS_FILE if knowledge_root is not None else None
-    return events_snapshot(path.read_bytes() if path is not None and path.is_file() else None, knowledge_root)
+    payload = path.read_bytes() if path is not None and path.is_file() else None
+    if policies is None:
+        policies = read_policies(knowledge_root) if payload is not None else []
+    return events_snapshot(payload, policies)
 
 
 def snapshot_changes(previous: list[dict], current: list[dict], keys: tuple[str, ...]) -> list[dict]:

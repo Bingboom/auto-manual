@@ -7,10 +7,11 @@ from tempfile import TemporaryDirectory
 import unittest
 from unittest.mock import patch
 
-from tools.rtd import intelligence_loop as loop
-from tools.rtd import intelligence_sync as sync
-from tools.rtd import intelligence_delivery as delivery
-from tools.rtd.intelligence_events import CONTENT_DIR, EVENTS_FILE, encode_intake, load_events
+from tools.intel import cli as loop
+from tools.intel import delivery
+from tools.intel import feishu
+from tools.intel import sync
+from tools.intel.events import CONTENT_DIR, EVENTS_FILE, encode_intake, load_events
 
 FIXTURE = Path(__file__).resolve().parent / "fixtures" / "external_intel" / "events.json"
 TOKEN = "bascnSECRETTOKEN"
@@ -118,6 +119,14 @@ class LoopTests(unittest.TestCase):
                 self.assertIn("(RuntimeError)", output)
                 self.assertNotIn(TOKEN, output)
                 self.assertNotIn("exit code", output)
+
+    def test_own_transport_errors_say_what_failed(self):
+        def denied(args):
+            raise feishu.LarkError("lark-cli request failed with code 91403")
+
+        code, output = self.sync(lark=denied)
+        self.assertEqual(code, 1)
+        self.assertIn("table read failed (lark-cli request failed with code 91403)", output)
 
     def test_missing_columns_are_named(self):
         columns = [column for column in sync.COLUMNS if column != sync.REVIEWED]

@@ -4,8 +4,8 @@ import json
 from pathlib import Path
 import unittest
 
-from tools.rtd import intelligence_sync as sync
-from tools.rtd.intelligence_events import INTAKE_SCHEMA, validated_cases
+from tools.intel import sync
+from tools.intel.events import INTAKE_SCHEMA, validated_cases
 
 FIXTURE = Path(__file__).resolve().parent / "fixtures" / "external_intel" / "events.json"
 TODAY = "2026-10-21"

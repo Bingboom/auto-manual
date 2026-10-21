@@ -3,7 +3,7 @@ from copy import deepcopy
 import json
 import unittest
 
-from tools.rtd import intelligence_push as push
+from tools.intel import push
 
 TODAY = "2026-10-21"
 TEMPLATE = "https://example.feishu.cn/base/bascnX?table=tblX&record={record_id}"

@@ -11,9 +11,9 @@ import json
 import os
 from pathlib import Path
 
-from tools.rtd import intelligence_push as push
-from tools.rtd.intelligence_events import CONTENT_DIR, EVENTS_FILE, content_hash, validated_cases
-from tools.workspace_snapshot import atomic_json
+from . import push
+from .events import CONTENT_DIR, EVENTS_FILE, content_hash, validated_cases
+from .files import write_json
 
 STATE_ENV = "EXTERNAL_INTEL_STATE_DIR"
 SCHEMA = "external-intel-pending-push/v1"
@@ -68,7 +68,7 @@ def save(knowledge: Path, job: dict) -> None:
     path = state_path(knowledge)
     if path.exists():
         raise ValueError("a pending push must be delivered before another is prepared")
-    atomic_json(path, job)
+    write_json(path, job)
 
 
 def apply_intake(knowledge: Path, job: dict, write) -> bool:

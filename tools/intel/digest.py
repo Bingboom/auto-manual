@@ -12,7 +12,7 @@ from __future__ import annotations
 import re
 from urllib.parse import urlsplit
 
-from tools.rtd.intelligence_events import SCHEMA_VERSION as EVENTS_SCHEMA, content_hash
+from .events import SCHEMA_VERSION as EVENTS_SCHEMA, content_hash
 
 SCHEMA_VERSION = "external-intel-digest/v1"
 KIND_LABELS = {"policy": "政策变化", "market": "市场变化", "competitor": "竞品动态"}

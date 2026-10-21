@@ -12,7 +12,7 @@ import re
 from typing import Any
 
 from tools.product_knowledge import REGISTRY_PATH
-from tools.rtd.intelligence_events import SCHEMA_VERSION as EVENTS_SCHEMA, content_hash, snapshot_changes
+from tools.intel.events import SCHEMA_VERSION as EVENTS_SCHEMA, content_hash, snapshot_changes
 from tools.rtd.product_matrix import number
 
 SCHEMA_VERSION = "product-intelligence/v1"

@@ -6,7 +6,7 @@ from tempfile import TemporaryDirectory
 import unittest
 
 from tools.product_knowledge import NUMERIC_FACTS, REGISTRY_PATH
-from tools.rtd.intelligence_events import CONTENT_DIR, EVENTS_FILE, content_hash, load_events
+from tools.intel.events import CONTENT_DIR, EVENTS_FILE, content_hash, load_events
 from tools.rtd.product_intelligence import compare_lens_snapshots, product_lens_context
 
 FIXTURE = Path(__file__).resolve().parent / "fixtures" / "external_intel" / "events.json"
