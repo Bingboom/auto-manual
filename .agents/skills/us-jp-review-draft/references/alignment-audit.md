@@ -24,7 +24,7 @@ files and this rubric:
 
 ```
 For EVERY US unit decide one status:
-- covered: the JP draft states the same content (wording may differ; JP template phrasing is fine; green English counts as covered).
+- covered: the JP draft states the same content (wording may differ; JP template phrasing is fine; a green new-translation unit, English or first-pass Japanese, counts as covered).
 - partial: covers the topic but drops or changes facts, conditions, numbers, presses or steps — say exactly what.
 - missing: no counterpart.
 - us_only: US-market/regulatory only (FCC, US address/phone, UL wording, EPO hardware the JP model lacks, 240V split-phase specifics). Use sparingly, explain.

@@ -1,11 +1,11 @@
 // Render the JP review draft in Chromium and check it, then screenshot sections.
 //
-//   NODE_PATH=$(npm root -g) node render_check.cjs <draft.html> <out_dir> [ids=a,b,c] [widths=1280,390]
+//   NODE_PATH=$(npm root -g) node render_check.cjs <draft.html> <out_dir> [section ids a,b,c or ""] [widths, default 1280,390]
 //
 // Prints per width: image count / broken images, page-level horizontal overflow,
-// the colour of the first H1 bar and the distinct computed colours of green English
-// (.en-new), Chinese glosses and placeholders — expected rgb(4,120,87), rgb(22,87,187)
-// and rgb(194,24,91). Lazy images are forced to eager first (otherwise screenshots
+// the colour of the first H1 bar and the distinct computed colours of green new
+// translation (.en-new), Chinese glosses, placeholders and purple spec/R&D values —
+// expected rgb(4,120,87), rgb(22,87,187), rgb(194,24,91) and rgb(126,34,206). Lazy images are forced to eager first (otherwise screenshots
 // show empty icon cells). Uses /opt/pw-browsers/chromium when present.
 const fs = require('fs');
 const { chromium } = require('playwright');
@@ -31,6 +31,7 @@ const { chromium } = require('playwright');
         greenEnglish: colours('#furo-main-content .en-new'),
         chinese: colours('#furo-main-content p > .zh-translation'),
         placeholders: colours('#furo-main-content .jp-parameter'),
+        specValues: colours('#furo-main-content :is(.jp-spec-updated, .jp-spec-filled)'),
       };
     });
     console.log(width, JSON.stringify(info));

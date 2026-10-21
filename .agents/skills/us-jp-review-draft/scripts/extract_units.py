@@ -6,7 +6,7 @@ A unit is the inline text a block element owns itself (text inside nested blocks
 belongs to those blocks), so text in <div>/<strong> cards, LCD cells with an
 extra <p>, and figure live labels ([data-source-line]) are all captured. Simple
 table rows become one unit ("cell | cell"). JP units carry their Chinese gloss
-(`zh`) separately and flag still-English (green) units.
+(`zh`) separately and flag green new-translation units (`.en-new`; the key is still `green_english`).
 
 With --group-dir, also writes one <group>.json per chapter group (see GROUPS)
 for the per-group alignment agents.

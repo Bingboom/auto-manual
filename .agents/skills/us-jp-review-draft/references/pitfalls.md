@@ -17,6 +17,12 @@
 | New Japanese term proposed as final | no corpus term | US English label + optional candidate in an orange note |
 | Two US spec chapters counted twice | annex reprints the main spec table | list annex ids in `duplicates.json` |
 | LCD table mixes 「オン／オフ」 and 「点灯時／消灯時」 | the shared LCD icons source table is itself mixed (JPD-01) | write 点灯時／点滅時／消灯時 in the draft; see `source-data-debt.md` |
+| Word count jumps after a recount | recounting from `data-previous-english` brings back numbers the earlier rounds left out, or overwrites rows that were adjusted by hand | `count_translation.py --previous <last dir>` carries unchanged units forward; only units added, removed or re-sourced move the totals |
+| `rep()` assertion fails on the second run of a step | the anchor also matches text in your own review note or change log | anchor on markup next to the text (`</span>`, a class) or a phrase the notes never quote |
+| Anchor not found although the text is on screen | a review note or gloss sits between the parts you joined (you printed the cell with `.jp-review` removed) | read the raw HTML around the anchor before writing the replacement |
+| A derived value turns out wrong | the draft filled a number R&D never gave (e.g. MTS output = one L14-30R = 4000W) | write only what R&D stated; keep the derivation as a question in the appendix |
+| Spec label copied with a typo | the repo's JE-1000F JP Web package has 「バススルー」 in the input-port cell (JPD-03) | take spec labels from the JE-1000F PDF or TM, and grep the term in `data/terminology_rules.csv` |
+| `Cannot find module 'playwright'` / no Python Playwright | only the global Node package is installed | run the bundled `.cjs` scripts as `NODE_PATH="$(npm root -g)" node scripts/render_check.cjs …` |
 
 ## RTD moved to the private Read the Docs domain (2026-10)
 
