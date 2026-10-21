@@ -66,7 +66,8 @@ Operator decisions: collect in a Feishu table; push to a Feishu group on workday
 - [x] Sync the 外部情报 table read-only into `events.json` as append-only revisions bound by `intake_record_id`; hand-written events are adopted by ID.
 - [x] Count a judgment only when its 复核日期 is on or after the revision it judges; keep an unusable row's event at its last state and report it; never delete an event because its row is gone.
 - [x] Push the digest as one Feishu post built from `items` (literal text, validated links): overdue, due within seven days, other pending, judgments recorded and rows to fix. Dry run by default; `--write --push` writes then sends.
-- [ ] Operator trial: create the table, give the bot read access and group membership, run a dry run, then `--write --push`, and commit `events.json` to Hello-Docs as a content PR.
+- [ ] Live integration before Bingboom/auto-manual#1585 merges, as the bot on a test table and group: table read, judgment round trip, push with read-back and the Markdown view ([runbook and record](../tests/external_intel_live_integration_2026-10.md)).
+- [ ] Operator trial on the real table after that merge: create the table, give the bot read access and group membership, run a dry run, then `--write --push`, and commit `events.json` to Hello-Docs as a content PR.
 - [ ] Schedule the loop on workdays (workflow, content PR, push after sync): a separately approved workflow change.
 
 ## Phase 6 — Separable package (2026-10-21)
