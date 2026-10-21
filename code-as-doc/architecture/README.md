@@ -1,12 +1,14 @@
 # Architecture Documentation Map
 
-Updated: 2026-10-18
+Updated: 2026-10-21
 
 Use this directory for architecture and integration boundaries.
 Not every file here is equally current.
 
 ## 1. Active Architecture Docs
 
+- [`Hello_Docs_Positioning.md`](Hello_Docs_Positioning.md)
+  - required project context for agents: positioning, broad corpus, derived views and implemented/planned capability boundaries
 - [`System Evolution Strategy.md`](System%20Evolution%20Strategy.md)
   - long-term strategy and stable architectural principles
 - [`system_evolution_history.md`](system_evolution_history.md)
