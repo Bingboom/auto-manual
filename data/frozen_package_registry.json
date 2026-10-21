@@ -1395,6 +1395,11 @@
       "approval": "User request 2026-10-19: Git-only JP Web candidate, JE-1000F JP structure",
       "registered": "2026-10-19",
       "known_drift": {}
+    },
+    "manual_sources/JE-3000C/KR/ko/git-20261021-78316033": {
+      "approval": "User chat 2026-10-21: supplied JE-3000C KR PDF; remove landscape first sheet and convert via Git-only; isolated worktree and complete first-use sentence approved. Candidate only; no merge or publication approval.",
+      "registered": "2026-10-21",
+      "known_drift": {}
     }
   },
   "drift_log": [
