@@ -1,0 +1,38 @@
+{
+  "cold_replay_equal": true,
+  "files": 75,
+  "caption_frame_admission": [
+    {
+      "source_ref": "ja/pdf-20/solar-four",
+      "asset_ref": "assets/solar-four.png",
+      "labels": [
+        {
+          "line": 2,
+          "status": "passed",
+          "baked_fill_fraction": 0.0
+        }
+      ]
+    },
+    {
+      "source_ref": "ja/pdf-21/car-charge",
+      "asset_ref": "assets/car-charge.png",
+      "labels": [
+        {
+          "line": 1,
+          "status": "passed",
+          "baked_fill_fraction": 0.0
+        }
+      ]
+    }
+  ],
+  "tamper_probes": [
+    {
+      "path": "source/original.pdf",
+      "rejected": true
+    },
+    {
+      "path": "web/ja/assets/main-power.png",
+      "rejected": true
+    }
+  ]
+}

@@ -1,0 +1,1261 @@
+[
+  {
+    "slot": "symbol-1",
+    "decision": "reuse-byte-identical",
+    "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-warning_triangle.svg",
+    "sha256": "0c96a5da3d0b96d01ce96d0874341b93a06db419a4008eaceb1d8b44a4f1f42b",
+    "asset": "assets/h1-jp-warning_triangle.svg",
+    "reason": "Same native pictogram form as source PDF p3",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "symbol-2",
+    "decision": "reuse-byte-identical",
+    "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-read_manual.svg",
+    "sha256": "d77bdba4899e5d56d0502a10732bd3488d90aa88639ce336cab9ff42d35cfd30",
+    "asset": "assets/h1-jp-read_manual.svg",
+    "reason": "Same native pictogram form as source PDF p3",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "symbol-3",
+    "decision": "reuse-byte-identical",
+    "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-no_open_flame.svg",
+    "sha256": "414e01f2e6b76ab3575eedc88cf2d8e3ebb8622f68fc62b4f1302397536bd0a8",
+    "asset": "assets/h1-jp-no_open_flame.svg",
+    "reason": "Same native pictogram form as source PDF p3",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "symbol-4",
+    "decision": "reuse-byte-identical",
+    "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-keep_away_from_children.svg",
+    "sha256": "e6bd4396d07232ba7668b5fe72425341b55c3d3918bbb71bf8711741a1f91efe",
+    "asset": "assets/h1-jp-keep_away_from_children.svg",
+    "reason": "Same native pictogram form as source PDF p3",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "symbol-5",
+    "decision": "reuse-byte-identical",
+    "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-do_not_dismantle.svg",
+    "sha256": "1e600dc9623481ec1950e4cee277d32620bdf1e82a99984ddfce91353ffb173b",
+    "asset": "assets/h1-jp-do_not_dismantle.svg",
+    "reason": "Same native pictogram form as source PDF p3",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "symbol-6",
+    "decision": "reuse-byte-identical",
+    "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-unplug.svg",
+    "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf",
+    "asset": "assets/h1-jp-unplug.svg",
+    "reason": "Same native pictogram form as source PDF p3",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "symbol-7",
+    "decision": "reuse-byte-identical",
+    "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-no_wet_hands.svg",
+    "sha256": "d14a9720367b40d5a498a03d92ad0417bbc70d64fd0cea99c8891e0eb9725450",
+    "asset": "assets/h1-jp-no_wet_hands.svg",
+    "reason": "Same native pictogram form as source PDF p3",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "symbol-8",
+    "decision": "reuse-byte-identical",
+    "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-keep_dry.svg",
+    "sha256": "fbd39d4686c3a26a73fa4c2dfec299d8055d9b9446edd973a397ce6d4e21a836",
+    "asset": "assets/h1-jp-keep_dry.svg",
+    "reason": "Same native pictogram form as source PDF p3",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "symbol-9",
+    "decision": "reuse-byte-identical",
+    "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-mandatory.svg",
+    "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2",
+    "asset": "assets/h1-jp-mandatory.svg",
+    "reason": "Same native pictogram form as source PDF p3",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "symbol-10",
+    "decision": "reuse-byte-identical",
+    "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-prohibited.svg",
+    "sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d",
+    "asset": "assets/h1-jp-prohibited.svg",
+    "reason": "Same native pictogram form as source PDF p3",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "button-power",
+    "decision": "reuse-byte-identical",
+    "source_path": "docs/renderers/web/assets/shared/buttons/power.svg",
+    "sha256": "457285c35d6deb52a01bf2e86a430cdbbd1553299a6eac652a372427bfa6c2ed",
+    "asset": "assets/power.svg",
+    "reason": "Same button marking and orientation; no re-extraction",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "button-dc_usb",
+    "decision": "reuse-byte-identical",
+    "source_path": "docs/renderers/web/assets/shared/buttons/dc_usb.svg",
+    "sha256": "3355388bad2221362a63dfad0c04fb9c15f521866166144cd3a644bde14e5864",
+    "asset": "assets/dc_usb.svg",
+    "reason": "Same button marking and orientation; no re-extraction",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "button-led",
+    "decision": "reuse-byte-identical",
+    "source_path": "docs/renderers/web/assets/shared/buttons/led.svg",
+    "sha256": "9bfcc75dae807c470b6a6647de0112a986804e82abfede0c93cc2b100dcd3268",
+    "asset": "assets/led.svg",
+    "reason": "Same button marking and orientation; no re-extraction",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "inbox-main",
+    "candidates_checked": [
+      "manual_sources/JE-2000E/EU/en/2.0",
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed",
+      "docs/renderers/web/assets/shared"
+    ],
+    "decision": "source-extract",
+    "reason": "JP source-specific controls/ports and connection layout differ from JE-1000F and the EU edition",
+    "physical_page": 8,
+    "bbox_pt": [
+      46,
+      101,
+      122,
+      161
+    ],
+    "redact_text_regions": [],
+    "graphics": "preserve",
+    "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661",
+    "asset": "assets/inbox-main.png",
+    "sha256": "6f645dbc51f83d03d3de9404dae97767ba82b6a4f6580ff49ec20aeae7005ed4",
+    "background": "retain source panel/product surfaces; no page screenshot",
+    "remove_caption_frame_regions": [],
+    "format": "png",
+    "render_scale": 3,
+    "format_reason": "Source PDF nested clipping is preserved by direct PDF rendering; SVG export revealed unrelated hidden geometry. Original vector PDF remains archived."
+  },
+  {
+    "slot": "inbox-cable",
+    "candidates_checked": [
+      "manual_sources/JE-2000E/EU/en/2.0",
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed",
+      "docs/renderers/web/assets/shared"
+    ],
+    "decision": "source-extract",
+    "reason": "JP source-specific controls/ports and connection layout differ from JE-1000F and the EU edition",
+    "physical_page": 8,
+    "bbox_pt": [
+      160,
+      94,
+      214,
+      166
+    ],
+    "redact_text_regions": [],
+    "graphics": "preserve",
+    "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661",
+    "asset": "assets/inbox-cable.png",
+    "sha256": "6b9a7acb80d2a7bbb98c8310cef8ff9977a6a5b95c5975fe57090d7da2208fb7",
+    "background": "retain source panel/product surfaces; no page screenshot",
+    "remove_caption_frame_regions": [],
+    "format": "png",
+    "render_scale": 3,
+    "format_reason": "Source PDF nested clipping is preserved by direct PDF rendering; SVG export revealed unrelated hidden geometry. Original vector PDF remains archived."
+  },
+  {
+    "slot": "inbox-manual",
+    "candidates_checked": [
+      "manual_sources/JE-2000E/EU/en/2.0",
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed",
+      "docs/renderers/web/assets/shared"
+    ],
+    "decision": "source-extract",
+    "reason": "JP source-specific controls/ports and connection layout differ from JE-1000F and the EU edition",
+    "physical_page": 8,
+    "bbox_pt": [
+      268,
+      95,
+      316,
+      163
+    ],
+    "redact_text_regions": [],
+    "graphics": "preserve",
+    "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661",
+    "asset": "assets/inbox-manual.png",
+    "sha256": "d351b9ef8e00c4aff26bc4b409cba40880295ec0792300df7dfbcd3b1e24605a",
+    "background": "retain source panel/product surfaces; no page screenshot",
+    "format": "png",
+    "render_scale": 3,
+    "format_reason": "Source PDF nested clipping is preserved by direct PDF rendering; SVG export revealed unrelated hidden geometry. Original vector PDF remains archived."
+  },
+  {
+    "slot": "overview-front",
+    "candidates_checked": [
+      "manual_sources/JE-2000E/EU/en/2.0",
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed",
+      "docs/renderers/web/assets/shared"
+    ],
+    "decision": "source-extract",
+    "reason": "JP source-specific controls/ports and connection layout differ from JE-1000F and the EU edition",
+    "physical_page": 8,
+    "bbox_pt": [
+      26,
+      333,
+      347,
+      501
+    ],
+    "redact_text_regions": [
+      [
+        26,
+        333,
+        112,
+        396
+      ],
+      [
+        26,
+        392,
+        111,
+        474
+      ],
+      [
+        26,
+        470,
+        157,
+        501
+      ],
+      [
+        268,
+        333,
+        347,
+        471
+      ]
+    ],
+    "graphics": "preserve",
+    "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661",
+    "asset": "assets/overview-front.png",
+    "sha256": "69e93391c5762417c7a50c38eca8f4fd73f5ab6203286ece35d92415048c6546",
+    "background": "retain source panel/product surfaces; no page screenshot",
+    "format": "png",
+    "render_scale": 3,
+    "format_reason": "Source PDF nested clipping is preserved by direct PDF rendering; SVG export revealed unrelated hidden geometry. Original vector PDF remains archived."
+  },
+  {
+    "slot": "overview-left",
+    "candidates_checked": [
+      "manual_sources/JE-2000E/EU/en/2.0",
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed",
+      "docs/renderers/web/assets/shared"
+    ],
+    "decision": "source-extract",
+    "reason": "JP source-specific controls/ports and connection layout differ from JE-1000F and the EU edition",
+    "physical_page": 9,
+    "bbox_pt": [
+      25,
+      41,
+      344,
+      138
+    ],
+    "redact_text_regions": [
+      [
+        25,
+        41,
+        150,
+        120
+      ]
+    ],
+    "graphics": "preserve",
+    "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661",
+    "asset": "assets/overview-left.png",
+    "sha256": "e6ac7c1e93887321a0343de6f37b5919da5e719e0755ae97e653892bbd0490f7",
+    "background": "retain source panel/product surfaces; no page screenshot",
+    "format": "png",
+    "render_scale": 3,
+    "format_reason": "Source PDF nested clipping is preserved by direct PDF rendering; SVG export revealed unrelated hidden geometry. Original vector PDF remains archived."
+  },
+  {
+    "slot": "overview-right",
+    "candidates_checked": [
+      "manual_sources/JE-2000E/EU/en/2.0",
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed",
+      "docs/renderers/web/assets/shared"
+    ],
+    "decision": "source-extract",
+    "reason": "JP source-specific controls/ports and connection layout differ from JE-1000F and the EU edition",
+    "physical_page": 9,
+    "bbox_pt": [
+      25,
+      168,
+      344,
+      280
+    ],
+    "redact_text_regions": [
+      [
+        25,
+        168,
+        170,
+        257
+      ]
+    ],
+    "graphics": "preserve",
+    "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661",
+    "asset": "assets/overview-right.png",
+    "sha256": "b998f40b9558de7b2ee3065faddd28fbc498f87f2153717d0ea0c7e870639ba9",
+    "background": "retain source panel/product surfaces; no page screenshot",
+    "format": "png",
+    "render_scale": 3,
+    "format_reason": "Source PDF nested clipping is preserved by direct PDF rendering; SVG export revealed unrelated hidden geometry. Original vector PDF remains archived."
+  },
+  {
+    "slot": "lcd-overview",
+    "candidates_checked": [
+      "manual_sources/JE-2000E/EU/en/2.0",
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed",
+      "docs/renderers/web/assets/shared"
+    ],
+    "decision": "source-extract",
+    "reason": "JP source-specific controls/ports and connection layout differ from JE-1000F and the EU edition",
+    "physical_page": 9,
+    "bbox_pt": [
+      43,
+      322,
+      318,
+      497
+    ],
+    "redact_text_regions": [],
+    "graphics": "preserve",
+    "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661",
+    "asset": "assets/lcd-overview.png",
+    "sha256": "b70995d4868cd7005c23b74dc0449079e63939deed0e24ff783a2e22f2684949",
+    "background": "retain source panel/product surfaces; no page screenshot",
+    "format": "png",
+    "render_scale": 3,
+    "format_reason": "Source PDF nested clipping is preserved by direct PDF rendering; SVG export revealed unrelated hidden geometry. Original vector PDF remains archived."
+  },
+  {
+    "slot": "main-power",
+    "candidates_checked": [
+      "manual_sources/JE-2000E/EU/en/2.0",
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed",
+      "docs/renderers/web/assets/shared"
+    ],
+    "decision": "source-extract",
+    "reason": "JP source-specific controls/ports and connection layout differ from JE-1000F and the EU edition",
+    "physical_page": 12,
+    "bbox_pt": [
+      37,
+      82,
+      249,
+      200
+    ],
+    "redact_text_regions": [],
+    "graphics": "preserve",
+    "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661",
+    "asset": "assets/main-power.png",
+    "sha256": "6989173e152b83698de2970b1a28587e6150f0bc5cb8b6eac1d4c2a9e6085359",
+    "background": "retain source panel/product surfaces; no page screenshot",
+    "remove_caption_frame_regions": [
+      [
+        158,
+        166,
+        326,
+        216
+      ]
+    ],
+    "format": "png",
+    "render_scale": 3,
+    "format_reason": "Source PDF nested clipping is preserved by direct PDF rendering; SVG export revealed unrelated hidden geometry. Original vector PDF remains archived."
+  },
+  {
+    "slot": "ac-output",
+    "candidates_checked": [
+      "manual_sources/JE-2000E/EU/en/2.0",
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed",
+      "docs/renderers/web/assets/shared"
+    ],
+    "decision": "source-extract",
+    "reason": "JP source-specific controls/ports and connection layout differ from JE-1000F and the EU edition",
+    "physical_page": 12,
+    "bbox_pt": [
+      39,
+      338,
+      319,
+      489
+    ],
+    "redact_text_regions": [
+      [
+        275,
+        343,
+        307,
+        399
+      ],
+      [
+        40,
+        322,
+        155,
+        350
+      ]
+    ],
+    "graphics": "preserve",
+    "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661",
+    "asset": "assets/ac-output.png",
+    "sha256": "f4ed0967966e34c5cf33dbc041cf00e68dcaa325f75914c8e5d78323edada61a",
+    "background": "retain source panel/product surfaces; no page screenshot",
+    "remove_caption_frame_regions": [],
+    "format": "png",
+    "render_scale": 3,
+    "format_reason": "Source PDF nested clipping is preserved by direct PDF rendering; SVG export revealed unrelated hidden geometry. Original vector PDF remains archived."
+  },
+  {
+    "slot": "frequency",
+    "candidates_checked": [
+      "manual_sources/JE-2000E/EU/en/2.0",
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed",
+      "docs/renderers/web/assets/shared"
+    ],
+    "decision": "source-extract",
+    "reason": "JP source-specific controls/ports and connection layout differ from JE-1000F and the EU edition",
+    "physical_page": 13,
+    "bbox_pt": [
+      57,
+      101,
+      312,
+      190
+    ],
+    "redact_text_regions": [],
+    "graphics": "preserve",
+    "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661",
+    "asset": "assets/frequency.png",
+    "sha256": "192c13b469811a698256498c0c6ada2417424aba4d6351bd971a6cb6e12421c5",
+    "background": "retain source panel/product surfaces; no page screenshot",
+    "remove_caption_frame_regions": [],
+    "format": "png",
+    "render_scale": 3,
+    "format_reason": "Source PDF nested clipping is preserved by direct PDF rendering; SVG export revealed unrelated hidden geometry. Original vector PDF remains archived."
+  },
+  {
+    "slot": "dc-output",
+    "candidates_checked": [
+      "manual_sources/JE-2000E/EU/en/2.0",
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed",
+      "docs/renderers/web/assets/shared"
+    ],
+    "decision": "source-extract",
+    "reason": "JP source-specific controls/ports and connection layout differ from JE-1000F and the EU edition",
+    "physical_page": 13,
+    "bbox_pt": [
+      39,
+      242,
+      321,
+      405
+    ],
+    "redact_text_regions": [
+      [
+        288,
+        241,
+        315,
+        297
+      ]
+    ],
+    "graphics": "preserve",
+    "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661",
+    "asset": "assets/dc-output.png",
+    "sha256": "84f13d6358982de0727e1efa47ab88a2ddfa323f139e20a1253c73c18a3a9f34",
+    "background": "retain source panel/product surfaces; no page screenshot",
+    "remove_caption_frame_regions": [],
+    "format": "png",
+    "render_scale": 3,
+    "format_reason": "Source PDF nested clipping is preserved by direct PDF rendering; SVG export revealed unrelated hidden geometry. Original vector PDF remains archived."
+  },
+  {
+    "slot": "energy-saving",
+    "candidates_checked": [
+      "manual_sources/JE-2000E/EU/en/2.0",
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed",
+      "docs/renderers/web/assets/shared"
+    ],
+    "decision": "source-extract",
+    "reason": "JP source-specific controls/ports and connection layout differ from JE-1000F and the EU edition",
+    "physical_page": 14,
+    "bbox_pt": [
+      44,
+      352,
+      322,
+      468
+    ],
+    "redact_text_regions": [
+      [
+        175,
+        400,
+        310,
+        423
+      ],
+      [
+        204,
+        427,
+        284,
+        465
+      ]
+    ],
+    "graphics": "preserve",
+    "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661",
+    "asset": "assets/energy-saving.png",
+    "sha256": "17ae42846c49890dea5b1603461424116f7fb0f7acc5fb7f599416bf9ea6d10f",
+    "background": "retain source panel/product surfaces; no page screenshot",
+    "format": "png",
+    "render_scale": 3,
+    "format_reason": "Source PDF nested clipping is preserved by direct PDF rendering; SVG export revealed unrelated hidden geometry. Original vector PDF remains archived."
+  },
+  {
+    "slot": "led-light",
+    "candidates_checked": [
+      "manual_sources/JE-2000E/EU/en/2.0",
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed",
+      "docs/renderers/web/assets/shared"
+    ],
+    "decision": "source-extract",
+    "reason": "JP source-specific controls/ports and connection layout differ from JE-1000F and the EU edition",
+    "physical_page": 15,
+    "bbox_pt": [
+      42,
+      77,
+      209,
+      159
+    ],
+    "redact_text_regions": [],
+    "graphics": "preserve",
+    "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661",
+    "asset": "assets/led-light.png",
+    "sha256": "124aae4efb621a0e464eda6dc7ff765372ab6aee5c86ba5519c5e49e0f1b7661",
+    "background": "retain source panel/product surfaces; no page screenshot",
+    "format": "png",
+    "render_scale": 3,
+    "format_reason": "Source PDF nested clipping is preserved by direct PDF rendering; SVG export revealed unrelated hidden geometry. Original vector PDF remains archived."
+  },
+  {
+    "slot": "lcd-mode",
+    "candidates_checked": [
+      "manual_sources/JE-2000E/EU/en/2.0",
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed",
+      "docs/renderers/web/assets/shared"
+    ],
+    "decision": "source-extract",
+    "reason": "JP source-specific controls/ports and connection layout differ from JE-1000F and the EU edition",
+    "physical_page": 15,
+    "bbox_pt": [
+      42,
+      184,
+      146,
+      309
+    ],
+    "redact_text_regions": [],
+    "graphics": "preserve",
+    "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661",
+    "asset": "assets/lcd-mode.png",
+    "sha256": "064e92c652e969ac918c0b3b7ed14016aeed583f8e8f50aa6977fd6d8b18e414",
+    "background": "retain source panel/product surfaces; no page screenshot",
+    "format": "png",
+    "render_scale": 3,
+    "format_reason": "Source PDF nested clipping is preserved by direct PDF rendering; SVG export revealed unrelated hidden geometry. Original vector PDF remains archived."
+  },
+  {
+    "slot": "ups",
+    "candidates_checked": [
+      "manual_sources/JE-2000E/EU/en/2.0",
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed",
+      "docs/renderers/web/assets/shared"
+    ],
+    "decision": "source-extract",
+    "reason": "JP source-specific controls/ports and connection layout differ from JE-1000F and the EU edition",
+    "physical_page": 16,
+    "bbox_pt": [
+      28,
+      153,
+      340,
+      320
+    ],
+    "redact_text_regions": [],
+    "graphics": "preserve",
+    "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661",
+    "asset": "assets/ups.png",
+    "sha256": "566fa7fa87f451f2d01f0794280f2ae24dc303031758b24ca975fbf1edd141b8",
+    "background": "retain source panel/product surfaces; no page screenshot",
+    "remove_caption_frame_regions": [
+      [
+        146,
+        270,
+        335,
+        320
+      ]
+    ],
+    "format": "png",
+    "render_scale": 3,
+    "format_reason": "Source PDF nested clipping is preserved by direct PDF rendering; SVG export revealed unrelated hidden geometry. Original vector PDF remains archived."
+  },
+  {
+    "slot": "expansion",
+    "candidates_checked": [
+      "manual_sources/JE-2000E/EU/en/2.0",
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed",
+      "docs/renderers/web/assets/shared"
+    ],
+    "decision": "source-extract",
+    "reason": "JP source-specific controls/ports and connection layout differ from JE-1000F and the EU edition",
+    "physical_page": 17,
+    "bbox_pt": [
+      29,
+      101,
+      339,
+      326
+    ],
+    "redact_text_regions": [],
+    "graphics": "preserve",
+    "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661",
+    "asset": "assets/expansion.png",
+    "sha256": "ef5a44c3441ef0bc629d9f5787d58185b1210942f43ed357523667a515479a95",
+    "background": "retain source panel/product surfaces; no page screenshot",
+    "format": "png",
+    "render_scale": 3,
+    "format_reason": "Source PDF nested clipping is preserved by direct PDF rendering; SVG export revealed unrelated hidden geometry. Original vector PDF remains archived."
+  },
+  {
+    "slot": "expansion-accessories",
+    "candidates_checked": [
+      "manual_sources/JE-2000E/EU/en/2.0",
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed",
+      "docs/renderers/web/assets/shared"
+    ],
+    "decision": "source-extract",
+    "reason": "JP source-specific controls/ports and connection layout differ from JE-1000F and the EU edition",
+    "physical_page": 17,
+    "bbox_pt": [
+      37,
+      436,
+      337,
+      498
+    ],
+    "redact_text_regions": [
+      [
+        37,
+        475,
+        337,
+        498
+      ]
+    ],
+    "graphics": "preserve",
+    "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661",
+    "asset": "assets/expansion-accessories.png",
+    "sha256": "0e5bb5ec80a779afd2626798efd25456318093a1c4d8ca5fee0870e80741fa22",
+    "background": "retain source panel/product surfaces; no page screenshot",
+    "format": "png",
+    "render_scale": 3,
+    "format_reason": "Source PDF nested clipping is preserved by direct PDF rendering; SVG export revealed unrelated hidden geometry. Original vector PDF remains archived."
+  },
+  {
+    "slot": "ac-charge",
+    "candidates_checked": [
+      "manual_sources/JE-2000E/EU/en/2.0",
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed",
+      "docs/renderers/web/assets/shared"
+    ],
+    "decision": "source-extract",
+    "reason": "JP source-specific controls/ports and connection layout differ from JE-1000F and the EU edition",
+    "physical_page": 18,
+    "bbox_pt": [
+      38,
+      320,
+      334,
+      437
+    ],
+    "redact_text_regions": [
+      [
+        184,
+        407,
+        305,
+        424
+      ]
+    ],
+    "graphics": "preserve",
+    "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661",
+    "asset": "assets/ac-charge.png",
+    "sha256": "c64cd5f4e83991d30c65d44371f31c949a7f09cb1e53d09035bb038116f0a3e8",
+    "background": "retain source panel/product surfaces; no page screenshot",
+    "format": "png",
+    "render_scale": 3,
+    "format_reason": "Source PDF nested clipping is preserved by direct PDF rendering; SVG export revealed unrelated hidden geometry. Original vector PDF remains archived."
+  },
+  {
+    "slot": "solar-two",
+    "candidates_checked": [
+      "manual_sources/JE-2000E/EU/en/2.0",
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed",
+      "docs/renderers/web/assets/shared"
+    ],
+    "decision": "source-extract",
+    "reason": "JP source-specific controls/ports and connection layout differ from JE-1000F and the EU edition",
+    "physical_page": 19,
+    "bbox_pt": [
+      42,
+      337,
+      336,
+      483
+    ],
+    "redact_text_regions": [
+      [
+        172,
+        405,
+        210,
+        431
+      ],
+      [
+        260,
+        457,
+        315,
+        468
+      ]
+    ],
+    "graphics": "preserve",
+    "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661",
+    "asset": "assets/solar-two.png",
+    "sha256": "526d1ed3ff1226c6348f8bd9842266d09b42888849c0213381fa933effbc9c03",
+    "background": "retain source panel/product surfaces; no page screenshot",
+    "format": "png",
+    "render_scale": 3,
+    "format_reason": "Source PDF nested clipping is preserved by direct PDF rendering; SVG export revealed unrelated hidden geometry. Original vector PDF remains archived."
+  },
+  {
+    "slot": "solar-four",
+    "candidates_checked": [
+      "manual_sources/JE-2000E/EU/en/2.0",
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed",
+      "docs/renderers/web/assets/shared"
+    ],
+    "decision": "source-extract",
+    "reason": "JP source-specific controls/ports and connection layout differ from JE-1000F and the EU edition",
+    "physical_page": 20,
+    "bbox_pt": [
+      33,
+      96,
+      337,
+      280
+    ],
+    "redact_text_regions": [
+      [
+        192,
+        180,
+        230,
+        207
+      ],
+      [
+        155,
+        236,
+        309,
+        267
+      ]
+    ],
+    "graphics": "preserve",
+    "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661",
+    "asset": "assets/solar-four.png",
+    "sha256": "3042840e81a5a31e5d8c1e5fe73d4f8ae8b3937e1fdd77b34383f10bb1404639",
+    "background": "retain source panel/product surfaces; no page screenshot",
+    "format": "png",
+    "render_scale": 3,
+    "format_reason": "Source PDF nested clipping is preserved by direct PDF rendering; SVG export revealed unrelated hidden geometry. Original vector PDF remains archived.",
+    "remove_caption_frame_regions": [
+      [
+        154.4,
+        249.7,
+        304.0,
+        261.5
+      ]
+    ],
+    "caption_frame_operator": "remove fully covered line art; preserve larger panel background"
+  },
+  {
+    "slot": "car-charge",
+    "candidates_checked": [
+      "manual_sources/JE-2000E/EU/en/2.0",
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed",
+      "docs/renderers/web/assets/shared"
+    ],
+    "decision": "source-extract",
+    "reason": "JP source-specific controls/ports and connection layout differ from JE-1000F and the EU edition",
+    "physical_page": 21,
+    "bbox_pt": [
+      38,
+      160,
+      334,
+      301
+    ],
+    "redact_text_regions": [
+      [
+        245,
+        165,
+        258,
+        189
+      ],
+      [
+        188,
+        266,
+        324,
+        291
+      ]
+    ],
+    "graphics": "preserve",
+    "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661",
+    "asset": "assets/car-charge.png",
+    "sha256": "51d6248eea21dd179bdfddb44743bf6d7caed13693b081a99192aee0fd95ee9f",
+    "background": "retain source panel/product surfaces; no page screenshot",
+    "format": "png",
+    "render_scale": 3,
+    "format_reason": "Source PDF nested clipping is preserved by direct PDF rendering; SVG export revealed unrelated hidden geometry. Original vector PDF remains archived.",
+    "remove_caption_frame_regions": [
+      [
+        187.3,
+        270.5,
+        321.4,
+        285.4
+      ]
+    ],
+    "caption_frame_operator": "remove fully covered line art; preserve larger panel background"
+  },
+  {
+    "slot": "app-download",
+    "candidates_checked": [
+      "manual_sources/JE-2000E/EU/en/2.0",
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed",
+      "docs/renderers/web/assets/shared"
+    ],
+    "decision": "source-extract",
+    "reason": "Native Japan app-store badges and QR content retained as a complete download illustration",
+    "physical_page": 26,
+    "bbox_pt": [
+      28,
+      101,
+      282,
+      143
+    ],
+    "redact_text_regions": [],
+    "graphics": "preserve",
+    "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661",
+    "asset": "assets/app-download.png",
+    "sha256": "8aa17f304240e0a4f8db14586e7a14640e83c234540fbd0f86b21c12963f191d",
+    "background": "retain source panel/product surfaces; no page screenshot",
+    "format": "png",
+    "render_scale": 3,
+    "format_reason": "Source PDF nested clipping is preserved by direct PDF rendering; SVG export revealed unrelated hidden geometry. Original vector PDF remains archived."
+  },
+  {
+    "slot": "app-add-phones",
+    "candidates_checked": [
+      "manual_sources/JE-2000E/EU/en/2.0",
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed",
+      "docs/renderers/web/assets/shared"
+    ],
+    "decision": "source-extract",
+    "reason": "Target screenshots must display 2000 Plus and preserve complete phone frames",
+    "physical_page": 26,
+    "bbox_pt": [
+      95,
+      232,
+      255,
+      367
+    ],
+    "redact_text_regions": [],
+    "graphics": "preserve",
+    "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661",
+    "asset": "assets/app-add-phones.png",
+    "sha256": "f0a6cdc87cd75c0bd86d70b952d054b0fcdab39b8d97641576e95ab4f754064c",
+    "background": "retain source panel/product surfaces; no page screenshot",
+    "remove_caption_frame_regions": [],
+    "format": "png",
+    "render_scale": 3,
+    "format_reason": "Source PDF nested clipping is preserved by direct PDF rendering; SVG export revealed unrelated hidden geometry. Original vector PDF remains archived."
+  },
+  {
+    "slot": "app-control",
+    "candidates_checked": [
+      "manual_sources/JE-2000E/EU/en/2.0",
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed",
+      "docs/renderers/web/assets/shared"
+    ],
+    "decision": "source-extract",
+    "reason": "JP source-specific controls/ports and connection layout differ from JE-1000F and the EU edition",
+    "physical_page": 26,
+    "bbox_pt": [
+      44,
+      399,
+      319,
+      491
+    ],
+    "redact_text_regions": [
+      [
+        44,
+        416,
+        96,
+        469
+      ],
+      [
+        278,
+        427,
+        317,
+        465
+      ]
+    ],
+    "graphics": "preserve",
+    "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661",
+    "asset": "assets/app-control.png",
+    "sha256": "58847bab73c56510473ef3147b1d1f692214d1b9003dea09aa1049f24f69b49d",
+    "background": "retain source panel/product surfaces; no page screenshot",
+    "format": "png",
+    "render_scale": 3,
+    "format_reason": "Source PDF nested clipping is preserved by direct PDF rendering; SVG export revealed unrelated hidden geometry. Original vector PDF remains archived."
+  },
+  {
+    "slot": "app-connect",
+    "candidates_checked": [
+      "manual_sources/JE-2000E/EU/en/2.0",
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed",
+      "docs/renderers/web/assets/shared"
+    ],
+    "decision": "source-extract",
+    "reason": "Native 2000 Plus app screenshots; different device identity from JE-1000F",
+    "physical_page": 27,
+    "bbox_pt": [
+      78,
+      152,
+      282,
+      261
+    ],
+    "redact_text_regions": [],
+    "graphics": "preserve",
+    "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661",
+    "asset": "assets/app-connect.png",
+    "sha256": "8309200f5106429e6fa7bfbcb93519c32e7d1d7efc9bc258bc06c4249e4d6cd4",
+    "background": "retain source panel/product surfaces; no page screenshot",
+    "format": "png",
+    "render_scale": 3,
+    "format_reason": "Source PDF nested clipping is preserved by direct PDF rendering; SVG export revealed unrelated hidden geometry. Original vector PDF remains archived."
+  },
+  {
+    "slot": "app-footer",
+    "candidates_checked": [
+      "manual_sources/JE-2000E/EU/en/2.0",
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed",
+      "docs/renderers/web/assets/shared"
+    ],
+    "decision": "source-extract",
+    "reason": "Preserve actual native app store and QR footer from source back page",
+    "physical_page": 28,
+    "bbox_pt": [
+      29,
+      464,
+      340,
+      519
+    ],
+    "redact_text_regions": [],
+    "graphics": "preserve",
+    "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661",
+    "asset": "assets/app-footer.png",
+    "sha256": "ded8a95a733d8c1dc963f372360438f5aac22ad9919bee98a8f8c72a5d9eb0a8",
+    "background": "retain source panel/product surfaces; no page screenshot",
+    "format": "png",
+    "render_scale": 3,
+    "format_reason": "Source PDF nested clipping is preserved by direct PDF rendering; SVG export revealed unrelated hidden geometry. Original vector PDF remains archived."
+  },
+  {
+    "slot": "lcd-1",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments/lcd_icons/1_Wi-Fi_KCcAbdDk7o4RjKx82micuKJ5nyf.png",
+    "sha256": "fc4cc02b42efc31a32429ada2b78c4480a2fcbca647406da29b2ce75a8a8c1dc",
+    "asset": "assets/1_Wi-Fi_KCcAbdDk7o4RjKx82micuKJ5nyf.png",
+    "reason": "Same-model LCD semantic glyph; source numbering mapped explicitly",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "lcd-2",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments/lcd_icons/2_Bluetooth_HVgvbJhq5o4EDKxhm7McCF4FnjB.png",
+    "sha256": "7e1392ba6a45e66a2e7367ae5df737ccc41ad2de46c4ac7d6baf062ff63bb361",
+    "asset": "assets/2_Bluetooth_HVgvbJhq5o4EDKxhm7McCF4FnjB.png",
+    "reason": "Same-model LCD semantic glyph; source numbering mapped explicitly",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "lcd-3",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments/lcd_icons/3_Quiet_Charging_Mode_WLkMbiHS1oGsOtxUCp7cRhFAn1g.png",
+    "sha256": "7f743182c0509307793dde001356fff5c3d20dd32b09105b6a1d467af7e7f66d",
+    "asset": "assets/3_Quiet_Charging_Mode_WLkMbiHS1oGsOtxUCp7cRhFAn1g.png",
+    "reason": "Same-model LCD semantic glyph; source numbering mapped explicitly",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "lcd-4",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments/lcd_icons/4_Charging_Plan_M96RbyZQxoGjRRxQHsuczeIln1b.png",
+    "sha256": "71017f43bab44852d5586d1d4f996f3c52d8451bceaa9249e29864652c2f537d",
+    "asset": "assets/4_Charging_Plan_M96RbyZQxoGjRRxQHsuczeIln1b.png",
+    "reason": "Same-model LCD semantic glyph; source numbering mapped explicitly",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "lcd-5",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments/lcd_icons/5_Self-powered_Mode_FYTnb9vttoexjbxVMchcJaobnCg.png",
+    "sha256": "73225cf9faa868bbe937df298d55a696828a4156f40e90da5c2a7f0011f0b783",
+    "asset": "assets/5_Self-powered_Mode_FYTnb9vttoexjbxVMchcJaobnCg.png",
+    "reason": "Same-model LCD semantic glyph; source numbering mapped explicitly",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "lcd-6",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments/lcd_icons/6_TOU_Mode_BjEkbz0rFo6Bw4xiwNpcod9qnnc.png",
+    "sha256": "f4cdcb5511058eaaf1879a69a429317dd3d98325dd5e19f5dd95b06ea2c965af",
+    "asset": "assets/6_TOU_Mode_BjEkbz0rFo6Bw4xiwNpcod9qnnc.png",
+    "reason": "Same-model LCD semantic glyph; source numbering mapped explicitly",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "lcd-7",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments/lcd_icons/7_UPS_Lgdgb8pvvoGwaLxSf8ec2QeHn3c.png",
+    "sha256": "e422a56922eb749ae90802fd964cb451a08d833658c1849abe10a63c60b173cc",
+    "asset": "assets/7_UPS_Lgdgb8pvvoGwaLxSf8ec2QeHn3c.png",
+    "reason": "Same-model LCD semantic glyph; source numbering mapped explicitly",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "lcd-8",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments/lcd_icons/8_AC_Power_Indicator_HFPSbvWBgosvCux69jMcuWe6nnh.png",
+    "sha256": "8be87c5a084994e3b4b6ddff46ce0296207a5c49c732f8ed13adfbcb28a36538",
+    "asset": "assets/8_AC_Power_Indicator_HFPSbvWBgosvCux69jMcuWe6nnh.png",
+    "reason": "Same-model LCD semantic glyph; source numbering mapped explicitly",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "lcd-9",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments/lcd_icons/9_Output_Voltage_and_Frequency_Jh3JbmBDBoKlmOxaRJDcIMJAn6b.png",
+    "sha256": "7623ef10e229bcfe66c872f3733d26b86c97d703ed30012188a88bb4a168e6df",
+    "asset": "assets/9_Output_Voltage_and_Frequency_Jh3JbmBDBoKlmOxaRJDcIMJAn6b.png",
+    "reason": "Same-model LCD semantic glyph; source numbering mapped explicitly",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "lcd-10",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments/lcd_icons/10_Input_Power_LOAZbnxfqoHFwIxx2Myc532jnzb.png",
+    "sha256": "d5100a538e964da13e04241a98134e6aeaa36af8991aceeecac3c5d063b6968b",
+    "asset": "assets/10_Input_Power_LOAZbnxfqoHFwIxx2Myc532jnzb.png",
+    "reason": "Same-model LCD semantic glyph; source numbering mapped explicitly",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "lcd-11",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments/lcd_icons/11_Remaining_Charge_Time_KIWHbHFOvotGuBxJsxlcunSDnPf.png",
+    "sha256": "cfb69b1ffc0b30c51216fb6b1e00e35b412dd0148b6999d3d40ac90fbfe108cb",
+    "asset": "assets/11_Remaining_Charge_Time_KIWHbHFOvotGuBxJsxlcunSDnPf.png",
+    "reason": "Same-model LCD semantic glyph; source numbering mapped explicitly",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "lcd-12",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments/lcd_icons/12_AC_Wall_Charging_Indicator_ZpOmbCjx8oYUTVxyl4JcvcTanPe.png",
+    "sha256": "28f3cad42ae32e9e895abfd7cdb16a21b99dfa822c57d542f0e3f59a4b452c6c",
+    "asset": "assets/12_AC_Wall_Charging_Indicator_ZpOmbCjx8oYUTVxyl4JcvcTanPe.png",
+    "reason": "Same-model LCD semantic glyph; source numbering mapped explicitly",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "lcd-13",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments/lcd_icons/13_Car_Charging_Indicator_DLkibYaP1ot6d5x1S0jcUr1knlb.png",
+    "sha256": "eed3299c3f6a15766e433ebbae7a40af8939e6d32489a0aa33a37fe902232a64",
+    "asset": "assets/13_Car_Charging_Indicator_DLkibYaP1ot6d5x1S0jcUr1knlb.png",
+    "reason": "Same-model LCD semantic glyph; source numbering mapped explicitly",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "lcd-14",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments/lcd_icons/14_Solar_Charging_Indicator_RgAUbPXNWoRxiHxKNgkc2gqDnEb.png",
+    "sha256": "91cec82eeaa553477868d38789d68a4937cb11c5c4d794de74db1edddb3aeea4",
+    "asset": "assets/14_Solar_Charging_Indicator_RgAUbPXNWoRxiHxKNgkc2gqDnEb.png",
+    "reason": "Same-model LCD semantic glyph; source numbering mapped explicitly",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "lcd-15",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments/lcd_icons/15_Battery_Saving_Mode_ClYfbtOGSoK5q2xySXCcgehVn8f.png",
+    "sha256": "e32e6ae96321aa47b39c0c65a18a59da6c90cf87a0d7c8d61556ead273789c3a",
+    "asset": "assets/15_Battery_Saving_Mode_ClYfbtOGSoK5q2xySXCcgehVn8f.png",
+    "reason": "Same-model LCD semantic glyph; source numbering mapped explicitly",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "lcd-16",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments/lcd_icons/16_Charging_Power_Limit_VLf2bJfrkoCL0CxJoMNcL5ZxnCt.png",
+    "sha256": "21b5f19ca9a6e39d8bd515128297cc1b99e43fd263e39ffba4fdf102d50a4bad",
+    "asset": "assets/16_Charging_Power_Limit_VLf2bJfrkoCL0CxJoMNcL5ZxnCt.png",
+    "reason": "Same-model LCD semantic glyph; source numbering mapped explicitly",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "lcd-17",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments/lcd_icons/17_Battery_Power_Indicator_VLufb9exvoVLfgxz47pcfnRGnaf.png",
+    "sha256": "85921a9ad7fbfa58f98ee7bb0dc904377f31fe3dbface4083d2493144b05362f",
+    "asset": "assets/17_Battery_Power_Indicator_VLufb9exvoVLfgxz47pcfnRGnaf.png",
+    "reason": "Same-model LCD semantic glyph; source numbering mapped explicitly",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "lcd-18",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments/lcd_icons/18_Remaining_Battery_Percentage_VkJcbUDbUoYC1hxrU6rc168OnJe.png",
+    "sha256": "747147be99d76bb486c858aeca2289d7d05ad3be1f1ea1f0825f54cb29b7fd10",
+    "asset": "assets/18_Remaining_Battery_Percentage_VkJcbUDbUoYC1hxrU6rc168OnJe.png",
+    "reason": "Same-model LCD semantic glyph; source numbering mapped explicitly",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "lcd-19",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments/lcd_icons/19_Low_Battery_Indicator_KDk9bhs8poHUBdx96PLckPganhd.png",
+    "sha256": "c7862a87e742d6927b4e1d63a8d0ccb09fbcf980ae662ff94b9134e256e56889",
+    "asset": "assets/19_Low_Battery_Indicator_KDk9bhs8poHUBdx96PLckPganhd.png",
+    "reason": "Same-model LCD semantic glyph; source numbering mapped explicitly",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "lcd-20",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments/lcd_icons/20_Discharge_Timer_DHPMbkjSWoiuALxJyJ8cWyQOn0e.png",
+    "sha256": "6aab9a14900a08fcd8f8261e6e36fbb9a1220eb931df94ebd149b23930063723",
+    "asset": "assets/20_Discharge_Timer_DHPMbkjSWoiuALxJyJ8cWyQOn0e.png",
+    "reason": "Same-model LCD semantic glyph; source numbering mapped explicitly",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "lcd-21",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments/lcd_icons/21_Connected_Batteries_ZeHlbv3HEoRcq2xIXacchUcTndg.png",
+    "sha256": "b4744a483fa95db386bbb269f277a53f678279c7eda8f8cbf24a78f2b426f2a7",
+    "asset": "assets/21_Connected_Batteries_ZeHlbv3HEoRcq2xIXacchUcTndg.png",
+    "reason": "Same-model LCD semantic glyph; source numbering mapped explicitly",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "lcd-22",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments/lcd_icons/22_Energy_Saving_Mode_O4Jdb5pUQoCBAqx0sfQcm9Nbntd.png",
+    "sha256": "c4b830c769a3de7f9effaee82466752f5706a0741ba29675cce45633c1cd8222",
+    "asset": "assets/22_Energy_Saving_Mode_O4Jdb5pUQoCBAqx0sfQcm9Nbntd.png",
+    "reason": "Same-model LCD semantic glyph; source numbering mapped explicitly",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "lcd-23",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments/lcd_icons/23_High_Temperature_Indicator_UmkEbOgCKoKyxoxDSINcfO6LnQd.png",
+    "sha256": "f548c6504f495da4f208cd8e5fe6eac6076daea05e314115abd26b46a9326ba5",
+    "asset": "assets/23_High_Temperature_Indicator_UmkEbOgCKoKyxoxDSINcfO6LnQd.png",
+    "reason": "Same-model LCD semantic glyph; source numbering mapped explicitly",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "lcd-24",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments/lcd_icons/24_Low_Temperature_Indicator_JDMEbD96noSbyWxbOnVcgip1nab.png",
+    "sha256": "bdbf602db74ade39a2a162209c0ff535315dee5e27e4832b2e6a201764b6941a",
+    "asset": "assets/24_Low_Temperature_Indicator_JDMEbD96noSbyWxbOnVcgip1nab.png",
+    "reason": "Same-model LCD semantic glyph; source numbering mapped explicitly",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "lcd-25",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments/lcd_icons/25_Fault_code_Oz87bX3BGo8H7Zxe0XvcTd7FnJL.png",
+    "sha256": "ce913ebfc7750764f4206250f5e21aa09bd1cfc074bdee5b0484d61610f1b579",
+    "asset": "assets/25_Fault_code_Oz87bX3BGo8H7Zxe0XvcTd7FnJL.png",
+    "reason": "Same-model LCD semantic glyph; source numbering mapped explicitly",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "lcd-26",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments/lcd_icons/26_Output_Power_PviebR618oofvKxcKVRcHLlInqd.png",
+    "sha256": "58c1d3604ca7b9774b069c6928775a13465ccb9477f477e9e4d4b30e7f75b88d",
+    "asset": "assets/26_Output_Power_PviebR618oofvKxcKVRcHLlInqd.png",
+    "reason": "Same-model LCD semantic glyph; source numbering mapped explicitly",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "lcd-27",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments/lcd_icons/27_Remaining_Discharge_Time_JEpobf59DoBV4dxWlnxcNtIinke.png",
+    "sha256": "9b148ea95d3a3450591c7220908b0913048f2cdea1e61d200534181c52b47cab",
+    "asset": "assets/27_Remaining_Discharge_Time_JEpobf59DoBV4dxWlnxcNtIinke.png",
+    "reason": "Same-model LCD semantic glyph; source numbering mapped explicitly",
+    "background": "existing transparent shared glyph unchanged"
+  },
+  {
+    "slot": "button-ac1",
+    "decision": "source-extract",
+    "candidates_checked": [
+      "docs/renderers/web/assets/shared/buttons/manifest.json"
+    ],
+    "reason": "Shared AC button lacks the native AC1 marking; generic AC cannot replace AC1",
+    "physical_page": 15,
+    "bbox_pt": [
+      108.0,
+      395.5,
+      130.0,
+      418.0
+    ],
+    "drawing_indices": [
+      522,
+      523,
+      524,
+      525,
+      526,
+      527
+    ],
+    "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661",
+    "asset": "assets/ac1-native.svg",
+    "sha256": "d936f4db3a950e18ddb7c5587656b0233d531bf75157c8d536e5752e49d88e75",
+    "background": "transparent native glyph; retain button face and AC1 silk"
+  },
+  {
+    "slot": "battery-recycle/h1-jp-native",
+    "decision": "reuse-byte-identical",
+    "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-battery_recycle.svg",
+    "sha256": "4ece7680add5525499da868786eec13e2b1b20dd831fca2f54bfb9840e608f8d",
+    "asset": "assets/h1-jp-battery_recycle.svg",
+    "reason": "Same native Japanese recycling symbol as physical source page 4",
+    "background": "transparent shared source glyph unchanged"
+  },
+  {
+    "slot": "weee/h1-jp-native",
+    "decision": "reuse-byte-identical",
+    "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-weee.svg",
+    "sha256": "21fd7d31c0d22590a0f461da3821869eee28a23122edc994b471642a89ad3e92",
+    "asset": "assets/h1-jp-weee.svg",
+    "reason": "Same native Japanese recycling symbol as physical source page 4",
+    "background": "transparent shared source glyph unchanged"
+  }
+]

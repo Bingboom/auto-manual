@@ -1390,6 +1390,11 @@
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",
       "known_drift": {}
+    },
+    "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native": {
+      "approval": "User request 2026-10-19: Git-only JP Web candidate, JE-1000F JP structure",
+      "registered": "2026-10-19",
+      "known_drift": {}
     }
   },
   "drift_log": [

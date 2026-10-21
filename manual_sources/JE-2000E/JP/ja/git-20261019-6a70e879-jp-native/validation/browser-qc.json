@@ -1,0 +1,48 @@
+[
+  {
+    "width": 1280,
+    "scrollWidth": 1280,
+    "images": 82,
+    "broken": [],
+    "components": {
+      "HB-TABLE-SYMBOL-SIGNAL": 1,
+      "HB-TABLE-SYMBOL-ICON": 2,
+      "HB-SPECIAL-INBOX": 1,
+      "HB-SPECIAL-REFERENCE-FIGURE": 18,
+      "HB-TABLE-LCD-ICON": 1,
+      "HB-SPECIAL-OPERATION": 4,
+      "HB-TABLE-LCD-MODE": 1,
+      "HB-TABLE-KEY-COMBINATIONS": 1,
+      "HB-TABLE-AUTO-RESUME": 1,
+      "HB-TABLE-TROUBLESHOOTING": 1,
+      "HB-WARRANTY-LEAD": 1,
+      "HB-WARRANTY-SECTION": 7,
+      "HB-WARRANTY-YEARS": 1,
+      "HB-SPECIAL-APP": 1
+    },
+    "clipped": []
+  },
+  {
+    "width": 390,
+    "scrollWidth": 390,
+    "images": 82,
+    "broken": [],
+    "components": {
+      "HB-TABLE-SYMBOL-SIGNAL": 1,
+      "HB-TABLE-SYMBOL-ICON": 2,
+      "HB-SPECIAL-INBOX": 1,
+      "HB-SPECIAL-REFERENCE-FIGURE": 18,
+      "HB-TABLE-LCD-ICON": 1,
+      "HB-SPECIAL-OPERATION": 4,
+      "HB-TABLE-LCD-MODE": 1,
+      "HB-TABLE-KEY-COMBINATIONS": 1,
+      "HB-TABLE-AUTO-RESUME": 1,
+      "HB-TABLE-TROUBLESHOOTING": 1,
+      "HB-WARRANTY-LEAD": 1,
+      "HB-WARRANTY-SECTION": 7,
+      "HB-WARRANTY-YEARS": 1,
+      "HB-SPECIAL-APP": 1
+    },
+    "clipped": []
+  }
+]

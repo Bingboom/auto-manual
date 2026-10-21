@@ -1,0 +1,45 @@
+{
+  "authority": "source/original.pdf",
+  "source_pages": 28,
+  "coverage_unit": "native PDF lines of at least 12 normalized characters; physical p3-p28; page numbers excluded",
+  "native_text_lines_matched": 509,
+  "reviewed_exceptions": [
+    {
+      "physical_page": 8,
+      "blocks": [
+        4,
+        5,
+        43,
+        44
+      ],
+      "reason": "Fixed product silk AC 2400W PURE SINE WAVE / Jackery Explorer 2000 Plus remains in the product illustration; duplicated specifications are native HTML"
+    },
+    {
+      "physical_page": 20,
+      "block": 10,
+      "reason": "PDF reading order separates the oc subscript from V; visible source Voc was restored in the native prose"
+    }
+  ],
+  "unreviewed_exceptions": 0,
+  "important_tables": {
+    "lcd_rows": 27,
+    "printed_lcd_numbers": 26,
+    "temperature_number_23": "two separate icons, same source number",
+    "fault_codes": [
+      "F0",
+      "F1",
+      "F2",
+      "F3",
+      "F4",
+      "F5",
+      "F6",
+      "F7",
+      "F8",
+      "F9",
+      "FC",
+      "FE"
+    ],
+    "specification_groups": 4
+  },
+  "normalization": "ignore whitespace, bullet characters, trademark marks, plus glyph; source meaning unchanged"
+}

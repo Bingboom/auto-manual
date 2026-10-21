@@ -1,0 +1,14 @@
+/* Source-point label sizes; all paint comes from the shared theme. */
+@media (min-width: 641px) {
+.hb-reference-figure[data-reference-id="overview-front"] .hb-reference-live-label {font-size: .68rem; line-height: 1.15;}
+.hb-reference-figure[data-reference-id="overview-front"] .hb-reference-live-label[data-source-line="5"],
+.hb-reference-figure[data-reference-id="overview-front"] .hb-reference-live-label[data-source-line="7"],
+.hb-reference-figure[data-reference-id="overview-front"] .hb-reference-live-label[data-source-line="9"],
+.hb-reference-figure[data-reference-id="overview-front"] .hb-reference-live-label[data-source-line="16"],
+.hb-reference-figure[data-reference-id="overview-front"] .hb-reference-live-label[data-source-line="17"] {font-size: .56rem; line-height: 1.15;}
+.hb-reference-figure[data-reference-id="overview-right"] .hb-reference-live-label {font-size: .66rem; line-height: 1.2;}
+.hb-reference-figure[data-reference-id="solar-four"] .hb-reference-live-label {font-size: .65rem; line-height: 1.2;}
+}
+
+/* Keep two-state operations in a two-column footer; the LED panel has three steps. */
+.hb-operation-layout-footer-panel:not([data-operation-id="led-light"]) .hb-operation-steps {grid-template-columns:repeat(2,minmax(0,1fr));}
