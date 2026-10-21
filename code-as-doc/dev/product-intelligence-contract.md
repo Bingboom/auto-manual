@@ -11,6 +11,18 @@ production spine. Hello-Docs is an optional data source and integration target.
 
 ## Direction (2026-10-21)
 
+This contract describes the implemented **event-first prototype**, not a universal
+research model. The charter owns future Research Topic, Research Source,
+Evidence/Fact, Finding/Hypothesis, Event and Decision boundaries. Multi-source
+unstructured research and WeKnora are future work; no schema or runtime dependency
+for them is added here. Hello-Docs remains an optional input/integration.
+
+**Execution gate:** #1585 and `feat/product-intelligence-demo` permit only static,
+fixture, fake-transport and standalone checks. No real Feishu table reads/writes,
+test Base/group creation or group sends here. Live acceptance moves with the core,
+tests, fixtures and [runbook](../tests/external_intel_live_integration_2026-10.md)
+to the new independent repository, under the charter's migration gate.
+
 External information is collected first and pushed for decisions; internal
 product data must not gate it. An event is complete without any product data:
 what happened, its sources and verification, the decision it asks for, who
@@ -171,6 +183,10 @@ their type is printed. Configuration comes from flags or `FEISHU_EXTERNAL_INTEL_
 and `EXTERNAL_INTEL_SITE_URL`; nothing secret is written to a file. No workflow
 runs the loop yet; scheduling it is a separate, approved workflow change.
 
+`sync` dry run still calls the table reader; dry run means no local write or
+message send, not offline execution. The CLI descriptions here are behavioral
+contracts, not permission to use a real transport in this repository.
+
 `tools.intel.delivery` persists a single pending message per knowledge
 checkout under `~/.cache/auto-manual/external-intel/<checkout-hash>/pending.json`
 (root override: `EXTERNAL_INTEL_STATE_DIR`), outside the business content tree.
@@ -218,6 +234,11 @@ repository as they are:
 - To stand alone, move `tools/intel/`, `tests/test_intel_*.py` and
   `tests/fixtures/external_intel/`, then rename the `tools.intel` import prefix
   in those tests. The guard's host checks stay here with the host readers.
+- Migrate the guard's import scan and isolated-run checks, the charter, contracts,
+  Agent context and runbook too. Rebase their paths and prove the standalone copy
+  before enabling live calls in the independent repository. Storage/data ownership
+  is undecided; the current knowledge-directory layout is not a requirement to
+  keep platform data in Hello-Docs.
 
 ## Markdown view
 

@@ -1,15 +1,44 @@
 # External Intelligence Live Integration — 2026-10
 
-Status: active · Owner: operator (夏冰) · Created: 2026-10-22 · PR: [Bingboom/auto-manual#1585](https://github.com/Bingboom/auto-manual/pull/1585)
+Status: planned · Owner: operator (夏冰) · Created: 2026-10-22 · PR: [Bingboom/auto-manual#1585](https://github.com/Bingboom/auto-manual/pull/1585)
+
+Gate revised: 2026-10-21 (America/Los_Angeles). Original creation date and file
+name retained for traceability; neither is a scheduled test date. Live date: TBD.
+
+## Execution gate — pending migration
+
+**Do not execute T0–T5 in auto-manual, PR #1585 or its incubation branch.** This
+file is a runbook awaiting migration, not an active test assignment or permission.
+Only static, fixture/fake-transport and standalone tests are allowed here. This
+includes no real Feishu table read even via `sync` dry run, no table write, test
+Base/group creation or group message send. Do not probe credentials or Feishu
+endpoints as a workaround.
+
+Before any operator setup or live call, all of these must be recorded in the new
+independent `research-intelligence` repository:
+
+1. Core, tests, fixtures, contracts, Agent context and this runbook have migrated;
+   source commit and file manifest are recorded, imports/cache paths updated,
+   and clean-environment standalone and contract tests pass without Hello-Docs.
+2. The runbook lives at `code-as-doc/tests/external_intel_live_integration_2026-10.md`
+   **in that new repository** (or its explicitly recorded replacement path).
+   Its commands, module name, test names and links have been checked against the
+   migrated code. No checkout of an auto-manual branch is used for the run.
+3. The operator confirms test data custodian, storage/retention and exact isolated
+   test targets/permissions in the new repository. Only then create a test Base
+   and group; obtain the migration-specific go-ahead there. Business data
+   sovereignty remains a separate open decision, not a default Hello-Docs write.
+
+The [charter](../dev/research-intelligence-charter.md) owns the sequence and
+rollback policy. An incubation merge alone does not satisfy this gate.
 
 ## Scope
 
-This is the first run of the Research & Intelligence prototype's loop against
-Feishu. The prototype incubates on `feat/product-intelligence-demo` and never
-merges into `main` ([charter](../dev/research-intelligence-charter.md)). The run
-uses PR #1585's head, before that PR merges into the incubation branch.
-Every call goes through lark-cli 1.0.49, the version CI pins, as the business
-bot:
+This describes a future first live run of the migrated Research & Intelligence
+loop. It uses a recorded commit of the independent repository, after migration
+and the gate above, not PR #1585's head. The original rehearsal used lark-cli
+1.0.49; revalidate that version and its contract in the new repository before
+running as the dedicated test bot:
 
 1. **Table read.** `sync` reads a test 外部情报 table into `events.json`.
 2. **Judgment round trip.** A person fills 人工判断, 复核人 and 复核日期 in the
@@ -22,20 +51,23 @@ bot:
 
 Out of scope: scheduling (no workflow exists), Hello-Docs commits, the
 production table and group, and the research-page build. The code stays as it
-is during the run. The exception is a small, local defect the run finds: it is
-fixed with a regression test and listed under [Results](#results).
+is during the run. Any defect is repaired with a regression test in the new
+repository and listed under [Results](#results); it does not reopen live testing
+in auto-manual.
 
-A rehearsal of these steps against a fake table already passed on
+A historical rehearsal of these steps against a fake table passed on
 `ac714048`. A probe with a fake app ID against `open.feishu.cn` showed that
 lark-cli 1.x exits 3 and prints the Feishu code under `error` on stderr.
-`ac714048` makes failures print that code.
+`ac714048` makes failures print that code. This earlier network probe is not
+live table/group acceptance and is not to be repeated under the current gate.
 
 ## Rules for this run
 
 - **Secrets.** They come only from the environment. Never print them or type
   their values into a command, and pipe every live command through `red`
   (T0).
-- **Table writes.** The operator authorizes writes to the test table only:
+- **Table writes.** After the gate, obtain the operator's test-scope authorization
+  in the independent repository; this document does not grant it. The scope is:
   creating it, seeding four rows and one fact edit. Each write is read back,
   with its record_id and field.
 - **Messages.** They go only to the test group, and only after its exact name
@@ -51,7 +83,7 @@ lark-cli 1.x exits 3 and prints the Feishu code under `error` on stderr.
 
 ## Operator setup
 
-These steps come before the session:
+Future steps in the independent repository, only after the execution gate:
 
 1. **Test Base.** Create one in Feishu. Add the bot app with edit access
    (… → 更多 → 添加文档应用 → 可编辑).
@@ -76,13 +108,18 @@ When a call fails, the command prints Feishu's code. The usual ones:
 
 ## T0 Workspace
 
-1. **Repositories.** Check out `claude/amazing-darwin-7ltffy` in the auto-manual
-   checkout and record `git rev-parse HEAD`. Attach `Bingboom/hello-docs`
-   read-only and clone its `main`.
+1. **Repository.** Check out the migrated independent `research-intelligence`
+   repository and record its URL, branch and `git rev-parse HEAD`, plus the
+   migration source commit. Confirm this is not an auto-manual checkout or
+   worktree. Record the validated module/test paths before running commands.
 2. **lark-cli.** Run `npm install --prefix "$W/larkcli" @larksuite/cli@1.0.49`.
-3. **Knowledge copy.** Copy Hello-Docs' `docs/knowledge/market-policy/` to
-   `$W/knowledge/market-policy/`. The copy holds no `external-intel/`, so the
-   intake starts empty.
+3. **Knowledge copy.** Prepare a synthetic `market-policy/records.json` in the
+   migrated fixtures using the `nl-net-metering` test record from
+   `tests/test_intel_wiki.py` (`POLICY`), and seed `$W/knowledge/market-policy/`
+   from it. Record this fixture's hash in the new repository. Start with no
+   `external-intel/`. Hello-Docs is not required; any separately approved frozen
+   external input must have its provenance recorded and is not the platform's
+   default data store.
 4. **`$W/red.py`.** It replaces each secret's value with its name:
 
    ```python
@@ -120,7 +157,7 @@ When a call fails, the command prints Feishu's code. The usual ones:
 
 ## T1 Table read
 
-Live commands below run from the auto-manual checkout, are written short and
+Live commands below run only from the gated independent repository, are written short and
 end in `| red`. For example, `sync --write` means
 `python3 -m tools.intel sync --knowledge-dir "$KNOW" --write 2>&1 | red`.
 
@@ -262,8 +299,13 @@ end in `| red`. For example, `sync --write` means
 
 ## Results
 
-To be filled in by the run, which then sets Status to `done`:
+Not run: deferred until independent-repository migration. Fill this section in
+the migrated runbook, then set that copy's Status to `done` after acceptance.
+The auto-manual copy remains a planned migration reference.
 
+- **Independent repository URL and runbook path:** —
+- **Migration source commit and manifest:** —
+- **Gate evidence / test data custodian and approved storage:** —
 - **Tested commit:** —
 - **Date (CST):** —
 - **Python and lark-cli versions:** —
@@ -281,7 +323,15 @@ Observed cell shapes: —
 
 Defects found and fixes: —
 
-After a full pass, the operator decides whether PR #1585 merges into the
-incubation branch `feat/product-intelligence-demo`; that is not a merge into
-`main`. Where synced intake is committed afterwards is an open decision in the
-charter.
+After a full pass, the operator records acceptance in the independent repository.
+This is not a merge condition for #1585. A real business-table trial and scheduling
+need their own target/data decisions; do not commit intake or Wiki data to
+Hello-Docs by default.
+
+On failure, stop live activity, retain redacted evidence and pending state, and
+repair/retest or return the independent repository to its recorded migration
+baseline. Confirm any remote messages before retrying, particularly outside the
+one-hour deduplication window; a code rollback does not undo remote writes or
+sends. Do not resume in auto-manual or archive the incubation branch before
+acceptance. Optional Hello-Docs adapters can be disabled or use the last verified
+frozen export. Test-resource cleanup stays with the operator's authorization.

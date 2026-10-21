@@ -4,6 +4,12 @@
 独立研究平台项目，不是 Hello-Docs 的新功能；所在分支不合入 `main`，核心最终迁到
 独立仓库，见[项目章程](../../code-as-doc/dev/research-intelligence-charter.md)。
 
+**执行门禁：#1585 和孵化分支只做静态、fixtures、模拟 transport 与独立运行验证。**
+真实飞书读表（包括 `sync` dry run）、写表、建测试 Base/群和发群消息，都必须等核心、
+测试、fixtures、契约与手册迁到新建 `research-intelligence` 仓库并满足
+[联调门禁](../../code-as-doc/tests/external_intel_live_integration_2026-10.md#execution-gate--pending-migration)
+后在那里执行。下文飞书命令是待迁移操作参考，不是当前执行任务。
+
 外部情报的重点是先收集、再推送用于决策，不受内部产品牵制。每条外部事件只需写清
 发生了什么、来源和核实状态、需要什么决策、由谁决定、何时决定，就能被收集、展示
 和推送；产品关联只是事件可选的附录。研究假设、产品关联都需要人工判断，不能作为
@@ -11,12 +17,14 @@
 
 ## 录入外部事件
 
-事件属于业务数据，放在业务知识目录（Hello-Docs `docs/knowledge/`，即构建的
+事件属于业务数据。现有 Hello-Docs 预览适配器从其 `docs/knowledge/`（即构建的
 `rtd_knowledge_dir`）的 `external-intel/events.json`，与 `market-policy/records.json`
-并列，不在工程仓库维护。孵化期沿用这个位置；迁出后事件存放在哪里，是章程里的待决策项。格式为 `schema_version: external-intel-events/v1` 的
+并列位置读取；这是适配器输入布局，不是平台数据主权约定。本仓库验证只使用独立临时目录
+中的 fixtures 副本，不维护真实试运行数据。迁出后的数据所有者和存储位置由章程待决策项
+另行确定，不默认写入 Hello-Docs。格式为 `schema_version: external-intel-events/v1` 的
 `events` 列表，完整示例见
 [`tests/fixtures/external_intel/events.json`](../../tests/fixtures/external_intel/events.json)。
-也可以在飞书「外部情报」表里维护，由同步命令写入这个文件，见下文
+迁移并验收后也可以在飞书「外部情报」表里维护，由同步命令写入这个文件，见下文
 [飞书表格闭环](#飞书表格闭环手动试运行)。
 
 - 政策事件（`source_kind: market_policy`）用 `source_record_id` 复用市场政策记录；
@@ -55,13 +63,16 @@ CommonMark 文本）。待人工判断的事件排在前面，再按截止日期
 
 ## 飞书表格闭环（手动试运行）
 
+本节仅供迁移后的独立仓库使用。先满足页首门禁，再由操作者确认测试数据存储和权限、
+创建测试 Base/群。合入孵化分支不代表允许真实试运行，也不需要在 #1585 合入前联调。
+
 闭环是：在飞书表格里收集事件 → 同步成 `events.json` 的修订 → 把待决策摘要推送到
 飞书群 → 决策人回到表格填写判断 → 下一次同步记录判断。目前只能手动运行，还没有
 工作流定时执行；同步只读表格，从不写回。
 
 ### 建表
 
-在任一多维表中新建「外部情报」表，一行一个事件，列名必须与下表一致（缺列时同步
+仅在独立仓库门禁通过后，在指定测试 Base 新建「外部情报」表，一行一个事件，列名必须与下表一致（缺列时同步
 直接停止并列出缺少的列）。单选列也可以用文本列，按下表的选项名填写。
 
 | 列 | 类型 | 填写 |
@@ -94,11 +105,14 @@ CommonMark 文本）。待人工判断的事件排在前面，再按截止日期
   同一天也一样；重新确认时更新判断内容、复核人或复核日期，日期仍须满足上述条件。
   同日结论不变时，可在判断中加上重新核对的说明，或先清空三项并同步，再重新填写。
 - 填错的行不会被采用，该事件保持上次状态，并在推送中列为“需处理的表格行”；表格中
-  删掉的行也会列出，事件保留在 `events.json` 里，需要移除时在 Hello-Docs 单独提内容 PR。
+  删掉的行也会列出，事件保留在 `events.json` 里，需要移除时按新仓库确认的数据治理流程处理。
 - 已有手写事件，或某事件的行已被删掉时，新建一行并填同一个事件ID即可接管，历史
   修订原样保留。
 
 ### 运行
+
+以下命令只描述迁移后的用法；包名和路径须在新仓库核对后再运行。当前仓库不要配置
+真实飞书凭证或执行这些命令，连不带 `--write` 的 sync 也会真实读表。
 
 lark-cli 使用的机器人应用要能读取这张多维表，并已加入要推送的群。令牌只放在环境
 变量里，不写进任何仓库文件：
@@ -112,14 +126,14 @@ export FEISHU_EXTERNAL_INTEL_RECORD_URL='https://...&record={record_id}'
 # 可选：研究页面所在站点，用于“查看详情”链接
 export EXTERNAL_INTEL_SITE_URL=https://...
 
-KNOWLEDGE=/path/to/Hello-Docs/docs/knowledge
-python -m tools.intel sync --knowledge-dir "$KNOWLEDGE" --push          # 试运行
+KNOWLEDGE=/path/to/approved-test-storage/knowledge
+python -m tools.intel sync --knowledge-dir "$KNOWLEDGE" --push          # 真实读表，预览消息
 python -m tools.intel sync --knowledge-dir "$KNOWLEDGE" --write --push  # 写入并推送
 ```
 
-试运行不写文件、不发消息，只打印每行的变化和将要发送的消息。`--write` 写入
-`external-intel/events.json`，`--push` 随后发送；写入后在 Hello-Docs 提交该文件的
-内容 PR。`python -m tools.intel push --knowledge-dir "$KNOWLEDGE" [--dry-run]` 只推送文件的
+dry run 会读表，但不写文件、不发消息，只打印每行的变化和将要发送的消息。`--write` 写入
+`external-intel/events.json`，`--push` 随后发送；结果仅按新仓库确认的测试存储／保留策略处理，
+不默认提交 Hello-Docs。`python -m tools.intel push --knowledge-dir "$KNOWLEDGE" [--dry-run]` 只推送文件的
 现状。读表或发送失败时只打印 lark-cli 的退出状态和它给出的飞书返回码（例如 91403 通常是没有权限），
 不会打印令牌或消息内容。
 
@@ -141,6 +155,15 @@ python -m tools.intel sync --knowledge-dir "$KNOWLEDGE" --write --push  # 写入
 
 ## Markdown 知识视图
 
+本仓库可对 fixtures 的临时副本离线验证；`KNOWLEDGE` 必须指向该副本，不能沿用上节的
+真实测试存储。`wiki` 自身不访问飞书。
+
+```sh
+KNOWLEDGE=$(mktemp -d)
+mkdir -p "$KNOWLEDGE/external-intel"
+cp tests/fixtures/external_intel/events.json "$KNOWLEDGE/external-intel/events.json"
+```
+
 借鉴 [llm_wiki](https://github.com/nashsu/llm_wiki) 的知识库结构（只借鉴结构，不使用它的代码），
 把 `events.json` 生成一组相互链接的 Markdown 页面：可以直接用 Obsidian 或 llm_wiki 打开，
 AI 助手也能先读索引再回答问题。
@@ -159,12 +182,12 @@ python -m tools.intel wiki --knowledge-dir "$KNOWLEDGE" --check   # 视图过期
 - `purpose.md`（目的、关键问题、范围、决策人）和 `schema.md`（页面约定）只在缺少时按模板
   创建，之后由人维护，不会被覆盖。
 
-`wiki/` 下这些页面每次都从 `events.json` 重新生成，手改会被覆盖：事实在飞书表格里改，同步
-后再生成。生成只写这些页面，并删除已不存在事件的旧页面；`wiki/` 下的其他文件（例如 llm_wiki
+`wiki/` 下这些页面每次都从 `events.json` 重新生成，手改会被覆盖：当前只改测试副本；迁移
+并通过联调门禁后才可在测试表改事实、同步再生成。生成只写这些页面，并删除已不存在事件的旧页面；`wiki/` 下的其他文件（例如 llm_wiki
 保存的问答）不动。页面不含产品数据，也不带生成时间，数据不变时重新生成没有差异。
 
-同步写入 `events.json` 后运行 `--write`，把 `events.json`、`wiki/`、`purpose.md` 和
-`schema.md` 放进同一个 Hello-Docs 内容 PR。用 Obsidian 打开 `external-intel/` 文件夹即可
+生成后，`events.json`、`wiki/`、`purpose.md` 和 `schema.md` 是一组一致性产物；当前测试副本
+不提交到业务仓库，迁出后按已确认的数据主权和存储流程管理。用 Obsidian 打开 `external-intel/` 文件夹即可
 浏览页面和关系图；用 llm_wiki 把同一文件夹作为项目打开即可问答。两个应用会在该文件夹里建
 `.obsidian/`、`.llm-wiki/`，不要提交。
 

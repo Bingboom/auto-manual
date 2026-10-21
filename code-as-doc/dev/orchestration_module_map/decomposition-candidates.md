@@ -95,3 +95,6 @@ Prepared Web admission: `tools/web/component_admission.py` owns fresh-publicatio
 构建缓存、降级与版本化导出；`portal.py` 只注册这些接口。
 研究结果不能写回产品源表，公开 manuals 角色禁用研究产物。见
 [Demo 契约](../product-intelligence-contract.md)。
+当前 event-first 代码与长期多来源研究方向的差别由章程定义，WeKnora 尚未接入。
+本仓库只做静态／模拟和独立运行验证；真实飞书读写、建测试 Base/群与发消息必须在迁移
+核心、测试、fixtures 和联调手册后的独立仓库执行，`sync` dry run 也不能绕过门禁。
