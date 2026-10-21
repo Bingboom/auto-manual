@@ -23,6 +23,12 @@
 schema: hello-docs-knowledge-updates/v1
 
 updates:
+  - date: 2026-10-16
+    title: 产品知识 · 电气基础
+    note: 新增 100V／200V 单相三线、NEMA 插座形状、美规与日规参数差异、家庭回路切换开关四项知识
+    page: product-knowledge
+    evidence: "pr:auto-manual#1559"
+
   - date: 2026-10-15
     title: 说明书工作台 · 数据统计入口
     note: 独立系统数据页已下线，旧链接自动转入此标签并保留筛选条件
