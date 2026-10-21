@@ -1,7 +1,7 @@
 # Product Intelligence Demo — Execution Plan
 
 Status: active
-Implementation: three phases integrated, then revised event-first (Phase 4) and given a hand-run collection loop (Phase 5); local validation complete; hosted RTD verification and the loop's operator trial pending.
+Implementation: three phases integrated, then revised event-first (Phase 4), given a hand-run collection loop (Phase 5) and made a separable package (Phase 6); local validation complete; hosted RTD verification and the loop's operator trial pending.
 Branch: `feat/product-intelligence-demo`
 Scope: three phases, one integration branch, one PR; do not modify the README positioning or merge to main until reviewed.
 
@@ -68,6 +68,14 @@ Operator decisions: collect in a Feishu table; push to a Feishu group on workday
 - [x] Push the digest as one Feishu post built from `items` (literal text, validated links): overdue, due within seven days, other pending, judgments recorded and rows to fix. Dry run by default; `--write --push` writes then sends.
 - [ ] Operator trial: create the table, give the bot read access and group membership, run a dry run, then `--write --push`, and commit `events.json` to Hello-Docs as a content PR.
 - [ ] Schedule the loop on workdays (workflow, content PR, push after sync): a separately approved workflow change.
+
+## Phase 6 — Separable package (2026-10-21)
+Operator direction: the demo must later be easy to decouple and run on its own. Reviewed `nashsu/llm_wiki` for ideas; it is GPL-3.0, so only its design may be borrowed, never its code.
+- [x] Move intake, digest, sync, push and CLI into `tools/intel/`: standard library and relative imports only, with its own lark-cli transport, table reader and policy reader. Feishu calls, policy records and the date are passed in.
+- [x] Keep the research page, Sphinx build, product lens and the portal's stricter policy reader in the host; the RTD build passes `market_context` records to the package.
+- [x] Guard it: an import scan of the package and its tests, a run of a copy with nothing else from this repository on the path, and checks of the package's parallel readers and page route against the host's.
+- [x] Prove behavior unchanged: CLI outputs, the written intake and the five research exports and page are byte-identical before and after on the same real input.
+- [ ] Borrow from llm_wiki next, each as its own step: a generated Markdown view (`index.md`, `log.md`, market and event pages, `purpose.md`), rule-based health checks folded into the push, and later LLM-drafted intake that a person confirms.
 
 ## Parallel execution contract
 Agent A owns product knowledge contract + extraction tests. Agent B owns event/association module + tests. Agent C owns RTD templates/assets + UI tests. Integration owner alone changes shared builders/registration and resolves contracts. A minimal contract must be agreed first; B/C can implement against fixtures while A completes.

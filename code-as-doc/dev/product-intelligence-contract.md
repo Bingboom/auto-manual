@@ -34,11 +34,14 @@ that lens; it never hides, delays or reshapes an event or its digest.
 
 ## Layer 1: external event intake (collection)
 
-`tools.rtd.intelligence_events.load_events(knowledge_root)` reads the business file
-`<knowledge_root>/external-intel/events.json`, beside `market-policy/records.json`,
+`tools.intel.events.load_events(knowledge_root, *, policies=None)` reads the business
+file `<knowledge_root>/external-intel/events.json`, beside `market-policy/records.json`,
 and returns `schema_version: external-intel/v1`, `source` (path relative to the
 knowledge root and byte SHA-256), `events`, `history` and `snapshot_id`. No file
 is an empty intake; a malformed file raises `ValueError`. It reads no product data.
+Policy events join `policies`, which defaults to the package's reading of
+`market-policy/records.json` (`tools.intel.policies`); the RTD build passes the
+portal's stricter `market_policy.market_context` records instead.
 
 The file is `schema_version: external-intel-events/v1` with an `events` list.
 Each entry has `id`, `title`, `kind` (policy/market/competitor), `market`,
@@ -67,13 +70,13 @@ Each entry has `id`, `title`, `kind` (policy/market/competitor), `market`,
 Reviewed revisions require a decision, reviewer and ISO review date. Later pending
 revisions preserve earlier human judgments in history without inheriting approval.
 `compare_event_snapshots(previous, current)` returns a new receipt; neither
-snapshot changes and review stays pending. `events_snapshot(payload, knowledge_root)`
+snapshot changes and review stays pending. `events_snapshot(payload, policies=())`
 builds the same snapshot from file bytes, and `encode_intake(document)` gives the
 bytes a document is written as, so a sync candidate hashes as it will be committed.
 
 ## Layer 2: decision digest (push)
 
-`tools.rtd.decision_digest.decision_digest(events, *, page, base_url="")` returns
+`tools.intel.digest.decision_digest(events, *, page, base_url="")` returns
 `schema_version: external-intel-digest/v1`: one item per event, pending judgments
 first, then by due date, latest record and ID. Items keep every field structured
 for channel adapters (decision, verification, sources, open questions, page anchor
@@ -117,8 +120,8 @@ knowledge, event, lens and association changes without touching either snapshot.
 
 ## Collection loop: table sync and group push (hand-run)
 
-`tools.rtd.intelligence_sync` reads the Feishu 外部情报 table, one row per event,
-through `workspace_snapshot.complete_rows` (complete pages or nothing); a table
+`tools.intel.sync` reads the Feishu 外部情报 table, one row per event,
+through `tools.intel.feishu.complete_rows` (complete pages or nothing); a table
 missing any column of `COLUMNS` raises `TableShapeError`. It never writes the
 table. `merge(previous, rows, *, today, policy_ids=None)` returns a new intake
 document and a report, leaving both inputs unchanged:
@@ -148,7 +151,7 @@ document and a report, leaving both inputs unchanged:
   in `gone`. An invalid previous intake, or a `today` before its newest
   revision, raises `ValueError`.
 
-`tools.rtd.intelligence_push.post_content(digest, *, today, record_url, page_url,
+`tools.intel.push.post_content(digest, *, today, record_url, page_url,
 report)` builds one Feishu post from the digest `items`: pending events grouped
 overdue, due within seven days, then the rest (at most `MAX_LISTED`, text cut at
 `MAX_TEXT`), the judgments a sync recorded and the rows to fix. Intake text is
@@ -158,14 +161,14 @@ row link is the operator's `record_url` with a checked record ID. It returns
 +messages-send --msg-type post` with an idempotency key derived from chat,
 content and day; its receipt names no chat.
 
-`python -m tools.rtd.intelligence_loop sync|push` is the hand-run entry: `sync`
+`python -m tools.intel sync|push` is the hand-run entry: `sync`
 is a dry run unless `--write`, and `--push` sends right after a written sync (it
 only prints after a dry run). Transport errors carry the command line, so only
 their type is printed. Configuration comes from flags or `FEISHU_EXTERNAL_INTEL_*`
 and `EXTERNAL_INTEL_SITE_URL`; nothing secret is written to a file. No workflow
 runs the loop yet; scheduling it is a separate, approved workflow change.
 
-`tools.rtd.intelligence_delivery` persists a single pending message per knowledge
+`tools.intel.delivery` persists a single pending message per knowledge
 checkout under `~/.cache/auto-manual/external-intel/<checkout-hash>/pending.json`
 (root override: `EXTERNAL_INTEL_STATE_DIR`), outside the business content tree.
 Before replacing events.json or sending, it atomically saves the exact message,
@@ -184,18 +187,44 @@ retains it. `push --dry-run` previews it without writing; `push` or
 Feishu's idempotency window is one hour; retries beyond it can duplicate a send
 whose acknowledgment was lost, even with the same saved key.
 
+## Package boundary
+
+The intake, digest and loop live in `tools/intel/`, so they can leave this
+repository as they are:
+
+- The package imports only the standard library and its own modules, through
+  relative imports, so a move needs no rename inside it. Its tests
+  (`tests/test_intel_*.py`) import only the package and read only
+  `tests/fixtures/external_intel/`.
+- Everything outside is passed in: lark-cli as `run`, the policy records an
+  event joins as `policies`, the date as `today`; the pending push lives
+  outside any checkout (`EXTERNAL_INTEL_STATE_DIR`). By default `run` is
+  `tools.intel.feishu.runner`, the package's own lark-cli transport, and table
+  pages come from its own reader. A `LarkError` names an exit status or a
+  response code, never an argument, so the CLI prints it; any other transport
+  error prints only its type.
+- This repository keeps what is its own: the research page, the Sphinx build,
+  the product lens and the portal's stricter policy reader. They import the
+  package; the package never imports them.
+- `tests/test_external_intel_boundary.py` guards this. It scans the imports of the
+  package and its tests. It runs a copy of both with nothing else from this
+  repository on the path (`python -I`). It checks the package's readers against
+  the host's: table pages against `workspace_snapshot.complete_rows`, policy
+  records against `market_policy.market_context`, and the page route (`cli.PAGE`).
+- To stand alone, move `tools/intel/`, `tests/test_intel_*.py` and
+  `tests/fixtures/external_intel/`, then rename the `tools.intel` import prefix
+  in those tests. The guard's host checks stay here with the host readers.
+
 ## Page, exports and ownership
 
-- Intake and digest: `tools/rtd/intelligence_events.py`, `tools/rtd/decision_digest.py`,
-  `tests/test_intelligence_events.py`, `tests/test_decision_digest.py`.
+- Package (see [Package boundary](#package-boundary)): `tools/intel/` with
+  `tests/test_intel_*.py` and `tests/fixtures/external_intel/`; its guard is
+  `tests/test_external_intel_boundary.py`.
 - Product lens: `tools/product_knowledge/`, `tools/rtd/product_intelligence.py`,
   `tests/test_product_knowledge.py`, `tests/test_product_intelligence.py`.
 - Page: `tools/rtd/product_research.py`, its template/CSS/JS and Python/Node tests.
 - Build: `tools/rtd/research_build.py` and the portal registration, with
   `tests/test_product_intelligence_build.py`.
-- Loop: `tools/rtd/intelligence_sync.py`, `tools/rtd/intelligence_push.py`,
-  `tools/rtd/intelligence_loop.py`, `tools/rtd/intelligence_delivery.py`, with `tests/test_intelligence_sync.py`,
-  `tests/test_intelligence_push.py` and `tests/test_intelligence_loop.py`.
 
 The page route is `research/product-intelligence.html`, combined sites only.
 Enable with Sphinx `rtd_product_intelligence_demo` or `RTD_PRODUCT_INTELLIGENCE_DEMO`
@@ -203,7 +232,7 @@ Enable with Sphinx `rtd_product_intelligence_demo` or `RTD_PRODUCT_INTELLIGENCE_
 error at start-up, whatever the site role. The research context is built once at
 builder start, so every page links the research page only when it exists. A
 malformed events file skips this page with a warning and no other page. The page
-is an index of events in `decision_digest.decision_order`: each row shows market,
+is an index of events in `tools.intel.digest.decision_order`: each row shows market,
 kind, title, decision question, owner, due date, verification and decision state,
 and opens to what happened, sources, possible impact, open questions, human
 judgment and revisions. The product lens is a collapsed appendix inside the event

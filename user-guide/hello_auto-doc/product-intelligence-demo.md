@@ -109,13 +109,15 @@ export FEISHU_EXTERNAL_INTEL_RECORD_URL='https://...&record={record_id}'
 export EXTERNAL_INTEL_SITE_URL=https://...
 
 KNOWLEDGE=/path/to/Hello-Docs/docs/knowledge
-python -m tools.rtd.intelligence_loop sync --knowledge-dir "$KNOWLEDGE" --push          # 试运行
-python -m tools.rtd.intelligence_loop sync --knowledge-dir "$KNOWLEDGE" --write --push  # 写入并推送
+python -m tools.intel sync --knowledge-dir "$KNOWLEDGE" --push          # 试运行
+python -m tools.intel sync --knowledge-dir "$KNOWLEDGE" --write --push  # 写入并推送
 ```
 
 试运行不写文件、不发消息，只打印每行的变化和将要发送的消息。`--write` 写入
 `external-intel/events.json`，`--push` 随后发送；写入后在 Hello-Docs 提交该文件的
-内容 PR。`push --knowledge-dir "$KNOWLEDGE" [--dry-run]` 只推送文件的现状。
+内容 PR。`python -m tools.intel push --knowledge-dir "$KNOWLEDGE" [--dry-run]` 只推送文件的
+现状。读表或发送失败时只打印 lark-cli 的退出状态或飞书返回码（例如 91403 通常是没有权限），
+不会打印令牌或消息内容。
 
 消息按“已逾期”“7 天内到期”“待决策”分组，列出需要决策的问题、决策人、截止日期和
 来源状态，附“去填写判断”（表格行）和“查看详情”（站点页面）链接；本次同步录入的

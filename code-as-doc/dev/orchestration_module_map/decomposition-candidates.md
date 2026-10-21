@@ -76,13 +76,15 @@ Prepared Web admission: `tools/web/component_admission.py` owns fresh-publicatio
 
 `tools/rtd/product_learning.py` 将工程维护的通用课程词条与冻结产品目录关联；`tools/rtd/portal.py` 只注册页面。产品定位分组以首页 `navigation` 为底，由 `tools/rtd/product_matrix.py` 的 `positioning_groups` 补上 `product_matrix.json` 的产品线与 `assign`；知识页复用这一层，不建立第二份型号定位表。
 
-外部情报以事件为先：`rtd/intelligence_events.py` 从业务知识目录读取
-`external-intel/events.json` 并按 ID 复用市场政策，不读取任何产品数据；
-`rtd/decision_digest.py` 只用事件生成可推送的决策摘要。手动闭环由四个模块组成：
-`rtd/intelligence_sync.py` 只读飞书「外部情报」表，按行追加事件修订；
-`rtd/intelligence_push.py` 用摘要条目组装飞书群消息；`rtd/intelligence_loop.py`
-是命令行入口，`rtd/intelligence_delivery.py` 在业务仓库外保存待发消息和候选写入，
-收到发送回执后清除，失败重试先重放原消息；尚未接入工作流。产品视角是可选附录：
+外部情报以事件为先，收集与推送集中在可独立迁出的 `tools/intel/` 包：只依赖标准库与
+包内模块（相对导入），飞书调用、政策记录和日期都由调用方传入。`events.py` 从业务知识
+目录读取 `external-intel/events.json` 并按 ID 复用市场政策，不读取任何产品数据；
+`digest.py` 只用事件生成可推送的决策摘要；`sync.py` 只读飞书「外部情报」表，按行追加
+事件修订；`push.py` 用摘要条目组装飞书群消息；`delivery.py` 在业务仓库外保存待发消息和
+候选写入，收到发送回执后清除，失败重试先重放原消息；`feishu.py` 是包内自带的 lark-cli
+调用与完整分页读取；`policies.py` 读取政策记录；`files.py` 负责原子写入；`cli.py`
+（`python -m tools.intel`）是尚未接入工作流的命令行入口。边界由
+`tests/test_external_intel_boundary.py` 守住。产品视角是可选附录：
 `tools/product_knowledge/` 复用矩阵的 `product_row` 与 `production_evidence` 的清单校验，
 按发布变体保留市场、语言、版本及事实证据，输出只读的 `product-knowledge/v1`；
 `rtd/product_intelligence.py` 只对配置了 `product_lens` 的事件做规则关联和历史比较。
