@@ -1,0 +1,399 @@
+/* Review overlay for a US → JP review draft (as shipped with JHP-3600C v0.69).
+ * Manual body styling comes from source-manual.css (= web_manual.css) and
+ * jp-manual-components.css (JE-1000F JP page components). This file only adds
+ * the review page shell, bilingual/review annotations and draft-only parts. */
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+body {
+  margin: 0;
+  background: #fff;
+  color: #343031;
+  font-family: "Gilroy", "Avenir Next", Avenir, "Segoe UI", "Hiragino Sans", "Noto Sans JP", "Noto Sans CJK JP", "Yu Gothic", Helvetica, Arial, sans-serif;
+}
+a { color: #343031; }
+button { font: inherit; cursor: pointer; }
+
+/* ---- page shell, modelled on the Furo layout of the published manuals ---- */
+header.preview-toolbar {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  min-height: 60px; padding: 10px 28px;
+  background: #fff; border-bottom: 1px solid #eeebee;
+}
+header.preview-toolbar strong { font-size: 15px; }
+.preview-toolbar small { display: block; margin-top: 3px; color: #666264; font-size: 12px; }
+.toolbar-actions { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+.toolbar-actions button { padding: 7px 12px; border: 1px solid #d6d6d6; border-radius: .5rem; background: #fff; color: #343031; white-space: nowrap; font-size: 13px; }
+.toolbar-actions button[aria-pressed="true"] { background: #343031; border-color: #343031; color: #fff; }
+
+.preview-layout { display: grid; grid-template-columns: 15.5rem minmax(0, 1fr); max-width: 1320px; margin: 0 auto; }
+aside.toc {
+  position: sticky; top: 60px; align-self: start;
+  height: calc(100vh - 60px); overflow: auto;
+  padding: 1.4rem 1rem 2rem 1.6rem;
+  background: #f8f9fb; border-right: 1px solid #eeebee;
+}
+.toc h2 { margin: 0 0 1rem; color: #343031; font-size: 1.15rem; font-weight: 700; letter-spacing: 0; text-transform: none; }
+.toc a { display: block; padding: .32rem .5rem; border-radius: .35rem; color: #4a4648; font-size: .88rem; line-height: 1.35; text-decoration: none; }
+.toc a:hover, .toc a.active { background: #ebebeb; color: #343031; }
+
+.reading-column { min-width: 0; padding: 1.6rem 2.2rem 2.4rem; }
+.draft-banner, .change-log {
+  max-width: 48rem; margin: 0 auto 1rem;
+  padding: .9rem 1.1rem; border: 1px solid #e3e1e2; border-radius: .7rem; background: #f8f8f8;
+  color: #4a4648; font-size: 13px; line-height: 1.6;
+}
+.draft-banner strong { display: block; margin-bottom: .35rem; color: #343031; font-size: 14px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: #343031; }
+.legend i.black { background: #171717; } .legend i.green { background: #047857; } .legend i.blue { background: #1657bb; }
+.legend i.rose { background: #c2185b; } .legend i.purple { background: #7e22ce; } .legend i.orange { background: #b45309; }
+.legend-detail { margin: .5rem 0 0; color: #666264; font-size: 12px; }
+.change-log summary { cursor: pointer; font-weight: 600; color: #343031; }
+.change-log p { margin: .45rem 0; }
+
+#furo-main-content {
+  max-width: 48rem; margin: 0 auto 2rem; padding: 2.4rem 2.6rem 2.8rem;
+  background: #fff; border: 1px solid #e3e3e3; border-radius: .9rem;
+  box-shadow: 0 .25rem 1.2rem rgba(0, 0, 0, .06);
+  color: #343031; font-size: 1rem; line-height: 1.65;
+}
+#furo-main-content section { scroll-margin-top: 84px; }
+#furo-main-content img { max-width: 100%; }
+#furo-main-content .manual-locale-current { color: #666264; font-size: .9rem; }
+.footer-note { max-width: 48rem; margin: 0 auto; padding: 0 .4rem 2.4rem; color: #666264; font-size: 12px; }
+.print-note { display: none; }
+
+/* ---- bilingual annotation and colour code ---- */
+html body #furo-main-content .zh-translation {
+  display: block; margin-top: .2rem;
+  color: #1657bb !important; font-size: 12px !important; font-weight: 400 !important; font-style: normal !important;
+  line-height: 1.55 !important; letter-spacing: 0 !important; text-transform: none !important; overflow-wrap: anywhere;
+}
+html body #furo-main-content :is(td, th) .zh-translation { font-size: 11.5px !important; }
+html body #furo-main-content h1 .zh-translation { margin-top: .15rem; color: #c9dcff !important; font-size: 12.5px !important; }
+html body #furo-main-content .jp-safety-band .zh-translation,
+html body #furo-main-content .jp-usage-heading .zh-translation,
+html body #furo-main-content .hb-warranty-card + * .zh-translation { color: #c9dcff !important; }
+html body #furo-main-content section:has(> figure.hb-warranty-card) > h2 .zh-translation { display: inline; margin: 0 0 0 .5rem; color: #c9dcff !important; }
+html body #furo-main-content h2:not(.jp-safety-band):not(.jp-usage-heading) { flex-wrap: wrap; }
+html body #furo-main-content h2:not(.jp-safety-band):not(.jp-usage-heading):not(.jp-warning-heading) > .zh-translation { flex-basis: 100%; margin: 0 0 0 1.3rem; }
+html body #furo-main-content .jp-warning-heading > .zh-translation { flex-basis: auto; margin: .6rem 0 0; font-size: 12px !important; }
+html body #furo-main-content .jp-inbox-card figcaption .zh-translation { font-weight: 400 !important; }
+
+html body #furo-main-content .jp-original,
+html body #furo-main-content .jp-original :is(strong, span, a):not(.zh-translation):not(.jp-parameter):not(.en-new) { color: inherit; }
+html body #furo-main-content .us-difference,
+html body #furo-main-content .jp-parameter.jp-parameter { color: #c2185b !important; }
+html body #furo-main-content .en-new.en-new.en-new,
+html body #furo-main-content .en-new.en-new :is(strong, span, a):not(.zh-translation):not(.jp-parameter) { color: #047857 !important; }
+html body #furo-main-content h1.en-new { background: #047857 !important; color: #fff !important; }
+html body #furo-main-content .jp-spec-filled { color: inherit !important; font-weight: inherit; }
+
+/* ---- review notes ---- */
+html body #furo-main-content .jp-review {
+  margin: .7rem 0; padding: .6rem .8rem;
+  border: 0; border-left: 3px solid #f59e0b; border-radius: .35rem;
+  background: #fff7ed; color: #b45309 !important; font-size: 12.5px; line-height: 1.6; overflow-wrap: anywhere;
+}
+html body #furo-main-content .jp-review :is(p, li, td, th, strong, span, small, code, a) { color: #b45309 !important; }
+html body #furo-main-content .jp-review-source { display: block; margin-top: .3rem; font-size: 11px; opacity: .85; }
+html body #furo-main-content :is(td, th) .jp-review { margin: .45rem 0 0; padding: .45rem .6rem; font-size: 11.5px; }
+html body #furo-main-content #jp-review-appendix { margin-top: 2.4rem; padding: 0; border: 0; background: none; }
+html body #furo-main-content #jp-review-appendix > h1 { color: #fff !important; }
+html body #furo-main-content #jp-review-appendix :is(p, li, h2, td, th) { color: #8a4b08 !important; }
+html body #furo-main-content #jp-review-appendix table { min-width: 0; }
+.hide-notes #furo-main-content .jp-review, .hide-notes .us-review-figure figcaption, .hide-notes #jp-review-appendix, .hide-notes .toc a[href="#jp-review-appendix"] { display: none !important; }
+.hide-zh #furo-main-content .zh-translation { display: none !important; }
+html body.only-changes #furo-main-content :is(.us-difference, .jp-parameter) { background: #fff0f7; outline: 1px solid #e8a8c4; outline-offset: 2px; }
+html body.only-changes #furo-main-content .en-new { background: #ecfdf5; outline: 1px solid #a7f3d0; outline-offset: 2px; }
+
+/* ---- generic grid tables reuse the spec-table shell of the JP manual ---- */
+html body #furo-main-content .jp-grid-composition { margin: .9rem 0 1.4rem; }
+html body #furo-main-content table.jp-grid-table { min-width: 0; table-layout: auto; }
+html body #furo-main-content table.jp-grid-table thead th { background: var(--hb-surface-strong) !important; font-weight: 700; }
+html body #furo-main-content table.hb-spec-table th.hb-spec-label { background: var(--hb-surface-strong) !important; font-weight: 700; }
+html body #furo-main-content table.hb-spec-table td, html body #furo-main-content table.hb-spec-table th { vertical-align: top !important; }
+#lcd-screen-operation table th:nth-child(1) { width: 24% !important; }
+#lcd-screen-operation table th:nth-child(2) { width: 18% !important; }
+#lcd-screen-operation table th:nth-child(3) { width: 58% !important; }
+#button-operations table th:nth-child(1) { width: 46% !important; }
+#button-operations table th:nth-child(2) { width: 24% !important; }
+#button-operations table th:nth-child(3) { width: 30% !important; }
+
+/* ---- JP safety parts that carry review annotations ---- */
+html body #furo-main-content .jp-symbol-panel td:first-child img,
+html body #furo-main-content .jp-symbol { width: 2.6rem !important; height: auto !important; max-width: 100% !important; display: block; margin: auto; }
+html body #furo-main-content .jp-symbol-panel td p + p { margin-top: .25rem; }
+html body #furo-main-content .jp-signal-table th .zh-translation { text-align: center; }
+html body #furo-main-content .jp-inbox-art img { max-height: 9rem !important; }
+
+/* ---- draft-only figures and template parts carried over from earlier rounds ---- */
+html body #furo-main-content .us-review-figure { margin: 1rem 0; padding: .8rem; border: 2px solid #dedede; border-radius: .8rem; background: #fff; }
+html body #furo-main-content .us-review-figure img { display: block; width: auto; max-width: 100%; max-height: 620px; height: auto; margin: 0 auto; }
+html body #furo-main-content .us-review-figure figcaption { margin: .6rem 0 0; color: #b45309; font-size: 12px; line-height: 1.6; }
+html body #furo-main-content .app-download-figures { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; margin: 18px 0; max-width: 680px; }
+html body #furo-main-content .app-download-figures .us-review-figure { margin: 0; min-width: 0; }
+html body #furo-main-content .app-store-badges img { width: 220px !important; max-width: 100% !important; height: auto !important; max-height: none !important; }
+html body #furo-main-content .app-download-qr img { width: 150px !important; max-width: 100% !important; height: auto !important; max-height: none !important; }
+html body #furo-main-content .jp-energy-template .energy-template-inline-icon { width: 16px; height: auto; display: inline-block; vertical-align: middle; margin: 0 3px; }
+html body #furo-main-content .jp-energy-template .energy-template-title-icon { width: 28px; height: auto; display: inline-block; vertical-align: middle; margin-left: 8px; }
+html body #furo-main-content .jp-energy-template .energy-template-diagram { margin: 20px 0; }
+html body #furo-main-content .jp-ups-template-figure { margin: 20px 0; }
+html body #furo-main-content .jp-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 22px; border: 1px dashed #a7a5a6; border-radius: .6rem; background: #f8f8f8; }
+html body #furo-main-content .manual-callout-body > :first-child { margin-top: 0; }
+html body #furo-main-content .manual-callout-body > :last-child { margin-bottom: 0; }
+html body #furo-main-content .manual-callout-body ol, html body #furo-main-content .manual-callout-body ul { margin: .2rem 0; }
+
+@media (max-width: 960px) {
+  .preview-layout { grid-template-columns: 1fr; }
+  aside.toc { display: none !important; }
+  .reading-column { padding: 1rem .8rem 2rem; }
+  #furo-main-content { padding: 1.4rem 1.1rem 1.8rem; }
+}
+@media (max-width: 600px) {
+  header.preview-toolbar { align-items: flex-start; padding: 10px 12px; }
+  .toolbar-actions button { padding: 6px 8px; font-size: 11px; }
+  .toolbar-actions button.print { display: none; }
+  html body #furo-main-content .app-download-figures { grid-template-columns: minmax(0, 1fr); }
+  html body #furo-main-content h2:not(.jp-safety-band):not(.jp-usage-heading):not(.jp-warning-heading) > .zh-translation { margin-left: 1.1rem; }
+}
+@media print {
+  header.preview-toolbar, aside.toc, .draft-banner, .change-log, .footer-note { display: none; }
+  .preview-layout { display: block; }
+  .reading-column { padding: 0; }
+  #furo-main-content { border: 0; box-shadow: none; padding: 0; max-width: none; }
+  .print-note { display: block; color: #1657bb; font-size: 12px; }
+}
+
+/* Dark title bars keep white text even when the title is marked as reused Japanese. */
+html body #furo-main-content :is(h1, h2.jp-safety-band, h2.jp-usage-heading, section:has(> figure.hb-warranty-card) > h2:first-child).jp-original,
+html body #furo-main-content :is(h1, h2.jp-safety-band, h2.jp-usage-heading, section:has(> figure.hb-warranty-card) > h2:first-child) > :is(span, strong):not(.zh-translation):not(.jp-parameter):not(.en-new) { color: #fff !important; }
+
+/* JE-1000F sets these two bars through inline style attributes; mirror them here. */
+html body #furo-main-content h2.jp-usage-heading {
+  display: block !important; margin: 1.8rem 0 1rem !important; padding: .6rem 1rem !important;
+  border-radius: 0 0 .7rem .7rem !important; background: #343434 !important; color: #fff !important;
+  font-size: 1.7rem !important; line-height: 1.35 !important;
+}
+html body #furo-main-content h2.jp-safety-band { display: block !important; min-height: 2.15rem; }
+html body #furo-main-content section:has(> figure.hb-warranty-card) > h2:first-child > .zh-translation {
+  display: inline !important; flex-basis: auto !important; margin: 0 0 0 .5rem !important; font-size: 11.5px !important;
+}
+
+/* v0.20 — parameters updated from the A0 spec sheet: purple, wins over green/rose/inherit rules. */
+html body #furo-main-content .jp-spec-updated.jp-spec-updated.jp-spec-updated.jp-spec-updated.jp-spec-updated { color: #7e22ce !important; font-weight: 600; }
+html body.only-changes #furo-main-content .jp-spec-updated { background: #f5f0ff; outline: 1px solid #c4b5fd; outline-offset: 2px; }
+html body #furo-main-content .jp-template-value { color: inherit; }
+
+/* v0.21 — the hide-zh toggle must beat every display rule on glosses (warranty-card heading glosses force display:inline). */
+html body.hide-zh #furo-main-content .zh-translation.zh-translation.zh-translation.zh-translation { display: none !important; }
+/* v0.21 — grid tables with a merged last column: the cell left of it in the next row is a :last-child and lost its right border. */
+html body #furo-main-content table.jp-grid-table tr:has(> td[rowspan]:last-child) + tr > *:last-child { border-right: 1.25px solid var(--hb-brand-dark) !important; }
+html body #furo-main-content table.jp-grid-table tbody tr:nth-last-child(2) > td[rowspan="2"] { border-bottom: 0 !important; }
+
+/* v0.23 — emergency list flows down two columns: a wrapped item no longer stretches its row and leaves a blank line. */
+html body #furo-main-content .jp-emergency-list.jp-emergency-list { display: block !important; column-count: 2; column-gap: 1.3rem; }
+html body #furo-main-content .jp-emergency-list > li { display: inline-block; width: 100%; position: relative; padding-left: 1.1em; break-inside: avoid; }
+html body #furo-main-content .jp-emergency-list > li::before { content: "•"; position: absolute; left: .15em; top: 0; }
+@media (max-width: 600px) { html body #furo-main-content .jp-emergency-list.jp-emergency-list { column-count: 1; } }
+
+/* v0.24 — product-name references (本製品 / the product / 以下「本製品」) in orange; beats green English and inherit rules. */
+html body #furo-main-content .jp-name-ref.jp-name-ref.jp-name-ref.jp-name-ref.jp-name-ref { color: #b45309 !important; font-weight: 600; }
+html body.only-changes #furo-main-content .jp-name-ref { background: #fff7ed; outline: 1px solid #fdba74; outline-offset: 2px; }
+html body #furo-main-content #preface > h1 { text-transform: none !important; }
+
+/* v0.25 — four box cards: 2x2 like the US layout; the documents card keeps its smaller artwork. */
+html body #furo-main-content .jp-inbox-grid:has(> .jp-inbox-card:nth-child(4)) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+html body #furo-main-content .jp-inbox-grid .jp-inbox-card:nth-child(3) img { max-height: 100% !important; }
+html body #furo-main-content .jp-inbox-grid .jp-inbox-docs img { max-height: 72% !important; }
+@media (max-width: 520px) { html body #furo-main-content .jp-inbox-grid:has(> .jp-inbox-card:nth-child(4)) { grid-template-columns: 1fr; } }
+
+/* v0.26 — every value filled from a spec sheet is purple (10-12 screenshots and A0 alike). */
+html body #furo-main-content .jp-spec-filled.jp-spec-filled.jp-spec-filled.jp-spec-filled.jp-spec-filled { color: #7e22ce !important; font-weight: 600; }
+html body.only-changes #furo-main-content .jp-spec-filled { background: #f5f0ff; outline: 1px solid #c4b5fd; outline-offset: 2px; }
+
+/* v0.28 — US OPERATIONS figure layout (labels over base art), re-keyed from the US page. */
+#furo-main-content .us-op-power .hb-operation-stage { border-color: #e6e7e8; }
+#furo-main-content .us-op-power .hb-operation-supporting-copy > .line:first-child { font-weight: 400; }
+#furo-main-content .us-op-power .hb-operation-supporting-copy > .line:last-child {
+  padding: 1.2cqw 1.8cqw;
+  border-radius: 2.4cqw;
+  background: var(--hb-surface);
+}
+@media (min-width: 761px) { #furo-main-content .us-op-power .hb-operation-step-label { font-size: 3.1546cqw; } #furo-main-content .us-op-power .hb-operation-step-instruction { font-size: 1.8927cqw; } #furo-main-content .us-op-power .hb-operation-duration { font-size: 2.2082cqw; } #furo-main-content .us-op-power .hb-operation-supporting-copy:has(> .line:nth-child(4):last-child) {
+    margin-top: -12.5cqw;
+    grid-template-columns: 43% minmax(0, 1fr);
+    padding-inline: 4.4cqw;
+    font-size: 1.8927cqw;
+  } #furo-main-content .us-op-power .hb-operation-supporting-copy:has(> .line:nth-child(4):last-child) > .line:last-child { margin-top: 1.2cqw; } }
+@media (max-width: 760px) { #furo-main-content .us-op-power .hb-operation-supporting-copy > .line:last-child { padding: 0.7rem; border-radius: 0.8rem; } #furo-main-content .us-op-power .hb-operation-art-box > .hb-operation-duration { display: block; font-size: max(.5rem, 2.2082cqw); } }
+#furo-main-content .us-op-usb .hb-operation-stage { border-color: #e6e7e8; }
+#furo-main-content .us-op-usb .hb-operation-prerequisite { background: var(--hb-fill); font-weight: 400; }
+@media (min-width: 761px) { #furo-main-content .us-op-usb .hb-operation-step-label { font-size: 3.1546cqw; } #furo-main-content .us-op-usb .hb-operation-step-instruction { font-size: 1.8927cqw; } #furo-main-content .us-op-usb .hb-operation-prerequisite { font-size: 2.082cqw; } }
+@media (max-width: 760px) { #furo-main-content .us-op-usb .hb-operation-art-box { display: flex; flex-direction: column; } #furo-main-content .us-op-usb .hb-operation-prerequisite {
+    position: static; order: -1; width: auto; max-width: none; min-width: 0;
+    margin: 0.65rem 0.65rem 0; padding: 0.5rem 0.75rem; border-radius: 0.8rem;
+  } }
+#furo-main-content .us-op-ac .hb-operation-stage { border-color: #e6e7e8; }
+#furo-main-content .us-op-ac .hb-operation-prerequisite { background: var(--hb-fill); font-weight: 400; }
+@media (min-width: 761px) { #furo-main-content .us-op-ac .hb-operation-step-label { font-size: 3.1646cqw; } #furo-main-content .us-op-ac .hb-operation-step-instruction { font-size: 1.8987cqw; } #furo-main-content .us-op-ac .hb-operation-prerequisite { font-size: 2.0886cqw; } }
+@media (max-width: 760px) { #furo-main-content .us-op-ac .hb-operation-art-box { display: flex; flex-direction: column; } #furo-main-content .us-op-ac .hb-operation-prerequisite {
+    position: static; order: -1; width: auto; max-width: none; min-width: 0;
+    margin: 0.65rem 0.65rem 0; padding: 0.5rem 0.75rem; border-radius: 0.8rem;
+  } }
+#furo-main-content .us-op-energy .hb-operation-stage { display: flex; flex-direction: column; border-color: #e6e7e8; }
+#furo-main-content .us-op-energy .hb-operation-supporting-copy {
+  order: -1; position: static; width: auto; margin: 1rem 1rem 0.8rem; padding: 1rem 1.2rem;
+  background: #ebebec; border: 0; border-radius: 1.2rem; font-size: 1rem; line-height: 1.5;
+}
+#furo-main-content .us-op-energy .hb-operation-supporting-copy > .line { margin: 0; }
+#furo-main-content .us-op-energy .hb-operation-canvas > .hb-operation-steps {
+  position: absolute; display: block; inset: 0; padding: 0; border: 0;
+}
+#furo-main-content .us-op-energy .hb-operation-step {
+  position: absolute; top: var(--hb-step-y); left: var(--hb-step-x); width: var(--hb-step-width);
+}
+#furo-main-content .us-op-energy .hb-operation-step-instruction { font-size: max(.5rem, 1.735cqw); line-height: 1.1; white-space: nowrap; }
+#furo-main-content .us-op-energy [data-step-id="toggle"] .hb-operation-step-label { font-size: max(.5rem, 3.1546cqw); line-height: 1.1; }
+#furo-main-content .us-op-energy [data-step-id="toggle"] .hb-operation-step-instruction { font-size: max(.5rem, 1.8927cqw); }
+#furo-main-content .us-op-energy .hb-operation-art-box > .hb-operation-duration { display: block; font-size: max(.5rem, 2.2082cqw); }
+@media (max-width: 760px) { #furo-main-content .us-op-energy .hb-operation-supporting-copy { margin: .65rem .65rem .6rem; padding: .75rem; } }
+#furo-main-content .us-op-energy .hb-operation-step[data-step-id="toggle"] { width: 32%; }
+html body #furo-main-content .us-op .hb-operation-figure { margin: .6rem 0 1rem; }
+
+/* v0.30 — merged first-column cells (LCD screen modes): centred, no doubled bottom rule at the table edge. */
+html body #furo-main-content table.jp-grid-table td[rowspan] { vertical-align: middle !important; }
+html body #furo-main-content table.jp-grid-table tbody tr:nth-last-child(3) > td[rowspan="3"] { border-bottom: 0 !important; }
+
+/* v0.31 — UPS notice box (JP template PDF: grey rounded panel, same tone as .jp-usage-intro). */
+html body #furo-main-content .jp-ups-notice.jp-ups-notice { background: #ebebeb !important; color: #343434 !important; border-radius: 1rem; padding: 1rem 1.2rem; margin: 1.2rem 0; }
+html body #furo-main-content .jp-ups-notice > :first-child { margin-top: 0; }
+html body #furo-main-content .jp-ups-notice > :last-child { margin-bottom: 0; }
+@media (max-width: 600px) { html body #furo-main-content .jp-ups-notice.jp-ups-notice { padding: .8rem .9rem; } }
+
+/* v0.31 — US prose pills (Total Loads / first full charge) and US source pill headings, as in the US manual. */
+html body #furo-main-content p.hb-prose-pill.hb-prose-pill { display: table; max-width: 100%; box-sizing: border-box; margin: .9rem 0 .6rem; padding: .22em .75em; border-radius: 999px; background: #343434 !important; color: #fff !important; font-size: 1.02em; font-weight: 700; line-height: 1.4; }
+html body #furo-main-content p.hb-prose-pill.hb-prose-pill > strong:not(.x1):not(.x2):not(.x3) { color: #fff !important; }
+html body #furo-main-content p.hb-prose-pill.en-new.en-new.en-new.en-new { background: #047857 !important; color: #fff !important; }
+html body #furo-main-content p.hb-prose-pill.en-new.en-new.en-new > strong:not(.x1):not(.x2):not(.x3) { color: #fff !important; }
+html body #furo-main-content p.hb-prose-pill.hb-prose-pill .jp-spec-filled.jp-spec-filled.jp-spec-filled { background: #f3e8ff; color: #6d28d9 !important; border-radius: .3em; padding: 0 .2em; }
+html body #furo-main-content p.hb-prose-pill.hb-prose-pill > .zh-translation.zh-translation.zh-translation { display: block; color: rgba(255, 255, 255, .82) !important; font-size: .72em; font-weight: 400; margin: 0; }
+html body.hide-zh #furo-main-content p.hb-prose-pill.hb-prose-pill > .zh-translation.zh-translation.zh-translation.zh-translation { display: none !important; }
+html body #furo-main-content h3.hb-source-pill-heading.hb-source-pill-heading { display: inline-block; padding: .3rem .75rem; border-radius: 999px; background: #ebebec !important; font-size: .95rem; text-transform: none; margin: 1rem 0 .5rem; }
+html body #furo-main-content h3.hb-source-pill-heading.hb-source-pill-heading::before,
+html body #furo-main-content h3.hb-source-pill-heading.hb-source-pill-heading::after { display: none !important; content: none !important; }
+html body #furo-main-content h3.hb-source-pill-heading.hb-source-pill-heading > .zh-translation { display: block; font-size: .78em; font-weight: 400; }
+
+/* v0.32 — an English (to-translate) chapter heading keeps white text on the green band. */
+html body #furo-main-content h1.en-new.en-new.en-new.en-new { background: #047857 !important; color: #fff !important; }
+html body #furo-main-content h1.en-new.en-new.en-new.en-new > .zh-translation { color: rgba(255, 255, 255, .85) !important; }
+
+/* v0.40 — JP prerequisite inside the USB / AC figures: US position and width, the longer Japanese sentence wraps to two lines. */
+@media (min-width: 761px) {
+  #furo-main-content :is(.us-op-usb, .us-op-ac) .hb-operation-prerequisite.jp-prereq {
+    white-space: normal; height: auto; min-height: var(--hb-height); align-items: center;
+    padding: .55cqw 1.6cqw .55cqw 1.9cqw; border-radius: 1.8cqw; font-size: 1.75cqw; line-height: 1.3;
+  }
+}
+#furo-main-content :is(.us-op-usb, .us-op-ac) .hb-operation-prerequisite.jp-prereq > p { margin: 0; }
+
+/* v0.41 — US LCD screen panel with JP cells: glosses stay small inside the cells, merged state cells centred. */
+#furo-main-content .hb-lcd-mode-composition .hb-lcd-mode-table td { vertical-align: middle; }
+#furo-main-content .hb-lcd-mode-composition .hb-lcd-mode-col-state { width: 20%; }
+#furo-main-content .hb-lcd-mode-composition .hb-lcd-mode-col-action { width: 21%; }
+#furo-main-content .hb-lcd-mode-composition .hb-lcd-mode-action { white-space: nowrap; }
+#furo-main-content .hb-lcd-mode-composition .hb-lcd-mode-table td > .zh-translation { display: block; font-size: .72rem; margin-top: .15rem; }
+html body.hide-zh #furo-main-content .hb-lcd-mode-composition .hb-lcd-mode-table td > .zh-translation.zh-translation.zh-translation.zh-translation { display: none !important; }
+@media (max-width: 760px) {
+  html body #furo-main-content .hb-lcd-mode-composition table.hb-lcd-mode-table { min-width: 0; table-layout: fixed; font-size: .8rem; }
+  #furo-main-content .hb-lcd-mode-composition .hb-lcd-mode-col-state { width: 24%; }
+  #furo-main-content .hb-lcd-mode-composition .hb-lcd-mode-col-action { width: 26%; }
+  #furo-main-content .hb-lcd-mode-composition .hb-lcd-mode-action { white-space: normal; }
+}
+
+/* v0.42 — cascade accessory panel: textless US art + live labels (one line inside the box; under the art on phones). */
+#furo-main-content .jp-acc-figure .jp-acc-art { position: relative; container-type: inline-size; display: grid; grid-template-columns: 1fr 1fr; }
+#furo-main-content .jp-acc-figure .jp-acc-art > img { grid-column: 1 / -1; display: block; width: 100%; height: auto; margin: 0; }
+#furo-main-content .jp-acc-figure .jp-acc-label { position: absolute; left: var(--x); top: var(--y); transform: translateX(-50%);
+  white-space: nowrap; text-align: center; font-size: 1.45cqw; line-height: 1.2; }
+#furo-main-content .jp-acc-figure .jp-acc-sold { position: absolute; left: var(--x); top: var(--y); width: var(--w); height: var(--h);
+  display: flex; align-items: center; font-weight: 700; font-size: 2.2cqw; line-height: 1; }
+#furo-main-content .jp-acc-figure .jp-acc-sold > span { color: #fff !important; }
+@media (max-width: 600px) {
+  #furo-main-content .jp-acc-figure .jp-acc-label { position: static; transform: none; white-space: normal; font-size: .78rem; padding: .35rem .3rem 0; }
+  #furo-main-content .jp-acc-figure .jp-acc-sold { font-size: max(7px, 2.2cqw); }
+}
+
+/* v0.43 — spec footnotes, App chapter in the JP manual layout, JP labels over the button-panel art. */
+#furo-main-content sup.jp-fn-mark { font-size: .7em; margin-left: .1em; }
+#furo-main-content .jp-spec-footnotes { margin: .8rem 0 1.2rem; font-size: .88rem; }
+#furo-main-content .jp-spec-footnotes > p { margin: .15rem 0; }
+#furo-main-content .jp-app-download { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem 1.6rem; align-items: start; margin: .6rem 0 1.2rem; }
+#furo-main-content .jp-app-download > figcaption { grid-column: 1 / -1; }
+#furo-main-content .jp-app-col > p { margin: 0 0 .6rem; }
+#furo-main-content .jp-app-col > img.jp-app-badges { display: block; width: auto; max-width: 11rem; height: auto; margin: 0; }
+#furo-main-content .jp-app-col > img.jp-app-qr { display: block; width: auto; max-width: 7.5rem; height: auto; margin: 0; }
+#furo-main-content p.jp-app-step { margin: .7rem 0 .4rem; font-weight: 600; }
+#furo-main-content p.jp-app-step > strong { margin-right: .5em; }
+#furo-main-content img.jp-inline-plus { display: inline-block; width: 1.15em; height: 1.15em; margin: 0 .2em; vertical-align: -.2em; }
+#furo-main-content p.jp-app-subhead { margin: .9rem 0 .2rem; font-weight: 600; }
+#furo-main-content .jp-app-phones img { display: block; max-width: 100%; height: auto; margin: 0 auto; }
+#furo-main-content .jp-app-steps-numbers { display: grid; grid-template-columns: repeat(3, 1fr); text-align: center; font-size: .95rem; margin: .2rem 0 .4rem; }
+#furo-main-content .jp-ctl-art { position: relative; container-type: inline-size; }
+#furo-main-content .jp-ctl-art > img { display: block; width: 100%; height: auto; margin: 0; }
+#furo-main-content .jp-ctl-label { position: absolute; left: var(--x); top: var(--y); width: var(--w); height: var(--h); display: flex; align-items: center;
+  background: #eaebec; color: #343434; font-size: 1.5cqw; line-height: 1.15; white-space: nowrap; }
+html body #furo-main-content section#app-setup :is(h1, h2) { text-transform: none !important; }
+@media (max-width: 600px) {
+  #furo-main-content .jp-app-download { grid-template-columns: 1fr; }
+  #furo-main-content .jp-ctl-label { font-size: max(6px, 1.5cqw); }
+}
+
+/* v0.44 — UPS 200V: list intro, port list and the following lines read as one block (US PDF), no paragraph gaps. */
+#furo-main-content .jp-tight-block > p { margin: .15rem 0 !important; }
+#furo-main-content .jp-tight-block > ul { margin: .1rem 0 .15rem !important; }
+#furo-main-content .jp-tight-block > ul > li { margin: 0 !important; }
+
+/* v0.47 — box back to three cards (screw terminal block removed with EPO): the v0.25 2x2 sizing must not hit the docs card. */
+html body #furo-main-content .jp-inbox-grid:not(:has(> .jp-inbox-card:nth-child(4))) > .jp-inbox-card .jp-inbox-art img { max-height: 9rem !important; }
+
+/* v0.48 — right side view: A0 silkscreen line art, baked leader lines, live labels sitting on their lines (US layout). */
+#furo-main-content .jp-rv-figure { margin: 1rem 0 1.25rem; }
+#furo-main-content .jp-rv-art { position: relative; container-type: inline-size; background: #fff; border: 1px solid #e5e7eb; border-radius: .75rem; overflow: hidden; }
+#furo-main-content .jp-rv-stage { position: relative; }
+#furo-main-content .jp-rv-stage > img { display: block; width: 100%; height: auto; margin: 0; border-radius: 0; }
+#furo-main-content .jp-rv-label { position: absolute; bottom: calc(100% - var(--y) + .45cqw); display: flex; flex-direction: column; gap: .2cqw;
+  font-size: 1.45cqw; line-height: 1.2; color: #4b5563; }
+#furo-main-content .jp-rv-R { right: .6%; width: 35.6%; text-align: right; align-items: flex-end; }
+#furo-main-content .jp-rv-L { left: .6%; width: 22%; text-align: left; align-items: flex-start; }
+#furo-main-content .jp-rv-name { font-size: 1.9cqw; font-weight: 700; color: #1f2937; }
+#furo-main-content .jp-rv-n, #furo-main-content .jp-rv-pin { display: none; }
+@media (max-width: 600px) {
+  #furo-main-content .jp-rv-label { position: static; width: auto; text-align: left; align-items: flex-start; font-size: .78rem; gap: .1rem;
+    padding: .45rem .7rem; border-top: 1px solid #eef0f2; }
+  #furo-main-content .jp-rv-name { font-size: .86rem; }
+  #furo-main-content .jp-rv-head { display: flex; align-items: center; gap: .4rem; }
+  #furo-main-content .jp-rv-n, #furo-main-content .jp-rv-pin { display: inline-flex; align-items: center; justify-content: center; border-radius: 50%;
+    background: #343031; color: #fff !important; font-weight: 700; line-height: 1; }
+  #furo-main-content .jp-rv-n { flex: none; width: 1.15rem; height: 1.15rem; font-size: .68rem; }
+  #furo-main-content .jp-rv-pin { position: absolute; left: var(--x); top: var(--y); width: 4.6cqw; height: 4.6cqw; font-size: 2.8cqw; transform: translate(-50%, -50%); }
+}
+
+/* v0.56 省エネモード: JE-1000F JP #id21 energy panel rules, scoped to the panel class */
+#furo-main-content .jp-energy-panel {border:2px solid #e6e6e6!important;border-radius:18px;padding:18px;margin-bottom:14px;background:white!important;color:#333!important;}
+#furo-main-content .jp-energy-gray {background:#ebebeb!important;color:#333!important;border-radius:14px;padding:12px 15px;margin-bottom:12px;}
+#furo-main-content .jp-energy-gray p {margin:0 0 9px!important;color:#333!important;}
+#furo-main-content .jp-energy-gray p:last-child {margin-bottom:0!important;}
+#furo-main-content .jp-energy-table {border:1px solid #555;border-radius:15px;overflow:hidden;margin:0 0 12px;}
+#furo-main-content .jp-energy-table table {width:100%!important;table-layout:fixed;border-collapse:collapse!important;margin:0!important;border:0!important;background:white!important;color:#333!important;}
+#furo-main-content .jp-energy-table th,#furo-main-content .jp-energy-table td {border:0!important;border-right:1px solid #888!important;border-bottom:1px solid #888!important;padding:7px 8px!important;text-align:center;vertical-align:middle!important;white-space:normal!important;background:white!important;color:#333!important;font-size:13px;}
+#furo-main-content .jp-energy-table th:first-child,#furo-main-content .jp-energy-table td:first-child {background:#ebebeb!important;width:28%;}
+#furo-main-content .jp-energy-table th:nth-child(2) {width:18%;}
+#furo-main-content .jp-energy-table tr>:nth-child(3) {border-right:0!important;}
+#furo-main-content .jp-energy-table tbody tr:last-child td,#furo-main-content .jp-energy-table td[rowspan] {border-bottom:0!important;}
+#furo-main-content .jp-energy-table p {margin:0!important;font-size:inherit!important;color:inherit!important;}
+#furo-main-content .jp-energy-table th {text-align:center!important;}
+@media(max-width:480px){#furo-main-content .jp-energy-panel{padding:10px;}#furo-main-content .jp-energy-gray{padding:10px;}#furo-main-content .jp-energy-table th,#furo-main-content .jp-energy-table td{font-size:11px;padding:6px 4px!important;}}
