@@ -33,7 +33,7 @@ small enough to read whole. When a workflow changes, update the owning topic pag
 | [`build-pipeline.md`](hello_auto-doc/build-pipeline.md) | you need the end-to-end `build.py` pipeline steps and the important behavior notes for each action |
 | [`build-commands.md`](hello_auto-doc/build-commands.md) | you need copy-paste commands, config scope, source modes, or `publish`/`preview`/`fast`/`sync-review` behavior |
 | [`web-publish-and-rtd.md`](hello_auto-doc/web-publish-and-rtd.md) | you work on the RTD catalog, Web composites, per-target Web configs, Manual Center search or the knowledge pages |
-| [`product-intelligence-demo.md`](hello_auto-doc/product-intelligence-demo.md) | you run the opt-in product knowledge and external-event research preview, inspect evidence or compare research snapshots |
+| [`product-intelligence-demo.md`](hello_auto-doc/product-intelligence-demo.md) | you record external events, export the decision digest, run the opt-in external-intelligence preview or its optional product lens, or compare snapshots |
 | [`web-rendering-and-ir.md`](hello_auto-doc/web-rendering-and-ir.md) | you change how Web components render through public IR (Inbox, FCC, LCD, troubleshooting, warranty, callouts, tables) |
 | [`version-tracking.md`](hello_auto-doc/version-tracking.md) | you set up diff baselines, compare commits, or read the diff reports |
 | [`checklists-and-pitfalls.md`](hello_auto-doc/checklists-and-pitfalls.md) | you need page contracts, common pitfalls, the verification checklist or the one-sentence rule |
