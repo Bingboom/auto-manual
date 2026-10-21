@@ -1,6 +1,6 @@
 ---
 name: us-jp-review-draft
-description: "制作或继续修改基于参考说明书和目标规格书的本地审核稿，支持 US→US 英文复用和 US→JP 日文语料复用。继承参考结构、原文、插图和共享样式，仅按目标规格及明确决定替换必要内容；建议和疑问进入审核意见。用于美规/日规审核稿、参考稿复用、规格回填和内容对照，不用于流水线 Start Review 或云文档回写。"
+description: "制作或继续修改基于参考说明书和目标规格书的流水线外审核稿，支持 US→US 英文复用和 US→JP 日文语料复用。继承参考结构、原文、插图和共享样式，仅按目标规格及明确决定替换必要内容；建议和疑问进入审核意见。用于美规/日规审核稿、参考稿复用、规格回填和内容对照，不用于流水线 Start Review 或云文档回写。"
 ---
 
 # Reference-based Review Draft — US→US / US→JP
@@ -19,7 +19,7 @@ description: "制作或继续修改基于参考说明书和目标规格书的本
 
 只加载本轮模式需要的指引。跨型号不等于跨语言；指定 JE-3000C/EU 英文警示作为补充来源，也不会把 US→US 目标改成欧规。
 
-生成的审核稿是流水线外产物：放在本任务输出目录，不写入正式模板、`docs/_review`、`data/phase2` 或实时源表，也不把审核稿提交到公共 auto-manual / Hello-Docs 仓库。Skill 定义和工具本身仍在工程仓库维护。私有审核站点及飞书上传见文末交付规则。
+生成的审核稿是流水线外产物：在本任务输出目录制作，或按已指定的私有审核仓库工作流维护，不写入正式模板、`docs/_review`、`data/phase2` 或实时源表，也不把审核稿提交到公共 auto-manual / Hello-Docs 仓库。Skill 定义和工具本身仍在工程仓库维护。私有审核站点及飞书上传见文末交付规则。
 
 ## 固定依据
 
@@ -86,10 +86,21 @@ description: "制作或继续修改基于参考说明书和目标规格书的本
 
 ## 版本、上传与发布
 
-一轮明确修改形成一个新版本：复制上一版做范围明确的替换，保留旧版及已确认决定；同步标题、工具栏、当前版本标记、`README.md`、`review.zh.md` 和变更记录，历史版本记录不重写。
+一轮明确修改形成一个新版本；承接已有稿的本地交付或私有仓库工作流。不要因模式合并擅自迁移当前稿或发布稿件。同步标题、工具栏、当前版本标记、`README.md`、`review.zh.md` 和变更记录，历史记录不重写。
 
-交付 `<MODEL>-<REGION>-Review-Draft-vX.YY.zip`，包含可独立打开的 HTML、全部资源、证据及必要登记表；核对完整性并给出预览和下载链接。
+本地稿先复制上一版做范围明确的替换，保留旧版和已确认决定；按本任务约定交付可独立打开的 HTML。用户要求 ZIP 或已有明确打包约定时，交付 `<MODEL>-<REGION>-Review-Draft-vX.YY.zip`，包含全部资源、证据及必要登记表，并核对完整性。
 
-- 飞书下载／上传：需要时读 [feishu-io.md](references/feishu-io.md)。上传须用户明确要求，完成后回读节点及 SHA-256；直接 Bitable 操作另遵守 [lark-cli-bitable-ops](../lark-cli-bitable-ops/SKILL.md)。
-- 私有审核站点：仅在用户要求发布时，按 [review-drafts-site.md](../../../code-as-doc/dev/rtd_manual_portal/review-drafts-site.md) 使用 `Bingboom/Hello-Docs-Review` 的版本目录及 `draft.json`；不发布到公共说明书仓库。遵守该文档的保留策略和访问边界。
+### 私有审核仓库工作流
+
+已指定 `Bingboom/Hello-Docs-Review` 的任务遵守 [review-drafts-site.md](../../../code-as-doc/dev/rtd_manual_portal/review-drafts-site.md)，同一型号／地区只有一份工作稿：
+
+- 当前稿在 `docs/review-drafts/<MODEL>/<REGION>/`，`draft.json` 记录当前版本；冻结稿在 `milestones/<version>/`。不能在工作稿旁新增普通版本目录，站点会拒绝其它位置的 `draft.json`。
+- 先把工作目录（排除 `milestones/`）复制到 scratch 作为上一版，再制作新版本并原地更新工作稿，保留现有里程碑。更新 `draft.json` 的 `version`、`date`、`status`、`summary`、`rd_open` 以及稿件记录。
+- 按本任务已授权的私有仓库编辑流程，以 `<MODEL> <REGION> vX.YY: <summary>` 提交到该仓库 `main` 并推送；回读提交和站点构建。中间版本由 Git 历史保留，不堆成目录。此处不授权向公共 auto-manual／Hello-Docs 提交审核稿。
+- 仅在操作者指定里程碑时复制工作目录（排除已有 `milestones/`）到 `milestones/<version>/` 并设置 `milestone`；不自动冻结每一版。
+- 只维护私有仓库的 `docs/review-drafts/`，其余路径由镜像同步拥有。私有站点重建总览及各机型／地区页面；ZIP 仅在用户要求时另交付。
+
+### 其他外部操作
+
+- 飞书下载／上传需要时读 [feishu-io.md](references/feishu-io.md)。上传须用户明确要求，完成后回读节点及 SHA-256；直接 Bitable 操作另遵守 [lark-cli-bitable-ops](../lark-cli-bitable-ops/SKILL.md)。
 - 草稿发现源数据错误：记录问题和应回写位置，不擅自写实时 Base；需要时读 [source-data-debt.md](references/source-data-debt.md)。

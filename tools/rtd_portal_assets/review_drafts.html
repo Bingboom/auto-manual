@@ -1,61 +1,28 @@
-{#- Private review-draft site (tools/rtd/review_site.py): one list page, no Sphinx context.
-    `lines` = one entry per model/region with `latest` and older kept `history` drafts. -#}
-{%- macro volume(draft) -%}{% if draft.volume %}{{ draft.volume.units }} 单元 · {{ draft.volume.words }} 词{% else %}—{% endif %}{%- endmacro -%}
-<!doctype html>
-<html lang="zh-CN">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="robots" content="noindex,nofollow">
-  <title>审核稿</title>
-  <link rel="stylesheet" href="_static/site-shell.css">
-  <link rel="stylesheet" href="_static/review-drafts.css">
-</head>
-<body class="app review-drafts">
-<aside class="app-sidebar" id="app-sidebar">
-  <a class="app-brand" href="index.html">工作资料<span>.</span></a>
-  <nav class="app-nav" aria-label="站点导航">
-    <div class="app-nav-group">说明书生产</div>
-    <a href="index.html" class="app-nav-link active" aria-current="page"><i aria-hidden="true">▧</i><span>审核稿</span><em>{{ lines|length }}</em></a>
-    {% if workbench_url %}<a href="{{ workbench_url }}" class="app-nav-link"><i aria-hidden="true">▦</i><span>说明书工作台</span></a>{% endif %}
-  </nav>
-</aside>
-<div class="app-scrim" aria-hidden="true"></div>
-<div class="app-content">
-  <header class="app-topbar">
-    <button class="app-menu" type="button" aria-label="展开导航" aria-controls="app-sidebar" aria-expanded="false">☰</button>
-    <div class="app-crumb">说明书生产 <span>/</span> <b>审核稿</b></div>
-  </header>
-  <main class="rd-main">
+{#- Review-draft overview: one row per model/region working draft; details on each line's page. -#}
+{% extends "review_drafts_layout.html" %}
+{% block crumb %}说明书生产 <span>/</span> <b>审核稿总览</b>{% endblock %}
+{% block main %}
     <section class="rd-head">
       <h1>审核稿</h1>
-      <p>各机型、地区的审核稿（私有，仅限有项目权限的成员）。每行是最新版本；展开可看保留的里程碑版本。新增翻译量按原英文计，待研发确认为该版附录中仍未答复的问题。</p>
+      <p>各机型、地区的审核稿（私有，仅限有项目权限的成员）。每条审核稿只有一份工作稿，原地修改；点机型进入该稿的页面，查看待研发确认的问题和冻结的里程碑版本。新增翻译量按原英文计。</p>
     </section>
     {% if lines %}
     <div class="rd-table-wrap">
     <table class="rd-table">
-      <thead><tr><th>机型</th><th>地区</th><th>最新版本</th><th>日期</th><th>状态</th><th>新增翻译量</th><th>待研发确认</th><th>在线查看</th></tr></thead>
+      <thead><tr><th>机型</th><th>地区</th><th>当前版本</th><th>日期</th><th>状态</th><th>新增翻译量</th><th>待研发确认</th><th>里程碑</th><th>在线查看</th></tr></thead>
       <tbody>
-      {% for line in lines %}{% set d = line.latest %}
+      {% for line in lines %}{% set d = line.current %}
       <tr>
-        <td class="rd-nowrap"><b>{{ line.model }}</b></td>
-        <td>{{ line.region }}<small> · {{ d.language }}</small></td>
+        <td class="rd-nowrap"><a class="rd-line-link" href="{{ line.page }}">{{ line.model }}</a></td>
+        <td class="rd-nowrap">{{ line.label }}<small> · {{ d.language }}</small></td>
         <td>{{ d.version }}{% if d.summary %}<small class="rd-note">{{ d.summary }}</small>{% endif %}</td>
         <td class="rd-nowrap">{{ d.date }}</td>
         <td><span class="rd-status">{{ d.status }}</span></td>
         <td>{{ volume(d) }}</td>
-        <td>{% if d.rd_open %}<details class="rd-open"><summary>{{ d.rd_open|length }} 项</summary><ol>{% for item in d.rd_open %}<li>{{ item }}</li>{% endfor %}</ol></details>{% else %}0{% endif %}</td>
+        <td class="rd-nowrap">{% if d.rd_open %}<a href="{{ line.page }}#rd-open">{{ d.rd_open|length }} 项</a>{% else %}0{% endif %}</td>
+        <td class="rd-nowrap">{% if line.milestones %}<a href="{{ line.page }}#milestones">{{ line.milestones|length }} 个</a>{% else %}—{% endif %}</td>
         <td><a class="rd-open-link" href="{{ d.url }}">打开 {{ d.version }}</a></td>
       </tr>
-      {% if line.history %}
-      <tr class="rd-history-row"><td colspan="8">
-        <details><summary>保留的历史版本（{{ line.history|length }}）</summary>
-          <ul class="rd-history">{% for h in line.history %}
-            <li><a href="{{ h.url }}">{{ h.version }}</a> <span>{{ h.date }}</span>{% if h.milestone %} <b>{{ h.milestone }}</b>{% endif %} <span>{{ volume(h) }}</span>{% if h.summary %} <small>{{ h.summary }}</small>{% endif %}</li>{% endfor %}
-          </ul>
-        </details>
-      </td></tr>
-      {% endif %}
       {% endfor %}
       </tbody>
     </table>
@@ -63,15 +30,4 @@
     {% else %}
     <p class="rd-empty">还没有审核稿。</p>
     {% endif %}
-  </main>
-</div>
-<script>
-(() => {
-  const body = document.body, menu = document.querySelector(".app-menu");
-  const set = open => { body.classList.toggle("app-menu-open", open); menu.setAttribute("aria-expanded", String(open)); };
-  menu.addEventListener("click", () => set(!body.classList.contains("app-menu-open")));
-  document.querySelector(".app-scrim").addEventListener("click", () => set(false));
-})();
-</script>
-</body>
-</html>
+{% endblock %}
