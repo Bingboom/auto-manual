@@ -5,10 +5,12 @@ import json
 from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
+from unittest.mock import patch
 
 from tools.rtd import intelligence_loop as loop
 from tools.rtd import intelligence_sync as sync
-from tools.rtd.intelligence_events import CONTENT_DIR, EVENTS_FILE, load_events
+from tools.rtd import intelligence_delivery as delivery
+from tools.rtd.intelligence_events import CONTENT_DIR, EVENTS_FILE, encode_intake, load_events
 
 FIXTURE = Path(__file__).resolve().parent / "fixtures" / "external_intel" / "events.json"
 TOKEN = "bascnSECRETTOKEN"
@@ -46,6 +48,7 @@ class LoopTests(unittest.TestCase):
         temp = TemporaryDirectory()
         self.addCleanup(temp.cleanup)
         self.root = Path(temp.name)
+        self.enterContext(patch.dict("os.environ", {delivery.STATE_ENV: str(self.root / "runtime")}))
         self.path = self.root / CONTENT_DIR / EVENTS_FILE
         self.path.parent.mkdir()
         self.path.write_bytes(FIXTURE.read_bytes())
@@ -70,6 +73,7 @@ class LoopTests(unittest.TestCase):
         self.assertIn("would change (dry run; add --write to write it)", output)
         self.assertEqual(self.path.read_bytes(), before)
         self.assertEqual(self.lark.sent(), [])
+        self.assertFalse(delivery.state_path(self.root).exists())
 
     def test_write_produces_a_loadable_intake_and_a_rerun_is_unchanged(self):
         code, output = self.sync("--write")
@@ -159,6 +163,115 @@ class LoopTests(unittest.TestCase):
         self.assertEqual(code, 1)
         self.assertIn("cannot take this sync", output)
         self.assertEqual(self.path.read_bytes(), before)
+
+    def reviewed_row(self):
+        self.path.write_bytes(encode_intake({"schema_version": "external-intel-events/v1", "events": []}))
+        return cells(**{sync.DECISION: "批准渠道核实", sync.REVIEWER: "李四", sync.REVIEWED: "2026-10-21"})
+
+    def test_failed_judgment_notification_replays_exact_message_without_resync(self):
+        rows = [self.reviewed_row()]
+        failed = FakeLark(rows, fail=["im", "+messages-send"])
+        code, _ = self.sync("--write", "--push", "--chat-id", "oc_1", lark=failed)
+        self.assertEqual(code, 1)
+        saved = delivery.load(self.root)
+        self.assertIsNotNone(saved)
+        self.assertNotIn(TOKEN, delivery.state_path(self.root).read_text())
+        self.assertNotIn("oc_1", delivery.state_path(self.root).read_text())
+        before = self.path.read_bytes()
+        retry = FakeLark([])  # A retry must not erase the report by rereading the table.
+        code, output = self.sync("--write", "--push", "--chat-id", "oc_1", lark=retry)
+        self.assertEqual(code, 0)
+        self.assertEqual(retry.calls, failed.sent())
+        self.assertIn("本次同步录入的人工判断", retry.sent()[0][retry.sent()[0].index("--content") + 1])
+        self.assertEqual(self.path.read_bytes(), before)
+        self.assertIsNone(delivery.load(self.root))
+        self.assertEqual(json.loads(output.splitlines()[-1])["events_snapshot_id"], saved["events_snapshot_id"])
+
+    def test_push_alone_and_later_day_retry_use_original_key_content_and_snapshot(self):
+        failed = FakeLark([self.reviewed_row()], fail=["im", "+messages-send"])
+        self.sync("--write", "--push", "--chat-id", "oc_1", lark=failed)
+        retry = FakeLark([])
+        code, _ = self.main("push", "--chat-id", "oc_1", "--today", "2026-10-22", lark=retry)
+        self.assertEqual(code, 0)
+        self.assertEqual(retry.calls, failed.sent())
+
+    def test_saved_push_dry_run_and_wrong_destination_preserve_pending_state(self):
+        failed = FakeLark([self.reviewed_row()], fail=["im", "+messages-send"])
+        self.sync("--write", "--push", "--chat-id", "oc_1", lark=failed)
+        state = delivery.state_path(self.root).read_bytes()
+        reader = FakeLark([])
+        for argv in (("push", "--dry-run"), ("sync", "--base-token", TOKEN, "--table-id", "tblX", "--push")):
+            code, output = self.main(*argv, lark=reader)
+            self.assertEqual(code, 0)
+            self.assertIn("saved message, dry run", output)
+        code, _ = self.main("push", "--chat-id", "oc_other", lark=reader)
+        self.assertEqual(code, 1)
+        code, _ = self.sync("--write", lark=reader)
+        self.assertEqual(code, 1)
+        self.assertEqual(reader.calls, [])
+        self.assertEqual(delivery.state_path(self.root).read_bytes(), state)
+
+    def test_candidate_write_failure_is_recovered_before_sending_the_saved_message(self):
+        lark = FakeLark([self.reviewed_row()])
+        before = self.path.read_bytes()
+        with patch.object(loop, "_write", side_effect=OSError("disk unavailable")):
+            code, _ = self.sync("--write", "--push", "--chat-id", "oc_1", lark=lark)
+        self.assertEqual((code, lark.sent()), (1, []))
+        self.assertEqual(self.path.read_bytes(), before)
+        self.assertIsNotNone(delivery.load(self.root))
+        retry = FakeLark([])
+        code, _ = self.main("push", "--chat-id", "oc_1", lark=retry)
+        self.assertEqual((code, len(retry.sent())), (0, 1))
+        self.assertNotEqual(self.path.read_bytes(), before)
+        self.assertEqual(load_events(self.root)["events"][0]["review"]["status"], "reviewed")
+
+    def test_newer_operator_edit_is_not_overwritten_or_sent_as_the_saved_candidate(self):
+        failed = FakeLark([self.reviewed_row()], fail=["im", "+messages-send"])
+        self.sync("--write", "--push", "--chat-id", "oc_1", lark=failed)
+        document = json.loads(self.path.read_bytes())
+        document["events"][0]["title"] = "人工新改动"
+        self.path.write_bytes(encode_intake(document))
+        changed = self.path.read_bytes()
+        retry = FakeLark([])
+        code, _ = self.main("push", "--chat-id", "oc_1", lark=retry)
+        self.assertEqual((code, retry.sent(), self.path.read_bytes()), (1, [], changed))
+        self.assertIsNotNone(delivery.load(self.root))
+
+    def test_unacknowledged_send_keeps_the_original_pending_message(self):
+        lark = FakeLark([self.reviewed_row()])
+
+        def no_ack(args):
+            return lark(args) if args[:2] == ["base", "+record-list"] else {"code": 0, "data": {}}
+
+        code, _ = self.sync("--write", "--push", "--chat-id", "oc_1", lark=no_ack)
+        self.assertEqual(code, 1)
+        self.assertIsNotNone(delivery.load(self.root))
+
+    def test_cannot_save_pending_message_never_commits_the_candidate_or_sends(self):
+        lark = FakeLark([self.reviewed_row()])
+        before = self.path.read_bytes()
+        with patch.object(delivery, "save", side_effect=OSError("disk unavailable")):
+            code, _ = self.sync("--write", "--push", "--chat-id", "oc_1", lark=lark)
+        self.assertEqual((code, lark.sent(), self.path.read_bytes()), (1, [], before))
+
+    def test_invalid_pending_state_cannot_be_overwritten_or_sent(self):
+        state = delivery.state_path(self.root)
+        state.parent.mkdir(parents=True)
+        state.write_text('{"schema_version": "unknown"}')
+        before = state.read_bytes()
+        code, _ = self.main("push", "--chat-id", "oc_1")
+        self.assertEqual((code, self.lark.sent(), state.read_bytes()), (1, [], before))
+
+    def test_failed_standalone_push_checks_its_original_intake_before_retry(self):
+        failed = FakeLark([], fail=["im", "+messages-send"])
+        code, _ = self.main("push", "--chat-id", "oc_1", lark=failed)
+        self.assertEqual(code, 1)
+        self.path.write_text('{"schema_version":"external-intel-events/v1","events":[]}')
+        changed = self.path.read_bytes()
+        retry = FakeLark([])
+        code, _ = self.main("push", "--chat-id", "oc_1", lark=retry)
+        self.assertEqual((code, retry.sent(), self.path.read_bytes()), (1, [], changed))
+        self.assertIsNotNone(delivery.load(self.root))
 
 
 if __name__ == "__main__":

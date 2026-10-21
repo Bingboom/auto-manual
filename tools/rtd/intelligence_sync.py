@@ -4,9 +4,9 @@ One table row is one external event, in the columns of ``COLUMNS``. Each sync
 compares a row with the latest revision of its event in
 ``external-intel/events.json`` and appends a revision only when the row's facts
 or its human judgment changed; earlier revisions are never rewritten. A
-judgment (人工判断, 复核人, 复核日期) counts only when its 复核日期 is on or
-after the date of the revision it judges, so facts edited after a judgment wait
-for a new one.
+judgment (人工判断, 复核人, 复核日期) belongs to the facts it judges, not the
+date it was synced. Reusing the same judgment after facts change leaves the
+event pending, even on the same day; an explicit judgment edit reconfirms it.
 
 A row that cannot be used keeps its event's last good state and is reported,
 and an event whose row disappeared is kept and reported, so rows are fixed in
@@ -24,7 +24,7 @@ import re
 from typing import Any
 
 from tools.rtd.decision_digest import safe_external_url
-from tools.rtd.intelligence_events import INTAKE_SCHEMA, validated_cases
+from tools.rtd.intelligence_events import INTAKE_SCHEMA, content_hash, validated_cases
 from tools.workspace_snapshot import complete_rows
 
 # Business dates are China Standard Time, which has no daylight saving time.
@@ -248,17 +248,40 @@ def _review(judgment: dict | None, since: str) -> dict:
     return {"status": "pending", "decision": None}
 
 
-def _review_key(review: dict) -> tuple:
-    return tuple(review.get(key) for key in ("status", "decision", "reviewed_by", "reviewed_on"))
-
-
 def _facts_of(revision: dict, external: bool) -> dict:
     keys = _FACTS + (_EXTERNAL_FACTS if external else ())
     return {key: revision.get(key, [] if key in ("hypotheses", "unknowns") else None) for key in keys}
 
 
-def _revision(number: int, today: str, reason: str, facts: dict, review: dict) -> dict:
-    return {"revision": number, "recorded_on": today, "reason": reason, **facts, "review": review}
+def _facts_since(case: dict) -> str:
+    """Review-only revisions never move the date of the facts being judged."""
+    external = case["source_kind"] == "external_event"
+    facts, since = None, case["revisions"][0]["recorded_on"]
+    for revision in case["revisions"]:
+        current = _facts_of(revision, external)
+        if current != facts:
+            facts, since = current, revision["recorded_on"]
+    return since
+
+
+def _seen_judgment(case: dict) -> str:
+    """Recover legacy intake conservatively; new revisions record the exact observed input."""
+    latest = case["revisions"][-1]
+    if "intake_judgment_sha256" in latest:
+        return latest["intake_judgment_sha256"]
+    external = case["source_kind"] == "external_event"
+    for revision in reversed(case["revisions"]):
+        review = revision["review"]
+        if review["status"] == "reviewed":
+            if latest["review"]["status"] == "reviewed" or _facts_of(revision, external) != _facts_of(latest, external):
+                return content_hash({key: review[key] for key in ("decision", "reviewed_by", "reviewed_on")})
+            break
+    return content_hash(None)
+
+
+def _revision(number: int, today: str, reason: str, facts: dict, review: dict, judgment: dict | None) -> dict:
+    return {"revision": number, "recorded_on": today, "reason": reason, **facts, "review": review,
+            "intake_judgment_sha256": content_hash(judgment)}
 
 
 def _apply(case: dict | None, parts: dict, *, event_id: str, record_id: str, today: str) -> tuple[dict, str]:
@@ -266,21 +289,23 @@ def _apply(case: dict | None, parts: dict, *, event_id: str, record_id: str, tod
     facts, judgment = parts["facts"], parts["judgment"]
     if case is None:
         review = _review(judgment, today)
-        revision = _revision(1, today, parts["reason"] or "从飞书多维表首次录入", facts, review)
+        revision = _revision(1, today, parts["reason"] or "从飞书多维表首次录入", facts, review, judgment)
         return {"id": event_id, **parts["entry"], "intake_record_id": record_id, "revisions": [revision]}, "added"
     head = {key: value for key, value in case.items() if key != "revisions"}
     updated = {**head, **parts["entry"], "intake_record_id": record_id, "revisions": deepcopy(case["revisions"])}
     latest = case["revisions"][-1]
+    same_judgment = content_hash(judgment) == _seen_judgment(case)
     if _facts_of(latest, case["source_kind"] == "external_event") != facts:
-        review, change = _review(judgment, today), "revised"
+        review = _review(None if same_judgment else judgment, today)
+        change = "revised"
     else:
-        review = _review(judgment, latest["recorded_on"])
-        if _review_key(review) == _review_key(latest["review"]):
+        if same_judgment:
             return updated, "unchanged" if updated == case else "relabelled"
+        review = _review(judgment, _facts_since(case))
         change = "judged" if review["status"] == "reviewed" else "reopened"
     reason = parts["reason"] if parts["reason"] and parts["reason"] != latest["reason"] else \
         {"revised": "飞书多维表更新", "judged": "录入人工判断", "reopened": "撤回人工判断"}[change]
-    updated["revisions"].append(_revision(len(case["revisions"]) + 1, today, reason, facts, review))
+    updated["revisions"].append(_revision(len(case["revisions"]) + 1, today, reason, facts, review, judgment))
     return updated, change
 
 
@@ -338,8 +363,11 @@ def _notices(case: dict, parts: dict, policy_ids: set[str] | None) -> list[str]:
     notices = []
     latest = case["revisions"][-1]
     if parts["judgment"] and latest["review"]["status"] == "pending":
-        notices.append(f"{DECISION}早于修订日期 {latest['recorded_on']}，未计入；仍然适用请把{REVIEWED}改为"
-                       f" {latest['recorded_on']} 或之后")
+        since = _facts_since(case)
+        if parts["judgment"]["reviewed_on"] < since:
+            notices.append(f"{DECISION}早于修订日期 {since}，未计入；仍然适用请把{REVIEWED}改为 {since} 或之后")
+        else:
+            notices.append(f"事实已变化，原{DECISION}未重新确认；请更新判断内容或复核日期后再同步")
     policy = parts["entry"].get("source_record_id")
     if policy and policy_ids is not None and policy not in policy_ids:
         notices.append(f"{POLICY_ID} {policy} 不在市场政策快照中，页面会显示来源资料缺失")

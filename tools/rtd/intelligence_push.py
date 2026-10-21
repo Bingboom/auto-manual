@@ -165,7 +165,7 @@ def idempotency_key(chat_id: str, content: dict, today: str) -> str:
 def send(run, *, chat_id: str, content: dict, key: str) -> dict:
     """Send ``content`` to ``chat_id`` through ``run`` (lark-cli, as the bot); the receipt names no chat."""
     payload = run(["im", "+messages-send", "--chat-id", chat_id, "--msg-type", "post",
-                   "--content", json.dumps(content, ensure_ascii=False), "--idempotency-key", key,
+                   "--content", json.dumps(content, ensure_ascii=False, sort_keys=True), "--idempotency-key", key,
                    "--format", "json"])
     data = payload.get("data") if isinstance(payload, dict) else None
     message_id = data.get("message_id") if isinstance(data, dict) else None

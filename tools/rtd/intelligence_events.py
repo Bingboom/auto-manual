@@ -32,7 +32,7 @@ _KINDS = {"policy", "market", "competitor"}
 _CASE_KEYS = {"id", "title", "kind", "market", "occurred_on", "source_kind", "source_record_id",
               "intake_record_id", "product_lens", "revisions"}
 _REVISION_KEYS = {"revision", "recorded_on", "reason", "decision_question", "decision_owner", "decide_by",
-                  "hypotheses", "unknowns", "review"}
+                  "hypotheses", "unknowns", "review", "intake_judgment_sha256"}
 # Only an external event states its own facts; a policy event reads them from its record.
 _EXTERNAL_KEYS = {"status", "summary", "boundary", "sources"}
 _REVIEW_KEYS = {"status", "decision", "reviewed_by", "reviewed_on"}
@@ -123,6 +123,10 @@ def _revision(revision: Any, expected: int, external: bool) -> None:
     for key in ("hypotheses", "unknowns"):
         _texts(revision.get(key, []), key, required=False)
     _review(revision.get("review"))
+    if "intake_judgment_sha256" in revision and not (
+            isinstance(revision["intake_judgment_sha256"], str)
+            and re.fullmatch(r"[0-9a-f]{64}", revision["intake_judgment_sha256"])):
+        raise ValueError("external event intake judgment needs a SHA-256")
     if external:
         for key in ("summary", "boundary"):
             _text(revision.get(key), key)

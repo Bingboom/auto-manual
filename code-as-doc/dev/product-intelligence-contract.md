@@ -59,6 +59,10 @@ Each entry has `id`, `title`, `kind` (policy/market/competitor), `market`,
 - `intake_record_id` (optional, unique, `rec…`) names the Feishu table row an
   event is synced from; it is carried to the event and the digest item as the
   row link, and is absent from hand-written events.
+- A synced revision optionally carries `intake_judgment_sha256`, the canonical
+  SHA-256 of the observed judgment triple (or null when the cells are empty).
+  This input marker is not approval and is not exported as public review metadata;
+  it prevents an unchanged stale judgment from approving a later fact version.
 
 Reviewed revisions require a decision, reviewer and ISO review date. Later pending
 revisions preserve earlier human judgments in history without inheriting approval.
@@ -130,9 +134,13 @@ document and a report, leaving both inputs unchanged:
   row's 变更说明 when that changed, else a default. Title, kind, market and
   occurrence date update the entry without a revision; rows never touch
   `product_lens`.
-- A complete judgment counts only when its 复核日期 is on or after the date of
-  the revision it judges; otherwise that revision stays pending and the report
-  carries a notice.
+- A new complete judgment counts only when its 复核日期 is on or after the
+  latest factual revision. Review-only syncs do not move that date or expire an
+  accepted judgment. Unchanged judgment cells never approve changed facts, even
+  on the same day; the observed input hash keeps later retries pending. An
+  explicit edit to the judgment, reviewer or review date reconfirms it (the date
+  gate still applies). Clearing all three cells and syncing before refilling
+  them is also an explicit new judgment. Legacy revisions remain readable.
 - The report names each row's change (`added`, `revised`, `judged`, `reopened`,
   `relabelled`) and counts `unchanged`. A row that cannot be used is a `problem`
   and its event keeps its last state; a stale judgment or a policy ID missing
@@ -157,6 +165,25 @@ their type is printed. Configuration comes from flags or `FEISHU_EXTERNAL_INTEL_
 and `EXTERNAL_INTEL_SITE_URL`; nothing secret is written to a file. No workflow
 runs the loop yet; scheduling it is a separate, approved workflow change.
 
+`tools.rtd.intelligence_delivery` persists a single pending message per knowledge
+checkout under `~/.cache/auto-manual/external-intel/<checkout-hash>/pending.json`
+(root override: `EXTERNAL_INTEL_STATE_DIR`), outside the business content tree.
+Before replacing events.json or sending, it atomically saves the exact message,
+original day/key/snapshot, candidate intake and expected parent hash. Only a hash
+of chat/profile/identity is kept; raw transport configuration is not persisted.
+Message links and intake remain business data and belong only in this local
+runtime cache, never an artifact published or committed to Hello-Docs.
+
+A retry first recovers the saved candidate when the file still matches its
+expected parent, then replays the saved message with its original key; it never
+rereads the table or rebuilds the report first. Another destination/profile or a
+newer operator edit stops the retry without overwriting or sending. A nonempty
+message acknowledgment clears the pending file; failure or missing acknowledgment
+retains it. `push --dry-run` previews it without writing; `push` or
+`sync --write --push` resumes it. Run sync again after recovery for newer rows.
+Feishu's idempotency window is one hour; retries beyond it can duplicate a send
+whose acknowledgment was lost, even with the same saved key.
+
 ## Page, exports and ownership
 
 - Intake and digest: `tools/rtd/intelligence_events.py`, `tools/rtd/decision_digest.py`,
@@ -167,7 +194,7 @@ runs the loop yet; scheduling it is a separate, approved workflow change.
 - Build: `tools/rtd/research_build.py` and the portal registration, with
   `tests/test_product_intelligence_build.py`.
 - Loop: `tools/rtd/intelligence_sync.py`, `tools/rtd/intelligence_push.py`,
-  `tools/rtd/intelligence_loop.py`, with `tests/test_intelligence_sync.py`,
+  `tools/rtd/intelligence_loop.py`, `tools/rtd/intelligence_delivery.py`, with `tests/test_intelligence_sync.py`,
   `tests/test_intelligence_push.py` and `tests/test_intelligence_loop.py`.
 
 The page route is `research/product-intelligence.html`, combined sites only.

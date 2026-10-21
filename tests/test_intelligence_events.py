@@ -91,6 +91,15 @@ class IntakeTests(unittest.TestCase):
         self.assertEqual(events_snapshot(payload, self.root), load_events(self.root))
         self.assertEqual(events_snapshot(None, self.root)["snapshot_id"], load_events(None)["snapshot_id"])
 
+    def test_observed_judgment_hash_is_optional_validated_and_not_a_public_review(self):
+        revision = self.us["revisions"][-1]
+        revision["intake_judgment_sha256"] = "a" * 64
+        self.assertNotIn("intake_judgment_sha256", self.event(self.load())["review"])
+        for invalid in (None, 0, "", "a" * 63, "g" * 64, "A" * 64):
+            with self.subTest(value=invalid):
+                revision["intake_judgment_sha256"] = invalid
+                self.rejects("intake judgment needs a SHA-256")
+
     def test_source_names_the_business_file_and_its_bytes(self):
         snapshot = self.load()
         expected = {"path": f"{CONTENT_DIR}/{EVENTS_FILE}", "sha256": hashlib.sha256(self.path.read_bytes()).hexdigest()}

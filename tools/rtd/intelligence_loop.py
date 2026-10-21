@@ -21,6 +21,7 @@ import tempfile
 
 from tools.rtd import intelligence_push as push
 from tools.rtd import intelligence_sync as sync
+from tools.rtd import intelligence_delivery as delivery
 from tools.rtd.decision_digest import decision_digest, safe_external_url
 from tools.rtd.intelligence_events import CONTENT_DIR, EVENTS_FILE, encode_intake, events_snapshot
 from tools.rtd.market_policy import market_context
@@ -69,7 +70,41 @@ def _runner(args):
     return lark_runner(args.cli_bin, args.identity)
 
 
-def _deliver(args, intel: dict, report: dict | None, *, send: bool) -> int:
+def _send_pending(args, job: dict) -> int:
+    """Replay the original candidate and message, and clear it only after acknowledgment."""
+    if job["destination_sha256"] != delivery.destination(args.chat_id, args.cli_bin, args.identity):
+        print("ERROR   pending push belongs to another chat, profile or identity; restore the original configuration")
+        return 1
+    try:
+        if delivery.apply_intake(args.knowledge_dir, job, _write):
+            print(f"{args.knowledge_dir / CONTENT_DIR / EVENTS_FILE}: written from pending candidate")
+        receipt = push.send(_runner(args), chat_id=args.chat_id, content=job["content"], key=job["idempotency_key"])
+        if not receipt["message_id"]:
+            raise RuntimeError("send returned no message acknowledgment")
+        delivery.acknowledge(args.knowledge_dir, job)
+    except (RuntimeError, OSError, ValueError) as exc:
+        print(f"ERROR   push failed ({type(exc).__name__}); pending candidate/message retained; "
+              f"{_TRANSPORT_HINT}; retry the same command with the original configuration")
+        return 1
+    print(json.dumps({**receipt, "events_snapshot_id": job["events_snapshot_id"]}, ensure_ascii=False))
+    return 0
+
+
+def _store(args, payload: bytes | None, before: bytes | None) -> None:
+    if payload is None:
+        return
+    path = args.knowledge_dir / CONTENT_DIR / EVENTS_FILE
+    if payload == before:
+        print(f"{path}: unchanged")
+    elif args.write:
+        _write(path, payload)
+        print(f"{path}: written ({len(json.loads(payload)['events'])} events)")
+    else:
+        print(f"{path}: would change (dry run; add --write to write it)")
+
+
+def _deliver(args, intel: dict, report: dict | None, *, send: bool,
+             payload: bytes | None = None, before: bytes | None = None) -> int:
     """Send (or, when not ``send``, print) the digest message of ``intel``."""
     from tools.rtd.product_research import PAGE
 
@@ -78,21 +113,17 @@ def _deliver(args, intel: dict, report: dict | None, *, send: bool) -> int:
     content = push.post_content(digest, today=args.today, record_url=args.record_url,
                                 page_url=f"{site}/{PAGE}.html" if site else "", report=report)
     if content is None:
+        _store(args, payload, before)
         print("push: nothing is pending and the sync reported nothing; no message")
         return 0
-    key = push.idempotency_key(args.chat_id, content, args.today)
+    job = delivery.message(content=content, today=args.today, snapshot=intel["snapshot_id"], chat=args.chat_id,
+                           cli=args.cli_bin, identity=args.identity, intake=payload, before=before)
     if not send:
-        print(f"push (dry run, idempotency key {key}):\n{push.preview(content)}")
+        _store(args, payload, before)
+        print(f"push (dry run, idempotency key {job['idempotency_key']}):\n{push.preview(content)}")
         return 0
-    try:
-        receipt = push.send(_runner(args), chat_id=args.chat_id, content=content, key=key)
-    except (RuntimeError, OSError, ValueError) as exc:
-        # Transport errors carry the whole command line; never print or persist their text.
-        print(f"ERROR   push failed ({type(exc).__name__}); {_TRANSPORT_HINT}; "
-              "rerunning within the hour with the same content sends at most one message")
-        return 1
-    print(json.dumps({**receipt, "events_snapshot_id": intel["snapshot_id"]}, ensure_ascii=False))
-    return 0
+    delivery.save(args.knowledge_dir, job)
+    return _send_pending(args, job)
 
 
 def _policy_ids(root: Path) -> set[str] | None:
@@ -127,31 +158,26 @@ def run_sync(args) -> int:
         return 1
     payload = encode_intake(document)
     print("\n".join(_summary(report)))
-    if payload == before:
-        print(f"{path}: unchanged")
-    elif args.write:
-        _write(path, payload)
-        print(f"{path}: written ({len(document['events'])} events)")
-    else:
-        print(f"{path}: would change (dry run; add --write to write it)")
     if not args.push:
+        _store(args, payload, before)
         return 0
     try:
         intel = events_snapshot(payload, args.knowledge_dir)
     except (OSError, ValueError) as exc:
         print(f"ERROR   cannot build the digest: {exc}")
         return 1
-    return _deliver(args, intel, report, send=args.write)
+    return _deliver(args, intel, report, send=args.write, payload=payload, before=before)
 
 
 def run_push(args) -> int:
     path = args.knowledge_dir / CONTENT_DIR / EVENTS_FILE
     try:
-        intel = events_snapshot(path.read_bytes() if path.is_file() else None, args.knowledge_dir)
+        payload = path.read_bytes() if path.is_file() else None
+        intel = events_snapshot(payload, args.knowledge_dir)
     except (OSError, ValueError) as exc:
         print(f"ERROR   cannot read {path}: {exc}")
         return 1
-    return _deliver(args, intel, None, send=not args.dry_run)
+    return _deliver(args, intel, None, send=not args.dry_run, payload=payload, before=payload)
 
 
 def _missing(args) -> list[str]:
@@ -209,7 +235,23 @@ def main(argv: list[str] | None = None, *, run=None) -> int:
     if args.site_url and not safe_external_url(args.site_url):
         print("ERROR   --site-url must be an HTTPS URL")
         return 1
-    return run_sync(args) if args.command == "sync" else run_push(args)
+    try:
+        job = delivery.load(args.knowledge_dir)
+        sending = args.write and args.push if args.command == "sync" else not args.dry_run
+        if job is not None:
+            if sending:
+                print("push: resuming the saved message; run sync again afterwards for newer table changes")
+                return _send_pending(args, job)
+            if args.command == "sync" and args.write:
+                print("ERROR   deliver the pending push before another written sync (add --push)")
+                return 1
+            if args.command == "push" or args.push:
+                print(f"push (saved message, dry run):\n{push.preview(job['content'])}")
+                return 0
+        return run_sync(args) if args.command == "sync" else run_push(args)
+    except (OSError, ValueError) as exc:
+        print(f"ERROR   local intake/delivery state failed ({type(exc).__name__}); preserve the runtime state")
+        return 1
 
 
 if __name__ == "__main__":

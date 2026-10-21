@@ -205,6 +205,49 @@ class MergeTests(unittest.TestCase):
         self.assertEqual((latest["review"]["status"], latest["reason"]), ("pending", "撤回人工判断"))
         self.assertEqual(len(report["reopened"]), 1)
 
+    def test_delayed_judgment_remains_reviewed_on_unchanged_later_syncs(self):
+        document, _ = self.first()
+        cells = row(judged("2026-10-23"))
+        accepted, _ = self.merge(document, [("recA", cells)], today="2026-10-24")
+        for day in ("2026-10-24", "2026-10-25", "2026-11-01"):
+            repeated, report = self.merge(accepted, [("recA", cells)], today=day)
+            self.assertEqual(repeated, accepted)
+            self.assertEqual((report["unchanged"], report["reopened"], report["notices"]), (1, [], []))
+
+    def test_same_day_fact_change_requires_an_explicit_new_judgment(self):
+        original, _ = self.first(judged())
+        cells = row({**judged(), sync.SUMMARY: "与原判断相反的新事实", sync.QUESTION: "是否撤销原决定？"})
+        changed, report = self.merge(original, [("recA", cells)])
+        self.assertEqual(changed["events"][0]["revisions"][-1]["review"]["status"], "pending")
+        self.assertIn("原人工判断未重新确认", report["notices"][0]["message"])
+        for day in (TODAY, "2026-10-22"):
+            again, report = self.merge(changed, [("recA", cells)], today=day)
+            self.assertEqual(again, changed)
+            self.assertEqual(len(report["notices"]), 1)
+        confirmed = {**cells, sync.DECISION: "已重新核对新事实，撤销原决定"}
+        accepted, report = self.merge(changed, [("recA", confirmed)])
+        self.assertEqual(len(report["judged"]), 1)
+        self.assertEqual(accepted["events"][0]["revisions"][-1]["review"]["status"], "reviewed")
+        self.assertEqual(self.merge(accepted, [("recA", confirmed)], today="2026-10-22")[0], accepted)
+
+    def test_invalidated_judgment_can_be_cleared_then_explicitly_reentered(self):
+        original, _ = self.first(judged())
+        facts = {sync.SUMMARY: "更新后的事实"}
+        pending, _ = self.merge(original, [("recA", row({**facts, **judged()}))])
+        cleared, _ = self.merge(pending, [("recA", row(facts))])
+        accepted, report = self.merge(cleared, [("recA", row({**facts, **judged()}))])
+        self.assertEqual(len(report["judged"]), 1)
+        self.assertEqual(accepted["events"][0]["revisions"][-1]["review"]["status"], "reviewed")
+
+    def test_legacy_judgment_revision_does_not_expire_from_its_sync_date(self):
+        document, _ = self.first()
+        cells = row(judged("2026-10-23"))
+        accepted, _ = self.merge(document, [("recA", cells)], today="2026-10-24")
+        for revision in accepted["events"][0]["revisions"]:
+            revision.pop("intake_judgment_sha256")
+        again, report = self.merge(accepted, [("recA", cells)], today="2026-10-25")
+        self.assertEqual((again, report["unchanged"]), (accepted, 1))
+
     def test_change_note_is_used_once_then_the_default_reason_returns(self):
         document, _ = self.first({sync.REASON: "录入线索"})
         self.assertEqual(document["events"][0]["revisions"][0]["reason"], "录入线索")

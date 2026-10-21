@@ -5,7 +5,9 @@ Add new notes for this topic here, not to the hub.
 
 The opt-in external-intelligence preview collects business-owned events and exports a
 decision digest, which a hand-run command can also sync from a Feishu table and push
-to a group; frozen product knowledge is only an optional lens, and the production
+to a group. Review-only syncs preserve judgments; failed sends retain a local pending
+message outside the checkout and replay it before another sync. Frozen product
+knowledge is only an optional lens, and the production
 pipeline is unchanged. See the [consumer contracts and checks](../dev/product-intelligence-contract.md)
 and [local preview guide](../../user-guide/hello_auto-doc/product-intelligence-demo.md).
 
