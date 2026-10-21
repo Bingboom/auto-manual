@@ -1,17 +1,26 @@
-"""Explainable research candidates over the read-only product knowledge contract."""
+"""Optional product lens: explainable research candidates for events that ask for one.
+
+The lens reads two finished snapshots, external events and product knowledge,
+and writes neither. Only an event with a ``product_lens`` is evaluated, and its
+rule terms must exist in the knowledge vocabulary; otherwise the lens reports
+the problem instead of silently matching nothing. Events never depend on it.
+"""
 from __future__ import annotations
 
 from copy import deepcopy
-from pathlib import Path
 import re
 from typing import Any
 
-from tools.rtd.intelligence_events import content_hash, load_events
+from tools.product_knowledge import REGISTRY_PATH
+from tools.rtd.intelligence_events import SCHEMA_VERSION as EVENTS_SCHEMA, content_hash, snapshot_changes
+from tools.rtd.product_matrix import number
 
 SCHEMA_VERSION = "product-intelligence/v1"
-ENGINE_VERSION = "2"
-CASES = Path(__file__).resolve().parents[1] / "rtd_portal_assets" / "product_intelligence_cases.json"
+ENGINE_VERSION = "3"
 _SHA256 = re.compile(r"[0-9a-f]{64}")
+# (rule field, knowledge vocabulary key, label) for every rule term the lens checks.
+_TERMS = (("categories", "categories", "产品分类"), ("required_capabilities", "capabilities", "能力登记列"),
+          ("required_facts", "facts", "手册数值事实"))
 
 
 def _reason(dimension: str, state: str, source_type: str, message: str) -> dict:
@@ -43,7 +52,7 @@ def _capability(product: dict, name: str) -> tuple[dict, list[dict]]:
 def _registry_evidence(entry: dict, product: dict, name: str) -> bool:
     return (
         entry.get("source_type") == "capability_registry"
-        and entry.get("path") == "data/model_capabilities.csv"
+        and entry.get("path") == REGISTRY_PATH
         and entry.get("locator") == f"{product['model']}_{product['region']}/{name}"
         and bool(_SHA256.fullmatch(str(entry.get("sha256", ""))))
         and bool(entry.get("quote"))
@@ -73,8 +82,9 @@ def _manual_fact(product: dict, key: str) -> tuple[dict, list[dict]]:
     if not present:
         return _reason("evidence", "unknown", "published_manual",
                        f"本市场、本语言发布手册尚未提供可追溯的 {key} 正值证据。"), []
+    unit = f" {fact['unit']}" if fact.get("unit") else ""
     return _reason("evidence", "match", "published_manual",
-                   f"发布手册直接事实：{key}={value} {fact.get('unit') or ''}。"), evidence
+                   f"发布手册直接事实：{key}={number(value)}{unit}。"), evidence
 
 
 def _status(reasons: list[dict]) -> str:
@@ -96,81 +106,85 @@ def _deduplicate(evidence: list[dict]) -> list[dict]:
 
 def evaluate_association(event: dict, product: dict) -> dict:
     """All dimensions are required; missing evidence remains distinct from explicit false."""
+    lens = event["product_lens"]
     region = product["region"]
-    market_match = region in event["catalog_markets"]
+    market_match = region in lens["catalog_markets"]
     reasons = [_reason(
         "market", "match" if market_match else "no_match", "curated_configuration",
-        f"发布变体市场 {region}；研究目录范围 {'、'.join(event['catalog_markets'])}。{event['market_mapping_note']}",
-    ), _category(product, event["rule"]), _verification(event)]
+        f"发布变体市场 {region}；研究目录范围 {'、'.join(lens['catalog_markets'])}。{lens['market_mapping_note']}",
+    ), _category(product, lens["rule"]), _verification(event)]
     evidence = list(product.get("category", {}).get("evidence", []))
-    for name in event["rule"]["required_capabilities"]:
+    for name in lens["rule"]["required_capabilities"]:
         reason, refs = _capability(product, name)
         reasons.append(reason)
         evidence.extend(refs)
-    for key in event["rule"]["required_facts"]:
+    for key in lens["rule"]["required_facts"]:
         reason, refs = _manual_fact(product, key)
         reasons.append(reason)
         evidence.extend(refs)
-    state = _status(reasons)
     evidence = _deduplicate(evidence)
     return {
         "source_type": "rule_inference",
         "event_id": event["id"], "product_id": product["id"], "model": product["model"],
         "name": product.get("name", product["model"]), "market": region,
-        "language": product["language"], "version": product.get("version"), "status": state,
+        "language": product["language"], "version": product.get("version"), "status": _status(reasons),
         "reasons": reasons, "evidence": evidence,
         "provenance": {
-            "engine_version": ENGINE_VERSION, "rule_sha256": content_hash(event["rule"]),
-            "rule_source": deepcopy(event["rule_source"]), "event_sha256": event["content_sha256"],
-            "product_sha256": content_hash(product), "evidence_sha256": content_hash(evidence),
+            "engine_version": ENGINE_VERSION, "rule_sha256": content_hash(lens["rule"]),
+            "rule_source": {**event["source"], "locator": f"{event['source']['locator']}/product_lens"},
+            "event_sha256": event["content_sha256"], "product_sha256": content_hash(product),
+            "evidence_sha256": content_hash(evidence),
         },
-        "hypotheses": deepcopy(event["hypotheses"]) if state == "candidate" else [],
-        "unknowns": [reason["message"] for reason in reasons if reason["state"] == "unknown"]
-        + deepcopy(event["unknowns"]),
+        "unknowns": [reason["message"] for reason in reasons if reason["state"] == "unknown"],
     }
 
 
-def research_context(knowledge: dict, knowledge_root: Path | None, *, cases_path: Path | None = None) -> dict:
-    """Pure build-time derivation. Rebuilding never changes intake, policy or product sources."""
+def _problems(rule: dict, vocabulary: dict) -> list[str]:
+    """Rule terms this snapshot cannot evaluate; a vocabulary the snapshot lacks is not checked."""
+    problems = []
+    for field, key, label in _TERMS:
+        known = vocabulary.get(key) or []
+        problems += [f"规则引用的{label}「{term}」不在当前产品知识快照中，可能拼写有误或已改名。"
+                     for term in rule[field] if known and term not in known]
+    return problems
+
+
+def product_lens_context(knowledge: dict, intel: dict) -> dict:
+    """Pure build-time derivation over two snapshots; it never changes intake or product sources."""
     if knowledge.get("schema_version") != "product-knowledge/v1":
-        raise ValueError("research requires product-knowledge/v1")
+        raise ValueError("product lens requires product-knowledge/v1")
     if not knowledge.get("content_sha256") or not isinstance(knowledge.get("products"), list):
-        raise ValueError("research requires a bound product knowledge snapshot")
-    events = load_events(knowledge_root, cases_path or CASES)
-    associations = [evaluate_association(event, product) for event in events for product in knowledge["products"]]
+        raise ValueError("product lens requires a bound product knowledge snapshot")
+    if intel.get("schema_version") != EVENTS_SCHEMA or not intel.get("snapshot_id"):
+        raise ValueError(f"product lens requires a bound {EVENTS_SCHEMA} snapshot")
+    lenses, associations = [], []
+    for event in intel["events"]:
+        if event.get("product_lens") is None:
+            continue
+        problems = _problems(event["product_lens"]["rule"], knowledge.get("vocabulary") or {})
+        lenses.append({"event_id": event["id"], "status": "invalid" if problems else "evaluated",
+                       "problems": problems})
+        if not problems:
+            associations += [evaluate_association(event, product) for product in knowledge["products"]]
     result: dict[str, Any] = {
         "schema_version": SCHEMA_VERSION, "engine_version": ENGINE_VERSION,
-        "knowledge_snapshot_id": knowledge["content_sha256"], "events": events,
-        "associations": associations, "history": [row for event in events for row in event["history"]],
+        "knowledge_snapshot_id": knowledge["content_sha256"], "events_snapshot_id": intel["snapshot_id"],
+        "lenses": lenses, "associations": associations,
     }
     result["snapshot_id"] = content_hash(result)
     return result
 
 
-def _changes(previous: list[dict], current: list[dict], keys: tuple[str, ...]) -> list[dict]:
-    before = {tuple(row[key] for key in keys): row for row in previous}
-    after = {tuple(row[key] for key in keys): row for row in current}
-    changes = []
-    for identity in sorted(before.keys() | after.keys()):
-        old, new = before.get(identity), after.get(identity)
-        old_hash, new_hash = content_hash(old), content_hash(new)
-        if old_hash != new_hash:
-            changes.append(dict(zip(keys, identity, strict=True)) | {
-                "previous_sha256": old_hash, "current_sha256": new_hash,
-                "previous_status": old.get("status") if old else None,
-                "current_status": new.get("status") if new else None,
-            })
-    return changes
-
-
-def compare_research_snapshots(previous: dict, current: dict) -> dict:
+def compare_lens_snapshots(previous: dict, current: dict) -> dict:
     """A new comparison receipt; both historical snapshots remain untouched and review stays human."""
     if any(item.get("schema_version") != SCHEMA_VERSION for item in (previous, current)):
-        raise ValueError("comparison requires two product-intelligence/v1 snapshots")
+        raise ValueError(f"comparison requires two {SCHEMA_VERSION} snapshots")
     return {
         "previous_snapshot_id": previous["snapshot_id"], "current_snapshot_id": current["snapshot_id"],
         "knowledge_changed": previous["knowledge_snapshot_id"] != current["knowledge_snapshot_id"],
-        "event_changes": _changes(previous["events"], current["events"], ("id",)),
-        "association_changes": _changes(previous["associations"], current["associations"], ("event_id", "product_id")),
+        "events_changed": previous["events_snapshot_id"] != current["events_snapshot_id"],
+        "lens_changes": snapshot_changes(previous["lenses"], current["lenses"], ("event_id",)),
+        "association_changes": snapshot_changes(previous["associations"], current["associations"],
+                                                ("event_id", "product_id")),
         "review_status": "pending",
     }

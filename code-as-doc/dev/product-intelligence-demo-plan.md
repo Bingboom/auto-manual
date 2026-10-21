@@ -1,12 +1,12 @@
 # Product Intelligence Demo — Execution Plan
 
 Status: active
-Implementation: three phases integrated; local validation complete; private RTD deployment pending.
+Implementation: three phases integrated, then revised event-first (Phase 4); local validation complete; private RTD deployment pending.
 Branch: `feat/product-intelligence-demo`
 Scope: three phases, one integration branch, one PR; do not modify the README positioning or merge to main until reviewed.
 
 ## Objective
-Consume approved, traceable product knowledge from Hello-Docs and connect it to externally sourced market/policy/competitor events. Present candidate product associations, evidence, uncertainty, hypotheses, and research revisions on an RTD preview page. This is a research surface, not an authoritative product specification.
+Collect externally sourced market/policy/competitor events and push them for decisions, without letting internal product data gate them. Each event carries its sources, verification, decision question, owner and due date; a push-ready decision digest is exported every build. Approved, traceable product knowledge from Hello-Docs is an optional lens an event may ask for, shown as an appendix with candidate associations, evidence and uncertainty. This is a research surface, not an authoritative product specification.
 
 ## Phase 0 — Contract freeze (integration owner)
 - [x] Review `README.md`, `AGENTS.md`, product matrix, product knowledge, market policy, publication manifest, RTD builders and tests.
@@ -51,10 +51,22 @@ Discovery, source boundaries and implementation ownership are frozen in the
 - [ ] Post the hosted preview URL after RTD verification.
 - [x] Keep PR in Draft until user reviews RTD branch preview; do not merge automatically.
 
+## Phase 4 — Event-first decoupling (2026-10-21)
+Review direction: external information is collected first and pushed for decisions; it must not be constrained by internal products.
+- [x] Move event intake to the business knowledge directory (`external-intel/events.json`, schema `external-intel-events/v1`); the engineering repository keeps only the test fixture.
+- [x] Make the product rule an optional `product_lens`; events need no categories, capability names or catalog markets to be collected.
+- [x] Add decision fields (`decision_question`, optional `decision_owner`, `decide_by`) and make hypotheses/unknowns optional.
+- [x] Export an event-only decision digest (JSON + CommonMark) every build; delivery stays an operator-run follow-up.
+- [x] Lay the page out as an event index in digest order: one row per event (market, kind, title, decision, owner, due date, states) that opens to its details, quick tiles over the filters, no slogan or explanatory header; the lens is a collapsed appendix inside the event with not-configured/unavailable/invalid/evaluated states and compact rows for unknown/excluded variants.
+- [x] Degrade only the lens when product inputs fail; skip only this page when the events file is malformed; validate the flag once at start-up.
+- [x] Fix review findings: revision allow-lists, real evidence paths and byte hashes, per-edition warnings, whole-number facts, lens vocabulary checks, anchor prefixes, shared manifest/row helpers, one read per manual, generic `preview/*` RTD rule that forces the flag off elsewhere.
+
 ## Parallel execution contract
 Agent A owns product knowledge contract + extraction tests. Agent B owns event/association module + tests. Agent C owns RTD templates/assets + UI tests. Integration owner alone changes shared builders/registration and resolves contracts. A minimal contract must be agreed first; B/C can implement against fixtures while A completes.
 
-## Local acceptance (2026-10-20)
+## Local acceptance (2026-10-20, before Phase 4)
+
+These results and captures describe the product-first layout that Phase 4 replaced.
 
 - Frozen business input: `a728b1f1bf5632ed7471290c5a86041818de85da`;
   138 publication variants across 12 language tags.
@@ -82,6 +94,7 @@ Agent A owns product knowledge contract + extraction tests. Agent B owns event/a
   --data-root tests/fixtures/phase2`.
 
 ## Preview deployment
+RTD enables the demo only for `preview/*` branches and forces it off for every other version, `latest` included. The preview carrier must also carry `docs/knowledge/external-intel/events.json` (seeded from `tests/fixtures/external_intel/events.json`); without it the page shows its empty state.
 Build RTD from `feat/product-intelligence-demo` using a separate preview version/project configuration where available. The existing RTD project may be private; do not change project visibility, production default branch, or public routes to expose the demo. A GitHub branch by itself does not automatically create a working RTD preview URL. Document the verified URL after the build succeeds.
 
 The existing private RTD project is bound to `Bingboom/Hello-Docs`, not the

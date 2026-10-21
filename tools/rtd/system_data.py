@@ -81,15 +81,20 @@ def review_page_counts(review_dir: Path) -> Counter:
     return counts
 
 
-def read_targets(capabilities_csv: Path, languages_csv: Path, review_dir: Path) -> tuple[list[str], list[dict[str, Any]]]:
-    """Capability names and one row per target, with its languages and review pages."""
+def read_targets(capabilities_csv: Path, languages_csv: Path,
+                 review_dir: Path | None) -> tuple[list[str], list[dict[str, Any]]]:
+    """Capability names and one row per target, with its languages and review pages.
+
+    ``review_dir=None`` skips the page count (``review_pages`` is then 0) for
+    callers that read only the switches.
+    """
     header, rows = _rows(capabilities_csv, (TARGET_KEY, PROJECT))
     names = [name for name in header if name not in (TARGET_KEY, PROJECT)]
     if not names:
         raise SystemDataError(f"{capabilities_csv.name} names no capabilities")
     _, language_rows = _rows(languages_csv, (TARGET_KEY, "languages"))
     languages = {row[TARGET_KEY]: [code for code in row["languages"].split(";") if code] for row in language_rows}
-    reviews = review_page_counts(review_dir)
+    reviews = review_page_counts(review_dir) if review_dir is not None else Counter()
     targets = []
     for row in rows:
         key = row[TARGET_KEY]

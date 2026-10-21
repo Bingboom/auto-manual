@@ -1,0 +1,200 @@
+{
+  "schema_version": "external-intel-events/v1",
+  "events": [
+    {
+      "id": "nl-self-consumption-research",
+      "title": "荷兰净计量（saldering）2027 年终止",
+      "kind": "policy",
+      "market": "NL",
+      "occurred_on": "2027-01-01",
+      "source_kind": "market_policy",
+      "source_record_id": "nl-net-metering",
+      "product_lens": {
+        "catalog_markets": [
+          "EU"
+        ],
+        "market_mapping_note": "NL → EU 是人工研究范围映射；欧规说明书不能证明荷兰在售、接入许可或收益。",
+        "rule": {
+          "categories": [
+            "appliance",
+            "expandable",
+            "homebackup",
+            "dedicated"
+          ],
+          "required_capabilities": [
+            "自发自用模式"
+          ],
+          "required_facts": [
+            "capacity_wh",
+            "ac_output_w"
+          ]
+        }
+      },
+      "revisions": [
+        {
+          "revision": 1,
+          "recorded_on": "2026-10-20",
+          "reason": "接入已有 nl-net-metering 业务政策记录，建立可解释的产品研究筛选；政策事实随业务快照读取。",
+          "decision_question": "已发布欧规产品中，哪些具有自发自用能力登记及可追溯储电/输出证据，值得进一步核实荷兰家庭场景的接入条件？",
+          "hypotheses": [
+            "同时满足市场、分类、能力登记和手册事实的变体，可能值得进入自发自用场景的进一步研究；这只是规则产生的研究候选。"
+          ],
+          "unknowns": [
+            "尚未核实产品是否在荷兰销售、是否可与当地家庭光伏系统连接。",
+            "能力登记只提供研发配置线索，仍需同市场手册中的自发自用流程和接线证据。",
+            "尚未取得家庭负载曲线、购售电合同、转换损耗和设备成本，不能计算商业收益。",
+            "未确定计量接口、安装条件、并网与当地合规要求。"
+          ],
+          "review": {
+            "status": "pending",
+            "decision": null
+          }
+        },
+        {
+          "revision": 2,
+          "recorded_on": "2026-10-21",
+          "reason": "外部情报改为先收集、再推送决策：决策问题以事件为单位提出，产品关联移入可选 product_lens；保留此前修订，未发生人工批准。",
+          "decision_question": "荷兰净计量终止后，是否立项核查家庭光伏自发自用场景（并网接入、计量方式与收益测算）？",
+          "decision_owner": null,
+          "decide_by": null,
+          "hypotheses": [
+            "净计量终止后，余电上网的抵扣价值减少，提高自发自用比例的需求可能上升；须以荷兰电价、购售电合同与家庭负载数据验证。"
+          ],
+          "unknowns": [
+            "政策细节与过渡安排以业务政策快照为准，尚未逐条核对。",
+            "尚未取得家庭负载曲线、购售电合同、转换损耗和设备成本，不能计算商业收益。",
+            "未确定计量接口、安装条件、并网与当地合规要求。"
+          ],
+          "review": {
+            "status": "pending",
+            "decision": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "us-outage-resilience-research",
+      "title": "美国 2024 飓风季大范围停电",
+      "kind": "market",
+      "market": "US",
+      "occurred_on": "2024-06-01",
+      "source_kind": "external_event",
+      "product_lens": {
+        "catalog_markets": [
+          "US"
+        ],
+        "market_mapping_note": "仅筛选 US 发布变体；国家级事件不能替代州、家庭和负载的实地研究。",
+        "rule": {
+          "categories": [
+            "homebackup",
+            "dedicated"
+          ],
+          "required_capabilities": [
+            "UPS功能"
+          ],
+          "required_facts": [
+            "capacity_wh",
+            "ac_output_w"
+          ]
+        }
+      },
+      "revisions": [
+        {
+          "revision": 1,
+          "recorded_on": "2026-10-20",
+          "reason": "首次研究录入：回顾 EIA 对 2024 飓风季基础设施中断的公开说明；记录日不冒充事件发生日。",
+          "status": "verified",
+          "summary": "EIA 在 2024 年 12 月回顾指出，2024 飓风季对美国墨西哥湾沿岸及东南部能源设施造成中断，Helene 与 Milton 导致多地大规模停电。",
+          "boundary": "灾害及停电事实不证明任何具体产品能维持整屋供电，也不构成购买需求或销量预测。",
+          "sources": [
+            {
+              "kind": "official",
+              "title": "EIA · Above-average hurricane activity disrupted U.S. energy infrastructure in 2024",
+              "url": "https://www.eia.gov/todayinenergy/detail.php?id=64045",
+              "published_on": "2024-12-17",
+              "checked_on": "2026-10-20",
+              "note": "核对 2024 飓风季及 Helene、Milton 引发停电的描述；不据此作产品效果推断。"
+            }
+          ],
+          "decision_question": "哪些美规家庭备电产品具有可追溯容量与输出事实，值得开展目标负载及供电连续性研究？",
+          "hypotheses": [
+            "具有美规发布手册、家庭备电分类与 UPS 登记的变体可能值得开展应急供电研究。"
+          ],
+          "unknowns": [
+            "尚无目标家庭负载、切换条件和可用续航实测。",
+            "UPS 登记不代表医疗或生命支持适用，也不能推定整屋供电。"
+          ],
+          "review": {
+            "status": "pending",
+            "decision": null
+          }
+        },
+        {
+          "revision": 2,
+          "recorded_on": "2026-10-20",
+          "reason": "同次 Demo 研究录入增加较晚发布的 EIA 年度统计，收窄问题至地区与负载差异；保留上一修订，未发生人工批准。",
+          "status": "verified",
+          "summary": "EIA 于 2025 年 12 月公布的 2024 年回顾显示，美国用户当年平均经历约 11 小时停电，重大事件约占停电时长的 80%，不同州之间存在显著差异。",
+          "boundary": "年度平均停电时长不是某户连续停电时长，也不是产品必须达到的续航承诺；不用于推断销量或适用性。",
+          "sources": [
+            {
+              "kind": "official",
+              "title": "EIA · Hurricanes in 2024 led to the most hours without power in the United States in 10 years",
+              "url": "https://www.eia.gov/todayinenergy/detail.php?id=66744",
+              "published_on": "2025-12-01",
+              "checked_on": "2026-10-20",
+              "note": "核对年度平均停电时长、重大事件贡献与州间差异；年度统计不能替代某户负载与连续停电测量。"
+            }
+          ],
+          "decision_question": "全国平均值掩盖地区差异时，哪些美规家庭备电产品值得进入按州、按负载和按停电时长分组的验证？",
+          "hypotheses": [
+            "可追溯的美规家庭备电变体可能值得按地区、目标负载与接入方式继续研究，能否满足场景须实测。"
+          ],
+          "unknowns": [
+            "尚未获取目标州、住宅电路与目标负载资料。",
+            "容量与 AC 输出事实不能独立证明停电期间的可用续航、整屋供电或切换性能。",
+            "UPS 登记须由相应手册操作条件、安装要求和实际验证补充。",
+            "未验证医疗或生命支持设备适用性。"
+          ],
+          "review": {
+            "status": "pending",
+            "decision": null
+          }
+        },
+        {
+          "revision": 3,
+          "recorded_on": "2026-10-21",
+          "reason": "外部情报改为先收集、再推送决策：决策问题以事件为单位提出，产品关联移入可选 product_lens；保留此前修订，未发生人工批准。事件事实与来源沿用修订 2。",
+          "status": "verified",
+          "summary": "EIA 于 2025 年 12 月公布的 2024 年回顾显示，美国用户当年平均经历约 11 小时停电，重大事件约占停电时长的 80%，不同州之间存在显著差异。",
+          "boundary": "年度平均停电时长不是某户连续停电时长，也不是产品必须达到的续航承诺；不用于推断销量或适用性。",
+          "sources": [
+            {
+              "kind": "official",
+              "title": "EIA · Hurricanes in 2024 led to the most hours without power in the United States in 10 years",
+              "url": "https://www.eia.gov/todayinenergy/detail.php?id=66744",
+              "published_on": "2025-12-01",
+              "checked_on": "2026-10-20",
+              "note": "核对年度平均停电时长、重大事件贡献与州间差异；年度统计不能替代某户负载与连续停电测量。"
+            }
+          ],
+          "decision_question": "是否按州、负载和停电时长分组，启动美国家庭备电需求验证？",
+          "decision_owner": null,
+          "decide_by": null,
+          "hypotheses": [
+            "停电时长存在显著的州间差异，家庭备电需求可能集中在重大事件多发的地区；须按州与负载分组验证。"
+          ],
+          "unknowns": [
+            "尚未获取目标州、住宅电路与目标负载资料。",
+            "年度平均停电时长不是某户连续停电时长，不能替代实地测量。",
+            "未验证医疗或生命支持设备相关场景。"
+          ],
+          "review": {
+            "status": "pending",
+            "decision": null
+          }
+        }
+      ]
+    }
+  ]
+}

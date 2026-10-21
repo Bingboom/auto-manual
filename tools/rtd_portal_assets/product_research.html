@@ -2,8 +2,8 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>产品情报研究 · 实验预览</title>
-<meta name="description" content="连接外部变化与已发布产品知识，查看候选关联、证据、研究假设和人工判断。">
+<title>外部情报 · 实验预览</title>
+<meta name="description" content="外部事件、来源与待决策事项。">
 <meta name="robots" content="noindex,nofollow">
 <link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
 <link rel="stylesheet" href="{{ pathto('_static/product-research.css', 1) }}">
@@ -13,12 +13,12 @@
 {% macro product_card(product) %}
 <article class="research-product">
   <header class="product-heading">
-    <div><h4>{{ product.name|e }}</h4><p>{{ product.model|e }} <span>·</span> {{ product.market|e }} <span>·</span> {{ product.language|e }} <span>·</span> {{ product.version|e }}</p></div>
+    <div><h5>{{ product.name|e }}</h5><p>{{ product.model|e }} <span>·</span> {{ product.market|e }} <span>·</span> {{ product.language|e }} <span>·</span> {{ product.version|e }}</p></div>
     <div class="product-status"><span class="research-badge {{ product.status|e }}">{{ product.status_label|e }}</span><span class="source-type">{{ product.association_source_label|e }}</span></div>
   </header>
   <div class="product-body">
     <section class="association-basis" aria-label="关联依据">
-      <h5>为什么出现在这里</h5>
+      <h6>为什么出现在这里</h6>
       {% if product.reasons %}<ul class="reason-list">
       {% for reason in product.reasons %}<li><div class="reason-meta"><strong>{{ reason.dimension|e }}</strong><span>{{ reason.state_label|e }}</span><span class="source-type">{{ reason.source_label|e }}</span></div><p>{{ reason.message|e }}</p></li>{% endfor %}
       </ul>{% else %}<p class="missing-note">尚未提供关联理由。</p>{% endif %}
@@ -32,7 +32,7 @@
       </dl></details>{% endif %}
     </section>
     <section class="evidence-section" aria-label="产品证据">
-      <h5>依据与出处</h5>
+      <h6>依据与出处</h6>
       {% if product.evidence %}<ul class="evidence-list">
         {% for evidence in product.evidence %}<li>
           <span class="source-type">{{ evidence.source_label|e }}</span>
@@ -45,8 +45,7 @@
       </ul>{% else %}<p class="missing-note">尚无可定位的产品证据；关联理由仍需核实。</p>{% endif %}
     </section>
   </div>
-  {% if product.hypotheses %}<section class="research-hypothesis"><h5>研究假设 · 尚未证实</h5><ul>{% for text in product.hypotheses %}<li>{{ text|e }}</li>{% endfor %}</ul></section>{% endif %}
-  {% if product.unknowns %}<section class="research-unknowns"><h5>下一步需要核实</h5><ul>{% for text in product.unknowns %}<li>{{ text|e }}</li>{% endfor %}</ul></section>{% endif %}
+  {% if product.unknowns %}<section class="research-unknowns"><h6>下一步需要核实</h6><ul>{% for text in product.unknowns %}<li>{{ text|e }}</li>{% endfor %}</ul></section>{% endif %}
   <details class="product-facts"><summary>查看产品知识与发布信息</summary>
     {% if product.facts %}<dl class="fact-list">{% for fact in product.facts %}<div><dt>{{ fact.label|e }}</dt><dd><strong>{{ fact.value|e }}</strong><span class="source-type">{{ fact.source_label|e }}</span>{% if fact.reason %}<p>{{ fact.reason|e }}</p>{% endif %}</dd></div>{% endfor %}</dl>
     {% else %}<p class="missing-note">当前快照没有可展示的产品字段。</p>{% endif %}
@@ -56,64 +55,82 @@
   </details>
 </article>
 {% endmacro %}
+{% macro compact_rows(products) %}
+<table class="lens-rows"><thead><tr><th scope="col">产品变体</th><th scope="col">未满足或待核实的条件</th></tr></thead><tbody>
+{% for product in products %}<tr><td><strong>{{ product.name|e }}</strong><span>{{ product.model|e }} · {{ product.market|e }} · {{ product.language|e }} · {{ product.version|e }}</span>{% if product.page %}<a href="{{ pathto(product.page)|e }}">说明书 ↗</a>{% endif %}</td><td>{% if product.reasons %}<ul>{% for reason in product.reasons %}<li><strong>{{ reason.dimension|e }}</strong> {{ reason.state_label|e }}：{{ reason.message|e }}</li>{% endfor %}</ul>{% else %}<span class="missing-note">未记录原因。</span>{% endif %}</td></tr>{% endfor %}
+</tbody></table>
+{% endmacro %}
 <body class="app">
-<a class="research-skip" href="#research-list">跳到研究案例</a>
+<a class="research-skip" href="#research-list">跳到外部事件</a>
 {{ site_sidebar('product-intelligence', site_nav) }}
 <div class="app-content">
-{{ site_topbar('知识库', '产品情报研究') }}
+{{ site_topbar('知识库', '外部情报') }}
 <main class="research">
   <header class="research-head">
     <span class="experimental-label">EXPERIMENTAL · 实验预览</span>
-    <h1>从外部变化，找到值得研究的产品关联</h1>
-    <p>以已发布产品知识为依据，记录外部事件、检视关联理由，再把尚未证实的问题交给人工判断。</p>
-    <div class="research-head-links"><a href="{{ pathto('products/knowledge') }}">产品知识 ↗</a><a href="{{ pathto('market/policy') }}">市场与政策 ↗</a></div>
-    <details class="research-downloads"><summary>下载本次快照，供 Agent 或业务应用使用</summary><a href="{{ pathto('_static/product-knowledge.v1.json', 1) }}" download>产品知识 JSON</a><a href="{{ pathto('_static/product-intelligence.v1.json', 1) }}" download>事件与关联 JSON</a></details>
+    <div class="research-head-row"><h1>外部情报</h1><div class="research-head-links"><a href="{{ pathto('market/policy') }}">市场与政策 ↗</a><a href="{{ pathto('products/knowledge') }}">产品知识 ↗</a></div>
+    {% if research_downloads %}<details class="research-downloads"><summary>下载快照</summary>{% for item in research_downloads %}<a href="{{ pathto(item.path, 1) }}" download>{{ item.label|e }}</a>{% endfor %}</details>{% endif %}</div>
   </header>
-  <ol class="research-flow" aria-label="研究流程"><li>外部变化</li><li>产品关联</li><li>证据分析</li><li>研究假设</li><li>人工判断</li><li>持续更新</li></ol>
-  <div class="research-boundary"><strong>这是一份研究记录</strong><p>候选关联由规则提出，不代表产品兼容、政策资格或商业影响已经确认。说明书事实、人工分类、能力登记表与规则推导分别标注；未找到证据不等于产品不具备该功能。</p></div>
-  {% if not has_products %}<div class="knowledge-gap"><strong>当前没有可用的冻结产品发布输入</strong><p>研究事件仍可阅读；产品关联需等待可追溯的发布知识快照。</p></div>{% endif %}
-  {% if knowledge_warnings %}<details class="knowledge-gap"><summary>产品知识完整性提示 · {{ knowledge_warnings|length }} 项</summary><ul>{% for warning in knowledge_warnings %}<li>{{ warning|e }}</li>{% endfor %}</ul></details>{% endif %}
-  <section class="research-metrics" aria-label="研究概况">
-    <div><strong>{{ research_summary.events }}</strong><span>外部事件</span></div>
-    <div><strong>{{ research_summary.candidates }}</strong><span>候选关联</span></div>
-    <div><strong>{{ research_summary.unknown }}</strong><span>待补充证据</span></div>
-    <div><strong>{{ research_summary.pending }}</strong><span>事件待人工复核</span></div>
-  </section>
   {% if research_events %}
-  <section id="research-filters" class="research-filters" aria-label="筛选研究案例" hidden>
-    <label>市场<select id="research-market"><option value="all">全部市场</option>{% for market in research_markets %}<option value="{{ market|e }}">{{ market|e }}</option>{% endfor %}</select></label>
-    <label>来源状态<select id="research-status"><option value="all">全部状态</option><option value="verified">事件要点已核实</option><option value="unverified">待核实线索</option><option value="demand">业务需求依据</option><option value="missing">来源资料缺失</option></select></label>
-    <label class="research-search">搜索<input id="research-search" type="search" placeholder="事件、问题、产品型号或证据" autocomplete="off"></label>
+  <section id="research-filters" class="research-filters" aria-label="筛选外部事件" hidden>
+    <div class="research-quick" role="group" aria-label="快速筛选">
+      <button type="button" data-quick-field="all" aria-pressed="true"><strong>{{ research_summary.events }}</strong><span>全部事件</span></button>
+      <button type="button" data-quick-field="review" data-quick-value="pending" aria-pressed="false"><strong>{{ research_summary.pending }}</strong><span>待人工判断</span></button>
+      <button type="button" data-quick-field="review" data-quick-value="reviewed" aria-pressed="false"><strong>{{ research_summary.reviewed }}</strong><span>已人工判断</span></button>
+      <button type="button" data-quick-field="status" data-quick-value="verified" aria-pressed="false"><strong>{{ research_summary.verified }}</strong><span>来源已核实</span></button>
+    </div>
+    <div class="research-fields">
+      <label>市场<select id="research-market"><option value="all">全部市场</option>{% for market in research_markets %}<option value="{{ market|e }}">{{ market|e }}</option>{% endfor %}</select></label>
+      <label>来源状态<select id="research-status"><option value="all">全部状态</option><option value="verified">事件要点已核实</option><option value="unverified">待核实线索</option><option value="demand">业务需求依据</option><option value="missing">来源资料缺失</option></select></label>
+      <label>决策状态<select id="research-review"><option value="all">全部</option><option value="pending">待人工判断</option><option value="reviewed">已人工判断</option></select></label>
+      <label class="research-search">搜索<input id="research-search" type="search" placeholder="事件、决策问题、来源或产品型号" autocomplete="off"></label>
+    </div>
   </section>
-  <div class="research-list-summary"><p id="research-count" role="status" aria-live="polite">{{ research_events|length }} 个研究案例</p><button type="button" id="research-reset" hidden>清除筛选</button></div>
+  <div class="research-list-summary"><p id="research-count" role="status" aria-live="polite">{{ research_summary.events }} 个外部事件 · {{ research_summary.pending }} 个待人工判断</p><button type="button" id="research-reset" hidden>清除筛选</button></div>
   {% endif %}
-  <section id="research-list" aria-label="研究案例">
+  <section id="research-list" class="research-index" aria-label="外部事件">
   {% for event in research_events %}
-    <article class="research-event" id="{{ event.id|e }}" data-market="{{ event.market|e }}" data-status="{{ event.status|e }}">
-      <header class="event-heading"><div class="event-meta"><span class="event-number">{{ '%02d'|format(loop.index) }}</span><span>{{ event.market|e }}</span><span>{{ event.kind_label|e }}</span><span class="research-badge {{ event.status|e }}">{{ event.status_label|e }}</span></div><h2>{{ event.title|e }}</h2><p class="event-dates">发生／生效 <time>{{ event.occurred_on|default('未记录', true)|e }}</time><span>·</span>资料核对 <time>{{ event.reviewed_on|default('未记录', true)|e }}</time></p></header>
-      <section class="research-question"><h3>研究问题</h3><p>{{ event.research_question|e }}</p></section>
-      <section class="event-context"><h3>外部发生了什么</h3><p>{{ event.summary|e }}</p>{% if event.boundary %}<p class="event-boundary"><strong>适用边界</strong> {{ event.boundary|e }}</p>{% endif %}
-        <div class="event-sources"><h4>事件来源 <span>{{ event.source_label|e }}</span></h4>
-        {% if event.sources %}<ul>{% for source in event.sources %}<li><span class="source-type">{{ source.kind_label|e }}</span>{% if source.safe_url %}<a href="{{ source.safe_url|e }}">{{ source.title|default('查看来源', true)|e }} ↗</a>{% else %}<span>{{ source.title|default('来源未标明', true)|e }} · 暂无安全可用的来源链接</span>{% endif %}{% if source.checked_on %}<small>核对 {{ source.checked_on|e }}</small>{% endif %}{% if source.note %}<p>{{ source.note|e }}</p>{% endif %}</li>{% endfor %}</ul>
-        {% else %}<p class="missing-note">尚未提供来源。此案例保留研究问题，等待补充可核实材料。</p>{% endif %}</div>
-      </section>
-      <section class="candidate-section"><h3>候选产品 <span>{{ event.candidates|length }}</span></h3><p class="section-note">每条关联对应一个市场、语言和版本；规则依据与产品事实分开展示。</p>
-        {% for product in event.candidates %}{{ product_card(product) }}{% else %}<p class="missing-note">当前没有满足关联条件的候选产品。</p>{% endfor %}
-      </section>
-      {% if event.unknown_products %}<details class="unknown-products"><summary>证据不足，继续观察 <span>{{ event.unknown_products|length }}</span></summary><p class="section-note">展开查看缺失的条件与证据；未知状态不作否定结论。</p>{% for product in event.unknown_products %}{{ product_card(product) }}{% endfor %}</details>{% endif %}
-      {% if event.excluded_products %}<details class="excluded-products"><summary>暂不关联的产品 <span>{{ event.excluded_products|length }}</span></summary><p class="section-note">保留不匹配原因，便于在市场范围或证据变化后重新评估。</p>{% for product in event.excluded_products %}{{ product_card(product) }}{% endfor %}</details>{% endif %}
-      {% if not event.association_count %}<p class="missing-note">当前没有可用于匹配的产品变体。补充发布知识后可重新计算。</p>{% endif %}
-      <section class="research-next"><div><h3>研究假设 · 尚未证实</h3>{% if event.hypotheses %}<ul>{% for text in event.hypotheses %}<li>{{ text|e }}</li>{% endfor %}</ul>{% else %}<p class="missing-note">尚未形成可核实的假设。</p>{% endif %}</div><div><h3>待核实问题</h3>{% if event.unknowns %}<ul>{% for text in event.unknowns %}<li>{{ text|e }}</li>{% endfor %}</ul>{% else %}<p class="missing-note">尚未记录待核实项；不表示研究已完成。</p>{% endif %}</div></section>
-      <section class="human-review"><div><h3>人工判断</h3><span class="research-badge">{{ event.review_label|e }}</span></div><p>{{ event.review_decision|e }}</p>{% if event.reviewed_by or event.human_reviewed_on %}<p class="review-attribution">复核人 {{ event.reviewed_by|default('未记录', true)|e }} · 复核日期 <time>{{ event.human_reviewed_on|default('未记录', true)|e }}</time></p>{% endif %}</section>
-      <details class="research-history"><summary>查看研究修订与快照 <span>{{ event.history|length }} 次记录</span></summary><p class="section-note">以下为已记录的研究修订。上方产品关联来自当前快照重算；历史判断不会随本次计算改写。</p>
-        {% if event.history %}<ol class="history-list">{% for revision in event.history %}<li><div><strong>修订 {{ revision.revision|e }}</strong><time>{{ revision.recorded_on|e }}</time><span>{{ revision.review_label|e }}</span></div><p>{{ revision.summary|e }}</p>{% if revision.reason %}<p class="section-note">变更原因：{{ revision.reason|e }}</p>{% endif %}{% if revision.review_decision %}<p class="history-decision"><strong>当时的人工判断：</strong>{{ revision.review_decision|e }}</p>{% endif %}{% if revision.reviewed_by or revision.reviewed_on %}<p class="review-attribution">复核人 {{ revision.reviewed_by|default('未记录', true)|e }} · 复核日期 <time>{{ revision.reviewed_on|default('未记录', true)|e }}</time></p>{% endif %}{% if revision.evidence_refs %}<ul>{% for ref in revision.evidence_refs %}<li>{% if ref.url %}<a href="{{ ref.url|e }}">{{ ref.label|e }}</a>{% else %}<span>{{ ref.label|e }} · 无可用链接</span>{% endif %}</li>{% endfor %}</ul>{% endif %}{% if revision.content_sha256 %}<p class="snapshot-hash">历史内容指纹 <code>{{ revision.content_sha256|e }}</code></p>{% endif %}</li>{% endfor %}</ol>{% else %}<p class="missing-note">尚无已记录的研究修订。</p>{% endif %}
-        <dl class="snapshot-fields"><div><dt>当前事件修订</dt><dd>{{ event.revision|default('未记录', true)|e }}</dd></div><div><dt>当前事件指纹</dt><dd><code>{{ event.content_sha256|default('未记录', true)|e }}</code></dd></div></dl>
+    <article class="research-event" id="{{ event.anchor|e }}" data-market="{{ event.market|e }}" data-status="{{ event.status|e }}" data-review="{{ event.review_state|e }}">
+      <details class="event-entry">
+        <summary class="event-row">
+          <span class="event-row-meta"><span class="event-market">{{ event.market|e }}</span><span>{{ event.kind_label|e }}</span></span>
+          <span class="event-row-main"><h2>{{ event.title|e }}</h2><span class="event-ask"><em>需要决策</em>{{ event.decision_question|e }}</span><span class="event-facts">发生／生效 <time>{{ event.occurred_on|default('未记录', true)|e }}</time><span>·</span>决策人 {{ event.decision_owner|e }}<span>·</span>截止 {{ event.decision_due|e }}</span></span>
+          <span class="event-row-status"><span class="research-badge {{ event.status|e }}">{{ event.status_label|e }}</span><span class="research-badge review-{{ event.review_state|e }}">{{ event.review_label|e }}</span></span>
+        </summary>
+        <div class="event-body">
+          <p class="event-dates">资料核对 <time>{{ event.checked_on|default('未记录', true)|e }}</time><span>·</span>最近录入 <time>{{ event.recorded_on|default('未记录', true)|e }}</time><span>·</span>修订 {{ event.revision|default('未记录', true)|e }}</p>
+          <section class="event-context"><h3>外部发生了什么</h3><p>{{ event.summary|e }}</p>{% if event.boundary %}<p class="event-boundary"><strong>适用边界</strong> {{ event.boundary|e }}</p>{% endif %}
+            <div class="event-sources"><h4>事件来源 <span>{{ event.source_label|e }}</span></h4>
+            {% if event.sources %}<ul>{% for source in event.sources %}<li><span class="source-type">{{ source.kind_label|e }}</span>{% if source.safe_url %}<a href="{{ source.safe_url|e }}">{{ source.title|default('查看来源', true)|e }} ↗</a>{% else %}<span>{{ source.title|default('来源未标明', true)|e }} · 暂无安全可用的来源链接</span>{% endif %}{% if source.checked_on %}<small>核对 {{ source.checked_on|e }}</small>{% endif %}{% if source.note %}<p>{{ source.note|e }}</p>{% endif %}</li>{% endfor %}</ul>
+            {% else %}<p class="missing-note">尚未提供来源。此事件保留决策问题，等待补充可核实材料。</p>{% endif %}</div>
+          </section>
+          <section class="research-next"><div><h3>可能影响 · 尚未证实</h3>{% if event.hypotheses %}<ul>{% for text in event.hypotheses %}<li>{{ text|e }}</li>{% endfor %}</ul>{% else %}<p class="missing-note">尚未形成可核实的假设。</p>{% endif %}</div><div><h3>待核实问题</h3>{% if event.unknowns %}<ul>{% for text in event.unknowns %}<li>{{ text|e }}</li>{% endfor %}</ul>{% else %}<p class="missing-note">尚未记录待核实项；不表示核实已完成。</p>{% endif %}</div></section>
+          <section class="human-review"><div><h3>人工判断</h3><span class="research-badge review-{{ event.review_state|e }}">{{ event.review_label|e }}</span></div><p>{{ event.review_decision|e }}</p>{% if event.reviewed_by or event.human_reviewed_on %}<p class="review-attribution">复核人 {{ event.reviewed_by|default('未记录', true)|e }} · 复核日期 <time>{{ event.human_reviewed_on|default('未记录', true)|e }}</time></p>{% endif %}</section>
+          <details class="product-lens lens-{{ event.lens.state|e }}"><summary>附录 · 产品关联视角 <span>{{ event.lens.label|e }}{% if event.lens.state == 'evaluated' %} · 候选 {{ event.lens.candidates|length }}{% endif %}</span></summary>
+            {% if event.lens.message %}<p class="section-note">{{ event.lens.message|e }}</p>{% endif %}
+            {% if event.lens.problems %}<ul class="lens-problems">{% for problem in event.lens.problems %}<li>{{ problem|e }}</li>{% endfor %}</ul>{% endif %}
+            {% if event.lens.state == 'evaluated' %}
+            {% if event.lens.note %}<p class="section-note">{{ event.lens.note|e }}</p>{% endif %}
+            <section class="candidate-section"><h4>候选产品 <span>{{ event.lens.candidates|length }}</span></h4><p class="section-note">每条关联对应一个市场、语言和版本；规则依据与产品事实分开展示。</p>
+              {% for product in event.lens.candidates %}{{ product_card(product) }}{% else %}<p class="missing-note">当前没有满足关联条件的候选产品。</p>{% endfor %}
+            </section>
+            {% if event.lens.unknown_products %}<details class="unknown-products"><summary>证据不足，继续观察 <span>{{ event.lens.unknown_products|length }}</span></summary><p class="section-note">未知状态不作否定结论。</p>{{ compact_rows(event.lens.unknown_products) }}</details>{% endif %}
+            {% if event.lens.excluded_products %}<details class="excluded-products"><summary>暂不关联的产品 <span>{{ event.lens.excluded_products|length }}</span></summary><p class="section-note">保留不匹配原因，便于在市场范围或证据变化后重新评估。</p>{{ compact_rows(event.lens.excluded_products) }}</details>{% endif %}
+            {% endif %}
+          </details>
+          <details class="research-history"><summary>查看录入修订与快照 <span>{{ event.history|length }} 次记录</span></summary><p class="section-note">以下为已记录的录入修订；历史判断不会随本次构建改写。</p>
+            {% if event.history %}<ol class="history-list">{% for revision in event.history %}<li><div><strong>修订 {{ revision.revision|e }}</strong><time>{{ revision.recorded_on|e }}</time><span>{{ revision.review_label|e }}</span></div><p>{{ revision.summary|e }}</p>{% if revision.reason %}<p class="section-note">变更原因：{{ revision.reason|e }}</p>{% endif %}{% if revision.review_decision %}<p class="history-decision"><strong>当时的人工判断：</strong>{{ revision.review_decision|e }}</p>{% endif %}{% if revision.reviewed_by or revision.reviewed_on %}<p class="review-attribution">复核人 {{ revision.reviewed_by|default('未记录', true)|e }} · 复核日期 <time>{{ revision.reviewed_on|default('未记录', true)|e }}</time></p>{% endif %}{% if revision.evidence_refs %}<ul>{% for ref in revision.evidence_refs %}<li>{% if ref.url %}<a href="{{ ref.url|e }}">{{ ref.label|e }}</a>{% else %}<span>{{ ref.label|e }} · 无可用链接</span>{% endif %}</li>{% endfor %}</ul>{% endif %}{% if revision.content_sha256 %}<p class="snapshot-hash">历史内容指纹 <code>{{ revision.content_sha256|e }}</code></p>{% endif %}</li>{% endfor %}</ol>{% else %}<p class="missing-note">尚无已记录的录入修订。</p>{% endif %}
+            <dl class="snapshot-fields"><div><dt>当前事件修订</dt><dd>{{ event.revision|default('未记录', true)|e }}</dd></div><div><dt>当前事件指纹</dt><dd><code>{{ event.content_sha256|default('未记录', true)|e }}</code></dd></div></dl>
+          </details>
+        </div>
       </details>
     </article>
-  {% else %}<div class="research-empty"><h2>暂未录入研究案例</h2><p>录入外部事件与研究问题后，可使用已发布产品知识评估关联。</p></div>{% endfor %}
+  {% else %}<div class="research-empty"><h2>暂未录入外部事件</h2><p>在业务知识目录的 external-intel/events.json 录入外部变化与决策问题后，下一次构建即会收集并生成决策摘要。</p></div>{% endfor %}
   </section>
-  {% if research_events %}<div id="research-empty" class="research-empty" hidden><h2>没有匹配的研究案例</h2><p>调整市场、来源状态或搜索词，或清除筛选查看全部案例。</p><button type="button" id="research-empty-reset">查看全部案例</button></div>{% endif %}
-  <footer class="research-footer"><p>产品功能与使用条件以对应市场、语言和版本的已发布说明书为准。优选语言的资料不能代表所有市场；政策适用性与研究假设仍需人工核查。</p><details><summary>查看本次计算使用的快照</summary><dl class="snapshot-fields"><div><dt>产品知识快照</dt><dd><code>{{ knowledge_snapshot|e }}</code></dd></div><div><dt>研究计算快照</dt><dd><code>{{ research_snapshot|e }}</code></dd></div></dl></details><noscript><p>未启用 JavaScript：全部案例、证据和修订记录仍可直接阅读；筛选功能不可用。</p></noscript></footer>
+  {% if research_events %}<div id="research-empty" class="research-empty" hidden><h2>没有匹配的外部事件</h2><p>调整市场、来源状态、决策状态或搜索词，或清除筛选查看全部事件。</p><button type="button" id="research-empty-reset">查看全部事件</button></div>{% endif %}
+  <footer class="research-footer"><p>事件事实以所列来源与业务政策快照为准，研究假设尚未证实。产品关联附录由规则提出，不代表产品兼容、政策资格或商业影响已经确认；产品功能以对应市场、语言和版本的已发布说明书为准。</p>
+    {% if knowledge_warnings %}<details class="knowledge-gap"><summary>产品关联附录 · 产品知识完整性提示 {{ knowledge_warnings|length }} 项</summary><ul>{% for warning in knowledge_warnings %}<li>{{ warning|e }}</li>{% endfor %}</ul></details>{% endif %}
+    <details><summary>查看本次构建使用的快照</summary><dl class="snapshot-fields"><div><dt>外部事件快照</dt><dd><code>{{ events_snapshot|e }}</code></dd></div>{% if lens_snapshot %}<div><dt>产品关联快照</dt><dd><code>{{ lens_snapshot|e }}</code></dd></div><div><dt>产品知识快照</dt><dd><code>{{ knowledge_snapshot|e }}</code></dd></div>{% endif %}</dl></details><noscript><p>未启用 JavaScript：点开事件即可阅读全部来源、附录和修订记录；筛选功能不可用。</p></noscript></footer>
 </main>
 </div>{{ site_script() }}
 </body>

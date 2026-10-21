@@ -76,11 +76,13 @@ Prepared Web admission: `tools/web/component_admission.py` owns fresh-publicatio
 
 `tools/rtd/product_learning.py` 将工程维护的通用课程词条与冻结产品目录关联；`tools/rtd/portal.py` 只注册页面。产品定位分组以首页 `navigation` 为底，由 `tools/rtd/product_matrix.py` 的 `positioning_groups` 补上 `product_matrix.json` 的产品线与 `assign`；知识页复用这一层，不建立第二份型号定位表。
 
-`tools/product_knowledge/` 复用矩阵提取与分类，但按发布变体保留市场、语言、
-版本及事实证据，输出只读的 `product-knowledge/v1`。下游
-`rtd/intelligence_events.py` 读取研究修订并按 ID 复用市场政策；
-`rtd/product_intelligence.py` 仅对这份产品快照做规则关联和历史比较。
+外部情报以事件为先：`rtd/intelligence_events.py` 从业务知识目录读取
+`external-intel/events.json` 并按 ID 复用市场政策，不读取任何产品数据；
+`rtd/decision_digest.py` 只用事件生成可推送的决策摘要。产品视角是可选附录：
+`tools/product_knowledge/` 复用矩阵的 `product_row` 与 `production_evidence` 的清单校验，
+按发布变体保留市场、语言、版本及事实证据，输出只读的 `product-knowledge/v1`；
+`rtd/product_intelligence.py` 只对配置了 `product_lens` 的事件做规则关联和历史比较。
 `rtd/product_research.py` 负责页面适配，`rtd/research_build.py` 负责实验开关、
-构建缓存与版本化 JSON；`portal.py` 只注册这些接口。
+构建缓存、降级与版本化导出；`portal.py` 只注册这些接口。
 研究结果不能写回产品源表，公开 manuals 角色禁用研究产物。见
 [Demo 契约](../product-intelligence-contract.md)。

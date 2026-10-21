@@ -309,16 +309,50 @@ def _partner(item: str | dict[str, str]) -> tuple[str, str]:
     return item["label"], item.get("match") or item["label"]
 
 
+def catalog_names(catalog: list[dict[str, Any]]) -> dict[str, dict[str, str]]:
+    """Each model's catalog name per region, the first listing winning."""
+    names: dict[str, dict[str, str]] = defaultdict(dict)
+    for product in catalog:
+        names[product["model"]].setdefault(product["region"], product.get("name") or "")
+    return names
+
+
+def placements(config: dict[str, Any]) -> dict[str, str]:
+    """The group of every model a line or accessory group lists."""
+    return {model: group["id"] for group in config["lines"] + config["accessories"] for model in group["models"]}
+
+
+def product_row(model: str, rows: list[dict[str, Any]], source: dict[str, Any], markup: str,
+                names: dict[str, dict[str, str]], placed: dict[str, str], config: dict[str, Any],
+                warnings: list[str], pairs: list[tuple[str, str]] | None = None) -> tuple[dict[str, Any], str]:
+    """One model's row from its chosen source manual, and that manual's plain text.
+
+    ``pairs`` lets a caller that already parsed the specification table reuse it.
+    """
+    text = plain_text(markup)
+    regions = _order((row["region"] for row in rows), config["region_order"])
+    known = names.get(model, {})
+    catalog_name = next((known[region] for region in [source["region"], *regions] if known.get(region)), "")
+    group, basis = _placement(model, text, placed, config, warnings)
+    return {
+        "model": model,
+        "name": config.get("names", {}).get(model) or display_name(catalog_name, model),
+        "group": group, "inferred": model not in placed, "basis": basis,
+        "variant_of": config["assign"].get(model, {}).get("same_as", "") if model not in placed else "",
+        "regions": regions, "langs": sorted({row["lang"] for row in rows}), "routes": len(rows),
+        "source": f"{source['route']}（{source['lang']}）",
+        "note": config.get("notes", {}).get(model, ""),
+        **read_specs(spec_pairs(markup) if pairs is None else pairs),
+    }, text
+
+
 def read_products(srcdir: Path, targets: list[dict[str, Any]], catalog: list[dict[str, Any]],
                   config: dict[str, Any], warnings: list[str]) -> tuple[dict[str, dict[str, Any]], dict[str, str]]:
     """One row per published model, keyed by model, and each model's manual text."""
     by_model: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for target in targets:
         by_model[target["model"]].append(target)
-    names: dict[str, dict[str, str]] = defaultdict(dict)
-    for product in catalog:
-        names[product["model"]].setdefault(product["region"], product.get("name") or "")
-    placed = {model: group["id"] for group in config["lines"] + config["accessories"] for model in group["models"]}
+    names, placed = catalog_names(catalog), placements(config)
     products, texts = {}, {}
     for model, rows in sorted(by_model.items()):
         source = _source(rows, config)
@@ -326,20 +360,7 @@ def read_products(srcdir: Path, targets: list[dict[str, Any]], catalog: list[dic
         if markup is None:
             warnings.append(f"{model}: published manual {source['route']}/{source['manual']} is not readable")
             markup = ""
-        texts[model] = plain_text(markup)
-        regions = _order((row["region"] for row in rows), config["region_order"])
-        catalog_name = next((names[model][region] for region in [source["region"], *regions] if names[model].get(region)), "")
-        group, basis = _placement(model, texts[model], placed, config, warnings)
-        products[model] = {
-            "model": model,
-            "name": config.get("names", {}).get(model) or display_name(catalog_name, model),
-            "group": group, "inferred": model not in placed, "basis": basis,
-            "variant_of": config["assign"].get(model, {}).get("same_as", "") if model not in placed else "",
-            "regions": regions, "langs": sorted({row["lang"] for row in rows}), "routes": len(rows),
-            "source": f"{source['route']}（{source['lang']}）",
-            "note": config.get("notes", {}).get(model, ""),
-            **read_specs(spec_pairs(markup)),
-        }
+        products[model], texts[model] = product_row(model, rows, source, markup, names, placed, config, warnings)
     return products, texts
 
 
@@ -548,7 +569,7 @@ def product_matrix_page_context(app, assets: Path, settings: dict[str, Any],
 
 
 __all__ = [
-    "PAGE", "ProductMatrixError", "TEMPLATE", "capability_rows", "display_name", "load_config", "matrix_context",
-    "number", "pairings", "plain_text", "positioning", "positioning_groups", "product_matrix_page_context",
-    "read_products", "read_specs", "spec_pairs", "spec_rows",
+    "PAGE", "ProductMatrixError", "TEMPLATE", "capability_rows", "catalog_names", "display_name", "load_config",
+    "matrix_context", "number", "pairings", "placements", "plain_text", "positioning", "positioning_groups",
+    "product_matrix_page_context", "product_row", "read_products", "read_specs", "spec_pairs", "spec_rows",
 ]
