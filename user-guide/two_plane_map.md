@@ -1,8 +1,9 @@
 # 双平面地图：仓库、飞书 base、谁在哪跑
 
-Updated: 2026-10-18
+Updated: 2026-10-21
 
-这套系统有 **2 个 git 仓库 + 2 组飞书 base**，四个东西都常被叫"库"，
+这套系统有 **2 个 git 仓库 + 2 组飞书 base**（另有 1 个只放审核稿的私有镜像仓库
+Hello-Docs-Review，见 §1），四个东西都常被叫"库"，
 不看地图必混。本文是唯一的权威地图：改了拓扑（合并仓库、迁移 base、
 换租户）必须同步更新这里。
 
@@ -18,6 +19,7 @@ Updated: 2026-10-18
 | --- | --- | --- | --- |
 | **auto-manual**（Bingboom/auto-manual） | git 仓库 | **工程面**：所有代码修改、PR、CI 验证、表结构演进都发生在这里 | 活跃 |
 | **Hello-Docs**（Bingboom/Hello-Docs） | git 仓库 | **业务面**：业务运行时。单向镜像接收方——**永远不要在这里改代码** | 活跃（队列 2026-06-12 已解除暂停） |
+| **Hello-Docs-Review**（Bingboom/Hello-Docs-Review，私有） | git 仓库 | **审核稿私有镜像**：只多出 `docs/review-drafts/**`（未发布的审核稿），由私有 Read the Docs 项目发布；代码同 Hello-Docs 一样单向接收，永远不要在这里改代码 | 活跃（2026-10-21 新增） |
 | **旧 base**（「文档构建」space） | 飞书多维表 | 工程面数据沙盒 + legacy 数据。phase2 `DOp8bczA8aGLhJsc5iMcOqOvnpg`、TM-A `LUIcbxeKdaCY2rsEHwCcnVQSnUe`（只读归档） | legacy（本机身份已只读） |
 | **新 base**（「便携资料开发工作台」space，业务租户 xcn57j1urbe6） | 飞书多维表 | **业务数据的家**。phase2「文档构建」`LD3lb4G1ua4GOVs1vxAc9W2enje`、**TM-B `Ji1hb5ub1aUbewsTljGccvx5nhc`（语料唯一规范写库）**、发布文档管理 `WGVwb2HctauRi7sEiKqcIzTRn1c` | 活跃 |
 
@@ -91,6 +93,7 @@ Read the Docs 仅显示表单，Mac 接收器是另一个运行边界，详见
 | 通道 | 方向 | 机制 | 频率 |
 | --- | --- | --- | --- |
 | **代码** | auto-manual/main → Hello-Docs/main | [`sync-hello-docs.yml`](../.github/workflows/sync-hello-docs.yml) 同步工程树，同时保留业务面已合入的 `docs/publish/**` 和 `docs/knowledge/**` | 每次合入 main 自动，秒级 |
+| **代码（审核稿镜像）** | auto-manual/main → Hello-Docs-Review/main | 同一工作流的 `sync-review` 任务，保留该仓库的 `docs/review-drafts/**`；未配置 `REVIEW_DOCS_SYNC_TOKEN` 时只提示、不影响 Hello-Docs 同步。详见 [审核稿私有站](../code-as-doc/dev/rtd_manual_portal/review-drafts-site.md) | 每次合入 main 自动 |
 | **Web 发布快照** | Hello-Docs/main → Hello-Docs/publish → PR → Hello-Docs/main | `feishu-web-publish-queue.yml` 组装候选 `docs/publish/`、范围门禁后普通增量 push，并自动创建/更新只含该目录的 PR | 每次审核后的 Web Publish |
 | **表结构 + 引用数据** | 旧 base → 新 base | `python -m tools.bitable_schema promote`（只增不删、dry-run 默认）；每日 01:00 parity 哨兵盯滞后并开 `[schema-drift]` issue | 人工，有告警兜底 |
 | **翻译语料** | 不同步——**只有一份** | TM-B 是唯一写库（G4 收敛）；TM-A 只读归档，工具层已拆除对它的静默回退 | — |
