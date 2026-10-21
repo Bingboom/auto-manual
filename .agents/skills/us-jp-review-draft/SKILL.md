@@ -1,6 +1,6 @@
 ---
 name: us-jp-review-draft
-description: "制作或继续修改基于参考说明书和目标规格书的流水线外审核稿，支持 US→US 英文复用和 US→JP 日文语料复用。继承参考结构、原文、插图和共享样式，仅按目标规格及明确决定替换必要内容；建议和疑问进入审核意见。用于美规/日规审核稿、参考稿复用、规格回填和内容对照，不用于流水线 Start Review 或云文档回写。"
+description: "制作或继续修改基于参考说明书和目标规格书的流水线外审核稿，支持 US→US 英文复用和 US→JP 日文语料复用。继承参考结构、原文、插图和共享样式，仅按目标规格及明确决定替换必要内容；建议和疑问进入审核意见。用于美规/日规审核稿、参考稿复用、规格回填和内容对照，以及继续修改 Hello-Docs-Review 私有仓库中的审核稿；不用于流水线 Start Review 或云文档回写。"
 ---
 
 # Reference-based Review Draft — US→US / US→JP
@@ -23,7 +23,9 @@ description: "制作或继续修改基于参考说明书和目标规格书的流
 
 ## 固定依据
 
-先读取现有稿的 `README.md`、`review.zh.md`、变更记录和已确认决定，核实：
+先确定现有稿在哪里：私有审核仓库 `Bingboom/Hello-Docs-Review` 已有 `docs/review-drafts/<MODEL>/<REGION>/draft.json` 时，那份工作稿就是现有稿，也是唯一编写位置（见下文“私有审核仓库工作流”），不用飞书 ZIP 或本地旧版本覆盖它；否则使用操作者给的本地包或飞书 ZIP。
+
+再读取现有稿的 `README.md`、`review.zh.md`、变更记录和已确认决定，核实：
 
 - 目标型号、商品名、地区、语言；沿用操作者已明确纠正的字段。
 - 主参考的版本、文件或提交，及其原文、结构、图和共享 CSS。
@@ -92,11 +94,20 @@ description: "制作或继续修改基于参考说明书和目标规格书的流
 
 ### 私有审核仓库工作流
 
-已指定 `Bingboom/Hello-Docs-Review` 的任务遵守 [review-drafts-site.md](../../../code-as-doc/dev/rtd_manual_portal/review-drafts-site.md)，同一型号／地区只有一份工作稿：
+工作稿已在 `Bingboom/Hello-Docs-Review`，或操作者指定放进该仓库的任务，遵守 [review-drafts-site.md](../../../code-as-doc/dev/rtd_manual_portal/review-drafts-site.md)，同一型号／地区只有一份工作稿：
 
+- 取得仓库：已有本地克隆时 `git -C <克隆目录> pull --ff-only`；否则只取审核稿目录（该仓库带全套代码镜像，完整克隆约 2 GB）：
+
+  ```sh
+  git clone --filter=blob:none --sparse https://github.com/Bingboom/Hello-Docs-Review.git <克隆目录>
+  git -C <克隆目录> sparse-checkout set docs/review-drafts
+  ```
+
+  需要该私有仓库的读写权限：Claude Code 云端会话先把仓库加入会话；Codex 或本机用操作者自己的 Git 凭据。没有权限或网络时停下告知操作者，不改用其它仓库，也不把本地打包说成已提交。
 - 当前稿在 `docs/review-drafts/<MODEL>/<REGION>/`，`draft.json` 记录当前版本；冻结稿在 `milestones/<version>/`。不能在工作稿旁新增普通版本目录，站点会拒绝其它位置的 `draft.json`。
-- 先把工作目录（排除 `milestones/`）复制到 scratch 作为上一版，再制作新版本并原地更新工作稿，保留现有里程碑。更新 `draft.json` 的 `version`、`date`、`status`、`summary`、`rd_open` 以及稿件记录。
-- 按本任务已授权的私有仓库编辑流程，以 `<MODEL> <REGION> vX.YY: <summary>` 提交到该仓库 `main` 并推送；回读提交和站点构建。中间版本由 Git 历史保留，不堆成目录。此处不授权向公共 auto-manual／Hello-Docs 提交审核稿。
+- 先把工作目录（排除 `milestones/`）复制到 scratch 作为上一版（即 US→JP 统计 `--previous` 用的上一版目录），再制作新版本并原地更新工作稿，保留现有里程碑。更新 `draft.json` 的 `version`、`date`、`status`、`summary`、`rd_open` 以及稿件记录。
+- 推送前在 auto-manual 工程仓库根目录运行 `python -m tools.rtd.review_site <克隆目录>/docs/review-drafts <scratch 输出目录>`（稀疏克隆里没有工具代码），确认构建通过并打开该稿页面。
+- 操作者要求修改已在该仓库的工作稿，即是本轮在该仓库提交的请求。以 `<MODEL> <REGION> vX.YY: <summary>` 提交到该仓库 `main` 并推送，回读远端 `main` 的提交。私有站点需要登录，打不开时请操作者确认构建结果，不声称已上线。中间版本由 Git 历史保留，不堆成目录。此处不授权向公共 auto-manual／Hello-Docs 提交审核稿。
 - 仅在操作者指定里程碑时复制工作目录（排除已有 `milestones/`）到 `milestones/<version>/` 并设置 `milestone`；不自动冻结每一版。
 - 只维护私有仓库的 `docs/review-drafts/`，其余路径由镜像同步拥有。私有站点重建总览及各机型／地区页面；ZIP 仅在用户要求时另交付。
 
