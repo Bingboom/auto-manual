@@ -1,4 +1,4 @@
 interface:
-  display_name: "US → JP Review Draft"
-  short_description: "Turn a published US manual into a JP review draft: reuse Japanese corpus, count new translation, audit coverage, JP web styling"
-  default_prompt: "Use $us-jp-review-draft to produce or continue the JP review draft from the US manual: load the Feishu draft, reuse existing Japanese (templates, TM, JP web manuals), mark the rest as green new translation (first-pass Japanese, US English kept for the count), fill JP spec-sheet and R&D values in purple, count new translation, audit US↔JP coverage, apply the JP web-manual style, verify in Chromium and deliver a versioned zip."
+  display_name: "US → US / US → JP Review Draft"
+  short_description: "参考稿复用与规格回填：US→US 英文／US→JP 日文审核稿"
+  default_prompt: "使用 $us-jp-review-draft 按目标地区和语言选择 US→US 或 US→JP：优先复用参考原文、结构和共享样式，按目标规格替换参数；日文优先复用既有语料，其余建议与疑问保留在审核意见，检查后交付版本化审核稿。"

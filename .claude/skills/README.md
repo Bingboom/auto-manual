@@ -7,7 +7,7 @@ Project skills in `.claude/skills/` load on demand for this repo. They are separ
 - `config-review`: reviews Claude Code scaffolding, deny rules, hooks, skills, and nested `CLAUDE.md` files for drift and bloat.
 - `hardcore-task-execution`: a working method for large, high-stakes, multi-step engineering tasks — discovery-first decomposition, safety-net-before-refactor, mechanical high-risk edits, a cheap-to-expensive verification ladder, revertable phase-per-PR, and stop-and-ask gates.
 - `ai-manual-pagenum-fix`: diagnose and fix page-number/TOC defects in a standalone design-team `.ai` multi-language manual (outside this repo's own build pipeline) via PyMuPDF diagnosis + a JXA→Illustrator scripting bridge, and re-export a clean portrait PDF.
-- `us-jp-review-draft`: thin entry for the shared `.agents/skills/us-jp-review-draft/` procedure — JP review draft from the published US manual (corpus reuse, green new-translation count, purple spec/R&D values, JP spec fill, US↔JP coverage audit with parallel agents, JP web styling, versioned zip / Feishu wiki upload on request).
+- `us-jp-review-draft`: thin entry for the shared `.agents/skills/us-jp-review-draft/` skill — US→US English reuse or US→JP Japanese-corpus reuse; shared reference structure, target-spec fill and review-note rules, with JP-specific terminology and translation counts retained.
 
 ## When To Add A Skill
 
