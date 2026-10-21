@@ -57,7 +57,7 @@ Review direction: external information is collected first and pushed for decisio
 - [x] Make the product rule an optional `product_lens`; events need no categories, capability names or catalog markets to be collected.
 - [x] Add decision fields (`decision_question`, optional `decision_owner`, `decide_by`) and make hypotheses/unknowns optional.
 - [x] Export an event-only decision digest (JSON + CommonMark) every build; delivery stays an operator-run follow-up.
-- [x] Lead the page with events and decisions; render the lens as a collapsed appendix with not-configured/unavailable/invalid/evaluated states and compact rows for unknown/excluded variants.
+- [x] Lay the page out as an event index in digest order: one row per event (market, kind, title, decision, owner, due date, states) that opens to its details, quick tiles over the filters, no slogan or explanatory header; the lens is a collapsed appendix inside the event with not-configured/unavailable/invalid/evaluated states and compact rows for unknown/excluded variants.
 - [x] Degrade only the lens when product inputs fail; skip only this page when the events file is malformed; validate the flag once at start-up.
 - [x] Fix review findings: revision allow-lists, real evidence paths and byte hashes, per-edition warnings, whole-number facts, lens vocabulary checks, anchor prefixes, shared manifest/row helpers, one read per manual, generic `preview/*` RTD rule that forces the flag off elsewhere.
 

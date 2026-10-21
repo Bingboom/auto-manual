@@ -31,6 +31,18 @@ test('missing source is a filterable state, never silently promoted to verified'
   assert.equal(matches(entry, {...ALL, status: 'verified'}), false);
 });
 
+test('a quick tile is pressed only while the filters are exactly its condition', () => {
+  const {pressed} = load();
+  const pending = {field: 'review', value: 'pending'};
+  const all = {field: 'all', value: 'all'};
+  assert.equal(pressed(all, ALL), true);
+  assert.equal(pressed(pending, ALL), false);
+  assert.equal(pressed(pending, {...ALL, review: 'pending'}), true);
+  assert.equal(pressed(all, {...ALL, review: 'pending'}), false);
+  assert.equal(pressed(pending, {...ALL, review: 'pending', market: 'NL'}), false);
+  assert.equal(pressed(pending, {...ALL, review: 'pending', search: 'policy'}), false);
+});
+
 test('deep links tolerate malformed percent encodings', () => {
   const {hashId} = load();
   assert.equal(hashId('#test-policy'), 'test-policy');
@@ -59,18 +71,32 @@ function page(hash = '') {
   for (const id of ['research-market', 'research-status', 'research-review']) nodes.get(id).value = 'all';
   const first = element('event-nl-policy', {
     dataset: {market: 'NL', status: 'verified', review: 'pending'}, textContent: 'Dutch policy JE-EU',
+    row: {open: false},
   });
   const second = element('event-us-market', {
     dataset: {market: 'US', status: 'missing', review: 'reviewed'}, textContent: 'US outage JE-US',
+    row: {open: false},
   });
-  first.closest = selector => selector === '.research-event' ? first : null;
-  second.closest = selector => selector === '.research-event' ? second : null;
+  for (const entry of [first, second]) {
+    entry.closest = selector => selector === '.research-event' ? entry : null;
+    entry.querySelector = selector => selector === 'details.event-entry' ? entry.row : null;
+  }
+  const tile = (field, value) => ({
+    dataset: value ? {quickField: field, quickValue: value} : {quickField: field}, attributes: {}, handlers: {},
+    addEventListener(type, fn) { this.handlers[type] = fn; },
+    dispatch(type) { this.handlers[type]?.(); },
+    setAttribute(name, text) { this.attributes[name] = text; },
+  });
+  const tiles = [tile('all'), tile('review', 'pending'), tile('review', 'reviewed'), tile('status', 'verified')];
   const context = {
     location: {hash}, window: {handlers: {}, addEventListener(type, fn) { this.handlers[type] = fn; }},
-    document: {getElementById: id => nodes.get(id) || null, querySelectorAll: () => [first, second]},
+    document: {
+      getElementById: id => nodes.get(id) || null,
+      querySelectorAll: selector => ({'.research-event': [first, second], '[data-quick-field]': tiles})[selector] || [],
+    },
   };
   vm.runInNewContext(script, context);
-  return {nodes, context, first, second};
+  return {nodes, context, first, second, tiles};
 }
 
 test('controls activate progressively and announce result count', () => {
@@ -83,6 +109,24 @@ test('controls activate progressively and announce result count', () => {
   assert.equal(second.hidden, true);
   assert.equal(nodes.get('research-count').textContent, '1 个外部事件 / 共 2 个');
   assert.equal(nodes.get('research-reset').hidden, false);
+});
+
+test('quick tiles filter in one click and show which one is active', () => {
+  const {nodes, first, second, tiles} = page();
+  assert.deepEqual(tiles.map(tile => tile.attributes['aria-pressed']), ['true', 'false', 'false', 'false']);
+  nodes.get('research-market').value = 'US';
+  tiles[1].dispatch('click');
+  assert.equal(nodes.get('research-market').value, 'all');
+  assert.equal(nodes.get('research-review').value, 'pending');
+  assert.equal(first.hidden, false);
+  assert.equal(second.hidden, true);
+  assert.deepEqual(tiles.map(tile => tile.attributes['aria-pressed']), ['false', 'true', 'false', 'false']);
+  tiles[3].dispatch('click');
+  assert.equal(nodes.get('research-review').value, 'all');
+  assert.equal(nodes.get('research-status').value, 'verified');
+  tiles[0].dispatch('click');
+  assert.equal(nodes.get('research-count').textContent, '2 个外部事件 / 共 2 个');
+  assert.deepEqual(tiles.map(tile => tile.attributes['aria-pressed']), ['true', 'false', 'false', 'false']);
 });
 
 test('the decision filter separates pending from judged events and resets with the rest', () => {
@@ -121,6 +165,7 @@ test('a deep link reveals a filtered event and preserves the underlying cases', 
   context.location.hash = '#event-us-market';
   context.window.handlers.hashchange();
   assert.equal(second.hidden, false);
+  assert.equal(second.row.open, true);
   assert.equal(second.scrolled, true);
   assert.equal(nodes.get('research-market').value, 'all');
   assert.equal(nodes.get('research-count').textContent, '2 个外部事件 / 共 2 个');

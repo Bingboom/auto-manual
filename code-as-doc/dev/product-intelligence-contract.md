@@ -121,13 +121,17 @@ Enable with Sphinx `rtd_product_intelligence_demo` or `RTD_PRODUCT_INTELLIGENCE_
 (true/false, 1/0, yes/no, on/off in any case); any other value is a configuration
 error at start-up, whatever the site role. The research context is built once at
 builder start, so every page links the research page only when it exists. A
-malformed events file skips this page with a warning and no other page. Events
-render first: decision, what happened, sources, possible impact, open questions
-and human judgment; the product lens is a collapsed appendix stating whether it is
-not configured, unavailable, invalid or evaluated. Unknown and excluded variants
-are compact rows of their failing conditions. Server rendering escapes text,
-validates links against actual publication routes and prefixes element ids with
-`event-`. JavaScript adds market, verification, decision and text filters.
+malformed events file skips this page with a warning and no other page. The page
+is an index of events in `decision_digest.decision_order`: each row shows market,
+kind, title, decision question, owner, due date, verification and decision state,
+and opens to what happened, sources, possible impact, open questions, human
+judgment and revisions. The product lens is a collapsed appendix inside the event
+stating whether it is not configured, unavailable, invalid or evaluated; unknown
+and excluded variants are compact rows of their failing conditions. Server
+rendering escapes text, validates links against actual publication routes and
+prefixes element ids with `event-`. JavaScript adds quick tiles (all, pending,
+judged, verified) and market, verification, decision and text filters; a deep
+link opens its row.
 
 Each build writes `_static/external-intel.v1.json`, `_static/external-intel-digest.v1.json`
 and `_static/external-intel-digest.v1.md`, plus `_static/product-knowledge.v1.json`

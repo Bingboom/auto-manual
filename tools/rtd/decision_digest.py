@@ -93,7 +93,6 @@ def _text(digest: dict) -> str:
     parts = [
         "# 外部情报决策摘要",
         f"事件 {counts['events']} 条 · 待决策 {counts['pending']} 条 · 快照 {digest['events_snapshot_id'][:12]}",
-        "本摘要只汇总外部事件与待决策事项，不含内部产品数据或产品关联结论。",
     ]
     for title, items in (("待决策", pending), ("已有人工判断", decided)):
         if items:
@@ -103,14 +102,21 @@ def _text(digest: dict) -> str:
     return "\n\n".join(parts) + "\n"
 
 
+def decision_order(events: list[dict]) -> list[dict]:
+    """Pending judgments first, then by due date (none last), latest record and ID; the page uses it too."""
+    ordered = sorted(events, key=lambda event: event["id"])
+    ordered.sort(key=lambda event: event["recorded_on"], reverse=True)
+    ordered.sort(key=lambda event: ((event.get("review") or {}).get("status") == "reviewed",
+                                    (event.get("decision") or {}).get("due_on") is None,
+                                    (event.get("decision") or {}).get("due_on") or ""))
+    return ordered
+
+
 def decision_digest(intel: dict, *, page: str, base_url: str = "") -> dict:
-    """Order pending decisions first, then by due date, latest record and ID; never send."""
+    """One item per event in decision order; building it never sends anything."""
     if intel.get("schema_version") != EVENTS_SCHEMA:
         raise ValueError(f"decision digest needs {EVENTS_SCHEMA}")
-    items = sorted((_item(event, page, base_url) for event in intel["events"]), key=lambda item: item["event_id"])
-    items.sort(key=lambda item: item["recorded_on"], reverse=True)
-    items.sort(key=lambda item: (item["review"]["status"] == "reviewed", item["decision"]["due_on"] is None,
-                                 item["decision"]["due_on"] or ""))
+    items = [_item(event, page, base_url) for event in decision_order(intel["events"])]
     for item in items:
         item["message"] = _message(item)
     pending = sum(item["review"]["status"] != "reviewed" for item in items)

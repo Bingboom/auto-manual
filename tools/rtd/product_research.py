@@ -1,9 +1,10 @@
-"""Read-only presentation of external events; the product lens is an optional appendix.
+"""Read-only presentation of external events as a navigable index.
 
-Every event renders from the intake snapshot alone: what happened, its sources,
-the decision it asks for and the human judgment. A product lens appears only
-under the event that configured one, and its absence or failure never hides
-the event. No new facts are extracted here.
+Every event is one row in decision order (the digest's): what it is, the
+decision it asks for, who decides and by when. Its details (what happened,
+sources, open questions, human judgment, revisions) open under the row. A
+product lens appears only inside an event that configured one, and its absence
+or failure never hides the event. No new facts are extracted here.
 """
 from __future__ import annotations
 
@@ -11,7 +12,7 @@ from copy import deepcopy
 import re
 from urllib.parse import unquote, urlsplit
 
-from tools.rtd.decision_digest import KIND_LABELS, STATUS_LABELS, safe_external_url
+from tools.rtd.decision_digest import KIND_LABELS, STATUS_LABELS, decision_order, safe_external_url
 from tools.rtd.intelligence_events import SCHEMA_VERSION as EVENTS_SCHEMA
 from tools.rtd.product_matrix import number
 
@@ -242,7 +243,7 @@ def _event_views(records: list[dict]) -> list[dict]:
 def _lens_state(event: dict, entry: dict | None, lens_problem: str) -> dict:
     lens = event.get("product_lens")
     if lens is None:
-        state, message = "not_configured", "该事件未配置产品视角；它的收集、推送与决策不依赖产品数据。"
+        state, message = "not_configured", ""
     elif entry is None:
         state, message = "unavailable", _text(lens_problem, "产品知识快照不可用，暂不计算产品关联。")
     else:
@@ -292,7 +293,7 @@ def research_page_context(intel: dict, *, lens: dict | None = None, knowledge: d
     # All payloads remain caller-owned, including nested hypothesis/history lists.
     intel, lens, knowledge = deepcopy(intel), deepcopy(lens), deepcopy(knowledge)
     entries = _bound_lens(intel, lens, knowledge)
-    events = _event_views(intel["events"])
+    events = _event_views(decision_order(intel["events"]))
     for event in events:
         event["lens"] = _lens_state(event, entries.get(event["id"]), lens_problem)
     _attach(events, (lens or {}).get("associations", []),
@@ -308,7 +309,7 @@ def research_page_context(intel: dict, *, lens: dict | None = None, knowledge: d
         "research_summary": {
             "events": len(events),
             "pending": sum(event["review_state"] == "pending" for event in events),
+            "reviewed": sum(event["review_state"] == "reviewed" for event in events),
             "verified": sum(event["status"] == "verified" for event in events),
-            "unverified": sum(event["status"] != "verified" for event in events),
         },
     }

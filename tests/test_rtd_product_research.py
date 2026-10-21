@@ -104,9 +104,11 @@ class ProductResearchTests(unittest.TestCase):
         intel, _knowledge, _lens = snapshots()
         del intel["events"][0]["product_lens"]
         page = render(intel)
-        decision = page.select_one(".decision-ask").get_text()
-        for text in ("需要决策", "是否启动当地接入条件核查？", "决策人", "待指派", "截止", "未设定"):
-            self.assertIn(text, decision)
+        row = page.select_one(".research-event > details.event-entry > summary.event-row")
+        self.assertNotIn("open", row.parent.attrs)
+        self.assertEqual(row.select_one("h2").get_text(), "政策变化")
+        for text in ("需要决策", "是否启动当地接入条件核查？", "决策人 待指派", "截止 未设定", "NL", "政策变化"):
+            self.assertIn(text, " ".join(row.get_text(" ").split()))
         self.assertIn("政策发生变化。", page.select_one(".event-context").get_text())
         self.assertIsNotNone(page.select_one('.event-sources a[href="https://example.org/policy"]'))
         self.assertEqual(page.select_one(".human-review p").get_text(), "尚未记录人工判断。")
@@ -121,7 +123,7 @@ class ProductResearchTests(unittest.TestCase):
         page = render(intel, lens_problem="产品知识快照不可用：发布清单缺失。")
         self.assertIn("产品视角暂不可用", page.select_one(".product-lens summary").get_text())
         self.assertIn("发布清单缺失", page.select_one(".product-lens").get_text())
-        self.assertIn("是否启动当地接入条件核查？", page.select_one(".decision-ask").get_text())
+        self.assertIn("是否启动当地接入条件核查？", page.select_one(".event-row").get_text())
         self.assertEqual([a.get_text() for a in page.select(".research-downloads a")], [])
 
     def test_invalid_lens_lists_its_problems_and_no_products(self):
@@ -344,16 +346,20 @@ class ProductResearchTests(unittest.TestCase):
         del unverified["product_lens"]
         intel["events"].append(unverified)
         summary = context(intel, knowledge, lens)["research_summary"]
-        self.assertEqual(summary, {"events": 2, "pending": 1, "verified": 1, "unverified": 1})
-        metrics = render(intel, knowledge, lens).select_one(".research-metrics").get_text()
-        self.assertNotIn("候选", metrics)
+        self.assertEqual(summary, {"events": 2, "pending": 1, "reviewed": 1, "verified": 1})
+        tiles = render(intel, knowledge, lens).select(".research-quick button")
+        self.assertEqual([(tile.get("data-quick-field"), tile.get("data-quick-value"), tile.strong.get_text())
+                          for tile in tiles],
+                         [("all", None, "2"), ("review", "pending", "1"), ("review", "reviewed", "1"),
+                          ("status", "verified", "1")])
+        self.assertNotIn("候选", " ".join(tile.get_text() for tile in tiles))
 
     def test_empty_state_no_script_and_downloads_are_available(self):
         intel, knowledge, lens = snapshots()
         downloads = (("外部事件 JSON", "_static/external-intel.v1.json"),
                      ("决策摘要文本（Markdown）", "_static/external-intel-digest.v1.md"))
         populated = render(intel, knowledge, lens, downloads=downloads)
-        self.assertIn("全部事件、来源、附录和修订记录仍可直接阅读", populated.select_one("noscript").get_text())
+        self.assertIn("点开事件即可阅读全部来源、附录和修订记录", populated.select_one("noscript").get_text())
         self.assertIsNotNone(populated.select_one('#research-filters[hidden]'))
         self.assertIsNotNone(populated.select_one("#research-review"))
         links = populated.select(".research-downloads a[download]")
@@ -365,6 +371,28 @@ class ProductResearchTests(unittest.TestCase):
         self.assertIn("暂未录入外部事件", page.get_text())
         self.assertIn("external-intel/events.json", page.get_text())
         self.assertIsNone(page.select_one("#research-filters"))
+
+    def test_events_form_an_index_of_collapsed_rows_in_decision_order(self):
+        intel, knowledge, lens = snapshots()
+        first = intel["events"][0]
+        decided, due, later = (deepcopy(first) for _ in range(3))
+        decided.update(id="decided", title="已判断事件", recorded_on="2026-10-25", review={
+            "status": "reviewed", "decision": "暂缓。", "reviewed_by": "复核人", "reviewed_on": "2026-10-25"})
+        due.update(id="due-soon", title="有截止事件", decision={**first["decision"], "due_on": "2026-11-01"})
+        later.update(id="recorded-later", title="新录入事件", recorded_on="2026-10-24")
+        for event in (decided, due, later):
+            del event["product_lens"]
+        intel["events"] = [decided, first, later, due]
+        page = render(intel, knowledge, lens)
+        rows = page.select("#research-list > .research-event")
+        self.assertEqual([row["id"] for row in rows],
+                         ["event-due-soon", "event-recorded-later", "event-test-policy", "event-decided"])
+        self.assertTrue(all(row.select_one(":scope > details.event-entry > summary.event-row h2") for row in rows))
+        self.assertFalse(any("open" in row.details.attrs for row in rows))
+        self.assertIn("截止 2026-11-01", " ".join(rows[0].summary.get_text(" ").split()))
+        self.assertEqual([row["data-review"] for row in rows], ["pending", "pending", "pending", "reviewed"])
+        # Details live under the row, not beside it.
+        self.assertIsNotNone(rows[2].select_one("details.event-entry > .event-body .event-context"))
 
     def test_invalid_event_ids_and_unbound_associations_fail_closed(self):
         for key in ("../escape", '"><script>', "space id"):
