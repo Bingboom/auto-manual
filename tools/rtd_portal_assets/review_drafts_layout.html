@@ -1,0 +1,50 @@
+{#- Shell of the private review-draft site (tools/rtd/review_site.py), no Sphinx context.
+    `lines` = one entry per model/region (the sidebar groups them by model); `root` prefixes
+    site-relative links; `active` is this page's site path. -#}
+{%- macro volume(draft) -%}{% if draft.volume %}{{ draft.volume.units }} 单元 · {{ draft.volume.words }} 词{% else %}—{% endif %}{%- endmacro -%}
+{%- macro nav(href, icon, label, badge, extra="") -%}
+<a href="{{ root }}{{ href }}" class="app-nav-link{{ extra }}{% if href == active %} active" aria-current="page{% endif %}"><i aria-hidden="true">{{ icon }}</i><span>{{ label }}</span><em>{{ badge }}</em></a>
+{%- endmacro -%}
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>{% block title %}审核稿{% endblock %}</title>
+  <link rel="stylesheet" href="{{ root }}_static/site-shell.css">
+  <link rel="stylesheet" href="{{ root }}_static/review-drafts.css">
+</head>
+<body class="app review-drafts">
+<aside class="app-sidebar" id="app-sidebar">
+  <a class="app-brand" href="{{ root }}index.html">工作资料<span>.</span></a>
+  <nav class="app-nav" aria-label="站点导航">
+    <div class="app-nav-group">说明书生产</div>
+    {{ nav("index.html", "▧", "审核稿总览", lines|length) }}
+    {% for model, model_lines in lines|groupby("model") %}
+    <div class="rd-nav-model">{{ model }}</div>
+    {% for line in model_lines %}{{ nav(line.page, "▸", line.label, line.current.version, " rd-nav-line") }}{% endfor %}
+    {% endfor %}
+    {% if workbench_url %}<a href="{{ workbench_url }}" class="app-nav-link rd-nav-out"><i aria-hidden="true">▦</i><span>说明书工作台</span></a>{% endif %}
+  </nav>
+</aside>
+<div class="app-scrim" aria-hidden="true"></div>
+<div class="app-content">
+  <header class="app-topbar">
+    <button class="app-menu" type="button" aria-label="展开导航" aria-controls="app-sidebar" aria-expanded="false">☰</button>
+    <div class="app-crumb">{% block crumb %}{% endblock %}</div>
+  </header>
+  <main class="rd-main">
+{% block main %}{% endblock %}
+  </main>
+</div>
+<script>
+(() => {
+  const body = document.body, menu = document.querySelector(".app-menu");
+  const set = open => { body.classList.toggle("app-menu-open", open); menu.setAttribute("aria-expanded", String(open)); };
+  menu.addEventListener("click", () => set(!body.classList.contains("app-menu-open")));
+  document.querySelector(".app-scrim").addEventListener("click", () => set(false));
+})();
+</script>
+</body>
+</html>
