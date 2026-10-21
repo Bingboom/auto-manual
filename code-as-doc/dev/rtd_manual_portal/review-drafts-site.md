@@ -98,7 +98,7 @@ The private repository is where drafts are written; the review site is how they
 are read. Only `docs/review-drafts/` belongs to the private repository — every
 other path is overwritten by the next mirror sync, so never edit code there.
 
-- **Through an agent** (`us-jp-review-draft` skill, step 12): one instruction
+- **Through an agent** (`us-jp-review-draft` skill, “版本、上传与发布”): one instruction
   is one version number and one commit. The agent rewrites the working draft in
   place, updates `draft.json` (version, date, status, summary, `rd_open`), the
   change log and `review.zh.md`, commits to `Hello-Docs-Review/main` and pushes.

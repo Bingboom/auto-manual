@@ -1,138 +1,106 @@
 ---
 name: us-jp-review-draft
-description: "Produce or continue a JP (日规) review draft (审核稿/审阅稿) of a manual whose source is the published US English manual: US structure as the master, existing Japanese reused wherever the corpus has it (whole sentences or sentence halves), the rest as green new translation (first-pass Japanese, US English kept for the count), JP spec-sheet and R&D values in purple, US↔JP content alignment audit, JP web-manual styling, versioned zip and optional Feishu wiki upload. Use for 基于美规输出日规说明书, 日规审核稿/审阅稿, 继续改日规草稿 (Feishu wiki zip), 统计需新增翻译量, 日规与美规内容是否对应, 研发答复回填. US→JP only; not for building a pipeline review branch (Start Review) or back-porting reviewer edits."
+description: "制作或继续修改基于参考说明书和目标规格书的流水线外审核稿，支持 US→US 英文复用和 US→JP 日文语料复用。继承参考结构、原文、插图和共享样式，仅按目标规格及明确决定替换必要内容；建议和疑问进入审核意见。用于美规/日规审核稿、参考稿复用、规格回填和内容对照，不用于流水线 Start Review 或云文档回写。"
 ---
 
-# US → JP Review Draft
+# Reference-based Review Draft — US→US / US→JP
 
-Turn a published US English manual into a Japan-market review draft that
-reviewers can read in one HTML page: Japanese from the existing corpus in black,
-new translation in green, spec-sheet and R&D values in purple, pending values in
-magenta, Chinese glosses in blue, review notes in orange. Proven on JHP-3600C
-(v0.14 → v0.69); see `references/jhp3600c-case.md`.
+一个入口、两种模式；保留 `$us-jp-review-draft` 名称以兼容已有调用。
+共同原则是**先继承参考稿，再替换有依据的目标参数；能复用就不改写**。
 
-This is an off-pipeline review artifact. It never writes `docs/templates`,
-`docs/_review`, `data/phase2` or live source tables, and it never enters the
-public repositories (auto-manual, Hello-Docs). Published drafts live only in
-the private `Bingboom/Hello-Docs-Review` mirror; the other live write is the
-operator-requested Feishu wiki upload.
+## 选择模式
 
-## Inputs (ask for what is missing)
+以目标地区、目标语言及已有审核稿决定模式，不因参考来源含有某个地区就切换模式。
 
-- US source: the RTD page (e.g. `https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest/<MODEL>/US/en/md/...html`)
-  or its frozen package under `data/manual_sources/<MODEL>/US/`. The US manual
-  is the master: chapter order, sections and callouts follow it.
-- Existing draft, if continuing: a Feishu wiki link to the draft zip, or the
-  last zip the operator received.
-- JP spec sheet (规格书, often screenshots or an A0 PDF) and R&D answers
-  (研发答复, often chat screenshots): ratings, ports, limits, switching times.
-- Operator decisions as they come up (chapters to add, product naming, wording,
-  layout). Record each one in the draft's review notes, change log and
-  `review.zh.md`.
-
-## Workflow
-
-1. **Load the draft.** Resolve the wiki node and download the zip into an empty
-   scratch directory (`scripts/feishu_api.py node|download`; lark-cli may be
-   unconfigured, the API helper only needs `FEISHU_APP_ID/SECRET`). Read the
-   zip's `README.md`/`review.zh.md`, outline the HTML headings, render it once.
-2. **Build the corpus** (read-only), in this order — see `references/corpus-and-color-rules.md`:
-   JP RST templates → `Translation_Memory` terms + sentence pairs → live
-   规格参数明细 / LCD tables → every published JP web manual (`scripts/jp_corpus.py pool`).
-   Sibling JP models with the same hardware (e.g. JE-5000A for 100V/200V
-   L14-30R/6-20R ports, JE-1000F for spec-table and safety wording) are the
-   best source. Check `data/terminology_rules.csv` before choosing a term
-   (e.g. Bypass → 「パススルー」, 「バイパス」 is retired).
-3. **Fill the JP spec sheet.** Labels and row wording from the sibling JP spec
-   table, not a word-for-word US label (no 「充電モード」/「パススルーモード」;
-   add 「シガーソケット: 」「PV: 」). Values only from the JP spec sheet or R&D,
-   in purple with their source. US values never enter Japanese text — they go
-   into the orange review note.
-4. **Replace with Japanese wherever it exists.** Reuse a corpus sentence when
-   it says the same thing with only a value/name/port slot changed. When only
-   half a sentence matches, split the unit: green new half + black corpus half.
-   Everything else is a green unit with `data-needs-translation`, a first-pass
-   Japanese draft and the US English in `data-previous-english`.
-5. **Add operator-requested US sections** (connections, 200V UPS/charging …)
-   and JP-only additions (e.g. a 電気工事士 installation caution): adapt to
-   the JP spec, corpus Japanese for labels/frames; US figures via
-   `scripts/rtd_figures.cjs` with an orange "美规原图…需重绘" caption.
-6. **Fill R&D answers** as they arrive: write only what R&D stated, never a
-   derived number; purple with `data-spec-source="研发答复 <date>"`. Keep open
-   questions in the appendix; a question list for R&D is plain Chinese.
-7. **Count the translation volume:** `scripts/count_translation.py --previous <last version dir>`
-   → `new-translation-needed.xlsx/.csv` + summary; mirror the totals in the
-   review appendix (units, words, chars, by chapter/type).
-8. **Audit US↔JP coverage** when asked or before a big hand-off —
-   `references/alignment-audit.md` (unit extraction, parallel per-chapter
-   agents, overrides, `scripts/aggregate_align.py`).
-9. **Style like the published JP web manual** (JE-1000F JP) —
-   `references/jp-style-mapping.md`; overlay `assets/review-overlay.css`.
-10. **Verify** with `scripts/render_check.cjs` at 1280 and 390 px (no broken
-    images, no page-level horizontal scroll, expected colors) and look at the
-    screenshot of every section you changed.
-11. **Deliver** a versioned zip (`<MODEL>-JP-Review-Draft-vX.YY.zip`) with
-    HTML, assets, registers, xlsx and an updated `README.md`/`review.zh.md`;
-    send it to the operator. Upload to the Feishu wiki only when asked
-    (`references/feishu-io.md`), next to the original, then read back.
-12. **Write in the private repository.** A draft line in
-    `Bingboom/Hello-Docs-Review` is one working directory,
-    `docs/review-drafts/<MODEL>/<REGION>/` (its `draft.json` names the current
-    version), plus frozen `milestones/<version>/` copies. Never add a version
-    directory there: the site build refuses a `draft.json` anywhere else. Copy the
-    working directory (without `milestones/`) to the scratchpad as the previous
-    version, build the next one from it as above, put the new files back in place
-    (keep `milestones/`), update `draft.json` (version, date, status, summary,
-    `rd_open`), commit `<MODEL> <REGION> vX.YY: <summary>` to its `main` and push.
-    Freeze a milestone only when the operator names one: copy the working directory
-    (without `milestones/`) to `milestones/<version>/` and set its `milestone`. The
-    private RTD project (<https://ht-docs-review-doc-lib.readthedocs-hosted.com/>)
-    rebuilds the overview and the line page. Touch nothing outside
-    `docs/review-drafts/` there (the mirror sync owns the rest). A zip goes to the
-    operator only when asked. Rules:
-    [`review-drafts-site.md`](../../../code-as-doc/dev/rtd_manual_portal/review-drafts-site.md).
-
-One operator instruction = one version: a `make_vNNN.py` that copies the last
-version directory, applies exact-count replacements, bumps every version
-string and prepends the change log (`references/examples/jhp3600c/`).
-
-## Color contract (operator-confirmed)
-
-| Color | Markup | Meaning |
+| 模式 | 正文处理 | 专属指引 |
 | --- | --- | --- |
-| black | `.jp-original` | existing Japanese (template, TM, JP web manual) |
-| green | `.en-new` (+ `data-needs-translation`) | new translation, counted; first-pass Japanese, US English in `data-previous-english` |
-| green | `.en-new.jp-draft-insert` | small new insert (heading words, connector) or JP-only addition; not counted |
-| purple | `.jp-spec-updated` / `.jp-spec-filled` | spec-sheet or R&D value, with source and date; not translation |
-| magenta | `.us-difference.jp-parameter` | pending value 【要確認】/TBC |
-| amber | `.jp-name-ref` | product-name reference 「本製品」 |
-| blue small | `.zh-translation` | Chinese gloss of every unit |
-| orange | `.jp-review` | Chinese review note, source and reasoning |
+| US→US，英文参考到美规英文目标 | 原句、段落和结构直接复用；仅替换目标字段与有依据的差异片段 | [英文复用](references/us-to-us.md) |
+| US→JP，美规英文参考到日规日文目标 | 参考结构为主；日文优先复用既有语料，仅补译确实缺失的必要片段 | [日文复用](references/us-to-jp.md) |
 
-## Rules that bite
+只加载本轮模式需要的指引。跨型号不等于跨语言；指定 JE-3000C/EU 英文警示作为补充来源，也不会把 US→US 目标改成欧规。
 
-- Never claim "no Japanese exists" from one source: check all corpus layers,
-  including short labels (「認証：」) and sentence halves.
-- Wording decisions the operator already made (別売り vs 市販の, product-name
-  reference, spec labels, full-width katakana, LCD 点灯時／消灯時) are in
-  `references/corpus-and-color-rules.md`; apply them to new copy too.
-- A question from the operator (为啥／是什么／…吗) gets an answer, not an
-  edit. Change the draft only when asked; offer the change in one line.
-- Keep every version's decisions in `review.zh.md` (newest first) and bump
-  the version in the toolbar, title, banner, print note and change log.
-- Live Feishu writes need the operator's request in this conversation and a
-  read-back (node + SHA-256). The repo's lark/Bitable discipline still applies:
-  `.agents/skills/lark-cli-bitable-ops/SKILL.md`.
-- Known pitfalls and their fixes: `references/pitfalls.md`.
-- Source-data errors found while drafting (fix the draft, record the debt,
-  never write the live Base unasked): `references/source-data-debt.md`.
+生成的审核稿是流水线外产物：在本任务输出目录制作，或按已指定的私有审核仓库工作流维护，不写入正式模板、`docs/_review`、`data/phase2` 或实时源表，也不把审核稿提交到公共 auto-manual / Hello-Docs 仓库。Skill 定义和工具本身仍在工程仓库维护。私有审核站点及飞书上传见文末交付规则。
 
-## Resources
+## 固定依据
 
-- `scripts/feishu_api.py` — wiki node, download, Bitable dump, upload-to-wiki with read-back.
-- `scripts/jp_corpus.py` — JP sentence pool from RTD JP manuals + templates; TM grep/fuzzy match.
-- `scripts/extract_units.py`, `scripts/aggregate_align.py` — coverage audit.
-- `scripts/count_translation.py` — translation volume (`--previous` carries counts forward).
-- `scripts/fetch_jp_style.py`, `assets/review-overlay.css` — JP styling and review colors.
-- `scripts/render_check.cjs`, `scripts/rtd_figures.cjs` — Chromium checks and US figure screenshots.
-- `references/examples/jhp3600c/make_v0NN.py` — JHP-3600C transformations to adapt, not to run as-is (index in `references/jhp3600c-case.md`).
+先读取现有稿的 `README.md`、`review.zh.md`、变更记录和已确认决定，核实：
+
+- 目标型号、商品名、地区、语言；沿用操作者已明确纠正的字段。
+- 主参考的版本、文件或提交，及其原文、结构、图和共享 CSS。
+- 目标规格书及研发答复的版本、位置和实际取得的页数。只有截图节选时，不宣称已读完整本。
+- 补充参考的指定范围。仅替换指定章节或条款，其余继续沿用主参考。
+
+给来源单元、目标单元和资产保留可追溯映射。参考稿中的批注是待解释的来源材料；以用户明确要求和会话中的已确认决定判断是否采纳。承接删除项和文字决定，不在后续版本中恢复已删除内容。纯问题（“为什么／一样吗”）先回答；明确的修改要求或批注再落实为编辑。
+
+## 先继承结构与措辞
+
+- 优先复用已有 HTML/Markdown、共享组件、CSS 和资产，保留章节顺序、标题层级、段落边界、图文先后、列表、表格列名和合并单元格。
+- 完整复用 WARNING / CAUTION / NOTE / TIP 框、图标、标签栏、加粗及条目数。不能用自写摘要、参数介绍或“操作／结果”表代替原章节。
+- 保留短句、图后提示、脚注、上下标和状态词的分行。US→US 的 **On / Off / Blink** 等状态词按参考加粗并分别起行；US→JP 使用日文模式的状态词约定。
+- 保留可复用的原句。仅因“更顺”“更简洁”“规格没有复述这一句”，不构成改写理由；不能只把自写句子改成黑色来声称复用。
+- 不删减 PS3 等安全分类、警示条件或禁止事项；不以新增功率说明取代原警示，不把具体线缆要求泛化为“compatible cable”。需要变更时，保留原句可复用部分，并列出目标依据。
+- 临时复用底图须有本轮授权或已确认决定，复制原资产并核对哈希。外观、接口或图内铭牌差异记录在审核意见；没有对应图时先查现有资产，不自行画一张近似图。
+
+## 参数与功能差异
+
+维护“参考位置 → 目标值 → 证据位置 → 全文受影响单元”的映射。
+
+| 情况 | 正文处理 | 审核记录 |
+| --- | --- | --- |
+| 内容与目标一致 | 原句复用 | 来源位置 |
+| 只有名称、额定值、数量等字段不同 | 保留句式，替换字段 | 规格页／研发答复／操作者决定 |
+| 目标功能有明确差异 | 只改差异片段 | 原文、目标证据和修改原因 |
+| 目标规格未重复通用说明或警示 | 保留参考措辞作为审核候选 | 需要确认的适用性；不能伪称目标已验证 |
+| 缺少目标专属数值 | 保留结构及中性空位；沿用已有稿获确认的占位方案 | 缺项、参考值及待答复内容 |
+| 已知参考与目标规格冲突 | 使用有依据的目标内容；争议文字留审核区 | 冲突证据，不把相反说法当作目标事实 |
+| 用户明确指定整段、原图或某参考值采用 | 按指定范围采用 | 记为操作者决定，不伪记为规格确认 |
+| 目标确需新增且无对应原文 | 先查补充参考／目标语言语料，再补最小必要内容 | 新增原因、已查来源和依据 |
+
+参数的限定条件必须保留：额定／浪涌、单口／总计、旁路／正常输出、温度、持续时间、不等号边界、线缆与端口的区别。参数值及条件来自目标规格或明确答复，不靠参考型号或推算补空；允许精确单位换算时记录原值、算法及计算值身份，不由总功率反推端口或太阳能板数量。
+
+正文、规格表、图示可编辑标签和中文对照中的同一参数同步核对。表格要保留完整额定信息，不能因为单插座认证仍待确认就删除规格已经明确的整机电流和功率；同时不能把整机总额定值当成多个插座可各自同时输出的额定值。
+
+## 审核意见与颜色
+
+建议、推测、额外解释、适用性疑问、证据缺项和候选文案放入可切换的审核意见，默认正文及打印不混入内部意见。不用 “If supported for this model…” 之类自写条件句代替适用性审核。
+
+- **黑色**：原文或既有目标语言语料；纯参数替换后的句子主体仍是黑色。
+- **紫色**：目标名称或参数字段；同语言只标实际替换的片段，日文沿用其规格回填标记。
+- **绿色**：确有依据的新增／实质改写；日文模式另区分待翻译片段与小型新增内容。
+- **蓝色**：可切换中文对照；**橙色**：来源、差异、建议与决定。
+- **玫红色**：待确认信息。新英文稿放在审核层，正文未知值用“—”；既有日文稿已确认的占位和色彩约定按日文指引保留。
+
+审核项记录单元／位置、参考原文或值、目标证据、问题、决定、来源类型和状态。“内容采用”与“目标技术适用性已确认”分别记录。不能通过隐藏审核意见掩盖已知冲突。
+
+## 交付前检查
+
+1. 对照每个相关来源单元：必须有正文对应、审核区对应或有理由的不采用记录，重点查短句和图后说明。
+2. 比较标题、段落、图位、表格、合并行、警示框及条目数；每次增删、重排须有依据。
+3. 去掉已登记的字段替换后，声称“复用”的原句应一致；必要语法适配另记，不能用主题相同代替原句对照。
+4. 检查参数完整性和全文一致性。按已确认格式统一缩写；英文最大值用 `max.`，同时检查跨标签的句末标点，避免 `max..`。不改写来源快照中的原文，不将日文「最大」机械替换为英文。
+5. 逐条审查绿色清单：无必要的新写文字恢复来源措辞；纯参数、名称和格式变化不计为新翻译／实质改写。
+6. 复用图及共享 CSS 核对来源；渲染 1280 和 390 宽度，查看修改区域，检查分行、加粗、上下标、缺图及页面溢出。已有 `scripts/render_check.cjs` 可复用，但 JP 专属选择器和计数不能直接证明 US 稿通过。
+7. 正文、中文对照、来源映射、问题清单和工作簿同步；保留来源原文与目标文案的区别。校验通过不是技术批准或发布成功。
+
+模式专属审查与统计见两个分支指引。遇到已有脚本、工具或格式约定时先复用，不为一次文字改动另造流程。
+
+## 版本、上传与发布
+
+一轮明确修改形成一个新版本；承接已有稿的本地交付或私有仓库工作流。不要因模式合并擅自迁移当前稿或发布稿件。同步标题、工具栏、当前版本标记、`README.md`、`review.zh.md` 和变更记录，历史记录不重写。
+
+本地稿先复制上一版做范围明确的替换，保留旧版和已确认决定；按本任务约定交付可独立打开的 HTML。用户要求 ZIP 或已有明确打包约定时，交付 `<MODEL>-<REGION>-Review-Draft-vX.YY.zip`，包含全部资源、证据及必要登记表，并核对完整性。
+
+### 私有审核仓库工作流
+
+已指定 `Bingboom/Hello-Docs-Review` 的任务遵守 [review-drafts-site.md](../../../code-as-doc/dev/rtd_manual_portal/review-drafts-site.md)，同一型号／地区只有一份工作稿：
+
+- 当前稿在 `docs/review-drafts/<MODEL>/<REGION>/`，`draft.json` 记录当前版本；冻结稿在 `milestones/<version>/`。不能在工作稿旁新增普通版本目录，站点会拒绝其它位置的 `draft.json`。
+- 先把工作目录（排除 `milestones/`）复制到 scratch 作为上一版，再制作新版本并原地更新工作稿，保留现有里程碑。更新 `draft.json` 的 `version`、`date`、`status`、`summary`、`rd_open` 以及稿件记录。
+- 按本任务已授权的私有仓库编辑流程，以 `<MODEL> <REGION> vX.YY: <summary>` 提交到该仓库 `main` 并推送；回读提交和站点构建。中间版本由 Git 历史保留，不堆成目录。此处不授权向公共 auto-manual／Hello-Docs 提交审核稿。
+- 仅在操作者指定里程碑时复制工作目录（排除已有 `milestones/`）到 `milestones/<version>/` 并设置 `milestone`；不自动冻结每一版。
+- 只维护私有仓库的 `docs/review-drafts/`，其余路径由镜像同步拥有。私有站点重建总览及各机型／地区页面；ZIP 仅在用户要求时另交付。
+
+### 其他外部操作
+
+- 飞书下载／上传需要时读 [feishu-io.md](references/feishu-io.md)。上传须用户明确要求，完成后回读节点及 SHA-256；直接 Bitable 操作另遵守 [lark-cli-bitable-ops](../lark-cli-bitable-ops/SKILL.md)。
+- 草稿发现源数据错误：记录问题和应回写位置，不擅自写实时 Base；需要时读 [source-data-debt.md](references/source-data-debt.md)。
