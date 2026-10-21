@@ -112,7 +112,9 @@ other path is overwritten by the next mirror sync, so never edit code there.
   `milestones/<version>/` and set its `milestone`. Delete a milestone directory
   when it is no longer needed; it stays in git history.
 - **Preview before pushing**: `python -m tools.rtd.review_site docs/review-drafts _site`
-  and open `_site/index.html`.
+  and open `_site/index.html`. A sparse clone (only `docs/review-drafts`, the
+  way agents check the repository out) has no tool code: run the same command
+  from an auto-manual checkout against `<clone>/docs/review-drafts`.
 
 The repository's own `docs/review-drafts/README.md` is the editors' guide
 (colour classes and the edit checklist).

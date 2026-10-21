@@ -1,6 +1,6 @@
 ---
 description: Produce or continue a reference-based review draft in US→US English or US→JP Japanese mode. Reuse the reference structure and wording, fill target-spec parameters, keep suggestions and uncertainty in review notes, and deliver a versioned local package.
-when_to_use: Trigger phrases include 美规英文审核稿, 参考稿复用, US-US, US-JP, 基于美规输出日规说明书, 日规审核稿, 规格回填, 统计新增翻译量, 参考与目标内容对照.
+when_to_use: Trigger phrases include 美规英文审核稿, 参考稿复用, US-US, US-JP, 基于美规输出日规说明书, 日规审核稿, 规格回填, 统计新增翻译量, 参考与目标内容对照, 改审核稿, 继续修改审核稿, 私有审核仓库.
 argument-hint: "[reference manual] [target spec sheet] [existing draft, if any]"
 ---
 
@@ -18,5 +18,10 @@ Claude Code specifics:
   translation counts on a US→US English draft.
 - Hand drafts, xlsx and previews to the operator with SendUserFile. Feishu
   upload and private review-site publication require the user's request and
-  follow the shared skill's read-back and publication rules.
-- Keep generated drafts and scratch work outside the engineering repository.
+  follow the shared skill's read-back and publication rules; a requested change
+  to a draft that lives in Hello-Docs-Review is that request.
+- In a cloud session, attach `Bingboom/Hello-Docs-Review` with `add_repo`
+  (push access) before the sparse clone the shared skill describes.
+- Keep generated drafts and scratch work in the session scratchpad, outside
+  auto-manual; only the working draft goes into Hello-Docs-Review's
+  `docs/review-drafts/`.
