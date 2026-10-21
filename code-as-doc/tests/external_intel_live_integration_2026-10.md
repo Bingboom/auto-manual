@@ -4,8 +4,10 @@ Status: active · Owner: operator (夏冰) · Created: 2026-10-22 · PR: [Bingbo
 
 ## Scope
 
-This is the first run of the external intelligence loop against Feishu. It runs on
-PR #1585's head, before that PR merges into `feat/product-intelligence-demo`.
+This is the first run of the Research & Intelligence prototype's loop against
+Feishu. The prototype incubates on `feat/product-intelligence-demo` and never
+merges into `main` ([charter](../dev/research-intelligence-charter.md)). The run
+uses PR #1585's head, before that PR merges into the incubation branch.
 Every call goes through lark-cli 1.0.49, the version CI pins, as the business
 bot:
 
@@ -279,6 +281,7 @@ Observed cell shapes: —
 
 Defects found and fixes: —
 
-After a full pass, the operator decides whether PR #1585 merges into
-`feat/product-intelligence-demo`. After that merge, synced intake goes to
-Hello-Docs as a content PR.
+After a full pass, the operator decides whether PR #1585 merges into the
+incubation branch `feat/product-intelligence-demo`; that is not a merge into
+`main`. Where synced intake is committed afterwards is an open decision in the
+charter.

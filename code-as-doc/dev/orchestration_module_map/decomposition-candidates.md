@@ -76,7 +76,9 @@ Prepared Web admission: `tools/web/component_admission.py` owns fresh-publicatio
 
 `tools/rtd/product_learning.py` 将工程维护的通用课程词条与冻结产品目录关联；`tools/rtd/portal.py` 只注册页面。产品定位分组以首页 `navigation` 为底，由 `tools/rtd/product_matrix.py` 的 `positioning_groups` 补上 `product_matrix.json` 的产品线与 `assign`；知识页复用这一层，不建立第二份型号定位表。
 
-外部情报以事件为先，收集与推送集中在可独立迁出的 `tools/intel/` 包：只依赖标准库与
+外部情报属于孵化中的独立项目 Research & Intelligence（见
+[章程](../research-intelligence-charter.md)，不合入 `main`），以事件为先，收集与推送集中在
+将迁出的 `tools/intel/` 包：只依赖标准库与
 包内模块（相对导入），飞书调用、政策记录和日期都由调用方传入。`events.py` 从业务知识
 目录读取 `external-intel/events.json` 并按 ID 复用市场政策，不读取任何产品数据；
 `digest.py` 只用事件生成可推送的决策摘要；`sync.py` 只读飞书「外部情报」表，按行追加

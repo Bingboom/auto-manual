@@ -1,5 +1,9 @@
 """External intelligence loop: collect events, push decisions, keep the judgments.
 
+The core of Research & Intelligence, a standalone research platform incubating in
+this repository (``code-as-doc/dev/research-intelligence-charter.md``). It leaves
+for its own repository and never merges into auto-manual's ``main``.
+
 A self-contained package that can leave this repository as it is. It imports
 only the Python standard library and its own modules (relative imports), so
 nothing here depends on the rest of ``tools``; ``tests/test_external_intel_boundary.py``
@@ -21,5 +25,5 @@ The host repository renders the research page and the optional product lens
 from the package's snapshot and digest; the package never imports them. To
 stand alone, move this directory, ``tests/test_intel_*.py`` and
 ``tests/fixtures/external_intel/`` and rename the ``tools.intel`` import prefix
-in those tests.
+in those tests; the charter lists what else moves.
 """

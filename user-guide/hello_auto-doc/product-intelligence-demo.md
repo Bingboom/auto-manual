@@ -1,5 +1,9 @@
 # 外部情报 Demo
 
+本页是 Research & Intelligence 孵化原型的试运行说明。它是从 Hello-Docs 仓库中孵化的
+独立研究平台项目，不是 Hello-Docs 的新功能；所在分支不合入 `main`，核心最终迁到
+独立仓库，见[项目章程](../../code-as-doc/dev/research-intelligence-charter.md)。
+
 外部情报的重点是先收集、再推送用于决策，不受内部产品牵制。每条外部事件只需写清
 发生了什么、来源和核实状态、需要什么决策、由谁决定、何时决定，就能被收集、展示
 和推送；产品关联只是事件可选的附录。研究假设、产品关联都需要人工判断，不能作为
@@ -9,7 +13,7 @@
 
 事件属于业务数据，放在业务知识目录（Hello-Docs `docs/knowledge/`，即构建的
 `rtd_knowledge_dir`）的 `external-intel/events.json`，与 `market-policy/records.json`
-并列，不在工程仓库维护。格式为 `schema_version: external-intel-events/v1` 的
+并列，不在工程仓库维护。孵化期沿用这个位置；迁出后事件存放在哪里，是章程里的待决策项。格式为 `schema_version: external-intel-events/v1` 的
 `events` 列表，完整示例见
 [`tests/fixtures/external_intel/events.json`](../../tests/fixtures/external_intel/events.json)。
 也可以在飞书「外部情报」表里维护，由同步命令写入这个文件，见下文

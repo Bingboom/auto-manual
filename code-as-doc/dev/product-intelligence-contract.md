@@ -2,9 +2,12 @@
 
 Status: active
 
-This is the implementation contract for [PR #1579](https://github.com/Bingboom/auto-manual/pull/1579)
-and its [execution plan](product-intelligence-demo-plan.md). It does not change
-Hello-Docs positioning or the approved content production spine.
+This is the implementation contract of the Research & Intelligence prototype. The
+prototype incubates on `feat/product-intelligence-demo` and leaves for its own
+repository; see the [project charter](research-intelligence-charter.md) and the
+[execution plan](product-intelligence-demo-plan.md). It never merges into
+`auto-manual/main` and does not change Hello-Docs positioning or the content
+production spine. Hello-Docs is an optional data source and integration target.
 
 ## Direction (2026-10-21)
 
