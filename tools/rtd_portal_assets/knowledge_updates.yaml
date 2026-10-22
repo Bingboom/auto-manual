@@ -24,6 +24,11 @@ schema: hello-docs-knowledge-updates/v1
 
 updates:
   - date: 2026-10-22
+    title: 产品知识 · 美规 ATS 与日本切替分電盤
+    note: 新增一项：两种家庭备电接法里主机所处位置不同，以及哪些美规描述不能照搬到日本
+    page: product-knowledge
+    evidence: "pr:auto-manual#1591"
+  - date: 2026-10-22
     title: 产品知识 · 备电与日本家庭用电
     note: 新增单进裂出、节能模式与待机关机、分电盘与 ATS（日本切替分電盤）、GFCI 与漏電遮断器四项知识
     page: product-knowledge
