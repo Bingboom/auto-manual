@@ -1,6 +1,6 @@
 # External Intelligence Live Integration — 2026-10
 
-Status: planned · Owner: operator (夏冰) · Created: 2026-10-22 · PR: [Bingboom/auto-manual#1585](https://github.com/Bingboom/auto-manual/pull/1585)
+Status: proposed · Owner: operator (夏冰) · Created: 2026-10-22 · PR: [Bingboom/auto-manual#1585](https://github.com/Bingboom/auto-manual/pull/1585)
 
 Gate revised: 2026-10-21 (America/Los_Angeles). Original creation date and file
 name retained for traceability; neither is a scheduled test date. Live date: TBD.

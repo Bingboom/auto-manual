@@ -18,7 +18,7 @@ Claude Code discovers `.claude/skills/research-intelligence-architecture/SKILL.m
 from the repository root and its descendants, including a session started at
 `tools/intel/`. Only its name/description is available before selection; the body
 loads on invocation or task match, and this reference loads only when needed.
-The root `CLAUDE.md` and `AGENTS.md` are unchanged. The directory-local
+This Skill does not change the root `CLAUDE.md` or `AGENTS.md`. The directory-local
 `tools/intel/CLAUDE.md` imports its local `AGENTS.md` and explicitly directs the
 agent to read the host rules if not already loaded. Do not assume every client
 injects all ancestor `AGENTS.md` files; the verified CLI loads the nearest one
@@ -32,10 +32,10 @@ environment that does not load repository skills must explicitly read the linked
 `SKILL.md` and this map; do not assume desktop discovery proves cloud loading.
 Claude's [Skills documentation](https://code.claude.com/docs/en/skills) describes
 project skills and supporting files. A frontmatter validator alone does not
-prove discovery; use the actual installed loader. Verification evidence lives in
-the PR description.
+prove discovery; use the actual installed loader. Record the evidence in the
+description of the PR that adds or moves this Skill.
 
-## Independent-repository targets (not created by this PR)
+## Independent-repository targets (not created in auto-manual)
 
 Move `tools/intel/AGENTS.md` to the new repository's root `AGENTS.md`, adapt host
 references there and make a root `CLAUDE.md` importing it. Move this Skill to the

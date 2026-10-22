@@ -20,7 +20,7 @@ description: Review or change the incubating Research & Intelligence platform's 
    only. Real Feishu reads/writes, Base/group creation and messages wait for the
    independent repository's migration gate; a sync dry run still reads the table.
    A runbook, existing credential or incubation merge does not unlock that gate.
-5. Keep the existing PR branch/base and host operating rules. Report document
-   checks, skill discovery, standalone validation and live acceptance separately.
-   No merge into `main`, deployment or new business functionality is part of
-   this governance update.
+5. Keep the host operating rules, and target this core's PRs at the incubation
+   branch `feat/product-intelligence-demo`. Report document checks, skill
+   discovery, standalone validation and live acceptance separately. Nothing from
+   the incubation branch merges into `main` or deploys.
