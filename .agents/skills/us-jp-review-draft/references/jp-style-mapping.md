@@ -45,4 +45,6 @@ Worked transformation: `examples/jhp3600c/make_v018.py`.
 - H2 is `display:flex` in web_manual.css: give the gloss `flex-basis:100%` and a
   left indent so it sits under the title.
 - Provide toolbar toggles: 强调玫红差异 (`only-changes`), 中文审阅 (`hide-notes`),
-  中文对照 (`hide-zh`) so reviewers can view the pure JP layout.
+  中文对照 (`hide-zh`) so reviewers can view the pure JP layout. 中文审阅 hides every
+  piece of review information: the notes, the review captions and appendix, and also
+  the version banner and the change log.
