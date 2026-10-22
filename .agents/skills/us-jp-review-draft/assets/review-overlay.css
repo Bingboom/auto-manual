@@ -106,6 +106,8 @@ html body #furo-main-content #jp-review-appendix > h1 { color: #fff !important; 
 html body #furo-main-content #jp-review-appendix :is(p, li, h2, td, th) { color: #8a4b08 !important; }
 html body #furo-main-content #jp-review-appendix table { min-width: 0; }
 .hide-notes #furo-main-content .jp-review, .hide-notes .us-review-figure figcaption, .hide-notes #jp-review-appendix, .hide-notes .toc a[href="#jp-review-appendix"] { display: none !important; }
+/* The version banner and the change log are review information too: 中文审阅 hides them. */
+.hide-notes .draft-banner, .hide-notes .change-log { display: none !important; }
 .hide-zh #furo-main-content .zh-translation { display: none !important; }
 html body.only-changes #furo-main-content :is(.us-difference, .jp-parameter) { background: #fff0f7; outline: 1px solid #e8a8c4; outline-offset: 2px; }
 html body.only-changes #furo-main-content .en-new { background: #ecfdf5; outline: 1px solid #a7f3d0; outline-offset: 2px; }
