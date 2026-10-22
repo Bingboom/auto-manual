@@ -56,7 +56,7 @@
 
 | Topic | Rule | Version |
 | --- | --- | --- |
-| product name | full name once, in the opening sentence of 「使用上のご注意」: 「<名称>（以下、「本製品」）は、定格出力…」 (JE-1000F opens that sentence with the full name); title and preface keep the full name without the reference; elsewhere 「本製品」 in `.jp-name-ref`; the spec table 「製品の名称」 keeps the full name | v0.24, v0.69 |
+| product name | [content rule R6](../../../../code-as-doc/content_quality_rules.md), all languages: full name in the title and once in the opening sentence, with no 「（以下、「本製品」）」 (the v0.24/v0.69 parenthetical is retired, operator 2026-10-22); elsewhere 「本製品」 in `.jp-name-ref`; the spec table 「製品の名称」, warranty sentence and two-product sentences keep the full name | v0.24, v0.69, 2026-10-22 |
 | 別売り vs 市販の | 「別売り」 only for Jackery-sold accessories; third-party equipment Jackery does not sell (MTS) is 「市販の…」 and the heading drops 「（別売り）」 even when the US says SOLD SEPARATELY | v0.65 |
 | equipment full names | headings spell the Japanese name with the abbreviation: 「手動切替スイッチ（MTS）に接続する」 | v0.64 |
 | JP-only legal notes | add what Japanese law requires even if the US has nothing (MTS: 「MTSの設置と分電盤への配線工事は、必ず電気工事士に依頼してください。」); green `jp-draft-insert`, not counted, flagged for native review | v0.66 |

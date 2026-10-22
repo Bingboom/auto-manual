@@ -126,6 +126,24 @@ Each rule maps to a quality dimension and a source location to fix.
 - **Limitation:** the snapshot only carries the status-word TM rows; full live-TM
   duplicate detection is the scheduled online extension (§4).
 
+### R6 — Product-name reference · writing rule, not yet linted · dimension: templates + review drafts
+- **Rule:** in every language the full product name appears once in the opening
+  sentence ("Congratulations on your new <full name>." and its localized form), with
+  no "hereinafter referred to as" definition after it — no `(hereinafter referred to as
+  "the product")`, no 「（以下、「本製品」）」, no 「（以下简称…）」 or their equivalents.
+  Body text then uses the language's plain product word, as the templates already do
+  (en `the product`, ja 「本製品」, zh 「本产品」).
+- **Keep the full name** where the reader needs it: the title, the spec table's
+  product-name row, the in-box item, the warranty-period sentence, and any sentence
+  that names two products (a battery pack with its power station): name both, because
+  "the product" would be ambiguous.
+- **Basis:** the shared English template ("Congratulations on your new |PRODUCT_NAME|.
+  … before using the product") and the published US manuals, which carry no such
+  definition (the Jackery Battery Pack 3600 US manual uses "the product" 29 times and
+  the full name only in the cases above). Operator decision 2026-10-22: apply to all
+  languages.
+- **Fix at source:** drop the parenthetical; in review drafts, in the draft itself.
+
 ## 4. Running the loop (where the lint should fire)
 
 1. **Build gate** — call `content_lint` from `build.py check` so no release bundle is
@@ -149,6 +167,8 @@ Each rule maps to a quality dimension and a source location to fix.
 - **Translation coverage:** every source string used in `Manual_Copy_Source` has a
   complete TM translation for each shipped language (no silent fallback to English).
 - **Full live-TM duplicate detection** (online mode of R5).
+- **Product-name reference (R6):** flag a "hereinafter"-type definition after the
+  product name in any language's template or source copy.
 
 Register new checks here and in
 [`optimization_project.md`](optimization_project.md) as they land; add a maintenance
