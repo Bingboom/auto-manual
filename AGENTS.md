@@ -5,13 +5,18 @@ It is not the architecture strategy and it is not the optimization roadmap.
 
 This file is the single source of truth for **every** AI agent working in this repo (Claude Code, Codex, future agents). The root [`CLAUDE.md`](CLAUDE.md) is a thin entrypoint that pulls this file into Claude Code via `@AGENTS.md`; Codex reads this file directly. When rules change, edit this file — do not fork rules into per-agent files.
 
-Document boundary (open the others only when the task needs them; see §10):
+**Required project context:** before the first task in this repo, read
+[`Hello_Docs_Positioning.md`](code-as-doc/architecture/Hello_Docs_Positioning.md).
+Recheck it for positioning, capability, corpus, architecture, roadmap or public-description work;
+cite its relevant section and verify implementation/acceptance status in the owning contract or ledger.
+
+Document boundary (the positioning doc above is required; open the others only when the task needs them; see §10):
 
 - `AGENTS.md`: how an agent should operate in this repo today
 - [`code-as-doc/architecture/System Evolution Strategy.md`](code-as-doc/architecture/System%20Evolution%20Strategy.md): long-term system direction and stable architecture boundaries
 - [`code-as-doc/optimization_project.md`](code-as-doc/optimization_project.md): repo-level execution roadmap and next optimization priorities
 - Current human workflows: the [build guide](code-as-doc/build_doc_guide.md) and the [workflow guide](user-guide/hello_auto-doc.md). Both are indexes: read the index, then only the topic page the task needs.
-- [`user-guide/two_plane_map.md`](user-guide/two_plane_map.md) — the two-plane topology (auto-manual = engineering plane, Hello-Docs mirror = business plane, old/new Feishu bases, TM-B as the single corpus): read this before reasoning about which repo, base, or tenant an operation touches
+- [`user-guide/two_plane_map.md`](user-guide/two_plane_map.md) — the two-plane topology (auto-manual = engineering plane, Hello-Docs mirror = business plane, old/new Feishu bases, TM-B as the canonical translation-memory base): read this before reasoning about which repo, base, or tenant an operation touches
 
 ## 1. Entrypoint
 
@@ -193,6 +198,7 @@ When the active model is Fable, do not do the work yourself. Never read the docu
 
 Each agent and sub-agent loads this file and pays again for every document it opens.
 
+- The required project-context read above is the exception to on-demand reading; topic guides remain task-scoped.
 - Treat the [build guide](code-as-doc/build_doc_guide.md), [workflow guide](user-guide/hello_auto-doc.md), [style definition](docs/renderers/contracts/STYLE_DEFINITION.md), [optimization checklist](code-as-doc/next_optimization_checklist.md), [quick start](user-guide/quick_start_guide.md), the `dev/` hubs that [`code-as-doc.md`](code-as-doc/code-as-doc.md) Rule 7 lists and [`code-as-doc/README.md`](code-as-doc/README.md) as indexes: open only the topic page the task needs.
 - Logs, registries, archives and `code-as-doc/reviews/` are lookups: grep by ID or keyword and read the hit, unless the task is about that file.
 - In a long doc that has no index yet, `grep -n` the section and read that range.
