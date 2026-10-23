@@ -192,30 +192,50 @@ class ExportServiceTests(unittest.TestCase):
             self.assertNotIn(secret, out.getvalue())
             self.assertEqual(json.loads((assets / snap.NAMES["deliverables"]).read_text())["documents"], snapshot()["documents"])
 
-    def test_web_progress_reads_the_bound_table_and_history(self):
+    def test_web_progress_reads_the_bound_tables_and_history(self):
         from tools.rtd import web_progress as wp
+        from tools.rtd import web_reviews as wr
         site = "https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest"
-        grid = {"data": {"fields": ["型号", wp.LINK_FIELD, wp.CHECK_FIELD, wp.SKU_FIELD], "record_id_list": ["r1"],
-                         "data": [["JE-A", {"link": f"{site}/JE-A/EU/en/md/manual.html"}, True, [{"text": "HTE1-EU-JAK"}]]],
-                         "total": 1, "has_more": False}}
+        grids = {
+            "web": {"data": {"fields": ["型号", wp.LINK_FIELD, wp.CHECK_FIELD, wp.SKU_FIELD], "record_id_list": ["recW1"],
+                             "data": [["JE-A", {"link": f"{site}/JE-A/EU/en/md/manual.html"}, True, [{"text": "HTE1-EU-JAK"}]]],
+                             "total": 1, "has_more": False}},
+            "review": {"data": {"fields": list(wr.FIELDS.values()), "record_id_list": ["recR1"],
+                                "data": [["JE-B", "B", "美规", "en", "v0.1", "2026-10-20", "审核中", "2",
+                                          {"link": "https://review.example/JE-B/US/index.html"}, None]],
+                                "total": 1, "has_more": False}},
+        }
+
+        def run(args):
+            return grids[args[args.index("--table-id") + 1]]
         timeline = [{"date": "2026-10-01", "added": 1, "langs": 1, "editions": 1, "models": 1}]
-        env = {"FEISHU_PUBLISHED_DOCS_BASE_TOKEN": "base", "FEISHU_PUBLISHED_DOCS_WEB_TABLE_ID": "web"}
+        env = {"FEISHU_PUBLISHED_DOCS_BASE_TOKEN": "base", "FEISHU_PUBLISHED_DOCS_WEB_TABLE_ID": "web",
+               "FEISHU_PUBLISHED_DOCS_REVIEW_TABLE_ID": "review", "FEISHU_PUBLISHED_DOCS_URL": "https://t.feishu.cn/wiki/n"}
         with TemporaryDirectory() as tmp:
             root = Path(tmp)
             assets = root / "tools" / "rtd_portal_assets"
             assets.mkdir(parents=True)
-            (assets / "workspace_refresh_sources.json").write_text(json.dumps({"web_progress": snap.digest(["base", "web"])}))
+            (assets / "workspace_refresh_sources.json").write_text(json.dumps(
+                {"web_progress": snap.digest(["base", "web"]), "web_progress_reviews": snap.digest(["base", "review"])}))
             with patch.dict(os.environ, env), redirect_stdout(io.StringIO()):
                 result = refresh.refresh("web_progress", root=root, log=root / "result.json", cli_bin="unused",
-                                         identity="bot", run=lambda _: grid, history=lambda _: timeline)
+                                         identity="bot", run=run, history=lambda _: timeline)
             self.assertEqual(result["status"], "changed")
+            # The snapshot's source stays the 网页文档 binding, so earlier snapshots still match.
+            self.assertEqual(result["source"], {"identity_sha256": snap.digest(["base", "web"])})
             saved = json.loads((snap.data_dir(root) / snap.NAMES["web_progress"]).read_text())
             self.assertEqual((saved["checked"], saved["sold"], saved["timeline"]), (["JE-A/EU/en"], {"JE-A": ["EU"]}, timeline))
-            # A table the binding does not name is refused before any read.
-            with patch.dict(os.environ, dict(env, FEISHU_PUBLISHED_DOCS_WEB_TABLE_ID="other")), redirect_stdout(io.StringIO()):
-                failed = refresh.refresh("web_progress", root=root, log=root / "result.json", cli_bin="unused",
-                                         identity="bot", run=Mock(side_effect=AssertionError("read")), history=lambda _: timeline)
-            self.assertEqual(failed["status"], "failed")
+            self.assertEqual([(r["model"], r["market"], r["open"]) for r in saved["reviews"]], [("JE-B", "US", 2)])
+            self.assertEqual((saved["records"], saved["feishu"]["reviews"]),
+                             ({"JE-A/EU/en": "recW1"}, "https://t.feishu.cn/wiki/n?table=review"))
+            # A table the binding does not name, or a missing review table or address, is refused before any read.
+            for change in ({"FEISHU_PUBLISHED_DOCS_WEB_TABLE_ID": "other"}, {"FEISHU_PUBLISHED_DOCS_REVIEW_TABLE_ID": "other"},
+                           {"FEISHU_PUBLISHED_DOCS_REVIEW_TABLE_ID": ""}, {"FEISHU_PUBLISHED_DOCS_URL": "t.feishu.cn"}):
+                with self.subTest(change), patch.dict(os.environ, dict(env, **change)), redirect_stdout(io.StringIO()):
+                    failed = refresh.refresh("web_progress", root=root, log=root / "result.json", cli_bin="unused",
+                                             identity="bot", run=Mock(side_effect=AssertionError("read")),
+                                             history=lambda _: timeline)
+                self.assertEqual(failed["status"], "failed")
 
     def test_corpus_revision_changes_hash_without_changing_counts(self):
         from tools.rtd.system_workspace import corpus_export

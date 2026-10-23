@@ -8,13 +8,20 @@ people review the result. Writing is the main production route; data-and-templat
 builds are used on demand.
 
 Review drafts (审核稿) — for example the JHP-3600C JP draft made with the
-[`us-jp-review-draft`](../../../.agents/skills/us-jp-review-draft/SKILL.md) skill —
+[`manual-review-draft`](../../../.agents/skills/manual-review-draft/SKILL.md) skill —
 carry unreleased content: unpublished regional editions, R&D values and open
 questions. auto-manual and Hello-Docs are both **public** repositories, so the
 drafts never enter either of them. They live in the private workbench repository
 and are served by a private Read the Docs project. Promoting an approved draft
 into Hello-Docs publication and traceability as an approved original is planned,
 not built.
+
+The Feishu 审核稿（工作台输出） table, one row per draft line (model, product
+name, market, version, date, status, the 待研发确认 count and the links here),
+is different: the operator chose on 2026-10-23 to show it on the public
+说明书工作台 交付物 tab, unpublished models included, so its rows reach
+Hello-Docs with the `web_progress` snapshot (see
+[网页说明书进度](web-progress.md)). The drafts and their open questions stay here.
 
 ## Topology
 
@@ -106,7 +113,7 @@ The private repository is where drafts are written; the review site is how they
 are read. Only `docs/review-drafts/` belongs to the private repository — every
 other path is overwritten by the next mirror sync, so never edit code there.
 
-- **Through an agent** (`us-jp-review-draft` skill, “版本、上传与发布”): one instruction
+- **Through an agent** (`manual-review-draft` skill, “版本、上传与发布”): one instruction
   is one version number and one commit. The agent rewrites the working draft in
   place, updates `draft.json` (version, date, status, summary, `rd_open`), the
   change log and `review.zh.md`, commits to `Hello-Docs-Review/main` and pushes.

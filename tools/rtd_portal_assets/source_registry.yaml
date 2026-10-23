@@ -57,13 +57,14 @@ domains:
     label: 网页说明书进度
     authority:
       - 飞书发布文档管理「网页文档」表（$FEISHU_PUBLISHED_DOCS_BASE_TOKEN、$FEISHU_PUBLISHED_DOCS_WEB_TABLE_ID）
+      - 飞书发布文档管理「审核稿（工作台输出）」表（$FEISHU_PUBLISHED_DOCS_REVIEW_TABLE_ID；回链地址 $FEISHU_PUBLISHED_DOCS_URL）
       - "file:hello-docs:docs/publish/publish_manifest.json"
     read: snapshot
     snapshot: web_progress_snapshot.json
     refresh: python tools/workspace_refresh.py refresh web_progress
     stale_after_days: 7
     fallback: 网页进度快照当前不可读
-    used_by: 说明书工作台·交付物的待转、已核对与上线进度
+    used_by: 说明书工作台·交付物的审核中、待转、已核对与上线进度
 
   - id: skeletons
     label: 骨架覆盖

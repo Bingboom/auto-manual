@@ -20,7 +20,7 @@
 </head>
 {% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
 <body class="app system-workspace deliverables">
-{%- macro web_chips(items) -%}{% if items %}<div class="dl-chips">{% for item in items %}<a class="dl-chip" href="{{ pathto(item.docname)|e }}" title="{{ item.title|e }}"><b>{{ item.label|e }}</b>{{ item.version|e }}</a>{% endfor %}</div>{% else %}<span class="dl-none">—</span>{% endif %}{%- endmacro -%}
+{%- macro web_chips(items) -%}{% if items %}<div class="dl-chips">{% for item in items %}<a class="dl-chip" href="{{ pathto(item.docname)|e }}" title="{{ item.title|e }}"><b>{{ item.label|e }}</b>{{ item.version|e }}</a>{% set record = progress.record_links.get(item.docname) %}{% if record %}<a class="dl-feishu" href="{{ record|e }}" target="_blank" rel="noopener" title="在飞书网页文档表打开这一行">飞书</a>{% endif %}{% endfor %}</div>{% else %}<span class="dl-none">—</span>{% endif %}{%- endmacro -%}
 {{ site_sidebar('deliverables', {'system': system_entry, 'deliverables': True, 'design': design_entry, 'matrix': matrix_entry}) }}
 <div class="app-content">
   {{ site_topbar('知识库', '说明书工作台') }}
@@ -46,7 +46,7 @@
     {% include 'web_progress.html' %}
 
     <details class="sw-section dl-details" id="deliverables-matrix">
-      <summary><span class="dl-section-title"><h2 id="deliverables-title">语言版本明细</h2><span>按型号与区域列出每个语言版本 · 点语言标签打开</span></span></summary>
+      <summary><span class="dl-section-title"><h2 id="deliverables-title">语言版本明细</h2><span>按型号与区域列出每个语言版本 · 点语言标签打开，「飞书」打开它在网页文档表里的行</span></span></summary>
       <div class="dl-toolbar">
         <label class="dl-select"><span>型号</span><select id="dl-model"><option value="">全部型号</option>{% for m in web_models %}<option value="{{ m.model|e }}">{{ m.model|e }}{% if m.name %} · {{ m.name|e }}{% endif %}</option>{% endfor %}</select></label>
         <label class="dl-select"><span>区域</span><select id="dl-region"><option value="">全部区域</option>{% for r in web_regions %}<option value="{{ r.code|e }}">{{ r.label|e }}</option>{% endfor %}</select></label>
@@ -98,7 +98,7 @@
 
     <footer>
       <span>页面构建日期 {{ build_date|e }}</span>
-      <span>数据来源：发布清单 · 飞书网页文档表与文档构建表快照 · 机型能力与素材登记</span>
+      <span>数据来源：发布清单 · 飞书网页文档表、审核稿表与文档构建表快照 · 机型能力与素材登记</span>
     </footer>
   </main>
 </div>

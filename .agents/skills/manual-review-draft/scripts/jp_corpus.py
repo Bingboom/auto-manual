@@ -27,7 +27,7 @@ JP = re.compile(r"[぀-ヿ一-鿿]")
 
 def fetch(url: str) -> str:
     # RTD (behind Cloudflare) answers urllib's default User-Agent with 403.
-    request = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (auto-manual us-jp-review-draft)"})
+    request = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (auto-manual manual-review-draft)"})
     with urllib.request.urlopen(request, timeout=90) as resp:
         return resp.read().decode("utf-8", "replace")
 
