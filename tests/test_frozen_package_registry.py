@@ -93,6 +93,14 @@ class FrozenPackageRegistryTests(unittest.TestCase):
             fpr.record(self.root, registry, handling=None, reason=None, today="2026-10-20")
         with self.assertRaisesRegex(ValueError, "--reason"):
             fpr.record(self.root, registry, handling="rebuild-pending", reason=" ", today="2026-10-20")
+        with self.assertRaisesRegex(ValueError, "--minutes"):
+            fpr.record(self.root, registry, handling="rebuild-pending", reason="next revision", today="2026-10-20")
+        with self.assertRaisesRegex(ValueError, "--minutes"):
+            fpr.record(self.root, registry, handling="rebuild-pending", reason="next revision", today="2026-10-20",
+                       minutes=-5)
+        fpr.record(self.root, registry, handling="rebuild-pending", reason="next revision", today="2026-10-20",
+                   minutes=0)
+        self.assertEqual(0, registry["drift_log"][-1]["minutes"])
 
     def test_drift_that_went_away_is_stale_and_record_drops_it(self) -> None:
         registry = registry_with(self.pinned, self.unpinned)
@@ -164,8 +172,10 @@ class FrozenPackageRegistryTests(unittest.TestCase):
             self.assertEqual(0, fpr.main(["--repo-root", str(self.root), "register", self.unpinned,
                                           "--approval", "MA-003", "--date", "2026-10-20"]))
             self.assertEqual(2, fpr.main(["--repo-root", str(self.root), "record"]))
-            self.assertEqual(0, fpr.main(["--repo-root", str(self.root), "record", "--handling", "keep-frozen",
+            self.assertEqual(2, fpr.main(["--repo-root", str(self.root), "record", "--handling", "keep-frozen",
                                           "--reason", "frozen release", "--date", "2026-10-20"]))
+            self.assertEqual(0, fpr.main(["--repo-root", str(self.root), "record", "--handling", "keep-frozen",
+                                          "--reason", "frozen release", "--minutes", "0", "--date", "2026-10-20"]))
             self.assertEqual(0, fpr.main(["--repo-root", str(self.root), "check"]))
 
         saved = json.loads(fpr.frozen_package_registry_of(self.root).read_text(encoding="utf-8"))
