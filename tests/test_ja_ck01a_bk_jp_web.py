@@ -5,12 +5,14 @@ import importlib.util
 import json
 from pathlib import Path
 import shutil
+import subprocess
 import tempfile
 import unittest
 
 from bs4 import BeautifulSoup
 
 from tools.manual_ir.hashing import file_sha256
+from tools.word.bundle_docx_pandoc import resolve_pandoc_binary
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGE = ROOT / "manual_sources/JA-CK01A-BK/JP/ja/git-20261023-3ea84ec6-manual"
@@ -91,6 +93,11 @@ class JaCk01aBkJpWebTests(unittest.TestCase):
             self.assertEqual({t["op"] for t in asset["transforms"]} - {"crop", "whiteout"}, set())
 
     def test_cold_replay_matches_stored_candidate(self):
+        # The prepared RST pipeline converts through Pandoc; the CI unit runner has none.
+        try:
+            subprocess.run([resolve_pandoc_binary(None), "--version"], check=True, capture_output=True)
+        except (OSError, RuntimeError, subprocess.CalledProcessError):
+            self.skipTest("Pandoc unavailable")
         with tempfile.TemporaryDirectory() as temp:
             output = Path(temp) / "replay"
             render_module.render(PACKAGE, output)
