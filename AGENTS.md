@@ -93,7 +93,7 @@ One line per skill below; full descriptions, trigger phrases, and scope notes li
 - [`new-region-line`](.agents/skills/new-region-line/SKILL.md): stand up a brand-new `(Model, Region, Language)` manual line end to end.
 - [`local-publish-queue-run`](.agents/skills/local-publish-queue-run/SKILL.md): run the build-queue publish locally as the CI bot when Actions cannot run or a publish needs local repair.
 - [`hello-docs-pipeline-dispatch-triage`](.agents/skills/hello-docs-pipeline-dispatch-triage/SKILL.md): dispatch and triage the Hello-Docs mirror pipeline; code changes NEVER PR the mirror's main — only `backport/...` → `review/*` data-plane PRs belong there.
-- [`us-jp-review-draft`](.agents/skills/us-jp-review-draft/SKILL.md): one off-pipeline review skill with US→US English reuse and US→JP Japanese-corpus reuse modes; inherit reference structure and wording, fill target-spec parameters, keep suggestions in review notes; Claude entry in `.claude/skills/us-jp-review-draft/`.
+- [`manual-review-draft`](.agents/skills/manual-review-draft/SKILL.md): writes off-pipeline manual review drafts (审核稿), currently in US→US English reuse and US→JP Japanese-corpus reuse modes; inherit reference structure and wording, fill target-spec parameters, keep suggestions in review notes; Claude entry in `.claude/skills/manual-review-draft/`.
 - For TM-guided translation jobs, route by carrier: `.docx` / Feishu cloud doc pre-translation → `lark-tm-translation-preprocess`; Markdown / plain-text rewrite → `bitable-translation-memory` for lookup, then `manual-rewrite-with-tm` for the structure-preserving rewrite flow.
 
 ## 8. Multi-Window Parallel Development
