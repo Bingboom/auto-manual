@@ -740,7 +740,7 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             self.assertIn('class="kpi-row"', progress_panel)
             self.assertNotIn('class="kpi-row"', page.split('id="tab-progress"', 1)[0])
             self.assertIn('id="lane-web"', page)
-            lanes = ["web", "corpus", "ssot", "shared_ir", "skeletons", "multi_agent"]
+            lanes = ["workbench", "web", "corpus", "ssot", "shared_ir", "skeletons", "multi_agent"]
             self.assertEqual(sorted(lanes, key=lambda lane: page.index(f'id="lane-{lane}"')), lanes)
             self.assertIn("当前只保留设计参考，不进入交付主线", page)
             self.assertNotIn("多 Agent 调度设计</span>", page)
