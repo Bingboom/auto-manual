@@ -4,7 +4,7 @@
   "commands": [
     {
       "command": "python -m unittest tests.test_ja_ck01a_bk_qg_jp_web tests.test_prepared_document_shared_styles",
-      "result": "OK (approved-only acceptance test skipped while a candidate; cold render byte-identical to web/ja)"
+      "result": "OK (candidate-only test skipped once accepted; cold render byte-identical to web/ja; acceptance refuses a resealed changed source)"
     },
     {
       "command": "python -m unittest",
@@ -32,7 +32,7 @@
     },
     {
       "command": "seal-time admissions on web/ja",
-      "result": "component admission OK; symbol asset admission OK (no symbol table); caption-frame admission passed for 7 live pills; require_publishable_manual_ir refuses the candidate as designed"
+      "result": "component admission OK; symbol asset admission OK (no symbol table); caption-frame admission passed for 7 live pills; full seal_frozen_web_evidence dry run on the accepted IR succeeded in a scratch directory (the release seal runs on the merged main commit)"
     },
     {
       "command": "browser acceptance at 1280 and 390",

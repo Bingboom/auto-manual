@@ -31,7 +31,7 @@
     "part_number": "38-0001-000845",
     "note": "the material code and part number come from the file name and drawing title block; Web identity follows the printed model"
   },
-  "source_authority": "operator-designated Feishu wiki file 「38-0001-000845 快速操作指南 HTO862A-JP-JAK RoHS Reach.pdf」; operator instruction 2026-10-23 「开两个窗口 把这俩说明书 走git only转网页文档」 with the JBP-1000B-WH/JA-AD500A-SIL rules (cover and contents not on the Web, reference the JE-1000F JP Web manual, no Japanese wording changed). The original Japanese governs all copy.",
+  "source_authority": "operator-designated Feishu wiki file 「38-0001-000845 快速操作指南 HTO862A-JP-JAK RoHS Reach.pdf」; operator instruction 2026-10-23 「开两个窗口 把这俩说明书 走git only转网页文档」 with the JBP-1000B-WH/JA-AD500A-SIL rules (cover and contents not on the Web, reference the JE-1000F JP Web manual, no Japanese wording changed). The original Japanese governs all copy. Operator accepted reviewed candidate 8e39af0 for public Git-only JP/ja release on 2026-10-23 (「上线提交发布」; merge by operator review). Acceptance is hash-bound in source/approval.json.",
   "source_role": "Git-only Japanese Web candidate of the JA-CK01A-BK JP quick guide (クイックガイド); the full JA-CK01A-BK JP manual is a separate target",
   "route": {
     "model_segment": "JA-CK01A-BK-QG",
@@ -40,8 +40,8 @@
   },
   "language_scope": "single",
   "live_bitable_dependency": false,
-  "publication_status": "review-candidate-no-release-authorization",
-  "publication_eligible": false,
+  "publication_status": "operator-approved-git-only-release",
+  "publication_eligible": true,
   "pending_source_review": [],
   "page_order": [
     "01_site_space_ja.rst",
@@ -60,8 +60,8 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 6315,
-      "sha256": "0b4e8e9440a4262f29f881a89012362c96921f7026f4d3808e7d4855a2bc93cd"
+      "size": 6394,
+      "sha256": "75eaf94aeb63c6bd0fe807f156ac41c106f30479e4d7a17745024f27fb944869"
     },
     {
       "path": "assets/app-download-qr.png",
@@ -255,8 +255,8 @@
     },
     {
       "path": "evidence/validation.json",
-      "size": 1994,
-      "sha256": "51ab26f3167980e8fa74881236d76e704bdc0438e04dafb2e9cee1134689b2d4"
+      "size": 2102,
+      "sha256": "d2ba486019aaf078a77e98e185fdf884abd6d970faaa9505eada225bfe38d335"
     },
     {
       "path": "refresh_manifest.py",
@@ -267,6 +267,11 @@
       "path": "render.py",
       "size": 7618,
       "sha256": "3c3e6710cea902334facbe9f97cb6c12d596296603d717ba08d78489cdd6fb8b"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 7800,
+      "sha256": "e5729446811d6ce65e45ca8f74e9f72d7f995f2a7227833b26799df5f2b5a35f"
     },
     {
       "path": "source/asset_decisions.json",
@@ -320,8 +325,8 @@
     },
     {
       "path": "source_manifest.json",
-      "size": 13538,
-      "sha256": "7fccb71bdb38c24f385e0623e36945bb48d2f98e35fbc7fc028ba40501c7799d"
+      "size": 13881,
+      "sha256": "bc77617ec4e9cfdd762ca9002891291323d9f39dedfd71d637fac435a786d721"
     },
     {
       "path": "web/ja/_static/source.css",
@@ -510,8 +515,8 @@
     },
     {
       "path": "web/ja/manual.ir.json",
-      "size": 174352,
-      "sha256": "380d171a7dcb4167b9f57e48fb4adb4494174cc87dcbdfef3b0cf8b7c52ac7a2"
+      "size": 183445,
+      "sha256": "d7cc9eb3091d81f1690bc1bbfc13fe617c4a9471f12fdeb348c5c85b18431325"
     },
     {
       "path": "web/ja/manual_bundle.html",

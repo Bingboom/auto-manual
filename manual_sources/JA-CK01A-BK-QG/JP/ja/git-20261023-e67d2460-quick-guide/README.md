@@ -2,7 +2,7 @@
 
 Operator instruction, 2026-10-23: 「开两个窗口 把这俩说明书 走git only转网页文档」. This window converts the quick guide only; the full JA-CK01A-BK JP manual (38-0001-000777) is a separate target converted in parallel. The JBP-1000B-WH / JA-AD500A-SIL rules apply: the cover and contents are not on the Web, the existing JE-1000F JP Web manual is the reference, and no Japanese wording is changed.
 
-**Status: `review-candidate-no-release-authorization`.** `publication_eligible` is false and there is no `source/approval.json`; release sealing refuses this IR. The release acceptance given on 2026-10-23 for the earlier HTO862A-QG naming was withdrawn when the operator renamed the target (「改用 JA-CK01A-BK-QG」). After the operator reviews the renamed 1280/390 renders and instructs 「上线提交发布」 again, `source/approval.json` binds every reviewed `source/` and `assets/` input hash and the status becomes `operator-approved-git-only-release`.
+**Status: `operator-approved-git-only-release`.** The operator reviewed the renamed candidate `8e39af0` (PR #1597, 1280/390 renders against the PDF) and instructed 「上线提交发布」 on 2026-10-23. The acceptance given earlier for the HTO862A-QG naming was withdrawn at the rename and does not apply. The engineering PR is merged by operator review (AGENTS.md §8.6), not by an agent grant. `source/approval.json` binds every reviewed `source/` and `assets/` input hash; the rendered IR is publication-eligible. Changing a reviewed input invalidates the acceptance: `render.py` then refuses until a new operator acceptance is recorded.
 
 ## Source
 

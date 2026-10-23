@@ -31,7 +31,7 @@
     "part_number": "38-0001-000845",
     "note": "the material code and part number come from the file name and drawing title block; Web identity follows the printed model"
   },
-  "source_authority": "operator-designated Feishu wiki file 「38-0001-000845 快速操作指南 HTO862A-JP-JAK RoHS Reach.pdf」; operator instruction 2026-10-23 「开两个窗口 把这俩说明书 走git only转网页文档」 with the JBP-1000B-WH/JA-AD500A-SIL rules (cover and contents not on the Web, reference the JE-1000F JP Web manual, no Japanese wording changed). The original Japanese governs all copy.",
+  "source_authority": "operator-designated Feishu wiki file 「38-0001-000845 快速操作指南 HTO862A-JP-JAK RoHS Reach.pdf」; operator instruction 2026-10-23 「开两个窗口 把这俩说明书 走git only转网页文档」 with the JBP-1000B-WH/JA-AD500A-SIL rules (cover and contents not on the Web, reference the JE-1000F JP Web manual, no Japanese wording changed). The original Japanese governs all copy. Operator accepted reviewed candidate 8e39af0 for public Git-only JP/ja release on 2026-10-23 (「上线提交发布」; merge by operator review). Acceptance is hash-bound in source/approval.json.",
   "source_role": "Git-only Japanese Web candidate of the JA-CK01A-BK JP quick guide (クイックガイド); the full JA-CK01A-BK JP manual is a separate target",
   "route": {
     "model_segment": "JA-CK01A-BK-QG",
@@ -40,8 +40,8 @@
   },
   "language_scope": "single",
   "live_bitable_dependency": false,
-  "publication_status": "review-candidate-no-release-authorization",
-  "publication_eligible": false,
+  "publication_status": "operator-approved-git-only-release",
+  "publication_eligible": true,
   "pending_source_review": [],
   "page_order": [
     "01_site_space_ja.rst",
@@ -237,6 +237,11 @@
       "path": "render.py",
       "size": 7618,
       "sha256": "3c3e6710cea902334facbe9f97cb6c12d596296603d717ba08d78489cdd6fb8b"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 7800,
+      "sha256": "e5729446811d6ce65e45ca8f74e9f72d7f995f2a7227833b26799df5f2b5a35f"
     },
     {
       "path": "source/asset_decisions.json",
