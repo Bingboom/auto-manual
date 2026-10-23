@@ -21,7 +21,12 @@ Claude Code specifics:
   follow the shared skill's read-back and publication rules; a requested change
   to a draft that lives in Hello-Docs-Review is that request.
 - In a cloud session, attach `Bingboom/Hello-Docs-Review` with `add_repo`
-  (push access) before the sparse clone the shared skill describes.
+  (push access) before the sparse clone the shared skill describes. A drafting
+  session needs only read access to auto-manual and Hello-Docs: attach them
+  read-only and never push draft content to either public repository.
+- Follow the shared skill's 并行写稿与隔离 rules: one writer per draft line,
+  `git pull --rebase` on a rejected push, never force-push, and record
+  `tools_sha` in `draft.json`.
 - Keep generated drafts and scratch work in the session scratchpad, outside
   auto-manual; only the working draft goes into Hello-Docs-Review's
   `docs/review-drafts/`.

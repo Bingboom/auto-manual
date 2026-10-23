@@ -43,6 +43,12 @@ class SyncHelloDocsWorkflowTests(unittest.TestCase):
         self.assertEqual(self.review_step["env"]["MIRROR_KEEP_PATHS"], "docs/review-drafts")
         self.assertEqual(self.review_step["run"], "bash source/scripts/sync_mirror.sh")
 
+    def test_pr_guardrail_refuses_the_same_paths_as_the_mirrors(self) -> None:
+        # The guardrail fails the PR; the syncs only refuse after the merge.
+        from tools.check_maintainability_guardrails import MIRROR_OWNED_PATHS
+
+        self.assertEqual(" ".join(MIRROR_OWNED_PATHS), ALL_CONTENT)
+
     def test_review_mirror_skips_without_its_token(self) -> None:
         job = self.workflow["jobs"]["sync-review"]
         self.assertEqual(job["env"]["MIRROR_REPOSITORY"], "Bingboom/Hello-Docs-Review")
