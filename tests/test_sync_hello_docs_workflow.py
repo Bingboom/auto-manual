@@ -58,6 +58,14 @@ class SyncHelloDocsWorkflowTests(unittest.TestCase):
         self.assertNotIn("review/", self.command)
         self.assertIn('git -C source bundle create "${source_bundle}" HEAD', self.command)
 
+    def test_each_mirror_installs_its_own_readme_from_the_source(self) -> None:
+        for step, repository in ((self.sync_step, "Hello-Docs"), (self.review_step, "Hello-Docs-Review")):
+            readme = step["env"]["MIRROR_README"]
+            self.assertEqual(readme, f"mirrors/{repository}/README.md")
+            self.assertTrue((REPO_ROOT / readme).is_file(), readme)
+        self.assertIn('${source_tree}:${MIRROR_README}', self.command)
+        self.assertIn('--cacheinfo "100644,${readme_blob},README.md"', self.command)
+
     def test_real_sync_preserves_business_content_and_rejects_source_ownership(self) -> None:
         with TemporaryDirectory() as directory:
             root = Path(directory)
@@ -168,6 +176,60 @@ class SyncHelloDocsWorkflowTests(unittest.TestCase):
             self.assertNotEqual(result.returncode, 0)
             self.assertIn("auto-manual must not own docs/review-drafts", result.stdout)
             self.assertEqual(git(mirror, "rev-parse", "HEAD"), synced)
+
+    def test_real_sync_installs_the_mirror_readme_kept_in_the_source(self) -> None:
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+
+            def git(where, *args):
+                return subprocess.run(
+                    ["git", "-C", str(where), *args], check=True,
+                    capture_output=True, text=True,
+                ).stdout.strip()
+
+            git(root, "init", "--bare", "remote.git")
+            for name in ("source", "mirror"):
+                git(root, "init", "-b", "main", name)
+                tree = root / name
+                git(tree, "config", "user.name", "Test")
+                git(tree, "config", "user.email", "test@example.invalid")
+                (tree / "README.md").write_text(f"{name} readme")
+                if name == "source":
+                    own = tree / "mirrors" / "Hello-Docs" / "README.md"
+                    own.parent.mkdir(parents=True)
+                    own.write_text("business readme")
+                git(tree, "add", ".")
+                git(tree, "commit", "-m", "Initial fixture")
+            mirror, source = root / "mirror", root / "source"
+            git(mirror, "remote", "add", "origin", str(root / "remote.git"))
+            git(mirror, "push", "origin", "main")
+            env = dict(os.environ, SOURCE_REPOSITORY="local/source",
+                       SOURCE_SHA=git(source, "rev-parse", "HEAD"), SOURCE_RUN_URL="local-test",
+                       MIRROR_BRANCH="main", MIRROR_KEEP_PATHS="docs/publish",
+                       SOURCE_FORBIDDEN_PATHS=ALL_CONTENT)
+
+            def sync(readme):
+                return subprocess.run(["bash", str(SCRIPT_PATH)], cwd=root,
+                                      env=dict(env, MIRROR_README=readme),
+                                      capture_output=True, text=True, check=False)
+
+            result = sync("")
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertEqual(git(mirror, "show", "HEAD:README.md"), "source readme")
+            result = sync("mirrors/Hello-Docs/README.md")
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertEqual(git(mirror, "show", "HEAD:README.md"), "business readme")
+            self.assertEqual(git(mirror, "show", "HEAD:mirrors/Hello-Docs/README.md"), "business readme")
+            synced = git(mirror, "rev-parse", "HEAD")
+            result = sync("mirrors/Hello-Docs/README.md")
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertEqual(git(mirror, "rev-parse", "HEAD"), synced)
+
+            for missing in ("mirrors/Missing/README.md", "mirrors/Hello-Docs"):
+                result = sync(missing)
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn(f"::error::{missing} is not a file", result.stdout)
+                self.assertEqual(git(mirror, "rev-parse", "HEAD"), synced)
 
 
 if __name__ == "__main__":

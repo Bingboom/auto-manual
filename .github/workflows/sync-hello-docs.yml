@@ -55,6 +55,7 @@ jobs:
           SOURCE_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           MIRROR_KEEP_PATHS: docs/publish docs/knowledge
           SOURCE_FORBIDDEN_PATHS: docs/publish docs/knowledge docs/review-drafts
+          MIRROR_README: mirrors/Hello-Docs/README.md
         run: bash source/scripts/sync_mirror.sh
 
       - name: Workspace mirror failure notice
@@ -132,4 +133,5 @@ jobs:
           SOURCE_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           MIRROR_KEEP_PATHS: docs/review-drafts
           SOURCE_FORBIDDEN_PATHS: docs/publish docs/knowledge docs/review-drafts
+          MIRROR_README: mirrors/Hello-Docs-Review/README.md
         run: bash source/scripts/sync_mirror.sh
