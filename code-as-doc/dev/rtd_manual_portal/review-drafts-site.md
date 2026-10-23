@@ -38,8 +38,11 @@ The mirror sync uses the same composition as Hello-Docs: the auto-manual tree
 plus the paths the mirror owns. Both mirror jobs refuse a source tree that
 contains `docs/publish`, `docs/knowledge` or `docs/review-drafts`, so a draft
 committed to auto-manual by mistake stops both syncs instead of reaching the
-public Hello-Docs. Without the `REVIEW_DOCS_SYNC_TOKEN` secret the `sync-review`
-job only logs a notice; the Hello-Docs sync never depends on it.
+public Hello-Docs. That refusal comes after the merge, so the maintainability
+guardrails also fail any auto-manual PR that tracks one of those paths; a pushed
+PR branch is already public, which is why drafting sessions keep the public
+repositories read-only (below). Without the `REVIEW_DOCS_SYNC_TOKEN` secret the
+`sync-review` job only logs a notice; the Hello-Docs sync never depends on it.
 
 ## Build
 
@@ -117,6 +120,13 @@ other path is overwritten by the next mirror sync, so never edit code there.
   is one version number and one commit. The agent rewrites the working draft in
   place, updates `draft.json` (version, date, status, summary, `rd_open`), the
   change log and `review.zh.md`, commits to `Hello-Docs-Review/main` and pushes.
+- **In parallel** (operator decision 2026-10-23): one writer per draft line at
+  a time; a writer changes only its own line's directory; a rejected push is
+  rebased and retried, and stops if the remote changed the same line, never
+  force-pushed; a drafting session keeps auto-manual and Hello-Docs read-only;
+  `draft.json` records `tools_sha`, the auto-manual commit the draft was made
+  with. The skill's 并行写稿与隔离 section holds the full rules, including how a
+  line is claimed.
 - **By hand**: edit the working draft's HTML in place (GitHub web editor or a
   local checkout), keep the colour classes, update `date` and `summary` in
   `draft.json`, and commit to `main`.

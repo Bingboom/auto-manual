@@ -1,10 +1,14 @@
 from __future__ import annotations
 
 import json
+import subprocess
 import unittest
+from pathlib import Path
 
 from tests.test_helpers import temp_test_root, write_lines
 from tools import check_maintainability_guardrails as guardrails
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
 
 
 class TestCheckMaintainabilityGuardrails(unittest.TestCase):
@@ -154,6 +158,27 @@ class TestCheckMaintainabilityGuardrails(unittest.TestCase):
             [guardrails.WebTargetLiteral("tools/web/new_package/renderer.py", 2, "MODEL-100")],
             failures,
         )
+
+    def test_mirror_owned_paths_fail_outside_git_when_present(self) -> None:
+        with temp_test_root() as root:
+            self.assertEqual([], guardrails.collect_mirror_owned_paths(root))
+            write_lines(root / "docs" / "review-drafts" / "M" / "JP" / "draft.json", ["{}"])
+
+            self.assertEqual(["docs/review-drafts"], guardrails.collect_mirror_owned_paths(root))
+
+    def test_mirror_owned_paths_count_only_tracked_files_in_git(self) -> None:
+        with temp_test_root() as root:
+            subprocess.run(["git", "init", "-q", str(root)], check=True)
+            write_lines(root / "docs" / "publish" / "web" / "staged.md", ["staging"])
+            self.assertEqual([], guardrails.collect_mirror_owned_paths(root))
+
+            write_lines(root / "docs" / "review-drafts" / "M" / "JP" / "draft.json", ["{}"])
+            subprocess.run(["git", "-C", str(root), "add", "docs/review-drafts"], check=True)
+
+            self.assertEqual(["docs/review-drafts"], guardrails.collect_mirror_owned_paths(root))
+
+    def test_repository_commits_no_mirror_owned_paths(self) -> None:
+        self.assertEqual([], guardrails.collect_mirror_owned_paths(REPO_ROOT))
 
 
 if __name__ == "__main__":

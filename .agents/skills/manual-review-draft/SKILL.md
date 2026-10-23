@@ -111,6 +111,15 @@ description: "输出说明书审核稿：制作或继续修改基于参考说明
 - 仅在操作者指定里程碑时复制工作目录（排除已有 `milestones/`）到 `milestones/<version>/` 并设置 `milestone`；不自动冻结每一版。
 - 只维护私有仓库的 `docs/review-drafts/`，其余路径由镜像同步拥有。私有站点重建总览及各机型／地区页面；ZIP 仅在用户要求时另交付。
 
+#### 并行写稿与隔离（操作者 2026-10-23 批准）
+
+- 一条稿线（`<MODEL>/<REGION>`）同一时间只有一个写者。开工前确认没有其他窗口在写：飞书「审核稿（工作台输出）」表有「当前执笔」字段时，先在该稿线一行写入本会话名，交付后清空；该字段加上之前，先请操作者确认这条稿线无人在改。
+- 只改本稿线目录。`docs/review-drafts/README.md` 等共享文件只在操作者指定时修改。
+- 推送被拒时 `git pull --rebase` 后重推；远端新提交改动了本稿线时停下报告，不覆盖、不强推。
+- 写稿会话对公开仓库只读：不向 auto-manual、Hello-Docs 提交或推送任何稿件内容，草稿片段只放 scratch 和私有仓库。工具、模板或本 Skill 需要改时另开工程会话。
+- `draft.json` 写 `tools_sha`：写稿时所用 auto-manual 提交（`git -C <auto-manual 克隆> rev-parse --short HEAD`），审稿和返工据此复现同一版工具。
+- 稿件版本按本节「一条指令一个版本」直接提交私有仓库 `main`，不需要合入授权。私有仓库里走 PR 的改动，其合入授权登记在 auto-manual 的 `code-as-doc/dev/merge_authorizations.md`；私有仓库的同名文件会被镜像覆盖。
+
 ### 其他外部操作
 
 - 飞书下载／上传需要时读 [feishu-io.md](references/feishu-io.md)。上传须用户明确要求，完成后回读节点及 SHA-256；直接 Bitable 操作另遵守 [lark-cli-bitable-ops](../lark-cli-bitable-ops/SKILL.md)。
