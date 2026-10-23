@@ -129,7 +129,7 @@ EU 发现台账、回流跟踪、覆盖矩阵和核验工具已有实现；相�
 
 - 不得默认把扩大结构化覆盖、扩展骨架或增加自动构建路径视为优化目标；先核对真实业务需求、适用范围、维护责任与成本收益。
 - 资料写作类任务（起草、改稿、参考稿复用）在 Hello-Docs-Review 工作台完成，遵守
-  [`us-jp-review-draft`](../../.agents/skills/us-jp-review-draft/SKILL.md) 等 Skill；工具、模板或 Skill
+  [`manual-review-draft`](../../.agents/skills/manual-review-draft/SKILL.md) 等 Skill；工具、模板或 Skill
   本身需要改时才到 auto-manual 提 PR。稿件不进入两个公开仓库。
 - 首次接手仓库时阅读本文；涉及项目定位、能力总结、语料范围、架构、路线或对外介绍时重新核对。
 - 涉及上述判断时引用本文相关章节，并从对应契约或台账核对具体实现及验收状态。

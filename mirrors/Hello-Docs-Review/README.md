@@ -20,7 +20,7 @@
 ## 怎样写
 
 1. 在 Claude Code 或 Codex 会话中加入本仓库，说明要写哪份稿、参考哪本说明书、依据哪份规格书。
-2. Agent 按 [`us-jp-review-draft`](/.agents/skills/us-jp-review-draft/SKILL.md) 等 Skill 继承参考稿的结构、措辞和插图，
+2. Agent 按 [`manual-review-draft`](/.agents/skills/manual-review-draft/SKILL.md) 等 Skill 继承参考稿的结构、措辞和插图，
    按目标规格替换参数，把建议和疑问写进审核意见。
 3. 每轮修改形成一个新版本；提交到 `main` 后，[私有审核站](https://ht-docs-review-doc-lib.readthedocs-hosted.com/)
    自动重建，登录后阅读。

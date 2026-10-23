@@ -388,7 +388,7 @@ capabilities:
         note: Agent 在私有的 Hello-Docs-Review 以参考说明书、规格书、模板和语料起草审核稿，在私有审核站审阅；审核通过的稿件转入发布的衔接尚未建设
         evidence:
           - "file:auto-manual:code-as-doc/dev/rtd_manual_portal/review-drafts-site.md"
-          - "file:auto-manual:.agents/skills/us-jp-review-draft/SKILL.md"
+          - "file:auto-manual:.agents/skills/manual-review-draft/SKILL.md"
           - "file:auto-manual:tools/rtd/review_site.py"
           - "ack:操作者 2026-10-23「基于数据+模版 自动构建 这个过程 可以 退却为 按需使用了 我需要 把 Hello-Docs-Review工作台推出」"
       - id: source_registry
@@ -525,7 +525,7 @@ now_next:
 tooling:
   note: Agent 可调用的技能和自动运行的钩子，构建时从仓库读取；未登记的技能和没有测试的钩子会标出来。
   skill_lanes:
-    workbench: [us-jp-review-draft]
+    workbench: [manual-review-draft]
     web: [hello-docs-pipeline-dispatch-triage, local-publish-queue-run]
     corpus: [bitable-translation-memory, bilingual-tm-maintenance, lark-tm-translation-preprocess, manual-rewrite-with-tm]
     shared_ir: []

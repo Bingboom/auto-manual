@@ -24,7 +24,7 @@ Hello-Docs-Review：Agent 调用现有的基础设施、数据、模板和语料
 ## 资料怎样产出
 
 1. **工作台写作：** Agent 在 Hello-Docs-Review 中继承参考说明书的结构与措辞，按目标规格书替换参数，
-   复用模板、共享组件和翻译语料；规则见 [`us-jp-review-draft`](.agents/skills/us-jp-review-draft/SKILL.md) 等 Skill。
+   复用模板、共享组件和翻译语料；规则见 [`manual-review-draft`](.agents/skills/manual-review-draft/SKILL.md) 等 Skill。
 2. **审核：** 审核稿在私有站点阅读，每轮修改形成一个新版本，待确认的问题随稿记录。
 3. **发布与追溯：** 审核通过的稿件作为批准原稿进入 Hello-Docs 发布与追溯。这一衔接尚在建设中，
    现有交付仍走下面的发布路径。
