@@ -15,8 +15,8 @@
     "physical_page_count": 1
   },
   "printed_manual_version": null,
-  "publication_status": "review-candidate-no-release-authorization",
-  "publication_eligible": false,
+  "publication_status": "operator-approved-git-only-release",
+  "publication_eligible": true,
   "page_order": [
     "00_preface_ja.rst",
     "safety_ja.rst",
@@ -28,16 +28,14 @@
     "HB-CALLOUT-STRIP": 1,
     "HB-SPECIAL-REFERENCE-FIGURE": 1
   },
-  "pending_source_review": [
-    "Japanese operator source/layout confirmation"
-  ],
+  "pending_source_review": [],
   "web_roots": {
     "ja": "web/ja"
   },
   "source_authority": "operator-designated Japanese PDF from the operator-designated Feishu wiki file (read-only download); original Japanese governs all technical/legal copy. Operator instruction 2026-10-23: 「开两个窗口 把这俩说明书 走git only转网页文档」; JBP-1000B-WH / JA-AD500A-SIL JP Web rules apply (封面和目录不上网页; 参考 JE-1000F 日语网页说明书; 不改动任何日文原文). Package model JA-CK01A-BK (printed cover/spec model) confirmed by the operator 2026-10-23; this full manual is the default (legacy_default) JA-CK01A-BK/JP/ja route.",
   "baseline_main": "9dde402",
   "language_scope": "single",
-  "source_role": "Git-only Japanese prepared native Web candidate (full instruction manual)",
+  "source_role": "Git-only Japanese prepared native Web release (full instruction manual), operator-approved 2026-10-23",
   "document_identity": {
     "material_number": "38-0001-000777",
     "erp_code": "HTO862A-JP-JAK",
@@ -156,8 +154,8 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 4484,
-      "sha256": "1e82d91efc42bc9598364d301d7b998341b48dc74d40b7d4846e6f537c532827"
+      "size": 4511,
+      "sha256": "7b530a509f3773abfa3acd4c6404dce665448a779227fe1a125eda86dc758f65"
     },
     {
       "path": "assets/contact-qr.png",
@@ -231,8 +229,8 @@
     },
     {
       "path": "evidence/validation.json",
-      "size": 3577,
-      "sha256": "8233a55176d15d18bddc257aa51c7fb007ae5ae73d19db2cfe3eb0237f72ed91"
+      "size": 3602,
+      "sha256": "58c7f9ceb7e0ebab37170bb86dc10ffd6b6c92a1c4292ce203d8c37f031c0dea"
     },
     {
       "path": "refresh_manifest.py",
@@ -243,6 +241,11 @@
       "path": "render.py",
       "size": 7837,
       "sha256": "494c367201b38bb933e95be394e53e26b50f0680259b65c0fe7d62cd210df768"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 5753,
+      "sha256": "0a78c3432714fa9b6f41ece58defd3bca514c2f194a9057314e78afb2a72ba28"
     },
     {
       "path": "source/asset_recipe.json",
@@ -306,8 +309,8 @@
     },
     {
       "path": "source_manifest.json",
-      "size": 10867,
-      "sha256": "9368a2bfa21d36e30cf3a2b5a36d2348a34e95553bbe130efb40db9fc270fb25"
+      "size": 10987,
+      "sha256": "9204a51cfd3f1e441146a733c76b75c2e5795ab4f1896f40ee156a0ddd448456"
     },
     {
       "path": "web/ja/_static/source.css",
@@ -361,8 +364,8 @@
     },
     {
       "path": "web/ja/manual.ir.json",
-      "size": 127009,
-      "sha256": "5ac0a1edaf9ca16698553e6f765bd0572ece4243e75866c3f36f4d53049df42d"
+      "size": 133390,
+      "sha256": "59d0ccb772cf420eba6bc48f58c766e5dcbe0b154699e7f3bd22b57cf8cbed7e"
     },
     {
       "path": "web/ja/manual_bundle.html",

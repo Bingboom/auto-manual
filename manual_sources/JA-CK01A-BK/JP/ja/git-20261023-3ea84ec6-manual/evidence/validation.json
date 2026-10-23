@@ -1,10 +1,10 @@
 {
   "schema_version": "ja-ck01a-bk-jp-validation/v1",
-  "status": "local candidate evidence; production/deployment acceptance pending operator review",
+  "status": "operator-approved-git-only-release (「上线提交发布」 2026-10-23); RTD deployment acceptance pending",
   "baseline_main": "9dde402",
   "original_source_sha256": "3ea84ec63b20a4e65c4d2f5d34a45ce715133b6b6f29a424bd95393d131cd113",
   "stored_markdown_sha256": "6e124bf53faf5671aac05b3cefcd990d7e2f30bc6afd63be3fb457de305b7f3b",
-  "stored_ir_sha256": "5ac0a1edaf9ca16698553e6f765bd0572ece4243e75866c3f36f4d53049df42d",
+  "stored_ir_sha256": "59d0ccb772cf420eba6bc48f58c766e5dcbe0b154699e7f3bd22b57cf8cbed7e",
   "checks": [
     {
       "command": "python derive_assets.py (twice)",

@@ -7,9 +7,12 @@ this package. The operator confirmed on 2026-10-23 that the package and route us
 the printed model **JA-CK01A-BK**, and that this manual takes the default
 (`legacy_default`) `JA-CK01A-BK/JP/ja` route.
 
-**Status: `review-candidate-no-release-authorization`.** No approval is recorded;
-the IR is not publication-eligible. Acceptance, `source/approval.json`, merge and
-Hello-Docs/RTD publication are separate operator-owned stages.
+**Status: `operator-approved-git-only-release`.** The operator reviewed the
+1280/390 renders of candidate `5a23d4e` and instructed 「上线提交发布」 on
+2026-10-23. `source/approval.json` binds every reviewed `source/` and `assets/`
+input; the IR is publication-eligible. The engineering PR is merged by the
+operator (AGENTS.md §8.6), not by an agent grant; Hello-Docs/RTD publication
+follows the Git-only transaction below.
 
 ## Source authority
 
@@ -47,6 +50,6 @@ Replace `web/ja` with a fresh render after any source change, then run `refresh_
 
 ## Release boundary
 
-After the operator accepts the 1280/390 renders and says 「上线提交发布」, `source/approval.json` is written and the status becomes `operator-approved-git-only-release`. After the engineering PR is merged by the operator, the Git-only transaction continues per [web publish pipeline §2.2](../../../../../code-as-doc/dev/web_publish_pipeline.md#22-git-only-transaction): seal at the merged `main` commit, assemble from Hello-Docs `main`, open a `docs/publish/**`-only PR, then verify RTD.
+After the engineering PR is merged by the operator, the Git-only transaction continues per [web publish pipeline §2.2](../../../../../code-as-doc/dev/web_publish_pipeline.md#22-git-only-transaction): seal at the merged `main` commit, assemble from Hello-Docs `main`, open a `docs/publish/**`-only PR, then verify RTD.
 
 Not touched: live Base, queue, source tables, HTML_link, asset registry, workflows and dependencies.

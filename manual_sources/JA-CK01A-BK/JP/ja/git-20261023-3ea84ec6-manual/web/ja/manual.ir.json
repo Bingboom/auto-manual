@@ -1344,6 +1344,11 @@
           "size": 7837
         },
         {
+          "path": "source/approval.json",
+          "sha256": "0a78c3432714fa9b6f41ece58defd3bca514c2f194a9057314e78afb2a72ba28",
+          "size": 5753
+        },
+        {
           "path": "source/asset_recipe.json",
           "sha256": "b1f7df93bc0dc2ff2bfaaadefaeedb06fc343818dac460f627b74464fab72518",
           "size": 11086
@@ -1429,12 +1434,10 @@
         "installation_ja.rst",
         "contact_ja.rst"
       ],
-      "pending_source_review": [
-        "Japanese operator source/layout confirmation"
-      ],
+      "pending_source_review": [],
       "printed_manual_version": null,
-      "publication_eligible": false,
-      "publication_status": "review-candidate-no-release-authorization",
+      "publication_eligible": true,
+      "publication_status": "operator-approved-git-only-release",
       "reference_edition": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed (structure/theme only; no product facts reused)",
       "repo_inputs": [
         {
@@ -1484,7 +1487,7 @@
           "issue": "cover says to read 安全上のご注意 and that the latest manual is on the official site, but no URL is printed"
         }
       ],
-      "source_role": "Git-only Japanese prepared native Web candidate (full instruction manual)",
+      "source_role": "Git-only Japanese prepared native Web release (full instruction manual), operator-approved 2026-10-23",
       "symbol_admission": "not applicable: the PDF prints no symbol table (HB-TABLE-SYMBOL-ICON absent)",
       "target": {
         "languages": [
@@ -2083,15 +2086,153 @@
     },
     "manual_theme_sha256": "e8fc88458d239edef85f2cfb0b26b71df2e83859c8e51e9c093e5abc2982b47d",
     "markdown_filename": "manual_jack01abk_jp_ja.md",
-    "operator_source_acceptance": null,
+    "operator_source_acceptance": {
+      "date": "2026-10-23",
+      "merge_authorization": null,
+      "merge_policy": "engineering PR merged by the operator after review (AGENTS.md §8.6); no merge_authorizations entry",
+      "operator_decisions": [
+        "package/route model JA-CK01A-BK; this manual is the JA-CK01A-BK/JP/ja legacy_default (「按你的建议，都用 JA-CK01A-BK」)",
+        "accepted the reviewed 1280/390 candidate with its listed layout points (Model line under the 主な仕様 strip, declared spec table, warning callout without triangle icon, frameless step figures with native note panels, live step-5 labels)"
+      ],
+      "operator_quote": "上线提交发布",
+      "original_source_sha256": "3ea84ec63b20a4e65c4d2f5d34a45ce715133b6b6f29a424bd95393d131cd113",
+      "retained_source_concerns": [
+        {
+          "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate",
+          "issue": "filename/ERP code HTO862A-JP-JAK and material 38-0001-000777 vs title block 料号 38-0001-000707 and 产品名称 HTE1181500A (JE-1500C code); printed model JA-CK01A-BK"
+        },
+        {
+          "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate",
+          "issue": "no printed manual version; title block 版本 V0.1 / revision 第一次发行 dated 2025-04-22; PDF metadata 2025-05-07"
+        },
+        {
+          "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate",
+          "issue": "\"Groud Screw Terminal\" (typo for Ground) in the step-5 drawing"
+        },
+        {
+          "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate",
+          "issue": "step 1 says 前面カバーをねじって取り外します while the drawing shows unscrewing; bubble copy ends 剥がし。"
+        },
+        {
+          "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate",
+          "issue": "outlined glyph transcription ambiguity: wave dash in 8 AWG～10 AWG (U+FF5E assumed), full-width colon in 電線ゲージ：, brackets in （15 mm）"
+        },
+        {
+          "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate",
+          "issue": "cover says to read 安全上のご注意 and that the latest manual is on the official site, but no URL is printed"
+        }
+      ],
+      "reviewed_inputs": [
+        {
+          "path": "assets/contact-qr.png",
+          "sha256": "d2c92908c427d8a0d7e11f91e0c9d5ffe2984d57b345ea438ad57314cd66847e",
+          "size": 3231
+        },
+        {
+          "path": "assets/step1-cover.png",
+          "sha256": "9d396f46696d41d56128049d176b5acf147b50ca2d40130aaa96f92612563e12",
+          "size": 56879
+        },
+        {
+          "path": "assets/step2-mark.png",
+          "sha256": "ea5ae2d4591a5635a74d8f84f67e4264cfb3b5411e9fa35f948c633eeb4f9eeb",
+          "size": 42236
+        },
+        {
+          "path": "assets/step3-drill.png",
+          "sha256": "6e7efb322c72e79e014bdd75b4fde0c207c7204b7c2e9c7e5e068c3b056a006f",
+          "size": 45067
+        },
+        {
+          "path": "assets/step4-fix.png",
+          "sha256": "a9e90149a9800e43e850e43c09222061cc2b9ae10b0e899c4d997691df063959",
+          "size": 58152
+        },
+        {
+          "path": "assets/step5-wiring.png",
+          "sha256": "fe806f83427710176e66da12ac4e6d3b6a069c508defed232f2ca3baa5f8880f",
+          "size": 90988
+        },
+        {
+          "path": "source/asset_recipe.json",
+          "sha256": "b1f7df93bc0dc2ff2bfaaadefaeedb06fc343818dac460f627b74464fab72518",
+          "size": 11086
+        },
+        {
+          "path": "source/differences.md",
+          "sha256": "184cc632a0193ced3e531a947338c26347a09ab390c303ee092ef9dc0ac93d97",
+          "size": 2301
+        },
+        {
+          "path": "source/discovery.md",
+          "sha256": "e39f15741c8c1d3f1a00d14f39caacc622303b5b027fe860bc99c024843e4687",
+          "size": 2829
+        },
+        {
+          "path": "source/figure_labels.json",
+          "sha256": "6e80b21b26e3e1c2dfea2f38f0117b03860584db8912915d3276937ab5693856",
+          "size": 5695
+        },
+        {
+          "path": "source/original.pdf",
+          "sha256": "3ea84ec63b20a4e65c4d2f5d34a45ce715133b6b6f29a424bd95393d131cd113",
+          "size": 1343633
+        },
+        {
+          "path": "source/page/00_preface_ja.rst",
+          "sha256": "3338d9644c7cfb685a9f25df7c5a1707bc398009c028dd4c7792b2c902e350cd",
+          "size": 510
+        },
+        {
+          "path": "source/page/contact_ja.rst",
+          "sha256": "c2cf21ad89626956f4abdabb211e41f92138da2cc7f0e46f87151be373d98474",
+          "size": 266
+        },
+        {
+          "path": "source/page/installation_ja.rst",
+          "sha256": "af3e3e75874d7941b285450b30d56d710e0def4560ab67bf385e954c6f9d5218",
+          "size": 3781
+        },
+        {
+          "path": "source/page/safety_ja.rst",
+          "sha256": "b1c7d568683c34172e3f7c7caa2130f312984d5a82261bfed03fc0fbd6e2a3b9",
+          "size": 723
+        },
+        {
+          "path": "source/page/spec_ja.rst",
+          "sha256": "39c0823ebbf67c95ae020981d34dbc38b3dd7220e97820bb747005178f6d95cc",
+          "size": 366
+        },
+        {
+          "path": "source/presentation.css",
+          "sha256": "23b439bba528a9913b38faf4317bacdf9003fe4606d0b5c990de1af5b15f06a2",
+          "size": 1766
+        },
+        {
+          "path": "source/transcription.json",
+          "sha256": "25f41f9de3de1f2e2ab07678bb45b534f70bd951536d8f4a6e59c02f410e90b1",
+          "size": 8556
+        }
+      ],
+      "reviewed_renders": [
+        "evidence/browser-1280.png",
+        "evidence/browser-390.png"
+      ],
+      "reviewed_source_commit": "5a23d4e",
+      "schema_version": "source-operator-acceptance/v1",
+      "scope": "Git-only Web release of git-20261023-3ea84ec6-manual; printed source unchanged; no Feishu/Base/source-table, queue, asset-registry or HTML_link writes.",
+      "target": {
+        "language": "ja",
+        "model": "JA-CK01A-BK",
+        "region": "JP"
+      }
+    },
     "page_count": 5,
     "page_declarations": {},
     "page_slots": {},
-    "pending_source_review": [
-      "Japanese operator source/layout confirmation"
-    ],
+    "pending_source_review": [],
     "projection": "whole-document-components/v1",
-    "publication_eligible": false,
+    "publication_eligible": true,
     "skipped_raw": 0,
     "source_stylesheet": {
       "path": "_static/source.css",
