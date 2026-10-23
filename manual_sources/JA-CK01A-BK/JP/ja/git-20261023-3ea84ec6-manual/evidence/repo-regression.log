@@ -1,0 +1,21 @@
+[build.py] /usr/bin/python3 -m tools.validate_config --config configs/config.ja.yaml
+[validate_config] OK
+[build.py] /usr/bin/python3 -m tools.validate_layout_params --csv data/layout_params.csv
+[validate_layout_params] OK
+[build.py] /usr/bin/python3 -m tools.validate_spec_master --config configs/config.ja.yaml --model JE-1000F --region JP --data-root tests/fixtures/phase2 --source auto
+[validate_spec_master] OK
+[build.py] /usr/bin/python3 -m tools.build.docs --config configs/config.ja.yaml --model JE-1000F --region JP --data-root tests/fixtures/phase2 --source auto --prepare-only --clean --no-open
+[build] validating config...
+[build] validating layout params...
+[build] Cleaning target output: docs/_build/JE-1000F/JP
+[build] target: model='JE-1000F', region='JP', lang=''
+[build] Staged 26 frozen attachment alias(es) across 2 bundle file(s)
+[build] Prepared bundle: docs/_build/JE-1000F/JP/rst
+[build] Bundle source: runtime
+[build.py] /usr/bin/python3 -m tools.check.docs --config configs/config.ja.yaml --model JE-1000F --region JP --data-root tests/fixtures/phase2
+[check] WARNING TERMINOLOGY_DEPRECATED target=JE-1000F/JP lang=ja path=docs/_build/JE-1000F/JP/rst/page/03_product_overview_placeholder.rst: rule JA-HALFWIDTH-KANA matched 1 time(s) in 03_product_overview_placeholder.rst (first: 'ｼｶﾞｰｿｹｯﾄ'); use 全角片假名
+[check] WARNING TERMINOLOGY_DEPRECATED target=JE-1000F/JP lang=ja path=docs/_build/JE-1000F/JP/rst/page/spec_ja.rst: rule JA-RANGE-TILDE matched 6 time(s) in spec_ja.rst (first: '～'); use 〜(U+301C)
+[check] WARNING TERMINOLOGY_DEPRECATED target=JE-1000F/JP lang=ja path=docs/_build/JE-1000F/JP/rst/generated/JE-1000F/draft/03_product_overview_ja.rst: rule JA-HALFWIDTH-KANA matched 1 time(s) in 03_product_overview_ja.rst (first: 'ｼｶﾞｰｿｹｯﾄ'); use 全角片假名
+[check] WARNING TERMINOLOGY_DEPRECATED target=JE-1000F/JP lang=ja path=docs/_build/JE-1000F/JP/rst/generated/JE-1000F/spec_ja.rst: rule JA-RANGE-TILDE matched 6 time(s) in spec_ja.rst (first: '～'); use 〜(U+301C)
+[check] OK
+exit 0

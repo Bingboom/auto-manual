@@ -1,0 +1,567 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 40000000
+  },
+  "source": {
+    "source_key": "source/ja-ck01a-bk-jp-38-0001-000777",
+    "expected_sha256": "3ea84ec63b20a4e65c4d2f5d34a45ce715133b6b6f29a424bd95393d131cd113",
+    "expected_page_count": 1
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 1
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 0.5,
+      "page_scale": {}
+    }
+  },
+  "page_catalog": [
+    {
+      "page": 1,
+      "page_key": "jp-artboard",
+      "role": "source_artboard",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "JP source provenance; four printed panels"
+        ]
+      },
+      "risk_tags": []
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "web/ja-ck01a-bk/jp/ja/step1-cover",
+      "page": 1,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JA-CK01A-BK"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            1296.11,
+            800.11,
+            1606.44,
+            905.49
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            1296.11,
+            800.11,
+            1304.61,
+            808.61
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            1597.94,
+            800.11,
+            1606.44,
+            808.61
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            1296.11,
+            896.99,
+            1304.61,
+            905.49
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            1597.94,
+            896.99,
+            1606.44,
+            905.49
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/step1-cover.png",
+          "scale": 4
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only JP candidate; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/ja-ck01a-bk/jp/ja/step2-mark",
+      "page": 1,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JA-CK01A-BK"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            1664.7,
+            461.84,
+            1975.03,
+            558.9
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            1664.7,
+            461.84,
+            1673.2,
+            470.34
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            1966.53,
+            461.84,
+            1975.03,
+            470.34
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            1664.7,
+            550.4,
+            1673.2,
+            558.9
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            1966.53,
+            550.4,
+            1975.03,
+            558.9
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/step2-mark.png",
+          "scale": 4
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only JP candidate; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/ja-ck01a-bk/jp/ja/step3-drill",
+      "page": 1,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JA-CK01A-BK"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            1664.87,
+            592.21,
+            1975.21,
+            704.5
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            1664.87,
+            592.21,
+            1673.37,
+            600.71
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            1966.71,
+            592.21,
+            1975.21,
+            600.71
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/step3-drill.png",
+          "scale": 4
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only JP candidate; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/ja-ck01a-bk/jp/ja/step4-fix",
+      "page": 1,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JA-CK01A-BK"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            1664.87,
+            795.35,
+            1975.21,
+            905.49
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            1664.87,
+            795.35,
+            1673.37,
+            803.85
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            1966.71,
+            795.35,
+            1975.21,
+            803.85
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            1664.87,
+            896.99,
+            1673.37,
+            905.49
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            1966.71,
+            896.99,
+            1975.21,
+            905.49
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/step4-fix.png",
+          "scale": 4
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only JP candidate; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/ja-ck01a-bk/jp/ja/step5-wiring",
+      "page": 1,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JA-CK01A-BK"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            462.12,
+            476.48,
+            772.46,
+            663.0
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            462.12,
+            476.48,
+            470.62,
+            484.98
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            763.96,
+            476.48,
+            772.46,
+            484.98
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            469.43,
+            483.72,
+            590.86,
+            507.58
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            494.07,
+            518.21,
+            506.46,
+            522.62
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            494.03,
+            526.71,
+            506.12,
+            531.11
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            494.23,
+            534.88,
+            505.3,
+            539.36
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            494.23,
+            543.47,
+            502.32,
+            547.83
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            645.6,
+            500.98,
+            674.14,
+            511.81
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            645.7,
+            522.02,
+            659.55,
+            526.84
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            645.88,
+            529.89,
+            658.24,
+            534.81
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            645.65,
+            543.13,
+            659.17,
+            547.94
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            645.97,
+            552.27,
+            654.96,
+            557.03
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/step5-wiring.png",
+          "scale": 4
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only JP candidate; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/ja-ck01a-bk/jp/ja/contact-qr",
+      "page": 1,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JA-CK01A-BK"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            732.0,
+            871.0,
+            772.0,
+            911.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/contact-qr.png",
+          "scale": 4
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only JP candidate; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    }
+  ]
+}

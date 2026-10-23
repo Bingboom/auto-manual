@@ -1,0 +1,306 @@
+{
+  "schema_version": "ja-ck01a-bk-transcription/v1",
+  "method": "The PDF has no text layer (every glyph is outlined). Lines were transcribed from 400 dpi panel renders and checked against 4x per-figure renders; reading order follows the printed panels. web: false marks lines that are not part of the Web flow.",
+  "panels": [
+    {
+      "panel": "cover",
+      "bbox_pt": [
+        801.5,
+        413.0,
+        1170.0,
+        937.4
+      ],
+      "lines": [
+        {
+          "text": "Jackery",
+          "role": "logo",
+          "web": false
+        },
+        {
+          "text": "型番: JA-CK01A-BK",
+          "web": false
+        },
+        {
+          "text": "Jackery Power Output Cable Kit(L14-30)",
+          "web": false
+        },
+        {
+          "text": "取扱説明書",
+          "web": false
+        },
+        {
+          "text": "国内専用/For use only in Japan",
+          "web": false
+        },
+        {
+          "text": "カスタマーサポート: jackery.jp@jackery.com",
+          "web": true,
+          "web_page": "contact_ja.rst"
+        },
+        {
+          "text": "お買い上げありがとうございます。",
+          "web": true
+        },
+        {
+          "text": "ご使用の前にこの「取扱説明書」をよくお読みのうえ、正しくお使いください。",
+          "web": true
+        },
+        {
+          "text": "特に「安全上のご注意」は、必ずお読みいただき、安全にお使いください。",
+          "web": true
+        },
+        {
+          "text": "お読みになったあとは、すぐに取り出せる場所に大切に保管してください。",
+          "web": true
+        },
+        {
+          "text": "本製品の取扱説明書は随時更新されますので、最新の取扱説明書は公式サイトでご確認ください。",
+          "web": true
+        }
+      ]
+    },
+    {
+      "panel": "panel-2",
+      "bbox_pt": [
+        1267.3,
+        413.2,
+        1635.8,
+        937.6
+      ],
+      "lines": [
+        {
+          "text": "安全上のご注意",
+          "web": true
+        },
+        {
+          "text": "警告",
+          "web": true
+        },
+        {
+          "text": "1. インレットボックスは、設置前に電源に接続しないでください。この指示に従わない場合、電気的故障、火災、感電の原因となる可能性があります。",
+          "web": true
+        },
+        {
+          "text": "2. このインレットボックスおよび関連配線の設置は、適用されるすべての電気工事規定に従い、資格のある電気技師が行う必要があります。",
+          "web": true
+        },
+        {
+          "text": "3. 建造物への電力供給のために使用する場合、このインレットボックスは自動切換スイッチと組み合わせて使用する必要があります。",
+          "web": true
+        },
+        {
+          "text": "主な仕様",
+          "web": true
+        },
+        {
+          "text": "Model: JA-CK01A-BK",
+          "web": true
+        },
+        {
+          "text": "製品の名称",
+          "web": true
+        },
+        {
+          "text": "Jackery Power Output Cable Kit(L14-30)",
+          "web": true
+        },
+        {
+          "text": "型番",
+          "web": true
+        },
+        {
+          "text": "JA-CK01A-BK",
+          "web": true
+        },
+        {
+          "text": "電圧",
+          "web": true
+        },
+        {
+          "text": "125V/250V",
+          "web": true
+        },
+        {
+          "text": "電流",
+          "web": true
+        },
+        {
+          "text": "30A",
+          "web": true
+        },
+        {
+          "text": "インレットボックスの取り付け",
+          "web": true
+        },
+        {
+          "text": "設置場所の選択",
+          "web": true
+        },
+        {
+          "text": "* インレットボックスは、建物内の便利な場所に設置してください。",
+          "web": true
+        },
+        {
+          "text": "* 製品は、乾燥した換気の良い場所に設置してください。",
+          "web": true
+        },
+        {
+          "text": "1.インレットボックスの前面カバーをねじって取り外します。",
+          "web": true
+        }
+      ]
+    },
+    {
+      "panel": "panel-3",
+      "bbox_pt": [
+        1635.8,
+        413.2,
+        2004.3,
+        937.6
+      ],
+      "lines": [
+        {
+          "text": "2.インレットボックスを所定の位置に保持し、鉛筆を使用して壁に穴の位置をマークします。",
+          "web": true
+        },
+        {
+          "text": "95mm",
+          "role": "drawing marking",
+          "web": false
+        },
+        {
+          "text": "57.3mm",
+          "role": "drawing marking",
+          "web": false
+        },
+        {
+          "text": "3. マークした位置にドリルで穴を開け、壁アンカーを挿入します。",
+          "web": true
+        },
+        {
+          "text": "95mm",
+          "role": "drawing marking",
+          "web": false
+        },
+        {
+          "text": "57.3mm",
+          "role": "drawing marking",
+          "web": false
+        },
+        {
+          "text": "* プラスチック製の壁アンカーのサイズに基づいて、適切なドリルビットを選択してください。",
+          "web": true
+        },
+        {
+          "text": "* 穴の深さが壁アンカーの長さに一致していることを確認してください。",
+          "web": true
+        },
+        {
+          "text": "* 壁アンカーの損傷を防ぐため、過度の力を加えないでください。",
+          "web": true
+        },
+        {
+          "text": "* 穴あけ後、穴から破片を取り除きます。",
+          "web": true
+        },
+        {
+          "text": "4. インレットボックスの背面にある取り付け穴にセルフタッピングネジを挿入し、壁アンカーにねじ込んでインレットボックスを固定します。",
+          "web": true
+        }
+      ]
+    },
+    {
+      "panel": "panel-4",
+      "bbox_pt": [
+        433.0,
+        413.0,
+        801.5,
+        937.4
+      ],
+      "lines": [
+        {
+          "text": "5. インレットボックスの配線用穴の1つから、自動切換スイッチまで配線を通します。",
+          "web": true
+        },
+        {
+          "text": "次のようにインレットボックス内のワイヤを接続します。",
+          "web": true
+        },
+        {
+          "text": "各ワイヤから3/5インチ（15 mm）の絶縁体を剥がし。",
+          "web": true
+        },
+        {
+          "text": "3/5\"(15mm)",
+          "role": "drawing marking",
+          "web": false
+        },
+        {
+          "text": "Green",
+          "web": true
+        },
+        {
+          "text": "White",
+          "web": true
+        },
+        {
+          "text": "Black",
+          "web": true
+        },
+        {
+          "text": "Red",
+          "web": true
+        },
+        {
+          "text": "Groud Screw Terminal",
+          "web": true
+        },
+        {
+          "text": "Green",
+          "web": true
+        },
+        {
+          "text": "Black",
+          "web": true
+        },
+        {
+          "text": "White",
+          "web": true
+        },
+        {
+          "text": "Red",
+          "web": true
+        },
+        {
+          "text": "* 銅線のみを使用し、許可された配線方法に従ってください。",
+          "web": true
+        },
+        {
+          "text": "* 電線管を使用する場合は、少なくとも4色の異なる色のワイヤーを通してください。",
+          "web": true
+        },
+        {
+          "text": "* 電線ゲージ：8 AWG～10 AWG。",
+          "web": true
+        },
+        {
+          "text": "* 導体にすずメッキをしないでください。",
+          "web": true
+        },
+        {
+          "text": "* 端子内にワイヤー絶縁体がないことを確認してください。",
+          "web": true
+        },
+        {
+          "text": "* 電動マイナスドライバーを使用して、ネジを4.0 Nmで締めます。",
+          "web": true
+        },
+        {
+          "text": "QR code",
+          "role": "back-cover QR artwork",
+          "web": false
+        }
+      ]
+    }
+  ]
+}

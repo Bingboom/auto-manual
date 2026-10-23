@@ -1,0 +1,26 @@
+/* JA-CK01A-BK JP manual: page-local geometry and typography only.
+   Colours, borders and panels come from the shared Web theme (prepared-document shared-style gate). */
+
+/* Print bullets are "・" lines, as in the PDF. */
+#furo-main-content ul > li { list-style-type: "・"; }
+#furo-main-content ul { padding-left: 1.2rem; }
+
+/* Grey note panels keep their print lines. */
+#furo-main-content div.hb-text-panel { margin: .4rem 0 1.4rem; }
+#furo-main-content div.hb-text-panel > p { margin: 0; }
+#furo-main-content div.hb-text-panel > p:first-child:has(> strong:only-child) { margin-bottom: .35rem; }
+
+/* Step figures keep the print width of the step frame. */
+#furo-main-content img[alt^="手順"] { display: block; width: min(100%, 40rem) !important; margin: .4rem auto 1.2rem; }
+#furo-main-content .hb-reference-figure[data-reference-id="step5-wiring"] { width: min(100%, 40rem); margin-inline: auto; }
+
+/* Step 5: labels keep the print type size on the drawing. */
+#furo-main-content [data-reference-id="step5-wiring"] .hb-reference-live-label { font-size: max(.5rem, 1.62cqw); line-height: 1.15; }
+#furo-main-content [data-reference-id="step5-wiring"] .hb-reference-live-label[data-source-line="0"] { font-size: max(.5rem, 1.55cqw); }
+@media (min-width: 761px) {
+  #furo-main-content [data-reference-id="step5-wiring"] .hb-reference-live-label[data-source-line="0"] { white-space: nowrap; }
+}
+#furo-main-content [data-reference-id="step5-wiring"] .hb-reference-live-label:is([data-source-line="1"], [data-source-line="2"], [data-source-line="3"], [data-source-line="4"]) { justify-content: center; }
+
+/* Back-cover QR keeps its print size. */
+#furo-main-content img[alt="原稿裏表紙のQRコード"] { width: 96px !important; height: auto; margin: 1rem 0; }
