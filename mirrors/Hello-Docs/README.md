@@ -13,7 +13,7 @@ Hello-Docs 是产品资料的业务面：存放业务数据与语料资产，发
 | 内容 | 位置 | 怎么维护 |
 | --- | --- | --- |
 | 已发布的网页说明书 | [`docs/publish/`](https://github.com/Bingboom/Hello-Docs/tree/main/docs/publish) | Web Publish 写入发布候选；只含该目录的发布 PR 合入 `main` 后，Read the Docs 重建资料库 |
-| 知识资料与业务数据 | [`docs/knowledge/`](https://github.com/Bingboom/Hello-Docs/blob/main/docs/knowledge/README.md) | 在本仓库开内容 PR，例如工作台数据快照、知识问题台账、分享稿 |
+| 知识资料与业务数据 | [`docs/knowledge/`](https://github.com/Bingboom/Hello-Docs/blob/main/docs/knowledge/README.md) | 在本仓库开内容 PR，例如说明书工作台的数据快照、知识问题台账、分享稿 |
 | 产品数据与翻译语料 | 业务飞书 base：文档构建（phase2 源表）、TM-B 翻译记忆、发布文档管理 | 在飞书维护，构建时冻结为快照；ID 见[双平面地图](/user-guide/two_plane_map.md) §1.1 |
 | 业务账本 | 本地 checkout 的 `reports/` | 修订台账、TM 命中率等，日常命令见[闭环运营手册](/user-guide/closed_loop_ops_guide.md) |
 

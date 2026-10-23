@@ -114,7 +114,7 @@ REV-03 已于 2026-09-19 验收（[台账](../code-as-doc/dev/manual_revitalizat
 RTD 后台分支配置以后台为准，本图未在线复核。
 停止旧 RTD 项目独立更新不删除 `Hello-Docs/publish` 候选分支，也不合并工程/业务两个仓库。
 
-Hello-Docs `docs/knowledge/workspace-data` 同样属于业务内容：保存审核后的工作台快照，工程同步保留它。更新和补做见 [工作台数据持续更新](../code-as-doc/dev/workspace_data_refresh.md)。
+Hello-Docs `docs/knowledge/workspace-data` 同样属于业务内容：保存审核后的说明书工作台快照，工程同步保留它。更新和补做见 [工作台数据持续更新](../code-as-doc/dev/workspace_data_refresh.md)。
 
 Hello-Docs `docs/knowledge/governance/findings.json` 也是业务内容：说明书知识问题的台账（人工结论、修改与核验），经只含 `docs/knowledge/**` 的内容 PR 维护；契约、校验、核验、覆盖矩阵与权威源绑定命令在 auto-manual，见[知识治理方案](../code-as-doc/dev/machine_readable_knowledge_governance.md) §6。
 
@@ -148,7 +148,7 @@ Hello-Docs `docs/knowledge/governance/findings.json` 也是业务内容：说明
 1. **代码只改 auto-manual**。Hello-Docs 和 Hello-Docs-Review 的工程树都是镜像，直接改代码会被下一次同步覆盖或产生分叉；
    两个镜像的首页 README 也在 auto-manual 的 `mirrors/<仓库>/README.md` 修改。
    `Hello-Docs/main:docs/publish/**` 保存已发布说明书；
-   `Hello-Docs/main:docs/knowledge/**` 保存分享稿、配图、示例和业务数据（工作台数据、知识问题台账等，见 §2.1）。两个业务内容目录
+   `Hello-Docs/main:docs/knowledge/**` 保存分享稿、配图、示例和业务数据（说明书工作台数据、知识问题台账等，见 §2.1）。两个业务内容目录
    都由 Hello-Docs 内容 PR 维护，工程同步保留它们；
    `Hello-Docs/publish` 由 Web Publish workflow 自动写入候选快照，人不在该分支改代码。
    只能把该分支中 `docs/publish/**` 的差异通过 PR 合入 `main`，不能把 `review/*` 整分支合入。
