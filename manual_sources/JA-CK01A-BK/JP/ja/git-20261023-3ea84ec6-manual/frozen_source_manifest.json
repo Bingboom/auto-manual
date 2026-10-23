@@ -1,0 +1,387 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "target": {
+    "model": "JA-CK01A-BK",
+    "region": "JP",
+    "languages": [
+      "ja"
+    ],
+    "technical_version": "git-20261023-3ea84ec6-manual"
+  },
+  "original_source": {
+    "filename": "38-0001-000777 HTO862A-JP-JAK 说明书 RoHS REACH.pdf",
+    "path": "source/original.pdf",
+    "sha256": "3ea84ec63b20a4e65c4d2f5d34a45ce715133b6b6f29a424bd95393d131cd113",
+    "physical_page_count": 1
+  },
+  "printed_manual_version": null,
+  "publication_status": "operator-approved-git-only-release",
+  "publication_eligible": true,
+  "page_order": [
+    "00_preface_ja.rst",
+    "safety_ja.rst",
+    "spec_ja.rst",
+    "installation_ja.rst",
+    "contact_ja.rst"
+  ],
+  "required_components": {
+    "HB-CALLOUT-STRIP": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE": 1
+  },
+  "pending_source_review": [],
+  "web_roots": {
+    "ja": "web/ja"
+  },
+  "source_authority": "operator-designated Japanese PDF from the operator-designated Feishu wiki file (read-only download); original Japanese governs all technical/legal copy. Operator instruction 2026-10-23: 「开两个窗口 把这俩说明书 走git only转网页文档」; JBP-1000B-WH / JA-AD500A-SIL JP Web rules apply (封面和目录不上网页; 参考 JE-1000F 日语网页说明书; 不改动任何日文原文). Package model JA-CK01A-BK (printed cover/spec model) confirmed by the operator 2026-10-23; this full manual is the default (legacy_default) JA-CK01A-BK/JP/ja route.",
+  "baseline_main": "9dde402",
+  "language_scope": "single",
+  "source_role": "Git-only Japanese prepared native Web release (full instruction manual), operator-approved 2026-10-23",
+  "document_identity": {
+    "material_number": "38-0001-000777",
+    "erp_code": "HTO862A-JP-JAK",
+    "printed_model": "JA-CK01A-BK",
+    "product_name": "Jackery Power Output Cable Kit(L14-30)",
+    "document_kind": "取扱説明書 (full manual); the quick operation guide 38-0001-000845 is a separate document, not part of this package"
+  },
+  "live_bitable_dependency": false,
+  "chapter_source_panels": {
+    "00_preface_ja.rst": [
+      "cover"
+    ],
+    "safety_ja.rst": [
+      "panel-2"
+    ],
+    "spec_ja.rst": [
+      "panel-2"
+    ],
+    "installation_ja.rst": [
+      "panel-2",
+      "panel-3",
+      "panel-4"
+    ],
+    "contact_ja.rst": [
+      "cover",
+      "panel-4"
+    ]
+  },
+  "normalizations": [
+    "outlined (text-less) PDF: every Japanese line is a manual transcription from the 4x/400 dpi renders, checked line by line; no text layer exists to extract",
+    "cover identity lines (Jackery logo, 型番, product name, 取扱説明書, 国内専用/For use only in Japan) and cover artwork omitted from Web flow (operator rule 封面不上网页); the cover welcome lead and its four bullets open the page; the cover support line moves to the page-end contact panel",
+    "decorative ● step markers omitted; step numbers kept verbatim (1./2. without space, 3./4./5. with space)",
+    "decorative grey step frames omitted from the artwork; each step's grey note capsules are shared hb-text-panel blocks after its figure",
+    "spec chapter-strip model identity (Model: JA-CK01A-BK) is the first line under the strip: prepared RST chapter titles cannot carry the shared hb-heading-model span",
+    "warning triangle icon not added: the prepared-document HB-CALLOUT-STRIP carries the signal word only (JA-AD500A-SIL JP precedent 「不加图标」)",
+    "step-5 drawing labels (bubble copy, wire colours, Groud Screw Terminal) are live labels on the drawing; the speech-bubble shape (with its tail) is rebuilt as a shared live pill",
+    "print-production margins outside the four panels (revision table, title block, size/material notes, second QR with internal annotation) are not manual content"
+  ],
+  "source_concerns": [
+    {
+      "issue": "filename/ERP code HTO862A-JP-JAK and material 38-0001-000777 vs title block 料号 38-0001-000707 and 产品名称 HTE1181500A (JE-1500C code); printed model JA-CK01A-BK",
+      "disposition": "identity follows the printed cover/spec model; preserved verbatim; operator review required"
+    },
+    {
+      "issue": "no printed manual version; title block 版本 V0.1 / revision 第一次发行 dated 2025-04-22; PDF metadata 2025-05-07",
+      "disposition": "printed_manual_version unknown; recorded only"
+    },
+    {
+      "issue": "\"Groud Screw Terminal\" (typo for Ground) in the step-5 drawing",
+      "disposition": "preserved verbatim; operator review required"
+    },
+    {
+      "issue": "step 1 says 前面カバーをねじって取り外します while the drawing shows unscrewing; bubble copy ends 剥がし。",
+      "disposition": "preserved verbatim"
+    },
+    {
+      "issue": "outlined glyph transcription ambiguity: wave dash in 8 AWG～10 AWG (U+FF5E assumed), full-width colon in 電線ゲージ：, brackets in （15 mm）",
+      "disposition": "transcribed from the drawing; operator review required"
+    },
+    {
+      "issue": "cover says to read 安全上のご注意 and that the latest manual is on the official site, but no URL is printed",
+      "disposition": "preserved verbatim; no URL added"
+    }
+  ],
+  "build_boundary": "New target is not registered in phase2. Existing prepared RST → manual-ir/v2 → shared Web/MyST pipeline validates this body. build.py check of the JE-1000F JP fixture is a repository regression only; it does not validate this body.",
+  "shared_component_exceptions": [
+    {
+      "language": "ja",
+      "page_id": "spec_ja.rst",
+      "kind": "table",
+      "text_sha256": "8e176518da8c33bfed44b25bea372df81e889f68b8c59df0dafa84bd439d98ef",
+      "reason": "four-row identity/rating table under the 主な仕様 strip: HB-TABLE-SPEC requires a source-authored section title the PDF does not print; it keeps the shared manual-spec-table classes"
+    }
+  ],
+  "component_map": [
+    {
+      "printed": "cover welcome lead + four bullets",
+      "shared": "plain flow (bold lead, list)"
+    },
+    {
+      "printed": "安全上のご注意 / 主な仕様 / インレットボックスの取り付け strips",
+      "shared": "chapter h1 strips (shared theme)"
+    },
+    {
+      "printed": "警告 box",
+      "shared": "HB-CALLOUT-STRIP/warning"
+    },
+    {
+      "printed": "主な仕様 table",
+      "shared": "declared plain table on shared manual-spec-table (see shared_component_exceptions)"
+    },
+    {
+      "printed": "設置場所の選択 and step note capsules",
+      "shared": "shared hb-text-panel"
+    },
+    {
+      "printed": "step 1-4 drawings",
+      "shared": "frozen images (no text inside; dimensions 95mm / 57.3mm are drawing markings)"
+    },
+    {
+      "printed": "step 5 wiring drawing",
+      "shared": "HB-SPECIAL-REFERENCE-FIGURE base-art-live-copy with 10 live labels"
+    },
+    {
+      "printed": "support capsule + back QR",
+      "shared": "shared hb-text-panel + frozen QR image"
+    }
+  ],
+  "reference_edition": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed (structure/theme only; no product facts reused)",
+  "symbol_admission": "not applicable: the PDF prints no symbol table (HB-TABLE-SYMBOL-ICON absent)",
+  "reused_assets": [],
+  "web_exclusions": [
+    "cover artwork and identity lines",
+    "print-production margin outside the four panels"
+  ],
+  "inputs": [
+    {
+      "path": "README.md",
+      "size": 4511,
+      "sha256": "7b530a509f3773abfa3acd4c6404dce665448a779227fe1a125eda86dc758f65"
+    },
+    {
+      "path": "assets/contact-qr.png",
+      "size": 3231,
+      "sha256": "d2c92908c427d8a0d7e11f91e0c9d5ffe2984d57b345ea438ad57314cd66847e"
+    },
+    {
+      "path": "assets/step1-cover.png",
+      "size": 56879,
+      "sha256": "9d396f46696d41d56128049d176b5acf147b50ca2d40130aaa96f92612563e12"
+    },
+    {
+      "path": "assets/step2-mark.png",
+      "size": 42236,
+      "sha256": "ea5ae2d4591a5635a74d8f84f67e4264cfb3b5411e9fa35f948c633eeb4f9eeb"
+    },
+    {
+      "path": "assets/step3-drill.png",
+      "size": 45067,
+      "sha256": "6e7efb322c72e79e014bdd75b4fde0c207c7204b7c2e9c7e5e068c3b056a006f"
+    },
+    {
+      "path": "assets/step4-fix.png",
+      "size": 58152,
+      "sha256": "a9e90149a9800e43e850e43c09222061cc2b9ae10b0e899c4d997691df063959"
+    },
+    {
+      "path": "assets/step5-wiring.png",
+      "size": 90988,
+      "sha256": "fe806f83427710176e66da12ac4e6d3b6a069c508defed232f2ca3baa5f8880f"
+    },
+    {
+      "path": "derive_assets.py",
+      "size": 8917,
+      "sha256": "755c8bc1e823230516625d2cfeb4d65f5ff3a5b04521a6818f708b10a00acc94"
+    },
+    {
+      "path": "evidence/browser-1280.png",
+      "size": 528085,
+      "sha256": "c9282f651ab8758bf50168926c3643a51164dc91e53f416a1a685afc1a205e0c"
+    },
+    {
+      "path": "evidence/browser-390.png",
+      "size": 387969,
+      "sha256": "709efb06bb7151037d881b60d4dcef2a6275c3732c468f661941a3e9a58ae32a"
+    },
+    {
+      "path": "evidence/doc-links.log",
+      "size": 134,
+      "sha256": "40c1a157694afea1d9ae2d21326b9accd8779a06194f66eef91c9d30c1f0a3cd"
+    },
+    {
+      "path": "evidence/maintainability.log",
+      "size": 588,
+      "sha256": "d15a678eb16656bf57ac12542b1762d8a1f7f990d67c260629cf4676558bfffc"
+    },
+    {
+      "path": "evidence/repo-regression.log",
+      "size": 2073,
+      "sha256": "a8c26c0ca30c552b3b07984163b4891e6ec74ad158dfbc1de97004471c409c02"
+    },
+    {
+      "path": "evidence/strict-sphinx.log",
+      "size": 1951,
+      "sha256": "ce3a6584de83c4763bedb45349016e06b925fcd32c851bda7887062a752f299b"
+    },
+    {
+      "path": "evidence/target-tests.log",
+      "size": 646,
+      "sha256": "cdc922da624b6ecf088b463805411656c5d346c93257c4ca358d4898368cf550"
+    },
+    {
+      "path": "evidence/validation.json",
+      "size": 3602,
+      "sha256": "58c7f9ceb7e0ebab37170bb86dc10ffd6b6c92a1c4292ce203d8c37f031c0dea"
+    },
+    {
+      "path": "refresh_manifest.py",
+      "size": 2648,
+      "sha256": "acbc9afa3d37f0255309cf45c1fb027ad47a59da832fe8bc5e2309dcfa137578"
+    },
+    {
+      "path": "render.py",
+      "size": 7837,
+      "sha256": "494c367201b38bb933e95be394e53e26b50f0680259b65c0fe7d62cd210df768"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 5753,
+      "sha256": "0a78c3432714fa9b6f41ece58defd3bca514c2f194a9057314e78afb2a72ba28"
+    },
+    {
+      "path": "source/asset_recipe.json",
+      "size": 11086,
+      "sha256": "b1f7df93bc0dc2ff2bfaaadefaeedb06fc343818dac460f627b74464fab72518"
+    },
+    {
+      "path": "source/differences.md",
+      "size": 2301,
+      "sha256": "184cc632a0193ced3e531a947338c26347a09ab390c303ee092ef9dc0ac93d97"
+    },
+    {
+      "path": "source/discovery.md",
+      "size": 2829,
+      "sha256": "e39f15741c8c1d3f1a00d14f39caacc622303b5b027fe860bc99c024843e4687"
+    },
+    {
+      "path": "source/figure_labels.json",
+      "size": 5695,
+      "sha256": "6e80b21b26e3e1c2dfea2f38f0117b03860584db8912915d3276937ab5693856"
+    },
+    {
+      "path": "source/original.pdf",
+      "size": 1343633,
+      "sha256": "3ea84ec63b20a4e65c4d2f5d34a45ce715133b6b6f29a424bd95393d131cd113"
+    },
+    {
+      "path": "source/page/00_preface_ja.rst",
+      "size": 510,
+      "sha256": "3338d9644c7cfb685a9f25df7c5a1707bc398009c028dd4c7792b2c902e350cd"
+    },
+    {
+      "path": "source/page/contact_ja.rst",
+      "size": 266,
+      "sha256": "c2cf21ad89626956f4abdabb211e41f92138da2cc7f0e46f87151be373d98474"
+    },
+    {
+      "path": "source/page/installation_ja.rst",
+      "size": 3781,
+      "sha256": "af3e3e75874d7941b285450b30d56d710e0def4560ab67bf385e954c6f9d5218"
+    },
+    {
+      "path": "source/page/safety_ja.rst",
+      "size": 723,
+      "sha256": "b1c7d568683c34172e3f7c7caa2130f312984d5a82261bfed03fc0fbd6e2a3b9"
+    },
+    {
+      "path": "source/page/spec_ja.rst",
+      "size": 366,
+      "sha256": "39c0823ebbf67c95ae020981d34dbc38b3dd7220e97820bb747005178f6d95cc"
+    },
+    {
+      "path": "source/presentation.css",
+      "size": 1766,
+      "sha256": "23b439bba528a9913b38faf4317bacdf9003fe4606d0b5c990de1af5b15f06a2"
+    },
+    {
+      "path": "source/transcription.json",
+      "size": 8556,
+      "sha256": "25f41f9de3de1f2e2ab07678bb45b534f70bd951536d8f4a6e59c02f410e90b1"
+    },
+    {
+      "path": "source_manifest.json",
+      "size": 10987,
+      "sha256": "9204a51cfd3f1e441146a733c76b75c2e5795ab4f1896f40ee156a0ddd448456"
+    },
+    {
+      "path": "web/ja/_static/source.css",
+      "size": 1766,
+      "sha256": "23b439bba528a9913b38faf4317bacdf9003fe4606d0b5c990de1af5b15f06a2"
+    },
+    {
+      "path": "web/ja/_static/web_manual.css",
+      "size": 124849,
+      "sha256": "c3604a2e5f22b04bc745bb99cf203b50e60222af70c0aeba3d968cc28adac9ce"
+    },
+    {
+      "path": "web/ja/assets/ir/6e7efb322c72e79e014bdd75b4fde0c207c7204b7c2e9c7e5e068c3b056a006f/step3-drill.png",
+      "size": 45067,
+      "sha256": "6e7efb322c72e79e014bdd75b4fde0c207c7204b7c2e9c7e5e068c3b056a006f"
+    },
+    {
+      "path": "web/ja/assets/ir/9d396f46696d41d56128049d176b5acf147b50ca2d40130aaa96f92612563e12/step1-cover.png",
+      "size": 56879,
+      "sha256": "9d396f46696d41d56128049d176b5acf147b50ca2d40130aaa96f92612563e12"
+    },
+    {
+      "path": "web/ja/assets/ir/a9e90149a9800e43e850e43c09222061cc2b9ae10b0e899c4d997691df063959/step4-fix.png",
+      "size": 58152,
+      "sha256": "a9e90149a9800e43e850e43c09222061cc2b9ae10b0e899c4d997691df063959"
+    },
+    {
+      "path": "web/ja/assets/ir/d2c92908c427d8a0d7e11f91e0c9d5ffe2984d57b345ea438ad57314cd66847e/contact-qr.png",
+      "size": 3231,
+      "sha256": "d2c92908c427d8a0d7e11f91e0c9d5ffe2984d57b345ea438ad57314cd66847e"
+    },
+    {
+      "path": "web/ja/assets/ir/ea5ae2d4591a5635a74d8f84f67e4264cfb3b5411e9fa35f948c633eeb4f9eeb/step2-mark.png",
+      "size": 42236,
+      "sha256": "ea5ae2d4591a5635a74d8f84f67e4264cfb3b5411e9fa35f948c633eeb4f9eeb"
+    },
+    {
+      "path": "web/ja/assets/ir/fe806f83427710176e66da12ac4e6d3b6a069c508defed232f2ca3baa5f8880f/step5-wiring.png",
+      "size": 90988,
+      "sha256": "fe806f83427710176e66da12ac4e6d3b6a069c508defed232f2ca3baa5f8880f"
+    },
+    {
+      "path": "web/ja/conf.py",
+      "size": 833,
+      "sha256": "2ffa099cfb4ca2024dd909f33776402b4713d3d00a95dd93758b97b58b2c9eba"
+    },
+    {
+      "path": "web/ja/index.md",
+      "size": 96,
+      "sha256": "f305f7ef95c0401e4765d22eca47e1fd99e12a7fb449b7ec8569b51515cf4493"
+    },
+    {
+      "path": "web/ja/manual.ir.json",
+      "size": 133390,
+      "sha256": "59d0ccb772cf420eba6bc48f58c766e5dcbe0b154699e7f3bd22b57cf8cbed7e"
+    },
+    {
+      "path": "web/ja/manual_bundle.html",
+      "size": 9530,
+      "sha256": "604345538ecdf65b51f0c67d2dfc038295e6f9d6cdfff8d97478b659f1300a09"
+    },
+    {
+      "path": "web/ja/manual_jack01abk_jp_ja.md",
+      "size": 9860,
+      "sha256": "6e124bf53faf5671aac05b3cefcd990d7e2f30bc6afd63be3fb457de305b7f3b"
+    }
+  ],
+  "repo_inputs": [
+    {
+      "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
+      "sha256": "6337f537ac3b8b7248e00632d9f3d899a410fbadad4319a718b0e39905717a9d"
+    }
+  ]
+}

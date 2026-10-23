@@ -1005,6 +1005,11 @@
       "registered": "2026-10-23",
       "known_drift": {}
     },
+    "manual_sources/JA-CK01A-BK/JP/ja/git-20261023-3ea84ec6-manual": {
+      "approval": "User request 2026-10-23: Git-only JP Web candidate (「开两个窗口 把这俩说明书 走git only转网页文档」), JE-1000F JP structure; operator 「上线提交发布」 2026-10-23, merged by operator PR review (see source/approval.json)",
+      "registered": "2026-10-23",
+      "known_drift": {}
+    },
     "manual_sources/JBP-1000B-WH/JP/ja/git-20261008-3aa6c003-native": {
       "approval": "MA-275（见 source/approval.json）",
       "registered": "2026-10-19",
