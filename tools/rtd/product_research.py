@@ -12,8 +12,8 @@ from copy import deepcopy
 import re
 from urllib.parse import unquote, urlsplit
 
-from tools.rtd.decision_digest import KIND_LABELS, STATUS_LABELS, decision_order, safe_external_url
-from tools.rtd.intelligence_events import SCHEMA_VERSION as EVENTS_SCHEMA
+from tools.intel.digest import KIND_LABELS, STATUS_LABELS, decision_order, safe_external_url
+from tools.intel.events import SCHEMA_VERSION as EVENTS_SCHEMA
 from tools.rtd.product_matrix import number
 
 PAGE = "research/product-intelligence"

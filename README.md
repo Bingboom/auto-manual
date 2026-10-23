@@ -67,7 +67,7 @@ python build.py check --config configs/config.us-en.yaml --model JE-1000F --regi
 | --- | --- |
 | 配置环境、第一次接手 | [接手手册](ONBOARDING.md) |
 | 发起评审、构建和发布 | [快速开始](user-guide/quick_start_guide.md) |
-| 确认日常流程和编辑位置 | [操作指南](user-guide/hello_auto-doc.md) |
+| 确认日常流程、编辑位置与失败重试 | [操作指南](user-guide/hello_auto-doc.md) |
 | 查命令、参数和排障方法 | [构建指南](code-as-doc/build_doc_guide.md) |
 | 查 Web 发布与冻结快照流程 | [Web 发布指南](code-as-doc/dev/web_publish_pipeline.md) |
 | 查说明书资料库、知识库与工作台 | [RTD 门户指南](code-as-doc/dev/rtd_manual_portal.md) |

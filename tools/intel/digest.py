@@ -12,7 +12,7 @@ from __future__ import annotations
 import re
 from urllib.parse import urlsplit
 
-from tools.rtd.intelligence_events import SCHEMA_VERSION as EVENTS_SCHEMA, content_hash
+from .events import SCHEMA_VERSION as EVENTS_SCHEMA, content_hash
 
 SCHEMA_VERSION = "external-intel-digest/v1"
 KIND_LABELS = {"policy": "政策变化", "market": "市场变化", "competitor": "竞品动态"}
@@ -55,7 +55,7 @@ def _item(event: dict, page: str, base_url: str) -> dict:
         "review": {key: review.get(key) for key in ("status", "decision", "reviewed_by", "reviewed_on")},
         "hypotheses": list(event["hypotheses"]), "open_questions": list(event["unknowns"]),
         "page": anchor, "url": f"{base_url}/{anchor}" if base_url else None,
-        "event_sha256": event["content_sha256"],
+        "record_id": event.get("intake_record_id"), "event_sha256": event["content_sha256"],
     }
 
 

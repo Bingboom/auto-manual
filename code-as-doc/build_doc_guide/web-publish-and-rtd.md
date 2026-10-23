@@ -3,8 +3,15 @@
 Part of the [build guide](../build_doc_guide.md); its index lists the other topics.
 Add new notes for this topic here, not to the hub.
 
-The opt-in external-intelligence preview collects business-owned events and exports a
-decision digest; frozen product knowledge is only an optional lens, and the production
+The opt-in preview of Research & Intelligence, a standalone research platform that
+incubates on `feat/product-intelligence-demo` and never merges into `main`
+([charter](../dev/research-intelligence-charter.md)), collects business-owned events and exports a
+decision digest, which a hand-run command can also sync from a Feishu table and push
+to a group. Real Feishu reads/writes and sends are deferred to the independent
+repository after migration; incubation permits only static/mock and standalone
+checks (a sync dry run still reads the table). Review-only syncs preserve judgments; failed sends retain a local pending
+message outside the checkout and replay it before another sync. Frozen product
+knowledge is only an optional lens, and the production
 pipeline is unchanged. See the [consumer contracts and checks](../dev/product-intelligence-contract.md)
 and [local preview guide](../../user-guide/hello_auto-doc/product-intelligence-demo.md).
 

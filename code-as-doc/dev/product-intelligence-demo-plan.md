@@ -1,11 +1,14 @@
 # Product Intelligence Demo — Execution Plan
 
 Status: active
-Implementation: three phases integrated, then revised event-first (Phase 4); local validation complete; private RTD deployment pending.
-Branch: `feat/product-intelligence-demo`
-Scope: three phases, one integration branch, one PR; do not modify the README positioning or merge to main until reviewed.
+Project: Research & Intelligence, a standalone research platform incubating on this branch ([charter](research-intelligence-charter.md)). The branch never merges into `auto-manual/main`; its core moves to its own repository.
+Implementation: three phases integrated, then revised event-first (Phase 4), given a hand-run collection loop (Phase 5) and made a separable package (Phase 6); local validation recorded below. Real Feishu integration and operator trial are deferred until migration to the independent `research-intelligence` repository (Phase 7); hosted RTD verification remains separate and pending.
+Branch: `feat/product-intelligence-demo`, the incubation branch. PRs target it; none merges it into `main`.
+Scope: the incubation branch and the PRs stacked on it; do not modify the README positioning.
 
 ## Objective
+This is the current event-first prototype objective, not the platform's long-term boundary. The [charter](research-intelligence-charter.md) defines question-centred, multi-source research and future concepts; unstructured research and WeKnora are planned, not implemented here.
+
 Collect externally sourced market/policy/competitor events and push them for decisions, without letting internal product data gate them. Each event carries its sources, verification, decision question, owner and due date; a push-ready decision digest is exported every build. Approved, traceable product knowledge from Hello-Docs is an optional lens an event may ask for, shown as an appendix with candidate associations, evidence and uncertainty. This is a research surface, not an authoritative product specification.
 
 ## Phase 0 — Contract freeze (integration owner)
@@ -60,6 +63,31 @@ Review direction: external information is collected first and pushed for decisio
 - [x] Lay the page out as an event index in digest order: one row per event (market, kind, title, decision, owner, due date, states) that opens to its details, quick tiles over the filters, no slogan or explanatory header; the lens is a collapsed appendix inside the event with not-configured/unavailable/invalid/evaluated states and compact rows for unknown/excluded variants.
 - [x] Degrade only the lens when product inputs fail; skip only this page when the events file is malformed; validate the flag once at start-up.
 - [x] Fix review findings: revision allow-lists, real evidence paths and byte hashes, per-edition warnings, whole-number facts, lens vocabulary checks, anchor prefixes, shared manifest/row helpers, one read per manual, generic `preview/*` RTD rule that forces the flag off elsewhere.
+
+## Phase 5 — Hand-run collection loop (2026-10-21)
+Target behavior: collect in a Feishu table, push after sync and capture decisions in the table. No workflow change in this step. The earlier “everything goes to Hello-Docs” choice is superseded: data sovereignty and storage remain open in the charter. The following completed items describe code tested with fake transports, not live acceptance.
+- [x] Sync the 外部情报 table read-only into `events.json` as append-only revisions bound by `intake_record_id`; hand-written events are adopted by ID.
+- [x] Count a judgment only when its 复核日期 is on or after the revision it judges; keep an unusable row's event at its last state and report it; never delete an event because its row is gone.
+- [x] Push the digest as one Feishu post built from `items` (literal text, validated links): overdue, due within seven days, other pending, judgments recorded and rows to fix. Dry run by default; `--write --push` writes then sends.
+- [ ] Real Feishu integration: deferred to Phase 7 in the independent repository, after migration and its execution gate. The [runbook](../tests/external_intel_live_integration_2026-10.md) is pending migration, not executable here. No real table reads (including sync dry runs), table writes, test Base/group creation or group sends on #1585 or the incubation branch.
+- [ ] Operator trial on a real business table: only in the independent repository after live test acceptance and an explicit data ownership/storage and target decision; an incubation merge does not enable it.
+- [ ] Schedule the loop on workdays (workflow, content PR, push after sync): a separately approved workflow change.
+
+## Phase 6 — Separable package (2026-10-21)
+Operator direction: the demo must later be easy to decouple and run on its own. Reviewed `nashsu/llm_wiki` for ideas; it is GPL-3.0, so only its design may be borrowed, never its code.
+- [x] Move intake, digest, sync, push and CLI into `tools/intel/`: standard library and relative imports only, with its own lark-cli transport, table reader and policy reader. Feishu calls, policy records and the date are passed in.
+- [x] Keep the research page, Sphinx build, product lens and the portal's stricter policy reader in the host; the RTD build passes `market_context` records to the package.
+- [x] Guard it: an import scan of the package and its tests, a run of a copy with nothing else from this repository on the path, and checks of the package's parallel readers and page route against the host's.
+- [x] Prove behavior unchanged: CLI outputs, the written intake and the five research exports and page are byte-identical before and after on the same real input.
+- [x] Borrow from llm_wiki, first step: a generated Markdown view (`python -m tools.intel wiki`) with `index.md`, `overview.md`, `log.md`, event and market pages, and `purpose.md`/`schema.md` templates that people own. It opens in Obsidian and llm_wiki, is byte-stable for an unchanged intake and has a `--check` mode.
+- [ ] Next llm_wiki steps, each its own change: rule-based health checks folded into the push, then LLM-drafted intake that a person confirms.
+
+## Phase 7 — Repository decoupling (2026-10-22)
+Operator decision: Research & Intelligence is a standalone research platform incubating on this branch, which never merges into `auto-manual/main`. The [charter](research-intelligence-charter.md) is authoritative for the migration route, ownership, acceptance and rollback. #1585 delivers only static/mock validation, contracts, standalone verification and documentation here; its base stays `feat/product-intelligence-demo` and no merge is performed by this update.
+
+- [ ] Migrate core, tests, fixtures, contracts, runbook and Agent context into a new `research-intelligence` repository; record source commit and file manifest, update imports/paths and cache namespace, and pass clean-environment standalone tests.
+- [ ] In that repository, confirm test data custody/storage, permissions and exact targets before creating a test Base/group and running real integration. Record the new repository commit, receipts and human checks there; do not mark this PR live-tested.
+- [ ] If acceptance fails, stop live activity and preserve evidence/state, repair or return to the migration baseline there; do not retry in auto-manual. Retain the incubation branch until acceptance and any optional adapter checks pass. Detailed criteria stay in the charter and migrated runbook.
 
 ## Parallel execution contract
 Agent A owns product knowledge contract + extraction tests. Agent B owns event/association module + tests. Agent C owns RTD templates/assets + UI tests. Integration owner alone changes shared builders/registration and resolves contracts. A minimal contract must be agreed first; B/C can implement against fixtures while A completes.

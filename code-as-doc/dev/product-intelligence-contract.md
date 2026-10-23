@@ -2,11 +2,26 @@
 
 Status: active
 
-This is the implementation contract for [PR #1579](https://github.com/Bingboom/auto-manual/pull/1579)
-and its [execution plan](product-intelligence-demo-plan.md). It does not change
-Hello-Docs positioning or the approved content production spine.
+This is the implementation contract of the Research & Intelligence prototype. The
+prototype incubates on `feat/product-intelligence-demo` and leaves for its own
+repository; see the [project charter](research-intelligence-charter.md) and the
+[execution plan](product-intelligence-demo-plan.md). It never merges into
+`auto-manual/main` and does not change Hello-Docs positioning or the content
+production spine. Hello-Docs is an optional data source and integration target.
 
 ## Direction (2026-10-21)
+
+This contract describes the implemented **event-first prototype**, not a universal
+research model. The charter owns future Research Topic, Research Source,
+Evidence/Fact, Finding/Hypothesis, Event and Decision boundaries. Multi-source
+unstructured research and WeKnora are future work; no schema or runtime dependency
+for them is added here. Hello-Docs remains an optional input/integration.
+
+**Execution gate:** #1585 and `feat/product-intelligence-demo` permit only static,
+fixture, fake-transport and standalone checks. No real Feishu table reads/writes,
+test Base/group creation or group sends here. Live acceptance moves with the core,
+tests, fixtures and [runbook](../tests/external_intel_live_integration_2026-10.md)
+to the new independent repository, under the charter's migration gate.
 
 External information is collected first and pushed for decisions; internal
 product data must not gate it. An event is complete without any product data:
@@ -34,11 +49,14 @@ that lens; it never hides, delays or reshapes an event or its digest.
 
 ## Layer 1: external event intake (collection)
 
-`tools.rtd.intelligence_events.load_events(knowledge_root)` reads the business file
-`<knowledge_root>/external-intel/events.json`, beside `market-policy/records.json`,
+`tools.intel.events.load_events(knowledge_root, *, policies=None)` reads the business
+file `<knowledge_root>/external-intel/events.json`, beside `market-policy/records.json`,
 and returns `schema_version: external-intel/v1`, `source` (path relative to the
 knowledge root and byte SHA-256), `events`, `history` and `snapshot_id`. No file
 is an empty intake; a malformed file raises `ValueError`. It reads no product data.
+Policy events join `policies`, which defaults to the package's reading of
+`market-policy/records.json` (`tools.intel.policies`); the RTD build passes the
+portal's stricter `market_policy.market_context` records instead.
 
 The file is `schema_version: external-intel-events/v1` with an `events` list.
 Each entry has `id`, `title`, `kind` (policy/market/competitor), `market`,
@@ -56,15 +74,24 @@ Each entry has `id`, `title`, `kind` (policy/market/competitor), `market`,
 - Entry, revision, review and lens fields are allow-listed, so a revision cannot
   replace an event's identity, market or lens. The event is built field by field
   from the entry and its latest revision.
+- `intake_record_id` (optional, unique, `rec…`) names the Feishu table row an
+  event is synced from; it is carried to the event and the digest item as the
+  row link, and is absent from hand-written events.
+- A synced revision optionally carries `intake_judgment_sha256`, the canonical
+  SHA-256 of the observed judgment triple (or null when the cells are empty).
+  This input marker is not approval and is not exported as public review metadata;
+  it prevents an unchanged stale judgment from approving a later fact version.
 
 Reviewed revisions require a decision, reviewer and ISO review date. Later pending
 revisions preserve earlier human judgments in history without inheriting approval.
 `compare_event_snapshots(previous, current)` returns a new receipt; neither
-snapshot changes and review stays pending.
+snapshot changes and review stays pending. `events_snapshot(payload, policies=())`
+builds the same snapshot from file bytes, and `encode_intake(document)` gives the
+bytes a document is written as, so a sync candidate hashes as it will be committed.
 
 ## Layer 2: decision digest (push)
 
-`tools.rtd.decision_digest.decision_digest(events, *, page, base_url="")` returns
+`tools.intel.digest.decision_digest(events, *, page, base_url="")` returns
 `schema_version: external-intel-digest/v1`: one item per event, pending judgments
 first, then by due date, latest record and ID. Items keep every field structured
 for channel adapters (decision, verification, sources, open questions, page anchor
@@ -106,10 +133,145 @@ unverified events cannot produce candidates. EU publication availability is not
 proof of a country's sales or compliance. `compare_lens_snapshots` reports
 knowledge, event, lens and association changes without touching either snapshot.
 
+## Collection loop: table sync and group push (hand-run)
+
+`tools.intel.sync` reads the Feishu 外部情报 table, one row per event,
+through `tools.intel.feishu.complete_rows` (complete pages or nothing); a table
+missing any column of `COLUMNS` raises `TableShapeError`. It never writes the
+table. `merge(previous, rows, *, today, policy_ids=None)` returns a new intake
+document and a report, leaving both inputs unchanged:
+
+- A row's event is the one bound to its record (`intake_record_id`), else the
+  event with the row's 事件ID when it is hand-written or its row is gone
+  (adopted with its history), else a new event with that ID or `ev-` plus ten
+  hex digits of the record ID's SHA-256. Event ID, source kind and policy record
+  are fixed once synced.
+- A revision is appended only when the row's facts (decision fields; status,
+  summary, boundary and sources for an external event) or its judgment changed.
+  It is dated `today` (the sync date, China Standard Time) and its reason is the
+  row's 变更说明 when that changed, else a default. Title, kind, market and
+  occurrence date update the entry without a revision; rows never touch
+  `product_lens`.
+- A new complete judgment counts only when its 复核日期 is on or after the
+  latest factual revision. Review-only syncs do not move that date or expire an
+  accepted judgment. Unchanged judgment cells never approve changed facts, even
+  on the same day; the observed input hash keeps later retries pending. An
+  explicit edit to the judgment, reviewer or review date reconfirms it (the date
+  gate still applies). Clearing all three cells and syncing before refilling
+  them is also an explicit new judgment. Legacy revisions remain readable.
+- The report names each row's change (`added`, `revised`, `judged`, `reopened`,
+  `relabelled`) and counts `unchanged`. A row that cannot be used is a `problem`
+  and its event keeps its last state; a stale judgment or a policy ID missing
+  from `policy_ids` is a `notice`; an event whose row is gone is kept and listed
+  in `gone`. An invalid previous intake, or a `today` before its newest
+  revision, raises `ValueError`.
+
+`tools.intel.push.post_content(digest, *, today, record_url, page_url,
+report)` builds one Feishu post from the digest `items`: pending events grouped
+overdue, due within seven days, then the rest (at most `MAX_LISTED`, text cut at
+`MAX_TEXT`), the judgments a sync recorded and the rows to fix. Intake text is
+only ever a literal text element. Only validated HTTPS URLs become links, and a
+row link is the operator's `record_url` with a checked record ID. It returns
+`None` when nothing is pending and the report is empty. `send` runs `lark-cli im
++messages-send --msg-type post` with an idempotency key derived from chat,
+content and day; its receipt names no chat.
+
+`python -m tools.intel sync|push` is the hand-run entry: `sync`
+is a dry run unless `--write`, and `--push` sends right after a written sync (it
+only prints after a dry run). Transport errors carry the command line, so only
+their type is printed. Configuration comes from flags or `FEISHU_EXTERNAL_INTEL_*`
+and `EXTERNAL_INTEL_SITE_URL`; nothing secret is written to a file. No workflow
+runs the loop yet; scheduling it is a separate, approved workflow change.
+
+`sync` dry run still calls the table reader; dry run means no local write or
+message send, not offline execution. The CLI descriptions here are behavioral
+contracts, not permission to use a real transport in this repository.
+
+`tools.intel.delivery` persists a single pending message per knowledge
+checkout under `~/.cache/auto-manual/external-intel/<checkout-hash>/pending.json`
+(root override: `EXTERNAL_INTEL_STATE_DIR`), outside the business content tree.
+Before replacing events.json or sending, it atomically saves the exact message,
+original day/key/snapshot, candidate intake and expected parent hash. Only a hash
+of chat/profile/identity is kept; raw transport configuration is not persisted.
+Message links and intake remain business data and belong only in this local
+runtime cache, never an artifact published or committed to Hello-Docs.
+
+A retry first recovers the saved candidate when the file still matches its
+expected parent, then replays the saved message with its original key; it never
+rereads the table or rebuilds the report first. Another destination/profile or a
+newer operator edit stops the retry without overwriting or sending. A nonempty
+message acknowledgment clears the pending file; failure or missing acknowledgment
+retains it. `push --dry-run` previews it without writing; `push` or
+`sync --write --push` resumes it. Run sync again after recovery for newer rows.
+Feishu's idempotency window is one hour; retries beyond it can duplicate a send
+whose acknowledgment was lost, even with the same saved key.
+
+## Package boundary
+
+The intake, digest and loop live in `tools/intel/`, so they can leave this
+repository as they are:
+
+- The package imports only the standard library and its own modules, through
+  relative imports, so a move needs no rename inside it. Its tests
+  (`tests/test_intel_*.py`) import only the package and read only
+  `tests/fixtures/external_intel/`.
+- Everything outside is passed in: lark-cli as `run`, the policy records an
+  event joins as `policies`, the date as `today`; the pending push lives
+  outside any checkout (`EXTERNAL_INTEL_STATE_DIR`). By default `run` is
+  `tools.intel.feishu.runner`, the package's own lark-cli transport, and table
+  pages come from its own reader. A `LarkError` names the exit status and the
+  response code lark-cli printed (lark-cli 1.x exits 3 with `error.code` on
+  stderr), never an argument, so the CLI prints it; any other transport error
+  prints only its type.
+- This repository keeps what is its own: the research page, the Sphinx build,
+  the product lens and the portal's stricter policy reader. They import the
+  package; the package never imports them.
+- `tests/test_external_intel_boundary.py` guards this. It scans the imports of the
+  package and its tests. It runs a copy of both with nothing else from this
+  repository on the path (`python -I`). It checks the package's readers against
+  the host's: table pages against `workspace_snapshot.complete_rows`, policy
+  records against `market_policy.market_context`, and the page route (`cli.PAGE`).
+- To stand alone, move `tools/intel/`, `tests/test_intel_*.py` and
+  `tests/fixtures/external_intel/`, then rename the `tools.intel` import prefix
+  in those tests. The guard's host checks stay here with the host readers.
+- Migrate the guard's import scan and isolated-run checks, the charter, contracts,
+  Agent context and runbook too. Rebase their paths and prove the standalone copy
+  before enabling live calls in the independent repository. Storage/data ownership
+  is undecided; the current knowledge-directory layout is not a requirement to
+  keep platform data in Hello-Docs.
+
+## Markdown view
+
+`tools.intel.wiki.wiki_pages(snapshot)` renders a snapshot as `{path: Markdown}` under
+the external-intel folder. It follows the LLM Wiki layout of
+[nashsu/llm_wiki](https://github.com/nashsu/llm_wiki) without its code (GPL-3.0):
+
+- `wiki/index.md` lists every event by kind and every market. `wiki/overview.md` lists
+  pending decisions in `decision_order`, judgments, market counts and the intake's
+  `source_sha256`. `wiki/log.md` has one `## [date] action | title · rN` entry per
+  revision, newest first. Each event has `wiki/events/<id>.md` and each market
+  `wiki/markets/market-<slug>.md`; markets differing only in case or punctuation share one.
+- Links are `[[file name|title]]`, because llm_wiki resolves links by file name, so every
+  page name is unique and a collision raises `ValueError`. Frontmatter values are JSON,
+  which is valid YAML. Event pages carry `kind`, `market`, `verification`,
+  `decision_state`, `owner`, `due_on`, `related` (their market page) and `sources`
+  (validated URLs, so events citing one source are connected).
+- Intake text is escaped: markup characters are backslash-escaped in text and replaced by
+  full-width look-alikes in link titles, leading list and heading markers are escaped,
+  and only validated HTTPS URLs become links. The view holds no product data and no build
+  date, so an unchanged intake regenerates byte for byte.
+- `plan(root, pages)` lists pages to write, stale pages to delete (only under
+  `wiki/events/` and `wiki/markets/`) and missing templates. `apply` writes them
+  atomically. `purpose.md` and `schema.md` are created from templates once and never
+  overwritten; nothing else under `wiki/` is touched.
+- `python -m tools.intel wiki --knowledge-dir DIR [--write | --check]` previews, writes,
+  or exits 1 when the view on disk is stale.
+
 ## Page, exports and ownership
 
-- Intake and digest: `tools/rtd/intelligence_events.py`, `tools/rtd/decision_digest.py`,
-  `tests/test_intelligence_events.py`, `tests/test_decision_digest.py`.
+- Package (see [Package boundary](#package-boundary)): `tools/intel/` with
+  `tests/test_intel_*.py` and `tests/fixtures/external_intel/`; its guard is
+  `tests/test_external_intel_boundary.py`.
 - Product lens: `tools/product_knowledge/`, `tools/rtd/product_intelligence.py`,
   `tests/test_product_knowledge.py`, `tests/test_product_intelligence.py`.
 - Page: `tools/rtd/product_research.py`, its template/CSS/JS and Python/Node tests.
@@ -122,7 +284,7 @@ Enable with Sphinx `rtd_product_intelligence_demo` or `RTD_PRODUCT_INTELLIGENCE_
 error at start-up, whatever the site role. The research context is built once at
 builder start, so every page links the research page only when it exists. A
 malformed events file skips this page with a warning and no other page. The page
-is an index of events in `decision_digest.decision_order`: each row shows market,
+is an index of events in `tools.intel.digest.decision_order`: each row shows market,
 kind, title, decision question, owner, due date, verification and decision state,
 and opens to what happened, sources, possible impact, open questions, human
 judgment and revisions. The product lens is a collapsed appendix inside the event
@@ -140,7 +302,8 @@ initialization only the page and these five exports are removed, so a disabled o
 manuals-only rebuild in the same output directory cannot keep stale research.
 
 No production templates, source tables, publication snapshots or GitHub workflows
-are edited. No new service, crawler, graph database or dependency is required.
+are edited; the loop reads its own table and sends one group message per run. No
+new service, crawler, graph database or dependency is required.
 
 ## Safety net and verification
 

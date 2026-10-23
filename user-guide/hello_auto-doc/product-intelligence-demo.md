@@ -1,5 +1,15 @@
 # 外部情报 Demo
 
+本页是 Research & Intelligence 孵化原型的试运行说明。它是从 Hello-Docs 仓库中孵化的
+独立研究平台项目，不是 Hello-Docs 的新功能；所在分支不合入 `main`，核心最终迁到
+独立仓库，见[项目章程](../../code-as-doc/dev/research-intelligence-charter.md)。
+
+**执行门禁：#1585 和孵化分支只做静态、fixtures、模拟 transport 与独立运行验证。**
+真实飞书读表（包括 `sync` dry run）、写表、建测试 Base/群和发群消息，都必须等核心、
+测试、fixtures、契约与手册迁到新建 `research-intelligence` 仓库并满足
+[联调门禁](../../code-as-doc/tests/external_intel_live_integration_2026-10.md#execution-gate--pending-migration)
+后在那里执行。下文飞书命令是待迁移操作参考，不是当前执行任务。
+
 外部情报的重点是先收集、再推送用于决策，不受内部产品牵制。每条外部事件只需写清
 发生了什么、来源和核实状态、需要什么决策、由谁决定、何时决定，就能被收集、展示
 和推送；产品关联只是事件可选的附录。研究假设、产品关联都需要人工判断，不能作为
@@ -7,11 +17,15 @@
 
 ## 录入外部事件
 
-事件属于业务数据，放在业务知识目录（Hello-Docs `docs/knowledge/`，即构建的
+事件属于业务数据。现有 Hello-Docs 预览适配器从其 `docs/knowledge/`（即构建的
 `rtd_knowledge_dir`）的 `external-intel/events.json`，与 `market-policy/records.json`
-并列，不在工程仓库维护。格式为 `schema_version: external-intel-events/v1` 的
+并列位置读取；这是适配器输入布局，不是平台数据主权约定。本仓库验证只使用独立临时目录
+中的 fixtures 副本，不维护真实试运行数据。迁出后的数据所有者和存储位置由章程待决策项
+另行确定，不默认写入 Hello-Docs。格式为 `schema_version: external-intel-events/v1` 的
 `events` 列表，完整示例见
 [`tests/fixtures/external_intel/events.json`](../../tests/fixtures/external_intel/events.json)。
+迁移并验收后也可以在飞书「外部情报」表里维护，由同步命令写入这个文件，见下文
+[飞书表格闭环](#飞书表格闭环手动试运行)。
 
 - 政策事件（`source_kind: market_policy`）用 `source_record_id` 复用市场政策记录；
   政策事实只从该记录读取，记录缺失时显示“来源资料缺失”。
@@ -46,6 +60,136 @@ ISO 日期；后续修订重新待判断时，前次人工判断仍保留在历�
 CommonMark 文本）。待人工判断的事件排在前面，再按截止日期排序；每条带页面锚点，
 站点有规范 URL 时带绝对链接。摘要不含内部产品数据，构建本身不发送任何消息；接入
 飞书等渠道时应由渠道适配器读取 `items` 自行组装，而不是直接转发 `text`。
+
+## 飞书表格闭环（手动试运行）
+
+本节仅供迁移后的独立仓库使用。先满足页首门禁，再由操作者确认测试数据存储和权限、
+创建测试 Base/群。合入孵化分支不代表允许真实试运行，也不需要在 #1585 合入前联调。
+
+闭环是：在飞书表格里收集事件 → 同步成 `events.json` 的修订 → 把待决策摘要推送到
+飞书群 → 决策人回到表格填写判断 → 下一次同步记录判断。目前只能手动运行，还没有
+工作流定时执行；同步只读表格，从不写回。
+
+### 建表
+
+仅在独立仓库门禁通过后，在指定测试 Base 新建「外部情报」表，一行一个事件，列名必须与下表一致（缺列时同步
+直接停止并列出缺少的列）。单选列也可以用文本列，按下表的选项名填写。
+
+| 列 | 类型 | 填写 |
+| --- | --- | --- |
+| 事件ID | 文本 | 可空，自动生成；自填时以小写字母开头，只含小写字母、数字和连字符。同步后不能修改 |
+| 标题、市场 | 文本 | 必填；市场如 `NL`、`US` |
+| 类型 | 单选：政策／市场／竞品 | 必填 |
+| 发生日期 | 日期 | 必填，事件发生或生效的日期 |
+| 来源类型 | 单选：外部事件／市场政策记录 | 必填，同步后不能修改 |
+| 政策记录ID | 文本 | 仅市场政策记录必填（`market-policy` 记录 ID），同步后不能修改 |
+| 来源状态 | 单选：已核实／未核实／需求 | 外部事件必填 |
+| 发生了什么、适用边界 | 多行文本 | 外部事件必填 |
+| 来源 | 多行文本 | 每行一条：`官方 \| 标题 \| https://… \| 说明 \| 核实日期`，可再加 `\| 发布日期`；类型为官方或二手，已核实至少要一条官方来源 |
+| 需要决策 | 多行文本 | 必填 |
+| 决策人 | 文本或人员 | 可空，显示“待指派” |
+| 截止日期 | 日期 | 可空，显示“未设定” |
+| 可能影响、待核实 | 多行文本 | 可空，每行一条 |
+| 人工判断、复核人、复核日期 | 多行文本、文本或人员、日期 | 三项一起填，或都不填 |
+| 变更说明 | 文本 | 可空；改动后写入下一条修订的原因，未改时用默认说明 |
+
+市场政策记录的事实来自政策快照，这一行的来源状态、发生了什么、适用边界和来源要
+留空。产品视角（`product_lens`）不在表格里维护，仓库中已有的配置原样保留。
+
+### 同步规则
+
+- 只有表格行的事实或判断变了才追加一条修订，旧修订不改写；修订日期是同步当天
+  （北京时间）。只改标题、类型、市场或发生日期时更新事件本身，不加修订。
+- 人工判断只在复核日期不早于最近一次事实修订日期时计入。只录入判断的同步不会让已
+  接受的判断在下一轮失效。事实变化后，未修改的旧判断保留在历史中，事件回到待判断，
+  同一天也一样；重新确认时更新判断内容、复核人或复核日期，日期仍须满足上述条件。
+  同日结论不变时，可在判断中加上重新核对的说明，或先清空三项并同步，再重新填写。
+- 填错的行不会被采用，该事件保持上次状态，并在推送中列为“需处理的表格行”；表格中
+  删掉的行也会列出，事件保留在 `events.json` 里，需要移除时按新仓库确认的数据治理流程处理。
+- 已有手写事件，或某事件的行已被删掉时，新建一行并填同一个事件ID即可接管，历史
+  修订原样保留。
+
+### 运行
+
+以下命令只描述迁移后的用法；包名和路径须在新仓库核对后再运行。当前仓库不要配置
+真实飞书凭证或执行这些命令，连不带 `--write` 的 sync 也会真实读表。
+
+lark-cli 使用的机器人应用要能读取这张多维表，并已加入要推送的群。令牌只放在环境
+变量里，不写进任何仓库文件：
+
+```sh
+export FEISHU_EXTERNAL_INTEL_BASE_TOKEN=...   # 多维表 token
+export FEISHU_EXTERNAL_INTEL_TABLE_ID=tbl...
+export FEISHU_EXTERNAL_INTEL_CHAT_ID=oc_...
+# 可选：表格行链接，打开任一行复制链接，把其中 rec 开头的记录 ID 换成 {record_id}
+export FEISHU_EXTERNAL_INTEL_RECORD_URL='https://...&record={record_id}'
+# 可选：研究页面所在站点，用于“查看详情”链接
+export EXTERNAL_INTEL_SITE_URL=https://...
+
+KNOWLEDGE=/path/to/approved-test-storage/knowledge
+python -m tools.intel sync --knowledge-dir "$KNOWLEDGE" --push          # 真实读表，预览消息
+python -m tools.intel sync --knowledge-dir "$KNOWLEDGE" --write --push  # 写入并推送
+```
+
+dry run 会读表，但不写文件、不发消息，只打印每行的变化和将要发送的消息。`--write` 写入
+`external-intel/events.json`，`--push` 随后发送；结果仅按新仓库确认的测试存储／保留策略处理，
+不默认提交 Hello-Docs。`python -m tools.intel push --knowledge-dir "$KNOWLEDGE" [--dry-run]` 只推送文件的
+现状。读表或发送失败时只打印 lark-cli 的退出状态和它给出的飞书返回码（例如 91403 通常是没有权限），
+不会打印令牌或消息内容。
+
+消息按“已逾期”“7 天内到期”“待决策”分组，列出需要决策的问题、决策人、截止日期和
+来源状态，附“去填写判断”（表格行）和“查看详情”（站点页面）链接；本次同步录入的
+判断和需处理的表格行也会列出。没有待决策事件、同步也无事可报时不发送。同一天、
+同一内容一小时内重复发送只会发出一条。
+
+推送前，命令会先在本机 `~/.cache/auto-manual/external-intel/` 下保存待发消息和候选
+写入（可用 `EXTERNAL_INTEL_STATE_DIR` 指定缓存根目录），不把运行状态放进 Hello-Docs。
+文件只保存业务消息、事件候选、原日期和幂等键，以及目标配置的哈希；不保存原始群 ID
+或 CLI 配置。缓存中的消息链接仍可能包含业务表格地址，不要提交或公开缓存。
+
+发送失败时，重新执行同一个 `sync --write --push`，或使用同一群、CLI profile 和身份
+运行 `push`，会先发送原待发消息，成功后才清除缓存；随后再运行一次 sync 才读取新行。
+`push --dry-run` 可以查看待发消息。恢复时，若候选尚未写入且原文件仍匹配，会先补写；
+若事件文件已被另行修改，命令停止并保留现场，请先核对候选与人工改动。超过飞书一小时
+幂等窗口再重试，若上次实际已发送但回执丢失，可能产生重复消息，应先核对群记录。
+
+## Markdown 知识视图
+
+本仓库可对 fixtures 的临时副本离线验证；`KNOWLEDGE` 必须指向该副本，不能沿用上节的
+真实测试存储。`wiki` 自身不访问飞书。
+
+```sh
+KNOWLEDGE=$(mktemp -d)
+mkdir -p "$KNOWLEDGE/external-intel"
+cp tests/fixtures/external_intel/events.json "$KNOWLEDGE/external-intel/events.json"
+```
+
+借鉴 [llm_wiki](https://github.com/nashsu/llm_wiki) 的知识库结构（只借鉴结构，不使用它的代码），
+把 `events.json` 生成一组相互链接的 Markdown 页面：可以直接用 Obsidian 或 llm_wiki 打开，
+AI 助手也能先读索引再回答问题。
+
+```sh
+python -m tools.intel wiki --knowledge-dir "$KNOWLEDGE"           # 预览：列出要写入和删除的页面
+python -m tools.intel wiki --knowledge-dir "$KNOWLEDGE" --write   # 写入
+python -m tools.intel wiki --knowledge-dir "$KNOWLEDGE" --check   # 视图过期时退出码为 1
+```
+
+页面生成在 `external-intel/` 下：
+
+- `wiki/index.md` 按类型列出全部事件和市场，`wiki/overview.md` 列出待决策、人工判断和各市场
+  数量，`wiki/log.md` 每条修订一项、按记录日倒序，另有每个事件一页
+  `wiki/events/<事件ID>.md`、每个市场一页 `wiki/markets/market-<市场>.md`。
+- `purpose.md`（目的、关键问题、范围、决策人）和 `schema.md`（页面约定）只在缺少时按模板
+  创建，之后由人维护，不会被覆盖。
+
+`wiki/` 下这些页面每次都从 `events.json` 重新生成，手改会被覆盖：当前只改测试副本；迁移
+并通过联调门禁后才可在测试表改事实、同步再生成。生成只写这些页面，并删除已不存在事件的旧页面；`wiki/` 下的其他文件（例如 llm_wiki
+保存的问答）不动。页面不含产品数据，也不带生成时间，数据不变时重新生成没有差异。
+
+生成后，`events.json`、`wiki/`、`purpose.md` 和 `schema.md` 是一组一致性产物；当前测试副本
+不提交到业务仓库，迁出后按已确认的数据主权和存储流程管理。用 Obsidian 打开 `external-intel/` 文件夹即可
+浏览页面和关系图；用 llm_wiki 把同一文件夹作为项目打开即可问答。两个应用会在该文件夹里建
+`.obsidian/`、`.llm-wiki/`，不要提交。
 
 ## 本地运行
 

@@ -5,6 +5,8 @@ beside the ``market-policy`` records they may join by ID. An event states what
 happened, its sources and verification, the decision it asks for and who
 decides; nothing here reads product data. ``product_lens`` is an optional
 research rule that a separate step may evaluate against product knowledge.
+``intake_record_id`` names the Feishu table row an event is synced from
+(``sync``); an event written by hand has none.
 """
 from __future__ import annotations
 
@@ -14,22 +16,23 @@ import hashlib
 import json
 from pathlib import Path
 import re
-from typing import Any
+from typing import Any, Iterable
 from urllib.parse import urlsplit
 
-from tools.rtd.market_policy import market_context
+from .policies import read_policies
 
 SCHEMA_VERSION = "external-intel/v1"
 INTAKE_SCHEMA = "external-intel-events/v1"
 CONTENT_DIR = "external-intel"
 EVENTS_FILE = "events.json"
 _ID = re.compile(r"[a-z][a-z0-9-]*")
+_RECORD_ID = re.compile(r"rec[0-9A-Za-z]+")
 _STATUSES = {"verified", "unverified", "demand"}
 _KINDS = {"policy", "market", "competitor"}
 _CASE_KEYS = {"id", "title", "kind", "market", "occurred_on", "source_kind", "source_record_id",
-              "product_lens", "revisions"}
+              "intake_record_id", "product_lens", "revisions"}
 _REVISION_KEYS = {"revision", "recorded_on", "reason", "decision_question", "decision_owner", "decide_by",
-                  "hypotheses", "unknowns", "review"}
+                  "hypotheses", "unknowns", "review", "intake_judgment_sha256"}
 # Only an external event states its own facts; a policy event reads them from its record.
 _EXTERNAL_KEYS = {"status", "summary", "boundary", "sources"}
 _REVIEW_KEYS = {"status", "decision", "reviewed_by", "reviewed_on"}
@@ -120,6 +123,10 @@ def _revision(revision: Any, expected: int, external: bool) -> None:
     for key in ("hypotheses", "unknowns"):
         _texts(revision.get(key, []), key, required=False)
     _review(revision.get("review"))
+    if "intake_judgment_sha256" in revision and not (
+            isinstance(revision["intake_judgment_sha256"], str)
+            and re.fullmatch(r"[0-9a-f]{64}", revision["intake_judgment_sha256"])):
+        raise ValueError("external event intake judgment needs a SHA-256")
     if external:
         for key in ("summary", "boundary"):
             _text(revision.get(key), key)
@@ -140,12 +147,17 @@ def _lens(lens: Any) -> None:
         _texts(lens["rule"].get(field), f"product_lens {field}")
 
 
-def _case(case: Any, ids: set[str]) -> None:
+def _case(case: Any, ids: set[str], rows: set[str]) -> None:
     _fields(case, _CASE_KEYS, "entry")
     key = case.get("id")
     if not isinstance(key, str) or not _ID.fullmatch(key) or key in ids:
         raise ValueError("external event ids must be unique lower-case ids")
     ids.add(key)
+    if "intake_record_id" in case:
+        row = case["intake_record_id"]
+        if not isinstance(row, str) or not _RECORD_ID.fullmatch(row) or row in rows:
+            raise ValueError("external event intake_record_id must be a unique table record id")
+        rows.add(row)
     for field in ("title", "market"):
         _text(case.get(field), field)
     if case.get("kind") not in _KINDS:
@@ -174,8 +186,9 @@ def validated_cases(data: Any) -> list[dict]:
             or not isinstance(data.get("events"), list)):
         raise ValueError(f"external event intake needs {INTAKE_SCHEMA} with an events list")
     ids: set[str] = set()
+    rows: set[str] = set()
     for case in data["events"]:
-        _case(case, ids)
+        _case(case, ids, rows)
     return data["events"]
 
 
@@ -211,7 +224,7 @@ def _event(case: dict, policies: dict[str, dict], source: dict) -> dict:
     event = {
         "id": case["id"], "title": case["title"], "kind": case["kind"], "market": case["market"],
         "occurred_on": case["occurred_on"], "source_kind": case["source_kind"],
-        "source_record_id": case.get("source_record_id"),
+        "source_record_id": case.get("source_record_id"), "intake_record_id": case.get("intake_record_id"),
         "revision": latest["revision"], "recorded_on": latest["recorded_on"], "reason": latest["reason"],
         "decision": {"question": latest["decision_question"], "owner": latest.get("decision_owner"),
                      "due_on": latest.get("decide_by")},
@@ -231,24 +244,39 @@ def _event(case: dict, policies: dict[str, dict], source: dict) -> dict:
     return event
 
 
-def load_events(knowledge_root: Path | None) -> dict:
-    """The intake snapshot. No file is an empty intake; malformed content raises ValueError.
+def encode_intake(data: dict) -> bytes:
+    """The committed bytes of an intake document, so a candidate hashes as it will be written."""
+    return (json.dumps(data, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
 
-    Policy events join existing ``market-policy`` records by ID and never copy
-    policy facts into the intake.
+
+def events_snapshot(payload: bytes | None, policies: Iterable[dict] = ()) -> dict:
+    """The intake snapshot of events-file bytes; ``None`` is an empty intake.
+
+    Policy events join the ``policies`` records by ID and never copy policy
+    facts into the intake. Malformed content raises ValueError.
     """
-    path = knowledge_root / CONTENT_DIR / EVENTS_FILE if knowledge_root is not None else None
     events: list[dict] = []
     source = None
-    if path is not None and path.is_file():
-        payload = path.read_bytes()
+    if payload is not None:
         cases = validated_cases(json.loads(payload))
-        policies = {record["id"]: record for record in market_context(knowledge_root)["records"]}
+        joined = {record["id"]: record for record in policies}
         source = {"path": f"{CONTENT_DIR}/{EVENTS_FILE}", "sha256": hashlib.sha256(payload).hexdigest()}
-        events = [_event(case, policies, source) for case in cases]
+        events = [_event(case, joined, source) for case in cases]
     result = {"schema_version": SCHEMA_VERSION, "source": source, "events": events,
               "history": [row for event in events for row in event["history"]]}
     return {**result, "snapshot_id": content_hash(result)}
+
+
+def load_events(knowledge_root: Path | None, *, policies: Iterable[dict] | None = None) -> dict:
+    """The intake snapshot of ``<knowledge_root>/external-intel/events.json``; no file is an empty intake.
+
+    ``policies`` defaults to the knowledge root's ``market-policy`` records (``policies.read_policies``).
+    """
+    path = knowledge_root / CONTENT_DIR / EVENTS_FILE if knowledge_root is not None else None
+    payload = path.read_bytes() if path is not None and path.is_file() else None
+    if policies is None:
+        policies = read_policies(knowledge_root) if payload is not None else []
+    return events_snapshot(payload, policies)
 
 
 def snapshot_changes(previous: list[dict], current: list[dict], keys: tuple[str, ...]) -> list[dict]:

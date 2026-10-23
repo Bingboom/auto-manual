@@ -6,9 +6,11 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 
-from tools.rtd.intelligence_events import (
-    CONTENT_DIR, EVENTS_FILE, SCHEMA_VERSION, compare_event_snapshots, content_hash, load_events,
+from tools.intel.events import (
+    CONTENT_DIR, EVENTS_FILE, SCHEMA_VERSION, compare_event_snapshots, content_hash, encode_intake,
+    events_snapshot, load_events,
 )
+from tools.intel.policies import read_policies
 
 FIXTURE = Path(__file__).resolve().parent / "fixtures" / "external_intel" / "events.json"
 
@@ -69,6 +71,62 @@ class IntakeTests(unittest.TestCase):
         })
         self.assertEqual((event["revision"], event["recorded_on"]), (3, "2026-10-21"))
         self.assertFalse({"associations", "candidates", "knowledge_snapshot_id"} & set(event))
+
+    def test_table_row_link_is_optional_unique_and_carried(self):
+        self.us["intake_record_id"] = "recUS1"
+        snapshot = self.load()
+        self.assertEqual(self.event(snapshot)["intake_record_id"], "recUS1")
+        self.assertIsNone(self.event(snapshot, "nl-self-consumption-research")["intake_record_id"])
+        for value in ("", "US1", "rec-1", 7):
+            with self.subTest(value=value):
+                self.us["intake_record_id"] = value
+                self.rejects("intake_record_id")
+        self.us["intake_record_id"] = self.nl["intake_record_id"] = "recSAME"
+        self.rejects("intake_record_id")
+
+    def test_candidate_bytes_snapshot_exactly_like_the_written_file(self):
+        payload = encode_intake(self.data)
+        self.assertEqual(json.loads(payload), self.data)
+        self.assertTrue(payload.endswith(b"\n"))
+        self.path.write_bytes(payload)
+        write_policy(self.root)
+        self.assertEqual(events_snapshot(payload, read_policies(self.root)), load_events(self.root))
+        self.assertEqual(events_snapshot(None)["snapshot_id"], load_events(None)["snapshot_id"])
+
+    def test_injected_policy_records_are_the_ones_joined(self):
+        write_policy(self.root, summary="Fact from the file")
+        self.path.write_text(json.dumps(self.data, ensure_ascii=False), encoding="utf-8")
+        host = [{**read_policies(self.root)[0], "change": "Fact the host validated"}]
+        event = self.event(load_events(self.root, policies=host), "nl-self-consumption-research")
+        self.assertEqual(event["summary"], "Fact the host validated")
+        self.assertEqual(self.event(load_events(self.root, policies=[]), "nl-self-consumption-research")["status"],
+                         "missing")
+
+    def test_policy_reader_checks_only_what_the_join_uses(self):
+        record = write_policy(self.root)
+        self.assertEqual(read_policies(self.root), [record])
+        self.assertEqual(read_policies(None), [])
+        source = self.root / "market-policy" / "records.json"
+        # Free-text review notes and records without sources are valid business data.
+        source.write_text(json.dumps({"records": [{**record, "reviewed": "适用条件尚待补核 · 2026-10-06",
+                                                   "sources": []}]}), encoding="utf-8")
+        self.assertEqual(read_policies(self.root)[0]["reviewed"], "适用条件尚待补核 · 2026-10-06")
+        for broken in ({"records": "x"}, {"records": [{**record, "status": "rumour"}]},
+                       {"records": [{**record, "reviewed": " "}]}, {"records": [{**record, "boundary": 3}]},
+                       {"records": [{**record, "sources": ["https://example.org"]}]}):
+            with self.subTest(broken=broken):
+                source.write_text(json.dumps(broken), encoding="utf-8")
+                with self.assertRaises(ValueError):
+                    read_policies(self.root)
+
+    def test_observed_judgment_hash_is_optional_validated_and_not_a_public_review(self):
+        revision = self.us["revisions"][-1]
+        revision["intake_judgment_sha256"] = "a" * 64
+        self.assertNotIn("intake_judgment_sha256", self.event(self.load())["review"])
+        for invalid in (None, 0, "", "a" * 63, "g" * 64, "A" * 64):
+            with self.subTest(value=invalid):
+                revision["intake_judgment_sha256"] = invalid
+                self.rejects("intake judgment needs a SHA-256")
 
     def test_source_names_the_business_file_and_its_bytes(self):
         snapshot = self.load()

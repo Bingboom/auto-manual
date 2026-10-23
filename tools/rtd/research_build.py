@@ -97,13 +97,17 @@ def build_research(app, assets: Path, settings: dict, catalog: list, knowledge_r
                    base_url: str) -> dict | None:
     """Events first; the product lens only for events that ask for one, and only if its inputs read."""
     from sphinx.util import logging as sphinx_logging
-    from tools.rtd.decision_digest import decision_digest
-    from tools.rtd.intelligence_events import load_events
+    from tools.intel.digest import decision_digest
+    from tools.intel.events import CONTENT_DIR, EVENTS_FILE, load_events
+    from tools.rtd.market_policy import market_context
     from tools.rtd.product_research import PAGE
 
     logger = sphinx_logging.getLogger(__name__)
     try:
-        intel = load_events(knowledge_root)
+        # Policy events join the portal's own, stricter reading of the policy records.
+        events_file = knowledge_root / CONTENT_DIR / EVENTS_FILE if knowledge_root is not None else None
+        policies = market_context(knowledge_root)["records"] if events_file and events_file.is_file() else []
+        intel = load_events(knowledge_root, policies=policies)
     except (OSError, ValueError, KeyError, TypeError) as exc:
         logger.warning("External intelligence page skipped: %s", exc)
         return None

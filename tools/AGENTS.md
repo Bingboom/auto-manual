@@ -10,6 +10,7 @@
 - `diff_report*.py` and `release_manifest*.py`: traceability and release reporting.
 - `utils/`: shared path and utility helpers; keep repo paths centralized in `tools/utils/path_utils.py`.
 - `csv_pages/`, `idml/`, `process_docs/`, `dingtalk/`: bounded implementation subpackages.
+- `intel/`: the incubating Research & Intelligence core; follow its local `AGENTS.md` (offline checks only, no real Feishu calls, never merged into `main`).
 
 ## Local Rules
 
