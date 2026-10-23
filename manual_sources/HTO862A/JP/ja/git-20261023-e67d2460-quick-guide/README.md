@@ -2,7 +2,7 @@
 
 Operator instruction, 2026-10-23: 「开两个窗口 把这俩说明书 走git only转网页文档」. This window converts the quick guide only; the full HTO862A JP manual (38-0001-000777) is a separate target converted in parallel. The JBP-1000B-WH / JA-AD500A-SIL rules apply: the cover and contents are not on the Web, the existing JE-1000F JP Web manual is the reference, and no Japanese wording is changed.
 
-**Status: `review-candidate-no-release-authorization`.** `publication_eligible` is false and there is no `source/approval.json`; release sealing refuses this IR. After the operator reviews the 1280/390 renders and instructs 「上线提交发布」, `source/approval.json` binds every reviewed `source/` and `assets/` input hash and the status becomes `operator-approved-git-only-release`.
+**Status: `operator-approved-git-only-release`.** The operator reviewed candidate `8a88b54` (PR #1597, 1280/390 renders against the PDF) and instructed 「上线提交发布，路由用 HTO862A-QG」 on 2026-10-23. The engineering PR is merged by operator review (AGENTS.md §8.6), not by an agent grant. `source/approval.json` binds every reviewed `source/` and `assets/` input hash; the rendered IR is publication-eligible. Changing a reviewed input invalidates the acceptance: `render.py` then refuses until a new operator acceptance is recorded.
 
 ## Source
 
@@ -41,7 +41,7 @@ These are listed for the source owner and not corrected here.
 
 ## Route
 
-Hello-Docs identity is `(model, region, lang)`. The full manual keeps `HTO862A/JP/ja` and the `HTO862A/JP` legacy default, so this package uses the model segment `HTO862A-QG` (route `HTO862A-QG/JP/ja/md`). The operator confirms the route before release.
+Hello-Docs identity is `(model, region, lang)`. The full manual keeps `HTO862A/JP/ja` and the `HTO862A/JP` legacy default, so this package uses the model segment `HTO862A-QG` (route `HTO862A-QG/JP/ja/md`). The operator confirmed this route on 2026-10-23.
 
 ## Rebuild
 

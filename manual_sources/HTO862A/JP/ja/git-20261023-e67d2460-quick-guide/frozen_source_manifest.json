@@ -24,16 +24,16 @@
     "drawing_date": "2025-06-12",
     "note": "production drawing title block around the printed sides; it is not a printed manual version"
   },
-  "source_authority": "operator-designated Feishu wiki file 「38-0001-000845 快速操作指南 HTO862A-JP-JAK RoHS Reach.pdf」; operator instruction 2026-10-23 「开两个窗口 把这俩说明书 走git only转网页文档」 with the JBP-1000B-WH/JA-AD500A-SIL rules (cover and contents not on the Web, reference the JE-1000F JP Web manual, no Japanese wording changed). The original Japanese governs all copy.",
+  "source_authority": "operator-designated Feishu wiki file 「38-0001-000845 快速操作指南 HTO862A-JP-JAK RoHS Reach.pdf」; operator instruction 2026-10-23 「开两个窗口 把这俩说明书 走git only转网页文档」 with the JBP-1000B-WH/JA-AD500A-SIL rules (cover and contents not on the Web, reference the JE-1000F JP Web manual, no Japanese wording changed). The original Japanese governs all copy. Operator accepted reviewed candidate 8a88b54 for public Git-only JP/ja release on 2026-10-23 (「上线提交发布，路由用 HTO862A-QG」; merge by operator review). Acceptance is hash-bound in source/approval.json.",
   "source_role": "Git-only Japanese Web candidate of the HTO862A JP quick guide (クイックガイド); the full HTO862A JP manual is a separate target",
   "route": {
     "model_segment": "HTO862A-QG",
-    "reason": "Hello-Docs identity is (model, region, lang); the full HTO862A JP manual keeps HTO862A/JP/ja and the HTO862A/JP legacy default. Final route is confirmed by the operator before release."
+    "reason": "Hello-Docs identity is (model, region, lang); the full HTO862A JP manual keeps HTO862A/JP/ja and the HTO862A/JP legacy default. Confirmed by the operator 2026-10-23 (「路由用 HTO862A-QG」)."
   },
   "language_scope": "single",
   "live_bitable_dependency": false,
-  "publication_status": "review-candidate-no-release-authorization",
-  "publication_eligible": false,
+  "publication_status": "operator-approved-git-only-release",
+  "publication_eligible": true,
   "pending_source_review": [],
   "page_order": [
     "01_site_space_ja.rst",
@@ -52,8 +52,8 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 5863,
-      "sha256": "0e81b7af8d67df0242bb415403dd1a2d6097212bcf48a31cf54f3ade377d01b7"
+      "size": 6024,
+      "sha256": "f3967a87ddaf0fa4ac103a820b2ed791c3670ba65c2f91eb5dbf4ab0124d13f3"
     },
     {
       "path": "assets/app-download-qr.png",
@@ -247,8 +247,8 @@
     },
     {
       "path": "evidence/validation.json",
-      "size": 1795,
-      "sha256": "d1d32dd1b55eaa79fcb8aa2bdf1d0514c4a2c2e3b85e4faf0203a4d2e1adc96f"
+      "size": 2102,
+      "sha256": "e22133b338446ebb9f9adfdb4f5ba70d21ec665429c9412c413d3435f44b5890"
     },
     {
       "path": "refresh_manifest.py",
@@ -259,6 +259,11 @@
       "path": "render.py",
       "size": 7609,
       "sha256": "4361c7e2b611ec918f36485304ff1d4353c9eef026f474c94f47377df68d1efc"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 7765,
+      "sha256": "e98f494de304e08f93022e23dacdc88f006881f3bf156cf79757daa353e856ab"
     },
     {
       "path": "source/asset_decisions.json",
@@ -312,8 +317,8 @@
     },
     {
       "path": "source_manifest.json",
-      "size": 12889,
-      "sha256": "3c0518dae7f01c30464940e2a107977ab9bf16b972e8958db0bad81707cfba43"
+      "size": 13265,
+      "sha256": "6fdbb68f5239fb74241ee886639d3a31d260412997257818121c21138fecec19"
     },
     {
       "path": "web/ja/_static/source.css",
@@ -502,8 +507,8 @@
     },
     {
       "path": "web/ja/manual.ir.json",
-      "size": 173661,
-      "sha256": "7e106d168e90570fdc51b6185e24ec4014d4f382884d2c7d300a730246f18ec1"
+      "size": 182752,
+      "sha256": "60fc913501800e6a9b5b72f58b8fbda3567183549aa0cff8c00c6081d21c812c"
     },
     {
       "path": "web/ja/manual_bundle.html",

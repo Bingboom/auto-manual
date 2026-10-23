@@ -68,6 +68,10 @@ class HTO862AQuickGuideWebTest(unittest.TestCase):
         if manifest['publication_status'] == render_module.CANDIDATE:
             self.assertFalse(manifest['publication_eligible'])
             self.assertFalse((PACKAGE / 'source/approval.json').exists())
+        else:
+            self.assertEqual(manifest['publication_status'], render_module.APPROVED)
+            self.assertTrue(manifest['publication_eligible'])
+            self.assertIsNotNone(render_module.acceptance(PACKAGE, manifest))
 
     def test_release_manifest_inventories_every_package_file(self):
         release = read(PACKAGE / 'frozen_source_manifest.json')
@@ -136,6 +140,21 @@ class HTO862AQuickGuideWebTest(unittest.TestCase):
         (source / 'source_manifest.json').write_text(json.dumps(manifest, ensure_ascii=False), encoding='utf-8')
         with self.assertRaisesRegex(ValueError, 'carries no release acceptance'):
             render_module.render(source, self.root / 'out')
+
+    def test_acceptance_cannot_cover_resealed_changed_source(self):
+        source = self.fixture()
+        manifest = read(source / 'source_manifest.json')
+        if manifest['publication_status'] != render_module.APPROVED:
+            self.skipTest('edition not yet accepted')
+        css = source / 'source/presentation.css'
+        css.write_text(css.read_text(encoding='utf-8') + '\n#x { width: 1rem; }\n', encoding='utf-8')
+        for record in manifest['inputs']:
+            path = source / record['path']
+            record.update(sha256=file_sha256(path), size=path.stat().st_size)
+        (source / 'source_manifest.json').write_text(json.dumps(manifest, ensure_ascii=False), encoding='utf-8')
+        with self.assertRaisesRegex(ValueError, 'operator acceptance does not cover'):
+            render_module.render(source, self.root / 'out')
+        self.assertFalse((self.root / 'out').exists())
 
     def test_cold_render_matches_committed_web(self):
         # The prepared RST pipeline converts through Pandoc; the CI unit runner has none.
