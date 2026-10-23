@@ -38,6 +38,11 @@ def equivalent(left: Path, right: Path) -> bool:
     return state(a.get("status")) == state(b.get("status")) and all(a.get(key) == b.get(key) for key in keys)
 
 
+def open_prs(branch: str) -> list[dict]:
+    return json.loads(command(["gh", "pr", "list", "--repo", REPOSITORY, "--head", branch,
+                               "--base", "main", "--state", "open", "--json", "url"]))
+
+
 def _candidates(root: Path, kind: str):
     log = root / ".tmp/workspace-refresh/result.json"
     report = json.loads(log.read_text()) if log.exists() else {}
@@ -64,15 +69,17 @@ def submit(root: Path, kind: str) -> str:
         command(["git", "sparse-checkout", "set", "docs/knowledge/workspace-data"], cwd=checkout)
         command(["git", "config", "credential.helper", "!gh auth git-credential"], cwd=checkout)
         remote = command(["git", "ls-remote", "--heads", "origin", branch], cwd=checkout)
+        allowed = {(data_dir(root) / name).relative_to(root).as_posix() for name in (NAMES[kind], kind + "-status.json")}
+        pending = []
         if remote:
             command(["git", "fetch", "origin", branch], cwd=checkout)
-            command(["git", "switch", "-c", branch, "FETCH_HEAD"], cwd=checkout)
-        else:
-            command(["git", "switch", "-c", branch], cwd=checkout)
-        allowed = {(data_dir(root) / name).relative_to(root).as_posix() for name in (NAMES[kind], kind + "-status.json")}
-        branch_paths = command(["git", "diff", "--name-only", "origin/main...HEAD"], cwd=checkout).splitlines()
-        if set(branch_paths) - allowed:
-            raise RuntimeError("content branch contains paths outside this source; review before retry")
+            branch_paths = command(["git", "diff", "--name-only", "origin/main...FETCH_HEAD"], cwd=checkout).splitlines()
+            if set(branch_paths) - allowed:
+                raise RuntimeError("content branch contains paths outside this source; review before retry")
+            pending = open_prs(branch)
+        # Only an open content PR keeps its branch. A branch without one is left over from a merged or
+        # closed PR, and its squash-merged commits would conflict with main, so the run starts from main.
+        command(["git", "switch", "-c", branch, "FETCH_HEAD" if pending else "origin/main"], cwd=checkout)
         changed = []
         for source, destination in candidates:
             relative = destination.relative_to(root)
@@ -94,11 +101,13 @@ def submit(root: Path, kind: str) -> str:
             command(["git", "config", "user.email", "41898282+github-actions[bot]@users.noreply.github.com"], cwd=checkout)
             command(["git", "add", "--", *changed], cwd=checkout)
             command(["git", "commit", "-m", f"chore(workspace): refresh {kind} snapshot"], cwd=checkout)
-            command(["git", "push", "origin", "HEAD:" + branch], cwd=checkout)
-        prs = json.loads(command(["gh", "pr", "list", "--repo", REPOSITORY, "--head", branch,
-                                  "--base", "main", "--state", "open", "--json", "url"]))
-        if prs:
-            return prs[0]["url"]
+            push = ["git", "push", "origin", "HEAD:refs/heads/" + branch]
+            if remote and not pending:
+                # Replace the leftover branch only while it still holds the commit read above.
+                push.insert(2, f"--force-with-lease=refs/heads/{branch}:{remote.split()[0]}")
+            command(push, cwd=checkout)
+        if pending:
+            return pending[0]["url"]
         if not changed:
             return "no-change"
         body = Path(tmp) / "body.md"
