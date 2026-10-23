@@ -9,6 +9,13 @@ questions. auto-manual and Hello-Docs are both **public** repositories, so the
 drafts never enter either of them. They live in a third, private mirror and are
 served by a private Read the Docs project.
 
+The Feishu 审核稿（工作台输出） table, one row per draft line (model, product
+name, market, version, date, status, the 待研发确认 count and the links here),
+is different: the operator chose on 2026-10-23 to show it on the public
+说明书工作台 交付物 tab, unpublished models included, so its rows reach
+Hello-Docs with the `web_progress` snapshot (see
+[网页说明书进度](web-progress.md)). The drafts and their open questions stay here.
+
 ## Topology
 
 | Piece | Where | Owner |

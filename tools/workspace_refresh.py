@@ -53,15 +53,19 @@ def _export(kind: str, *, assets: Path, root: Path, reader, today: dt.date, prev
         return (delivery.export_snapshot(run=reader, base_token=values[0], build_table=values[1],
                                          key_table=values[2], today=today), source, delivery.snapshot_problems)
     if kind == "web_progress":
-        values = [os.environ.get(name, "") for name in ("FEISHU_PUBLISHED_DOCS_BASE_TOKEN", "FEISHU_PUBLISHED_DOCS_WEB_TABLE_ID")]
-        if not all(values):
+        names = ("FEISHU_PUBLISHED_DOCS_BASE_TOKEN", "FEISHU_PUBLISHED_DOCS_WEB_TABLE_ID",
+                 "FEISHU_PUBLISHED_DOCS_REVIEW_TABLE_ID", "FEISHU_PUBLISHED_DOCS_URL")
+        base, table, review_table, base_url = (os.environ.get(name, "") for name in names)
+        if not all((base, table, review_table)) or not base_url.startswith("https://"):
             raise ValueError("missing web progress source configuration")
-        source = {"identity_sha256": digest(values)}
+        source = {"identity_sha256": digest([base, table])}
         _check_identity(assets, kind, source)
+        _check_identity(assets, "web_progress_reviews", {"identity_sha256": digest([base, review_table])})
         # The timeline needs this checkout's full first-parent history (fetch-depth: 0).
         timeline = (history or web_progress.manifest_history)(root)
-        return (web_progress.export_snapshot(run=reader, base_token=values[0], table_id=values[1],
-                                             timeline=timeline, today=today), source, web_progress.snapshot_problems)
+        return (web_progress.export_snapshot(run=reader, base_token=base, table_id=table, timeline=timeline,
+                                             today=today, review_table=review_table, base_url=base_url),
+                source, web_progress.snapshot_problems)
     base = os.environ.get("FEISHU_TRANSLATION_MEMORY_BASE_TOKEN", "")
     if not base:
         raise ValueError("missing corpus source configuration")
