@@ -1,0 +1,68 @@
+{
+  "page": "manual_jack01abkqg_jp_ja.html",
+  "browser": "chromium (Playwright)",
+  "viewports": {
+    "1280": {
+      "document_scroll_width": 1280,
+      "viewport_width": 1280,
+      "horizontal_overflow": false,
+      "images": 34,
+      "broken_images": [],
+      "h1": [
+        "サイトスペース要件¶",
+        "1 表面取り付け¶",
+        "2 配線¶",
+        "3 蓄電池に接続する¶",
+        "4 蓄電池に充電する¶",
+        "5 アプリ設定¶"
+      ],
+      "reference_figures": 4,
+      "live_labels": [
+        "分電盤",
+        "自動切替機能付ホーム分電盤",
+        "≥ 20cm",
+        "≥ 20cm",
+        "100v サーキット",
+        "設備を追加する",
+        "蓄電池アイコンをクリックする",
+        "「設定」をクリックする",
+        "・蓄電池の省エネモードをクリックする;・自動オフ時間をクリックしてください",
+        "オフにしない",
+        "しない"
+      ],
+      "label_overflow": [],
+      "screenshot": "evidence/desktop-full.jpg"
+    },
+    "390": {
+      "document_scroll_width": 390,
+      "viewport_width": 390,
+      "horizontal_overflow": false,
+      "images": 34,
+      "broken_images": [],
+      "h1": [
+        "サイトスペース要件¶",
+        "1 表面取り付け¶",
+        "2 配線¶",
+        "3 蓄電池に接続する¶",
+        "4 蓄電池に充電する¶",
+        "5 アプリ設定¶"
+      ],
+      "reference_figures": 4,
+      "live_labels": [
+        "分電盤",
+        "自動切替機能付ホーム分電盤",
+        "≥ 20cm",
+        "≥ 20cm",
+        "100v サーキット",
+        "設備を追加する",
+        "蓄電池アイコンをクリックする",
+        "「設定」をクリックする",
+        "・蓄電池の省エネモードをクリックする;・自動オフ時間をクリックしてください",
+        "オフにしない",
+        "しない"
+      ],
+      "label_overflow": [],
+      "screenshot": "evidence/mobile-full.jpg"
+    }
+  }
+}

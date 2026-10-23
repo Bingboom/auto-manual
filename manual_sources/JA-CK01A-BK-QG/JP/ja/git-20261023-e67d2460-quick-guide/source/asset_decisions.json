@@ -1,0 +1,943 @@
+{
+  "schema_version": "ja-ck01a-bk-qg-asset-decisions/v1",
+  "rule": "docs/renderers/contracts/STYLE_DEFINITION/web-artwork-reuse.md (inventory → identity → reuse → text handling → extract)",
+  "inventory_checked": [
+    "manual_sources/** and data/manual_sources/**: no JA-CK01A-BK or HTO862A package on main at 5e4fd26; the full JA-CK01A-BK JP manual (material code HTO862A-JP-JAK) is being converted in a parallel window and was not reusable at intake",
+    "docs/renderers/web/assets/** (shared symbols, buttons, LCD; per-target folders): no home-distribution-panel, inlet box, wiring or packing art",
+    "docs/renderers/web/assets/shared/symbols/manifest.json: warning triangles are grey or outline only (warning/outline-triangle-tinted, warning/filled-triangle-gray, warning-triangle/h1-jp-native); none is the printed yellow-filled glyph",
+    "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets/symbol_warning_triangle_yellow.svg: yellow triangle with a yellow outer band; the quick guide prints a black-outlined triangle with a grey exclamation mark, so it is a different glyph",
+    "docs/renderers/contracts/assets/app/app_store_badges.png: greyscale Google Play mark; the quick guide prints the colour mark",
+    "docs/renderers/contracts/assets/app/app_download_qr.png: different QR (rounded frame, grey logo); the quick guide prints its own QR with the orange Jackery logo"
+  ],
+  "decision_summary": [
+    {
+      "slot": "packing-list and required items (15)",
+      "decision": "new extraction",
+      "reason": "no existing art for this product; each item clipped without its caption, captions are live text in the shared package panel",
+      "background": "white page, trimmed to the drawn item"
+    },
+    {
+      "slot": "figure panels (site, steps 1–4)",
+      "decision": "new extraction",
+      "reason": "no existing art; complete dashed-frame panels inside their frame; step headings set live are painted out",
+      "background": "panel interior kept, frame and grey page outside it painted out"
+    },
+    {
+      "slot": "wire legends and the 2-① switching detail",
+      "decision": "new extraction",
+      "reason": "split out of their panels so their printed labels are shown at a legible size",
+      "background": "white page, trimmed"
+    },
+    {
+      "slot": "App screens 1–6",
+      "decision": "new extraction",
+      "reason": "two complete rows of three screens; caption pills set live are painted out",
+      "background": "App frames kept whole"
+    },
+    {
+      "slot": "store badges, QR",
+      "decision": "new extraction",
+      "reason": "see inventory: shared candidates differ in content",
+      "background": "placed raster bounds; QR keeps 10 pt of its printed white margin"
+    },
+    {
+      "slot": "warning triangle",
+      "decision": "new extraction (original vectors)",
+      "reason": "see inventory: no shared yellow-filled triangle of this drawing",
+      "background": "transparent SVG, glyph paths only"
+    }
+  ],
+  "extractions": [
+    {
+      "path": "assets/site-space.png",
+      "role": "サイトスペース要件 complete panel; four labels set live",
+      "decision": "new extraction",
+      "source_page": 1,
+      "clip_pt": [
+        761.098,
+        588.026,
+        1336.715,
+        1004.026
+      ],
+      "panel_drawing_index": 62,
+      "painted_out_pt": [
+        [
+          903.0,
+          678.5,
+          928.5,
+          687.6
+        ],
+        [
+          1016.3,
+          679.2,
+          1120.6,
+          688.5
+        ],
+        [
+          917.6,
+          966.7,
+          948.5,
+          975.2
+        ],
+        [
+          1155.3,
+          966.7,
+          1186.1,
+          975.2
+        ]
+      ],
+      "zoom": 3.0,
+      "trim_px": [
+        49,
+        44,
+        1688,
+        1219
+      ],
+      "sha256": "d3729aba0b68d53c746291794972a3f5c66bd5457a7c95dc0070db4ef475171a"
+    },
+    {
+      "path": "assets/pack-panel.png",
+      "role": "パッキングリスト1 item",
+      "decision": "new extraction",
+      "source_page": 1,
+      "clip_pt": [
+        1376.0,
+        646.0,
+        1470.0,
+        717.0
+      ],
+      "zoom": 3.0,
+      "trim_px": [
+        15,
+        25,
+        268,
+        206
+      ],
+      "sha256": "3608997daeec574addc7c5ead2278c8d0ec3f1b87801b69bdbc4359e7c09aba5"
+    },
+    {
+      "path": "assets/pack-handle.png",
+      "role": "パッキングリスト1 item",
+      "decision": "new extraction",
+      "source_page": 1,
+      "clip_pt": [
+        1498.0,
+        646.0,
+        1526.0,
+        717.0
+      ],
+      "zoom": 3.0,
+      "trim_px": [
+        18,
+        21,
+        58,
+        205
+      ],
+      "sha256": "348a5472df92a764f1fb47c4d89dce1eff57eda38d7a484ad50d7d5a9573cabd"
+    },
+    {
+      "path": "assets/pack-install-manual.png",
+      "role": "パッキングリスト1 item",
+      "decision": "new extraction",
+      "source_page": 1,
+      "clip_pt": [
+        1566.0,
+        652.0,
+        1612.0,
+        717.0
+      ],
+      "zoom": 3.0,
+      "trim_px": [
+        19,
+        30,
+        118,
+        165
+      ],
+      "sha256": "f22bd3121514b6c71a686195d94e3c5740015e52b11f3225a6a2353c69362ac2"
+    },
+    {
+      "path": "assets/pack-label-sheet.png",
+      "role": "パッキングリスト1 item",
+      "decision": "new extraction",
+      "source_page": 1,
+      "clip_pt": [
+        1650.0,
+        652.0,
+        1702.0,
+        717.0
+      ],
+      "zoom": 3.0,
+      "trim_px": [
+        14,
+        29,
+        142,
+        169
+      ],
+      "sha256": "431f376f814d7cfe9a4028f46a2c7bf8e9778c24bd5bcb8f5ba00f6dd1e537a0"
+    },
+    {
+      "path": "assets/pack-screw.png",
+      "role": "パッキングリスト1 item",
+      "decision": "new extraction",
+      "source_page": 1,
+      "clip_pt": [
+        1730.0,
+        652.0,
+        1760.0,
+        717.0
+      ],
+      "zoom": 3.0,
+      "trim_px": [
+        22,
+        35,
+        69,
+        162
+      ],
+      "sha256": "48e72272cc0e676ad8566a599d6cf0949e4eb0924b2ff944c776d68a73c0235f"
+    },
+    {
+      "path": "assets/pack-inlet-box.png",
+      "role": "パッキングリスト2 item",
+      "decision": "new extraction",
+      "source_page": 1,
+      "clip_pt": [
+        1390.0,
+        772.0,
+        1434.0,
+        833.0
+      ],
+      "zoom": 3.0,
+      "trim_px": [
+        21,
+        11,
+        111,
+        165
+      ],
+      "sha256": "8783401cec5b1f1ef7c9b9aebe18d232d757751c8d5f2c7e5eee6b8d2f717422"
+    },
+    {
+      "path": "assets/pack-charge-cable.png",
+      "role": "パッキングリスト2 item",
+      "decision": "new extraction",
+      "source_page": 1,
+      "clip_pt": [
+        1462.0,
+        772.0,
+        1518.0,
+        833.0
+      ],
+      "zoom": 3.0,
+      "trim_px": [
+        16,
+        18,
+        147,
+        159
+      ],
+      "sha256": "dac68ab6268a7800251048f2f60574543d63fda4f48200b675f4ab15ad32c4a9"
+    },
+    {
+      "path": "assets/pack-cable-hanger.png",
+      "role": "パッキングリスト2 item",
+      "decision": "new extraction",
+      "source_page": 1,
+      "clip_pt": [
+        1538.0,
+        762.0,
+        1572.0,
+        833.0
+      ],
+      "zoom": 3.0,
+      "trim_px": [
+        22,
+        14,
+        80,
+        200
+      ],
+      "sha256": "1eddedc221038572b78e919d249a8218d7459602ac18375c167a8af4865e1a3e"
+    },
+    {
+      "path": "assets/pack-user-manual.png",
+      "role": "パッキングリスト2 item",
+      "decision": "new extraction",
+      "source_page": 1,
+      "clip_pt": [
+        1602.0,
+        772.0,
+        1648.0,
+        833.0
+      ],
+      "zoom": 3.0,
+      "trim_px": [
+        20,
+        26,
+        119,
+        161
+      ],
+      "sha256": "cb495f8d5d772fdf64661e477b32f0b50896e27c11bee78b2eef03d5c5bc3d50"
+    },
+    {
+      "path": "assets/pack-quick-guide.png",
+      "role": "パッキングリスト2 item",
+      "decision": "new extraction",
+      "source_page": 1,
+      "clip_pt": [
+        1666.0,
+        772.0,
+        1712.0,
+        833.0
+      ],
+      "zoom": 3.0,
+      "trim_px": [
+        20,
+        26,
+        120,
+        161
+      ],
+      "sha256": "021ea3714a6f676bac307d8e240a55b982be03ecc40eada0f4c427ac099ca66f"
+    },
+    {
+      "path": "assets/pack-anchor-bolt.png",
+      "role": "パッキングリスト2 item",
+      "decision": "new extraction",
+      "source_page": 1,
+      "clip_pt": [
+        1742.0,
+        772.0,
+        1772.0,
+        833.0
+      ],
+      "zoom": 3.0,
+      "trim_px": [
+        25,
+        26,
+        67,
+        160
+      ],
+      "sha256": "8a90115329a9dac5b146a6a0518075d751a015cf0b88ff9f3f3d216988e2cfed"
+    },
+    {
+      "path": "assets/need-conduit.png",
+      "role": "必要品 item",
+      "decision": "new extraction",
+      "source_page": 1,
+      "clip_pt": [
+        1378.0,
+        912.0,
+        1480.0,
+        977.0
+      ],
+      "zoom": 3.0,
+      "trim_px": [
+        17,
+        55,
+        287,
+        162
+      ],
+      "sha256": "dbaa992a84d9120fb8b89d8cfbe3ac4ea51a53866117ca67c00d4296f748d2b3"
+    },
+    {
+      "path": "assets/need-outlet.png",
+      "role": "必要品 item",
+      "decision": "new extraction",
+      "source_page": 1,
+      "clip_pt": [
+        1497.0,
+        912.0,
+        1558.0,
+        977.0
+      ],
+      "zoom": 3.0,
+      "trim_px": [
+        17,
+        25,
+        167,
+        178
+      ],
+      "sha256": "99e96c860cb4f3901c2c1e1bf35333296812a631596561ca4161e9c59105cb6a"
+    },
+    {
+      "path": "assets/need-wire.png",
+      "role": "必要品 item",
+      "decision": "new extraction",
+      "source_page": 1,
+      "clip_pt": [
+        1597.0,
+        912.0,
+        1643.0,
+        977.0
+      ],
+      "zoom": 3.0,
+      "trim_px": [
+        20,
+        42,
+        120,
+        175
+      ],
+      "sha256": "6772721964a3529dbc97a63e86b33984bb454d45cf5d4fa1d20fb94bf506ef05"
+    },
+    {
+      "path": "assets/need-breaker.png",
+      "role": "必要品 item",
+      "decision": "new extraction",
+      "source_page": 1,
+      "clip_pt": [
+        1700.0,
+        908.0,
+        1772.0,
+        977.0
+      ],
+      "zoom": 3.0,
+      "trim_px": [
+        60,
+        31,
+        173,
+        198
+      ],
+      "sha256": "98fd815a01ff40de62782ce0f62bc2370a5d101eab3fdc63e4778da899a89cb6"
+    },
+    {
+      "path": "assets/step1-open.png",
+      "role": "1-① panel",
+      "decision": "new extraction",
+      "source_page": 1,
+      "clip_pt": [
+        406.807,
+        1110.567,
+        746.128,
+        1237.108
+      ],
+      "panel_drawing_index": 57,
+      "heading_glyph_drawing_indices": [
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        150,
+        151,
+        25460,
+        25461,
+        25462,
+        25463,
+        25464,
+        25465
+      ],
+      "zoom": 3.0,
+      "trim_px": [
+        155,
+        64,
+        945,
+        379
+      ],
+      "sha256": "ff8aef753142a3435e701812bfb249af173295b255c9217a143718ec16961708"
+    },
+    {
+      "path": "assets/step1-front-panel.png",
+      "role": "1-② panel",
+      "decision": "new extraction",
+      "source_page": 1,
+      "clip_pt": [
+        406.807,
+        1250.886,
+        746.128,
+        1380.219
+      ],
+      "panel_drawing_index": 58,
+      "heading_glyph_drawing_indices": [
+        123,
+        124,
+        25466,
+        25467,
+        25468,
+        25469,
+        25470,
+        25471,
+        25472,
+        25473,
+        25474,
+        25475
+      ],
+      "zoom": 3.0,
+      "trim_px": [
+        117,
+        65,
+        972,
+        370
+      ],
+      "sha256": "b9bf9ecb29bdfe5104814e5bf92df82960bc485c68dbaa736116ade02e064ebd"
+    },
+    {
+      "path": "assets/step1-wall.png",
+      "role": "1-③ panel",
+      "decision": "new extraction",
+      "source_page": 1,
+      "clip_pt": [
+        406.807,
+        1396.219,
+        746.128,
+        1520.581
+      ],
+      "panel_drawing_index": 59,
+      "heading_glyph_drawing_indices": [
+        148,
+        149,
+        25476,
+        25477,
+        25478,
+        25479,
+        25480,
+        25481
+      ],
+      "zoom": 3.0,
+      "trim_px": [
+        153,
+        38,
+        891,
+        352
+      ],
+      "sha256": "5ebd1e7d17c0d0bfcba50d4328d4045473981ab53b7cd9240119638df960a7b2"
+    },
+    {
+      "path": "assets/step2-port-a-legend.png",
+      "role": "2-① wire legend",
+      "decision": "new extraction",
+      "source_page": 1,
+      "clip_pt": [
+        803.0,
+        1215.0,
+        877.5,
+        1296.0
+      ],
+      "zoom": 3.0,
+      "trim_px": [
+        23,
+        26,
+        214,
+        232
+      ],
+      "sha256": "a5ae78d7d2a581e166d48dd1c251c9acc0dbb93600c0885ae73477d137ca721a"
+    },
+    {
+      "path": "assets/step2-port-a.png",
+      "role": "2-① wiring; dashed pointer runs on into the detail",
+      "decision": "new extraction",
+      "source_page": 1,
+      "clip_pt": [
+        877.5,
+        1150.0,
+        1260.0,
+        1307.0
+      ],
+      "zoom": 3.0,
+      "trim_px": [
+        6,
+        17,
+        1148,
+        433
+      ],
+      "sha256": "c970cbbc3a39ae05b5d6b6f9e37ef621100f74b4b5efeda42dd2a939bc374fbe"
+    },
+    {
+      "path": "assets/step2-port-a-switch.png",
+      "role": "2-① switching detail with its printed notes",
+      "decision": "new extraction",
+      "source_page": 1,
+      "clip_pt": [
+        1260.0,
+        1126.0,
+        1386.0,
+        1307.0
+      ],
+      "zoom": 3.0,
+      "trim_px": [
+        0,
+        12,
+        338,
+        502
+      ],
+      "sha256": "12ffc93e337f16b396c775f1968e94c376586b0a506f901490a0e41f745de866"
+    },
+    {
+      "path": "assets/step2-backup-legend.png",
+      "role": "2-② wire legend",
+      "decision": "new extraction",
+      "source_page": 1,
+      "clip_pt": [
+        801.0,
+        1462.0,
+        858.0,
+        1510.0
+      ],
+      "zoom": 3.0,
+      "trim_px": [
+        13,
+        19,
+        171,
+        130
+      ],
+      "sha256": "4026745119311b38087b7270087c64c4601a504e1b62a5710a5be3d24ab115df"
+    },
+    {
+      "path": "assets/step2-backup.png",
+      "role": "2-② wiring; note box, its pointer and the circuit pill set live",
+      "decision": "new extraction",
+      "source_page": 1,
+      "clip_pt": [
+        858.0,
+        1366.0,
+        1384.0,
+        1518.0
+      ],
+      "painted_out_pt": [
+        [
+          1216.9,
+          1370.1,
+          1336.5,
+          1390.5
+        ],
+        [
+          1288.0,
+          1390.5,
+          1299.0,
+          1399.0
+        ],
+        [
+          1043.3,
+          1503.7,
+          1088.8,
+          1517.2
+        ]
+      ],
+      "zoom": 3.0,
+      "trim_px": [
+        0,
+        0,
+        1578,
+        456
+      ],
+      "sha256": "c3dbfd930c7c7790981e314b2cb584288c31e472d32c964f22a695ca82192096"
+    },
+    {
+      "path": "assets/step3-inlet.png",
+      "role": "3-① panel",
+      "decision": "new extraction",
+      "source_page": 1,
+      "clip_pt": [
+        1444.339,
+        1109.124,
+        1797.464,
+        1277.732
+      ],
+      "panel_drawing_index": 65,
+      "heading_glyph_drawing_indices": [
+        6762,
+        6763,
+        25516,
+        25517,
+        25518,
+        25519,
+        25520,
+        25521,
+        25522,
+        25523,
+        25524,
+        25525,
+        25526,
+        25527,
+        25528,
+        25529,
+        25530
+      ],
+      "zoom": 3.0,
+      "trim_px": [
+        27,
+        115,
+        1020,
+        470
+      ],
+      "sha256": "962bde5474d27b35b0af2f1028c2c51d8f84f61e8ce31932bb69b90a364aec44"
+    },
+    {
+      "path": "assets/step3-port-b.png",
+      "role": "3-② panel; page-turn marker removed",
+      "decision": "new extraction",
+      "source_page": 1,
+      "clip_pt": [
+        1444.339,
+        1296.863,
+        1797.465,
+        1520.581
+      ],
+      "panel_drawing_index": 60,
+      "heading_glyph_drawing_indices": [
+        6758,
+        6760,
+        6812,
+        6813,
+        6814,
+        6815,
+        6816,
+        6817,
+        6818,
+        25482,
+        25483,
+        25484,
+        25485,
+        25486,
+        25487,
+        25488,
+        25489,
+        25490,
+        25491,
+        25492,
+        25493,
+        25494,
+        25495,
+        25496,
+        25497,
+        25498,
+        25499,
+        25500,
+        25501,
+        25502,
+        25503,
+        25504,
+        25505,
+        25506,
+        25507,
+        25508,
+        25509,
+        25510,
+        25511,
+        25512,
+        25513,
+        25514,
+        25515
+      ],
+      "painted_out_pt": [
+        [
+          1760,
+          1476,
+          1800,
+          1523
+        ]
+      ],
+      "zoom": 3.0,
+      "trim_px": [
+        66,
+        137,
+        992,
+        629
+      ],
+      "sha256": "7c3ae768dd5c0608652243ada6c39ad5f7db49f417253fbc31c3bfa45ae7b9da"
+    },
+    {
+      "path": "assets/step3-battery.png",
+      "role": "3-③ panel",
+      "decision": "new extraction",
+      "source_page": 1,
+      "clip_pt": [
+        1982.888,
+        568.404,
+        2552.414,
+        1000.383
+      ],
+      "panel_drawing_index": 30,
+      "heading_glyph_drawing_indices": [
+        31,
+        32,
+        25531,
+        25532,
+        25533,
+        25534,
+        25535,
+        25536,
+        25537,
+        25538
+      ],
+      "zoom": 3.0,
+      "trim_px": [
+        166,
+        123,
+        1635,
+        1222
+      ],
+      "sha256": "e71a6f1bf02333a923adafb9afed8ded02df658ebd39a543f1e33765d750b76d"
+    },
+    {
+      "path": "assets/step4-charge.png",
+      "role": "4 panel; warning box set live",
+      "decision": "new extraction",
+      "source_page": 1,
+      "clip_pt": [
+        2619.723,
+        597.405,
+        3349.954,
+        1002.562
+      ],
+      "panel_drawing_index": 18463,
+      "painted_out_pt": [
+        [
+          2673.6,
+          815.4,
+          2863.1,
+          856.8
+        ]
+      ],
+      "zoom": 3.0,
+      "trim_px": [
+        139,
+        121,
+        2030,
+        1118
+      ],
+      "sha256": "ae043bf40cfea268cf1e71c1fb2ccc57f583e5cb54153e449aa17e9e81000316"
+    },
+    {
+      "path": "assets/app-store-badges.png",
+      "role": "5-① store badges; clip is the placed raster (xref 4201)",
+      "decision": "new extraction",
+      "source_page": 1,
+      "clip_pt": [
+        2001.89,
+        1262.6,
+        2081.14,
+        1321.71
+      ],
+      "zoom": 3.0,
+      "trim_px": [
+        0,
+        0,
+        239,
+        179
+      ],
+      "sha256": "364c3a4f19b57750bd9aff75ad44cce09021b5afb46c75e424f4edfd623e5b8d"
+    },
+    {
+      "path": "assets/app-download-qr.png",
+      "role": "5-① QR raster (xref 4202) with 10 pt of its printed white margin",
+      "decision": "new extraction",
+      "source_page": 1,
+      "clip_pt": [
+        1996.57,
+        1322.6,
+        2154.64,
+        1480.68
+      ],
+      "zoom": 3.0,
+      "trim_px": [
+        0,
+        0,
+        475,
+        476
+      ],
+      "sha256": "8ccf2d99820b93ad570632c1955886e696caf3d37e6f0911bef239ab0278beb7"
+    },
+    {
+      "path": "assets/app-settings-1.png",
+      "role": "5-② screens 1–3; step-caption pills set live",
+      "decision": "new extraction",
+      "source_page": 1,
+      "clip_pt": [
+        2232.0,
+        1186.0,
+        2752.0,
+        1495.0
+      ],
+      "painted_out_pt": [
+        [
+          2263.6,
+          1200.1,
+          2330.8,
+          1216.3
+        ],
+        [
+          2424.1,
+          1200.1,
+          2549.0,
+          1216.3
+        ],
+        [
+          2625.4,
+          1200.1,
+          2729.0,
+          1216.3
+        ]
+      ],
+      "zoom": 3.0,
+      "trim_px": [
+        0,
+        0,
+        1560,
+        927
+      ],
+      "sha256": "324b1caa0c30aa8d2823e52e9e2725931b48021d41d746d91d95cda8f36c20e9"
+    },
+    {
+      "path": "assets/app-settings-2.png",
+      "role": "5-② screens 4–6; step-caption pills set live",
+      "decision": "new extraction",
+      "source_page": 1,
+      "clip_pt": [
+        2786.0,
+        1186.0,
+        3305.0,
+        1495.0
+      ],
+      "painted_out_pt": [
+        [
+          2793.1,
+          1190.3,
+          2947.4,
+          1222.5
+        ],
+        [
+          3026.6,
+          1200.1,
+          3101.4,
+          1216.3
+        ],
+        [
+          3222.0,
+          1200.1,
+          3270.8,
+          1216.3
+        ]
+      ],
+      "zoom": 3.0,
+      "trim_px": [
+        0,
+        0,
+        1557,
+        927
+      ],
+      "sha256": "475b0c26eba0cda14e1dcb970b67be8182a7fc155d20077e1b1fdccb8da05c33"
+    },
+    {
+      "path": "assets/warning-triangle-yellow.svg",
+      "role": "warning glyph of the step 4 and step 5 boxes",
+      "decision": "new extraction (original vectors)",
+      "source_page": 1,
+      "drawing_indices": [
+        39232,
+        39233,
+        39234,
+        39236
+      ],
+      "sha256": "fd0bc0e1597b51e9e069a2261eed475c4706a7f4ccf80a854a64f1182aea7bea"
+    }
+  ]
+}

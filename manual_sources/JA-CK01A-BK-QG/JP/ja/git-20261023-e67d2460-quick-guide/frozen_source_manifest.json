@@ -1,0 +1,601 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "target": {
+    "model": "JA-CK01A-BK-QG",
+    "region": "JP",
+    "languages": [
+      "ja"
+    ],
+    "technical_version": "git-20261023-e67d2460-quick-guide"
+  },
+  "web_title": "クイックガイド 自動切替機能付ホーム分電盤",
+  "original_source": {
+    "filename": "38-0001-000845 快速操作指南 HTO862A-JP-JAK RoHS Reach.pdf",
+    "path": "source/original.pdf",
+    "sha256": "e67d2460eff018f0f8cae0be53e404604d1d3bff620d3c69c8cd8396ccce3d7a",
+    "physical_page_count": 1,
+    "feishu_wiki": "https://xcn57j1urbe6.feishu.cn/wiki/VHO7wgsAViwRTbkDz7lc4GhAnLb"
+  },
+  "printed_manual_version": null,
+  "drawing_block": {
+    "part_number": "38-0001-000845",
+    "drawing_version": "V0.2",
+    "revision_table": "V0.1 第一次发行",
+    "drawing_date": "2025-06-12",
+    "note": "production drawing title block around the printed sides; it is not a printed manual version"
+  },
+  "identity": {
+    "printed_model": "JA-CK01A-BK",
+    "printed_model_source": "reported by the full-manual window as printed on the full manual's cover (型番) and 主な仕様 (Model), adopted by operator decision 2026-10-23; the quick guide itself prints no model",
+    "material_code": "HTO862A-JP-JAK",
+    "part_number": "38-0001-000845",
+    "note": "the material code and part number come from the file name and drawing title block; Web identity follows the printed model"
+  },
+  "source_authority": "operator-designated Feishu wiki file 「38-0001-000845 快速操作指南 HTO862A-JP-JAK RoHS Reach.pdf」; operator instruction 2026-10-23 「开两个窗口 把这俩说明书 走git only转网页文档」 with the JBP-1000B-WH/JA-AD500A-SIL rules (cover and contents not on the Web, reference the JE-1000F JP Web manual, no Japanese wording changed). The original Japanese governs all copy. Operator accepted reviewed candidate 8e39af0 for public Git-only JP/ja release on 2026-10-23 (「上线提交发布」; merge by operator review). Acceptance is hash-bound in source/approval.json.",
+  "source_role": "Git-only Japanese Web candidate of the JA-CK01A-BK JP quick guide (クイックガイド); the full JA-CK01A-BK JP manual is a separate target",
+  "route": {
+    "model_segment": "JA-CK01A-BK-QG",
+    "route": "JA-CK01A-BK-QG/JP/ja/md",
+    "reason": "Hello-Docs identity is (model, region, lang); the full JA-CK01A-BK JP manual keeps JA-CK01A-BK/JP/ja and the JA-CK01A-BK/JP legacy default. Operator decision 2026-10-23 (「改用 JA-CK01A-BK-QG」), replacing the earlier HTO862A-QG route; the earlier release acceptance no longer applies."
+  },
+  "language_scope": "single",
+  "live_bitable_dependency": false,
+  "publication_status": "operator-approved-git-only-release",
+  "publication_eligible": true,
+  "pending_source_review": [],
+  "page_order": [
+    "01_site_space_ja.rst",
+    "02_surface_mounting_ja.rst",
+    "03_wiring_ja.rst",
+    "04_battery_connection_ja.rst",
+    "05_battery_charging_ja.rst",
+    "06_app_setup_ja.rst"
+  ],
+  "required_components": {
+    "HB-SPECIAL-REFERENCE-FIGURE": 4
+  },
+  "web_roots": {
+    "ja": "web/ja"
+  },
+  "inputs": [
+    {
+      "path": "README.md",
+      "size": 6394,
+      "sha256": "75eaf94aeb63c6bd0fe807f156ac41c106f30479e4d7a17745024f27fb944869"
+    },
+    {
+      "path": "assets/app-download-qr.png",
+      "size": 215559,
+      "sha256": "8ccf2d99820b93ad570632c1955886e696caf3d37e6f0911bef239ab0278beb7"
+    },
+    {
+      "path": "assets/app-settings-1.png",
+      "size": 307430,
+      "sha256": "324b1caa0c30aa8d2823e52e9e2725931b48021d41d746d91d95cda8f36c20e9"
+    },
+    {
+      "path": "assets/app-settings-2.png",
+      "size": 189597,
+      "sha256": "475b0c26eba0cda14e1dcb970b67be8182a7fc155d20077e1b1fdccb8da05c33"
+    },
+    {
+      "path": "assets/app-store-badges.png",
+      "size": 34566,
+      "sha256": "364c3a4f19b57750bd9aff75ad44cce09021b5afb46c75e424f4edfd623e5b8d"
+    },
+    {
+      "path": "assets/need-breaker.png",
+      "size": 4451,
+      "sha256": "98fd815a01ff40de62782ce0f62bc2370a5d101eab3fdc63e4778da899a89cb6"
+    },
+    {
+      "path": "assets/need-conduit.png",
+      "size": 3567,
+      "sha256": "dbaa992a84d9120fb8b89d8cfbe3ac4ea51a53866117ca67c00d4296f748d2b3"
+    },
+    {
+      "path": "assets/need-outlet.png",
+      "size": 2716,
+      "sha256": "99e96c860cb4f3901c2c1e1bf35333296812a631596561ca4161e9c59105cb6a"
+    },
+    {
+      "path": "assets/need-wire.png",
+      "size": 3580,
+      "sha256": "6772721964a3529dbc97a63e86b33984bb454d45cf5d4fa1d20fb94bf506ef05"
+    },
+    {
+      "path": "assets/pack-anchor-bolt.png",
+      "size": 4003,
+      "sha256": "8a90115329a9dac5b146a6a0518075d751a015cf0b88ff9f3f3d216988e2cfed"
+    },
+    {
+      "path": "assets/pack-cable-hanger.png",
+      "size": 2827,
+      "sha256": "1eddedc221038572b78e919d249a8218d7459602ac18375c167a8af4865e1a3e"
+    },
+    {
+      "path": "assets/pack-charge-cable.png",
+      "size": 10530,
+      "sha256": "dac68ab6268a7800251048f2f60574543d63fda4f48200b675f4ab15ad32c4a9"
+    },
+    {
+      "path": "assets/pack-handle.png",
+      "size": 1634,
+      "sha256": "348a5472df92a764f1fb47c4d89dce1eff57eda38d7a484ad50d7d5a9573cabd"
+    },
+    {
+      "path": "assets/pack-inlet-box.png",
+      "size": 7758,
+      "sha256": "8783401cec5b1f1ef7c9b9aebe18d232d757751c8d5f2c7e5eee6b8d2f717422"
+    },
+    {
+      "path": "assets/pack-install-manual.png",
+      "size": 9537,
+      "sha256": "f22bd3121514b6c71a686195d94e3c5740015e52b11f3225a6a2353c69362ac2"
+    },
+    {
+      "path": "assets/pack-label-sheet.png",
+      "size": 22773,
+      "sha256": "431f376f814d7cfe9a4028f46a2c7bf8e9778c24bd5bcb8f5ba00f6dd1e537a0"
+    },
+    {
+      "path": "assets/pack-panel.png",
+      "size": 2006,
+      "sha256": "3608997daeec574addc7c5ead2278c8d0ec3f1b87801b69bdbc4359e7c09aba5"
+    },
+    {
+      "path": "assets/pack-quick-guide.png",
+      "size": 2926,
+      "sha256": "021ea3714a6f676bac307d8e240a55b982be03ecc40eada0f4c427ac099ca66f"
+    },
+    {
+      "path": "assets/pack-screw.png",
+      "size": 3758,
+      "sha256": "48e72272cc0e676ad8566a599d6cf0949e4eb0924b2ff944c776d68a73c0235f"
+    },
+    {
+      "path": "assets/pack-user-manual.png",
+      "size": 8181,
+      "sha256": "cb495f8d5d772fdf64661e477b32f0b50896e27c11bee78b2eef03d5c5bc3d50"
+    },
+    {
+      "path": "assets/site-space.png",
+      "size": 84326,
+      "sha256": "d3729aba0b68d53c746291794972a3f5c66bd5457a7c95dc0070db4ef475171a"
+    },
+    {
+      "path": "assets/step1-front-panel.png",
+      "size": 81059,
+      "sha256": "b9bf9ecb29bdfe5104814e5bf92df82960bc485c68dbaa736116ade02e064ebd"
+    },
+    {
+      "path": "assets/step1-open.png",
+      "size": 49404,
+      "sha256": "ff8aef753142a3435e701812bfb249af173295b255c9217a143718ec16961708"
+    },
+    {
+      "path": "assets/step1-wall.png",
+      "size": 63575,
+      "sha256": "5ebd1e7d17c0d0bfcba50d4328d4045473981ab53b7cd9240119638df960a7b2"
+    },
+    {
+      "path": "assets/step2-backup-legend.png",
+      "size": 4684,
+      "sha256": "4026745119311b38087b7270087c64c4601a504e1b62a5710a5be3d24ab115df"
+    },
+    {
+      "path": "assets/step2-backup.png",
+      "size": 76204,
+      "sha256": "c3dbfd930c7c7790981e314b2cb584288c31e472d32c964f22a695ca82192096"
+    },
+    {
+      "path": "assets/step2-port-a-legend.png",
+      "size": 12017,
+      "sha256": "a5ae78d7d2a581e166d48dd1c251c9acc0dbb93600c0885ae73477d137ca721a"
+    },
+    {
+      "path": "assets/step2-port-a-switch.png",
+      "size": 83496,
+      "sha256": "12ffc93e337f16b396c775f1968e94c376586b0a506f901490a0e41f745de866"
+    },
+    {
+      "path": "assets/step2-port-a.png",
+      "size": 72591,
+      "sha256": "c970cbbc3a39ae05b5d6b6f9e37ef621100f74b4b5efeda42dd2a939bc374fbe"
+    },
+    {
+      "path": "assets/step3-battery.png",
+      "size": 144253,
+      "sha256": "e71a6f1bf02333a923adafb9afed8ded02df658ebd39a543f1e33765d750b76d"
+    },
+    {
+      "path": "assets/step3-inlet.png",
+      "size": 62963,
+      "sha256": "962bde5474d27b35b0af2f1028c2c51d8f84f61e8ce31932bb69b90a364aec44"
+    },
+    {
+      "path": "assets/step3-port-b.png",
+      "size": 79927,
+      "sha256": "7c3ae768dd5c0608652243ada6c39ad5f7db49f417253fbc31c3bfa45ae7b9da"
+    },
+    {
+      "path": "assets/step4-charge.png",
+      "size": 127421,
+      "sha256": "ae043bf40cfea268cf1e71c1fb2ccc57f583e5cb54153e449aa17e9e81000316"
+    },
+    {
+      "path": "assets/warning-triangle-yellow.svg",
+      "size": 1442,
+      "sha256": "fd0bc0e1597b51e9e069a2261eed475c4706a7f4ccf80a854a64f1182aea7bea"
+    },
+    {
+      "path": "derive_assets.py",
+      "size": 15019,
+      "sha256": "7486820a015003af8bbd37e8ba7c6f0f71f2f5095fae8c503b30cf5adb83279b"
+    },
+    {
+      "path": "evidence/browser-acceptance.json",
+      "size": 2072,
+      "sha256": "6f8ced2c39b4992b3a63f8fc4b31cb3ef2492724cab6bf4ae62ba50266ad0322"
+    },
+    {
+      "path": "evidence/desktop-full.jpg",
+      "size": 504292,
+      "sha256": "b61eaee362c0a55cea09f52b1083fa1511e321c26aadd31987d672c7e7d79808"
+    },
+    {
+      "path": "evidence/mobile-full.jpg",
+      "size": 261350,
+      "sha256": "6dd71a58ea6ba07d50e70234fa57c769db0879085304661c97a783939d9474bd"
+    },
+    {
+      "path": "evidence/strict-sphinx.log",
+      "size": 1931,
+      "sha256": "abcf0c594bac6ca1431cf46ab84f3821c6b8e636924f574ddf50c7298f3985dd"
+    },
+    {
+      "path": "evidence/validation.json",
+      "size": 2102,
+      "sha256": "d2ba486019aaf078a77e98e185fdf884abd6d970faaa9505eada225bfe38d335"
+    },
+    {
+      "path": "refresh_manifest.py",
+      "size": 2346,
+      "sha256": "6c60b986434ea7b500c7df9651bf98e8f870245e7b80136f8c81b6fd034c66bc"
+    },
+    {
+      "path": "render.py",
+      "size": 7618,
+      "sha256": "3c3e6710cea902334facbe9f97cb6c12d596296603d717ba08d78489cdd6fb8b"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 7800,
+      "sha256": "e5729446811d6ce65e45ca8f74e9f72d7f995f2a7227833b26799df5f2b5a35f"
+    },
+    {
+      "path": "source/asset_decisions.json",
+      "size": 21143,
+      "sha256": "c82ebbaabf96ed4a889725173cf71152fe7de1064f58ba2f191acf33f43bb544"
+    },
+    {
+      "path": "source/original.pdf",
+      "size": 25531876,
+      "sha256": "e67d2460eff018f0f8cae0be53e404604d1d3bff620d3c69c8cd8396ccce3d7a"
+    },
+    {
+      "path": "source/page/01_site_space_ja.rst",
+      "size": 3613,
+      "sha256": "773e0853f9ebea4278af0e4c81f819d43caf6246d98fc68d17a4dcb2d94d0da9"
+    },
+    {
+      "path": "source/page/02_surface_mounting_ja.rst",
+      "size": 452,
+      "sha256": "6aa35d6b281b379da5493ace49fb4c3aa149fc8f7f837a2a31ce9c05bb3a00d3"
+    },
+    {
+      "path": "source/page/03_wiring_ja.rst",
+      "size": 1674,
+      "sha256": "fda4e5dbe34e03508f1e98abd8c3844d28dd6ec21aed1550a596abb748b5eff4"
+    },
+    {
+      "path": "source/page/04_battery_connection_ja.rst",
+      "size": 730,
+      "sha256": "d4c5ae807add077d36c80058a8b70df5c112c8a7e28cc624c60f56cc058fbc88"
+    },
+    {
+      "path": "source/page/05_battery_charging_ja.rst",
+      "size": 384,
+      "sha256": "e0dc52dfa5f2b1f69e79055b65368fcdf6506f0c203d9a8c5c68beb682088828"
+    },
+    {
+      "path": "source/page/06_app_setup_ja.rst",
+      "size": 2484,
+      "sha256": "6ed8a6bf4081e7ff9d2631cdaf4e260b7a24a805f6dbddee616b78c7e3fe224c"
+    },
+    {
+      "path": "source/presentation.css",
+      "size": 2558,
+      "sha256": "c9d8cc3b405291232a70c2988cf1039a49b7a25cf9d5041d7dbf0f435a825f83"
+    },
+    {
+      "path": "source/transcription.json",
+      "size": 10777,
+      "sha256": "86cfb43593b3659871919d8607c377aff5907ad8c7dfa4364acb0afb1d7f4031"
+    },
+    {
+      "path": "source_manifest.json",
+      "size": 13881,
+      "sha256": "bc77617ec4e9cfdd762ca9002891291323d9f39dedfd71d637fac435a786d721"
+    },
+    {
+      "path": "web/ja/_static/source.css",
+      "size": 2558,
+      "sha256": "c9d8cc3b405291232a70c2988cf1039a49b7a25cf9d5041d7dbf0f435a825f83"
+    },
+    {
+      "path": "web/ja/_static/web_manual.css",
+      "size": 124849,
+      "sha256": "c3604a2e5f22b04bc745bb99cf203b50e60222af70c0aeba3d968cc28adac9ce"
+    },
+    {
+      "path": "web/ja/assets/ir/021ea3714a6f676bac307d8e240a55b982be03ecc40eada0f4c427ac099ca66f/pack-quick-guide.png",
+      "size": 2926,
+      "sha256": "021ea3714a6f676bac307d8e240a55b982be03ecc40eada0f4c427ac099ca66f"
+    },
+    {
+      "path": "web/ja/assets/ir/12ffc93e337f16b396c775f1968e94c376586b0a506f901490a0e41f745de866/step2-port-a-switch.png",
+      "size": 83496,
+      "sha256": "12ffc93e337f16b396c775f1968e94c376586b0a506f901490a0e41f745de866"
+    },
+    {
+      "path": "web/ja/assets/ir/1eddedc221038572b78e919d249a8218d7459602ac18375c167a8af4865e1a3e/pack-cable-hanger.png",
+      "size": 2827,
+      "sha256": "1eddedc221038572b78e919d249a8218d7459602ac18375c167a8af4865e1a3e"
+    },
+    {
+      "path": "web/ja/assets/ir/324b1caa0c30aa8d2823e52e9e2725931b48021d41d746d91d95cda8f36c20e9/app-settings-1.png",
+      "size": 307430,
+      "sha256": "324b1caa0c30aa8d2823e52e9e2725931b48021d41d746d91d95cda8f36c20e9"
+    },
+    {
+      "path": "web/ja/assets/ir/348a5472df92a764f1fb47c4d89dce1eff57eda38d7a484ad50d7d5a9573cabd/pack-handle.png",
+      "size": 1634,
+      "sha256": "348a5472df92a764f1fb47c4d89dce1eff57eda38d7a484ad50d7d5a9573cabd"
+    },
+    {
+      "path": "web/ja/assets/ir/3608997daeec574addc7c5ead2278c8d0ec3f1b87801b69bdbc4359e7c09aba5/pack-panel.png",
+      "size": 2006,
+      "sha256": "3608997daeec574addc7c5ead2278c8d0ec3f1b87801b69bdbc4359e7c09aba5"
+    },
+    {
+      "path": "web/ja/assets/ir/364c3a4f19b57750bd9aff75ad44cce09021b5afb46c75e424f4edfd623e5b8d/app-store-badges.png",
+      "size": 34566,
+      "sha256": "364c3a4f19b57750bd9aff75ad44cce09021b5afb46c75e424f4edfd623e5b8d"
+    },
+    {
+      "path": "web/ja/assets/ir/4026745119311b38087b7270087c64c4601a504e1b62a5710a5be3d24ab115df/step2-backup-legend.png",
+      "size": 4684,
+      "sha256": "4026745119311b38087b7270087c64c4601a504e1b62a5710a5be3d24ab115df"
+    },
+    {
+      "path": "web/ja/assets/ir/431f376f814d7cfe9a4028f46a2c7bf8e9778c24bd5bcb8f5ba00f6dd1e537a0/pack-label-sheet.png",
+      "size": 22773,
+      "sha256": "431f376f814d7cfe9a4028f46a2c7bf8e9778c24bd5bcb8f5ba00f6dd1e537a0"
+    },
+    {
+      "path": "web/ja/assets/ir/475b0c26eba0cda14e1dcb970b67be8182a7fc155d20077e1b1fdccb8da05c33/app-settings-2.png",
+      "size": 189597,
+      "sha256": "475b0c26eba0cda14e1dcb970b67be8182a7fc155d20077e1b1fdccb8da05c33"
+    },
+    {
+      "path": "web/ja/assets/ir/48e72272cc0e676ad8566a599d6cf0949e4eb0924b2ff944c776d68a73c0235f/pack-screw.png",
+      "size": 3758,
+      "sha256": "48e72272cc0e676ad8566a599d6cf0949e4eb0924b2ff944c776d68a73c0235f"
+    },
+    {
+      "path": "web/ja/assets/ir/5ebd1e7d17c0d0bfcba50d4328d4045473981ab53b7cd9240119638df960a7b2/step1-wall.png",
+      "size": 63575,
+      "sha256": "5ebd1e7d17c0d0bfcba50d4328d4045473981ab53b7cd9240119638df960a7b2"
+    },
+    {
+      "path": "web/ja/assets/ir/6772721964a3529dbc97a63e86b33984bb454d45cf5d4fa1d20fb94bf506ef05/need-wire.png",
+      "size": 3580,
+      "sha256": "6772721964a3529dbc97a63e86b33984bb454d45cf5d4fa1d20fb94bf506ef05"
+    },
+    {
+      "path": "web/ja/assets/ir/7c3ae768dd5c0608652243ada6c39ad5f7db49f417253fbc31c3bfa45ae7b9da/step3-port-b.png",
+      "size": 79927,
+      "sha256": "7c3ae768dd5c0608652243ada6c39ad5f7db49f417253fbc31c3bfa45ae7b9da"
+    },
+    {
+      "path": "web/ja/assets/ir/8783401cec5b1f1ef7c9b9aebe18d232d757751c8d5f2c7e5eee6b8d2f717422/pack-inlet-box.png",
+      "size": 7758,
+      "sha256": "8783401cec5b1f1ef7c9b9aebe18d232d757751c8d5f2c7e5eee6b8d2f717422"
+    },
+    {
+      "path": "web/ja/assets/ir/8a90115329a9dac5b146a6a0518075d751a015cf0b88ff9f3f3d216988e2cfed/pack-anchor-bolt.png",
+      "size": 4003,
+      "sha256": "8a90115329a9dac5b146a6a0518075d751a015cf0b88ff9f3f3d216988e2cfed"
+    },
+    {
+      "path": "web/ja/assets/ir/8ccf2d99820b93ad570632c1955886e696caf3d37e6f0911bef239ab0278beb7/app-download-qr.png",
+      "size": 215559,
+      "sha256": "8ccf2d99820b93ad570632c1955886e696caf3d37e6f0911bef239ab0278beb7"
+    },
+    {
+      "path": "web/ja/assets/ir/962bde5474d27b35b0af2f1028c2c51d8f84f61e8ce31932bb69b90a364aec44/step3-inlet.png",
+      "size": 62963,
+      "sha256": "962bde5474d27b35b0af2f1028c2c51d8f84f61e8ce31932bb69b90a364aec44"
+    },
+    {
+      "path": "web/ja/assets/ir/98fd815a01ff40de62782ce0f62bc2370a5d101eab3fdc63e4778da899a89cb6/need-breaker.png",
+      "size": 4451,
+      "sha256": "98fd815a01ff40de62782ce0f62bc2370a5d101eab3fdc63e4778da899a89cb6"
+    },
+    {
+      "path": "web/ja/assets/ir/99e96c860cb4f3901c2c1e1bf35333296812a631596561ca4161e9c59105cb6a/need-outlet.png",
+      "size": 2716,
+      "sha256": "99e96c860cb4f3901c2c1e1bf35333296812a631596561ca4161e9c59105cb6a"
+    },
+    {
+      "path": "web/ja/assets/ir/a5ae78d7d2a581e166d48dd1c251c9acc0dbb93600c0885ae73477d137ca721a/step2-port-a-legend.png",
+      "size": 12017,
+      "sha256": "a5ae78d7d2a581e166d48dd1c251c9acc0dbb93600c0885ae73477d137ca721a"
+    },
+    {
+      "path": "web/ja/assets/ir/ae043bf40cfea268cf1e71c1fb2ccc57f583e5cb54153e449aa17e9e81000316/step4-charge.png",
+      "size": 127421,
+      "sha256": "ae043bf40cfea268cf1e71c1fb2ccc57f583e5cb54153e449aa17e9e81000316"
+    },
+    {
+      "path": "web/ja/assets/ir/b9bf9ecb29bdfe5104814e5bf92df82960bc485c68dbaa736116ade02e064ebd/step1-front-panel.png",
+      "size": 81059,
+      "sha256": "b9bf9ecb29bdfe5104814e5bf92df82960bc485c68dbaa736116ade02e064ebd"
+    },
+    {
+      "path": "web/ja/assets/ir/c3dbfd930c7c7790981e314b2cb584288c31e472d32c964f22a695ca82192096/step2-backup.png",
+      "size": 76204,
+      "sha256": "c3dbfd930c7c7790981e314b2cb584288c31e472d32c964f22a695ca82192096"
+    },
+    {
+      "path": "web/ja/assets/ir/c970cbbc3a39ae05b5d6b6f9e37ef621100f74b4b5efeda42dd2a939bc374fbe/step2-port-a.png",
+      "size": 72591,
+      "sha256": "c970cbbc3a39ae05b5d6b6f9e37ef621100f74b4b5efeda42dd2a939bc374fbe"
+    },
+    {
+      "path": "web/ja/assets/ir/cb495f8d5d772fdf64661e477b32f0b50896e27c11bee78b2eef03d5c5bc3d50/pack-user-manual.png",
+      "size": 8181,
+      "sha256": "cb495f8d5d772fdf64661e477b32f0b50896e27c11bee78b2eef03d5c5bc3d50"
+    },
+    {
+      "path": "web/ja/assets/ir/d3729aba0b68d53c746291794972a3f5c66bd5457a7c95dc0070db4ef475171a/site-space.png",
+      "size": 84326,
+      "sha256": "d3729aba0b68d53c746291794972a3f5c66bd5457a7c95dc0070db4ef475171a"
+    },
+    {
+      "path": "web/ja/assets/ir/dac68ab6268a7800251048f2f60574543d63fda4f48200b675f4ab15ad32c4a9/pack-charge-cable.png",
+      "size": 10530,
+      "sha256": "dac68ab6268a7800251048f2f60574543d63fda4f48200b675f4ab15ad32c4a9"
+    },
+    {
+      "path": "web/ja/assets/ir/dbaa992a84d9120fb8b89d8cfbe3ac4ea51a53866117ca67c00d4296f748d2b3/need-conduit.png",
+      "size": 3567,
+      "sha256": "dbaa992a84d9120fb8b89d8cfbe3ac4ea51a53866117ca67c00d4296f748d2b3"
+    },
+    {
+      "path": "web/ja/assets/ir/e71a6f1bf02333a923adafb9afed8ded02df658ebd39a543f1e33765d750b76d/step3-battery.png",
+      "size": 144253,
+      "sha256": "e71a6f1bf02333a923adafb9afed8ded02df658ebd39a543f1e33765d750b76d"
+    },
+    {
+      "path": "web/ja/assets/ir/f22bd3121514b6c71a686195d94e3c5740015e52b11f3225a6a2353c69362ac2/pack-install-manual.png",
+      "size": 9537,
+      "sha256": "f22bd3121514b6c71a686195d94e3c5740015e52b11f3225a6a2353c69362ac2"
+    },
+    {
+      "path": "web/ja/assets/ir/fd0bc0e1597b51e9e069a2261eed475c4706a7f4ccf80a854a64f1182aea7bea/warning-triangle-yellow.svg",
+      "size": 1442,
+      "sha256": "fd0bc0e1597b51e9e069a2261eed475c4706a7f4ccf80a854a64f1182aea7bea"
+    },
+    {
+      "path": "web/ja/assets/ir/ff8aef753142a3435e701812bfb249af173295b255c9217a143718ec16961708/step1-open.png",
+      "size": 49404,
+      "sha256": "ff8aef753142a3435e701812bfb249af173295b255c9217a143718ec16961708"
+    },
+    {
+      "path": "web/ja/conf.py",
+      "size": 856,
+      "sha256": "b9bf65b5a99c4f8205b219c689aa920917782bb7286cbfb6507b73daff10fad4"
+    },
+    {
+      "path": "web/ja/index.md",
+      "size": 121,
+      "sha256": "411c68dbd5ada1049d53a74865ef64968b7ed010b32914c7e5cb26ab423d7daf"
+    },
+    {
+      "path": "web/ja/manual.ir.json",
+      "size": 183445,
+      "sha256": "d7cc9eb3091d81f1690bc1bbfc13fe617c4a9471f12fdeb348c5c85b18431325"
+    },
+    {
+      "path": "web/ja/manual_bundle.html",
+      "size": 16563,
+      "sha256": "f8ad614fbe1335b2cc52f9da7099763586ab642a7f85d44dd5fa4ab3c10e5a24"
+    },
+    {
+      "path": "web/ja/manual_jack01abkqg_jp_ja.md",
+      "size": 17627,
+      "sha256": "7df40feaae8983845063dbffdb2dae37b9d00ec3154f3dafdddde826a7e1a794"
+    }
+  ],
+  "repo_inputs": [
+    {
+      "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
+      "sha256": "6337f537ac3b8b7248e00632d9f3d899a410fbadad4319a718b0e39905717a9d"
+    }
+  ],
+  "build_boundary": "New target is not registered in phase2. Existing prepared RST → manual-ir/v2 → shared Web/MyST pipeline validates this body; build.py check of the JE-1000F fixture is a repository regression only.",
+  "normalizations": [
+    "The PDF has no text layer (type outlined); live copy is the verbatim transcription in source/transcription.json",
+    "Print line breaks inside a sentence are joined (3-② heading ジャンクショ|ンボックス, the warning and note sentences)",
+    "Circled step numerals become ①②③ in the step headings; chapter tab numerals become a '1 '…'5 ' heading prefix",
+    "Packing-list counts are set as ' *N' (print '* 1' / '*4' kerning is not reproduced)",
+    "The cover panel, production drawing furniture and the 3-② page-turn marker are not on the Web",
+    "The 必要品 dashed divider before ブレーカ（オプション） is not drawn: the shared package panel has no divider",
+    "2-① is shown as legend, wiring and switching detail; 2-② legend is shown above its wiring; App screens are two rows of three (the arrow between screens 3 and 4 is dropped)"
+  ],
+  "source_concerns": [
+    {
+      "issue": "warning sentences and the 2-① heading end without 。 / する",
+      "disposition": "kept verbatim"
+    },
+    {
+      "issue": "「ジャクリアプリ」 (App name in katakana), 「100v」 lower-case v, half-width ';' in the App caption",
+      "disposition": "kept verbatim"
+    },
+    {
+      "issue": "3-③ repeats the chapter 3 title 「蓄電池に接続する」",
+      "disposition": "kept verbatim"
+    }
+  ],
+  "component_map": [
+    {
+      "block": "chapter tabs and step titles",
+      "shared": "Furo/shared Web headings (H1 chapters, H2 steps)"
+    },
+    {
+      "block": "サイトスペース要件 figure",
+      "shared": "HB-SPECIAL-REFERENCE-FIGURE (base-art-live-copy, 4 live labels)"
+    },
+    {
+      "block": "パッキングリスト 1/2, 必要品",
+      "shared": "shared hb-package-panel / hb-package-grid (as JHP-3600C US); HB-SPECIAL-INBOX takes one single-row group with a tip and does not fit three groups"
+    },
+    {
+      "block": "step figures",
+      "shared": "plain flow images (prepared-document); printed labels stay in the art"
+    },
+    {
+      "block": "2-② wiring",
+      "shared": "HB-SPECIAL-REFERENCE-FIGURE (base-art-live-copy, live 100v サーキット pill)"
+    },
+    {
+      "block": "grey note box (2-②)",
+      "shared": "shared hb-text-panel"
+    },
+    {
+      "block": "warning boxes (4, 5-②)",
+      "shared": "shared hb-source-safety-heading with the native yellow triangle"
+    },
+    {
+      "block": "App download (5-①)",
+      "shared": "plain images; HB-SPECIAL-APP download requires two column copy lines the print does not have"
+    },
+    {
+      "block": "App screens with captions (5-②)",
+      "shared": "HB-SPECIAL-REFERENCE-FIGURE ×2 (base-art-live-copy, live caption pills)"
+    }
+  ],
+  "shared_component_exceptions": []
+}
