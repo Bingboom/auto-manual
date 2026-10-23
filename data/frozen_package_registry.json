@@ -921,6 +921,11 @@
       "registered": "2026-10-19",
       "known_drift": {}
     },
+    "manual_sources/HTO862A/JP/ja/git-20261023-e67d2460-quick-guide": {
+      "approval": "Operator request 2026-10-23: Git-only JP Web candidate of the HTO862A quick guide (「开两个窗口 把这俩说明书 走git only转网页文档」); release pending operator 「上线提交发布」",
+      "registered": "2026-10-23",
+      "known_drift": {}
+    },
     "manual_sources/JA-AD500A-SIL/JP/ja/git-20261008-ac3a1f82": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",
