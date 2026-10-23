@@ -247,6 +247,13 @@ class SystemWorkspaceContractTests(unittest.TestCase):
                                            "REV-03": "planned", "REV-04": "deferred"})
         self.assertEqual(ledger.gates, {"G1": {"REV-01", "REV-02"}, "G2": {"REV-03", "REV-04"}})
 
+    def test_active_ledger_rows_read_as_in_progress(self):
+        ledger = sw.parse_ledger(LEDGER.replace("REV-03 | WP2 | G1 | x | planned", "REV-03 | WP2 | G1 | x | active"))
+        self.assertEqual(ledger.statuses["REV-03"], "active")
+        progress = sw._progress(["REV-03", "REV-04"], ledger)
+        self.assertEqual((progress["state"], progress["tally"]), ("active", "在做 1 · 暂缓 1"))
+        self.assertEqual(sw.parse_evidence("rev:REV-03=active"), ("rev", "REV-03", "active"))
+
     def test_publication_facts_count_books_by_model_and_region(self):
         path = self.root / "publish_manifest.json"
         data = manifest()
@@ -742,7 +749,7 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             self.assertIn('id="lane-web"', page)
             lanes = ["workbench", "web", "corpus", "ssot", "shared_ir", "skeletons", "multi_agent"]
             self.assertEqual(sorted(lanes, key=lambda lane: page.index(f'id="lane-{lane}"')), lanes)
-            self.assertIn("当前只保留设计参考，不进入交付主线", page)
+            self.assertIn("多 agent 写稿已在工作台发生；认领与交接工具暂不建设", page)
             self.assertNotIn("多 Agent 调度设计</span>", page)
             receipt = json.loads((base / "good" / "_static" / "system-workspace-revision.json").read_text())
             self.assertIn(f'data-revision="{receipt["revision"]}"', page)

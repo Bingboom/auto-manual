@@ -88,7 +88,7 @@ STATUS_LABELS = {
     "blocked": "受阻", "no_data": "无数据", "retired": "已停用",
 }
 MODE_LABELS = {"automated": "自动衔接", "manual": "人工衔接"}
-LEDGER_LABELS = {"done": "完成", "verifying": "在验", "planned": "待做", "deferred": "暂缓"}
+LEDGER_LABELS = {"done": "完成", "verifying": "在验", "active": "在做", "planned": "待做", "deferred": "暂缓"}
 EVIDENCE_KINDS = ("pr", "file", "url", "rev", "ack")
 CORPUS_SCHEMA = "hello-docs-tm-corpus/v1"
 CORPUS_STATUS_FIELD = "Status"
@@ -899,7 +899,7 @@ def _progress(revs: list[str], ledger: Ledger) -> dict[str, Any]:
         state = "done"
     elif counts.get("deferred", 0) == len(revs):
         state = "deferred"
-    elif done or counts.get("verifying"):
+    elif done or counts.get("verifying") or counts.get("active"):
         state = "active"
     else:
         state = "idle"

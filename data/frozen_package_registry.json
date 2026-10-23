@@ -1188,6 +1188,11 @@
           "handling": "keep-frozen",
           "reason": "MA-323 / PR #1382: register the migrated four-control App label stylesheet; preserve all historical package bytes and approvals. Rebuild and publication require a separate scoped release.",
           "since": "2026-10-19"
+        },
+        "tools/web/frozen_package_registry.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-343 / fix/frozen-registry-minutes：登记工具改为分钟数必填，该包只把登记工具列为构建输入；已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-23"
         }
       }
     },
@@ -1208,6 +1213,11 @@
     },
     "manual_sources/JE-2000E/EU/nine-language/git-20261010-batch1465-preface/two-language": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native": {
+      "approval": "User request 2026-10-19: Git-only JP Web candidate, JE-1000F JP structure",
       "registered": "2026-10-19",
       "known_drift": {}
     },
@@ -1390,11 +1400,6 @@
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",
       "known_drift": {}
-    },
-    "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native": {
-      "approval": "User request 2026-10-19: Git-only JP Web candidate, JE-1000F JP structure",
-      "registered": "2026-10-19",
-      "known_drift": {}
     }
   },
   "drift_log": [
@@ -1446,6 +1451,16 @@
       "packages": 16,
       "handling": "keep-frozen",
       "reason": "MA-323 / PR #1382: register the migrated four-control App label stylesheet; preserve all historical package bytes and approvals. Rebuild and publication require a separate scoped release."
+    },
+    {
+      "date": "2026-10-23",
+      "files": [
+        "tools/web/frozen_package_registry.py"
+      ],
+      "packages": 1,
+      "handling": "keep-frozen",
+      "reason": "MA-343 / fix/frozen-registry-minutes：登记工具改为分钟数必填，该包只把登记工具列为构建输入；已发布字节不变，下次修订该书时重建并重审",
+      "minutes": 0
     }
   ]
 }
