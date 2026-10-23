@@ -61,6 +61,26 @@ verifiably. Governed feedback returns through authorized review to improve the
 content and the governance rules themselves. The aim is to reduce repeated
 editing and repeated judgment; the reuse and propagation constraints are in §6.
 
+Reusable templates, skeletons, shared components, approved copy, terminology and
+translation memory are governed knowledge assets, not merely inputs to a build
+engine. They should help documentation specialists and agents understand how a
+manual is organized, how approved content is expressed, and under which
+conditions reuse is appropriate. Template-assisted drafting and structured
+builds are complementary paths; neither is mandatory for every target.
+Applicability, provenance, approval and target-specific verification take
+precedence over similarity. Template guidance is a strategic direction, not a
+claim that automated applicability assessment has been delivered.
+
+The strategic priority is to govern approved originals and reusable assets, retain authoritative provenance and version applicability, and make selected knowledge useful to people and agents. Structured generation is an optional production route, not a prerequisite for admitting or publishing existing manuals. Selective extraction from approved editions serves concrete queries and maintenance decisions; extracted facts remain source-linked and unapproved as new authority until verified by an accountable role. Hypothetical cross-product bulk changes alone must not justify new schema, skeleton or assembly investment.
+
+Writing is the main production route. In the private document workbench
+(Hello-Docs-Review), agents draft with the engineering infrastructure, governed
+data, templates and corpus, and people review the drafts; automated assembly from
+data and templates is used on demand. Workbench drafting and its private review
+site exist; promoting an approved draft into Hello-Docs publication and
+traceability as an approved original is planned, not implemented. The repository
+roles are mapped in [the two-plane map](../../user-guide/two_plane_map.md).
+
 The five strategic objectives apply across content classes. Governance depth
 is selective: tier-1 content (warning, safety and compliance text and spec
 values) requires explicit item-level records and accountable review; other
@@ -83,6 +103,8 @@ existing content.
    confirmed decisions update content, relations and governance rules; the
    unknown boundary is visible and its resolution is measured within a
    declared scope, alongside the cost of maintaining those records.
+
+The overall lifecycle includes workbench writing and review, approved-source intake, authority and version governance, publication, selective extraction and consumption, and governed feedback. The production spine below remains valid for builds but is not the only entry route or the entire platform architecture.
 
 The production spine is unchanged:
 
@@ -321,6 +343,8 @@ In the target end state:
 - the repository owns declared Git-native sources as well as deterministic
   build, validation, and publishing tooling
 - every release is traceable to a frozen snapshot and a build record
+
+Stage 3 investment is demand-led: retain approved-original intake and existing templates, and expand structured assembly only for a demonstrated high-value use case with clear applicability, authority, maintenance ownership and acceptance. Useful knowledge extraction does not require migrating entire manual bodies to tables. This is a prioritization principle, not an assertion that all extraction or feedback capabilities have passed acceptance.
 
 Stage 3 is a deliberate hybrid, not total structuralization. CMS ownership applies
 to the content classes that benefit from structured governance — spec values,

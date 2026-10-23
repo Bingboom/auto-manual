@@ -1,9 +1,10 @@
 # Hello Auto Doc
 
-Updated: 2026-09-20
+Updated: 2026-10-23
 
 ### Where to look next
 
+For document writing in the Hello-Docs-Review workbench, the main writing route, see the [workbench README](../mirrors/Hello-Docs-Review/README.md) and [`review-drafts-site.md`](../code-as-doc/dev/rtd_manual_portal/review-drafts-site.md); the topic pages below cover the on-demand build, review and publish flows.
 For the current JP / US family difference boundary, use [`../code-as-doc/manual_family_guide.md`](../code-as-doc/manual_family_guide.md).
 For the complete IR → Web build/replay acceptance target, including JBP-2000B
 Japanese PDF illustrations, see [`ir_document_closeout.md`](../code-as-doc/dev/ir_document_closeout.md).

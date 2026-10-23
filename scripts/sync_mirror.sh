@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Compose and push one mirror commit: the auto-manual source tree plus the
-# mirror's own content paths, which only the mirror maintains.
+# mirror's own content paths, which only the mirror maintains, with the
+# mirror's own README when MIRROR_README names one.
 #
 # Run from a directory holding the two checkouts `source/` (auto-manual) and
 # `mirror/` (the mirror, with push access on `origin`). Used by
@@ -8,6 +9,8 @@
 #
 #   MIRROR_KEEP_PATHS       paths the mirror owns and keeps (space separated)
 #   SOURCE_FORBIDDEN_PATHS  paths auto-manual must never contain (defaults to the kept paths)
+#   MIRROR_README           optional source file installed as the mirror's README.md
+#                           (mirrors/<repository>/README.md, maintained in auto-manual)
 #   MIRROR_BRANCH, SOURCE_REPOSITORY, SOURCE_SHA, SOURCE_RUN_URL
 set -euo pipefail
 
@@ -40,6 +43,15 @@ for content_path in ${keep_paths}; do
       --prefix="${content_path}/" "${content_tree}"
   fi
 done
+if [ -n "${MIRROR_README:-}" ]; then
+  readme_blob="$(git -C mirror rev-parse --verify --quiet "${source_tree}:${MIRROR_README}" || true)"
+  if [ -z "${readme_blob}" ] || [ "$(git -C mirror cat-file -t "${readme_blob}")" != "blob" ]; then
+    echo "::error::${MIRROR_README} is not a file in ${SOURCE_REPOSITORY}@${SOURCE_SHA}; each mirror's README is maintained there."
+    exit 1
+  fi
+  GIT_INDEX_FILE="${mirror_index}" git -C mirror update-index --add \
+    --cacheinfo "100644,${readme_blob},README.md"
+fi
 combined_tree="$(GIT_INDEX_FILE="${mirror_index}" git -C mirror write-tree)"
 
 if [ "${combined_tree}" = "${mirror_tree}" ]; then

@@ -2,12 +2,19 @@
 
 Status: active (2026-10-21)
 
+Hello-Docs-Review is the private document workbench: agents write there with the
+mirrored infrastructure, the business data, the templates and the corpus, and
+people review the result. Writing is the main production route; data-and-template
+builds are used on demand.
+
 Review drafts (审核稿) — for example the JHP-3600C JP draft made with the
 [`manual-review-draft`](../../../.agents/skills/manual-review-draft/SKILL.md) skill —
 carry unreleased content: unpublished regional editions, R&D values and open
 questions. auto-manual and Hello-Docs are both **public** repositories, so the
-drafts never enter either of them. They live in a third, private mirror and are
-served by a private Read the Docs project.
+drafts never enter either of them. They live in the private workbench repository
+and are served by a private Read the Docs project. Promoting an approved draft
+into Hello-Docs publication and traceability as an approved original is planned,
+not built.
 
 The Feishu 审核稿（工作台输出） table, one row per draft line (model, product
 name, market, version, date, status, the 待研发确认 count and the links here),
@@ -23,6 +30,7 @@ Hello-Docs with the `web_progress` snapshot (see
 | Drafts | `Bingboom/Hello-Docs-Review` (private) → `docs/review-drafts/<MODEL>/<REGION>/` (working draft) and its `milestones/<version>/` | the operator, through commits on that repository |
 | Site code | `tools/rtd/review_site.py`, `tools/rtd_portal_assets/review_drafts_layout.html` (shell), `review_drafts.html` (overview), `review_draft_line.html` (line page), `_static/review-drafts.css` (auto-manual) | auto-manual PRs |
 | Code sync | `sync-hello-docs.yml` job `sync-review` → [`scripts/sync_mirror.sh`](../../../scripts/sync_mirror.sh), keeping `docs/review-drafts` | automatic on every auto-manual `main` push |
+| Landing page | [`mirrors/Hello-Docs-Review/README.md`](../../../mirrors/Hello-Docs-Review/README.md), installed as the repository's `README.md` by the same sync (`MIRROR_README`) | auto-manual PRs |
 | Hosting | a private Read the Docs project built from `Hello-Docs-Review/main` | the operator (RTD dashboard) |
 | Entry | 说明书工作台 → 工作入口 → 构建与发布 → 「审核稿（私有）」 | `review_site` in `manual_workbench.html` |
 
