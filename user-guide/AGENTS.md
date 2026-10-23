@@ -7,7 +7,7 @@
 - `hello_auto-doc.md`: index of the current human workflow guide; its topic pages live in `hello_auto-doc/`.
 - `quick_start_guide.md`: index of the happy-path onboarding and sample commands; its pages live in `quick_start_guide/`.
 - `closed_loop_ops_guide.md`: closed-loop operator playbook.
-- `two_plane_map.md`: authoritative map of the two repositories and Feishu base sets.
+- `two_plane_map.md`: authoritative map of the three repositories (engineering plane, business plane, document workbench) and Feishu base sets.
 
 ## Local Rules
 

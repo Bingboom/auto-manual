@@ -54,13 +54,21 @@ hero:
 # no lane lists them; the page points there instead. The focus is the
 # operator's call: re-confirm it whenever verified_on moves.
 focus:
-  note: 一条交付主线，语料与 SSOT 随实际需求补齐。先完成发布基线和真实维护，再逐步扩展共享与覆盖。
+  note: 资料写作在工作台进行，网页发布与维护闭环是交付主线；语料与 SSOT 随实际需求补齐。基于数据和模板的自动构建按需使用，共享与覆盖逐步扩展。
   evidence:
     - "file:auto-manual:code-as-doc/dev/manual_revitalization_execution.md"
     - "ack:夏冰 2026-09-26「按这个顺序 当下的系统建设布局 做一下 更清晰的布局版面的调整」"
     - "ack:操作者 2026-10-12「好，写成 REV-41 决定记录开 PR」"
     - "ack:操作者 2026-10-19「REV-39 暂缓」"
+    - "ack:操作者 2026-10-23「基于数据+模版 自动构建 这个过程 可以 退却为 按需使用了 我需要 把 Hello-Docs-Review工作台推出」"
+    - "ack:操作者 2026-10-23「公开系统建设页的「当前重点」要不要加上工作台？ === 加」"
   lanes:
+    - id: workbench
+      horizon: now
+      title: 资料开发工作台
+      goal: 在 Hello-Docs-Review 调用现有的基础设施、数据、模板和语料写作，由人审核；自动构建按需使用
+      action: 用参考稿复用写作技能出审核稿、在私有审核站审阅；审核通过的稿件作为批准原稿进入 Hello-Docs 发布与追溯的衔接待立项
+      items: [agent_operations.workbench]
     - id: web
       horizon: now
       title: 网页发布与维护闭环
@@ -373,6 +381,16 @@ capabilities:
         evidence:
           - "file:auto-manual:.agents/skills"
           - "file:auto-manual:AGENTS.md"
+      - id: workbench
+        label: 资料开发工作台
+        status: in_progress
+        verified_on: 2026-10-23
+        note: Agent 在私有的 Hello-Docs-Review 以参考说明书、规格书、模板和语料起草审核稿，在私有审核站审阅；审核通过的稿件转入发布的衔接尚未建设
+        evidence:
+          - "file:auto-manual:code-as-doc/dev/rtd_manual_portal/review-drafts-site.md"
+          - "file:auto-manual:.agents/skills/manual-review-draft/SKILL.md"
+          - "file:auto-manual:tools/rtd/review_site.py"
+          - "ack:操作者 2026-10-23「基于数据+模版 自动构建 这个过程 可以 退却为 按需使用了 我需要 把 Hello-Docs-Review工作台推出」"
       - id: source_registry
         label: 来源登记（SSOT）
         status: validated
@@ -507,6 +525,7 @@ now_next:
 tooling:
   note: Agent 可调用的技能和自动运行的钩子，构建时从仓库读取；未登记的技能和没有测试的钩子会标出来。
   skill_lanes:
+    workbench: [manual-review-draft]
     web: [hello-docs-pipeline-dispatch-triage, local-publish-queue-run]
     corpus: [bitable-translation-memory, bilingual-tm-maintenance, lark-tm-translation-preprocess, manual-rewrite-with-tm]
     shared_ir: []
