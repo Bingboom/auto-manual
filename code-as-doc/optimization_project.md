@@ -541,17 +541,25 @@ component and translation assets remain valuable for drafting, review and select
 builds. This changes prioritization, not recorded implementation status or the
 operator-approved REV-41 deferrals.
 
+**Workbench first (2026-10-23):** writing in the private Hello-Docs-Review
+workbench, where agents draw on the existing infrastructure, data, templates and
+corpus, is the main production route; data-and-template builds are used on
+demand. Supporting that writing is the first near-term priority. The hand-off of
+approved workbench drafts into Hello-Docs publication and traceability as
+approved originals is planned and not yet built.
+
 Before activating Workstreams L/M/N/O or expanding skeleton coverage, document a
 specific recurring use case, source authority, accountable reviewer, expected
 reuse/maintenance benefit and measurable acceptance. Preserve their existing
 deferred gates; do not silently reactivate them.
 
 Near-term planning should prioritize, subject to the existing execution ledger
-and approvals: (a) low-cost approved-source intake and release traceability;
-(b) product/SKU/market/language/version associations; (c) source-linked,
-selective knowledge extraction and human validation; (d) template applicability
-and drafting guidance for people/agents; (e) measured query/use and correction
-feedback. Extraction remains a derivative, not a new content authority.
+and approvals: (a) writing support in the Hello-Docs-Review workbench and the
+planned hand-off of approved drafts to Hello-Docs publication; (b) low-cost
+approved-source intake and release traceability; (c) product/SKU/market/language/version
+associations; (d) source-linked, selective knowledge extraction and human
+validation; (e) template applicability and drafting guidance for people/agents;
+(f) measured query/use and correction feedback. Extraction remains a derivative, not a new content authority.
 
 The numbered sequence below retains earlier engineering dependencies as a
 historical workstream order, **not an instruction to execute deferred

@@ -7,7 +7,7 @@
 - `hello_auto-doc.md`: index of the current human workflow guide; its topic pages live in `hello_auto-doc/`.
 - `quick_start_guide.md`: index of the happy-path onboarding and sample commands; its pages live in `quick_start_guide/`.
 - `closed_loop_ops_guide.md`: operator playbook for the closed-loop machinery (revision ledger, TM harvest, sentinels, annotated PDFs).
-- `two_plane_map.md`: authoritative map of the two git repos + two Feishu base sets (who runs where, sync channels, naming discipline).
+- `two_plane_map.md`: authoritative map of the three git repos (engineering plane, business plane, Hello-Docs-Review document workbench) + two Feishu base sets (who runs where, sync channels, naming discipline).
 
 ## Local Rules
 

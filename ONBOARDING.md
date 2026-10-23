@@ -8,26 +8,31 @@
 
 ## 1. 这是什么系统（60 秒版）
 
-便携储能产品说明书的 docs-as-code 流水线：飞书多维表存**产品数据**（规格/占位/脚注/
+便携储能产品说明书的内容管理系统。资料写作的主线在私有的资料开发工作台 Hello-Docs-Review：
+Agent 调用现有的基础设施、数据、模板和语料起草，由人审核。
+docs-as-code 构建流水线保留为按需使用的能力：飞书多维表存**产品数据**（规格/占位/脚注/
 能力矩阵），本仓库存**模板与构建器**（RST → LaTeX PDF / Word / HTML / IDML），
 评审者直接改飞书云文档，改动被**回写**（backport）到数据表或评审 RST——
 内容永远单源，产出永远重建。
 
-三条流转：**文档流**（规格→构建→评审→回写，闭环）、**语料流**（评审修正→翻译
+主线是**写作流**（工作台起草→审核→作为批准原稿进入发布，最后一步在建）。
+构建侧另有三条流转：**文档流**（规格→构建→评审→回写，闭环）、**语料流**（评审修正→翻译
 记忆→预翻译，闭环）、**模板流**（模板→构建，反哺回路在建）。
 
 系统为什么长成这样（一行内核 + 十环演进，十分钟读物）：
 [`code-as-doc/architecture/system_evolution_history.md`](code-as-doc/architecture/system_evolution_history.md)。
 
-## 2. 两平面拓扑（先记住这个再动手）
+## 2. 三个仓库（先记住这个再动手）
 
-| 平面 | 仓库 | 职责 | 数据 |
+| 角色 | 仓库 | 职责 | 数据 |
 |---|---|---|---|
 | 工程面 | `Bingboom/auto-manual` | **所有代码改动只发生在这里** | 旧 base（legacy，只读） |
-| 业务运行面 | `Bingboom/Hello-Docs` | 队列构建、评审分支、回写实操 | 新 base（文档构建 + TM 规范库 B）|
+| 业务面 | `Bingboom/Hello-Docs` | 业务数据与语料资产、网页发布、按需的队列构建、评审分支、回写实操 | 新 base（文档构建 + TM 规范库 B）|
+| 资料开发工作台 | `Bingboom/Hello-Docs-Review`（私有） | Agent 写作、人审核；只维护 `docs/review-drafts/` | 读新 base 与 TM-B |
 
-代码合入 auto-manual main → `sync-hello-docs.yml` 自动镜像到 Hello-Docs。
-**纪律：永远不要直接改 Hello-Docs 的代码。** 详图：[`user-guide/two_plane_map.md`](user-guide/two_plane_map.md)。
+代码合入 auto-manual main → `sync-hello-docs.yml` 自动镜像到 Hello-Docs 和 Hello-Docs-Review；
+两个镜像的首页 README 来自 [`mirrors/`](mirrors/)。
+**纪律：永远不要直接改两个镜像的代码；稿件只写在 Hello-Docs-Review。** 详图：[`user-guide/two_plane_map.md`](user-guide/two_plane_map.md)。
 
 ## 3. 什么跑在哪（bus factor 登记表）
 

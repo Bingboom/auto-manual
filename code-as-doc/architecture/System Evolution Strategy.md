@@ -73,6 +73,14 @@ claim that automated applicability assessment has been delivered.
 
 The strategic priority is to govern approved originals and reusable assets, retain authoritative provenance and version applicability, and make selected knowledge useful to people and agents. Structured generation is an optional production route, not a prerequisite for admitting or publishing existing manuals. Selective extraction from approved editions serves concrete queries and maintenance decisions; extracted facts remain source-linked and unapproved as new authority until verified by an accountable role. Hypothetical cross-product bulk changes alone must not justify new schema, skeleton or assembly investment.
 
+Writing is the main production route. In the private document workbench
+(Hello-Docs-Review), agents draft with the engineering infrastructure, governed
+data, templates and corpus, and people review the drafts; automated assembly from
+data and templates is used on demand. Workbench drafting and its private review
+site exist; promoting an approved draft into Hello-Docs publication and
+traceability as an approved original is planned, not implemented. The repository
+roles are mapped in [the two-plane map](../../user-guide/two_plane_map.md).
+
 The five strategic objectives apply across content classes. Governance depth
 is selective: tier-1 content (warning, safety and compliance text and spec
 values) requires explicit item-level records and accountable review; other
@@ -96,7 +104,7 @@ existing content.
    unknown boundary is visible and its resolution is measured within a
    declared scope, alongside the cost of maintaining those records.
 
-The overall lifecycle includes approved-source intake, authority and version governance, publication, selective extraction and consumption, and governed feedback. The production spine below remains valid for builds but is not the only entry route or the entire platform architecture.
+The overall lifecycle includes workbench writing and review, approved-source intake, authority and version governance, publication, selective extraction and consumption, and governed feedback. The production spine below remains valid for builds but is not the only entry route or the entire platform architecture.
 
 The production spine is unchanged:
 
