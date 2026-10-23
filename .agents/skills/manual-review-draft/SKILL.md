@@ -1,11 +1,11 @@
 ---
-name: us-jp-review-draft
-description: "制作或继续修改基于参考说明书和目标规格书的流水线外审核稿，支持 US→US 英文复用和 US→JP 日文语料复用。继承参考结构、原文、插图和共享样式，仅按目标规格及明确决定替换必要内容；建议和疑问进入审核意见。用于美规/日规审核稿、参考稿复用、规格回填和内容对照，以及继续修改 Hello-Docs-Review 私有仓库中的审核稿；不用于流水线 Start Review 或云文档回写。"
+name: manual-review-draft
+description: "输出说明书审核稿：制作或继续修改基于参考说明书和目标规格书的流水线外审核稿，目前支持 US→US 英文复用和 US→JP 日文语料复用。继承参考结构、原文、插图和共享样式，仅按目标规格及明确决定替换必要内容；建议和疑问进入审核意见。用于美规/日规审核稿、参考稿复用、规格回填和内容对照，以及继续修改 Hello-Docs-Review 私有仓库中的审核稿；不用于流水线 Start Review 或云文档回写。"
 ---
 
-# Reference-based Review Draft — US→US / US→JP
+# Manual Review Draft — 说明书审核稿
 
-一个入口、两种模式；保留 `$us-jp-review-draft` 名称以兼容已有调用。
+一个入口输出审核稿，按目标地区和语言选择模式；目前支持 US→US 英文和 US→JP 日文两种模式。原名 `$us-jp-review-draft` 于 2026-10-23 改为 `$manual-review-draft`。
 共同原则是**先继承参考稿，再替换有依据的目标参数；能复用就不改写**。
 
 ## 选择模式

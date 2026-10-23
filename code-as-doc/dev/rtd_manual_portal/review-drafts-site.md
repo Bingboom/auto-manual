@@ -3,7 +3,7 @@
 Status: active (2026-10-21)
 
 Review drafts (审核稿) — for example the JHP-3600C JP draft made with the
-[`us-jp-review-draft`](../../../.agents/skills/us-jp-review-draft/SKILL.md) skill —
+[`manual-review-draft`](../../../.agents/skills/manual-review-draft/SKILL.md) skill —
 carry unreleased content: unpublished regional editions, R&D values and open
 questions. auto-manual and Hello-Docs are both **public** repositories, so the
 drafts never enter either of them. They live in a third, private mirror and are
@@ -105,7 +105,7 @@ The private repository is where drafts are written; the review site is how they
 are read. Only `docs/review-drafts/` belongs to the private repository — every
 other path is overwritten by the next mirror sync, so never edit code there.
 
-- **Through an agent** (`us-jp-review-draft` skill, “版本、上传与发布”): one instruction
+- **Through an agent** (`manual-review-draft` skill, “版本、上传与发布”): one instruction
   is one version number and one commit. The agent rewrites the working draft in
   place, updates `draft.json` (version, date, status, summary, `rd_open`), the
   change log and `review.zh.md`, commits to `Hello-Docs-Review/main` and pushes.
