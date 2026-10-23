@@ -96,6 +96,10 @@ python -m tools.workspace_refresh_batch corpus -- python -m tools.revision_ledge
   网站在 Read the Docs for Business 上，其构建接口只认令牌：Hello-Docs 配置了
   `READTHEDOCS_API_TOKEN` 密钥时才查目标构建状态；未配置时跳过这一步（记为
   `Not checked`），由线上回执必须等于本次版本来判定，构建失败只会表现为等待超时。
+- 站点只对登录用户开放时（2026-10-19 起回执跳转到 Read the Docs 登录页），匿名读不到回执和页面：
+  有令牌时，本次版本的 RTD 构建成功即为最后一步，报告记 `stage: rtd-build-verified`、
+  `online: Not checked (site requires sign-in)`，回执、页面字节和页面快照哈希不再核对；
+  没有令牌时无法证明任何一步，立即失败（不再空等 20 次）。
 - 线上核验只在相关 main 合入或人工补做时触发，最多 20 次、间隔 30 秒等待目标构建，
   没有 schedule，不轮询飞书，不重建说明书。失败记录最后到达阶段，可单独补做。
 - 已发布的失败状态仍然显示旧数字；任务日志先立即反映刷新失败，静态页面的失败状态
