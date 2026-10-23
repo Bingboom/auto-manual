@@ -1193,6 +1193,11 @@
           "handling": "keep-frozen",
           "reason": "MA-323 / PR #1382: register the migrated four-control App label stylesheet; preserve all historical package bytes and approvals. Rebuild and publication require a separate scoped release.",
           "since": "2026-10-19"
+        },
+        "tools/web/frozen_package_registry.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-343 / fix/frozen-registry-minutes：登记工具改为分钟数必填，该包只把登记工具列为构建输入；已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-23"
         }
       }
     },
@@ -1451,6 +1456,16 @@
       "packages": 16,
       "handling": "keep-frozen",
       "reason": "MA-323 / PR #1382: register the migrated four-control App label stylesheet; preserve all historical package bytes and approvals. Rebuild and publication require a separate scoped release."
+    },
+    {
+      "date": "2026-10-23",
+      "files": [
+        "tools/web/frozen_package_registry.py"
+      ],
+      "packages": 1,
+      "handling": "keep-frozen",
+      "reason": "MA-343 / fix/frozen-registry-minutes：登记工具改为分钟数必填，该包只把登记工具列为构建输入；已发布字节不变，下次修订该书时重建并重审",
+      "minutes": 0
     }
   ]
 }
