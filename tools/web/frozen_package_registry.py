@@ -19,13 +19,14 @@ decision 2026-10-19, 「失败 + 保持冻结」):
 - packages without pins are listed as "impact unknown", never as unaffected.
 
 Each ``record`` call also appends a ``drift_log`` row (files, packages affected,
-handling, optional operator minutes) for the roadmap's intervention KPI::
+handling, operator minutes) for the roadmap's intervention KPI; the minutes are
+required since 2026-10-23 (0 when the change cost the operator nothing)::
 
     python -m tools.web.frozen_package_registry check
     python -m tools.web.frozen_package_registry report [--changed PATH ...]
     python -m tools.web.frozen_package_registry register DIR ... --approval "MA-123"
     python -m tools.web.frozen_package_registry unregister DIR ...
-    python -m tools.web.frozen_package_registry record --handling keep-frozen --reason "..." [--minutes N]
+    python -m tools.web.frozen_package_registry record --handling keep-frozen --reason "..." --minutes N
 """
 
 from __future__ import annotations
@@ -218,7 +219,7 @@ def _print_failures(result: RegistryResult, printer: Callable[[str], None]) -> N
                 + (" ..." if len(paths) > 5 else ""))
     if result.new_drift:
         printer(f"{PREFIX} record how each drifted package is handled: `python -m tools.web.frozen_package_registry "
-                'record --handling keep-frozen|rebuild-pending --reason "..." [--minutes N]`')
+                'record --handling keep-frozen|rebuild-pending --reason "..." --minutes N`')
     for key, paths in result.stale_drift.items():
         printer(f"{PREFIX} STALE {key}: recorded drift no longer present ({', '.join(paths[:5])}); "
                 "run `python -m tools.web.frozen_package_registry record` to drop it")
@@ -301,6 +302,8 @@ def record(repo_root: Path, registry: dict[str, Any], *, handling: str | None, r
     result = compare(repo_root, discover_packages(repo_root), registry)
     if result.new_drift and (handling not in HANDLINGS or not (reason or "").strip()):
         raise ValueError(f"new drift needs --handling ({'/'.join(HANDLINGS)}) and --reason")
+    if result.new_drift and (minutes is None or minutes < 0):
+        raise ValueError("new drift needs --minutes: the operator minutes this shared change cost (0 if none)")
     for key, paths in result.stale_drift.items():
         drift = registry["packages"][key]["known_drift"]
         for rel in paths:
@@ -316,9 +319,8 @@ def record(repo_root: Path, registry: dict[str, Any], *, handling: str | None, r
             "packages": len(result.new_drift),
             "handling": handling,
             "reason": (reason or "").strip(),
+            "minutes": minutes,
         }
-        if minutes is not None:
-            row["minutes"] = minutes
         registry["drift_log"].append(row)
     return result
 
@@ -338,7 +340,7 @@ def _parse_args(argv: list[str] | None) -> argparse.Namespace:
     rec = sub.add_parser("record", help="record handling for new drift; drop stale records")
     rec.add_argument("--handling", choices=HANDLINGS)
     rec.add_argument("--reason")
-    rec.add_argument("--minutes", type=int, help="operator minutes this shared change cost, if known")
+    rec.add_argument("--minutes", type=int, help="operator minutes this shared change cost (0 if none); required for new drift")
     for command in (reg, rec):
         command.add_argument("--date", default=dt.date.today().isoformat())
     return parser.parse_args(argv)
