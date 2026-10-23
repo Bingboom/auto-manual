@@ -63,7 +63,7 @@ Quality and release logic should follow concern-specific modules instead of drif
 ### Maintainability Guardrails
 
 - [`tools/check_maintainability_guardrails.py`](../../../tools/check_maintainability_guardrails.py)
-  - hotspot line caps, target-scoped IDML predicates, shared-Web target literals
+  - hotspot line caps, target-scoped IDML predicates, shared-Web target literals, and mirror-owned paths (`docs/publish`, `docs/knowledge`, `docs/review-drafts` must not be tracked in auto-manual)
   - runs the two ratchets below; each fails only on new or grown debt
 - [`tools/check_language_literal_ratchet.py`](../../../tools/check_language_literal_ratchet.py)
   - hand-written language tables against `data/language_literal_baseline.txt`
