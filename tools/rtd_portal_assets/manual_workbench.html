@@ -74,7 +74,7 @@
         {{ resource('构建任务', '选择目标与格式，按流程发起任务。', source_base ~ '?table=tblbnRHjpJeCVTtj', '打开文档构建表', 'code-as-doc/build_doc_guide.md') }}
         {{ resource('运行与检查', '查看业务构建记录，定位失败环节。', business ~ '/actions', '查看运行记录', 'code-as-doc/build_doc_guide.md') }}
         {{ resource('评审与回写', '确认目标稿件，按规则回收评审修改。', engineering ~ '/blob/main/user-guide/closed_loop_ops_guide.md', '查看评审流程', 'user-guide/hello_auto-doc.md', '编辑位置说明') }}
-        {% if review_site %}{{ resource('审核稿（私有）', '日规等审核稿的版本清单与在线阅读；需登录并具备项目权限。', review_site, '打开审核稿站', '.agents/skills/us-jp-review-draft/SKILL.md', '制作流程') }}{% endif %}
+        {% if review_site %}{{ resource('审核稿（私有）', '日规等审核稿的版本清单与在线阅读；需登录并具备项目权限。', review_site, '打开审核稿站', '.agents/skills/manual-review-draft/SKILL.md', '制作流程') }}{% endif %}
         {{ resource('网页发布', '检查发布候选、冻结版本与部署回执。', business ~ '/pulls', '查看业务 PR', 'code-as-doc/dev/web_publish_pipeline.md') }}
       </div>
       <p class="wb-next">下一步 <span aria-hidden="true">→</span> 核对交付链接与实际产物；触发任务不等于交付完成。</p>
