@@ -175,6 +175,22 @@ class ReleaseTests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     verify.verify_once(root, "target", fetch=fetch)
 
+    def test_a_sign_in_redirect_reads_as_login_required(self):
+        from tools.rtd.deployment_receipt import CrossOriginRedirect
+
+        def login(_url):
+            raise CrossOriginRedirect("https://app.readthedocs.com/cas/login?service=x")
+
+        def elsewhere(_url):
+            raise CrossOriginRedirect("https://example.com/moved")
+
+        with TemporaryDirectory() as tmp, patch.object(verify, "command", return_value=""):
+            with self.assertRaises(verify.LoginRequired):
+                verify.verify_once(Path(tmp), "target", fetch=login)
+            with self.assertRaises(CrossOriginRedirect) as other:
+                verify.verify_once(Path(tmp), "target", fetch=elsewhere)
+            self.assertNotIsInstance(other.exception, verify.LoginRequired)
+
 
 class ExportServiceTests(unittest.TestCase):
     def test_read_failure_preserves_valid_snapshot_and_redacts_error(self):
@@ -426,6 +442,38 @@ class QueueBatchTests(unittest.TestCase):
             result = json.loads(output.read_text())
             self.assertEqual(result['rtd_url'], 'https://app.readthedocs.com/projects/ht-docs-ht-manuals/builds/7/')
             self.assertNotIn('secret', out.getvalue() + output.read_text())
+
+    def test_a_sign_in_only_site_is_verified_by_this_revisions_build(self):
+        with TemporaryDirectory() as tmp:
+            output = Path(tmp) / 'result.json'
+            args = ['verify', '--root', tmp, '--revision', 'a' * 40, '--attempts', '20', '--output', str(output)]
+            response = {'results': [{'id': 9, 'commit': 'a' * 40, 'state': {'code': 'finished'}, 'success': True}]}
+            with patch('sys.argv', args), patch.object(verify, 'command', return_value='a' * 40), \
+                    patch.dict(os.environ, {verify.API_TOKEN_ENV: 'token'}), \
+                    patch.object(verify, 'fetch_builds', return_value=json.dumps(response).encode()), \
+                    patch.object(verify.time, 'sleep') as sleep, \
+                    patch.object(verify, 'verify_once', side_effect=verify.LoginRequired('online-login-required')), \
+                    redirect_stdout(io.StringIO()):
+                self.assertEqual(verify.main(), 0)
+            sleep.assert_not_called()
+            result = json.loads(output.read_text())
+            self.assertEqual((result['status'], result['stage'], result['rtd_build']), ('verified', 'rtd-build-verified', 9))
+            self.assertEqual(result['online'], 'Not checked (site requires sign-in)')
+            self.assertIn('deliverables', result['sources'])
+
+    def test_a_sign_in_only_site_without_a_token_fails_at_once(self):
+        with TemporaryDirectory() as tmp:
+            output = Path(tmp) / 'result.json'
+            args = ['verify', '--root', tmp, '--revision', 'a' * 40, '--attempts', '20', '--output', str(output)]
+            with patch('sys.argv', args), patch.object(verify, 'command', return_value='a' * 40), \
+                    patch.dict(os.environ, {verify.API_TOKEN_ENV: ''}), patch.object(verify.time, 'sleep') as sleep, \
+                    patch.object(verify, 'verify_once', side_effect=verify.LoginRequired('online-login-required')) as online, \
+                    redirect_stdout(io.StringIO()):
+                self.assertEqual(verify.main(), 1)
+            self.assertEqual((online.call_count, sleep.call_count), (1, 0))
+            result = json.loads(output.read_text())
+            self.assertEqual((result['status'], result['stage']), ('failed', 'online-verification'))
+            self.assertIn(verify.API_TOKEN_ENV, result['online'])
 
     def test_without_a_business_token_only_this_revisions_receipt_decides(self):
         with TemporaryDirectory() as tmp:
