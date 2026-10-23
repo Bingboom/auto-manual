@@ -295,6 +295,8 @@ class SubmissionTests(unittest.TestCase):
             root = Path(tmp)
             snap.atomic_json(snap.data_dir(root) / "deliverables-status.json", {"status": "changed"})
             def execute(args, cwd=None):
+                if args[:2] == ["git", "ls-remote"]:
+                    return "0" * 40 + "\trefs/heads/chore/workspace-deliverables"
                 return "tools/unrelated.py" if args[:3] == ["git", "diff", "--name-only"] else ""
             with patch.object(publisher, "command", side_effect=execute), self.assertRaisesRegex(RuntimeError, "outside"):
                 publisher.submit(root, "deliverables")
@@ -311,20 +313,26 @@ class SubmissionTests(unittest.TestCase):
 
 
 class RealGitHandoffTests(unittest.TestCase):
+    @staticmethod
+    def seed_remote(base: Path, original_command) -> tuple[Path, Path]:
+        remote, seed = base / "remote.git", base / "seed"
+        original_command(["git", "init", "--bare", "--initial-branch=main", str(remote)])
+        original_command(["git", "clone", str(remote), str(seed)])
+        original_command(["git", "config", "user.name", "Test"], cwd=seed)
+        original_command(["git", "config", "user.email", "test@example.invalid"], cwd=seed)
+        (seed / "README.md").write_text("Test repository")
+        original_command(["git", "add", "README.md"], cwd=seed)
+        original_command(["git", "commit", "-m", "test: initial"], cwd=seed)
+        original_command(["git", "push", "origin", "main"], cwd=seed)
+        return remote, seed
+
     def test_retry_reuses_branch_and_recovers_unmerged_failure_state(self):
         from tools import workspace_refresh_publish as publisher
         with TemporaryDirectory() as tmp:
             base = Path(tmp)
-            remote, seed, root = base / "remote.git", base / "seed", base / "run"
+            root = base / "run"
             original_command = publisher.command
-            original_command(["git", "init", "--bare", "--initial-branch=main", str(remote)])
-            original_command(["git", "clone", str(remote), str(seed)])
-            original_command(["git", "config", "user.name", "Test"], cwd=seed)
-            original_command(["git", "config", "user.email", "test@example.invalid"], cwd=seed)
-            (seed / "README.md").write_text("Test repository")
-            original_command(["git", "add", "README.md"], cwd=seed)
-            original_command(["git", "commit", "-m", "test: initial"], cwd=seed)
-            original_command(["git", "push", "origin", "main"], cwd=seed)
+            remote, seed = self.seed_remote(base, original_command)
             status = snap.data_dir(root) / "deliverables-status.json"
             snap.atomic_json(status, {"status": "failed", "stage": "source-read", "failure_key": "one"})
             prs = []
@@ -354,6 +362,47 @@ class RealGitHandoffTests(unittest.TestCase):
             self.assertEqual(len(prs), 1)
             self.assertEqual(original_command(["git", "rev-parse", "main"], cwd=seed),
                              original_command(["git", "rev-parse", "main"], cwd=remote))
+
+    def test_branch_left_by_a_merged_pr_restarts_from_main(self):
+        # Hello-Docs #242: the leftover branch of the squash-merged #240 made the next content PR conflict.
+        from tools import workspace_refresh_publish as publisher
+        with TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            root = base / "run"
+            original_command = publisher.command
+            remote, seed = self.seed_remote(base, original_command)
+            status = snap.data_dir(root) / "deliverables-status.json"
+            relative = status.relative_to(root).as_posix()
+            branch = "refs/heads/chore/workspace-deliverables"
+            prs = []
+            def execute(args, cwd=None):
+                args = list(args)
+                if args[0] == "gh":
+                    if args[2] == "list":
+                        return json.dumps(prs)
+                    prs.append({"url": f"https://github.com/example/repo/pull/{len(prs) + 1}"})
+                    return prs[-1]["url"]
+                if "clone" in args:
+                    args[-2] = str(remote)
+                return original_command(args, cwd=cwd)
+            def git(*args):
+                return original_command(["git", *args], cwd=remote)
+            snap.atomic_json(status, {"status": "failed", "stage": "source-read", "failure_key": "one"})
+            with patch.object(publisher, "command", side_effect=execute):
+                self.assertTrue(publisher.submit(root, "deliverables").endswith("/1"))
+            # Squash-merge the PR: main gains the file in a commit of its own, the branch stays behind.
+            (seed / relative).parent.mkdir(parents=True, exist_ok=True)
+            (seed / relative).write_text(git("show", f"{branch}:{relative}") + "\n")
+            original_command(["git", "add", relative], cwd=seed)
+            original_command(["git", "commit", "-m", "chore(workspace): refresh deliverables data (#1)"], cwd=seed)
+            original_command(["git", "push", "origin", "main"], cwd=seed)
+            prs.clear()
+            snap.atomic_json(status, {"status": "failed", "stage": "source-read", "failure_key": "two"})
+            with patch.object(publisher, "command", side_effect=execute):
+                self.assertTrue(publisher.submit(root, "deliverables").endswith("/1"))
+            self.assertEqual(git("rev-parse", f"{branch}^"), git("rev-parse", "main"))
+            self.assertEqual(git("diff", "--name-only", "main", branch), relative)
+            self.assertIn('"two"', git("show", f"{branch}:{relative}"))
 
 
 class QueueBatchTests(unittest.TestCase):
