@@ -209,11 +209,24 @@ _TARGET_SCOPED_IDML_PAGE_PREDICATE_RE = re.compile(
 MIRROR_OWNED_PATHS = ("docs/publish", "docs/knowledge", "docs/review-drafts")
 
 
+def is_mirror_checkout(repo_root: Path) -> bool:
+    """True in a mirror: its sync installs `mirrors/<name>/README.md` as the root README."""
+    readme = repo_root / "README.md"
+    if not readme.is_file():
+        return False
+    landing = readme.read_bytes()
+    return any(candidate.read_bytes() == landing
+               for candidate in sorted(repo_root.glob("mirrors/*/README.md")))
+
+
 def collect_mirror_owned_paths(repo_root: Path) -> list[str]:
     """Mirror-owned paths this tree commits (tracked files; the filesystem outside git).
 
     Tracked files are what reach main, so a local untracked publish staging tree passes.
+    A mirror checkout owns these paths, so it reports none.
     """
+    if is_mirror_checkout(repo_root):
+        return []
     if (repo_root / ".git").exists():
         result = subprocess.run(
             ["git", "-C", str(repo_root), "ls-files", "--", *MIRROR_OWNED_PATHS],

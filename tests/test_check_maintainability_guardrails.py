@@ -177,6 +177,18 @@ class TestCheckMaintainabilityGuardrails(unittest.TestCase):
 
             self.assertEqual(["docs/review-drafts"], guardrails.collect_mirror_owned_paths(root))
 
+    def test_mirror_checkout_owns_its_paths(self) -> None:
+        with temp_test_root() as root:
+            write_lines(root / "mirrors" / "Hello-Docs" / "README.md", ["# Hello-Docs"])
+            write_lines(root / "README.md", ["# auto-manual"])
+            write_lines(root / "docs" / "publish" / "web" / "index.md", ["library"])
+            self.assertEqual(["docs/publish"], guardrails.collect_mirror_owned_paths(root))
+
+            write_lines(root / "README.md", ["# Hello-Docs"])
+
+            self.assertTrue(guardrails.is_mirror_checkout(root))
+            self.assertEqual([], guardrails.collect_mirror_owned_paths(root))
+
     def test_repository_commits_no_mirror_owned_paths(self) -> None:
         self.assertEqual([], guardrails.collect_mirror_owned_paths(REPO_ROOT))
 
