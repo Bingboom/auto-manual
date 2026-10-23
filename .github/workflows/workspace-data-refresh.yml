@@ -33,6 +33,8 @@ jobs:
       FEISHU_TRANSLATION_MEMORY_BASE_TOKEN: ${{ secrets.FEISHU_TRANSLATION_MEMORY_BASE_TOKEN }}
       FEISHU_PUBLISHED_DOCS_BASE_TOKEN: ${{ secrets.FEISHU_PUBLISHED_DOCS_BASE_TOKEN }}
       FEISHU_PUBLISHED_DOCS_WEB_TABLE_ID: ${{ secrets.FEISHU_PUBLISHED_DOCS_WEB_TABLE_ID }}
+      FEISHU_PUBLISHED_DOCS_REVIEW_TABLE_ID: ${{ secrets.FEISHU_PUBLISHED_DOCS_REVIEW_TABLE_ID }}
+      FEISHU_PUBLISHED_DOCS_URL: ${{ secrets.FEISHU_PUBLISHED_DOCS_URL }}
       REFRESH_SOURCE: ${{ inputs.source || 'web_progress' }}
     steps:
       # web_progress dates each language version from the publish manifest's history, so it
