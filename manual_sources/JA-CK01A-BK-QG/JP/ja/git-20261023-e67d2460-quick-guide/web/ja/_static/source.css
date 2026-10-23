@@ -1,0 +1,31 @@
+/* JA-CK01A-BK-QG JP quick guide: page-local geometry only.
+   Colours, borders and panels come from the shared Web theme (prepared-document shared-style gate). */
+
+/* Packing lists: items keep their printed relative size (0.12rem per printed pt of height). */
+#furo-main-content .hb-package-art img[src$="/pack-panel.png"] { max-height: 7.24rem; }
+#furo-main-content .hb-package-art img[src$="/pack-handle.png"] { max-height: 7.36rem; }
+#furo-main-content .hb-package-art img[src$="/pack-install-manual.png"] { max-height: 5.40rem; }
+#furo-main-content .hb-package-art img[src$="/pack-label-sheet.png"] { max-height: 5.60rem; }
+#furo-main-content .hb-package-art img[src$="/pack-screw.png"] { max-height: 5.08rem; }
+#furo-main-content .hb-package-art img[src$="/pack-inlet-box.png"] { max-height: 6.16rem; }
+#furo-main-content .hb-package-art img[src$="/pack-charge-cable.png"] { max-height: 5.64rem; }
+#furo-main-content .hb-package-art img[src$="/pack-cable-hanger.png"] { max-height: 7.44rem; }
+#furo-main-content .hb-package-art img[src$="/pack-user-manual.png"] { max-height: 5.40rem; }
+#furo-main-content .hb-package-art img[src$="/pack-quick-guide.png"] { max-height: 5.40rem; }
+#furo-main-content .hb-package-art img[src$="/pack-anchor-bolt.png"] { max-height: 5.36rem; }
+#furo-main-content .hb-package-art img[src$="/need-conduit.png"] { max-height: 4.28rem; }
+#furo-main-content .hb-package-art img[src$="/need-outlet.png"] { max-height: 6.12rem; }
+#furo-main-content .hb-package-art img[src$="/need-wire.png"] { max-height: 5.32rem; }
+#furo-main-content .hb-package-art img[src$="/need-breaker.png"] { max-height: 6.68rem; }
+
+/* Wire legends, the switching detail and the store art are shown at 0.15rem per printed pt,
+   so their printed labels stay legible; they never exceed the column. */
+#furo-main-content img[src$="/step2-port-a-legend.png"] { width: 9.6rem !important; max-width: 100%; height: auto; }
+#furo-main-content img[src$="/step2-backup-legend.png"] { width: 7.9rem !important; max-width: 100%; height: auto; }
+#furo-main-content img[src$="/step2-port-a-switch.png"] { width: 16.9rem !important; max-width: 100%; height: auto; }
+#furo-main-content img[src$="/app-store-badges.png"] { width: 10rem !important; max-width: 100%; height: auto; }
+#furo-main-content img[src$="/app-download-qr.png"] { width: 12rem !important; max-width: 100%; height: auto; }
+
+/* Grey note panels hold one printed paragraph each. */
+#furo-main-content div.hb-text-panel { margin: .4rem 0 1.2rem; }
+#furo-main-content div.hb-text-panel p { margin: 0; }

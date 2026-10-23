@@ -1,0 +1,42 @@
+{
+  "schema_version": "ja-ck01a-bk-qg-validation/v1",
+  "environment": "cloud container: Python 3.13 (CI pins 3.12), requirements.lock except the four aliyun/oss2 wheels, Pandoc 3.9.0.2, Chromium (Playwright)",
+  "commands": [
+    {
+      "command": "python -m unittest tests.test_ja_ck01a_bk_qg_jp_web tests.test_prepared_document_shared_styles",
+      "result": "OK (candidate-only test skipped once accepted; cold render byte-identical to web/ja; acceptance refuses a resealed changed source)"
+    },
+    {
+      "command": "python -m unittest",
+      "result": "5637 run, 8 failures, 67 skipped; the same 8 fail on origin/main 5e4fd26 in this container (isolated Sphinx subprocesses cannot import jinja2 from the user site-packages; bitable schema CLI help text differs under Python 3.13) and none touches this package"
+    },
+    {
+      "command": "python -m ruff check build.py integrations tools tests scripts",
+      "result": "All checks passed"
+    },
+    {
+      "command": "python -m tools.check_maintainability_guardrails",
+      "result": "Guardrails OK; frozen-packages 131 packages, 0 new, 0 new drift"
+    },
+    {
+      "command": "python -m tools.check_doc_link_integrity",
+      "result": "0 broken"
+    },
+    {
+      "command": "python build.py check --config configs/config.us-en.yaml --model JE-1000F --region US --data-root tests/fixtures/phase2",
+      "result": "[check] OK (repository regression only)"
+    },
+    {
+      "command": "python -m sphinx -n -W --keep-going -b html web/ja <out>",
+      "result": "build succeeded (strict-sphinx.log)"
+    },
+    {
+      "command": "seal-time admissions on web/ja",
+      "result": "component admission OK; symbol asset admission OK (no symbol table); caption-frame admission passed for 7 live pills; full seal_frozen_web_evidence dry run on the accepted IR succeeded in a scratch directory (the release seal runs on the merged main commit)"
+    },
+    {
+      "command": "browser acceptance at 1280 and 390",
+      "result": "browser-acceptance.json: no horizontal overflow, 0 broken images, 0 live-label overflow"
+    }
+  ]
+}

@@ -1000,6 +1000,11 @@
       "registered": "2026-10-19",
       "known_drift": {}
     },
+    "manual_sources/JA-CK01A-BK-QG/JP/ja/git-20261023-e67d2460-quick-guide": {
+      "approval": "Operator request 2026-10-23 (「开两个窗口 把这俩说明书 走git only转网页文档」); renamed from HTO862A-QG on operator decision 「改用 JA-CK01A-BK-QG」; operator accepted candidate 8e39af0 for release 2026-10-23 (「上线提交发布」); acceptance hash-bound in source/approval.json",
+      "registered": "2026-10-23",
+      "known_drift": {}
+    },
     "manual_sources/JBP-1000B-WH/JP/ja/git-20261008-3aa6c003-native": {
       "approval": "MA-275（见 source/approval.json）",
       "registered": "2026-10-19",
