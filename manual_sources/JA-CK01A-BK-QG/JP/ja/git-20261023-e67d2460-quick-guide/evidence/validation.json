@@ -1,10 +1,10 @@
 {
-  "schema_version": "hto862a-quick-guide-validation/v1",
+  "schema_version": "ja-ck01a-bk-qg-validation/v1",
   "environment": "cloud container: Python 3.13 (CI pins 3.12), requirements.lock except the four aliyun/oss2 wheels, Pandoc 3.9.0.2, Chromium (Playwright)",
   "commands": [
     {
-      "command": "python -m unittest tests.test_hto862a_jp_quick_guide_web tests.test_prepared_document_shared_styles",
-      "result": "OK (20 tests, 1 candidate-only skip; cold render byte-identical to web/ja; acceptance refuses a resealed changed source)"
+      "command": "python -m unittest tests.test_ja_ck01a_bk_qg_jp_web tests.test_prepared_document_shared_styles",
+      "result": "OK (approved-only acceptance test skipped while a candidate; cold render byte-identical to web/ja)"
     },
     {
       "command": "python -m unittest",
@@ -32,7 +32,7 @@
     },
     {
       "command": "seal-time admissions on web/ja",
-      "result": "component admission OK; symbol asset admission OK (no symbol table); caption-frame admission passed for 7 live pills; full seal_frozen_web_evidence dry run on the accepted IR succeeded in a scratch directory (the release seal runs on the merged main commit)"
+      "result": "component admission OK; symbol asset admission OK (no symbol table); caption-frame admission passed for 7 live pills; require_publishable_manual_ir refuses the candidate as designed"
     },
     {
       "command": "browser acceptance at 1280 and 390",

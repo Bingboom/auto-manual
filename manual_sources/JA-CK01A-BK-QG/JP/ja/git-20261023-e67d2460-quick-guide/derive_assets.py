@@ -2,7 +2,7 @@
 
 Run from the repository root (PyMuPDF 1.28.0 / MuPDF 1.29.0, ``requirements.lock``)::
 
-    python manual_sources/HTO862A/JP/ja/git-20261023-e67d2460-quick-guide/derive_assets.py
+    python manual_sources/JA-CK01A-BK-QG/JP/ja/git-20261023-e67d2460-quick-guide/derive_assets.py
 
 The PDF is a single print artboard whose type is fully outlined (no text
 layer). Every figure is a clip of that artboard in source-page points. Live

@@ -1,4 +1,4 @@
-"""Hash-checked HTO862A JP quick guide through the existing prepared Web pipeline.
+"""Hash-checked JA-CK01A-BK-QG JP quick guide through the existing prepared Web pipeline.
 
 Run from the repository with an unused output directory as the sole argument.
 This adapter does not register a phase2 target or render its own HTML: the
@@ -28,7 +28,7 @@ from tools.web.frozen_ai_web import replay_package  # noqa: E402
 
 APPROVED = "operator-approved-git-only-release"
 CANDIDATE = "review-candidate-no-release-authorization"
-FILENAME = "manual_hto862aqg_jp_ja.md"
+FILENAME = "manual_jack01abkqg_jp_ja.md"
 STYLESHEET = "_static/source.css"
 
 

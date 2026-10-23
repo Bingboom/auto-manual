@@ -1,8 +1,8 @@
 {
-  "schema_version": "hto862a-quick-guide-asset-decisions/v1",
+  "schema_version": "ja-ck01a-bk-qg-asset-decisions/v1",
   "rule": "docs/renderers/contracts/STYLE_DEFINITION/web-artwork-reuse.md (inventory → identity → reuse → text handling → extract)",
   "inventory_checked": [
-    "manual_sources/** and data/manual_sources/**: no HTO862A package on main at 5e4fd26; the full HTO862A JP manual is being converted in a parallel window and was not reusable at intake",
+    "manual_sources/** and data/manual_sources/**: no JA-CK01A-BK or HTO862A package on main at 5e4fd26; the full JA-CK01A-BK JP manual (material code HTO862A-JP-JAK) is being converted in a parallel window and was not reusable at intake",
     "docs/renderers/web/assets/** (shared symbols, buttons, LCD; per-target folders): no home-distribution-panel, inlet box, wiring or packing art",
     "docs/renderers/web/assets/shared/symbols/manifest.json: warning triangles are grey or outline only (warning/outline-triangle-tinted, warning/filled-triangle-gray, warning-triangle/h1-jp-native); none is the printed yellow-filled glyph",
     "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets/symbol_warning_triangle_yellow.svg: yellow triangle with a yellow outer band; the quick guide prints a black-outlined triangle with a grey exclamation mark, so it is a different glyph",

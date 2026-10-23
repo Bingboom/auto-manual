@@ -1,4 +1,4 @@
-"""HTO862A JP quick guide Git-only Web package: frozen inputs, verbatim copy and replay."""
+"""JA-CK01A-BK-QG JP quick guide Git-only Web package: frozen inputs, verbatim copy and replay."""
 from __future__ import annotations
 
 import importlib.util
@@ -16,9 +16,9 @@ from tools.manual_ir.hashing import file_sha256
 from tools.word.bundle_docx_pandoc import resolve_pandoc_binary
 
 ROOT = Path(__file__).resolve().parents[1]
-PACKAGE = ROOT / 'manual_sources/HTO862A/JP/ja/git-20261023-e67d2460-quick-guide'
+PACKAGE = ROOT / 'manual_sources/JA-CK01A-BK-QG/JP/ja/git-20261023-e67d2460-quick-guide'
 SOURCE_SHA = 'e67d2460eff018f0f8cae0be53e404604d1d3bff620d3c69c8cd8396ccce3d7a'
-MARKDOWN = 'manual_hto862aqg_jp_ja.md'
+MARKDOWN = 'manual_jack01abkqg_jp_ja.md'
 # The numbered print chapter tabs; the cover panel has no Web chapter.
 CHAPTERS = ['サイトスペース要件', '1 表面取り付け', '2 配線', '3 蓄電池に接続する',
             '4 蓄電池に充電する', '5 アプリ設定']
@@ -32,7 +32,7 @@ def load(name, path):
     return module
 
 
-render_module = load('hto862a_jp_quick_guide_render', PACKAGE / 'render.py')
+render_module = load('ja_ck01a_bk_qg_jp_render', PACKAGE / 'render.py')
 
 
 def read(path):
@@ -46,7 +46,7 @@ def visible_text(markdown: str) -> str:
     return soup.get_text('\n')
 
 
-class HTO862AQuickGuideWebTest(unittest.TestCase):
+class JACK01ABKQuickGuideWebTest(unittest.TestCase):
     def setUp(self):
         self.root = Path(tempfile.mkdtemp())
         self.addCleanup(shutil.rmtree, self.root)
@@ -58,10 +58,12 @@ class HTO862AQuickGuideWebTest(unittest.TestCase):
 
     def test_identity_and_original_source(self):
         manifest = read(PACKAGE / 'source_manifest.json')
-        self.assertEqual(manifest['target']['model'], 'HTO862A-QG')
+        self.assertEqual(manifest['target']['model'], 'JA-CK01A-BK-QG')
         self.assertEqual(manifest['target']['region'], 'JP')
         self.assertEqual(manifest['target']['languages'], ['ja'])
         self.assertEqual(manifest['original_source']['sha256'], SOURCE_SHA)
+        self.assertEqual(manifest['identity']['material_code'], 'HTO862A-JP-JAK')
+        self.assertEqual(manifest['route']['route'], 'JA-CK01A-BK-QG/JP/ja/md')
         self.assertEqual(file_sha256(PACKAGE / 'source/original.pdf'), SOURCE_SHA)
         self.assertIsNone(manifest['printed_manual_version'])
         self.assertFalse(manifest['live_bitable_dependency'])

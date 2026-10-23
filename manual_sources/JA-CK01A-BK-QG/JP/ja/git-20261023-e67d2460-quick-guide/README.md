@@ -1,12 +1,12 @@
-# HTO862A / JP / ja — quick guide (クイックガイド) Web candidate
+# JA-CK01A-BK-QG / JP / ja — quick guide (クイックガイド) Web candidate
 
-Operator instruction, 2026-10-23: 「开两个窗口 把这俩说明书 走git only转网页文档」. This window converts the quick guide only; the full HTO862A JP manual (38-0001-000777) is a separate target converted in parallel. The JBP-1000B-WH / JA-AD500A-SIL rules apply: the cover and contents are not on the Web, the existing JE-1000F JP Web manual is the reference, and no Japanese wording is changed.
+Operator instruction, 2026-10-23: 「开两个窗口 把这俩说明书 走git only转网页文档」. This window converts the quick guide only; the full JA-CK01A-BK JP manual (38-0001-000777) is a separate target converted in parallel. The JBP-1000B-WH / JA-AD500A-SIL rules apply: the cover and contents are not on the Web, the existing JE-1000F JP Web manual is the reference, and no Japanese wording is changed.
 
-**Status: `operator-approved-git-only-release`.** The operator reviewed candidate `8a88b54` (PR #1597, 1280/390 renders against the PDF) and instructed 「上线提交发布，路由用 HTO862A-QG」 on 2026-10-23. The engineering PR is merged by operator review (AGENTS.md §8.6), not by an agent grant. `source/approval.json` binds every reviewed `source/` and `assets/` input hash; the rendered IR is publication-eligible. Changing a reviewed input invalidates the acceptance: `render.py` then refuses until a new operator acceptance is recorded.
+**Status: `review-candidate-no-release-authorization`.** `publication_eligible` is false and there is no `source/approval.json`; release sealing refuses this IR. The release acceptance given on 2026-10-23 for the earlier HTO862A-QG naming was withdrawn when the operator renamed the target (「改用 JA-CK01A-BK-QG」). After the operator reviews the renamed 1280/390 renders and instructs 「上线提交发布」 again, `source/approval.json` binds every reviewed `source/` and `assets/` input hash and the status becomes `operator-approved-git-only-release`.
 
 ## Source
 
-`source/original.pdf` is the Feishu wiki file `38-0001-000845 快速操作指南 HTO862A-JP-JAK RoHS Reach.pdf`, byte-exact, SHA-256 `e67d2460eff018f0f8cae0be53e404604d1d3bff620d3c69c8cd8396ccce3d7a`. It is one production artboard (Illustrator, 2025-06-13) holding both printed sides of a 130×185 mm accordion-folded sheet: 正面 (cover panel, サイトスペース要件, steps 1–3) and 反面 (3-③, step 4, step 5), framed by the drawing title block (part 38-0001-000845, drawing V0.2, 2025-06-12). The drawing version is not a printed manual version; `printed_manual_version` stays unknown.
+`source/original.pdf` is the Feishu wiki file `38-0001-000845 快速操作指南 HTO862A-JP-JAK RoHS Reach.pdf`, byte-exact, SHA-256 `e67d2460eff018f0f8cae0be53e404604d1d3bff620d3c69c8cd8396ccce3d7a`. It is one production artboard (Illustrator, 2025-06-13) holding both printed sides of a 130×185 mm accordion-folded sheet: 正面 (cover panel, サイトスペース要件, steps 1–3) and 反面 (3-③, step 4, step 5), framed by the drawing title block (part 38-0001-000845, drawing V0.2, 2025-06-12). The drawing version is not a printed manual version; `printed_manual_version` stays unknown. HTO862A-JP-JAK is the material code and 38-0001-000845 the part number; the quick guide prints no model, so the Web identity follows the full manual's printed model JA-CK01A-BK (`identity` in `source_manifest.json`).
 
 The type is outlined, so the PDF has no text layer. `source/transcription.json` records every printed line verbatim, in Web reading order, with its disposition: `live` (Web text), `in-art` (kept inside a named artwork file) or `web-excluded` (cover panel, production furniture).
 
@@ -41,18 +41,18 @@ These are listed for the source owner and not corrected here.
 
 ## Route
 
-Hello-Docs identity is `(model, region, lang)`. The full manual keeps `HTO862A/JP/ja` and the `HTO862A/JP` legacy default, so this package uses the model segment `HTO862A-QG` (route `HTO862A-QG/JP/ja/md`). The operator confirmed this route on 2026-10-23.
+Hello-Docs identity is `(model, region, lang)`. The full manual keeps `JA-CK01A-BK/JP/ja` and the `JA-CK01A-BK/JP` legacy default, so this package uses the model segment `JA-CK01A-BK-QG` (route `JA-CK01A-BK-QG/JP/ja/md`), as the operator decided on 2026-10-23 (「改用 JA-CK01A-BK-QG」).
 
 ## Rebuild
 
 Run from the repository root (`requirements.lock`: PyMuPDF 1.28.0 / MuPDF 1.29.0; Pandoc 3.9.0.2 as in CI):
 
 ```sh
-PKG=manual_sources/HTO862A/JP/ja/git-20261023-e67d2460-quick-guide
+PKG=manual_sources/JA-CK01A-BK-QG/JP/ja/git-20261023-e67d2460-quick-guide
 python "$PKG/derive_assets.py"
 python "$PKG/refresh_manifest.py"
-python "$PKG/render.py" tmp/hto862a-qg-jp
-python -m sphinx -n -W --keep-going -b html tmp/hto862a-qg-jp tmp/hto862a-qg-jp-html
+python "$PKG/render.py" tmp/ja-ck01a-bk-qg-jp
+python -m sphinx -n -W --keep-going -b html tmp/ja-ck01a-bk-qg-jp tmp/ja-ck01a-bk-qg-jp-html
 ```
 
 After any source change, replace `web/ja` with a fresh render, then run `refresh_manifest.py` again: `frozen_source_manifest.json` inventories every package file, including `web/ja` and `evidence/`. `render.py` checks every input hash and the shared component count before writing output.
@@ -60,7 +60,7 @@ After any source change, replace `web/ja` with a fresh render, then run `refresh
 ## Validation and release boundary
 
 ```sh
-python -m unittest tests.test_hto862a_jp_quick_guide_web tests.test_prepared_document_shared_styles
+python -m unittest tests.test_ja_ck01a_bk_qg_jp_web tests.test_prepared_document_shared_styles
 ```
 
 `evidence/` holds the 1280/390 browser acceptance (`browser-acceptance.json`, full-page screenshots) and the validation logs.

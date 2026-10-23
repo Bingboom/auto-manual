@@ -1,7 +1,7 @@
 {
   "schema_version": "auto-manual-frozen-web-source/v1",
   "target": {
-    "model": "HTO862A-QG",
+    "model": "JA-CK01A-BK-QG",
     "region": "JP",
     "languages": [
       "ja"
@@ -24,16 +24,24 @@
     "drawing_date": "2025-06-12",
     "note": "production drawing title block around the printed sides; it is not a printed manual version"
   },
-  "source_authority": "operator-designated Feishu wiki file 「38-0001-000845 快速操作指南 HTO862A-JP-JAK RoHS Reach.pdf」; operator instruction 2026-10-23 「开两个窗口 把这俩说明书 走git only转网页文档」 with the JBP-1000B-WH/JA-AD500A-SIL rules (cover and contents not on the Web, reference the JE-1000F JP Web manual, no Japanese wording changed). The original Japanese governs all copy. Operator accepted reviewed candidate 8a88b54 for public Git-only JP/ja release on 2026-10-23 (「上线提交发布，路由用 HTO862A-QG」; merge by operator review). Acceptance is hash-bound in source/approval.json.",
-  "source_role": "Git-only Japanese Web candidate of the HTO862A JP quick guide (クイックガイド); the full HTO862A JP manual is a separate target",
+  "identity": {
+    "printed_model": "JA-CK01A-BK",
+    "printed_model_source": "reported by the full-manual window as printed on the full manual's cover (型番) and 主な仕様 (Model), adopted by operator decision 2026-10-23; the quick guide itself prints no model",
+    "material_code": "HTO862A-JP-JAK",
+    "part_number": "38-0001-000845",
+    "note": "the material code and part number come from the file name and drawing title block; Web identity follows the printed model"
+  },
+  "source_authority": "operator-designated Feishu wiki file 「38-0001-000845 快速操作指南 HTO862A-JP-JAK RoHS Reach.pdf」; operator instruction 2026-10-23 「开两个窗口 把这俩说明书 走git only转网页文档」 with the JBP-1000B-WH/JA-AD500A-SIL rules (cover and contents not on the Web, reference the JE-1000F JP Web manual, no Japanese wording changed). The original Japanese governs all copy.",
+  "source_role": "Git-only Japanese Web candidate of the JA-CK01A-BK JP quick guide (クイックガイド); the full JA-CK01A-BK JP manual is a separate target",
   "route": {
-    "model_segment": "HTO862A-QG",
-    "reason": "Hello-Docs identity is (model, region, lang); the full HTO862A JP manual keeps HTO862A/JP/ja and the HTO862A/JP legacy default. Confirmed by the operator 2026-10-23 (「路由用 HTO862A-QG」)."
+    "model_segment": "JA-CK01A-BK-QG",
+    "route": "JA-CK01A-BK-QG/JP/ja/md",
+    "reason": "Hello-Docs identity is (model, region, lang); the full JA-CK01A-BK JP manual keeps JA-CK01A-BK/JP/ja and the JA-CK01A-BK/JP legacy default. Operator decision 2026-10-23 (「改用 JA-CK01A-BK-QG」), replacing the earlier HTO862A-QG route; the earlier release acceptance no longer applies."
   },
   "language_scope": "single",
   "live_bitable_dependency": false,
-  "publication_status": "operator-approved-git-only-release",
-  "publication_eligible": true,
+  "publication_status": "review-candidate-no-release-authorization",
+  "publication_eligible": false,
   "pending_source_review": [],
   "page_order": [
     "01_site_space_ja.rst",
@@ -217,8 +225,8 @@
     },
     {
       "path": "derive_assets.py",
-      "size": 15012,
-      "sha256": "bacadbcaf517176a8421d85870329c72403faff2abfce662168ab4433b7cfc82"
+      "size": 15019,
+      "sha256": "7486820a015003af8bbd37e8ba7c6f0f71f2f5095fae8c503b30cf5adb83279b"
     },
     {
       "path": "refresh_manifest.py",
@@ -227,18 +235,13 @@
     },
     {
       "path": "render.py",
-      "size": 7609,
-      "sha256": "4361c7e2b611ec918f36485304ff1d4353c9eef026f474c94f47377df68d1efc"
-    },
-    {
-      "path": "source/approval.json",
-      "size": 7765,
-      "sha256": "e98f494de304e08f93022e23dacdc88f006881f3bf156cf79757daa353e856ab"
+      "size": 7618,
+      "sha256": "3c3e6710cea902334facbe9f97cb6c12d596296603d717ba08d78489cdd6fb8b"
     },
     {
       "path": "source/asset_decisions.json",
-      "size": 21098,
-      "sha256": "153fe5219de517817faa022a64e87dfff14d1b5a33057a9fb8d3d1f546a2e974"
+      "size": 21143,
+      "sha256": "c82ebbaabf96ed4a889725173cf71152fe7de1064f58ba2f191acf33f43bb544"
     },
     {
       "path": "source/original.pdf",
@@ -277,13 +280,13 @@
     },
     {
       "path": "source/presentation.css",
-      "size": 2551,
-      "sha256": "1c020d72869d0e6ba8c0f3d6a4de6cdb699867e746cab5ce0bf12fee33990761"
+      "size": 2558,
+      "sha256": "c9d8cc3b405291232a70c2988cf1039a49b7a25cf9d5041d7dbf0f435a825f83"
     },
     {
       "path": "source/transcription.json",
-      "size": 10782,
-      "sha256": "50c4378465fbef7798316fcdcd94199e265797c608b6d8c2b5492ae3a56b95d0"
+      "size": 10777,
+      "sha256": "86cfb43593b3659871919d8607c377aff5907ad8c7dfa4364acb0afb1d7f4031"
     }
   ],
   "repo_inputs": [
