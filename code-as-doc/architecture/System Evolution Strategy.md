@@ -61,6 +61,16 @@ verifiably. Governed feedback returns through authorized review to improve the
 content and the governance rules themselves. The aim is to reduce repeated
 editing and repeated judgment; the reuse and propagation constraints are in §6.
 
+Reusable templates, skeletons, shared components, approved copy, terminology and
+translation memory are governed knowledge assets, not merely inputs to a build
+engine. They should help documentation specialists and agents understand how a
+manual is organized, how approved content is expressed, and under which
+conditions reuse is appropriate. Template-assisted drafting and structured
+builds are complementary paths; neither is mandatory for every target.
+Applicability, provenance, approval and target-specific verification take
+precedence over similarity. Template guidance is a strategic direction, not a
+claim that automated applicability assessment has been delivered.
+
 The five strategic objectives apply across content classes. Governance depth
 is selective: tier-1 content (warning, safety and compliance text and spec
 values) requires explicit item-level records and accountable review; other
