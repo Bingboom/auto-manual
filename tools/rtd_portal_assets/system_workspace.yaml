@@ -67,8 +67,9 @@ focus:
       horizon: now
       title: 资料开发工作台
       goal: 在 Hello-Docs-Review 调用现有的基础设施、数据、模板和语料写作，由人审核；自动构建按需使用
-      action: 用参考稿复用写作技能出审核稿、在私有审核站审阅；审核通过的稿件作为批准原稿进入 Hello-Docs 发布与追溯的衔接待立项
+      action: 用参考稿复用写作技能出审核稿、在私有审核站审阅；并行写稿按 REV-47 规则（一条稿线一个写者、写稿会话对公开仓库只读），下一批 2–3 条稿线做并行试点；审核通过的稿件作为批准原稿进入 Hello-Docs 发布与追溯的衔接待立项
       items: [agent_operations.workbench]
+      revs: [REV-47]
     - id: web
       horizon: now
       title: 网页发布与维护闭环
@@ -110,9 +111,9 @@ focus:
       revs: [REV-41..REV-43]
     - id: multi_agent
       horizon: deferred
-      title: 多 Agent · 按需再启动
-      goal: 当前只保留设计参考，不进入交付主线
-      action: 出现持续的交接或并发瓶颈后，再评估是否启动；不作为网页、语料、SSOT 或 Shared IR（共享底稿）的前置条件
+      title: 工作台协作 · 按试点再启动
+      goal: 多 agent 写稿已在工作台发生；认领与交接工具暂不建设
+      action: 先按 REV-47 的规则运行（一条稿线一个写者、写稿会话对公开仓库只读）；首个并行试点显示认领或交接成为瓶颈时，再评估重启 REV-45；不作为网页、语料、SSOT 或 Shared IR（共享底稿）的前置条件
   regions: {EU: 欧规, US: 美规, UK: 英规, JP: 日规, KR: 韩规, CN: 中规, AU: 澳规, BR: 巴西规, TW: 台规}
   skeleton_families:
     - {family: MAIN, label: 便携电源}
@@ -390,6 +391,7 @@ capabilities:
           - "file:auto-manual:code-as-doc/dev/rtd_manual_portal/review-drafts-site.md"
           - "file:auto-manual:.agents/skills/manual-review-draft/SKILL.md"
           - "file:auto-manual:tools/rtd/review_site.py"
+          - "rev:REV-47=active"
           - "ack:操作者 2026-10-23「基于数据+模版 自动构建 这个过程 可以 退却为 按需使用了 我需要 把 Hello-Docs-Review工作台推出」"
       - id: source_registry
         label: 来源登记（SSOT）
@@ -401,9 +403,9 @@ capabilities:
           - "rev:REV-44=done"
           - "ack:夏冰 2026-09-25「验收」"
       - id: agent_dispatch
-        label: 多 Agent 设计储备（暂缓）
+        label: 工作台协作设计储备（暂缓）
         status: planned
-        note: 操作者尚未准备建设多 Agent；仅保留设计参考，实施暂缓，重启须另行批准，不阻塞网页化、语料、SSOT、IR 或 IDML 工作
+        note: 写作成为主线后重新定位为工作台协作；仅保留设计参考，是否重启由 REV-47 并行试点数据决定并须另行批准，不阻塞网页化、语料、SSOT、IR 或 IDML 工作
         evidence:
           - "rev:REV-45=deferred"
           - "file:auto-manual:code-as-doc/dev/multi_agent_dispatch_design.md"
@@ -516,6 +518,7 @@ now_next:
   now_labels:
     REV-09: 代表目标修订、发布与恢复演练
     REV-46: 冻结包登记与漂移控制
+    REV-47: 资料开发工作台：写作规则与并行试点
 
 # Skills and hooks: read from the tree at build time (.agents/skills,
 # .claude/skills, .claude/settings.json, .githooks/pre-push); nothing is
