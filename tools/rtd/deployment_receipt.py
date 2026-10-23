@@ -252,11 +252,21 @@ def _probe_url(url: str) -> str:
     return _https_url(url) + "?receipt_probe=" + uuid4().hex
 
 
+class CrossOriginRedirect(ValueError):
+    """A deployment read was sent off its origin, for example to a sign-in page; ``target`` is where."""
+
+    def __init__(self, target: str) -> None:
+        super().__init__("Cross-origin deployment redirect refused")
+        self.target = target
+
+
 class _Redirect(HTTPRedirectHandler):
     def redirect_request(self, req, fp, code, msg, headers, newurl):
+        # Compare origins before the strict URL checks: a sign-in page's own query must not hide where it is.
+        moved = urlsplit(newurl)
+        if (moved.scheme, moved.hostname, moved.port or 443) != _origin(_canonical_probe_url(req.full_url)):
+            raise CrossOriginRedirect(newurl)
         target = _canonical_probe_url(newurl)
-        if _origin(_canonical_probe_url(req.full_url)) != _origin(target):
-            raise ValueError("Cross-origin deployment redirect refused")
         return super().redirect_request(req, fp, code, msg, headers, _probe_url(target))
 
 

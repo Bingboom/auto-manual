@@ -30,6 +30,7 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
+import hashlib
 import json
 import os
 import re
@@ -373,6 +374,17 @@ def _utc_today() -> dt.date:
     return dt.datetime.now(dt.timezone.utc).date()
 
 
+def asset_versions(assets: Path) -> dict[str, str]:
+    """A short content hash per portal stylesheet and script, appended as ``?v=`` to the page's links.
+
+    The files keep their names from build to build, so without it a browser or the CDN can serve
+    an old stylesheet to a new page.
+    """
+    folder = assets / PathSegments.STATIC
+    return {path.name: hashlib.sha256(path.read_bytes()).hexdigest()[:12]
+            for path in sorted(folder.iterdir()) if path.suffix in {".css", ".js"} and path.is_file()}
+
+
 def deliverables_page_context(app, assets: Path, names: dict[tuple[str, str], str],
                               language_order: Sequence[str]) -> dict[str, Any]:
     """Context for DELIVERABLES_PAGE; the page always renders, missing inputs show as 无数据."""
@@ -410,6 +422,7 @@ def deliverables_page_context(app, assets: Path, names: dict[tuple[str, str], st
     from tools.workspace_freshness import freshness
     view["freshness"] = freshness(repo_root(), registry or {}, today)
     view["page_built_at"] = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
+    view["asset_v"] = asset_versions(assets)
     view["production"] = production_context(
         root=repo_root(), assets=assets, manifest=Path(app.srcdir).parent / PathSegments.PUBLISH_MANIFEST_JSON,
         snapshot=snapshot, registry=registry, today=today, delivery_stale=view["stale"],

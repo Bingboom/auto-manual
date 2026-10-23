@@ -17,7 +17,8 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from tools.rtd.deployment_receipt import (
-    DEFAULT_RTD_BASE_URL, FetchSession, _without_rtd_proxy_injection, rtd_project_slug_from_base_url,
+    DEFAULT_RTD_BASE_URL, CrossOriginRedirect, FetchSession, _without_rtd_proxy_injection,
+    rtd_project_slug_from_base_url,
 )
 from tools.workspace_freshness import inventory
 from tools.workspace_refresh_publish import command
@@ -27,6 +28,10 @@ BASE_URL = DEFAULT_RTD_BASE_URL.rstrip("/") + "/"
 ROUTE = "workspace/deliverables/index.html"
 # Read the Docs for Business answers its builds API only with a token; Community answers anonymously.
 API_TOKEN_ENV = "READTHEDOCS_API_TOKEN"
+
+
+class LoginRequired(ValueError):
+    """The site answers signed-in readers only, so its receipt and pages cannot be read anonymously."""
 
 
 def builds_api(base_url: str) -> tuple[str, str, bool] | None:
@@ -52,7 +57,12 @@ def verify_once(root: Path, revision: str, *, fetch=None) -> dict:
     fetch = fetch or FetchSession().fetch
     # A local candidate is not a mainline version; verify ancestry at the checkout boundary.
     command(["git", "merge-base", "--is-ancestor", revision, "origin/main"], cwd=root)
-    payload = json.loads(fetch(BASE_URL + "manual-deployment.json"))
+    try:
+        payload = json.loads(fetch(BASE_URL + "manual-deployment.json"))
+    except CrossOriginRedirect as exc:
+        if "/login" in urlsplit(exc.target).path:
+            raise LoginRequired("online-login-required") from exc
+        raise
     if payload.get("workspace_revision") != revision:
         raise ValueError("online-version-mismatch")
     expected = inventory(root)
@@ -70,6 +80,16 @@ def verify_once(root: Path, revision: str, *, fetch=None) -> dict:
             raise ValueError("online-page-source-mismatch")
     return {"stage": "online-verified", "status": "verified", "revision": revision,
             "sources": expected, "url": BASE_URL + ROUTE,
+            "checked_at": dt.datetime.now(dt.timezone.utc).isoformat()}
+
+
+def build_verified(root: Path, revision: str) -> dict:
+    """On a sign-in-only site the last readable proof: this revision's Read the Docs build succeeded.
+
+    The receipt, page bytes and page snapshot hashes cannot be read there, and the report says so.
+    """
+    return {"stage": "rtd-build-verified", "status": "verified", "revision": revision,
+            "sources": inventory(root), "online": "Not checked (site requires sign-in)", "url": BASE_URL + ROUTE,
             "checked_at": dt.datetime.now(dt.timezone.utc).isoformat()}
 
 
@@ -105,6 +125,12 @@ def verify_attempt(root: Path, revision: str, api: tuple[str, str, bool] | None,
     report["stage"] = "online-verification"
     try:
         report.update(verify_once(root, revision))
+    except LoginRequired:
+        # Only the build check above can still prove this revision; without it nothing can, so stop waiting.
+        if api is None:
+            report["online"] = f"Not readable (site requires sign-in; set {API_TOKEN_ENV})"
+            raise ValueError("site requires sign-in") from None
+        report.update(build_verified(root, revision))
     except (ValueError, OSError):
         if last:
             raise
