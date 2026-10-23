@@ -14,8 +14,7 @@
     "path": "source/original.pdf",
     "sha256": "e67d2460eff018f0f8cae0be53e404604d1d3bff620d3c69c8cd8396ccce3d7a",
     "physical_page_count": 1,
-    "feishu_wiki": "https://xcn57j1urbe6.feishu.cn/wiki/VHO7wgsAViwRTbkDz7lc4GhAnLb",
-    "feishu_file_token": "XkU6bpKY1oXEYDxjuXgcEdbCnwc"
+    "feishu_wiki": "https://xcn57j1urbe6.feishu.cn/wiki/VHO7wgsAViwRTbkDz7lc4GhAnLb"
   },
   "printed_manual_version": null,
   "drawing_block": {
@@ -53,8 +52,8 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 5906,
-      "sha256": "960ebfc2cbc3719f67935610f3105610d12028c712d3851414f63f5f60e14bf1"
+      "size": 5863,
+      "sha256": "0e81b7af8d67df0242bb415403dd1a2d6097212bcf48a31cf54f3ade377d01b7"
     },
     {
       "path": "assets/app-download-qr.png",
@@ -313,8 +312,8 @@
     },
     {
       "path": "source_manifest.json",
-      "size": 12945,
-      "sha256": "84602b4bdeb6362916cb423e05af80a2a42b6b58a2cc9ce267fae953ec159421"
+      "size": 12889,
+      "sha256": "3c0518dae7f01c30464940e2a107977ab9bf16b972e8958db0bad81707cfba43"
     },
     {
       "path": "web/ja/_static/source.css",
@@ -503,8 +502,8 @@
     },
     {
       "path": "web/ja/manual.ir.json",
-      "size": 173721,
-      "sha256": "10933c349b99e99b0199480baef78c40889f2c555db9a94caa844847020c0acc"
+      "size": 173661,
+      "sha256": "7e106d168e90570fdc51b6185e24ec4014d4f382884d2c7d300a730246f18ec1"
     },
     {
       "path": "web/ja/manual_bundle.html",

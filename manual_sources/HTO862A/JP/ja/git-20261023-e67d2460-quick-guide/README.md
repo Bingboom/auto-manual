@@ -6,7 +6,7 @@ Operator instruction, 2026-10-23: 「开两个窗口 把这俩说明书 走git o
 
 ## Source
 
-`source/original.pdf` is the Feishu wiki file `38-0001-000845 快速操作指南 HTO862A-JP-JAK RoHS Reach.pdf` (file token `XkU6bpKY1oXEYDxjuXgcEdbCnwc`), byte-exact, SHA-256 `e67d2460eff018f0f8cae0be53e404604d1d3bff620d3c69c8cd8396ccce3d7a`. It is one production artboard (Illustrator, 2025-06-13) holding both printed sides of a 130×185 mm accordion-folded sheet: 正面 (cover panel, サイトスペース要件, steps 1–3) and 反面 (3-③, step 4, step 5), framed by the drawing title block (part 38-0001-000845, drawing V0.2, 2025-06-12). The drawing version is not a printed manual version; `printed_manual_version` stays unknown.
+`source/original.pdf` is the Feishu wiki file `38-0001-000845 快速操作指南 HTO862A-JP-JAK RoHS Reach.pdf`, byte-exact, SHA-256 `e67d2460eff018f0f8cae0be53e404604d1d3bff620d3c69c8cd8396ccce3d7a`. It is one production artboard (Illustrator, 2025-06-13) holding both printed sides of a 130×185 mm accordion-folded sheet: 正面 (cover panel, サイトスペース要件, steps 1–3) and 反面 (3-③, step 4, step 5), framed by the drawing title block (part 38-0001-000845, drawing V0.2, 2025-06-12). The drawing version is not a printed manual version; `printed_manual_version` stays unknown.
 
 The type is outlined, so the PDF has no text layer. `source/transcription.json` records every printed line verbatim, in Web reading order, with its disposition: `live` (Web text), `in-art` (kept inside a named artwork file) or `web-excluded` (cover panel, production furniture).
 
