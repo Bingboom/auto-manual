@@ -49,7 +49,7 @@
 
 /* 网页说明书进度 (web_progress.html): Web manuals only. Orange is online, its tint
    a market version short of languages, dashed grey a market with SKUs and no Web manual yet. */
-.wp { --wp-full: #b44a0f; --wp-partial: #f1c4a5; --wp-gap: #e3e6eb; --wp-blue: #1f5fae; --wp-grey: #7d838e; }
+.wp { --wp-full: #b44a0f; --wp-partial: #f1c4a5; --wp-gap: #e3e6eb; --wp-blue: #1f5fae; --wp-grey: #7d838e; --wp-review: #3f74c2; }
 .wp-kpis { margin-top: 0; }
 .wp-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr)); gap: 14px; margin: 14px 0 22px; }
 .wp-card { background: #fff; border: 1px solid var(--line); border-radius: 11px; padding: 16px 18px; min-width: 0; display: grid; gap: 8px; align-content: start; }
@@ -62,6 +62,7 @@
 .wp-legend .is-partial { background: var(--wp-partial); }
 .wp-legend .is-gap { background: var(--wp-gap); outline: 1px dashed #b5b9c1; outline-offset: -1px; }
 .wp-legend .is-editions { background: var(--wp-blue); }
+.wp-legend .is-review { background: var(--wp-review); opacity: .55; }
 .wp-legend .is-models { background: var(--wp-grey); }
 .wp-trend { position: relative; min-height: 210px; }
 .wp-trend svg { display: block; width: 100%; overflow: visible; }
@@ -77,6 +78,7 @@
 .wp-bar i { display: block; height: 100%; }
 .wp-bar .is-full { background: var(--wp-full); }
 .wp-bar .is-partial { background: var(--wp-partial); }
+.wp-bar .is-review { background: var(--wp-review); opacity: .55; }
 .wp-bar .is-gap { background: repeating-linear-gradient(135deg, var(--wp-gap) 0 5px, #f3f4f6 5px 9px); }
 .wp-bar-value { color: #6c727d; white-space: nowrap; font-variant-numeric: tabular-nums; }
 .wp-matrix { display: grid; gap: 8px; }
@@ -98,6 +100,30 @@ a.wp-chip.is-full { background: #fdf3ec; color: #b44a0f; border: 1px solid #e9b8
 a.wp-chip.is-partial { background: #fff; color: #b44a0f; border: 1px dashed #d98b5c; }
 a.wp-chip:hover, a.wp-chip:focus-visible { text-decoration: underline; text-underline-offset: 2px; }
 span.wp-chip.is-gap { color: #8a8f99; border: 1px dashed #c4c8cf; }
+a.wp-chip.is-review { background: #eef3fb; color: #2a5ea8; border: 1px solid #b9cdea; }
+a.wp-chip.is-extra { margin-left: 4px; font-size: 11.5px; padding: 1px 6px; }
+.wp-sources { display: inline-flex; gap: 10px; margin-left: 10px; }
+.wp-feishu { font-size: 12.5px; color: var(--wp-blue); text-decoration: none; white-space: nowrap; }
+.wp-feishu::after { content: " ↗"; }
+.wp-feishu:hover, .wp-feishu:focus-visible { text-decoration: underline; text-underline-offset: 2px; }
+.wp-reviews { display: grid; gap: 8px; margin: 14px 0 4px; }
+.wp-reviews h3 { margin: 0; font-size: 15px; font-weight: 600; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.wp-reviews h3 span { font-size: 12.5px; font-weight: 500; color: #8a8f99; }
+.wp-review-table { width: 100%; min-width: 760px; border-collapse: collapse; font-size: 12.5px; }
+.wp-review-table thead th { text-align: left; font-weight: 600; color: #858b96; padding: 9px 10px; border-bottom: 1px solid #f0f1f4; white-space: nowrap; }
+.wp-review-table tbody th { text-align: left; padding: 8px 10px 8px 14px; border-bottom: 1px solid #f0f1f4; font-weight: 400; min-width: 170px; }
+.wp-review-table tbody th b { display: block; font-size: 13px; font-weight: 650; }
+.wp-review-table tbody th span { display: block; color: #6c727d; }
+.wp-review-table td { padding: 8px 10px; border-bottom: 1px solid #f0f1f4; vertical-align: top; }
+.wp-review-table .wp-n { text-align: right; }
+.wp-mono { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.wp-status { color: #3a3f48; min-width: 200px; }
+.wp-open { display: inline-block; min-width: 1.8em; padding: 0 6px; border-radius: 999px; background: #fdf3ec; color: #b44a0f; font-weight: 650; text-align: center; }
+.wp-links { white-space: nowrap; }
+.wp-links a { margin-right: 10px; color: var(--wp-blue); text-decoration: none; }
+.wp-links a:hover, .wp-links a:focus-visible { text-decoration: underline; text-underline-offset: 2px; }
+.dl-feishu { align-self: center; font-size: 11.5px; color: var(--wp-blue, #1f5fae); text-decoration: none; margin: 0 6px 0 -2px; }
+.dl-feishu:hover, .dl-feishu:focus-visible { text-decoration: underline; }
 .wp-table tr[hidden], .wp-table tbody[hidden] { display: none; }
 .dl-details > summary { cursor: pointer; list-style: none; }
 .dl-details > summary::-webkit-details-marker { display: none; }
