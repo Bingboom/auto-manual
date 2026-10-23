@@ -58,6 +58,8 @@ python -m tools.workspace_refresh_batch corpus -- python -m tools.revision_ledge
 其余来源仍不定时轮询。规则见 [网页说明书进度](rtd_manual_portal/web-progress.md#refreshing)。
 导出失败保留旧值并提交可审核的失败状态；同一事件仅一个 GitHub issue，不重复评论。
 已有内容 PR 会被复用，不自动合入。审核人员检查来源、减少保护和执行记录后合入。
+内容 PR 合入或关闭后留下的分支不再复用：下一次刷新从 main 重开该分支，用 `--force-with-lease`
+只替换刚读到的那个提交，以免已 squash 合入的旧提交让新 PR 与 main 冲突（Hello-Docs #242）。
 
 | 卡住的阶段 | 操作者补做 |
 | --- | --- |
