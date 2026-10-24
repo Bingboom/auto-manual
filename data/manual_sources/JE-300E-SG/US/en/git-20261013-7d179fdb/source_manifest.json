@@ -1,0 +1,270 @@
+{
+  "schema_version": 1,
+  "package_kind": "source-archive-only",
+  "status": "archive-only",
+  "eligible_for_web_publish": false,
+  "target": {
+    "model": "JE-300E-SG",
+    "product_name": "Jackery Explorer 300",
+    "region": "US",
+    "requested_language": "en",
+    "technical_version": "git-20261013-7d179fdb",
+    "printed_manual_version": null
+  },
+  "original_source": {
+    "filename": "Jackery Explorer 300 (JE-300E-SG) User Manual-沙金色.pdf",
+    "path": "source/Jackery Explorer 300 (JE-300E-SG) User Manual-沙金色.pdf",
+    "sha256": "7d179fdb0e3822657904440b17aba0a1abee22699d5c2764c178097d4240ce16",
+    "size_bytes": 18416463,
+    "page_count": 43,
+    "pdf_format": "PDF 1.6",
+    "encrypted": false,
+    "native_text_empty_pages": 43,
+    "authority": "operator-supplied original PDF, preserved byte-for-byte"
+  },
+  "page_map": "source/page-map.json",
+  "assets": "source/figures.json",
+  "asset_decisions": "audit/asset-decisions.json",
+  "operator_confirmed_scope": "Archive original PDF, illustrations and provenance records in Git only. No English-body transcription or Web conversion in this archive.",
+  "normalizations": [
+    "Source indicator 10 has separate high and low temperature pictograms; 12 LCD crop file ordinals map to 11 source indicator numbers.",
+    "Archived graphic labels are source pixels; no background removal or artwork rewriting.",
+    "Ten shared standard safety pictograms are preserved byte-for-byte with repository provenance; they are not claimed to be extracted PDF bytes."
+  ],
+  "deliberate_exclusions": [
+    "Local OCR TXT/TSV, because they are unreviewed and are not part of the operator-confirmed archive-only scope.",
+    "English prose/transcription, MyST/HTML, phase2 registration and publish metadata."
+  ],
+  "inputs": [
+    {
+      "path": "README.md",
+      "size": 1702,
+      "sha256": "99a65cc0725937bee3586690884795f2b694c4dfb88d0b813f6f8efac5781752"
+    },
+    {
+      "path": "assets/ac-charging.png",
+      "size": 67154,
+      "sha256": "2ea620a2ab673409929be005350411e829e94a194bc3a051014b1fff6dcd6065"
+    },
+    {
+      "path": "assets/ac-output.png",
+      "size": 67203,
+      "sha256": "f0d425672241a162997b3e448ad28e9a0c2dcac539cae7ccf799a35c74195dce"
+    },
+    {
+      "path": "assets/car-charging.png",
+      "size": 86531,
+      "sha256": "e5722678fc81c632cdc707e3ad6ad67f1cb9849bccae8248b3336d0a3f2ceb34"
+    },
+    {
+      "path": "assets/contact-qr.png",
+      "size": 2199,
+      "sha256": "576a42f5f50adf6bd009c1e64b8545c77c2b0ed0711b17e8876944fea0506e5e"
+    },
+    {
+      "path": "assets/dc-12v-output.png",
+      "size": 65276,
+      "sha256": "1d95af571371e9f1c12499b297f1a6ade51007bd4268cac341740c52c63106fc"
+    },
+    {
+      "path": "assets/dc-input-indicator.png",
+      "size": 4801,
+      "sha256": "a1ddd8993d5686889984ff77655a9a6807cbd4a1dcacf9425482008e55f28c78"
+    },
+    {
+      "path": "assets/energy-saving.png",
+      "size": 46903,
+      "sha256": "6bd0d6bcb53f67db51c98f1e537c04a8e9070e3609353c9e1e576592583f0cab"
+    },
+    {
+      "path": "assets/front-view.png",
+      "size": 82681,
+      "sha256": "ece58afff18e4f4569264bb9196d06abae8684273884bd1f211036fe6b0960e8"
+    },
+    {
+      "path": "assets/in-the-box.png",
+      "size": 39261,
+      "sha256": "95148ccd6cd2f79f5d09bfe42d7a0b9b9d4f34c86514b20d171f5ed10365a69e"
+    },
+    {
+      "path": "assets/lcd-1.png",
+      "size": 2246,
+      "sha256": "25658cdb590db26af5d1dd6daccfc776aa9b03466214cffd36587d69e2dcb85b"
+    },
+    {
+      "path": "assets/lcd-10.png",
+      "size": 2130,
+      "sha256": "927c09d069128475be14390d3f6cd40ac4aac07458fe5e0a8c259a244e620c7a"
+    },
+    {
+      "path": "assets/lcd-11.png",
+      "size": 2105,
+      "sha256": "89a638769ca38f509bfb1d325cc1316a290c3169ee8c8e4871005a9ad749094c"
+    },
+    {
+      "path": "assets/lcd-12.png",
+      "size": 2256,
+      "sha256": "88a0bb53997614c78d0d2ab563b1ee5b604402d43f894b7978e9edd864c9e1df"
+    },
+    {
+      "path": "assets/lcd-2.png",
+      "size": 1768,
+      "sha256": "582ee9e854a0601fb8b763ee37236a049051249bc85c344c9cbe9d35bf6f52e1"
+    },
+    {
+      "path": "assets/lcd-3.png",
+      "size": 2435,
+      "sha256": "8b16294c4440824542865af5df83e7a444ce154b72bd78b619fa82f9432624be"
+    },
+    {
+      "path": "assets/lcd-4.png",
+      "size": 2822,
+      "sha256": "77e6d10a51038b5391ff7792dee64ccdc2eac793a24443be0763c6c35ae198b2"
+    },
+    {
+      "path": "assets/lcd-5.png",
+      "size": 2443,
+      "sha256": "c4e64694375c8317ec4816d945f67dd333984ce6230277e0a8adbddb991d3db8"
+    },
+    {
+      "path": "assets/lcd-6.png",
+      "size": 2688,
+      "sha256": "600a664d344b8d3ab14510dd5b7c2320f07125d4af93390fbd1cddcb9f287afe"
+    },
+    {
+      "path": "assets/lcd-7.png",
+      "size": 2108,
+      "sha256": "fcb3f96584320b8bdb31135abb04e1e7aa6cc13738f2f905e4b41fe940ad1e8b"
+    },
+    {
+      "path": "assets/lcd-8.png",
+      "size": 1974,
+      "sha256": "8150bb8e38bc78f10ab1132d1935503c9782190d9c134cbd4483c458dbdf65d2"
+    },
+    {
+      "path": "assets/lcd-9.png",
+      "size": 2113,
+      "sha256": "6b04c4b95c9e38a4f09804e3f39e07d91b2e64be6fe03ba711ff6eb224fb333e"
+    },
+    {
+      "path": "assets/lcd-display.png",
+      "size": 47219,
+      "sha256": "83d806b6975facac47a990371586dcfcc6a1ba10d249b6407056aa5d22545d3a"
+    },
+    {
+      "path": "assets/lcd-screen.png",
+      "size": 45429,
+      "sha256": "c5ed8cb77a98d417597f37ad3cfb8779601ca660b57911933a9d4ee268d174fb"
+    },
+    {
+      "path": "assets/power-on-off.png",
+      "size": 71893,
+      "sha256": "ca0465e9883974703809b9f2155faf38812a206db69160c154d42027ecd9791d"
+    },
+    {
+      "path": "assets/solar-charging.png",
+      "size": 87473,
+      "sha256": "67c393009106baa478b3ec7650938b971de9d5a670886e57758441963a138c1a"
+    },
+    {
+      "path": "assets/symbol-battery-charging.png",
+      "size": 3145,
+      "sha256": "85e5185e22e43a05dbbaa5892c404640db1a5faaee92cc60159a842056952ea6"
+    },
+    {
+      "path": "assets/symbol-do-not-dismantle.png",
+      "size": 2690,
+      "sha256": "908c33c16c067b87c1b1dc5d6663f159ed88146bbb34b9cdbcfd172a59f9058c"
+    },
+    {
+      "path": "assets/symbol-electric-shock.png",
+      "size": 3078,
+      "sha256": "7638826b23242bfcf056c0d1508ea6b1b1462ada0099aa3196d7343185b7e30f"
+    },
+    {
+      "path": "assets/symbol-explosive-material.png",
+      "size": 4690,
+      "sha256": "8de051db1a3a60dfdacf1fbcba7e3a00ae8d63820d0405b02698d8e3195a86f3"
+    },
+    {
+      "path": "assets/symbol-keep-away-from-children.png",
+      "size": 3813,
+      "sha256": "45d63066ac4dfb875d049fd30fe85c33966b6ba401174c672f582d12722be200"
+    },
+    {
+      "path": "assets/symbol-li-ion.svg",
+      "size": 7306,
+      "sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e"
+    },
+    {
+      "path": "assets/symbol-no-open-flame.png",
+      "size": 4388,
+      "sha256": "460a4a9a19fd00579281005a860145b2de9ffcc10e22f9c48482bd21b84be3fc"
+    },
+    {
+      "path": "assets/symbol-read-manual.png",
+      "size": 2077,
+      "sha256": "c7a2c7dc6ddd9bb4724d9607df666243fc3bbeaa20a669d00de8f1d1a8463b47"
+    },
+    {
+      "path": "assets/symbol-warning.png",
+      "size": 5378,
+      "sha256": "24e567ffad0566246aab95bc86be386842af60454f7a4b5f1a5ac77ff37cbb8c"
+    },
+    {
+      "path": "assets/symbol-weee.png",
+      "size": 2150,
+      "sha256": "7e4de290ea13b86bd50fbb209b4510116116d4fb403b7ef4f83cf1c1db873989"
+    },
+    {
+      "path": "assets/usb-c-charging.png",
+      "size": 72073,
+      "sha256": "3d0164e7ca12cc810f0bc2382ac458b674e13e12635e4314f0288cfd0fad7fd2"
+    },
+    {
+      "path": "assets/usb-output.png",
+      "size": 64853,
+      "sha256": "c1fc3f0e458c0e793b55d7585fed6befc58059a188004dff1342aae3da3d2792"
+    },
+    {
+      "path": "audit/archive-validation.json",
+      "size": 691,
+      "sha256": "eb37d60278fd422aadd872bba63e006b8a41b52a1c064d95402f6d7f7c1982db"
+    },
+    {
+      "path": "audit/asset-decisions.json",
+      "size": 18655,
+      "sha256": "92b6350dd2f1d5b9adb78e7d0fbba031d8c5702ebc03aa9c9d8f8b419eac4892"
+    },
+    {
+      "path": "audit/discovery.zh.md",
+      "size": 1068,
+      "sha256": "675cfbcbcdcaa9fb3c288c14b332afdebe84478d6a773bb3f954352bbaa13d96"
+    },
+    {
+      "path": "audit/validation.zh.md",
+      "size": 1140,
+      "sha256": "8b15c2bb6585f7845e2fb84db8380cebb93df22f667d5d171bb586a9129b12a1"
+    },
+    {
+      "path": "source/Jackery Explorer 300 (JE-300E-SG) User Manual-沙金色.pdf",
+      "size": 18416463,
+      "sha256": "7d179fdb0e3822657904440b17aba0a1abee22699d5c2764c178097d4240ce16"
+    },
+    {
+      "path": "source/cover-identity.png",
+      "size": 62942,
+      "sha256": "bb2826047abe8f7a96ce5f840f87e8196b49b67b2a14834ecc0d022f88184da4"
+    },
+    {
+      "path": "source/figures.json",
+      "size": 13095,
+      "sha256": "8aba255df95477ce40dac09bbbef35e418551555a7daaa24790b277a1fc39f5e"
+    },
+    {
+      "path": "source/page-map.json",
+      "size": 13115,
+      "sha256": "78bf2af9cbc35d50e00bc9fb41fc9fb40faf8b5f70aa46dbbe142860682b54c6"
+    }
+  ]
+}
