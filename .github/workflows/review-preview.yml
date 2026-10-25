@@ -33,6 +33,7 @@ permissions:
 
 jobs:
   package-review-preview:
+    if: ${{ github.repository == 'Bingboom/auto-manual' }}
     runs-on: ubuntu-latest
     env:
       FROM_REF: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || 'HEAD~1' }}

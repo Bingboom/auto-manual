@@ -53,3 +53,21 @@ changing only the hostname can leave JSON requests at a 404 endpoint. Install th
 updated plugin, set and read back the URL via the host administrator's config CLI,
 and verify both the query tools and their source links after loading the update.
 A chat configuration-protection error is not a website outage; retain the protection.
+
+## Business repository content checks
+
+After the lightweight P0 change is merged and mirrored, Hello-Docs content PRs
+run secret scanning and `business-content`; full engineering CI remains in
+auto-manual. Hello-Docs owns `docs/publish/**` and `docs/knowledge/**`;
+Hello-Docs-Review owns `docs/review-drafts/**`. Backports into `review/*` retain
+their `docs/_review/**` editing surface. Code or workflow changes still need an
+auto-manual PR. A missing/malformed data file or publish inventory hash mismatch
+fails the content check; fix the candidate instead of disabling the check.
+
+The fixture Review Preview workflow runs only in auto-manual. The private Review
+RTD site continues its existing Git-based build; it does not use that fixture
+preview. Queue dispatch, Workspace refresh, Phase2/TM-B backups, Web Publish and
+RTD receipts retain their existing execution paths. A green content check is
+not a deployment receipt or visual acceptance. No repository visibility change
+or executor migration is included. Audit and rollback details are in the
+[lightweight rollout record](../../code-as-doc/reviews/hello-docs-lightweight-20261024.md).
