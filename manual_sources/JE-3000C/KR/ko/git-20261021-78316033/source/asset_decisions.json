@@ -1,0 +1,756 @@
+[
+  {
+    "slot": "symbol-1",
+    "decision": "reuse-byte-identical-governed-source-matched-symbol",
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/je1500d-jp-6ddeef54-symbol-01.svg",
+    "path": "web/ko/assets/je1500d-jp-6ddeef54-symbol-01.svg",
+    "sha256": "42ca4108169a476569b3d874d9fe73eb444512e4f62a5bf4d5f8f5f3b8a2e6a2",
+    "reason": "MA-348: shared symbol first; source-bound glyph and caption admission passes against exact KR PDF p4",
+    "background": "existing transparent icon / original artwork retained",
+    "prior_candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_warning_triangle_gray_jp.svg",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.004811
+    }
+  },
+  {
+    "slot": "symbol-2",
+    "decision": "reuse-byte-identical-governed-source-matched-symbol",
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/je3000c-kr-78316033-02.svg",
+    "path": "web/ko/assets/je3000c-kr-78316033-02.svg",
+    "sha256": "9314a0d781b00c728c10576206b64cde9c2cb8eaf47c294c418869d996878adf",
+    "reason": "MA-348: shared symbol first; source-bound glyph and caption admission passes against exact KR PDF p4",
+    "background": "existing transparent icon / original artwork retained",
+    "prior_candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_read_manual_gray_jp.svg",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.0
+    }
+  },
+  {
+    "slot": "symbol-3",
+    "decision": "reuse-byte-identical-governed-source-matched-symbol",
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_no_open_flame_gray_jp.svg",
+    "path": "web/ko/assets/symbol_no_open_flame_gray_jp.svg",
+    "sha256": "5d52569eb51f41f45826b7b144efe59410b5017b0557508b1577c4620d7e8aee",
+    "reason": "MA-348: shared symbol first; source-bound glyph and caption admission passes against exact KR PDF p4",
+    "background": "existing transparent icon / original artwork retained",
+    "prior_candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_no_open_flame_gray_jp.svg",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.013846
+    }
+  },
+  {
+    "slot": "symbol-4",
+    "decision": "reuse-byte-identical-governed-source-matched-symbol",
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_keep_away_from_children_gray_jp.svg",
+    "path": "web/ko/assets/symbol_keep_away_from_children_gray_jp.svg",
+    "sha256": "af71ae09a5498979d0722d5a8a11347936d4be2b994898f2aabda0e2cea5c817",
+    "reason": "MA-348: shared symbol first; source-bound glyph and caption admission passes against exact KR PDF p4",
+    "background": "existing transparent icon / original artwork retained",
+    "prior_candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_keep_away_from_children_gray_jp.svg",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.018164
+    }
+  },
+  {
+    "slot": "symbol-5",
+    "decision": "reuse-byte-identical-governed-source-matched-symbol",
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/screwdriver-prohibited-tw-477dfbd7.svg",
+    "path": "web/ko/assets/screwdriver-prohibited-tw-477dfbd7.svg",
+    "sha256": "482e56e11b72b30ca053ee1cc94021f98909ceb9497e9c084738fd2b4a0fe01b",
+    "reason": "MA-348: shared symbol first; source-bound glyph and caption admission passes against exact KR PDF p4",
+    "background": "existing transparent icon / original artwork retained",
+    "prior_candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_do_not_dismantle_gray_jp.svg",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.006187
+    }
+  },
+  {
+    "slot": "symbol-6",
+    "decision": "reuse-byte-identical-governed-source-matched-symbol",
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/je3000c-kr-78316033-06.svg",
+    "path": "web/ko/assets/je3000c-kr-78316033-06.svg",
+    "sha256": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5",
+    "reason": "MA-348: shared symbol first; source-bound glyph and caption admission passes against exact KR PDF p4",
+    "background": "existing transparent icon / original artwork retained",
+    "prior_candidate": "docs/renderers/web/assets/shared/symbols/native-v1/native-li_ion_gray_jp.svg",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.0
+    }
+  },
+  {
+    "slot": "symbol-7",
+    "decision": "reuse-byte-identical-governed-source-matched-symbol",
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/je3000c-kr-78316033-07.svg",
+    "path": "web/ko/assets/je3000c-kr-78316033-07.svg",
+    "sha256": "7a07f68dc10f6d748ef90fa56822330ce831eac6ef25954bca8f4ddfc0cfbe34",
+    "reason": "MA-348: shared symbol first; source-bound glyph and caption admission passes against exact KR PDF p4",
+    "background": "existing transparent icon / original artwork retained",
+    "prior_candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_weee_gray_jp.svg",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.0
+    }
+  },
+  {
+    "slot": "source-image.front_product",
+    "decision": "source-specific-extraction",
+    "searched": [
+      "docs/renderers/latex/assets/je3000c_kr_*",
+      "manual_sources/JE-3000C/EU",
+      "shared symbols and buttons"
+    ],
+    "path": "web/ko/assets/overview-front.png",
+    "sha256": "bb19e5218d527116028b0343a66e1266ac9017a0ba2da4c9a97744252b1d68db",
+    "physical_page": 5,
+    "bbox": [
+      27,
+      213,
+      342,
+      487
+    ],
+    "reason": "Old KR source has only unlabelled art; new finished localized panel has different callouts and omits old reset/total rows",
+    "background": "preserve complete native panel / phone frame; no body table screenshot"
+  },
+  {
+    "slot": "source-image.right_side_ports",
+    "decision": "source-specific-extraction",
+    "searched": [
+      "docs/renderers/latex/assets/je3000c_kr_*",
+      "manual_sources/JE-3000C/EU",
+      "shared symbols and buttons"
+    ],
+    "path": "web/ko/assets/overview-right.png",
+    "sha256": "06ff28156476794a75258a27addf6dc1f65730248e32ec05a0e11a1123274619",
+    "physical_page": 5,
+    "bbox": [
+      27,
+      410,
+      342,
+      480
+    ],
+    "reason": "Old KR source has no localized callouts; preserve current PDF port identity and labels",
+    "background": "preserve complete native panel / phone frame; no body table screenshot"
+  },
+  {
+    "slot": "source-image.op_main_power",
+    "decision": "source-specific-extraction",
+    "searched": [
+      "docs/renderers/latex/assets/je3000c_kr_*",
+      "manual_sources/JE-3000C/EU",
+      "shared symbols and buttons"
+    ],
+    "path": "web/ko/assets/operation-main.png",
+    "sha256": "44f463d3f80a66f645e20a391042e3e1d8eefc690c8ae827ec44a13fe97ed768",
+    "physical_page": 8,
+    "bbox": [
+      28,
+      66,
+      342,
+      196
+    ],
+    "reason": "Old registered art omits localized on/off and standby footer; current KR finished-panel slot preserves complete panel",
+    "background": "preserve complete native panel / phone frame; no body table screenshot"
+  },
+  {
+    "slot": "source-image.op_ac_output",
+    "decision": "source-specific-extraction",
+    "searched": [
+      "docs/renderers/latex/assets/je3000c_kr_*",
+      "manual_sources/JE-3000C/EU",
+      "shared symbols and buttons"
+    ],
+    "path": "web/ko/assets/operation-ac.png",
+    "sha256": "1c0e13438d4b47fbd57547f4a0bdc5494d3cd9b99432afdff2d906bb0e017257",
+    "physical_page": 8,
+    "bbox": [
+      28,
+      267,
+      342,
+      478
+    ],
+    "reason": "Old registered art omits localized prerequisite and on/off instructions",
+    "background": "preserve complete native panel / phone frame; no body table screenshot"
+  },
+  {
+    "slot": "source-image.op_dc_usb_output",
+    "decision": "source-specific-extraction",
+    "searched": [
+      "docs/renderers/latex/assets/je3000c_kr_*",
+      "manual_sources/JE-3000C/EU",
+      "shared symbols and buttons"
+    ],
+    "path": "web/ko/assets/operation-dc.png",
+    "sha256": "447d6c79216f4732f031b2bdfade579d53841d398f8ecec4444e20d9880b7795",
+    "physical_page": 9,
+    "bbox": [
+      28,
+      48,
+      342,
+      199
+    ],
+    "reason": "Old registered art omits localized prerequisite and on/off instructions",
+    "background": "preserve complete native panel / phone frame; no body table screenshot"
+  },
+  {
+    "slot": "source-image.energy_saving",
+    "decision": "source-specific-extraction",
+    "searched": [
+      "docs/renderers/latex/assets/je3000c_kr_*",
+      "manual_sources/JE-3000C/EU",
+      "shared symbols and buttons"
+    ],
+    "path": "web/ko/assets/energy-saving.png",
+    "sha256": "d94484e3bb477a18d1239a42dd961d47848395fe51a9a4c616008bb0dae6e5ee",
+    "physical_page": 10,
+    "bbox": [
+      28,
+      159,
+      342,
+      251
+    ],
+    "reason": "Current source caption says more than 3 seconds; old unlabelled art cannot carry that reviewed copy",
+    "background": "preserve complete native panel / phone frame; no body table screenshot"
+  },
+  {
+    "slot": "lcd-mode-art",
+    "decision": "source-specific-extraction",
+    "searched": [
+      "docs/renderers/latex/assets/je3000c_kr_*",
+      "manual_sources/JE-3000C/EU",
+      "shared symbols and buttons"
+    ],
+    "path": "web/ko/assets/lcd-mode.png",
+    "sha256": "7fbcb566d52d7062191bf8d0e4c13e71de23e758d8e3e665648d636aaab8af76",
+    "physical_page": 10,
+    "bbox": [
+      28,
+      299,
+      342,
+      389
+    ],
+    "reason": "Existing common lcd_mode depicts another product/control; exact KR display artwork not in matching inventory; table excluded",
+    "background": "preserve complete native panel / phone frame; no body table screenshot"
+  },
+  {
+    "slot": "lcd-map",
+    "decision": "source-specific-extraction",
+    "searched": [
+      "docs/renderers/latex/assets/je3000c_kr_*",
+      "manual_sources/JE-3000C/EU",
+      "shared symbols and buttons"
+    ],
+    "path": "web/ko/assets/lcd-map.png",
+    "sha256": "9d86fb7fac57ea2d372542d38c1e8e9fa52b8b052d3394e9f7a8e22a7d2411bd",
+    "physical_page": 6,
+    "bbox": [
+      28,
+      51,
+      342,
+      195
+    ],
+    "reason": "Existing common lcd map has different numbering; current source numbers 1-25 must match this PDF",
+    "background": "preserve complete native panel / phone frame; no body table screenshot"
+  },
+  {
+    "slot": "ups",
+    "decision": "reuse-native-vector-with-web-format-export",
+    "candidate": "docs/renderers/latex/assets/je3000c_kr_operation_ups_mode.pdf",
+    "source_sha256": "4c6cadca9a690f8019c43fcf4c82dfab9735a194c3058e3d0dc0b883fa47f125",
+    "retained_pdf": "source/reused_art/operation_ups_mode.pdf",
+    "path": "web/ko/assets/operation_ups_mode.svg",
+    "sha256": "899801760f19da504ba8c41bdd958b2e68f9e7735e1f022113e77d73ff5ad159",
+    "reason": "Same KR unit, wiring and complete source artwork; PDF bytes retained unchanged and only browser format exported",
+    "background": "complete native frame preserved"
+  },
+  {
+    "slot": "source-image.ac_wall",
+    "decision": "reuse-native-vector-with-web-format-export",
+    "candidate": "docs/renderers/latex/assets/je3000c_kr_charging_ac_wall.pdf",
+    "source_sha256": "7cf4f7678e87d9efae872a2540b5d93f55b935c77f726e9a8b909c93c480ba50",
+    "retained_pdf": "source/reused_art/charging_ac_wall.pdf",
+    "path": "web/ko/assets/charging_ac_wall.svg",
+    "sha256": "abfdee922641b333e15b643d10cbed34efe6adb0239a42e4caa278459b49bf8a",
+    "reason": "Same KR unit, wiring and complete source artwork; PDF bytes retained unchanged and only browser format exported",
+    "background": "complete native frame preserved"
+  },
+  {
+    "slot": "source-image.solar_adapter",
+    "decision": "source-specific-extraction",
+    "searched": [
+      "docs/renderers/latex/assets/je3000c_kr_*",
+      "manual_sources/JE-3000C/EU",
+      "shared symbols and buttons"
+    ],
+    "path": "web/ko/assets/solar.png",
+    "sha256": "f06ecb25a8daa575f460d447524f33fa96b70f53445f9ae65ba4df2c0bab68e5",
+    "physical_page": 13,
+    "bbox": [
+      28,
+      24,
+      342,
+      169
+    ],
+    "reason": "Old registered solar art lacks source SolarSaga 200 ×4 identification; preserve the complete source frame and identity",
+    "background": "preserve complete native panel / phone frame; no body table screenshot"
+  },
+  {
+    "slot": "source-image.car_charge",
+    "decision": "source-specific-extraction",
+    "searched": [
+      "docs/renderers/latex/assets/je3000c_kr_*",
+      "manual_sources/JE-3000C/EU",
+      "shared symbols and buttons"
+    ],
+    "path": "web/ko/assets/car.png",
+    "sha256": "cbb5d7fa78de39b81eab5a25b5d1c03ca20dd4e659463e6eee3f0f08ace89ef9",
+    "physical_page": 13,
+    "bbox": [
+      28,
+      251,
+      342,
+      401
+    ],
+    "reason": "Old registered car art omits current Korean vehicle and separately-sold callouts; declared KR finished slot preserves complete panel",
+    "background": "preserve complete native panel / phone frame; no body table screenshot"
+  },
+  {
+    "slot": "app-add-device",
+    "decision": "source-specific-extraction",
+    "searched": [
+      "docs/renderers/latex/assets/je3000c_kr_*",
+      "manual_sources/JE-3000C/EU",
+      "shared symbols and buttons"
+    ],
+    "path": "web/ko/assets/app-phones.png",
+    "sha256": "b1b0d02a90ea98844d60c128888fbbf0d52c9726f8337cb68e1b33aac8af98e4",
+    "physical_page": 17,
+    "bbox": [
+      67,
+      224,
+      304,
+      386
+    ],
+    "reason": "Existing old KR bitmap inspected; use current source phone frames and preserve native UI",
+    "background": "preserve complete native panel / phone frame; no body table screenshot",
+    "live_caption_alignment": {
+      "image_size_px": [
+        711,
+        486
+      ],
+      "phone_frame_x_bounds_px": [
+        [
+          124,
+          332
+        ],
+        [
+          390,
+          598
+        ]
+      ],
+      "caption_centers_pct": [
+        32.067511,
+        69.479606
+      ],
+      "measurement": "Centers of contiguous non-white native phone frame columns (RGB channel minimum <245); retained image pixels unchanged."
+    }
+  },
+  {
+    "slot": "app-control",
+    "decision": "source-specific-extraction",
+    "searched": [
+      "docs/renderers/latex/assets/je3000c_kr_*",
+      "manual_sources/JE-3000C/EU",
+      "shared symbols and buttons"
+    ],
+    "path": "web/ko/assets/app-control.png",
+    "sha256": "cf68d9db7a634c603a80a4cd644a3db67d2be2680d5650190d412b6053634d66",
+    "physical_page": 17,
+    "bbox": [
+      70,
+      399,
+      306,
+      482
+    ],
+    "reason": "Old textless KR control art lacks Korean labels; source full control frame carries current labels",
+    "background": "preserve complete native panel / phone frame; no body table screenshot"
+  },
+  {
+    "slot": "app-connect",
+    "decision": "source-specific-extraction",
+    "searched": [
+      "docs/renderers/latex/assets/je3000c_kr_*",
+      "manual_sources/JE-3000C/EU",
+      "shared symbols and buttons"
+    ],
+    "path": "web/ko/assets/app-connect.png",
+    "sha256": "62c3feea1c7aae20449c21d925fe76a8ff0b6fa9b0e158ad10311609ebe31624",
+    "physical_page": 18,
+    "bbox": [
+      55,
+      135,
+      321,
+      284
+    ],
+    "reason": "Old KR connect bitmap has different native 3000 overlays; retain current source full phone frames; step labels excluded for live captions",
+    "background": "preserve complete native panel / phone frame; no body table screenshot",
+    "live_caption_alignment": {
+      "image_size_px": [
+        798,
+        447
+      ],
+      "phone_frame_x_bounds_px": [
+        [
+          7,
+          214
+        ],
+        [
+          296,
+          503
+        ],
+        [
+          587,
+          794
+        ]
+      ],
+      "caption_centers_pct": [
+        13.847118,
+        50.062657,
+        86.528822
+      ],
+      "measurement": "Centers of contiguous non-white native phone frame columns (RGB channel minimum <245); retained image pixels unchanged."
+    }
+  },
+  {
+    "slot": "app-store",
+    "decision": "source-specific-extraction",
+    "searched": [
+      "docs/renderers/latex/assets/je3000c_kr_*",
+      "manual_sources/JE-3000C/EU",
+      "shared symbols and buttons"
+    ],
+    "path": "web/ko/assets/app-store.png",
+    "sha256": "c745cc534903c6e059874c28d5ac2060e06c1438732c31beb9fc656b31c46540",
+    "physical_page": 17,
+    "bbox": [
+      48,
+      75,
+      122,
+      124
+    ],
+    "reason": "App source contains both store badges; existing common download is a different combined layout",
+    "background": "preserve complete native panel / phone frame; no body table screenshot"
+  },
+  {
+    "slot": "app-qr",
+    "decision": "source-specific-extraction",
+    "searched": [
+      "docs/renderers/latex/assets/je3000c_kr_*",
+      "manual_sources/JE-3000C/EU",
+      "shared symbols and buttons"
+    ],
+    "path": "web/ko/assets/app-qr.png",
+    "sha256": "9fcecb9a1ecfd4b5c150b9814c1083475d9a9668b91bf112393e55f19b31b76d",
+    "physical_page": 17,
+    "bbox": [
+      200,
+      74,
+      252,
+      126
+    ],
+    "reason": "Source QR identity is kept; no cross-source QR substitution",
+    "background": "preserve complete native panel / phone frame; no body table screenshot"
+  },
+  {
+    "slot": "inbox-main",
+    "decision": "source-specific-extraction",
+    "searched": [
+      "docs/renderers/latex/assets/je3000c_kr_*",
+      "manual_sources/JE-3000C/EU",
+      "shared symbols and buttons"
+    ],
+    "path": "web/ko/assets/inbox-main.png",
+    "sha256": "a46e40cfc26e4bae478611e696efe0e5040450dce9ee27bcc5be872f8d6d6eb9",
+    "physical_page": 5,
+    "bbox": [
+      48,
+      74,
+      116,
+      117
+    ],
+    "reason": "Existing generic unit has different sockets; exact current three-outlet KR view required",
+    "background": "preserve complete native panel / phone frame; no body table screenshot"
+  },
+  {
+    "slot": "inbox-cable",
+    "decision": "source-specific-extraction",
+    "searched": [
+      "docs/renderers/latex/assets/je3000c_kr_*",
+      "manual_sources/JE-3000C/EU",
+      "shared symbols and buttons"
+    ],
+    "path": "web/ko/assets/inbox-cable.png",
+    "sha256": "18719ce46241a80cc209e509c01933040272b150083fbab85e1035384f3a413f",
+    "physical_page": 5,
+    "bbox": [
+      178,
+      72,
+      208,
+      122
+    ],
+    "reason": "Existing cable candidates differ in plug identity; use current KR cable",
+    "background": "preserve complete native panel / phone frame; no body table screenshot"
+  },
+  {
+    "slot": "inbox-manual",
+    "decision": "source-specific-extraction",
+    "searched": [
+      "docs/renderers/latex/assets/je3000c_kr_*",
+      "manual_sources/JE-3000C/EU",
+      "shared symbols and buttons"
+    ],
+    "path": "web/ko/assets/inbox-manual.png",
+    "sha256": "bd9b6988ba667222f2e9aac976e2236f0c4038b6e183cb3af119b713433d5ca2",
+    "physical_page": 5,
+    "bbox": [
+      277,
+      81,
+      309,
+      122
+    ],
+    "reason": "Existing covers show another product/language; current plain booklet artwork retained",
+    "background": "preserve complete native panel / phone frame; no body table screenshot"
+  },
+  {
+    "slot": "lcd-Wi-Fi",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native/web/ja/assets/1_Wi-Fi_KCcAbdDk7o4RjKx82micuKJ5nyf.png",
+    "path": "web/ko/assets/1_Wi-Fi_KCcAbdDk7o4RjKx82micuKJ5nyf.png",
+    "sha256": "fc4cc02b42efc31a32429ada2b78c4480a2fcbca647406da29b2ce75a8a8c1dc",
+    "reason": "Existing shared LCD attachment identity matches this function and printed glyph; no recrop; original label/number comes from KR PDF",
+    "background": "existing transparent icon / original artwork retained"
+  },
+  {
+    "slot": "lcd-블루투스",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native/web/ja/assets/2_Bluetooth_HVgvbJhq5o4EDKxhm7McCF4FnjB.png",
+    "path": "web/ko/assets/2_Bluetooth_HVgvbJhq5o4EDKxhm7McCF4FnjB.png",
+    "sha256": "7e1392ba6a45e66a2e7367ae5df737ccc41ad2de46c4ac7d6baf062ff63bb361",
+    "reason": "Existing shared LCD attachment identity matches this function and printed glyph; no recrop; original label/number comes from KR PDF",
+    "background": "existing transparent icon / original artwork retained"
+  },
+  {
+    "slot": "lcd-조용한 충전 모드",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native/web/ja/assets/3_Quiet_Charging_Mode_WLkMbiHS1oGsOtxUCp7cRhFAn1g.png",
+    "path": "web/ko/assets/3_Quiet_Charging_Mode_WLkMbiHS1oGsOtxUCp7cRhFAn1g.png",
+    "sha256": "7f743182c0509307793dde001356fff5c3d20dd32b09105b6a1d467af7e7f66d",
+    "reason": "Existing shared LCD attachment identity matches this function and printed glyph; no recrop; original label/number comes from KR PDF",
+    "background": "existing transparent icon / original artwork retained"
+  },
+  {
+    "slot": "lcd-배터리 절약 모드",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native/web/ja/assets/15_Battery_Saving_Mode_ClYfbtOGSoK5q2xySXCcgehVn8f.png",
+    "path": "web/ko/assets/15_Battery_Saving_Mode_ClYfbtOGSoK5q2xySXCcgehVn8f.png",
+    "sha256": "e32e6ae96321aa47b39c0c65a18a59da6c90cf87a0d7c8d61556ead273789c3a",
+    "reason": "Existing shared LCD attachment identity matches this function and printed glyph; no recrop; original label/number comes from KR PDF",
+    "background": "existing transparent icon / original artwork retained"
+  },
+  {
+    "slot": "lcd-충전 계획",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native/web/ja/assets/4_Charging_Plan_M96RbyZQxoGjRRxQHsuczeIln1b.png",
+    "path": "web/ko/assets/4_Charging_Plan_M96RbyZQxoGjRRxQHsuczeIln1b.png",
+    "sha256": "71017f43bab44852d5586d1d4f996f3c52d8451bceaa9249e29864652c2f537d",
+    "reason": "Existing shared LCD attachment identity matches this function and printed glyph; no recrop; original label/number comes from KR PDF",
+    "background": "existing transparent icon / original artwork retained"
+  },
+  {
+    "slot": "lcd-충전 전력 제한",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native/web/ja/assets/16_Charging_Power_Limit_VLf2bJfrkoCL0CxJoMNcL5ZxnCt.png",
+    "path": "web/ko/assets/16_Charging_Power_Limit_VLf2bJfrkoCL0CxJoMNcL5ZxnCt.png",
+    "sha256": "21b5f19ca9a6e39d8bd515128297cc1b99e43fd263e39ffba4fdf102d50a4bad",
+    "reason": "Existing shared LCD attachment identity matches this function and printed glyph; no recrop; original label/number comes from KR PDF",
+    "background": "existing transparent icon / original artwork retained"
+  },
+  {
+    "slot": "lcd-자가 발전 모드",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native/web/ja/assets/5_Self-powered_Mode_FYTnb9vttoexjbxVMchcJaobnCg.png",
+    "path": "web/ko/assets/5_Self-powered_Mode_FYTnb9vttoexjbxVMchcJaobnCg.png",
+    "sha256": "73225cf9faa868bbe937df298d55a696828a4156f40e90da5c2a7f0011f0b783",
+    "reason": "Existing shared LCD attachment identity matches this function and printed glyph; no recrop; original label/number comes from KR PDF",
+    "background": "existing transparent icon / original artwork retained"
+  },
+  {
+    "slot": "lcd-TOU 모드",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native/web/ja/assets/6_TOU_Mode_BjEkbz0rFo6Bw4xiwNpcod9qnnc.png",
+    "path": "web/ko/assets/6_TOU_Mode_BjEkbz0rFo6Bw4xiwNpcod9qnnc.png",
+    "sha256": "f4cdcb5511058eaaf1879a69a429317dd3d98325dd5e19f5dd95b06ea2c965af",
+    "reason": "Existing shared LCD attachment identity matches this function and printed glyph; no recrop; original label/number comes from KR PDF",
+    "background": "existing transparent icon / original artwork retained"
+  },
+  {
+    "slot": "lcd-UPS",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native/web/ja/assets/7_UPS_Lgdgb8pvvoGwaLxSf8ec2QeHn3c.png",
+    "path": "web/ko/assets/7_UPS_Lgdgb8pvvoGwaLxSf8ec2QeHn3c.png",
+    "sha256": "e422a56922eb749ae90802fd964cb451a08d833658c1849abe10a63c60b173cc",
+    "reason": "Existing shared LCD attachment identity matches this function and printed glyph; no recrop; original label/number comes from KR PDF",
+    "background": "existing transparent icon / original artwork retained"
+  },
+  {
+    "slot": "lcd-AC 전원 표시기",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native/web/ja/assets/8_AC_Power_Indicator_HFPSbvWBgosvCux69jMcuWe6nnh.png",
+    "path": "web/ko/assets/8_AC_Power_Indicator_HFPSbvWBgosvCux69jMcuWe6nnh.png",
+    "sha256": "8be87c5a084994e3b4b6ddff46ce0296207a5c49c732f8ed13adfbcb28a36538",
+    "reason": "Existing shared LCD attachment identity matches this function and printed glyph; no recrop; original label/number comes from KR PDF",
+    "background": "existing transparent icon / original artwork retained"
+  },
+  {
+    "slot": "lcd-입력 전력",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native/web/ja/assets/10_Input_Power_LOAZbnxfqoHFwIxx2Myc532jnzb.png",
+    "path": "web/ko/assets/10_Input_Power_LOAZbnxfqoHFwIxx2Myc532jnzb.png",
+    "sha256": "d5100a538e964da13e04241a98134e6aeaa36af8991aceeecac3c5d063b6968b",
+    "reason": "Existing shared LCD attachment identity matches this function and printed glyph; no recrop; original label/number comes from KR PDF",
+    "background": "existing transparent icon / original artwork retained"
+  },
+  {
+    "slot": "lcd-남은 충전 시간",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native/web/ja/assets/11_Remaining_Charge_Time_KIWHbHFOvotGuBxJsxlcunSDnPf.png",
+    "path": "web/ko/assets/11_Remaining_Charge_Time_KIWHbHFOvotGuBxJsxlcunSDnPf.png",
+    "sha256": "cfb69b1ffc0b30c51216fb6b1e00e35b412dd0148b6999d3d40ac90fbfe108cb",
+    "reason": "Existing shared LCD attachment identity matches this function and printed glyph; no recrop; original label/number comes from KR PDF",
+    "background": "existing transparent icon / original artwork retained"
+  },
+  {
+    "slot": "lcd-AC 벽면 충전 표시기",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native/web/ja/assets/12_AC_Wall_Charging_Indicator_ZpOmbCjx8oYUTVxyl4JcvcTanPe.png",
+    "path": "web/ko/assets/12_AC_Wall_Charging_Indicator_ZpOmbCjx8oYUTVxyl4JcvcTanPe.png",
+    "sha256": "28f3cad42ae32e9e895abfd7cdb16a21b99dfa822c57d542f0e3f59a4b452c6c",
+    "reason": "Existing shared LCD attachment identity matches this function and printed glyph; no recrop; original label/number comes from KR PDF",
+    "background": "existing transparent icon / original artwork retained"
+  },
+  {
+    "slot": "lcd-차량 충전 표시기",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native/web/ja/assets/13_Car_Charging_Indicator_DLkibYaP1ot6d5x1S0jcUr1knlb.png",
+    "path": "web/ko/assets/13_Car_Charging_Indicator_DLkibYaP1ot6d5x1S0jcUr1knlb.png",
+    "sha256": "eed3299c3f6a15766e433ebbae7a40af8939e6d32489a0aa33a37fe902232a64",
+    "reason": "Existing shared LCD attachment identity matches this function and printed glyph; no recrop; original label/number comes from KR PDF",
+    "background": "existing transparent icon / original artwork retained"
+  },
+  {
+    "slot": "lcd-태양광 충전 표시기",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native/web/ja/assets/14_Solar_Charging_Indicator_RgAUbPXNWoRxiHxKNgkc2gqDnEb.png",
+    "path": "web/ko/assets/14_Solar_Charging_Indicator_RgAUbPXNWoRxiHxKNgkc2gqDnEb.png",
+    "sha256": "91cec82eeaa553477868d38789d68a4937cb11c5c4d794de74db1edddb3aeea4",
+    "reason": "Existing shared LCD attachment identity matches this function and printed glyph; no recrop; original label/number comes from KR PDF",
+    "background": "existing transparent icon / original artwork retained"
+  },
+  {
+    "slot": "lcd-배터리 전력 표시기",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native/web/ja/assets/17_Battery_Power_Indicator_VLufb9exvoVLfgxz47pcfnRGnaf.png",
+    "path": "web/ko/assets/17_Battery_Power_Indicator_VLufb9exvoVLfgxz47pcfnRGnaf.png",
+    "sha256": "85921a9ad7fbfa58f98ee7bb0dc904377f31fe3dbface4083d2493144b05362f",
+    "reason": "Existing shared LCD attachment identity matches this function and printed glyph; no recrop; original label/number comes from KR PDF",
+    "background": "existing transparent icon / original artwork retained"
+  },
+  {
+    "slot": "lcd-배터리 부족 표시기",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native/web/ja/assets/19_Low_Battery_Indicator_KDk9bhs8poHUBdx96PLckPganhd.png",
+    "path": "web/ko/assets/19_Low_Battery_Indicator_KDk9bhs8poHUBdx96PLckPganhd.png",
+    "sha256": "c7862a87e742d6927b4e1d63a8d0ccb09fbcf980ae662ff94b9134e256e56889",
+    "reason": "Existing shared LCD attachment identity matches this function and printed glyph; no recrop; original label/number comes from KR PDF",
+    "background": "existing transparent icon / original artwork retained"
+  },
+  {
+    "slot": "lcd-남은 배터리 백분율",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native/web/ja/assets/18_Remaining_Battery_Percentage_VkJcbUDbUoYC1hxrU6rc168OnJe.png",
+    "path": "web/ko/assets/18_Remaining_Battery_Percentage_VkJcbUDbUoYC1hxrU6rc168OnJe.png",
+    "sha256": "747147be99d76bb486c858aeca2289d7d05ad3be1f1ea1f0825f54cb29b7fd10",
+    "reason": "Existing shared LCD attachment identity matches this function and printed glyph; no recrop; original label/number comes from KR PDF",
+    "background": "existing transparent icon / original artwork retained"
+  },
+  {
+    "slot": "lcd-방전 타이머",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native/web/ja/assets/20_Discharge_Timer_DHPMbkjSWoiuALxJyJ8cWyQOn0e.png",
+    "path": "web/ko/assets/20_Discharge_Timer_DHPMbkjSWoiuALxJyJ8cWyQOn0e.png",
+    "sha256": "6aab9a14900a08fcd8f8261e6e36fbb9a1220eb931df94ebd149b23930063723",
+    "reason": "Existing shared LCD attachment identity matches this function and printed glyph; no recrop; original label/number comes from KR PDF",
+    "background": "existing transparent icon / original artwork retained"
+  },
+  {
+    "slot": "lcd-에너지 절약 모드",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native/web/ja/assets/22_Energy_Saving_Mode_O4Jdb5pUQoCBAqx0sfQcm9Nbntd.png",
+    "path": "web/ko/assets/22_Energy_Saving_Mode_O4Jdb5pUQoCBAqx0sfQcm9Nbntd.png",
+    "sha256": "c4b830c769a3de7f9effaee82466752f5706a0741ba29675cce45633c1cd8222",
+    "reason": "Existing shared LCD attachment identity matches this function and printed glyph; no recrop; original label/number comes from KR PDF",
+    "background": "existing transparent icon / original artwork retained"
+  },
+  {
+    "slot": "lcd-고온 표시기",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native/web/ja/assets/23_High_Temperature_Indicator_UmkEbOgCKoKyxoxDSINcfO6LnQd.png",
+    "path": "web/ko/assets/23_High_Temperature_Indicator_UmkEbOgCKoKyxoxDSINcfO6LnQd.png",
+    "sha256": "f548c6504f495da4f208cd8e5fe6eac6076daea05e314115abd26b46a9326ba5",
+    "reason": "Existing shared LCD attachment identity matches this function and printed glyph; no recrop; original label/number comes from KR PDF",
+    "background": "existing transparent icon / original artwork retained"
+  },
+  {
+    "slot": "lcd-저온 표시기",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native/web/ja/assets/24_Low_Temperature_Indicator_JDMEbD96noSbyWxbOnVcgip1nab.png",
+    "path": "web/ko/assets/24_Low_Temperature_Indicator_JDMEbD96noSbyWxbOnVcgip1nab.png",
+    "sha256": "bdbf602db74ade39a2a162209c0ff535315dee5e27e4832b2e6a201764b6941a",
+    "reason": "Existing shared LCD attachment identity matches this function and printed glyph; no recrop; original label/number comes from KR PDF",
+    "background": "existing transparent icon / original artwork retained"
+  },
+  {
+    "slot": "lcd-오류 코드",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native/web/ja/assets/25_Fault_code_Oz87bX3BGo8H7Zxe0XvcTd7FnJL.png",
+    "path": "web/ko/assets/25_Fault_code_Oz87bX3BGo8H7Zxe0XvcTd7FnJL.png",
+    "sha256": "ce913ebfc7750764f4206250f5e21aa09bd1cfc074bdee5b0484d61610f1b579",
+    "reason": "Existing shared LCD attachment identity matches this function and printed glyph; no recrop; original label/number comes from KR PDF",
+    "background": "existing transparent icon / original artwork retained"
+  },
+  {
+    "slot": "lcd-출력 전압 및 주파수",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native/web/ja/assets/9_Output_Voltage_and_Frequency_Jh3JbmBDBoKlmOxaRJDcIMJAn6b.png",
+    "path": "web/ko/assets/9_Output_Voltage_and_Frequency_Jh3JbmBDBoKlmOxaRJDcIMJAn6b.png",
+    "sha256": "7623ef10e229bcfe66c872f3733d26b86c97d703ed30012188a88bb4a168e6df",
+    "reason": "Existing shared LCD attachment identity matches this function and printed glyph; no recrop; original label/number comes from KR PDF",
+    "background": "existing transparent icon / original artwork retained"
+  },
+  {
+    "slot": "lcd-출력 전력",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native/web/ja/assets/26_Output_Power_PviebR618oofvKxcKVRcHLlInqd.png",
+    "path": "web/ko/assets/26_Output_Power_PviebR618oofvKxcKVRcHLlInqd.png",
+    "sha256": "58c1d3604ca7b9774b069c6928775a13465ccb9477f477e9e4d4b30e7f75b88d",
+    "reason": "Existing shared LCD attachment identity matches this function and printed glyph; no recrop; original label/number comes from KR PDF",
+    "background": "existing transparent icon / original artwork retained"
+  },
+  {
+    "slot": "lcd-남은 방전 시간",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native/web/ja/assets/27_Remaining_Discharge_Time_JEpobf59DoBV4dxWlnxcNtIinke.png",
+    "path": "web/ko/assets/27_Remaining_Discharge_Time_JEpobf59DoBV4dxWlnxcNtIinke.png",
+    "sha256": "9b148ea95d3a3450591c7220908b0913048f2cdea1e61d200534181c52b47cab",
+    "reason": "Existing shared LCD attachment identity matches this function and printed glyph; no recrop; original label/number comes from KR PDF",
+    "background": "existing transparent icon / original artwork retained"
+  }
+]

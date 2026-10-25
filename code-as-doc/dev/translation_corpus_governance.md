@@ -155,6 +155,22 @@ signal words. Do not conflate the two:
 
 Rules:
 
+- **Reusable formatting rule:** every LCD description line that starts with a corpus-marked
+  status word followed by `:` or `：` must mark the complete prefix **bold**, including the
+  colon. Keep the following explanation at normal weight. Preserve locale-specific spacing
+  before the colon (for example, French `**Clignotant :**`); do not add emphasis to a matching
+  word inside an ordinary sentence. Korean examples are `**켜짐:**`, `**점멸:**` and
+  `**꺼짐:**`; the rule applies to all corpus languages, not only Korean.
+- Store canonical status words as plain text in the TM/glossary and retain the
+  `是否为 status word=Y` classification in the snapshot source. Do not put Markdown `**`
+  or HTML tags into a term cell to express this rule. The classification supplies the
+  semantic role; document assembly supplies `strong`/bold formatting.
+- Apply the same rule when reusing corpus wording in a prepared PDF/AI/Git source package.
+  The prepared source must carry the status-prefix emphasis into its component/IR and
+  frozen Markdown before review. Copying unformatted PDF text is not an exception, and
+  adding bold only to a rendered HTML preview does not complete the source correction.
+  Preserve the source wording, descriptions, values and row order. Renderer bindings are
+  documented in the [LCD style contract](../../docs/renderers/contracts/STYLE_DEFINITION/text-callouts-tables.md#44-lcd-图标表).
 - `On`/`Off`/`Blink` are terms whose canonical target belongs in the glossary, **but they are
   also the live source of `Status_Words.csv`**. Before the bridge migration deletes their TM
   rows (§4 / [`translation_corpus_bridge_plan.md`](translation_corpus_bridge_plan.md)), either

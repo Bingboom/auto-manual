@@ -1,0 +1,332 @@
+{
+  "status": "conversion-and-source-symbol-admission-verified-approved-for-git-only-release",
+  "native_pdf_text_blocks_exact_normalized_match": 236,
+  "reviewed_non_contiguous_or_artwork_cases": [
+    {
+      "physical_page": 4,
+      "bbox": [
+        55.8291015625,
+        107.11820220947266,
+        257.1371154785156,
+        132.28770446777344
+      ],
+      "text": "부상 및/또는 재산 피해를 초래할 수 있는 위험한 행위.\n 주의\n",
+      "review": "Native PDF reading order combines two table columns and puts the signal label after its meaning; each meaning and label is preserved in its semantic table cell."
+    },
+    {
+      "physical_page": 4,
+      "bbox": [
+        57.22610092163086,
+        78.4834976196289,
+        305.3531188964844,
+        102.18177795410156
+      ],
+      "text": "심각한 부상이나 사망 및/또는 재산 피해를 초래할 수 있는 위험한 행위.\n경고\n",
+      "review": "Native PDF reading order combines two table columns and puts the signal label after its meaning; each meaning and label is preserved in its semantic table cell."
+    },
+    {
+      "physical_page": 4,
+      "bbox": [
+        53.01029968261719,
+        135.81698608398438,
+        315.6990661621094,
+        165.81198120117188
+      ],
+      "text": "장비 손상, 데이터 손실, 성능 저하 또는 예상치 못한 결과를 초래할 수 있는 \n위험한 관행.\n참고\n",
+      "review": "Native PDF reading order combines two table columns and puts the signal label after its meaning; each meaning and label is preserved in its semantic table cell."
+    },
+    {
+      "physical_page": 4,
+      "bbox": [
+        57.499000549316406,
+        171.20660400390625,
+        238.37710571289062,
+        194.02259826660156
+      ],
+      "text": "본문의 중요한 정보 또는 작동 팁을 보충합니다.\n팁\n",
+      "review": "Native PDF reading order combines two table columns and puts the signal label after its meaning; each meaning and label is preserved in its semantic table cell."
+    },
+    {
+      "physical_page": 4,
+      "bbox": [
+        72.36380004882812,
+        278.7857971191406,
+        335.8088073730469,
+        368.798828125
+      ],
+      "text": "제품을 화기로부터 멀리 두십시오.\n이 기호는 제품을 생활 폐기물로 \n처리해서는 안 되며, 재활용을 위해 \n지정된 수거 시설에 전달해야 함을 \n나타냅니다. 적절한 폐기 및 재활용은 \n환경 보호에 도움이 될 수 있습니다. 이 \n제품의 폐기 및 재활용에 대한 자세한 \n내용은 지역 커뮤니티, 폐기물 처리 \n서비스 또는 판매점에 문의하십시오.\n",
+      "review": "Native PDF reading order combines two table columns and puts the signal label after its meaning; each meaning and label is preserved in its semantic table cell."
+    },
+    {
+      "physical_page": 5,
+      "bbox": [
+        44.1713981628418,
+        152.18658447265625,
+        301.62841796875,
+        182.18157958984375
+      ],
+      "text": "차량용 충전 케이블은 포함되어 있지 않으며 당사 웹사이트에서 별도로 구매할 수 \n있습니다. 도움이 필요하시면 Jackery 고객 지원팀으로 문의하십시오.\n팁\n",
+      "review": "Native PDF reading order places the tip / AC-input label after its body/value; the full component or complete connected overview panel preserves both."
+    },
+    {
+      "physical_page": 5,
+      "bbox": [
+        29.783700942993164,
+        429.89739990234375,
+        90.68372344970703,
+        456.2729797363281
+      ],
+      "text": "220V-240V~ 60Hz, 최대 10A\nAC 입력\n",
+      "review": "Native PDF reading order places the tip / AC-input label after its body/value; the full component or complete connected overview panel preserves both."
+    },
+    {
+      "physical_page": 6,
+      "bbox": [
+        96.5448989868164,
+        181.3262481689453,
+        263.7197265625,
+        189.6583709716797
+      ],
+      "text": "14 15\n16\n17 18\n19\n20 21\n",
+      "review": "Numeric LCD-map leader labels are preserved in the full diagram, with the corresponding 26 live rows in source order."
+    },
+    {
+      "physical_page": 10,
+      "bbox": [
+        47.29790115356445,
+        247.61978149414062,
+        311.39178466796875,
+        275.4718017578125
+      ],
+      "text": "전원을 켠 후 에너지 절약 모드는 이전 상태로 복원됩니다. 모드는 수동으로 전환해야 \n합니다.\n참고\n",
+      "review": "The source note label follows its body in PDF extraction; native footer instructions and 3-second badge remain in the complete energy-saving panel."
+    },
+    {
+      "physical_page": 10,
+      "bbox": [
+        181.80520629882812,
+        221.39059448242188,
+        302.7217102050781,
+        249.40859985351562
+      ],
+      "text": "두 버튼을 동시에 3초 넘게 길게 누르십시오.\n3초\n",
+      "review": "The source note label follows its body in PDF extraction; native footer instructions and 3-second badge remain in the complete energy-saving panel."
+    },
+    {
+      "physical_page": 11,
+      "bbox": [
+        49.0703010559082,
+        78.7798080444336,
+        228.8615264892578,
+        100.86780548095703
+      ],
+      "text": "3초 동안 동시에 길게 누르기\nPOWER 버튼\nAC 전원 버튼\n",
+      "review": "Source button pair/control glyphs appear in a different PDF stream order; the same POWER + AC three-second pair is preserved in the registered key-combinations table."
+    },
+    {
+      "physical_page": 12,
+      "bbox": [
+        46.30179977416992,
+        311.000732421875,
+        286.8155212402344,
+        333.69696044921875
+      ],
+      "text": "연결은 전류 불안정, 과열, 접촉 불량 또는 장치 오작동을 유발할 수 있습니다.\n주의\n",
+      "review": "PDF extraction appends the caution label to a body continuation; the complete AC-charging warning remains a registered caution component."
+    },
+    {
+      "physical_page": 16,
+      "bbox": [
+        43.00490188598633,
+        177.24630737304688,
+        276.4364013671875,
+        215.67709350585938
+      ],
+      "text": "표준 보증\n년\n3\n연장 보증\n년\n2  \n",
+      "review": "Native warranty badge words and digits have drawing-order differences; both 3-year standard and 2-year extended periods remain semantic numeric badges."
+    }
+  ],
+  "source_erratum": "Only user-approved full first-use sentence restored; PDF body unchanged",
+  "cover": "Web cover block removed per latest user direction",
+  "warranty_section_cards": 5,
+  "warranty_period_cards": 1,
+  "spec_headings": "H2 under H1 chapter",
+  "lcd_rows": 26,
+  "lcd_numbers": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "16",
+    "17",
+    "18",
+    "19",
+    "20",
+    "21",
+    "21",
+    "22",
+    "23",
+    "24",
+    "25"
+  ],
+  "fault_codes": [
+    "F0",
+    "F1",
+    "F2",
+    "F3",
+    "F4",
+    "F5",
+    "F6",
+    "F7",
+    "F8",
+    "F9",
+    "FE"
+  ],
+  "spec_sections": 4,
+  "cold_replay_markdown_sha256_unchanged": "921a41582cfa244a1f50261eca73784be7a29356a0c59155f53bdf7210368223",
+  "tampered_asset_rejected": "document asset missing or changed: assets/inbox-main.png",
+  "strict_sphinx": "python -m sphinx -W --keep-going -q -b html; passed",
+  "targeted_shared_contract_tests": {
+    "count": 34,
+    "result": "OK"
+  },
+  "browser_review": {
+    "desktop": {
+      "width": 1280,
+      "no_horizontal_overflow": true
+    },
+    "mobile": {
+      "width": 390,
+      "no_horizontal_overflow": true
+    },
+    "app_store_qr_phones": "Visible and loaded; complete frames checked"
+  },
+  "lcd_status_label_formatting": {
+    "requested": "2026-10-24",
+    "labels": [
+      "켜짐:",
+      "점멸:",
+      "꺼짐:"
+    ],
+    "bold_prefix_count": 23,
+    "description_rows": 26,
+    "plain_text_unchanged": true,
+    "change": "Semantic strong emphasis on LCD status prefixes only; regenerated through shared Web consumer.",
+    "governing_rule": "code-as-doc/dev/translation_corpus_governance.md#6-status-word-contract-shared-boundary-with-the-build"
+  },
+  "app_caption_alignment": {
+    "requested": "2026-10-24",
+    "captions": [
+      "2.1",
+      "2.2",
+      "2.3",
+      "2.4",
+      "2.5"
+    ],
+    "shared_contract": "caption_centers_pct",
+    "geometry": {
+      "app-phones.png": {
+        "image_size_px": [
+          711,
+          486
+        ],
+        "phone_frame_x_bounds_px": [
+          [
+            124,
+            332
+          ],
+          [
+            390,
+            598
+          ]
+        ],
+        "caption_centers_pct": [
+          32.067511,
+          69.479606
+        ],
+        "measurement": "Centers of contiguous non-white native phone frame columns (RGB channel minimum <245); retained image pixels unchanged."
+      },
+      "app-connect.png": {
+        "image_size_px": [
+          798,
+          447
+        ],
+        "phone_frame_x_bounds_px": [
+          [
+            7,
+            214
+          ],
+          [
+            296,
+            503
+          ],
+          [
+            587,
+            794
+          ]
+        ],
+        "caption_centers_pct": [
+          13.847118,
+          50.062657,
+          86.528822
+        ],
+        "measurement": "Centers of contiguous non-white native phone frame columns (RGB channel minimum <245); retained image pixels unchanged."
+      }
+    },
+    "image_pixels_unchanged": true,
+    "source_wording_unchanged": true
+  },
+  "symbol_asset_admission": {
+    "authority": "MA-348",
+    "rows": [
+      {
+        "asset_ref": "assets/je1500d-jp-6ddeef54-symbol-01.svg",
+        "physical_page": 4,
+        "max_mean_channel_error": 0.004811
+      },
+      {
+        "asset_ref": "assets/je3000c-kr-78316033-02.svg",
+        "physical_page": 4,
+        "max_mean_channel_error": 0.0
+      },
+      {
+        "asset_ref": "assets/symbol_no_open_flame_gray_jp.svg",
+        "physical_page": 4,
+        "max_mean_channel_error": 0.013846
+      },
+      {
+        "asset_ref": "assets/symbol_keep_away_from_children_gray_jp.svg",
+        "physical_page": 4,
+        "max_mean_channel_error": 0.018164
+      },
+      {
+        "asset_ref": "assets/screwdriver-prohibited-tw-477dfbd7.svg",
+        "physical_page": 4,
+        "max_mean_channel_error": 0.006187
+      },
+      {
+        "asset_ref": "assets/je3000c-kr-78316033-06.svg",
+        "physical_page": 4,
+        "max_mean_channel_error": 0.0
+      },
+      {
+        "asset_ref": "assets/je3000c-kr-78316033-07.svg",
+        "physical_page": 4,
+        "max_mean_channel_error": 0.0
+      }
+    ],
+    "shared_variants_reused": 4,
+    "new_native_variants": 3
+  }
+}
