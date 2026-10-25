@@ -14,8 +14,47 @@ permissions:
   contents: read
 
 jobs:
-  lint:
+  changes:
     if: ${{ github.repository == 'Bingboom/auto-manual' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      engineering: ${{ steps.scope.outputs.engineering }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          sparse-checkout-cone-mode: false
+          sparse-checkout: /scripts/ci_change_gate.py
+      - name: Classify inputs with the trusted PR base
+        id: scope
+        env:
+          CHANGE_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+          CHANGE_EVENT: ${{ github.event_name }}
+        shell: bash
+        run: |
+          # Output defaults to full even on an absent base, fetch error or rollout.
+          echo "engineering=true" >> "$GITHUB_OUTPUT"
+          if ! [[ "$CHANGE_BASE" =~ ^[0-9a-f]{40}$ ]] || [[ "$CHANGE_BASE" =~ ^0+$ ]]; then
+            exit 0
+          fi
+          if ! git fetch --no-tags --depth=1 --filter=blob:none origin "$CHANGE_BASE"; then
+            echo "::warning::Cannot fetch comparison base; running full validation"
+            exit 0
+          fi
+          script=scripts/ci_change_gate.py
+          if [ "$CHANGE_EVENT" = pull_request ]; then
+            script="$RUNNER_TEMP/ci_change_gate.py"
+            if ! git show "$CHANGE_BASE:scripts/ci_change_gate.py" > "$script"; then
+              echo "::notice::Classifier absent on PR base; running full validation"
+              exit 0
+            fi
+          fi
+          python3 "$script" manual --base "$CHANGE_BASE"
+
+  lint:
+    needs: changes
+    if: ${{ !cancelled() && github.repository == 'Bingboom/auto-manual' && (needs.changes.result != 'success' || needs.changes.outputs.engineering != 'false') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -66,7 +105,8 @@ jobs:
         run: python -m tools.check_doc_link_integrity
 
   reference-layout-pins:
-    if: ${{ github.repository == 'Bingboom/auto-manual' }}
+    needs: changes
+    if: ${{ !cancelled() && github.repository == 'Bingboom/auto-manual' && (needs.changes.result != 'success' || needs.changes.outputs.engineering != 'false') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -81,7 +121,8 @@ jobs:
         run: python -m tools.check_reference_layout_pins
 
   asset-registry:
-    if: ${{ github.repository == 'Bingboom/auto-manual' }}
+    needs: changes
+    if: ${{ !cancelled() && github.repository == 'Bingboom/auto-manual' && (needs.changes.result != 'success' || needs.changes.outputs.engineering != 'false') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -96,7 +137,8 @@ jobs:
         run: python build.py asset-check --config configs/config.us.yaml --model JE-1000F --region US
 
   type-check:
-    if: ${{ github.repository == 'Bingboom/auto-manual' }}
+    needs: changes
+    if: ${{ !cancelled() && github.repository == 'Bingboom/auto-manual' && (needs.changes.result != 'success' || needs.changes.outputs.engineering != 'false') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -111,7 +153,8 @@ jobs:
         run: python -m tools.check_mypy_ratchet check
 
   openclaw-plugin:
-    if: ${{ github.repository == 'Bingboom/auto-manual' }}
+    needs: changes
+    if: ${{ !cancelled() && github.repository == 'Bingboom/auto-manual' && (needs.changes.result != 'success' || needs.changes.outputs.engineering != 'false') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -126,7 +169,8 @@ jobs:
         run: npm test
 
   feishu-adapter:
-    if: ${{ github.repository == 'Bingboom/auto-manual' }}
+    needs: changes
+    if: ${{ !cancelled() && github.repository == 'Bingboom/auto-manual' && (needs.changes.result != 'success' || needs.changes.outputs.engineering != 'false') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -144,7 +188,8 @@ jobs:
   # no npm dependencies. Every tests/*.test.mjs file runs, so a new UI test is
   # picked up without editing this job.
   node-ui:
-    if: ${{ github.repository == 'Bingboom/auto-manual' }}
+    needs: changes
+    if: ${{ !cancelled() && github.repository == 'Bingboom/auto-manual' && (needs.changes.result != 'success' || needs.changes.outputs.engineering != 'false') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -155,7 +200,8 @@ jobs:
         run: node --test tests/*.test.mjs
 
   unit:
-    if: ${{ github.repository == 'Bingboom/auto-manual' }}
+    needs: changes
+    if: ${{ !cancelled() && github.repository == 'Bingboom/auto-manual' && (needs.changes.result != 'success' || needs.changes.outputs.engineering != 'false') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -170,7 +216,8 @@ jobs:
         run: python -m unittest
 
   queue-contract:
-    if: ${{ github.repository == 'Bingboom/auto-manual' }}
+    needs: changes
+    if: ${{ !cancelled() && github.repository == 'Bingboom/auto-manual' && (needs.changes.result != 'success' || needs.changes.outputs.engineering != 'false') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -189,7 +236,8 @@ jobs:
           python -m tools.schema_drift --phase2-root tests/fixtures/phase2 --queue-fields tests/fixtures/schema_drift/queue_fields_complete.json
 
   doctor-en:
-    if: ${{ github.repository == 'Bingboom/auto-manual' }}
+    needs: changes
+    if: ${{ !cancelled() && github.repository == 'Bingboom/auto-manual' && (needs.changes.result != 'success' || needs.changes.outputs.engineering != 'false') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -229,7 +277,8 @@ jobs:
         run: python build.py doctor --config configs/config.us-en.yaml --model JE-1000F --region US --data-root tests/fixtures/phase2
 
   check-en:
-    if: ${{ github.repository == 'Bingboom/auto-manual' }}
+    needs: changes
+    if: ${{ !cancelled() && github.repository == 'Bingboom/auto-manual' && (needs.changes.result != 'success' || needs.changes.outputs.engineering != 'false') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -244,7 +293,8 @@ jobs:
         run: python build.py check --config configs/config.us-en.yaml --model JE-1000F --region US --data-root tests/fixtures/phase2
 
   check-jp:
-    if: ${{ github.repository == 'Bingboom/auto-manual' }}
+    needs: changes
+    if: ${{ !cancelled() && github.repository == 'Bingboom/auto-manual' && (needs.changes.result != 'success' || needs.changes.outputs.engineering != 'false') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -261,7 +311,8 @@ jobs:
   # Keep the long-lived US/JP jobs above as stable comparison points while
   # automatically extending check coverage to every config*.yaml target.
   check-all:
-    if: ${{ github.repository == 'Bingboom/auto-manual' }}
+    needs: changes
+    if: ${{ !cancelled() && github.repository == 'Bingboom/auto-manual' && (needs.changes.result != 'success' || needs.changes.outputs.engineering != 'false') }}
     # Stage 1 is an observation lane: existing check-en/check-jp remain the
     # required gates while this inventory establishes the target baseline.
     runs-on: ubuntu-latest
@@ -284,7 +335,8 @@ jobs:
             --observation
 
   workflow-smoke:
-    if: ${{ github.repository == 'Bingboom/auto-manual' }}
+    needs: changes
+    if: ${{ !cancelled() && github.repository == 'Bingboom/auto-manual' && (needs.changes.result != 'success' || needs.changes.outputs.engineering != 'false') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
