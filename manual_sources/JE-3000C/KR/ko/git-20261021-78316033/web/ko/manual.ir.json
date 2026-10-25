@@ -1,12 +1,12 @@
 {
   "asset_refs": [
-    "assets/symbol_warning_triangle_gray_jp.svg",
-    "assets/symbol_read_manual_gray_jp.svg",
+    "assets/je1500d-jp-6ddeef54-symbol-01.svg",
+    "assets/je3000c-kr-78316033-02.svg",
     "assets/symbol_no_open_flame_gray_jp.svg",
     "assets/symbol_keep_away_from_children_gray_jp.svg",
-    "assets/symbol_do_not_dismantle_gray_jp.svg",
-    "assets/native-li_ion_gray_jp.svg",
-    "assets/symbol_weee_gray_jp.svg",
+    "assets/screwdriver-prohibited-tw-477dfbd7.svg",
+    "assets/je3000c-kr-78316033-06.svg",
+    "assets/je3000c-kr-78316033-07.svg",
     "assets/inbox-main.png",
     "assets/inbox-cable.png",
     "assets/inbox-manual.png",
@@ -54,8 +54,8 @@
     "assets/app-connect.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "1b951f2f5fa9fc9b5a874472fdf89f305f184de3399e8fe902e708f2bdfb5fe7",
-  "content_sha256": "6237be4afee73783eacf3ecb5d17fe7bd1efaf83fb4a35b3aa3ad33345f29b93",
+  "bundle_sha256": "0d9def3b4dda56ed325133b59f9a62ca527afc8dc8777b18bc59d26a480651d7",
+  "content_sha256": "3ce8864f5c522144ed277cf1a238bd2d1190765723a4eac9b8b5c3d1d737506d",
   "language": "ko",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -97,6 +97,10 @@
       "assets/inbox-cable.png": "18719ce46241a80cc209e509c01933040272b150083fbab85e1035384f3a413f",
       "assets/inbox-main.png": "a46e40cfc26e4bae478611e696efe0e5040450dce9ee27bcc5be872f8d6d6eb9",
       "assets/inbox-manual.png": "bd9b6988ba667222f2e9aac976e2236f0c4038b6e183cb3af119b713433d5ca2",
+      "assets/je1500d-jp-6ddeef54-symbol-01.svg": "42ca4108169a476569b3d874d9fe73eb444512e4f62a5bf4d5f8f5f3b8a2e6a2",
+      "assets/je3000c-kr-78316033-02.svg": "9314a0d781b00c728c10576206b64cde9c2cb8eaf47c294c418869d996878adf",
+      "assets/je3000c-kr-78316033-06.svg": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5",
+      "assets/je3000c-kr-78316033-07.svg": "7a07f68dc10f6d748ef90fa56822330ce831eac6ef25954bca8f4ddfc0cfbe34",
       "assets/lcd-map.png": "9d86fb7fac57ea2d372542d38c1e8e9fa52b8b052d3394e9f7a8e22a7d2411bd",
       "assets/lcd-mode.png": "7fbcb566d52d7062191bf8d0e4c13e71de23e758d8e3e665648d636aaab8af76",
       "assets/native-li_ion_gray_jp.svg": "4d202540e27b0d52e806abf8b0e357382d0661d31f07a756b624108e2c0716d9",
@@ -106,6 +110,7 @@
       "assets/operation_ups_mode.svg": "899801760f19da504ba8c41bdd958b2e68f9e7735e1f022113e77d73ff5ad159",
       "assets/overview-front.png": "bb19e5218d527116028b0343a66e1266ac9017a0ba2da4c9a97744252b1d68db",
       "assets/overview-right.png": "06ff28156476794a75258a27addf6dc1f65730248e32ec05a0e11a1123274619",
+      "assets/screwdriver-prohibited-tw-477dfbd7.svg": "482e56e11b72b30ca053ee1cc94021f98909ceb9497e9c084738fd2b4a0fe01b",
       "assets/solar.png": "f06ecb25a8daa575f460d447524f33fa96b70f53445f9ae65ba4df2c0bab68e5",
       "assets/symbol_do_not_dismantle_gray_jp.svg": "9629d601e6cd919cbbd5f1bcf2ff31f01daceeb3a287c07c1eddfd82160c2888",
       "assets/symbol_keep_away_from_children_gray_jp.svg": "af71ae09a5498979d0722d5a8a11347936d4be2b994898f2aabda0e2cea5c817",
@@ -1922,8 +1927,8 @@
     "page_count": 15,
     "page_declarations": {},
     "projection": "whole-document-components/v1",
-    "publication_eligible": false,
-    "publication_status": "candidate-pending-operator-review",
+    "publication_eligible": true,
+    "publication_status": "approved-git-only-release",
     "skipped_raw": 0,
     "source_page_map": {
       "app": [
@@ -3072,27 +3077,27 @@
         },
         {
           "asset_refs": [
-            "assets/symbol_warning_triangle_gray_jp.svg",
-            "assets/symbol_read_manual_gray_jp.svg",
+            "assets/je1500d-jp-6ddeef54-symbol-01.svg",
+            "assets/je3000c-kr-78316033-02.svg",
             "assets/symbol_no_open_flame_gray_jp.svg",
             "assets/symbol_keep_away_from_children_gray_jp.svg",
-            "assets/symbol_do_not_dismantle_gray_jp.svg",
-            "assets/native-li_ion_gray_jp.svg",
-            "assets/symbol_weee_gray_jp.svg"
+            "assets/screwdriver-prohibited-tw-477dfbd7.svg",
+            "assets/je3000c-kr-78316033-06.svg",
+            "assets/je3000c-kr-78316033-07.svg"
           ],
           "block_id": "symbols:block-0003",
-          "content_sha256": "1136969cd9e42932b10f48cf94a95fadf2792137979b4ba4aae61d5d7620dcab",
+          "content_sha256": "4657bd3b9a8f2a0d9feaeb881da7fd5220e12003f8561386ea4997358ab0178e",
           "kind": "flow",
           "payload": {
             "component_spec": {
               "assets": [
                 {
-                  "asset_ref": "assets/symbol_warning_triangle_gray_jp.svg",
+                  "asset_ref": "assets/je1500d-jp-6ddeef54-symbol-01.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/symbol_read_manual_gray_jp.svg",
+                  "asset_ref": "assets/je3000c-kr-78316033-02.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 },
@@ -3107,17 +3112,17 @@
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/symbol_do_not_dismantle_gray_jp.svg",
+                  "asset_ref": "assets/screwdriver-prohibited-tw-477dfbd7.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/native-li_ion_gray_jp.svg",
+                  "asset_ref": "assets/je3000c-kr-78316033-06.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/symbol_weee_gray_jp.svg",
+                  "asset_ref": "assets/je3000c-kr-78316033-07.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 }

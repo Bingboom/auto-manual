@@ -9,21 +9,22 @@
     "technical_version": "git-20261021-78316033"
   },
   "original_source": {
-    "filename": "55060100010 HTE1563000A-KR-JAK-A0 说明书 RoHS REACH.pdf",
+    "filename": "source/original.pdf",
     "path": "source/original.pdf",
     "sha256": "78316033826380d2786a495562d1a09c3193ede98d9bbcb4fdb2e81b1872ad37",
     "page_count": 20,
     "printed_version": null,
     "packaging_revision": "A0",
-    "pre_edit_sha256": "5f1190d731821c9bcceada2cef940a9365b334eedb8e84d5e08926b814f490e7"
+    "pre_edit_sha256": "5f1190d731821c9bcceada2cef940a9365b334eedb8e84d5e08926b814f490e7",
+    "original_filename": "55060100010 HTE1563000A-KR-JAK-A0 说明书 RoHS REACH.pdf"
   },
-  "scope": "Git-only KR/ko Web candidate; no online-table or queue access",
+  "scope": "MA-348 approved Git-only KR/ko Web release; no online-table or queue access",
   "live_bitable_dependency": false,
   "phase2_enrolled": false,
   "web_roots": {
     "ko": "web/ko"
   },
-  "publication_status": "candidate-pending-operator-review",
+  "publication_status": "approved-git-only-release",
   "included_pages": [
     3,
     4,
@@ -71,7 +72,8 @@
     "User 2026-10-21: Web body begins with 중요; omit cover title/identity/customer-email block",
     "2026-10-21 user style corrections: template H1 chapters/H2 subsections; IMPORTANT stays a strong paragraph; warranty sections use registered rounded cards and separate warranty-period heading",
     "User 2026-10-24: bold all 23 LCD status prefixes (켜짐:, 점멸:, 꺼짐:) with semantic strong emphasis; source wording and descriptions unchanged; applies corpus Status-word contract §6 and shared LCD style contract §4.4",
-    "User 2026-10-24: center App step numbers 2.1–2.5 under their corresponding native phone frames via shared caption_centers_pct metadata; image bytes and text unchanged"
+    "User 2026-10-24: center App step numbers 2.1–2.5 under their corresponding native phone frames via shared caption_centers_pct metadata; image bytes and text unchanged",
+    "MA-348: bind all seven symbol rows to authoritative PDF glyph/caption geometry; reuse four admitted shared variants and add three exact native variants; historical frozen package bytes preserved"
   ],
   "approved_errata": [
     {
@@ -196,24 +198,33 @@
       "path": "tools/web/reference_figure_component.py",
       "size": 6340,
       "sha256": "c81accfb2d13d9961c6b28d0b383fde306574f9e760fa42f9c40e1c846c4418b"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/manifest.json",
+      "sha256": "f79671bd439448109d4ea71b50e80898ed9f1ed341cd870a34d1a14336ba21b6"
     }
   ],
   "shared_component_exceptions": [],
   "inputs": [
     {
       "path": "README.md",
-      "size": 4465,
-      "sha256": "02b1517ae8f1e1f2d354d9970b836542f13fcdbbbeeac2f56d3d337e00eb1744"
+      "size": 4938,
+      "sha256": "85549445a18ea65dbcc085e894e766d674fc0f55e31bfc9246411c0480073aa6"
     },
     {
       "path": "rebuild.py",
-      "size": 5487,
-      "sha256": "d5919bbf6eb83c0a99c97a68fc0b1287f6ca5b516fd258301b1fd92842a7b02d"
+      "size": 5538,
+      "sha256": "4f0f97526648f9fdf49bb30ba24e4bbe552c04a2daf0e5c7b35d847ca162877d"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 371,
+      "sha256": "eb3804e74dd9b298c28a67195dbbb3a21435c0994b6d252da2dc0b8230c38858"
     },
     {
       "path": "source/asset_decisions.json",
-      "size": 33806,
-      "sha256": "3f4d33b2fb26113b5ffb98965de376305c1f6387dbca196dfdaf3700676b2d26"
+      "size": 35371,
+      "sha256": "ed4f7bf5e380c2605ff270c5287eaf2555ffbd5a98d46b177bc1b25e4b038ee6"
     },
     {
       "path": "source/asset_inventory.json",
@@ -227,8 +238,8 @@
     },
     {
       "path": "source/document.json",
-      "size": 242070,
-      "sha256": "746991cfa7c487c4ef4758667ce9c889e459c07d434bd8bc60f75ebe7e6f182c"
+      "size": 242071,
+      "sha256": "d724b48d2dfdd6f603494e39d203f847c94ee681c65d8a0ed6c84b59716e2450"
     },
     {
       "path": "source/geometry.css",
@@ -262,8 +273,13 @@
     },
     {
       "path": "validation/content-audit.json",
-      "size": 9586,
-      "sha256": "fba1b86dfe8c4e1764aab212246bd99c25cd3a93e579c84b1ecc83f49438b2b6"
+      "size": 10799,
+      "sha256": "5bfc5fffdb418e83bc8d93de93e0d546f9f13c31d701d76211b93e664446324a"
+    },
+    {
+      "path": "validation/symbol-native-candidates.json",
+      "size": 1569,
+      "sha256": "2fd48550f73180bf11313359142a7f7614f873f1ee08728e0d3508288c80a940"
     },
     {
       "path": "web/ko/_static/source_geometry.css",
@@ -461,6 +477,26 @@
       "sha256": "bd9b6988ba667222f2e9aac976e2236f0c4038b6e183cb3af119b713433d5ca2"
     },
     {
+      "path": "web/ko/assets/je1500d-jp-6ddeef54-symbol-01.svg",
+      "size": 2205,
+      "sha256": "42ca4108169a476569b3d874d9fe73eb444512e4f62a5bf4d5f8f5f3b8a2e6a2"
+    },
+    {
+      "path": "web/ko/assets/je3000c-kr-78316033-02.svg",
+      "size": 3768,
+      "sha256": "9314a0d781b00c728c10576206b64cde9c2cb8eaf47c294c418869d996878adf"
+    },
+    {
+      "path": "web/ko/assets/je3000c-kr-78316033-06.svg",
+      "size": 6314,
+      "sha256": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5"
+    },
+    {
+      "path": "web/ko/assets/je3000c-kr-78316033-07.svg",
+      "size": 3136,
+      "sha256": "7a07f68dc10f6d748ef90fa56822330ce831eac6ef25954bca8f4ddfc0cfbe34"
+    },
+    {
       "path": "web/ko/assets/lcd-map.png",
       "size": 62105,
       "sha256": "9d86fb7fac57ea2d372542d38c1e8e9fa52b8b052d3394e9f7a8e22a7d2411bd"
@@ -504,6 +540,11 @@
       "path": "web/ko/assets/overview-right.png",
       "size": 26103,
       "sha256": "06ff28156476794a75258a27addf6dc1f65730248e32ec05a0e11a1123274619"
+    },
+    {
+      "path": "web/ko/assets/screwdriver-prohibited-tw-477dfbd7.svg",
+      "size": 4769,
+      "sha256": "482e56e11b72b30ca053ee1cc94021f98909ceb9497e9c084738fd2b4a0fe01b"
     },
     {
       "path": "web/ko/assets/solar.png",
@@ -552,17 +593,258 @@
     },
     {
       "path": "web/ko/manual.ir.json",
-      "size": 348993,
-      "sha256": "cfbda13055ddd04c3af24ceb8ea07fc7dfe2c2a409fa02bfa4a4e110ac683637"
+      "size": 349561,
+      "sha256": "91b20d19fbb5185019b573c5c4990c123d248372d874d70cd18dd1658d378f02"
     },
     {
       "path": "web/ko/manual_je3000c_kr_ko.md",
-      "size": 64264,
-      "sha256": "4d803371faebc1591fd76d2e624ce3c862d96e0fa4ee384ec0e553953c11e8ed"
+      "size": 64265,
+      "sha256": "3cd9f487229feba99eac6f7744864ef564c339152a2209972320d5138ab2bc64"
     }
   ],
-  "web_markdown_sha256": "4d803371faebc1591fd76d2e624ce3c862d96e0fa4ee384ec0e553953c11e8ed",
-  "publication_gate_pending": [
-    "Two exact native symbol variants (Li-ion 32 and WEEE) require shared-catalog additions; scope approval requested from operator."
-  ]
+  "web_markdown_sha256": "3cd9f487229feba99eac6f7744864ef564c339152a2209972320d5138ab2bc64",
+  "publication_gate_pending": [],
+  "symbol_asset_admission": {
+    "schema_version": "auto-manual-symbol-asset-admission/v1",
+    "locales": {
+      "ko": [
+        {
+          "asset_ref": "assets/je1500d-jp-6ddeef54-symbol-01.svg",
+          "asset_sha256": "42ca4108169a476569b3d874d9fe73eb444512e4f62a5bf4d5f8f5f3b8a2e6a2",
+          "shared_symbol_key": "native/je1500d-jp-6ddeef54-01",
+          "physical_page": 4,
+          "drawing_indices": [
+            28
+          ],
+          "glyph_bbox": [
+            37.36410140991211,
+            229.18028259277344,
+            59.493099212646484,
+            249.1112823486328
+          ],
+          "caption_bbox": [
+            71,
+            220,
+            183,
+            256
+          ],
+          "row_bbox": [
+            37.36410140991211,
+            220.0,
+            183.0,
+            256.0
+          ],
+          "caption_text": "경고 및 주의 기호. 잠재적 위험이나 위험을 알리기 위해 반드시 숙지해야 합니다.",
+          "caption_sha256": "ef73d875b0d0069b6a4ae5eee045f2638df62166beffdebf34d4a5a4a36c8744"
+        },
+        {
+          "asset_ref": "assets/je3000c-kr-78316033-02.svg",
+          "asset_sha256": "9314a0d781b00c728c10576206b64cde9c2cb8eaf47c294c418869d996878adf",
+          "shared_symbol_key": "native/je3000c-kr-78316033-02",
+          "physical_page": 4,
+          "drawing_indices": [
+            29,
+            30,
+            31,
+            32,
+            33
+          ],
+          "glyph_bbox": [
+            38.651100158691406,
+            258.9413757324219,
+            58.20610046386719,
+            278.4953918457031
+          ],
+          "caption_bbox": [
+            71,
+            254,
+            183,
+            282
+          ],
+          "row_bbox": [
+            38.651100158691406,
+            254.0,
+            183.0,
+            282.0
+          ],
+          "caption_text": "사용 전에 사용자 설명서를 읽으십시오.",
+          "caption_sha256": "cb92b3e265bf1e3eb6e8f28657a0552af8d4dad5b338f342c72314099a31dbbf"
+        },
+        {
+          "asset_ref": "assets/symbol_no_open_flame_gray_jp.svg",
+          "asset_sha256": "5d52569eb51f41f45826b7b144efe59410b5017b0557508b1577c4620d7e8aee",
+          "shared_symbol_key": "no-open-flame/fire-match-crossed-gray",
+          "physical_page": 4,
+          "drawing_indices": [
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "glyph_bbox": [
+            39.16809844970703,
+            286.49737548828125,
+            57.68819808959961,
+            304.0880126953125
+          ],
+          "caption_bbox": [
+            71,
+            278,
+            183,
+            309
+          ],
+          "row_bbox": [
+            39.16809844970703,
+            278.0,
+            183.0,
+            309.0
+          ],
+          "caption_text": "제품을 화기로부터 멀리 두십시오.",
+          "caption_sha256": "5b25b82d71c109980cce90259dbf3b5905ff46610aca8db405aa3ba7894b2b54"
+        },
+        {
+          "asset_ref": "assets/symbol_keep_away_from_children_gray_jp.svg",
+          "asset_sha256": "af71ae09a5498979d0722d5a8a11347936d4be2b994898f2aabda0e2cea5c817",
+          "shared_symbol_key": "keep-away-from-children/adult-child-frame-gray",
+          "physical_page": 4,
+          "drawing_indices": [
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "glyph_bbox": [
+            40.03620147705078,
+            315.55511474609375,
+            56.8202018737793,
+            331.9211120605469
+          ],
+          "caption_bbox": [
+            71,
+            307,
+            183,
+            338
+          ],
+          "row_bbox": [
+            40.03620147705078,
+            307.0,
+            183.0,
+            338.0
+          ],
+          "caption_text": "어린이의 손이 닿지 않는 곳에 보관하십시오.",
+          "caption_sha256": "0f84d8f526e84784a18bdbf71cf9ddef0a61d5dd4c9ab1cf6ceab3b6f8950fe4"
+        },
+        {
+          "asset_ref": "assets/screwdriver-prohibited-tw-477dfbd7.svg",
+          "asset_sha256": "482e56e11b72b30ca053ee1cc94021f98909ceb9497e9c084738fd2b4a0fe01b",
+          "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited-tw-477dfbd7",
+          "physical_page": 4,
+          "drawing_indices": [
+            54,
+            55,
+            56
+          ],
+          "glyph_bbox": [
+            40.09749984741211,
+            342.62701416015625,
+            58.016502380371094,
+            360.5429992675781
+          ],
+          "caption_bbox": [
+            71,
+            337,
+            183,
+            370
+          ],
+          "row_bbox": [
+            40.09749984741211,
+            337.0,
+            183.0,
+            370.0
+          ],
+          "caption_text": "제품을 분해하지 마십시오.",
+          "caption_sha256": "a636923bd255f0922444977049021e9cade5dfab77b544fb94e6846c1ffcfb29"
+        },
+        {
+          "asset_ref": "assets/je3000c-kr-78316033-06.svg",
+          "asset_sha256": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5",
+          "shared_symbol_key": "native/je3000c-kr-78316033-06",
+          "physical_page": 4,
+          "drawing_indices": [
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67
+          ],
+          "glyph_bbox": [
+            195.2855987548828,
+            242.56748962402344,
+            213.72410583496094,
+            259.8174743652344
+          ],
+          "caption_bbox": [
+            225,
+            222,
+            341,
+            280
+          ],
+          "row_bbox": [
+            195.2855987548828,
+            222.0,
+            341.0,
+            280.0
+          ],
+          "caption_text": "이 기호는 제품 내부에 리튬이온(Li-ion) 배터리가 포함되어 있음을 나타내며, 적절히 폐기 또는 재활용해야 합니다.",
+          "caption_sha256": "4b8504eda72744980a8d6f2f617edc75953ea968a271d3098d50ad4de91243a4"
+        },
+        {
+          "asset_ref": "assets/je3000c-kr-78316033-07.svg",
+          "asset_sha256": "7a07f68dc10f6d748ef90fa56822330ce831eac6ef25954bca8f4ddfc0cfbe34",
+          "shared_symbol_key": "native/je3000c-kr-78316033-07",
+          "physical_page": 4,
+          "drawing_indices": [
+            51,
+            52,
+            53
+          ],
+          "glyph_bbox": [
+            196.27011108398438,
+            314.24749755859375,
+            212.73910522460938,
+            337.6000061035156
+          ],
+          "caption_bbox": [
+            225,
+            279,
+            341,
+            370
+          ],
+          "row_bbox": [
+            196.27011108398438,
+            279.0,
+            341.0,
+            370.0
+          ],
+          "caption_text": "이 기호는 제품을 생활 폐기물로 처리해서는 안 되며, 재활용을 위해 지정된 수거 시설에 전달해야 함을 나타냅니다. 적절한 폐기 및 재활용은 환경 보호에 도움이 될 수 있습니다. 이 제품의 폐기 및 재활용에 대한 자세한 내용은 지역 커뮤니티, 폐기물 처리 서비스 또는 판매점에 문의하십시오.",
+          "caption_sha256": "911df3d34cf2664dce711aca6e3d3b95854bd64dcccf06efa69c9b0b4f110bbf"
+        }
+      ]
+    }
+  }
 }

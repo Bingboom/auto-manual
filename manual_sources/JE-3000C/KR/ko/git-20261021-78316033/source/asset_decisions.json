@@ -1,66 +1,94 @@
 [
   {
     "slot": "symbol-1",
-    "decision": "reuse-byte-identical",
-    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_warning_triangle_gray_jp.svg",
-    "path": "web/ko/assets/symbol_warning_triangle_gray_jp.svg",
-    "sha256": "25010027afb12cdffa2ee29be0da86b358e6c05bd7e2deab0e1f975eaed0eeb0",
-    "reason": "Same visible native pictogram and value as PDF p4; key=warning/filled-triangle-gray",
-    "background": "existing transparent icon / original artwork retained"
+    "decision": "reuse-byte-identical-governed-source-matched-symbol",
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/je1500d-jp-6ddeef54-symbol-01.svg",
+    "path": "web/ko/assets/je1500d-jp-6ddeef54-symbol-01.svg",
+    "sha256": "42ca4108169a476569b3d874d9fe73eb444512e4f62a5bf4d5f8f5f3b8a2e6a2",
+    "reason": "MA-348: shared symbol first; source-bound glyph and caption admission passes against exact KR PDF p4",
+    "background": "existing transparent icon / original artwork retained",
+    "prior_candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_warning_triangle_gray_jp.svg",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.004811
+    }
   },
   {
     "slot": "symbol-2",
-    "decision": "reuse-byte-identical",
-    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_read_manual_gray_jp.svg",
-    "path": "web/ko/assets/symbol_read_manual_gray_jp.svg",
-    "sha256": "94568bcf403d86a49206c4728223b1f8a53642f4bff01a3abc0d1a1569fc7440",
-    "reason": "Same visible native pictogram and value as PDF p4; key=read-manual/person-book-circle-gray",
-    "background": "existing transparent icon / original artwork retained"
+    "decision": "reuse-byte-identical-governed-source-matched-symbol",
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/je3000c-kr-78316033-02.svg",
+    "path": "web/ko/assets/je3000c-kr-78316033-02.svg",
+    "sha256": "9314a0d781b00c728c10576206b64cde9c2cb8eaf47c294c418869d996878adf",
+    "reason": "MA-348: shared symbol first; source-bound glyph and caption admission passes against exact KR PDF p4",
+    "background": "existing transparent icon / original artwork retained",
+    "prior_candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_read_manual_gray_jp.svg",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.0
+    }
   },
   {
     "slot": "symbol-3",
-    "decision": "reuse-byte-identical",
+    "decision": "reuse-byte-identical-governed-source-matched-symbol",
     "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_no_open_flame_gray_jp.svg",
     "path": "web/ko/assets/symbol_no_open_flame_gray_jp.svg",
     "sha256": "5d52569eb51f41f45826b7b144efe59410b5017b0557508b1577c4620d7e8aee",
-    "reason": "Same visible native pictogram and value as PDF p4; key=no-open-flame/fire-match-crossed-gray",
-    "background": "existing transparent icon / original artwork retained"
+    "reason": "MA-348: shared symbol first; source-bound glyph and caption admission passes against exact KR PDF p4",
+    "background": "existing transparent icon / original artwork retained",
+    "prior_candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_no_open_flame_gray_jp.svg",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.013846
+    }
   },
   {
     "slot": "symbol-4",
-    "decision": "reuse-byte-identical",
+    "decision": "reuse-byte-identical-governed-source-matched-symbol",
     "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_keep_away_from_children_gray_jp.svg",
     "path": "web/ko/assets/symbol_keep_away_from_children_gray_jp.svg",
     "sha256": "af71ae09a5498979d0722d5a8a11347936d4be2b994898f2aabda0e2cea5c817",
-    "reason": "Same visible native pictogram and value as PDF p4; key=keep-away-from-children/adult-child-frame-gray",
-    "background": "existing transparent icon / original artwork retained"
+    "reason": "MA-348: shared symbol first; source-bound glyph and caption admission passes against exact KR PDF p4",
+    "background": "existing transparent icon / original artwork retained",
+    "prior_candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_keep_away_from_children_gray_jp.svg",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.018164
+    }
   },
   {
     "slot": "symbol-5",
-    "decision": "reuse-byte-identical",
-    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_do_not_dismantle_gray_jp.svg",
-    "path": "web/ko/assets/symbol_do_not_dismantle_gray_jp.svg",
-    "sha256": "9629d601e6cd919cbbd5f1bcf2ff31f01daceeb3a287c07c1eddfd82160c2888",
-    "reason": "Same visible native pictogram and value as PDF p4; key=do-not-dismantle/screwdriver-circle-gray",
-    "background": "existing transparent icon / original artwork retained"
+    "decision": "reuse-byte-identical-governed-source-matched-symbol",
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/screwdriver-prohibited-tw-477dfbd7.svg",
+    "path": "web/ko/assets/screwdriver-prohibited-tw-477dfbd7.svg",
+    "sha256": "482e56e11b72b30ca053ee1cc94021f98909ceb9497e9c084738fd2b4a0fe01b",
+    "reason": "MA-348: shared symbol first; source-bound glyph and caption admission passes against exact KR PDF p4",
+    "background": "existing transparent icon / original artwork retained",
+    "prior_candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_do_not_dismantle_gray_jp.svg",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.006187
+    }
   },
   {
     "slot": "symbol-6",
-    "decision": "reuse-byte-identical",
-    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/native-li_ion_gray_jp.svg",
-    "path": "web/ko/assets/native-li_ion_gray_jp.svg",
-    "sha256": "4d202540e27b0d52e806abf8b0e357382d0661d31f07a756b624108e2c0716d9",
-    "reason": "Same visible native pictogram and value as PDF p4; key=li-ion/recycle-li-ion-32-gray",
-    "background": "existing transparent icon / original artwork retained"
+    "decision": "reuse-byte-identical-governed-source-matched-symbol",
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/je3000c-kr-78316033-06.svg",
+    "path": "web/ko/assets/je3000c-kr-78316033-06.svg",
+    "sha256": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5",
+    "reason": "MA-348: shared symbol first; source-bound glyph and caption admission passes against exact KR PDF p4",
+    "background": "existing transparent icon / original artwork retained",
+    "prior_candidate": "docs/renderers/web/assets/shared/symbols/native-v1/native-li_ion_gray_jp.svg",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.0
+    }
   },
   {
     "slot": "symbol-7",
-    "decision": "reuse-byte-identical",
-    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_weee_gray_jp.svg",
-    "path": "web/ko/assets/symbol_weee_gray_jp.svg",
-    "sha256": "b44fa52c396de4a7944718d279b2b26bb90b0964328aa5a9e177bc65b982acb1",
-    "reason": "Same visible native pictogram and value as PDF p4; key=weee/crossed-bin-bar-gray",
-    "background": "existing transparent icon / original artwork retained"
+    "decision": "reuse-byte-identical-governed-source-matched-symbol",
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/je3000c-kr-78316033-07.svg",
+    "path": "web/ko/assets/je3000c-kr-78316033-07.svg",
+    "sha256": "7a07f68dc10f6d748ef90fa56822330ce831eac6ef25954bca8f4ddfc0cfbe34",
+    "reason": "MA-348: shared symbol first; source-bound glyph and caption admission passes against exact KR PDF p4",
+    "background": "existing transparent icon / original artwork retained",
+    "prior_candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_weee_gray_jp.svg",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.0
+    }
   },
   {
     "slot": "source-image.front_product",

@@ -2,7 +2,7 @@
 
 Source: `source/original.pdf` (20 retained portrait pages; SHA-256 in `source_manifest.json`). The user requested removal of the original manufacturing landscape sheet. The untouched 21-page original remains in the source folder's `原始PDF备份` directory outside Git.
 
-This is a Git-only candidate. It uses the shared Manual IR / registered component Web consumer and frozen local assets. It does not access online tables, enqueue a business build, alter print-review files, or authorize merge/deployment.
+This is the MA-348 approved Git-only Web source. It uses the shared Manual IR / registered component Web consumer and frozen local assets. It does not access online tables, enqueue a business build, or alter print-review files. The 2026-10-24 operator grant authorizes this engineering PR and its generated publication PR under the all-checks-green protocol.
 
 The Web body starts at **중요**. Cover title, model/locale/customer-email block, blank pages and manufacturing QR back cover are omitted from the Web body. The PDF retains all twenty pages. The only approved text erratum restores `처음 사용하기 전에 제품을 완전히 충전하십시오.` on printed page 10; it is recorded in the manifest and changes only the Web candidate.
 
@@ -27,7 +27,7 @@ Shared-component style admission and strict Sphinx passed. A cold replay reprodu
 
 Chapter headings use the shared H1 scale and subsection headings use H2; the preface IMPORTANT label is a strong paragraph. Five warranty sections are registered rounded-card components, with a separate warranty-period card. Spec group headings remain H2 under the specification chapter. All wording, periods and values are preserved.
 
-Publication is pending source-bound admission of the Li-ion 32 and WEEE symbols. Existing shared variants failed the original-PDF glyph tolerance; adding exact source variants would touch the shared catalog and historical freeze records, so scope approval was requested before those changes. The package remains publication-ineligible. The repository US regression check passes. The KR fixture check has no JE-3000C KR source rows, and the historical EU snapshot lacks the current usb_c row; neither was used to validate this Korean body.
+Source-bound glyph/caption admission now passes for all seven symbol rows. Four shared variants are reused byte-for-byte and three exact original-PDF vector variants are added to the shared catalog under MA-348. Historical frozen packages retain their bytes and recorded handling. The repository US regression check and source replay remain distinct from technical approval of the PDF values.
 
 ## 2026-10-24 LCD status label formatting
 
@@ -38,3 +38,7 @@ This implements the corpus [status-word contract](../../../../../code-as-doc/dev
 ## 2026-10-24 App step caption centering
 
 Live step numbers 2.1–2.5 align with each native phone frame center, using the existing shared `caption_centers_pct` metadata instead of equally dividing the complete image canvas. The two- and three-phone panels keep their original bytes and complete frames. Measured image-space bounds and percentages are recorded in `source/asset_decisions.json`; the prepared source, IR and frozen Markdown carry the same placement.
+
+## 2026-10-24 release admission
+
+MA-348 records the operator grant `推送上线`. Seven symbols bind to exact PDF page-4 glyphs, caption rectangles and hashes; the original filename is retained separately from the relative packaged PDF path consumed by sealing. Source replay uses the synchronized shared toolchain, retains 23 bold LCD status prefixes and five source-centered App captions, and preserves all source wording and values. `validation/content-audit.json` records admission results.

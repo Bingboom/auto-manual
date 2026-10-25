@@ -1,5 +1,5 @@
 {
-  "status": "conversion-verified-publication-pending-symbol-admission",
+  "status": "conversion-and-source-symbol-admission-verified-approved-for-git-only-release",
   "native_pdf_text_blocks_exact_normalized_match": 236,
   "reviewed_non_contiguous_or_artwork_cases": [
     {
@@ -286,5 +286,47 @@
     },
     "image_pixels_unchanged": true,
     "source_wording_unchanged": true
+  },
+  "symbol_asset_admission": {
+    "authority": "MA-348",
+    "rows": [
+      {
+        "asset_ref": "assets/je1500d-jp-6ddeef54-symbol-01.svg",
+        "physical_page": 4,
+        "max_mean_channel_error": 0.004811
+      },
+      {
+        "asset_ref": "assets/je3000c-kr-78316033-02.svg",
+        "physical_page": 4,
+        "max_mean_channel_error": 0.0
+      },
+      {
+        "asset_ref": "assets/symbol_no_open_flame_gray_jp.svg",
+        "physical_page": 4,
+        "max_mean_channel_error": 0.013846
+      },
+      {
+        "asset_ref": "assets/symbol_keep_away_from_children_gray_jp.svg",
+        "physical_page": 4,
+        "max_mean_channel_error": 0.018164
+      },
+      {
+        "asset_ref": "assets/screwdriver-prohibited-tw-477dfbd7.svg",
+        "physical_page": 4,
+        "max_mean_channel_error": 0.006187
+      },
+      {
+        "asset_ref": "assets/je3000c-kr-78316033-06.svg",
+        "physical_page": 4,
+        "max_mean_channel_error": 0.0
+      },
+      {
+        "asset_ref": "assets/je3000c-kr-78316033-07.svg",
+        "physical_page": 4,
+        "max_mean_channel_error": 0.0
+      }
+    ],
+    "shared_variants_reused": 4,
+    "new_native_variants": 3
   }
 }

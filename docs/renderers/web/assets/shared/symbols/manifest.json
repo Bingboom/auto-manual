@@ -1665,6 +1665,85 @@
         ],
         "decision": "Existing shared variants failed fixed 2% source glyph comparison; native paths/ancestor transforms retained, no redraw or cell backdrop"
       }
+    },
+    {
+      "key": "native/je3000c-kr-78316033-02",
+      "path": "native-v1/je3000c-kr-78316033-02.svg",
+      "sha256": "9314a0d781b00c728c10576206b64cde9c2cb8eaf47c294c418869d996878adf",
+      "status": "source-exact; MA-348 authorized Git-only release",
+      "provenance": {
+        "source": "manual_sources/JE-3000C/KR/ko/git-20261021-78316033/source/original.pdf",
+        "source_sha256": "78316033826380d2786a495562d1a09c3193ede98d9bbcb4fdb2e81b1872ad37",
+        "physical_page": 4,
+        "drawing_indices": [
+          29,
+          30,
+          31,
+          32,
+          33
+        ],
+        "glyph_bbox": [
+          38.651100158691406,
+          258.9413757324219,
+          58.20610046386719,
+          278.4953918457031
+        ],
+        "method": "native original PDF vector paths with preserved transforms and transparent 1pt margins; no redrawing"
+      }
+    },
+    {
+      "key": "native/je3000c-kr-78316033-06",
+      "path": "native-v1/je3000c-kr-78316033-06.svg",
+      "sha256": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5",
+      "status": "source-exact; MA-348 authorized Git-only release",
+      "provenance": {
+        "source": "manual_sources/JE-3000C/KR/ko/git-20261021-78316033/source/original.pdf",
+        "source_sha256": "78316033826380d2786a495562d1a09c3193ede98d9bbcb4fdb2e81b1872ad37",
+        "physical_page": 4,
+        "drawing_indices": [
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67
+        ],
+        "glyph_bbox": [
+          195.2855987548828,
+          242.56748962402344,
+          213.72410583496094,
+          259.8174743652344
+        ],
+        "method": "native original PDF vector paths with preserved transforms and transparent 1pt margins; no redrawing"
+      }
+    },
+    {
+      "key": "native/je3000c-kr-78316033-07",
+      "path": "native-v1/je3000c-kr-78316033-07.svg",
+      "sha256": "7a07f68dc10f6d748ef90fa56822330ce831eac6ef25954bca8f4ddfc0cfbe34",
+      "status": "source-exact; MA-348 authorized Git-only release",
+      "provenance": {
+        "source": "manual_sources/JE-3000C/KR/ko/git-20261021-78316033/source/original.pdf",
+        "source_sha256": "78316033826380d2786a495562d1a09c3193ede98d9bbcb4fdb2e81b1872ad37",
+        "physical_page": 4,
+        "drawing_indices": [
+          51,
+          52,
+          53
+        ],
+        "glyph_bbox": [
+          196.27011108398438,
+          314.24749755859375,
+          212.73910522460938,
+          337.6000061035156
+        ],
+        "method": "native original PDF vector paths with preserved transforms and transparent 1pt margins; no redrawing"
+      }
     }
   ],
   "withdrawn": [

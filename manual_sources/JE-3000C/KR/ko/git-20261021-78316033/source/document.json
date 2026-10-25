@@ -548,12 +548,12 @@
               "assets": [
                 {
                   "role": "icons",
-                  "asset_ref": "assets/symbol_warning_triangle_gray_jp.svg",
+                  "asset_ref": "assets/je1500d-jp-6ddeef54-symbol-01.svg",
                   "locale_policy": "shared"
                 },
                 {
                   "role": "icons",
-                  "asset_ref": "assets/symbol_read_manual_gray_jp.svg",
+                  "asset_ref": "assets/je3000c-kr-78316033-02.svg",
                   "locale_policy": "shared"
                 },
                 {
@@ -568,17 +568,17 @@
                 },
                 {
                   "role": "icons",
-                  "asset_ref": "assets/symbol_do_not_dismantle_gray_jp.svg",
+                  "asset_ref": "assets/screwdriver-prohibited-tw-477dfbd7.svg",
                   "locale_policy": "shared"
                 },
                 {
                   "role": "icons",
-                  "asset_ref": "assets/native-li_ion_gray_jp.svg",
+                  "asset_ref": "assets/je3000c-kr-78316033-06.svg",
                   "locale_policy": "shared"
                 },
                 {
                   "role": "icons",
-                  "asset_ref": "assets/symbol_weee_gray_jp.svg",
+                  "asset_ref": "assets/je3000c-kr-78316033-07.svg",
                   "locale_policy": "shared"
                 }
               ],
