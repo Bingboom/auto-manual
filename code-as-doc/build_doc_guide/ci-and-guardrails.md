@@ -73,3 +73,46 @@ Git branch safety note:
 - that guard now runs through the shared [`../scripts/git_branch_guard.py`](../../scripts/git_branch_guard.py) core instead of a bash-only hook, with [`.githooks/pre-push.cmd`](../../.githooks/pre-push.cmd) and [`.githooks/pre-push.ps1`](../../.githooks/pre-push.ps1) kept as Windows-native companion launchers
 - the guard blocks pushes from branches that do not contain the latest `origin/main`; use `git push --no-verify` only when the older base is intentional. `review/*` and `backport/*` branches, and pushes to remotes other than `origin` such as `hello-docs`, are exempt
 - if a PR adds a new helper boundary or changes workflow ownership, update the owning docs and [`dev/orchestration_module_map.md`](../dev/orchestration_module_map.md) in the same change instead of leaving the new rule as tribal knowledge
+
+
+## Change-aware engineering CI
+
+`Manual Validation` still starts on every PR and every main push, with unchanged
+required check names. On auto-manual, a small `changes` job compares the complete
+Git tree delta (no GitHub 300-file API cap). Only ordinary non-executable Markdown
+under `code-as-doc/`, `user-guide/`, and the root `README.md` qualifies as editorial.
+Agent/skill instruction files are excluded. Templates, renderer contracts, source
+packages, data, JSON, configs, dependencies, workflows and unknown paths run full CI.
+Renames expose both paths; deletes and mode changes cannot hide code changes.
+
+Editorial changes execute four jobs: classification, `secret-scan`,
+`maintainability-guardrails`, and `doc-link-integrity` (including doc lifecycle).
+The other 14 engineering jobs report skipped, retaining their required-check names.
+Engineering changes run all original 17 jobs plus classification. There is no
+workflow-level path filter that could leave required checks pending. PRs use the
+classifier from their base commit; rollout without that script, missing history,
+fetch/classifier failures, empty diffs and unknown inputs conservatively run full CI.
+Mirror content validation and the repository guards remain unchanged.
+
+Review Preview no longer starts for README, engineering-guide or user-guide edits
+alone. The existing tools/config/template/review paths remain; renderer assets,
+all data inputs and dependency manifests are now explicitly covered. Maintainer
+Markdown still appears in the change report when a package is built for another
+reason. Manual dispatch remains available for intentional design sharing.
+
+Nightly still wakes daily, but first computes a Git-object fingerprint of every
+tracked non-editorial input (including mode and path). A tiny Actions cache marker
+is written only after a successful render; an exact fingerprint/runner/UTC-week
+match can skip the toolchain job. There are no cache prefix fallbacks. Manual
+dispatch and reruns always render. A previous failure, cancellation, running job,
+missing marker, API error, incomplete history or classification failure also runs
+render. The read-only history check paginates up to 2,000 runs, including old runs
+that were manually retried; exceeding that bound conservatively runs render.
+Weekly cache rotation ensures at least one render per ISO UTC week even if the
+inputs remain unchanged, to exercise externally changing tools and runner images.
+Cache eviction only costs an extra render. No business queue, backup, publication,
+permission, secret or repository-visibility setting changes.
+
+The stdlib entrypoint is [`scripts/ci_change_gate.py`](../../scripts/ci_change_gate.py).
+Trigger/job comparison, measured baseline, savings formula, validation evidence
+and rollback are in the [CI reduction record](../reviews/auto-manual-ci-lightweight-20261025.md).

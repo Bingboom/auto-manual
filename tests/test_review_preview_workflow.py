@@ -36,6 +36,18 @@ class ReviewPreviewWorkflowTests(unittest.TestCase):
             config_paths,
         )
 
+    def test_editorial_docs_do_not_trigger_packaging_but_render_inputs_do(self) -> None:
+        workflow = yaml.safe_load(WORKFLOW_PATH.read_text(encoding="utf-8"))
+        triggers = _workflow_on_section(workflow)
+        self.assertIn("workflow_dispatch", triggers)
+        paths = triggers["pull_request"]["paths"]
+        for path in ["README.md", "code-as-doc/dev/example.md", "user-guide/example.md"]:
+            self.assertFalse(any(fnmatch.fnmatch(path, pattern) for pattern in paths), path)
+        for path in ["tools/build.py", "docs/templates/page.rst", "docs/renderers/web/theme.css",
+                     "docs/_assets/icon.svg", "data/model_capabilities.csv", "requirements.lock",
+                     "docs/_review/MODEL/US/page.rst", "site/review-preview/app.js"]:
+            self.assertTrue(any(fnmatch.fnmatch(path, pattern) for pattern in paths), path)
+
     def test_smoke_package_delegates_target_and_config_resolution_to_preview_tool(self) -> None:
         workflow = yaml.safe_load(WORKFLOW_PATH.read_text(encoding="utf-8"))
         steps = workflow["jobs"]["package-review-preview"]["steps"]

@@ -8,16 +8,19 @@ on:
   pull_request:
     paths:
       - "docs/_review/**"
+      - "docs/renderers/**"
+      - "docs/_static/**"
+      - "docs/_assets/**"
       - "docs/templates/**"
       - "docs/manifests/**"
-      - "data/phase2/**"
+      - "data/**"
       - "tests/fixtures/phase2/**"
+      - "requirements*.txt"
+      - "requirements.lock"
+      - "pyproject.toml"
       - "build.py"
       - "tools/**"
       - "configs/config*.yaml"
-      - "README.md"
-      - "code-as-doc/**"
-      - "user-guide/**"
       - "site/review-preview/**"
       - ".github/workflows/review-preview.yml"
   workflow_dispatch:

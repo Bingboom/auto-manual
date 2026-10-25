@@ -71,3 +71,22 @@ RTD receipts retain their existing execution paths. A green content check is
 not a deployment receipt or visual acceptance. No repository visibility change
 or executor migration is included. Audit and rollback details are in the
 [lightweight rollout record](../../code-as-doc/reviews/hello-docs-lightweight-20261024.md).
+
+
+## Lighter CI for maintainer documentation
+
+For ordinary Markdown changes under `code-as-doc/`, `user-guide/` or root README,
+auto-manual now runs classification, secret scanning, maintainability and document
+link/lifecycle checks. Fourteen engineering checks appear as **skipped**; their
+names remain available to branch protection. Templates, product content, data,
+configs, code, dependencies and unknown changes still receive full validation.
+A failed or uncertain classification also runs the full checks.
+
+Maintainer-document edits alone no longer create a Review Preview package. Use
+its existing manual dispatch when a package is intentionally needed. Nightly keeps
+its daily trigger but reuses a successful result only for identical inputs within
+the same UTC week. Failures keep retrying; manual dispatch and reruns force a render.
+The first run after rollout must build successfully before anything can be skipped.
+This does not change Feishu, Workspace, backups, Web Publish, or RTD receipts.
+See the [engineering CI guide](../../code-as-doc/build_doc_guide/ci-and-guardrails.md#change-aware-engineering-ci)
+for the classification boundary and fallback behavior.
