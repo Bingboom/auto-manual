@@ -28,3 +28,9 @@ Shared-component style admission and strict Sphinx passed. A cold replay reprodu
 Chapter headings use the shared H1 scale and subsection headings use H2; the preface IMPORTANT label is a strong paragraph. Five warranty sections are registered rounded-card components, with a separate warranty-period card. Spec group headings remain H2 under the specification chapter. All wording, periods and values are preserved.
 
 Publication is pending source-bound admission of the Li-ion 32 and WEEE symbols. Existing shared variants failed the original-PDF glyph tolerance; adding exact source variants would touch the shared catalog and historical freeze records, so scope approval was requested before those changes. The package remains publication-ineligible. The repository US regression check passes. The KR fixture check has no JE-3000C KR source rows, and the historical EU snapshot lacks the current usb_c row; neither was used to validate this Korean body.
+
+## 2026-10-24 LCD status label formatting
+
+All 23 LCD description prefixes (`켜짐:`, `점멸:`, `꺼짐:`) use semantic strong emphasis, including the colon. Only the status labels are bold; descriptions, row order, values and source wording are unchanged. The prepared source, serialized IR, generated Markdown and input hashes are updated together.
+
+This implements the corpus [status-word contract](../../../../../code-as-doc/dev/translation_corpus_governance.md#6-status-word-contract-shared-boundary-with-the-build), rather than a Korean-only or preview-only styling exception.

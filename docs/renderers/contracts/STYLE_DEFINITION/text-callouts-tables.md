@@ -199,7 +199,12 @@ IDML production 由普通 block 流进入 `components/prose_table.py` 的公共
 | 字号 / 行高 | `0.9rem` / 1.23，`min-width: 42rem` |
 | 内边距 | `0.7rem 0.72rem`；序号列左右内边距归零 |
 | 分隔线 | 右/下 `1px solid --hb-line`（浅色，与规格表的深色不同） |
-| 说明列 | 支持 ` / ` 分步；`On:` / `Blink:` / `Off:` 及本地化状态前缀保留源 strong 语义，IDML 输出为可编辑粗体字符 run |
+| 说明列 | 支持 ` / ` 分步；由语料标记的 `On:` / `Blink:` / `Off:` 及本地化状态前缀（含冒号）统一使用 strong，后续说明保持常规字重；IDML 输出为可编辑粗体字符 run |
+
+状态词及其语言写法由[语料治理的状态词合同](../../../../code-as-doc/dev/translation_corpus_governance.md#6-status-word-contract-shared-boundary-with-the-build)维护：
+TM/术语词条保留纯文本，`是否为 status word=Y` 提供分类，组装器负责粗体。
+只匹配说明行首的状态词和 `:` / `：`，保留冒号前的本地化空白；普通句子中的同词不加粗。
+PDF/AI/Git 直转也必须在准备源、组件/IR 与冻结正文中保留同一强调语义，不得仅补网页样式。
 
 四处语义对齐（`aligned`）。批准 reference profile 可保留型号特定行高，这是一条已批准边界说明；共享排版、位置和表结构仍由 token 控制，不是待修缺陷。
 

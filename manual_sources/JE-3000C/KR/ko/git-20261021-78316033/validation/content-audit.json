@@ -211,5 +211,18 @@
       "no_horizontal_overflow": true
     },
     "app_store_qr_phones": "Visible and loaded; complete frames checked"
+  },
+  "lcd_status_label_formatting": {
+    "requested": "2026-10-24",
+    "labels": [
+      "켜짐:",
+      "점멸:",
+      "꺼짐:"
+    ],
+    "bold_prefix_count": 23,
+    "description_rows": 26,
+    "plain_text_unchanged": true,
+    "change": "Semantic strong emphasis on LCD status prefixes only; regenerated through shared Web consumer.",
+    "governing_rule": "code-as-doc/dev/translation_corpus_governance.md#6-status-word-contract-shared-boundary-with-the-build"
   }
 }

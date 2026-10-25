@@ -69,7 +69,8 @@
     "Preserve source threshold and binding-prompt wording without undocumented translation changes",
     "Keep the front/right overview as one complete connected panel to preserve the native dashed connector",
     "User 2026-10-21: Web body begins with 중요; omit cover title/identity/customer-email block",
-    "2026-10-21 user style corrections: template H1 chapters/H2 subsections; IMPORTANT stays a strong paragraph; warranty sections use registered rounded cards and separate warranty-period heading"
+    "2026-10-21 user style corrections: template H1 chapters/H2 subsections; IMPORTANT stays a strong paragraph; warranty sections use registered rounded cards and separate warranty-period heading",
+    "User 2026-10-24: bold all 23 LCD status prefixes (켜짐:, 점멸:, 꺼짐:) with semantic strong emphasis; source wording and descriptions unchanged; applies corpus Status-word contract §6 and shared LCD style contract §4.4"
   ],
   "approved_errata": [
     {
@@ -200,8 +201,8 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 3413,
-      "sha256": "bd526fce7fa550295f9e4577d16460fc5d5a70c296e30f9928e1cab1a735d6fb"
+      "size": 3999,
+      "sha256": "eca95b0bb3aa532d360960e071699145125beb283a53900b99ad32eb573851d2"
     },
     {
       "path": "rebuild.py",
@@ -225,8 +226,8 @@
     },
     {
       "path": "source/document.json",
-      "size": 241415,
-      "sha256": "a268489fce4cbbef12028e8f40b5ee9e09f8467c354cbe9cb771bc7dac130910"
+      "size": 241807,
+      "sha256": "3b8f89e6935a50bbfe154bca9d68d17b7516288b0f30d610f73be7d251b809c9"
     },
     {
       "path": "source/geometry.css",
@@ -260,8 +261,8 @@
     },
     {
       "path": "validation/content-audit.json",
-      "size": 7746,
-      "sha256": "d838a706ae5fb5b166657044fb5c3a448ed0df4f59da3b21356bbdd6fed6233e"
+      "size": 8221,
+      "sha256": "b17416faf3f82fee535684924264e0b549ff4ba27f17ffd134b5cb6469ad846b"
     },
     {
       "path": "web/ko/_static/source_geometry.css",
@@ -550,16 +551,16 @@
     },
     {
       "path": "web/ko/manual.ir.json",
-      "size": 348339,
-      "sha256": "8c48b8596b48d0e6715fc3cac7598958a65f5bb305403ee622c01ce270b1cd02"
+      "size": 348730,
+      "sha256": "0a7b11b2b826e0762c574d7396c1ada322bbaf605bd422672aa3fd503d0d3cf6"
     },
     {
       "path": "web/ko/manual_je3000c_kr_ko.md",
-      "size": 63676,
-      "sha256": "921a41582cfa244a1f50261eca73784be7a29356a0c59155f53bdf7210368223"
+      "size": 64067,
+      "sha256": "cd19e867b134afce84a1dc09961aea4ca8b9d4baa258992805c94c032ac496ba"
     }
   ],
-  "web_markdown_sha256": "921a41582cfa244a1f50261eca73784be7a29356a0c59155f53bdf7210368223",
+  "web_markdown_sha256": "cd19e867b134afce84a1dc09961aea4ca8b9d4baa258992805c94c032ac496ba",
   "publication_gate_pending": [
     "Two exact native symbol variants (Li-ion 32 and WEEE) require shared-catalog additions; scope approval requested from operator."
   ]
