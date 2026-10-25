@@ -1,0 +1,86 @@
+[
+  {
+    "candidate": "docs/renderers/latex/assets/je3000c_kr_app_add_device_textless.png",
+    "sha256": "97b43243ecd3ba3ffa3a3fdeb7ba0a55daa5a922d7a1ed0a0318c7b6e080d4e5",
+    "inspection": "2026-10-21 contact-sheet identity review: same KR three-outlet unit; existing operation/overview art lacks new localized labels; existing App connect has older native model overlay",
+    "decision": "reuse only when source content matches; source-specific crop when localized label/UI differs"
+  },
+  {
+    "candidate": "docs/renderers/latex/assets/je3000c_kr_app_connect_result.png",
+    "sha256": "40af09d3c3e5debbdfacda83dfe185f440c5cd622401226f9c9914e44f05c77f",
+    "inspection": "2026-10-21 contact-sheet identity review: same KR three-outlet unit; existing operation/overview art lacks new localized labels; existing App connect has older native model overlay",
+    "decision": "reuse only when source content matches; source-specific crop when localized label/UI differs"
+  },
+  {
+    "candidate": "docs/renderers/latex/assets/je3000c_kr_back_cover_qr.pdf",
+    "sha256": "eb277ac3791afa8df269c764e674bfb648bf7ee13ded3c468b87631aa6301a2a",
+    "inspection": "2026-10-21 contact-sheet identity review: same KR three-outlet unit; existing operation/overview art lacks new localized labels; existing App connect has older native model overlay",
+    "decision": "reuse only when source content matches; source-specific crop when localized label/UI differs"
+  },
+  {
+    "candidate": "docs/renderers/latex/assets/je3000c_kr_charging_ac_wall.pdf",
+    "sha256": "7cf4f7678e87d9efae872a2540b5d93f55b935c77f726e9a8b909c93c480ba50",
+    "inspection": "2026-10-21 contact-sheet identity review: same KR three-outlet unit; existing operation/overview art lacks new localized labels; existing App connect has older native model overlay",
+    "decision": "reuse only when source content matches; source-specific crop when localized label/UI differs"
+  },
+  {
+    "candidate": "docs/renderers/latex/assets/je3000c_kr_charging_car_charge.pdf",
+    "sha256": "3b5c6587695b306d92d891f14cef99917d37d2166ab2e1fbfa919a6d96f6c9f8",
+    "inspection": "2026-10-21 contact-sheet identity review: same KR three-outlet unit; existing operation/overview art lacks new localized labels; existing App connect has older native model overlay",
+    "decision": "reuse only when source content matches; source-specific crop when localized label/UI differs"
+  },
+  {
+    "candidate": "docs/renderers/latex/assets/je3000c_kr_charging_solar_composite.pdf",
+    "sha256": "e57baa3243824c61cce9e436c1d4e44728e6419eb6cc41e9378671ddf0050e4f",
+    "inspection": "2026-10-21 contact-sheet identity review: same KR three-outlet unit; existing operation/overview art lacks new localized labels; existing App connect has older native model overlay",
+    "decision": "reuse only when source content matches; source-specific crop when localized label/UI differs"
+  },
+  {
+    "candidate": "docs/renderers/latex/assets/je3000c_kr_network_pairing_panel.pdf",
+    "sha256": "29acb6847006c3feeb49e21e8a78ea4231c5634f64f8a785bb16ae52d89fe3ce",
+    "inspection": "2026-10-21 contact-sheet identity review: same KR three-outlet unit; existing operation/overview art lacks new localized labels; existing App connect has older native model overlay",
+    "decision": "reuse only when source content matches; source-specific crop when localized label/UI differs"
+  },
+  {
+    "candidate": "docs/renderers/latex/assets/je3000c_kr_operation_ac_output.pdf",
+    "sha256": "fb092b885b3a0deb56523121328b14dd5be315cc8bceb6a7170f5f48ab506714",
+    "inspection": "2026-10-21 contact-sheet identity review: same KR three-outlet unit; existing operation/overview art lacks new localized labels; existing App connect has older native model overlay",
+    "decision": "reuse only when source content matches; source-specific crop when localized label/UI differs"
+  },
+  {
+    "candidate": "docs/renderers/latex/assets/je3000c_kr_operation_dc_usb_output.pdf",
+    "sha256": "cde9664e5edd06a308d41d8b9c252398c7181049a1c0a0f053ad4b705b1c2c29",
+    "inspection": "2026-10-21 contact-sheet identity review: same KR three-outlet unit; existing operation/overview art lacks new localized labels; existing App connect has older native model overlay",
+    "decision": "reuse only when source content matches; source-specific crop when localized label/UI differs"
+  },
+  {
+    "candidate": "docs/renderers/latex/assets/je3000c_kr_operation_energy_saving.pdf",
+    "sha256": "77d99bc071411bd2f4114554472592928344f9c64ff187ef4143e5610099d689",
+    "inspection": "2026-10-21 contact-sheet identity review: same KR three-outlet unit; existing operation/overview art lacks new localized labels; existing App connect has older native model overlay",
+    "decision": "reuse only when source content matches; source-specific crop when localized label/UI differs"
+  },
+  {
+    "candidate": "docs/renderers/latex/assets/je3000c_kr_operation_main_power.pdf",
+    "sha256": "1d19cc2e77a18b7252d57d0f84a9c2bedc342cd69962991165b698e826ea9f4e",
+    "inspection": "2026-10-21 contact-sheet identity review: same KR three-outlet unit; existing operation/overview art lacks new localized labels; existing App connect has older native model overlay",
+    "decision": "reuse only when source content matches; source-specific crop when localized label/UI differs"
+  },
+  {
+    "candidate": "docs/renderers/latex/assets/je3000c_kr_operation_ups_mode.pdf",
+    "sha256": "4c6cadca9a690f8019c43fcf4c82dfab9735a194c3058e3d0dc0b883fa47f125",
+    "inspection": "2026-10-21 contact-sheet identity review: same KR three-outlet unit; existing operation/overview art lacks new localized labels; existing App connect has older native model overlay",
+    "decision": "reuse only when source content matches; source-specific crop when localized label/UI differs"
+  },
+  {
+    "candidate": "docs/renderers/latex/assets/je3000c_kr_overview_front.pdf",
+    "sha256": "569252f1d6a2bd159a9488b2c2b7634545448810f71e6a2b718fe4970bca6106",
+    "inspection": "2026-10-21 contact-sheet identity review: same KR three-outlet unit; existing operation/overview art lacks new localized labels; existing App connect has older native model overlay",
+    "decision": "reuse only when source content matches; source-specific crop when localized label/UI differs"
+  },
+  {
+    "candidate": "docs/renderers/latex/assets/je3000c_kr_overview_right.pdf",
+    "sha256": "ad9c45dd8b7fc3de49f849fbcbac89e9d3ba4be0e4a2ca896fb7cddd05645936",
+    "inspection": "2026-10-21 contact-sheet identity review: same KR three-outlet unit; existing operation/overview art lacks new localized labels; existing App connect has older native model overlay",
+    "decision": "reuse only when source content matches; source-specific crop when localized label/UI differs"
+  }
+]

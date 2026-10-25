@@ -1203,6 +1203,11 @@
           "handling": "keep-frozen",
           "reason": "MA-343 / fix/frozen-registry-minutes：登记工具改为分钟数必填，该包只把登记工具列为构建输入；已发布字节不变，下次修订该书时重建并重审",
           "since": "2026-10-23"
+        },
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-348: additive exact JE-3000C KR source symbol variants; preserve historical package bytes and approvals until their next authorized revision.",
+          "since": "2026-10-24"
         }
       }
     },
@@ -1289,6 +1294,11 @@
     "manual_sources/JE-3000C/JP/ja/git-20261019-b16b82c6-jp-native": {
       "approval": "User request 2026-10-19: Git-only JE-3000C JP Web conversion; candidate only, no merge or publication authority",
       "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-3000C/KR/ko/git-20261021-78316033": {
+      "approval": "User chat 2026-10-21: supplied JE-3000C KR PDF; remove landscape first sheet and convert via Git-only; isolated worktree and complete first-use sentence approved. Candidate only; no merge or publication approval.",
+      "registered": "2026-10-21",
       "known_drift": {}
     },
     "manual_sources/JE-300D/EU/en/candidate-2025-10-24": {
@@ -1470,6 +1480,16 @@
       "packages": 1,
       "handling": "keep-frozen",
       "reason": "MA-343 / fix/frozen-registry-minutes：登记工具改为分钟数必填，该包只把登记工具列为构建输入；已发布字节不变，下次修订该书时重建并重审",
+      "minutes": 0
+    },
+    {
+      "date": "2026-10-24",
+      "files": [
+        "docs/renderers/web/assets/shared/symbols/manifest.json"
+      ],
+      "packages": 1,
+      "handling": "keep-frozen",
+      "reason": "MA-348: additive exact JE-3000C KR source symbol variants; preserve historical package bytes and approvals until their next authorized revision.",
       "minutes": 0
     }
   ]
