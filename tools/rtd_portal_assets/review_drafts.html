@@ -4,12 +4,12 @@
 {% block main %}
     <section class="rd-head">
       <h1>审核稿</h1>
-      <p>各机型、地区的审核稿（私有，仅限有项目权限的成员）。每条审核稿只有一份工作稿，原地修改；点机型进入该稿的页面，查看待研发确认的问题和冻结的里程碑版本。新增翻译量按原英文计。</p>
+      <p>各机型、地区的审核稿（私有，仅限有项目权限的成员）。每条审核稿只有一份工作稿，原地修改；点机型进入该稿的页面，查看待研发确认和其他待确认的问题、操作者决定和冻结的里程碑版本。「其他待确认」是问题清单里未关闭的语言审校、合规、设计和内容问题，没有问题清单的稿线显示 —。新增翻译量按原英文计。</p>
     </section>
     {% if lines %}
     <div class="rd-table-wrap">
     <table class="rd-table">
-      <thead><tr><th>机型</th><th>地区</th><th>当前版本</th><th>日期</th><th>状态</th><th>新增翻译量</th><th>待研发确认</th><th>里程碑</th><th>在线查看</th></tr></thead>
+      <thead><tr><th>机型</th><th>地区</th><th>当前版本</th><th>日期</th><th>状态</th><th>新增翻译量</th><th>待研发确认</th><th>其他待确认</th><th>里程碑</th><th>在线查看</th></tr></thead>
       <tbody>
       {% for line in lines %}{% set d = line.current %}
       <tr>
@@ -20,6 +20,7 @@
         <td><span class="rd-status">{{ d.status }}</span></td>
         <td>{{ volume(d) }}</td>
         <td class="rd-nowrap">{% if d.rd_open %}<a href="{{ line.page }}#rd-open">{{ d.rd_open|length }} 项</a>{% else %}0{% endif %}</td>
+        <td class="rd-nowrap">{% if d.other_count is none %}—{% elif d.other_count %}<a href="{{ line.page }}#other-open">{{ d.other_count }} 项</a>{% else %}0{% endif %}</td>
         <td class="rd-nowrap">{% if line.milestones %}<a href="{{ line.page }}#milestones">{{ line.milestones|length }} 个</a>{% else %}—{% endif %}</td>
         <td><a class="rd-open-link" href="{{ d.url }}">打开 {{ d.version }}</a></td>
       </tr>
