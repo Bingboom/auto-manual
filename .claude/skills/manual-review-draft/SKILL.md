@@ -27,6 +27,18 @@ Claude Code specifics:
 - Follow the shared skill's 并行写稿与隔离 rules: one writer per draft line,
   `git pull --rebase` on a rejected push, never force-push, and record
   `tools_sha` in `draft.json`.
+- Keep the line's issue register and decisions file current each round
+  (shared `references/review-records.md`). After pushing, sync the Feishu row
+  from an auto-manual checkout. In a cloud session configure lark-cli once from
+  the environment's app credentials, then run the sync (dry run first):
+
+  ```sh
+  printf %s "$FEISHU_APP_SECRET" | lark-cli config init --app-id "$FEISHU_APP_ID" --app-secret-stdin --brand feishu
+  python -m tools.rtd.review_table_sync <clone>/docs/review-drafts --line <MODEL>/<REGION>
+  python -m tools.rtd.review_table_sync <clone>/docs/review-drafts --line <MODEL>/<REGION> --write
+  ```
+
+  Report the read-back lines (`record_id field=value`) to the operator.
 - Keep generated drafts and scratch work in the session scratchpad, outside
   auto-manual; only the working draft goes into Hello-Docs-Review's
   `docs/review-drafts/`.

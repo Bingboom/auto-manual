@@ -1,4 +1,4 @@
-{#- One review-draft line (model/region): the working draft, its open R&D questions, its frozen milestones. -#}
+{#- One review-draft line (model/region): the working draft, its open questions and decisions, its frozen milestones. -#}
 {% extends "review_drafts_layout.html" %}
 {% block title %}{{ line.model }} {{ line.label }} 审核稿{% endblock %}
 {% block crumb %}说明书生产 <span>/</span> <a href="{{ root }}index.html">审核稿</a> <span>/</span> <b>{{ line.model }} {{ line.label }}</b>{% endblock %}
@@ -13,6 +13,8 @@
         <div class="kpi"><span>日期</span><strong>{{ d.date }}</strong></div>
         <div class="kpi"><span>状态</span><strong>{{ d.status }}</strong></div>
         <div class="kpi"><span>新增翻译量</span><strong>{{ volume(d) }}</strong></div>
+        <div class="kpi"><span>操作者决定</span><strong>{% if d.decisions is none %}—{% else %}<a href="{{ root }}{{ d.decisions_url }}">{{ d.decisions }} 项</a>{% endif %}</strong></div>
+        <div class="kpi"><span>工具版本</span><strong><code>{{ d.tools_sha }}</code></strong></div>
       </div>
       {% if d.summary %}<p class="rd-summary">{{ d.summary }}</p>{% endif %}
       <a class="rd-button" href="{{ root }}{{ d.url }}">打开 {{ d.version }} 审核稿</a>
@@ -22,6 +24,21 @@
       {% if d.rd_open %}<ol class="rd-questions">{% for item in d.rd_open %}<li>{{ item }}</li>{% endfor %}</ol>
       {% else %}<p class="rd-empty">没有待研发确认的问题。</p>{% endif %}
     </section>
+    <section class="rd-section" id="other-open">
+      <h2>其他待确认（{% if d.other_count is none %}—{% else %}{{ d.other_count }}{% endif %}）</h2>
+      {% if d.other_count is none %}<p class="rd-empty">这条稿线还没有问题清单，语言审校、合规、设计和内容问题的数量未知。</p>
+      {% elif d.other_open %}{% for group in d.other_open %}
+      <h3>{{ group.label }}（{{ group["items"]|length }}）</h3>
+      <ol class="rd-questions">{% for item in group["items"] %}<li>{{ item }}</li>{% endfor %}</ol>
+      {% endfor %}{% else %}<p class="rd-empty">没有其他待确认的问题。</p>{% endif %}
+    </section>
+    {% if line.warnings %}
+    <section class="rd-section" id="cross-line">
+      <h2>跨稿线待同步（{{ line.warnings|length }}）</h2>
+      <p>同一型号的其他稿线对同一主题的状态不同（一条仍待确认，另一条已确认）。下一位执笔人核对后同步问题清单，或在审核意见中说明。</p>
+      <ul class="rd-questions">{% for warning in line.warnings %}<li>{{ warning }}</li>{% endfor %}</ul>
+    </section>
+    {% endif %}
     <section class="rd-section" id="milestones">
       <h2>里程碑版本（{{ line.milestones|length }}）</h2>
       {% if line.milestones %}

@@ -1,6 +1,8 @@
 import json
 import os
 import unittest
+from contextlib import redirect_stdout
+from io import StringIO
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
@@ -13,7 +15,8 @@ REPO = Path(__file__).resolve().parents[1]
 
 
 def write_draft(directory: Path, version: str, *, model="JHP-3600C", region="JP", day="2026-10-21",
-                status="待母语审校", milestone="", rd_open=(), volume=(108, 1507), **overrides) -> Path:
+                status="待母语审校", milestone="", rd_open=(), volume=(108, 1507), tools_sha="1a2b3c4",
+                **overrides) -> Path:
     (directory / "assets").mkdir(parents=True)
     (directory / "draft.html").write_text(f"<title>{version}</title>", encoding="utf-8")
     (directory / "assets" / "a.svg").write_text("<svg/>", encoding="utf-8")
@@ -23,13 +26,45 @@ def write_draft(directory: Path, version: str, *, model="JHP-3600C", region="JP"
     manifest = {"model": model, "region": region, "language": "ja", "version": version, "date": day,
                 "status": status, "html": "draft.html", "milestone": milestone, "summary": "s",
                 "rd_open": list(rd_open), **overrides}
+    if tools_sha is not None:
+        manifest["tools_sha"] = tools_sha
+    if rd_open is None:
+        del manifest["rd_open"]
     (directory / review_site.MANIFEST).write_text(json.dumps(manifest, ensure_ascii=False), encoding="utf-8")
     return directory
 
 
 def write_milestone(line: Path, version: str, milestone: str, **fields) -> Path:
+    fields.setdefault("tools_sha", None)
     return write_draft(line / review_site.MILESTONES / version, version, status="历史版本",
                        milestone=milestone, **fields)
+
+
+def issue(id_, kind="rd", status="open", **fields):
+    item = {"id": id_, "title": f"title {id_}", "kind": kind, "status": status, **fields}
+    if status != "open":
+        item.setdefault("resolution", {"by": "R&D", "date": "2026-10-22", "evidence": "reply 3"})
+    return item
+
+
+def write_records(directory: Path, issues=None, decisions=None) -> None:
+    """Write an issue register and/or a decisions file and point draft.json at them."""
+    manifest = json.loads((directory / review_site.MANIFEST).read_text(encoding="utf-8"))
+    if issues is not None:
+        (directory / "issues.json").write_text(json.dumps(
+            {"schema": review_site.ISSUES_SCHEMA, "issues": issues}, ensure_ascii=False), encoding="utf-8")
+        manifest["issues"] = "issues.json"
+        manifest.pop("rd_open", None)
+    if decisions is not None:
+        (directory / "records").mkdir(exist_ok=True)
+        (directory / "records" / "decisions.json").write_text(json.dumps(decisions, ensure_ascii=False),
+                                                              encoding="utf-8")
+        manifest["decisions"] = "records/decisions.json"
+    (directory / review_site.MANIFEST).write_text(json.dumps(manifest, ensure_ascii=False), encoding="utf-8")
+
+
+DECISION = {"id": "D01", "title": "keep the previous wording", "adopted": "previous-generation text",
+            "date": "2026-10-22", "status": "applied", "source_type": "operator"}
 
 
 def local_targets(page: Path):
@@ -48,7 +83,8 @@ class ReviewSiteTests(unittest.TestCase):
             write_milestone(jhp, "v0.9", "首个完整稿", day="2026-10-12", volume=(77, 879))
             write_milestone(jhp, "v0.62", "研发答复回填", day="2026-10-20")
             write_draft(drafts / "JE-1000F" / "US", "v0.3", model="JE-1000F", region="US", volume=None)
-            lines = review_site.build(drafts, out)
+            lines, warnings = review_site.build(drafts, out)
+            self.assertEqual(warnings, [])
             self.assertEqual([(line["model"], line["current"]["version"]) for line in lines],
                              [("JE-1000F", "v0.3"), ("JHP-3600C", "v0.69")])
             # Numeric version order: v0.62 > v0.9.
@@ -82,7 +118,7 @@ class ReviewSiteTests(unittest.TestCase):
         with TemporaryDirectory() as temp:
             drafts, out = Path(temp) / "drafts", Path(temp) / "out"
             drafts.mkdir()
-            self.assertEqual(review_site.build(drafts, out), [])
+            self.assertEqual(review_site.build(drafts, out), ([], []))
             self.assertIn("还没有审核稿", (out / "index.html").read_text(encoding="utf-8"))
 
     def test_refuses_unsound_manifests(self):
@@ -94,6 +130,10 @@ class ReviewSiteTests(unittest.TestCase):
             "missing html": ("current", {"html": "none.html"}),
             "empty status": ("current", {"status": ""}),
             "rd_open not a list": ("current", {"rd_open": "x"}),
+            "working draft without tools_sha": ("current", {"tools_sha": None}),
+            "tools_sha not hex": ("current", {"tools_sha": "HEAD"}),
+            "tools_sha too short": ("current", {"tools_sha": "1a2b3c"}),
+            "milestone with a bad tools_sha": ("milestone", {"tools_sha": "main"}),
             "milestone folder is not its version": ("milestone", {"version": "v0.63"}),
             "milestone without a name": ("milestone", {"milestone": ""}),
         }
@@ -104,6 +144,7 @@ class ReviewSiteTests(unittest.TestCase):
                 directory = line if which == "current" else write_milestone(line, "v0.62", "研发答复回填")
                 manifest = json.loads((directory / review_site.MANIFEST).read_text(encoding="utf-8"))
                 manifest.update(overrides)
+                manifest = {key: value for key, value in manifest.items() if value is not None}
                 (directory / review_site.MANIFEST).write_text(json.dumps(manifest), encoding="utf-8")
                 with self.assertRaises(ValueError):
                     review_site.load_drafts(drafts)
@@ -135,6 +176,177 @@ class ReviewSiteTests(unittest.TestCase):
             os.symlink(secret, directory / "assets" / "leak.txt")
             with self.assertRaises(RuntimeError):
                 review_site.build(drafts, out)
+
+    def test_issue_register_derives_rd_open_and_counts(self):
+        with TemporaryDirectory() as temp:
+            drafts, out = Path(temp) / "drafts", Path(temp) / "out"
+            line = write_draft(drafts / "JHP-3600C" / "JP", "v0.69")
+            write_records(line, issues=[
+                issue("R01", question="50Hz or 60Hz default?", extra_column="kept"),
+                issue("R02", adoption={"decision": "keep previous text", "by": "operator", "date": "2026-10-22"}),
+                issue("R03", status="confirmed"),
+                issue("L01", kind="language"), issue("L02", kind="language", status="dropped"),
+                issue("C01", kind="compliance"), issue("G01", kind="design", status="confirmed"),
+            ], decisions=[DECISION, {**DECISION, "id": "D02"}])
+            (lines, warnings) = review_site.build(drafts, out)
+            current = lines[0]["current"]
+            self.assertEqual(current["rd_open"], ["R01 title R01：50Hz or 60Hz default?", "R02 title R02"])
+            self.assertEqual(current["open"], {"rd": 2, "language": 1, "compliance": 1, "design": 0, "content": 0})
+            self.assertEqual(current["other_count"], 2)
+            self.assertEqual(current["decisions"], 2)
+            self.assertEqual(current["tools_sha"], "1a2b3c4")
+            index = BeautifulSoup((out / "index.html").read_text(encoding="utf-8"), "html.parser")
+            self.assertIn("其他待确认", index.select_one("thead").get_text())
+            self.assertEqual(index.select_one("tbody tr").select("td")[7].get_text(strip=True), "2 项")
+            page_path = out / "JHP-3600C" / "JP.html"
+            page = BeautifulSoup(page_path.read_text(encoding="utf-8"), "html.parser")
+            self.assertEqual(len(page.select("#rd-open li")), 2)
+            other = page.select_one("#other-open")
+            self.assertEqual([h.get_text(strip=True) for h in other.select("h3")], ["语言审校（1）", "合规（1）"])
+            self.assertIn("1a2b3c4", page.get_text())
+            self.assertIn("2 项", page.select_one(".kpi-row").get_text())
+            self.assertIsNone(page.select_one("#cross-line"))
+            for href, target in local_targets(page_path):
+                self.assertTrue(target.is_file(), href)
+
+    def test_line_without_a_register_shows_unknown_other_counts(self):
+        with TemporaryDirectory() as temp:
+            drafts, out = Path(temp) / "drafts", Path(temp) / "out"
+            write_draft(drafts / "JHP-3600C" / "JP", "v0.69", rd_open=["q"])
+            lines, _ = review_site.build(drafts, out)
+            self.assertIsNone(lines[0]["current"]["other_count"])
+            index = BeautifulSoup((out / "index.html").read_text(encoding="utf-8"), "html.parser")
+            self.assertEqual(index.select_one("tbody tr").select("td")[7].get_text(strip=True), "—")
+            page = BeautifulSoup((out / "JHP-3600C" / "JP.html").read_text(encoding="utf-8"), "html.parser")
+            self.assertIn("还没有问题清单", page.select_one("#other-open").get_text())
+
+    def test_rd_open_may_stay_when_it_equals_the_register(self):
+        with TemporaryDirectory() as temp:
+            drafts = Path(temp) / "drafts"
+            line = write_draft(drafts / "JHP-3600C" / "JP", "v0.69")
+            write_records(line, issues=[issue("R01", question="q"), issue("R02", status="confirmed")])
+            manifest = json.loads((line / review_site.MANIFEST).read_text(encoding="utf-8"))
+            for rd_open, ok in ((["R01 title R01：q"], True), (["R01 title R01"], False), ([], False)):
+                with self.subTest(rd_open):
+                    (line / review_site.MANIFEST).write_text(json.dumps({**manifest, "rd_open": rd_open}),
+                                                             encoding="utf-8")
+                    if ok:
+                        self.assertEqual(review_site.load_drafts(drafts)[0][0]["current"]["rd_open"], rd_open)
+                    else:
+                        with self.assertRaisesRegex(ValueError, "JP/draft.json: rd_open differs"):
+                            review_site.load_drafts(drafts)
+
+    def test_refuses_unsound_issue_registers(self):
+        cases = {
+            "duplicate id": [issue("R01"), issue("R01")],
+            "empty id": [issue("")],
+            "no title": [{**issue("R01"), "title": ""}],
+            "unknown kind": [issue("R01", kind="legal")],
+            "unknown status": [issue("R01", status="answered")],
+            "closed without resolution": [{**issue("R01", status="confirmed"), "resolution": None}],
+            "resolution without evidence": [issue("R01", status="dropped", resolution={"by": "x", "date": "2026-10-22"})],
+            "resolution date not ISO": [issue("R01", status="confirmed",
+                                              resolution={"by": "x", "date": "22/10", "evidence": "e"})],
+            "bad topic": [issue("R01", topic="Solar Input")],
+            "question not text": [issue("R01", question=3)],
+            "adoption without date": [issue("R01", adoption={"decision": "keep", "by": "op"})],
+            "not an object": ["R01"],
+        }
+        for name, issues in cases.items():
+            with self.subTest(name), TemporaryDirectory() as temp:
+                drafts = Path(temp) / "drafts"
+                line = write_draft(drafts / "JHP-3600C" / "JP", "v0.69")
+                write_records(line, issues=issues)
+                with self.assertRaisesRegex(ValueError, "JP/issues.json: issues\\[") as caught:
+                    review_site.load_drafts(drafts)
+                self.assertNotIn("Traceback", str(caught.exception))
+
+    def test_refuses_unsound_record_paths_and_files(self):
+        def setup(line: Path, temp: str):
+            outside = Path(temp) / "outside.json"
+            outside.write_text("[]", encoding="utf-8")
+            os.symlink(outside, line / "linked.json")
+            (line / "folder").mkdir()
+        cases = {
+            "absolute": ("issues", lambda temp: str(Path(temp) / "outside.json"), "relative path"),
+            "parent": ("issues", lambda temp: "../outside.json", "relative path"),
+            "backslash": ("decisions", lambda temp: "records\\d.json", "relative path"),
+            "symlink": ("decisions", lambda temp: "linked.json", "symbolic link"),
+            "directory": ("issues", lambda temp: "folder", "regular file"),
+            "missing": ("decisions", lambda temp: "none.json", "regular file"),
+            "empty": ("issues", lambda temp: "", "relative path"),
+        }
+        for name, (key, value, message) in cases.items():
+            with self.subTest(name), TemporaryDirectory() as temp:
+                drafts = Path(temp) / "drafts"
+                line = write_draft(drafts / "JHP-3600C" / "JP", "v0.69", **{key: value(temp)})
+                setup(line, temp)
+                with self.assertRaisesRegex(ValueError, f"JP/draft.json: {key} .*{message}"):
+                    review_site.load_drafts(drafts)
+        with TemporaryDirectory() as temp:  # wrong schema / not JSON
+            drafts = Path(temp) / "drafts"
+            line = write_draft(drafts / "JHP-3600C" / "JP", "v0.69", issues="issues.json")
+            for content in ('{"schema": "review-issues/2", "issues": []}', "not json", "[]"):
+                (line / "issues.json").write_text(content, encoding="utf-8")
+                with self.subTest(content), self.assertRaisesRegex(ValueError, "JP/issues.json"):
+                    review_site.load_drafts(drafts)
+
+    def test_refuses_unsound_decisions(self):
+        cases = {
+            "bad id": [{**DECISION, "id": "D1"}],
+            "duplicate id": [DECISION, DECISION],
+            "no adopted": [{**DECISION, "adopted": ""}],
+            "bad date": [{**DECISION, "date": "yesterday"}],
+            "no status": [{key: value for key, value in DECISION.items() if key != "status"}],
+            "not a list": {"D01": DECISION},
+        }
+        for name, decisions in cases.items():
+            with self.subTest(name), TemporaryDirectory() as temp:
+                drafts = Path(temp) / "drafts"
+                line = write_draft(drafts / "JHP-3600C" / "JP", "v0.69")
+                write_records(line, decisions=decisions)
+                with self.assertRaisesRegex(ValueError, "JP/records/decisions.json"):
+                    review_site.load_drafts(drafts)
+
+    def test_cross_line_topics_warn_without_failing(self):
+        def run(jp_status, us_status, *, us_model="JHP-3600C"):
+            with TemporaryDirectory() as temp:
+                drafts, out = Path(temp) / "drafts", Path(temp) / "out"
+                jp = write_draft(drafts / "JHP-3600C" / "JP", "v0.69")
+                us = write_draft(drafts / us_model / "US", "v0.3", model=us_model, region="US")
+                write_records(jp, issues=[issue("R04", status=jp_status, topic="solar-input")])
+                write_records(us, issues=[issue("R09", status=us_status, topic="solar-input"),
+                                          issue("R10", topic="other-topic")])
+                lines, warnings = review_site.build(drafts, out)
+                pages = {line["region"]: BeautifulSoup((out / line["page"]).read_text(encoding="utf-8"),
+                                                       "html.parser") for line in lines}
+                return warnings, pages
+        warnings, pages = run("open", "confirmed")
+        self.assertEqual(len(warnings), 1)
+        self.assertIn("JHP-3600C topic solar-input", warnings[0])
+        self.assertIn("JP R04 open", warnings[0])
+        self.assertIn("US R09 confirmed", warnings[0])
+        for page in pages.values():
+            self.assertIn("跨稿线待同步", page.select_one("#cross-line").get_text())
+        for jp_status, us_status in (("open", "open"), ("confirmed", "confirmed"), ("dropped", "open"),
+                                     ("confirmed", "dropped")):
+            with self.subTest((jp_status, us_status)):
+                warnings, pages = run(jp_status, us_status)
+                self.assertEqual(warnings, [])
+                self.assertIsNone(pages["JP"].select_one("#cross-line"))
+        with self.subTest("other model"):
+            self.assertEqual(run("open", "confirmed", us_model="JE-1000F")[0], [])
+
+    def test_main_prints_warnings(self):
+        with TemporaryDirectory() as temp:
+            drafts, out = Path(temp) / "drafts", Path(temp) / "out"
+            write_records(write_draft(drafts / "JHP-3600C" / "JP", "v0.69"),
+                          issues=[issue("R04", topic="solar-input")])
+            write_records(write_draft(drafts / "JHP-3600C" / "US", "v0.3", region="US"),
+                          issues=[issue("R09", status="confirmed", topic="solar-input")])
+            with redirect_stdout(StringIO()) as printed:
+                self.assertEqual(review_site.main([str(drafts), str(out)]), 0)
+            self.assertIn("WARNING JHP-3600C topic solar-input", printed.getvalue())
 
     def test_read_the_docs_builds_the_review_site_before_the_bootstrap(self):
         config = (REPO / ".readthedocs.yaml").read_text(encoding="utf-8")
