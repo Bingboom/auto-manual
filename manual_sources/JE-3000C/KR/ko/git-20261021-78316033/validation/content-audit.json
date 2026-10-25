@@ -224,5 +224,67 @@
     "plain_text_unchanged": true,
     "change": "Semantic strong emphasis on LCD status prefixes only; regenerated through shared Web consumer.",
     "governing_rule": "code-as-doc/dev/translation_corpus_governance.md#6-status-word-contract-shared-boundary-with-the-build"
+  },
+  "app_caption_alignment": {
+    "requested": "2026-10-24",
+    "captions": [
+      "2.1",
+      "2.2",
+      "2.3",
+      "2.4",
+      "2.5"
+    ],
+    "shared_contract": "caption_centers_pct",
+    "geometry": {
+      "app-phones.png": {
+        "image_size_px": [
+          711,
+          486
+        ],
+        "phone_frame_x_bounds_px": [
+          [
+            124,
+            332
+          ],
+          [
+            390,
+            598
+          ]
+        ],
+        "caption_centers_pct": [
+          32.067511,
+          69.479606
+        ],
+        "measurement": "Centers of contiguous non-white native phone frame columns (RGB channel minimum <245); retained image pixels unchanged."
+      },
+      "app-connect.png": {
+        "image_size_px": [
+          798,
+          447
+        ],
+        "phone_frame_x_bounds_px": [
+          [
+            7,
+            214
+          ],
+          [
+            296,
+            503
+          ],
+          [
+            587,
+            794
+          ]
+        ],
+        "caption_centers_pct": [
+          13.847118,
+          50.062657,
+          86.528822
+        ],
+        "measurement": "Centers of contiguous non-white native phone frame columns (RGB channel minimum <245); retained image pixels unchanged."
+      }
+    },
+    "image_pixels_unchanged": true,
+    "source_wording_unchanged": true
   }
 }

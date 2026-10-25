@@ -302,7 +302,28 @@
       386
     ],
     "reason": "Existing old KR bitmap inspected; use current source phone frames and preserve native UI",
-    "background": "preserve complete native panel / phone frame; no body table screenshot"
+    "background": "preserve complete native panel / phone frame; no body table screenshot",
+    "live_caption_alignment": {
+      "image_size_px": [
+        711,
+        486
+      ],
+      "phone_frame_x_bounds_px": [
+        [
+          124,
+          332
+        ],
+        [
+          390,
+          598
+        ]
+      ],
+      "caption_centers_pct": [
+        32.067511,
+        69.479606
+      ],
+      "measurement": "Centers of contiguous non-white native phone frame columns (RGB channel minimum <245); retained image pixels unchanged."
+    }
   },
   {
     "slot": "app-control",
@@ -342,7 +363,33 @@
       284
     ],
     "reason": "Old KR connect bitmap has different native 3000 overlays; retain current source full phone frames; step labels excluded for live captions",
-    "background": "preserve complete native panel / phone frame; no body table screenshot"
+    "background": "preserve complete native panel / phone frame; no body table screenshot",
+    "live_caption_alignment": {
+      "image_size_px": [
+        798,
+        447
+      ],
+      "phone_frame_x_bounds_px": [
+        [
+          7,
+          214
+        ],
+        [
+          296,
+          503
+        ],
+        [
+          587,
+          794
+        ]
+      ],
+      "caption_centers_pct": [
+        13.847118,
+        50.062657,
+        86.528822
+      ],
+      "measurement": "Centers of contiguous non-white native phone frame columns (RGB channel minimum <245); retained image pixels unchanged."
+    }
   },
   {
     "slot": "app-store",

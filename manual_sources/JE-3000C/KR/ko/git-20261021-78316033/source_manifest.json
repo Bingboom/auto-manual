@@ -70,7 +70,8 @@
     "Keep the front/right overview as one complete connected panel to preserve the native dashed connector",
     "User 2026-10-21: Web body begins with 중요; omit cover title/identity/customer-email block",
     "2026-10-21 user style corrections: template H1 chapters/H2 subsections; IMPORTANT stays a strong paragraph; warranty sections use registered rounded cards and separate warranty-period heading",
-    "User 2026-10-24: bold all 23 LCD status prefixes (켜짐:, 점멸:, 꺼짐:) with semantic strong emphasis; source wording and descriptions unchanged; applies corpus Status-word contract §6 and shared LCD style contract §4.4"
+    "User 2026-10-24: bold all 23 LCD status prefixes (켜짐:, 점멸:, 꺼짐:) with semantic strong emphasis; source wording and descriptions unchanged; applies corpus Status-word contract §6 and shared LCD style contract §4.4",
+    "User 2026-10-24: center App step numbers 2.1–2.5 under their corresponding native phone frames via shared caption_centers_pct metadata; image bytes and text unchanged"
   ],
   "approved_errata": [
     {
@@ -201,8 +202,8 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 3999,
-      "sha256": "eca95b0bb3aa532d360960e071699145125beb283a53900b99ad32eb573851d2"
+      "size": 4465,
+      "sha256": "02b1517ae8f1e1f2d354d9970b836542f13fcdbbbeeac2f56d3d337e00eb1744"
     },
     {
       "path": "rebuild.py",
@@ -211,8 +212,8 @@
     },
     {
       "path": "source/asset_decisions.json",
-      "size": 32816,
-      "sha256": "981a727b75b1f7bf097b647307401a93549befa827be2b08f51fa2b82ffaf54a"
+      "size": 33806,
+      "sha256": "3f4d33b2fb26113b5ffb98965de376305c1f6387dbca196dfdaf3700676b2d26"
     },
     {
       "path": "source/asset_inventory.json",
@@ -226,8 +227,8 @@
     },
     {
       "path": "source/document.json",
-      "size": 241807,
-      "sha256": "3b8f89e6935a50bbfe154bca9d68d17b7516288b0f30d610f73be7d251b809c9"
+      "size": 242070,
+      "sha256": "746991cfa7c487c4ef4758667ce9c889e459c07d434bd8bc60f75ebe7e6f182c"
     },
     {
       "path": "source/geometry.css",
@@ -261,8 +262,8 @@
     },
     {
       "path": "validation/content-audit.json",
-      "size": 8221,
-      "sha256": "b17416faf3f82fee535684924264e0b549ff4ba27f17ffd134b5cb6469ad846b"
+      "size": 9586,
+      "sha256": "fba1b86dfe8c4e1764aab212246bd99c25cd3a93e579c84b1ecc83f49438b2b6"
     },
     {
       "path": "web/ko/_static/source_geometry.css",
@@ -551,16 +552,16 @@
     },
     {
       "path": "web/ko/manual.ir.json",
-      "size": 348730,
-      "sha256": "0a7b11b2b826e0762c574d7396c1ada322bbaf605bd422672aa3fd503d0d3cf6"
+      "size": 348993,
+      "sha256": "cfbda13055ddd04c3af24ceb8ea07fc7dfe2c2a409fa02bfa4a4e110ac683637"
     },
     {
       "path": "web/ko/manual_je3000c_kr_ko.md",
-      "size": 64067,
-      "sha256": "cd19e867b134afce84a1dc09961aea4ca8b9d4baa258992805c94c032ac496ba"
+      "size": 64264,
+      "sha256": "4d803371faebc1591fd76d2e624ce3c862d96e0fa4ee384ec0e553953c11e8ed"
     }
   ],
-  "web_markdown_sha256": "cd19e867b134afce84a1dc09961aea4ca8b9d4baa258992805c94c032ac496ba",
+  "web_markdown_sha256": "4d803371faebc1591fd76d2e624ce3c862d96e0fa4ee384ec0e553953c11e8ed",
   "publication_gate_pending": [
     "Two exact native symbol variants (Li-ion 32 and WEEE) require shared-catalog additions; scope approval requested from operator."
   ]

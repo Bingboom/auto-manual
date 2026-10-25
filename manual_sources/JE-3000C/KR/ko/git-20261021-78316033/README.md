@@ -34,3 +34,7 @@ Publication is pending source-bound admission of the Li-ion 32 and WEEE symbols.
 All 23 LCD description prefixes (`켜짐:`, `점멸:`, `꺼짐:`) use semantic strong emphasis, including the colon. Only the status labels are bold; descriptions, row order, values and source wording are unchanged. The prepared source, serialized IR, generated Markdown and input hashes are updated together.
 
 This implements the corpus [status-word contract](../../../../../code-as-doc/dev/translation_corpus_governance.md#6-status-word-contract-shared-boundary-with-the-build), rather than a Korean-only or preview-only styling exception.
+
+## 2026-10-24 App step caption centering
+
+Live step numbers 2.1–2.5 align with each native phone frame center, using the existing shared `caption_centers_pct` metadata instead of equally dividing the complete image canvas. The two- and three-phone panels keep their original bytes and complete frames. Measured image-space bounds and percentages are recorded in `source/asset_decisions.json`; the prepared source, IR and frozen Markdown carry the same placement.

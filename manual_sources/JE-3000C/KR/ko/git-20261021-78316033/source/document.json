@@ -5501,7 +5501,11 @@
                 "captions_origin": "configured",
                 "image_key": "app-add-phones",
                 "web_replace_key": "",
-                "source_fragment_sha256": "9567d02c73c659cb3926e46a62cae2c477a94d0ced14a87e82b52f9e68f81699"
+                "source_fragment_sha256": "9567d02c73c659cb3926e46a62cae2c477a94d0ced14a87e82b52f9e68f81699",
+                "caption_centers_pct": [
+                  32.067511,
+                  69.479606
+                ]
               },
               "schema_version": "component-spec/v1"
             },
@@ -5893,7 +5897,12 @@
                 "captions_origin": "configured",
                 "image_key": "app-connect",
                 "web_replace_key": "",
-                "source_fragment_sha256": "09e432ff427817d36c715bec23d174ae4e72b1b4c3272dc7757a600ce64adbb2"
+                "source_fragment_sha256": "09e432ff427817d36c715bec23d174ae4e72b1b4c3272dc7757a600ce64adbb2",
+                "caption_centers_pct": [
+                  13.847118,
+                  50.062657,
+                  86.528822
+                ]
               },
               "schema_version": "component-spec/v1"
             },
