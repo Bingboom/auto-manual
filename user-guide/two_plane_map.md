@@ -1,23 +1,28 @@
-# 双平面地图：仓库、飞书 base、谁在哪跑
+# 双平面地图：仓库、工作台、飞书 base、谁在哪跑
 
-Updated: 2026-10-18
+Updated: 2026-10-23
 
-这套系统有 **2 个 git 仓库 + 2 组飞书 base**，四个东西都常被叫"库"，
+这套系统有 **3 个 git 仓库 + 2 组飞书 base**：工程面 auto-manual、业务面 Hello-Docs、
+私有的资料开发工作台 Hello-Docs-Review（见 §1）。它们都常被叫"库"，
 不看地图必混。本文是唯一的权威地图：改了拓扑（合并仓库、迁移 base、
 换租户）必须同步更新这里。
 
 ## 0. 一句话总纲
 
 **代码和表结构在工程面（auto-manual + 旧 base）演进，业务在业务面
-（Hello-Docs + 新 base）运行；代码自动流过去，表结构人工 promote 过去；
-翻译语料库（TM-B）是两面共享的唯一真身。**
+（Hello-Docs + 新 base）运行，资料在工作台（Hello-Docs-Review）写作；代码自动流到
+两个镜像，表结构人工 promote 过去；翻译语料库（TM-B）是共享的唯一真身。**
 
-## 1. 四个实体
+工作台同时用到两个平面：工程面同步来的工具、模板和 Skill，业务面的数据和语料。
+写作是资料生产的主线，基于数据和模板的自动构建按需使用。
+
+## 1. 五个实体
 
 | 实体 | 类型 | 角色 | 状态 |
 | --- | --- | --- | --- |
 | **auto-manual**（Bingboom/auto-manual） | git 仓库 | **工程面**：所有代码修改、PR、CI 验证、表结构演进都发生在这里 | 活跃 |
-| **Hello-Docs**（Bingboom/Hello-Docs） | git 仓库 | **业务面**：业务运行时。单向镜像接收方——**永远不要在这里改代码** | 活跃（队列 2026-06-12 已解除暂停） |
+| **Hello-Docs**（Bingboom/Hello-Docs） | git 仓库 | **业务面**：业务数据与语料资产、网页发布、按需的多格式构建。单向镜像接收方——**永远不要在这里改代码** | 活跃（队列 2026-06-12 已解除暂停） |
+| **Hello-Docs-Review**（Bingboom/Hello-Docs-Review，私有） | git 仓库 | **资料开发工作台**：Agent 调用全部基础设施、数据、模板和语料写作，由人审核。只维护 `docs/review-drafts/**`（未发布的审核稿），由私有 Read the Docs 项目发布；其余文件同 Hello-Docs 一样单向接收，永远不要在这里改代码 | 活跃（2026-10-21 新增，2026-10-23 起定位为资料开发工作台） |
 | **旧 base**（「文档构建」space） | 飞书多维表 | 工程面数据沙盒 + legacy 数据。phase2 `DOp8bczA8aGLhJsc5iMcOqOvnpg`、TM-A `LUIcbxeKdaCY2rsEHwCcnVQSnUe`（只读归档） | legacy（本机身份已只读） |
 | **新 base**（「便携资料开发工作台」space，业务租户 xcn57j1urbe6） | 飞书多维表 | **业务数据的家**。phase2「文档构建」`LD3lb4G1ua4GOVs1vxAc9W2enje`、**TM-B `Ji1hb5ub1aUbewsTljGccvx5nhc`（语料唯一规范写库）**、发布文档管理 `WGVwb2HctauRi7sEiKqcIzTRn1c` | 活跃 |
 
@@ -90,7 +95,8 @@ Read the Docs 仅显示表单，Mac 接收器是另一个运行边界，详见
 
 | 通道 | 方向 | 机制 | 频率 |
 | --- | --- | --- | --- |
-| **代码** | auto-manual/main → Hello-Docs/main | [`sync-hello-docs.yml`](../.github/workflows/sync-hello-docs.yml) 同步工程树，同时保留业务面已合入的 `docs/publish/**` 和 `docs/knowledge/**` | 每次合入 main 自动，秒级 |
+| **代码** | auto-manual/main → Hello-Docs/main | [`sync-hello-docs.yml`](../.github/workflows/sync-hello-docs.yml) 同步工程树，同时保留业务面已合入的 `docs/publish/**` 和 `docs/knowledge/**`；仓库首页 README 换成 auto-manual 的 [`mirrors/Hello-Docs/README.md`](../mirrors/Hello-Docs/README.md) | 每次合入 main 自动，秒级 |
+| **代码（工作台）** | auto-manual/main → Hello-Docs-Review/main | 同一工作流的 `sync-review` 任务，保留该仓库的 `docs/review-drafts/**`，首页 README 换成 [`mirrors/Hello-Docs-Review/README.md`](../mirrors/Hello-Docs-Review/README.md)；未配置 `REVIEW_DOCS_SYNC_TOKEN` 时只提示、不影响 Hello-Docs 同步。详见 [审核稿私有站](../code-as-doc/dev/rtd_manual_portal/review-drafts-site.md) | 每次合入 main 自动 |
 | **Web 发布快照** | Hello-Docs/main → Hello-Docs/publish → PR → Hello-Docs/main | `feishu-web-publish-queue.yml` 组装候选 `docs/publish/`、范围门禁后普通增量 push，并自动创建/更新只含该目录的 PR | 每次审核后的 Web Publish |
 | **表结构 + 引用数据** | 旧 base → 新 base | `python -m tools.bitable_schema promote`（只增不删、dry-run 默认）；每日 01:00 parity 哨兵盯滞后并开 `[schema-drift]` issue | 人工，有告警兜底 |
 | **翻译语料** | 不同步——**只有一份** | TM-B 是唯一写库（G4 收敛）；TM-A 只读归档，工具层已拆除对它的静默回退 | — |
@@ -108,7 +114,7 @@ REV-03 已于 2026-09-19 验收（[台账](../code-as-doc/dev/manual_revitalizat
 RTD 后台分支配置以后台为准，本图未在线复核。
 停止旧 RTD 项目独立更新不删除 `Hello-Docs/publish` 候选分支，也不合并工程/业务两个仓库。
 
-Hello-Docs `docs/knowledge/workspace-data` 同样属于业务内容：保存审核后的工作台快照，工程同步保留它。更新和补做见 [工作台数据持续更新](../code-as-doc/dev/workspace_data_refresh.md)。
+Hello-Docs `docs/knowledge/workspace-data` 同样属于业务内容：保存审核后的说明书工作台快照，工程同步保留它。更新和补做见 [工作台数据持续更新](../code-as-doc/dev/workspace_data_refresh.md)。
 
 Hello-Docs `docs/knowledge/governance/findings.json` 也是业务内容：说明书知识问题的台账（人工结论、修改与核验），经只含 `docs/knowledge/**` 的内容 PR 维护；契约、校验、核验、覆盖矩阵与权威源绑定命令在 auto-manual，见[知识治理方案](../code-as-doc/dev/machine_readable_knowledge_governance.md) §6。
 
@@ -121,6 +127,8 @@ Hello-Docs `docs/knowledge/governance/findings.json` 也是业务内容：说明
 | CI 验证（unittest/check/门禁） | auto-manual | fixtures（不碰活库） |
 | 队列 worker（构建/初稿/评审启动） | 两个仓库各自有；正式 Web Publish 只在 Hello-Docs/main 运行 | 各自的 base（auto-manual→旧=legacy；Hello-Docs→新=业务） |
 | Read the Docs | 监听 Hello-Docs/main，构建已通过发布 PR 的 `docs/publish/web/` | 不访问飞书，只读冻结 Git 快照 |
+| 私有审核站（Read the Docs「Review-doc lib」） | 监听 Hello-Docs-Review/main，构建 `docs/review-drafts/` | 不访问飞书 |
+| 资料写作（Agent 起草、改稿） | Hello-Docs-Review（会话加入该仓库，稀疏检出 `docs/review-drafts`） | 读新 base 与 TM-B；写实时表须操作者批准并回读 |
 | schema-parity 哨兵 | 仅 auto-manual（工程面比对，锁源仓库是对的） | 读新旧两组 |
 | backport-reminder 哨兵 | 两个仓库都跑（各用各的 secrets；PR #525 修复守卫后生效） | 各自的 base |
 | OpenClaw / BlockClaw agent | 本机 `~/Documents/GitHub/Hello-Docs` checkout | 新 base（`~/.openclaw/.env`） |
@@ -129,16 +137,18 @@ Hello-Docs `docs/knowledge/governance/findings.json` 也是业务内容：说明
 
 ## 4. 用语约定（防止再混）
 
-- 说 **"仓库"** = git（auto-manual / Hello-Docs）；说 **"base"** = 飞书多维表。
+- 说 **"仓库"** = git（auto-manual / Hello-Docs / Hello-Docs-Review）；说 **"base"** = 飞书多维表。
   不要单说"库"。
+- 单说 **"工作台"** 指资料开发工作台 Hello-Docs-Review；RTD 门户里的「说明书工作台」页面要说全名。
 - **A/B 只用来指 TM 的两个 base**（A=旧归档，B=规范写库），不要用 A/B 指仓库。
 - "dev→prod"（parity/promote 的旧叫法）实际含义 = **工程面旧 base → 业务面新 base**。
 
 ## 5. 纪律（违反必出事故）
 
-1. **代码只改 auto-manual**。Hello-Docs 的工程树是镜像，直接改代码会被下一次同步覆盖或产生分叉。
+1. **代码只改 auto-manual**。Hello-Docs 和 Hello-Docs-Review 的工程树都是镜像，直接改代码会被下一次同步覆盖或产生分叉；
+   两个镜像的首页 README 也在 auto-manual 的 `mirrors/<仓库>/README.md` 修改。
    `Hello-Docs/main:docs/publish/**` 保存已发布说明书；
-   `Hello-Docs/main:docs/knowledge/**` 保存分享稿、配图、示例和业务数据（工作台数据、知识问题台账等，见 §2.1）。两个业务内容目录
+   `Hello-Docs/main:docs/knowledge/**` 保存分享稿、配图、示例和业务数据（说明书工作台数据、知识问题台账等，见 §2.1）。两个业务内容目录
    都由 Hello-Docs 内容 PR 维护，工程同步保留它们；
    `Hello-Docs/publish` 由 Web Publish workflow 自动写入候选快照，人不在该分支改代码。
    只能把该分支中 `docs/publish/**` 的差异通过 PR 合入 `main`，不能把 `review/*` 整分支合入。
@@ -149,6 +159,9 @@ Hello-Docs `docs/knowledge/governance/findings.json` 也是业务内容：说明
 5. **模板更新要进在飞评审**时，先 backport 收干净、再合模板 PR、再重触发
    Start Review（force reseed）——完整决策见
    [`closed_loop_ops_guide.md`](closed_loop_ops_guide.md) §4.5。
+6. **稿件只写 Hello-Docs-Review 的 `docs/review-drafts/**`**。审核稿含未发布内容，不进入两个公开仓库；
+   两个镜像同步任务都会拦截源仓库里的 `docs/review-drafts`。审核通过的稿件作为批准原稿进入
+   Hello-Docs 发布与追溯，这一衔接尚未建设。
 
 ## 6. 收口清单（2026-07-02 遗留，做完删本节）
 

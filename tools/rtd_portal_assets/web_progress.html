@@ -1,19 +1,47 @@
 {#- 网页说明书进度 on the 交付物 tab: Web manuals only. Context: `progress` from tools/rtd/web_progress.py. -#}
 {%- set p = progress -%}
 {%- macro wp_stale(reasons) -%}{% if reasons %}<span class="sw-stale" title="{{ reasons|join('；')|e }}">待复核</span>{% endif %}{%- endmacro -%}
+{%- macro wp_feishu(url, label) -%}{% if url %}<a class="wp-feishu" href="{{ url|e }}" target="_blank" rel="noopener">{{ label|e }}</a>{% endif %}{%- endmacro -%}
 <section class="sw-section wp" id="web-progress" aria-labelledby="web-progress-title">
   <div class="dl-section-title"><h2 id="web-progress-title">网页说明书进度</h2>
-    <p>只看网页说明书 · 已上线部分按发布清单实时统计{% if p.snapshot_date %} · 待转、核对与上线进度来自飞书网页文档表快照 {{ p.snapshot_date|e }}{% elif p.available %} · {{ p.fallback|e }}{% endif %}{{ wp_stale(p.stale) }}</p></div>
+    <p>只看网页说明书 · 已上线部分按发布清单实时统计{% if p.snapshot_date %} · 待转、审核中、核对与上线进度来自飞书快照 {{ p.snapshot_date|e }}{% elif p.available %} · {{ p.fallback|e }}{% endif %}{{ wp_stale(p.stale) }}{% if p.feishu.web %}<span class="wp-sources">{{ wp_feishu(p.feishu.web, '飞书网页文档表') }}{{ wp_feishu(p.feishu.reviews, '飞书审核稿表') }}</span>{% endif %}</p></div>
   {%- if not p.available %}
   <div class="empty-state"><h3>Unavailable</h3><p>发布清单当前不可读，构建日志有告警。</p></div>
   {%- else %}
   <div class="kpi-row wp-kpis" aria-label="网页说明书进度">
-    <div class="kpi"><span>已上线型号</span><strong>{{ p.kpis.models }}<small>个</small></strong><em>{% for c in p.categories %}{{ c.label|e }} {{ c.count }}{% if not loop.last %} · {% endif %}{% endfor %}</em></div>
+    <div class="kpi"><span>审核中</span><strong>{% if p.kpis.reviews is none %}—{% else %}{{ p.kpis.reviews }}<small>本</small>{% endif %}</strong><em>{% if p.kpis.reviews %}待研发确认 {{ p.kpis.open }} 项{% if p.kpis.latest %} · 最近更新 {{ p.kpis.latest[5:]|e }}{% endif %}{% else %}飞书审核稿表{% endif %}</em></div>
+    <div class="kpi"><span>已上线型号</span><strong>{{ p.kpis.models }}<small>个</small></strong><em>{% for c in p.categories if c.label != p.review_category %}{{ c.label|e }} {{ c.count }}{% if not loop.last %} · {% endif %}{% endfor %}</em></div>
     <div class="kpi"><span>待转市场版本</span><strong>{% if p.kpis.gaps is none %}—{% else %}{{ p.kpis.gaps }}<small>本</small>{% endif %}</strong><em>已转型号在有在用 SKU 的市场里还没有网页版</em></div>
     <div class="kpi"><span>语言未齐</span><strong>{{ p.kpis.partial }}<small>本</small></strong><em>少于该市场已上线的语言种数</em></div>
     <div class="kpi"><span>内容已核对</span><strong>{% if p.kpis.checked is none %}—{% else %}{{ p.kpis.checked }}<small>/ {{ p.kpis.routes }}</small>{% endif %}</strong>
       <div class="kpi-bar" aria-hidden="true"><i style="width: {{ ((100 * p.kpis.checked / p.kpis.routes) if (p.kpis.checked and p.kpis.routes) else 0)|round(1) }}%"></i></div><em>飞书网页文档表「内容是否核对」</em></div>
   </div>
+
+  {%- if p.reviews %}
+  <div class="wp-reviews" id="web-progress-reviews">
+    <h3>审核中<span>{{ p.reviews|length }} 本 · 待研发确认 {{ p.kpis.open }} 项</span>{{ wp_feishu(p.feishu.reviews, '在飞书打开') }}</h3>
+    <p class="wp-note">飞书审核稿表的每一行：审核稿在私有审核站，需登录；上线后它进入下面的覆盖矩阵。</p>
+    <div class="dl-table-wrap" role="region" aria-label="审核中的说明书，可横向滚动" tabindex="0">
+      <table class="wp-review-table">
+        <caption class="wb-sr-only">审核中的说明书：版本、更新日期、状态与待研发确认</caption>
+        <thead><tr><th scope="col">型号</th><th scope="col">市场 · 语言</th><th scope="col">版本</th><th scope="col">更新</th><th scope="col">状态</th><th scope="col" class="wp-n">待研发确认</th><th scope="col">打开</th></tr></thead>
+        <tbody>
+          {%- for r in p.reviews %}
+          <tr>
+            <th scope="row"><b>{{ r.model|e }}</b>{% if r.name %}<span>{{ r.name|e }}</span>{% endif %}</th>
+            <td>{{ r.market_text|e }}{% if r.language %} · {{ r.language|upper|e }}{% endif %}</td>
+            <td class="wp-mono">{{ r.version|e or '—' }}</td>
+            <td class="wp-mono">{{ r.date|e or '—' }}</td>
+            <td class="wp-status">{{ r.status|e or '—' }}</td>
+            <td class="wp-n">{% if r.open %}<span class="wp-open">{{ r.open }}</span>{% else %}0{% endif %}</td>
+            <td class="wp-links">{% if r.draft %}<a href="{{ r.draft|e }}" target="_blank" rel="noopener">审核稿</a>{% endif %}{% if r.page %}<a href="{{ r.page|e }}" target="_blank" rel="noopener">审核页</a>{% endif %}{{ wp_feishu(r.feishu, '飞书') }}</td>
+          </tr>
+          {%- endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {%- endif %}
 
   <div class="wp-cards">
     <article class="wp-card" id="web-progress-trend" aria-labelledby="wp-trend-title">
@@ -28,13 +56,13 @@
     </article>
     <article class="wp-card" id="web-progress-markets" aria-labelledby="wp-markets-title">
       <h3 id="wp-markets-title">各市场进度</h3>
-      <p class="wp-note">已上线的市场版本语言是否齐全；待转是已转型号在这个市场有在用 SKU、但还没有网页版。</p>
-      <ul class="wp-legend" aria-hidden="true"><li><i class="is-full"></i>语言齐全</li><li><i class="is-partial"></i>语言未齐</li>{% if p.snapshot %}<li><i class="is-gap"></i>待转</li>{% endif %}</ul>
+      <p class="wp-note">已上线的市场版本语言是否齐全；审核中是审核稿表里还没上线的版本；待转是已转型号在这个市场有在用 SKU、但还没有网页版。</p>
+      <ul class="wp-legend" aria-hidden="true"><li><i class="is-full"></i>语言齐全</li><li><i class="is-partial"></i>语言未齐</li>{% if p.reviews %}<li><i class="is-review"></i>审核中</li>{% endif %}{% if p.snapshot %}<li><i class="is-gap"></i>待转</li>{% endif %}</ul>
       <div class="wp-bars">
         {%- for m in p.market_rows %}
         <div class="wp-bar-row"><span class="wp-bar-label">{{ m.label|e }}</span>
-          <div class="wp-bar" role="img" aria-label="{{ m.label|e }}：语言齐全 {{ m.full }}，语言未齐 {{ m.partial }}{% if p.snapshot %}，待转 {{ m.gap }}{% endif %}"><i class="is-full" style="width: {{ m.widths.full }}%"></i><i class="is-partial" style="width: {{ m.widths.partial }}%"></i><i class="is-gap" style="width: {{ m.widths.gap }}%"></i></div>
-          <span class="wp-bar-value">{{ m.online }} 上线{% if p.snapshot %} · {{ m.gap }} 待转{% endif %}</span></div>
+          <div class="wp-bar" role="img" aria-label="{{ m.label|e }}：语言齐全 {{ m.full }}，语言未齐 {{ m.partial }}{% if m.review %}，审核中 {{ m.review }}{% endif %}{% if p.snapshot %}，待转 {{ m.gap }}{% endif %}"><i class="is-full" style="width: {{ m.widths.full }}%"></i><i class="is-partial" style="width: {{ m.widths.partial }}%"></i><i class="is-review" style="width: {{ m.widths.review }}%"></i><i class="is-gap" style="width: {{ m.widths.gap }}%"></i></div>
+          <span class="wp-bar-value">{{ m.online }} 上线{% if m.review %} · {{ m.review }} 审核中{% endif %}{% if p.snapshot %} · {{ m.gap }} 待转{% endif %}</span></div>
         {%- endfor %}
       </div>
     </article>
@@ -42,10 +70,10 @@
 
   <div class="wp-matrix" id="web-progress-matrix">
     <h3>覆盖矩阵</h3>
-    <p class="wp-note">数字是已有语言 / 该市场已上线的语言种数，点开是这本网页说明书；“旧版”是旧路由，语言范围待核对；“待转”表示有在用 SKU 但还没有网页版；空白表示该市场没有在用 SKU。</p>
+    <p class="wp-note">数字是已有语言 / 该市场已上线的语言种数，点开是这本网页说明书；“旧版”是旧路由，语言范围待核对；蓝色是审核中的版本号，点开是审核稿；“待转”表示有在用 SKU 但还没有网页版；空白表示该市场没有在用 SKU。</p>
     <div class="dl-toolbar">
       <label class="dl-select"><span>类别</span><select id="wp-category"><option value="">全部类别</option>{% for c in p.categories %}<option value="{{ c.label|e }}">{{ c.label|e }}</option>{% endfor %}</select></label>
-      <label class="wp-check"><input type="checkbox" id="wp-gaps"> 只看还有待转或语言未齐的型号</label>
+      <label class="wp-check"><input type="checkbox" id="wp-gaps"> 只看还有待转、审核中或语言未齐的型号</label>
     </div>
     <div class="dl-table-wrap" role="region" aria-label="覆盖矩阵，可横向滚动" tabindex="0">
       <table class="wp-table">
@@ -55,10 +83,10 @@
         <tbody data-category="{{ c.label|e }}">
           <tr class="wp-group"><th colspan="{{ p.markets|length + 2 }}">{{ c.label|e }}<span>{{ c.count }} 个型号</span></th></tr>
           {%- for r in p.rows if r.category == c.label %}
-          <tr data-open="{{ 1 if (r.gaps or r.partial) else 0 }}">
+          <tr data-open="{{ 1 if (r.gaps or r.partial or r.reviews) else 0 }}">
             <th scope="row"><b>{{ r.model|e }}</b>{% if r.name %}<span>{{ r.name|e }}</span>{% endif %}</th>
             {%- for cell in r.cells %}
-            <td>{% if cell.docname %}<a class="wp-chip is-{{ cell.state }}" href="{{ pathto(cell.docname)|e }}" title="{{ cell.title|e }}">{{ cell.text|e }}{% if cell.legacy %}<em>旧版</em>{% endif %}</a>{% elif cell.state == 'gap' %}<span class="wp-chip is-gap" title="{{ cell.title|e }}">待转</span>{% endif %}</td>
+            <td>{% if cell.docname %}<a class="wp-chip is-{{ cell.state }}" href="{{ pathto(cell.docname)|e }}" title="{{ cell.title|e }}">{{ cell.text|e }}{% if cell.legacy %}<em>旧版</em>{% endif %}</a>{% if cell.review %}<a class="wp-chip is-review is-extra" href="{{ cell.review.href|e }}" target="_blank" rel="noopener" title="{{ cell.review.title|e }}">{{ cell.review.text|e }}</a>{% endif %}{% elif cell.state == 'review' %}<a class="wp-chip is-review" href="{{ cell.href|e }}" target="_blank" rel="noopener" title="{{ cell.title|e }}">{{ cell.text|e }}</a>{% elif cell.state == 'gap' %}<span class="wp-chip is-gap" title="{{ cell.title|e }}">待转</span>{% endif %}</td>
             {%- endfor %}
             <td class="wp-n">{% if p.snapshot %}{{ r.gaps }}{% else %}—{% endif %}</td>
           </tr>

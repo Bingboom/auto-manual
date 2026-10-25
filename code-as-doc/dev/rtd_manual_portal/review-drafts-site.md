@@ -1,0 +1,149 @@
+# Private review-draft site (审核稿)
+
+Status: active (2026-10-21)
+
+Hello-Docs-Review is the private document workbench: agents write there with the
+mirrored infrastructure, the business data, the templates and the corpus, and
+people review the result. Writing is the main production route; data-and-template
+builds are used on demand.
+
+Review drafts (审核稿) — for example the JHP-3600C JP draft made with the
+[`manual-review-draft`](../../../.agents/skills/manual-review-draft/SKILL.md) skill —
+carry unreleased content: unpublished regional editions, R&D values and open
+questions. auto-manual and Hello-Docs are both **public** repositories, so the
+drafts never enter either of them. They live in the private workbench repository
+and are served by a private Read the Docs project. Promoting an approved draft
+into Hello-Docs publication and traceability as an approved original is planned,
+not built.
+
+The Feishu 审核稿（工作台输出） table, one row per draft line (model, product
+name, market, version, date, status, the 待研发确认 count and the links here),
+is different: the operator chose on 2026-10-23 to show it on the public
+说明书工作台 交付物 tab, unpublished models included, so its rows reach
+Hello-Docs with the `web_progress` snapshot (see
+[网页说明书进度](web-progress.md)). The drafts and their open questions stay here.
+
+## Topology
+
+| Piece | Where | Owner |
+| --- | --- | --- |
+| Drafts | `Bingboom/Hello-Docs-Review` (private) → `docs/review-drafts/<MODEL>/<REGION>/` (working draft) and its `milestones/<version>/` | the operator, through commits on that repository |
+| Site code | `tools/rtd/review_site.py`, `tools/rtd_portal_assets/review_drafts_layout.html` (shell), `review_drafts.html` (overview), `review_draft_line.html` (line page), `_static/review-drafts.css` (auto-manual) | auto-manual PRs |
+| Code sync | `sync-hello-docs.yml` job `sync-review` → [`scripts/sync_mirror.sh`](../../../scripts/sync_mirror.sh), keeping `docs/review-drafts` | automatic on every auto-manual `main` push |
+| Landing page | [`mirrors/Hello-Docs-Review/README.md`](../../../mirrors/Hello-Docs-Review/README.md), installed as the repository's `README.md` by the same sync (`MIRROR_README`) | auto-manual PRs |
+| Hosting | a private Read the Docs project built from `Hello-Docs-Review/main` | the operator (RTD dashboard) |
+| Entry | 说明书工作台 → 工作入口 → 构建与发布 → 「审核稿（私有）」 | `review_site` in `manual_workbench.html` |
+
+The mirror sync uses the same composition as Hello-Docs: the auto-manual tree
+plus the paths the mirror owns. Both mirror jobs refuse a source tree that
+contains `docs/publish`, `docs/knowledge` or `docs/review-drafts`, so a draft
+committed to auto-manual by mistake stops both syncs instead of reaching the
+public Hello-Docs. That refusal comes after the merge, so the maintainability
+guardrails also fail any auto-manual PR that tracks one of those paths; a pushed
+PR branch is already public, which is why drafting sessions keep the public
+repositories read-only (below). Without the `REVIEW_DOCS_SYNC_TOKEN` secret the
+`sync-review` job only logs a notice; the Hello-Docs sync never depends on it.
+
+## Build
+
+`.readthedocs.yaml` builds `docs/publish/web` when it exists (Hello-Docs).
+Otherwise, when `docs/review-drafts` exists (Hello-Docs-Review), it runs:
+
+```sh
+python -m tools.rtd.review_site docs/review-drafts "$READTHEDOCS_OUTPUT/html"
+```
+
+This writes `index.html` (the 审核稿 overview), one page per line at
+`<MODEL>/<REGION>.html`, the two stylesheets, and the drafts at their repository
+paths (`<MODEL>/<REGION>/…`, milestones under `<MODEL>/<REGION>/milestones/<version>/`).
+No Sphinx, no live data. The pages have `noindex,nofollow`, but that is not access
+control: privacy comes from the private repository and the private RTD project.
+
+## A draft line
+
+Each model/region is one **working draft**, edited in place, plus the milestone
+versions frozen beside it:
+
+```text
+docs/review-drafts/JHP-3600C/JP/
+  draft.json                       current version, status, open R&D questions
+  manual_jhp3600c_jp_en_draft.html the working draft
+  assets/, registers, new-translation-summary.json
+  milestones/
+    v0.62/                         a frozen copy; its draft.json names the milestone
+```
+
+`draft.json`:
+
+```json
+{"model": "JHP-3600C", "region": "JP", "language": "ja", "version": "v0.69",
+ "date": "2026-10-21", "status": "待母语审校", "html": "manual_jhp3600c_jp_en_draft.html",
+ "milestone": "", "summary": "研发答复已回填", "rd_open": ["50Hz／60Hz 出厂默认值与切换方法"]}
+```
+
+- The working draft sits at `<model>/<region>/` and a milestone at
+  `<model>/<region>/milestones/<version>/`, matching the manifest; the version
+  looks like `v0.69` and milestones sort numerically.
+- A `draft.json` anywhere else — a `<version>/` copy beside the working draft,
+  the old one-directory-per-version layout, a milestone with no working draft —
+  fails the build. Versions do not pile up as directories; intermediate versions
+  are commits.
+- A milestone's `milestone` names it (首个完整稿, 研发答复回填 …); the working
+  draft leaves it empty.
+- `html` names a file in that directory; symbolic links anywhere in the draft
+  fail the build.
+- 新增翻译量 comes from the package's own `new-translation-summary.json`
+  (units and words, counted on the US English).
+- 待研发确认 is the length of `rd_open`, the questions still open with R&D.
+
+The overview has one row per line (current version, date, status, volume, the
+number of open questions and milestones). The sidebar groups the lines by model;
+each line's page shows the working draft, the full 待研发确认 list and the
+milestone table.
+
+## Workbench entry
+
+The private site is the Read the Docs project 「Review-doc lib」
+(<https://ht-docs-review-doc-lib.readthedocs-hosted.com/>, single version, no
+`/en/latest/`). It clones `Hello-Docs-Review` over SSH with a read-only deploy key
+and rebuilds on every push through a GitHub incoming webhook. The workbench entry
+reads that URL from `review_site` in `tools/rtd_portal_assets/manual_workbench.html`;
+an empty value hides it. Only the URL is public.
+
+## Writing and editing drafts
+
+The private repository is where drafts are written; the review site is how they
+are read. Only `docs/review-drafts/` belongs to the private repository — every
+other path is overwritten by the next mirror sync, so never edit code there.
+
+- **Through an agent** (`manual-review-draft` skill, “版本、上传与发布”): one instruction
+  is one version number and one commit. The agent rewrites the working draft in
+  place, updates `draft.json` (version, date, status, summary, `rd_open`), the
+  change log and `review.zh.md`, commits to `Hello-Docs-Review/main` and pushes.
+- **In parallel** (operator decision 2026-10-23): one writer per draft line at
+  a time; a writer changes only its own line's directory; a rejected push is
+  rebased and retried, and stops if the remote changed the same line, never
+  force-pushed; a drafting session keeps auto-manual and Hello-Docs read-only;
+  `draft.json` records `tools_sha`, the auto-manual commit the draft was made
+  with. The skill's 并行写稿与隔离 section holds the full rules, including how a
+  line is claimed.
+- **By hand**: edit the working draft's HTML in place (GitHub web editor or a
+  local checkout), keep the colour classes, update `date` and `summary` in
+  `draft.json`, and commit to `main`.
+- **Earlier versions**: every version is a commit —
+  `git log -- docs/review-drafts/<MODEL>/<REGION>` lists them and
+  `git show <commit>:<path>` recovers one. Freeze a milestone only when the
+  operator names one: copy the working draft (without `milestones/`) to
+  `milestones/<version>/` and set its `milestone`. Delete a milestone directory
+  when it is no longer needed; it stays in git history.
+- **Preview before pushing**: `python -m tools.rtd.review_site docs/review-drafts _site`
+  and open `_site/index.html`. A sparse clone (only `docs/review-drafts`, the
+  way agents check the repository out) has no tool code: run the same command
+  from an auto-manual checkout against `<clone>/docs/review-drafts`.
+
+The repository's own `docs/review-drafts/README.md` is the editors' guide
+(colour classes and the edit checklist).
+
+## Checks
+
+`python -m unittest tests.test_rtd_review_site tests.test_sync_hello_docs_workflow`.

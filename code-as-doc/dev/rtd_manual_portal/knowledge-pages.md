@@ -100,6 +100,11 @@ Selecting a node reveals its work destinations, operating guides and next step.
 The 生产与资产 tab holds the production evidence. The system workspace remains
 the capability/progress view; this page links to it.
 
+The page's stylesheet and script links carry `?v=<content hash>`
+(`deliverables.asset_versions`), as the system page's carry the revision: the
+files keep their names, so an unversioned link lets a browser or the CDN style a
+new page with an old stylesheet (2026-10-23, the 审核中 table showed unstyled).
+
 Each fact has one page. This page owns what is published or in production
 now, so the 网页说明书 key metric carries the books per region (欧规 n · 美规 n,
 largest first, labelled by the system contract's `focus.regions`); 系统建设

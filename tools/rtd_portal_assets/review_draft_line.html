@@ -1,0 +1,47 @@
+{#- One review-draft line (model/region): the working draft, its open R&D questions, its frozen milestones. -#}
+{% extends "review_drafts_layout.html" %}
+{% block title %}{{ line.model }} {{ line.label }} 审核稿{% endblock %}
+{% block crumb %}说明书生产 <span>/</span> <a href="{{ root }}index.html">审核稿</a> <span>/</span> <b>{{ line.model }} {{ line.label }}</b>{% endblock %}
+{% block main %}{% set d = line.current %}
+    <section class="rd-head">
+      <h1>{{ line.model }} {{ line.label }}</h1>
+      <p>语言 {{ d.language }}。这里是当前工作稿和冻结的里程碑版本；中间版本只保存在仓库的 Git 历史里。</p>
+    </section>
+    <section class="rd-card">
+      <div class="kpi-row">
+        <div class="kpi"><span>当前版本</span><strong>{{ d.version }}</strong></div>
+        <div class="kpi"><span>日期</span><strong>{{ d.date }}</strong></div>
+        <div class="kpi"><span>状态</span><strong>{{ d.status }}</strong></div>
+        <div class="kpi"><span>新增翻译量</span><strong>{{ volume(d) }}</strong></div>
+      </div>
+      {% if d.summary %}<p class="rd-summary">{{ d.summary }}</p>{% endif %}
+      <a class="rd-button" href="{{ root }}{{ d.url }}">打开 {{ d.version }} 审核稿</a>
+    </section>
+    <section class="rd-section" id="rd-open">
+      <h2>待研发确认（{{ d.rd_open|length }}）</h2>
+      {% if d.rd_open %}<ol class="rd-questions">{% for item in d.rd_open %}<li>{{ item }}</li>{% endfor %}</ol>
+      {% else %}<p class="rd-empty">没有待研发确认的问题。</p>{% endif %}
+    </section>
+    <section class="rd-section" id="milestones">
+      <h2>里程碑版本（{{ line.milestones|length }}）</h2>
+      {% if line.milestones %}
+      <div class="rd-table-wrap">
+      <table class="rd-table">
+        <thead><tr><th>版本</th><th>里程碑</th><th>日期</th><th>新增翻译量</th><th>说明</th><th>在线查看</th></tr></thead>
+        <tbody>
+        {% for m in line.milestones %}
+        <tr>
+          <td class="rd-nowrap">{{ m.version }}</td>
+          <td class="rd-nowrap"><b>{{ m.milestone }}</b></td>
+          <td class="rd-nowrap">{{ m.date }}</td>
+          <td>{{ volume(m) }}</td>
+          <td><small>{{ m.summary }}</small></td>
+          <td><a class="rd-open-link" href="{{ root }}{{ m.url }}">打开 {{ m.version }}</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      </div>
+      {% else %}<p class="rd-empty">还没有冻结的里程碑版本。</p>{% endif %}
+    </section>
+{% endblock %}

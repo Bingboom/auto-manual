@@ -1000,6 +1000,16 @@
       "registered": "2026-10-19",
       "known_drift": {}
     },
+    "manual_sources/JA-CK01A-BK-QG/JP/ja/git-20261023-e67d2460-quick-guide": {
+      "approval": "Operator request 2026-10-23 (「开两个窗口 把这俩说明书 走git only转网页文档」); renamed from HTO862A-QG on operator decision 「改用 JA-CK01A-BK-QG」; operator accepted candidate 8e39af0 for release 2026-10-23 (「上线提交发布」); acceptance hash-bound in source/approval.json",
+      "registered": "2026-10-23",
+      "known_drift": {}
+    },
+    "manual_sources/JA-CK01A-BK/JP/ja/git-20261023-3ea84ec6-manual": {
+      "approval": "User request 2026-10-23: Git-only JP Web candidate (「开两个窗口 把这俩说明书 走git only转网页文档」), JE-1000F JP structure; operator 「上线提交发布」 2026-10-23, merged by operator PR review (see source/approval.json)",
+      "registered": "2026-10-23",
+      "known_drift": {}
+    },
     "manual_sources/JBP-1000B-WH/JP/ja/git-20261008-3aa6c003-native": {
       "approval": "MA-275（见 source/approval.json）",
       "registered": "2026-10-19",
@@ -1188,6 +1198,11 @@
           "handling": "keep-frozen",
           "reason": "MA-323 / PR #1382: register the migrated four-control App label stylesheet; preserve all historical package bytes and approvals. Rebuild and publication require a separate scoped release.",
           "since": "2026-10-19"
+        },
+        "tools/web/frozen_package_registry.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-343 / fix/frozen-registry-minutes：登记工具改为分钟数必填，该包只把登记工具列为构建输入；已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-23"
         }
       }
     },
@@ -1208,6 +1223,11 @@
     },
     "manual_sources/JE-2000E/EU/nine-language/git-20261010-batch1465-preface/two-language": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native": {
+      "approval": "User request 2026-10-19: Git-only JP Web candidate, JE-1000F JP structure",
       "registered": "2026-10-19",
       "known_drift": {}
     },
@@ -1391,11 +1411,6 @@
       "registered": "2026-10-19",
       "known_drift": {}
     },
-    "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native": {
-      "approval": "User request 2026-10-19: Git-only JP Web candidate, JE-1000F JP structure",
-      "registered": "2026-10-19",
-      "known_drift": {}
-    },
     "manual_sources/JE-3000C/KR/ko/git-20261021-78316033": {
       "approval": "User chat 2026-10-21: supplied JE-3000C KR PDF; remove landscape first sheet and convert via Git-only; isolated worktree and complete first-use sentence approved. Candidate only; no merge or publication approval.",
       "registered": "2026-10-21",
@@ -1451,6 +1466,16 @@
       "packages": 16,
       "handling": "keep-frozen",
       "reason": "MA-323 / PR #1382: register the migrated four-control App label stylesheet; preserve all historical package bytes and approvals. Rebuild and publication require a separate scoped release."
+    },
+    {
+      "date": "2026-10-23",
+      "files": [
+        "tools/web/frozen_package_registry.py"
+      ],
+      "packages": 1,
+      "handling": "keep-frozen",
+      "reason": "MA-343 / fix/frozen-registry-minutes：登记工具改为分钟数必填，该包只把登记工具列为构建输入；已发布字节不变，下次修订该书时重建并重审",
+      "minutes": 0
     }
   ]
 }

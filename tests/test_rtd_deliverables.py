@@ -317,7 +317,14 @@ class RealSphinxTests(unittest.TestCase):
             self.assertEqual([kpi.span.text for kpi in statistics.select('.kpi')],
                              ['覆盖机型', '发布语言', '机型/区域目标', '素材登记'])
             self.assertEqual(len(statistics.select('#sd-table tbody tr')), 1)
-            self.assertIsNotNone(soup.select_one('head script[src="../../_static/system-data.js"]'))
+            # Each stylesheet and script carries its content hash, so a cached old file never styles a new page.
+            versions = dl.asset_versions(assets)
+            self.assertIsNotNone(soup.select_one(
+                f'head script[src="../../_static/system-data.js?v={versions["system-data.js"]}"]'))
+            self.assertIsNotNone(soup.select_one(
+                f'head link[href="../../_static/deliverables.css?v={versions["deliverables.css"]}"]'))
+            self.assertFalse([tag for tag in soup.select('head link[rel=stylesheet], head script[src]')
+                              if not (tag.get('href') or tag.get('src')).split('?v=')[-1]])
             self.assertTrue((base / "good" / "_static" / "system-data.js").is_file())
 
             self.assertFalse(soup.select('.dl-table a[target="_blank"]'))

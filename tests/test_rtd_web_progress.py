@@ -11,12 +11,16 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 from tools.rtd import web_progress as wp
+from tools.rtd import web_reviews as wr
 from tools.rtd.source_registry import load_registry
 
 TODAY = dt.date(2026, 10, 19)
 LABELS = {"EU": "欧规", "US": "美规", "JP": "日规", "KR": "韩规"}
 ORDER = ["en", "de", "fr", "ja"]
 SITE = "https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest"
+REVIEW_SITE = "https://ht-docs-review-doc-lib.readthedocs-hosted.com"
+BASE_URL = "https://tenant.feishu.cn/wiki/node"
+REVIEW_FIELDS = list(wr.FIELDS.values())
 
 
 def target(model: str, region: str, lang: str, scope: str = "single") -> dict:
@@ -32,13 +36,29 @@ def snapshot(**overrides) -> dict:
     return {**value, **overrides}
 
 
-def runner(fields: list[str], rows: list[list]):
+def runner(fields: list[str], rows: list[list], tables: dict | None = None):
+    """A lark-cli +record-list stand-in; ``tables`` maps other table ids to their (fields, rows)."""
     def run(args):
+        table_fields, table_rows = (tables or {}).get(args[args.index("--table-id") + 1], (fields, rows))
         offset = int(args[args.index("--offset") + 1])
-        page = rows[offset:offset + 200]
-        return {"code": 0, "data": {"fields": fields, "data": page, "total": len(rows), "has_more": False,
+        page = table_rows[offset:offset + 200]
+        return {"code": 0, "data": {"fields": table_fields, "data": page, "total": len(table_rows), "has_more": False,
                                     "record_id_list": [f"rec{offset + i}" for i in range(len(page))]}}
     return run
+
+
+def review(model: str, market: str, **overrides) -> dict:
+    value = {"record": "recR1", "model": model, "name": f"{model} name", "market": market, "market_label": "",
+             "language": "en", "version": "v0.10", "date": "2026-10-18", "status": "审核中", "open": 2,
+             "draft": f"{REVIEW_SITE}/{model}/{market}/index.html", "page": f"{REVIEW_SITE}/{model}/{market}.html"}
+    return {**value, **overrides}
+
+
+def review_row(model, market, version="v0.92", date=1792598400000, status="审核中", open_="3", draft=None):
+    link = {"link": draft or f"{REVIEW_SITE}/{model}/JP/draft.html", "text": f"{model} {version} 审核稿"}
+    # In wr.FIELDS order: 型号, 商品名称, 市场, 语言, 当前版本, 更新日期, 状态, 待研发确认, 审核稿, 审核页.
+    return [model, f"{model} 商品", market, "ja", version, date, status, open_, link,
+            {"link": f"{REVIEW_SITE}/{model}/JP.html", "text": "审核页"}]
 
 
 class CellTests(unittest.TestCase):
@@ -64,6 +84,19 @@ class CellTests(unittest.TestCase):
         self.assertFalse(wp.is_checked(None))
         self.assertFalse(wp.is_checked(False))
 
+    def test_review_cell_shapes(self):
+        self.assertEqual(wr.text_of([{"text": "v0.", "type": "text"}, {"text": "92"}]), "v0.92")
+        self.assertEqual(wr.text_of(" 日规 "), "日规")
+        self.assertEqual(wr.link_of({"link": f"{REVIEW_SITE}/A/US.html", "text": "A 审核页"}), f"{REVIEW_SITE}/A/US.html")
+        self.assertEqual(wr.link_of([{"text": f"见 {REVIEW_SITE}/A/US.html"}]), f"{REVIEW_SITE}/A/US.html")
+        self.assertEqual(wr.link_of("none"), "")
+        # Feishu keeps the epoch milliseconds of midnight in the tenant's zone (UTC+8).
+        self.assertEqual(wr.day_of(1792598400000), "2026-10-22")
+        self.assertEqual(wr.day_of("1792598400000"), "2026-10-22")
+        self.assertEqual(wr.day_of("2026/10/21"), "2026-10-21")
+        self.assertEqual(wr.day_of(None), "")
+        self.assertEqual((wr.count_of("20"), wr.count_of(3.0), wr.count_of("-"), wr.count_of(None)), (20, 3, 0, 0))
+
 
 class ExportTests(unittest.TestCase):
     FIELDS = ["型号", wp.LINK_FIELD, wp.CHECK_FIELD, wp.SKU_FIELD]
@@ -79,6 +112,33 @@ class ExportTests(unittest.TestCase):
         self.assertEqual(result["checked"], ["JE-A/EU/en"])
         self.assertEqual(result["sold"], {"JE-A": ["EU", "US"]})
         self.assertEqual(wp.snapshot_problems(result), [])
+
+    def test_reads_reviews_records_and_feishu_addresses(self):
+        rows = [["JE-A", {"link": f"{SITE}/JE-A/EU/en/md/manual.html"}, None, []],
+                ["JE-A", {"link": f"{SITE}/JE-A/EU/en/md/manual.html"}, None, []]]
+        reviews = [review_row("JHP-B", "日规"), review_row("JE-A", "未知规", open_="x"), ["", None, "", "", "", "", None, "", "", None]]
+        run = runner(self.FIELDS, rows, {"review": (REVIEW_FIELDS, reviews)})
+        result = wp.export_snapshot(run=run, base_token="b", table_id="web", timeline=[], today=TODAY,
+                                    review_table="review", base_url=BASE_URL + "?table=old&view=v")
+        self.assertEqual(result["records"], {"JE-A/EU/en": "rec0"})
+        self.assertEqual(result["feishu"], {"web": f"{BASE_URL}?table=web", "reviews": f"{BASE_URL}?table=review"})
+        self.assertEqual([(r["model"], r["market"], r["market_label"], r["open"]) for r in result["reviews"]],
+                         [("JE-A", "", "未知规", 0), ("JHP-B", "JP", "日规", 3)])
+        first = result["reviews"][1]
+        self.assertEqual((first["version"], first["date"], first["record"]), ("v0.92", "2026-10-22", "rec0"))
+        self.assertEqual(first["draft"], f"{REVIEW_SITE}/JHP-B/JP/draft.html")
+        self.assertEqual(wp.snapshot_problems(result), [])
+        bare = wp.export_snapshot(run=runner(self.FIELDS, rows), base_token="b", table_id="web", timeline=[], today=TODAY)
+        self.assertFalse({"reviews", "records", "feishu"} & set(bare))
+
+    def test_refuses_a_review_table_without_its_columns_or_with_a_bad_model(self):
+        rows = [["JE-A", {"link": f"{SITE}/JE-A/EU/en/md/manual.html"}, None, []]]
+        with self.assertRaisesRegex(RuntimeError, "missing columns"):
+            wp.export_snapshot(run=runner(self.FIELDS, rows, {"review": (["型号"], [["JE-A"]])}), base_token="b",
+                               table_id="web", timeline=[], today=TODAY, review_table="review")
+        with self.assertRaisesRegex(RuntimeError, "not a model code"):
+            wp.export_snapshot(run=runner(self.FIELDS, rows, {"review": (REVIEW_FIELDS, [review_row("新 型号", "日规")])}),
+                               base_token="b", table_id="web", timeline=[], today=TODAY, review_table="review")
 
     def test_refuses_a_table_without_its_columns_or_a_checked_row_without_link(self):
         with self.assertRaisesRegex(RuntimeError, "missing columns"):
@@ -133,6 +193,14 @@ class SnapshotTests(unittest.TestCase):
             "follow": dict(timeline=[{"date": "2026-10-03", "added": 1, "langs": 1, "editions": 1, "models": 1},
                                      {"date": "2026-10-01", "added": 1, "langs": 2, "editions": 1, "models": 1}]),
             "whole counts": dict(timeline=[{"date": "2026-10-03", "added": -1, "langs": 1, "editions": 1, "models": 1}]),
+            "reviews is not": dict(reviews={}),
+            "needs exactly": dict(reviews=[{"model": "JE-A"}]),
+            "unknown market": dict(reviews=[review("JE-A", "XX")]),
+            "待研发确认": dict(reviews=[review("JE-A", "US", open=-1)]),
+            "https": dict(reviews=[review("JE-A", "US", draft="http://insecure")]),
+            "come together": dict(records={"JE-A/EU/en": "recA"}),
+            "record ids": dict(records={"JE-A/EU/en": "nope"}, feishu={"web": f"{BASE_URL}?table=w", "reviews": ""}),
+            "table addresses": dict(records={}, feishu={"web": "ftp://x", "reviews": ""}),
         }
         self.assertEqual(wp.snapshot_problems(snapshot()), [])
         for needle, change in cases.items():
@@ -149,6 +217,14 @@ class ViewTests(unittest.TestCase):
         return wp.progress_view(targets, data, labels=LABELS, names={("JE-A", "EU"): "Explorer A"},
                                 language_order=ORDER, today=TODAY, domain={"label": "网页说明书进度", "stale_after_days": 7})
 
+    def with_reviews(self):
+        return snapshot(reviews=[review("JE-A", "US", date="2026-10-17", open=4),
+                                 review("JE-A", "EU", record="recR2", version="v0.30", date="2026-10-18", open=0),
+                                 review("FG-2", "US", record="recR3", name="FridgeGuard 2", date="2026-10-19"),
+                                 review("FG-2", "", record="recR4", market_label="新规", date="2026-10-10")],
+                        records={"JE-A/EU/en": "recW1", "JS-B/EU/en": "recW2"},
+                        feishu={"web": f"{BASE_URL}?table=web", "reviews": f"{BASE_URL}?table=rev"})
+
     def test_cells_count_languages_against_their_market(self):
         view = self.view()
         self.assertEqual([m["code"] for m in view["markets"]], ["EU", "US", "JP", "KR"])
@@ -164,9 +240,43 @@ class ViewTests(unittest.TestCase):
         self.assertEqual(view["rows"][0]["name"], "Explorer A")
         self.assertEqual([c["label"] for c in view["categories"]], ["电源主机", "太阳能板"])
 
+    def test_drafts_in_review_take_their_cells(self):
+        view = self.view(self.with_reviews())
+        self.assertEqual([r["model"] for r in view["rows"]], ["FG-2", "JE-A", "JS-B"])
+        self.assertEqual(view["rows"][0]["category"], wp.REVIEW_CATEGORY)
+        self.assertEqual(view["rows"][0]["name"], "FridgeGuard 2")
+        self.assertEqual([c["label"] for c in view["categories"]], [wp.REVIEW_CATEGORY, "电源主机", "太阳能板"])
+        rows = {row["model"]: {c["market"]: c for c in row["cells"]} for row in view["rows"]}
+        us = rows["JE-A"]["US"]
+        self.assertEqual((us["state"], us["text"], us["href"]), ("review", "v0.10", f"{REVIEW_SITE}/JE-A/US/index.html"))
+        self.assertIn("待研发确认 4 项", us["title"])
+        self.assertEqual(rows["JE-A"]["KR"]["state"], "gap")
+        # An online edition keeps its chip and shows the newer draft beside it.
+        self.assertEqual((rows["JE-A"]["EU"]["state"], rows["JE-A"]["EU"]["review"]["text"]), ("full", "v0.30"))
+        self.assertEqual(rows["FG-2"]["US"]["state"], "review")
+        self.assertEqual(rows["FG-2"]["EU"]["state"], "")
+        self.assertEqual([r["reviews"] for r in view["rows"]], [1, 2, 0])
+        self.assertEqual({k: view["kpis"][k] for k in ("gaps", "reviews", "open", "latest")},
+                         {"gaps": 1, "reviews": 4, "open": 8, "latest": "2026-10-19"})
+        bars = {m["code"]: m for m in view["market_rows"]}
+        self.assertEqual((bars["US"]["review"], bars["US"]["gap"]), (2, 0))
+
+    def test_reviews_and_feishu_links(self):
+        view = self.view(self.with_reviews())
+        self.assertEqual([(r["model"], r["date"]) for r in view["reviews"]],
+                         [("FG-2", "2026-10-19"), ("JE-A", "2026-10-18"), ("JE-A", "2026-10-17"), ("FG-2", "2026-10-10")])
+        self.assertEqual(view["reviews"][0]["feishu"], f"{BASE_URL}?table=rev&record=recR3")
+        self.assertEqual((view["reviews"][0]["market_text"], view["reviews"][3]["market_text"]), ("美规", "新规"))
+        self.assertEqual(view["record_links"], {"JE-A/EU/en/md/manual_je-a_eu_en": f"{BASE_URL}?table=web&record=recW1",
+                                                "JS-B/EU/en/md/manual_js-b_eu_en": f"{BASE_URL}?table=web&record=recW2"})
+        self.assertEqual(view["feishu"]["web"], f"{BASE_URL}?table=web")
+        plain = self.view()
+        self.assertEqual((plain["reviews"], plain["record_links"], plain["feishu"], plain["kpis"]["reviews"]), ([], {}, {}, None))
+
     def test_counts_and_bars(self):
         view = self.view()
-        self.assertEqual(view["kpis"], {"models": 2, "editions": 3, "routes": 4, "checked": 1, "gaps": 2, "partial": 1})
+        self.assertEqual(view["kpis"], {"models": 2, "editions": 3, "routes": 4, "checked": 1, "gaps": 2, "partial": 1,
+                                        "reviews": None, "open": 0, "latest": ""})
         bars = {m["code"]: m for m in view["market_rows"]}
         self.assertEqual((bars["EU"]["full"], bars["EU"]["partial"], bars["EU"]["gap"]), (1, 1, 0))
         self.assertEqual(bars["EU"]["widths"]["full"], 50.0)

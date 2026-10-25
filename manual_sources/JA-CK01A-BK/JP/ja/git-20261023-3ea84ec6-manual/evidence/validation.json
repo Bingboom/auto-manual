@@ -1,0 +1,81 @@
+{
+  "schema_version": "ja-ck01a-bk-jp-validation/v1",
+  "status": "operator-approved-git-only-release (「上线提交发布」 2026-10-23); RTD deployment acceptance pending",
+  "baseline_main": "9dde402",
+  "original_source_sha256": "3ea84ec63b20a4e65c4d2f5d34a45ce715133b6b6f29a424bd95393d131cd113",
+  "stored_markdown_sha256": "6e124bf53faf5671aac05b3cefcd990d7e2f30bc6afd63be3fb457de305b7f3b",
+  "stored_ir_sha256": "59d0ccb772cf420eba6bc48f58c766e5dcbe0b154699e7f3bd22b57cf8cbed7e",
+  "checks": [
+    {
+      "command": "python derive_assets.py (twice)",
+      "result": "assets, asset_recipe.json and figure_labels.json byte-identical on the second run"
+    },
+    {
+      "command": "python render.py <new dir>",
+      "result": "components HB-CALLOUT-STRIP 1, HB-SPECIAL-REFERENCE-FIGURE 1; prepared-document shared-style gate passed with 1 declared table"
+    },
+    {
+      "command": "python -m sphinx -n -W --keep-going -b html",
+      "result": "passed",
+      "log": "strict-sphinx.log"
+    },
+    {
+      "command": "python -m unittest tests.test_ja_ck01a_bk_jp_web tests.test_prepared_document_shared_styles tests.test_frozen_package_registry tests.test_web_frozen_source_evidence",
+      "result": "37 tests OK (cold replay, source tamper rejection, verbatim copy order)",
+      "log": "target-tests.log"
+    },
+    {
+      "command": "python build.py check --config configs/config.ja.yaml --model JE-1000F --region JP --data-root tests/fixtures/phase2",
+      "result": "OK; JP family fixture regression only, not validation of this body",
+      "log": "repo-regression.log"
+    },
+    {
+      "command": "python -m tools.check_maintainability_guardrails",
+      "result": "OK",
+      "log": "maintainability.log"
+    },
+    {
+      "command": "python -m tools.check_doc_link_integrity",
+      "result": "OK",
+      "log": "doc-links.log"
+    }
+  ],
+  "browser": {
+    "1280": {
+      "viewport": 1280,
+      "scroll_width": 1280,
+      "client_width": 1280,
+      "broken_images": [],
+      "failed_requests": [],
+      "http_errors": [],
+      "images": [
+        "assets/ir/9d396f46696d41d56128049d176b5acf147b50ca2d40130aaa96f92612563e12/step1-cover.png",
+        "assets/ir/ea5ae2d4591a5635a74d8f84f67e4264cfb3b5411e9fa35f948c633eeb4f9eeb/step2-mark.png",
+        "assets/ir/6e7efb322c72e79e014bdd75b4fde0c207c7204b7c2e9c7e5e068c3b056a006f/step3-drill.png",
+        "assets/ir/a9e90149a9800e43e850e43c09222061cc2b9ae10b0e899c4d997691df063959/step4-fix.png",
+        "assets/ir/fe806f83427710176e66da12ac4e6d3b6a069c508defed232f2ca3baa5f8880f/step5-wiring.png",
+        "assets/ir/d2c92908c427d8a0d7e11f91e0c9d5ffe2984d57b345ea438ad57314cd66847e/contact-qr.png"
+      ]
+    },
+    "390": {
+      "viewport": 390,
+      "scroll_width": 390,
+      "client_width": 390,
+      "broken_images": [],
+      "failed_requests": [],
+      "http_errors": [],
+      "images": [
+        "assets/ir/9d396f46696d41d56128049d176b5acf147b50ca2d40130aaa96f92612563e12/step1-cover.png",
+        "assets/ir/ea5ae2d4591a5635a74d8f84f67e4264cfb3b5411e9fa35f948c633eeb4f9eeb/step2-mark.png",
+        "assets/ir/6e7efb322c72e79e014bdd75b4fde0c207c7204b7c2e9c7e5e068c3b056a006f/step3-drill.png",
+        "assets/ir/a9e90149a9800e43e850e43c09222061cc2b9ae10b0e899c4d997691df063959/step4-fix.png",
+        "assets/ir/fe806f83427710176e66da12ac4e6d3b6a069c508defed232f2ca3baa5f8880f/step5-wiring.png",
+        "assets/ir/d2c92908c427d8a0d7e11f91e0c9d5ffe2984d57b345ea438ad57314cd66847e/contact-qr.png"
+      ]
+    }
+  },
+  "screenshots": {
+    "1280": "browser-1280.png",
+    "390": "browser-390.png"
+  }
+}

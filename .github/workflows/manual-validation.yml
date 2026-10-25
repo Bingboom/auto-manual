@@ -185,10 +185,11 @@ jobs:
         uses: actions/cache@v4
         with:
           # Caches the downloaded .deb archives so the TeX Live install does not
-          # re-download the whole XeTeX stack every run. Bump the trailing -v1 to
-          # force a rebuild if the package set changes.
+          # re-download the whole XeTeX stack every run. Bump the trailing -vN to
+          # force a rebuild if the package set changes. -v2 starts clean: no -v1
+          # save ever succeeded (see the chown in the install step).
           path: ~/apt-cache
-          key: apt-cache-doctor-en-${{ runner.os }}-texlive-xetex-v1
+          key: apt-cache-doctor-en-${{ runner.os }}-texlive-xetex-v2
       - name: Install system dependencies
         run: |
           PANDOC_VERSION=3.9.0.2
@@ -198,6 +199,10 @@ jobs:
             -o Dir::Cache::archives="$HOME/apt-cache" \
             -o APT::Keep-Downloaded-Packages=true \
             curl texlive-xetex
+          # apt writes the archive lock/partial entries as root. Return the
+          # cache tree to the runner so actions/cache can archive it in the
+          # post step instead of finishing green with a failed-save warning.
+          sudo chown -R "$(id -u):$(id -g)" "$HOME/apt-cache"
           curl -L "https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-1-amd64.deb" -o /tmp/pandoc.deb
           sudo dpkg -i /tmp/pandoc.deb
           pandoc --version | head -n 1

@@ -1,8 +1,9 @@
 # 快速开始指南
 
-Updated: 2026-10-13
+Updated: 2026-10-23
 
-这份指南只讲当前真实可用的工作方式。
+这份指南讲按需使用的飞书队列评审、构建与发布，只写当前真实可用的工作方式。
+资料写作的主线在资料开发工作台 Hello-Docs-Review，见[工作台说明](../mirrors/Hello-Docs-Review/README.md)。
 核心规则只有一句：
 
 - 结构化数据看 Feishu phase2 源表

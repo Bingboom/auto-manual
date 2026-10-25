@@ -533,6 +533,38 @@ restart condition (currently M, N, O and P). PR-level deferred items are in
 
 Re-evaluate this order whenever a workstream closes.
 
+**2026-10-23 strategic prioritization:** Optimize for governed intake of approved
+manuals, traceable publication, useful knowledge extraction and actual consumption,
+not the number of manuals rebuilt from structured tables. Cross-model mass edits
+are not a demonstrated frequent business driver. Existing template, skeleton,
+component and translation assets remain valuable for drafting, review and selective
+builds. This changes prioritization, not recorded implementation status or the
+operator-approved REV-41 deferrals.
+
+**Workbench first (2026-10-23):** writing in the private Hello-Docs-Review
+workbench, where agents draw on the existing infrastructure, data, templates and
+corpus, is the main production route; data-and-template builds are used on
+demand. Supporting that writing is the first near-term priority. The hand-off of
+approved workbench drafts into Hello-Docs publication and traceability as
+approved originals is planned and not yet built.
+
+Before activating Workstreams L/M/N/O or expanding skeleton coverage, document a
+specific recurring use case, source authority, accountable reviewer, expected
+reuse/maintenance benefit and measurable acceptance. Preserve their existing
+deferred gates; do not silently reactivate them.
+
+Near-term planning should prioritize, subject to the existing execution ledger
+and approvals: (a) writing support in the Hello-Docs-Review workbench and the
+planned hand-off of approved drafts to Hello-Docs publication; (b) low-cost
+approved-source intake and release traceability; (c) product/SKU/market/language/version
+associations; (d) source-linked, selective knowledge extraction and human
+validation; (e) template applicability and drafting guidance for people/agents;
+(f) measured query/use and correction feedback. Extraction remains a derivative, not a new content authority.
+
+The numbered sequence below retains earlier engineering dependencies as a
+historical workstream order, **not an instruction to execute deferred
+structuralization or online-first expansion by default**.
+
 1. Keep the current `check` + smoke-CI baseline green.
 2. The Milestone K Tier 1 set from the 2026-07-17 operator triage is done: K4 (source-table backup), K5 (queue-failure alerting), K7 (second InDesign host), K1 (lock CI deps). Everything else in K waits for its named trigger or a dedicated window.
 3. Workstream X is complete through its serial PR 0–9 program and archived (2026-10-02, §6); nothing remains to execute here.
@@ -553,11 +585,15 @@ This roadmap is successful when:
 4. Diff and release outputs are trustworthy enough for review and audit use.
 5. CI covers the critical workflow surfaces that the repo depends on.
 6. Rule-based content QC is machine-readable, reportable, and safe for a future standing agent to consume.
-7. One shared content source can eventually emit correct regional variants without cloning page templates.
+7. Existing templates and approved-source routes can be reused with explicit applicability and review, without requiring every manual to migrate to a shared structured source.
 8. Release snapshots are frozen, and every release is traceable to an immutable snapshot.
 9. The CMS / template / config boundary follows the explicit content-truth allocation rule, with long-form and compliance prose deliberately repository-owned.
 10. The operating plane no longer depends on a watcher or a single machine: a failed queue run alerts on its own, the source tables can be restored from a dated export, the build environment installs from a lock, and the IDML→PDF leg runs on more than one documented host.
 11. A shared-template fix propagates to every open review branch as reviewable automation, not manual per-branch merges.
+12. Approved-source intake, publication coverage and provenance are measurable independently of structured-build coverage.
+13. Selected extracted facts retain source, target applicability and human validation status; extracted text is not promoted to authority by default.
+14. Template reuse by documentation specialists and agents is evaluated by verified applicability, review effort and maintenance cost rather than template or skeleton counts.
+15. Actual knowledge queries, useful retrieval and correction feedback are measured within declared, accepted scopes.
 
 ## 10. Next Review Trigger
 

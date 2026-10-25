@@ -6,6 +6,7 @@ import argparse
 import ast
 import json
 import re
+import subprocess
 import sys
 from dataclasses import dataclass
 from pathlib import Path
@@ -202,6 +203,41 @@ _TARGET_SCOPED_IDML_PAGE_PREDICATE_RE = re.compile(
 )
 
 
+# Paths only the mirrors own. Both mirror syncs refuse an auto-manual tree that holds
+# any of them (`SOURCE_FORBIDDEN_PATHS` in sync-hello-docs.yml), but only after the
+# merge; failing the PR keeps an unreleased review draft out of public main.
+MIRROR_OWNED_PATHS = ("docs/publish", "docs/knowledge", "docs/review-drafts")
+
+
+def is_mirror_checkout(repo_root: Path) -> bool:
+    """True in a mirror: its sync installs `mirrors/<name>/README.md` as the root README."""
+    readme = repo_root / "README.md"
+    if not readme.is_file():
+        return False
+    landing = readme.read_bytes()
+    return any(candidate.read_bytes() == landing
+               for candidate in sorted(repo_root.glob("mirrors/*/README.md")))
+
+
+def collect_mirror_owned_paths(repo_root: Path) -> list[str]:
+    """Mirror-owned paths this tree commits (tracked files; the filesystem outside git).
+
+    Tracked files are what reach main, so a local untracked publish staging tree passes.
+    A mirror checkout owns these paths, so it reports none.
+    """
+    if is_mirror_checkout(repo_root):
+        return []
+    if (repo_root / ".git").exists():
+        result = subprocess.run(
+            ["git", "-C", str(repo_root), "ls-files", "--", *MIRROR_OWNED_PATHS],
+            capture_output=True, text=True, check=True,
+        )
+        tracked = result.stdout.splitlines()
+        return [path for path in MIRROR_OWNED_PATHS
+                if any(name == path or name.startswith(path + "/") for name in tracked)]
+    return [path for path in MIRROR_OWNED_PATHS if (repo_root / path).exists()]
+
+
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Low-noise maintainability guardrails for known hotspot files."
@@ -370,6 +406,14 @@ def _render_failure(failure: GuardrailFailure) -> str:
 
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
+    mirror_owned = collect_mirror_owned_paths(args.repo_root.resolve())
+    if mirror_owned:
+        print("[maintainability] auto-manual must not contain mirror-owned paths:")
+        for path in mirror_owned:
+            print(f"[maintainability] {path}: review drafts belong only in Hello-Docs-Review, "
+                  "published Web and knowledge only in Hello-Docs")
+        return 1
+
     failures = collect_hotspot_failures(args.repo_root.resolve())
     if failures:
         print("[maintainability] Guardrail failures detected:")

@@ -1,0 +1,5199 @@
+{
+  "asset_refs": [
+    "assets/ir/d3729aba0b68d53c746291794972a3f5c66bd5457a7c95dc0070db4ef475171a/site-space.png",
+    "assets/ir/3608997daeec574addc7c5ead2278c8d0ec3f1b87801b69bdbc4359e7c09aba5/pack-panel.png",
+    "assets/ir/348a5472df92a764f1fb47c4d89dce1eff57eda38d7a484ad50d7d5a9573cabd/pack-handle.png",
+    "assets/ir/f22bd3121514b6c71a686195d94e3c5740015e52b11f3225a6a2353c69362ac2/pack-install-manual.png",
+    "assets/ir/431f376f814d7cfe9a4028f46a2c7bf8e9778c24bd5bcb8f5ba00f6dd1e537a0/pack-label-sheet.png",
+    "assets/ir/48e72272cc0e676ad8566a599d6cf0949e4eb0924b2ff944c776d68a73c0235f/pack-screw.png",
+    "assets/ir/8783401cec5b1f1ef7c9b9aebe18d232d757751c8d5f2c7e5eee6b8d2f717422/pack-inlet-box.png",
+    "assets/ir/dac68ab6268a7800251048f2f60574543d63fda4f48200b675f4ab15ad32c4a9/pack-charge-cable.png",
+    "assets/ir/1eddedc221038572b78e919d249a8218d7459602ac18375c167a8af4865e1a3e/pack-cable-hanger.png",
+    "assets/ir/cb495f8d5d772fdf64661e477b32f0b50896e27c11bee78b2eef03d5c5bc3d50/pack-user-manual.png",
+    "assets/ir/021ea3714a6f676bac307d8e240a55b982be03ecc40eada0f4c427ac099ca66f/pack-quick-guide.png",
+    "assets/ir/8a90115329a9dac5b146a6a0518075d751a015cf0b88ff9f3f3d216988e2cfed/pack-anchor-bolt.png",
+    "assets/ir/dbaa992a84d9120fb8b89d8cfbe3ac4ea51a53866117ca67c00d4296f748d2b3/need-conduit.png",
+    "assets/ir/99e96c860cb4f3901c2c1e1bf35333296812a631596561ca4161e9c59105cb6a/need-outlet.png",
+    "assets/ir/6772721964a3529dbc97a63e86b33984bb454d45cf5d4fa1d20fb94bf506ef05/need-wire.png",
+    "assets/ir/98fd815a01ff40de62782ce0f62bc2370a5d101eab3fdc63e4778da899a89cb6/need-breaker.png",
+    "assets/ir/ff8aef753142a3435e701812bfb249af173295b255c9217a143718ec16961708/step1-open.png",
+    "assets/ir/b9bf9ecb29bdfe5104814e5bf92df82960bc485c68dbaa736116ade02e064ebd/step1-front-panel.png",
+    "assets/ir/5ebd1e7d17c0d0bfcba50d4328d4045473981ab53b7cd9240119638df960a7b2/step1-wall.png",
+    "assets/ir/a5ae78d7d2a581e166d48dd1c251c9acc0dbb93600c0885ae73477d137ca721a/step2-port-a-legend.png",
+    "assets/ir/c970cbbc3a39ae05b5d6b6f9e37ef621100f74b4b5efeda42dd2a939bc374fbe/step2-port-a.png",
+    "assets/ir/12ffc93e337f16b396c775f1968e94c376586b0a506f901490a0e41f745de866/step2-port-a-switch.png",
+    "assets/ir/4026745119311b38087b7270087c64c4601a504e1b62a5710a5be3d24ab115df/step2-backup-legend.png",
+    "assets/ir/c3dbfd930c7c7790981e314b2cb584288c31e472d32c964f22a695ca82192096/step2-backup.png",
+    "assets/ir/962bde5474d27b35b0af2f1028c2c51d8f84f61e8ce31932bb69b90a364aec44/step3-inlet.png",
+    "assets/ir/7c3ae768dd5c0608652243ada6c39ad5f7db49f417253fbc31c3bfa45ae7b9da/step3-port-b.png",
+    "assets/ir/e71a6f1bf02333a923adafb9afed8ded02df658ebd39a543f1e33765d750b76d/step3-battery.png",
+    "assets/ir/ae043bf40cfea268cf1e71c1fb2ccc57f583e5cb54153e449aa17e9e81000316/step4-charge.png",
+    "assets/ir/fd0bc0e1597b51e9e069a2261eed475c4706a7f4ccf80a854a64f1182aea7bea/warning-triangle-yellow.svg",
+    "assets/ir/364c3a4f19b57750bd9aff75ad44cce09021b5afb46c75e424f4edfd623e5b8d/app-store-badges.png",
+    "assets/ir/8ccf2d99820b93ad570632c1955886e696caf3d37e6f0911bef239ab0278beb7/app-download-qr.png",
+    "assets/ir/324b1caa0c30aa8d2823e52e9e2725931b48021d41d746d91d95cda8f36c20e9/app-settings-1.png",
+    "assets/ir/475b0c26eba0cda14e1dcb970b67be8182a7fc155d20077e1b1fdccb8da05c33/app-settings-2.png"
+  ],
+  "bundle_root": "frozen-source",
+  "bundle_sha256": "78e772432f4bc60cb77aea02b933d5691cd542f1050ee7184eafce7a44daaa76",
+  "content_sha256": "f0d6a59aad63f5ffb38dc4196b958d309692eee720524b98c72d6c2ab2bc1496",
+  "language": "ja",
+  "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
+  "metadata": {
+    "asset_sha256": {
+      "assets/ir/021ea3714a6f676bac307d8e240a55b982be03ecc40eada0f4c427ac099ca66f/pack-quick-guide.png": "021ea3714a6f676bac307d8e240a55b982be03ecc40eada0f4c427ac099ca66f",
+      "assets/ir/12ffc93e337f16b396c775f1968e94c376586b0a506f901490a0e41f745de866/step2-port-a-switch.png": "12ffc93e337f16b396c775f1968e94c376586b0a506f901490a0e41f745de866",
+      "assets/ir/1eddedc221038572b78e919d249a8218d7459602ac18375c167a8af4865e1a3e/pack-cable-hanger.png": "1eddedc221038572b78e919d249a8218d7459602ac18375c167a8af4865e1a3e",
+      "assets/ir/324b1caa0c30aa8d2823e52e9e2725931b48021d41d746d91d95cda8f36c20e9/app-settings-1.png": "324b1caa0c30aa8d2823e52e9e2725931b48021d41d746d91d95cda8f36c20e9",
+      "assets/ir/348a5472df92a764f1fb47c4d89dce1eff57eda38d7a484ad50d7d5a9573cabd/pack-handle.png": "348a5472df92a764f1fb47c4d89dce1eff57eda38d7a484ad50d7d5a9573cabd",
+      "assets/ir/3608997daeec574addc7c5ead2278c8d0ec3f1b87801b69bdbc4359e7c09aba5/pack-panel.png": "3608997daeec574addc7c5ead2278c8d0ec3f1b87801b69bdbc4359e7c09aba5",
+      "assets/ir/364c3a4f19b57750bd9aff75ad44cce09021b5afb46c75e424f4edfd623e5b8d/app-store-badges.png": "364c3a4f19b57750bd9aff75ad44cce09021b5afb46c75e424f4edfd623e5b8d",
+      "assets/ir/4026745119311b38087b7270087c64c4601a504e1b62a5710a5be3d24ab115df/step2-backup-legend.png": "4026745119311b38087b7270087c64c4601a504e1b62a5710a5be3d24ab115df",
+      "assets/ir/431f376f814d7cfe9a4028f46a2c7bf8e9778c24bd5bcb8f5ba00f6dd1e537a0/pack-label-sheet.png": "431f376f814d7cfe9a4028f46a2c7bf8e9778c24bd5bcb8f5ba00f6dd1e537a0",
+      "assets/ir/475b0c26eba0cda14e1dcb970b67be8182a7fc155d20077e1b1fdccb8da05c33/app-settings-2.png": "475b0c26eba0cda14e1dcb970b67be8182a7fc155d20077e1b1fdccb8da05c33",
+      "assets/ir/48e72272cc0e676ad8566a599d6cf0949e4eb0924b2ff944c776d68a73c0235f/pack-screw.png": "48e72272cc0e676ad8566a599d6cf0949e4eb0924b2ff944c776d68a73c0235f",
+      "assets/ir/5ebd1e7d17c0d0bfcba50d4328d4045473981ab53b7cd9240119638df960a7b2/step1-wall.png": "5ebd1e7d17c0d0bfcba50d4328d4045473981ab53b7cd9240119638df960a7b2",
+      "assets/ir/6772721964a3529dbc97a63e86b33984bb454d45cf5d4fa1d20fb94bf506ef05/need-wire.png": "6772721964a3529dbc97a63e86b33984bb454d45cf5d4fa1d20fb94bf506ef05",
+      "assets/ir/7c3ae768dd5c0608652243ada6c39ad5f7db49f417253fbc31c3bfa45ae7b9da/step3-port-b.png": "7c3ae768dd5c0608652243ada6c39ad5f7db49f417253fbc31c3bfa45ae7b9da",
+      "assets/ir/8783401cec5b1f1ef7c9b9aebe18d232d757751c8d5f2c7e5eee6b8d2f717422/pack-inlet-box.png": "8783401cec5b1f1ef7c9b9aebe18d232d757751c8d5f2c7e5eee6b8d2f717422",
+      "assets/ir/8a90115329a9dac5b146a6a0518075d751a015cf0b88ff9f3f3d216988e2cfed/pack-anchor-bolt.png": "8a90115329a9dac5b146a6a0518075d751a015cf0b88ff9f3f3d216988e2cfed",
+      "assets/ir/8ccf2d99820b93ad570632c1955886e696caf3d37e6f0911bef239ab0278beb7/app-download-qr.png": "8ccf2d99820b93ad570632c1955886e696caf3d37e6f0911bef239ab0278beb7",
+      "assets/ir/962bde5474d27b35b0af2f1028c2c51d8f84f61e8ce31932bb69b90a364aec44/step3-inlet.png": "962bde5474d27b35b0af2f1028c2c51d8f84f61e8ce31932bb69b90a364aec44",
+      "assets/ir/98fd815a01ff40de62782ce0f62bc2370a5d101eab3fdc63e4778da899a89cb6/need-breaker.png": "98fd815a01ff40de62782ce0f62bc2370a5d101eab3fdc63e4778da899a89cb6",
+      "assets/ir/99e96c860cb4f3901c2c1e1bf35333296812a631596561ca4161e9c59105cb6a/need-outlet.png": "99e96c860cb4f3901c2c1e1bf35333296812a631596561ca4161e9c59105cb6a",
+      "assets/ir/a5ae78d7d2a581e166d48dd1c251c9acc0dbb93600c0885ae73477d137ca721a/step2-port-a-legend.png": "a5ae78d7d2a581e166d48dd1c251c9acc0dbb93600c0885ae73477d137ca721a",
+      "assets/ir/ae043bf40cfea268cf1e71c1fb2ccc57f583e5cb54153e449aa17e9e81000316/step4-charge.png": "ae043bf40cfea268cf1e71c1fb2ccc57f583e5cb54153e449aa17e9e81000316",
+      "assets/ir/b9bf9ecb29bdfe5104814e5bf92df82960bc485c68dbaa736116ade02e064ebd/step1-front-panel.png": "b9bf9ecb29bdfe5104814e5bf92df82960bc485c68dbaa736116ade02e064ebd",
+      "assets/ir/c3dbfd930c7c7790981e314b2cb584288c31e472d32c964f22a695ca82192096/step2-backup.png": "c3dbfd930c7c7790981e314b2cb584288c31e472d32c964f22a695ca82192096",
+      "assets/ir/c970cbbc3a39ae05b5d6b6f9e37ef621100f74b4b5efeda42dd2a939bc374fbe/step2-port-a.png": "c970cbbc3a39ae05b5d6b6f9e37ef621100f74b4b5efeda42dd2a939bc374fbe",
+      "assets/ir/cb495f8d5d772fdf64661e477b32f0b50896e27c11bee78b2eef03d5c5bc3d50/pack-user-manual.png": "cb495f8d5d772fdf64661e477b32f0b50896e27c11bee78b2eef03d5c5bc3d50",
+      "assets/ir/d3729aba0b68d53c746291794972a3f5c66bd5457a7c95dc0070db4ef475171a/site-space.png": "d3729aba0b68d53c746291794972a3f5c66bd5457a7c95dc0070db4ef475171a",
+      "assets/ir/dac68ab6268a7800251048f2f60574543d63fda4f48200b675f4ab15ad32c4a9/pack-charge-cable.png": "dac68ab6268a7800251048f2f60574543d63fda4f48200b675f4ab15ad32c4a9",
+      "assets/ir/dbaa992a84d9120fb8b89d8cfbe3ac4ea51a53866117ca67c00d4296f748d2b3/need-conduit.png": "dbaa992a84d9120fb8b89d8cfbe3ac4ea51a53866117ca67c00d4296f748d2b3",
+      "assets/ir/e71a6f1bf02333a923adafb9afed8ded02df658ebd39a543f1e33765d750b76d/step3-battery.png": "e71a6f1bf02333a923adafb9afed8ded02df658ebd39a543f1e33765d750b76d",
+      "assets/ir/f22bd3121514b6c71a686195d94e3c5740015e52b11f3225a6a2353c69362ac2/pack-install-manual.png": "f22bd3121514b6c71a686195d94e3c5740015e52b11f3225a6a2353c69362ac2",
+      "assets/ir/fd0bc0e1597b51e9e069a2261eed475c4706a7f4ccf80a854a64f1182aea7bea/warning-triangle-yellow.svg": "fd0bc0e1597b51e9e069a2261eed475c4706a7f4ccf80a854a64f1182aea7bea",
+      "assets/ir/ff8aef753142a3435e701812bfb249af173295b255c9217a143718ec16961708/step1-open.png": "ff8aef753142a3435e701812bfb249af173295b255c9217a143718ec16961708"
+    },
+    "block_count": 29,
+    "component_inventory": {
+      "HB-SPECIAL-REFERENCE-FIGURE": 4
+    },
+    "component_registry": {
+      "components": {
+        "HB-CALLOUT-STRIP": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_notice"
+            },
+            "latex": {
+              "capability": "rendered",
+              "key": "hb_latex_callout"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "manual_callout_table"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_manual_callout_table"
+            }
+          },
+          "asset_roles": {},
+          "slots": {
+            "body": {
+              "content_kinds": [
+                "rich_text"
+              ],
+              "required": true
+            },
+            "items": {
+              "content_kinds": [
+                "list_items"
+              ],
+              "required": false
+            },
+            "label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "callout_strip",
+            "notice"
+          ],
+          "style_id": "HB-CALLOUT-STRIP",
+          "token_roles": [
+            "component.callout"
+          ],
+          "variants": [
+            "warning",
+            "danger",
+            "caution",
+            "note",
+            "tip"
+          ]
+        },
+        "HB-SPECIAL-APP": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_app"
+            },
+            "latex": {
+              "capability": "rendered",
+              "key": "hb_latex_app"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_app"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_app"
+            }
+          },
+          "asset_roles": {
+            "control_art": {
+              "locale_policies": [
+                "shared"
+              ],
+              "required": false
+            },
+            "phone_art": {
+              "locale_policies": [
+                "shared"
+              ],
+              "required": false
+            },
+            "qr_art": {
+              "locale_policies": [
+                "shared"
+              ],
+              "required": false
+            },
+            "source_art": {
+              "locale_policies": [
+                "exact"
+              ],
+              "required": false
+            },
+            "store_art": {
+              "locale_policies": [
+                "shared"
+              ],
+              "required": false
+            }
+          },
+          "slots": {
+            "accessibility_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "columns": {
+              "content_kinds": [
+                "ordered_columns"
+              ],
+              "required": false
+            },
+            "interstitial_note": {
+              "content_kinds": [
+                "rich_text"
+              ],
+              "required": false
+            },
+            "labels": {
+              "content_kinds": [
+                "ordered_labels"
+              ],
+              "required": false
+            },
+            "paragraph": {
+              "content_kinds": [
+                "rich_text"
+              ],
+              "required": false
+            },
+            "reference_id": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": false
+            },
+            "step_captions": {
+              "content_kinds": [
+                "ordered_labels"
+              ],
+              "required": false
+            }
+          },
+          "source_kinds": [
+            "app_download",
+            "app_inline_control",
+            "app_add_device"
+          ],
+          "style_id": "HB-SPECIAL-APP",
+          "token_roles": [
+            "component.special.app"
+          ],
+          "variant_adapters": {
+            "download-qr-only": {
+              "idml": {
+                "capability": "not-applicable",
+                "key": "idml_app"
+              },
+              "latex": {
+                "capability": "not-applicable",
+                "key": "hb_latex_app"
+              },
+              "web": {
+                "capability": "rendered",
+                "key": "hb_app"
+              },
+              "word": {
+                "capability": "not-applicable",
+                "key": "word_app"
+              }
+            }
+          },
+          "variants": [
+            "download",
+            "download-qr-only",
+            "inline-control",
+            "add-device"
+          ]
+        },
+        "HB-SPECIAL-FCC": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_fcc"
+            },
+            "latex": {
+              "capability": "rendered",
+              "key": "hb_latex_fcc"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_fcc"
+            },
+            "word": {
+              "capability": "rendered",
+              "key": "word_fcc"
+            }
+          },
+          "asset_roles": {
+            "compliance_mark": {
+              "locale_policies": [
+                "shared"
+              ],
+              "required": true
+            }
+          },
+          "slots": {
+            "accessibility_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "body_blocks": {
+              "content_kinds": [
+                "ordered_blocks"
+              ],
+              "required": true
+            },
+            "column_break": {
+              "content_kinds": [
+                "block_index"
+              ],
+              "required": true
+            },
+            "opening_copy": {
+              "content_kinds": [
+                "line_items"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "fcc"
+          ],
+          "style_id": "HB-SPECIAL-FCC",
+          "token_roles": [
+            "component.special.fcc"
+          ],
+          "variants": [
+            "two-column"
+          ]
+        },
+        "HB-SPECIAL-INBOX": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_inbox"
+            },
+            "latex": {
+              "capability": "rendered",
+              "key": "hb_latex_inbox"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_inbox"
+            },
+            "word": {
+              "capability": "rendered",
+              "key": "word_inbox"
+            }
+          },
+          "asset_roles": {
+            "card_1_art": {
+              "locale_policies": [
+                "shared"
+              ],
+              "required": false
+            },
+            "card_2_art": {
+              "locale_policies": [
+                "shared"
+              ],
+              "required": false
+            },
+            "card_3_art": {
+              "locale_policies": [
+                "shared"
+              ],
+              "required": false
+            },
+            "card_art": {
+              "locale_policies": [
+                "shared"
+              ],
+              "multiple": true,
+              "required": false
+            }
+          },
+          "slots": {
+            "accessibility_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "cards": {
+              "content_kinds": [
+                "ordered_cards"
+              ],
+              "required": true
+            },
+            "tip_body": {
+              "content_kinds": [
+                "rich_text"
+              ],
+              "required": true
+            },
+            "tip_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "inbox"
+          ],
+          "style_id": "HB-SPECIAL-INBOX",
+          "token_roles": [
+            "component.special.inbox"
+          ],
+          "variant_adapters": {
+            "responsive-card-grid": {
+              "idml": {
+                "capability": "not-applicable",
+                "key": "idml_inbox"
+              },
+              "latex": {
+                "capability": "not-applicable",
+                "key": "hb_latex_inbox"
+              },
+              "web": {
+                "capability": "rendered",
+                "key": "hb_inbox"
+              },
+              "word": {
+                "capability": "not-applicable",
+                "key": "word_inbox"
+              }
+            }
+          },
+          "variants": [
+            "three-card-responsive",
+            "responsive-card-grid"
+          ]
+        },
+        "HB-SPECIAL-OPERATION": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_operation"
+            },
+            "latex": {
+              "capability": "projection-only",
+              "key": "hb_latex_operation"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_operation"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_operation"
+            }
+          },
+          "asset_roles": {
+            "artwork": {
+              "locale_policies": [
+                "shared",
+                "exact"
+              ],
+              "required": true
+            }
+          },
+          "slots": {
+            "accessibility_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "mode_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": false
+            },
+            "operation_id": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "prerequisite": {
+              "content_kinds": [
+                "rich_text"
+              ],
+              "required": false
+            },
+            "sos_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": false
+            },
+            "steps": {
+              "content_kinds": [
+                "ordered_steps"
+              ],
+              "required": true
+            },
+            "supporting_copy": {
+              "content_kinds": [
+                "line_items"
+              ],
+              "required": false
+            }
+          },
+          "source_kinds": [
+            "operation_panel"
+          ],
+          "style_id": "HB-SPECIAL-OPERATION",
+          "token_roles": [
+            "component.special.operation"
+          ],
+          "variants": [
+            "status-right",
+            "footer-overlay",
+            "footer-panel"
+          ]
+        },
+        "HB-SPECIAL-OVERVIEW": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_overview"
+            },
+            "latex": {
+              "capability": "projection-only",
+              "key": "hb_latex_overview"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_overview"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_overview"
+            }
+          },
+          "asset_roles": {
+            "front_art": {
+              "locale_policies": [
+                "shared"
+              ],
+              "required": true
+            },
+            "right_art": {
+              "locale_policies": [
+                "shared"
+              ],
+              "required": true
+            }
+          },
+          "slots": {
+            "accessibility_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "geometry_ref": {
+              "content_kinds": [
+                "instance_ref"
+              ],
+              "required": true
+            },
+            "views": {
+              "content_kinds": [
+                "ordered_views"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "overview"
+          ],
+          "style_id": "HB-SPECIAL-OVERVIEW",
+          "token_roles": [
+            "component.special.overview"
+          ],
+          "variants": [
+            "annotated-live",
+            "approved-composite"
+          ]
+        },
+        "HB-SPECIAL-REFERENCE-FIGURE": {
+          "adapters": {
+            "idml": {
+              "capability": "projection-only",
+              "key": "idml_reference_figure"
+            },
+            "latex": {
+              "capability": "projection-only",
+              "key": "hb_latex_reference_figure"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_reference_figure"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_reference_figure"
+            }
+          },
+          "asset_roles": {
+            "approved_composite": {
+              "locale_policies": [
+                "exact",
+                "shared"
+              ],
+              "required": false
+            },
+            "source_art": {
+              "locale_policies": [
+                "exact",
+                "shared"
+              ],
+              "required": true
+            }
+          },
+          "slots": {
+            "accessibility_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "adjacent_copy": {
+              "content_kinds": [
+                "rich_text"
+              ],
+              "required": false
+            },
+            "caption_layout": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "caption_mode": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "captions": {
+              "content_kinds": [
+                "ordered_labels"
+              ],
+              "required": false
+            },
+            "reference_id": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "reference_figure"
+          ],
+          "style_id": "HB-SPECIAL-REFERENCE-FIGURE",
+          "token_roles": [
+            "component.special.reference-figure"
+          ],
+          "variants": [
+            "semantic-fallback",
+            "approved-composite"
+          ]
+        },
+        "HB-TABLE-AUTO-RESUME": {
+          "adapters": {
+            "idml": {
+              "capability": "projection-only",
+              "key": "idml_auto_resume"
+            },
+            "latex": {
+              "capability": "projection-only",
+              "key": "hb_latex_auto_resume"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_auto_resume"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_auto_resume"
+            }
+          },
+          "asset_roles": {},
+          "slots": {
+            "conditions": {
+              "content_kinds": [
+                "ordered_columns"
+              ],
+              "required": true
+            },
+            "headers": {
+              "content_kinds": [
+                "ordered_headers"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "table_auto_resume"
+          ],
+          "style_id": "HB-TABLE-AUTO-RESUME",
+          "token_roles": [
+            "component.table.auto-resume"
+          ],
+          "variants": [
+            "two-column-middle-span"
+          ]
+        },
+        "HB-TABLE-KEY-COMBINATIONS": {
+          "adapters": {
+            "idml": {
+              "capability": "projection-only",
+              "key": "idml_key_combinations"
+            },
+            "latex": {
+              "capability": "projection-only",
+              "key": "hb_latex_key_combinations"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_key_combinations"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_key_combinations"
+            }
+          },
+          "asset_roles": {},
+          "slots": {
+            "headers": {
+              "content_kinds": [
+                "ordered_headers"
+              ],
+              "required": true
+            },
+            "rows": {
+              "content_kinds": [
+                "ordered_rows"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "table_key_combinations"
+          ],
+          "style_id": "HB-TABLE-KEY-COMBINATIONS",
+          "token_roles": [
+            "component.table.key-combinations"
+          ],
+          "variants": [
+            "three-column"
+          ]
+        },
+        "HB-TABLE-LCD-ICON": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_lcd_icon"
+            },
+            "latex": {
+              "capability": "rendered",
+              "key": "hb_latex_lcd_icon"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_lcd_icon"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_lcd_icon"
+            }
+          },
+          "asset_roles": {
+            "icons": {
+              "locale_policies": [
+                "shared",
+                "exact"
+              ],
+              "multiple": true,
+              "required": true
+            }
+          },
+          "slots": {
+            "accessibility_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "rows": {
+              "content_kinds": [
+                "ordered_rows"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "table_lcd_icon",
+            "lcd-icons"
+          ],
+          "style_id": "HB-TABLE-LCD-ICON",
+          "token_roles": [
+            "component.table.lcd-icon"
+          ],
+          "variants": [
+            "icon-catalog",
+            "icon-catalog-unnumbered"
+          ]
+        },
+        "HB-TABLE-LCD-MODE": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_lcd_mode"
+            },
+            "latex": {
+              "capability": "rendered",
+              "key": "hb_latex_lcd_mode"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_lcd_mode"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_lcd_mode"
+            }
+          },
+          "asset_roles": {
+            "artwork": {
+              "locale_policies": [
+                "shared",
+                "exact"
+              ],
+              "required": true
+            }
+          },
+          "slots": {
+            "accessibility_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "groups": {
+              "content_kinds": [
+                "ordered_groups"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "table_lcd_mode"
+          ],
+          "style_id": "HB-TABLE-LCD-MODE",
+          "token_roles": [
+            "component.table.lcd-mode"
+          ],
+          "variants": [
+            "two-state-three-action"
+          ]
+        },
+        "HB-TABLE-REFERENCE": {
+          "adapters": {
+            "idml": {
+              "capability": "projection-only",
+              "key": "idml_reference_table"
+            },
+            "latex": {
+              "capability": "projection-only",
+              "key": "latex_reference_table"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "web_reference_table"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_reference_table"
+            }
+          },
+          "asset_roles": {},
+          "slots": {
+            "accessibility_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "headers": {
+              "content_kinds": [
+                "ordered_headers"
+              ],
+              "required": true
+            },
+            "rows": {
+              "content_kinds": [
+                "ordered_rows"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "table_reference"
+          ],
+          "style_id": "HB-TABLE-REFERENCE",
+          "token_roles": [
+            "component.table.reference"
+          ],
+          "variants": [
+            "lcd-descriptions",
+            "lcd-legend",
+            "lcd-actions",
+            "lcd-actions-compact",
+            "symbol-meanings",
+            "plain-inventory"
+          ]
+        },
+        "HB-TABLE-SPEC": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_spec_table"
+            },
+            "latex": {
+              "capability": "rendered",
+              "key": "hb_latex_spec_table"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_spec_table"
+            },
+            "word": {
+              "capability": "rendered",
+              "key": "word_spec_table"
+            }
+          },
+          "asset_roles": {},
+          "slots": {
+            "rows": {
+              "content_kinds": [
+                "structured_rows"
+              ],
+              "required": true
+            },
+            "section_title": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "table_spec",
+            "spec-table"
+          ],
+          "style_id": "HB-TABLE-SPEC",
+          "token_roles": [
+            "component.table.spec"
+          ],
+          "variants": [
+            "vertical"
+          ]
+        },
+        "HB-TABLE-SYMBOL-ICON": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_symbol_icon"
+            },
+            "latex": {
+              "capability": "rendered",
+              "key": "hb_latex_symbol_icon"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_symbol_icon"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_symbol_icon"
+            }
+          },
+          "asset_roles": {
+            "icons": {
+              "locale_policies": [
+                "shared",
+                "exact"
+              ],
+              "multiple": true,
+              "required": true
+            }
+          },
+          "slots": {
+            "accessibility_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "headers": {
+              "content_kinds": [
+                "ordered_headers"
+              ],
+              "required": true
+            },
+            "panels": {
+              "content_kinds": [
+                "ordered_panels"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "table_symbol_icon",
+            "symbols"
+          ],
+          "style_id": "HB-TABLE-SYMBOL-ICON",
+          "token_roles": [
+            "component.table.symbol-icon"
+          ],
+          "variants": [
+            "two-panel-responsive"
+          ]
+        },
+        "HB-TABLE-SYMBOL-SIGNAL": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_symbol_signal"
+            },
+            "latex": {
+              "capability": "rendered",
+              "key": "hb_latex_symbol_signal"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_symbol_signal"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_symbol_signal"
+            }
+          },
+          "asset_roles": {},
+          "slots": {
+            "accessibility_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "headers": {
+              "content_kinds": [
+                "ordered_headers"
+              ],
+              "required": true
+            },
+            "rows": {
+              "content_kinds": [
+                "ordered_rows"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "table_symbol_signal"
+          ],
+          "style_id": "HB-TABLE-SYMBOL-SIGNAL",
+          "token_roles": [
+            "component.table.symbol-signal"
+          ],
+          "variants": [
+            "localized-badges"
+          ]
+        },
+        "HB-TABLE-TROUBLESHOOTING": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_troubleshooting"
+            },
+            "latex": {
+              "capability": "rendered",
+              "key": "hb_latex_troubleshooting"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_troubleshooting"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_troubleshooting"
+            }
+          },
+          "asset_roles": {},
+          "slots": {
+            "headers": {
+              "content_kinds": [
+                "ordered_headers"
+              ],
+              "required": true
+            },
+            "rows": {
+              "content_kinds": [
+                "ordered_rows"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "table_troubleshooting",
+            "troubleshooting"
+          ],
+          "style_id": "HB-TABLE-TROUBLESHOOTING",
+          "token_roles": [
+            "component.table.troubleshooting"
+          ],
+          "variants": [
+            "two-column"
+          ]
+        },
+        "HB-WARRANTY-LEAD": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_warranty_lead"
+            },
+            "latex": {
+              "capability": "rendered",
+              "key": "hb_latex_warranty_lead"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_warranty_lead"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_warranty_lead"
+            }
+          },
+          "asset_roles": {},
+          "slots": {
+            "accessibility_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "lead": {
+              "content_kinds": [
+                "rich_text"
+              ],
+              "required": true
+            },
+            "local_note": {
+              "content_kinds": [
+                "rich_text"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "warranty_lead"
+          ],
+          "style_id": "HB-WARRANTY-LEAD",
+          "token_roles": [
+            "component.warranty.lead"
+          ],
+          "variants": [
+            "intro-panel"
+          ]
+        },
+        "HB-WARRANTY-SECTION": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_warranty_section"
+            },
+            "latex": {
+              "capability": "rendered",
+              "key": "hb_latex_warranty_section"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_warranty_section"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_warranty_section"
+            }
+          },
+          "asset_roles": {},
+          "slots": {
+            "blocks": {
+              "content_kinds": [
+                "ordered_blocks"
+              ],
+              "required": true
+            },
+            "section_index": {
+              "content_kinds": [
+                "block_index"
+              ],
+              "required": true
+            },
+            "title": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "warranty_section"
+          ],
+          "style_id": "HB-WARRANTY-SECTION",
+          "token_roles": [
+            "component.warranty.section"
+          ],
+          "variants": [
+            "rounded-card"
+          ]
+        },
+        "HB-WARRANTY-YEARS": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_warranty_years"
+            },
+            "latex": {
+              "capability": "rendered",
+              "key": "hb_latex_warranty_years"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_warranty_years"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_warranty_years"
+            }
+          },
+          "asset_roles": {},
+          "slots": {
+            "periods": {
+              "content_kinds": [
+                "ordered_periods"
+              ],
+              "required": true
+            },
+            "title": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "warranty_years"
+          ],
+          "style_id": "HB-WARRANTY-YEARS",
+          "token_roles": [
+            "component.warranty.years"
+          ],
+          "variants": [
+            "numeric-badges"
+          ]
+        }
+      },
+      "registry_id": "hb-component-registry",
+      "schema_version": "component-registry/v1"
+    },
+    "component_registry_sha256": "9275f1facc80873cdbf74f4f3c91c29f87ebc26fd6056eb37e69e13f96639a8f",
+    "composites": [],
+    "declared_languages": [
+      "ja"
+    ],
+    "frozen_source_manifest": {
+      "build_boundary": "New target is not registered in phase2. Existing prepared RST → manual-ir/v2 → shared Web/MyST pipeline validates this body; build.py check of the JE-1000F fixture is a repository regression only.",
+      "component_map": [
+        {
+          "block": "chapter tabs and step titles",
+          "shared": "Furo/shared Web headings (H1 chapters, H2 steps)"
+        },
+        {
+          "block": "サイトスペース要件 figure",
+          "shared": "HB-SPECIAL-REFERENCE-FIGURE (base-art-live-copy, 4 live labels)"
+        },
+        {
+          "block": "パッキングリスト 1/2, 必要品",
+          "shared": "shared hb-package-panel / hb-package-grid (as JHP-3600C US); HB-SPECIAL-INBOX takes one single-row group with a tip and does not fit three groups"
+        },
+        {
+          "block": "step figures",
+          "shared": "plain flow images (prepared-document); printed labels stay in the art"
+        },
+        {
+          "block": "2-② wiring",
+          "shared": "HB-SPECIAL-REFERENCE-FIGURE (base-art-live-copy, live 100v サーキット pill)"
+        },
+        {
+          "block": "grey note box (2-②)",
+          "shared": "shared hb-text-panel"
+        },
+        {
+          "block": "warning boxes (4, 5-②)",
+          "shared": "shared hb-source-safety-heading with the native yellow triangle"
+        },
+        {
+          "block": "App download (5-①)",
+          "shared": "plain images; HB-SPECIAL-APP download requires two column copy lines the print does not have"
+        },
+        {
+          "block": "App screens with captions (5-②)",
+          "shared": "HB-SPECIAL-REFERENCE-FIGURE ×2 (base-art-live-copy, live caption pills)"
+        }
+      ],
+      "drawing_block": {
+        "drawing_date": "2025-06-12",
+        "drawing_version": "V0.2",
+        "note": "production drawing title block around the printed sides; it is not a printed manual version",
+        "part_number": "38-0001-000845",
+        "revision_table": "V0.1 第一次发行"
+      },
+      "identity": {
+        "material_code": "HTO862A-JP-JAK",
+        "note": "the material code and part number come from the file name and drawing title block; Web identity follows the printed model",
+        "part_number": "38-0001-000845",
+        "printed_model": "JA-CK01A-BK",
+        "printed_model_source": "reported by the full-manual window as printed on the full manual's cover (型番) and 主な仕様 (Model), adopted by operator decision 2026-10-23; the quick guide itself prints no model"
+      },
+      "inputs": [
+        {
+          "path": "assets/app-download-qr.png",
+          "sha256": "8ccf2d99820b93ad570632c1955886e696caf3d37e6f0911bef239ab0278beb7",
+          "size": 215559
+        },
+        {
+          "path": "assets/app-settings-1.png",
+          "sha256": "324b1caa0c30aa8d2823e52e9e2725931b48021d41d746d91d95cda8f36c20e9",
+          "size": 307430
+        },
+        {
+          "path": "assets/app-settings-2.png",
+          "sha256": "475b0c26eba0cda14e1dcb970b67be8182a7fc155d20077e1b1fdccb8da05c33",
+          "size": 189597
+        },
+        {
+          "path": "assets/app-store-badges.png",
+          "sha256": "364c3a4f19b57750bd9aff75ad44cce09021b5afb46c75e424f4edfd623e5b8d",
+          "size": 34566
+        },
+        {
+          "path": "assets/need-breaker.png",
+          "sha256": "98fd815a01ff40de62782ce0f62bc2370a5d101eab3fdc63e4778da899a89cb6",
+          "size": 4451
+        },
+        {
+          "path": "assets/need-conduit.png",
+          "sha256": "dbaa992a84d9120fb8b89d8cfbe3ac4ea51a53866117ca67c00d4296f748d2b3",
+          "size": 3567
+        },
+        {
+          "path": "assets/need-outlet.png",
+          "sha256": "99e96c860cb4f3901c2c1e1bf35333296812a631596561ca4161e9c59105cb6a",
+          "size": 2716
+        },
+        {
+          "path": "assets/need-wire.png",
+          "sha256": "6772721964a3529dbc97a63e86b33984bb454d45cf5d4fa1d20fb94bf506ef05",
+          "size": 3580
+        },
+        {
+          "path": "assets/pack-anchor-bolt.png",
+          "sha256": "8a90115329a9dac5b146a6a0518075d751a015cf0b88ff9f3f3d216988e2cfed",
+          "size": 4003
+        },
+        {
+          "path": "assets/pack-cable-hanger.png",
+          "sha256": "1eddedc221038572b78e919d249a8218d7459602ac18375c167a8af4865e1a3e",
+          "size": 2827
+        },
+        {
+          "path": "assets/pack-charge-cable.png",
+          "sha256": "dac68ab6268a7800251048f2f60574543d63fda4f48200b675f4ab15ad32c4a9",
+          "size": 10530
+        },
+        {
+          "path": "assets/pack-handle.png",
+          "sha256": "348a5472df92a764f1fb47c4d89dce1eff57eda38d7a484ad50d7d5a9573cabd",
+          "size": 1634
+        },
+        {
+          "path": "assets/pack-inlet-box.png",
+          "sha256": "8783401cec5b1f1ef7c9b9aebe18d232d757751c8d5f2c7e5eee6b8d2f717422",
+          "size": 7758
+        },
+        {
+          "path": "assets/pack-install-manual.png",
+          "sha256": "f22bd3121514b6c71a686195d94e3c5740015e52b11f3225a6a2353c69362ac2",
+          "size": 9537
+        },
+        {
+          "path": "assets/pack-label-sheet.png",
+          "sha256": "431f376f814d7cfe9a4028f46a2c7bf8e9778c24bd5bcb8f5ba00f6dd1e537a0",
+          "size": 22773
+        },
+        {
+          "path": "assets/pack-panel.png",
+          "sha256": "3608997daeec574addc7c5ead2278c8d0ec3f1b87801b69bdbc4359e7c09aba5",
+          "size": 2006
+        },
+        {
+          "path": "assets/pack-quick-guide.png",
+          "sha256": "021ea3714a6f676bac307d8e240a55b982be03ecc40eada0f4c427ac099ca66f",
+          "size": 2926
+        },
+        {
+          "path": "assets/pack-screw.png",
+          "sha256": "48e72272cc0e676ad8566a599d6cf0949e4eb0924b2ff944c776d68a73c0235f",
+          "size": 3758
+        },
+        {
+          "path": "assets/pack-user-manual.png",
+          "sha256": "cb495f8d5d772fdf64661e477b32f0b50896e27c11bee78b2eef03d5c5bc3d50",
+          "size": 8181
+        },
+        {
+          "path": "assets/site-space.png",
+          "sha256": "d3729aba0b68d53c746291794972a3f5c66bd5457a7c95dc0070db4ef475171a",
+          "size": 84326
+        },
+        {
+          "path": "assets/step1-front-panel.png",
+          "sha256": "b9bf9ecb29bdfe5104814e5bf92df82960bc485c68dbaa736116ade02e064ebd",
+          "size": 81059
+        },
+        {
+          "path": "assets/step1-open.png",
+          "sha256": "ff8aef753142a3435e701812bfb249af173295b255c9217a143718ec16961708",
+          "size": 49404
+        },
+        {
+          "path": "assets/step1-wall.png",
+          "sha256": "5ebd1e7d17c0d0bfcba50d4328d4045473981ab53b7cd9240119638df960a7b2",
+          "size": 63575
+        },
+        {
+          "path": "assets/step2-backup-legend.png",
+          "sha256": "4026745119311b38087b7270087c64c4601a504e1b62a5710a5be3d24ab115df",
+          "size": 4684
+        },
+        {
+          "path": "assets/step2-backup.png",
+          "sha256": "c3dbfd930c7c7790981e314b2cb584288c31e472d32c964f22a695ca82192096",
+          "size": 76204
+        },
+        {
+          "path": "assets/step2-port-a-legend.png",
+          "sha256": "a5ae78d7d2a581e166d48dd1c251c9acc0dbb93600c0885ae73477d137ca721a",
+          "size": 12017
+        },
+        {
+          "path": "assets/step2-port-a-switch.png",
+          "sha256": "12ffc93e337f16b396c775f1968e94c376586b0a506f901490a0e41f745de866",
+          "size": 83496
+        },
+        {
+          "path": "assets/step2-port-a.png",
+          "sha256": "c970cbbc3a39ae05b5d6b6f9e37ef621100f74b4b5efeda42dd2a939bc374fbe",
+          "size": 72591
+        },
+        {
+          "path": "assets/step3-battery.png",
+          "sha256": "e71a6f1bf02333a923adafb9afed8ded02df658ebd39a543f1e33765d750b76d",
+          "size": 144253
+        },
+        {
+          "path": "assets/step3-inlet.png",
+          "sha256": "962bde5474d27b35b0af2f1028c2c51d8f84f61e8ce31932bb69b90a364aec44",
+          "size": 62963
+        },
+        {
+          "path": "assets/step3-port-b.png",
+          "sha256": "7c3ae768dd5c0608652243ada6c39ad5f7db49f417253fbc31c3bfa45ae7b9da",
+          "size": 79927
+        },
+        {
+          "path": "assets/step4-charge.png",
+          "sha256": "ae043bf40cfea268cf1e71c1fb2ccc57f583e5cb54153e449aa17e9e81000316",
+          "size": 127421
+        },
+        {
+          "path": "assets/warning-triangle-yellow.svg",
+          "sha256": "fd0bc0e1597b51e9e069a2261eed475c4706a7f4ccf80a854a64f1182aea7bea",
+          "size": 1442
+        },
+        {
+          "path": "derive_assets.py",
+          "sha256": "7486820a015003af8bbd37e8ba7c6f0f71f2f5095fae8c503b30cf5adb83279b",
+          "size": 15019
+        },
+        {
+          "path": "refresh_manifest.py",
+          "sha256": "6c60b986434ea7b500c7df9651bf98e8f870245e7b80136f8c81b6fd034c66bc",
+          "size": 2346
+        },
+        {
+          "path": "render.py",
+          "sha256": "3c3e6710cea902334facbe9f97cb6c12d596296603d717ba08d78489cdd6fb8b",
+          "size": 7618
+        },
+        {
+          "path": "source/approval.json",
+          "sha256": "e5729446811d6ce65e45ca8f74e9f72d7f995f2a7227833b26799df5f2b5a35f",
+          "size": 7800
+        },
+        {
+          "path": "source/asset_decisions.json",
+          "sha256": "c82ebbaabf96ed4a889725173cf71152fe7de1064f58ba2f191acf33f43bb544",
+          "size": 21143
+        },
+        {
+          "path": "source/original.pdf",
+          "sha256": "e67d2460eff018f0f8cae0be53e404604d1d3bff620d3c69c8cd8396ccce3d7a",
+          "size": 25531876
+        },
+        {
+          "path": "source/page/01_site_space_ja.rst",
+          "sha256": "773e0853f9ebea4278af0e4c81f819d43caf6246d98fc68d17a4dcb2d94d0da9",
+          "size": 3613
+        },
+        {
+          "path": "source/page/02_surface_mounting_ja.rst",
+          "sha256": "6aa35d6b281b379da5493ace49fb4c3aa149fc8f7f837a2a31ce9c05bb3a00d3",
+          "size": 452
+        },
+        {
+          "path": "source/page/03_wiring_ja.rst",
+          "sha256": "fda4e5dbe34e03508f1e98abd8c3844d28dd6ec21aed1550a596abb748b5eff4",
+          "size": 1674
+        },
+        {
+          "path": "source/page/04_battery_connection_ja.rst",
+          "sha256": "d4c5ae807add077d36c80058a8b70df5c112c8a7e28cc624c60f56cc058fbc88",
+          "size": 730
+        },
+        {
+          "path": "source/page/05_battery_charging_ja.rst",
+          "sha256": "e0dc52dfa5f2b1f69e79055b65368fcdf6506f0c203d9a8c5c68beb682088828",
+          "size": 384
+        },
+        {
+          "path": "source/page/06_app_setup_ja.rst",
+          "sha256": "6ed8a6bf4081e7ff9d2631cdaf4e260b7a24a805f6dbddee616b78c7e3fe224c",
+          "size": 2484
+        },
+        {
+          "path": "source/presentation.css",
+          "sha256": "c9d8cc3b405291232a70c2988cf1039a49b7a25cf9d5041d7dbf0f435a825f83",
+          "size": 2558
+        },
+        {
+          "path": "source/transcription.json",
+          "sha256": "86cfb43593b3659871919d8607c377aff5907ad8c7dfa4364acb0afb1d7f4031",
+          "size": 10777
+        }
+      ],
+      "language_scope": "single",
+      "live_bitable_dependency": false,
+      "normalizations": [
+        "The PDF has no text layer (type outlined); live copy is the verbatim transcription in source/transcription.json",
+        "Print line breaks inside a sentence are joined (3-② heading ジャンクショ|ンボックス, the warning and note sentences)",
+        "Circled step numerals become ①②③ in the step headings; chapter tab numerals become a '1 '…'5 ' heading prefix",
+        "Packing-list counts are set as ' *N' (print '* 1' / '*4' kerning is not reproduced)",
+        "The cover panel, production drawing furniture and the 3-② page-turn marker are not on the Web",
+        "The 必要品 dashed divider before ブレーカ（オプション） is not drawn: the shared package panel has no divider",
+        "2-① is shown as legend, wiring and switching detail; 2-② legend is shown above its wiring; App screens are two rows of three (the arrow between screens 3 and 4 is dropped)"
+      ],
+      "original_source": {
+        "feishu_wiki": "https://xcn57j1urbe6.feishu.cn/wiki/VHO7wgsAViwRTbkDz7lc4GhAnLb",
+        "filename": "38-0001-000845 快速操作指南 HTO862A-JP-JAK RoHS Reach.pdf",
+        "path": "source/original.pdf",
+        "physical_page_count": 1,
+        "sha256": "e67d2460eff018f0f8cae0be53e404604d1d3bff620d3c69c8cd8396ccce3d7a"
+      },
+      "page_order": [
+        "01_site_space_ja.rst",
+        "02_surface_mounting_ja.rst",
+        "03_wiring_ja.rst",
+        "04_battery_connection_ja.rst",
+        "05_battery_charging_ja.rst",
+        "06_app_setup_ja.rst"
+      ],
+      "pending_source_review": [],
+      "printed_manual_version": null,
+      "publication_eligible": true,
+      "publication_status": "operator-approved-git-only-release",
+      "repo_inputs": [
+        {
+          "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
+          "sha256": "6337f537ac3b8b7248e00632d9f3d899a410fbadad4319a718b0e39905717a9d"
+        }
+      ],
+      "required_components": {
+        "HB-SPECIAL-REFERENCE-FIGURE": 4
+      },
+      "route": {
+        "model_segment": "JA-CK01A-BK-QG",
+        "reason": "Hello-Docs identity is (model, region, lang); the full JA-CK01A-BK JP manual keeps JA-CK01A-BK/JP/ja and the JA-CK01A-BK/JP legacy default. Operator decision 2026-10-23 (「改用 JA-CK01A-BK-QG」), replacing the earlier HTO862A-QG route; the earlier release acceptance no longer applies.",
+        "route": "JA-CK01A-BK-QG/JP/ja/md"
+      },
+      "schema_version": "auto-manual-frozen-web-source/v1",
+      "shared_component_exceptions": [],
+      "source_authority": "operator-designated Feishu wiki file 「38-0001-000845 快速操作指南 HTO862A-JP-JAK RoHS Reach.pdf」; operator instruction 2026-10-23 「开两个窗口 把这俩说明书 走git only转网页文档」 with the JBP-1000B-WH/JA-AD500A-SIL rules (cover and contents not on the Web, reference the JE-1000F JP Web manual, no Japanese wording changed). The original Japanese governs all copy. Operator accepted reviewed candidate 8e39af0 for public Git-only JP/ja release on 2026-10-23 (「上线提交发布」; merge by operator review). Acceptance is hash-bound in source/approval.json.",
+      "source_concerns": [
+        {
+          "disposition": "kept verbatim",
+          "issue": "warning sentences and the 2-① heading end without 。 / する"
+        },
+        {
+          "disposition": "kept verbatim",
+          "issue": "「ジャクリアプリ」 (App name in katakana), 「100v」 lower-case v, half-width ';' in the App caption"
+        },
+        {
+          "disposition": "kept verbatim",
+          "issue": "3-③ repeats the chapter 3 title 「蓄電池に接続する」"
+        }
+      ],
+      "source_role": "Git-only Japanese Web candidate of the JA-CK01A-BK JP quick guide (クイックガイド); the full JA-CK01A-BK JP manual is a separate target",
+      "target": {
+        "languages": [
+          "ja"
+        ],
+        "model": "JA-CK01A-BK-QG",
+        "region": "JP",
+        "technical_version": "git-20261023-e67d2460-quick-guide"
+      },
+      "web_roots": {
+        "ja": "web/ja"
+      },
+      "web_title": "クイックガイド 自動切替機能付ホーム分電盤"
+    },
+    "frozen_stylesheet_sha256": "c3604a2e5f22b04bc745bb99cf203b50e60222af70c0aeba3d968cc28adac9ce",
+    "illustration_provenance": null,
+    "manual_theme": {
+      "component_roles": {
+        "component.callout": {
+          "component_ids": [
+            "HB-CALLOUT-STRIP"
+          ],
+          "theme_roles": [
+            "surface.brand",
+            "surface.paper",
+            "border.strong",
+            "width.component-band"
+          ]
+        },
+        "component.special.app": {
+          "component_ids": [
+            "HB-SPECIAL-APP"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.special.fcc": {
+          "component_ids": [
+            "HB-SPECIAL-FCC"
+          ],
+          "theme_roles": [
+            "surface.fcc",
+            "radius.fcc",
+            "type.fcc.body",
+            "width.component-band"
+          ]
+        },
+        "component.special.inbox": {
+          "component_ids": [
+            "HB-SPECIAL-INBOX"
+          ],
+          "theme_roles": [
+            "surface.brand",
+            "surface.paper",
+            "surface.muted",
+            "border.inbox",
+            "radius.inbox",
+            "type.inbox.label",
+            "width.component-band"
+          ]
+        },
+        "component.special.operation": {
+          "component_ids": [
+            "HB-SPECIAL-OPERATION"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.special.overview": {
+          "component_ids": [
+            "HB-SPECIAL-OVERVIEW"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "line.overview.leader",
+            "type.overview.label",
+            "width.component-band"
+          ]
+        },
+        "component.special.reference-figure": {
+          "component_ids": [
+            "HB-SPECIAL-REFERENCE-FIGURE"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "border.strong",
+            "radius.panel",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.table.auto-resume": {
+          "component_ids": [
+            "HB-TABLE-AUTO-RESUME"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.table.key-combinations": {
+          "component_ids": [
+            "HB-TABLE-KEY-COMBINATIONS"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.table.lcd-icon": {
+          "component_ids": [
+            "HB-TABLE-LCD-ICON"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.table.lcd-mode": {
+          "component_ids": [
+            "HB-TABLE-LCD-MODE"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.table.reference": {
+          "component_ids": [
+            "HB-TABLE-REFERENCE"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.table.spec": {
+          "component_ids": [
+            "HB-TABLE-SPEC"
+          ],
+          "theme_roles": [
+            "surface.brand",
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.table.symbol-icon": {
+          "component_ids": [
+            "HB-TABLE-SYMBOL-ICON"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.table.symbol-signal": {
+          "component_ids": [
+            "HB-TABLE-SYMBOL-SIGNAL"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.table.troubleshooting": {
+          "component_ids": [
+            "HB-TABLE-TROUBLESHOOTING"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.warranty.lead": {
+          "component_ids": [
+            "HB-WARRANTY-LEAD"
+          ],
+          "theme_roles": [
+            "surface.muted",
+            "radius.panel",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.warranty.section": {
+          "component_ids": [
+            "HB-WARRANTY-SECTION"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.warranty.years": {
+          "component_ids": [
+            "HB-WARRANTY-YEARS"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        }
+      },
+      "roles": {
+        "border.inbox": {
+          "bindings": {
+            "idml": {
+              "kind": "color",
+              "name": "Color/HB Line K40"
+            },
+            "latex": {
+              "kind": "layout-token",
+              "name": "comp_table_outer_rule"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-line-soft"
+            },
+            "word": {
+              "kind": "html-class",
+              "name": "hb-inbox-word-card"
+            }
+          }
+        },
+        "border.strong": {
+          "bindings": {
+            "idml": {
+              "kind": "layout-token",
+              "name": "comp_table_outer_rule"
+            },
+            "latex": {
+              "kind": "layout-token",
+              "name": "comp_table_outer_rule"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-brand-dark"
+            },
+            "word": {
+              "kind": "property-adapter",
+              "name": "_set_spec_table_borders"
+            }
+          }
+        },
+        "line.overview.leader": {
+          "bindings": {
+            "idml": {
+              "kind": "color",
+              "name": "Color/HB Brand Dark"
+            },
+            "latex": {
+              "kind": "color",
+              "name": "HBTextBlack"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-brand-dark"
+            },
+            "word": {
+              "kind": "style",
+              "name": "BodyText"
+            }
+          }
+        },
+        "radius.fcc": {
+          "bindings": {
+            "idml": {
+              "kind": "layout-token",
+              "name": "comp_fcc_arc"
+            },
+            "latex": {
+              "kind": "layout-token",
+              "name": "comp_fcc_arc"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-fcc-radius"
+            },
+            "word": {
+              "kind": "property-adapter",
+              "name": "transform_word_fcc_html"
+            }
+          }
+        },
+        "radius.inbox": {
+          "bindings": {
+            "idml": {
+              "kind": "object-style",
+              "name": "HB Inbox Card"
+            },
+            "latex": {
+              "kind": "layout-token",
+              "name": "comp_inbox_card_arc"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-inbox-card-radius"
+            },
+            "word": {
+              "kind": "property-adapter",
+              "name": "transform_word_inbox_html"
+            }
+          }
+        },
+        "radius.panel": {
+          "bindings": {
+            "idml": {
+              "kind": "object-style",
+              "name": "HB Rounded Table Outer"
+            },
+            "latex": {
+              "kind": "layout-token",
+              "name": "comp_table_outer_arc"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-panel-radius"
+            },
+            "word": {
+              "kind": "property-adapter",
+              "name": "_set_spec_table_layout"
+            }
+          }
+        },
+        "surface.brand": {
+          "bindings": {
+            "idml": {
+              "kind": "color",
+              "name": "Color/HB Brand Dark"
+            },
+            "latex": {
+              "kind": "color",
+              "name": "HBSharedTableFrameColor"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-brand-dark"
+            },
+            "word": {
+              "kind": "property-adapter",
+              "name": "_set_spec_table_borders"
+            }
+          }
+        },
+        "surface.fcc": {
+          "bindings": {
+            "idml": {
+              "kind": "color",
+              "name": "Color/HB Bg K05"
+            },
+            "latex": {
+              "kind": "color",
+              "name": "BgK05"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-surface"
+            },
+            "word": {
+              "kind": "html-class",
+              "name": "hb-fcc-word-table"
+            }
+          }
+        },
+        "surface.muted": {
+          "bindings": {
+            "idml": {
+              "kind": "paragraph-style",
+              "name": "HB Spec Label"
+            },
+            "latex": {
+              "kind": "color",
+              "name": "HBSharedTableLeftBg"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-surface"
+            },
+            "word": {
+              "kind": "html-class",
+              "name": "manual-spec-label"
+            }
+          }
+        },
+        "surface.paper": {
+          "bindings": {
+            "idml": {
+              "kind": "color",
+              "name": "Color/Paper"
+            },
+            "latex": {
+              "kind": "color",
+              "name": "white"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-paper"
+            },
+            "word": {
+              "kind": "table-style",
+              "name": "tableHeader"
+            }
+          }
+        },
+        "type.fcc.body": {
+          "bindings": {
+            "idml": {
+              "kind": "paragraph-style",
+              "name": "HB FCC Text"
+            },
+            "latex": {
+              "kind": "macro",
+              "name": "HBTypeFccText"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-font-family"
+            },
+            "word": {
+              "kind": "html-class",
+              "name": "hb-fcc-word-table"
+            }
+          }
+        },
+        "type.inbox.label": {
+          "bindings": {
+            "idml": {
+              "kind": "paragraph-style",
+              "name": "HB InBox Label"
+            },
+            "latex": {
+              "kind": "macro",
+              "name": "HBtype_inbox_label_font_size"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-font-family"
+            },
+            "word": {
+              "kind": "html-class",
+              "name": "hb-inbox-word-card"
+            }
+          }
+        },
+        "type.overview.label": {
+          "bindings": {
+            "idml": {
+              "kind": "paragraph-style",
+              "name": "HB Body"
+            },
+            "latex": {
+              "kind": "macro",
+              "name": "HBOverviewPanel"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-font-family"
+            },
+            "word": {
+              "kind": "style",
+              "name": "BodyText"
+            }
+          }
+        },
+        "type.table.label": {
+          "bindings": {
+            "idml": {
+              "kind": "paragraph-style",
+              "name": "HB Spec Label"
+            },
+            "latex": {
+              "kind": "macro",
+              "name": "HBTypeSpecLabel"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-font-family"
+            },
+            "word": {
+              "kind": "html-class",
+              "name": "manual-spec-label"
+            }
+          }
+        },
+        "type.table.value": {
+          "bindings": {
+            "idml": {
+              "kind": "paragraph-style",
+              "name": "HB Spec Value"
+            },
+            "latex": {
+              "kind": "macro",
+              "name": "HBTypeSpecValue"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-font-family"
+            },
+            "word": {
+              "kind": "html-class",
+              "name": "manual-spec-value"
+            }
+          }
+        },
+        "width.component-band": {
+          "bindings": {
+            "idml": {
+              "kind": "property-adapter",
+              "name": "spec_table_body_width"
+            },
+            "latex": {
+              "kind": "macro",
+              "name": "linewidth"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-component-band-max"
+            },
+            "word": {
+              "kind": "property-adapter",
+              "name": "_set_spec_table_cell_widths"
+            }
+          }
+        }
+      },
+      "schema_version": "manual-theme/v1",
+      "theme_id": "hb-manual-default"
+    },
+    "manual_theme_sha256": "e8fc88458d239edef85f2cfb0b26b71df2e83859c8e51e9c093e5abc2982b47d",
+    "markdown_filename": "manual_jack01abkqg_jp_ja.md",
+    "operator_source_acceptance": {
+      "date": "2026-10-23",
+      "merge_authorization": "none: the operator reviews and merges the engineering PR (AGENTS.md §8.6)",
+      "operator_decisions": [
+        "route JA-CK01A-BK-QG/JP/ja (「改用 JA-CK01A-BK-QG」); JA-CK01A-BK/JP/ja stays with the full JA-CK01A-BK JP manual",
+        "release the reviewed renamed candidate (1280/390 renders, PR #1597)"
+      ],
+      "operator_quote": "上线提交发布",
+      "original_source_sha256": "e67d2460eff018f0f8cae0be53e404604d1d3bff620d3c69c8cd8396ccce3d7a",
+      "reviewed_inputs": [
+        {
+          "path": "assets/app-download-qr.png",
+          "sha256": "8ccf2d99820b93ad570632c1955886e696caf3d37e6f0911bef239ab0278beb7",
+          "size": 215559
+        },
+        {
+          "path": "assets/app-settings-1.png",
+          "sha256": "324b1caa0c30aa8d2823e52e9e2725931b48021d41d746d91d95cda8f36c20e9",
+          "size": 307430
+        },
+        {
+          "path": "assets/app-settings-2.png",
+          "sha256": "475b0c26eba0cda14e1dcb970b67be8182a7fc155d20077e1b1fdccb8da05c33",
+          "size": 189597
+        },
+        {
+          "path": "assets/app-store-badges.png",
+          "sha256": "364c3a4f19b57750bd9aff75ad44cce09021b5afb46c75e424f4edfd623e5b8d",
+          "size": 34566
+        },
+        {
+          "path": "assets/need-breaker.png",
+          "sha256": "98fd815a01ff40de62782ce0f62bc2370a5d101eab3fdc63e4778da899a89cb6",
+          "size": 4451
+        },
+        {
+          "path": "assets/need-conduit.png",
+          "sha256": "dbaa992a84d9120fb8b89d8cfbe3ac4ea51a53866117ca67c00d4296f748d2b3",
+          "size": 3567
+        },
+        {
+          "path": "assets/need-outlet.png",
+          "sha256": "99e96c860cb4f3901c2c1e1bf35333296812a631596561ca4161e9c59105cb6a",
+          "size": 2716
+        },
+        {
+          "path": "assets/need-wire.png",
+          "sha256": "6772721964a3529dbc97a63e86b33984bb454d45cf5d4fa1d20fb94bf506ef05",
+          "size": 3580
+        },
+        {
+          "path": "assets/pack-anchor-bolt.png",
+          "sha256": "8a90115329a9dac5b146a6a0518075d751a015cf0b88ff9f3f3d216988e2cfed",
+          "size": 4003
+        },
+        {
+          "path": "assets/pack-cable-hanger.png",
+          "sha256": "1eddedc221038572b78e919d249a8218d7459602ac18375c167a8af4865e1a3e",
+          "size": 2827
+        },
+        {
+          "path": "assets/pack-charge-cable.png",
+          "sha256": "dac68ab6268a7800251048f2f60574543d63fda4f48200b675f4ab15ad32c4a9",
+          "size": 10530
+        },
+        {
+          "path": "assets/pack-handle.png",
+          "sha256": "348a5472df92a764f1fb47c4d89dce1eff57eda38d7a484ad50d7d5a9573cabd",
+          "size": 1634
+        },
+        {
+          "path": "assets/pack-inlet-box.png",
+          "sha256": "8783401cec5b1f1ef7c9b9aebe18d232d757751c8d5f2c7e5eee6b8d2f717422",
+          "size": 7758
+        },
+        {
+          "path": "assets/pack-install-manual.png",
+          "sha256": "f22bd3121514b6c71a686195d94e3c5740015e52b11f3225a6a2353c69362ac2",
+          "size": 9537
+        },
+        {
+          "path": "assets/pack-label-sheet.png",
+          "sha256": "431f376f814d7cfe9a4028f46a2c7bf8e9778c24bd5bcb8f5ba00f6dd1e537a0",
+          "size": 22773
+        },
+        {
+          "path": "assets/pack-panel.png",
+          "sha256": "3608997daeec574addc7c5ead2278c8d0ec3f1b87801b69bdbc4359e7c09aba5",
+          "size": 2006
+        },
+        {
+          "path": "assets/pack-quick-guide.png",
+          "sha256": "021ea3714a6f676bac307d8e240a55b982be03ecc40eada0f4c427ac099ca66f",
+          "size": 2926
+        },
+        {
+          "path": "assets/pack-screw.png",
+          "sha256": "48e72272cc0e676ad8566a599d6cf0949e4eb0924b2ff944c776d68a73c0235f",
+          "size": 3758
+        },
+        {
+          "path": "assets/pack-user-manual.png",
+          "sha256": "cb495f8d5d772fdf64661e477b32f0b50896e27c11bee78b2eef03d5c5bc3d50",
+          "size": 8181
+        },
+        {
+          "path": "assets/site-space.png",
+          "sha256": "d3729aba0b68d53c746291794972a3f5c66bd5457a7c95dc0070db4ef475171a",
+          "size": 84326
+        },
+        {
+          "path": "assets/step1-front-panel.png",
+          "sha256": "b9bf9ecb29bdfe5104814e5bf92df82960bc485c68dbaa736116ade02e064ebd",
+          "size": 81059
+        },
+        {
+          "path": "assets/step1-open.png",
+          "sha256": "ff8aef753142a3435e701812bfb249af173295b255c9217a143718ec16961708",
+          "size": 49404
+        },
+        {
+          "path": "assets/step1-wall.png",
+          "sha256": "5ebd1e7d17c0d0bfcba50d4328d4045473981ab53b7cd9240119638df960a7b2",
+          "size": 63575
+        },
+        {
+          "path": "assets/step2-backup-legend.png",
+          "sha256": "4026745119311b38087b7270087c64c4601a504e1b62a5710a5be3d24ab115df",
+          "size": 4684
+        },
+        {
+          "path": "assets/step2-backup.png",
+          "sha256": "c3dbfd930c7c7790981e314b2cb584288c31e472d32c964f22a695ca82192096",
+          "size": 76204
+        },
+        {
+          "path": "assets/step2-port-a-legend.png",
+          "sha256": "a5ae78d7d2a581e166d48dd1c251c9acc0dbb93600c0885ae73477d137ca721a",
+          "size": 12017
+        },
+        {
+          "path": "assets/step2-port-a-switch.png",
+          "sha256": "12ffc93e337f16b396c775f1968e94c376586b0a506f901490a0e41f745de866",
+          "size": 83496
+        },
+        {
+          "path": "assets/step2-port-a.png",
+          "sha256": "c970cbbc3a39ae05b5d6b6f9e37ef621100f74b4b5efeda42dd2a939bc374fbe",
+          "size": 72591
+        },
+        {
+          "path": "assets/step3-battery.png",
+          "sha256": "e71a6f1bf02333a923adafb9afed8ded02df658ebd39a543f1e33765d750b76d",
+          "size": 144253
+        },
+        {
+          "path": "assets/step3-inlet.png",
+          "sha256": "962bde5474d27b35b0af2f1028c2c51d8f84f61e8ce31932bb69b90a364aec44",
+          "size": 62963
+        },
+        {
+          "path": "assets/step3-port-b.png",
+          "sha256": "7c3ae768dd5c0608652243ada6c39ad5f7db49f417253fbc31c3bfa45ae7b9da",
+          "size": 79927
+        },
+        {
+          "path": "assets/step4-charge.png",
+          "sha256": "ae043bf40cfea268cf1e71c1fb2ccc57f583e5cb54153e449aa17e9e81000316",
+          "size": 127421
+        },
+        {
+          "path": "assets/warning-triangle-yellow.svg",
+          "sha256": "fd0bc0e1597b51e9e069a2261eed475c4706a7f4ccf80a854a64f1182aea7bea",
+          "size": 1442
+        },
+        {
+          "path": "source/asset_decisions.json",
+          "sha256": "c82ebbaabf96ed4a889725173cf71152fe7de1064f58ba2f191acf33f43bb544",
+          "size": 21143
+        },
+        {
+          "path": "source/original.pdf",
+          "sha256": "e67d2460eff018f0f8cae0be53e404604d1d3bff620d3c69c8cd8396ccce3d7a",
+          "size": 25531876
+        },
+        {
+          "path": "source/page/01_site_space_ja.rst",
+          "sha256": "773e0853f9ebea4278af0e4c81f819d43caf6246d98fc68d17a4dcb2d94d0da9",
+          "size": 3613
+        },
+        {
+          "path": "source/page/02_surface_mounting_ja.rst",
+          "sha256": "6aa35d6b281b379da5493ace49fb4c3aa149fc8f7f837a2a31ce9c05bb3a00d3",
+          "size": 452
+        },
+        {
+          "path": "source/page/03_wiring_ja.rst",
+          "sha256": "fda4e5dbe34e03508f1e98abd8c3844d28dd6ec21aed1550a596abb748b5eff4",
+          "size": 1674
+        },
+        {
+          "path": "source/page/04_battery_connection_ja.rst",
+          "sha256": "d4c5ae807add077d36c80058a8b70df5c112c8a7e28cc624c60f56cc058fbc88",
+          "size": 730
+        },
+        {
+          "path": "source/page/05_battery_charging_ja.rst",
+          "sha256": "e0dc52dfa5f2b1f69e79055b65368fcdf6506f0c203d9a8c5c68beb682088828",
+          "size": 384
+        },
+        {
+          "path": "source/page/06_app_setup_ja.rst",
+          "sha256": "6ed8a6bf4081e7ff9d2631cdaf4e260b7a24a805f6dbddee616b78c7e3fe224c",
+          "size": 2484
+        },
+        {
+          "path": "source/presentation.css",
+          "sha256": "c9d8cc3b405291232a70c2988cf1039a49b7a25cf9d5041d7dbf0f435a825f83",
+          "size": 2558
+        },
+        {
+          "path": "source/transcription.json",
+          "sha256": "86cfb43593b3659871919d8607c377aff5907ad8c7dfa4364acb0afb1d7f4031",
+          "size": 10777
+        }
+      ],
+      "reviewed_source_commit": "8e39af0",
+      "schema_version": "source-operator-acceptance/v1",
+      "scope": "Git-only Web release of the JA-CK01A-BK JP quick guide git-20261023-e67d2460-quick-guide; no Feishu/Base/source-table, queue, asset-registry or HTML_link writes.",
+      "target": {
+        "language": "ja",
+        "model": "JA-CK01A-BK-QG",
+        "region": "JP"
+      }
+    },
+    "page_count": 6,
+    "page_declarations": {},
+    "page_slots": {},
+    "pending_source_review": [],
+    "projection": "whole-document-components/v1",
+    "publication_eligible": true,
+    "skipped_raw": 0,
+    "source_stylesheet": {
+      "path": "_static/source.css",
+      "sha256": "c9d8cc3b405291232a70c2988cf1039a49b7a25cf9d5041d7dbf0f435a825f83"
+    },
+    "title": "クイックガイド 自動切替機能付ホーム分電盤",
+    "web_contract": {
+      "app_download": {
+        "source_patterns": []
+      },
+      "app_inline_controls": {
+        "source_patterns": []
+      },
+      "fcc": {
+        "mark_asset_ref": "mark/fcc",
+        "mark_path": "docs/renderers/latex/assets/fcc_mark.png",
+        "right_column_markers": [
+          {
+            "language": "en",
+            "marker": "If this equipment does cause harmful interference",
+            "source_patterns": [
+              "01_fcc"
+            ]
+          },
+          {
+            "language": "fr",
+            "marker": "Si cet équipement trouble la réception",
+            "source_patterns": [
+              "p22_01_fcc"
+            ]
+          },
+          {
+            "language": "es",
+            "marker": "Si este aparato causa interferencias dañinas",
+            "source_patterns": [
+              "p38_01_fcc"
+            ]
+          },
+          {
+            "language": "pt-BR",
+            "marker": "Se este equipamento causar interferência prejudicial",
+            "source_patterns": [
+              "01_fcc"
+            ]
+          }
+        ],
+        "source_patterns": [
+          "*01_fcc"
+        ]
+      },
+      "figure_coverage": {
+        "requirements": []
+      },
+      "figure_targets": [],
+      "in_the_box": {
+        "semantic_source_patterns": [
+          "box_contents_*"
+        ],
+        "source_patterns": [
+          "*02_whats_in_the_box"
+        ]
+      },
+      "meaning_symbols": {
+        "signal_row_count": 4,
+        "source_patterns": [
+          "symbols_*",
+          "symbols"
+        ]
+      },
+      "operations": {
+        "auto_resume_table": {
+          "body_rows": 4
+        },
+        "key_combination_table": {
+          "minimum_body_rows": 3
+        },
+        "lcd_mode_table": {
+          "body_rows": 6,
+          "image_key": "operation/lcd_mode"
+        },
+        "source_patterns": [
+          "*05_operation_guide_placeholder",
+          "*05_operation_guide_je2000e"
+        ]
+      },
+      "preface": {
+        "source_patterns": [
+          "00_preface*"
+        ],
+        "targets": []
+      },
+      "presentation_layers": {
+        "base": "shared-manual-semantics-v1",
+        "skeleton_profile": null,
+        "target_overlay": null
+      },
+      "product_overview": {
+        "source_patterns": [
+          "*03_product_overview_placeholder"
+        ]
+      },
+      "profiles": {
+        "document": {
+          "description": "Complete paginated manual for DOCX and ordinary Markdown exports."
+        },
+        "web": {
+          "entry_source_pattern": "00_preface*",
+          "excluded_source_patterns": [
+            "cover*",
+            "00_toc*",
+            "99_back_cover*"
+          ]
+        }
+      },
+      "reference_figures": {
+        "figures": [
+          {
+            "asset_scope": "shared",
+            "captions_embedded": true,
+            "capture_following_lines": 3,
+            "control_artwork": "docs/renderers/latex/assets/app_control_panel.png",
+            "id": "app-add-device",
+            "image_key": "app/add_device",
+            "label_roles": [
+              "main-power",
+              "dc-usb",
+              "ac-power"
+            ],
+            "phone_artwork": "docs/renderers/contracts/assets/app/app_add_device_steps.png",
+            "presentation": "shared-art-live-labels",
+            "source_patterns": [
+              "*12_app_setup_placeholder"
+            ]
+          }
+        ],
+        "source_patterns": [
+          "*12_app_setup_placeholder"
+        ]
+      },
+      "schema_version": "web-manual-presentation/v2",
+      "specifications": {
+        "circled_reference_count": 2,
+        "section_count": 4,
+        "source_patterns": [
+          "spec_*"
+        ]
+      },
+      "troubleshooting_table": {
+        "source_patterns": [
+          "troubleshooting_*"
+        ]
+      },
+      "warranty": {
+        "period_years": [
+          "3",
+          "2"
+        ],
+        "section_count": 6,
+        "source_patterns": [
+          "*11_warranty"
+        ]
+      }
+    },
+    "web_figure_coverage": {
+      "model": "JA-CK01A-BK-QG",
+      "region": "JP",
+      "schema_version": "web-figure-coverage/v1",
+      "slots": [],
+      "summary": {
+        "by_section": {},
+        "by_status": {
+          "approved-composite": 0,
+          "editable-fallback": 0,
+          "finished-panel": 0,
+          "missing": 0
+        },
+        "total": 0
+      }
+    },
+    "web_source_normalization": "preface-auto-resume/v1"
+  },
+  "model": "JA-CK01A-BK-QG",
+  "pages": [
+    {
+      "blocks": [
+        {
+          "asset_refs": [],
+          "block_id": "01_site_space_ja.rst:block-0001",
+          "content_sha256": "9499f6bd9c4fec4259a0ff799b01679ee8de7ffa4caa7c58eb43b9abc9fce2e3",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "サイトスペース要件"
+              }
+            ],
+            "kind": "heading",
+            "level": 1,
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "01_site_space_ja.rst#block-1"
+        },
+        {
+          "asset_refs": [
+            "assets/ir/d3729aba0b68d53c746291794972a3f5c66bd5457a7c95dc0070db4ef475171a/site-space.png"
+          ],
+          "block_id": "01_site_space_ja.rst:block-0002",
+          "content_sha256": "d574d55a31d50a5aea5ce5aae8b971a081e965762db44e32188dbe965292eb77",
+          "kind": "flow",
+          "payload": {
+            "carrier_flow": [
+              {
+                "alt": "設置図",
+                "kind": "image",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": [
+                        "hb-source-reference"
+                      ],
+                      "data-reference": "{\"id\": \"site-space\", \"web_replace_key\": \"reference.site-space\", \"capture_following_lines\": 4, \"presentation_mode\": \"base-art-live-copy\", \"base_art_layout\": {\"art_sha256\": \"d3729aba0b68d53c746291794972a3f5c66bd5457a7c95dc0070db4ef475171a\", \"panel_top\": 0, \"panel_fill\": \"#ffffff\", \"preserve_frame\": true, \"mobile_labels\": \"stack\", \"labels\": [{\"line\": 0, \"rect\": [21.8, 18.8, 7, 3.5]}, {\"line\": 1, \"rect\": [39.8, 19.0, 27, 3.5]}, {\"line\": 2, \"rect\": [24.5, 92.4, 8, 3.5]}, {\"line\": 3, \"rect\": [68, 92.4, 8, 3.5]}]}}"
+                    }
+                  }
+                },
+                "source": "assets/ir/d3729aba0b68d53c746291794972a3f5c66bd5457a7c95dc0070db4ef475171a/site-space.png"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "分電盤"
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "line"
+                          ]
+                        }
+                      }
+                    },
+                    "role": "container"
+                  },
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "自動切替機能付ホーム分電盤"
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "line"
+                          ]
+                        }
+                      }
+                    },
+                    "role": "container"
+                  },
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "≥ 20cm"
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "line"
+                          ]
+                        }
+                      }
+                    },
+                    "role": "container"
+                  },
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "≥ 20cm"
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "line"
+                          ]
+                        }
+                      }
+                    },
+                    "role": "container"
+                  }
+                ],
+                "kind": "group",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": [
+                        "line-block"
+                      ]
+                    }
+                  }
+                },
+                "role": "container"
+              }
+            ],
+            "component_spec": {
+              "assets": [
+                {
+                  "asset_ref": "assets/ir/d3729aba0b68d53c746291794972a3f5c66bd5457a7c95dc0070db4ef475171a/site-space.png",
+                  "locale_policy": "exact",
+                  "role": "source_art"
+                }
+              ],
+              "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+              "language": "ja",
+              "metadata": {
+                "base_art_layout": {
+                  "art_sha256": "d3729aba0b68d53c746291794972a3f5c66bd5457a7c95dc0070db4ef475171a",
+                  "labels": [
+                    {
+                      "line": 0,
+                      "rect": [
+                        21.8,
+                        18.8,
+                        7,
+                        3.5
+                      ]
+                    },
+                    {
+                      "line": 1,
+                      "rect": [
+                        39.8,
+                        19.0,
+                        27,
+                        3.5
+                      ]
+                    },
+                    {
+                      "line": 2,
+                      "rect": [
+                        24.5,
+                        92.4,
+                        8,
+                        3.5
+                      ]
+                    },
+                    {
+                      "line": 3,
+                      "rect": [
+                        68,
+                        92.4,
+                        8,
+                        3.5
+                      ]
+                    }
+                  ],
+                  "mobile_labels": "stack",
+                  "panel_fill": "#ffffff",
+                  "panel_top": 0,
+                  "preserve_frame": true
+                },
+                "caption_centers_pct": null,
+                "captions_embedded": false,
+                "captions_origin": "carrier",
+                "capture_following_lines": 4,
+                "composite_locale": "",
+                "image_key": "../../assets/site-space.png",
+                "presentation_mode": "base-art-live-copy",
+                "source_fragment_sha256": "b44dfb458653b57804a69adbeeeb76f0d9e1b44c80817df7729aaa6f4d9210f4",
+                "web_replace_key": "reference.site-space"
+              },
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "site-space",
+                  "content_kind": "inline_text",
+                  "role": "reference_id"
+                },
+                {
+                  "content": "設置図",
+                  "content_kind": "inline_text",
+                  "role": "accessibility_label"
+                },
+                {
+                  "content": "live",
+                  "content_kind": "inline_text",
+                  "role": "caption_mode"
+                },
+                {
+                  "content": "equal",
+                  "content_kind": "inline_text",
+                  "role": "caption_layout"
+                },
+                {
+                  "content": [
+                    {
+                      "html": "分電盤",
+                      "text": "分電盤"
+                    },
+                    {
+                      "html": "自動切替機能付ホーム分電盤",
+                      "text": "自動切替機能付ホーム分電盤"
+                    },
+                    {
+                      "html": "≥ 20cm",
+                      "text": "≥ 20cm"
+                    },
+                    {
+                      "html": "≥ 20cm",
+                      "text": "≥ 20cm"
+                    }
+                  ],
+                  "content_kind": "ordered_labels",
+                  "role": "captions"
+                }
+              ],
+              "source_ref": "source/page/01_site_space_ja.rst#reference-site-space",
+              "token_roles": [
+                "component.special.reference-figure"
+              ],
+              "variant": "semantic-fallback"
+            },
+            "kind": "component",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "01_site_space_ja.rst#block-2"
+        },
+        {
+          "asset_refs": [
+            "assets/ir/3608997daeec574addc7c5ead2278c8d0ec3f1b87801b69bdbc4359e7c09aba5/pack-panel.png",
+            "assets/ir/348a5472df92a764f1fb47c4d89dce1eff57eda38d7a484ad50d7d5a9573cabd/pack-handle.png",
+            "assets/ir/f22bd3121514b6c71a686195d94e3c5740015e52b11f3225a6a2353c69362ac2/pack-install-manual.png",
+            "assets/ir/431f376f814d7cfe9a4028f46a2c7bf8e9778c24bd5bcb8f5ba00f6dd1e537a0/pack-label-sheet.png",
+            "assets/ir/48e72272cc0e676ad8566a599d6cf0949e4eb0924b2ff944c776d68a73c0235f/pack-screw.png",
+            "assets/ir/8783401cec5b1f1ef7c9b9aebe18d232d757751c8d5f2c7e5eee6b8d2f717422/pack-inlet-box.png",
+            "assets/ir/dac68ab6268a7800251048f2f60574543d63fda4f48200b675f4ab15ad32c4a9/pack-charge-cable.png",
+            "assets/ir/1eddedc221038572b78e919d249a8218d7459602ac18375c167a8af4865e1a3e/pack-cable-hanger.png",
+            "assets/ir/cb495f8d5d772fdf64661e477b32f0b50896e27c11bee78b2eef03d5c5bc3d50/pack-user-manual.png",
+            "assets/ir/021ea3714a6f676bac307d8e240a55b982be03ecc40eada0f4c427ac099ca66f/pack-quick-guide.png",
+            "assets/ir/8a90115329a9dac5b146a6a0518075d751a015cf0b88ff9f3f3d216988e2cfed/pack-anchor-bolt.png"
+          ],
+          "block_id": "01_site_space_ja.rst:block-0003",
+          "content_sha256": "1936d46e237091ac96853d7c542db3a57f578e05a286293b3bb8cb0d43d3edaa",
+          "kind": "flow",
+          "payload": {
+            "anchor": "section-2",
+            "children": [
+              {
+                "kind": "text",
+                "text": "\n"
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "パッキングリスト"
+                  }
+                ],
+                "kind": "heading",
+                "level": 2
+              },
+              {
+                "kind": "text",
+                "text": "\n"
+              },
+              {
+                "anchor": "section-3",
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "\n"
+                  },
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "パッキングリスト 1"
+                      }
+                    ],
+                    "kind": "heading",
+                    "level": 3
+                  },
+                  {
+                    "kind": "text",
+                    "text": "\n"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "children": [
+                                  {
+                                    "alt": "",
+                                    "kind": "image",
+                                    "source": "assets/ir/3608997daeec574addc7c5ead2278c8d0ec3f1b87801b69bdbc4359e7c09aba5/pack-panel.png"
+                                  }
+                                ],
+                                "kind": "group",
+                                "presentation": {
+                                  "html": {
+                                    "attributes": {
+                                      "class": [
+                                        "hb-package-art"
+                                      ]
+                                    }
+                                  }
+                                },
+                                "role": "container"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "自動切替機能付ホーム分電盤 *1"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              }
+                            ],
+                            "kind": "list_item",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": [
+                                    "hb-package-item"
+                                  ]
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "children": [
+                              {
+                                "children": [
+                                  {
+                                    "alt": "",
+                                    "kind": "image",
+                                    "source": "assets/ir/348a5472df92a764f1fb47c4d89dce1eff57eda38d7a484ad50d7d5a9573cabd/pack-handle.png"
+                                  }
+                                ],
+                                "kind": "group",
+                                "presentation": {
+                                  "html": {
+                                    "attributes": {
+                                      "class": [
+                                        "hb-package-art"
+                                      ]
+                                    }
+                                  }
+                                },
+                                "role": "container"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "手動ハンドル *1"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              }
+                            ],
+                            "kind": "list_item",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": [
+                                    "hb-package-item"
+                                  ]
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "children": [
+                              {
+                                "children": [
+                                  {
+                                    "alt": "",
+                                    "kind": "image",
+                                    "source": "assets/ir/f22bd3121514b6c71a686195d94e3c5740015e52b11f3225a6a2353c69362ac2/pack-install-manual.png"
+                                  }
+                                ],
+                                "kind": "group",
+                                "presentation": {
+                                  "html": {
+                                    "attributes": {
+                                      "class": [
+                                        "hb-package-art"
+                                      ]
+                                    }
+                                  }
+                                },
+                                "role": "container"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "施工説明書/取扱説明書 *1"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              }
+                            ],
+                            "kind": "list_item",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": [
+                                    "hb-package-item"
+                                  ]
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "children": [
+                              {
+                                "children": [
+                                  {
+                                    "alt": "",
+                                    "kind": "image",
+                                    "source": "assets/ir/431f376f814d7cfe9a4028f46a2c7bf8e9778c24bd5bcb8f5ba00f6dd1e537a0/pack-label-sheet.png"
+                                  }
+                                ],
+                                "kind": "group",
+                                "presentation": {
+                                  "html": {
+                                    "attributes": {
+                                      "class": [
+                                        "hb-package-art"
+                                      ]
+                                    }
+                                  }
+                                },
+                                "role": "container"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "切替表示シール *1"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              }
+                            ],
+                            "kind": "list_item",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": [
+                                    "hb-package-item"
+                                  ]
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "children": [
+                              {
+                                "children": [
+                                  {
+                                    "alt": "",
+                                    "kind": "image",
+                                    "source": "assets/ir/48e72272cc0e676ad8566a599d6cf0949e4eb0924b2ff944c776d68a73c0235f/pack-screw.png"
+                                  }
+                                ],
+                                "kind": "group",
+                                "presentation": {
+                                  "html": {
+                                    "attributes": {
+                                      "class": [
+                                        "hb-package-art"
+                                      ]
+                                    }
+                                  }
+                                },
+                                "role": "container"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "取付ねじ *4"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              }
+                            ],
+                            "kind": "list_item",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": [
+                                    "hb-package-item"
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        ],
+                        "kind": "list",
+                        "ordered": false,
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": [
+                                "hb-package-grid",
+                                "hb-package-grid--five"
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "hb-package-panel"
+                          ]
+                        }
+                      }
+                    },
+                    "role": "container"
+                  }
+                ],
+                "kind": "section"
+              },
+              {
+                "kind": "text",
+                "text": "\n"
+              },
+              {
+                "anchor": "section-4",
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "\n"
+                  },
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "パッキングリスト 2"
+                      }
+                    ],
+                    "kind": "heading",
+                    "level": 3
+                  },
+                  {
+                    "kind": "text",
+                    "text": "\n"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "children": [
+                                  {
+                                    "alt": "",
+                                    "kind": "image",
+                                    "source": "assets/ir/8783401cec5b1f1ef7c9b9aebe18d232d757751c8d5f2c7e5eee6b8d2f717422/pack-inlet-box.png"
+                                  }
+                                ],
+                                "kind": "group",
+                                "presentation": {
+                                  "html": {
+                                    "attributes": {
+                                      "class": [
+                                        "hb-package-art"
+                                      ]
+                                    }
+                                  }
+                                },
+                                "role": "container"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "インレットボックス *1"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              }
+                            ],
+                            "kind": "list_item",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": [
+                                    "hb-package-item"
+                                  ]
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "children": [
+                              {
+                                "children": [
+                                  {
+                                    "alt": "",
+                                    "kind": "image",
+                                    "source": "assets/ir/dac68ab6268a7800251048f2f60574543d63fda4f48200b675f4ab15ad32c4a9/pack-charge-cable.png"
+                                  }
+                                ],
+                                "kind": "group",
+                                "presentation": {
+                                  "html": {
+                                    "attributes": {
+                                      "class": [
+                                        "hb-package-art"
+                                      ]
+                                    }
+                                  }
+                                },
+                                "role": "container"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "充電ケーブル *1"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              }
+                            ],
+                            "kind": "list_item",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": [
+                                    "hb-package-item"
+                                  ]
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "children": [
+                              {
+                                "children": [
+                                  {
+                                    "alt": "",
+                                    "kind": "image",
+                                    "source": "assets/ir/1eddedc221038572b78e919d249a8218d7459602ac18375c167a8af4865e1a3e/pack-cable-hanger.png"
+                                  }
+                                ],
+                                "kind": "group",
+                                "presentation": {
+                                  "html": {
+                                    "attributes": {
+                                      "class": [
+                                        "hb-package-art"
+                                      ]
+                                    }
+                                  }
+                                },
+                                "role": "container"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "ケーブル・ハンガー *1"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              }
+                            ],
+                            "kind": "list_item",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": [
+                                    "hb-package-item"
+                                  ]
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "children": [
+                              {
+                                "children": [
+                                  {
+                                    "alt": "",
+                                    "kind": "image",
+                                    "source": "assets/ir/cb495f8d5d772fdf64661e477b32f0b50896e27c11bee78b2eef03d5c5bc3d50/pack-user-manual.png"
+                                  }
+                                ],
+                                "kind": "group",
+                                "presentation": {
+                                  "html": {
+                                    "attributes": {
+                                      "class": [
+                                        "hb-package-art"
+                                      ]
+                                    }
+                                  }
+                                },
+                                "role": "container"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "取扱説明書 *1"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              }
+                            ],
+                            "kind": "list_item",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": [
+                                    "hb-package-item"
+                                  ]
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "children": [
+                              {
+                                "children": [
+                                  {
+                                    "alt": "",
+                                    "kind": "image",
+                                    "source": "assets/ir/021ea3714a6f676bac307d8e240a55b982be03ecc40eada0f4c427ac099ca66f/pack-quick-guide.png"
+                                  }
+                                ],
+                                "kind": "group",
+                                "presentation": {
+                                  "html": {
+                                    "attributes": {
+                                      "class": [
+                                        "hb-package-art"
+                                      ]
+                                    }
+                                  }
+                                },
+                                "role": "container"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "クイックガイド *1"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              }
+                            ],
+                            "kind": "list_item",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": [
+                                    "hb-package-item"
+                                  ]
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "children": [
+                              {
+                                "children": [
+                                  {
+                                    "alt": "",
+                                    "kind": "image",
+                                    "source": "assets/ir/8a90115329a9dac5b146a6a0518075d751a015cf0b88ff9f3f3d216988e2cfed/pack-anchor-bolt.png"
+                                  }
+                                ],
+                                "kind": "group",
+                                "presentation": {
+                                  "html": {
+                                    "attributes": {
+                                      "class": [
+                                        "hb-package-art"
+                                      ]
+                                    }
+                                  }
+                                },
+                                "role": "container"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "アンカーボルト *3"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              }
+                            ],
+                            "kind": "list_item",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": [
+                                    "hb-package-item"
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        ],
+                        "kind": "list",
+                        "ordered": false,
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": [
+                                "hb-package-grid"
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "hb-package-panel"
+                          ]
+                        }
+                      }
+                    },
+                    "role": "container"
+                  }
+                ],
+                "kind": "section"
+              },
+              {
+                "kind": "text",
+                "text": "\n"
+              }
+            ],
+            "kind": "section",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "01_site_space_ja.rst#block-3"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "01_site_space_ja.rst:block-0004",
+          "content_sha256": "409f08d09ec16d10e5859c444f978d45e82cc092bc1ece8fafaf29f65dc755f8",
+          "kind": "flow",
+          "payload": {
+            "kind": "text",
+            "schema_version": "manual-flow/v2",
+            "text": "\n"
+          },
+          "source_ref": "01_site_space_ja.rst#block-4"
+        },
+        {
+          "asset_refs": [
+            "assets/ir/dbaa992a84d9120fb8b89d8cfbe3ac4ea51a53866117ca67c00d4296f748d2b3/need-conduit.png",
+            "assets/ir/99e96c860cb4f3901c2c1e1bf35333296812a631596561ca4161e9c59105cb6a/need-outlet.png",
+            "assets/ir/6772721964a3529dbc97a63e86b33984bb454d45cf5d4fa1d20fb94bf506ef05/need-wire.png",
+            "assets/ir/98fd815a01ff40de62782ce0f62bc2370a5d101eab3fdc63e4778da899a89cb6/need-breaker.png"
+          ],
+          "block_id": "01_site_space_ja.rst:block-0005",
+          "content_sha256": "65328c768a4877a9bd1af175279d79257807ae3001e80f2ff5de095b78c1b004",
+          "kind": "flow",
+          "payload": {
+            "anchor": "section-5",
+            "children": [
+              {
+                "kind": "text",
+                "text": "\n"
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "必要品"
+                  }
+                ],
+                "kind": "heading",
+                "level": 2
+              },
+              {
+                "kind": "text",
+                "text": "\n"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "alt": "",
+                                "kind": "image",
+                                "source": "assets/ir/dbaa992a84d9120fb8b89d8cfbe3ac4ea51a53866117ca67c00d4296f748d2b3/need-conduit.png"
+                              }
+                            ],
+                            "kind": "group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": [
+                                    "hb-package-art"
+                                  ]
+                                }
+                              }
+                            },
+                            "role": "container"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "配線管"
+                              }
+                            ],
+                            "kind": "paragraph"
+                          }
+                        ],
+                        "kind": "list_item",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": [
+                                "hb-package-item"
+                              ]
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "alt": "",
+                                "kind": "image",
+                                "source": "assets/ir/99e96c860cb4f3901c2c1e1bf35333296812a631596561ca4161e9c59105cb6a/need-outlet.png"
+                              }
+                            ],
+                            "kind": "group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": [
+                                    "hb-package-art"
+                                  ]
+                                }
+                              }
+                            },
+                            "role": "container"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "コンセント"
+                              }
+                            ],
+                            "kind": "paragraph"
+                          }
+                        ],
+                        "kind": "list_item",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": [
+                                "hb-package-item"
+                              ]
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "alt": "",
+                                "kind": "image",
+                                "source": "assets/ir/6772721964a3529dbc97a63e86b33984bb454d45cf5d4fa1d20fb94bf506ef05/need-wire.png"
+                              }
+                            ],
+                            "kind": "group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": [
+                                    "hb-package-art"
+                                  ]
+                                }
+                              }
+                            },
+                            "role": "container"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "ワイヤー"
+                              }
+                            ],
+                            "kind": "paragraph"
+                          }
+                        ],
+                        "kind": "list_item",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": [
+                                "hb-package-item"
+                              ]
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "alt": "",
+                                "kind": "image",
+                                "source": "assets/ir/98fd815a01ff40de62782ce0f62bc2370a5d101eab3fdc63e4778da899a89cb6/need-breaker.png"
+                              }
+                            ],
+                            "kind": "group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": [
+                                    "hb-package-art"
+                                  ]
+                                }
+                              }
+                            },
+                            "role": "container"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "ブレーカ（オプション）"
+                              }
+                            ],
+                            "kind": "paragraph"
+                          }
+                        ],
+                        "kind": "list_item",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": [
+                                "hb-package-item"
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "kind": "list",
+                    "ordered": false,
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "hb-package-grid"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                ],
+                "kind": "group",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": [
+                        "hb-package-panel"
+                      ]
+                    }
+                  }
+                },
+                "role": "container"
+              }
+            ],
+            "kind": "section",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "01_site_space_ja.rst#block-5"
+        }
+      ],
+      "language": "ja",
+      "page_id": "01_site_space_ja.rst",
+      "skipped_raw": 0,
+      "source_path": "source/page/01_site_space_ja.rst",
+      "source_ref": "01_site_space_ja.rst",
+      "source_sha256": "773e0853f9ebea4278af0e4c81f819d43caf6246d98fc68d17a4dcb2d94d0da9"
+    },
+    {
+      "blocks": [
+        {
+          "asset_refs": [],
+          "block_id": "02_surface_mounting_ja.rst:block-0001",
+          "content_sha256": "3b146310b1e80ea9577c1df9289b4ee7d5ee22a5e659eafe9149fface0894392",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "1 表面取り付け"
+              }
+            ],
+            "kind": "heading",
+            "level": 1,
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "02_surface_mounting_ja.rst#block-1"
+        },
+        {
+          "asset_refs": [
+            "assets/ir/ff8aef753142a3435e701812bfb249af173295b255c9217a143718ec16961708/step1-open.png"
+          ],
+          "block_id": "02_surface_mounting_ja.rst:block-0002",
+          "content_sha256": "6c41df2ec74ed37f937fc04f8cd4a4bbb784b29e5e58c5edef820cb1b01b03f3",
+          "kind": "flow",
+          "payload": {
+            "anchor": "section-2",
+            "children": [
+              {
+                "kind": "text",
+                "text": "\n"
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "① パネルを開く"
+                  }
+                ],
+                "kind": "heading",
+                "level": 2
+              },
+              {
+                "kind": "text",
+                "text": "\n"
+              },
+              {
+                "alt": "パネルを開く",
+                "kind": "image",
+                "source": "assets/ir/ff8aef753142a3435e701812bfb249af173295b255c9217a143718ec16961708/step1-open.png"
+              },
+              {
+                "kind": "text",
+                "text": "\n"
+              }
+            ],
+            "kind": "section",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "02_surface_mounting_ja.rst#block-2"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "02_surface_mounting_ja.rst:block-0003",
+          "content_sha256": "409f08d09ec16d10e5859c444f978d45e82cc092bc1ece8fafaf29f65dc755f8",
+          "kind": "flow",
+          "payload": {
+            "kind": "text",
+            "schema_version": "manual-flow/v2",
+            "text": "\n"
+          },
+          "source_ref": "02_surface_mounting_ja.rst#block-3"
+        },
+        {
+          "asset_refs": [
+            "assets/ir/b9bf9ecb29bdfe5104814e5bf92df82960bc485c68dbaa736116ade02e064ebd/step1-front-panel.png"
+          ],
+          "block_id": "02_surface_mounting_ja.rst:block-0004",
+          "content_sha256": "654bc196fe020061b555603e63f1157ae3ffd99d6eae4049d0c1cf8874e1b242",
+          "kind": "flow",
+          "payload": {
+            "anchor": "section-3",
+            "children": [
+              {
+                "kind": "text",
+                "text": "\n"
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "② 前面パネルを取り外す"
+                  }
+                ],
+                "kind": "heading",
+                "level": 2
+              },
+              {
+                "kind": "text",
+                "text": "\n"
+              },
+              {
+                "alt": "前面パネルを取り外す",
+                "kind": "image",
+                "source": "assets/ir/b9bf9ecb29bdfe5104814e5bf92df82960bc485c68dbaa736116ade02e064ebd/step1-front-panel.png"
+              },
+              {
+                "kind": "text",
+                "text": "\n"
+              }
+            ],
+            "kind": "section",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "02_surface_mounting_ja.rst#block-4"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "02_surface_mounting_ja.rst:block-0005",
+          "content_sha256": "409f08d09ec16d10e5859c444f978d45e82cc092bc1ece8fafaf29f65dc755f8",
+          "kind": "flow",
+          "payload": {
+            "kind": "text",
+            "schema_version": "manual-flow/v2",
+            "text": "\n"
+          },
+          "source_ref": "02_surface_mounting_ja.rst#block-5"
+        },
+        {
+          "asset_refs": [
+            "assets/ir/5ebd1e7d17c0d0bfcba50d4328d4045473981ab53b7cd9240119638df960a7b2/step1-wall.png"
+          ],
+          "block_id": "02_surface_mounting_ja.rst:block-0006",
+          "content_sha256": "b12aed3311b16714da0f24c3e9c9bf4f587f2af5313e9ad930162e67c5f3a8b2",
+          "kind": "flow",
+          "payload": {
+            "anchor": "section-4",
+            "children": [
+              {
+                "kind": "text",
+                "text": "\n"
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "③ 壁に固定する"
+                  }
+                ],
+                "kind": "heading",
+                "level": 2
+              },
+              {
+                "kind": "text",
+                "text": "\n"
+              },
+              {
+                "alt": "壁に固定する",
+                "kind": "image",
+                "source": "assets/ir/5ebd1e7d17c0d0bfcba50d4328d4045473981ab53b7cd9240119638df960a7b2/step1-wall.png"
+              },
+              {
+                "kind": "text",
+                "text": "\n"
+              }
+            ],
+            "kind": "section",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "02_surface_mounting_ja.rst#block-6"
+        }
+      ],
+      "language": "ja",
+      "page_id": "02_surface_mounting_ja.rst",
+      "skipped_raw": 0,
+      "source_path": "source/page/02_surface_mounting_ja.rst",
+      "source_ref": "02_surface_mounting_ja.rst",
+      "source_sha256": "6aa35d6b281b379da5493ace49fb4c3aa149fc8f7f837a2a31ce9c05bb3a00d3"
+    },
+    {
+      "blocks": [
+        {
+          "asset_refs": [],
+          "block_id": "03_wiring_ja.rst:block-0001",
+          "content_sha256": "1c417357ec4f548a92d27dedef229906eca6f190548c477cfe9a3afd9ed7d2b1",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "2 配線"
+              }
+            ],
+            "kind": "heading",
+            "level": 1,
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "03_wiring_ja.rst#block-1"
+        },
+        {
+          "asset_refs": [
+            "assets/ir/a5ae78d7d2a581e166d48dd1c251c9acc0dbb93600c0885ae73477d137ca721a/step2-port-a-legend.png",
+            "assets/ir/c970cbbc3a39ae05b5d6b6f9e37ef621100f74b4b5efeda42dd2a939bc374fbe/step2-port-a.png",
+            "assets/ir/12ffc93e337f16b396c775f1968e94c376586b0a506f901490a0e41f745de866/step2-port-a-switch.png"
+          ],
+          "block_id": "03_wiring_ja.rst:block-0002",
+          "content_sha256": "049345e065f12e268080f238b8d727e0e65dda421dd4fba6cf685dbc09384e33",
+          "kind": "flow",
+          "payload": {
+            "anchor": "atsa",
+            "children": [
+              {
+                "kind": "text",
+                "text": "\n"
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "① ATS入力ポートA（商用電源側）に商用電源を接続"
+                  }
+                ],
+                "kind": "heading",
+                "level": 2
+              },
+              {
+                "kind": "text",
+                "text": "\n"
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "商用電源による給電を優先にする"
+                  }
+                ],
+                "kind": "paragraph"
+              },
+              {
+                "kind": "text",
+                "text": "\n"
+              },
+              {
+                "alt": "CV 3.5~5.5 mm² L1、CV 3.5~5.5 mm² L2、CV 3.5~5.5 mm² N、CV 2.0 mm² GND",
+                "kind": "image",
+                "source": "assets/ir/a5ae78d7d2a581e166d48dd1c251c9acc0dbb93600c0885ae73477d137ca721a/step2-port-a-legend.png"
+              },
+              {
+                "kind": "text",
+                "text": "\n"
+              },
+              {
+                "alt": "配線図",
+                "kind": "image",
+                "source": "assets/ir/c970cbbc3a39ae05b5d6b6f9e37ef621100f74b4b5efeda42dd2a939bc374fbe/step2-port-a.png"
+              },
+              {
+                "kind": "text",
+                "text": "\n"
+              },
+              {
+                "alt": "付属のレンチを使用して商用電源給電と蓄電池給電を手動で切り替えます。A 商用電源で給電、B 蓄電池給電。*切り替え後は、カバーを閉じる必要があります。閉じないと負荷が出力できません。",
+                "kind": "image",
+                "source": "assets/ir/12ffc93e337f16b396c775f1968e94c376586b0a506f901490a0e41f745de866/step2-port-a-switch.png"
+              },
+              {
+                "kind": "text",
+                "text": "\n"
+              }
+            ],
+            "kind": "section",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "03_wiring_ja.rst#block-2"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "03_wiring_ja.rst:block-0003",
+          "content_sha256": "409f08d09ec16d10e5859c444f978d45e82cc092bc1ece8fafaf29f65dc755f8",
+          "kind": "flow",
+          "payload": {
+            "kind": "text",
+            "schema_version": "manual-flow/v2",
+            "text": "\n"
+          },
+          "source_ref": "03_wiring_ja.rst#block-3"
+        },
+        {
+          "asset_refs": [
+            "assets/ir/4026745119311b38087b7270087c64c4601a504e1b62a5710a5be3d24ab115df/step2-backup-legend.png",
+            "assets/ir/c3dbfd930c7c7790981e314b2cb584288c31e472d32c964f22a695ca82192096/step2-backup.png"
+          ],
+          "block_id": "03_wiring_ja.rst:block-0004",
+          "content_sha256": "d5d7acb2e24375d6b2bb3c7a587e4dc347220ff297af814e4de4fbd49ede1d74",
+          "kind": "flow",
+          "payload": {
+            "anchor": "ats",
+            "children": [
+              {
+                "kind": "text",
+                "text": "\n"
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "② バックアップ負荷ラインをATSに接続する"
+                  }
+                ],
+                "kind": "heading",
+                "level": 2
+              },
+              {
+                "kind": "text",
+                "text": "\n"
+              },
+              {
+                "alt": "VVF 2.0 mm² L、VVF 2.0 mm² N",
+                "kind": "image",
+                "source": "assets/ir/4026745119311b38087b7270087c64c4601a504e1b62a5710a5be3d24ab115df/step2-backup-legend.png"
+              },
+              {
+                "kind": "text",
+                "text": "\n"
+              },
+              {
+                "carrier_flow": [
+                  {
+                    "alt": "配線図",
+                    "kind": "image",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "hb-source-reference"
+                          ],
+                          "data-reference": "{\"id\": \"step2-backup\", \"web_replace_key\": \"reference.step2-backup\", \"capture_following_lines\": 1, \"presentation_mode\": \"base-art-live-copy\", \"base_art_layout\": {\"art_sha256\": \"c3dbfd930c7c7790981e314b2cb584288c31e472d32c964f22a695ca82192096\", \"panel_top\": 0, \"panel_fill\": \"#ffffff\", \"preserve_frame\": true, \"mobile_labels\": \"stack\", \"labels\": [{\"line\": 0, \"rect\": [28.55, 90.5, 22, 9], \"fill\": \"#e2e2e3\"}]}}"
+                        }
+                      }
+                    },
+                    "source": "assets/ir/c3dbfd930c7c7790981e314b2cb584288c31e472d32c964f22a695ca82192096/step2-backup.png"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "100v サーキット"
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": [
+                                "line"
+                              ]
+                            }
+                          }
+                        },
+                        "role": "container"
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "line-block"
+                          ]
+                        }
+                      }
+                    },
+                    "role": "container"
+                  }
+                ],
+                "component_spec": {
+                  "assets": [
+                    {
+                      "asset_ref": "assets/ir/c3dbfd930c7c7790981e314b2cb584288c31e472d32c964f22a695ca82192096/step2-backup.png",
+                      "locale_policy": "exact",
+                      "role": "source_art"
+                    }
+                  ],
+                  "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                  "language": "ja",
+                  "metadata": {
+                    "base_art_layout": {
+                      "art_sha256": "c3dbfd930c7c7790981e314b2cb584288c31e472d32c964f22a695ca82192096",
+                      "labels": [
+                        {
+                          "fill": "#e2e2e3",
+                          "line": 0,
+                          "rect": [
+                            28.55,
+                            90.5,
+                            22,
+                            9
+                          ]
+                        }
+                      ],
+                      "mobile_labels": "stack",
+                      "panel_fill": "#ffffff",
+                      "panel_top": 0,
+                      "preserve_frame": true
+                    },
+                    "caption_centers_pct": null,
+                    "captions_embedded": false,
+                    "captions_origin": "carrier",
+                    "capture_following_lines": 1,
+                    "composite_locale": "",
+                    "image_key": "../../assets/step2-backup.png",
+                    "presentation_mode": "base-art-live-copy",
+                    "source_fragment_sha256": "842c9504aa7aa5d1fb82df08b3834c534be55adaf0a281617eedaaadbcdc488b",
+                    "web_replace_key": "reference.step2-backup"
+                  },
+                  "schema_version": "component-spec/v1",
+                  "slots": [
+                    {
+                      "content": "step2-backup",
+                      "content_kind": "inline_text",
+                      "role": "reference_id"
+                    },
+                    {
+                      "content": "配線図",
+                      "content_kind": "inline_text",
+                      "role": "accessibility_label"
+                    },
+                    {
+                      "content": "live",
+                      "content_kind": "inline_text",
+                      "role": "caption_mode"
+                    },
+                    {
+                      "content": "equal",
+                      "content_kind": "inline_text",
+                      "role": "caption_layout"
+                    },
+                    {
+                      "content": [
+                        {
+                          "html": "100v サーキット",
+                          "text": "100v サーキット"
+                        }
+                      ],
+                      "content_kind": "ordered_labels",
+                      "role": "captions"
+                    }
+                  ],
+                  "source_ref": "source/page/03_wiring_ja.rst#reference-step2-backup",
+                  "token_roles": [
+                    "component.special.reference-figure"
+                  ],
+                  "variant": "semantic-fallback"
+                },
+                "kind": "component"
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "\n"
+                  },
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "3つの予備設置位置を確保しており、必要に応じてブレーカを追加できます。"
+                      }
+                    ],
+                    "kind": "paragraph"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "\n"
+                  }
+                ],
+                "kind": "group",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": [
+                        "hb-text-panel",
+                        "docutils",
+                        "container"
+                      ]
+                    }
+                  }
+                },
+                "role": "container"
+              },
+              {
+                "kind": "text",
+                "text": "\n"
+              }
+            ],
+            "kind": "section",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "03_wiring_ja.rst#block-4"
+        }
+      ],
+      "language": "ja",
+      "page_id": "03_wiring_ja.rst",
+      "skipped_raw": 0,
+      "source_path": "source/page/03_wiring_ja.rst",
+      "source_ref": "03_wiring_ja.rst",
+      "source_sha256": "fda4e5dbe34e03508f1e98abd8c3844d28dd6ec21aed1550a596abb748b5eff4"
+    },
+    {
+      "blocks": [
+        {
+          "asset_refs": [],
+          "block_id": "04_battery_connection_ja.rst:block-0001",
+          "content_sha256": "d6ca9e7ed9272b43d3d82f49fcc657d78ec7eed274136cac7cce41361f197cfb",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "3 蓄電池に接続する"
+              }
+            ],
+            "kind": "heading",
+            "level": 1,
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "04_battery_connection_ja.rst#block-1"
+        },
+        {
+          "asset_refs": [
+            "assets/ir/962bde5474d27b35b0af2f1028c2c51d8f84f61e8ce31932bb69b90a364aec44/step3-inlet.png"
+          ],
+          "block_id": "04_battery_connection_ja.rst:block-0002",
+          "content_sha256": "5c09a65be7cc20b0b44774472906f05c0ec2c785adc479441179c1d7cb6b9457",
+          "kind": "flow",
+          "payload": {
+            "anchor": "section-2",
+            "children": [
+              {
+                "kind": "text",
+                "text": "\n"
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "① インレットボックスを取り付ける"
+                  }
+                ],
+                "kind": "heading",
+                "level": 2
+              },
+              {
+                "kind": "text",
+                "text": "\n"
+              },
+              {
+                "alt": "インレットボックスを取り付ける",
+                "kind": "image",
+                "source": "assets/ir/962bde5474d27b35b0af2f1028c2c51d8f84f61e8ce31932bb69b90a364aec44/step3-inlet.png"
+              },
+              {
+                "kind": "text",
+                "text": "\n"
+              }
+            ],
+            "kind": "section",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "04_battery_connection_ja.rst#block-2"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "04_battery_connection_ja.rst:block-0003",
+          "content_sha256": "409f08d09ec16d10e5859c444f978d45e82cc092bc1ece8fafaf29f65dc755f8",
+          "kind": "flow",
+          "payload": {
+            "kind": "text",
+            "schema_version": "manual-flow/v2",
+            "text": "\n"
+          },
+          "source_ref": "04_battery_connection_ja.rst#block-3"
+        },
+        {
+          "asset_refs": [
+            "assets/ir/7c3ae768dd5c0608652243ada6c39ad5f7db49f417253fbc31c3bfa45ae7b9da/step3-port-b.png"
+          ],
+          "block_id": "04_battery_connection_ja.rst:block-0004",
+          "content_sha256": "e0c9b9eba380a418e55dc93d0d07b02acc8312e38ddc23b2b0036bba53b6baa1",
+          "kind": "flow",
+          "payload": {
+            "anchor": "atsb",
+            "children": [
+              {
+                "kind": "text",
+                "text": "\n"
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "② ATS入力ポートB（自立電源側）はジャンクションボックスに接続します"
+                  }
+                ],
+                "kind": "heading",
+                "level": 2
+              },
+              {
+                "kind": "text",
+                "text": "\n"
+              },
+              {
+                "alt": "配線図：CV 3.5~5.5 mm² L1、CV 3.5~5.5 mm² L2、CV 3.5~5.5 mm² N、CV 2.0 mm² GND",
+                "kind": "image",
+                "source": "assets/ir/7c3ae768dd5c0608652243ada6c39ad5f7db49f417253fbc31c3bfa45ae7b9da/step3-port-b.png"
+              },
+              {
+                "kind": "text",
+                "text": "\n"
+              }
+            ],
+            "kind": "section",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "04_battery_connection_ja.rst#block-4"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "04_battery_connection_ja.rst:block-0005",
+          "content_sha256": "409f08d09ec16d10e5859c444f978d45e82cc092bc1ece8fafaf29f65dc755f8",
+          "kind": "flow",
+          "payload": {
+            "kind": "text",
+            "schema_version": "manual-flow/v2",
+            "text": "\n"
+          },
+          "source_ref": "04_battery_connection_ja.rst#block-5"
+        },
+        {
+          "asset_refs": [
+            "assets/ir/e71a6f1bf02333a923adafb9afed8ded02df658ebd39a543f1e33765d750b76d/step3-battery.png"
+          ],
+          "block_id": "04_battery_connection_ja.rst:block-0006",
+          "content_sha256": "344ad113f14b9547e18eb2a614d2f4e51ab4f40194fe86cc2a6f4fd742f88f71",
+          "kind": "flow",
+          "payload": {
+            "anchor": "section-3",
+            "children": [
+              {
+                "kind": "text",
+                "text": "\n"
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "③ 蓄電池に接続する"
+                  }
+                ],
+                "kind": "heading",
+                "level": 2
+              },
+              {
+                "kind": "text",
+                "text": "\n"
+              },
+              {
+                "alt": "蓄電池に接続する",
+                "kind": "image",
+                "source": "assets/ir/e71a6f1bf02333a923adafb9afed8ded02df658ebd39a543f1e33765d750b76d/step3-battery.png"
+              },
+              {
+                "kind": "text",
+                "text": "\n"
+              }
+            ],
+            "kind": "section",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "04_battery_connection_ja.rst#block-6"
+        }
+      ],
+      "language": "ja",
+      "page_id": "04_battery_connection_ja.rst",
+      "skipped_raw": 0,
+      "source_path": "source/page/04_battery_connection_ja.rst",
+      "source_ref": "04_battery_connection_ja.rst",
+      "source_sha256": "d4c5ae807add077d36c80058a8b70df5c112c8a7e28cc624c60f56cc058fbc88"
+    },
+    {
+      "blocks": [
+        {
+          "asset_refs": [],
+          "block_id": "05_battery_charging_ja.rst:block-0001",
+          "content_sha256": "ee1d9216d3abdcb2c848d52a0b9542e370ee02e9d90baef0cf6e125d9f3c7397",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "4 蓄電池に充電する"
+              }
+            ],
+            "kind": "heading",
+            "level": 1,
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "05_battery_charging_ja.rst#block-1"
+        },
+        {
+          "asset_refs": [
+            "assets/ir/ae043bf40cfea268cf1e71c1fb2ccc57f583e5cb54153e449aa17e9e81000316/step4-charge.png"
+          ],
+          "block_id": "05_battery_charging_ja.rst:block-0002",
+          "content_sha256": "132e66c7e61040ac366e48433a62afc08c966d924cad897005d5298caab69f15",
+          "kind": "flow",
+          "payload": {
+            "alt": "蓄電池の充電接続図",
+            "kind": "image",
+            "schema_version": "manual-flow/v2",
+            "source": "assets/ir/ae043bf40cfea268cf1e71c1fb2ccc57f583e5cb54153e449aa17e9e81000316/step4-charge.png"
+          },
+          "source_ref": "05_battery_charging_ja.rst#block-2"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "05_battery_charging_ja.rst:block-0003",
+          "content_sha256": "409f08d09ec16d10e5859c444f978d45e82cc092bc1ece8fafaf29f65dc755f8",
+          "kind": "flow",
+          "payload": {
+            "kind": "text",
+            "schema_version": "manual-flow/v2",
+            "text": "\n"
+          },
+          "source_ref": "05_battery_charging_ja.rst#block-3"
+        },
+        {
+          "asset_refs": [
+            "assets/ir/fd0bc0e1597b51e9e069a2261eed475c4706a7f4ccf80a854a64f1182aea7bea/warning-triangle-yellow.svg"
+          ],
+          "block_id": "05_battery_charging_ja.rst:block-0004",
+          "content_sha256": "18fe4ec659ee342da3d51bd3d2096f50f5a6e224d44e94073e79b883aef37512",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "\n"
+              },
+              {
+                "alt": "⚠",
+                "kind": "image",
+                "source": "assets/ir/fd0bc0e1597b51e9e069a2261eed475c4706a7f4ccf80a854a64f1182aea7bea/warning-triangle-yellow.svg"
+              },
+              {
+                "kind": "text",
+                "text": "\n"
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "蓄電用のコンセントは分電盤に接続する必要があり、ATSに直接接続することは禁止されています"
+                  }
+                ],
+                "kind": "paragraph"
+              },
+              {
+                "kind": "text",
+                "text": "\n"
+              }
+            ],
+            "kind": "group",
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": [
+                    "hb-source-safety-heading",
+                    "docutils",
+                    "container"
+                  ]
+                }
+              }
+            },
+            "role": "container",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "05_battery_charging_ja.rst#block-4"
+        }
+      ],
+      "language": "ja",
+      "page_id": "05_battery_charging_ja.rst",
+      "skipped_raw": 0,
+      "source_path": "source/page/05_battery_charging_ja.rst",
+      "source_ref": "05_battery_charging_ja.rst",
+      "source_sha256": "e0dc52dfa5f2b1f69e79055b65368fcdf6506f0c203d9a8c5c68beb682088828"
+    },
+    {
+      "blocks": [
+        {
+          "asset_refs": [],
+          "block_id": "06_app_setup_ja.rst:block-0001",
+          "content_sha256": "28cd997bbcc4dd858e2b486e63542ac66753fa37eb8b179e57c78b04f739985e",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "5 アプリ設定"
+              }
+            ],
+            "kind": "heading",
+            "level": 1,
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "06_app_setup_ja.rst#block-1"
+        },
+        {
+          "asset_refs": [
+            "assets/ir/364c3a4f19b57750bd9aff75ad44cce09021b5afb46c75e424f4edfd623e5b8d/app-store-badges.png",
+            "assets/ir/8ccf2d99820b93ad570632c1955886e696caf3d37e6f0911bef239ab0278beb7/app-download-qr.png"
+          ],
+          "block_id": "06_app_setup_ja.rst:block-0002",
+          "content_sha256": "82485d598b2dfe7f802cf8436a0f02cb5cec261559b16afa10aebabad648e3e6",
+          "kind": "flow",
+          "payload": {
+            "anchor": "section-2",
+            "children": [
+              {
+                "kind": "text",
+                "text": "\n"
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "① アプリをダウンロードしてログインするには"
+                  }
+                ],
+                "kind": "heading",
+                "level": 2
+              },
+              {
+                "kind": "text",
+                "text": "\n"
+              },
+              {
+                "alt": "App Store、Google Play",
+                "kind": "image",
+                "source": "assets/ir/364c3a4f19b57750bd9aff75ad44cce09021b5afb46c75e424f4edfd623e5b8d/app-store-badges.png"
+              },
+              {
+                "kind": "text",
+                "text": "\n"
+              },
+              {
+                "alt": "アプリダウンロード用QRコード",
+                "kind": "image",
+                "source": "assets/ir/8ccf2d99820b93ad570632c1955886e696caf3d37e6f0911bef239ab0278beb7/app-download-qr.png"
+              },
+              {
+                "kind": "text",
+                "text": "\n"
+              }
+            ],
+            "kind": "section",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "06_app_setup_ja.rst#block-2"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "06_app_setup_ja.rst:block-0003",
+          "content_sha256": "409f08d09ec16d10e5859c444f978d45e82cc092bc1ece8fafaf29f65dc755f8",
+          "kind": "flow",
+          "payload": {
+            "kind": "text",
+            "schema_version": "manual-flow/v2",
+            "text": "\n"
+          },
+          "source_ref": "06_app_setup_ja.rst#block-3"
+        },
+        {
+          "asset_refs": [
+            "assets/ir/fd0bc0e1597b51e9e069a2261eed475c4706a7f4ccf80a854a64f1182aea7bea/warning-triangle-yellow.svg",
+            "assets/ir/324b1caa0c30aa8d2823e52e9e2725931b48021d41d746d91d95cda8f36c20e9/app-settings-1.png",
+            "assets/ir/475b0c26eba0cda14e1dcb970b67be8182a7fc155d20077e1b1fdccb8da05c33/app-settings-2.png"
+          ],
+          "block_id": "06_app_setup_ja.rst:block-0004",
+          "content_sha256": "651b5d1dc2a864be32b1d7d1fc285f342a13577b313310f18826b63b81724451",
+          "kind": "flow",
+          "payload": {
+            "anchor": "section-3",
+            "children": [
+              {
+                "kind": "text",
+                "text": "\n"
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "② アプリ設定"
+                  }
+                ],
+                "kind": "heading",
+                "level": 2
+              },
+              {
+                "kind": "text",
+                "text": "\n"
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "\n"
+                  },
+                  {
+                    "alt": "⚠",
+                    "kind": "image",
+                    "source": "assets/ir/fd0bc0e1597b51e9e069a2261eed475c4706a7f4ccf80a854a64f1182aea7bea/warning-triangle-yellow.svg"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "\n"
+                  },
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "ジャクリアプリ内で静音充電モードを有効にして、デバイスの動作音を低減してください"
+                      }
+                    ],
+                    "kind": "paragraph"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "\n"
+                  }
+                ],
+                "kind": "group",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": [
+                        "hb-source-safety-heading",
+                        "docutils",
+                        "container"
+                      ]
+                    }
+                  }
+                },
+                "role": "container"
+              },
+              {
+                "kind": "text",
+                "text": "\n"
+              },
+              {
+                "carrier_flow": [
+                  {
+                    "alt": "アプリ設定画面 1–3",
+                    "kind": "image",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "hb-source-reference"
+                          ],
+                          "data-reference": "{\"id\": \"app-settings-1\", \"web_replace_key\": \"reference.app-settings-1\", \"capture_following_lines\": 3, \"presentation_mode\": \"base-art-live-copy\", \"base_art_layout\": {\"art_sha256\": \"324b1caa0c30aa8d2823e52e9e2725931b48021d41d746d91d95cda8f36c20e9\", \"panel_top\": 0, \"panel_fill\": \"#ffffff\", \"preserve_frame\": true, \"mobile_labels\": \"stack\", \"labels\": [{\"line\": 0, \"rect\": [2.538, 4.887, 20, 4.595], \"fill\": \"#e0e0e0\"}, {\"line\": 1, \"rect\": [31.452, 4.887, 35, 4.595], \"fill\": \"#e0e0e0\"}, {\"line\": 2, \"rect\": [71.615, 4.887, 28, 4.595], \"fill\": \"#e0e0e0\"}]}}"
+                        }
+                      }
+                    },
+                    "source": "assets/ir/324b1caa0c30aa8d2823e52e9e2725931b48021d41d746d91d95cda8f36c20e9/app-settings-1.png"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "設備を追加する"
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": [
+                                "line"
+                              ]
+                            }
+                          }
+                        },
+                        "role": "container"
+                      },
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "蓄電池アイコンをクリックする"
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": [
+                                "line"
+                              ]
+                            }
+                          }
+                        },
+                        "role": "container"
+                      },
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "「設定」をクリックする"
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": [
+                                "line"
+                              ]
+                            }
+                          }
+                        },
+                        "role": "container"
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "line-block"
+                          ]
+                        }
+                      }
+                    },
+                    "role": "container"
+                  }
+                ],
+                "component_spec": {
+                  "assets": [
+                    {
+                      "asset_ref": "assets/ir/324b1caa0c30aa8d2823e52e9e2725931b48021d41d746d91d95cda8f36c20e9/app-settings-1.png",
+                      "locale_policy": "exact",
+                      "role": "source_art"
+                    }
+                  ],
+                  "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                  "language": "ja",
+                  "metadata": {
+                    "base_art_layout": {
+                      "art_sha256": "324b1caa0c30aa8d2823e52e9e2725931b48021d41d746d91d95cda8f36c20e9",
+                      "labels": [
+                        {
+                          "fill": "#e0e0e0",
+                          "line": 0,
+                          "rect": [
+                            2.538,
+                            4.887,
+                            20,
+                            4.595
+                          ]
+                        },
+                        {
+                          "fill": "#e0e0e0",
+                          "line": 1,
+                          "rect": [
+                            31.452,
+                            4.887,
+                            35,
+                            4.595
+                          ]
+                        },
+                        {
+                          "fill": "#e0e0e0",
+                          "line": 2,
+                          "rect": [
+                            71.615,
+                            4.887,
+                            28,
+                            4.595
+                          ]
+                        }
+                      ],
+                      "mobile_labels": "stack",
+                      "panel_fill": "#ffffff",
+                      "panel_top": 0,
+                      "preserve_frame": true
+                    },
+                    "caption_centers_pct": null,
+                    "captions_embedded": false,
+                    "captions_origin": "carrier",
+                    "capture_following_lines": 3,
+                    "composite_locale": "",
+                    "image_key": "../../assets/app-settings-1.png",
+                    "presentation_mode": "base-art-live-copy",
+                    "source_fragment_sha256": "0e3ddd06ec1c7c18f3875ade1a8df7f0f5eb5b141a69449c8b69b3971914b86d",
+                    "web_replace_key": "reference.app-settings-1"
+                  },
+                  "schema_version": "component-spec/v1",
+                  "slots": [
+                    {
+                      "content": "app-settings-1",
+                      "content_kind": "inline_text",
+                      "role": "reference_id"
+                    },
+                    {
+                      "content": "アプリ設定画面 1–3",
+                      "content_kind": "inline_text",
+                      "role": "accessibility_label"
+                    },
+                    {
+                      "content": "live",
+                      "content_kind": "inline_text",
+                      "role": "caption_mode"
+                    },
+                    {
+                      "content": "equal",
+                      "content_kind": "inline_text",
+                      "role": "caption_layout"
+                    },
+                    {
+                      "content": [
+                        {
+                          "html": "設備を追加する",
+                          "text": "設備を追加する"
+                        },
+                        {
+                          "html": "蓄電池アイコンをクリックする",
+                          "text": "蓄電池アイコンをクリックする"
+                        },
+                        {
+                          "html": "「設定」をクリックする",
+                          "text": "「設定」をクリックする"
+                        }
+                      ],
+                      "content_kind": "ordered_labels",
+                      "role": "captions"
+                    }
+                  ],
+                  "source_ref": "source/page/06_app_setup_ja.rst#reference-app-settings-1",
+                  "token_roles": [
+                    "component.special.reference-figure"
+                  ],
+                  "variant": "semantic-fallback"
+                },
+                "kind": "component"
+              },
+              {
+                "carrier_flow": [
+                  {
+                    "alt": "アプリ設定画面 4–6",
+                    "kind": "image",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "hb-source-reference"
+                          ],
+                          "data-reference": "{\"id\": \"app-settings-2\", \"web_replace_key\": \"reference.app-settings-2\", \"capture_following_lines\": 3, \"presentation_mode\": \"base-art-live-copy\", \"base_art_layout\": {\"art_sha256\": \"475b0c26eba0cda14e1dcb970b67be8182a7fc155d20077e1b1fdccb8da05c33\", \"panel_top\": 0, \"panel_fill\": \"#ffffff\", \"preserve_frame\": true, \"mobile_labels\": \"stack\", \"labels\": [{\"line\": 0, \"rect\": [0, 1.715, 42, 9.773], \"fill\": \"#e0e0e0\"}, {\"line\": 1, \"rect\": [45.065, 4.887, 17, 4.595], \"fill\": \"#e0e0e0\"}, {\"line\": 2, \"rect\": [83.209, 4.887, 11, 4.595], \"fill\": \"#e0e0e0\"}]}}"
+                        }
+                      }
+                    },
+                    "source": "assets/ir/475b0c26eba0cda14e1dcb970b67be8182a7fc155d20077e1b1fdccb8da05c33/app-settings-2.png"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "・蓄電池の省エネモードをクリックする;"
+                          },
+                          {
+                            "kind": "line_break"
+                          },
+                          {
+                            "kind": "text",
+                            "text": "・自動オフ時間をクリックしてください"
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": [
+                                "line"
+                              ]
+                            }
+                          }
+                        },
+                        "role": "container"
+                      },
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "オフにしない"
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": [
+                                "line"
+                              ]
+                            }
+                          }
+                        },
+                        "role": "container"
+                      },
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "しない"
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": [
+                                "line"
+                              ]
+                            }
+                          }
+                        },
+                        "role": "container"
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "line-block"
+                          ]
+                        }
+                      }
+                    },
+                    "role": "container"
+                  }
+                ],
+                "component_spec": {
+                  "assets": [
+                    {
+                      "asset_ref": "assets/ir/475b0c26eba0cda14e1dcb970b67be8182a7fc155d20077e1b1fdccb8da05c33/app-settings-2.png",
+                      "locale_policy": "exact",
+                      "role": "source_art"
+                    }
+                  ],
+                  "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                  "language": "ja",
+                  "metadata": {
+                    "base_art_layout": {
+                      "art_sha256": "475b0c26eba0cda14e1dcb970b67be8182a7fc155d20077e1b1fdccb8da05c33",
+                      "labels": [
+                        {
+                          "fill": "#e0e0e0",
+                          "line": 0,
+                          "rect": [
+                            0,
+                            1.715,
+                            42,
+                            9.773
+                          ]
+                        },
+                        {
+                          "fill": "#e0e0e0",
+                          "line": 1,
+                          "rect": [
+                            45.065,
+                            4.887,
+                            17,
+                            4.595
+                          ]
+                        },
+                        {
+                          "fill": "#e0e0e0",
+                          "line": 2,
+                          "rect": [
+                            83.209,
+                            4.887,
+                            11,
+                            4.595
+                          ]
+                        }
+                      ],
+                      "mobile_labels": "stack",
+                      "panel_fill": "#ffffff",
+                      "panel_top": 0,
+                      "preserve_frame": true
+                    },
+                    "caption_centers_pct": null,
+                    "captions_embedded": false,
+                    "captions_origin": "carrier",
+                    "capture_following_lines": 3,
+                    "composite_locale": "",
+                    "image_key": "../../assets/app-settings-2.png",
+                    "presentation_mode": "base-art-live-copy",
+                    "source_fragment_sha256": "fa2bd3550a7474ea1d75c34ae270f150be59b60d0bb4fcca8d41b048df09f2d9",
+                    "web_replace_key": "reference.app-settings-2"
+                  },
+                  "schema_version": "component-spec/v1",
+                  "slots": [
+                    {
+                      "content": "app-settings-2",
+                      "content_kind": "inline_text",
+                      "role": "reference_id"
+                    },
+                    {
+                      "content": "アプリ設定画面 4–6",
+                      "content_kind": "inline_text",
+                      "role": "accessibility_label"
+                    },
+                    {
+                      "content": "live",
+                      "content_kind": "inline_text",
+                      "role": "caption_mode"
+                    },
+                    {
+                      "content": "equal",
+                      "content_kind": "inline_text",
+                      "role": "caption_layout"
+                    },
+                    {
+                      "content": [
+                        {
+                          "html": "・蓄電池の省エネモードをクリックする;<br/>・自動オフ時間をクリックしてください",
+                          "text": "・蓄電池の省エネモードをクリックする; ・自動オフ時間をクリックしてください"
+                        },
+                        {
+                          "html": "オフにしない",
+                          "text": "オフにしない"
+                        },
+                        {
+                          "html": "しない",
+                          "text": "しない"
+                        }
+                      ],
+                      "content_kind": "ordered_labels",
+                      "role": "captions"
+                    }
+                  ],
+                  "source_ref": "source/page/06_app_setup_ja.rst#reference-app-settings-2",
+                  "token_roles": [
+                    "component.special.reference-figure"
+                  ],
+                  "variant": "semantic-fallback"
+                },
+                "kind": "component"
+              }
+            ],
+            "kind": "section",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "06_app_setup_ja.rst#block-4"
+        }
+      ],
+      "language": "ja",
+      "page_id": "06_app_setup_ja.rst",
+      "skipped_raw": 0,
+      "source_path": "source/page/06_app_setup_ja.rst",
+      "source_ref": "06_app_setup_ja.rst",
+      "source_sha256": "6ed8a6bf4081e7ff9d2631cdaf4e260b7a24a805f6dbddee616b78c7e3fe224c"
+    }
+  ],
+  "region": "JP",
+  "schema_version": "manual-ir/v2",
+  "snapshot_sha256": null,
+  "source": "prepared-document",
+  "style_contract_sha256": "92906316ba7586310924c9eb3b50b372bd129692d81bc37f9587374de2a993f4"
+}

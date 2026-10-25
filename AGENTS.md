@@ -5,13 +5,18 @@ It is not the architecture strategy and it is not the optimization roadmap.
 
 This file is the single source of truth for **every** AI agent working in this repo (Claude Code, Codex, future agents). The root [`CLAUDE.md`](CLAUDE.md) is a thin entrypoint that pulls this file into Claude Code via `@AGENTS.md`; Codex reads this file directly. When rules change, edit this file — do not fork rules into per-agent files.
 
-Document boundary (open the others only when the task needs them; see §10):
+**Required project context:** before the first task in this repo, read
+[`Hello_Docs_Positioning.md`](code-as-doc/architecture/Hello_Docs_Positioning.md).
+Recheck it for positioning, capability, corpus, architecture, roadmap or public-description work;
+cite its relevant section and verify implementation/acceptance status in the owning contract or ledger.
+
+Document boundary (the positioning doc above is required; open the others only when the task needs them; see §10):
 
 - `AGENTS.md`: how an agent should operate in this repo today
 - [`code-as-doc/architecture/System Evolution Strategy.md`](code-as-doc/architecture/System%20Evolution%20Strategy.md): long-term system direction and stable architecture boundaries
 - [`code-as-doc/optimization_project.md`](code-as-doc/optimization_project.md): repo-level execution roadmap and next optimization priorities
 - Current human workflows: the [build guide](code-as-doc/build_doc_guide.md) and the [workflow guide](user-guide/hello_auto-doc.md). Both are indexes: read the index, then only the topic page the task needs.
-- [`user-guide/two_plane_map.md`](user-guide/two_plane_map.md) — the two-plane topology (auto-manual = engineering plane, Hello-Docs mirror = business plane, old/new Feishu bases, TM-B as the single corpus): read this before reasoning about which repo, base, or tenant an operation touches
+- [`user-guide/two_plane_map.md`](user-guide/two_plane_map.md) — the repository and base topology (auto-manual = engineering plane, Hello-Docs = business plane, Hello-Docs-Review = private document workbench where agents write with the existing infrastructure, data, templates and corpus; old/new Feishu bases; TM-B as the canonical translation-memory base): read this before reasoning about which repo, base, or tenant an operation touches
 
 ## 1. Entrypoint
 
@@ -31,6 +36,7 @@ Document boundary (open the others only when the task needs them; see §10):
 
 - Before any manual-to-Web asset work, follow the [Web artwork reuse order](docs/renderers/contracts/STYLE_DEFINITION/web-artwork-reuse.md#共用图标优先web-插图选材规则): inventory existing assets and record reuse decisions before extracting; preserve complete panels and App screenshot frames. A new language or source PDF alone is not a reason to recrop.
 - Web packages use shared components and the shared theme, never source-drawn styles. Before converting a manual to Web, map every printed block (symbol, LCD, button, troubleshooting, specification, inbox, callout, App) to its shared component and record the map in the package; an unmappable block is a plain table declared with its reason, never a package colour, border or `ht-*` class. Review pages show the shared reference edition (e.g. the same model's EU Web) beside the new one. The [prepared-document shared-style gate](code-as-doc/dev/web_publish_pipeline/shared-component-admission.md#prepared-document-shared-style-admission) enforces it.
+- Document writing (drafting, revising, reference-based reuse) is the main production route and happens in the Hello-Docs-Review workbench under `docs/review-drafts/`, following [`manual-review-draft`](.agents/skills/manual-review-draft/SKILL.md) and the other skills. Data-and-template builds are used on demand. Drafts never enter auto-manual or Hello-Docs; change tools, templates or skills here.
 - Do not create one config per model just because the model changed.
 - Keep the shared family config pattern with [`configs/config.us.yaml`](configs/config.us.yaml) and [`configs/config.ja.yaml`](configs/config.ja.yaml).
 - If a target is already in review, prefer `sync-review` over `review --refresh-review` for data-driven updates.
@@ -54,6 +60,7 @@ Document boundary (open the others only when the task needs them; see §10):
 - Update docs in the same change when behavior changes.
 - Update the affected owning topic pages under [`code-as-doc/build_doc_guide/`](code-as-doc/build_doc_guide.md) and [`user-guide/hello_auto-doc/`](user-guide/hello_auto-doc.md); there is no mandatory README edit for an ordinary behavior change. The two guide files themselves are indexes: edit them only to add, rename or re-scope a page, never to append notes. Split a page that passes ~400 lines and update its index row.
 - [`README.md`](README.md) owns project positioning, the stable workflow roadmap, quickstart and top-level navigation. Edit it only when one of those changes. Link to a topic hub rather than listing its subpages; extend an existing navigation row before adding another. Keep the page concise; the ~350-line ceiling is a backstop, not a content allowance.
+- Each mirror shows its own landing page: edit [`mirrors/Hello-Docs/README.md`](mirrors/Hello-Docs/README.md) and [`mirrors/Hello-Docs-Review/README.md`](mirrors/Hello-Docs-Review/README.md) here, never in the mirror; the mirror sync installs each as that repository's `README.md`. The README rules in this section apply to them too.
 - Do not append feature announcements, model/language intake or acceptance records, field/flag contracts, implementation details, temporary status or per-PR evidence to README, even as one-line links. Put them in the owning guide, review record or execution ledger and link from that topic hub. When removing README detail, verify that the owning topic remains reachable from the retained navigation.
 - If a code change affects the current workflow, editing surface, environment setup, or release flow, update the owning page of [`user-guide/hello_auto-doc.md`](user-guide/hello_auto-doc.md) in the same change.
 - If a code change affects the happy-path example, onboarding steps, or target-specific sample commands, update the owning page of [`user-guide/quick_start_guide.md`](user-guide/quick_start_guide.md) in the same change.
@@ -88,7 +95,7 @@ One line per skill below; full descriptions, trigger phrases, and scope notes li
 - [`new-region-line`](.agents/skills/new-region-line/SKILL.md): stand up a brand-new `(Model, Region, Language)` manual line end to end.
 - [`local-publish-queue-run`](.agents/skills/local-publish-queue-run/SKILL.md): run the build-queue publish locally as the CI bot when Actions cannot run or a publish needs local repair.
 - [`hello-docs-pipeline-dispatch-triage`](.agents/skills/hello-docs-pipeline-dispatch-triage/SKILL.md): dispatch and triage the Hello-Docs mirror pipeline; code changes NEVER PR the mirror's main — only `backport/...` → `review/*` data-plane PRs belong there.
-- [`us-jp-review-draft`](.agents/skills/us-jp-review-draft/SKILL.md): JP review draft (审核稿) from the published US manual — reuse existing Japanese, green = new translation (counted), purple = spec/R&D values, JP spec fill, US↔JP coverage audit, JP web styling; off-pipeline, Feishu wiki upload only on request; Claude Code entry in `.claude/skills/us-jp-review-draft/`.
+- [`manual-review-draft`](.agents/skills/manual-review-draft/SKILL.md): writes off-pipeline manual review drafts (审核稿), currently in US→US English reuse and US→JP Japanese-corpus reuse modes; inherit reference structure and wording, fill target-spec parameters, keep suggestions in review notes; Claude entry in `.claude/skills/manual-review-draft/`.
 - For TM-guided translation jobs, route by carrier: `.docx` / Feishu cloud doc pre-translation → `lark-tm-translation-preprocess`; Markdown / plain-text rewrite → `bitable-translation-memory` for lookup, then `manual-rewrite-with-tm` for the structure-preserving rewrite flow.
 
 ## 8. Multi-Window Parallel Development
@@ -193,6 +200,7 @@ When the active model is Fable, do not do the work yourself. Never read the docu
 
 Each agent and sub-agent loads this file and pays again for every document it opens.
 
+- The required project-context read above is the exception to on-demand reading; topic guides remain task-scoped.
 - Treat the [build guide](code-as-doc/build_doc_guide.md), [workflow guide](user-guide/hello_auto-doc.md), [style definition](docs/renderers/contracts/STYLE_DEFINITION.md), [optimization checklist](code-as-doc/next_optimization_checklist.md), [quick start](user-guide/quick_start_guide.md), the `dev/` hubs that [`code-as-doc.md`](code-as-doc/code-as-doc.md) Rule 7 lists and [`code-as-doc/README.md`](code-as-doc/README.md) as indexes: open only the topic page the task needs.
 - Logs, registries, archives and `code-as-doc/reviews/` are lookups: grep by ID or keyword and read the hit, unless the task is about that file.
 - In a long doc that has no index yet, `grep -n` the section and read that range.

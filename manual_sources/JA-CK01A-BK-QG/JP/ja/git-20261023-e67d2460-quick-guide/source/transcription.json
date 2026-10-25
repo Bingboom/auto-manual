@@ -1,0 +1,391 @@
+{
+  "schema_version": "ja-ck01a-bk-qg-transcription/v1",
+  "source_sha256": "e67d2460eff018f0f8cae0be53e404604d1d3bff620d3c69c8cd8396ccce3d7a",
+  "method": "The PDF type is fully outlined (no text layer). Every printed line was read from 3x–8x renders of the archived PDF and is recorded verbatim; print line breaks inside a sentence are joined. Order is the Web reading order.",
+  "not_transcribed": [
+    "product silkscreen and markings inside illustrations",
+    "App screen UI text inside the screenshots (including the magnified circles)",
+    "step numerals drawn as circled graphics (the Web headings carry them as ①②③ and 1–5)"
+  ],
+  "lines": [
+    {
+      "panel": "front/cover",
+      "text": "Jackery",
+      "disposition": "web-excluded",
+      "reason": "brand wordmark on the cover panel"
+    },
+    {
+      "panel": "front/cover",
+      "text": "クイックガイド",
+      "disposition": "web-excluded",
+      "reason": "cover panel: not part of the Web body (JBP-1000B-WH/JA-AD500A-SIL rule 「封面和目录 不用体现在web版面上」); its two lines form the Web title"
+    },
+    {
+      "panel": "front/cover",
+      "text": "自動切替機能付ホーム分電盤",
+      "disposition": "web-excluded",
+      "reason": "cover panel: not part of the Web body (JBP-1000B-WH/JA-AD500A-SIL rule 「封面和目录 不用体现在web版面上」); its two lines form the Web title"
+    },
+    {
+      "panel": "front/site",
+      "text": "サイトスペース要件",
+      "disposition": "live"
+    },
+    {
+      "panel": "front/site",
+      "text": "分電盤",
+      "disposition": "live"
+    },
+    {
+      "panel": "front/site",
+      "text": "自動切替機能付ホーム分電盤",
+      "disposition": "live"
+    },
+    {
+      "panel": "front/site",
+      "text": "≥ 20cm",
+      "disposition": "live"
+    },
+    {
+      "panel": "front/site",
+      "text": "≥ 20cm",
+      "disposition": "live"
+    },
+    {
+      "panel": "front/packing",
+      "text": "パッキングリスト",
+      "disposition": "live"
+    },
+    {
+      "panel": "front/packing",
+      "text": "パッキングリスト 1",
+      "disposition": "live"
+    },
+    {
+      "panel": "front/packing",
+      "text": "自動切替機能付ホーム分電盤 *1",
+      "disposition": "live"
+    },
+    {
+      "panel": "front/packing",
+      "text": "手動ハンドル *1",
+      "disposition": "live"
+    },
+    {
+      "panel": "front/packing",
+      "text": "施工説明書/取扱説明書 *1",
+      "disposition": "live"
+    },
+    {
+      "panel": "front/packing",
+      "text": "切替表示シール *1",
+      "disposition": "live"
+    },
+    {
+      "panel": "front/packing",
+      "text": "取付ねじ *4",
+      "disposition": "live"
+    },
+    {
+      "panel": "front/packing",
+      "text": "パッキングリスト 2",
+      "disposition": "live"
+    },
+    {
+      "panel": "front/packing",
+      "text": "インレットボックス *1",
+      "disposition": "live"
+    },
+    {
+      "panel": "front/packing",
+      "text": "充電ケーブル *1",
+      "disposition": "live"
+    },
+    {
+      "panel": "front/packing",
+      "text": "ケーブル・ハンガー *1",
+      "disposition": "live"
+    },
+    {
+      "panel": "front/packing",
+      "text": "取扱説明書 *1",
+      "disposition": "live"
+    },
+    {
+      "panel": "front/packing",
+      "text": "クイックガイド *1",
+      "disposition": "live"
+    },
+    {
+      "panel": "front/packing",
+      "text": "アンカーボルト *3",
+      "disposition": "live"
+    },
+    {
+      "panel": "front/required",
+      "text": "必要品",
+      "disposition": "live"
+    },
+    {
+      "panel": "front/required",
+      "text": "配線管",
+      "disposition": "live"
+    },
+    {
+      "panel": "front/required",
+      "text": "コンセント",
+      "disposition": "live"
+    },
+    {
+      "panel": "front/required",
+      "text": "ワイヤー",
+      "disposition": "live"
+    },
+    {
+      "panel": "front/required",
+      "text": "ブレーカ（オプション）",
+      "disposition": "live"
+    },
+    {
+      "panel": "front/step1",
+      "text": "表面取り付け",
+      "disposition": "live",
+      "step": "1"
+    },
+    {
+      "panel": "front/step1",
+      "text": "パネルを開く",
+      "disposition": "live",
+      "step": "①"
+    },
+    {
+      "panel": "front/step1",
+      "text": "前面パネルを取り外す",
+      "disposition": "live",
+      "step": "②"
+    },
+    {
+      "panel": "front/step1",
+      "text": "壁に固定する",
+      "disposition": "live",
+      "step": "③"
+    },
+    {
+      "panel": "front/step2",
+      "text": "配線",
+      "disposition": "live",
+      "step": "2"
+    },
+    {
+      "panel": "front/step2",
+      "text": "ATS入力ポートA（商用電源側）に商用電源を接続",
+      "disposition": "live",
+      "step": "①"
+    },
+    {
+      "panel": "front/step2",
+      "text": "商用電源による給電を優先にする",
+      "disposition": "live"
+    },
+    {
+      "panel": "front/step2",
+      "text": "CV 3.5~5.5 mm² L1",
+      "disposition": "in-art",
+      "asset": "assets/step2-port-a-legend.png"
+    },
+    {
+      "panel": "front/step2",
+      "text": "CV 3.5~5.5 mm² L2",
+      "disposition": "in-art",
+      "asset": "assets/step2-port-a-legend.png"
+    },
+    {
+      "panel": "front/step2",
+      "text": "CV 3.5~5.5 mm² N",
+      "disposition": "in-art",
+      "asset": "assets/step2-port-a-legend.png"
+    },
+    {
+      "panel": "front/step2",
+      "text": "CV 2.0 mm² GND",
+      "disposition": "in-art",
+      "asset": "assets/step2-port-a-legend.png"
+    },
+    {
+      "panel": "front/step2",
+      "text": "付属のレンチを使用して商用電源給電と蓄電池給電を手動で切り替えます。",
+      "disposition": "in-art",
+      "asset": "assets/step2-port-a-switch.png"
+    },
+    {
+      "panel": "front/step2",
+      "text": "A 商用電源で給電",
+      "disposition": "in-art",
+      "asset": "assets/step2-port-a-switch.png"
+    },
+    {
+      "panel": "front/step2",
+      "text": "B 蓄電池給電",
+      "disposition": "in-art",
+      "asset": "assets/step2-port-a-switch.png"
+    },
+    {
+      "panel": "front/step2",
+      "text": "*切り替え後は、カバーを閉じる必要があります。閉じないと負荷が出力できません。",
+      "disposition": "in-art",
+      "asset": "assets/step2-port-a-switch.png"
+    },
+    {
+      "panel": "front/step2",
+      "text": "バックアップ負荷ラインをATSに接続する",
+      "disposition": "live",
+      "step": "②"
+    },
+    {
+      "panel": "front/step2",
+      "text": "VVF 2.0 mm² L",
+      "disposition": "in-art",
+      "asset": "assets/step2-backup-legend.png"
+    },
+    {
+      "panel": "front/step2",
+      "text": "VVF 2.0 mm² N",
+      "disposition": "in-art",
+      "asset": "assets/step2-backup-legend.png"
+    },
+    {
+      "panel": "front/step2",
+      "text": "100v サーキット",
+      "disposition": "live"
+    },
+    {
+      "panel": "front/step2",
+      "text": "3つの予備設置位置を確保しており、必要に応じてブレーカを追加できます。",
+      "disposition": "live"
+    },
+    {
+      "panel": "front/step3",
+      "text": "蓄電池に接続する",
+      "disposition": "live",
+      "step": "3"
+    },
+    {
+      "panel": "front/step3",
+      "text": "インレットボックスを取り付ける",
+      "disposition": "live",
+      "step": "①"
+    },
+    {
+      "panel": "front/step3",
+      "text": "ATS入力ポートB（自立電源側）はジャンクションボックスに接続します",
+      "disposition": "live",
+      "step": "②",
+      "print_break": "ジャンクショ|ンボックス"
+    },
+    {
+      "panel": "front/step3",
+      "text": "CV 3.5~5.5 mm² L1",
+      "disposition": "in-art",
+      "asset": "assets/step3-port-b.png"
+    },
+    {
+      "panel": "front/step3",
+      "text": "CV 3.5~5.5 mm² N",
+      "disposition": "in-art",
+      "asset": "assets/step3-port-b.png"
+    },
+    {
+      "panel": "front/step3",
+      "text": "CV 3.5~5.5 mm² L2",
+      "disposition": "in-art",
+      "asset": "assets/step3-port-b.png"
+    },
+    {
+      "panel": "front/step3",
+      "text": "CV 2.0 mm² GND",
+      "disposition": "in-art",
+      "asset": "assets/step3-port-b.png"
+    },
+    {
+      "panel": "back/step3",
+      "text": "蓄電池に接続する",
+      "disposition": "live",
+      "step": "③"
+    },
+    {
+      "panel": "back/step4",
+      "text": "蓄電池に充電する",
+      "disposition": "live",
+      "step": "4"
+    },
+    {
+      "panel": "back/step4",
+      "text": "蓄電用のコンセントは分電盤に接続する必要があり、ATSに直接接続することは禁止されています",
+      "disposition": "live"
+    },
+    {
+      "panel": "back/step5",
+      "text": "アプリ設定",
+      "disposition": "live",
+      "step": "5"
+    },
+    {
+      "panel": "back/step5",
+      "text": "アプリをダウンロードしてログインするには",
+      "disposition": "live",
+      "step": "①"
+    },
+    {
+      "panel": "back/step5",
+      "text": "アプリ設定",
+      "disposition": "live",
+      "step": "②"
+    },
+    {
+      "panel": "back/step5",
+      "text": "ジャクリアプリ内で静音充電モードを有効にして、デバイスの動作音を低減してください",
+      "disposition": "live"
+    },
+    {
+      "panel": "back/step5",
+      "text": "設備を追加する",
+      "disposition": "live"
+    },
+    {
+      "panel": "back/step5",
+      "text": "蓄電池アイコンをクリックする",
+      "disposition": "live"
+    },
+    {
+      "panel": "back/step5",
+      "text": "「設定」をクリックする",
+      "disposition": "live"
+    },
+    {
+      "panel": "back/step5",
+      "text": "・蓄電池の省エネモードをクリックする;",
+      "disposition": "live"
+    },
+    {
+      "panel": "back/step5",
+      "text": "・自動オフ時間をクリックしてください",
+      "disposition": "live"
+    },
+    {
+      "panel": "back/step5",
+      "text": "オフにしない",
+      "disposition": "live"
+    },
+    {
+      "panel": "back/step5",
+      "text": "しない",
+      "disposition": "live"
+    },
+    {
+      "panel": "artboard",
+      "text": "38-0001-000845 快速操作指引 HTO862A-JP-JAK RoHS REACH / 折叠尺寸 / 材质 / 印刷 / 装订 / 折叠方式 / 刀线 / 折叠线 / 正面 / 反面 / revision and title blocks",
+      "disposition": "web-excluded",
+      "reason": "print-production drawing furniture around the two printed sides; not manual content"
+    }
+  ]
+}
