@@ -8,6 +8,13 @@ module notes to the hub.
 
 Quality and release logic should follow concern-specific modules instead of drifting back into entry files:
 
+Mirror content validation is a separate CI entrypoint,
+[`scripts/check_business_content.py`](../../../scripts/check_business_content.py):
+standard-library-only scope/data/inventory checks on mirror-owned files, with a
+trusted-base script on PRs. It does not call build orchestration, queue workers,
+Feishu or deployment receipts. Engineering checks stay in auto-manual; see the
+[CI guide](../../build_doc_guide/ci-and-guardrails.md#engineering-and-mirror-validation).
+
 - [`tools/check/docs.py`](../../../tools/check/docs.py)
   - quality gate facade over bundle/reference/contract/generated-page checks
 - [`tools/check/docs_runtime.py`](../../../tools/check/docs_runtime.py)

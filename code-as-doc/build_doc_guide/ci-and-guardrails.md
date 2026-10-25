@@ -3,6 +3,32 @@
 Part of the [build guide](../build_doc_guide.md); its index lists the other topics.
 Add new notes for this topic here, not to the hub.
 
+## Engineering and mirror validation
+
+`Manual Validation` retains all 17 engineering jobs on `Bingboom/auto-manual`.
+On Hello-Docs and Hello-Docs-Review, only `secret-scan` and `business-content`
+allocate runners; the 16 engineering jobs are skipped by repository guards.
+Nightly Render, fixture Review Preview and Manifest Regenerate Diff also run
+only in auto-manual. Trigger definitions stay unchanged; skipped run records
+can remain visible without allocating those job runners.
+
+`business-content` uses Python's standard library, read-only permissions and no
+live credentials. Its checkout is shallow and sparse (owned content and the
+checker); it fetches only the base commit needed for a direct tree diff. Content PRs can change only the repository's owned directories;
+existing backports into a `review/*` base can also change `docs/_review/**`.
+The scope checker on PRs is loaded from the trusted base SHA, so a PR cannot
+replace its own checker. Changed JSON/CSV must parse. When `docs/publish/**`
+changes, the complete v2 publish inventory must match file paths, sizes and SHA-256,
+with nonempty unique target identities and existing target manuals. A mirror-only
+engineering push does not rehash unchanged publication files.
+
+This check does not build or deploy, read Feishu, alter queue state or register
+links. Existing queue, backup, Workspace, deployment verification and receipt
+workflows keep their definitions. Mirror ownership and secret scanning remain
+active. See the [audit, cost method and rollback](../reviews/hello-docs-lightweight-20261024.md)
+for P0 scope, current failures and deferred executor/private-repository checks.
+Review Actions were disabled at audit time; the guards apply if enabled later.
+
 GitHub validation note:
 
 - `Manual Validation` is the repository CI workflow
