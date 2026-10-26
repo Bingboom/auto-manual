@@ -4,7 +4,7 @@
   "baseline_main": "8a46562",
   "original_source_sha256": "cc8b3421221bf11b03f2ddd0ce86519605189fbe0721a7d8a536520d75513e6f",
   "stored_markdown_sha256": "e4e9a0f689dc9558be12fd35031ea2128592618e03ad99f44d6d2949755d697b",
-  "stored_ir_sha256": "a77ac2d2051f02285114870d19339d4d094d06fc9353120531c990a6b5887fe9",
+  "stored_ir_sha256": "5574dcac6d5cd81d6cce54d12062e2c5bc997dad6f9e2a92db7e5f807234e7c3",
   "checks": [
     {
       "command": "python derive_assets.py (twice)",

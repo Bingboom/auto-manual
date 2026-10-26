@@ -14,8 +14,7 @@
     "sha256": "cc8b3421221bf11b03f2ddd0ce86519605189fbe0721a7d8a536520d75513e6f",
     "size": 3403400,
     "physical_page_count": 12,
-    "feishu_wiki_node": "TC9MwqDAsihTJ0kPlsJcVj4JnNf",
-    "feishu_obj_token": "XyPlbl2m9oa8RwxrUNicU1slned"
+    "feishu_wiki_node": "TC9MwqDAsihTJ0kPlsJcVj4JnNf"
   },
   "printed_manual_version": null,
   "publication_status": "review-candidate-no-release-authorization",
@@ -476,12 +475,12 @@
     {
       "path": "evidence/target-tests.log",
       "size": 145,
-      "sha256": "2309f842fc6197ddeea2941e2984fabc5921af0eaa845534695ef9ee96473490"
+      "sha256": "ff9587b9035c9e0d97be387aa98ed0012f64dfcf9046ba494bee610615d376f9"
     },
     {
       "path": "evidence/validation.json",
       "size": 7966,
-      "sha256": "46a5e8193c0a4a7d41033e3888b2b0dc8baca0697dc6ac569dadb651ae157833"
+      "sha256": "3c5adfb09dc63589323911d8ca1ae2e629ce0b74509f760fe95989d0d2890c4a"
     },
     {
       "path": "refresh_manifest.py",
@@ -570,8 +569,8 @@
     },
     {
       "path": "source_manifest.json",
-      "size": 20486,
-      "sha256": "e8d96b19a2da4c3ef48b9ad228df5ef52231f1919721d20c005f0056b074e91b"
+      "size": 20431,
+      "sha256": "e88a231167d3d69c2b145997acb325e994991e2939ec439758e8bf9ce8833654"
     },
     {
       "path": "web/ja/_static/source.css",
@@ -710,8 +709,8 @@
     },
     {
       "path": "web/ja/manual.ir.json",
-      "size": 357264,
-      "sha256": "a77ac2d2051f02285114870d19339d4d094d06fc9353120531c990a6b5887fe9"
+      "size": 357205,
+      "sha256": "5574dcac6d5cd81d6cce54d12062e2c5bc997dad6f9e2a92db7e5f807234e7c3"
     },
     {
       "path": "web/ja/manual_bundle.html",
