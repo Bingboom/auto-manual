@@ -1,0 +1,22 @@
+[
+  {
+    "candidate": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/",
+    "inspection": "2026-10-26 contact sheet: JE-1000F JP art draws the JP three Type-A outlet unit and Japanese labels; LCD map aspect differs (diff 0.080)",
+    "decision": "reuse only text-free icons that match KR source (inbox document icon, LCD status icons except row 11)"
+  },
+  {
+    "candidate": "manual_sources/JE-1000F/EU/en-fr/2.0/phase2/_attachments/web_composites/",
+    "inspection": "EU V2.0 composites draw the same two-Schuko unit; operation/overview/AC/car panels embed English or other locale text; solar-direct and solar-adapter carry only the product labels SolarSaga 200 × 2 / SolarSaga 100 Air × 4 (normalized diff 0.023 / 0.022 vs KR p13/p14 crops); App connect shows a \"1000\" device, KR prints \"1500 Ultra\"; EU V2.0 lcd_map.png (sha256 f82efe21…) has a different LCD frame and leader layout (diff 0.076)",
+    "decision": "reuse the two solar panels byte-for-byte; crop KR panels with Korean labels"
+  },
+  {
+    "candidate": "manual_sources/JE-3000C/KR/ko/git-20261021-78316033/web/ko/assets/",
+    "inspection": "JE-3000C KR (same KR artwork system): store badges identical (diff 0.022); 2.1/2.2 phone screenshots identical content (diff 0.024, wider margins); App connect differs (device \"3000\"); QR differs (diff 0.097); LCD row-11 \"8.8 H\" icon matches KR p7",
+    "decision": "reuse badges, 2.1/2.2 phones and LCD row-11 icon; crop KR QR and App connect"
+  },
+  {
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/",
+    "inspection": "Shared symbol catalog compared against native_symbol_svg references rebuilt from KR p4 glyph drawings (max mean channel error 0.003-0.019)",
+    "decision": "reuse seven shared variants byte-for-byte; no new symbol variant"
+  }
+]

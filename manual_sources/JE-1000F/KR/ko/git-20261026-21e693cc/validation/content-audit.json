@@ -1,0 +1,237 @@
+{
+  "status": "conversion-verified-candidate-pending-operator-review",
+  "method": "Outlined PDF (no text layer): transcription from 4x renders (PyMuPDF), each page re-read at 4x crops; Tesseract 5.3.4 kor+eng run on 4x renders as independent evidence (ocr/pNN.txt)",
+  "ocr_cross_check": {
+    "hangul_tokens": 1764,
+    "found_in_transcription": 1742,
+    "ratio": 0.9875,
+    "pages": {
+      "3": {
+        "ocr_hangul_tokens": 53,
+        "found_in_transcription": 51
+      },
+      "4": {
+        "ocr_hangul_tokens": 77,
+        "found_in_transcription": 74
+      },
+      "5": {
+        "ocr_hangul_tokens": 34,
+        "found_in_transcription": 33
+      },
+      "6": {
+        "ocr_hangul_tokens": 203,
+        "found_in_transcription": 203
+      },
+      "7": {
+        "ocr_hangul_tokens": 212,
+        "found_in_transcription": 212
+      },
+      "8": {
+        "ocr_hangul_tokens": 49,
+        "found_in_transcription": 46
+      },
+      "9": {
+        "ocr_hangul_tokens": 152,
+        "found_in_transcription": 150
+      },
+      "10": {
+        "ocr_hangul_tokens": 83,
+        "found_in_transcription": 83
+      },
+      "11": {
+        "ocr_hangul_tokens": 62,
+        "found_in_transcription": 62
+      },
+      "12": {
+        "ocr_hangul_tokens": 31,
+        "found_in_transcription": 31
+      },
+      "13": {
+        "ocr_hangul_tokens": 90,
+        "found_in_transcription": 89
+      },
+      "14": {
+        "ocr_hangul_tokens": 78,
+        "found_in_transcription": 77
+      },
+      "15": {
+        "ocr_hangul_tokens": 182,
+        "found_in_transcription": 181
+      },
+      "16": {
+        "ocr_hangul_tokens": 65,
+        "found_in_transcription": 62
+      },
+      "17": {
+        "ocr_hangul_tokens": 210,
+        "found_in_transcription": 208
+      },
+      "18": {
+        "ocr_hangul_tokens": 37,
+        "found_in_transcription": 37
+      },
+      "19": {
+        "ocr_hangul_tokens": 146,
+        "found_in_transcription": 143
+      }
+    },
+    "unmatched_ocr_tokens": {
+      "3": [
+        "노줄은",
+        "기거"
+      ],
+      "4": [
+        "당지",
+        "타냄니다",
+        "리틈이차전지시스템겸용"
+      ],
+      "5": [
+        "전면뷰"
+      ],
+      "8": [
+        "중전",
+        "시간후",
+        "활성회"
+      ],
+      "9": [
+        "중족하지",
+        "즈의"
+      ],
+      "13": [
+        "중전"
+      ],
+      "14": [
+        "주크"
+      ],
+      "15": [
+        "오류코드"
+      ],
+      "16": [
+        "시그",
+        "중전",
+        "환경작동온도"
+      ],
+      "17": [
+        "각경우",
+        "최조"
+      ],
+      "19": [
+        "르는",
+        "에구",
+        "에구"
+      ]
+    },
+    "unmatched_review": "All unmatched tokens were checked against the 4x renders and are OCR misreads or spacing merges (e.g. 노줄은=노출은, 당지=닿지, 타냄니다=나타냅니다, 리틈=리튬, 중전=충전, 중족=충족, 최조=최초, 활성회=활성화) or App screenshot noise; none indicates a transcription error."
+  },
+  "structure": {
+    "web_pages": [
+      "introduction",
+      "safety",
+      "maintenance",
+      "symbols",
+      "inbox",
+      "overview",
+      "lcd",
+      "operation",
+      "ups",
+      "charging",
+      "storage",
+      "troubleshooting",
+      "specifications",
+      "warranty",
+      "app"
+    ],
+    "physical_pages": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ],
+    "blocks": 128,
+    "component_inventory": {
+      "HB-CALLOUT-STRIP": 14,
+      "HB-SPECIAL-APP": 2,
+      "HB-SPECIAL-INBOX": 1,
+      "HB-SPECIAL-REFERENCE-FIGURE": 16,
+      "HB-TABLE-KEY-COMBINATIONS": 1,
+      "HB-TABLE-LCD-ICON": 1,
+      "HB-TABLE-LCD-MODE": 1,
+      "HB-TABLE-SPEC": 4,
+      "HB-TABLE-SYMBOL-ICON": 1,
+      "HB-TABLE-SYMBOL-SIGNAL": 1,
+      "HB-TABLE-TROUBLESHOOTING": 1,
+      "HB-WARRANTY-LEAD": 1,
+      "HB-WARRANTY-SECTION": 5,
+      "HB-WARRANTY-YEARS": 1
+    },
+    "lcd_rows": 26,
+    "troubleshooting_rows": 10,
+    "spec_groups": 4,
+    "symbol_rows": 7,
+    "warranty_sections": 5
+  },
+  "style_admission": {
+    "profile": "prepared-document-shared-styles/v1",
+    "applicable": true,
+    "model": "JE-1000F",
+    "region": "KR",
+    "language": "ko",
+    "declared_tables": 0,
+    "issues": []
+  },
+  "symbol_asset_admission": [
+    {
+      "asset_ref": "assets/symbol_warning_triangle.svg",
+      "physical_page": 4,
+      "max_mean_channel_error": 0.010934
+    },
+    {
+      "asset_ref": "assets/symbol_read_manual.svg",
+      "physical_page": 4,
+      "max_mean_channel_error": 0.018761
+    },
+    {
+      "asset_ref": "assets/screwdriver-prohibited-tw-477dfbd7.svg",
+      "physical_page": 4,
+      "max_mean_channel_error": 0.01467
+    },
+    {
+      "asset_ref": "assets/symbol_no_open_flame.svg",
+      "physical_page": 4,
+      "max_mean_channel_error": 0.002963
+    },
+    {
+      "asset_ref": "assets/symbol_keep_away_from_children.svg",
+      "physical_page": 4,
+      "max_mean_channel_error": 0.002833
+    },
+    {
+      "asset_ref": "assets/symbol_li_ion_dark.svg",
+      "physical_page": 4,
+      "max_mean_channel_error": 0.012414
+    },
+    {
+      "asset_ref": "assets/je3000c-kr-78316033-07.svg",
+      "physical_page": 4,
+      "max_mean_channel_error": 0.004705
+    }
+  ],
+  "replay": {
+    "cold_replay_markdown_and_ir_identical": true,
+    "asset_tamper_rejected": "ValueError: frozen input changed: web/ko/assets/operation-main.png"
+  },
+  "scope_note": "Conversion verification only; not technical approval of the PDF values nor publication acceptance."
+}

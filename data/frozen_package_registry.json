@@ -1120,6 +1120,11 @@
       "registered": "2026-10-19",
       "known_drift": {}
     },
+    "manual_sources/JE-1000F/KR/ko/git-20261026-21e693cc": {
+      "approval": "Operator request 2026-10-26 relayed by the workbench session: convert the supplied JE-1000F KR PDF (16-0102-000362) to a Git-only Web candidate for review. Candidate only; no merge or publication approval.",
+      "registered": "2026-10-26",
+      "known_drift": {}
+    },
     "manual_sources/JE-1000H/EU/en/2.0": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",
