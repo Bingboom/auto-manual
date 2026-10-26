@@ -1140,6 +1140,11 @@
       "registered": "2026-10-19",
       "known_drift": {}
     },
+    "manual_sources/JE-1000H/EU/three-language/git-20261026-8bcb378f-shared-symbols": {
+      "approval": "候选：操作者 2026-10-26「这个 JE-1000H的图标 改成共用图标」「nl/pl/pt 也改」；发布待「上线提交发布」",
+      "registered": "2026-10-26",
+      "known_drift": {}
+    },
     "manual_sources/JE-100C/EU/de/2.0": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",

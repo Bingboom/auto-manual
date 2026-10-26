@@ -19,6 +19,11 @@
   },
   "inputs": [
     {
+      "path": "README.md",
+      "size": 1473,
+      "sha256": "f3be7521a34cd785d0d415050373e224bcbaee65988827e56a1acf4f71d53826"
+    },
+    {
       "path": "derive_shared_symbols.py",
       "size": 8274,
       "sha256": "eed596a2ee6a21fcad24dad39ee615a91df78dfb5d08a93cef26bb4c5359ce1b"
