@@ -6,9 +6,11 @@ Source: `source/original.pdf`, the unmodified 21-page KR manual print file
 the operator. This is a Git-only Web **candidate** for operator review: no
 merge, publication or online-table write is implied.
 
-The Web body covers PDF pages 3–19 (printed pages 01–17). Page 1 is the factory
-drawing sheet, page 2 the cover, page 20 is blank and page 21 the QR-only back
-cover; they stay in the PDF and are excluded from the Web body. The existing
+The Web body covers PDF pages 3–19 (17 manual pages, printed 01–17). Page 1 is
+the factory drawing sheet and page 20 a blank padding page. The cover (page 2)
+and the QR-only back cover (page 21) are excluded by the operator's decision in
+the workbench session (2026-10-26, “封面和封底都不收”). All excluded pages stay
+in the PDF. The existing
 JE-1000F KR print/Word line (`configs/config.kr.yaml`, `manual_kr.yaml`) is not
 touched; this package is a prepared-document source like the JE-3000C KR
 package.

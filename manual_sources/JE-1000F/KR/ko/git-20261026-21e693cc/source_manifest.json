@@ -54,15 +54,15 @@
     },
     {
       "page": 2,
-      "reason": "cover (title, model, Korea-only notice, customer email, greeting); omitted from Web body per JE-3000C KR precedent; pending operator confirmation"
+      "reason": "cover (title, model, Korea-only notice, customer email, greeting); excluded by operator decision in the workbench session, 2026-10-26 (封面和封底都不收)"
     },
     {
       "page": 20,
-      "reason": "blank"
+      "reason": "blank padding page (page frame only; confirmed by the workbench session render)"
     },
     {
       "page": 21,
-      "reason": "QR-only back cover; no Web body copy"
+      "reason": "QR-only back cover; excluded by operator decision in the workbench session, 2026-10-26 (封面和封底都不收)"
     }
   ],
   "normalizations": [
@@ -288,8 +288,8 @@
     },
     {
       "path": "README.md",
-      "size": 4028,
-      "sha256": "e161ac748838adff5a5b39c63108771598830a7d88d5ff1e1d1886147fe2c8ab"
+      "size": 4147,
+      "sha256": "fa319ac861619fcf7fbc25b10beeb21c36aacc6d10cfeff64a51de98d4f06f2b"
     },
     {
       "path": "ocr/p03.txt",

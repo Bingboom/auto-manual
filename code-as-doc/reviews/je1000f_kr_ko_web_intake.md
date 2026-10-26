@@ -23,10 +23,10 @@ config, phase2, template or CI target change.
 | PDF page | Content | Web |
 | --- | --- | --- |
 | 1 | Factory drawing sheet (V0.1, 130×185mm, 2026-7-21) | excluded |
-| 2 | Cover: title, model, 국내전용, customer email, greeting | excluded (JE-3000C KR precedent); operator to confirm |
+| 2 | Cover: title, model, 국내전용, customer email, greeting | excluded: operator decision in the workbench session (2026-10-26) |
 | 3–19 | Printed pages 01–17 | included, 15 Web sections |
-| 20 | Blank | excluded |
-| 21 | QR-only back cover | excluded |
+| 20 | Blank padding page (frame only) | excluded |
+| 21 | QR-only back cover | excluded: operator decision in the workbench session (2026-10-26) |
 
 ## OCR and transcription
 
