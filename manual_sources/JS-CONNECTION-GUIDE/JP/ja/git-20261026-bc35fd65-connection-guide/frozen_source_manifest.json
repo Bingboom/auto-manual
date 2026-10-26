@@ -16,7 +16,6 @@
     "size": 27334114,
     "physical_page_count": 1,
     "feishu_wiki": "https://xcn57j1urbe6.feishu.cn/wiki/SMatwBk68ifDEwkYJiucwZVsndf",
-    "feishu_obj_token": "KZxxbILsSoqJCLxk7dacyGdtnzf",
     "producer": "Adobe Illustrator 29.3 (Windows); created 2025-02-11, modified 2025-06-06"
   },
   "printed_manual_version": null,
@@ -160,8 +159,8 @@
     },
     {
       "path": "source_manifest.json",
-      "size": 9537,
-      "sha256": "ef59c7e6c5ef0dc937822b1f622c297c58c20d949dd03afaea25ff942ec1111b"
+      "size": 9482,
+      "sha256": "55ea54efc099f000a49a977605402455e35097b52a9d507ba941f9ca845d2b34"
     },
     {
       "path": "web/ja/_static/source.css",
@@ -210,8 +209,8 @@
     },
     {
       "path": "web/ja/manual.ir.json",
-      "size": 116755,
-      "sha256": "b34988933edf7217ced3aa085ab728e0728f4f9d01042e1bcf6f6598c3efb01b"
+      "size": 116696,
+      "sha256": "11f5df5f35f480ddcadac74eadc19be327e8b54a6b9eb7152666561f77d51469"
     },
     {
       "path": "web/ja/manual_bundle.html",
