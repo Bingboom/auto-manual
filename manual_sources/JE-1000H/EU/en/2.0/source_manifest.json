@@ -92,8 +92,8 @@
     },
     {
       "path": "phase2/symbols_blocks.csv",
-      "size": 10693,
-      "sha256": "e006948ad7ff4674a0bc95a7d17697cd83acc0b91ab5f6bd9fb270040a0f9a09"
+      "size": 10984,
+      "sha256": "2fe4c0b3500b1db5d8e3e5f8716ff98d53d79af391e5cca26078df36bf5cfd40"
     },
     {
       "path": "phase2/troubleshooting_blocks.csv",
@@ -246,7 +246,7 @@
       "sha256": "b4744a483fa95db386bbb269f277a53f678279c7eda8f8cbf24a78f2b426f2a7"
     }
   ],
-  "files_inventory_sha256": "c21ec82813544646a6009ce2f3b57e5035877007dbf6cb133747415ed69ec5e0",
+  "files_inventory_sha256": "f65e28dd3a1e99407f48d791494234b5100587971f7b0c4ac925f38605c6cba4",
   "live_bitable_dependency": false,
   "checkout_contract": {
     "path": "phase2/.gitattributes",
@@ -324,5 +324,50 @@
       "Italian original PDF shifts car and solar descriptions upward by one row; frozen Web source copied these errors.",
       "German and Italian original PDF charging-plan descriptions are incorrectly French; their frozen Web source fields were empty, causing English fallback."
     ]
+  },
+  "shared_symbol_revision": {
+    "scope": "JE-1000H/EU en/fr/es/de/it/uk symbols table",
+    "date": "2026-10-26",
+    "request": "Operator: 「这个 JE-1000H的图标 改成共用图标」 — read manual, do not dismantle, no open flame, keep away from children.",
+    "rows": [
+      {
+        "symbol_key": "read_manual",
+        "old_image": "docs/templates/word_template/common_assets/symbols/read_manual_operator.png",
+        "old_sha256": "c7a2c7dc6ddd9bb4724d9607df666243fc3bbeaa20a669d00de8f1d1a8463b47",
+        "shared_symbol_key": "read-manual/book-information",
+        "image_path": "renderers/web/assets/shared/symbols/native-v1/symbol_read_manual.svg",
+        "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584"
+      },
+      {
+        "symbol_key": "do_not_dismantle",
+        "old_image": "docs/templates/word_template/common_assets/symbols/do_not_dismantle.png",
+        "old_sha256": "908c33c16c067b87c1b1dc5d6663f159ed88146bbb34b9cdbcfd172a59f9058c",
+        "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited",
+        "image_path": "renderers/web/assets/shared/symbols/native-v1/symbol_do_not_dismantle.svg",
+        "sha256": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33"
+      },
+      {
+        "symbol_key": "no_open_flame",
+        "old_image": "docs/templates/word_template/common_assets/symbols/no_open_flame.png",
+        "old_sha256": "460a4a9a19fd00579281005a860145b2de9ffcc10e22f9c48482bd21b84be3fc",
+        "shared_symbol_key": "no-open-flame/fire-match-prohibited",
+        "image_path": "renderers/web/assets/shared/symbols/native-v1/symbol_no_open_flame.svg",
+        "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f"
+      },
+      {
+        "symbol_key": "keep_away_from_children",
+        "old_image": "docs/templates/word_template/common_assets/symbols/keep_away_from_children.png",
+        "old_sha256": "45d63066ac4dfb875d049fd30fe85c33966b6ba401174c672f582d12722be200",
+        "shared_symbol_key": "keep-away-from-children/adult-child-prohibited",
+        "image_path": "renderers/web/assets/shared/symbols/native-v1/symbol_keep_away_from_children.svg",
+        "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899"
+      }
+    ],
+    "unchanged": [
+      "warning_triangle",
+      "li_ion",
+      "weee"
+    ],
+    "status": "candidate; operator release approval and native admission against the EUUK V2.0 PDF pending"
   }
 }
