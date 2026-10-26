@@ -1,0 +1,18 @@
+{
+  "schema_version": "je1000d-jp-candidate-validation/v1",
+  "source_commit": "3b25607a7432eb892c1d689a01ee9b7da2200ae9",
+  "date": "2026-10-26",
+  "environment": "Python 3.12 venv from requirements.lock, Pandoc 3.9.0.2, ruff 0.17.2, Playwright Chromium",
+  "checks": [
+    {"command": "python -m ruff check build.py integrations tools tests scripts", "result": "pass", "log": "ruff.log"},
+    {"command": "python -m tools.check_maintainability_guardrails", "result": "pass", "log": "maintainability.log"},
+    {"command": "python -m tools.web.frozen_package_registry check", "result": "pass (0 new drift; JE-3000C KR symbol-manifest drift recorded keep-frozen)"},
+    {"command": "python build.py check --config configs/config.ja.yaml --model JE-1000F --region JP --data-root tests/fixtures/phase2", "result": "pass (repository regression only; does not validate this body)", "log": "repo-regression.log"},
+    {"command": "python -m unittest", "result": "5700 tests, 1 error before commit: test_asset_base_inventory reads git-tracked files and the new shared SVGs were still untracked; passes after commit (target-tests.log)"},
+    {"command": "python -m unittest tests.test_asset_base_inventory tests.test_je1000d_jp_web", "result": "pass", "log": "target-tests.log"},
+    {"command": "python -m sphinx -n -W --keep-going -b html web/ja <html>", "result": "pass", "log": "strict-sphinx.log"},
+    {"command": "browser 1280 / 390 full page", "result": "34 images, 0 broken, document scrollWidth == viewport at both widths; shared LCD tables scroll inside their components at 390 as in the JE-1500D reference", "files": ["browser-1280.png", "browser-390.png", "browser-1280.json", "browser-390.json"]}
+  ],
+  "rebuild_gates": ["input SHA-256 inventory", "prepared-document shared-style admission with two declared plain tables", "symbol asset admission 6/6 (max mean channel error 0.0152)"],
+  "not_validated": "operator visual acceptance; publication (no approval.json)"
+}
