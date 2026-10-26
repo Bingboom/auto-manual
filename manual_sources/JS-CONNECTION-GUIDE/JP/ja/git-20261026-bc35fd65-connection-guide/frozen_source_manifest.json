@@ -119,6 +119,11 @@
       "sha256": "32c274582481f158ada19e9e9397905a7b56ed86b3d801d7bb2228d9c3e6b8b1"
     },
     {
+      "path": "evidence/validation.json",
+      "size": 1936,
+      "sha256": "caefd97fe27102e87c08d95bd3db983e3f6463a2dfabc90f2fda85f088052436"
+    },
+    {
       "path": "refresh_manifest.py",
       "size": 2346,
       "sha256": "6c60b986434ea7b500c7df9651bf98e8f870245e7b80136f8c81b6fd034c66bc"
