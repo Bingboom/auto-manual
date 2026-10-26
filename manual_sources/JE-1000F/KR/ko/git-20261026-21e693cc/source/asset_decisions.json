@@ -1,0 +1,663 @@
+[
+  {
+    "slot": "inbox-unit",
+    "decision": "new-source-crop",
+    "path": "web/ko/assets/inbox-main.png",
+    "sha256": "df4b4d50c7d89c07cee617da1c0042838a5e393e101b5c46c39ad318004aea5c",
+    "physical_page": 4,
+    "clip_points": [
+      49.5,
+      378,
+      112,
+      425
+    ],
+    "render_scale": 8,
+    "pixels": [
+      500,
+      376
+    ],
+    "reason": "KR/EU two-Schuko unit; JP art draws three Type-A outlets",
+    "boundary": "unit drawing only; number badge and label stay native",
+    "method": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(s,s), clip=fitz.Rect(*clip_points), alpha=False); PDF points, top-left origin"
+  },
+  {
+    "slot": "inbox-cable",
+    "decision": "new-source-crop",
+    "path": "web/ko/assets/inbox-cable.png",
+    "sha256": "6ac59cd01226232cb7053145b54a49eb09d3a082ebaaa9a1bb638d002f863ddd",
+    "physical_page": 4,
+    "clip_points": [
+      172,
+      375,
+      199,
+      426
+    ],
+    "render_scale": 8,
+    "pixels": [
+      216,
+      408
+    ],
+    "reason": "KR plug differs from JP Type-A cable art",
+    "boundary": "cable drawing only",
+    "method": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(s,s), clip=fitz.Rect(*clip_points), alpha=False); PDF points, top-left origin"
+  },
+  {
+    "slot": "inbox-manual",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/inbox-documents.svg",
+    "path": "web/ko/assets/inbox-manual.svg",
+    "sha256": "56fc08a6c7056ee343aac2684164a4e0bebb8693c378734533e939bb0ba47402",
+    "reason": "same document pictogram (diff 0.022), vector"
+  },
+  {
+    "slot": "overview-front",
+    "decision": "new-source-crop",
+    "path": "web/ko/assets/overview-front.png",
+    "sha256": "8c30adf68fcc40fa767b7d44457bddc36459c22b8d7b742ece7dbbd3d8693a45",
+    "physical_page": 5,
+    "clip_points": [
+      26,
+      86,
+      343,
+      278
+    ],
+    "render_scale": 4,
+    "pixels": [
+      1268,
+      768
+    ],
+    "reason": "Korean callout labels embedded in the drawing",
+    "boundary": "complete front view panel; section heading native",
+    "method": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(s,s), clip=fitz.Rect(*clip_points), alpha=False); PDF points, top-left origin"
+  },
+  {
+    "slot": "overview-right",
+    "decision": "new-source-crop",
+    "path": "web/ko/assets/overview-right.png",
+    "sha256": "61fd1cff0601784f3d7f5cb72f2c1a7e6b7ad133de17a8eebc05c6fcbeafd152",
+    "physical_page": 5,
+    "clip_points": [
+      26,
+      322,
+      343,
+      466
+    ],
+    "render_scale": 4,
+    "pixels": [
+      1268,
+      576
+    ],
+    "reason": "Korean callout labels embedded in the drawing",
+    "boundary": "complete right side panel; section heading native",
+    "method": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(s,s), clip=fitz.Rect(*clip_points), alpha=False); PDF points, top-left origin"
+  },
+  {
+    "slot": "lcd-map",
+    "decision": "new-source-crop",
+    "path": "web/ko/assets/lcd-map.png",
+    "sha256": "3ebbd6ea2a3602e932ba4797dd451e060d476660fd5264a201cd889b449810ce",
+    "physical_page": 6,
+    "clip_points": [
+      55,
+      50,
+      312,
+      192
+    ],
+    "render_scale": 4,
+    "pixels": [
+      1028,
+      568
+    ],
+    "reason": "JP LCD map aspect/geometry differs from KR print",
+    "boundary": "numbered LCD map only; table native",
+    "method": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(s,s), clip=fitz.Rect(*clip_points), alpha=False); PDF points, top-left origin"
+  },
+  {
+    "slot": "operation-main",
+    "decision": "new-source-crop",
+    "path": "web/ko/assets/operation-main.png",
+    "sha256": "527b1f4138b18c9c67dbb2dbe7a5511f37ef71e0fac3fb8640543785551485b3",
+    "physical_page": 8,
+    "clip_points": [
+      27.5,
+      67.5,
+      342.5,
+      210.5
+    ],
+    "render_scale": 4,
+    "pixels": [
+      1260,
+      572
+    ],
+    "reason": "Korean 켜짐/꺼짐 labels and standby bubble embedded",
+    "boundary": "complete rounded panel incl. border",
+    "method": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(s,s), clip=fitz.Rect(*clip_points), alpha=False); PDF points, top-left origin"
+  },
+  {
+    "slot": "operation-ac",
+    "decision": "new-source-crop",
+    "path": "web/ko/assets/operation-ac.png",
+    "sha256": "3b72a2c132dcb0c3de5266234e7598252845e5f118e7f267b57d264923e73f5a",
+    "physical_page": 8,
+    "clip_points": [
+      27.5,
+      276.5,
+      342.5,
+      492.5
+    ],
+    "render_scale": 4,
+    "pixels": [
+      1260,
+      864
+    ],
+    "reason": "Korean prerequisite pill and labels embedded",
+    "boundary": "complete rounded panel",
+    "method": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(s,s), clip=fitz.Rect(*clip_points), alpha=False); PDF points, top-left origin"
+  },
+  {
+    "slot": "operation-dc",
+    "decision": "new-source-crop",
+    "path": "web/ko/assets/operation-dc.png",
+    "sha256": "1eff48b28c64f17b48e45f54109cde846dfcb9b4a6cab3d3eef199e259402cb3",
+    "physical_page": 9,
+    "clip_points": [
+      27.5,
+      46.5,
+      344.5,
+      240.5
+    ],
+    "render_scale": 4,
+    "pixels": [
+      1268,
+      776
+    ],
+    "reason": "Korean prerequisite pill and labels embedded",
+    "boundary": "complete rounded panel",
+    "method": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(s,s), clip=fitz.Rect(*clip_points), alpha=False); PDF points, top-left origin"
+  },
+  {
+    "slot": "energy-saving",
+    "decision": "new-source-crop",
+    "path": "web/ko/assets/energy-saving.png",
+    "sha256": "6e04c665f861e45b6cac0ec4461b8e9016722c9115b4442610de91b178fb4fdf",
+    "physical_page": 10,
+    "clip_points": [
+      32,
+      104,
+      339,
+      239
+    ],
+    "render_scale": 4,
+    "pixels": [
+      1228,
+      540
+    ],
+    "reason": "Korean caption under 3s timer; grey instruction box rendered as native paragraphs (JE-3000C precedent)",
+    "boundary": "drawing + caption inside panel, below instruction box",
+    "method": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(s,s), clip=fitz.Rect(*clip_points), alpha=False); PDF points, top-left origin"
+  },
+  {
+    "slot": "led-light",
+    "decision": "new-source-crop",
+    "path": "web/ko/assets/led-light.png",
+    "sha256": "81d99738ab8d6dfb5959c4cc05329c13418d25df97d2bf933a9468d8c0470ec5",
+    "physical_page": 10,
+    "clip_points": [
+      27.5,
+      299.5,
+      343.5,
+      455.5
+    ],
+    "render_scale": 4,
+    "pixels": [
+      1264,
+      624
+    ],
+    "reason": "Korean steps and instruction bubble embedded",
+    "boundary": "complete rounded panel",
+    "method": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(s,s), clip=fitz.Rect(*clip_points), alpha=False); PDF points, top-left origin"
+  },
+  {
+    "slot": "lcd-mode",
+    "decision": "new-source-crop",
+    "path": "web/ko/assets/lcd-mode.png",
+    "sha256": "fcb7048d74a8ca81b28232ba2e96dc0d662cc81d888adfdeed252a431918b580",
+    "physical_page": 11,
+    "clip_points": [
+      46,
+      77,
+      169,
+      167
+    ],
+    "render_scale": 5,
+    "pixels": [
+      615,
+      450
+    ],
+    "reason": "KR two-Schuko unit drawing; LCD screen table native",
+    "boundary": "device + hand drawing only",
+    "method": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(s,s), clip=fitz.Rect(*clip_points), alpha=False); PDF points, top-left origin"
+  },
+  {
+    "slot": "ups",
+    "decision": "new-source-crop",
+    "path": "web/ko/assets/ups.png",
+    "sha256": "4b72807596c234238f2d7c0703c3757715b251dfb495136e3c138f145296054a",
+    "physical_page": 12,
+    "clip_points": [
+      27.5,
+      75.5,
+      342.5,
+      271.5
+    ],
+    "render_scale": 4,
+    "pixels": [
+      1260,
+      784
+    ],
+    "reason": "Korean prerequisite pill embedded",
+    "boundary": "complete rounded panel",
+    "method": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(s,s), clip=fitz.Rect(*clip_points), alpha=False); PDF points, top-left origin"
+  },
+  {
+    "slot": "charging-ac",
+    "decision": "new-source-crop",
+    "path": "web/ko/assets/charging-ac.png",
+    "sha256": "6b55ecbf52487a01475d0a10c921a59ba0b613f2d58d26b63c0bfa36d62d8ce3",
+    "physical_page": 13,
+    "clip_points": [
+      22.5,
+      103.5,
+      338.5,
+      205.5
+    ],
+    "render_scale": 4,
+    "pixels": [
+      1264,
+      408
+    ],
+    "reason": "Korean caption embedded in panel",
+    "boundary": "complete panel incl. caption",
+    "method": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(s,s), clip=fitz.Rect(*clip_points), alpha=False); PDF points, top-left origin"
+  },
+  {
+    "slot": "charging-solar-direct",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-1000F/EU/en-fr/2.0/phase2/_attachments/web_composites/reference.charging-solar-direct_de_2e3b2cbda5f2.png",
+    "path": "web/ko/assets/solar-direct.png",
+    "sha256": "2e3b2cbda5f222d16714244d5be6b10c15e8b957001c3ce1552230fdc4933e14",
+    "reason": "same artwork and English product label as KR p13"
+  },
+  {
+    "slot": "charging-solar-adapter",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-1000F/EU/en-fr/2.0/phase2/_attachments/web_composites/reference.charging-solar-adapter_de_6eb8244df99a.png",
+    "path": "web/ko/assets/solar-adapter.png",
+    "sha256": "6eb8244df99af302a5d115bad73b941dc29e575e1a945947d31de3afeafff7f8",
+    "reason": "same artwork and English product label as KR p14"
+  },
+  {
+    "slot": "charging-car",
+    "decision": "new-source-crop",
+    "path": "web/ko/assets/car.png",
+    "sha256": "742c2c061adf95c6c952c5bb6703b508054343a7f00833583b1830f72fc8379d",
+    "physical_page": 14,
+    "clip_points": [
+      29.5,
+      356.5,
+      345.5,
+      492.5
+    ],
+    "render_scale": 4,
+    "pixels": [
+      1264,
+      544
+    ],
+    "reason": "Korean 차량 label and sold-separately pill embedded",
+    "boundary": "complete panel",
+    "method": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(s,s), clip=fitz.Rect(*clip_points), alpha=False); PDF points, top-left origin"
+  },
+  {
+    "slot": "app-store",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-3000C/KR/ko/git-20261021-78316033/web/ko/assets/app-store.png",
+    "path": "web/ko/assets/app-store.png",
+    "sha256": "c745cc534903c6e059874c28d5ac2060e06c1438732c31beb9fc656b31c46540",
+    "reason": "identical App Store / Google Play badges"
+  },
+  {
+    "slot": "app-qr",
+    "decision": "new-source-crop",
+    "path": "web/ko/assets/app-qr.png",
+    "sha256": "335ed546a353c181c43dbe5ecc62c69a2419d307cdec22305bbb81da04775691",
+    "physical_page": 18,
+    "clip_points": [
+      198,
+      73,
+      250,
+      126
+    ],
+    "render_scale": 6,
+    "pixels": [
+      312,
+      318
+    ],
+    "reason": "KR JE-1000F QR differs from the JE-3000C QR",
+    "boundary": "QR with rounded frame",
+    "method": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(s,s), clip=fitz.Rect(*clip_points), alpha=False); PDF points, top-left origin"
+  },
+  {
+    "slot": "app-phones",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-3000C/KR/ko/git-20261021-78316033/web/ko/assets/app-phones.png",
+    "path": "web/ko/assets/app-phones.png",
+    "sha256": "b1b0d02a90ea98844d60c128888fbbf0d52c9726f8337cb68e1b33aac8af98e4",
+    "reason": "identical 2.1/2.2 screenshots; captions live"
+  },
+  {
+    "slot": "app-control",
+    "decision": "new-source-crop",
+    "path": "web/ko/assets/app-control.png",
+    "sha256": "c71b59fc1661f76716f0ceb69f6d7e89ec4905c2a5156553d5f3ed3738800dfc",
+    "physical_page": 18,
+    "clip_points": [
+      31.5,
+      407.5,
+      335.5,
+      486.5
+    ],
+    "render_scale": 4,
+    "pixels": [
+      1216,
+      316
+    ],
+    "reason": "Korean button labels embedded",
+    "boundary": "complete grey panel",
+    "method": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(s,s), clip=fitz.Rect(*clip_points), alpha=False); PDF points, top-left origin"
+  },
+  {
+    "slot": "app-connect",
+    "decision": "new-source-crop",
+    "path": "web/ko/assets/app-connect.png",
+    "sha256": "c7b9f9f21af0f6ed920e8a62c9a98af0c527d66fb9b8b74a9f99fe2573121495",
+    "physical_page": 19,
+    "clip_points": [
+      55,
+      157,
+      320,
+      307
+    ],
+    "render_scale": 4,
+    "pixels": [
+      1060,
+      600
+    ],
+    "reason": "KR prints \"1500 Ultra\" screenshots; EU/JE-3000C variants show other devices",
+    "boundary": "three phone frames incl. status bars; captions live",
+    "method": "PyMuPDF page.get_pixmap(matrix=fitz.Matrix(s,s), clip=fitz.Rect(*clip_points), alpha=False); PDF points, top-left origin"
+  },
+  {
+    "slot": "lcd-icon",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/10_Input_Power_BiBvbNteAoNsHqxoMICc11cjnHc.png",
+    "path": "web/ko/assets/10_Input_Power_BiBvbNteAoNsHqxoMICc11cjnHc.png",
+    "sha256": "182e6b96b78860011722a6f127073bca8eb297cea98a1f1ec1b46172141e5658",
+    "reason": "transparent JE-1000F LCD status icon"
+  },
+  {
+    "slot": "lcd-icon",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-3000C/KR/ko/git-20261021-78316033/web/ko/assets/11_Remaining_Charge_Time_KIWHbHFOvotGuBxJsxlcunSDnPf.png",
+    "path": "web/ko/assets/11_Remaining_Charge_Time_KIWHbHFOvotGuBxJsxlcunSDnPf.png",
+    "sha256": "cfb69b1ffc0b30c51216fb6b1e00e35b412dd0148b6999d3d40ac90fbfe108cb",
+    "reason": "transparent JE-1000F LCD status icon (KR \"8.8 H\" variant)"
+  },
+  {
+    "slot": "lcd-icon",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/12_AC_Wall_Charging_Indicator_OG9ebaP1HoaLvZxbGEAcIXkPnkb.png",
+    "path": "web/ko/assets/12_AC_Wall_Charging_Indicator_OG9ebaP1HoaLvZxbGEAcIXkPnkb.png",
+    "sha256": "def927403a067872c225eec7e14fc095e074a5ef5dc80f4e53dc80e21f2a91ee",
+    "reason": "transparent JE-1000F LCD status icon"
+  },
+  {
+    "slot": "lcd-icon",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/13_Car_Charging_Indicator_WgbebOblvoTtesxjb9ec8CkUnyg.png",
+    "path": "web/ko/assets/13_Car_Charging_Indicator_WgbebOblvoTtesxjb9ec8CkUnyg.png",
+    "sha256": "d169703b0f4c468c8b4c39cdb62afa97dc87da0da12d864f1215e73d8ea51025",
+    "reason": "transparent JE-1000F LCD status icon"
+  },
+  {
+    "slot": "lcd-icon",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/14_Solar_Charging_Indicator_ZMSkb6bWWoKo8WxhBk0cZN5Lnpg.png",
+    "path": "web/ko/assets/14_Solar_Charging_Indicator_ZMSkb6bWWoKo8WxhBk0cZN5Lnpg.png",
+    "sha256": "c97df8c3470a071ea4a22683179cd47600d04452469202ec4957c1f70c409de8",
+    "reason": "transparent JE-1000F LCD status icon"
+  },
+  {
+    "slot": "lcd-icon",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/15_Battery_Saving_Mode_QIQlbf95uoUmsFxyEQuc1zxkn22.png",
+    "path": "web/ko/assets/15_Battery_Saving_Mode_QIQlbf95uoUmsFxyEQuc1zxkn22.png",
+    "sha256": "5701dcaf741ecb4e7607185ea8bdf34d4a1413c4a1f75bac5df959291ef63b1b",
+    "reason": "transparent JE-1000F LCD status icon"
+  },
+  {
+    "slot": "lcd-icon",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/16_Charging_Power_Limit_YgjLbaQ2YoZwavxUqrHclXNdnuK.png",
+    "path": "web/ko/assets/16_Charging_Power_Limit_YgjLbaQ2YoZwavxUqrHclXNdnuK.png",
+    "sha256": "bdf3caf214a8b3cf2425e8dc9e71a1078b143b4b4ab7af571458618a05441108",
+    "reason": "transparent JE-1000F LCD status icon"
+  },
+  {
+    "slot": "lcd-icon",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/17_Battery_Power_Indicator_VLufb9exvoVLfgxz47pcfnRGnaf.png",
+    "path": "web/ko/assets/17_Battery_Power_Indicator_VLufb9exvoVLfgxz47pcfnRGnaf.png",
+    "sha256": "85921a9ad7fbfa58f98ee7bb0dc904377f31fe3dbface4083d2493144b05362f",
+    "reason": "transparent JE-1000F LCD status icon"
+  },
+  {
+    "slot": "lcd-icon",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/18_Remaining_Battery_Percentage_F7gbbsgPKo4mdkx4JqccMfQRngc.png",
+    "path": "web/ko/assets/18_Remaining_Battery_Percentage_F7gbbsgPKo4mdkx4JqccMfQRngc.png",
+    "sha256": "8c3c5ff517ff51988805f90c9262b743aa0da43a1058f83b784925179305f11e",
+    "reason": "transparent JE-1000F LCD status icon"
+  },
+  {
+    "slot": "lcd-icon",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/19_Low_Battery_Indicator_TcggbK0LLodgNwx04T6cEqjPn5f.png",
+    "path": "web/ko/assets/19_Low_Battery_Indicator_TcggbK0LLodgNwx04T6cEqjPn5f.png",
+    "sha256": "b55c4a4f8f424f6d758f739682ca4e58d3baa86876a01be836b212b0b1f0ecd2",
+    "reason": "transparent JE-1000F LCD status icon"
+  },
+  {
+    "slot": "lcd-icon",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/1_Wi-Fi_WuAbbIls6okb8pxBe5RcObWUnNd.png",
+    "path": "web/ko/assets/1_Wi-Fi_WuAbbIls6okb8pxBe5RcObWUnNd.png",
+    "sha256": "220422befdf990375fe244f80f922b17b8a887d137be8b250a0587550fce99fc",
+    "reason": "transparent JE-1000F LCD status icon"
+  },
+  {
+    "slot": "lcd-icon",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/20_Discharge_Timer_X2jjb9dwIomvH6xVJLJclRzpnAh.png",
+    "path": "web/ko/assets/20_Discharge_Timer_X2jjb9dwIomvH6xVJLJclRzpnAh.png",
+    "sha256": "123aa9b551fc88ad288c55db76f12f706353fc22a6f7d32ae2a1a6518cc614ac",
+    "reason": "transparent JE-1000F LCD status icon"
+  },
+  {
+    "slot": "lcd-icon",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/22_Energy_Saving_Mode_FdBWbTvwwosJ7TxfeVIc2Flinkh.png",
+    "path": "web/ko/assets/22_Energy_Saving_Mode_FdBWbTvwwosJ7TxfeVIc2Flinkh.png",
+    "sha256": "9305fc61862b95c4e888edba9517f3f6281fea37d553deea3a899c67cfa2360c",
+    "reason": "transparent JE-1000F LCD status icon"
+  },
+  {
+    "slot": "lcd-icon",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/23_High_Temperature_Indicator_UmkEbOgCKoKyxoxDSINcfO6LnQd.png",
+    "path": "web/ko/assets/23_High_Temperature_Indicator_UmkEbOgCKoKyxoxDSINcfO6LnQd.png",
+    "sha256": "f548c6504f495da4f208cd8e5fe6eac6076daea05e314115abd26b46a9326ba5",
+    "reason": "transparent JE-1000F LCD status icon"
+  },
+  {
+    "slot": "lcd-icon",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/24_Low_Temperature_Indicator_JDMEbD96noSbyWxbOnVcgip1nab.png",
+    "path": "web/ko/assets/24_Low_Temperature_Indicator_JDMEbD96noSbyWxbOnVcgip1nab.png",
+    "sha256": "bdbf602db74ade39a2a162209c0ff535315dee5e27e4832b2e6a201764b6941a",
+    "reason": "transparent JE-1000F LCD status icon"
+  },
+  {
+    "slot": "lcd-icon",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/25_Fault_code_LaTmb4IQYo3vwvxMqQNcC2RgnIf.png",
+    "path": "web/ko/assets/25_Fault_code_LaTmb4IQYo3vwvxMqQNcC2RgnIf.png",
+    "sha256": "3b51b98d7199d32f7b286bdf5ce3de4cb41971ed942820091053fd1d87bf0a7a",
+    "reason": "transparent JE-1000F LCD status icon"
+  },
+  {
+    "slot": "lcd-icon",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/26_Output_Power_PviebR618oofvKxcKVRcHLlInqd.png",
+    "path": "web/ko/assets/26_Output_Power_PviebR618oofvKxcKVRcHLlInqd.png",
+    "sha256": "58c1d3604ca7b9774b069c6928775a13465ccb9477f477e9e4d4b30e7f75b88d",
+    "reason": "transparent JE-1000F LCD status icon"
+  },
+  {
+    "slot": "lcd-icon",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/27_Remaining_Discharge_Time_QvCQbFmEhoQR3kxgWt4c6H9zn0b.png",
+    "path": "web/ko/assets/27_Remaining_Discharge_Time_QvCQbFmEhoQR3kxgWt4c6H9zn0b.png",
+    "sha256": "14b7fae06ace57348de6185c2aac7435c2a88b340d44626388a6db75f6b65162",
+    "reason": "transparent JE-1000F LCD status icon"
+  },
+  {
+    "slot": "lcd-icon",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/2_Bluetooth_EaovbGeSmoIldpxVoWrcVankn5d.png",
+    "path": "web/ko/assets/2_Bluetooth_EaovbGeSmoIldpxVoWrcVankn5d.png",
+    "sha256": "ea0607778881880f46a7038f164e31294c57234902c2f4794ac58ef967d62256",
+    "reason": "transparent JE-1000F LCD status icon"
+  },
+  {
+    "slot": "lcd-icon",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/3_Quiet_Charging_Mode_IRdmbJVhco57yOx8m0pcdgkXnbe.png",
+    "path": "web/ko/assets/3_Quiet_Charging_Mode_IRdmbJVhco57yOx8m0pcdgkXnbe.png",
+    "sha256": "eb4a5d8fab7844fdf36461c6583787d5ba9da24059724028f931091d23ddff86",
+    "reason": "transparent JE-1000F LCD status icon"
+  },
+  {
+    "slot": "lcd-icon",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/4_Charging_Plan_PBCtblGMaoHz4fx08tRcoXUJnIf.png",
+    "path": "web/ko/assets/4_Charging_Plan_PBCtblGMaoHz4fx08tRcoXUJnIf.png",
+    "sha256": "b556af88ead6ae32d20eba6e77411f78211d9724194b9c9af30ddd7ecfda3a55",
+    "reason": "transparent JE-1000F LCD status icon"
+  },
+  {
+    "slot": "lcd-icon",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/5_Self-powered_Mode_VLkXbWOFpoMJYsxWp0xcXkkpn1g.png",
+    "path": "web/ko/assets/5_Self-powered_Mode_VLkXbWOFpoMJYsxWp0xcXkkpn1g.png",
+    "sha256": "c45de286ee70636b16fd833440c7ed92b560d2fe987c48031bd02191ef4ca8a1",
+    "reason": "transparent JE-1000F LCD status icon"
+  },
+  {
+    "slot": "lcd-icon",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/6_TOU_Mode_BLMAblms7oeDxUxsFb9cgzXvnId.png",
+    "path": "web/ko/assets/6_TOU_Mode_BLMAblms7oeDxUxsFb9cgzXvnId.png",
+    "sha256": "be336ccbd531420b8a2418a084fa63753f6e98090e34c30a8b961c37020f451f",
+    "reason": "transparent JE-1000F LCD status icon"
+  },
+  {
+    "slot": "lcd-icon",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/7_UPS_JMnybDJHdoLbjExEMbGcfAkznQh.png",
+    "path": "web/ko/assets/7_UPS_JMnybDJHdoLbjExEMbGcfAkznQh.png",
+    "sha256": "a05735b7276a37de99d3bc5a98ea6e61bb23b9ce79bc26b4ca837a7550fc8f51",
+    "reason": "transparent JE-1000F LCD status icon"
+  },
+  {
+    "slot": "lcd-icon",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/8_AC_Power_Indicator_IqesbVEWTo0ANfxDkoDcLP6jnSc.png",
+    "path": "web/ko/assets/8_AC_Power_Indicator_IqesbVEWTo0ANfxDkoDcLP6jnSc.png",
+    "sha256": "a6df1c82717a47c895b2e496e71a47122ec6369475975b0dec1d3ffa61aefad0",
+    "reason": "transparent JE-1000F LCD status icon"
+  },
+  {
+    "slot": "lcd-icon",
+    "decision": "reuse-byte-identical",
+    "candidate": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/9_Output_Voltage_and_Frequency_XtL4bA80pogLmOx7VJ3ca5fEnl8.png",
+    "path": "web/ko/assets/9_Output_Voltage_and_Frequency_XtL4bA80pogLmOx7VJ3ca5fEnl8.png",
+    "sha256": "5558fdd5e8d405d6c8c86be16c85785346b0da3088352bc2c85e40a65684f4ec",
+    "reason": "transparent JE-1000F LCD status icon"
+  },
+  {
+    "slot": "symbol",
+    "decision": "reuse-byte-identical",
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_warning_triangle.svg",
+    "path": "web/ko/assets/symbol_warning_triangle.svg",
+    "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+    "reason": "shared variant; source-bound glyph/caption admission against KR p4"
+  },
+  {
+    "slot": "symbol",
+    "decision": "reuse-byte-identical",
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_read_manual.svg",
+    "path": "web/ko/assets/symbol_read_manual.svg",
+    "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
+    "reason": "shared variant; source-bound glyph/caption admission against KR p4"
+  },
+  {
+    "slot": "symbol",
+    "decision": "reuse-byte-identical",
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/screwdriver-prohibited-tw-477dfbd7.svg",
+    "path": "web/ko/assets/screwdriver-prohibited-tw-477dfbd7.svg",
+    "sha256": "482e56e11b72b30ca053ee1cc94021f98909ceb9497e9c084738fd2b4a0fe01b",
+    "reason": "shared variant; source-bound glyph/caption admission against KR p4"
+  },
+  {
+    "slot": "symbol",
+    "decision": "reuse-byte-identical",
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_no_open_flame.svg",
+    "path": "web/ko/assets/symbol_no_open_flame.svg",
+    "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f",
+    "reason": "shared variant; source-bound glyph/caption admission against KR p4"
+  },
+  {
+    "slot": "symbol",
+    "decision": "reuse-byte-identical",
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_keep_away_from_children.svg",
+    "path": "web/ko/assets/symbol_keep_away_from_children.svg",
+    "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899",
+    "reason": "shared variant; source-bound glyph/caption admission against KR p4"
+  },
+  {
+    "slot": "symbol",
+    "decision": "reuse-byte-identical",
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_li_ion_dark.svg",
+    "path": "web/ko/assets/symbol_li_ion_dark.svg",
+    "sha256": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1",
+    "reason": "shared variant; source-bound glyph/caption admission against KR p4"
+  },
+  {
+    "slot": "symbol",
+    "decision": "reuse-byte-identical",
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/je3000c-kr-78316033-07.svg",
+    "path": "web/ko/assets/je3000c-kr-78316033-07.svg",
+    "sha256": "7a07f68dc10f6d748ef90fa56822330ce831eac6ef25954bca8f4ddfc0cfbe34",
+    "reason": "shared variant; source-bound glyph/caption admission against KR p4"
+  }
+]
