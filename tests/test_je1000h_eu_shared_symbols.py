@@ -85,11 +85,23 @@ class ThreeLanguagePackageTests(unittest.TestCase):
                 self.assertEqual(visible(PACKAGE / 'web' / language / name),
                                  visible(BASE / 'web' / language / name))
 
-    def test_candidate_is_not_publication_eligible(self):
+    def test_operator_approval_is_bound_to_every_language(self):
+        approval = read(PACKAGE / 'approval.json')
         manifest = read(PACKAGE / 'source_manifest.json')
-        self.assertTrue(manifest['publication_status'].startswith('candidate'))
+        self.assertEqual(approval['operator_quote'], '上线提交发布')
+        self.assertEqual(approval['target']['languages'], list(LANGUAGES))
+        self.assertTrue(manifest['publication_status'].startswith('operator-approved-git-only-release'))
         for language in LANGUAGES:
-            self.assertFalse(read(PACKAGE / 'web' / language / 'manual.ir.json')['metadata']['publication_eligible'])
+            with self.subTest(language=language):
+                metadata = read(PACKAGE / 'web' / language / 'manual.ir.json')['metadata']
+                self.assertTrue(metadata['publication_eligible'])
+                self.assertEqual(metadata['pending_source_review'], [])
+                self.assertEqual(metadata['operator_release_approval'], approval)
+                name = f'manual_je1000h_eu_{language}.md'
+                self.assertEqual(file_sha256(PACKAGE / 'web' / language / name),
+                                 approval['reviewed_candidate']['markdown_sha256'][language])
+        six = read(SIX_SOURCE / 'source_manifest.json')['shared_symbol_revision']
+        self.assertEqual(six['operator_release_approval']['operator_quote'], '上线提交发布')
 
     def test_manifest_locks_inputs_and_cold_replay_is_stable(self):
         manifest = read(PACKAGE / 'source_manifest.json')

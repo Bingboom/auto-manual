@@ -1,0 +1,36 @@
+{
+  "schema_version": "source-operator-acceptance/v1",
+  "target": {
+    "model": "JE-1000H",
+    "region": "EU",
+    "languages": [
+      "pt",
+      "nl",
+      "pl"
+    ]
+  },
+  "operator_quote": "上线提交发布",
+  "operator_decisions": [
+    "这个 JE-1000H的图标 改成共用图标",
+    "nl/pl/pt 也改，模板路径从 main 重建",
+    "上线提交发布"
+  ],
+  "date": "2026-10-26",
+  "reviewed_candidate": {
+    "engineering_pr": "Bingboom/auto-manual#1608",
+    "candidate_commit": "11930917",
+    "source_manifest_sha256": "73a651bac4f68dcc762d1809b7e7bddfb32e103774e38033a9251182eeccb3fd",
+    "markdown_sha256": {
+      "pt": "67011c64cbec96c259bdefb81185b2685a001b08a8c568bd235466a8dadd9d89",
+      "nl": "78d366854e3a7cd845408063b57df51db0ebd8a93204706b8bc5d2c7e721c49e",
+      "pl": "1afc214ab182a9e5cfa25ebffd7863a4a567dcf4a1c399f7b7dbb6e7bbc9c96d"
+    },
+    "renderings": "before/after symbol table at 1280 and 390 px, nine locales"
+  },
+  "decisions": {
+    "symbols": "read manual, do not dismantle, no open flame and keep away from children use the shared Web variants byte for byte; warning, Li-ion and WEEE unchanged; no copy change"
+  },
+  "original_source_sha256": "8bcb378fd0505237d91d5aa201d8bc0e84ee392963bfa6a73d32b8ed90b68feb",
+  "merge_authorization": "Operator review and merge of the engineering PR (AGENTS.md §8.6); no agent self-merge grant.",
+  "scope": "Git-only pt/nl/pl Web release of git-20261026-8bcb378f-shared-symbols; the approved temperature-web package unchanged; no Base, queue, source-table, asset-registry or HTML_link writes."
+}

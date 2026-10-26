@@ -51,11 +51,24 @@ No icon was drawn, cropped or added to the library.
 - Strict Sphinx for 18 before/after sites; Chromium 1280 and 390 px: no broken
   image and no horizontal scroll in the symbol table.
 
+## Release decision (2026-10-26)
+
+The operator reviewed the nine-locale 1280/390 before/after renderings and
+decided 「上线提交发布」. The six template locales record it in
+`manual_sources/JE-1000H/EU/en/2.0/source_manifest.json`
+(`shared_symbol_revision.operator_release_approval`); pt/nl/pl bind it in the
+package `approval.json`, which makes each IR publication-eligible. The engineering
+PR is merged by the operator (AGENTS.md §8.6).
+
 ## Pending
 
-1. Operator review of the 1280/390 before/after renderings, then 「上线提交发布」.
-2. Native symbol admission (`tools/web/symbol_asset_admission.py`) against the
-   EUUK V2.0 PDF (`07e9ac4b…`) and the HTE159 AI (`8bcb378f…`); neither file is
-   in the repository.
+1. pt/nl/pl seal: `seal_frozen_web_evidence` runs `require_symbol_asset_admission`,
+   which needs the HTE159 AI (`8bcb378f…`, not committed) and binds **every**
+   symbol row to a shared variant. The unchanged warning, Li-ion and WEEE rows
+   are native crops, so the seal cannot pass until the operator decides on those
+   three rows and supplies the AI.
+2. en/fr/es/de/it/uk: the template route's release evidence does not run the
+   symbol gate; they can be sealed from the merged main commit. uk must first be
+   compared with the live Hello-Docs file (the 100,493 vs 100,337 byte question).
 3. After merge: seal at the merged main commit and a Hello-Docs `docs/publish/**`
    PR. Hello-Docs access for this session is still missing.

@@ -2166,6 +2166,42 @@
     },
     "manual_theme_sha256": "e8fc88458d239edef85f2cfb0b26b71df2e83859c8e51e9c093e5abc2982b47d",
     "markdown_filename": "manual_je1000h_eu_nl.md",
+    "operator_release_approval": {
+      "date": "2026-10-26",
+      "decisions": {
+        "symbols": "read manual, do not dismantle, no open flame and keep away from children use the shared Web variants byte for byte; warning, Li-ion and WEEE unchanged; no copy change"
+      },
+      "merge_authorization": "Operator review and merge of the engineering PR (AGENTS.md §8.6); no agent self-merge grant.",
+      "operator_decisions": [
+        "这个 JE-1000H的图标 改成共用图标",
+        "nl/pl/pt 也改，模板路径从 main 重建",
+        "上线提交发布"
+      ],
+      "operator_quote": "上线提交发布",
+      "original_source_sha256": "8bcb378fd0505237d91d5aa201d8bc0e84ee392963bfa6a73d32b8ed90b68feb",
+      "reviewed_candidate": {
+        "candidate_commit": "11930917",
+        "engineering_pr": "Bingboom/auto-manual#1608",
+        "markdown_sha256": {
+          "nl": "78d366854e3a7cd845408063b57df51db0ebd8a93204706b8bc5d2c7e721c49e",
+          "pl": "1afc214ab182a9e5cfa25ebffd7863a4a567dcf4a1c399f7b7dbb6e7bbc9c96d",
+          "pt": "67011c64cbec96c259bdefb81185b2685a001b08a8c568bd235466a8dadd9d89"
+        },
+        "renderings": "before/after symbol table at 1280 and 390 px, nine locales",
+        "source_manifest_sha256": "73a651bac4f68dcc762d1809b7e7bddfb32e103774e38033a9251182eeccb3fd"
+      },
+      "schema_version": "source-operator-acceptance/v1",
+      "scope": "Git-only pt/nl/pl Web release of git-20261026-8bcb378f-shared-symbols; the approved temperature-web package unchanged; no Base, queue, source-table, asset-registry or HTML_link writes.",
+      "target": {
+        "languages": [
+          "pt",
+          "nl",
+          "pl"
+        ],
+        "model": "JE-1000H",
+        "region": "EU"
+      }
+    },
     "page_count": 16,
     "page_declarations": {},
     "pdf_intake_provenance": {
@@ -9323,12 +9359,9 @@
       ],
       "unresolved_text": []
     },
-    "pending_source_review": [
-      "operator review of the 1280/390 renderings and release approval",
-      "native symbol admission of the four shared variants against the HTE159 authority AI"
-    ],
+    "pending_source_review": [],
     "projection": "whole-document-components/v1",
-    "publication_eligible": false,
+    "publication_eligible": true,
     "rendered_source_figure_count": 10,
     "shared_component_coverage": {
       "applicable": true,
@@ -9500,7 +9533,7 @@
           "shared_symbol_key": "keep-away-from-children/adult-child-prohibited"
         }
       ],
-      "status": "candidate; operator rendering review, release approval and native admission pending"
+      "status": "operator-approved-git-only-release; native symbol admission pending at seal"
     },
     "skipped_raw": 0,
     "source_errata": {

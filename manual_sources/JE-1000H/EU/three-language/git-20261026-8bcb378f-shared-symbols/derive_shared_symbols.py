@@ -12,9 +12,10 @@ only in those four symbol assets of each language.
 - Each of the four rows reuses the selected shared Web variant byte for byte
   (``SYMBOL_KEYS``). Warning, Li-ion and WEEE keep their existing bytes.
 - Captions and all other copy stay unchanged; the visible text is checked.
-- The IR stays a candidate: not publication-eligible until the operator
-  approves the 1280/390 renderings and the glyphs pass native admission
-  against the HTE159 authority AI, which is not committed here.
+- The operator reviewed the 1280/390 renderings and decided 「上线提交发布」
+  (``approval.json``); with it each IR becomes publication-eligible. Native
+  symbol admission against the HTE159 authority AI, which is not committed
+  here, is still enforced when the release is sealed.
 
 The MyST is replayed from the IR by the public renderer. A second run leaves the
 tree unchanged.
@@ -38,7 +39,8 @@ from tools.web.frozen_ai_web import replay_package  # noqa: E402
 LANGUAGES = ('pt', 'nl', 'pl')
 TECHNICAL_VERSION = 'git-20261026-8bcb378f-shared-symbols'
 DERIVED_FROM = 'manual_sources/JE-1000H/EU/three-language/git-20261001-8bcb378f-temperature-web'
-STATUS = 'candidate; operator rendering review, release approval and native admission pending'
+CANDIDATE = 'candidate; operator rendering review, release approval and native admission pending'
+APPROVED = 'operator-approved-git-only-release; native symbol admission pending at seal'
 # Existing frozen asset (same bytes in all three languages) -> shared variant.
 SYMBOL_KEYS = {
     'assets/e36930ae4711_symbol-read_manual.png': 'read-manual/book-information',
@@ -135,7 +137,7 @@ def visible(markdown: str) -> list[str]:
     return sorted(''.join(soup.get_text('').replace('#', '').split()))
 
 
-def derive(language: str) -> list[dict]:
+def derive(language: str, approval: dict | None) -> list[dict]:
     web = PACKAGE / 'web' / language
     path = web / 'manual.ir.json'
     markdown = web / f'manual_je1000h_eu_{language}.md'
@@ -144,12 +146,15 @@ def derive(language: str) -> list[dict]:
     rows = bind_symbols(raw, web)
     rehash(raw)
     metadata = raw['metadata']
-    metadata['publication_eligible'] = False
-    metadata['pending_source_review'] = [
+    metadata['publication_eligible'] = approval is not None
+    metadata['pending_source_review'] = [] if approval else [
         'operator review of the 1280/390 renderings and release approval',
         'native symbol admission of the four shared variants against the HTE159 authority AI',
     ]
-    metadata['shared_symbol_revision'] = {'derived_from': DERIVED_FROM, 'status': STATUS, 'rows': rows}
+    if approval:
+        metadata['operator_release_approval'] = approval
+    metadata['shared_symbol_revision'] = {'derived_from': DERIVED_FROM,
+                                          'status': APPROVED if approval else CANDIDATE, 'rows': rows}
     write(path, raw, sort_keys=True)
     validate_document(read_manual_ir(path))
     replay_package(web)
@@ -167,10 +172,12 @@ def main() -> None:
             'replaced_sha256': {old: sha256(base / old) for old in SYMBOL_KEYS},
         }
         write(PACKAGE / 'source_manifest.json', manifest)
-    rows = {language: derive(language) for language in LANGUAGES}
+    approval_path = PACKAGE / 'approval.json'
+    approval = read(approval_path) if approval_path.is_file() else None
+    rows = {language: derive(language, approval) for language in LANGUAGES}
     manifest = read(PACKAGE / 'source_manifest.json')
     manifest['target']['technical_version'] = TECHNICAL_VERSION
-    manifest['publication_status'] = STATUS
+    manifest['publication_status'] = APPROVED if approval else CANDIDATE
     manifest['shared_symbol_revision'] = {
         'request': 'Operator 2026-10-26: 「这个 JE-1000H的图标 改成共用图标」; 「nl/pl/pt 也改」.',
         'unchanged': ['general_warning', 'lithium_battery', 'weee'],

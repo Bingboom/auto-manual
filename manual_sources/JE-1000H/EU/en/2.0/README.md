@@ -140,6 +140,6 @@ default PNGs (three of them carried an opaque gray backdrop). Warning, Li-ion
 and WEEE are unchanged. The six locales are rebuilt from main; visible text is
 unchanged apart from the decorative `⚠` signal glyph the shared renderer has
 dropped since 4e7df369. `source_manifest.json` re-locks the CSV and records the
-rows under `shared_symbol_revision`. Native admission against the EUUK V2.0 PDF
-and the operator's release approval are pending; see
+rows under `shared_symbol_revision`. The operator reviewed the 1280/390
+renderings and decided「上线提交发布」on 2026-10-26; see
 [the review record](../../../../../code-as-doc/reviews/je1000h_eu_shared_symbols_2026-10.md).

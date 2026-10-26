@@ -20,13 +20,18 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 1473,
-      "sha256": "f3be7521a34cd785d0d415050373e224bcbaee65988827e56a1acf4f71d53826"
+      "size": 1673,
+      "sha256": "af15a1508d4d7fd32d5ba0ec4810b6605fc9fadd0dc026170677d211d853c2a3"
+    },
+    {
+      "path": "approval.json",
+      "size": 1595,
+      "sha256": "4f1c2461456fa8db9bfe06afd1808c694f5bd905fcee026d12a3f17468fd3d84"
     },
     {
       "path": "derive_shared_symbols.py",
-      "size": 8274,
-      "sha256": "eed596a2ee6a21fcad24dad39ee615a91df78dfb5d08a93cef26bb4c5359ce1b"
+      "size": 8808,
+      "sha256": "9a9c6ef617ba1c7b2ec44cdfc144aeaf178402119fccc8e38f3704be02ecfaef"
     },
     {
       "path": "web/nl/_static/web_manual.css",
@@ -340,8 +345,8 @@
     },
     {
       "path": "web/nl/manual.ir.json",
-      "size": 647940,
-      "sha256": "63004d3dd8b329e499871c899ef9cb89d4df0d859eaa895e54a6dc21a7eabe21"
+      "size": 649530,
+      "sha256": "20a6008a64062e4df166476daeb9412f6f10b3618fed4887ea5bd0153131c493"
     },
     {
       "path": "web/nl/manual_je1000h_eu_nl.md",
@@ -660,8 +665,8 @@
     },
     {
       "path": "web/pl/manual.ir.json",
-      "size": 653538,
-      "sha256": "3a9efa3a62e6dabbb097feef527e0ed41daca2aba3bf1268a55d1de9419528a7"
+      "size": 655128,
+      "sha256": "76aa73594d75173358d8f47d5cc972ffbcee0e9751346a0cd203e39ec739a303"
     },
     {
       "path": "web/pl/manual_je1000h_eu_pl.md",
@@ -980,8 +985,8 @@
     },
     {
       "path": "web/pt/manual.ir.json",
-      "size": 650532,
-      "sha256": "2cbb2fa4e25aab60b7d785eccbf013a58ed52355dcf3aefa1030961bbf74da59"
+      "size": 652122,
+      "sha256": "c257e31f19c671ff8229b9d64f3b3f9ef2c335034dfd8b247684e7e8a042c9be"
     },
     {
       "path": "web/pt/manual_je1000h_eu_pt.md",
@@ -1025,7 +1030,7 @@
       "assets/8936085b3f6f_symbol-keep_away_from_children.png": "8936085b3f6fe236859cd9cdb44b4c8313cd71f2da1b9b1916ce11e5715bc03d"
     }
   },
-  "publication_status": "candidate; operator rendering review, release approval and native admission pending",
+  "publication_status": "operator-approved-git-only-release; native symbol admission pending at seal",
   "shared_symbol_revision": {
     "request": "Operator 2026-10-26: 「这个 JE-1000H的图标 改成共用图标」; 「nl/pl/pt 也改」.",
     "unchanged": [

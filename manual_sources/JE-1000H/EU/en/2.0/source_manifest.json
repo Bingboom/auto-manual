@@ -368,6 +368,12 @@
       "li_ion",
       "weee"
     ],
-    "status": "candidate; operator release approval and native admission against the EUUK V2.0 PDF pending"
+    "status": "operator-approved-git-only-release",
+    "operator_release_approval": {
+      "operator_quote": "上线提交发布",
+      "date": "2026-10-26",
+      "reviewed_candidate": "Bingboom/auto-manual#1608 at 47728cf5; before/after symbol table at 1280 and 390 px",
+      "scope": "Git-only en/fr/es/de/it/uk Web release rebuilt from the merged main commit; no Base, queue, source-table, asset-registry or HTML_link writes."
+    }
   }
 }
