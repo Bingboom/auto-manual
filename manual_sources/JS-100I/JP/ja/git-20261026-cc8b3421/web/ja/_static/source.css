@@ -1,0 +1,39 @@
+/* JS-100I (SolarSaga 100 Air) JP manual: page-local geometry and typography only.
+   Colours, borders and panels come from the shared Web theme (prepared-document shared-style gate). */
+
+/* Print bullets are "・" lines, as in the PDF. */
+#furo-main-content ul > li { list-style-type: "・"; }
+#furo-main-content ul { padding-left: 1.2rem; }
+#furo-main-content li > p { margin: .15rem 0; }
+
+/* Grey note panels keep their print lines. */
+#furo-main-content div.hb-text-panel { margin: .4rem 0 1.2rem; }
+#furo-main-content div.hb-text-panel > p { margin: 0; }
+
+/* Step and connection figures keep the print width of their frames. */
+#furo-main-content img[alt^="手順"], #furo-main-content img[alt^="収納手順"], #furo-main-content img[alt="ゴムプラグの図"] {
+  display: block; width: min(100%, 40rem) !important; margin: .4rem auto 1.2rem;
+}
+#furo-main-content .hb-reference-figure { width: min(100%, 40rem); margin-inline: auto; }
+
+/* 同梱品 and indicator close-ups keep their print size. */
+#furo-main-content img[alt^="正しい"], #furo-main-content img[alt^="正しくない"] { width: 10rem !important; height: auto; margin: .6rem 0 .2rem; }
+
+/* Headings keep the printed letter case (Jackery, SolarSaga, Pro/Plus/New). */
+#furo-main-content h2:not(.hb-spec-section) { text-transform: none; }
+
+/* "1630 x 423 x 17mm" keeps the printed letter x (no contextual × substitution). */
+#furo-main-content :is(.hb-spec-value, table.manual-spec-table td) { font-variant-ligatures: no-contextual; font-feature-settings: "calt" 0; }
+
+/* The three-column 電気データ table scrolls inside its own wrapper on narrow screens. */
+#furo-main-content div.table-wrapper { overflow-x: auto; }
+
+/* Figure labels keep their printed lines on the art; two print-wrapped labels wrap. */
+@media (min-width: 761px) {
+  #furo-main-content .hb-reference-live-label { white-space: nowrap; }
+  #furo-main-content [data-reference-id="rear-view"] .hb-reference-live-label[data-source-line="0"],
+  #furo-main-content [data-reference-id="device"] .hb-reference-live-label[data-source-line="5"] { white-space: normal; }
+}
+
+/* Back-cover QR code keeps its print size. */
+#furo-main-content img[alt="原稿裏表紙のQRコード"] { width: 96px !important; height: auto; margin: 1rem 0; }
