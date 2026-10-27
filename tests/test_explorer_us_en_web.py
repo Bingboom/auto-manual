@@ -16,6 +16,15 @@ from tools.word.bundle_docx_pandoc import resolve_pandoc_binary
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGES = {
+    "JE-100A": {
+        "path": "manual_sources/JE-100A/US/en/git-20261027-18058b6b",
+        "sha256": "18058b6bb7e83041fce1798f3baf98a018d079fa5caa6fd8dceec934df02c0b5",
+        "markdown": "manual_je100a_us_en.md",
+        "facts": ("JE-100A", "6.2Ah/16V 99.2Wh equal to 31000mAh 3.2V", "2000 cycles to 80%+ capacity", "128W Max"),
+        "foreign": ("JE-100C", "Explorer 100D", "Explorer 240", "140W MAX"),
+        "print_only": ("Version: JAK-UM-V1", "Contact us:"),
+        "tamper": ("2000 cycles to 80%+ capacity", "2001 cycles to 80%+ capacity"),
+    },
     "JE-100C": {
         "path": "manual_sources/JE-100C/US/en/git-20261027-39c58bca",
         "sha256": "39c58bca661f635fc9d500bc9362317b62b5da6f007589fbf8e4ebfcc8e0bad0",
