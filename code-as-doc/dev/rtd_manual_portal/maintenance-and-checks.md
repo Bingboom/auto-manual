@@ -65,7 +65,10 @@ Feishu credentials or runs the receiver.
   flip when the domain changes. It currently points at the private Read
   the Docs for Business project
   `https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest`. The portal home gets
-  canonical/OG through its own template; legacy pages and the title of any
+  canonical/OG through its own template. The site name in `og:site_name`, the
+  home `og:title` and the Sphinx site title is `说明书资料库` (`SITE_NAME` in
+  `tools/rtd/page_metadata.py`) in both site roles; an English brand such as
+  "Jackery Manual Center" is not used until it is formally launched; legacy pages and the title of any
   page without a verified identity stay byte-identical via the shadow
   `page.html`'s fallback to the theme block.
 - Root aliases are the countable print/QR entry layer (growth-plan L2).

@@ -5,8 +5,9 @@
     Internal pages add three groups after 说明书: 知识库 (首页), 产品与市场 (产品知识, 产品矩阵, 市场与政策) and
     说明书生产 (说明书工作台, 系统建设, 设计规范). Every sidebar entry is a page, so it is marked current on
     that page; sections of a page (知识库首页's 分享资料 and 最近更新) are not sidebar entries.
-    Public manual pages pass internal=false: only the `internal` branches are left out, so edit inside them and the
-    manual-library root stays byte-identical in both site roles. 「工作资料」 is the brand only. -#}
+    The manual-library root passes internal=false only in the manuals-only (public) site role: only the `internal`
+    branches are left out there. In the combined (private) role it gets the full shell, so readers can switch back to
+    the knowledge base. 「工作资料」 is the brand only. -#}
 {%- macro nav_link(href, icon, label, is_active, count='') -%}
 <a href="{{ href }}" class="app-nav-link{% if is_active %} active{% endif %}"{% if is_active %} aria-current="page"{% endif %}><i aria-hidden="true">{{ icon }}</i><span>{{ label }}</span>{% if count %}<em>{{ count }}</em>{% endif %}</a>
 {%- endmacro -%}
@@ -43,7 +44,7 @@
     {% if internal %}
     <div class="app-switch" aria-label="切换页面">
       <a{% if section == '知识库' %} class="selected"{% endif %} href="{{ pathto('workspace/index') }}">知识库</a>
-      <a href="{{ pathto('index') }}">说明书资料库</a>
+      <a{% if section != '知识库' %} class="selected"{% endif %} href="{{ pathto('index') }}">说明书资料库</a>
     </div>
     {% endif %}
   </div>

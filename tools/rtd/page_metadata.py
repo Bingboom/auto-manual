@@ -4,6 +4,9 @@ from __future__ import annotations
 from html import escape
 from urllib.parse import urlsplit
 
+# Site name for titles and link previews; the English brand is not launched yet.
+SITE_NAME = "说明书资料库"
+
 
 def normalize_site_base_url(raw: object) -> str:
     """Return the HTTPS site root for absolute URLs, or '' to omit them.
@@ -58,7 +61,7 @@ def head_markup(*, title: str, description: str, page_url: str,
     lines = [f'<meta name="description" content="{escape(description, quote=True)}" />']
     lines.append(f'<meta property="og:title" content="{escape(title, quote=True)}" />')
     lines.append(f'<meta property="og:description" content="{escape(description, quote=True)}" />')
-    lines.append('<meta property="og:site_name" content="Jackery Manual Center" />')
+    lines.append(f'<meta property="og:site_name" content="{SITE_NAME}" />')
     if site_base_url:
         canonical = f"{site_base_url}/{page_url}"
         lines.append(f'<link rel="canonical" href="{escape(canonical, quote=True)}" />')
@@ -73,8 +76,8 @@ def head_markup(*, title: str, description: str, page_url: str,
 
 def portal_head_markup(*, site_base_url: str) -> str:
     """Canonical and share metadata for the portal home page."""
-    lines = ['<meta property="og:title" content="Jackery Manual Center" />',
-             '<meta property="og:site_name" content="Jackery Manual Center" />']
+    lines = [f'<meta property="og:title" content="{SITE_NAME}" />',
+             f'<meta property="og:site_name" content="{SITE_NAME}" />']
     if site_base_url:
         lines.append(f'<link rel="canonical" href="{escape(site_base_url, quote=True)}/" />')
         lines.append(f'<meta property="og:url" content="{escape(site_base_url, quote=True)}/" />')
