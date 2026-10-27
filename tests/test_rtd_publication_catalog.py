@@ -68,10 +68,29 @@ class PublicationCatalogTests(unittest.TestCase):
         cards = catalog(self.root, self.settings)
         self.assertEqual(len(cards), 1)
         self.assertEqual(cards[0]["edition"], "EUUK")
-        available = [o["code"] for o in cards[0]["language_options"] if o["url"]]
-        self.assertEqual(available, ["en", "fr"])
-        self.assertEqual(len(cards[0]["language_options"]), 16)
-        self.assertEqual(cards[0]["language_options"][-1]["unavailable_reason"], "Not yet published")
+        options = cards[0]["language_options"]
+        self.assertEqual([(o["code"], o["display"], o["label"]) for o in options],
+                         [("en", "en-US", "English"), ("fr", "fr-FR", "Français")])
+        self.assertTrue(all(o["url"] for o in options))
+        self.assertTrue(all("unavailable_reason" not in o for o in options))
+
+    def test_single_language_product_lists_only_itself(self):
+        self.publication("ja", region="JP")
+        options = catalog(self.root, self.settings)[0]["language_options"]
+        self.assertEqual([(o["code"], o["display"]) for o in options], [("ja", "ja-JP")])
+
+    def test_every_portal_language_has_a_display_code(self):
+        expected = {"en": "en-US", "fr": "fr-FR", "es": "es-ES", "ja": "ja-JP", "de": "de-DE",
+                    "zh": "zh-CN", "it": "it-IT", "zh-TW": "zh-TW", "nl": "nl-NL", "pl": "pl-PL",
+                    "uk": "uk-UA", "pt": "pt-BR", "el": "el-GR", "he": "he-IL", "ar": "ar-SA", "ko": "ko-KR"}
+        self.assertEqual(self.settings["language_display_codes"], expected)
+        self.assertEqual(set(self.settings["language_labels"]), set(expected))
+
+    def test_language_without_display_code_fails_closed(self):
+        self.publication("fr")
+        settings = dict(self.settings, language_display_codes={"en": "en-US"})
+        with self.assertRaisesRegex(ValueError, "Unknown portal publication language: fr"):
+            catalog(self.root, settings)
 
     def test_cn_and_jp_publications_keep_market_and_language_identity(self):
         self.publication("zh", region="CN")
@@ -88,16 +107,16 @@ class PublicationCatalogTests(unittest.TestCase):
     def test_legacy_scope_does_not_count_as_english_only(self):
         self.publication(scope="legacy_unspecified")
         card = catalog(self.root, self.settings)[0]
-        self.assertEqual([o["code"] for o in card["language_options"] if o["url"]], ["current"])
-        self.assertEqual(card["language_options"][1]["unavailable_reason"], "Separate language page not verified")
+        self.assertEqual([(o["code"], o["display"]) for o in card["language_options"]],
+                         [("current", "Current publication")])
 
     def test_legacy_alongside_single_does_not_assert_language_absence(self):
         self.publication(scope="legacy_unspecified")
         self.publication("fr", default=False)
         card = catalog(self.root, self.settings)[0]
-        self.assertEqual([o["code"] for o in card["language_options"] if o["url"]], ["current", "fr"])
-        self.assertTrue(all(o["unavailable_reason"] == "Separate language page not verified"
-                            for o in card["language_options"] if not o["url"]))
+        self.assertEqual([(o["code"], o["display"]) for o in card["language_options"]],
+                         [("current", "Current publication"), ("fr", "fr-FR")])
+        self.assertTrue(all(o["url"] for o in card["language_options"]))
 
     def test_missing_metadata_for_locale_route_fails(self):
         meta = self.publication()
