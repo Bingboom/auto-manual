@@ -196,8 +196,8 @@
     },
     {
       "path": "refresh_manifest.py",
-      "size": 1607,
-      "sha256": "666a9605f10358fb5aae3dbf5ace80a8f18cef4c0a54252d08af3dfa5e6ce58f"
+      "size": 2558,
+      "sha256": "44734d96277d4098205a8ffc343f7a1966815f0343b5c9e1eed5251400769496"
     },
     {
       "path": "source/asset_decisions.json",
@@ -249,5 +249,14 @@
       "missing_images": 0,
       "page_horizontal_overflow": 0
     }
-  }
+  },
+  "post_approval_amendments": [
+    {
+      "date": "2026-10-27",
+      "paths": [
+        "refresh_manifest.py"
+      ],
+      "change": "tooling only: add the frozen inventory mode used by seal_frozen_web_evidence; no source, transcription, content or asset change"
+    }
+  ]
 }

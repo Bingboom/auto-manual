@@ -1,5 +1,5 @@
-......................{
-  "output": "/tmp/tmpa5zo674q/replay",
+...{
+  "output": "/tmp/tmpkb52pmhs/replay",
   "chapters": 12,
   "components": {
     "HB-CALLOUT-STRIP": 20,
@@ -46,9 +46,9 @@
     }
   ]
 }
-......
+.........................
 ----------------------------------------------------------------------
-Ran 28 tests in 70.448s
+Ran 28 tests in 52.214s
 
 OK
 rc=0

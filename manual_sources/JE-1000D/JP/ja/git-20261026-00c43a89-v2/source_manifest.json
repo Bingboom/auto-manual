@@ -441,13 +441,13 @@
     },
     {
       "path": "refresh_manifest.py",
-      "size": 1607,
-      "sha256": "666a9605f10358fb5aae3dbf5ace80a8f18cef4c0a54252d08af3dfa5e6ce58f"
+      "size": 2558,
+      "sha256": "44734d96277d4098205a8ffc343f7a1966815f0343b5c9e1eed5251400769496"
     },
     {
       "path": "source/approval.json",
-      "size": 8283,
-      "sha256": "bbe5d8742fc5b613a4b9f477aa053f47cd84d76659a5eaedc3aadd1e48a7e07a"
+      "size": 8562,
+      "sha256": "c0d59888608b333c39cdf6deade6529421447dad023c21de0b98c6ae46194f1c"
     },
     {
       "path": "source/asset_decisions.json",

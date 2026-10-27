@@ -7,6 +7,7 @@
 [build.py] python -m tools.build.docs --config configs/config.ja.yaml --model JE-1000F --region JP --data-root tests/fixtures/phase2 --source auto --prepare-only --clean --no-open
 [build] validating config...
 [build] validating layout params...
+[build] Cleaning target output: docs/_build/JE-1000F/JP
 [build] target: model='JE-1000F', region='JP', lang=''
 [build] Staged 26 frozen attachment alias(es) across 2 bundle file(s)
 [build] Prepared bundle: docs/_build/JE-1000F/JP/rst
