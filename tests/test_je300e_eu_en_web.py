@@ -232,10 +232,9 @@ class Je300eEuEnWebTests(unittest.TestCase):
         row.update(size=path.stat().st_size, sha256=file_sha256(path))
         # This negative fixture targets acceptance, not historical shared-input drift.
         # Rebind only its temporary manifest; frozen production inputs stay unchanged.
-        symbols = ROOT / 'docs/renderers/web/assets/shared/symbols/manifest.json'
-        dependency = next(row for row in manifest['repo_inputs']
-                          if row['path'] == symbols.relative_to(ROOT).as_posix())
-        dependency.update(size=symbols.stat().st_size, sha256=file_sha256(symbols))
+        for dependency in manifest['repo_inputs']:
+            current = ROOT / dependency['path']
+            dependency.update(size=current.stat().st_size, sha256=file_sha256(current))
         write(source / 'source_manifest.json', manifest)
         with self.assertRaisesRegex(ValueError, 'operator acceptance does not cover these source inputs'):
             rebuild(self.root / 'output', source)
