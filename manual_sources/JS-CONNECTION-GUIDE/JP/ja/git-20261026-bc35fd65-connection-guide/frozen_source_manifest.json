@@ -116,8 +116,8 @@
     },
     {
       "path": "evidence/validation.json",
-      "size": 1936,
-      "sha256": "caefd97fe27102e87c08d95bd3db983e3f6463a2dfabc90f2fda85f088052436"
+      "size": 2798,
+      "sha256": "7b11711f3be14d09d5d8074546e17f137aeb97d2cfb96385a82b651aae8cccee"
     },
     {
       "path": "refresh_manifest.py",
