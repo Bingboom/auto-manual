@@ -10,14 +10,22 @@ Stored metadata validation reuses the OPS-02 shared contract reader rather than
 introducing another route/schema parser in the portal.
 
 Only a locale route with matching target v2 metadata and `language_scope=single`
-enables a language option. Legacy/unknown scope retains **Current publication**;
+adds a language option. Legacy/unknown scope retains **Current publication**;
 the historical `lang=en` slot is not proof of English-only text. Missing metadata
-for a locale route, conflicting defaults, duplicate languages and unsafe paths
-fail closed. Planned languages without a verified publication remain disabled.
-When a legacy publication exists, disabled options say **Separate language page
-not verified**, not **Not yet published**: the existing manual may already contain
-that language. The latter wording is reserved for an entirely verified single-
-language publication set. Current publication remains accessible in either case.
+for a locale route, conflicting defaults, duplicate languages, a published
+language without a display code and unsafe paths fail closed. The picker lists
+only verified publications: planned or unverified languages are not shown, and
+there are no disabled options or reasons. A single-language product therefore
+shows one selected option; a legacy publication keeps **Current publication**
+beside any verified single-language pages.
+
+Option text is the language code from `settings.json` `language_display_codes`
+(`en-US`, `fr-FR`, `es-ES`, `de-DE`, `it-IT`, `pt-BR`, `nl-NL`, `pl-PL`, `uk-UA`,
+`zh-CN`, `zh-TW`, `ja-JP`, plus defaults `el-GR`, `he-IL`, `ar-SA`, `ko-KR`), used by
+both the manual-page picker and the homepage “查看说明书” dialog. Codes are per language,
+not per market: English is `en-US` in every market, EU/UK included. Page titles,
+descriptions, `hreflang`, search languages and homepage card tags keep the native
+names from `language_labels`.
 
 The language picker preserves model and market edition and opens the selected
 manual from its beginning. No current chapter/query/fragment is carried across.
@@ -26,8 +34,8 @@ the configured Hebrew/Arabic options also select RTL content direction when a
 real single-language publication is supplied. This is presentation support,
 not a claim that those translations or renderer source-language bindings exist.
 
-The twelve option labels are presentation configuration. Do not infer a specific
-Portuguese regional translation from the generic planned label; confirm the
+Display codes are presentation configuration. Do not infer a specific
+Portuguese regional translation from the `pt-BR` display code; confirm the
 returned locale and content-source binding before a real Portuguese release.
 The homepage's no-JavaScript list retains every explicit publication link.
 Legacy manual pages receive no new injected navigation, preserving their output.

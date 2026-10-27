@@ -63,7 +63,9 @@ def _provenance(root: Path, metadata: Path, payload: dict | None) -> dict:
             "built_at": payload.get("built_at"), "source_manifest": source_manifest}
 
 
-def group_publications(records: list[dict], language_labels: dict[str, str]) -> list[dict]:
+def group_publications(records: list[dict], language_labels: dict[str, str],
+                       display_codes: dict[str, str]) -> list[dict]:
+    """One card per model/market; picker options list only verified publications."""
     groups: dict[tuple[str, str], list[dict]] = {}
     for record in records:
         groups.setdefault((record["model"].casefold(), record["region"].casefold()), []).append(record)
@@ -82,20 +84,17 @@ def group_publications(records: list[dict], language_labels: dict[str, str]) -> 
             if publication["language_scope"] != "single":
                 continue
             lang = publication["lang"]
-            if lang not in language_labels:
+            if lang not in language_labels or not display_codes.get(lang):
                 raise ValueError(f"Unknown portal publication language: {lang}")
             if lang in single:
                 raise ValueError(f"Duplicate portal publication language: {lang}")
             single[lang] = publication["url"]
         options = []
         if current["language_scope"] != "single":
-            options.append({"code": "current", "label": "Current publication", "url": current["url"]})
-        unavailable_reason = ("Separate language page not verified"
-                              if any(p["language_scope"] != "single" for p in publications)
-                              else "Not yet published")
-        options.extend({"code": code, "label": label, "url": single.get(code),
-                        "unavailable_reason": unavailable_reason}
-                       for code, label in language_labels.items())
+            options.append({"code": "current", "label": "Current publication",
+                            "display": "Current publication", "url": current["url"]})
+        options.extend({"code": code, "label": label, "display": display_codes[code], "url": single[code]}
+                       for code, label in language_labels.items() if code in single)
         card = dict(current)
         card.update(publications=publications, language_options=options)
         result.append(card)
