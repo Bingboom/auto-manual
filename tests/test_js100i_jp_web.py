@@ -17,6 +17,9 @@ from tools.word.bundle_docx_pandoc import resolve_pandoc_binary
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGE = ROOT / "manual_sources/JS-100I/JP/ja/git-20261026-cc8b3421"
+# The spec-table edition: the base package with the 電気データ table on the shared spec-table frame.
+EDITION = ROOT / "manual_sources/JS-100I/JP/ja/git-20261027-cc8b3421-spec-table"
+EDITED = {"source/page/spec_ja.rst", "source/presentation.css"}
 SOURCE_SHA = "cc8b3421221bf11b03f2ddd0ce86519605189fbe0721a7d8a536520d75513e6f"
 MARKDOWN = "manual_js100i_jp_ja.md"
 # The printed chapter strips; the cover has no Web chapter.
@@ -32,6 +35,7 @@ def load(name: str, path: Path):
 
 
 render_module = load("js100i_jp_render", PACKAGE / "render.py")
+derive_module = load("js100i_jp_derive_spec_table", EDITION / "derive_spec_table.py")
 
 
 def read(path: Path) -> dict:
@@ -139,6 +143,62 @@ class Js100iJpWebTests(unittest.TestCase):
             page.write_text(page.read_text(encoding="utf-8").replace("100W±5%", "110W±5%"), encoding="utf-8")
             with self.assertRaisesRegex(ValueError, "frozen source input changed"):
                 render_module.render(source, Path(temp) / "out")
+
+
+class Js100iJpSpecTableEditionTests(unittest.TestCase):
+    def test_identity_and_base_binding(self):
+        manifest = read(EDITION / "source_manifest.json")
+        self.assertEqual(manifest["target"]["technical_version"], EDITION.name)
+        self.assertEqual(manifest["original_source"]["sha256"], SOURCE_SHA)
+        self.assertEqual(manifest["derived_from"]["package"], PACKAGE.name)
+        self.assertEqual(manifest["derived_from"]["manifest_sha256"], file_sha256(PACKAGE / "source_manifest.json"))
+        self.assertEqual(manifest["publication_status"], render_module.APPROVED)
+        self.assertTrue(manifest["publication_eligible"])
+
+    def test_only_the_spec_table_differs_from_the_base(self):
+        own = {"source/approval.json", "source/differences.md"}
+        base = {p.relative_to(PACKAGE).as_posix() for root in ("source", "assets")
+                for p in (PACKAGE / root).rglob("*") if p.is_file()} - own
+        edition = {p.relative_to(EDITION).as_posix() for root in ("source", "assets")
+                   for p in (EDITION / root).rglob("*") if p.is_file()} - own
+        self.assertEqual(edition, base)
+        for name in sorted(base - EDITED) + ["render.py"]:
+            self.assertEqual((EDITION / name).read_bytes(), (PACKAGE / name).read_bytes(), name)
+        for name in EDITED:
+            self.assertNotEqual((EDITION / name).read_bytes(), (PACKAGE / name).read_bytes(), name)
+        # The stored pages are exactly what the derivation produces from the base.
+        self.assertEqual((EDITION / "source/page/spec_ja.rst").read_text(encoding="utf-8"),
+                         derive_module.edited_spec_page())
+        self.assertEqual((EDITION / "source/presentation.css").read_text(encoding="utf-8"),
+                         derive_module.edited_stylesheet())
+
+    def test_visible_copy_is_unchanged(self):
+        edition = (EDITION / "web/ja" / MARKDOWN).read_text(encoding="utf-8")
+        self.assertEqual(visible_text(edition), visible_text((PACKAGE / "web/ja" / MARKDOWN).read_text(encoding="utf-8")))
+        self.assertEqual(visible_text(edition), expected_text())
+
+    def test_electrical_table_uses_the_shared_spec_frame(self):
+        soup = BeautifulSoup((EDITION / "web/ja" / MARKDOWN).read_text(encoding="utf-8"), "html.parser")
+        frames = soup.select("figure.hb-spec-table-composition")
+        self.assertEqual([f.get("aria-label") for f in frames], ["基本情報", "電気データ", "多機能アダプタ"])
+        table = frames[1].find("table")
+        self.assertIn("hb-spec-table", table["class"])
+        rows = table.tbody.find_all("tr")
+        self.assertEqual(len(rows), 12)
+        self.assertTrue(all("hb-spec-label" in row.th["class"] for row in rows))
+        self.assertTrue(all("hb-spec-value" in cell["class"] for row in rows for cell in row.find_all("td")))
+        self.assertEqual(soup.select("div.table-wrapper"), [])
+
+    def test_cold_replay_matches_stored_edition(self):
+        try:
+            subprocess.run([resolve_pandoc_binary(None), "--version"], check=True, capture_output=True)
+        except (OSError, RuntimeError, subprocess.CalledProcessError):
+            self.skipTest("Pandoc unavailable")
+        with tempfile.TemporaryDirectory() as temp:
+            output = Path(temp) / "replay"
+            render_module.render(EDITION, output)
+            for name in (MARKDOWN, "manual.ir.json", "_static/source.css"):
+                self.assertEqual((output / name).read_bytes(), (EDITION / "web/ja" / name).read_bytes(), name)
 
 
 if __name__ == "__main__":
