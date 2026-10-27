@@ -1,0 +1,50 @@
+{
+  "schema_version": "source-operator-acceptance/v1",
+  "target": {
+    "model": "JE-1000H",
+    "region": "EU",
+    "languages": [
+      "pt",
+      "nl",
+      "pl"
+    ]
+  },
+  "operator_quote": "上线提交发布",
+  "operator_decisions": [
+    "这个 JE-1000H的图标 改成共用图标",
+    "nl/pl/pt 也改，模板路径从 main 重建",
+    "上线提交发布（2026-10-26，四行版）",
+    "那三行也换成共用图标",
+    "要允许误差 这个误差 就是人工引入的 你需要处理成共用的",
+    "上线提交发布（2026-10-27，七行版）"
+  ],
+  "date": "2026-10-27",
+  "reviewed_candidate": {
+    "engineering_pr": "Bingboom/auto-manual#1608",
+    "candidate_commit": "04dad55a",
+    "markdown_sha256": {
+      "pt": "a0ba371848b2b14b55945a4371e38cb0d2cb4abeeed410593e1679f7f86bb663",
+      "nl": "91eec6f9cc5a19606488aed4dc86a38a5ebf97f7463068b07804719ff569da33",
+      "pl": "f9e4d011cd03283917f924e558e38706f4055a8d0115c17fc3dfec9d264a5e82"
+    },
+    "renderings": "before/after symbol table at 1280 and 390 px, pt/nl/pl seven shared rows (Li-ion native-dark)"
+  },
+  "decisions": {
+    "symbols": "all seven symbol rows use shared Web variants byte for byte; Li-ion li-ion/recycle-li-ion-native-dark admitted under the trusted glyph waivers JE1000H-1465-{PT,NL,PL}-SYMBOL-LI-ION; no copy change",
+    "authority": "batch-1465 revised AI JE-1000H_修正版.ai (ffbad263…) from the 发布文档管理 record"
+  },
+  "original_source_sha256": "ffbad263b763f60b34df14beabc5afaaf68b9bb8c9b64332f29ce2bc93281fa4",
+  "merge_authorization": "Operator review and merge of the engineering PR (AGENTS.md §8.6); no agent self-merge grant.",
+  "scope": "Git-only pt/nl/pl Web release of git-20261026-8bcb378f-shared-symbols; the approved temperature-web package unchanged; no Base, queue, source-table, asset-registry or HTML_link writes.",
+  "superseded_review": {
+    "engineering_pr": "Bingboom/auto-manual#1608",
+    "candidate_commit": "11930917",
+    "source_manifest_sha256": "73a651bac4f68dcc762d1809b7e7bddfb32e103774e38033a9251182eeccb3fd",
+    "markdown_sha256": {
+      "pt": "67011c64cbec96c259bdefb81185b2685a001b08a8c568bd235466a8dadd9d89",
+      "nl": "78d366854e3a7cd845408063b57df51db0ebd8a93204706b8bc5d2c7e721c49e",
+      "pl": "1afc214ab182a9e5cfa25ebffd7863a4a567dcf4a1c399f7b7dbb6e7bbc9c96d"
+    },
+    "renderings": "before/after symbol table at 1280 and 390 px, nine locales"
+  }
+}

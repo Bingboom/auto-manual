@@ -130,3 +130,29 @@ to Explorer 1000 Plus. Existing paragraph separation is retained. Italian uses
 the independent sentence pair's correct `mantenuta`, avoiding the shared LCD
 row's `antenuta` typo. Original values, replacement text and cause are retained
 in `source_manifest.json`; neither the original PDF nor live tables are edited.
+
+Shared symbol glyphs (2026-10-26, candidate): the operator asked「这个 JE-1000H的图标
+改成共用图标」. Four JE-1000H rows of `phase2/symbols_blocks.csv` now set
+`image_path` to the shared Web variants `read-manual/book-information`,
+`do-not-dismantle/screwdriver-prohibited`, `no-open-flame/fire-match-prohibited`
+and `keep-away-from-children/adult-child-prohibited` instead of the template
+default PNGs (three of them carried an opaque gray backdrop). Warning, Li-ion
+and WEEE are unchanged. The six locales are rebuilt from main; visible text is
+unchanged apart from the decorative `⚠` signal glyph the shared renderer has
+dropped since 4e7df369. `source_manifest.json` re-locks the CSV and records the
+rows under `shared_symbol_revision`. The operator reviewed the 1280/390
+renderings and decided「上线提交发布」on 2026-10-26; see
+[the review record](../../../../../code-as-doc/reviews/je1000h_eu_shared_symbols_2026-10.md).
+
+WEEE row (2026-10-27, candidate): the template `weee.png` has an opaque white
+backdrop and its bytes are already withdrawn in the shared symbol manifest. The
+operator decided「weee.png 带不透明的白底== 处理成透明底 作为共用的」, so the WEEE row
+now points at the transparent shared variant `weee/crossed-bin-bar`, the same
+glyph. The operator then decided「那两个也换成共用透明的」: warning and Li-ion 32,
+whose template bytes are also withdrawn, now point at
+`warning/outline-triangle-tinted` and `li-ion/recycle-li-ion-32-gray`. Every
+symbol row of the six locales is a shared variant; text is unchanged.
+
+Release decision (2026-10-27): the operator reviewed the seven-row 1280/390
+renderings and decided「上线提交发布」; `shared_symbol_revision.operator_release_approval`
+records it. The six locales are rebuilt from the merged main commit.
