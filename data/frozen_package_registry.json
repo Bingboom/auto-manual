@@ -1420,6 +1420,11 @@
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",
       "known_drift": {}
+    },
+    "manual_sources/JS-100I/JP/ja/git-20261026-cc8b3421": {
+      "approval": "User request 2026-10-26 (「分几个窗口把这个目录下面的文档都转成网页文档」「韩语文档除外」): Git-only JS-100I JP Web conversion; operator 「全部照录，版式都接受，上线提交发布，保留疑点后续纠正」 2026-10-27, merged by operator PR review (see source/approval.json)",
+      "registered": "2026-10-26",
+      "known_drift": {}
     }
   },
   "drift_log": [
