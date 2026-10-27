@@ -210,7 +210,7 @@ python -m tools.rtd.review_table_sync <clone>/docs/review-drafts --line <MODEL>/
   审核页 = a link titled `<MODEL> <REGION> 审核页` to the line page
   `<site>/<MODEL>/<REGION>.html`. 型号, 商品名称,
   市场 and 语言 are identity fields set when the row is created; every other
-  column (such as a future 当前执笔) belongs to someone else.
+  column belongs to someone else.
 - **Public whitelist and leak check.** The row reaches the public Hello-Docs
   through the daily `web_progress` snapshot, so only the owned fields are
   written, and a line whose `draft.json` `nameplate_model` or `sales_model`
