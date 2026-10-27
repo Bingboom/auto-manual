@@ -32,7 +32,7 @@
     "part_number": "38-0001-000716",
     "note": "the leaflet prints no product model: it is a cross-model connection guide (通用). The route model segment JS-CONNECTION-GUIDE is the operator's decision of 2026-10-26; the part number comes from the file name and drawing title block"
   },
-  "source_authority": "operator-designated Feishu wiki file 「38-0001-000716 太阳能板连接指南折页 通用 RoHS REACH-Q.pdf」 in the folder named by the operator on 2026-10-26 (「分几个窗口把这个目录下面的文档都转成网页文档」, 「韩语文档除外」); the operator chose the Japanese face only and the route JS-CONNECTION-GUIDE. The original Japanese governs all copy. Review candidate only: no operator release acceptance yet.",
+  "source_authority": "operator-designated Feishu wiki file 「38-0001-000716 太阳能板连接指南折页 通用 RoHS REACH-Q.pdf」 in the folder named by the operator on 2026-10-26 (「分几个窗口把这个目录下面的文档都转成网页文档」, 「韩语文档除外」); the operator chose the Japanese face only and the route JS-CONNECTION-GUIDE. The original Japanese governs all copy. Operator accepted reviewed candidate eb61b66 (PR #1610) for public Git-only JP/ja release on 2026-10-27 (「上线提交发布」; merge by operator review). Acceptance is hash-bound in source/approval.json; the source concerns stay with the source owner.",
   "source_role": "Git-only Japanese Web candidate of the Japanese face of the solar generator connection-guide leaflet; the international EN/FR/ES/PT face is archived in source/original.pdf and not on the Web",
   "route": {
     "model_segment": "JS-CONNECTION-GUIDE",
@@ -41,12 +41,9 @@
   },
   "language_scope": "single",
   "live_bitable_dependency": false,
-  "publication_status": "review-candidate-no-release-authorization",
-  "publication_eligible": false,
-  "pending_source_review": [
-    "operator review of the 1280/390 renders against the PDF and the JA-CK01A-BK-QG JP reference edition",
-    "source concerns listed below go to the source owner; nothing is corrected here"
-  ],
+  "publication_status": "operator-approved-git-only-release",
+  "publication_eligible": true,
+  "pending_source_review": [],
   "page_order": [
     "01_connection_guide_ja.rst"
   ],
@@ -59,8 +56,8 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 6386,
-      "sha256": "fd916fa60ce094041e67578ae7c69867514b526b3fa6e9650bd04f8a6698cedf"
+      "size": 6585,
+      "sha256": "7a55c713e67df83f2678a94d38f108d1bea93b3152f3151f547392e355ccc31a"
     },
     {
       "path": "assets/connection-dc7909.png",
@@ -133,6 +130,11 @@
       "sha256": "5e766e4614bfa063107f3e8d7f92d5d84b53d1bcb7f125cef866af9c5ad82802"
     },
     {
+      "path": "source/approval.json",
+      "size": 2596,
+      "sha256": "e3f91df33fea84dabff83c10e55712326f1063f83f7a48ee2e5fb25c0cb6a2fc"
+    },
+    {
       "path": "source/asset_decisions.json",
       "size": 9709,
       "sha256": "99c3032a7cdc720ae499ada6206b15aa20d024a329c9088bd88e69981662c6a8"
@@ -159,8 +161,8 @@
     },
     {
       "path": "source_manifest.json",
-      "size": 9482,
-      "sha256": "55ea54efc099f000a49a977605402455e35097b52a9d507ba941f9ca845d2b34"
+      "size": 9630,
+      "sha256": "b88cd6a15c5df1ac3dd6704ba8b87c04aaccdc7e7be343b342e6539b08103d6f"
     },
     {
       "path": "web/ja/_static/source.css",
@@ -209,8 +211,8 @@
     },
     {
       "path": "web/ja/manual.ir.json",
-      "size": 116696,
-      "sha256": "11f5df5f35f480ddcadac74eadc19be327e8b54a6b9eb7152666561f77d51469"
+      "size": 119521,
+      "sha256": "f18928d42c27ff962b2e69f97cc6b53b9422ecb5bb13c4956757fdaf0e6bb514"
     },
     {
       "path": "web/ja/manual_bundle.html",

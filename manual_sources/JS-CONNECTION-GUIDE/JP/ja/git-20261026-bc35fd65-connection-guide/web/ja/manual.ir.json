@@ -1317,6 +1317,11 @@
           "size": 7634
         },
         {
+          "path": "source/approval.json",
+          "sha256": "e3f91df33fea84dabff83c10e55712326f1063f83f7a48ee2e5fb25c0cb6a2fc",
+          "size": 2596
+        },
+        {
           "path": "source/asset_decisions.json",
           "sha256": "99c3032a7cdc720ae499ada6206b15aa20d024a329c9088bd88e69981662c6a8",
           "size": 9709
@@ -1364,13 +1369,10 @@
       "page_order": [
         "01_connection_guide_ja.rst"
       ],
-      "pending_source_review": [
-        "operator review of the 1280/390 renders against the PDF and the JA-CK01A-BK-QG JP reference edition",
-        "source concerns listed below go to the source owner; nothing is corrected here"
-      ],
+      "pending_source_review": [],
       "printed_manual_version": null,
-      "publication_eligible": false,
-      "publication_status": "review-candidate-no-release-authorization",
+      "publication_eligible": true,
+      "publication_status": "operator-approved-git-only-release",
       "repo_inputs": [
         {
           "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
@@ -1395,7 +1397,7 @@
           "text_sha256": "bd47cab41e944ec128de784f71e6106954fd012685ce8b71b4f5a102a12eb8bb"
         }
       ],
-      "source_authority": "operator-designated Feishu wiki file 「38-0001-000716 太阳能板连接指南折页 通用 RoHS REACH-Q.pdf」 in the folder named by the operator on 2026-10-26 (「分几个窗口把这个目录下面的文档都转成网页文档」, 「韩语文档除外」); the operator chose the Japanese face only and the route JS-CONNECTION-GUIDE. The original Japanese governs all copy. Review candidate only: no operator release acceptance yet.",
+      "source_authority": "operator-designated Feishu wiki file 「38-0001-000716 太阳能板连接指南折页 通用 RoHS REACH-Q.pdf」 in the folder named by the operator on 2026-10-26 (「分几个窗口把这个目录下面的文档都转成网页文档」, 「韩语文档除外」); the operator chose the Japanese face only and the route JS-CONNECTION-GUIDE. The original Japanese governs all copy. Operator accepted reviewed candidate eb61b66 (PR #1610) for public Git-only JP/ja release on 2026-10-27 (「上线提交发布」; merge by operator review). Acceptance is hash-bound in source/approval.json; the source concerns stay with the source owner.",
       "source_concerns": [
         {
           "disposition": "kept verbatim",
@@ -2013,16 +2015,83 @@
     },
     "manual_theme_sha256": "e8fc88458d239edef85f2cfb0b26b71df2e83859c8e51e9c093e5abc2982b47d",
     "markdown_filename": "manual_jsconnectionguide_jp_ja.md",
-    "operator_source_acceptance": null,
+    "operator_source_acceptance": {
+      "date": "2026-10-27",
+      "merge_authorization": "none: the operator reviews and merges the engineering PR (AGENTS.md §8.6)",
+      "operator_decisions": [
+        "Japanese face only; the international EN/FR/ES/PT face stays archived in source/original.pdf and web-excluded (2026-10-26)",
+        "route JS-CONNECTION-GUIDE/JP/ja (2026-10-26)",
+        "release the reviewed candidate (1280/390 renders and the PDF/reference comparison, PR #1610)"
+      ],
+      "operator_quote": "上线提交发布",
+      "original_source_sha256": "bc35fd6518769bd26c88fee088cc3a748c0ef680f4419682bede0f62738f8821",
+      "reviewed_inputs": [
+        {
+          "path": "assets/connection-dc7909.png",
+          "sha256": "abe4cca076900a7be9f6bc2adb081d093d4a8dbccbcd586d01fabc739487666f",
+          "size": 337545
+        },
+        {
+          "path": "assets/connection-dc8020.png",
+          "sha256": "6e73f775619401ddce19df07328191bf264282a9bc16978d296647dfcca2cdc4",
+          "size": 331080
+        },
+        {
+          "path": "assets/port-dc7909.png",
+          "sha256": "2ee981d5176fab8f58a6839465b3a52fdc0eebef4328391ebea3926769afeea8",
+          "size": 126764
+        },
+        {
+          "path": "assets/port-dc8020.png",
+          "sha256": "ac5ec92cf0865d45fd453f9f8b7fe43c435c6e4a5da0399952a9c2e254340e8c",
+          "size": 123005
+        },
+        {
+          "path": "assets/port-usb-c.png",
+          "sha256": "253e6efc97b0505d7b966ececf0f6ad074e293eaeeae985316ae6ac574e1289f",
+          "size": 114269
+        },
+        {
+          "path": "source/asset_decisions.json",
+          "sha256": "99c3032a7cdc720ae499ada6206b15aa20d024a329c9088bd88e69981662c6a8",
+          "size": 9709
+        },
+        {
+          "path": "source/original.pdf",
+          "sha256": "bc35fd6518769bd26c88fee088cc3a748c0ef680f4419682bede0f62738f8821",
+          "size": 27334114
+        },
+        {
+          "path": "source/page/01_connection_guide_ja.rst",
+          "sha256": "a03a74c88dd160de1551dff51234166f52c2472c956c25e6507bd2af038f0094",
+          "size": 3587
+        },
+        {
+          "path": "source/presentation.css",
+          "sha256": "12052b5151a7bcc1a4b883fd0e029ba1137e44a15745831251fed3f96032c50c",
+          "size": 1170
+        },
+        {
+          "path": "source/transcription.json",
+          "sha256": "43c471b02f53846d9220ac71e208048f3fd491698e23cd04f0c0e742a329b21b",
+          "size": 9697
+        }
+      ],
+      "reviewed_source_commit": "eb61b66",
+      "schema_version": "source-operator-acceptance/v1",
+      "scope": "Git-only Web release of the JS-CONNECTION-GUIDE JP connection guide git-20261026-bc35fd65-connection-guide; no Feishu/Base/source-table, queue, asset-registry or HTML_link writes.",
+      "target": {
+        "language": "ja",
+        "model": "JS-CONNECTION-GUIDE",
+        "region": "JP"
+      }
+    },
     "page_count": 1,
     "page_declarations": {},
     "page_slots": {},
-    "pending_source_review": [
-      "operator review of the 1280/390 renders against the PDF and the JA-CK01A-BK-QG JP reference edition",
-      "source concerns listed below go to the source owner; nothing is corrected here"
-    ],
+    "pending_source_review": [],
     "projection": "whole-document-components/v1",
-    "publication_eligible": false,
+    "publication_eligible": true,
     "skipped_raw": 0,
     "source_stylesheet": {
       "path": "_static/source.css",

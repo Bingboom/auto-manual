@@ -2,7 +2,7 @@
 
 Operator instruction, 2026-10-26: 「分几个窗口把这个目录下面的文档都转成网页文档」, then 「韩语文档除外」. This window converts the connection-guide leaflet only; the JE-1000D JP and JS-100I JP manuals from the same folder are separate targets converted in parallel. The operator decided (2026-10-26) that only the Japanese face goes on the Web, under the route model segment `JS-CONNECTION-GUIDE`. No Japanese wording is changed.
 
-**Status: `review-candidate-no-release-authorization`.** No operator release acceptance exists, so there is no `source/approval.json` and `render.py` marks the IR not publication-eligible. After the operator instructs 「上线提交发布」, `source/approval.json` binds every reviewed `source/` and `assets/` input hash, as in the JA-CK01A-BK-QG JP precedent.
+**Status: `operator-approved-git-only-release`.** The operator reviewed candidate `eb61b66` (PR #1610: 1280/390 renders and the comparison against the PDF and the JA-CK01A-BK-QG JP reference edition) and instructed 「上线提交发布」 on 2026-10-27. The engineering PR is merged by operator review (AGENTS.md §8.6), not by an agent grant. `source/approval.json` binds every reviewed `source/` and `assets/` input hash; the rendered IR is publication-eligible. Changing a reviewed input invalidates the acceptance: `render.py` then refuses until a new operator acceptance is recorded.
 
 ## Source
 
@@ -65,6 +65,6 @@ python -m unittest tests.test_js_connection_guide_jp_web tests.test_prepared_doc
 
 `evidence/` holds the 1280/390 browser acceptance (`browser-acceptance.json`, full-page screenshots), the comparison sheet against the PDF and the JA-CK01A-BK-QG JP reference edition, and the validation logs.
 
-After operator acceptance and the operator's merge of the engineering PR, the Git-only transaction continues per [web publish pipeline §2.2](../../../../../code-as-doc/dev/web_publish_pipeline/input-paths.md#22-git-only-transaction): seal the evidence at the merged `main` commit, assemble from current Hello-Docs `main`, open a `docs/publish/**`-only PR and verify the RTD routes and pages.
+After the operator merges the engineering PR, the Git-only transaction continues per [web publish pipeline §2.2](../../../../../code-as-doc/dev/web_publish_pipeline/input-paths.md#22-git-only-transaction): seal the evidence at the merged `main` commit, assemble from current Hello-Docs `main`, open a `docs/publish/**`-only PR and verify the RTD routes and pages.
 
 Not touched: live Base, queue, source tables, HTML_link, asset registry, workflows and dependencies.
