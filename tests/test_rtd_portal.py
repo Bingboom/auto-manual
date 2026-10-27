@@ -160,7 +160,7 @@ class RtdPortalTests(unittest.TestCase):
         before = {p.relative_to(root): hashlib.sha256(p.read_bytes()).hexdigest()
                   for p in root.rglob("*") if p.is_file()}
         # Compare manual content with the same site branding on both builds.
-        for name, flags in (("before", ["-D", "html_title=Manual Center"]),
+        for name, flags in (("before", ["-D", "html_title=说明书资料库"]),
                             ("after", ["-D", "extensions=myst_parser,tools.rtd.portal"])):
             result = subprocess.run(
                 [sys.executable, "-m", "sphinx", "-q", "-b", "html", *flags, str(root), str(self.root / name)],
@@ -185,7 +185,8 @@ class RtdPortalTests(unittest.TestCase):
                     self.assertIn(b"cloudflareinsights", after_bytes, path)
                 self.assertNotIn(b"cloudflareinsights", before_bytes, path)
                 after_text = without_beacon(after_bytes).decode("utf-8")
-                self.assertIn("Manual Center", after_text, path)
+                self.assertIn("说明书资料库", after_text, path)
+                self.assertNotIn("Manual Center", after_text, path)
                 if "/" not in path:
                     # Root aliases may additionally differ by exactly the declared
                     # entry transform: noindex/canonical head and, with a beacon
@@ -213,11 +214,15 @@ class RtdPortalTests(unittest.TestCase):
         self.assertIn("按目录查看全部说明书", page)
         self.assertIn("说明书资料库", page)
         self.assertNotIn('class="brand" href="#" aria-label="Jackery', page)
-        for internal_path in ("workspace/", "products/knowledge.html", "market/policy.html", "ai-share/"):
-            self.assertNotIn(f'href="{internal_path}', page)
-        self.assertNotIn("workspace/design", page)
+        # The private (combined) root carries the internal shell so readers can return to the knowledge base.
+        for internal_path in ("workspace/index.html", "workspace/deliverables/index.html",
+                              "products/knowledge.html", "market/policy.html"):
+            self.assertIn(f'href="{internal_path}"', page)
+        self.assertNotIn('href="ai-share/', page)
         self.assertNotIn("先学最少必要的产品知识", page)
-        self.assertNotIn('class="app-switch"', page)
+        switch = BeautifulSoup(page, "html.parser").select_one(".app-switch")
+        self.assertEqual([(a.get_text(), a.get("class")) for a in switch.select("a")],
+                         [("知识库", None), ("说明书资料库", ["selected"])])
         self.assertIn('JE-TEST/JP/md/manual_JP.html', page)
         self.assertTrue((self.root / "after" / "_static" / "portal.css").is_file())
         self.assertNotIn("LOCAL DESIGN PREVIEW", page)
@@ -348,7 +353,7 @@ class RtdPortalTests(unittest.TestCase):
                  "workspace/system/index.html", "workspace/deliverables/index.html",
                  "workspace/design/index.html")
         self.assertEqual({page: outline(sidebar) for page, sidebar in sidebars.items()},
-                         {"index.html": manuals, **dict.fromkeys(pages, knowledge)})
+                         {"index.html": knowledge, **dict.fromkeys(pages, knowledge)})
         site = "https://site.invalid/"
         home = BeautifulSoup((out / "workspace" / "index.html").read_text(encoding="utf-8"), "html.parser")
         # The 知识库首页 cards mirror the sidebar's groups after 知识库, in its order (every page is built here).
