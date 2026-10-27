@@ -2,7 +2,7 @@
 
 Operator instruction, 2026-10-26: 「分几个窗口把这个目录下面的文档都转成网页文档 https://xcn57j1urbe6.feishu.cn/wiki/Uf4zwUhMYieibhkyrO1cGuCsnye」, then 「韩语文档除外」. This package is the JE-1000D Japanese manual from that folder.
 
-**Status: `candidate-pending-operator-review`.** No approval exists; the IR is not publication-eligible. After the operator instructs 「上线提交发布」, `source/approval.json` binds the reviewed inputs and the Git-only transaction continues per [web publish pipeline §2.2](../../../../../code-as-doc/dev/web_publish_pipeline/input-paths.md#22-git-only-transaction).
+**Status: `operator-authorized-git-only-release`.** The operator reviewed the 1280/390 renders and the source correction list (PR #1612) and instructed 「先提交 再来列纠正清单」, then 「上线提交发布」 on 2026-10-27: the source copy goes live as printed and the listed source errors go back to the source owner. `source/approval.json` binds every reviewed `source/` and `assets/` input; the IR is publication-eligible. The engineering PR is merged by the operator (AGENTS.md §8.6); Hello-Docs/RTD publication follows [web publish pipeline §2.2](../../../../../code-as-doc/dev/web_publish_pipeline/input-paths.md#22-git-only-transaction).
 
 ## Source authority
 

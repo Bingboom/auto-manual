@@ -1051,7 +1051,7 @@
       "known_drift": {}
     },
     "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2": {
-      "approval": "User request 2026-10-26 (「分几个窗口把这个目录下面的文档都转成网页文档」「韩语文档除外」): Git-only JE-1000D JP Web conversion; candidate only, no merge or publication authority",
+      "approval": "Operator 「上线提交发布」 2026-10-27 after review of PR #1612 renders and correction list (「先提交 再来列纠正清单」); requested by 「分几个窗口把这个目录下面的文档都转成网页文档」「韩语文档除外」 2026-10-26: Git-only JE-1000D JP V2 Web release, source copy verbatim; engineering merge by the operator",
       "registered": "2026-10-26",
       "known_drift": {}
     },
