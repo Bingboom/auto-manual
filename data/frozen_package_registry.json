@@ -1050,6 +1050,11 @@
       "registered": "2026-10-19",
       "known_drift": {}
     },
+    "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2": {
+      "approval": "Operator 「上线提交发布」 2026-10-27 after review of PR #1612 renders and correction list (「先提交 再来列纠正清单」); requested by 「分几个窗口把这个目录下面的文档都转成网页文档」「韩语文档除外」 2026-10-26: Git-only JE-1000D JP V2 Web release, source copy verbatim; engineering merge by the operator",
+      "registered": "2026-10-26",
+      "known_drift": {}
+    },
     "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",
@@ -1299,7 +1304,13 @@
     "manual_sources/JE-3000C/KR/ko/git-20261021-78316033": {
       "approval": "User chat 2026-10-21: supplied JE-3000C KR PDF; remove landscape first sheet and convert via Git-only; isolated worktree and complete first-use sentence approved. Candidate only; no merge or publication approval.",
       "registered": "2026-10-21",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "JE-1000D JP V2 Git-only candidate (user request 2026-10-26): append-only five native JE-1000D JP symbol variants to the shared symbol catalog; existing entries and bytes unchanged; preserve historical package bytes and approvals until their next authorized revision.",
+          "since": "2026-10-26"
+        }
+      }
     },
     "manual_sources/JE-300D/EU/en/candidate-2025-10-24": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
@@ -1500,6 +1511,16 @@
       "packages": 1,
       "handling": "keep-frozen",
       "reason": "MA-348: additive exact JE-3000C KR source symbol variants; preserve historical package bytes and approvals until their next authorized revision.",
+      "minutes": 0
+    },
+    {
+      "date": "2026-10-26",
+      "files": [
+        "docs/renderers/web/assets/shared/symbols/manifest.json"
+      ],
+      "packages": 1,
+      "handling": "keep-frozen",
+      "reason": "JE-1000D JP V2 Git-only candidate (user request 2026-10-26): append-only five native JE-1000D JP symbol variants to the shared symbol catalog; existing entries and bytes unchanged; preserve historical package bytes and approvals until their next authorized revision.",
       "minutes": 0
     }
   ]

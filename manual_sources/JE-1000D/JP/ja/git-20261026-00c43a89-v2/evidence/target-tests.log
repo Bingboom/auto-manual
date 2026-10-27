@@ -1,0 +1,54 @@
+...{
+  "output": "/tmp/tmpkb52pmhs/replay",
+  "chapters": 12,
+  "components": {
+    "HB-CALLOUT-STRIP": 20,
+    "HB-SPECIAL-APP": 2,
+    "HB-SPECIAL-INBOX": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE": 9,
+    "HB-TABLE-LCD-ICON": 2,
+    "HB-TABLE-REFERENCE": 1,
+    "HB-TABLE-SPEC": 1,
+    "HB-TABLE-SYMBOL-ICON": 1,
+    "HB-TABLE-SYMBOL-SIGNAL": 1,
+    "HB-WARRANTY-SECTION": 6
+  },
+  "symbol_admission": [
+    {
+      "asset_ref": "assets/symbol-01.svg",
+      "physical_page": 9,
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "asset_ref": "assets/symbol-02.svg",
+      "physical_page": 9,
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "asset_ref": "assets/symbol-03.svg",
+      "physical_page": 9,
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "asset_ref": "assets/symbol-04.svg",
+      "physical_page": 9,
+      "max_mean_channel_error": 0.015182
+    },
+    {
+      "asset_ref": "assets/symbol-05.svg",
+      "physical_page": 9,
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "asset_ref": "assets/symbol-06.svg",
+      "physical_page": 9,
+      "max_mean_channel_error": 0.0
+    }
+  ]
+}
+.........................
+----------------------------------------------------------------------
+Ran 28 tests in 52.214s
+
+OK
+rc=0
