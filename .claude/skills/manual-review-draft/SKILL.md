@@ -25,8 +25,8 @@ Claude Code specifics:
   session needs only read access to auto-manual and Hello-Docs: attach them
   read-only and never push draft content to either public repository.
 - Follow the shared skill's 并行写稿与隔离 rules: one writer per draft line,
-  `git pull --rebase` on a rejected push, never force-push, and record
-  `tools_sha` in `draft.json`.
+  assigned by the operator (no claim field); `git pull --rebase` on a
+  rejected push, never force-push; and record `tools_sha` in `draft.json`.
 - Keep the line's issue register and decisions file current each round
   (shared `references/review-records.md`). After pushing, sync the Feishu row
   from an auto-manual checkout. In a cloud session configure lark-cli once from
