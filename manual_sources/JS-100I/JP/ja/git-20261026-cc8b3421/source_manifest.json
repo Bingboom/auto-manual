@@ -17,8 +17,8 @@
     "feishu_wiki_node": "TC9MwqDAsihTJ0kPlsJcVj4JnNf"
   },
   "printed_manual_version": null,
-  "publication_status": "review-candidate-no-release-authorization",
-  "publication_eligible": false,
+  "publication_status": "operator-approved-git-only-release",
+  "publication_eligible": true,
   "page_order": [
     "00_preface_ja.rst",
     "guide_ja.rst",
@@ -41,7 +41,7 @@
   "source_authority": "operator-designated Japanese PDF from the operator-designated Feishu wiki directory (read-only download, SHA-256 verified); the original Japanese governs all technical, safety, specification and warranty copy. Operator instruction 2026-10-26 (coordination session): 「分几个窗口把这个目录下面的文档都转成网页文档」, then 「韩语文档除外」; this window converts the JS-100I (SolarSaga 100 Air) JP manual only. JP Web rules (封面不上网页; 不改动任何日文原文) follow the JA-CK01A-BK / JA-AD500A-SIL JP precedents.",
   "baseline_main": "8a46562",
   "language_scope": "single",
-  "source_role": "Git-only Japanese prepared native Web candidate (full instruction manual, new JP market for JS-100I); review candidate, no release authorization",
+  "source_role": "Git-only Japanese prepared native Web release (full instruction manual, new JP market for JS-100I), operator-approved 2026-10-27",
   "document_identity": {
     "printed_model": "JS-100I",
     "product_name": "Jackery SolarSaga 100 Air",
@@ -451,6 +451,11 @@
       "path": "render.py",
       "size": 7829,
       "sha256": "ecfd5fd17b0664a1a83c0ba3ab7bfe882287449c293dcddf6397d766e8690f64"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 12795,
+      "sha256": "4a1934c046956381598d0d311267d9e8e2d8d00860848db412ec3efd8945439e"
     },
     {
       "path": "source/asset_decisions.json",

@@ -1,10 +1,10 @@
 {
   "schema_version": "js-100i-jp-validation/v1",
-  "status": "review-candidate-no-release-authorization (awaiting operator review of the 1280/390 renders)",
+  "status": "operator-approved-git-only-release (「全部照录，版式都接受，上线提交发布，保留疑点后续纠正」 2026-10-27); RTD deployment acceptance pending",
   "baseline_main": "8a46562",
   "original_source_sha256": "cc8b3421221bf11b03f2ddd0ce86519605189fbe0721a7d8a536520d75513e6f",
   "stored_markdown_sha256": "e4e9a0f689dc9558be12fd35031ea2128592618e03ad99f44d6d2949755d697b",
-  "stored_ir_sha256": "5574dcac6d5cd81d6cce54d12062e2c5bc997dad6f9e2a92db7e5f807234e7c3",
+  "stored_ir_sha256": "438f87dd4b724cc9a1da398e295e676b4489085e12518e7f10ee2451648f87b4",
   "checks": [
     {
       "command": "python derive_assets.py (twice)",
@@ -12,7 +12,7 @@
     },
     {
       "command": "python render.py <new dir>",
-      "result": "components HB-CALLOUT-STRIP 4, HB-SPECIAL-INBOX 1, HB-SPECIAL-REFERENCE-FIGURE 8, HB-TABLE-SPEC 2; prepared-document shared-style gate passed with 1 declared table"
+      "result": "components HB-CALLOUT-STRIP 4, HB-SPECIAL-INBOX 1, HB-SPECIAL-REFERENCE-FIGURE 8, HB-TABLE-SPEC 2; prepared-document shared-style gate passed with 1 declared table; publication_eligible true with source/approval.json binding 38 reviewed inputs"
     },
     {
       "command": "python -m sphinx -n -W --keep-going -b html web/ja <out>",
@@ -131,5 +131,6 @@
       "http_errors": []
     }
   },
-  "reference_edition_render": "JS-100I EU en: AUTO_MANUAL_PRESENTATION_PROFILE=web python build.py md --config configs/config.solar-eu-en.yaml --model JS-100I --region EU --lang en --data-root data/manual_sources/JS-100I/EU/en/2.0/phase2 (side-by-side review only)"
+  "reference_edition_render": "JS-100I EU en: AUTO_MANUAL_PRESENTATION_PROFILE=web python build.py md --config configs/config.solar-eu-en.yaml --model JS-100I --region EU --lang en --data-root data/manual_sources/JS-100I/EU/en/2.0/phase2 (side-by-side review only)",
+  "approval_sha256": "4a1934c046956381598d0d311267d9e8e2d8d00860848db412ec3efd8945439e"
 }

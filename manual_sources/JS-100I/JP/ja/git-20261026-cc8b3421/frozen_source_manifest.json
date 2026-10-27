@@ -17,8 +17,8 @@
     "feishu_wiki_node": "TC9MwqDAsihTJ0kPlsJcVj4JnNf"
   },
   "printed_manual_version": null,
-  "publication_status": "review-candidate-no-release-authorization",
-  "publication_eligible": false,
+  "publication_status": "operator-approved-git-only-release",
+  "publication_eligible": true,
   "page_order": [
     "00_preface_ja.rst",
     "guide_ja.rst",
@@ -41,7 +41,7 @@
   "source_authority": "operator-designated Japanese PDF from the operator-designated Feishu wiki directory (read-only download, SHA-256 verified); the original Japanese governs all technical, safety, specification and warranty copy. Operator instruction 2026-10-26 (coordination session): 「分几个窗口把这个目录下面的文档都转成网页文档」, then 「韩语文档除外」; this window converts the JS-100I (SolarSaga 100 Air) JP manual only. JP Web rules (封面不上网页; 不改动任何日文原文) follow the JA-CK01A-BK / JA-AD500A-SIL JP precedents.",
   "baseline_main": "8a46562",
   "language_scope": "single",
-  "source_role": "Git-only Japanese prepared native Web candidate (full instruction manual, new JP market for JS-100I); review candidate, no release authorization",
+  "source_role": "Git-only Japanese prepared native Web release (full instruction manual, new JP market for JS-100I), operator-approved 2026-10-27",
   "document_identity": {
     "printed_model": "JS-100I",
     "product_name": "Jackery SolarSaga 100 Air",
@@ -324,8 +324,8 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 4413,
-      "sha256": "6b906edfd6b7072698c7b098544b71d1c6b825019298f408a6108c0bcacf11a4"
+      "size": 4763,
+      "sha256": "e83e7ea0338cbde7ac4f9b2fa8695342950e9003f88f5cc5031b91d9f311b627"
     },
     {
       "path": "assets/angle.png",
@@ -475,12 +475,12 @@
     {
       "path": "evidence/target-tests.log",
       "size": 145,
-      "sha256": "ff9587b9035c9e0d97be387aa98ed0012f64dfcf9046ba494bee610615d376f9"
+      "sha256": "1009e56516e52019c66399198b76400f30f0b6464e606d1c5e61b7da684d66c0"
     },
     {
       "path": "evidence/validation.json",
-      "size": 7966,
-      "sha256": "3c5adfb09dc63589323911d8ca1ae2e629ce0b74509f760fe95989d0d2890c4a"
+      "size": 8210,
+      "sha256": "63507f520f6f5e5cac26ef54f45ff32c70103671dbdf3f0f23266c97e000d743"
     },
     {
       "path": "refresh_manifest.py",
@@ -491,6 +491,11 @@
       "path": "render.py",
       "size": 7829,
       "sha256": "ecfd5fd17b0664a1a83c0ba3ab7bfe882287449c293dcddf6397d766e8690f64"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 12795,
+      "sha256": "4a1934c046956381598d0d311267d9e8e2d8d00860848db412ec3efd8945439e"
     },
     {
       "path": "source/asset_decisions.json",
@@ -569,8 +574,8 @@
     },
     {
       "path": "source_manifest.json",
-      "size": 20431,
-      "sha256": "e88a231167d3d69c2b145997acb325e994991e2939ec439758e8bf9ce8833654"
+      "size": 20562,
+      "sha256": "758fb63f459b303cd5126e452760eaedb26b43145c7edab4bdc1ae262bc75747"
     },
     {
       "path": "web/ja/_static/source.css",
@@ -709,8 +714,8 @@
     },
     {
       "path": "web/ja/manual.ir.json",
-      "size": 357205,
-      "sha256": "5574dcac6d5cd81d6cce54d12062e2c5bc997dad6f9e2a92db7e5f807234e7c3"
+      "size": 371373,
+      "sha256": "438f87dd4b724cc9a1da398e295e676b4489085e12518e7f10ee2451648f87b4"
     },
     {
       "path": "web/ja/manual_bundle.html",

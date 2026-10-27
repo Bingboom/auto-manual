@@ -5,9 +5,12 @@ then 「韩语文档除外」. This window converts the SolarSaga 100 Air Japane
 JE-1000D JP manual and the solar connection-guide leaflet are converted in other windows.
 JS-100I already ships a nine-language EU Web edition; this package adds the JP market.
 
-**Status: `review-candidate-no-release-authorization`.** No `source/approval.json`; the IR is not
-publication-eligible. Release waits for the operator's 「上线提交发布」 after reviewing the
-1280/390 renders.
+**Status: `operator-approved-git-only-release`.** The operator reviewed the 1280/390 renders
+of candidate `1d8250e` and instructed 「全部照录，版式都接受，上线提交发布，保留疑点后续纠正」 on
+2026-10-27. `source/approval.json` binds every reviewed `source/` and `assets/` input; the IR is
+publication-eligible. The listed source concerns stay verbatim for the source owner to correct.
+The engineering PR is merged by the operator (AGENTS.md §8.6), not by an agent grant;
+Hello-Docs/RTD publication follows the Git-only transaction below.
 
 ## Source authority
 
