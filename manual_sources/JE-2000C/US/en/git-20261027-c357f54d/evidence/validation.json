@@ -1,0 +1,56 @@
+{
+  "schema_version": "je2000c-us-en-validation/v1",
+  "date": "2026-10-27",
+  "status": "candidate-pending-operator-review",
+  "checks": [
+    {
+      "command": "python manual_sources/JE-2000C/US/en/git-20261027-c357f54d/rebuild.py --output <fresh>",
+      "result": "pass; output byte-identical to web/en (diff -r)"
+    },
+    {
+      "command": "python -m sphinx -n -W --keep-going -b html web/en <out>",
+      "result": "pass",
+      "log": "evidence/strict-sphinx.log"
+    },
+    {
+      "command": "python -m unittest tests.test_je2000c_us_web",
+      "result": "pass (9 tests)",
+      "log": "evidence/target-tests.log"
+    },
+    {
+      "command": "python -m ruff check <package scripts> tests/test_je2000c_us_web.py",
+      "result": "pass",
+      "log": "evidence/ruff.log"
+    },
+    {
+      "command": "python -m tools.check_maintainability_guardrails",
+      "result": "fails only on [frozen-packages] NEW: package not yet registered (registration belongs to the integrating PR)",
+      "log": "evidence/maintainability.log"
+    },
+    {
+      "command": "Playwright full-page renders at 1280 and 390 CSS px",
+      "result": "no broken images; no horizontal page scroll (scrollWidth = viewport)",
+      "files": [
+        "evidence/browser-1280.png",
+        "evidence/browser-390.png"
+      ]
+    }
+  ],
+  "prepared_document_shared_style_gate": "pass (enforced in rebuild.py); one declared plain table (lcd_display Energy Saving Mode)",
+  "symbol_admission": "not applicable: no HB-TABLE-SYMBOL-ICON in the IR",
+  "component_inventory": {
+    "HB-CALLOUT-STRIP": 2,
+    "HB-SPECIAL-FCC": 1,
+    "HB-SPECIAL-INBOX": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE": 14,
+    "HB-TABLE-LCD-ICON": 2,
+    "HB-TABLE-REFERENCE": 1,
+    "HB-TABLE-SPEC": 4,
+    "HB-WARRANTY-SECTION": 5
+  },
+  "render_sha256": {
+    "manual_je2000c_us_en.md": "a5f291805f28fe255144d0a52594ae151cf8a82b94c14be4275dafff8d56ea91",
+    "manual.ir.json": "54419af11eba740a231c9a065ad135c2c6f1698a433afdb10321a17849b0fe67"
+  },
+  "reference_edition_render": "JE-2000E EU/en built with build.py md from manual_sources/JE-2000E/EU/en/2.0/phase2; side-by-side review image delivered to the operator, not stored here"
+}
