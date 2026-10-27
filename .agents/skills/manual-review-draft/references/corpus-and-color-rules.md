@@ -4,7 +4,9 @@
 
 1. **JP RST templates** — `docs/templates/page_jp/*.rst` (safety, symbols, box,
    operations, UPS, charging, troubleshooting, warranty, App). Parameters such as
-   `|UPS_BYPASS_OUTPUT_TEXT|` become magenta placeholders until a value is known.
+   `|UPS_BYPASS_OUTPUT_TEXT|` take the target value; if the target lacks it, new
+   drafts write the gen-1 value in gen-1 Japanese (green `title="一代数据"`, not
+   counted). Magenta placeholders remain only in confirmed drafts not yet revised.
 2. **Translation_Memory** (canonical base `Ji1hb5ub1aUbewsTljGccvx5nhc`):
    terms `tblzerRpOEuDIkKA`, sentence pairs `tblqtvNbgjDwR4ya` (`en`/`jp` fields).
    Dump with `feishu_api.py bitable-dump`, then `jp_corpus.py tm-grep / tm-match`.
@@ -78,9 +80,10 @@
   or system figures (parallel 20ms, cascade total 6000W) belong in the body
   section that describes that setup.
 - Values only from the JP spec sheet or R&D answers, purple with source and
-  date; derived values (e.g. 21.5kWh ÷ 3584Wh → 5 packs) only when the
-  arithmetic is exact and noted. Never derive panel counts from wattage alone
-  (voltage window decides), and never fill a value R&D did not state
+  date (a missing value is a green gen-1 fill, see SKILL.md); derived values
+  (e.g. 21.5kWh ÷ 3584Wh → 5 packs) only when the arithmetic is exact and
+  noted. Never derive panel counts from wattage alone (voltage window
+  decides), and never fill a value R&D did not state
   (JHP-3600C v0.62 removed an inferred "MTS 最大4000W").
 - US values (Ah/V, surge, per-voltage DC input, temperatures, altitude) stay in
   the orange note as "美规值：…，未代入".
@@ -95,6 +98,7 @@
 | spec / R&D value | `class="jp-spec-updated" data-previous-value="…" data-spec-ref="…" data-spec-source="<A0 规格书 / 研发答复 date>"` or `jp-spec-filled` + `data-jp-spec-source`; both render purple |
 | product-name reference | `<span class="jp-name-ref" lang="ja">本製品</span>` (amber) |
 | Chinese gloss | `<span class="zh-translation" lang="zh-CN">` inside the unit |
-| placeholder | `<span class="us-difference jp-parameter">【…：未入力】</span>` (magenta) |
+| gen-1 fill (target value missing) | `<span class="en-new" title="一代数据" lang="ja">…</span>` (green, not counted) |
+| legacy placeholder (confirmed drafts until next revision) | `<span class="us-difference jp-parameter">【…：未入力】</span>` (magenta) |
 | review note | `<div class="jp-review" data-vNNN="true" lang="zh-CN"><strong>审阅：</strong>…<small class="jp-review-source">…</small></div>` |
 | US figure | `<figure class="us-review-figure" data-us-image-source="…">` + orange figcaption |
