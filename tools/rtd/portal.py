@@ -111,7 +111,7 @@ def catalog(root: Path, settings: dict) -> list[dict]:
             **publication_identity(root, source, model=model, region=region),
         })
     order = list(settings["categories"])
-    records = group_publications(records, settings["language_labels"])
+    records = group_publications(records, settings["language_labels"], settings["language_display_codes"])
     return sorted(records, key=lambda p: (order.index(p["category"]), p["model"], p["region"]))
 
 
@@ -217,14 +217,11 @@ def page_context(app, pagename, templatename, context, doctree):
             direction = "rtl" if active["lang"] in settings.get("rtl_languages", []) else "ltr"
             options = []
             for item in product["language_options"]:
-                url = context["pathto"](item["url"][:-5]) if item["url"] else ""
+                url = context["pathto"](item["url"][:-5])
                 if url == "#":
                     url = Path(item["url"]).name
                 state = ' selected' if item["url"] == active["url"] else ''
-                if not url:
-                    state += ' disabled'
-                label = item["label"] + (f' — {item["unavailable_reason"]}' if not url else "")
-                options.append(f'<option value="{escape(url, quote=True)}"{state}>{escape(label)}</option>')
+                options.append(f'<option value="{escape(url, quote=True)}"{state}>{escape(item["display"])}</option>')
             feedback_context = context_text(
                 model=active["model"], region=active["region"],
                 lang=active["lang"], version=active.get("version") or "",
