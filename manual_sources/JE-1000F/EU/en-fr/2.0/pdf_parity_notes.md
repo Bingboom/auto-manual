@@ -9,6 +9,8 @@ English physical pages 6–22; French physical pages 23–39.
 - EN 6 / FR 23: restore the PDF's accessory recommendation/sale safety condition.
 - EN 7 / FR 24: omit the battery/accumulator disposal row absent from this
   release; restore the French no-smoking/open-flame instruction.
+  Since 2026-10-27 the Web table carries the battery row again by operator
+  ruling (shared library icon); the print table keeps the omission.
 - EN 9–10 / FR 26–27: restore LCD table mapping, English low-battery threshold,
   French quiet-charging description and full ASI label. The original LCD map
   is already correct and is retained, not re-extracted.

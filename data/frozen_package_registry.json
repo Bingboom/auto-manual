@@ -27,6 +27,11 @@
           "reason": "MA-323 / PR #1382: register the migrated four-control App label stylesheet; preserve all historical package bytes and approvals. Rebuild and publication require a separate scoped release.",
           "since": "2026-10-19"
         },
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-357 corrects only the JE-1000F EU en/fr entries of prepared_component_admission.json (page identities of the reviewed release path); these packages' own admission entries and sealed inputs are unchanged",
+          "since": "2026-10-27"
+        },
         "tools/web/symbol_asset_admission.py": {
           "handling": "keep-frozen",
           "reason": "symbol_asset_admission gained operator-approved glyph waivers (JE-1000H EU Li-ion, 2026-10-27); the waiver path runs only after the fixed 0.02 comparison fails, so these packages' admissions are unchanged",
@@ -47,6 +52,11 @@
           "handling": "keep-frozen",
           "reason": "MA-323 / PR #1382: register the migrated four-control App label stylesheet; preserve all historical package bytes and approvals. Rebuild and publication require a separate scoped release.",
           "since": "2026-10-19"
+        },
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-357 corrects only the JE-1000F EU en/fr entries of prepared_component_admission.json (page identities of the reviewed release path); these packages' own admission entries and sealed inputs are unchanged",
+          "since": "2026-10-27"
         },
         "tools/web/symbol_asset_admission.py": {
           "handling": "keep-frozen",
@@ -135,6 +145,11 @@
           "reason": "MA-323 / PR #1382: register the migrated four-control App label stylesheet; preserve all historical package bytes and approvals. Rebuild and publication require a separate scoped release.",
           "since": "2026-10-19"
         },
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-357 corrects only the JE-1000F EU en/fr entries of prepared_component_admission.json (page identities of the reviewed release path); these packages' own admission entries and sealed inputs are unchanged",
+          "since": "2026-10-27"
+        },
         "tools/web/symbol_asset_admission.py": {
           "handling": "keep-frozen",
           "reason": "symbol_asset_admission gained operator-approved glyph waivers (JE-1000H EU Li-ion, 2026-10-27); the waiver path runs only after the fixed 0.02 comparison fails, so these packages' admissions are unchanged",
@@ -155,6 +170,11 @@
           "handling": "keep-frozen",
           "reason": "MA-323 / PR #1382: register the migrated four-control App label stylesheet; preserve all historical package bytes and approvals. Rebuild and publication require a separate scoped release.",
           "since": "2026-10-19"
+        },
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-357 corrects only the JE-1000F EU en/fr entries of prepared_component_admission.json (page identities of the reviewed release path); these packages' own admission entries and sealed inputs are unchanged",
+          "since": "2026-10-27"
         },
         "tools/web/symbol_asset_admission.py": {
           "handling": "keep-frozen",
@@ -409,6 +429,11 @@
           "reason": "MA-323 / PR #1382: register the migrated four-control App label stylesheet; preserve all historical package bytes and approvals. Rebuild and publication require a separate scoped release.",
           "since": "2026-10-19"
         },
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-357 corrects only the JE-1000F EU en/fr entries of prepared_component_admission.json (page identities of the reviewed release path); these packages' own admission entries and sealed inputs are unchanged",
+          "since": "2026-10-27"
+        },
         "tools/web/symbol_asset_admission.py": {
           "handling": "keep-frozen",
           "reason": "symbol_asset_admission gained operator-approved glyph waivers (JE-1000H EU Li-ion, 2026-10-27); the waiver path runs only after the fixed 0.02 comparison fails, so these packages' admissions are unchanged",
@@ -440,6 +465,11 @@
           "reason": "MA-323 / PR #1382: register the migrated four-control App label stylesheet; preserve all historical package bytes and approvals. Rebuild and publication require a separate scoped release.",
           "since": "2026-10-19"
         },
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-357 corrects only the JE-1000F EU en/fr entries of prepared_component_admission.json (page identities of the reviewed release path); these packages' own admission entries and sealed inputs are unchanged",
+          "since": "2026-10-27"
+        },
         "tools/web/symbol_asset_admission.py": {
           "handling": "keep-frozen",
           "reason": "symbol_asset_admission gained operator-approved glyph waivers (JE-1000H EU Li-ion, 2026-10-27); the waiver path runs only after the fixed 0.02 comparison fails, so these packages' admissions are unchanged",
@@ -470,6 +500,11 @@
           "handling": "keep-frozen",
           "reason": "MA-323 / PR #1382: register the migrated four-control App label stylesheet; preserve all historical package bytes and approvals. Rebuild and publication require a separate scoped release.",
           "since": "2026-10-19"
+        },
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-357 corrects only the JE-1000F EU en/fr entries of prepared_component_admission.json (page identities of the reviewed release path); these packages' own admission entries and sealed inputs are unchanged",
+          "since": "2026-10-27"
         },
         "tools/web/symbol_asset_admission.py": {
           "handling": "keep-frozen",
@@ -619,6 +654,11 @@
           "handling": "keep-frozen",
           "reason": "MA-323 / PR #1382: register the migrated four-control App label stylesheet; preserve all historical package bytes and approvals. Rebuild and publication require a separate scoped release.",
           "since": "2026-10-19"
+        },
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-357 corrects only the JE-1000F EU en/fr entries of prepared_component_admission.json (page identities of the reviewed release path); these packages' own admission entries and sealed inputs are unchanged",
+          "since": "2026-10-27"
         },
         "tools/web/symbol_asset_admission.py": {
           "handling": "keep-frozen",
@@ -1259,6 +1299,11 @@
           "reason": "MA-348: additive exact JE-3000C KR source symbol variants; preserve historical package bytes and approvals until their next authorized revision.",
           "since": "2026-10-24"
         },
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-357 corrects only the JE-1000F EU en/fr entries of prepared_component_admission.json (page identities of the reviewed release path); these packages' own admission entries and sealed inputs are unchanged",
+          "since": "2026-10-27"
+        },
         "tools/web/symbol_asset_admission.py": {
           "handling": "keep-frozen",
           "reason": "symbol_asset_admission gained operator-approved glyph waivers (JE-1000H EU Li-ion, 2026-10-27); the waiver path runs only after the fixed 0.02 comparison fails, so these packages' admissions are unchanged",
@@ -1577,6 +1622,16 @@
       "handling": "keep-frozen",
       "reason": "JE-1000D JP V2 Git-only candidate (user request 2026-10-26): append-only five native JE-1000D JP symbol variants to the shared symbol catalog; existing entries and bytes unchanged; preserve historical package bytes and approvals until their next authorized revision.",
       "minutes": 0
+    },
+    {
+      "date": "2026-10-27",
+      "files": [
+        "docs/renderers/contracts/prepared_component_admission.json"
+      ],
+      "packages": 9,
+      "handling": "keep-frozen",
+      "reason": "MA-357 corrects only the JE-1000F EU en/fr entries of prepared_component_admission.json (page identities of the reviewed release path); these packages' own admission entries and sealed inputs are unchanged",
+      "minutes": 1
     },
     {
       "date": "2026-10-27",

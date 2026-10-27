@@ -100,5 +100,9 @@ SIGNIFICATION DES SYMBOLES
              :alt: no_open_flame
              :width: 40px
         - Ne pas fumer ni utiliser de flamme nue
-        -
-        -
+        - .. image:: renderers/web/assets/shared/symbols/native-v1/symbol_battery_weee.png
+             :alt: weee2
+             :width: 40px
+        - Les piles et accumulateurs ne doivent pas être jetés avec les ordures ménagères.
+          En tant que consommateur, vous êtes légalement tenu de déposer toutes les piles et accumulateurs dans des points de collecte désignés, qu'ils contiennent ou non des substances dangereuses.
+          Veuillez rapporter les piles et accumulateurs usagés à un point de collecte local, un centre de recyclage ou au détaillant où ils ont été achetés. Une élimination appropriée garantit un recyclage respectueux de l'environnement et prévient les dommages potentiels pour la santé humaine et l'environnement.

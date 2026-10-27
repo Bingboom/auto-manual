@@ -1,6 +1,6 @@
 {
   "schema_version": "prepared-component-admission/v1",
-  "review_basis": "EU corpus review 2026-09-30; phase 1/2 composed source; no automatic baseline refresh; JS-100I EU eight native locales reviewed 2026-10-01 under MA-216: nine solar pages, Inbox/spec/note bindings, exact source-authored warranty chapters; JE-100C EU nine source-reviewed locales 2026-10-01 under MA-226: six notices, symbol icons, four LCD catalogs, authored action table and exact compact warranty chapters; JBP-3600A EU nine reviewed locales 2026-10-03 MA-244: source pages and independent native/delta acceptance; 15 English semantic pages, shared symbols/Inbox/LCD/operation/reference/troubleshooting/spec/warranty, native panels and IT source-only spec/warranty differences retained. See manual_sources/JBP-3600A/EU/git-20261003-44b6ce61-reviewed/approval.json.; JA-AD600A EU English 0924 AI (SHA25665297e68dbd6c811c5a34bb38a589ef8939b3a9eed6113ef305b60125cffb348) operator-reviewed 2026-10-07 MA-264: nine source pages, one spec, nine-item inbox, five live-copy reference figures, exact compatibility/status/period tables, source-native warning and ten paired installation prose/illustrations. Historical stored evidence remains unchanged. JA-AD600A EU fr/es/de/it/uk/pt/nl/pl source-reviewed 0924 AI, SHA25665297e68dbd6c811c5a34bb38a589ef8939b3a9eed6113ef305b60125cffb348, operator-authorized MA-267 on 2026-10-07: same nine-page English applicability and shared spec/Inbox/five live-copy references; each original compatibility/status/period table pinned by full reviewed node digest. No new debt category or blanket chapter waiver; native FCC/warranty/FAQ exceptions and compact plain installation notes are retained. See data/manual_sources/JA-AD600A/EU/added-locales/native-0924/acceptance.json.",
+  "review_basis": "EU corpus review 2026-09-30; phase 1/2 composed source; no automatic baseline refresh; JS-100I EU eight native locales reviewed 2026-10-01 under MA-216: nine solar pages, Inbox/spec/note bindings, exact source-authored warranty chapters; JE-100C EU nine source-reviewed locales 2026-10-01 under MA-226: six notices, symbol icons, four LCD catalogs, authored action table and exact compact warranty chapters; JBP-3600A EU nine reviewed locales 2026-10-03 MA-244: source pages and independent native/delta acceptance; 15 English semantic pages, shared symbols/Inbox/LCD/operation/reference/troubleshooting/spec/warranty, native panels and IT source-only spec/warranty differences retained. See manual_sources/JBP-3600A/EU/git-20261003-44b6ce61-reviewed/approval.json.; JA-AD600A EU English 0924 AI (SHA25665297e68dbd6c811c5a34bb38a589ef8939b3a9eed6113ef305b60125cffb348) operator-reviewed 2026-10-07 MA-264: nine source pages, one spec, nine-item inbox, five live-copy reference figures, exact compatibility/status/period tables, source-native warning and ten paired installation prose/illustrations. Historical stored evidence remains unchanged. JA-AD600A EU fr/es/de/it/uk/pt/nl/pl source-reviewed 0924 AI, SHA25665297e68dbd6c811c5a34bb38a589ef8939b3a9eed6113ef305b60125cffb348, operator-authorized MA-267 on 2026-10-07: same nine-page English applicability and shared spec/Inbox/five live-copy references; each original compatibility/status/period table pinned by full reviewed node digest. No new debt category or blanket chapter waiver; native FCC/warranty/FAQ exceptions and compact plain installation notes are retained. See data/manual_sources/JA-AD600A/EU/added-locales/native-0924/acceptance.json.; JE-1000F EU en/fr page identities corrected 2026-10-27 under MA-357: en drops the unassembled 99_regulatory_compliance page and its regulatory-radio debt, fr keeps its ten chapters' reviewed requirements under the p-numbered review pages of the frozen en-fr/2.0 review-asis path",
   "debt_reasons": {
     "diagram-labels": "Source illustration labels; not an operation UI table. Preserve complete labels until the annotated-figure adapter owns this layout.",
     "regulatory-radio": "Regulatory radio-frequency declaration; not an LCD or operation table. Preserve exact source rows.",
@@ -1102,18 +1102,6 @@
             "HB-CALLOUT-STRIP/caution": 1
           },
           "chapter": "app"
-        },
-        "99_regulatory_compliance.rst": {
-          "slot": "templates/page_eu-en/99_regulatory_compliance.rst",
-          "components": {},
-          "debt": [
-            {
-              "location": "3/3",
-              "kind": "table",
-              "sha256": "3daf40a8c17707fdd161c9c9f60ec90ca91c615411b292dde9c4c3c3465450f6",
-              "category": "regulatory-radio"
-            }
-          ]
         }
       }
     },
@@ -1238,8 +1226,8 @@
             "HB-CALLOUT-STRIP/warning": 1
           }
         },
-        "01_user_maintenance_instructions.rst": {
-          "slot": "templates/page_shared/fr/01_user_maintenance_instructions.rst",
+        "p18_01_user_maintenance_instructions.rst": {
+          "slot": null,
           "components": {}
         },
         "symbols_fr.rst": {
@@ -1249,14 +1237,14 @@
             "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1
           }
         },
-        "02_whats_in_the_box.rst": {
-          "slot": "templates/page_shared/fr/02_whats_in_the_box.rst",
+        "p20_02_whats_in_the_box.rst": {
+          "slot": null,
           "components": {
             "HB-SPECIAL-INBOX/three-card-responsive": 1
           }
         },
-        "03_product_overview_placeholder.rst": {
-          "slot": "03_product_overview",
+        "p21_03_product_overview_placeholder.rst": {
+          "slot": null,
           "components": {
             "HB-SPECIAL-OVERVIEW/annotated-live": 1
           }
@@ -1267,8 +1255,8 @@
             "HB-TABLE-LCD-ICON/icon-catalog": 1
           }
         },
-        "05_operation_guide_placeholder.rst": {
-          "slot": "05_operation_guide",
+        "p23_05_operation_guide_placeholder.rst": {
+          "slot": null,
           "components": {
             "HB-SPECIAL-OPERATION/status-right": 3,
             "HB-CALLOUT-STRIP/caution": 2,
@@ -1281,31 +1269,31 @@
           },
           "capability": "AC/DC输出记忆恢复"
         },
-        "06_ups_mode.rst": {
-          "slot": "templates/page_shared/fr/06_ups_mode.rst",
+        "p24_06_ups_mode.rst": {
+          "slot": null,
           "components": {
             "HB-CALLOUT-STRIP/warning": 1,
             "HB-CALLOUT-STRIP/caution": 1
           },
           "capability": "UPS功能"
         },
-        "charging.rst": {
-          "slot": "templates/page_shared/fr/charging.rst",
+        "p25_charging.rst": {
+          "slot": null,
           "components": {
             "HB-CALLOUT-STRIP/note": 1,
             "HB-SPECIAL-REFERENCE-FIGURE/approved-composite": 1,
             "HB-CALLOUT-STRIP/caution": 1
           }
         },
-        "08_charging_methods.rst": {
-          "slot": "templates/page_shared/fr/08_charging_methods.rst",
+        "p26_08_charging_methods.rst": {
+          "slot": null,
           "components": {
             "HB-SPECIAL-REFERENCE-FIGURE/approved-composite": 3,
             "HB-CALLOUT-STRIP/caution": 3
           }
         },
-        "09_storage_and_maintenance.rst": {
-          "slot": "templates/page_shared/fr/09_storage_and_maintenance.rst",
+        "p27_09_storage_and_maintenance.rst": {
+          "slot": null,
           "components": {}
         },
         "troubleshooting_fr.rst": {
@@ -1320,8 +1308,8 @@
             "HB-TABLE-SPEC/vertical": 4
           }
         },
-        "11_warranty.rst": {
-          "slot": "templates/page_shared/fr/11_warranty.rst",
+        "p30_11_warranty.rst": {
+          "slot": null,
           "components": {
             "HB-WARRANTY-LEAD/intro-panel": 1,
             "HB-WARRANTY-SECTION/rounded-card": 5,
@@ -1329,8 +1317,8 @@
           },
           "chapter": "warranty"
         },
-        "12_app_setup_placeholder.rst": {
-          "slot": "12_app_setup",
+        "p31_12_app_setup_placeholder.rst": {
+          "slot": null,
           "components": {
             "HB-SPECIAL-APP/download": 1,
             "HB-SPECIAL-APP/inline-control": 1,
