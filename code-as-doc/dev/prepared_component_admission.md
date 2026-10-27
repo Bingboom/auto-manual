@@ -172,5 +172,11 @@ Under MA-357 the en entry drops the unassembled `99_regulatory_compliance.rst`
 and its regulatory-radio debt row. The fr chapters keep their reviewed component
 requirements unchanged under the review page names, with no template slot, like
 en's preface. Removing a component or a chapter from either target still fails.
-JE-1000F EU de/es/it carry the same template-name mismatch (ten pages each); they
-are not corrected here, and their next fresh release needs the same review.
+
+The same day, de/es/it received the same correction. They build from the same
+snapshot with `--source review`, as the package README requires: their reviewed
+LCD pages fail `review-asis` on row 20. That path assembles their ten chapters as
+p-numbered review pages too (es `p33_…`–`p46_…`, de `p48_…`–`p61_…`, it
+`p63_…`–`p76_…`). Each chapter keeps its reviewed component requirements under
+that page name with no template slot. Fresh admission now passes for all three,
+and dropping a chapter or raising a component minimum still fails.
