@@ -2166,6 +2166,56 @@
     },
     "manual_theme_sha256": "e8fc88458d239edef85f2cfb0b26b71df2e83859c8e51e9c093e5abc2982b47d",
     "markdown_filename": "manual_je1000h_eu_nl.md",
+    "operator_release_approval": {
+      "date": "2026-10-27",
+      "decisions": {
+        "authority": "batch-1465 revised AI JE-1000H_修正版.ai (ffbad263…) from the 发布文档管理 record",
+        "symbols": "all seven symbol rows use shared Web variants byte for byte; Li-ion li-ion/recycle-li-ion-native-dark admitted under the trusted glyph waivers JE1000H-1465-{PT,NL,PL}-SYMBOL-LI-ION; no copy change"
+      },
+      "merge_authorization": "Operator review and merge of the engineering PR (AGENTS.md §8.6); no agent self-merge grant.",
+      "operator_decisions": [
+        "这个 JE-1000H的图标 改成共用图标",
+        "nl/pl/pt 也改，模板路径从 main 重建",
+        "上线提交发布（2026-10-26，四行版）",
+        "那三行也换成共用图标",
+        "要允许误差 这个误差 就是人工引入的 你需要处理成共用的",
+        "上线提交发布（2026-10-27，七行版）"
+      ],
+      "operator_quote": "上线提交发布",
+      "original_source_sha256": "ffbad263b763f60b34df14beabc5afaaf68b9bb8c9b64332f29ce2bc93281fa4",
+      "reviewed_candidate": {
+        "candidate_commit": "04dad55a",
+        "engineering_pr": "Bingboom/auto-manual#1608",
+        "markdown_sha256": {
+          "nl": "91eec6f9cc5a19606488aed4dc86a38a5ebf97f7463068b07804719ff569da33",
+          "pl": "f9e4d011cd03283917f924e558e38706f4055a8d0115c17fc3dfec9d264a5e82",
+          "pt": "a0ba371848b2b14b55945a4371e38cb0d2cb4abeeed410593e1679f7f86bb663"
+        },
+        "renderings": "before/after symbol table at 1280 and 390 px, pt/nl/pl seven shared rows (Li-ion native-dark)"
+      },
+      "schema_version": "source-operator-acceptance/v1",
+      "scope": "Git-only pt/nl/pl Web release of git-20261026-8bcb378f-shared-symbols; the approved temperature-web package unchanged; no Base, queue, source-table, asset-registry or HTML_link writes.",
+      "superseded_review": {
+        "candidate_commit": "11930917",
+        "engineering_pr": "Bingboom/auto-manual#1608",
+        "markdown_sha256": {
+          "nl": "78d366854e3a7cd845408063b57df51db0ebd8a93204706b8bc5d2c7e721c49e",
+          "pl": "1afc214ab182a9e5cfa25ebffd7863a4a567dcf4a1c399f7b7dbb6e7bbc9c96d",
+          "pt": "67011c64cbec96c259bdefb81185b2685a001b08a8c568bd235466a8dadd9d89"
+        },
+        "renderings": "before/after symbol table at 1280 and 390 px, nine locales",
+        "source_manifest_sha256": "73a651bac4f68dcc762d1809b7e7bddfb32e103774e38033a9251182eeccb3fd"
+      },
+      "target": {
+        "languages": [
+          "pt",
+          "nl",
+          "pl"
+        ],
+        "model": "JE-1000H",
+        "region": "EU"
+      }
+    },
     "page_count": 16,
     "page_declarations": {},
     "pdf_intake_provenance": {
@@ -9323,11 +9373,9 @@
       ],
       "unresolved_text": []
     },
-    "pending_source_review": [
-      "operator review of the 1280/390 renderings and release approval"
-    ],
+    "pending_source_review": [],
     "projection": "whole-document-components/v1",
-    "publication_eligible": false,
+    "publication_eligible": true,
     "rendered_source_figure_count": 10,
     "shared_component_coverage": {
       "applicable": true,
@@ -9523,7 +9571,7 @@
           "shared_symbol_key": "weee/crossed-bin-bar"
         }
       ],
-      "status": "candidate; operator rendering review and release approval pending"
+      "status": "operator-approved-git-only-release"
     },
     "skipped_raw": 0,
     "source_errata": {

@@ -21,13 +21,13 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 2455,
-      "sha256": "9bc7f50431a46b0d42902d6117f878fadbb35f0cbcf8f4bdf4d10e5ed8fce4f0"
+      "size": 2536,
+      "sha256": "bfc727ff9875c9c48b5b75a806f8fb80ca82e54f4d3de51326e83d74d4f122bb"
     },
     {
       "path": "approval.json",
-      "size": 1595,
-      "sha256": "4f1c2461456fa8db9bfe06afd1808c694f5bd905fcee026d12a3f17468fd3d84"
+      "size": 2446,
+      "sha256": "183cf1e2a0ca330e7d939000df2d7601be1f4088912becd5199bc324667c0a2e"
     },
     {
       "path": "derive_shared_symbols.py",
@@ -351,8 +351,8 @@
     },
     {
       "path": "web/nl/manual.ir.json",
-      "size": 649262,
-      "sha256": "3332b3a814fdbddeeeb1fc6acf8d0d2a60fe520fab81529e0ec82b5fed8ebe94"
+      "size": 651829,
+      "sha256": "5b9f594dc9a8f2a71e65cced631bf529d31fbfd671d11ff68b6611f8a5f9a5ab"
     },
     {
       "path": "web/nl/manual_je1000h_eu_nl.md",
@@ -671,8 +671,8 @@
     },
     {
       "path": "web/pl/manual.ir.json",
-      "size": 654860,
-      "sha256": "64f2041e667f2347d45231018e992998f56aa7dcb9c592eb075491497156053a"
+      "size": 657427,
+      "sha256": "32dcdf13193f28e611e6b177e9143425eb2051da958d4a97dd6c0ed1d742f90f"
     },
     {
       "path": "web/pl/manual_je1000h_eu_pl.md",
@@ -991,8 +991,8 @@
     },
     {
       "path": "web/pt/manual.ir.json",
-      "size": 651854,
-      "sha256": "8d80630ca6ae0cd6d452ef33565d9064fb9ab6fa01ac7455bdfaca05db572943"
+      "size": 654421,
+      "sha256": "a21b393a44d6c9a74c20e557a6f37865e7a3306f2c134cc374b7c0d1772c90c4"
     },
     {
       "path": "web/pt/manual_je1000h_eu_pt.md",
@@ -1039,7 +1039,7 @@
       "assets/40529e39bab8_symbol-weee.png": "40529e39bab80505522965d934be95e94c03e2ac6a56f7d6208ddfec6b19d8d7"
     }
   },
-  "publication_status": "candidate; operator rendering review and release approval pending",
+  "publication_status": "operator-approved-git-only-release",
   "shared_symbol_revision": {
     "request": "Operator 2026-10-26: 「这个 JE-1000H的图标 改成共用图标」; 「nl/pl/pt 也改」.",
     "decisions": [

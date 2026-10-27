@@ -390,11 +390,12 @@
         "decision": "2026-10-27 「那两个也换成共用透明的」: template raster withdrawn in the shared manifest; same glyph exists transparent"
       }
     ],
-    "status": "candidate; WEEE, warning and Li-ion rows added 2026-10-27, operator rendering review pending (four-row version approved 2026-10-26)",
+    "status": "operator-approved-git-only-release",
     "operator_release_approval": {
       "operator_quote": "上线提交发布",
-      "date": "2026-10-26",
-      "reviewed_candidate": "Bingboom/auto-manual#1608 at 47728cf5; before/after symbol table at 1280 and 390 px",
+      "date": "2026-10-27",
+      "reviewed_candidate": "Bingboom/auto-manual#1608 at 04dad55a; all seven symbol rows shared; 1280/390 renderings",
+      "earlier_approval": "2026-10-26 四行版 (47728cf5)",
       "scope": "Git-only en/fr/es/de/it/uk Web release rebuilt from the merged main commit; no Base, queue, source-table, asset-registry or HTML_link writes."
     }
   }

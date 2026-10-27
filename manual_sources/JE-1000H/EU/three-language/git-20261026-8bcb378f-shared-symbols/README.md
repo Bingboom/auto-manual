@@ -27,9 +27,10 @@ replayed from the IR by `tools.web.frozen_ai_web.replay_package`.
 as `superseded_original_source`. Every symbol row of pt (p.111), nl (p.128) and pl
 (p.145) is bound to its native glyph drawings within the intake `icon_bbox` and its
 caption pixels, and passes `require_symbol_asset_admission` (results in
-`symbol_asset_admission`). `approval.json` records the operator's「上线提交发布」for
-the four-row candidate; it applies only while its Markdown hashes match, so the
-current package is a candidate until the operator approves its renderings. No
+`symbol_asset_admission`). Status: `operator-approved-git-only-release`. On
+2026-10-27 the operator reviewed the seven-row 1280/390 renderings and decided
+「上线提交发布」; `approval.json` binds those Markdown hashes (the 2026-10-26 four-row
+review is kept as `superseded_review`) and makes each IR publication-eligible. No
 Feishu write, queue row or asset-register promotion is part of this package.
 `tests/test_je1000h_eu_shared_symbols.py` checks the bindings, text and cold replay.
 Review record: [je1000h_eu_shared_symbols_2026-10](../../../../../code-as-doc/reviews/je1000h_eu_shared_symbols_2026-10.md).

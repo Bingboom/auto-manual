@@ -152,3 +152,7 @@ glyph. The operator then decided「那两个也换成共用透明的」: warning
 whose template bytes are also withdrawn, now point at
 `warning/outline-triangle-tinted` and `li-ion/recycle-li-ion-32-gray`. Every
 symbol row of the six locales is a shared variant; text is unchanged.
+
+Release decision (2026-10-27): the operator reviewed the seven-row 1280/390
+renderings and decided「上线提交发布」; `shared_symbol_revision.operator_release_approval`
+records it. The six locales are rebuilt from the merged main commit.

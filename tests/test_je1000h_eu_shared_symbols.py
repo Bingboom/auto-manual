@@ -116,6 +116,8 @@ class ThreeLanguagePackageTests(unittest.TestCase):
                 self.assertEqual(metadata.get('operator_release_approval'), approval if reviewed else None)
         six = read(SIX_SOURCE / 'source_manifest.json')['shared_symbol_revision']
         self.assertEqual(six['operator_release_approval']['operator_quote'], '上线提交发布')
+        self.assertEqual(six['status'], 'operator-approved-git-only-release')
+        self.assertTrue(reviewed)
 
     def test_manifest_locks_inputs_and_cold_replay_is_stable(self):
         manifest = read(PACKAGE / 'source_manifest.json')

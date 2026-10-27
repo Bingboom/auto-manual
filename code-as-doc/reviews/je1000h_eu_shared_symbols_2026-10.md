@@ -108,7 +108,14 @@ uk byte question resolved: the live Hello-Docs uk Markdown differs from a
 4e7df369 rebuild only in the column padding of one empty-header Markdown table;
 visible text is identical. Live de/it also equal the main rebuild in visible text.
 
+## Release decision for the seven-row version (2026-10-27)
+
+The operator reviewed the nine-locale seven-row renderings and decided
+「上线提交发布」. pt/nl/pl bind it in the package `approval.json` (Markdown
+`a0ba3718…` / `91eec6f9…` / `f9e4d011…`) and are publication-eligible; the six
+template locales record it in `shared_symbol_revision.operator_release_approval`.
+
 ## Pending
 
-1. Operator review of the current nine-locale renderings and 「上线提交发布」.
+1. Operator review and merge of the engineering PR (AGENTS.md §8.6).
 2. After merge: seal at the merged main commit and a Hello-Docs `docs/publish/**` PR.
