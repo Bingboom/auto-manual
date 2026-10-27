@@ -92,8 +92,8 @@
     },
     {
       "path": "phase2/symbols_blocks.csv",
-      "size": 11045,
-      "sha256": "eeffa96c0bc42ac6cad3bccdbc8b4144d4ba709b9391207ead4f512dd52faf3f"
+      "size": 11189,
+      "sha256": "af9b9bff3bec9760b92064bbbfc40f16649839fa978370503c9382711faf1fa8"
     },
     {
       "path": "phase2/troubleshooting_blocks.csv",
@@ -246,7 +246,7 @@
       "sha256": "b4744a483fa95db386bbb269f277a53f678279c7eda8f8cbf24a78f2b426f2a7"
     }
   ],
-  "files_inventory_sha256": "6b8f8296bb72b8a20b07b186792f0c12578a09fedecb1d32b87a22c53474223c",
+  "files_inventory_sha256": "a40929d1f52c489112c87e3f2841c5e5ff04a21ef6dbc5ef1caa902ca69b20e8",
   "live_bitable_dependency": false,
   "checkout_contract": {
     "path": "phase2/.gitattributes",
@@ -370,13 +370,27 @@
         "image_path": "renderers/web/assets/shared/symbols/native-v1/symbol_weee.png",
         "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
         "decision": "2026-10-27 「weee.png 带不透明的白底== 处理成透明底 作为共用的」: the template raster (withdrawn in the shared manifest) has an opaque white backdrop; the same glyph exists transparent as weee/crossed-bin-bar"
+      },
+      {
+        "symbol_key": "warning_triangle",
+        "old_image": "docs/templates/word_template/common_assets/symbols/warning_triangle.png",
+        "old_sha256": "24e567ffad0566246aab95bc86be386842af60454f7a4b5f1a5ac77ff37cbb8c",
+        "shared_symbol_key": "warning/outline-triangle-tinted",
+        "image_path": "renderers/web/assets/shared/symbols/native-v1/symbol_warning_triangle.svg",
+        "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+        "decision": "2026-10-27 「那两个也换成共用透明的」: template raster withdrawn in the shared manifest; same glyph exists transparent"
+      },
+      {
+        "symbol_key": "li_ion",
+        "old_image": "docs/templates/word_template/common_assets/symbols/li_ion.png",
+        "old_sha256": "f913a65f077499d5c60979c71003f852f6bff932874962ce2337bc31e8543e48",
+        "shared_symbol_key": "li-ion/recycle-li-ion-32-gray",
+        "image_path": "renderers/web/assets/shared/symbols/native-v1/native-li_ion_gray_jp.svg",
+        "sha256": "4d202540e27b0d52e806abf8b0e357382d0661d31f07a756b624108e2c0716d9",
+        "decision": "2026-10-27 「那两个也换成共用透明的」: template raster withdrawn in the shared manifest; same glyph exists transparent"
       }
     ],
-    "unchanged": [
-      "warning_triangle",
-      "li_ion"
-    ],
-    "status": "candidate; WEEE row added 2026-10-27, operator rendering review pending (four-row version approved 2026-10-26)",
+    "status": "candidate; WEEE, warning and Li-ion rows added 2026-10-27, operator rendering review pending (four-row version approved 2026-10-26)",
     "operator_release_approval": {
       "operator_quote": "上线提交发布",
       "date": "2026-10-26",

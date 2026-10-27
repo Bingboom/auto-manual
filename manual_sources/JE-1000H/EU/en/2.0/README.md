@@ -148,4 +148,7 @@ WEEE row (2026-10-27, candidate): the template `weee.png` has an opaque white
 backdrop and its bytes are already withdrawn in the shared symbol manifest. The
 operator decided「weee.png 带不透明的白底== 处理成透明底 作为共用的」, so the WEEE row
 now points at the transparent shared variant `weee/crossed-bin-bar`, the same
-glyph. Warning and Li-ion 32 keep their template images.
+glyph. The operator then decided「那两个也换成共用透明的」: warning and Li-ion 32,
+whose template bytes are also withdrawn, now point at
+`warning/outline-triangle-tinted` and `li-ion/recycle-li-ion-32-gray`. Every
+symbol row of the six locales is a shared variant; text is unchanged.

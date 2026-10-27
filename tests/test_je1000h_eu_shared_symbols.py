@@ -1,4 +1,4 @@
-"""JE-1000H EU: symbol rows reuse shared Web variants (five rows in six locales, all rows in pt/nl/pl)."""
+"""JE-1000H EU: symbol rows reuse shared Web variants (every symbol row in all nine locales)."""
 from __future__ import annotations
 
 import csv
@@ -27,6 +27,8 @@ SIX_KEYS = {
     'no_open_flame': 'no-open-flame/fire-match-prohibited',
     'keep_away_from_children': 'keep-away-from-children/adult-child-prohibited',
     'weee': 'weee/crossed-bin-bar',
+    'warning_triangle': 'warning/outline-triangle-tinted',
+    'li_ion': 'li-ion/recycle-li-ion-32-gray',
 }
 
 
@@ -47,7 +49,7 @@ def visible(path: Path) -> str:
 
 
 class SixLanguageSourceTests(unittest.TestCase):
-    def test_four_rows_point_at_their_shared_variants(self):
+    def test_symbol_rows_point_at_their_shared_variants(self):
         with (SIX_SOURCE / 'phase2/symbols_blocks.csv').open(encoding='utf-8', newline='') as handle:
             rows = {r['symbol_key']: r for r in csv.DictReader(handle) if r['Model'] == 'JE-1000H'}
         for symbol, key in SIX_KEYS.items():
@@ -56,8 +58,6 @@ class SixLanguageSourceTests(unittest.TestCase):
                 path = rows[symbol]['image_path']
                 self.assertEqual(path, 'renderers/web/assets/shared/symbols/' + entry['path'])
                 self.assertEqual(file_sha256(ROOT / 'docs' / path), entry['sha256'])
-        for symbol in ('warning_triangle', 'li_ion'):
-            self.assertEqual(rows[symbol]['image_path'], '')
 
     def test_revision_record_names_every_replaced_row(self):
         revision = read(SIX_SOURCE / 'source_manifest.json')['shared_symbol_revision']

@@ -85,7 +85,11 @@ manifest's `withdrawn` list, and the same glyph exists transparent as
 `weee/crossed-bin-bar`, so the six locales' WEEE row now points at that variant
 (no new art, no template change; text unchanged). This fifth row is a candidate
 until the operator reviews its renderings. The template `warning_triangle.png` and
-`li_ion.png` bytes are also on the `withdrawn` list; they stay as ruled above.
+`li_ion.png` bytes are also on the `withdrawn` list; the operator decided
+「那两个也换成共用透明的」, so those rows point at `warning/outline-triangle-tinted`
+(`0f41fe5e…`) and `li-ion/recycle-li-ion-32-gray` (`native-li_ion_gray_jp.svg`).
+All seven rows in all nine locales now reuse shared variants byte for byte. The
+six-locale rows added on 2026-10-27 await the operator's rendering review.
 
 ## Pending
 
