@@ -77,6 +77,21 @@ class ThreeLanguagePackageTests(unittest.TestCase):
                     require_shared_symbol_binding(row, PACKAGE / 'web' / language / row['asset_ref'])
                     self.assertFalse((PACKAGE / 'web' / language / row['replaced_asset_ref']).exists())
 
+    def test_every_row_is_admitted_against_the_revised_authority_ai(self):
+        from tools.web.symbol_asset_admission import require_symbol_asset_admission
+        manifest = read(PACKAGE / 'source_manifest.json')
+        source = manifest['original_source']
+        self.assertEqual(source['filename'], 'source/JE-1000H_修正版.ai')
+        self.assertEqual(file_sha256(PACKAGE / source['filename']), source['sha256'])
+        self.assertEqual(manifest['superseded_original_source']['sha256'][:8], '8bcb378f')
+        for language in LANGUAGES:
+            with self.subTest(language=language):
+                report = require_symbol_asset_admission(PACKAGE / 'web' / language, PACKAGE, manifest, language)
+                self.assertEqual(len(report), 7)
+                waived = [r for r in report if 'glyph_waiver' in r]
+                self.assertEqual([r['glyph_waiver'] for r in waived],
+                                 [f'JE1000H-1465-{language.upper()}-SYMBOL-LI-ION'])
+
     def test_visible_text_matches_the_approved_package(self):
         for language in LANGUAGES:
             name = f'manual_je1000h_eu_{language}.md'

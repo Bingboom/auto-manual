@@ -91,13 +91,24 @@ until the operator reviews its renderings. The template `warning_triangle.png` a
 All seven rows in all nine locales now reuse shared variants byte for byte. The
 six-locale rows added on 2026-10-27 await the operator's rendering review.
 
+## Authority AI and native admission (2026-10-27)
+
+The operator pointed to the JE-1000H (HTE159) record in the `发布文档管理` Base. Its
+attachment `JE-1000H_修正版.ai` (SHA-256 `ffbad263…`, 161 pages; the same-source
+portrait PDF is `8133ff3d…`) was downloaded read-only and committed as the pt/nl/pl
+symbol authority; the original 0928 AI `8bcb378f…` is recorded as superseded. Rows
+are bound inside the intake `icon_bbox` because the JE-2000F rule-band heuristic
+dropped the read-manual book outline. Eighteen rows pass within 0.004–0.015.
+Li-ion matched no shared variant within 0.02 (closest `native-dark` 0.0218;
+`recycle-li-ion` 0.079). The operator ruled 「要允许误差 这个误差 就是人工引入的
+你需要处理成共用的」: the gate gained trusted glyph waivers (0.03 hard ceiling), and
+three entries admit `li-ion/recycle-li-ion-native-dark` for pt/nl/pl.
+
+uk byte question resolved: the live Hello-Docs uk Markdown differs from a
+4e7df369 rebuild only in the column padding of one empty-header Markdown table;
+visible text is identical. Live de/it also equal the main rebuild in visible text.
+
 ## Pending
 
-1. Operator review of the seven-row pt/nl/pl 1280/390 renderings and 「上线提交发布」.
-2. pt/nl/pl seal: `require_symbol_asset_admission` needs the HTE159 AI
-   (`8bcb378f…`, not committed) to compare each shared variant with its native glyph.
-3. en/fr/es/de/it/uk: the template route's release evidence does not run the
-   symbol gate; they can be sealed from the merged main commit. uk must first be
-   compared with the live Hello-Docs file (the 100,493 vs 100,337 byte question).
-4. After merge: seal at the merged main commit and a Hello-Docs `docs/publish/**`
-   PR. Hello-Docs access for this session is still missing.
+1. Operator review of the current nine-locale renderings and 「上线提交发布」.
+2. After merge: seal at the merged main commit and a Hello-Docs `docs/publish/**` PR.

@@ -5,7 +5,7 @@
     "assets/5ad4fa830a5b_symbol_do_not_dismantle.svg",
     "assets/4a82cdd8683e_symbol_no_open_flame.svg",
     "assets/a58074f90ef8_symbol_keep_away_from_children.svg",
-    "assets/317b9e9feb77_symbol_li_ion.svg",
+    "assets/00ce194f2bd6_symbol_li_ion_dark.svg",
     "assets/6883f899f43a_symbol_weee.png",
     "assets/f08b8ca8f35c_inbox-main.png",
     "assets/38a1afff7a36_inbox-cable.png",
@@ -62,18 +62,18 @@
   ],
   "bundle_root": "frozen-source",
   "bundle_sha256": "ff13cb704221f7c5d9e8980bb4ed7678a1792a243f5c26b03642624cce805537",
-  "content_sha256": "6f46a206e8ab2520da1e7f3366d56b5005a93e9518f01b196d604655840701fa",
+  "content_sha256": "6dae2fa4aa6c1c5184f78197442fdd81ddb69524c8250fee245a86f4f6934af4",
   "language": "pl",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
     "asset_sha256": {
+      "assets/00ce194f2bd6_symbol_li_ion_dark.svg": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1",
       "assets/076f18bc39f9_reference-overview_front_view.png": "076f18bc39f9129abfe51d02629692a5dac13011122da2422287e1ec40f9c12b",
       "assets/0f41fe5ea49f_symbol_warning_triangle.svg": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
       "assets/1a75f52019e8_app-store.png": "1a75f52019e85f537b1744e56ddeb81bf35710ebfb8b95766bfd404857d7c60c",
       "assets/1d2087064f92_symbol_read_manual.svg": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
       "assets/21b5f19ca9a6_lcd-charging-power-limit.png": "21b5f19ca9a6e39d8bd515128297cc1b99e43fd263e39ffba4fdf102d50a4bad",
       "assets/28f3cad42ae3_lcd-ac-wall-charging.png": "28f3cad42ae32e9e895abfd7cdb16a21b99dfa822c57d542f0e3f59a4b452c6c",
-      "assets/317b9e9feb77_symbol_li_ion.svg": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e",
       "assets/38a1afff7a36_inbox-cable.png": "38a1afff7a3673e05f36ef30faaef3a71018630c3cfaeae0ff0de837f4898adc",
       "assets/4a82cdd8683e_symbol_no_open_flame.svg": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f",
       "assets/4b2c9f455034_inbox-manual.png": "4b2c9f45503487f33280264a44400b957b05aad20ca7a50d13ea12a77d9d1407",
@@ -9326,8 +9326,7 @@
       "unresolved_text": []
     },
     "pending_source_review": [
-      "operator review of the 1280/390 renderings and release approval",
-      "native symbol admission of the shared variants against the HTE159 authority AI"
+      "operator review of the 1280/390 renderings and release approval"
     ],
     "projection": "whole-document-components/v1",
     "publication_eligible": false,
@@ -9510,12 +9509,12 @@
           "shared_symbol_key": "keep-away-from-children/adult-child-prohibited"
         },
         {
-          "asset_ref": "assets/317b9e9feb77_symbol_li_ion.svg",
-          "asset_sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e",
+          "asset_ref": "assets/00ce194f2bd6_symbol_li_ion_dark.svg",
+          "asset_sha256": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1",
           "decision": "reuse-shared-variant-byte-identical",
           "replaced_asset_ref": "assets/11f1a73a4cb5_symbol-lithium_battery.png",
           "replaced_sha256": "11f1a73a4cb5b6c4ec69a51f71f3f16480fd792c61882135ee77569f78b192b8",
-          "shared_symbol_key": "li-ion/recycle-li-ion"
+          "shared_symbol_key": "li-ion/recycle-li-ion-native-dark"
         },
         {
           "asset_ref": "assets/6883f899f43a_symbol_weee.png",
@@ -9526,7 +9525,7 @@
           "shared_symbol_key": "weee/crossed-bin-bar"
         }
       ],
-      "status": "candidate; operator rendering review, release approval and native admission pending"
+      "status": "candidate; operator rendering review and release approval pending"
     },
     "skipped_raw": 0,
     "source_errata": {
@@ -10602,11 +10601,11 @@
             "assets/5ad4fa830a5b_symbol_do_not_dismantle.svg",
             "assets/4a82cdd8683e_symbol_no_open_flame.svg",
             "assets/a58074f90ef8_symbol_keep_away_from_children.svg",
-            "assets/317b9e9feb77_symbol_li_ion.svg",
+            "assets/00ce194f2bd6_symbol_li_ion_dark.svg",
             "assets/6883f899f43a_symbol_weee.png"
           ],
           "block_id": "symbols:block-0003",
-          "content_sha256": "82a86f5f3a03fd4c1dd887372fbebdbba34bd089469d7c902493aba9a4ec4baa",
+          "content_sha256": "6544983ebbb2adf5b63aa77da305aab4c3571375be690bca51aa9403f67d73f8",
           "kind": "flow",
           "payload": {
             "component_spec": {
@@ -10637,7 +10636,7 @@
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/317b9e9feb77_symbol_li_ion.svg",
+                  "asset_ref": "assets/00ce194f2bd6_symbol_li_ion_dark.svg",
                   "locale_policy": "exact",
                   "role": "icons"
                 },

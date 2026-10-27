@@ -13,15 +13,23 @@ children) were replaced byte for byte by the shared Web variants
 decided「那三行也换成共用图标」: warning, Li-ion and WEEE now use
 `warning/outline-triangle-tinted`, `li-ion/recycle-li-ion` and
 `weee/crossed-bin-bar`, whose glyph, tint and aspect match the native crops.
+Li-ion uses `li-ion/recycle-li-ion-native-dark`: no shared variant matches the
+revised source glyph within 0.02, and the operator ruled「要允许误差 这个误差 就是人工引入的
+你需要处理成共用的」, recorded as trusted waivers in
+`docs/renderers/contracts/symbol_glyph_waivers.json` (measured 0.0218).
 Captions and all other copy are unchanged (visible text checked); the MyST is
 replayed from the IR by `tools.web.frozen_ai_web.replay_package`.
 
 `derive_shared_symbols.py` applies this idempotently and refreshes
-`source_manifest.json`. `approval.json` records the operator's「上线提交发布」for
+`source_manifest.json`. The symbol authority is the batch-1465 revised AI
+`source/JE-1000H_修正版.ai` (SHA-256 `ffbad263…`, 161 pages) from the JE-1000H
+(HTE159) record of the `发布文档管理` Base; the original 0928 AI (`8bcb378f…`) is kept
+as `superseded_original_source`. Every symbol row of pt (p.111), nl (p.128) and pl
+(p.145) is bound to its native glyph drawings within the intake `icon_bbox` and its
+caption pixels, and passes `require_symbol_asset_admission` (results in
+`symbol_asset_admission`). `approval.json` records the operator's「上线提交发布」for
 the four-row candidate; it applies only while its Markdown hashes match, so the
-seven-row package is a candidate again until the operator approves the new
-1280/390 renderings. The seal also requires source-bound symbol admission against
-the HTE159 authority AI (SHA-256 `8bcb378f…`), which is not committed. No Feishu
-write, queue row or asset-register promotion is part of this package.
+current package is a candidate until the operator approves its renderings. No
+Feishu write, queue row or asset-register promotion is part of this package.
 `tests/test_je1000h_eu_shared_symbols.py` checks the bindings, text and cold replay.
 Review record: [je1000h_eu_shared_symbols_2026-10](../../../../../code-as-doc/reviews/je1000h_eu_shared_symbols_2026-10.md).

@@ -68,15 +68,56 @@ def _normalized(image: Image.Image) -> Image.Image:
                                 ImageChops.multiply(b, a), a))
 
 
-def compare_symbol(candidate: bytes, suffix: str, reference: bytes) -> dict:
+# Fixed engineering tolerance, not supplied by a candidate manifest.
+# Allows antialiasing/resolution changes, rejects substituted glyphs/tint.
+GLYPH_TOLERANCE = 0.02
+# Hard ceiling for operator-approved design-variation waivers; no ledger
+# entry can admit a larger difference.
+GLYPH_WAIVER_CEILING = 0.03
+
+
+def _symbol_error(candidate: bytes, suffix: str, reference: bytes) -> float:
     actual = _normalized(_render(candidate, suffix))
     native = _normalized(_render(reference, '.svg'))
-    errors = ImageStat.Stat(ImageChops.difference(actual, native)).mean
-    # Fixed engineering tolerance, not supplied by a candidate manifest.
-    # Allows antialiasing/resolution changes, rejects substituted glyphs/tint.
-    if max(errors) / 255 > 0.02:
+    return max(ImageStat.Stat(ImageChops.difference(actual, native)).mean) / 255
+
+
+def compare_symbol(candidate: bytes, suffix: str, reference: bytes) -> dict:
+    error = _symbol_error(candidate, suffix, reference)
+    if error > GLYPH_TOLERANCE:
         raise ValueError('symbol glyph/background differs from authoritative PDF')
-    return {'max_mean_channel_error': round(max(errors) / 255, 6)}
+    return {'max_mean_channel_error': round(error, 6)}
+
+
+def _glyph_waivers(source_sha: str, model: str, region: str, language: str) -> list[dict]:
+    path = get_paths().renderer_contracts_dir / 'symbol_glyph_waivers.json'
+    if not path.is_file():
+        return []
+    ledger = json.loads(path.read_text(encoding='utf-8'))
+    if ledger.get('schema_version') != 'auto-manual-symbol-glyph-waivers/v1':
+        raise ValueError('unsupported trusted symbol glyph waivers')
+    return [row for row in ledger['entries']
+            if (row['source_sha256'], row['model'], row['region'], row['language'])
+            == (source_sha, model, region, language)]
+
+
+def _waived_comparison(waivers: list[dict], row: dict, candidate: bytes, suffix: str,
+                       reference: bytes) -> dict:
+    """Admit an operator-approved design variation of one bound source glyph."""
+    matches = [w for w in waivers
+               if (w['physical_page'], w['drawing_indices'], w['shared_symbol_key'], w['asset_sha256'])
+               == (row['physical_page'], row['drawing_indices'], row['shared_symbol_key'], row['asset_sha256'])]
+    if len(matches) > 1:
+        raise ValueError('duplicate trusted symbol glyph waiver')
+    error = _symbol_error(candidate, suffix, reference)
+    if not matches:
+        raise ValueError('symbol glyph/background differs from authoritative PDF')
+    (waiver,) = matches
+    if (waiver.get('status') != 'operator-approved' or not waiver.get('operator_decision')
+            or not 0 < waiver['max_mean_channel_error'] <= GLYPH_WAIVER_CEILING
+            or error > waiver['max_mean_channel_error']):
+        raise ValueError('symbol glyph differs beyond its reviewed waiver')
+    return {'max_mean_channel_error': round(error, 6), 'glyph_waiver': waiver['id']}
 
 
 def _text(value: str) -> str:
@@ -192,6 +233,7 @@ def require_symbol_asset_admission(markdown_dir: Path, source_root: Path,
         source = manifest['original_source']
         pdf = _file(source_root, source['filename'], source['sha256'])
         errata = _caption_errata(source['sha256'], ir.model, ir.region, language)
+        waivers = _glyph_waivers(source['sha256'], ir.model, ir.region, language)
         report = []
         with fitz.open(pdf) as doc:
             for row, (ref, meaning) in zip(rows, expected, strict=True):
@@ -204,8 +246,12 @@ def require_symbol_asset_admission(markdown_dir: Path, source_root: Path,
                 erratum = _matching_erratum(errata, row)
                 reference = _reference(doc[page_number - 1], row, meaning,
                                        erratum)
-                result = {'asset_ref': ref, 'physical_page': page_number,
-                          **compare_symbol(candidate.read_bytes(), candidate.suffix, reference)}
+                data = candidate.read_bytes()
+                try:
+                    comparison = compare_symbol(data, candidate.suffix, reference)
+                except ValueError:
+                    comparison = _waived_comparison(waivers, row, data, candidate.suffix, reference)
+                result = {'asset_ref': ref, 'physical_page': page_number, **comparison}
                 if erratum:
                     result['caption_erratum'] = erratum['id']
                 report.append(result)
