@@ -16,6 +16,16 @@ from tools.word.bundle_docx_pandoc import resolve_pandoc_binary
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGES = {
+    "JE-240A": {
+        "path": "manual_sources/JE-240A/US/en/git-20261027-ae3aea4b",
+        "sha256": "ae3aea4bcffa1c87f2de01cbe5c84792713a70eded1716039beb442e38a0a27f",
+        "markdown": "manual_je240a_us_en.md",
+        "facts": ("JE-240A", "20Ah / 12.8V DC (256Wh)", "120V~ 60Hz, 2.5A, 300W Rated, 600W Surge peak",
+                  "switch to battery mode within 20ms", "Jackery Explorer 240 is 36 months"),
+        "foreign": ("JE-100C", "Explorer 100D", "Explorer 240D", "96Wh"),
+        "print_only": ("Contact us:",),
+        "tamper": ("20Ah / 12.8V DC (256Wh)", "20Ah / 12.8V DC (257Wh)"),
+    },
     "JE-100A": {
         "path": "manual_sources/JE-100A/US/en/git-20261027-18058b6b",
         "sha256": "18058b6bb7e83041fce1798f3baf98a018d079fa5caa6fd8dceec934df02c0b5",
