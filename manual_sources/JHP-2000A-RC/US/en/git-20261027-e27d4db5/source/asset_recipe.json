@@ -1,0 +1,1061 @@
+{
+ "schema_version": "jhp2000arc-us-asset-recipe/v1",
+ "source_sha256": "e27d4db5606c140439dd32b7d17ab4ed428a62fbfbb5567c7664d8ac22032d51",
+ "panel_scale": 3,
+ "panels": [
+  {
+   "path": "assets/inbox-unit.png",
+   "physical_page": 6,
+   "bbox": [
+    44,
+    333,
+    130,
+    398
+   ],
+   "role": "in-box card art 1"
+  },
+  {
+   "path": "assets/inbox-cable.png",
+   "physical_page": 6,
+   "bbox": [
+    168,
+    334,
+    218,
+    403
+   ],
+   "role": "in-box card art 2"
+  },
+  {
+   "path": "assets/inbox-documents.png",
+   "physical_page": 6,
+   "bbox": [
+    268,
+    335,
+    320,
+    402
+   ],
+   "role": "in-box card art 3"
+  },
+  {
+   "path": "assets/overview-front.png",
+   "physical_page": 7,
+   "bbox": [
+    27,
+    77,
+    342,
+    235
+   ],
+   "role": "complete front view leader-label panel"
+  },
+  {
+   "path": "assets/overview-left.png",
+   "physical_page": 7,
+   "bbox": [
+    28,
+    266,
+    342,
+    371
+   ],
+   "role": "complete left side view leader-label panel"
+  },
+  {
+   "path": "assets/overview-right.png",
+   "physical_page": 7,
+   "bbox": [
+    28,
+    397,
+    343,
+    497
+   ],
+   "role": "complete right side view leader-label panel"
+  },
+  {
+   "path": "assets/lcd-map.png",
+   "physical_page": 8,
+   "bbox": [
+    48,
+    53,
+    323,
+    228
+   ],
+   "role": "complete numbered LCD map"
+  },
+  {
+   "path": "assets/power-on-off.png",
+   "physical_page": 11,
+   "bbox": [
+    32,
+    79,
+    337,
+    195
+   ],
+   "strip": [
+    [
+     160,
+     155,
+     330,
+     203
+    ],
+    [
+     38,
+     210,
+     332,
+     240
+    ]
+   ],
+   "role": "POWER ON/OFF operation panel; callout bubble and energy-saving note removed (native text)"
+  },
+  {
+   "path": "assets/ac-output.png",
+   "physical_page": 11,
+   "bbox": [
+    32,
+    335,
+    337,
+    492
+   ],
+   "strip": [
+    [
+     39,
+     283,
+     171,
+     298
+    ],
+    [
+     39,
+     304,
+     326,
+     331
+    ]
+   ],
+   "role": "AC OUTPUT ON/OFF panel; prerequisite pill and paragraph removed (native text)"
+  },
+  {
+   "path": "assets/dc-usb-output.png",
+   "physical_page": 12,
+   "bbox": [
+    33,
+    74,
+    338,
+    270
+   ],
+   "strip": [
+    [
+     39,
+     57,
+     172,
+     72
+    ]
+   ],
+   "role": "DC 12V/USB OUTPUT ON/OFF panel; prerequisite pill removed (native text)"
+  },
+  {
+   "path": "assets/energy-saving.png",
+   "physical_page": 13,
+   "bbox": [
+    32,
+    118,
+    337,
+    227
+   ],
+   "strip": [
+    [
+     40,
+     58,
+     330,
+     117
+    ],
+    [
+     40,
+     228,
+     330,
+     269
+    ]
+   ],
+   "role": "ENERGY SAVING MODE key-combination panel; two text boxes removed (native text)"
+  },
+  {
+   "path": "assets/led-light.png",
+   "physical_page": 13,
+   "bbox": [
+    32,
+    424,
+    337,
+    499
+   ],
+   "strip": [
+    [
+     40,
+     396,
+     323,
+     422
+    ],
+    [
+     254,
+     427,
+     329,
+     495
+    ]
+   ],
+   "role": "LED LIGHT ON/OFF panel; mode pill and three step texts removed (native ordered list)"
+  },
+  {
+   "path": "assets/lcd-screen.png",
+   "physical_page": 14,
+   "bbox": [
+    36,
+    62,
+    143,
+    190
+   ],
+   "role": "LCD SCREEN artwork beside the mode table"
+  },
+  {
+   "path": "assets/ups.png",
+   "physical_page": 15,
+   "bbox": [
+    32,
+    77,
+    337,
+    268
+   ],
+   "strip": [
+    [
+     129,
+     215,
+     333,
+     256
+    ]
+   ],
+   "role": "UPS connection panel; two explanatory paragraphs removed (native text)"
+  },
+  {
+   "path": "assets/battery-stack.png",
+   "physical_page": 16,
+   "bbox": [
+    33,
+    101,
+    340,
+    302
+   ],
+   "role": "battery pack stacking panel"
+  },
+  {
+   "path": "assets/battery-accessories.png",
+   "physical_page": 16,
+   "bbox": [
+    29,
+    425,
+    344,
+    497
+   ],
+   "role": "sold-separately battery pack accessory strip"
+  },
+  {
+   "path": "assets/charging-ac.png",
+   "physical_page": 17,
+   "bbox": [
+    34,
+    200,
+    341,
+    294
+   ],
+   "strip": [
+    [
+     191,
+     273,
+     313,
+     290
+    ]
+   ],
+   "role": "AC wall charging panel; caption removed (native text)"
+  },
+  {
+   "path": "assets/charging-solar.png",
+   "physical_page": 18,
+   "bbox": [
+    30,
+    32,
+    339,
+    163
+   ],
+   "role": "dual solar input panel"
+  },
+  {
+   "path": "assets/charging-car.png",
+   "physical_page": 18,
+   "bbox": [
+    30,
+    309,
+    338,
+    432
+   ],
+   "role": "car charging panel"
+  },
+  {
+   "path": "assets/app-store.png",
+   "physical_page": 22,
+   "bbox": [
+    46,
+    68,
+    122,
+    118
+   ],
+   "role": "App Store / Google Play badge pair"
+  },
+  {
+   "path": "assets/app-qr.png",
+   "physical_page": 22,
+   "bbox": [
+    198,
+    66,
+    251,
+    119
+   ],
+   "role": "App download QR frame"
+  },
+  {
+   "path": "assets/app-add.png",
+   "physical_page": 22,
+   "bbox": [
+    112,
+    210,
+    250,
+    348
+   ],
+   "role": "App screenshots 2.1-2.2 with captions (phone frames kept)"
+  },
+  {
+   "path": "assets/app-panel.png",
+   "physical_page": 22,
+   "bbox": [
+    29,
+    350,
+    341,
+    433
+   ],
+   "role": "control-panel diagram with button leader labels"
+  },
+  {
+   "path": "assets/app-results.png",
+   "physical_page": 23,
+   "bbox": [
+    45,
+    83,
+    320,
+    248
+   ],
+   "role": "App screenshots 2.3-2.5 with captions (phone frames kept)"
+  }
+ ],
+ "native_icons": [
+  {
+   "path": "assets/lcd-tou.svg",
+   "physical_page": 9,
+   "glyph_bbox": [
+    57.06,
+    67.78,
+    71.82,
+    78.12
+   ],
+   "drawing_indices": [
+    331,
+    332,
+    333,
+    334
+   ],
+   "closest_existing": {
+    "path": "manual_sources/JBP-1000B-WH/JP/ja/git-20261008-3aa6c003-native/source/assets/lcd-dc.svg",
+    "mean_error": 0.2054
+   }
+  },
+  {
+   "path": "assets/lcd-ups.svg",
+   "physical_page": 9,
+   "glyph_bbox": [
+    57.44,
+    123.19,
+    71.44,
+    133.03
+   ],
+   "drawing_indices": [
+    1108,
+    1109,
+    1110,
+    1111
+   ],
+   "closest_existing": {
+    "path": "manual_sources/JBP-1000B-WH/JP/ja/git-20261008-3aa6c003-native/source/assets/lcd-dc.svg",
+    "mean_error": 0.205
+   }
+  },
+  {
+   "path": "assets/lcd-output-voltage-frequency.svg",
+   "physical_page": 9,
+   "glyph_bbox": [
+    48.25,
+    174.72,
+    81.17,
+    182.72
+   ],
+   "drawing_indices": [
+    1079,
+    1080,
+    1081,
+    1082,
+    1083,
+    1084,
+    1085,
+    1086,
+    1087,
+    1088,
+    1089,
+    1090,
+    1091,
+    1092,
+    1093,
+    1094,
+    1095,
+    1096,
+    1097,
+    1098,
+    1099,
+    1100,
+    1101,
+    1102,
+    1103,
+    1104,
+    1105,
+    1106,
+    1107
+   ],
+   "closest_existing": {
+    "path": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-09.svg",
+    "mean_error": 0.0503
+   }
+  },
+  {
+   "path": "assets/lcd-ac-wall-charging.svg",
+   "physical_page": 9,
+   "glyph_bbox": [
+    56.79,
+    250.76,
+    70.62,
+    265.69
+   ],
+   "drawing_indices": [
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55
+   ],
+   "closest_existing": {
+    "path": "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets/lcd-02.svg",
+    "mean_error": 0.151
+   }
+  },
+  {
+   "path": "assets/lcd-car-charging.svg",
+   "physical_page": 9,
+   "glyph_bbox": [
+    58.04,
+    276.64,
+    70.38,
+    293.27
+   ],
+   "drawing_indices": [
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71
+   ],
+   "closest_existing": {
+    "path": "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets/lcd-06.svg",
+    "mean_error": 0.1581
+   }
+  },
+  {
+   "path": "assets/lcd-solar-charging.svg",
+   "physical_page": 9,
+   "glyph_bbox": [
+    57.53,
+    308.51,
+    72.37,
+    323.24
+   ],
+   "drawing_indices": [
+    1524,
+    1525,
+    1526,
+    1527,
+    1528,
+    1529,
+    1530
+   ],
+   "closest_existing": {
+    "path": "data/manual_sources/JE-3600A/CN/git-20261012-caa5370a-reviewed/assets/lcd-ac-wall-charging.png",
+    "mean_error": 0.2677
+   }
+  },
+  {
+   "path": "assets/lcd-battery-saving.svg",
+   "physical_page": 9,
+   "glyph_bbox": [
+    59.95,
+    364.26,
+    72.16,
+    377.52
+   ],
+   "drawing_indices": [
+    1531,
+    1532,
+    1533,
+    1534,
+    1535,
+    1536
+   ],
+   "closest_existing": {
+    "path": "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets/lcd-05.svg",
+    "mean_error": 0.3026
+   }
+  },
+  {
+   "path": "assets/lcd-charging-power-limit.svg",
+   "physical_page": 9,
+   "glyph_bbox": [
+    56.08,
+    425.26,
+    73.03,
+    440.04
+   ],
+   "drawing_indices": [
+    1379,
+    1380,
+    1381,
+    1382,
+    1383
+   ],
+   "closest_existing": {
+    "path": "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets/lcd-08.svg",
+    "mean_error": 0.081
+   }
+  },
+  {
+   "path": "assets/lcd-discharge-timer.svg",
+   "physical_page": 10,
+   "glyph_bbox": [
+    57.9,
+    122.24,
+    72.4,
+    138.56
+   ],
+   "drawing_indices": [
+    1019,
+    1020,
+    1021
+   ],
+   "closest_existing": {
+    "path": "data/manual_sources/JE-3600A/CN/git-20261012-caa5370a-reviewed/assets/lcd-fault-code.png",
+    "mean_error": 0.2001
+   }
+  },
+  {
+   "path": "assets/lcd-connected-batteries.svg",
+   "physical_page": 10,
+   "glyph_bbox": [
+    54.65,
+    159.74,
+    77.02,
+    172.17
+   ],
+   "drawing_indices": [
+    1038,
+    1039,
+    1040,
+    1041,
+    1042,
+    1043,
+    1044,
+    1045,
+    1046,
+    1047
+   ],
+   "closest_existing": {
+    "path": "data/manual_sources/JE-3600A/CN/git-20261012-caa5370a-reviewed/assets/lcd-parallel.png",
+    "mean_error": 0.1546
+   }
+  },
+  {
+   "path": "assets/lcd-energy-saving.svg",
+   "physical_page": 10,
+   "glyph_bbox": [
+    58.58,
+    192.82,
+    73.58,
+    203.02
+   ],
+   "drawing_indices": [
+    1022,
+    1023,
+    1024,
+    1025,
+    1026,
+    1027,
+    1028,
+    1029,
+    1030,
+    1031,
+    1032,
+    1033,
+    1034,
+    1035,
+    1036,
+    1037
+   ],
+   "closest_existing": {
+    "path": "manual_sources/JBP-1000B-WH/JP/ja/git-20261008-3aa6c003-native/source/assets/lcd-dc.svg",
+    "mean_error": 0.1848
+   }
+  },
+  {
+   "path": "assets/lcd-high-temperature.svg",
+   "physical_page": 10,
+   "glyph_bbox": [
+    61.5,
+    224.24,
+    70.9,
+    238.01
+   ],
+   "drawing_indices": [
+    1167
+   ],
+   "closest_existing": {
+    "path": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/lcd-06.png",
+    "mean_error": 0.1955
+   }
+  },
+  {
+   "path": "assets/lcd-low-temperature.svg",
+   "physical_page": 10,
+   "glyph_bbox": [
+    61.5,
+    255.46,
+    70.9,
+    269.23
+   ],
+   "drawing_indices": [
+    1168
+   ],
+   "closest_existing": {
+    "path": "data/manual_sources/JE-3600A/CN/git-20261012-caa5370a-reviewed/assets/lcd-parallel.png",
+    "mean_error": 0.1796
+   }
+  },
+  {
+   "path": "assets/button-ac1.svg",
+   "physical_page": 14,
+   "glyph_bbox": [
+    108.04,
+    291.34,
+    133.43,
+    316.73
+   ],
+   "drawing_indices": [
+    1444,
+    1445,
+    1446,
+    1447,
+    1448,
+    1449
+   ],
+   "closest_existing": {
+    "path": "docs/renderers/web/assets/shared/buttons/ac.svg",
+    "reason": "shared button/ac prints AC; this button prints AC 1"
+   }
+  },
+  {
+   "path": "assets/button-light.svg",
+   "physical_page": 14,
+   "glyph_bbox": [
+    108.04,
+    360.56,
+    133.43,
+    385.95
+   ],
+   "drawing_indices": [
+    1523,
+    1524,
+    1525,
+    1526,
+    1527,
+    1528,
+    1529,
+    1530,
+    1531,
+    1532,
+    1533,
+    1534,
+    1535,
+    1536,
+    1537,
+    1538
+   ],
+   "closest_existing": {
+    "path": "docs/renderers/web/assets/shared/buttons/led.svg",
+    "reason": "shared button/led has no bulb mark; this button prints the bulb above LIGHT"
+   }
+  }
+ ],
+ "reused": [
+  {
+   "path": "assets/lcd-wifi.svg",
+   "from": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-01.svg",
+   "sha256": "2e6ed961723e02a85d355869482f2f66863576de9482fb0a9650ddfbd3ded2a5",
+   "native_mean_error": 0.0018
+  },
+  {
+   "path": "assets/lcd-bluetooth.svg",
+   "from": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-02.svg",
+   "sha256": "90a33061760cdab8805f469402b6626853cd2c0601e369f7456311fd2ea1307a",
+   "native_mean_error": 0.0078
+  },
+  {
+   "path": "assets/lcd-quiet-charging.svg",
+   "from": "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets/lcd-quiet-charging.svg",
+   "sha256": "b2e9476117ef2438af6cfae5211f84ec47f28eca91c44a6f21999a097a61f22d",
+   "native_mean_error": 0.0073
+  },
+  {
+   "path": "assets/lcd-charging-plan.svg",
+   "from": "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets/lcd-06.svg",
+   "sha256": "0ed7eacc074d1516e347043115f76c449995dda1bc21105a466a0adf22531c7b",
+   "native_mean_error": 0.0185
+  },
+  {
+   "path": "assets/lcd-self-powered.svg",
+   "from": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-06.svg",
+   "sha256": "6264e35ea700fb8ec93473700101202e7d5548ebd7e80bf4e9ebd3907b20aaf4",
+   "native_mean_error": 0.0034
+  },
+  {
+   "path": "assets/lcd-ac-power.svg",
+   "from": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-08.svg",
+   "sha256": "3f94c9fd8da2838f7045a9fa6bf8d4323e49c89f2e902568090cdee45af4b54a",
+   "native_mean_error": 0.0011
+  },
+  {
+   "path": "assets/lcd-input-power.svg",
+   "from": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-10.svg",
+   "sha256": "30441e8c3690c5ff96ea18c58e05b6f224697783d63e04052cf4a8dbfa4c3660",
+   "native_mean_error": 0.013
+  },
+  {
+   "path": "assets/lcd-remaining-charge-time.svg",
+   "from": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-11.svg",
+   "sha256": "65a7ad2a1b4bfb353872fc4ed429c86b206337928bc55166424eb186260a15dd",
+   "native_mean_error": 0.0124
+  },
+  {
+   "path": "assets/lcd-battery-power.svg",
+   "from": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-15.svg",
+   "sha256": "463a1423db307feeb0045dbe94a9844b65ffcde9977db8de1c5993c046469aa4",
+   "native_mean_error": 0.0067
+  },
+  {
+   "path": "assets/lcd-low-battery.svg",
+   "from": "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets/lcd-low-battery-outline.svg",
+   "sha256": "386af7c839615aca02f89eb76e60e8ecbee75679eac500349e944dfce1523841",
+   "native_mean_error": 0.0135
+  },
+  {
+   "path": "assets/lcd-remaining-battery-percentage.svg",
+   "from": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-17.svg",
+   "sha256": "4c193d86cf13bc2f9b41a3da4a1dee9af7427976c5039115a2641aa3b7c283d7",
+   "native_mean_error": 0.0118
+  },
+  {
+   "path": "assets/lcd-fault-code.svg",
+   "from": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-18.svg",
+   "sha256": "4be378f0248b6d1faa6dab9b8c3237952bf248b73bc11d63d1cd3ab91c88fff0",
+   "native_mean_error": 0.0139
+  },
+  {
+   "path": "assets/lcd-output-power.svg",
+   "from": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-21.svg",
+   "sha256": "d7610ab6fac80a2cfc25560f23a0f7e991dc80c9d7b8be8d995f379a69c23e9e",
+   "native_mean_error": 0.0062
+  },
+  {
+   "path": "assets/lcd-remaining-discharge-time.svg",
+   "from": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-22.svg",
+   "sha256": "24f44a724c11c7d63aeb242b56e9ccf9e62b584046cd3f1f63d06bd4ae2e5e9e",
+   "native_mean_error": 0.0091
+  },
+  {
+   "path": "assets/button-power.svg",
+   "from": "docs/renderers/web/assets/shared/buttons/power.svg",
+   "sha256": "457285c35d6deb52a01bf2e86a430cdbbd1553299a6eac652a372427bfa6c2ed"
+  },
+  {
+   "path": "assets/button-dc-usb.svg",
+   "from": "docs/renderers/web/assets/shared/buttons/dc_usb.svg",
+   "sha256": "3355388bad2221362a63dfad0c04fb9c15f521866166144cd3a644bde14e5864"
+  },
+  {
+   "path": "assets/fcc-mark.svg",
+   "from": "docs/renderers/web/assets/shared/symbols/native-v1/fcc_mark.svg",
+   "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe",
+   "shared_symbol_key": "fcc/nested-c-native-dark",
+   "native_mean_error": 0.0179,
+   "physical_page": 6,
+   "glyph_bbox": [
+    34.39,
+    37.79,
+    63.93,
+    58.94
+   ]
+  }
+ ],
+ "symbols": [
+  {
+   "path": "assets/symbol-01.svg",
+   "shared_symbol_key": "warning/outline-triangle-tinted",
+   "shared_path": "native-v1/symbol_warning_triangle.svg",
+   "reuse": true,
+   "physical_page": 5,
+   "glyph_bbox": [
+    37.16,
+    313.23,
+    60.94,
+    334.51
+   ],
+   "caption_bbox": [
+    74,
+    316,
+    180,
+    331
+   ],
+   "caption_id": "sym.alert"
+  },
+  {
+   "path": "assets/symbol-02.svg",
+   "shared_symbol_key": "read-manual/book-information",
+   "shared_path": "native-v1/symbol_read_manual.svg",
+   "reuse": true,
+   "physical_page": 5,
+   "glyph_bbox": [
+    37.39,
+    346.66,
+    60.71,
+    364.73
+   ],
+   "caption_bbox": [
+    74,
+    349,
+    180,
+    362
+   ],
+   "caption_id": "sym.manual"
+  },
+  {
+   "path": "assets/symbol-03.svg",
+   "shared_symbol_key": "electric-shock/bolt-triangle-tinted",
+   "shared_path": "native-v1/symbol_electric_shock.svg",
+   "reuse": true,
+   "physical_page": 5,
+   "glyph_bbox": [
+    37.63,
+    375.04,
+    61.43,
+    396.34
+   ],
+   "caption_bbox": [
+    74,
+    380,
+    180,
+    392
+   ],
+   "caption_id": "sym.shock"
+  },
+  {
+   "path": "assets/symbol-04.svg",
+   "shared_symbol_key": "battery-charging/flame-battery-triangle-tinted",
+   "shared_path": "native-v1/symbol_battery_charging.svg",
+   "reuse": true,
+   "physical_page": 5,
+   "glyph_bbox": [
+    37.63,
+    405.79,
+    61.43,
+    427.09
+   ],
+   "caption_bbox": [
+    74,
+    410,
+    180,
+    422
+   ],
+   "caption_id": "sym.charging"
+  },
+  {
+   "path": "assets/symbol-05.svg",
+   "shared_symbol_key": "explosive-material/burst-triangle-tinted",
+   "shared_path": "native-v1/symbol_explosive_material.svg",
+   "reuse": true,
+   "physical_page": 5,
+   "glyph_bbox": [
+    37.46,
+    435.87,
+    61.92,
+    457.36
+   ],
+   "caption_bbox": [
+    74,
+    441,
+    180,
+    453
+   ],
+   "caption_id": "sym.explosive"
+  },
+  {
+   "path": "assets/symbol-06.svg",
+   "shared_symbol_key": "heavy-object/person-load-triangle-tinted",
+   "shared_path": "native-v1/symbol_heavy_object.svg",
+   "reuse": true,
+   "physical_page": 5,
+   "glyph_bbox": [
+    36.59,
+    468.05,
+    61.05,
+    489.55
+   ],
+   "caption_bbox": [
+    74,
+    474,
+    180,
+    486
+   ],
+   "caption_id": "sym.heavy"
+  },
+  {
+   "path": "assets/symbol-07.svg",
+   "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited",
+   "shared_path": "native-v1/symbol_do_not_dismantle.svg",
+   "reuse": true,
+   "physical_page": 5,
+   "glyph_bbox": [
+    195.08,
+    314.38,
+    215.22,
+    334.52
+   ],
+   "caption_bbox": [
+    226,
+    318,
+    338,
+    330
+   ],
+   "caption_id": "sym.dismantle"
+  },
+  {
+   "path": "assets/symbol-08.svg",
+   "shared_symbol_key": "no-open-flame/fire-match-prohibited",
+   "shared_path": "native-v1/symbol_no_open_flame.svg",
+   "reuse": true,
+   "physical_page": 5,
+   "glyph_bbox": [
+    195.1,
+    344.09,
+    216.36,
+    365.35
+   ],
+   "caption_bbox": [
+    226,
+    349,
+    338,
+    361
+   ],
+   "caption_id": "sym.fire"
+  },
+  {
+   "path": "assets/symbol-09.svg",
+   "shared_symbol_key": "keep-away-from-children/adult-child-prohibited",
+   "shared_path": "native-v1/symbol_keep_away_from_children.svg",
+   "reuse": true,
+   "physical_page": 5,
+   "glyph_bbox": [
+    195.1,
+    375.22,
+    216.36,
+    396.49
+   ],
+   "caption_bbox": [
+    226,
+    379,
+    338,
+    391
+   ],
+   "caption_id": "sym.children"
+  },
+  {
+   "path": "assets/symbol-10.svg",
+   "shared_symbol_key": "li-ion/recycle-li-ion-native-dark",
+   "shared_path": "native-v1/symbol_li_ion_dark.svg",
+   "reuse": true,
+   "physical_page": 5,
+   "glyph_bbox": [
+    195.26,
+    405.56,
+    215.34,
+    427.99
+   ],
+   "caption_bbox": [
+    223,
+    405,
+    340,
+    428
+   ],
+   "caption_id": "sym.liion"
+  },
+  {
+   "path": "assets/symbol-11.png",
+   "shared_symbol_key": "weee/crossed-bin-bar",
+   "shared_path": "native-v1/symbol_weee.png",
+   "reuse": true,
+   "physical_page": 5,
+   "glyph_bbox": [
+    196.88,
+    449.66,
+    214.31,
+    474.45
+   ],
+   "caption_bbox": [
+    223,
+    432,
+    340,
+    494
+   ],
+   "caption_id": "sym.weee"
+  }
+ ]
+}

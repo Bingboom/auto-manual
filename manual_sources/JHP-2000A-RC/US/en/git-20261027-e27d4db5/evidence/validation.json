@@ -1,0 +1,20 @@
+{
+  "schema_version": "jhp2000arc-us-candidate-validation/v1",
+  "source_commit": "uncommitted candidate on feat/web-jhp-je2000c-us-en (base origin/main e82b5eb3)",
+  "date": "2026-10-27",
+  "environment": "Python 3.13 with requirements.lock (oss2/aliyun/crcmod skipped: wheels not buildable), Pandoc 3.1.3, Playwright Chromium",
+  "checks": [
+    {"command": "python -m ruff check manual_sources/JHP-2000A-RC tests/test_jhp2000arc_us_web.py", "result": "pass", "log": "ruff.log"},
+    {"command": "python -m unittest tests.test_jhp2000arc_us_web", "result": "pass: 9 tests (cold replay byte-identical)", "log": "target-tests.log"},
+    {"command": "python -m sphinx -n -W --keep-going -b html web/en <html>", "result": "pass", "log": "strict-sphinx.log"},
+    {"command": "python -m tools.check_maintainability_guardrails", "result": "only finding: package not yet registered in data/frozen_package_registry.json (registration is done with the PR, not in the package)", "log": "maintainability.log"},
+    {"command": "browser 1280 / 390 full page", "result": "0 broken images, document scrollWidth == viewport at both widths; key-combination and auto-resume tables scroll inside their shared components when narrower than their shared minimum width", "files": ["browser-1280.png", "browser-390.png", "browser-1280.json", "browser-390.json"]}
+  ],
+  "rebuild_gates": [
+    "input SHA-256 inventory",
+    "prepared-document shared-style admission with zero declared plain tables",
+    "symbol asset admission 11/11 against existing shared variants (max mean channel error 0.0163)",
+    "no approval.json; IR publication_eligible false"
+  ],
+  "not_validated": "operator layout acceptance, full python -m unittest, frozen-package registration, seal, RTD deployment"
+}
