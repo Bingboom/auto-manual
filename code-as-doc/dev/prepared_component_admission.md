@@ -168,7 +168,7 @@ frozen `manual_sources/JE-1000F/EU/en-fr/2.0` snapshot built `review-asis`, as
 the published 2.7 routes were. That path assembles no regulatory page for en,
 and renders fr's ten template chapters as its p-numbered review pages
 (`p18_01_user_maintenance_instructions.rst` … `p31_12_app_setup_placeholder.rst`).
-Under MA-355 the en entry drops the unassembled `99_regulatory_compliance.rst`
+Under MA-357 the en entry drops the unassembled `99_regulatory_compliance.rst`
 and its regulatory-radio debt row. The fr chapters keep their reviewed component
 requirements unchanged under the review page names, with no template slot, like
 en's preface. Removing a component or a chapter from either target still fails.
