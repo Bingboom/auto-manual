@@ -31,6 +31,11 @@
           "handling": "keep-frozen",
           "reason": "MA-357 corrects only the JE-1000F EU en/fr entries of prepared_component_admission.json (page identities of the reviewed release path); these packages' own admission entries and sealed inputs are unchanged",
           "since": "2026-10-27"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "symbol_asset_admission gained operator-approved glyph waivers (JE-1000H EU Li-ion, 2026-10-27); the waiver path runs only after the fixed 0.02 comparison fails, so these packages' admissions are unchanged",
+          "since": "2026-10-27"
         }
       }
     },
@@ -51,6 +56,11 @@
         "docs/renderers/contracts/prepared_component_admission.json": {
           "handling": "keep-frozen",
           "reason": "MA-357 corrects only the JE-1000F EU en/fr entries of prepared_component_admission.json (page identities of the reviewed release path); these packages' own admission entries and sealed inputs are unchanged",
+          "since": "2026-10-27"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "symbol_asset_admission gained operator-approved glyph waivers (JE-1000H EU Li-ion, 2026-10-27); the waiver path runs only after the fixed 0.02 comparison fails, so these packages' admissions are unchanged",
           "since": "2026-10-27"
         }
       }
@@ -139,6 +149,11 @@
           "handling": "keep-frozen",
           "reason": "MA-357 corrects only the JE-1000F EU en/fr entries of prepared_component_admission.json (page identities of the reviewed release path); these packages' own admission entries and sealed inputs are unchanged",
           "since": "2026-10-27"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "symbol_asset_admission gained operator-approved glyph waivers (JE-1000H EU Li-ion, 2026-10-27); the waiver path runs only after the fixed 0.02 comparison fails, so these packages' admissions are unchanged",
+          "since": "2026-10-27"
         }
       }
     },
@@ -159,6 +174,11 @@
         "docs/renderers/contracts/prepared_component_admission.json": {
           "handling": "keep-frozen",
           "reason": "MA-357 corrects only the JE-1000F EU en/fr entries of prepared_component_admission.json (page identities of the reviewed release path); these packages' own admission entries and sealed inputs are unchanged",
+          "since": "2026-10-27"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "symbol_asset_admission gained operator-approved glyph waivers (JE-1000H EU Li-ion, 2026-10-27); the waiver path runs only after the fixed 0.02 comparison fails, so these packages' admissions are unchanged",
           "since": "2026-10-27"
         }
       }
@@ -413,6 +433,11 @@
           "handling": "keep-frozen",
           "reason": "MA-357 corrects only the JE-1000F EU en/fr entries of prepared_component_admission.json (page identities of the reviewed release path); these packages' own admission entries and sealed inputs are unchanged",
           "since": "2026-10-27"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "symbol_asset_admission gained operator-approved glyph waivers (JE-1000H EU Li-ion, 2026-10-27); the waiver path runs only after the fixed 0.02 comparison fails, so these packages' admissions are unchanged",
+          "since": "2026-10-27"
         }
       }
     },
@@ -444,6 +469,11 @@
           "handling": "keep-frozen",
           "reason": "MA-357 corrects only the JE-1000F EU en/fr entries of prepared_component_admission.json (page identities of the reviewed release path); these packages' own admission entries and sealed inputs are unchanged",
           "since": "2026-10-27"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "symbol_asset_admission gained operator-approved glyph waivers (JE-1000H EU Li-ion, 2026-10-27); the waiver path runs only after the fixed 0.02 comparison fails, so these packages' admissions are unchanged",
+          "since": "2026-10-27"
         }
       }
     },
@@ -474,6 +504,11 @@
         "docs/renderers/contracts/prepared_component_admission.json": {
           "handling": "keep-frozen",
           "reason": "MA-357 corrects only the JE-1000F EU en/fr entries of prepared_component_admission.json (page identities of the reviewed release path); these packages' own admission entries and sealed inputs are unchanged",
+          "since": "2026-10-27"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "symbol_asset_admission gained operator-approved glyph waivers (JE-1000H EU Li-ion, 2026-10-27); the waiver path runs only after the fixed 0.02 comparison fails, so these packages' admissions are unchanged",
           "since": "2026-10-27"
         }
       }
@@ -623,6 +658,11 @@
         "docs/renderers/contracts/prepared_component_admission.json": {
           "handling": "keep-frozen",
           "reason": "MA-357 corrects only the JE-1000F EU en/fr entries of prepared_component_admission.json (page identities of the reviewed release path); these packages' own admission entries and sealed inputs are unchanged",
+          "since": "2026-10-27"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "symbol_asset_admission gained operator-approved glyph waivers (JE-1000H EU Li-ion, 2026-10-27); the waiver path runs only after the fixed 0.02 comparison fails, so these packages' admissions are unchanged",
           "since": "2026-10-27"
         }
       }
@@ -1185,6 +1225,11 @@
       "registered": "2026-10-19",
       "known_drift": {}
     },
+    "manual_sources/JE-1000H/EU/three-language/git-20261026-8bcb378f-shared-symbols": {
+      "approval": "操作者「上线提交发布」2026-10-27（七行版），经工程 PR 审核合入（见 approval.json）",
+      "registered": "2026-10-26",
+      "known_drift": {}
+    },
     "manual_sources/JE-100C/EU/de/2.0": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",
@@ -1257,6 +1302,11 @@
         "docs/renderers/contracts/prepared_component_admission.json": {
           "handling": "keep-frozen",
           "reason": "MA-357 corrects only the JE-1000F EU en/fr entries of prepared_component_admission.json (page identities of the reviewed release path); these packages' own admission entries and sealed inputs are unchanged",
+          "since": "2026-10-27"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "symbol_asset_admission gained operator-approved glyph waivers (JE-1000H EU Li-ion, 2026-10-27); the waiver path runs only after the fixed 0.02 comparison fails, so these packages' admissions are unchanged",
           "since": "2026-10-27"
         }
       }
@@ -1582,6 +1632,16 @@
       "handling": "keep-frozen",
       "reason": "MA-357 corrects only the JE-1000F EU en/fr entries of prepared_component_admission.json (page identities of the reviewed release path); these packages' own admission entries and sealed inputs are unchanged",
       "minutes": 1
+    },
+    {
+      "date": "2026-10-27",
+      "files": [
+        "tools/web/symbol_asset_admission.py"
+      ],
+      "packages": 9,
+      "handling": "keep-frozen",
+      "reason": "symbol_asset_admission gained operator-approved glyph waivers (JE-1000H EU Li-ion, 2026-10-27); the waiver path runs only after the fixed 0.02 comparison fails, so these packages' admissions are unchanged",
+      "minutes": 0
     }
   ]
 }

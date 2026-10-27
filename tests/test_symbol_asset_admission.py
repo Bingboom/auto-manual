@@ -137,6 +137,46 @@ class SymbolAdmissionTests(unittest.TestCase):
             ), self.assertRaisesRegex(RuntimeError, error):
                 self.check()
 
+    def glyph_waiver(self, **changes):
+        row = self.rows[0]
+        return {'id': 'reviewed-variation', 'physical_page': row['physical_page'],
+                'drawing_indices': row['drawing_indices'], 'shared_symbol_key': row['shared_symbol_key'],
+                'asset_sha256': row['asset_sha256'], 'max_mean_channel_error': 0.025,
+                'status': 'operator-approved', 'operator_decision': 'Design variation; reuse shared glyph.',
+                **changes}
+
+    def test_trusted_glyph_waiver_admits_only_its_reviewed_variation(self):
+        def error(candidate, suffix, reference):
+            return 0.024 if candidate == (self.md / self.rows[0]['asset_ref']).read_bytes() else 0.0
+        with patch('tools.web.symbol_asset_admission._symbol_error', side_effect=error):
+            with self.assertRaisesRegex(RuntimeError, 'glyph/background differs'):
+                self.check()
+            self.manifest['symbol_glyph_waivers'] = [self.glyph_waiver()]
+            with self.assertRaisesRegex(RuntimeError, 'glyph/background differs'):
+                self.check()  # a candidate manifest cannot approve its own waiver
+            with patch('tools.web.symbol_asset_admission._glyph_waivers', return_value=[self.glyph_waiver()]):
+                self.assertEqual(self.check()[0]['glyph_waiver'], 'reviewed-variation')
+            for changes, message in [
+                ({'status': 'proposed'}, 'beyond its reviewed waiver'),
+                ({'operator_decision': ''}, 'beyond its reviewed waiver'),
+                ({'max_mean_channel_error': 0.02}, 'beyond its reviewed waiver'),
+                ({'max_mean_channel_error': 0.5}, 'beyond its reviewed waiver'),
+                ({'asset_sha256': '0' * 64}, 'glyph/background differs'),
+                ({'drawing_indices': [0]}, 'glyph/background differs'),
+            ]:
+                with self.subTest(changes=changes), patch(
+                    'tools.web.symbol_asset_admission._glyph_waivers',
+                    return_value=[self.glyph_waiver(**changes)],
+                ), self.assertRaisesRegex(RuntimeError, message):
+                    self.check()
+
+    def test_glyph_waiver_ceiling_rejects_a_substituted_glyph(self):
+        self.replace((self.md / self.rows[1]['asset_ref']).read_bytes())
+        waiver = self.glyph_waiver(max_mean_channel_error=0.03)
+        with patch('tools.web.symbol_asset_admission._glyph_waivers', return_value=[waiver]), \
+                self.assertRaisesRegex(RuntimeError, 'beyond its reviewed waiver'):
+            self.check()
+
     def test_unbound_printed_word_split_and_inline_hyphens_remain_significant(self):
         self.assertNotEqual(_text('recyclingcen-\ntrum'), _text('recyclingcentrum'))
         self.assertNotEqual(_text('Li-ion'), _text('Liion'))
