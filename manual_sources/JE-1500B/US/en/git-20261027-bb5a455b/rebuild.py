@@ -51,7 +51,7 @@ def rebuild(output: Path) -> None:
     filename = 'manual_je1500b_us_en.md'
     _write_myst_sphinx_scaffold(output / filename, title=source['title'], presentation_profile='web')
     with (output / 'conf.py').open('a') as stream:
-        stream.write("\nlanguage = 'en'\n")
+        stream.write("\nlanguage = 'en'\nsmartquotes = False\n")
     shutil.copy2(SOURCE_ROOT / 'source/geometry.css', output / '_static/source_geometry.css')
     registry = load_component_registry()
     theme = load_manual_theme(component_registry=registry)

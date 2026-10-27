@@ -1,0 +1,15 @@
+{
+  "schema_version": "je1500d-us-candidate-validation/v1",
+  "date": "2026-10-27",
+  "environment": "Python 3.13 system site-packages, Pandoc 3.1.3 (CI pins 3.9.0.2), ruff 0.17.2, Playwright Chromium",
+  "checks": [
+    {"command": "ruff check manual_sources/JE-1500D/US/en/git-20261027-772c3698 tests/test_je1500d_us_web.py", "result": "pass", "log": "ruff.log"},
+    {"command": "python3 manual_sources/JE-1500D/US/en/git-20261027-772c3698/rebuild.py --output <tmp>", "result": "pass: 15 chapters; prepared-document shared-style gate with 0 plain-table exceptions; symbol admission 11/11 (10 catalog variants 0.0066-0.0161, 1 staged native variant 0.0)"},
+    {"command": "python3 -m sphinx -n -W --keep-going -b html web/en <html>", "result": "pass", "log": "strict-sphinx.log"},
+    {"command": "python3 -m unittest tests.test_je1500d_us_web tests.test_prepared_document_shared_styles", "result": "pass: 21 tests OK", "log": "target-tests.log"},
+    {"command": "python3 -m tools.check_maintainability_guardrails", "result": "fail only on [frozen-packages] NEW for this unregistered candidate (registration follows approval; data/frozen_package_registry.json not touched)", "log": "maintainability.log"},
+    {"command": "browser 1280 / 390 full page", "result": "64 images, 0 broken, document scrollWidth == viewport at both widths; LCD and key-combination tables scroll inside their shared components", "files": ["browser-1280.png", "browser-390.png", "browser-1280.json", "browser-390.json"]}
+  ],
+  "not_validated": "full python3 -m unittest (coordinator), refresh_manifest.py frozen / seal_frozen_web_evidence (after approval), RTD deployment and production route JE-1500D/US/en/md",
+  "pending_operator_decisions": ["candidate review at 1280/390", "source_concerns", "staged shared symbol native/je1500d-us-772c3698-06"]
+}

@@ -25,3 +25,4 @@ def setup(app):
     app.connect("build-finished", _copy_packaged_assets)
 
 language = 'en'
+smartquotes = False

@@ -1734,8 +1734,8 @@
         },
         {
           "path": "rebuild.py",
-          "sha256": "b067286a992bd3e3deb47dda0a5e4d8e258e33ac10ecba827f9d9110f76cd2b6",
-          "size": 6406
+          "sha256": "58607c17feb82ad5514573f56a40b4586652eab8be58ab6a8854680e4e65c0df",
+          "size": 6427
         },
         {
           "path": "refresh_manifest.py",
