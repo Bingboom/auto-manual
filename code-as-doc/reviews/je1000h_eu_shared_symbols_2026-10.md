@@ -78,8 +78,14 @@ again until the operator approves the new pt/nl/pl renderings.
 For the six template locales the operator ruled 「图标 外观一样 就是共用的」: their
 template warning, Li-ion 32 and WEEE images show the same glyph, tint and
 proportions as `warning/outline-triangle-tinted`, `li-ion/recycle-li-ion-32-gray`
-and `weee/crossed-bin-bar`, so they count as shared and stay unchanged. The template
-`weee.png` carries an opaque white backdrop, which is invisible on the light page.
+and `weee/crossed-bin-bar`, so they count as shared. The template `weee.png`,
+however, carries an opaque white backdrop; the operator then decided
+「weee.png 带不透明的白底== 处理成透明底 作为共用的」. Its bytes are already in the shared
+manifest's `withdrawn` list, and the same glyph exists transparent as
+`weee/crossed-bin-bar`, so the six locales' WEEE row now points at that variant
+(no new art, no template change; text unchanged). This fifth row is a candidate
+until the operator reviews its renderings. The template `warning_triangle.png` and
+`li_ion.png` bytes are also on the `withdrawn` list; they stay as ruled above.
 
 ## Pending
 

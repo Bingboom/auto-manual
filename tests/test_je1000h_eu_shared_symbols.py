@@ -1,4 +1,4 @@
-"""JE-1000H EU: symbol rows reuse shared Web variants (four rows in six locales, all rows in pt/nl/pl)."""
+"""JE-1000H EU: symbol rows reuse shared Web variants (five rows in six locales, all rows in pt/nl/pl)."""
 from __future__ import annotations
 
 import csv
@@ -26,6 +26,7 @@ SIX_KEYS = {
     'do_not_dismantle': 'do-not-dismantle/screwdriver-prohibited',
     'no_open_flame': 'no-open-flame/fire-match-prohibited',
     'keep_away_from_children': 'keep-away-from-children/adult-child-prohibited',
+    'weee': 'weee/crossed-bin-bar',
 }
 
 
@@ -55,7 +56,7 @@ class SixLanguageSourceTests(unittest.TestCase):
                 path = rows[symbol]['image_path']
                 self.assertEqual(path, 'renderers/web/assets/shared/symbols/' + entry['path'])
                 self.assertEqual(file_sha256(ROOT / 'docs' / path), entry['sha256'])
-        for symbol in ('warning_triangle', 'li_ion', 'weee'):
+        for symbol in ('warning_triangle', 'li_ion'):
             self.assertEqual(rows[symbol]['image_path'], '')
 
     def test_revision_record_names_every_replaced_row(self):

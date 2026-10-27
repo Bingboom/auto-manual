@@ -143,3 +143,9 @@ dropped since 4e7df369. `source_manifest.json` re-locks the CSV and records the
 rows under `shared_symbol_revision`. The operator reviewed the 1280/390
 renderings and decided「上线提交发布」on 2026-10-26; see
 [the review record](../../../../../code-as-doc/reviews/je1000h_eu_shared_symbols_2026-10.md).
+
+WEEE row (2026-10-27, candidate): the template `weee.png` has an opaque white
+backdrop and its bytes are already withdrawn in the shared symbol manifest. The
+operator decided「weee.png 带不透明的白底== 处理成透明底 作为共用的」, so the WEEE row
+now points at the transparent shared variant `weee/crossed-bin-bar`, the same
+glyph. Warning and Li-ion 32 keep their template images.

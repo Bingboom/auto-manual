@@ -92,8 +92,8 @@
     },
     {
       "path": "phase2/symbols_blocks.csv",
-      "size": 10984,
-      "sha256": "2fe4c0b3500b1db5d8e3e5f8716ff98d53d79af391e5cca26078df36bf5cfd40"
+      "size": 11045,
+      "sha256": "eeffa96c0bc42ac6cad3bccdbc8b4144d4ba709b9391207ead4f512dd52faf3f"
     },
     {
       "path": "phase2/troubleshooting_blocks.csv",
@@ -246,7 +246,7 @@
       "sha256": "b4744a483fa95db386bbb269f277a53f678279c7eda8f8cbf24a78f2b426f2a7"
     }
   ],
-  "files_inventory_sha256": "f65e28dd3a1e99407f48d791494234b5100587971f7b0c4ac925f38605c6cba4",
+  "files_inventory_sha256": "6b8f8296bb72b8a20b07b186792f0c12578a09fedecb1d32b87a22c53474223c",
   "live_bitable_dependency": false,
   "checkout_contract": {
     "path": "phase2/.gitattributes",
@@ -361,14 +361,22 @@
         "shared_symbol_key": "keep-away-from-children/adult-child-prohibited",
         "image_path": "renderers/web/assets/shared/symbols/native-v1/symbol_keep_away_from_children.svg",
         "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899"
+      },
+      {
+        "symbol_key": "weee",
+        "old_image": "docs/templates/word_template/common_assets/symbols/weee.png",
+        "old_sha256": "7e4de290ea13b86bd50fbb209b4510116116d4fb403b7ef4f83cf1c1db873989",
+        "shared_symbol_key": "weee/crossed-bin-bar",
+        "image_path": "renderers/web/assets/shared/symbols/native-v1/symbol_weee.png",
+        "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+        "decision": "2026-10-27 「weee.png 带不透明的白底== 处理成透明底 作为共用的」: the template raster (withdrawn in the shared manifest) has an opaque white backdrop; the same glyph exists transparent as weee/crossed-bin-bar"
       }
     ],
     "unchanged": [
       "warning_triangle",
-      "li_ion",
-      "weee"
+      "li_ion"
     ],
-    "status": "operator-approved-git-only-release",
+    "status": "candidate; WEEE row added 2026-10-27, operator rendering review pending (four-row version approved 2026-10-26)",
     "operator_release_approval": {
       "operator_quote": "上线提交发布",
       "date": "2026-10-26",
