@@ -22,7 +22,8 @@ beside any verified single-language pages.
 Option text is the language code from `settings.json` `language_display_codes`
 (`en-US`, `fr-FR`, `es-ES`, `de-DE`, `it-IT`, `pt-BR`, `nl-NL`, `pl-PL`, `uk-UA`,
 `zh-CN`, `zh-TW`, `ja-JP`, plus defaults `el-GR`, `he-IL`, `ar-SA`, `ko-KR`), used by
-both the manual-page picker and the homepage “查看说明书” dialog. Page titles,
+both the manual-page picker and the homepage “查看说明书” dialog. Codes are per language,
+not per market: English is `en-US` in every market, EU/UK included. Page titles,
 descriptions, `hreflang`, search languages and homepage card tags keep the native
 names from `language_labels`.
 
