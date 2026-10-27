@@ -42,8 +42,9 @@ No icon was drawn, cropped or added to the library.
   uk at 4e7df369 rebuilds to 100,493 bytes against a recorded 100,337; its text
   equals main apart from `⚠`, and the published file must be compared before sealing.
 - nl/pl/pt: sibling package `git-20261026-8bcb378f-shared-symbols`, derived by its
-  `derive_shared_symbols.py`; only the four assets and their IR references differ.
-  The approved package is untouched.
+  `derive_shared_symbols.py`; only the symbol assets and their IR references
+  differ (four rows on 2026-10-26, all seven since 2026-10-27). The approved
+  package is untouched.
 
 ## Validation so far
 
@@ -60,15 +61,28 @@ decided 「上线提交发布」. The six template locales record it in
 package `approval.json`, which makes each IR publication-eligible. The engineering
 PR is merged by the operator (AGENTS.md §8.6).
 
+## Three more rows in pt/nl/pl (2026-10-27)
+
+The seal gate binds every symbol row, so the operator decided 「那三行也换成共用图标」.
+
+| Slot | Checked | Identity | Decision | New extraction | Final source and hash | Background |
+| --- | --- | --- | --- | --- | --- | --- |
+| warning | warning variants (outline-tinted, filled gray, h1-jp, je2000e) | Outlined triangle with tinted fill; aspect 1.126 vs native 1.128; tint (68,68,69) | Reuse `warning/outline-triangle-tinted` | Not applicable | `native-v1/symbol_warning_triangle.svg` `0f41fe5e…` | Transparent glyph |
+| Li-ion | li-ion variants (generic, dark, htp017, Li-ion32 gray, je2000e) | Recycle arrows over “Li-ion” without “32”; aspect 0.876 vs 0.878; same tint (dark variant differs) | Reuse `li-ion/recycle-li-ion` | Not applicable | `native-v1/symbol_li_ion.svg` `317b9e9f…` | Transparent glyph |
+| WEEE | weee variants (crossed-bin-bar, no-bar, gray, h1-jp, je2000e) | Crossed bin with bar; aspect 0.681 equals native | Reuse `weee/crossed-bin-bar` | Not applicable | `native-v1/symbol_weee.png` `6883f899…` | Transparent glyph |
+
+The earlier approval covers the four-row Markdown only. `derive_shared_symbols.py`
+applies it while its Markdown hashes match, so the seven-row package is a candidate
+again until the operator approves the new pt/nl/pl renderings. The six template
+locales are unchanged by this decision.
+
 ## Pending
 
-1. pt/nl/pl seal: `seal_frozen_web_evidence` runs `require_symbol_asset_admission`,
-   which needs the HTE159 AI (`8bcb378f…`, not committed) and binds **every**
-   symbol row to a shared variant. The unchanged warning, Li-ion and WEEE rows
-   are native crops, so the seal cannot pass until the operator decides on those
-   three rows and supplies the AI.
-2. en/fr/es/de/it/uk: the template route's release evidence does not run the
+1. Operator review of the seven-row pt/nl/pl 1280/390 renderings and 「上线提交发布」.
+2. pt/nl/pl seal: `require_symbol_asset_admission` needs the HTE159 AI
+   (`8bcb378f…`, not committed) to compare each shared variant with its native glyph.
+3. en/fr/es/de/it/uk: the template route's release evidence does not run the
    symbol gate; they can be sealed from the merged main commit. uk must first be
    compared with the live Hello-Docs file (the 100,493 vs 100,337 byte question).
-3. After merge: seal at the merged main commit and a Hello-Docs `docs/publish/**`
+4. After merge: seal at the merged main commit and a Hello-Docs `docs/publish/**`
    PR. Hello-Docs access for this session is still missing.

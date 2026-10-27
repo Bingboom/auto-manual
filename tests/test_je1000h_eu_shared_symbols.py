@@ -1,4 +1,4 @@
-"""JE-1000H EU: four symbol rows reuse shared Web variants in all nine languages."""
+"""JE-1000H EU: symbol rows reuse shared Web variants (four rows in six locales, all rows in pt/nl/pl)."""
 from __future__ import annotations
 
 import csv
@@ -27,7 +27,6 @@ SIX_KEYS = {
     'no_open_flame': 'no-open-flame/fire-match-prohibited',
     'keep_away_from_children': 'keep-away-from-children/adult-child-prohibited',
 }
-UNCHANGED = ('general_warning', 'lithium_battery', 'weee')
 
 
 def read(path: Path):
@@ -65,18 +64,17 @@ class SixLanguageSourceTests(unittest.TestCase):
 
 
 class ThreeLanguagePackageTests(unittest.TestCase):
-    def test_symbol_assets_are_shared_bytes_and_others_unchanged(self):
+    def test_every_symbol_row_is_a_shared_variant(self):
         for language in LANGUAGES:
             ir = read(PACKAGE / 'web' / language / 'manual.ir.json')
             rows = ir['metadata']['shared_symbol_revision']['rows']
-            self.assertEqual(len(rows), 4)
+            spec = next(block['payload']['component_spec'] for page in ir['pages'] for block in page['blocks']
+                        if (block['payload'].get('component_spec') or {}).get('component_id') == 'HB-TABLE-SYMBOL-ICON')
+            self.assertEqual([r['asset_ref'] for r in rows], [a['asset_ref'] for a in spec['assets']])
             for row in rows:
                 with self.subTest(language=language, key=row['shared_symbol_key']):
                     require_shared_symbol_binding(row, PACKAGE / 'web' / language / row['asset_ref'])
                     self.assertFalse((PACKAGE / 'web' / language / row['replaced_asset_ref']).exists())
-            for path in (PACKAGE / 'web' / language / 'assets').iterdir():
-                if any(name in path.name for name in UNCHANGED):
-                    self.assertEqual(file_sha256(path), file_sha256(BASE / 'web' / language / 'assets' / path.name))
 
     def test_visible_text_matches_the_approved_package(self):
         for language in LANGUAGES:
@@ -85,21 +83,21 @@ class ThreeLanguagePackageTests(unittest.TestCase):
                 self.assertEqual(visible(PACKAGE / 'web' / language / name),
                                  visible(BASE / 'web' / language / name))
 
-    def test_operator_approval_is_bound_to_every_language(self):
+    def test_publication_follows_the_reviewed_markdown(self):
         approval = read(PACKAGE / 'approval.json')
         manifest = read(PACKAGE / 'source_manifest.json')
         self.assertEqual(approval['operator_quote'], '上线提交发布')
         self.assertEqual(approval['target']['languages'], list(LANGUAGES))
-        self.assertTrue(manifest['publication_status'].startswith('operator-approved-git-only-release'))
+        reviewed = all(
+            file_sha256(PACKAGE / 'web' / lang / f'manual_je1000h_eu_{lang}.md')
+            == approval['reviewed_candidate']['markdown_sha256'][lang] for lang in LANGUAGES)
+        self.assertEqual(manifest['publication_status'].startswith('operator-approved-git-only-release'), reviewed)
         for language in LANGUAGES:
             with self.subTest(language=language):
                 metadata = read(PACKAGE / 'web' / language / 'manual.ir.json')['metadata']
-                self.assertTrue(metadata['publication_eligible'])
-                self.assertEqual(metadata['pending_source_review'], [])
-                self.assertEqual(metadata['operator_release_approval'], approval)
-                name = f'manual_je1000h_eu_{language}.md'
-                self.assertEqual(file_sha256(PACKAGE / 'web' / language / name),
-                                 approval['reviewed_candidate']['markdown_sha256'][language])
+                self.assertEqual(metadata['publication_eligible'], reviewed)
+                self.assertEqual(metadata['pending_source_review'] == [], reviewed)
+                self.assertEqual(metadata.get('operator_release_approval'), approval if reviewed else None)
         six = read(SIX_SOURCE / 'source_manifest.json')['shared_symbol_revision']
         self.assertEqual(six['operator_release_approval']['operator_quote'], '上线提交发布')
 

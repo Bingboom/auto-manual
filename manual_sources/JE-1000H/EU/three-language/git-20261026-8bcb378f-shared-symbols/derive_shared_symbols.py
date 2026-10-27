@@ -7,13 +7,17 @@ Run from the repository root:
 Operator request, 2026-10-26: 「这个 JE-1000H的图标 改成共用图标」 for the read-manual,
 do-not-dismantle, keep-away-from-fire and keep-away-from-children rows; then
 “nl/pl/pt 也改”. The approved source package stays untouched; this copy differs
-only in those four symbol assets of each language.
+only in its symbol assets: 「那三行也换成共用图标」 (2026-10-27) extends the swap
+from the four marked rows to the warning, Li-ion and WEEE rows, so every
+symbol-table row is a shared variant.
 
-- Each of the four rows reuses the selected shared Web variant byte for byte
-  (``SYMBOL_KEYS``). Warning, Li-ion and WEEE keep their existing bytes.
+- Each of the seven rows reuses the selected shared Web variant byte for byte
+  (``SYMBOL_KEYS``).
 - Captions and all other copy stay unchanged; the visible text is checked.
 - The operator reviewed the 1280/390 renderings and decided 「上线提交发布」
-  (``approval.json``); with it each IR becomes publication-eligible. Native
+  (``approval.json``); each IR becomes publication-eligible only while the
+  approval's Markdown hashes match the replayed Markdown, so a later change
+  returns the package to candidate until it is approved again. Native
   symbol admission against the HTE159 authority AI, which is not committed
   here, is still enforced when the release is sealed.
 
@@ -47,6 +51,9 @@ SYMBOL_KEYS = {
     'assets/2c7663a3294d_symbol-do_not_disassemble.png': 'do-not-dismantle/screwdriver-prohibited',
     'assets/5bb172a98c92_symbol-keep_away_from_fire.png': 'no-open-flame/fire-match-prohibited',
     'assets/8936085b3f6f_symbol-keep_away_from_children.png': 'keep-away-from-children/adult-child-prohibited',
+    'assets/9a9a245fe848_symbol-general_warning.png': 'warning/outline-triangle-tinted',
+    'assets/11f1a73a4cb5_symbol-lithium_battery.png': 'li-ion/recycle-li-ion',
+    'assets/40529e39bab8_symbol-weee.png': 'weee/crossed-bin-bar',
 }
 SHARED = REPO / 'docs/renderers/web/assets/shared/symbols'
 
@@ -81,7 +88,7 @@ def symbol_spec(raw):
 
 
 def bind_symbols(raw, web: Path) -> list[dict]:
-    """Swap the four selected symbol assets for their shared variants; return the binding rows."""
+    """Swap the selected symbol assets for their shared variants; return the binding rows."""
     replaced = read(PACKAGE / 'source_manifest.json')['derived_from']['replaced_sha256']
     targets = {}
     for old, key in SYMBOL_KEYS.items():
@@ -149,10 +156,12 @@ def derive(language: str, approval: dict | None) -> list[dict]:
     metadata['publication_eligible'] = approval is not None
     metadata['pending_source_review'] = [] if approval else [
         'operator review of the 1280/390 renderings and release approval',
-        'native symbol admission of the four shared variants against the HTE159 authority AI',
+        'native symbol admission of the shared variants against the HTE159 authority AI',
     ]
     if approval:
         metadata['operator_release_approval'] = approval
+    else:
+        metadata.pop('operator_release_approval', None)
     metadata['shared_symbol_revision'] = {'derived_from': DERIVED_FROM,
                                           'status': APPROVED if approval else CANDIDATE, 'rows': rows}
     write(path, raw, sort_keys=True)
@@ -165,22 +174,27 @@ def derive(language: str, approval: dict | None) -> list[dict]:
 
 def main() -> None:
     manifest = read(PACKAGE / 'source_manifest.json')
-    if 'derived_from' not in manifest:
-        base = REPO / DERIVED_FROM / 'web' / 'nl'
-        manifest['derived_from'] = {
-            'package': DERIVED_FROM,
-            'replaced_sha256': {old: sha256(base / old) for old in SYMBOL_KEYS},
-        }
-        write(PACKAGE / 'source_manifest.json', manifest)
+    derived = manifest.setdefault('derived_from', {'package': DERIVED_FROM, 'replaced_sha256': {}})
+    base = REPO / DERIVED_FROM / 'web' / 'nl'
+    for old in SYMBOL_KEYS:
+        derived['replaced_sha256'].setdefault(old, sha256(base / old))
+    write(PACKAGE / 'source_manifest.json', manifest)
     approval_path = PACKAGE / 'approval.json'
     approval = read(approval_path) if approval_path.is_file() else None
-    rows = {language: derive(language, approval) for language in LANGUAGES}
+    rows = {language: derive(language, None) for language in LANGUAGES}
+    # The approval covers exactly the reviewed Markdown; anything else stays a candidate.
+    if approval and all(sha256(PACKAGE / 'web' / lang / f'manual_je1000h_eu_{lang}.md')
+                        == approval['reviewed_candidate']['markdown_sha256'][lang] for lang in LANGUAGES):
+        rows = {language: derive(language, approval) for language in LANGUAGES}
+    else:
+        approval = None
     manifest = read(PACKAGE / 'source_manifest.json')
     manifest['target']['technical_version'] = TECHNICAL_VERSION
     manifest['publication_status'] = APPROVED if approval else CANDIDATE
     manifest['shared_symbol_revision'] = {
         'request': 'Operator 2026-10-26: 「这个 JE-1000H的图标 改成共用图标」; 「nl/pl/pt 也改」.',
-        'unchanged': ['general_warning', 'lithium_battery', 'weee'],
+        'decisions': ['2026-10-26 「这个 JE-1000H的图标 改成共用图标」: four marked rows',
+                      '2026-10-27 「那三行也换成共用图标」: warning, Li-ion and WEEE rows'],
         'locales': rows,
     }
     files = sorted(p for p in PACKAGE.rglob('*')

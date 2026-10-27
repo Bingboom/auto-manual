@@ -1,12 +1,12 @@
 {
   "asset_refs": [
-    "assets/9a9a245fe848_symbol-general_warning.png",
+    "assets/0f41fe5ea49f_symbol_warning_triangle.svg",
     "assets/1d2087064f92_symbol_read_manual.svg",
     "assets/5ad4fa830a5b_symbol_do_not_dismantle.svg",
     "assets/4a82cdd8683e_symbol_no_open_flame.svg",
     "assets/a58074f90ef8_symbol_keep_away_from_children.svg",
-    "assets/11f1a73a4cb5_symbol-lithium_battery.png",
-    "assets/40529e39bab8_symbol-weee.png",
+    "assets/317b9e9feb77_symbol_li_ion.svg",
+    "assets/6883f899f43a_symbol_weee.png",
     "assets/f08b8ca8f35c_inbox-main.png",
     "assets/38a1afff7a36_inbox-cable.png",
     "assets/4b2c9f455034_inbox-manual.png",
@@ -62,21 +62,21 @@
   ],
   "bundle_root": "frozen-source",
   "bundle_sha256": "decb2552b8a8ce870e5ac26bd53ac73303788398c39dd43483c256ce376d2ba2",
-  "content_sha256": "2b77a197fe66f151e8b88c4fc8efcd3c13c43dc4e4f9db395d292eb9b2a51b79",
+  "content_sha256": "1f4de2cdd7ef38b92f7926265ebac024614191c2e6e3a5cc6690acce5eb82a06",
   "language": "pt",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
     "asset_sha256": {
       "assets/09fd7606dd10_reference-ups_connection.png": "09fd7606dd10c2095e800cc0cc780d8dbec39d8f1ad745c4542b85d8c943e3cd",
-      "assets/11f1a73a4cb5_symbol-lithium_battery.png": "11f1a73a4cb5b6c4ec69a51f71f3f16480fd792c61882135ee77569f78b192b8",
+      "assets/0f41fe5ea49f_symbol_warning_triangle.svg": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
       "assets/1a75f52019e8_app-store.png": "1a75f52019e85f537b1744e56ddeb81bf35710ebfb8b95766bfd404857d7c60c",
       "assets/1d2087064f92_symbol_read_manual.svg": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
       "assets/21b5f19ca9a6_lcd-charging-power-limit.png": "21b5f19ca9a6e39d8bd515128297cc1b99e43fd263e39ffba4fdf102d50a4bad",
       "assets/28f3cad42ae3_lcd-ac-wall-charging.png": "28f3cad42ae32e9e895abfd7cdb16a21b99dfa822c57d542f0e3f59a4b452c6c",
+      "assets/317b9e9feb77_symbol_li_ion.svg": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e",
       "assets/382841bfeb21_reference-overview_left_view.png": "382841bfeb21f284a4b8f9f5aaa17f94cde0fa99f963e65d5d9b4480fc91503f",
       "assets/38a1afff7a36_inbox-cable.png": "38a1afff7a3673e05f36ef30faaef3a71018630c3cfaeae0ff0de837f4898adc",
       "assets/3d48cabe22c9_reference-battery_items.png": "3d48cabe22c9036d25d4f2095c9de9e589c702521404f9f7ebda8e46d226a4aa",
-      "assets/40529e39bab8_symbol-weee.png": "40529e39bab80505522965d934be95e94c03e2ac6a56f7d6208ddfec6b19d8d7",
       "assets/4a82cdd8683e_symbol_no_open_flame.svg": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f",
       "assets/4b2c9f455034_inbox-manual.png": "4b2c9f45503487f33280264a44400b957b05aad20ca7a50d13ea12a77d9d1407",
       "assets/5197425ae9b5_lcd-mode.png": "5197425ae9b58ed8668dcee7d8f96ae3325775c6a35ca7d4d0c579a1bc298dcb",
@@ -84,6 +84,7 @@
       "assets/5a5a8acac5df_app-result-reused.png": "5a5a8acac5dfab8922c6bec40cdbfcdc2c380c24ee29f824980badd114df84a7",
       "assets/5ad4fa830a5b_symbol_do_not_dismantle.svg": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33",
       "assets/6787f3ab6d84_app-phone.png": "6787f3ab6d8458f90cd9e06bc6d48437a868269f5715ce3a5ef005fb57dc89c7",
+      "assets/6883f899f43a_symbol_weee.png": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
       "assets/6aab9a14900a_lcd-discharge-timer.png": "6aab9a14900a08fcd8f8261e6e36fbb9a1220eb931df94ebd149b23930063723",
       "assets/6fd148123f4d_reference-battery_stack.png": "6fd148123f4d4ef95d952c3a638ed5b938296e747a09a3d6df99c5c5fbe7d1f6",
       "assets/71017f43bab4_lcd-charging-plan.png": "71017f43bab44852d5586d1d4f996f3c52d8451bceaa9249e29864652c2f537d",
@@ -101,7 +102,6 @@
       "assets/8d7e2187cdbc_lcd-connected-batteries.png": "8d7e2187cdbcdae4f2fef1f18428e54450cdfd27731061bc93499946613ab188",
       "assets/91cec82eeaa5_lcd-solar-charging.png": "91cec82eeaa553477868d38789d68a4937cb11c5c4d794de74db1edddb3aeea4",
       "assets/990e30845a75_reference-car_charging.png": "990e30845a75cd0137c5c00db9f1b8843eda79c0192c9510b50baf7efd810787",
-      "assets/9a9a245fe848_symbol-general_warning.png": "9a9a245fe848fed454ec26af59ccf09f1c95992681f9882cd8c6b0494b74c592",
       "assets/9b148ea95d3a_lcd-remaining-discharge-time.png": "9b148ea95d3a3450591c7220908b0913048f2cdea1e61d200534181c52b47cab",
       "assets/9dbf2cda82da_lcd-map.png": "9dbf2cda82da4c732acab1b0798fab8f9b0afd204fb7f14478b41b4a40e4228a",
       "assets/9e34fabfe311_operation-main-power.png": "9e34fabfe3115e978e2fcfa091b12dbaf63302ef2f75695ca1b479bcd820be4c",
@@ -2166,42 +2166,6 @@
     },
     "manual_theme_sha256": "e8fc88458d239edef85f2cfb0b26b71df2e83859c8e51e9c093e5abc2982b47d",
     "markdown_filename": "manual_je1000h_eu_pt.md",
-    "operator_release_approval": {
-      "date": "2026-10-26",
-      "decisions": {
-        "symbols": "read manual, do not dismantle, no open flame and keep away from children use the shared Web variants byte for byte; warning, Li-ion and WEEE unchanged; no copy change"
-      },
-      "merge_authorization": "Operator review and merge of the engineering PR (AGENTS.md §8.6); no agent self-merge grant.",
-      "operator_decisions": [
-        "这个 JE-1000H的图标 改成共用图标",
-        "nl/pl/pt 也改，模板路径从 main 重建",
-        "上线提交发布"
-      ],
-      "operator_quote": "上线提交发布",
-      "original_source_sha256": "8bcb378fd0505237d91d5aa201d8bc0e84ee392963bfa6a73d32b8ed90b68feb",
-      "reviewed_candidate": {
-        "candidate_commit": "11930917",
-        "engineering_pr": "Bingboom/auto-manual#1608",
-        "markdown_sha256": {
-          "nl": "78d366854e3a7cd845408063b57df51db0ebd8a93204706b8bc5d2c7e721c49e",
-          "pl": "1afc214ab182a9e5cfa25ebffd7863a4a567dcf4a1c399f7b7dbb6e7bbc9c96d",
-          "pt": "67011c64cbec96c259bdefb81185b2685a001b08a8c568bd235466a8dadd9d89"
-        },
-        "renderings": "before/after symbol table at 1280 and 390 px, nine locales",
-        "source_manifest_sha256": "73a651bac4f68dcc762d1809b7e7bddfb32e103774e38033a9251182eeccb3fd"
-      },
-      "schema_version": "source-operator-acceptance/v1",
-      "scope": "Git-only pt/nl/pl Web release of git-20261026-8bcb378f-shared-symbols; the approved temperature-web package unchanged; no Base, queue, source-table, asset-registry or HTML_link writes.",
-      "target": {
-        "languages": [
-          "pt",
-          "nl",
-          "pl"
-        ],
-        "model": "JE-1000H",
-        "region": "EU"
-      }
-    },
     "page_count": 16,
     "page_declarations": {},
     "pdf_intake_provenance": {
@@ -9425,9 +9389,12 @@
       ],
       "unresolved_text": []
     },
-    "pending_source_review": [],
+    "pending_source_review": [
+      "operator review of the 1280/390 renderings and release approval",
+      "native symbol admission of the shared variants against the HTE159 authority AI"
+    ],
     "projection": "whole-document-components/v1",
-    "publication_eligible": true,
+    "publication_eligible": false,
     "rendered_source_figure_count": 10,
     "shared_component_coverage": {
       "applicable": true,
@@ -9567,6 +9534,14 @@
       "derived_from": "manual_sources/JE-1000H/EU/three-language/git-20261001-8bcb378f-temperature-web",
       "rows": [
         {
+          "asset_ref": "assets/0f41fe5ea49f_symbol_warning_triangle.svg",
+          "asset_sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+          "decision": "reuse-shared-variant-byte-identical",
+          "replaced_asset_ref": "assets/9a9a245fe848_symbol-general_warning.png",
+          "replaced_sha256": "9a9a245fe848fed454ec26af59ccf09f1c95992681f9882cd8c6b0494b74c592",
+          "shared_symbol_key": "warning/outline-triangle-tinted"
+        },
+        {
           "asset_ref": "assets/1d2087064f92_symbol_read_manual.svg",
           "asset_sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
           "decision": "reuse-shared-variant-byte-identical",
@@ -9597,9 +9572,25 @@
           "replaced_asset_ref": "assets/8936085b3f6f_symbol-keep_away_from_children.png",
           "replaced_sha256": "8936085b3f6fe236859cd9cdb44b4c8313cd71f2da1b9b1916ce11e5715bc03d",
           "shared_symbol_key": "keep-away-from-children/adult-child-prohibited"
+        },
+        {
+          "asset_ref": "assets/317b9e9feb77_symbol_li_ion.svg",
+          "asset_sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e",
+          "decision": "reuse-shared-variant-byte-identical",
+          "replaced_asset_ref": "assets/11f1a73a4cb5_symbol-lithium_battery.png",
+          "replaced_sha256": "11f1a73a4cb5b6c4ec69a51f71f3f16480fd792c61882135ee77569f78b192b8",
+          "shared_symbol_key": "li-ion/recycle-li-ion"
+        },
+        {
+          "asset_ref": "assets/6883f899f43a_symbol_weee.png",
+          "asset_sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+          "decision": "reuse-shared-variant-byte-identical",
+          "replaced_asset_ref": "assets/40529e39bab8_symbol-weee.png",
+          "replaced_sha256": "40529e39bab80505522965d934be95e94c03e2ac6a56f7d6208ddfec6b19d8d7",
+          "shared_symbol_key": "weee/crossed-bin-bar"
         }
       ],
-      "status": "operator-approved-git-only-release; native symbol admission pending at seal"
+      "status": "candidate; operator rendering review, release approval and native admission pending"
     },
     "skipped_raw": 0,
     "source_errata": {
@@ -10670,22 +10661,22 @@
         },
         {
           "asset_refs": [
-            "assets/9a9a245fe848_symbol-general_warning.png",
+            "assets/0f41fe5ea49f_symbol_warning_triangle.svg",
             "assets/1d2087064f92_symbol_read_manual.svg",
             "assets/5ad4fa830a5b_symbol_do_not_dismantle.svg",
             "assets/4a82cdd8683e_symbol_no_open_flame.svg",
             "assets/a58074f90ef8_symbol_keep_away_from_children.svg",
-            "assets/11f1a73a4cb5_symbol-lithium_battery.png",
-            "assets/40529e39bab8_symbol-weee.png"
+            "assets/317b9e9feb77_symbol_li_ion.svg",
+            "assets/6883f899f43a_symbol_weee.png"
           ],
           "block_id": "symbols:block-0003",
-          "content_sha256": "b9e40302b8ea48b96633b92ab5a5c4bd3435f9e531e6e58896a1ab19c623584e",
+          "content_sha256": "04b26ed7743e4e76a3daebd5fce8b54b0e11e9383bd03ab265dd33766e4348a6",
           "kind": "flow",
           "payload": {
             "component_spec": {
               "assets": [
                 {
-                  "asset_ref": "assets/9a9a245fe848_symbol-general_warning.png",
+                  "asset_ref": "assets/0f41fe5ea49f_symbol_warning_triangle.svg",
                   "locale_policy": "exact",
                   "role": "icons"
                 },
@@ -10710,12 +10701,12 @@
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/11f1a73a4cb5_symbol-lithium_battery.png",
+                  "asset_ref": "assets/317b9e9feb77_symbol_li_ion.svg",
                   "locale_policy": "exact",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/40529e39bab8_symbol-weee.png",
+                  "asset_ref": "assets/6883f899f43a_symbol_weee.png",
                   "locale_policy": "exact",
                   "role": "icons"
                 }
