@@ -1285,6 +1285,11 @@
       "registered": "2026-10-19",
       "known_drift": {}
     },
+    "manual_sources/JE-1500B/US/en/git-20261027-bb5a455b": {
+      "approval": "User request 2026-10-27 (「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」, 发布文档管理 Base; operator: JE-1500B 用 38-0001-000307，000208 不出网页): Git-only JE-1500B US en Web conversion, candidate pending operator review; source copy verbatim",
+      "registered": "2026-10-27",
+      "known_drift": {}
+    },
     "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2": {
       "approval": "MA-322",
       "registered": "2026-10-19",
