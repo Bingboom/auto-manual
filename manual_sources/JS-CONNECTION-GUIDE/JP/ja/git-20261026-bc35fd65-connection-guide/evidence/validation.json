@@ -1,0 +1,56 @@
+{
+  "schema_version": "js-connection-guide-validation/v1",
+  "environment": "cloud container: Python 3.12 venv from requirements.lock (PyMuPDF 1.28.0 / MuPDF 1.29.0), ruff 0.17.2, Pandoc 3.9.0.2, Chromium (Playwright)",
+  "source_download": "lark-cli drive +download (read-only, bot) of obj_token KZxxbILsSoqJCLxk7dacyGdtnzf: 27,334,114 bytes, SHA-256 bc35fd6518769bd26c88fee088cc3a748c0ef680f4419682bede0f62738f8821",
+  "commands": [
+    {
+      "command": "python -m ruff check build.py integrations tools tests scripts",
+      "result": "All checks passed"
+    },
+    {
+      "command": "python -m unittest",
+      "result": "5704 run, OK (73 skipped)"
+    },
+    {
+      "command": "python -m unittest tests.test_js_connection_guide_jp_web tests.test_prepared_document_shared_styles",
+      "result": "OK (candidate-only test skipped once accepted); cold render byte-identical to web/ja; acceptance refuses a resealed changed source"
+    },
+    {
+      "command": "python -m tools.check_maintainability_guardrails",
+      "result": "Guardrails OK; frozen-packages 134 packages, 0 new, 0 new drift"
+    },
+    {
+      "command": "python build.py check --config configs/config.ja.yaml --model JE-1000F --region JP --data-root tests/fixtures/phase2",
+      "result": "[check] OK (repository regression only; this container has no data/phase2 mirror, so the default data root fails Spec_Master resolution as on any checkout without it)"
+    },
+    {
+      "command": "python -m sphinx -n -W --keep-going -b html web/ja <out>",
+      "result": "build succeeded (strict-sphinx.log)"
+    },
+    {
+      "command": "prepared-document shared-style audit on web/ja",
+      "result": "no issues; 1 declared table"
+    },
+    {
+      "command": "caption-frame admission on web/ja",
+      "result": "passed for both live pills (baked fill fraction 0.0)"
+    },
+    {
+      "command": "derive_assets.py second run",
+      "result": "assets and asset_decisions.json unchanged"
+    },
+    {
+      "command": "browser acceptance at 1280 and 390",
+      "result": "browser-acceptance.json: no horizontal overflow, 0 broken images, 0 live-label overflow"
+    },
+    {
+      "command": "gitleaks 8.30.1 detect --no-git --config .gitleaks.toml (whole tree)",
+      "result": "no leaks found"
+    },
+    {
+      "command": "seal_frozen_web_evidence dry run on the accepted web/ja (scratch evidence dir, git_ref dry-run)",
+      "result": "receipt written: component, symbol-asset and caption-frame admissions, source inventory and image checks passed; the release seal runs on the merged main commit"
+    }
+  ],
+  "acceptance": "operator 「上线提交发布」 2026-10-27 for reviewed candidate eb61b66; results below are re-run on the accepted edition (source/approval.json present, publication_eligible true)"
+}

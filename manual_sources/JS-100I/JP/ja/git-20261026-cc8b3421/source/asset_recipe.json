@@ -1,0 +1,3220 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 40000000
+  },
+  "source": {
+    "source_key": "source/js-100i-jp-solarsaga-100-air-manual",
+    "expected_sha256": "cc8b3421221bf11b03f2ddd0ce86519605189fbe0721a7d8a536520d75513e6f",
+    "expected_page_count": 12
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 12
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 0.5,
+      "page_scale": {}
+    }
+  },
+  "page_catalog": [
+    {
+      "page": 1,
+      "page_key": "jp-page-01",
+      "role": "manual_page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "JP source provenance"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 2,
+      "page_key": "jp-page-02",
+      "role": "manual_page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "JP source provenance"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 3,
+      "page_key": "jp-page-03",
+      "role": "manual_page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "JP source provenance"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 4,
+      "page_key": "jp-page-04",
+      "role": "manual_page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "JP source provenance"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 5,
+      "page_key": "jp-page-05",
+      "role": "manual_page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "JP source provenance"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 6,
+      "page_key": "jp-page-06",
+      "role": "manual_page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "JP source provenance"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 7,
+      "page_key": "jp-page-07",
+      "role": "manual_page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "JP source provenance"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 8,
+      "page_key": "jp-page-08",
+      "role": "manual_page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "JP source provenance"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 9,
+      "page_key": "jp-page-09",
+      "role": "manual_page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "JP source provenance"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 10,
+      "page_key": "jp-page-10",
+      "role": "manual_page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "JP source provenance"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 11,
+      "page_key": "jp-page-11",
+      "role": "manual_page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "JP source provenance"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 12,
+      "page_key": "jp-page-12",
+      "role": "manual_page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "JP source provenance"
+        ]
+      },
+      "risk_tags": []
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "web/js-100i/jp/ja/inbox_manual",
+      "page": 3,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100I"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            58.5,
+            188.0,
+            100.5,
+            246.5
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/inbox_manual.png",
+          "scale": 4
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only JP candidate; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/js-100i/jp/ja/front_view",
+      "page": 3,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100I"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            72.0,
+            418.0,
+            338.0,
+            468.0
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            266.0,
+            428.0,
+            336.0,
+            437.5
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/front_view.png",
+          "scale": 4
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only JP candidate; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/js-100i/jp/ja/rear_view",
+      "page": 4,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100I"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.0,
+            38.0,
+            346.0,
+            147.0
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            26.0,
+            38.0,
+            58.0,
+            46.5
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            270.0,
+            50.0,
+            340.0,
+            59.0
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            270.0,
+            60.0,
+            340.0,
+            69.0
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            26.0,
+            68.0,
+            82.0,
+            77.0
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            119.0,
+            108.0,
+            146.0,
+            117.5
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            294.0,
+            137.0,
+            346.0,
+            146.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/rear_view.png",
+          "scale": 4
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only JP candidate; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/js-100i/jp/ja/unfold_4",
+      "page": 5,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100I"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            34.71,
+            156.0,
+            328.97,
+            244.97
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/unfold_4.png",
+          "scale": 4
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only JP candidate; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/js-100i/jp/ja/fold_3",
+      "page": 6,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100I"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            37.4,
+            46.4,
+            331.66,
+            121.68
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/fold_3.png",
+          "scale": 4
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only JP candidate; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/js-100i/jp/ja/dc8020",
+      "page": 6,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100I"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28.46,
+            156.91,
+            340.16,
+            300.36
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            158.08,
+            254.89,
+            193.79,
+            290.59
+          ],
+          "other_bbox_pt": [
+            37.5,
+            165.9,
+            73.21,
+            201.6
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            192.11,
+            254.89,
+            227.82,
+            290.59
+          ],
+          "other_bbox_pt": [
+            37.5,
+            165.9,
+            73.21,
+            201.6
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            226.14,
+            254.89,
+            261.85,
+            290.59
+          ],
+          "other_bbox_pt": [
+            37.5,
+            165.9,
+            73.21,
+            201.6
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            260.17,
+            254.89,
+            295.88,
+            290.59
+          ],
+          "other_bbox_pt": [
+            37.5,
+            165.9,
+            73.21,
+            201.6
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            294.2,
+            254.89,
+            329.91,
+            290.59
+          ],
+          "other_bbox_pt": [
+            37.5,
+            165.9,
+            73.21,
+            201.6
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            284.38,
+            246.43,
+            296.45,
+            258.5
+          ],
+          "other_bbox_pt": [
+            37.5,
+            165.9,
+            49.57,
+            177.97
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            293.04,
+            246.43,
+            305.11,
+            258.5
+          ],
+          "other_bbox_pt": [
+            37.5,
+            165.9,
+            49.57,
+            177.97
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            213.0,
+            162.0,
+            221.0,
+            170.0
+          ],
+          "other_bbox_pt": [
+            37.5,
+            165.9,
+            45.5,
+            173.9
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            221.0,
+            162.0,
+            229.0,
+            170.0
+          ],
+          "other_bbox_pt": [
+            37.5,
+            165.9,
+            45.5,
+            173.9
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            229.0,
+            162.0,
+            237.0,
+            170.0
+          ],
+          "other_bbox_pt": [
+            37.5,
+            165.9,
+            45.5,
+            173.9
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            163.0,
+            258.0,
+            192.5,
+            287.5
+          ],
+          "other_bbox_pt": [
+            37.5,
+            165.9,
+            67.0,
+            195.4
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            189.9,
+            258.0,
+            219.4,
+            287.5
+          ],
+          "other_bbox_pt": [
+            37.5,
+            165.9,
+            67.0,
+            195.4
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            216.8,
+            258.0,
+            246.3,
+            287.5
+          ],
+          "other_bbox_pt": [
+            37.5,
+            165.9,
+            67.0,
+            195.4
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            243.7,
+            258.0,
+            273.2,
+            287.5
+          ],
+          "other_bbox_pt": [
+            37.5,
+            165.9,
+            67.0,
+            195.4
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            270.6,
+            258.0,
+            300.1,
+            287.5
+          ],
+          "other_bbox_pt": [
+            37.5,
+            165.9,
+            67.0,
+            195.4
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            297.5,
+            258.0,
+            327.0,
+            287.5
+          ],
+          "other_bbox_pt": [
+            37.5,
+            165.9,
+            67.0,
+            195.4
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/dc8020.png",
+          "scale": 4
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only JP candidate; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/js-100i/jp/ja/dc7909",
+      "page": 6,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100I"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            29.0,
+            339.61,
+            340.05,
+            495.56
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            190.15,
+            459.81,
+            218.08,
+            487.74
+          ],
+          "other_bbox_pt": [
+            38.0,
+            348.6,
+            65.93,
+            376.53
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            217.92,
+            459.81,
+            245.85,
+            487.74
+          ],
+          "other_bbox_pt": [
+            38.0,
+            348.6,
+            65.93,
+            376.53
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            245.69,
+            459.81,
+            273.62,
+            487.74
+          ],
+          "other_bbox_pt": [
+            38.0,
+            348.6,
+            65.93,
+            376.53
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            273.46,
+            459.81,
+            301.39,
+            487.74
+          ],
+          "other_bbox_pt": [
+            38.0,
+            348.6,
+            65.93,
+            376.53
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            301.23,
+            459.81,
+            329.16,
+            487.74
+          ],
+          "other_bbox_pt": [
+            38.0,
+            348.6,
+            65.93,
+            376.53
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            272.19,
+            452.15,
+            283.26,
+            463.22
+          ],
+          "other_bbox_pt": [
+            38.0,
+            348.6,
+            49.07,
+            359.67
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            280.81,
+            452.15,
+            291.87,
+            463.22
+          ],
+          "other_bbox_pt": [
+            38.0,
+            348.6,
+            49.06,
+            359.67
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            164.0,
+            344.5,
+            173.0,
+            353.5
+          ],
+          "other_bbox_pt": [
+            38.0,
+            348.6,
+            47.0,
+            357.6
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            172.75,
+            344.5,
+            181.75,
+            353.5
+          ],
+          "other_bbox_pt": [
+            38.0,
+            348.6,
+            47.0,
+            357.6
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            181.5,
+            344.5,
+            190.5,
+            353.5
+          ],
+          "other_bbox_pt": [
+            38.0,
+            348.6,
+            47.0,
+            357.6
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            190.25,
+            344.5,
+            199.25,
+            353.5
+          ],
+          "other_bbox_pt": [
+            38.0,
+            348.6,
+            47.0,
+            357.6
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            199.0,
+            344.5,
+            208.0,
+            353.5
+          ],
+          "other_bbox_pt": [
+            38.0,
+            348.6,
+            47.0,
+            357.6
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            207.75,
+            344.5,
+            216.75,
+            353.5
+          ],
+          "other_bbox_pt": [
+            38.0,
+            348.6,
+            47.0,
+            357.6
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            216.5,
+            344.5,
+            225.5,
+            353.5
+          ],
+          "other_bbox_pt": [
+            38.0,
+            348.6,
+            47.0,
+            357.6
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            225.25,
+            344.5,
+            234.25,
+            353.5
+          ],
+          "other_bbox_pt": [
+            38.0,
+            348.6,
+            47.0,
+            357.6
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            234.0,
+            344.5,
+            243.0,
+            353.5
+          ],
+          "other_bbox_pt": [
+            38.0,
+            348.6,
+            47.0,
+            357.6
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            196.0,
+            464.0,
+            216.5,
+            484.5
+          ],
+          "other_bbox_pt": [
+            38.0,
+            348.6,
+            58.5,
+            369.1
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            214.25,
+            464.0,
+            234.75,
+            484.5
+          ],
+          "other_bbox_pt": [
+            38.0,
+            348.6,
+            58.5,
+            369.1
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            232.5,
+            464.0,
+            253.0,
+            484.5
+          ],
+          "other_bbox_pt": [
+            38.0,
+            348.6,
+            58.5,
+            369.1
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            250.75,
+            464.0,
+            271.25,
+            484.5
+          ],
+          "other_bbox_pt": [
+            38.0,
+            348.6,
+            58.5,
+            369.1
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            269.0,
+            464.0,
+            289.5,
+            484.5
+          ],
+          "other_bbox_pt": [
+            38.0,
+            348.6,
+            58.5,
+            369.1
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            287.25,
+            464.0,
+            307.75,
+            484.5
+          ],
+          "other_bbox_pt": [
+            38.0,
+            348.6,
+            58.5,
+            369.1
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            305.5,
+            464.0,
+            326.0,
+            484.5
+          ],
+          "other_bbox_pt": [
+            38.0,
+            348.6,
+            58.5,
+            369.1
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/dc7909.png",
+          "scale": 4
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only JP candidate; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/js-100i/jp/ja/usbc",
+      "page": 7,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100I"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28.54,
+            72.17,
+            339.83,
+            259.31
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            176.38,
+            206.73,
+            216.74,
+            247.1
+          ],
+          "other_bbox_pt": [
+            37.5,
+            81.2,
+            77.86,
+            121.57
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            210.38,
+            206.73,
+            250.75,
+            247.1
+          ],
+          "other_bbox_pt": [
+            37.5,
+            81.2,
+            77.87,
+            121.57
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            244.39,
+            206.73,
+            284.75,
+            247.1
+          ],
+          "other_bbox_pt": [
+            37.5,
+            81.2,
+            77.86,
+            121.57
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            278.39,
+            206.73,
+            318.76,
+            247.1
+          ],
+          "other_bbox_pt": [
+            37.5,
+            81.2,
+            77.87,
+            121.57
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            281.08,
+            199.08,
+            292.14,
+            210.14
+          ],
+          "other_bbox_pt": [
+            37.5,
+            81.2,
+            48.56,
+            92.26
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            289.69,
+            199.08,
+            300.76,
+            210.14
+          ],
+          "other_bbox_pt": [
+            37.5,
+            81.2,
+            48.57,
+            92.26
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            179.0,
+            84.5,
+            188.5,
+            94.0
+          ],
+          "other_bbox_pt": [
+            37.5,
+            81.2,
+            47.0,
+            90.7
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            187.44,
+            84.5,
+            196.94,
+            94.0
+          ],
+          "other_bbox_pt": [
+            37.5,
+            81.2,
+            47.0,
+            90.7
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            195.88,
+            84.5,
+            205.38,
+            94.0
+          ],
+          "other_bbox_pt": [
+            37.5,
+            81.2,
+            47.0,
+            90.7
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            204.31,
+            84.5,
+            213.81,
+            94.0
+          ],
+          "other_bbox_pt": [
+            37.5,
+            81.2,
+            47.0,
+            90.7
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            212.75,
+            84.5,
+            222.25,
+            94.0
+          ],
+          "other_bbox_pt": [
+            37.5,
+            81.2,
+            47.0,
+            90.7
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            221.19,
+            84.5,
+            230.69,
+            94.0
+          ],
+          "other_bbox_pt": [
+            37.5,
+            81.2,
+            47.0,
+            90.7
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            229.62,
+            84.5,
+            239.12,
+            94.0
+          ],
+          "other_bbox_pt": [
+            37.5,
+            81.2,
+            47.0,
+            90.7
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            238.06,
+            84.5,
+            247.56,
+            94.0
+          ],
+          "other_bbox_pt": [
+            37.5,
+            81.2,
+            47.0,
+            90.7
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            246.5,
+            84.5,
+            256.0,
+            94.0
+          ],
+          "other_bbox_pt": [
+            37.5,
+            81.2,
+            47.0,
+            90.7
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            180.0,
+            211.5,
+            210.5,
+            242.0
+          ],
+          "other_bbox_pt": [
+            37.5,
+            81.2,
+            68.0,
+            111.7
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            206.38,
+            211.5,
+            236.88,
+            242.0
+          ],
+          "other_bbox_pt": [
+            37.5,
+            81.2,
+            68.0,
+            111.7
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            232.75,
+            211.5,
+            263.25,
+            242.0
+          ],
+          "other_bbox_pt": [
+            37.5,
+            81.2,
+            68.0,
+            111.7
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            259.12,
+            211.5,
+            289.62,
+            242.0
+          ],
+          "other_bbox_pt": [
+            37.5,
+            81.2,
+            68.0,
+            111.7
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            285.5,
+            211.5,
+            316.0,
+            242.0
+          ],
+          "other_bbox_pt": [
+            37.5,
+            81.2,
+            68.0,
+            111.7
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/usbc.png",
+          "scale": 4
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only JP candidate; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/js-100i/jp/ja/parallel",
+      "page": 7,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100I"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            30.01,
+            324.78,
+            341.82,
+            472.38
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            203.0,
+            337.5,
+            211.5,
+            346.0
+          ],
+          "other_bbox_pt": [
+            39.0,
+            333.8,
+            47.5,
+            342.3
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            211.0,
+            337.5,
+            219.5,
+            346.0
+          ],
+          "other_bbox_pt": [
+            39.0,
+            333.8,
+            47.5,
+            342.3
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            219.0,
+            337.5,
+            227.5,
+            346.0
+          ],
+          "other_bbox_pt": [
+            39.0,
+            333.8,
+            47.5,
+            342.3
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            162.0,
+            449.5,
+            172.0,
+            459.5
+          ],
+          "other_bbox_pt": [
+            39.0,
+            333.8,
+            49.0,
+            343.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            171.55,
+            449.5,
+            181.55,
+            459.5
+          ],
+          "other_bbox_pt": [
+            39.0,
+            333.8,
+            49.0,
+            343.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            181.09,
+            449.5,
+            191.09,
+            459.5
+          ],
+          "other_bbox_pt": [
+            39.0,
+            333.8,
+            49.0,
+            343.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            190.64,
+            449.5,
+            200.64,
+            459.5
+          ],
+          "other_bbox_pt": [
+            39.0,
+            333.8,
+            49.0,
+            343.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            200.18,
+            449.5,
+            210.18,
+            459.5
+          ],
+          "other_bbox_pt": [
+            39.0,
+            333.8,
+            49.0,
+            343.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            209.73,
+            449.5,
+            219.73,
+            459.5
+          ],
+          "other_bbox_pt": [
+            39.0,
+            333.8,
+            49.0,
+            343.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            219.27,
+            449.5,
+            229.27,
+            459.5
+          ],
+          "other_bbox_pt": [
+            39.0,
+            333.8,
+            49.0,
+            343.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            228.82,
+            449.5,
+            238.82,
+            459.5
+          ],
+          "other_bbox_pt": [
+            39.0,
+            333.8,
+            49.0,
+            343.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            238.36,
+            449.5,
+            248.36,
+            459.5
+          ],
+          "other_bbox_pt": [
+            39.0,
+            333.8,
+            49.0,
+            343.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            247.91,
+            449.5,
+            257.91,
+            459.5
+          ],
+          "other_bbox_pt": [
+            39.0,
+            333.8,
+            49.0,
+            343.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            257.45,
+            449.5,
+            267.45,
+            459.5
+          ],
+          "other_bbox_pt": [
+            39.0,
+            333.8,
+            49.0,
+            343.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            267.0,
+            449.5,
+            277.0,
+            459.5
+          ],
+          "other_bbox_pt": [
+            39.0,
+            333.8,
+            49.0,
+            343.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            210.0,
+            459.8,
+            218.7,
+            468.5
+          ],
+          "other_bbox_pt": [
+            39.0,
+            333.8,
+            47.7,
+            342.5
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            216.15,
+            459.8,
+            224.85,
+            468.5
+          ],
+          "other_bbox_pt": [
+            39.0,
+            333.8,
+            47.7,
+            342.5
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            222.3,
+            459.8,
+            231.0,
+            468.5
+          ],
+          "other_bbox_pt": [
+            39.0,
+            333.8,
+            47.7,
+            342.5
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/parallel.png",
+          "scale": 4
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only JP candidate; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/js-100i/jp/ja/angle",
+      "page": 8,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100I"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28.33,
+            148.02,
+            340.14,
+            291.84
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            200.0,
+            197.5,
+            210.0,
+            207.5
+          ],
+          "other_bbox_pt": [
+            37.3,
+            157.0,
+            47.3,
+            167.0
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            208.86,
+            197.5,
+            218.86,
+            207.5
+          ],
+          "other_bbox_pt": [
+            37.3,
+            157.0,
+            47.3,
+            167.0
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            217.71,
+            197.5,
+            227.71,
+            207.5
+          ],
+          "other_bbox_pt": [
+            37.3,
+            157.0,
+            47.3,
+            167.0
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            226.57,
+            197.5,
+            236.57,
+            207.5
+          ],
+          "other_bbox_pt": [
+            37.3,
+            157.0,
+            47.3,
+            167.0
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            235.43,
+            197.5,
+            245.43,
+            207.5
+          ],
+          "other_bbox_pt": [
+            37.3,
+            157.0,
+            47.3,
+            167.0
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            244.29,
+            197.5,
+            254.29,
+            207.5
+          ],
+          "other_bbox_pt": [
+            37.3,
+            157.0,
+            47.3,
+            167.0
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            253.14,
+            197.5,
+            263.14,
+            207.5
+          ],
+          "other_bbox_pt": [
+            37.3,
+            157.0,
+            47.3,
+            167.0
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            262.0,
+            197.5,
+            272.0,
+            207.5
+          ],
+          "other_bbox_pt": [
+            37.3,
+            157.0,
+            47.3,
+            167.0
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            252.0,
+            239.0,
+            261.0,
+            248.0
+          ],
+          "other_bbox_pt": [
+            37.3,
+            157.0,
+            46.3,
+            166.0
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            260.71,
+            239.0,
+            269.71,
+            248.0
+          ],
+          "other_bbox_pt": [
+            37.3,
+            157.0,
+            46.3,
+            166.0
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            269.43,
+            239.0,
+            278.43,
+            248.0
+          ],
+          "other_bbox_pt": [
+            37.3,
+            157.0,
+            46.3,
+            166.0
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            278.14,
+            239.0,
+            287.14,
+            248.0
+          ],
+          "other_bbox_pt": [
+            37.3,
+            157.0,
+            46.3,
+            166.0
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            286.86,
+            239.0,
+            295.86,
+            248.0
+          ],
+          "other_bbox_pt": [
+            37.3,
+            157.0,
+            46.3,
+            166.0
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            295.57,
+            239.0,
+            304.57,
+            248.0
+          ],
+          "other_bbox_pt": [
+            37.3,
+            157.0,
+            46.3,
+            166.0
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            304.29,
+            239.0,
+            313.29,
+            248.0
+          ],
+          "other_bbox_pt": [
+            37.3,
+            157.0,
+            46.3,
+            166.0
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            313.0,
+            239.0,
+            322.0,
+            248.0
+          ],
+          "other_bbox_pt": [
+            37.3,
+            157.0,
+            46.3,
+            166.0
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            252.5,
+            250.0,
+            261.5,
+            259.0
+          ],
+          "other_bbox_pt": [
+            37.3,
+            157.0,
+            46.3,
+            166.0
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            259.0,
+            250.0,
+            268.0,
+            259.0
+          ],
+          "other_bbox_pt": [
+            37.3,
+            157.0,
+            46.3,
+            166.0
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            265.5,
+            250.0,
+            274.5,
+            259.0
+          ],
+          "other_bbox_pt": [
+            37.3,
+            157.0,
+            46.3,
+            166.0
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            272.0,
+            250.0,
+            281.0,
+            259.0
+          ],
+          "other_bbox_pt": [
+            37.3,
+            157.0,
+            46.3,
+            166.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/angle.png",
+          "scale": 4
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only JP candidate; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/js-100i/jp/ja/device",
+      "page": 9,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100I"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28.56,
+            47.34,
+            339.79,
+            242.62
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            35.33,
+            200.5,
+            65.33,
+            230.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            67.6,
+            86.3
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            64.97,
+            200.5,
+            94.97,
+            230.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            67.6,
+            86.3
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            94.62,
+            200.5,
+            124.62,
+            230.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            67.6,
+            86.3
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            124.26,
+            200.5,
+            154.26,
+            230.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            67.6,
+            86.3
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            153.9,
+            200.5,
+            183.9,
+            230.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            67.6,
+            86.3
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            183.55,
+            200.5,
+            213.55,
+            230.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            67.6,
+            86.3
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            213.19,
+            200.5,
+            243.19,
+            230.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            67.6,
+            86.3
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            242.83,
+            200.5,
+            272.83,
+            230.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            67.6,
+            86.3
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            272.48,
+            200.5,
+            302.48,
+            230.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            67.6,
+            86.3
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            302.12,
+            200.5,
+            332.12,
+            230.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            67.6,
+            86.3
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            35.33,
+            202.96,
+            65.33,
+            232.96
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            67.6,
+            86.3
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            64.97,
+            202.96,
+            94.97,
+            232.96
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            67.6,
+            86.3
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            94.62,
+            202.96,
+            124.62,
+            232.96
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            67.6,
+            86.3
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            124.26,
+            202.96,
+            154.26,
+            232.96
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            67.6,
+            86.3
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            153.9,
+            202.96,
+            183.9,
+            232.96
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            67.6,
+            86.3
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            183.55,
+            202.96,
+            213.55,
+            232.96
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            67.6,
+            86.3
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            213.19,
+            202.96,
+            243.19,
+            232.96
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            67.6,
+            86.3
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            242.83,
+            202.96,
+            272.83,
+            232.96
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            67.6,
+            86.3
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            272.48,
+            202.96,
+            302.48,
+            232.96
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            67.6,
+            86.3
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            302.12,
+            202.96,
+            332.12,
+            232.96
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            67.6,
+            86.3
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            192.0,
+            59.0,
+            201.5,
+            68.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            47.1,
+            65.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            199.9,
+            59.0,
+            209.4,
+            68.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            47.1,
+            65.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            207.8,
+            59.0,
+            217.3,
+            68.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            47.1,
+            65.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            215.7,
+            59.0,
+            225.2,
+            68.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            47.1,
+            65.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            223.6,
+            59.0,
+            233.1,
+            68.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            47.1,
+            65.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            231.5,
+            59.0,
+            241.0,
+            68.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            47.1,
+            65.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            47.0,
+            137.5,
+            56.5,
+            147.0
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            47.1,
+            65.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            55.38,
+            137.5,
+            64.88,
+            147.0
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            47.1,
+            65.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            63.75,
+            137.5,
+            73.25,
+            147.0
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            47.1,
+            65.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            72.12,
+            137.5,
+            81.62,
+            147.0
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            47.1,
+            65.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            80.5,
+            137.5,
+            90.0,
+            147.0
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            47.1,
+            65.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            88.88,
+            137.5,
+            98.38,
+            147.0
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            47.1,
+            65.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            97.25,
+            137.5,
+            106.75,
+            147.0
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            47.1,
+            65.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            105.62,
+            137.5,
+            115.12,
+            147.0
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            47.1,
+            65.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            114.0,
+            137.5,
+            123.5,
+            147.0
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            47.1,
+            65.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            110.0,
+            180.0,
+            119.5,
+            189.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            47.1,
+            65.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            117.5,
+            180.0,
+            127.0,
+            189.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            47.1,
+            65.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            125.0,
+            180.0,
+            134.5,
+            189.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            47.1,
+            65.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            132.5,
+            180.0,
+            142.0,
+            189.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            47.1,
+            65.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            145.0,
+            180.0,
+            154.5,
+            189.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            47.1,
+            65.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            152.5,
+            180.0,
+            162.0,
+            189.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            47.1,
+            65.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            160.0,
+            180.0,
+            169.5,
+            189.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            47.1,
+            65.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            167.5,
+            180.0,
+            177.0,
+            189.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            47.1,
+            65.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            175.0,
+            180.0,
+            184.5,
+            189.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            47.1,
+            65.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            189.5,
+            180.0,
+            199.0,
+            189.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            47.1,
+            65.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            196.17,
+            180.0,
+            205.67,
+            189.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            47.1,
+            65.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            202.83,
+            180.0,
+            212.33,
+            189.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            47.1,
+            65.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            209.5,
+            180.0,
+            219.0,
+            189.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            47.1,
+            65.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            45.0,
+            207.0,
+            63.5,
+            225.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            56.1,
+            74.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            63.32,
+            207.0,
+            81.82,
+            225.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            56.1,
+            74.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            81.64,
+            207.0,
+            100.14,
+            225.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            56.1,
+            74.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            99.96,
+            207.0,
+            118.46,
+            225.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            56.1,
+            74.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            118.29,
+            207.0,
+            136.79,
+            225.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            56.1,
+            74.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            136.61,
+            207.0,
+            155.11,
+            225.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            56.1,
+            74.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            154.93,
+            207.0,
+            173.43,
+            225.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            56.1,
+            74.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            173.25,
+            207.0,
+            191.75,
+            225.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            56.1,
+            74.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            191.57,
+            207.0,
+            210.07,
+            225.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            56.1,
+            74.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            209.89,
+            207.0,
+            228.39,
+            225.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            56.1,
+            74.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            228.21,
+            207.0,
+            246.71,
+            225.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            56.1,
+            74.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            246.54,
+            207.0,
+            265.04,
+            225.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            56.1,
+            74.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            264.86,
+            207.0,
+            283.36,
+            225.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            56.1,
+            74.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            283.18,
+            207.0,
+            301.68,
+            225.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            56.1,
+            74.8
+          ]
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            301.5,
+            207.0,
+            320.0,
+            225.5
+          ],
+          "other_bbox_pt": [
+            37.6,
+            56.3,
+            56.1,
+            74.8
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/device.png",
+          "scale": 4
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only JP candidate; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/js-100i/jp/ja/contact_qr",
+      "page": 12,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100I"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            303.0,
+            453.0,
+            340.0,
+            490.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/contact_qr.png",
+          "scale": 4
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only JP candidate; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "page": "manual_jsconnectionguide_jp_ja.html",
+  "browser": "chromium (Playwright)",
+  "viewports": {
+    "390": {
+      "document_scroll_width": 390,
+      "viewport_width": 390,
+      "images": 5,
+      "broken_images": [],
+      "headings": [
+        "Jackery Solar Genarator 接続ガイド¶"
+      ],
+      "tables": 1,
+      "table_rows": 4,
+      "reference_figures": 2,
+      "live_labels": [
+        "黒のプラスチック",
+        "DC7909（メスコネクタ）",
+        "ロック溝",
+        "DC8020（メスコネクタ）"
+      ],
+      "label_overflow": [],
+      "horizontal_overflow": false,
+      "screenshot": "evidence/mobile-full.jpg"
+    },
+    "1280": {
+      "document_scroll_width": 1280,
+      "viewport_width": 1280,
+      "images": 5,
+      "broken_images": [],
+      "headings": [
+        "Jackery Solar Genarator 接続ガイド¶"
+      ],
+      "tables": 1,
+      "table_rows": 4,
+      "reference_figures": 2,
+      "live_labels": [
+        "黒のプラスチック",
+        "DC7909（メスコネクタ）",
+        "ロック溝",
+        "DC8020（メスコネクタ）"
+      ],
+      "label_overflow": [],
+      "horizontal_overflow": false,
+      "screenshot": "evidence/desktop-full.jpg"
+    }
+  }
+}
