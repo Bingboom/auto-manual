@@ -19,11 +19,12 @@
 | 必要的新翻译，绿色且计数 | `.en-new` + `data-needs-translation`，英文保存在 `data-previous-english` |
 | 小型新增／JP 专属新增，绿色但不计翻译量 | `.en-new.jp-draft-insert`，保留新增原因 |
 | 目标规格／研发值，紫色 | `.jp-spec-updated` / `.jp-spec-filled`，附来源 |
-| 既有稿的待确认占位，玫红色 | `.us-difference.jp-parameter` |
+| 目标缺数据时的一代补写，绿色但不计翻译量 | `.en-new` + `title="一代数据"`，用一代日文措辞 |
+| 既有稿的待确认占位，玫红色（下次修订时改为一代补写） | `.us-difference.jp-parameter` |
 | 商品名引用，琥珀色 | `.jp-name-ref` |
 | 中文对照／审核意见 | `.zh-translation` / `.jp-review` |
 
-延续已经过操作者确认的日文稿占位和色彩，不因合并 skill 擅自替换成英文模式的“—”。来源、解释和建议仍归审核层；已知冲突不能隐藏成普通正文。共享样式按 [jp-style-mapping.md](jp-style-mapping.md) 和 `../assets/review-overlay.css`，不是另写一套近似版式。
+新稿和下次修订的日文稿按 SKILL.md 的一代补写和 3+2 质保默认处理：一代补写沿用一代日文措辞，绿色、不计翻译量，同 `.jp-draft-insert`。操作者已确认的既有日文稿在下次修订前保留原占位和色彩。来源、解释和建议仍归审核层；已知冲突不能隐藏成普通正文。共享样式按 [jp-style-mapping.md](jp-style-mapping.md) 和 `../assets/review-overlay.css`，不是另写一套近似版式。
 
 ## 专属统计和审查
 
