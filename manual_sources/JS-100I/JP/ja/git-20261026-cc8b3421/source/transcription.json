@@ -1,0 +1,1345 @@
+{
+  "schema_version": "js-100i-jp-transcription/v1",
+  "method": "The PDF has no text layer (every glyph is outlined). Each printed line was transcribed from 260 dpi page renders and checked against 330-700 dpi close-ups; one entry is one printed line, in the Web reading order of its page (figure labels follow their figure). Bullet, ● heading and badge markers are layout, not text. web: false marks lines that are not part of the Web flow.",
+  "pages": [
+    {
+      "page": 1,
+      "lines": [
+        {
+          "text": "Jackery",
+          "role": "logo",
+          "web": false
+        },
+        {
+          "text": "型番: JS-100I",
+          "web": false
+        },
+        {
+          "text": "写真はイメージです。実際の商品とは異なる場合があります。",
+          "role": "cover-photo-caption",
+          "web": false
+        },
+        {
+          "text": "Jackery  SolarSaga 100 Air",
+          "web": false
+        },
+        {
+          "text": "取扱説明書",
+          "web": false
+        },
+        {
+          "text": "カスタマーサポート: jackery.jp@jackery.com",
+          "web": false,
+          "note": "identical to the p.12 support line, which the page-end contact panel carries"
+        },
+        {
+          "text": "お買い上げありがとうございます。",
+          "web": true
+        },
+        {
+          "text": "ご使用の前にこの「取扱説明書」をよくお読みのうえ、正しくお使いください。",
+          "role": "bullet",
+          "web": true
+        },
+        {
+          "text": "特に「安全上のご注意」は、必ずお読みいただき、安全にお使いください。",
+          "role": "bullet",
+          "web": true
+        },
+        {
+          "text": "お読みになったあとは、すぐに取り出せる場所に大切に保管してください。",
+          "role": "bullet",
+          "web": true
+        },
+        {
+          "text": "本製品の取扱説明書は随時更新されますので、最新の取扱説明書は公式サイトでご確認ください。",
+          "role": "bullet",
+          "web": true
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "lines": [
+        {
+          "text": "使用ガイド（ご使用前の注意事項）",
+          "role": "chapter",
+          "web": true
+        },
+        {
+          "text": "警告",
+          "role": "signal-word",
+          "web": true
+        },
+        {
+          "text": "本製品をご使用になる前に、必ず『当該取扱説明書』をお読みください。",
+          "web": true
+        },
+        {
+          "text": "以下の注意事項を守り、安全かつ正しくお使いください。",
+          "web": true
+        },
+        {
+          "text": "■ ソーラーパネルの取り扱いについて",
+          "role": "section",
+          "web": true
+        },
+        {
+          "text": "折りたたみ時に、鋭利な物で傷をつけないようご注",
+          "role": "bullet",
+          "web": true
+        },
+        {
+          "text": "意ください。",
+          "web": true
+        },
+        {
+          "text": "ソーラーパネルを分解・取り外ししないでください。",
+          "role": "bullet",
+          "web": true
+        },
+        {
+          "text": "腐食性物質はパネル上に置かないでください。",
+          "role": "bullet",
+          "web": true
+        },
+        {
+          "text": "製品の品質保持のため、落下・曲げ・踏みつけ・加",
+          "role": "bullet",
+          "web": true
+        },
+        {
+          "text": "重はお控えください。",
+          "web": true
+        },
+        {
+          "text": "※内部損傷により、使用不能となるおそれがありま",
+          "web": true
+        },
+        {
+          "text": "す。",
+          "web": true
+        },
+        {
+          "text": "■ 使用環境に関する注意",
+          "role": "section",
+          "web": true
+        },
+        {
+          "text": "ソーラーパネルは木・建物・その他の影になる場所",
+          "role": "bullet",
+          "web": true
+        },
+        {
+          "text": "で使用しないでください。",
+          "web": true
+        },
+        {
+          "text": "発電効率が大きく低下するため、パネルはガラス",
+          "role": "bullet",
+          "web": true
+        },
+        {
+          "text": "越しの場所では使用しないでください。",
+          "web": true
+        },
+        {
+          "text": "曇り、雨の日や夕方など、日差しが弱いときは充電",
+          "role": "bullet",
+          "web": true
+        },
+        {
+          "text": "ケーブルを外してください。接続したままにすると、",
+          "web": true
+        },
+        {
+          "text": "本体の電力が減る場合があります。",
+          "web": true
+        },
+        {
+          "text": "水や液体に浸さないでください。",
+          "role": "bullet",
+          "web": true
+        },
+        {
+          "text": "※清掃の際は、湿らせた布で優しく拭いてください。",
+          "web": true
+        },
+        {
+          "text": "明火や可燃物の近くでの使用・保管は禁止です。",
+          "role": "bullet",
+          "web": true
+        },
+        {
+          "text": "折りたたみ式ソーラーパネルは取り付け用に固定",
+          "role": "bullet",
+          "web": true
+        },
+        {
+          "text": "できません。",
+          "web": true
+        },
+        {
+          "text": "製品の損傷やその他の危険を避けるため、強風・",
+          "role": "bullet",
+          "web": true
+        },
+        {
+          "text": "雹悪天候時には必ず収納してください。",
+          "web": true
+        },
+        {
+          "text": "ソーラーパネル本体（パネル面）は防塵・防水仕様",
+          "role": "bullet",
+          "web": true
+        },
+        {
+          "text": "となっておりますが、出力端子および充電ケーブル",
+          "web": true
+        },
+        {
+          "text": "の端子部分には防水機能がございません。",
+          "web": true
+        },
+        {
+          "text": "そのため、雨天時のご使用は故障の原因となる可",
+          "web": true
+        },
+        {
+          "text": "能性がございます。",
+          "web": true
+        },
+        {
+          "text": "誤作動や製品破損を防ぐためにも、雨の日の使用",
+          "web": true
+        },
+        {
+          "text": "はお控えくださいますようお願い申し上げます。",
+          "web": true
+        },
+        {
+          "text": "■ 接続・安全性について",
+          "role": "section",
+          "web": true
+        },
+        {
+          "text": "感電防止のため、濡れた手でソーラーパネルや接続",
+          "role": "bullet",
+          "web": true
+        },
+        {
+          "text": "機器に触れないでください。",
+          "web": true
+        },
+        {
+          "text": "パネルとポータブル電源のモデルにより接続方法",
+          "role": "bullet",
+          "web": true
+        },
+        {
+          "text": "が異なるため、「使用方法」をご確認のうえ接続して",
+          "web": true
+        },
+        {
+          "text": "ください。",
+          "web": true
+        },
+        {
+          "text": "破損がある場合は使用しないでください。感電や火",
+          "role": "bullet",
+          "web": true
+        },
+        {
+          "text": "災の原因となるおそれがあります。",
+          "web": true
+        },
+        {
+          "text": "人工的なスポットライトをパネルに当てて使用しな",
+          "role": "bullet",
+          "web": true
+        },
+        {
+          "text": "いでください。",
+          "web": true
+        },
+        {
+          "text": "モジュールが破損すると、感電や火災の原因となる",
+          "role": "bullet",
+          "web": true
+        },
+        {
+          "text": "可能性があります。",
+          "web": true
+        },
+        {
+          "text": "■ 電気的仕様に関する注意",
+          "role": "section",
+          "web": true
+        },
+        {
+          "text": "通常の状況下では、PVモジュールは標準的な試験",
+          "role": "bullet",
+          "web": true
+        },
+        {
+          "text": "条件よりも高い電流または電圧にさらされることが",
+          "web": true
+        },
+        {
+          "text": "ありますそのため、コンポーネントの定格電圧、導体",
+          "web": true
+        },
+        {
+          "text": "の定格電流、PV出力に接続された制御デバイスの",
+          "web": true
+        },
+        {
+          "text": "大きさを計算する際には、コンポーネントにマーク",
+          "web": true
+        },
+        {
+          "text": "された短絡電流（Isc）と開放電圧（Voc）の値を1.25倍",
+          "note": "sc and oc are printed as subscripts",
+          "web": true
+        },
+        {
+          "text": "する必要があります。",
+          "web": true
+        },
+        {
+          "text": "■ 逆電流および過電圧からの保護が備わっていな",
+          "web": true
+        },
+        {
+          "text": "い限り、本製品を他のPVモジュールや電源に接",
+          "web": true
+        },
+        {
+          "text": "続しないでください。",
+          "web": true
+        },
+        {
+          "text": "01",
+          "role": "folio",
+          "web": false
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "lines": [
+        {
+          "text": "同梱品",
+          "role": "chapter",
+          "web": true
+        },
+        {
+          "text": "1",
+          "role": "card-number",
+          "web": false,
+          "note": "circled card number; the shared Inbox component numbers its cards"
+        },
+        {
+          "text": "Jackery SolarSaga 100 Air",
+          "web": true
+        },
+        {
+          "text": "2",
+          "role": "card-number",
+          "web": false
+        },
+        {
+          "text": "収納バッグ",
+          "web": true
+        },
+        {
+          "text": "3",
+          "role": "card-number",
+          "web": false
+        },
+        {
+          "text": "多機能充電ケーブル(3m)",
+          "web": true
+        },
+        {
+          "text": "4",
+          "role": "card-number",
+          "web": false
+        },
+        {
+          "text": "取扱説明書",
+          "web": true
+        },
+        {
+          "text": "※付属品を故障、紛失等してしまった場合はカスタマーサポートまでご連絡ください。",
+          "web": true
+        },
+        {
+          "text": "使い方",
+          "role": "chapter",
+          "web": true
+        },
+        {
+          "text": "Jackeryポータブル電源を充電します",
+          "role": "heading",
+          "web": true
+        },
+        {
+          "text": "ソーラーパネルをマルチ充電ケーブルでポータブル電源のDC入力ポートに接続します。",
+          "web": true
+        },
+        {
+          "text": "ヒント",
+          "role": "signal-word",
+          "web": true
+        },
+        {
+          "text": "1. ソーラーパネルの充電ケーブル端子は DC8020 です。",
+          "web": true
+        },
+        {
+          "text": "2. ご使用のポータブル電源の入力端子の種類により、変換アダプターの必要有無が異な",
+          "web": true
+        },
+        {
+          "text": "ります。",
+          "web": true
+        },
+        {
+          "text": "本体前面",
+          "role": "figure-heading",
+          "web": true
+        },
+        {
+          "text": "太陽角度インジケーター",
+          "role": "figure-label",
+          "web": true
+        },
+        {
+          "text": "02",
+          "role": "folio",
+          "web": false
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "lines": [
+        {
+          "text": "本体背面",
+          "role": "figure-heading",
+          "web": true
+        },
+        {
+          "text": "ペグで固定するためのあ",
+          "role": "figure-label",
+          "web": true
+        },
+        {
+          "text": "らかじめ開けられた穴",
+          "role": "figure-label",
+          "web": true
+        },
+        {
+          "text": "アダプターボックス",
+          "role": "figure-label",
+          "web": true
+        },
+        {
+          "text": "スタンド",
+          "role": "figure-label",
+          "web": true
+        },
+        {
+          "text": "穴の直径：10mm",
+          "role": "figure-label",
+          "web": true
+        },
+        {
+          "text": "ソーラーパネルの展開方法",
+          "role": "heading",
+          "web": true
+        },
+        {
+          "text": "1. 収納バッグからソーラーパネルを取り出します。",
+          "role": "step",
+          "web": true
+        },
+        {
+          "text": "2. 図のように、折り目に沿って順番に展開します。",
+          "role": "step",
+          "web": true
+        },
+        {
+          "text": "03",
+          "role": "folio",
+          "web": false
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "lines": [
+        {
+          "text": "3. 背面のスタンドを2本とも立てます。",
+          "role": "step",
+          "web": true
+        },
+        {
+          "text": "4. ソーラーパネルを太陽の方向に向け、ポータブル電源に接続します。",
+          "role": "step",
+          "web": true
+        },
+        {
+          "text": "ソーラーパネルの収納方法",
+          "role": "heading",
+          "web": true
+        },
+        {
+          "text": "1.多機能充電ケーブルを取り外し、スタンドをたたみます。",
+          "role": "step",
+          "web": true
+        },
+        {
+          "text": "2. 図のように、折り目に沿ってソーラーパネルを順番に折りたたみます。",
+          "role": "step",
+          "web": true
+        },
+        {
+          "text": "04",
+          "role": "folio",
+          "web": false
+        }
+      ]
+    },
+    {
+      "page": 6,
+      "lines": [
+        {
+          "text": "3. ソーラーパネルを収納バッグに戻します。",
+          "role": "step",
+          "web": true
+        },
+        {
+          "text": "ポータブル電源の入力端子が8020の場合",
+          "role": "heading",
+          "web": true
+        },
+        {
+          "text": "アダプターDC8020 - DC7909は不要です。ケーブルをそのまま接続してください。",
+          "web": true
+        },
+        {
+          "text": "DC8020",
+          "role": "figure-label",
+          "web": true
+        },
+        {
+          "text": "※一般的に、以下のモデルが該当します：",
+          "role": "figure-label",
+          "web": true
+        },
+        {
+          "text": "1500PTB / Proシリーズ / NEWシリーズ(240NEWを除く） /",
+          "role": "figure-label",
+          "web": true
+        },
+        {
+          "text": "Plusシリーズ(300Plus/100Plusを除く)",
+          "role": "figure-label",
+          "web": true
+        },
+        {
+          "text": "ポータブル電源の入力端子が7909の場合",
+          "role": "heading",
+          "web": true
+        },
+        {
+          "text": "別売りの「アダプターDC8020 - DC7909」を使用し、アダプターを接続したうえでポータブル電源に差し込ん",
+          "web": true
+        },
+        {
+          "text": "でください。",
+          "web": true
+        },
+        {
+          "text": "アダプターDC8020 - DC7909",
+          "role": "figure-label",
+          "web": true
+        },
+        {
+          "text": "※旧モデルである以下の機種が該当します：",
+          "role": "figure-label",
+          "web": true
+        },
+        {
+          "text": "240Wh / 400Wh / 700 / 708Wh / 1000Wh",
+          "role": "figure-label",
+          "web": true
+        },
+        {
+          "text": "05",
+          "role": "folio",
+          "web": false
+        }
+      ]
+    },
+    {
+      "page": 7,
+      "lines": [
+        {
+          "text": "ポータブル電源の入力端子はUSB-Cの場合",
+          "role": "heading",
+          "web": true
+        },
+        {
+          "text": "別売りの「アダプター DC8020 - USB-C」をご使用ください。",
+          "web": true
+        },
+        {
+          "text": "ケーブル8020端子 → アダプター DC8020 - USB-C → 本体USB-C (in/out)端子へ接続",
+          "web": true
+        },
+        {
+          "text": "アダプター DC8020 - USB-C",
+          "role": "figure-label",
+          "web": true
+        },
+        {
+          "text": "※ 一般的に、以下のモデルが該当します：",
+          "role": "figure-label",
+          "web": true
+        },
+        {
+          "text": "100Plus、240New、300Plusなど、入力端子が",
+          "role": "figure-label",
+          "web": true
+        },
+        {
+          "text": "USB-C（in/out）のモデル。",
+          "role": "figure-label",
+          "web": true
+        },
+        {
+          "text": "SolarSaga アダプター (Pro/Plus/New専用)使用ガイド",
+          "role": "heading",
+          "web": true
+        },
+        {
+          "text": "SolarSaga アダプター (Pro/Plus/New専用)を使用すると、2枚または3枚のソーラーパネルをまとめて、本体",
+          "web": true
+        },
+        {
+          "text": "のDC入力ポートに接続できます。",
+          "web": true
+        },
+        {
+          "text": "DC8020",
+          "role": "figure-label",
+          "web": true
+        },
+        {
+          "text": "SolarSaga アダプター (Pro/Plus/New専用)",
+          "role": "figure-label",
+          "web": true
+        },
+        {
+          "text": "別売り",
+          "role": "figure-label",
+          "web": true
+        },
+        {
+          "text": "06",
+          "role": "folio",
+          "web": false
+        }
+      ]
+    },
+    {
+      "page": 8,
+      "lines": [
+        {
+          "text": "ご注意",
+          "role": "signal-word",
+          "web": true
+        },
+        {
+          "text": "接続できるソーラーパネルの最大枚数は、ポータブル電源のモデルによって異なります。",
+          "web": true
+        },
+        {
+          "text": "必ず各モデルの接続ルールをご確認のうえ、正しく接続してください。",
+          "web": true
+        },
+        {
+          "text": "SolarSaga アダプター (Pro/Plus/New専用)のメス端子は8020のため、パネル充電ケーブ",
+          "web": true
+        },
+        {
+          "text": "8020端子を接続してください。",
+          "web": true
+        },
+        {
+          "text": "太陽角度インジケーター",
+          "role": "heading",
+          "web": true
+        },
+        {
+          "text": "太陽光パネル正面には太陽角度インジケータが付いています。",
+          "web": true
+        },
+        {
+          "text": "日光が表面に当たると、その下部に影が表示されます。",
+          "web": true
+        },
+        {
+          "text": "太陽角度インジケーター",
+          "role": "figure-label",
+          "web": true
+        },
+        {
+          "text": "インジケーターポイント",
+          "role": "figure-label",
+          "web": true
+        },
+        {
+          "text": "シャドウ",
+          "role": "figure-label",
+          "web": true
+        },
+        {
+          "text": "影が下部の白い内側の円に落ちる場合は、ソーラーパネルが太陽に直接向いていることを意味し、最適な発",
+          "web": true
+        },
+        {
+          "text": "電を得ることができます。そうでない場合は、そうなるまで角度を調整することをお勧めします。",
+          "web": true
+        },
+        {
+          "text": "影が白いインナーサークル",
+          "web": true
+        },
+        {
+          "text": "に落ちている",
+          "web": true
+        },
+        {
+          "text": "影が白いインナーサークル",
+          "web": true
+        },
+        {
+          "text": "に入ってない",
+          "web": true
+        },
+        {
+          "text": "ご注意",
+          "role": "signal-word",
+          "web": true
+        },
+        {
+          "text": "発電量を最大化するため、パネル表面が直射日光にしっかり当たるように設置してください。",
+          "web": true
+        },
+        {
+          "text": "07",
+          "role": "folio",
+          "web": false
+        }
+      ]
+    },
+    {
+      "page": 9,
+      "lines": [
+        {
+          "text": "デバイスへの電力供給",
+          "role": "heading",
+          "web": true
+        },
+        {
+          "text": "多機能アダプター",
+          "role": "figure-label",
+          "web": true
+        },
+        {
+          "text": "Jackery  SolarSaga 100 Air",
+          "role": "figure-label",
+          "web": true
+        },
+        {
+          "text": "携帯電話",
+          "role": "figure-label",
+          "web": true
+        },
+        {
+          "text": "電源グループ",
+          "role": "figure-label",
+          "web": true
+        },
+        {
+          "text": "タブレット",
+          "role": "figure-label",
+          "web": true
+        },
+        {
+          "text": "※ この多機能充電ケーブルは本製品にのみ対応しており、他のモデルのソーラーパネルには使用し",
+          "role": "figure-label",
+          "web": true
+        },
+        {
+          "text": "ないでください。",
+          "role": "figure-label",
+          "web": true
+        },
+        {
+          "text": "※ USBポートを使用していないときは、ホコリを防ぐためにゴムプラグを挿入してください。",
+          "web": true
+        },
+        {
+          "text": "08",
+          "role": "folio",
+          "web": false
+        }
+      ]
+    },
+    {
+      "page": 10,
+      "lines": [
+        {
+          "text": "主な仕様",
+          "role": "chapter",
+          "note": "printed letter-spaced 主 な 仕 様",
+          "web": true
+        },
+        {
+          "text": "Jackery SolarSaga 100 Air",
+          "role": "heading",
+          "web": true
+        },
+        {
+          "text": "基本情報",
+          "role": "table-title",
+          "web": true
+        },
+        {
+          "text": "製品名称",
+          "web": true
+        },
+        {
+          "text": "Jackery SolarSaga 100 Air",
+          "web": true
+        },
+        {
+          "text": "型番",
+          "web": true
+        },
+        {
+          "text": "JS-100I",
+          "web": true
+        },
+        {
+          "text": "寸法（展開）",
+          "web": true
+        },
+        {
+          "text": "1630 x 423 x 17mm",
+          "web": true
+        },
+        {
+          "text": "寸法（折りたたみ）",
+          "web": true
+        },
+        {
+          "text": "423.5 x 423 x 47mm",
+          "web": true
+        },
+        {
+          "text": "正味重量",
+          "web": true
+        },
+        {
+          "text": "3.2kg±0.2kg",
+          "web": true
+        },
+        {
+          "text": "防塵防水レベル",
+          "web": true
+        },
+        {
+          "text": "IP68",
+          "web": true
+        },
+        {
+          "text": "動作温度範囲",
+          "web": true
+        },
+        {
+          "text": "-20°C~65°C",
+          "web": true
+        },
+        {
+          "text": "電気データ",
+          "role": "table-title",
+          "web": true
+        },
+        {
+          "text": "STC*",
+          "note": "asterisk printed as superscript",
+          "web": true
+        },
+        {
+          "text": "BNPI*",
+          "note": "asterisk printed as superscript",
+          "web": true
+        },
+        {
+          "text": "最大出力 (Pmax)",
+          "note": "max printed as subscript",
+          "web": true
+        },
+        {
+          "text": "100W±5%",
+          "web": true
+        },
+        {
+          "text": "110W±5%",
+          "web": true
+        },
+        {
+          "text": "開放電圧 (Voc)",
+          "note": "oc printed as subscript",
+          "web": true
+        },
+        {
+          "text": "26.0V±5%",
+          "web": true
+        },
+        {
+          "text": "26.3V±5%",
+          "web": true
+        },
+        {
+          "text": "短絡電流 (Isc)",
+          "note": "sc printed as subscript",
+          "web": true
+        },
+        {
+          "text": "4.95A±5%",
+          "web": true
+        },
+        {
+          "text": "5.38A±5%",
+          "web": true
+        },
+        {
+          "text": "動作電圧 (Vmp)",
+          "note": "mp printed as subscript",
+          "web": true
+        },
+        {
+          "text": "21.7V±5%",
+          "web": true
+        },
+        {
+          "text": "22.0V±5%",
+          "web": true
+        },
+        {
+          "text": "動作電流 (Imp)",
+          "note": "mp printed as subscript",
+          "web": true
+        },
+        {
+          "text": "4.67A±5%",
+          "web": true
+        },
+        {
+          "text": "5.08A±5%",
+          "web": true
+        },
+        {
+          "text": "最大システム電圧",
+          "web": true
+        },
+        {
+          "text": "80V",
+          "web": true
+        },
+        {
+          "text": "最大逆電流",
+          "web": true
+        },
+        {
+          "text": "15A",
+          "web": true
+        },
+        {
+          "text": "両面係数(背面/前面)",
+          "web": true
+        },
+        {
+          "text": "Pmax: >65%, Voc: >97%, Isc: >65%",
+          "note": "max/oc/sc printed as subscripts",
+          "web": true
+        },
+        {
+          "text": "電圧温度係数",
+          "web": true
+        },
+        {
+          "text": "-0.27%/°C",
+          "web": true
+        },
+        {
+          "text": "出力温度係数",
+          "web": true
+        },
+        {
+          "text": "-0.33%/°C",
+          "web": true
+        },
+        {
+          "text": "感電保護クラス",
+          "web": true
+        },
+        {
+          "text": "クラスII",
+          "web": true
+        },
+        {
+          "text": "消費財カテゴリー",
+          "web": true
+        },
+        {
+          "text": "IEC TS 63163、消費財タイプ 2",
+          "web": true
+        },
+        {
+          "text": "* STC-標準試験条件(1000W/m², 25°C, AM 1.5)",
+          "web": true
+        },
+        {
+          "text": "* BNPI-両面公称照度(前面1000W/m²,背面135W/m², 25°C, AM 1.5)",
+          "web": true
+        },
+        {
+          "text": "ブラケットを開き、平らな面に置きます。設計荷重は1600 Pa、安全率は1.5倍です。",
+          "web": true
+        },
+        {
+          "text": "多機能アダプタ",
+          "role": "heading",
+          "web": true
+        },
+        {
+          "text": "USB-A 出力",
+          "web": true
+        },
+        {
+          "text": "5V⎓2.4A",
+          "web": true
+        },
+        {
+          "text": "USB-C 出力",
+          "web": true
+        },
+        {
+          "text": "5V⎓3A",
+          "web": true
+        },
+        {
+          "text": "09",
+          "role": "folio",
+          "web": false
+        }
+      ]
+    },
+    {
+      "page": 11,
+      "lines": [
+        {
+          "text": "保証について",
+          "role": "chapter",
+          "web": true
+        },
+        {
+          "text": "Jackery 製品をご購入いただき、誠にありがとうございます。本保証書は、Jackery のソーラーパ",
+          "web": true
+        },
+        {
+          "text": "ネル製品に関する保証内容を明確にご案内するものです。以下の内容をよくお読みのうえ、大切",
+          "web": true
+        },
+        {
+          "text": "に保管してください。",
+          "web": true
+        },
+        {
+          "text": "■ 保証期間",
+          "role": "section",
+          "web": true
+        },
+        {
+          "text": "1. 保証期間はご購入日から 1 年間です。",
+          "web": true
+        },
+        {
+          "text": "2. また、延長保証にご登録いただくと、さらに 2 年間の保証が追加されます。詳しくは Jackery 公式サ",
+          "web": true
+        },
+        {
+          "text": "イトをご確認ください。",
+          "web": true
+        },
+        {
+          "text": "3. Jackery 公式オンラインストアまたは正規代理店以外での購入品は保証対象外となります。",
+          "web": true
+        },
+        {
+          "text": "■ 保証対象",
+          "role": "section",
+          "web": true
+        },
+        {
+          "text": "1. 購入チャネル",
+          "web": true
+        },
+        {
+          "text": "本保証は、Jackery 公式オンラインストアおよび正規販売代理店で購入された製品に限り有効です。",
+          "web": true
+        },
+        {
+          "text": "2. 保証の提供範囲",
+          "web": true
+        },
+        {
+          "text": "日本国内に居住されているお客様を対象とし、日本国内での使用に限り保証を提供します。",
+          "web": true
+        },
+        {
+          "text": "3. 保証適用条件",
+          "web": true
+        },
+        {
+          "text": "以下すべての条件を満たす場合に限り、本保証が適用されます：",
+          "web": true
+        },
+        {
+          "text": "- 取扱説明書および注意書きに従った正常な使用",
+          "web": true
+        },
+        {
+          "text": "- 改造・不適切な使用・事故等によらない自然故障",
+          "web": true
+        },
+        {
+          "text": "- 保証申請時に購入証明の提示があること",
+          "web": true
+        },
+        {
+          "text": "4. 購入証明の提示について",
+          "web": true
+        },
+        {
+          "text": "保証対応を受ける際には、以下のいずれかの購入証明が必要です：",
+          "web": true
+        },
+        {
+          "text": "- Jackery 公式オンラインストア：注文番号（注文履歴または注文確認メールなど）",
+          "web": true
+        },
+        {
+          "text": "- Jackery 正規代理店：領収書、納品書など購入日・店舗名が確認できる書類",
+          "web": true
+        },
+        {
+          "text": "- Jackery 公式オンラインストアおよび正規代理店以外でご購入された製品は保証対象外となりま",
+          "web": true
+        },
+        {
+          "text": "すので、らかじめご了承ください。",
+          "web": true
+        },
+        {
+          "text": "■ 保証内容",
+          "role": "section",
+          "web": true
+        },
+        {
+          "text": "保証期間内に自然故障が確認された場合、以下のいずれかの方法で対応いたします：",
+          "web": true
+        },
+        {
+          "text": "1. 同一製品または同等品への交換（中古品の可能性を顧慮）",
+          "web": true
+        },
+        {
+          "text": "2. 販売終了・在庫切れ等により交換が困難な場合は、（購入年数に応じての一部）返金での対応となる",
+          "web": true
+        },
+        {
+          "text": "ことがあります",
+          "web": true
+        },
+        {
+          "text": "※ソーラーパネル製品は修理サービス対象外のため、修理対応は行っておりません。",
+          "web": true
+        },
+        {
+          "text": "■ 保証対象外となる場合",
+          "role": "section",
+          "web": true
+        },
+        {
+          "text": "以下の場合、保証期間内であっても保証の対象外となります：",
+          "web": true
+        },
+        {
+          "text": "10",
+          "role": "folio",
+          "web": false
+        }
+      ]
+    },
+    {
+      "page": 12,
+      "lines": [
+        {
+          "text": "1. 保証期間中に発生した故障であっても、保証期間終了後に請求された場合",
+          "web": true
+        },
+        {
+          "text": "2. 使用上の誤り（取扱説明書や本体ラベルなどの注意書きに従わなかった使用）による故障・損傷",
+          "web": true
+        },
+        {
+          "text": "3. 他機器からの影響、または不当な修理・改造による故障・損傷",
+          "web": true
+        },
+        {
+          "text": "移設・輸送・落下等による物理的な故障・損傷",
+          "web": true
+        },
+        {
+          "text": "4. 火災・地震・風水害・落雷等の天災地変、公害・塩害・異常電圧などによる故障・損傷",
+          "web": true
+        },
+        {
+          "text": "5. 業務用等、家庭用途以外での使用による故障・損傷",
+          "web": true
+        },
+        {
+          "text": "6. 消耗・摩耗部品の交換、または外観の汚損による対応要求",
+          "web": true
+        },
+        {
+          "text": "7. ソーラーパネル本体は防水仕様ですが、接続端子およびケーブル部分は防水ではありません。雨",
+          "web": true
+        },
+        {
+          "text": "水の浸入、濡れた状態での使用などにより発生した故障・腐食は保証対象外となります。",
+          "web": true
+        },
+        {
+          "text": "8. 発電効率は天候状況、設置方法、温度に応じて変化するため、合理範囲内での発電が可能な場合",
+          "web": true
+        },
+        {
+          "text": "9. Jackery のソーラーパネルは、Jackery 製ポータブル電源に合わせて設計されています。他社製ポー",
+          "web": true
+        },
+        {
+          "text": "タブル電源と組み合わせて使用される場合は、必ずソーラーパネルの電圧・電流が接続先機器の仕",
+          "web": true
+        },
+        {
+          "text": "様範囲内であることをご確認ください。",
+          "web": true
+        },
+        {
+          "text": "互換性の検証は行っておらず、適合しない組み合わせによって生じた製品故障は保証対象外となり",
+          "web": true
+        },
+        {
+          "text": "ます。また、それに伴う経済的損失や安全上の問題についても、当社では一切の責任を負いかねます",
+          "web": true
+        },
+        {
+          "text": "ので、あらかじめご了承ください。",
+          "web": true
+        },
+        {
+          "text": "■ 保管に関する注意",
+          "role": "section",
+          "web": true
+        },
+        {
+          "text": "製品は直射日光・高温多湿・雨風・ホコリの多い場所を避けて保管してください。",
+          "web": true
+        },
+        {
+          "text": "長期保管時には、重い物を上に置かず、変形や破損が起きないようご注意ください。",
+          "web": true
+        },
+        {
+          "text": "定期的に清掃・点検を行うことで、安全に長期間ご使用いただけます。",
+          "web": true
+        },
+        {
+          "text": "■ お問い合わせ",
+          "role": "section",
+          "web": true
+        },
+        {
+          "text": "保証に関するご不明点がございましたら、Jackery カスタマーサービスまでお問い合わせください。",
+          "web": true
+        },
+        {
+          "text": "最新の保証条件は Jackery 公式サイトでもご確認いただけます。",
+          "web": true
+        },
+        {
+          "text": "■ ご注意（法的および規約面）",
+          "role": "section",
+          "web": true
+        },
+        {
+          "text": "※ 本書によって保証責任者、及びそれ以外の事業者に対するお客様の法律上の権利を制限するもの",
+          "web": true
+        },
+        {
+          "text": "ではありません。",
+          "web": true
+        },
+        {
+          "text": "※ 保証内容は都合により予告なく変更する場合がございますのでご了承ください。",
+          "web": true
+        },
+        {
+          "text": "公式サイト: http://www.jackery.jp",
+          "web": true
+        },
+        {
+          "text": "カスタマーサポート: jackery.jp@jackery.com",
+          "web": true
+        },
+        {
+          "text": "お問い合わせ電話番号: 050-3198-9007",
+          "web": true
+        },
+        {
+          "text": "株式会社Jackery Japan",
+          "web": true
+        },
+        {
+          "text": "© 株式会社Jackery Japanは全ての権利を留保します。",
+          "web": true
+        },
+        {
+          "text": "11",
+          "role": "folio",
+          "web": false
+        }
+      ]
+    }
+  ]
+}
