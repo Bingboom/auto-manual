@@ -1,0 +1,968 @@
+{
+ "schema_version": "jhp1000brc-us-asset-recipe/v1",
+ "source_sha256": "af8a0775d0ba23a137fe024ae961c8b77f35797e1c8838a943ddbf8d418d9251",
+ "panel_scale": 3,
+ "panels": [
+  {
+   "path": "assets/overview-front.png",
+   "physical_page": 7,
+   "bbox": [
+    26,
+    69,
+    345,
+    238
+   ],
+   "role": "complete front view with leader labels"
+  },
+  {
+   "path": "assets/overview-left.png",
+   "physical_page": 7,
+   "bbox": [
+    26,
+    266,
+    345,
+    370
+   ],
+   "role": "complete left side view with leader labels"
+  },
+  {
+   "path": "assets/overview-right.png",
+   "physical_page": 7,
+   "bbox": [
+    26,
+    386,
+    345,
+    478
+   ],
+   "role": "complete right side view with leader labels"
+  },
+  {
+   "path": "assets/lcd-map.png",
+   "physical_page": 8,
+   "bbox": [
+    44,
+    52,
+    330,
+    229
+   ],
+   "role": "complete numbered LCD map"
+  },
+  {
+   "path": "assets/power-on-off.png",
+   "physical_page": 10,
+   "bbox": [
+    27,
+    72,
+    340,
+    198
+   ],
+   "strip": [
+    [
+     150,
+     141,
+     331,
+     187
+    ]
+   ],
+   "role": "POWER panel; standby text box is native Web copy"
+  },
+  {
+   "path": "assets/ac-output.png",
+   "physical_page": 10,
+   "bbox": [
+    27,
+    250,
+    340,
+    494
+   ],
+   "strip": [
+    [
+     29,
+     255,
+     167,
+     271
+    ],
+    [
+     31,
+     465,
+     332,
+     492
+    ]
+   ],
+   "role": "AC 1/AC 2 panel; prerequisite pill and footer note are native Web copy"
+  },
+  {
+   "path": "assets/dc-usb-output.png",
+   "physical_page": 11,
+   "bbox": [
+    27,
+    43,
+    340,
+    211
+   ],
+   "strip": [
+    [
+     31,
+     49,
+     169,
+     66
+    ]
+   ],
+   "role": "DC/USB panel; prerequisite pill is native Web copy"
+  },
+  {
+   "path": "assets/led-light.png",
+   "physical_page": 11,
+   "bbox": [
+    27,
+    370,
+    340,
+    495
+   ],
+   "strip": [
+    [
+     31,
+     376,
+     335,
+     403
+    ],
+    [
+     253,
+     416,
+     333,
+     487
+    ]
+   ],
+   "role": "LED panel; mode line and three step texts are native Web copy"
+  },
+  {
+   "path": "assets/lcd-screen.png",
+   "physical_page": 12,
+   "bbox": [
+    28,
+    42,
+    176,
+    153
+   ],
+   "role": "LCD SCREEN button art beside the shared mode table"
+  },
+  {
+   "path": "assets/energy-saving.png",
+   "physical_page": 12,
+   "bbox": [
+    27,
+    230,
+    340,
+    382
+   ],
+   "strip": [
+    [
+     32,
+     237,
+     330,
+     263
+    ]
+   ],
+   "role": "energy-saving combination panel; disable instruction is native Web copy"
+  },
+  {
+   "path": "assets/ups.png",
+   "physical_page": 13,
+   "bbox": [
+    24,
+    336,
+    338,
+    496
+   ],
+   "role": "complete UPS connection panel"
+  },
+  {
+   "path": "assets/battery-stack.png",
+   "physical_page": 14,
+   "bbox": [
+    26,
+    244,
+    340,
+    422
+   ],
+   "role": "complete battery-pack stack panel with clearance label"
+  },
+  {
+   "path": "assets/battery-accessories.png",
+   "physical_page": 14,
+   "bbox": [
+    25,
+    424,
+    341,
+    496
+   ],
+   "role": "complete sold-separately accessory panel"
+  },
+  {
+   "path": "assets/charging-ac.png",
+   "physical_page": 15,
+   "bbox": [
+    25,
+    255,
+    338,
+    380
+   ],
+   "strip": [
+    [
+     31,
+     362,
+     271,
+     377
+    ]
+   ],
+   "role": "AC wall charging panel; caption is native Web copy"
+  },
+  {
+   "path": "assets/charging-solar.png",
+   "physical_page": 16,
+   "bbox": [
+    20,
+    30,
+    335,
+    177
+   ],
+   "role": "complete solar charging panel"
+  },
+  {
+   "path": "assets/charging-car.png",
+   "physical_page": 16,
+   "bbox": [
+    19,
+    357,
+    334,
+    496
+   ],
+   "role": "complete car charging panel"
+  },
+  {
+   "path": "assets/inbox-unit.png",
+   "physical_page": 6,
+   "bbox": [
+    41,
+    317,
+    113,
+    403
+   ],
+   "role": "in-box card art: unit"
+  },
+  {
+   "path": "assets/inbox-cable.png",
+   "physical_page": 6,
+   "bbox": [
+    161,
+    322,
+    206,
+    401
+   ],
+   "role": "in-box card art: AC charging cable"
+  },
+  {
+   "path": "assets/inbox-documents.png",
+   "physical_page": 6,
+   "bbox": [
+    269,
+    338,
+    305,
+    384
+   ],
+   "role": "in-box card art: documents"
+  },
+  {
+   "path": "assets/app-qr.png",
+   "physical_page": 20,
+   "bbox": [
+    197,
+    67,
+    250,
+    120
+   ],
+   "role": "App QR frame"
+  },
+  {
+   "path": "assets/app-add.png",
+   "physical_page": 20,
+   "bbox": [
+    91,
+    235,
+    269,
+    404
+   ],
+   "role": "App steps 2.1/2.2 phone frames with step numbers"
+  },
+  {
+   "path": "assets/app-panel.png",
+   "physical_page": 20,
+   "bbox": [
+    26,
+    415,
+    341,
+    483
+   ],
+   "role": "control panel with leader labels"
+  },
+  {
+   "path": "assets/app-results.png",
+   "physical_page": 21,
+   "bbox": [
+    48,
+    141,
+    317,
+    300
+   ],
+   "role": "App steps 2.3-2.5 phone frames with step numbers"
+  }
+ ],
+ "native_icons": [
+  {
+   "path": "assets/lcd-wifi.svg",
+   "physical_page": 8,
+   "glyph_bbox": [
+    54.63,
+    246.97,
+    70.01,
+    258.18
+   ],
+   "drawing_indices": [
+    1570
+   ]
+  },
+  {
+   "path": "assets/lcd-bluetooth.svg",
+   "physical_page": 8,
+   "glyph_bbox": [
+    56.76,
+    268.47,
+    67.88,
+    281.34
+   ],
+   "drawing_indices": [
+    1571
+   ]
+  },
+  {
+   "path": "assets/lcd-quiet-charging.svg",
+   "physical_page": 8,
+   "glyph_bbox": [
+    56.08,
+    298.45,
+    68.56,
+    311.01
+   ],
+   "drawing_indices": [
+    1572,
+    1573
+   ]
+  },
+  {
+   "path": "assets/lcd-charging-plan.svg",
+   "physical_page": 8,
+   "glyph_bbox": [
+    55.82,
+    343.77,
+    68.8,
+    357.39
+   ],
+   "drawing_indices": [
+    1574
+   ]
+  },
+  {
+   "path": "assets/lcd-self-powered.svg",
+   "physical_page": 8,
+   "glyph_bbox": [
+    55.38,
+    389.59,
+    69.26,
+    402.43
+   ],
+   "drawing_indices": [
+    1575
+   ]
+  },
+  {
+   "path": "assets/lcd-tou.svg",
+   "physical_page": 8,
+   "glyph_bbox": [
+    55.34,
+    456.21,
+    69.3,
+    465.75
+   ],
+   "drawing_indices": [
+    1566,
+    1567,
+    1568,
+    1569
+   ]
+  },
+  {
+   "path": "assets/lcd-ups.svg",
+   "physical_page": 9,
+   "glyph_bbox": [
+    56.7,
+    35.53,
+    71.56,
+    45.67
+   ],
+   "drawing_indices": [
+    1373,
+    1374,
+    1375,
+    1376
+   ]
+  },
+  {
+   "path": "assets/lcd-ac-power.svg",
+   "physical_page": 9,
+   "glyph_bbox": [
+    55.85,
+    51.07,
+    71.23,
+    63.87
+   ],
+   "drawing_indices": [
+    1377,
+    1378
+   ]
+  },
+  {
+   "path": "assets/lcd-input-power.svg",
+   "physical_page": 9,
+   "glyph_bbox": [
+    49.77,
+    84.55,
+    77.31,
+    98.85
+   ],
+   "drawing_indices": [
+    234,
+    236,
+    238
+   ],
+   "selection": "art: clip-filled rectangles of the 7-segment glyphs omitted; the clip paths are the visible glyphs"
+  },
+  {
+   "path": "assets/lcd-remaining-charge-time.svg",
+   "physical_page": 9,
+   "glyph_bbox": [
+    52.66,
+    103.47,
+    74.42,
+    113.69
+   ],
+   "drawing_indices": [
+    230,
+    232
+   ],
+   "selection": "art: clip-filled rectangles of the 7-segment glyphs omitted; the clip paths are the visible glyphs"
+  },
+  {
+   "path": "assets/lcd-ac-wall-charging.svg",
+   "physical_page": 9,
+   "glyph_bbox": [
+    58.21,
+    122.35,
+    68.87,
+    134.5
+   ],
+   "drawing_indices": [
+    1369
+   ]
+  },
+  {
+   "path": "assets/lcd-car-charging.svg",
+   "physical_page": 9,
+   "glyph_bbox": [
+    59.22,
+    140.64,
+    69.02,
+    152.79
+   ],
+   "drawing_indices": [
+    1368
+   ]
+  },
+  {
+   "path": "assets/lcd-solar-charging.svg",
+   "physical_page": 9,
+   "glyph_bbox": [
+    57.66,
+    157.46,
+    70.34,
+    170.05
+   ],
+   "drawing_indices": [
+    1361,
+    1362,
+    1363,
+    1364,
+    1365,
+    1366,
+    1367
+   ]
+  },
+  {
+   "path": "assets/lcd-battery-saving.svg",
+   "physical_page": 9,
+   "glyph_bbox": [
+    58.49,
+    198.61,
+    70.78,
+    212.04
+   ],
+   "drawing_indices": [
+    1252,
+    1253,
+    1254,
+    1255,
+    1256,
+    1257
+   ]
+  },
+  {
+   "path": "assets/lcd-charging-power-limit.svg",
+   "physical_page": 9,
+   "glyph_bbox": [
+    56.51,
+    242.07,
+    70.49,
+    255.41
+   ],
+   "drawing_indices": [
+    1370,
+    1371,
+    1372
+   ]
+  },
+  {
+   "path": "assets/lcd-low-battery.svg",
+   "physical_page": 9,
+   "glyph_bbox": [
+    57.82,
+    294.03,
+    71.67,
+    301.86
+   ],
+   "drawing_indices": [
+    1379,
+    1380,
+    1381
+   ]
+  },
+  {
+   "path": "assets/lcd-remaining-battery-percentage.svg",
+   "physical_page": 9,
+   "glyph_bbox": [
+    52.28,
+    312.46,
+    79.05,
+    325.95
+   ],
+   "drawing_indices": [
+    2504,
+    2506,
+    2508,
+    2510,
+    2512,
+    2514,
+    2516,
+    2518,
+    2520,
+    2522,
+    2524,
+    2526,
+    2528,
+    2530,
+    2532,
+    2534,
+    2536
+   ],
+   "selection": "art: clip-filled rectangles of the 7-segment glyphs omitted; the clip paths are the visible glyphs"
+  },
+  {
+   "path": "assets/lcd-discharge-timer.svg",
+   "physical_page": 9,
+   "glyph_bbox": [
+    57.2,
+    336.9,
+    70.9,
+    352.42
+   ],
+   "drawing_indices": [
+    2390,
+    2391,
+    2392
+   ]
+  },
+  {
+   "path": "assets/lcd-connected-batteries.svg",
+   "physical_page": 9,
+   "glyph_bbox": [
+    53.95,
+    361.44,
+    75.53,
+    373.07
+   ],
+   "drawing_indices": [
+    2409,
+    2410,
+    2411,
+    2412,
+    2413,
+    2414,
+    2415,
+    2416,
+    2417,
+    2418
+   ]
+  },
+  {
+   "path": "assets/lcd-energy-saving.svg",
+   "physical_page": 9,
+   "glyph_bbox": [
+    56.67,
+    384.24,
+    70.87,
+    393.64
+   ],
+   "drawing_indices": [
+    2393,
+    2394,
+    2395,
+    2396,
+    2397,
+    2398,
+    2399,
+    2400,
+    2401,
+    2402,
+    2403,
+    2404,
+    2405,
+    2406,
+    2407,
+    2408
+   ]
+  },
+  {
+   "path": "assets/lcd-high-temperature.svg",
+   "physical_page": 9,
+   "glyph_bbox": [
+    60.74,
+    408.28,
+    68.58,
+    420.05
+   ],
+   "drawing_indices": [
+    2538
+   ]
+  },
+  {
+   "path": "assets/lcd-low-temperature.svg",
+   "physical_page": 9,
+   "glyph_bbox": [
+    60.74,
+    432.37,
+    68.58,
+    444.14
+   ],
+   "drawing_indices": [
+    2539
+   ]
+  },
+  {
+   "path": "assets/lcd-output-power.svg",
+   "physical_page": 9,
+   "glyph_bbox": [
+    50.88,
+    466.7,
+    79.46,
+    481.52
+   ],
+   "drawing_indices": [
+    1824,
+    1827,
+    1830,
+    1832,
+    1835,
+    1838,
+    1840,
+    1842,
+    1844,
+    1846
+   ],
+   "selection": "art: clip-filled rectangles of the 7-segment glyphs omitted; the clip paths are the visible glyphs"
+  },
+  {
+   "path": "assets/lcd-remaining-discharge-time.svg",
+   "physical_page": 9,
+   "glyph_bbox": [
+    49.42,
+    484.43,
+    79.97,
+    495.34
+   ],
+   "drawing_indices": [
+    1848,
+    1850
+   ],
+   "selection": "art: clip-filled rectangles of the 7-segment glyphs omitted; the clip paths are the visible glyphs"
+  },
+  {
+   "path": "assets/button-ac1.svg",
+   "physical_page": 13,
+   "glyph_bbox": [
+    107.6,
+    153.9,
+    130.5,
+    176.7
+   ],
+   "drawing_indices": [
+    870,
+    871,
+    872,
+    873,
+    874,
+    875
+   ]
+  },
+  {
+   "path": "assets/button-light.svg",
+   "physical_page": 13,
+   "glyph_bbox": [
+    107.6,
+    258.7,
+    130.4,
+    281.6
+   ],
+   "drawing_indices": [
+    917,
+    918,
+    919,
+    920,
+    921,
+    922,
+    923,
+    924,
+    925,
+    926,
+    927,
+    928,
+    929,
+    930,
+    931,
+    932
+   ]
+  }
+ ],
+ "symbols": [
+  {
+   "path": "assets/symbol-01.svg",
+   "shared_symbol_key": "warning/outline-triangle-tinted",
+   "shared_path": "native-v1/symbol_warning_triangle.svg",
+   "physical_page": 5,
+   "glyph_bbox": [
+    35.5,
+    318.2,
+    58.4,
+    338.6
+   ],
+   "caption_id": "sym.s1",
+   "caption_bbox": [
+    71.79,
+    319.23,
+    164.93,
+    338.19
+   ]
+  },
+  {
+   "path": "assets/symbol-02.svg",
+   "shared_symbol_key": "read-manual/book-information",
+   "shared_path": "native-v1/symbol_read_manual.svg",
+   "physical_page": 5,
+   "glyph_bbox": [
+    35.8,
+    351.7,
+    58.1,
+    368.8
+   ],
+   "caption_id": "sym.s2",
+   "caption_bbox": [
+    72.07,
+    356.96,
+    174.2,
+    362.97
+   ]
+  },
+  {
+   "path": "assets/symbol-03.svg",
+   "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited",
+   "shared_path": "native-v1/symbol_do_not_dismantle.svg",
+   "physical_page": 5,
+   "glyph_bbox": [
+    37.4,
+    380.3,
+    56.6,
+    399.5
+   ],
+   "caption_id": "sym.s3",
+   "caption_bbox": [
+    72.07,
+    387.96,
+    149.09,
+    393.97
+   ]
+  },
+  {
+   "path": "assets/symbol-04.svg",
+   "shared_symbol_key": "no-open-flame/fire-match-prohibited",
+   "shared_path": "native-v1/symbol_no_open_flame.svg",
+   "physical_page": 5,
+   "glyph_bbox": [
+    37.4,
+    410.0,
+    57.7,
+    430.3
+   ],
+   "caption_id": "sym.s4",
+   "caption_bbox": [
+    72.07,
+    418.17,
+    155.68,
+    424.17
+   ]
+  },
+  {
+   "path": "assets/symbol-05.svg",
+   "shared_symbol_key": "keep-away-from-children/adult-child-prohibited",
+   "shared_path": "native-v1/symbol_keep_away_from_children.svg",
+   "physical_page": 5,
+   "glyph_bbox": [
+    192.3,
+    315.7,
+    212.6,
+    336.0
+   ],
+   "caption_id": "sym.s5",
+   "caption_bbox": [
+    225.19,
+    324.55,
+    289.57,
+    330.6
+   ]
+  },
+  {
+   "path": "assets/symbol-06.svg",
+   "shared_symbol_key": "li-ion/recycle-li-ion-native-dark",
+   "shared_path": "native-v1/symbol_li_ion_dark.svg",
+   "physical_page": 5,
+   "glyph_bbox": [
+    193.6,
+    343.0,
+    212.8,
+    364.4
+   ],
+   "caption_id": "sym.s6",
+   "caption_bbox": [
+    223.96,
+    343.14,
+    333.8,
+    363.18
+   ]
+  },
+  {
+   "path": "assets/symbol-07.png",
+   "shared_symbol_key": "weee/crossed-bin-bar",
+   "shared_path": "native-v1/symbol_weee.png",
+   "physical_page": 5,
+   "glyph_bbox": [
+    195.3,
+    386.4,
+    211.7,
+    410.3
+   ],
+   "caption_id": "sym.s7",
+   "caption_bbox": [
+    223.96,
+    371.18,
+    334.81,
+    431.63
+   ]
+  }
+ ],
+ "reused": [
+  {
+   "path": "assets/button-power.svg",
+   "from": "docs/renderers/web/assets/shared/buttons/power.svg",
+   "sha256": "457285c35d6deb52a01bf2e86a430cdbbd1553299a6eac652a372427bfa6c2ed"
+  },
+  {
+   "path": "assets/button-dc-usb.svg",
+   "from": "docs/renderers/web/assets/shared/buttons/dc_usb.svg",
+   "sha256": "3355388bad2221362a63dfad0c04fb9c15f521866166144cd3a644bde14e5864"
+  },
+  {
+   "path": "assets/app-store.png",
+   "from": "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets/shared-app-store.png",
+   "sha256": "1c7bfea9e26bbb00aff9c48d34a7742cd15ff3f0d998f32486c7248a19c9b84d"
+  },
+  {
+   "path": "assets/fcc-mark.svg",
+   "from": "docs/renderers/web/assets/shared/symbols/native-v1/fcc_mark.svg",
+   "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe",
+   "shared_symbol_key": "fcc/nested-c-native-dark",
+   "max_mean_channel_error": 0.0178,
+   "physical_page": 6,
+   "glyph_bbox": [
+    32.22,
+    37.55,
+    60.76,
+    57.7
+   ]
+  },
+  {
+   "path": "assets/lcd-output-voltage-frequency.png",
+   "from": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/lcd-24.png",
+   "sha256": "7623ef10e229bcfe66c872f3733d26b86c97d703ed30012188a88bb4a168e6df",
+   "max_mean_channel_error": 0.0169,
+   "physical_page": 9,
+   "glyph_bbox": [
+    48.53,
+    69.83,
+    81.35,
+    76.91
+   ]
+  },
+  {
+   "path": "assets/lcd-battery-power.svg",
+   "from": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-17.svg",
+   "sha256": "463a1423db307feeb0045dbe94a9844b65ffcde9977db8de1c5993c046469aa4",
+   "max_mean_channel_error": 0.0067,
+   "physical_page": 9,
+   "glyph_bbox": [
+    54.49,
+    264.16,
+    73.03,
+    282.7
+   ]
+  },
+  {
+   "path": "assets/lcd-fault-code.svg",
+   "from": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-21.svg",
+   "sha256": "4be378f0248b6d1faa6dab9b8c3237952bf248b73bc11d63d1cd3ab91c88fff0",
+   "max_mean_channel_error": 0.0104,
+   "physical_page": 9,
+   "glyph_bbox": [
+    57.78,
+    451.48,
+    71.42,
+    464.14
+   ]
+  }
+ ]
+}
