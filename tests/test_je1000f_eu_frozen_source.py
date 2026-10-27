@@ -183,6 +183,22 @@ class Je1000fEuFrozenSourceTests(unittest.TestCase):
         self.assertNotIn("monat", spanish.lower())
         self.assertNotIn("- 1 mes:", german)
 
+    def test_web_symbol_tables_carry_the_shared_battery_icon_and_print_keeps_seven(self) -> None:
+        """Operator ruling 2026-10-27: the Web adds the battery row the EN/FR print omits."""
+        icon = "renderers/web/assets/shared/symbols/native-v1/symbol_battery_weee.png"
+        catalog = json.loads((ROOT / "docs/renderers/web/assets/shared/symbols/manifest.json").read_text(encoding="utf-8"))
+        variant, = [asset for asset in catalog["assets"] if asset["key"] == "battery-weee/crossed-bin-no-bar"]
+        self.assertEqual(variant["sha256"], _sha256(ROOT / "docs" / icon))
+        with (FORMAL_DATA_ROOT / "symbols_blocks.csv").open(encoding="utf-8", newline="") as handle:
+            battery, = [row for row in csv.DictReader(handle) if row["symbol_key"] == "weee2"]
+        for lang in ("en", "fr"):
+            text = (ROOT / f"docs/_review/JE-1000F/EU/page/symbols_{lang}.rst").read_text(encoding="utf-8")
+            latex, _, web = text.rpartition(".. only:: not latex")
+            with self.subTest(lang=lang):
+                self.assertIn(f".. image:: {icon}\n", web)
+                self.assertIn(battery[f"text_{lang}"].split("\n")[0], web)
+                self.assertNotIn("weee2", latex.rpartition("\\HBSymbolTwoColumnTables")[2])
+
 
 if __name__ == "__main__":
     unittest.main()

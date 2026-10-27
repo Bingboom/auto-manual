@@ -155,6 +155,14 @@
     {
       "scope": "UPS WARNING and fourth UPS CAUTION bullet on the review pages (Web and Word only)",
       "change": "The five UPS review pages the EN/FR/ES/DE/IT Web routes render (page/06_ups_mode.rst and p24/p39/p54/p69) gain the UPS WARNING (data servers and medical devices; life-safety, infrastructure and business-critical equipment; pacemaker wearers) between the UPS text and the CAUTION, and a fourth CAUTION bullet (one unit directly on a wall outlet, no cascade), as the shared docs/templates/page_shared/<lang>/06_ups_mode.rst templates now carry them. Operator rulings of 2026-09-27: every model that uses the shared UPS template carries these blocks, although this model's V2.0-2026-06-18 print does not; and, until the LaTeX and IDML renderers are fixed, only the Web and Word outputs show them. A `.. only:: not latex` block holds the WARNING and the four-bullet CAUTION; main's CAUTION follows unchanged under `.. only:: latex`, so the PDF and IDML read these pages exactly as before. The wording is each language block of the JE-3000C EUUK V2.0-2026-09-15 print (sha256 f3264481b3b9e79526ee7e58bcc7ea9f79ea0aa807620e51bae87000c0af1e32, PDF pages 14-15/30-31/46-47/62-63/78-79), with the house fixes 'outlet. Do' and whole-word labels. The UK page p84 keeps its wording, as for the 2026-09-27 alt-text change: this model ships no Ukrainian (data/model_languages.csv), so no output renders it. No Web composite governs the UPS page."
+    },
+    {
+      "scope": "EN/FR Web symbol table",
+      "pdf_physical_pages": [
+        7,
+        24
+      ],
+      "change": "Operator ruling 2026-10-27 (「按共用图库补上，授权合入」): the Web table carries the battery/accumulator disposal row that this release omits, with the shared library icon battery-weee/crossed-bin-no-bar (native-v1/symbol_battery_weee.png) and this snapshot's weee2 EN/FR copy. The LaTeX/print table keeps the released PDF's seven symbols."
     }
   ],
   "files": [
@@ -1362,8 +1370,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/symbols_en.rst",
-      "size": 6346,
-      "sha256": "55b5139f1031747c69f351b8ac63040c1b22c1ae2da82028d1d19cdf9a6b0164"
+      "size": 7012,
+      "sha256": "f358fccc0e2fa074e818f45f35ead3bc859036e498b39c1764d334a577d6b794"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/symbols_es.rst",
@@ -1372,8 +1380,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/symbols_fr.rst",
-      "size": 6879,
-      "sha256": "131c27f39c39c9b0dda0fe7682caf74d7467295032d011dd519fccdf06ca0bda"
+      "size": 7626,
+      "sha256": "33fabcf7831bf038e9e9c7b8816ce180ba466c1c929003323a49dab03eb90fde"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/symbols_it.rst",
