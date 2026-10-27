@@ -206,3 +206,15 @@ the same date), until the LaTeX and IDML renderers keep these callouts'
 paragraphs. Each page holds them in a `.. only:: not latex` block, followed by
 the page's previous CAUTION, unchanged, under `.. only:: latex`. The PDF and IDML
 therefore read the page exactly as before.
+
+Battery disposal symbol (2026-10-27): the en and fr symbol pages
+(`page/symbols_en.rst`, `page/symbols_fr.rst`) gain the battery/accumulator
+disposal row in their Web table, which this release omits (PDF pages 7 and 24;
+see the parity notes). The operator ruled on 2026-10-27 that the Web carries it
+from the shared symbol library (「按共用图库补上，授权合入」): the icon is
+`docs/renderers/web/assets/shared/symbols/native-v1/symbol_battery_weee.png`
+(`battery-weee/crossed-bin-no-bar`), the same bytes the de/es/it routes show, and
+the text is this snapshot's `weee2` en/fr copy. Only the `.. only:: not latex`
+table changes; the LaTeX table keeps the printed seven symbols, so the PDF and
+IDML read these pages as before. `source_manifest.json` re-locks the two files
+and records the change.

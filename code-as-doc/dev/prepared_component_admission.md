@@ -159,3 +159,18 @@ The required component counts remain independent of candidate inventories.
 
 
 JA-AD600A/EU/en 的 0924 原稿修正版于2026-10-07按 MA-264 登记：保留9页/slot、规格及九项包装组件，新增5个原生 ReferenceFigure 要求；警告和10步配图由已审源容器承载，未冒充旧 footer-panel/callout/warranty ComponentSpec。兼容、灯状态和原稿质保周期三张表按准确节点/位置/哈希登记，质保正文仍是原生标题段落。旧绑定只适用于历史 stored 证据，不能作为新修正版门禁。
+
+### JE-1000F EU en/fr page identities (2026-10-27)
+
+Fresh admission failed on `main` for JE-1000F EU en and fr, because the
+September 30 enrollment did not describe their reviewed release path: the
+frozen `manual_sources/JE-1000F/EU/en-fr/2.0` snapshot built `review-asis`, as
+the published 2.7 routes were. That path assembles no regulatory page for en,
+and renders fr's ten template chapters as its p-numbered review pages
+(`p18_01_user_maintenance_instructions.rst` … `p31_12_app_setup_placeholder.rst`).
+Under MA-357 the en entry drops the unassembled `99_regulatory_compliance.rst`
+and its regulatory-radio debt row. The fr chapters keep their reviewed component
+requirements unchanged under the review page names, with no template slot, like
+en's preface. Removing a component or a chapter from either target still fails.
+JE-1000F EU de/es/it carry the same template-name mismatch (ten pages each); they
+are not corrected here, and their next fresh release needs the same review.

@@ -97,5 +97,9 @@ MEANING OF SYMBOLS
              :alt: no_open_flame
              :width: 40px
         - Keep the product away from fire.
-        -
-        -
+        - .. image:: renderers/web/assets/shared/symbols/native-v1/symbol_battery_weee.png
+             :alt: weee2
+             :width: 40px
+        - Batteries and accumulators must not be disposed of with household waste.
+          As a consumer, you are legally required to dispose of all batteries and accumulators at designated collection points, regardless of whether they contain hazardous substances.
+          Please return used batteries and accumulators to a local collection point, recycling center, or to the retailer where they were purchased. Proper disposal ensures environmentally responsible recycling and prevents potential harm to human health and the environment.
