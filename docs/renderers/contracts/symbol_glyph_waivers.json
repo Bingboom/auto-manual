@@ -1,0 +1,80 @@
+{
+  "schema_version": "auto-manual-symbol-glyph-waivers/v1",
+  "entries": [
+    {
+      "id": "JE1000H-1465-PT-SYMBOL-LI-ION",
+      "source_sha256": "ffbad263b763f60b34df14beabc5afaaf68b9bb8c9b64332f29ce2bc93281fa4",
+      "model": "JE-1000H",
+      "region": "EU",
+      "language": "pt",
+      "physical_page": 111,
+      "drawing_indices": [
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100
+      ],
+      "shared_symbol_key": "li-ion/recycle-li-ion-native-dark",
+      "asset_sha256": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1",
+      "max_mean_channel_error": 0.0223,
+      "status": "operator-approved",
+      "operator_decision": "2026-10-27 「要允许误差 这个误差 就是人工引入的 你需要处理成共用的」",
+      "reason": "Batch-1465 Li-ion glyph is a design variation of the shared mark (measured 0.0218); reuse the closest shared variant."
+    },
+    {
+      "id": "JE1000H-1465-NL-SYMBOL-LI-ION",
+      "source_sha256": "ffbad263b763f60b34df14beabc5afaaf68b9bb8c9b64332f29ce2bc93281fa4",
+      "model": "JE-1000H",
+      "region": "EU",
+      "language": "nl",
+      "physical_page": 128,
+      "drawing_indices": [
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98
+      ],
+      "shared_symbol_key": "li-ion/recycle-li-ion-native-dark",
+      "asset_sha256": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1",
+      "max_mean_channel_error": 0.0223,
+      "status": "operator-approved",
+      "operator_decision": "2026-10-27 「要允许误差 这个误差 就是人工引入的 你需要处理成共用的」",
+      "reason": "Batch-1465 Li-ion glyph is a design variation of the shared mark (measured 0.0218); reuse the closest shared variant."
+    },
+    {
+      "id": "JE1000H-1465-PL-SYMBOL-LI-ION",
+      "source_sha256": "ffbad263b763f60b34df14beabc5afaaf68b9bb8c9b64332f29ce2bc93281fa4",
+      "model": "JE-1000H",
+      "region": "EU",
+      "language": "pl",
+      "physical_page": 145,
+      "drawing_indices": [
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98
+      ],
+      "shared_symbol_key": "li-ion/recycle-li-ion-native-dark",
+      "asset_sha256": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1",
+      "max_mean_channel_error": 0.0223,
+      "status": "operator-approved",
+      "operator_decision": "2026-10-27 「要允许误差 这个误差 就是人工引入的 你需要处理成共用的」",
+      "reason": "Batch-1465 Li-ion glyph is a design variation of the shared mark (measured 0.0218); reuse the closest shared variant."
+    }
+  ]
+}
