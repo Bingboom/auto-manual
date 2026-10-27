@@ -46,6 +46,13 @@ PR branch is already public, which is why drafting sessions keep the public
 repositories read-only (below). Without the `REVIEW_DOCS_SYNC_TOKEN` secret the
 `sync-review` job only logs a notice; the Hello-Docs sync never depends on it.
 
+Drafts are committed straight to `Hello-Docs-Review/main`, so a draft can land
+between the sync's checkout and its push, and the push is rejected. The sync
+then fetches the branch and rebuilds its commit on the new head, keeping that
+head's drafts, and pushes again: up to three attempts (`MIRROR_PUSH_ATTEMPTS`).
+It never force-pushes. It retries only when the branch actually moved forward,
+and fails at once on any other rejection or if history was rewritten.
+
 ## Build
 
 `.readthedocs.yaml` builds `docs/publish/web` when it exists (Hello-Docs).
