@@ -1,0 +1,1281 @@
+[
+ {
+  "slot": "cert-marks",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)",
+   "docs/templates/word_template/common_assets/, docs/renderers/latex/assets/"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "no existing JE-2000A US certification row; mark set (QC 3.0, UN38.3, FCC, BC, TÜV Rheinland C US, WEEE, TÜV SÜD C) and ICES line are specific to this edition",
+  "physical_page": 2,
+  "bbox": [
+   22,
+   413,
+   276,
+   446
+  ],
+  "final_path": "assets/cert-marks.png",
+  "sha256": "d762cd0475b36f3021352232253d1177e036ec10ae4c0bb22cbad1f2af9d0f51",
+  "background": "retain complete panel (frames, leader lines, captions, X marks, insets); no body text or table as an image"
+ },
+ {
+  "slot": "inbox-unit",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)",
+   "docs/templates/word_template/common_assets/, docs/renderers/latex/assets/"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "no same-model Web exists; JE-2000A in-box line art (Explorer 2000 Pro unit, car cable, AC cable, DC7909→DC8020 adaptor, Quick Start Guide cover) is not in any inventory; JS-100I/JS-CONNECTION-GUIDE DC7909/DC8020 crops are different drawings",
+  "physical_page": 3,
+  "bbox": [
+   62,
+   74,
+   154,
+   171
+  ],
+  "final_path": "assets/inbox-unit.png",
+  "sha256": "4769741b0dfeb849a5d76bfbc16d3c98c487b88539eef49a9cb70c45ae9a72b1",
+  "background": "retain complete panel (frames, leader lines, captions, X marks, insets); no body text or table as an image"
+ },
+ {
+  "slot": "inbox-car-cable",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)",
+   "docs/templates/word_template/common_assets/, docs/renderers/latex/assets/"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "no same-model Web exists; JE-2000A in-box line art (Explorer 2000 Pro unit, car cable, AC cable, DC7909→DC8020 adaptor, Quick Start Guide cover) is not in any inventory; JS-100I/JS-CONNECTION-GUIDE DC7909/DC8020 crops are different drawings",
+  "physical_page": 3,
+  "bbox": [
+   220,
+   74,
+   302,
+   175
+  ],
+  "final_path": "assets/inbox-car-cable.png",
+  "sha256": "ed359ca491102b6cc1cb85aa0aee067f91e9e3b609c8ff59c0eedbcc039007c1",
+  "background": "retain complete panel (frames, leader lines, captions, X marks, insets); no body text or table as an image"
+ },
+ {
+  "slot": "inbox-ac-cable",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)",
+   "docs/templates/word_template/common_assets/, docs/renderers/latex/assets/"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "no same-model Web exists; JE-2000A in-box line art (Explorer 2000 Pro unit, car cable, AC cable, DC7909→DC8020 adaptor, Quick Start Guide cover) is not in any inventory; JS-100I/JS-CONNECTION-GUIDE DC7909/DC8020 crops are different drawings",
+  "physical_page": 3,
+  "bbox": [
+   73,
+   231,
+   142,
+   325
+  ],
+  "final_path": "assets/inbox-ac-cable.png",
+  "sha256": "e22c4d450172e619299609bda343746a5ec6f73679cb9cf3d3f531dd3faa1e8e",
+  "background": "retain complete panel (frames, leader lines, captions, X marks, insets); no body text or table as an image"
+ },
+ {
+  "slot": "inbox-adaptor",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)",
+   "docs/templates/word_template/common_assets/, docs/renderers/latex/assets/"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "no same-model Web exists; JE-2000A in-box line art (Explorer 2000 Pro unit, car cable, AC cable, DC7909→DC8020 adaptor, Quick Start Guide cover) is not in any inventory; JS-100I/JS-CONNECTION-GUIDE DC7909/DC8020 crops are different drawings",
+  "physical_page": 3,
+  "bbox": [
+   243,
+   225,
+   284,
+   325
+  ],
+  "final_path": "assets/inbox-adaptor.png",
+  "sha256": "c92d13e111bc1c59ccda8ea92c0a1c4deac33de426642bcab8af326822ab2dc6",
+  "background": "retain complete panel (frames, leader lines, captions, X marks, insets); no body text or table as an image"
+ },
+ {
+  "slot": "inbox-guide",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)",
+   "docs/templates/word_template/common_assets/, docs/renderers/latex/assets/"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "no same-model Web exists; JE-2000A in-box line art (Explorer 2000 Pro unit, car cable, AC cable, DC7909→DC8020 adaptor, Quick Start Guide cover) is not in any inventory; JS-100I/JS-CONNECTION-GUIDE DC7909/DC8020 crops are different drawings",
+  "physical_page": 3,
+  "bbox": [
+   68,
+   372,
+   144,
+   471
+  ],
+  "final_path": "assets/inbox-guide.png",
+  "sha256": "f7140153dcf1c0fed4eafb366a723688bd29ac788f0cd1b4533a6add40f24ae4",
+  "background": "retain complete panel (frames, leader lines, captions, X marks, insets); no body text or table as an image"
+ },
+ {
+  "slot": "overview-front",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)",
+   "docs/templates/word_template/common_assets/, docs/renderers/latex/assets/"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "Explorer 2000 Pro chassis, port set and leader labels exist in no other package",
+  "physical_page": 4,
+  "bbox": [
+   24,
+   84,
+   352,
+   288
+  ],
+  "final_path": "assets/overview-front.png",
+  "sha256": "ce374217d12e961fd282d27c8fe252f0aabd96ee2f121e39a72ce57b9b8fb0f2",
+  "background": "retain complete panel (frames, leader lines, captions, X marks, insets); no body text or table as an image"
+ },
+ {
+  "slot": "overview-rear",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)",
+   "docs/templates/word_template/common_assets/, docs/renderers/latex/assets/"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "Explorer 2000 Pro chassis, port set and leader labels exist in no other package",
+  "physical_page": 4,
+  "bbox": [
+   96,
+   316,
+   352,
+   466
+  ],
+  "final_path": "assets/overview-rear.png",
+  "sha256": "3a1c20795d05d62b01f48f8f3969d0f02a63dd50f50b1d1f1f6d09d4d32bd404",
+  "background": "retain complete panel (frames, leader lines, captions, X marks, insets); no body text or table as an image"
+ },
+ {
+  "slot": "lcd-map",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)",
+   "docs/templates/word_template/common_assets/, docs/renderers/latex/assets/"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "Explorer Pro LCD (15 positions) differs from every inventoried LCD map",
+  "physical_page": 5,
+  "bbox": [
+   43,
+   67,
+   323,
+   199
+  ],
+  "final_path": "assets/lcd-map.png",
+  "sha256": "b022638fb96eea1843c79a9ba964d516e97e91645021975b05cd454ee4541ec2",
+  "background": "retain complete panel (frames, leader lines, captions, X marks, insets); no body text or table as an image"
+ },
+ {
+  "slot": "operations",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)",
+   "docs/templates/word_template/common_assets/, docs/renderers/latex/assets/"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "model-specific button callout drawing",
+  "physical_page": 7,
+  "bbox": [
+   51,
+   185,
+   331,
+   286
+  ],
+  "final_path": "assets/operations.png",
+  "sha256": "e848a28a8592cbaf0f62196cb37756d901ea1cc4ec9feb8e6c48689c0beee436",
+  "background": "retain complete panel (frames, leader lines, captions, X marks, insets); no body text or table as an image"
+ },
+ {
+  "slot": "ac-charge",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)",
+   "docs/templates/word_template/common_assets/, docs/renderers/latex/assets/"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "connection drawings show Explorer 2000 Pro rear panel and model captions; ja_ca05b/js100f/JE-1500C connector art are different products and drawings",
+  "physical_page": 8,
+  "bbox": [
+   77,
+   290,
+   270,
+   441
+  ],
+  "final_path": "assets/ac-charge.png",
+  "sha256": "51c1bceb0fee9356c288abe829bcc49740ecfd7b885222a8139a20f6567914df",
+  "background": "retain complete panel (frames, leader lines, captions, X marks, insets); no body text or table as an image"
+ },
+ {
+  "slot": "solar-connector",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)",
+   "docs/templates/word_template/common_assets/, docs/renderers/latex/assets/"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "connection drawings show Explorer 2000 Pro rear panel and model captions; ja_ca05b/js100f/JE-1500C connector art are different products and drawings",
+  "physical_page": 9,
+  "bbox": [
+   38,
+   96,
+   302,
+   219
+  ],
+  "final_path": "assets/solar-connector.png",
+  "sha256": "bbf070a4f01640ebdc88a8b0754bf899bb66077fa0187ea90b4f23ff296ee423",
+  "background": "retain complete panel (frames, leader lines, captions, X marks, insets); no body text or table as an image",
+  "omit_native_copy": [
+   {
+    "bbox": [
+     28.5,
+     93.8,
+     114.2,
+     100.3
+    ],
+    "reason": "outlined 'Functions of Main Ports' heading glyphs that sit inside the panel rectangle; the heading is native HTML (solar.ports.h)"
+   }
+  ]
+ },
+ {
+  "slot": "solar-two",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)",
+   "docs/templates/word_template/common_assets/, docs/renderers/latex/assets/"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "connection drawings show Explorer 2000 Pro rear panel and model captions; ja_ca05b/js100f/JE-1500C connector art are different products and drawings",
+  "physical_page": 9,
+  "bbox": [
+   18,
+   400,
+   346,
+   484
+  ],
+  "final_path": "assets/solar-two.png",
+  "sha256": "53c3c2a9b20d9dd51c887cf78961af1a2c66a5927df7af193543ce98df1c9965",
+  "background": "retain complete panel (frames, leader lines, captions, X marks, insets); no body text or table as an image"
+ },
+ {
+  "slot": "solar-three",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)",
+   "docs/templates/word_template/common_assets/, docs/renderers/latex/assets/"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "connection drawings show Explorer 2000 Pro rear panel and model captions; ja_ca05b/js100f/JE-1500C connector art are different products and drawings",
+  "physical_page": 10,
+  "bbox": [
+   19,
+   45,
+   345,
+   118
+  ],
+  "final_path": "assets/solar-three.png",
+  "sha256": "33f9d43a2475f3b26be6855cd6af41530ee5fed5be6f16cfc50481cd17426daa",
+  "background": "retain complete panel (frames, leader lines, captions, X marks, insets); no body text or table as an image"
+ },
+ {
+  "slot": "example-1",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)",
+   "docs/templates/word_template/common_assets/, docs/renderers/latex/assets/"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "connection drawings show Explorer 2000 Pro rear panel and model captions; ja_ca05b/js100f/JE-1500C connector art are different products and drawings",
+  "physical_page": 10,
+  "bbox": [
+   72,
+   214,
+   316,
+   305
+  ],
+  "final_path": "assets/example-1.png",
+  "sha256": "1ba61b68f9af9d805783f57510c9a67d4aa9278a0493a64d2dcf0e9555f8d73c",
+  "background": "retain complete panel (frames, leader lines, captions, X marks, insets); no body text or table as an image"
+ },
+ {
+  "slot": "example-2",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)",
+   "docs/templates/word_template/common_assets/, docs/renderers/latex/assets/"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "connection drawings show Explorer 2000 Pro rear panel and model captions; ja_ca05b/js100f/JE-1500C connector art are different products and drawings",
+  "physical_page": 10,
+  "bbox": [
+   77,
+   316,
+   316,
+   502
+  ],
+  "final_path": "assets/example-2.png",
+  "sha256": "8f2e2a8d36faa3d46c4f4f2ad0367b793a0ce0a85664c5ff849c831e667bcad5",
+  "background": "retain complete panel (frames, leader lines, captions, X marks, insets); no body text or table as an image"
+ },
+ {
+  "slot": "example-3",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)",
+   "docs/templates/word_template/common_assets/, docs/renderers/latex/assets/"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "connection drawings show Explorer 2000 Pro rear panel and model captions; ja_ca05b/js100f/JE-1500C connector art are different products and drawings",
+  "physical_page": 11,
+  "bbox": [
+   76,
+   47,
+   311,
+   165
+  ],
+  "final_path": "assets/example-3.png",
+  "sha256": "7685706436b5c7118919324a7fe75ab6c27fd8132f49481fdd6c28ac03b50cbb",
+  "background": "retain complete panel (frames, leader lines, captions, X marks, insets); no body text or table as an image"
+ },
+ {
+  "slot": "example-4",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)",
+   "docs/templates/word_template/common_assets/, docs/renderers/latex/assets/"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "connection drawings show Explorer 2000 Pro rear panel and model captions; ja_ca05b/js100f/JE-1500C connector art are different products and drawings",
+  "physical_page": 11,
+  "bbox": [
+   45,
+   204,
+   333,
+   293
+  ],
+  "final_path": "assets/example-4.png",
+  "sha256": "bdbdadb9c65775a686c43bf2967e9d4dfbd010d2759f85b9965fb0e4b881c9f0",
+  "background": "retain complete panel (frames, leader lines, captions, X marks, insets); no body text or table as an image"
+ },
+ {
+  "slot": "example-5",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)",
+   "docs/templates/word_template/common_assets/, docs/renderers/latex/assets/"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "connection drawings show Explorer 2000 Pro rear panel and model captions; ja_ca05b/js100f/JE-1500C connector art are different products and drawings",
+  "physical_page": 11,
+  "bbox": [
+   47,
+   333,
+   331,
+   447
+  ],
+  "final_path": "assets/example-5.png",
+  "sha256": "b3326455f2d78f0b02eb37d1d87b73a73b392d6ad3ea042a62d1978b6f4af2eb",
+  "background": "retain complete panel (frames, leader lines, captions, X marks, insets); no body text or table as an image"
+ },
+ {
+  "slot": "prohibited-solar",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)",
+   "docs/templates/word_template/common_assets/, docs/renderers/latex/assets/"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "connection drawings show Explorer 2000 Pro rear panel and model captions; ja_ca05b/js100f/JE-1500C connector art are different products and drawings",
+  "physical_page": 12,
+  "bbox": [
+   31,
+   42,
+   336,
+   286
+  ],
+  "final_path": "assets/prohibited-solar.png",
+  "sha256": "4f4b173f8ec42c613d4dc0a1dc063fd2166bf19b6b8696c2609ff7fc1bbc4304",
+  "background": "retain complete panel (frames, leader lines, captions, X marks, insets); no body text or table as an image"
+ },
+ {
+  "slot": "car-charge",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)",
+   "docs/templates/word_template/common_assets/, docs/renderers/latex/assets/"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "connection drawings show Explorer 2000 Pro rear panel and model captions; ja_ca05b/js100f/JE-1500C connector art are different products and drawings",
+  "physical_page": 12,
+  "bbox": [
+   106,
+   403,
+   256,
+   497
+  ],
+  "final_path": "assets/car-charge.png",
+  "sha256": "d4b969c153b0dab06e0d126fe14cc8520a458843cbeaac15f66990e363aff54b",
+  "background": "retain complete panel (frames, leader lines, captions, X marks, insets); no body text or table as an image"
+ },
+ {
+  "slot": "adaptor-guide",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)",
+   "docs/templates/word_template/common_assets/, docs/renderers/latex/assets/"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "connection drawings show Explorer 2000 Pro rear panel and model captions; ja_ca05b/js100f/JE-1500C connector art are different products and drawings",
+  "physical_page": 13,
+  "bbox": [
+   101,
+   76,
+   298,
+   138
+  ],
+  "final_path": "assets/adaptor-guide.png",
+  "sha256": "2534fbb768f6e7c923d62721332bb1159cad3662b7f0c6fae2e4e58d179cf660",
+  "background": "retain complete panel (frames, leader lines, captions, X marks, insets); no body text or table as an image"
+ },
+ {
+  "slot": "prohibited-car-solar",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)",
+   "docs/templates/word_template/common_assets/, docs/renderers/latex/assets/"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "connection drawings show Explorer 2000 Pro rear panel and model captions; ja_ca05b/js100f/JE-1500C connector art are different products and drawings",
+  "physical_page": 13,
+  "bbox": [
+   28,
+   202,
+   331,
+   277
+  ],
+  "final_path": "assets/prohibited-car-solar.png",
+  "sha256": "f9c1ae79866b62950cd5e4de1374df2d1a408eb6b148f13cd497c4776a59071e",
+  "background": "retain complete panel (frames, leader lines, captions, X marks, insets); no body text or table as an image"
+ },
+ {
+  "slot": "lcd-01-input-power",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)"
+  ],
+  "decision": "native PDF glyph render (transparent PNG, 8x)",
+  "reason": "no shared LCD/troubleshooting glyph with this semantic key matches the Explorer Pro glyph; shared/lcd holds only expansion/EV/parallel/fault icons of other generations",
+  "physical_page": 5,
+  "glyph_bbox": [
+   41.5,
+   251.5,
+   68,
+   271.5
+  ],
+  "drawing_indices": [
+   756,
+   757,
+   758,
+   759,
+   760
+  ],
+  "final_path": "assets/icons/lcd-01-input-power.png",
+  "sha256": "6e63b5b87cfd6a26dcfe562b5ed049568b7d6582b5214d94d18430e81ec55ed5",
+  "background": "transparent: PDF alpha, no page or cell backdrop; shared native_symbol_svg cannot map this PDF (SVG export has 146,007 paths vs 145,934 drawing paths), so PNG instead of SVG"
+ },
+ {
+  "slot": "lcd-02-remaining-charge-time",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)"
+  ],
+  "decision": "native PDF glyph render (transparent PNG, 8x)",
+  "reason": "no shared LCD/troubleshooting glyph with this semantic key matches the Explorer Pro glyph; shared/lcd holds only expansion/EV/parallel/fault icons of other generations",
+  "physical_page": 5,
+  "glyph_bbox": [
+   41.5,
+   280.8,
+   68,
+   300.7
+  ],
+  "drawing_indices": [
+   751,
+   752,
+   753,
+   754,
+   755
+  ],
+  "final_path": "assets/icons/lcd-02-remaining-charge-time.png",
+  "sha256": "63eaa739de04587ef6d1998405952494a61199ed781211a4cbcb6738903a572e",
+  "background": "transparent: PDF alpha, no page or cell backdrop; shared native_symbol_svg cannot map this PDF (SVG export has 146,007 paths vs 145,934 drawing paths), so PNG instead of SVG"
+ },
+ {
+  "slot": "lcd-03-solar-charging",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)"
+  ],
+  "decision": "native PDF glyph render (transparent PNG, 8x)",
+  "reason": "no shared LCD/troubleshooting glyph with this semantic key matches the Explorer Pro glyph; shared/lcd holds only expansion/EV/parallel/fault icons of other generations",
+  "physical_page": 5,
+  "glyph_bbox": [
+   43,
+   309.5,
+   62.7,
+   329.1
+  ],
+  "drawing_indices": [
+   723,
+   724
+  ],
+  "final_path": "assets/icons/lcd-03-solar-charging.png",
+  "sha256": "3e873f8f7eff0a05ba801a0945c85e2d4441aac7cdaf3b807c711085f482fa25",
+  "background": "transparent: PDF alpha, no page or cell backdrop; shared native_symbol_svg cannot map this PDF (SVG export has 146,007 paths vs 145,934 drawing paths), so PNG instead of SVG"
+ },
+ {
+  "slot": "lcd-04-ac-wall-charging",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)"
+  ],
+  "decision": "native PDF glyph render (transparent PNG, 8x)",
+  "reason": "no shared LCD/troubleshooting glyph with this semantic key matches the Explorer Pro glyph; shared/lcd holds only expansion/EV/parallel/fault icons of other generations",
+  "physical_page": 5,
+  "glyph_bbox": [
+   43,
+   338.4,
+   62.7,
+   358
+  ],
+  "drawing_indices": [
+   725,
+   726
+  ],
+  "final_path": "assets/icons/lcd-04-ac-wall-charging.png",
+  "sha256": "bb3f88ea3540f0b34569bdfc71ba3e0504244af10cb43c3f1f51cfe3f5df41de",
+  "background": "transparent: PDF alpha, no page or cell backdrop; shared native_symbol_svg cannot map this PDF (SVG export has 146,007 paths vs 145,934 drawing paths), so PNG instead of SVG"
+ },
+ {
+  "slot": "lcd-05-car-charging",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)"
+  ],
+  "decision": "native PDF glyph render (transparent PNG, 8x)",
+  "reason": "no shared LCD/troubleshooting glyph with this semantic key matches the Explorer Pro glyph; shared/lcd holds only expansion/EV/parallel/fault icons of other generations",
+  "physical_page": 5,
+  "glyph_bbox": [
+   43,
+   367.7,
+   62.7,
+   387.3
+  ],
+  "drawing_indices": [
+   761,
+   762,
+   763,
+   764,
+   765,
+   766,
+   767,
+   768
+  ],
+  "final_path": "assets/icons/lcd-05-car-charging.png",
+  "sha256": "666090b9790c0ab1a4bab53f1bf9a8262be70800bffceeb6555fed10e6d916fb",
+  "background": "transparent: PDF alpha, no page or cell backdrop; shared native_symbol_svg cannot map this PDF (SVG export has 146,007 paths vs 145,934 drawing paths), so PNG instead of SVG"
+ },
+ {
+  "slot": "lcd-06-low-battery",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)"
+  ],
+  "decision": "native PDF glyph render (transparent PNG, 8x)",
+  "reason": "no shared LCD/troubleshooting glyph with this semantic key matches the Explorer Pro glyph; shared/lcd holds only expansion/EV/parallel/fault icons of other generations",
+  "physical_page": 5,
+  "glyph_bbox": [
+   42.8,
+   400.5,
+   62.9,
+   412.4
+  ],
+  "drawing_indices": [
+   769
+  ],
+  "final_path": "assets/icons/lcd-06-low-battery.png",
+  "sha256": "fa419f306380a419bc08e03d2b67fe1ed35501e1fa9803f5913fd78774ab4654",
+  "background": "transparent: PDF alpha, no page or cell backdrop; shared native_symbol_svg cannot map this PDF (SVG export has 146,007 paths vs 145,934 drawing paths), so PNG instead of SVG"
+ },
+ {
+  "slot": "lcd-07-battery-percentage",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)"
+  ],
+  "decision": "native PDF glyph render (transparent PNG, 8x)",
+  "reason": "no shared LCD/troubleshooting glyph with this semantic key matches the Explorer Pro glyph; shared/lcd holds only expansion/EV/parallel/fault icons of other generations",
+  "physical_page": 5,
+  "glyph_bbox": [
+   40.1,
+   429.4,
+   65.6,
+   442.2
+  ],
+  "drawing_indices": [
+   703,
+   704,
+   705,
+   706,
+   707,
+   708,
+   709,
+   710,
+   711,
+   712,
+   713,
+   714,
+   715,
+   716,
+   717,
+   718,
+   719
+  ],
+  "final_path": "assets/icons/lcd-07-battery-percentage.png",
+  "sha256": "85ff1b8313456ccf7759bd7e9cd72a160bb2427a075f3fcb213b6e94210b461c",
+  "background": "transparent: PDF alpha, no page or cell backdrop; shared native_symbol_svg cannot map this PDF (SVG export has 146,007 paths vs 145,934 drawing paths), so PNG instead of SVG"
+ },
+ {
+  "slot": "lcd-08-output-power",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)"
+  ],
+  "decision": "native PDF glyph render (transparent PNG, 8x)",
+  "reason": "no shared LCD/troubleshooting glyph with this semantic key matches the Explorer Pro glyph; shared/lcd holds only expansion/EV/parallel/fault icons of other generations",
+  "physical_page": 5,
+  "glyph_bbox": [
+   194,
+   251.3,
+   220.6,
+   271.3
+  ],
+  "drawing_indices": [
+   739,
+   740,
+   741,
+   742,
+   743,
+   744,
+   745,
+   746,
+   747,
+   748,
+   749,
+   750
+  ],
+  "final_path": "assets/icons/lcd-08-output-power.png",
+  "sha256": "cd446a3fed6d211ffb7e8f0d70050ac1db632b3f6955a3e2a911844a66225628",
+  "background": "transparent: PDF alpha, no page or cell backdrop; shared native_symbol_svg cannot map this PDF (SVG export has 146,007 paths vs 145,934 drawing paths), so PNG instead of SVG"
+ },
+ {
+  "slot": "lcd-09-remaining-discharge-time",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)"
+  ],
+  "decision": "native PDF glyph render (transparent PNG, 8x)",
+  "reason": "no shared LCD/troubleshooting glyph with this semantic key matches the Explorer Pro glyph; shared/lcd holds only expansion/EV/parallel/fault icons of other generations",
+  "physical_page": 5,
+  "glyph_bbox": [
+   194,
+   280.3,
+   220.6,
+   300.3
+  ],
+  "drawing_indices": [
+   727,
+   728,
+   729,
+   730,
+   731,
+   732,
+   733,
+   734,
+   735,
+   736,
+   737,
+   738
+  ],
+  "final_path": "assets/icons/lcd-09-remaining-discharge-time.png",
+  "sha256": "a1929071e31bb98b9e1bd9a2ce0c9a4429b4979f759e86b61fa5f11cf38f6b94",
+  "background": "transparent: PDF alpha, no page or cell backdrop; shared native_symbol_svg cannot map this PDF (SVG export has 146,007 paths vs 145,934 drawing paths), so PNG instead of SVG"
+ },
+ {
+  "slot": "lcd-10-fault-code",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)"
+  ],
+  "decision": "native PDF glyph render (transparent PNG, 8x)",
+  "reason": "shared/lcd/lcd_fault-code.png differs 8.7%; shared-lcd 25_Fault_code has an opaque backdrop (not admissible)",
+  "physical_page": 5,
+  "glyph_bbox": [
+   198,
+   310.8,
+   216.4,
+   327.9
+  ],
+  "drawing_indices": [
+   770,
+   771,
+   772
+  ],
+  "final_path": "assets/icons/lcd-10-fault-code.png",
+  "sha256": "bd476cbbca9cf66f30a8dce0684384f8e6cdf65a3d8851c60b12a4c1275d1802",
+  "background": "transparent: PDF alpha, no page or cell backdrop; shared native_symbol_svg cannot map this PDF (SVG export has 146,007 paths vs 145,934 drawing paths), so PNG instead of SVG"
+ },
+ {
+  "slot": "lcd-11-high-temperature",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)"
+  ],
+  "decision": "native PDF glyph render (transparent PNG, 8x)",
+  "reason": "no shared LCD/troubleshooting glyph with this semantic key matches the Explorer Pro glyph; shared/lcd holds only expansion/EV/parallel/fault icons of other generations",
+  "physical_page": 5,
+  "glyph_bbox": [
+   198,
+   339.9,
+   216.3,
+   356.9
+  ],
+  "drawing_indices": [
+   775,
+   776
+  ],
+  "final_path": "assets/icons/lcd-11-high-temperature.png",
+  "sha256": "acb0b9180999239d2b67a601bbb429105f15fbd3f1d9f4b0c3df8f1957487abb",
+  "background": "transparent: PDF alpha, no page or cell backdrop; shared native_symbol_svg cannot map this PDF (SVG export has 146,007 paths vs 145,934 drawing paths), so PNG instead of SVG"
+ },
+ {
+  "slot": "lcd-12-low-temperature",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)"
+  ],
+  "decision": "native PDF glyph render (transparent PNG, 8x)",
+  "reason": "no shared LCD/troubleshooting glyph with this semantic key matches the Explorer Pro glyph; shared/lcd holds only expansion/EV/parallel/fault icons of other generations",
+  "physical_page": 5,
+  "glyph_bbox": [
+   198,
+   368.7,
+   216.3,
+   385.7
+  ],
+  "drawing_indices": [
+   777,
+   778
+  ],
+  "final_path": "assets/icons/lcd-12-low-temperature.png",
+  "sha256": "fefc61bc822dd8aee2338c99d595c0a07028ea217488edde1392a6f2cdb0be6a",
+  "background": "transparent: PDF alpha, no page or cell backdrop; shared native_symbol_svg cannot map this PDF (SVG export has 146,007 paths vs 145,934 drawing paths), so PNG instead of SVG"
+ },
+ {
+  "slot": "lcd-13-low-power-mode",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)"
+  ],
+  "decision": "native PDF glyph render (transparent PNG, 8x)",
+  "reason": "no shared LCD/troubleshooting glyph with this semantic key matches the Explorer Pro glyph; shared/lcd holds only expansion/EV/parallel/fault icons of other generations",
+  "physical_page": 5,
+  "glyph_bbox": [
+   197.3,
+   396.6,
+   217,
+   416.3
+  ],
+  "drawing_indices": [
+   773,
+   774
+  ],
+  "final_path": "assets/icons/lcd-13-low-power-mode.png",
+  "sha256": "9504f583ac0b79a7c62d42d639a95bcd3e63d3a1e7c8dcc4be9273290dbcc317",
+  "background": "transparent: PDF alpha, no page or cell backdrop; shared native_symbol_svg cannot map this PDF (SVG export has 146,007 paths vs 145,934 drawing paths), so PNG instead of SVG"
+ },
+ {
+  "slot": "lcd-14-ac-power",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)"
+  ],
+  "decision": "native PDF glyph render (transparent PNG, 8x)",
+  "reason": "no shared LCD/troubleshooting glyph with this semantic key matches the Explorer Pro glyph; shared/lcd holds only expansion/EV/parallel/fault icons of other generations",
+  "physical_page": 5,
+  "glyph_bbox": [
+   195.7,
+   426,
+   218.6,
+   445.5
+  ],
+  "drawing_indices": [
+   779,
+   780
+  ],
+  "final_path": "assets/icons/lcd-14-ac-power.png",
+  "sha256": "5e5a6994d6dcec4dbc00dd5e3be5bb023e2bb0c8e2f3d48e857077c7d8cc53f8",
+  "background": "transparent: PDF alpha, no page or cell backdrop; shared native_symbol_svg cannot map this PDF (SVG export has 146,007 paths vs 145,934 drawing paths), so PNG instead of SVG"
+ },
+ {
+  "slot": "lcd-15-battery-power-ring",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)"
+  ],
+  "decision": "native PDF glyph render (transparent PNG, 8x)",
+  "reason": "shared-lcd 17_Battery_Power_Indicator (JE-1000D JP V2 / JE-1500D) differs 3.35% mean (> fixed 2%)",
+  "physical_page": 5,
+  "glyph_bbox": [
+   43,
+   455,
+   62.7,
+   474.6
+  ],
+  "drawing_indices": [
+   669
+  ],
+  "final_path": "assets/icons/lcd-15-battery-power-ring.png",
+  "sha256": "ecadac67b3d2e1931e1cc2c2e05b9c66b479fa283dbf93e2ff6e43bff41782ca",
+  "background": "transparent: PDF alpha, no page or cell backdrop; shared native_symbol_svg cannot map this PDF (SVG export has 146,007 paths vs 145,934 drawing paths), so PNG instead of SVG"
+ },
+ {
+  "slot": "lcd-inline-battery-ring",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)"
+  ],
+  "decision": "native PDF glyph render (transparent PNG, 8x)",
+  "reason": "no shared LCD/troubleshooting glyph with this semantic key matches the Explorer Pro glyph; shared/lcd holds only expansion/EV/parallel/fault icons of other generations",
+  "physical_page": 6,
+  "glyph_bbox": [
+   108.7,
+   25.0,
+   121.0,
+   37.5
+  ],
+  "drawing_indices": [
+   2238
+  ],
+  "final_path": "assets/icons/lcd-inline-battery-ring.png",
+  "sha256": "1ec288d1d1fdf6cbba4bc57feb891b17e12b72e4aa59341893712ffd6d754d4e",
+  "background": "transparent: PDF alpha, no page or cell backdrop; shared native_symbol_svg cannot map this PDF (SVG export has 146,007 paths vs 145,934 drawing paths), so PNG instead of SVG"
+ },
+ {
+  "slot": "lcd-inline-low-power-mode",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)"
+  ],
+  "decision": "native PDF glyph render (transparent PNG, 8x)",
+  "reason": "no shared LCD/troubleshooting glyph with this semantic key matches the Explorer Pro glyph; shared/lcd holds only expansion/EV/parallel/fault icons of other generations",
+  "physical_page": 6,
+  "glyph_bbox": [
+   86.2,
+   110.6,
+   98.8,
+   123.4
+  ],
+  "drawing_indices": [
+   2240,
+   2241
+  ],
+  "final_path": "assets/icons/lcd-inline-low-power-mode.png",
+  "sha256": "960c1e71c9eb05ba578b352b6431aa6e19f02c6ff963b13c4c876326101b46bc",
+  "background": "transparent: PDF alpha, no page or cell backdrop; shared native_symbol_svg cannot map this PDF (SVG export has 146,007 paths vs 145,934 drawing paths), so PNG instead of SVG"
+ },
+ {
+  "slot": "lcd-inline-fault-code",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)"
+  ],
+  "decision": "native PDF glyph render (transparent PNG, 8x)",
+  "reason": "no shared LCD/troubleshooting glyph with this semantic key matches the Explorer Pro glyph; shared/lcd holds only expansion/EV/parallel/fault icons of other generations",
+  "physical_page": 6,
+  "glyph_bbox": [
+   68.1,
+   362.2,
+   81.6,
+   374.6
+  ],
+  "drawing_indices": [
+   2448,
+   2449,
+   2450
+  ],
+  "final_path": "assets/icons/lcd-inline-fault-code.png",
+  "sha256": "28ab3bcd4221e9e7fb9295993ff2776a6d786232e46e415e92ce6af9c85db0c3",
+  "background": "transparent: PDF alpha, no page or cell backdrop; shared native_symbol_svg cannot map this PDF (SVG export has 146,007 paths vs 145,934 drawing paths), so PNG instead of SVG"
+ },
+ {
+  "slot": "faq-low-power-mode",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)"
+  ],
+  "decision": "native PDF glyph render (transparent PNG, 8x)",
+  "reason": "no shared LCD/troubleshooting glyph with this semantic key matches the Explorer Pro glyph; shared/lcd holds only expansion/EV/parallel/fault icons of other generations",
+  "physical_page": 16,
+  "glyph_bbox": [
+   153.0,
+   383.0,
+   164.5,
+   395.0
+  ],
+  "drawing_indices": [
+   31040,
+   31041
+  ],
+  "final_path": "assets/icons/faq-low-power-mode.png",
+  "sha256": "7d3255822a398ee82fe27143c1d2df8fc0366260129cc1c8fe72369f66292daf",
+  "background": "transparent: PDF alpha, no page or cell backdrop; shared native_symbol_svg cannot map this PDF (SVG export has 146,007 paths vs 145,934 drawing paths), so PNG instead of SVG"
+ },
+ {
+  "slot": "ts-f0",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)"
+  ],
+  "decision": "native PDF glyph render (transparent PNG, 8x)",
+  "reason": "no shared LCD/troubleshooting glyph with this semantic key matches the Explorer Pro glyph; shared/lcd holds only expansion/EV/parallel/fault icons of other generations",
+  "physical_page": 17,
+  "glyph_bbox": [
+   98.5,
+   85.2,
+   112.5,
+   98.1
+  ],
+  "drawing_indices": [
+   24206,
+   24207,
+   24208
+  ],
+  "final_path": "assets/icons/ts-f0.png",
+  "sha256": "4bab61401364be160444f267dd3ce386d4b0959e33c1f6175368b472b6f4f3d3",
+  "background": "transparent: PDF alpha, no page or cell backdrop; shared native_symbol_svg cannot map this PDF (SVG export has 146,007 paths vs 145,934 drawing paths), so PNG instead of SVG"
+ },
+ {
+  "slot": "ts-f1",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)"
+  ],
+  "decision": "native PDF glyph render (transparent PNG, 8x)",
+  "reason": "no shared LCD/troubleshooting glyph with this semantic key matches the Explorer Pro glyph; shared/lcd holds only expansion/EV/parallel/fault icons of other generations",
+  "physical_page": 17,
+  "glyph_bbox": [
+   99.3,
+   103.7,
+   113.2,
+   116.7
+  ],
+  "drawing_indices": [
+   24209,
+   24210,
+   24211
+  ],
+  "final_path": "assets/icons/ts-f1.png",
+  "sha256": "75876ade531f3b5f141223596ecc70c9a2d0e8a0042475144c74ad47d335ea7f",
+  "background": "transparent: PDF alpha, no page or cell backdrop; shared native_symbol_svg cannot map this PDF (SVG export has 146,007 paths vs 145,934 drawing paths), so PNG instead of SVG"
+ },
+ {
+  "slot": "ts-f2",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)"
+  ],
+  "decision": "native PDF glyph render (transparent PNG, 8x)",
+  "reason": "no shared LCD/troubleshooting glyph with this semantic key matches the Explorer Pro glyph; shared/lcd holds only expansion/EV/parallel/fault icons of other generations",
+  "physical_page": 17,
+  "glyph_bbox": [
+   99.3,
+   124.0,
+   113.2,
+   137.0
+  ],
+  "drawing_indices": [
+   24215,
+   24216,
+   24217
+  ],
+  "final_path": "assets/icons/ts-f2.png",
+  "sha256": "f0c1ebd350bbd3ebe6f270bf5b994c4e4a6f2f9853dd027ccd8fa46e3af975be",
+  "background": "transparent: PDF alpha, no page or cell backdrop; shared native_symbol_svg cannot map this PDF (SVG export has 146,007 paths vs 145,934 drawing paths), so PNG instead of SVG"
+ },
+ {
+  "slot": "ts-f3",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)"
+  ],
+  "decision": "native PDF glyph render (transparent PNG, 8x)",
+  "reason": "no shared LCD/troubleshooting glyph with this semantic key matches the Explorer Pro glyph; shared/lcd holds only expansion/EV/parallel/fault icons of other generations",
+  "physical_page": 17,
+  "glyph_bbox": [
+   99.0,
+   150.0,
+   112.9,
+   162.9
+  ],
+  "drawing_indices": [
+   24212,
+   24213,
+   24214
+  ],
+  "final_path": "assets/icons/ts-f3.png",
+  "sha256": "b7fb4b06e29cdf20204459073ec4e15807a0664774dfbadbc91deee2297a708e",
+  "background": "transparent: PDF alpha, no page or cell backdrop; shared native_symbol_svg cannot map this PDF (SVG export has 146,007 paths vs 145,934 drawing paths), so PNG instead of SVG"
+ },
+ {
+  "slot": "ts-f4",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)"
+  ],
+  "decision": "native PDF glyph render (transparent PNG, 8x)",
+  "reason": "no shared LCD/troubleshooting glyph with this semantic key matches the Explorer Pro glyph; shared/lcd holds only expansion/EV/parallel/fault icons of other generations",
+  "physical_page": 17,
+  "glyph_bbox": [
+   98.9,
+   167.9,
+   112.9,
+   180.9
+  ],
+  "drawing_indices": [
+   24227,
+   24228,
+   24229
+  ],
+  "final_path": "assets/icons/ts-f4.png",
+  "sha256": "c0eac00dbb92fb5aaf38ad497ad8e3f5a7914b41cc02f2363dbe556cc09b7d3d",
+  "background": "transparent: PDF alpha, no page or cell backdrop; shared native_symbol_svg cannot map this PDF (SVG export has 146,007 paths vs 145,934 drawing paths), so PNG instead of SVG"
+ },
+ {
+  "slot": "ts-f5",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)"
+  ],
+  "decision": "native PDF glyph render (transparent PNG, 8x)",
+  "reason": "no shared LCD/troubleshooting glyph with this semantic key matches the Explorer Pro glyph; shared/lcd holds only expansion/EV/parallel/fault icons of other generations",
+  "physical_page": 17,
+  "glyph_bbox": [
+   98.9,
+   185.6,
+   112.9,
+   198.6
+  ],
+  "drawing_indices": [
+   24230,
+   24231,
+   24232
+  ],
+  "final_path": "assets/icons/ts-f5.png",
+  "sha256": "1cebf87e406cd328c14c5033d22e3f4000a5fab6d287c522048ca8a70081e545",
+  "background": "transparent: PDF alpha, no page or cell backdrop; shared native_symbol_svg cannot map this PDF (SVG export has 146,007 paths vs 145,934 drawing paths), so PNG instead of SVG"
+ },
+ {
+  "slot": "ts-f6",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)"
+  ],
+  "decision": "native PDF glyph render (transparent PNG, 8x)",
+  "reason": "no shared LCD/troubleshooting glyph with this semantic key matches the Explorer Pro glyph; shared/lcd holds only expansion/EV/parallel/fault icons of other generations",
+  "physical_page": 17,
+  "glyph_bbox": [
+   98.9,
+   204.3,
+   112.9,
+   217.2
+  ],
+  "drawing_indices": [
+   24233,
+   24234,
+   24235
+  ],
+  "final_path": "assets/icons/ts-f6.png",
+  "sha256": "8d79b233f0070d734da7537a7dda36482553ad90035779725d6381f443d64462",
+  "background": "transparent: PDF alpha, no page or cell backdrop; shared native_symbol_svg cannot map this PDF (SVG export has 146,007 paths vs 145,934 drawing paths), so PNG instead of SVG"
+ },
+ {
+  "slot": "ts-f7",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)"
+  ],
+  "decision": "native PDF glyph render (transparent PNG, 8x)",
+  "reason": "no shared LCD/troubleshooting glyph with this semantic key matches the Explorer Pro glyph; shared/lcd holds only expansion/EV/parallel/fault icons of other generations",
+  "physical_page": 17,
+  "glyph_bbox": [
+   98.9,
+   222.4,
+   112.9,
+   235.4
+  ],
+  "drawing_indices": [
+   24218,
+   24219,
+   24220
+  ],
+  "final_path": "assets/icons/ts-f7.png",
+  "sha256": "5f1a9a1a3f717481cd8be2338f4246739d82e37584125564b2f0724e940c2cdb",
+  "background": "transparent: PDF alpha, no page or cell backdrop; shared native_symbol_svg cannot map this PDF (SVG export has 146,007 paths vs 145,934 drawing paths), so PNG instead of SVG"
+ },
+ {
+  "slot": "ts-f8",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)"
+  ],
+  "decision": "native PDF glyph render (transparent PNG, 8x)",
+  "reason": "no shared LCD/troubleshooting glyph with this semantic key matches the Explorer Pro glyph; shared/lcd holds only expansion/EV/parallel/fault icons of other generations",
+  "physical_page": 17,
+  "glyph_bbox": [
+   98.9,
+   254.7,
+   112.9,
+   267.7
+  ],
+  "drawing_indices": [
+   24224,
+   24225,
+   24226
+  ],
+  "final_path": "assets/icons/ts-f8.png",
+  "sha256": "91fe368d9ef2239f5d82b3f87fc3e4a89b3e26b1c6d78e6e03dbf04d8aa60694",
+  "background": "transparent: PDF alpha, no page or cell backdrop; shared native_symbol_svg cannot map this PDF (SVG export has 146,007 paths vs 145,934 drawing paths), so PNG instead of SVG"
+ },
+ {
+  "slot": "ts-f9",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)"
+  ],
+  "decision": "native PDF glyph render (transparent PNG, 8x)",
+  "reason": "no shared LCD/troubleshooting glyph with this semantic key matches the Explorer Pro glyph; shared/lcd holds only expansion/EV/parallel/fault icons of other generations",
+  "physical_page": 17,
+  "glyph_bbox": [
+   98.9,
+   307.0,
+   112.9,
+   319.9
+  ],
+  "drawing_indices": [
+   24221,
+   24222,
+   24223
+  ],
+  "final_path": "assets/icons/ts-f9.png",
+  "sha256": "a101166bad008d0022ca7baa571f6a83e4d7d47027f4195ce7da12a1f94ad954",
+  "background": "transparent: PDF alpha, no page or cell backdrop; shared native_symbol_svg cannot map this PDF (SVG export has 146,007 paths vs 145,934 drawing paths), so PNG instead of SVG"
+ },
+ {
+  "slot": "ts-high-temperature",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)"
+  ],
+  "decision": "native PDF glyph render (transparent PNG, 8x)",
+  "reason": "no shared LCD/troubleshooting glyph with this semantic key matches the Explorer Pro glyph; shared/lcd holds only expansion/EV/parallel/fault icons of other generations",
+  "physical_page": 17,
+  "glyph_bbox": [
+   53.5,
+   346.5,
+   72.1,
+   363.8
+  ],
+  "drawing_indices": [
+   24202,
+   24203
+  ],
+  "final_path": "assets/icons/ts-high-temperature.png",
+  "sha256": "aaa643b1fb4a7b6f11421ccef56aa10a4f4201bccba8a32fb9804109659f2372",
+  "background": "transparent: PDF alpha, no page or cell backdrop; shared native_symbol_svg cannot map this PDF (SVG export has 146,007 paths vs 145,934 drawing paths), so PNG instead of SVG"
+ },
+ {
+  "slot": "ts-low-temperature",
+  "searched": [
+   "manual_sources/**/assets (JE-1000D JP V2, JE-1500D JP V2, JE-2000E/JE-2000F, JS-100I, JS-CONNECTION-GUIDE, JE-1500C TW solar connectors)",
+   "docs/renderers/web/assets/ (shared/lcd, shared/buttons, shared/symbols, ja_ca05b_eu_en, js100f_eu_en, js100i_eu_shared)"
+  ],
+  "decision": "native PDF glyph render (transparent PNG, 8x)",
+  "reason": "no shared LCD/troubleshooting glyph with this semantic key matches the Explorer Pro glyph; shared/lcd holds only expansion/EV/parallel/fault icons of other generations",
+  "physical_page": 17,
+  "glyph_bbox": [
+   53.5,
+   379.7,
+   72.1,
+   397.0
+  ],
+  "drawing_indices": [
+   24204,
+   24205
+  ],
+  "final_path": "assets/icons/ts-low-temperature.png",
+  "sha256": "df7d0d8ed7157e625b8b4f9208dc39435cb990b07099eb4e66cbd6f6d18b48eb",
+  "background": "transparent: PDF alpha, no page or cell backdrop; shared native_symbol_svg cannot map this PDF (SVG export has 146,007 paths vs 145,934 drawing paths), so PNG instead of SVG"
+ },
+ {
+  "slot": "p05 Low Battery Indicator inline glyph",
+  "decision": "reuse in-package assets/icons/lcd-06-low-battery.png",
+  "reason": "same glyph as legend ⑥ (0.93% mean difference, < 2%)",
+  "physical_page": 6,
+  "glyph_bbox": [
+   102.4,
+   68.0,
+   121.0,
+   78.5
+  ]
+ },
+ {
+  "slot": "p15 FAQ second 12H inline glyph",
+  "decision": "reuse in-package assets/icons/faq-low-power-mode.png",
+  "reason": "same glyph as the first FAQ 12H mark (0.70% mean difference)",
+  "physical_page": 16,
+  "glyph_bbox": [
+   191.0,
+   393.0,
+   203.0,
+   405.0
+  ]
+ },
+ {
+  "slot": "p05 inline ring / 12H / F8, troubleshooting F8 and temperature glyphs",
+  "decision": "separate native renders (not merged with the p04 legend glyphs)",
+  "reason": "drawn differently from the legend glyphs: 9.9% / 15.2% / 11.9% / 11.9% / 9.3% mean difference"
+ },
+ {
+  "slot": "shared-symbols/*",
+  "decision": "not used",
+  "reason": "the manual prints no safety-symbol table; certification marks are a complete panel, prohibited X marks stay inside their panels"
+ },
+ {
+  "slot": "shared-buttons/*",
+  "decision": "not used",
+  "reason": "no key-combination table is printed; button operations are prose and the operations panel"
+ }
+]
