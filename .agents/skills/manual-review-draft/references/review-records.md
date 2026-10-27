@@ -19,13 +19,16 @@
    "adoption": {"decision": "正文沿用上一代句子", "by": "操作者", "date": "2026-10-24"}},
   {"id": "R05", "title": "车充输入", "kind": "rd", "status": "confirmed",
    "resolution": {"by": "研发", "date": "2026-10-24", "evidence": "研发答复第 2 轮"}},
+  {"id": "R06", "title": "短路电流", "kind": "rd", "status": "open", "topic": "short-circuit",
+   "question": "目标规格未给最大短路电流及持续时间",
+   "adoption": {"decision": "按一代主机 JE-1000E-SIL 写 1600A/1.25ms，绿色 一代数据", "by": "操作者", "date": "2026-10-27"}},
   {"id": "L01", "title": "警示标签措辞", "kind": "language", "status": "open"}
 ]}
 ```
 
 - `kind`：`rd` 研发、`language` 语言审校、`compliance` 合规、`design` 设计、`content` 内容——由谁答复。
 - `status`：`open` / `confirmed` / `dropped`；非 `open` 必须有 `resolution {by, date, evidence}`。
-- `adoption` 记录正文采用了什么、谁决定；它不改 `status`。上例 R04 正文已采用上一代句子，但研发尚未确认适用性，仍是 `open`，继续计入待研发确认。
+- `adoption` 记录正文采用了什么、谁决定；它不改 `status`。上例 R04 正文已采用上一代句子，但研发尚未确认适用性，仍是 `open`，继续计入待研发确认。R06 是缺数据时的一代补写，同样只记 `adoption`。
 - `topic`：同型号多条稿线问同一问题时用同一小写短名（`solar-input`），站点据此提示跨稿线不一致。
 - 允许附加字段（单元位置、参考原文、来源类型等）。
 - 派生的待研发确认行：`R04 太阳能输入范围：上一代 12–60 V 范围是否适用？`。
