@@ -61,6 +61,15 @@ paths (`<MODEL>/<REGION>/…`, milestones under `<MODEL>/<REGION>/milestones/<ve
 No Sphinx, no live data. The pages have `noindex,nofollow`, but that is not access
 control: privacy comes from the private repository and the private RTD project.
 
+Every copied draft page — the working draft and each milestone — gets a
+「← 审核稿总览」 link back to the overview, through a path relative to the output
+root (`../../index.html` from a working draft, `../../../../index.html` from a
+milestone). It joins the draft's toolbar button group (`div.controls` or
+`div.toolbar-actions`) as its first child and takes the draft's button style;
+a page without one gets a small self-styled bar right after `<body>`, hidden
+in print. A page that already has a `class="to-overview"` element is left as
+it is. Only the output is changed; the source drafts keep their bytes.
+
 ## A draft line
 
 Each model/region is one **working draft**, edited in place, plus the milestone

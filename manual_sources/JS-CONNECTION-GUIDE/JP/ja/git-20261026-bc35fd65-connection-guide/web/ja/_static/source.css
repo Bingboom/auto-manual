@@ -1,0 +1,21 @@
+/* JS-CONNECTION-GUIDE JP connection guide: page-local geometry only.
+   Colours, borders and panels come from the shared Web theme (prepared-document shared-style gate). */
+
+/* DC入力 port icons keep their printed size relative to the model list (0.1rem per printed pt). */
+#furo-main-content table img[src$="/port-usb-c.png"],
+#furo-main-content table img[src$="/port-dc7909.png"],
+#furo-main-content table img[src$="/port-dc8020.png"] { width: 4.3rem !important; max-width: 100%; height: auto; }
+
+/* The DC入力 column is centred as printed. */
+#furo-main-content table td:last-child,
+#furo-main-content table th:last-child { text-align: center; }
+#furo-main-content table td:last-child p { margin: .25rem 0; }
+
+/* The grey note panel holds the printed lead line and its ※ note. */
+#furo-main-content div.hb-text-panel { margin: .4rem 0 1.2rem; }
+#furo-main-content div.hb-text-panel p { margin: 0 0 .35rem; }
+#furo-main-content div.hb-text-panel p:last-child { margin-bottom: 0; }
+
+/* The model list takes the width; the DC入力 column is as narrow as its icon. */
+#furo-main-content table td:last-child,
+#furo-main-content table th:last-child { width: 22%; }

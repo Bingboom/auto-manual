@@ -186,7 +186,7 @@ tools/revision_ledger.py	reconcile_rows	22
 tools/rtd/deliverables.py	deliverables_view	29
 tools/rtd/deployment_receipt.py	verify_deployment	35
 tools/rtd/feedback.py	normalize_channels	27
-tools/rtd/portal.py	page_context	33
+tools/rtd/portal.py	page_context	30
 tools/rtd/source_registry.py	registry_problems	32
 tools/rtd/system_tooling.py	tooling_view	22
 tools/rtd/system_workspace.py	_focus_findings	39

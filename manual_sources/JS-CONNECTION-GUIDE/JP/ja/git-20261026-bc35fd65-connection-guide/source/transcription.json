@@ -1,0 +1,305 @@
+{
+  "schema_version": "js-connection-guide-transcription/v1",
+  "source_sha256": "bc35fd6518769bd26c88fee088cc3a748c0ef680f4419682bede0f62738f8821",
+  "method": "The PDF type is fully outlined (no text layer). Every printed line of the Japanese face was read from 4x–8x renders of the archived PDF and is recorded verbatim; parentheses are the full-width （） of the Japanese set, read from their glyph spacing; print line breaks inside a word are joined. Order is the Web reading order (header, note, table rows, then the two connection figures).",
+  "not_transcribed": [
+    "product silkscreen and markings inside the product photographs",
+    "the international face beyond its title (web-excluded by operator decision)"
+  ],
+  "lines": [
+    {
+      "panel": "jp/header",
+      "text": "Jackery Solar Genarator 接続ガイド",
+      "disposition": "live",
+      "note": "「Genarator」 as printed (source concern); the international face prints 「Generator」"
+    },
+    {
+      "panel": "jp/header",
+      "text": "Jackery",
+      "disposition": "web-excluded",
+      "reason": "brand wordmark top right of the Japanese face"
+    },
+    {
+      "panel": "jp/header",
+      "text": "詳細なソーラー発電機接続ガイドについては、公式のJackeryウェブサイトまたはカスタマーサポートをご参照ください。",
+      "disposition": "live"
+    },
+    {
+      "panel": "jp/note",
+      "text": "図に示されている接続の問題については、次の解決策を検討してください:",
+      "disposition": "live",
+      "note": "bold in print; half-width colon as printed"
+    },
+    {
+      "panel": "jp/note",
+      "text": "※ DC7909 のオス・コネクタは DC8020 のメス・ポートに挿入できますが、互換性がないため、電流は流れません。",
+      "disposition": "live"
+    },
+    {
+      "panel": "jp/table",
+      "text": "ポータブル電源の型番",
+      "disposition": "live"
+    },
+    {
+      "panel": "jp/table",
+      "text": "DC入力",
+      "disposition": "live"
+    },
+    {
+      "panel": "jp/table/usb-c",
+      "text": "Jackery ポータブル電源 100 Plus（JE-100A）",
+      "disposition": "live"
+    },
+    {
+      "panel": "jp/table/usb-c",
+      "text": "Jackery ポータブル電源 240 New（JE-240A）",
+      "disposition": "live"
+    },
+    {
+      "panel": "jp/table/usb-c",
+      "text": "Jackery ポータブル電源 300 Plus（JE-300B）",
+      "disposition": "live"
+    },
+    {
+      "panel": "jp/table/usb-c",
+      "text": "USB-C",
+      "disposition": "live"
+    },
+    {
+      "panel": "jp/table/dc7909",
+      "text": "Jackeryポータブル電源 240（PTB201）",
+      "disposition": "live",
+      "note": "no space after Jackery, unlike every other row (source concern)"
+    },
+    {
+      "panel": "jp/table/dc7909",
+      "text": "Jackery ポータブル電源 400（PTB041）",
+      "disposition": "live"
+    },
+    {
+      "panel": "jp/table/dc7909",
+      "text": "Jackery ポータブル電源 700",
+      "disposition": "live"
+    },
+    {
+      "panel": "jp/table/dc7909",
+      "text": "Jackery ポータブル電源 708（PTB071）",
+      "disposition": "live"
+    },
+    {
+      "panel": "jp/table/dc7909",
+      "text": "Jackery ポータブル電源 1000（PTB101）",
+      "disposition": "live"
+    },
+    {
+      "panel": "jp/table/dc7909",
+      "text": "0.9mm",
+      "disposition": "live"
+    },
+    {
+      "panel": "jp/table/dc7909",
+      "text": "DC7909",
+      "disposition": "live"
+    },
+    {
+      "panel": "jp/table/dc8020",
+      "text": "Jackery ポータブル電源 1500（PTB152）",
+      "disposition": "live"
+    },
+    {
+      "panel": "jp/table/dc8020",
+      "text": "Jackery ポータブル電源 1000 Pro（JE-1000B）",
+      "disposition": "live"
+    },
+    {
+      "panel": "jp/table/dc8020",
+      "text": "Jackery ポータブル電源 1500 Pro（JE-1500B）",
+      "disposition": "live"
+    },
+    {
+      "panel": "jp/table/dc8020",
+      "text": "Jackery ポータブル電源 2000 Pro（JE-2000A）",
+      "disposition": "live"
+    },
+    {
+      "panel": "jp/table/dc8020",
+      "text": "Jackery ポータブル電源 3000 Pro（JE-3000A）",
+      "disposition": "live"
+    },
+    {
+      "panel": "jp/table/dc8020",
+      "text": "Jackery ポータブル電源 600 Plus（JE-600C）",
+      "disposition": "live"
+    },
+    {
+      "panel": "jp/table/dc8020",
+      "text": "Jackery ポータブル電源 1000 Plus（JE-1000C）",
+      "disposition": "live"
+    },
+    {
+      "panel": "jp/table/dc8020",
+      "text": "Jackery ポータブル電源 2000 Plus（JE-2000C）",
+      "disposition": "live"
+    },
+    {
+      "panel": "jp/table/dc8020",
+      "text": "Jackery ポータブル電源 1000 New（JE-1000D）",
+      "disposition": "live"
+    },
+    {
+      "panel": "jp/table/dc8020",
+      "text": "Jackery ポータブル電源 2000 New（JE-2000D）",
+      "disposition": "live"
+    },
+    {
+      "panel": "jp/table/dc8020",
+      "text": "新製品",
+      "disposition": "live"
+    },
+    {
+      "panel": "jp/table/dc8020",
+      "text": "2.0mm",
+      "disposition": "live"
+    },
+    {
+      "panel": "jp/table/dc8020",
+      "text": "DC8020",
+      "disposition": "live"
+    },
+    {
+      "panel": "jp/figure/dc7909",
+      "text": "黒のプラスチック",
+      "disposition": "live",
+      "note": "print breaks the bubble 「黒のプラス|チック」; joined"
+    },
+    {
+      "panel": "jp/figure/dc7909",
+      "text": "DC7909（メスコネクタ）",
+      "disposition": "live"
+    },
+    {
+      "panel": "jp/figure/dc7909",
+      "text": "1",
+      "disposition": "in-art",
+      "asset": "assets/connection-dc7909.png"
+    },
+    {
+      "panel": "jp/figure/dc7909",
+      "text": "DC7909",
+      "disposition": "in-art",
+      "asset": "assets/connection-dc7909.png"
+    },
+    {
+      "panel": "jp/figure/dc7909",
+      "text": "DC8020",
+      "disposition": "in-art",
+      "asset": "assets/connection-dc7909.png"
+    },
+    {
+      "panel": "jp/figure/dc7909",
+      "text": "2",
+      "disposition": "in-art",
+      "asset": "assets/connection-dc7909.png"
+    },
+    {
+      "panel": "jp/figure/dc7909",
+      "text": "DC7909",
+      "disposition": "in-art",
+      "asset": "assets/connection-dc7909.png"
+    },
+    {
+      "panel": "jp/figure/dc7909",
+      "text": "DC8020",
+      "disposition": "in-art",
+      "asset": "assets/connection-dc7909.png"
+    },
+    {
+      "panel": "jp/figure/dc7909",
+      "text": "または",
+      "disposition": "in-art",
+      "asset": "assets/connection-dc7909.png"
+    },
+    {
+      "panel": "jp/figure/dc8020",
+      "text": "ロック溝",
+      "disposition": "live"
+    },
+    {
+      "panel": "jp/figure/dc8020",
+      "text": "DC8020（メスコネクタ）",
+      "disposition": "live"
+    },
+    {
+      "panel": "jp/figure/dc8020",
+      "text": "1",
+      "disposition": "in-art",
+      "asset": "assets/connection-dc8020.png"
+    },
+    {
+      "panel": "jp/figure/dc8020",
+      "text": "DC8020",
+      "disposition": "in-art",
+      "asset": "assets/connection-dc8020.png"
+    },
+    {
+      "panel": "jp/figure/dc8020",
+      "text": "DC7909",
+      "disposition": "in-art",
+      "asset": "assets/connection-dc8020.png"
+    },
+    {
+      "panel": "jp/figure/dc8020",
+      "text": "または",
+      "disposition": "in-art",
+      "asset": "assets/connection-dc8020.png"
+    },
+    {
+      "panel": "jp/figure/dc8020",
+      "text": "2",
+      "disposition": "in-art",
+      "asset": "assets/connection-dc8020.png"
+    },
+    {
+      "panel": "jp/figure/dc8020",
+      "text": "DC8020",
+      "disposition": "in-art",
+      "asset": "assets/connection-dc8020.png"
+    },
+    {
+      "panel": "jp/figure/dc8020",
+      "text": "DC7909",
+      "disposition": "in-art",
+      "asset": "assets/connection-dc8020.png"
+    },
+    {
+      "panel": "international",
+      "text": "Jackery Solar Generator Connection Guide | Guide de connexion du générateur solaire Jackery | Guía de conexión del generador solar Jackery  | Guia de conexão do gerador solar Jackery",
+      "disposition": "web-excluded",
+      "reason": "international face (EN/FR/ES/PT sentence-interleaved), left 260×185 mm side of the artboard: operator decision 2026-10-26, only the Japanese face goes on the Web; it stays archived in source/original.pdf. Its title is recorded to identify the face; the remaining lines (introduction, grey note, model/DC input table, figure labels, 'or | ou | o | ou') are not transcribed line by line"
+    },
+    {
+      "panel": "production",
+      "text": "38-0001-000716 太阳能板连接指南折页 通用 RoHS REACH",
+      "disposition": "web-excluded",
+      "reason": "production drawing furniture"
+    },
+    {
+      "panel": "production",
+      "text": "尺寸: 260*185 mm",
+      "disposition": "web-excluded",
+      "reason": "production drawing furniture"
+    },
+    {
+      "panel": "production",
+      "text": "材质:157克铜版纸+哑胶 四色双面印刷 单折页",
+      "disposition": "web-excluded",
+      "reason": "production drawing furniture"
+    },
+    {
+      "panel": "production",
+      "text": "drawing title block and revision table (V0.1 第一次发行, 制图 陈显军, 日期 2025-1-6, 产品名称 太阳能板连接指南折页 通用 RoHS REACH, 页数 01, 版本 V0.1, 深圳市华宝新能源股份有限公司 / SHENZHEN HELLO TECH NEW ENERGY CO.,LTD, tolerances, grid letters and numbers)",
+      "disposition": "web-excluded",
+      "reason": "production drawing furniture; summarised, not a printed line of the leaflet"
+    }
+  ]
+}

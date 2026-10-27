@@ -1,0 +1,136 @@
+{
+  "schema_version": "js-100i-jp-validation/v1",
+  "status": "operator-approved-git-only-release (「全部照录，版式都接受，上线提交发布，保留疑点后续纠正」 2026-10-27); RTD deployment acceptance pending",
+  "baseline_main": "8a46562",
+  "original_source_sha256": "cc8b3421221bf11b03f2ddd0ce86519605189fbe0721a7d8a536520d75513e6f",
+  "stored_markdown_sha256": "e4e9a0f689dc9558be12fd35031ea2128592618e03ad99f44d6d2949755d697b",
+  "stored_ir_sha256": "438f87dd4b724cc9a1da398e295e676b4489085e12518e7f10ee2451648f87b4",
+  "checks": [
+    {
+      "command": "python derive_assets.py (twice)",
+      "result": "assets, asset_recipe.json, figure_labels.json and asset_decisions.json byte-identical on the second run"
+    },
+    {
+      "command": "python render.py <new dir>",
+      "result": "components HB-CALLOUT-STRIP 4, HB-SPECIAL-INBOX 1, HB-SPECIAL-REFERENCE-FIGURE 8, HB-TABLE-SPEC 2; prepared-document shared-style gate passed with 1 declared table; publication_eligible true with source/approval.json binding 38 reviewed inputs"
+    },
+    {
+      "command": "python -m sphinx -n -W --keep-going -b html web/ja <out>",
+      "result": "passed",
+      "log": "strict-sphinx.log"
+    },
+    {
+      "command": "python -m unittest tests.test_js100i_jp_web tests.test_prepared_document_shared_styles tests.test_frozen_package_registry tests.test_web_frozen_source_evidence",
+      "result": "38 tests OK (verbatim copy order 5324 chars, byte-identical EU reuse, figure label binding, cold replay, source tamper rejection)",
+      "log": "target-tests.log"
+    },
+    {
+      "command": "python -m unittest",
+      "result": "5697 tests OK (skipped=72)"
+    },
+    {
+      "command": "python -m ruff check build.py integrations tools tests scripts",
+      "result": "All checks passed"
+    },
+    {
+      "command": "python build.py check --config configs/config.ja.yaml --model JE-1000F --region JP --data-root tests/fixtures/phase2",
+      "result": "OK; JP family fixture regression only, not validation of this body (without --data-root the empty local phase2 mirror cannot resolve JE-1000F)",
+      "log": "repo-regression.log"
+    },
+    {
+      "command": "python -m tools.check_maintainability_guardrails",
+      "result": "OK",
+      "log": "maintainability.log"
+    }
+  ],
+  "browser": {
+    "390": {
+      "viewport": 390,
+      "scroll_width": 390,
+      "client_width": 390,
+      "broken_images": [],
+      "images": [
+        "assets/ir/bfe453b396d7c30b52136317f6e3ca084f4ad6e9e59abe908772de525244f58a/inbox_panel.png",
+        "assets/ir/7995365a1852cadaa0a34a5d758a299a6e0415179c657fe6a57166b515f3c515/inbox_bag.png",
+        "assets/ir/0d1e2c82ce86e51eeb4a1001096fb5073c867927d8f4c86ec29cff2a86f8014f/inbox_cable.png",
+        "assets/ir/ec88b051c036047e604555e86872e96b4cabdfe37d37f590c61fac7cf1c5806c/inbox_manual.png",
+        "assets/ir/a57148194fe8782e278bed01fb1c34ad953ffff63293629782176036fbf23e72/front_view.png",
+        "assets/ir/a103f77845247623218dd4912bb12ed9b479db370891b3dd1a557871dd307e62/rear_view.png",
+        "assets/ir/401a4aed8b6e8e2a9b4fa0270f3694c9db7cee1ed78f0cd3834a67a45d642460/unfold_1.png",
+        "assets/ir/95df14639a15683e1f5c090cce932974689c2ab8c68db78a6a39167bd5b061b2/unfold_2.png",
+        "assets/ir/a697833ed68f7079e7a170d7b3c0b283ea70ffd4d52b307ec0dc85d87232cbc8/unfold_3.png",
+        "assets/ir/aec21f12ad61e0f316a477735a31ea4092c16e2525a0a700e3b4db6b8fef33e7/unfold_4.png",
+        "assets/ir/a8d513b1f34f4da33e8e69cf448de72e858ca6fa1b82f72f1d4b10379810ae4b/fold_1.png",
+        "assets/ir/816b24b43a0d59ca1dad4ea8aaa21e6f322ee6ed42e9ec66e33666a1c9f48d03/fold_2.png",
+        "assets/ir/fc656fd4c6dc8256b9e2de7fde93b775993f23f73e310bc71d3b5d3e1d8d1bdb/fold_3.png",
+        "assets/ir/424b6844a1e03880f1e1bb37fd2df7dcee5610725d1a60379e6009cc3e18981d/dc8020.png",
+        "assets/ir/10dc4ceb4e1dfa1c9b39b3ac3043fbed7ce47a43d9f99c3cbe1f654fda93e2bd/dc7909.png",
+        "assets/ir/813d1260d0c1d584bcd1b46a4e696d438119afae10bde75ddba2fafa22fd4973/usbc.png",
+        "assets/ir/a9d86035eae122d74fe873563b0572c52266b73ae67026712f10ae4b78888274/parallel.png",
+        "assets/ir/cc6c96c9b5ff68b0f45e79bc9194664e4191ae9884e3e34095864790511b965e/angle.png",
+        "assets/ir/ea9307d45f0616cd0de6bd14243799c9675c03cc17219ced4a5d7cfd07fa9f11/angle_choice_1.png",
+        "assets/ir/fcec905512471cea168c085300b11b806e34a19f5cc1fb4b4f2a2889dcf59bb8/angle_choice_2.png",
+        "assets/ir/602ae8ad9a234fcee0a41d749e0fbabc975e6c9764551c03c3ca1d85369ab883/device.png",
+        "assets/ir/1e26a0f690a8de068b5ab04d92371332099c0241eddf9425645cc6b02dedc70b/dust.png",
+        "assets/ir/3ef838c9c927d420ede815853601097192e85a207d7e1bc56d871e4f25702b91/contact_qr.png"
+      ],
+      "live_labels": 23,
+      "reference_figures": 8,
+      "h1": [
+        "使用ガイド（ご使用前の注意事項）",
+        "同梱品",
+        "使い方",
+        "主な仕様",
+        "保証について"
+      ],
+      "table_wrapper_overflow_x": "auto",
+      "failed_requests": [],
+      "http_errors": []
+    },
+    "1280": {
+      "viewport": 1280,
+      "scroll_width": 1280,
+      "client_width": 1280,
+      "broken_images": [],
+      "images": [
+        "assets/ir/bfe453b396d7c30b52136317f6e3ca084f4ad6e9e59abe908772de525244f58a/inbox_panel.png",
+        "assets/ir/7995365a1852cadaa0a34a5d758a299a6e0415179c657fe6a57166b515f3c515/inbox_bag.png",
+        "assets/ir/0d1e2c82ce86e51eeb4a1001096fb5073c867927d8f4c86ec29cff2a86f8014f/inbox_cable.png",
+        "assets/ir/ec88b051c036047e604555e86872e96b4cabdfe37d37f590c61fac7cf1c5806c/inbox_manual.png",
+        "assets/ir/a57148194fe8782e278bed01fb1c34ad953ffff63293629782176036fbf23e72/front_view.png",
+        "assets/ir/a103f77845247623218dd4912bb12ed9b479db370891b3dd1a557871dd307e62/rear_view.png",
+        "assets/ir/401a4aed8b6e8e2a9b4fa0270f3694c9db7cee1ed78f0cd3834a67a45d642460/unfold_1.png",
+        "assets/ir/95df14639a15683e1f5c090cce932974689c2ab8c68db78a6a39167bd5b061b2/unfold_2.png",
+        "assets/ir/a697833ed68f7079e7a170d7b3c0b283ea70ffd4d52b307ec0dc85d87232cbc8/unfold_3.png",
+        "assets/ir/aec21f12ad61e0f316a477735a31ea4092c16e2525a0a700e3b4db6b8fef33e7/unfold_4.png",
+        "assets/ir/a8d513b1f34f4da33e8e69cf448de72e858ca6fa1b82f72f1d4b10379810ae4b/fold_1.png",
+        "assets/ir/816b24b43a0d59ca1dad4ea8aaa21e6f322ee6ed42e9ec66e33666a1c9f48d03/fold_2.png",
+        "assets/ir/fc656fd4c6dc8256b9e2de7fde93b775993f23f73e310bc71d3b5d3e1d8d1bdb/fold_3.png",
+        "assets/ir/424b6844a1e03880f1e1bb37fd2df7dcee5610725d1a60379e6009cc3e18981d/dc8020.png",
+        "assets/ir/10dc4ceb4e1dfa1c9b39b3ac3043fbed7ce47a43d9f99c3cbe1f654fda93e2bd/dc7909.png",
+        "assets/ir/813d1260d0c1d584bcd1b46a4e696d438119afae10bde75ddba2fafa22fd4973/usbc.png",
+        "assets/ir/a9d86035eae122d74fe873563b0572c52266b73ae67026712f10ae4b78888274/parallel.png",
+        "assets/ir/cc6c96c9b5ff68b0f45e79bc9194664e4191ae9884e3e34095864790511b965e/angle.png",
+        "assets/ir/ea9307d45f0616cd0de6bd14243799c9675c03cc17219ced4a5d7cfd07fa9f11/angle_choice_1.png",
+        "assets/ir/fcec905512471cea168c085300b11b806e34a19f5cc1fb4b4f2a2889dcf59bb8/angle_choice_2.png",
+        "assets/ir/602ae8ad9a234fcee0a41d749e0fbabc975e6c9764551c03c3ca1d85369ab883/device.png",
+        "assets/ir/1e26a0f690a8de068b5ab04d92371332099c0241eddf9425645cc6b02dedc70b/dust.png",
+        "assets/ir/3ef838c9c927d420ede815853601097192e85a207d7e1bc56d871e4f25702b91/contact_qr.png"
+      ],
+      "live_labels": 23,
+      "reference_figures": 8,
+      "h1": [
+        "使用ガイド（ご使用前の注意事項）",
+        "同梱品",
+        "使い方",
+        "主な仕様",
+        "保証について"
+      ],
+      "table_wrapper_overflow_x": "auto",
+      "failed_requests": [],
+      "http_errors": []
+    }
+  },
+  "reference_edition_render": "JS-100I EU en: AUTO_MANUAL_PRESENTATION_PROFILE=web python build.py md --config configs/config.solar-eu-en.yaml --model JS-100I --region EU --lang en --data-root data/manual_sources/JS-100I/EU/en/2.0/phase2 (side-by-side review only)",
+  "approval_sha256": "4a1934c046956381598d0d311267d9e8e2d8d00860848db412ec3efd8945439e"
+}

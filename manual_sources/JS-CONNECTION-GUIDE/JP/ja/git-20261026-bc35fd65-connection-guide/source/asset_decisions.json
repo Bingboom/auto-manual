@@ -1,0 +1,410 @@
+{
+  "schema_version": "js-connection-guide-asset-decisions/v1",
+  "rule": "docs/renderers/contracts/STYLE_DEFINITION/web-artwork-reuse.md (inventory → identity → reuse → text handling → extract)",
+  "inventory_checked": [
+    "manual_sources/** and data/manual_sources/** on main at 8a46562: no JS-CONNECTION-GUIDE or 38-0001-000716 package; no connection-guide leaflet in any language",
+    "docs/renderers/web/assets/js100i_eu_shared/{usbc,dc7909,dc8020}.png (JS-100I EU): monochrome line drawings of a solar panel connected to a power station with a magnified port; the leaflet prints colour photographs of the port faces and of Explorer power stations, so these are different figures",
+    "data/manual_sources/JE-1500C/TW/*/assets/inbox-usbc.svg: in-box USB-C cable outline, not a port face",
+    "docs/renderers/web/assets/shared/{symbols,buttons,lcd}: no connector-port, DC7909/DC8020 or power-station art",
+    "docs/renderers/web/assets/** per-target folders and docs/renderers/contracts/assets/**: no DC input port photographs and no figure of the DC7909/DC8020 adapter alternatives",
+    "repository search for DC7909 / DC8020 / 接続ガイド: hits are JS-100I text (inbox and adapter copy) and the DC8020 UPS placeholder review, no artwork"
+  ],
+  "decision_summary": [
+    {
+      "slot": "DC7909 and DC8020 connection figures",
+      "decision": "new extraction",
+      "reason": "no existing art; each is the complete right-hand table cell of its connector row, clipped inside the cell rules",
+      "background": "white page kept; the table frame band at the last cell's rounded corner painted out; trimmed to the drawn art plus the live-label rectangles",
+      "text_handling": "speech bubbles (grey fill, orange outline) and the port captions are painted out and set live; the bubble pointers stay as leaders; connector tags, numbered markers and 「または」 stay in the art"
+    },
+    {
+      "slot": "DC入力 port icons (USB-C, DC7909, DC8020)",
+      "decision": "new extraction (placed raster)",
+      "reason": "no existing port-face art (see inventory)",
+      "background": "transparent: the DC7909 and DC8020 rasters carry their PDF soft masks; the USB-C raster has no soft mask and keeps its own white corners as placed on the white print cell",
+      "text_handling": "port names and 0.9mm / 2.0mm are table text; the orange dimension marks are redrawn from their original vectors"
+    }
+  ],
+  "extractions": [
+    {
+      "path": "assets/connection-dc7909.png",
+      "role": "DC7909 connection figure (black plastic tip); Japanese labels set live",
+      "decision": "new extraction",
+      "source_page": 1,
+      "zoom": 4.0,
+      "clip_pt": [
+        1415.7,
+        457.8,
+        1856.4,
+        649.1
+      ],
+      "trim_px": [
+        36,
+        211,
+        1748,
+        690
+      ],
+      "size_px": [
+        1712,
+        479
+      ],
+      "painted_out_pt": [
+        [
+          1574.874,
+          512.557,
+          1630.878,
+          548.639
+        ],
+        [
+          1472.684,
+          621.421,
+          1478.266,
+          627.609
+        ],
+        [
+          1477.537,
+          621.321,
+          1483.475,
+          627.709
+        ],
+        [
+          1482.476,
+          621.421,
+          1486.897,
+          627.609
+        ],
+        [
+          1486.039,
+          621.322,
+          1490.853,
+          627.61
+        ],
+        [
+          1490.066,
+          621.321,
+          1495.257,
+          627.709
+        ],
+        [
+          1494.471,
+          621.322,
+          1499.284,
+          627.61
+        ],
+        [
+          1499.723,
+          620.282,
+          1503.003,
+          628.323
+        ],
+        [
+          1502.089,
+          620.794,
+          1509.068,
+          627.973
+        ],
+        [
+          1508.404,
+          621.144,
+          1515.625,
+          627.924
+        ],
+        [
+          1515.718,
+          621.35,
+          1522.111,
+          627.767
+        ],
+        [
+          1522.218,
+          620.588,
+          1529.832,
+          628.016
+        ],
+        [
+          1529.231,
+          620.509,
+          1536.338,
+          628.08
+        ],
+        [
+          1535.269,
+          620.438,
+          1542.454,
+          628.081
+        ],
+        [
+          1541.56,
+          620.282,
+          1544.841,
+          628.323
+        ]
+      ],
+      "live_labels": [
+        {
+          "text": "黒のプラスチック",
+          "kind": "bubble",
+          "drawing_indices": [
+            839
+          ],
+          "span_pct": [
+            35.09,
+            1.68,
+            13.09,
+            30.13
+          ]
+        },
+        {
+          "text": "DC7909（メスコネクタ）",
+          "kind": "glyphs",
+          "drawing_indices": [
+            782,
+            783,
+            784,
+            785,
+            786,
+            787,
+            788,
+            789,
+            790,
+            791,
+            792,
+            793,
+            794,
+            795
+          ],
+          "span_pct": [
+            11.35,
+            92.13,
+            16.58,
+            5.71
+          ]
+        }
+      ],
+      "sha256": "abe4cca076900a7be9f6bc2adb081d093d4a8dbccbcd586d01fabc739487666f"
+    },
+    {
+      "path": "assets/connection-dc8020.png",
+      "role": "DC8020 connection figure (locking groove); Japanese labels set live",
+      "decision": "new extraction",
+      "source_page": 1,
+      "zoom": 4.0,
+      "clip_pt": [
+        1415.7,
+        653.1,
+        1856.4,
+        835.8
+      ],
+      "trim_px": [
+        34,
+        97,
+        1744,
+        664
+      ],
+      "size_px": [
+        1710,
+        567
+      ],
+      "painted_out_pt": [
+        [
+          1563.795,
+          679.39,
+          1616.427,
+          706.926
+        ],
+        [
+          1471.163,
+          810.812,
+          1476.745,
+          817.0
+        ],
+        [
+          1476.016,
+          810.712,
+          1481.954,
+          817.1
+        ],
+        [
+          1481.12,
+          810.712,
+          1485.897,
+          817.1
+        ],
+        [
+          1485.182,
+          810.712,
+          1490.373,
+          817.1
+        ],
+        [
+          1489.451,
+          810.712,
+          1494.022,
+          817.0
+        ],
+        [
+          1493.257,
+          810.712,
+          1498.448,
+          817.1
+        ],
+        [
+          1498.972,
+          809.672,
+          1502.252,
+          817.713
+        ],
+        [
+          1501.338,
+          810.185,
+          1508.317,
+          817.364
+        ],
+        [
+          1507.654,
+          810.534,
+          1514.875,
+          817.314
+        ],
+        [
+          1514.967,
+          810.74,
+          1521.361,
+          817.157
+        ],
+        [
+          1521.467,
+          809.977,
+          1529.081,
+          817.406
+        ],
+        [
+          1528.48,
+          809.9,
+          1535.587,
+          817.471
+        ],
+        [
+          1534.518,
+          809.828,
+          1541.703,
+          817.471
+        ],
+        [
+          1540.809,
+          809.672,
+          1544.09,
+          817.713
+        ]
+      ],
+      "live_labels": [
+        {
+          "text": "ロック溝",
+          "kind": "bubble",
+          "drawing_indices": [
+            767
+          ],
+          "span_pct": [
+            32.65,
+            1.44,
+            12.31,
+            19.43
+          ]
+        },
+        {
+          "text": "DC8020（メスコネクタ）",
+          "kind": "glyphs",
+          "drawing_indices": [
+            732,
+            733,
+            734,
+            735,
+            736,
+            737,
+            738,
+            739,
+            740,
+            741,
+            742,
+            743,
+            744,
+            745
+          ],
+          "span_pct": [
+            11.13,
+            93.77,
+            16.78,
+            4.83
+          ]
+        }
+      ],
+      "sha256": "6e73f775619401ddce19df07328191bf264282a9bc16978d296647dfcca2cdc4"
+    },
+    {
+      "path": "assets/port-usb-c.png",
+      "role": "DC入力 port icon; label set in the table",
+      "decision": "new extraction (placed raster)",
+      "source_page": 1,
+      "raster_xref": 346,
+      "placed_pt": [
+        1357.3,
+        495.5,
+        1400.4,
+        538.5
+      ],
+      "dimension_mark_drawing_indices": [],
+      "zoom": 8.0,
+      "sha256": "253e6efc97b0505d7b966ececf0f6ad074e293eaeeae985316ae6ac574e1289f"
+    },
+    {
+      "path": "assets/port-dc7909.png",
+      "role": "DC入力 port icon; label set in the table",
+      "decision": "new extraction (placed raster + dimension-mark vectors)",
+      "source_page": 1,
+      "raster_xref": 348,
+      "placed_pt": [
+        1357.4,
+        594.6,
+        1400.5,
+        637.8
+      ],
+      "dimension_mark_drawing_indices": [
+        3517,
+        3518,
+        3519,
+        3520,
+        3521,
+        3522,
+        3523,
+        3524
+      ],
+      "zoom": 8.0,
+      "sha256": "2ee981d5176fab8f58a6839465b3a52fdc0eebef4328391ebea3926769afeea8"
+    },
+    {
+      "path": "assets/port-dc8020.png",
+      "role": "DC入力 port icon; label set in the table",
+      "decision": "new extraction (placed raster + dimension-mark vectors)",
+      "source_page": 1,
+      "raster_xref": 347,
+      "placed_pt": [
+        1357.9,
+        700.5,
+        1399.4,
+        742.0
+      ],
+      "dimension_mark_drawing_indices": [
+        3504,
+        3505,
+        3506,
+        3507,
+        3508,
+        3509,
+        3510,
+        3511
+      ],
+      "zoom": 8.0,
+      "sha256": "ac5ec92cf0865d45fd453f9f8b7fe43c435c6e4a5da0399952a9c2e254340e8c"
+    }
+  ]
+}

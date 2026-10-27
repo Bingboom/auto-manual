@@ -348,6 +348,55 @@ class ReviewSiteTests(unittest.TestCase):
                 self.assertEqual(review_site.main([str(drafts), str(out)]), 0)
             self.assertIn("WARNING JHP-3600C topic solar-input", printed.getvalue())
 
+    def test_every_draft_page_links_back_to_the_overview_in_the_output_only(self):
+        pages = {
+            "controls": '<body><header class="toolbar"><div class="controls"><button>x</button></div></header>',
+            "actions": '<body class="p"><header class="preview-toolbar"><div class="toolbar-actions wide">'
+                       '<a>y</a></div></header>',
+            "bare": "<html><body data-x=1><p>z</p></body></html>",
+            "already": '<body><header class="toolbar"><div class="controls"><button type="button" '
+                       'class="to-overview">← 审核稿总览</button></div></header>',
+        }
+        with TemporaryDirectory() as temp:
+            drafts, out = Path(temp) / "drafts", Path(temp) / "out"
+            sources = {}
+            for index, (name, html) in enumerate(pages.items()):
+                line = write_draft(drafts / "JHP-3600C" / f"R{index}", "v0.69", region=f"R{index}")
+                (line / "draft.html").write_bytes((html + "\r\n").encode("utf-8"))
+                milestone = write_milestone(line, "v0.62", "研发答复回填", region=f"R{index}")
+                (milestone / "draft.html").write_bytes(html.encode("utf-8"))
+                sources[name] = (line / "draft.html", milestone / "draft.html")
+            before = {path: path.read_bytes() for pair in sources.values() for path in pair}
+            review_site.build(drafts, out)
+            review_site.build(drafts, out)  # a rebuild over the output adds nothing twice
+            self.assertEqual({path: path.read_bytes() for path in before}, before)  # sources untouched
+
+            def built(name, which):
+                return (out / sources[name][which].relative_to(drafts)).read_text(encoding="utf-8")
+            for name in pages:
+                for which, index in ((0, "../../index.html"), (1, "../../../../index.html")):
+                    with self.subTest(name=name, which=which):
+                        page = built(name, which)
+                        soup = BeautifulSoup(page, "html.parser")
+                        links = soup.select(".to-overview")
+                        self.assertEqual(len(links), 1)
+                        if name == "already":
+                            self.assertNotIn("onclick", page)
+                            continue
+                        target = links[0].get("href") or links[0]["onclick"]
+                        self.assertIn(index, target)
+                        resolved = (out / sources[name][which].relative_to(drafts)).parent / index
+                        self.assertEqual(resolved.resolve(), (out / "index.html").resolve())
+                        if name == "bare":
+                            self.assertIs(soup.body.contents[1], soup.select_one("nav.to-overview-bar"))
+                            self.assertIn("@media print", page)
+                        else:
+                            group = soup.select_one("div.controls, div.toolbar-actions")
+                            self.assertIs(group.contents[0], links[0])
+                            self.assertEqual(links[0].name, "button")
+            # Bytes are otherwise preserved, line endings included.
+            self.assertTrue((out / sources["controls"][0].relative_to(drafts)).read_bytes().endswith(b"\r\n"))
+
     def test_read_the_docs_builds_the_review_site_before_the_bootstrap(self):
         config = (REPO / ".readthedocs.yaml").read_text(encoding="utf-8")
         review = config.index("elif [ -d docs/review-drafts ]")

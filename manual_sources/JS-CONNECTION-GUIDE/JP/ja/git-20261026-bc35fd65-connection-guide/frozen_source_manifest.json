@@ -1,0 +1,304 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "target": {
+    "model": "JS-CONNECTION-GUIDE",
+    "region": "JP",
+    "languages": [
+      "ja"
+    ],
+    "technical_version": "git-20261026-bc35fd65"
+  },
+  "web_title": "Jackery Solar Genarator 接続ガイド",
+  "original_source": {
+    "filename": "38-0001-000716 太阳能板连接指南折页 通用 RoHS REACH-Q.pdf",
+    "path": "source/original.pdf",
+    "sha256": "bc35fd6518769bd26c88fee088cc3a748c0ef680f4419682bede0f62738f8821",
+    "size": 27334114,
+    "physical_page_count": 1,
+    "feishu_wiki": "https://xcn57j1urbe6.feishu.cn/wiki/SMatwBk68ifDEwkYJiucwZVsndf",
+    "producer": "Adobe Illustrator 29.3 (Windows); created 2025-02-11, modified 2025-06-06"
+  },
+  "printed_manual_version": null,
+  "drawing_block": {
+    "part_number": "38-0001-000716",
+    "drawing_version": "V0.1",
+    "revision_table": "V0.1 第一次发行",
+    "drawing_date": "2025-1-6",
+    "format": "260*185 mm, 157克铜版纸+哑胶, 四色双面印刷, 单折页",
+    "note": "production drawing title block around the two printed sides; it is not a printed manual version"
+  },
+  "identity": {
+    "printed_model": null,
+    "part_number": "38-0001-000716",
+    "note": "the leaflet prints no product model: it is a cross-model connection guide (通用). The route model segment JS-CONNECTION-GUIDE is the operator's decision of 2026-10-26; the part number comes from the file name and drawing title block"
+  },
+  "source_authority": "operator-designated Feishu wiki file 「38-0001-000716 太阳能板连接指南折页 通用 RoHS REACH-Q.pdf」 in the folder named by the operator on 2026-10-26 (「分几个窗口把这个目录下面的文档都转成网页文档」, 「韩语文档除外」); the operator chose the Japanese face only and the route JS-CONNECTION-GUIDE. The original Japanese governs all copy. Operator accepted reviewed candidate eb61b66 (PR #1610) for public Git-only JP/ja release on 2026-10-27 (「上线提交发布」; merge by operator review). Acceptance is hash-bound in source/approval.json; the source concerns stay with the source owner.",
+  "source_role": "Git-only Japanese Web candidate of the Japanese face of the solar generator connection-guide leaflet; the international EN/FR/ES/PT face is archived in source/original.pdf and not on the Web",
+  "route": {
+    "model_segment": "JS-CONNECTION-GUIDE",
+    "route": "JS-CONNECTION-GUIDE/JP/ja/md",
+    "reason": "Hello-Docs identity is (model, region, lang); the leaflet prints no model, so the operator chose the model segment JS-CONNECTION-GUIDE on 2026-10-26"
+  },
+  "language_scope": "single",
+  "live_bitable_dependency": false,
+  "publication_status": "operator-approved-git-only-release",
+  "publication_eligible": true,
+  "pending_source_review": [],
+  "page_order": [
+    "01_connection_guide_ja.rst"
+  ],
+  "required_components": {
+    "HB-SPECIAL-REFERENCE-FIGURE": 2
+  },
+  "web_roots": {
+    "ja": "web/ja"
+  },
+  "inputs": [
+    {
+      "path": "README.md",
+      "size": 6585,
+      "sha256": "7a55c713e67df83f2678a94d38f108d1bea93b3152f3151f547392e355ccc31a"
+    },
+    {
+      "path": "assets/connection-dc7909.png",
+      "size": 337545,
+      "sha256": "abe4cca076900a7be9f6bc2adb081d093d4a8dbccbcd586d01fabc739487666f"
+    },
+    {
+      "path": "assets/connection-dc8020.png",
+      "size": 331080,
+      "sha256": "6e73f775619401ddce19df07328191bf264282a9bc16978d296647dfcca2cdc4"
+    },
+    {
+      "path": "assets/port-dc7909.png",
+      "size": 126764,
+      "sha256": "2ee981d5176fab8f58a6839465b3a52fdc0eebef4328391ebea3926769afeea8"
+    },
+    {
+      "path": "assets/port-dc8020.png",
+      "size": 123005,
+      "sha256": "ac5ec92cf0865d45fd453f9f8b7fe43c435c6e4a5da0399952a9c2e254340e8c"
+    },
+    {
+      "path": "assets/port-usb-c.png",
+      "size": 114269,
+      "sha256": "253e6efc97b0505d7b966ececf0f6ad074e293eaeeae985316ae6ac574e1289f"
+    },
+    {
+      "path": "derive_assets.py",
+      "size": 12505,
+      "sha256": "e441d64f05d453becefac9faaf471728f8f59daccf385b8ddbfe19811403626c"
+    },
+    {
+      "path": "evidence/browser-acceptance.json",
+      "size": 1255,
+      "sha256": "38e9a723161652e583bfb22938d96403d557136400eb5cbda6f0b326af4d9748"
+    },
+    {
+      "path": "evidence/comparison-pdf-candidate-reference.jpg",
+      "size": 442259,
+      "sha256": "c84d4d2bcb87b7d1ed0a6cf18a5c0770afc505a36b78c975ffe4b89744ccd753"
+    },
+    {
+      "path": "evidence/desktop-full.jpg",
+      "size": 186762,
+      "sha256": "968fbb606d15dd8edcc806ef32c93783c4b0766dfb8726b917fb6f4c2d07f937"
+    },
+    {
+      "path": "evidence/mobile-full.jpg",
+      "size": 134450,
+      "sha256": "301dadfcdab824daccbd5e392739275181b034b2609a3b2378b5de45b683856d"
+    },
+    {
+      "path": "evidence/strict-sphinx.log",
+      "size": 1931,
+      "sha256": "32c274582481f158ada19e9e9397905a7b56ed86b3d801d7bb2228d9c3e6b8b1"
+    },
+    {
+      "path": "evidence/validation.json",
+      "size": 2798,
+      "sha256": "7b11711f3be14d09d5d8074546e17f137aeb97d2cfb96385a82b651aae8cccee"
+    },
+    {
+      "path": "refresh_manifest.py",
+      "size": 2346,
+      "sha256": "6c60b986434ea7b500c7df9651bf98e8f870245e7b80136f8c81b6fd034c66bc"
+    },
+    {
+      "path": "render.py",
+      "size": 7634,
+      "sha256": "5e766e4614bfa063107f3e8d7f92d5d84b53d1bcb7f125cef866af9c5ad82802"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 2596,
+      "sha256": "e3f91df33fea84dabff83c10e55712326f1063f83f7a48ee2e5fb25c0cb6a2fc"
+    },
+    {
+      "path": "source/asset_decisions.json",
+      "size": 9709,
+      "sha256": "99c3032a7cdc720ae499ada6206b15aa20d024a329c9088bd88e69981662c6a8"
+    },
+    {
+      "path": "source/original.pdf",
+      "size": 27334114,
+      "sha256": "bc35fd6518769bd26c88fee088cc3a748c0ef680f4419682bede0f62738f8821"
+    },
+    {
+      "path": "source/page/01_connection_guide_ja.rst",
+      "size": 3587,
+      "sha256": "a03a74c88dd160de1551dff51234166f52c2472c956c25e6507bd2af038f0094"
+    },
+    {
+      "path": "source/presentation.css",
+      "size": 1170,
+      "sha256": "12052b5151a7bcc1a4b883fd0e029ba1137e44a15745831251fed3f96032c50c"
+    },
+    {
+      "path": "source/transcription.json",
+      "size": 9697,
+      "sha256": "43c471b02f53846d9220ac71e208048f3fd491698e23cd04f0c0e742a329b21b"
+    },
+    {
+      "path": "source_manifest.json",
+      "size": 9630,
+      "sha256": "b88cd6a15c5df1ac3dd6704ba8b87c04aaccdc7e7be343b342e6539b08103d6f"
+    },
+    {
+      "path": "web/ja/_static/source.css",
+      "size": 1170,
+      "sha256": "12052b5151a7bcc1a4b883fd0e029ba1137e44a15745831251fed3f96032c50c"
+    },
+    {
+      "path": "web/ja/_static/web_manual.css",
+      "size": 124849,
+      "sha256": "c3604a2e5f22b04bc745bb99cf203b50e60222af70c0aeba3d968cc28adac9ce"
+    },
+    {
+      "path": "web/ja/assets/ir/253e6efc97b0505d7b966ececf0f6ad074e293eaeeae985316ae6ac574e1289f/port-usb-c.png",
+      "size": 114269,
+      "sha256": "253e6efc97b0505d7b966ececf0f6ad074e293eaeeae985316ae6ac574e1289f"
+    },
+    {
+      "path": "web/ja/assets/ir/2ee981d5176fab8f58a6839465b3a52fdc0eebef4328391ebea3926769afeea8/port-dc7909.png",
+      "size": 126764,
+      "sha256": "2ee981d5176fab8f58a6839465b3a52fdc0eebef4328391ebea3926769afeea8"
+    },
+    {
+      "path": "web/ja/assets/ir/6e73f775619401ddce19df07328191bf264282a9bc16978d296647dfcca2cdc4/connection-dc8020.png",
+      "size": 331080,
+      "sha256": "6e73f775619401ddce19df07328191bf264282a9bc16978d296647dfcca2cdc4"
+    },
+    {
+      "path": "web/ja/assets/ir/abe4cca076900a7be9f6bc2adb081d093d4a8dbccbcd586d01fabc739487666f/connection-dc7909.png",
+      "size": 337545,
+      "sha256": "abe4cca076900a7be9f6bc2adb081d093d4a8dbccbcd586d01fabc739487666f"
+    },
+    {
+      "path": "web/ja/assets/ir/ac5ec92cf0865d45fd453f9f8b7fe43c435c6e4a5da0399952a9c2e254340e8c/port-dc8020.png",
+      "size": 123005,
+      "sha256": "ac5ec92cf0865d45fd453f9f8b7fe43c435c6e4a5da0399952a9c2e254340e8c"
+    },
+    {
+      "path": "web/ja/conf.py",
+      "size": 834,
+      "sha256": "dbd686b55faddd8f072a875426d6e18ccd163895b5088014a553f9e02d554925"
+    },
+    {
+      "path": "web/ja/index.md",
+      "size": 105,
+      "sha256": "bfff7c3bdf0934a9b9cb418aa89e3227441f5a9fa739d7f55e141e84cc072670"
+    },
+    {
+      "path": "web/ja/manual.ir.json",
+      "size": 119521,
+      "sha256": "f18928d42c27ff962b2e69f97cc6b53b9422ecb5bb13c4956757fdaf0e6bb514"
+    },
+    {
+      "path": "web/ja/manual_bundle.html",
+      "size": 7584,
+      "sha256": "b00bce29a9b1e49fcae18b90980933e174a5dffa6eaebe653749e0d6ff515d1a"
+    },
+    {
+      "path": "web/ja/manual_jsconnectionguide_jp_ja.md",
+      "size": 7277,
+      "sha256": "14dcfeda6fc3121e6862c0be199a4af08ef6559dc8ca420e5f06efdd9b9911b9"
+    }
+  ],
+  "repo_inputs": [
+    {
+      "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
+      "sha256": "6337f537ac3b8b7248e00632d9f3d899a410fbadad4319a718b0e39905717a9d"
+    }
+  ],
+  "build_boundary": "New target is not registered in phase2. Existing prepared RST → manual-ir/v2 → shared Web/MyST pipeline validates this body; build.py check of the JE-1000F fixture is a repository regression only.",
+  "normalizations": [
+    "The PDF has no text layer (type outlined); live copy is the verbatim transcription in source/transcription.json",
+    "Only the Japanese face is on the Web (operator decision 2026-10-26); the international face, the Jackery wordmark and the production drawing furniture are web-excluded",
+    "The bubble line break 「黒のプラス|チック」 is joined",
+    "The print table's third column (the two connection figures beside the DC7909 and DC8020 rows) follows the table as two figures in row order; the empty cell beside the header and USB-C rows is not drawn",
+    "The grey shading of the DC7909 row is not reproduced: the shared table style draws every row alike",
+    "The 0.9mm / 2.0mm dimensions and port names are table text above and below the port icon, as printed"
+  ],
+  "source_concerns": [
+    {
+      "issue": "title 「Jackery Solar Genarator 接続ガイド」: 「Genarator」 (the international face prints 「Generator」)",
+      "disposition": "kept verbatim"
+    },
+    {
+      "issue": "「Jackeryポータブル電源 240（PTB201）」 has no space after Jackery, unlike every other row",
+      "disposition": "kept verbatim"
+    },
+    {
+      "issue": "「Jackery ポータブル電源 700」 is the only row without a model code in parentheses",
+      "disposition": "kept verbatim"
+    },
+    {
+      "issue": "the note lead ends with a half-width colon 「:」",
+      "disposition": "kept verbatim"
+    },
+    {
+      "issue": "the lead announces 「次の解決策」 but the ※ line that follows states an incompatibility, not a solution",
+      "disposition": "kept verbatim"
+    }
+  ],
+  "component_map": [
+    {
+      "block": "title",
+      "shared": "Furo/shared Web heading (H1); the only print heading"
+    },
+    {
+      "block": "introductory sentence",
+      "shared": "body paragraph"
+    },
+    {
+      "block": "grey note box (lead + ※ note)",
+      "shared": "shared hb-text-panel"
+    },
+    {
+      "block": "ポータブル電源の型番 / DC入力 table",
+      "shared": "plain table with native cells (declared in shared_component_exceptions): model names, port names and dimensions are live text; port icons are images in the cells"
+    },
+    {
+      "block": "DC7909 connection figure",
+      "shared": "HB-SPECIAL-REFERENCE-FIGURE (base-art-live-copy): bubble 「黒のプラスチック」 is a live pill, 「DC7909（メスコネクタ）」 a live label; connector tags DC7909/DC8020, markers 1/2 and 「または」 stay in the art"
+    },
+    {
+      "block": "DC8020 connection figure",
+      "shared": "HB-SPECIAL-REFERENCE-FIGURE (base-art-live-copy): bubble 「ロック溝」 is a live pill, 「DC8020（メスコネクタ）」 a live label; connector tags, markers and 「または」 stay in the art"
+    },
+    {
+      "block": "figure label policy",
+      "shared": "as JA-CK01A-BK-QG JP: Japanese captions and the bubbles (a text box drawn in the art must be removed and drawn by shared CSS, web-artwork-reuse.md) are live; small part tags tied to leader dots inside the magnified insets, the numbered markers and the connector word between the two alternatives stay in the art like the quick guide's wire legends, so the stacked mobile labels never list a detached 「または」 or tag"
+    }
+  ],
+  "shared_component_exceptions": [
+    {
+      "language": "ja",
+      "page_id": "01_connection_guide_ja.rst",
+      "kind": "table",
+      "text_sha256": "bd47cab41e944ec128de784f71e6106954fd012685ce8b71b4f5a102a12eb8bb",
+      "reason": "ポータブル電源の型番 / DC入力 compatibility table (three model groups, each with its DC input port icon, dimension and port name): no shared ComponentSpec covers a model-to-port compatibility table (HB-TABLE-SPEC needs a spec section title and label/value rows; HB-TABLE-REFERENCE and the symbol/LCD tables do not take a model list), so it is a plain native table with the shared table styling and no package colour or border"
+    }
+  ]
+}

@@ -1,0 +1,307 @@
+{
+  "schema_version": "source-operator-acceptance/v1",
+  "target": {
+    "model": "JS-100I",
+    "region": "JP",
+    "language": "ja"
+  },
+  "operator_quote": "按新版本包发布",
+  "date": "2026-10-27",
+  "merge_authorization": null,
+  "merge_policy": "engineering PR merged after operator review (AGENTS.md §8.6) or under a live merge_authorizations entry; recorded in the PR",
+  "reviewed_renders": [
+    "evidence/browser-1280.png",
+    "evidence/browser-390.png"
+  ],
+  "operator_decisions": [
+    "live page review 2026-10-27: 「这个表格样式不对吧」 — the 電気データ table lacks the shared spec-table frame of 基本情報 and 多機能アダプタ",
+    "reviewed the 1280/390 renders of the shared-frame 電気データ table (bold STC/BNPI header, no narrow-screen scroll) and chose a new edition package: 「按新版本包发布」",
+    "base release decisions carry over unchanged: 「全部照录，版式都接受，上线提交发布，保留疑点后续纠正」"
+  ],
+  "retained_source_concerns": [
+    {
+      "issue": "cover asks to read 「安全上のご注意」, but the manual's safety chapter is titled 使用ガイド（ご使用前の注意事項）",
+      "page": 1,
+      "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate (「保留疑点后续纠正」)"
+    },
+    {
+      "issue": "「分解・取り外ししないでください」 (doubled し)",
+      "page": 2,
+      "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate (「保留疑点后续纠正」)"
+    },
+    {
+      "issue": "「強風・雹悪天候時」 (雹 directly before 悪天候; likely 雹・悪天候)",
+      "page": 2,
+      "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate (「保留疑点后续纠正」)"
+    },
+    {
+      "issue": "「さらされることがありますそのため」 missing 。 between sentences",
+      "page": 2,
+      "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate (「保留疑点后续纠正」)"
+    },
+    {
+      "issue": "refers to 「使用方法」 while the chapter is titled 使い方",
+      "page": 2,
+      "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate (「保留疑点后续纠正」)"
+    },
+    {
+      "issue": "「マルチ充電ケーブル」 vs 同梱品/elsewhere 「多機能充電ケーブル」",
+      "page": 3,
+      "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate (「保留疑点后续纠正」)"
+    },
+    {
+      "issue": "「NEWシリーズ(240NEWを除く）」 mixes a half-width opening and a full-width closing parenthesis",
+      "page": 6,
+      "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate (「保留疑点后续纠正」)"
+    },
+    {
+      "issue": "heading 「入力端子はUSB-Cの場合」 uses は where the 8020/7909 headings use が",
+      "page": 7,
+      "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate (「保留疑点后续纠正」)"
+    },
+    {
+      "issue": "「パネル充電ケーブ8020端子」 (ケーブル missing ル)",
+      "page": 8,
+      "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate (「保留疑点后续纠正」)"
+    },
+    {
+      "issue": "「太陽光パネル」「インジケータ」 in the body vs ソーラーパネル / インジケーター elsewhere",
+      "page": 8,
+      "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate (「保留疑点后续纠正」)"
+    },
+    {
+      "issue": "device label 「電源グループ」 (likely intended モバイルバッテリー / power bank)",
+      "page": 9,
+      "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate (「保留疑点后续纠正」)"
+    },
+    {
+      "issue": "「多機能アダプタ」 vs p.9 「多機能アダプター」",
+      "page": 10,
+      "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate (「保留疑点后续纠正」)"
+    },
+    {
+      "issue": "「ので、らかじめご了承ください」 (あらかじめ missing あ)",
+      "page": 11,
+      "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate (「保留疑点后续纠正」)"
+    },
+    {
+      "issue": "「返金での対応となることがあります」 missing 。",
+      "page": 11,
+      "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate (「保留疑点后续纠正」)"
+    },
+    {
+      "issue": "warranty exclusion 3 carries an unnumbered second line 「移設・輸送・落下等による物理的な故障・損傷」 (likely a separate item)",
+      "page": 12,
+      "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate (「保留疑点后续纠正」)"
+    },
+    {
+      "issue": "official site printed as http://www.jackery.jp (not https)",
+      "page": 12,
+      "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate (「保留疑点后续纠正」)"
+    },
+    {
+      "issue": "outlined-glyph transcription ambiguity: full-width ：/（） vs half-width in proportional Japanese setting (warranty colons, notes, 短絡電流（Isc）), クラスII (two letters I assumed, not Ⅱ), ⎓ (U+2393) for the DC symbol",
+      "page": null,
+      "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate (「保留疑点后续纠正」)"
+    },
+    {
+      "issue": "no printed manual version, material number or ERP code; PDF title 【Jackery SolarSaga 100 Air】说明书",
+      "page": null,
+      "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate (「保留疑点后续纠正」)"
+    }
+  ],
+  "original_source_sha256": "cc8b3421221bf11b03f2ddd0ce86519605189fbe0721a7d8a536520d75513e6f",
+  "reviewed_inputs": [
+    {
+      "path": "assets/angle.png",
+      "size": 106054,
+      "sha256": "cc6c96c9b5ff68b0f45e79bc9194664e4191ae9884e3e34095864790511b965e"
+    },
+    {
+      "path": "assets/angle_choice_1.png",
+      "size": 13349,
+      "sha256": "ea9307d45f0616cd0de6bd14243799c9675c03cc17219ced4a5d7cfd07fa9f11"
+    },
+    {
+      "path": "assets/angle_choice_2.png",
+      "size": 11757,
+      "sha256": "fcec905512471cea168c085300b11b806e34a19f5cc1fb4b4f2a2889dcf59bb8"
+    },
+    {
+      "path": "assets/contact_qr.png",
+      "size": 3002,
+      "sha256": "3ef838c9c927d420ede815853601097192e85a207d7e1bc56d871e4f25702b91"
+    },
+    {
+      "path": "assets/dc7909.png",
+      "size": 129185,
+      "sha256": "10dc4ceb4e1dfa1c9b39b3ac3043fbed7ce47a43d9f99c3cbe1f654fda93e2bd"
+    },
+    {
+      "path": "assets/dc8020.png",
+      "size": 116741,
+      "sha256": "424b6844a1e03880f1e1bb37fd2df7dcee5610725d1a60379e6009cc3e18981d"
+    },
+    {
+      "path": "assets/device.png",
+      "size": 120807,
+      "sha256": "602ae8ad9a234fcee0a41d749e0fbabc975e6c9764551c03c3ca1d85369ab883"
+    },
+    {
+      "path": "assets/dust.png",
+      "size": 38496,
+      "sha256": "1e26a0f690a8de068b5ab04d92371332099c0241eddf9425645cc6b02dedc70b"
+    },
+    {
+      "path": "assets/fold_1.png",
+      "size": 49836,
+      "sha256": "a8d513b1f34f4da33e8e69cf448de72e858ca6fa1b82f72f1d4b10379810ae4b"
+    },
+    {
+      "path": "assets/fold_2.png",
+      "size": 119989,
+      "sha256": "816b24b43a0d59ca1dad4ea8aaa21e6f322ee6ed42e9ec66e33666a1c9f48d03"
+    },
+    {
+      "path": "assets/fold_3.png",
+      "size": 27826,
+      "sha256": "fc656fd4c6dc8256b9e2de7fde93b775993f23f73e310bc71d3b5d3e1d8d1bdb"
+    },
+    {
+      "path": "assets/front_view.png",
+      "size": 22413,
+      "sha256": "a57148194fe8782e278bed01fb1c34ad953ffff63293629782176036fbf23e72"
+    },
+    {
+      "path": "assets/inbox_bag.png",
+      "size": 7391,
+      "sha256": "7995365a1852cadaa0a34a5d758a299a6e0415179c657fe6a57166b515f3c515"
+    },
+    {
+      "path": "assets/inbox_cable.png",
+      "size": 8694,
+      "sha256": "0d1e2c82ce86e51eeb4a1001096fb5073c867927d8f4c86ec29cff2a86f8014f"
+    },
+    {
+      "path": "assets/inbox_manual.png",
+      "size": 11051,
+      "sha256": "ec88b051c036047e604555e86872e96b4cabdfe37d37f590c61fac7cf1c5806c"
+    },
+    {
+      "path": "assets/inbox_panel.png",
+      "size": 8790,
+      "sha256": "bfe453b396d7c30b52136317f6e3ca084f4ad6e9e59abe908772de525244f58a"
+    },
+    {
+      "path": "assets/parallel.png",
+      "size": 192150,
+      "sha256": "a9d86035eae122d74fe873563b0572c52266b73ae67026712f10ae4b78888274"
+    },
+    {
+      "path": "assets/rear_view.png",
+      "size": 89325,
+      "sha256": "a103f77845247623218dd4912bb12ed9b479db370891b3dd1a557871dd307e62"
+    },
+    {
+      "path": "assets/unfold_1.png",
+      "size": 37470,
+      "sha256": "401a4aed8b6e8e2a9b4fa0270f3694c9db7cee1ed78f0cd3834a67a45d642460"
+    },
+    {
+      "path": "assets/unfold_2.png",
+      "size": 167083,
+      "sha256": "95df14639a15683e1f5c090cce932974689c2ab8c68db78a6a39167bd5b061b2"
+    },
+    {
+      "path": "assets/unfold_3.png",
+      "size": 194102,
+      "sha256": "a697833ed68f7079e7a170d7b3c0b283ea70ffd4d52b307ec0dc85d87232cbc8"
+    },
+    {
+      "path": "assets/unfold_4.png",
+      "size": 96788,
+      "sha256": "aec21f12ad61e0f316a477735a31ea4092c16e2525a0a700e3b4db6b8fef33e7"
+    },
+    {
+      "path": "assets/usbc.png",
+      "size": 122413,
+      "sha256": "813d1260d0c1d584bcd1b46a4e696d438119afae10bde75ddba2fafa22fd4973"
+    },
+    {
+      "path": "source/asset_decisions.json",
+      "size": 7096,
+      "sha256": "eeebe6b39680265213b4cb68736f7497efa97fc6a32a8fe77501cddfcd249785"
+    },
+    {
+      "path": "source/asset_recipe.json",
+      "size": 61305,
+      "sha256": "c90abdf74c0a331b257b1f22791dbfbf1a1fc0303ac4233d0ef4317a850e00e1"
+    },
+    {
+      "path": "source/differences.md",
+      "size": 1729,
+      "sha256": "a36580f64251b28065cd5585285fecd1c910b6e97e8b2cf3ad5418148d910c1e"
+    },
+    {
+      "path": "source/discovery.md",
+      "size": 5895,
+      "sha256": "6b716f0827d72259531a70a91ef504ab059fcfa07639e277563c048ade65cbd3"
+    },
+    {
+      "path": "source/figure_labels.json",
+      "size": 24129,
+      "sha256": "a6e92217f925c02d392bab284f6e834a97be0462f4bba2e05ed3ecf086b80600"
+    },
+    {
+      "path": "source/original.pdf",
+      "size": 3403400,
+      "sha256": "cc8b3421221bf11b03f2ddd0ce86519605189fbe0721a7d8a536520d75513e6f"
+    },
+    {
+      "path": "source/page/00_preface_ja.rst",
+      "size": 510,
+      "sha256": "3338d9644c7cfb685a9f25df7c5a1707bc398009c028dd4c7792b2c902e350cd"
+    },
+    {
+      "path": "source/page/box_contents_ja.rst",
+      "size": 684,
+      "sha256": "6dadc8008ab56d2ed983cb3c2b0eb84b265d3fc40b6dff0ae2c04c282ce7a6c8"
+    },
+    {
+      "path": "source/page/contact_ja.rst",
+      "size": 563,
+      "sha256": "881dd5f8089b16b8e736ed4e8db1e3634afb97d5a73bcb3bcfd7bd43d3094d18"
+    },
+    {
+      "path": "source/page/guide_ja.rst",
+      "size": 3402,
+      "sha256": "1affecf9debf0c3776f4e07a1bbc13762e13d80c9cfcbd2ce7f0a577cefe1025"
+    },
+    {
+      "path": "source/page/spec_ja.rst",
+      "size": 3576,
+      "sha256": "a0f1aebee23c5833e1d9f061c5d08f4461bc0d975e7323421ad16cc4e42b5c7e"
+    },
+    {
+      "path": "source/page/usage_ja.rst",
+      "size": 10723,
+      "sha256": "f05cb3771f364a90dd3b55401c33225c247a247d44d74e16983d7bc342c2df82"
+    },
+    {
+      "path": "source/page/warranty_ja.rst",
+      "size": 5276,
+      "sha256": "0c38b650f78f802a3f591d52569709e1045e6d5337f526f13ad691a1811a7918"
+    },
+    {
+      "path": "source/presentation.css",
+      "size": 2456,
+      "sha256": "b770a3414eeaf9ce5272e2f918c560219521772d85eda72301f6b978a5f15785"
+    },
+    {
+      "path": "source/transcription.json",
+      "size": 38325,
+      "sha256": "965f416bfbfe4a623ab5700b7b3dca4871eb493fbef05fb038d885fc18e2d8ff"
+    }
+  ],
+  "scope": "Git-only Web release of the spec-table edition git-20261027-cc8b3421-spec-table; base edition git-20261026-cc8b3421, printed source and their release evidence unchanged; no Feishu/Base/source-table, queue, asset-registry or HTML_link writes."
+}
