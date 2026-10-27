@@ -23,7 +23,7 @@ from tools.rtd.knowledge_updates import PAGES as UPDATE_PAGES, load_updates, upd
 from tools.rtd.product_voc import normalize_endpoint, page_markup
 from tools.rtd.product_matrix import PAGE as MATRIX_PAGE, TEMPLATE as MATRIX_TEMPLATE, product_matrix_page_context
 from tools.rtd.page_metadata import (
-    head_markup, normalize_site_base_url, page_description, page_title, portal_head_markup,
+    head_markup, normalize_site_base_url, page_description, page_title, portal_head_markup, SITE_NAME,
 )
 from tools.rtd.system_data import system_data_page_context
 from tools.rtd.system_workspace import SYSTEM_PAGE, SYSTEM_TEMPLATE, system_page_context
@@ -124,7 +124,7 @@ def without_leading_language_label(body: str, label: str) -> str:
 
 
 def configure(app, config) -> None:
-    config.html_title = "Manual Center"
+    config.html_title = SITE_NAME
     # Absolute engineering assets are independent of the frozen source config.
     config.templates_path = [str(ASSETS), *config.templates_path]
     config.html_static_path = [*config.html_static_path, str(ASSETS / PathSegments.STATIC)]
@@ -266,6 +266,7 @@ def page_context(app, pagename, templatename, context, doctree):
     context["products"] = products
     context["navigation"] = navigation_view(settings, products)
     context["site_nav"] = site_nav(app)
+    context["internal_shell"] = not manuals_only(app)
     context["analytics_beacon"] = beacon_markup(beacon_token)
     context["portal_head_meta"] = portal_head_markup(site_base_url=site_base_url)
     context["product_voc"] = voc_markup
