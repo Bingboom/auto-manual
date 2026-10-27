@@ -213,11 +213,15 @@ class RtdPortalTests(unittest.TestCase):
         self.assertIn("按目录查看全部说明书", page)
         self.assertIn("说明书资料库", page)
         self.assertNotIn('class="brand" href="#" aria-label="Jackery', page)
-        for internal_path in ("workspace/", "products/knowledge.html", "market/policy.html", "ai-share/"):
-            self.assertNotIn(f'href="{internal_path}', page)
-        self.assertNotIn("workspace/design", page)
+        # The private (combined) root carries the internal shell so readers can return to the knowledge base.
+        for internal_path in ("workspace/index.html", "workspace/deliverables/index.html",
+                              "products/knowledge.html", "market/policy.html"):
+            self.assertIn(f'href="{internal_path}"', page)
+        self.assertNotIn('href="ai-share/', page)
         self.assertNotIn("先学最少必要的产品知识", page)
-        self.assertNotIn('class="app-switch"', page)
+        switch = BeautifulSoup(page, "html.parser").select_one(".app-switch")
+        self.assertEqual([(a.get_text(), a.get("class")) for a in switch.select("a")],
+                         [("知识库", None), ("说明书资料库", ["selected"])])
         self.assertIn('JE-TEST/JP/md/manual_JP.html', page)
         self.assertTrue((self.root / "after" / "_static" / "portal.css").is_file())
         self.assertNotIn("LOCAL DESIGN PREVIEW", page)
@@ -348,7 +352,7 @@ class RtdPortalTests(unittest.TestCase):
                  "workspace/system/index.html", "workspace/deliverables/index.html",
                  "workspace/design/index.html")
         self.assertEqual({page: outline(sidebar) for page, sidebar in sidebars.items()},
-                         {"index.html": manuals, **dict.fromkeys(pages, knowledge)})
+                         {"index.html": knowledge, **dict.fromkeys(pages, knowledge)})
         site = "https://site.invalid/"
         home = BeautifulSoup((out / "workspace" / "index.html").read_text(encoding="utf-8"), "html.parser")
         # The 知识库首页 cards mirror the sidebar's groups after 知识库, in its order (every page is built here).

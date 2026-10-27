@@ -266,6 +266,7 @@ def page_context(app, pagename, templatename, context, doctree):
     context["products"] = products
     context["navigation"] = navigation_view(settings, products)
     context["site_nav"] = site_nav(app)
+    context["internal_shell"] = not manuals_only(app)
     context["analytics_beacon"] = beacon_markup(beacon_token)
     context["portal_head_meta"] = portal_head_markup(site_base_url=site_base_url)
     context["product_voc"] = voc_markup
