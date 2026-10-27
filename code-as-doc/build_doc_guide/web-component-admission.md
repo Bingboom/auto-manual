@@ -75,3 +75,7 @@ identities without that opt-in still fail.
 ## Reviewed symbol-caption errata
 
 Frozen symbol-caption admission joins printed line-end word splits only through exact source-bound `caption_linebreak_joins`; inline hyphens remain significant. A known wrong-language source caption requires an operator-approved entry in `docs/renderers/contracts/symbol_caption_errata.json`, bound to the source PDF SHA-256, target/language, physical page, caption pixel SHA-256, actual source text and reviewed caption. Candidate manifests cannot approve their own errata. The gate still verifies the original caption pixels, source glyph and unchanged shared-symbol bytes; duplicate, changed or unmatched bindings fail. Rebuild and reseal each affected language after source-copy or symbol-binding changes.
+
+## Reviewed symbol-glyph waivers
+
+Each bound shared glyph must match its native source glyph within the fixed 0.02 tolerance. When the authority prints a design variation of a shared mark that no shared variant matches, the operator may approve a waiver in `docs/renderers/contracts/symbol_glyph_waivers.json`, bound to the source PDF/AI SHA-256, target/language, physical page, drawing indices, shared symbol key and asset SHA-256, with a reviewed `max_mean_channel_error`. The gate still renders and measures the glyph, accepts it only up to that value, and never beyond the fixed 0.03 ceiling, so a substituted glyph still fails. Candidate manifests cannot approve their own waivers; the admission report names the waiver used.
