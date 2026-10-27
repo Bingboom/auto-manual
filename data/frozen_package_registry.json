@@ -1425,6 +1425,11 @@
       "approval": "User request 2026-10-26 (「分几个窗口把这个目录下面的文档都转成网页文档」「韩语文档除外」): Git-only JS-100I JP Web conversion; operator 「全部照录，版式都接受，上线提交发布，保留疑点后续纠正」 2026-10-27, merged by operator PR review (see source/approval.json)",
       "registered": "2026-10-26",
       "known_drift": {}
+    },
+    "manual_sources/JS-CONNECTION-GUIDE/JP/ja/git-20261026-bc35fd65-connection-guide": {
+      "approval": "User request 2026-10-26 (「分几个窗口把这个目录下面的文档都转成网页文档」「韩语文档除外」; operator chose Japanese side only and route JS-CONNECTION-GUIDE): Git-only JS-CONNECTION-GUIDE JP Web conversion; operator accepted candidate eb61b66 for release 2026-10-27 (「上线提交发布」), merged by operator PR review; acceptance hash-bound in source/approval.json",
+      "registered": "2026-10-26",
+      "known_drift": {}
     }
   },
   "drift_log": [

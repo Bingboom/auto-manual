@@ -1,0 +1,71 @@
+{
+  "schema_version": "source-operator-acceptance/v1",
+  "target": {
+    "model": "JS-CONNECTION-GUIDE",
+    "region": "JP",
+    "language": "ja"
+  },
+  "operator_quote": "上线提交发布",
+  "date": "2026-10-27",
+  "merge_authorization": "none: the operator reviews and merges the engineering PR (AGENTS.md §8.6)",
+  "reviewed_source_commit": "eb61b66",
+  "operator_decisions": [
+    "Japanese face only; the international EN/FR/ES/PT face stays archived in source/original.pdf and web-excluded (2026-10-26)",
+    "route JS-CONNECTION-GUIDE/JP/ja (2026-10-26)",
+    "release the reviewed candidate (1280/390 renders and the PDF/reference comparison, PR #1610)"
+  ],
+  "original_source_sha256": "bc35fd6518769bd26c88fee088cc3a748c0ef680f4419682bede0f62738f8821",
+  "reviewed_inputs": [
+    {
+      "path": "assets/connection-dc7909.png",
+      "size": 337545,
+      "sha256": "abe4cca076900a7be9f6bc2adb081d093d4a8dbccbcd586d01fabc739487666f"
+    },
+    {
+      "path": "assets/connection-dc8020.png",
+      "size": 331080,
+      "sha256": "6e73f775619401ddce19df07328191bf264282a9bc16978d296647dfcca2cdc4"
+    },
+    {
+      "path": "assets/port-dc7909.png",
+      "size": 126764,
+      "sha256": "2ee981d5176fab8f58a6839465b3a52fdc0eebef4328391ebea3926769afeea8"
+    },
+    {
+      "path": "assets/port-dc8020.png",
+      "size": 123005,
+      "sha256": "ac5ec92cf0865d45fd453f9f8b7fe43c435c6e4a5da0399952a9c2e254340e8c"
+    },
+    {
+      "path": "assets/port-usb-c.png",
+      "size": 114269,
+      "sha256": "253e6efc97b0505d7b966ececf0f6ad074e293eaeeae985316ae6ac574e1289f"
+    },
+    {
+      "path": "source/asset_decisions.json",
+      "size": 9709,
+      "sha256": "99c3032a7cdc720ae499ada6206b15aa20d024a329c9088bd88e69981662c6a8"
+    },
+    {
+      "path": "source/original.pdf",
+      "size": 27334114,
+      "sha256": "bc35fd6518769bd26c88fee088cc3a748c0ef680f4419682bede0f62738f8821"
+    },
+    {
+      "path": "source/page/01_connection_guide_ja.rst",
+      "size": 3587,
+      "sha256": "a03a74c88dd160de1551dff51234166f52c2472c956c25e6507bd2af038f0094"
+    },
+    {
+      "path": "source/presentation.css",
+      "size": 1170,
+      "sha256": "12052b5151a7bcc1a4b883fd0e029ba1137e44a15745831251fed3f96032c50c"
+    },
+    {
+      "path": "source/transcription.json",
+      "size": 9697,
+      "sha256": "43c471b02f53846d9220ac71e208048f3fd491698e23cd04f0c0e742a329b21b"
+    }
+  ],
+  "scope": "Git-only Web release of the JS-CONNECTION-GUIDE JP connection guide git-20261026-bc35fd65-connection-guide; no Feishu/Base/source-table, queue, asset-registry or HTML_link writes."
+}
