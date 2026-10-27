@@ -1,0 +1,177 @@
+{
+  "schema_version": "js-100i-jp-asset-decisions/v1",
+  "assets": [
+    {
+      "asset": "assets/inbox_panel.png",
+      "decision": "reuse",
+      "jp_page": 3,
+      "source_path": "docs/renderers/web/assets/js100i_eu_en/inbox_panel.png",
+      "sha256": "bfe453b396d7c30b52136317f6e3ca084f4ad6e9e59abe908772de525244f58a",
+      "evidence": "同梱品① panel drawing identical to the JP card"
+    },
+    {
+      "asset": "assets/inbox_bag.png",
+      "decision": "reuse",
+      "jp_page": 3,
+      "source_path": "docs/renderers/web/assets/js100i_eu_en/inbox_bag.png",
+      "sha256": "7995365a1852cadaa0a34a5d758a299a6e0415179c657fe6a57166b515f3c515",
+      "evidence": "同梱品② storage bag drawing identical"
+    },
+    {
+      "asset": "assets/inbox_cable.png",
+      "decision": "reuse",
+      "jp_page": 3,
+      "source_path": "docs/renderers/web/assets/js100i_eu_en/inbox_cable.png",
+      "sha256": "0d1e2c82ce86e51eeb4a1001096fb5073c867927d8f4c86ec29cff2a86f8014f",
+      "evidence": "同梱品③ charging cable drawing identical"
+    },
+    {
+      "asset": "assets/unfold_1.png",
+      "decision": "reuse",
+      "jp_page": 4,
+      "source_path": "docs/renderers/web/assets/js100i_eu_shared/unfold_1.png",
+      "sha256": "401a4aed8b6e8e2a9b4fa0270f3694c9db7cee1ed78f0cd3834a67a45d642460",
+      "evidence": "展開 1: bag and panel drawing identical, both arrows"
+    },
+    {
+      "asset": "assets/unfold_2.png",
+      "decision": "reuse",
+      "jp_page": 4,
+      "source_path": "docs/renderers/web/assets/js100i_eu_shared/unfold_2.png",
+      "sha256": "95df14639a15683e1f5c090cce932974689c2ab8c68db78a6a39167bd5b061b2",
+      "evidence": "展開 2: three unfolding stages identical"
+    },
+    {
+      "asset": "assets/unfold_3.png",
+      "decision": "reuse",
+      "jp_page": 5,
+      "source_path": "docs/renderers/web/assets/js100i_eu_shared/unfold_3.png",
+      "sha256": "a697833ed68f7079e7a170d7b3c0b283ea70ffd4d52b307ec0dc85d87232cbc8",
+      "evidence": "展開 3: rear view with both stands identical"
+    },
+    {
+      "asset": "assets/fold_1.png",
+      "decision": "reuse",
+      "jp_page": 5,
+      "source_path": "docs/renderers/web/assets/js100i_eu_shared/fold_1.png",
+      "sha256": "a8d513b1f34f4da33e8e69cf448de72e858ca6fa1b82f72f1d4b10379810ae4b",
+      "evidence": "収納 1: flat panel identical"
+    },
+    {
+      "asset": "assets/fold_2.png",
+      "decision": "reuse",
+      "jp_page": 5,
+      "source_path": "docs/renderers/web/assets/js100i_eu_shared/fold_2.png",
+      "sha256": "816b24b43a0d59ca1dad4ea8aaa21e6f322ee6ed42e9ec66e33666a1c9f48d03",
+      "evidence": "収納 2: two folding stages identical"
+    },
+    {
+      "asset": "assets/angle_choice_1.png",
+      "decision": "reuse",
+      "jp_page": 8,
+      "source_path": "docs/renderers/web/assets/js100i_eu_shared/angle_choice_1.png",
+      "sha256": "ea9307d45f0616cd0de6bd14243799c9675c03cc17219ced4a5d7cfd07fa9f11",
+      "evidence": "check mark and indicator drawing identical; caption is native text"
+    },
+    {
+      "asset": "assets/angle_choice_2.png",
+      "decision": "reuse",
+      "jp_page": 8,
+      "source_path": "docs/renderers/web/assets/js100i_eu_shared/angle_choice_2.png",
+      "sha256": "fcec905512471cea168c085300b11b806e34a19f5cc1fb4b4f2a2889dcf59bb8",
+      "evidence": "cross mark and indicator drawing identical; caption is native text"
+    },
+    {
+      "asset": "assets/dust.png",
+      "decision": "reuse",
+      "jp_page": 9,
+      "source_path": "docs/renderers/web/assets/js100i_eu_shared/dust.png",
+      "sha256": "1e26a0f690a8de068b5ab04d92371332099c0241eddf9425645cc6b02dedc70b",
+      "evidence": "rubber-plug close-up identical; the printed note is native text"
+    },
+    {
+      "asset": "assets/inbox_manual.png",
+      "decision": "extract",
+      "jp_page": 3,
+      "reason": "JP card shows this manual's own cover; the EU card is a generic document icon",
+      "sha256": "ec88b051c036047e604555e86872e96b4cabdfe37d37f590c61fac7cf1c5806c"
+    },
+    {
+      "asset": "assets/front_view.png",
+      "decision": "extract",
+      "jp_page": 3,
+      "reason": "EU product_views.png bakes English labels and pairs front/rear views; no label-free base exists",
+      "sha256": "a57148194fe8782e278bed01fb1c34ad953ffff63293629782176036fbf23e72"
+    },
+    {
+      "asset": "assets/rear_view.png",
+      "decision": "extract",
+      "jp_page": 4,
+      "reason": "EU product_views.png bakes English labels; no label-free rear view exists",
+      "sha256": "a103f77845247623218dd4912bb12ed9b479db370891b3dd1a557871dd307e62"
+    },
+    {
+      "asset": "assets/unfold_4.png",
+      "decision": "extract",
+      "jp_page": 5,
+      "reason": "JP step 4 shows a different power station from the EU unfold_4 art",
+      "sha256": "aec21f12ad61e0f316a477735a31ea4092c16e2525a0a700e3b4db6b8fef33e7"
+    },
+    {
+      "asset": "assets/fold_3.png",
+      "decision": "extract",
+      "jp_page": 6,
+      "reason": "JP step 3 prints both bag arrows; the EU fold_3 art lost its lower arrow",
+      "sha256": "fc656fd4c6dc8256b9e2de7fde93b775993f23f73e310bc71d3b5d3e1d8d1bdb"
+    },
+    {
+      "asset": "assets/dc8020.png",
+      "decision": "extract",
+      "jp_page": 6,
+      "reason": "JP DC8020 figure shows a different power station and port close-up",
+      "sha256": "424b6844a1e03880f1e1bb37fd2df7dcee5610725d1a60379e6009cc3e18981d"
+    },
+    {
+      "asset": "assets/dc7909.png",
+      "decision": "extract",
+      "jp_page": 6,
+      "reason": "JP DC7909 figure shows Explorer 1000 and a straight adapter; EU shows another model and an L adapter",
+      "sha256": "10dc4ceb4e1dfa1c9b39b3ac3043fbed7ce47a43d9f99c3cbe1f654fda93e2bd"
+    },
+    {
+      "asset": "assets/usbc.png",
+      "decision": "extract",
+      "jp_page": 7,
+      "reason": "JP USB-C figure shows a different power station and panel layout",
+      "sha256": "813d1260d0c1d584bcd1b46a4e696d438119afae10bde75ddba2fafa22fd4973"
+    },
+    {
+      "asset": "assets/parallel.png",
+      "decision": "extract",
+      "jp_page": 7,
+      "reason": "JP SolarSaga adapter figure shows a different power station and panel arrangement",
+      "sha256": "a9d86035eae122d74fe873563b0572c52266b73ae67026712f10ae4b78888274"
+    },
+    {
+      "asset": "assets/angle.png",
+      "decision": "extract",
+      "jp_page": 8,
+      "reason": "JP indicator figure draws the panel, rays and close-up at another angle and scale than EU angle.png",
+      "sha256": "cc6c96c9b5ff68b0f45e79bc9194664e4191ae9884e3e34095864790511b965e"
+    },
+    {
+      "asset": "assets/device.png",
+      "decision": "extract",
+      "jp_page": 9,
+      "reason": "JP device figure shows another power station and a closed adapter close-up",
+      "sha256": "602ae8ad9a234fcee0a41d749e0fbabc975e6c9764551c03c3ca1d85369ab883"
+    },
+    {
+      "asset": "assets/contact_qr.png",
+      "decision": "extract",
+      "jp_page": 12,
+      "reason": "JP back-cover QR code; no shared asset encodes this target",
+      "sha256": "3ef838c9c927d420ede815853601097192e85a207d7e1bc56d871e4f25702b91"
+    }
+  ]
+}
