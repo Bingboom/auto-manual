@@ -73,8 +73,13 @@ The seal gate binds every symbol row, so the operator decided 「那三行也换
 
 The earlier approval covers the four-row Markdown only. `derive_shared_symbols.py`
 applies it while its Markdown hashes match, so the seven-row package is a candidate
-again until the operator approves the new pt/nl/pl renderings. The six template
-locales are unchanged by this decision.
+again until the operator approves the new pt/nl/pl renderings.
+
+For the six template locales the operator ruled 「图标 外观一样 就是共用的」: their
+template warning, Li-ion 32 and WEEE images show the same glyph, tint and
+proportions as `warning/outline-triangle-tinted`, `li-ion/recycle-li-ion-32-gray`
+and `weee/crossed-bin-bar`, so they count as shared and stay unchanged. The template
+`weee.png` carries an opaque white backdrop, which is invisible on the light page.
 
 ## Pending
 
