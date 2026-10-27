@@ -1,0 +1,566 @@
+[
+ {
+  "slot": "inbox-unit",
+  "searched": [
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols manifest: fcc, weee, battery-weee, li-ion variants)",
+   "docs/templates/word_template/common_assets/",
+   "docs/renderers/latex/assets/",
+   "manual_sources/*/US/en (JA-AD500A-SIL only: accessory, no Explorer art)"
+  ],
+  "candidate": "JP inbox-unit.png",
+  "decision": "extract target original complete panel",
+  "reason": "US front with three NEMA 5-15 outlets; JP art shows JP two-pin outlets",
+  "physical_page": 2,
+  "bbox": [
+   48,
+   432,
+   100,
+   486
+  ],
+  "final_path": "assets/inbox-unit.png",
+  "sha256": "fe82058ec04582c3f6aa4da1df0aaecc71d9c9e30c87fdbd5317c783535fe965",
+  "background": "retain complete panel, leader lines, captions, phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "inbox-cable",
+  "searched": [
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols manifest: fcc, weee, battery-weee, li-ion variants)",
+   "docs/templates/word_template/common_assets/",
+   "docs/renderers/latex/assets/",
+   "manual_sources/*/US/en (JA-AD500A-SIL only: accessory, no Explorer art)"
+  ],
+  "candidate": "JP inbox-cable.svg (from JE-1500D JP)",
+  "decision": "extract target original complete panel",
+  "reason": "US three-prong plug; JP cable has a two-pin plug",
+  "physical_page": 2,
+  "bbox": [
+   172,
+   431,
+   206,
+   486
+  ],
+  "final_path": "assets/inbox-cable.png",
+  "sha256": "82ccf8b38a446dce8fce6f0c6ce9e8288d412b1ee2110b0a22eea0bbced82e6b",
+  "background": "retain complete panel, leader lines, captions, phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "inbox-manual",
+  "searched": [
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols manifest: fcc, weee, battery-weee, li-ion variants)",
+   "docs/templates/word_template/common_assets/",
+   "docs/renderers/latex/assets/",
+   "manual_sources/*/US/en (JA-AD500A-SIL only: accessory, no Explorer art)"
+  ],
+  "candidate": "JP inbox-manual.png",
+  "decision": "extract target original complete panel",
+  "reason": "English USER MANUAL cover vs Japanese 取扱説明書 cover",
+  "physical_page": 2,
+  "bbox": [
+   278,
+   431,
+   318,
+   485
+  ],
+  "final_path": "assets/inbox-manual.png",
+  "sha256": "cbda9ec11a07a8d88ebea3e76a126f807c60580c096e1e5f83569be37eaeb0ac",
+  "background": "retain complete panel, leader lines, captions, phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "overview",
+  "searched": [
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols manifest: fcc, weee, battery-weee, li-ion variants)",
+   "docs/templates/word_template/common_assets/",
+   "docs/renderers/latex/assets/",
+   "manual_sources/*/US/en (JA-AD500A-SIL only: accessory, no Explorer art)"
+  ],
+  "candidate": "JP overview.png",
+  "decision": "extract target original complete panel",
+  "reason": "US outlets and English leader labels; JP labels are Japanese",
+  "physical_page": 3,
+  "bbox": [
+   24,
+   50,
+   344,
+   312.3
+  ],
+  "redact_text": [
+   [
+    27,
+    290,
+    106,
+    307.5
+   ]
+  ],
+  "final_path": "assets/overview.png",
+  "sha256": "8f12e46975131d695f6481f7db2f09181588468988811b5cc41e88cb3d119a7c",
+  "background": "retain complete panel, leader lines, captions, phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "lcd-map",
+  "searched": [
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols manifest: fcc, weee, battery-weee, li-ion variants)",
+   "docs/templates/word_template/common_assets/",
+   "docs/renderers/latex/assets/",
+   "manual_sources/*/US/en (JA-AD500A-SIL only: accessory, no Explorer art)"
+  ],
+  "candidate": "JP lcd-map.png",
+  "decision": "extract target original complete panel",
+  "reason": "same LCD glyphs but different leader numbering layout (EN ①–④ stacked left, ⑯–⑲ right; JP ①–④ across the top)",
+  "physical_page": 3,
+  "bbox": [
+   24,
+   311.9,
+   344,
+   460
+  ],
+  "final_path": "assets/lcd-map.png",
+  "sha256": "3e8df5af53365166366aa389e866c0237703d6d93058f0fc6dfdc58b085ae386",
+  "background": "retain complete panel, leader lines, captions, phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "led-modes",
+  "searched": [
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols manifest: fcc, weee, battery-weee, li-ion variants)",
+   "docs/templates/word_template/common_assets/",
+   "docs/renderers/latex/assets/",
+   "manual_sources/*/US/en (JA-AD500A-SIL only: accessory, no Explorer art)"
+  ],
+  "candidate": "none in JP (JP prints no LED mode panel)",
+  "decision": "extract target original complete panel",
+  "reason": "no candidate",
+  "physical_page": 6,
+  "bbox": [
+   30,
+   190,
+   335,
+   301.5
+  ],
+  "final_path": "assets/led-modes.png",
+  "sha256": "a31b3d0710b32ddf97f8b38fda32d6a2244ec27f178732a7807b9af531693d17",
+  "background": "retain complete panel, leader lines, captions, phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "ac-charge",
+  "searched": [
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols manifest: fcc, weee, battery-weee, li-ion variants)",
+   "docs/templates/word_template/common_assets/",
+   "docs/renderers/latex/assets/",
+   "manual_sources/*/US/en (JA-AD500A-SIL only: accessory, no Explorer art)"
+  ],
+  "candidate": "JP ac-charge.png",
+  "decision": "extract target original complete panel",
+  "reason": "English captions AC Charger / Explorer 1000",
+  "physical_page": 7,
+  "bbox": [
+   168,
+   76,
+   342,
+   172
+  ],
+  "final_path": "assets/ac-charge.png",
+  "sha256": "5dfb40f318ef54d7d63191223c30b7ba1eabd636496894da0ba221ff59095a7b",
+  "background": "retain complete panel, leader lines, captions, phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "solar-direct",
+  "searched": [
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols manifest: fcc, weee, battery-weee, li-ion variants)",
+   "docs/templates/word_template/common_assets/",
+   "docs/renderers/latex/assets/",
+   "manual_sources/*/US/en (JA-AD500A-SIL only: accessory, no Explorer art)"
+  ],
+  "candidate": "JP solar-direct.png",
+  "decision": "extract target original complete panel",
+  "reason": "English caption Explorer 1000",
+  "physical_page": 7,
+  "bbox": [
+   75,
+   248,
+   295,
+   341
+  ],
+  "final_path": "assets/solar-direct.png",
+  "sha256": "612402b3a471ae16bc01dc2267c1c80a29a0263d097cd908695689f025b4ce1b",
+  "background": "retain complete panel, leader lines, captions, phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "solar-adapter",
+  "searched": [
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols manifest: fcc, weee, battery-weee, li-ion variants)",
+   "docs/templates/word_template/common_assets/",
+   "docs/renderers/latex/assets/",
+   "manual_sources/*/US/en (JA-AD500A-SIL only: accessory, no Explorer art)"
+  ],
+  "candidate": "JP solar-adapter.png",
+  "decision": "extract target original complete panel",
+  "reason": "English caption Explorer 1000",
+  "physical_page": 7,
+  "bbox": [
+   35,
+   360,
+   325,
+   455
+  ],
+  "final_path": "assets/solar-adapter.png",
+  "sha256": "02299c1ad58e6f9c645609ee34622e66f136abdac97152b095c4b3dafcf19f9e",
+  "background": "retain complete panel, leader lines, captions, phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "car-charge",
+  "searched": [
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols manifest: fcc, weee, battery-weee, li-ion variants)",
+   "docs/templates/word_template/common_assets/",
+   "docs/renderers/latex/assets/",
+   "manual_sources/*/US/en (JA-AD500A-SIL only: accessory, no Explorer art)"
+  ],
+  "candidate": "JP car-charge.png",
+  "decision": "extract target original complete panel",
+  "reason": "English captions; JP panel carries a Japanese sold-separately note",
+  "physical_page": 8,
+  "bbox": [
+   75,
+   190,
+   272,
+   293
+  ],
+  "final_path": "assets/car-charge.png",
+  "sha256": "b4b2ef4db884a87febd07c7ab04d945bdbe87c8126188f5365053a205af7550d",
+  "background": "retain complete panel, leader lines, captions, phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "app-store",
+  "searched": [
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols manifest: fcc, weee, battery-weee, li-ion variants)",
+   "docs/templates/word_template/common_assets/",
+   "docs/renderers/latex/assets/",
+   "manual_sources/*/US/en (JA-AD500A-SIL only: accessory, no Explorer art)"
+  ],
+  "candidate": "JP app-store.png",
+  "decision": "extract target original complete panel",
+  "reason": "JP badges are stacked vertically; EN prints them side by side",
+  "physical_page": 11,
+  "bbox": [
+   27,
+   473,
+   177,
+   497
+  ],
+  "final_path": "assets/app-store.png",
+  "sha256": "aed9c69d85b53a545cafd784b2855a6ecaef6daddac4ce001b026c2ffe6cdefa",
+  "background": "retain complete panel, leader lines, captions, phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "app-add",
+  "searched": [
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols manifest: fcc, weee, battery-weee, li-ion variants)",
+   "docs/templates/word_template/common_assets/",
+   "docs/renderers/latex/assets/",
+   "manual_sources/*/US/en (JA-AD500A-SIL only: accessory, no Explorer art)"
+  ],
+  "candidate": "JP app-add.png",
+  "decision": "extract target original complete panel",
+  "reason": "English App UI (My device(s), Icon Flashed) vs Japanese UI",
+  "physical_page": 12,
+  "bbox": [
+   82,
+   141,
+   268,
+   316
+  ],
+  "final_path": "assets/app-add.png",
+  "sha256": "77d7c4778d280176acd7c8284137d927c05c4024477aeb0a636382664dc402d8",
+  "background": "retain complete panel, leader lines, captions, phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "app-control",
+  "searched": [
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols manifest: fcc, weee, battery-weee, li-ion variants)",
+   "docs/templates/word_template/common_assets/",
+   "docs/renderers/latex/assets/",
+   "manual_sources/*/US/en (JA-AD500A-SIL only: accessory, no Explorer art)"
+  ],
+  "candidate": "JP app-control.png",
+  "decision": "extract target original complete panel",
+  "reason": "mirrored layout and Japanese labels in JP",
+  "physical_page": 12,
+  "bbox": [
+   62,
+   347,
+   308,
+   431
+  ],
+  "final_path": "assets/app-control.png",
+  "sha256": "5bf4ae40d97edb0f84abf2487c83ba8551a7977a0458068fe14c1406b4831f73",
+  "background": "retain complete panel, leader lines, captions, phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "app-results",
+  "searched": [
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols manifest: fcc, weee, battery-weee, li-ion variants)",
+   "docs/templates/word_template/common_assets/",
+   "docs/renderers/latex/assets/",
+   "manual_sources/*/US/en (JA-AD500A-SIL only: accessory, no Explorer art)"
+  ],
+  "candidate": "JP app-results.png",
+  "decision": "extract target original complete panel",
+  "reason": "English App UI vs Japanese UI",
+  "physical_page": 13,
+  "bbox": [
+   36,
+   102,
+   331,
+   280
+  ],
+  "final_path": "assets/app-results.png",
+  "sha256": "74e2b1706865b2288ac14450022385f5ee3c368bff72504619010b4476bea963",
+  "background": "retain complete panel, leader lines, captions, phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "lcd-battery-ring",
+  "searched": [
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols manifest: fcc, weee, battery-weee, li-ion variants)",
+   "docs/templates/word_template/common_assets/",
+   "docs/renderers/latex/assets/",
+   "manual_sources/*/US/en (JA-AD500A-SIL only: accessory, no Explorer art)"
+  ],
+  "decision": "native vector extraction",
+  "reason": "JP shared-lcd 17_Battery_Power_Indicator PNG differs in segment layout (0.214 premultiplied mean error)",
+  "physical_page": 4,
+  "glyph_bbox": [
+   27.5,
+   245,
+   51,
+   268
+  ],
+  "drawing_indices": [
+   15
+  ],
+  "final_path": "assets/lcd-battery-ring.svg",
+  "sha256": "4985a6c6ac02a25ff36c381ea7adda43e5ccbc4629f6a6026c259d9c7159816b",
+  "background": "transparent; original PDF vector paths only, no page/cell backdrop"
+ },
+ {
+  "slot": "lcd-energy-saving",
+  "searched": [
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols manifest: fcc, weee, battery-weee, li-ion variants)",
+   "docs/templates/word_template/common_assets/",
+   "docs/renderers/latex/assets/",
+   "manual_sources/*/US/en (JA-AD500A-SIL only: accessory, no Explorer art)"
+  ],
+  "decision": "native vector extraction",
+  "reason": "JP lcd-energy-saving.svg differs (0.135); the EN H is a clipped fill (renders in browsers; MuPDF's SVG preview ignores the clip)",
+  "physical_page": 4,
+  "glyph_bbox": [
+   27.5,
+   314,
+   51,
+   331.5
+  ],
+  "drawing_indices": [
+   22,
+   23,
+   24,
+   25,
+   26,
+   27,
+   28,
+   29,
+   30
+  ],
+  "final_path": "assets/lcd-energy-saving.svg",
+  "sha256": "da1280908ce873d8452b480e7e8700c7cb378cf00dcaf26b048e3f515dec647e",
+  "background": "transparent; original PDF vector paths only, no page/cell backdrop"
+ },
+ {
+  "slot": "lcd-fault-code",
+  "searched": [
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols manifest: fcc, weee, battery-weee, li-ion variants)",
+   "docs/templates/word_template/common_assets/",
+   "docs/renderers/latex/assets/",
+   "manual_sources/*/US/en (JA-AD500A-SIL only: accessory, no Explorer art)"
+  ],
+  "decision": "native vector extraction",
+  "reason": "JP shared-lcd 25_Fault_code PNG has an opaque backdrop (fails the transparent-margin rule) and a different outline",
+  "physical_page": 5,
+  "glyph_bbox": [
+   31.5,
+   29,
+   51.5,
+   47.5
+  ],
+  "drawing_indices": [
+   2,
+   3,
+   4
+  ],
+  "final_path": "assets/lcd-fault-code.svg",
+  "sha256": "b472f7eea89a7c44a3c5111c0deecbc812611af94c01c3c1e9ce2459f9ea3478",
+  "background": "transparent; original PDF vector paths only, no page/cell backdrop"
+ },
+ {
+  "slot": "lcd-quiet-charging",
+  "searched": [
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols manifest: fcc, weee, battery-weee, li-ion variants)",
+   "docs/templates/word_template/common_assets/",
+   "docs/renderers/latex/assets/",
+   "manual_sources/*/US/en (JA-AD500A-SIL only: accessory, no Explorer art)"
+  ],
+  "decision": "native vector extraction",
+  "reason": "JP lcd-quiet-charging.svg 0.0279 > fixed 2%",
+  "physical_page": 5,
+  "glyph_bbox": [
+   33.5,
+   145,
+   47.5,
+   159
+  ],
+  "drawing_indices": [
+   9,
+   10
+  ],
+  "final_path": "assets/lcd-quiet-charging.svg",
+  "sha256": "dccb6bc2b23dff5b753983cd09ce60dff97bbda86849577ef2e870a8d3103416",
+  "background": "transparent; original PDF vector paths only, no page/cell backdrop"
+ },
+ {
+  "slot": "cert-bc",
+  "searched": [
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols manifest: fcc, weee, battery-weee, li-ion variants)",
+   "docs/templates/word_template/common_assets/",
+   "docs/renderers/latex/assets/",
+   "manual_sources/*/US/en (JA-AD500A-SIL only: accessory, no Explorer art)"
+  ],
+  "decision": "native vector extraction",
+  "reason": "no BC mark in the shared catalog or any package",
+  "physical_page": 2,
+  "glyph_bbox": [
+   185,
+   371.8,
+   201.5,
+   388
+  ],
+  "drawing_indices": [
+   5,
+   6,
+   7
+  ],
+  "final_path": "assets/cert-bc.svg",
+  "sha256": "6ac3843fc76e1e89699d0851a78b627457cb6de18fc6228aff159e91f3b7d317",
+  "background": "transparent; original PDF vector paths only, no page/cell backdrop"
+ },
+ {
+  "slot": "lcd-low-battery",
+  "searched": [
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols manifest: fcc, weee, battery-weee, li-ion variants)",
+   "docs/templates/word_template/common_assets/",
+   "docs/renderers/latex/assets/",
+   "manual_sources/*/US/en (JA-AD500A-SIL only: accessory, no Explorer art)"
+  ],
+  "decision": "reuse byte-identical",
+  "reason": "passes the fixed 2% premultiplied comparison against the EN native PDF paths (p4 0.010455)",
+  "from": "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets/lcd-low-battery.svg",
+  "final_path": "assets/lcd-low-battery.svg",
+  "sha256": "d5019853534148f388bad51234caf2f5d504a9f15e7ed3e0c0a5a034a4c0bfe8",
+  "background": "transparent; shared/reference bytes unchanged"
+ },
+ {
+  "slot": "lcd-high-temperature",
+  "searched": [
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols manifest: fcc, weee, battery-weee, li-ion variants)",
+   "docs/templates/word_template/common_assets/",
+   "docs/renderers/latex/assets/",
+   "manual_sources/*/US/en (JA-AD500A-SIL only: accessory, no Explorer art)"
+  ],
+  "decision": "reuse byte-identical",
+  "reason": "passes the fixed 2% premultiplied comparison against the EN native PDF paths (p5 0.010712)",
+  "from": "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets/lcd-high-temperature.svg",
+  "final_path": "assets/lcd-high-temperature.svg",
+  "sha256": "505ee25a2d28b966acac1e9ab3cae8e30b58a8116d7a706d85752325d20d38f8",
+  "background": "transparent; shared/reference bytes unchanged"
+ },
+ {
+  "slot": "lcd-low-temperature",
+  "searched": [
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols manifest: fcc, weee, battery-weee, li-ion variants)",
+   "docs/templates/word_template/common_assets/",
+   "docs/renderers/latex/assets/",
+   "manual_sources/*/US/en (JA-AD500A-SIL only: accessory, no Explorer art)"
+  ],
+  "decision": "reuse byte-identical",
+  "reason": "passes the fixed 2% premultiplied comparison against the EN native PDF paths (p5 0.009052)",
+  "from": "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets/lcd-low-temperature.svg",
+  "final_path": "assets/lcd-low-temperature.svg",
+  "sha256": "3bc5306353aa3ccdfcf7535ea0754df9f78c26e2a6f79462f2eb0846228cac39",
+  "background": "transparent; shared/reference bytes unchanged"
+ },
+ {
+  "slot": "lcd-battery-saving",
+  "searched": [
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols manifest: fcc, weee, battery-weee, li-ion variants)",
+   "docs/templates/word_template/common_assets/",
+   "docs/renderers/latex/assets/",
+   "manual_sources/*/US/en (JA-AD500A-SIL only: accessory, no Explorer art)"
+  ],
+  "decision": "reuse byte-identical",
+  "reason": "passes the fixed 2% premultiplied comparison against the EN native PDF paths (p5 0.014068)",
+  "from": "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets/lcd-battery-saving.svg",
+  "final_path": "assets/lcd-battery-saving.svg",
+  "sha256": "a6f22a36a43b7815c8cf8b34d6a4f324cffc005f53c337e9f317f1062f6413d2",
+  "background": "transparent; shared/reference bytes unchanged"
+ },
+ {
+  "slot": "cert-fcc",
+  "searched": [
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols manifest: fcc, weee, battery-weee, li-ion variants)",
+   "docs/templates/word_template/common_assets/",
+   "docs/renderers/latex/assets/",
+   "manual_sources/*/US/en (JA-AD500A-SIL only: accessory, no Explorer art)"
+  ],
+  "decision": "reuse byte-identical",
+  "reason": "passes the fixed 2% premultiplied comparison against the EN native PDF paths (p2 0.018253, p10 0.019338)",
+  "from": "docs/renderers/web/assets/shared/symbols/native-v1/fcc_mark.svg",
+  "final_path": "assets/cert-fcc.svg",
+  "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe",
+  "background": "transparent; shared/reference bytes unchanged"
+ },
+ {
+  "slot": "cert-weee",
+  "searched": [
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols manifest: fcc, weee, battery-weee, li-ion variants)",
+   "docs/templates/word_template/common_assets/",
+   "docs/renderers/latex/assets/",
+   "manual_sources/*/US/en (JA-AD500A-SIL only: accessory, no Explorer art)"
+  ],
+  "decision": "reuse byte-identical",
+  "reason": "passes the fixed 2% premultiplied comparison against the EN native PDF paths (p2 0.01463)",
+  "from": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_weee.png",
+  "final_path": "assets/cert-weee.png",
+  "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+  "background": "transparent; shared/reference bytes unchanged"
+ }
+]

@@ -1,0 +1,18 @@
+/* JE-1000D US: page-local geometry and type size only.
+   Colours, borders and panels come from the shared Web theme (prepared-document shared-style gate). */
+
+/* Complete source panels keep a readable print width; dense ones pan on phones. */
+#furo-main-content .hb-reference-figure { max-width: 48rem; margin-inline: auto; }
+#furo-main-content .hb-reference-figure[data-reference-id="ac-charge"],
+#furo-main-content .hb-reference-figure[data-reference-id="car-charge"],
+#furo-main-content .hb-reference-figure[data-reference-id="app-add"] { max-width: 30rem; }
+#furo-main-content .hb-reference-figure[data-reference-id="app-store"] { max-width: 18rem; margin-inline: 0; }
+@media (max-width: 760px) {
+  #furo-main-content .hb-reference-figure[data-reference-id="overview"],
+  #furo-main-content .hb-reference-figure[data-reference-id="lcd-map"] { overflow-x: auto; }
+  #furo-main-content .hb-reference-figure[data-reference-id="overview"] > *,
+  #furo-main-content .hb-reference-figure[data-reference-id="lcd-map"] > * { min-width: 34rem; }
+}
+
+/* Certification marks keep their printed size in a row. */
+#furo-main-content p > img[src^="assets/cert-"] { display: inline-block; height: 2.6rem; width: auto; vertical-align: middle; margin: 0 .6rem 0 0; }

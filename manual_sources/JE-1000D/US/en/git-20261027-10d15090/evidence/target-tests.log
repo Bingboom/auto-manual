@@ -1,0 +1,24 @@
+[env-preflight] WARN env.python: Python 3.13 differs from the pinned 3.12; tests and builds may fail for environment reasons
+[env-preflight] WARN env.lock: 4 pinned package(s) not installed: aliyun-python-sdk-core, aliyun-python-sdk-kms, crcmod, oss2
+[env-preflight] WARN env.lock: 2 package(s) differ from requirements.lock: certifi 2026.10.18 (lock 2026.6.17), charset-normalizer 3.5.1 (lock 3.4.8)
+[env-preflight] WARN env.lock: to match CI: python -m pip install -r requirements.lock (on the pinned Python)
+...{
+  "output": "/tmp/tmpgz_k3pig/replay",
+  "chapters": 10,
+  "components": {
+    "HB-CALLOUT-STRIP": 7,
+    "HB-SPECIAL-APP": 1,
+    "HB-SPECIAL-INBOX": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE": 11,
+    "HB-TABLE-LCD-ICON": 2,
+    "HB-TABLE-REFERENCE": 1,
+    "HB-TABLE-SPEC": 1
+  },
+  "symbol_admission": []
+}
+................
+----------------------------------------------------------------------
+Ran 19 tests in 5.854s
+
+OK
+rc=0
