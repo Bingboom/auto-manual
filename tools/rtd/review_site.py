@@ -63,6 +63,12 @@ ISSUES_SCHEMA = "review-issues/1"
 # Issue kinds in display order; rd is the 待研发确认 list, the rest are 其他待确认.
 KINDS = {"rd": "研发", "language": "语言审校", "compliance": "合规", "design": "设计", "content": "内容"}
 STATUSES = ("open", "confirmed", "dropped")
+# The 审核稿总览 link added to every draft page in the output (never to the source).
+_HAS_OVERVIEW = re.compile(r"""class=["'](?:[^"']*\s)?to-overview(?:\s[^"']*)?["']""")
+_BUTTON_GROUP = re.compile(r"""<div\b[^>]*\bclass=["'](?:[^"']*\s)?(?:controls|toolbar-actions)(?:\s[^"']*)?["'][^>]*>""")
+_BODY = re.compile(r"<body\b[^>]*>", re.I)
+OVERVIEW_TITLE = "返回审核稿总览，查看全部审核稿"
+OVERVIEW_LABEL = "← 审核稿总览"
 
 
 def version_key(version: str) -> tuple[int, int]:
@@ -340,11 +346,44 @@ def build(drafts_root: Path, output: Path) -> tuple[list[dict], list[str]]:
             drafts_root / line["model"] / line["region"], output / line["model"] / line["region"],
             destination_root=output, label=f"review draft {line['model']} {line['region']}",
         )
+        for draft in (line["current"], *line["milestones"]):
+            add_overview_link(output / draft["url"], output)
         page = render("review_draft_line.html", line=line, root="../", active=line["page"], **shell)
         (output / line["page"]).write_text(page, encoding="utf-8")
     page = render("review_drafts.html", root="", active="index.html", **shell)
     (output / "index.html").write_text(page, encoding="utf-8")
     return lines, warnings
+
+
+def overview_link(page_html: str, index: str) -> str:
+    """``page_html`` with a 审核稿总览 link to ``index``; unchanged when the page already has one.
+
+    The link joins the draft's own toolbar button group (``div.controls`` or ``div.toolbar-actions``)
+    as its first child, styled by the draft; without one, a small self-styled bar follows ``<body>``.
+    """
+    if _HAS_OVERVIEW.search(page_html):
+        return page_html
+    group = _BUTTON_GROUP.search(page_html)
+    if group:
+        button = (f'<button type="button" class="to-overview" onclick="location.href=\'{index}\'" '
+                  f'title="{OVERVIEW_TITLE}">{OVERVIEW_LABEL}</button>')
+        return page_html[:group.end()] + button + page_html[group.end():]
+    bar = ('<style>@media print{.to-overview-bar{display:none}}</style>'
+           '<nav class="to-overview-bar" style="margin:0;padding:6px 12px;font:13px/1.5 sans-serif">'
+           f'<a class="to-overview" href="{index}" title="{OVERVIEW_TITLE}" '
+           f'style="color:inherit;text-decoration:none">{OVERVIEW_LABEL}</a></nav>')
+    body = _BODY.search(page_html)
+    at = body.end() if body else 0
+    return page_html[:at] + bar + page_html[at:]
+
+
+def add_overview_link(page: Path, output: Path) -> None:
+    """Add the overview link to one copied draft page; the output root's index.html is its target."""
+    index = "../" * (len(page.relative_to(output).parts) - 1) + "index.html"
+    original = page.read_bytes().decode("utf-8")
+    updated = overview_link(original, index)
+    if updated != original:
+        page.write_bytes(updated.encode("utf-8"))
 
 
 def main(argv: list[str]) -> int:
