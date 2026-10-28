@@ -57,7 +57,9 @@ def _path_key(path: ET.Element) -> tuple[str, ...]:
     tokens = _axis_path_tokens(tokens)
     # Compound paths can close each subpath explicitly for the stroke, while
     # the fill already returns to its starting point. Compare those no-op
-    # closures too, without changing either original SVG path.
+    # closures too, without changing either original SVG path. A ``Z`` that
+    # still has to travel back is compared as the explicit ``L`` to the
+    # subpath start that the other path of the pair may carry instead.
     starts = [i for i, token in enumerate(tokens) if token == 'M']
     for start, end in reversed(list(zip(starts, [*starts[1:], len(tokens)], strict=True))):
         if end - start >= 6 and tokens[end - 1] == 'Z':
@@ -68,6 +70,8 @@ def _path_key(path: ET.Element) -> tuple[str, ...]:
                 continue
             if closed == origin:
                 del tokens[end - 1]
+            else:
+                tokens[end - 1:end] = ['L', *tokens[start + 1:start + 3]]
     # MuPDF sometimes closes a stroke explicitly and the fill implicitly.
     command = next((t for t in reversed(tokens) if t.isalpha()), '')
     if (len(tokens) > 5 and tokens[0] == 'M' and command in {'M', 'L'}
