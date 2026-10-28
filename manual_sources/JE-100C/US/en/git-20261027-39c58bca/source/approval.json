@@ -1,0 +1,311 @@
+{
+  "target": {
+    "model": "JE-100C",
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "technical_version": "git-20261027-39c58bca",
+    "printed_manual_version": null,
+    "customer_model": "JE-100C",
+    "product_name": "Jackery Explorer 100D"
+  },
+  "source_sha256": "39c58bca661f635fc9d500bc9362317b62b5da6f007589fbf8e4ebfcc8e0bad0",
+  "operator_quote": "上线提交发布：JE-100A、JE-100C、JE-240A、JE-240B；授权合入 #1630 及其 Hello-Docs 发布 PR",
+  "preceding_operator_decision": "授权全部合入上线 上线之后 我再一个个核对版面 (2026-10-28, operator window session_01Y8kaknyyfgd1ZC5Xtwthqx; recorded as MA-365); layout is checked by the operator after release",
+  "authority_date": "2026-10-28",
+  "reviewed_candidate": {
+    "pull_request": "https://github.com/Bingboom/auto-manual/pull/1630",
+    "commit": "729f9669",
+    "review_page": "https://claude.ai/artifact/Tk3NTPGbjp5de7o6S4xGqe",
+    "renders": [
+      "evidence/browser-1280.png",
+      "evidence/browser-390.png"
+    ],
+    "reference_edition": "docs/manifests/manual_je100c_eu-en.yaml (JE-100C EU English Web, published)"
+  },
+  "acceptance_basis": "Operator released the 1280/390 candidates shown beside their shared reference editions, in this engineering session. Source copy is published verbatim; suspected source errors (source_manifest.json:source_concerns) go to the source owner and enter only through a corrected source PDF and a new package.",
+  "merge_authority": "MA-365 (code-as-doc/dev/merge_authorizations.md) and the operator's direct grant in this session: 授权合入 #1630 及其 Hello-Docs 发布 PR",
+  "verified_inputs": [
+    {
+      "path": "JE-100C-US-EN.pdf",
+      "size": 804559,
+      "sha256": "39c58bca661f635fc9d500bc9362317b62b5da6f007589fbf8e4ebfcc8e0bad0"
+    },
+    {
+      "path": "README.md",
+      "size": 3928,
+      "sha256": "309ddac77fe3883b87d9dbed93bccbe9245a972edd476f83e52ea8d1c949e06c"
+    },
+    {
+      "path": "assets/charging_ac.png",
+      "size": 139729,
+      "sha256": "6b4866ef484b9ca9a5ff10dd4cf3fb1f9a18146e02bb38aa27a4c1697c7b5d22"
+    },
+    {
+      "path": "assets/charging_car.png",
+      "size": 202685,
+      "sha256": "439af9be59566f839c65c898bd363142e7dc30eaffdc673bda7494d3f1d1ef3e"
+    },
+    {
+      "path": "assets/charging_solar.png",
+      "size": 192380,
+      "sha256": "96adfad1e72c557534fb1a3eaee933f045d01552429f2afbc95d43eac7bb8367"
+    },
+    {
+      "path": "assets/fcc-mark.svg",
+      "size": 1927,
+      "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+    },
+    {
+      "path": "assets/inbox_cable.png",
+      "size": 9508,
+      "sha256": "440667657c702a6cb0c99f574430f9303253b3ada6a32aa8609cf562306d2a6e"
+    },
+    {
+      "path": "assets/inbox_manual.png",
+      "size": 6035,
+      "sha256": "4320efcbbc0506ca4cabe0cd0b4c268357fc87a224b3a76cf69cffd2f8771075"
+    },
+    {
+      "path": "assets/inbox_unit.png",
+      "size": 41977,
+      "sha256": "9e8cfb5917ef0d87bda25b46850c3d566b22b48d52fc7d01f875a220f7b37bed"
+    },
+    {
+      "path": "assets/lcd_interface_1.png",
+      "size": 71930,
+      "sha256": "523ab4c85b2e737b9d22510fa91ae6a3d7382e842bcc2171c11e563ee4c9fa85"
+    },
+    {
+      "path": "assets/lcd_interface_2.png",
+      "size": 46402,
+      "sha256": "fc613c38fa55870a9f3bbde3c09e3967755da14b86de1b22bfef42c0bfa761ef"
+    },
+    {
+      "path": "assets/lcd_interface_3.png",
+      "size": 32683,
+      "sha256": "7282f47a25d4216f3306267313b027a3a0a7133f62cf66d7b3dc516aa038b539"
+    },
+    {
+      "path": "assets/operation-energy.png",
+      "size": 27596,
+      "sha256": "16fb681afba0313be1c4e67f7612a7f7d11561efa33c94e404b7ab4da127033b"
+    },
+    {
+      "path": "assets/operation-lcd.png",
+      "size": 19033,
+      "sha256": "9e413c2d2772d533714d5e4f047291c0ade296217ca413373abc9bc5e527c10e"
+    },
+    {
+      "path": "assets/operation-output.png",
+      "size": 21258,
+      "sha256": "b9727b9e83cde872c907d17fca4df69b6ac625d74e394a42e30fb30fcc48e96e"
+    },
+    {
+      "path": "assets/overview.png",
+      "size": 222967,
+      "sha256": "f1a11b8f9078d9e62f8e27cc3c252b0809addc4486b05ab04baa417fa3368311"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_charge_time.png",
+      "size": 2746,
+      "sha256": "30ca3526ad823eb0bcb86ed426556305c3a88f3822b9afe0b338faefadf663b5"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_charging.png",
+      "size": 1768,
+      "sha256": "65b2acf888574217b4837b443b6a2ef962d8752080ec2a152c7d25aa149fd7ce"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_discharge_time.png",
+      "size": 3085,
+      "sha256": "a6254ee6c2442338ce3be607854e610e87454464a34471c200a3e15b754504ac"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_discharging.png",
+      "size": 1088,
+      "sha256": "196dfcec907c1922ec559a59639f12677b94f0a40fef2163703bb512f93e2d27"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_energy.png",
+      "size": 3548,
+      "sha256": "abffef2553a3ff4c6aec158c2eeca3c411a752983fcd9499d444b46363a635e0"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_fault.png",
+      "size": 4518,
+      "sha256": "9a4dcfb95f2780c03a70f9ad6c34f29b31c7bcab8165309018dc366ef8a22ad3"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_health.png",
+      "size": 6272,
+      "sha256": "e97ce3a6dcc8de61459628138749323ace0aedf4472ab94c5f54e8c5a22fa7b7"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_high_temperature.png",
+      "size": 2672,
+      "sha256": "3bc177aa1ca91a3172263fd9ed24e529eca1def19489bd50408aad730da53c57"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_input.png",
+      "size": 3215,
+      "sha256": "d885d71e56e89be78deaaba7d1fe02c6d4d2c8ae4e92b21129fe302d5a44503d"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_low_battery.png",
+      "size": 818,
+      "sha256": "8aba48b4eeefd20e8cb0eaa4306c99e5bef4f3b00aacbe7624d3c987e9610e72"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_low_temperature.png",
+      "size": 2356,
+      "sha256": "9a6f857384d84940df6a0a04569eb20f3327fb7608f822a3eec4fc3c6d8eede8"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_output.png",
+      "size": 3228,
+      "sha256": "595a94ae122a1f50c02bd8b92ac70cbaa1548edf18365e0eb5eec9dbf41ccdac"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_percentage.png",
+      "size": 5429,
+      "sha256": "442522aad3e203194cd620402e723f7e7ba2735748e4bcefdf86289b3aa4c8f1"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_ring.png",
+      "size": 5323,
+      "sha256": "116e805fbbb3afefab436e34075834edddf54bed96d38054072a9307acdb40c6"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_steady.png",
+      "size": 2617,
+      "sha256": "6ae3372cbf05adfa1915451b65e5179de273c5db9dfa256f6702a025fa5ea142"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_temperature.png",
+      "size": 4445,
+      "sha256": "60c5cbfe5f8497b1ea4bdf9a6c2c0ed58670557da37738e7b52112279c29ad72"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_thermal.png",
+      "size": 4102,
+      "sha256": "d8afe79c89066a0c48cea82e68b7cc32175cfb8e7894793105dca8bafeaf3bcd"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_watts.png",
+      "size": 1446,
+      "sha256": "7da3de69f1cc2e3d06cb208ca58dc282e30d4251ce1332322079c8637c2f1433"
+    },
+    {
+      "path": "assets/sold-separately.png",
+      "size": 2516,
+      "sha256": "02bb73ccbdbb42c043b769decd554886fcaa3b5d36b6b2570128a94540a35bb3"
+    },
+    {
+      "path": "assets/symbol-01.svg",
+      "size": 3632,
+      "sha256": "7eee1f724544318b77f50d99896735cb11f833fde5a3e24df1a7a394b70de10e"
+    },
+    {
+      "path": "assets/symbol-02.svg",
+      "size": 4961,
+      "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584"
+    },
+    {
+      "path": "assets/symbol-03.png",
+      "size": 7672,
+      "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5"
+    },
+    {
+      "path": "assets/symbol-04.svg",
+      "size": 5532,
+      "sha256": "562aa9d004d818fe9ac907cabd0a5bb44831801e26911f0929be7887971834fb"
+    },
+    {
+      "path": "assets/symbol-05.svg",
+      "size": 5630,
+      "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f"
+    },
+    {
+      "path": "assets/symbol-06.svg",
+      "size": 6300,
+      "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899"
+    },
+    {
+      "path": "assets/symbol-07.svg",
+      "size": 6759,
+      "sha256": "a901f6a790ada85f96010194a777fd019188c5f5fbfc872938e5cdb35b618a74"
+    },
+    {
+      "path": "build_content.py",
+      "size": 22881,
+      "sha256": "03a92fdfedb2eaf150404c5ef663a59c84badffcb8342adc37e73a79937cc763"
+    },
+    {
+      "path": "derive_assets.py",
+      "size": 6856,
+      "sha256": "4f2a8c388e01a4c594323a91ff5626867ba10d8805574a19f17edb472cae9ffc"
+    },
+    {
+      "path": "rebuild.py",
+      "size": 6356,
+      "sha256": "18761e8d01dcb409320f16477b7366b34f91918571b4e9034a2944b646798cfa"
+    },
+    {
+      "path": "refresh_manifest.py",
+      "size": 2549,
+      "sha256": "e3d9ee17cc0df508ce35affe0ab16f03bb25e7c76e7b51a19546f1b3aa9bcc10"
+    },
+    {
+      "path": "source/asset_decisions.json",
+      "size": 15901,
+      "sha256": "5a38b2973baa7dcfd64e8deb5a6dbf70ed213a9f7fb463f5c7bfaedab2ce4dd2"
+    },
+    {
+      "path": "source/asset_recipe.json",
+      "size": 10886,
+      "sha256": "07d3677881c045ca7d36a9a0ded1827f48b1487af0c729b7504c784df7445e52"
+    },
+    {
+      "path": "source/differences.md",
+      "size": 2924,
+      "sha256": "3f6dd4a0e54f3f83cd82d1db41a0ab47d1acaaab33258f229cf903dc415955f6"
+    },
+    {
+      "path": "source/discovery.md",
+      "size": 2884,
+      "sha256": "3a2bda59af651037a5d88d0536cddcf45b1345c1ad1032deb31f1e79822f46d1"
+    },
+    {
+      "path": "source/en/content.json",
+      "size": 114391,
+      "sha256": "e29a25a5a827fb2f025a5dd445c4f28f5a2573d09a789e24cc553841dba403f6"
+    },
+    {
+      "path": "source/geometry.css",
+      "size": 804,
+      "sha256": "86c6818ac1bd6e182795863b05cf955f6cc0a263d324fbba1e89cdff8f6aec9c"
+    },
+    {
+      "path": "source/transcription.json",
+      "size": 29039,
+      "sha256": "cce012d17a1ab774e0cdeebd6cd114beaa3d026c53fe91d58a5e964ff8daa021"
+    }
+  ],
+  "validation": {
+    "symbol_source_bound_glyphs": 7,
+    "shared_style_issues": 0,
+    "declared_plain_tables": 0,
+    "strict_sphinx": "pass",
+    "target_tests": "pass",
+    "browser": {
+      "viewports": [
+        1280,
+        390
+      ],
+      "missing_images": 0,
+      "page_horizontal_overflow": 0
+    }
+  }
+}

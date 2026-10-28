@@ -1,0 +1,936 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "target": {
+    "model": "JE-100C",
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "technical_version": "git-20261027-39c58bca",
+    "printed_manual_version": null,
+    "customer_model": "JE-100C",
+    "product_name": "Jackery Explorer 100D"
+  },
+  "source_record": {
+    "base": "发布文档管理 (WGVwb2HctauRi7sEiKqcIzTRn1c), table tbljbjaXaTD6V9PO",
+    "record_id": "reczz28SPRx9p8Z3",
+    "material_number": "16-0102-000466",
+    "project": "HTE162",
+    "sku": [
+      "21-0001-000472",
+      "21-0001-000471"
+    ],
+    "read_only": true
+  },
+  "original_source": {
+    "filename": "JE-100C-US-EN.pdf",
+    "operator_filename": "【Jackery Explorer 100D】说明书-EN.pdf",
+    "field": "单语言说明书",
+    "sha256": "39c58bca661f635fc9d500bc9362317b62b5da6f007589fbf8e4ebfcc8e0bad0",
+    "size": 804559,
+    "page_count": 15,
+    "page_size_mm": [
+      90,
+      130
+    ],
+    "printed_version": null
+  },
+  "design_original": {
+    "field": "查找引用",
+    "filename": "16-0102-000466 HTE162100A-USCA-JAK 说明书 RoHS REACH A0.pdf",
+    "sha256": "92ca7245442cc819a12961ac3ec8b04d11db64883e4581961e2a5637552aba35",
+    "size": 14513623,
+    "page_count": 41,
+    "committed": false,
+    "role": "Illustrator master (USCA, 41 artboards incl. the English booklet); recorded for traceability. The single-language PDF above is the Web authority; the master is not committed."
+  },
+  "physical_page_map": {
+    "print_cover": 1,
+    "toc": 2,
+    "en_body": [
+      3,
+      14
+    ],
+    "back_cover": 15
+  },
+  "web_roots": {
+    "en": "web/en"
+  },
+  "route": "JE-100C/US/en/md",
+  "legacy_default": true,
+  "source_authority": "Operator-designated row of 发布文档管理 (record reczz28SPRx9p8Z3, 物料号 16-0102-000466): the 单语言说明书 English PDF, read-only bot download. The PDF has a text layer; source/transcription.json is the reviewed line-by-line transcription the Web copy is bound to. The JE-100C EU English Web edition supplies reused artwork and is the shared reference edition; every model fact comes from this PDF.",
+  "operator_instruction": "2026-10-27 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 (发布文档管理 view vewF9saLXo); assigned to this window: JE-100A, JE-100C, JE-240A, JE-240B",
+  "reference_editions": [
+    "docs/manifests/manual_je100c_eu-en.yaml (JE-100C EU English Web, published)",
+    "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2 (method)"
+  ],
+  "live_bitable_dependency": false,
+  "phase2_enrolled": false,
+  "publication_status": "operator-authorized-git-only-release",
+  "build_boundary": "JE-100C US is not a phase2 target. build_content.py binds the transcription to shared ComponentSpecs; rebuild.py replays them through manual-ir/v2 and the shared Web/MyST pipeline with the prepared-document shared-style gate and symbol admission. build.py check of JE-1000F US is a repository regression gate only; it does not validate this body.",
+  "repo_inputs": [],
+  "inputs": [
+    {
+      "path": "JE-100C-US-EN.pdf",
+      "size": 804559,
+      "sha256": "39c58bca661f635fc9d500bc9362317b62b5da6f007589fbf8e4ebfcc8e0bad0"
+    },
+    {
+      "path": "README.md",
+      "size": 3928,
+      "sha256": "309ddac77fe3883b87d9dbed93bccbe9245a972edd476f83e52ea8d1c949e06c"
+    },
+    {
+      "path": "assets/charging_ac.png",
+      "size": 139729,
+      "sha256": "6b4866ef484b9ca9a5ff10dd4cf3fb1f9a18146e02bb38aa27a4c1697c7b5d22"
+    },
+    {
+      "path": "assets/charging_car.png",
+      "size": 202685,
+      "sha256": "439af9be59566f839c65c898bd363142e7dc30eaffdc673bda7494d3f1d1ef3e"
+    },
+    {
+      "path": "assets/charging_solar.png",
+      "size": 192380,
+      "sha256": "96adfad1e72c557534fb1a3eaee933f045d01552429f2afbc95d43eac7bb8367"
+    },
+    {
+      "path": "assets/fcc-mark.svg",
+      "size": 1927,
+      "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+    },
+    {
+      "path": "assets/inbox_cable.png",
+      "size": 9508,
+      "sha256": "440667657c702a6cb0c99f574430f9303253b3ada6a32aa8609cf562306d2a6e"
+    },
+    {
+      "path": "assets/inbox_manual.png",
+      "size": 6035,
+      "sha256": "4320efcbbc0506ca4cabe0cd0b4c268357fc87a224b3a76cf69cffd2f8771075"
+    },
+    {
+      "path": "assets/inbox_unit.png",
+      "size": 41977,
+      "sha256": "9e8cfb5917ef0d87bda25b46850c3d566b22b48d52fc7d01f875a220f7b37bed"
+    },
+    {
+      "path": "assets/lcd_interface_1.png",
+      "size": 71930,
+      "sha256": "523ab4c85b2e737b9d22510fa91ae6a3d7382e842bcc2171c11e563ee4c9fa85"
+    },
+    {
+      "path": "assets/lcd_interface_2.png",
+      "size": 46402,
+      "sha256": "fc613c38fa55870a9f3bbde3c09e3967755da14b86de1b22bfef42c0bfa761ef"
+    },
+    {
+      "path": "assets/lcd_interface_3.png",
+      "size": 32683,
+      "sha256": "7282f47a25d4216f3306267313b027a3a0a7133f62cf66d7b3dc516aa038b539"
+    },
+    {
+      "path": "assets/operation-energy.png",
+      "size": 27596,
+      "sha256": "16fb681afba0313be1c4e67f7612a7f7d11561efa33c94e404b7ab4da127033b"
+    },
+    {
+      "path": "assets/operation-lcd.png",
+      "size": 19033,
+      "sha256": "9e413c2d2772d533714d5e4f047291c0ade296217ca413373abc9bc5e527c10e"
+    },
+    {
+      "path": "assets/operation-output.png",
+      "size": 21258,
+      "sha256": "b9727b9e83cde872c907d17fca4df69b6ac625d74e394a42e30fb30fcc48e96e"
+    },
+    {
+      "path": "assets/overview.png",
+      "size": 222967,
+      "sha256": "f1a11b8f9078d9e62f8e27cc3c252b0809addc4486b05ab04baa417fa3368311"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_charge_time.png",
+      "size": 2746,
+      "sha256": "30ca3526ad823eb0bcb86ed426556305c3a88f3822b9afe0b338faefadf663b5"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_charging.png",
+      "size": 1768,
+      "sha256": "65b2acf888574217b4837b443b6a2ef962d8752080ec2a152c7d25aa149fd7ce"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_discharge_time.png",
+      "size": 3085,
+      "sha256": "a6254ee6c2442338ce3be607854e610e87454464a34471c200a3e15b754504ac"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_discharging.png",
+      "size": 1088,
+      "sha256": "196dfcec907c1922ec559a59639f12677b94f0a40fef2163703bb512f93e2d27"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_energy.png",
+      "size": 3548,
+      "sha256": "abffef2553a3ff4c6aec158c2eeca3c411a752983fcd9499d444b46363a635e0"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_fault.png",
+      "size": 4518,
+      "sha256": "9a4dcfb95f2780c03a70f9ad6c34f29b31c7bcab8165309018dc366ef8a22ad3"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_health.png",
+      "size": 6272,
+      "sha256": "e97ce3a6dcc8de61459628138749323ace0aedf4472ab94c5f54e8c5a22fa7b7"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_high_temperature.png",
+      "size": 2672,
+      "sha256": "3bc177aa1ca91a3172263fd9ed24e529eca1def19489bd50408aad730da53c57"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_input.png",
+      "size": 3215,
+      "sha256": "d885d71e56e89be78deaaba7d1fe02c6d4d2c8ae4e92b21129fe302d5a44503d"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_low_battery.png",
+      "size": 818,
+      "sha256": "8aba48b4eeefd20e8cb0eaa4306c99e5bef4f3b00aacbe7624d3c987e9610e72"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_low_temperature.png",
+      "size": 2356,
+      "sha256": "9a6f857384d84940df6a0a04569eb20f3327fb7608f822a3eec4fc3c6d8eede8"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_output.png",
+      "size": 3228,
+      "sha256": "595a94ae122a1f50c02bd8b92ac70cbaa1548edf18365e0eb5eec9dbf41ccdac"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_percentage.png",
+      "size": 5429,
+      "sha256": "442522aad3e203194cd620402e723f7e7ba2735748e4bcefdf86289b3aa4c8f1"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_ring.png",
+      "size": 5323,
+      "sha256": "116e805fbbb3afefab436e34075834edddf54bed96d38054072a9307acdb40c6"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_steady.png",
+      "size": 2617,
+      "sha256": "6ae3372cbf05adfa1915451b65e5179de273c5db9dfa256f6702a025fa5ea142"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_temperature.png",
+      "size": 4445,
+      "sha256": "60c5cbfe5f8497b1ea4bdf9a6c2c0ed58670557da37738e7b52112279c29ad72"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_thermal.png",
+      "size": 4102,
+      "sha256": "d8afe79c89066a0c48cea82e68b7cc32175cfb8e7894793105dca8bafeaf3bcd"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_watts.png",
+      "size": 1446,
+      "sha256": "7da3de69f1cc2e3d06cb208ca58dc282e30d4251ce1332322079c8637c2f1433"
+    },
+    {
+      "path": "assets/sold-separately.png",
+      "size": 2516,
+      "sha256": "02bb73ccbdbb42c043b769decd554886fcaa3b5d36b6b2570128a94540a35bb3"
+    },
+    {
+      "path": "assets/symbol-01.svg",
+      "size": 3632,
+      "sha256": "7eee1f724544318b77f50d99896735cb11f833fde5a3e24df1a7a394b70de10e"
+    },
+    {
+      "path": "assets/symbol-02.svg",
+      "size": 4961,
+      "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584"
+    },
+    {
+      "path": "assets/symbol-03.png",
+      "size": 7672,
+      "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5"
+    },
+    {
+      "path": "assets/symbol-04.svg",
+      "size": 5532,
+      "sha256": "562aa9d004d818fe9ac907cabd0a5bb44831801e26911f0929be7887971834fb"
+    },
+    {
+      "path": "assets/symbol-05.svg",
+      "size": 5630,
+      "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f"
+    },
+    {
+      "path": "assets/symbol-06.svg",
+      "size": 6300,
+      "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899"
+    },
+    {
+      "path": "assets/symbol-07.svg",
+      "size": 6759,
+      "sha256": "a901f6a790ada85f96010194a777fd019188c5f5fbfc872938e5cdb35b618a74"
+    },
+    {
+      "path": "build_content.py",
+      "size": 22881,
+      "sha256": "03a92fdfedb2eaf150404c5ef663a59c84badffcb8342adc37e73a79937cc763"
+    },
+    {
+      "path": "derive_assets.py",
+      "size": 6856,
+      "sha256": "4f2a8c388e01a4c594323a91ff5626867ba10d8805574a19f17edb472cae9ffc"
+    },
+    {
+      "path": "evidence/browser-1280.png",
+      "size": 2058164,
+      "sha256": "cc942d1c4ac57d2e15b846dd6c8bab79a3c43fffe5352a61eedb4475c7034dc9"
+    },
+    {
+      "path": "evidence/browser-390.png",
+      "size": 1420916,
+      "sha256": "d044a6d07a8098d2e30cdd7d2ed175da55e93c2fd98a4cec4b2a4d44f68e1213"
+    },
+    {
+      "path": "evidence/reuse-compare.png",
+      "size": 304512,
+      "sha256": "95620bf50710f59f13c2ad2651c8c6f01294e7746fcf054a0239feaafd4925ed"
+    },
+    {
+      "path": "rebuild.py",
+      "size": 6356,
+      "sha256": "18761e8d01dcb409320f16477b7366b34f91918571b4e9034a2944b646798cfa"
+    },
+    {
+      "path": "refresh_manifest.py",
+      "size": 2549,
+      "sha256": "e3d9ee17cc0df508ce35affe0ab16f03bb25e7c76e7b51a19546f1b3aa9bcc10"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 10482,
+      "sha256": "20fa20b4bd09926c684313ea58b7d67c0b01bc35c06c89204e591e7733792e5b"
+    },
+    {
+      "path": "source/asset_decisions.json",
+      "size": 15901,
+      "sha256": "5a38b2973baa7dcfd64e8deb5a6dbf70ed213a9f7fb463f5c7bfaedab2ce4dd2"
+    },
+    {
+      "path": "source/asset_recipe.json",
+      "size": 10886,
+      "sha256": "07d3677881c045ca7d36a9a0ded1827f48b1487af0c729b7504c784df7445e52"
+    },
+    {
+      "path": "source/differences.md",
+      "size": 2924,
+      "sha256": "3f6dd4a0e54f3f83cd82d1db41a0ab47d1acaaab33258f229cf903dc415955f6"
+    },
+    {
+      "path": "source/discovery.md",
+      "size": 2884,
+      "sha256": "3a2bda59af651037a5d88d0536cddcf45b1345c1ad1032deb31f1e79822f46d1"
+    },
+    {
+      "path": "source/en/content.json",
+      "size": 114391,
+      "sha256": "e29a25a5a827fb2f025a5dd445c4f28f5a2573d09a789e24cc553841dba403f6"
+    },
+    {
+      "path": "source/geometry.css",
+      "size": 804,
+      "sha256": "86c6818ac1bd6e182795863b05cf955f6cc0a263d324fbba1e89cdff8f6aec9c"
+    },
+    {
+      "path": "source/transcription.json",
+      "size": 29039,
+      "sha256": "cce012d17a1ab774e0cdeebd6cd114beaa3d026c53fe91d58a5e964ff8daa021"
+    },
+    {
+      "path": "source_manifest.json",
+      "size": 22445,
+      "sha256": "ee0a46fde535c767c11eb6d1b3b89c2732ca3a40a2a6e710377e02de63802d95"
+    },
+    {
+      "path": "web/en/_static/source_geometry.css",
+      "size": 804,
+      "sha256": "86c6818ac1bd6e182795863b05cf955f6cc0a263d324fbba1e89cdff8f6aec9c"
+    },
+    {
+      "path": "web/en/_static/web_manual.css",
+      "size": 124849,
+      "sha256": "c3604a2e5f22b04bc745bb99cf203b50e60222af70c0aeba3d968cc28adac9ce"
+    },
+    {
+      "path": "web/en/assets/charging_ac.png",
+      "size": 139729,
+      "sha256": "6b4866ef484b9ca9a5ff10dd4cf3fb1f9a18146e02bb38aa27a4c1697c7b5d22"
+    },
+    {
+      "path": "web/en/assets/charging_car.png",
+      "size": 202685,
+      "sha256": "439af9be59566f839c65c898bd363142e7dc30eaffdc673bda7494d3f1d1ef3e"
+    },
+    {
+      "path": "web/en/assets/charging_solar.png",
+      "size": 192380,
+      "sha256": "96adfad1e72c557534fb1a3eaee933f045d01552429f2afbc95d43eac7bb8367"
+    },
+    {
+      "path": "web/en/assets/fcc-mark.svg",
+      "size": 1927,
+      "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+    },
+    {
+      "path": "web/en/assets/inbox_cable.png",
+      "size": 9508,
+      "sha256": "440667657c702a6cb0c99f574430f9303253b3ada6a32aa8609cf562306d2a6e"
+    },
+    {
+      "path": "web/en/assets/inbox_manual.png",
+      "size": 6035,
+      "sha256": "4320efcbbc0506ca4cabe0cd0b4c268357fc87a224b3a76cf69cffd2f8771075"
+    },
+    {
+      "path": "web/en/assets/inbox_unit.png",
+      "size": 41977,
+      "sha256": "9e8cfb5917ef0d87bda25b46850c3d566b22b48d52fc7d01f875a220f7b37bed"
+    },
+    {
+      "path": "web/en/assets/lcd_interface_1.png",
+      "size": 71930,
+      "sha256": "523ab4c85b2e737b9d22510fa91ae6a3d7382e842bcc2171c11e563ee4c9fa85"
+    },
+    {
+      "path": "web/en/assets/lcd_interface_2.png",
+      "size": 46402,
+      "sha256": "fc613c38fa55870a9f3bbde3c09e3967755da14b86de1b22bfef42c0bfa761ef"
+    },
+    {
+      "path": "web/en/assets/lcd_interface_3.png",
+      "size": 32683,
+      "sha256": "7282f47a25d4216f3306267313b027a3a0a7133f62cf66d7b3dc516aa038b539"
+    },
+    {
+      "path": "web/en/assets/operation-energy.png",
+      "size": 27596,
+      "sha256": "16fb681afba0313be1c4e67f7612a7f7d11561efa33c94e404b7ab4da127033b"
+    },
+    {
+      "path": "web/en/assets/operation-lcd.png",
+      "size": 19033,
+      "sha256": "9e413c2d2772d533714d5e4f047291c0ade296217ca413373abc9bc5e527c10e"
+    },
+    {
+      "path": "web/en/assets/operation-output.png",
+      "size": 21258,
+      "sha256": "b9727b9e83cde872c907d17fca4df69b6ac625d74e394a42e30fb30fcc48e96e"
+    },
+    {
+      "path": "web/en/assets/overview.png",
+      "size": 222967,
+      "sha256": "f1a11b8f9078d9e62f8e27cc3c252b0809addc4486b05ab04baa417fa3368311"
+    },
+    {
+      "path": "web/en/assets/shared-lcd/lcd_charge_time.png",
+      "size": 2746,
+      "sha256": "30ca3526ad823eb0bcb86ed426556305c3a88f3822b9afe0b338faefadf663b5"
+    },
+    {
+      "path": "web/en/assets/shared-lcd/lcd_charging.png",
+      "size": 1768,
+      "sha256": "65b2acf888574217b4837b443b6a2ef962d8752080ec2a152c7d25aa149fd7ce"
+    },
+    {
+      "path": "web/en/assets/shared-lcd/lcd_discharge_time.png",
+      "size": 3085,
+      "sha256": "a6254ee6c2442338ce3be607854e610e87454464a34471c200a3e15b754504ac"
+    },
+    {
+      "path": "web/en/assets/shared-lcd/lcd_discharging.png",
+      "size": 1088,
+      "sha256": "196dfcec907c1922ec559a59639f12677b94f0a40fef2163703bb512f93e2d27"
+    },
+    {
+      "path": "web/en/assets/shared-lcd/lcd_energy.png",
+      "size": 3548,
+      "sha256": "abffef2553a3ff4c6aec158c2eeca3c411a752983fcd9499d444b46363a635e0"
+    },
+    {
+      "path": "web/en/assets/shared-lcd/lcd_fault.png",
+      "size": 4518,
+      "sha256": "9a4dcfb95f2780c03a70f9ad6c34f29b31c7bcab8165309018dc366ef8a22ad3"
+    },
+    {
+      "path": "web/en/assets/shared-lcd/lcd_health.png",
+      "size": 6272,
+      "sha256": "e97ce3a6dcc8de61459628138749323ace0aedf4472ab94c5f54e8c5a22fa7b7"
+    },
+    {
+      "path": "web/en/assets/shared-lcd/lcd_high_temperature.png",
+      "size": 2672,
+      "sha256": "3bc177aa1ca91a3172263fd9ed24e529eca1def19489bd50408aad730da53c57"
+    },
+    {
+      "path": "web/en/assets/shared-lcd/lcd_input.png",
+      "size": 3215,
+      "sha256": "d885d71e56e89be78deaaba7d1fe02c6d4d2c8ae4e92b21129fe302d5a44503d"
+    },
+    {
+      "path": "web/en/assets/shared-lcd/lcd_low_battery.png",
+      "size": 818,
+      "sha256": "8aba48b4eeefd20e8cb0eaa4306c99e5bef4f3b00aacbe7624d3c987e9610e72"
+    },
+    {
+      "path": "web/en/assets/shared-lcd/lcd_low_temperature.png",
+      "size": 2356,
+      "sha256": "9a6f857384d84940df6a0a04569eb20f3327fb7608f822a3eec4fc3c6d8eede8"
+    },
+    {
+      "path": "web/en/assets/shared-lcd/lcd_output.png",
+      "size": 3228,
+      "sha256": "595a94ae122a1f50c02bd8b92ac70cbaa1548edf18365e0eb5eec9dbf41ccdac"
+    },
+    {
+      "path": "web/en/assets/shared-lcd/lcd_percentage.png",
+      "size": 5429,
+      "sha256": "442522aad3e203194cd620402e723f7e7ba2735748e4bcefdf86289b3aa4c8f1"
+    },
+    {
+      "path": "web/en/assets/shared-lcd/lcd_ring.png",
+      "size": 5323,
+      "sha256": "116e805fbbb3afefab436e34075834edddf54bed96d38054072a9307acdb40c6"
+    },
+    {
+      "path": "web/en/assets/shared-lcd/lcd_steady.png",
+      "size": 2617,
+      "sha256": "6ae3372cbf05adfa1915451b65e5179de273c5db9dfa256f6702a025fa5ea142"
+    },
+    {
+      "path": "web/en/assets/shared-lcd/lcd_temperature.png",
+      "size": 4445,
+      "sha256": "60c5cbfe5f8497b1ea4bdf9a6c2c0ed58670557da37738e7b52112279c29ad72"
+    },
+    {
+      "path": "web/en/assets/shared-lcd/lcd_thermal.png",
+      "size": 4102,
+      "sha256": "d8afe79c89066a0c48cea82e68b7cc32175cfb8e7894793105dca8bafeaf3bcd"
+    },
+    {
+      "path": "web/en/assets/shared-lcd/lcd_watts.png",
+      "size": 1446,
+      "sha256": "7da3de69f1cc2e3d06cb208ca58dc282e30d4251ce1332322079c8637c2f1433"
+    },
+    {
+      "path": "web/en/assets/sold-separately.png",
+      "size": 2516,
+      "sha256": "02bb73ccbdbb42c043b769decd554886fcaa3b5d36b6b2570128a94540a35bb3"
+    },
+    {
+      "path": "web/en/assets/symbol-01.svg",
+      "size": 3632,
+      "sha256": "7eee1f724544318b77f50d99896735cb11f833fde5a3e24df1a7a394b70de10e"
+    },
+    {
+      "path": "web/en/assets/symbol-02.svg",
+      "size": 4961,
+      "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584"
+    },
+    {
+      "path": "web/en/assets/symbol-03.png",
+      "size": 7672,
+      "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5"
+    },
+    {
+      "path": "web/en/assets/symbol-04.svg",
+      "size": 5532,
+      "sha256": "562aa9d004d818fe9ac907cabd0a5bb44831801e26911f0929be7887971834fb"
+    },
+    {
+      "path": "web/en/assets/symbol-05.svg",
+      "size": 5630,
+      "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f"
+    },
+    {
+      "path": "web/en/assets/symbol-06.svg",
+      "size": 6300,
+      "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899"
+    },
+    {
+      "path": "web/en/assets/symbol-07.svg",
+      "size": 6759,
+      "sha256": "a901f6a790ada85f96010194a777fd019188c5f5fbfc872938e5cdb35b618a74"
+    },
+    {
+      "path": "web/en/conf.py",
+      "size": 829,
+      "sha256": "1b293da6a6aaf5da7c6814140d882d86d6e2b3d6e26729fd5bc87422f0f317ff"
+    },
+    {
+      "path": "web/en/index.md",
+      "size": 88,
+      "sha256": "8c10c5d8196ca561301e77e169e0b5e7cbdeeeef3946da429d388bcc73913f6b"
+    },
+    {
+      "path": "web/en/manual.ir.json",
+      "size": 282315,
+      "sha256": "2a73f62466f3a9ac01b329c0b055bf0f38c9f1864670b66229fc343dba169838"
+    },
+    {
+      "path": "web/en/manual_je100c_us_en.md",
+      "size": 35307,
+      "sha256": "75168719d6e9142beffd25a042b46dcae0a7ac1f93331a98dee7b4622e8b4510"
+    }
+  ],
+  "symbol_asset_admission": {
+    "schema_version": "auto-manual-symbol-asset-admission/v1",
+    "locales": {
+      "en": [
+        {
+          "asset_ref": "assets/symbol-01.svg",
+          "asset_sha256": "7eee1f724544318b77f50d99896735cb11f833fde5a3e24df1a7a394b70de10e",
+          "physical_page": 4,
+          "drawing_indices": [
+            27,
+            28
+          ],
+          "glyph_bbox": [
+            25.5,
+            147,
+            40.5,
+            160.5
+          ],
+          "caption_bbox": [
+            50,
+            147,
+            121,
+            162
+          ],
+          "row_bbox": [
+            24.5,
+            146.0,
+            122.0,
+            163.0
+          ],
+          "caption_text": "Warning and Caution Symbols. Must read to alert individuals to potential hazards or risks.",
+          "caption_sha256": "2d9c07366a84d0ecd788bf4cf7d516cca6b9dc18e79a14d2ab6e0ea227ad9de8",
+          "shared_symbol_key": "warning/outline-triangle-dark-hte162",
+          "max_mean_channel_error": 0.0
+        },
+        {
+          "asset_ref": "assets/symbol-02.svg",
+          "asset_sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
+          "physical_page": 4,
+          "drawing_indices": [
+            45,
+            46,
+            47
+          ],
+          "glyph_bbox": [
+            25.5,
+            163.5,
+            41.2,
+            175.6
+          ],
+          "caption_bbox": [
+            50,
+            164,
+            108,
+            174.5
+          ],
+          "row_bbox": [
+            24.5,
+            162.5,
+            109.0,
+            176.60000610351562
+          ],
+          "caption_text": "Read the user manual before operation.",
+          "caption_sha256": "8dbecf456d88fda70c3818704382ab1d03d9b8e2a7cf8f071f2e913f201392b4",
+          "shared_symbol_key": "read-manual/book-information",
+          "max_mean_channel_error": 0.018651
+        },
+        {
+          "asset_ref": "assets/symbol-03.png",
+          "asset_sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+          "physical_page": 4,
+          "drawing_indices": [
+            48,
+            49,
+            50
+          ],
+          "glyph_bbox": [
+            25,
+            188,
+            41.3,
+            211.8
+          ],
+          "caption_bbox": [
+            50,
+            177.5,
+            124,
+            225
+          ],
+          "row_bbox": [
+            24.0,
+            176.5,
+            125.0,
+            226.0
+          ],
+          "caption_text": "This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling. Proper disposal and recycling can help protect the environment. For more information about the disposal and recycling of this product, contact your local community, disposal service, or dealer.",
+          "caption_sha256": "83afd14e6a909b40231757664298ed9cdac03ceb28d228a7383021d4a5881831",
+          "shared_symbol_key": "weee/crossed-bin-bar",
+          "max_mean_channel_error": 0.014334
+        },
+        {
+          "asset_ref": "assets/symbol-04.svg",
+          "asset_sha256": "562aa9d004d818fe9ac907cabd0a5bb44831801e26911f0929be7887971834fb",
+          "physical_page": 4,
+          "drawing_indices": [
+            60,
+            61,
+            62,
+            63
+          ],
+          "glyph_bbox": [
+            136.2,
+            147.1,
+            150.5,
+            161.4
+          ],
+          "caption_bbox": [
+            160.5,
+            150.5,
+            220,
+            157.5
+          ],
+          "row_bbox": [
+            135.1999969482422,
+            146.10000610351562,
+            221.0,
+            162.39999389648438
+          ],
+          "caption_text": "Do not dismantle the product.",
+          "caption_sha256": "b81d1d214af952891772fc99a3053e2c0b60bf796226f51b70021d9c382a18bf",
+          "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited-dark-hte162",
+          "max_mean_channel_error": 0.0
+        },
+        {
+          "asset_ref": "assets/symbol-05.svg",
+          "asset_sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f",
+          "physical_page": 4,
+          "drawing_indices": [
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "glyph_bbox": [
+            136.2,
+            163.3,
+            150.6,
+            177.6
+          ],
+          "caption_bbox": [
+            160.5,
+            167,
+            225,
+            174
+          ],
+          "row_bbox": [
+            135.1999969482422,
+            162.3000030517578,
+            226.0,
+            178.60000610351562
+          ],
+          "caption_text": "Keep the product away from fire.",
+          "caption_sha256": "912ba2ce1341b4694a47ec386b3abf02d5cf4d282dbc45d7330598dc52e5cf1b",
+          "shared_symbol_key": "no-open-flame/fire-match-prohibited",
+          "max_mean_channel_error": 0.013237
+        },
+        {
+          "asset_ref": "assets/symbol-06.svg",
+          "asset_sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899",
+          "physical_page": 4,
+          "drawing_indices": [
+            41,
+            42,
+            43,
+            44
+          ],
+          "glyph_bbox": [
+            136.2,
+            180.4,
+            150.6,
+            194.8
+          ],
+          "caption_bbox": [
+            160.5,
+            183.5,
+            211,
+            190.5
+          ],
+          "row_bbox": [
+            135.1999969482422,
+            179.39999389648438,
+            212.0,
+            195.8000030517578
+          ],
+          "caption_text": "Keep away from children.",
+          "caption_sha256": "e0ee3b63b7218fb85f0c7cfdc6a876b7652e54e387e570967d27e8e2c23a1037",
+          "shared_symbol_key": "keep-away-from-children/adult-child-prohibited",
+          "max_mean_channel_error": 0.012954
+        },
+        {
+          "asset_ref": "assets/symbol-07.svg",
+          "asset_sha256": "a901f6a790ada85f96010194a777fd019188c5f5fbfc872938e5cdb35b618a74",
+          "physical_page": 4,
+          "drawing_indices": [
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59
+          ],
+          "glyph_bbox": [
+            136.4,
+            202.9,
+            151.2,
+            219.6
+          ],
+          "caption_bbox": [
+            160.5,
+            199.5,
+            233,
+            221
+          ],
+          "row_bbox": [
+            135.39999389648438,
+            198.5,
+            234.0,
+            222.0
+          ],
+          "caption_text": "This symbol indicates that a lithium-ion (Li-ion) battery is inside the product and should be disposed of or recycled properly.",
+          "caption_sha256": "66c37a1a471d95ed9fb78496c58b98a0ff67b4c90dd61e12aaee8651e587799a",
+          "shared_symbol_key": "li-ion/recycle-li-ion-label-hte162",
+          "max_mean_channel_error": 0.0
+        }
+      ]
+    }
+  },
+  "shared_component_exceptions": [],
+  "component_map": [
+    {
+      "printed": "chapter strips (IMPORTANT SAFETY INFORMATION … WARRANTY)",
+      "shared": "chapter h2 headings (shared theme)"
+    },
+    {
+      "printed": "● sub-headings, boxed risk heading, dark USER MAINTENANCE pill",
+      "shared": "h3 headings (shared theme)"
+    },
+    {
+      "printed": "WARNING: / CAUTION / NOTE boxes and CAUTION bullet boxes",
+      "shared": "HB-CALLOUT-STRIP (warning/caution/note)"
+    },
+    {
+      "printed": "WARNING/CAUTION/NOTE/TIP signal table",
+      "shared": "HB-TABLE-SYMBOL-SIGNAL/localized-badges"
+    },
+    {
+      "printed": "two-panel symbol table (7 symbols)",
+      "shared": "HB-TABLE-SYMBOL-ICON/two-panel-responsive with source-bound symbol admission"
+    },
+    {
+      "printed": "FCC block with FC mark",
+      "shared": "HB-SPECIAL-FCC (shared FC mark fcc/nested-c-native-dark)"
+    },
+    {
+      "printed": "WHAT'S IN THE BOX numbered cards",
+      "shared": "HB-SPECIAL-INBOX/responsive-card-grid"
+    },
+    {
+      "printed": "FRONT VIEW leader-label drawing, LCD interface drawings, operation and charging drawings",
+      "shared": "HB-SPECIAL-REFERENCE-FIGURE complete source panels, labels in alt and IR"
+    },
+    {
+      "printed": "cart pills (sold separately)",
+      "shared": "shared hb-source-purchase strip with the EU cart mark"
+    },
+    {
+      "printed": "LCD interface icon tables (numbered and unnumbered)",
+      "shared": "HB-TABLE-LCD-ICON icon-catalog / icon-catalog-unnumbered"
+    },
+    {
+      "printed": "LCD SCREEN Function/Description table beside its drawing",
+      "shared": "HB-SPECIAL-REFERENCE-FIGURE + HB-TABLE-REFERENCE/lcd-actions-compact"
+    },
+    {
+      "printed": "● spec tables (GENERAL INFO … ENVIRONMENTAL OPERATING TEMPERATURE)",
+      "shared": "HB-TABLE-SPEC (one per printed table)"
+    },
+    {
+      "printed": "warranty Contact Us / Customer Service pills and cards",
+      "shared": "h3 heading + HB-WARRANTY-SECTION"
+    },
+    {
+      "printed": "back cover JACKERY INC. contact block",
+      "shared": "shared hb-text-panel"
+    },
+    {
+      "printed": "bullet lists, paragraphs, bold leads, Voc subscript, ® superscripts",
+      "shared": "shared flow (list, paragraph, strong, sub, sup)"
+    }
+  ],
+  "web_exclusions": [
+    "print cover (physical 1)",
+    "paper TOC (physical 2)",
+    "back-cover QR code (physical 15)",
+    "printed page numbers"
+  ],
+  "source_concerns": [
+    {
+      "page": 13,
+      "line_id": "(hidden text)",
+      "issue": "an unrendered text object 「工作环境温度」 sits under the ENVIRONMENTAL OPERATING TEMPERATURE table",
+      "disposition": "not printed, not transcribed; source owner review"
+    },
+    {
+      "page": 3,
+      "line_id": "safety.l2",
+      "issue": "title case 「To Reduce the Risk of Injury」 inside a sentence",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 3,
+      "line_id": "safety.caution.b",
+      "issue": "「60 °C」 with a space; 「60°C」 elsewhere",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 10,
+      "line_id": "chg.caution.i1",
+      "issue": "stray space in 「( -20°C to 45°C)」",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 13,
+      "line_id": "spec.gen.r4.v",
+      "issue": "LiFePO4 printed with a subscript 4; the shared spec table carries plain text",
+      "disposition": "Web shows 「LiFePO4」 (source/differences.md)"
+    }
+  ]
+}
