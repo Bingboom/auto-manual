@@ -1,6 +1,6 @@
 # JE-1000H EU: shared symbol glyphs in nine languages
 
-Status: active
+Status: done
 
 ## Request and scope (2026-10-26)
 
@@ -115,7 +115,18 @@ The operator reviewed the nine-locale seven-row renderings and decided
 `a0ba3718…` / `91eec6f9…` / `f9e4d011…`) and are publication-eligible; the six
 template locales record it in `shared_symbol_revision.operator_release_approval`.
 
-## Pending
+## Release and online verification (2026-10-27)
 
-1. Operator review and merge of the engineering PR (AGENTS.md §8.6).
-2. After merge: seal at the merged main commit and a Hello-Docs `docs/publish/**` PR.
+- Engineering PR #1608 merged as `226d09c5` (MA-358).
+- At that commit the six template locales were rebuilt through `check` → `md` →
+  `html` with sealed language-projection receipts (version
+  `git-20261027-226d09c5-shared-symbols`), and pt/nl/pl were sealed with
+  `seal_frozen_web_evidence` (version `git-20261026-8bcb378f-shared-symbols`,
+  21 symbol rows admitted, Li-ion through the reviewed waiver).
+- Hello-Docs #257 (`docs/publish/**` only) merged as `925c93da` (MA-361). Visible
+  text matches the previous publication: de/it/nl/pl/pt identical; en/fr/es lose
+  only the decorative `⚠`; uk also differs in one empty-header table's padding.
+- Workspace Data Verify run 125: `rtd-build-verified` for `925c93da`, RTD build
+  4632752. The online page check reports "Not checked (site requires sign-in)",
+  the same limit as `verify-web-deployment`; the rendered pages were not
+  verified online.
