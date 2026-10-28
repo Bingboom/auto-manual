@@ -1,8 +1,8 @@
-# JE-1500B / US / en — Git-only Web manual candidate (Explorer 1500 Pro)
+# JE-1500B / US / en — Git-only Web manual (Explorer 1500 Pro)
 
 Operator instruction, 2026-10-27: 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」, with the decision 「JE-1500B 用 38-0001-000307，000208 不出网页」. This package is the JE-1500B US English manual of Feishu record `reczz28SPLqH7mCa` (物料号文本 38-0001-000307, 项目号 HTE080, SKU 21-0001-000130).
 
-**Status: `candidate-pending-operator-review`.** There is no `source/approval.json`; the IR is not publication-eligible. The operator reviews the 1280/390 renders and `source_manifest.json:source_concerns` before any release.
+**Status: `operator-authorized-git-only-release`.** The operator authorized release on 2026-10-28 (「上线提交发布：JE-1000D、JE-1500B、JE-1500D、JE-2000A；授权合入 #1629 及其 Hello-Docs 发布 PR」) and checks each page's layout after it goes live. `source/approval.json` binds every reviewed `source/` and `assets/` input; the IR is publication-eligible. The source copy goes live as printed; `source_manifest.json:source_concerns` goes back to the source owner.
 
 ## Source authority
 

@@ -93,8 +93,8 @@
   ],
   "live_bitable_dependency": false,
   "phase2_enrolled": false,
-  "publication_status": "candidate-pending-operator-review",
-  "publication_eligible": false,
+  "publication_status": "operator-authorized-git-only-release",
+  "publication_eligible": true,
   "build_boundary": "JE-1000D US is not a phase2 target. build_content.py binds the transcription to shared ComponentSpecs; rebuild.py replays them through manual-ir/v2 and the shared Web/MyST pipeline with the prepared-document shared-style gate and symbol admission (no symbol table is printed, so admission has no rows).",
   "repo_inputs": [],
   "web_exclusions": [
@@ -531,8 +531,8 @@
     },
     {
       "path": "README.md",
-      "size": 3754,
-      "sha256": "fe4ddf2da471bbe2bd12bd9d96ca0889f0bacefc519e30b1eaf8f1e79f921296"
+      "size": 3903,
+      "sha256": "a6eb407c9d981f8652126289260affbe37835a23b5f8ce559aa1127a802a0bd2"
     },
     {
       "path": "assets/ac-charge.png",
@@ -678,6 +678,11 @@
       "path": "refresh_manifest.py",
       "size": 2552,
       "sha256": "29ad1cb1c0c0e76d34c5dc5ab4bb7a514b2a227c2953a1774f08eff10c61e510"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 7638,
+      "sha256": "a32a8f406e1f7680447ba32bcf0f2838342c66a960a72f82719128c1d61bca4b"
     },
     {
       "path": "source/asset_decisions.json",

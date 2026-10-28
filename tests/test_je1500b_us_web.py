@@ -65,11 +65,18 @@ class Je1500bUsWebTests(unittest.TestCase):
         self.assertEqual(file_sha256(PACKAGE / manifest["original_source"]["filename"]), SOURCE_SHA)
         self.assertEqual(manifest["feishu_record"]["record_id"], "reczz28SPLqH7mCa")
         self.assertEqual(manifest["feishu_record"]["物料号文本"], "38-0001-000307")
-        self.assertEqual(manifest["publication_status"], "candidate-pending-operator-review")
-        self.assertFalse(manifest["publication_eligible"])
-        self.assertFalse((PACKAGE / "source/approval.json").exists())
         ir = read(PACKAGE / "web/en/manual.ir.json")
-        self.assertFalse(ir["metadata"]["publication_eligible"])
+        if manifest["publication_status"] == "operator-authorized-git-only-release":
+            self.assertTrue(manifest["publication_eligible"])
+            self.assertTrue(ir["metadata"]["publication_eligible"])
+            approval = read(PACKAGE / "source/approval.json")
+            self.assertEqual(approval["source_sha256"], SOURCE_SHA)
+            self.assertTrue(approval["operator_quote"])
+        else:
+            self.assertEqual(manifest["publication_status"], "candidate-pending-operator-review")
+            self.assertFalse(manifest["publication_eligible"])
+            self.assertFalse(ir["metadata"]["publication_eligible"])
+            self.assertFalse((PACKAGE / "source/approval.json").exists())
 
     def test_inputs_are_pinned(self):
         manifest = read(PACKAGE / "source_manifest.json")

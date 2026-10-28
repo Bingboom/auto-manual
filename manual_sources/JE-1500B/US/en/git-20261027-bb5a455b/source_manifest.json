@@ -60,8 +60,8 @@
   ],
   "live_bitable_dependency": false,
   "phase2_enrolled": false,
-  "publication_status": "candidate-pending-operator-review",
-  "publication_eligible": false,
+  "publication_status": "operator-authorized-git-only-release",
+  "publication_eligible": true,
   "build_boundary": "JE-1500B US is not a phase2 target. build_content.py binds the transcription to shared ComponentSpecs; rebuild.py replays them through manual-ir/v2 and the shared Web/MyST pipeline with the prepared-document shared-style gate and symbol admission (no symbol table is printed). No live Base, queue, source table, HTML_link or asset registry is read or written.",
   "repo_inputs": [],
   "symbol_asset_admission": {
@@ -78,8 +78,8 @@
     },
     {
       "path": "README.md",
-      "size": 3458,
-      "sha256": "24b65d3c74f88138f88a0ebdb60f8040b0e5310e8bbd2d1fa8ce25fa62a7e150"
+      "size": 3705,
+      "sha256": "5c729493c8e8c78e23aa34a4d443a6d930cf540e9ba50547c9267fc1545f3527"
     },
     {
       "path": "assets/ac-charge.png",
@@ -215,6 +215,11 @@
       "path": "refresh_manifest.py",
       "size": 2552,
       "sha256": "e58a45bdb41d21c8e6d77e5a0553ae4dcd9e6ebb0ca126bf0bbef4c8520e5508"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 7361,
+      "sha256": "ee6a641a3e5db1c2200b79e82a0273c25b85c10a4ef9ff5cd46466c5a19efaf2"
     },
     {
       "path": "source/asset_decisions.json",

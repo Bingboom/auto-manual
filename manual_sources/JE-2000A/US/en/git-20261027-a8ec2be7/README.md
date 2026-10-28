@@ -1,8 +1,8 @@
-# JE-2000A / US / en — Git-only Web manual candidate
+# JE-2000A / US / en — Git-only Web manual
 
 Operator instruction, 2026-10-27: 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」. This package is the Jackery Explorer 2000 Pro (JE-2000A) US English manual from that table: Feishu record `reczz28SPLqH8cvK`, 物料号「文本」38-0001-000200, 项目号 HTE078, SKU 21-0001-000099. Route `JE-2000A/US/en/md`.
 
-**Status: `candidate-pending-operator-review`.** The IR is not publication-eligible and there is no `source/approval.json`. The operator reviews the 1280/390 renders in `evidence/` and the `source_manifest.json:source_concerns` list before any release decision (AGENTS.md §8.6).
+**Status: `operator-authorized-git-only-release`.** The operator authorized release on 2026-10-28 (「上线提交发布：JE-1000D、JE-1500B、JE-1500D、JE-2000A；授权合入 #1629 及其 Hello-Docs 发布 PR」) and checks each page's layout after it goes live. `source/approval.json` binds every reviewed `source/` and `assets/` input; the IR is publication-eligible. The source copy goes live as printed; `source_manifest.json:source_concerns` goes back to the source owner.
 
 ## Source authority
 
