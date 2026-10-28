@@ -1,0 +1,1570 @@
+[
+ {
+  "slot": "inbox-unit",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP in-box art is the JP 100V/200V unit and cable and a Japanese manual cover; JHP-5000C cards are the HomePower kit (different cover); no reusable US Explorer 5000 Plus card art",
+  "physical_page": 6,
+  "bbox": [
+   30,
+   84,
+   87,
+   155
+  ],
+  "final_path": "assets/inbox-unit.png",
+  "sha256": "e5f3b7dd3a628b4a32a197a5649534f9d90dc07539e0bb45faa3d871d1c86d03",
+  "background": "retain complete panel, leader lines, labels and phone frames"
+ },
+ {
+  "slot": "inbox-cable",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP in-box art is the JP 100V/200V unit and cable and a Japanese manual cover; JHP-5000C cards are the HomePower kit (different cover); no reusable US Explorer 5000 Plus card art",
+  "physical_page": 6,
+  "bbox": [
+   93,
+   84,
+   149.5,
+   155
+  ],
+  "final_path": "assets/inbox-cable.png",
+  "sha256": "13cdf0f87305e99ce06c9b38ad50bc4e8853c9e17c6eca51d99f130e8a37ebd5",
+  "background": "retain complete panel, leader lines, labels and phone frames"
+ },
+ {
+  "slot": "inbox-wrench",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP in-box art is the JP 100V/200V unit and cable and a Japanese manual cover; JHP-5000C cards are the HomePower kit (different cover); no reusable US Explorer 5000 Plus card art",
+  "physical_page": 6,
+  "bbox": [
+   155.5,
+   84,
+   212.5,
+   155
+  ],
+  "final_path": "assets/inbox-wrench.png",
+  "sha256": "130e32208e77919686b96c228e795d7aac261e106ae40e26498d01d6c32513af",
+  "background": "retain complete panel, leader lines, labels and phone frames"
+ },
+ {
+  "slot": "inbox-manual",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP in-box art is the JP 100V/200V unit and cable and a Japanese manual cover; JHP-5000C cards are the HomePower kit (different cover); no reusable US Explorer 5000 Plus card art",
+  "physical_page": 6,
+  "bbox": [
+   218,
+   84,
+   275,
+   155
+  ],
+  "final_path": "assets/inbox-manual.png",
+  "sha256": "bcec0c89f1a80b70c4af48ddb3cd11dc25fbd15e7fea15d788151c7d70492af1",
+  "background": "retain complete panel, leader lines, labels and phone frames"
+ },
+ {
+  "slot": "inbox-usbc",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP in-box art is the JP 100V/200V unit and cable and a Japanese manual cover; JHP-5000C cards are the HomePower kit (different cover); no reusable US Explorer 5000 Plus card art",
+  "physical_page": 6,
+  "bbox": [
+   281,
+   84,
+   338,
+   155
+  ],
+  "final_path": "assets/inbox-usbc.png",
+  "sha256": "52417e633a6218d7edb88668e49c951c1ba75c3d4b66fd0232879f69341f9037",
+  "background": "retain complete panel, leader lines, labels and phone frames"
+ },
+ {
+  "slot": "overview-front",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP overview panels carry Japanese labels and JP outlets; JHP-5000C panels are text-free bases whose English labels that edition restores from caption_frames geometry, which the shared reference figure (labels embedded, complete panel) does not take; the US print adds ratings that differ (e.g. NEMA L14-30R/14-50 120V/240V)",
+  "physical_page": 6,
+  "bbox": [
+   27,
+   266,
+   342,
+   497
+  ],
+  "final_path": "assets/overview-front.png",
+  "sha256": "e8ea6854544653046b359acd8d8d0cf1da212a6ba3a9de7885168bdb5db79741",
+  "background": "retain complete panel, leader lines, labels and phone frames"
+ },
+ {
+  "slot": "overview-left",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP overview panels carry Japanese labels and JP outlets; JHP-5000C panels are text-free bases whose English labels that edition restores from caption_frames geometry, which the shared reference figure (labels embedded, complete panel) does not take; the US print adds ratings that differ (e.g. NEMA L14-30R/14-50 120V/240V)",
+  "physical_page": 7,
+  "bbox": [
+   27,
+   39,
+   342,
+   249.0
+  ],
+  "final_path": "assets/overview-left.png",
+  "sha256": "9e7e1eb5e0cf7e3d167e4268b0f27398c463c92404a803ed2708c6b23c822c00",
+  "background": "retain complete panel, leader lines, labels and phone frames"
+ },
+ {
+  "slot": "overview-right",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP overview panels carry Japanese labels and JP outlets; JHP-5000C panels are text-free bases whose English labels that edition restores from caption_frames geometry, which the shared reference figure (labels embedded, complete panel) does not take; the US print adds ratings that differ (e.g. NEMA L14-30R/14-50 120V/240V)",
+  "physical_page": 7,
+  "bbox": [
+   27,
+   251.9,
+   342,
+   504
+  ],
+  "final_path": "assets/overview-right.png",
+  "sha256": "ca37bedb24b4378acc10abfccde3aed308b1eb90ccb75cf0472a0a79d9876b30",
+  "background": "retain complete panel, leader lines, labels and phone frames; text and vector objects of the grey bubble/pill/sentence inside [[27.5, 258, 112, 274.5]] removed (not overpainted) and set as native text"
+ },
+ {
+  "slot": "lcd-map",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP and JHP-5000C maps are text-free SVG bases whose ①–㉓ numbers are restored by their own overlays; the shared reference figure needs the complete printed map",
+  "physical_page": 8,
+  "bbox": [
+   28,
+   52,
+   341,
+   232
+  ],
+  "final_path": "assets/lcd-map.png",
+  "sha256": "5bc29f75f52ad8bebf28cd41a473ca832e0b21195559e7e5c717143676f644b7",
+  "background": "retain complete panel, leader lines, labels and phone frames"
+ },
+ {
+  "slot": "power",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP panels show JP 100V outlets and Japanese labels/bubbles; JHP-5000C bases are text-free with caption overlays; this print's labels (On / Press once …) stay in the complete panel",
+  "physical_page": 10,
+  "bbox": [
+   27.5,
+   113,
+   341.5,
+   270.5
+  ],
+  "final_path": "assets/power.png",
+  "sha256": "4b465c47768e7722aa7a11b75fde3cafc05de1376642ca51a78ea1940679aefe",
+  "background": "retain complete panel, leader lines, labels and phone frames; text and vector objects of the grey bubble/pill/sentence inside [[159, 189, 329, 255]] removed (not overpainted) and set as native text"
+ },
+ {
+  "slot": "ac-output",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP panels show JP 100V outlets and Japanese labels/bubbles; JHP-5000C bases are text-free with caption overlays; this print's labels (On / Press once …) stay in the complete panel",
+  "physical_page": 10,
+  "bbox": [
+   27.5,
+   297.5,
+   341.5,
+   482
+  ],
+  "final_path": "assets/ac-output.png",
+  "sha256": "82c2414528a938fb4def4f3dd8771396e9144154e54f8e94f65f58540f42c1be",
+  "background": "retain complete panel, leader lines, labels and phone frames; text and vector objects of the grey bubble/pill/sentence inside [[34, 304, 195, 320]] removed (not overpainted) and set as native text"
+ },
+ {
+  "slot": "usb-output",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP panels show JP 100V outlets and Japanese labels/bubbles; JHP-5000C bases are text-free with caption overlays; this print's labels (On / Press once …) stay in the complete panel",
+  "physical_page": 11,
+  "bbox": [
+   27.5,
+   43,
+   341.5,
+   172
+  ],
+  "final_path": "assets/usb-output.png",
+  "sha256": "afc95078422a1a054e9ddf1fd3b957802f3a159454d994cf410f1181a606a8dc",
+  "background": "retain complete panel, leader lines, labels and phone frames; text and vector objects of the grey bubble/pill/sentence inside [[34, 49, 195, 65]] removed (not overpainted) and set as native text"
+ },
+ {
+  "slot": "dc-output",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP panels show JP 100V outlets and Japanese labels/bubbles; JHP-5000C bases are text-free with caption overlays; this print's labels (On / Press once …) stay in the complete panel",
+  "physical_page": 11,
+  "bbox": [
+   27.5,
+   188.5,
+   341.5,
+   345
+  ],
+  "final_path": "assets/dc-output.png",
+  "sha256": "b8aebda5eeb3214be61e6d517e4694a5f2a677ff10584085e1cd9faa56cc5aed",
+  "background": "retain complete panel, leader lines, labels and phone frames; text and vector objects of the grey bubble/pill/sentence inside [[34, 195, 195, 210.5], [38, 212, 246, 230]] removed (not overpainted) and set as native text"
+ },
+ {
+  "slot": "lcd-button",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP panels show JP 100V outlets and Japanese labels/bubbles; JHP-5000C bases are text-free with caption overlays; this print's labels (On / Press once …) stay in the complete panel",
+  "physical_page": 11,
+  "bbox": [
+   40,
+   374,
+   176,
+   484
+  ],
+  "final_path": "assets/lcd-button.png",
+  "sha256": "b44ef74bb9544f5ca5900345f613e9fa6911d2378462169fc492a2dda16aeb8b",
+  "background": "retain complete panel, leader lines, labels and phone frames"
+ },
+ {
+  "slot": "ups",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP panels show JP 100V outlets and Japanese labels/bubbles; JHP-5000C bases are text-free with caption overlays; this print's labels (On / Press once …) stay in the complete panel",
+  "physical_page": 13,
+  "bbox": [
+   28.5,
+   154.5,
+   342.5,
+   349.5
+  ],
+  "final_path": "assets/ups.png",
+  "sha256": "4eeed358e790730c63b6260946de3267d292d02512497b708021bfa32eb75821",
+  "background": "retain complete panel, leader lines, labels and phone frames; text and vector objects of the grey bubble/pill/sentence inside [[147, 282, 326.5, 334]] removed (not overpainted) and set as native text"
+ },
+ {
+  "slot": "battery-packs",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP panels show JP 100V outlets and Japanese labels/bubbles; JHP-5000C bases are text-free with caption overlays; this print's labels (On / Press once …) stay in the complete panel",
+  "physical_page": 14,
+  "bbox": [
+   28,
+   90.5,
+   342,
+   245
+  ],
+  "final_path": "assets/battery-packs.png",
+  "sha256": "81f594b521b9e4f14b02da64b0d9c7a4465f823a5141ed491c5c3ce0b639e9cd",
+  "background": "retain complete panel, leader lines, labels and phone frames"
+ },
+ {
+  "slot": "sts-connect",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP panels show JP 100V outlets and Japanese labels/bubbles; JHP-5000C bases are text-free with caption overlays; this print's labels (On / Press once …) stay in the complete panel",
+  "physical_page": 14,
+  "bbox": [
+   30,
+   323,
+   344,
+   490.5
+  ],
+  "final_path": "assets/sts-connect.png",
+  "sha256": "99b1467c978057ed328a33c596472b484f4b4e5231811ed9582208131852dbe6",
+  "background": "retain complete panel, leader lines, labels and phone frames; text and vector objects of the grey bubble/pill/sentence inside [[145, 336.5, 328.5, 391]] removed (not overpainted) and set as native text"
+ },
+ {
+  "slot": "ac-charge",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP panels show JP 100V outlets and Japanese labels/bubbles; JHP-5000C bases are text-free with caption overlays; this print's labels (On / Press once …) stay in the complete panel",
+  "physical_page": 15,
+  "bbox": [
+   27,
+   167,
+   340.5,
+   275
+  ],
+  "final_path": "assets/ac-charge.png",
+  "sha256": "0afb6507a7310c739ba21417613310135c045bf10ca680c5e86f6b09d4ecf374",
+  "background": "retain complete panel, leader lines, labels and phone frames; text and vector objects of the grey bubble/pill/sentence inside [[212, 216, 305, 246]] removed (not overpainted) and set as native text"
+ },
+ {
+  "slot": "sts-charge",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP panels show JP 100V outlets and Japanese labels/bubbles; JHP-5000C bases are text-free with caption overlays; this print's labels (On / Press once …) stay in the complete panel",
+  "physical_page": 15,
+  "bbox": [
+   27,
+   292,
+   340.5,
+   466.5
+  ],
+  "final_path": "assets/sts-charge.png",
+  "sha256": "06c6a13d3a370477c72da398404a5d866e87407337d779eb4c8a16a64431c67a",
+  "background": "retain complete panel, leader lines, labels and phone frames; text and vector objects of the grey bubble/pill/sentence inside [[156, 298, 334, 350]] removed (not overpainted) and set as native text"
+ },
+ {
+  "slot": "low-pv-500",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP panels show JP 100V outlets and Japanese labels/bubbles; JHP-5000C bases are text-free with caption overlays; this print's labels (On / Press once …) stay in the complete panel",
+  "physical_page": 16,
+  "bbox": [
+   28.5,
+   128,
+   342.5,
+   262
+  ],
+  "final_path": "assets/low-pv-500.png",
+  "sha256": "b117afc2c9421b19d605abf362d80f37aafb51db391da506a4f612618174c605",
+  "background": "retain complete panel, leader lines, labels and phone frames"
+ },
+ {
+  "slot": "low-pv-200",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP panels show JP 100V outlets and Japanese labels/bubbles; JHP-5000C bases are text-free with caption overlays; this print's labels (On / Press once …) stay in the complete panel",
+  "physical_page": 16,
+  "bbox": [
+   28.5,
+   266,
+   342.5,
+   414.5
+  ],
+  "final_path": "assets/low-pv-200.png",
+  "sha256": "6655b343f5716e1d8444226ccaaa7573d43f9ce4e96968be602520165e87902d",
+  "background": "retain complete panel, leader lines, labels and phone frames"
+ },
+ {
+  "slot": "high-pv",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP panels show JP 100V outlets and Japanese labels/bubbles; JHP-5000C bases are text-free with caption overlays; this print's labels (On / Press once …) stay in the complete panel",
+  "physical_page": 17,
+  "bbox": [
+   27,
+   120,
+   340.5,
+   342
+  ],
+  "final_path": "assets/high-pv.png",
+  "sha256": "9fd5fd377e4c07cdff236235018803efe3708b22ce2747aefdee98c885605618",
+  "background": "retain complete panel, leader lines, labels and phone frames; text and vector objects of the grey bubble/pill/sentence inside [[39, 131, 137, 152]] removed (not overpainted) and set as native text"
+ },
+ {
+  "slot": "high-pv-lock",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP panels show JP 100V outlets and Japanese labels/bubbles; JHP-5000C bases are text-free with caption overlays; this print's labels (On / Press once …) stay in the complete panel",
+  "physical_page": 17,
+  "bbox": [
+   26.5,
+   352.5,
+   338.5,
+   489
+  ],
+  "final_path": "assets/high-pv-lock.png",
+  "sha256": "beb423c0c523d781cc77df78e7ff6d59fbfd4e1fd1cdcf8b147dfbcc88d940bd",
+  "background": "retain complete panel, leader lines, labels and phone frames; text and vector objects of the grey bubble/pill/sentence inside [[46, 369, 176, 403], [193, 370, 308, 403]] removed (not overpainted) and set as native text"
+ },
+ {
+  "slot": "dual-pv",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP panels show JP 100V outlets and Japanese labels/bubbles; JHP-5000C bases are text-free with caption overlays; this print's labels (On / Press once …) stay in the complete panel",
+  "physical_page": 18,
+  "bbox": [
+   25,
+   64,
+   339,
+   227.5
+  ],
+  "final_path": "assets/dual-pv.png",
+  "sha256": "cd34f9d6f74c3b8344222f6e7fa59f92fe3acaa323c07774a991cb88429a54b8",
+  "background": "retain complete panel, leader lines, labels and phone frames"
+ },
+ {
+  "slot": "car-charge",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP panels show JP 100V outlets and Japanese labels/bubbles; JHP-5000C bases are text-free with caption overlays; this print's labels (On / Press once …) stay in the complete panel",
+  "physical_page": 18,
+  "bbox": [
+   25,
+   271,
+   339,
+   419.5
+  ],
+  "final_path": "assets/car-charge.png",
+  "sha256": "82beaf7330716e2c88ba30f4645a29e2fd4ba81cb4507b20bc12cc0b414a4bfb",
+  "background": "retain complete panel, leader lines, labels and phone frames; text and vector objects of the grey bubble/pill/sentence inside [[187, 395, 334, 411]] removed (not overpainted) and set as native text"
+ },
+ {
+  "slot": "app-store",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP crops carry the Japanese App UI; JHP-5000C App art is the HomePower edition with its own captions; this print's English screens and captions are kept as complete phone frames",
+  "physical_page": 20,
+  "bbox": [
+   51,
+   70,
+   124,
+   119.5
+  ],
+  "final_path": "assets/app-store.png",
+  "sha256": "16c1d664ae23ca6bce915ed8c1a8a18e8e5bc77d8424fd70b07ff75879d806af",
+  "background": "retain complete panel, leader lines, labels and phone frames"
+ },
+ {
+  "slot": "app-qr",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP crops carry the Japanese App UI; JHP-5000C App art is the HomePower edition with its own captions; this print's English screens and captions are kept as complete phone frames",
+  "physical_page": 20,
+  "bbox": [
+   199.5,
+   70,
+   250,
+   120.5
+  ],
+  "final_path": "assets/app-qr.png",
+  "sha256": "50ac74f0d2b4695f914c0e70f882f81a729449de7f3328b63122fd4d1c7b91be",
+  "background": "retain complete panel, leader lines, labels and phone frames"
+ },
+ {
+  "slot": "app-add",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP crops carry the Japanese App UI; JHP-5000C App art is the HomePower edition with its own captions; this print's English screens and captions are kept as complete phone frames",
+  "physical_page": 20,
+  "bbox": [
+   104,
+   214,
+   270,
+   375
+  ],
+  "final_path": "assets/app-add.png",
+  "sha256": "a714672f72f1557bbc29422ab3bc22f15469f4845b7e8859764e9086f147b939",
+  "background": "retain complete panel, leader lines, labels and phone frames"
+ },
+ {
+  "slot": "app-control",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP crops carry the Japanese App UI; JHP-5000C App art is the HomePower edition with its own captions; this print's English screens and captions are kept as complete phone frames",
+  "physical_page": 20,
+  "bbox": [
+   40.3,
+   386,
+   341.7,
+   463
+  ],
+  "final_path": "assets/app-control.png",
+  "sha256": "a461959084eff2c7371f317b92cfcaf05b1de0274c716afe4b6d5cdde4b1671b",
+  "background": "retain complete panel, leader lines, labels and phone frames"
+ },
+ {
+  "slot": "app-results",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP crops carry the Japanese App UI; JHP-5000C App art is the HomePower edition with its own captions; this print's English screens and captions are kept as complete phone frames",
+  "physical_page": 21,
+  "bbox": [
+   46,
+   160,
+   309,
+   321
+  ],
+  "final_path": "assets/app-results.png",
+  "sha256": "2d20d7a38a348d9bd3d4086b0dcf30d2717925aeaf2d528b1c92feb95e9e8003",
+  "background": "retain complete panel, leader lines, labels and phone frames; text and vector objects of the grey bubble/pill/sentence inside [[47, 315.5, 169, 324]] removed (not overpainted) and set as native text"
+ },
+ {
+  "slot": "ess",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP panels show JP 100V outlets and Japanese labels/bubbles; JHP-5000C bases are text-free with caption overlays; this print's labels (On / Press once …) stay in the complete panel",
+  "physical_page": 23,
+  "bbox": [
+   29,
+   111,
+   341,
+   388
+  ],
+  "final_path": "assets/ess.png",
+  "sha256": "b7606968068b124ecac743a85ae5bd62cc4123764cf2352212f6655a016182af",
+  "background": "retain complete panel, leader lines, labels and phone frames; text and vector objects of the grey bubble/pill/sentence inside [[42, 353, 222, 374]] removed (not overpainted) and set as native text"
+ },
+ {
+  "slot": "package-unit",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "no Explorer 5000 Plus US package-list art exists in the inventory (JHP-5000C lists the HomePower kit)",
+  "physical_page": 26,
+  "bbox": [
+   26,
+   165,
+   339,
+   274
+  ],
+  "final_path": "assets/package-unit.png",
+  "sha256": "20370a117b6761128341ef871c71b3ecf4d9c13cbb13fc294567934f6e4f8707",
+  "background": "retain complete panel, leader lines, labels and phone frames"
+ },
+ {
+  "slot": "package-battery",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "no Explorer 5000 Plus US package-list art exists in the inventory (JHP-5000C lists the HomePower kit)",
+  "physical_page": 26,
+  "bbox": [
+   26,
+   277,
+   342,
+   361
+  ],
+  "final_path": "assets/package-battery.png",
+  "sha256": "4cd2a9cb805d92b561002eb685eac6aecf96d0e754603bfd05f17fc3b978106f",
+  "background": "retain complete panel, leader lines, labels and phone frames"
+ },
+ {
+  "slot": "package-sts",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "no Explorer 5000 Plus US package-list art exists in the inventory (JHP-5000C lists the HomePower kit)",
+  "physical_page": 26,
+  "bbox": [
+   26,
+   362,
+   342,
+   497
+  ],
+  "final_path": "assets/package-sts.png",
+  "sha256": "625c4abcb15228a4f7fdd157d5ae8a5d4a885bc15943cc7e3d3a35a3cd6a1deb",
+  "background": "retain complete panel, leader lines, labels and phone frames"
+ },
+ {
+  "slot": "lcd-01-wifi",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "reuse byte-identical",
+  "candidate": "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets/lcd-01.svg",
+  "identity_check": "same product glyph: every vector path's data equals the native paths of this PDF (page 8, drawings 85–86); flat grey within 24/255 per channel (source_manifest.json:artwork_reuse_comparison)",
+  "final_path": "assets/lcd-01-wifi.svg",
+  "sha256": "04f2429baa45133fc0ff99840b2f3acb42e2fe7987010f86f9d6d88fb10efb21",
+  "background": "true transparent SVG, glyph paths only"
+ },
+ {
+  "slot": "lcd-02-bluetooth",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "reuse byte-identical",
+  "candidate": "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets/lcd-02.svg",
+  "identity_check": "same product glyph: every vector path's data equals the native paths of this PDF (page 8, drawings 87–88); flat grey within 24/255 per channel (source_manifest.json:artwork_reuse_comparison)",
+  "final_path": "assets/lcd-02-bluetooth.svg",
+  "sha256": "e50006c59af293f0a3c9e43ef97c32fd26b83707b30a593c731739ddcc98aa3b",
+  "background": "true transparent SVG, glyph paths only"
+ },
+ {
+  "slot": "lcd-03-quiet-charging",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "reuse byte-identical",
+  "candidate": "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets/lcd-03.svg",
+  "identity_check": "same product glyph: every vector path's data equals the native paths of this PDF (page 8, drawings 51–52); flat grey within 24/255 per channel (source_manifest.json:artwork_reuse_comparison)",
+  "final_path": "assets/lcd-03-quiet-charging.svg",
+  "sha256": "22a5d9bdac7cb0748db6885cae3acdf87aeca565a72b052bb98a7e69e0dd91b9",
+  "background": "true transparent SVG, glyph paths only"
+ },
+ {
+  "slot": "lcd-04-battery-saving",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "reuse byte-identical",
+  "candidate": "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets/lcd-04.svg",
+  "identity_check": "same product glyph: every vector path's data equals the native paths of this PDF (page 8, drawings 53–58); flat grey within 24/255 per channel (source_manifest.json:artwork_reuse_comparison)",
+  "final_path": "assets/lcd-04-battery-saving.svg",
+  "sha256": "3f35f4ea44f9455ba8fda098628012e779db4fd7b8613a92ab2daf0810840bfb",
+  "background": "true transparent SVG, glyph paths only"
+ },
+ {
+  "slot": "lcd-05-charging-plan",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "reuse byte-identical",
+  "candidate": "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets/lcd-06.svg",
+  "identity_check": "same product glyph: every vector path's data equals the native paths of this PDF (page 8, drawings 59–70); flat grey within 24/255 per channel (source_manifest.json:artwork_reuse_comparison)",
+  "final_path": "assets/lcd-05-charging-plan.svg",
+  "sha256": "0ed7eacc074d1516e347043115f76c449995dda1bc21105a466a0adf22531c7b",
+  "background": "true transparent SVG, glyph paths only"
+ },
+ {
+  "slot": "lcd-06-online-ups",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "reuse byte-identical",
+  "candidate": "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets/lcd-07.svg",
+  "identity_check": "same product glyph: every vector path's data equals the native paths of this PDF (page 8, drawings 71–84); flat grey within 24/255 per channel (source_manifest.json:artwork_reuse_comparison)",
+  "final_path": "assets/lcd-06-online-ups.svg",
+  "sha256": "3294ca7af1fc603747a6a9efba45435350ac0a72450e2a8a79f0f8b691dde73e",
+  "background": "true transparent SVG, glyph paths only"
+ },
+ {
+  "slot": "lcd-07-ac-power",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "reuse byte-identical",
+  "candidate": "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets/lcd-08.svg",
+  "identity_check": "same product glyph: every vector path's data equals the native paths of this PDF (page 8, drawings 34–37); flat grey within 24/255 per channel (source_manifest.json:artwork_reuse_comparison)",
+  "final_path": "assets/lcd-07-ac-power.svg",
+  "sha256": "c1305d80758ffa89bbfe57cc30c2d403513c5a38d893fbb35d4a3c2d855955ea",
+  "background": "true transparent SVG, glyph paths only"
+ },
+ {
+  "slot": "lcd-08-input-power",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "reuse byte-identical",
+  "candidate": "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets/lcd-09.svg",
+  "identity_check": "same product glyph: every vector path's data equals the native paths of this PDF (page 8, drawings 28–33); flat grey within 24/255 per channel (source_manifest.json:artwork_reuse_comparison)",
+  "final_path": "assets/lcd-08-input-power.svg",
+  "sha256": "30441e8c3690c5ff96ea18c58e05b6f224697783d63e04052cf4a8dbfa4c3660",
+  "background": "true transparent SVG, glyph paths only"
+ },
+ {
+  "slot": "lcd-09-remaining-charge-time",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "reuse byte-identical",
+  "candidate": "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets/lcd-10.svg",
+  "identity_check": "same product glyph: every vector path's data equals the native paths of this PDF (page 8, drawings 24–27); flat grey within 24/255 per channel (source_manifest.json:artwork_reuse_comparison)",
+  "final_path": "assets/lcd-09-remaining-charge-time.svg",
+  "sha256": "65a7ad2a1b4bfb353872fc4ed429c86b206337928bc55166424eb186260a15dd",
+  "background": "true transparent SVG, glyph paths only"
+ },
+ {
+  "slot": "lcd-10-ac-wall-charging",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "reuse byte-identical",
+  "candidate": "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets/lcd-11.svg",
+  "identity_check": "same product glyph: every vector path's data equals the native paths of this PDF (page 8, drawings 38–50); flat grey within 24/255 per channel (source_manifest.json:artwork_reuse_comparison)",
+  "final_path": "assets/lcd-10-ac-wall-charging.svg",
+  "sha256": "06b7b4b8692bca9f25ad25049705a8f7d69d1f48e8fa8692b24807426c2c33e9",
+  "background": "true transparent SVG, glyph paths only"
+ },
+ {
+  "slot": "lcd-11-car-charging",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "reuse byte-identical",
+  "candidate": "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets/lcd-12.svg",
+  "identity_check": "same product glyph: every vector path's data equals the native paths of this PDF (page 9, drawings 229–245); flat grey within 24/255 per channel (source_manifest.json:artwork_reuse_comparison)",
+  "final_path": "assets/lcd-11-car-charging.svg",
+  "sha256": "daba8dc8b566867e92269c53011de7159ec772a0ae2aaaa3d5c171b87d76cb3d",
+  "background": "true transparent SVG, glyph paths only"
+ },
+ {
+  "slot": "lcd-12a-high-pv",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "reuse byte-identical",
+  "candidate": "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets/lcd-13.svg",
+  "identity_check": "same product glyph: every vector path's data equals the native paths of this PDF (page 9, drawings 176–193); flat grey within 24/255 per channel (source_manifest.json:artwork_reuse_comparison)",
+  "final_path": "assets/lcd-12a-high-pv.svg",
+  "sha256": "23992b3da93fc64bf08991fd5f6019e27c308f1ea53f8c1ca5f9ba5cbd3b33e5",
+  "background": "true transparent SVG, glyph paths only"
+ },
+ {
+  "slot": "lcd-12b-low-pv",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "reuse byte-identical",
+  "candidate": "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets/lcd-14.svg",
+  "identity_check": "same product glyph: every vector path's data equals the native paths of this PDF (page 9, drawings 194–207); flat grey within 24/255 per channel (source_manifest.json:artwork_reuse_comparison)",
+  "final_path": "assets/lcd-12b-low-pv.svg",
+  "sha256": "ede509006e160d7a16260d2d9d0b48c0e89b7f17461cec646a6cc6edf9f6487f",
+  "background": "true transparent SVG, glyph paths only"
+ },
+ {
+  "slot": "lcd-13a-ac-expansion-charging",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "reuse byte-identical",
+  "candidate": "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/lcd-native-14.svg",
+  "identity_check": "same product glyph: every vector path's data equals the native paths of this PDF (page 9, drawings 40–52); flat grey within 24/255 per channel (source_manifest.json:artwork_reuse_comparison)",
+  "final_path": "assets/lcd-13a-ac-expansion-charging.svg",
+  "sha256": "e470726a943e24f8cf917a64711b1882cce55187a93d21fe93f8fa59bd56a115",
+  "background": "true transparent SVG, glyph paths only"
+ },
+ {
+  "slot": "lcd-14-smart-transfer-switch",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "reuse byte-identical",
+  "candidate": "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/lcd-native-16.svg",
+  "identity_check": "same product glyph: every vector path's data equals the native paths of this PDF (page 9, drawings 160–166); flat grey within 24/255 per channel (source_manifest.json:artwork_reuse_comparison)",
+  "final_path": "assets/lcd-14-smart-transfer-switch.svg",
+  "sha256": "1a9d3f3710052777bdc2d290878a81a32a30f018f0c7e454a194a4a340ecea88",
+  "background": "true transparent SVG, glyph paths only"
+ },
+ {
+  "slot": "lcd-15-battery-power",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "reuse byte-identical",
+  "candidate": "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets/lcd-15.svg",
+  "identity_check": "same product glyph: every vector path's data equals the native paths of this PDF (page 9, drawings 22–22); flat grey within 24/255 per channel (source_manifest.json:artwork_reuse_comparison)",
+  "final_path": "assets/lcd-15-battery-power.svg",
+  "sha256": "463a1423db307feeb0045dbe94a9844b65ffcde9977db8de1c5993c046469aa4",
+  "background": "true transparent SVG, glyph paths only"
+ },
+ {
+  "slot": "lcd-16-low-battery",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "reuse byte-identical",
+  "candidate": "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets/lcd-16.svg",
+  "identity_check": "same product glyph: every vector path's data equals the native paths of this PDF (page 9, drawings 23–23); flat grey within 24/255 per channel (source_manifest.json:artwork_reuse_comparison)",
+  "final_path": "assets/lcd-16-low-battery.svg",
+  "sha256": "ca5ada8245c8497aa362cc837052cb50ac255be8f39c83377465f252909f7a22",
+  "background": "true transparent SVG, glyph paths only"
+ },
+ {
+  "slot": "lcd-17-remaining-battery",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "reuse byte-identical",
+  "candidate": "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets/lcd-17.svg",
+  "identity_check": "same product glyph: every vector path's data equals the native paths of this PDF (page 9, drawings 126–159); flat grey within 24/255 per channel (source_manifest.json:artwork_reuse_comparison)",
+  "final_path": "assets/lcd-17-remaining-battery.svg",
+  "sha256": "4c193d86cf13bc2f9b41a3da4a1dee9af7427976c5039115a2641aa3b7c283d7",
+  "background": "true transparent SVG, glyph paths only"
+ },
+ {
+  "slot": "lcd-18-battery-pack",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "reuse byte-identical",
+  "candidate": "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets/lcd-18.svg",
+  "identity_check": "same product glyph: every vector path's data equals the native paths of this PDF (page 9, drawings 66–73); flat grey within 24/255 per channel (source_manifest.json:artwork_reuse_comparison)",
+  "final_path": "assets/lcd-18-battery-pack.svg",
+  "sha256": "e83e8f4142517d2d9771312ce4fc90c68bc0dcde47b2b5df5b6e20269cf4dcfb",
+  "background": "true transparent SVG, glyph paths only"
+ },
+ {
+  "slot": "lcd-19-fault-code",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "reuse byte-identical",
+  "candidate": "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets/lcd-19.svg",
+  "identity_check": "same product glyph: every vector path's data equals the native paths of this PDF (page 9, drawings 33–35); flat grey within 24/255 per channel (source_manifest.json:artwork_reuse_comparison)",
+  "final_path": "assets/lcd-19-fault-code.svg",
+  "sha256": "4be378f0248b6d1faa6dab9b8c3237952bf248b73bc11d63d1cd3ab91c88fff0",
+  "background": "true transparent SVG, glyph paths only"
+ },
+ {
+  "slot": "lcd-20a-high-temperature",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "reuse byte-identical",
+  "candidate": "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets/lcd-20.svg",
+  "identity_check": "same product glyph: every vector path's data equals the native paths of this PDF (page 9, drawings 36–37); flat grey within 24/255 per channel (source_manifest.json:artwork_reuse_comparison)",
+  "final_path": "assets/lcd-20a-high-temperature.svg",
+  "sha256": "a537f928a74ad454c4acb95479890fae8fb929841ab46a7ab2e7becdea178806",
+  "background": "true transparent SVG, glyph paths only"
+ },
+ {
+  "slot": "lcd-20b-low-temperature",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "reuse byte-identical",
+  "candidate": "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets/lcd-21.svg",
+  "identity_check": "same product glyph: every vector path's data equals the native paths of this PDF (page 9, drawings 38–39); flat grey within 24/255 per channel (source_manifest.json:artwork_reuse_comparison)",
+  "final_path": "assets/lcd-20b-low-temperature.svg",
+  "sha256": "b4bc3ea53dccdfdadf8a172db138ecd691b36bf510da7f383b27d5cf31bc82a1",
+  "background": "true transparent SVG, glyph paths only"
+ },
+ {
+  "slot": "lcd-21-energy-saving",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "reuse byte-identical",
+  "candidate": "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets/lcd-22.svg",
+  "identity_check": "same product glyph: every vector path's data equals the native paths of this PDF (page 9, drawings 24–32); flat grey within 24/255 per channel (source_manifest.json:artwork_reuse_comparison)",
+  "final_path": "assets/lcd-21-energy-saving.svg",
+  "sha256": "1dc3f1b40d814deba684f8ee818ebe8bd9ad17b9a8c6a29330c939925ac780cd",
+  "background": "true transparent SVG, glyph paths only"
+ },
+ {
+  "slot": "lcd-23-remaining-discharge-time",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "reuse byte-identical",
+  "candidate": "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets/lcd-24.svg",
+  "identity_check": "same product glyph: every vector path's data equals the native paths of this PDF (page 9, drawings 100–103); flat grey within 24/255 per channel (source_manifest.json:artwork_reuse_comparison)",
+  "final_path": "assets/lcd-23-remaining-discharge-time.svg",
+  "sha256": "24f44a724c11c7d63aeb242b56e9ccf9e62b584046cd3f1f63d06bd4ae2e5e9e",
+  "background": "true transparent SVG, glyph paths only"
+ },
+ {
+  "slot": "button-dc",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "reuse byte-identical",
+  "candidate": "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/button-dc-bottom.svg",
+  "identity_check": "same product glyph: every vector path's data equals the native paths of this PDF (page 12, drawings 9–19); flat grey within 24/255 per channel (source_manifest.json:artwork_reuse_comparison)",
+  "final_path": "assets/button-dc.svg",
+  "sha256": "7520845c04547a6bf4b4302b3e15e27182ca3263416eeb86af7ab972dc33e660",
+  "background": "true transparent SVG, glyph paths only"
+ },
+ {
+  "slot": "lcd-13b-ac-expansion-discharging",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "native vector extraction",
+  "reason": "no JP, JHP-5000C or shared LCD glyph has the same path data (the JP self-generation and output icons differ); native PDF vector paths",
+  "physical_page": 9,
+  "glyph_bbox": [
+   89.36,
+   142.53,
+   109.15,
+   156.21
+  ],
+  "drawing_indices": [
+   53,
+   54,
+   55,
+   56,
+   57,
+   58,
+   59,
+   60,
+   61,
+   62,
+   63,
+   64,
+   65
+  ],
+  "final_path": "assets/lcd-13b-ac-expansion-discharging.svg",
+  "sha256": "88d5fc4a81ad84f957b9c3c65d5a4a4fc3c6047ea19f48b21f5870eb96b54251",
+  "background": "true transparent SVG, glyph paths only"
+ },
+ {
+  "slot": "lcd-22-output-power",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "native vector extraction",
+  "reason": "no JP, JHP-5000C or shared LCD glyph has the same path data (the JP self-generation and output icons differ); native PDF vector paths",
+  "physical_page": 9,
+  "glyph_bbox": [
+   50.81,
+   458.24,
+   81.57,
+   473.84
+  ],
+  "drawing_indices": [
+   76,
+   77,
+   78,
+   79,
+   80,
+   81,
+   82,
+   83,
+   84,
+   85,
+   86,
+   87,
+   88,
+   89,
+   90,
+   91,
+   92,
+   93,
+   94,
+   95,
+   96,
+   97,
+   98,
+   99
+  ],
+  "final_path": "assets/lcd-22-output-power.svg",
+  "sha256": "e131ca507aa0255619a9e81d946610c8dfdc43b5a11decde4a86be52355801d5",
+  "background": "true transparent SVG, glyph paths only"
+ },
+ {
+  "slot": "button-power",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "native vector extraction",
+  "reason": "the shared button/power-bottom, button/usb-bottom and button/ac-bottom (and the identical JHP-5000C / JP copies) draw a shorter toggle and different silk proportions (fixed comparison 0.086–0.115); shape differs, so the name alone is no reason to substitute",
+  "physical_page": 12,
+  "glyph_bbox": [
+   50.33,
+   57.2,
+   74.32,
+   81.19
+  ],
+  "drawing_indices": [
+   60,
+   61,
+   62,
+   63,
+   64,
+   65,
+   66,
+   67
+  ],
+  "final_path": "assets/button-power.svg",
+  "sha256": "ea33cb3ee299b9bcedc135cdee3e59ab14bc667234b0364e981385ed32118aa7",
+  "background": "true transparent SVG, glyph paths only"
+ },
+ {
+  "slot": "button-usb",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "native vector extraction",
+  "reason": "the shared button/power-bottom, button/usb-bottom and button/ac-bottom (and the identical JHP-5000C / JP copies) draw a shorter toggle and different silk proportions (fixed comparison 0.086–0.115); shape differs, so the name alone is no reason to substitute",
+  "physical_page": 12,
+  "glyph_bbox": [
+   111.18,
+   57.2,
+   135.17,
+   81.19
+  ],
+  "drawing_indices": [
+   68,
+   69,
+   70,
+   71,
+   72,
+   73
+  ],
+  "final_path": "assets/button-usb.svg",
+  "sha256": "a1e8fb5dfbe30ab5945d01b0be37027d8f47f1afb079ac4a38d1c4ac7ce286e1",
+  "background": "true transparent SVG, glyph paths only"
+ },
+ {
+  "slot": "button-ac",
+  "searched": [
+   "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets",
+   "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets",
+   "docs/renderers/web/assets/shared/ (symbols, buttons, lcd)"
+  ],
+  "decision": "native vector extraction",
+  "reason": "the shared button/power-bottom, button/usb-bottom and button/ac-bottom (and the identical JHP-5000C / JP copies) draw a shorter toggle and different silk proportions (fixed comparison 0.086–0.115); shape differs, so the name alone is no reason to substitute",
+  "physical_page": 12,
+  "glyph_bbox": [
+   111.18,
+   99.25,
+   135.17,
+   123.25
+  ],
+  "drawing_indices": [
+   41,
+   42,
+   43,
+   44,
+   45
+  ],
+  "final_path": "assets/button-ac.svg",
+  "sha256": "19a88ee06a8580c8fb05b77442fbe6eb96e67ddf33c7d382346c10d4299f8be1",
+  "background": "true transparent SVG, glyph paths only"
+ },
+ {
+  "slot": "fcc-mark",
+  "searched": [
+   "docs/renderers/web/assets/shared/symbols/manifest.json"
+  ],
+  "decision": "reuse shared catalog variant byte-identical",
+  "candidate": "fcc/nested-c-native-dark",
+  "identity_check": "fixed 2% comparison with the native FCC mark (source_manifest.json:artwork_reuse_comparison)",
+  "final_path": "assets/fcc-mark.svg",
+  "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe",
+  "background": "transparent"
+ },
+ {
+  "slot": "symbol-01",
+  "searched": [
+   "docs/renderers/web/assets/shared/symbols/manifest.json (81 variants)"
+  ],
+  "physical_page": 5,
+  "glyph_bbox": [
+   38.5,
+   228.3,
+   60.9,
+   248.1
+  ],
+  "drawing_indices": [
+   28,
+   29,
+   30
+  ],
+  "final_path": "assets/symbol-01.svg",
+  "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+  "background": "transparent",
+  "decision": "reuse shared catalog variant byte-identical",
+  "candidate": "warning/outline-triangle-tinted",
+  "identity_check": "passes the fixed 2% symbol admission (source_manifest.json:symbol_asset_admission)"
+ },
+ {
+  "slot": "symbol-02",
+  "searched": [
+   "docs/renderers/web/assets/shared/symbols/manifest.json (81 variants)"
+  ],
+  "physical_page": 5,
+  "glyph_bbox": [
+   38.5,
+   257.4,
+   60.9,
+   277.3
+  ],
+  "drawing_indices": [
+   18,
+   19,
+   20
+  ],
+  "final_path": "assets/symbol-02.svg",
+  "sha256": "a76bd208ea017906cdcb5624307cdf4b4bb092816d45ef3943a4b3367c837d3f",
+  "background": "transparent",
+  "decision": "reuse shared catalog variant byte-identical",
+  "candidate": "electric-shock/bolt-triangle-tinted",
+  "identity_check": "passes the fixed 2% symbol admission (source_manifest.json:symbol_asset_admission)"
+ },
+ {
+  "slot": "symbol-03",
+  "searched": [
+   "docs/renderers/web/assets/shared/symbols/manifest.json (81 variants)"
+  ],
+  "physical_page": 5,
+  "glyph_bbox": [
+   38.5,
+   286.5,
+   60.9,
+   306.4
+  ],
+  "drawing_indices": [
+   21,
+   22,
+   23,
+   24,
+   25,
+   26,
+   27
+  ],
+  "final_path": "assets/symbol-03.svg",
+  "sha256": "6a513fe0122fec428c55a3f840c34ed7afdea311f7f1dd9b6e6fd807d087bf55",
+  "background": "transparent",
+  "decision": "reuse shared catalog variant byte-identical",
+  "candidate": "battery-charging/flame-battery-triangle-tinted",
+  "identity_check": "passes the fixed 2% symbol admission (source_manifest.json:symbol_asset_admission)"
+ },
+ {
+  "slot": "symbol-04",
+  "searched": [
+   "docs/renderers/web/assets/shared/symbols/manifest.json (81 variants)"
+  ],
+  "physical_page": 5,
+  "glyph_bbox": [
+   38.2,
+   315.4,
+   61.2,
+   335.5
+  ],
+  "drawing_indices": [
+   31,
+   32,
+   33,
+   34
+  ],
+  "final_path": "assets/symbol-04.svg",
+  "sha256": "3ef06cba72b60935ea421b1b59ff41e1ca9c4c6597b8d8ce1d4ae1904ee68fa0",
+  "background": "transparent",
+  "decision": "reuse shared catalog variant byte-identical",
+  "candidate": "explosive-material/burst-triangle-tinted",
+  "identity_check": "passes the fixed 2% symbol admission (source_manifest.json:symbol_asset_admission)"
+ },
+ {
+  "slot": "symbol-05",
+  "searched": [
+   "docs/renderers/web/assets/shared/symbols/manifest.json (81 variants)"
+  ],
+  "physical_page": 5,
+  "glyph_bbox": [
+   196.6,
+   228.1,
+   219.5,
+   248.1
+  ],
+  "drawing_indices": [
+   50,
+   51,
+   52,
+   53,
+   54,
+   55,
+   56,
+   57
+  ],
+  "final_path": "assets/symbol-05.svg",
+  "sha256": "5316063a33173d4231610b72babd30cb2282d1fd9d76263bf70e9577352e3910",
+  "background": "transparent",
+  "decision": "reuse shared catalog variant byte-identical",
+  "candidate": "heavy-object/person-load-triangle-tinted",
+  "identity_check": "passes the fixed 2% symbol admission (source_manifest.json:symbol_asset_admission)"
+ },
+ {
+  "slot": "symbol-06",
+  "searched": [
+   "docs/renderers/web/assets/shared/symbols/manifest.json (81 variants)"
+  ],
+  "physical_page": 5,
+  "glyph_bbox": [
+   198.2,
+   258.0,
+   217.9,
+   277.8
+  ],
+  "drawing_indices": [
+   44,
+   45,
+   46,
+   47,
+   48,
+   49
+  ],
+  "final_path": "assets/symbol-06.svg",
+  "sha256": "bf9d909ffa39319a475489a9ba272f4add0d43ec31b00388adc6f5dc0a423e9f",
+  "background": "transparent",
+  "decision": "staged native variant (package only; shared catalog untouched)",
+  "candidate": "no-open-flame/fire-match-prohibited-dark-804ebe78",
+  "reason": "no catalog variant within the fixed 2% (closest no-open-flame/fire-match-prohibited and no-open-flame/fire-match-prohibited-3e3a39, 0.0253); the native PDF paths are proposed for the shared catalog; package-only until the coordinator's shared PR"
+ },
+ {
+  "slot": "symbol-07",
+  "searched": [
+   "docs/renderers/web/assets/shared/symbols/manifest.json (81 variants)"
+  ],
+  "physical_page": 5,
+  "glyph_bbox": [
+   198.2,
+   287.8,
+   217.9,
+   307.5
+  ],
+  "drawing_indices": [
+   58,
+   59,
+   60,
+   61
+  ],
+  "final_path": "assets/symbol-07.svg",
+  "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899",
+  "background": "transparent",
+  "decision": "reuse shared catalog variant byte-identical",
+  "candidate": "keep-away-from-children/adult-child-prohibited",
+  "identity_check": "passes the fixed 2% symbol admission (source_manifest.json:symbol_asset_admission)"
+ },
+ {
+  "slot": "symbol-08",
+  "searched": [
+   "docs/renderers/web/assets/shared/symbols/manifest.json (81 variants)"
+  ],
+  "physical_page": 5,
+  "glyph_bbox": [
+   197.2,
+   319.2,
+   218.9,
+   335.8
+  ],
+  "drawing_indices": [
+   41,
+   42,
+   43
+  ],
+  "final_path": "assets/symbol-08.svg",
+  "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
+  "background": "transparent",
+  "decision": "reuse shared catalog variant byte-identical",
+  "candidate": "read-manual/book-information",
+  "identity_check": "passes the fixed 2% symbol admission (source_manifest.json:symbol_asset_admission)"
+ },
+ {
+  "slot": "ingestion-hazard",
+  "searched": [
+   "docs/renderers/web/assets/shared/symbols/manifest.json (81 variants)"
+  ],
+  "decision": "staged native variant (package only; shared catalog untouched)",
+  "candidate": "ingestion-hazard/coin-battery-triangle-dark-804ebe78",
+  "reason": "inline INGESTION HAZARD notice glyph (not a symbol-table row); no catalog variant exists (closest read_manual/je2000e-eu-nl-batch1465-native, 0.2263); the native PDF paths are proposed for the shared catalog; package-only until the coordinator's shared PR",
+  "physical_page": 22,
+  "glyph_bbox": [
+   30.2,
+   452.8,
+   47.3,
+   473.4
+  ],
+  "drawing_indices": [
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "final_path": "assets/ingestion-hazard.svg",
+  "sha256": "6f84be6ae21867726a62702e004a2031d2328bbba15e49e107d1733463925297",
+  "background": "transparent; the same paths print on pages 22, 24 and 25"
+ }
+]
