@@ -1,0 +1,97 @@
+[env-preflight] WARN env.python: Python 3.13 differs from the pinned 3.12; tests and builds may fail for environment reasons
+[env-preflight] WARN env.lock: 4 pinned package(s) not installed: aliyun-python-sdk-core, aliyun-python-sdk-kms, crcmod, oss2
+[env-preflight] WARN env.lock: 2 package(s) differ from requirements.lock: certifi 2026.10.18 (lock 2026.6.17), charset-normalizer 3.5.1 (lock 3.4.8)
+[env-preflight] WARN env.lock: to match CI: python -m pip install -r requirements.lock (on the pinned Python)
+test_assets_and_shared_symbols (tests.test_jhp3600arc_us_web.Jhp3600arcUsWebTests.test_assets_and_shared_symbols) ... ok
+test_changed_source_input_is_rejected (tests.test_jhp3600arc_us_web.Jhp3600arcUsWebTests.test_changed_source_input_is_rejected) ... ok
+test_chapters_and_print_only_pages_excluded (tests.test_jhp3600arc_us_web.Jhp3600arcUsWebTests.test_chapters_and_print_only_pages_excluded) ... ok
+test_cold_replay_matches_stored_candidate (tests.test_jhp3600arc_us_web.Jhp3600arcUsWebTests.test_cold_replay_matches_stored_candidate) ... {
+  "output": "/tmp/tmpjl1yka60/replay",
+  "chapters": 16,
+  "components": {
+    "HB-CALLOUT-STRIP": 20,
+    "HB-SPECIAL-APP": 2,
+    "HB-SPECIAL-FCC": 1,
+    "HB-SPECIAL-INBOX": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE": 19,
+    "HB-TABLE-KEY-COMBINATIONS": 1,
+    "HB-TABLE-LCD-ICON": 1,
+    "HB-TABLE-LCD-MODE": 1,
+    "HB-TABLE-SPEC": 4,
+    "HB-TABLE-SYMBOL-ICON": 1,
+    "HB-TABLE-SYMBOL-SIGNAL": 1,
+    "HB-TABLE-TROUBLESHOOTING": 1,
+    "HB-WARRANTY-LEAD": 1,
+    "HB-WARRANTY-SECTION": 5,
+    "HB-WARRANTY-YEARS": 1
+  },
+  "symbol_admission": [
+    {
+      "asset_ref": "assets/symbol-01.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.011685
+    },
+    {
+      "asset_ref": "assets/symbol-02.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.01121
+    },
+    {
+      "asset_ref": "assets/symbol-03.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.00268
+    },
+    {
+      "asset_ref": "assets/symbol-04.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.003696
+    },
+    {
+      "asset_ref": "assets/symbol-05.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.016955
+    },
+    {
+      "asset_ref": "assets/symbol-06.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.013191
+    },
+    {
+      "asset_ref": "assets/symbol-07.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.004514
+    },
+    {
+      "asset_ref": "assets/symbol-08.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.009984
+    },
+    {
+      "asset_ref": "assets/symbol-09.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.007857
+    },
+    {
+      "asset_ref": "assets/symbol-10.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.009666
+    },
+    {
+      "asset_ref": "assets/symbol-11.png",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.014663
+    }
+  ]
+}
+ok
+test_content_is_rebuilt_from_transcription (tests.test_jhp3600arc_us_web.Jhp3600arcUsWebTests.test_content_is_rebuilt_from_transcription) ... ok
+test_every_web_line_is_selectable_text_in_the_page (tests.test_jhp3600arc_us_web.Jhp3600arcUsWebTests.test_every_web_line_is_selectable_text_in_the_page) ... ok
+test_identity_and_candidate_status (tests.test_jhp3600arc_us_web.Jhp3600arcUsWebTests.test_identity_and_candidate_status) ... ok
+test_inputs_are_pinned (tests.test_jhp3600arc_us_web.Jhp3600arcUsWebTests.test_inputs_are_pinned) ... ok
+test_model_facts_come_from_this_source (tests.test_jhp3600arc_us_web.Jhp3600arcUsWebTests.test_model_facts_come_from_this_source) ... ok
+test_no_feishu_attachment_handles_in_package (tests.test_jhp3600arc_us_web.Jhp3600arcUsWebTests.test_no_feishu_attachment_handles_in_package) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 16.538s
+
+OK

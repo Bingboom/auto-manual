@@ -213,8 +213,19 @@ disposal row in their Web table, which this release omits (PDF pages 7 and 24;
 see the parity notes). The operator ruled on 2026-10-27 that the Web carries it
 from the shared symbol library (「按共用图库补上，授权合入」): the icon is
 `docs/renderers/web/assets/shared/symbols/native-v1/symbol_battery_weee.png`
-(`battery-weee/crossed-bin-no-bar`), the same bytes the de/es/it routes show, and
-the text is this snapshot's `weee2` en/fr copy. Only the `.. only:: not latex`
+(`battery-weee/crossed-bin-no-bar`), and the text is this snapshot's `weee2`
+en/fr copy. Only the `.. only:: not latex`
 table changes; the LaTeX table keeps the printed seven symbols, so the PDF and
 IDML read these pages as before. `source_manifest.json` re-locks the two files
 and records the change.
+
+Battery disposal symbol, DE/ES/IT (2026-10-27): DE/ES/IT already showed the
+battery row. Their icon was this snapshot's 81×69 attachment
+`phase2/_attachments/symbols/12_weee2_EccQbCmImosxoPxWSuOcPinpn9e.png`, the same
+glyph as the shared icon at a lower resolution. The operator ruled 「de/es/it
+也换成共用图库的电池图标」, so the `weee2` row of `phase2/symbols_blocks.csv` now
+has no `Figure` and sets `image_path` to the shared icon above. DE/ES/IT build
+with `--source review`, which regenerates their symbol pages from this table; the
+committed `page/symbols_{de,es,it}.rst` are rewritten at build time and stay as
+they were. EN/FR build `review-asis` and are unaffected. The attachment stays in
+the snapshot. `source_manifest.json` re-locks the CSV and records the change.
