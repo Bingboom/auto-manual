@@ -1,0 +1,1440 @@
+{
+ "schema_version": "explorer-us-en-transcription/v1",
+ "source_sha256": "3dc1fbbaf28908f216955e32de05b88dc9b0477854e8c0b5df7926a542572521",
+ "method": "The PDF has no text layer (every glyph is outlined). Every line was read directly from 300-400 dpi page renders, with 600-700 dpi clips for ambiguous glyphs (dashes, sub/superscripts, spacing); a tesseract draft was usable only on the lighter pages and served as a cross-check there. One entry is one printed logical line, paragraph, bullet or table cell: print line wraps are joined with a single space. strong lists the spans printed in bold, sub/sup the spans printed as sub- or superscript. Text printed inside product art, LCD art and drawing panels stays in the artwork; figure leader labels and captions are listed (ids names.* and fig.*) and carried as alt text. The DC symbol is recorded as U+2393, the reference mark as U+203B and the multiplication sign as U+00D7; outlined glyphs carry no code points, so these are the closest visual equivalents. Line-level \"web\": false marks a printed element kept out of the Web body (the \"US\" corner badge on the IMPORTANT page). The car-panel note \"* The car charging cable is sold separately.\" is printed in a white caption pill inside the panel; it is transcribed as body copy (chg.car.sold) because the Web panel omits the pill.",
+ "pages": [
+  {
+   "physical_page": 1,
+   "printed_page": null,
+   "role": "print-cover",
+   "web": false,
+   "lines": [
+    {
+     "id": "cover.model",
+     "text": "Model: JE-240B"
+    },
+    {
+     "id": "cover.title",
+     "text": "USER MANUAL"
+    },
+    {
+     "id": "cover.name",
+     "text": "Jackery Explorer 240D"
+    },
+    {
+     "id": "cover.contact",
+     "text": "CONTACT US:"
+    },
+    {
+     "id": "cover.tel",
+     "text": "1-888-502-2236 (US)"
+    },
+    {
+     "id": "cover.mail",
+     "text": "hello@jackery.com"
+    },
+    {
+     "id": "cover.web",
+     "text": "www.jackery.com"
+    }
+   ]
+  },
+  {
+   "physical_page": 2,
+   "printed_page": null,
+   "role": "front-matter",
+   "web": true,
+   "lines": [
+    {
+     "id": "intro.badge",
+     "text": "US",
+     "web": false
+    },
+    {
+     "id": "intro.h",
+     "text": "IMPORTANT:"
+    },
+    {
+     "id": "intro.p1",
+     "text": "Congratulations on your new Jackery Explorer 240D. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for frequent reference."
+    },
+    {
+     "id": "intro.p2",
+     "text": "In compliance with laws and regulations, the right of final interpretation of this document and all related documents of this product resides with the Company."
+    },
+    {
+     "id": "intro.p3",
+     "text": "Please kindly notice that no further notifications will be given in case of any update, revision or termination."
+    }
+   ]
+  },
+  {
+   "physical_page": 3,
+   "printed_page": null,
+   "role": "paper-toc",
+   "web": false,
+   "lines": [
+    {
+     "id": "toc.h",
+     "text": "TABLE OF CONTENTS"
+    },
+    {
+     "id": "toc.lang",
+     "text": "US English"
+    },
+    {
+     "id": "toc.range",
+     "text": "01-11"
+    },
+    {
+     "id": "toc.l1",
+     "text": "IMPORTANT SAFETY INFORMATION 01"
+    },
+    {
+     "id": "toc.l2",
+     "text": "MEANING OF SYMBOLS 02"
+    },
+    {
+     "id": "toc.l3",
+     "text": "WHAT'S IN THE BOX 03"
+    },
+    {
+     "id": "toc.l4",
+     "text": "PRODUCT OVERVIEW 03"
+    },
+    {
+     "id": "toc.l5",
+     "text": "LCD DISPLAY 04"
+    },
+    {
+     "id": "toc.l6",
+     "text": "OPERATIONS 05"
+    },
+    {
+     "id": "toc.l7",
+     "text": "TROUBLESHOOTING 07"
+    },
+    {
+     "id": "toc.l8",
+     "text": "CHARGING 07"
+    },
+    {
+     "id": "toc.l9",
+     "text": "STORAGE 09"
+    },
+    {
+     "id": "toc.l10",
+     "text": "SPECIFICATIONS 10"
+    },
+    {
+     "id": "toc.l11",
+     "text": "WARRANTY 11"
+    }
+   ]
+  },
+  {
+   "physical_page": 4,
+   "printed_page": "01",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "safety.h",
+     "text": "IMPORTANT SAFETY INFORMATION"
+    },
+    {
+     "id": "safety.risk",
+     "text": "INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS"
+    },
+    {
+     "id": "safety.warn.l",
+     "text": "WARNING:"
+    },
+    {
+     "id": "safety.warn.b",
+     "text": "Always follow these basic precautions when using this product."
+    },
+    {
+     "id": "safety.l1",
+     "text": "Read all the instructions before using the product."
+    },
+    {
+     "id": "safety.l2",
+     "text": "Do not allow children play on or in the product. Close supervision of children is necessary when the product is used near children."
+    },
+    {
+     "id": "safety.l3",
+     "text": "Avoid placing hands or fingers inside the product."
+    },
+    {
+     "id": "safety.l4",
+     "text": "Stop using the product immediately if it has been physically damaged or modified. Improper use of the product may cause unpredictable behavior, leading to fire, explosion, or injury."
+    },
+    {
+     "id": "safety.l5",
+     "text": "If any of the following are observed, including but not limited to overheats, emits unusual odors or smoking, leaks, or burns, stop using the product immediately and contact the dealer or our Customer Support."
+    },
+    {
+     "id": "safety.l6",
+     "text": "Never attempt to open, repair, or modify the product. Any tampering, reassembly, or modification of the product can result in electric shock, fire, or battery damage."
+    },
+    {
+     "id": "safety.l7",
+     "text": "Be aware that liquid ejected from the product may cause irritation or burns. Inappropriate or abusive use may lead to battery leakage. Avoid direct contact with leaking liquid. If the liquid contacts your eyes, seek medical help immediately. If it contacts other body parts, flush with running water and consult a medical professional without delay."
+    },
+    {
+     "id": "safety.l8",
+     "text": "Do not expose the product to fire or excessive temperatures. Doing so may result in an explosion if the temperature exceeds 130°C (265°F)."
+    },
+    {
+     "id": "safety.l9",
+     "text": "Any use of unrecommended or non-supplied materials or parts with the product may result in a risk of fire, electric shock, or personal injury."
+    },
+    {
+     "id": "safety.l10",
+     "text": "Do not leave the battery charging unattended for long periods. Always monitor the charging process to ensure safe operation."
+    },
+    {
+     "id": "safety.l11",
+     "text": "To reduce the risk of electric shock, unplug the product from any power source before attempting any technical service or troubleshooting."
+    },
+    {
+     "id": "opi.h",
+     "text": "OPERATING INSTRUCTIONS"
+    },
+    {
+     "id": "safety.save",
+     "text": "SAVE THESE INSTRUCTIONS"
+    },
+    {
+     "id": "opi.l1",
+     "text": "Stop using the product immediately if it shows signs of damage. Discontinue use and contact customer support for assistance."
+    },
+    {
+     "id": "opi.l2",
+     "text": "Do not charge the battery in extremely hot or cold environments and strictly adhere to the product's specified operating temperature ranges:"
+    },
+    {
+     "id": "opi.l2.s1",
+     "text": "Charging temperature: -4°F to 113°F (-20°C to 45°C)"
+    },
+    {
+     "id": "opi.l2.s2",
+     "text": "Discharging temperature: -4°F to 113°F (-20°C to 45°C)"
+    },
+    {
+     "id": "opi.l3",
+     "text": "To ensure proper air circulation, keep the product vents uncovered. The area where the product is used must have adequate airflow in a cool, dry environment to prevent overheating."
+    },
+    {
+     "id": "opi.l3.s1",
+     "text": "Charging in damp or poorly ventilated spaces may cause safety hazards."
+    },
+    {
+     "id": "opi.l3.s2",
+     "text": "Water can cause short circuits or damage to the charger, leading to safety risks."
+    },
+    {
+     "id": "opi.l4",
+     "text": "Unplug the power cord from a power outlet during a storm."
+    },
+    {
+     "id": "opi.l5",
+     "text": "Immediately turn off the product by pressing the power button if it has fallen, been dropped, or exposed to vibrations."
+    },
+    {
+     "id": "opi.l6",
+     "text": "Do not charge the product using a damaged or broken charging cord or plug."
+    },
+    {
+     "id": "opi.l7",
+     "text": "Do not use the product to charge any device with a damaged or broken cable or plug."
+    },
+    {
+     "id": "opi.l8",
+     "text": "Always unplug the charging cord by pulling the plug, not the cord, to reduce the risk of damage."
+    },
+    {
+     "id": "opi.l9",
+     "text": "Ensure the product is properly secured when transporting it in a moving vehicle."
+    },
+    {
+     "id": "opi.l10",
+     "text": "DO NOT place the product on the floor or at a height less than 18 inches (457 mm) above the floor during operation in a workshop or repair facility."
+    },
+    {
+     "id": "opi.l11",
+     "text": "DO NOT use the product's accessories with other devices or equipment."
+    },
+    {
+     "id": "opi.l12",
+     "text": "Solar charge times depend on weather conditions, place your solar panel where it will get as much direct sunlight as possible."
+    },
+    {
+     "id": "danger.l",
+     "text": "DANGER:"
+    },
+    {
+     "id": "danger.b1",
+     "text": "This device is intended for indoor use only (Please place this device in a similar indoor environment when using it outdoors, e.g. Home RVs, tents, cabins, etc.)."
+    },
+    {
+     "id": "danger.b2",
+     "text": "※ This device is not waterproof or dustproof. Keep away from rain and humid environments during use."
+    }
+   ]
+  },
+  {
+   "physical_page": 5,
+   "printed_page": "02",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "maint.h",
+     "text": "USER MAINTENANCE INSTRUCTIONS"
+    },
+    {
+     "id": "maint.p",
+     "text": "During the lifecycle of energy storage products, a certain degree of capacity and energy degradation is expected. As the number of charge and discharge cycles increases and storage time extends, this degradation will gradually intensify, which is a normal phenomenon consistent with the natural aging of battery cells."
+    },
+    {
+     "id": "sym.h",
+     "text": "MEANING OF SYMBOLS"
+    },
+    {
+     "id": "signal.th1",
+     "text": "Symbol"
+    },
+    {
+     "id": "signal.th2",
+     "text": "Meaning"
+    },
+    {
+     "id": "signal.warn.l",
+     "text": "WARNING"
+    },
+    {
+     "id": "signal.warn.m",
+     "text": "Hazardous practices that may result in severe injury, death, and/or property damage."
+    },
+    {
+     "id": "signal.caut.l",
+     "text": "CAUTION"
+    },
+    {
+     "id": "signal.caut.m",
+     "text": "Hazardous practices that may result in personal injury and/or property damage."
+    },
+    {
+     "id": "signal.note.l",
+     "text": "NOTE"
+    },
+    {
+     "id": "signal.note.m",
+     "text": "Hazardous practices that may result in equipment damage, data loss, performance deterioration, or unanticipated results."
+    },
+    {
+     "id": "signal.tip.l",
+     "text": "TIP"
+    },
+    {
+     "id": "signal.tip.m",
+     "text": "Supplements the important information or operation tips in the text."
+    },
+    {
+     "id": "symbols.th1",
+     "text": "Symbol"
+    },
+    {
+     "id": "symbols.th2",
+     "text": "Meaning"
+    },
+    {
+     "id": "symbols.th3",
+     "text": "Symbol"
+    },
+    {
+     "id": "symbols.th4",
+     "text": "Meaning"
+    },
+    {
+     "id": "sym.warning",
+     "text": "Warning and Caution Symbols. Must read to alert individuals to potential hazards or risks."
+    },
+    {
+     "id": "sym.manual",
+     "text": "Read the user manual before operation."
+    },
+    {
+     "id": "sym.weee1",
+     "text": "This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling."
+    },
+    {
+     "id": "sym.weee2",
+     "text": "Proper disposal and recycling can help protect the environment. For more information about the disposal and recycling of this product, contact your local community, disposal service, or dealer."
+    },
+    {
+     "id": "sym.shock",
+     "text": "Risk of electric shock"
+    },
+    {
+     "id": "sym.dismantle",
+     "text": "Do not dismantle the product."
+    },
+    {
+     "id": "sym.fire",
+     "text": "Keep the product away from fire."
+    },
+    {
+     "id": "sym.children",
+     "text": "Keep away from children."
+    },
+    {
+     "id": "sym.liion",
+     "text": "This symbol indicates that a lithium-ion (Li-ion) battery is inside the product and should be disposed of or recycled properly."
+    },
+    {
+     "id": "sym.charging",
+     "text": "Battery charging"
+    },
+    {
+     "id": "sym.explosive",
+     "text": "Explosive material"
+    },
+    {
+     "id": "fcc.p1",
+     "text": "This device complies with part 15 of the FCC Rules. Operation is subject to the following two conditions: (1) This device may not cause harmful interference, and (2) this device must accept any interference received, including interference that may cause undesired operation."
+    },
+    {
+     "id": "fcc.note",
+     "text": "NOTE: This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules. These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to communications. However, there is no guarantee that radio interference will not occur in a particular installation.",
+     "strong": [
+      "NOTE:"
+     ]
+    },
+    {
+     "id": "fcc.p3",
+     "text": "If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:"
+    },
+    {
+     "id": "fcc.l1",
+     "text": "Reorient or relocate the receiving antenna."
+    },
+    {
+     "id": "fcc.l2",
+     "text": "Increase the separation between the equipment and receiver."
+    },
+    {
+     "id": "fcc.l3",
+     "text": "Connect the equipment into an outlet on a circuit different from that to which the receiver is connected."
+    },
+    {
+     "id": "fcc.l4",
+     "text": "Consult the dealer or an experienced radio/TV technician for help."
+    },
+    {
+     "id": "fcc.mod",
+     "text": "MODIFICATION: Any changes or modifications not expressly approved by the grantee of this device could void the user’s authority to operate the device.",
+     "strong": [
+      "MODIFICATION:"
+     ]
+    }
+   ]
+  },
+  {
+   "physical_page": 6,
+   "printed_page": "03",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "box.h",
+     "text": "WHAT'S IN THE BOX"
+    },
+    {
+     "id": "box.c1",
+     "text": "Jackery Explorer 240D"
+    },
+    {
+     "id": "box.c2",
+     "text": "140W USB-C to USB-C Charging Cable"
+    },
+    {
+     "id": "box.c3",
+     "text": "User Manual"
+    },
+    {
+     "id": "box.tip.l",
+     "text": "TIP"
+    },
+    {
+     "id": "box.tip.b",
+     "text": "The car charging cable is not included but is available for purchase separately on our website. For assistance, please contact Jackery Customer Support."
+    },
+    {
+     "id": "ov.h",
+     "text": "PRODUCT OVERVIEW"
+    },
+    {
+     "id": "ov.front",
+     "text": "FRONT VIEW"
+    },
+    {
+     "id": "names.lcd",
+     "text": "LCD"
+    },
+    {
+     "id": "names.power",
+     "text": "Main Power Button"
+    },
+    {
+     "id": "names.usba",
+     "text": "USB-A Output"
+    },
+    {
+     "id": "names.usba.v",
+     "text": "15W Max, 5V⎓3A"
+    },
+    {
+     "id": "names.dc",
+     "text": "DC Input"
+    },
+    {
+     "id": "names.dc.v1",
+     "text": "1 × DC8020 Port:"
+    },
+    {
+     "id": "names.dc.v2",
+     "text": "Car: 11-16V⎓6A, 96W Max"
+    },
+    {
+     "id": "names.dc.v3",
+     "text": "PV: 16-28V⎓6A, 100W Max"
+    },
+    {
+     "id": "names.usbc2",
+     "text": "USB-C2 Output"
+    },
+    {
+     "id": "names.usbc2.v",
+     "text": "100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A,"
+    },
+    {
+     "id": "names.usbc3",
+     "text": "USB-C3 Output"
+    },
+    {
+     "id": "names.usbc3.v",
+     "text": "15W Max, 5V⎓3A"
+    },
+    {
+     "id": "names.handle",
+     "text": "Two-in-One Carry Handle"
+    },
+    {
+     "id": "names.usbc1",
+     "text": "USB-C1 Output/Input"
+    },
+    {
+     "id": "names.usbc1.v",
+     "text": "140W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A, 28V⎓5A"
+    }
+   ]
+  },
+  {
+   "physical_page": 7,
+   "printed_page": "04",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "ov.straps",
+     "text": "The handle attachments can also be used for adjustable straps (sold separately)."
+    },
+    {
+     "id": "lcd.h",
+     "text": "LCD DISPLAY"
+    },
+    {
+     "id": "lcd.i1.n",
+     "text": "Input Power"
+    },
+    {
+     "id": "lcd.i1.d",
+     "text": "Displays the input power in watts."
+    },
+    {
+     "id": "lcd.i2.n",
+     "text": "USB-C Charging Indicator"
+    },
+    {
+     "id": "lcd.i2.d",
+     "text": "The product is charged via the USB-C port."
+    },
+    {
+     "id": "lcd.i3.n",
+     "text": "Car Charging Indicator"
+    },
+    {
+     "id": "lcd.i3.d",
+     "text": "The product is charged via the DC Input (DC8020) using DC 12V (car charging)."
+    }
+   ]
+  },
+  {
+   "physical_page": 8,
+   "printed_page": "05",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "lcd.i4.n",
+     "text": "Solar Charging Indicator"
+    },
+    {
+     "id": "lcd.i4.d",
+     "text": "The product is charged via the DC Input (DC8020) using solar panel(s)."
+    },
+    {
+     "id": "lcd.i5.n",
+     "text": "Battery Power Indicator"
+    },
+    {
+     "id": "lcd.i5.d",
+     "text": "When the product is being charged, the orange circle around the battery percentage will light up in sequence. When charging other devices, the orange circle will stay on."
+    },
+    {
+     "id": "lcd.i6.n",
+     "text": "Remaining Battery Percentage"
+    },
+    {
+     "id": "lcd.i6.d",
+     "text": "Displays the remaining battery percentage."
+    },
+    {
+     "id": "lcd.i7.n",
+     "text": "Energy Saving Mode"
+    },
+    {
+     "id": "lcd.i7.d1",
+     "text": "On: Energy Saving Mode is enabled."
+    },
+    {
+     "id": "lcd.i7.d2",
+     "text": "Off: Energy Saving Mode is disabled."
+    },
+    {
+     "id": "lcd.ht.n",
+     "text": "High Temperature Indicator"
+    },
+    {
+     "id": "lcd.ht.d",
+     "text": "High temperature protection is triggered. The product may stop functioning until its temperature returns to the normal operating range."
+    },
+    {
+     "id": "lcd.lt.n",
+     "text": "Low Temperature Indicator"
+    },
+    {
+     "id": "lcd.lt.d",
+     "text": "Low temperature protection is triggered. The product may stop functioning until its temperature returns to the normal operating range."
+    },
+    {
+     "id": "lcd.f.n",
+     "text": "Fault Code"
+    },
+    {
+     "id": "lcd.f.d",
+     "text": "A product error has occurred. Please refer to the Troubleshooting section for details."
+    },
+    {
+     "id": "lcd.i10.n",
+     "text": "Output Power"
+    },
+    {
+     "id": "lcd.i10.d",
+     "text": "Displays the output power in watts."
+    },
+    {
+     "id": "op.h",
+     "text": "OPERATIONS"
+    },
+    {
+     "id": "op.pwr.h",
+     "text": "POWER ON/OFF"
+    },
+    {
+     "id": "fig.pwr.on",
+     "text": "on"
+    },
+    {
+     "id": "fig.pwr.on.d",
+     "text": "Press once"
+    },
+    {
+     "id": "fig.pwr.off",
+     "text": "off"
+    },
+    {
+     "id": "fig.pwr.off.d",
+     "text": "Press and hold for 3s"
+    }
+   ]
+  },
+  {
+   "physical_page": 9,
+   "printed_page": "06",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "op.usb.h",
+     "text": "USB OUTPUT ON/OFF"
+    },
+    {
+     "id": "op.usb.p",
+     "text": "Once the product is turned on, the USB output is enabled by default, allowing you to charge your devices."
+    },
+    {
+     "id": "fig.usb.on",
+     "text": "on"
+    },
+    {
+     "id": "fig.usb.on.d",
+     "text": "Press once"
+    },
+    {
+     "id": "fig.usb.off",
+     "text": "off"
+    },
+    {
+     "id": "fig.usb.off.d",
+     "text": "Press and hold for 3s"
+    },
+    {
+     "id": "op.usb.c1",
+     "text": "USB-C1 and USB-C2 are USB-PD Power Source 3 (PS3) high-power output ports. If the connected user device or accessory does not meet safety requirements, there may be a fire risk. Before using these ports, ensure that the connected device or accessory has fire safety protection."
+    },
+    {
+     "id": "op.usb.c2",
+     "text": "Only connect the Jackery Explorer 240D to devices or accessories that comply with clauses 6.3, 6.4, and 6.5 of IEC/EN/UL 62368-1 (or other equivalent standards)."
+    },
+    {
+     "id": "op.usb.c3",
+     "text": "To obtain maximum output power, use the official Jackery USB-C to USB-C 5A cable (20V DC/5A, 100W; 28V DC/5A, 140W)."
+    },
+    {
+     "id": "op.eco.h",
+     "text": "Energy Saving Mode"
+    },
+    {
+     "id": "op.eco.p1",
+     "text": "To prevent unnecessary battery consumption from forgetting to turn off the output, the product enables Energy Saving Mode by default. If no device is connected, or if the combined output of the USB-A and USB-C ports is 2W or less, the product will automatically turn off the output after 6 hours."
+    },
+    {
+     "id": "op.eco.p2",
+     "text": "On/Off: press the Main Power Button three times in a row.",
+     "strong": [
+      "On/Off:"
+     ]
+    },
+    {
+     "id": "op.eco.note.l",
+     "text": "NOTE"
+    },
+    {
+     "id": "op.eco.note.i1",
+     "text": "If the Energy Saving Mode is disabled, the product will not automatically turn off the USB output."
+    },
+    {
+     "id": "op.eco.note.i2",
+     "text": "Energy Saving Mode resumes previous state after power-on. Manual switching is required for mode changes."
+    },
+    {
+     "id": "op.lcd.h",
+     "text": "LCD SCREEN ON/OFF"
+    },
+    {
+     "id": "op.lcd.g1",
+     "text": "LCD Screen"
+    },
+    {
+     "id": "op.lcd.g1.a1",
+     "text": "Turn on"
+    },
+    {
+     "id": "op.lcd.g1.d1",
+     "text": "Press the Main Power Button or when the product is charging."
+    },
+    {
+     "id": "op.lcd.g1.a2",
+     "text": "Turn off"
+    },
+    {
+     "id": "op.lcd.g1.d2",
+     "text": "Press the Main Power Button."
+    },
+    {
+     "id": "op.lcd.g1.a3",
+     "text": "Auto-off"
+    },
+    {
+     "id": "op.lcd.g1.d3",
+     "text": "The LCD turns off automatically after 2 minutes of inactivity."
+    },
+    {
+     "id": "op.lcd.g2",
+     "text": "Always-on Display Mode (under charging or discharging state)"
+    },
+    {
+     "id": "op.lcd.g2.a1",
+     "text": "Turn on"
+    },
+    {
+     "id": "op.lcd.g2.d1",
+     "text": "Double-press the Main Power Button when the LCD screen is ON."
+    },
+    {
+     "id": "op.lcd.g2.a2",
+     "text": "Turn off"
+    },
+    {
+     "id": "op.lcd.g2.d2",
+     "text": "Press the Main Power Button."
+    },
+    {
+     "id": "op.lcd.g2.a3",
+     "text": "Auto-off"
+    },
+    {
+     "id": "op.lcd.g2.d3",
+     "text": "The Always-on Display Mode turns off automatically after 2 hours of inactivity."
+    }
+   ]
+  },
+  {
+   "physical_page": 10,
+   "printed_page": "07",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "trbl.h",
+     "text": "TROUBLESHOOTING"
+    },
+    {
+     "id": "trbl.p",
+     "text": "If any of the following fault codes appear, follow the listed corrective actions to resolve the issue. If fault persists, please contact Jackery Customer Support."
+    },
+    {
+     "id": "trbl.th1",
+     "text": "Error Code"
+    },
+    {
+     "id": "trbl.th2",
+     "text": "Corrective Measures"
+    },
+    {
+     "id": "trbl.f0.c",
+     "text": "F0"
+    },
+    {
+     "id": "trbl.f0.m",
+     "text": "Restart the product."
+    },
+    {
+     "id": "trbl.f1.c",
+     "text": "F1"
+    },
+    {
+     "id": "trbl.f1.m",
+     "text": "Contact Jackery Customer Support."
+    },
+    {
+     "id": "trbl.f2.c",
+     "text": "F2"
+    },
+    {
+     "id": "trbl.f2.m",
+     "text": "Contact Jackery Customer Support."
+    },
+    {
+     "id": "trbl.f3.c",
+     "text": "F3"
+    },
+    {
+     "id": "trbl.f3.m",
+     "text": "Restart the product."
+    },
+    {
+     "id": "trbl.f4.c",
+     "text": "F4"
+    },
+    {
+     "id": "trbl.f4.m",
+     "text": "Connect the product to loads to discharge its battery until the fault disappears."
+    },
+    {
+     "id": "trbl.f5.c",
+     "text": "F5"
+    },
+    {
+     "id": "trbl.f5.m",
+     "text": "Charge the product via USB-C port or solar panel until the fault disappears."
+    },
+    {
+     "id": "trbl.f6.c",
+     "text": "F6"
+    },
+    {
+     "id": "trbl.f6.m",
+     "text": "Contact Jackery Customer Support."
+    },
+    {
+     "id": "trbl.f7.c",
+     "text": "F7"
+    },
+    {
+     "id": "trbl.f7.m1",
+     "text": "1. Remove all DC inputs from the product."
+    },
+    {
+     "id": "trbl.f7.m2",
+     "text": "2. If you charge the product via a solar panel, check the open-circuited voltage (Voc) of the connected solar panel.The product allows a maximum DC input voltage of 28V."
+    },
+    {
+     "id": "trbl.f7.m3",
+     "text": "3. Restart the product and keep it idle. Wait until the fault disappears."
+    },
+    {
+     "id": "trbl.f8.c",
+     "text": "F8"
+    },
+    {
+     "id": "trbl.f8.m",
+     "text": "Contact Jackery Customer Support."
+    },
+    {
+     "id": "trbl.f9.c",
+     "text": "F9"
+    },
+    {
+     "id": "trbl.f9.m",
+     "text": "Remove the load connected to the USB ports of the product. Wait until the fault disappears."
+    },
+    {
+     "id": "chg.h",
+     "text": "CHARGING"
+    },
+    {
+     "id": "chg.green",
+     "text": "Green energy first: We advocate to use the green energy first. This product supports two modes of charging at the same time: solar charging and USB-C charging. When USB-C charging and solar charging are turned on at the same time, the product will give priority to solar charging and both methods will be used to charge the battery at the maximum permissible power.",
+     "strong": [
+      "Green energy first:"
+     ]
+    },
+    {
+     "id": "chg.first",
+     "text": "Fully charge the product before its first use."
+    },
+    {
+     "id": "chg.note.l",
+     "text": "NOTE"
+    },
+    {
+     "id": "chg.note.i1",
+     "text": "The recommended charging temperature for the product ranges from -4°F to 113°F (-20°C to 45°C), and the discharging temperature ranges from -4°F to 113°F (-20°C to 45°C). Operating the product beyond this temperature range may restrict its charging and discharging capabilities, or even prevent it from charging or discharging."
+    },
+    {
+     "id": "chg.note.i2",
+     "text": "The charging power and battery capacity of the product may vary due to temperature fluctuations."
+    }
+   ]
+  },
+  {
+   "physical_page": 11,
+   "printed_page": "08",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "chg.usbc.h",
+     "text": "USB-C CHARGING (140W MAX)"
+    },
+    {
+     "id": "chg.usbc.p",
+     "text": "Prepare a wall charger. Use the 140W USB-C to USB-C charging cable in the package to connect the USB-C1 port of the product and a wall outlet.",
+     "strong": [
+      "Prepare a wall charger. Use the 140W USB-C to USB-C charging cable in the package to connect the USB-C1 port of the product and a wall outlet."
+     ]
+    },
+    {
+     "id": "fig.usbc.s1",
+     "text": "1"
+    },
+    {
+     "id": "fig.usbc.s2",
+     "text": "2"
+    },
+    {
+     "id": "chg.usbc.after",
+     "text": "When charging through the USB-C port, this product supports up to 140W, which requires a PD charger and cable that both support 140W."
+    },
+    {
+     "id": "chg.solar.h",
+     "text": "SOLAR CHARGING (100W MAX)"
+    },
+    {
+     "id": "chg.solar.p",
+     "text": "The Jackery Explorer 240D has one DC8020 input port that supports direct connection to a single solar panel."
+    },
+    {
+     "id": "fig.solar.panel",
+     "text": "SolarSaga 40 Air x 1"
+    },
+    {
+     "id": "chg.solar.rec",
+     "text": "It is recommended to use a Jackery solar panel to charge the product. Ensure that the open-circuit voltage (Voc) of the solar panel falls within the Jackery Explorer 240D's DC input voltage range (16V–28V). Jackery is not responsible for any damage or loss resulting from the use of third-party solar panels.",
+     "sub": [
+      "oc"
+     ]
+    }
+   ]
+  },
+  {
+   "physical_page": 12,
+   "printed_page": "09",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "chg.car.h",
+     "text": "CAR CHARGING (96W MAX)"
+    },
+    {
+     "id": "chg.car.p",
+     "text": "This product can be charged using a 12V car charger. Ensure that the car charger and the 12V car power outlet provide a good connection."
+    },
+    {
+     "id": "fig.car.vehicle",
+     "text": "Vehicle"
+    },
+    {
+     "id": "chg.car.sold",
+     "text": "* The car charging cable is sold separately."
+    },
+    {
+     "id": "chg.car.caution.l",
+     "text": "CAUTION"
+    },
+    {
+     "id": "chg.car.caution.i1",
+     "text": "Please start the vehicle before charging your power station."
+    },
+    {
+     "id": "chg.car.caution.i2",
+     "text": "If the vehicle is running on bumpy roads, it is forbidden to use the car charger in case it causes non-standard operation. The Company will not be responsible for any loss caused by non-standard operation."
+    },
+    {
+     "id": "chg.car.caution.i3",
+     "text": "Vehicle charging is only applicable to vehicles with 12V DC, not 24V DC. Please do not charge this product in 24V vehicle to avoid personal injury and property loss."
+    },
+    {
+     "id": "sto.h",
+     "text": "STORAGE"
+    },
+    {
+     "id": "sto.p1",
+     "text": "Store the product in a dry clean place with proper ventilation. Storage temperature and humidity:"
+    },
+    {
+     "id": "sto.l1",
+     "text": "1 month: -4°F to 113°F / -20°C to 45°C (0-60%RH)"
+    },
+    {
+     "id": "sto.l2",
+     "text": "3 months: 32°F to 113°F / 0°C to 45°C (0-60%RH)"
+    },
+    {
+     "id": "sto.l3",
+     "text": "12 months: 32°F to 77°F / 0°C to 25°C (0-60%RH)"
+    },
+    {
+     "id": "sto.p2",
+     "text": "If this product is stored for a long period of time (3 months - 6 months) with the power depleted, it may become unchargeable. To prevent this and maintain battery health, it is recommended to check and recharge the product every three months and perform a full charge and discharge cycle at least once every 6 to 12 months."
+    }
+   ]
+  },
+  {
+   "physical_page": 13,
+   "printed_page": "10",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "spec.h",
+     "text": "SPECIFICATIONS"
+    },
+    {
+     "id": "spec.gen.h",
+     "text": "GENERAL INFO"
+    },
+    {
+     "id": "spec.gen.r1.l",
+     "text": "Product Name"
+    },
+    {
+     "id": "spec.gen.r1.v",
+     "text": "Jackery Explorer 240D"
+    },
+    {
+     "id": "spec.gen.r2.l",
+     "text": "Model No."
+    },
+    {
+     "id": "spec.gen.r2.v",
+     "text": "JE-240B"
+    },
+    {
+     "id": "spec.gen.r3.l",
+     "text": "Capacity"
+    },
+    {
+     "id": "spec.gen.r3.v",
+     "text": "20Ah / 12.8V DC (256 Wh)"
+    },
+    {
+     "id": "spec.gen.r4.l",
+     "text": "Cell Chemistry"
+    },
+    {
+     "id": "spec.gen.r4.v",
+     "text": "LiFePO4",
+     "sub": [
+      "4"
+     ]
+    },
+    {
+     "id": "spec.gen.r5.l",
+     "text": "Weight"
+    },
+    {
+     "id": "spec.gen.r5.v",
+     "text": "About 4.85 lbs / 2.2kg"
+    },
+    {
+     "id": "spec.gen.r6.l",
+     "text": "Dimensions"
+    },
+    {
+     "id": "spec.gen.r6.v",
+     "text": "4.7×4.2×6.7 in / 12×10.65×17cm"
+    },
+    {
+     "id": "spec.gen.r7.l",
+     "text": "Cycle Life"
+    },
+    {
+     "id": "spec.gen.r7.v",
+     "text": "6000 cycles to 70%+ capacity"
+    },
+    {
+     "id": "spec.in.h",
+     "text": "INPUT PORTS"
+    },
+    {
+     "id": "spec.in.r1.l",
+     "text": "1 × USB-C1 Input"
+    },
+    {
+     "id": "spec.in.r1.v",
+     "text": "140W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A, 28V⎓5A"
+    },
+    {
+     "id": "spec.in.r2.l",
+     "text": "1 × DC8020 Input"
+    },
+    {
+     "id": "spec.in.r2.v1",
+     "text": "Car: 11-16V⎓6A, 96W Max"
+    },
+    {
+     "id": "spec.in.r2.v2",
+     "text": "PV: 16-28V⎓6A, 100W Max"
+    },
+    {
+     "id": "spec.out.h",
+     "text": "OUTPUT PORTS"
+    },
+    {
+     "id": "spec.out.r1.l",
+     "text": "1 × USB-C1 Output"
+    },
+    {
+     "id": "spec.out.r1.v",
+     "text": "140W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A, 28V⎓5A"
+    },
+    {
+     "id": "spec.out.r2.l",
+     "text": "1 × USB-C2 Output"
+    },
+    {
+     "id": "spec.out.r2.v",
+     "text": "100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A"
+    },
+    {
+     "id": "spec.out.r3.l",
+     "text": "1 × USB-C3 Output"
+    },
+    {
+     "id": "spec.out.r3.v",
+     "text": "15W Max, 5V⎓3A"
+    },
+    {
+     "id": "spec.out.r4.l",
+     "text": "1 × USB-A Output"
+    },
+    {
+     "id": "spec.out.r4.v",
+     "text": "15W Max, 5V⎓3A"
+    },
+    {
+     "id": "spec.out.r5.l",
+     "text": "Dual-port Output Mode"
+    },
+    {
+     "id": "spec.out.r5.v1",
+     "text": "USB-C1 + USB-C2: 100W Max + 100W Max"
+    },
+    {
+     "id": "spec.out.r5.v2",
+     "text": "USB-C1 + USB-C3: 140W Max + 15W Max"
+    },
+    {
+     "id": "spec.out.r5.v3",
+     "text": "USB-C1 + USB-A: 140W Max + 15W Max"
+    },
+    {
+     "id": "spec.out.r5.v4",
+     "text": "USB-C2 + USB-A: 100W Max + 15W Max"
+    },
+    {
+     "id": "spec.out.r5.v5",
+     "text": "USB-C3 + USB-A: 15W Max + 15W Max"
+    },
+    {
+     "id": "spec.out.r5.v6",
+     "text": "USB-C2 + USB-C3: 100W Max + 15W Max"
+    },
+    {
+     "id": "spec.out.r6.l",
+     "text": "Triple-port Output Mode"
+    },
+    {
+     "id": "spec.out.r6.v1",
+     "text": "USB-C1 + USB-C2 + USB-C3: 100W Max + 60W Max + 15W Max"
+    },
+    {
+     "id": "spec.out.r6.v2",
+     "text": "USB-C1 + USB-C2 + USB-A: 100W Max + 60W Max + 15W Max"
+    },
+    {
+     "id": "spec.out.r6.v3",
+     "text": "USB-C2 + USB-C3 + USB-A: 100W Max + 15W Max + 15W Max"
+    },
+    {
+     "id": "spec.out.r6.v4",
+     "text": "USB-C1 + USB-C3 + USB-A: 140W Max + 15W Max + 15W Max"
+    },
+    {
+     "id": "spec.out.r7.l",
+     "text": "Quadruple-port Output Mode"
+    },
+    {
+     "id": "spec.out.r7.v",
+     "text": "USB-C1 + USB-C2 + USB-C3 + USB-A: 100W Max + 60W Max + 15W Max + 15W Max"
+    },
+    {
+     "id": "spec.env.h",
+     "text": "OPERATING TEMPERATURE"
+    },
+    {
+     "id": "spec.env.r1.l",
+     "text": "Charge Temperature"
+    },
+    {
+     "id": "spec.env.r1.v",
+     "text": "-4°F to 113°F / -20°C to 45°C"
+    },
+    {
+     "id": "spec.env.r2.l",
+     "text": "Discharge Temperature"
+    },
+    {
+     "id": "spec.env.r2.v",
+     "text": "-4°F to 113°F / -20°C to 45°C"
+    },
+    {
+     "id": "spec.tm",
+     "text": "※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.",
+     "sup": [
+      "®",
+      "®"
+     ]
+    },
+    {
+     "id": "spec.thermal",
+     "text": "When devices are connected to the high-power ports, the output power may be automatically adjusted by the product's temperature protection mechanism. This is normal operation and does not indicate a malfunction. There is no need for concern."
+    }
+   ]
+  },
+  {
+   "physical_page": 14,
+   "printed_page": "11",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "war.h",
+     "text": "WARRANTY"
+    },
+    {
+     "id": "war.lead",
+     "text": "We only provide our warranty to customers who purchase from the official Jackery website, Jackery-branded third-party platforms, or local authorized dealers.",
+     "strong": [
+      "We only provide our warranty to customers who purchase from the official Jackery website, Jackery-branded third-party platforms, or local authorized dealers."
+     ]
+    },
+    {
+     "id": "war.local",
+     "text": "*Warranty period and details may vary according to local laws, regulations, and authorized dealers."
+    },
+    {
+     "id": "war.lim.h",
+     "text": "Limited Warranty"
+    },
+    {
+     "id": "war.lim.p1",
+     "text": "Jackery Inc. warrants to the original consumer purchaser that the Jackery product will be free from defects in workmanship and material under normal consumer use during the applicable warranty period identified in the 'Warranty Period' section below, subject to the exclusions set forth below."
+    },
+    {
+     "id": "war.lim.p2",
+     "text": "This warranty statement sets forth Jackery's total and exclusive warranty obligation. We will not assume, nor authorize any person to assume for us, any other liability in connection with the sale of our products."
+    },
+    {
+     "id": "war.period.h",
+     "text": "Warranty Period"
+    },
+    {
+     "id": "war.y1.n",
+     "text": "3"
+    },
+    {
+     "id": "war.y1.unit",
+     "text": "YEARS"
+    },
+    {
+     "id": "war.y1.label",
+     "text": "Standard Warranty"
+    },
+    {
+     "id": "war.y1.b",
+     "text": "The standard warranty period for Jackery Explorer 240D is 36 months. In each case, the warranty period is measured starting on the date of purchase by the original consumer purchaser. The sales receipt from the first consumer purchaser, or other reasonable documentary proof, is required in order to establish the start date of the warranty period."
+    },
+    {
+     "id": "war.y2.n",
+     "text": "2"
+    },
+    {
+     "id": "war.y2.unit",
+     "text": "YEARS"
+    },
+    {
+     "id": "war.y2.label",
+     "text": "Extended Warranty"
+    },
+    {
+     "id": "war.y2.b",
+     "text": "To activate the Warranty Extension, you must register your product online or contact our customer service team at hello@jackery.com to extend the standard warranty runtime."
+    },
+    {
+     "id": "war.repair.h",
+     "text": "Repair or replacement"
+    },
+    {
+     "id": "war.repair.p",
+     "text": "Jackery will repair or replace (at Jackery's expense) any Jackery product that fails to operate during the applicable warranty period due to a defect in workmanship or material. The repaired/replaced product assumes the remaining warranty of the original date of purchase."
+    },
+    {
+     "id": "war.buyer.h",
+     "text": "Limited to Original Consumer Buyer"
+    },
+    {
+     "id": "war.buyer.p",
+     "text": "The warranty on Jackery's product is limited to the original consumer purchaser and is not transferable to any subsequent owner."
+    },
+    {
+     "id": "war.excl.h",
+     "text": "Exclusions"
+    },
+    {
+     "id": "war.excl.lead",
+     "text": "Jackery's warranty does not apply to:"
+    },
+    {
+     "id": "war.excl.l1",
+     "text": "Misused, abused, modified, damaged by accident, or used for anything other than normal consumer use as authorized in Jackery's current product literature."
+    },
+    {
+     "id": "war.excl.l2",
+     "text": "Attempted repair by anyone other than an authorized facility."
+    },
+    {
+     "id": "war.excl.l3",
+     "text": "Any product purchased through an online auction house."
+    },
+    {
+     "id": "war.excl.l4",
+     "text": "Jackery's warranty does not apply to the battery cell unless the battery cell is fully charged by you within seven days after you purchase the product and at least once every 6 months thereafter."
+    },
+    {
+     "id": "war.interp.h",
+     "text": "Interpretation Rights"
+    },
+    {
+     "id": "war.interp.p",
+     "text": "Jackery reserves the right to final interpretation of the above customer after-sales policy."
+    }
+   ]
+  },
+  {
+   "physical_page": 15,
+   "printed_page": null,
+   "role": "back-cover",
+   "web": true,
+   "lines": [
+    {
+     "id": "back.company",
+     "text": "JACKERY INC."
+    },
+    {
+     "id": "back.address",
+     "text": "5310 Bunche Dr., Fremont, CA 94538-8301"
+    },
+    {
+     "id": "back.tel",
+     "text": "1-888-502-2236 (US)"
+    },
+    {
+     "id": "back.mail",
+     "text": "hello@jackery.com"
+    },
+    {
+     "id": "back.web",
+     "text": "www.jackery.com"
+    }
+   ]
+  }
+ ]
+}

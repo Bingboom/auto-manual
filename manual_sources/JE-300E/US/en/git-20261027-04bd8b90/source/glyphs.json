@@ -1,0 +1,453 @@
+[
+  {
+    "slot": "lcd-ac-power",
+    "physical_page": 7,
+    "search_box": [
+      49.5,
+      238.1,
+      91.0,
+      274.09999999999997
+    ],
+    "local_path": "assets/lcd-ac-power.svg",
+    "reuse_candidate": "data/manual_sources/JE-300E/EU/en/git-20261016-50b910fd/assets/lcd-ac-power.svg",
+    "drawing_indices": [
+      85265,
+      85266
+    ],
+    "glyph_bbox": [
+      58.65719985961914,
+      250.9998016357422,
+      78.04619598388672,
+      267.1578063964844
+    ],
+    "reuse_comparison": {
+      "status": "passed",
+      "max_mean_channel_error": 1.9e-05
+    },
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "sha256": "ae74b5535c88c6f612bfc8fe4f187bb3b106b6b039ac98a809112b6584d1a7c0"
+  },
+  {
+    "slot": "lcd-output-voltage",
+    "physical_page": 7,
+    "search_box": [
+      49.5,
+      275.3,
+      91.0,
+      305.4
+    ],
+    "local_path": "assets/lcd-output-voltage.svg",
+    "reuse_candidate": "data/manual_sources/JE-300E/EU/en/git-20261016-50b910fd/assets/lcd-output-voltage.svg",
+    "drawing_indices": [
+      86927,
+      86928,
+      86929,
+      86930,
+      86931
+    ],
+    "glyph_bbox": [
+      53.684810638427734,
+      287.0771179199219,
+      85.76099395751953,
+      292.4231262207031
+    ],
+    "reuse_comparison": {
+      "status": "passed",
+      "max_mean_channel_error": 7.5e-05
+    },
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "sha256": "07f99d87d180c223d12a3f6658e63ae23b0c2705e8d8669b8c7e707af13db77b"
+  },
+  {
+    "slot": "lcd-input-power",
+    "physical_page": 7,
+    "search_box": [
+      49.5,
+      306.6,
+      91.0,
+      337.09999999999997
+    ],
+    "local_path": "assets/lcd-input-power.svg",
+    "reuse_candidate": "data/manual_sources/JE-300E/EU/en/git-20261016-50b910fd/assets/lcd-input-power.svg",
+    "drawing_indices": [
+      86317,
+      86318,
+      86319,
+      86320,
+      86321,
+      86322,
+      86323,
+      86324,
+      86325,
+      86326,
+      86327,
+      86328,
+      86329,
+      86330,
+      86331,
+      86332,
+      86333,
+      86334,
+      86335,
+      86336,
+      86337,
+      86338,
+      86339
+    ],
+    "glyph_bbox": [
+      57.06550216674805,
+      313.8182678222656,
+      79.7591323852539,
+      327.90753173828125
+    ],
+    "reuse_comparison": {
+      "status": "passed",
+      "max_mean_channel_error": 1.3e-05
+    },
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "sha256": "064890bdd120a64c923b8ba6957493762ae8228de7dbbbe1698715021dc1412e"
+  },
+  {
+    "slot": "lcd-output-power",
+    "physical_page": 7,
+    "search_box": [
+      49.5,
+      338.3,
+      91.0,
+      368.4
+    ],
+    "local_path": "assets/lcd-output-power.svg",
+    "reuse_candidate": "data/manual_sources/JE-300E/EU/en/git-20261016-50b910fd/assets/lcd-output-power.svg",
+    "drawing_indices": [
+      86340,
+      86341,
+      86342,
+      86343,
+      86344,
+      86345,
+      86346,
+      86347,
+      86348,
+      86349,
+      86350,
+      86351,
+      86352,
+      86353,
+      86354,
+      86355,
+      86356,
+      86357,
+      86358,
+      86359,
+      86360,
+      86361,
+      86362,
+      86363,
+      86364,
+      86365,
+      86366,
+      86367,
+      86368,
+      86369
+    ],
+    "glyph_bbox": [
+      57.372047424316406,
+      345.788818359375,
+      80.06702423095703,
+      359.9318542480469
+    ],
+    "reuse_comparison": {
+      "status": "passed",
+      "max_mean_channel_error": 0.000117
+    },
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "sha256": "42e2c1cfa5b193ddb24af2779649fdfa8126140ae81b0593d1ed5f98598ee9a5"
+  },
+  {
+    "slot": "lcd-car-charging",
+    "physical_page": 7,
+    "search_box": [
+      49.5,
+      369.6,
+      91.0,
+      405.09999999999997
+    ],
+    "local_path": "assets/lcd-car-charging.svg",
+    "reuse_candidate": "data/manual_sources/JE-300E/EU/en/git-20261016-50b910fd/assets/lcd-car-charging.svg",
+    "drawing_indices": [
+      86164,
+      86165,
+      86166
+    ],
+    "glyph_bbox": [
+      60.749725341796875,
+      382.036865234375,
+      76.68972778320312,
+      397.97686767578125
+    ],
+    "reuse_comparison": {
+      "status": "passed",
+      "max_mean_channel_error": 6.9e-05
+    },
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "sha256": "544d91029a10f3a13f50d365ea95cc2160f0c569caadc71ed4de1d516571d9cd"
+  },
+  {
+    "slot": "lcd-solar-charging",
+    "physical_page": 7,
+    "search_box": [
+      49.5,
+      406.3,
+      91.0,
+      448.09999999999997
+    ],
+    "local_path": "assets/lcd-solar-charging.svg",
+    "reuse_candidate": "data/manual_sources/JE-300E/EU/en/git-20261016-50b910fd/assets/lcd-solar-charging.svg",
+    "drawing_indices": [
+      86070,
+      86071
+    ],
+    "glyph_bbox": [
+      60.261322021484375,
+      422.455078125,
+      76.20132446289062,
+      438.39508056640625
+    ],
+    "reuse_comparison": {
+      "status": "passed",
+      "max_mean_channel_error": 8.5e-05
+    },
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "sha256": "c4e8ecbbc808bf7d20dd2147e9b066b2bb29fb6bb39cc93c7b8011e7db90ffee"
+  },
+  {
+    "slot": "lcd-battery-power",
+    "physical_page": 7,
+    "search_box": [
+      49.5,
+      449.3,
+      91.0,
+      495.4
+    ],
+    "local_path": "assets/lcd-battery-power.svg",
+    "reuse_candidate": "data/manual_sources/JE-300E/EU/en/git-20261016-50b910fd/assets/lcd-battery-power.svg",
+    "drawing_indices": [
+      85271
+    ],
+    "glyph_bbox": [
+      59.82750701904297,
+      460.88720703125,
+      77.17450714111328,
+      478.22821044921875
+    ],
+    "reuse_comparison": {
+      "status": "passed",
+      "max_mean_channel_error": 2.2e-05
+    },
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "sha256": "5500242f2fe21a6b1b32d363f483f23841d34f0055c057e530eecdcfe2de0c1f"
+  },
+  {
+    "slot": "lcd-battery-percentage",
+    "physical_page": 8,
+    "search_box": [
+      49.5,
+      31.3,
+      91.0,
+      68.10000000000001
+    ],
+    "local_path": "assets/lcd-battery-percentage.svg",
+    "reuse_candidate": "data/manual_sources/JE-300E/EU/en/git-20261016-50b910fd/assets/lcd-battery-percentage.svg",
+    "drawing_indices": [
+      85697,
+      85698,
+      85699,
+      85700,
+      85701,
+      85702,
+      85703,
+      85704,
+      85705,
+      85706,
+      85707,
+      85708,
+      85709,
+      85710,
+      85711,
+      85712,
+      85713,
+      85714,
+      85715,
+      85716,
+      85717,
+      85718,
+      85719,
+      85720,
+      85721,
+      85722,
+      85723,
+      85724,
+      85725,
+      85726,
+      85727,
+      85728,
+      85729,
+      85730
+    ],
+    "glyph_bbox": [
+      54.23388671875,
+      45.3876953125,
+      79.799072265625,
+      57.6806640625
+    ],
+    "reuse_comparison": {
+      "status": "rejected",
+      "reason": "symbol requires real transparent margins; opaque backdrop detected"
+    },
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "84d8c1e700985fc6c13bce379108ce2cc2d446e5fcf1bfed374adf2ec4a937c7"
+  },
+  {
+    "slot": "lcd-fault-code",
+    "physical_page": 8,
+    "search_box": [
+      49.5,
+      69.3,
+      91.0,
+      99.4
+    ],
+    "local_path": "assets/lcd-fault-code.svg",
+    "reuse_candidate": "data/manual_sources/JE-300E/EU/en/git-20261016-50b910fd/assets/lcd-fault-code.svg",
+    "drawing_indices": [
+      86076,
+      86077,
+      86078,
+      86079
+    ],
+    "glyph_bbox": [
+      57.606651306152344,
+      74.80690002441406,
+      74.53684997558594,
+      90.7543716430664
+    ],
+    "reuse_comparison": {
+      "status": "passed",
+      "max_mean_channel_error": 8.9e-05
+    },
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "sha256": "0390f59d2f20301b2f6b6400b61d589eb0e98e3a1700cf7e10e3731a7e6b35aa"
+  },
+  {
+    "slot": "lcd-high-temperature",
+    "physical_page": 8,
+    "search_box": [
+      49.5,
+      100.6,
+      91.0,
+      133.5
+    ],
+    "local_path": "assets/lcd-high-temperature.svg",
+    "reuse_candidate": "data/manual_sources/JE-300E/EU/en/git-20261016-50b910fd/assets/lcd-high-temperature.svg",
+    "drawing_indices": [
+      85693,
+      85694
+    ],
+    "glyph_bbox": [
+      58.79469680786133,
+      108.22989654541016,
+      74.64869689941406,
+      122.84789276123047
+    ],
+    "reuse_comparison": {
+      "status": "passed",
+      "max_mean_channel_error": 0.000115
+    },
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "sha256": "a9f840ea0020e8b2a3717273e3e91efe7b6697fb729422766b7746326fe91158"
+  },
+  {
+    "slot": "lcd-low-temperature",
+    "physical_page": 8,
+    "search_box": [
+      49.5,
+      134.7,
+      91.0,
+      166.3
+    ],
+    "local_path": "assets/lcd-low-temperature.svg",
+    "reuse_candidate": "data/manual_sources/JE-300E/EU/en/git-20261016-50b910fd/assets/lcd-low-temperature.svg",
+    "drawing_indices": [
+      85695,
+      85696
+    ],
+    "glyph_bbox": [
+      58.79469680786133,
+      145.24795532226562,
+      74.64869689941406,
+      159.865966796875
+    ],
+    "reuse_comparison": {
+      "status": "passed",
+      "max_mean_channel_error": 0.000116
+    },
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "sha256": "a4e0d1419019504d9d1406c4ac72775b12f10da60f171d60b4cdc9f130572608"
+  },
+  {
+    "slot": "lcd-energy-saving",
+    "physical_page": 8,
+    "search_box": [
+      49.5,
+      167.5,
+      91.0,
+      205.4
+    ],
+    "local_path": "assets/lcd-energy-saving.svg",
+    "reuse_candidate": "data/manual_sources/JE-300E/EU/en/git-20261016-50b910fd/assets/lcd-energy-saving.svg",
+    "drawing_indices": [
+      86072,
+      86073,
+      86074,
+      86075
+    ],
+    "glyph_bbox": [
+      55.643402099609375,
+      177.694580078125,
+      77.38040161132812,
+      193.63458251953125
+    ],
+    "reuse_comparison": {
+      "status": "passed",
+      "max_mean_channel_error": 6.5e-05
+    },
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "sha256": "b0d6afa954c8196d99ad160519439590c22fcc00140cb9b04bb575b7aa927d26"
+  },
+  {
+    "slot": "fcc_mark",
+    "physical_page": 5,
+    "search_box": [
+      35,
+      389,
+      73,
+      416
+    ],
+    "local_path": "assets/fcc_mark.svg",
+    "reuse_candidate": "docs/renderers/web/assets/shared/symbols/native-v1/fcc_mark.svg",
+    "drawing_indices": [
+      30077
+    ],
+    "glyph_bbox": [
+      36.478118896484375,
+      390.2373352050781,
+      71.69412231445312,
+      414.7273254394531
+    ],
+    "reuse_comparison": {
+      "status": "passed",
+      "max_mean_channel_error": 0.017127
+    },
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+  }
+]

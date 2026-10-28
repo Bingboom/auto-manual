@@ -1345,6 +1345,11 @@
       "registered": "2026-10-26",
       "known_drift": {}
     },
+    "manual_sources/JE-100A/US/en/git-20261027-18058b6b": {
+      "approval": "Operator 「上线提交发布：JE-100A、JE-100C、JE-240A、JE-240B；授权合入 #1630 及其 Hello-Docs 发布 PR」 2026-10-28 after review of PR #1630 renders beside the shared reference editions (MA-365); requested by 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 2026-10-27: Git-only US English Web release, source copy verbatim",
+      "registered": "2026-10-27",
+      "known_drift": {}
+    },
     "manual_sources/JE-100C/EU/de/2.0": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",
@@ -1393,6 +1398,11 @@
     "manual_sources/JE-100C/KR/ko/V0.3-Q": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-100C/US/en/git-20261027-39c58bca": {
+      "approval": "Operator 「上线提交发布：JE-100A、JE-100C、JE-240A、JE-240B；授权合入 #1630 及其 Hello-Docs 发布 PR」 2026-10-28 after review of PR #1630 renders beside the shared reference editions (MA-365); requested by 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 2026-10-27: Git-only US English Web release, source copy verbatim",
+      "registered": "2026-10-27",
       "known_drift": {}
     },
     "manual_sources/JE-1500B/US/en/git-20261027-bb5a455b": {
@@ -1446,6 +1456,11 @@
       "registered": "2026-10-27",
       "known_drift": {}
     },
+    "manual_sources/JE-2000C/US/en/git-20261027-c357f54d": {
+      "approval": "Operator window task 2026-10-27 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 (发布文档管理 Base): Git-only US/en single-language Web candidate, source copy verbatim. Candidate only; no merge or publication approval.",
+      "registered": "2026-10-27",
+      "known_drift": {}
+    },
     "manual_sources/JE-2000E/EU/en/2.0": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",
@@ -1489,6 +1504,16 @@
     "manual_sources/JE-2000F/EU/nine-language/git-20261010-1465-web/three-language": {
       "approval": "操作者「上线提交发布」2026-10-10，经工程 PR 审核合入（见 approval.json）",
       "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-240A/US/en/git-20261027-ae3aea4b": {
+      "approval": "Operator 「上线提交发布：JE-100A、JE-100C、JE-240A、JE-240B；授权合入 #1630 及其 Hello-Docs 发布 PR」 2026-10-28 after review of PR #1630 renders beside the shared reference editions (MA-365); requested by 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 2026-10-27: Git-only US English Web release, source copy verbatim",
+      "registered": "2026-10-27",
+      "known_drift": {}
+    },
+    "manual_sources/JE-240B/US/en/git-20261027-3dc1fbba": {
+      "approval": "Operator 「上线提交发布：JE-100A、JE-100C、JE-240A、JE-240B；授权合入 #1630 及其 Hello-Docs 发布 PR」 2026-10-28 after review of PR #1630 renders beside the shared reference editions (MA-365); requested by 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 2026-10-27: Git-only US English Web release, source copy verbatim",
+      "registered": "2026-10-28",
       "known_drift": {}
     },
     "manual_sources/JE-3000C/EU/en/2.0": {
@@ -1542,9 +1567,24 @@
         }
       }
     },
+    "manual_sources/JE-300C/US/en/git-20261027-a1128b25": {
+      "approval": "Operator 2026-10-28 (PR #1631 session): 「上线提交发布：JE-300C、JE-300E、JE-300E-SG、JE-880B；授权合入 #1631 及其 Hello-Docs 发布 PR」 under MA-365: Git-only US English single-language Web release from the 发布文档管理 row; acceptance hash-bound in source/approval.json",
+      "registered": "2026-10-28",
+      "known_drift": {}
+    },
     "manual_sources/JE-300D/EU/en/candidate-2025-10-24": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-300E-SG/US/en/git-20261027-e47cb322": {
+      "approval": "Operator 2026-10-28 (PR #1631 session): 「上线提交发布：JE-300C、JE-300E、JE-300E-SG、JE-880B；授权合入 #1631 及其 Hello-Docs 发布 PR」 under MA-365: Git-only US English single-language Web release from the 发布文档管理 row; acceptance hash-bound in source/approval.json",
+      "registered": "2026-10-28",
+      "known_drift": {}
+    },
+    "manual_sources/JE-300E/US/en/git-20261027-04bd8b90": {
+      "approval": "Operator 2026-10-28 (PR #1631 session): 「上线提交发布：JE-300C、JE-300E、JE-300E-SG、JE-880B；授权合入 #1631 及其 Hello-Docs 发布 PR」 under MA-365: Git-only US English single-language Web release from the 发布文档管理 row; acceptance hash-bound in source/approval.json",
+      "registered": "2026-10-28",
       "known_drift": {}
     },
     "manual_sources/JE-3600A/EU/de/git-20261004-47a346dc": {
@@ -1660,6 +1700,26 @@
     "manual_sources/JE-500A/EU/en/2.0": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-880B/US/en/git-20261027-640e83ca": {
+      "approval": "Operator 2026-10-28 (PR #1631 session): 「上线提交发布：JE-300C、JE-300E、JE-300E-SG、JE-880B；授权合入 #1631 及其 Hello-Docs 发布 PR」 under MA-365: Git-only US English single-language Web release from the 发布文档管理 row; acceptance hash-bound in source/approval.json",
+      "registered": "2026-10-28",
+      "known_drift": {}
+    },
+    "manual_sources/JHP-1000B-RC/US/en/git-20261027-af8a0775": {
+      "approval": "Operator window task 2026-10-27 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 (发布文档管理 Base): Git-only US/en single-language Web candidate, source copy verbatim. Candidate only; no merge or publication approval.",
+      "registered": "2026-10-27",
+      "known_drift": {}
+    },
+    "manual_sources/JHP-2000A-RC/US/en/git-20261027-e27d4db5": {
+      "approval": "Operator window task 2026-10-27 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 (发布文档管理 Base): Git-only US/en single-language Web candidate, source copy verbatim. Candidate only; no merge or publication approval.",
+      "registered": "2026-10-27",
+      "known_drift": {}
+    },
+    "manual_sources/JHP-3600A-RC/US/en/git-20261027-ab7f7393": {
+      "approval": "Operator window task 2026-10-27 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 (发布文档管理 Base): Git-only US/en single-language Web candidate, source copy verbatim. Candidate only; no merge or publication approval.",
+      "registered": "2026-10-27",
       "known_drift": {}
     },
     "manual_sources/JS-100I/JP/ja/git-20261026-cc8b3421": {

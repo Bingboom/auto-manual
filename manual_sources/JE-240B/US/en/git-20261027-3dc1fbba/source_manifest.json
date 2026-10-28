@@ -1,0 +1,815 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "target": {
+    "model": "JE-240B",
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "technical_version": "git-20261027-3dc1fbba",
+    "printed_manual_version": null,
+    "customer_model": "JE-240B",
+    "product_name": "Jackery Explorer 240D"
+  },
+  "source_record": {
+    "base": "发布文档管理 (WGVwb2HctauRi7sEiKqcIzTRn1c), table tbljbjaXaTD6V9PO",
+    "record_id": "reczz28SPRx9noYZ",
+    "material_number": "38-0001-000947",
+    "project": "HTE148",
+    "sku": [
+      "21-0001-000362",
+      "21-0001-000492",
+      "21-0001-000393"
+    ],
+    "read_only": true
+  },
+  "original_source": {
+    "filename": "JE-240B-US-EN.pdf",
+    "operator_filename": "【Jackery Explorer 240D】说明书-EN.pdf",
+    "field": "单语言说明书",
+    "sha256": "3dc1fbbaf28908f216955e32de05b88dc9b0477854e8c0b5df7926a542572521",
+    "size": 3212164,
+    "page_count": 15,
+    "page_size_mm": [
+      90,
+      130
+    ],
+    "printed_version": null
+  },
+  "design_original": {
+    "field": "查找引用",
+    "filename": "38-0001-000947 HTE148240A-USCA-JAK 说明书 RoHS REACH-Q.pdf",
+    "sha256": "933f25528e3b37b1316883f0f769c3f0b18ba0e757d06b247bf990fb7f45005a",
+    "size": 22826160,
+    "page_count": 1,
+    "committed": false,
+    "role": "Illustrator master (USCA, one artboard holding the whole booklet); recorded for traceability. The single-language PDF above is the Web authority; the master is not committed."
+  },
+  "physical_page_map": {
+    "print_cover": 1,
+    "en_front_matter": 2,
+    "toc": 3,
+    "en_body": [
+      4,
+      14
+    ],
+    "back_cover": 15
+  },
+  "web_roots": {
+    "en": "web/en"
+  },
+  "route": "JE-240B/US/en/md",
+  "legacy_default": true,
+  "source_authority": "Operator-designated row of 发布文档管理 (record reczz28SPRx9noYZ, 物料号 38-0001-000947): the 单语言说明书 English PDF, read-only bot download. Every glyph is outlined (no text layer): source/transcription.json is the reviewed line-by-line transcription the Web copy is bound to. JE-100C US English (same template family) supplies structure, components and two shared symbol variants; every model fact comes from this PDF.",
+  "operator_instruction": "2026-10-27 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 (发布文档管理 view vewF9saLXo); assigned to this window: JE-100A, JE-100C, JE-240A, JE-240B",
+  "reference_editions": [
+    "manual_sources/JE-100C/US/en/git-20261027-39c58bca (same template family)",
+    "data/manual_sources/JE-300E/EU/en/git-20261016-50b910fd (troubleshooting, warranty and LCD-screen components)"
+  ],
+  "live_bitable_dependency": false,
+  "phase2_enrolled": false,
+  "publication_status": "operator-authorized-git-only-release",
+  "build_boundary": "JE-240B US is not a phase2 target. build_content.py binds the transcription to shared ComponentSpecs; rebuild.py replays them through manual-ir/v2 and the shared Web/MyST pipeline with the prepared-document shared-style gate and symbol admission. Symbol admission cannot re-read this single-artboard PDF until the native_svg closure handling is decided (README). build.py check of JE-1000F US is a repository regression gate only; it does not validate this body.",
+  "repo_inputs": [],
+  "inputs": [
+    {
+      "path": "JE-240B-US-EN.pdf",
+      "size": 3212164,
+      "sha256": "3dc1fbbaf28908f216955e32de05b88dc9b0477854e8c0b5df7926a542572521"
+    },
+    {
+      "path": "README.md",
+      "size": 3894,
+      "sha256": "7c2b3929933c485dcb769c087c47cfd7490faae4981c95c76a3f2d7cdc8c2403"
+    },
+    {
+      "path": "assets/charging-car.png",
+      "size": 47775,
+      "sha256": "5c476b77fefad559fca99f0c8a9add280a0f0cd363889485a9c7799065dd011f"
+    },
+    {
+      "path": "assets/charging-solar.png",
+      "size": 50800,
+      "sha256": "511312e17acf77d4088be2943808a17eae3a6109c5df3ecc852cae551167e9d8"
+    },
+    {
+      "path": "assets/charging-usbc.png",
+      "size": 47252,
+      "sha256": "6e26ee4deaa07cc06b3d69ffcb3f4e8c82da5afbc7b51082755b6b4f0ca4cb75"
+    },
+    {
+      "path": "assets/fcc-mark.svg",
+      "size": 1927,
+      "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+    },
+    {
+      "path": "assets/inbox-cable.png",
+      "size": 3699,
+      "sha256": "2d887944b15a3f1a07430ed7c708d43812566e444be52f17eacea51f46aacd6b"
+    },
+    {
+      "path": "assets/inbox-manual.png",
+      "size": 6395,
+      "sha256": "b622f70d86c272ce0975b1bc91f7421dcadb06906538629afacc5d13f83851fb"
+    },
+    {
+      "path": "assets/inbox-unit.png",
+      "size": 5468,
+      "sha256": "1c1dc65815d9247e509e6f9eea1cc98d5654bde82bb94712bbd1061e5c8a4144"
+    },
+    {
+      "path": "assets/lcd-battery-percentage.png",
+      "size": 2535,
+      "sha256": "04d60c1b4570216d7972c06a3b685a3d45b4c1d73f20233120d974a1c09d3ae3"
+    },
+    {
+      "path": "assets/lcd-battery-ring.png",
+      "size": 2639,
+      "sha256": "dd8fa0968eab35a11dbfe4a79895ff66c510535101208d4b7577aac8eca1f2c4"
+    },
+    {
+      "path": "assets/lcd-car-charging.png",
+      "size": 1227,
+      "sha256": "1e6028e4da450a341d6df0063be1f53fa393f07fb2095030bdfbfa8c0fc4d1e5"
+    },
+    {
+      "path": "assets/lcd-energy-saving.png",
+      "size": 2436,
+      "sha256": "8bd11e25ddc4dc2845083fc467c52f5a8d071b653157d441022d58aea37f43a7"
+    },
+    {
+      "path": "assets/lcd-fault-code.png",
+      "size": 2485,
+      "sha256": "ac31edf66e61aabb774b2bc9f711d85e7d7d8cf4c0bc4f267467815b1a61bca5"
+    },
+    {
+      "path": "assets/lcd-high-temperature.png",
+      "size": 1691,
+      "sha256": "c63dddaaf861bdf88f0b05bedfd60a11a333d691808083c59ff052ddf5d0b64f"
+    },
+    {
+      "path": "assets/lcd-input-power.png",
+      "size": 3444,
+      "sha256": "be9fe59bb73f8c2603057ddab3101c48f2367f36cfe9ac66b4218c7c5fc94a37"
+    },
+    {
+      "path": "assets/lcd-low-temperature.png",
+      "size": 1645,
+      "sha256": "266206a0afff91eb2d29a05338fece6c6dadf105bce27044a0143a291149f977"
+    },
+    {
+      "path": "assets/lcd-map.png",
+      "size": 27220,
+      "sha256": "5161f0231298a46a95fe8d1d8c02d1cf418c811af1ebac479127599b2a763024"
+    },
+    {
+      "path": "assets/lcd-output-power.png",
+      "size": 3670,
+      "sha256": "f714c8e9d0ba1219fa05c527d60c93d500debb3eb15eed5a0769cb6ccda78cb8"
+    },
+    {
+      "path": "assets/lcd-screen.png",
+      "size": 17413,
+      "sha256": "a79cee24c6cdf4e505116e7e21e8c13e1d920125434fa1c5288d569ff8906886"
+    },
+    {
+      "path": "assets/lcd-solar-charging.png",
+      "size": 2655,
+      "sha256": "e8ff94f06f1997212dc61b61aceac2e2791b13198e88c87a414f4fc2ede00fc5"
+    },
+    {
+      "path": "assets/lcd-usbc-charging.png",
+      "size": 1183,
+      "sha256": "000d1efda35503959e1b0171ad87a2f1b7c56ae52c657e6f2cb5dd5941d98597"
+    },
+    {
+      "path": "assets/overview.png",
+      "size": 48615,
+      "sha256": "7201bd0d7b91909993fe703a881529b4267bf90638bd88c05899dad76ef2058d"
+    },
+    {
+      "path": "assets/power-on-off.png",
+      "size": 29055,
+      "sha256": "62a6c9584bc5310e91204dc7f3b4199d8d143822535d2dc0d7567e566c5f1a07"
+    },
+    {
+      "path": "assets/sold-separately.png",
+      "size": 2516,
+      "sha256": "02bb73ccbdbb42c043b769decd554886fcaa3b5d36b6b2570128a94540a35bb3"
+    },
+    {
+      "path": "assets/strap.png",
+      "size": 31589,
+      "sha256": "a1a5622099e3f7c47ddd047467ca7eea44c343c3af7d7f2da5a71488d9118258"
+    },
+    {
+      "path": "assets/symbol-01.svg",
+      "size": 3632,
+      "sha256": "7eee1f724544318b77f50d99896735cb11f833fde5a3e24df1a7a394b70de10e"
+    },
+    {
+      "path": "assets/symbol-02.svg",
+      "size": 4961,
+      "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584"
+    },
+    {
+      "path": "assets/symbol-03.png",
+      "size": 7672,
+      "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5"
+    },
+    {
+      "path": "assets/symbol-04.svg",
+      "size": 4992,
+      "sha256": "a76bd208ea017906cdcb5624307cdf4b4bb092816d45ef3943a4b3367c837d3f"
+    },
+    {
+      "path": "assets/symbol-05.svg",
+      "size": 5532,
+      "sha256": "562aa9d004d818fe9ac907cabd0a5bb44831801e26911f0929be7887971834fb"
+    },
+    {
+      "path": "assets/symbol-06.svg",
+      "size": 5630,
+      "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f"
+    },
+    {
+      "path": "assets/symbol-07.svg",
+      "size": 6300,
+      "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899"
+    },
+    {
+      "path": "assets/symbol-08.svg",
+      "size": 6007,
+      "sha256": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1"
+    },
+    {
+      "path": "assets/symbol-09.svg",
+      "size": 5934,
+      "sha256": "6a513fe0122fec428c55a3f840c34ed7afdea311f7f1dd9b6e6fd807d087bf55"
+    },
+    {
+      "path": "assets/symbol-10.svg",
+      "size": 6183,
+      "sha256": "3ef06cba72b60935ea421b1b59ff41e1ca9c4c6597b8d8ce1d4ae1904ee68fa0"
+    },
+    {
+      "path": "assets/usb-output.png",
+      "size": 34033,
+      "sha256": "740bafef9d956c09fb1088a0d00c3ba06c6ece1b3f480ecc25f17040391411ee"
+    },
+    {
+      "path": "build_content.py",
+      "size": 24991,
+      "sha256": "d0bbb7aa760804d7f8ad7a219cb8770d8971fec4b5aacb7581d9db98923edbec"
+    },
+    {
+      "path": "derive_assets.py",
+      "size": 9898,
+      "sha256": "d0371aa925fc62f5973d2a4a2518ac414e567770a4d05e1f6661f963e6b25b42"
+    },
+    {
+      "path": "rebuild.py",
+      "size": 6356,
+      "sha256": "af4967aa6e2a562b3796c2ed20dc7999ca8abe8ce2409cee650b84881398acb8"
+    },
+    {
+      "path": "refresh_manifest.py",
+      "size": 2549,
+      "sha256": "b7f50bfe6c686c5ecde44f25fe5a400a98a220bf46cf6f560325e0fa754c583b"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 9481,
+      "sha256": "fae374f951df8d6605d2ec07c6eb0f11ac699e73067b99e4e4c495c12d0b3a17"
+    },
+    {
+      "path": "source/asset_decisions.json",
+      "size": 14735,
+      "sha256": "aebabf5bd92049b8775e78e6a862c297950b26ab05dc6f3e949b7ecff144f829"
+    },
+    {
+      "path": "source/asset_recipe.json",
+      "size": 10348,
+      "sha256": "28c95fe53e4df22e724d619aa55640411ff321c064d345fa7c66a15be20670b0"
+    },
+    {
+      "path": "source/differences.md",
+      "size": 3278,
+      "sha256": "89710798d77c39be9a6b042633730c1c551b933228a22400342e5081bcd033f4"
+    },
+    {
+      "path": "source/discovery.md",
+      "size": 3476,
+      "sha256": "d9e8a4f2701d198b0c01d4ee219d31d5dd19e0b1742eaf4bc78181d452e20622"
+    },
+    {
+      "path": "source/en/content.json",
+      "size": 131721,
+      "sha256": "fde0897f2cc2d2a81a166eb258736742285d6f2c825f00c0d5a0394411e49ce2"
+    },
+    {
+      "path": "source/geometry.css",
+      "size": 711,
+      "sha256": "39db211bb23b5634dccb1b2d4b06f326dadcad5d64672719d958a607ad2aa3a5"
+    },
+    {
+      "path": "source/transcription.json",
+      "size": 40186,
+      "sha256": "b5dd617671e9c0399cb001d2a7383b367fb4cad3e121eb3b214110e665e582bd"
+    }
+  ],
+  "symbol_asset_admission": {
+    "schema_version": "auto-manual-symbol-asset-admission/v1",
+    "locales": {
+      "en": [
+        {
+          "asset_ref": "assets/symbol-01.svg",
+          "asset_sha256": "7eee1f724544318b77f50d99896735cb11f833fde5a3e24df1a7a394b70de10e",
+          "physical_page": 5,
+          "drawing_indices": [
+            66146,
+            66147
+          ],
+          "glyph_bbox": [
+            25.5,
+            146.7,
+            40.1,
+            159.8
+          ],
+          "caption_bbox": [
+            49.6,
+            147.2,
+            119.7,
+            160.5
+          ],
+          "row_bbox": [
+            24.5,
+            145.6999969482422,
+            120.69999694824219,
+            161.5
+          ],
+          "caption_text": "Warning and Caution Symbols. Must read to alert individuals to potential hazards or risks.",
+          "caption_sha256": "f74e798e1cb2ebb0121ba4cc908808b0373119e0acbf24e728c244fbe82f0501",
+          "shared_symbol_key": "warning/outline-triangle-dark-hte162",
+          "max_mean_channel_error": 0.006731
+        },
+        {
+          "asset_ref": "assets/symbol-02.svg",
+          "asset_sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
+          "physical_page": 5,
+          "drawing_indices": [
+            66767,
+            66768,
+            66769
+          ],
+          "glyph_bbox": [
+            25.4,
+            162.9,
+            41.1,
+            175
+          ],
+          "caption_bbox": [
+            49.6,
+            163.9,
+            106.0,
+            173.7
+          ],
+          "row_bbox": [
+            24.399999618530273,
+            161.89999389648438,
+            107.0,
+            176.0
+          ],
+          "caption_text": "Read the user manual before operation.",
+          "caption_sha256": "985f11fced88576e012577ee1d1c34f8e3e5bf5fd1403a7b3b3959c143743e2e",
+          "shared_symbol_key": "read-manual/book-information",
+          "max_mean_channel_error": 0.018947
+        },
+        {
+          "asset_ref": "assets/symbol-03.png",
+          "asset_sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+          "physical_page": 5,
+          "drawing_indices": [
+            66770,
+            66771,
+            66772
+          ],
+          "glyph_bbox": [
+            24.9,
+            187.5,
+            41.2,
+            211.2
+          ],
+          "caption_bbox": [
+            49.5,
+            177.8,
+            122.2,
+            224.4
+          ],
+          "row_bbox": [
+            23.899999618530273,
+            176.8000030517578,
+            123.19999694824219,
+            225.39999389648438
+          ],
+          "caption_text": "This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling. Proper disposal and recycling can help protect the environment. For more information about the disposal and recycling of this product, contact your local community, disposal service, or dealer.",
+          "caption_sha256": "5c88b2a9147b7aaa9d2ebdcdf9bc6476a1216e0ca2d16d901aa5c6b2a16cd4e1",
+          "shared_symbol_key": "weee/crossed-bin-bar",
+          "max_mean_channel_error": 0.011663
+        },
+        {
+          "asset_ref": "assets/symbol-04.svg",
+          "asset_sha256": "a76bd208ea017906cdcb5624307cdf4b4bb092816d45ef3943a4b3367c837d3f",
+          "physical_page": 5,
+          "drawing_indices": [
+            66786,
+            66787,
+            66788
+          ],
+          "glyph_bbox": [
+            24.1,
+            231.4,
+            41.3,
+            246.7
+          ],
+          "caption_bbox": [
+            50.3,
+            236.5,
+            90.7,
+            241.2
+          ],
+          "row_bbox": [
+            23.100000381469727,
+            230.39999389648438,
+            91.69999694824219,
+            247.6999969482422
+          ],
+          "caption_text": "Risk of electric shock",
+          "caption_sha256": "38a44e18a284567ac61ad14e1cb0b586e354c1837a0642e61de847b8f77f470f",
+          "shared_symbol_key": "electric-shock/bolt-triangle-tinted",
+          "max_mean_channel_error": 0.006496
+        },
+        {
+          "asset_ref": "assets/symbol-05.svg",
+          "asset_sha256": "562aa9d004d818fe9ac907cabd0a5bb44831801e26911f0929be7887971834fb",
+          "physical_page": 5,
+          "drawing_indices": [
+            66782,
+            66783,
+            66784,
+            66785
+          ],
+          "glyph_bbox": [
+            136.1,
+            146.5,
+            150.4,
+            160.8
+          ],
+          "caption_bbox": [
+            160.9,
+            151.3,
+            219.0,
+            156.7
+          ],
+          "row_bbox": [
+            135.10000610351562,
+            145.5,
+            220.0,
+            161.8000030517578
+          ],
+          "caption_text": "Do not dismantle the product.",
+          "caption_sha256": "bd5193107d116ff9cca8abefc433dcd70418abc2a0e30e4650dba78c4aa07ae6",
+          "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited-dark-hte162",
+          "max_mean_channel_error": 0.002106
+        },
+        {
+          "asset_ref": "assets/symbol-06.svg",
+          "asset_sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f",
+          "physical_page": 5,
+          "drawing_indices": [
+            66577,
+            66578,
+            66579,
+            66580,
+            66581,
+            66582
+          ],
+          "glyph_bbox": [
+            136.1,
+            162.7,
+            150.5,
+            177
+          ],
+          "caption_bbox": [
+            160.9,
+            167.8,
+            223.9,
+            173.3
+          ],
+          "row_bbox": [
+            135.10000610351562,
+            161.6999969482422,
+            224.89999389648438,
+            178.0
+          ],
+          "caption_text": "Keep the product away from fire.",
+          "caption_sha256": "3a5edc2d806883c9196d207fc11a73034b79a8f42037a46eada7ad50e4ffd2be",
+          "shared_symbol_key": "no-open-flame/fire-match-prohibited",
+          "max_mean_channel_error": 0.013297
+        },
+        {
+          "asset_ref": "assets/symbol-07.svg",
+          "asset_sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899",
+          "physical_page": 5,
+          "drawing_indices": [
+            66583,
+            66584,
+            66585,
+            66586
+          ],
+          "glyph_bbox": [
+            136.1,
+            179.8,
+            150.5,
+            194.2
+          ],
+          "caption_bbox": [
+            160.9,
+            184.0,
+            209.7,
+            189.5
+          ],
+          "row_bbox": [
+            135.10000610351562,
+            178.8000030517578,
+            210.6999969482422,
+            195.1999969482422
+          ],
+          "caption_text": "Keep away from children.",
+          "caption_sha256": "f3efe5812851acbe9856a8ca9806713f70548bd7297662d59b7cc35bcb755847",
+          "shared_symbol_key": "keep-away-from-children/adult-child-prohibited",
+          "max_mean_channel_error": 0.013308
+        },
+        {
+          "asset_ref": "assets/symbol-08.svg",
+          "asset_sha256": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1",
+          "physical_page": 5,
+          "drawing_indices": [
+            66773,
+            66774,
+            66775,
+            66776,
+            66777,
+            66778,
+            66779,
+            66780,
+            66781
+          ],
+          "glyph_bbox": [
+            135.7,
+            196.5,
+            150.6,
+            213.1
+          ],
+          "caption_bbox": [
+            160.6,
+            196.2,
+            231.1,
+            216.7
+          ],
+          "row_bbox": [
+            134.6999969482422,
+            195.1999969482422,
+            232.10000610351562,
+            217.6999969482422
+          ],
+          "caption_text": "This symbol indicates that a lithium-ion (Li-ion) battery is inside the product and should be disposed of or recycled properly.",
+          "caption_sha256": "43810e7d766a288e0d3ae930a04ccffe145a59b87e20b9fd5c800f8a79022462",
+          "shared_symbol_key": "li-ion/recycle-li-ion-native-dark",
+          "max_mean_channel_error": 0.010764
+        },
+        {
+          "asset_ref": "assets/symbol-09.svg",
+          "asset_sha256": "6a513fe0122fec428c55a3f840c34ed7afdea311f7f1dd9b6e6fd807d087bf55",
+          "physical_page": 5,
+          "drawing_indices": [
+            66789,
+            66790,
+            66791,
+            66792,
+            66793,
+            66794,
+            66795
+          ],
+          "glyph_bbox": [
+            134.7,
+            218.4,
+            151.1,
+            233.1
+          ],
+          "caption_bbox": [
+            160.9,
+            223.3,
+            193.8,
+            228.7
+          ],
+          "row_bbox": [
+            133.6999969482422,
+            217.39999389648438,
+            194.8000030517578,
+            234.10000610351562
+          ],
+          "caption_text": "Battery charging",
+          "caption_sha256": "77779799d285c53fe7949a0be32e19d8c823acbdd9e202d3cd79e49c04e911ed",
+          "shared_symbol_key": "battery-charging/flame-battery-triangle-tinted",
+          "max_mean_channel_error": 0.014779
+        },
+        {
+          "asset_ref": "assets/symbol-10.svg",
+          "asset_sha256": "3ef06cba72b60935ea421b1b59ff41e1ca9c4c6597b8d8ce1d4ae1904ee68fa0",
+          "physical_page": 5,
+          "drawing_indices": [
+            66796,
+            66797,
+            66798,
+            66799
+          ],
+          "glyph_bbox": [
+            134.5,
+            236.6,
+            152,
+            251.9
+          ],
+          "caption_bbox": [
+            161.2,
+            241.4,
+            196.4,
+            246.8
+          ],
+          "row_bbox": [
+            133.5,
+            235.60000610351562,
+            197.39999389648438,
+            252.89999389648438
+          ],
+          "caption_text": "Explosive material",
+          "caption_sha256": "3a969b943e73b1049dc7cc17d254f8347747ec80b72b2c9798c625d8363d2bd7",
+          "shared_symbol_key": "explosive-material/burst-triangle-tinted",
+          "max_mean_channel_error": 0.014356
+        }
+      ]
+    }
+  },
+  "shared_component_exceptions": [],
+  "component_map": [
+    {
+      "printed": "IMPORTANT: front matter (US badge, three paragraphs)",
+      "shared": "chapter h2 + paragraphs; the corner badge is not repeated"
+    },
+    {
+      "printed": "chapter strips (IMPORTANT SAFETY INFORMATION … WARRANTY)",
+      "shared": "chapter h2 headings (shared theme)"
+    },
+    {
+      "printed": "● sub-headings, boxed risk heading, dark OPERATING INSTRUCTIONS / USER MAINTENANCE pills",
+      "shared": "h3 headings (shared theme); Energy Saving Mode h4"
+    },
+    {
+      "printed": "WARNING: / DANGER: boxes and NOTE / CAUTION bullet boxes",
+      "shared": "HB-CALLOUT-STRIP (warning/danger/note/caution)"
+    },
+    {
+      "printed": "safety and operating-instruction bullets with sub-bullets",
+      "shared": "shared nested list flow"
+    },
+    {
+      "printed": "WARNING/CAUTION/NOTE/TIP signal table",
+      "shared": "HB-TABLE-SYMBOL-SIGNAL/localized-badges"
+    },
+    {
+      "printed": "two-panel symbol table (10 symbols)",
+      "shared": "HB-TABLE-SYMBOL-ICON/two-panel-responsive, shared symbol variants with source-bound admission (pending native_svg decision)"
+    },
+    {
+      "printed": "FCC block with FC mark",
+      "shared": "HB-SPECIAL-FCC (shared FC mark fcc/nested-c-native-dark)"
+    },
+    {
+      "printed": "WHAT'S IN THE BOX numbered cards and TIP box",
+      "shared": "HB-SPECIAL-INBOX/responsive-card-grid with its TIP"
+    },
+    {
+      "printed": "FRONT VIEW leader-label drawing, strap drawing, LCD map, POWER/USB on-off, USB-C/solar/car charging drawings",
+      "shared": "HB-SPECIAL-REFERENCE-FIGURE complete source panels, labels in alt and IR"
+    },
+    {
+      "printed": "cart pill (straps sold separately)",
+      "shared": "shared hb-source-purchase strip with the JE-100C EU cart mark"
+    },
+    {
+      "printed": "LCD icon table ①–⑩ (⑧ spans two rows)",
+      "shared": "HB-TABLE-LCD-ICON/icon-catalog"
+    },
+    {
+      "printed": "LCD SCREEN ON/OFF drawing with state/action/description table",
+      "shared": "HB-TABLE-LCD-MODE"
+    },
+    {
+      "printed": "TROUBLESHOOTING Error Code / Corrective Measures table",
+      "shared": "HB-TABLE-TROUBLESHOOTING/two-column"
+    },
+    {
+      "printed": "● spec tables (GENERAL INFO, INPUT PORTS, OUTPUT PORTS, OPERATING TEMPERATURE)",
+      "shared": "HB-TABLE-SPEC (one per printed table)"
+    },
+    {
+      "printed": "warranty bold lead box + local note",
+      "shared": "HB-WARRANTY-LEAD"
+    },
+    {
+      "printed": "warranty pills and cards",
+      "shared": "h3 heading + HB-WARRANTY-SECTION"
+    },
+    {
+      "printed": "3 YEARS / 2 YEARS badges",
+      "shared": "h3 heading + HB-WARRANTY-YEARS/numeric-badges"
+    },
+    {
+      "printed": "back cover JACKERY INC. contact block",
+      "shared": "shared hb-text-panel"
+    },
+    {
+      "printed": "paragraphs, bold leads, Voc subscript, ® superscripts",
+      "shared": "shared flow (paragraph, strong, sub, sup)"
+    }
+  ],
+  "web_exclusions": [
+    "print cover (physical 1)",
+    "paper TOC (physical 3)",
+    "\"US\" corner badge on the IMPORTANT page (physical 2)",
+    "back-cover QR code (physical 15)",
+    "printed page numbers"
+  ],
+  "source_concerns": [
+    {
+      "page": 4,
+      "line_id": "safety.l2",
+      "issue": "\"Do not allow children play on or in the product\" (missing \"to\")",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 4,
+      "line_id": "safety.l5",
+      "issue": "\"limited to overheats, emits unusual odors or smoking\" mixes noun/verb forms",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 4,
+      "line_id": "opi.l12",
+      "issue": "bullet printed without the space after the dot used by the other bullets; comma splice \"conditions, place\"",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 6,
+      "line_id": "names.usbc2.v",
+      "issue": "USB-C2 Output spec line ends with a trailing comma \"20V⎓5A,\"",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 6,
+      "line_id": "names.usbc1.v",
+      "issue": "overview gives USB-C1 Output/Input as one spec line; spec table splits input/output (same values)",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 10,
+      "line_id": "trbl.f7.m2",
+      "issue": "missing space after full stop \"panel.The product\"; \"open-circuited voltage (Voc)\" here vs \"open-circuit voltage (Vₒᴄ)\" with subscript on p08",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 12,
+      "line_id": "sto.p1",
+      "issue": "\"dry clean place\" without comma (JE-100C prints \"dry, clean place\")",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 13,
+      "line_id": "spec.gen.r5.v",
+      "issue": "\"2.2kg\" without space while capacity prints \"256 Wh\" with space",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 14,
+      "line_id": "war.repair.h",
+      "issue": "pill title \"Repair or replacement\" in sentence case while the other pills are title case",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 13,
+      "line_id": "spec.gen.r4.v",
+      "issue": "LiFePO4 printed with a subscript 4; the shared spec table carries plain text",
+      "disposition": "Web shows 「LiFePO4」 (source/differences.md)"
+    }
+  ]
+}

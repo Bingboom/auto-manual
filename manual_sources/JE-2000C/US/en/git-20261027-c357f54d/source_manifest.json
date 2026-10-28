@@ -1,0 +1,462 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "target": {
+    "model": "JE-2000C",
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "technical_version": "git-20261027-c357f54d",
+    "printed_manual_version": "JAK-UM-V1.0"
+  },
+  "original_source": {
+    "filename": "JE-2000C-US-EN.pdf",
+    "operator_filename": "【Jackery Explorer 2000 Plus】说明书-EN.pdf",
+    "sha256": "c357f54dfed27d11d72a2a4893e485450a49c1b562e21f0f272708857f1510ab",
+    "size": 2769777,
+    "page_count": 14,
+    "printed_version": "JAK-UM-V1.0"
+  },
+  "design_original": {
+    "filename": "38-0001-000110 说明书 HTE0992000A-US-JAK  ROSH REACH-2-q.ai",
+    "sha256": "9ff2337adbac8870c1574b9282f75f7698b894113e5e723e35c0d5eb5d93462d",
+    "size": 21693996,
+    "stored": false,
+    "note": "Illustrator PDF-compatible single 4870 x 3460 pt artboard, outlined; reference only, not committed. All Web copy and art come from the English PDF."
+  },
+  "source_record": {
+    "base": "发布文档管理",
+    "record_id": "reczz28SPLqH8n46",
+    "material_number": "38-0001-000110",
+    "project_number": "HTE099",
+    "sku": [
+      "21-0001-000036"
+    ],
+    "customer_model": "JE-2000C",
+    "product_name": "Jackery Explorer 2000 Plus",
+    "fields": {
+      "单语言说明书": "【Jackery Explorer 2000 Plus】说明书-EN.pdf",
+      "查找引用": "38-0001-000110 说明书 HTE0992000A-US-JAK  ROSH REACH-2-q.ai"
+    }
+  },
+  "physical_page_map": {
+    "print_cover": 1,
+    "en_body": [
+      2,
+      13
+    ],
+    "back_cover": 14
+  },
+  "web_roots": {
+    "en": "web/en"
+  },
+  "route": "JE-2000C/US/en/md",
+  "legacy_default": true,
+  "source_authority": "Operator-designated row of the 发布文档管理 Base (record reczz28SPLqH8n46): the 单语言说明书 English PDF, downloaded read-only and stored byte-exact as JE-2000C-US-EN.pdf. Every glyph is outlined: source/transcription.json is the line-by-line transcription the Web copy is bound to. All model facts come from this PDF; reference editions supply structure and shared components only.",
+  "operator_instruction": "2026-10-27 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 (发布文档管理 Base); this package is the JE-2000C row assigned to this window.",
+  "reference_editions": [
+    "manual_sources/JE-2000E/EU/en/2.0",
+    "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native",
+    "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2"
+  ],
+  "live_bitable_dependency": false,
+  "phase2_enrolled": false,
+  "publication_status": "candidate-pending-operator-review",
+  "build_boundary": "JE-2000C US is not a phase2 target. build_content.py binds the transcription to shared ComponentSpecs; rebuild.py replays them through manual-ir/v2 and the shared Web/MyST pipeline with the prepared-document shared-style gate. The manual prints no symbol-meaning table, so there is no symbol admission.",
+  "repo_inputs": [],
+  "inputs": [
+    {
+      "path": "JE-2000C-US-EN.pdf",
+      "size": 2769777,
+      "sha256": "c357f54dfed27d11d72a2a4893e485450a49c1b562e21f0f272708857f1510ab"
+    },
+    {
+      "path": "README.md",
+      "size": 3309,
+      "sha256": "afdfa3dd76c69334f264396ee357f0b592d17d32974585c3c8c49b1deb6f5f4c"
+    },
+    {
+      "path": "assets/app-store.png",
+      "size": 9095,
+      "sha256": "297986042aaee7768f06f601bdd503ff3648d9f299af7b1bc92c56b89608bf75"
+    },
+    {
+      "path": "assets/car-charge.png",
+      "size": 34363,
+      "sha256": "b4f1c235cef565618991254f4923ba14467b761f78bc9f1f837e27f161999147"
+    },
+    {
+      "path": "assets/car-solar-prohibited.png",
+      "size": 35199,
+      "sha256": "140925c0cf9284d503c7ac0186585f1d952ffa193c808db9513957e5d382e6c2"
+    },
+    {
+      "path": "assets/certifications.png",
+      "size": 11677,
+      "sha256": "6efbaf4497d1c644f02890dad905273cce9c85f7962bab9620506df792cb2ef6"
+    },
+    {
+      "path": "assets/fcc-mark.svg",
+      "size": 1927,
+      "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+    },
+    {
+      "path": "assets/inbox-ac-cable.png",
+      "size": 3591,
+      "sha256": "517b6c94a1b4a83ac40338dcbde14a31910a1ebbdb96d40063afd597c6e25ab3"
+    },
+    {
+      "path": "assets/inbox-adaptor.png",
+      "size": 4086,
+      "sha256": "029e451239c48828a4a1e326da48e09402514ac2cd25ffc2692cae9a000e9d3f"
+    },
+    {
+      "path": "assets/inbox-bag.png",
+      "size": 3375,
+      "sha256": "c1232e5a7ff3a6b8834d94bed7e209742e1ba73a1e6bc7df099d436d8063f146"
+    },
+    {
+      "path": "assets/inbox-car-cable.png",
+      "size": 5058,
+      "sha256": "d497cf0345a28d848cb0558c71f084addacf187a1620b96d84c87938cf66f3cd"
+    },
+    {
+      "path": "assets/inbox-manual.png",
+      "size": 4995,
+      "sha256": "e0b3c1b99a2d8afade7afeca50af4dc9069c6a1ba002b1734e4d590bfc23d6e6"
+    },
+    {
+      "path": "assets/inbox-unit.png",
+      "size": 7491,
+      "sha256": "4806dd8c6c9ebc35c86b9278ceccba3803838636977939c53d2d387d62871452"
+    },
+    {
+      "path": "assets/lcd-ac-expansion.png",
+      "size": 5762,
+      "sha256": "402e40d7687c2ad84665c9b9ecbb0cbe9a0ef838223f4f7ac09b27105bf9ba86"
+    },
+    {
+      "path": "assets/lcd-battery-power.png",
+      "size": 5123,
+      "sha256": "4765f1894521b13d4b69dbbd4ddd7fb80e6d50395dbe0db815371672667d9f93"
+    },
+    {
+      "path": "assets/lcd-energy-saving.png",
+      "size": 5561,
+      "sha256": "30c3f3ec6ddf33cbd162636edf4be86d683a57d7546a3d977ef476e83fe169b5"
+    },
+    {
+      "path": "assets/lcd-fault-code.png",
+      "size": 5910,
+      "sha256": "6e2aae1004349a65c9a9f1a755155a3e9364d8f7823c0058f60938fc56a48a1e"
+    },
+    {
+      "path": "assets/lcd-high-temperature.png",
+      "size": 6552,
+      "sha256": "5319b4108e4fd9234149cfe5d4d9472d4194e79d94ab00c2238c29418c1c10d3"
+    },
+    {
+      "path": "assets/lcd-low-battery.png",
+      "size": 633,
+      "sha256": "4ecace7dc932a209e7f8afc77052070544989d080edf14109756dd381e062c57"
+    },
+    {
+      "path": "assets/lcd-low-temperature.png",
+      "size": 6536,
+      "sha256": "fbcd63d36e6f004f2d272c497fc625c7bf2b0844a591eb6ecf6826a3d9abdf0b"
+    },
+    {
+      "path": "assets/lcd-map.png",
+      "size": 58169,
+      "sha256": "e4970a9bb3400db9e2ef60e874e76b8a10cec81d88e513dc82a9166366e64e07"
+    },
+    {
+      "path": "assets/overview-front.png",
+      "size": 43251,
+      "sha256": "5ade546e23bfc5a7db143bc4d16607121a67f2a3dbce303653529f2450cff24b"
+    },
+    {
+      "path": "assets/overview-rear.png",
+      "size": 54948,
+      "sha256": "c68caf1a45ca77f3e8e3ad5e2c0e5a36a52181c8eeda09c6cc96b0f75d82e4a8"
+    },
+    {
+      "path": "assets/solar-2-2.png",
+      "size": 73214,
+      "sha256": "119d67c2e273f5d5d85622a40379cd0919dce290d0c7fb34221e9fd9227e2ef0"
+    },
+    {
+      "path": "assets/solar-3-3.png",
+      "size": 106968,
+      "sha256": "4a8adf9f95873b2848d3a3c9a7c1f404e9afe3168e83c54c68f01c85a9329f12"
+    },
+    {
+      "path": "assets/solar-3.png",
+      "size": 70141,
+      "sha256": "5b068f11ac3e2008426194a5a2fbfe4e942563084888d62e7ebfe80bb264ec8f"
+    },
+    {
+      "path": "assets/solar-80.png",
+      "size": 62618,
+      "sha256": "ba97f8a8f0a272c692da4d9065ad57afc8e4f7eeb922a530791d0743c8fa654c"
+    },
+    {
+      "path": "assets/solar-adaptor.png",
+      "size": 42593,
+      "sha256": "9259c89eccd599e42cd43f4563518c7d958ad068868351b68b1b92d2536b8d15"
+    },
+    {
+      "path": "assets/solar-prohibited.png",
+      "size": 172646,
+      "sha256": "723cdaa3ed90ccd35944bddd6f0f6317ac0581ac387d60a2237d7d6747d6434d"
+    },
+    {
+      "path": "assets/wall-charge.png",
+      "size": 21187,
+      "sha256": "d9b73768f5921988ca1401255d3dfa6ecb4959c4c891c56bc2d6daa53e008ef7"
+    },
+    {
+      "path": "build_content.py",
+      "size": 17980,
+      "sha256": "0fbbf32a9f0f9bcd64bc938df7cc91ce86b6008ff3c5870f791fd98d64e7afc8"
+    },
+    {
+      "path": "derive_assets.py",
+      "size": 2879,
+      "sha256": "a95a7495d6311f1448422e03d81352256c18390007b6aee2c2ee53e1b3fe8ecd"
+    },
+    {
+      "path": "rebuild.py",
+      "size": 6365,
+      "sha256": "12834cf7934007c6ac4251b1ac4dee72b2dd849770fef22c0fa4c01a89c6d4a4"
+    },
+    {
+      "path": "refresh_manifest.py",
+      "size": 2552,
+      "sha256": "08a7341e0e1cbc0435654857d365c2d5d97399fd7911f7c990a00683c42b9357"
+    },
+    {
+      "path": "source/asset_decisions.json",
+      "size": 21585,
+      "sha256": "1e663f141a3e7c06b98ce32844a2355badd3a37a70b7e98e23f7acff99b91684"
+    },
+    {
+      "path": "source/asset_recipe.json",
+      "size": 4084,
+      "sha256": "aa8c52821ec50169324ad569f683e3adf6b8510a27a490eb209df0bab870ce5c"
+    },
+    {
+      "path": "source/differences.md",
+      "size": 2289,
+      "sha256": "6095ed02e6bf258ce8dd8951fb2046bbaec4a12ded49954cd47d867737bb0a0f"
+    },
+    {
+      "path": "source/discovery.md",
+      "size": 3249,
+      "sha256": "548df7237d86772bf5e771d33aeb5fbfa23060be93297bec1c469bcc1b2c0686"
+    },
+    {
+      "path": "source/en/content.json",
+      "size": 128578,
+      "sha256": "ab906b62254315590299e92a69f6cd3c6f4b95210a04b07b7293b7579775f1b9"
+    },
+    {
+      "path": "source/geometry.css",
+      "size": 1229,
+      "sha256": "5d7f9a90986bfb00ac3c29ec0f58bc9d0d2d2428dea41d24d0e0288abace376c"
+    },
+    {
+      "path": "source/transcription.json",
+      "size": 41914,
+      "sha256": "e66755f60e7376afa1e81279944bb95f7e03a68f3a4b29049f24a8dfa4b6ddd4"
+    }
+  ],
+  "shared_component_exceptions": [
+    {
+      "language": "en",
+      "page_id": "lcd_display",
+      "kind": "table",
+      "text_sha256": "ade86e40a6e7ba14604f345b5bb93c392e57e956539c7c7403b4da1f59676720",
+      "reason": "three-column Energy Saving Mode table (Output / Output Power / Defaults) whose Defaults cell spans the three port rows: no shared component has this shape (HB-TABLE-REFERENCE variants are 2-3 columns without row spans, HB-TABLE-SPEC is label/value); a plain table on the shared manual-table and table-wrapper classes, as JE-1000D JP V2 declares for its energy-saving table"
+    }
+  ],
+  "component_map": [
+    {
+      "printed": "preface paragraphs (Congratulations…, In compliance…, Please kindly notice…)",
+      "shared": "plain paragraphs before the first chapter heading"
+    },
+    {
+      "printed": "chapter titles TECHNICAL SPECIFICATIONS … WARRANTY",
+      "shared": "chapter h2 headings (shared theme)"
+    },
+    {
+      "printed": "GENERAL INFO / OUTPUT PORTS / INPUT PORTS / ENVIRONMENTAL OPERATING TEMPERATURE tables",
+      "shared": "four HB-TABLE-SPEC/vertical tables, group title as section title; the three DC Input value lines are one label row span"
+    },
+    {
+      "printed": "CERTIFICATIONS logo row",
+      "shared": "h3 heading + HB-SPECIAL-REFERENCE-FIGURE complete source panel"
+    },
+    {
+      "printed": "※ trademark footnotes, MODIFICATION paragraph",
+      "shared": "plain paragraphs (MODIFICATION bold lead as strong)"
+    },
+    {
+      "printed": "PACKAGE LIST ①–⑥ item cards",
+      "shared": "HB-SPECIAL-INBOX/responsive-card-grid, six cards with source item art"
+    },
+    {
+      "printed": "GET TO KNOW YOUR GEAR front and rear leader-label drawings",
+      "shared": "two HB-SPECIAL-REFERENCE-FIGURE complete source panels, labels in alt and IR"
+    },
+    {
+      "printed": "LCD DISPLAY numbered map",
+      "shared": "HB-SPECIAL-REFERENCE-FIGURE complete source panel"
+    },
+    {
+      "printed": "①–㉑ LCD legend (three columns)",
+      "shared": "HB-TABLE-REFERENCE/lcd-descriptions"
+    },
+    {
+      "printed": "Battery Saving Mode / Quiet Charging Mode bold-lead paragraphs",
+      "shared": "plain paragraphs with strong lead"
+    },
+    {
+      "printed": "LCD icon description blocks (icon, bold title, text), p03 and p04 groups",
+      "shared": "two HB-TABLE-LCD-ICON (unnumbered) tables in printed order"
+    },
+    {
+      "printed": "Energy Saving Mode table",
+      "shared": "declared plain table (shared_component_exceptions)"
+    },
+    {
+      "printed": "To turn off/on the Energy Saving Mode, EPS: Emergency Power System. bold run-in titles",
+      "shared": "strong paragraphs"
+    },
+    {
+      "printed": "BASIC OPERATIONS sub-titles (Output On/Off, LCD Screen On/Off) and bold-lead paragraphs",
+      "shared": "h3 headings + paragraphs with strong leads"
+    },
+    {
+      "printed": "USE WITH BATTERY PACK, APP CONNECTION, SAFETY PRECAUTIONS WHEN USING",
+      "shared": "h2/h3 headings + paragraphs"
+    },
+    {
+      "printed": "charging connection drawings (wall, solar series, 2+2, 3+3, prohibited x3, SolarSaga 80, adaptor, car, prohibited car+solar)",
+      "shared": "HB-SPECIAL-REFERENCE-FIGURE complete source panels with frames, cross marks and captions"
+    },
+    {
+      "printed": "❶–❹ SAFETY PRECAUTIONS WHEN CHARGING items",
+      "shared": "paragraphs keeping the printed ❶–❹ markers"
+    },
+    {
+      "printed": "IMPORTANT SAFETY INSTRUCTIONS a)–n) and j) 1)–5)",
+      "shared": "paragraphs keeping the printed letter/number markers"
+    },
+    {
+      "printed": "• bullet lists (operating, moving and storage instructions)",
+      "shared": "shared unordered lists"
+    },
+    {
+      "printed": "Warning : / DANGER: bold signal sentences",
+      "shared": "HB-CALLOUT-STRIP warning / danger, signal word as label"
+    },
+    {
+      "printed": "FCC logo + NOTE paragraph + -- measures",
+      "shared": "HB-SPECIAL-FCC/two-column with the shared fcc/nested-c-native-dark mark"
+    },
+    {
+      "printed": "WARRANTY note and titled sections",
+      "shared": "lead paragraph + h3 heading and HB-WARRANTY-SECTION/rounded-card per printed section"
+    },
+    {
+      "printed": "Download the Jackery Mobile App + store badges",
+      "shared": "paragraph + HB-SPECIAL-REFERENCE-FIGURE complete badge pair"
+    }
+  ],
+  "web_exclusions": [
+    "print cover (physical 1)",
+    "back cover company address and QR (physical 14)",
+    "printed page numbers"
+  ],
+  "source_concerns": [
+    {
+      "page": 2,
+      "line_id": "cert.fn2",
+      "issue": "「Qualcomm Technologles,Inc.」 (Technologies) and no space after the comma",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 3,
+      "line_id": "fcc.mod",
+      "issue": "the FCC MODIFICATION sentence is printed at the top of page 02, separated from the FCC NOTE on page 11",
+      "disposition": "kept in printed position (end of the specifications chapter); source owner review"
+    },
+    {
+      "page": 2,
+      "line_id": "spec.g3.r3.v2",
+      "issue": "DC Input 「Double to 8A Max;」 repeats the single-port 8A value of the line above",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 2,
+      "line_id": "spec.g4.r1.v",
+      "issue": "inconsistent spacing 「(32~113 °F)」 vs 「(14~113°F)」",
+      "disposition": "preserved verbatim"
+    },
+    {
+      "page": 5,
+      "line_id": "eco.on",
+      "issue": "「until the Low Power Mode icon lights up」: the icon is named Energy Saving Mode elsewhere",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 5,
+      "line_id": "lcd.d4.b",
+      "issue": "「In case of any other code appears」 grammar",
+      "disposition": "preserved verbatim"
+    },
+    {
+      "page": 5,
+      "line_id": "lcd.d7.b",
+      "issue": "sentence ends without a full stop (「…manual for details」)",
+      "disposition": "preserved verbatim"
+    },
+    {
+      "page": 8,
+      "line_id": "chg.prohibit.h",
+      "issue": "「The following way of connections are prohibited」 grammar",
+      "disposition": "preserved verbatim"
+    },
+    {
+      "page": 11,
+      "line_id": "isi.i",
+      "issue": "「unplug the power pack form the outlet」 (from)",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 11,
+      "line_id": "op.5",
+      "issue": "「within a ambient temperature」; discharge 「-10-45°C (14~113°F)」 mixes - and ~; 「Storage temperature is 1 year: 0~40°C」",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 11,
+      "line_id": "op.h",
+      "issue": "heading 「SAVE THESE INSTRUCTIONS OPERATING INSTRUCTIONS」 runs two titles together",
+      "disposition": "preserved verbatim"
+    },
+    {
+      "page": 12,
+      "line_id": "op.warning",
+      "issue": "「without permission,If you need…」 missing space and lower case after the comma; no final full stop",
+      "disposition": "preserved verbatim"
+    },
+    {
+      "page": 2,
+      "line_id": "spec.g1.r3.v",
+      "issue": "capacity unit 「44.8V DC」 while the rest of the table uses the ⎓ symbol",
+      "disposition": "preserved verbatim"
+    }
+  ]
+}

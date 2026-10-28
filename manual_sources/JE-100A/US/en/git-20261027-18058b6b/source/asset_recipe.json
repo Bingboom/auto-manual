@@ -1,0 +1,210 @@
+{
+  "schema_version": "explorer-us-en-asset-recipe/v1",
+  "source_sha256": "18058b6bb7e83041fce1798f3baf98a018d079fa5caa6fd8dceec934df02c0b5",
+  "panel_scale": 3,
+  "icon_scale": 6,
+  "panels": [
+    {
+      "path": "assets/certifications.png",
+      "physical_page": 2,
+      "bbox": [
+        101,
+        302,
+        234,
+        340
+      ],
+      "role": "complete CERTIFICATIONS mark cluster with its printed conformity text"
+    },
+    {
+      "path": "assets/inbox-unit.png",
+      "physical_page": 3,
+      "bbox": [
+        27,
+        36,
+        76,
+        71
+      ],
+      "role": "package-list card art: Explorer 100 Plus"
+    },
+    {
+      "path": "assets/inbox-cable.png",
+      "physical_page": 3,
+      "bbox": [
+        117,
+        33,
+        144,
+        76
+      ],
+      "role": "package-list card art: USB-C charging cable"
+    },
+    {
+      "path": "assets/inbox-manual.png",
+      "physical_page": 3,
+      "bbox": [
+        186,
+        31,
+        220,
+        76
+      ],
+      "role": "package-list card art: user manual"
+    },
+    {
+      "path": "assets/overview.png",
+      "physical_page": 3,
+      "bbox": [
+        21,
+        135,
+        234,
+        228
+      ],
+      "role": "complete Product Appearance drawing with leader labels"
+    },
+    {
+      "path": "assets/lcd-map.png",
+      "physical_page": 3,
+      "bbox": [
+        21,
+        256,
+        234,
+        340
+      ],
+      "role": "complete numbered LCD map with leader labels 1-9"
+    },
+    {
+      "path": "assets/charging-wall.png",
+      "physical_page": 5,
+      "bbox": [
+        105,
+        170,
+        233,
+        236
+      ],
+      "role": "complete wall-charging drawing with captions"
+    },
+    {
+      "path": "assets/solar-100.png",
+      "physical_page": 5,
+      "bbox": [
+        21,
+        285,
+        233,
+        345
+      ],
+      "role": "complete SolarSaga 100 connection drawing with leader labels"
+    },
+    {
+      "path": "assets/solar-80.png",
+      "physical_page": 6,
+      "bbox": [
+        23,
+        47,
+        233,
+        108
+      ],
+      "role": "complete SolarSaga 80 connection drawing with captions"
+    },
+    {
+      "path": "assets/solar-40.png",
+      "physical_page": 6,
+      "bbox": [
+        20,
+        130,
+        233,
+        182
+      ],
+      "role": "complete SolarSaga 40 Mini connection drawing with captions"
+    },
+    {
+      "path": "assets/charging-car.png",
+      "physical_page": 6,
+      "bbox": [
+        149,
+        229,
+        234,
+        278
+      ],
+      "role": "complete car-charging drawing with captions"
+    }
+  ],
+  "alpha_icons": [
+    {
+      "path": "assets/lcd-battery-ring.png",
+      "physical_page": 4,
+      "bbox": [
+        22.8,
+        22.2,
+        44.4,
+        43.7
+      ],
+      "role": "LCD battery power indicator ring"
+    },
+    {
+      "path": "assets/lcd-low-battery.png",
+      "physical_page": 4,
+      "bbox": [
+        22.8,
+        63.6,
+        45.4,
+        76.3
+      ],
+      "role": "LCD low battery indicator"
+    },
+    {
+      "path": "assets/lcd-always-on.png",
+      "physical_page": 4,
+      "bbox": [
+        22.4,
+        96.2,
+        45.7,
+        115.9
+      ],
+      "role": "LCD always-on display mode"
+    },
+    {
+      "path": "assets/lcd-energy-saving.png",
+      "physical_page": 4,
+      "bbox": [
+        22.0,
+        130.5,
+        45.0,
+        147.2
+      ],
+      "role": "LCD 12H energy saving mode"
+    },
+    {
+      "path": "assets/lcd-high-temperature.png",
+      "physical_page": 4,
+      "bbox": [
+        22.5,
+        285.4,
+        42.7,
+        304.0
+      ],
+      "role": "LCD high-temperature warning"
+    },
+    {
+      "path": "assets/lcd-low-temperature.png",
+      "physical_page": 4,
+      "bbox": [
+        22.5,
+        319.7,
+        42.7,
+        338.4
+      ],
+      "role": "LCD low-temperature warning"
+    }
+  ],
+  "reused": [
+    {
+      "path": "assets/shared-lcd/25_Fault_code_LaTmb4IQYo3vwvxMqQNcC2RgnIf.png",
+      "from": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/25_Fault_code_LaTmb4IQYo3vwvxMqQNcC2RgnIf.png",
+      "sha256": "3b51b98d7199d32f7b286bdf5ce3de4cb41971ed942820091053fd1d87bf0a7a"
+    },
+    {
+      "path": "assets/fcc-mark.svg",
+      "from": "docs/renderers/web/assets/shared/symbols/native-v1/fcc_mark.svg",
+      "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+    }
+  ],
+  "symbols": []
+}

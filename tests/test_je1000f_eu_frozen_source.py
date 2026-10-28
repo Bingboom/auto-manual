@@ -199,6 +199,16 @@ class Je1000fEuFrozenSourceTests(unittest.TestCase):
                 self.assertIn(battery[f"text_{lang}"].split("\n")[0], web)
                 self.assertNotIn("weee2", latex.rpartition("\\HBSymbolTwoColumnTables")[2])
 
+    def test_review_source_symbol_pages_take_the_shared_battery_icon(self) -> None:
+        """Operator ruling 2026-10-27: de/es/it (built --source review) use the shared icon, not the 81x69 attachment."""
+        icon = "renderers/web/assets/shared/symbols/native-v1/symbol_battery_weee.png"
+        with (FORMAL_DATA_ROOT / "symbols_blocks.csv").open(encoding="utf-8", newline="") as handle:
+            battery, = [row for row in csv.DictReader(handle) if row["symbol_key"] == "weee2"]
+        self.assertEqual(("", icon), (battery["Figure"], battery["image_path"]))
+        catalog = json.loads((ROOT / "docs/renderers/web/assets/shared/symbols/manifest.json").read_text(encoding="utf-8"))
+        variant, = [asset for asset in catalog["assets"] if asset["key"] == "battery-weee/crossed-bin-no-bar"]
+        self.assertEqual(variant["sha256"], _sha256(ROOT / "docs" / icon))
+
 
 if __name__ == "__main__":
     unittest.main()

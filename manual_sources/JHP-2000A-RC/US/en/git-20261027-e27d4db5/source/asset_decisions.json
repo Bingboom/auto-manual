@@ -1,0 +1,1404 @@
+[
+ {
+  "slot": "inbox-unit",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "HomePower 2000 Plus chassis (two AC button pairs, 4 outlets) differs from the JHP-3600A/3000D/5000C in-box art; cable and document glyph are drawn as part of this card set",
+  "physical_page": 6,
+  "bbox": [
+   44,
+   333,
+   130,
+   398
+  ],
+  "text_removed": [],
+  "final_path": "assets/inbox-unit.png",
+  "sha256": "370f17d2e79c9c3f8b7200b153396f86b85b2984071721668db0accf69f585ff",
+  "background": "complete panel crop at 3x; leader lines, labels and phone frames kept; only body copy listed in text_removed is taken out and rendered as native text"
+ },
+ {
+  "slot": "inbox-cable",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "HomePower 2000 Plus chassis (two AC button pairs, 4 outlets) differs from the JHP-3600A/3000D/5000C in-box art; cable and document glyph are drawn as part of this card set",
+  "physical_page": 6,
+  "bbox": [
+   168,
+   334,
+   218,
+   403
+  ],
+  "text_removed": [],
+  "final_path": "assets/inbox-cable.png",
+  "sha256": "d0ff7ad9f6d444508d20f5684ca31fa61ab933e9582055a6eef445c4f632fec8",
+  "background": "complete panel crop at 3x; leader lines, labels and phone frames kept; only body copy listed in text_removed is taken out and rendered as native text"
+ },
+ {
+  "slot": "inbox-documents",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "HomePower 2000 Plus chassis (two AC button pairs, 4 outlets) differs from the JHP-3600A/3000D/5000C in-box art; cable and document glyph are drawn as part of this card set",
+  "physical_page": 6,
+  "bbox": [
+   268,
+   335,
+   320,
+   402
+  ],
+  "text_removed": [],
+  "final_path": "assets/inbox-documents.png",
+  "sha256": "c00bb31cc79085b714ad06708672c1826e8807af8ce2c3e4eac972f7106ad7e6",
+  "background": "complete panel crop at 3x; leader lines, labels and phone frames kept; only body copy listed in text_removed is taken out and rendered as native text"
+ },
+ {
+  "slot": "overview-front",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JHP-2000A-RC chassis, port set (DC 12V port, USB-C 30W/140W, USB-A 18W, AC1/AC2) and side views differ from every HomePower reference",
+  "physical_page": 7,
+  "bbox": [
+   27,
+   77,
+   342,
+   235
+  ],
+  "text_removed": [],
+  "final_path": "assets/overview-front.png",
+  "sha256": "c8cafac57dfe7c753a7137845be45256bbae3e1c91e33f6129e167c6818d3c39",
+  "background": "complete panel crop at 3x; leader lines, labels and phone frames kept; only body copy listed in text_removed is taken out and rendered as native text"
+ },
+ {
+  "slot": "overview-left",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JHP-2000A-RC chassis, port set (DC 12V port, USB-C 30W/140W, USB-A 18W, AC1/AC2) and side views differ from every HomePower reference",
+  "physical_page": 7,
+  "bbox": [
+   28,
+   266,
+   342,
+   371
+  ],
+  "text_removed": [],
+  "final_path": "assets/overview-left.png",
+  "sha256": "9faa4ff53c3c85de20957365aae670404345880592fb1bbaca363a8e88f6eb94",
+  "background": "complete panel crop at 3x; leader lines, labels and phone frames kept; only body copy listed in text_removed is taken out and rendered as native text"
+ },
+ {
+  "slot": "overview-right",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JHP-2000A-RC chassis, port set (DC 12V port, USB-C 30W/140W, USB-A 18W, AC1/AC2) and side views differ from every HomePower reference",
+  "physical_page": 7,
+  "bbox": [
+   28,
+   397,
+   343,
+   497
+  ],
+  "text_removed": [],
+  "final_path": "assets/overview-right.png",
+  "sha256": "d435c32114d45959ce4b591a60bc79ad7a779d3a4bb0c028d747a1e9f4b1b745",
+  "background": "complete panel crop at 3x; leader lines, labels and phone frames kept; only body copy listed in text_removed is taken out and rendered as native text"
+ },
+ {
+  "slot": "lcd-map",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "26-position LCD with TOU/UPS/charging-power-limit/discharge-timer icons; no existing map matches",
+  "physical_page": 8,
+  "bbox": [
+   48,
+   53,
+   323,
+   228
+  ],
+  "text_removed": [],
+  "final_path": "assets/lcd-map.png",
+  "sha256": "578c17a54d18af3f8c902310900c721f45913a588c919203a446b33f6a3c6106",
+  "background": "complete panel crop at 3x; leader lines, labels and phone frames kept; only body copy listed in text_removed is taken out and rendered as native text"
+ },
+ {
+  "slot": "power-on-off",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "operation panels show the HomePower 2000 Plus front panel and its AC1/AC2, DC/USB and LIGHT buttons; references show other chassis",
+  "physical_page": 11,
+  "bbox": [
+   32,
+   79,
+   337,
+   195
+  ],
+  "text_removed": [
+   [
+    160,
+    155,
+    330,
+    203
+   ],
+   [
+    38,
+    210,
+    332,
+    240
+   ]
+  ],
+  "final_path": "assets/power-on-off.png",
+  "sha256": "e989f77cd0e607b05137df60ec1bc24f9db52e5082cedc72048baeabea2a0825",
+  "background": "complete panel crop at 3x; leader lines, labels and phone frames kept; only body copy listed in text_removed is taken out and rendered as native text"
+ },
+ {
+  "slot": "ac-output",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "operation panels show the HomePower 2000 Plus front panel and its AC1/AC2, DC/USB and LIGHT buttons; references show other chassis",
+  "physical_page": 11,
+  "bbox": [
+   32,
+   335,
+   337,
+   492
+  ],
+  "text_removed": [
+   [
+    39,
+    283,
+    171,
+    298
+   ],
+   [
+    39,
+    304,
+    326,
+    331
+   ]
+  ],
+  "final_path": "assets/ac-output.png",
+  "sha256": "d7f91e8eb71effc570fbdb7dbef75271822f40c1d929b85a678ce8a28ac4597a",
+  "background": "complete panel crop at 3x; leader lines, labels and phone frames kept; only body copy listed in text_removed is taken out and rendered as native text"
+ },
+ {
+  "slot": "dc-usb-output",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "operation panels show the HomePower 2000 Plus front panel and its AC1/AC2, DC/USB and LIGHT buttons; references show other chassis",
+  "physical_page": 12,
+  "bbox": [
+   33,
+   74,
+   338,
+   270
+  ],
+  "text_removed": [
+   [
+    39,
+    57,
+    172,
+    72
+   ]
+  ],
+  "final_path": "assets/dc-usb-output.png",
+  "sha256": "7a900e7ac334a80264a562b0792868a2c744f79fc9bd333aa20b92a8ab8f925a",
+  "background": "complete panel crop at 3x; leader lines, labels and phone frames kept; only body copy listed in text_removed is taken out and rendered as native text"
+ },
+ {
+  "slot": "energy-saving",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "operation panels show the HomePower 2000 Plus front panel and its AC1/AC2, DC/USB and LIGHT buttons; references show other chassis",
+  "physical_page": 13,
+  "bbox": [
+   32,
+   118,
+   337,
+   227
+  ],
+  "text_removed": [
+   [
+    40,
+    58,
+    330,
+    117
+   ],
+   [
+    40,
+    228,
+    330,
+    269
+   ]
+  ],
+  "final_path": "assets/energy-saving.png",
+  "sha256": "d2815bf2e9fc86c98c8d82c328eee863aa3a1c0a2ecb22550df8ee71ca4de213",
+  "background": "complete panel crop at 3x; leader lines, labels and phone frames kept; only body copy listed in text_removed is taken out and rendered as native text"
+ },
+ {
+  "slot": "led-light",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "operation panels show the HomePower 2000 Plus front panel and its AC1/AC2, DC/USB and LIGHT buttons; references show other chassis",
+  "physical_page": 13,
+  "bbox": [
+   32,
+   424,
+   337,
+   499
+  ],
+  "text_removed": [
+   [
+    40,
+    396,
+    323,
+    422
+   ],
+   [
+    254,
+    427,
+    329,
+    495
+   ]
+  ],
+  "final_path": "assets/led-light.png",
+  "sha256": "197d081fc0e8a7560cad13ba4438a528581ab9c0b99fbd6c04a0872c23dc1a0a",
+  "background": "complete panel crop at 3x; leader lines, labels and phone frames kept; only body copy listed in text_removed is taken out and rendered as native text"
+ },
+ {
+  "slot": "lcd-screen",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "operation panels show the HomePower 2000 Plus front panel and its AC1/AC2, DC/USB and LIGHT buttons; references show other chassis",
+  "physical_page": 14,
+  "bbox": [
+   36,
+   62,
+   143,
+   190
+  ],
+  "text_removed": [],
+  "final_path": "assets/lcd-screen.png",
+  "sha256": "3f30d77a6d672e8bcf26565ef59af826429b39760c559eeb1a5c666fa5ee32d6",
+  "background": "complete panel crop at 3x; leader lines, labels and phone frames kept; only body copy listed in text_removed is taken out and rendered as native text"
+ },
+ {
+  "slot": "ups",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "operation panels show the HomePower 2000 Plus front panel and its AC1/AC2, DC/USB and LIGHT buttons; references show other chassis",
+  "physical_page": 15,
+  "bbox": [
+   32,
+   77,
+   337,
+   268
+  ],
+  "text_removed": [
+   [
+    129,
+    215,
+    333,
+    256
+   ]
+  ],
+  "final_path": "assets/ups.png",
+  "sha256": "8304a0c080f312b7d0d628b281e8bb610b93c981b388b10bbe4868e46583dfa8",
+  "background": "complete panel crop at 3x; leader lines, labels and phone frames kept; only body copy listed in text_removed is taken out and rendered as native text"
+ },
+ {
+  "slot": "battery-stack",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "operation panels show the HomePower 2000 Plus front panel and its AC1/AC2, DC/USB and LIGHT buttons; references show other chassis",
+  "physical_page": 16,
+  "bbox": [
+   33,
+   101,
+   340,
+   302
+  ],
+  "text_removed": [],
+  "final_path": "assets/battery-stack.png",
+  "sha256": "5e2dfb4f35cb787cd0584a1e1d7c64fbbf21d7e630a013ed2c2bee950b322102",
+  "background": "complete panel crop at 3x; leader lines, labels and phone frames kept; only body copy listed in text_removed is taken out and rendered as native text"
+ },
+ {
+  "slot": "battery-accessories",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "operation panels show the HomePower 2000 Plus front panel and its AC1/AC2, DC/USB and LIGHT buttons; references show other chassis",
+  "physical_page": 16,
+  "bbox": [
+   29,
+   425,
+   344,
+   497
+  ],
+  "text_removed": [],
+  "final_path": "assets/battery-accessories.png",
+  "sha256": "ec0434ada813c38c59c2dedff5bac25979d83954fa056c7460956dbe232626a6",
+  "background": "complete panel crop at 3x; leader lines, labels and phone frames kept; only body copy listed in text_removed is taken out and rendered as native text"
+ },
+ {
+  "slot": "charging-ac",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "operation panels show the HomePower 2000 Plus front panel and its AC1/AC2, DC/USB and LIGHT buttons; references show other chassis",
+  "physical_page": 17,
+  "bbox": [
+   34,
+   200,
+   341,
+   294
+  ],
+  "text_removed": [
+   [
+    191,
+    273,
+    313,
+    290
+   ]
+  ],
+  "final_path": "assets/charging-ac.png",
+  "sha256": "2433096d37f4ed7a61424db0877ebfff162b883370f481aa7a6bc1f27a440c91",
+  "background": "complete panel crop at 3x; leader lines, labels and phone frames kept; only body copy listed in text_removed is taken out and rendered as native text"
+ },
+ {
+  "slot": "charging-solar",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "operation panels show the HomePower 2000 Plus front panel and its AC1/AC2, DC/USB and LIGHT buttons; references show other chassis",
+  "physical_page": 18,
+  "bbox": [
+   30,
+   32,
+   339,
+   163
+  ],
+  "text_removed": [],
+  "final_path": "assets/charging-solar.png",
+  "sha256": "b3ccca84ebb2029a3b62ad8a43572cbecfa1895650fee72e1f10bab6de8a846b",
+  "background": "complete panel crop at 3x; leader lines, labels and phone frames kept; only body copy listed in text_removed is taken out and rendered as native text"
+ },
+ {
+  "slot": "charging-car",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "operation panels show the HomePower 2000 Plus front panel and its AC1/AC2, DC/USB and LIGHT buttons; references show other chassis",
+  "physical_page": 18,
+  "bbox": [
+   30,
+   309,
+   338,
+   432
+  ],
+  "text_removed": [],
+  "final_path": "assets/charging-car.png",
+  "sha256": "bf6c15dab284391d74afd97e8bc875759a83562c735cf92d803920297200f9f8",
+  "background": "complete panel crop at 3x; leader lines, labels and phone frames kept; only body copy listed in text_removed is taken out and rendered as native text"
+ },
+ {
+  "slot": "app-store",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "App screenshots name HomePower 2000 Plus / 2000 Plus; the control-panel diagram is this model; badges and QR are taken from this PDF rather than assumed equal",
+  "physical_page": 22,
+  "bbox": [
+   46,
+   68,
+   122,
+   118
+  ],
+  "text_removed": [],
+  "final_path": "assets/app-store.png",
+  "sha256": "705497e4343cbce908f2cd8b3eab5f7ffebbe1f2dae0ce6cbcf9986b58d3f7a3",
+  "background": "complete panel crop at 3x; leader lines, labels and phone frames kept; only body copy listed in text_removed is taken out and rendered as native text"
+ },
+ {
+  "slot": "app-qr",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "App screenshots name HomePower 2000 Plus / 2000 Plus; the control-panel diagram is this model; badges and QR are taken from this PDF rather than assumed equal",
+  "physical_page": 22,
+  "bbox": [
+   198,
+   66,
+   251,
+   119
+  ],
+  "text_removed": [],
+  "final_path": "assets/app-qr.png",
+  "sha256": "f8fe05d56d7f347b2a9f617fa05d78a327614f5e5193d6144d204f3c4920e72f",
+  "background": "complete panel crop at 3x; leader lines, labels and phone frames kept; only body copy listed in text_removed is taken out and rendered as native text"
+ },
+ {
+  "slot": "app-add",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "App screenshots name HomePower 2000 Plus / 2000 Plus; the control-panel diagram is this model; badges and QR are taken from this PDF rather than assumed equal",
+  "physical_page": 22,
+  "bbox": [
+   112,
+   210,
+   250,
+   348
+  ],
+  "text_removed": [],
+  "final_path": "assets/app-add.png",
+  "sha256": "cd34978e05167fe11e7c5d8669a847653e3e21895c8a639c1dfdfa5c0b8f36c2",
+  "background": "complete panel crop at 3x; leader lines, labels and phone frames kept; only body copy listed in text_removed is taken out and rendered as native text"
+ },
+ {
+  "slot": "app-panel",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "App screenshots name HomePower 2000 Plus / 2000 Plus; the control-panel diagram is this model; badges and QR are taken from this PDF rather than assumed equal",
+  "physical_page": 22,
+  "bbox": [
+   29,
+   350,
+   341,
+   433
+  ],
+  "text_removed": [],
+  "final_path": "assets/app-panel.png",
+  "sha256": "df9ae0c22d084f1a2a3a898f0f90bbc6c3316f9740b8c441a34eb7653d0359a9",
+  "background": "complete panel crop at 3x; leader lines, labels and phone frames kept; only body copy listed in text_removed is taken out and rendered as native text"
+ },
+ {
+  "slot": "app-results",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "App screenshots name HomePower 2000 Plus / 2000 Plus; the control-panel diagram is this model; badges and QR are taken from this PDF rather than assumed equal",
+  "physical_page": 23,
+  "bbox": [
+   45,
+   83,
+   320,
+   248
+  ],
+  "text_removed": [],
+  "final_path": "assets/app-results.png",
+  "sha256": "cb89cee1b1e2aaf590158076889ef0decc53fa44cc61e8c4f2cb9d19ff7bee32",
+  "background": "complete panel crop at 3x; leader lines, labels and phone frames kept; only body copy listed in text_removed is taken out and rendered as native text"
+ },
+ {
+  "slot": "lcd-wifi",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)",
+   "manual_sources/*/**/shared-lcd, data/manual_sources/**/assets/*lcd* (195 unique files)"
+  ],
+  "decision": "reuse byte-identical",
+  "reason": "native vector comparison mean error 0.0018 against this PDF",
+  "from": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-01.svg",
+  "final_path": "assets/lcd-wifi.svg",
+  "sha256": "2e6ed961723e02a85d355869482f2f66863576de9482fb0a9650ddfbd3ded2a5",
+  "background": "transparent"
+ },
+ {
+  "slot": "lcd-bluetooth",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)",
+   "manual_sources/*/**/shared-lcd, data/manual_sources/**/assets/*lcd* (195 unique files)"
+  ],
+  "decision": "reuse byte-identical",
+  "reason": "native vector comparison mean error 0.0078 against this PDF",
+  "from": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-02.svg",
+  "final_path": "assets/lcd-bluetooth.svg",
+  "sha256": "90a33061760cdab8805f469402b6626853cd2c0601e369f7456311fd2ea1307a",
+  "background": "transparent"
+ },
+ {
+  "slot": "lcd-quiet-charging",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)",
+   "manual_sources/*/**/shared-lcd, data/manual_sources/**/assets/*lcd* (195 unique files)"
+  ],
+  "decision": "reuse byte-identical",
+  "reason": "native vector comparison mean error 0.0073 against this PDF",
+  "from": "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets/lcd-quiet-charging.svg",
+  "final_path": "assets/lcd-quiet-charging.svg",
+  "sha256": "b2e9476117ef2438af6cfae5211f84ec47f28eca91c44a6f21999a097a61f22d",
+  "background": "transparent"
+ },
+ {
+  "slot": "lcd-charging-plan",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)",
+   "manual_sources/*/**/shared-lcd, data/manual_sources/**/assets/*lcd* (195 unique files)"
+  ],
+  "decision": "reuse byte-identical",
+  "reason": "native vector comparison mean error 0.0185 against this PDF",
+  "from": "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets/lcd-06.svg",
+  "final_path": "assets/lcd-charging-plan.svg",
+  "sha256": "0ed7eacc074d1516e347043115f76c449995dda1bc21105a466a0adf22531c7b",
+  "background": "transparent"
+ },
+ {
+  "slot": "lcd-self-powered",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)",
+   "manual_sources/*/**/shared-lcd, data/manual_sources/**/assets/*lcd* (195 unique files)"
+  ],
+  "decision": "reuse byte-identical",
+  "reason": "native vector comparison mean error 0.0034 against this PDF",
+  "from": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-06.svg",
+  "final_path": "assets/lcd-self-powered.svg",
+  "sha256": "6264e35ea700fb8ec93473700101202e7d5548ebd7e80bf4e9ebd3907b20aaf4",
+  "background": "transparent"
+ },
+ {
+  "slot": "lcd-ac-power",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)",
+   "manual_sources/*/**/shared-lcd, data/manual_sources/**/assets/*lcd* (195 unique files)"
+  ],
+  "decision": "reuse byte-identical",
+  "reason": "native vector comparison mean error 0.0011 against this PDF",
+  "from": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-08.svg",
+  "final_path": "assets/lcd-ac-power.svg",
+  "sha256": "3f94c9fd8da2838f7045a9fa6bf8d4323e49c89f2e902568090cdee45af4b54a",
+  "background": "transparent"
+ },
+ {
+  "slot": "lcd-input-power",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)",
+   "manual_sources/*/**/shared-lcd, data/manual_sources/**/assets/*lcd* (195 unique files)"
+  ],
+  "decision": "reuse byte-identical",
+  "reason": "native vector comparison mean error 0.0130 against this PDF",
+  "from": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-10.svg",
+  "final_path": "assets/lcd-input-power.svg",
+  "sha256": "30441e8c3690c5ff96ea18c58e05b6f224697783d63e04052cf4a8dbfa4c3660",
+  "background": "transparent"
+ },
+ {
+  "slot": "lcd-remaining-charge-time",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)",
+   "manual_sources/*/**/shared-lcd, data/manual_sources/**/assets/*lcd* (195 unique files)"
+  ],
+  "decision": "reuse byte-identical",
+  "reason": "native vector comparison mean error 0.0124 against this PDF",
+  "from": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-11.svg",
+  "final_path": "assets/lcd-remaining-charge-time.svg",
+  "sha256": "65a7ad2a1b4bfb353872fc4ed429c86b206337928bc55166424eb186260a15dd",
+  "background": "transparent"
+ },
+ {
+  "slot": "lcd-battery-power",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)",
+   "manual_sources/*/**/shared-lcd, data/manual_sources/**/assets/*lcd* (195 unique files)"
+  ],
+  "decision": "reuse byte-identical",
+  "reason": "native vector comparison mean error 0.0067 against this PDF",
+  "from": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-15.svg",
+  "final_path": "assets/lcd-battery-power.svg",
+  "sha256": "463a1423db307feeb0045dbe94a9844b65ffcde9977db8de1c5993c046469aa4",
+  "background": "transparent"
+ },
+ {
+  "slot": "lcd-low-battery",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)",
+   "manual_sources/*/**/shared-lcd, data/manual_sources/**/assets/*lcd* (195 unique files)"
+  ],
+  "decision": "reuse byte-identical",
+  "reason": "native vector comparison mean error 0.0135 against this PDF",
+  "from": "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets/lcd-low-battery-outline.svg",
+  "final_path": "assets/lcd-low-battery.svg",
+  "sha256": "386af7c839615aca02f89eb76e60e8ecbee75679eac500349e944dfce1523841",
+  "background": "transparent"
+ },
+ {
+  "slot": "lcd-remaining-battery-percentage",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)",
+   "manual_sources/*/**/shared-lcd, data/manual_sources/**/assets/*lcd* (195 unique files)"
+  ],
+  "decision": "reuse byte-identical",
+  "reason": "native vector comparison mean error 0.0118 against this PDF",
+  "from": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-17.svg",
+  "final_path": "assets/lcd-remaining-battery-percentage.svg",
+  "sha256": "4c193d86cf13bc2f9b41a3da4a1dee9af7427976c5039115a2641aa3b7c283d7",
+  "background": "transparent"
+ },
+ {
+  "slot": "lcd-fault-code",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)",
+   "manual_sources/*/**/shared-lcd, data/manual_sources/**/assets/*lcd* (195 unique files)"
+  ],
+  "decision": "reuse byte-identical",
+  "reason": "native vector comparison mean error 0.0139 against this PDF",
+  "from": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-18.svg",
+  "final_path": "assets/lcd-fault-code.svg",
+  "sha256": "4be378f0248b6d1faa6dab9b8c3237952bf248b73bc11d63d1cd3ab91c88fff0",
+  "background": "transparent"
+ },
+ {
+  "slot": "lcd-output-power",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)",
+   "manual_sources/*/**/shared-lcd, data/manual_sources/**/assets/*lcd* (195 unique files)"
+  ],
+  "decision": "reuse byte-identical",
+  "reason": "native vector comparison mean error 0.0062 against this PDF",
+  "from": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-21.svg",
+  "final_path": "assets/lcd-output-power.svg",
+  "sha256": "d7610ab6fac80a2cfc25560f23a0f7e991dc80c9d7b8be8d995f379a69c23e9e",
+  "background": "transparent"
+ },
+ {
+  "slot": "lcd-remaining-discharge-time",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)",
+   "manual_sources/*/**/shared-lcd, data/manual_sources/**/assets/*lcd* (195 unique files)"
+  ],
+  "decision": "reuse byte-identical",
+  "reason": "native vector comparison mean error 0.0091 against this PDF",
+  "from": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-22.svg",
+  "final_path": "assets/lcd-remaining-discharge-time.svg",
+  "sha256": "24f44a724c11c7d63aeb242b56e9ccf9e62b584046cd3f1f63d06bd4ae2e5e9e",
+  "background": "transparent"
+ },
+ {
+  "slot": "button-power",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)",
+   "manual_sources/*/**/shared-lcd, data/manual_sources/**/assets/*lcd* (195 unique files)"
+  ],
+  "decision": "reuse byte-identical",
+  "reason": "shared semantic button with the same face and marking as printed",
+  "from": "docs/renderers/web/assets/shared/buttons/power.svg",
+  "final_path": "assets/button-power.svg",
+  "sha256": "457285c35d6deb52a01bf2e86a430cdbbd1553299a6eac652a372427bfa6c2ed",
+  "background": "transparent"
+ },
+ {
+  "slot": "button-dc-usb",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)",
+   "manual_sources/*/**/shared-lcd, data/manual_sources/**/assets/*lcd* (195 unique files)"
+  ],
+  "decision": "reuse byte-identical",
+  "reason": "shared semantic button with the same face and marking as printed",
+  "from": "docs/renderers/web/assets/shared/buttons/dc_usb.svg",
+  "final_path": "assets/button-dc-usb.svg",
+  "sha256": "3355388bad2221362a63dfad0c04fb9c15f521866166144cd3a644bde14e5864",
+  "background": "transparent"
+ },
+ {
+  "slot": "fcc-mark",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)",
+   "manual_sources/*/**/shared-lcd, data/manual_sources/**/assets/*lcd* (195 unique files)"
+  ],
+  "decision": "reuse byte-identical",
+  "reason": "native vector comparison mean error 0.0179 against this PDF",
+  "from": "docs/renderers/web/assets/shared/symbols/native-v1/fcc_mark.svg",
+  "final_path": "assets/fcc-mark.svg",
+  "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe",
+  "background": "transparent"
+ },
+ {
+  "slot": "lcd-tou",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)",
+   "manual_sources/*/**/shared-lcd, data/manual_sources/**/assets/*lcd* (195 unique files)"
+  ],
+  "decision": "native vector extraction from this PDF",
+  "reason": "no existing file within 0.02 mean error (closest manual_sources/JBP-1000B-WH/JP/ja/git-20261008-3aa6c003-native/source/assets/lcd-dc.svg at 0.2054)",
+  "physical_page": 9,
+  "glyph_bbox": [
+   57.06,
+   67.78,
+   71.82,
+   78.12
+  ],
+  "final_path": "assets/lcd-tou.svg",
+  "sha256": "3e109b30c2752883cb0d8c2f3925d690a49eaa71a102ebc34157b3d505d4fbe6",
+  "background": "transparent, original PDF paths only"
+ },
+ {
+  "slot": "lcd-ups",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)",
+   "manual_sources/*/**/shared-lcd, data/manual_sources/**/assets/*lcd* (195 unique files)"
+  ],
+  "decision": "native vector extraction from this PDF",
+  "reason": "no existing file within 0.02 mean error (closest manual_sources/JBP-1000B-WH/JP/ja/git-20261008-3aa6c003-native/source/assets/lcd-dc.svg at 0.2050)",
+  "physical_page": 9,
+  "glyph_bbox": [
+   57.44,
+   123.19,
+   71.44,
+   133.03
+  ],
+  "final_path": "assets/lcd-ups.svg",
+  "sha256": "cbf71a47a1f900e63e2ff4e3a772af6f135b9d9f6223297598bb378263ae9b9e",
+  "background": "transparent, original PDF paths only"
+ },
+ {
+  "slot": "lcd-output-voltage-frequency",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)",
+   "manual_sources/*/**/shared-lcd, data/manual_sources/**/assets/*lcd* (195 unique files)"
+  ],
+  "decision": "native vector extraction from this PDF",
+  "reason": "no existing file within 0.02 mean error (closest data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-09.svg at 0.0503)",
+  "physical_page": 9,
+  "glyph_bbox": [
+   48.25,
+   174.72,
+   81.17,
+   182.72
+  ],
+  "final_path": "assets/lcd-output-voltage-frequency.svg",
+  "sha256": "42299faa81e2c3e27822c226ddb7c7a77b5d6745c0fd64ff83dbbe729a83311a",
+  "background": "transparent, original PDF paths only"
+ },
+ {
+  "slot": "lcd-ac-wall-charging",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)",
+   "manual_sources/*/**/shared-lcd, data/manual_sources/**/assets/*lcd* (195 unique files)"
+  ],
+  "decision": "native vector extraction from this PDF",
+  "reason": "no existing file within 0.02 mean error (closest data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets/lcd-02.svg at 0.1510)",
+  "physical_page": 9,
+  "glyph_bbox": [
+   56.79,
+   250.76,
+   70.62,
+   265.69
+  ],
+  "final_path": "assets/lcd-ac-wall-charging.svg",
+  "sha256": "98bb2b1e0b450c2aba9ed67dc8720143e0842926a508cc58a1d78dd7d097901d",
+  "background": "transparent, original PDF paths only"
+ },
+ {
+  "slot": "lcd-car-charging",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)",
+   "manual_sources/*/**/shared-lcd, data/manual_sources/**/assets/*lcd* (195 unique files)"
+  ],
+  "decision": "native vector extraction from this PDF",
+  "reason": "no existing file within 0.02 mean error (closest data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets/lcd-06.svg at 0.1581)",
+  "physical_page": 9,
+  "glyph_bbox": [
+   58.04,
+   276.64,
+   70.38,
+   293.27
+  ],
+  "final_path": "assets/lcd-car-charging.svg",
+  "sha256": "edfa039bb25ab255780d5f878858dce6d80718120c48dc966935f95a38e6a4ea",
+  "background": "transparent, original PDF paths only"
+ },
+ {
+  "slot": "lcd-solar-charging",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)",
+   "manual_sources/*/**/shared-lcd, data/manual_sources/**/assets/*lcd* (195 unique files)"
+  ],
+  "decision": "native vector extraction from this PDF",
+  "reason": "no existing file within 0.02 mean error (closest data/manual_sources/JE-3600A/CN/git-20261012-caa5370a-reviewed/assets/lcd-ac-wall-charging.png at 0.2677)",
+  "physical_page": 9,
+  "glyph_bbox": [
+   57.53,
+   308.51,
+   72.37,
+   323.24
+  ],
+  "final_path": "assets/lcd-solar-charging.svg",
+  "sha256": "657388b672258ec078a4903dcca49845215fcf90f766a3b627cf38085ac55308",
+  "background": "transparent, original PDF paths only"
+ },
+ {
+  "slot": "lcd-battery-saving",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)",
+   "manual_sources/*/**/shared-lcd, data/manual_sources/**/assets/*lcd* (195 unique files)"
+  ],
+  "decision": "native vector extraction from this PDF",
+  "reason": "no existing file within 0.02 mean error (closest data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets/lcd-05.svg at 0.3026)",
+  "physical_page": 9,
+  "glyph_bbox": [
+   59.95,
+   364.26,
+   72.16,
+   377.52
+  ],
+  "final_path": "assets/lcd-battery-saving.svg",
+  "sha256": "1e52641e1da255e9db3789e8fd45f5d08a4cdf70e9e8024e9f8f3b11b163b99e",
+  "background": "transparent, original PDF paths only"
+ },
+ {
+  "slot": "lcd-charging-power-limit",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)",
+   "manual_sources/*/**/shared-lcd, data/manual_sources/**/assets/*lcd* (195 unique files)"
+  ],
+  "decision": "native vector extraction from this PDF",
+  "reason": "no existing file within 0.02 mean error (closest data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets/lcd-08.svg at 0.0810)",
+  "physical_page": 9,
+  "glyph_bbox": [
+   56.08,
+   425.26,
+   73.03,
+   440.04
+  ],
+  "final_path": "assets/lcd-charging-power-limit.svg",
+  "sha256": "6d7c907187b1b0ea97bd670c6b3a90155af16e7591846285c288e6e2f2c14db3",
+  "background": "transparent, original PDF paths only"
+ },
+ {
+  "slot": "lcd-discharge-timer",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)",
+   "manual_sources/*/**/shared-lcd, data/manual_sources/**/assets/*lcd* (195 unique files)"
+  ],
+  "decision": "native vector extraction from this PDF",
+  "reason": "no existing file within 0.02 mean error (closest data/manual_sources/JE-3600A/CN/git-20261012-caa5370a-reviewed/assets/lcd-fault-code.png at 0.2001)",
+  "physical_page": 10,
+  "glyph_bbox": [
+   57.9,
+   122.24,
+   72.4,
+   138.56
+  ],
+  "final_path": "assets/lcd-discharge-timer.svg",
+  "sha256": "53df7605349e05193b7f7bc2ff31293cf4167124e00cd95928172eb93f2331ff",
+  "background": "transparent, original PDF paths only"
+ },
+ {
+  "slot": "lcd-connected-batteries",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)",
+   "manual_sources/*/**/shared-lcd, data/manual_sources/**/assets/*lcd* (195 unique files)"
+  ],
+  "decision": "native vector extraction from this PDF",
+  "reason": "no existing file within 0.02 mean error (closest data/manual_sources/JE-3600A/CN/git-20261012-caa5370a-reviewed/assets/lcd-parallel.png at 0.1546)",
+  "physical_page": 10,
+  "glyph_bbox": [
+   54.65,
+   159.74,
+   77.02,
+   172.17
+  ],
+  "final_path": "assets/lcd-connected-batteries.svg",
+  "sha256": "c9441adcd69a6dad8ccbe7c252aad8f2842730b3e40b2d34ecabd99eb5945286",
+  "background": "transparent, original PDF paths only"
+ },
+ {
+  "slot": "lcd-energy-saving",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)",
+   "manual_sources/*/**/shared-lcd, data/manual_sources/**/assets/*lcd* (195 unique files)"
+  ],
+  "decision": "native vector extraction from this PDF",
+  "reason": "no existing file within 0.02 mean error (closest manual_sources/JBP-1000B-WH/JP/ja/git-20261008-3aa6c003-native/source/assets/lcd-dc.svg at 0.1848)",
+  "physical_page": 10,
+  "glyph_bbox": [
+   58.58,
+   192.82,
+   73.58,
+   203.02
+  ],
+  "final_path": "assets/lcd-energy-saving.svg",
+  "sha256": "c4610562ac824c0353f3279259d4bb26db71175f6c2bb1131fba18b76cbb2b2b",
+  "background": "transparent, original PDF paths only"
+ },
+ {
+  "slot": "lcd-high-temperature",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)",
+   "manual_sources/*/**/shared-lcd, data/manual_sources/**/assets/*lcd* (195 unique files)"
+  ],
+  "decision": "native vector extraction from this PDF",
+  "reason": "no existing file within 0.02 mean error (closest data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/lcd-06.png at 0.1955)",
+  "physical_page": 10,
+  "glyph_bbox": [
+   61.5,
+   224.24,
+   70.9,
+   238.01
+  ],
+  "final_path": "assets/lcd-high-temperature.svg",
+  "sha256": "fa84a3714248370fd5ae0d392e37be607d9fe948f8d2fd7c884609bdb4073dc4",
+  "background": "transparent, original PDF paths only"
+ },
+ {
+  "slot": "lcd-low-temperature",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)",
+   "manual_sources/*/**/shared-lcd, data/manual_sources/**/assets/*lcd* (195 unique files)"
+  ],
+  "decision": "native vector extraction from this PDF",
+  "reason": "no existing file within 0.02 mean error (closest data/manual_sources/JE-3600A/CN/git-20261012-caa5370a-reviewed/assets/lcd-parallel.png at 0.1796)",
+  "physical_page": 10,
+  "glyph_bbox": [
+   61.5,
+   255.46,
+   70.9,
+   269.23
+  ],
+  "final_path": "assets/lcd-low-temperature.svg",
+  "sha256": "29e4842f2bbd8e2ef8e6349366e676babc70681c93c5595cfc36e3bd5bf8eb76",
+  "background": "transparent, original PDF paths only"
+ },
+ {
+  "slot": "button-ac1",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)",
+   "manual_sources/*/**/shared-lcd, data/manual_sources/**/assets/*lcd* (195 unique files)"
+  ],
+  "decision": "native vector extraction from this PDF",
+  "reason": "shared button/ac prints AC; this button prints AC 1",
+  "physical_page": 14,
+  "glyph_bbox": [
+   108.04,
+   291.34,
+   133.43,
+   316.73
+  ],
+  "final_path": "assets/button-ac1.svg",
+  "sha256": "026012f257d1b0cfccf88cec4d956c2f1c3cbcb1e775b7c1eadc619562749043",
+  "background": "transparent, original PDF paths only"
+ },
+ {
+  "slot": "button-light",
+  "searched": [
+   "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets",
+   "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/assets",
+   "data/manual_sources/JHP-3600C/US",
+   "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets",
+   "docs/renderers/web/assets/shared/ (symbols, lcd, buttons)",
+   "manual_sources/*/**/shared-lcd, data/manual_sources/**/assets/*lcd* (195 unique files)"
+  ],
+  "decision": "native vector extraction from this PDF",
+  "reason": "shared button/led has no bulb mark; this button prints the bulb above LIGHT",
+  "physical_page": 14,
+  "glyph_bbox": [
+   108.04,
+   360.56,
+   133.43,
+   385.95
+  ],
+  "final_path": "assets/button-light.svg",
+  "sha256": "7a231b162a2c5f5ec573d4d4853f34d92f4e462e0df9ae3064dbd02787c9d885",
+  "background": "transparent, original PDF paths only"
+ },
+ {
+  "slot": "symbol-01",
+  "searched": [
+   "docs/renderers/web/assets/shared/symbols/manifest.json (76 variants)"
+  ],
+  "decision": "reuse shared symbol variant byte-identical",
+  "reason": "passes the fixed 2% symbol admission against this PDF (source_manifest.json:symbol_asset_admission)",
+  "shared_symbol_key": "warning/outline-triangle-tinted",
+  "from": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_warning_triangle.svg",
+  "final_path": "assets/symbol-01.svg",
+  "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+  "background": "transparent"
+ },
+ {
+  "slot": "symbol-02",
+  "searched": [
+   "docs/renderers/web/assets/shared/symbols/manifest.json (76 variants)"
+  ],
+  "decision": "reuse shared symbol variant byte-identical",
+  "reason": "passes the fixed 2% symbol admission against this PDF (source_manifest.json:symbol_asset_admission)",
+  "shared_symbol_key": "read-manual/book-information",
+  "from": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_read_manual.svg",
+  "final_path": "assets/symbol-02.svg",
+  "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
+  "background": "transparent"
+ },
+ {
+  "slot": "symbol-03",
+  "searched": [
+   "docs/renderers/web/assets/shared/symbols/manifest.json (76 variants)"
+  ],
+  "decision": "reuse shared symbol variant byte-identical",
+  "reason": "passes the fixed 2% symbol admission against this PDF (source_manifest.json:symbol_asset_admission)",
+  "shared_symbol_key": "electric-shock/bolt-triangle-tinted",
+  "from": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_electric_shock.svg",
+  "final_path": "assets/symbol-03.svg",
+  "sha256": "a76bd208ea017906cdcb5624307cdf4b4bb092816d45ef3943a4b3367c837d3f",
+  "background": "transparent"
+ },
+ {
+  "slot": "symbol-04",
+  "searched": [
+   "docs/renderers/web/assets/shared/symbols/manifest.json (76 variants)"
+  ],
+  "decision": "reuse shared symbol variant byte-identical",
+  "reason": "passes the fixed 2% symbol admission against this PDF (source_manifest.json:symbol_asset_admission)",
+  "shared_symbol_key": "battery-charging/flame-battery-triangle-tinted",
+  "from": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_battery_charging.svg",
+  "final_path": "assets/symbol-04.svg",
+  "sha256": "6a513fe0122fec428c55a3f840c34ed7afdea311f7f1dd9b6e6fd807d087bf55",
+  "background": "transparent"
+ },
+ {
+  "slot": "symbol-05",
+  "searched": [
+   "docs/renderers/web/assets/shared/symbols/manifest.json (76 variants)"
+  ],
+  "decision": "reuse shared symbol variant byte-identical",
+  "reason": "passes the fixed 2% symbol admission against this PDF (source_manifest.json:symbol_asset_admission)",
+  "shared_symbol_key": "explosive-material/burst-triangle-tinted",
+  "from": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_explosive_material.svg",
+  "final_path": "assets/symbol-05.svg",
+  "sha256": "3ef06cba72b60935ea421b1b59ff41e1ca9c4c6597b8d8ce1d4ae1904ee68fa0",
+  "background": "transparent"
+ },
+ {
+  "slot": "symbol-06",
+  "searched": [
+   "docs/renderers/web/assets/shared/symbols/manifest.json (76 variants)"
+  ],
+  "decision": "reuse shared symbol variant byte-identical",
+  "reason": "passes the fixed 2% symbol admission against this PDF (source_manifest.json:symbol_asset_admission)",
+  "shared_symbol_key": "heavy-object/person-load-triangle-tinted",
+  "from": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_heavy_object.svg",
+  "final_path": "assets/symbol-06.svg",
+  "sha256": "5316063a33173d4231610b72babd30cb2282d1fd9d76263bf70e9577352e3910",
+  "background": "transparent"
+ },
+ {
+  "slot": "symbol-07",
+  "searched": [
+   "docs/renderers/web/assets/shared/symbols/manifest.json (76 variants)"
+  ],
+  "decision": "reuse shared symbol variant byte-identical",
+  "reason": "passes the fixed 2% symbol admission against this PDF (source_manifest.json:symbol_asset_admission)",
+  "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited",
+  "from": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_do_not_dismantle.svg",
+  "final_path": "assets/symbol-07.svg",
+  "sha256": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33",
+  "background": "transparent"
+ },
+ {
+  "slot": "symbol-08",
+  "searched": [
+   "docs/renderers/web/assets/shared/symbols/manifest.json (76 variants)"
+  ],
+  "decision": "reuse shared symbol variant byte-identical",
+  "reason": "passes the fixed 2% symbol admission against this PDF (source_manifest.json:symbol_asset_admission)",
+  "shared_symbol_key": "no-open-flame/fire-match-prohibited",
+  "from": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_no_open_flame.svg",
+  "final_path": "assets/symbol-08.svg",
+  "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f",
+  "background": "transparent"
+ },
+ {
+  "slot": "symbol-09",
+  "searched": [
+   "docs/renderers/web/assets/shared/symbols/manifest.json (76 variants)"
+  ],
+  "decision": "reuse shared symbol variant byte-identical",
+  "reason": "passes the fixed 2% symbol admission against this PDF (source_manifest.json:symbol_asset_admission)",
+  "shared_symbol_key": "keep-away-from-children/adult-child-prohibited",
+  "from": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_keep_away_from_children.svg",
+  "final_path": "assets/symbol-09.svg",
+  "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899",
+  "background": "transparent"
+ },
+ {
+  "slot": "symbol-10",
+  "searched": [
+   "docs/renderers/web/assets/shared/symbols/manifest.json (76 variants)"
+  ],
+  "decision": "reuse shared symbol variant byte-identical",
+  "reason": "passes the fixed 2% symbol admission against this PDF (source_manifest.json:symbol_asset_admission)",
+  "shared_symbol_key": "li-ion/recycle-li-ion-native-dark",
+  "from": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_li_ion_dark.svg",
+  "final_path": "assets/symbol-10.svg",
+  "sha256": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1",
+  "background": "transparent"
+ },
+ {
+  "slot": "symbol-11",
+  "searched": [
+   "docs/renderers/web/assets/shared/symbols/manifest.json (76 variants)"
+  ],
+  "decision": "reuse shared symbol variant byte-identical",
+  "reason": "passes the fixed 2% symbol admission against this PDF (source_manifest.json:symbol_asset_admission)",
+  "shared_symbol_key": "weee/crossed-bin-bar",
+  "from": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_weee.png",
+  "final_path": "assets/symbol-11.png",
+  "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+  "background": "transparent"
+ }
+]

@@ -1,0 +1,215 @@
+{
+  "schema_version": "explorer-us-en-asset-recipe/v1",
+  "source_sha256": "ae3aea4bcffa1c87f2de01cbe5c84792713a70eded1716039beb442e38a0a27f",
+  "panel_scale": 3,
+  "panels": [
+    {
+      "path": "assets/certifications.png",
+      "physical_page": 2,
+      "bbox": [
+        146,
+        362,
+        218,
+        389
+      ],
+      "role": "CERTIFICATIONS marks row (FCC, BC, crossed-out bin)"
+    },
+    {
+      "path": "assets/inbox-unit.png",
+      "physical_page": 2,
+      "bbox": [
+        42.4,
+        436.8,
+        95.2,
+        490.7
+      ],
+      "role": "package card art without the printed ordinal"
+    },
+    {
+      "path": "assets/inbox-cable.png",
+      "physical_page": 2,
+      "bbox": [
+        178,
+        436.1,
+        205.5,
+        489.2
+      ],
+      "role": "package card art without the printed ordinal"
+    },
+    {
+      "path": "assets/inbox-manual.png",
+      "physical_page": 2,
+      "bbox": [
+        282.2,
+        436.6,
+        319.2,
+        488
+      ],
+      "role": "package card art without the printed ordinal"
+    },
+    {
+      "path": "assets/overview.png",
+      "physical_page": 3,
+      "bbox": [
+        25,
+        48,
+        342,
+        298
+      ],
+      "role": "complete front view with leader labels and AC Input inset"
+    },
+    {
+      "path": "assets/lcd-map.png",
+      "physical_page": 3,
+      "bbox": [
+        25,
+        312,
+        342,
+        443
+      ],
+      "role": "complete LCD map with circled callouts 1-17"
+    },
+    {
+      "path": "assets/charging-ac.png",
+      "physical_page": 6,
+      "bbox": [
+        205,
+        411,
+        336,
+        492
+      ],
+      "role": "complete AC wall charging drawing with captions"
+    },
+    {
+      "path": "assets/charging-solar.png",
+      "physical_page": 7,
+      "bbox": [
+        30,
+        100,
+        336,
+        189
+      ],
+      "role": "complete SolarSaga USB-C connection drawing with leader labels and captions"
+    },
+    {
+      "path": "assets/charging-car.png",
+      "physical_page": 7,
+      "bbox": [
+        84,
+        306,
+        290,
+        424
+      ],
+      "role": "complete car charging drawing with captions"
+    },
+    {
+      "path": "assets/app-badges.png",
+      "physical_page": 11,
+      "bbox": [
+        27.5,
+        476.5,
+        177.5,
+        500
+      ],
+      "role": "complete App Store / Google Play badge pair"
+    },
+    {
+      "path": "assets/app-add.png",
+      "physical_page": 12,
+      "bbox": [
+        83,
+        142,
+        266,
+        315
+      ],
+      "role": "two complete phone frames with 2.1/2.2 captions"
+    },
+    {
+      "path": "assets/app-control.png",
+      "physical_page": 12,
+      "bbox": [
+        57,
+        360,
+        312,
+        442
+      ],
+      "role": "complete App button-map panel with leader labels"
+    },
+    {
+      "path": "assets/app-results.png",
+      "physical_page": 13,
+      "bbox": [
+        36,
+        113,
+        330,
+        290
+      ],
+      "role": "three complete phone frames with 2.3-2.5 captions"
+    }
+  ],
+  "transparent_icons": [
+    {
+      "path": "assets/lcd-low-battery.png",
+      "physical_page": 4,
+      "bbox": [
+        26,
+        259,
+        50,
+        274
+      ],
+      "role": "Low Battery Indicator glyph"
+    },
+    {
+      "path": "assets/lcd-energy-saving.png",
+      "physical_page": 4,
+      "bbox": [
+        26,
+        298,
+        50,
+        317
+      ],
+      "role": "88H Energy Saving Mode glyph"
+    },
+    {
+      "path": "assets/lcd-high-temperature.png",
+      "physical_page": 5,
+      "bbox": [
+        30,
+        96,
+        54,
+        118
+      ],
+      "role": "triangle high-temperature glyph"
+    },
+    {
+      "path": "assets/lcd-low-temperature.png",
+      "physical_page": 5,
+      "bbox": [
+        30,
+        134,
+        54,
+        157
+      ],
+      "role": "triangle low-temperature glyph"
+    }
+  ],
+  "icon_scale": 6,
+  "reused": [
+    {
+      "path": "assets/shared-lcd/17_Battery_Power_Indicator_VLufb9exvoVLfgxz47pcfnRGnaf.png",
+      "from": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/17_Battery_Power_Indicator_VLufb9exvoVLfgxz47pcfnRGnaf.png",
+      "sha256": "85921a9ad7fbfa58f98ee7bb0dc904377f31fe3dbface4083d2493144b05362f"
+    },
+    {
+      "path": "assets/shared-lcd/25_Fault_code_LaTmb4IQYo3vwvxMqQNcC2RgnIf.png",
+      "from": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/25_Fault_code_LaTmb4IQYo3vwvxMqQNcC2RgnIf.png",
+      "sha256": "3b51b98d7199d32f7b286bdf5ce3de4cb41971ed942820091053fd1d87bf0a7a"
+    },
+    {
+      "path": "assets/fcc-mark.svg",
+      "from": "docs/renderers/web/assets/shared/symbols/native-v1/fcc_mark.svg",
+      "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+    }
+  ],
+  "symbols": []
+}
