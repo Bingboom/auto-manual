@@ -1891,6 +1891,84 @@
         ],
         "decision": "Existing shared variants failed fixed 2% source glyph comparison (prohibited semantics); native paths/ancestor transforms retained, no redraw or cell backdrop"
       }
+    },
+    {
+      "key": "warning/outline-triangle-dark-hte162",
+      "path": "native-v1/warning_triangle_dark_hte162.svg",
+      "sha256": "7eee1f724544318b77f50d99896735cb11f833fde5a3e24df1a7a394b70de10e",
+      "status": "source-bound native variant",
+      "provenance": {
+        "source": "manual_sources/JE-100C/US/en/git-20261027-39c58bca/JE-100C-US-EN.pdf (发布文档管理 record reczz28SPRx9p8Z3, 单语言说明书; package lands with PR #1630)",
+        "source_sha256": "39c58bca661f635fc9d500bc9362317b62b5da6f007589fbf8e4ebfcc8e0bad0",
+        "physical_page": 4,
+        "drawing_indices": [
+          27,
+          28
+        ],
+        "glyph_bbox": [
+          25.5,
+          147,
+          40.5,
+          160.5
+        ],
+        "decision": "Existing shared warning triangles failed the fixed 2% source comparison (closest warning/outline-triangle-tinted 5.9%); native paths retained, no redraw or cell backdrop",
+        "caption": "Warning and Caution Symbols"
+      }
+    },
+    {
+      "key": "do-not-dismantle/screwdriver-prohibited-dark-hte162",
+      "path": "native-v1/do_not_dismantle_dark_hte162.svg",
+      "sha256": "562aa9d004d818fe9ac907cabd0a5bb44831801e26911f0929be7887971834fb",
+      "status": "source-bound native variant",
+      "provenance": {
+        "source": "manual_sources/JE-100C/US/en/git-20261027-39c58bca/JE-100C-US-EN.pdf (发布文档管理 record reczz28SPRx9p8Z3, 单语言说明书; package lands with PR #1630)",
+        "source_sha256": "39c58bca661f635fc9d500bc9362317b62b5da6f007589fbf8e4ebfcc8e0bad0",
+        "physical_page": 4,
+        "drawing_indices": [
+          60,
+          61,
+          62,
+          63
+        ],
+        "glyph_bbox": [
+          136.2,
+          147.1,
+          150.5,
+          161.4
+        ],
+        "decision": "Existing do-not-dismantle variants failed the fixed 2% source comparison (closest screwdriver-prohibited 7.2%); native paths retained, no redraw or cell backdrop",
+        "caption": "Do not dismantle the product."
+      }
+    },
+    {
+      "key": "li-ion/recycle-li-ion-label-hte162",
+      "path": "native-v1/li_ion_label_hte162.svg",
+      "sha256": "a901f6a790ada85f96010194a777fd019188c5f5fbfc872938e5cdb35b618a74",
+      "status": "source-bound native variant",
+      "provenance": {
+        "source": "manual_sources/JE-100C/US/en/git-20261027-39c58bca/JE-100C-US-EN.pdf (发布文档管理 record reczz28SPRx9p8Z3, 单语言说明书; package lands with PR #1630)",
+        "source_sha256": "39c58bca661f635fc9d500bc9362317b62b5da6f007589fbf8e4ebfcc8e0bad0",
+        "physical_page": 4,
+        "drawing_indices": [
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59
+        ],
+        "glyph_bbox": [
+          136.4,
+          202.9,
+          151.2,
+          219.6
+        ],
+        "decision": "Existing Li-ion marks failed the fixed 2% source comparison (closest recycle-li-ion-native-dark 2.95%); native paths retained, no redraw or cell backdrop",
+        "caption": "lithium-ion (Li-ion) battery"
+      }
     }
   ],
   "withdrawn": [
