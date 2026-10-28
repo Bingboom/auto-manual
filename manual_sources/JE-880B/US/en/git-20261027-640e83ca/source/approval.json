@@ -1,0 +1,190 @@
+{
+  "schema_version": "source-operator-acceptance/v1",
+  "target": {
+    "model": "JE-880B",
+    "region": "US",
+    "technical_version": "git-20261027-640e83ca"
+  },
+  "languages": [
+    "en"
+  ],
+  "operator_quote": "上线提交发布：JE-300C、JE-300E、JE-300E-SG、JE-880B；授权合入 #1631 及其 Hello-Docs 发布 PR",
+  "date": "2026-10-28",
+  "reviewed": "Operator confirmation in the PR #1631 session, 2026-10-28, following 「授权全部合入上线 上线之后 我再一个个核对版面」 (MA-365). The 1280/390 renders beside the shared reference edition were offered for review; the operator checks each layout on the live page after release.",
+  "reviewed_source_commit": "a84f07d6",
+  "merge_authorization": "MA-365",
+  "original_source_sha256": "640e83cab0c8897253258c9eb6cf247bdfc4f0d5937387a66c3d46be7c2bc1f6",
+  "scope": "Git-only en Web release of git-20261027-640e83ca; printed source unchanged; no Feishu/Base/source-table, queue, asset-registry or HTML_link writes.",
+  "reviewed_inputs": [
+    {
+      "path": "README.md",
+      "size": 3241,
+      "sha256": "c67cc8ccf6f5c1464f5bbce2550dfed545dacdc78e6270d1dec80b454fadfa8e"
+    },
+    {
+      "path": "assets/certifications.png",
+      "size": 31963,
+      "sha256": "1f254ec8f287d4792ee2a5f06d6eb1b3df6d5fe20f874e4235ce252ebaffad14"
+    },
+    {
+      "path": "assets/charging-car.png",
+      "size": 26581,
+      "sha256": "fc4dd5d21d953f823be1df32fd9dbb9c7c7cc7e06e082f8d15d72929c2387c44"
+    },
+    {
+      "path": "assets/charging-wall.png",
+      "size": 13832,
+      "sha256": "b7e73e197a2dc08b8e506291af372b09353259b5bb807c71df6c71bf1eeb0ca1"
+    },
+    {
+      "path": "assets/contact-qr.png",
+      "size": 2378,
+      "sha256": "4b563e0e34c201d4e97eb122869b040e6bdf066d37b7fc41c8521d02acdf8327"
+    },
+    {
+      "path": "assets/dc7909-adaptor.png",
+      "size": 32237,
+      "sha256": "6a4ad03306ad3b81e483579a49e2ee96b34f305cbd369f349c72438f512772cc"
+    },
+    {
+      "path": "assets/glyph-battery-power.png",
+      "size": 2575,
+      "sha256": "21e8c5bec802a818cf331c8a7d2c246ba3c303d31010b7b4d3e1eb57f9eba842"
+    },
+    {
+      "path": "assets/glyph-fault-code.png",
+      "size": 3085,
+      "sha256": "7826d793f3303aa6303f53e16937834220e7574a4535ade11527a2ec1bbb65f1"
+    },
+    {
+      "path": "assets/glyph-high-temperature.png",
+      "size": 3098,
+      "sha256": "b0e6a729dd6b7eceb342e48593c0a99bd49d4b315e2fe7eb589c457be7411560"
+    },
+    {
+      "path": "assets/glyph-low-battery.png",
+      "size": 516,
+      "sha256": "1f7e22f395ccbe3e6c82cf63f9e01d233ad502806828a69f45fa7311352a4647"
+    },
+    {
+      "path": "assets/glyph-low-power-mode.png",
+      "size": 3353,
+      "sha256": "87460339ffe66ebc9ee453027db2e5ce07374c03e1ed277aa628ca8ed26fd01f"
+    },
+    {
+      "path": "assets/glyph-low-temperature.png",
+      "size": 3050,
+      "sha256": "b4768f10a3681619540f0791a8cdee08860ed5f108f89ace198f8968226d0a29"
+    },
+    {
+      "path": "assets/inbox-ac-cable.png",
+      "size": 5610,
+      "sha256": "44ab61dd382d57ba9bb1bf30164c3822422c9e3230908b80e1ad4f76762a9db1"
+    },
+    {
+      "path": "assets/inbox-adaptor.png",
+      "size": 4885,
+      "sha256": "5f11769c957d8c7209309333d84c2d56ffe7a058ff50fbb9bc6c2f191758babe"
+    },
+    {
+      "path": "assets/inbox-car-cable.png",
+      "size": 7369,
+      "sha256": "0e3098be1541a3227603fd423faf7c3979708e7937dabc6d7cf3c4635e6d6558"
+    },
+    {
+      "path": "assets/inbox-quick-start-guide.png",
+      "size": 7005,
+      "sha256": "f25b1ddbe51495d503a17e383f7314532262a456eec840a0cd590098e69670bb"
+    },
+    {
+      "path": "assets/inbox-unit.png",
+      "size": 10969,
+      "sha256": "a474984a1f1728305c5df00f5bbc345200ac9e5668c09760ea930a48dc17d3b5"
+    },
+    {
+      "path": "assets/lcd-display.png",
+      "size": 41606,
+      "sha256": "2e4a130f286405943b3b8fc59cad70ebc38cc771f6599cb25b9bc8c0c407d135"
+    },
+    {
+      "path": "assets/product-appearance.png",
+      "size": 123445,
+      "sha256": "5737bf8313d0e4e542245b465730404c2f3e630835adbf6a90243460742ae462"
+    },
+    {
+      "path": "assets/solar-four-panels.png",
+      "size": 80761,
+      "sha256": "b436dd8ca7ae1ce02e01147b940f813c66329419162c79e86a183e4e2c119914"
+    },
+    {
+      "path": "assets/solar-two-panels.png",
+      "size": 50706,
+      "sha256": "84cf8c81537268238061c36caa072a6a47300df8101d5515bc82e489e499648f"
+    },
+    {
+      "path": "assets/solarsaga80-parallel.png",
+      "size": 50301,
+      "sha256": "9836e93396dff04184c15b0b0ea5cbdb8e869d4e82285d86d341a3dcd199b264"
+    },
+    {
+      "path": "audit/review.zh.md",
+      "size": 1845,
+      "sha256": "44cf56471b1a0f73be3fe96a8d2010213059f5cabaff583f040854792a1af75e"
+    },
+    {
+      "path": "original.pdf",
+      "size": 3785648,
+      "sha256": "640e83cab0c8897253258c9eb6cf247bdfc4f0d5937387a66c3d46be7c2bc1f6"
+    },
+    {
+      "path": "rebuild.py",
+      "size": 8197,
+      "sha256": "4892fcb21e7d2647d83466831c97409759f9384002f06f8e1ccfe3b625eb9d6b"
+    },
+    {
+      "path": "source/en/content.json",
+      "size": 120071,
+      "sha256": "7aea19e9742d46cfe1e3eda4bd1b3e4d8f90e0e645547bbc62803acc91586337"
+    },
+    {
+      "path": "source/extract_assets.py",
+      "size": 9519,
+      "sha256": "c4b64c409731dea69f5881224e90062c1c93cf93610a6821b90cd2a29405d521"
+    },
+    {
+      "path": "source/figures.json",
+      "size": 8414,
+      "sha256": "fb0f9b021320c0d82a05a5974b7f70345a0d270f31093b1099b929d77b335e02"
+    },
+    {
+      "path": "source/glyphs.json",
+      "size": 4419,
+      "sha256": "7b73dad1508246750a796470e16c34b5c3dec4b2d2b334fa8fb0e88ba2501546"
+    },
+    {
+      "path": "source/intake.py",
+      "size": 31095,
+      "sha256": "239e46ea1c13f1f237c296224aea37419109785cec99acfdc5b7a320cce2a7ae"
+    },
+    {
+      "path": "source/kit.py",
+      "size": 11217,
+      "sha256": "544b0d224dd35dc6f368a5c42ca34c7affdbcfc3dff0e8b43fea842f5869ae85"
+    },
+    {
+      "path": "source/presentation.css",
+      "size": 1579,
+      "sha256": "ff3faa5425534f7002990401d04b3a81a7fdfb6841fb4e2993b37be0e76c70a3"
+    },
+    {
+      "path": "source/refresh_manifest.py",
+      "size": 5037,
+      "sha256": "2392ba7fd145a95a31eec3f651f5923fbab187ad3857942a8cc73ba4bd8fa5ed"
+    },
+    {
+      "path": "source/symbols.json",
+      "size": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    }
+  ]
+}
