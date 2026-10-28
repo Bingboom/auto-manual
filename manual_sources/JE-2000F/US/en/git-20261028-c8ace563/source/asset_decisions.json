@@ -1,0 +1,1638 @@
+{
+ "schema_version": "je2000f-us-asset-decisions/v1",
+ "source_sha256": "c8ace563cc4575909156b4bcd224016fbd30cf9f8f077cd97738638f67e509e4",
+ "rows": [
+  {
+   "slot": "assets/overview-front.png",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "new complete-panel extraction",
+   "reason": "the JE-2000F JP/EU panels carry Japanese or EU labels, plugs and ratings; the US print has US outlets, US ratings and English leader labels, so no existing panel matches",
+   "source": {
+    "physical_page": 7,
+    "bbox": [
+     26,
+     86,
+     345,
+     309
+    ]
+   },
+   "sha256": "029bc30375b2f9ab34e074d91dfbca69b9c254f8b2e3901a634fdd271f316dc5",
+   "background": "complete panel kept (panel background, leader lines, labels)"
+  },
+  {
+   "slot": "assets/overview-right.png",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "new complete-panel extraction",
+   "reason": "the JE-2000F JP/EU panels carry Japanese or EU labels, plugs and ratings; the US print has US outlets, US ratings and English leader labels, so no existing panel matches",
+   "source": {
+    "physical_page": 7,
+    "bbox": [
+     26,
+     331,
+     345,
+     476
+    ]
+   },
+   "sha256": "b41eded747e7025e1c987f814b6e2173a10881f4ac12bfef17d1be1585209a22",
+   "background": "complete panel kept (panel background, leader lines, labels)"
+  },
+  {
+   "slot": "assets/lcd-map.png",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "new complete-panel extraction",
+   "reason": "the JE-2000F JP/EU panels carry Japanese or EU labels, plugs and ratings; the US print has US outlets, US ratings and English leader labels, so no existing panel matches",
+   "source": {
+    "physical_page": 8,
+    "bbox": [
+     34,
+     52,
+     338,
+     232
+    ]
+   },
+   "sha256": "68d54564ff1a6ed6a512bc934cfb1bf862f6727ab1426a278cfa90f00dbee844",
+   "background": "complete panel kept (panel background, leader lines, labels)"
+  },
+  {
+   "slot": "assets/inbox-unit.png",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "new complete-panel extraction",
+   "reason": "the JE-2000F JP/EU panels carry Japanese or EU labels, plugs and ratings; the US print has US outlets, US ratings and English leader labels, so no existing panel matches",
+   "source": {
+    "physical_page": 6,
+    "bbox": [
+     37,
+     336,
+     91,
+     376
+    ]
+   },
+   "sha256": "3ba25de8b730a9575cbac192044b3a4d94d92f024ef167da68d49ba826dc32b1",
+   "background": "complete panel kept (panel background, leader lines, labels)"
+  },
+  {
+   "slot": "assets/power-on-off.png",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "new complete-panel extraction",
+   "reason": "the JE-2000F JP/EU panels carry Japanese or EU labels, plugs and ratings; the US print has US outlets, US ratings and English leader labels, so no existing panel matches",
+   "source": {
+    "physical_page": 10,
+    "bbox": [
+     26,
+     70,
+     343,
+     234
+    ],
+    "native_copy_removed": [
+     [
+      150,
+      134.5,
+      330,
+      186
+     ],
+     [
+      36,
+      195,
+      334,
+      220
+     ]
+    ]
+   },
+   "sha256": "47b9e295e93599bc38c53bcb41e077fe941db108e2a0392f7f236a76d745972e",
+   "background": "complete panel kept (panel background, leader lines, labels); printed body copy inside the panel removed by vector strip and set as native Web text"
+  },
+  {
+   "slot": "assets/ac-output.png",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "new complete-panel extraction",
+   "reason": "the JE-2000F JP/EU panels carry Japanese or EU labels, plugs and ratings; the US print has US outlets, US ratings and English leader labels, so no existing panel matches",
+   "source": {
+    "physical_page": 10,
+    "bbox": [
+     26,
+     257,
+     342,
+     482
+    ],
+    "native_copy_removed": [
+     [
+      33,
+      265,
+      167,
+      281
+     ]
+    ]
+   },
+   "sha256": "d6d5a0285a79e354a0ece310d8deff8fdb1cae335f87c2604f5d4741008b407d",
+   "background": "complete panel kept (panel background, leader lines, labels); printed body copy inside the panel removed by vector strip and set as native Web text"
+  },
+  {
+   "slot": "assets/dc-usb-output.png",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "new complete-panel extraction",
+   "reason": "the JE-2000F JP/EU panels carry Japanese or EU labels, plugs and ratings; the US print has US outlets, US ratings and English leader labels, so no existing panel matches",
+   "source": {
+    "physical_page": 11,
+    "bbox": [
+     26,
+     42,
+     342,
+     214
+    ],
+    "native_copy_removed": [
+     [
+      34,
+      50,
+      170,
+      66
+     ]
+    ]
+   },
+   "sha256": "95bb5dabac7a16380ba7cb8f020d09cb99202211576e18e143037478b75519e5",
+   "background": "complete panel kept (panel background, leader lines, labels); printed body copy inside the panel removed by vector strip and set as native Web text"
+  },
+  {
+   "slot": "assets/led-light.png",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "new complete-panel extraction",
+   "reason": "the JE-2000F JP/EU panels carry Japanese or EU labels, plugs and ratings; the US print has US outlets, US ratings and English leader labels, so no existing panel matches",
+   "source": {
+    "physical_page": 11,
+    "bbox": [
+     27,
+     363,
+     344,
+     495
+    ],
+    "native_copy_removed": [
+     [
+      41,
+      370,
+      325,
+      397
+     ],
+     [
+      254,
+      410,
+      334,
+      486
+     ]
+    ]
+   },
+   "sha256": "eaf5179f2c47a7291884f70500cf8c5805061c49ee9ad25618c0f27b2119d56e",
+   "background": "complete panel kept (panel background, leader lines, labels); printed body copy inside the panel removed by vector strip and set as native Web text"
+  },
+  {
+   "slot": "assets/lcd-screen.png",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "new complete-panel extraction",
+   "reason": "the JE-2000F JP/EU panels carry Japanese or EU labels, plugs and ratings; the US print has US outlets, US ratings and English leader labels, so no existing panel matches",
+   "source": {
+    "physical_page": 12,
+    "bbox": [
+     28,
+     135,
+     173,
+     238
+    ]
+   },
+   "sha256": "5a803e0011404d18aceb7491291b0de95417602af1ff6054c31b9b1671046a22",
+   "background": "complete panel kept (panel background, leader lines, labels)"
+  },
+  {
+   "slot": "assets/energy-saving.png",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "new complete-panel extraction",
+   "reason": "the JE-2000F JP/EU panels carry Japanese or EU labels, plugs and ratings; the US print has US outlets, US ratings and English leader labels, so no existing panel matches",
+   "source": {
+    "physical_page": 12,
+    "bbox": [
+     24,
+     307,
+     341,
+     471
+    ],
+    "native_copy_removed": [
+     [
+      33,
+      312,
+      331,
+      360
+     ]
+    ]
+   },
+   "sha256": "379c8a9a516fba0e5f079a415d109bca4b1a12db96083adbaa815938bd6862f5",
+   "background": "complete panel kept (panel background, leader lines, labels); printed body copy inside the panel removed by vector strip and set as native Web text"
+  },
+  {
+   "slot": "assets/ups.png",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "new complete-panel extraction",
+   "reason": "the JE-2000F JP/EU panels carry Japanese or EU labels, plugs and ratings; the US print has US outlets, US ratings and English leader labels, so no existing panel matches",
+   "source": {
+    "physical_page": 13,
+    "bbox": [
+     28,
+     309,
+     345,
+     464
+    ]
+   },
+   "sha256": "4d66f77fed67346ad29427c6ef1e366ded34e185fe2a84a421e2888add7c181d",
+   "background": "complete panel kept (panel background, leader lines, labels)"
+  },
+  {
+   "slot": "assets/charging-ac.png",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "new complete-panel extraction",
+   "reason": "the JE-2000F JP/EU panels carry Japanese or EU labels, plugs and ratings; the US print has US outlets, US ratings and English leader labels, so no existing panel matches",
+   "source": {
+    "physical_page": 15,
+    "bbox": [
+     32,
+     161,
+     348,
+     264
+    ],
+    "native_copy_removed": [
+     [
+      48,
+      248,
+      300,
+      259
+     ]
+    ]
+   },
+   "sha256": "ae29591fe7b3839dd10948ae8786eca087ea29e18d7630eac80c4c11bdbb655c",
+   "background": "complete panel kept (panel background, leader lines, labels); printed body copy inside the panel removed by vector strip and set as native Web text"
+  },
+  {
+   "slot": "assets/charging-solar-200.png",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "new complete-panel extraction",
+   "reason": "the JE-2000F JP/EU panels carry Japanese or EU labels, plugs and ratings; the US print has US outlets, US ratings and English leader labels, so no existing panel matches",
+   "source": {
+    "physical_page": 15,
+    "bbox": [
+     32,
+     382,
+     348,
+     499
+    ]
+   },
+   "sha256": "55b6c61732f10f3f745121cf5fc76e21924dddae990cd938ca550153dacf1309",
+   "background": "complete panel kept (panel background, leader lines, labels)"
+  },
+  {
+   "slot": "assets/charging-solar-100air.png",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "new complete-panel extraction",
+   "reason": "the JE-2000F JP/EU panels carry Japanese or EU labels, plugs and ratings; the US print has US outlets, US ratings and English leader labels, so no existing panel matches",
+   "source": {
+    "physical_page": 16,
+    "bbox": [
+     32,
+     29,
+     349,
+     176
+    ]
+   },
+   "sha256": "6a79022370a2a631755b2dc8a99e0411457d282ae42fb90641f13a74e2c1aca8",
+   "background": "complete panel kept (panel background, leader lines, labels)"
+  },
+  {
+   "slot": "assets/charging-car.png",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "new complete-panel extraction",
+   "reason": "the JE-2000F JP/EU panels carry Japanese or EU labels, plugs and ratings; the US print has US outlets, US ratings and English leader labels, so no existing panel matches",
+   "source": {
+    "physical_page": 16,
+    "bbox": [
+     29,
+     359,
+     345,
+     496
+    ]
+   },
+   "sha256": "79068b2d5d5464358828b389892317732da0f98439f28469e4da92897fd44aee",
+   "background": "complete panel kept (panel background, leader lines, labels)"
+  },
+  {
+   "slot": "assets/app-qr.png",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "new complete-panel extraction",
+   "reason": "QR raster of this print; not assumed equal to another edition's QR",
+   "source": {
+    "physical_page": 20,
+    "bbox": [
+     208,
+     68,
+     261,
+     121
+    ]
+   },
+   "sha256": "5f3d8c151c02762c0c7361aad01ec920b3a46c1745925cbe8d09e464132d16e5",
+   "background": "App phone frames kept"
+  },
+  {
+   "slot": "assets/app-add.png",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "new complete-panel extraction",
+   "reason": "the JE-2000F JP App screens are Japanese UI; the US print shows English UI",
+   "source": {
+    "physical_page": 20,
+    "bbox": [
+     95,
+     224,
+     276,
+     390
+    ]
+   },
+   "sha256": "8d6dd1cf6da859836e0565fb703b4db813e8c1d38c82763ab8188da2fb969efb",
+   "background": "App phone frames kept"
+  },
+  {
+   "slot": "assets/app-panel.png",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "new complete-panel extraction",
+   "reason": "the JE-2000F JP App screens are Japanese UI; the US print shows English UI",
+   "source": {
+    "physical_page": 20,
+    "bbox": [
+     43,
+     393,
+     348,
+     463
+    ]
+   },
+   "sha256": "9237eae16ca11e632cc3a760377c4a1a08a4cadb571ee1650c3e87abd221331a",
+   "background": "App phone frames kept"
+  },
+  {
+   "slot": "assets/app-results.png",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "new complete-panel extraction",
+   "reason": "the JE-2000F JP App screens are Japanese UI; the US print shows English UI",
+   "source": {
+    "physical_page": 21,
+    "bbox": [
+     50,
+     140,
+     328,
+     299
+    ]
+   },
+   "sha256": "224877b4cab2bbdd38b7859254e30c28a214cb274422afb38bd9caf37f83d62a",
+   "background": "App phone frames kept"
+  },
+  {
+   "slot": "assets/lcd-ups.svg",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "native vector extraction",
+   "reason": "no existing file passes the fixed 2% comparison against this PDF's glyph paths",
+   "source": {
+    "physical_page": 9,
+    "glyph_bbox": [
+     54.07,
+     35.96,
+     75.22,
+     46.93
+    ],
+    "drawing_indices": [
+     2251,
+     2252,
+     2253,
+     2254,
+     2255,
+     2256,
+     2257,
+     2258
+    ]
+   },
+   "sha256": "74c4ff7f55eebdf80b3b7b6c350260ee714b0cce2766aa9ccec9d98093c348f3",
+   "background": "transparent, original PDF paths only"
+  },
+  {
+   "slot": "assets/lcd-high-temperature.svg",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "native vector extraction",
+   "reason": "no existing file passes the fixed 2% comparison against this PDF's glyph paths",
+   "source": {
+    "physical_page": 9,
+    "glyph_bbox": [
+     62.39,
+     396.92,
+     68.0,
+     409.34
+    ],
+    "drawing_indices": [
+     2362
+    ]
+   },
+   "sha256": "65c1faabd6d6185d86fcd0e037380047c94b29a2e49b7844b28927831c879853",
+   "background": "transparent, original PDF paths only"
+  },
+  {
+   "slot": "assets/lcd-low-temperature.svg",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "native vector extraction",
+   "reason": "no existing file passes the fixed 2% comparison against this PDF's glyph paths",
+   "source": {
+    "physical_page": 9,
+    "glyph_bbox": [
+     62.43,
+     423.97,
+     68.04,
+     436.39
+    ],
+    "drawing_indices": [
+     2363
+    ]
+   },
+   "sha256": "1c3bc433e4c4889f0e10f82617a23b72b559fc03b3cb0bed0fe3d0f8a2f05b19",
+   "background": "transparent, original PDF paths only"
+  },
+  {
+   "slot": "assets/button-light.svg",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "native vector extraction",
+   "reason": "no existing file passes the fixed 2% comparison against this PDF's glyph paths",
+   "source": {
+    "physical_page": 13,
+    "glyph_bbox": [
+     113.4,
+     221.3,
+     135.4,
+     243.3
+    ],
+    "drawing_indices": [
+     1128,
+     1129,
+     1130,
+     1131,
+     1132,
+     1133,
+     1134,
+     1135,
+     1136,
+     1137,
+     1138,
+     1139,
+     1140,
+     1141,
+     1142,
+     1143
+    ]
+   },
+   "sha256": "f7af13a0cdc9b739cfa6b90f5e297e3f3f4dc588c926951b25fc579880538059",
+   "background": "transparent, original PDF paths only"
+  },
+  {
+   "slot": "assets/inbox-usb-c-cable.svg",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "native vector extraction",
+   "reason": "no existing file passes the fixed 2% comparison against this PDF's glyph paths",
+   "source": {
+    "physical_page": 6,
+    "glyph_bbox": [
+     209.0,
+     336.0,
+     234.8,
+     368.0
+    ],
+    "drawing_indices": [
+     2255,
+     2256,
+     2257,
+     2258,
+     2259,
+     2260,
+     2261,
+     2262,
+     2263,
+     2264,
+     2265,
+     2266,
+     2267,
+     2268,
+     2269,
+     2270,
+     2271,
+     2272,
+     2273
+    ]
+   },
+   "sha256": "ae6149e3a51a67021bd177796259442ba49ff98ef8cac75b0051c33e6df58b36",
+   "background": "transparent, original PDF paths only"
+  },
+  {
+   "slot": "assets/lcd-wifi.svg",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "reuse byte-identical",
+   "reason": "passes the fixed 2% comparison against the PDF glyph paths (max mean channel error 0.008344)",
+   "source": {
+    "from": "manual_sources/JHP-2000A-RC/US/en/git-20261027-e27d4db5/assets/lcd-wifi.svg",
+    "physical_page": 8,
+    "glyph_bbox": [
+     55.85,
+     246.97,
+     72.93,
+     259.98
+    ]
+   },
+   "sha256": "2e6ed961723e02a85d355869482f2f66863576de9482fb0a9650ddfbd3ded2a5",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/lcd-bluetooth.svg",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "reuse byte-identical",
+   "reason": "passes the fixed 2% comparison against the PDF glyph paths (max mean channel error 0.010508)",
+   "source": {
+    "from": "manual_sources/JHP-2000A-RC/US/en/git-20261027-e27d4db5/assets/lcd-bluetooth.svg",
+    "physical_page": 8,
+    "glyph_bbox": [
+     58.26,
+     267.67,
+     70.56,
+     282.35
+    ]
+   },
+   "sha256": "90a33061760cdab8805f469402b6626853cd2c0601e369f7456311fd2ea1307a",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/lcd-quiet-charging.svg",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "reuse byte-identical",
+   "reason": "passes the fixed 2% comparison against the PDF glyph paths (max mean channel error 0.007721)",
+   "source": {
+    "from": "manual_sources/JE-1000D/US/en/git-20261027-10d15090/assets/lcd-quiet-charging.svg",
+    "physical_page": 8,
+    "glyph_bbox": [
+     58.48,
+     296.34,
+     70.3,
+     308.47
+    ]
+   },
+   "sha256": "dccb6bc2b23dff5b753983cd09ce60dff97bbda86849577ef2e870a8d3103416",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/lcd-charging-plan.svg",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "reuse byte-identical",
+   "reason": "passes the fixed 2% comparison against the PDF glyph paths (max mean channel error 0.008873)",
+   "source": {
+    "from": "manual_sources/JHP-1000B-RC/US/en/git-20261027-af8a0775/assets/lcd-charging-plan.svg",
+    "physical_page": 8,
+    "glyph_bbox": [
+     58.26,
+     344.44,
+     70.45,
+     357.25
+    ]
+   },
+   "sha256": "ee3e513df75e5c962001fc8fc83477a6eff9602a019bb4c9aba61325abc596d7",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/lcd-self-powered.svg",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "reuse byte-identical",
+   "reason": "passes the fixed 2% comparison against the PDF glyph paths (max mean channel error 0.011405)",
+   "source": {
+    "from": "manual_sources/JHP-1000B-RC/US/en/git-20261027-af8a0775/assets/lcd-self-powered.svg",
+    "physical_page": 8,
+    "glyph_bbox": [
+     57.68,
+     391.69,
+     71.04,
+     404.02
+    ]
+   },
+   "sha256": "4a2467cc1e741ec3c947ebdf9d2ebe776a3248effa54e1919219ed67df1370f1",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/lcd-tou.svg",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "reuse byte-identical",
+   "reason": "passes the fixed 2% comparison against the PDF glyph paths (max mean channel error 0.008536)",
+   "source": {
+    "from": "manual_sources/JHP-2000A-RC/US/en/git-20261027-e27d4db5/assets/lcd-tou.svg",
+    "physical_page": 8,
+    "glyph_bbox": [
+     55.53,
+     456.63,
+     69.08,
+     465.77
+    ]
+   },
+   "sha256": "3e109b30c2752883cb0d8c2f3925d690a49eaa71a102ebc34157b3d505d4fbe6",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/lcd-ac-power.svg",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "reuse byte-identical",
+   "reason": "passes the fixed 2% comparison against the PDF glyph paths (max mean channel error 0.007348)",
+   "source": {
+    "from": "manual_sources/JHP-3600A-RC/US/en/git-20261027-ab7f7393/assets/lcd-ac-power.svg",
+    "physical_page": 9,
+    "glyph_bbox": [
+     56.31,
+     53.14,
+     72.98,
+     67.55
+    ]
+   },
+   "sha256": "ef60f21c3933ff7929a6e504dfbf2f9866a5624a6cc408bc5695b980f3fb4f9b",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/lcd-output-voltage-frequency.svg",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "reuse byte-identical",
+   "reason": "passes the fixed 2% comparison against the PDF glyph paths (max mean channel error 0.001983)",
+   "source": {
+    "from": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-09.svg",
+    "physical_page": 9,
+    "glyph_bbox": [
+     48.8,
+     74.08,
+     81.23,
+     80.76
+    ]
+   },
+   "sha256": "997e2759c6817ed17033e107f1fb6853419f002ca85e913f040c1bb560c2cc23",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/lcd-input-power.svg",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "reuse byte-identical",
+   "reason": "passes the fixed 2% comparison against the PDF glyph paths (max mean channel error 0.007547)",
+   "source": {
+    "from": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-11-input-power.svg",
+    "physical_page": 9,
+    "glyph_bbox": [
+     51.07,
+     89.54,
+     78.21,
+     103.44
+    ]
+   },
+   "sha256": "6ff2944dca1d3f766ee569bbaad813fd04e0e128c63890882c75337278c14f3c",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/lcd-remaining-charge-time.svg",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "reuse byte-identical",
+   "reason": "passes the fixed 2% comparison against the PDF glyph paths (max mean channel error 0.00578)",
+   "source": {
+    "from": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-12-remaining-charge-time.svg",
+    "physical_page": 9,
+    "glyph_bbox": [
+     53.97,
+     109.04,
+     75.32,
+     118.86
+    ]
+   },
+   "sha256": "736391c9eb538f41f59ec95901e6cf53fdd7173ad66f113442803da3443bbabd",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/lcd-ac-wall-charging.svg",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "reuse byte-identical",
+   "reason": "passes the fixed 2% comparison against the PDF glyph paths (max mean channel error 0.004239)",
+   "source": {
+    "from": "manual_sources/JHP-1000B-RC/US/en/git-20261027-af8a0775/assets/lcd-ac-wall-charging.svg",
+    "physical_page": 9,
+    "glyph_bbox": [
+     59.26,
+     127.02,
+     69.73,
+     139.01
+    ]
+   },
+   "sha256": "42a1fac988e8fe1986b7d9f01cec679b1c83b73b79b41307c275027e7eb315ff",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/lcd-car-charging.svg",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "reuse byte-identical",
+   "reason": "passes the fixed 2% comparison against the PDF glyph paths (max mean channel error 0.009021)",
+   "source": {
+    "from": "manual_sources/JHP-1000B-RC/US/en/git-20261027-af8a0775/assets/lcd-car-charging.svg",
+    "physical_page": 9,
+    "glyph_bbox": [
+     59.66,
+     146.06,
+     69.32,
+     158.15
+    ]
+   },
+   "sha256": "7a720e75d1430cf07f269ab8db29dad0192ce31440f0d804051913c96acd2e47",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/lcd-solar-charging.svg",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "reuse byte-identical",
+   "reason": "passes the fixed 2% comparison against the PDF glyph paths (max mean channel error 0.016615)",
+   "source": {
+    "from": "manual_sources/JHP-1000B-RC/US/en/git-20261027-af8a0775/assets/lcd-solar-charging.svg",
+    "physical_page": 9,
+    "glyph_bbox": [
+     58.62,
+     163.15,
+     70.35,
+     174.78
+    ]
+   },
+   "sha256": "b2f8b480a9d115e48da7160bb4098a7ffeb6d70ee9d3f33585e2318e57315927",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/lcd-battery-saving.svg",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "reuse byte-identical",
+   "reason": "passes the fixed 2% comparison against the PDF glyph paths (max mean channel error 0.005514)",
+   "source": {
+    "from": "manual_sources/JHP-1000B-RC/US/en/git-20261027-af8a0775/assets/lcd-battery-saving.svg",
+    "physical_page": 9,
+    "glyph_bbox": [
+     58.42,
+     197.31,
+     72.62,
+     212.9
+    ]
+   },
+   "sha256": "bb303c07618a58406921e437c1e8c8dc95120570e331a5a25862c5506fde8466",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/lcd-charging-power-limit.svg",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "reuse byte-identical",
+   "reason": "passes the fixed 2% comparison against the PDF glyph paths (max mean channel error 0.012963)",
+   "source": {
+    "from": "manual_sources/JHP-1000B-RC/US/en/git-20261027-af8a0775/assets/lcd-charging-power-limit.svg",
+    "physical_page": 9,
+    "glyph_bbox": [
+     58.05,
+     234.88,
+     71.85,
+     248.03
+    ]
+   },
+   "sha256": "c87ba48c6fe71374039cfeff6beaedfea341f201bcbc365f8c4366795ba5ab22",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/lcd-battery-power.svg",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "reuse byte-identical",
+   "reason": "passes the fixed 2% comparison against the PDF glyph paths (max mean channel error 0.008576)",
+   "source": {
+    "from": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-17.svg",
+    "physical_page": 9,
+    "glyph_bbox": [
+     55.57,
+     255.75,
+     73.72,
+     273.89
+    ]
+   },
+   "sha256": "463a1423db307feeb0045dbe94a9844b65ffcde9977db8de1c5993c046469aa4",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/lcd-low-battery.svg",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "reuse byte-identical",
+   "reason": "passes the fixed 2% comparison against the PDF glyph paths (max mean channel error 0.004137)",
+   "source": {
+    "from": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-17-low-battery.svg",
+    "physical_page": 9,
+    "glyph_bbox": [
+     55.11,
+     287.16,
+     74.17,
+     297.88
+    ]
+   },
+   "sha256": "31da53ff050afcb161fa399006a51ea4a94ebb960718cb5453ca7952f6aa0c4e",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/lcd-remaining-battery-percentage.svg",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "reuse byte-identical",
+   "reason": "passes the fixed 2% comparison against the PDF glyph paths (max mean channel error 0.006734)",
+   "source": {
+    "from": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-18-remaining-battery.svg",
+    "physical_page": 9,
+    "glyph_bbox": [
+     54.13,
+     309.43,
+     80.49,
+     322.52
+    ]
+   },
+   "sha256": "223ed59f409c3738fed9f1de1bc9ec961227c2f918b9dc5be612d5921ed9e50b",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/lcd-discharge-timer.svg",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "reuse byte-identical",
+   "reason": "passes the fixed 2% comparison against the PDF glyph paths (max mean channel error 0.005832)",
+   "source": {
+    "from": "manual_sources/JHP-1000B-RC/US/en/git-20261027-af8a0775/assets/lcd-discharge-timer.svg",
+    "physical_page": 9,
+    "glyph_bbox": [
+     57.7,
+     333.95,
+     71.0,
+     349.07
+    ]
+   },
+   "sha256": "88fd2e5b31ea1a49bfd11583fe951379a7c0056ce5d14f9624aa4b1d98da558d",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/lcd-energy-saving.svg",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "reuse byte-identical",
+   "reason": "passes the fixed 2% comparison against the PDF glyph paths (max mean channel error 0.014853)",
+   "source": {
+    "from": "manual_sources/JHP-1000B-RC/US/en/git-20261027-af8a0775/assets/lcd-energy-saving.svg",
+    "physical_page": 9,
+    "glyph_bbox": [
+     57.45,
+     369.53,
+     71.25,
+     378.53
+    ]
+   },
+   "sha256": "43db1b7306e1283590e4bd8992c0b6d207932909d53963ed20fcec9c6992c2d5",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/lcd-fault-code.svg",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "reuse byte-identical",
+   "reason": "passes the fixed 2% comparison against the PDF glyph paths (max mean channel error 0.015631)",
+   "source": {
+    "from": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-19-fault-code.svg",
+    "physical_page": 9,
+    "glyph_bbox": [
+     56.55,
+     443.86,
+     72.85,
+     458.83
+    ]
+   },
+   "sha256": "a26412e668dec6f865288f0193ffffa310e99cad7a4ee807c7681c19b5b4e01c",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/lcd-output-power.svg",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "reuse byte-identical",
+   "reason": "passes the fixed 2% comparison against the PDF glyph paths (max mean channel error 0.005021)",
+   "source": {
+    "from": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-22-output-power.svg",
+    "physical_page": 9,
+    "glyph_bbox": [
+     50.94,
+     462.4,
+     81.9,
+     478.2
+    ]
+   },
+   "sha256": "564702d0875ff9813cb96ca8df43f1200045a925bb548f6bb0c4aa858fbc16db",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/lcd-remaining-discharge-time.svg",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "reuse byte-identical",
+   "reason": "passes the fixed 2% comparison against the PDF glyph paths (max mean channel error 0.002152)",
+   "source": {
+    "from": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-23-remaining-discharge-time.svg",
+    "physical_page": 9,
+    "glyph_bbox": [
+     51.35,
+     482.83,
+     81.49,
+     493.34
+    ]
+   },
+   "sha256": "f0d00ad7132ba49d9b59a34dab464271d67299d7d9baefbdec8829c022503f36",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/button-power.svg",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "reuse byte-identical",
+   "reason": "passes the fixed 2% comparison against the PDF glyph paths (max mean channel error 0.003049)",
+   "source": {
+    "from": "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets/button-power.svg",
+    "physical_page": 13,
+    "glyph_bbox": [
+     50.1,
+     118.8,
+     72.7,
+     141.4
+    ]
+   },
+   "sha256": "457285c35d6deb52a01bf2e86a430cdbbd1553299a6eac652a372427bfa6c2ed",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/button-ac.svg",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "reuse byte-identical",
+   "reason": "passes the fixed 2% comparison against the PDF glyph paths (max mean channel error 0.008244)",
+   "source": {
+    "from": "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets/button-ac.svg",
+    "physical_page": 13,
+    "glyph_bbox": [
+     113.0,
+     118.8,
+     135.7,
+     141.4
+    ]
+   },
+   "sha256": "74bcd0bb2a825ff4d7831dbdb368f4d13cdf5cf1d741e349f8bc649ee1898839",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/button-dc-usb.svg",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "reuse byte-identical",
+   "reason": "passes the fixed 2% comparison against the PDF glyph paths (max mean channel error 0.009404)",
+   "source": {
+    "from": "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets/button-dc_usb.svg",
+    "physical_page": 13,
+    "glyph_bbox": [
+     113.0,
+     152.7,
+     135.7,
+     175.4
+    ]
+   },
+   "sha256": "3355388bad2221362a63dfad0c04fb9c15f521866166144cd3a644bde14e5864",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/inbox-ac-cable.svg",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "reuse byte-identical",
+   "reason": "passes the fixed 2% comparison against the PDF glyph paths (max mean channel error 0.019543)",
+   "source": {
+    "from": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/inbox-cable.svg",
+    "physical_page": 6,
+    "glyph_bbox": [
+     130.8,
+     326.4,
+     155.2,
+     374.9
+    ]
+   },
+   "sha256": "4f3fc5aed887b9445dd3959b7f8c2b17f6e0e967bcd83ed2aa4c39e3c037dbdd",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/inbox-documents.svg",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "reuse byte-identical",
+   "reason": "passes the fixed 2% comparison against the PDF glyph paths (max mean channel error 0.014351)",
+   "source": {
+    "from": "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets/inbox-documents.svg",
+    "physical_page": 6,
+    "glyph_bbox": [
+     285.6,
+     326.3,
+     315.9,
+     367.7
+    ]
+   },
+   "sha256": "56fc08a6c7056ee343aac2684164a4e0bebb8693c378734533e939bb0ba47402",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/fcc-mark.svg",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "reuse byte-identical",
+   "reason": "passes the fixed 2% comparison against the PDF glyph paths (max mean channel error 0.01751)",
+   "source": {
+    "from": "docs/renderers/web/assets/shared/symbols/native-v1/fcc_mark.svg",
+    "physical_page": 6,
+    "glyph_bbox": [
+     32.0,
+     98.7,
+     73.4,
+     128.1
+    ]
+   },
+   "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/app-store.png",
+   "searched": [
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0/assets",
+    "manual_sources/JE-2000F/EU/nine-language/*/three-language/web/*/assets",
+    "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments (lcd_icons, symbols)",
+    "manual_sources/*/US/en/git-20261027-*/assets (same-generation Explorer and HomePower US/en packages)",
+    "docs/renderers/web/assets/shared/{buttons,symbols,lcd}"
+   ],
+   "decision": "reuse byte-identical",
+   "reason": "same App Store / Google Play badge pair (opaque badge art; checked visually, no transparent-glyph comparison applies); precedent JHP-1000B-RC US/en",
+   "source": {
+    "from": "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets/shared-app-store.png"
+   },
+   "sha256": "1c7bfea9e26bbb00aff9c48d34a7742cd15ff3f0d998f32486c7248a19c9b84d",
+   "background": "badge art"
+  },
+  {
+   "slot": "assets/symbol-01.svg",
+   "searched": [
+    "docs/renderers/web/assets/shared/symbols/manifest.json"
+   ],
+   "decision": "reuse shared catalog variant byte-identical",
+   "reason": "passes the fixed 2% symbol admission (source_manifest.json:symbol_asset_admission)",
+   "source": {
+    "shared_symbol_key": "warning/outline-triangle-tinted",
+    "shared_path": "native-v1/symbol_warning_triangle.svg",
+    "physical_page": 5,
+    "glyph_bbox": [
+     36.5,
+     322.0,
+     59.2,
+     342.2
+    ]
+   },
+   "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/symbol-02.svg",
+   "searched": [
+    "docs/renderers/web/assets/shared/symbols/manifest.json"
+   ],
+   "decision": "reuse shared catalog variant byte-identical",
+   "reason": "passes the fixed 2% symbol admission (source_manifest.json:symbol_asset_admission)",
+   "source": {
+    "shared_symbol_key": "read-manual/book-information",
+    "shared_path": "native-v1/symbol_read_manual.svg",
+    "physical_page": 5,
+    "glyph_bbox": [
+     36.7,
+     351.6,
+     59.0,
+     368.7
+    ]
+   },
+   "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/symbol-03.svg",
+   "searched": [
+    "docs/renderers/web/assets/shared/symbols/manifest.json"
+   ],
+   "decision": "reuse shared catalog variant byte-identical",
+   "reason": "passes the fixed 2% symbol admission (source_manifest.json:symbol_asset_admission)",
+   "source": {
+    "shared_symbol_key": "electric-shock/bolt-triangle-tinted",
+    "shared_path": "native-v1/symbol_electric_shock.svg",
+    "physical_page": 5,
+    "glyph_bbox": [
+     36.9,
+     378.1,
+     59.7,
+     398.4
+    ]
+   },
+   "sha256": "a76bd208ea017906cdcb5624307cdf4b4bb092816d45ef3943a4b3367c837d3f",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/symbol-04.svg",
+   "searched": [
+    "docs/renderers/web/assets/shared/symbols/manifest.json"
+   ],
+   "decision": "reuse shared catalog variant byte-identical",
+   "reason": "passes the fixed 2% symbol admission (source_manifest.json:symbol_asset_admission)",
+   "source": {
+    "shared_symbol_key": "battery-charging/flame-battery-triangle-tinted",
+    "shared_path": "native-v1/symbol_battery_charging.svg",
+    "physical_page": 5,
+    "glyph_bbox": [
+     36.9,
+     405.7,
+     59.7,
+     426.1
+    ]
+   },
+   "sha256": "6a513fe0122fec428c55a3f840c34ed7afdea311f7f1dd9b6e6fd807d087bf55",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/symbol-05.svg",
+   "searched": [
+    "docs/renderers/web/assets/shared/symbols/manifest.json"
+   ],
+   "decision": "reuse shared catalog variant byte-identical",
+   "reason": "passes the fixed 2% symbol admission (source_manifest.json:symbol_asset_admission)",
+   "source": {
+    "shared_symbol_key": "explosive-material/burst-triangle-native-v2-3e3a39",
+    "shared_path": "native-v1/symbol_explosive_material_native_v2_3e3a39.svg",
+    "physical_page": 5,
+    "glyph_bbox": [
+     36.8,
+     435.8,
+     60.2,
+     456.3
+    ]
+   },
+   "sha256": "d4def93f853179fe0ea0cd7c4ba461da5a70d662d33a899bc48f7a2ef5553a1d",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/symbol-06.svg",
+   "searched": [
+    "docs/renderers/web/assets/shared/symbols/manifest.json"
+   ],
+   "decision": "reuse shared catalog variant byte-identical",
+   "reason": "passes the fixed 2% symbol admission (source_manifest.json:symbol_asset_admission)",
+   "source": {
+    "shared_symbol_key": "heavy-object/person-load-triangle-dark-772c3698",
+    "shared_path": "native-v1/heavy_object_dark_772c3698.svg",
+    "physical_page": 5,
+    "glyph_bbox": [
+     35.9,
+     468.0,
+     59.4,
+     488.5
+    ]
+   },
+   "sha256": "aaf174df0f8b9d0f5d39c2ba83f31fac9b1d57d849db07156a18beecfbabe814",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/symbol-07.svg",
+   "searched": [
+    "docs/renderers/web/assets/shared/symbols/manifest.json"
+   ],
+   "decision": "reuse shared catalog variant byte-identical",
+   "reason": "passes the fixed 2% symbol admission (source_manifest.json:symbol_asset_admission)",
+   "source": {
+    "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited",
+    "shared_path": "native-v1/symbol_do_not_dismantle.svg",
+    "physical_page": 5,
+    "glyph_bbox": [
+     194.4,
+     323.1,
+     213.5,
+     342.3
+    ]
+   },
+   "sha256": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/symbol-08.svg",
+   "searched": [
+    "docs/renderers/web/assets/shared/symbols/manifest.json"
+   ],
+   "decision": "reuse shared catalog variant byte-identical",
+   "reason": "passes the fixed 2% symbol admission (source_manifest.json:symbol_asset_admission)",
+   "source": {
+    "shared_symbol_key": "no-open-flame/fire-match-prohibited",
+    "shared_path": "native-v1/symbol_no_open_flame.svg",
+    "physical_page": 5,
+    "glyph_bbox": [
+     194.4,
+     350.0,
+     214.7,
+     370.3
+    ]
+   },
+   "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/symbol-09.svg",
+   "searched": [
+    "docs/renderers/web/assets/shared/symbols/manifest.json"
+   ],
+   "decision": "reuse shared catalog variant byte-identical",
+   "reason": "passes the fixed 2% symbol admission (source_manifest.json:symbol_asset_admission)",
+   "source": {
+    "shared_symbol_key": "keep-away-from-children/adult-child-prohibited",
+    "shared_path": "native-v1/symbol_keep_away_from_children.svg",
+    "physical_page": 5,
+    "glyph_bbox": [
+     194.4,
+     378.3,
+     214.7,
+     398.6
+    ]
+   },
+   "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/symbol-10.svg",
+   "searched": [
+    "docs/renderers/web/assets/shared/symbols/manifest.json"
+   ],
+   "decision": "reuse shared catalog variant byte-identical",
+   "reason": "passes the fixed 2% symbol admission (source_manifest.json:symbol_asset_admission)",
+   "source": {
+    "shared_symbol_key": "li-ion/recycle-li-ion-label-hte162",
+    "shared_path": "native-v1/li_ion_label_hte162.svg",
+    "physical_page": 5,
+    "glyph_bbox": [
+     194.6,
+     405.5,
+     213.6,
+     427.0
+    ]
+   },
+   "sha256": "a901f6a790ada85f96010194a777fd019188c5f5fbfc872938e5cdb35b618a74",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/symbol-11.png",
+   "searched": [
+    "docs/renderers/web/assets/shared/symbols/manifest.json"
+   ],
+   "decision": "reuse shared catalog variant byte-identical",
+   "reason": "passes the fixed 2% symbol admission (source_manifest.json:symbol_asset_admission)",
+   "source": {
+    "shared_symbol_key": "weee/crossed-bin-bar",
+    "shared_path": "native-v1/symbol_weee.png",
+    "physical_page": 5,
+    "glyph_bbox": [
+     196.2,
+     449.6,
+     212.6,
+     473.4
+    ]
+   },
+   "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+   "background": "transparent"
+  },
+  {
+   "slot": "assets/symbol-12.png",
+   "searched": [
+    "docs/renderers/web/assets/shared/symbols/manifest.json"
+   ],
+   "decision": "reuse shared catalog variant byte-identical",
+   "reason": "passes the fixed 2% symbol admission (source_manifest.json:symbol_asset_admission)",
+   "source": {
+    "shared_symbol_key": "battery-weee/crossed-bin-no-bar",
+    "shared_path": "native-v1/symbol_battery_weee.png",
+    "physical_page": 6,
+    "glyph_bbox": [
+     35.0,
+     44.8,
+     51.4,
+     62.2
+    ]
+   },
+   "sha256": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45",
+   "background": "transparent"
+  }
+ ]
+}
