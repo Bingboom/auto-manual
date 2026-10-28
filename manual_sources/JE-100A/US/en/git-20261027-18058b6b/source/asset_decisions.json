@@ -1,0 +1,292 @@
+{
+  "schema_version": "explorer-us-en-asset-decisions/v1",
+  "decisions": [
+    {
+      "slot": "assets/certifications.png",
+      "decision": "new extraction",
+      "source": "JE-100A-US-EN.pdf",
+      "physical_page": 2,
+      "bbox_pt": [
+        101,
+        302,
+        234,
+        340
+      ],
+      "scale": 3,
+      "reason": "no existing Explorer 100 Plus artwork in the repository; complete CERTIFICATIONS mark cluster with its printed conformity text",
+      "background": "complete panel kept (white page)"
+    },
+    {
+      "slot": "assets/inbox-unit.png",
+      "decision": "new extraction",
+      "source": "JE-100A-US-EN.pdf",
+      "physical_page": 3,
+      "bbox_pt": [
+        27,
+        36,
+        76,
+        71
+      ],
+      "scale": 3,
+      "reason": "no existing Explorer 100 Plus artwork in the repository; package-list card art: Explorer 100 Plus",
+      "background": "complete panel kept (white page)"
+    },
+    {
+      "slot": "assets/inbox-cable.png",
+      "decision": "new extraction",
+      "source": "JE-100A-US-EN.pdf",
+      "physical_page": 3,
+      "bbox_pt": [
+        117,
+        33,
+        144,
+        76
+      ],
+      "scale": 3,
+      "reason": "no existing Explorer 100 Plus artwork in the repository; package-list card art: USB-C charging cable",
+      "background": "complete panel kept (white page)"
+    },
+    {
+      "slot": "assets/inbox-manual.png",
+      "decision": "new extraction",
+      "source": "JE-100A-US-EN.pdf",
+      "physical_page": 3,
+      "bbox_pt": [
+        186,
+        31,
+        220,
+        76
+      ],
+      "scale": 3,
+      "reason": "no existing Explorer 100 Plus artwork in the repository; package-list card art: user manual",
+      "background": "complete panel kept (white page)"
+    },
+    {
+      "slot": "assets/overview.png",
+      "decision": "new extraction",
+      "source": "JE-100A-US-EN.pdf",
+      "physical_page": 3,
+      "bbox_pt": [
+        21,
+        135,
+        234,
+        228
+      ],
+      "scale": 3,
+      "reason": "no existing Explorer 100 Plus artwork in the repository; complete Product Appearance drawing with leader labels",
+      "background": "complete panel kept (white page)"
+    },
+    {
+      "slot": "assets/lcd-map.png",
+      "decision": "new extraction",
+      "source": "JE-100A-US-EN.pdf",
+      "physical_page": 3,
+      "bbox_pt": [
+        21,
+        256,
+        234,
+        340
+      ],
+      "scale": 3,
+      "reason": "no existing Explorer 100 Plus artwork in the repository; complete numbered LCD map with leader labels 1-9",
+      "background": "complete panel kept (white page)"
+    },
+    {
+      "slot": "assets/charging-wall.png",
+      "decision": "new extraction",
+      "source": "JE-100A-US-EN.pdf",
+      "physical_page": 5,
+      "bbox_pt": [
+        105,
+        170,
+        233,
+        236
+      ],
+      "scale": 3,
+      "reason": "no existing Explorer 100 Plus artwork in the repository; complete wall-charging drawing with captions",
+      "background": "complete panel kept (white page)"
+    },
+    {
+      "slot": "assets/solar-100.png",
+      "decision": "new extraction",
+      "source": "JE-100A-US-EN.pdf",
+      "physical_page": 5,
+      "bbox_pt": [
+        21,
+        285,
+        233,
+        345
+      ],
+      "scale": 3,
+      "reason": "no existing Explorer 100 Plus artwork in the repository; complete SolarSaga 100 connection drawing with leader labels",
+      "background": "complete panel kept (white page)"
+    },
+    {
+      "slot": "assets/solar-80.png",
+      "decision": "new extraction",
+      "source": "JE-100A-US-EN.pdf",
+      "physical_page": 6,
+      "bbox_pt": [
+        23,
+        47,
+        233,
+        108
+      ],
+      "scale": 3,
+      "reason": "no existing Explorer 100 Plus artwork in the repository; complete SolarSaga 80 connection drawing with captions",
+      "background": "complete panel kept (white page)"
+    },
+    {
+      "slot": "assets/solar-40.png",
+      "decision": "new extraction",
+      "source": "JE-100A-US-EN.pdf",
+      "physical_page": 6,
+      "bbox_pt": [
+        20,
+        130,
+        233,
+        182
+      ],
+      "scale": 3,
+      "reason": "no existing Explorer 100 Plus artwork in the repository; complete SolarSaga 40 Mini connection drawing with captions",
+      "background": "complete panel kept (white page)"
+    },
+    {
+      "slot": "assets/charging-car.png",
+      "decision": "new extraction",
+      "source": "JE-100A-US-EN.pdf",
+      "physical_page": 6,
+      "bbox_pt": [
+        149,
+        229,
+        234,
+        278
+      ],
+      "scale": 3,
+      "reason": "no existing Explorer 100 Plus artwork in the repository; complete car-charging drawing with captions",
+      "background": "complete panel kept (white page)"
+    },
+    {
+      "slot": "assets/lcd-battery-ring.png",
+      "decision": "new extraction (transparent)",
+      "source": "JE-100A-US-EN.pdf",
+      "physical_page": 4,
+      "bbox_pt": [
+        22.8,
+        22.2,
+        44.4,
+        43.7
+      ],
+      "scale": 6,
+      "reason": "LCD battery power indicator ring; no shared LCD glyph matches (shape/stroke differ from je100c_eu_shared and JE-1000F shared-lcd)",
+      "background": "transparent: alpha render of the glyph rectangle, no page fill drawn there; glyph not repainted"
+    },
+    {
+      "slot": "assets/lcd-low-battery.png",
+      "decision": "new extraction (transparent)",
+      "source": "JE-100A-US-EN.pdf",
+      "physical_page": 4,
+      "bbox_pt": [
+        22.8,
+        63.6,
+        45.4,
+        76.3
+      ],
+      "scale": 6,
+      "reason": "LCD low battery indicator; no shared LCD glyph matches (shape/stroke differ from je100c_eu_shared and JE-1000F shared-lcd)",
+      "background": "transparent: alpha render of the glyph rectangle, no page fill drawn there; glyph not repainted"
+    },
+    {
+      "slot": "assets/lcd-always-on.png",
+      "decision": "new extraction (transparent)",
+      "source": "JE-100A-US-EN.pdf",
+      "physical_page": 4,
+      "bbox_pt": [
+        22.4,
+        96.2,
+        45.7,
+        115.9
+      ],
+      "scale": 6,
+      "reason": "LCD always-on display mode; no shared LCD glyph matches (shape/stroke differ from je100c_eu_shared and JE-1000F shared-lcd)",
+      "background": "transparent: alpha render of the glyph rectangle, no page fill drawn there; glyph not repainted"
+    },
+    {
+      "slot": "assets/lcd-energy-saving.png",
+      "decision": "new extraction (transparent)",
+      "source": "JE-100A-US-EN.pdf",
+      "physical_page": 4,
+      "bbox_pt": [
+        22.0,
+        130.5,
+        45.0,
+        147.2
+      ],
+      "scale": 6,
+      "reason": "LCD 12H energy saving mode; no shared LCD glyph matches (shape/stroke differ from je100c_eu_shared and JE-1000F shared-lcd)",
+      "background": "transparent: alpha render of the glyph rectangle, no page fill drawn there; glyph not repainted"
+    },
+    {
+      "slot": "assets/lcd-high-temperature.png",
+      "decision": "new extraction (transparent)",
+      "source": "JE-100A-US-EN.pdf",
+      "physical_page": 4,
+      "bbox_pt": [
+        22.5,
+        285.4,
+        42.7,
+        304.0
+      ],
+      "scale": 6,
+      "reason": "LCD high-temperature warning; no shared LCD glyph matches (shape/stroke differ from je100c_eu_shared and JE-1000F shared-lcd)",
+      "background": "transparent: alpha render of the glyph rectangle, no page fill drawn there; glyph not repainted"
+    },
+    {
+      "slot": "assets/lcd-low-temperature.png",
+      "decision": "new extraction (transparent)",
+      "source": "JE-100A-US-EN.pdf",
+      "physical_page": 4,
+      "bbox_pt": [
+        22.5,
+        319.7,
+        42.7,
+        338.4
+      ],
+      "scale": 6,
+      "reason": "LCD low-temperature warning; no shared LCD glyph matches (shape/stroke differ from je100c_eu_shared and JE-1000F shared-lcd)",
+      "background": "transparent: alpha render of the glyph rectangle, no page fill drawn there; glyph not repainted"
+    },
+    {
+      "slot": "assets/shared-lcd/25_Fault_code_LaTmb4IQYo3vwvxMqQNcC2RgnIf.png",
+      "decision": "reuse byte-identical",
+      "from": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/25_Fault_code_LaTmb4IQYo3vwvxMqQNcC2RgnIf.png",
+      "sha256": "3b51b98d7199d32f7b286bdf5ce3de4cb41971ed942820091053fd1d87bf0a7a",
+      "identity": "same F8 seven-segment glyph in a rounded triangle",
+      "background": "transparent"
+    },
+    {
+      "slot": "assets/fcc-mark.svg",
+      "decision": "reuse byte-identical",
+      "from": "docs/renderers/web/assets/shared/symbols/native-v1/fcc_mark.svg",
+      "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe",
+      "identity": "FC compliance mark",
+      "background": "transparent"
+    }
+  ],
+  "rejected_candidates": [
+    {
+      "slot": "battery ring, low battery, sun, energy saving, temperature icons",
+      "decision": "not reused",
+      "candidates": [
+        "docs/renderers/web/assets/je100c_eu_shared/lcd_*.png",
+        "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/*"
+      ],
+      "reason": "different glyphs: segmented/thin rings, 88H/2H instead of 12H, thermometers without the triangle"
+    },
+    {
+      "slot": "native vector extraction",
+      "decision": "not used",
+      "reason": "single-artboard PDF export: tools/asset_pipeline/native_svg.py cannot map its fill/stroke paths (Z vs explicit L-to-origin closure)"
+    }
+  ]
+}

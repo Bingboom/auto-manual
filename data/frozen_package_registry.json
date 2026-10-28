@@ -1340,6 +1340,11 @@
       "registered": "2026-10-26",
       "known_drift": {}
     },
+    "manual_sources/JE-100A/US/en/git-20261027-18058b6b": {
+      "approval": "Operator 「上线提交发布：JE-100A、JE-100C、JE-240A、JE-240B；授权合入 #1630 及其 Hello-Docs 发布 PR」 2026-10-28 after review of PR #1630 renders beside the shared reference editions (MA-365); requested by 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 2026-10-27: Git-only US English Web release, source copy verbatim",
+      "registered": "2026-10-27",
+      "known_drift": {}
+    },
     "manual_sources/JE-100C/EU/de/2.0": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",
@@ -1388,6 +1393,11 @@
     "manual_sources/JE-100C/KR/ko/V0.3-Q": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-100C/US/en/git-20261027-39c58bca": {
+      "approval": "Operator 「上线提交发布：JE-100A、JE-100C、JE-240A、JE-240B；授权合入 #1630 及其 Hello-Docs 发布 PR」 2026-10-28 after review of PR #1630 renders beside the shared reference editions (MA-365); requested by 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 2026-10-27: Git-only US English Web release, source copy verbatim",
+      "registered": "2026-10-27",
       "known_drift": {}
     },
     "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2": {
@@ -1474,6 +1484,16 @@
     "manual_sources/JE-2000F/EU/nine-language/git-20261010-1465-web/three-language": {
       "approval": "操作者「上线提交发布」2026-10-10，经工程 PR 审核合入（见 approval.json）",
       "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-240A/US/en/git-20261027-ae3aea4b": {
+      "approval": "Operator 「上线提交发布：JE-100A、JE-100C、JE-240A、JE-240B；授权合入 #1630 及其 Hello-Docs 发布 PR」 2026-10-28 after review of PR #1630 renders beside the shared reference editions (MA-365); requested by 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 2026-10-27: Git-only US English Web release, source copy verbatim",
+      "registered": "2026-10-27",
+      "known_drift": {}
+    },
+    "manual_sources/JE-240B/US/en/git-20261027-3dc1fbba": {
+      "approval": "Operator 「上线提交发布：JE-100A、JE-100C、JE-240A、JE-240B；授权合入 #1630 及其 Hello-Docs 发布 PR」 2026-10-28 after review of PR #1630 renders beside the shared reference editions (MA-365); requested by 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 2026-10-27: Git-only US English Web release, source copy verbatim",
+      "registered": "2026-10-28",
       "known_drift": {}
     },
     "manual_sources/JE-3000C/EU/en/2.0": {
