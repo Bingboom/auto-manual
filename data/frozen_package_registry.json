@@ -36,6 +36,11 @@
           "handling": "keep-frozen",
           "reason": "symbol_asset_admission gained operator-approved glyph waivers (JE-1000H EU Li-ion, 2026-10-27); the waiver path runs only after the fixed 0.02 comparison fails, so these packages' admissions are unchanged",
           "since": "2026-10-27"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
+          "since": "2026-10-28"
         }
       }
     },
@@ -62,6 +67,11 @@
           "handling": "keep-frozen",
           "reason": "symbol_asset_admission gained operator-approved glyph waivers (JE-1000H EU Li-ion, 2026-10-27); the waiver path runs only after the fixed 0.02 comparison fails, so these packages' admissions are unchanged",
           "since": "2026-10-27"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
+          "since": "2026-10-28"
         }
       }
     },
@@ -154,6 +164,11 @@
           "handling": "keep-frozen",
           "reason": "symbol_asset_admission gained operator-approved glyph waivers (JE-1000H EU Li-ion, 2026-10-27); the waiver path runs only after the fixed 0.02 comparison fails, so these packages' admissions are unchanged",
           "since": "2026-10-27"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
+          "since": "2026-10-28"
         }
       }
     },
@@ -180,6 +195,11 @@
           "handling": "keep-frozen",
           "reason": "symbol_asset_admission gained operator-approved glyph waivers (JE-1000H EU Li-ion, 2026-10-27); the waiver path runs only after the fixed 0.02 comparison fails, so these packages' admissions are unchanged",
           "since": "2026-10-27"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
+          "since": "2026-10-28"
         }
       }
     },
@@ -211,6 +231,11 @@
           "handling": "keep-frozen",
           "reason": "MA-323 / PR #1382: register the migrated four-control App label stylesheet; preserve all historical package bytes and approvals. Rebuild and publication require a separate scoped release.",
           "since": "2026-10-19"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
+          "since": "2026-10-28"
         }
       }
     },
@@ -242,6 +267,11 @@
           "handling": "keep-frozen",
           "reason": "MA-323 / PR #1382: register the migrated four-control App label stylesheet; preserve all historical package bytes and approvals. Rebuild and publication require a separate scoped release.",
           "since": "2026-10-19"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
+          "since": "2026-10-28"
         }
       }
     },
@@ -371,6 +401,11 @@
           "handling": "keep-frozen",
           "reason": "MA-323 / PR #1382: register the migrated four-control App label stylesheet; preserve all historical package bytes and approvals. Rebuild and publication require a separate scoped release.",
           "since": "2026-10-19"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
+          "since": "2026-10-28"
         }
       }
     },
@@ -407,6 +442,11 @@
           "handling": "keep-frozen",
           "reason": "MA-323 / PR #1382: register the migrated four-control App label stylesheet; preserve all historical package bytes and approvals. Rebuild and publication require a separate scoped release.",
           "since": "2026-10-19"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
+          "since": "2026-10-28"
         }
       }
     },
@@ -438,18 +478,35 @@
           "handling": "keep-frozen",
           "reason": "symbol_asset_admission gained operator-approved glyph waivers (JE-1000H EU Li-ion, 2026-10-27); the waiver path runs only after the fixed 0.02 comparison fails, so these packages' admissions are unchanged",
           "since": "2026-10-27"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
+          "since": "2026-10-28"
         }
       }
     },
     "data/manual_sources/JE-3600A/CN/git-20261012-caa5370a-reviewed": {
       "approval": "MA-298（见 source/approval.json）",
       "registered": "2026-10-19",
-      "known_drift": {}
+      "known_drift": {
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
+          "since": "2026-10-28"
+        }
+      }
     },
     "data/manual_sources/JE-3600A/CN/git-20261013-caa5370a-web-layout": {
       "approval": "操作者「上线发布」2026-10-13，经工程 PR 审核合入（见 source/approval.json）",
       "registered": "2026-10-19",
-      "known_drift": {}
+      "known_drift": {
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
+          "since": "2026-10-28"
+        }
+      }
     },
     "data/manual_sources/JE-3600A/CN/git-20261015-caa5370a-shared": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
@@ -474,18 +531,35 @@
           "handling": "keep-frozen",
           "reason": "symbol_asset_admission gained operator-approved glyph waivers (JE-1000H EU Li-ion, 2026-10-27); the waiver path runs only after the fixed 0.02 comparison fails, so these packages' admissions are unchanged",
           "since": "2026-10-27"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
+          "since": "2026-10-28"
         }
       }
     },
     "data/manual_sources/JE-3600A/JP/git-20261012-fd06cd04-reviewed": {
       "approval": "MA-298（见 source/approval.json）",
       "registered": "2026-10-19",
-      "known_drift": {}
+      "known_drift": {
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
+          "since": "2026-10-28"
+        }
+      }
     },
     "data/manual_sources/JE-3600A/JP/git-20261013-fd06cd04-web-layout": {
       "approval": "操作者「上线发布」2026-10-13，经工程 PR 审核合入（见 source/approval.json）",
       "registered": "2026-10-19",
-      "known_drift": {}
+      "known_drift": {
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
+          "since": "2026-10-28"
+        }
+      }
     },
     "data/manual_sources/JE-3600A/JP/git-20261015-fd06cd04-shared": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
@@ -510,6 +584,11 @@
           "handling": "keep-frozen",
           "reason": "symbol_asset_admission gained operator-approved glyph waivers (JE-1000H EU Li-ion, 2026-10-27); the waiver path runs only after the fixed 0.02 comparison fails, so these packages' admissions are unchanged",
           "since": "2026-10-27"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
+          "since": "2026-10-28"
         }
       }
     },
@@ -541,6 +620,11 @@
           "handling": "keep-frozen",
           "reason": "MA-323 / PR #1382: register the migrated four-control App label stylesheet; preserve all historical package bytes and approvals. Rebuild and publication require a separate scoped release.",
           "since": "2026-10-19"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
+          "since": "2026-10-28"
         }
       }
     },
@@ -572,6 +656,11 @@
           "handling": "keep-frozen",
           "reason": "MA-323 / PR #1382: register the migrated four-control App label stylesheet; preserve all historical package bytes and approvals. Rebuild and publication require a separate scoped release.",
           "since": "2026-10-19"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
+          "since": "2026-10-28"
         }
       }
     },
@@ -664,13 +753,24 @@
           "handling": "keep-frozen",
           "reason": "symbol_asset_admission gained operator-approved glyph waivers (JE-1000H EU Li-ion, 2026-10-27); the waiver path runs only after the fixed 0.02 comparison fails, so these packages' admissions are unchanged",
           "since": "2026-10-27"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
+          "since": "2026-10-28"
         }
       }
     },
     "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed": {
       "approval": "MA-295（见 source/approval.json）",
       "registered": "2026-10-19",
-      "known_drift": {}
+      "known_drift": {
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
+          "since": "2026-10-28"
+        }
+      }
     },
     "data/manual_sources/JHP-3600C/US/added-locales/git-20261007-31fd0692": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
@@ -912,6 +1012,11 @@
           "handling": "keep-frozen",
           "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
           "since": "2026-10-19"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
+          "since": "2026-10-28"
         }
       }
     },
@@ -943,6 +1048,11 @@
           "handling": "keep-frozen",
           "reason": "MA-323 / PR #1382: register the migrated four-control App label stylesheet; preserve all historical package bytes and approvals. Rebuild and publication require a separate scoped release.",
           "since": "2026-10-19"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
+          "since": "2026-10-28"
         }
       }
     },
@@ -1308,6 +1418,11 @@
           "handling": "keep-frozen",
           "reason": "symbol_asset_admission gained operator-approved glyph waivers (JE-1000H EU Li-ion, 2026-10-27); the waiver path runs only after the fixed 0.02 comparison fails, so these packages' admissions are unchanged",
           "since": "2026-10-27"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
+          "since": "2026-10-28"
         }
       }
     },
@@ -1641,6 +1756,16 @@
       "packages": 9,
       "handling": "keep-frozen",
       "reason": "symbol_asset_admission gained operator-approved glyph waivers (JE-1000H EU Li-ion, 2026-10-27); the waiver path runs only after the fixed 0.02 comparison fails, so these packages' admissions are unchanged",
+      "minutes": 0
+    },
+    {
+      "date": "2026-10-28",
+      "files": [
+        "tools/asset_pipeline/native_svg.py"
+      ],
+      "packages": 22,
+      "handling": "keep-frozen",
+      "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
       "minutes": 0
     }
   ]
