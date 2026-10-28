@@ -1426,6 +1426,11 @@
         }
       }
     },
+    "manual_sources/JE-2000C/US/en/git-20261027-c357f54d": {
+      "approval": "Operator window task 2026-10-27 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 (发布文档管理 Base): Git-only US/en single-language Web candidate, source copy verbatim. Candidate only; no merge or publication approval.",
+      "registered": "2026-10-27",
+      "known_drift": {}
+    },
     "manual_sources/JE-2000E/EU/en/2.0": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",
@@ -1640,6 +1645,21 @@
     "manual_sources/JE-500A/EU/en/2.0": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JHP-1000B-RC/US/en/git-20261027-af8a0775": {
+      "approval": "Operator window task 2026-10-27 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 (发布文档管理 Base): Git-only US/en single-language Web candidate, source copy verbatim. Candidate only; no merge or publication approval.",
+      "registered": "2026-10-27",
+      "known_drift": {}
+    },
+    "manual_sources/JHP-2000A-RC/US/en/git-20261027-e27d4db5": {
+      "approval": "Operator window task 2026-10-27 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 (发布文档管理 Base): Git-only US/en single-language Web candidate, source copy verbatim. Candidate only; no merge or publication approval.",
+      "registered": "2026-10-27",
+      "known_drift": {}
+    },
+    "manual_sources/JHP-3600A-RC/US/en/git-20261027-ab7f7393": {
+      "approval": "Operator window task 2026-10-27 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 (发布文档管理 Base): Git-only US/en single-language Web candidate, source copy verbatim. Candidate only; no merge or publication approval.",
+      "registered": "2026-10-27",
       "known_drift": {}
     },
     "manual_sources/JS-100I/JP/ja/git-20261026-cc8b3421": {

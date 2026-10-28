@@ -1,0 +1,1314 @@
+{
+ "schema_version": "je2000c-us-en-transcription/v1",
+ "source_sha256": "c357f54dfed27d11d72a2a4893e485450a49c1b562e21f0f272708857f1510ab",
+ "method": "The PDF has no text layer (every glyph is outlined). Each line was transcribed from 200/300 dpi page renders, with 900 dpi clips for ambiguous glyphs. One entry is one printed logical line or paragraph: print line wraps are joined with a single space (a hyphenated break such as 'transfer-/able' is joined without the hyphen). Ids are stable keys that build_content.py binds to shared components. strong lists spans printed in bold. Printed list markers (bullet dots and the FCC '--' dashes) are list structure, not copy, and are not recorded. Text inside product, LCD and connection art stays in the artwork and is listed only for figure captions and leader labels. The wave glyph is recorded as '~', the DC symbol as U+2393 and the reference mark as U+203B; outlined glyphs carry no code points, so these are the closest visual equivalents.",
+ "pages": [
+  {
+   "physical_page": 1,
+   "printed_page": null,
+   "role": "print-cover",
+   "web": false,
+   "lines": [
+    {
+     "id": "cover.brand",
+     "text": "Jackery"
+    },
+    {
+     "id": "cover.model",
+     "text": "Model: JE-2000C"
+    },
+    {
+     "id": "cover.title",
+     "text": "USER MANUAL"
+    },
+    {
+     "id": "cover.name",
+     "text": "Jackery Explorer 2000 Plus"
+    },
+    {
+     "id": "cover.contact.h",
+     "text": "Contact us:"
+    },
+    {
+     "id": "cover.mail",
+     "text": "hello@jackery.com"
+    },
+    {
+     "id": "cover.tel",
+     "text": "1-888-502-2236(US)"
+    },
+    {
+     "id": "cover.version",
+     "text": "Version: JAK-UM-V1.0"
+    }
+   ]
+  },
+  {
+   "physical_page": 2,
+   "printed_page": "01",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "pre.p1",
+     "text": "Congratulations on your new Jackery Explorer 2000 Plus. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for frequent reference."
+    },
+    {
+     "id": "pre.p2",
+     "text": "In compliance with laws and regulations, the right of final interpretation of this document and all related documents of this product resides with the Company."
+    },
+    {
+     "id": "pre.p3",
+     "text": "Please kindly notice that no further notifications will be given in case of any update, revision or termination."
+    },
+    {
+     "id": "spec.h",
+     "text": "TECHNICAL SPECIFICATIONS"
+    },
+    {
+     "id": "spec.g1.h",
+     "text": "GENERAL INFO"
+    },
+    {
+     "id": "spec.g1.r1.l",
+     "text": "Product Name"
+    },
+    {
+     "id": "spec.g1.r1.v",
+     "text": "Jackery Explorer 2000 Plus"
+    },
+    {
+     "id": "spec.g1.r2.l",
+     "text": "Model No."
+    },
+    {
+     "id": "spec.g1.r2.v",
+     "text": "JE-2000C"
+    },
+    {
+     "id": "spec.g1.r3.l",
+     "text": "Capacity"
+    },
+    {
+     "id": "spec.g1.r3.v",
+     "text": "Lithium-ion 45.6Ah/ 44.8V DC (2042.8Wh)"
+    },
+    {
+     "id": "spec.g1.r4.l",
+     "text": "Weight"
+    },
+    {
+     "id": "spec.g1.r4.v",
+     "text": "About 61.5 lbs/ 27.9 kg"
+    },
+    {
+     "id": "spec.g1.r5.l",
+     "text": "Dimensions"
+    },
+    {
+     "id": "spec.g1.r5.v",
+     "text": "18.6 x 14.1 x 14.7 in/ 47.3 x 35.94 x 37.36 cm"
+    },
+    {
+     "id": "spec.g1.r6.l",
+     "text": "Cycle Life"
+    },
+    {
+     "id": "spec.g1.r6.v",
+     "text": "4000 cycles to 70%+ capacity"
+    },
+    {
+     "id": "spec.g2.h",
+     "text": "OUTPUT PORTS"
+    },
+    {
+     "id": "spec.g2.r1.l",
+     "text": "4x AC Output"
+    },
+    {
+     "id": "spec.g2.r1.v",
+     "text": "120V~ 60Hz, 20A Max"
+    },
+    {
+     "id": "spec.g2.r2.l",
+     "text": "1x AC Output"
+    },
+    {
+     "id": "spec.g2.r2.v",
+     "text": "120V~ 60Hz, 25A Max"
+    },
+    {
+     "id": "spec.g2.r3.l",
+     "text": "AC Total Output"
+    },
+    {
+     "id": "spec.g2.r3.v",
+     "text": "3000W Max, 6000W surge peak"
+    },
+    {
+     "id": "spec.g2.r4.l",
+     "text": "1x AC Expansion Port"
+    },
+    {
+     "id": "spec.g2.r4.v",
+     "text": "120V~ 60Hz, 25A Max"
+    },
+    {
+     "id": "spec.g2.r5.l",
+     "text": "1x DC Expansion Port"
+    },
+    {
+     "id": "spec.g2.r5.v",
+     "text": "32.2V-50.4V⎓97A Max"
+    },
+    {
+     "id": "spec.g2.r6.l",
+     "text": "2x USB-C Output"
+    },
+    {
+     "id": "spec.g2.r6.v",
+     "text": "100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A"
+    },
+    {
+     "id": "spec.g2.r7.l",
+     "text": "2x USB-A Output"
+    },
+    {
+     "id": "spec.g2.r7.v",
+     "text": "Quick Charge 3.0, 18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A"
+    },
+    {
+     "id": "spec.g2.r8.l",
+     "text": "1x Car Port"
+    },
+    {
+     "id": "spec.g2.r8.v",
+     "text": "12V⎓10A Max"
+    },
+    {
+     "id": "spec.g3.h",
+     "text": "INPUT PORTS"
+    },
+    {
+     "id": "spec.g3.r1.l",
+     "text": "Charge mode AC input"
+    },
+    {
+     "id": "spec.g3.r1.v",
+     "text": "120V~ 60Hz, 15A Max"
+    },
+    {
+     "id": "spec.g3.r2.l",
+     "text": "Bypass mode AC input/output"
+    },
+    {
+     "id": "spec.g3.r2.v",
+     "text": "120V~ 60Hz, 12A Max"
+    },
+    {
+     "id": "spec.g3.r3.l",
+     "text": "DC Input"
+    },
+    {
+     "id": "spec.g3.r3.v1",
+     "text": "2x DC 8mm Ports: 11-17.5V (Working Voltage)⎓8A Max,"
+    },
+    {
+     "id": "spec.g3.r3.v2",
+     "text": "Double to 8A Max;"
+    },
+    {
+     "id": "spec.g3.r3.v3",
+     "text": "17.5-60V (Working Voltage)⎓12A Max, Double to 24A/1400W Max"
+    },
+    {
+     "id": "spec.g4.h",
+     "text": "ENVIRONMENTAL OPERATING TEMPERATURE"
+    },
+    {
+     "id": "spec.g4.r1.l",
+     "text": "Charge Temperature"
+    },
+    {
+     "id": "spec.g4.r1.v",
+     "text": "0~45°C (32~113 °F)"
+    },
+    {
+     "id": "spec.g4.r2.l",
+     "text": "Discharge Temperature"
+    },
+    {
+     "id": "spec.g4.r2.v",
+     "text": "-10~45°C (14~113°F)"
+    },
+    {
+     "id": "cert.h",
+     "text": "CERTIFICATIONS"
+    },
+    {
+     "id": "cert.fn1",
+     "text": "※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum."
+    },
+    {
+     "id": "cert.fn2",
+     "text": "※ Qualcomm Quick Charge is a product of Qualcomm Technologles,Inc. and/or its subsidiaries. Qualcomm and Quick Charge are trademarks or registered trademarks of Qualcomm Incorporated."
+    }
+   ]
+  },
+  {
+   "physical_page": 3,
+   "printed_page": "02",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "fcc.mod",
+     "text": "MODIFICATION: Any changes or modifications not expressly approved by the grantee of this device could void the user’s authority to operate the device.",
+     "strong": [
+      "MODIFICATION"
+     ]
+    },
+    {
+     "id": "box.h",
+     "text": "PACKAGE LIST"
+    },
+    {
+     "id": "box.c1",
+     "text": "Jackery Explorer 2000 Plus"
+    },
+    {
+     "id": "box.c2",
+     "text": "Car Charge Cable"
+    },
+    {
+     "id": "box.c3",
+     "text": "AC Charge Cable"
+    },
+    {
+     "id": "box.c4",
+     "text": "DC7909 to DC8020 Adaptor x 2"
+    },
+    {
+     "id": "box.c5",
+     "text": "User Manual"
+    },
+    {
+     "id": "box.c6",
+     "text": "Accessories Bag"
+    },
+    {
+     "id": "gear.h",
+     "text": "GET TO KNOW YOUR GEAR"
+    },
+    {
+     "id": "gear.h2",
+     "text": "Product Appearance"
+    },
+    {
+     "id": "gear.f.power",
+     "text": "Main Power Button"
+    },
+    {
+     "id": "gear.f.car",
+     "text": "Car Port"
+    },
+    {
+     "id": "gear.f.usba",
+     "text": "USB-A Output"
+    },
+    {
+     "id": "gear.f.usbc",
+     "text": "USB-C Output"
+    },
+    {
+     "id": "gear.f.dcbtn",
+     "text": "DC Button"
+    },
+    {
+     "id": "gear.f.ac1",
+     "text": "AC Output"
+    },
+    {
+     "id": "gear.f.ac2",
+     "text": "AC Output"
+    },
+    {
+     "id": "gear.f.acbtn",
+     "text": "AC Button"
+    },
+    {
+     "id": "gear.r.handle",
+     "text": "Retractable Handle"
+    },
+    {
+     "id": "gear.r.handle.note",
+     "text": "(Press the button on the retractable handle and pull to extend)"
+    },
+    {
+     "id": "gear.r.acexp",
+     "text": "AC Expansion Port (Connect to another Explorer 2000 Plus)"
+    },
+    {
+     "id": "gear.r.acreset",
+     "text": "AC Input Reset Button"
+    },
+    {
+     "id": "gear.r.acin",
+     "text": "AC Input"
+    },
+    {
+     "id": "gear.r.dcin",
+     "text": "DC Input"
+    },
+    {
+     "id": "gear.r.dcexp",
+     "text": "DC Expansion Port (Connect to Battery Pack)"
+    }
+   ]
+  },
+  {
+   "physical_page": 4,
+   "printed_page": "03",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "lcd.h",
+     "text": "LCD DISPLAY"
+    },
+    {
+     "id": "lcd.n1",
+     "text": "WiFi"
+    },
+    {
+     "id": "lcd.n2",
+     "text": "Bluetooth"
+    },
+    {
+     "id": "lcd.n3",
+     "text": "Quiet Charging Mode"
+    },
+    {
+     "id": "lcd.n4",
+     "text": "Battery Saving Mode"
+    },
+    {
+     "id": "lcd.n5",
+     "text": "AC Expansion Indicator"
+    },
+    {
+     "id": "lcd.n6",
+     "text": "Input Power"
+    },
+    {
+     "id": "lcd.n7",
+     "text": "Remaining Charge Time"
+    },
+    {
+     "id": "lcd.n8",
+     "text": "AC Wall Charging Indicator"
+    },
+    {
+     "id": "lcd.n9",
+     "text": "Car Charging Indicator"
+    },
+    {
+     "id": "lcd.n10",
+     "text": "Solar Charging Indicator"
+    },
+    {
+     "id": "lcd.n11",
+     "text": "Battery Power Indicator"
+    },
+    {
+     "id": "lcd.n12",
+     "text": "Low Battery Indicator"
+    },
+    {
+     "id": "lcd.n13",
+     "text": "Remaining Battery Percentage"
+    },
+    {
+     "id": "lcd.n14",
+     "text": "Error Code"
+    },
+    {
+     "id": "lcd.n15",
+     "text": "High Temperature Warning"
+    },
+    {
+     "id": "lcd.n16",
+     "text": "Low Temperature Warning"
+    },
+    {
+     "id": "lcd.n17",
+     "text": "Energy Saving Mode"
+    },
+    {
+     "id": "lcd.n18",
+     "text": "AC Power Indicator"
+    },
+    {
+     "id": "lcd.n19",
+     "text": "Output Power"
+    },
+    {
+     "id": "lcd.n20",
+     "text": "Remaining Discharge Time"
+    },
+    {
+     "id": "lcd.n21",
+     "text": "Battery Pack Indicator and Connected Quantity"
+    },
+    {
+     "id": "lcd.bsm",
+     "text": "Battery Saving Mode: When this feature is enabled, it limits the battery charging capacity to 85% and the discharging capacity to 15%, and the battery will only be charged when the capacity is below 80% to extend the battery life. Use the Jackery App for settings of this function.",
+     "strong": [
+      "Battery Saving Mode:"
+     ]
+    },
+    {
+     "id": "lcd.qcm",
+     "text": "Quiet Charging Mode: noise ≤ 30dB in this charging mode, you can set this function in Jackery App.",
+     "strong": [
+      "Quiet Charging Mode:"
+     ]
+    },
+    {
+     "id": "lcd.d1.t",
+     "text": "Battery Power Indicator"
+    },
+    {
+     "id": "lcd.d1.b",
+     "text": "When the product is being charged, the orange circle around the battery percentage will light up in sequence. When charging other devices, the indicator will show the battery level."
+    },
+    {
+     "id": "lcd.d2.t",
+     "text": "Low Battery Indicator"
+    },
+    {
+     "id": "lcd.d2.b",
+     "text": "When the battery is less than 20%, the Low Battery Indicator will stay on. When less than 5%, the Low Battery Indicator will flash. When it is being charged, the Indicator will be off."
+    },
+    {
+     "id": "lcd.d3.t",
+     "text": "Energy Saving Mode"
+    },
+    {
+     "id": "lcd.d3.b",
+     "text": "To avoid forgetting to turn off the output which results in battery consumption, the product turns the Energy Saving Mode on by default. This occurs when no device is connected or the connected device is less than or equal to a certain value. (Refer to the table below for more details), the device will automatically turn off all outputs after 12 hours."
+    }
+   ]
+  },
+  {
+   "physical_page": 5,
+   "printed_page": "04",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "eco.th1",
+     "text": "Output"
+    },
+    {
+     "id": "eco.th2",
+     "text": "Output Power"
+    },
+    {
+     "id": "eco.th3",
+     "text": "Defaults"
+    },
+    {
+     "id": "eco.r1.c1",
+     "text": "AC Output"
+    },
+    {
+     "id": "eco.r1.c2",
+     "text": "≤25W"
+    },
+    {
+     "id": "eco.r2.c1",
+     "text": "USB Output"
+    },
+    {
+     "id": "eco.r2.c2",
+     "text": "≤2W"
+    },
+    {
+     "id": "eco.r3.c1",
+     "text": "Car Output"
+    },
+    {
+     "id": "eco.r3.c2",
+     "text": "≤2W"
+    },
+    {
+     "id": "eco.all",
+     "text": "All outputs turned off automatically after 12 hours"
+    },
+    {
+     "id": "eco.off.h",
+     "text": "To turn off the Energy Saving Mode"
+    },
+    {
+     "id": "eco.off",
+     "text": "Long press the AC Button and Main Power Button until the Energy Saving Mode icon disappears. In Non-Energy Saving Mode, please remember to turn off the products to avoid battery consumption."
+    },
+    {
+     "id": "eco.on.h",
+     "text": "To turn on the Energy Saving Mode"
+    },
+    {
+     "id": "eco.on",
+     "text": "Long press the AC Button and Main Power Button until the Low Power Mode icon lights up on the screen."
+    },
+    {
+     "id": "lcd.d4.t",
+     "text": "Fault code"
+    },
+    {
+     "id": "lcd.d4.b",
+     "text": "In order to respond to the feedback quickly, we set up common fault codes F0-FE in the system: If the F8 code appears, please remove the load or unplug the charging plug, the product can restore by itself, if not, please contact after-sales service; If the F9 code appears, please remove the load and the product can recover by itself, if not, please contact after-sales service. In case of any other code appears, please contact our after-sales service."
+    },
+    {
+     "id": "lcd.d5.t",
+     "text": "High-temperature warning"
+    },
+    {
+     "id": "lcd.d5.b",
+     "text": "If it appears on the screen, do not worry, the battery will restore automatically after cooling."
+    },
+    {
+     "id": "lcd.d6.t",
+     "text": "Low-temperature Warning"
+    },
+    {
+     "id": "lcd.d6.b",
+     "text": "If it is displayed on the screen, do not worry. It will automatically restore after the ambient temperature is restored."
+    },
+    {
+     "id": "lcd.d7.t",
+     "text": "AC Expansion Indicator"
+    },
+    {
+     "id": "lcd.d7.b",
+     "text": "Double the power by connecting another Jackery Explorer 2000 Plus through the Jackery Connector (sold separately). Please refer to the Jackery Connector manual for details"
+    },
+    {
+     "id": "ops.h",
+     "text": "BASIC OPERATIONS"
+    },
+    {
+     "id": "ops.h2",
+     "text": "Output On/Off"
+    },
+    {
+     "id": "ops.main",
+     "text": "Main power on/off: Press the \"Main Power Button\" and the working indicator lights up and the LCD display is illuminated. When this product does not have any operation for 2 minutes, the product will enter the hibernation state and the display will turn off automatically. If you need to turn off the main power, please press and hold the \"Main Power Button\" until the working indicator turns off. The default standby time of this product is 2 hours. If the other power output switch is not turned on, and the product does not have any load input, the product will automatically shut down after 2 hours. The automatic shutdown time can be set on the Jackery App.",
+     "strong": [
+      "Main power on/off:"
+     ]
+    },
+    {
+     "id": "ops.ac",
+     "text": "AC Output On/Off: Ensure that the main power supply is turned on. Press the AC Button, the AC Output operation indicator lights up. Then you can connect the equipment that needs AC charging. Press the AC Button again to turn off the AC Output.",
+     "strong": [
+      "AC Output On/Off:"
+     ]
+    },
+    {
+     "id": "ops.usb",
+     "text": "USB/Car Port Output On/Off: Ensure that the main power supply is turned on. Press the DC Button, the DC Output operation indicator lights up. Then USB/Car Port Output Ports can be connected to external load devices. Press the DC Button again to turn off the USB/ Car Port Output.",
+     "strong": [
+      "USB/Car Port Output On/Off:"
+     ]
+    }
+   ]
+  },
+  {
+   "physical_page": 6,
+   "printed_page": "05",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "ops.lcd.h",
+     "text": "LCD Screen On/Off"
+    },
+    {
+     "id": "ops.lcd",
+     "text": "To turn on, press the Main Power Button or when there’s a charging input, the screen display will light up automatically. To turn off, press the Main Power Button again and the screen display will turn off. Or, if there is no operation in 2 minutes, the product will enter a sleep state and the screen display will automatically turn off."
+    },
+    {
+     "id": "ops.aod.on",
+     "text": "To get the screen always-on (under charging or discharging state), follow these steps: After the display screen lights up, double-click the Main Power Button and the mode of Always-On Display will be on.",
+     "strong": [
+      "To get the screen always-on (under charging or discharging state), follow these steps:"
+     ]
+    },
+    {
+     "id": "ops.aod.off",
+     "text": "To turn off Always-On Display, follow these steps: Press the Main Power Button and the screen will be turned off in 2 minutes.",
+     "strong": [
+      "To turn off Always-On Display, follow these steps:"
+     ]
+    },
+    {
+     "id": "ops.aod.tip",
+     "text": "Tip: During Always-On mode, the screen automatically turns off after 2 hours without charging or discharging.",
+     "strong": [
+      "Tip:"
+     ]
+    },
+    {
+     "id": "ops.acout.reset",
+     "text": "AC Output Reset Button: When the Reset Button pops up, you need to remove the load and press the Reset Button to reset.",
+     "strong": [
+      "AC Output Reset Button:"
+     ]
+    },
+    {
+     "id": "ops.acin.reset",
+     "text": "AC Input Reset Button: When the Reset Button pops up, you need to remove AC charge cable and press the Reset Button to reset.",
+     "strong": [
+      "AC Input Reset Button:"
+     ]
+    },
+    {
+     "id": "ops.eps.h",
+     "text": "EPS: Emergency Power System."
+    },
+    {
+     "id": "ops.eps",
+     "text": "Once you have connected the mains and the AC input port of the EPS via the AC charger cable, you can use the AC output port of the EPS to power your unit (at this point the AC power comes from the mains, not the EPS battery). In the event of a sudden loss of mains power, the EPS can automatically switch to battery mode within 20ms. Since this is a non-professional UPS function, it does not support 0ms switching. Do not connect to equipment with high uninterruptible power requirements such as data servers and workstations. Please test several times to confirm compatibility before use and it is recommended to connect to only one device. Do not use more than one unit at a time to avoid triggering the overload protection. Failure to follow these instructions may result in equipment failure or loss of data for which we cannot be held responsible."
+    },
+    {
+     "id": "pack.h",
+     "text": "USE WITH BATTERY PACK (SOLD SEPARATELY)"
+    },
+    {
+     "id": "pack.p",
+     "text": "This product can support up to 5 battery packs to meet the need for large power capacity. For details on how to use it, please refer to the Jackery Battery Pack 2000 Plus User Manual."
+    },
+    {
+     "id": "pack.safe.h",
+     "text": "SAFETY PRECAUTIONS WHEN USING"
+    },
+    {
+     "id": "pack.safe1",
+     "text": "When using the retractable handle to move the Jackery Explorer 2000 Plus, please do not stack or place other objects on top of it to prevent falling off and causing injury."
+    },
+    {
+     "id": "pack.safe2",
+     "text": "When using the battery pack, please do not stack more than two battery packs on top of the Jackery Explorer 2000 Plus to prevent it from falling off and causing injury."
+    },
+    {
+     "id": "app.h",
+     "text": "APP CONNECTION"
+    },
+    {
+     "id": "app.p",
+     "text": "This product supports the connection of Jackery App for intelligent control and operation. Users can download the Jackery App through App Store or Android application markets. Please refer to the User Manual for Jackery App for detailed connection instructions."
+    }
+   ]
+  },
+  {
+   "physical_page": 7,
+   "printed_page": "06",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "chg.h",
+     "text": "CHARGING YOUR JACKERY EXPLORER 2000 PLUS"
+    },
+    {
+     "id": "chg.p1",
+     "text": "Green energy first: We advocate to use the green energy first. This product supports two modes of charging at the same time: solar charging and AC wall charging."
+    },
+    {
+     "id": "chg.p2",
+     "text": "When AC wall charging and solar charging are turned on at the same time, the product will give priority to solar charging and both methods will be used to charge the battery at the maximum permissible power."
+    },
+    {
+     "id": "chg.wall.h",
+     "text": "CHARGING FROM THE WALL"
+    },
+    {
+     "id": "chg.wall",
+     "text": "Please use the AC cable included in the package."
+    },
+    {
+     "id": "fig.wall.unit",
+     "text": "Explorer 2000 Plus"
+    },
+    {
+     "id": "fig.wall.cable",
+     "text": "AC Charger"
+    },
+    {
+     "id": "chg.solar.h",
+     "text": "SOLAR CHARGING"
+    },
+    {
+     "id": "chg.solar.h2",
+     "text": "Jackery SolarSaga 200 or 100 or 60 Solar Panel Connection Guide"
+    },
+    {
+     "id": "chg.solar",
+     "text": "If one or two solar panels are connected, you can directly connect the DC8020 port of the solar panel to the DC8020 port of Jackery Explorer 2000 Plus for charging. If three or four solar panels are connected, please refer to the method shown in the following figure to charge through the solar series connector. (Note: The solar series connector is not in standard configuration, so you need to purchase it separately. Please refer to the detailed operation instructions of the solar series connector before using it.)"
+    },
+    {
+     "id": "fig.s3.unit",
+     "text": "Explorer 2000 Plus"
+    },
+    {
+     "id": "fig.s3.panels",
+     "text": "SolarSaga ×3"
+    },
+    {
+     "id": "fig.s22.left",
+     "text": "SolarSaga×2"
+    },
+    {
+     "id": "fig.s22.unit",
+     "text": "Explorer 2000 Plus"
+    },
+    {
+     "id": "fig.s22.right",
+     "text": "SolarSaga×2"
+    }
+   ]
+  },
+  {
+   "physical_page": 8,
+   "printed_page": "07",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "fig.s33.unit",
+     "text": "Explorer 2000 Plus"
+    },
+    {
+     "id": "fig.s33.left",
+     "text": "SolarSaga×3"
+    },
+    {
+     "id": "fig.s33.right",
+     "text": "SolarSaga ×3"
+    },
+    {
+     "id": "chg.solar.caution",
+     "text": "Caution: When the two inputs are used at the same time, please make sure to use the same type of solar panel and the number of solar panels in the two inputs must be the same to avoid damage or charging problems of the equipment due to inconsistent voltages of the two channels."
+    },
+    {
+     "id": "chg.prohibit.h",
+     "text": "The following way of connections are prohibited to charge this product:"
+    },
+    {
+     "id": "fig.x1.left",
+     "text": "SolarSaga×2"
+    },
+    {
+     "id": "fig.x1.unit",
+     "text": "Explorer 2000 Plus"
+    },
+    {
+     "id": "fig.x1.right",
+     "text": "SolarSaga×1"
+    },
+    {
+     "id": "fig.x2.left",
+     "text": "SolarSaga×3"
+    },
+    {
+     "id": "fig.x2.unit",
+     "text": "Explorer 2000 Plus"
+    },
+    {
+     "id": "fig.x2.right",
+     "text": "SolarSaga×1"
+    },
+    {
+     "id": "fig.x3.left",
+     "text": "SolarSaga×3"
+    },
+    {
+     "id": "fig.x3.unit",
+     "text": "Explorer 2000 Plus"
+    },
+    {
+     "id": "fig.x3.right",
+     "text": "SolarSaga×2"
+    }
+   ]
+  },
+  {
+   "physical_page": 9,
+   "printed_page": "08",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "chg.s80.h",
+     "text": "Jackery SolarSaga 80 Solar Panel Connection Guide"
+    },
+    {
+     "id": "chg.s80.p1",
+     "text": "Users who have purchased Jackery SolarSaga 80 can charge the product by referring to the connection mode shown below. The Jackery SolarSaga 80 supports the parallel connection or the parallel and then series connections to charge the product. The single input port of the Jackery Explorer 2000 Plus supports the input of up to six pieces of SolarSaga 80 solar panels, and two input ports support the input to up to 12 pieces of SolarSaga 80 solar panels. (When the power is connected with six solar panels in a single input port, the solar panels shall be divided into two groups, and each group of three solar panels shall be self-connected in parallel and then connected to Jackery Explorer 2000 Plus through the solar series connector. The solar series connector needs to be purchased separately.)"
+    },
+    {
+     "id": "chg.s80.p2",
+     "text": "For detailed operation instructions on the self-parallel connection of the Jackery SolarSaga 80 solar panel, please refer to the user manual."
+    },
+    {
+     "id": "fig.s80.out",
+     "text": "The solar panel charging output port (DC8020 male, with DC8020 to DC7909 Adaptor)"
+    },
+    {
+     "id": "fig.s80.par",
+     "text": "Parallel Port (DC 8020 Female)"
+    },
+    {
+     "id": "chg.s80.tip",
+     "text": "Tip: Users can enter the number of solar panels in their own combination according to the number of solar panels they purchased. Currently, the product supports charging with 1, 2, 3, 4, 5, 6, 8, and 12 80W solar panels in combination."
+    },
+    {
+     "id": "chg.adp.h",
+     "text": "DC7909 to DC8020 Adaptor Operation Guide"
+    },
+    {
+     "id": "chg.adp",
+     "text": "All of our solar panels on sale have been upgraded to include a DC7909 to DC8020 adapter. If you have purchased a Jackery solar panel without a DC7909 to DC8020 adapter, you can charge your Jackery Explorer 2000 Plus by following the connection instructions below."
+    },
+    {
+     "id": "fig.adp.female",
+     "text": "DC8020 Female"
+    },
+    {
+     "id": "fig.adp.adaptor",
+     "text": "DC7909 to DC8020 Adaptor"
+    },
+    {
+     "id": "fig.adp.male",
+     "text": "DC7909 Male"
+    },
+    {
+     "id": "fig.adp.unit",
+     "text": "Explorer 2000 Plus"
+    }
+   ]
+  },
+  {
+   "physical_page": 10,
+   "printed_page": "09",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "car.h",
+     "text": "CHARGING IN THE CAR"
+    },
+    {
+     "id": "car.p1",
+     "text": "This product can be charged with a 12 V car charger. Please start the vehicle before charging to prevent draining the car battery and prevent your vehicle from being unable to start."
+    },
+    {
+     "id": "car.p2",
+     "text": "Please also ensure that the car charger and the car cigarette lighter provide a good connection, and ensure that the car charger is fully inserted. In addition, if the vehicle is running on bumpy roads, it is forbidden to use the car charger in case it burns due to a poor connection. The Company will not be responsible for any loss caused by non-standard operation."
+    },
+    {
+     "id": "fig.car.unit",
+     "text": "Explorer 2000 Plus"
+    },
+    {
+     "id": "fig.car.vehicle",
+     "text": "Vehicle"
+    },
+    {
+     "id": "safe.chg.h",
+     "text": "SAFETY PRECAUTIONS WHEN CHARGING"
+    },
+    {
+     "id": "safe.chg1",
+     "text": "❶ When the two DC inputs of this product are used at the same time, please ensure that the number of solar panels connected in series is the same, and try to use the same type of solar panel."
+    },
+    {
+     "id": "safe.chg2",
+     "text": "❷ Do not charge from car charger and solar panel at the same time, otherwise, it will damage the car fuse."
+    },
+    {
+     "id": "fig.xcar.solar",
+     "text": "SolarSaga"
+    },
+    {
+     "id": "fig.xcar.unit",
+     "text": "Explorer 2000 Plus"
+    },
+    {
+     "id": "fig.xcar.vehicle",
+     "text": "Vehicle"
+    },
+    {
+     "id": "safe.chg3",
+     "text": "❸ Vehicle charging is only applicable in 12V vehicles, not in 24V ones. Please do not charge this product in 24V vehicle to avoid personal injury and property loss."
+    },
+    {
+     "id": "safe.chg4",
+     "text": "❹ It is recommended to use Jackery accessories - solar panels for solar charging. We will not be responsible for the losses caused by using other brands’ solar panels."
+    },
+    {
+     "id": "isi.h",
+     "text": "INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS"
+    },
+    {
+     "id": "isi.h2",
+     "text": "IMPORTANT SAFETY INSTRUCTIONS"
+    },
+    {
+     "id": "isi.lead",
+     "text": "WARNING–When using this product, basic precautions should always be followed, including the following:"
+    },
+    {
+     "id": "isi.a",
+     "text": "a) Read all the instructions before using the product."
+    },
+    {
+     "id": "isi.b",
+     "text": "b) To reduce the risk of injury, close supervision is necessary when the product is used near children."
+    },
+    {
+     "id": "isi.c",
+     "text": "c) Do not put fingers or hands into the product."
+    },
+    {
+     "id": "isi.d",
+     "text": "d) Use of an attachment not recommended or sold by power pack manufacturer may result in a risk of fire, electric shock, or injury to persons."
+    },
+    {
+     "id": "isi.e",
+     "text": "e) To reduce risk of damage to the electric plug and cord, pull the plug rather than the cord when disconnecting the power pack."
+    }
+   ]
+  },
+  {
+   "physical_page": 11,
+   "printed_page": "10",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "isi.f",
+     "text": "f) Do not use a battery pack or appliance that is damaged or modified. Damaged or modified batteries may exhibit unpredictable behavior resulting in fire, explosion or risk of injury."
+    },
+    {
+     "id": "isi.g",
+     "text": "g) Do not operate the power pack with a damaged cord or plug, or a damaged output cable."
+    },
+    {
+     "id": "isi.h1",
+     "text": "h) Do not disassemble the power pack, take it to a qualified service person when service or repair is required. Incorrect reassembly may result in a risk of fire or electric shock."
+    },
+    {
+     "id": "isi.i",
+     "text": "i) To reduce the risk of electric shock, unplug the power pack form the outlet before attempting any instructed servicing."
+    },
+    {
+     "id": "isi.j",
+     "text": "j) PERSONAL PRECAUTIONS"
+    },
+    {
+     "id": "isi.j1",
+     "text": "1)Have plenty of fresh water and soap nearby in case battery acid contacts skin,clothing, or eyes."
+    },
+    {
+     "id": "isi.j2",
+     "text": "2)Wear complete eye protection and clothing protection. Avoid touching eyes while working near battery."
+    },
+    {
+     "id": "isi.j3",
+     "text": "3)If battery acid contacts skin or clothing, wash immediately with soap and water. If acid enters eye, immediately flood eye with running cold water for at least 10 minutes and get medical attention immediately."
+    },
+    {
+     "id": "isi.j4",
+     "text": "4)NEVER smoke or allow a spark or flame in vicinity of battery or engine."
+    },
+    {
+     "id": "isi.j5",
+     "text": "5)Be extra cautious to reduce risk of dropping a metal tool onto battery. It might spark or short-circuit battery or other electrical part that may cause explosion."
+    },
+    {
+     "id": "isi.k",
+     "text": "k) When charging the internal battery, work in a well ventilated area and do not restrict ventilation in any way."
+    },
+    {
+     "id": "isi.l",
+     "text": "l) Under abusive conditions, liquid may be ejected from the battery; avoid contact. If contact accidentally occurs, flush with water. If liquid contacts eyes, additionally seek medical help. Liquid ejected from the battery may cause irritation or burns."
+    },
+    {
+     "id": "isi.m",
+     "text": "m) Do not expose a power pack to fire or excessive temperature. Exposure to fire or temperature above 130°C may cause explosion. The temperature of 130°C can be replaced by the temperature of 265°F."
+    },
+    {
+     "id": "isi.n",
+     "text": "n) Have servicing performed by a qualified repair person using only identical replacement parts. This will ensure that the safety of the product is maintained."
+    },
+    {
+     "id": "op.h",
+     "text": "SAVE THESE INSTRUCTIONS OPERATING INSTRUCTIONS"
+    },
+    {
+     "id": "op.1",
+     "text": "Use and store the unit only in a clean and dry environment. DO NOT use and store in dusty and wet environment."
+    },
+    {
+     "id": "op.2",
+     "text": "Check the unit prior to every use. DO NOT use the unit if it is damaged, broken."
+    },
+    {
+     "id": "op.3",
+     "text": "If rust, peculiar odors, overheating or other abnormal circumstances are observed, stop using the unit immediately and contact the dealer or our customer service center."
+    },
+    {
+     "id": "op.4",
+     "text": "Make sure that the unit is properly secured when transporting it in a motor vehicle."
+    },
+    {
+     "id": "op.5",
+     "text": "Only charge the Explorer 2000 Plus within a ambient temperature 0-45°C (32-113°F),discharge temperature is -10-45°C (14~113°F) and Storage temperature is 1 year: 0~40°C (32~104°F)."
+    },
+    {
+     "id": "op.6",
+     "text": "Switch the unit off immediately if it has accidentally fallen, was dropped or was exposed to vibrations."
+    },
+    {
+     "id": "op.7",
+     "text": "DO NOT use the unit if the power cord is damaged or broken."
+    },
+    {
+     "id": "op.8",
+     "text": "Keep the unit away from children. DO NOT let children use the power supply unit. Keep this product away from pets."
+    },
+    {
+     "id": "op.9",
+     "text": "DO NOT use the unit in an area or environment with high temperature."
+    },
+    {
+     "id": "op.10",
+     "text": "Should fluid from inside of the unit come in contact with your skin or clothing, wash the affected areas with tap water."
+    },
+    {
+     "id": "op.11",
+     "text": "In a storm, unplug the power cord from the socket."
+    },
+    {
+     "id": "op.12",
+     "text": "DO NOT place the unit on its side or upside down while in use or storage."
+    },
+    {
+     "id": "op.13",
+     "text": "DO NOT use accessories for other usage."
+    }
+   ]
+  },
+  {
+   "physical_page": 12,
+   "printed_page": "11",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "op.14",
+     "text": "Make sure that the device you are connecting is switched off before you connect it."
+    },
+    {
+     "id": "op.15",
+     "text": "DO NOT expose a power pack to fire or excessive temperature. Exposure to fire or temperature above 130°C may cause explosion."
+    },
+    {
+     "id": "op.16",
+     "text": "Solar charge times depend on weather conditions, place your solar panel where it will get as much direct sunlight as possible."
+    },
+    {
+     "id": "op.17",
+     "text": "DO NOT place the power pack on the floor, or at a height less than 457 mm (18 inches) above the floor, during use in a repair facility."
+    },
+    {
+     "id": "op.warning",
+     "text": "Warning : Do not remove the battery pack without permission,If you need to repair the battery pack, contact your local manufacturer as soon as possible",
+     "strong": [
+      "Warning"
+     ]
+    },
+    {
+     "id": "op.danger",
+     "text": "DANGER: This device is for indoor use only (e.g. RV/tent/off-grid cabin, etc.). Do not use outdoors under any circumstances (e.g. where exposed to rain or snow or use it in wet environments by the sea or waterways).",
+     "strong": [
+      "DANGER:"
+     ]
+    },
+    {
+     "id": "mv.h",
+     "text": "MOVING AND STORAGE INSTRUCTIONS"
+    },
+    {
+     "id": "mv.1",
+     "text": "DO NOT move the unit if it is recharging or in use."
+    },
+    {
+     "id": "mv.2",
+     "text": "DO NOT dispose the unit together with household waste."
+    },
+    {
+     "id": "mv.3",
+     "text": "DO NOT place the unit close to or in a fire or expose it to heat. Keep out of direct sunlight."
+    },
+    {
+     "id": "mv.4",
+     "text": "DO NOT store the unit in a bathroom or in an area exposed to rain or moisture."
+    },
+    {
+     "id": "mv.5",
+     "text": "DO NOT disassemble the power pack, take it to a qualified service person when service or repair is required. Incorrect reassembly may result in a risk of fire or electric shock."
+    },
+    {
+     "id": "mv.6",
+     "text": "DO NOT store the unit in an area or environment with high temperature."
+    },
+    {
+     "id": "mt.h",
+     "text": "USER MAINTENANCE INSTRUCTIONS"
+    },
+    {
+     "id": "mt.p",
+     "text": "When using it for the first time, please fully charge the device before use. If this product is stored for a long period of time (3 months - 6 months) with the power depleted, its performance will deteriorate and may even become unchargeable. If this device is stored for a long time, please check the power regularly and charge it to about 60% to 80%."
+    },
+    {
+     "id": "fcc.note",
+     "text": "NOTE: This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules. These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to radio communications. However, there is no guarantee that interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:"
+    },
+    {
+     "id": "fcc.l1",
+     "text": "Reorient or relocate the receiving antenna."
+    },
+    {
+     "id": "fcc.l2",
+     "text": "Increase the separation between the equipment and receiver."
+    },
+    {
+     "id": "fcc.l3",
+     "text": "Connect the equipment into an outlet on a circuit different from that to which the receiver is connected."
+    },
+    {
+     "id": "fcc.l4",
+     "text": "Consult the dealer or an experienced radio/TV technician for help."
+    }
+   ]
+  },
+  {
+   "physical_page": 13,
+   "printed_page": "12",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "war.h",
+     "text": "WARRANTY"
+    },
+    {
+     "id": "war.note",
+     "text": "Note: We only provide our warranty for the buyer who purchased on Amazon (Jackery Inc), Jackery website or local authorized dealers."
+    },
+    {
+     "id": "war.lim.h",
+     "text": "Limited Warranty"
+    },
+    {
+     "id": "war.lim1",
+     "text": "Jackery Inc. warrants to the original consumer purchaser that the Jackery product will be free from defects in workmanship and material under normal consumer use during the applicable warranty period identified in the 'Warranty Period' section below, subject to the exclusions set forth below."
+    },
+    {
+     "id": "war.lim2",
+     "text": "This warranty statement sets forth Jackery's total and exclusive warranty obligation. We will not assume, nor authorize any person to assume for us, any other liability in connection with the sale of our products."
+    },
+    {
+     "id": "war.per.h",
+     "text": "Warranty Period"
+    },
+    {
+     "id": "war.per1",
+     "text": "3 Years Standard Warranty: The standard warranty period for Jackery Explorer 2000 Plus is 36 months. In each case, the warranty period is measured starting on the date of purchase by the original consumer purchaser. The sales receipt from the first consumer purchase, or other reasonable documentary proof, is required in order to establish the start date of the warranty period."
+    },
+    {
+     "id": "war.per2",
+     "text": "2 Years Extended Warranty: To activate the Warranty Extension, you must register your product online or contact our customer service team at hello@jackery.com to extend the standard warranty runtime."
+    },
+    {
+     "id": "war.ex.h",
+     "text": "Exchange"
+    },
+    {
+     "id": "war.ex",
+     "text": "Jackery will replace (at Jackery's expense) any Jackery product that fails to operate during the applicable warranty period due to defect in workmanship or material. A replacement product assumes the remaining warranty of the original product."
+    },
+    {
+     "id": "war.orig.h",
+     "text": "Limited to Original Consumer Buyer"
+    },
+    {
+     "id": "war.orig",
+     "text": "The warranty on Jackery's product is limited to the original consumer purchaser and is not transferable to any subsequent owner."
+    },
+    {
+     "id": "war.excl.h",
+     "text": "Exclusions"
+    },
+    {
+     "id": "war.excl.lead",
+     "text": "Jackery's warranty does not apply to:"
+    },
+    {
+     "id": "war.excl1",
+     "text": "Misused, abused, modified, damaged by accident, or used for anything other than normal consumer use as authorized in Jackery's current product literature."
+    },
+    {
+     "id": "war.excl2",
+     "text": "Attempted repair by anyone other than an authorized facility."
+    },
+    {
+     "id": "war.excl3",
+     "text": "Any product purchased through an online auction house."
+    },
+    {
+     "id": "war.excl4",
+     "text": "Jackery's warranty does not apply to the battery cell unless the battery cell is fully charged by you within seven days after you purchase the product and at least once every 6 months thereafter."
+    },
+    {
+     "id": "app.dl",
+     "text": "Download the Jackery Mobile App"
+    }
+   ]
+  },
+  {
+   "physical_page": 14,
+   "printed_page": null,
+   "role": "print-back-cover",
+   "web": false,
+   "lines": [
+    {
+     "id": "back.h",
+     "text": "JACKERY INC."
+    },
+    {
+     "id": "back.addr",
+     "text": "48531 WARM SPRINGS BLVD, STE 408, FREMONT,CA 94539-7793"
+    },
+    {
+     "id": "back.contact",
+     "text": "Tel:1-888-502-2236(US) E-mail:hello@jackery.com Website:www.jackery.com"
+    }
+   ]
+  }
+ ]
+}

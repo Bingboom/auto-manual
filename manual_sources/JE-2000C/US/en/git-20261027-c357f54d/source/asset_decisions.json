@@ -1,0 +1,595 @@
+[
+ {
+  "slot": "certifications",
+  "searched": [
+   "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments",
+   "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native",
+   "manual_sources/JE-2000E/EU/nine-language",
+   "manual_sources/JE-2000F/EU/nine-language",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "certification logo row printed for this US model (FCC, BC, Quick Charge 3.0, WEEE); no shared panel",
+  "physical_page": 2,
+  "bbox": [
+   20,
+   433,
+   192,
+   472
+  ],
+  "final_path": "assets/certifications.png",
+  "sha256": "6efbaf4497d1c644f02890dad905273cce9c85f7962bab9620506df792cb2ef6",
+  "background": "retain complete panel, frames, leader lines and captions; no body/table screenshot"
+ },
+ {
+  "slot": "inbox-unit",
+  "searched": [
+   "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments",
+   "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native",
+   "manual_sources/JE-2000E/EU/nine-language",
+   "manual_sources/JE-2000F/EU/nine-language",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JE-2000C package items as printed; EU/JP 2000 Plus in-box art shows other cables and plugs",
+  "physical_page": 3,
+  "bbox": [
+   22,
+   80,
+   85,
+   135
+  ],
+  "final_path": "assets/inbox-unit.png",
+  "sha256": "4806dd8c6c9ebc35c86b9278ceccba3803838636977939c53d2d387d62871452",
+  "background": "retain complete panel, frames, leader lines and captions; no body/table screenshot"
+ },
+ {
+  "slot": "inbox-car-cable",
+  "searched": [
+   "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments",
+   "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native",
+   "manual_sources/JE-2000E/EU/nine-language",
+   "manual_sources/JE-2000F/EU/nine-language",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JE-2000C package items as printed; EU/JP 2000 Plus in-box art shows other cables and plugs",
+  "physical_page": 3,
+  "bbox": [
+   91,
+   80,
+   127,
+   135
+  ],
+  "final_path": "assets/inbox-car-cable.png",
+  "sha256": "d497cf0345a28d848cb0558c71f084addacf187a1620b96d84c87938cf66f3cd",
+  "background": "retain complete panel, frames, leader lines and captions; no body/table screenshot"
+ },
+ {
+  "slot": "inbox-ac-cable",
+  "searched": [
+   "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments",
+   "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native",
+   "manual_sources/JE-2000E/EU/nine-language",
+   "manual_sources/JE-2000F/EU/nine-language",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JE-2000C package items as printed; EU/JP 2000 Plus in-box art shows other cables and plugs",
+  "physical_page": 3,
+  "bbox": [
+   145,
+   80,
+   179,
+   135
+  ],
+  "final_path": "assets/inbox-ac-cable.png",
+  "sha256": "517b6c94a1b4a83ac40338dcbde14a31910a1ebbdb96d40063afd597c6e25ab3",
+  "background": "retain complete panel, frames, leader lines and captions; no body/table screenshot"
+ },
+ {
+  "slot": "inbox-adaptor",
+  "searched": [
+   "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments",
+   "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native",
+   "manual_sources/JE-2000E/EU/nine-language",
+   "manual_sources/JE-2000F/EU/nine-language",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JE-2000C package items as printed; EU/JP 2000 Plus in-box art shows other cables and plugs",
+  "physical_page": 3,
+  "bbox": [
+   204,
+   80,
+   233,
+   135
+  ],
+  "final_path": "assets/inbox-adaptor.png",
+  "sha256": "029e451239c48828a4a1e326da48e09402514ac2cd25ffc2692cae9a000e9d3f",
+  "background": "retain complete panel, frames, leader lines and captions; no body/table screenshot"
+ },
+ {
+  "slot": "inbox-manual",
+  "searched": [
+   "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments",
+   "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native",
+   "manual_sources/JE-2000E/EU/nine-language",
+   "manual_sources/JE-2000F/EU/nine-language",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JE-2000C package items as printed; EU/JP 2000 Plus in-box art shows other cables and plugs",
+  "physical_page": 3,
+  "bbox": [
+   251,
+   80,
+   295,
+   135
+  ],
+  "final_path": "assets/inbox-manual.png",
+  "sha256": "e0b3c1b99a2d8afade7afeca50af4dc9069c6a1ba002b1734e4d590bfc23d6e6",
+  "background": "retain complete panel, frames, leader lines and captions; no body/table screenshot"
+ },
+ {
+  "slot": "inbox-bag",
+  "searched": [
+   "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments",
+   "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native",
+   "manual_sources/JE-2000E/EU/nine-language",
+   "manual_sources/JE-2000F/EU/nine-language",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JE-2000C package items as printed; EU/JP 2000 Plus in-box art shows other cables and plugs",
+  "physical_page": 3,
+  "bbox": [
+   308,
+   80,
+   353,
+   135
+  ],
+  "final_path": "assets/inbox-bag.png",
+  "sha256": "c1232e5a7ff3a6b8834d94bed7e209742e1ba73a1e6bc7df099d436d8063f146",
+  "background": "retain complete panel, frames, leader lines and captions; no body/table screenshot"
+ },
+ {
+  "slot": "overview-front",
+  "searched": [
+   "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments",
+   "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native",
+   "manual_sources/JE-2000E/EU/nine-language",
+   "manual_sources/JE-2000F/EU/nine-language",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "US chassis (four NEMA 5-20 outlets and a TT-30 outlet, US port labels) differs from EU/JP 2000 Plus art",
+  "physical_page": 3,
+  "bbox": [
+   21,
+   203,
+   348,
+   335.45
+  ],
+  "final_path": "assets/overview-front.png",
+  "sha256": "5ade546e23bfc5a7db143bc4d16607121a67f2a3dbce303653529f2450cff24b",
+  "background": "retain complete panel, frames, leader lines and captions; no body/table screenshot"
+ },
+ {
+  "slot": "overview-rear",
+  "searched": [
+   "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments",
+   "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native",
+   "manual_sources/JE-2000E/EU/nine-language",
+   "manual_sources/JE-2000F/EU/nine-language",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "US chassis (four NEMA 5-20 outlets and a TT-30 outlet, US port labels) differs from EU/JP 2000 Plus art",
+  "physical_page": 3,
+  "bbox": [
+   21,
+   335.45,
+   348,
+   502
+  ],
+  "final_path": "assets/overview-rear.png",
+  "sha256": "c68caf1a45ca77f3e8e3ad5e2c0e5a36a52181c8eeda09c6cc96b0f75d82e4a8",
+  "background": "retain complete panel, frames, leader lines and captions; no body/table screenshot"
+ },
+ {
+  "slot": "lcd-map",
+  "searched": [
+   "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments",
+   "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native",
+   "manual_sources/JE-2000E/EU/nine-language",
+   "manual_sources/JE-2000F/EU/nine-language",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "21-position LCD map with this model's icon set and leader numbers",
+  "physical_page": 4,
+  "bbox": [
+   46,
+   44,
+   328,
+   191
+  ],
+  "final_path": "assets/lcd-map.png",
+  "sha256": "e4970a9bb3400db9e2ef60e874e76b8a10cec81d88e513dc82a9166366e64e07",
+  "background": "retain complete panel, frames, leader lines and captions; no body/table screenshot"
+ },
+ {
+  "slot": "wall-charge",
+  "searched": [
+   "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments",
+   "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native",
+   "manual_sources/JE-2000E/EU/nine-language",
+   "manual_sources/JE-2000F/EU/nine-language",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "US unit, SolarSaga connection captions and frames as printed for this model",
+  "physical_page": 7,
+  "bbox": [
+   186,
+   93,
+   357,
+   204
+  ],
+  "final_path": "assets/wall-charge.png",
+  "sha256": "d9b73768f5921988ca1401255d3dfa6ecb4959c4c891c56bc2d6daa53e008ef7",
+  "background": "retain complete panel, frames, leader lines and captions; no body/table screenshot"
+ },
+ {
+  "slot": "solar-3",
+  "searched": [
+   "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments",
+   "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native",
+   "manual_sources/JE-2000E/EU/nine-language",
+   "manual_sources/JE-2000F/EU/nine-language",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "US unit, SolarSaga connection captions and frames as printed for this model",
+  "physical_page": 7,
+  "bbox": [
+   21,
+   309,
+   352,
+   415.6
+  ],
+  "final_path": "assets/solar-3.png",
+  "sha256": "5b068f11ac3e2008426194a5a2fbfe4e942563084888d62e7ebfe80bb264ec8f",
+  "background": "retain complete panel, frames, leader lines and captions; no body/table screenshot"
+ },
+ {
+  "slot": "solar-2-2",
+  "searched": [
+   "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments",
+   "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native",
+   "manual_sources/JE-2000E/EU/nine-language",
+   "manual_sources/JE-2000F/EU/nine-language",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "US unit, SolarSaga connection captions and frames as printed for this model",
+  "physical_page": 7,
+  "bbox": [
+   21,
+   415.6,
+   352,
+   499
+  ],
+  "final_path": "assets/solar-2-2.png",
+  "sha256": "119d67c2e273f5d5d85622a40379cd0919dce290d0c7fb34221e9fd9227e2ef0",
+  "background": "retain complete panel, frames, leader lines and captions; no body/table screenshot"
+ },
+ {
+  "slot": "solar-3-3",
+  "searched": [
+   "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments",
+   "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native",
+   "manual_sources/JE-2000E/EU/nine-language",
+   "manual_sources/JE-2000F/EU/nine-language",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "US unit, SolarSaga connection captions and frames as printed for this model",
+  "physical_page": 8,
+  "bbox": [
+   19,
+   21,
+   352,
+   128
+  ],
+  "final_path": "assets/solar-3-3.png",
+  "sha256": "4a8adf9f95873b2848d3a3c9a7c1f404e9afe3168e83c54c68f01c85a9329f12",
+  "background": "retain complete panel, frames, leader lines and captions; no body/table screenshot"
+ },
+ {
+  "slot": "solar-prohibited",
+  "searched": [
+   "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments",
+   "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native",
+   "manual_sources/JE-2000E/EU/nine-language",
+   "manual_sources/JE-2000F/EU/nine-language",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "US unit, SolarSaga connection captions and frames as printed for this model",
+  "physical_page": 8,
+  "bbox": [
+   21,
+   213,
+   348,
+   500
+  ],
+  "final_path": "assets/solar-prohibited.png",
+  "sha256": "723cdaa3ed90ccd35944bddd6f0f6317ac0581ac387d60a2237d7d6747d6434d",
+  "background": "retain complete panel, frames, leader lines and captions; no body/table screenshot"
+ },
+ {
+  "slot": "solar-80",
+  "searched": [
+   "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments",
+   "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native",
+   "manual_sources/JE-2000E/EU/nine-language",
+   "manual_sources/JE-2000F/EU/nine-language",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "US unit, SolarSaga connection captions and frames as printed for this model",
+  "physical_page": 9,
+  "bbox": [
+   22,
+   143,
+   347,
+   261
+  ],
+  "final_path": "assets/solar-80.png",
+  "sha256": "ba97f8a8f0a272c692da4d9065ad57afc8e4f7eeb922a530791d0743c8fa654c",
+  "background": "retain complete panel, frames, leader lines and captions; no body/table screenshot"
+ },
+ {
+  "slot": "solar-adaptor",
+  "searched": [
+   "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments",
+   "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native",
+   "manual_sources/JE-2000E/EU/nine-language",
+   "manual_sources/JE-2000F/EU/nine-language",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "US unit, SolarSaga connection captions and frames as printed for this model",
+  "physical_page": 9,
+  "bbox": [
+   22,
+   364,
+   347,
+   502
+  ],
+  "final_path": "assets/solar-adaptor.png",
+  "sha256": "9259c89eccd599e42cd43f4563518c7d958ad068868351b68b1b92d2536b8d15",
+  "background": "retain complete panel, frames, leader lines and captions; no body/table screenshot"
+ },
+ {
+  "slot": "car-charge",
+  "searched": [
+   "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments",
+   "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native",
+   "manual_sources/JE-2000E/EU/nine-language",
+   "manual_sources/JE-2000F/EU/nine-language",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "US unit, SolarSaga connection captions and frames as printed for this model",
+  "physical_page": 10,
+  "bbox": [
+   178,
+   37,
+   350,
+   134
+  ],
+  "final_path": "assets/car-charge.png",
+  "sha256": "b4f1c235cef565618991254f4923ba14467b761f78bc9f1f837e27f161999147",
+  "background": "retain complete panel, frames, leader lines and captions; no body/table screenshot"
+ },
+ {
+  "slot": "car-solar-prohibited",
+  "searched": [
+   "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments",
+   "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native",
+   "manual_sources/JE-2000E/EU/nine-language",
+   "manual_sources/JE-2000F/EU/nine-language",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "US unit, SolarSaga connection captions and frames as printed for this model",
+  "physical_page": 10,
+  "bbox": [
+   21,
+   220,
+   325,
+   307
+  ],
+  "final_path": "assets/car-solar-prohibited.png",
+  "sha256": "140925c0cf9284d503c7ac0186585f1d952ffa193c808db9513957e5d382e6c2",
+  "background": "retain complete panel, frames, leader lines and captions; no body/table screenshot"
+ },
+ {
+  "slot": "app-store",
+  "searched": [
+   "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments",
+   "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native",
+   "manual_sources/JE-2000E/EU/nine-language",
+   "manual_sources/JE-2000F/EU/nine-language",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "English App Store / Google Play badge pair; repository crops are Japanese or localized EU badges",
+  "physical_page": 13,
+  "bbox": [
+   21,
+   460,
+   169,
+   483
+  ],
+  "final_path": "assets/app-store.png",
+  "sha256": "297986042aaee7768f06f601bdd503ff3648d9f299af7b1bc92c56b89608bf75",
+  "background": "retain complete panel, frames, leader lines and captions; no body/table screenshot"
+ },
+ {
+  "slot": "lcd-battery-power",
+  "searched": [
+   "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments",
+   "manual_sources/*/*/*/*/assets/shared-lcd",
+   "docs/renderers/web/assets/shared/lcd"
+  ],
+  "decision": "native transparent render of the source glyph",
+  "reason": "no shared LCD glyph matches this icon's shape and ink (closest mean difference >= 0.13); the shared native_symbol_svg selector cannot map this PDF's page SVG, so an 8x alpha render of the glyph rectangle is used",
+  "physical_page": 4,
+  "bbox": [
+   22.89,
+   363.06,
+   45.54,
+   385.7
+  ],
+  "final_path": "assets/lcd-battery-power.png",
+  "sha256": "4765f1894521b13d4b69dbbd4ddd7fb80e6d50395dbe0db815371672667d9f93",
+  "background": "transparent; no page or cell backdrop"
+ },
+ {
+  "slot": "lcd-low-battery",
+  "searched": [
+   "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments",
+   "manual_sources/*/*/*/*/assets/shared-lcd",
+   "docs/renderers/web/assets/shared/lcd"
+  ],
+  "decision": "native transparent render of the source glyph",
+  "reason": "no shared LCD glyph matches this icon's shape and ink (closest mean difference >= 0.13); the shared native_symbol_svg selector cannot map this PDF's page SVG, so an 8x alpha render of the glyph rectangle is used",
+  "physical_page": 4,
+  "bbox": [
+   23.11,
+   405.34,
+   45.32,
+   417.86
+  ],
+  "final_path": "assets/lcd-low-battery.png",
+  "sha256": "4ecace7dc932a209e7f8afc77052070544989d080edf14109756dd381e062c57",
+  "background": "transparent; no page or cell backdrop"
+ },
+ {
+  "slot": "lcd-energy-saving",
+  "searched": [
+   "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments",
+   "manual_sources/*/*/*/*/assets/shared-lcd",
+   "docs/renderers/web/assets/shared/lcd"
+  ],
+  "decision": "native transparent render of the source glyph",
+  "reason": "no shared LCD glyph matches this icon's shape and ink (closest mean difference >= 0.13); the shared native_symbol_svg selector cannot map this PDF's page SVG, so an 8x alpha render of the glyph rectangle is used",
+  "physical_page": 4,
+  "bbox": [
+   22.0,
+   443.55,
+   46.44,
+   461.29
+  ],
+  "final_path": "assets/lcd-energy-saving.png",
+  "sha256": "30c3f3ec6ddf33cbd162636edf4be86d683a57d7546a3d977ef476e83fe169b5",
+  "background": "transparent; no page or cell backdrop"
+ },
+ {
+  "slot": "lcd-fault-code",
+  "searched": [
+   "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments",
+   "manual_sources/*/*/*/*/assets/shared-lcd",
+   "docs/renderers/web/assets/shared/lcd"
+  ],
+  "decision": "native transparent render of the source glyph",
+  "reason": "no shared LCD glyph matches this icon's shape and ink (closest mean difference >= 0.13); the shared native_symbol_svg selector cannot map this PDF's page SVG, so an 8x alpha render of the glyph rectangle is used",
+  "physical_page": 5,
+  "bbox": [
+   22.3,
+   167.61,
+   47.97,
+   191.34
+  ],
+  "final_path": "assets/lcd-fault-code.png",
+  "sha256": "6e2aae1004349a65c9a9f1a755155a3e9364d8f7823c0058f60938fc56a48a1e",
+  "background": "transparent; no page or cell backdrop"
+ },
+ {
+  "slot": "lcd-high-temperature",
+  "searched": [
+   "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments",
+   "manual_sources/*/*/*/*/assets/shared-lcd",
+   "docs/renderers/web/assets/shared/lcd"
+  ],
+  "decision": "native transparent render of the source glyph",
+  "reason": "no shared LCD glyph matches this icon's shape and ink (closest mean difference >= 0.13); the shared native_symbol_svg selector cannot map this PDF's page SVG, so an 8x alpha render of the glyph rectangle is used",
+  "physical_page": 5,
+  "bbox": [
+   21.61,
+   234.34,
+   47.21,
+   258.02
+  ],
+  "final_path": "assets/lcd-high-temperature.png",
+  "sha256": "5319b4108e4fd9234149cfe5d4d9472d4194e79d94ab00c2238c29418c1c10d3",
+  "background": "transparent; no page or cell backdrop"
+ },
+ {
+  "slot": "lcd-low-temperature",
+  "searched": [
+   "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments",
+   "manual_sources/*/*/*/*/assets/shared-lcd",
+   "docs/renderers/web/assets/shared/lcd"
+  ],
+  "decision": "native transparent render of the source glyph",
+  "reason": "no shared LCD glyph matches this icon's shape and ink (closest mean difference >= 0.13); the shared native_symbol_svg selector cannot map this PDF's page SVG, so an 8x alpha render of the glyph rectangle is used",
+  "physical_page": 5,
+  "bbox": [
+   21.61,
+   263.04,
+   47.21,
+   286.72
+  ],
+  "final_path": "assets/lcd-low-temperature.png",
+  "sha256": "fbcd63d36e6f004f2d272c497fc625c7bf2b0844a591eb6ecf6826a3d9abdf0b",
+  "background": "transparent; no page or cell backdrop"
+ },
+ {
+  "slot": "lcd-ac-expansion",
+  "searched": [
+   "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments",
+   "manual_sources/*/*/*/*/assets/shared-lcd",
+   "docs/renderers/web/assets/shared/lcd"
+  ],
+  "decision": "native transparent render of the source glyph",
+  "reason": "no shared LCD glyph matches this icon's shape and ink (closest mean difference >= 0.13); the shared native_symbol_svg selector cannot map this PDF's page SVG, so an 8x alpha render of the glyph rectangle is used",
+  "physical_page": 5,
+  "bbox": [
+   20.18,
+   297.28,
+   50.75,
+   318.38
+  ],
+  "final_path": "assets/lcd-ac-expansion.png",
+  "sha256": "402e40d7687c2ad84665c9b9ecbb0cbe9a0ef838223f4f7ac09b27105bf9ba86",
+  "background": "transparent; no page or cell backdrop"
+ },
+ {
+  "slot": "fcc-mark",
+  "searched": [
+   "docs/renderers/web/assets/shared/symbols/manifest.json"
+  ],
+  "decision": "reuse shared file byte-identically",
+  "reason": "not applicable (reuse); same nested-C FCC glyph",
+  "from": "docs/renderers/web/assets/shared/symbols/native-v1/fcc_mark.svg",
+  "shared_key": "fcc/nested-c-native-dark",
+  "final_path": "assets/fcc-mark.svg",
+  "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe",
+  "background": "transparent SVG"
+ }
+]
