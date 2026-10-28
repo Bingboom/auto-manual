@@ -1,0 +1,53 @@
+{
+  "schema_version": "jhp2000a-us-candidate-validation/v1",
+  "source_commit": "uncommitted candidate on feat/web-jhp2000a-us-en (base origin/main 22a06c0)",
+  "date": "2026-10-28",
+  "environment": "Python 3.13 with requirements.lock (oss2/aliyun/crcmod skipped: wheels not buildable), Pandoc, ruff 0.17.3, Tesseract 5.3.4, Playwright Chromium",
+  "checks": [
+    {
+      "command": "python -m ruff check manual_sources/JHP-2000A tests/test_jhp2000a_us_web.py",
+      "result": "pass",
+      "log": "ruff.log"
+    },
+    {
+      "command": "python <package>/rebuild.py --output <fresh dir>; copy to web/en",
+      "result": "pass: shared-style gate with zero declared plain tables; symbol admission 11/11 (max mean channel error 0.0163)"
+    },
+    {
+      "command": "python -m unittest tests.test_jhp2000a_us_web",
+      "result": "pass: 9 tests (cold replay byte-identical)",
+      "log": "target-tests.log"
+    },
+    {
+      "command": "python -m sphinx -n -W --keep-going -b html web/en <html>",
+      "result": "pass",
+      "log": "strict-sphinx.log"
+    },
+    {
+      "command": "python -m tools.check_maintainability_guardrails",
+      "result": "only finding: package not yet registered in data/frozen_package_registry.json (registered with the PR)",
+      "log": "maintainability.log"
+    },
+    {
+      "command": "browser 1280 / 390 full page (Playwright Chromium, stitched 6000 px clips)",
+      "result": "72 images, 0 broken; document scrollWidth == viewport at both widths",
+      "files": [
+        "browser-1280.png",
+        "browser-390.png",
+        "browser-1280.json",
+        "browser-390.json"
+      ]
+    },
+    {
+      "command": "transcription vs PDF text layer, both directions; vs Tesseract 5 OCR of 300 dpi renders",
+      "result": "every Web line found in the page text layer except text-layer artefacts (subscript OC, registered marks, the [+] App glyph, cross-column FCC paragraph); OCR disagreements re-read on renders"
+    }
+  ],
+  "rebuild_gates": [
+    "input SHA-256 inventory",
+    "prepared-document shared-style admission with zero declared plain tables",
+    "symbol asset admission 11/11 against existing shared variants",
+    "no approval.json; IR publication_eligible false"
+  ],
+  "not_validated": "operator layout acceptance, full python -m unittest, frozen-package registration, seal, RTD deployment"
+}
