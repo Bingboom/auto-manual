@@ -163,6 +163,10 @@
         24
       ],
       "change": "Operator ruling 2026-10-27 (「按共用图库补上，授权合入」): the Web table carries the battery/accumulator disposal row that this release omits, with the shared library icon battery-weee/crossed-bin-no-bar (native-v1/symbol_battery_weee.png) and this snapshot's weee2 EN/FR copy. The LaTeX/print table keeps the released PDF's seven symbols."
+    },
+    {
+      "scope": "DE/ES/IT Web symbol table (review source)",
+      "change": "Operator ruling 2026-10-27 (「de/es/it 也换成共用图库的电池图标」): the weee2 row of phase2/symbols_blocks.csv drops its Figure attachment and sets image_path to the shared library icon battery-weee/crossed-bin-no-bar (native-v1/symbol_battery_weee.png), the file the EN/FR Web tables use. DE/ES/IT build with --source review, which regenerates their symbol pages from this table, so their Web battery row shows the shared icon instead of the 81x69 attachment 12_weee2_EccQbCmImosxoPxWSuOcPinpn9e.png (same glyph). EN/FR build review-asis and are unaffected. The attachment stays in the snapshot."
     }
   ],
   "files": [
@@ -728,8 +732,8 @@
     },
     {
       "path": "phase2/symbols_blocks.csv",
-      "size": 23476,
-      "sha256": "8ed8cc9ce6e7d33b6d80cca8e8dec9ec1fb50c8c66e17f3a2e938cef8ddb5127"
+      "size": 23399,
+      "sha256": "3494a63636fa124457c18541b0e0cbaee10789a4e6ea449bcdbad7dd10ea93b9"
     },
     {
       "path": "phase2/troubleshooting_blocks.csv",
