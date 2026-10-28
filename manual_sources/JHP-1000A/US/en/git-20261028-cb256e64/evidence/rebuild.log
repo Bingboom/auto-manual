@@ -1,0 +1,4 @@
+$ python <package>/rebuild.py --output <fresh dir>
+  File "/home/user/auto-manual/.claude/worktrees/agent-a8efabd21c425ef21/tools/web/symbol_asset_admission.py", line 260, in require_symbol_asset_admission
+    raise RuntimeError('symbol asset admission failed: ' + str(exc)) from exc
+RuntimeError: symbol asset admission failed: symbol glyph/background differs from authoritative PDF

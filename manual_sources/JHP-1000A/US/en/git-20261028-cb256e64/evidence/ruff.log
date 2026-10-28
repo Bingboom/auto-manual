@@ -1,0 +1,2 @@
+$ python -m ruff check <package scripts> tests/test_jhp1000a_us_web.py
+All checks passed!
