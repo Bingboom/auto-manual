@@ -21,6 +21,7 @@ from tools import (
     check_facade_patch_ratchet,
     check_language_literal_ratchet,
     check_top_level_module_ratchet,
+    next_registry_id,
 )
 from tools.utils.path_utils import PathSegments, renderer_contracts_of
 from tools.web import frozen_package_registry
@@ -465,6 +466,10 @@ def main(argv: list[str] | None = None) -> int:
     frozen_packages = frozen_package_registry.check_repository(args.repo_root.resolve())
     if frozen_packages.exit_code:
         return frozen_packages.exit_code
+
+    registry_ids = next_registry_id.check_unique(args.repo_root.resolve())
+    if registry_ids:
+        return registry_ids
 
     print(
         f"[maintainability] Guardrails OK for {len(HOTSPOT_LINE_THRESHOLDS)} hotspot files."

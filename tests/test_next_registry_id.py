@@ -52,9 +52,12 @@ class FakeRun:
     missing path fails the way ``git show`` does.
     """
 
-    def __init__(self, *, main: str | dict[str, str], prs: dict[int, tuple[list[str], str]]):
+    def __init__(self, *, main: str | dict[str, str], prs: dict[int, tuple[list[str], str]],
+                 gh_works: bool = True, origin: str = "https://github.com/Bingboom/auto-manual.git"):
         self.main = main
         self.prs = prs
+        self.gh_works = gh_works
+        self.origin = origin
         self.calls: list[list[str]] = []
 
     def __call__(self, args: list[str]) -> str:
@@ -66,8 +69,12 @@ class FakeRun:
             if path not in self.main:
                 raise subprocess.CalledProcessError(128, args)
             return self.main[path]
+        if args[:1] == ["git"] and "get-url" in args:
+            return self.origin + "\n"
         if args[:1] == ["git"]:
             return ""
+        if args[:1] == ["gh"] and not self.gh_works:
+            raise subprocess.CalledProcessError(1, args)
         if args[:3] == ["gh", "pr", "list"]:
             return json.dumps([{"number": n, "files": [{"path": p} for p in files]}
                                for n, (files, _) in self.prs.items()])
@@ -157,6 +164,111 @@ class ReportTests(unittest.TestCase):
                                             diff('| <a id="rev-46"></a>REV-46 | x | — | x | planned | a |'))})
         nxt, why = nid.report("rev", run=run, root=self.root, fetch=False)
         self.assertEqual((nxt, why), ("REV-47", "main has up to REV-45; open PRs reserve REV-46 (#9)"))
+
+
+class FakeApi:
+    """``http(url)`` for the GitHub REST endpoints the fallback reads."""
+
+    def __init__(self, prs: dict[int, list[dict]], raw: dict[str, str] | None = None):
+        self.prs = prs
+        self.raw = raw or {}
+        self.urls: list[str] = []
+
+    def __call__(self, url: str) -> str:
+        self.urls.append(url)
+        if url in self.raw:
+            return self.raw[url]
+        base = f"{nid.GITHUB_API}/repos/Bingboom/auto-manual/pulls"
+        if url.startswith(f"{base}?state=open"):
+            return json.dumps([{"number": n} for n in self.prs] if "page=1" in url else [])
+        number = int(url[len(base) + 1:].split("/", 1)[0])
+        return json.dumps(self.prs[number] if "page=1" in url else [])
+
+
+class ApiFallbackTests(unittest.TestCase):
+    def setUp(self):
+        temp = TemporaryDirectory()
+        self.addCleanup(temp.cleanup)
+        self.root = Path(temp.name)
+
+    def test_open_prs_come_from_the_api_when_gh_cannot_run(self):
+        ma = nid.TABLES["ma"]
+        raw_url = "https://github.com/Bingboom/auto-manual/raw/abc/code-as-doc/dev/merge_authorizations.md"
+        api = FakeApi({
+            1634: [{"filename": ma.path, "patch": "@@ -1 +1,2 @@\n+| MA-171 | new | g | e | 生效 |\n | MA-170 | x |"}],
+            1635: [{"filename": ma.path, "raw_url": raw_url}],  # no patch: GitHub left out a large diff
+            1636: [{"filename": "tools/other.py", "patch": "+| MA-999 | not the registry |"}],
+            1637: [{"filename": ma.archive, "patch": "+| MA-169 | x | y | z | 已失效 |"}],
+        }, raw={raw_url: MAIN_REGISTRY.replace("| MA-170 |", "| MA-172 | big | g | e | 生效 |\n| MA-170 |")})
+        run = FakeRun(main={ma.path: MAIN_REGISTRY}, prs={}, gh_works=False,
+                      origin="http://local_proxy@127.0.0.1:41241/git/Bingboom/auto-manual")
+        nxt, why = nid.report("ma", run=run, root=self.root, fetch=False, http=api)
+        self.assertEqual(nxt, "MA-173")
+        self.assertEqual(why, "main has up to MA-170; open PRs reserve MA-171 (#1634), MA-172 (#1635); "
+                              "open PRs read from the GitHub API (gh unavailable)")
+
+    def test_pages_follow_until_a_short_page(self):
+        api_pages = {1: [{"n": i} for i in range(100)], 2: [{"n": 100}]}
+        seen: list[str] = []
+
+        def http(url: str) -> str:
+            seen.append(url)
+            return json.dumps(api_pages.get(int(url.rsplit("page=", 1)[1]), []))
+        self.assertEqual(len(nid._pages("https://api.example/items?state=open", http)), 101)
+        self.assertEqual(seen, ["https://api.example/items?state=open&per_page=100&page=1",
+                                "https://api.example/items?state=open&per_page=100&page=2"])
+
+    def test_slug_reads_https_ssh_and_proxied_origins(self):
+        for origin in ("https://github.com/Bingboom/auto-manual.git", "git@github.com:Bingboom/auto-manual.git",
+                       "http://local_proxy@127.0.0.1:41241/git/Bingboom/auto-manual/"):
+            run = FakeRun(main="", prs={}, origin=origin)
+            self.assertEqual(nid.github_slug(run=run, root=self.root), "Bingboom/auto-manual", origin)
+        with self.assertRaises(ValueError):
+            nid.github_slug(run=FakeRun(main="", prs={}, origin="nowhere"), root=self.root)
+
+
+class UniqueTests(unittest.TestCase):
+    def setUp(self):
+        temp = TemporaryDirectory()
+        self.addCleanup(temp.cleanup)
+        self.root = Path(temp.name)
+        ma = nid.TABLES["ma"]
+        (self.root / ma.path).parent.mkdir(parents=True)
+        (self.root / ma.path).write_text(MAIN_REGISTRY, encoding="utf-8")
+        (self.root / ma.archive).write_text(ARCHIVE, encoding="utf-8")
+        (self.root / nid.TABLES["rev"].path).write_text(LEDGER, encoding="utf-8")
+
+    def check(self) -> tuple[int, list[str]]:
+        lines: list[str] = []
+        return nid.check_unique(self.root, printer=lines.append), lines
+
+    def test_unique_numbers_pass(self):
+        self.assertEqual(self.check(), (0, ["[registry-ids] MA and REV numbers are unique"]))
+
+    def test_a_number_taken_by_two_rows_fails_across_registry_and_archive(self):
+        ma = nid.TABLES["ma"]
+        (self.root / ma.path).write_text(MAIN_REGISTRY.replace("| MA-170 |", "| MA-180 | mine | g | e | 生效 |\n| MA-170 |"),
+                                         encoding="utf-8")
+        code, lines = self.check()
+        self.assertEqual(code, 1)
+        self.assertEqual(lines[0], "[registry-ids] MA-180 is used by 2 rows")
+        self.assertIn("python -m tools.next_registry_id ma|rev", lines[1])
+
+    def test_rev_numbers_must_be_unique_too(self):
+        rev = self.root / nid.TABLES["rev"].path
+        rev.write_text(LEDGER + '| <a id="rev-45"></a>REV-45 | again | — | x | planned | a |\n', encoding="utf-8")
+        self.assertEqual(nid.duplicates(self.root), [("REV-45", 2)])
+
+    def test_historical_pairs_are_allowed_but_not_a_third_row(self):
+        ma = nid.TABLES["ma"]
+        pair = "| MA-067 | first | g | e | 已失效 |\n| MA-067 | second | g | e | 已失效 |\n"
+        (self.root / ma.archive).write_text(ARCHIVE + pair, encoding="utf-8")
+        self.assertEqual(nid.duplicates(self.root), [])
+        (self.root / ma.archive).write_text(ARCHIVE + pair + "| MA-067 | third | g | e | 生效 |\n", encoding="utf-8")
+        self.assertEqual(nid.duplicates(self.root), [("MA-067", 3)])
+
+    def test_the_checked_in_tables_have_no_new_duplicates(self):
+        self.assertEqual(nid.duplicates(Path(nid.__file__).resolve().parents[1]), [])
 
 
 class CliTests(unittest.TestCase):
