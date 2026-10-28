@@ -56,6 +56,33 @@ class NativeAxisClosureTests(unittest.TestCase):
                              [fill, stroke])
             self.assertEqual(next(selected.iter(SVG + 'g')).get('opacity'), '.7')
 
+    def test_subpath_z_matches_explicit_line_back_to_its_start(self):
+        import xml.etree.ElementTree as ET
+        from types import SimpleNamespace
+        from tools.asset_pipeline.native_svg import native_art_svg, SVG
+
+        # Single-artboard exports close an inner fill subpath with Z and its
+        # stroke twin with an explicit line to the subpath start.
+        fill = 'M0 0L10 0L10 10ZM20 20L30 20L30 30'
+        stroke = 'M0 0L10 0L10 10L0 0M20 20L30 20L30 30'
+        raw = (f'<svg xmlns="http://www.w3.org/2000/svg">'
+               f'<path d="{fill}" fill="#aaa"/>'
+               f'<path d="{stroke}" fill="none" stroke="#222"/></svg>')
+        page = SimpleNamespace(rect=fitz.Rect(0, 0, 100, 100),
+                               get_drawings=lambda: [{'type': 'fs'}],
+                               get_svg_image=lambda **kwargs: raw)
+        selected = ET.fromstring(native_art_svg(page, [0], [0, 0, 40, 40]))
+        self.assertEqual([p.get('d') for p in selected.iter(SVG + 'path')], [fill, stroke])
+
+        # A line to any other point is still a different path.
+        wrong = stroke.replace('L0 0M', 'L5 0M')
+        raw = raw.replace(stroke, wrong)
+        page = SimpleNamespace(rect=fitz.Rect(0, 0, 100, 100),
+                               get_drawings=lambda: [{'type': 'fs'}],
+                               get_svg_image=lambda **kwargs: raw)
+        with self.assertRaisesRegex(ValueError, 'fill/stroke SVG mapping'):
+            native_art_svg(page, [0], [0, 0, 40, 40])
+
     def test_nonclosing_axis_segment_is_rejected(self):
         from types import SimpleNamespace
         from tools.asset_pipeline.native_svg import native_art_svg

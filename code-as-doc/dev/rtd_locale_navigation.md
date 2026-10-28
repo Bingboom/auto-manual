@@ -60,6 +60,6 @@ the active language label (for example, `English` or `Français`). Other introdu
 paragraphs, later occurrences and legacy mixed-language pages are preserved. This
 is a render-time presentation change; frozen publication sources remain unchanged.
 
-The portal sets the shared Sphinx site title to `Manual Center`, including the
+The portal sets the shared Sphinx site title to `说明书资料库`, including the
 mobile header and desktop sidebar. Individual manual browser titles retain
 their product, market and language metadata.

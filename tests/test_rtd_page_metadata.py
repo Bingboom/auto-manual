@@ -86,7 +86,10 @@ class RtdPageMetadataTests(unittest.TestCase):
             self.assertNotIn("Not yet published", page)
             index = (output / "index.html").read_text(encoding="utf-8")
             self.assertIn(f'<link rel="canonical" href="{_BASE}/" />', index)
-            self.assertIn('og:title" content="Jackery Manual Center"', index)
+            self.assertIn('og:title" content="说明书资料库"', index)
+            self.assertNotIn("Manual Center", index)
+            self.assertIn('og:site_name" content="说明书资料库"', page)
+            self.assertNotIn("Manual Center", page)
             legacy = (output / "JE-TEST/EU/md/manual_legacy.html").read_text(encoding="utf-8")
             self.assertNotIn("canonical", legacy)
             self.assertNotIn("· Jackery</title>", legacy)
@@ -105,7 +108,8 @@ class RtdPageMetadataTests(unittest.TestCase):
 
     def test_portal_head_markup_without_base_has_no_urls(self) -> None:
         markup = portal_head_markup(site_base_url="")
-        self.assertIn("Jackery Manual Center", markup)
+        self.assertIn('og:title" content="说明书资料库"', markup)
+        self.assertNotIn("Manual Center", markup)
         self.assertNotIn("canonical", markup)
 
     @staticmethod
