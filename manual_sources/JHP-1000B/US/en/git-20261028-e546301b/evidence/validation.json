@@ -1,0 +1,15 @@
+{
+  "schema_version": "jhp1000b-us-candidate-validation/v1",
+  "date": "2026-10-28",
+  "environment": "Python 3 with requirements.lock (oss2/aliyun SDK wheels skipped), Pandoc, ruff 0.17.3, Tesseract 5.3.4, Playwright Chromium",
+  "checks": [
+    {"command": "python -m ruff check <package scripts> tests/test_jhp1000b_us_web.py", "result": "pass", "log": "ruff.log"},
+    {"command": "python <package>/rebuild.py --output <fresh dir>; copied to web/en", "result": "pass: shared-style gate 0 issues, 0 declared plain tables; symbol admission 7/7 (max mean channel error 0.0183)"},
+    {"command": "python -m sphinx -n -W --keep-going -b html web/en <html>", "result": "pass", "log": "strict-sphinx.log"},
+    {"command": "python -m unittest tests.test_jhp1000b_us_web", "result": "pass (9 tests, includes byte-identical cold replay)", "log": "target-tests.log"},
+    {"command": "python -m tools.check_maintainability_guardrails", "result": "pass (package registered as candidate)", "log": "maintainability.log"},
+    {"command": "transcription vs Tesseract 5 OCR of 300 dpi renders (preface + 18 body pages)", "result": "every line matched or the disagreement is an OCR misread (white-on-dark headings, ⎓, circled numbers, single-letter fault codes)"},
+    {"command": "browser 1280 / 390 full page", "result": "69 images, 0 broken; document scrollWidth == viewport at both widths", "files": ["browser-1280.png", "browser-390.png", "browser-1280.json", "browser-390.json"]}
+  ],
+  "not_validated": "full python -m unittest suite, build.py regression check, seal_frozen_web_evidence, RTD deployment"
+}
