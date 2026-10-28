@@ -61,7 +61,7 @@
   ],
   "live_bitable_dependency": false,
   "phase2_enrolled": false,
-  "publication_status": "candidate-pending-operator-review",
+  "publication_status": "operator-authorized-git-only-release",
   "build_boundary": "JE-2000C US is not a phase2 target. build_content.py binds the transcription to shared ComponentSpecs; rebuild.py replays them through manual-ir/v2 and the shared Web/MyST pipeline with the prepared-document shared-style gate. The manual prints no symbol-meaning table, so there is no symbol admission.",
   "repo_inputs": [],
   "inputs": [
@@ -72,8 +72,8 @@
     },
     {
       "path": "README.md",
-      "size": 3309,
-      "sha256": "afdfa3dd76c69334f264396ee357f0b592d17d32974585c3c8c49b1deb6f5f4c"
+      "size": 3514,
+      "sha256": "0fe8797d91a378e77c1b7eaf9b22933eab530caddc1d10949072966254bb980f"
     },
     {
       "path": "assets/app-store.png",
@@ -281,6 +281,11 @@
       "sha256": "08a7341e0e1cbc0435654857d365c2d5d97399fd7911f7c990a00683c42b9357"
     },
     {
+      "path": "source/approval.json",
+      "size": 7852,
+      "sha256": "4da9071a6473e1f6133d09ec8b920cc9b3526f8d5a533e2cfb908e22f24f1476"
+    },
+    {
       "path": "source/asset_decisions.json",
       "size": 21585,
       "sha256": "1e663f141a3e7c06b98ce32844a2355badd3a37a70b7e98e23f7acff99b91684"
@@ -317,8 +322,8 @@
     },
     {
       "path": "source_manifest.json",
-      "size": 16745,
-      "sha256": "f31cd325f946eb4e6eeb05709bc01d75d3bb938f0fd570518f2a72179454cf4a"
+      "size": 16902,
+      "sha256": "b4d25ec18ee442836b86299d214e0aabace0ba1c148d4ab90a4c15aec6ad5c02"
     },
     {
       "path": "web/en/_static/source_geometry.css",
@@ -482,8 +487,8 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 294318,
-      "sha256": "54419af11eba740a231c9a065ad135c2c6f1698a433afdb10321a17849b0fe67"
+      "size": 303201,
+      "sha256": "47366eee3e3573739b34097e5496cb121633acb270c6f7003ee2c105554cbf7c"
     },
     {
       "path": "web/en/manual_je2000c_us_en.md",

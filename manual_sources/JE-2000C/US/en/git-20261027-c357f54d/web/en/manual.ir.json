@@ -1394,8 +1394,8 @@
         },
         {
           "path": "README.md",
-          "sha256": "afdfa3dd76c69334f264396ee357f0b592d17d32974585c3c8c49b1deb6f5f4c",
-          "size": 3309
+          "sha256": "0fe8797d91a378e77c1b7eaf9b22933eab530caddc1d10949072966254bb980f",
+          "size": 3514
         },
         {
           "path": "assets/app-store.png",
@@ -1558,6 +1558,11 @@
           "size": 2552
         },
         {
+          "path": "source/approval.json",
+          "sha256": "4da9071a6473e1f6133d09ec8b920cc9b3526f8d5a533e2cfb908e22f24f1476",
+          "size": 7852
+        },
+        {
           "path": "source/asset_decisions.json",
           "sha256": "1e663f141a3e7c06b98ce32844a2355badd3a37a70b7e98e23f7acff99b91684",
           "size": 21585
@@ -1613,7 +1618,7 @@
         ],
         "print_cover": 1
       },
-      "publication_status": "candidate-pending-operator-review",
+      "publication_status": "operator-authorized-git-only-release",
       "reference_editions": [
         "manual_sources/JE-2000E/EU/en/2.0",
         "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native",
@@ -2325,14 +2330,244 @@
     },
     "manual_theme_sha256": "e8fc88458d239edef85f2cfb0b26b71df2e83859c8e51e9c093e5abc2982b47d",
     "markdown_filename": "manual_je2000c_us_en.md",
-    "operator_source_acceptance": null,
+    "operator_source_acceptance": {
+      "acceptance_basis": "Operator authorized go-live of the candidate merged in PR #1628 (1280/390 renders and the side-by-side with the shared reference edition) and checks the layout page by page after go-live. Source copy is published verbatim; the 13 source_concerns go to the source owner and enter only through a corrected source and a new package.",
+      "authority_date": "2026-10-28",
+      "merge_authority": "operator chat grant 2026-10-28, recorded in code-as-doc/dev/merge_authorizations.md before merge",
+      "operator_quote": "上线提交发布：JE-2000C、JHP-1000B-RC、JHP-2000A-RC、JHP-3600A-RC；授权开跟进 PR 写 approval 并合入，以及其 Hello-Docs 发布 PR",
+      "preceding_operator_decision": "授权全部合入上线 上线之后 我再一个个核对版面 (coordination session, 2026-10-28; MA-365)",
+      "reviewed_candidate": {
+        "commit": "1d5fcda",
+        "pull_request": "https://github.com/Bingboom/auto-manual/pull/1628",
+        "reference_edition": "manual_sources/JE-2000E/EU/en/2.0",
+        "renders": [
+          "evidence/browser-1280.png",
+          "evidence/browser-390.png"
+        ]
+      },
+      "source_sha256": "c357f54dfed27d11d72a2a4893e485450a49c1b562e21f0f272708857f1510ab",
+      "target": {
+        "languages": [
+          "en"
+        ],
+        "model": "JE-2000C",
+        "printed_manual_version": "JAK-UM-V1.0",
+        "region": "US",
+        "technical_version": "git-20261027-c357f54d"
+      },
+      "verified_inputs": [
+        {
+          "path": "JE-2000C-US-EN.pdf",
+          "sha256": "c357f54dfed27d11d72a2a4893e485450a49c1b562e21f0f272708857f1510ab",
+          "size": 2769777
+        },
+        {
+          "path": "README.md",
+          "sha256": "0fe8797d91a378e77c1b7eaf9b22933eab530caddc1d10949072966254bb980f",
+          "size": 3514
+        },
+        {
+          "path": "assets/app-store.png",
+          "sha256": "297986042aaee7768f06f601bdd503ff3648d9f299af7b1bc92c56b89608bf75",
+          "size": 9095
+        },
+        {
+          "path": "assets/car-charge.png",
+          "sha256": "b4f1c235cef565618991254f4923ba14467b761f78bc9f1f837e27f161999147",
+          "size": 34363
+        },
+        {
+          "path": "assets/car-solar-prohibited.png",
+          "sha256": "140925c0cf9284d503c7ac0186585f1d952ffa193c808db9513957e5d382e6c2",
+          "size": 35199
+        },
+        {
+          "path": "assets/certifications.png",
+          "sha256": "6efbaf4497d1c644f02890dad905273cce9c85f7962bab9620506df792cb2ef6",
+          "size": 11677
+        },
+        {
+          "path": "assets/fcc-mark.svg",
+          "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe",
+          "size": 1927
+        },
+        {
+          "path": "assets/inbox-ac-cable.png",
+          "sha256": "517b6c94a1b4a83ac40338dcbde14a31910a1ebbdb96d40063afd597c6e25ab3",
+          "size": 3591
+        },
+        {
+          "path": "assets/inbox-adaptor.png",
+          "sha256": "029e451239c48828a4a1e326da48e09402514ac2cd25ffc2692cae9a000e9d3f",
+          "size": 4086
+        },
+        {
+          "path": "assets/inbox-bag.png",
+          "sha256": "c1232e5a7ff3a6b8834d94bed7e209742e1ba73a1e6bc7df099d436d8063f146",
+          "size": 3375
+        },
+        {
+          "path": "assets/inbox-car-cable.png",
+          "sha256": "d497cf0345a28d848cb0558c71f084addacf187a1620b96d84c87938cf66f3cd",
+          "size": 5058
+        },
+        {
+          "path": "assets/inbox-manual.png",
+          "sha256": "e0b3c1b99a2d8afade7afeca50af4dc9069c6a1ba002b1734e4d590bfc23d6e6",
+          "size": 4995
+        },
+        {
+          "path": "assets/inbox-unit.png",
+          "sha256": "4806dd8c6c9ebc35c86b9278ceccba3803838636977939c53d2d387d62871452",
+          "size": 7491
+        },
+        {
+          "path": "assets/lcd-ac-expansion.png",
+          "sha256": "402e40d7687c2ad84665c9b9ecbb0cbe9a0ef838223f4f7ac09b27105bf9ba86",
+          "size": 5762
+        },
+        {
+          "path": "assets/lcd-battery-power.png",
+          "sha256": "4765f1894521b13d4b69dbbd4ddd7fb80e6d50395dbe0db815371672667d9f93",
+          "size": 5123
+        },
+        {
+          "path": "assets/lcd-energy-saving.png",
+          "sha256": "30c3f3ec6ddf33cbd162636edf4be86d683a57d7546a3d977ef476e83fe169b5",
+          "size": 5561
+        },
+        {
+          "path": "assets/lcd-fault-code.png",
+          "sha256": "6e2aae1004349a65c9a9f1a755155a3e9364d8f7823c0058f60938fc56a48a1e",
+          "size": 5910
+        },
+        {
+          "path": "assets/lcd-high-temperature.png",
+          "sha256": "5319b4108e4fd9234149cfe5d4d9472d4194e79d94ab00c2238c29418c1c10d3",
+          "size": 6552
+        },
+        {
+          "path": "assets/lcd-low-battery.png",
+          "sha256": "4ecace7dc932a209e7f8afc77052070544989d080edf14109756dd381e062c57",
+          "size": 633
+        },
+        {
+          "path": "assets/lcd-low-temperature.png",
+          "sha256": "fbcd63d36e6f004f2d272c497fc625c7bf2b0844a591eb6ecf6826a3d9abdf0b",
+          "size": 6536
+        },
+        {
+          "path": "assets/lcd-map.png",
+          "sha256": "e4970a9bb3400db9e2ef60e874e76b8a10cec81d88e513dc82a9166366e64e07",
+          "size": 58169
+        },
+        {
+          "path": "assets/overview-front.png",
+          "sha256": "5ade546e23bfc5a7db143bc4d16607121a67f2a3dbce303653529f2450cff24b",
+          "size": 43251
+        },
+        {
+          "path": "assets/overview-rear.png",
+          "sha256": "c68caf1a45ca77f3e8e3ad5e2c0e5a36a52181c8eeda09c6cc96b0f75d82e4a8",
+          "size": 54948
+        },
+        {
+          "path": "assets/solar-2-2.png",
+          "sha256": "119d67c2e273f5d5d85622a40379cd0919dce290d0c7fb34221e9fd9227e2ef0",
+          "size": 73214
+        },
+        {
+          "path": "assets/solar-3-3.png",
+          "sha256": "4a8adf9f95873b2848d3a3c9a7c1f404e9afe3168e83c54c68f01c85a9329f12",
+          "size": 106968
+        },
+        {
+          "path": "assets/solar-3.png",
+          "sha256": "5b068f11ac3e2008426194a5a2fbfe4e942563084888d62e7ebfe80bb264ec8f",
+          "size": 70141
+        },
+        {
+          "path": "assets/solar-80.png",
+          "sha256": "ba97f8a8f0a272c692da4d9065ad57afc8e4f7eeb922a530791d0743c8fa654c",
+          "size": 62618
+        },
+        {
+          "path": "assets/solar-adaptor.png",
+          "sha256": "9259c89eccd599e42cd43f4563518c7d958ad068868351b68b1b92d2536b8d15",
+          "size": 42593
+        },
+        {
+          "path": "assets/solar-prohibited.png",
+          "sha256": "723cdaa3ed90ccd35944bddd6f0f6317ac0581ac387d60a2237d7d6747d6434d",
+          "size": 172646
+        },
+        {
+          "path": "assets/wall-charge.png",
+          "sha256": "d9b73768f5921988ca1401255d3dfa6ecb4959c4c891c56bc2d6daa53e008ef7",
+          "size": 21187
+        },
+        {
+          "path": "build_content.py",
+          "sha256": "0fbbf32a9f0f9bcd64bc938df7cc91ce86b6008ff3c5870f791fd98d64e7afc8",
+          "size": 17980
+        },
+        {
+          "path": "derive_assets.py",
+          "sha256": "a95a7495d6311f1448422e03d81352256c18390007b6aee2c2ee53e1b3fe8ecd",
+          "size": 2879
+        },
+        {
+          "path": "rebuild.py",
+          "sha256": "12834cf7934007c6ac4251b1ac4dee72b2dd849770fef22c0fa4c01a89c6d4a4",
+          "size": 6365
+        },
+        {
+          "path": "refresh_manifest.py",
+          "sha256": "08a7341e0e1cbc0435654857d365c2d5d97399fd7911f7c990a00683c42b9357",
+          "size": 2552
+        },
+        {
+          "path": "source/asset_decisions.json",
+          "sha256": "1e663f141a3e7c06b98ce32844a2355badd3a37a70b7e98e23f7acff99b91684",
+          "size": 21585
+        },
+        {
+          "path": "source/asset_recipe.json",
+          "sha256": "aa8c52821ec50169324ad569f683e3adf6b8510a27a490eb209df0bab870ce5c",
+          "size": 4084
+        },
+        {
+          "path": "source/differences.md",
+          "sha256": "6095ed02e6bf258ce8dd8951fb2046bbaec4a12ded49954cd47d867737bb0a0f",
+          "size": 2289
+        },
+        {
+          "path": "source/discovery.md",
+          "sha256": "548df7237d86772bf5e771d33aeb5fbfa23060be93297bec1c469bcc1b2c0686",
+          "size": 3249
+        },
+        {
+          "path": "source/en/content.json",
+          "sha256": "ab906b62254315590299e92a69f6cd3c6f4b95210a04b07b7293b7579775f1b9",
+          "size": 128578
+        },
+        {
+          "path": "source/geometry.css",
+          "sha256": "5d7f9a90986bfb00ac3c29ec0f58bc9d0d2d2428dea41d24d0e0288abace376c",
+          "size": 1229
+        },
+        {
+          "path": "source/transcription.json",
+          "sha256": "e66755f60e7376afa1e81279944bb95f7e03a68f3a4b29049f24a8dfa4b6ddd4",
+          "size": 41914
+        }
+      ]
+    },
     "page_count": 10,
     "page_declarations": {},
-    "pending_source_review": [
-      "Local source parity and browser validation in progress"
-    ],
+    "pending_source_review": [],
     "projection": "whole-document-components/v1",
-    "publication_eligible": false,
+    "publication_eligible": true,
     "skipped_raw": 0,
     "source_authority": {
       "filename": "JE-2000C-US-EN.pdf",

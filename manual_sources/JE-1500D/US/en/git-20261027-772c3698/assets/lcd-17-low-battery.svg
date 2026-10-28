@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="19.54" height="11.199999999999989" viewBox="54.73 215.4 19.54 11.199999999999989"><defs>
+<clipPath id="clip_1">
+<path transform="matrix(1,0,0,-1,-3067.311,3947.325)" d="M3067.311 3422.916H3435.815V3947.325H3067.311Z" />
+</clipPath>
+<clipPath id="clip_2">
+<path transform="matrix(1,0,0,-1,-3067.311,3947.325)" d="M0 0H8032.45V5167.44H0Z" />
+</clipPath>
+<clipPath id="clip_113">
+<path transform="matrix(1,0,0,-1,-3067.311,3947.325)" d="M0 5167.443H8032.453V0H0Z" />
+</clipPath>
+</defs>
+<g><g clip-path="url(#clip_1)"><g clip-path="url(#clip_2)"><g inkscape:groupmode="layer" inkscape:label="图层 3"><g clip-path="url(#clip_113)"><path transform="matrix(1,0,0,-1,71.742679,216.04785)" d="M0 0H-16.437V-9.921H0V-7.874H1.825V-2.049H0ZM-12.631-8.119H-14.584999V-1.8060002H-12.631ZM-1.199-3.255H.622V-6.67H-1.199V-8.718H-15.238V-1.207H-1.199Z" fill="#454546" fill-rule="evenodd" />
+</g></g></g></g></g></svg>
