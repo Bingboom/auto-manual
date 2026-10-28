@@ -1582,6 +1582,11 @@
       "registered": "2026-10-19",
       "known_drift": {}
     },
+    "manual_sources/JE-300D/US/en/git-20261028-d3f47ff3": {
+      "approval": "Operator window task 2026-10-28 「继续转 剩下的美规说明书 为单语 网页版 仅选等于Y的 待转」 (发布文档管理 Base): Git-only US/en single-language Web candidate, source copy verbatim. Candidate only; no merge or publication approval.",
+      "registered": "2026-10-28",
+      "known_drift": {}
+    },
     "manual_sources/JE-300E-SG/US/en/git-20261027-e47cb322": {
       "approval": "Operator 2026-10-28 (PR #1631 session): 「上线提交发布：JE-300C、JE-300E、JE-300E-SG、JE-880B；授权合入 #1631 及其 Hello-Docs 发布 PR」 under MA-365: Git-only US English single-language Web release from the 发布文档管理 row; acceptance hash-bound in source/approval.json",
       "registered": "2026-10-28",
