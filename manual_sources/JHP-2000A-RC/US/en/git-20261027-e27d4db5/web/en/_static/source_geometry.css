@@ -1,0 +1,20 @@
+/* JHP-2000A-RC US: page-local geometry and type size only.
+   Colours, borders and panels come from the shared Web theme (prepared-document shared-style gate). */
+
+/* Complete source panels keep a readable print width; dense ones pan on phones. */
+#furo-main-content .hb-reference-figure { max-width: 48rem; margin-inline: auto; }
+#furo-main-content .hb-reference-figure[data-reference-id="app-add"] { max-width: 24rem; }
+#furo-main-content .hb-reference-figure[data-reference-id="led-light"],
+#furo-main-content .hb-reference-figure[data-reference-id="battery-accessories"] { max-width: 40rem; }
+@media (max-width: 760px) {
+  #furo-main-content .hb-reference-figure[data-reference-id="overview-front"],
+  #furo-main-content .hb-reference-figure[data-reference-id="overview-left"],
+  #furo-main-content .hb-reference-figure[data-reference-id="overview-right"],
+  #furo-main-content .hb-reference-figure[data-reference-id="lcd-map"],
+  #furo-main-content .hb-reference-figure[data-reference-id="app-panel"] { overflow-x: auto; }
+  #furo-main-content .hb-reference-figure[data-reference-id="overview-front"] > *,
+  #furo-main-content .hb-reference-figure[data-reference-id="overview-left"] > *,
+  #furo-main-content .hb-reference-figure[data-reference-id="overview-right"] > *,
+  #furo-main-content .hb-reference-figure[data-reference-id="lcd-map"] > *,
+  #furo-main-content .hb-reference-figure[data-reference-id="app-panel"] > * { min-width: 34rem; }
+}

@@ -1,0 +1,20 @@
+$ python -m unittest tests.test_jhp1000brc_us_web
+[env-preflight] WARN env.python: Python 3.13 differs from the pinned 3.12; tests and builds may fail for environment reasons
+[env-preflight] WARN env.lock: 4 pinned package(s) not installed: aliyun-python-sdk-core, aliyun-python-sdk-kms, crcmod, oss2
+[env-preflight] WARN env.lock: 2 package(s) differ from requirements.lock: certifi 2026.10.18 (lock 2026.6.17), charset-normalizer 3.5.1 (lock 3.4.8)
+[env-preflight] WARN env.lock: to match CI: python -m pip install -r requirements.lock (on the pinned Python)
+test_assets_and_shared_symbols (tests.test_jhp1000brc_us_web.Jhp1000brcUsWebTests.test_assets_and_shared_symbols) ... ok
+test_changed_source_input_is_rejected (tests.test_jhp1000brc_us_web.Jhp1000brcUsWebTests.test_changed_source_input_is_rejected) ... ok
+test_chapters_and_print_only_pages_excluded (tests.test_jhp1000brc_us_web.Jhp1000brcUsWebTests.test_chapters_and_print_only_pages_excluded) ... ok
+test_cold_replay_matches_stored_candidate (tests.test_jhp1000brc_us_web.Jhp1000brcUsWebTests.test_cold_replay_matches_stored_candidate) ... {
+ok
+test_content_is_rebuilt_from_transcription (tests.test_jhp1000brc_us_web.Jhp1000brcUsWebTests.test_content_is_rebuilt_from_transcription) ... ok
+test_every_web_line_is_selectable_text_in_the_page (tests.test_jhp1000brc_us_web.Jhp1000brcUsWebTests.test_every_web_line_is_selectable_text_in_the_page) ... ok
+test_identity_and_candidate_status (tests.test_jhp1000brc_us_web.Jhp1000brcUsWebTests.test_identity_and_candidate_status) ... ok
+test_inputs_are_pinned (tests.test_jhp1000brc_us_web.Jhp1000brcUsWebTests.test_inputs_are_pinned) ... ok
+test_model_facts_come_from_this_source (tests.test_jhp1000brc_us_web.Jhp1000brcUsWebTests.test_model_facts_come_from_this_source) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 14.664s
+
+OK

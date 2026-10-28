@@ -1,0 +1,873 @@
+{
+ "schema_version": "jhp3600arc-us-asset-decisions/v1",
+ "rows": [
+  {
+   "asset": "assets/overview-front.png",
+   "slot": "complete FRONT VIEW leader-label panel",
+   "candidates": [
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets"
+   ],
+   "identity": "JHP-3600A US reference art is label-redacted base art whose labels are positioned by package CSS (not allowed by the prepared-document shared-style gate); this edition's panels also differ in layout and copy",
+   "decision": "new complete panel",
+   "reason": "complete source panel with printed labels and leaders, per the JE-1000D JP V2 precedent",
+   "source": "physical page 7 bbox [26.4, 69.6, 341.3, 219.1]",
+   "sha256": "f4396b29ee33be85311ba0f9c53c1bf6c1fb975e57a8498bc4c0b9644a86e5ea",
+   "background": "complete panel kept"
+  },
+  {
+   "asset": "assets/overview-side.png",
+   "slot": "complete RIGHT SIDE VIEW leader-label panel with handle inset",
+   "candidates": [
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets"
+   ],
+   "identity": "JHP-3600A US reference art is label-redacted base art whose labels are positioned by package CSS (not allowed by the prepared-document shared-style gate); this edition's panels also differ in layout and copy",
+   "decision": "new complete panel",
+   "reason": "complete source panel with printed labels and leaders, per the JE-1000D JP V2 precedent",
+   "source": "physical page 7 bbox [26.4, 259.7, 341.3, 486.7]",
+   "sha256": "74171d427344a570e1355a8b79dfe0deb14a397ac423250f2144a7d4f7357978",
+   "background": "complete panel kept"
+  },
+  {
+   "asset": "assets/lcd-map.png",
+   "slot": "complete numbered LCD map",
+   "candidates": [
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets"
+   ],
+   "identity": "JHP-3600A US reference art is label-redacted base art whose labels are positioned by package CSS (not allowed by the prepared-document shared-style gate); this edition's panels also differ in layout and copy",
+   "decision": "new complete panel",
+   "reason": "complete source panel with printed labels and leaders, per the JE-1000D JP V2 precedent",
+   "source": "physical page 8 bbox [32.4, 51.6, 339.6, 193.2]",
+   "sha256": "b38be1c94dd592b86d37ddc498d229009fc73c70c8e1bf7af6f0ddbae6a84b77",
+   "background": "complete panel kept"
+  },
+  {
+   "asset": "assets/power.png",
+   "slot": "POWER ON/OFF illustration with On/Off/3s labels; the standby-time callout inside it is blanked and rendered natively",
+   "candidates": [
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets"
+   ],
+   "identity": "JHP-3600A US reference art is label-redacted base art whose labels are positioned by package CSS (not allowed by the prepared-document shared-style gate); this edition's panels also differ in layout and copy",
+   "decision": "new complete panel",
+   "reason": "complete source panel with printed labels and leaders, per the JE-1000D JP V2 precedent",
+   "source": "physical page 10 bbox [39.4, 78.7, 331.9, 195.6], blanked [[161.3, 156.0, 329.3, 195.6]]",
+   "sha256": "9197f659845019819c43a270d744c3ad8e95c4ccb9507f49259dddda7af64dd0",
+   "background": "complete panel kept; in-panel body copy blanked to the surrounding panel colour and rendered natively"
+  },
+  {
+   "asset": "assets/ac-output.png",
+   "slot": "AC OUTPUT ON/OFF illustration with reset-button inset (prerequisite and reset copy native)",
+   "candidates": [
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets"
+   ],
+   "identity": "JHP-3600A US reference art is label-redacted base art whose labels are positioned by package CSS (not allowed by the prepared-document shared-style gate); this edition's panels also differ in layout and copy",
+   "decision": "new complete panel",
+   "reason": "complete source panel with printed labels and leaders, per the JE-1000D JP V2 precedent",
+   "source": "physical page 10 bbox [42.0, 297.8, 331.9, 452.6]",
+   "sha256": "bb0125ea59c157a26d01a696d6f4609bfd4cff5121ab85650f821496c5d1bfb9",
+   "background": "complete panel kept"
+  },
+  {
+   "asset": "assets/usb-output.png",
+   "slot": "USB OUTPUT ON/OFF illustration; the native Prerequisite pill corner is blanked to the panel background",
+   "candidates": [
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets"
+   ],
+   "identity": "JHP-3600A US reference art is label-redacted base art whose labels are positioned by package CSS (not allowed by the prepared-document shared-style gate); this edition's panels also differ in layout and copy",
+   "decision": "new complete panel",
+   "reason": "complete source panel with printed labels and leaders, per the JE-1000D JP V2 precedent",
+   "source": "physical page 11 bbox [52.6, 59.0, 325.4, 181.2], blanked [[52.6, 59.0, 171.1, 68.2]]",
+   "sha256": "452f3efb7c2a24397aacafe9083c4a75c172d05bd7ea359b7c3584d0745bf5e9",
+   "background": "complete panel kept; in-panel body copy blanked to the surrounding panel colour and rendered natively"
+  },
+  {
+   "asset": "assets/energy-saving.png",
+   "slot": "ENERGY SAVING MODE two-button illustration with captions",
+   "candidates": [
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets"
+   ],
+   "identity": "JHP-3600A US reference art is label-redacted base art whose labels are positioned by package CSS (not allowed by the prepared-document shared-style gate); this edition's panels also differ in layout and copy",
+   "decision": "new complete panel",
+   "reason": "complete source panel with printed labels and leaders, per the JE-1000D JP V2 precedent",
+   "source": "physical page 11 bbox [49.9, 350.4, 333.4, 462.0]",
+   "sha256": "538030a6eb19e3bb74e84807444fa4356d09cc484a8bdc6fbaee8af1deecd730",
+   "background": "complete panel kept"
+  },
+  {
+   "asset": "assets/lcd-screen.png",
+   "slot": "LCD SCREEN product art beside the mode table",
+   "candidates": [
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets"
+   ],
+   "identity": "JHP-3600A US reference art is label-redacted base art whose labels are positioned by package CSS (not allowed by the prepared-document shared-style gate); this edition's panels also differ in layout and copy",
+   "decision": "new complete panel",
+   "reason": "complete source panel with printed labels and leaders, per the JE-1000D JP V2 precedent",
+   "source": "physical page 12 bbox [42.0, 137.8, 146.9, 297.8]",
+   "sha256": "3228d265331f2e46abd4dc03fabff556a096dbaf44bc5043a509ff22cbcc05e5",
+   "background": "complete panel kept"
+  },
+  {
+   "asset": "assets/ups.png",
+   "slot": "complete UPS panel; the two explanatory paragraphs inside it are blanked to the panel background and rendered natively",
+   "candidates": [
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets"
+   ],
+   "identity": "JHP-3600A US reference art is label-redacted base art whose labels are positioned by package CSS (not allowed by the prepared-document shared-style gate); this edition's panels also differ in layout and copy",
+   "decision": "new complete panel",
+   "reason": "complete source panel with printed labels and leaders, per the JE-1000D JP V2 precedent",
+   "source": "physical page 13 bbox [25.0, 89.3, 338.6, 324.2], blanked [[127.2, 254.6, 333.4, 301.9]]",
+   "sha256": "a9ba53ca70a2cc7a2505ccb551ea5e6c3a52d1226d6279ca1addfeddf1e4660d",
+   "background": "complete panel kept; in-panel body copy blanked to the surrounding panel colour and rendered natively"
+  },
+  {
+   "asset": "assets/battery-stack.png",
+   "slot": "complete battery-pack stacking panel with clearance labels",
+   "candidates": [
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets"
+   ],
+   "identity": "JHP-3600A US reference art is label-redacted base art whose labels are positioned by package CSS (not allowed by the prepared-document shared-style gate); this edition's panels also differ in layout and copy",
+   "decision": "new complete panel",
+   "reason": "complete source panel with printed labels and leaders, per the JE-1000D JP V2 precedent",
+   "source": "physical page 14 bbox [27.6, 104.4, 341.3, 305.8]",
+   "sha256": "bef2a974dacf1b2a4ec1ee77ad24c0daf1bcea1f5d5b5b30eff62a45659e2cd6",
+   "background": "complete panel kept"
+  },
+  {
+   "asset": "assets/battery-accessories.png",
+   "slot": "complete dashed sold-separately accessory panel with captions",
+   "candidates": [
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets"
+   ],
+   "identity": "JHP-3600A US reference art is label-redacted base art whose labels are positioned by package CSS (not allowed by the prepared-document shared-style gate); this edition's panels also differ in layout and copy",
+   "decision": "new complete panel",
+   "reason": "complete source panel with printed labels and leaders, per the JE-1000D JP V2 precedent",
+   "source": "physical page 14 bbox [27.6, 383.3, 341.3, 464.6]",
+   "sha256": "62dd73e1cb1db6db0cc48828462ff385c382e77e1f2e2e3a0ee8e8e6440f63f7",
+   "background": "complete panel kept"
+  },
+  {
+   "asset": "assets/parallel.png",
+   "slot": "complete two-unit parallel panel with leader labels",
+   "candidates": [
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets"
+   ],
+   "identity": "JHP-3600A US reference art is label-redacted base art whose labels are positioned by package CSS (not allowed by the prepared-document shared-style gate); this edition's panels also differ in layout and copy",
+   "decision": "new complete panel",
+   "reason": "complete source panel with printed labels and leaders, per the JE-1000D JP V2 precedent",
+   "source": "physical page 15 bbox [27.6, 219.1, 341.3, 437.0]",
+   "sha256": "e06d819fdda5c8512a0adcd2e79c095caa4b1b971c619866dd25d5c4827f678a",
+   "background": "complete panel kept"
+  },
+  {
+   "asset": "assets/parallel-interrupted.png",
+   "slot": "complete parallel-failure panel",
+   "candidates": [
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets"
+   ],
+   "identity": "JHP-3600A US reference art is label-redacted base art whose labels are positioned by package CSS (not allowed by the prepared-document shared-style gate); this edition's panels also differ in layout and copy",
+   "decision": "new complete panel",
+   "reason": "complete source panel with printed labels and leaders, per the JE-1000D JP V2 precedent",
+   "source": "physical page 16 bbox [27.1, 70.3, 340.6, 259.9]",
+   "sha256": "612cb59be5ffcb44a7ff8fd95980779eb6e8143e7d03097d8b1be862d5e7821d",
+   "background": "complete panel kept"
+  },
+  {
+   "asset": "assets/parallel-exit.png",
+   "slot": "complete EXITING PARALLEL MODE step panel with step captions",
+   "candidates": [
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets"
+   ],
+   "identity": "JHP-3600A US reference art is label-redacted base art whose labels are positioned by package CSS (not allowed by the prepared-document shared-style gate); this edition's panels also differ in layout and copy",
+   "decision": "new complete panel",
+   "reason": "complete source panel with printed labels and leaders, per the JE-1000D JP V2 precedent",
+   "source": "physical page 16 bbox [27.1, 288.7, 340.6, 494.6]",
+   "sha256": "8d37988cd75947786390eeb1f5696f24d0c2acba66c1faafbdb9d7b80e87b4b0",
+   "background": "complete panel kept"
+  },
+  {
+   "asset": "assets/charging-ac.png",
+   "slot": "complete AC wall charging panel; the in-panel instruction is blanked and rendered natively",
+   "candidates": [
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets"
+   ],
+   "identity": "JHP-3600A US reference art is label-redacted base art whose labels are positioned by package CSS (not allowed by the prepared-document shared-style gate); this edition's panels also differ in layout and copy",
+   "decision": "new complete panel",
+   "reason": "complete source panel with printed labels and leaders, per the JE-1000D JP V2 precedent",
+   "source": "physical page 17 bbox [30.7, 179.0, 343.7, 281.8], blanked [[190.3, 257.3, 312.2, 275.5]]",
+   "sha256": "431c74c194e5c16dbc5fdca82bf47acf64db8b47ee0215c38d789c48ad0001b9",
+   "background": "complete panel kept; in-panel body copy blanked to the surrounding panel colour and rendered natively"
+  },
+  {
+   "asset": "assets/charging-solar.png",
+   "slot": "complete solar charging panel with SolarSaga caption",
+   "candidates": [
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets"
+   ],
+   "identity": "JHP-3600A US reference art is label-redacted base art whose labels are positioned by package CSS (not allowed by the prepared-document shared-style gate); this edition's panels also differ in layout and copy",
+   "decision": "new complete panel",
+   "reason": "complete source panel with printed labels and leaders, per the JE-1000D JP V2 precedent",
+   "source": "physical page 17 bbox [30.7, 364.1, 343.7, 496.3]",
+   "sha256": "046b2f13d44306bd3d8cac541fb2fef0abc1bae16bd59dafc5a3903135a9a39c",
+   "background": "complete panel kept"
+  },
+  {
+   "asset": "assets/charging-car.png",
+   "slot": "complete car charging panel; the in-panel sold-separately pill is blanked and rendered natively",
+   "candidates": [
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets"
+   ],
+   "identity": "JHP-3600A US reference art is label-redacted base art whose labels are positioned by package CSS (not allowed by the prepared-document shared-style gate); this edition's panels also differ in layout and copy",
+   "decision": "new complete panel",
+   "reason": "complete source panel with printed labels and leaders, per the JE-1000D JP V2 precedent",
+   "source": "physical page 18 bbox [27.6, 194.2, 340.6, 322.3], blanked [[180.5, 296.6, 331.9, 312.7]]",
+   "sha256": "2b9e49d902fe4f9474194e855980c60c030ad26c1cbe6afab69cfdadf13c243f",
+   "background": "complete panel kept; in-panel body copy blanked to the surrounding panel colour and rendered natively"
+  },
+  {
+   "asset": "assets/inbox-unit.png",
+   "slot": "in-box card art",
+   "candidates": [
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets"
+   ],
+   "identity": "JHP-3600A US reference art is label-redacted base art whose labels are positioned by package CSS (not allowed by the prepared-document shared-style gate); this edition's panels also differ in layout and copy",
+   "decision": "new complete panel",
+   "reason": "complete source panel with printed labels and leaders, per the JE-1000D JP V2 precedent",
+   "source": "physical page 6 bbox [58.8, 339.6, 114.0, 410.9]",
+   "sha256": "4be6064f4385ea91972a75fe472c21ab1883789e53a818a302b300f43c1f38ee",
+   "background": "complete panel kept"
+  },
+  {
+   "asset": "assets/inbox-cable.png",
+   "slot": "in-box card art",
+   "candidates": [
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets"
+   ],
+   "identity": "JHP-3600A US reference art is label-redacted base art whose labels are positioned by package CSS (not allowed by the prepared-document shared-style gate); this edition's panels also differ in layout and copy",
+   "decision": "new complete panel",
+   "reason": "complete source panel with printed labels and leaders, per the JE-1000D JP V2 precedent",
+   "source": "physical page 6 bbox [176.4, 339.6, 208.8, 405.6]",
+   "sha256": "ad5884801f0719a1588078601eb83d3def87ef89701cfefa4f9f917f60d7dfd0",
+   "background": "complete panel kept"
+  },
+  {
+   "asset": "assets/inbox-documents.png",
+   "slot": "in-box card art",
+   "candidates": [
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets"
+   ],
+   "identity": "JHP-3600A US reference art is label-redacted base art whose labels are positioned by package CSS (not allowed by the prepared-document shared-style gate); this edition's panels also differ in layout and copy",
+   "decision": "new complete panel",
+   "reason": "complete source panel with printed labels and leaders, per the JE-1000D JP V2 precedent",
+   "source": "physical page 6 bbox [270.0, 345.6, 315.6, 406.8]",
+   "sha256": "be2ea77b4384fbf3e82e98c9e7f8a753d425601c1aefdf4b0c7b67ea3b04f402",
+   "background": "complete panel kept"
+  },
+  {
+   "asset": "assets/app-store.png",
+   "slot": "complete App Store / Google Play badges",
+   "candidates": [
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets"
+   ],
+   "identity": "JHP-3600A US reference art is label-redacted base art whose labels are positioned by package CSS (not allowed by the prepared-document shared-style gate); this edition's panels also differ in layout and copy",
+   "decision": "new complete panel",
+   "reason": "complete source panel with printed labels and leaders, per the JE-1000D JP V2 precedent",
+   "source": "physical page 22 bbox [47.3, 68.6, 120.2, 116.2]",
+   "sha256": "4033308d417a1c1a432dc7fe4b401781f1ce154584ef72a108a9912d2681759f",
+   "background": "complete panel kept"
+  },
+  {
+   "asset": "assets/app-qr.png",
+   "slot": "complete App QR frame",
+   "candidates": [
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets"
+   ],
+   "identity": "JHP-3600A US reference art is label-redacted base art whose labels are positioned by package CSS (not allowed by the prepared-document shared-style gate); this edition's panels also differ in layout and copy",
+   "decision": "new complete panel",
+   "reason": "complete source panel with printed labels and leaders, per the JE-1000D JP V2 precedent",
+   "source": "physical page 22 bbox [199.4, 67.0, 249.8, 118.1]",
+   "sha256": "d859f3456613300801248c95111a7d3799410021907b5fae6d604308d3514868",
+   "background": "complete panel kept"
+  },
+  {
+   "asset": "assets/app-add.png",
+   "slot": "two complete phone frames with 2.1/2.2 captions",
+   "candidates": [
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets"
+   ],
+   "identity": "JHP-3600A US reference art is label-redacted base art whose labels are positioned by package CSS (not allowed by the prepared-document shared-style gate); this edition's panels also differ in layout and copy",
+   "decision": "new complete panel",
+   "reason": "complete source panel with printed labels and leaders, per the JE-1000D JP V2 precedent",
+   "source": "physical page 22 bbox [107.0, 214.6, 267.1, 374.6]",
+   "sha256": "4254f0d7489b07546869b7298594e755a31070316d02c98d7846b3b46cebdc10",
+   "background": "complete panel kept"
+  },
+  {
+   "asset": "assets/app-buttons.png",
+   "slot": "complete App button-map panel with leader labels",
+   "candidates": [
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets"
+   ],
+   "identity": "JHP-3600A US reference art is label-redacted base art whose labels are positioned by package CSS (not allowed by the prepared-document shared-style gate); this edition's panels also differ in layout and copy",
+   "decision": "new complete panel",
+   "reason": "complete source panel with printed labels and leaders, per the JE-1000D JP V2 precedent",
+   "source": "physical page 22 bbox [28.3, 379.7, 340.6, 461.3]",
+   "sha256": "0f196cb3361ebd9320b74c6b786a8425ecd9e92b6accc4798d534a6527f0a9df",
+   "background": "complete panel kept"
+  },
+  {
+   "asset": "assets/app-results.png",
+   "slot": "three complete phone frames with 2.3-2.5 captions",
+   "candidates": [
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets"
+   ],
+   "identity": "JHP-3600A US reference art is label-redacted base art whose labels are positioned by package CSS (not allowed by the prepared-document shared-style gate); this edition's panels also differ in layout and copy",
+   "decision": "new complete panel",
+   "reason": "complete source panel with printed labels and leaders, per the JE-1000D JP V2 precedent",
+   "source": "physical page 23 bbox [53.8, 140.4, 313.7, 294.5]",
+   "sha256": "36a0aed5b263601604e3e2bfdd7e0b939cb6956eebaa30cacd3245e99828e3d3",
+   "background": "complete panel kept"
+  },
+  {
+   "asset": "assets/lcd-wifi.svg",
+   "slot": "LCD icon",
+   "candidates": [
+    "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/lcd-native-*.svg",
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets/lcd-*",
+    "docs/renderers/web/assets/shared/lcd",
+    "manual_sources/*/*/*/*/assets/shared-lcd"
+   ],
+   "identity": "best candidate exceeds the fixed 2% glyph tolerance against this PDF's vector paths",
+   "decision": "native vector extraction",
+   "reason": "no reusable glyph within 2%",
+   "source": "physical page 8 glyph_bbox [56.93, 207.01, 74.42, 220.42]",
+   "sha256": "b054fbfd13e2c968e264e3f1e1d0206c232640860bda3847b4fc260fb4d47d42",
+   "background": "transparent, PDF paths only"
+  },
+  {
+   "asset": "assets/lcd-bluetooth.svg",
+   "slot": "LCD icon",
+   "candidates": [
+    "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/lcd-native-*.svg",
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets/lcd-*",
+    "docs/renderers/web/assets/shared/lcd",
+    "manual_sources/*/*/*/*/assets/shared-lcd"
+   ],
+   "identity": "best candidate exceeds the fixed 2% glyph tolerance against this PDF's vector paths",
+   "decision": "native vector extraction",
+   "reason": "no reusable glyph within 2%",
+   "source": "physical page 8 glyph_bbox [59.35, 229.49, 72.05, 244.58]",
+   "sha256": "0876282ba9f876252264986ef297335ca5891e3c81da059e71f900fcc8d71ba4",
+   "background": "transparent, PDF paths only"
+  },
+  {
+   "asset": "assets/lcd-self-powered.svg",
+   "slot": "LCD icon",
+   "candidates": [
+    "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/lcd-native-*.svg",
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets/lcd-*",
+    "docs/renderers/web/assets/shared/lcd",
+    "manual_sources/*/*/*/*/assets/shared-lcd"
+   ],
+   "identity": "best candidate exceeds the fixed 2% glyph tolerance against this PDF's vector paths",
+   "decision": "native vector extraction",
+   "reason": "no reusable glyph within 2%",
+   "source": "physical page 8 glyph_bbox [61.24, 369.49, 70.4, 382.03]",
+   "sha256": "cb49f9e56435baedca07803863a843d8192ac08a4c671fae2878f8ec26154f07",
+   "background": "transparent, PDF paths only"
+  },
+  {
+   "asset": "assets/lcd-parallel.svg",
+   "slot": "LCD icon",
+   "candidates": [
+    "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/lcd-native-*.svg",
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets/lcd-*",
+    "docs/renderers/web/assets/shared/lcd",
+    "manual_sources/*/*/*/*/assets/shared-lcd"
+   ],
+   "identity": "best candidate exceeds the fixed 2% glyph tolerance against this PDF's vector paths",
+   "decision": "native vector extraction",
+   "reason": "no reusable glyph within 2%",
+   "source": "physical page 8 glyph_bbox [56.11, 455.54, 74.14, 466.48]",
+   "sha256": "fd572679102078cceb3080a9e9a998ec0f2a16c0d2c74e4e794f5f50f2c5d1c2",
+   "background": "transparent, PDF paths only"
+  },
+  {
+   "asset": "assets/lcd-ac-power.svg",
+   "slot": "LCD icon",
+   "candidates": [
+    "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/lcd-native-*.svg",
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets/lcd-*",
+    "docs/renderers/web/assets/shared/lcd",
+    "manual_sources/*/*/*/*/assets/shared-lcd"
+   ],
+   "identity": "best candidate exceeds the fixed 2% glyph tolerance against this PDF's vector paths",
+   "decision": "native vector extraction",
+   "reason": "no reusable glyph within 2%",
+   "source": "physical page 8 glyph_bbox [56.14, 478.72, 73.22, 493.52]",
+   "sha256": "ef60f21c3933ff7929a6e504dfbf2f9866a5624a6cc408bc5695b980f3fb4f9b",
+   "background": "transparent, PDF paths only"
+  },
+  {
+   "asset": "assets/lcd-output-vhz.svg",
+   "slot": "LCD icon",
+   "candidates": [
+    "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/lcd-native-*.svg",
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets/lcd-*",
+    "docs/renderers/web/assets/shared/lcd",
+    "manual_sources/*/*/*/*/assets/shared-lcd"
+   ],
+   "identity": "best candidate exceeds the fixed 2% glyph tolerance against this PDF's vector paths",
+   "decision": "native vector extraction",
+   "reason": "no reusable glyph within 2%",
+   "source": "physical page 9 glyph_bbox [49.74, 41.5, 81.85, 48.7]",
+   "sha256": "1dfbf36c4c7680abc37cf648a48fec843cb6b0e32df73c288d55fc06f05fc4a2",
+   "background": "transparent, PDF paths only"
+  },
+  {
+   "asset": "assets/lcd-ac-wall.svg",
+   "slot": "LCD icon",
+   "candidates": [
+    "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/lcd-native-*.svg",
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets/lcd-*",
+    "docs/renderers/web/assets/shared/lcd",
+    "manual_sources/*/*/*/*/assets/shared-lcd"
+   ],
+   "identity": "best candidate exceeds the fixed 2% glyph tolerance against this PDF's vector paths",
+   "decision": "native vector extraction",
+   "reason": "no reusable glyph within 2%",
+   "source": "physical page 9 glyph_bbox [59.53, 117.4, 72.07, 129.94]",
+   "sha256": "6da106df66c360c57822cfd7b2560249bd77449908d18a91aa38e89fd3ff80fa",
+   "background": "transparent, PDF paths only"
+  },
+  {
+   "asset": "assets/lcd-car.svg",
+   "slot": "LCD icon",
+   "candidates": [
+    "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/lcd-native-*.svg",
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets/lcd-*",
+    "docs/renderers/web/assets/shared/lcd",
+    "manual_sources/*/*/*/*/assets/shared-lcd"
+   ],
+   "identity": "best candidate exceeds the fixed 2% glyph tolerance against this PDF's vector paths",
+   "decision": "native vector extraction",
+   "reason": "no reusable glyph within 2%",
+   "source": "physical page 9 glyph_bbox [59.96, 141.58, 72.5, 154.12]",
+   "sha256": "5eedbb399d466193ce1c4a39214561605f0f27e6f35f3e0f48e9a60e2bbe97df",
+   "background": "transparent, PDF paths only"
+  },
+  {
+   "asset": "assets/lcd-battery-packs.svg",
+   "slot": "LCD icon",
+   "candidates": [
+    "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/lcd-native-*.svg",
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets/lcd-*",
+    "docs/renderers/web/assets/shared/lcd",
+    "manual_sources/*/*/*/*/assets/shared-lcd"
+   ],
+   "identity": "best candidate exceeds the fixed 2% glyph tolerance against this PDF's vector paths",
+   "decision": "native vector extraction",
+   "reason": "no reusable glyph within 2%",
+   "source": "physical page 9 glyph_bbox [53.54, 289.33, 75.09, 303.24]",
+   "sha256": "107506f30bd5784077d2e6e0e713d6f120ca2dd138b9ed8ae017276c00968ef3",
+   "background": "transparent, PDF paths only"
+  },
+  {
+   "asset": "assets/lcd-low-temperature.svg",
+   "slot": "LCD icon",
+   "candidates": [
+    "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/lcd-native-*.svg",
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets/lcd-*",
+    "docs/renderers/web/assets/shared/lcd",
+    "manual_sources/*/*/*/*/assets/shared-lcd"
+   ],
+   "identity": "best candidate exceeds the fixed 2% glyph tolerance against this PDF's vector paths",
+   "decision": "native vector extraction",
+   "reason": "no reusable glyph within 2%",
+   "source": "physical page 9 glyph_bbox [57.15, 390.77, 74.21, 406.58]",
+   "sha256": "a3de2f04640ffe6d99bdc5933c904b51aa1bc856b31683890e95c254237e0787",
+   "background": "transparent, PDF paths only"
+  },
+  {
+   "asset": "assets/lcd-energy-saving.svg",
+   "slot": "LCD icon",
+   "candidates": [
+    "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/lcd-native-*.svg",
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets/lcd-*",
+    "docs/renderers/web/assets/shared/lcd",
+    "manual_sources/*/*/*/*/assets/shared-lcd"
+   ],
+   "identity": "best candidate exceeds the fixed 2% glyph tolerance against this PDF's vector paths",
+   "decision": "native vector extraction",
+   "reason": "no reusable glyph within 2%",
+   "source": "physical page 9 glyph_bbox [57.84, 425.85, 74.92, 438.39]",
+   "sha256": "e612bdc3f018aca61a0a03f7b363b5e2785f2baa7273a88a209fa5d057928b16",
+   "background": "transparent, PDF paths only"
+  },
+  {
+   "asset": "assets/lcd-output-power.svg",
+   "slot": "LCD icon",
+   "candidates": [
+    "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/lcd-native-*.svg",
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets/lcd-*",
+    "docs/renderers/web/assets/shared/lcd",
+    "manual_sources/*/*/*/*/assets/shared-lcd"
+   ],
+   "identity": "best candidate exceeds the fixed 2% glyph tolerance against this PDF's vector paths",
+   "decision": "native vector extraction",
+   "reason": "no reusable glyph within 2%",
+   "source": "physical page 9 glyph_bbox [51.18, 453.61, 82.54, 469.81]",
+   "sha256": "e9f0a89c24a82e89983b7bdb11970c337effa6bfea1ea79474756c85115a7488",
+   "background": "transparent, PDF paths only"
+  },
+  {
+   "asset": "assets/lcd-quiet.svg",
+   "slot": "LCD icon",
+   "candidates": [
+    "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/lcd-native-03.svg"
+   ],
+   "identity": "same glyph/art as this PDF (LCD icons within the 2% glyph tolerance; key buttons and FCC mark from the same HomePower 3600 Plus template)",
+   "decision": "reuse byte-identical",
+   "reason": "not applicable",
+   "source": "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/lcd-native-03.svg",
+   "sha256": "22a5d9bdac7cb0748db6885cae3acdf87aeca565a72b052bb98a7e69e0dd91b9",
+   "background": "transparent"
+  },
+  {
+   "asset": "assets/lcd-battery-saving.svg",
+   "slot": "LCD icon",
+   "candidates": [
+    "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/lcd-native-04.svg"
+   ],
+   "identity": "same glyph/art as this PDF (LCD icons within the 2% glyph tolerance; key buttons and FCC mark from the same HomePower 3600 Plus template)",
+   "decision": "reuse byte-identical",
+   "reason": "not applicable",
+   "source": "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/lcd-native-04.svg",
+   "sha256": "3f35f4ea44f9455ba8fda098628012e779db4fd7b8613a92ab2daf0810840bfb",
+   "background": "transparent"
+  },
+  {
+   "asset": "assets/lcd-charging-plan.svg",
+   "slot": "LCD icon",
+   "candidates": [
+    "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/lcd-native-05.svg"
+   ],
+   "identity": "same glyph/art as this PDF (LCD icons within the 2% glyph tolerance; key buttons and FCC mark from the same HomePower 3600 Plus template)",
+   "decision": "reuse byte-identical",
+   "reason": "not applicable",
+   "source": "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/lcd-native-05.svg",
+   "sha256": "0ed7eacc074d1516e347043115f76c449995dda1bc21105a466a0adf22531c7b",
+   "background": "transparent"
+  },
+  {
+   "asset": "assets/lcd-input-power.svg",
+   "slot": "LCD icon",
+   "candidates": [
+    "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/lcd-native-08.svg"
+   ],
+   "identity": "same glyph/art as this PDF (LCD icons within the 2% glyph tolerance; key buttons and FCC mark from the same HomePower 3600 Plus template)",
+   "decision": "reuse byte-identical",
+   "reason": "not applicable",
+   "source": "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/lcd-native-08.svg",
+   "sha256": "30441e8c3690c5ff96ea18c58e05b6f224697783d63e04052cf4a8dbfa4c3660",
+   "background": "transparent"
+  },
+  {
+   "asset": "assets/lcd-charge-time.svg",
+   "slot": "LCD icon",
+   "candidates": [
+    "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/lcd-native-09.svg"
+   ],
+   "identity": "same glyph/art as this PDF (LCD icons within the 2% glyph tolerance; key buttons and FCC mark from the same HomePower 3600 Plus template)",
+   "decision": "reuse byte-identical",
+   "reason": "not applicable",
+   "source": "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/lcd-native-09.svg",
+   "sha256": "65a7ad2a1b4bfb353872fc4ed429c86b206337928bc55166424eb186260a15dd",
+   "background": "transparent"
+  },
+  {
+   "asset": "assets/lcd-solar.svg",
+   "slot": "LCD icon",
+   "candidates": [
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets/lcd-solar-charging-pill.svg"
+   ],
+   "identity": "same glyph/art as this PDF (LCD icons within the 2% glyph tolerance; key buttons and FCC mark from the same HomePower 3600 Plus template)",
+   "decision": "reuse byte-identical",
+   "reason": "not applicable",
+   "source": "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets/lcd-solar-charging-pill.svg",
+   "sha256": "1fa9ef1ffffeddec822c41e8cc67be9644deced36bb2650286bacb0477dd4aaf",
+   "background": "transparent"
+  },
+  {
+   "asset": "assets/lcd-battery-power.svg",
+   "slot": "LCD icon",
+   "candidates": [
+    "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/lcd-native-17.svg"
+   ],
+   "identity": "same glyph/art as this PDF (LCD icons within the 2% glyph tolerance; key buttons and FCC mark from the same HomePower 3600 Plus template)",
+   "decision": "reuse byte-identical",
+   "reason": "not applicable",
+   "source": "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/lcd-native-17.svg",
+   "sha256": "463a1423db307feeb0045dbe94a9844b65ffcde9977db8de1c5993c046469aa4",
+   "background": "transparent"
+  },
+  {
+   "asset": "assets/lcd-low-battery.svg",
+   "slot": "LCD icon",
+   "candidates": [
+    "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/lcd-native-18.svg"
+   ],
+   "identity": "same glyph/art as this PDF (LCD icons within the 2% glyph tolerance; key buttons and FCC mark from the same HomePower 3600 Plus template)",
+   "decision": "reuse byte-identical",
+   "reason": "not applicable",
+   "source": "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/lcd-native-18.svg",
+   "sha256": "ca5ada8245c8497aa362cc837052cb50ac255be8f39c83377465f252909f7a22",
+   "background": "transparent"
+  },
+  {
+   "asset": "assets/lcd-percentage.svg",
+   "slot": "LCD icon",
+   "candidates": [
+    "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/lcd-native-19.svg"
+   ],
+   "identity": "same glyph/art as this PDF (LCD icons within the 2% glyph tolerance; key buttons and FCC mark from the same HomePower 3600 Plus template)",
+   "decision": "reuse byte-identical",
+   "reason": "not applicable",
+   "source": "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/lcd-native-19.svg",
+   "sha256": "4c193d86cf13bc2f9b41a3da4a1dee9af7427976c5039115a2641aa3b7c283d7",
+   "background": "transparent"
+  },
+  {
+   "asset": "assets/lcd-fault-code.svg",
+   "slot": "LCD icon",
+   "candidates": [
+    "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/lcd-native-21.svg"
+   ],
+   "identity": "same glyph/art as this PDF (LCD icons within the 2% glyph tolerance; key buttons and FCC mark from the same HomePower 3600 Plus template)",
+   "decision": "reuse byte-identical",
+   "reason": "not applicable",
+   "source": "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/lcd-native-21.svg",
+   "sha256": "4be378f0248b6d1faa6dab9b8c3237952bf248b73bc11d63d1cd3ab91c88fff0",
+   "background": "transparent"
+  },
+  {
+   "asset": "assets/lcd-high-temperature.svg",
+   "slot": "LCD icon",
+   "candidates": [
+    "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/lcd-native-22.svg"
+   ],
+   "identity": "same glyph/art as this PDF (LCD icons within the 2% glyph tolerance; key buttons and FCC mark from the same HomePower 3600 Plus template)",
+   "decision": "reuse byte-identical",
+   "reason": "not applicable",
+   "source": "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/lcd-native-22.svg",
+   "sha256": "a537f928a74ad454c4acb95479890fae8fb929841ab46a7ab2e7becdea178806",
+   "background": "transparent"
+  },
+  {
+   "asset": "assets/lcd-discharge-time.svg",
+   "slot": "LCD icon",
+   "candidates": [
+    "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/lcd-native-26.svg"
+   ],
+   "identity": "same glyph/art as this PDF (LCD icons within the 2% glyph tolerance; key buttons and FCC mark from the same HomePower 3600 Plus template)",
+   "decision": "reuse byte-identical",
+   "reason": "not applicable",
+   "source": "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/lcd-native-26.svg",
+   "sha256": "24f44a724c11c7d63aeb242b56e9ccf9e62b584046cd3f1f63d06bd4ae2e5e9e",
+   "background": "transparent"
+  },
+  {
+   "asset": "assets/button-power.svg",
+   "slot": "key-combination button",
+   "candidates": [
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets/button-power-vertical.svg"
+   ],
+   "identity": "same glyph/art as this PDF (LCD icons within the 2% glyph tolerance; key buttons and FCC mark from the same HomePower 3600 Plus template)",
+   "decision": "reuse byte-identical",
+   "reason": "not applicable",
+   "source": "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets/button-power-vertical.svg",
+   "sha256": "8e9b4b88fd3fcdbe0a3c9760569347f524f6c627c69c961df0b0c883f99d356b",
+   "background": "transparent"
+  },
+  {
+   "asset": "assets/button-usb.svg",
+   "slot": "key-combination button",
+   "candidates": [
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets/button-usb-vertical.svg"
+   ],
+   "identity": "same glyph/art as this PDF (LCD icons within the 2% glyph tolerance; key buttons and FCC mark from the same HomePower 3600 Plus template)",
+   "decision": "reuse byte-identical",
+   "reason": "not applicable",
+   "source": "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets/button-usb-vertical.svg",
+   "sha256": "6909fdf1d72a992e086f974e942f49bdf81307cb9702c429db42d3369b369797",
+   "background": "transparent"
+  },
+  {
+   "asset": "assets/button-ac.svg",
+   "slot": "key-combination button",
+   "candidates": [
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets/button-ac-vertical.svg"
+   ],
+   "identity": "same glyph/art as this PDF (LCD icons within the 2% glyph tolerance; key buttons and FCC mark from the same HomePower 3600 Plus template)",
+   "decision": "reuse byte-identical",
+   "reason": "not applicable",
+   "source": "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets/button-ac-vertical.svg",
+   "sha256": "cde202ff6bbbd00e43c671031fdb105e6bd811bb39ce5c5e9b97a84f0c2b29d8",
+   "background": "transparent"
+  },
+  {
+   "asset": "assets/fcc-mark.svg",
+   "slot": "FCC mark",
+   "candidates": [
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets/shared-fcc-mark.svg"
+   ],
+   "identity": "same glyph/art as this PDF (LCD icons within the 2% glyph tolerance; key buttons and FCC mark from the same HomePower 3600 Plus template)",
+   "decision": "reuse byte-identical",
+   "reason": "not applicable",
+   "source": "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets/shared-fcc-mark.svg",
+   "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe",
+   "background": "transparent"
+  },
+  {
+   "asset": "assets/symbol-01.svg",
+   "slot": "safety symbol sym.alert",
+   "candidates": [
+    "docs/renderers/web/assets/shared/symbols/manifest.json"
+   ],
+   "identity": "passes fixed 2% symbol admission (see source_manifest.json:symbol_asset_admission)",
+   "decision": "reuse shared variant warning/outline-triangle-tinted",
+   "reason": "not applicable",
+   "source": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_warning_triangle.svg",
+   "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+   "background": "transparent"
+  },
+  {
+   "asset": "assets/symbol-02.svg",
+   "slot": "safety symbol sym.manual",
+   "candidates": [
+    "docs/renderers/web/assets/shared/symbols/manifest.json"
+   ],
+   "identity": "passes fixed 2% symbol admission (see source_manifest.json:symbol_asset_admission)",
+   "decision": "reuse shared variant read-manual/book-information",
+   "reason": "not applicable",
+   "source": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_read_manual.svg",
+   "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
+   "background": "transparent"
+  },
+  {
+   "asset": "assets/symbol-03.svg",
+   "slot": "safety symbol sym.shock",
+   "candidates": [
+    "docs/renderers/web/assets/shared/symbols/manifest.json"
+   ],
+   "identity": "passes fixed 2% symbol admission (see source_manifest.json:symbol_asset_admission)",
+   "decision": "reuse shared variant electric-shock/bolt-triangle-tinted",
+   "reason": "not applicable",
+   "source": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_electric_shock.svg",
+   "sha256": "a76bd208ea017906cdcb5624307cdf4b4bb092816d45ef3943a4b3367c837d3f",
+   "background": "transparent"
+  },
+  {
+   "asset": "assets/symbol-04.svg",
+   "slot": "safety symbol sym.charging",
+   "candidates": [
+    "docs/renderers/web/assets/shared/symbols/manifest.json"
+   ],
+   "identity": "passes fixed 2% symbol admission (see source_manifest.json:symbol_asset_admission)",
+   "decision": "reuse shared variant battery-charging/flame-battery-triangle-tinted",
+   "reason": "not applicable",
+   "source": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_battery_charging.svg",
+   "sha256": "6a513fe0122fec428c55a3f840c34ed7afdea311f7f1dd9b6e6fd807d087bf55",
+   "background": "transparent"
+  },
+  {
+   "asset": "assets/symbol-05.svg",
+   "slot": "safety symbol sym.explosive",
+   "candidates": [
+    "docs/renderers/web/assets/shared/symbols/manifest.json"
+   ],
+   "identity": "passes fixed 2% symbol admission (see source_manifest.json:symbol_asset_admission)",
+   "decision": "reuse shared variant explosive-material/burst-triangle-native-v2-3e3a39",
+   "reason": "not applicable",
+   "source": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_explosive_material_native_v2_3e3a39.svg",
+   "sha256": "d4def93f853179fe0ea0cd7c4ba461da5a70d662d33a899bc48f7a2ef5553a1d",
+   "background": "transparent"
+  },
+  {
+   "asset": "assets/symbol-06.svg",
+   "slot": "safety symbol sym.heavy",
+   "candidates": [
+    "docs/renderers/web/assets/shared/symbols/manifest.json"
+   ],
+   "identity": "passes fixed 2% symbol admission (see source_manifest.json:symbol_asset_admission)",
+   "decision": "reuse shared variant heavy-object/person-load-triangle-tinted",
+   "reason": "not applicable",
+   "source": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_heavy_object.svg",
+   "sha256": "5316063a33173d4231610b72babd30cb2282d1fd9d76263bf70e9577352e3910",
+   "background": "transparent"
+  },
+  {
+   "asset": "assets/symbol-07.svg",
+   "slot": "safety symbol sym.dismantle",
+   "candidates": [
+    "docs/renderers/web/assets/shared/symbols/manifest.json"
+   ],
+   "identity": "passes fixed 2% symbol admission (see source_manifest.json:symbol_asset_admission)",
+   "decision": "reuse shared variant do-not-dismantle/screwdriver-prohibited",
+   "reason": "not applicable",
+   "source": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_do_not_dismantle.svg",
+   "sha256": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33",
+   "background": "transparent"
+  },
+  {
+   "asset": "assets/symbol-08.svg",
+   "slot": "safety symbol sym.fire",
+   "candidates": [
+    "docs/renderers/web/assets/shared/symbols/manifest.json"
+   ],
+   "identity": "passes fixed 2% symbol admission (see source_manifest.json:symbol_asset_admission)",
+   "decision": "reuse shared variant no-open-flame/fire-match-prohibited",
+   "reason": "not applicable",
+   "source": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_no_open_flame.svg",
+   "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f",
+   "background": "transparent"
+  },
+  {
+   "asset": "assets/symbol-09.svg",
+   "slot": "safety symbol sym.children",
+   "candidates": [
+    "docs/renderers/web/assets/shared/symbols/manifest.json"
+   ],
+   "identity": "passes fixed 2% symbol admission (see source_manifest.json:symbol_asset_admission)",
+   "decision": "reuse shared variant keep-away-from-children/adult-child-prohibited",
+   "reason": "not applicable",
+   "source": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_keep_away_from_children.svg",
+   "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899",
+   "background": "transparent"
+  },
+  {
+   "asset": "assets/symbol-10.svg",
+   "slot": "safety symbol sym.liion",
+   "candidates": [
+    "docs/renderers/web/assets/shared/symbols/manifest.json"
+   ],
+   "identity": "passes fixed 2% symbol admission (see source_manifest.json:symbol_asset_admission)",
+   "decision": "reuse shared variant li-ion/htp017-recycle-li-ion",
+   "reason": "not applicable",
+   "source": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_li_ion_htp017.svg",
+   "sha256": "b98301d1742f0695e0b0c1ec523eba3c79f8c9879fc2672565ff5d79fde0bd66",
+   "background": "transparent"
+  },
+  {
+   "asset": "assets/symbol-11.png",
+   "slot": "safety symbol sym.weee",
+   "candidates": [
+    "docs/renderers/web/assets/shared/symbols/manifest.json"
+   ],
+   "identity": "passes fixed 2% symbol admission (see source_manifest.json:symbol_asset_admission)",
+   "decision": "reuse shared variant weee/crossed-bin-bar",
+   "reason": "not applicable",
+   "source": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_weee.png",
+   "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+   "background": "transparent"
+  }
+ ]
+}
