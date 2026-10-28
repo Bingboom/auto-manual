@@ -76,8 +76,8 @@
     "en": "web/en"
   },
   "source_authority": "operator-designated English PDF from the 发布文档管理 Base row (read-only download); original English governs all copy. Operator instruction 2026-10-27: 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 (封面和目录不上网页; 版面以 PDF 为准; 不改任何英文原文).",
-  "publication_status": "review-candidate-no-release-authorization",
-  "publication_eligible": false,
+  "publication_status": "operator-approved-git-only-release",
+  "publication_eligible": true,
   "pending_source_review": [],
   "language_scope": "single",
   "live_bitable_dependency": false,
@@ -1608,8 +1608,8 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 4133,
-      "sha256": "b057dd6473ebd153b7d037058045254736f9b1bd297cd542dcc1f47c048008ee"
+      "size": 4484,
+      "sha256": "2e24159727d19b7c7689a0769c21c5a4db7a7409394df20f2f7d33357525204e"
     },
     {
       "path": "assets/ac-output.png",
@@ -1818,8 +1818,8 @@
     },
     {
       "path": "audit/review.zh.md",
-      "size": 2321,
-      "sha256": "5508793b99a4582e422cd9204367df3b3165a942927ebac4829b8ab750c7cf46"
+      "size": 2347,
+      "sha256": "60786ed50df8333c977773dee68a796c157d1330b44b04490e2b2557535ba41f"
     },
     {
       "path": "original.pdf",
@@ -1830,6 +1830,11 @@
       "path": "rebuild.py",
       "size": 8197,
       "sha256": "4892fcb21e7d2647d83466831c97409759f9384002f06f8e1ccfe3b625eb9d6b"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 9653,
+      "sha256": "81c892770064052867924488785a24357a4ff04de41909af90b453e05ccefbb6"
     },
     {
       "path": "source/en/content.json",
@@ -2103,8 +2108,8 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 306802,
-      "sha256": "0156c35dbf244c63a8ccd19f724486b9f9159c28b65ee62156cbfb67058a6ee0"
+      "size": 317495,
+      "sha256": "f5765cb6fca523ee0da897113b3c86673123b182799ef578c21ed5fecafaf08f"
     },
     {
       "path": "web/en/manual_je300esg_us_en.md",

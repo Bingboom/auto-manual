@@ -6,8 +6,11 @@ from the 发布文档管理 Base row `reczz28SPRx9psWa` (material 16-0102-000099
 decided that only 16-0102-000099 gets a Web edition (16-0102-000100 does not). Route `JE-300C/US/en/md`,
 `legacy_default` (no US Web edition exists for this model).
 
-**Status: `review-candidate-no-release-authorization`.** No `source/approval.json`; the IR is not
-publication-eligible. Open operator decisions are listed in [`audit/review.zh.md`](audit/review.zh.md).
+**Status: `operator-approved-git-only-release`.** On 2026-10-28 the operator confirmed 「上线提交发布：JE-300C、
+JE-300E、JE-300E-SG、JE-880B；授权合入 #1631 及其 Hello-Docs 发布 PR」 under MA-365
+(「授权全部合入上线 上线之后 我再一个个核对版面」). `source/approval.json` binds that acceptance to these exact
+source inputs and the IR is publication-eligible; the operator checks the layout on the live page after
+release. The default layout decisions are listed in [`audit/review.zh.md`](audit/review.zh.md).
 
 ## Source authority
 
