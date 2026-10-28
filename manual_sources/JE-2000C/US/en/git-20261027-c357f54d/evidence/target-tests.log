@@ -1,0 +1,33 @@
+[env-preflight] WARN env.python: Python 3.13 differs from the pinned 3.12; tests and builds may fail for environment reasons
+[env-preflight] WARN env.lock: 4 pinned package(s) not installed: aliyun-python-sdk-core, aliyun-python-sdk-kms, crcmod, oss2
+[env-preflight] WARN env.lock: 2 package(s) differ from requirements.lock: certifi 2026.10.18 (lock 2026.6.17), charset-normalizer 3.5.1 (lock 3.4.8)
+[env-preflight] WARN env.lock: to match CI: python -m pip install -r requirements.lock (on the pinned Python)
+test_assets_are_derived_or_reused (tests.test_je2000c_us_web.Je2000cUsWebTests.test_assets_are_derived_or_reused) ... ok
+test_changed_source_input_is_rejected (tests.test_je2000c_us_web.Je2000cUsWebTests.test_changed_source_input_is_rejected) ... ok
+test_chapters_and_print_only_pages_excluded (tests.test_je2000c_us_web.Je2000cUsWebTests.test_chapters_and_print_only_pages_excluded) ... ok
+test_cold_replay_matches_stored_candidate (tests.test_je2000c_us_web.Je2000cUsWebTests.test_cold_replay_matches_stored_candidate) ... {
+  "output": "/tmp/tmp0g8ih99a/replay",
+  "chapters": 10,
+  "components": {
+    "HB-CALLOUT-STRIP": 2,
+    "HB-SPECIAL-FCC": 1,
+    "HB-SPECIAL-INBOX": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE": 14,
+    "HB-TABLE-LCD-ICON": 2,
+    "HB-TABLE-REFERENCE": 1,
+    "HB-TABLE-SPEC": 4,
+    "HB-WARRANTY-SECTION": 5
+  },
+  "symbol_admission": []
+}
+ok
+test_content_is_rebuilt_from_transcription (tests.test_je2000c_us_web.Je2000cUsWebTests.test_content_is_rebuilt_from_transcription) ... ok
+test_every_web_line_is_selectable_text_in_the_page (tests.test_je2000c_us_web.Je2000cUsWebTests.test_every_web_line_is_selectable_text_in_the_page) ... ok
+test_identity_and_candidate_status (tests.test_je2000c_us_web.Je2000cUsWebTests.test_identity_and_candidate_status) ... ok
+test_inputs_are_pinned (tests.test_je2000c_us_web.Je2000cUsWebTests.test_inputs_are_pinned) ... ok
+test_model_facts_come_from_this_source (tests.test_je2000c_us_web.Je2000cUsWebTests.test_model_facts_come_from_this_source) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 7.296s
+
+OK

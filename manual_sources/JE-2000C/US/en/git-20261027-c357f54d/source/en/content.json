@@ -1,0 +1,4776 @@
+{
+ "model": "JE-2000C",
+ "region": "US",
+ "language": "en",
+ "title": "Jackery Explorer 2000 Plus · JE-2000C",
+ "source_sha256": "c357f54dfed27d11d72a2a4893e485450a49c1b562e21f0f272708857f1510ab",
+ "chapters": [
+  {
+   "id": "technical_specifications",
+   "title": "TECHNICAL SPECIFICATIONS",
+   "nodes": [
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "Congratulations on your new Jackery Explorer 2000 Plus. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for frequent reference."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "In compliance with laws and regulations, the right of final interpretation of this document and all related documents of this product resides with the Company."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "Please kindly notice that no further notifications will be given in case of any update, revision or termination."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "heading",
+     "level": 2,
+     "anchor": "native-technical-specifications",
+     "children": [
+      {
+       "kind": "text",
+       "text": "TECHNICAL SPECIFICATIONS"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-TABLE-SPEC",
+      "variant": "vertical",
+      "source_ref": "native-pdf/page-2/spec.g1",
+      "language": "en",
+      "slots": [
+       {
+        "role": "section_title",
+        "content_kind": "inline_text",
+        "content": "GENERAL INFO"
+       },
+       {
+        "role": "rows",
+        "content_kind": "structured_rows",
+        "content": [
+         {
+          "label": "Product Name",
+          "label_rowspan": 1,
+          "values": [
+           {
+            "text": "Jackery Explorer 2000 Plus",
+            "references": []
+           }
+          ],
+          "references": []
+         },
+         {
+          "label": "Model No.",
+          "label_rowspan": 1,
+          "values": [
+           {
+            "text": "JE-2000C",
+            "references": []
+           }
+          ],
+          "references": []
+         },
+         {
+          "label": "Capacity",
+          "label_rowspan": 1,
+          "values": [
+           {
+            "text": "Lithium-ion 45.6Ah/ 44.8V DC (2042.8Wh)",
+            "references": []
+           }
+          ],
+          "references": []
+         },
+         {
+          "label": "Weight",
+          "label_rowspan": 1,
+          "values": [
+           {
+            "text": "About 61.5 lbs/ 27.9 kg",
+            "references": []
+           }
+          ],
+          "references": []
+         },
+         {
+          "label": "Dimensions",
+          "label_rowspan": 1,
+          "values": [
+           {
+            "text": "18.6 x 14.1 x 14.7 in/ 47.3 x 35.94 x 37.36 cm",
+            "references": []
+           }
+          ],
+          "references": []
+         },
+         {
+          "label": "Cycle Life",
+          "label_rowspan": 1,
+          "values": [
+           {
+            "text": "4000 cycles to 70%+ capacity",
+            "references": []
+           }
+          ],
+          "references": []
+         }
+        ]
+       }
+      ],
+      "assets": [],
+      "token_roles": [
+       "component.table.spec"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "heading",
+       "level": 2,
+       "presentation": {
+        "html": {
+         "attributes": {
+          "class": [
+           "hb-spec-section"
+          ]
+         }
+        }
+       },
+       "children": [
+        {
+         "kind": "inline_group",
+         "presentation": {
+          "html": {
+           "attributes": {
+            "class": [
+             "hb-spec-section-text"
+            ]
+           }
+          }
+         },
+         "children": [
+          {
+           "kind": "text",
+           "text": "GENERAL INFO"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "table",
+       "children": [
+        {
+         "kind": "table_body",
+         "children": [
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "Product Name"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "Jackery Explorer 2000 Plus"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "Model No."
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "JE-2000C"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "Capacity"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "Lithium-ion 45.6Ah/ 44.8V DC (2042.8Wh)"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "Weight"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "About 61.5 lbs/ 27.9 kg"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "Dimensions"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "18.6 x 14.1 x 14.7 in/ 47.3 x 35.94 x 37.36 cm"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "Cycle Life"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "4000 cycles to 70%+ capacity"
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-TABLE-SPEC",
+      "variant": "vertical",
+      "source_ref": "native-pdf/page-2/spec.g2",
+      "language": "en",
+      "slots": [
+       {
+        "role": "section_title",
+        "content_kind": "inline_text",
+        "content": "OUTPUT PORTS"
+       },
+       {
+        "role": "rows",
+        "content_kind": "structured_rows",
+        "content": [
+         {
+          "label": "4x AC Output",
+          "label_rowspan": 1,
+          "values": [
+           {
+            "text": "120V~ 60Hz, 20A Max",
+            "references": []
+           }
+          ],
+          "references": []
+         },
+         {
+          "label": "1x AC Output",
+          "label_rowspan": 1,
+          "values": [
+           {
+            "text": "120V~ 60Hz, 25A Max",
+            "references": []
+           }
+          ],
+          "references": []
+         },
+         {
+          "label": "AC Total Output",
+          "label_rowspan": 1,
+          "values": [
+           {
+            "text": "3000W Max, 6000W surge peak",
+            "references": []
+           }
+          ],
+          "references": []
+         },
+         {
+          "label": "1x AC Expansion Port",
+          "label_rowspan": 1,
+          "values": [
+           {
+            "text": "120V~ 60Hz, 25A Max",
+            "references": []
+           }
+          ],
+          "references": []
+         },
+         {
+          "label": "1x DC Expansion Port",
+          "label_rowspan": 1,
+          "values": [
+           {
+            "text": "32.2V-50.4V⎓97A Max",
+            "references": []
+           }
+          ],
+          "references": []
+         },
+         {
+          "label": "2x USB-C Output",
+          "label_rowspan": 1,
+          "values": [
+           {
+            "text": "100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A",
+            "references": []
+           }
+          ],
+          "references": []
+         },
+         {
+          "label": "2x USB-A Output",
+          "label_rowspan": 1,
+          "values": [
+           {
+            "text": "Quick Charge 3.0, 18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A",
+            "references": []
+           }
+          ],
+          "references": []
+         },
+         {
+          "label": "1x Car Port",
+          "label_rowspan": 1,
+          "values": [
+           {
+            "text": "12V⎓10A Max",
+            "references": []
+           }
+          ],
+          "references": []
+         }
+        ]
+       }
+      ],
+      "assets": [],
+      "token_roles": [
+       "component.table.spec"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "heading",
+       "level": 2,
+       "presentation": {
+        "html": {
+         "attributes": {
+          "class": [
+           "hb-spec-section"
+          ]
+         }
+        }
+       },
+       "children": [
+        {
+         "kind": "inline_group",
+         "presentation": {
+          "html": {
+           "attributes": {
+            "class": [
+             "hb-spec-section-text"
+            ]
+           }
+          }
+         },
+         "children": [
+          {
+           "kind": "text",
+           "text": "OUTPUT PORTS"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "table",
+       "children": [
+        {
+         "kind": "table_body",
+         "children": [
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "4x AC Output"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "120V~ 60Hz, 20A Max"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "1x AC Output"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "120V~ 60Hz, 25A Max"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "AC Total Output"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "3000W Max, 6000W surge peak"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "1x AC Expansion Port"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "120V~ 60Hz, 25A Max"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "1x DC Expansion Port"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "32.2V-50.4V⎓97A Max"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "2x USB-C Output"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "2x USB-A Output"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "Quick Charge 3.0, 18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "1x Car Port"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "12V⎓10A Max"
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-TABLE-SPEC",
+      "variant": "vertical",
+      "source_ref": "native-pdf/page-2/spec.g3",
+      "language": "en",
+      "slots": [
+       {
+        "role": "section_title",
+        "content_kind": "inline_text",
+        "content": "INPUT PORTS"
+       },
+       {
+        "role": "rows",
+        "content_kind": "structured_rows",
+        "content": [
+         {
+          "label": "Charge mode AC input",
+          "label_rowspan": 1,
+          "values": [
+           {
+            "text": "120V~ 60Hz, 15A Max",
+            "references": []
+           }
+          ],
+          "references": []
+         },
+         {
+          "label": "Bypass mode AC input/output",
+          "label_rowspan": 1,
+          "values": [
+           {
+            "text": "120V~ 60Hz, 12A Max",
+            "references": []
+           }
+          ],
+          "references": []
+         },
+         {
+          "label": "DC Input",
+          "label_rowspan": 3,
+          "values": [
+           {
+            "text": "2x DC 8mm Ports: 11-17.5V (Working Voltage)⎓8A Max,",
+            "references": []
+           },
+           {
+            "text": "Double to 8A Max;",
+            "references": []
+           },
+           {
+            "text": "17.5-60V (Working Voltage)⎓12A Max, Double to 24A/1400W Max",
+            "references": []
+           }
+          ],
+          "references": []
+         }
+        ]
+       }
+      ],
+      "assets": [],
+      "token_roles": [
+       "component.table.spec"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "heading",
+       "level": 2,
+       "presentation": {
+        "html": {
+         "attributes": {
+          "class": [
+           "hb-spec-section"
+          ]
+         }
+        }
+       },
+       "children": [
+        {
+         "kind": "inline_group",
+         "presentation": {
+          "html": {
+           "attributes": {
+            "class": [
+             "hb-spec-section-text"
+            ]
+           }
+          }
+         },
+         "children": [
+          {
+           "kind": "text",
+           "text": "INPUT PORTS"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "table",
+       "children": [
+        {
+         "kind": "table_body",
+         "children": [
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "Charge mode AC input"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "120V~ 60Hz, 15A Max"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "Bypass mode AC input/output"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "120V~ 60Hz, 12A Max"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "DC Input"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "2x DC 8mm Ports: 11-17.5V (Working Voltage)⎓8A Max,"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": ""
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "Double to 8A Max;"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": ""
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "17.5-60V (Working Voltage)⎓12A Max, Double to 24A/1400W Max"
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-TABLE-SPEC",
+      "variant": "vertical",
+      "source_ref": "native-pdf/page-2/spec.g4",
+      "language": "en",
+      "slots": [
+       {
+        "role": "section_title",
+        "content_kind": "inline_text",
+        "content": "ENVIRONMENTAL OPERATING TEMPERATURE"
+       },
+       {
+        "role": "rows",
+        "content_kind": "structured_rows",
+        "content": [
+         {
+          "label": "Charge Temperature",
+          "label_rowspan": 1,
+          "values": [
+           {
+            "text": "0~45°C (32~113 °F)",
+            "references": []
+           }
+          ],
+          "references": []
+         },
+         {
+          "label": "Discharge Temperature",
+          "label_rowspan": 1,
+          "values": [
+           {
+            "text": "-10~45°C (14~113°F)",
+            "references": []
+           }
+          ],
+          "references": []
+         }
+        ]
+       }
+      ],
+      "assets": [],
+      "token_roles": [
+       "component.table.spec"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "heading",
+       "level": 2,
+       "presentation": {
+        "html": {
+         "attributes": {
+          "class": [
+           "hb-spec-section"
+          ]
+         }
+        }
+       },
+       "children": [
+        {
+         "kind": "inline_group",
+         "presentation": {
+          "html": {
+           "attributes": {
+            "class": [
+             "hb-spec-section-text"
+            ]
+           }
+          }
+         },
+         "children": [
+          {
+           "kind": "text",
+           "text": "ENVIRONMENTAL OPERATING TEMPERATURE"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "table",
+       "children": [
+        {
+         "kind": "table_body",
+         "children": [
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "Charge Temperature"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "0~45°C (32~113 °F)"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "Discharge Temperature"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "-10~45°C (14~113°F)"
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "heading",
+     "level": 3,
+     "children": [
+      {
+       "kind": "text",
+       "text": "CERTIFICATIONS"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+      "variant": "semantic-fallback",
+      "source_ref": "native-pdf/page-2/certifications",
+      "language": "en",
+      "slots": [
+       {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "certifications"
+       },
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "FCC / BC / Qualcomm quick charge 3.0 / WEEE"
+       },
+       {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "embedded"
+       },
+       {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+       }
+      ],
+      "assets": [
+       {
+        "role": "source_art",
+        "asset_ref": "assets/certifications.png",
+        "locale_policy": "exact"
+       }
+      ],
+      "token_roles": [
+       "component.special.reference-figure"
+      ],
+      "metadata": {
+       "embedded_labels": [],
+       "physical_page": 2,
+       "image_key": "certifications",
+       "web_replace_key": "",
+       "source_fragment_sha256": "0b12c21cd6c5632e3f2c52dea51b1b144e266d2db06fc09e88c31652cbeaec32"
+      },
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "image",
+       "source": "assets/certifications.png",
+       "alt": "FCC / BC / Qualcomm quick charge 3.0 / WEEE"
+      }
+     ]
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "※ Qualcomm Quick Charge is a product of Qualcomm Technologles,Inc. and/or its subsidiaries. Qualcomm and Quick Charge are trademarks or registered trademarks of Qualcomm Incorporated."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "strong",
+       "children": [
+        {
+         "kind": "text",
+         "text": "MODIFICATION"
+        }
+       ]
+      },
+      {
+       "kind": "text",
+       "text": ": Any changes or modifications not expressly approved by the grantee of this device could void the user’s authority to operate the device."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    }
+   ]
+  },
+  {
+   "id": "package_list",
+   "title": "PACKAGE LIST",
+   "nodes": [
+    {
+     "kind": "heading",
+     "level": 2,
+     "anchor": "native-package-list",
+     "children": [
+      {
+       "kind": "text",
+       "text": "PACKAGE LIST"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-SPECIAL-INBOX",
+      "variant": "responsive-card-grid",
+      "source_ref": "native-pdf/page-3/package-list",
+      "language": "en",
+      "slots": [
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "PACKAGE LIST"
+       },
+       {
+        "role": "cards",
+        "content_kind": "ordered_cards",
+        "content": [
+         {
+          "number": 1,
+          "image_asset_role": "card_art",
+          "alt": "Jackery Explorer 2000 Plus",
+          "label": "Jackery Explorer 2000 Plus"
+         },
+         {
+          "number": 2,
+          "image_asset_role": "card_art",
+          "alt": "Car Charge Cable",
+          "label": "Car Charge Cable"
+         },
+         {
+          "number": 3,
+          "image_asset_role": "card_art",
+          "alt": "AC Charge Cable",
+          "label": "AC Charge Cable"
+         },
+         {
+          "number": 4,
+          "image_asset_role": "card_art",
+          "alt": "DC7909 to DC8020 Adaptor x 2",
+          "label": "DC7909 to DC8020 Adaptor x 2"
+         },
+         {
+          "number": 5,
+          "image_asset_role": "card_art",
+          "alt": "User Manual",
+          "label": "User Manual"
+         },
+         {
+          "number": 6,
+          "image_asset_role": "card_art",
+          "alt": "Accessories Bag",
+          "label": "Accessories Bag"
+         }
+        ]
+       },
+       {
+        "role": "tip_label",
+        "content_kind": "inline_text",
+        "content": ""
+       },
+       {
+        "role": "tip_body",
+        "content_kind": "rich_text",
+        "content": ""
+       }
+      ],
+      "assets": [
+       {
+        "role": "card_art",
+        "asset_ref": "assets/inbox-unit.png",
+        "locale_policy": "shared"
+       },
+       {
+        "role": "card_art",
+        "asset_ref": "assets/inbox-car-cable.png",
+        "locale_policy": "shared"
+       },
+       {
+        "role": "card_art",
+        "asset_ref": "assets/inbox-ac-cable.png",
+        "locale_policy": "shared"
+       },
+       {
+        "role": "card_art",
+        "asset_ref": "assets/inbox-adaptor.png",
+        "locale_policy": "shared"
+       },
+       {
+        "role": "card_art",
+        "asset_ref": "assets/inbox-manual.png",
+        "locale_policy": "shared"
+       },
+       {
+        "role": "card_art",
+        "asset_ref": "assets/inbox-bag.png",
+        "locale_policy": "shared"
+       }
+      ],
+      "token_roles": [
+       "component.special.inbox"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "table",
+       "presentation": {
+        "html": {
+         "attributes": {
+          "class": "manual-table"
+         }
+        }
+       },
+       "children": [
+        {
+         "kind": "table_body",
+         "children": [
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "image",
+               "source": "assets/inbox-unit.png",
+               "alt": "Jackery Explorer 2000 Plus"
+              },
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "Jackery Explorer 2000 Plus"
+                }
+               ]
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "image",
+               "source": "assets/inbox-car-cable.png",
+               "alt": "Car Charge Cable"
+              },
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "Car Charge Cable"
+                }
+               ]
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "image",
+               "source": "assets/inbox-ac-cable.png",
+               "alt": "AC Charge Cable"
+              },
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "AC Charge Cable"
+                }
+               ]
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "image",
+               "source": "assets/inbox-adaptor.png",
+               "alt": "DC7909 to DC8020 Adaptor x 2"
+              },
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "DC7909 to DC8020 Adaptor x 2"
+                }
+               ]
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "image",
+               "source": "assets/inbox-manual.png",
+               "alt": "User Manual"
+              },
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "User Manual"
+                }
+               ]
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "image",
+               "source": "assets/inbox-bag.png",
+               "alt": "Accessories Bag"
+              },
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "Accessories Bag"
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "get_to_know_your_gear",
+   "title": "GET TO KNOW YOUR GEAR",
+   "nodes": [
+    {
+     "kind": "heading",
+     "level": 2,
+     "anchor": "native-get-to-know-your-gear",
+     "children": [
+      {
+       "kind": "text",
+       "text": "GET TO KNOW YOUR GEAR"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "heading",
+     "level": 3,
+     "children": [
+      {
+       "kind": "text",
+       "text": "Product Appearance"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+      "variant": "semantic-fallback",
+      "source_ref": "native-pdf/page-3/overview-front",
+      "language": "en",
+      "slots": [
+       {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "overview-front"
+       },
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "Main Power Button / Car Port / USB-A Output / USB-C Output / DC Button / AC Output / AC Output / AC Button"
+       },
+       {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "embedded"
+       },
+       {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+       }
+      ],
+      "assets": [
+       {
+        "role": "source_art",
+        "asset_ref": "assets/overview-front.png",
+        "locale_policy": "exact"
+       }
+      ],
+      "token_roles": [
+       "component.special.reference-figure"
+      ],
+      "metadata": {
+       "embedded_labels": [
+        "Main Power Button",
+        "Car Port",
+        "USB-A Output",
+        "USB-C Output",
+        "DC Button",
+        "AC Output",
+        "AC Output",
+        "AC Button"
+       ],
+       "physical_page": 3,
+       "image_key": "overview-front",
+       "web_replace_key": "",
+       "source_fragment_sha256": "a936d19489d9731ac8af75c80cbb53283021ac05bc34ca2d9f208dec40d670d5"
+      },
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "image",
+       "source": "assets/overview-front.png",
+       "alt": "Main Power Button / Car Port / USB-A Output / USB-C Output / DC Button / AC Output / AC Output / AC Button"
+      }
+     ]
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+      "variant": "semantic-fallback",
+      "source_ref": "native-pdf/page-3/overview-rear",
+      "language": "en",
+      "slots": [
+       {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "overview-rear"
+       },
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "Retractable Handle / (Press the button on the retractable handle and pull to extend) / AC Expansion Port (Connect to another Explorer 2000 Plus) / AC Input Reset Button / AC Input / DC Input / DC Expansion Port (Connect to Battery Pack)"
+       },
+       {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "embedded"
+       },
+       {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+       }
+      ],
+      "assets": [
+       {
+        "role": "source_art",
+        "asset_ref": "assets/overview-rear.png",
+        "locale_policy": "exact"
+       }
+      ],
+      "token_roles": [
+       "component.special.reference-figure"
+      ],
+      "metadata": {
+       "embedded_labels": [
+        "Retractable Handle",
+        "(Press the button on the retractable handle and pull to extend)",
+        "AC Expansion Port (Connect to another Explorer 2000 Plus)",
+        "AC Input Reset Button",
+        "AC Input",
+        "DC Input",
+        "DC Expansion Port (Connect to Battery Pack)"
+       ],
+       "physical_page": 3,
+       "image_key": "overview-rear",
+       "web_replace_key": "",
+       "source_fragment_sha256": "e6d33f3525b49007d20b3a4a70a66a0aff6fb47c9b5022e26b7f0fb877a630ee"
+      },
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "image",
+       "source": "assets/overview-rear.png",
+       "alt": "Retractable Handle / (Press the button on the retractable handle and pull to extend) / AC Expansion Port (Connect to another Explorer 2000 Plus) / AC Input Reset Button / AC Input / DC Input / DC Expansion Port (Connect to Battery Pack)"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lcd_display",
+   "title": "LCD DISPLAY",
+   "nodes": [
+    {
+     "kind": "heading",
+     "level": 2,
+     "anchor": "native-lcd-display",
+     "children": [
+      {
+       "kind": "text",
+       "text": "LCD DISPLAY"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+      "variant": "semantic-fallback",
+      "source_ref": "native-pdf/page-4/lcd-map",
+      "language": "en",
+      "slots": [
+       {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "lcd-map"
+       },
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "LCD DISPLAY"
+       },
+       {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "embedded"
+       },
+       {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+       }
+      ],
+      "assets": [
+       {
+        "role": "source_art",
+        "asset_ref": "assets/lcd-map.png",
+        "locale_policy": "exact"
+       }
+      ],
+      "token_roles": [
+       "component.special.reference-figure"
+      ],
+      "metadata": {
+       "embedded_labels": [],
+       "physical_page": 4,
+       "image_key": "lcd-map",
+       "web_replace_key": "",
+       "source_fragment_sha256": "a25f42291a3413b4760c64566a59c112b3d0229d4763b1cb81a59c86b6d5830e"
+      },
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "image",
+       "source": "assets/lcd-map.png",
+       "alt": "LCD DISPLAY"
+      }
+     ]
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-TABLE-REFERENCE",
+      "variant": "lcd-descriptions",
+      "source_ref": "native-pdf/page-4/lcd-legend",
+      "language": "en",
+      "slots": [
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "LCD DISPLAY"
+       },
+       {
+        "role": "headers",
+        "content_kind": "ordered_headers",
+        "content": []
+       },
+       {
+        "role": "rows",
+        "content_kind": "ordered_rows",
+        "content": [
+         [
+          {
+           "html": "①",
+           "text": "①"
+          },
+          {
+           "html": "WiFi",
+           "text": "WiFi"
+          }
+         ],
+         [
+          {
+           "html": "②",
+           "text": "②"
+          },
+          {
+           "html": "Bluetooth",
+           "text": "Bluetooth"
+          }
+         ],
+         [
+          {
+           "html": "③",
+           "text": "③"
+          },
+          {
+           "html": "Quiet Charging Mode",
+           "text": "Quiet Charging Mode"
+          }
+         ],
+         [
+          {
+           "html": "④",
+           "text": "④"
+          },
+          {
+           "html": "Battery Saving Mode",
+           "text": "Battery Saving Mode"
+          }
+         ],
+         [
+          {
+           "html": "⑤",
+           "text": "⑤"
+          },
+          {
+           "html": "AC Expansion Indicator",
+           "text": "AC Expansion Indicator"
+          }
+         ],
+         [
+          {
+           "html": "⑥",
+           "text": "⑥"
+          },
+          {
+           "html": "Input Power",
+           "text": "Input Power"
+          }
+         ],
+         [
+          {
+           "html": "⑦",
+           "text": "⑦"
+          },
+          {
+           "html": "Remaining Charge Time",
+           "text": "Remaining Charge Time"
+          }
+         ],
+         [
+          {
+           "html": "⑧",
+           "text": "⑧"
+          },
+          {
+           "html": "AC Wall Charging Indicator",
+           "text": "AC Wall Charging Indicator"
+          }
+         ],
+         [
+          {
+           "html": "⑨",
+           "text": "⑨"
+          },
+          {
+           "html": "Car Charging Indicator",
+           "text": "Car Charging Indicator"
+          }
+         ],
+         [
+          {
+           "html": "⑩",
+           "text": "⑩"
+          },
+          {
+           "html": "Solar Charging Indicator",
+           "text": "Solar Charging Indicator"
+          }
+         ],
+         [
+          {
+           "html": "⑪",
+           "text": "⑪"
+          },
+          {
+           "html": "Battery Power Indicator",
+           "text": "Battery Power Indicator"
+          }
+         ],
+         [
+          {
+           "html": "⑫",
+           "text": "⑫"
+          },
+          {
+           "html": "Low Battery Indicator",
+           "text": "Low Battery Indicator"
+          }
+         ],
+         [
+          {
+           "html": "⑬",
+           "text": "⑬"
+          },
+          {
+           "html": "Remaining Battery Percentage",
+           "text": "Remaining Battery Percentage"
+          }
+         ],
+         [
+          {
+           "html": "⑭",
+           "text": "⑭"
+          },
+          {
+           "html": "Error Code",
+           "text": "Error Code"
+          }
+         ],
+         [
+          {
+           "html": "⑮",
+           "text": "⑮"
+          },
+          {
+           "html": "High Temperature Warning",
+           "text": "High Temperature Warning"
+          }
+         ],
+         [
+          {
+           "html": "⑯",
+           "text": "⑯"
+          },
+          {
+           "html": "Low Temperature Warning",
+           "text": "Low Temperature Warning"
+          }
+         ],
+         [
+          {
+           "html": "⑰",
+           "text": "⑰"
+          },
+          {
+           "html": "Energy Saving Mode",
+           "text": "Energy Saving Mode"
+          }
+         ],
+         [
+          {
+           "html": "⑱",
+           "text": "⑱"
+          },
+          {
+           "html": "AC Power Indicator",
+           "text": "AC Power Indicator"
+          }
+         ],
+         [
+          {
+           "html": "⑲",
+           "text": "⑲"
+          },
+          {
+           "html": "Output Power",
+           "text": "Output Power"
+          }
+         ],
+         [
+          {
+           "html": "⑳",
+           "text": "⑳"
+          },
+          {
+           "html": "Remaining Discharge Time",
+           "text": "Remaining Discharge Time"
+          }
+         ],
+         [
+          {
+           "html": "㉑",
+           "text": "㉑"
+          },
+          {
+           "html": "Battery Pack Indicator and Connected Quantity",
+           "text": "Battery Pack Indicator and Connected Quantity"
+          }
+         ]
+        ]
+       }
+      ],
+      "assets": [],
+      "token_roles": [
+       "component.table.reference"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     }
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "strong",
+       "children": [
+        {
+         "kind": "text",
+         "text": "Battery Saving Mode:"
+        }
+       ]
+      },
+      {
+       "kind": "text",
+       "text": " When this feature is enabled, it limits the battery charging capacity to 85% and the discharging capacity to 15%, and the battery will only be charged when the capacity is below 80% to extend the battery life. Use the Jackery App for settings of this function."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "strong",
+       "children": [
+        {
+         "kind": "text",
+         "text": "Quiet Charging Mode:"
+        }
+       ]
+      },
+      {
+       "kind": "text",
+       "text": " noise ≤ 30dB in this charging mode, you can set this function in Jackery App."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-TABLE-LCD-ICON",
+      "variant": "icon-catalog-unnumbered",
+      "source_ref": "native-pdf/page-4/lcd-icons",
+      "language": "en",
+      "slots": [
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "Battery Power Indicator"
+       },
+       {
+        "role": "rows",
+        "content_kind": "ordered_rows",
+        "content": [
+         {
+          "name_html": "Battery Power Indicator",
+          "name_text": "Battery Power Indicator",
+          "description_html": "When the product is being charged, the orange circle around the battery percentage will light up in sequence. When charging other devices, the indicator will show the battery level.",
+          "description_text": "When the product is being charged, the orange circle around the battery percentage will light up in sequence. When charging other devices, the indicator will show the battery level.",
+          "icon_alt": "Battery Power Indicator",
+          "asset_index": 0
+         },
+         {
+          "name_html": "Low Battery Indicator",
+          "name_text": "Low Battery Indicator",
+          "description_html": "When the battery is less than 20%, the Low Battery Indicator will stay on. When less than 5%, the Low Battery Indicator will flash. When it is being charged, the Indicator will be off.",
+          "description_text": "When the battery is less than 20%, the Low Battery Indicator will stay on. When less than 5%, the Low Battery Indicator will flash. When it is being charged, the Indicator will be off.",
+          "icon_alt": "Low Battery Indicator",
+          "asset_index": 1
+         },
+         {
+          "name_html": "Energy Saving Mode",
+          "name_text": "Energy Saving Mode",
+          "description_html": "To avoid forgetting to turn off the output which results in battery consumption, the product turns the Energy Saving Mode on by default. This occurs when no device is connected or the connected device is less than or equal to a certain value. (Refer to the table below for more details), the device will automatically turn off all outputs after 12 hours.",
+          "description_text": "To avoid forgetting to turn off the output which results in battery consumption, the product turns the Energy Saving Mode on by default. This occurs when no device is connected or the connected device is less than or equal to a certain value. (Refer to the table below for more details), the device will automatically turn off all outputs after 12 hours.",
+          "icon_alt": "Energy Saving Mode",
+          "asset_index": 2
+         }
+        ]
+       }
+      ],
+      "assets": [
+       {
+        "role": "icons",
+        "asset_ref": "assets/lcd-battery-power.png",
+        "locale_policy": "exact"
+       },
+       {
+        "role": "icons",
+        "asset_ref": "assets/lcd-low-battery.png",
+        "locale_policy": "exact"
+       },
+       {
+        "role": "icons",
+        "asset_ref": "assets/lcd-energy-saving.png",
+        "locale_policy": "exact"
+       }
+      ],
+      "token_roles": [
+       "component.table.lcd-icon"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     }
+    },
+    {
+     "kind": "group",
+     "role": "container",
+     "presentation": {
+      "html": {
+       "attributes": {
+        "class": "table-wrapper docutils container"
+       }
+      }
+     },
+     "children": [
+      {
+       "kind": "table",
+       "presentation": {
+        "html": {
+         "attributes": {
+          "class": "manual-table"
+         }
+        }
+       },
+       "children": [
+        {
+         "kind": "table_head",
+         "children": [
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "Output"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "Output Power"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "Defaults"
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "table_body",
+         "children": [
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "AC Output"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "≤25W"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "row_span": 3,
+             "children": [
+              {
+               "kind": "text",
+               "text": "All outputs turned off automatically after 12 hours"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "USB Output"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "≤2W"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "Car Output"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "≤2W"
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "strong",
+       "children": [
+        {
+         "kind": "text",
+         "text": "To turn off the Energy Saving Mode"
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "Long press the AC Button and Main Power Button until the Energy Saving Mode icon disappears. In Non-Energy Saving Mode, please remember to turn off the products to avoid battery consumption."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "strong",
+       "children": [
+        {
+         "kind": "text",
+         "text": "To turn on the Energy Saving Mode"
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "Long press the AC Button and Main Power Button until the Low Power Mode icon lights up on the screen."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-TABLE-LCD-ICON",
+      "variant": "icon-catalog-unnumbered",
+      "source_ref": "native-pdf/page-5/lcd-icons",
+      "language": "en",
+      "slots": [
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "Fault code"
+       },
+       {
+        "role": "rows",
+        "content_kind": "ordered_rows",
+        "content": [
+         {
+          "name_html": "Fault code",
+          "name_text": "Fault code",
+          "description_html": "In order to respond to the feedback quickly, we set up common fault codes F0-FE in the system: If the F8 code appears, please remove the load or unplug the charging plug, the product can restore by itself, if not, please contact after-sales service; If the F9 code appears, please remove the load and the product can recover by itself, if not, please contact after-sales service. In case of any other code appears, please contact our after-sales service.",
+          "description_text": "In order to respond to the feedback quickly, we set up common fault codes F0-FE in the system: If the F8 code appears, please remove the load or unplug the charging plug, the product can restore by itself, if not, please contact after-sales service; If the F9 code appears, please remove the load and the product can recover by itself, if not, please contact after-sales service. In case of any other code appears, please contact our after-sales service.",
+          "icon_alt": "Fault code",
+          "asset_index": 0
+         },
+         {
+          "name_html": "High-temperature warning",
+          "name_text": "High-temperature warning",
+          "description_html": "If it appears on the screen, do not worry, the battery will restore automatically after cooling.",
+          "description_text": "If it appears on the screen, do not worry, the battery will restore automatically after cooling.",
+          "icon_alt": "High-temperature warning",
+          "asset_index": 1
+         },
+         {
+          "name_html": "Low-temperature Warning",
+          "name_text": "Low-temperature Warning",
+          "description_html": "If it is displayed on the screen, do not worry. It will automatically restore after the ambient temperature is restored.",
+          "description_text": "If it is displayed on the screen, do not worry. It will automatically restore after the ambient temperature is restored.",
+          "icon_alt": "Low-temperature Warning",
+          "asset_index": 2
+         },
+         {
+          "name_html": "AC Expansion Indicator",
+          "name_text": "AC Expansion Indicator",
+          "description_html": "Double the power by connecting another Jackery Explorer 2000 Plus through the Jackery Connector (sold separately). Please refer to the Jackery Connector manual for details",
+          "description_text": "Double the power by connecting another Jackery Explorer 2000 Plus through the Jackery Connector (sold separately). Please refer to the Jackery Connector manual for details",
+          "icon_alt": "AC Expansion Indicator",
+          "asset_index": 3
+         }
+        ]
+       }
+      ],
+      "assets": [
+       {
+        "role": "icons",
+        "asset_ref": "assets/lcd-fault-code.png",
+        "locale_policy": "exact"
+       },
+       {
+        "role": "icons",
+        "asset_ref": "assets/lcd-high-temperature.png",
+        "locale_policy": "exact"
+       },
+       {
+        "role": "icons",
+        "asset_ref": "assets/lcd-low-temperature.png",
+        "locale_policy": "exact"
+       },
+       {
+        "role": "icons",
+        "asset_ref": "assets/lcd-ac-expansion.png",
+        "locale_policy": "exact"
+       }
+      ],
+      "token_roles": [
+       "component.table.lcd-icon"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     }
+    }
+   ]
+  },
+  {
+   "id": "basic_operations",
+   "title": "BASIC OPERATIONS",
+   "nodes": [
+    {
+     "kind": "heading",
+     "level": 2,
+     "anchor": "native-basic-operations",
+     "children": [
+      {
+       "kind": "text",
+       "text": "BASIC OPERATIONS"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "heading",
+     "level": 3,
+     "children": [
+      {
+       "kind": "text",
+       "text": "Output On/Off"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "strong",
+       "children": [
+        {
+         "kind": "text",
+         "text": "Main power on/off:"
+        }
+       ]
+      },
+      {
+       "kind": "text",
+       "text": " Press the \"Main Power Button\" and the working indicator lights up and the LCD display is illuminated. When this product does not have any operation for 2 minutes, the product will enter the hibernation state and the display will turn off automatically. If you need to turn off the main power, please press and hold the \"Main Power Button\" until the working indicator turns off. The default standby time of this product is 2 hours. If the other power output switch is not turned on, and the product does not have any load input, the product will automatically shut down after 2 hours. The automatic shutdown time can be set on the Jackery App."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "strong",
+       "children": [
+        {
+         "kind": "text",
+         "text": "AC Output On/Off:"
+        }
+       ]
+      },
+      {
+       "kind": "text",
+       "text": " Ensure that the main power supply is turned on. Press the AC Button, the AC Output operation indicator lights up. Then you can connect the equipment that needs AC charging. Press the AC Button again to turn off the AC Output."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "strong",
+       "children": [
+        {
+         "kind": "text",
+         "text": "USB/Car Port Output On/Off:"
+        }
+       ]
+      },
+      {
+       "kind": "text",
+       "text": " Ensure that the main power supply is turned on. Press the DC Button, the DC Output operation indicator lights up. Then USB/Car Port Output Ports can be connected to external load devices. Press the DC Button again to turn off the USB/ Car Port Output."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "heading",
+     "level": 3,
+     "children": [
+      {
+       "kind": "text",
+       "text": "LCD Screen On/Off"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "To turn on, press the Main Power Button or when there’s a charging input, the screen display will light up automatically. To turn off, press the Main Power Button again and the screen display will turn off. Or, if there is no operation in 2 minutes, the product will enter a sleep state and the screen display will automatically turn off."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "strong",
+       "children": [
+        {
+         "kind": "text",
+         "text": "To get the screen always-on (under charging or discharging state), follow these steps:"
+        }
+       ]
+      },
+      {
+       "kind": "text",
+       "text": " After the display screen lights up, double-click the Main Power Button and the mode of Always-On Display will be on."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "strong",
+       "children": [
+        {
+         "kind": "text",
+         "text": "To turn off Always-On Display, follow these steps:"
+        }
+       ]
+      },
+      {
+       "kind": "text",
+       "text": " Press the Main Power Button and the screen will be turned off in 2 minutes."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "strong",
+       "children": [
+        {
+         "kind": "text",
+         "text": "Tip:"
+        }
+       ]
+      },
+      {
+       "kind": "text",
+       "text": " During Always-On mode, the screen automatically turns off after 2 hours without charging or discharging."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "strong",
+       "children": [
+        {
+         "kind": "text",
+         "text": "AC Output Reset Button:"
+        }
+       ]
+      },
+      {
+       "kind": "text",
+       "text": " When the Reset Button pops up, you need to remove the load and press the Reset Button to reset."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "strong",
+       "children": [
+        {
+         "kind": "text",
+         "text": "AC Input Reset Button:"
+        }
+       ]
+      },
+      {
+       "kind": "text",
+       "text": " When the Reset Button pops up, you need to remove AC charge cable and press the Reset Button to reset."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "strong",
+       "children": [
+        {
+         "kind": "text",
+         "text": "EPS: Emergency Power System."
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "Once you have connected the mains and the AC input port of the EPS via the AC charger cable, you can use the AC output port of the EPS to power your unit (at this point the AC power comes from the mains, not the EPS battery). In the event of a sudden loss of mains power, the EPS can automatically switch to battery mode within 20ms. Since this is a non-professional UPS function, it does not support 0ms switching. Do not connect to equipment with high uninterruptible power requirements such as data servers and workstations. Please test several times to confirm compatibility before use and it is recommended to connect to only one device. Do not use more than one unit at a time to avoid triggering the overload protection. Failure to follow these instructions may result in equipment failure or loss of data for which we cannot be held responsible."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    }
+   ]
+  },
+  {
+   "id": "battery_pack",
+   "title": "USE WITH BATTERY PACK (SOLD SEPARATELY)",
+   "nodes": [
+    {
+     "kind": "heading",
+     "level": 2,
+     "anchor": "native-battery-pack",
+     "children": [
+      {
+       "kind": "text",
+       "text": "USE WITH BATTERY PACK (SOLD SEPARATELY)"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "This product can support up to 5 battery packs to meet the need for large power capacity. For details on how to use it, please refer to the Jackery Battery Pack 2000 Plus User Manual."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "heading",
+     "level": 3,
+     "children": [
+      {
+       "kind": "text",
+       "text": "SAFETY PRECAUTIONS WHEN USING"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "When using the retractable handle to move the Jackery Explorer 2000 Plus, please do not stack or place other objects on top of it to prevent falling off and causing injury."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "When using the battery pack, please do not stack more than two battery packs on top of the Jackery Explorer 2000 Plus to prevent it from falling off and causing injury."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    }
+   ]
+  },
+  {
+   "id": "app_connection",
+   "title": "APP CONNECTION",
+   "nodes": [
+    {
+     "kind": "heading",
+     "level": 2,
+     "anchor": "native-app-connection",
+     "children": [
+      {
+       "kind": "text",
+       "text": "APP CONNECTION"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "This product supports the connection of Jackery App for intelligent control and operation. Users can download the Jackery App through App Store or Android application markets. Please refer to the User Manual for Jackery App for detailed connection instructions."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    }
+   ]
+  },
+  {
+   "id": "charging",
+   "title": "CHARGING YOUR JACKERY EXPLORER 2000 PLUS",
+   "nodes": [
+    {
+     "kind": "heading",
+     "level": 2,
+     "anchor": "native-charging",
+     "children": [
+      {
+       "kind": "text",
+       "text": "CHARGING YOUR JACKERY EXPLORER 2000 PLUS"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "Green energy first: We advocate to use the green energy first. This product supports two modes of charging at the same time: solar charging and AC wall charging."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "When AC wall charging and solar charging are turned on at the same time, the product will give priority to solar charging and both methods will be used to charge the battery at the maximum permissible power."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "heading",
+     "level": 3,
+     "children": [
+      {
+       "kind": "text",
+       "text": "CHARGING FROM THE WALL"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "Please use the AC cable included in the package."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+      "variant": "semantic-fallback",
+      "source_ref": "native-pdf/page-7/wall-charge",
+      "language": "en",
+      "slots": [
+       {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "wall-charge"
+       },
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "Explorer 2000 Plus / AC Charger"
+       },
+       {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "embedded"
+       },
+       {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+       }
+      ],
+      "assets": [
+       {
+        "role": "source_art",
+        "asset_ref": "assets/wall-charge.png",
+        "locale_policy": "exact"
+       }
+      ],
+      "token_roles": [
+       "component.special.reference-figure"
+      ],
+      "metadata": {
+       "embedded_labels": [
+        "Explorer 2000 Plus",
+        "AC Charger"
+       ],
+       "physical_page": 7,
+       "image_key": "wall-charge",
+       "web_replace_key": "",
+       "source_fragment_sha256": "f5fb2c34ef290f652c63391cb43b5f6270fd25cda37778336982ca02b6458561"
+      },
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "image",
+       "source": "assets/wall-charge.png",
+       "alt": "Explorer 2000 Plus / AC Charger"
+      }
+     ]
+    },
+    {
+     "kind": "heading",
+     "level": 3,
+     "children": [
+      {
+       "kind": "text",
+       "text": "SOLAR CHARGING"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "heading",
+     "level": 4,
+     "children": [
+      {
+       "kind": "text",
+       "text": "Jackery SolarSaga 200 or 100 or 60 Solar Panel Connection Guide"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "If one or two solar panels are connected, you can directly connect the DC8020 port of the solar panel to the DC8020 port of Jackery Explorer 2000 Plus for charging. If three or four solar panels are connected, please refer to the method shown in the following figure to charge through the solar series connector. (Note: The solar series connector is not in standard configuration, so you need to purchase it separately. Please refer to the detailed operation instructions of the solar series connector before using it.)"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+      "variant": "semantic-fallback",
+      "source_ref": "native-pdf/page-7/solar-3",
+      "language": "en",
+      "slots": [
+       {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "solar-3"
+       },
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "Explorer 2000 Plus / SolarSaga ×3"
+       },
+       {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "embedded"
+       },
+       {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+       }
+      ],
+      "assets": [
+       {
+        "role": "source_art",
+        "asset_ref": "assets/solar-3.png",
+        "locale_policy": "exact"
+       }
+      ],
+      "token_roles": [
+       "component.special.reference-figure"
+      ],
+      "metadata": {
+       "embedded_labels": [
+        "Explorer 2000 Plus",
+        "SolarSaga ×3"
+       ],
+       "physical_page": 7,
+       "image_key": "solar-3",
+       "web_replace_key": "",
+       "source_fragment_sha256": "d88138a5bf8ed2b804d58958201eedf557c85b1d150d541ae479db08c8a377c6"
+      },
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "image",
+       "source": "assets/solar-3.png",
+       "alt": "Explorer 2000 Plus / SolarSaga ×3"
+      }
+     ]
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+      "variant": "semantic-fallback",
+      "source_ref": "native-pdf/page-7/solar-2-2",
+      "language": "en",
+      "slots": [
+       {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "solar-2-2"
+       },
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "SolarSaga×2 / Explorer 2000 Plus / SolarSaga×2"
+       },
+       {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "embedded"
+       },
+       {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+       }
+      ],
+      "assets": [
+       {
+        "role": "source_art",
+        "asset_ref": "assets/solar-2-2.png",
+        "locale_policy": "exact"
+       }
+      ],
+      "token_roles": [
+       "component.special.reference-figure"
+      ],
+      "metadata": {
+       "embedded_labels": [
+        "SolarSaga×2",
+        "Explorer 2000 Plus",
+        "SolarSaga×2"
+       ],
+       "physical_page": 7,
+       "image_key": "solar-2-2",
+       "web_replace_key": "",
+       "source_fragment_sha256": "c646bdea41f10faf0c2d7f422462b8a61351810d0710eaedb0ed0bef257dbd09"
+      },
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "image",
+       "source": "assets/solar-2-2.png",
+       "alt": "SolarSaga×2 / Explorer 2000 Plus / SolarSaga×2"
+      }
+     ]
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+      "variant": "semantic-fallback",
+      "source_ref": "native-pdf/page-8/solar-3-3",
+      "language": "en",
+      "slots": [
+       {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "solar-3-3"
+       },
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "Explorer 2000 Plus / SolarSaga×3 / SolarSaga ×3"
+       },
+       {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "embedded"
+       },
+       {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+       }
+      ],
+      "assets": [
+       {
+        "role": "source_art",
+        "asset_ref": "assets/solar-3-3.png",
+        "locale_policy": "exact"
+       }
+      ],
+      "token_roles": [
+       "component.special.reference-figure"
+      ],
+      "metadata": {
+       "embedded_labels": [
+        "Explorer 2000 Plus",
+        "SolarSaga×3",
+        "SolarSaga ×3"
+       ],
+       "physical_page": 8,
+       "image_key": "solar-3-3",
+       "web_replace_key": "",
+       "source_fragment_sha256": "14865a8a44af17381af059ce4eb382ec9d45bda7ad6bcb4e714c4f44b8c365dc"
+      },
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "image",
+       "source": "assets/solar-3-3.png",
+       "alt": "Explorer 2000 Plus / SolarSaga×3 / SolarSaga ×3"
+      }
+     ]
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "Caution: When the two inputs are used at the same time, please make sure to use the same type of solar panel and the number of solar panels in the two inputs must be the same to avoid damage or charging problems of the equipment due to inconsistent voltages of the two channels."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "The following way of connections are prohibited to charge this product:"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+      "variant": "semantic-fallback",
+      "source_ref": "native-pdf/page-8/solar-prohibited",
+      "language": "en",
+      "slots": [
+       {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "solar-prohibited"
+       },
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "SolarSaga×2 / Explorer 2000 Plus / SolarSaga×1 / SolarSaga×3 / Explorer 2000 Plus / SolarSaga×1 / SolarSaga×3 / Explorer 2000 Plus / SolarSaga×2"
+       },
+       {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "embedded"
+       },
+       {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+       }
+      ],
+      "assets": [
+       {
+        "role": "source_art",
+        "asset_ref": "assets/solar-prohibited.png",
+        "locale_policy": "exact"
+       }
+      ],
+      "token_roles": [
+       "component.special.reference-figure"
+      ],
+      "metadata": {
+       "embedded_labels": [
+        "SolarSaga×2",
+        "Explorer 2000 Plus",
+        "SolarSaga×1",
+        "SolarSaga×3",
+        "Explorer 2000 Plus",
+        "SolarSaga×1",
+        "SolarSaga×3",
+        "Explorer 2000 Plus",
+        "SolarSaga×2"
+       ],
+       "physical_page": 8,
+       "image_key": "solar-prohibited",
+       "web_replace_key": "",
+       "source_fragment_sha256": "57352d91e811265f81fd93ab113d25f53737a2244b217885af6225d04eee2073"
+      },
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "image",
+       "source": "assets/solar-prohibited.png",
+       "alt": "SolarSaga×2 / Explorer 2000 Plus / SolarSaga×1 / SolarSaga×3 / Explorer 2000 Plus / SolarSaga×1 / SolarSaga×3 / Explorer 2000 Plus / SolarSaga×2"
+      }
+     ]
+    },
+    {
+     "kind": "heading",
+     "level": 4,
+     "children": [
+      {
+       "kind": "text",
+       "text": "Jackery SolarSaga 80 Solar Panel Connection Guide"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "Users who have purchased Jackery SolarSaga 80 can charge the product by referring to the connection mode shown below. The Jackery SolarSaga 80 supports the parallel connection or the parallel and then series connections to charge the product. The single input port of the Jackery Explorer 2000 Plus supports the input of up to six pieces of SolarSaga 80 solar panels, and two input ports support the input to up to 12 pieces of SolarSaga 80 solar panels. (When the power is connected with six solar panels in a single input port, the solar panels shall be divided into two groups, and each group of three solar panels shall be self-connected in parallel and then connected to Jackery Explorer 2000 Plus through the solar series connector. The solar series connector needs to be purchased separately.)"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "For detailed operation instructions on the self-parallel connection of the Jackery SolarSaga 80 solar panel, please refer to the user manual."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+      "variant": "semantic-fallback",
+      "source_ref": "native-pdf/page-9/solar-80",
+      "language": "en",
+      "slots": [
+       {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "solar-80"
+       },
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "The solar panel charging output port (DC8020 male, with DC8020 to DC7909 Adaptor) / Parallel Port (DC 8020 Female)"
+       },
+       {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "embedded"
+       },
+       {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+       }
+      ],
+      "assets": [
+       {
+        "role": "source_art",
+        "asset_ref": "assets/solar-80.png",
+        "locale_policy": "exact"
+       }
+      ],
+      "token_roles": [
+       "component.special.reference-figure"
+      ],
+      "metadata": {
+       "embedded_labels": [
+        "The solar panel charging output port (DC8020 male, with DC8020 to DC7909 Adaptor)",
+        "Parallel Port (DC 8020 Female)"
+       ],
+       "physical_page": 9,
+       "image_key": "solar-80",
+       "web_replace_key": "",
+       "source_fragment_sha256": "f9bc2811806ac66383fa027187cd811f4aad11974688ba69818b54634b14b6f0"
+      },
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "image",
+       "source": "assets/solar-80.png",
+       "alt": "The solar panel charging output port (DC8020 male, with DC8020 to DC7909 Adaptor) / Parallel Port (DC 8020 Female)"
+      }
+     ]
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "Tip: Users can enter the number of solar panels in their own combination according to the number of solar panels they purchased. Currently, the product supports charging with 1, 2, 3, 4, 5, 6, 8, and 12 80W solar panels in combination."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "heading",
+     "level": 4,
+     "children": [
+      {
+       "kind": "text",
+       "text": "DC7909 to DC8020 Adaptor Operation Guide"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "All of our solar panels on sale have been upgraded to include a DC7909 to DC8020 adapter. If you have purchased a Jackery solar panel without a DC7909 to DC8020 adapter, you can charge your Jackery Explorer 2000 Plus by following the connection instructions below."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+      "variant": "semantic-fallback",
+      "source_ref": "native-pdf/page-9/solar-adaptor",
+      "language": "en",
+      "slots": [
+       {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "solar-adaptor"
+       },
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "DC8020 Female / DC7909 to DC8020 Adaptor / DC7909 Male / Explorer 2000 Plus"
+       },
+       {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "embedded"
+       },
+       {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+       }
+      ],
+      "assets": [
+       {
+        "role": "source_art",
+        "asset_ref": "assets/solar-adaptor.png",
+        "locale_policy": "exact"
+       }
+      ],
+      "token_roles": [
+       "component.special.reference-figure"
+      ],
+      "metadata": {
+       "embedded_labels": [
+        "DC8020 Female",
+        "DC7909 to DC8020 Adaptor",
+        "DC7909 Male",
+        "Explorer 2000 Plus"
+       ],
+       "physical_page": 9,
+       "image_key": "solar-adaptor",
+       "web_replace_key": "",
+       "source_fragment_sha256": "ee7382ff8e570f7fcd3a5bc86ebda643b41ed3ab367fa0e69920f87895e93809"
+      },
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "image",
+       "source": "assets/solar-adaptor.png",
+       "alt": "DC8020 Female / DC7909 to DC8020 Adaptor / DC7909 Male / Explorer 2000 Plus"
+      }
+     ]
+    },
+    {
+     "kind": "heading",
+     "level": 3,
+     "children": [
+      {
+       "kind": "text",
+       "text": "CHARGING IN THE CAR"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "This product can be charged with a 12 V car charger. Please start the vehicle before charging to prevent draining the car battery and prevent your vehicle from being unable to start."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "Please also ensure that the car charger and the car cigarette lighter provide a good connection, and ensure that the car charger is fully inserted. In addition, if the vehicle is running on bumpy roads, it is forbidden to use the car charger in case it burns due to a poor connection. The Company will not be responsible for any loss caused by non-standard operation."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+      "variant": "semantic-fallback",
+      "source_ref": "native-pdf/page-10/car-charge",
+      "language": "en",
+      "slots": [
+       {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "car-charge"
+       },
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "Explorer 2000 Plus / Vehicle"
+       },
+       {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "embedded"
+       },
+       {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+       }
+      ],
+      "assets": [
+       {
+        "role": "source_art",
+        "asset_ref": "assets/car-charge.png",
+        "locale_policy": "exact"
+       }
+      ],
+      "token_roles": [
+       "component.special.reference-figure"
+      ],
+      "metadata": {
+       "embedded_labels": [
+        "Explorer 2000 Plus",
+        "Vehicle"
+       ],
+       "physical_page": 10,
+       "image_key": "car-charge",
+       "web_replace_key": "",
+       "source_fragment_sha256": "79f61a4f98a23b38e98e8544bba2506c587f11f6b934a7c63111387b1fdf136b"
+      },
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "image",
+       "source": "assets/car-charge.png",
+       "alt": "Explorer 2000 Plus / Vehicle"
+      }
+     ]
+    },
+    {
+     "kind": "heading",
+     "level": 3,
+     "children": [
+      {
+       "kind": "text",
+       "text": "SAFETY PRECAUTIONS WHEN CHARGING"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "❶ When the two DC inputs of this product are used at the same time, please ensure that the number of solar panels connected in series is the same, and try to use the same type of solar panel."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "❷ Do not charge from car charger and solar panel at the same time, otherwise, it will damage the car fuse."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+      "variant": "semantic-fallback",
+      "source_ref": "native-pdf/page-10/car-solar-prohibited",
+      "language": "en",
+      "slots": [
+       {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "car-solar-prohibited"
+       },
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "SolarSaga / Explorer 2000 Plus / Vehicle"
+       },
+       {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "embedded"
+       },
+       {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+       }
+      ],
+      "assets": [
+       {
+        "role": "source_art",
+        "asset_ref": "assets/car-solar-prohibited.png",
+        "locale_policy": "exact"
+       }
+      ],
+      "token_roles": [
+       "component.special.reference-figure"
+      ],
+      "metadata": {
+       "embedded_labels": [
+        "SolarSaga",
+        "Explorer 2000 Plus",
+        "Vehicle"
+       ],
+       "physical_page": 10,
+       "image_key": "car-solar-prohibited",
+       "web_replace_key": "",
+       "source_fragment_sha256": "d813f805ca8f1f033ed53df96b1a1a276f32f06f85678dd4e70d10de547db815"
+      },
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "image",
+       "source": "assets/car-solar-prohibited.png",
+       "alt": "SolarSaga / Explorer 2000 Plus / Vehicle"
+      }
+     ]
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "❸ Vehicle charging is only applicable in 12V vehicles, not in 24V ones. Please do not charge this product in 24V vehicle to avoid personal injury and property loss."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "❹ It is recommended to use Jackery accessories - solar panels for solar charging. We will not be responsible for the losses caused by using other brands’ solar panels."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    }
+   ]
+  },
+  {
+   "id": "safety_instructions",
+   "title": "INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS",
+   "nodes": [
+    {
+     "kind": "heading",
+     "level": 2,
+     "anchor": "native-safety-instructions",
+     "children": [
+      {
+       "kind": "text",
+       "text": "INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "heading",
+     "level": 3,
+     "children": [
+      {
+       "kind": "text",
+       "text": "IMPORTANT SAFETY INSTRUCTIONS"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "WARNING–When using this product, basic precautions should always be followed, including the following:"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "a) Read all the instructions before using the product."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "b) To reduce the risk of injury, close supervision is necessary when the product is used near children."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "c) Do not put fingers or hands into the product."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "d) Use of an attachment not recommended or sold by power pack manufacturer may result in a risk of fire, electric shock, or injury to persons."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "e) To reduce risk of damage to the electric plug and cord, pull the plug rather than the cord when disconnecting the power pack."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "f) Do not use a battery pack or appliance that is damaged or modified. Damaged or modified batteries may exhibit unpredictable behavior resulting in fire, explosion or risk of injury."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "g) Do not operate the power pack with a damaged cord or plug, or a damaged output cable."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "h) Do not disassemble the power pack, take it to a qualified service person when service or repair is required. Incorrect reassembly may result in a risk of fire or electric shock."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "i) To reduce the risk of electric shock, unplug the power pack form the outlet before attempting any instructed servicing."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "j) PERSONAL PRECAUTIONS"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "1)Have plenty of fresh water and soap nearby in case battery acid contacts skin,clothing, or eyes."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "2)Wear complete eye protection and clothing protection. Avoid touching eyes while working near battery."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "3)If battery acid contacts skin or clothing, wash immediately with soap and water. If acid enters eye, immediately flood eye with running cold water for at least 10 minutes and get medical attention immediately."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "4)NEVER smoke or allow a spark or flame in vicinity of battery or engine."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "5)Be extra cautious to reduce risk of dropping a metal tool onto battery. It might spark or short-circuit battery or other electrical part that may cause explosion."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "k) When charging the internal battery, work in a well ventilated area and do not restrict ventilation in any way."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "l) Under abusive conditions, liquid may be ejected from the battery; avoid contact. If contact accidentally occurs, flush with water. If liquid contacts eyes, additionally seek medical help. Liquid ejected from the battery may cause irritation or burns."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "m) Do not expose a power pack to fire or excessive temperature. Exposure to fire or temperature above 130°C may cause explosion. The temperature of 130°C can be replaced by the temperature of 265°F."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "n) Have servicing performed by a qualified repair person using only identical replacement parts. This will ensure that the safety of the product is maintained."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "heading",
+     "level": 3,
+     "children": [
+      {
+       "kind": "text",
+       "text": "SAVE THESE INSTRUCTIONS OPERATING INSTRUCTIONS"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "list",
+     "ordered": false,
+     "children": [
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "Use and store the unit only in a clean and dry environment. DO NOT use and store in dusty and wet environment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "Check the unit prior to every use. DO NOT use the unit if it is damaged, broken."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "If rust, peculiar odors, overheating or other abnormal circumstances are observed, stop using the unit immediately and contact the dealer or our customer service center."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "Make sure that the unit is properly secured when transporting it in a motor vehicle."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "Only charge the Explorer 2000 Plus within a ambient temperature 0-45°C (32-113°F),discharge temperature is -10-45°C (14~113°F) and Storage temperature is 1 year: 0~40°C (32~104°F)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "Switch the unit off immediately if it has accidentally fallen, was dropped or was exposed to vibrations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "DO NOT use the unit if the power cord is damaged or broken."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "Keep the unit away from children. DO NOT let children use the power supply unit. Keep this product away from pets."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "DO NOT use the unit in an area or environment with high temperature."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "Should fluid from inside of the unit come in contact with your skin or clothing, wash the affected areas with tap water."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "In a storm, unplug the power cord from the socket."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "DO NOT place the unit on its side or upside down while in use or storage."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "DO NOT use accessories for other usage."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "Make sure that the device you are connecting is switched off before you connect it."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "DO NOT expose a power pack to fire or excessive temperature. Exposure to fire or temperature above 130°C may cause explosion."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "Solar charge times depend on weather conditions, place your solar panel where it will get as much direct sunlight as possible."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "DO NOT place the power pack on the floor, or at a height less than 457 mm (18 inches) above the floor, during use in a repair facility."
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-CALLOUT-STRIP",
+      "variant": "warning",
+      "source_ref": "native-pdf/page-12/warning",
+      "language": "en",
+      "slots": [
+       {
+        "role": "label",
+        "content_kind": "inline_text",
+        "content": "Warning"
+       },
+       {
+        "role": "body",
+        "content_kind": "rich_text",
+        "content": "Do not remove the battery pack without permission,If you need to repair the battery pack, contact your local manufacturer as soon as possible"
+       }
+      ],
+      "assets": [],
+      "token_roles": [
+       "component.callout"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "table",
+       "presentation": {
+        "html": {
+         "attributes": {
+          "class": "manual-callout-table manual-callout-table"
+         }
+        }
+       },
+       "children": [
+        {
+         "kind": "table_body",
+         "children": [
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-label"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "text",
+               "text": "Warning"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-body"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "Do not remove the battery pack without permission,If you need to repair the battery pack, contact your local manufacturer as soon as possible"
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-CALLOUT-STRIP",
+      "variant": "danger",
+      "source_ref": "native-pdf/page-12/danger",
+      "language": "en",
+      "slots": [
+       {
+        "role": "label",
+        "content_kind": "inline_text",
+        "content": "DANGER"
+       },
+       {
+        "role": "body",
+        "content_kind": "rich_text",
+        "content": "This device is for indoor use only (e.g. RV/tent/off-grid cabin, etc.). Do not use outdoors under any circumstances (e.g. where exposed to rain or snow or use it in wet environments by the sea or waterways)."
+       }
+      ],
+      "assets": [],
+      "token_roles": [
+       "component.callout"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "table",
+       "presentation": {
+        "html": {
+         "attributes": {
+          "class": "manual-callout-table manual-callout-table"
+         }
+        }
+       },
+       "children": [
+        {
+         "kind": "table_body",
+         "children": [
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-label"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "text",
+               "text": "DANGER"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-body"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "This device is for indoor use only (e.g. RV/tent/off-grid cabin, etc.). Do not use outdoors under any circumstances (e.g. where exposed to rain or snow or use it in wet environments by the sea or waterways)."
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "heading",
+     "level": 3,
+     "children": [
+      {
+       "kind": "text",
+       "text": "MOVING AND STORAGE INSTRUCTIONS"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "list",
+     "ordered": false,
+     "children": [
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "DO NOT move the unit if it is recharging or in use."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "DO NOT dispose the unit together with household waste."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "DO NOT place the unit close to or in a fire or expose it to heat. Keep out of direct sunlight."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "DO NOT store the unit in a bathroom or in an area exposed to rain or moisture."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "DO NOT disassemble the power pack, take it to a qualified service person when service or repair is required. Incorrect reassembly may result in a risk of fire or electric shock."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "DO NOT store the unit in an area or environment with high temperature."
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "heading",
+     "level": 3,
+     "children": [
+      {
+       "kind": "text",
+       "text": "USER MAINTENANCE INSTRUCTIONS"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "When using it for the first time, please fully charge the device before use. If this product is stored for a long period of time (3 months - 6 months) with the power depleted, its performance will deteriorate and may even become unchargeable. If this device is stored for a long time, please check the power regularly and charge it to about 60% to 80%."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-SPECIAL-FCC",
+      "variant": "two-column",
+      "source_ref": "native-pdf/page-12/fcc",
+      "language": "en",
+      "slots": [
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "FCC"
+       },
+       {
+        "role": "opening_copy",
+        "content_kind": "line_items",
+        "content": []
+       },
+       {
+        "role": "body_blocks",
+        "content_kind": "ordered_blocks",
+        "content": [
+         {
+          "kind": "paragraph",
+          "label": "NOTE:",
+          "text": "This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules. These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to radio communications. However, there is no guarantee that interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:"
+         },
+         {
+          "kind": "list",
+          "items": [
+           "Reorient or relocate the receiving antenna.",
+           "Increase the separation between the equipment and receiver.",
+           "Connect the equipment into an outlet on a circuit different from that to which the receiver is connected.",
+           "Consult the dealer or an experienced radio/TV technician for help."
+          ]
+         }
+        ]
+       },
+       {
+        "role": "column_break",
+        "content_kind": "block_index",
+        "content": 1
+       }
+      ],
+      "assets": [
+       {
+        "role": "compliance_mark",
+        "asset_ref": "assets/fcc-mark.svg",
+        "locale_policy": "shared"
+       }
+      ],
+      "token_roles": [
+       "component.special.fcc"
+      ],
+      "metadata": {
+       "physical_page": 12,
+       "list_marker_printed": "--"
+      },
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "paragraph",
+       "children": [
+        {
+         "kind": "strong",
+         "children": [
+          {
+           "kind": "text",
+           "text": "NOTE:"
+          }
+         ]
+        },
+        {
+         "kind": "text",
+         "text": " This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules. These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to radio communications. However, there is no guarantee that interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:"
+        }
+       ]
+      },
+      {
+       "kind": "list",
+       "ordered": false,
+       "children": [
+        {
+         "kind": "list_item",
+         "children": [
+          {
+           "kind": "paragraph",
+           "children": [
+            {
+             "kind": "text",
+             "text": "Reorient or relocate the receiving antenna."
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "list_item",
+         "children": [
+          {
+           "kind": "paragraph",
+           "children": [
+            {
+             "kind": "text",
+             "text": "Increase the separation between the equipment and receiver."
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "list_item",
+         "children": [
+          {
+           "kind": "paragraph",
+           "children": [
+            {
+             "kind": "text",
+             "text": "Connect the equipment into an outlet on a circuit different from that to which the receiver is connected."
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "list_item",
+         "children": [
+          {
+           "kind": "paragraph",
+           "children": [
+            {
+             "kind": "text",
+             "text": "Consult the dealer or an experienced radio/TV technician for help."
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "warranty",
+   "title": "WARRANTY",
+   "nodes": [
+    {
+     "kind": "heading",
+     "level": 2,
+     "anchor": "native-warranty",
+     "children": [
+      {
+       "kind": "text",
+       "text": "WARRANTY"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "Note: We only provide our warranty for the buyer who purchased on Amazon (Jackery Inc), Jackery website or local authorized dealers."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "heading",
+     "level": 3,
+     "children": [
+      {
+       "kind": "text",
+       "text": "Limited Warranty"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-WARRANTY-SECTION",
+      "variant": "rounded-card",
+      "source_ref": "native-pdf/warranty/1",
+      "language": "en",
+      "slots": [
+       {
+        "role": "title",
+        "content_kind": "inline_text",
+        "content": "Limited Warranty"
+       },
+       {
+        "role": "section_index",
+        "content_kind": "block_index",
+        "content": 1
+       },
+       {
+        "role": "blocks",
+        "content_kind": "ordered_blocks",
+        "content": [
+         {
+          "kind": "paragraph",
+          "html": "<p>Jackery Inc. warrants to the original consumer purchaser that the Jackery product will be free from defects in workmanship and material under normal consumer use during the applicable warranty period identified in the &#x27;Warranty Period&#x27; section below, subject to the exclusions set forth below.</p>",
+          "text": "Jackery Inc. warrants to the original consumer purchaser that the Jackery product will be free from defects in workmanship and material under normal consumer use during the applicable warranty period identified in the 'Warranty Period' section below, subject to the exclusions set forth below."
+         },
+         {
+          "kind": "paragraph",
+          "html": "<p>This warranty statement sets forth Jackery&#x27;s total and exclusive warranty obligation. We will not assume, nor authorize any person to assume for us, any other liability in connection with the sale of our products.</p>",
+          "text": "This warranty statement sets forth Jackery's total and exclusive warranty obligation. We will not assume, nor authorize any person to assume for us, any other liability in connection with the sale of our products."
+         }
+        ]
+       }
+      ],
+      "assets": [],
+      "token_roles": [
+       "component.warranty.section"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     }
+    },
+    {
+     "kind": "heading",
+     "level": 3,
+     "children": [
+      {
+       "kind": "text",
+       "text": "Warranty Period"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-WARRANTY-SECTION",
+      "variant": "rounded-card",
+      "source_ref": "native-pdf/warranty/2",
+      "language": "en",
+      "slots": [
+       {
+        "role": "title",
+        "content_kind": "inline_text",
+        "content": "Warranty Period"
+       },
+       {
+        "role": "section_index",
+        "content_kind": "block_index",
+        "content": 2
+       },
+       {
+        "role": "blocks",
+        "content_kind": "ordered_blocks",
+        "content": [
+         {
+          "kind": "paragraph",
+          "html": "<p>3 Years Standard Warranty: The standard warranty period for Jackery Explorer 2000 Plus is 36 months. In each case, the warranty period is measured starting on the date of purchase by the original consumer purchaser. The sales receipt from the first consumer purchase, or other reasonable documentary proof, is required in order to establish the start date of the warranty period.</p>",
+          "text": "3 Years Standard Warranty: The standard warranty period for Jackery Explorer 2000 Plus is 36 months. In each case, the warranty period is measured starting on the date of purchase by the original consumer purchaser. The sales receipt from the first consumer purchase, or other reasonable documentary proof, is required in order to establish the start date of the warranty period."
+         },
+         {
+          "kind": "paragraph",
+          "html": "<p>2 Years Extended Warranty: To activate the Warranty Extension, you must register your product online or contact our customer service team at hello@jackery.com to extend the standard warranty runtime.</p>",
+          "text": "2 Years Extended Warranty: To activate the Warranty Extension, you must register your product online or contact our customer service team at hello@jackery.com to extend the standard warranty runtime."
+         }
+        ]
+       }
+      ],
+      "assets": [],
+      "token_roles": [
+       "component.warranty.section"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     }
+    },
+    {
+     "kind": "heading",
+     "level": 3,
+     "children": [
+      {
+       "kind": "text",
+       "text": "Exchange"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-WARRANTY-SECTION",
+      "variant": "rounded-card",
+      "source_ref": "native-pdf/warranty/3",
+      "language": "en",
+      "slots": [
+       {
+        "role": "title",
+        "content_kind": "inline_text",
+        "content": "Exchange"
+       },
+       {
+        "role": "section_index",
+        "content_kind": "block_index",
+        "content": 3
+       },
+       {
+        "role": "blocks",
+        "content_kind": "ordered_blocks",
+        "content": [
+         {
+          "kind": "paragraph",
+          "html": "<p>Jackery will replace (at Jackery&#x27;s expense) any Jackery product that fails to operate during the applicable warranty period due to defect in workmanship or material. A replacement product assumes the remaining warranty of the original product.</p>",
+          "text": "Jackery will replace (at Jackery's expense) any Jackery product that fails to operate during the applicable warranty period due to defect in workmanship or material. A replacement product assumes the remaining warranty of the original product."
+         }
+        ]
+       }
+      ],
+      "assets": [],
+      "token_roles": [
+       "component.warranty.section"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     }
+    },
+    {
+     "kind": "heading",
+     "level": 3,
+     "children": [
+      {
+       "kind": "text",
+       "text": "Limited to Original Consumer Buyer"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-WARRANTY-SECTION",
+      "variant": "rounded-card",
+      "source_ref": "native-pdf/warranty/4",
+      "language": "en",
+      "slots": [
+       {
+        "role": "title",
+        "content_kind": "inline_text",
+        "content": "Limited to Original Consumer Buyer"
+       },
+       {
+        "role": "section_index",
+        "content_kind": "block_index",
+        "content": 4
+       },
+       {
+        "role": "blocks",
+        "content_kind": "ordered_blocks",
+        "content": [
+         {
+          "kind": "paragraph",
+          "html": "<p>The warranty on Jackery&#x27;s product is limited to the original consumer purchaser and is not transferable to any subsequent owner.</p>",
+          "text": "The warranty on Jackery's product is limited to the original consumer purchaser and is not transferable to any subsequent owner."
+         }
+        ]
+       }
+      ],
+      "assets": [],
+      "token_roles": [
+       "component.warranty.section"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     }
+    },
+    {
+     "kind": "heading",
+     "level": 3,
+     "children": [
+      {
+       "kind": "text",
+       "text": "Exclusions"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-WARRANTY-SECTION",
+      "variant": "rounded-card",
+      "source_ref": "native-pdf/warranty/5",
+      "language": "en",
+      "slots": [
+       {
+        "role": "title",
+        "content_kind": "inline_text",
+        "content": "Exclusions"
+       },
+       {
+        "role": "section_index",
+        "content_kind": "block_index",
+        "content": 5
+       },
+       {
+        "role": "blocks",
+        "content_kind": "ordered_blocks",
+        "content": [
+         {
+          "kind": "paragraph",
+          "html": "<p>Jackery&#x27;s warranty does not apply to:</p>",
+          "text": "Jackery's warranty does not apply to:"
+         },
+         {
+          "kind": "paragraph",
+          "html": "<p>Misused, abused, modified, damaged by accident, or used for anything other than normal consumer use as authorized in Jackery&#x27;s current product literature.</p>",
+          "text": "Misused, abused, modified, damaged by accident, or used for anything other than normal consumer use as authorized in Jackery's current product literature."
+         },
+         {
+          "kind": "paragraph",
+          "html": "<p>Attempted repair by anyone other than an authorized facility.</p>",
+          "text": "Attempted repair by anyone other than an authorized facility."
+         },
+         {
+          "kind": "paragraph",
+          "html": "<p>Any product purchased through an online auction house.</p>",
+          "text": "Any product purchased through an online auction house."
+         },
+         {
+          "kind": "paragraph",
+          "html": "<p>Jackery&#x27;s warranty does not apply to the battery cell unless the battery cell is fully charged by you within seven days after you purchase the product and at least once every 6 months thereafter.</p>",
+          "text": "Jackery's warranty does not apply to the battery cell unless the battery cell is fully charged by you within seven days after you purchase the product and at least once every 6 months thereafter."
+         }
+        ]
+       }
+      ],
+      "assets": [],
+      "token_roles": [
+       "component.warranty.section"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     }
+    },
+    {
+     "kind": "heading",
+     "level": 3,
+     "children": [
+      {
+       "kind": "text",
+       "text": "Download the Jackery Mobile App"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+      "variant": "semantic-fallback",
+      "source_ref": "native-pdf/page-13/app-store",
+      "language": "en",
+      "slots": [
+       {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "app-store"
+       },
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "App Store / Google Play"
+       },
+       {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "embedded"
+       },
+       {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+       }
+      ],
+      "assets": [
+       {
+        "role": "source_art",
+        "asset_ref": "assets/app-store.png",
+        "locale_policy": "exact"
+       }
+      ],
+      "token_roles": [
+       "component.special.reference-figure"
+      ],
+      "metadata": {
+       "embedded_labels": [],
+       "physical_page": 13,
+       "image_key": "app-store",
+       "web_replace_key": "",
+       "source_fragment_sha256": "bd07e34882b832f4a88beee8e0fff1f77973569182d2987abfbaa9e37c515095"
+      },
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "image",
+       "source": "assets/app-store.png",
+       "alt": "App Store / Google Play"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
