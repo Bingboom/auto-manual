@@ -1,0 +1,10 @@
+{
+ "broken": [],
+ "sw": 1280,
+ "cw": 1280,
+ "n": 56,
+ "width": 1280,
+ "page": "manual_je2000a_us_en.html",
+ "horizontal_overflow": false,
+ "method": "Playwright Chromium full-page; img.loading=eager + scroll + networkidle before checks"
+}
