@@ -1332,8 +1332,8 @@
         },
         {
           "path": "README.md",
-          "sha256": "c1229fd6153c2af64f40453a6fb8247e08ea8e61a4e6aecaed9850225973345d",
-          "size": 3546
+          "sha256": "b79c864a54b34ca4ee9058370086e6e4ada67f25ef7c2956c55f2dd431fcc7a8",
+          "size": 3844
         },
         {
           "path": "assets/certifications.png",
@@ -1451,6 +1451,11 @@
           "size": 2549
         },
         {
+          "path": "source/approval.json",
+          "sha256": "a9c7a969771c3cc91bec48dc7d6c12c118c301078286b668e170447efe08a48b",
+          "size": 7006
+        },
+        {
           "path": "source/asset_decisions.json",
           "sha256": "a384e32e7779212227e49848948a2576c2692b608da2262b8b332dd2f335016f",
           "size": 9526
@@ -1511,7 +1516,7 @@
         ],
         "print_cover": 1
       },
-      "publication_status": "candidate-pending-operator-review",
+      "publication_status": "operator-authorized-git-only-release",
       "reference_editions": [
         "manual_sources/JE-100C/US/en/git-20261027-39c58bca (same series, US English, components and method)"
       ],
@@ -2207,14 +2212,217 @@
     },
     "manual_theme_sha256": "e8fc88458d239edef85f2cfb0b26b71df2e83859c8e51e9c093e5abc2982b47d",
     "markdown_filename": "manual_je100a_us_en.md",
-    "operator_source_acceptance": null,
+    "operator_source_acceptance": {
+      "acceptance_basis": "Operator released the 1280/390 candidates shown beside their shared reference editions, in this engineering session. Source copy is published verbatim; suspected source errors (source_manifest.json:source_concerns) go to the source owner and enter only through a corrected source PDF and a new package.",
+      "authority_date": "2026-10-28",
+      "merge_authority": "MA-365 (code-as-doc/dev/merge_authorizations.md) and the operator's direct grant in this session: 授权合入 #1630 及其 Hello-Docs 发布 PR",
+      "operator_quote": "上线提交发布：JE-100A、JE-100C、JE-240A、JE-240B；授权合入 #1630 及其 Hello-Docs 发布 PR",
+      "preceding_operator_decision": "授权全部合入上线 上线之后 我再一个个核对版面 (2026-10-28, operator window session_01Y8kaknyyfgd1ZC5Xtwthqx; recorded as MA-365); layout is checked by the operator after release",
+      "reviewed_candidate": {
+        "commit": "729f9669",
+        "pull_request": "https://github.com/Bingboom/auto-manual/pull/1630",
+        "reference_edition": "JE-300D EU English Web (published, same generation)",
+        "renders": [
+          "evidence/browser-1280.png",
+          "evidence/browser-390.png"
+        ],
+        "review_page": "https://claude.ai/artifact/Tk3NTPGbjp5de7o6S4xGqe"
+      },
+      "source_sha256": "18058b6bb7e83041fce1798f3baf98a018d079fa5caa6fd8dceec934df02c0b5",
+      "target": {
+        "customer_model": "JE-100A",
+        "languages": [
+          "en"
+        ],
+        "model": "JE-100A",
+        "printed_manual_version": "JAK-UM-V1",
+        "product_name": "Jackery Explorer 100 Plus",
+        "region": "US",
+        "technical_version": "git-20261027-18058b6b"
+      },
+      "validation": {
+        "browser": {
+          "missing_images": 0,
+          "page_horizontal_overflow": 0,
+          "viewports": [
+            1280,
+            390
+          ]
+        },
+        "declared_plain_tables": 0,
+        "shared_style_issues": 0,
+        "strict_sphinx": "pass",
+        "symbol_source_bound_glyphs": 0,
+        "target_tests": "pass"
+      },
+      "verified_inputs": [
+        {
+          "path": "JE-100A-US-EN.pdf",
+          "sha256": "18058b6bb7e83041fce1798f3baf98a018d079fa5caa6fd8dceec934df02c0b5",
+          "size": 2740985
+        },
+        {
+          "path": "README.md",
+          "sha256": "b79c864a54b34ca4ee9058370086e6e4ada67f25ef7c2956c55f2dd431fcc7a8",
+          "size": 3844
+        },
+        {
+          "path": "assets/certifications.png",
+          "sha256": "d03033403e5970862af4d0a5eb9e39b849819614833a751ad307299182930e3e",
+          "size": 16246
+        },
+        {
+          "path": "assets/charging-car.png",
+          "sha256": "128c7093ea9ebbe2b785a6cf930561242abba11da02bf3480000d014c6b12912",
+          "size": 13754
+        },
+        {
+          "path": "assets/charging-wall.png",
+          "sha256": "040db66326e6c09a9013d68a7f21f915cc1f4b70d03d7529b7cf7abe50d128e6",
+          "size": 11835
+        },
+        {
+          "path": "assets/fcc-mark.svg",
+          "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe",
+          "size": 1927
+        },
+        {
+          "path": "assets/inbox-cable.png",
+          "sha256": "4b0ebeb8a6292ba4cc0509bc2c1af2db436432694ec56209be682d5aa0e47fb9",
+          "size": 2651
+        },
+        {
+          "path": "assets/inbox-manual.png",
+          "sha256": "37493c0ca03225dfb1ad213fb900ee207b292617f81b59e8e4fd119b718a5c75",
+          "size": 3450
+        },
+        {
+          "path": "assets/inbox-unit.png",
+          "sha256": "b5418e3c0ed863b3ef953fc0074f1f1dfc1ff1db877c2d276a534500fb8ce441",
+          "size": 4150
+        },
+        {
+          "path": "assets/lcd-always-on.png",
+          "sha256": "69c0d203f4ce041fccc53b9be755902ac6f0f616cb13f17555201c5106860723",
+          "size": 3015
+        },
+        {
+          "path": "assets/lcd-battery-ring.png",
+          "sha256": "1248583dd67c892387d13ee711efe42b3540dd39103418bee5189b959c2f6dcd",
+          "size": 3533
+        },
+        {
+          "path": "assets/lcd-energy-saving.png",
+          "sha256": "f857204fa0bd408f9dc65f4350ae4ae1eae8fdfd3e28de59b306214b7e4406d5",
+          "size": 3309
+        },
+        {
+          "path": "assets/lcd-high-temperature.png",
+          "sha256": "f2ce8028ad3623e4e5723d2ad6acaf4415feb83596dc8169ce231c60a20c430c",
+          "size": 3680
+        },
+        {
+          "path": "assets/lcd-low-battery.png",
+          "sha256": "78a8b10568487f169b1c7733603fe27d700234a0aaf68d16ec368c50ac5a8775",
+          "size": 470
+        },
+        {
+          "path": "assets/lcd-low-temperature.png",
+          "sha256": "bb168c5b32f118fc64842fa82d9a92b868307b9326a0ae8622c953bbae4d172b",
+          "size": 3601
+        },
+        {
+          "path": "assets/lcd-map.png",
+          "sha256": "72bd1ee56d96b0feb67587a34bbc4f056805659849a64935a3c6eb94ebd1df19",
+          "size": 39128
+        },
+        {
+          "path": "assets/overview.png",
+          "sha256": "2c608d938b0678aeafbe22e91b9c02b06d3bddba4616f8223eb80e17f8ba9523",
+          "size": 21277
+        },
+        {
+          "path": "assets/shared-lcd/25_Fault_code_LaTmb4IQYo3vwvxMqQNcC2RgnIf.png",
+          "sha256": "3b51b98d7199d32f7b286bdf5ce3de4cb41971ed942820091053fd1d87bf0a7a",
+          "size": 5902
+        },
+        {
+          "path": "assets/solar-100.png",
+          "sha256": "3aaa4ad7c5ff546f1d97d3bd579f3539dc1c7b13f30e450652d0031dc51de5f5",
+          "size": 24142
+        },
+        {
+          "path": "assets/solar-40.png",
+          "sha256": "1e03b43b2e68c272e78102ba8079eacac1b479388766daae83fc1c0bc0ba9c99",
+          "size": 18462
+        },
+        {
+          "path": "assets/solar-80.png",
+          "sha256": "40431907bc1781160e20e3936b8e0befc1365c16becd640526a31867d83cf9d2",
+          "size": 27189
+        },
+        {
+          "path": "build_content.py",
+          "sha256": "7b46c062090a1bdf24609fc19c9bd2faff8ca06f037731db661a9337353ca95f",
+          "size": 17676
+        },
+        {
+          "path": "derive_assets.py",
+          "sha256": "f220e0970cd647abc647491c89906608868e43e569564cedfaf836485e26e5e1",
+          "size": 3069
+        },
+        {
+          "path": "rebuild.py",
+          "sha256": "9ef1b30c6717ae0220c654d4465367e2fd9e61c43c6c9bbdc5d0ce1138313915",
+          "size": 6356
+        },
+        {
+          "path": "refresh_manifest.py",
+          "sha256": "25f6e27ccd00b068c679da9f45337ac06bba045572a70ba6160cb8f9b276fbba",
+          "size": 2549
+        },
+        {
+          "path": "source/asset_decisions.json",
+          "sha256": "a384e32e7779212227e49848948a2576c2692b608da2262b8b332dd2f335016f",
+          "size": 9526
+        },
+        {
+          "path": "source/asset_recipe.json",
+          "sha256": "60d2bfea18375330c94c7e058b145f61aa0fa4a4cc06d99e9d94f7d54b6655e1",
+          "size": 4480
+        },
+        {
+          "path": "source/differences.md",
+          "sha256": "3c347250c73a98f6725c90347bc1a86f8b1fc60ef5e016864c428f44a37b0cbe",
+          "size": 1780
+        },
+        {
+          "path": "source/discovery.md",
+          "sha256": "147e7b9458e6d1fc8e4d7311fd3cdb2ec03cbe3a0aee45492de95d73be039650",
+          "size": 2543
+        },
+        {
+          "path": "source/en/content.json",
+          "sha256": "923cfcf8569a8927d8eb0b9a50ef9d88e3c9b73d544e3f7c692a83acb112d01c",
+          "size": 81697
+        },
+        {
+          "path": "source/geometry.css",
+          "sha256": "7ce8af7a5e2fba70648137616c55901877b54c18b435e6db0a983e2bd8a0e54f",
+          "size": 912
+        },
+        {
+          "path": "source/transcription.json",
+          "sha256": "07e57cd4aaeb0b5a5005cec7b00293ebad48aa6f29b8af7915ad9e778c5d6960",
+          "size": 27233
+        }
+      ]
+    },
     "page_count": 10,
     "page_declarations": {},
-    "pending_source_review": [
-      "Local source parity and browser validation in progress"
-    ],
+    "pending_source_review": [],
     "projection": "whole-document-components/v1",
-    "publication_eligible": false,
+    "publication_eligible": true,
     "skipped_raw": 0,
     "source_authority": {
       "filename": "JE-100A-US-EN.pdf",

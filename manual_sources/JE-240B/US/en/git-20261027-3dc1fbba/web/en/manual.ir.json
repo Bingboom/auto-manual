@@ -1403,8 +1403,8 @@
         },
         {
           "path": "README.md",
-          "sha256": "25fe2b9b4bb61886a11302fc1863271d51cb116266ddc5cd057cc4b27b10022f",
-          "size": 3708
+          "sha256": "7c2b3929933c485dcb769c087c47cfd7490faae4981c95c76a3f2d7cdc8c2403",
+          "size": 3894
         },
         {
           "path": "assets/charging-car.png",
@@ -1602,6 +1602,11 @@
           "size": 2549
         },
         {
+          "path": "source/approval.json",
+          "sha256": "fae374f951df8d6605d2ec07c6eb0f11ac699e73067b99e4e4c495c12d0b3a17",
+          "size": 9481
+        },
+        {
           "path": "source/asset_decisions.json",
           "sha256": "aebabf5bd92049b8775e78e6a862c297950b26ab05dc6f3e949b7ecff144f829",
           "size": 14735
@@ -1664,7 +1669,7 @@
         "print_cover": 1,
         "toc": 3
       },
-      "publication_status": "candidate-pending-operator-review",
+      "publication_status": "operator-authorized-git-only-release",
       "reference_editions": [
         "manual_sources/JE-100C/US/en/git-20261027-39c58bca (same template family)",
         "data/manual_sources/JE-300E/EU/en/git-20261016-50b910fd (troubleshooting, warranty and LCD-screen components)"
@@ -2692,14 +2697,297 @@
     },
     "manual_theme_sha256": "e8fc88458d239edef85f2cfb0b26b71df2e83859c8e51e9c093e5abc2982b47d",
     "markdown_filename": "manual_je240b_us_en.md",
-    "operator_source_acceptance": null,
+    "operator_source_acceptance": {
+      "acceptance_basis": "Operator released the 1280/390 candidates shown beside their shared reference editions, in this engineering session. Source copy is published verbatim; suspected source errors (source_manifest.json:source_concerns) go to the source owner and enter only through a corrected source PDF and a new package.",
+      "authority_date": "2026-10-28",
+      "merge_authority": "MA-365 (code-as-doc/dev/merge_authorizations.md) and the operator's direct grant in this session: 授权合入 #1630 及其 Hello-Docs 发布 PR",
+      "operator_quote": "上线提交发布：JE-100A、JE-100C、JE-240A、JE-240B；授权合入 #1630 及其 Hello-Docs 发布 PR",
+      "preceding_operator_decision": "授权全部合入上线 上线之后 我再一个个核对版面 (2026-10-28, operator window session_01Y8kaknyyfgd1ZC5Xtwthqx; recorded as MA-365); layout is checked by the operator after release",
+      "reviewed_candidate": {
+        "commit": "729f9669",
+        "pull_request": "https://github.com/Bingboom/auto-manual/pull/1630",
+        "reference_edition": "JE-300E EU English Web (published, same template family)",
+        "renders": [
+          "evidence/browser-1280.png",
+          "evidence/browser-390.png"
+        ],
+        "review_page": "https://claude.ai/artifact/Tk3NTPGbjp5de7o6S4xGqe"
+      },
+      "source_sha256": "3dc1fbbaf28908f216955e32de05b88dc9b0477854e8c0b5df7926a542572521",
+      "target": {
+        "customer_model": "JE-240B",
+        "languages": [
+          "en"
+        ],
+        "model": "JE-240B",
+        "printed_manual_version": null,
+        "product_name": "Jackery Explorer 240D",
+        "region": "US",
+        "technical_version": "git-20261027-3dc1fbba"
+      },
+      "validation": {
+        "browser": {
+          "missing_images": 0,
+          "page_horizontal_overflow": 0,
+          "viewports": [
+            1280,
+            390
+          ]
+        },
+        "declared_plain_tables": 0,
+        "shared_style_issues": 0,
+        "strict_sphinx": "pass",
+        "symbol_source_bound_glyphs": 10,
+        "target_tests": "pass"
+      },
+      "verified_inputs": [
+        {
+          "path": "JE-240B-US-EN.pdf",
+          "sha256": "3dc1fbbaf28908f216955e32de05b88dc9b0477854e8c0b5df7926a542572521",
+          "size": 3212164
+        },
+        {
+          "path": "README.md",
+          "sha256": "7c2b3929933c485dcb769c087c47cfd7490faae4981c95c76a3f2d7cdc8c2403",
+          "size": 3894
+        },
+        {
+          "path": "assets/charging-car.png",
+          "sha256": "5c476b77fefad559fca99f0c8a9add280a0f0cd363889485a9c7799065dd011f",
+          "size": 47775
+        },
+        {
+          "path": "assets/charging-solar.png",
+          "sha256": "511312e17acf77d4088be2943808a17eae3a6109c5df3ecc852cae551167e9d8",
+          "size": 50800
+        },
+        {
+          "path": "assets/charging-usbc.png",
+          "sha256": "6e26ee4deaa07cc06b3d69ffcb3f4e8c82da5afbc7b51082755b6b4f0ca4cb75",
+          "size": 47252
+        },
+        {
+          "path": "assets/fcc-mark.svg",
+          "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe",
+          "size": 1927
+        },
+        {
+          "path": "assets/inbox-cable.png",
+          "sha256": "2d887944b15a3f1a07430ed7c708d43812566e444be52f17eacea51f46aacd6b",
+          "size": 3699
+        },
+        {
+          "path": "assets/inbox-manual.png",
+          "sha256": "b622f70d86c272ce0975b1bc91f7421dcadb06906538629afacc5d13f83851fb",
+          "size": 6395
+        },
+        {
+          "path": "assets/inbox-unit.png",
+          "sha256": "1c1dc65815d9247e509e6f9eea1cc98d5654bde82bb94712bbd1061e5c8a4144",
+          "size": 5468
+        },
+        {
+          "path": "assets/lcd-battery-percentage.png",
+          "sha256": "04d60c1b4570216d7972c06a3b685a3d45b4c1d73f20233120d974a1c09d3ae3",
+          "size": 2535
+        },
+        {
+          "path": "assets/lcd-battery-ring.png",
+          "sha256": "dd8fa0968eab35a11dbfe4a79895ff66c510535101208d4b7577aac8eca1f2c4",
+          "size": 2639
+        },
+        {
+          "path": "assets/lcd-car-charging.png",
+          "sha256": "1e6028e4da450a341d6df0063be1f53fa393f07fb2095030bdfbfa8c0fc4d1e5",
+          "size": 1227
+        },
+        {
+          "path": "assets/lcd-energy-saving.png",
+          "sha256": "8bd11e25ddc4dc2845083fc467c52f5a8d071b653157d441022d58aea37f43a7",
+          "size": 2436
+        },
+        {
+          "path": "assets/lcd-fault-code.png",
+          "sha256": "ac31edf66e61aabb774b2bc9f711d85e7d7d8cf4c0bc4f267467815b1a61bca5",
+          "size": 2485
+        },
+        {
+          "path": "assets/lcd-high-temperature.png",
+          "sha256": "c63dddaaf861bdf88f0b05bedfd60a11a333d691808083c59ff052ddf5d0b64f",
+          "size": 1691
+        },
+        {
+          "path": "assets/lcd-input-power.png",
+          "sha256": "be9fe59bb73f8c2603057ddab3101c48f2367f36cfe9ac66b4218c7c5fc94a37",
+          "size": 3444
+        },
+        {
+          "path": "assets/lcd-low-temperature.png",
+          "sha256": "266206a0afff91eb2d29a05338fece6c6dadf105bce27044a0143a291149f977",
+          "size": 1645
+        },
+        {
+          "path": "assets/lcd-map.png",
+          "sha256": "5161f0231298a46a95fe8d1d8c02d1cf418c811af1ebac479127599b2a763024",
+          "size": 27220
+        },
+        {
+          "path": "assets/lcd-output-power.png",
+          "sha256": "f714c8e9d0ba1219fa05c527d60c93d500debb3eb15eed5a0769cb6ccda78cb8",
+          "size": 3670
+        },
+        {
+          "path": "assets/lcd-screen.png",
+          "sha256": "a79cee24c6cdf4e505116e7e21e8c13e1d920125434fa1c5288d569ff8906886",
+          "size": 17413
+        },
+        {
+          "path": "assets/lcd-solar-charging.png",
+          "sha256": "e8ff94f06f1997212dc61b61aceac2e2791b13198e88c87a414f4fc2ede00fc5",
+          "size": 2655
+        },
+        {
+          "path": "assets/lcd-usbc-charging.png",
+          "sha256": "000d1efda35503959e1b0171ad87a2f1b7c56ae52c657e6f2cb5dd5941d98597",
+          "size": 1183
+        },
+        {
+          "path": "assets/overview.png",
+          "sha256": "7201bd0d7b91909993fe703a881529b4267bf90638bd88c05899dad76ef2058d",
+          "size": 48615
+        },
+        {
+          "path": "assets/power-on-off.png",
+          "sha256": "62a6c9584bc5310e91204dc7f3b4199d8d143822535d2dc0d7567e566c5f1a07",
+          "size": 29055
+        },
+        {
+          "path": "assets/sold-separately.png",
+          "sha256": "02bb73ccbdbb42c043b769decd554886fcaa3b5d36b6b2570128a94540a35bb3",
+          "size": 2516
+        },
+        {
+          "path": "assets/strap.png",
+          "sha256": "a1a5622099e3f7c47ddd047467ca7eea44c343c3af7d7f2da5a71488d9118258",
+          "size": 31589
+        },
+        {
+          "path": "assets/symbol-01.svg",
+          "sha256": "7eee1f724544318b77f50d99896735cb11f833fde5a3e24df1a7a394b70de10e",
+          "size": 3632
+        },
+        {
+          "path": "assets/symbol-02.svg",
+          "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
+          "size": 4961
+        },
+        {
+          "path": "assets/symbol-03.png",
+          "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+          "size": 7672
+        },
+        {
+          "path": "assets/symbol-04.svg",
+          "sha256": "a76bd208ea017906cdcb5624307cdf4b4bb092816d45ef3943a4b3367c837d3f",
+          "size": 4992
+        },
+        {
+          "path": "assets/symbol-05.svg",
+          "sha256": "562aa9d004d818fe9ac907cabd0a5bb44831801e26911f0929be7887971834fb",
+          "size": 5532
+        },
+        {
+          "path": "assets/symbol-06.svg",
+          "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f",
+          "size": 5630
+        },
+        {
+          "path": "assets/symbol-07.svg",
+          "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899",
+          "size": 6300
+        },
+        {
+          "path": "assets/symbol-08.svg",
+          "sha256": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1",
+          "size": 6007
+        },
+        {
+          "path": "assets/symbol-09.svg",
+          "sha256": "6a513fe0122fec428c55a3f840c34ed7afdea311f7f1dd9b6e6fd807d087bf55",
+          "size": 5934
+        },
+        {
+          "path": "assets/symbol-10.svg",
+          "sha256": "3ef06cba72b60935ea421b1b59ff41e1ca9c4c6597b8d8ce1d4ae1904ee68fa0",
+          "size": 6183
+        },
+        {
+          "path": "assets/usb-output.png",
+          "sha256": "740bafef9d956c09fb1088a0d00c3ba06c6ece1b3f480ecc25f17040391411ee",
+          "size": 34033
+        },
+        {
+          "path": "build_content.py",
+          "sha256": "d0bbb7aa760804d7f8ad7a219cb8770d8971fec4b5aacb7581d9db98923edbec",
+          "size": 24991
+        },
+        {
+          "path": "derive_assets.py",
+          "sha256": "d0371aa925fc62f5973d2a4a2518ac414e567770a4d05e1f6661f963e6b25b42",
+          "size": 9898
+        },
+        {
+          "path": "rebuild.py",
+          "sha256": "af4967aa6e2a562b3796c2ed20dc7999ca8abe8ce2409cee650b84881398acb8",
+          "size": 6356
+        },
+        {
+          "path": "refresh_manifest.py",
+          "sha256": "b7f50bfe6c686c5ecde44f25fe5a400a98a220bf46cf6f560325e0fa754c583b",
+          "size": 2549
+        },
+        {
+          "path": "source/asset_decisions.json",
+          "sha256": "aebabf5bd92049b8775e78e6a862c297950b26ab05dc6f3e949b7ecff144f829",
+          "size": 14735
+        },
+        {
+          "path": "source/asset_recipe.json",
+          "sha256": "28c95fe53e4df22e724d619aa55640411ff321c064d345fa7c66a15be20670b0",
+          "size": 10348
+        },
+        {
+          "path": "source/differences.md",
+          "sha256": "89710798d77c39be9a6b042633730c1c551b933228a22400342e5081bcd033f4",
+          "size": 3278
+        },
+        {
+          "path": "source/discovery.md",
+          "sha256": "d9e8a4f2701d198b0c01d4ee219d31d5dd19e0b1742eaf4bc78181d452e20622",
+          "size": 3476
+        },
+        {
+          "path": "source/en/content.json",
+          "sha256": "fde0897f2cc2d2a81a166eb258736742285d6f2c825f00c0d5a0394411e49ce2",
+          "size": 131721
+        },
+        {
+          "path": "source/geometry.css",
+          "sha256": "39db211bb23b5634dccb1b2d4b06f326dadcad5d64672719d958a607ad2aa3a5",
+          "size": 711
+        },
+        {
+          "path": "source/transcription.json",
+          "sha256": "b5dd617671e9c0399cb001d2a7383b367fb4cad3e121eb3b214110e665e582bd",
+          "size": 40186
+        }
+      ]
+    },
     "page_count": 12,
     "page_declarations": {},
-    "pending_source_review": [
-      "Local source parity and browser validation in progress"
-    ],
+    "pending_source_review": [],
     "projection": "whole-document-components/v1",
-    "publication_eligible": false,
+    "publication_eligible": true,
     "skipped_raw": 0,
     "source_authority": {
       "filename": "JE-240B-US-EN.pdf",

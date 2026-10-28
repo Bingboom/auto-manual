@@ -68,7 +68,7 @@
   ],
   "live_bitable_dependency": false,
   "phase2_enrolled": false,
-  "publication_status": "candidate-pending-operator-review",
+  "publication_status": "operator-authorized-git-only-release",
   "build_boundary": "JE-240B US is not a phase2 target. build_content.py binds the transcription to shared ComponentSpecs; rebuild.py replays them through manual-ir/v2 and the shared Web/MyST pipeline with the prepared-document shared-style gate and symbol admission. Symbol admission cannot re-read this single-artboard PDF until the native_svg closure handling is decided (README). build.py check of JE-1000F US is a repository regression gate only; it does not validate this body.",
   "repo_inputs": [],
   "inputs": [
@@ -79,8 +79,8 @@
     },
     {
       "path": "README.md",
-      "size": 3708,
-      "sha256": "25fe2b9b4bb61886a11302fc1863271d51cb116266ddc5cd057cc4b27b10022f"
+      "size": 3894,
+      "sha256": "7c2b3929933c485dcb769c087c47cfd7490faae4981c95c76a3f2d7cdc8c2403"
     },
     {
       "path": "assets/charging-car.png",
@@ -276,6 +276,11 @@
       "path": "refresh_manifest.py",
       "size": 2549,
       "sha256": "b7f50bfe6c686c5ecde44f25fe5a400a98a220bf46cf6f560325e0fa754c583b"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 9481,
+      "sha256": "fae374f951df8d6605d2ec07c6eb0f11ac699e73067b99e4e4c495c12d0b3a17"
     },
     {
       "path": "source/asset_decisions.json",

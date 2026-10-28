@@ -2,7 +2,7 @@
 
 Operator instruction, 2026-10-27: 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 (发布文档管理, view vewF9saLXo). This package is the Jackery Explorer 240D (JE-240B) US English manual from that table.
 
-**Status: `candidate-pending-operator-review`.** The IR is not publication-eligible and `source/approval.json` does not exist. This single-artboard PDF needed the `native_svg` closure fix of PR #1632 (an off-page path closes one subpath with `Z` and its fill/stroke twin with an explicit line to the origin); with it, `rebuild.py` passes the prepared-document shared-style gate and symbol admission. Hello-Docs/RTD publication follows [web publish pipeline §2.2](../../../../../code-as-doc/dev/web_publish_pipeline/input-paths.md#22-git-only-transaction).
+**Status: `operator-authorized-git-only-release`.** The operator reviewed the 1280/390 renders beside the shared reference edition (PR #1630) and released this manual on 2026-10-28: 「上线提交发布：JE-100A、JE-100C、JE-240A、JE-240B；授权合入 #1630 及其 Hello-Docs 发布 PR」 (merge authority MA-365). `source/approval.json` binds every reviewed `source/` and `assets/` input; the IR is publication-eligible. Source copy goes live as printed; `source_manifest.json:source_concerns` go to the source owner, and the operator checks the published layout after release. Hello-Docs/RTD publication follows [web publish pipeline §2.2](../../../../../code-as-doc/dev/web_publish_pipeline/input-paths.md#22-git-only-transaction).
 
 ## Source authority
 

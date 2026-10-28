@@ -1390,8 +1390,8 @@
         },
         {
           "path": "README.md",
-          "sha256": "b42c3a577924e09b57df12cea9137306515f59bb68ac3a85a53fa3c4d8142585",
-          "size": 3655
+          "sha256": "309ddac77fe3883b87d9dbed93bccbe9245a972edd476f83e52ea8d1c949e06c",
+          "size": 3928
         },
         {
           "path": "assets/charging_ac.png",
@@ -1614,6 +1614,11 @@
           "size": 2549
         },
         {
+          "path": "source/approval.json",
+          "sha256": "20fa20b4bd09926c684313ea58b7d67c0b01bc35c06c89204e591e7733792e5b",
+          "size": 10482
+        },
+        {
           "path": "source/asset_decisions.json",
           "sha256": "5a38b2973baa7dcfd64e8deb5a6dbf70ed213a9f7fb463f5c7bfaedab2ce4dd2",
           "size": 15901
@@ -1675,7 +1680,7 @@
         "print_cover": 1,
         "toc": 2
       },
-      "publication_status": "candidate-pending-operator-review",
+      "publication_status": "operator-authorized-git-only-release",
       "reference_editions": [
         "docs/manifests/manual_je100c_eu-en.yaml (JE-100C EU English Web, published)",
         "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2 (method)"
@@ -2570,14 +2575,322 @@
     },
     "manual_theme_sha256": "e8fc88458d239edef85f2cfb0b26b71df2e83859c8e51e9c093e5abc2982b47d",
     "markdown_filename": "manual_je100c_us_en.md",
-    "operator_source_acceptance": null,
+    "operator_source_acceptance": {
+      "acceptance_basis": "Operator released the 1280/390 candidates shown beside their shared reference editions, in this engineering session. Source copy is published verbatim; suspected source errors (source_manifest.json:source_concerns) go to the source owner and enter only through a corrected source PDF and a new package.",
+      "authority_date": "2026-10-28",
+      "merge_authority": "MA-365 (code-as-doc/dev/merge_authorizations.md) and the operator's direct grant in this session: 授权合入 #1630 及其 Hello-Docs 发布 PR",
+      "operator_quote": "上线提交发布：JE-100A、JE-100C、JE-240A、JE-240B；授权合入 #1630 及其 Hello-Docs 发布 PR",
+      "preceding_operator_decision": "授权全部合入上线 上线之后 我再一个个核对版面 (2026-10-28, operator window session_01Y8kaknyyfgd1ZC5Xtwthqx; recorded as MA-365); layout is checked by the operator after release",
+      "reviewed_candidate": {
+        "commit": "729f9669",
+        "pull_request": "https://github.com/Bingboom/auto-manual/pull/1630",
+        "reference_edition": "docs/manifests/manual_je100c_eu-en.yaml (JE-100C EU English Web, published)",
+        "renders": [
+          "evidence/browser-1280.png",
+          "evidence/browser-390.png"
+        ],
+        "review_page": "https://claude.ai/artifact/Tk3NTPGbjp5de7o6S4xGqe"
+      },
+      "source_sha256": "39c58bca661f635fc9d500bc9362317b62b5da6f007589fbf8e4ebfcc8e0bad0",
+      "target": {
+        "customer_model": "JE-100C",
+        "languages": [
+          "en"
+        ],
+        "model": "JE-100C",
+        "printed_manual_version": null,
+        "product_name": "Jackery Explorer 100D",
+        "region": "US",
+        "technical_version": "git-20261027-39c58bca"
+      },
+      "validation": {
+        "browser": {
+          "missing_images": 0,
+          "page_horizontal_overflow": 0,
+          "viewports": [
+            1280,
+            390
+          ]
+        },
+        "declared_plain_tables": 0,
+        "shared_style_issues": 0,
+        "strict_sphinx": "pass",
+        "symbol_source_bound_glyphs": 7,
+        "target_tests": "pass"
+      },
+      "verified_inputs": [
+        {
+          "path": "JE-100C-US-EN.pdf",
+          "sha256": "39c58bca661f635fc9d500bc9362317b62b5da6f007589fbf8e4ebfcc8e0bad0",
+          "size": 804559
+        },
+        {
+          "path": "README.md",
+          "sha256": "309ddac77fe3883b87d9dbed93bccbe9245a972edd476f83e52ea8d1c949e06c",
+          "size": 3928
+        },
+        {
+          "path": "assets/charging_ac.png",
+          "sha256": "6b4866ef484b9ca9a5ff10dd4cf3fb1f9a18146e02bb38aa27a4c1697c7b5d22",
+          "size": 139729
+        },
+        {
+          "path": "assets/charging_car.png",
+          "sha256": "439af9be59566f839c65c898bd363142e7dc30eaffdc673bda7494d3f1d1ef3e",
+          "size": 202685
+        },
+        {
+          "path": "assets/charging_solar.png",
+          "sha256": "96adfad1e72c557534fb1a3eaee933f045d01552429f2afbc95d43eac7bb8367",
+          "size": 192380
+        },
+        {
+          "path": "assets/fcc-mark.svg",
+          "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe",
+          "size": 1927
+        },
+        {
+          "path": "assets/inbox_cable.png",
+          "sha256": "440667657c702a6cb0c99f574430f9303253b3ada6a32aa8609cf562306d2a6e",
+          "size": 9508
+        },
+        {
+          "path": "assets/inbox_manual.png",
+          "sha256": "4320efcbbc0506ca4cabe0cd0b4c268357fc87a224b3a76cf69cffd2f8771075",
+          "size": 6035
+        },
+        {
+          "path": "assets/inbox_unit.png",
+          "sha256": "9e8cfb5917ef0d87bda25b46850c3d566b22b48d52fc7d01f875a220f7b37bed",
+          "size": 41977
+        },
+        {
+          "path": "assets/lcd_interface_1.png",
+          "sha256": "523ab4c85b2e737b9d22510fa91ae6a3d7382e842bcc2171c11e563ee4c9fa85",
+          "size": 71930
+        },
+        {
+          "path": "assets/lcd_interface_2.png",
+          "sha256": "fc613c38fa55870a9f3bbde3c09e3967755da14b86de1b22bfef42c0bfa761ef",
+          "size": 46402
+        },
+        {
+          "path": "assets/lcd_interface_3.png",
+          "sha256": "7282f47a25d4216f3306267313b027a3a0a7133f62cf66d7b3dc516aa038b539",
+          "size": 32683
+        },
+        {
+          "path": "assets/operation-energy.png",
+          "sha256": "16fb681afba0313be1c4e67f7612a7f7d11561efa33c94e404b7ab4da127033b",
+          "size": 27596
+        },
+        {
+          "path": "assets/operation-lcd.png",
+          "sha256": "9e413c2d2772d533714d5e4f047291c0ade296217ca413373abc9bc5e527c10e",
+          "size": 19033
+        },
+        {
+          "path": "assets/operation-output.png",
+          "sha256": "b9727b9e83cde872c907d17fca4df69b6ac625d74e394a42e30fb30fcc48e96e",
+          "size": 21258
+        },
+        {
+          "path": "assets/overview.png",
+          "sha256": "f1a11b8f9078d9e62f8e27cc3c252b0809addc4486b05ab04baa417fa3368311",
+          "size": 222967
+        },
+        {
+          "path": "assets/shared-lcd/lcd_charge_time.png",
+          "sha256": "30ca3526ad823eb0bcb86ed426556305c3a88f3822b9afe0b338faefadf663b5",
+          "size": 2746
+        },
+        {
+          "path": "assets/shared-lcd/lcd_charging.png",
+          "sha256": "65b2acf888574217b4837b443b6a2ef962d8752080ec2a152c7d25aa149fd7ce",
+          "size": 1768
+        },
+        {
+          "path": "assets/shared-lcd/lcd_discharge_time.png",
+          "sha256": "a6254ee6c2442338ce3be607854e610e87454464a34471c200a3e15b754504ac",
+          "size": 3085
+        },
+        {
+          "path": "assets/shared-lcd/lcd_discharging.png",
+          "sha256": "196dfcec907c1922ec559a59639f12677b94f0a40fef2163703bb512f93e2d27",
+          "size": 1088
+        },
+        {
+          "path": "assets/shared-lcd/lcd_energy.png",
+          "sha256": "abffef2553a3ff4c6aec158c2eeca3c411a752983fcd9499d444b46363a635e0",
+          "size": 3548
+        },
+        {
+          "path": "assets/shared-lcd/lcd_fault.png",
+          "sha256": "9a4dcfb95f2780c03a70f9ad6c34f29b31c7bcab8165309018dc366ef8a22ad3",
+          "size": 4518
+        },
+        {
+          "path": "assets/shared-lcd/lcd_health.png",
+          "sha256": "e97ce3a6dcc8de61459628138749323ace0aedf4472ab94c5f54e8c5a22fa7b7",
+          "size": 6272
+        },
+        {
+          "path": "assets/shared-lcd/lcd_high_temperature.png",
+          "sha256": "3bc177aa1ca91a3172263fd9ed24e529eca1def19489bd50408aad730da53c57",
+          "size": 2672
+        },
+        {
+          "path": "assets/shared-lcd/lcd_input.png",
+          "sha256": "d885d71e56e89be78deaaba7d1fe02c6d4d2c8ae4e92b21129fe302d5a44503d",
+          "size": 3215
+        },
+        {
+          "path": "assets/shared-lcd/lcd_low_battery.png",
+          "sha256": "8aba48b4eeefd20e8cb0eaa4306c99e5bef4f3b00aacbe7624d3c987e9610e72",
+          "size": 818
+        },
+        {
+          "path": "assets/shared-lcd/lcd_low_temperature.png",
+          "sha256": "9a6f857384d84940df6a0a04569eb20f3327fb7608f822a3eec4fc3c6d8eede8",
+          "size": 2356
+        },
+        {
+          "path": "assets/shared-lcd/lcd_output.png",
+          "sha256": "595a94ae122a1f50c02bd8b92ac70cbaa1548edf18365e0eb5eec9dbf41ccdac",
+          "size": 3228
+        },
+        {
+          "path": "assets/shared-lcd/lcd_percentage.png",
+          "sha256": "442522aad3e203194cd620402e723f7e7ba2735748e4bcefdf86289b3aa4c8f1",
+          "size": 5429
+        },
+        {
+          "path": "assets/shared-lcd/lcd_ring.png",
+          "sha256": "116e805fbbb3afefab436e34075834edddf54bed96d38054072a9307acdb40c6",
+          "size": 5323
+        },
+        {
+          "path": "assets/shared-lcd/lcd_steady.png",
+          "sha256": "6ae3372cbf05adfa1915451b65e5179de273c5db9dfa256f6702a025fa5ea142",
+          "size": 2617
+        },
+        {
+          "path": "assets/shared-lcd/lcd_temperature.png",
+          "sha256": "60c5cbfe5f8497b1ea4bdf9a6c2c0ed58670557da37738e7b52112279c29ad72",
+          "size": 4445
+        },
+        {
+          "path": "assets/shared-lcd/lcd_thermal.png",
+          "sha256": "d8afe79c89066a0c48cea82e68b7cc32175cfb8e7894793105dca8bafeaf3bcd",
+          "size": 4102
+        },
+        {
+          "path": "assets/shared-lcd/lcd_watts.png",
+          "sha256": "7da3de69f1cc2e3d06cb208ca58dc282e30d4251ce1332322079c8637c2f1433",
+          "size": 1446
+        },
+        {
+          "path": "assets/sold-separately.png",
+          "sha256": "02bb73ccbdbb42c043b769decd554886fcaa3b5d36b6b2570128a94540a35bb3",
+          "size": 2516
+        },
+        {
+          "path": "assets/symbol-01.svg",
+          "sha256": "7eee1f724544318b77f50d99896735cb11f833fde5a3e24df1a7a394b70de10e",
+          "size": 3632
+        },
+        {
+          "path": "assets/symbol-02.svg",
+          "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
+          "size": 4961
+        },
+        {
+          "path": "assets/symbol-03.png",
+          "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+          "size": 7672
+        },
+        {
+          "path": "assets/symbol-04.svg",
+          "sha256": "562aa9d004d818fe9ac907cabd0a5bb44831801e26911f0929be7887971834fb",
+          "size": 5532
+        },
+        {
+          "path": "assets/symbol-05.svg",
+          "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f",
+          "size": 5630
+        },
+        {
+          "path": "assets/symbol-06.svg",
+          "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899",
+          "size": 6300
+        },
+        {
+          "path": "assets/symbol-07.svg",
+          "sha256": "a901f6a790ada85f96010194a777fd019188c5f5fbfc872938e5cdb35b618a74",
+          "size": 6759
+        },
+        {
+          "path": "build_content.py",
+          "sha256": "03a92fdfedb2eaf150404c5ef663a59c84badffcb8342adc37e73a79937cc763",
+          "size": 22881
+        },
+        {
+          "path": "derive_assets.py",
+          "sha256": "4f2a8c388e01a4c594323a91ff5626867ba10d8805574a19f17edb472cae9ffc",
+          "size": 6856
+        },
+        {
+          "path": "rebuild.py",
+          "sha256": "18761e8d01dcb409320f16477b7366b34f91918571b4e9034a2944b646798cfa",
+          "size": 6356
+        },
+        {
+          "path": "refresh_manifest.py",
+          "sha256": "e3d9ee17cc0df508ce35affe0ab16f03bb25e7c76e7b51a19546f1b3aa9bcc10",
+          "size": 2549
+        },
+        {
+          "path": "source/asset_decisions.json",
+          "sha256": "5a38b2973baa7dcfd64e8deb5a6dbf70ed213a9f7fb463f5c7bfaedab2ce4dd2",
+          "size": 15901
+        },
+        {
+          "path": "source/asset_recipe.json",
+          "sha256": "07d3677881c045ca7d36a9a0ded1827f48b1487af0c729b7504c784df7445e52",
+          "size": 10886
+        },
+        {
+          "path": "source/differences.md",
+          "sha256": "3f6dd4a0e54f3f83cd82d1db41a0ab47d1acaaab33258f229cf903dc415955f6",
+          "size": 2924
+        },
+        {
+          "path": "source/discovery.md",
+          "sha256": "3a2bda59af651037a5d88d0536cddcf45b1345c1ad1032deb31f1e79822f46d1",
+          "size": 2884
+        },
+        {
+          "path": "source/en/content.json",
+          "sha256": "e29a25a5a827fb2f025a5dd445c4f28f5a2573d09a789e24cc553841dba403f6",
+          "size": 114391
+        },
+        {
+          "path": "source/geometry.css",
+          "sha256": "86c6818ac1bd6e182795863b05cf955f6cc0a263d324fbba1e89cdff8f6aec9c",
+          "size": 804
+        },
+        {
+          "path": "source/transcription.json",
+          "sha256": "cce012d17a1ab774e0cdeebd6cd114beaa3d026c53fe91d58a5e964ff8daa021",
+          "size": 29039
+        }
+      ]
+    },
     "page_count": 10,
     "page_declarations": {},
-    "pending_source_review": [
-      "Local source parity and browser validation in progress"
-    ],
+    "pending_source_review": [],
     "projection": "whole-document-components/v1",
-    "publication_eligible": false,
+    "publication_eligible": true,
     "skipped_raw": 0,
     "source_authority": {
       "filename": "JE-100C-US-EN.pdf",
