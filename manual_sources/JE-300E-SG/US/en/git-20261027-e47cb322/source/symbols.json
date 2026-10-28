@@ -41,6 +41,10 @@
     "caption_text": "Warning and Caution Symbols. Must read to alert individuals to potential hazards or risks.",
     "caption_mode": "outlined-manual-transcription",
     "caption_sha256": "171567cdc5e093e17cfc2ca548de38a0e602babaa8b4a26aefdad7343a162045",
+    "shared_symbol_key": "warning/outline-triangle-dark-hte162",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/warning_triangle_dark_hte162.svg",
+    "local_path": "assets/warning_triangle_dark_hte162.svg",
+    "decision": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)",
     "candidates": [
       {
         "shared_symbol_key": "warning/outline-triangle-tinted",
@@ -51,12 +55,14 @@
         "shared_symbol_key": "warning/filled-triangle-gray",
         "status": "rejected",
         "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "warning/outline-triangle-dark-hte162",
+        "status": "passed",
+        "max_mean_channel_error": 0.007096
       }
     ],
-    "shared_symbol_key": null,
-    "local_path": "assets/warning-native-candidate.svg",
-    "decision": "PENDING operator decision: no shared variant passes; native paths proposed as a new shared variant",
-    "sha256": "73286974d070e349f211ba1ff43bd30b69b4b4d89e2869b7f0985c78554ecf8c"
+    "sha256": "7eee1f724544318b77f50d99896735cb11f833fde5a3e24df1a7a394b70de10e"
   },
   {
     "language": "en",
@@ -270,6 +276,10 @@
     "caption_text": "Do not dismantle the product.",
     "caption_mode": "outlined-manual-transcription",
     "caption_sha256": "f6ae2c96df3ed8e05f70a8ede8eeb60e82d4bc34eaff5fc1bcdca870726acaa8",
+    "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited-dark-hte147",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/do_not_dismantle_dark_hte147.svg",
+    "local_path": "assets/do_not_dismantle_dark_hte147.svg",
+    "decision": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)",
     "candidates": [
       {
         "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited",
@@ -305,12 +315,19 @@
         "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited-tw-477dfbd7",
         "status": "rejected",
         "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited-dark-hte162",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited-dark-hte147",
+        "status": "passed",
+        "max_mean_channel_error": 6e-06
       }
     ],
-    "shared_symbol_key": null,
-    "local_path": "assets/do-not-dismantle-native-candidate.svg",
-    "decision": "PENDING operator decision: no shared variant passes; native paths proposed as a new shared variant",
-    "sha256": "ba09fb96f55d49b4d1cffa41c5cdcc166a2caa56c8501b52a3357ee80695206d"
+    "sha256": "10462368d9310033fc5e2626ba2f0934407ecabf42b740d9d1c4ba3026235d47"
   },
   {
     "language": "en",

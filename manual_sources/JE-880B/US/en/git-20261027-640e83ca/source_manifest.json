@@ -325,8 +325,8 @@
     },
     {
       "path": "docs/renderers/web/assets/shared/symbols/manifest.json",
-      "size": 68649,
-      "sha256": "371b8cfcee507e8e3170673aa0efe978ee722b0759a454bea8d21864df40f026"
+      "size": 73978,
+      "sha256": "2ed591023d4b0636167bb33a7d06c7dd5ae2bc5b537b891a4200f5f12df4d350"
     },
     {
       "path": "tools/asset_pipeline/__init__.py",
@@ -360,8 +360,8 @@
     },
     {
       "path": "tools/asset_pipeline/native_svg.py",
-      "size": 9216,
-      "sha256": "a99ee031a8ef796f562ebb82c542715daf34096df60a3c5cec143f8685a56785"
+      "size": 9464,
+      "sha256": "cc51c407aef9dca7d95338e6c64a38ddb7e890de5a067e0dc9812100b3c86fd7"
     },
     {
       "path": "tools/asset_pipeline/package.py",
@@ -1342,8 +1342,8 @@
     },
     {
       "path": "source/refresh_manifest.py",
-      "size": 5019,
-      "sha256": "65b697efcdec31242d3ecbbe7c4139752a9ead49b0723f0609a8272e86365091"
+      "size": 5037,
+      "sha256": "2392ba7fd145a95a31eec3f651f5923fbab187ad3857942a8cc73ba4bd8fa5ed"
     },
     {
       "path": "source/symbols.json",

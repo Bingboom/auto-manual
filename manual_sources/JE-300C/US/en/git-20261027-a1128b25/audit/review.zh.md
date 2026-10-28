@@ -9,7 +9,7 @@
 2. 操作/充电/UPS 面板按印刷面板整图裁取（只去外框），图内文字（Prerequisite、Default standby time、LED 步骤、※ 车充线说明等）留在图中，alt 读出；面板内的 WARNING/CAUTION/NOTE 框改为共用 callout，面板内灰色说明框改为网页段落。
 3. 装箱 3 张卡 + TIP 用共用装箱组件；LCD 表 13 个编号（12 号分高/低温两行）用共用 LCD 图标表；UPS 章节为独立章。
 4. 故障表 F0–F3 拆为每码一行；印刷在表头里的引导句保留在表头位置。
-5. 符号表与 JE-300E 相同：警告三角、禁止拆卸两个符号共用图库无匹配，等待操作员决定（已询问）。
+5. 符号表 10 个符号全部字节复用共用图库；警告三角与禁止拆卸两行改用 #1632（操作员「同意」，2026-10-28）新增的共用变体 warning/outline-triangle-dark-hte162 与 do-not-dismantle/screwdriver-prohibited-dark-hte147，固定比对误差 ≤0.71%。
 
 原稿保留原样、待原稿负责人确认：
 - p13「When AC solar charging and solar charging are turned on」；

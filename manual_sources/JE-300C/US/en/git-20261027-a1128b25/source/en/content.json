@@ -900,7 +900,7 @@
             "assets": [
               {
                 "role": "icons",
-                "asset_ref": "assets/warning-native-candidate.svg",
+                "asset_ref": "assets/warning_triangle_dark_hte162.svg",
                 "locale_policy": "shared"
               },
               {
@@ -920,7 +920,7 @@
               },
               {
                 "role": "icons",
-                "asset_ref": "assets/do-not-dismantle-native-candidate.svg",
+                "asset_ref": "assets/do_not_dismantle_dark_hte147.svg",
                 "locale_policy": "shared"
               },
               {

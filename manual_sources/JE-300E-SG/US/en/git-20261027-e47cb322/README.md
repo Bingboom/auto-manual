@@ -33,9 +33,10 @@ chapter set and components.
 Inventory first (Web artwork reuse order):
 
 - **Symbols**: each of the 10 rows is compared with every shared variant of its semantic family using the
-  symbol admission's fixed comparison; 8 reuse a shared symbol byte for byte. The plain warning triangle
-  and do-not-dismantle rows match no shared variant: their native vector paths are pending candidates
-  until the operator decides (release admission refuses them as they are).
+  symbol admission's fixed comparison, and all 10 reuse a shared symbol byte for byte. The plain warning
+  triangle and do-not-dismantle rows use `warning/outline-triangle-dark-hte162` and
+  `do-not-dismantle/screwdriver-prohibited-dark-hte147`, added by PR #1632 (operator 「同意」, 2026-10-28);
+  the latter is this JE-300E print's own native paths.
 - **LCD glyphs**: 11 of 12 reuse the JE-300E EU Web glyphs, which pass the fixed comparison against this
   print; the battery-percentage glyph is this print's native vector paths. The FCC mark reuses the
   shared `fcc_mark.svg`.

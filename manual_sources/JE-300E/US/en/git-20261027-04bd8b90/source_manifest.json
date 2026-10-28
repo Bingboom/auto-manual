@@ -80,9 +80,7 @@
   "source_authority": "operator-designated English PDF from the 发布文档管理 Base row (read-only download); original English governs all copy. Operator instruction 2026-10-27: 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 (封面和目录不上网页; 版面以 PDF 为准; 不改任何英文原文).",
   "publication_status": "review-candidate-no-release-authorization",
   "publication_eligible": false,
-  "pending_source_review": [
-    "symbol rows without a shared variant await the operator's decision"
-  ],
+  "pending_source_review": [],
   "language_scope": "single",
   "live_bitable_dependency": false,
   "reference_edition": "data/manual_sources/JE-300E/EU/en/git-20261016-50b910fd (same model, released EU English Web; structure, components and theme reference; no EU product facts reused)",
@@ -180,9 +178,9 @@
     "locales": {
       "en": [
         {
-          "asset_ref": "assets/warning-native-candidate.svg",
-          "asset_sha256": "b72817ec36a1653a27db2dd685a21838545e2aa28543657fd33e4ed2bb81eab1",
-          "shared_symbol_key": null,
+          "asset_ref": "assets/warning_triangle_dark_hte162.svg",
+          "asset_sha256": "7eee1f724544318b77f50d99896735cb11f833fde5a3e24df1a7a394b70de10e",
+          "shared_symbol_key": "warning/outline-triangle-dark-hte162",
           "physical_page": 5,
           "drawing_indices": [
             29371,
@@ -307,9 +305,9 @@
           "caption_mode": "outlined-manual-transcription"
         },
         {
-          "asset_ref": "assets/do-not-dismantle-native-candidate.svg",
+          "asset_ref": "assets/do_not_dismantle_dark_hte147.svg",
           "asset_sha256": "10462368d9310033fc5e2626ba2f0934407ecabf42b740d9d1c4ba3026235d47",
-          "shared_symbol_key": null,
+          "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited-dark-hte147",
           "physical_page": 5,
           "drawing_indices": [
             30007,
@@ -695,8 +693,13 @@
     },
     {
       "path": "docs/renderers/web/assets/shared/symbols/manifest.json",
-      "size": 68649,
-      "sha256": "371b8cfcee507e8e3170673aa0efe978ee722b0759a454bea8d21864df40f026"
+      "size": 73978,
+      "sha256": "2ed591023d4b0636167bb33a7d06c7dd5ae2bc5b537b891a4200f5f12df4d350"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/do_not_dismantle_dark_hte147.svg",
+      "size": 62314,
+      "sha256": "10462368d9310033fc5e2626ba2f0934407ecabf42b740d9d1c4ba3026235d47"
     },
     {
       "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_battery_charging.svg",
@@ -739,6 +742,11 @@
       "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5"
     },
     {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/warning_triangle_dark_hte162.svg",
+      "size": 3632,
+      "sha256": "7eee1f724544318b77f50d99896735cb11f833fde5a3e24df1a7a394b70de10e"
+    },
+    {
       "path": "tools/asset_pipeline/__init__.py",
       "size": 545,
       "sha256": "6019d91fb049384c74ea00f4c0cfcedc602160412806fc7a673ed6771af5d331"
@@ -770,8 +778,8 @@
     },
     {
       "path": "tools/asset_pipeline/native_svg.py",
-      "size": 9216,
-      "sha256": "a99ee031a8ef796f562ebb82c542715daf34096df60a3c5cec143f8685a56785"
+      "size": 9464,
+      "sha256": "cc51c407aef9dca7d95338e6c64a38ddb7e890de5a067e0dc9812100b3c86fd7"
     },
     {
       "path": "tools/asset_pipeline/package.py",
@@ -1592,8 +1600,8 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 3799,
-      "sha256": "7283ae44e2c8c7935987a2c064cb26b8d4e1e3bf30b36592ef9de3f9d994d5e4"
+      "size": 3873,
+      "sha256": "9cc7dab751ea32e63c515de96f180c8cc260830571d001a5ee8b69133aceb59d"
     },
     {
       "path": "assets/ac-output.png",
@@ -1636,7 +1644,7 @@
       "sha256": "fe2d30c04e68284a040e5a504baf254699e11902199a8139d26b2e46ca91ed68"
     },
     {
-      "path": "assets/do-not-dismantle-native-candidate.svg",
+      "path": "assets/do_not_dismantle_dark_hte147.svg",
       "size": 62314,
       "sha256": "10462368d9310033fc5e2626ba2f0934407ecabf42b740d9d1c4ba3026235d47"
     },
@@ -1796,14 +1804,14 @@
       "sha256": "ff66b572c126b0b6588d19b1e0b52d5001ef571af4dbb52a7b5e6970cae33cea"
     },
     {
-      "path": "assets/warning-native-candidate.svg",
-      "size": 60442,
-      "sha256": "b72817ec36a1653a27db2dd685a21838545e2aa28543657fd33e4ed2bb81eab1"
+      "path": "assets/warning_triangle_dark_hte162.svg",
+      "size": 3632,
+      "sha256": "7eee1f724544318b77f50d99896735cb11f833fde5a3e24df1a7a394b70de10e"
     },
     {
       "path": "audit/review.zh.md",
-      "size": 2068,
-      "sha256": "3cc3d8ba73fd0fd0cedecbec456e5f6eabc88d52ed125aecae48c0bdf2a86bd8"
+      "size": 2081,
+      "sha256": "45d006330686d0478d47bd91f67be6e830573b4343ad9847772918eeb380b863"
     },
     {
       "path": "original.pdf",
@@ -1817,8 +1825,8 @@
     },
     {
       "path": "source/en/content.json",
-      "size": 202093,
-      "sha256": "4d5975cf0cd5b7d8adac0d3a0e361d564f3cb9442681193e63e539d00b63d67f"
+      "size": 202092,
+      "sha256": "ff4ef03e845e1016cb36786f717a6f15ad3e6e5d759160f9a8559ad78dbcd3b8"
     },
     {
       "path": "source/extract_assets.py",
@@ -1852,13 +1860,13 @@
     },
     {
       "path": "source/refresh_manifest.py",
-      "size": 5005,
-      "sha256": "f0776cc30aa19fac1f5ad53c0f181476038e2997610b945557d5a50b3d295ba2"
+      "size": 5023,
+      "sha256": "6e9bbabcf3dd0a84cad0372b0db83e66e4087b9f3fd8285f2906d5b86e9ce057"
     },
     {
       "path": "source/symbols.json",
-      "size": 17501,
-      "sha256": "cc16614098a7bdfac15eb0ede7cc587fb6870ce9ccfca0e7cecf5f6b2e7c761f"
+      "size": 18281,
+      "sha256": "3ca6ea3ef12bfa2f36789aadda2b1bafde76b4533995853171904431ac64de62"
     },
     {
       "path": "web/en/_static/source_presentation.css",
@@ -1911,7 +1919,7 @@
       "sha256": "fe2d30c04e68284a040e5a504baf254699e11902199a8139d26b2e46ca91ed68"
     },
     {
-      "path": "web/en/assets/do-not-dismantle-native-candidate.svg",
+      "path": "web/en/assets/do_not_dismantle_dark_hte147.svg",
       "size": 62314,
       "sha256": "10462368d9310033fc5e2626ba2f0934407ecabf42b740d9d1c4ba3026235d47"
     },
@@ -2071,9 +2079,9 @@
       "sha256": "ff66b572c126b0b6588d19b1e0b52d5001ef571af4dbb52a7b5e6970cae33cea"
     },
     {
-      "path": "web/en/assets/warning-native-candidate.svg",
-      "size": 60442,
-      "sha256": "b72817ec36a1653a27db2dd685a21838545e2aa28543657fd33e4ed2bb81eab1"
+      "path": "web/en/assets/warning_triangle_dark_hte162.svg",
+      "size": 3632,
+      "sha256": "7eee1f724544318b77f50d99896735cb11f833fde5a3e24df1a7a394b70de10e"
     },
     {
       "path": "web/en/conf.py",
@@ -2087,13 +2095,13 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 306806,
-      "sha256": "d54e12cf3e82c61775dd74ab9761f42e6bb8764ec56a56aa94ee43ab0b5ccb3a"
+      "size": 306802,
+      "sha256": "a65f64d953a8f87b98d72a7eec25d8b0062826bb9724b9daf6697fd8db019a2e"
     },
     {
       "path": "web/en/manual_je300e_us_en.md",
-      "size": 48122,
-      "sha256": "87aaf3ea3b2a679129aa2fe1ae3ffd940b0f0b84df235a3b1a013cf9f35f07c1"
+      "size": 48121,
+      "sha256": "97ee90be639dd9a1beacabfd1efdfbdb59758cd77d495fa15daec3869fd7d8cb"
     }
   ]
 }

@@ -78,8 +78,9 @@ def refresh():
                                 "sha256": digest(p)} for p in sorted(dependencies)]
     manifest["inputs"] = list(_file_inventory(SOURCE, excluded_roots=(
         destination, SOURCE / "source/__pycache__", SOURCE / "__pycache__")))
-    if any(row.get("shared_symbol_key") is None for row in symbols):
-        manifest["pending_source_review"] = ["symbol rows without a shared variant await the operator's decision"]
+    manifest["pending_source_review"] = (
+        ["symbol rows without a shared variant await the operator's decision"]
+        if any(row.get("shared_symbol_key") is None for row in symbols) else [])
     destination.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n")
     print(json.dumps({"source_inputs": len(manifest["inputs"]),
                       "repository_inputs": len(manifest["repo_inputs"])}, indent=2))

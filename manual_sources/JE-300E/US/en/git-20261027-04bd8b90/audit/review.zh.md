@@ -9,7 +9,7 @@
 2. 操作与充电面板按印刷面板整图裁取（只去掉面板外框），图内文字（On/Off/Press once、Prerequisite、Default standby time 气泡等）保留在图中，网页 alt 读出；面板内的 NOTE/Note/CAUTION 框和面板下方说明句改为网页原生 callout/段落（与 JE-300E EU 版一致）。
 3. 故障表 F0–F3 印刷为一个合并单元格，网页拆成 4 行各带同一措施（JE-300E EU D6 先例）。
 4. 「INSTRUCTIONS PERTAINING TO RISK OF FIRE…」框与「WARNING Always follow…」框都用共用 WARNING 条；DANGER 框用共用 DANGER 条。
-5. 符号表 10 个符号中 8 个直接复用共用图库；警告三角（无底色细描边）与禁止拆卸两个图库无匹配变体，暂以原稿原生矢量路径作待定候选，等待操作员决定（已询问）。在操作员决定前本包不能封存发布。
+5. 符号表 10 个符号全部字节复用共用图库；警告三角与禁止拆卸两行改用 #1632（操作员「同意」，2026-10-28）新增的共用变体 warning/outline-triangle-dark-hte162 与 do-not-dismantle/screwdriver-prohibited-dark-hte147，固定比对误差 ≤0.71%。
 6. LCD 图标 12 个中 11 个与 JE-300E EU 版同图，字节复用；剩余百分比图标 EU 资产不满足透明边缘要求，改用本稿原生矢量。FCC 标志复用共用 fcc_mark.svg。
 
 原稿保留原样、待原稿负责人确认的地方：

@@ -1,10 +1,10 @@
 {
   "asset_refs": [
-    "assets/warning-native-candidate.svg",
+    "assets/warning_triangle_dark_hte162.svg",
     "assets/symbol_read_manual.svg",
     "assets/symbol_weee.png",
     "assets/symbol_electric_shock.svg",
-    "assets/do-not-dismantle-native-candidate.svg",
+    "assets/do_not_dismantle_dark_hte147.svg",
     "assets/symbol_no_open_flame.svg",
     "assets/symbol_keep_away_from_children.svg",
     "assets/symbol_li_ion_dark.svg",
@@ -45,8 +45,8 @@
     "assets/contact-qr.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "332ab23b03b40ae3fc1e34e0cb1d3bdfd75a2096fdc86f6439a9ec5deba554ba",
-  "content_sha256": "dc427d5b7160b7170cdc5cb1cf44c29dba661355cf726f03496079f4c330847c",
+  "bundle_sha256": "e6f8eeb4c9c9e141d1d55337477f2598f0a2549da5797e023924e1c3d9f466bd",
+  "content_sha256": "bd8d0b6df0dc0b42387b664410785115444ea2af47bebd77f4864bfa8f8ecac0",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -58,7 +58,7 @@
       "assets/charging-usbc.png": "ba5c981f0c1ed06f8809765ed08d9511242a57d29b032a62f0ed03f9cc5163eb",
       "assets/contact-qr.png": "4b0944d70f30b5a9df6301876af6968c37c22dcb8c0a4f5b4cf0d8e0c8e19dd5",
       "assets/dc-usb-output.png": "ffadb9e1af0d37588f49bf3eb69eec33c9daeb4480e67b3e07f091f28ee1a17d",
-      "assets/do-not-dismantle-native-candidate.svg": "10890bc6f9b43f75e5d2c9937bad7d42410eb28aeadebd50d9796790fa6cab59",
+      "assets/do_not_dismantle_dark_hte147.svg": "10462368d9310033fc5e2626ba2f0934407ecabf42b740d9d1c4ba3026235d47",
       "assets/energy-saving.png": "0054f95a063c703d3d1c0943dc22039a20a0351a45024cd3ed70a59dcb2184b8",
       "assets/fcc_mark.svg": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe",
       "assets/inbox-ac-cable.png": "d18c2248112dc7b93f3ce5bebb8e6b9d55be02c698a59e003645b26098464e5b",
@@ -93,7 +93,7 @@
       "assets/symbol_read_manual.svg": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
       "assets/symbol_weee.png": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
       "assets/ups.png": "626850a11d331be5b96bafeb92944d1a4e6bb4ca8168ded841fa33820e428a18",
-      "assets/warning-native-candidate.svg": "9d88bf3b4e9827fd65365112a72baa892c91507f21ad63552a07bcc727675147"
+      "assets/warning_triangle_dark_hte162.svg": "7eee1f724544318b77f50d99896735cb11f833fde5a3e24df1a7a394b70de10e"
     },
     "block_count": 108,
     "component_inventory": {
@@ -3010,11 +3010,11 @@
         },
         {
           "asset_refs": [
-            "assets/warning-native-candidate.svg",
+            "assets/warning_triangle_dark_hte162.svg",
             "assets/symbol_read_manual.svg",
             "assets/symbol_weee.png",
             "assets/symbol_electric_shock.svg",
-            "assets/do-not-dismantle-native-candidate.svg",
+            "assets/do_not_dismantle_dark_hte147.svg",
             "assets/symbol_no_open_flame.svg",
             "assets/symbol_keep_away_from_children.svg",
             "assets/symbol_li_ion_dark.svg",
@@ -3022,13 +3022,13 @@
             "assets/symbol_explosive_material_native_v2_3e3a39.svg"
           ],
           "block_id": "symbols:block-0003",
-          "content_sha256": "441044f1ebbf0ffca33abded2672e6687703b7872151e08c53b342db02958705",
+          "content_sha256": "0e3da896a433ed2549010255f2c6f28e39d0c709b1f53e5e6ffcdb3575671d87",
           "kind": "flow",
           "payload": {
             "component_spec": {
               "assets": [
                 {
-                  "asset_ref": "assets/warning-native-candidate.svg",
+                  "asset_ref": "assets/warning_triangle_dark_hte162.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 },
@@ -3048,7 +3048,7 @@
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/do-not-dismantle-native-candidate.svg",
+                  "asset_ref": "assets/do_not_dismantle_dark_hte147.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 },
@@ -3352,7 +3352,7 @@
       "skipped_raw": 0,
       "source_path": "source/en/content.json#symbols",
       "source_ref": "transcribed-pdf/symbols",
-      "source_sha256": "0f7d18518432e74f6f24178858e17f5ebc6e96dcc514b0dc3389bc97ed74a18c"
+      "source_sha256": "0fa5a206dd0cdbfb37891cb57b090c49b29931096cd27db8e14c4c2e50f92b2f"
     },
     {
       "blocks": [
