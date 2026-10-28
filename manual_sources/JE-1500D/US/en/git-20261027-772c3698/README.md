@@ -2,7 +2,7 @@
 
 Operator instruction, 2026-10-27: 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 (发布文档管理 Base, the table of manuals not yet converted to Web). This package is the Jackery Explorer 1500 (JE-1500D) US English manual from that table: record `reczz28SPRx9ntZO`, 物料号「文本」38-0001-000943, 项目号 HTE140, SKU 21-0001-000368, 21-0001-000382, 21-0014-000312, 21-0014-000340.
 
-**Status: `candidate-pending-operator-review`.** The IR is not publication-eligible and there is no `source/approval.json`. Open items for the operator: the 1280/390 renders in `evidence/`, the source concerns in `source_manifest.json:source_concerns`, and one staged shared symbol (below). The route will be `JE-1500D/US/en/md`.
+**Status: `candidate-pending-operator-review`.** The IR is not publication-eligible and there is no `source/approval.json`. Open items for the operator: the 1280/390 renders in `evidence/`, the source concerns in `source_manifest.json:source_concerns`. The route will be `JE-1500D/US/en/md`.
 
 ## Source authority
 
@@ -17,9 +17,9 @@ The Web body is physical pages 2 and 4–20 (IMPORTANT and printed 01–17); cov
 
 ## Artwork
 
-`source/discovery.md` and `source/asset_decisions.json` record the inventory and every reuse/extract decision. The LCD map, the FCC mark, three shared buttons and ten safety symbols are reused byte-identically. Overview, operation, charging and App art are complete source panels at 3×; grey text pills and bubbles printed inside them are removed by deleting their vector objects and set as native text. The 24 LCD icons and the AC cable are the original PDF vector paths (transparent).
+`source/discovery.md` and `source/asset_decisions.json` record the inventory and every reuse/extract decision. The LCD map, the FCC mark, three shared buttons and all eleven safety symbols are reused byte-identically. Overview, operation, charging and App art are complete source panels at 3×; grey text pills and bubbles printed inside them are removed by deleting their vector objects and set as native text. The 24 LCD icons and the AC cable are the original PDF vector paths (transparent).
 
-**Staged shared symbol.** The heavy-object symbol has no catalog variant within the fixed 2% (closest `heavy-object/person-load-triangle-tinted`, 0.0244). Its native paths are the package asset `assets/symbol-06.svg`, and `source_manifest.json:staged_shared_symbols` holds the proposed catalog row `native/je1500d-us-772c3698-06`. `rebuild.py` admits it with the same source-bound checks against that row. After operator approval, `derive_assets.py --write-shared` adds the SVG and row to `docs/renderers/web/assets/shared/symbols/` once; the next derive empties `staged_shared_symbols` and the shared admission applies.
+**Heavy-object symbol.** No catalog variant was within the fixed 2% (closest `heavy-object/person-load-triangle-tinted`, 0.0244), so its native PDF paths entered the shared catalog through the shared-symbol PR #1632 as `heavy-object/person-load-triangle-dark-772c3698` (append-only; this package's page 5, drawings 116599–116606). `assets/symbol-06.svg` reuses those catalog bytes.
 
 ## Rebuild
 

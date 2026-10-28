@@ -316,36 +316,7 @@
       "disposition": "preserved verbatim; source owner review"
     }
   ],
-  "staged_shared_symbols": [
-    {
-      "key": "native/je1500d-us-772c3698-06",
-      "path": "native-v1/je1500d-us-772c3698-symbol-06.svg",
-      "sha256": "1112f1427069523813d4c7fc91f77772520ad92d247bde4140b9ba913d83c79f",
-      "status": "source-bound native variant",
-      "provenance": {
-        "source": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/JE-1500D-US-EN.pdf",
-        "source_sha256": "772c36987b4233c2c243d64cf0a2e9c8a3fd1f37ad87ad739600cbf474977a79",
-        "physical_page": 5,
-        "drawing_indices": [
-          116599,
-          116600,
-          116601,
-          116602,
-          116603,
-          116604,
-          116605,
-          116606
-        ],
-        "glyph_bbox": [
-          35.6,
-          467.6,
-          59.1,
-          488.7
-        ],
-        "decision": "No existing shared variant passes the fixed 2% source glyph comparison (closest heavy-object/person-load-triangle-tinted 0.0244: different figure posture and load box); native paths/ancestor transforms retained (only unreferenced page-wide clip/mask definitions pruned), no redraw or cell backdrop. Staged for operator approval before it enters the shared catalog."
-      }
-    }
-  ],
+  "staged_shared_symbols": [],
   "symbol_asset_admission": {
     "schema_version": "auto-manual-symbol-asset-admission/v1",
     "locales": {
@@ -517,7 +488,7 @@
         },
         {
           "asset_ref": "assets/symbol-06.svg",
-          "asset_sha256": "1112f1427069523813d4c7fc91f77772520ad92d247bde4140b9ba913d83c79f",
+          "asset_sha256": "aaf174df0f8b9d0f5d39c2ba83f31fac9b1d57d849db07156a18beecfbabe814",
           "physical_page": 5,
           "drawing_indices": [
             116599,
@@ -549,7 +520,7 @@
           ],
           "caption_text": "Heavy object",
           "caption_sha256": "3a6a62fe4439db722965fca77d54d85ca4ea54e71444fe588ed0dd53d36aef4d",
-          "shared_symbol_key": "native/je1500d-us-772c3698-06",
+          "shared_symbol_key": "heavy-object/person-load-triangle-dark-772c3698",
           "max_mean_channel_error": 0.0
         },
         {
@@ -734,8 +705,8 @@
     },
     {
       "path": "README.md",
-      "size": 4412,
-      "sha256": "8040624280418df9440cf7f4ade002bf4a24db50b76aa5277785cd169c310bb6"
+      "size": 4144,
+      "sha256": "b060abb90eec1819d85834e12496b1fe2f95f12bda50627457af08d7b9f8a156"
     },
     {
       "path": "assets/ac-charge.png",
@@ -1004,8 +975,8 @@
     },
     {
       "path": "assets/symbol-06.svg",
-      "size": 2532,
-      "sha256": "1112f1427069523813d4c7fc91f77772520ad92d247bde4140b9ba913d83c79f"
+      "size": 437700,
+      "sha256": "aaf174df0f8b9d0f5d39c2ba83f31fac9b1d57d849db07156a18beecfbabe814"
     },
     {
       "path": "assets/symbol-07.svg",
@@ -1059,13 +1030,13 @@
     },
     {
       "path": "source/asset_decisions.json",
-      "size": 37855,
-      "sha256": "1288a4ea0600725a5a731249fe02c25f0f87b105d6b73d18c217806f8b3187c1"
+      "size": 37813,
+      "sha256": "26dde64503cf8d107faebdef5d4313eee72283e91874fe02c996e18c7a38b1b3"
     },
     {
       "path": "source/asset_recipe.json",
-      "size": 14324,
-      "sha256": "22c437f58ea7169d481f8fc52ebb4b673d2ce452a57cb9771ef4fc0689d6af79"
+      "size": 13951,
+      "sha256": "4f81d5f0dbd89e0b4e0a77a2900106e1aa70ee2dda3e1f276c3b3a3cabd5b264"
     },
     {
       "path": "source/differences.md",
@@ -1074,8 +1045,8 @@
     },
     {
       "path": "source/discovery.md",
-      "size": 4245,
-      "sha256": "973f518e8a31dc359372cedf60bb9dd236ddd2614fe19586b869ed93d4e47434"
+      "size": 4250,
+      "sha256": "b01c1e4b5998703ef6d87dec9a8e906f0e14f46f4057b5f275e22ff54caf0a2d"
     },
     {
       "path": "source/en/content.json",

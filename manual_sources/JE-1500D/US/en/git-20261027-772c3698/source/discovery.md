@@ -40,6 +40,6 @@ Recorded before extraction, per the Web artwork reuse order
 | FCC mark | reuse `fcc/nested-c-native-dark` | passes admission (0.0176) | transparent |
 | key-combination buttons | reuse shared `button/power`, `button/dc_usb`, `button/ac` | same label placement as printed | transparent |
 | 10 safety symbols | reuse shared catalog variants (see `source_manifest.json:symbol_asset_admission`) | pass the fixed 2% admission (0.0066–0.0161) | transparent |
-| Heavy object symbol | **staged** native variant `native/je1500d-us-772c3698-06` | closest `heavy-object/person-load-triangle-tinted` 0.0244 fails 2%; needs operator approval before entering the shared catalog | transparent |
+| Heavy object symbol | reuse shared `heavy-object/person-load-triangle-dark-772c3698` (added by #1632 from this PDF's native paths) | closest pre-existing `heavy-object/person-load-triangle-tinted` 0.0244 failed 2% | transparent |
 
 No body text or table is an image: all copy is native HTML from `transcription.json`.
