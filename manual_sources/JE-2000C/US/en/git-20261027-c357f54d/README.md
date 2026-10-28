@@ -1,8 +1,8 @@
-# JE-2000C / US / en — Git-only Web manual candidate
+# JE-2000C / US / en — Git-only Web manual
 
 Operator instruction, 2026-10-27: 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 (发布文档管理 Base). This package is the Jackery Explorer 2000 Plus (JE-2000C) English manual from that table.
 
-**Status: `candidate-pending-operator-review`.** No operator acceptance is recorded: there is no `source/approval.json` and the IR is not publication-eligible. The 1280/390 renders in `evidence/` go to the operator beside the shared reference edition; release follows only after the operator says 「上线提交发布」 for this package.
+**Status: `operator-authorized-git-only-release`.** On 2026-10-28 the operator authorized release (「授权全部合入上线 上线之后 我再一个个核对版面」 in the coordination session, then 「上线提交发布」 for this package in its engineering session). `source/approval.json` binds every reviewed `source/` and `assets/` input and the IR is publication-eligible. The operator checks the layout after go-live; corrections enter only through a new package. The candidate was merged as PR #1628; the approval landed in a follow-up PR.
 
 ## Source authority
 

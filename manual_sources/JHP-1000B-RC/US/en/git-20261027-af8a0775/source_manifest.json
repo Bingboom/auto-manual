@@ -59,7 +59,7 @@
   "live_bitable_dependency": false,
   "phase2_enrolled": false,
   "legacy_default": true,
-  "publication_status": "candidate-pending-operator-review",
+  "publication_status": "operator-authorized-git-only-release",
   "build_boundary": "JHP-1000B-RC US is not a phase2 target. build_content.py binds the transcription to shared ComponentSpecs; rebuild.py replays them through manual-ir/v2 and the shared Web/MyST pipeline with the prepared-document shared-style gate and symbol admission.",
   "repo_inputs": [],
   "symbol_asset_admission": {
@@ -311,8 +311,8 @@
     },
     {
       "path": "README.md",
-      "size": 3589,
-      "sha256": "3ef7c7b71fa282e5de2b007c5f70c7e7e60290f8b3ffaa3c4a1f6d0773a86559"
+      "size": 3875,
+      "sha256": "a08ac0919c33de4968a1b4e0bd82990c03fcbca62f16379cf9c5cca78df4e64b"
     },
     {
       "path": "assets/ac-output.png",
@@ -648,6 +648,11 @@
       "path": "refresh_manifest.py",
       "size": 2567,
       "sha256": "c49d027ba48d8f8299bfe4cd002626b2e3df588037434dc6b77349eaf07e03d6"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 13494,
+      "sha256": "d69b206e3b10bc0ba6bf51a659c6d150884a1185fb8efa8a3509037570c85a43"
     },
     {
       "path": "source/asset_decisions.json",
