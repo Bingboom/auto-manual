@@ -1547,9 +1547,24 @@
         }
       }
     },
+    "manual_sources/JE-300C/US/en/git-20261027-a1128b25": {
+      "approval": "Operator 2026-10-28 (PR #1631 session): 「上线提交发布：JE-300C、JE-300E、JE-300E-SG、JE-880B；授权合入 #1631 及其 Hello-Docs 发布 PR」 under MA-365: Git-only US English single-language Web release from the 发布文档管理 row; acceptance hash-bound in source/approval.json",
+      "registered": "2026-10-28",
+      "known_drift": {}
+    },
     "manual_sources/JE-300D/EU/en/candidate-2025-10-24": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-300E-SG/US/en/git-20261027-e47cb322": {
+      "approval": "Operator 2026-10-28 (PR #1631 session): 「上线提交发布：JE-300C、JE-300E、JE-300E-SG、JE-880B；授权合入 #1631 及其 Hello-Docs 发布 PR」 under MA-365: Git-only US English single-language Web release from the 发布文档管理 row; acceptance hash-bound in source/approval.json",
+      "registered": "2026-10-28",
+      "known_drift": {}
+    },
+    "manual_sources/JE-300E/US/en/git-20261027-04bd8b90": {
+      "approval": "Operator 2026-10-28 (PR #1631 session): 「上线提交发布：JE-300C、JE-300E、JE-300E-SG、JE-880B；授权合入 #1631 及其 Hello-Docs 发布 PR」 under MA-365: Git-only US English single-language Web release from the 发布文档管理 row; acceptance hash-bound in source/approval.json",
+      "registered": "2026-10-28",
       "known_drift": {}
     },
     "manual_sources/JE-3600A/EU/de/git-20261004-47a346dc": {
@@ -1665,6 +1680,11 @@
     "manual_sources/JE-500A/EU/en/2.0": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-880B/US/en/git-20261027-640e83ca": {
+      "approval": "Operator 2026-10-28 (PR #1631 session): 「上线提交发布：JE-300C、JE-300E、JE-300E-SG、JE-880B；授权合入 #1631 及其 Hello-Docs 发布 PR」 under MA-365: Git-only US English single-language Web release from the 发布文档管理 row; acceptance hash-bound in source/approval.json",
+      "registered": "2026-10-28",
       "known_drift": {}
     },
     "manual_sources/JHP-1000B-RC/US/en/git-20261027-af8a0775": {
