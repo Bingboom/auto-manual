@@ -1,0 +1,51 @@
+{
+ "package": "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296",
+ "date": "2026-10-28",
+ "publication_status": "candidate-pending-operator-review",
+ "source_sha256": "bd8a82962865ae64cd52e9c6ebf9a20d8495652773ba09806d1911cb0f360294",
+ "commands": [
+  {
+   "cmd": "python3 -m ruff check manual_sources/JE-3000B/US/en/git-20261028-bd8a8296 tests/test_je3000b_us_web.py",
+   "result": "pass",
+   "log": "ruff.log"
+  },
+  {
+   "cmd": "python3 -I manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/rebuild.py --output <fresh tmp dir>",
+   "result": "pass (11 chapters, symbol admission 0 rows); render copied to web/en",
+   "log": "rebuild.log"
+  },
+  {
+   "cmd": "python3 -m sphinx -n -W --keep-going -b html manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/web/en <tmp html>",
+   "result": "pass",
+   "log": "strict-sphinx.log"
+  },
+  {
+   "cmd": "python3 -m unittest tests.test_je3000b_us_web tests.test_prepared_document_shared_styles",
+   "result": "pass (21 tests)",
+   "log": "target-tests.log"
+  },
+  {
+   "cmd": "python3 -m tools.check_maintainability_guardrails",
+   "result": "expected failure only: [frozen-packages] NEW for this unregistered candidate (and the three sibling candidates); registration follows approval",
+   "log": "maintainability.log"
+  }
+ ],
+ "browser": {
+  "1280": {
+   "viewport_width": 1280,
+   "document_scroll_width": 1280,
+   "images": 49,
+   "broken_images": [],
+   "page_height": 22505
+  },
+  "390": {
+   "viewport_width": 390,
+   "document_scroll_width": 390,
+   "images": 49,
+   "broken_images": [],
+   "page_height": 24920
+  }
+ },
+ "web_md_sha256": "6094fd7856812891f5809b38d7d638923e3043246b5cd9ef7ecfe81bb06e33fb",
+ "ir_sha256": "522081feb3bd8f0913d4550da0da619faa7e4ceb206df59ec466ec79bcae2252"
+}
