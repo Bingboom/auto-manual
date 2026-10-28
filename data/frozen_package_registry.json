@@ -1727,6 +1727,11 @@
       "registered": "2026-10-27",
       "known_drift": {}
     },
+    "manual_sources/JHP-2000A/US/en/git-20261028-5b60448e": {
+      "approval": "Operator window task 2026-10-28 「继续转 剩下的美规说明书 为单语 网页版 仅选等于Y的 待转」 (发布文档管理 Base): Git-only US/en single-language Web candidate, source copy verbatim. Candidate only; no merge or publication approval.",
+      "registered": "2026-10-28",
+      "known_drift": {}
+    },
     "manual_sources/JHP-3600A-RC/US/en/git-20261027-ab7f7393": {
       "approval": "Operator 「上线提交发布：JE-2000C、JHP-1000B-RC、JHP-2000A-RC、JHP-3600A-RC；授权开跟进 PR 写 approval 并合入，以及其 Hello-Docs 发布 PR」 2026-10-28 after 「授权全部合入上线 上线之后 我再一个个核对版面」 (MA-365); candidate merged as #1628, approval bound in the follow-up PR: Git-only US/en single-language Web release, source copy verbatim; layout checked by the operator after go-live",
       "registered": "2026-10-27",
