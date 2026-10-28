@@ -77,8 +77,8 @@
     },
     {
       "path": "README.md",
-      "size": 3517,
-      "sha256": "397ae0321b26ee7448cbba37430fe8a5f65cc38cd4fb0048a321ffb429f07e86"
+      "size": 3655,
+      "sha256": "b42c3a577924e09b57df12cea9137306515f59bb68ac3a85a53fa3c4d8142585"
     },
     {
       "path": "assets/charging_ac.png",
@@ -302,13 +302,13 @@
     },
     {
       "path": "source/asset_decisions.json",
-      "size": 15880,
-      "sha256": "c49f4e395b6195ff91bc56c261662986a0e4adad76d35ca521b9e48603b26e17"
+      "size": 15901,
+      "sha256": "5a38b2973baa7dcfd64e8deb5a6dbf70ed213a9f7fb463f5c7bfaedab2ce4dd2"
     },
     {
       "path": "source/asset_recipe.json",
-      "size": 11355,
-      "sha256": "532d803375d0f40c05af646939d3dc3e7782a89af7c78abefaa29fb6f1326855"
+      "size": 10886,
+      "sha256": "07d3677881c045ca7d36a9a0ded1827f48b1487af0c729b7504c784df7445e52"
     },
     {
       "path": "source/differences.md",
@@ -317,8 +317,8 @@
     },
     {
       "path": "source/discovery.md",
-      "size": 2750,
-      "sha256": "9e4fb18e538bc23c0860b7682320ea71209badac264727c156b01f16c8024d75"
+      "size": 2884,
+      "sha256": "3a2bda59af651037a5d88d0536cddcf45b1345c1ad1032deb31f1e79822f46d1"
     },
     {
       "path": "source/en/content.json",
@@ -368,7 +368,7 @@
           ],
           "caption_text": "Warning and Caution Symbols. Must read to alert individuals to potential hazards or risks.",
           "caption_sha256": "2d9c07366a84d0ecd788bf4cf7d516cca6b9dc18e79a14d2ab6e0ea227ad9de8",
-          "shared_symbol_key": "native/je100c-us-39c58bca-warning",
+          "shared_symbol_key": "warning/outline-triangle-dark-hte162",
           "max_mean_channel_error": 0.0
         },
         {
@@ -465,7 +465,7 @@
           ],
           "caption_text": "Do not dismantle the product.",
           "caption_sha256": "b81d1d214af952891772fc99a3053e2c0b60bf796226f51b70021d9c382a18bf",
-          "shared_symbol_key": "native/je100c-us-39c58bca-dismantle",
+          "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited-dark-hte162",
           "max_mean_channel_error": 0.0
         },
         {
@@ -571,7 +571,7 @@
           ],
           "caption_text": "This symbol indicates that a lithium-ion (Li-ion) battery is inside the product and should be disposed of or recycled properly.",
           "caption_sha256": "66c37a1a471d95ed9fb78496c58b98a0ff67b4c90dd61e12aaee8651e587799a",
-          "shared_symbol_key": "native/je100c-us-39c58bca-li-ion",
+          "shared_symbol_key": "li-ion/recycle-li-ion-label-hte162",
           "max_mean_channel_error": 0.0
         }
       ]

@@ -1,0 +1,542 @@
+{
+  "schema_version": "explorer-us-en-asset-decisions/v1",
+  "decisions": [
+    {
+      "slot": "assets/inbox-unit.png",
+      "decision": "new extraction",
+      "source": "JE-240B-US-EN.pdf",
+      "physical_page": 6,
+      "bbox_pt": [
+        37.4,
+        67.4,
+        71.7,
+        117.1
+      ],
+      "scale": 3,
+      "reason": "in-box card art: Explorer 240D",
+      "background": "complete panel / card art on white page"
+    },
+    {
+      "slot": "assets/inbox-cable.png",
+      "decision": "new extraction",
+      "source": "JE-240B-US-EN.pdf",
+      "physical_page": 6,
+      "bbox_pt": [
+        112.8,
+        69.8,
+        140.8,
+        114.3
+      ],
+      "scale": 3,
+      "reason": "in-box card art: 140W USB-C to USB-C cable",
+      "background": "complete panel / card art on white page"
+    },
+    {
+      "slot": "assets/inbox-manual.png",
+      "decision": "new extraction",
+      "source": "JE-240B-US-EN.pdf",
+      "physical_page": 6,
+      "bbox_pt": [
+        180.9,
+        68.6,
+        216.3,
+        118.1
+      ],
+      "scale": 3,
+      "reason": "in-box card art: user manual",
+      "background": "complete panel / card art on white page"
+    },
+    {
+      "slot": "assets/overview.png",
+      "decision": "new extraction",
+      "source": "JE-240B-US-EN.pdf",
+      "physical_page": 6,
+      "bbox_pt": [
+        18.4,
+        225.5,
+        236.8,
+        338.1
+      ],
+      "scale": 3,
+      "reason": "complete FRONT VIEW leader-label drawing with spec lines",
+      "background": "complete panel / card art on white page"
+    },
+    {
+      "slot": "assets/strap.png",
+      "decision": "new extraction",
+      "source": "JE-240B-US-EN.pdf",
+      "physical_page": 7,
+      "bbox_pt": [
+        83.4,
+        41.1,
+        193.3,
+        141.9
+      ],
+      "scale": 3,
+      "reason": "unit with adjustable strap",
+      "background": "complete panel / card art on white page"
+    },
+    {
+      "slot": "assets/lcd-map.png",
+      "decision": "new extraction",
+      "source": "JE-240B-US-EN.pdf",
+      "physical_page": 7,
+      "bbox_pt": [
+        25,
+        188.6,
+        219.6,
+        276.1
+      ],
+      "scale": 3,
+      "reason": "complete numbered LCD map",
+      "background": "complete panel / card art on white page"
+    },
+    {
+      "slot": "assets/power-on-off.png",
+      "decision": "new extraction",
+      "source": "JE-240B-US-EN.pdf",
+      "physical_page": 8,
+      "bbox_pt": [
+        17.6,
+        220,
+        235.7,
+        320
+      ],
+      "scale": 3,
+      "reason": "complete POWER ON/OFF panel with on/off labels",
+      "background": "complete panel / card art on white page"
+    },
+    {
+      "slot": "assets/lcd-screen.png",
+      "decision": "new extraction",
+      "source": "JE-240B-US-EN.pdf",
+      "physical_page": 9,
+      "bbox_pt": [
+        33,
+        245.3,
+        94.7,
+        341.2
+      ],
+      "scale": 3,
+      "reason": "LCD SCREEN ON/OFF drawing from the table's left column, without the cell outline",
+      "background": "complete panel / card art on white page"
+    },
+    {
+      "slot": "assets/charging-solar.png",
+      "decision": "new extraction",
+      "source": "JE-240B-US-EN.pdf",
+      "physical_page": 11,
+      "bbox_pt": [
+        16.9,
+        187.5,
+        236,
+        286.5
+      ],
+      "scale": 3,
+      "reason": "complete solar charging panel with caption",
+      "background": "complete panel / card art on white page"
+    },
+    {
+      "slot": "assets/usb-output.png",
+      "decision": "new extraction, text pill removed",
+      "source": "JE-240B-US-EN.pdf",
+      "physical_page": 9,
+      "bbox_pt": [
+        18.8,
+        26.5,
+        236.3,
+        138.7
+      ],
+      "omit_line_art_inside_pt": [
+        [
+          26,
+          31.5,
+          224,
+          46.5
+        ]
+      ],
+      "scale": 3,
+      "reason": "complete USB OUTPUT ON/OFF panel; the printed text pill at its top (op.usb.p) is omitted and set as native text",
+      "background": "complete panel kept"
+    },
+    {
+      "slot": "assets/charging-usbc.png",
+      "decision": "new extraction, text pill removed",
+      "source": "JE-240B-US-EN.pdf",
+      "physical_page": 11,
+      "bbox_pt": [
+        18.3,
+        35.8,
+        235.8,
+        141.9
+      ],
+      "omit_line_art_inside_pt": [
+        [
+          21,
+          38.5,
+          233,
+          59.5
+        ]
+      ],
+      "scale": 3,
+      "reason": "complete USB-C charging panel; the printed bold instruction (chg.usbc.p) is omitted and set as native text",
+      "background": "complete panel kept"
+    },
+    {
+      "slot": "assets/charging-car.png",
+      "decision": "new extraction, text pill removed",
+      "source": "JE-240B-US-EN.pdf",
+      "physical_page": 12,
+      "bbox_pt": [
+        19.1,
+        53.6,
+        236.1,
+        163.4
+      ],
+      "omit_line_art_inside_pt": [
+        [
+          137.6,
+          140.1,
+          231.7,
+          150.6
+        ]
+      ],
+      "scale": 3,
+      "reason": "complete car charging panel; the white caption pill (chg.car.sold) is omitted and set as native text",
+      "background": "complete panel kept"
+    },
+    {
+      "slot": "assets/lcd-input-power.png",
+      "decision": "new extraction from glyph drawings",
+      "source": "JE-240B-US-EN.pdf",
+      "physical_page": 7,
+      "glyph_bbox_pt": [
+        36.1,
+        289.6,
+        53.0,
+        300.5
+      ],
+      "scale": 8,
+      "reason": "no shared or JE-300E/JE-100C LCD icon within visual identity (closest differ by >= 6.8%)",
+      "background": "transparent"
+    },
+    {
+      "slot": "assets/lcd-usbc-charging.png",
+      "decision": "new extraction from glyph drawings",
+      "source": "JE-240B-US-EN.pdf",
+      "physical_page": 7,
+      "glyph_bbox_pt": [
+        39.0,
+        311.1,
+        50.1,
+        317.3
+      ],
+      "scale": 8,
+      "reason": "no shared or JE-300E/JE-100C LCD icon within visual identity (closest differ by >= 6.8%)",
+      "background": "transparent"
+    },
+    {
+      "slot": "assets/lcd-car-charging.png",
+      "decision": "new extraction from glyph drawings",
+      "source": "JE-240B-US-EN.pdf",
+      "physical_page": 7,
+      "glyph_bbox_pt": [
+        40.0,
+        327.6,
+        49.1,
+        339.0
+      ],
+      "scale": 8,
+      "reason": "no shared or JE-300E/JE-100C LCD icon within visual identity (closest differ by >= 6.8%)",
+      "background": "transparent"
+    },
+    {
+      "slot": "assets/lcd-solar-charging.png",
+      "decision": "new extraction from glyph drawings",
+      "source": "JE-240B-US-EN.pdf",
+      "physical_page": 8,
+      "glyph_bbox_pt": [
+        39.5,
+        21.4,
+        50.5,
+        32.3
+      ],
+      "scale": 8,
+      "reason": "no shared or JE-300E/JE-100C LCD icon within visual identity (closest differ by >= 6.8%)",
+      "background": "transparent"
+    },
+    {
+      "slot": "assets/lcd-battery-ring.png",
+      "decision": "new extraction from glyph drawings",
+      "source": "JE-240B-US-EN.pdf",
+      "physical_page": 8,
+      "glyph_bbox_pt": [
+        38.6,
+        41.8,
+        51.8,
+        55.0
+      ],
+      "scale": 8,
+      "reason": "no shared or JE-300E/JE-100C LCD icon within visual identity (closest differ by >= 6.8%)",
+      "background": "transparent"
+    },
+    {
+      "slot": "assets/lcd-battery-percentage.png",
+      "decision": "new extraction from glyph drawings",
+      "source": "JE-240B-US-EN.pdf",
+      "physical_page": 8,
+      "glyph_bbox_pt": [
+        35.7,
+        64.0,
+        54.6,
+        73.7
+      ],
+      "scale": 8,
+      "reason": "no shared or JE-300E/JE-100C LCD icon within visual identity (closest differ by >= 6.8%)",
+      "background": "transparent"
+    },
+    {
+      "slot": "assets/lcd-energy-saving.png",
+      "decision": "new extraction from glyph drawings",
+      "source": "JE-240B-US-EN.pdf",
+      "physical_page": 8,
+      "glyph_bbox_pt": [
+        39.6,
+        81.2,
+        50.8,
+        92.0
+      ],
+      "scale": 8,
+      "reason": "no shared or JE-300E/JE-100C LCD icon within visual identity (closest differ by >= 6.8%)",
+      "background": "transparent"
+    },
+    {
+      "slot": "assets/lcd-high-temperature.png",
+      "decision": "new extraction from glyph drawings",
+      "source": "JE-240B-US-EN.pdf",
+      "physical_page": 8,
+      "glyph_bbox_pt": [
+        42.5,
+        101.8,
+        49.7,
+        112.5
+      ],
+      "scale": 8,
+      "reason": "no shared or JE-300E/JE-100C LCD icon within visual identity (closest differ by >= 6.8%)",
+      "background": "transparent"
+    },
+    {
+      "slot": "assets/lcd-low-temperature.png",
+      "decision": "new extraction from glyph drawings",
+      "source": "JE-240B-US-EN.pdf",
+      "physical_page": 8,
+      "glyph_bbox_pt": [
+        42.4,
+        125.8,
+        49.6,
+        136.5
+      ],
+      "scale": 8,
+      "reason": "no shared or JE-300E/JE-100C LCD icon within visual identity (closest differ by >= 6.8%)",
+      "background": "transparent"
+    },
+    {
+      "slot": "assets/lcd-fault-code.png",
+      "decision": "new extraction from glyph drawings",
+      "source": "JE-240B-US-EN.pdf",
+      "physical_page": 8,
+      "glyph_bbox_pt": [
+        39.7,
+        144.9,
+        51.1,
+        155.7
+      ],
+      "scale": 8,
+      "reason": "no shared or JE-300E/JE-100C LCD icon within visual identity (closest differ by >= 6.8%)",
+      "background": "transparent"
+    },
+    {
+      "slot": "assets/lcd-output-power.png",
+      "decision": "new extraction from glyph drawings",
+      "source": "JE-240B-US-EN.pdf",
+      "physical_page": 8,
+      "glyph_bbox_pt": [
+        38.0,
+        162.0,
+        54.9,
+        173.0
+      ],
+      "scale": 8,
+      "reason": "no shared or JE-300E/JE-100C LCD icon within visual identity (closest differ by >= 6.8%)",
+      "background": "transparent"
+    },
+    {
+      "slot": "assets/sold-separately.png",
+      "decision": "reuse byte-identical",
+      "from": "docs/renderers/web/assets/je100c_eu_shared/symbol_purchase.png",
+      "sha256": "02bb73ccbdbb42c043b769decd554886fcaa3b5d36b6b2570128a94540a35bb3",
+      "identity": "same cart pill mark as JE-100C",
+      "background": "transparent"
+    },
+    {
+      "slot": "assets/fcc-mark.svg",
+      "decision": "reuse byte-identical",
+      "from": "docs/renderers/web/assets/shared/symbols/native-v1/fcc_mark.svg",
+      "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe",
+      "identity": "FC compliance mark",
+      "background": "transparent"
+    },
+    {
+      "slot": "assets/symbol-01.svg",
+      "decision": "reuse shared symbol variant",
+      "shared_symbol_key": "warning/outline-triangle-dark-hte162",
+      "physical_page": 5,
+      "glyph_bbox": [
+        25.5,
+        146.7,
+        40.1,
+        159.8
+      ],
+      "background": "transparent",
+      "admission": "pending native_svg closure decision"
+    },
+    {
+      "slot": "assets/symbol-02.svg",
+      "decision": "reuse shared symbol variant",
+      "shared_symbol_key": "read-manual/book-information",
+      "physical_page": 5,
+      "glyph_bbox": [
+        25.4,
+        162.9,
+        41.1,
+        175
+      ],
+      "background": "transparent",
+      "admission": "pending native_svg closure decision"
+    },
+    {
+      "slot": "assets/symbol-03.png",
+      "decision": "reuse shared symbol variant",
+      "shared_symbol_key": "weee/crossed-bin-bar",
+      "physical_page": 5,
+      "glyph_bbox": [
+        24.9,
+        187.5,
+        41.2,
+        211.2
+      ],
+      "background": "transparent",
+      "admission": "pending native_svg closure decision"
+    },
+    {
+      "slot": "assets/symbol-04.svg",
+      "decision": "reuse shared symbol variant",
+      "shared_symbol_key": "electric-shock/bolt-triangle-tinted",
+      "physical_page": 5,
+      "glyph_bbox": [
+        24.1,
+        231.4,
+        41.3,
+        246.7
+      ],
+      "background": "transparent",
+      "admission": "pending native_svg closure decision"
+    },
+    {
+      "slot": "assets/symbol-05.svg",
+      "decision": "reuse shared symbol variant",
+      "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited-dark-hte162",
+      "physical_page": 5,
+      "glyph_bbox": [
+        136.1,
+        146.5,
+        150.4,
+        160.8
+      ],
+      "background": "transparent",
+      "admission": "pending native_svg closure decision"
+    },
+    {
+      "slot": "assets/symbol-06.svg",
+      "decision": "reuse shared symbol variant",
+      "shared_symbol_key": "no-open-flame/fire-match-prohibited",
+      "physical_page": 5,
+      "glyph_bbox": [
+        136.1,
+        162.7,
+        150.5,
+        177
+      ],
+      "background": "transparent",
+      "admission": "pending native_svg closure decision"
+    },
+    {
+      "slot": "assets/symbol-07.svg",
+      "decision": "reuse shared symbol variant",
+      "shared_symbol_key": "keep-away-from-children/adult-child-prohibited",
+      "physical_page": 5,
+      "glyph_bbox": [
+        136.1,
+        179.8,
+        150.5,
+        194.2
+      ],
+      "background": "transparent",
+      "admission": "pending native_svg closure decision"
+    },
+    {
+      "slot": "assets/symbol-08.svg",
+      "decision": "reuse shared symbol variant",
+      "shared_symbol_key": "li-ion/recycle-li-ion-native-dark",
+      "physical_page": 5,
+      "glyph_bbox": [
+        135.7,
+        196.5,
+        150.6,
+        213.1
+      ],
+      "background": "transparent",
+      "admission": "pending native_svg closure decision"
+    },
+    {
+      "slot": "assets/symbol-09.svg",
+      "decision": "reuse shared symbol variant",
+      "shared_symbol_key": "battery-charging/flame-battery-triangle-tinted",
+      "physical_page": 5,
+      "glyph_bbox": [
+        134.7,
+        218.4,
+        151.1,
+        233.1
+      ],
+      "background": "transparent",
+      "admission": "pending native_svg closure decision"
+    },
+    {
+      "slot": "assets/symbol-10.svg",
+      "decision": "reuse shared symbol variant",
+      "shared_symbol_key": "explosive-material/burst-triangle-tinted",
+      "physical_page": 5,
+      "glyph_bbox": [
+        134.5,
+        236.6,
+        152,
+        251.9
+      ],
+      "background": "transparent",
+      "admission": "pending native_svg closure decision"
+    }
+  ],
+  "rejected_candidates": [
+    {
+      "slot": "JE-300E EU lcd-*.svg",
+      "decision": "not reused",
+      "reason": "different car, solar, temperature and percentage glyphs; input/output/ring/6H/F8 differ in proportions (>= 6.8% normalised difference)"
+    },
+    {
+      "slot": "je100c_eu_shared lcd_*.png",
+      "decision": "not reused",
+      "reason": "JE-100D glyph set, not the 240D icons"
+    }
+  ]
+}

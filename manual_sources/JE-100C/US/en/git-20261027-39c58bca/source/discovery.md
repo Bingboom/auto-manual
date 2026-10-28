@@ -31,6 +31,6 @@ Recorded before extraction, per the Web artwork reuse order
 | LCD SCREEN drawing | new crop from the US PDF | the EU file carries the table cell outline | white |
 | FC mark | reuse `fcc/nested-c-native-dark` | shared compliance mark | transparent |
 | read manual, WEEE, keep from fire, keep from children | reuse shared variants | pass admission (1.9%, 1.4%, 1.3%, 1.3%) | transparent |
-| warning triangle, do not dismantle, Li-ion | new shared native variants `native/je100c-us-39c58bca-*` (append-only) | closest existing 5.9%, 7.2%, 2.95% | transparent, PDF paths only |
+| warning triangle, do not dismantle, Li-ion | new shared native variants extracted from this PDF, added by PR #1632 as `warning/outline-triangle-dark-hte162`, `do-not-dismantle/screwdriver-prohibited-dark-hte162`, `li-ion/recycle-li-ion-label-hte162` | closest existing 5.9%, 7.2%, 2.95% | transparent, PDF paths only |
 
 No body text or table is an image: all copy is native HTML from `transcription.json`.

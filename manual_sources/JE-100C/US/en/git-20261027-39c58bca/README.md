@@ -16,7 +16,7 @@ The Web body is printed pages 01–12 (physical 3–14) plus the back-cover cont
 
 ## Artwork
 
-`source/discovery.md` and `source/asset_decisions.json` record the inventory and every reuse/extract decision. Eleven panels and the 18 LCD icons reuse the JE-100C EU English Web bytes (`evidence/reuse-compare.png`); three drawings are new crops because the EU files bake body text or a cell outline into the image. Safety symbols pass the fixed 2% symbol admission: four reuse shared variants, three are new append-only shared native variants `native/je100c-us-39c58bca-*`.
+`source/discovery.md` and `source/asset_decisions.json` record the inventory and every reuse/extract decision. Eleven panels and the 18 LCD icons reuse the JE-100C EU English Web bytes (`evidence/reuse-compare.png`); three drawings are new crops because the EU files bake body text or a cell outline into the image. Safety symbols pass the fixed 2% symbol admission: four reuse shared variants, three are new shared native variants extracted from this PDF and added by PR #1632 (`warning/outline-triangle-dark-hte162`, `do-not-dismantle/screwdriver-prohibited-dark-hte162`, `li-ion/recycle-li-ion-label-hte162`).
 
 ## Rebuild
 

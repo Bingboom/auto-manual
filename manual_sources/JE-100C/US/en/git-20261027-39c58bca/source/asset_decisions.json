@@ -289,7 +289,7 @@
     {
       "slot": "assets/symbol-01.svg",
       "decision": "new append-only shared native variant",
-      "shared_symbol_key": "native/je100c-us-39c58bca-warning",
+      "shared_symbol_key": "warning/outline-triangle-dark-hte162",
       "physical_page": 4,
       "glyph_bbox": [
         25.5,
@@ -329,7 +329,7 @@
     {
       "slot": "assets/symbol-04.svg",
       "decision": "new append-only shared native variant",
-      "shared_symbol_key": "native/je100c-us-39c58bca-dismantle",
+      "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited-dark-hte162",
       "physical_page": 4,
       "glyph_bbox": [
         136.2,
@@ -369,7 +369,7 @@
     {
       "slot": "assets/symbol-07.svg",
       "decision": "new append-only shared native variant",
-      "shared_symbol_key": "native/je100c-us-39c58bca-li-ion",
+      "shared_symbol_key": "li-ion/recycle-li-ion-label-hte162",
       "physical_page": 4,
       "glyph_bbox": [
         136.4,

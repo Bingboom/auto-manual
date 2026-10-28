@@ -1390,8 +1390,8 @@
         },
         {
           "path": "README.md",
-          "sha256": "397ae0321b26ee7448cbba37430fe8a5f65cc38cd4fb0048a321ffb429f07e86",
-          "size": 3517
+          "sha256": "b42c3a577924e09b57df12cea9137306515f59bb68ac3a85a53fa3c4d8142585",
+          "size": 3655
         },
         {
           "path": "assets/charging_ac.png",
@@ -1615,13 +1615,13 @@
         },
         {
           "path": "source/asset_decisions.json",
-          "sha256": "c49f4e395b6195ff91bc56c261662986a0e4adad76d35ca521b9e48603b26e17",
-          "size": 15880
+          "sha256": "5a38b2973baa7dcfd64e8deb5a6dbf70ed213a9f7fb463f5c7bfaedab2ce4dd2",
+          "size": 15901
         },
         {
           "path": "source/asset_recipe.json",
-          "sha256": "532d803375d0f40c05af646939d3dc3e7782a89af7c78abefaa29fb6f1326855",
-          "size": 11355
+          "sha256": "07d3677881c045ca7d36a9a0ded1827f48b1487af0c729b7504c784df7445e52",
+          "size": 10886
         },
         {
           "path": "source/differences.md",
@@ -1630,8 +1630,8 @@
         },
         {
           "path": "source/discovery.md",
-          "sha256": "9e4fb18e538bc23c0860b7682320ea71209badac264727c156b01f16c8024d75",
-          "size": 2750
+          "sha256": "3a2bda59af651037a5d88d0536cddcf45b1345c1ad1032deb31f1e79822f46d1",
+          "size": 2884
         },
         {
           "path": "source/en/content.json",
@@ -1760,7 +1760,7 @@
                 122.0,
                 163.0
               ],
-              "shared_symbol_key": "native/je100c-us-39c58bca-warning"
+              "shared_symbol_key": "warning/outline-triangle-dark-hte162"
             },
             {
               "asset_ref": "assets/symbol-02.svg",
@@ -1857,7 +1857,7 @@
                 221.0,
                 162.39999389648438
               ],
-              "shared_symbol_key": "native/je100c-us-39c58bca-dismantle"
+              "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited-dark-hte162"
             },
             {
               "asset_ref": "assets/symbol-05.svg",
@@ -1963,7 +1963,7 @@
                 234.0,
                 222.0
               ],
-              "shared_symbol_key": "native/je100c-us-39c58bca-li-ion"
+              "shared_symbol_key": "li-ion/recycle-li-ion-label-hte162"
             }
           ]
         },

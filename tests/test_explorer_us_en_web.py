@@ -16,6 +16,16 @@ from tools.word.bundle_docx_pandoc import resolve_pandoc_binary
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGES = {
+    "JE-240B": {
+        "path": "manual_sources/JE-240B/US/en/git-20261027-3dc1fbba",
+        "sha256": "3dc1fbbaf28908f216955e32de05b88dc9b0477854e8c0b5df7926a542572521",
+        "markdown": "manual_je240b_us_en.md",
+        "facts": ("JE-240B", "20Ah / 12.8V DC (256 Wh)", "6000 cycles to 70%+ capacity",
+                  "USB-C1 + USB-C2 + USB-C3 + USB-A: 100W Max + 60W Max + 15W Max + 15W Max"),
+        "foreign": ("JE-100C", "Explorer 100D", "96Wh", "Explorer 100 Plus"),
+        "print_only": ("TABLE OF CONTENTS", "CONTACT US:"),
+        "tamper": ("20Ah / 12.8V DC (256 Wh)", "21Ah / 12.8V DC (256 Wh)"),
+    },
     "JE-240A": {
         "path": "manual_sources/JE-240A/US/en/git-20261027-ae3aea4b",
         "sha256": "ae3aea4bcffa1c87f2de01cbe5c84792713a70eded1716039beb442e38a0a27f",

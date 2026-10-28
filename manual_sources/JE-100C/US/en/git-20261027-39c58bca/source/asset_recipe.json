@@ -193,8 +193,8 @@
   "symbols": [
     {
       "path": "assets/symbol-01.svg",
-      "shared_symbol_key": "native/je100c-us-39c58bca-warning",
-      "shared_path": "native-v1/je100c-us-39c58bca-warning.svg",
+      "shared_symbol_key": "warning/outline-triangle-dark-hte162",
+      "shared_path": "native-v1/warning_triangle_dark_hte162.svg",
       "physical_page": 4,
       "glyph_bbox": [
         25.5,
@@ -211,7 +211,7 @@
       "caption_ids": [
         "sym.warning"
       ],
-      "decision": "Existing shared warning triangles failed the fixed 2% source comparison (closest warning/outline-triangle-tinted 5.9%); native paths retained, no redraw or cell backdrop"
+      "reuse": true
     },
     {
       "path": "assets/symbol-02.svg",
@@ -260,8 +260,8 @@
     },
     {
       "path": "assets/symbol-04.svg",
-      "shared_symbol_key": "native/je100c-us-39c58bca-dismantle",
-      "shared_path": "native-v1/je100c-us-39c58bca-dismantle.svg",
+      "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited-dark-hte162",
+      "shared_path": "native-v1/do_not_dismantle_dark_hte162.svg",
       "physical_page": 4,
       "glyph_bbox": [
         136.2,
@@ -278,7 +278,7 @@
       "caption_ids": [
         "sym.dismantle"
       ],
-      "decision": "Existing do-not-dismantle variants failed the fixed 2% source comparison (closest screwdriver-prohibited 7.2%); native paths retained, no redraw or cell backdrop"
+      "reuse": true
     },
     {
       "path": "assets/symbol-05.svg",
@@ -326,8 +326,8 @@
     },
     {
       "path": "assets/symbol-07.svg",
-      "shared_symbol_key": "native/je100c-us-39c58bca-li-ion",
-      "shared_path": "native-v1/je100c-us-39c58bca-li-ion.svg",
+      "shared_symbol_key": "li-ion/recycle-li-ion-label-hte162",
+      "shared_path": "native-v1/li_ion_label_hte162.svg",
       "physical_page": 4,
       "glyph_bbox": [
         136.4,
@@ -344,7 +344,7 @@
       "caption_ids": [
         "sym.liion"
       ],
-      "decision": "Existing Li-ion marks failed the fixed 2% source comparison (closest recycle-li-ion-native-dark 2.95%); native paths retained, no redraw or cell backdrop"
+      "reuse": true
     }
   ]
 }
