@@ -235,7 +235,7 @@
     "decision": "extract source panel at 4x (inside the print frame)"
   },
   {
-    "slot": "charging-solar-200",
+    "slot": "charging-solar-single",
     "physical_page": 13,
     "bbox": [
       30,
@@ -245,14 +245,14 @@
     ],
     "caption": "Charging with one SolarSaga 200 solar panel connected to the DC8020 input port",
     "embedded_words": true,
-    "local_path": "assets/charging-solar-200.png",
+    "local_path": "assets/charging-solar-single.png",
     "render_scale": 4,
     "sha256": "a1932fc8a8d6557a17ad8ceb3efa0eba13b372bf3fce7969b54842f3b59de63d",
     "source_sha256": "5c065d11c0191e7f9f5ef32ecd39fe0ca620f206c296c4eb6401a4b8215cea68",
     "decision": "extract source panel at 4x (inside the print frame)"
   },
   {
-    "slot": "charging-solar-2x100",
+    "slot": "charging-solar-pair",
     "physical_page": 14,
     "bbox": [
       26,
@@ -262,7 +262,7 @@
     ],
     "caption": "Charging with two SolarSaga 100 solar panels through a solar panel connector to the DC8020 input port",
     "embedded_words": true,
-    "local_path": "assets/charging-solar-2x100.png",
+    "local_path": "assets/charging-solar-pair.png",
     "render_scale": 4,
     "sha256": "f69b72581575f2c94864fb961fe6ba84497d4d698b50aaae772997512a7f1191",
     "source_sha256": "5c065d11c0191e7f9f5ef32ecd39fe0ca620f206c296c4eb6401a4b8215cea68",

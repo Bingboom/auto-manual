@@ -307,8 +307,8 @@ def make() -> list[str]:
             "or one 200W solar panel. If you need to connect two 100W solar panels simultaneously to a DC8020 input "
             "port, please use a solar panel connector (sold separately, not included). Please refer to the diagram "
             "below for connection details."))
-    b.figure("charging-solar-200")
-    b.figure("charging-solar-2x100")                                                  # p14
+    b.figure("charging-solar-single")
+    b.figure("charging-solar-pair")                                                  # p14
     b.callout("CAUTION", "It is recommended to use the Jackery solar panel to charge the Jackery Explorer 500. Ensure "
               "that the open-circuit voltage (V_{oc}) of the solar panel falls within the Jackery Explorer 500's DC "
               "input voltage range (16V–60V). Jackery is not responsible for any damage or loss resulting from the use "

@@ -34,14 +34,14 @@
     "assets/led-light.png",
     "assets/ups.png",
     "assets/charging-ac.png",
-    "assets/charging-solar-200.png",
-    "assets/charging-solar-2x100.png",
+    "assets/charging-solar-single.png",
+    "assets/charging-solar-pair.png",
     "assets/charging-car.png",
     "assets/contact-qr.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "ccb39bf5499e96fd79b1248f2428b6a647bc89bad0627479f5f605dcb7370aa9",
-  "content_sha256": "ece2beccd1fbb1ebda09f109b5554bc588cddf0369497d1a85069a7668d1a113",
+  "bundle_sha256": "555fcef1dff474a647b4447afee03ddeef7085caff100ba7a98576f19da980a4",
+  "content_sha256": "9de16248240ad14900c19ec078978a87feaa2283eb503eb7e0267466c1c4b459",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -49,8 +49,8 @@
       "assets/ac-output.png": "67ddcb1c68d432476031621da1f15ebd415abd12f0a722db858482c40dc717fe",
       "assets/charging-ac.png": "e7924b0cbdda614f7e45d898859c3d2c0571ba7f3fdaddf7484987fcce985f64",
       "assets/charging-car.png": "3c670f253f37ddcda5fd63064b849c6ff96be7388ff5b2e89b5c27e5f4c83370",
-      "assets/charging-solar-200.png": "a1932fc8a8d6557a17ad8ceb3efa0eba13b372bf3fce7969b54842f3b59de63d",
-      "assets/charging-solar-2x100.png": "f69b72581575f2c94864fb961fe6ba84497d4d698b50aaae772997512a7f1191",
+      "assets/charging-solar-pair.png": "f69b72581575f2c94864fb961fe6ba84497d4d698b50aaae772997512a7f1191",
+      "assets/charging-solar-single.png": "a1932fc8a8d6557a17ad8ceb3efa0eba13b372bf3fce7969b54842f3b59de63d",
       "assets/contact-qr.png": "c92d9e67b471254a8925fdaa12b5c7148fefce48ca589154a8df09797bdf6427",
       "assets/dc-usb-output.png": "1cf240ecb01b6746c2db423d56f4ad294a0c9d7e5cc4147a9fadea580dc4eb95",
       "assets/energy-saving.png": "66c2e2dcc6758560e4361c902135f35b3bae59539266dc187f0d82cd84486364",
@@ -5466,23 +5466,23 @@
         },
         {
           "asset_refs": [
-            "assets/charging-solar-200.png"
+            "assets/charging-solar-single.png"
           ],
           "block_id": "charging:block-0010",
-          "content_sha256": "8098284d70d1768b19762caae095a7a2c691c73275e750d36279026db88122d1",
+          "content_sha256": "68b82ba5d57db66ecbf5b3d768efda460f8e9d2da2f9c16c0272337fe79f7287",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
               {
                 "alt": "Charging with one SolarSaga 200 solar panel connected to the DC8020 input port",
                 "kind": "image",
-                "source": "assets/charging-solar-200.png"
+                "source": "assets/charging-solar-single.png"
               }
             ],
             "component_spec": {
               "assets": [
                 {
-                  "asset_ref": "assets/charging-solar-200.png",
+                  "asset_ref": "assets/charging-solar-single.png",
                   "locale_policy": "exact",
                   "role": "source_art"
                 }
@@ -5491,14 +5491,14 @@
               "language": "en",
               "metadata": {
                 "capture_following_lines": 0,
-                "image_key": "charging-solar-200",
-                "source_fragment_sha256": "b363de0142f41ae4021a1426dc736057e3dd38a65f00915262af28b3c47fc7c4",
+                "image_key": "charging-solar-single",
+                "source_fragment_sha256": "07c7e0fb9c303f139329bf117f01a777e758e77b5cee440d97a6020d25b056fb",
                 "web_replace_key": ""
               },
               "schema_version": "component-spec/v1",
               "slots": [
                 {
-                  "content": "charging-solar-200",
+                  "content": "charging-solar-single",
                   "content_kind": "inline_text",
                   "role": "reference_id"
                 },
@@ -5518,7 +5518,7 @@
                   "role": "caption_layout"
                 }
               ],
-              "source_ref": "transcribed-pdf/page-13/charging-solar-200",
+              "source_ref": "transcribed-pdf/page-13/charging-solar-single",
               "token_roles": [
                 "component.special.reference-figure"
               ],
@@ -5531,23 +5531,23 @@
         },
         {
           "asset_refs": [
-            "assets/charging-solar-2x100.png"
+            "assets/charging-solar-pair.png"
           ],
           "block_id": "charging:block-0011",
-          "content_sha256": "518a1e9e372957a55420229571f560ff16383d1972a9f8b54d8f72b074de8404",
+          "content_sha256": "3fb51a50aa051c6cb4e8d5fd9f610064b47c759a2987335218b7fb99c524b90c",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
               {
                 "alt": "Charging with two SolarSaga 100 solar panels through a solar panel connector to the DC8020 input port",
                 "kind": "image",
-                "source": "assets/charging-solar-2x100.png"
+                "source": "assets/charging-solar-pair.png"
               }
             ],
             "component_spec": {
               "assets": [
                 {
-                  "asset_ref": "assets/charging-solar-2x100.png",
+                  "asset_ref": "assets/charging-solar-pair.png",
                   "locale_policy": "exact",
                   "role": "source_art"
                 }
@@ -5556,14 +5556,14 @@
               "language": "en",
               "metadata": {
                 "capture_following_lines": 0,
-                "image_key": "charging-solar-2x100",
-                "source_fragment_sha256": "28cef332c9a19dc3726f7ced5f98cf2a57df9b3b9c0637c3b19fde1b8787090a",
+                "image_key": "charging-solar-pair",
+                "source_fragment_sha256": "8c706fdc1f0b2c818f83f173ce880892dc685d600135e158ae433a0971ab9507",
                 "web_replace_key": ""
               },
               "schema_version": "component-spec/v1",
               "slots": [
                 {
-                  "content": "charging-solar-2x100",
+                  "content": "charging-solar-pair",
                   "content_kind": "inline_text",
                   "role": "reference_id"
                 },
@@ -5583,7 +5583,7 @@
                   "role": "caption_layout"
                 }
               ],
-              "source_ref": "transcribed-pdf/page-14/charging-solar-2x100",
+              "source_ref": "transcribed-pdf/page-14/charging-solar-pair",
               "token_roles": [
                 "component.special.reference-figure"
               ],
@@ -5952,7 +5952,7 @@
       "skipped_raw": 0,
       "source_path": "source/en/content.json#charging",
       "source_ref": "transcribed-pdf/charging",
-      "source_sha256": "d10db33f8f5fb7074a205e7f9fe536812233462886ffe58753b550d0dbc35b18"
+      "source_sha256": "f35c2ebe1bfa9e828f6c477f4c9d16101f7309db53f4ae5c1091ef50a7827f2f"
     },
     {
       "blocks": [

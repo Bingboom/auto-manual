@@ -2893,13 +2893,13 @@
           "component_spec": {
             "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
             "variant": "semantic-fallback",
-            "source_ref": "transcribed-pdf/page-13/charging-solar-200",
+            "source_ref": "transcribed-pdf/page-13/charging-solar-single",
             "language": "en",
             "slots": [
               {
                 "role": "reference_id",
                 "content_kind": "inline_text",
-                "content": "charging-solar-200"
+                "content": "charging-solar-single"
               },
               {
                 "role": "accessibility_label",
@@ -2920,7 +2920,7 @@
             "assets": [
               {
                 "role": "source_art",
-                "asset_ref": "assets/charging-solar-200.png",
+                "asset_ref": "assets/charging-solar-single.png",
                 "locale_policy": "exact"
               }
             ],
@@ -2928,9 +2928,9 @@
               "component.special.reference-figure"
             ],
             "metadata": {
-              "image_key": "charging-solar-200",
+              "image_key": "charging-solar-single",
               "web_replace_key": "",
-              "source_fragment_sha256": "b363de0142f41ae4021a1426dc736057e3dd38a65f00915262af28b3c47fc7c4",
+              "source_fragment_sha256": "07c7e0fb9c303f139329bf117f01a777e758e77b5cee440d97a6020d25b056fb",
               "capture_following_lines": 0
             },
             "schema_version": "component-spec/v1"
@@ -2938,7 +2938,7 @@
           "carrier_flow": [
             {
               "kind": "image",
-              "source": "assets/charging-solar-200.png",
+              "source": "assets/charging-solar-single.png",
               "alt": "Charging with one SolarSaga 200 solar panel connected to the DC8020 input port"
             }
           ]
@@ -2949,13 +2949,13 @@
           "component_spec": {
             "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
             "variant": "semantic-fallback",
-            "source_ref": "transcribed-pdf/page-14/charging-solar-2x100",
+            "source_ref": "transcribed-pdf/page-14/charging-solar-pair",
             "language": "en",
             "slots": [
               {
                 "role": "reference_id",
                 "content_kind": "inline_text",
-                "content": "charging-solar-2x100"
+                "content": "charging-solar-pair"
               },
               {
                 "role": "accessibility_label",
@@ -2976,7 +2976,7 @@
             "assets": [
               {
                 "role": "source_art",
-                "asset_ref": "assets/charging-solar-2x100.png",
+                "asset_ref": "assets/charging-solar-pair.png",
                 "locale_policy": "exact"
               }
             ],
@@ -2984,9 +2984,9 @@
               "component.special.reference-figure"
             ],
             "metadata": {
-              "image_key": "charging-solar-2x100",
+              "image_key": "charging-solar-pair",
               "web_replace_key": "",
-              "source_fragment_sha256": "28cef332c9a19dc3726f7ced5f98cf2a57df9b3b9c0637c3b19fde1b8787090a",
+              "source_fragment_sha256": "8c706fdc1f0b2c818f83f173ce880892dc685d600135e158ae433a0971ab9507",
               "capture_following_lines": 0
             },
             "schema_version": "component-spec/v1"
@@ -2994,7 +2994,7 @@
           "carrier_flow": [
             {
               "kind": "image",
-              "source": "assets/charging-solar-2x100.png",
+              "source": "assets/charging-solar-pair.png",
               "alt": "Charging with two SolarSaga 100 solar panels through a solar panel connector to the DC8020 input port"
             }
           ]

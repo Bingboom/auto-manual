@@ -1599,14 +1599,14 @@
       "sha256": "3c670f253f37ddcda5fd63064b849c6ff96be7388ff5b2e89b5c27e5f4c83370"
     },
     {
-      "path": "assets/charging-solar-200.png",
-      "size": 132620,
-      "sha256": "a1932fc8a8d6557a17ad8ceb3efa0eba13b372bf3fce7969b54842f3b59de63d"
-    },
-    {
-      "path": "assets/charging-solar-2x100.png",
+      "path": "assets/charging-solar-pair.png",
       "size": 138793,
       "sha256": "f69b72581575f2c94864fb961fe6ba84497d4d698b50aaae772997512a7f1191"
+    },
+    {
+      "path": "assets/charging-solar-single.png",
+      "size": 132620,
+      "sha256": "a1932fc8a8d6557a17ad8ceb3efa0eba13b372bf3fce7969b54842f3b59de63d"
     },
     {
       "path": "assets/contact-qr.png",
@@ -1790,8 +1790,8 @@
     },
     {
       "path": "source/en/content.json",
-      "size": 198574,
-      "sha256": "4fb2ccf725a13c7d82a7059a707154ae6e2ce177d1fb9463137a3e81f053273b"
+      "size": 198584,
+      "sha256": "d97b140a85c06b8b3abd67d76586f56cabc324c153dc04cbcf73f41ebfe2526c"
     },
     {
       "path": "source/extract_assets.py",
@@ -1800,8 +1800,8 @@
     },
     {
       "path": "source/figures.json",
-      "size": 10478,
-      "sha256": "693f9c5902a2baf44e0c4e75a5ea3706c93d4ed987529beaa8eff8eb2b506ea4"
+      "size": 10482,
+      "sha256": "87e6e887d35aef9067f129017743066409117e9c6cddc47c86594afba56220bb"
     },
     {
       "path": "source/glyphs.json",
@@ -1810,8 +1810,8 @@
     },
     {
       "path": "source/intake.py",
-      "size": 33383,
-      "sha256": "41565ae8ed355a2aa51d7dbd4bdf5bf3d982b41e6044e95058fcd17c6ac16192"
+      "size": 33385,
+      "sha256": "e6c7b55e761474541944cd23594dc29e6c595bf8be25856b0122781ce54f0f16"
     },
     {
       "path": "source/kit.py",
@@ -1859,14 +1859,14 @@
       "sha256": "3c670f253f37ddcda5fd63064b849c6ff96be7388ff5b2e89b5c27e5f4c83370"
     },
     {
-      "path": "web/en/assets/charging-solar-200.png",
-      "size": 132620,
-      "sha256": "a1932fc8a8d6557a17ad8ceb3efa0eba13b372bf3fce7969b54842f3b59de63d"
-    },
-    {
-      "path": "web/en/assets/charging-solar-2x100.png",
+      "path": "web/en/assets/charging-solar-pair.png",
       "size": 138793,
       "sha256": "f69b72581575f2c94864fb961fe6ba84497d4d698b50aaae772997512a7f1191"
+    },
+    {
+      "path": "web/en/assets/charging-solar-single.png",
+      "size": 132620,
+      "sha256": "a1932fc8a8d6557a17ad8ceb3efa0eba13b372bf3fce7969b54842f3b59de63d"
     },
     {
       "path": "web/en/assets/contact-qr.png",
@@ -2045,13 +2045,13 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 301538,
-      "sha256": "35577668d0cbafe906ba3c6f3808a85123e5c8775d3c3181699a9fd4ff207fa8"
+      "size": 301554,
+      "sha256": "b0db2991c91150a83326269608f63180804ebb2960df02d0dc386aefddd5fc88"
     },
     {
       "path": "web/en/manual_je500a_us_en.md",
-      "size": 46007,
-      "sha256": "7b0f3f6820076f659d9d25a21ece527d353e101cddf74098c8ebd882efb2fe04"
+      "size": 46013,
+      "sha256": "090a90b8a46818a696592ba4b3493c825f764a4149d1bd540ad5796fd4d832b0"
     }
   ]
 }
