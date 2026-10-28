@@ -1,8 +1,8 @@
-# JHP-1000B-RC / US / en — Git-only Web manual candidate (V2)
+# JHP-1000B-RC / US / en — Git-only Web manual (V2)
 
 Operator instruction, 2026-10-27: 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 (发布文档管理 table `tbljbjaXaTD6V9PO`). This package is the Jackery HomePower 1000 Plus English manual of record `reczz28SPRx9mkta` (物料号 16-0102-000416, 项目号 HTE2607, SKU 21-0001-000519 / 21-0001-000624). Route `JHP-1000B-RC/US/en/md`; there is no earlier US Web edition of this model, so it is the legacy default.
 
-**Status: `candidate-pending-operator-review`.** No `source/approval.json` exists, so the IR is not publication-eligible. Approval is written only after the operator reviews the 1280/390 renders beside the reference edition and says 「上线提交发布」.
+**Status: `operator-authorized-git-only-release`.** On 2026-10-28 the operator authorized release (「授权全部合入上线 上线之后 我再一个个核对版面」 in the coordination session, then 「上线提交发布」 for this package in its engineering session). `source/approval.json` binds every reviewed `source/` and `assets/` input and the IR is publication-eligible. The operator checks the layout after go-live; corrections enter only through a new package. The candidate was merged as PR #1628; the approval landed in a follow-up PR.
 
 ## Source authority
 

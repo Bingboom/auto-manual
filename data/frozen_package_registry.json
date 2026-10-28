@@ -1427,7 +1427,7 @@
       }
     },
     "manual_sources/JE-2000C/US/en/git-20261027-c357f54d": {
-      "approval": "Operator window task 2026-10-27 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 (发布文档管理 Base): Git-only US/en single-language Web candidate, source copy verbatim. Candidate only; no merge or publication approval.",
+      "approval": "Operator 「上线提交发布：JE-2000C、JHP-1000B-RC、JHP-2000A-RC、JHP-3600A-RC；授权开跟进 PR 写 approval 并合入，以及其 Hello-Docs 发布 PR」 2026-10-28 after 「授权全部合入上线 上线之后 我再一个个核对版面」 (MA-365); candidate merged as #1628, approval bound in the follow-up PR: Git-only US/en single-language Web release, source copy verbatim; layout checked by the operator after go-live",
       "registered": "2026-10-27",
       "known_drift": {}
     },
@@ -1648,17 +1648,17 @@
       "known_drift": {}
     },
     "manual_sources/JHP-1000B-RC/US/en/git-20261027-af8a0775": {
-      "approval": "Operator window task 2026-10-27 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 (发布文档管理 Base): Git-only US/en single-language Web candidate, source copy verbatim. Candidate only; no merge or publication approval.",
+      "approval": "Operator 「上线提交发布：JE-2000C、JHP-1000B-RC、JHP-2000A-RC、JHP-3600A-RC；授权开跟进 PR 写 approval 并合入，以及其 Hello-Docs 发布 PR」 2026-10-28 after 「授权全部合入上线 上线之后 我再一个个核对版面」 (MA-365); candidate merged as #1628, approval bound in the follow-up PR: Git-only US/en single-language Web release, source copy verbatim; layout checked by the operator after go-live",
       "registered": "2026-10-27",
       "known_drift": {}
     },
     "manual_sources/JHP-2000A-RC/US/en/git-20261027-e27d4db5": {
-      "approval": "Operator window task 2026-10-27 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 (发布文档管理 Base): Git-only US/en single-language Web candidate, source copy verbatim. Candidate only; no merge or publication approval.",
+      "approval": "Operator 「上线提交发布：JE-2000C、JHP-1000B-RC、JHP-2000A-RC、JHP-3600A-RC；授权开跟进 PR 写 approval 并合入，以及其 Hello-Docs 发布 PR」 2026-10-28 after 「授权全部合入上线 上线之后 我再一个个核对版面」 (MA-365); candidate merged as #1628, approval bound in the follow-up PR: Git-only US/en single-language Web release, source copy verbatim; layout checked by the operator after go-live",
       "registered": "2026-10-27",
       "known_drift": {}
     },
     "manual_sources/JHP-3600A-RC/US/en/git-20261027-ab7f7393": {
-      "approval": "Operator window task 2026-10-27 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 (发布文档管理 Base): Git-only US/en single-language Web candidate, source copy verbatim. Candidate only; no merge or publication approval.",
+      "approval": "Operator 「上线提交发布：JE-2000C、JHP-1000B-RC、JHP-2000A-RC、JHP-3600A-RC；授权开跟进 PR 写 approval 并合入，以及其 Hello-Docs 发布 PR」 2026-10-28 after 「授权全部合入上线 上线之后 我再一个个核对版面」 (MA-365); candidate merged as #1628, approval bound in the follow-up PR: Git-only US/en single-language Web release, source copy verbatim; layout checked by the operator after go-live",
       "registered": "2026-10-27",
       "known_drift": {}
     },
