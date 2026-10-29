@@ -1,0 +1,257 @@
+[
+  {
+    "slot": "inbox-unit",
+    "physical_page": 6,
+    "bbox": [
+      50,
+      63,
+      115,
+      124
+    ],
+    "caption": "Jackery Explorer 300D",
+    "embedded_words": false,
+    "local_path": "assets/inbox-unit.png",
+    "render_scale": 4,
+    "sha256": "cefb22be7800f204198241310753e803d7f631fa59f1adc3571a0e6d763d5a37",
+    "source_sha256": "d3f47ff3afe136665d1594e7395c9838ca00fe23450818e96641fc0fd4e6476b",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "inbox-user-manual",
+    "physical_page": 6,
+    "bbox": [
+      138,
+      63,
+      205,
+      124
+    ],
+    "caption": "User Manual",
+    "embedded_words": false,
+    "local_path": "assets/inbox-user-manual.png",
+    "render_scale": 4,
+    "sha256": "e5fb8b2967882f470d4356b8d5cde6fe11c084cabf0be417d6272fe1c50ca4c3",
+    "source_sha256": "d3f47ff3afe136665d1594e7395c9838ca00fe23450818e96641fc0fd4e6476b",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "overview-front",
+    "physical_page": 6,
+    "bbox": [
+      17,
+      220,
+      238,
+      338
+    ],
+    "caption": "Product overview of the Jackery Explorer 300D: LCD; Main Power Button; DC 12V Power Button; DC 12V Port, 12V⎓10A Max; DC Input (DC8020 Port), PV: 16-28V⎓6A Max, 100W Max, Car: 11-16V⎓6A Max, 96W Max; USB-C1 Input/Output, 140W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A, 28V⎓5A; LED Light Button; LED Light; USB-A Output, 15W Max, 5V⎓3A; USB-C3 Output, 65W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓3.25A; USB-C2 Output, 140W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A, 28V⎓5A; Two-in-One Carry Handle, Both a 140W USB-C charging cable and a carry handle",
+    "embedded_words": true,
+    "local_path": "assets/overview-front.png",
+    "render_scale": 4,
+    "sha256": "ee2f88d451afdb99202429dc3376bb838f49a80561c250a0fed620cee4ab43b4",
+    "source_sha256": "d3f47ff3afe136665d1594e7395c9838ca00fe23450818e96641fc0fd4e6476b",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "adjustable-strap",
+    "physical_page": 7,
+    "bbox": [
+      60,
+      38,
+      195,
+      151
+    ],
+    "caption": "The Jackery Explorer 300D with an adjustable strap attached to the handle attachments",
+    "embedded_words": false,
+    "local_path": "assets/adjustable-strap.png",
+    "render_scale": 4,
+    "sha256": "a47283c35a58970ae260bd512ab663346eb4a49adc48ea6531de77046b28f467",
+    "source_sha256": "d3f47ff3afe136665d1594e7395c9838ca00fe23450818e96641fc0fd4e6476b",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "lcd-display",
+    "physical_page": 7,
+    "bbox": [
+      22,
+      186,
+      226,
+      277
+    ],
+    "caption": "LCD display with indicators numbered 1 to 10: INPUT: 888 W, 188 %, OUTPUT: 888 W",
+    "embedded_words": true,
+    "local_path": "assets/lcd-display.png",
+    "render_scale": 4,
+    "sha256": "9825448d6445842ab1102c9e2af44279da50fc1c6c923ab93fbc6079de3c4973",
+    "source_sha256": "d3f47ff3afe136665d1594e7395c9838ca00fe23450818e96641fc0fd4e6476b",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "power-on-off",
+    "physical_page": 8,
+    "bbox": [
+      21,
+      238,
+      235,
+      322
+    ],
+    "caption": "POWER button. On: Press once. Off: Press and hold for 3s",
+    "embedded_words": true,
+    "local_path": "assets/power-on-off.png",
+    "render_scale": 4,
+    "sha256": "af812bff6704f10002a71b73bc44b968a77639242fbc789aee19ea0dc7e8bf15",
+    "source_sha256": "d3f47ff3afe136665d1594e7395c9838ca00fe23450818e96641fc0fd4e6476b",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "usb-output",
+    "physical_page": 9,
+    "bbox": [
+      20,
+      53,
+      235,
+      126
+    ],
+    "caption": "The USB ports charging a phone and a laptop",
+    "embedded_words": false,
+    "local_path": "assets/usb-output.png",
+    "render_scale": 4,
+    "sha256": "1ee4a4a5c7da0438fdfdf7d8bd5a9715028e91b5d89d29427a6696c2d35a1523",
+    "source_sha256": "d3f47ff3afe136665d1594e7395c9838ca00fe23450818e96641fc0fd4e6476b",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "dc-output",
+    "physical_page": 9,
+    "bbox": [
+      20,
+      204,
+      235,
+      288
+    ],
+    "caption": "DC 12V Power Button. On: Press once. Off: Press once. The DC 12V port powering a device",
+    "embedded_words": true,
+    "local_path": "assets/dc-output.png",
+    "render_scale": 4,
+    "sha256": "6eb8172e88286c4dd7d613ab571bc92ace9ab2bceeba34490c22a75b91d8b984",
+    "source_sha256": "d3f47ff3afe136665d1594e7395c9838ca00fe23450818e96641fc0fd4e6476b",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "energy-saving",
+    "physical_page": 10,
+    "bbox": [
+      20,
+      78,
+      235,
+      157
+    ],
+    "caption": "POWER button. On: Press three times. Off: Press three times",
+    "embedded_words": true,
+    "local_path": "assets/energy-saving.png",
+    "render_scale": 4,
+    "sha256": "8c69b69ff2bd9f290e54e3e2023556f732d10f44834d7affbd94d85e2bf17fcb",
+    "source_sha256": "d3f47ff3afe136665d1594e7395c9838ca00fe23450818e96641fc0fd4e6476b",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "led-light",
+    "physical_page": 10,
+    "bbox": [
+      20,
+      238,
+      235,
+      327
+    ],
+    "caption": "LED Light button. 1. Press the LED Light button once to turn on the light. 2. SOS: Press it again to switch to SOS mode. 3. Press it a third time to turn off the light",
+    "embedded_words": true,
+    "local_path": "assets/led-light.png",
+    "render_scale": 4,
+    "sha256": "09585aebe2c7e1ace31699d8b5ff2ff721c8adeaa55418b6fe799a6cf8d1288f",
+    "source_sha256": "d3f47ff3afe136665d1594e7395c9838ca00fe23450818e96641fc0fd4e6476b",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "lcd-screen",
+    "physical_page": 11,
+    "bbox": [
+      24,
+      41,
+      100,
+      168
+    ],
+    "caption": "POWER button on the Jackery Explorer 300D",
+    "embedded_words": true,
+    "local_path": "assets/lcd-screen.png",
+    "render_scale": 4,
+    "sha256": "d281cb952f18d34f6ddc558869d2af21b22a66013e796a01f8e9aeafaa2867c2",
+    "source_sha256": "d3f47ff3afe136665d1594e7395c9838ca00fe23450818e96641fc0fd4e6476b",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "charging-usbc",
+    "physical_page": 12,
+    "bbox": [
+      21,
+      50,
+      235,
+      136
+    ],
+    "caption": "1, 2: Remove the two-in-one carry handle (USB-C cable); connect it to the product's USB-C1 port and a wall charger plugged into a power outlet",
+    "embedded_words": true,
+    "local_path": "assets/charging-usbc.png",
+    "render_scale": 4,
+    "sha256": "94b89cfcfe2b5248729a9adfa1f5098f2ab14a19a8be2e7aa32d17cbc96def47",
+    "source_sha256": "d3f47ff3afe136665d1594e7395c9838ca00fe23450818e96641fc0fd4e6476b",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "charging-solar",
+    "physical_page": 12,
+    "bbox": [
+      20.5,
+      209.5,
+      235.5,
+      315.5
+    ],
+    "caption": "The Jackery Explorer 300D DC8020 input connected to a SolarSaga 40 Air x1 solar panel",
+    "embedded_words": true,
+    "local_path": "assets/charging-solar.png",
+    "render_scale": 4,
+    "sha256": "d5087f326b1e4072858eb8823268e9619fa7d1a6d38a08e4a33993c3f3845605",
+    "source_sha256": "d3f47ff3afe136665d1594e7395c9838ca00fe23450818e96641fc0fd4e6476b",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "charging-car",
+    "physical_page": 13,
+    "bbox": [
+      20.5,
+      48.5,
+      234.5,
+      131
+    ],
+    "caption": "The Jackery Explorer 300D DC8020 input connected to the vehicle's car cigarette lighter. Vehicle",
+    "embedded_words": true,
+    "local_path": "assets/charging-car.png",
+    "render_scale": 4,
+    "sha256": "c67533b384f37c7d07faabc1f63fc37bdc41b92eb1a762d61f07fb668fc0477a",
+    "source_sha256": "d3f47ff3afe136665d1594e7395c9838ca00fe23450818e96641fc0fd4e6476b",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "contact-qr",
+    "physical_page": 18,
+    "bbox": [
+      210,
+      320,
+      237,
+      347
+    ],
+    "caption": "Jackery QR code",
+    "embedded_words": false,
+    "local_path": "assets/contact-qr.png",
+    "render_scale": 4,
+    "sha256": "9cd5a043328e8718804c69c6e07efc7b4a6bf5e86b70972d64096ad9afb87200",
+    "source_sha256": "d3f47ff3afe136665d1594e7395c9838ca00fe23450818e96641fc0fd4e6476b",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  }
+]

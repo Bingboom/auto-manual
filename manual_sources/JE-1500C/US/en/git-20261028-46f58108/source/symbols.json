@@ -1,0 +1,653 @@
+[
+  {
+    "language": "en",
+    "physical_page": 5,
+    "family": "warning/",
+    "meaning": "Warning and Caution Symbols. Must read to alert individuals to potential hazards or risks.",
+    "glyph_search_box": [
+      29.8,
+      309.6,
+      68.5,
+      337.79999999999995
+    ],
+    "caption_search_box": [
+      69.5,
+      309.6,
+      181.3,
+      337.79999999999995
+    ],
+    "drawing_indices": [
+      342,
+      343,
+      344
+    ],
+    "glyph_bbox": [
+      38.010501861572266,
+      314.138916015625,
+      59.78950119018555,
+      333.4149169921875
+    ],
+    "caption_bbox": [
+      73.1206,
+      314.005,
+      167.4657,
+      334.1604
+    ],
+    "row_bbox": [
+      37.0105,
+      313.005,
+      168.4657,
+      335.1604
+    ],
+    "caption_text": "Warning and Caution Symbols. Must read to alert individuals to potential hazards or risks.",
+    "caption_mode": "outlined-manual-transcription",
+    "caption_sha256": "780150d459f477a4b8b9677a7713c55b0998ea5e0487df92823a686f4b2868f6",
+    "shared_symbol_key": "warning/outline-triangle-tinted",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_warning_triangle.svg",
+    "local_path": "assets/symbol_warning_triangle.svg",
+    "decision": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)",
+    "candidates": [
+      {
+        "shared_symbol_key": "warning/outline-triangle-tinted",
+        "status": "passed",
+        "max_mean_channel_error": 0.010933
+      }
+    ],
+    "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a"
+  },
+  {
+    "language": "en",
+    "physical_page": 5,
+    "family": "read-manual/",
+    "meaning": "Read the user manual before operation.",
+    "glyph_search_box": [
+      29.8,
+      340.0,
+      68.5,
+      368.29999999999995
+    ],
+    "caption_search_box": [
+      69.5,
+      340.0,
+      181.3,
+      368.29999999999995
+    ],
+    "drawing_indices": [
+      1619,
+      1620,
+      1621
+    ],
+    "glyph_bbox": [
+      38.23979949951172,
+      347.57159423828125,
+      59.56079864501953,
+      363.63458251953125
+    ],
+    "caption_bbox": [
+      73.4005,
+      351.732,
+      176.7356,
+      358.9408
+    ],
+    "row_bbox": [
+      37.2398,
+      346.5716,
+      177.7356,
+      364.6346
+    ],
+    "caption_text": "Read the user manual before operation.",
+    "caption_mode": "outlined-manual-transcription",
+    "caption_sha256": "c5e099121a80328162a2c92c661770fc072610b05d1b4d01607c9619da147625",
+    "shared_symbol_key": "read-manual/book-information",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_read_manual.svg",
+    "local_path": "assets/symbol_read_manual.svg",
+    "decision": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)",
+    "candidates": [
+      {
+        "shared_symbol_key": "read-manual/book-information",
+        "status": "passed",
+        "max_mean_channel_error": 0.018763
+      }
+    ],
+    "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584"
+  },
+  {
+    "language": "en",
+    "physical_page": 5,
+    "family": "electric-shock/",
+    "meaning": "Risk of electric shock",
+    "glyph_search_box": [
+      29.8,
+      370.8,
+      68.5,
+      399.0
+    ],
+    "caption_search_box": [
+      69.5,
+      370.8,
+      181.3,
+      399.0
+    ],
+    "drawing_indices": [
+      1554,
+      1555,
+      1556
+    ],
+    "glyph_bbox": [
+      38.47690200805664,
+      375.944091796875,
+      60.28089904785156,
+      395.24310302734375
+    ],
+    "caption_bbox": [
+      73.4325,
+      383.114,
+      131.5114,
+      389.6113
+    ],
+    "row_bbox": [
+      37.4769,
+      374.9441,
+      132.5114,
+      396.2431
+    ],
+    "caption_text": "Risk of electric shock",
+    "caption_mode": "outlined-manual-transcription",
+    "caption_sha256": "bb99d588a7aa4744b0e0b4921dc0358dfe291fefd6ae54af5eded4b301f2f5f2",
+    "shared_symbol_key": "electric-shock/bolt-triangle-tinted",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_electric_shock.svg",
+    "local_path": "assets/symbol_electric_shock.svg",
+    "decision": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)",
+    "candidates": [
+      {
+        "shared_symbol_key": "electric-shock/bolt-triangle-tinted",
+        "status": "passed",
+        "max_mean_channel_error": 0.009962
+      }
+    ],
+    "sha256": "a76bd208ea017906cdcb5624307cdf4b4bb092816d45ef3943a4b3367c837d3f"
+  },
+  {
+    "language": "en",
+    "physical_page": 5,
+    "family": "battery-charging/",
+    "meaning": "Battery charging",
+    "glyph_search_box": [
+      29.8,
+      401.20000000000005,
+      68.5,
+      429.5
+    ],
+    "caption_search_box": [
+      69.5,
+      401.20000000000005,
+      181.3,
+      429.5
+    ],
+    "drawing_indices": [
+      1557,
+      1558,
+      1559,
+      1560,
+      1561,
+      1562,
+      1563
+    ],
+    "glyph_bbox": [
+      38.47690200805664,
+      406.7027893066406,
+      60.28089904785156,
+      426.0018005371094
+    ],
+    "caption_bbox": [
+      73.4327,
+      412.76,
+      120.6069,
+      420.2416
+    ],
+    "row_bbox": [
+      37.4769,
+      405.7028,
+      121.6069,
+      427.0018
+    ],
+    "caption_text": "Battery charging",
+    "caption_mode": "outlined-manual-transcription",
+    "caption_sha256": "d4e624ed50e0e5059c96c8605ac580c2242833554b004251cfd79be45c41468b",
+    "shared_symbol_key": "battery-charging/flame-battery-triangle-tinted",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_battery_charging.svg",
+    "local_path": "assets/symbol_battery_charging.svg",
+    "decision": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)",
+    "candidates": [
+      {
+        "shared_symbol_key": "battery-charging/flame-battery-triangle-tinted",
+        "status": "passed",
+        "max_mean_channel_error": 0.012225
+      }
+    ],
+    "sha256": "6a513fe0122fec428c55a3f840c34ed7afdea311f7f1dd9b6e6fd807d087bf55"
+  },
+  {
+    "language": "en",
+    "physical_page": 5,
+    "family": "explosive-material/",
+    "meaning": "Explosive material",
+    "glyph_search_box": [
+      29.8,
+      431.6,
+      68.5,
+      460.59999999999997
+    ],
+    "caption_search_box": [
+      69.5,
+      431.6,
+      181.3,
+      460.59999999999997
+    ],
+    "drawing_indices": [
+      1564,
+      1565,
+      1566,
+      1567
+    ],
+    "glyph_bbox": [
+      38.31399917602539,
+      436.773681640625,
+      60.770999908447266,
+      456.2687072753906
+    ],
+    "caption_bbox": [
+      73.4326,
+      444.503,
+      123.922,
+      452.0802
+    ],
+    "row_bbox": [
+      37.314,
+      435.7737,
+      124.922,
+      457.2687
+    ],
+    "caption_text": "Explosive material",
+    "caption_mode": "outlined-manual-transcription",
+    "caption_sha256": "a8769e941208a61a16587da77e8c058b5af220f902b4617357e0f04e681e734f",
+    "shared_symbol_key": "explosive-material/burst-triangle-native-v2-3e3a39",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_explosive_material_native_v2_3e3a39.svg",
+    "local_path": "assets/symbol_explosive_material_native_v2_3e3a39.svg",
+    "decision": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)",
+    "candidates": [
+      {
+        "shared_symbol_key": "explosive-material/burst-triangle-tinted",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "explosive-material/burst-triangle-native-v2-3e3a39",
+        "status": "passed",
+        "max_mean_channel_error": 0.017078
+      }
+    ],
+    "sha256": "d4def93f853179fe0ea0cd7c4ba461da5a70d662d33a899bc48f7a2ef5553a1d"
+  },
+  {
+    "language": "en",
+    "physical_page": 5,
+    "family": "heavy-object/",
+    "meaning": "Heavy object",
+    "glyph_search_box": [
+      29.8,
+      462.70000000000005,
+      68.5,
+      494.9
+    ],
+    "caption_search_box": [
+      69.5,
+      462.70000000000005,
+      181.3,
+      494.9
+    ],
+    "drawing_indices": [
+      1628,
+      1629,
+      1630,
+      1631,
+      1632,
+      1633,
+      1634,
+      1635
+    ],
+    "glyph_bbox": [
+      37.446197509765625,
+      468.96258544921875,
+      59.904197692871094,
+      488.4576110839844
+    ],
+    "caption_bbox": [
+      73.4318,
+      477.2461,
+      111.5368,
+      484.7871
+    ],
+    "row_bbox": [
+      36.4462,
+      467.9626,
+      112.5368,
+      489.4576
+    ],
+    "caption_text": "Heavy object",
+    "caption_mode": "outlined-manual-transcription",
+    "caption_sha256": "a38ff532b850a2f8b28e5c92346bbaec11bc43e03cc9c07931e1b9e5c06538b8",
+    "shared_symbol_key": "heavy-object/person-load-triangle-tinted",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_heavy_object.svg",
+    "local_path": "assets/symbol_heavy_object.svg",
+    "decision": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)",
+    "candidates": [
+      {
+        "shared_symbol_key": "heavy-object/person-load-triangle-tinted",
+        "status": "passed",
+        "max_mean_channel_error": 0.011486
+      }
+    ],
+    "sha256": "5316063a33173d4231610b72babd30cb2282d1fd9d76263bf70e9577352e3910"
+  },
+  {
+    "language": "en",
+    "physical_page": 5,
+    "family": "do-not-dismantle/",
+    "meaning": "Do not dismantle the product.",
+    "glyph_search_box": [
+      188,
+      309.6,
+      223.3,
+      337.79999999999995
+    ],
+    "caption_search_box": [
+      224.3,
+      309.6,
+      339.2,
+      337.79999999999995
+    ],
+    "drawing_indices": [
+      1539,
+      1540,
+      1541
+    ],
+    "glyph_bbox": [
+      195.93051147460938,
+      315.2923889160156,
+      214.07650756835938,
+      333.4263916015625
+    ],
+    "caption_bbox": [
+      229.3174,
+      321.777,
+      307.5452,
+      328.9852
+    ],
+    "row_bbox": [
+      194.9305,
+      314.2924,
+      308.5452,
+      334.4264
+    ],
+    "caption_text": "Do not dismantle the product.",
+    "caption_mode": "outlined-manual-transcription",
+    "caption_sha256": "fd3094a30d80027eb2922d91f12da829f2b1a571cfb96e5d5fc14ddcb2015755",
+    "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_do_not_dismantle.svg",
+    "local_path": "assets/symbol_do_not_dismantle.svg",
+    "decision": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)",
+    "candidates": [
+      {
+        "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited",
+        "status": "passed",
+        "max_mean_channel_error": 0.019957
+      }
+    ],
+    "sha256": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33"
+  },
+  {
+    "language": "en",
+    "physical_page": 5,
+    "family": "no-open-flame/",
+    "meaning": "Keep the product away from fire.",
+    "glyph_search_box": [
+      188,
+      340.0,
+      223.3,
+      368.29999999999995
+    ],
+    "caption_search_box": [
+      224.3,
+      340.0,
+      339.2,
+      368.29999999999995
+    ],
+    "drawing_indices": [
+      1622,
+      1623,
+      1624,
+      1625,
+      1626,
+      1627
+    ],
+    "glyph_bbox": [
+      195.9488983154297,
+      344.9961853027344,
+      215.21290588378906,
+      364.2582092285156
+    ],
+    "caption_bbox": [
+      229.3174,
+      351.9856,
+      314.1272,
+      359.1879
+    ],
+    "row_bbox": [
+      194.9489,
+      343.9962,
+      315.1272,
+      365.2582
+    ],
+    "caption_text": "Keep the product away from fire.",
+    "caption_mode": "outlined-manual-transcription",
+    "caption_sha256": "092c13e220786e7833a96674be6ff20e7d8d1b4f5a080b5645c86760350ecf66",
+    "shared_symbol_key": "no-open-flame/fire-match-prohibited",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_no_open_flame.svg",
+    "local_path": "assets/symbol_no_open_flame.svg",
+    "decision": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)",
+    "candidates": [
+      {
+        "shared_symbol_key": "no-open-flame/fire-match-prohibited",
+        "status": "passed",
+        "max_mean_channel_error": 0.002819
+      }
+    ],
+    "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f"
+  },
+  {
+    "language": "en",
+    "physical_page": 5,
+    "family": "keep-away-from-children/",
+    "meaning": "Keep away from children.",
+    "glyph_search_box": [
+      188,
+      370.8,
+      223.3,
+      399.0
+    ],
+    "caption_search_box": [
+      224.3,
+      370.8,
+      339.2,
+      399.0
+    ],
+    "drawing_indices": [
+      1636,
+      1637,
+      1638,
+      1639
+    ],
+    "glyph_bbox": [
+      195.94979858398438,
+      376.13250732421875,
+      215.21279907226562,
+      395.3955078125
+    ],
+    "caption_bbox": [
+      229.3169,
+      382.565,
+      294.8953,
+      389.8119
+    ],
+    "row_bbox": [
+      194.9498,
+      375.1325,
+      295.8953,
+      396.3955
+    ],
+    "caption_text": "Keep away from children.",
+    "caption_mode": "outlined-manual-transcription",
+    "caption_sha256": "1276339c21e7bb0400f61a43974d5aa501c08d4b282288de79102181fe1e0338",
+    "shared_symbol_key": "keep-away-from-children/adult-child-prohibited",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_keep_away_from_children.svg",
+    "local_path": "assets/symbol_keep_away_from_children.svg",
+    "decision": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)",
+    "candidates": [
+      {
+        "shared_symbol_key": "keep-away-from-children/adult-child-prohibited",
+        "status": "passed",
+        "max_mean_channel_error": 0.002832
+      }
+    ],
+    "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899"
+  },
+  {
+    "language": "en",
+    "physical_page": 5,
+    "family": "li-ion/",
+    "meaning": "This symbol indicates that a lithium-ion (Li-ion) battery is inside the product and should be disposed of or recycled properly.",
+    "glyph_search_box": [
+      188,
+      401.20000000000005,
+      223.3,
+      429.5
+    ],
+    "caption_search_box": [
+      224.3,
+      401.20000000000005,
+      339.2,
+      429.5
+    ],
+    "drawing_indices": [
+      1542,
+      1543,
+      1544,
+      1545,
+      1546,
+      1547,
+      1548,
+      1549,
+      1550
+    ],
+    "glyph_bbox": [
+      195.29139709472656,
+      405.7735900878906,
+      213.43499755859375,
+      426.097900390625
+    ],
+    "caption_bbox": [
+      225.2976,
+      405.959,
+      336.3318,
+      427.2064
+    ],
+    "row_bbox": [
+      194.2914,
+      404.7736,
+      337.3318,
+      428.2064
+    ],
+    "caption_text": "This symbol indicates that a lithium-ion (Li-ion) battery is inside the product and should be disposed of or recycled properly.",
+    "caption_mode": "outlined-manual-transcription",
+    "caption_sha256": "cdc85c10a61aeda9326164c8b978ff036963746f6b4cb72d69c44f029ff26903",
+    "shared_symbol_key": "li-ion/htp017-recycle-li-ion",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_li_ion_htp017.svg",
+    "local_path": "assets/symbol_li_ion_htp017.svg",
+    "decision": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)",
+    "candidates": [
+      {
+        "shared_symbol_key": "li-ion/recycle-li-ion",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "li-ion/recycle-li-ion-native-dark",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "li-ion/htp017-recycle-li-ion",
+        "status": "passed",
+        "max_mean_channel_error": 0.0005
+      }
+    ],
+    "sha256": "b98301d1742f0695e0b0c1ec523eba3c79f8c9879fc2672565ff5d79fde0bd66"
+  },
+  {
+    "language": "en",
+    "physical_page": 5,
+    "family": "weee/",
+    "meaning": "This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling. Proper disposal and recycling can help protect the environment. For more information about the disposal and recycling of this product, contact your local community, disposal service, or dealer.",
+    "glyph_search_box": [
+      188,
+      431.6,
+      223.3,
+      494.9
+    ],
+    "caption_search_box": [
+      224.3,
+      431.6,
+      339.2,
+      494.9
+    ],
+    "drawing_indices": [
+      1551,
+      1552,
+      1553
+    ],
+    "glyph_bbox": [
+      197.73260498046875,
+      450.5705871582031,
+      213.1645965576172,
+      473.35400390625
+    ],
+    "caption_bbox": [
+      225.2972,
+      433.366,
+      337.348,
+      495.0131
+    ],
+    "row_bbox": [
+      196.7326,
+      432.366,
+      338.348,
+      496.0131
+    ],
+    "caption_text": "This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling. Proper disposal and recycling can help protect the environment. For more information about the disposal and recycling of this product, contact your local community, disposal service, or dealer.",
+    "caption_mode": "outlined-manual-transcription",
+    "caption_sha256": "bc8e2084faf02ef37a251d1566f19da595a7ff95150ea78c37e6cca0db8ac154",
+    "shared_symbol_key": "weee/crossed-bin-bar",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_weee.png",
+    "local_path": "assets/symbol_weee.png",
+    "decision": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)",
+    "candidates": [
+      {
+        "shared_symbol_key": "weee/crossed-bin-bar",
+        "status": "passed",
+        "max_mean_channel_error": 0.011654
+      }
+    ],
+    "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5"
+  }
+]

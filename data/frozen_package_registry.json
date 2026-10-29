@@ -1410,6 +1410,11 @@
       "registered": "2026-10-27",
       "known_drift": {}
     },
+    "manual_sources/JE-1500C/US/en/git-20261028-46f58108": {
+      "approval": "Operator 2026-10-29 (PR #1639 session): 「上线提交发布：JE-300D、JE-500A、JE-600A、JE-1500C」 after reviewing the 1280/390 renders: Git-only US English single-language Web release from the 发布文档管理 row; acceptance hash-bound in source/approval.json. Merge needs a separate operator authorization.",
+      "registered": "2026-10-28",
+      "known_drift": {}
+    },
     "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2": {
       "approval": "MA-322",
       "registered": "2026-10-19",
@@ -1583,6 +1588,11 @@
       "registered": "2026-10-19",
       "known_drift": {}
     },
+    "manual_sources/JE-300D/US/en/git-20261028-d3f47ff3": {
+      "approval": "Operator 2026-10-29 (PR #1639 session): 「上线提交发布：JE-300D、JE-500A、JE-600A、JE-1500C」 after reviewing the 1280/390 renders: Git-only US English single-language Web release from the 发布文档管理 row; acceptance hash-bound in source/approval.json. Merge needs a separate operator authorization.",
+      "registered": "2026-10-28",
+      "known_drift": {}
+    },
     "manual_sources/JE-300E-SG/US/en/git-20261027-e47cb322": {
       "approval": "Operator 2026-10-28 (PR #1631 session): 「上线提交发布：JE-300C、JE-300E、JE-300E-SG、JE-880B；授权合入 #1631 及其 Hello-Docs 发布 PR」 under MA-365: Git-only US English single-language Web release from the 发布文档管理 row; acceptance hash-bound in source/approval.json",
       "registered": "2026-10-28",
@@ -1718,6 +1728,16 @@
     "manual_sources/JE-500A/EU/en/2.0": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-500A/US/en/git-20261028-5c065d11": {
+      "approval": "Operator 2026-10-29 (PR #1639 session): 「上线提交发布：JE-300D、JE-500A、JE-600A、JE-1500C」 after reviewing the 1280/390 renders: Git-only US English single-language Web release from the 发布文档管理 row; acceptance hash-bound in source/approval.json. Merge needs a separate operator authorization.",
+      "registered": "2026-10-28",
+      "known_drift": {}
+    },
+    "manual_sources/JE-600A/US/en/git-20261028-9bf5bbb1": {
+      "approval": "Operator 2026-10-29 (PR #1639 session): 「上线提交发布：JE-300D、JE-500A、JE-600A、JE-1500C」 after reviewing the 1280/390 renders: Git-only US English single-language Web release from the 发布文档管理 row; acceptance hash-bound in source/approval.json. Merge needs a separate operator authorization.",
+      "registered": "2026-10-28",
       "known_drift": {}
     },
     "manual_sources/JE-880B/US/en/git-20261027-640e83ca": {
