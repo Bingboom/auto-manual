@@ -106,7 +106,7 @@
       "assets/inbox-unit.png": "e5f3b7dd3a628b4a32a197a5649534f9d90dc07539e0bb45faa3d871d1c86d03",
       "assets/inbox-usbc.png": "52417e633a6218d7edb88668e49c951c1ba75c3d4b66fd0232879f69341f9037",
       "assets/inbox-wrench.png": "130e32208e77919686b96c228e795d7aac261e106ae40e26498d01d6c32513af",
-      "assets/ingestion-hazard.svg": "6f84be6ae21867726a62702e004a2031d2328bbba15e49e107d1733463925297",
+      "assets/ingestion-hazard.svg": "d86fd21db18dc4bc9aa9f898ea7b29dc2d37fd6390ccb46443b7b67345473eaa",
       "assets/lcd-01-wifi.svg": "04f2429baa45133fc0ff99840b2f3acb42e2fe7987010f86f9d6d88fb10efb21",
       "assets/lcd-02-bluetooth.svg": "e50006c59af293f0a3c9e43ef97c32fd26b83707b30a593c731739ddcc98aa3b",
       "assets/lcd-03-quiet-charging.svg": "22a5d9bdac7cb0748db6885cae3acdf87aeca565a72b052bb98a7e69e0dd91b9",
@@ -151,7 +151,7 @@
       "assets/symbol-03.svg": "6a513fe0122fec428c55a3f840c34ed7afdea311f7f1dd9b6e6fd807d087bf55",
       "assets/symbol-04.svg": "3ef06cba72b60935ea421b1b59ff41e1ca9c4c6597b8d8ce1d4ae1904ee68fa0",
       "assets/symbol-05.svg": "5316063a33173d4231610b72babd30cb2282d1fd9d76263bf70e9577352e3910",
-      "assets/symbol-06.svg": "bf9d909ffa39319a475489a9ba272f4add0d43ec31b00388adc6f5dc0a423e9f",
+      "assets/symbol-06.svg": "12b83698e0dcfe0cad432332375f80a747058724c29ef679b6d9608e94f55eaa",
       "assets/symbol-07.svg": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899",
       "assets/symbol-08.svg": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
       "assets/ups.png": "4eeed358e790730c63b6260946de3267d292d02512497b708021bfa32eb75821",
@@ -2186,6 +2186,40 @@
           "max_mean_channel_error": 0.017052,
           "physical_page": 5,
           "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+        },
+        {
+          "asset_ref": "assets/ingestion-hazard.svg",
+          "drawing_indices": [
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "from": "docs/renderers/web/assets/shared/symbols/native-v1/ingestion_hazard_dark_804ebe78.svg",
+          "glyph_bbox": [
+            30.2,
+            452.8,
+            47.3,
+            473.4
+          ],
+          "max_mean_channel_error": 0.011962,
+          "physical_page": 22,
+          "printed_instances": [
+            {
+              "max_mean_channel_error": 0.0,
+              "physical_page": 22
+            },
+            {
+              "max_mean_channel_error": 0.011962,
+              "physical_page": 24
+            },
+            {
+              "max_mean_channel_error": 0.006666,
+              "physical_page": 25
+            }
+          ],
+          "sha256": "d86fd21db18dc4bc9aa9f898ea7b29dc2d37fd6390ccb46443b7b67345473eaa"
         }
       ],
       "base_record": {
@@ -2200,7 +2234,7 @@
           "21-0001-000614"
         ]
       },
-      "build_boundary": "JE-5000A US is not a phase2 target. build_content.py binds the transcription to shared ComponentSpecs; rebuild.py replays them through manual-ir/v2 and the shared Web/MyST pipeline with the prepared-document shared-style gate and symbol admission (staged symbols admitted against their proposed catalog row until the shared catalog carries them). Not registered in data/frozen_package_registry.json until approval.",
+      "build_boundary": "JE-5000A US is not a phase2 target. build_content.py binds the transcription to shared ComponentSpecs; rebuild.py replays them through manual-ir/v2 and the shared Web/MyST pipeline with the prepared-document shared-style gate and the shared symbol admission (all 8 table symbols are catalog variants). Not registered in data/frozen_package_registry.json until approval.",
       "component_map": [
         {
           "printed": "chapter title bars IMPORTANT … SMART HOME BACKUP SYSTEM (AC ESS) INSTALLATION GUIDE, and the dark product/model bands of the AC ESS guide (Jackery Explorer 5000 Plus, Jackery Battery Pack 5000 Plus, Jackery Smart Transfer Switch)",
@@ -2228,7 +2262,7 @@
         },
         {
           "printed": "8-symbol table in two panels",
-          "shared": "HB-TABLE-SYMBOL-ICON/two-panel-responsive with source-bound symbol admission (one staged row)"
+          "shared": "HB-TABLE-SYMBOL-ICON/two-panel-responsive with source-bound symbol admission (8 catalog variants)"
         },
         {
           "printed": "FCC statement with FCC mark",
@@ -2276,7 +2310,7 @@
         },
         {
           "printed": "INGESTION HAZARD notice with its glyph, ※ trademark line",
-          "shared": "plain paragraphs (glyph as an inline image, staged)"
+          "shared": "plain paragraphs (glyph as an inline image of the shared catalog variant ingestion-hazard/coin-battery-triangle-dark-804ebe78)"
         },
         {
           "printed": "warranty lead panel + *note",
@@ -2322,8 +2356,8 @@
         },
         {
           "path": "README.md",
-          "sha256": "b83c041cb516593dbe3e1d4dc9f9d15cdc423db00c4b7dd15d10e8b7b59c1f2a",
-          "size": 4745
+          "sha256": "7fade85f28ecb8c1b261f3fa7bdec5dbe3ca268ac99f6d871304c84b87115cd6",
+          "size": 4717
         },
         {
           "path": "assets/ac-charge.png",
@@ -2447,8 +2481,8 @@
         },
         {
           "path": "assets/ingestion-hazard.svg",
-          "sha256": "6f84be6ae21867726a62702e004a2031d2328bbba15e49e107d1733463925297",
-          "size": 3989
+          "sha256": "d86fd21db18dc4bc9aa9f898ea7b29dc2d37fd6390ccb46443b7b67345473eaa",
+          "size": 4529
         },
         {
           "path": "assets/lcd-01-wifi.svg",
@@ -2672,8 +2706,8 @@
         },
         {
           "path": "assets/symbol-06.svg",
-          "sha256": "bf9d909ffa39319a475489a9ba272f4add0d43ec31b00388adc6f5dc0a423e9f",
-          "size": 3345
+          "sha256": "12b83698e0dcfe0cad432332375f80a747058724c29ef679b6d9608e94f55eaa",
+          "size": 5351
         },
         {
           "path": "assets/symbol-07.svg",
@@ -2697,13 +2731,13 @@
         },
         {
           "path": "build_content.py",
-          "sha256": "a4895bb7f38687e46200329c0f3bce37e50ae27245474c99008c9402f7f79143",
-          "size": 36028
+          "sha256": "a8f9b95cf5b178bff9a5e0ede51204bc7fcb2b5d5cd8d1c0d0250ee1af7f4d4a",
+          "size": 36030
         },
         {
           "path": "derive_assets.py",
-          "sha256": "77249b41bd02d49566edb81d904c50a54212bf3ef9db26a8cecf744727efc89b",
-          "size": 14267
+          "sha256": "1d0c7d6444e1a5e16f9b0934790542251233768c4fb15d32575244cd5617a903",
+          "size": 15399
         },
         {
           "path": "rebuild.py",
@@ -2717,23 +2751,23 @@
         },
         {
           "path": "source/asset_decisions.json",
-          "sha256": "2239e5559c65af8b3b9cdb9624e314b2642c5ef1b3120520bfa2f9f937e0ab57",
-          "size": 69293
+          "sha256": "cf5abe195b3e111d556ba41377c3c6be119f6208bc1510a274d3fdf392672fbc",
+          "size": 69514
         },
         {
           "path": "source/asset_recipe.json",
-          "sha256": "8b0a7e0f3db9247b196c31592eb2aa09d4e33bc0e8a8357ae633ae0b45857740",
-          "size": 25795
+          "sha256": "fe0a354413b47f5e42f5ee9feed9ce222dfc3d252f7f5f3fd7b2e4c52ab4731a",
+          "size": 25241
         },
         {
           "path": "source/differences.md",
-          "sha256": "70e9d0edb0840248b69aa4000e357a11cb3dd89d2500dc397b0a2a42266889f8",
-          "size": 6172
+          "sha256": "92b8576bd42a3befc44510a91c3a64e3b17b6c28adf01f1fe8f8d5f3eeb17f6f",
+          "size": 6194
         },
         {
           "path": "source/discovery.md",
-          "sha256": "72fdbb178e42b6244d7724a53daaa920e53d70b1b7caa9dd698f2c6e746c38f0",
-          "size": 5274
+          "sha256": "b41b1408868e21717b7357998f0893a56d3205b1f602e20ecaa3a74008f15ade",
+          "size": 5597
         },
         {
           "path": "source/en/content.json",
@@ -2769,8 +2803,7 @@
       },
       "pending_source_review": [
         "Operator review of the candidate against the shared reference edition (JE-5000A JP reviewed)",
-        "Source concerns go back to the source owner (source_concerns)",
-        "Two printed symbols have no shared catalog variant and are staged package-only (staged_shared_symbols): the coordinator adds them to the shared catalog, then this package binds the catalog files"
+        "Source concerns go back to the source owner (source_concerns)"
       ],
       "phase2_enrolled": false,
       "physical_page_map": {
@@ -3009,59 +3042,7 @@
           "page": 26
         }
       ],
-      "staged_shared_symbols": [
-        {
-          "key": "ingestion-hazard/coin-battery-triangle-dark-804ebe78",
-          "path": "native-v1/ingestion_hazard_dark_804ebe78.svg",
-          "provenance": {
-            "decision": "inline INGESTION HAZARD notice glyph (not a symbol-table row); no catalog variant exists (closest read_manual/je2000e-eu-nl-batch1465-native, 0.2263); the native PDF paths are proposed for the shared catalog; package-only until the coordinator's shared PR",
-            "drawing_indices": [
-              3,
-              4,
-              5,
-              6,
-              7
-            ],
-            "glyph_bbox": [
-              30.2,
-              452.8,
-              47.3,
-              473.4
-            ],
-            "physical_page": 22,
-            "source": "manual_sources/JE-5000A/US/en/git-20261028-804ebe78/JE-5000A-US-EN.pdf",
-            "source_sha256": "804ebe784c84a698800b2c1cc0f4d28ec692057b1600c48fcc3604e27c86f013"
-          },
-          "sha256": "6f84be6ae21867726a62702e004a2031d2328bbba15e49e107d1733463925297",
-          "status": "source-bound native variant"
-        },
-        {
-          "key": "no-open-flame/fire-match-prohibited-dark-804ebe78",
-          "path": "native-v1/no_open_flame_dark_804ebe78.svg",
-          "provenance": {
-            "decision": "no catalog variant within the fixed 2% (closest no-open-flame/fire-match-prohibited and no-open-flame/fire-match-prohibited-3e3a39, 0.0253); the native PDF paths are proposed for the shared catalog; package-only until the coordinator's shared PR",
-            "drawing_indices": [
-              44,
-              45,
-              46,
-              47,
-              48,
-              49
-            ],
-            "glyph_bbox": [
-              198.2,
-              258.0,
-              217.9,
-              277.8
-            ],
-            "physical_page": 5,
-            "source": "manual_sources/JE-5000A/US/en/git-20261028-804ebe78/JE-5000A-US-EN.pdf",
-            "source_sha256": "804ebe784c84a698800b2c1cc0f4d28ec692057b1600c48fcc3604e27c86f013"
-          },
-          "sha256": "bf9d909ffa39319a475489a9ba272f4add0d43ec31b00388adc6f5dc0a423e9f",
-          "status": "source-bound native variant"
-        }
-      ],
+      "staged_shared_symbols": [],
       "symbol_asset_admission": {
         "locales": {
           "en": [
@@ -3237,7 +3218,7 @@
             },
             {
               "asset_ref": "assets/symbol-06.svg",
-              "asset_sha256": "bf9d909ffa39319a475489a9ba272f4add0d43ec31b00388adc6f5dc0a423e9f",
+              "asset_sha256": "12b83698e0dcfe0cad432332375f80a747058724c29ef679b6d9608e94f55eaa",
               "caption_bbox": [
                 233.7,
                 260.8,
@@ -3944,8 +3925,7 @@
     "page_declarations": {},
     "pending_source_review": [
       "Operator review of the candidate against the shared reference edition (JE-5000A JP reviewed)",
-      "Source concerns go back to the source owner (source_concerns)",
-      "Two printed symbols have no shared catalog variant and are staged package-only (staged_shared_symbols): the coordinator adds them to the shared catalog, then this package binds the catalog files"
+      "Source concerns go back to the source owner (source_concerns)"
     ],
     "projection": "whole-document-components/v1",
     "publication_eligible": false,

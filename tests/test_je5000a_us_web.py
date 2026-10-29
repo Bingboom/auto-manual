@@ -158,17 +158,20 @@ class Je5000aUsWebTests(unittest.TestCase):
         exceptions = read(PACKAGE / "source_manifest.json")["shared_component_exceptions"]
         self.assertEqual([(row["page_id"], row["kind"]) for row in exceptions], [("troubleshooting", "table")])
 
-    def test_staged_symbols_are_package_only(self):
+    def test_symbols_are_catalog_variants(self):
         manifest = read(PACKAGE / "source_manifest.json")
         recipe = read(PACKAGE / "source/asset_recipe.json")
-        catalog = read(ROOT / "docs/renderers/web/assets/shared/symbols/manifest.json")
-        keys = {row["key"] for row in catalog["assets"]}
-        staged = {row["key"]: row for row in manifest["staged_shared_symbols"]}
-        for glyph in recipe["inline_glyphs"]:
-            self.assertEqual(file_sha256(PACKAGE / glyph["path"]), staged[glyph["shared_symbol_key"]]["sha256"])
-        for key, row in staged.items():
-            if key not in keys:
-                self.assertFalse((ROOT / "docs/renderers/web/assets/shared/symbols" / row["path"]).exists(), key)
+        catalog = {row["key"]: row for row in
+                   read(ROOT / "docs/renderers/web/assets/shared/symbols/manifest.json")["assets"]}
+        self.assertEqual(manifest["staged_shared_symbols"], [])
+        admission = manifest["symbol_asset_admission"]["locales"]["en"]
+        self.assertEqual(len(admission), 8)
+        for row in admission:
+            self.assertIn(row["shared_symbol_key"], catalog)
+            self.assertEqual(row["asset_sha256"], catalog[row["shared_symbol_key"]]["sha256"])
+        for glyph in [*recipe["symbols"], *recipe["inline_glyphs"]]:
+            self.assertFalse(glyph.get("staged", False), glyph["path"])
+            self.assertEqual(file_sha256(PACKAGE / glyph["path"]), catalog[glyph["shared_symbol_key"]]["sha256"])
         for row in manifest["artwork_reuse_comparison"]:
             self.assertEqual(file_sha256(PACKAGE / row["asset_ref"]), row["sha256"])
             self.assertEqual(file_sha256(ROOT / row["from"]), row["sha256"])

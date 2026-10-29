@@ -1338,7 +1338,7 @@
  {
   "slot": "symbol-01",
   "searched": [
-   "docs/renderers/web/assets/shared/symbols/manifest.json (81 variants)"
+   "docs/renderers/web/assets/shared/symbols/manifest.json (86 variants after shared-symbol PR #1640)"
   ],
   "physical_page": 5,
   "glyph_bbox": [
@@ -1362,7 +1362,7 @@
  {
   "slot": "symbol-02",
   "searched": [
-   "docs/renderers/web/assets/shared/symbols/manifest.json (81 variants)"
+   "docs/renderers/web/assets/shared/symbols/manifest.json (86 variants after shared-symbol PR #1640)"
   ],
   "physical_page": 5,
   "glyph_bbox": [
@@ -1386,7 +1386,7 @@
  {
   "slot": "symbol-03",
   "searched": [
-   "docs/renderers/web/assets/shared/symbols/manifest.json (81 variants)"
+   "docs/renderers/web/assets/shared/symbols/manifest.json (86 variants after shared-symbol PR #1640)"
   ],
   "physical_page": 5,
   "glyph_bbox": [
@@ -1414,7 +1414,7 @@
  {
   "slot": "symbol-04",
   "searched": [
-   "docs/renderers/web/assets/shared/symbols/manifest.json (81 variants)"
+   "docs/renderers/web/assets/shared/symbols/manifest.json (86 variants after shared-symbol PR #1640)"
   ],
   "physical_page": 5,
   "glyph_bbox": [
@@ -1439,7 +1439,7 @@
  {
   "slot": "symbol-05",
   "searched": [
-   "docs/renderers/web/assets/shared/symbols/manifest.json (81 variants)"
+   "docs/renderers/web/assets/shared/symbols/manifest.json (86 variants after shared-symbol PR #1640)"
   ],
   "physical_page": 5,
   "glyph_bbox": [
@@ -1468,7 +1468,7 @@
  {
   "slot": "symbol-06",
   "searched": [
-   "docs/renderers/web/assets/shared/symbols/manifest.json (81 variants)"
+   "docs/renderers/web/assets/shared/symbols/manifest.json (86 variants after shared-symbol PR #1640)"
   ],
   "physical_page": 5,
   "glyph_bbox": [
@@ -1486,16 +1486,17 @@
    49
   ],
   "final_path": "assets/symbol-06.svg",
-  "sha256": "bf9d909ffa39319a475489a9ba272f4add0d43ec31b00388adc6f5dc0a423e9f",
+  "sha256": "12b83698e0dcfe0cad432332375f80a747058724c29ef679b6d9608e94f55eaa",
   "background": "transparent",
-  "decision": "staged native variant (package only; shared catalog untouched)",
+  "decision": "reuse shared catalog variant byte-identical",
   "candidate": "no-open-flame/fire-match-prohibited-dark-804ebe78",
-  "reason": "no catalog variant within the fixed 2% (closest no-open-flame/fire-match-prohibited and no-open-flame/fire-match-prohibited-3e3a39, 0.0253); the native PDF paths are proposed for the shared catalog; package-only until the coordinator's shared PR"
+  "identity_check": "passes the fixed 2% symbol admission (source_manifest.json:symbol_asset_admission)",
+  "reason": "no earlier variant passed 2% (closest no-open-flame/fire-match-prohibited 0.0253); added from this PDF's native paths by shared-symbol PR #1640"
  },
  {
   "slot": "symbol-07",
   "searched": [
-   "docs/renderers/web/assets/shared/symbols/manifest.json (81 variants)"
+   "docs/renderers/web/assets/shared/symbols/manifest.json (86 variants after shared-symbol PR #1640)"
   ],
   "physical_page": 5,
   "glyph_bbox": [
@@ -1520,7 +1521,7 @@
  {
   "slot": "symbol-08",
   "searched": [
-   "docs/renderers/web/assets/shared/symbols/manifest.json (81 variants)"
+   "docs/renderers/web/assets/shared/symbols/manifest.json (86 variants after shared-symbol PR #1640)"
   ],
   "physical_page": 5,
   "glyph_bbox": [
@@ -1544,11 +1545,12 @@
  {
   "slot": "ingestion-hazard",
   "searched": [
-   "docs/renderers/web/assets/shared/symbols/manifest.json (81 variants)"
+   "docs/renderers/web/assets/shared/symbols/manifest.json (86 variants after shared-symbol PR #1640)"
   ],
-  "decision": "staged native variant (package only; shared catalog untouched)",
+  "decision": "reuse shared catalog variant byte-identical",
   "candidate": "ingestion-hazard/coin-battery-triangle-dark-804ebe78",
-  "reason": "inline INGESTION HAZARD notice glyph (not a symbol-table row); no catalog variant exists (closest read_manual/je2000e-eu-nl-batch1465-native, 0.2263); the native PDF paths are proposed for the shared catalog; package-only until the coordinator's shared PR",
+  "reason": "no earlier variant (closest unrelated glyph 0.2263); added from this PDF's native paths by shared-symbol PR #1640",
+  "identity_check": "fixed 2% comparison with the native paths on pages 22, 24 and 25 (source_manifest.json:artwork_reuse_comparison)",
   "physical_page": 22,
   "glyph_bbox": [
    30.2,
@@ -1564,7 +1566,7 @@
    7
   ],
   "final_path": "assets/ingestion-hazard.svg",
-  "sha256": "6f84be6ae21867726a62702e004a2031d2328bbba15e49e107d1733463925297",
+  "sha256": "d86fd21db18dc4bc9aa9f898ea7b29dc2d37fd6390ccb46443b7b67345473eaa",
   "background": "transparent; the same paths print on pages 22, 24 and 25"
  }
 ]

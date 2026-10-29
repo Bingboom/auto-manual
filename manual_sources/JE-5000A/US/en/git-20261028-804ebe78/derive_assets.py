@@ -15,11 +15,14 @@ no page or cell backdrop. Reused files are copied byte-identically after a hash
 check, and each is bound to its printed glyph by identical vector path data
 (``source_manifest.json:artwork_reuse_comparison``).
 
-Symbols reuse a shared catalog variant that passes the fixed 2% comparison. A
-printed symbol with no passing variant is ``staged``: its native paths are the
-package asset and ``source_manifest.json:staged_shared_symbols`` holds the
-proposed catalog row. ``rebuild.py`` admits it against that staged row until
-the shared catalog carries it. This script never writes the shared catalog;
+Symbols and the inline INGESTION HAZARD glyph reuse a shared catalog variant
+byte-identically after the fixed 2% comparison with the native paths (all
+eight table symbols and the glyph are catalog files; the Open Flame symbol
+and the glyph entered the catalog through the shared-symbol PR #1640 from this
+PDF). A printed symbol with no passing variant would be ``staged``: its native
+paths become the package asset and ``source_manifest.json:staged_shared_symbols``
+holds the proposed catalog row, which ``rebuild.py`` admits until the shared
+catalog carries it. This script never writes the shared catalog;
 ``--proposed-dir`` writes each proposed row and SVG for the coordinator's
 shared-symbol PR. The symbol admission rows of ``source_manifest.json`` are
 written from the same recipe and the reviewed transcription.
@@ -221,15 +224,26 @@ def derive(proposed_dir: Path | None = None) -> tuple[dict, list[dict], list[dic
             native, indices = native_svg(doc[glyph["physical_page"] - 1], glyph["glyph_bbox"])
             if indices != glyph["drawing_indices"]:
                 raise ValueError("inline glyph drawing selection changed: " + glyph["path"])
-            data = prune_unused_definitions(native)
+            if glyph.get("staged"):
+                data = prune_unused_definitions(native)
+                stage(glyph, data)
+            else:
+                data = (SHARED_SYMBOLS / glyph["shared_path"]).read_bytes()
+                if catalog[glyph["shared_symbol_key"]]["sha256"] != sha256(data):
+                    raise ValueError("shared inline glyph changed: " + glyph["shared_path"])
+            checks = [{"physical_page": glyph["physical_page"], **compare_symbol(data, ".svg", native)}]
             for other in glyph.get("also_printed", []):
                 again, again_indices = native_svg(doc[other["physical_page"] - 1], other["glyph_bbox"])
                 if again_indices != other["drawing_indices"]:
                     raise ValueError("inline glyph drawing selection changed on page %d" % other["physical_page"])
-                compare_symbol(data, ".svg", again)
+                checks.append({"physical_page": other["physical_page"], **compare_symbol(data, ".svg", again)})
             if not glyph.get("staged"):
-                raise ValueError("an inline glyph is either a catalog file or staged")
-            stage(glyph, data)
+                reuse.append({"asset_ref": glyph["path"],
+                              "from": "docs/renderers/web/assets/shared/symbols/" + glyph["shared_path"],
+                              "sha256": sha256(data), "physical_page": glyph["physical_page"],
+                              "glyph_bbox": glyph["glyph_bbox"], "drawing_indices": indices,
+                              "max_mean_channel_error": max(c["max_mean_channel_error"] for c in checks),
+                              "printed_instances": checks})
             (PACKAGE / glyph["path"]).write_bytes(data)
         for symbol in recipe["symbols"]:
             page = doc[symbol["physical_page"] - 1]

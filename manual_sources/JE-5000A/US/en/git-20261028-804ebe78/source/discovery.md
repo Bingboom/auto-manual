@@ -28,7 +28,7 @@ Recorded before extraction, per the Web artwork reuse order
 | `data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/assets` (same model, JP, shared reference edition) | 24 LCD icons, buttons, every panel, LCD map, in-box and App art |
 | `data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets` (HomePower 5000 Plus, same Explorer unit, English) | 26 LCD icons, buttons (incl. `button-dc-bottom.svg`), overview/operation/charging/App/package art |
 | `manual_sources/JE-1500D/US/en/git-20261027-772c3698`, `manual_sources/JE-1000D/US/en/git-20261027-10d15090` | same-generation US/en idiom, buttons, LCD icons |
-| `docs/renderers/web/assets/shared/symbols/manifest.json` (81 variants) | the 8 safety symbols, the FCC mark and the INGESTION HAZARD glyph, fixed 2% admission comparison |
+| `docs/renderers/web/assets/shared/symbols/manifest.json` (86 variants, including the two this PDF contributed through PR #1640) | the 8 safety symbols, the FCC mark and the INGESTION HAZARD glyph, fixed 2% admission comparison |
 | `docs/renderers/web/assets/shared/buttons/` | POWER, USB, AC (labels below) and DC for the key-combination table |
 
 LCD icons on this PDF are clip-path fills; MuPDF's SVG renderer does not honour those clips, so the raster
@@ -49,9 +49,9 @@ channel (`source_manifest.json:artwork_reuse_comparison`).
 | in-box cards ①–⑤ | new crops | no US Explorer 5000 Plus card art in the inventory | card art |
 | FCC mark | reuse `fcc/nested-c-native-dark` | passes admission (0.0171) | transparent |
 | 7 safety symbols | reuse shared catalog variants | pass the fixed 2% admission (0.0076–0.0139) | transparent |
-| Non-smoking / Open Flame symbol | staged native variant `no-open-flame/fire-match-prohibited-dark-804ebe78` (package only) | closest `no-open-flame/fire-match-prohibited` 0.0253 fails 2% | transparent |
-| INGESTION HAZARD glyph (p22, p24, p25) | staged native variant `ingestion-hazard/coin-battery-triangle-dark-804ebe78` (package only) | no catalog variant (closest 0.2263) | transparent |
+| Non-smoking / Open Flame symbol | reuse shared `no-open-flame/fire-match-prohibited-dark-804ebe78` byte-identical | no earlier variant passed (closest `no-open-flame/fire-match-prohibited` 0.0253); this PDF's native paths entered the catalog through shared-symbol PR #1640 | transparent |
+| INGESTION HAZARD glyph (p22, p24, p25) | reuse shared `ingestion-hazard/coin-battery-triangle-dark-804ebe78` byte-identical | no earlier variant (closest 0.2263); this PDF's native paths entered the catalog through shared-symbol PR #1640; passes 2% against all three printed instances | transparent |
 
-The shared symbol catalog is not changed by this package; the two staged rows are reported for the
-coordinator's shared-symbol PR. No body text or table is an image: all copy is native HTML from
+This package does not write the shared symbol catalog; the two variants first found missing here were
+added by the coordinator's shared-symbol PR #1640 and are bound like every other catalog file. No body text or table is an image: all copy is native HTML from
 `transcription.json` (figure labels are also in the alt text and IR metadata).

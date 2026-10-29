@@ -578,7 +578,7 @@ EXPLORER_SPEC = [
 
 
 def ingestion(key: str) -> dict:
-    """The INGESTION HAZARD notice with its printed glyph (staged shared symbol)."""
+    """The INGESTION HAZARD notice with its printed glyph (shared catalog variant)."""
     return root(node("paragraph", [node("image", source="assets/ingestion-hazard.svg", alt=""), text(" "),
                                    *T.inline(key)]))
 

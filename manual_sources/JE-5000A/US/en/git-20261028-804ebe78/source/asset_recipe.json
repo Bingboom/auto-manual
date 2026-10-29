@@ -1343,8 +1343,7 @@
    "caption_id": "sym.fire",
    "shared_symbol_key": "no-open-flame/fire-match-prohibited-dark-804ebe78",
    "shared_path": "native-v1/no_open_flame_dark_804ebe78.svg",
-   "staged": true,
-   "staged_decision": "no catalog variant within the fixed 2% (closest no-open-flame/fire-match-prohibited and no-open-flame/fire-match-prohibited-3e3a39, 0.0253); the native PDF paths are proposed for the shared catalog; package-only until the coordinator's shared PR"
+   "reuse": true
   },
   {
    "path": "assets/symbol-07.svg",
@@ -1466,8 +1465,7 @@
    ],
    "shared_symbol_key": "ingestion-hazard/coin-battery-triangle-dark-804ebe78",
    "shared_path": "native-v1/ingestion_hazard_dark_804ebe78.svg",
-   "staged": true,
-   "staged_decision": "inline INGESTION HAZARD notice glyph (not a symbol-table row); no catalog variant exists (closest read_manual/je2000e-eu-nl-batch1465-native, 0.2263); the native PDF paths are proposed for the shared catalog; package-only until the coordinator's shared PR"
+   "reuse": true
   }
  ]
 }

@@ -2,7 +2,7 @@
 
 Operator instruction, 2026-10-28: 「继续转 剩下的美规说明书 为单语 网页版 仅选等于Y的 待转」 (发布文档管理 Base). This package is the Jackery Explorer 5000 Plus (JE-5000A) US English manual from that table: record `reczz28SlRGJhXPM`, 子物料编码 16-0102-000447, 项目号 HTE119, SKU 21-0001-000550, 21-0001-000614.
 
-**Status: `candidate-pending-operator-review`.** The IR is not publication-eligible and there is no `source/approval.json`. Open before release: operator review against the shared reference edition (JE-5000A JP reviewed), the `source_manifest.json:source_concerns` for the source owner, and two printed symbols that have no shared catalog variant and are staged package-only (`staged_shared_symbols`) until the shared-symbol PR adds them. The package is not registered in `data/frozen_package_registry.json` until approval.
+**Status: `candidate-pending-operator-review`.** The IR is not publication-eligible and there is no `source/approval.json`. Open before release: operator review against the shared reference edition (JE-5000A JP reviewed) and the `source_manifest.json:source_concerns` for the source owner. The package is not registered in `data/frozen_package_registry.json` until approval.
 
 ## Source authority
 
@@ -17,9 +17,9 @@ The Web body is physical pages 2 and 4–26 (IMPORTANT and printed 01–23), inc
 
 ## Artwork
 
-`source/discovery.md` and `source/asset_decisions.json` record the inventory and every reuse/extract decision. 22 LCD icons are the JE-5000A JP SVGs and two are JHP-5000C SVGs, byte-identical and bound to this PDF by identical vector path data (`artwork_reuse_comparison`); the DC button is the JHP-5000C SVG on the same evidence. Seven safety symbols and the FCC mark are shared catalog files that pass the fixed 2% admission. Two LCD icons and the POWER/USB/AC buttons are the original PDF vector paths. Panels are complete 3× renders; grey bubbles, pills and sentences inside them are removed (text and vector objects deleted, nothing painted over) and set as native text.
+`source/discovery.md` and `source/asset_decisions.json` record the inventory and every reuse/extract decision. 22 LCD icons are the JE-5000A JP SVGs and two are JHP-5000C SVGs, byte-identical and bound to this PDF by identical vector path data (`artwork_reuse_comparison`); the DC button is the JHP-5000C SVG on the same evidence. All eight safety symbols, the INGESTION HAZARD glyph and the FCC mark are shared catalog files that pass the fixed 2% comparison (symbol admission 8/8, no staged rows). Two LCD icons and the POWER/USB/AC buttons are the original PDF vector paths. Panels are complete 3× renders; grey bubbles, pills and sentences inside them are removed (text and vector objects deleted, nothing painted over) and set as native text.
 
-**Staged symbols (package only, shared catalog untouched).** The Non-smoking / Open Flame symbol (p5, closest `no-open-flame/fire-match-prohibited` 0.0253) and the INGESTION HAZARD glyph (p22/p24/p25, no catalog variant) are the native PDF paths, listed with their proposed catalog rows in `staged_shared_symbols`. `rebuild.py` admits them against those rows; after the shared PR, bind the catalog files instead.
+**Symbols added from this PDF.** No earlier catalog variant matched the Non-smoking / Open Flame symbol (p5, closest `no-open-flame/fire-match-prohibited` 0.0253) or the INGESTION HAZARD glyph (p22/p24/p25). Their native PDF paths entered the shared catalog through shared-symbol PR #1640 as `no-open-flame/fire-match-prohibited-dark-804ebe78` and `ingestion-hazard/coin-battery-triangle-dark-804ebe78`; this package reuses those catalog files byte-identically.
 
 ## Rebuild
 

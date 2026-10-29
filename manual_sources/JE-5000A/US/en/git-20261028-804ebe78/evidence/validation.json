@@ -1,15 +1,16 @@
 {
   "schema_version": "je5000a-us-candidate-validation/v1",
-  "date": "2026-10-28",
-  "environment": "Python 3 system site-packages, Pandoc as installed (CI pins 3.9.0.2), ruff, Playwright Chromium (Node 22)",
+  "date": "2026-10-29",
+  "environment": "Python 3 system site-packages, Pandoc as installed (CI pins 3.9.0.2), ruff, Playwright Chromium (Node 22); branch merged with origin/main at 0c9a6dd (shared-symbol PR #1640)",
   "checks": [
     {"command": "python3 -m ruff check manual_sources/JE-5000A/US/en/git-20261028-804ebe78 tests/test_je5000a_us_web.py", "result": "pass", "log": "ruff.log"},
-    {"command": "python3 manual_sources/JE-5000A/US/en/git-20261028-804ebe78/rebuild.py --output <tmp>", "result": "pass: 14 chapters; prepared-document shared-style gate with 1 declared plain table (troubleshooting); symbol admission 8/8 (7 catalog variants 0.0076-0.0139, 1 staged native variant 0.0); staged inline INGESTION HAZARD glyph bound to its proposed row"},
+    {"command": "python3 manual_sources/JE-5000A/US/en/git-20261028-804ebe78/rebuild.py --output <tmp>", "result": "pass: 14 chapters; prepared-document shared-style gate with 1 declared plain table (troubleshooting); shared symbol admission 8/8 against catalog variants (0.0-0.0139), no staged rows; INGESTION HAZARD glyph is the catalog variant (0.0/0.012/0.0067 on pages 22/24/25)"},
     {"command": "python3 -m sphinx -n -W --keep-going -b html web/en <html>", "result": "pass", "log": "strict-sphinx.log"},
     {"command": "python3 -m unittest tests.test_je5000a_us_web tests.test_prepared_document_shared_styles", "result": "pass: 22 tests OK", "log": "target-tests.log"},
-    {"command": "python3 -m tools.check_maintainability_guardrails", "result": "fail only on [frozen-packages] NEW for this unregistered candidate (and the sibling candidates JE-2000D, JE-2000F, JE-3000B); registration follows approval, data/frozen_package_registry.json not touched", "log": "maintainability.log"},
+    {"command": "python3 -m tools.check_maintainability_guardrails", "result": "fail only on [frozen-packages] NEW for the 4 unregistered candidates (JE-2000D, JE-2000F, JE-3000B, JE-5000A); 0 new drift; registration follows approval", "log": "maintainability.log"},
+    {"command": "python3 -m tools.web.frozen_package_registry check", "result": "same 4 NEW, nothing else", "log": "frozen-registry-check.log"},
     {"command": "browser 1280 / 390 full page", "result": "81 images, 0 broken, document scrollWidth == viewport at both widths; overview panels, LCD map and the STS package panel pan inside their figure on phones; LCD, key-combination and troubleshooting tables scroll inside their containers", "files": ["browser-1280.png", "browser-390.png", "browser-1280.json", "browser-390.json"]}
   ],
   "not_validated": "full python3 -m unittest (coordinator), refresh_manifest.py frozen / seal_frozen_web_evidence (after approval), RTD deployment and production route JE-5000A/US/en/md",
-  "pending_operator_decisions": ["candidate review at 1280/390 beside the JE-5000A JP reviewed edition", "source_concerns", "staged shared symbols no-open-flame/fire-match-prohibited-dark-804ebe78 and ingestion-hazard/coin-battery-triangle-dark-804ebe78"]
+  "pending_operator_decisions": ["candidate review at 1280/390 beside the JE-5000A JP reviewed edition", "source_concerns"]
 }
