@@ -87,8 +87,8 @@
     "en": "web/en"
   },
   "source_authority": "operator-designated English PDF from the 发布文档管理 Base row (read-only download); original English governs all copy. Operator instruction: 「继续转 剩下的美规说明书 为单语 网页版 仅选等于Y的 待转」 (封面和目录不上网页; 版面以 PDF 为准; 不改任何英文原文).",
-  "publication_status": "review-candidate-no-release-authorization",
-  "publication_eligible": false,
+  "publication_status": "operator-approved-git-only-release",
+  "publication_eligible": true,
   "pending_source_review": [],
   "language_scope": "single",
   "live_bitable_dependency": false,
@@ -1563,8 +1563,8 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 3904,
-      "sha256": "003beb9426124169000a35e444e4ecef690bb56cae8f6b671f2f897e9d36de9c"
+      "size": 4029,
+      "sha256": "534d11f3c90ba58d08e42fb0a21b5cb90a833b4517416d29318653241336e139"
     },
     {
       "path": "assets/adjustable-strap.png",
@@ -1750,6 +1750,11 @@
       "path": "rebuild.py",
       "size": 8197,
       "sha256": "4892fcb21e7d2647d83466831c97409759f9384002f06f8e1ccfe3b625eb9d6b"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 8370,
+      "sha256": "ed5c7cfd874cc0ba0c52bac288a5be8357cf5a7bc61ca5ec360c02435ecfd1f2"
     },
     {
       "path": "source/en/content.json",
@@ -1988,8 +1993,8 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 306075,
-      "sha256": "8ae4a5149592299265b2189839c69c8db77e221e5fe6b6c655eb056c0e2619a8"
+      "size": 315345,
+      "sha256": "93d26ae9c5ce165243475ed9132ef88a2dbc2cc0042efbd50ba07cd89df633d0"
     },
     {
       "path": "web/en/manual_je300d_us_en.md",

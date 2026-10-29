@@ -1,13 +1,11 @@
-# JE-600A / US / English — Git-only Web candidate
+# JE-600A / US / English — Git-only Web release
 
 Operator instruction, 2026-10-28: 「继续转 剩下的美规说明书 为单语 网页版 仅选等于Y的 待转」 (发布文档管理 Base,
 「是否要转网页文档」=Y and 「是否已转网页版」 unticked). This package converts the English single-language manual of
 the Jackery Explorer 600 (model JE-600A, V2) from the row `reczz28SlRGJjY3F` (material 38-0001-000923, project
 HTE133). Route `JE-600A/US/en/md`, `legacy_default` (no Web edition exists for this model).
 
-**Status: `review-candidate-no-release-authorization`.** No `source/approval.json`; the IR is not
-publication-eligible. Approval is written only after the operator accepts the renders and says 「上线提交发布」.
-Review points: [`audit/review.zh.md`](audit/review.zh.md).
+**Status: `operator-approved-git-only-release`.** On 2026-10-29 the operator confirmed 「上线提交发布：JE-300D、JE-500A、JE-600A、JE-1500C」 in the PR #1639 session after reviewing the 1280/390 renders beside the shared reference edition. `source/approval.json` binds that acceptance to these exact source inputs and the IR is publication-eligible. Merge needs a separate operator authorization. Review points are in [`audit/review.zh.md`](audit/review.zh.md).
 
 ## Source authority
 
