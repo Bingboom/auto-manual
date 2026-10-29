@@ -473,8 +473,8 @@
   },
   {
    "path": "assets/symbol-07.svg",
-   "shared_symbol_key": "li-ion/recycle-li-ion-native-dark",
-   "shared_path": "native-v1/symbol_li_ion_dark.svg",
+   "shared_symbol_key": "li-ion/recycle-li-ion-label-dark-cb256e64",
+   "shared_path": "native-v1/li_ion_label_dark_cb256e64.svg",
    "physical_page": 5,
    "glyph_bbox": [
     201.89,
@@ -488,8 +488,7 @@
     464.95,
     336.06,
     493.2
-   ],
-   "pending_shared_variant": "the closest catalog variant li-ion/recycle-li-ion-native-dark measures 0.0233 against this glyph (over the fixed 0.02); a shared variant for it is requested from the coordination window and this row switches to that key when it lands"
+   ]
   }
  ],
  "reused": [

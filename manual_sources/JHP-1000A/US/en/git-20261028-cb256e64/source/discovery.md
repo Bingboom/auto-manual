@@ -43,6 +43,6 @@ Recorded before extraction, per the Web artwork reuse order
 | POWER, DC/USB, LIGHT buttons | reuse `shared/buttons/power.svg`, `dc_usb.svg`, `led.svg` | 0.012 / 0.011 / 0.013 mean error | transparent |
 | AC1 button | native vector extraction | shared `ac.svg` prints 「AC」, this button 「AC1」 | transparent |
 | six safety symbols | reuse existing shared variants byte-identical | pass the fixed 2% admission; no catalog file added | transparent |
-| Li-ion symbol | **pending** a new shared variant | closest variants `li-ion/recycle-li-ion-native-dark` 0.0233 and `li-ion/recycle-li-ion-label-hte162` 0.0246 exceed 2%; binding sent to the coordination window, no catalog file added here | transparent |
+| Li-ion symbol | reuse shared `li-ion/recycle-li-ion-label-dark-cb256e64` byte-identical | closest earlier variants `li-ion/recycle-li-ion-native-dark` 0.0233 and `li-ion/recycle-li-ion-label-hte162` 0.0246 exceeded 2%; the coordination window added this source-bound variant from p5 drawings 2194–2202 in PR #1640; no catalog file added here | transparent |
 
 No body text or table is an image: all copy is native HTML from `transcription.json`.

@@ -115,16 +115,11 @@ class Jhp1000aUsWebTests(unittest.TestCase):
                         "American Red Cross", "140W"):
             self.assertNotIn(foreign, markdown)
 
-    def test_pending_symbol_is_the_only_admission_gap(self):
-        recipe = read(PACKAGE / "source/asset_recipe.json")
-        pending = [s["path"] for s in recipe["symbols"] if s.get("pending_shared_variant")]
-        self.assertEqual(pending, ["assets/symbol-07.svg"])
+    def test_every_symbol_passes_admission(self):
         admission = read(PACKAGE / "source_manifest.json")["symbol_asset_admission"]["locales"]["en"]
+        self.assertEqual(len(admission), 7)
         for row in admission:
-            if row["asset_ref"] in pending:
-                self.assertIn("pending_shared_variant", row)
-            else:
-                self.assertLessEqual(row["max_mean_channel_error"], 0.02)
+            self.assertLessEqual(row["max_mean_channel_error"], 0.02, row["asset_ref"])
 
     def test_assets_and_shared_symbols(self):
         recipe = read(PACKAGE / "source/asset_recipe.json")
@@ -155,12 +150,7 @@ class Jhp1000aUsWebTests(unittest.TestCase):
         rebuild = load("jhp1000a_us_rebuild", PACKAGE / "rebuild.py")
         with tempfile.TemporaryDirectory() as temp:
             output = Path(temp) / "replay"
-            if any(s.get("pending_shared_variant") for s in read(PACKAGE / "source/asset_recipe.json")["symbols"]):
-                # The replay is written before symbol admission, which fails until the shared variant lands.
-                with self.assertRaisesRegex(RuntimeError, "symbol asset admission failed"):
-                    rebuild.rebuild(output)
-            else:
-                rebuild.rebuild(output)
+            rebuild.rebuild(output)
             for name in (MARKDOWN, "manual.ir.json", "_static/source_geometry.css"):
                 self.assertEqual((output / name).read_bytes(), (PACKAGE / "web/en" / name).read_bytes(), name)
 

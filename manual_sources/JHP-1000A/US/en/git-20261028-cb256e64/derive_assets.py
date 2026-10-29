@@ -15,10 +15,7 @@ is clip paths over filled rectangles, so its recipe row names ``selection`` and
 keeps only the glyph paths through ``native_art_svg``. Every other LCD icon and
 button is an existing file, copied after a hash check. Safety symbols are byte
 copies of existing shared catalog variants checked with the fixed symbol
-admission against this PDF; no catalog file is added. A recipe row marked
-``pending_shared_variant`` has no passing catalog variant yet: its admission row
-records that instead of a comparison, and ``rebuild.py`` fails symbol admission
-until the row is bound to a new shared variant. The symbol admission rows of
+admission against this PDF; no catalog file is added. The symbol admission rows of
 ``source_manifest.json`` are written from the same recipe and the reviewed
 transcription.
 """
@@ -104,10 +101,7 @@ def derive() -> dict:
             page = doc[symbol["physical_page"] - 1]
             native, indices = native_svg(page, symbol["glyph_bbox"])
             data = (SHARED_SYMBOLS / symbol["shared_path"]).read_bytes()
-            if symbol.get("pending_shared_variant"):
-                check = {"pending_shared_variant": symbol["pending_shared_variant"]}
-            else:
-                check = compare_symbol(data, Path(symbol["shared_path"]).suffix, native)
+            check = compare_symbol(data, Path(symbol["shared_path"]).suffix, native)
             (PACKAGE / symbol["path"]).write_bytes(data)
             glyph, caption = fitz.Rect(symbol["glyph_bbox"]), fitz.Rect(symbol["caption_bbox"])
             band = glyph | caption

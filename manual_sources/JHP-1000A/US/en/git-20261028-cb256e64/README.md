@@ -2,7 +2,7 @@
 
 Operator instruction, 2026-10-28: 「继续转 剩下的美规说明书 为单语 网页版 仅选等于Y的 待转」 (发布文档管理 table `tbljbjaXaTD6V9PO`, 是否要转网页文档 = Y). This package is the Jackery HomePower 1000 English manual of record `reczz28SlRGJh40c` (子物料编码 16-0102-000344, 项目号 HTE158; SKU list in `source_manifest.json`). Route `JHP-1000A/US/en/md`; there is no earlier US Web edition of this model, so it is the legacy default.
 
-**Status: `candidate-pending-operator-review`.** No approval is written and the IR is not publication-eligible. The Li-ion safety symbol has no shared catalog variant within the fixed 2% admission (closest 0.0233); its binding was handed to the coordination window for a shared-symbol PR, and `rebuild.py` fails symbol admission until `source/asset_recipe.json` binds that row to the new variant.
+**Status: `candidate-pending-operator-review`.** No approval is written and the IR is not publication-eligible. The Li-ion safety symbol had no shared catalog variant within the fixed 2% admission (closest 0.0233); it is bound to the source-bound shared variant `li-ion/recycle-li-ion-label-dark-cb256e64` added by PR #1640, and all seven symbols pass admission.
 
 ## Source authority
 

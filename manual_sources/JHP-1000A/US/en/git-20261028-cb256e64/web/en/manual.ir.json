@@ -124,7 +124,7 @@
       "assets/symbol-04.svg": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33",
       "assets/symbol-05.svg": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f",
       "assets/symbol-06.svg": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899",
-      "assets/symbol-07.svg": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1",
+      "assets/symbol-07.svg": "6a7f4e64c41e47dd7471dac88017c9bef4cbdc1fd308b48bb38b228e3c8612d2",
       "assets/ups.png": "3d71a5e22b806a063e4e56f13fe8dc22ee8ad25fa2dc1e8d28be61b274b6293c"
     },
     "block_count": 147,
@@ -1401,7 +1401,7 @@
         },
         {
           "printed": "two Symbol/Meaning pictogram tables (3 + 4)",
-          "shared": "HB-TABLE-SYMBOL-ICON with source-bound symbol admission (existing shared variants; Li-ion row pending a shared variant)"
+          "shared": "HB-TABLE-SYMBOL-ICON with source-bound symbol admission (existing shared variants; Li-ion row uses the source-bound variant added by PR #1640)"
         },
         {
           "printed": "FCC panel",
@@ -1476,8 +1476,8 @@
         },
         {
           "path": "README.md",
-          "sha256": "2dca60ed523ffcf92033d9c28550b669ec89c11cfdd0297be52385a4e571ccb3",
-          "size": 3654
+          "sha256": "57a590b1b099f05f9b3f370475715d752a0e2c535a67d0c7fe768fc55333c20e",
+          "size": 3620
         },
         {
           "path": "assets/ac-output.png",
@@ -1766,8 +1766,8 @@
         },
         {
           "path": "assets/symbol-07.svg",
-          "sha256": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1",
-          "size": 6007
+          "sha256": "6a7f4e64c41e47dd7471dac88017c9bef4cbdc1fd308b48bb38b228e3c8612d2",
+          "size": 6113
         },
         {
           "path": "assets/ups.png",
@@ -1781,8 +1781,8 @@
         },
         {
           "path": "derive_assets.py",
-          "sha256": "de69b32917080b8a591c948f654f3e48ee77bbfdc724d24485971b4be4138974",
-          "size": 6761
+          "sha256": "080eaf6bcabf89699d6c8d9b2d08fb720c340db228b92b301e7c84f70c8071ec",
+          "size": 6372
         },
         {
           "path": "rebuild.py",
@@ -1796,13 +1796,13 @@
         },
         {
           "path": "source/asset_decisions.json",
-          "sha256": "e7305fb645f60c69b1329c07bd1b79b853a61b8f1e55bb4f8ecee4d7b7e6422a",
-          "size": 43400
+          "sha256": "14aa3cb41351e9cd0d8b95d84f300e19734f74db8214bb383a946c455c13089a",
+          "size": 43463
         },
         {
           "path": "source/asset_recipe.json",
-          "sha256": "f28ccb1293f5ae827582b82fce1c8771d888aed072d4f7b5e16703884285b6d6",
-          "size": 17493
+          "sha256": "42f1d183ec66f6594a5476b462c48ec125b4f5463501dc5013b1f72ec8b534a9",
+          "size": 17243
         },
         {
           "path": "source/differences.md",
@@ -1811,8 +1811,8 @@
         },
         {
           "path": "source/discovery.md",
-          "sha256": "9591a9c14f87745d3dc410629ec654498db202f5cdbfa9674cf75fedde8ea40b",
-          "size": 4181
+          "sha256": "e208a8a3b2da8f45fd4d9b452a09db91494a46a32f2f3050cc29e5d55f669d46",
+          "size": 4287
         },
         {
           "path": "source/en/content.json",
@@ -2178,7 +2178,7 @@
             },
             {
               "asset_ref": "assets/symbol-07.svg",
-              "asset_sha256": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1",
+              "asset_sha256": "6a7f4e64c41e47dd7471dac88017c9bef4cbdc1fd308b48bb38b228e3c8612d2",
               "caption_bbox": [
                 234.69,
                 464.95,
@@ -2204,7 +2204,7 @@
                 220.98,
                 491.83
               ],
-              "pending_shared_variant": "the closest catalog variant li-ion/recycle-li-ion-native-dark measures 0.0233 against this glyph (over the fixed 0.02); a shared variant for it is requested from the coordination window and this row switches to that key when it lands",
+              "max_mean_channel_error": 0.0,
               "physical_page": 5,
               "row_bbox": [
                 200.88999938964844,
@@ -2212,7 +2212,7 @@
                 337.05999755859375,
                 494.20001220703125
               ],
-              "shared_symbol_key": "li-ion/recycle-li-ion-native-dark"
+              "shared_symbol_key": "li-ion/recycle-li-ion-label-dark-cb256e64"
             }
           ]
         },

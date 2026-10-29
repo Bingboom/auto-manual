@@ -96,7 +96,7 @@
     },
     {
       "printed": "two Symbol/Meaning pictogram tables (3 + 4)",
-      "shared": "HB-TABLE-SYMBOL-ICON with source-bound symbol admission (existing shared variants; Li-ion row pending a shared variant)"
+      "shared": "HB-TABLE-SYMBOL-ICON with source-bound symbol admission (existing shared variants; Li-ion row uses the source-bound variant added by PR #1640)"
     },
     {
       "printed": "FCC panel",
@@ -482,7 +482,7 @@
         },
         {
           "asset_ref": "assets/symbol-07.svg",
-          "asset_sha256": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1",
+          "asset_sha256": "6a7f4e64c41e47dd7471dac88017c9bef4cbdc1fd308b48bb38b228e3c8612d2",
           "physical_page": 5,
           "drawing_indices": [
             2194,
@@ -515,8 +515,8 @@
           ],
           "caption_text": "This symbol indicates that a lithium-ion (Li-ion) battery is inside the product and should be disposed of or recycled properly.",
           "caption_sha256": "3ef31ebedf81ece609a9ab39607388e77d1bd2be1facef513e5bb6ce4eb41363",
-          "shared_symbol_key": "li-ion/recycle-li-ion-native-dark",
-          "pending_shared_variant": "the closest catalog variant li-ion/recycle-li-ion-native-dark measures 0.0233 against this glyph (over the fixed 0.02); a shared variant for it is requested from the coordination window and this row switches to that key when it lands"
+          "shared_symbol_key": "li-ion/recycle-li-ion-label-dark-cb256e64",
+          "max_mean_channel_error": 0.0
         }
       ]
     }
@@ -529,8 +529,8 @@
     },
     {
       "path": "README.md",
-      "size": 3654,
-      "sha256": "2dca60ed523ffcf92033d9c28550b669ec89c11cfdd0297be52385a4e571ccb3"
+      "size": 3620,
+      "sha256": "57a590b1b099f05f9b3f370475715d752a0e2c535a67d0c7fe768fc55333c20e"
     },
     {
       "path": "assets/ac-output.png",
@@ -819,8 +819,8 @@
     },
     {
       "path": "assets/symbol-07.svg",
-      "size": 6007,
-      "sha256": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1"
+      "size": 6113,
+      "sha256": "6a7f4e64c41e47dd7471dac88017c9bef4cbdc1fd308b48bb38b228e3c8612d2"
     },
     {
       "path": "assets/ups.png",
@@ -834,58 +834,58 @@
     },
     {
       "path": "derive_assets.py",
-      "size": 6761,
-      "sha256": "de69b32917080b8a591c948f654f3e48ee77bbfdc724d24485971b4be4138974"
+      "size": 6372,
+      "sha256": "080eaf6bcabf89699d6c8d9b2d08fb720c340db228b92b301e7c84f70c8071ec"
     },
     {
       "path": "evidence/browser-1280.json",
-      "size": 245,
-      "sha256": "2bfbac2656e968684fad82ead6c5a4938709e9ec96a6f9f5e0783a4478bcfe18"
+      "size": 258,
+      "sha256": "ab845a6364d19a21ebf443b450c8be80b037b87023f2fc64395ca0d00ea033f9"
     },
     {
       "path": "evidence/browser-1280.png",
-      "size": 827565,
-      "sha256": "519ba72c9a2cebc77271431cd536b3c780acb9710cdd7e0e958e3a050cf44f6d"
+      "size": 4640915,
+      "sha256": "805be887f132d95fcc4430d596a02597a93dcc418ee1a18b0711ef9268d403d4"
     },
     {
       "path": "evidence/browser-390.json",
-      "size": 242,
-      "sha256": "99679efb8cfadd5fa516d9e2027c40f14c5498b2f1645fcd684f7bc50beb46c1"
+      "size": 255,
+      "sha256": "e758cc84d5438ccfa1c7d1f6a34f4319a22f8729ce63661ff27f91537e6afb46"
     },
     {
       "path": "evidence/browser-390.png",
-      "size": 1066384,
-      "sha256": "0fce9e315bc9f973c974d35a7913a12735fb06a4dd4271748f138d0f29a4d318"
+      "size": 3233755,
+      "sha256": "113b8d97367e481ee7d547ea7f5ef9e9bc31c1de4d560dcff8c610535ab7ce91"
     },
     {
       "path": "evidence/maintainability.log",
-      "size": 814,
-      "sha256": "85801439d9c4ca13bc89747d26093279c2d8329b242488052978d8d71cab004c"
+      "size": 627,
+      "sha256": "69d5498e1d6a0f69fd9f82d68ecc6c0d69a2a42b163cde4c45514568eb9f3798"
     },
     {
       "path": "evidence/rebuild.log",
-      "size": 384,
-      "sha256": "a7654f83bebc3aa7d51675be51f27879940c3dcf326e72235415610d4a7d6636"
+      "size": 1516,
+      "sha256": "3df91ad32590a61d5033feb9bd63c686c7851140e35fc8d761395461a33f54a6"
     },
     {
       "path": "evidence/ruff.log",
-      "size": 90,
-      "sha256": "51bea100e98e56fc5a7e3adee5dca09c10db34401e6b71dc4523830d41f04626"
+      "size": 19,
+      "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
     },
     {
       "path": "evidence/strict-sphinx.log",
-      "size": 1258,
-      "sha256": "00d9c094b414af99f18d9adb056ba96f55f67a81e44c53fd166cb031a0d6d0b3"
+      "size": 2272,
+      "sha256": "b05cf8a724c1698e4dda708b48e97a39484d792dc7af4cd410e17ca442701ec3"
     },
     {
       "path": "evidence/target-tests.log",
-      "size": 1993,
-      "sha256": "32296fbaa482babf5a39e43c24d853740558e2f462bd163dd59992343ae2efd1"
+      "size": 2060,
+      "sha256": "b051c41c5d899d2aabcd25f8e6805e3e14a33d9bca8dafd9997eba3a3e267be2"
     },
     {
       "path": "evidence/validation.json",
-      "size": 2028,
-      "sha256": "a75b3cf61fbad78ed77df5ef08c47bdf0a571570747973783cf945880868c867"
+      "size": 1935,
+      "sha256": "b287fd1d28ba695431c05a9abd318f3ea64024e2e92cc3bd3d3a8f6348251062"
     },
     {
       "path": "rebuild.py",
@@ -899,13 +899,13 @@
     },
     {
       "path": "source/asset_decisions.json",
-      "size": 43400,
-      "sha256": "e7305fb645f60c69b1329c07bd1b79b853a61b8f1e55bb4f8ecee4d7b7e6422a"
+      "size": 43463,
+      "sha256": "14aa3cb41351e9cd0d8b95d84f300e19734f74db8214bb383a946c455c13089a"
     },
     {
       "path": "source/asset_recipe.json",
-      "size": 17493,
-      "sha256": "f28ccb1293f5ae827582b82fce1c8771d888aed072d4f7b5e16703884285b6d6"
+      "size": 17243,
+      "sha256": "42f1d183ec66f6594a5476b462c48ec125b4f5463501dc5013b1f72ec8b534a9"
     },
     {
       "path": "source/differences.md",
@@ -914,8 +914,8 @@
     },
     {
       "path": "source/discovery.md",
-      "size": 4181,
-      "sha256": "9591a9c14f87745d3dc410629ec654498db202f5cdbfa9674cf75fedde8ea40b"
+      "size": 4287,
+      "sha256": "e208a8a3b2da8f45fd4d9b452a09db91494a46a32f2f3050cc29e5d55f669d46"
     },
     {
       "path": "source/en/content.json",
@@ -934,8 +934,8 @@
     },
     {
       "path": "source_manifest.json",
-      "size": 30597,
-      "sha256": "7f27a119e451963f4ac79e4b6fb1f2c9295145d4195bf668df14f314ffff8dc5"
+      "size": 30396,
+      "sha256": "fd43f8e52477df772fa467c51ec2f45f021f027114bd89a4a6906ed58a91409c"
     },
     {
       "path": "web/en/_static/source_geometry.css",
@@ -1234,8 +1234,8 @@
     },
     {
       "path": "web/en/assets/symbol-07.svg",
-      "size": 6007,
-      "sha256": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1"
+      "size": 6113,
+      "sha256": "6a7f4e64c41e47dd7471dac88017c9bef4cbdc1fd308b48bb38b228e3c8612d2"
     },
     {
       "path": "web/en/assets/ups.png",
@@ -1254,8 +1254,8 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 471868,
-      "sha256": "2b0e630b7ecccbc1c2faf66d3016f018d2419776970688a2c2de4951bd2d2880"
+      "size": 471667,
+      "sha256": "75f53f1bd767e03dc1eb40796007473b333290ef3fa20a3b06f412d38bebb682"
     },
     {
       "path": "web/en/manual_jhp1000a_us_en.md",

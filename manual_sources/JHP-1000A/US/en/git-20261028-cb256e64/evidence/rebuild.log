@@ -1,4 +1,59 @@
-$ python <package>/rebuild.py --output <fresh dir>
-  File "/home/user/auto-manual/.claude/worktrees/agent-a8efabd21c425ef21/tools/web/symbol_asset_admission.py", line 260, in require_symbol_asset_admission
-    raise RuntimeError('symbol asset admission failed: ' + str(exc)) from exc
-RuntimeError: symbol asset admission failed: symbol glyph/background differs from authoritative PDF
+{
+  "output": "/tmp/claude-0/-home-user-auto-manual/926ce030-2164-5a7a-9e4a-910a112b4978/scratchpad/build-1000a/out",
+  "chapters": 15,
+  "components": {
+    "HB-CALLOUT-STRIP": 18,
+    "HB-SPECIAL-APP": 2,
+    "HB-SPECIAL-FCC": 1,
+    "HB-SPECIAL-INBOX": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE": 15,
+    "HB-TABLE-AUTO-RESUME": 1,
+    "HB-TABLE-KEY-COMBINATIONS": 1,
+    "HB-TABLE-LCD-ICON": 1,
+    "HB-TABLE-LCD-MODE": 1,
+    "HB-TABLE-SPEC": 4,
+    "HB-TABLE-SYMBOL-ICON": 1,
+    "HB-TABLE-SYMBOL-SIGNAL": 1,
+    "HB-TABLE-TROUBLESHOOTING": 1,
+    "HB-WARRANTY-LEAD": 1,
+    "HB-WARRANTY-SECTION": 5,
+    "HB-WARRANTY-YEARS": 1
+  },
+  "symbol_admission": [
+    {
+      "asset_ref": "assets/symbol-01.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.012693
+    },
+    {
+      "asset_ref": "assets/symbol-02.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.01002
+    },
+    {
+      "asset_ref": "assets/symbol-03.png",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.015617
+    },
+    {
+      "asset_ref": "assets/symbol-04.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.011926
+    },
+    {
+      "asset_ref": "assets/symbol-05.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.00937
+    },
+    {
+      "asset_ref": "assets/symbol-06.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.007871
+    },
+    {
+      "asset_ref": "assets/symbol-07.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.0
+    }
+  ]
+}
