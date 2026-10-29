@@ -906,12 +906,12 @@
               },
               {
                 "role": "icons",
-                "asset_ref": "assets/no-open-flame-native-candidate.svg",
+                "asset_ref": "assets/no_open_flame_dark_5c065d11.svg",
                 "locale_policy": "shared"
               },
               {
                 "role": "icons",
-                "asset_ref": "assets/keep-away-from-children-native-candidate.svg",
+                "asset_ref": "assets/keep_away_from_children_dark_5c065d11.svg",
                 "locale_policy": "shared"
               },
               {

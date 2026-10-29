@@ -79,9 +79,7 @@
   "source_authority": "operator-designated English PDF from the 发布文档管理 Base row (read-only download); original English governs all copy. Operator instruction 2026-10-28: 「继续转 剩下的美规说明书 为单语 网页版 仅选等于Y的 待转」 (封面和目录不上网页; 版面以 PDF 为准; 不改任何英文原文).",
   "publication_status": "review-candidate-no-release-authorization",
   "publication_eligible": false,
-  "pending_source_review": [
-    "symbol rows without a shared variant await the operator's decision"
-  ],
+  "pending_source_review": [],
   "language_scope": "single",
   "live_bitable_dependency": false,
   "reference_edition": "manual_sources/JE-500A/EU/en/2.0 (same model, EU English phase2 edition; structure and theme reference only, no EU product facts or 230 V art reused). Layout and artwork-family reference: manual_sources/JE-300C/US/en/git-20261027-a1128b25 (same print family; LCD glyph reuse candidates).",
@@ -380,9 +378,9 @@
           "caption_mode": "outlined-manual-transcription"
         },
         {
-          "asset_ref": "assets/no-open-flame-native-candidate.svg",
-          "asset_sha256": "d604d79c5824f10c86e2e74e39e539b9b0e67414ba9ab3d35e1fff702fd7aeb9",
-          "shared_symbol_key": null,
+          "asset_ref": "assets/no_open_flame_dark_5c065d11.svg",
+          "asset_sha256": "376dda9ce60a47eb10e9e5a3f9b940ffd8f1581b1a7dfd1f726a6279d51de024",
+          "shared_symbol_key": "no-open-flame/fire-match-prohibited-dark-5c065d11",
           "physical_page": 5,
           "drawing_indices": [
             109131,
@@ -415,9 +413,9 @@
           "caption_mode": "outlined-manual-transcription"
         },
         {
-          "asset_ref": "assets/keep-away-from-children-native-candidate.svg",
-          "asset_sha256": "2e2c5586b636eea64e1a77f45caa6a274d716d2bd564c22d72873b9c195d0b2c",
-          "shared_symbol_key": null,
+          "asset_ref": "assets/keep_away_from_children_dark_5c065d11.svg",
+          "asset_sha256": "b7c9f8c42b21e7ae0146c827fe15a0a9ce08b254e7a2a1f09b7998683ce63bd1",
+          "shared_symbol_key": "keep-away-from-children/adult-child-prohibited-dark-5c065d11",
           "physical_page": 5,
           "drawing_indices": [
             109137,
@@ -698,8 +696,18 @@
     },
     {
       "path": "docs/renderers/web/assets/shared/symbols/manifest.json",
-      "size": 73978,
-      "sha256": "2ed591023d4b0636167bb33a7d06c7dd5ae2bc5b537b891a4200f5f12df4d350"
+      "size": 79611,
+      "sha256": "1d23d8ca9e31416b369268c8a727d4c40bff773caf97d457fa1afeae302f1a57"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/keep_away_from_children_dark_5c065d11.svg",
+      "size": 70600,
+      "sha256": "b7c9f8c42b21e7ae0146c827fe15a0a9ce08b254e7a2a1f09b7998683ce63bd1"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/no_open_flame_dark_5c065d11.svg",
+      "size": 69818,
+      "sha256": "376dda9ce60a47eb10e9e5a3f9b940ffd8f1581b1a7dfd1f726a6279d51de024"
     },
     {
       "path": "docs/renderers/web/assets/shared/symbols/native-v1/screwdriver-prohibited-tw-477dfbd7.svg",
@@ -1580,8 +1588,8 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 4402,
-      "sha256": "1ab54c56631dc387d45a99f617e4e3fba325db044baafbb2635b0ecc9b9f1980"
+      "size": 4380,
+      "sha256": "e7e4a43fad6ce452c512d23848e830318ecea6d4b1b4773ca84868f3b42e4d3a"
     },
     {
       "path": "assets/ac-output.png",
@@ -1644,9 +1652,9 @@
       "sha256": "78cd3a9612b8af337867c8adde47fa69df1cc52e7c7b4dc8fdfc5a790169da1c"
     },
     {
-      "path": "assets/keep-away-from-children-native-candidate.svg",
-      "size": 70617,
-      "sha256": "2e2c5586b636eea64e1a77f45caa6a274d716d2bd564c22d72873b9c195d0b2c"
+      "path": "assets/keep_away_from_children_dark_5c065d11.svg",
+      "size": 70600,
+      "sha256": "b7c9f8c42b21e7ae0146c827fe15a0a9ce08b254e7a2a1f09b7998683ce63bd1"
     },
     {
       "path": "assets/lcd-ac-power.svg",
@@ -1724,9 +1732,9 @@
       "sha256": "e18330da6be5a97f2c78c1d7145c2581175f519e1db7829fe08c69b279f2349c"
     },
     {
-      "path": "assets/no-open-flame-native-candidate.svg",
-      "size": 69835,
-      "sha256": "d604d79c5824f10c86e2e74e39e539b9b0e67414ba9ab3d35e1fff702fd7aeb9"
+      "path": "assets/no_open_flame_dark_5c065d11.svg",
+      "size": 69818,
+      "sha256": "376dda9ce60a47eb10e9e5a3f9b940ffd8f1581b1a7dfd1f726a6279d51de024"
     },
     {
       "path": "assets/overview-front.png",
@@ -1775,8 +1783,8 @@
     },
     {
       "path": "audit/review.zh.md",
-      "size": 2439,
-      "sha256": "b3f3df752b502ee7b5cb218089d928967064685b552cdae281075dc4b25ddc34"
+      "size": 2493,
+      "sha256": "aa34b9e68f9cc90a99c35b1d42f5a7b1079efab4e1a65f66838c797f234d0a77"
     },
     {
       "path": "original.pdf",
@@ -1790,8 +1798,8 @@
     },
     {
       "path": "source/en/content.json",
-      "size": 198584,
-      "sha256": "d97b140a85c06b8b3abd67d76586f56cabc324c153dc04cbcf73f41ebfe2526c"
+      "size": 198578,
+      "sha256": "7d2268218dbe54c964fefc2dac4e36d6a8c3c37a1f93c9435be9df6984c24334"
     },
     {
       "path": "source/extract_assets.py",
@@ -1830,8 +1838,8 @@
     },
     {
       "path": "source/symbols.json",
-      "size": 15026,
-      "sha256": "4225df0dca22f9bfb4fcb2091b393badc28dc14642a372ff96c9a02a6f476ea9"
+      "size": 15854,
+      "sha256": "f57378bc67cc5745af96516cfbf4343a9c049c8edd74765e0a149066e0309b69"
     },
     {
       "path": "web/en/_static/source_presentation.css",
@@ -1904,9 +1912,9 @@
       "sha256": "78cd3a9612b8af337867c8adde47fa69df1cc52e7c7b4dc8fdfc5a790169da1c"
     },
     {
-      "path": "web/en/assets/keep-away-from-children-native-candidate.svg",
-      "size": 70617,
-      "sha256": "2e2c5586b636eea64e1a77f45caa6a274d716d2bd564c22d72873b9c195d0b2c"
+      "path": "web/en/assets/keep_away_from_children_dark_5c065d11.svg",
+      "size": 70600,
+      "sha256": "b7c9f8c42b21e7ae0146c827fe15a0a9ce08b254e7a2a1f09b7998683ce63bd1"
     },
     {
       "path": "web/en/assets/lcd-ac-power.svg",
@@ -1984,9 +1992,9 @@
       "sha256": "e18330da6be5a97f2c78c1d7145c2581175f519e1db7829fe08c69b279f2349c"
     },
     {
-      "path": "web/en/assets/no-open-flame-native-candidate.svg",
-      "size": 69835,
-      "sha256": "d604d79c5824f10c86e2e74e39e539b9b0e67414ba9ab3d35e1fff702fd7aeb9"
+      "path": "web/en/assets/no_open_flame_dark_5c065d11.svg",
+      "size": 69818,
+      "sha256": "376dda9ce60a47eb10e9e5a3f9b940ffd8f1581b1a7dfd1f726a6279d51de024"
     },
     {
       "path": "web/en/assets/overview-front.png",
@@ -2045,13 +2053,13 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 301554,
-      "sha256": "b0db2991c91150a83326269608f63180804ebb2960df02d0dc386aefddd5fc88"
+      "size": 301530,
+      "sha256": "1173f5e79e3b555d88d99bacb5b536dc930342827e9f48eef941eb279b689c93"
     },
     {
       "path": "web/en/manual_je500a_us_en.md",
-      "size": 46013,
-      "sha256": "090a90b8a46818a696592ba4b3493c825f764a4149d1bd540ad5796fd4d832b0"
+      "size": 46007,
+      "sha256": "2cd6f6aeb9dfc5cbdb5b549ba4006ead4599b191087cadbf2f3cf7b6eb2dbf92"
     }
   ]
 }

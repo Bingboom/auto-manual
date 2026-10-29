@@ -34,9 +34,10 @@ draw 230 V sockets and another product, so none of its art is reused.
 - **Symbols**: 7 rows, each compared with every shared variant of its family by the symbol admission's fixed
   comparison. Five reuse a shared symbol byte for byte (`warning/outline-triangle-tinted`,
   `read-manual/book-information`, `do-not-dismantle/screwdriver-prohibited-tw-477dfbd7`,
-  `li-ion/recycle-li-ion-native-dark`, `weee/crossed-bin-bar`). **No shared variant passes for the no-open-flame
-  and keep-away-from-children rows**: their native paths are written as `*-native-candidate.svg` and wait for the
-  shared-library decision (`pending_source_review`); they are not added to the shared library here.
+  `li-ion/recycle-li-ion-native-dark`, `weee/crossed-bin-bar`). No-open-flame and keep-away-from-children
+  reuse `no-open-flame/fire-match-prohibited-dark-5c065d11` and
+  `keep-away-from-children/adult-child-prohibited-dark-5c065d11` from the shared-symbol PR #1640 (0.41% / 0.37%).
+  All 7 rows reuse shared bytes.
 - **LCD glyphs**: 10 of 13 reuse the JE-300C US Web glyphs (fixed comparison against this print); battery
   percentage and the two temperature glyphs are this print's native vector paths. The FCC mark reuses the shared
   `fcc_mark.svg`.

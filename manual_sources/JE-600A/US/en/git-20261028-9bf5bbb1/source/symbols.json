@@ -243,6 +243,10 @@
     "caption_text": "Keep the product away from fire.",
     "caption_mode": "outlined-manual-transcription",
     "caption_sha256": "8503fd2f7e4c1d137bc4ab1d304261487c1910ef4842590acc28782580afbcc5",
+    "shared_symbol_key": "no-open-flame/fire-match-prohibited-dark-5c065d11",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/no_open_flame_dark_5c065d11.svg",
+    "local_path": "assets/no_open_flame_dark_5c065d11.svg",
+    "decision": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)",
     "candidates": [
       {
         "shared_symbol_key": "no-open-flame/fire-match-prohibited",
@@ -283,12 +287,19 @@
         "shared_symbol_key": "no-open-flame/crossed-fire-je2000f",
         "status": "rejected",
         "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "no-open-flame/fire-match-prohibited-dark-804ebe78",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "no-open-flame/fire-match-prohibited-dark-5c065d11",
+        "status": "passed",
+        "max_mean_channel_error": 0.004052
       }
     ],
-    "shared_symbol_key": null,
-    "local_path": "assets/no-open-flame-native-candidate.svg",
-    "decision": "PENDING operator decision: no shared variant passes; native paths proposed as a new shared variant",
-    "sha256": "c8a56d7a134bc539c41af51548d558f9c6be58f3445b3e5edccd52551d03ad5f"
+    "sha256": "376dda9ce60a47eb10e9e5a3f9b940ffd8f1581b1a7dfd1f726a6279d51de024"
   },
   {
     "language": "en",
@@ -334,6 +345,10 @@
     "caption_text": "Keep away from children.",
     "caption_mode": "outlined-manual-transcription",
     "caption_sha256": "8e403c8792776c842a02d67e69d94bfdab4e0ca2a0d214e5b02adf44fdcea3ce",
+    "shared_symbol_key": "keep-away-from-children/adult-child-prohibited-dark-5c065d11",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/keep_away_from_children_dark_5c065d11.svg",
+    "local_path": "assets/keep_away_from_children_dark_5c065d11.svg",
+    "decision": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)",
     "candidates": [
       {
         "shared_symbol_key": "keep-away-from-children/adult-child-prohibited",
@@ -369,12 +384,14 @@
         "shared_symbol_key": "keep_away_from_children/je2000e-eu-nl-batch1465-native",
         "status": "rejected",
         "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "keep-away-from-children/adult-child-prohibited-dark-5c065d11",
+        "status": "passed",
+        "max_mean_channel_error": 0.003738
       }
     ],
-    "shared_symbol_key": null,
-    "local_path": "assets/keep-away-from-children-native-candidate.svg",
-    "decision": "PENDING operator decision: no shared variant passes; native paths proposed as a new shared variant",
-    "sha256": "c9f76b72ccf2d8297e660cee345e617c9b43ab5b9e5a51739dfa80319b1dca79"
+    "sha256": "b7c9f8c42b21e7ae0146c827fe15a0a9ce08b254e7a2a1f09b7998683ce63bd1"
   },
   {
     "language": "en",

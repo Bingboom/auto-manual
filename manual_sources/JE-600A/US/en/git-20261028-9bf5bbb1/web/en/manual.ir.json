@@ -3,8 +3,8 @@
     "assets/symbol_warning_triangle.svg",
     "assets/symbol_read_manual.svg",
     "assets/screwdriver-prohibited-tw-477dfbd7.svg",
-    "assets/no-open-flame-native-candidate.svg",
-    "assets/keep-away-from-children-native-candidate.svg",
+    "assets/no_open_flame_dark_5c065d11.svg",
+    "assets/keep_away_from_children_dark_5c065d11.svg",
     "assets/symbol_li_ion_dark.svg",
     "assets/symbol_weee.png",
     "assets/fcc_mark.svg",
@@ -40,8 +40,8 @@
     "assets/contact-qr.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "f32d21612d69377ea132ca46efa53593d857585c947f76a1e7ee9572a28de398",
-  "content_sha256": "7980dc14fbe2ddbf99fed82a90c4b529771dae8f099a9c621e804e92249f53e5",
+  "bundle_sha256": "ac16f713ddfbe05c3c92807170149185160d7280dc1b7053356c55f020f802d7",
+  "content_sha256": "74773a2e12c3062c7f859ddfdfcbd8f23a91815b7d3166a1d0f0f13db52742c6",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -58,7 +58,7 @@
       "assets/inbox-ac-cable.png": "cd9656e6259d069790abe4e862c4d38963708d804ff2d9e02c424b4d46dc8e58",
       "assets/inbox-unit.png": "9c1041ff32e91213296709eb2f6796305cc5c6a2a52cc20c802df403c8bf0ff7",
       "assets/inbox-user-manual.png": "029b963981e36029f1f446a095321d1efe407c32365a0937f79b324298750058",
-      "assets/keep-away-from-children-native-candidate.svg": "c9f76b72ccf2d8297e660cee345e617c9b43ab5b9e5a51739dfa80319b1dca79",
+      "assets/keep_away_from_children_dark_5c065d11.svg": "b7c9f8c42b21e7ae0146c827fe15a0a9ce08b254e7a2a1f09b7998683ce63bd1",
       "assets/lcd-ac-power.svg": "ae74b5535c88c6f612bfc8fe4f187bb3b106b6b039ac98a809112b6584d1a7c0",
       "assets/lcd-ac-wall-charging.svg": "8fe4024f27f2963349cc4255a2673d88fac8a7565944ec62b5bc52337bdc284b",
       "assets/lcd-battery-percentage.svg": "0aac75ca9340b61dc83586b478a0bde09d182ea9f9e2c032b6cfc08478d192ad",
@@ -74,7 +74,7 @@
       "assets/lcd-solar-charging.svg": "c4e8ecbbc808bf7d20dd2147e9b066b2bb29fb6bb39cc93c7b8011e7db90ffee",
       "assets/lcd-ups.svg": "0163808fd1fe991b44267a5efb30ffe510796372cdc2a87e1b03053d08ea1a66",
       "assets/led-light.png": "bdc2764451f91556cfdaa29f3bbb2afd6a2cd6a32a10577a7730c4d313bbbc6d",
-      "assets/no-open-flame-native-candidate.svg": "c8a56d7a134bc539c41af51548d558f9c6be58f3445b3e5edccd52551d03ad5f",
+      "assets/no_open_flame_dark_5c065d11.svg": "376dda9ce60a47eb10e9e5a3f9b940ffd8f1581b1a7dfd1f726a6279d51de024",
       "assets/overview-front.png": "36d56c51bbaa4f8cd0038efee016a58865500bb0e30dfb07e06ab0fb3186b016",
       "assets/overview-right.png": "50d4596ecc126b8d82c27239627f622e2f9a5cc9070267c3b249fe4cdc3ae077",
       "assets/power-on-off.png": "3aef3e9fbe6daebe889a30f58ce17a8381debb447b606088ecdeae4d4809eca6",
@@ -3010,13 +3010,13 @@
             "assets/symbol_warning_triangle.svg",
             "assets/symbol_read_manual.svg",
             "assets/screwdriver-prohibited-tw-477dfbd7.svg",
-            "assets/no-open-flame-native-candidate.svg",
-            "assets/keep-away-from-children-native-candidate.svg",
+            "assets/no_open_flame_dark_5c065d11.svg",
+            "assets/keep_away_from_children_dark_5c065d11.svg",
             "assets/symbol_li_ion_dark.svg",
             "assets/symbol_weee.png"
           ],
           "block_id": "symbols:block-0003",
-          "content_sha256": "32044d8b2290ca737958511eab4ce51e9fa9480666fcb54f0e0c45ba7b4fe0b1",
+          "content_sha256": "cd856a443a220f6828c99d69102bfd5743f13a8441504d0d798f91f538f394e6",
           "kind": "flow",
           "payload": {
             "component_spec": {
@@ -3037,12 +3037,12 @@
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/no-open-flame-native-candidate.svg",
+                  "asset_ref": "assets/no_open_flame_dark_5c065d11.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/keep-away-from-children-native-candidate.svg",
+                  "asset_ref": "assets/keep_away_from_children_dark_5c065d11.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 },
@@ -3274,7 +3274,7 @@
       "skipped_raw": 0,
       "source_path": "source/en/content.json#symbols",
       "source_ref": "transcribed-pdf/symbols",
-      "source_sha256": "6d8536fb90ba2e7e7991d149e407d758cd0bd04be25f82cc7a571a58d4b7e652"
+      "source_sha256": "5a42b89d220eacc5f9d827a16dfe26cc1c13149eb14537bb297645cfc054e332"
     },
     {
       "blocks": [

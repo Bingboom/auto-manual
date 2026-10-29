@@ -9,7 +9,7 @@
 2. 操作、UPS 与充电面板按印刷面板整图裁取（只去掉面板外框），图内文字（On/Off/Press once、Prerequisite、Default standby time 气泡、UPS 接线气泡、车充 ※ 提示等）保留在图中，网页 alt 读出；面板内的灰色说明胶囊（* 注释、节能模式导语、LED 导语）改为图旁普通段落。
 3. 两张表没有共用组件可承载，作为已声明原因的普通表格：LCD SCREEN ON/OFF（本稿表旁没有插图，共用 LCD-MODE 组件要求插图）、TROUBLESHOOTING（印刷为 错误码/名称/描述 三列，共用故障表为两列）。
 4. FCC 栏本稿没有「This device complies with part 15…」开头声明，网页照印刷从 NOTE 开始（已记入 source_concerns 请原稿负责人确认）。
-5. 符号表 7 个符号中 5 个字节复用共用图库；**「远离火源」「远离儿童」两行没有共用变体通过 2% 比对**，暂用本稿原生矢量候选（`*-native-candidate.svg`），等待共用图库合并决定。
+5. 符号表 7 个符号全部字节复用共用图库；「远离火源」「远离儿童」两行改用共用符号 PR #1640 新增的 no-open-flame/fire-match-prohibited-dark-5c065d11 与 keep-away-from-children/adult-child-prohibited-dark-5c065d11（固定比对误差 0.41% / 0.37%）。
 6. LCD 图标 13 个中 10 个与 JE-300C US 版同图字节复用；电量百分比与高/低温图标用本稿原生矢量。FCC 标志复用共用 fcc_mark.svg。
 
 原稿保留原样、待原稿负责人确认的地方见 `source_manifest.json:source_concerns`（共 18 条），重点：

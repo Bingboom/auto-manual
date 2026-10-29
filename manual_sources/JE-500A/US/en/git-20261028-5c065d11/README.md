@@ -37,10 +37,10 @@ reference shown beside this one) and the released JE-300C US English package (sa
 
 - **Symbols** (7 rows, fixed 2% comparison against every shared variant of the family): warning,
   read-manual, do-not-dismantle (`screwdriver-prohibited-tw-477dfbd7`), Li-ion (`recycle-li-ion-native-dark`)
-  and WEEE reuse shared bytes. **No shared variant passes for no-open-flame (closest 2.52%) and
-  keep-away-from-children (closest 2.33%)**; their native paths are kept as
-  `*-native-candidate.svg` and the release admission refuses them until the shared library carries a
-  variant (raised with the operator; not added here).
+  and WEEE reuse shared bytes. No-open-flame and keep-away-from-children reuse
+  `no-open-flame/fire-match-prohibited-dark-5c065d11` and
+  `keep-away-from-children/adult-child-prohibited-dark-5c065d11`, added from this print by the shared-symbol
+  PR #1640 (0.40% / 0.37%). All 7 rows reuse shared bytes.
 - **LCD glyphs**: 10 of 13 reuse the JE-300C US glyphs, which pass the fixed comparison against this print;
   battery percentage and high/low temperature are this print's native vector paths. The FCC mark reuses
   the shared `fcc_mark.svg`.
