@@ -854,8 +854,8 @@
     },
     {
       "path": "docs/renderers/web/assets/shared/symbols/manifest.json",
-      "size": 73978,
-      "sha256": "2ed591023d4b0636167bb33a7d06c7dd5ae2bc5b537b891a4200f5f12df4d350"
+      "size": 79611,
+      "sha256": "1d23d8ca9e31416b369268c8a727d4c40bff773caf97d457fa1afeae302f1a57"
     },
     {
       "path": "docs/renderers/web/assets/shared/symbols/native-v1/fcc_mark.svg",
