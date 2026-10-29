@@ -2023,6 +2023,141 @@
         "caption": "Heavy object",
         "decision": "Existing heavy-object variant failed the fixed 2% source comparison (closest person-load-triangle-tinted 2.44%: different figure pose and box); native paths retained, no redraw or cell backdrop"
       }
+    },
+    {
+      "key": "li-ion/recycle-li-ion-label-dark-cb256e64",
+      "path": "native-v1/li_ion_label_dark_cb256e64.svg",
+      "sha256": "6a7f4e64c41e47dd7471dac88017c9bef4cbdc1fd308b48bb38b228e3c8612d2",
+      "status": "source-bound native variant",
+      "provenance": {
+        "source": "manual_sources/JHP-1000A/US/en/git-20261028-cb256e64/JHP-1000A-US-en-V2.pdf (JHP-1000A US English manual, 发布文档管理 record reczz28SlRGJh40c; package lands with PR #1638)",
+        "source_sha256": "cb256e64ddf9a998f4717e3ec2b038b9ef7711572f7d9b752667f1d6e64077c1",
+        "physical_page": 5,
+        "drawing_indices": [
+          2194,
+          2195,
+          2196,
+          2197,
+          2198,
+          2199,
+          2200,
+          2201,
+          2202
+        ],
+        "glyph_bbox": [
+          201.89,
+          470.4,
+          220.98,
+          491.83
+        ],
+        "caption": "Li-ion recycling symbol",
+        "decision": "Existing li-ion variants failed the fixed 2% source comparison (closest recycle-li-ion-native-dark 2.33%, recycle-li-ion-label-hte162 2.46%); native paths retained, no redraw or cell backdrop"
+      }
+    },
+    {
+      "key": "no-open-flame/fire-match-prohibited-dark-804ebe78",
+      "path": "native-v1/no_open_flame_dark_804ebe78.svg",
+      "sha256": "12b83698e0dcfe0cad432332375f80a747058724c29ef679b6d9608e94f55eaa",
+      "status": "source-bound native variant",
+      "provenance": {
+        "source": "manual_sources/JE-5000A/US/en/git-20261028-804ebe78/JE-5000A-US-EN.pdf (JE-5000A US English manual, record reczz28SlRGJhXPM; package lands with PR #1637)",
+        "source_sha256": "804ebe784c84a698800b2c1cc0f4d28ec692057b1600c48fcc3604e27c86f013",
+        "physical_page": 5,
+        "drawing_indices": [
+          44,
+          45,
+          46,
+          47,
+          48,
+          49
+        ],
+        "glyph_bbox": [
+          198.2,
+          258.0,
+          217.9,
+          277.8
+        ],
+        "caption": "Non-smoking or Open Flame Symbol for fire hazards prevention.",
+        "decision": "Existing no-open-flame variants failed the fixed 2% source comparison (closest fire-match-prohibited 2.53%); also differs from the JE-500A/600A flame (>2%); native paths retained, no redraw or cell backdrop"
+      }
+    },
+    {
+      "key": "ingestion-hazard/coin-battery-triangle-dark-804ebe78",
+      "path": "native-v1/ingestion_hazard_dark_804ebe78.svg",
+      "sha256": "d86fd21db18dc4bc9aa9f898ea7b29dc2d37fd6390ccb46443b7b67345473eaa",
+      "status": "source-bound native variant",
+      "provenance": {
+        "source": "manual_sources/JE-5000A/US/en/git-20261028-804ebe78/JE-5000A-US-EN.pdf (JE-5000A US English manual, record reczz28SlRGJhXPM; package lands with PR #1637)",
+        "source_sha256": "804ebe784c84a698800b2c1cc0f4d28ec692057b1600c48fcc3604e27c86f013",
+        "physical_page": 22,
+        "drawing_indices": [
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "glyph_bbox": [
+          30.2,
+          452.8,
+          47.3,
+          473.4
+        ],
+        "caption": "INGESTION HAZARD: This product contains a button cell or coin battery.",
+        "decision": "No ingestion-hazard variant existed (closest unrelated glyph 22.6%); inline warning glyph, identical paths on pp. 24-25; native paths retained, no redraw"
+      }
+    },
+    {
+      "key": "no-open-flame/fire-match-prohibited-dark-5c065d11",
+      "path": "native-v1/no_open_flame_dark_5c065d11.svg",
+      "sha256": "376dda9ce60a47eb10e9e5a3f9b940ffd8f1581b1a7dfd1f726a6279d51de024",
+      "status": "source-bound native variant",
+      "provenance": {
+        "source": "manual_sources/JE-500A/US/en/git-20261028-5c065d11/original.pdf (JE-500A US English manual, record reczz28SlRGJjcks; package lands with the JE-300D/500A/600A/1500C PR)",
+        "source_sha256": "5c065d11c0191e7f9f5ef32ecd39fe0ca620f206c296c4eb6401a4b8215cea68",
+        "physical_page": 5,
+        "drawing_indices": [
+          109131,
+          109132,
+          109133,
+          109134,
+          109135,
+          109136
+        ],
+        "glyph_bbox": [
+          39.0969,
+          351.9624,
+          57.8519,
+          370.7164
+        ],
+        "caption": "Keep the product away from fire.",
+        "decision": "Existing no-open-flame variants failed the fixed 2% source comparison (closest fire-match-prohibited 2.52%); also passes for JE-600A US (0.05%); native paths retained, no redraw or cell backdrop"
+      }
+    },
+    {
+      "key": "keep-away-from-children/adult-child-prohibited-dark-5c065d11",
+      "path": "native-v1/keep_away_from_children_dark_5c065d11.svg",
+      "sha256": "b7c9f8c42b21e7ae0146c827fe15a0a9ce08b254e7a2a1f09b7998683ce63bd1",
+      "status": "source-bound native variant",
+      "provenance": {
+        "source": "manual_sources/JE-500A/US/en/git-20261028-5c065d11/original.pdf (JE-500A US English manual, record reczz28SlRGJjcks; package lands with the JE-300D/500A/600A/1500C PR)",
+        "source_sha256": "5c065d11c0191e7f9f5ef32ecd39fe0ca620f206c296c4eb6401a4b8215cea68",
+        "physical_page": 5,
+        "drawing_indices": [
+          109137,
+          109138,
+          109139,
+          109140
+        ],
+        "glyph_bbox": [
+          39.0981,
+          375.205,
+          57.8521,
+          393.959
+        ],
+        "caption": "Keep away from children.",
+        "decision": "Existing keep-away-from-children variants failed the fixed 2% source comparison (closest adult-child-prohibited 2.33%); also passes for JE-600A US (0.03%); native paths retained, no redraw or cell backdrop"
+      }
     }
   ],
   "withdrawn": [
