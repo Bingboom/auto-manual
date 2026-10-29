@@ -1732,7 +1732,7 @@
       }
     },
     "manual_sources/JHP-1000A/US/en/git-20261028-cb256e64": {
-      "approval": "Operator window task 2026-10-28 「继续转 剩下的美规说明书 为单语 网页版 仅选等于Y的 待转」 (发布文档管理 Base): Git-only US/en single-language Web candidate, source copy verbatim. Candidate only; no merge or publication approval.",
+      "approval": "Operator 「上线提交发布：JHP-1000A、JHP-1000B、JHP-2000A」 2026-10-29 in the engineering session after the 1280/390 renders beside the shared reference edition (PR #1638): Git-only US/en single-language Web release, source copy verbatim; approval bound in source/approval.json",
       "registered": "2026-10-28",
       "known_drift": {}
     },
@@ -1742,7 +1742,7 @@
       "known_drift": {}
     },
     "manual_sources/JHP-1000B/US/en/git-20261028-e546301b": {
-      "approval": "Operator window task 2026-10-28 「继续转 剩下的美规说明书 为单语 网页版 仅选等于Y的 待转」 (发布文档管理 Base): Git-only US/en single-language Web candidate, source copy verbatim. Candidate only; no merge or publication approval.",
+      "approval": "Operator 「上线提交发布：JHP-1000A、JHP-1000B、JHP-2000A」 2026-10-29 in the engineering session after the 1280/390 renders beside the shared reference edition (PR #1638): Git-only US/en single-language Web release, source copy verbatim; approval bound in source/approval.json",
       "registered": "2026-10-28",
       "known_drift": {}
     },
@@ -1752,7 +1752,7 @@
       "known_drift": {}
     },
     "manual_sources/JHP-2000A/US/en/git-20261028-5b60448e": {
-      "approval": "Operator window task 2026-10-28 「继续转 剩下的美规说明书 为单语 网页版 仅选等于Y的 待转」 (发布文档管理 Base): Git-only US/en single-language Web candidate, source copy verbatim. Candidate only; no merge or publication approval.",
+      "approval": "Operator 「上线提交发布：JHP-1000A、JHP-1000B、JHP-2000A」 2026-10-29 in the engineering session after the 1280/390 renders beside the shared reference edition (PR #1638): Git-only US/en single-language Web release, source copy verbatim; approval bound in source/approval.json",
       "registered": "2026-10-28",
       "known_drift": {}
     },

@@ -57,7 +57,7 @@
   "live_bitable_dependency": false,
   "phase2_enrolled": false,
   "legacy_default": true,
-  "publication_status": "candidate-pending-operator-review",
+  "publication_status": "operator-authorized-git-only-release",
   "build_boundary": "JHP-1000B US is not a phase2 target. build_content.py binds the transcription to shared ComponentSpecs; rebuild.py replays them through manual-ir/v2 and the shared Web/MyST pipeline with the prepared-document shared-style gate and symbol admission.",
   "repo_inputs": [],
   "symbol_asset_admission": {
@@ -309,8 +309,8 @@
     },
     {
       "path": "README.md",
-      "size": 4069,
-      "sha256": "204ef366db329e6a85cb922143d742790b950f5e0cb1d4dc6e23b0cd4978ebf4"
+      "size": 4342,
+      "sha256": "fd7742a2056e3c3b0876a3177abea7c3d6f7ede542ae200246692e06f6ef7a14"
     },
     {
       "path": "assets/ac-output.png",
@@ -665,7 +665,7 @@
     {
       "path": "evidence/maintainability.log",
       "size": 627,
-      "sha256": "59245946b2cf82813e834558bea9b08dd1078a7331f782faa7df226d68b41455"
+      "sha256": "69d5498e1d6a0f69fd9f82d68ecc6c0d69a2a42b163cde4c45514568eb9f3798"
     },
     {
       "path": "evidence/ruff.log",
@@ -680,7 +680,7 @@
     {
       "path": "evidence/target-tests.log",
       "size": 2065,
-      "sha256": "2929f9caa9c7c7e282dca70c6521cf891be1ba51761c29939d9fb2cf663dc93b"
+      "sha256": "0f38d15815baabd141d3769828dabc751937fbafcacd11e315593eeee8ff8e63"
     },
     {
       "path": "evidence/validation.json",
@@ -696,6 +696,11 @@
       "path": "refresh_manifest.py",
       "size": 2558,
       "sha256": "fc0eda7c11eabd906fdc4e6fd33afc8625d1f27c1a4c94169bb4c62cd862ac29"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 12380,
+      "sha256": "fb32767b46de6314ee867bc94405ec4f142b43d8069c4548381775aa06a0d51a"
     },
     {
       "path": "source/asset_decisions.json",
@@ -734,8 +739,8 @@
     },
     {
       "path": "source_manifest.json",
-      "size": 29097,
-      "sha256": "efaf6bb4c4f08c88d18858cd9c5b4a403c06ce76d1527b9a5501cb923c03cbba"
+      "size": 29255,
+      "sha256": "4fbadc0e4c881f9844f55433d6838e8e905204549635f4c7fb0efc8c8c6feb45"
     },
     {
       "path": "web/en/_static/source_geometry.css",
@@ -1079,8 +1084,8 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 496416,
-      "sha256": "ef6b00c6db3ceb22c06facd65c690b26f8bc954fa194ef578e0b0fd055f858be"
+      "size": 511587,
+      "sha256": "4e8a1dcd170cd7299d9d10b58dcf630a533869ade64c9b5fe39b3fcc647be799"
     },
     {
       "path": "web/en/manual_jhp1000b_us_en.md",

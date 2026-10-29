@@ -57,7 +57,7 @@
   "live_bitable_dependency": false,
   "phase2_enrolled": false,
   "legacy_default": true,
-  "publication_status": "candidate-pending-operator-review",
+  "publication_status": "operator-authorized-git-only-release",
   "build_boundary": "JHP-1000B US is not a phase2 target. build_content.py binds the transcription to shared ComponentSpecs; rebuild.py replays them through manual-ir/v2 and the shared Web/MyST pipeline with the prepared-document shared-style gate and symbol admission.",
   "repo_inputs": [],
   "symbol_asset_admission": {
@@ -309,8 +309,8 @@
     },
     {
       "path": "README.md",
-      "size": 4069,
-      "sha256": "204ef366db329e6a85cb922143d742790b950f5e0cb1d4dc6e23b0cd4978ebf4"
+      "size": 4342,
+      "sha256": "fd7742a2056e3c3b0876a3177abea7c3d6f7ede542ae200246692e06f6ef7a14"
     },
     {
       "path": "assets/ac-output.png",
@@ -651,6 +651,11 @@
       "path": "refresh_manifest.py",
       "size": 2558,
       "sha256": "fc0eda7c11eabd906fdc4e6fd33afc8625d1f27c1a4c94169bb4c62cd862ac29"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 12380,
+      "sha256": "fb32767b46de6314ee867bc94405ec4f142b43d8069c4548381775aa06a0d51a"
     },
     {
       "path": "source/asset_decisions.json",

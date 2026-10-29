@@ -60,7 +60,7 @@
   "live_bitable_dependency": false,
   "phase2_enrolled": false,
   "legacy_default": true,
-  "publication_status": "candidate-pending-operator-review",
+  "publication_status": "operator-authorized-git-only-release",
   "build_boundary": "JHP-2000A US is not a phase2 target. build_content.py binds the transcription to shared ComponentSpecs; rebuild.py replays them through manual-ir/v2 and the shared Web/MyST pipeline with the prepared-document shared-style gate and symbol admission.",
   "repo_inputs": [],
   "inputs": [
@@ -71,8 +71,8 @@
     },
     {
       "path": "README.md",
-      "size": 4249,
-      "sha256": "47db06e410b06d3e6c1c162a1835de0c2c7dfe45401df5f06a271540b9a9f7fd"
+      "size": 4566,
+      "sha256": "0f448892b82ad8e5e26a939f6ee07f98bfca400a59e0e971b4931cead19f0983"
     },
     {
       "path": "assets/ac-output.png",
@@ -441,8 +441,8 @@
     },
     {
       "path": "evidence/maintainability.log",
-      "size": 763,
-      "sha256": "946d78c0f2827b8967485d85ea6595ad354b5de18d843a3412e56fb2d260045f"
+      "size": 627,
+      "sha256": "69d5498e1d6a0f69fd9f82d68ecc6c0d69a2a42b163cde4c45514568eb9f3798"
     },
     {
       "path": "evidence/ruff.log",
@@ -451,13 +451,13 @@
     },
     {
       "path": "evidence/strict-sphinx.log",
-      "size": 1906,
-      "sha256": "a08b1775e3cc93e84502dfa24aa10f7c6ecbf78081a0cf69d6c6a43d0064f64b"
+      "size": 2272,
+      "sha256": "d7930af4dc13a4f39b3ea2b31698d38af762a854c4d2e979f4f2e0c5372763cb"
     },
     {
       "path": "evidence/target-tests.log",
       "size": 2557,
-      "sha256": "e3203254e8861b357f9d61f8d9c2834e786a0a489e8a615b7636d62de5ba2b5d"
+      "sha256": "b865604a1520e64bf595e79adba698d5acda5c1587be8b2131dd2f793a765df0"
     },
     {
       "path": "evidence/validation.json",
@@ -473,6 +473,11 @@
       "path": "refresh_manifest.py",
       "size": 2558,
       "sha256": "b7374e088835fcd31ebfe1cc15b31bca2cb127e56f9cb451deb0f6bd7e6a254f"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 12797,
+      "sha256": "53b0429150a91fe66abd73cdbd15639158d83123cba1a0dade2d5cd95261832f"
     },
     {
       "path": "source/asset_decisions.json",
@@ -511,8 +516,8 @@
     },
     {
       "path": "source_manifest.json",
-      "size": 33960,
-      "sha256": "cf939e3dc15d4497a1ad7db79296a6e9941b263aecb8cc70a55ed690c04d1665"
+      "size": 34118,
+      "sha256": "80d7732d725ca680ff6aa6486cdee4b72f8073f4eb6c44af029b17e3e5fcccc7"
     },
     {
       "path": "web/en/_static/source_geometry.css",
@@ -871,8 +876,8 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 493017,
-      "sha256": "2c3f71102af4df36e548f5060a80eb76837f7480709fcfa9eec996446bd39882"
+      "size": 508704,
+      "sha256": "61eaba1a773435543ada5d1619ea1595cf962e8727dcbad92c7a736203cdded3"
     },
     {
       "path": "web/en/manual_jhp2000a_us_en.md",

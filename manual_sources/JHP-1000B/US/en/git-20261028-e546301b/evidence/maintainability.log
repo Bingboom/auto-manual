@@ -3,6 +3,6 @@
 [facade-patch] 0 new, 0 grown, 0 improved, 0 stale, 11 baselined patches in 4 files
 [broad-except] 0 new, 0 grown, 0 improved, 0 stale, 0 baselined handlers in 0 files
 [top-level] 183 top-level modules (baseline 183), 67 bootstrap files (baseline 67)
-[frozen-packages] 155 packages (54 pin shared inputs, 101 without pins: impact unknown); 186 known drift in 35 packages; 0 new, 0 gone, 0 new drift, 0 stale
+[frozen-packages] 157 packages (54 pin shared inputs, 103 without pins: impact unknown); 190 known drift in 39 packages; 0 new, 0 gone, 0 new drift, 0 stale
 [registry-ids] MA and REV numbers are unique
 [maintainability] Guardrails OK for 73 hotspot files.

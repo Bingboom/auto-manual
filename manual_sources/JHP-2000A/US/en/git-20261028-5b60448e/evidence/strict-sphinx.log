@@ -15,9 +15,9 @@ checking consistency... done
 preparing documents... done
 copying assets... 
 copying static files... 
-Writing evaluated template result to <scratch>/html/_static/basic.css
-Writing evaluated template result to <scratch>/html/_static/documentation_options.js
-Writing evaluated template result to <scratch>/html/_static/language_data.js
+Writing evaluated template result to /tmp/claude-0/-home-user-auto-manual/926ce030-2164-5a7a-9e4a-910a112b4978/scratchpad/build-2000a/html/_static/basic.css
+Writing evaluated template result to /tmp/claude-0/-home-user-auto-manual/926ce030-2164-5a7a-9e4a-910a112b4978/scratchpad/build-2000a/html/_static/documentation_options.js
+Writing evaluated template result to /tmp/claude-0/-home-user-auto-manual/926ce030-2164-5a7a-9e4a-910a112b4978/scratchpad/build-2000a/html/_static/language_data.js
 copying static files: done
 copying extra files... 
 copying extra files: done
@@ -31,4 +31,4 @@ dumping search index in English (code: en)... done
 dumping object inventory... done
 build succeeded.
 
-The HTML pages are in html.
+The HTML pages are in ../../../tmp/claude-0/-home-user-auto-manual/926ce030-2164-5a7a-9e4a-910a112b4978/scratchpad/build-2000a/html.

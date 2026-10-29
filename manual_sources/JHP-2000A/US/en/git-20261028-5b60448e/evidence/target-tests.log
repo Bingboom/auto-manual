@@ -3,7 +3,7 @@
 [env-preflight] WARN env.lock: 2 package(s) differ from requirements.lock: certifi 2026.10.18 (lock 2026.6.17), charset-normalizer 3.5.1 (lock 3.4.8)
 [env-preflight] WARN env.lock: to match CI: python -m pip install -r requirements.lock (on the pinned Python)
 ...{
-  "output": "/tmp/tmpxnh5lf7j/replay",
+  "output": "/tmp/tmp8lf__b5v/replay",
   "chapters": 16,
   "components": {
     "HB-CALLOUT-STRIP": 16,
@@ -83,6 +83,6 @@
 }
 ......
 ----------------------------------------------------------------------
-Ran 9 tests in 17.269s
+Ran 9 tests in 14.434s
 
 OK

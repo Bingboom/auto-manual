@@ -70,7 +70,7 @@
   "live_bitable_dependency": false,
   "phase2_enrolled": false,
   "legacy_default": true,
-  "publication_status": "candidate-pending-operator-review",
+  "publication_status": "operator-authorized-git-only-release",
   "build_boundary": "JHP-1000A US is not a phase2 target. build_content.py binds the transcription to shared ComponentSpecs; rebuild.py replays them through manual-ir/v2 and the shared Web/MyST pipeline with the prepared-document shared-style gate and symbol admission.",
   "repo_inputs": [],
   "component_map": [
@@ -529,8 +529,8 @@
     },
     {
       "path": "README.md",
-      "size": 3620,
-      "sha256": "57a590b1b099f05f9b3f370475715d752a0e2c535a67d0c7fe768fc55333c20e"
+      "size": 3931,
+      "sha256": "d9d55cbe7cae0abdfd3de9604316a8f24c96fe22d510ac3b922855cf71a5ae35"
     },
     {
       "path": "assets/ac-output.png",
@@ -880,7 +880,7 @@
     {
       "path": "evidence/target-tests.log",
       "size": 2060,
-      "sha256": "b051c41c5d899d2aabcd25f8e6805e3e14a33d9bca8dafd9997eba3a3e267be2"
+      "sha256": "04dfbe9ecf183a5e48a7f8bd8d7e35a0b483d8a4709791f719afc5419e906e2b"
     },
     {
       "path": "evidence/validation.json",
@@ -896,6 +896,11 @@
       "path": "refresh_manifest.py",
       "size": 2558,
       "sha256": "4251a40caa7980c28984fdd9430553374c0c288a97a450e6fc6ce5465a756354"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 11632,
+      "sha256": "f1a86b6298e52ef7e4589f85d384a7bbfe7268ff2290119e1c97fd5b585053c4"
     },
     {
       "path": "source/asset_decisions.json",
@@ -934,8 +939,8 @@
     },
     {
       "path": "source_manifest.json",
-      "size": 30396,
-      "sha256": "fd43f8e52477df772fa467c51ec2f45f021f027114bd89a4a6906ed58a91409c"
+      "size": 30554,
+      "sha256": "092ce0694d955d891683c7772df362c89e0d4c7a6a0db96a348aa57e796a20fb"
     },
     {
       "path": "web/en/_static/source_geometry.css",
@@ -1254,8 +1259,8 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 471667,
-      "sha256": "75f53f1bd767e03dc1eb40796007473b333290ef3fa20a3b06f412d38bebb682"
+      "size": 485925,
+      "sha256": "07402e0bcb04a86a42fab875cee5067858cebef4f8c64d16d3cf19a66b6f2036"
     },
     {
       "path": "web/en/manual_jhp1000a_us_en.md",
