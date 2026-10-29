@@ -1731,14 +1731,29 @@
         }
       }
     },
+    "manual_sources/JHP-1000A/US/en/git-20261028-cb256e64": {
+      "approval": "Operator 「上线提交发布：JHP-1000A、JHP-1000B、JHP-2000A」 2026-10-29 in the engineering session after the 1280/390 renders beside the shared reference edition (PR #1638): Git-only US/en single-language Web release, source copy verbatim; approval bound in source/approval.json",
+      "registered": "2026-10-28",
+      "known_drift": {}
+    },
     "manual_sources/JHP-1000B-RC/US/en/git-20261027-af8a0775": {
       "approval": "Operator 「上线提交发布：JE-2000C、JHP-1000B-RC、JHP-2000A-RC、JHP-3600A-RC；授权开跟进 PR 写 approval 并合入，以及其 Hello-Docs 发布 PR」 2026-10-28 after 「授权全部合入上线 上线之后 我再一个个核对版面」 (MA-365); candidate merged as #1628, approval bound in the follow-up PR: Git-only US/en single-language Web release, source copy verbatim; layout checked by the operator after go-live",
       "registered": "2026-10-27",
       "known_drift": {}
     },
+    "manual_sources/JHP-1000B/US/en/git-20261028-e546301b": {
+      "approval": "Operator 「上线提交发布：JHP-1000A、JHP-1000B、JHP-2000A」 2026-10-29 in the engineering session after the 1280/390 renders beside the shared reference edition (PR #1638): Git-only US/en single-language Web release, source copy verbatim; approval bound in source/approval.json",
+      "registered": "2026-10-28",
+      "known_drift": {}
+    },
     "manual_sources/JHP-2000A-RC/US/en/git-20261027-e27d4db5": {
       "approval": "Operator 「上线提交发布：JE-2000C、JHP-1000B-RC、JHP-2000A-RC、JHP-3600A-RC；授权开跟进 PR 写 approval 并合入，以及其 Hello-Docs 发布 PR」 2026-10-28 after 「授权全部合入上线 上线之后 我再一个个核对版面」 (MA-365); candidate merged as #1628, approval bound in the follow-up PR: Git-only US/en single-language Web release, source copy verbatim; layout checked by the operator after go-live",
       "registered": "2026-10-27",
+      "known_drift": {}
+    },
+    "manual_sources/JHP-2000A/US/en/git-20261028-5b60448e": {
+      "approval": "Operator 「上线提交发布：JHP-1000A、JHP-1000B、JHP-2000A」 2026-10-29 in the engineering session after the 1280/390 renders beside the shared reference edition (PR #1638): Git-only US/en single-language Web release, source copy verbatim; approval bound in source/approval.json",
+      "registered": "2026-10-28",
       "known_drift": {}
     },
     "manual_sources/JHP-3600A-RC/US/en/git-20261027-ab7f7393": {
