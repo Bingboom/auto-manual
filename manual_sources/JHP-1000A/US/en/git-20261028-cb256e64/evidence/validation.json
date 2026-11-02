@@ -1,0 +1,47 @@
+{
+ "schema_version": "jhp1000a-us-candidate-validation/v1",
+ "date": "2026-10-29",
+ "environment": "Python 3.13 with requirements.lock (oss2/aliyun SDK wheels skipped), Pandoc 3.1.3, ruff, Tesseract 5.3.4, Playwright Chromium",
+ "checks": [
+  {
+   "command": "python -m ruff check <package scripts> tests/test_jhp1000a_us_web.py",
+   "result": "pass",
+   "log": "ruff.log"
+  },
+  {
+   "command": "python <package>/rebuild.py --output <fresh dir>; diff -r <fresh dir> web/en",
+   "result": "pass: replay byte-identical; shared-style gate 0 issues, 0 declared plain tables; symbol admission 7/7 (Li-ion row bound to shared li-ion/recycle-li-ion-label-dark-cb256e64 from PR #1640, 0.0)",
+   "log": "rebuild.log"
+  },
+  {
+   "command": "python -m sphinx -n -W --keep-going -b html web/en <html>",
+   "result": "pass",
+   "log": "strict-sphinx.log"
+  },
+  {
+   "command": "python -m unittest tests.test_jhp1000a_us_web",
+   "result": "pass (10 tests, includes byte-identical cold replay)",
+   "log": "target-tests.log"
+  },
+  {
+   "command": "tesseract 300 dpi OCR of physical 2 and 4-20 vs source/transcription.json (word multiset per page)",
+   "result": "every remaining difference re-read on 300 dpi clips: OCR misreads (13/113, alll, Iulles, ninterruptible, run-together 1month/tothe) or text inside artwork"
+  },
+  {
+   "command": "python -m tools.check_maintainability_guardrails",
+   "result": "only finding: this package is NEW and awaits frozen_package_registry registration",
+   "log": "maintainability.log"
+  },
+  {
+   "command": "browser 1280 / 390 full page",
+   "result": "64 images, 0 broken; document scrollWidth == viewport at both widths",
+   "files": [
+    "browser-1280.png",
+    "browser-390.png",
+    "browser-1280.json",
+    "browser-390.json"
+   ]
+  }
+ ],
+ "not_validated": "full python -m unittest suite, build.py regression check, frozen_package_registry registration, seal_frozen_web_evidence, RTD deployment"
+}
