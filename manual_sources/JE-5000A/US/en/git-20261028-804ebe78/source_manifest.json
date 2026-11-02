@@ -118,12 +118,9 @@
   "review_reference_edition": "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed",
   "live_bitable_dependency": false,
   "phase2_enrolled": false,
-  "publication_status": "candidate-pending-operator-review",
-  "publication_eligible": false,
-  "pending_source_review": [
-    "Operator review of the candidate against the shared reference edition (JE-5000A JP reviewed)",
-    "Source concerns go back to the source owner (source_concerns)"
-  ],
+  "publication_status": "operator-authorized-git-only-release",
+  "publication_eligible": true,
+  "pending_source_review": [],
   "build_boundary": "JE-5000A US is not a phase2 target. build_content.py binds the transcription to shared ComponentSpecs; rebuild.py replays them through manual-ir/v2 and the shared Web/MyST pipeline with the prepared-document shared-style gate and the shared symbol admission (all 8 table symbols are catalog variants). Not registered in data/frozen_package_registry.json until approval.",
   "repo_inputs": [],
   "component_map": [
@@ -1527,8 +1524,8 @@
     },
     {
       "path": "README.md",
-      "size": 4717,
-      "sha256": "7fade85f28ecb8c1b261f3fa7bdec5dbe3ca268ac99f6d871304c84b87115cd6"
+      "size": 4913,
+      "sha256": "8f708d4070f0644fbc30dc10ceac08c27c0b5d634ef4757dd0e89c923e58797d"
     },
     {
       "path": "assets/ac-charge.png",
@@ -1919,6 +1916,11 @@
       "path": "refresh_manifest.py",
       "size": 2552,
       "sha256": "660ec007d57c8820cd82f9b92b68835270771712aa14a81d7aca3679e884cfe6"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 15072,
+      "sha256": "9c437c439f9882bc7789e1a05932b1c127f7f6bbea9151d37a7253b695036365"
     },
     {
       "path": "source/asset_decisions.json",

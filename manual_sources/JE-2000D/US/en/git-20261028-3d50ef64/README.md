@@ -1,8 +1,8 @@
-# JE-2000D / US / en — Git-only Web manual candidate (V2)
+# JE-2000D / US / en — Git-only Web manual (V2)
 
 Operator instruction, 2026-10-28: 「继续转 剩下的美规说明书 为单语 网页版 仅选等于Y的 待转」. This package is the Jackery Explorer 2000 (JE-2000D) US English manual of 发布文档管理 record `reczz28SlRGJhr8p` (子物料编码 16-0102-000055, 项目号 HTE117, six SKUs in `source_manifest.json:base_record`). Route `JE-2000D/US/en/md`; there is no earlier Web edition of this model, so it is the legacy default.
 
-**Status: `candidate-pending-operator-review`.** No `source/approval.json` exists, so the IR is not publication-eligible. Approval is written only after the operator reviews the 1280/390 renders beside the reference edition (JE-1000D US en, the published Explorer 1000 v2 Web of the same V2 manual family) and the source concern list.
+**Status: `operator-authorized-git-only-release`.** On 2026-11-02 the operator said 「上线提交发布」 in the engineering session, in reply to the review of the four candidates on PR #1637 (JE-2000D, JE-2000F, JE-3000B, JE-5000A: 1280/390 renders beside the shared reference edition and the source_concerns). `source/approval.json` binds every reviewed `source/` and `assets/` input and the IR is publication-eligible. The source copy goes live as printed; `source_manifest.json:source_concerns` goes back to the source owner, and corrections enter only through a new package.
 
 ## Source authority
 

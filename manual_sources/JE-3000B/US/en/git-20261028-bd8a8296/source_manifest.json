@@ -86,8 +86,8 @@
   "review_reference_note": "No JE-3000B Web edition exists in any region. JE-1500D US/en (Explorer 1500 V2, same LCD/App generation, same chapter set and component mix) is the shared reference edition shown beside this candidate in review; JHP-3600A-RC, JHP-2000A-RC, JE-1500D and JE-1000D US/en supply the reused LCD glyphs. JE-3000C (EU/JP/KR) and JE-3600A (EU) were inventoried and carry a different chassis and port layout.",
   "live_bitable_dependency": false,
   "phase2_enrolled": false,
-  "publication_status": "candidate-pending-operator-review",
-  "publication_eligible": false,
+  "publication_status": "operator-authorized-git-only-release",
+  "publication_eligible": true,
   "build_boundary": "JE-3000B US is not a phase2 target. build_content.py binds the transcription to shared ComponentSpecs; rebuild.py replays them through manual-ir/v2 and the shared Web/MyST pipeline with the prepared-document shared-style gate and symbol admission (zero rows: no safety-symbol table is printed).",
   "repo_inputs": [],
   "symbol_asset_admission": {
@@ -793,8 +793,8 @@
     },
     {
       "path": "README.md",
-      "size": 4000,
-      "sha256": "bf4bbccd8f7ab8d61eb7e7c5e5b0db8ce434f11b5155a57f2acf2ef2bee8a4ec"
+      "size": 4258,
+      "sha256": "3bd313eabd2beacc355a9582e2d103a4f19502aec3f2e2b9d60fde06d315b285"
     },
     {
       "path": "assets/ac-charge.png",
@@ -1040,6 +1040,11 @@
       "path": "refresh_manifest.py",
       "size": 2552,
       "sha256": "256d868190b0d14f8519ce109de12210a4e587a0e6eae090f4b4fc11d697b957"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 10512,
+      "sha256": "9d5c6ba7def2d3f47d49f1225d8d92856c8f10b690c0247aea91fad92b86a661"
     },
     {
       "path": "source/asset_decisions.json",

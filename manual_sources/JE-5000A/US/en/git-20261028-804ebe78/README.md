@@ -1,8 +1,8 @@
-# JE-5000A / US / en — Git-only Web manual (candidate)
+# JE-5000A / US / en — Git-only Web manual
 
 Operator instruction, 2026-10-28: 「继续转 剩下的美规说明书 为单语 网页版 仅选等于Y的 待转」 (发布文档管理 Base). This package is the Jackery Explorer 5000 Plus (JE-5000A) US English manual from that table: record `reczz28SlRGJhXPM`, 子物料编码 16-0102-000447, 项目号 HTE119, SKU 21-0001-000550, 21-0001-000614.
 
-**Status: `candidate-pending-operator-review`.** The IR is not publication-eligible and there is no `source/approval.json`. Open before release: operator review against the shared reference edition (JE-5000A JP reviewed) and the `source_manifest.json:source_concerns` for the source owner. The package is not registered in `data/frozen_package_registry.json` until approval.
+**Status: `operator-authorized-git-only-release`.** On 2026-11-02 the operator said 「上线提交发布」 in the engineering session, in reply to the review of the four candidates on PR #1637 (JE-2000D, JE-2000F, JE-3000B, JE-5000A: 1280/390 renders beside the shared reference edition and the source_concerns). `source/approval.json` binds every reviewed `source/` and `assets/` input and the IR is publication-eligible. The source copy goes live as printed; `source_manifest.json:source_concerns` goes back to the source owner, and corrections enter only through a new package.
 
 ## Source authority
 
