@@ -1,0 +1,38 @@
+{
+  "schema_version": "source-operator-acceptance/v1",
+  "target": {
+    "model": "JE-1000F",
+    "region": "EU",
+    "languages": [
+      "uk",
+      "pt",
+      "nl",
+      "pl"
+    ]
+  },
+  "operator_quote": "上线提交发布",
+  "operator_decisions": [
+    "先用修正版.ai 把荷波葡乌的电池图标补上",
+    "网页版单独补（同英法）",
+    "同 JE-1000H，允许（Li-ion 容差）",
+    "上线提交发布（2026-11-02，八行版）"
+  ],
+  "date": "2026-11-02",
+  "reviewed_candidate": {
+    "markdown_sha256": {
+      "uk": "b310d477dfa21a0706c9c1c3728b95529fff4681833c56f4f9f486ed1f1f0e3e",
+      "pt": "5b1ef5d4f2bfd0a09574777bb57ebb5a394adbcb828091944224b21b81d74c18",
+      "nl": "9d5a8e35eeea6ec0b0955d52b98ac8b1bebd54552d3ba0ed62df2978a4a1bfb7",
+      "pl": "de0911e573bd401d41fff31ccb3b3f6ade25a2914eb0aa6324baa1a6cc08dba7"
+    },
+    "renderings": "symbol table before (7 rows) and after (8 rows) at 1280 and 390 px, uk/pt/nl/pl"
+  },
+  "decisions": {
+    "symbols": "all seven printed rows use shared Web variants byte for byte; Li-ion li-ion/recycle-li-ion-native-dark admitted under the trusted glyph waivers JE1000F-1465-{UK,PT,NL,PL}-SYMBOL-LI-ION; no copy change in those rows",
+    "battery_row": "Web-only eighth row battery-weee/crossed-bin-no-bar under the trusted entries JE1000F-EU-{UK,PT,NL,PL}-WEB-BATTERY; caption reused from the printed JE-2000F (pt/nl/pl) and JE-3600A (uk) EU rows",
+    "authority": "batch-1465 revised AI JE-1000F_修正版.ai (30bcad90…) from the 发布文档管理 record"
+  },
+  "original_source_sha256": "30bcad90ac8c130874db95c76666fb5c905cacc1b59073bd8f9d2db8d714eaf6",
+  "merge_authorization": "Operator review and merge of the engineering PR (AGENTS.md §8.6); no agent self-merge grant.",
+  "scope": "Git-only uk/pt/nl/pl Web release of git-20261102-30bcad90-shared-symbols; the approved shared-keys package unchanged; no Base, queue, source-table, asset-registry or HTML_link writes."
+}
