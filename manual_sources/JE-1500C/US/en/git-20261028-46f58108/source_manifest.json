@@ -854,8 +854,8 @@
     },
     {
       "path": "docs/renderers/web/assets/shared/symbols/manifest.json",
-      "size": 79611,
-      "sha256": "1d23d8ca9e31416b369268c8a727d4c40bff773caf97d457fa1afeae302f1a57"
+      "size": 94792,
+      "sha256": "99237c9081076bfc4d7439029eb7f6440fc0b6983b2d48a0f3025c4e4673b969"
     },
     {
       "path": "docs/renderers/web/assets/shared/symbols/native-v1/fcc_mark.svg",
@@ -2126,8 +2126,8 @@
     },
     {
       "path": "source/approval.json",
-      "size": 12801,
-      "sha256": "f7ffe9cf5e8b4ff71aedce514ec6065cd86527d3edd29f2faa0f8797fefe39d8"
+      "size": 12805,
+      "sha256": "849e498628cbaed0d4d7601e38eb92797bf48cf746e42e9774e53bdf2082d371"
     },
     {
       "path": "source/en/content.json",
@@ -2501,8 +2501,8 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 409924,
-      "sha256": "20044d0e81eadc1297f0a9c2e98ec542d70e307bc18b0fcdf105beca6242e136"
+      "size": 409928,
+      "sha256": "4d2c9159662e4f687ef9b0dd2d79a9d21d8c18ecac1d05d58fd01168b522e0cb"
     },
     {
       "path": "web/en/manual_je1500c_us_en.md",

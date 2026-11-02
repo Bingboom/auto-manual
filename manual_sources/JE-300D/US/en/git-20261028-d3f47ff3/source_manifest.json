@@ -671,8 +671,8 @@
     },
     {
       "path": "docs/renderers/web/assets/shared/symbols/manifest.json",
-      "size": 79611,
-      "sha256": "1d23d8ca9e31416b369268c8a727d4c40bff773caf97d457fa1afeae302f1a57"
+      "size": 94792,
+      "sha256": "99237c9081076bfc4d7439029eb7f6440fc0b6983b2d48a0f3025c4e4673b969"
     },
     {
       "path": "docs/renderers/web/assets/shared/symbols/native-v1/do_not_dismantle_dark_hte147.svg",
@@ -1753,8 +1753,8 @@
     },
     {
       "path": "source/approval.json",
-      "size": 8370,
-      "sha256": "ed5c7cfd874cc0ba0c52bac288a5be8357cf5a7bc61ca5ec360c02435ecfd1f2"
+      "size": 8374,
+      "sha256": "ee87af30dbd2d3ebf5c04cbcda69b987bac3ccc5e676a92911446af4b319c423"
     },
     {
       "path": "source/en/content.json",
@@ -1993,8 +1993,8 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 315345,
-      "sha256": "93d26ae9c5ce165243475ed9132ef88a2dbc2cc0042efbd50ba07cd89df633d0"
+      "size": 315349,
+      "sha256": "2d60d6790682fe7abae665eab98ed27110a29ef168e4714b136985aaa80ac8ec"
     },
     {
       "path": "web/en/manual_je300d_us_en.md",

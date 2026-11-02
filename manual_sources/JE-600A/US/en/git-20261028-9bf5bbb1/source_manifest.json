@@ -712,8 +712,8 @@
     },
     {
       "path": "docs/renderers/web/assets/shared/symbols/manifest.json",
-      "size": 79611,
-      "sha256": "1d23d8ca9e31416b369268c8a727d4c40bff773caf97d457fa1afeae302f1a57"
+      "size": 94792,
+      "sha256": "99237c9081076bfc4d7439029eb7f6440fc0b6983b2d48a0f3025c4e4673b969"
     },
     {
       "path": "docs/renderers/web/assets/shared/symbols/native-v1/keep_away_from_children_dark_5c065d11.svg",
@@ -1814,8 +1814,8 @@
     },
     {
       "path": "source/approval.json",
-      "size": 9020,
-      "sha256": "b34afd929cfaa0338e7d44e88fe424cf007b08c7e121c5b82f766f46725e4ea8"
+      "size": 9024,
+      "sha256": "dea108cb010adda4c1f7cad473b0cdb5cb983cb3998c66c39f98d2a1b1d0aadb"
     },
     {
       "path": "source/en/content.json",
@@ -2074,8 +2074,8 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 331164,
-      "sha256": "fd21131dca2b0c01db494238bf547de8f2afd2d4c11f13ab9f1c7eedfc06061c"
+      "size": 331168,
+      "sha256": "6ab56d99222bbfddd96f7640a6dba0451df8954cc4953f00115ce450fa872706"
     },
     {
       "path": "web/en/manual_je600a_us_en.md",

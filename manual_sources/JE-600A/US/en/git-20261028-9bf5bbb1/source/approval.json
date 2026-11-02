@@ -12,7 +12,7 @@
   "date": "2026-10-29",
   "reviewed": "Operator confirmation in the PR #1639 session, 2026-10-29, after the 1280/390 renders beside the shared reference edition (and, for JE-500A/JE-600A, the symbol table with the #1640 shared variants) were delivered for review.",
   "reviewed_source_commit": "43e49b06",
-  "merge_authorization": null,
+  "merge_authorization": "MA-370",
   "original_source_sha256": "9bf5bbb12aefc9aac72662b305f7de2e0b39ec65ac254ea910e006cc92885886",
   "scope": "Git-only en Web release of git-20261028-9bf5bbb1; printed source unchanged; no Feishu/Base/source-table, queue, asset-registry or HTML_link writes.",
   "reviewed_inputs": [

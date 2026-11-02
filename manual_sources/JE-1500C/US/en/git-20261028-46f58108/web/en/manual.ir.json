@@ -1947,7 +1947,7 @@
       "languages": [
         "en"
       ],
-      "merge_authorization": null,
+      "merge_authorization": "MA-370",
       "operator_quote": "上线提交发布：JE-300D、JE-500A、JE-600A、JE-1500C",
       "original_source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
       "reviewed": "Operator confirmation in the PR #1639 session, 2026-10-29, after the 1280/390 renders beside the shared reference edition (and, for JE-500A/JE-600A, the symbol table with the #1640 shared variants) were delivered for review.",
