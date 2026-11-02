@@ -68,8 +68,8 @@
     "assets/app-results.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "a00882924c1aa7e480d89108768b646153b61ddb3726135282bc45527098e547",
-  "content_sha256": "df2e4f76bfc6a9de906c6cb072f931d49cc98f38ed45d9ad35c2f7b82093c2c7",
+  "bundle_sha256": "943e13910c584d974eb434a1264aac79cd20b300423a8ca7282f4f7f7a602567",
+  "content_sha256": "ff969804c8c2c1b2c033c23590cb1a53a9d33c2e95e12ea783337fb998b16195",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -1822,8 +1822,8 @@
         },
         {
           "path": "build_content.py",
-          "sha256": "b19f31bf3eedbf9ca711ced391e607ea6caaf4d8e560f29c1d4e567a07c901d2",
-          "size": 34809
+          "sha256": "c7757e6c518e366e03e999189f33b515479c036b9d72e04b5fa32decf525993a",
+          "size": 34788
         },
         {
           "path": "derive_assets.py",
@@ -1842,7 +1842,7 @@
         },
         {
           "path": "source/approval.json",
-          "sha256": "2d2722f8007cbc5545fecb1376a0219018ed2469a956827c9c1f863c32837c63",
+          "sha256": "057a7c0b9095a3368d1c921197e7a5f581755a45b391ef4ae7141fda30f0e6cb",
           "size": 13805
         },
         {
@@ -1867,8 +1867,8 @@
         },
         {
           "path": "source/en/content.json",
-          "sha256": "0f0772730ee4ad4c97f8cd86eefe7e3eda7639ad1b5ca07acddc4c2a4b63cb1c",
-          "size": 239754
+          "sha256": "eb4eefdb39c6fa69fdf2a305f81a50721b68b73f9bf60f85b5f122e7fd839ae5",
+          "size": 239691
         },
         {
           "path": "source/geometry.css",
@@ -3429,8 +3429,8 @@
         },
         {
           "path": "build_content.py",
-          "sha256": "b19f31bf3eedbf9ca711ced391e607ea6caaf4d8e560f29c1d4e567a07c901d2",
-          "size": 34809
+          "sha256": "c7757e6c518e366e03e999189f33b515479c036b9d72e04b5fa32decf525993a",
+          "size": 34788
         },
         {
           "path": "derive_assets.py",
@@ -3469,8 +3469,8 @@
         },
         {
           "path": "source/en/content.json",
-          "sha256": "0f0772730ee4ad4c97f8cd86eefe7e3eda7639ad1b5ca07acddc4c2a4b63cb1c",
-          "size": 239754
+          "sha256": "eb4eefdb39c6fa69fdf2a305f81a50721b68b73f9bf60f85b5f122e7fd839ae5",
+          "size": 239691
         },
         {
           "path": "source/geometry.css",
@@ -9440,7 +9440,7 @@
             "assets/charging-solar-200.png"
           ],
           "block_id": "charging:block-0014",
-          "content_sha256": "d1cf5194e4ce0d5e4c45402d4bdf6e00e1bd578952212c6c0ebb770ffcaa3f11",
+          "content_sha256": "d3a2afc4d1f7695003df08b1dcd8bb4881cff564e511f210aeeec3e986bf3786",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -9464,15 +9464,15 @@
                 "embedded_labels": [
                   "SolarSaga 200 × 2"
                 ],
-                "image_key": "charging-solar-200",
+                "image_key": "solar-one",
                 "physical_page": 15,
-                "source_fragment_sha256": "9e38e1ba1253e7ac23999ed5ac6b087a709c3e671baf3e24f49da08657f6aaff",
+                "source_fragment_sha256": "0d5f0a7313fa0e05019485f5b8e9c44d361242bdd318cc6d0ad1a134da925e02",
                 "web_replace_key": ""
               },
               "schema_version": "component-spec/v1",
               "slots": [
                 {
-                  "content": "charging-solar-200",
+                  "content": "solar-one",
                   "content_kind": "inline_text",
                   "role": "reference_id"
                 },
@@ -9492,7 +9492,7 @@
                   "role": "caption_layout"
                 }
               ],
-              "source_ref": "native-pdf/page-15/charging-solar-200",
+              "source_ref": "native-pdf/page-15/solar-one",
               "token_roles": [
                 "component.special.reference-figure"
               ],
@@ -9508,7 +9508,7 @@
             "assets/charging-solar-100air.png"
           ],
           "block_id": "charging:block-0015",
-          "content_sha256": "9c23387bdcdf752fabea84589ce7bb758d28c53d093d55f46fa4ea237486d67d",
+          "content_sha256": "d4070148d21a61ff2b0c29bd69742e0b9175e9f4be77546dd8c2746c12fd3e39",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -9532,15 +9532,15 @@
                 "embedded_labels": [
                   "SolarSaga 100 Air × 4"
                 ],
-                "image_key": "charging-solar-100air",
+                "image_key": "solar-two",
                 "physical_page": 16,
-                "source_fragment_sha256": "c4c3a9cb9f4189107276db99cd5708ccecc346f884fa22041538f021b5e9f9d5",
+                "source_fragment_sha256": "adeac3ba60b79ab066da4f6aa669248d44cf06e2b15daa219b4139ec8af7dfc3",
                 "web_replace_key": ""
               },
               "schema_version": "component-spec/v1",
               "slots": [
                 {
-                  "content": "charging-solar-100air",
+                  "content": "solar-two",
                   "content_kind": "inline_text",
                   "role": "reference_id"
                 },
@@ -9560,7 +9560,7 @@
                   "role": "caption_layout"
                 }
               ],
-              "source_ref": "native-pdf/page-16/charging-solar-100air",
+              "source_ref": "native-pdf/page-16/solar-two",
               "token_roles": [
                 "component.special.reference-figure"
               ],
@@ -10082,7 +10082,7 @@
       "skipped_raw": 0,
       "source_path": "source/en/content.json#charging",
       "source_ref": "native-pdf/charging",
-      "source_sha256": "3efe9d2b166f799b827f4965a6a0103cda7ed7e25e2086257aeb873f236040c6"
+      "source_sha256": "1c30353e1c49699ed40fe61b9c037d024eadf7576319c931a6f08663bc645dba"
     },
     {
       "blocks": [

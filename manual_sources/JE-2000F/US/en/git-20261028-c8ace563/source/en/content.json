@@ -5074,13 +5074,13 @@
      "component_spec": {
       "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
       "variant": "semantic-fallback",
-      "source_ref": "native-pdf/page-15/charging-solar-200",
+      "source_ref": "native-pdf/page-15/solar-one",
       "language": "en",
       "slots": [
        {
         "role": "reference_id",
         "content_kind": "inline_text",
-        "content": "charging-solar-200"
+        "content": "solar-one"
        },
        {
         "role": "accessibility_label",
@@ -5113,9 +5113,9 @@
         "SolarSaga 200 × 2"
        ],
        "physical_page": 15,
-       "image_key": "charging-solar-200",
+       "image_key": "solar-one",
        "web_replace_key": "",
-       "source_fragment_sha256": "9e38e1ba1253e7ac23999ed5ac6b087a709c3e671baf3e24f49da08657f6aaff"
+       "source_fragment_sha256": "0d5f0a7313fa0e05019485f5b8e9c44d361242bdd318cc6d0ad1a134da925e02"
       },
       "schema_version": "component-spec/v1"
      },
@@ -5133,13 +5133,13 @@
      "component_spec": {
       "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
       "variant": "semantic-fallback",
-      "source_ref": "native-pdf/page-16/charging-solar-100air",
+      "source_ref": "native-pdf/page-16/solar-two",
       "language": "en",
       "slots": [
        {
         "role": "reference_id",
         "content_kind": "inline_text",
-        "content": "charging-solar-100air"
+        "content": "solar-two"
        },
        {
         "role": "accessibility_label",
@@ -5172,9 +5172,9 @@
         "SolarSaga 100 Air × 4"
        ],
        "physical_page": 16,
-       "image_key": "charging-solar-100air",
+       "image_key": "solar-two",
        "web_replace_key": "",
-       "source_fragment_sha256": "c4c3a9cb9f4189107276db99cd5708ccecc346f884fa22041538f021b5e9f9d5"
+       "source_fragment_sha256": "adeac3ba60b79ab066da4f6aa669248d44cf06e2b15daa219b4139ec8af7dfc3"
       },
       "schema_version": "component-spec/v1"
      },

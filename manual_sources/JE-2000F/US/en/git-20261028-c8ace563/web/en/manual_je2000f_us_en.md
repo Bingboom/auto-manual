@@ -207,9 +207,9 @@
 
 <p>Jackery Explorer 2000 has two DC8020 input ports and is compatible with the Jackery solar panels. If one DC8020 input port needs to connect two solar panels simultaneously, please refer to the figure below for charging through the solar panel connector (sold separately, not included as standard).</p>
 
-<figure class="hb-reference-figure" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="charging-solar-200" data-source-fragment-sha256="9e38e1ba1253e7ac23999ed5ac6b087a709c3e671baf3e24f49da08657f6aaff" data-step-captions="embedded"><div class="hb-reference-semantic" data-reference-id="charging-solar-200.semantic"><img alt="SolarSaga 200 × 2" class="hb-reference-art hb-composite-art" src="assets/charging-solar-200.png"/></div></figure>
+<figure class="hb-reference-figure" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="solar-one" data-source-fragment-sha256="0d5f0a7313fa0e05019485f5b8e9c44d361242bdd318cc6d0ad1a134da925e02" data-step-captions="embedded"><div class="hb-reference-semantic" data-reference-id="solar-one.semantic"><img alt="SolarSaga 200 × 2" class="hb-reference-art hb-composite-art" src="assets/charging-solar-200.png"/></div></figure>
 
-<figure class="hb-reference-figure" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="charging-solar-100air" data-source-fragment-sha256="c4c3a9cb9f4189107276db99cd5708ccecc346f884fa22041538f021b5e9f9d5" data-step-captions="embedded"><div class="hb-reference-semantic" data-reference-id="charging-solar-100air.semantic"><img alt="SolarSaga 100 Air × 4" class="hb-reference-art hb-composite-art" src="assets/charging-solar-100air.png"/></div></figure>
+<figure class="hb-reference-figure" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="solar-two" data-source-fragment-sha256="adeac3ba60b79ab066da4f6aa669248d44cf06e2b15daa219b4139ec8af7dfc3" data-step-captions="embedded"><div class="hb-reference-semantic" data-reference-id="solar-two.semantic"><img alt="SolarSaga 100 Air × 4" class="hb-reference-art hb-composite-art" src="assets/charging-solar-100air.png"/></div></figure>
 
 <table class="manual-callout-table manual-callout-table"><tbody><tr><td class="manual-callout-label">CAUTION</td><td class="manual-callout-body"><p>One DC8020 input port can be connected to at most two solar panels.</p></td></tr></tbody></table>
 

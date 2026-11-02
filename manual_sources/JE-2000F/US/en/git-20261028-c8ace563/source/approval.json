@@ -366,8 +366,8 @@
     },
     {
       "path": "build_content.py",
-      "size": 34809,
-      "sha256": "b19f31bf3eedbf9ca711ced391e607ea6caaf4d8e560f29c1d4e567a07c901d2"
+      "size": 34788,
+      "sha256": "c7757e6c518e366e03e999189f33b515479c036b9d72e04b5fa32decf525993a"
     },
     {
       "path": "derive_assets.py",
@@ -406,8 +406,8 @@
     },
     {
       "path": "source/en/content.json",
-      "size": 239754,
-      "sha256": "0f0772730ee4ad4c97f8cd86eefe7e3eda7639ad1b5ca07acddc4c2a4b63cb1c"
+      "size": 239691,
+      "sha256": "eb4eefdb39c6fa69fdf2a305f81a50721b68b73f9bf60f85b5f122e7fd839ae5"
     },
     {
       "path": "source/geometry.css",
