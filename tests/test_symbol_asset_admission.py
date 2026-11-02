@@ -4,6 +4,7 @@ import hashlib
 from io import BytesIO
 import json
 from pathlib import Path
+from types import SimpleNamespace
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -212,6 +213,95 @@ class SymbolAdmissionTests(unittest.TestCase):
         # Keep actual IR ref unchanged: format comes from the real component asset.
         self.assertEqual(suffix, '.svg')
         (self.md / row['asset_ref']).write_bytes(data)
+
+    def web_only(self, **changes):
+        """Drop row 2 from the target print; reuse it from a donor print instead."""
+        donor = self.root / 'donors/sibling.pdf'
+        donor.parent.mkdir()
+        donor.write_bytes(self.pdf.read_bytes())
+        with fitz.open() as doc:
+            page = doc.new_page(width=240, height=150)
+            page.draw_rect((10, 10, 50, 140), color=None, fill=(.8, .8, .8))
+            page.draw_polyline([(20, 35), (20, 20), (30, 22), (40, 20), (40, 35), (30, 37), (20, 35)], width=2)
+            page.draw_line((30, 22), (30, 37), width=2)
+            page.insert_text((65, 30), 'Read the manual.', fontsize=10)
+            doc.save(self.pdf)
+        target_sha = hashlib.sha256(self.pdf.read_bytes()).hexdigest()
+        donor_sha = hashlib.sha256(donor.read_bytes()).hexdigest()
+        self.manifest['original_source']['sha256'] = target_sha
+        row = self.rows[1]
+        row.update(web_only_row='sibling-row', donor_source={'path': 'donors/sibling.pdf', 'sha256': donor_sha})
+        return {'id': 'sibling-row', 'source_sha256': target_sha, 'model': 'TEST', 'region': 'US', 'language': 'en',
+                'shared_symbol_key': row['shared_symbol_key'], 'asset_sha256': row['asset_sha256'],
+                'donor': {'source_path': 'donors/sibling.pdf', 'source_sha256': donor_sha, 'physical_page': 1,
+                          'drawing_indices': row['drawing_indices'], 'caption_sha256': row['caption_sha256']},
+                'status': 'operator-approved', 'operator_decision': 'Web adds the row the print lacks.', **changes}
+
+    def check_with_ledger(self, entries):
+        contracts = self.root / 'contracts'
+        contracts.mkdir(exist_ok=True)
+        (contracts / 'symbol_web_only_rows.json').write_text(json.dumps(
+            {'schema_version': 'auto-manual-symbol-web-only-rows/v1', 'entries': entries}))
+        paths = SimpleNamespace(root=self.root, renderer_contracts_dir=contracts)
+        with patch('tools.web.symbol_asset_admission.get_paths', return_value=paths):
+            return self.check()
+
+    def test_web_only_row_requires_a_trusted_entry(self):
+        entry = self.web_only()
+        marker = self.rows[1].pop('web_only_row')
+        with self.assertRaisesRegex(RuntimeError, 'no source drawings'):
+            self.check_with_ledger([])  # the target print has no such row
+        self.rows[1]['web_only_row'] = marker
+        with self.assertRaisesRegex(RuntimeError, 'requires one trusted entry'):
+            self.check_with_ledger([])
+        self.manifest['symbol_web_only_rows'] = [entry]
+        with self.assertRaisesRegex(RuntimeError, 'requires one trusted entry'):
+            self.check_with_ledger([])  # a candidate manifest cannot approve its own row
+        with self.assertRaisesRegex(RuntimeError, 'requires one trusted entry'):
+            self.check_with_ledger([entry, entry])
+        report = self.check_with_ledger([entry])
+        self.assertNotIn('web_only_row', report[0])
+        self.assertEqual(report[1]['web_only_row'], 'sibling-row')
+        self.assertEqual(report[1]['donor_source_sha256'], entry['donor']['source_sha256'])
+
+    def test_web_only_entry_binds_target_approval_and_donor_row(self):
+        entry = self.web_only()
+        donor = entry['donor']
+        for changes, message in [
+            ({'status': 'proposed'}, 'reviewed entry'),
+            ({'operator_decision': ''}, 'reviewed entry'),
+            ({'asset_sha256': '0' * 64}, 'reviewed entry'),
+            ({'donor': {**donor, 'caption_sha256': '0' * 64}}, 'reviewed entry'),
+            ({'donor': {**donor, 'drawing_indices': [0]}}, 'reviewed entry'),
+            ({'donor': {**donor, 'source_path': 'source.pdf'}}, 'reviewed entry'),
+            ({'language': 'fr'}, 'requires one trusted entry'),
+            ({'source_sha256': '0' * 64}, 'requires one trusted entry'),
+        ]:
+            with self.subTest(changes=changes), self.assertRaisesRegex(RuntimeError, message):
+                self.check_with_ledger([{**entry, **changes}])
+        # Repointing both the row and its entry at the target print still fails:
+        # that print has no such row.
+        target = {'path': 'source.pdf', 'sha256': self.manifest['original_source']['sha256']}
+        self.rows[1]['donor_source'] = target
+        with self.assertRaisesRegex(RuntimeError, 'no source drawings'):
+            self.check_with_ledger([{**entry, 'donor': {**donor, 'source_path': target['path'],
+                                                         'source_sha256': target['sha256']}}])
+
+    def test_web_only_row_keeps_donor_glyph_and_caption_checks(self):
+        entry = self.web_only()
+        donor = self.root / entry['donor']['source_path']
+        original = donor.read_bytes()
+        donor.write_bytes(self.pdf.read_bytes())
+        with self.assertRaisesRegex(RuntimeError, 'SHA-256 mismatch'):
+            self.check_with_ledger([entry])  # changed donor bytes
+        donor.write_bytes(original)
+        self.assertEqual(len(self.check_with_ledger([entry])), 2)
+        row = self.rows[1]
+        data = (self.md / self.rows[0]['asset_ref']).read_bytes()
+        row['asset_sha256'] = hashlib.sha256(data).hexdigest()
+        (self.md / row['asset_ref']).write_bytes(data)
+        with self.assertRaisesRegex(RuntimeError, 'glyph/background differs'):
+            self.check_with_ledger([{**entry, 'asset_sha256': row['asset_sha256']}])
 
     def test_withdrawn_legacy_bytes_fail_after_rename(self):
         from tools.web.shared_symbol_assets import require_usable_symbol_file

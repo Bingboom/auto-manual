@@ -202,6 +202,48 @@ def _reference(page, row: dict, meaning: str, erratum: dict | None = None) -> by
     return native_symbol_svg(page, row['drawing_indices'], row['glyph_bbox'])
 
 
+def _web_only_rows(source_sha: str, model: str, region: str, language: str) -> list[dict]:
+    path = get_paths().renderer_contracts_dir / 'symbol_web_only_rows.json'
+    if not path.is_file():
+        return []
+    ledger = json.loads(path.read_text(encoding='utf-8'))
+    if ledger.get('schema_version') != 'auto-manual-symbol-web-only-rows/v1':
+        raise ValueError('unsupported trusted web-only symbol rows')
+    return [row for row in ledger['entries']
+            if (row['source_sha256'], row['model'], row['region'], row['language'])
+            == (source_sha, model, region, language)]
+
+
+def _web_only_comparison(entries: list[dict], row: dict, meaning: str, candidate: Path) -> dict:
+    """Admit an operator-approved Web-only row against the printed row it reuses.
+
+    The target's own print has no such row. The trusted entry names one printed
+    donor row in another hash-bound source; that row's glyph drawings, caption
+    text and caption pixels are checked exactly like a native row.
+    """
+    matches = [e for e in entries if e['id'] == row['web_only_row']]
+    if len(matches) != 1:
+        raise ValueError('web-only symbol row requires one trusted entry')
+    (entry,) = matches
+    donor = entry['donor']
+    if (entry.get('status') != 'operator-approved' or not entry.get('operator_decision')
+            or (entry['shared_symbol_key'], entry['asset_sha256'])
+            != (row['shared_symbol_key'], row['asset_sha256'])
+            or row.get('donor_source') != {'path': donor['source_path'], 'sha256': donor['source_sha256']}
+            or (row['physical_page'], row['drawing_indices'], row['caption_sha256'])
+            != (donor['physical_page'], donor['drawing_indices'], donor['caption_sha256'])):
+        raise ValueError('web-only symbol row differs from its reviewed entry')
+    pdf = _file(get_paths().root, donor['source_path'], donor['source_sha256'])
+    with fitz.open(pdf) as doc:
+        page_number = row['physical_page']
+        if not isinstance(page_number, int) or not 1 <= page_number <= len(doc):
+            raise ValueError('web-only symbol page outside its donor source')
+        reference = _reference(doc[page_number - 1], row, meaning)
+    comparison = compare_symbol(candidate.read_bytes(), candidate.suffix, reference)
+    return {'physical_page': page_number, **comparison, 'web_only_row': entry['id'],
+            'donor_source_sha256': donor['source_sha256']}
+
+
 def _component_rows(specs):
     expected = []
     for spec in specs:
@@ -234,12 +276,17 @@ def require_symbol_asset_admission(markdown_dir: Path, source_root: Path,
         pdf = _file(source_root, source['filename'], source['sha256'])
         errata = _caption_errata(source['sha256'], ir.model, ir.region, language)
         waivers = _glyph_waivers(source['sha256'], ir.model, ir.region, language)
+        web_only = _web_only_rows(source['sha256'], ir.model, ir.region, language)
         report = []
         with fitz.open(pdf) as doc:
             for row, (ref, meaning) in zip(rows, expected, strict=True):
                 candidate = _file(markdown_dir, ref, row['asset_sha256'])
                 require_usable_symbol_file(candidate)
                 require_shared_symbol_binding(row, candidate)
+                if 'web_only_row' in row:
+                    report.append({'asset_ref': ref,
+                                   **_web_only_comparison(web_only, row, meaning, candidate)})
+                    continue
                 page_number = row['physical_page']
                 if not isinstance(page_number, int) or not 1 <= page_number <= len(doc):
                     raise ValueError('symbol physical page outside authoritative PDF')
