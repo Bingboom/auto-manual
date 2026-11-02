@@ -2158,6 +2158,468 @@
         "caption": "Keep away from children.",
         "decision": "Existing keep-away-from-children variants failed the fixed 2% source comparison (closest adult-child-prohibited 2.33%); also passes for JE-600A US (0.03%); native paths retained, no redraw or cell backdrop"
       }
+    },
+    {
+      "key": "ce/label-hte156-ink",
+      "path": "native-v1/ce_mark_label_hte156.svg",
+      "sha256": "fdedf1bb9aca541650713cbc3e85e781bb9299451b3893139e641ef961bdf5cb",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "data/label_sources/EU/2kwh-icon-set-20261029/HTE1563000A-EU-UK_rear-label.pdf",
+        "source_sha256": "871367165ee5976422ef7736b546c16b464d32ef1af96624e5f22f629dbf5cbd",
+        "physical_page": 1,
+        "drawing_indices": [
+          2330,
+          2331
+        ],
+        "glyph_bbox": [
+          164.71,
+          441.97,
+          186.55,
+          457.92
+        ],
+        "native_sha256": "bab4782fcd9a34307b305cb9472383cb107f528a7918216ddff22a158c835d6b",
+        "ink_map": {
+          "#adaeb2": "#454546"
+        },
+        "caption": "CE marking",
+        "decision": "No variant of this mark exists in the shared library (inventory: only package-local raster ce-mark.png copies in the JE-3600A/JE-300E EU packages, not admitted symbols). Taken from the JE-3000C rear label HTE1563000A EU/UK; the same artwork is on the JE-2000E/JE-2000F/JE-3600A/JBP rear labels. Inked for white manual pages: operator-approved exception to the no-recolour rule (2026-11-02, 「形状照原稿，改深灰」): native label paths kept; only the label colours are mapped."
+      }
+    },
+    {
+      "key": "ukca/label-hte156-ink",
+      "path": "native-v1/ukca_mark_label_hte156.svg",
+      "sha256": "69b7dc7d0ce92088cd78d11736f6c9827fbc88aa406d81bb91d37bccdfecb71d",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "data/label_sources/EU/2kwh-icon-set-20261029/HTE1563000A-EU-UK_rear-label.pdf",
+        "source_sha256": "871367165ee5976422ef7736b546c16b464d32ef1af96624e5f22f629dbf5cbd",
+        "physical_page": 1,
+        "drawing_indices": [
+          2355,
+          2356,
+          2357,
+          2358
+        ],
+        "glyph_bbox": [
+          146.37,
+          442.25,
+          161.75,
+          457.64
+        ],
+        "native_sha256": "fc1b7d99384310f2c7970ded10878b48ce86e58daae159ca07a1f2a0dbcff5f8",
+        "ink_map": {
+          "#adaeb2": "#454546"
+        },
+        "caption": "UKCA marking",
+        "decision": "No variant of this mark exists in the shared library. JE-3000C rear label HTE1563000A EU/UK; same artwork on the JE-2000E/JE-2000F/JBP-2000B rear labels and the UK box labels. Inked for white manual pages: operator-approved exception to the no-recolour rule (2026-11-02, 「形状照原稿，改深灰」): native label paths kept; only the label colours are mapped."
+      }
+    },
+    {
+      "key": "ua-conformity/label-hte156-ink",
+      "path": "native-v1/ua_conformity_label_hte156.svg",
+      "sha256": "4b5d6af185ebd3f3f3d0d3549a62c833e8e346a900a8eb0fed3cce7c13837e29",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "data/label_sources/EU/2kwh-icon-set-20261029/HTE1563000A-EU-UK_rear-label.pdf",
+        "source_sha256": "871367165ee5976422ef7736b546c16b464d32ef1af96624e5f22f629dbf5cbd",
+        "physical_page": 1,
+        "drawing_indices": [
+          2367,
+          2368,
+          2369,
+          2370,
+          2371
+        ],
+        "glyph_bbox": [
+          298.09,
+          445.54,
+          318.38,
+          468.41
+        ],
+        "native_sha256": "430a968557e98388e3b6ca47c2a748ba93f561a2c10f6ded716ce3467bc4cc38",
+        "ink_map": {
+          "#a8aaad": "#454546"
+        },
+        "caption": "Ukrainian conformity mark",
+        "decision": "No variant of this mark exists in the shared library. Only the JE-3000C rear label HTE1563000A EU/UK carries it. Inked for white manual pages: operator-approved exception to the no-recolour rule (2026-11-02, 「形状照原稿，改深灰」): native label paths kept; only the label colours are mapped."
+      }
+    },
+    {
+      "key": "un38-3/box-label-hte156-ink",
+      "path": "native-v1/un38_3_box_label_hte156.svg",
+      "sha256": "80898a81aea8c568aabb2b8308a45576b49e1a81b88b7c60b17876a89b875b2f",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "data/label_sources/EU/2kwh-icon-set-20261029/HTE1563000A-EU_box-info-label.pdf",
+        "source_sha256": "a4099ae690f1c065bb28444f53f750fc7177298a72d0133ebe9f44924ee6264c",
+        "physical_page": 1,
+        "drawing_indices": [
+          919,
+          920,
+          921,
+          922,
+          923,
+          924
+        ],
+        "glyph_bbox": [
+          285.54,
+          546.71,
+          357.22,
+          563.6
+        ],
+        "native_sha256": "7f21b924e1a5906fcbb8a9774abf0be1df77f8ccbbdbe8d3ae89b6b279a9fff2",
+        "ink_map": {
+          "#ffffff": "#454546"
+        },
+        "caption": "UN38.3",
+        "decision": "No variant of this mark exists in the shared library. Outlined lettering from the JE-3000C EU box information label; all seven box labels carry it. Inked for white manual pages: operator-approved exception to the no-recolour rule (2026-11-02, 「形状照原稿，改深灰」): native label paths kept; only the label colours are mapped."
+      }
+    },
+    {
+      "key": "triman/info-tri-packaging-hte156-ink",
+      "path": "native-v1/triman_infotri_packaging_hte156.svg",
+      "sha256": "e3998adea1a015968fc24dec45788e4bb9dfab7698911feaa9377db38a4f7e34",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "data/label_sources/EU/2kwh-icon-set-20261029/HTE1563000A-EU_box-info-label.pdf",
+        "source_sha256": "a4099ae690f1c065bb28444f53f750fc7177298a72d0133ebe9f44924ee6264c",
+        "physical_page": 1,
+        "drawing_indices": [
+          2333,
+          2334,
+          2335,
+          2336,
+          2337,
+          2338,
+          2339,
+          2340,
+          2341,
+          2342,
+          2343,
+          2344,
+          2345,
+          2346,
+          2347,
+          2348,
+          2349,
+          2350,
+          2351,
+          2352,
+          2353,
+          2354,
+          2355,
+          2356,
+          2357,
+          2358,
+          2466,
+          2467,
+          2468,
+          2469,
+          2470,
+          2471,
+          2521
+        ],
+        "glyph_bbox": [
+          406.47,
+          541.04,
+          470.1,
+          561.88
+        ],
+        "native_sha256": "b4aa9b854a5a404d6581e32fc5d5477ac2379e686e7b7a2394b3aedb09104099",
+        "ink_map": {
+          "#ff681d": "#ffffff",
+          "#ffffff": "#454546"
+        },
+        "caption": "Triman + Info-tri (packaging)",
+        "decision": "No variant of this mark exists in the shared library. JE-3000C EU box information label; the orange drawn inside the block becomes paper white so figure and ground keep their roles. Printed text is the label's own (\"éléments démballage\"). Inked for white manual pages: operator-approved exception to the no-recolour rule (2026-11-02, 「形状照原稿，改深灰」): native label paths kept; only the label colours are mapped."
+      }
+    },
+    {
+      "key": "triman/info-tri-device-hte156-ink",
+      "path": "native-v1/triman_infotri_device_hte156.svg",
+      "sha256": "1f5cb3fdb36f7286a6a2c3e2712ae1dfc4fec4b72961d0913e2c35f28b30f189",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "data/label_sources/EU/2kwh-icon-set-20261029/HTE1563000A-EU_box-info-label.pdf",
+        "source_sha256": "a4099ae690f1c065bb28444f53f750fc7177298a72d0133ebe9f44924ee6264c",
+        "physical_page": 1,
+        "drawing_indices": [
+          2359,
+          2360,
+          2361,
+          2362,
+          2363,
+          2364,
+          2365,
+          2366,
+          2367,
+          2368,
+          2369,
+          2370,
+          2371,
+          2372,
+          2373,
+          2374,
+          2375,
+          2376,
+          2377,
+          2378,
+          2379,
+          2380,
+          2381,
+          2382,
+          2383,
+          2384,
+          2385,
+          2386,
+          2387,
+          2388,
+          2389,
+          2390,
+          2391,
+          2392,
+          2393,
+          2394,
+          2395,
+          2396,
+          2397,
+          2398,
+          2399,
+          2400,
+          2401,
+          2402,
+          2403,
+          2404,
+          2405,
+          2406,
+          2407,
+          2408,
+          2409,
+          2410,
+          2411,
+          2412,
+          2413,
+          2414,
+          2415,
+          2416,
+          2417,
+          2418,
+          2419,
+          2420,
+          2421,
+          2422,
+          2423,
+          2424,
+          2425,
+          2426,
+          2427,
+          2428,
+          2429,
+          2430,
+          2431,
+          2432,
+          2433,
+          2434,
+          2435,
+          2436,
+          2437,
+          2438,
+          2439,
+          2440,
+          2441,
+          2442,
+          2443,
+          2444,
+          2445,
+          2446,
+          2447,
+          2448,
+          2449,
+          2450,
+          2451,
+          2452,
+          2453,
+          2454,
+          2455,
+          2456,
+          2457,
+          2458,
+          2459,
+          2460,
+          2461,
+          2462,
+          2463,
+          2464,
+          2465,
+          2472,
+          2473,
+          2474,
+          2475,
+          2476,
+          2477,
+          2478,
+          2479,
+          2480,
+          2481,
+          2482,
+          2483,
+          2484,
+          2485,
+          2486,
+          2487,
+          2488,
+          2489,
+          2490,
+          2491,
+          2492,
+          2493,
+          2494,
+          2495,
+          2496,
+          2497,
+          2498,
+          2499,
+          2500,
+          2501,
+          2502,
+          2503,
+          2504,
+          2505,
+          2506,
+          2507,
+          2508,
+          2509,
+          2510,
+          2511,
+          2512,
+          2513,
+          2514,
+          2515,
+          2516,
+          2517,
+          2518,
+          2519,
+          2520
+        ],
+        "glyph_bbox": [
+          474.51,
+          539.71,
+          559.14,
+          567.88
+        ],
+        "native_sha256": "56f53e2e69fc929877a9e457bb215fd39dd619178e6047d171fb75ec0ad652bc",
+        "ink_map": {
+          "#ff681d": "#ffffff",
+          "#ffffff": "#454546"
+        },
+        "caption": "Triman + Info-tri (device)",
+        "decision": "No variant of this mark exists in the shared library. JE-3000C EU box information label wording \"Cet appareil, piles et cordon se recyclent\" (the JBP-2000B box adds \"ses accessoires\" and is a different text variant). A stray orange \"s\" after \"cordon\" is printed orange on orange (hidden on the label); it stays unfilled. Inked for white manual pages: operator-approved exception to the no-recolour rule (2026-11-02, 「形状照原稿，改深灰」): native label paths kept; only the label colours are mapped.",
+        "hidden_fill_ordinals": [
+          153
+        ]
+      }
+    },
+    {
+      "key": "ec-rep/label-hte154-ink",
+      "path": "native-v1/ec_rep_label_hte154.svg",
+      "sha256": "99918f193837058129e20295bf19052744ae40a5870d3da43b262ff189dcb6b2",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "data/label_sources/EU/2kwh-icon-set-20261029/HTE1542000A-EU-UK_rep-label.pdf",
+        "source_sha256": "5eb72dc0b8a01d46c1cb9241403fd947ef0a166bc7003784ec1435f30fcd96c9",
+        "physical_page": 1,
+        "drawing_indices": [
+          1132,
+          1133,
+          1134,
+          1135,
+          1136,
+          1137,
+          1138,
+          1139
+        ],
+        "glyph_bbox": [
+          291.87,
+          196.69,
+          319.6,
+          215.21
+        ],
+        "native_sha256": "008ad68b038137df7955ba3cbfda6529dbcf84b33abc24a2e3e424959608a783",
+        "ink_map": {
+          "#a8aaad": "#454546"
+        },
+        "caption": "EC REP",
+        "decision": "No variant of this mark exists in the shared library. JE-2000F EU/UK representative label HTE1542000A (black edition); a zero-area path in the label background colour stays unfilled. Inked for white manual pages: operator-approved exception to the no-recolour rule (2026-11-02, 「形状照原稿，改深灰」): native label paths kept; only the label colours are mapped.",
+        "hidden_fill_ordinals": [
+          1
+        ]
+      }
+    },
+    {
+      "key": "uk-rep/label-hte154-ink",
+      "path": "native-v1/uk_rep_label_hte154.svg",
+      "sha256": "bde3341194e0d56cb655b0ebd51963aa72d7d5cb7cef6d456fe3e6fd69862b7c",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "data/label_sources/EU/2kwh-icon-set-20261029/HTE1542000A-EU-UK_rep-label.pdf",
+        "source_sha256": "5eb72dc0b8a01d46c1cb9241403fd947ef0a166bc7003784ec1435f30fcd96c9",
+        "physical_page": 1,
+        "drawing_indices": [
+          1140,
+          1141,
+          1142,
+          1143,
+          1144,
+          1145,
+          1146,
+          1147
+        ],
+        "glyph_bbox": [
+          291.87,
+          244.5,
+          319.6,
+          263.03
+        ],
+        "native_sha256": "7979760c56fca5f3e9734b1fe99be1c0304bada45c1afdad888a33117ad59419",
+        "ink_map": {
+          "#a8aaad": "#454546"
+        },
+        "caption": "UK REP",
+        "decision": "No variant of this mark exists in the shared library. JE-2000F EU/UK representative label HTE1542000A (black edition). Inked for white manual pages: operator-approved exception to the no-recolour rule (2026-11-02, 「形状照原稿，改深灰」): native label paths kept; only the label colours are mapped.",
+        "hidden_fill_ordinals": [
+          1
+        ]
+      }
+    },
+    {
+      "key": "battery-weee/crossed-bin-pb-hte154-ink",
+      "path": "native-v1/battery_weee_pb_label_hte154.svg",
+      "sha256": "210a8768e87c7f96f1045e9703e9ce33f4b4691b9ca3a2a2327b9f4c24a6bf0e",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "data/label_sources/EU/2kwh-icon-set-20261029/HTE1542000A-EU-UK_rep-label.pdf",
+        "source_sha256": "5eb72dc0b8a01d46c1cb9241403fd947ef0a166bc7003784ec1435f30fcd96c9",
+        "physical_page": 1,
+        "drawing_indices": [
+          720,
+          721,
+          722,
+          723
+        ],
+        "glyph_bbox": [
+          138.09,
+          196.19,
+          282.16,
+          385.14
+        ],
+        "native_sha256": "709ae4e05c92bacd55a1c39d159e15f66f04746ef4d2b11eb55935bf12e4b63e",
+        "ink_map": {
+          "#a8aaad": "#454546"
+        },
+        "caption": "Battery bin with Pb",
+        "decision": "battery-weee/crossed-bin-no-bar has no Pb mark. JE-2000F EU/UK representative label HTE1542000A only; whether Pb belongs on this product is pending compliance review. Inked for white manual pages: operator-approved exception to the no-recolour rule (2026-11-02, 「形状照原稿，改深灰」): native label paths kept; only the label colours are mapped."
+      }
     }
   ],
   "withdrawn": [
