@@ -168,6 +168,33 @@ The Furo `/search.html` route also has a server-rendered landing form. A bare
 visit therefore shows an actionable query field instead of an empty content
 panel; submitting it uses the existing `q` parameter and Sphinx search index.
 
+## Product short-name search (2026-11-02)
+
+The same keyword box matches the product short name (商品简称, e.g. `E300D`,
+`HP1000v2`), case-insensitively. RTD builds cannot reach Feishu, so the names come
+from the committed snapshot `tools/rtd_portal_assets/product_short_names.json`
+(`{model: short name}`, one standard name per customer model; colour variants,
+bundles, samples and custom editions are not listed). `tools/rtd/product_short_names.py`
+attaches `short_name` to each catalog product by exact model match; the card's
+`data-search`, the muted `model · short name` line on the card and every
+`portal-search-index.js` row carry it, and a short-name hit ranks like a model hit.
+A model missing from the snapshot keeps its previous search text. Several models can
+share one name (`E2000V2` = JE-2000D and JE-2000F), so one query may show several cards.
+
+Refresh, read-only (`--profile prod --as bot` lane; it never writes the Base):
+
+```bash
+python -m tools.rtd.product_short_names refresh --cli-bin "lark-cli --profile prod" --dry-run
+python -m tools.rtd.product_short_names refresh --cli-bin "lark-cli --profile prod" [--model JE-NEW]
+```
+
+It reads the spec table named in the snapshot's `source` block (发布文档管理
+`tbl1sPJU4wxTMaDH`, fields `客户型号` / `商品简称`), keeps rows whose 客户型号 equals
+the model exactly, drops names containing `+`, `样机`, `定制`, `色` or `联名`, and
+takes the most frequent name. It refreshes every listed model plus each `--model`,
+and prints `CHANGED`, `CHOSEN` (several candidates) and `MISSING` lines for review
+before the snapshot change is committed.
+
 ## Product hub rollback — 2026-09-15
 
 The operator requested that main return to the manual-only directory and

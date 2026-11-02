@@ -74,7 +74,7 @@ def write_search_index(app, exception):
                 rows.append({
                     **section,
                     "url": publication["url"] + ("#" + section["anchor"] if section["anchor"] else ""),
-                    "model": product["model"], "name": product["name"],
+                    "model": product["model"], "name": product["name"], "short_name": product.get("short_name", ""),
                     "region": product["region"], "category": product["category"],
                     "lang": lang, "language": settings["language_labels"].get(lang, "Language scope unverified"),
                     "version": publication.get("version"),
