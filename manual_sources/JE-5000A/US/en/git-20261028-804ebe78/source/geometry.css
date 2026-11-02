@@ -1,0 +1,22 @@
+/* JE-5000A US: page-local geometry and type size only.
+   Colours, frames and panels come from the shared Web theme (prepared-document shared-style gate). */
+
+/* Complete source panels keep a readable print width; dense ones pan on phones. */
+#furo-main-content .hb-reference-figure { max-width: 48rem; margin-inline: auto; }
+#furo-main-content .hb-reference-figure[data-reference-id="app-add"],
+#furo-main-content .hb-reference-figure[data-reference-id="app-results"] { max-width: 36rem; }
+#furo-main-content .hb-reference-figure[data-reference-id="lcd-button"] { max-width: 18rem; }
+/* The INGESTION HAZARD glyph sits at text height, as printed. */
+#furo-main-content img[src$="ingestion-hazard.svg"] { height: 1.6em; width: auto; vertical-align: middle; }
+@media (max-width: 760px) {
+  #furo-main-content .hb-reference-figure[data-reference-id="overview-front"],
+  #furo-main-content .hb-reference-figure[data-reference-id="overview-left"],
+  #furo-main-content .hb-reference-figure[data-reference-id="overview-right"],
+  #furo-main-content .hb-reference-figure[data-reference-id="lcd-map"],
+  #furo-main-content .hb-reference-figure[data-reference-id="package-sts"] { overflow-x: auto; }
+  #furo-main-content .hb-reference-figure[data-reference-id="overview-front"] > *,
+  #furo-main-content .hb-reference-figure[data-reference-id="overview-left"] > *,
+  #furo-main-content .hb-reference-figure[data-reference-id="overview-right"] > *,
+  #furo-main-content .hb-reference-figure[data-reference-id="lcd-map"] > *,
+  #furo-main-content .hb-reference-figure[data-reference-id="package-sts"] > * { min-width: 34rem; }
+}

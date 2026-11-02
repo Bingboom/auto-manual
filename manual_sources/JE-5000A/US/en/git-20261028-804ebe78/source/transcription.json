@@ -1,0 +1,3218 @@
+{
+ "schema_version": "je5000a-us-transcription/v1",
+ "source_sha256": "804ebe784c84a698800b2c1cc0f4d28ec692057b1600c48fcc3604e27c86f013",
+ "method": "The EN PDF has a real text layer (Gilroy fonts). Each line was taken from the text layer with PyMuPDF and checked against the 300 dpi page renders (6x clips for punctuation, spacing, digits and symbols). One entry is one printed logical line or paragraph: print line wraps are joined with one space and trailing spaces are dropped. Ligature code points in the text layer (U+FB00 ff, U+FB01 fi, U+FB02 fl) are written as their letters; the printed glyphs are the same letters and the wording is unchanged. Every other code point is as encoded: U+2393 for the DC symbol, '~' for the AC wave, U+00D7 and 'x' multiplication signs as printed, U+FF1A full-width colons (op.i3, app.s43.h), U+FF0C full-width comma (danger.l1), U+FF1C full-width less-than sign (UPS spec), U+203B reference mark, U+00AE as printed after Type-C and USB-C (the text layer sets each ® as a separate superscript run; the print is followed). The LiFePO4 subscript is written as the encoded digit 4. Multiple spaces inside a line are kept as in the text layer. Bullet and list glyphs (U+2022, U+00B7 middle dots, the '--' FCC measure markers) are list markers, not copy; printed step and note numbers (1., 2., 2.1 …) are copy and stay in the text. The five in-box card labels (p6) and the first package-list panel labels (p26) are outlined in the PDF and were read from 300 dpi renders. strong lists the spans printed in bold where a line mixes weights. Ids are stable keys that build_content.py binds to shared components. Text printed inside product art and App screenshots stays in the artwork and is listed only where it is a figure label, step label or caption (fig.*, names.*). [+] marks the printed add-device button glyph in 2.1.",
+ "pages": [
+  {
+   "physical_page": 1,
+   "printed_page": null,
+   "role": "print-cover",
+   "web": false,
+   "lines": [
+    {
+     "id": "cover.model",
+     "text": "Model :JE-5000A"
+    },
+    {
+     "id": "cover.title1",
+     "text": "USER MANUAL"
+    },
+    {
+     "id": "cover.title2",
+     "text": "Jackery Explorer 5000 Plus"
+    },
+    {
+     "id": "cover.contact",
+     "text": "CONTACT US :"
+    },
+    {
+     "id": "cover.tel",
+     "text": "1-888-502-2236 (US)"
+    },
+    {
+     "id": "cover.mail",
+     "text": "hello@jackery.com"
+    },
+    {
+     "id": "cover.web",
+     "text": "www.jackery.com"
+    }
+   ]
+  },
+  {
+   "physical_page": 2,
+   "printed_page": null,
+   "role": "important-preface",
+   "web": true,
+   "lines": [
+    {
+     "id": "imp.badge",
+     "text": "US"
+    },
+    {
+     "id": "imp.h",
+     "text": "IMPORTANT"
+    },
+    {
+     "id": "imp.p1",
+     "text": "Congratulations on your new Jackery Explorer 5000 Plus. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for frequent reference."
+    },
+    {
+     "id": "imp.p2",
+     "text": "In compliance with laws and regulations, the right of final interpretation of this document and all related documents of this product resides with the Company."
+    },
+    {
+     "id": "imp.p3",
+     "text": "Please kindly notice that no further notifications will be given in case of any update, revision or termination."
+    }
+   ]
+  },
+  {
+   "physical_page": 3,
+   "printed_page": null,
+   "role": "print-toc",
+   "web": false,
+   "lines": [
+    {
+     "id": "toc.h",
+     "text": "TABLE OF CONTENTS"
+    },
+    {
+     "id": "toc.band",
+     "text": "US English"
+    },
+    {
+     "id": "toc.range",
+     "text": "01-23"
+    },
+    {
+     "id": "toc.entries",
+     "text": "IMPORTANT SAFETY INFORMATION 01 / WHAT'S IN THE BOX 03 / PRODUCT OVERVIEW 03 / LCD DISPLAY 05 / OPERATIONS 07 / TROUBLESHOOTING 09 / UNINTERRUPTIBLE POWER SUPPLY (UPS) 10 / CONNECTIONS 11 / CHARGING 12 / WARRANTY 16 / APP SETUP 17 / SPECIFICATIONS 19 / SMART HOME BACKUP SYSTEM (AC ESS) INSTALLATION GUIDE 20"
+    }
+   ]
+  },
+  {
+   "physical_page": 4,
+   "printed_page": "01",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "safety.h",
+     "text": "IMPORTANT SAFETY INFORMATION"
+    },
+    {
+     "id": "safety.band",
+     "text": "INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS"
+    },
+    {
+     "id": "safety.warn.label",
+     "text": "WARNING"
+    },
+    {
+     "id": "safety.warn.lead",
+     "text": "Always follow these basic precautions when using this product."
+    },
+    {
+     "id": "safety.w1",
+     "text": "Read all the instructions before using the product."
+    },
+    {
+     "id": "safety.w2",
+     "text": "Do not allow children to play on the product. Close supervision of children is necessary when the product is used near children."
+    },
+    {
+     "id": "safety.w3",
+     "text": "Avoid placing hands or fingers inside the product."
+    },
+    {
+     "id": "safety.w4",
+     "text": "Stop using the product immediately if it has been physically damaged or modified. Improper use of the product may cause unpredictable behavior, leading to fire, explosion, or injury."
+    },
+    {
+     "id": "safety.w5",
+     "text": "If any of the following are observed, including but not limited to overheats, emits unusual odors or smoking, leaks, or burns, stop using the product immediately and contact the dealer or our Customer Support."
+    },
+    {
+     "id": "safety.w6",
+     "text": "Never attempt to open, repair, or modify the product. Any tampering, reassembly, or modification of the product can result in electric shock, fire, or battery damage."
+    },
+    {
+     "id": "safety.w7",
+     "text": "Be aware that liquid ejected from the product may cause irritation or burns. Inappropriate or abusive use may lead to battery leakage. Avoid direct contact with leaking liquid. If the liquid contacts your eyes, seek medical help immediately. If it contacts other body parts, flush with running water and consult a medical professional without delay."
+    },
+    {
+     "id": "safety.w8",
+     "text": "Do not expose the product to fire or excessive temperatures. Doing so may result in an explosion if the temperature exceeds 130°C (265°F)."
+    },
+    {
+     "id": "safety.w9",
+     "text": "Any use of unrecommended or non-supplied materials or parts with the product may result in a risk of fire, electric shock, or personal injury."
+    },
+    {
+     "id": "safety.w10",
+     "text": "Do not leave the battery charging unattended for long periods. Always monitor the charging process to ensure safe operation."
+    },
+    {
+     "id": "safety.w11",
+     "text": "To reduce the risk of electric shock, unplug the product from any power source before attempting any technical service or troubleshooting."
+    },
+    {
+     "id": "op.h",
+     "text": "OPERATING INSTRUCTIONS"
+    },
+    {
+     "id": "op.save",
+     "text": "SAVE THESE INSTRUCTIONS"
+    },
+    {
+     "id": "op.i1",
+     "text": "Make sure to review your local battery recycling guidelines and find a certified recycling center or collection point near you for defective battery disposal. Never dispose of batteries in regular household waste, as they may leak hazardous chemicals or cause fires."
+    },
+    {
+     "id": "op.i2",
+     "text": "Stop using the product immediately if it shows signs of damage. Discontinue use and contact customer support for assistance."
+    },
+    {
+     "id": "op.i3",
+     "text": "Do not charge the battery in extremely hot or cold environments and strictly adhere to the product's specified operating temperature ranges："
+    },
+    {
+     "id": "op.i3.a",
+     "text": "-Charging temperature: 0°C to 45°C (32°F to 113°F);"
+    },
+    {
+     "id": "op.i3.b",
+     "text": "-Discharging temperature: -15°C to 45°C (5°F to 113°F);"
+    },
+    {
+     "id": "op.i3.c",
+     "text": "-Storage temperature: 0°C to 25°C (32°F to 77°F)."
+    },
+    {
+     "id": "op.i4",
+     "text": "To ensure proper air circulation, keep the product vents uncovered. The area where the product is used must have adequate airflow in a cool, dry environment to prevent overheating."
+    },
+    {
+     "id": "op.i4.a",
+     "text": "-Charging in damp or poorly ventilated spaces may cause safety hazards."
+    },
+    {
+     "id": "op.i4.b",
+     "text": "-Water can cause short circuits or damage to the charger, leading to safety risks."
+    },
+    {
+     "id": "op.i5",
+     "text": "Unplug the power cord from a power outlet during a storm."
+    },
+    {
+     "id": "op.i6",
+     "text": "Immediately turn off the product by pressing the power button if it has fallen, been dropped, or exposed to vibrations."
+    },
+    {
+     "id": "op.i7",
+     "text": "Ensure the device(s) are powered off before connecting it to the product."
+    },
+    {
+     "id": "op.i8",
+     "text": "Do not charge the product using a damaged or broken charging cord or plug."
+    },
+    {
+     "id": "op.i9",
+     "text": "Do not use the product to charge any device with a damaged or broken cable or plug."
+    },
+    {
+     "id": "op.i10",
+     "text": "Always unplug the charging cord by pulling the plug, not the cord, to reduce the risk of damage."
+    },
+    {
+     "id": "op.i11",
+     "text": "Ensure the product is properly secured when transporting it in a moving vehicle."
+    },
+    {
+     "id": "op.i12",
+     "text": "DO NOT place the unit upside down or on its side during use or storage."
+    },
+    {
+     "id": "op.i13",
+     "text": "DO NOT place the product on the floor or at a height less than 18 inches (457 mm) above the floor during operation in a workshop or repair facility."
+    },
+    {
+     "id": "op.i14",
+     "text": "DO NOT use the product's accessories with other devices or equipment."
+    },
+    {
+     "id": "op.i15",
+     "text": "Solar charge times depend on weather conditions, place your solar panel where it will get as much direct sunlight as possible."
+    }
+   ]
+  },
+  {
+   "physical_page": 5,
+   "printed_page": "02",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "danger.label",
+     "text": "DANGER"
+    },
+    {
+     "id": "danger.l1",
+     "text": "This device is intended for indoor use only (Please place this device in a similar indoor environment when using it outdoors，e.g. Home RVs, tents, cabins, etc.)."
+    },
+    {
+     "id": "danger.l2",
+     "text": "※ This device is not waterproof or dustproof. Keep away from rain and humid environments during use."
+    },
+    {
+     "id": "maint.h",
+     "text": "USER MAINTENANCE INSTRUCTIONS"
+    },
+    {
+     "id": "maint.p",
+     "text": "It is recommended to fully charge the device before using it for the first time. If stored for 3 to 6 months without a charge, its performance may deteriorate, shortening its lifespan. To maintain optimal performance, ensure that the device undergoes a full charge and discharge cycle at least once every 6 months to 1 year."
+    },
+    {
+     "id": "sym.h",
+     "text": "MEANING OF SYMBOLS"
+    },
+    {
+     "id": "sig.th1",
+     "text": "Symbol"
+    },
+    {
+     "id": "sig.th2",
+     "text": "Meaning"
+    },
+    {
+     "id": "sig.warn.l",
+     "text": "WARNING"
+    },
+    {
+     "id": "sig.warn.m",
+     "text": "Hazardous practices that may result in severe injury, death, and/or property damage."
+    },
+    {
+     "id": "sig.caut.l",
+     "text": "CAUTION"
+    },
+    {
+     "id": "sig.caut.m",
+     "text": "Hazardous practices that may result in personal injury and/or property damage."
+    },
+    {
+     "id": "sym.th1",
+     "text": "Symbol"
+    },
+    {
+     "id": "sym.th2",
+     "text": "Meaning"
+    },
+    {
+     "id": "sym.th3",
+     "text": "Symbol"
+    },
+    {
+     "id": "sym.th4",
+     "text": "Meaning"
+    },
+    {
+     "id": "sym.warning",
+     "text": "Warning and Caution Symbols. Must read to alert individuals to potential hazards or risks."
+    },
+    {
+     "id": "sym.shock",
+     "text": "Electric Shock Hazard Symbol for electrical danger warning."
+    },
+    {
+     "id": "sym.charging",
+     "text": "Battery Charging Symbol indicates a battery is being charged."
+    },
+    {
+     "id": "sym.explosive",
+     "text": "Explosive Material Symbol for explosion risk warning."
+    },
+    {
+     "id": "sym.heavy",
+     "text": "Heavy Object Symbol for handling precautions."
+    },
+    {
+     "id": "sym.fire",
+     "text": "Non-smoking or Open Flame Symbol for fire hazards prevention."
+    },
+    {
+     "id": "sym.children",
+     "text": "No Children Allowed Symbol for safety risk prevention."
+    },
+    {
+     "id": "sym.manual",
+     "text": "Read the Manual Symbol for safe operation."
+    },
+    {
+     "id": "fcc.note",
+     "text": "NOTE: This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules. These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to radio communications. However, there is no guarantee that interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:",
+     "strong": [
+      "NOTE:"
+     ]
+    },
+    {
+     "id": "fcc.m1",
+     "text": "Reorient or relocate the receiving antenna."
+    },
+    {
+     "id": "fcc.m2",
+     "text": "Increase the separation between the equipment and receiver."
+    },
+    {
+     "id": "fcc.m3",
+     "text": "Connect the equipment into an outlet on a circuit different from that to which the receiver is connected."
+    },
+    {
+     "id": "fcc.m4",
+     "text": "Consult the dealer or an experienced radio/TV technician for help."
+    },
+    {
+     "id": "fcc.mod",
+     "text": "MODIFICATION: Any changes or modifications not expressly approved by the grantee of this device could void the user’s authority to operate the device.",
+     "strong": [
+      "MODIFICATION:"
+     ]
+    }
+   ]
+  },
+  {
+   "physical_page": 6,
+   "printed_page": "03",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "box.h",
+     "text": "WHAT'S IN THE BOX"
+    },
+    {
+     "id": "box.c1",
+     "text": "Jackery Explorer 5000 Plus"
+    },
+    {
+     "id": "box.c2",
+     "text": "AC Charging Cable"
+    },
+    {
+     "id": "box.c3",
+     "text": "MC4 Wrench"
+    },
+    {
+     "id": "box.c4",
+     "text": "User Manual"
+    },
+    {
+     "id": "box.c5",
+     "text": "USB-C cable"
+    },
+    {
+     "id": "box.tip.l",
+     "text": "Note"
+    },
+    {
+     "id": "box.tip",
+     "text": "The car charging cable is not included but is available for purchase separately on our website. For assistance, please contact Jackery customer service."
+    },
+    {
+     "id": "names.h",
+     "text": "PRODUCT OVERVIEW"
+    },
+    {
+     "id": "names.front.h",
+     "text": "FRONT VIEW"
+    },
+    {
+     "id": "names.f.lcd",
+     "text": "LCD"
+    },
+    {
+     "id": "names.f.dcbtn",
+     "text": "DC Power Button"
+    },
+    {
+     "id": "names.f.cig",
+     "text": "Cigarette Lighter Port"
+    },
+    {
+     "id": "names.f.cig.v",
+     "text": "12V⎓10A"
+    },
+    {
+     "id": "names.f.acbtn",
+     "text": "AC Power Button"
+    },
+    {
+     "id": "names.f.main",
+     "text": "Main Power Button"
+    },
+    {
+     "id": "names.f.usbc",
+     "text": "USB-C Output"
+    },
+    {
+     "id": "names.f.usbc.v",
+     "text": "100W Max"
+    },
+    {
+     "id": "names.f.usba",
+     "text": "USB-A Output"
+    },
+    {
+     "id": "names.f.usba.v",
+     "text": "18W Max"
+    },
+    {
+     "id": "names.f.usbbtn",
+     "text": "USB Power Button"
+    },
+    {
+     "id": "names.f.ac",
+     "text": "AC Output"
+    },
+    {
+     "id": "names.f.ac.nema",
+     "text": "(NEMA 5-20)"
+    },
+    {
+     "id": "names.f.ac.v1",
+     "text": "1 x AC Output:"
+    },
+    {
+     "id": "names.f.ac.v2",
+     "text": "120V, 20A, 2400W"
+    },
+    {
+     "id": "names.f.ac.v3",
+     "text": "AC Total Output:"
+    },
+    {
+     "id": "names.f.ac.v4",
+     "text": "7200W Max, 14400W Surge"
+    },
+    {
+     "id": "names.f.tl",
+     "text": "Total Output"
+    },
+    {
+     "id": "names.f.tl.v",
+     "text": "120V, 30A, 3600W Max, 7200W Surge"
+    },
+    {
+     "id": "names.f.tr",
+     "text": "Total Output"
+    },
+    {
+     "id": "names.f.tr.v",
+     "text": "120V, 30A, 3600W Max, 7200W Surge"
+    }
+   ]
+  },
+  {
+   "physical_page": 7,
+   "printed_page": "04",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "names.left.h",
+     "text": "LEFT SIDE VIEW"
+    },
+    {
+     "id": "names.l.handle",
+     "text": "Handle"
+    },
+    {
+     "id": "names.l.exp",
+     "text": "AC Expansion Port"
+    },
+    {
+     "id": "names.l.exp.a",
+     "text": "Connect to Smart Transfer Switch"
+    },
+    {
+     "id": "names.l.exp.in",
+     "text": "Input: 240V, 16.7A Max, 4000W"
+    },
+    {
+     "id": "names.l.exp.out",
+     "text": "Output: 240V, 30A, 7200W"
+    },
+    {
+     "id": "names.l.l14",
+     "text": "NEMA L14-30R AC Output Port"
+    },
+    {
+     "id": "names.l.l14.v",
+     "text": "120V/240V, 30A, 7200W Max"
+    },
+    {
+     "id": "names.l.l14.d",
+     "text": "Powers high-power devices and connects to an inlet box or manual transfer switch for home electricity supply."
+    },
+    {
+     "id": "names.l.1450",
+     "text": "NEMA 14-50 AC Output Port"
+    },
+    {
+     "id": "names.l.1450.v",
+     "text": "120V/240V, 30A, 7200W Max"
+    },
+    {
+     "id": "names.l.1450.d",
+     "text": "Powers high-power devices and connects to an inlet box or manual transfer switch for home electricity supply."
+    },
+    {
+     "id": "names.l.reset",
+     "text": "AC Output Reset Button"
+    },
+    {
+     "id": "names.l.reset.d",
+     "text": "When the Reset Button pops up, you need to remove the load and press the Reset Button to reset."
+    },
+    {
+     "id": "names.l.brake",
+     "text": "Wheel Brake"
+    },
+    {
+     "id": "names.l.wheels",
+     "text": "Wheels"
+    },
+    {
+     "id": "names.right.h",
+     "text": "RIGHT SIDE VIEW"
+    },
+    {
+     "id": "names.r.handle",
+     "text": "Retractable Handle"
+    },
+    {
+     "id": "names.r.handle.d",
+     "text": "Press the button on the retractable handle and pull up to extend."
+    },
+    {
+     "id": "names.r.low",
+     "text": "Low-PV Input (8020)"
+    },
+    {
+     "id": "names.r.low.v1",
+     "text": "2 x DC 8mm Ports; 16V-60V⎓10.5A Max, Double to 21A/1200W Max"
+    },
+    {
+     "id": "names.r.low.v2",
+     "text": "11V-16V(Working Voltage)⎓8A Max, Double to 8A Max"
+    },
+    {
+     "id": "names.r.high",
+     "text": "High-PV Input (MC4)"
+    },
+    {
+     "id": "names.r.high.v",
+     "text": "135V-450V⎓15A Max, 4000W Max"
+    },
+    {
+     "id": "names.r.switch",
+     "text": "High-PV Switch"
+    },
+    {
+     "id": "names.r.switch.d",
+     "text": "Turns on/off the switch to enable/disable high voltage solar charging"
+    },
+    {
+     "id": "names.r.acin",
+     "text": "AC Input"
+    },
+    {
+     "id": "names.r.acin.v",
+     "text": "120V, 15A Max"
+    },
+    {
+     "id": "names.r.dcexp",
+     "text": "DC Expansion Port Terminal A"
+    },
+    {
+     "id": "names.r.dcexp.d",
+     "text": "Connect to Battery Pack"
+    },
+    {
+     "id": "names.r.bottom",
+     "text": "Bottom Handle"
+    }
+   ]
+  },
+  {
+   "physical_page": 8,
+   "printed_page": "05",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "lcd.h",
+     "text": "LCD DISPLAY"
+    },
+    {
+     "id": "lcd.r1.t",
+     "text": "Wi-Fi"
+    },
+    {
+     "id": "lcd.r1.d1",
+     "text": "On: Wi-Fi connected.",
+     "strong": [
+      "On:"
+     ]
+    },
+    {
+     "id": "lcd.r1.d2",
+     "text": "Blink: Ready to connect to Wi-Fi.",
+     "strong": [
+      "Blink:"
+     ]
+    },
+    {
+     "id": "lcd.r1.d3",
+     "text": "Off: Wi-Fi disconnected.",
+     "strong": [
+      "Off:"
+     ]
+    },
+    {
+     "id": "lcd.r2.t",
+     "text": "Bluetooth"
+    },
+    {
+     "id": "lcd.r2.d1",
+     "text": "On: Bluetooth connected.",
+     "strong": [
+      "On:"
+     ]
+    },
+    {
+     "id": "lcd.r2.d2",
+     "text": "Blink: Ready to connect to Bluetooth.",
+     "strong": [
+      "Blink:"
+     ]
+    },
+    {
+     "id": "lcd.r2.d3",
+     "text": "Off: Bluetooth disconnected.",
+     "strong": [
+      "Off:"
+     ]
+    },
+    {
+     "id": "lcd.r3.t",
+     "text": "Quiet Charging Mode"
+    },
+    {
+     "id": "lcd.r3.n",
+     "text": "can be enabled / disabled in the Jackery APP"
+    },
+    {
+     "id": "lcd.r3.d1",
+     "text": "On: The noise during charging is significantly minimized, while the charging power is reduced and the charging speed slows down.",
+     "strong": [
+      "On:"
+     ]
+    },
+    {
+     "id": "lcd.r3.d2",
+     "text": "Off: Quiet Charging Mode is disabled.",
+     "strong": [
+      "Off:"
+     ]
+    },
+    {
+     "id": "lcd.r4.t",
+     "text": "Battery Saving Mode"
+    },
+    {
+     "id": "lcd.r4.n",
+     "text": "can be enabled / disabled in the Jackery APP"
+    },
+    {
+     "id": "lcd.r4.d1",
+     "text": "On: Limits the maximum usable battery capacity to extend battery life.",
+     "strong": [
+      "On:"
+     ]
+    },
+    {
+     "id": "lcd.r4.d2",
+     "text": "Off: Battery Saving Mode is disabled.",
+     "strong": [
+      "Off:"
+     ]
+    },
+    {
+     "id": "lcd.r5.t",
+     "text": "Charging/Discharging Plan Indicator"
+    },
+    {
+     "id": "lcd.r5.n",
+     "text": "can be set in the Jackery APP on STS"
+    },
+    {
+     "id": "lcd.r5.d1",
+     "text": "Indicates that the product is operating under the Smart Transfer Switch (STS) Charging/Discharging Plan. This occurs only when the product is successfully connected to the STS and the Charging/Discharging Plan is set in the STS App."
+    },
+    {
+     "id": "lcd.r6.t",
+     "text": "Online UPS"
+    },
+    {
+     "id": "lcd.r6.n",
+     "text": "can be set in the Jackery APP"
+    },
+    {
+     "id": "lcd.r6.d1",
+     "text": "On: The product is on online UPS mode (0 ms).",
+     "strong": [
+      "On:"
+     ]
+    },
+    {
+     "id": "lcd.r6.d2",
+     "text": "Off: Backup UPS mode (Default).",
+     "strong": [
+      "Off:"
+     ]
+    },
+    {
+     "id": "lcd.r7.t",
+     "text": "AC Power Indicator"
+    },
+    {
+     "id": "lcd.r7.d1",
+     "text": "The AC output (pure sine wave) is on."
+    },
+    {
+     "id": "lcd.r8.t",
+     "text": "Input Power"
+    },
+    {
+     "id": "lcd.r8.d1",
+     "text": "Displays the input power in watts."
+    },
+    {
+     "id": "lcd.r9.t",
+     "text": "Remaining Charge Time"
+    },
+    {
+     "id": "lcd.r9.d1",
+     "text": "Displays the remaining charging time."
+    },
+    {
+     "id": "lcd.r10.t",
+     "text": "AC Wall Charging Indicator"
+    },
+    {
+     "id": "lcd.r10.d1",
+     "text": "The product is charged via the AC input using grid power."
+    }
+   ]
+  },
+  {
+   "physical_page": 9,
+   "printed_page": "06",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "lcd.r11.t",
+     "text": "Car Charging Indicator"
+    },
+    {
+     "id": "lcd.r11.d1",
+     "text": "The product is charged via the Low-PV Input (8020) using DC 12V (car charging)."
+    },
+    {
+     "id": "lcd.r12a.t",
+     "text": "High-PV Input Indicator"
+    },
+    {
+     "id": "lcd.r12a.d1",
+     "text": "The product is charged via the High-PV Input (MC4) using solar panel(s)."
+    },
+    {
+     "id": "lcd.r12b.t",
+     "text": "Low-PV Input Indicator"
+    },
+    {
+     "id": "lcd.r12b.d1",
+     "text": "The product is charged via the Low-PV Input (8020) using solar panel(s)."
+    },
+    {
+     "id": "lcd.r13a.t",
+     "text": "AC Expansion Indicator (Charging)"
+    },
+    {
+     "id": "lcd.r13a.n",
+     "text": "Ensure the STS is successfully connected before proceeding."
+    },
+    {
+     "id": "lcd.r13a.d1",
+     "text": "The product is charged via the Smart Transfer Switch (STS) using grid power."
+    },
+    {
+     "id": "lcd.r13b.t",
+     "text": "AC Expansion Indicator (Discharging)"
+    },
+    {
+     "id": "lcd.r13b.n",
+     "text": "Ensure the STS is successfully connected before proceeding."
+    },
+    {
+     "id": "lcd.r13b.d1",
+     "text": "The product is powering your home loads via the Smart Transfer Switch (STS)."
+    },
+    {
+     "id": "lcd.r14.t",
+     "text": "Smart Transfer Switch Indicator"
+    },
+    {
+     "id": "lcd.r14.d1",
+     "text": "The product is successfully connected to the Smart Transfer Switch."
+    },
+    {
+     "id": "lcd.r15.t",
+     "text": "Battery Power Indicator"
+    },
+    {
+     "id": "lcd.r15.d1",
+     "text": "When the product is being charged, the orange circle around the battery percentage will light up in sequence. When charging other devices, the orange circle will stay on."
+    },
+    {
+     "id": "lcd.r16.t",
+     "text": "Low Battery Indicator"
+    },
+    {
+     "id": "lcd.r16.d1",
+     "text": "On: The battery level is below 20%.",
+     "strong": [
+      "On:"
+     ]
+    },
+    {
+     "id": "lcd.r16.d2",
+     "text": "Blink: The battery level is below 5%.",
+     "strong": [
+      "Blink:"
+     ]
+    },
+    {
+     "id": "lcd.r16.d3",
+     "text": "Off: The product is charging.",
+     "strong": [
+      "Off:"
+     ]
+    },
+    {
+     "id": "lcd.r17.t",
+     "text": "Remaining Battery Percentage"
+    },
+    {
+     "id": "lcd.r17.d1",
+     "text": "Displays the remaining battery percentage."
+    },
+    {
+     "id": "lcd.r18.t",
+     "text": "Battery Pack Indicator and Number of Connected Batteries"
+    },
+    {
+     "id": "lcd.r18.d1",
+     "text": "Indicates that the product is connected to the specified number of 5000 Plus Battery Pack(s)."
+    },
+    {
+     "id": "lcd.r19.t",
+     "text": "Fault Code"
+    },
+    {
+     "id": "lcd.r19.d1",
+     "text": "A product error has occurred. Please refer to the Troubleshooting section for details."
+    },
+    {
+     "id": "lcd.r20a.t",
+     "text": "High Temperature Indicator"
+    },
+    {
+     "id": "lcd.r20a.d1",
+     "text": "High temperature protection is triggered. The product may stop functioning until its temperature returns to the normal operating range."
+    },
+    {
+     "id": "lcd.r20b.t",
+     "text": "Low Temperature Indicator"
+    },
+    {
+     "id": "lcd.r20b.d1",
+     "text": "Low temperature protection is triggered. The product may stop functioning until its temperature returns to the normal operating range."
+    },
+    {
+     "id": "lcd.r21.t",
+     "text": "Energy Saving Mode"
+    },
+    {
+     "id": "lcd.r21.d1",
+     "text": "To prevent unnecessary battery consumption from forgetting to turn off the output, the product enables Energy Saving Mode by default. If no device is connected or the connected device's power consumption is below a certain threshold (AC output≤25W; USB output≤2W; Car output≤2W), the device will automatically turn off all outputs after 12 hours."
+    },
+    {
+     "id": "lcd.r21.d2",
+     "text": "On/Off: Press and hold both the AC Power Button and Main Power Button",
+     "strong": [
+      "On/Off:"
+     ]
+    },
+    {
+     "id": "lcd.r22.t",
+     "text": "Output Power"
+    },
+    {
+     "id": "lcd.r22.d1",
+     "text": "Displays the output power in watts."
+    },
+    {
+     "id": "lcd.r23.t",
+     "text": "Remaining Discharge Time"
+    },
+    {
+     "id": "lcd.r23.d1",
+     "text": "Displays the remaining discharging time."
+    }
+   ]
+  },
+  {
+   "physical_page": 10,
+   "printed_page": "07",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "ops.h",
+     "text": "OPERATIONS"
+    },
+    {
+     "id": "ops.note.l",
+     "text": "Note"
+    },
+    {
+     "id": "ops.note",
+     "text": "When Energy Saving Mode is on, if the DC Output, AC Output, or USB Output Power Button is ON but the product is not charging or discharging, it will automatically shut down after 12 hours."
+    },
+    {
+     "id": "ops.power.h",
+     "text": "POWER ON/OFF"
+    },
+    {
+     "id": "fig.power.on",
+     "text": "On"
+    },
+    {
+     "id": "fig.power.on.a",
+     "text": "Press once"
+    },
+    {
+     "id": "fig.power.off",
+     "text": "Off"
+    },
+    {
+     "id": "fig.power.off.a",
+     "text": "Press and hold for 3s"
+    },
+    {
+     "id": "fig.power.dur",
+     "text": "3s"
+    },
+    {
+     "id": "ops.power.box.t",
+     "text": "Default standby time: 2 hours",
+     "strong": [
+      "Default standby time:"
+     ]
+    },
+    {
+     "id": "ops.power.box.b",
+     "text": "The product will automatically shut down after 2 hours of inactivity, with no charging or discharging."
+    },
+    {
+     "id": "ops.power.box.c",
+     "text": "The standby time can be set in the Jackery App."
+    },
+    {
+     "id": "ops.ac.h",
+     "text": "AC OUTPUT ON/OFF"
+    },
+    {
+     "id": "ops.ac.pre",
+     "text": "Prerequisite: Ensure the Main Power Button is on.",
+     "strong": [
+      "Prerequisite:"
+     ]
+    },
+    {
+     "id": "fig.ac.on",
+     "text": "On"
+    },
+    {
+     "id": "fig.ac.on.a",
+     "text": "Press once"
+    },
+    {
+     "id": "fig.ac.off",
+     "text": "Off"
+    },
+    {
+     "id": "fig.ac.off.a",
+     "text": "Press once"
+    }
+   ]
+  },
+  {
+   "physical_page": 11,
+   "printed_page": "08",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "ops.usb.h",
+     "text": "USB OUTPUT ON/OFF"
+    },
+    {
+     "id": "ops.usb.pre",
+     "text": "Prerequisite: Ensure the Main Power Button is on.",
+     "strong": [
+      "Prerequisite:"
+     ]
+    },
+    {
+     "id": "fig.usb.on",
+     "text": "On"
+    },
+    {
+     "id": "fig.usb.on.a",
+     "text": "Press once"
+    },
+    {
+     "id": "fig.usb.off",
+     "text": "Off"
+    },
+    {
+     "id": "fig.usb.off.a",
+     "text": "Press once"
+    },
+    {
+     "id": "ops.dc.h",
+     "text": "DC OUTPUT ON/OFF"
+    },
+    {
+     "id": "ops.dc.pre",
+     "text": "Prerequisite: Ensure the Main Power Button is on.",
+     "strong": [
+      "Prerequisite:"
+     ]
+    },
+    {
+     "id": "ops.dc.warn",
+     "text": "Do not start the vehicle while the product is charging the car battery via the 12V DC output (cigarette lighter port), as this may damage the device."
+    },
+    {
+     "id": "fig.dc.on",
+     "text": "On"
+    },
+    {
+     "id": "fig.dc.on.a",
+     "text": "Press once"
+    },
+    {
+     "id": "fig.dc.off",
+     "text": "Off"
+    },
+    {
+     "id": "fig.dc.off.a",
+     "text": "Press once"
+    },
+    {
+     "id": "ops.lcd.h",
+     "text": "LCD SCREEN"
+    },
+    {
+     "id": "lcdm.s1",
+     "text": "LCD Screen"
+    },
+    {
+     "id": "lcdm.s1.on",
+     "text": "Turn on"
+    },
+    {
+     "id": "lcdm.s1.on.d",
+     "text": "Press the Main Power Button or when the product is charging."
+    },
+    {
+     "id": "lcdm.s1.off",
+     "text": "Turn off"
+    },
+    {
+     "id": "lcdm.s1.off.d",
+     "text": "Press the Main Power Button."
+    },
+    {
+     "id": "lcdm.s1.auto",
+     "text": "Auto-off"
+    },
+    {
+     "id": "lcdm.s1.auto.d",
+     "text": "The LCD turns off automatically and enters sleep mode after 2 minutes of inactivity."
+    },
+    {
+     "id": "lcdm.s2",
+     "text": "Always-on Display Mode (under charging or discharging state)"
+    },
+    {
+     "id": "lcdm.s2.on",
+     "text": "Turn on"
+    },
+    {
+     "id": "lcdm.s2.on.d",
+     "text": "Double-click the Main Power Button when the LCD screen is ON."
+    },
+    {
+     "id": "lcdm.s2.off",
+     "text": "Turn off"
+    },
+    {
+     "id": "lcdm.s2.off.d",
+     "text": "Press the Main Power Button."
+    },
+    {
+     "id": "lcdm.s2.auto",
+     "text": "Auto-off"
+    },
+    {
+     "id": "lcdm.s2.auto.d",
+     "text": "The Always-on Display Mode turns off automatically after 2 hours of inactivity."
+    }
+   ]
+  },
+  {
+   "physical_page": 12,
+   "printed_page": "09",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "keys.h",
+     "text": "KEY COMBINATIONS"
+    },
+    {
+     "id": "keys.th1",
+     "text": "Buttons"
+    },
+    {
+     "id": "keys.th2",
+     "text": "Operation"
+    },
+    {
+     "id": "keys.th3",
+     "text": "Function"
+    },
+    {
+     "id": "keys.r1.b1",
+     "text": "Main Power Button"
+    },
+    {
+     "id": "keys.r1.b2",
+     "text": "USB Power Button"
+    },
+    {
+     "id": "keys.r1.dur",
+     "text": "3s"
+    },
+    {
+     "id": "keys.r1.op",
+     "text": "Press and hold both for 3s"
+    },
+    {
+     "id": "keys.r1.fn",
+     "text": "Reset Wi-Fi & Bluetooth"
+    },
+    {
+     "id": "keys.r2.b1",
+     "text": "Main Power Button"
+    },
+    {
+     "id": "keys.r2.b2",
+     "text": "AC Power Button"
+    },
+    {
+     "id": "keys.r2.dur",
+     "text": "3s"
+    },
+    {
+     "id": "keys.r2.op",
+     "text": "Press and hold both for 3s"
+    },
+    {
+     "id": "keys.r2.fn",
+     "text": "Turn on/off the Energy Saving Mode"
+    },
+    {
+     "id": "keys.r3.b1",
+     "text": "USB Power Button"
+    },
+    {
+     "id": "keys.r3.b2",
+     "text": "AC Power Button"
+    },
+    {
+     "id": "keys.r3.dur",
+     "text": "1s"
+    },
+    {
+     "id": "keys.r3.op",
+     "text": "Press and hold both for 1s"
+    },
+    {
+     "id": "keys.r3.fn",
+     "text": "Turn on/off Wi-Fi & Bluetooth"
+    },
+    {
+     "id": "keys.r4.b1",
+     "text": "DC Power Button"
+    },
+    {
+     "id": "keys.r4.b2",
+     "text": "AC Power Button"
+    },
+    {
+     "id": "keys.r4.dur",
+     "text": "3s"
+    },
+    {
+     "id": "keys.r4.op",
+     "text": "Press and hold both for 3s"
+    },
+    {
+     "id": "keys.r4.fn",
+     "text": "Switch to online UPS or Backup UPS"
+    },
+    {
+     "id": "ts.h",
+     "text": "TROUBLESHOOTING"
+    },
+    {
+     "id": "ts.th1",
+     "text": "Error Code"
+    },
+    {
+     "id": "ts.th2",
+     "text": "Name"
+    },
+    {
+     "id": "ts.th3",
+     "text": "Description (For Internal Fault Maintenance Only)"
+    },
+    {
+     "id": "ts.f0.c",
+     "text": "F0"
+    },
+    {
+     "id": "ts.f0.n",
+     "text": "BMS Data Communication Error"
+    },
+    {
+     "id": "ts.f0.d1",
+     "text": "Data communication fault between the BMS and mainboard"
+    },
+    {
+     "id": "ts.f1.c",
+     "text": "F1"
+    },
+    {
+     "id": "ts.f1.n",
+     "text": "Inverter Data Communication Error"
+    },
+    {
+     "id": "ts.f1.d1",
+     "text": "Data communication fault between the inverter and mainboard"
+    },
+    {
+     "id": "ts.f2.c",
+     "text": "F2"
+    },
+    {
+     "id": "ts.f2.n",
+     "text": "DC Input Data Communication Error"
+    },
+    {
+     "id": "ts.f2.d1",
+     "text": "Data communication fault between the DC charging module and BMS"
+    },
+    {
+     "id": "ts.f3.c",
+     "text": "F3"
+    },
+    {
+     "id": "ts.f3.n",
+     "text": "BMS or Battery Failure"
+    },
+    {
+     "id": "ts.f3.d1",
+     "text": "BMS or battery failuare"
+    },
+    {
+     "id": "ts.f4.c",
+     "text": "F4"
+    },
+    {
+     "id": "ts.f4.n",
+     "text": "Battery Overvoltage"
+    },
+    {
+     "id": "ts.f4.d1",
+     "text": "Battery overvoltage"
+    },
+    {
+     "id": "ts.f5.c",
+     "text": "F5"
+    },
+    {
+     "id": "ts.f5.n",
+     "text": "Battery Undervoltage"
+    },
+    {
+     "id": "ts.f5.d1",
+     "text": "Battery undervoltage"
+    },
+    {
+     "id": "ts.f6.c",
+     "text": "F6"
+    },
+    {
+     "id": "ts.f6.n",
+     "text": "Inverter Failure"
+    },
+    {
+     "id": "ts.f6.d1",
+     "text": "AC output overcurrent / overload / short circuit;"
+    },
+    {
+     "id": "ts.f6.d2",
+     "text": "Grid input overvoltage / undervoltage / overfrequency / underfrequency;"
+    },
+    {
+     "id": "ts.f6.d3",
+     "text": "Inverter over-temperature protection on (triggered)"
+    },
+    {
+     "id": "ts.f6.d4",
+     "text": "Insulation detection failure"
+    },
+    {
+     "id": "ts.f7.c",
+     "text": "F7"
+    },
+    {
+     "id": "ts.f7.n",
+     "text": "DC Input Failure"
+    },
+    {
+     "id": "ts.f7.d1",
+     "text": "PV input overvoltage;"
+    },
+    {
+     "id": "ts.f7.d2",
+     "text": "DC charging module overtemperature protection on/triggered;"
+    },
+    {
+     "id": "ts.f7.d3",
+     "text": "Output overcurrent protection of the DC charging module on/triggered"
+    },
+    {
+     "id": "ts.f8.c",
+     "text": "F8"
+    },
+    {
+     "id": "ts.f8.n",
+     "text": "Battery Charging / Discharging Overcurrent / Short Circuit"
+    },
+    {
+     "id": "ts.f8.d1",
+     "text": "BMS overcurrent / short circuit protection on/triggered"
+    },
+    {
+     "id": "ts.f9.c",
+     "text": "F9"
+    },
+    {
+     "id": "ts.f9.n",
+     "text": "DC Output Overcurrent / Short Circuit"
+    },
+    {
+     "id": "ts.f9.d1",
+     "text": "USB short circuit protection on/triggered"
+    },
+    {
+     "id": "ts.fa.c",
+     "text": "FA"
+    },
+    {
+     "id": "ts.fa.n",
+     "text": "Parallel Unit Communication Error"
+    },
+    {
+     "id": "ts.fa.d1",
+     "text": "Data communication failure between two 5000 Plus failure caused by both units defective."
+    },
+    {
+     "id": "ts.fc.c",
+     "text": "FC"
+    },
+    {
+     "id": "ts.fc.n",
+     "text": "Battery Pack Communication Error"
+    },
+    {
+     "id": "ts.fc.d1",
+     "text": "Data communication failure between the 5000 Plus and battery pack(s)"
+    }
+   ]
+  },
+  {
+   "physical_page": 13,
+   "printed_page": "10",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "ups.h",
+     "text": "UNINTERRUPTIBLE POWER SUPPLY (UPS)"
+    },
+    {
+     "id": "ups.p1",
+     "text": "An uninterruptible power supply (UPS) is a type of continual power system that provides automated backup electric power to a load when the mains grid power fails."
+    },
+    {
+     "id": "ups.p2",
+     "text": "The Jackery 5000 Plus is equipped with two UPS modes: Backup UPS and Online UPS."
+    },
+    {
+     "id": "ups.b.h",
+     "text": "BACKUP UPS"
+    },
+    {
+     "id": "ups.b.p1",
+     "text": "The backup UPS function is enabled by default. In the event of a sudden loss of grid power, the Explorer 5000 Plus will automatically switch to stored power within 20 ms to keep your appliances running."
+    },
+    {
+     "id": "ups.b.p2",
+     "text": "In Backup UPS mode, the unit's peak output reaches 1440W before power outages. As simultaneous charging/discharging is enabled in Bypass Mode, the actual output power is lower than the rated output power in this mode but returns to rated output power during outages."
+    },
+    {
+     "id": "ups.bubble",
+     "text": "Connect the product to a wall outlet with the AC charging cable, then press the AC output button and power your appliances at the same time ."
+    },
+    {
+     "id": "ups.o.h",
+     "text": "ONLINE UPS"
+    },
+    {
+     "id": "ups.o.p",
+     "text": "The online UPS mode, which enables 0 ms switching, can be activated in two ways:"
+    },
+    {
+     "id": "ups.o.l1",
+     "text": "1. Enable Online UPS in the Jackery App."
+    },
+    {
+     "id": "ups.o.l2",
+     "text": "2. Press the DC and AC Power Buttons simultaneously on the Explorer 5000 Plus."
+    },
+    {
+     "id": "ups.note.l",
+     "text": "Note"
+    },
+    {
+     "id": "ups.n1",
+     "text": "1. The system settings will revert to Backup UPS mode when the product is in Online mode and is restarted. In Backup UPS mode, the output power is limited by the bypass power, with a maximum output power of 1440W."
+    },
+    {
+     "id": "ups.n2",
+     "text": "2. In UPS mode, the NEMA L14-30R and NEMA 14-50 outlets each provide a 120V output when the product is connected to a wall outlet using the AC charging cable."
+    },
+    {
+     "id": "ups.n3",
+     "text": "3. In Online UPS mode, it supports 0 ms switching with a maximum output power of 3600W."
+    }
+   ]
+  },
+  {
+   "physical_page": 14,
+   "printed_page": "11",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "con.h",
+     "text": "CONNECTIONS"
+    },
+    {
+     "id": "con.bp.h",
+     "text": "CONNECT TO BATTERY PACK(S)"
+    },
+    {
+     "id": "con.bp.sold",
+     "text": "SOLD SEPARATELY"
+    },
+    {
+     "id": "con.bp.p",
+     "text": "This product can support up to 5 battery packs to meet the need for large power capacity. For details on how to use it, please refer to the Jackery Battery Pack 5000 Plus User Manual."
+    },
+    {
+     "id": "fig.bp.gap1",
+     "text": "at least 1 ft (300mm)"
+    },
+    {
+     "id": "fig.bp.gap2",
+     "text": "at least 1 ft (300mm)"
+    },
+    {
+     "id": "con.bp.caut.l",
+     "text": "Caution"
+    },
+    {
+     "id": "con.bp.c1",
+     "text": "1.  Ensure all products are powered off before connecting the 5000 Plus to the 5000 Plus Battery Pack(s)."
+    },
+    {
+     "id": "con.bp.c2",
+     "text": "2. To ensure proper operation of the product, make sure the air intake and exhaust vents on both sides are unobstructed. Leave at least 1 ft of space between the vents and any objects to allow for adequate air circulation and effective heat dissipation."
+    },
+    {
+     "id": "con.sts.h",
+     "text": "CONNECT TO A SMART TRANSFER SWITCH"
+    },
+    {
+     "id": "con.sts.sold",
+     "text": "SOLD SEPARATELY"
+    },
+    {
+     "id": "con.sts.p",
+     "text": "Jackery Explorer 5000 Plus can power your home loads via the Smart Transfer Switch.  For details on how to use it, please refer to the Jackery Smart Transfer Switch user manual."
+    }
+   ]
+  },
+  {
+   "physical_page": 15,
+   "printed_page": "12",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "chg.h",
+     "text": "CHARGING"
+    },
+    {
+     "id": "chg.green",
+     "text": "Green energy first: We advocate to use the green energy first. This product supports two modes of charging at the same time: solar charging and AC wall charging."
+    },
+    {
+     "id": "chg.green2",
+     "text": "When AC wall charging and solar charging are turned on at the same time, the product will give priority to solar charging and both methods will be used to charge the battery at the maximum permissible power."
+    },
+    {
+     "id": "chg.first",
+     "text": "Fully charge the product before its first use."
+    },
+    {
+     "id": "chg.note.l",
+     "text": "Note"
+    },
+    {
+     "id": "chg.n1",
+     "text": "1. The recommended charging temperature for the product is between 0°C to 45°C (32°F to 113°F), and the discharging temperature is between -15°C to 45°C (5°F to 113°F). Operating the product outside this temperature range may restrict its charging and discharging capabilities, prevent it from charging or discharging."
+    },
+    {
+     "id": "chg.n2",
+     "text": "2. The charging power and battery capacity of the product may vary due to temperature fluctuations. When the ambient temperature is between -15°C to -10°C (5°F to 14°F), the maximum output power decreases to 3600W."
+    },
+    {
+     "id": "chg.ac.h",
+     "text": "CHARGING VIA AC WALL OUTLET"
+    },
+    {
+     "id": "chg.ac.p",
+     "text": "Connect the AC charging cable to the 5000 Plus AC input port and a wall outlet."
+    },
+    {
+     "id": "chg.sts.h",
+     "text": "CHARGING WITH A SMART TRANSFER SWITCH"
+    },
+    {
+     "id": "chg.sts.p1",
+     "text": "Connect your Jackery Smart Transfer Switch to the product to enable charging via the Jackery Smart Transfer Switch."
+    },
+    {
+     "id": "chg.sts.p2",
+     "text": "*The backup reserve setting works in all modes of the Smart Transfer Switch. Therefore, the Jackery Explorer 5000 Plus stops charging when its remaining capacity exceeds the backup reserve. To charge it immediately, follow the instructions below."
+    },
+    {
+     "id": "fig.sts.s1",
+     "text": "STEP 1"
+    },
+    {
+     "id": "fig.sts.s2",
+     "text": "STEP 2"
+    },
+    {
+     "id": "fig.sts.app",
+     "text": "*STS App"
+    },
+    {
+     "id": "chg.sts.note.l",
+     "text": "Note"
+    },
+    {
+     "id": "chg.sts.note",
+     "text": "When the AC Expansion Port is successfully connected to the STS, the AC Input port will not be used for charging. In this case, the portable power station can be charged via the following ports: AC Expansion Port, High-PV, and Low-PV."
+    }
+   ]
+  },
+  {
+   "physical_page": 16,
+   "printed_page": "13",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "chg.solar.h",
+     "text": "CHARGING WITH SOLAR PANELS"
+    },
+    {
+     "id": "chg.solar.caut.l",
+     "text": "Caution"
+    },
+    {
+     "id": "chg.solar.caut",
+     "text": "When connecting solar panels in series, ensure that the maximum voltage output of all panels is within 16V-60V for the low-PV input port, and 135V-450V for the high-PV input port."
+    },
+    {
+     "id": "chg.low.h",
+     "text": "Connect to Low-PV input port"
+    },
+    {
+     "id": "chg.low.range",
+     "text": "Low-PV input voltage range: 16V to 60V"
+    },
+    {
+     "id": "chg.low.p",
+     "text": "The Jackery Explorer 5000 Plus has two low-PV input ports, each one supports direct connection of one 500W or three 200W solar panels. If one low-PV input port needs to connect two or more solar panels simultaneously, please refer to the figure below for charging through the solar panel connector (sold separately, not included as standard)."
+    },
+    {
+     "id": "fig.low1.dc",
+     "text": "DC8020"
+    },
+    {
+     "id": "fig.low1.cap",
+     "text": "SolarSaga 500 X × 2"
+    },
+    {
+     "id": "fig.low2.dc1",
+     "text": "DC8020"
+    },
+    {
+     "id": "fig.low2.dc2",
+     "text": "DC8020"
+    },
+    {
+     "id": "fig.low2.cap",
+     "text": "SolarSaga 200 × 6"
+    },
+    {
+     "id": "chg.low.caut.l",
+     "text": "Caution"
+    },
+    {
+     "id": "chg.low.c1",
+     "text": "1. It is required to use the same Jackery solar panel models and the same number of panels connected via solar panel connectors when connecting solar panels to both low-PV Input ports. Failure to do so may damage the product due to voltage inconsistencies caused by different models or mismatched panel quantities."
+    },
+    {
+     "id": "chg.low.c2",
+     "text": "2. Do not charge the product using both the car charger and solar panel simultaneously, as this may blow the car fuse or result in charging failure."
+    },
+    {
+     "id": "chg.low.c3",
+     "text": "3. It is recommended to use the Jackery Solar Panel to charge the Explorer 5000 Plus. Jackery is not responsible for any losses caused by using solar panels from other brands."
+    }
+   ]
+  },
+  {
+   "physical_page": 17,
+   "printed_page": "14",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "chg.high.h",
+     "text": "Connect to High-PV input port"
+    },
+    {
+     "id": "chg.high.range",
+     "text": "High-PV input voltage range: 135V to 450V"
+    },
+    {
+     "id": "chg.high.caut.l",
+     "text": "Caution"
+    },
+    {
+     "id": "chg.high.c1",
+     "text": "1. Make sure the High-PV switch is turned off before connecting the High-PV input or performing maintenance."
+    },
+    {
+     "id": "chg.high.c2",
+     "text": "2. Before using the High-PV input ports, make sure the PV switch is turned on."
+    },
+    {
+     "id": "chg.high.c3",
+     "text": "3. Make sure the High-PV switch is in the 'OFF' or 'LOCK' position before using the provided MC4 wrench to disconnect the MC4 connectors."
+    },
+    {
+     "id": "chg.high.mc4",
+     "text": "Disconnect MC4 connectors with the provided MC4 wrench."
+    },
+    {
+     "id": "chg.lock.h",
+     "text": "Lock"
+    },
+    {
+     "id": "chg.lock.p",
+     "text": "Turn the high-PV switch to the 'LOCK' position and press the locking mechanism."
+    },
+    {
+     "id": "chg.unlock.h",
+     "text": "Unlock"
+    },
+    {
+     "id": "chg.unlock.p",
+     "text": "Release the locking mechanism and the switch returns to the 'OFF' position."
+    }
+   ]
+  },
+  {
+   "physical_page": 18,
+   "printed_page": "15",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "chg.dual.h",
+     "text": "High-PV + Low-PV Input"
+    },
+    {
+     "id": "chg.dual.l1",
+     "text": "Voltage range for low-PV input: 16V to 60V"
+    },
+    {
+     "id": "chg.dual.l2",
+     "text": "Voltage range for high-PV input: 135V to 450V"
+    },
+    {
+     "id": "chg.car.h",
+     "text": "CHARGING WITH A CAR CHARGER"
+    },
+    {
+     "id": "chg.car.p",
+     "text": "This product can be charged using a 12V car charger. Ensure that the car charger and the car cigarette lighter provide a good connection."
+    },
+    {
+     "id": "fig.car.vehicle",
+     "text": "Vehicle"
+    },
+    {
+     "id": "chg.car.note",
+     "text": "*The car charging cable is sold separately."
+    },
+    {
+     "id": "chg.car.caut.l",
+     "text": "Caution"
+    },
+    {
+     "id": "chg.car.c1",
+     "text": "1. Please start the vehicle before charging your power station."
+    },
+    {
+     "id": "chg.car.c2",
+     "text": "2. If the vehicle is running on bumpy roads, it is forbidden to use the car charger in case it burns due to a poor connection. The Company will not be responsible for any loss caused by non-standard operation."
+    },
+    {
+     "id": "chg.car.c3",
+     "text": "3. Vehicle charging is only applicable to vehicles with 12V DC, not 24V DC. Please do not charge this product in 24V vehicle to avoid personal injury and property loss."
+    }
+   ]
+  },
+  {
+   "physical_page": 19,
+   "printed_page": "16",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "war.h",
+     "text": "WARRANTY"
+    },
+    {
+     "id": "war.lead",
+     "text": "We only provide our warranty to customers who purchase from the official Jackery website, Jackery-branded third-party platforms, or local authorized dealers."
+    },
+    {
+     "id": "war.note",
+     "text": "* Warranty period and details may vary according to local laws, regulations, and authorized dealers."
+    },
+    {
+     "id": "war.lim.h",
+     "text": "Limited Warranty"
+    },
+    {
+     "id": "war.lim.p1",
+     "text": "Jackery Inc. warrants to the original consumer purchaser that the Jackery product will be free from defects in workmanship and material under normal consumer use during the applicable warranty period identified in the 'Warranty Period' section below, subject to the exclusions set forth below."
+    },
+    {
+     "id": "war.lim.p2",
+     "text": "This warranty statement sets forth Jackery's total and exclusive warranty obligation. We will not assume, nor authorize any person to assume for us, any other liability in connection with the sale of our products."
+    },
+    {
+     "id": "war.per.h",
+     "text": "Warranty Period"
+    },
+    {
+     "id": "war.y1.n",
+     "text": "5"
+    },
+    {
+     "id": "war.y1.u",
+     "text": "YEARS"
+    },
+    {
+     "id": "war.y1.l",
+     "text": "Standard Warranty"
+    },
+    {
+     "id": "war.y1.b",
+     "text": "The standard warranty period for Jackery Explorer 5000 Plus is 60 months. In each case, the warranty period is measured starting on the date of purchase by the original consumer purchaser. The sales receipt from the first consumer purchase, or other reasonable documentary proof, is required in order to establish the start date of the warranty period."
+    },
+    {
+     "id": "war.y2.n",
+     "text": "2"
+    },
+    {
+     "id": "war.y2.u",
+     "text": "YEARS"
+    },
+    {
+     "id": "war.y2.l",
+     "text": "Extended Warranty"
+    },
+    {
+     "id": "war.y2.b",
+     "text": "An additional fee is required for the extended warranty. For details on the extended warranty, please visit the Jackery website or contact Jackery customer service."
+    },
+    {
+     "id": "war.rep.h",
+     "text": "Repair or replacement"
+    },
+    {
+     "id": "war.rep.p",
+     "text": "Jackery will repair or replace (at Jackery's expense) any Jackery product that fails to operate during the applicable warranty period due to a defect in workmanship or material. The repaired/replaced product assumes the remaining warranty of the original date of purchase."
+    },
+    {
+     "id": "war.buy.h",
+     "text": "Limited to Original Consumer Buyer"
+    },
+    {
+     "id": "war.buy.p",
+     "text": "The warranty on Jackery's product is limited to the original consumer purchaser and is not transferable to any subsequent owner."
+    },
+    {
+     "id": "war.exc.h",
+     "text": "Exclusions"
+    },
+    {
+     "id": "war.exc.lead",
+     "text": "Jackery's warranty does not apply to:"
+    },
+    {
+     "id": "war.exc.l1",
+     "text": "Misused, abused, modified, damaged by accident, or used for anything other than normal consumer use as authorized in Jackery's current product literature."
+    },
+    {
+     "id": "war.exc.l2",
+     "text": "Attempted repair by anyone other than an authorized facility."
+    },
+    {
+     "id": "war.exc.l3",
+     "text": "Any product purchased through an online auction house."
+    },
+    {
+     "id": "war.exc.l4",
+     "text": "Jackery's warranty does not apply to the battery cell unless the battery cell is fully charged by you within seven days after you purchase the product and at least once every 6 months thereafter."
+    },
+    {
+     "id": "war.int.h",
+     "text": "Interpretation Rights"
+    },
+    {
+     "id": "war.int.p",
+     "text": "Jackery Inc. reserves the right to final interpretation of the above customers' after-sales policy."
+    }
+   ]
+  },
+  {
+   "physical_page": 20,
+   "printed_page": "17",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "app.h",
+     "text": "APP SETUP"
+    },
+    {
+     "id": "app.s1.h",
+     "text": "1. To download the App and log in"
+    },
+    {
+     "id": "app.s1.store",
+     "text": "Search for \"Jackery\" in Google Play or App Store to install the App. After that, you can register and log in."
+    },
+    {
+     "id": "app.s1.qr",
+     "text": "Alternatively, scan the QR code below to download and install the App."
+    },
+    {
+     "id": "app.s2.h",
+     "text": "2. To add device"
+    },
+    {
+     "id": "app.s21",
+     "text": "2.1 Click the button [+] to add your device;"
+    },
+    {
+     "id": "app.s22",
+     "text": "2.2 Turn on the product by long-pressing the Main Power Button. When the Wi-Fi and Bluetooth icons appear and flash on the product, your product enters the network configuring mode. Open Bluetooth permission and tap the Icon Flashed button on your APP to connect the product;"
+    },
+    {
+     "id": "fig.app.c21",
+     "text": "2.1"
+    },
+    {
+     "id": "fig.app.c22",
+     "text": "2.2"
+    },
+    {
+     "id": "fig.ctl.dc",
+     "text": "DC Power Button"
+    },
+    {
+     "id": "fig.ctl.ac",
+     "text": "AC Power Button"
+    },
+    {
+     "id": "fig.ctl.main",
+     "text": "Main Power Button"
+    },
+    {
+     "id": "fig.ctl.usb",
+     "text": "USB Power Button"
+    },
+    {
+     "id": "app.rem1.l",
+     "text": "Remarks"
+    },
+    {
+     "id": "app.rem1",
+     "text": "After being turned on, if the APP is not connected within 2 hours, the device will automatically turn off Wi-Fi and Bluetooth. Now, it is required to press and hold USB Power Button and AC Power Button to turn on Wi-Fi and Bluetooth again."
+    }
+   ]
+  },
+  {
+   "physical_page": 21,
+   "printed_page": "18",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "app.s23",
+     "text": "2.3 After clicking the searched device icon, the App automatically connects the device via Bluetooth."
+    },
+    {
+     "id": "app.rem2.l",
+     "text": "Remarks"
+    },
+    {
+     "id": "app.rem2",
+     "text": "If “the device has been bound” is prompted during the binding process, the following two ways can be used for connection:"
+    },
+    {
+     "id": "app.rem2.l1",
+     "text": "The device owner will share this device with other users through the App."
+    },
+    {
+     "id": "app.rem2.l2",
+     "text": "Press and hold the Main Power Button and USB Power Button for 3 seconds to reset the device, and then re-bind the device."
+    },
+    {
+     "id": "app.s24",
+     "text": "2.4 After the device is successfully connected, it is necessary to enter your Wi-Fi password and tap the OK button;"
+    },
+    {
+     "id": "app.rem3.l",
+     "text": "Remarks"
+    },
+    {
+     "id": "app.rem3",
+     "text": "Please select a Wi-Fi network in 2.4GHz band. The device does not support a Wi-Fi network in 5GHz band."
+    },
+    {
+     "id": "app.s25",
+     "text": "2.5 After the device is successfully added on the home page of the device, the Wi-Fi icon on the device will be always on;"
+    },
+    {
+     "id": "fig.app.c23",
+     "text": "2.3"
+    },
+    {
+     "id": "fig.app.c24",
+     "text": "2.4"
+    },
+    {
+     "id": "fig.app.c25",
+     "text": "2.5"
+    },
+    {
+     "id": "app.shots",
+     "text": "The above screenshots are for reference only."
+    },
+    {
+     "id": "app.s3.h",
+     "text": "3. To unbind the device"
+    },
+    {
+     "id": "app.s3",
+     "text": "Click the Settings button in the upper right corner of the main interface of the device to enter the settings page, and click the Unbind button at the bottom of the page to unbind the device."
+    },
+    {
+     "id": "app.s4.h",
+     "text": "4. Notes"
+    },
+    {
+     "id": "app.s41.h",
+     "text": "4.1 To turn on Wi-Fi & Bluetooth:"
+    },
+    {
+     "id": "app.s41.l1",
+     "text": "Wi-Fi & Bluetooth are automatically turned on after the device is on, and the Wi-Fi & Bluetooth icons on the screen light up;"
+    },
+    {
+     "id": "app.s41.l2",
+     "text": "Press the USB Power Button and the AC Power Button at the same time until the Wi-Fi & Bluetooth icons on the screen light up;"
+    },
+    {
+     "id": "app.s42.h",
+     "text": "4.2 To turn off Wi-Fi & Bluetooth:"
+    },
+    {
+     "id": "app.s42.l1",
+     "text": "Press the USB Power Button and AC Power Button at the same time until the Wi-Fi & Bluetooth icons on the screen are off;"
+    },
+    {
+     "id": "app.s42.l2",
+     "text": "Wi-Fi & Bluetooth will be automatically turned off if no device is connected within 2 hours;"
+    },
+    {
+     "id": "app.s43.h",
+     "text": "4.3 To reset Wi-Fi & Bluetooth："
+    },
+    {
+     "id": "app.s43.l1",
+     "text": "Press the Main Power Button and USB Power Button at the same time for 3 seconds to reset Wi-Fi & Bluetooth to factory settings and reboot the system. The connected App account will be unbound."
+    }
+   ]
+  },
+  {
+   "physical_page": 22,
+   "printed_page": "19",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "spec.h",
+     "text": "SPECIFICATIONS"
+    },
+    {
+     "id": "spec.gen.h",
+     "text": "GENERAL INFO"
+    },
+    {
+     "id": "spec.g1.l",
+     "text": "Product Name"
+    },
+    {
+     "id": "spec.g1.v",
+     "text": "Jackery Explorer 5000 Plus"
+    },
+    {
+     "id": "spec.g2.l",
+     "text": "Model No."
+    },
+    {
+     "id": "spec.g2.v",
+     "text": "JE-5000A"
+    },
+    {
+     "id": "spec.g3.l",
+     "text": "Capacity"
+    },
+    {
+     "id": "spec.g3.v",
+     "text": "45Ah/112Vdc (5040Wh)"
+    },
+    {
+     "id": "spec.g4.l",
+     "text": "Cell Chemistry"
+    },
+    {
+     "id": "spec.g4.v",
+     "text": "LiFePO4"
+    },
+    {
+     "id": "spec.g5.l",
+     "text": "Weight"
+    },
+    {
+     "id": "spec.g5.v",
+     "text": "About 134.5 lbs/61 kg"
+    },
+    {
+     "id": "spec.g6.l",
+     "text": "Dimension"
+    },
+    {
+     "id": "spec.g6.v",
+     "text": "16.5×15.5×25 in/41.8×39.5×63.5 cm"
+    },
+    {
+     "id": "spec.g7.l",
+     "text": "Cycle Life"
+    },
+    {
+     "id": "spec.g7.v",
+     "text": "4000 cycles to 70%+ capacity"
+    },
+    {
+     "id": "spec.g8.l",
+     "text": "UPS"
+    },
+    {
+     "id": "spec.g8.v",
+     "text": "Backup UPS: ＜20ms      Online UPS: 0ms"
+    },
+    {
+     "id": "spec.g9.l",
+     "text": "Inverter Topology"
+    },
+    {
+     "id": "spec.g9.v",
+     "text": "Non-isolated"
+    },
+    {
+     "id": "spec.g10.l",
+     "text": "Power Factor"
+    },
+    {
+     "id": "spec.g10.v",
+     "text": "≥0.98"
+    },
+    {
+     "id": "spec.g11.l",
+     "text": "Entire Unit"
+    },
+    {
+     "id": "spec.g11.v",
+     "text": "Type 1"
+    },
+    {
+     "id": "spec.in.h",
+     "text": "INPUT PORTS"
+    },
+    {
+     "id": "spec.i1.l",
+     "text": "Charge Mode AC Input"
+    },
+    {
+     "id": "spec.i1.v",
+     "text": "120V~60Hz, 15A Max (Duration time < 3h when current exceeds 12A)"
+    },
+    {
+     "id": "spec.i2.l",
+     "text": "Bypass Mode AC Input"
+    },
+    {
+     "id": "spec.i2.v1",
+     "text": "120V~60Hz, 12A Max (Duration time < 3h when current exceeds 12A)"
+    },
+    {
+     "id": "spec.i2.v2",
+     "text": "240V~60Hz, 16.7A Max"
+    },
+    {
+     "id": "spec.i3.l",
+     "text": "1 x AC Expansion Port (Input)"
+    },
+    {
+     "id": "spec.i3.v",
+     "text": "240V~60Hz, 16.7A Max"
+    },
+    {
+     "id": "spec.i4.l",
+     "text": "DC Input"
+    },
+    {
+     "id": "spec.i5.l",
+     "text": "1 x DC Expansion Port (Input)"
+    },
+    {
+     "id": "spec.i5.v",
+     "text": "80.5V-126V⎓98A Max"
+    },
+    {
+     "id": "spec.i6.l",
+     "text": "High-PV"
+    },
+    {
+     "id": "spec.i6.v",
+     "text": "135V-450V⎓15A Max, 4000W Max"
+    },
+    {
+     "id": "spec.i7.l",
+     "text": "Low-PV"
+    },
+    {
+     "id": "spec.i7.v1",
+     "text": "2 x DC 8mm Ports; 16V-60V⎓10.5A Max, Double to 21A/1200W Max"
+    },
+    {
+     "id": "spec.i7.v2",
+     "text": "11V-16V (Working Voltage)⎓8A Max, Double to 8A Max"
+    },
+    {
+     "id": "spec.out.h",
+     "text": "OUTPUT PORTS"
+    },
+    {
+     "id": "spec.o1.l",
+     "text": "AC Output (NEMA L14-30R/14-50)"
+    },
+    {
+     "id": "spec.o1.v",
+     "text": "120V/240V~60Hz, 30A, 7200W Max"
+    },
+    {
+     "id": "spec.o2.l",
+     "text": "Bypass Mode AC Output"
+    },
+    {
+     "id": "spec.o2.v",
+     "text": "120V~60Hz, 12A Max      240V~60Hz, 16.7A Max"
+    },
+    {
+     "id": "spec.o3.l",
+     "text": "4 × AC Output"
+    },
+    {
+     "id": "spec.o3.v",
+     "text": "120V~60Hz, 20A, 2400W"
+    },
+    {
+     "id": "spec.o4.l",
+     "text": "AC Total Output"
+    },
+    {
+     "id": "spec.o4.v",
+     "text": "7200W Max, 14400W Surge"
+    },
+    {
+     "id": "spec.o5.l",
+     "text": "2 × USB-C Output"
+    },
+    {
+     "id": "spec.o5.v",
+     "text": "100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A"
+    },
+    {
+     "id": "spec.o6.l",
+     "text": "2 × USB-A Output"
+    },
+    {
+     "id": "spec.o6.v",
+     "text": "18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A"
+    },
+    {
+     "id": "spec.o7.l",
+     "text": "Cigarette Lighter Port"
+    },
+    {
+     "id": "spec.o7.v",
+     "text": "12V⎓10A"
+    },
+    {
+     "id": "spec.o8.l",
+     "text": "1 × AC Expansion Port (Output)"
+    },
+    {
+     "id": "spec.o8.v",
+     "text": "240V~60Hz, 30A, 7200W"
+    },
+    {
+     "id": "spec.o9.l",
+     "text": "1 × DC Expansion Port (Output)"
+    },
+    {
+     "id": "spec.o9.v",
+     "text": "80.5V-126V⎓41A Max"
+    },
+    {
+     "id": "spec.env.h",
+     "text": "ENVIRONMENTAL OPERATING TEMPERATURE"
+    },
+    {
+     "id": "spec.e1.l",
+     "text": "Charging Temperature"
+    },
+    {
+     "id": "spec.e1.v",
+     "text": "0°C~45°C (32°F~113°F)"
+    },
+    {
+     "id": "spec.e2.l",
+     "text": "Discharging Temperature"
+    },
+    {
+     "id": "spec.e2.v1",
+     "text": "-15°C~45°C (5°F~113°F)"
+    },
+    {
+     "id": "spec.e2.v2",
+     "text": "-15°C~-10°C  (5°F~14°F)  Output Power: 3600W"
+    },
+    {
+     "id": "spec.ing",
+     "text": "INGESTION HAZARD: This product contains a button cell or coin battery.",
+     "strong": [
+      "INGESTION HAZARD:"
+     ]
+    },
+    {
+     "id": "spec.tm",
+     "text": "※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum."
+    }
+   ]
+  },
+  {
+   "physical_page": 23,
+   "printed_page": "20",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "ess.h",
+     "text": "SMART HOME BACKUP SYSTEM (AC ESS) INSTALLATION GUIDE"
+    },
+    {
+     "id": "ess.model.l",
+     "text": "System Model"
+    },
+    {
+     "id": "ess.model",
+     "text": "HB5000A-TS02A"
+    },
+    {
+     "id": "ess.p1",
+     "text": "To connect the Explore 5000 Plus to the Smart Transfer Switch (STS), use the expansion cable to link the Explorer 5000 Plus AC expansion port to the STS AC power input/output port."
+    },
+    {
+     "id": "ess.p2",
+     "text": "To connect the Explorer 5000 Plus to the battery pack, use the expansion cable to connect its DC expansion port (A) to the battery pack's DC expansion port (B)."
+    },
+    {
+     "id": "ess.cap",
+     "text": "For detailed installation and connection instructions, refer to the user manuals for the STS and battery pack."
+    },
+    {
+     "id": "ess.caut.l",
+     "text": "Caution"
+    },
+    {
+     "id": "ess.c1",
+     "text": "Smart home backup system (AC ESS) Installation Position"
+    },
+    {
+     "id": "ess.c2",
+     "text": "Indoor installation."
+    },
+    {
+     "id": "ess.c3",
+     "text": "The area is completely water proof."
+    },
+    {
+     "id": "ess.c4",
+     "text": "The wall is flat and level."
+    },
+    {
+     "id": "ess.c5",
+     "text": "Ambient temperature range:-15°C~45°C."
+    },
+    {
+     "id": "ess.c6",
+     "text": "The temperature and humidity are maintained at a constant level."
+    },
+    {
+     "id": "ess.c7",
+     "text": "Install in a well-ventilated place."
+    },
+    {
+     "id": "ess.c8",
+     "text": "Do not place at a children or pet touchable area."
+    },
+    {
+     "id": "ess.c9",
+     "text": "The installation area shall avoid of direct sunlight."
+    },
+    {
+     "id": "ess.c10",
+     "text": "No flammable or explosive materials close to inverter and battery."
+    }
+   ]
+  },
+  {
+   "physical_page": 24,
+   "printed_page": "21",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "ess.e.h",
+     "text": "Jackery Explorer 5000 Plus"
+    },
+    {
+     "id": "ess.e.model",
+     "text": "Model: JE-5000A"
+    },
+    {
+     "id": "ess.e.spec",
+     "text": "SPECIFICATIONS"
+    },
+    {
+     "id": "ess.e.gen.h",
+     "text": "GENERAL INFO"
+    },
+    {
+     "id": "ess.e.g1.l",
+     "text": "Product Name"
+    },
+    {
+     "id": "ess.e.g1.v",
+     "text": "Jackery Explorer 5000 Plus"
+    },
+    {
+     "id": "ess.e.g2.l",
+     "text": "Model No."
+    },
+    {
+     "id": "ess.e.g2.v",
+     "text": "JE-5000A"
+    },
+    {
+     "id": "ess.e.g3.l",
+     "text": "Capacity"
+    },
+    {
+     "id": "ess.e.g3.v",
+     "text": "45Ah/112Vdc (5040Wh)"
+    },
+    {
+     "id": "ess.e.g4.l",
+     "text": "Cell Chemistry"
+    },
+    {
+     "id": "ess.e.g4.v",
+     "text": "LiFePO4"
+    },
+    {
+     "id": "ess.e.g5.l",
+     "text": "Weight"
+    },
+    {
+     "id": "ess.e.g5.v",
+     "text": "About 134.5 lbs/61 kg"
+    },
+    {
+     "id": "ess.e.g6.l",
+     "text": "Dimension"
+    },
+    {
+     "id": "ess.e.g6.v",
+     "text": "16.5×15.5×25 in/41.8×39.5×63.5 cm"
+    },
+    {
+     "id": "ess.e.g7.l",
+     "text": "Cycle Life"
+    },
+    {
+     "id": "ess.e.g7.v",
+     "text": "4000 cycles to 70%+ capacity"
+    },
+    {
+     "id": "ess.e.g8.l",
+     "text": "UPS"
+    },
+    {
+     "id": "ess.e.g8.v",
+     "text": "Backup UPS: ＜20ms      Online UPS: 0ms"
+    },
+    {
+     "id": "ess.e.g9.l",
+     "text": "Inverter Topology"
+    },
+    {
+     "id": "ess.e.g9.v",
+     "text": "Non-isolated"
+    },
+    {
+     "id": "ess.e.g10.l",
+     "text": "Power Factor"
+    },
+    {
+     "id": "ess.e.g10.v",
+     "text": "≥0.98"
+    },
+    {
+     "id": "ess.e.g11.l",
+     "text": "Entire Unit"
+    },
+    {
+     "id": "ess.e.g11.v",
+     "text": "Type 1"
+    },
+    {
+     "id": "ess.e.in.h",
+     "text": "INPUT PORTS"
+    },
+    {
+     "id": "ess.e.i1.l",
+     "text": "Charge Mode AC Input"
+    },
+    {
+     "id": "ess.e.i1.v",
+     "text": "120V~60Hz, 15A Max (Duration time < 3h when current exceeds 12A)"
+    },
+    {
+     "id": "ess.e.i2.l",
+     "text": "Bypass Mode AC Input"
+    },
+    {
+     "id": "ess.e.i2.v1",
+     "text": "120V~60Hz, 12A Max (Duration time < 3h when current exceeds 12A)"
+    },
+    {
+     "id": "ess.e.i2.v2",
+     "text": "240V~60Hz, 16.7A Max"
+    },
+    {
+     "id": "ess.e.i3.l",
+     "text": "1 x AC Expansion Port (Input)"
+    },
+    {
+     "id": "ess.e.i3.v",
+     "text": "240V~60Hz, 16.7A Max"
+    },
+    {
+     "id": "ess.e.i4.l",
+     "text": "DC Input"
+    },
+    {
+     "id": "ess.e.i5.l",
+     "text": "1 x DC Expansion Port (Input)"
+    },
+    {
+     "id": "ess.e.i5.v",
+     "text": "80.5V-126V⎓98A Max"
+    },
+    {
+     "id": "ess.e.i6.l",
+     "text": "High-PV"
+    },
+    {
+     "id": "ess.e.i6.v",
+     "text": "135V-450V⎓15A Max, 4000W Max"
+    },
+    {
+     "id": "ess.e.i7.l",
+     "text": "Low-PV"
+    },
+    {
+     "id": "ess.e.i7.v1",
+     "text": "2 x DC 8mm Ports; 16V-60V⎓10.5A Max, Double to 21A/1200W Max"
+    },
+    {
+     "id": "ess.e.i7.v2",
+     "text": "11V-16V (Working Voltage)⎓8A Max, Double to 8A Max"
+    },
+    {
+     "id": "ess.e.out.h",
+     "text": "OUTPUT PORTS"
+    },
+    {
+     "id": "ess.e.o1.l",
+     "text": "AC Output (NEMA L14-30R/14-50)"
+    },
+    {
+     "id": "ess.e.o1.v",
+     "text": "120V/240V~60Hz, 30A, 7200W Max"
+    },
+    {
+     "id": "ess.e.o2.l",
+     "text": "Bypass Mode AC Output"
+    },
+    {
+     "id": "ess.e.o2.v",
+     "text": "120V~60Hz, 12A Max      240V~60Hz, 16.7A Max"
+    },
+    {
+     "id": "ess.e.o3.l",
+     "text": "4 × AC Output"
+    },
+    {
+     "id": "ess.e.o3.v",
+     "text": "120V~60Hz, 20A, 2400W"
+    },
+    {
+     "id": "ess.e.o4.l",
+     "text": "AC Total Output"
+    },
+    {
+     "id": "ess.e.o4.v",
+     "text": "7200W Max, 14400W Surge"
+    },
+    {
+     "id": "ess.e.o5.l",
+     "text": "2 × USB-C Output"
+    },
+    {
+     "id": "ess.e.o5.v",
+     "text": "100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A"
+    },
+    {
+     "id": "ess.e.o6.l",
+     "text": "2 × USB-A Output"
+    },
+    {
+     "id": "ess.e.o6.v",
+     "text": "18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A"
+    },
+    {
+     "id": "ess.e.o7.l",
+     "text": "Cigarette Lighter Port"
+    },
+    {
+     "id": "ess.e.o7.v",
+     "text": "12V⎓10A"
+    },
+    {
+     "id": "ess.e.o8.l",
+     "text": "1 × AC Expansion Port (Output)"
+    },
+    {
+     "id": "ess.e.o8.v",
+     "text": "240V~60Hz, 30A, 7200W"
+    },
+    {
+     "id": "ess.e.o9.l",
+     "text": "1 × DC Expansion Port (Output)"
+    },
+    {
+     "id": "ess.e.o9.v",
+     "text": "80.5V-126V⎓41A Max"
+    },
+    {
+     "id": "ess.e.env.h",
+     "text": "ENVIRONMENTAL OPERATING TEMPERATURE"
+    },
+    {
+     "id": "ess.e.e1.l",
+     "text": "Charging Temperature"
+    },
+    {
+     "id": "ess.e.e1.v",
+     "text": "0°C~45°C (32°F~113°F)"
+    },
+    {
+     "id": "ess.e.e2.l",
+     "text": "Discharging Temperature"
+    },
+    {
+     "id": "ess.e.e2.v1",
+     "text": "-15°C~45°C (5°F~113°F)"
+    },
+    {
+     "id": "ess.e.e2.v2",
+     "text": "-15°C~-10°C  (5°F~14°F)  Output Power: 3600W"
+    },
+    {
+     "id": "ess.e.ing",
+     "text": "INGESTION HAZARD: This product contains a button cell or coin battery.",
+     "strong": [
+      "INGESTION HAZARD:"
+     ]
+    },
+    {
+     "id": "ess.e.tm",
+     "text": "※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum."
+    }
+   ]
+  },
+  {
+   "physical_page": 25,
+   "printed_page": "22",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "ess.b.h",
+     "text": "Jackery Battery Pack 5000 Plus"
+    },
+    {
+     "id": "ess.b.model",
+     "text": "Model: JBP-5000A"
+    },
+    {
+     "id": "ess.b.spec",
+     "text": "SPECIFICATIONS"
+    },
+    {
+     "id": "ess.b.sold",
+     "text": "SOLD SEPARATELY"
+    },
+    {
+     "id": "ess.b.gen.h",
+     "text": "GENERAL INFO"
+    },
+    {
+     "id": "ess.b.g1.l",
+     "text": "Product Name"
+    },
+    {
+     "id": "ess.b.g1.v",
+     "text": "Jackery Battery Pack 5000 Plus"
+    },
+    {
+     "id": "ess.b.g2.l",
+     "text": "Model No."
+    },
+    {
+     "id": "ess.b.g2.v",
+     "text": "JBP-5000A"
+    },
+    {
+     "id": "ess.b.g3.l",
+     "text": "Capacity"
+    },
+    {
+     "id": "ess.b.g3.v",
+     "text": "45Ah/112Vdc (5040Wh)"
+    },
+    {
+     "id": "ess.b.g4.l",
+     "text": "Cell Chemistry"
+    },
+    {
+     "id": "ess.b.g4.v",
+     "text": "LiFePO4"
+    },
+    {
+     "id": "ess.b.g5.l",
+     "text": "Weight"
+    },
+    {
+     "id": "ess.b.g5.v",
+     "text": "About 81.57 lbs/37 kg"
+    },
+    {
+     "id": "ess.b.g6.l",
+     "text": "Dimension"
+    },
+    {
+     "id": "ess.b.g6.v",
+     "text": "16.5 x 13.5 x 13.2 in/41.8 x 34.4 x 33.6 cm"
+    },
+    {
+     "id": "ess.b.g7.l",
+     "text": "Cycle Life"
+    },
+    {
+     "id": "ess.b.g7.v",
+     "text": "4000 cycles to 70%+ capacity"
+    },
+    {
+     "id": "ess.b.g8.l",
+     "text": "Maximum Short Circuit Current and Duration"
+    },
+    {
+     "id": "ess.b.g8.v",
+     "text": "2600A/5ms"
+    },
+    {
+     "id": "ess.b.g9.l",
+     "text": "Ingress Protection"
+    },
+    {
+     "id": "ess.b.g9.v",
+     "text": "IP20"
+    },
+    {
+     "id": "ess.b.only",
+     "text": "Only use together with Jackery Explorer 5000 Plus."
+    },
+    {
+     "id": "ess.b.io.h",
+     "text": "INPUT/OUTPUT PORTS"
+    },
+    {
+     "id": "ess.b.io1.l",
+     "text": "DC Expansion Port (Input)"
+    },
+    {
+     "id": "ess.b.io1.v",
+     "text": "80.5V-126V⎓41A Max"
+    },
+    {
+     "id": "ess.b.io2.l",
+     "text": "DC Expansion Port (Output)"
+    },
+    {
+     "id": "ess.b.io2.v",
+     "text": "80.5V-126V⎓98A Max"
+    },
+    {
+     "id": "ess.b.env.h",
+     "text": "ENVIRONMENTAL OPERATING TEMPERATURE"
+    },
+    {
+     "id": "ess.b.e1.l",
+     "text": "Charging Temperature"
+    },
+    {
+     "id": "ess.b.e1.v",
+     "text": "0°C~45°C (32°F~113°F)"
+    },
+    {
+     "id": "ess.b.e2.l",
+     "text": "Discharging Temperature"
+    },
+    {
+     "id": "ess.b.e2.v",
+     "text": "-15°C~45°C (5°F~113°F)"
+    },
+    {
+     "id": "ess.b.ing",
+     "text": "INGESTION HAZARD: This product contains a button cell or coin battery.",
+     "strong": [
+      "INGESTION HAZARD:"
+     ]
+    },
+    {
+     "id": "ess.s.h",
+     "text": "Jackery Smart Transfer Switch"
+    },
+    {
+     "id": "ess.s.model",
+     "text": "Model: JA-TS02A"
+    },
+    {
+     "id": "ess.s.spec",
+     "text": "SPECIFICATIONS"
+    },
+    {
+     "id": "ess.s.sold",
+     "text": "SOLD SEPARATELY"
+    },
+    {
+     "id": "ess.s.gen.h",
+     "text": "GENERAL INFO"
+    },
+    {
+     "id": "ess.s.g1.l",
+     "text": "Product Name"
+    },
+    {
+     "id": "ess.s.g1.v",
+     "text": "Jackery Smart Transfer Switch"
+    },
+    {
+     "id": "ess.s.g2.l",
+     "text": "Model No."
+    },
+    {
+     "id": "ess.s.g2.v",
+     "text": "JA-TS02A"
+    },
+    {
+     "id": "ess.s.g3.l",
+     "text": "AC Voltage (Nominal)"
+    },
+    {
+     "id": "ess.s.g3.v",
+     "text": "120V/240V~ 60Hz"
+    },
+    {
+     "id": "ess.s.g4.l",
+     "text": "Feed-In Type"
+    },
+    {
+     "id": "ess.s.g4.v",
+     "text": "Split Phase"
+    },
+    {
+     "id": "ess.s.g5.l",
+     "text": "Maximum Input Current"
+    },
+    {
+     "id": "ess.s.g5.v",
+     "text": "100A Grid / 60A Power Station"
+    },
+    {
+     "id": "ess.s.g6.l",
+     "text": "Maximum Output Current"
+    },
+    {
+     "id": "ess.s.g6.v",
+     "text": "60A Home Load / 33.4A Power Station"
+    },
+    {
+     "id": "ess.s.g7.l",
+     "text": "Maximum Input Short-Circuit Current"
+    },
+    {
+     "id": "ess.s.g7.v",
+     "text": "10KA"
+    },
+    {
+     "id": "ess.s.g8.l",
+     "text": "Overvoltage Category"
+    },
+    {
+     "id": "ess.s.g8.v",
+     "text": "IV"
+    },
+    {
+     "id": "ess.s.g9.l",
+     "text": "UPS"
+    },
+    {
+     "id": "ess.s.g9.v",
+     "text": "≤20ms"
+    },
+    {
+     "id": "ess.s.g10.l",
+     "text": "Enclosure Type (Distribution Panel)"
+    },
+    {
+     "id": "ess.s.g10.v",
+     "text": "NEMA Type 1"
+    },
+    {
+     "id": "ess.s.g11.l",
+     "text": "Number of Load Branches"
+    },
+    {
+     "id": "ess.s.g11.v",
+     "text": "12"
+    },
+    {
+     "id": "ess.s.g12.l",
+     "text": "Main Circuit"
+    },
+    {
+     "id": "ess.s.g12.v",
+     "text": "2 AWG"
+    }
+   ]
+  },
+  {
+   "physical_page": 26,
+   "printed_page": "23",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "ess.s.g13.l",
+     "text": "Branch Circuit"
+    },
+    {
+     "id": "ess.s.g13.v",
+     "text": "14 AWG 12 AWG 10 AWG"
+    },
+    {
+     "id": "ess.s.g14.l",
+     "text": "Communication"
+    },
+    {
+     "id": "ess.s.g14.v",
+     "text": "Wi-Fi and Bluetooth"
+    },
+    {
+     "id": "ess.s.g15.l",
+     "text": "Operating Temperature"
+    },
+    {
+     "id": "ess.s.g15.v",
+     "text": "-20°C~40°C (-4°F~104°F)"
+    },
+    {
+     "id": "ess.s.g16.l",
+     "text": "Dimensions"
+    },
+    {
+     "id": "ess.s.g16.v",
+     "text": "22 x 14.7 x 7.87 in/56 x 37.4 x 20 cm"
+    },
+    {
+     "id": "ess.s.g17.l",
+     "text": "Weight"
+    },
+    {
+     "id": "ess.s.g17.v",
+     "text": "About 25.57 lbs/11.6 kg"
+    },
+    {
+     "id": "ess.s.mains",
+     "text": "When using the product, ensure it is connected to a 240V split phase mains voltage."
+    },
+    {
+     "id": "ess.note.l",
+     "text": "Note"
+    },
+    {
+     "id": "ess.note",
+     "text": "SMART HOME BACKUP SYSTEM (AC ESS) About 575.16 lbs/260.89kg"
+    },
+    {
+     "id": "ess.pkg.h",
+     "text": "PACKAGE LIST"
+    },
+    {
+     "id": "fig.pkg.u1",
+     "text": "Jackery Explorer 5000 Plus"
+    },
+    {
+     "id": "fig.pkg.u2",
+     "text": "AC Charging Cable"
+    },
+    {
+     "id": "fig.pkg.u3",
+     "text": "MC4 Wrench"
+    },
+    {
+     "id": "fig.pkg.u4",
+     "text": "User Manual"
+    },
+    {
+     "id": "fig.pkg.u5",
+     "text": "USB-C Cable"
+    },
+    {
+     "id": "fig.pkg.b1",
+     "text": "Jackery Battery Pack 5000 Plus"
+    },
+    {
+     "id": "fig.pkg.b2",
+     "text": "Expansion Cable"
+    },
+    {
+     "id": "fig.pkg.b3",
+     "text": "User Manual"
+    },
+    {
+     "id": "fig.pkg.b.sold",
+     "text": "Sold separately"
+    },
+    {
+     "id": "fig.pkg.s1",
+     "text": "Jackery Smart Transfer Switch"
+    },
+    {
+     "id": "fig.pkg.s2",
+     "text": "Marking-off Template"
+    },
+    {
+     "id": "fig.pkg.s3",
+     "text": "Power Input/Output Cable"
+    },
+    {
+     "id": "fig.pkg.s4",
+     "text": "User Manual"
+    },
+    {
+     "id": "fig.pkg.s5",
+     "text": "Quick Guide"
+    },
+    {
+     "id": "fig.pkg.s6",
+     "text": "Circuit Label"
+    },
+    {
+     "id": "fig.pkg.s7",
+     "text": "2*Wall Bracket"
+    },
+    {
+     "id": "fig.pkg.s8",
+     "text": "4*M4 Phillips Flat Head Screw (secure wall brackets to Smart Transfer Switch)"
+    },
+    {
+     "id": "fig.pkg.s.sold",
+     "text": "Sold separately"
+    }
+   ]
+  },
+  {
+   "physical_page": 27,
+   "printed_page": null,
+   "role": "back-cover",
+   "web": false,
+   "lines": [
+    {
+     "id": "back.company",
+     "text": "JACKERY INC."
+    },
+    {
+     "id": "back.mail",
+     "text": "hello@jackery.com"
+    },
+    {
+     "id": "back.web",
+     "text": "www.jackery.com"
+    },
+    {
+     "id": "back.tel",
+     "text": "1-888-502-2236 (US)"
+    },
+    {
+     "id": "back.addr",
+     "text": "5310 Bunche Dr., Fremont, CA 94538-8301"
+    }
+   ]
+  }
+ ]
+}

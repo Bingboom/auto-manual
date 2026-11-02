@@ -1,0 +1,19 @@
+{
+  "output": "/tmp/claude-0/-home-user-auto-manual/68d9eca2-3f13-597b-82ed-68890ca725bc/scratchpad/je3000b/out2",
+  "chapters": 11,
+  "components": {
+    "HB-CALLOUT-STRIP": 12,
+    "HB-SPECIAL-APP": 2,
+    "HB-SPECIAL-FCC": 1,
+    "HB-SPECIAL-INBOX": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE": 14,
+    "HB-TABLE-KEY-COMBINATIONS": 1,
+    "HB-TABLE-LCD-ICON": 1,
+    "HB-TABLE-LCD-MODE": 1,
+    "HB-TABLE-SPEC": 4,
+    "HB-WARRANTY-LEAD": 1,
+    "HB-WARRANTY-SECTION": 5,
+    "HB-WARRANTY-YEARS": 1
+  },
+  "symbol_admission": []
+}
