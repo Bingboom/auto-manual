@@ -1315,6 +1315,11 @@
       "registered": "2026-10-19",
       "known_drift": {}
     },
+    "manual_sources/JE-1000F/EU/nine-language/git-20261102-30bcad90-shared-symbols/four-language": {
+      "approval": "Operator 2026-11-02 「上线提交发布」 (approval.json); engineering PR merged by the operator",
+      "registered": "2026-11-02",
+      "known_drift": {}
+    },
     "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",
@@ -1417,6 +1422,11 @@
         "tools/web/symbol_asset_admission.py": {
           "handling": "keep-frozen",
           "reason": "Additive gate change: only rows that carry web_only_row take the new path; this package has none, so its symbol admission is unchanged.",
+          "since": "2026-11-02"
+        },
+        "docs/renderers/contracts/symbol_glyph_waivers.json": {
+          "handling": "keep-frozen",
+          "reason": "The waiver ledger only gained JE-1000F entries keyed to the JE-1000F revised AI; entries are matched by source SHA-256, model, region and language, so this package's admission is unchanged.",
           "since": "2026-11-02"
         }
       }
@@ -1606,6 +1616,11 @@
           "handling": "keep-frozen",
           "reason": "Additive gate change: only rows that carry web_only_row take the new path; this package has none, so its symbol admission is unchanged.",
           "since": "2026-11-02"
+        },
+        "docs/renderers/contracts/symbol_glyph_waivers.json": {
+          "handling": "keep-frozen",
+          "reason": "The waiver ledger only gained JE-1000F entries keyed to the JE-1000F revised AI; entries are matched by source SHA-256, model, region and language, so this package's admission is unchanged.",
+          "since": "2026-11-02"
         }
       }
     },
@@ -1621,6 +1636,11 @@
         "tools/web/symbol_asset_admission.py": {
           "handling": "keep-frozen",
           "reason": "Additive gate change: only rows that carry web_only_row take the new path; this package has none, so its symbol admission is unchanged.",
+          "since": "2026-11-02"
+        },
+        "docs/renderers/contracts/symbol_glyph_waivers.json": {
+          "handling": "keep-frozen",
+          "reason": "The waiver ledger only gained JE-1000F entries keyed to the JE-1000F revised AI; entries are matched by source SHA-256, model, region and language, so this package's admission is unchanged.",
           "since": "2026-11-02"
         }
       }
@@ -1638,6 +1658,11 @@
           "handling": "keep-frozen",
           "reason": "Additive gate change: only rows that carry web_only_row take the new path; this package has none, so its symbol admission is unchanged.",
           "since": "2026-11-02"
+        },
+        "docs/renderers/contracts/symbol_glyph_waivers.json": {
+          "handling": "keep-frozen",
+          "reason": "The waiver ledger only gained JE-1000F entries keyed to the JE-1000F revised AI; entries are matched by source SHA-256, model, region and language, so this package's admission is unchanged.",
+          "since": "2026-11-02"
         }
       }
     },
@@ -1653,6 +1678,11 @@
         "tools/web/symbol_asset_admission.py": {
           "handling": "keep-frozen",
           "reason": "Additive gate change: only rows that carry web_only_row take the new path; this package has none, so its symbol admission is unchanged.",
+          "since": "2026-11-02"
+        },
+        "docs/renderers/contracts/symbol_glyph_waivers.json": {
+          "handling": "keep-frozen",
+          "reason": "The waiver ledger only gained JE-1000F entries keyed to the JE-1000F revised AI; entries are matched by source SHA-256, model, region and language, so this package's admission is unchanged.",
           "since": "2026-11-02"
         }
       }
@@ -1785,6 +1815,11 @@
           "handling": "keep-frozen",
           "reason": "Additive gate change: only rows that carry web_only_row take the new path; this package has none, so its symbol admission is unchanged.",
           "since": "2026-11-02"
+        },
+        "docs/renderers/contracts/symbol_glyph_waivers.json": {
+          "handling": "keep-frozen",
+          "reason": "The waiver ledger only gained JE-1000F entries keyed to the JE-1000F revised AI; entries are matched by source SHA-256, model, region and language, so this package's admission is unchanged.",
+          "since": "2026-11-02"
         }
       }
     },
@@ -1795,6 +1830,11 @@
         "tools/web/symbol_asset_admission.py": {
           "handling": "keep-frozen",
           "reason": "Additive gate change: only rows that carry web_only_row take the new path; this package has none, so its symbol admission is unchanged.",
+          "since": "2026-11-02"
+        },
+        "docs/renderers/contracts/symbol_glyph_waivers.json": {
+          "handling": "keep-frozen",
+          "reason": "The waiver ledger only gained JE-1000F entries keyed to the JE-1000F revised AI; entries are matched by source SHA-256, model, region and language, so this package's admission is unchanged.",
           "since": "2026-11-02"
         }
       }
@@ -1811,6 +1851,11 @@
         "tools/web/symbol_asset_admission.py": {
           "handling": "keep-frozen",
           "reason": "Additive gate change: only rows that carry web_only_row take the new path; this package has none, so its symbol admission is unchanged.",
+          "since": "2026-11-02"
+        },
+        "docs/renderers/contracts/symbol_glyph_waivers.json": {
+          "handling": "keep-frozen",
+          "reason": "The waiver ledger only gained JE-1000F entries keyed to the JE-1000F revised AI; entries are matched by source SHA-256, model, region and language, so this package's admission is unchanged.",
           "since": "2026-11-02"
         }
       }
@@ -1989,6 +2034,16 @@
       "packages": 8,
       "handling": "keep-frozen",
       "reason": "Additive gate change: only rows that carry web_only_row take the new path; this package has none, so its symbol admission is unchanged.",
+      "minutes": 0
+    },
+    {
+      "date": "2026-11-02",
+      "files": [
+        "docs/renderers/contracts/symbol_glyph_waivers.json"
+      ],
+      "packages": 8,
+      "handling": "keep-frozen",
+      "reason": "The waiver ledger only gained JE-1000F entries keyed to the JE-1000F revised AI; entries are matched by source SHA-256, model, region and language, so this package's admission is unchanged.",
       "minutes": 0
     }
   ]
