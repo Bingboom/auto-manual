@@ -1482,6 +1482,11 @@
       "registered": "2026-10-27",
       "known_drift": {}
     },
+    "manual_sources/JE-2000D/JP/ja/git-20261103-62605f21": {
+      "approval": "Operator 2026-11-03 (via coordinator, 「继续 转日语说明书」, 发布文档管理 日规视图; route JE-2000D for colour variant JE-2000D-SG per operator): Git-only JP/ja single-language Web candidate, source copy verbatim; candidate only — no release approval yet",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
     "manual_sources/JE-2000D/US/en/git-20261028-3d50ef64": {
       "approval": "Operator 「上线提交发布」 2026-11-02 in the engineering session (session_01PHcxwApS3X7GQ5ZBMtLi9z), in reply to the review of the four PR #1637 candidates JE-2000D, JE-2000F, JE-3000B, JE-5000A (1280/390 renders beside the shared reference edition); bound in source/approval.json: Git-only US/en single-language Web release, source copy verbatim; source_concerns to the source owner",
       "registered": "2026-11-02",
