@@ -1,0 +1,1288 @@
+{
+ "schema_version": "je2000f-jp-asset-recipe/v1",
+ "source_sha256": "63cdf705e41a1680ca974cc69e5f233cd0e5e4d278d5cc5302dcb3389b361393",
+ "panel_scale": 3,
+ "panels": [
+  {
+   "path": "assets/overview-front.png",
+   "physical_page": 8,
+   "bbox": [
+    26,
+    332,
+    346,
+    496
+   ],
+   "role": "complete front view with leader labels and port ratings"
+  },
+  {
+   "path": "assets/overview-right.png",
+   "physical_page": 9,
+   "bbox": [
+    26,
+    45,
+    346,
+    182
+   ],
+   "role": "complete right side view with leader labels and port ratings"
+  },
+  {
+   "path": "assets/lcd-map.png",
+   "physical_page": 9,
+   "bbox": [
+    30,
+    300,
+    345,
+    485
+   ],
+   "role": "complete numbered LCD map"
+  },
+  {
+   "path": "assets/inbox-unit.png",
+   "physical_page": 8,
+   "bbox": [
+    45,
+    100,
+    123,
+    159
+   ],
+   "role": "in-box card art: unit (number badge and label are native Web copy)"
+  },
+  {
+   "path": "assets/power-on-off.png",
+   "physical_page": 12,
+   "bbox": [
+    27.5,
+    74,
+    341.5,
+    188
+   ],
+   "strip": [
+    [
+     158,
+     164,
+     323.5,
+     216.5
+    ]
+   ],
+   "role": "POWER panel; the standby speech-bubble text is native Web copy (the Energy Saving note below is outside the crop)"
+  },
+  {
+   "path": "assets/ac-output.png",
+   "physical_page": 12,
+   "bbox": [
+    27.5,
+    295,
+    341.5,
+    497
+   ],
+   "strip": [
+    [
+     38,
+     304,
+     216,
+     325
+    ]
+   ],
+   "role": "AC panel; prerequisite pill is native Web copy"
+  },
+  {
+   "path": "assets/frequency.png",
+   "physical_page": 13,
+   "bbox": [
+    27.5,
+    108.5,
+    341.5,
+    209.5
+   ],
+   "role": "50HZ/60HZ switch and two LCD states (text box above is native Web copy)"
+  },
+  {
+   "path": "assets/dc-usb-output.png",
+   "physical_page": 13,
+   "bbox": [
+    27.5,
+    233.5,
+    341.5,
+    409.5
+   ],
+   "strip": [
+    [
+     37,
+     239,
+     215,
+     261
+    ]
+   ],
+   "role": "DC/USB panel; prerequisite pill is native Web copy"
+  },
+  {
+   "path": "assets/energy-saving.png",
+   "physical_page": 14,
+   "bbox": [
+    28.5,
+    347.5,
+    342.5,
+    466
+   ],
+   "role": "energy-saving button combination art (text boxes and table above are native Web copy)"
+  },
+  {
+   "path": "assets/led-light.png",
+   "physical_page": 15,
+   "bbox": [
+    26.5,
+    188,
+    340.5,
+    287
+   ],
+   "strip": [
+    [
+     252,
+     191,
+     330,
+     266
+    ]
+   ],
+   "role": "LED panel; the three step texts are native Web copy (mode line above is outside the crop)"
+  },
+  {
+   "path": "assets/lcd-screen.png",
+   "physical_page": 15,
+   "bbox": [
+    29,
+    321,
+    151,
+    437
+   ],
+   "role": "LCD SCREEN button art beside the shared mode table"
+  },
+  {
+   "path": "assets/ups.png",
+   "physical_page": 16,
+   "bbox": [
+    29.5,
+    267,
+    343.5,
+    475
+   ],
+   "strip": [
+    [
+     150,
+     410,
+     331,
+     453
+    ]
+   ],
+   "role": "UPS connection panel; speech-bubble text is native Web copy"
+  },
+  {
+   "path": "assets/charging-ac.png",
+   "physical_page": 18,
+   "bbox": [
+    27.5,
+    28.5,
+    341.5,
+    159.5
+   ],
+   "role": "complete AC wall charging panel with caption"
+  },
+  {
+   "path": "assets/charging-solar-200.png",
+   "physical_page": 19,
+   "bbox": [
+    27.5,
+    29.5,
+    341.5,
+    166
+   ],
+   "role": "complete SolarSaga 200 x 2 solar charging panel"
+  },
+  {
+   "path": "assets/charging-solar-100air.png",
+   "physical_page": 19,
+   "bbox": [
+    28,
+    225.5,
+    342,
+    391.5
+   ],
+   "role": "complete SolarSaga 100 Air x 4 solar charging panel with adapter caption"
+  },
+  {
+   "path": "assets/charging-car.png",
+   "physical_page": 20,
+   "bbox": [
+    28,
+    195.5,
+    341,
+    355.5
+   ],
+   "role": "complete car charging panel (vehicle label and sold-separately pill kept)"
+  },
+  {
+   "path": "assets/app-qr.png",
+   "physical_page": 25,
+   "bbox": [
+    230,
+    99,
+    277.5,
+    146.5
+   ],
+   "role": "App QR"
+  },
+  {
+   "path": "assets/app-add.png",
+   "physical_page": 25,
+   "bbox": [
+    86,
+    236,
+    264,
+    402
+   ],
+   "role": "App steps 2.1/2.2 phone frames with step numbers"
+  },
+  {
+   "path": "assets/app-panel.png",
+   "physical_page": 25,
+   "bbox": [
+    27,
+    403,
+    340.5,
+    496.5
+   ],
+   "role": "control panel with leader labels"
+  },
+  {
+   "path": "assets/app-results.png",
+   "physical_page": 26,
+   "bbox": [
+    62,
+    138,
+    306,
+    282.5
+   ],
+   "role": "App steps 2.3-2.5 phone frames with step numbers"
+  }
+ ],
+ "native_icons": [
+  {
+   "path": "assets/lcd-charging-plan.svg",
+   "physical_page": 10,
+   "glyph_bbox": [
+    56.79,
+    148.37,
+    73.2,
+    162.98
+   ],
+   "drawing_indices": [
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43
+   ]
+  },
+  {
+   "path": "assets/lcd-self-powered.svg",
+   "physical_page": 10,
+   "glyph_bbox": [
+    55.1,
+    203.43,
+    75.34,
+    219.4
+   ],
+   "drawing_indices": [
+    89,
+    90,
+    91,
+    92
+   ]
+  },
+  {
+   "path": "assets/lcd-ups.svg",
+   "physical_page": 10,
+   "glyph_bbox": [
+    58.72,
+    344.06,
+    71.72,
+    352.9
+   ],
+   "drawing_indices": [
+    130,
+    131,
+    132,
+    133
+   ]
+  },
+  {
+   "path": "assets/lcd-output-voltage-frequency.svg",
+   "physical_page": 10,
+   "glyph_bbox": [
+    49.53,
+    401.44,
+    81.44,
+    408.44
+   ],
+   "drawing_indices": [
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112,
+    113,
+    114,
+    115,
+    116,
+    117,
+    118,
+    119,
+    120,
+    121,
+    122,
+    123,
+    124,
+    125,
+    126,
+    127,
+    128,
+    129
+   ]
+  },
+  {
+   "path": "assets/lcd-ac-wall-charging.svg",
+   "physical_page": 10,
+   "glyph_bbox": [
+    58.07,
+    454.5,
+    70.9,
+    468.43
+   ],
+   "drawing_indices": [
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68
+   ]
+  },
+  {
+   "path": "assets/lcd-car-charging.svg",
+   "physical_page": 10,
+   "glyph_bbox": [
+    59.32,
+    474.44,
+    70.66,
+    490.06
+   ],
+   "drawing_indices": [
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84
+   ]
+  },
+  {
+   "path": "assets/lcd-charging-power-limit.svg",
+   "physical_page": 11,
+   "glyph_bbox": [
+    56.78,
+    124.89,
+    74.28,
+    140.0
+   ],
+   "drawing_indices": [
+    59,
+    60,
+    61,
+    62,
+    63
+   ]
+  },
+  {
+   "path": "assets/recycle-li-ion.svg",
+   "physical_page": 4,
+   "glyph_bbox": [
+    37.67,
+    75.94,
+    57.14,
+    94.68
+   ],
+   "drawing_indices": [
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69
+   ]
+  }
+ ],
+ "compared_reuse": [
+  {
+   "path": "assets/lcd-wifi.svg",
+   "from": "manual_sources/JE-2000F/US/en/git-20261028-c8ace563/assets/lcd-wifi.svg",
+   "sha256": "2e6ed961723e02a85d355869482f2f66863576de9482fb0a9650ddfbd3ded2a5",
+   "physical_page": 10,
+   "glyph_bbox": [
+    56.57,
+    36.89,
+    73.86,
+    50.1
+   ],
+   "drawing_indices": [
+    44,
+    45
+   ]
+  },
+  {
+   "path": "assets/lcd-bluetooth.svg",
+   "from": "manual_sources/JE-2000F/US/en/git-20261028-c8ace563/assets/lcd-bluetooth.svg",
+   "sha256": "90a33061760cdab8805f469402b6626853cd2c0601e369f7456311fd2ea1307a",
+   "physical_page": 10,
+   "glyph_bbox": [
+    58.99,
+    62.45,
+    71.49,
+    77.34
+   ],
+   "drawing_indices": [
+    46,
+    47
+   ]
+  },
+  {
+   "path": "assets/lcd-quiet-charging.svg",
+   "from": "manual_sources/JE-2000F/US/en/git-20261028-c8ace563/assets/lcd-quiet-charging.svg",
+   "sha256": "dccb6bc2b23dff5b753983cd09ce60dff97bbda86849577ef2e870a8d3103416",
+   "physical_page": 10,
+   "glyph_bbox": [
+    59.21,
+    100.75,
+    71.22,
+    113.09
+   ],
+   "drawing_indices": [
+    30,
+    31
+   ]
+  },
+  {
+   "path": "assets/lcd-tou.svg",
+   "from": "manual_sources/JE-2000F/US/en/git-20261028-c8ace563/assets/lcd-tou.svg",
+   "sha256": "3e109b30c2752883cb0d8c2f3925d690a49eaa71a102ebc34157b3d505d4fbe6",
+   "physical_page": 10,
+   "glyph_bbox": [
+    57.84,
+    281.24,
+    72.59,
+    291.58
+   ],
+   "drawing_indices": [
+    93,
+    94,
+    95,
+    96
+   ]
+  },
+  {
+   "path": "assets/lcd-ac-power.svg",
+   "from": "manual_sources/JE-2000F/US/en/git-20261028-c8ace563/assets/lcd-ac-power.svg",
+   "sha256": "ef60f21c3933ff7929a6e504dfbf2f9866a5624a6cc408bc5695b980f3fb4f9b",
+   "physical_page": 10,
+   "glyph_bbox": [
+    56.78,
+    375.02,
+    73.65,
+    389.63
+   ],
+   "drawing_indices": [
+    97,
+    98,
+    99,
+    100
+   ]
+  },
+  {
+   "path": "assets/lcd-input-power.svg",
+   "from": "manual_sources/JE-2000F/US/en/git-20261028-c8ace563/assets/lcd-input-power.svg",
+   "sha256": "6ff2944dca1d3f766ee569bbaad813fd04e0e128c63890882c75337278c14f3c",
+   "physical_page": 10,
+   "glyph_bbox": [
+    51.54,
+    416.72,
+    78.89,
+    430.83
+   ],
+   "drawing_indices": [
+    51,
+    52,
+    53,
+    54,
+    55,
+    56
+   ]
+  },
+  {
+   "path": "assets/lcd-remaining-charge-time.svg",
+   "from": "manual_sources/JE-2000F/US/en/git-20261028-c8ace563/assets/lcd-remaining-charge-time.svg",
+   "sha256": "736391c9eb538f41f59ec95901e6cf53fdd7173ad66f113442803da3443bbabd",
+   "physical_page": 10,
+   "glyph_bbox": [
+    54.44,
+    437.74,
+    75.99,
+    447.77
+   ],
+   "drawing_indices": [
+    85,
+    86,
+    87,
+    88
+   ]
+  },
+  {
+   "path": "assets/lcd-solar-charging.svg",
+   "from": "manual_sources/JE-2000F/US/en/git-20261028-c8ace563/assets/lcd-solar-charging.svg",
+   "sha256": "b2f8b480a9d115e48da7160bb4098a7ffeb6d70ee9d3f33585e2318e57315927",
+   "physical_page": 11,
+   "glyph_bbox": [
+    58.87,
+    38.52,
+    75.3,
+    54.82
+   ],
+   "drawing_indices": [
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70
+   ]
+  },
+  {
+   "path": "assets/lcd-battery-saving.svg",
+   "from": "manual_sources/JE-2000F/US/en/git-20261028-c8ace563/assets/lcd-battery-saving.svg",
+   "sha256": "bb303c07618a58406921e437c1e8c8dc95120570e331a5a25862c5506fde8466",
+   "physical_page": 11,
+   "glyph_bbox": [
+    59.51,
+    79.27,
+    73.47,
+    94.57
+   ],
+   "drawing_indices": [
+    132,
+    133,
+    134,
+    135,
+    136,
+    137
+   ]
+  },
+  {
+   "path": "assets/lcd-battery-power.svg",
+   "from": "manual_sources/JE-2000F/US/en/git-20261028-c8ace563/assets/lcd-battery-power.svg",
+   "sha256": "463a1423db307feeb0045dbe94a9844b65ffcde9977db8de1c5993c046469aa4",
+   "physical_page": 11,
+   "glyph_bbox": [
+    57.64,
+    160.59,
+    75.49,
+    178.43
+   ],
+   "drawing_indices": [
+    24
+   ]
+  },
+  {
+   "path": "assets/lcd-low-battery.svg",
+   "from": "manual_sources/JE-2000F/US/en/git-20261028-c8ace563/assets/lcd-low-battery.svg",
+   "sha256": "31da53ff050afcb161fa399006a51ea4a94ebb960718cb5453ca7952f6aa0c4e",
+   "physical_page": 11,
+   "glyph_bbox": [
+    57.68,
+    197.22,
+    76.94,
+    208.14
+   ],
+   "drawing_indices": [
+    25
+   ]
+  },
+  {
+   "path": "assets/lcd-remaining-battery-percentage.svg",
+   "from": "manual_sources/JE-2000F/US/en/git-20261028-c8ace563/assets/lcd-remaining-battery-percentage.svg",
+   "sha256": "223ed59f409c3738fed9f1de1bc9ec961227c2f918b9dc5be612d5921ed9e50b",
+   "physical_page": 11,
+   "glyph_bbox": [
+    54.14,
+    225.4,
+    80.71,
+    238.69
+   ],
+   "drawing_indices": [
+    98,
+    99,
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112,
+    113,
+    114,
+    115,
+    116,
+    117,
+    118,
+    119,
+    120,
+    121,
+    122,
+    123,
+    124,
+    125,
+    126,
+    127,
+    128,
+    129,
+    130,
+    131
+   ]
+  },
+  {
+   "path": "assets/lcd-discharge-timer.svg",
+   "from": "manual_sources/JE-2000F/US/en/git-20261028-c8ace563/assets/lcd-discharge-timer.svg",
+   "sha256": "88fd2e5b31ea1a49bfd11583fe951379a7c0056ce5d14f9624aa4b1d98da558d",
+   "physical_page": 11,
+   "glyph_bbox": [
+    58.56,
+    258.08,
+    73.06,
+    274.4
+   ],
+   "drawing_indices": [
+    56,
+    57,
+    58
+   ]
+  },
+  {
+   "path": "assets/lcd-energy-saving.svg",
+   "from": "manual_sources/JE-2000F/US/en/git-20261028-c8ace563/assets/lcd-energy-saving.svg",
+   "sha256": "43db1b7306e1283590e4bd8992c0b6d207932909d53963ed20fcec9c6992c2d5",
+   "physical_page": 11,
+   "glyph_bbox": [
+    59.99,
+    297.2,
+    73.49,
+    305.9
+   ],
+   "drawing_indices": [
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86
+   ]
+  },
+  {
+   "path": "assets/lcd-high-temperature.svg",
+   "from": "manual_sources/JE-2000F/US/en/git-20261028-c8ace563/assets/lcd-high-temperature.svg",
+   "sha256": "65c1faabd6d6185d86fcd0e037380047c94b29a2e49b7844b28927831c879853",
+   "physical_page": 11,
+   "glyph_bbox": [
+    63.7,
+    326.82,
+    69.52,
+    339.45
+   ],
+   "drawing_indices": [
+    10
+   ]
+  },
+  {
+   "path": "assets/lcd-low-temperature.svg",
+   "from": "manual_sources/JE-2000F/US/en/git-20261028-c8ace563/assets/lcd-low-temperature.svg",
+   "sha256": "1c3bc433e4c4889f0e10f82617a23b72b559fc03b3cb0bed0fe3d0f8a2f05b19",
+   "physical_page": 11,
+   "glyph_bbox": [
+    63.43,
+    357.12,
+    69.24,
+    369.75
+   ],
+   "drawing_indices": [
+    11
+   ]
+  },
+  {
+   "path": "assets/lcd-fault-code.svg",
+   "from": "manual_sources/JE-2000F/US/en/git-20261028-c8ace563/assets/lcd-fault-code.svg",
+   "sha256": "a26412e668dec6f865288f0193ffffa310e99cad7a4ee807c7681c19b5b4e01c",
+   "physical_page": 11,
+   "glyph_bbox": [
+    58.16,
+    389.08,
+    74.55,
+    404.26
+   ],
+   "drawing_indices": [
+    7,
+    8,
+    9
+   ]
+  },
+  {
+   "path": "assets/lcd-output-power.svg",
+   "from": "manual_sources/JE-2000F/US/en/git-20261028-c8ace563/assets/lcd-output-power.svg",
+   "sha256": "564702d0875ff9813cb96ca8df43f1200045a925bb548f6bb0c4aa858fbc16db",
+   "physical_page": 11,
+   "glyph_bbox": [
+    51.32,
+    421.42,
+    82.48,
+    437.36
+   ],
+   "drawing_indices": [
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49
+   ]
+  },
+  {
+   "path": "assets/lcd-remaining-discharge-time.svg",
+   "from": "manual_sources/JE-2000F/US/en/git-20261028-c8ace563/assets/lcd-remaining-discharge-time.svg",
+   "sha256": "f0d00ad7132ba49d9b59a34dab464271d67299d7d9baefbdec8829c022503f36",
+   "physical_page": 11,
+   "glyph_bbox": [
+    51.28,
+    456.7,
+    81.62,
+    467.41
+   ],
+   "drawing_indices": [
+    50,
+    51,
+    52,
+    53
+   ]
+  },
+  {
+   "path": "assets/button-power.svg",
+   "from": "manual_sources/JE-2000F/US/en/git-20261028-c8ace563/assets/button-power.svg",
+   "sha256": "457285c35d6deb52a01bf2e86a430cdbbd1553299a6eac652a372427bfa6c2ed",
+   "physical_page": 16,
+   "glyph_bbox": [
+    50.23,
+    67.16,
+    74.62,
+    91.59
+   ],
+   "drawing_indices": [
+    607,
+    608,
+    609,
+    610,
+    611,
+    612,
+    613,
+    614
+   ]
+  },
+  {
+   "path": "assets/button-ac.svg",
+   "from": "manual_sources/JE-2000F/US/en/git-20261028-c8ace563/assets/button-ac.svg",
+   "sha256": "74bcd0bb2a825ff4d7831dbdb368f4d13cdf5cf1d741e349f8bc649ee1898839",
+   "physical_page": 16,
+   "glyph_bbox": [
+    111.08,
+    67.16,
+    135.47,
+    91.59
+   ],
+   "drawing_indices": [
+    597,
+    598,
+    599,
+    600,
+    601
+   ]
+  },
+  {
+   "path": "assets/button-dc-usb.svg",
+   "from": "manual_sources/JE-2000F/US/en/git-20261028-c8ace563/assets/button-dc-usb.svg",
+   "sha256": "3355388bad2221362a63dfad0c04fb9c15f521866166144cd3a644bde14e5864",
+   "physical_page": 16,
+   "glyph_bbox": [
+    111.04,
+    104.1,
+    135.44,
+    128.53
+   ],
+   "drawing_indices": [
+    579,
+    580,
+    581,
+    582,
+    583,
+    584,
+    585,
+    586,
+    587
+   ]
+  },
+  {
+   "path": "assets/button-light.svg",
+   "from": "manual_sources/JE-2000F/US/en/git-20261028-c8ace563/assets/button-light.svg",
+   "sha256": "f7af13a0cdc9b739cfa6b90f5e297e3f3f4dc588c926951b25fc579880538059",
+   "physical_page": 16,
+   "glyph_bbox": [
+    110.58,
+    179.84,
+    135.98,
+    205.27
+   ],
+   "drawing_indices": [
+    617,
+    618,
+    619,
+    620,
+    621,
+    622,
+    623,
+    624,
+    625,
+    626,
+    627
+   ]
+  },
+  {
+   "path": "assets/inbox-documents.svg",
+   "from": "manual_sources/JE-2000F/US/en/git-20261028-c8ace563/assets/inbox-documents.svg",
+   "sha256": "56fc08a6c7056ee343aac2684164a4e0bebb8693c378734533e939bb0ba47402",
+   "physical_page": 8,
+   "glyph_bbox": [
+    270.33,
+    93.73,
+    312.14,
+    150.58
+   ],
+   "drawing_indices": [
+    366,
+    367,
+    368,
+    369,
+    370
+   ]
+  },
+  {
+   "path": "assets/inbox-ac-cable.svg",
+   "from": "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets/inbox-cable.svg",
+   "sha256": "39890a48e00c673b9b7834e39a06a43088858fdd1e20eaf0ef50652de11490a1",
+   "physical_page": 8,
+   "glyph_bbox": [
+    163.17,
+    91.03,
+    210.59,
+    158.67
+   ],
+   "drawing_indices": [
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22
+   ]
+  }
+ ],
+ "reused": [
+  {
+   "path": "assets/app-store.png",
+   "from": "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets/shared-app-store.png",
+   "sha256": "1c7bfea9e26bbb00aff9c48d34a7742cd15ff3f0d998f32486c7248a19c9b84d",
+   "role": "standard App Store / Google Play badge pair, stacked as printed (same file as JE-2000F US/en)"
+  }
+ ],
+ "symbols": [
+  {
+   "path": "assets/symbol-01.svg",
+   "shared_symbol_key": "warning/outline-triangle-tinted",
+   "shared_path": "native-v1/symbol_warning_triangle.svg",
+   "physical_page": 3,
+   "glyph_bbox": [
+    38.29,
+    303.58,
+    61.06,
+    323.85
+   ],
+   "caption_ids": [
+    "sym.s1"
+   ],
+   "caption_bbox": [
+    76.33,
+    298.42,
+    175.33,
+    328.42
+   ]
+  },
+  {
+   "path": "assets/symbol-02.svg",
+   "shared_symbol_key": "read-manual/book-information",
+   "shared_path": "native-v1/symbol_read_manual.svg",
+   "physical_page": 3,
+   "glyph_bbox": [
+    38.51,
+    343.57,
+    60.84,
+    360.64
+   ],
+   "caption_ids": [
+    "sym.s2"
+   ],
+   "caption_bbox": [
+    76.33,
+    343.26,
+    175.33,
+    363.25
+   ]
+  },
+  {
+   "path": "assets/symbol-03.svg",
+   "shared_symbol_key": "no-open-flame/fire-match-prohibited",
+   "shared_path": "native-v1/symbol_no_open_flame.svg",
+   "physical_page": 3,
+   "glyph_bbox": [
+    39.88,
+    380.37,
+    60.14,
+    400.63
+   ],
+   "caption_ids": [
+    "sym.s3"
+   ],
+   "caption_bbox": [
+    76.33,
+    380.83,
+    175.33,
+    400.82
+   ]
+  },
+  {
+   "path": "assets/symbol-04.svg",
+   "shared_symbol_key": "keep-away-from-children/adult-child-prohibited",
+   "shared_path": "native-v1/symbol_keep_away_from_children.svg",
+   "physical_page": 3,
+   "glyph_bbox": [
+    39.88,
+    420.72,
+    60.14,
+    440.98
+   ],
+   "caption_ids": [
+    "sym.s4"
+   ],
+   "caption_bbox": [
+    76.33,
+    421.62,
+    175.33,
+    441.62
+   ]
+  },
+  {
+   "path": "assets/symbol-05.svg",
+   "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited",
+   "shared_path": "native-v1/symbol_do_not_dismantle.svg",
+   "physical_page": 3,
+   "glyph_bbox": [
+    39.88,
+    462.16,
+    59.02,
+    481.29
+   ],
+   "caption_ids": [
+    "sym.s5"
+   ],
+   "caption_bbox": [
+    76.33,
+    462.57,
+    168.33,
+    482.57
+   ]
+  },
+  {
+   "path": "assets/symbol-06.svg",
+   "shared_symbol_key": "native/je1500d-jp-6ddeef54-05",
+   "shared_path": "native-v1/je1500d-jp-6ddeef54-symbol-05.svg",
+   "physical_page": 3,
+   "glyph_bbox": [
+    194.85,
+    303.7,
+    214.09,
+    322.95
+   ],
+   "caption_ids": [
+    "sym.s6"
+   ],
+   "caption_bbox": [
+    226.64,
+    303.57,
+    332.64,
+    323.56
+   ]
+  },
+  {
+   "path": "assets/symbol-07.svg",
+   "shared_symbol_key": "no-wet-hands/h1-jp-native",
+   "shared_path": "native-v1/h1-jp-no_wet_hands.svg",
+   "physical_page": 3,
+   "glyph_bbox": [
+    195.19,
+    341.88,
+    213.75,
+    360.43
+   ],
+   "caption_ids": [
+    "sym.s7"
+   ],
+   "caption_bbox": [
+    226.64,
+    342.05,
+    332.64,
+    362.04
+   ]
+  },
+  {
+   "path": "assets/symbol-08.svg",
+   "shared_symbol_key": "keep-dry/h1-jp-native",
+   "shared_path": "native-v1/h1-jp-keep_dry.svg",
+   "physical_page": 3,
+   "glyph_bbox": [
+    195.19,
+    383.4,
+    213.75,
+    401.95
+   ],
+   "caption_ids": [
+    "sym.s8"
+   ],
+   "caption_bbox": [
+    226.64,
+    386.04,
+    332.64,
+    396.04
+   ]
+  },
+  {
+   "path": "assets/symbol-09.svg",
+   "shared_symbol_key": "mandatory/h1-jp-native",
+   "shared_path": "native-v1/h1-jp-mandatory.svg",
+   "physical_page": 3,
+   "glyph_bbox": [
+    194.98,
+    421.97,
+    215.12,
+    442.13
+   ],
+   "caption_ids": [
+    "sym.s9"
+   ],
+   "caption_bbox": [
+    226.64,
+    426.22,
+    290.64,
+    436.21
+   ]
+  },
+  {
+   "path": "assets/symbol-10.svg",
+   "shared_symbol_key": "prohibited/h1-jp-native",
+   "shared_path": "native-v1/h1-jp-prohibited.svg",
+   "physical_page": 3,
+   "glyph_bbox": [
+    194.98,
+    462.95,
+    215.12,
+    483.08
+   ],
+   "caption_ids": [
+    "sym.s10"
+   ],
+   "caption_bbox": [
+    226.64,
+    468.03,
+    290.64,
+    478.02
+   ]
+  },
+  {
+   "path": "assets/symbol-11.png",
+   "shared_symbol_key": "weee/crossed-bin-bar",
+   "shared_path": "native-v1/symbol_weee.png",
+   "physical_page": 4,
+   "glyph_bbox": [
+    195.89,
+    73.45,
+    212.32,
+    97.23
+   ],
+   "caption_ids": [
+    "rec.weee.b1",
+    "rec.weee.b2",
+    "rec.weee.b3"
+   ],
+   "caption_bbox": [
+    227.24,
+    32.89,
+    333.24,
+    142.92
+   ]
+  },
+  {
+   "path": "assets/symbol-12.png",
+   "shared_symbol_key": "battery-weee/crossed-bin-no-bar",
+   "shared_path": "native-v1/symbol_battery_weee.png",
+   "physical_page": 4,
+   "glyph_bbox": [
+    39.19,
+    181.01,
+    55.62,
+    198.39
+   ],
+   "caption_ids": [
+    "rec.bin.b1",
+    "rec.bin.b2",
+    "rec.bin.b3"
+   ],
+   "caption_bbox": [
+    70.72,
+    158.95,
+    325.28,
+    218.95
+   ]
+  }
+ ],
+ "pending_shared_symbols": [
+  {
+   "asset_ref": "assets/recycle-li-ion.svg",
+   "meaning_ids": [
+    "rec.liion.t",
+    "rec.liion.b1",
+    "rec.liion.b2",
+    "rec.liion.b3"
+   ],
+   "physical_page": 4,
+   "printed_page": "02",
+   "glyph_bbox": [
+    37.67,
+    75.94,
+    57.14,
+    94.68
+   ],
+   "drawing_indices": [
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69
+   ],
+   "caption_bbox": [
+    70.72,
+    49.6,
+    176.68,
+    129.66
+   ],
+   "status": "no shared catalog variant passes the fixed 2% comparison (closest native/je3000c-kr-78316033-06 0.1424, li-ion/recycle-li-ion-32-gray 0.2036); shown as a package-local native vector mark in a declared plain table (JE-1000D JP precedent) until the coordinator adds a shared variant"
+  }
+ ]
+}
