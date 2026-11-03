@@ -1885,6 +1885,11 @@
       "registered": "2026-10-28",
       "known_drift": {}
     },
+    "manual_sources/JHP-1000A/US/en/git-20261103-cb256e64-source-alignment": {
+      "approval": "Operator 2026-11-03: 授权本批逐本全绿后合入上线. MA-381 covers conditional engineering and publication merge; source/approval.json binds verified inputs. Published-route review and Feishu checkbox remain pending.",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
     "manual_sources/JHP-1000B-RC/US/en/git-20261027-af8a0775": {
       "approval": "Operator 「上线提交发布：JE-2000C、JHP-1000B-RC、JHP-2000A-RC、JHP-3600A-RC；授权开跟进 PR 写 approval 并合入，以及其 Hello-Docs 发布 PR」 2026-10-28 after 「授权全部合入上线 上线之后 我再一个个核对版面」 (MA-365); candidate merged as #1628, approval bound in the follow-up PR: Git-only US/en single-language Web release, source copy verbatim; layout checked by the operator after go-live",
       "registered": "2026-10-27",
