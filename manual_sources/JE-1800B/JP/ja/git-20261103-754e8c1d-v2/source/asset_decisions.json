@@ -692,9 +692,9 @@
  },
  {
   "slot": "symbol-01",
-  "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/je1800b-jp-754e8c1d-symbol-01.svg",
-  "decision": "proposed new shared native variant (not in the catalog; shared PR pending)",
-  "reason": "no existing shared variant passes the fixed 2% admission (best ≥0.03; JE-1800B prints dark-grey #404041 tinted glyphs)",
+  "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_warning_triangle.svg",
+  "decision": "reuse shared canonical (fixed 2% admission passes)",
+  "reason": "operator canonical; max_mean_channel_error 0.0061",
   "physical_page": 3,
   "glyph_bbox": [
    38,
@@ -702,13 +702,15 @@
    62,
    324
   ],
-  "shared_symbol_key": "native/je1800b-jp-754e8c1d-01"
+  "shared_symbol_key": "warning/outline-triangle-tinted",
+  "operator_canonical": "warning/outline-triangle-tinted",
+  "operator_decision": "2026-11-03 operator standard-icon decision (relayed by the coordination window): bind to the group canonical; no new variant"
  },
  {
   "slot": "symbol-02",
-  "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/je1800b-jp-754e8c1d-symbol-02.svg",
-  "decision": "proposed new shared native variant (not in the catalog; shared PR pending)",
-  "reason": "no existing shared variant passes the fixed 2% admission (best ≥0.03; JE-1800B prints dark-grey #404041 tinted glyphs)",
+  "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_read_manual.svg",
+  "decision": "reuse shared canonical (fixed 2% admission passes)",
+  "reason": "operator canonical; max_mean_channel_error 0.0124",
   "physical_page": 3,
   "glyph_bbox": [
    38,
@@ -716,13 +718,15 @@
    61,
    361
   ],
-  "shared_symbol_key": "native/je1800b-jp-754e8c1d-02"
+  "shared_symbol_key": "read-manual/book-information",
+  "operator_canonical": "read-manual/book-information",
+  "operator_decision": "2026-11-03 operator standard-icon decision (relayed by the coordination window): bind to the group canonical; no new variant"
  },
  {
   "slot": "symbol-03",
   "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/je1800b-jp-754e8c1d-symbol-03.svg",
-  "decision": "proposed new shared native variant (not in the catalog; shared PR pending)",
-  "reason": "no existing shared variant passes the fixed 2% admission (best ≥0.03; JE-1800B prints dark-grey #404041 tinted glyphs)",
+  "decision": "interim proposed native variant (not in the catalog); rebind to the operator canonical after the shared icon de-duplication PR",
+  "reason": "operator canonical no-open-flame/fire-match-prohibited is 0.021 under the fixed 2% admission; the de-duplication PR admits operator-confirmed same-group canonicals",
   "physical_page": 3,
   "glyph_bbox": [
    39,
@@ -730,13 +734,15 @@
    61,
    401
   ],
-  "shared_symbol_key": "native/je1800b-jp-754e8c1d-03"
+  "shared_symbol_key": "native/je1800b-jp-754e8c1d-03",
+  "operator_canonical": "no-open-flame/fire-match-prohibited",
+  "operator_decision": "2026-11-03 operator standard-icon decision (relayed by the coordination window): bind to the group canonical; no new variant"
  },
  {
   "slot": "symbol-04",
-  "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/je1800b-jp-754e8c1d-symbol-04.svg",
-  "decision": "proposed new shared native variant (not in the catalog; shared PR pending)",
-  "reason": "no existing shared variant passes the fixed 2% admission (best ≥0.03; JE-1800B prints dark-grey #404041 tinted glyphs)",
+  "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_keep_away_from_children.svg",
+  "decision": "reuse shared canonical (fixed 2% admission passes)",
+  "reason": "operator canonical; max_mean_channel_error 0.0164",
   "physical_page": 3,
   "glyph_bbox": [
    39,
@@ -744,13 +750,15 @@
    61,
    442
   ],
-  "shared_symbol_key": "native/je1800b-jp-754e8c1d-04"
+  "shared_symbol_key": "keep-away-from-children/adult-child-prohibited",
+  "operator_canonical": "keep-away-from-children/adult-child-prohibited",
+  "operator_decision": "2026-11-03 operator standard-icon decision (relayed by the coordination window): bind to the group canonical; no new variant"
  },
  {
   "slot": "symbol-05",
   "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/je1800b-jp-754e8c1d-symbol-05.svg",
-  "decision": "proposed new shared native variant (not in the catalog; shared PR pending)",
-  "reason": "no existing shared variant passes the fixed 2% admission (best ≥0.03; JE-1800B prints dark-grey #404041 tinted glyphs)",
+  "decision": "interim proposed native variant (not in the catalog); rebind to the operator canonical after the shared icon de-duplication PR",
+  "reason": "operator canonical native/je1000d-jp-00c43a89-02 is 0.3951 under the fixed 2% admission; the de-duplication PR admits operator-confirmed same-group canonicals",
   "physical_page": 3,
   "glyph_bbox": [
    39,
@@ -758,13 +766,15 @@
    60,
    482
   ],
-  "shared_symbol_key": "native/je1800b-jp-754e8c1d-05"
+  "shared_symbol_key": "native/je1800b-jp-754e8c1d-05",
+  "operator_canonical": "native/je1000d-jp-00c43a89-02",
+  "operator_decision": "2026-11-03 operator standard-icon decision (relayed by the coordination window): bind to the group canonical; no new variant"
  },
  {
   "slot": "symbol-06",
   "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/je1800b-jp-754e8c1d-symbol-06.svg",
-  "decision": "proposed new shared native variant (not in the catalog; shared PR pending)",
-  "reason": "no existing shared variant passes the fixed 2% admission (best ≥0.03; JE-1800B prints dark-grey #404041 tinted glyphs)",
+  "decision": "interim proposed native variant (not in the catalog); rebind to the operator canonical after the shared icon de-duplication PR",
+  "reason": "operator canonical unplug/h1-jp-native is 0.038 under the fixed 2% admission; the de-duplication PR admits operator-confirmed same-group canonicals",
   "physical_page": 3,
   "glyph_bbox": [
    195,
@@ -772,13 +782,15 @@
    214,
    323
   ],
-  "shared_symbol_key": "native/je1800b-jp-754e8c1d-06"
+  "shared_symbol_key": "native/je1800b-jp-754e8c1d-06",
+  "operator_canonical": "unplug/h1-jp-native",
+  "operator_decision": "2026-11-03 operator standard-icon decision (relayed by the coordination window): bind to the group canonical; no new variant"
  },
  {
   "slot": "symbol-07",
   "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/je1800b-jp-754e8c1d-symbol-07.svg",
-  "decision": "proposed new shared native variant (not in the catalog; shared PR pending)",
-  "reason": "no existing shared variant passes the fixed 2% admission (best ≥0.03; JE-1800B prints dark-grey #404041 tinted glyphs)",
+  "decision": "interim proposed native variant (not in the catalog); rebind to the operator canonical after the shared icon de-duplication PR",
+  "reason": "operator canonical native/je1000d-jp-00c43a89-03 is 0.0517 under the fixed 2% admission; the de-duplication PR admits operator-confirmed same-group canonicals",
   "physical_page": 3,
   "glyph_bbox": [
    195,
@@ -786,13 +798,15 @@
    214,
    361
   ],
-  "shared_symbol_key": "native/je1800b-jp-754e8c1d-07"
+  "shared_symbol_key": "native/je1800b-jp-754e8c1d-07",
+  "operator_canonical": "native/je1000d-jp-00c43a89-03",
+  "operator_decision": "2026-11-03 operator standard-icon decision (relayed by the coordination window): bind to the group canonical; no new variant"
  },
  {
   "slot": "symbol-08",
   "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/je1800b-jp-754e8c1d-symbol-08.svg",
-  "decision": "proposed new shared native variant (not in the catalog; shared PR pending)",
-  "reason": "no existing shared variant passes the fixed 2% admission (best ≥0.03; JE-1800B prints dark-grey #404041 tinted glyphs)",
+  "decision": "interim proposed native variant (not in the catalog); rebind to the operator canonical after the shared icon de-duplication PR",
+  "reason": "operator canonical native/je1000d-jp-00c43a89-05 is 0.0537 under the fixed 2% admission; the de-duplication PR admits operator-confirmed same-group canonicals",
   "physical_page": 3,
   "glyph_bbox": [
    195,
@@ -800,13 +814,15 @@
    214,
    402
   ],
-  "shared_symbol_key": "native/je1800b-jp-754e8c1d-08"
+  "shared_symbol_key": "native/je1800b-jp-754e8c1d-08",
+  "operator_canonical": "native/je1000d-jp-00c43a89-05",
+  "operator_decision": "2026-11-03 operator standard-icon decision (relayed by the coordination window): bind to the group canonical; no new variant"
  },
  {
   "slot": "symbol-09",
-  "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/je1800b-jp-754e8c1d-symbol-09.svg",
-  "decision": "proposed new shared native variant (not in the catalog; shared PR pending)",
-  "reason": "no existing shared variant passes the fixed 2% admission (best ≥0.03; JE-1800B prints dark-grey #404041 tinted glyphs)",
+  "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-mandatory.svg",
+  "decision": "reuse shared canonical (fixed 2% admission passes)",
+  "reason": "operator canonical; max_mean_channel_error 0.0102",
   "physical_page": 3,
   "glyph_bbox": [
    194,
@@ -814,13 +830,15 @@
    216,
    443
   ],
-  "shared_symbol_key": "native/je1800b-jp-754e8c1d-09"
+  "shared_symbol_key": "mandatory/h1-jp-native",
+  "operator_canonical": "mandatory/h1-jp-native",
+  "operator_decision": "2026-11-03 operator standard-icon decision (relayed by the coordination window): bind to the group canonical; no new variant"
  },
  {
   "slot": "symbol-10",
-  "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/je1800b-jp-754e8c1d-symbol-10.svg",
-  "decision": "proposed new shared native variant (not in the catalog; shared PR pending)",
-  "reason": "no existing shared variant passes the fixed 2% admission (best ≥0.03; JE-1800B prints dark-grey #404041 tinted glyphs)",
+  "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-prohibited.svg",
+  "decision": "reuse shared canonical (fixed 2% admission passes)",
+  "reason": "operator canonical; max_mean_channel_error 0.0051",
   "physical_page": 3,
   "glyph_bbox": [
    194,
@@ -828,13 +846,15 @@
    216,
    484
   ],
-  "shared_symbol_key": "native/je1800b-jp-754e8c1d-10"
+  "shared_symbol_key": "prohibited/h1-jp-native",
+  "operator_canonical": "prohibited/h1-jp-native",
+  "operator_decision": "2026-11-03 operator standard-icon decision (relayed by the coordination window): bind to the group canonical; no new variant"
  },
  {
   "slot": "symbol-11",
   "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/je1800b-jp-754e8c1d-symbol-11.svg",
-  "decision": "proposed new shared native variant (not in the catalog; shared PR pending)",
-  "reason": "no existing shared variant passes the fixed 2% admission (best ≥0.03; JE-1800B prints dark-grey #404041 tinted glyphs)",
+  "decision": "interim proposed native variant (not in the catalog); rebind to the operator canonical after the shared icon de-duplication PR",
+  "reason": "operator canonical native/je3000c-kr-78316033-06 is 0.1436 under the fixed 2% admission; the de-duplication PR admits operator-confirmed same-group canonicals",
   "physical_page": 4,
   "glyph_bbox": [
    37,
@@ -842,13 +862,15 @@
    58,
    95
   ],
-  "shared_symbol_key": "native/je1800b-jp-754e8c1d-11"
+  "shared_symbol_key": "native/je1800b-jp-754e8c1d-11",
+  "operator_canonical": "native/je3000c-kr-78316033-06",
+  "operator_decision": "2026-11-03 operator standard-icon decision (relayed by the coordination window): bind to the group canonical; no new variant"
  },
  {
   "slot": "symbol-12",
-  "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/je1800b-jp-754e8c1d-symbol-12.svg",
-  "decision": "proposed new shared native variant (not in the catalog; shared PR pending)",
-  "reason": "no existing shared variant passes the fixed 2% admission (best ≥0.03; JE-1800B prints dark-grey #404041 tinted glyphs)",
+  "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/je3000c-kr-78316033-07.svg",
+  "decision": "reuse shared canonical (fixed 2% admission passes)",
+  "reason": "operator canonical; max_mean_channel_error 0.0124",
   "physical_page": 4,
   "glyph_bbox": [
    195,
@@ -856,7 +878,9 @@
    213,
    98
   ],
-  "shared_symbol_key": "native/je1800b-jp-754e8c1d-12"
+  "shared_symbol_key": "native/je3000c-kr-78316033-07",
+  "operator_canonical": "native/je3000c-kr-78316033-07",
+  "operator_decision": "2026-11-03 operator standard-icon decision (relayed by the coordination window): bind to the group canonical; no new variant"
  },
  {
   "slot": "symbol-13",

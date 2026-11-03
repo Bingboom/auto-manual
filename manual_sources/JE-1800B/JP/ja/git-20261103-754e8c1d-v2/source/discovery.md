@@ -37,6 +37,7 @@ Recorded before extraction, per the Web artwork reuse order
 | LCD ⑪ 充電残り時間 | native vector extraction | prints 8.8 H; the shared file draws 88H | transparent, PDF paths only |
 | ボタン操作 buttons | reuse shared-buttons (power, ac, dc_usb, led) | same button drawings | transparent |
 | battery bin (電池および蓄電池) | reuse `battery_disposal/je2000e-eu-nl-batch1465-native` | passes admission (0.0066) | transparent |
-| other 12 symbols | proposed new shared native variants `native/je1800b-jp-754e8c1d-NN` | closest existing ≥0.03 (dark-grey tinted glyphs) | transparent; **not added here — shared PR pending** |
+| symbols 01/02/04/09/10/12 | operator canonicals warning/outline-triangle-tinted, read-manual/book-information, keep-away-from-children/adult-child-prohibited, mandatory/h1-jp-native, prohibited/h1-jp-native, native/je3000c-kr-78316033-07 | 0.0051–0.0164 | reuse (2026-11-03 operator standard-icon decision) |
+| symbols 03/05/06/07/08/11 | operator canonicals no-open-flame/fire-match-prohibited, native/je1000d-jp-00c43a89-02/03/05, unplug/h1-jp-native, native/je3000c-kr-78316033-06 | 0.021–0.395 | interim proposed native variants, **not added here**; rebind after the shared icon de-duplication PR |
 
 No body text or table is an image: all copy is native HTML bound to `transcription.json`.

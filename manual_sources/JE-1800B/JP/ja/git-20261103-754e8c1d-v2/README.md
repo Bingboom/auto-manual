@@ -4,7 +4,7 @@ Operator instruction, 2026-11-03: 「继续 转日语说明书」 (relayed by th
 
 **Status: `candidate-pending-operator-review`.** No operator approval exists; `source/approval.json` is absent and the IR is not publication-eligible.
 
-**Shared symbol dependency.** Twelve of the thirteen printed symbols pass no existing shared variant under the fixed 2% admission. Their proposed variants (`native/je1800b-jp-754e8c1d-01` … `-12`, native PDF paths) go into the shared catalog through a separate shared PR; this package does not add them. Until that PR is merged, `derive_assets.py`, `rebuild.py` and `tests/test_je1800b_jp_web.py` stop at the missing catalog entries.
+**Shared symbol dependency.** On 2026-11-03 the operator fixed one canonical shared icon per symbol group (no new variants; relayed by the coordination window). Seven symbols already bind to a canonical under the fixed 2% admission: warning triangle, read manual, keep away from children, mandatory, prohibited, WEEE and the battery bin. Six (no open flame, no disassembly, unplug, no wet hands, no wetting, Li-ion 32) are 2.1–39.5% from their operator canonicals; they keep interim proposed native variants (`native/je1800b-jp-754e8c1d-03/05/06/07/08/11`, not in the catalog) and are rebound once the shared icon de-duplication PR admits operator-confirmed same-group canonicals. Until then `derive_assets.py`, `rebuild.py` and the two replay tests stop or skip at the missing catalog entries.
 
 ## Source authority
 
@@ -20,11 +20,11 @@ The Web body is printed pages 01–24 (physical 3–26); cover, paper TOC and ba
 
 ## Artwork
 
-`source/discovery.md` and `source/asset_decisions.json` record the inventory and every reuse/extract decision. Product, LCD, operation, charging, UPS and App art are complete source panels at 3×, keeping leader lines, captions and phone frames. The in-box cable, 24 LCD icons and 4 buttons are reused byte-identically; LCD ⑪ is a native vector glyph. Symbols: one reuses `battery_disposal/je2000e-eu-nl-batch1465-native` (0.0066); twelve need the pending shared variants.
+`source/discovery.md` and `source/asset_decisions.json` record the inventory and every reuse/extract decision. Product, LCD, operation, charging, UPS and App art are complete source panels at 3×, keeping leader lines, captions and phone frames. The in-box cable, 24 LCD icons and 4 buttons are reused byte-identically; LCD ⑪ is a native vector glyph. Symbols: seven reuse shared canonicals (see `source/asset_decisions.json`); six wait for the de-duplication PR.
 
 ## Rebuild
 
-From the repository root (`requirements.lock`, Pandoc 3.9.0.2), once the shared variants are in the catalog:
+From the repository root (`requirements.lock`, Pandoc 3.9.0.2), once every recipe symbol is in the catalog:
 
 ```sh
 PKG=manual_sources/JE-1800B/JP/ja/git-20261103-754e8c1d-v2

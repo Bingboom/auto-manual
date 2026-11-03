@@ -71,7 +71,7 @@
       "ja": [
         {
           "asset_ref": "assets/symbol-01.svg",
-          "asset_sha256": "2497c26a106f87baaf9bd1e62dd437529dbe759f52b1d2aaf8ccb19930aeeaa9",
+          "asset_sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
           "physical_page": 3,
           "drawing_indices": [
             56,
@@ -98,12 +98,12 @@
           ],
           "caption_text": "潜在的な危険やリスクについて注意喚起するために、必ずお読みください。",
           "caption_sha256": "b7ada9a53183dec859f782967e7bd30a5adf880f39d4c79e1888889fdce71334",
-          "shared_symbol_key": "native/je1800b-jp-754e8c1d-01",
-          "max_mean_channel_error": 0.0
+          "shared_symbol_key": "warning/outline-triangle-tinted",
+          "max_mean_channel_error": 0.006065
         },
         {
           "asset_ref": "assets/symbol-02.svg",
-          "asset_sha256": "8b6e4d7f6dac5b6aa0469477f440a9770a50532abf45ece29ae242a904bd325a",
+          "asset_sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
           "physical_page": 3,
           "drawing_indices": [
             62,
@@ -130,8 +130,8 @@
           ],
           "caption_text": "操作の前に取扱説明書をお読みください。",
           "caption_sha256": "8817092c98c6a78e17dd8045810161ed13e010d76e9c7e880c3680b2b55e8e07",
-          "shared_symbol_key": "native/je1800b-jp-754e8c1d-02",
-          "max_mean_channel_error": 0.0
+          "shared_symbol_key": "read-manual/book-information",
+          "max_mean_channel_error": 0.012355
         },
         {
           "asset_ref": "assets/symbol-03.svg",
@@ -170,7 +170,7 @@
         },
         {
           "asset_ref": "assets/symbol-04.svg",
-          "asset_sha256": "e4fc8bb0c9f817e4a6eb2afde482e6283c2e872e7f79db323158ec5ab2f76ef4",
+          "asset_sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899",
           "physical_page": 3,
           "drawing_indices": [
             71,
@@ -198,8 +198,8 @@
           ],
           "caption_text": "小さなお子様の手の届かない場所に保管してください。",
           "caption_sha256": "3d56a2b85f81159f380df2e26556c788ca5a3bfbde5e48eb340bbfe375ad5b68",
-          "shared_symbol_key": "native/je1800b-jp-754e8c1d-04",
-          "max_mean_channel_error": 0.0
+          "shared_symbol_key": "keep-away-from-children/adult-child-prohibited",
+          "max_mean_channel_error": 0.016371
         },
         {
           "asset_ref": "assets/symbol-05.svg",
@@ -349,7 +349,7 @@
         },
         {
           "asset_ref": "assets/symbol-09.svg",
-          "asset_sha256": "27507f08c38aec5c9c5620915bf89e9731a7971590d08497c1114a1b753040dd",
+          "asset_sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2",
           "physical_page": 3,
           "drawing_indices": [
             75
@@ -374,12 +374,12 @@
           ],
           "caption_text": "行為を指示する記号",
           "caption_sha256": "a67302a29df8502e3c79ad7346ff15f3dafeb09ab27b020a71ea75d4320593b8",
-          "shared_symbol_key": "native/je1800b-jp-754e8c1d-09",
-          "max_mean_channel_error": 0.0
+          "shared_symbol_key": "mandatory/h1-jp-native",
+          "max_mean_channel_error": 0.010246
         },
         {
           "asset_ref": "assets/symbol-10.svg",
-          "asset_sha256": "d836e98c843154aace2f0c9968abda88811d914483deebcf880b1eb438fcaa6a",
+          "asset_sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d",
           "physical_page": 3,
           "drawing_indices": [
             76,
@@ -406,8 +406,8 @@
           ],
           "caption_text": "行為を禁止する記号",
           "caption_sha256": "a0160521d9370bbf09cc6b268a981a527271305f3a55c1245b1607171044df1d",
-          "shared_symbol_key": "native/je1800b-jp-754e8c1d-10",
-          "max_mean_channel_error": 0.0
+          "shared_symbol_key": "prohibited/h1-jp-native",
+          "max_mean_channel_error": 0.005104
         },
         {
           "asset_ref": "assets/symbol-11.svg",
@@ -451,7 +451,7 @@
         },
         {
           "asset_ref": "assets/symbol-12.svg",
-          "asset_sha256": "6442e0825498c9280af486970bd1ba87f9d3a0b47235c2edd87de85891e6cc91",
+          "asset_sha256": "7a07f68dc10f6d748ef90fa56822330ce831eac6ef25954bca8f4ddfc0cfbe34",
           "physical_page": 4,
           "drawing_indices": [
             70,
@@ -478,8 +478,8 @@
           ],
           "caption_text": "このシンボルは、本製品を一般家庭ごみとして廃棄せず、リサイクルのために指定の回収施設に持ち込む必要があることを示しています。適切な廃棄およびリサイクルは、環境保護に役立ちます。本製品の廃棄やリサイクルについての詳細は、お住まいの自治体、廃棄物処理業者、または販売店にお問い合わせください。",
           "caption_sha256": "8b6858713f5c238659fb2197ccc30acfdca2d2bd22f1a1dd7388c25135e21c4e",
-          "shared_symbol_key": "native/je1800b-jp-754e8c1d-12",
-          "max_mean_channel_error": 0.0
+          "shared_symbol_key": "native/je3000c-kr-78316033-07",
+          "max_mean_channel_error": 0.012446
         },
         {
           "asset_ref": "assets/symbol-13.svg",
@@ -523,8 +523,8 @@
     },
     {
       "path": "README.md",
-      "size": 4107,
-      "sha256": "13b067076024c7b663ddcd5d8d1138a3133bea9f42b7b8ba4585d0636a6915e4"
+      "size": 4458,
+      "sha256": "d90a87276bc7b3393e6ffe01b929ba6d3e327980ecc0c407ebd5cb4d642adb77"
     },
     {
       "path": "assets/ac-charge.png",
@@ -788,13 +788,13 @@
     },
     {
       "path": "assets/symbol-01.svg",
-      "size": 4124,
-      "sha256": "2497c26a106f87baaf9bd1e62dd437529dbe759f52b1d2aaf8ccb19930aeeaa9"
+      "size": 4481,
+      "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a"
     },
     {
       "path": "assets/symbol-02.svg",
-      "size": 4609,
-      "sha256": "8b6e4d7f6dac5b6aa0469477f440a9770a50532abf45ece29ae242a904bd325a"
+      "size": 4961,
+      "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584"
     },
     {
       "path": "assets/symbol-03.svg",
@@ -803,8 +803,8 @@
     },
     {
       "path": "assets/symbol-04.svg",
-      "size": 5366,
-      "sha256": "e4fc8bb0c9f817e4a6eb2afde482e6283c2e872e7f79db323158ec5ab2f76ef4"
+      "size": 6300,
+      "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899"
     },
     {
       "path": "assets/symbol-05.svg",
@@ -828,13 +828,13 @@
     },
     {
       "path": "assets/symbol-09.svg",
-      "size": 2891,
-      "sha256": "27507f08c38aec5c9c5620915bf89e9731a7971590d08497c1114a1b753040dd"
+      "size": 1292,
+      "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2"
     },
     {
       "path": "assets/symbol-10.svg",
-      "size": 3052,
-      "sha256": "d836e98c843154aace2f0c9968abda88811d914483deebcf880b1eb438fcaa6a"
+      "size": 1452,
+      "sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d"
     },
     {
       "path": "assets/symbol-11.svg",
@@ -843,8 +843,8 @@
     },
     {
       "path": "assets/symbol-12.svg",
-      "size": 3052,
-      "sha256": "6442e0825498c9280af486970bd1ba87f9d3a0b47235c2edd87de85891e6cc91"
+      "size": 3136,
+      "sha256": "7a07f68dc10f6d748ef90fa56822330ce831eac6ef25954bca8f4ddfc0cfbe34"
     },
     {
       "path": "assets/symbol-13.svg",
@@ -883,13 +883,13 @@
     },
     {
       "path": "source/asset_decisions.json",
-      "size": 35970,
-      "sha256": "872f4e9ff1524f615f1c53494ab285e03ae1030f48d418267fa85aa89ce8bdf1"
+      "size": 38386,
+      "sha256": "3dea5be6d01030ca9c42797b7d9f91bf12629b9f6f4e232ebeebf6b0ec62b3ab"
     },
     {
       "path": "source/asset_recipe.json",
-      "size": 17015,
-      "sha256": "ff58d841ae24b454988f25de706cae43fa3fadcea78dfa9086fa8b0ae5c27ac2"
+      "size": 16964,
+      "sha256": "b3eaea8df196ee2f7a1550973d8316638a145fea55dd5b07d166f0275b96f431"
     },
     {
       "path": "source/differences.md",
@@ -898,8 +898,8 @@
     },
     {
       "path": "source/discovery.md",
-      "size": 3112,
-      "sha256": "fcf7ba0f1150ce776975e4d263b1c46e982181530330c71287434df36cd2e5de"
+      "size": 3521,
+      "sha256": "56af9fa2cd2ce17b1950f551b49847c6134d5272cf59167e34cb6cd8484821c5"
     },
     {
       "path": "source/geometry.css",

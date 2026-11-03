@@ -243,9 +243,9 @@
    "caption_blocks": [
     "p3-b4"
    ],
-   "shared_symbol_key": "native/je1800b-jp-754e8c1d-01",
-   "shared_path": "native-v1/je1800b-jp-754e8c1d-symbol-01.svg",
-   "reuse": false
+   "shared_symbol_key": "warning/outline-triangle-tinted",
+   "shared_path": "native-v1/symbol_warning_triangle.svg",
+   "reuse": true
   },
   {
    "path": "assets/symbol-02.svg",
@@ -265,9 +265,9 @@
    "caption_blocks": [
     "p3-b5"
    ],
-   "shared_symbol_key": "native/je1800b-jp-754e8c1d-02",
-   "shared_path": "native-v1/je1800b-jp-754e8c1d-symbol-02.svg",
-   "reuse": false
+   "shared_symbol_key": "read-manual/book-information",
+   "shared_path": "native-v1/symbol_read_manual.svg",
+   "reuse": true
   },
   {
    "path": "assets/symbol-03.svg",
@@ -309,9 +309,9 @@
    "caption_blocks": [
     "p3-b7"
    ],
-   "shared_symbol_key": "native/je1800b-jp-754e8c1d-04",
-   "shared_path": "native-v1/je1800b-jp-754e8c1d-symbol-04.svg",
-   "reuse": false
+   "shared_symbol_key": "keep-away-from-children/adult-child-prohibited",
+   "shared_path": "native-v1/symbol_keep_away_from_children.svg",
+   "reuse": true
   },
   {
    "path": "assets/symbol-05.svg",
@@ -419,9 +419,9 @@
    "caption_blocks": [
     "p3-b1"
    ],
-   "shared_symbol_key": "native/je1800b-jp-754e8c1d-09",
-   "shared_path": "native-v1/je1800b-jp-754e8c1d-symbol-09.svg",
-   "reuse": false
+   "shared_symbol_key": "mandatory/h1-jp-native",
+   "shared_path": "native-v1/h1-jp-mandatory.svg",
+   "reuse": true
   },
   {
    "path": "assets/symbol-10.svg",
@@ -441,9 +441,9 @@
    "caption_blocks": [
     "p3-b2"
    ],
-   "shared_symbol_key": "native/je1800b-jp-754e8c1d-10",
-   "shared_path": "native-v1/je1800b-jp-754e8c1d-symbol-10.svg",
-   "reuse": false
+   "shared_symbol_key": "prohibited/h1-jp-native",
+   "shared_path": "native-v1/h1-jp-prohibited.svg",
+   "reuse": true
   },
   {
    "path": "assets/symbol-11.svg",
@@ -485,9 +485,9 @@
    "caption_blocks": [
     "p4-b4"
    ],
-   "shared_symbol_key": "native/je1800b-jp-754e8c1d-12",
-   "shared_path": "native-v1/je1800b-jp-754e8c1d-symbol-12.svg",
-   "reuse": false
+   "shared_symbol_key": "native/je3000c-kr-78316033-07",
+   "shared_path": "native-v1/je3000c-kr-78316033-07.svg",
+   "reuse": true
   },
   {
    "path": "assets/symbol-13.svg",
