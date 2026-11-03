@@ -19,6 +19,13 @@ physical-page, drawing-index and same-row caption bindings live in that source
 package's `source/symbol_release_admission.json`. All seven retain candidate
 status in this Git library, with no live registry promotion.
 
+Before choosing a key, look up its meaning in `canonical_groups`. An
+operator-confirmed group has one `canonical`; bind it, never one of its
+`legacy_variants` (kept only for frozen packages). A printed row of that group
+is released to the canonical through its listed caption, see
+[canonical symbol groups](../../../../../../code-as-doc/build_doc_guide/web-component-admission.md#operator-confirmed-canonical-symbol-groups).
+Do not add a new variant for a meaning that already has a confirmed canonical.
+
 Do not re-extract an admitted matching variant for a new model, page or language.
 When the authoritative glyph differs, document the difference and add a named
 variant to this common library. Preserve native tint and group opacity; remove

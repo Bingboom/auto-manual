@@ -19,7 +19,9 @@ from tools.manual_ir.components import component_specs_in_flow
 from tools.utils.path_utils import PathSegments, get_paths
 from tools.web.language_release_evidence import _safe_relative, _sha256
 from tools.asset_pipeline.native_svg import native_symbol_svg
-from tools.web.shared_symbol_assets import require_shared_symbol_binding, require_usable_symbol_file
+from tools.web.shared_symbol_assets import (
+    canonical_groups, require_shared_symbol_binding, require_usable_symbol_file, shared_symbol_file,
+)
 
 SCHEMA = 'auto-manual-symbol-asset-admission/v1'
 
@@ -118,6 +120,47 @@ def _waived_comparison(waivers: list[dict], row: dict, candidate: bytes, suffix:
             or error > waiver['max_mean_channel_error']):
         raise ValueError('symbol glyph differs beyond its reviewed waiver')
     return {'max_mean_channel_error': round(error, 6), 'glyph_waiver': waiver['id']}
+
+
+def _require_canonical_binding(row: dict, groups: dict) -> None:
+    """A fresh package binds the canonical of an operator-confirmed group."""
+    group, role = groups.get(row['shared_symbol_key'], (None, None))
+    if role == 'legacy' and group['status'] == 'operator-confirmed':
+        raise ValueError(f"symbol binds legacy variant {row['shared_symbol_key']} of canonical "
+                         f"group {group['id']}; bind {group['canonical']}")
+
+
+def _nearest_member(group: dict, reference: bytes) -> float:
+    return min(_symbol_error(path.read_bytes(), path.suffix, reference)
+               for path in map(shared_symbol_file, [group['canonical'], *group['legacy_variants']]))
+
+
+def _canonical_release(groups: dict, row: dict, meaning: str, language: str,
+                       candidate: bytes, suffix: str, reference: bytes) -> dict | None:
+    """Admit a confirmed group's canonical for a printed row of that group.
+
+    Group membership is the operator's recorded decision, so no pixel ceiling
+    applies. The printed row joins the group only through its source-verified
+    caption, listed for that language; a caption listed by several groups
+    must also print nearer this group's variants than every other group's.
+    Ungrouped, proposed and legacy keys are never released here.
+    """
+    group, role = groups.get(row['shared_symbol_key'], (None, None))
+    if role != 'canonical' or group['status'] != 'operator-confirmed':
+        return None
+    caption = _text(meaning)
+    if caption not in {_text(c) for c in group['captions'].get(language, [])}:
+        return None
+    rivals = {g['id']: g for g, _ in groups.values() if g['id'] != group['id']
+              and caption in {_text(c) for c in g['captions'].get(language, [])}}
+    if rivals:
+        own = _nearest_member(group, reference)
+        for rival in rivals.values():
+            if _nearest_member(rival, reference) <= own:
+                raise ValueError(f"shared caption prints nearer symbol group {rival['id']} "
+                                 f"than {group['id']}")
+    return {'max_mean_channel_error': round(_symbol_error(candidate, suffix, reference), 6),
+            'canonical_group': group['id'], 'canonical_decision': group['decision']}
 
 
 def _text(value: str) -> str:
@@ -277,12 +320,14 @@ def require_symbol_asset_admission(markdown_dir: Path, source_root: Path,
         errata = _caption_errata(source['sha256'], ir.model, ir.region, language)
         waivers = _glyph_waivers(source['sha256'], ir.model, ir.region, language)
         web_only = _web_only_rows(source['sha256'], ir.model, ir.region, language)
+        groups = canonical_groups()
         report = []
         with fitz.open(pdf) as doc:
             for row, (ref, meaning) in zip(rows, expected, strict=True):
                 candidate = _file(markdown_dir, ref, row['asset_sha256'])
                 require_usable_symbol_file(candidate)
                 require_shared_symbol_binding(row, candidate)
+                _require_canonical_binding(row, groups)
                 if 'web_only_row' in row:
                     report.append({'asset_ref': ref,
                                    **_web_only_comparison(web_only, row, meaning, candidate)})
@@ -297,7 +342,9 @@ def require_symbol_asset_admission(markdown_dir: Path, source_root: Path,
                 try:
                     comparison = compare_symbol(data, candidate.suffix, reference)
                 except ValueError:
-                    comparison = _waived_comparison(waivers, row, data, candidate.suffix, reference)
+                    comparison = (_canonical_release(groups, row, meaning, language, data,
+                                                     candidate.suffix, reference)
+                                  or _waived_comparison(waivers, row, data, candidate.suffix, reference))
                 result = {'asset_ref': ref, 'physical_page': page_number, **comparison}
                 if erratum:
                     result['caption_erratum'] = erratum['id']

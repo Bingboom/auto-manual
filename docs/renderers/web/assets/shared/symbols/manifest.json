@@ -2678,5 +2678,804 @@
       "sha256": "7e4de290ea13b86bd50fbb209b4510116116d4fb403b7ef4f83cf1c1db873989",
       "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
     }
+  ],
+  "canonical_decisions": [
+    {
+      "id": "SCG-20261103",
+      "date": "2026-11-03",
+      "scope": "operator-confirmed groups in canonical_groups",
+      "operator_quotes": [
+        {
+          "quote": "这些图标 还没做好去重共用啊 → 开去重窗口",
+          "context": "操作员发起共用图标去重，经协调会话 session_01Y8kaknyyfgd1ZC5Xtwthqx 转达"
+        },
+        {
+          "quote": "拔插头 → unplug/h1-jp-native；禁止湿手 → native/je1000d-jp-00c43a89-03；禁止弄湿 → native/je1000d-jp-00c43a89-05；禁止行为 → prohibited/h1-jp-native；行为指示 → mandatory/h1-jp-native；阅读说明书 → read-manual/book-information；禁止明火 → no-open-flame/fire-match-prohibited；远离儿童 → keep-away-from-children/adult-child-prohibited；注意警告 → warning/outline-triangle-tinted；Li-ion 32 回收 → native/je3000c-kr-78316033-06；WEEE 垃圾桶 → native/je3000c-kr-78316033-07",
+          "context": "操作员当日定的标准图标，经协调会话转达"
+        },
+        {
+          "quote": "用无底色的",
+          "context": "操作员在去重会话中直接回复：禁止拆解的标准图标改为无底色 do-not-dismantle/screwdriver-prohibited（取代先前转达的 native/je1000d-jp-00c43a89-02）"
+        },
+        {
+          "quote": "都只留一个（推荐）",
+          "context": "操作员在去重会话中选择：同含义但设计不同的阅读说明书、禁止明火、远离儿童、注意警告各只留一个标准图标，其余为同组旧变体"
+        },
+        {
+          "quote": "先写进分组但不生效（推荐）",
+          "context": "操作员在去重会话中选择：其余待定组登记为 proposed，不放行"
+        }
+      ],
+      "review_page": "https://claude.ai/artifact/TKVFaeNUZSw1pCcwfGsvCT"
+    }
+  ],
+  "canonical_groups": [
+    {
+      "id": "unplug",
+      "meaning": "拔插头",
+      "status": "operator-confirmed",
+      "canonical": "unplug/h1-jp-native",
+      "legacy_variants": [
+        "native/je1500d-jp-6ddeef54-05",
+        "native/je1000d-jp-00c43a89-01"
+      ],
+      "captions": {
+        "ja": [
+          "コンセントから電源プラグを抜く記号",
+          "万が一、次のような異常が発生したときはすぐに使用をやめる 煙が出ている、異臭がする 落としたり、破損したとき 異音がする 内部に水や異物が入ったとき電源コード (AC充電ケーブル) が傷んだとき このような異常が発生したまま使用していると、火災や感電の原因になります。 すぐにAC充電ケーブルをコンセントから抜いてください。また、本製品に接続されている機器もすべて外してください。 万が一発煙や発火したら、大量の水で消火して煙が見えなくなるまで本製品を水浸しにしてください。 煙が出なくなることを確認してからカスタマーサポートにご連絡ください。 お客様による修理は危険ですので絶対におやめください。"
+        ]
+      },
+      "decision": "SCG-20261103"
+    },
+    {
+      "id": "no-wet-hands",
+      "meaning": "禁止湿手",
+      "status": "operator-confirmed",
+      "canonical": "native/je1000d-jp-00c43a89-03",
+      "legacy_variants": [
+        "no-wet-hands/h1-jp-native",
+        "native/je1500d-jp-6ddeef54-07"
+      ],
+      "captions": {
+        "ja": [
+          "濡れた手で本体や接続するケーブルを触らない 火災や感電の原因になります。",
+          "製品に濡れた手で触れることを禁止する記号"
+        ]
+      },
+      "decision": "SCG-20261103"
+    },
+    {
+      "id": "keep-dry",
+      "meaning": "禁止弄湿",
+      "status": "operator-confirmed",
+      "canonical": "native/je1000d-jp-00c43a89-05",
+      "legacy_variants": [
+        "keep-dry/h1-jp-native"
+      ],
+      "captions": {
+        "ja": [
+          "水など、液体を入れたり、濡らしたりしない 発熱や発火の原因になります。",
+          "製品を濡らすことを禁止する記号"
+        ]
+      },
+      "decision": "SCG-20261103"
+    },
+    {
+      "id": "do-not-dismantle",
+      "meaning": "禁止拆解",
+      "status": "operator-confirmed",
+      "canonical": "do-not-dismantle/screwdriver-prohibited",
+      "legacy_variants": [
+        "native/je1000d-jp-00c43a89-02",
+        "do-not-dismantle/screwdriver-prohibited-native-dark",
+        "do-not-dismantle/h1-jp-native",
+        "do-not-dismantle/screwdriver-circle-gray",
+        "do_not_dismantle/je2000e-eu-pt-batch1465-native",
+        "do_not_dismantle/je2000e-eu-nl-batch1465-native",
+        "do-not-dismantle/screwdriver-prohibited-tw-477dfbd7",
+        "do-not-dismantle/screwdriver-prohibited-dark-hte162",
+        "do-not-dismantle/screwdriver-prohibited-dark-hte147"
+      ],
+      "captions": {
+        "de": [
+          "Vermeiden Sie Hitze."
+        ],
+        "en": [
+          "Do not dismantle the product."
+        ],
+        "es": [
+          "No desarme el producto.",
+          "No desarmes el producto."
+        ],
+        "fr": [
+          "Ne démontez pas le produit."
+        ],
+        "it": [
+          "Non smontare il prodotto."
+        ],
+        "ja": [
+          "分解、改造しない 故障、発熱、火災·感電の原因になります。",
+          "製品を分解、改造を禁止する記号"
+        ],
+        "ko": [
+          "제품을 분해하지 마십시오."
+        ],
+        "nl": [
+          "Demonteer het product niet."
+        ],
+        "pl": [
+          "Nie rozmontowuj produktu."
+        ],
+        "pt": [
+          "Não desmonte o produto."
+        ],
+        "uk": [
+          "Не розбирайте продукт."
+        ],
+        "zh-TW": [
+          "請勿拆解本產品。"
+        ]
+      },
+      "decision": "SCG-20261103"
+    },
+    {
+      "id": "prohibited",
+      "meaning": "禁止行为（通用）",
+      "status": "operator-confirmed",
+      "canonical": "prohibited/h1-jp-native",
+      "legacy_variants": [
+        "native/je1000d-jp-00c43a89-06"
+      ],
+      "captions": {
+        "ja": [
+          "データサーバや医療機器など、非常時に不具合が起こると人命 / 財産に重大な危険を及ぼしうる用途でのご使用はお控えください。次のようなような機器では、万が一使用中に給電ができなくなった場合、人命 / 財産にかかわる被害が想定されます。 医療機器や使用上、生命に関わるような機器 社会的、公共的に重要な機器など 重要な事業用機器など",
+          "付属品と本製品が破損した場合は、ご自身で修理をしない",
+          "強い衝撃を与えたり、投げつけたりしない 発熱や発火、破裂する原因になります。",
+          "心臓にペースメーカーを装着している方は使用しない ペースメーカーが、本製品の影響を受ける恐れがあります。",
+          "本製品の上に物を載せたり、不安定な場所に置かない 倒れたり、落ちたりしてけがの原因になります。",
+          "格納式ハンドルを使用してJackery ポータブル電源 3600 Plus を移動するときは、積み重ねたり、上に他の物を置いたりしないでください。落下して怪我をする場合があります。",
+          "火のそばや炎天下の車内、熱器具の周辺など高温（45℃以上）になる場所で使用したり、放置しない 発熱や発火、破裂する原因になります。",
+          "端子部にケーブル以外の金属類を差し込まない 発熱や発火の原因になります。",
+          "行為を禁止する記号",
+          "表示された電源電圧以外で使用しない 故障、発熱、火災·感電の原因になります。また、本製品を使用できるのは日本国内のみです。",
+          "雷が鳴りだしたら、電源プラグにふれない (充電をしない) 感電の原因になります。"
+        ]
+      },
+      "decision": "SCG-20261103"
+    },
+    {
+      "id": "mandatory",
+      "meaning": "行为指示（通用）",
+      "status": "operator-confirmed",
+      "canonical": "mandatory/h1-jp-native",
+      "legacy_variants": [],
+      "captions": {
+        "ja": [
+          "各接続端子には確実に差し込む 差し込みが不十分だと、発熱したりほこりが付着して火災や感電の原因になります。",
+          "行為を指示する記号"
+        ]
+      },
+      "decision": "SCG-20261103"
+    },
+    {
+      "id": "read-manual",
+      "meaning": "阅读说明书",
+      "status": "operator-confirmed",
+      "canonical": "read-manual/book-information",
+      "legacy_variants": [
+        "read-manual/person-reading-circle",
+        "read-manual/h1-jp-native",
+        "read-manual/person-book-circle-gray",
+        "read-manual/person-circle-jhp3000d-native",
+        "read_manual/je2000e-eu-pt-batch1465-native",
+        "read_manual/je2000e-eu-nl-batch1465-native",
+        "read-manual/person-reading-circle-tw-477dfbd7",
+        "native/je1500d-jp-6ddeef54-02",
+        "native/je3000c-kr-78316033-02"
+      ],
+      "captions": {
+        "de": [
+          "Lesen Sie vor der Anwendung die Benutzeranleitung."
+        ],
+        "en": [
+          "Read the Manual Symbol for safe operation.",
+          "Read the user manual before operation."
+        ],
+        "es": [
+          "Lea el manual del operador",
+          "Lea el manual del operador.",
+          "Símbolo de leer el manual para un funcionamiento seguro."
+        ],
+        "fr": [
+          "Lire le manuel de l'opérateur",
+          "Lire le manuel de l'opérateur.",
+          "Lire le manuel de l’opérateur",
+          "Symbole de lecture du manuel pour une utilisation sécuritaire."
+        ],
+        "it": [
+          "Prima dell’utilizzo, leggere il manuale d’istruzioni."
+        ],
+        "ja": [
+          "操作の前に取扱説明書をお読みください。"
+        ],
+        "ko": [
+          "사용 전에 사용자 설명서를 읽으십시오."
+        ],
+        "nl": [
+          "Lees de gebruikershandleiding voor gebruik."
+        ],
+        "pl": [
+          "Przed przystąpieniem do użytkowania przeczytaj instrukcję obsługi."
+        ],
+        "pt": [
+          "Leia o manual do usuário antes de operar."
+        ],
+        "uk": [
+          "Перед використанням прочитайте посібник користувача."
+        ],
+        "zh-TW": [
+          "操作前請閱讀說明書。"
+        ]
+      },
+      "decision": "SCG-20261103"
+    },
+    {
+      "id": "no-open-flame",
+      "meaning": "禁止明火",
+      "status": "operator-confirmed",
+      "canonical": "no-open-flame/fire-match-prohibited",
+      "legacy_variants": [
+        "no-open-flame/crossed-flame",
+        "no-open-flame/h1-jp-native",
+        "no-open-flame/fire-match-crossed-gray",
+        "no-open-flame/fire-match-prohibited-3e3a39",
+        "no_open_flame/je2000e-eu-pt-batch1465-native",
+        "no_open_flame/je2000e-eu-nl-batch1465-native",
+        "no-open-flame/crossed-fire-je2000f",
+        "no-open-flame/fire-match-prohibited-dark-804ebe78",
+        "no-open-flame/fire-match-prohibited-dark-5c065d11"
+      ],
+      "captions": {
+        "de": [
+          "Demontieren Sie das Produkt nicht."
+        ],
+        "en": [
+          "Keep the product away from fire.",
+          "Non-smoking or Open Flame Symbol for fire hazards prevention."
+        ],
+        "es": [
+          "Mantenga el producto alejado del fuego",
+          "No fumar ni hacer llamas abiertas",
+          "Símbolo de no fumar o sin llamas abiertas para la prevención de incendios."
+        ],
+        "fr": [
+          "Ne pas fumer ni utiliser de flamme nue",
+          "Symbole de non-fumeur ou de flamme nue pour prévenir les risques d'incendie.",
+          "Tenir le produit à l’écart du feu."
+        ],
+        "it": [
+          "Tenere il prodotto lontano da fiamme."
+        ],
+        "ja": [
+          "本製品を火気の近くに置かないでください。"
+        ],
+        "ko": [
+          "제품을 화기로부터 멀리 두십시오."
+        ],
+        "nl": [
+          "Houd het product uit de buurt van vuur."
+        ],
+        "pl": [
+          "Trzymaj produkt z dala od ognia."
+        ],
+        "pt": [
+          "Mantenha o produto longe de fogo."
+        ],
+        "uk": [
+          "Тримайте продукт подалі від вогню."
+        ],
+        "zh-TW": [
+          "請使產品遠離火源。"
+        ]
+      },
+      "decision": "SCG-20261103"
+    },
+    {
+      "id": "keep-away-from-children",
+      "meaning": "远离儿童",
+      "status": "operator-confirmed",
+      "canonical": "keep-away-from-children/adult-child-prohibited",
+      "legacy_variants": [
+        "keep-away-from-children/adult-child-panel",
+        "keep-away-from-children/h1-jp-native",
+        "keep-away-from-children/adult-child-frame-gray",
+        "keep-away-from-children/adult-child-prohibited-3e3a39",
+        "keep_away_from_children/je2000e-eu-pt-batch1465-native",
+        "keep_away_from_children/je2000e-eu-nl-batch1465-native",
+        "native/je1500d-jp-6ddeef54-04",
+        "keep-away-from-children/adult-child-prohibited-dark-5c065d11"
+      ],
+      "captions": {
+        "de": [
+          "Halten Sie das Produkt fern von Kindern."
+        ],
+        "en": [
+          "Keep away from children.",
+          "No Children Allowed Symbol for safety risk prevention."
+        ],
+        "es": [
+          "No se permiten niños",
+          "No se permiten niños.",
+          "Símbolo de no se permite el acceso a niños para la prevención de riesgos."
+        ],
+        "fr": [
+          "Les enfants ne sont pas admis",
+          "Les enfants ne sont pas admis.",
+          "Symbole d’interdiction d’accès aux enfants pour prévenir les risques de sécurité."
+        ],
+        "it": [
+          "Tenere lontano dalla portata dei bambini."
+        ],
+        "ja": [
+          "小さなお子様の手の届かない場所に保管してください。"
+        ],
+        "ko": [
+          "어린이의 손이 닿지 않는 곳에 보관하십시오."
+        ],
+        "nl": [
+          "Houd het product buiten het bereik van kinderen."
+        ],
+        "pl": [
+          "Przechowuj w miejscu niedostępnym dla dzieci."
+        ],
+        "pt": [
+          "Mantenha fora do alcance de crianças."
+        ],
+        "uk": [
+          "Тримайте подалі від дітей."
+        ],
+        "zh-TW": [
+          "請放置在兒童無法接觸的地方。"
+        ]
+      },
+      "decision": "SCG-20261103"
+    },
+    {
+      "id": "warning",
+      "meaning": "注意警告",
+      "status": "operator-confirmed",
+      "canonical": "warning/outline-triangle-tinted",
+      "legacy_variants": [
+        "warning-triangle/h1-jp-native",
+        "warning/filled-triangle-gray",
+        "general_warning/je2000e-eu-pt-batch1465-native",
+        "general_warning/je2000e-eu-nl-batch1465-native",
+        "native/je1500d-jp-6ddeef54-01",
+        "warning/outline-triangle-dark-hte162"
+      ],
+      "captions": {
+        "de": [
+          "Warn- und Hinweissymbole. Weisen Personen auf Informationen hin, die gelesen werden müssen, um potenzielle Gefahren oder Risiken zu vermeiden."
+        ],
+        "en": [
+          "Alerts individuals to information that must be read to avoid potential hazards or risks.",
+          "Warning and Caution Symbols. Must read to alert individuals to potential hazards or risks."
+        ],
+        "es": [
+          "Precaución! El incumplimiento de los  mensajes de advertencia puede  provocar lesiones.",
+          "Precaución. El incumplimiento de los mensajes de advertencia puede provocar lesiones.",
+          "Símbolos de advertencia y precaución Debe leer para alertar a las personas sobre posibles peligros o riesgos.",
+          "¡Precaución! El incumplimiento de los mensajes de advertencia puede provocar lesiones."
+        ],
+        "fr": [
+          "Mise en garde! Le non-respect des messages d'avertissement peut entraîner des blessures.",
+          "Mlise en garde! Le non-respect des  messages d'avertissement peut  entraîner des blessures.",
+          "Mlise en garde! Le non-respect des messages d’avertissement peut entraîner des blessures.",
+          "Symboles d'avertissement et de mise en garde. Doivent être lus pour alerter les utilisateurs de dangers ou de risques potentiels.",
+          "Symboles d’avertissement et de mise en garde. Signalent aux personnes des informations qui doivent être lues afin d’éviter les dangers ou risques potentiels."
+        ],
+        "it": [
+          "Simboli di avvertenza e cautela. Da leggere assolutamente per avvisare le persone di potenziali pericoli o rischi.",
+          "Simboli di avvertenza e cautela. Segnalano alle persone le informazioni che devono essere lette per evitare potenziali pericoli o rischi."
+        ],
+        "ja": [
+          "潜在的な危険やリスクについて注意喚起するために、必ずお読みください。"
+        ],
+        "ko": [
+          "경고 및 주의 기호. 잠재적 위험이나 위험을 알리기 위해 반드시 숙지해야 합니다."
+        ],
+        "nl": [
+          "Waarschuwings- en voorzorgssymbol- en. Moet worden gelezen om personen te waarschuwen voor mogelijke gevaren of risico's.",
+          "Waarschuwings- en voorzorgssymbolen. Moet worden gelezen om personen te waarschuwen voor mogelijke gevaren of risico's.",
+          "Waarschuwings- en voorzorgssymbolen. Waarschuwt personen voor informatie die moet worden gelezen om mogelijke gevaren of risico’s te voorkomen."
+        ],
+        "pl": [
+          "Symbole ostrzeżeń i środków ostrożności. Należy koniecznie przeczytać, aby poznać potencjalne zagrożenia lub ryzyka.",
+          "Symbole ostrzeżeń i środków ostrożności. Zwraca uwagę użytkowników na informacje, które należy przeczytać, aby uniknąć potencjalnych zagrożeń lub ryzyka."
+        ],
+        "pt": [
+          "Símbolos de Advertência e Cuidado. Deve ser lido para alertar sobre potenciais perigos ou riscos."
+        ],
+        "uk": [
+          "Попереджувальні та застережні символи. Обов’язково прочитайте, щоб попередити користувачів про потенційні небезпеки або ризики.",
+          "Попереджувальні та застережні символи. Повідомляють користувачам про інформацію, яку необхідно прочитати, щоб уникнути потенційних небезпек або ризиків."
+        ],
+        "zh-TW": [
+          "警告及注意符號。請務必閱讀，以注意潛在的危險或風險。"
+        ]
+      },
+      "decision": "SCG-20261103"
+    },
+    {
+      "id": "li-ion-32",
+      "meaning": "Li-ion 32 回收",
+      "status": "operator-confirmed",
+      "canonical": "native/je3000c-kr-78316033-06",
+      "legacy_variants": [
+        "battery-recycle/h1-jp-native",
+        "li-ion/recycle-li-ion-32-gray",
+        "native/je1500d-jp-6ddeef54-09"
+      ],
+      "captions": {
+        "ja": [
+          "充電式電池のリサイクルについて",
+          "充電式電池のリサイクルについて本機はリサイクル可能な充電池を内蔵しています。この商品を廃棄する場合は、当社のカスタマーサポートにご連絡ください。充電池の取りはずしはお客様自身では行わないでください。",
+          "本機はリサイクル可能な充電池を内蔵しています。この商品を廃棄する場合は、当社のカスタマーサポートにご連絡ください。充電池の取りはずしはお客様自身では行わないでください。"
+        ],
+        "ko": [
+          "이 기호는 제품 내부에 리튬이온(Li-ion) 배터리가 포함되어 있음을 나타내며, 적절히 폐기 또는 재활용해야 합니다."
+        ]
+      },
+      "decision": "SCG-20261103"
+    },
+    {
+      "id": "weee",
+      "meaning": "WEEE 垃圾桶（带横条）",
+      "status": "operator-confirmed",
+      "canonical": "native/je3000c-kr-78316033-07",
+      "legacy_variants": [
+        "weee/crossed-bin-bar",
+        "weee/h1-jp-native",
+        "weee/crossed-bin-bar-gray",
+        "weee/je2000e-eu-pt-batch1465-native",
+        "weee/je2000e-eu-nl-batch1465-native"
+      ],
+      "captions": {
+        "de": [
+          "Dieses Symbol zeigt an, dass das Produkt nicht als Haushaltsabfall entsorgt werden soll und an eine dafür vorgesehene Sammelstelle zur Entsorgung und Recycling gebracht werden sollte. Eine ordnungsgemäße Entsorgung und Recycling kann dazu beitragen, die Umwelt zu schützen. Für weitere Informationen zur Entsorgung und Recycling dieses Produkts wenden Sie sich an Ihre örtliche Gemeinde, Entsorgungsdienstleistungen oder Ihren Händler."
+        ],
+        "en": [
+          "This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling. Proper disposal and recycling can help protect the environment. For more information about the disposal and recycling of this product, contact your local community, disposal service, or dealer."
+        ],
+        "es": [
+          "Este símbolo indica que el producto no  debe desecharse con los residuos  domésticos. En su lugar, debe llevarse a un  punto de recogida designado para su  correcto reciclaje. El desecho y reciclaje adecuados ayudan  a proteger el medioambiente. Para más  información, póngase en contacto con su  autoridad local, el servicio de gestión de  residuos o el distribuidor del producto."
+        ],
+        "fr": [
+          "Ce symbole indique que le produit ne doit  pas être jeté avec les ordures ménagères.  Il doit être apporté à un point de collecte  désigné pour un recyclage approprié. Une élimination et un recyclage corrects  contribuent à la protection de  l’environnement. Pour plus d’informations,  veuillez contacter votre autorité locale, le  service de gestion des déchets ou le  revendeur du produit."
+        ],
+        "it": [
+          "Questo simbolo indica che il prodotto non va smaltito come rifiuto domestico e deve essere consegnato per il riciclaggio a un centro di raccolta designato. Smaltire adeguatamente e riciclare aiuta a proteggere l’ambiente. Per maggiori informazioni riguardo lo smaltimento e il riciclaggio di questo prodotto, contattare la propria comunità locale, i servizi di smaltimento o il proprio fornitore."
+        ],
+        "ja": [
+          "このシンボルは、本製品を一般家庭ごみとして廃棄せず、リサイクルのために指定の回収施設に持ち込む必要があることを示しています。 適切な廃棄およびリサイクルは、環境保護に役立ちます。 本製品の廃棄やリサイクルについての詳細は、お住まいの自治体、廃棄物処理業者、または販売店にお問い合わせください。"
+        ],
+        "ko": [
+          "이 기호는 제품을 생활 폐기물로 처리해서는 안 되며, 재활용을 위해 지정된 수거 시설에 전달해야 함을 나타냅니다. 적절한 폐기 및 재활용은 환경 보호에 도움이 될 수 있습니다. 이 제품의 폐기 및 재활용에 대한 자세한 내용은 지역 커뮤니티, 폐기물 처리 서비스 또는 판매점에 문의하십시오."
+        ],
+        "nl": [
+          "Dit symbool geeft aan dat het product niet als huishoudelijk afval mag worden weggegooid en naar een aangewezen inzamelingspunt voor recycling moet worden gebracht. Een juiste afvalverwerking en recycling dragen bij aan een beter milieu. Voor meer informatie over de verwijdering en recycling van dit product, neem contact op met uw gemeente, afvalverwerkings- dienst of leverancier.",
+          "Dit symbool geeft aan dat het product niet als huishoudelijk afval mag worden weggegooid en naar een aangewezen inzamelingspunt voor recycling moet worden gebracht. Een juiste afvalverwerking en recycling dragen bij aan een beter milieu. Voor meer informatie over de verwijdering en recycling van dit product, neem contact op met uw gemeente, afvalverwerkingsdienst of leverancier."
+        ],
+        "pl": [
+          "Ten symbol oznacza, że produktu nie wolno wyrzucać razem z odpadami domowymi i należy go dostarczyć do wyznaczonego punktu zbiórki w celu recyklingu. Prawidłowa utylizacja i recykling przyczynią się do ochrony środowiska. Aby uzyskać więcej informacji na temat utylizacji i recyklingu tego produktu, skontaktuj się z lokalną gminą, firmą zajmującą się utylizacją lub sprzedawcą."
+        ],
+        "pt": [
+          "Este símbolo indica que o produto não deve ser descartado como lixo doméstico e deve ser encaminhado a um ponto de coleta designado para reciclagem. O descarte e a reciclagem adequados podem ajudar a proteger o meio ambiente. Para obter mais informações sobre o descarte e a reciclagem deste produto, entre em contato com a autoridade local, o serviço de coleta ou o revendedor."
+        ],
+        "uk": [
+          "Цей символ вказує, що продукт не можна утилізувати разом із побутовими відходами, і його слід передати до спеціалізованого пункту збору для переробки. Правильна утилізація та переробка допомагають захистити довкілля. Для отримання додаткової інформації щодо утилізації та переробки цього продукту зверніться до місцевої громади, служби утилізації або дилера."
+        ]
+      },
+      "decision": "SCG-20261103"
+    },
+    {
+      "id": "li-ion",
+      "meaning": "Li-ion 回收（无 32）",
+      "status": "proposed",
+      "canonical": "li-ion/recycle-li-ion",
+      "legacy_variants": [
+        "li-ion/recycle-li-ion-native-dark",
+        "li-ion/htp017-recycle-li-ion",
+        "li_ion/je2000e-eu-pt-batch1465-native",
+        "li_ion/je2000e-eu-nl-batch1465-native",
+        "li-ion/recycle-li-ion-label-hte162",
+        "li-ion/recycle-li-ion-label-dark-cb256e64"
+      ],
+      "captions": {
+        "de": [
+          "Dieses Symbol zeigt an, dass sich ein Lithium-Ionen-Akku (Li-Ion) im Produkt befindet und ordnungsgemäß entsorgt oder recycelt werden sollte."
+        ],
+        "en": [
+          "This symbol indicates that a lithium-ion (Li-ion) battery is inside the product and should be disposed of or recycled properly.",
+          "This symbol indicates that a lithium-ion (Liion) battery is inside the product and should be disposed of or recycled properly."
+        ],
+        "es": [
+          "Este símbolo indica que el producto  contiene una batería de iones de litio  (Li-ion), la cual debe desecharse o  reciclarse de forma adecuada."
+        ],
+        "fr": [
+          "Ce symbole indique que le produit  contient une batterie lithium-ion (Li-ion),  qui doit être éliminée ou recyclée de  manière appropriée."
+        ],
+        "it": [
+          "Questo simbolo indica che all’interno del prodotto è presente una batteria agli ioni di litio (Li-ion), la quale va smaltita o riciclata adeguatamente."
+        ],
+        "ja": [
+          "充電式電池のリサイクルについて 本機はリサイクル可能な充電池を内蔵しています。 この商品を廃棄する場合は、当社のカスタマーサポートにご連絡ください。 充電池の取りはずしはお客様自身では行わないでください。"
+        ],
+        "nl": [
+          "Dit symbool geeft aan dat er een lithium-ion (Li-ion) accu in het product zit en dat deze op de juiste wijze moet worden afgevoerd of gerecycled.",
+          "Dit symbool geeft aan dat zich een lithium-ion (Li-ion) batterij in het product bevindt en dat deze op de juiste manier moet worden afgevoerd of gerecycled."
+        ],
+        "pl": [
+          "Ten symbol oznacza, że wewnątrz produktu znajduje się bateria litowo-jonowa (Li-ion), którą należy prawidłowo utylizować lub poddać recyklingowi."
+        ],
+        "pt": [
+          "Este símbolo indica que há uma bateria de íons de lítio (Li-ion) dentro do produto e que ela deve ser descartada ou reciclada corretamente.",
+          "Este símbolo indica que o produto contém uma bateria de íon de lítio (Li-ion) e que esta deve ser descartada ou reciclada adequadamente."
+        ],
+        "uk": [
+          "Цей символ вказує, що всередині продукту є літій-іонна (Li-ion) батарея, яку необхідно утилізувати або переробити належним чином."
+        ]
+      },
+      "decision": null
+    },
+    {
+      "id": "battery-weee",
+      "meaning": "电池 WEEE（无横条）",
+      "status": "proposed",
+      "canonical": "battery-weee/crossed-bin-no-bar",
+      "legacy_variants": [
+        "battery_disposal/je2000e-eu-pt-batch1465-native",
+        "battery_disposal/je2000e-eu-nl-batch1465-native"
+      ],
+      "captions": {
+        "de": [
+          "Batterien und Akkumulatoren dürfen nicht über den Hausmüll entsorgt werden.\nAls Verbraucher sind Sie gesetzlich verpflichtet, alle Batterien und Akkumulatoren an dafür vorgesehenen Sammelstellen zu entsorgen, unabhängig davon, ob sie Schadstoffe enthalten.\nBitte geben Sie gebrauchte Batterien und Akkumulatoren an einer örtlichen Sammelstelle, einem Recyclingzentrum oder beim Händler zurück, bei dem sie gekauft wurden. Die ordnungsgemäße Entsorgung gewährleistet eine umweltgerechte Wiederverwertung und verhindert mögliche Schäden für die menschliche Gesundheit und die Umwelt."
+        ],
+        "en": [
+          "Batteries and accumulators must not be disposed of with household waste. As a consumer, you are legally required to dispose of all batteries and accumulators at designated collection points, regardless of whether they contain hazardous substances. Please return used batteries and accumulators to a local collection point, recycling center, or to the retailer where they were purchased. Proper disposal ensures environmentally responsible recycling and prevents potential harm to human health and the environment."
+        ],
+        "es": [
+          "Las baterías y acumuladores no deben desecharse junto con los residuos domésticos. Como consumidor, usted está obligado por ley a desechar todas las baterías y acumuladores en los puntos de recolección designados, independientemente de si contienen sustancias peligrosas. Devuelva las baterías y acumuladores usados a un punto de recolección local, un centro de reciclaje o al minorista donde los compró. La eliminación adecuada garantiza un reciclaje responsable con el medio ambiente y evita posibles daños a la salud humana y al medio ambiente."
+        ],
+        "fr": [
+          "Les piles et accumulateurs ne doivent pas être jetés avec les ordures ménagères. En tant que consommateur, vous êtes légalement tenu de déposer toutes les piles et accumulateurs dans des points de collecte désignés, qu'ils contiennent ou non des substances dangereuses. Veuillez rapporter les piles et accumulateurs usagés à un point de collecte local, un centre de recyclage ou au détaillant où ils ont été achetés. Une élimination appropriée garantit un recyclage respectueux de l'environnement et prévient les dommages potentiels pour la santé humaine et l'environnement."
+        ],
+        "it": [
+          "Le batterie e gli accumulatori non devono essere smaltiti insieme ai rifiuti domestici.\nCome consumatore, sei legalmente obbligato a smaltire tutte le batterie e gli accumulatori nei punti di raccolta designati, indipendentemente dal fatto che contengano sostanze pericolose.\nPer favore, restituisci le batterie e gli accumulatori usati a un punto di raccolta locale, a un centro di riciclo o al rivenditore presso cui sono stati acquistati. Un corretto smaltimento garantisce un riciclo responsabile per l'ambiente e previene potenziali danni alla salute umana e all'ambiente."
+        ],
+        "ja": [
+          "電池および蓄電池は家庭ごみと一緒に廃棄してはいけません。 消費者の皆様は、有害物質の有無にかかわらず、すべての電池および蓄電池を指定された収集場所で廃棄することが法律で義務付けられています。 使用済みの電池および蓄電池は、お近くの収集拠点、リサイクルセンター、または購入した小売店にお持ちください。 適切な廃棄は環境に配慮したリサイクルを確保し、人間の健康と環境への潜在的な害を防ぎます。"
+        ],
+        "nl": [
+          "Batterijen en accu's mogen niet bij het huishoudelijk afval worden weggegooid. Als consument bent u wettelijk verplicht om alle batterijen en accu's in te leveren bij daarvoor aangewezen inzamelpunten, ongeacht of ze gevaarlijke stoffen bevatten. Lever gebruikte batterijen en accu's in bij een plaatselijk inleverpunt, recyclingcen- trum of bij de winkel waar u ze heeft gekocht. Een juiste afvalverwerking verzekert dat recycling op een milieuvriendelijke manier gebeurt en voorkomt mogelijke schade aan de menselijke gezondheid en het milieu.",
+          "Batterijen en accu's mogen niet bij het huishoudelijk afval worden weggegooid. Als consument bent u wettelijk verplicht om alle batterijen en accu's in te leveren bij daarvoor aangewezen inzamelpunten, ongeacht of ze gevaarlijke stoffen bevatten. Lever gebruikte batterijen en accu's in bij een plaatselijk inleverpunt, recyclingcentrum of bij de winkel waar u ze heeft gekocht. Een juiste afvalverwerking verzekert dat recycling op een milieuvriendelijke manier gebeurt en voorkomt mogelijke schade aan de menselijke gezondheid en het milieu."
+        ],
+        "pl": [
+          "Baterii i akumulatorów nie wolno wyrzucać razem z odpadami domowymi. Jako konsument masz prawny obowiązek oddawania wszystkich baterii i akumulatorów do wyznaczonych punktów zbiórki, niezależnie od tego, czy zawierają substancje niebezpieczne. Zużyte baterie i akumulatory należy przekazać do lokalnego punktu zbiórki, centrum recyklingu lub do sprzedawcy, u którego zostały zakupione. Prawidłowa utylizacja zapewnia recykling przyjazny dla środowiska i zapobiega potencjalnym szkodom dla zdrowia ludzi i środowiska."
+        ],
+        "pt": [
+          "As baterias e os acumuladores não devem ser descartados junto com o lixo doméstico. Como consumidor, você é legalmente obrigado a descartar todas as baterias e acumuladores em pontos de coleta designados, independentemente de conterem substâncias perigosas. Devolva as baterias e acumuladores usados a um ponto de coleta local, centro de reciclagem ou ao revendedor onde foram comprados. O descarte adequado garante a reciclagem ambientalmente responsável e evita danos potenciais à saúde humana e ao meio ambiente."
+        ],
+        "uk": [
+          "Батарейки та акумулятори не можна викидати разом із побутовими відходами. Як споживач ви юридично зобов’язані здавати всі батарейки та акумулятори у визначені пункти збору, незалежно від того, чи містять вони небезпечні речовини. Будь ласка, повертайте використані батарейки та акумулятори до місцевих пунктів збору, центрів переробки або до продавця, у якого їх було придбано. Правильна утилізація забезпечує екологічно безпечну переробку та запобігає потенційній шкоді для здоров’я людей і довкілля.",
+          "Батареї та акумулятори не можна утилізувати разом із побутовими відходами. Як споживач, ви зобов'язані за законом утилізувати всі батареї та акумулятори у спеціально відведених пунктах збору, незалежно від того, чи містять вони небезпечні речовини. Будь ласка, повертайте використані батарейки та акумулятори до місцевих пунктів збору, центрів переробки або до продавця, у якого їх було придбано. Правильна утилізація забезпечує екологічно безпечну переробку та запобігає потенційній шкоді для здоров’я людей і довкілля."
+        ]
+      },
+      "decision": null
+    },
+    {
+      "id": "battery-weee-pb",
+      "meaning": "电池 WEEE + Pb",
+      "status": "proposed",
+      "canonical": "battery-weee/crossed-bin-pb-hte154-ink",
+      "legacy_variants": [],
+      "captions": {},
+      "decision": null
+    },
+    {
+      "id": "explosive-material",
+      "meaning": "爆炸物",
+      "status": "proposed",
+      "canonical": "explosive-material/burst-triangle-tinted",
+      "legacy_variants": [
+        "explosive-material/burst-triangle-native-v2-3e3a39"
+      ],
+      "captions": {
+        "en": [
+          "Explosive Material Symbol for explosion risk warning.",
+          "Explosive material"
+        ],
+        "es": [
+          "Material explosivo",
+          "Símbolo de material explosivo para advertencia de riesgo de explosión."
+        ],
+        "fr": [
+          "Matière explosive",
+          "Symbole de matériau explosif pour avertissement de risque d'explosion."
+        ]
+      },
+      "decision": null
+    },
+    {
+      "id": "heavy-object",
+      "meaning": "重物",
+      "status": "proposed",
+      "canonical": "heavy-object/person-load-triangle-tinted",
+      "legacy_variants": [
+        "heavy-object/person-load-triangle-dark-772c3698"
+      ],
+      "captions": {
+        "en": [
+          "Heavy Object Symbol for handling precautions.",
+          "Heavy object"
+        ],
+        "es": [
+          "Objeto pesado",
+          "Símbolo de objeto pesado para precauciones de manipulación."
+        ],
+        "fr": [
+          "Objet lourd",
+          "Symbole d'objet lourd pour précautions de manutention."
+        ]
+      },
+      "decision": null
+    },
+    {
+      "id": "electric-shock",
+      "meaning": "电击",
+      "status": "proposed",
+      "canonical": "electric-shock/bolt-triangle-tinted",
+      "legacy_variants": [],
+      "captions": {
+        "en": [
+          "Electric Shock Hazard Symbol for electrical danger warning.",
+          "Risk of electric shock"
+        ],
+        "es": [
+          "Riesgo de descarga eléctrica",
+          "Símbolo de peligro de choque eléctrico para la advertencia de peligro eléctrico."
+        ],
+        "fr": [
+          "Risque de choc électrique",
+          "Symbole de danger de choc électrique pour avertissement de danger électrique."
+        ]
+      },
+      "decision": null
+    },
+    {
+      "id": "battery-charging",
+      "meaning": "电池充电/火灾",
+      "status": "proposed",
+      "canonical": "battery-charging/flame-battery-triangle-tinted",
+      "legacy_variants": [],
+      "captions": {
+        "en": [
+          "Battery Charging Symbol indicates a battery is being charged.",
+          "Battery charging"
+        ],
+        "es": [
+          "Carga de batería",
+          "El símbolo de carga de la batería indica que se está cargando una batería."
+        ],
+        "fr": [
+          "Chargement de la batterie",
+          "Symbole de charge de batterie indiquant qu'une batterie est en cours de charge."
+        ]
+      },
+      "decision": null
+    },
+    {
+      "id": "ingestion-hazard",
+      "meaning": "纽扣电池吞食",
+      "status": "proposed",
+      "canonical": "ingestion-hazard/coin-battery-triangle-dark-804ebe78",
+      "legacy_variants": [],
+      "captions": {},
+      "decision": null
+    },
+    {
+      "id": "fcc",
+      "meaning": "FCC",
+      "status": "proposed",
+      "canonical": "fcc/nested-c-native-dark",
+      "legacy_variants": [],
+      "captions": {},
+      "decision": null
+    },
+    {
+      "id": "tw-recycle",
+      "meaning": "台湾废电池回收",
+      "status": "proposed",
+      "canonical": "recycle/taiwan-restricted-battery-477dfbd7",
+      "legacy_variants": [],
+      "captions": {
+        "zh-TW": [
+          "此符號表示產品內含鋰離子（Li-ion） 電池，應妥善廢棄或回收處理。"
+        ]
+      },
+      "decision": null
+    },
+    {
+      "id": "ce",
+      "meaning": "CE",
+      "status": "proposed",
+      "canonical": "ce/label-hte156-ink",
+      "legacy_variants": [],
+      "captions": {},
+      "decision": null
+    },
+    {
+      "id": "ukca",
+      "meaning": "UKCA",
+      "status": "proposed",
+      "canonical": "ukca/label-hte156-ink",
+      "legacy_variants": [],
+      "captions": {},
+      "decision": null
+    },
+    {
+      "id": "ua",
+      "meaning": "乌克兰合格标志",
+      "status": "proposed",
+      "canonical": "ua-conformity/label-hte156-ink",
+      "legacy_variants": [],
+      "captions": {},
+      "decision": null
+    },
+    {
+      "id": "un38-3",
+      "meaning": "UN38.3",
+      "status": "proposed",
+      "canonical": "un38-3/box-label-hte156-ink",
+      "legacy_variants": [],
+      "captions": {},
+      "decision": null
+    },
+    {
+      "id": "triman-packaging",
+      "meaning": "Triman/Info-tri（包装）",
+      "status": "proposed",
+      "canonical": "triman/info-tri-packaging-hte156-ink",
+      "legacy_variants": [],
+      "captions": {},
+      "decision": null
+    },
+    {
+      "id": "triman-device",
+      "meaning": "Triman/Info-tri（设备）",
+      "status": "proposed",
+      "canonical": "triman/info-tri-device-hte156-ink",
+      "legacy_variants": [],
+      "captions": {},
+      "decision": null
+    },
+    {
+      "id": "ec-rep",
+      "meaning": "EC REP",
+      "status": "proposed",
+      "canonical": "ec-rep/label-hte154-ink",
+      "legacy_variants": [],
+      "captions": {},
+      "decision": null
+    },
+    {
+      "id": "uk-rep",
+      "meaning": "UK REP",
+      "status": "proposed",
+      "canonical": "uk-rep/label-hte154-ink",
+      "legacy_variants": [],
+      "captions": {},
+      "decision": null
+    }
   ]
 }
