@@ -1,0 +1,273 @@
+[
+  {
+    "slot": "recycle-li-ion",
+    "physical_page": 2,
+    "search_box": [
+      40,
+      430,
+      100,
+      492
+    ],
+    "local_path": "assets/recycle-li-ion.svg",
+    "reuse_candidate": "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets/recycle-li-ion.svg",
+    "drawing_indices": [
+      363,
+      364,
+      365,
+      366,
+      367,
+      368,
+      369,
+      370,
+      371,
+      372,
+      373
+    ],
+    "glyph_bbox": [
+      47.82098388671875,
+      439.0662841796875,
+      91.11005401611328,
+      479.5091247558594
+    ],
+    "reuse_comparison": {
+      "status": "passed",
+      "max_mean_channel_error": 0.011118
+    },
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "sha256": "2300e6ab829ede0b7916873c857aca318cbe00481d33e7912e8baf3a06d0ff31"
+  },
+  {
+    "slot": "lcd-battery-ring",
+    "physical_page": 4,
+    "search_box": [
+      21,
+      105,
+      44,
+      129
+    ],
+    "local_path": "assets/lcd-battery-ring.svg",
+    "reuse_candidate": null,
+    "drawing_indices": [
+      2586
+    ],
+    "glyph_bbox": [
+      21.977340698242188,
+      106.50732421875,
+      43.62834167480469,
+      128.15032958984375
+    ],
+    "reuse_comparison": {
+      "status": "no-candidate",
+      "reason": "no reuse candidate recorded for this icon"
+    },
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "589baf8ba5f422d5ed7fd4f4b388819db54100815c7ac7c04138bfc128bc281b"
+  },
+  {
+    "slot": "lcd-low-battery",
+    "physical_page": 4,
+    "search_box": [
+      21,
+      142,
+      44.5,
+      157
+    ],
+    "local_path": "assets/lcd-low-battery.svg",
+    "reuse_candidate": "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets/lcd-low-battery.svg",
+    "drawing_indices": [
+      2587
+    ],
+    "glyph_bbox": [
+      21.976280212402344,
+      143.9908447265625,
+      43.18027877807617,
+      155.5098419189453
+    ],
+    "reuse_comparison": {
+      "status": "rejected",
+      "reason": "symbol requires real transparent margins; opaque backdrop detected"
+    },
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "cbd8eaa2cd9b0c644da8ec08e2859cb49ab76f3cf106243b627dfacb9954bffa"
+  },
+  {
+    "slot": "lcd-energy-saving",
+    "physical_page": 4,
+    "search_box": [
+      21,
+      191,
+      44,
+      209
+    ],
+    "local_path": "assets/lcd-energy-saving.svg",
+    "reuse_candidate": "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets/lcd-energy-saving.svg",
+    "drawing_indices": [
+      6024,
+      6025,
+      6026,
+      6027,
+      6028,
+      6029,
+      6030,
+      6031,
+      6032
+    ],
+    "glyph_bbox": [
+      21.673969268798828,
+      192.4189453125,
+      43.48297119140625,
+      207.9969482421875
+    ],
+    "reuse_comparison": {
+      "status": "rejected",
+      "reason": "symbol glyph/background differs from authoritative PDF"
+    },
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "4b59dfd7c7561afb3e305448166f34afd713e967b3f2f9990eec00472acd4a81"
+  },
+  {
+    "slot": "lcd-fault-code",
+    "physical_page": 4,
+    "search_box": [
+      20.5,
+      435.5,
+      44.5,
+      458
+    ],
+    "local_path": "assets/lcd-fault-code.svg",
+    "reuse_candidate": null,
+    "drawing_indices": [
+      4536,
+      4537,
+      4538
+    ],
+    "glyph_bbox": [
+      21.542072296142578,
+      436.6514587402344,
+      43.21907424926758,
+      456.6214599609375
+    ],
+    "reuse_comparison": {
+      "status": "no-candidate",
+      "reason": "no reuse candidate recorded for this icon"
+    },
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "7b81b32941504b5b9f930677d534538aa9eae5445a946e7f0e05d04515a41e81"
+  },
+  {
+    "slot": "lcd-high-temperature",
+    "physical_page": 5,
+    "search_box": [
+      21,
+      21,
+      44,
+      43
+    ],
+    "local_path": "assets/lcd-high-temperature.svg",
+    "reuse_candidate": "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets/lcd-high-temperature.svg",
+    "drawing_indices": [
+      4539,
+      4540
+    ],
+    "glyph_bbox": [
+      21.96101188659668,
+      22.154096603393555,
+      43.63901138305664,
+      42.14109802246094
+    ],
+    "reuse_comparison": {
+      "status": "passed",
+      "max_mean_channel_error": 0.01718
+    },
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "sha256": "505ee25a2d28b966acac1e9ab3cae8e30b58a8116d7a706d85752325d20d38f8"
+  },
+  {
+    "slot": "lcd-low-temperature",
+    "physical_page": 5,
+    "search_box": [
+      21,
+      60,
+      44,
+      82
+    ],
+    "local_path": "assets/lcd-low-temperature.svg",
+    "reuse_candidate": "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets/lcd-low-temperature.svg",
+    "drawing_indices": [
+      4541,
+      4542
+    ],
+    "glyph_bbox": [
+      21.96088981628418,
+      61.33024597167969,
+      43.63888931274414,
+      81.31724548339844
+    ],
+    "reuse_comparison": {
+      "status": "passed",
+      "max_mean_channel_error": 0.017284
+    },
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "sha256": "3bc5306353aa3ccdfcf7535ea0754df9f78c26e2a6f79462f2eb0846228cac39"
+  },
+  {
+    "slot": "lcd-quiet-charging",
+    "physical_page": 5,
+    "search_box": [
+      21,
+      92,
+      44,
+      114
+    ],
+    "local_path": "assets/lcd-quiet-charging.svg",
+    "reuse_candidate": "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets/lcd-quiet-charging.svg",
+    "drawing_indices": [
+      14212,
+      14213
+    ],
+    "glyph_bbox": [
+      23.552461624145508,
+      93.10281372070312,
+      42.97214126586914,
+      113.09281158447266
+    ],
+    "reuse_comparison": {
+      "status": "passed",
+      "max_mean_channel_error": 0.009098
+    },
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "sha256": "b2e9476117ef2438af6cfae5211f84ec47f28eca91c44a6f21999a097a61f22d"
+  },
+  {
+    "slot": "lcd-battery-saving",
+    "physical_page": 5,
+    "search_box": [
+      25,
+      134,
+      42,
+      157
+    ],
+    "local_path": "assets/lcd-battery-saving.svg",
+    "reuse_candidate": "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets/lcd-battery-saving.svg",
+    "drawing_indices": [
+      14214,
+      14215,
+      14216,
+      14217,
+      14218,
+      14219
+    ],
+    "glyph_bbox": [
+      26.81182098388672,
+      135.7298583984375,
+      40.84569549560547,
+      155.7139129638672
+    ],
+    "reuse_comparison": {
+      "status": "passed",
+      "max_mean_channel_error": 0.008254
+    },
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "sha256": "a6f22a36a43b7815c8cf8b34d6a4f324cffc005f53c337e9f317f1062f6413d2"
+  }
+]

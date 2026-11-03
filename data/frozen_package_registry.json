@@ -1839,6 +1839,11 @@
         }
       }
     },
+    "manual_sources/JE-600C-SJ/JP/ja/git-20261103-3837e9fd": {
+      "approval": "Operator 2026-11-03 (relayed by the coordinating window): 「继续 转日语说明书」 — Git-only JP Japanese single-language Web candidate from the 发布文档管理 日规 row; candidate intake only, no approval.json, no merge or release authorization",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
     "manual_sources/JE-880B/US/en/git-20261027-640e83ca": {
       "approval": "Operator 2026-10-28 (PR #1631 session): 「上线提交发布：JE-300C、JE-300E、JE-300E-SG、JE-880B；授权合入 #1631 及其 Hello-Docs 发布 PR」 under MA-365: Git-only US English single-language Web release from the 发布文档管理 row; acceptance hash-bound in source/approval.json",
       "registered": "2026-10-28",
