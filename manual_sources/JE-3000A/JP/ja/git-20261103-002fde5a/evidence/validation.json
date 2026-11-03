@@ -1,0 +1,20 @@
+{
+  "schema_version": "je3000a-jp-candidate-validation/v1",
+  "date": "2026-11-03",
+  "environment": "Python 3.13 venv (system site packages + Sphinx 8.2.3, myst-parser 4.0.1, furo 2025.12.19, docutils 0.21.2, ruff 0.17.2 from requirements.lock pins); pymupdf 2.1 (lock pins 1.28.0); Playwright Chromium 1243",
+  "checks": [
+    {"command": "python -m ruff check <package .py files> tests/test_je3000a_jp_web.py", "result": "pass", "log": "ruff.log"},
+    {"command": "python <pkg>/rebuild.py --output <fresh tmp>", "result": "pass: 10 chapters; HB-CALLOUT-STRIP 15, HB-SPECIAL-INBOX 1, HB-SPECIAL-REFERENCE-FIGURE 14, HB-TABLE-LCD-ICON 2, HB-TABLE-REFERENCE 1, HB-TABLE-SPEC 1, HB-TABLE-SYMBOL-ICON 1, HB-TABLE-SYMBOL-SIGNAL 1; fixed symbol admission blocked with the recorded refusal, 5/6 rows pass the local 2% check (0.0103-0.0192), 1 row pending", "log": "rebuild.log"},
+    {"command": "python -m sphinx -n -W --keep-going -b html web/ja <html>", "result": "pass", "log": "strict-sphinx.log"},
+    {"command": "python -m unittest tests.test_je3000a_jp_web tests.test_prepared_document_shared_styles tests.test_frozen_web_component_coverage", "result": "pass: 30 tests OK (cold replay byte-identical to web/ja)", "log": "target-tests.log"},
+    {"command": "python -m tools.check_maintainability_guardrails", "result": "fails only on [frozen-packages] NEW manual_sources/JE-3000A/JP/ja/git-20261103-002fde5a (unregistered; the coordinator registers); every other guardrail passes", "log": "maintainability.log"},
+    {"command": "browser 1280 / 390 full page (deviceScaleFactor 1)", "result": "38 images, 0 broken, document scrollWidth == viewport at both widths; at 390 the 省エネモード table scrolls inside the shared table wrapper", "files": ["browser-1280.png", "browser-390.png", "browser-1280.json", "browser-390.json"]}
+  ],
+  "rebuild_gates": [
+    "input SHA-256 inventory",
+    "prepared-document shared-style admission with two declared plain tables",
+    "fixed symbol asset admission: blocked by native_symbol_svg on this PDF (recorded refusal required); local 2% re-check of every row",
+    "candidate only: publication_eligible false, no approval.json"
+  ],
+  "not_validated": "full python -m unittest suite, seal_frozen_web_evidence (needs registry entry and a working symbol admission), RTD deployment"
+}

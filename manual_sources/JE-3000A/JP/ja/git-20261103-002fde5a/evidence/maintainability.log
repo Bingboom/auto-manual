@@ -1,0 +1,7 @@
+[language-literal] 0 new, 67 known, 0 stale, 74 current
+[complexity] 0 new, 0 grown, 0 improved, 0 stale, 247 baselined
+[facade-patch] 0 new, 0 grown, 0 improved, 0 stale, 11 baselined patches in 4 files
+[broad-except] 0 new, 0 grown, 0 improved, 0 stale, 0 baselined handlers in 0 files
+[top-level] 183 top-level modules (baseline 183), 67 bootstrap files (baseline 67)
+[frozen-packages] NEW manual_sources/JE-3000A/JP/ja/git-20261103-002fde5a: register it with its approval, `python -m tools.web.frozen_package_registry register manual_sources/JE-3000A/JP/ja/git-20261103-002fde5a --approval "MA-..."`
+[frozen-packages] 167 packages (58 pin shared inputs, 109 without pins: impact unknown); 206 known drift in 43 packages; 1 new, 0 gone, 0 new drift, 0 stale
