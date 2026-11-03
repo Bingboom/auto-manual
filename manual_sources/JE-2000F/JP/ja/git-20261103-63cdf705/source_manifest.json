@@ -76,7 +76,7 @@
   "shared_reference_edition_for_review": "JE-2000F US English Web (manual_sources/JE-2000F/US/en/git-20261028-c8ace563)",
   "live_bitable_dependency": false,
   "phase2_enrolled": false,
-  "publication_status": "operator-authorized-git-only-release",
+  "publication_status": "candidate-pending-operator-review",
   "build_boundary": "JE-2000F JP is not a phase2 target. build_content.py binds the transcription to shared ComponentSpecs; rebuild.py replays them through manual-ir/v2 and the shared Web/MyST pipeline with the prepared-document shared-style gate and symbol admission (12 rows). No live Base, queue, source table, HTML_link or asset registry is read or written.",
   "repo_inputs": [],
   "component_map": [
@@ -754,45 +754,6 @@
       ]
     }
   },
-  "pending_shared_symbols": [
-    {
-      "asset_ref": "assets/recycle-li-ion.svg",
-      "meaning_ids": [
-        "rec.liion.t",
-        "rec.liion.b1",
-        "rec.liion.b2",
-        "rec.liion.b3"
-      ],
-      "physical_page": 4,
-      "printed_page": "02",
-      "glyph_bbox": [
-        37.67,
-        75.94,
-        57.14,
-        94.68
-      ],
-      "drawing_indices": [
-        59,
-        60,
-        61,
-        62,
-        63,
-        64,
-        65,
-        66,
-        67,
-        68,
-        69
-      ],
-      "caption_bbox": [
-        70.72,
-        49.6,
-        176.68,
-        129.66
-      ],
-      "status": "no shared catalog variant passes the fixed 2% comparison (closest native/je3000c-kr-78316033-06 0.1424, li-ion/recycle-li-ion-32-gray 0.2036); shown as a package-local native vector mark in a declared plain table (JE-1000D JP precedent) until the coordinator adds a shared variant"
-    }
-  ],
   "inputs": [
     {
       "path": "JE-2000F-JP-JA.pdf",
@@ -801,8 +762,8 @@
     },
     {
       "path": "README.md",
-      "size": 4269,
-      "sha256": "dc58100f7aab9329b33139d41326c9ac2e034a1a54e3e9ad6ff66c3b7fa168e5"
+      "size": 4188,
+      "sha256": "9cb78dc8a659ccb38de4eb324abfb6bf75336d8315f628ec20604c41e7a56fc2"
     },
     {
       "path": "assets/ac-output.png",
@@ -1066,8 +1027,8 @@
     },
     {
       "path": "assets/recycle-li-ion.svg",
-      "size": 6266,
-      "sha256": "42cb3f9e2b6eeb0b0e7896ef5ede84b8c936486b406829aba107d0feaff33f99"
+      "size": 6314,
+      "sha256": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5"
     },
     {
       "path": "assets/symbol-01.svg",
@@ -1141,8 +1102,8 @@
     },
     {
       "path": "derive_assets.py",
-      "size": 7959,
-      "sha256": "d7555f914637059cc23d9635abb6bbd1508d9512a2aa67bc8a42c4e343ebf7de"
+      "size": 7957,
+      "sha256": "48a37621cf6be599ee19b257457967d4aa1cda81b9d5e35b7ee927e5404b8c7d"
     },
     {
       "path": "rebuild.py",
@@ -1155,19 +1116,14 @@
       "sha256": "742cf95cf43ad4b6c990ea0566ed863a3c52ac2454b38e6e630ed474c810941d"
     },
     {
-      "path": "source/approval.json",
-      "size": 13854,
-      "sha256": "333b8eab738f2c01bba1410f5aecd437d8a0f31910eb33f044355ac265637a7c"
-    },
-    {
       "path": "source/asset_decisions.json",
-      "size": 30900,
-      "sha256": "f60b04fe78aa5ac9d550679d31428867fca45c86124aa0fa6d3b10221098cbeb"
+      "size": 31171,
+      "sha256": "7a528b46518e1f5969eca801fc5a88274ddefe4079e8f96d6968d4ce33cdb292"
     },
     {
       "path": "source/asset_recipe.json",
-      "size": 22423,
-      "sha256": "4222cabf382dcbb75cfc6c28f0668c4a990ae533a84e842dd80c79d31acd717f"
+      "size": 23114,
+      "sha256": "8759483a19d4ead5898de5809309927fb5a3414627f73f5135e49de10fccb510"
     },
     {
       "path": "source/differences.md",
@@ -1176,8 +1132,8 @@
     },
     {
       "path": "source/discovery.md",
-      "size": 3967,
-      "sha256": "901765cd8ed5e62b7a9026f340d4c1b0c23d07773aaf62840ea0fd99a0bb65ed"
+      "size": 4021,
+      "sha256": "f33fd14c7a002e80bb5fbc5687fc966ab3aa99a5c938ecef4020efdb018e9426"
     },
     {
       "path": "source/geometry.css",
@@ -1195,5 +1151,51 @@
       "sha256": "fcfa1186db7886a3b9eefdaff58cc317413366d3c46ead3ba15d296b044055b6"
     }
   ],
-  "earlier_candidate": "earlier unreleased candidate git-20261019-d10ae5e0 voided by operator 2026-11-03"
+  "earlier_candidate": "earlier unreleased candidate git-20261019-d10ae5e0 voided by operator 2026-11-03",
+  "operator_symbol_reuse": [
+    {
+      "asset_ref": "assets/recycle-li-ion.svg",
+      "meaning_ids": [
+        "rec.liion.t",
+        "rec.liion.b1",
+        "rec.liion.b2",
+        "rec.liion.b3"
+      ],
+      "physical_page": 4,
+      "printed_page": "02",
+      "glyph_bbox": [
+        37.67,
+        75.94,
+        57.14,
+        94.68
+      ],
+      "drawing_indices": [
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69
+      ],
+      "caption_bbox": [
+        70.72,
+        49.6,
+        176.68,
+        129.66
+      ],
+      "pdf_sha256": "63cdf705e41a1680ca974cc69e5f233cd0e5e4d278d5cc5302dcb3389b361393",
+      "shared_symbol_key": "native/je3000c-kr-78316033-06",
+      "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/je3000c-kr-78316033-06.svg",
+      "shared_sha256": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5",
+      "measured_max_mean_channel_error": 0.1424,
+      "status": "operator decided to reuse the shared mark; the fixed 2% comparison is not passed (measured 0.1424, a framing/margin difference of the same mark); the mark sits in a declared plain table outside HB-TABLE-SYMBOL-ICON admission",
+      "operator_decision": "「JE-2000F：缺 1 个锂电池回收（Li-ion 32）标志 == 有共用的呀 直接复用」; 「回收说明都用这个」 (operator 2026-11-03, relayed by the coordinator window)",
+      "date": "2026-11-03"
+    }
+  ]
 }

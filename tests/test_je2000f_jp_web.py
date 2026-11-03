@@ -165,8 +165,11 @@ class Je2000fJpWebTests(unittest.TestCase):
         manifest = read(PACKAGE / "source_manifest.json")
         admission = manifest["symbol_asset_admission"]["locales"]["ja"]
         self.assertEqual([row["asset_ref"] for row in admission], [s["path"] for s in recipe["symbols"]])
-        self.assertEqual([row["asset_ref"] for row in manifest["pending_shared_symbols"]],
-                         ["assets/recycle-li-ion.svg"])
+        reuse = manifest["operator_symbol_reuse"]
+        self.assertEqual([row["asset_ref"] for row in reuse], ["assets/recycle-li-ion.svg"])
+        self.assertEqual(file_sha256(PACKAGE / "assets/recycle-li-ion.svg"), reuse[0]["shared_sha256"])
+        self.assertEqual(file_sha256(ROOT / reuse[0]["shared_path"]), reuse[0]["shared_sha256"])
+        self.assertNotIn("pending_shared_symbols", manifest)
 
     def test_cold_replay_matches_stored_candidate(self):
         try:

@@ -513,29 +513,12 @@
   },
   {
    "path": "assets/recycle-li-ion.svg",
-   "decision": "native-vector-extraction",
-   "physical_page": 4,
-   "glyph_bbox": [
-    37.67,
-    75.94,
-    57.14,
-    94.68
-   ],
-   "drawing_indices": [
-    59,
-    60,
-    61,
-    62,
-    63,
-    64,
-    65,
-    66,
-    67,
-    68,
-    69
-   ],
-   "reason": "no shared symbol variant passes the fixed 2% comparison (closest native/je3000c-kr-78316033-06 0.1424); pending a shared variant",
-   "background": "transparent, PDF paths only"
+   "decision": "reuse-byte-identical",
+   "from": "docs/renderers/web/assets/shared/symbols/native-v1/je3000c-kr-78316033-06.svg",
+   "sha256": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5",
+   "shared_symbol_key": "native/je3000c-kr-78316033-06",
+   "reason": "operator decision 2026-11-03: reuse the shared Li-ion 32 recycling mark for recycling notices; measured 0.1424 against this PDF's glyph (same mark, framing differs); declared plain table, outside symbol-table admission",
+   "operator_decision": "「JE-2000F：缺 1 个锂电池回收（Li-ion 32）标志 == 有共用的呀 直接复用」; 「回收说明都用这个」 (operator 2026-11-03, relayed by the coordinator window)"
   },
   {
    "path": "assets/app-store.png",

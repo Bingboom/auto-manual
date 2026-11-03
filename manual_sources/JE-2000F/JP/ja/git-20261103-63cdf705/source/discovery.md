@@ -38,7 +38,7 @@ Recorded before extraction, per the Web artwork reuse order
 | in-box AC cable | reuse JE-1500D JP V2 `inbox-cable.svg` byte-identically (the file the JE-1000D JP precedent reuses) | US/en cable differs (0.128); the JP cable file passes (0.0072) | transparent |
 | LCD plan, self-powered, UPS, output V/Hz, AC wall, car, charging power limit | native vector extraction | US/en files differ (0.049–0.669); JP PNG candidates are opaque | transparent, PDF paths only |
 | ten 絵表示の説明 symbols, WEEE crossed bin, battery crossed bin | reuse existing shared variants | pass the fixed 2% symbol admission (0.0045–0.0140); no catalog file added | transparent |
-| Li-ion 32 recycling mark | native vector extraction in a declared plain table; **pending a shared variant** | no shared variant passes 2% (closest `native/je3000c-kr-78316033-06` 0.1424) | transparent |
+| Li-ion 32 recycling mark | byte-identical reuse of shared `native/je3000c-kr-78316033-06` in the declared plain table (operator decision 2026-11-03) | 0.1424 vs this PDF's glyph — same mark, framing differs; outside symbol-table admission | transparent |
 
 The comparison renders depend on the glyph rectangle (anti-aliasing): glyph rectangles are the union of the glyph's
 own drawings plus a 0.25–1.0 pt margin, never including another drawing; `derive_assets.py` re-checks every selection.

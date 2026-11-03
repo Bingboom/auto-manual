@@ -150,7 +150,7 @@ def main() -> None:
     path = PACKAGE / "source_manifest.json"
     manifest = read(path)
     manifest["symbol_asset_admission"] = admission
-    manifest["pending_shared_symbols"] = recipe["pending_shared_symbols"]
+    manifest["operator_symbol_reuse"] = recipe["operator_symbol_reuse"]
     path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({"assets": sorted(p.relative_to(PACKAGE).as_posix()
                                        for p in (PACKAGE / "assets").rglob("*") if p.is_file()),

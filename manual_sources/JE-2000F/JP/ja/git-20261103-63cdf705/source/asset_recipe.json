@@ -430,29 +430,6 @@
     62,
     63
    ]
-  },
-  {
-   "path": "assets/recycle-li-ion.svg",
-   "physical_page": 4,
-   "glyph_bbox": [
-    37.67,
-    75.94,
-    57.14,
-    94.68
-   ],
-   "drawing_indices": [
-    59,
-    60,
-    61,
-    62,
-    63,
-    64,
-    65,
-    66,
-    67,
-    68,
-    69
-   ]
   }
  ],
  "compared_reuse": [
@@ -986,6 +963,12 @@
    "from": "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/assets/shared-app-store.png",
    "sha256": "1c7bfea9e26bbb00aff9c48d34a7742cd15ff3f0d998f32486c7248a19c9b84d",
    "role": "standard App Store / Google Play badge pair, stacked as printed (same file as JE-2000F US/en)"
+  },
+  {
+   "path": "assets/recycle-li-ion.svg",
+   "from": "docs/renderers/web/assets/shared/symbols/native-v1/je3000c-kr-78316033-06.svg",
+   "sha256": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5",
+   "role": "shared Li-ion 32 recycling mark native/je3000c-kr-78316033-06, reused byte-identically per operator decision (see source_manifest.json:operator_symbol_reuse)"
   }
  ],
  "symbols": [
@@ -1246,7 +1229,7 @@
    ]
   }
  ],
- "pending_shared_symbols": [
+ "operator_symbol_reuse": [
   {
    "asset_ref": "assets/recycle-li-ion.svg",
    "meaning_ids": [
@@ -1282,7 +1265,14 @@
     176.68,
     129.66
    ],
-   "status": "no shared catalog variant passes the fixed 2% comparison (closest native/je3000c-kr-78316033-06 0.1424, li-ion/recycle-li-ion-32-gray 0.2036); shown as a package-local native vector mark in a declared plain table (JE-1000D JP precedent) until the coordinator adds a shared variant"
+   "pdf_sha256": "63cdf705e41a1680ca974cc69e5f233cd0e5e4d278d5cc5302dcb3389b361393",
+   "shared_symbol_key": "native/je3000c-kr-78316033-06",
+   "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/je3000c-kr-78316033-06.svg",
+   "shared_sha256": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5",
+   "measured_max_mean_channel_error": 0.1424,
+   "status": "operator decided to reuse the shared mark; the fixed 2% comparison is not passed (measured 0.1424, a framing/margin difference of the same mark); the mark sits in a declared plain table outside HB-TABLE-SYMBOL-ICON admission",
+   "operator_decision": "「JE-2000F：缺 1 个锂电池回收（Li-ion 32）标志 == 有共用的呀 直接复用」; 「回收说明都用这个」 (operator 2026-11-03, relayed by the coordinator window)",
+   "date": "2026-11-03"
   }
  ]
 }

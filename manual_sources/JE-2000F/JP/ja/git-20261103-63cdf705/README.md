@@ -1,8 +1,8 @@
-# JE-2000F / JP / ja — Git-only Web manual
+# JE-2000F / JP / ja — Git-only Web manual candidate
 
 Coordinator brief, 2026-11-03: build the Japanese single-language Web candidate of 发布文档管理 record `reczz28SfbsHbLFx` (Jackery ポータブル電源 2000 New, 子物料编码 16-0102-000408, 项目号 HTE154, SKU 21-0001-000489 / 21-0001-000441 / 21-0001-000442; the record's customer model is JE-2000F-WH). Operator decision, 2026-11-03: route it as JE-2000F (`JE-2000F/JP/ja/md`); the cover lists JE-2000F / JE-2000F-SG / JE-2000F-WH. The earlier unreleased candidate git-20261019-d10ae5e0 was voided by the operator the same day.
 
-**Status: `operator-authorized-git-only-release`.** The operator reviewed the 1280/390 renders beside the shared reference edition (manual_sources/JE-2000F/US/en/git-20261028-c8ace563) in PR #1655 and instructed 「上线提交发布」 on 2026-11-03 in this package's engineering session. `source/approval.json` binds every reviewed `source/`, `assets/` and script input; the IR is publication-eligible. Source copy goes live as printed; `source_manifest.json:source_concerns` go back to the source owner. Merge needs a separate operator grant (AGENTS.md §8.6).
+**Status: `candidate-pending-operator-review`.** The 2026-11-03 approval (commit 8a03698) was withdrawn because the Li-ion 32 mark changed to the shared file after it; it needs the operator's renewed 「上线提交发布」 in the engineering session. Review beside the shared reference edition, the JE-2000F US English Web (`manual_sources/JE-2000F/US/en/git-20261028-c8ace563`).
 
 ## Source authority
 
@@ -16,7 +16,7 @@ The Web body is printed pages 01–24 (physical 3–26); cover, paper TOC and ba
 
 ## Artwork
 
-`source/discovery.md` and `source/asset_decisions.json` record the inventory and every reuse/extract decision. 26 files are reused byte-identically (19 LCD icons, 4 buttons and the in-box documents card from JE-2000F US/en, the in-box cable from JE-1500D JP V2, the App badge pair), each LCD/button/in-box file re-checked by the fixed 2% comparison against this PDF. Seven LCD icons and the Li-ion 32 mark are original PDF vector paths; product, operation, charging and App art are complete 3× source panels. All twelve symbol-table marks pass the fixed 2% symbol admission with existing shared variants; no catalog file is added. **Pending:** the Li-ion 32 recycling mark has no admitted shared variant (`source_manifest.json:pending_shared_symbols`).
+`source/discovery.md` and `source/asset_decisions.json` record the inventory and every reuse/extract decision. 26 files are reused byte-identically (19 LCD icons, 4 buttons and the in-box documents card from JE-2000F US/en, the in-box cable from JE-1500D JP V2, the App badge pair), each LCD/button/in-box file re-checked by the fixed 2% comparison against this PDF. Seven LCD icons are original PDF vector paths; product, operation, charging and App art are complete 3× source panels. All twelve symbol-table marks pass the fixed 2% symbol admission with existing shared variants; no catalog file is added. The Li-ion 32 recycling mark in the declared plain table reuses the shared `native/je3000c-kr-78316033-06` byte-identically by operator decision 2026-11-03 (measured 0.1424, not a 2% pass; `source_manifest.json:operator_symbol_reuse`).
 
 ## Rebuild
 
