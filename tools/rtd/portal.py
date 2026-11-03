@@ -21,6 +21,7 @@ from tools.rtd.design_system import (
 from tools.rtd.feedback import context_text, manual_feedback_markup, normalize_channels
 from tools.rtd.knowledge_updates import PAGES as UPDATE_PAGES, load_updates, updates_view
 from tools.rtd.product_voc import normalize_endpoint, page_markup
+from tools.rtd.product_short_names import attach_short_names, load_short_names
 from tools.rtd.product_matrix import PAGE as MATRIX_PAGE, TEMPLATE as MATRIX_TEMPLATE, product_matrix_page_context
 from tools.rtd.page_metadata import (
     head_markup, normalize_site_base_url, page_description, page_title, portal_head_markup, SITE_NAME,
@@ -158,7 +159,8 @@ def portal_data(app) -> tuple[dict, list[dict]]:
     cached = getattr(app, "_rtd_portal_data", None)
     if cached is None:
         settings = json.loads((ASSETS / "settings.json").read_text(encoding="utf-8"))
-        cached = (settings, catalog(Path(app.srcdir).resolve(), settings))
+        products = catalog(Path(app.srcdir).resolve(), settings)
+        cached = (settings, attach_short_names(products, load_short_names(ASSETS)))
         app._rtd_portal_data = cached
     return cached
 

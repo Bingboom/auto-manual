@@ -141,8 +141,8 @@ function renderContent(query, region) {
   const hits = (window.manualSearchIndex || []).filter(item => item.region === region
     && (category === 'All products' || (modelFilters.get(item.model) || [item.category]).includes(category))
     && (language === 'all' || language === item.lang)
-    && tokens.every(t => (item.model + ' ' + item.name + ' ' + item.title + ' ' + item.text).toLowerCase().includes(t)))
-    .map(item => ({...item, score: tokens.reduce((score, t) => score + (item.model.toLowerCase().includes(t) ? 100 : 0) + (item.title.toLowerCase().includes(t) ? 20 : 0), 0)}))
+    && tokens.every(t => (item.model + ' ' + item.name + ' ' + (item.short_name || '') + ' ' + item.title + ' ' + item.text).toLowerCase().includes(t)))
+    .map(item => ({...item, score: tokens.reduce((score, t) => score + (item.model.toLowerCase().includes(t) || (item.short_name || '').toLowerCase().includes(t) ? 100 : 0) + (item.title.toLowerCase().includes(t) ? 20 : 0), 0)}))
     .sort((a,b) => b.score - a.score || a.model.localeCompare(b.model));
   const productCount = cards.filter(card => !card.hidden).length;
   $('#count').textContent = `${productCount} 份说明书 · ${hits.length} 个章节`;
@@ -152,7 +152,7 @@ function renderContent(query, region) {
   hits.slice(0,resultLimit).forEach(item => {
     const article = document.createElement('article'); article.className = 'search-hit';
     const meta = document.createElement('div'); meta.className = 'meta';
-    meta.textContent = `${item.name} · ${item.model} · ${item.region === 'EU' ? 'EUUK' : item.region} · ${item.language}${item.version ? ' · ' + item.version : ''}`;
+    meta.textContent = `${item.name} · ${item.model}${item.short_name ? ' · ' + item.short_name : ''} · ${item.region === 'EU' ? 'EUUK' : item.region} · ${item.language}${item.version ? ' · ' + item.version : ''}`;
     const link = document.createElement('a'); link.href = item.url; highlight(link, item.title, tokens);
     const excerpt = document.createElement('p');
     const first = item.text.toLowerCase().indexOf(tokens[0]); const start = Math.max(0,first - 90);

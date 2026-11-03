@@ -1315,6 +1315,11 @@
       "registered": "2026-10-19",
       "known_drift": {}
     },
+    "manual_sources/JE-1000F/EU/nine-language/git-20261102-30bcad90-shared-symbols/four-language": {
+      "approval": "Operator 2026-11-02 「上线提交发布」 (approval.json); engineering PR merged by the operator",
+      "registered": "2026-11-02",
+      "known_drift": {}
+    },
     "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",
@@ -1413,7 +1418,18 @@
     "manual_sources/JE-1500C/US/en/git-20261028-46f58108": {
       "approval": "Operator 2026-10-29 (PR #1639 session): 「上线提交发布：JE-300D、JE-500A、JE-600A、JE-1500C」 after reviewing the 1280/390 renders: Git-only US English single-language Web release from the 发布文档管理 row; acceptance hash-bound in source/approval.json. Merge needs a separate operator authorization.",
       "registered": "2026-10-28",
-      "known_drift": {}
+      "known_drift": {
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive gate change: only rows that carry web_only_row take the new path; this package has none, so its symbol admission is unchanged.",
+          "since": "2026-11-02"
+        },
+        "docs/renderers/contracts/symbol_glyph_waivers.json": {
+          "handling": "keep-frozen",
+          "reason": "The waiver ledger only gained JE-1000F entries keyed to the JE-1000F revised AI; entries are matched by source SHA-256, model, region and language, so this package's admission is unchanged.",
+          "since": "2026-11-02"
+        }
+      }
     },
     "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2": {
       "approval": "MA-322",
@@ -1595,6 +1611,16 @@
           "handling": "keep-frozen",
           "reason": "Append-only: five source-bound native symbol variants added for the second US/en batch (JHP-1000A, JE-5000A, JE-500A/600A). Existing entries and the variants these packages bind are unchanged; frozen bytes stay valid.",
           "since": "2026-10-28"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive gate change: only rows that carry web_only_row take the new path; this package has none, so its symbol admission is unchanged.",
+          "since": "2026-11-02"
+        },
+        "docs/renderers/contracts/symbol_glyph_waivers.json": {
+          "handling": "keep-frozen",
+          "reason": "The waiver ledger only gained JE-1000F entries keyed to the JE-1000F revised AI; entries are matched by source SHA-256, model, region and language, so this package's admission is unchanged.",
+          "since": "2026-11-02"
         }
       }
     },
@@ -1606,7 +1632,18 @@
     "manual_sources/JE-300D/US/en/git-20261028-d3f47ff3": {
       "approval": "Operator 2026-10-29 (PR #1639 session): 「上线提交发布：JE-300D、JE-500A、JE-600A、JE-1500C」 after reviewing the 1280/390 renders: Git-only US English single-language Web release from the 发布文档管理 row; acceptance hash-bound in source/approval.json. Merge needs a separate operator authorization.",
       "registered": "2026-10-28",
-      "known_drift": {}
+      "known_drift": {
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive gate change: only rows that carry web_only_row take the new path; this package has none, so its symbol admission is unchanged.",
+          "since": "2026-11-02"
+        },
+        "docs/renderers/contracts/symbol_glyph_waivers.json": {
+          "handling": "keep-frozen",
+          "reason": "The waiver ledger only gained JE-1000F entries keyed to the JE-1000F revised AI; entries are matched by source SHA-256, model, region and language, so this package's admission is unchanged.",
+          "since": "2026-11-02"
+        }
+      }
     },
     "manual_sources/JE-300E-SG/US/en/git-20261027-e47cb322": {
       "approval": "Operator 2026-10-28 (PR #1631 session): 「上线提交发布：JE-300C、JE-300E、JE-300E-SG、JE-880B；授权合入 #1631 及其 Hello-Docs 发布 PR」 under MA-365: Git-only US English single-language Web release from the 发布文档管理 row; acceptance hash-bound in source/approval.json",
@@ -1616,6 +1653,16 @@
           "handling": "keep-frozen",
           "reason": "Append-only: five source-bound native symbol variants added for the second US/en batch (JHP-1000A, JE-5000A, JE-500A/600A). Existing entries and the variants these packages bind are unchanged; frozen bytes stay valid.",
           "since": "2026-10-28"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive gate change: only rows that carry web_only_row take the new path; this package has none, so its symbol admission is unchanged.",
+          "since": "2026-11-02"
+        },
+        "docs/renderers/contracts/symbol_glyph_waivers.json": {
+          "handling": "keep-frozen",
+          "reason": "The waiver ledger only gained JE-1000F entries keyed to the JE-1000F revised AI; entries are matched by source SHA-256, model, region and language, so this package's admission is unchanged.",
+          "since": "2026-11-02"
         }
       }
     },
@@ -1627,6 +1674,16 @@
           "handling": "keep-frozen",
           "reason": "Append-only: five source-bound native symbol variants added for the second US/en batch (JHP-1000A, JE-5000A, JE-500A/600A). Existing entries and the variants these packages bind are unchanged; frozen bytes stay valid.",
           "since": "2026-10-28"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive gate change: only rows that carry web_only_row take the new path; this package has none, so its symbol admission is unchanged.",
+          "since": "2026-11-02"
+        },
+        "docs/renderers/contracts/symbol_glyph_waivers.json": {
+          "handling": "keep-frozen",
+          "reason": "The waiver ledger only gained JE-1000F entries keyed to the JE-1000F revised AI; entries are matched by source SHA-256, model, region and language, so this package's admission is unchanged.",
+          "since": "2026-11-02"
         }
       }
     },
@@ -1753,12 +1810,34 @@
     "manual_sources/JE-500A/US/en/git-20261028-5c065d11": {
       "approval": "Operator 2026-10-29 (PR #1639 session): 「上线提交发布：JE-300D、JE-500A、JE-600A、JE-1500C」 after reviewing the 1280/390 renders: Git-only US English single-language Web release from the 发布文档管理 row; acceptance hash-bound in source/approval.json. Merge needs a separate operator authorization.",
       "registered": "2026-10-28",
-      "known_drift": {}
+      "known_drift": {
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive gate change: only rows that carry web_only_row take the new path; this package has none, so its symbol admission is unchanged.",
+          "since": "2026-11-02"
+        },
+        "docs/renderers/contracts/symbol_glyph_waivers.json": {
+          "handling": "keep-frozen",
+          "reason": "The waiver ledger only gained JE-1000F entries keyed to the JE-1000F revised AI; entries are matched by source SHA-256, model, region and language, so this package's admission is unchanged.",
+          "since": "2026-11-02"
+        }
+      }
     },
     "manual_sources/JE-600A/US/en/git-20261028-9bf5bbb1": {
       "approval": "Operator 2026-10-29 (PR #1639 session): 「上线提交发布：JE-300D、JE-500A、JE-600A、JE-1500C」 after reviewing the 1280/390 renders: Git-only US English single-language Web release from the 发布文档管理 row; acceptance hash-bound in source/approval.json. Merge needs a separate operator authorization.",
       "registered": "2026-10-28",
-      "known_drift": {}
+      "known_drift": {
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive gate change: only rows that carry web_only_row take the new path; this package has none, so its symbol admission is unchanged.",
+          "since": "2026-11-02"
+        },
+        "docs/renderers/contracts/symbol_glyph_waivers.json": {
+          "handling": "keep-frozen",
+          "reason": "The waiver ledger only gained JE-1000F entries keyed to the JE-1000F revised AI; entries are matched by source SHA-256, model, region and language, so this package's admission is unchanged.",
+          "since": "2026-11-02"
+        }
+      }
     },
     "manual_sources/JE-880B/US/en/git-20261027-640e83ca": {
       "approval": "Operator 2026-10-28 (PR #1631 session): 「上线提交发布：JE-300C、JE-300E、JE-300E-SG、JE-880B；授权合入 #1631 及其 Hello-Docs 发布 PR」 under MA-365: Git-only US English single-language Web release from the 发布文档管理 row; acceptance hash-bound in source/approval.json",
@@ -1768,6 +1847,16 @@
           "handling": "keep-frozen",
           "reason": "Append-only: five source-bound native symbol variants added for the second US/en batch (JHP-1000A, JE-5000A, JE-500A/600A). Existing entries and the variants these packages bind are unchanged; frozen bytes stay valid.",
           "since": "2026-10-28"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive gate change: only rows that carry web_only_row take the new path; this package has none, so its symbol admission is unchanged.",
+          "since": "2026-11-02"
+        },
+        "docs/renderers/contracts/symbol_glyph_waivers.json": {
+          "handling": "keep-frozen",
+          "reason": "The waiver ledger only gained JE-1000F entries keyed to the JE-1000F revised AI; entries are matched by source SHA-256, model, region and language, so this package's admission is unchanged.",
+          "since": "2026-11-02"
         }
       }
     },
@@ -1935,6 +2024,26 @@
       "packages": 4,
       "handling": "keep-frozen",
       "reason": "Append-only: five source-bound native symbol variants added for the second US/en batch (JHP-1000A, JE-5000A, JE-500A/600A). Existing entries and the variants these packages bind are unchanged; frozen bytes stay valid.",
+      "minutes": 0
+    },
+    {
+      "date": "2026-11-02",
+      "files": [
+        "tools/web/symbol_asset_admission.py"
+      ],
+      "packages": 8,
+      "handling": "keep-frozen",
+      "reason": "Additive gate change: only rows that carry web_only_row take the new path; this package has none, so its symbol admission is unchanged.",
+      "minutes": 0
+    },
+    {
+      "date": "2026-11-02",
+      "files": [
+        "docs/renderers/contracts/symbol_glyph_waivers.json"
+      ],
+      "packages": 8,
+      "handling": "keep-frozen",
+      "reason": "The waiver ledger only gained JE-1000F entries keyed to the JE-1000F revised AI; entries are matched by source SHA-256, model, region and language, so this package's admission is unchanged.",
       "minutes": 0
     }
   ]

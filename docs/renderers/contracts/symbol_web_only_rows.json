@@ -1,0 +1,93 @@
+{
+  "schema_version": "auto-manual-symbol-web-only-rows/v1",
+  "entries": [
+    {
+      "id": "JE1000F-EU-UK-WEB-BATTERY",
+      "source_sha256": "30bcad90ac8c130874db95c76666fb5c905cacc1b59073bd8f9d2db8d714eaf6",
+      "model": "JE-1000F",
+      "region": "EU",
+      "language": "uk",
+      "shared_symbol_key": "battery-weee/crossed-bin-no-bar",
+      "asset_sha256": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45",
+      "donor": {
+        "source_path": "manual_sources/JE-3600A/EU/es/1465-20261010-r1/HTE139-EU-9国说明书-0924.ai",
+        "source_sha256": "47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
+        "physical_page": 94,
+        "drawing_indices": [
+          745,
+          746
+        ],
+        "caption_sha256": "6f9eb77661e1e571c5da962a295c95d78a8285dd08697917b00a8eff6437a1ac"
+      },
+      "status": "operator-approved",
+      "operator_decision": "2026-11-02 「网页版单独补（同英法）」; rendering review 「上线提交发布」",
+      "reason": "The revised AI has no battery row in any language; the Web adds it as for en/fr/de/es/it, reusing the printed JE-3600A EU uk row."
+    },
+    {
+      "id": "JE1000F-EU-PT-WEB-BATTERY",
+      "source_sha256": "30bcad90ac8c130874db95c76666fb5c905cacc1b59073bd8f9d2db8d714eaf6",
+      "model": "JE-1000F",
+      "region": "EU",
+      "language": "pt",
+      "shared_symbol_key": "battery-weee/crossed-bin-no-bar",
+      "asset_sha256": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45",
+      "donor": {
+        "source_path": "manual_sources/JE-2000F/EU/nine-language/git-20261010-1465-web/three-language/source/JE-2000F_修正版.ai",
+        "source_sha256": "b6587afd053f92578c49eb7acff0dccabe10dc04a70bd178d60996419c9c82d7",
+        "physical_page": 117,
+        "drawing_indices": [
+          98,
+          99
+        ],
+        "caption_sha256": "e4bd61d037c2ce9218cde19bfa455323d43777fee1524cd807a3380e38121622"
+      },
+      "status": "operator-approved",
+      "operator_decision": "2026-11-02 「网页版单独补（同英法）」; rendering review 「上线提交发布」",
+      "reason": "The revised AI has no battery row in any language; the Web adds it as for en/fr/de/es/it, reusing the printed JE-2000F EU pt row."
+    },
+    {
+      "id": "JE1000F-EU-NL-WEB-BATTERY",
+      "source_sha256": "30bcad90ac8c130874db95c76666fb5c905cacc1b59073bd8f9d2db8d714eaf6",
+      "model": "JE-1000F",
+      "region": "EU",
+      "language": "nl",
+      "shared_symbol_key": "battery-weee/crossed-bin-no-bar",
+      "asset_sha256": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45",
+      "donor": {
+        "source_path": "manual_sources/JE-2000F/EU/nine-language/git-20261010-1465-web/three-language/source/JE-2000F_修正版.ai",
+        "source_sha256": "b6587afd053f92578c49eb7acff0dccabe10dc04a70bd178d60996419c9c82d7",
+        "physical_page": 135,
+        "drawing_indices": [
+          98,
+          99
+        ],
+        "caption_sha256": "720c06a28d76611d55496daa0824ea90fd8dbb40c3e160c426791c8a3daa0081"
+      },
+      "status": "operator-approved",
+      "operator_decision": "2026-11-02 「网页版单独补（同英法）」; rendering review 「上线提交发布」",
+      "reason": "The revised AI has no battery row in any language; the Web adds it as for en/fr/de/es/it, reusing the printed JE-2000F EU nl row."
+    },
+    {
+      "id": "JE1000F-EU-PL-WEB-BATTERY",
+      "source_sha256": "30bcad90ac8c130874db95c76666fb5c905cacc1b59073bd8f9d2db8d714eaf6",
+      "model": "JE-1000F",
+      "region": "EU",
+      "language": "pl",
+      "shared_symbol_key": "battery-weee/crossed-bin-no-bar",
+      "asset_sha256": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45",
+      "donor": {
+        "source_path": "manual_sources/JE-2000F/EU/nine-language/git-20261010-1465-web/three-language/source/JE-2000F_修正版.ai",
+        "source_sha256": "b6587afd053f92578c49eb7acff0dccabe10dc04a70bd178d60996419c9c82d7",
+        "physical_page": 153,
+        "drawing_indices": [
+          98,
+          99
+        ],
+        "caption_sha256": "375d1ed0c6205044d4dac1a20b176467f2d9804b2314c35eeba612c87eeb0fb3"
+      },
+      "status": "operator-approved",
+      "operator_decision": "2026-11-02 「网页版单独补（同英法）」; rendering review 「上线提交发布」",
+      "reason": "The revised AI has no battery row in any language; the Web adds it as for en/fr/de/es/it, reusing the printed JE-2000F EU pl row."
+    }
+  ]
+}

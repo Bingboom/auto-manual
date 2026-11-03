@@ -73,6 +73,10 @@ POWER、AC、DC/USB、LIGHT 按钮图也按 `button/power`、`button/ac`、
 `caption_bbox`、`row_bbox`、`caption_text`、说明区域的 `caption_sha256`
 及 `shared_symbol_key`。
 `locales` 按语言记录，顺序必须与实际组件行一致；缺项或文件名相同不能跳过。
+印刷稿没有、网页版必须补的符号行（例如电池回收标志）须经操作者批准记入
+`symbol_web_only_rows.json`，该行改绑仓库内另一份印刷稿中的同义行
+（`web_only_row` + `donor_source`），字形、说明文字和像素照常核对，见
+[网页专有符号行](../../../../code-as-doc/build_doc_guide/web-component-admission.md#reviewed-web-only-symbol-rows)。
 选材统一从 [`shared/symbols/manifest.json`](../../web/assets/shared/symbols/manifest.json)
 按语义与明确图形变体选择（例如 `read-manual/book-information`），冻结复制须字节
 不变。`withdrawn` 按哈希停用旧错误素材，改名或搬进新包仍拒绝；旧文件保留历史
