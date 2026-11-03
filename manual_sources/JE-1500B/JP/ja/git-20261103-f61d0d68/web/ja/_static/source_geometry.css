@@ -1,0 +1,24 @@
+/* JE-1500B JP: page-local geometry and type size only.
+   Colours, borders and panels come from the shared Web theme (prepared-document shared-style gate). */
+
+/* Print bullets are "・" lines, as in the PDF. */
+#furo-main-content ul > li { list-style-type: "・"; }
+
+/* Complete source panels keep a readable print width. */
+#furo-main-content .hb-reference-figure { max-width: 48rem; margin-inline: auto; }
+#furo-main-content .hb-reference-figure[data-reference-id="ac-charge"],
+#furo-main-content .hb-reference-figure[data-reference-id="car-charge"] { max-width: 24rem; }
+#furo-main-content .hb-reference-figure[data-reference-id="solar-three"],
+#furo-main-content .hb-reference-figure[data-reference-id="adaptor"] { max-width: 34rem; }
+#furo-main-content .hb-reference-figure[data-reference-id="qc-mark"] { max-width: 6rem; margin-inline: 0; }
+
+/* Dense leader-label panels pan sideways inside the figure on phones. */
+@media (max-width: 760px) {
+  #furo-main-content .hb-reference-figure[data-reference-id="overview"],
+  #furo-main-content .hb-reference-figure[data-reference-id="lcd-map"] { overflow-x: auto; }
+  #furo-main-content .hb-reference-figure[data-reference-id="overview"] > *,
+  #furo-main-content .hb-reference-figure[data-reference-id="lcd-map"] > * { min-width: 34rem; }
+}
+
+/* Recycling notice: the Li-ion 20 mark keeps its print size beside the copy. */
+#furo-main-content table img[src$="recycle-li-ion.svg"] { width: 4.5rem; height: auto; }
