@@ -1870,6 +1870,11 @@
         }
       }
     },
+    "manual_sources/JE-900B-WH/JP/ja/git-20261103-66c65187": {
+      "approval": "Operator 2026-11-03 (relayed by the coordinating window): 「继续 转日语说明书」 — Git-only JP Japanese single-language Web candidate from the 发布文档管理 日规 row; candidate intake only, no approval.json, no merge or release authorization",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
     "manual_sources/JHP-1000A/US/en/git-20261028-cb256e64": {
       "approval": "Operator 「上线提交发布：JHP-1000A、JHP-1000B、JHP-2000A」 2026-10-29 in the engineering session after the 1280/390 renders beside the shared reference edition (PR #1638): Git-only US/en single-language Web release, source copy verbatim; approval bound in source/approval.json",
       "registered": "2026-10-28",

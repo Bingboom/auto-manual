@@ -1,0 +1,486 @@
+[
+  {
+    "slot": "inbox-main-unit",
+    "physical_page": 8,
+    "bbox": [
+      43,
+      97,
+      128,
+      168
+    ],
+    "caption": "本体",
+    "embedded_words": false,
+    "local_path": "assets/inbox-main-unit.png",
+    "render_scale": 4,
+    "sha256": "84b5f5da4c076e5932deeb4cbc6e86d0a13014b00a5d415be38e0f4696b7e5bf",
+    "source_sha256": "66c6518715db273b1d530edc9527b451b8f4f26753a6f9b51678cac9a881b160",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "inbox-ac-cable",
+    "physical_page": 8,
+    "bbox": [
+      150,
+      93,
+      219,
+      172
+    ],
+    "caption": "AC充電ケーブル",
+    "embedded_words": false,
+    "local_path": "assets/inbox-ac-cable.png",
+    "render_scale": 4,
+    "sha256": "444632117f5e32c3bbd672af00b3c7370d5cc99675192eaecf5cbac00d1d2b5e",
+    "source_sha256": "66c6518715db273b1d530edc9527b451b8f4f26753a6f9b51678cac9a881b160",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "inbox-manual",
+    "physical_page": 8,
+    "bbox": [
+      268,
+      98,
+      322,
+      152
+    ],
+    "caption": "取扱説明書一式",
+    "embedded_words": false,
+    "local_path": "assets/inbox-manual.png",
+    "render_scale": 4,
+    "sha256": "175c58bb2c008bbd414cad19aaf735f1072ade9427b5a9709c1630c48e92bf65",
+    "source_sha256": "66c6518715db273b1d530edc9527b451b8f4f26753a6f9b51678cac9a881b160",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "parts-front",
+    "physical_page": 8,
+    "bbox": [
+      28,
+      332,
+      343,
+      499
+    ],
+    "caption": "各部の名称 正面",
+    "embedded_words": true,
+    "local_path": "assets/parts-front.png",
+    "render_scale": 4,
+    "sha256": "8fccd7483a7a572f346bfe71237325938cfa3d22d1d6cb9ff257fd08cc393aad",
+    "source_sha256": "66c6518715db273b1d530edc9527b451b8f4f26753a6f9b51678cac9a881b160",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "parts-right-side",
+    "physical_page": 9,
+    "bbox": [
+      29,
+      49,
+      340,
+      196
+    ],
+    "caption": "各部の名称 右側面",
+    "embedded_words": true,
+    "local_path": "assets/parts-right-side.png",
+    "render_scale": 4,
+    "sha256": "68a86827a018e7241a04b7d81f8d903804385f6e4b0032aaa021e6e9f865578b",
+    "source_sha256": "66c6518715db273b1d530edc9527b451b8f4f26753a6f9b51678cac9a881b160",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "lcd-overview",
+    "physical_page": 9,
+    "bbox": [
+      51,
+      312,
+      318,
+      482
+    ],
+    "caption": "液晶画面",
+    "embedded_words": true,
+    "local_path": "assets/lcd-overview.png",
+    "render_scale": 4,
+    "sha256": "ada95aa00ee34a7f3a7c86825a2f9ada6d5fd24a918bb00254865eda4e46815a",
+    "source_sha256": "66c6518715db273b1d530edc9527b451b8f4f26753a6f9b51678cac9a881b160",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "use-power-button",
+    "physical_page": 12,
+    "bbox": [
+      44,
+      84,
+      312,
+      164
+    ],
+    "caption": "主電源ボタン オン 1回押す / オフ 3秒間長押し",
+    "embedded_words": true,
+    "local_path": "assets/use-power-button.png",
+    "render_scale": 4,
+    "sha256": "a4f799601e5a72649bfa5d22854bff11e74e3001560e94de6463af08c6986706",
+    "source_sha256": "66c6518715db273b1d530edc9527b451b8f4f26753a6f9b51678cac9a881b160",
+    "decision": "extract source panel at 4x (printed heading inside the rectangle masked white)",
+    "masks": [
+      [
+        161,
+        153,
+        312,
+        164
+      ]
+    ]
+  },
+  {
+    "slot": "use-ac-output",
+    "physical_page": 12,
+    "bbox": [
+      37,
+      312,
+      332,
+      478
+    ],
+    "caption": "AC出力のオン/オフ オン 1回押す / オフ 1回押す",
+    "embedded_words": true,
+    "local_path": "assets/use-ac-output.png",
+    "render_scale": 4,
+    "sha256": "b2cd7538b39a6abc10b1239cfd2e05b61835750bf7d9d7f99a99ca34d4598e40",
+    "source_sha256": "66c6518715db273b1d530edc9527b451b8f4f26753a6f9b51678cac9a881b160",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "use-frequency-switch",
+    "physical_page": 13,
+    "bbox": [
+      58,
+      110,
+      312,
+      201
+    ],
+    "caption": "50HZ ⇆ 60HZ",
+    "embedded_words": true,
+    "local_path": "assets/use-frequency-switch.png",
+    "render_scale": 4,
+    "sha256": "5aa3e2eeefac9c1cfa642245350752a894012f8b3da772596658eb95de6ecb8c",
+    "source_sha256": "66c6518715db273b1d530edc9527b451b8f4f26753a6f9b51678cac9a881b160",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "use-dc-usb-output",
+    "physical_page": 13,
+    "bbox": [
+      44,
+      256,
+      330,
+      399
+    ],
+    "caption": "USB/カーポート出力オン/オフ オン 1回押す / オフ 1回押す",
+    "embedded_words": true,
+    "local_path": "assets/use-dc-usb-output.png",
+    "render_scale": 4,
+    "sha256": "93af16627d44a61b5fc03b73efc2f8e6ae978a02ad72767e49c29c03006e02ec",
+    "source_sha256": "66c6518715db273b1d530edc9527b451b8f4f26753a6f9b51678cac9a881b160",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "use-eco-mode-toggle",
+    "physical_page": 14,
+    "bbox": [
+      44,
+      352,
+      330,
+      462
+    ],
+    "caption": "主電源ボタン + AC出力ボタン 両方を3秒間長押し オン/オフ",
+    "embedded_words": true,
+    "local_path": "assets/use-eco-mode-toggle.png",
+    "render_scale": 4,
+    "sha256": "ac7e2a9390550e063be46d021984534f94e9b26018518667ca8b67807ad69a2c",
+    "source_sha256": "66c6518715db273b1d530edc9527b451b8f4f26753a6f9b51678cac9a881b160",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "use-led-light",
+    "physical_page": 15,
+    "bbox": [
+      40,
+      86,
+      206,
+      172
+    ],
+    "caption": "LEDライト",
+    "embedded_words": true,
+    "local_path": "assets/use-led-light.png",
+    "render_scale": 4,
+    "sha256": "e293be8fa41224c1f33d9d224402f2f8ca73d3e8a1fe907ff1ee9aa3e7e185c3",
+    "source_sha256": "66c6518715db273b1d530edc9527b451b8f4f26753a6f9b51678cac9a881b160",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "use-lcd-screen",
+    "physical_page": 15,
+    "bbox": [
+      36,
+      217,
+      153,
+      312
+    ],
+    "caption": "LCDスクリーン",
+    "embedded_words": true,
+    "local_path": "assets/use-lcd-screen.png",
+    "render_scale": 4,
+    "sha256": "b0d1898c3b17577b153776a90e335474238d8982b7f16d6dbac6b695fcb3f4bd",
+    "source_sha256": "66c6518715db273b1d530edc9527b451b8f4f26753a6f9b51678cac9a881b160",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "ups-wiring",
+    "physical_page": 16,
+    "bbox": [
+      29,
+      272,
+      341,
+      462
+    ],
+    "caption": "UPS 機能",
+    "embedded_words": true,
+    "local_path": "assets/ups-wiring.png",
+    "render_scale": 4,
+    "sha256": "01ae48909c923101f2a27d358d0daad11599bb88e85f692de9c50e3b4a448962",
+    "source_sha256": "66c6518715db273b1d530edc9527b451b8f4f26753a6f9b51678cac9a881b160",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "charge-ac-cable",
+    "physical_page": 18,
+    "bbox": [
+      89,
+      107,
+      268,
+      201
+    ],
+    "caption": "AC充電ケーブル",
+    "embedded_words": true,
+    "local_path": "assets/charge-ac-cable.png",
+    "render_scale": 4,
+    "sha256": "23a8917383092b4e02ece74e7ef9fcaaa158e6a1e706946408fab830b282e823",
+    "source_sha256": "66c6518715db273b1d530edc9527b451b8f4f26753a6f9b51678cac9a881b160",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "charge-solar-2-panels",
+    "physical_page": 19,
+    "bbox": [
+      26,
+      87,
+      339,
+      237
+    ],
+    "caption": "SolarSaga 200 × 2",
+    "embedded_words": true,
+    "local_path": "assets/charge-solar-2-panels.png",
+    "render_scale": 4,
+    "sha256": "bd2a1fd5a93bacfc0ff6d23b2fb27b5f2b6d3a44f87b09e5755ace7964794989",
+    "source_sha256": "66c6518715db273b1d530edc9527b451b8f4f26753a6f9b51678cac9a881b160",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "charge-solar-4-panels",
+    "physical_page": 19,
+    "bbox": [
+      27,
+      311,
+      340,
+      494
+    ],
+    "caption": "SolarSaga 100 Air × 4",
+    "embedded_words": true,
+    "local_path": "assets/charge-solar-4-panels.png",
+    "render_scale": 4,
+    "sha256": "faa584b4d3194eacff914f3de5549bd28b27a3d3b40b30190122d542b8984fc5",
+    "source_sha256": "66c6518715db273b1d530edc9527b451b8f4f26753a6f9b51678cac9a881b160",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "charge-car-socket",
+    "physical_page": 20,
+    "bbox": [
+      26,
+      335,
+      338,
+      494
+    ],
+    "caption": "シガーソケット充電",
+    "embedded_words": true,
+    "local_path": "assets/charge-car-socket.png",
+    "render_scale": 4,
+    "sha256": "469ff769db96a544c8ee413a1c33567d6b0e48a395b3ad38b567fc81f7f04e5b",
+    "source_sha256": "66c6518715db273b1d530edc9527b451b8f4f26753a6f9b51678cac9a881b160",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "app-store-badges",
+    "physical_page": 25,
+    "bbox": [
+      31,
+      99,
+      91,
+      139
+    ],
+    "caption": "App Store / Google Play",
+    "embedded_words": true,
+    "local_path": "assets/app-store-badges.png",
+    "render_scale": 4,
+    "sha256": "a73109377da1622d50723c9827e0532b0af882cf85f8dd84d687291d14ceb64c",
+    "source_sha256": "66c6518715db273b1d530edc9527b451b8f4f26753a6f9b51678cac9a881b160",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "app-qr-code",
+    "physical_page": 25,
+    "bbox": [
+      219,
+      99,
+      266,
+      146
+    ],
+    "caption": "QR コード",
+    "embedded_words": true,
+    "local_path": "assets/app-qr-code.png",
+    "render_scale": 4,
+    "sha256": "da211213ae89172c29b460134b74df0ca9ca9268943656a61b0b4fdb89323268",
+    "source_sha256": "66c6518715db273b1d530edc9527b451b8f4f26753a6f9b51678cac9a881b160",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "app-screen-2-1",
+    "physical_page": 25,
+    "bbox": [
+      98,
+      206,
+      165,
+      355
+    ],
+    "caption": "2.1",
+    "embedded_words": true,
+    "local_path": "assets/app-screen-2-1.png",
+    "render_scale": 4,
+    "sha256": "245d6e55fb94b1ad9c74bd956532a609f44611e463599914b0554df04109bfbd",
+    "source_sha256": "66c6518715db273b1d530edc9527b451b8f4f26753a6f9b51678cac9a881b160",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "app-screen-2-2",
+    "physical_page": 25,
+    "bbox": [
+      190,
+      206,
+      258,
+      355
+    ],
+    "caption": "2.2",
+    "embedded_words": true,
+    "local_path": "assets/app-screen-2-2.png",
+    "render_scale": 4,
+    "sha256": "2bf305df94647362f535787f3ea316a96d2de20b1111b1b8fb7d33f14d13e4f4",
+    "source_sha256": "66c6518715db273b1d530edc9527b451b8f4f26753a6f9b51678cac9a881b160",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "app-button-locator",
+    "physical_page": 25,
+    "bbox": [
+      31,
+      359,
+      342,
+      419
+    ],
+    "caption": "主電源ボタン / DC/USB出力ボタン / AC出力ボタン",
+    "embedded_words": true,
+    "local_path": "assets/app-button-locator.png",
+    "render_scale": 4,
+    "sha256": "75bf6e2687be30f6bffff9a2f2a57e704a65f14365457549d81f776f9969a2db",
+    "source_sha256": "66c6518715db273b1d530edc9527b451b8f4f26753a6f9b51678cac9a881b160",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "app-screen-2-3",
+    "physical_page": 26,
+    "bbox": [
+      68,
+      101,
+      132,
+      242
+    ],
+    "caption": "2.3",
+    "embedded_words": true,
+    "local_path": "assets/app-screen-2-3.png",
+    "render_scale": 4,
+    "sha256": "a161a00c873c8c0dcfa9c35802a8ec87af17029bb239f0fc784855653a010c8e",
+    "source_sha256": "66c6518715db273b1d530edc9527b451b8f4f26753a6f9b51678cac9a881b160",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "app-screen-2-4",
+    "physical_page": 26,
+    "bbox": [
+      154,
+      101,
+      219,
+      242
+    ],
+    "caption": "2.4",
+    "embedded_words": true,
+    "local_path": "assets/app-screen-2-4.png",
+    "render_scale": 4,
+    "sha256": "26932bdd3c8e06270df7dfbc45e2f6ffc678314f569624e34f76a2d88480e61a",
+    "source_sha256": "66c6518715db273b1d530edc9527b451b8f4f26753a6f9b51678cac9a881b160",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "app-screen-2-5",
+    "physical_page": 26,
+    "bbox": [
+      241,
+      101,
+      305,
+      242
+    ],
+    "caption": "2.5",
+    "embedded_words": true,
+    "local_path": "assets/app-screen-2-5.png",
+    "render_scale": 4,
+    "sha256": "73b40341ba7df2a35f810c7cf0b2ef20a79afd8c3647941fc28be9fcc34b037b",
+    "source_sha256": "66c6518715db273b1d530edc9527b451b8f4f26753a6f9b51678cac9a881b160",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "back-store-badges",
+    "physical_page": 27,
+    "bbox": [
+      27,
+      476,
+      175,
+      498
+    ],
+    "caption": "App Store / Google Play",
+    "embedded_words": true,
+    "local_path": "assets/back-store-badges.png",
+    "render_scale": 4,
+    "sha256": "e0be87b3a1f63d7af7f31982bd37e292612397728814d1337a749dd432cba52c",
+    "source_sha256": "66c6518715db273b1d530edc9527b451b8f4f26753a6f9b51678cac9a881b160",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "back-qr-code",
+    "physical_page": 27,
+    "bbox": [
+      305,
+      460,
+      342,
+      497
+    ],
+    "caption": "QR コード",
+    "embedded_words": false,
+    "local_path": "assets/back-qr-code.png",
+    "render_scale": 4,
+    "sha256": "31700587d6c266e0cd263ce5827fae9e4cc01828f6721a23ffa8f755a8cef5eb",
+    "source_sha256": "66c6518715db273b1d530edc9527b451b8f4f26753a6f9b51678cac9a881b160",
+    "decision": "extract source panel at 4x"
+  }
+]
