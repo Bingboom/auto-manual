@@ -1,0 +1,13 @@
+$ python -m sphinx -n -W --keep-going -b html <fresh rebuild> <html>  (Sphinx 8.2.3, furo 2025.12.19, myst-parser 4.0.1)
+copying static files: done
+copying extra files... 
+copying extra files: done
+copying assets: done
+writing output... [ 50%] index
+writing output... [100%] manual_je3000b_jp_ja
+generating indices... genindex done
+writing additional pages... search done
+dumping search index in Japanese (code: ja)... done
+dumping object inventory... done
+build succeeded.
+The HTML pages are in out1-html.
