@@ -1,8 +1,8 @@
-# JE-3000B / JP / ja — Git-only Web manual candidate (V2)
+# JE-3000B / JP / ja — Git-only Web manual (V2)
 
 Coordinator brief, 2026-11-03: build the Japanese single-language Web candidate for the 发布文档管理 Base record `reczz28SfbsHfOgb` (Jackery ポータブル電源 3000, 子物料编码 38-0001-000822, 项目号 HTE116, SKU 21-0001-000294; the Base 客户型号 carries a trailing space, 「JE-3000B 」; `JE-3000B` is used everywhere here). Route `JE-3000B/JP/ja/md`.
 
-**Status: `candidate-pending-operator-review`.** The IR is not publication-eligible and there is no `source/approval.json`. Review shows the 1280/390 renders beside the same model's shared reference edition (JE-3000B US/en) and `source_manifest.json:source_concerns`. The source copy is kept as printed; suspected source errors go back to the source owner.
+**Status: `operator-authorized-git-only-release`.** The operator reviewed the 1280/390 renders beside the shared reference edition (manual_sources/JE-3000B/US/en/git-20261028-bd8a8296) in PR #1655 and instructed 「上线提交发布」 on 2026-11-03 in this package's engineering session. `source/approval.json` binds every reviewed `source/`, `assets/` and script input; the IR is publication-eligible. Source copy goes live as printed; `source_manifest.json:source_concerns` go back to the source owner. Merge needs a separate operator grant (AGENTS.md §8.6).
 
 ## Source authority
 

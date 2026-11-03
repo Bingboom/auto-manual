@@ -76,7 +76,7 @@
   "shared_reference_edition_for_review": "JE-2000F US English Web (manual_sources/JE-2000F/US/en/git-20261028-c8ace563)",
   "live_bitable_dependency": false,
   "phase2_enrolled": false,
-  "publication_status": "candidate-pending-operator-review",
+  "publication_status": "operator-authorized-git-only-release",
   "build_boundary": "JE-2000F JP is not a phase2 target. build_content.py binds the transcription to shared ComponentSpecs; rebuild.py replays them through manual-ir/v2 and the shared Web/MyST pipeline with the prepared-document shared-style gate and symbol admission (12 rows). No live Base, queue, source table, HTML_link or asset registry is read or written.",
   "repo_inputs": [],
   "component_map": [
@@ -801,8 +801,8 @@
     },
     {
       "path": "README.md",
-      "size": 3956,
-      "sha256": "df11fbd79fadc0fd13c44c641d13c018c0dd3d9756d42c465982736a4def2cbc"
+      "size": 4269,
+      "sha256": "dc58100f7aab9329b33139d41326c9ac2e034a1a54e3e9ad6ff66c3b7fa168e5"
     },
     {
       "path": "assets/ac-output.png",
@@ -1153,6 +1153,11 @@
       "path": "refresh_manifest.py",
       "size": 2575,
       "sha256": "742cf95cf43ad4b6c990ea0566ed863a3c52ac2454b38e6e630ed474c810941d"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 13854,
+      "sha256": "333b8eab738f2c01bba1410f5aecd437d8a0f31910eb33f044355ac265637a7c"
     },
     {
       "path": "source/asset_decisions.json",

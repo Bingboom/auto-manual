@@ -89,7 +89,7 @@
   "review_reference_note": "JE-3000B US/en is the same model's shared reference edition shown beside this candidate in review. JE-1000D JP V2 (same JP V2 print template, chapter set and component mix) is the structural JP reference.",
   "live_bitable_dependency": false,
   "phase2_enrolled": false,
-  "publication_status": "candidate-pending-operator-review",
+  "publication_status": "operator-authorized-git-only-release",
   "publication_eligible": false,
   "build_boundary": "JE-3000B JP is not a phase2 target. build_content.py binds the transcription to shared ComponentSpecs; rebuild.py replays them through manual-ir/v2 and the shared Web/MyST pipeline with the prepared-document shared-style gate and symbol admission (six rows, all existing shared variants).",
   "repo_inputs": [],
@@ -726,8 +726,8 @@
     },
     {
       "path": "README.md",
-      "size": 3816,
-      "sha256": "46c4b250b42dd6c4975f6c46955f5ec889a7a0704db0987d6fed1aaf891c6ab0"
+      "size": 4013,
+      "sha256": "23e2d2bf48d95dcea59bca158789cfafa4006a2029b49b6ce190ae76b00bf7da"
     },
     {
       "path": "assets/ac-charge.png",
@@ -913,6 +913,11 @@
       "path": "refresh_manifest.py",
       "size": 2552,
       "sha256": "fa63a3239fb8be38fbb235e7807a4e84666e37b292adeafed1bd4365d512dd65"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 8546,
+      "sha256": "85e653d2dd403d1ecb22fef76527d4607ea5feeac5a7ca2dfbebef3f02ee4046"
     },
     {
       "path": "source/asset_decisions.json",
