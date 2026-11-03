@@ -1,0 +1,21 @@
+/* JE-1000H JP: page-local geometry and type size only.
+   Colours, borders and panels come from the shared Web theme (prepared-document shared-style gate). */
+
+/* Complete source panels keep a readable print width; small ones keep their print scale. */
+#furo-main-content .hb-reference-figure { max-width: 48rem; margin-inline: auto; }
+#furo-main-content .hb-reference-figure[data-reference-id="overview-left"],
+#furo-main-content .hb-reference-figure[data-reference-id="app-add"],
+#furo-main-content .hb-reference-figure[data-reference-id="app-results"] { max-width: 34rem; }
+
+/* Dense leader-label panels pan sideways inside the figure on phones. */
+@media (max-width: 760px) {
+  #furo-main-content .hb-reference-figure[data-reference-id="overview-front"],
+  #furo-main-content .hb-reference-figure[data-reference-id="overview-right"],
+  #furo-main-content .hb-reference-figure[data-reference-id="lcd-map"] { overflow-x: auto; }
+  #furo-main-content .hb-reference-figure[data-reference-id="overview-front"] > *,
+  #furo-main-content .hb-reference-figure[data-reference-id="overview-right"] > *,
+  #furo-main-content .hb-reference-figure[data-reference-id="lcd-map"] > * { min-width: 34rem; }
+}
+
+/* The printed 88H mark sits inline in the energy-saving sentences. */
+#furo-main-content p img[alt="88H"] { display: inline; height: 1.1em; width: auto; vertical-align: -0.15em; margin: 0 .1em; }
