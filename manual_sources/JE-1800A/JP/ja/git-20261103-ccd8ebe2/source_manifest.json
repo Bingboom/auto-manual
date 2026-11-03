@@ -87,7 +87,7 @@
   },
   "live_bitable_dependency": false,
   "phase2_enrolled": false,
-  "publication_status": "candidate-pending-operator-review",
+  "publication_status": "operator-authorized-git-only-release",
   "publication_eligible": false,
   "build_boundary": "JE-1800A JP is not a phase2 target. build_content.py binds the transcription to shared ComponentSpecs; rebuild.py replays them through manual-ir/v2 and the shared Web/MyST pipeline with the prepared-document shared-style gate and symbol admission. No live Base, queue, source table, HTML_link or asset registry is read or written.",
   "repo_inputs": [],
@@ -328,8 +328,8 @@
     },
     {
       "path": "README.md",
-      "size": 3841,
-      "sha256": "2f381e9bef89c633e0688feeda9983ff2b2dcaef8140a8b4d714ffaf699c8aab"
+      "size": 4070,
+      "sha256": "e3b05237e668604a730dc20ae8a3151bd71f28febc6c664781e6bc20e2d8f00c"
     },
     {
       "path": "assets/ac-charge.png",
@@ -510,6 +510,11 @@
       "path": "refresh_manifest.py",
       "size": 2549,
       "sha256": "e51964314c962d31a62617f7229acbf8867a5d5306692cd145876d7214101a8d"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 8603,
+      "sha256": "236bfd2526381bdfa91daa1724247e85e7d9da15143e1d6f6f4520c354151bd8"
     },
     {
       "path": "source/asset_decisions.json",

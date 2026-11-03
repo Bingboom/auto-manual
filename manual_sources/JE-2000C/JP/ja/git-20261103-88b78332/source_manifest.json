@@ -62,7 +62,7 @@
   "review_reference_edition": "manual_sources/JE-2000C/US/en/git-20261027-c357f54d (same model, shared Web reference shown beside this candidate)",
   "live_bitable_dependency": false,
   "phase2_enrolled": false,
-  "publication_status": "candidate-pending-operator-review",
+  "publication_status": "operator-authorized-git-only-release",
   "build_boundary": "JE-2000C JP is not a phase2 target. build_transcription.py derives the transcription from the PDF text layer; build_content.py binds it to shared ComponentSpecs; rebuild.py replays them through manual-ir/v2 and the shared Web/MyST pipeline with the prepared-document shared-style gate and symbol admission.",
   "shared_component_exceptions": [
     {
@@ -297,8 +297,8 @@
     },
     {
       "path": "README.md",
-      "size": 3817,
-      "sha256": "0de0bd8d15a68c8f17d8788827019ff727fd3b445ce2713e44280fd854325554"
+      "size": 4127,
+      "sha256": "5cb3ef345edd49951976a1dd3b1d0e9f13c961f41dcaf789937f65926c16c86c"
     },
     {
       "path": "assets/ac-charge.png",
@@ -499,6 +499,11 @@
       "path": "refresh_manifest.py",
       "size": 2603,
       "sha256": "05666bc80ce527ad1681a51372d1d62f303ef92bbdcc4eaa1527fc83ec59ff5e"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 9410,
+      "sha256": "abf9bd1c2ae7ed0e75c31559b4ec2b888261b86e7e6d1fa99d5c36515ea967c7"
     },
     {
       "path": "source/asset_decisions.json",

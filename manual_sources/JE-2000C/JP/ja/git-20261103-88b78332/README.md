@@ -1,8 +1,8 @@
-# JE-2000C / JP / ja — Git-only Web manual candidate
+# JE-2000C / JP / ja — Git-only Web manual
 
 Operator instruction, 2026-11-03: 「继续 转日语说明书」 (relayed by the coordination window): convert the Japanese single-language manuals of the 发布文档管理 Base that have a customer model and a single-language PDF and are not yet on the Web. This package is the Jackery ポータブル電源 2000 Plus (JE-2000C) Japanese manual.
 
-**Status: `candidate-pending-operator-review`.** No approval is written; the IR is not publication-eligible. Approval needs the operator's own 「上线提交发布」 in the engineering session.
+**Status: `operator-authorized-git-only-release`.** The operator reviewed the 1280/390 renders beside the shared reference edition (Draft PR #1656) and replied 「按建议做，上线提交发布」 on 2026-11-03 in the owning session. Source copy goes live as printed; `source_manifest.json:source_concerns` go back to the source owner. `source/approval.json` binds every reviewed `source/` and `assets/` input; the IR is publication-eligible. Merge still needs the operator's own authorization (AGENTS.md §8.6).
 
 ## Source authority
 

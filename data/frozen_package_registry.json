@@ -1473,7 +1473,7 @@
       "known_drift": {}
     },
     "manual_sources/JE-1800A/JP/ja/git-20261103-ccd8ebe2": {
-      "approval": "Operator request 2026-11-03 「继续 转日语说明书」 (relayed by the coordination window): Git-only JE-1800A JP/ja single-language Web candidate from 发布文档管理 record reczz28SfbsHfSTa, source copy verbatim; no approval.json, release approval pending the operator's 「上线提交发布」",
+      "approval": "Operator request 2026-11-03 「继续 转日语说明书」 (relayed by the coordination window); operator reviewed the 1280/390 renders beside the reference edition and said 「按建议做，上线提交发布」 2026-11-03 in the owning session: Git-only JE-1800A JP/ja single-language Web release from 发布文档管理 record reczz28SfbsHfSTa, source copy verbatim; acceptance hash-bound in source/approval.json",
       "registered": "2026-11-03",
       "known_drift": {}
     },
@@ -1488,7 +1488,7 @@
       "known_drift": {}
     },
     "manual_sources/JE-2000C/JP/ja/git-20261103-88b78332": {
-      "approval": "Operator request 2026-11-03 「继续 转日语说明书」 (relayed by the coordination window): Git-only JE-2000C JP/ja single-language Web candidate from 发布文档管理 record reczz28SfbsHdjSC, source copy verbatim; no approval.json, release approval pending the operator's 「上线提交发布」",
+      "approval": "Operator request 2026-11-03 「继续 转日语说明书」 (relayed by the coordination window); operator reviewed the 1280/390 renders beside the reference edition and said 「按建议做，上线提交发布」 2026-11-03 in the owning session: Git-only JE-2000C JP/ja single-language Web release from 发布文档管理 record reczz28SfbsHdjSC, source copy verbatim; acceptance hash-bound in source/approval.json",
       "registered": "2026-11-03",
       "known_drift": {}
     },
