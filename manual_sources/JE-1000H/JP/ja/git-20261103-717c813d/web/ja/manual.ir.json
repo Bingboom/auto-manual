@@ -8,6 +8,7 @@
     "assets/symbol-wethand.svg",
     "assets/symbol-mandatory.svg",
     "assets/symbol-prohibit.svg",
+    "assets/recycle-li-ion.svg",
     "assets/symbol-weee.png",
     "assets/symbol-battery.png",
     "assets/inbox-unit.png",
@@ -69,8 +70,8 @@
     "assets/app-results.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "d7cf58391f5083ea5a03d674ed3eb128068e226fc107c75a0092912eab3d2084",
-  "content_sha256": "427499626f839ebb69478f62070d1b77fd08dc06766de69bf344f0322f451185",
+  "bundle_sha256": "28a56bbea085828524f24875092165d69eadafdf7a3d9a798984e872ed0c90bb",
+  "content_sha256": "943bbf386d143b51ad5eedc3caf9eaa9158e9a2233ac8c44e1c2bd65b253e65e",
   "language": "ja",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -129,6 +130,7 @@
       "assets/overview-left.png": "a7558c01b0561c781a60e00c623ccc5b2cdc58237a0c689441afbe8676572563",
       "assets/overview-right.png": "5f0dfc6e7703cd7d7cff222019b038f336cd3170e972673f0bfed91e401cdf26",
       "assets/power.png": "9b8dae6dd0a2c6d61f407fb5eb7d316e48b8cd65e0fe2a3150e910d8f65241b4",
+      "assets/recycle-li-ion.svg": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5",
       "assets/solar-adapter.png": "f14bbadbfc5143ca0031ab814ec8059245f868f7127ecf4aace35d04dcd98b7a",
       "assets/solar-direct.png": "f39d4102dc8cf4cfb1104cf8432fb9cc927eda91653a25bbefa31ecad36b9ad9",
       "assets/symbol-battery.png": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45",
@@ -143,7 +145,7 @@
       "assets/symbol-wethand.svg": "f062577eefb0ba67932bf2b0faec0617a3cafd366b185d69434659ac365b70e3",
       "assets/ups.png": "bc149f98ac9d46247623af78f947a568547f92e5e42a2cdafd11a6ca26a81eff"
     },
-    "block_count": 184,
+    "block_count": 185,
     "component_inventory": {
       "HB-CALLOUT-STRIP": 29,
       "HB-SPECIAL-APP": 2,
@@ -1386,8 +1388,12 @@
           "shared": "HB-TABLE-SYMBOL-ICON/two-panel-responsive with symbol admission (8 admitted rows; 2 pending)"
         },
         {
-          "printed": "WEEE / battery-disposal boxes (Li-ion box pending)",
+          "printed": "WEEE / battery-disposal boxes",
           "shared": "HB-TABLE-SYMBOL-ICON/two-panel-responsive with symbol admission"
+        },
+        {
+          "printed": "充電式電池のリサイクルについて Li-ion 32 box",
+          "shared": "declared plain table (shared_component_exceptions) with the operator-chosen canonical shared Li-ion 32 icon"
         },
         {
           "printed": "警告/注意 icon items",
@@ -1496,8 +1502,8 @@
         },
         {
           "path": "README.md",
-          "sha256": "f596ec637bb62890d3ab045c51e615c440ed5cf023372899224abc90947d0f4b",
-          "size": 3660
+          "sha256": "f639be337d4e8d51431596557cbbc7fd73f537c29cdaef4752b5b32dc2e4c6b6",
+          "size": 3839
         },
         {
           "path": "assets/ac-charge.png",
@@ -1770,6 +1776,11 @@
           "size": 73237
         },
         {
+          "path": "assets/recycle-li-ion.svg",
+          "sha256": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5",
+          "size": 6314
+        },
+        {
           "path": "assets/solar-adapter.png",
           "sha256": "f14bbadbfc5143ca0031ab814ec8059245f868f7127ecf4aace35d04dcd98b7a",
           "size": 189432
@@ -1836,8 +1847,8 @@
         },
         {
           "path": "build_content.py",
-          "sha256": "017686b972e25e866aa8103050da93687e46374c5a000ef12a44f6444198167c",
-          "size": 34781
+          "sha256": "32c1b4ac641a6901c7d36efb041ea1e3b5937da0d41beb610c5cd7a12aa06300",
+          "size": 35694
         },
         {
           "path": "derive_assets.py",
@@ -1856,33 +1867,33 @@
         },
         {
           "path": "source/asset_decisions.json",
-          "sha256": "1757255c45cbfbacb6b91dcf3beb4673efbe2da32e704dad1d6c7dc58a4b63a4",
-          "size": 64397
+          "sha256": "0191713ea5e129c60db4b8b23d8e6c8c2f937f28c868b7fcce06667e3c28e9ac",
+          "size": 65180
         },
         {
           "path": "source/asset_recipe.json",
-          "sha256": "d9a44482abd9164613efdd5a4006e58dfea9c52b733b2b18d38dff32c46ba779",
-          "size": 16234
+          "sha256": "e6f1c9a668874b213ad5d4cacfb829e7a6b76e11fe20d1a656658c0622c6db2f",
+          "size": 15977
         },
         {
           "path": "source/differences.md",
-          "sha256": "e5cef74b92bd1380197261e5f368c70c699a51be784c988029b487003427f656",
-          "size": 3404
+          "sha256": "8b67bc92df6d7f97fc6e18e2017a7ea3d4fd05fc908c9858c0b37532805b9ad6",
+          "size": 3512
         },
         {
           "path": "source/discovery.md",
-          "sha256": "13eacfe4519dc4f92d7e5a722fad508ffec4b67e6a8854aaf20e65c28250b85f",
-          "size": 4014
+          "sha256": "75a8efc243a547362fec47f14a5f92ee8f061337eff25ad524a98cd594a48a1e",
+          "size": 4360
         },
         {
           "path": "source/geometry.css",
-          "sha256": "8c64319f6671b046621f01dad49ff5f48cb8336c995fd7a5590e048989df7a2f",
-          "size": 1395
+          "sha256": "c66fc17dc9e3ae1a3a4b64af8f77b0656619d4e6529a257e86b0a2dba3de97c7",
+          "size": 1566
         },
         {
           "path": "source/ja/content.json",
-          "sha256": "c59012c1a60e8fe45df880ff955ff073ec0f4c5684eee4216af21d5f5967b015",
-          "size": 308437
+          "sha256": "a14bef698d5901c96cb06dfb45db23df9de0eeb1fde662aff6186149dd7f1463",
+          "size": 310818
         },
         {
           "path": "source/transcription.json",
@@ -1914,7 +1925,7 @@
       },
       "pending_source_review": [
         "Operator review of the 1280/390 renders and the source_concerns list",
-        "Three printed symbol rows (pending_symbols) await admissible shared variants; their captions are left out of the Web symbol tables until then"
+        "Two printed symbol rows (pending_symbols: read manual, keep dry) await admissible shared variants; their captions are left out of the Web symbol table until then"
       ],
       "pending_symbols": [
         {
@@ -1982,46 +1993,6 @@
           "pdf_sha256": "717c813db4c64d57f90072da6f40081162131979cc181a440c589e70d9947da4",
           "physical_page": 3,
           "status": "pending shared variant (coordinator); row and caption left out of the Web symbol table"
-        },
-        {
-          "caption_bbox": [
-            70.72,
-            27.44,
-            176.72,
-            118.55
-          ],
-          "caption_ids": [
-            "recycle.title",
-            "recycle.b1",
-            "recycle.b2",
-            "recycle.b3"
-          ],
-          "caption_text": "充電式電池のリサイクルについて本機はリサイクル可能な充電池を内蔵しています。この商品を廃棄する場合は、当社のカスタマーサポートにご連絡ください。充電池の取りはずしはお客様自身では行わないでください。",
-          "closest_max_mean_channel_error": 0.1724,
-          "closest_shared_variant": "battery_disposal/je2000e-eu-pt-batch1465-native",
-          "description": "Li-ion recycling mark (three chasing arrows) with the lettering 「Li-ion 32」 below; rechargeable-battery recycling row",
-          "drawing_indices": [
-            64,
-            65,
-            66,
-            67,
-            68,
-            69,
-            70,
-            71,
-            72,
-            73,
-            74
-          ],
-          "glyph_bbox": [
-            33,
-            62,
-            60,
-            87
-          ],
-          "pdf_sha256": "717c813db4c64d57f90072da6f40081162131979cc181a440c589e70d9947da4",
-          "physical_page": 4,
-          "status": "pending shared variant (coordinator); row and caption left out of the Web symbol table"
         }
       ],
       "phase2_enrolled": false,
@@ -2049,6 +2020,13 @@
       "repo_inputs": [],
       "schema_version": "auto-manual-frozen-web-source/v1",
       "shared_component_exceptions": [
+        {
+          "kind": "table",
+          "language": "ja",
+          "page_id": "safety",
+          "reason": "single-row 充電式電池のリサイクルについて notice beside its Li-ion 32 mark (operator-chosen canonical shared icon native/je3000c-kr-78316033-06): HB-TABLE-SYMBOL-ICON requires two non-empty panels and admitted glyphs, and LCD/callout components would drop or misname the mark; a plain two-cell table on the shared manual-table classes (as JE-1000D JP V2)",
+          "text_sha256": "910f8403b07ec154b716e2c7cbc611b6a96652f6a07abce257e3c626afe5cee7"
+        },
         {
           "kind": "table",
           "language": "ja",
@@ -3117,7 +3095,7 @@
     "page_declarations": {},
     "pending_source_review": [
       "Operator review of the 1280/390 renders and the source_concerns list",
-      "Three printed symbol rows (pending_symbols) await admissible shared variants; their captions are left out of the Web symbol tables until then"
+      "Two printed symbol rows (pending_symbols: read manual, keep dry) await admissible shared variants; their captions are left out of the Web symbol table until then"
     ],
     "projection": "whole-document-components/v1",
     "publication_eligible": false,
@@ -3155,7 +3133,7 @@
     },
     "source_stylesheet": {
       "path": "_static/source_geometry.css",
-      "sha256": "8c64319f6671b046621f01dad49ff5f48cb8336c995fd7a5590e048989df7a2f"
+      "sha256": "c66fc17dc9e3ae1a3a4b64af8f77b0656619d4e6529a257e86b0a2dba3de97c7"
     },
     "title": "Jackery ポータブル電源 1000 Plus 取扱説明書",
     "web_contract": {
@@ -3667,10 +3645,113 @@
         },
         {
           "asset_refs": [
+            "assets/recycle-li-ion.svg"
+          ],
+          "block_id": "safety:block-0009",
+          "content_sha256": "fae9792694ee1e0b1ee680b60b09964cf51655aff5a8d90c4fbd1dcd8767b5a0",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "alt": "充電式電池のリサイクルについて",
+                                "kind": "image",
+                                "source": "assets/recycle-li-ion.svg"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "children": [
+                                  {
+                                    "children": [
+                                      {
+                                        "kind": "text",
+                                        "text": "充電式電池のリサイクルについて"
+                                      }
+                                    ],
+                                    "kind": "strong"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "本機はリサイクル可能な充電池を内蔵しています。"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "この商品を廃棄する場合は、当社のカスタマーサポートにご連絡ください。"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "充電池の取りはずしはお客様自身では行わないでください。"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      }
+                    ],
+                    "kind": "table_body"
+                  }
+                ],
+                "kind": "table",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "manual-table"
+                    }
+                  }
+                }
+              }
+            ],
+            "kind": "group",
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": "table-wrapper docutils container"
+                }
+              }
+            },
+            "role": "container",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "native-pdf/safety#block-9"
+        },
+        {
+          "asset_refs": [
             "assets/symbol-weee.png",
             "assets/symbol-battery.png"
           ],
-          "block_id": "safety:block-0009",
+          "block_id": "safety:block-0010",
           "content_sha256": "38c3b45e9901a82a2541630bdecc32874c60243c5d3b4247309f4403cedb79fa",
           "kind": "flow",
           "payload": {
@@ -3751,11 +3832,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/safety#block-9"
+          "source_ref": "native-pdf/safety#block-10"
         },
         {
           "asset_refs": [],
-          "block_id": "safety:block-0010",
+          "block_id": "safety:block-0011",
           "content_sha256": "c990027e23d0e9426358ad4abc85524152eb9162db212404916049949f3ee60a",
           "kind": "flow",
           "payload": {
@@ -3769,11 +3850,11 @@
             "level": 3,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/safety#block-10"
+          "source_ref": "native-pdf/safety#block-11"
         },
         {
           "asset_refs": [],
-          "block_id": "safety:block-0011",
+          "block_id": "safety:block-0012",
           "content_sha256": "3cb073bb0ae60876ce05b1e3f265adc29aba1b2cb4751698f6ffe642f6940d3b",
           "kind": "flow",
           "payload": {
@@ -3881,11 +3962,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/safety#block-11"
+          "source_ref": "native-pdf/safety#block-12"
         },
         {
           "asset_refs": [],
-          "block_id": "safety:block-0012",
+          "block_id": "safety:block-0013",
           "content_sha256": "8cf29a10130736481ee5c1e4640c833ceb422915238c0b7edd6bddf8d2e1694f",
           "kind": "flow",
           "payload": {
@@ -3993,11 +4074,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/safety#block-12"
+          "source_ref": "native-pdf/safety#block-13"
         },
         {
           "asset_refs": [],
-          "block_id": "safety:block-0013",
+          "block_id": "safety:block-0014",
           "content_sha256": "8284235f6f6aa938492c74f7200071668e54f2425a3537f6645889b164d7cfbb",
           "kind": "flow",
           "payload": {
@@ -4105,11 +4186,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/safety#block-13"
+          "source_ref": "native-pdf/safety#block-14"
         },
         {
           "asset_refs": [],
-          "block_id": "safety:block-0014",
+          "block_id": "safety:block-0015",
           "content_sha256": "e52dc6f1f9377f9c870df539008d2273074f9193282904c9749e09db9c26c150",
           "kind": "flow",
           "payload": {
@@ -4217,11 +4298,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/safety#block-14"
+          "source_ref": "native-pdf/safety#block-15"
         },
         {
           "asset_refs": [],
-          "block_id": "safety:block-0015",
+          "block_id": "safety:block-0016",
           "content_sha256": "7ec22685746178917aed2da04002f4a4d88720a96d8be1cc5a4c5102b01e2015",
           "kind": "flow",
           "payload": {
@@ -4329,11 +4410,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/safety#block-15"
+          "source_ref": "native-pdf/safety#block-16"
         },
         {
           "asset_refs": [],
-          "block_id": "safety:block-0016",
+          "block_id": "safety:block-0017",
           "content_sha256": "bb606a69230292004ca0d69577edfe120634f513d22d832bee66a9f9e292bc72",
           "kind": "flow",
           "payload": {
@@ -4441,11 +4522,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/safety#block-16"
+          "source_ref": "native-pdf/safety#block-17"
         },
         {
           "asset_refs": [],
-          "block_id": "safety:block-0017",
+          "block_id": "safety:block-0018",
           "content_sha256": "ec1e848aa1b175becdc9c0087fc6ec2b80bb92d9c95d1c60f378288c61ed67f3",
           "kind": "flow",
           "payload": {
@@ -4553,11 +4634,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/safety#block-17"
+          "source_ref": "native-pdf/safety#block-18"
         },
         {
           "asset_refs": [],
-          "block_id": "safety:block-0018",
+          "block_id": "safety:block-0019",
           "content_sha256": "033dd821643f94e4dc156521477a212e529da765fff4ac065bab4fc83bd7dfc9",
           "kind": "flow",
           "payload": {
@@ -4665,11 +4746,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/safety#block-18"
+          "source_ref": "native-pdf/safety#block-19"
         },
         {
           "asset_refs": [],
-          "block_id": "safety:block-0019",
+          "block_id": "safety:block-0020",
           "content_sha256": "3ba980158b2d17a58c26ddb186db6642b72814c7d3d0ef74d879520c29e9c6cd",
           "kind": "flow",
           "payload": {
@@ -4905,11 +4986,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/safety#block-19"
+          "source_ref": "native-pdf/safety#block-20"
         },
         {
           "asset_refs": [],
-          "block_id": "safety:block-0020",
+          "block_id": "safety:block-0021",
           "content_sha256": "c3b0d66c96c6a6c53c0d122753bad57d08a2745f992e24c6154283e0e0cd728d",
           "kind": "flow",
           "payload": {
@@ -5017,11 +5098,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/safety#block-20"
+          "source_ref": "native-pdf/safety#block-21"
         },
         {
           "asset_refs": [],
-          "block_id": "safety:block-0021",
+          "block_id": "safety:block-0022",
           "content_sha256": "bd75f9051453ab3194f8f56ab4a261e238a446d910899aa582d1105bef0098b5",
           "kind": "flow",
           "payload": {
@@ -5129,11 +5210,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/safety#block-21"
+          "source_ref": "native-pdf/safety#block-22"
         },
         {
           "asset_refs": [],
-          "block_id": "safety:block-0022",
+          "block_id": "safety:block-0023",
           "content_sha256": "764268a84275fb80b9981806b379c5abadec7474c5a175e2b90e19ab04c07046",
           "kind": "flow",
           "payload": {
@@ -5232,11 +5313,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/safety#block-22"
+          "source_ref": "native-pdf/safety#block-23"
         },
         {
           "asset_refs": [],
-          "block_id": "safety:block-0023",
+          "block_id": "safety:block-0024",
           "content_sha256": "77ab42541ebe4453501bfe9805caf55cd139dd0cac77cc30f512c1b0cb03ee74",
           "kind": "flow",
           "payload": {
@@ -5250,11 +5331,11 @@
             "level": 3,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/safety#block-23"
+          "source_ref": "native-pdf/safety#block-24"
         },
         {
           "asset_refs": [],
-          "block_id": "safety:block-0024",
+          "block_id": "safety:block-0025",
           "content_sha256": "d9b3b2f0c2e54dcd3b1c2260c4c6c9357e4a8f5fd67d7662dfbe882560c3deea",
           "kind": "flow",
           "payload": {
@@ -5362,11 +5443,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/safety#block-24"
+          "source_ref": "native-pdf/safety#block-25"
         },
         {
           "asset_refs": [],
-          "block_id": "safety:block-0025",
+          "block_id": "safety:block-0026",
           "content_sha256": "a9d6dcd09ad736faf1693d451b042eb8defaf2eba2f329a2f7aeeb40bf38c3d7",
           "kind": "flow",
           "payload": {
@@ -5522,11 +5603,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/safety#block-25"
+          "source_ref": "native-pdf/safety#block-26"
         },
         {
           "asset_refs": [],
-          "block_id": "safety:block-0026",
+          "block_id": "safety:block-0027",
           "content_sha256": "7ee88d3f8ef72502ae23bf601fbd422a1cfcd07d1d124c74700e3f1e613c622f",
           "kind": "flow",
           "payload": {
@@ -5634,11 +5715,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/safety#block-26"
+          "source_ref": "native-pdf/safety#block-27"
         },
         {
           "asset_refs": [],
-          "block_id": "safety:block-0027",
+          "block_id": "safety:block-0028",
           "content_sha256": "ec021b6afbd7c16b6f18fd68f79fffc9d84dbd83afdcc85a5e98d2954cdf0381",
           "kind": "flow",
           "payload": {
@@ -5737,7 +5818,7 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/safety#block-27"
+          "source_ref": "native-pdf/safety#block-28"
         }
       ],
       "language": "ja",
@@ -5745,7 +5826,7 @@
       "skipped_raw": 0,
       "source_path": "source/ja/content.json#safety",
       "source_ref": "native-pdf/safety",
-      "source_sha256": "f2c37f330501a4516f473b2b97ba38b89337b7a94aa21d44103d2fa6f2ea953e"
+      "source_sha256": "8f1cc0b4861b61527a5594c529ae5699d102f6ca8123cfdbfb9533ed47ad2960"
     },
     {
       "blocks": [

@@ -69,7 +69,7 @@
   "publication_eligible": false,
   "pending_source_review": [
     "Operator review of the 1280/390 renders and the source_concerns list",
-    "Three printed symbol rows (pending_symbols) await admissible shared variants; their captions are left out of the Web symbol tables until then"
+    "Two printed symbol rows (pending_symbols: read manual, keep dry) await admissible shared variants; their captions are left out of the Web symbol table until then"
   ],
   "build_boundary": "JE-1000H JP is not a phase2 target. build_content.py binds the transcription to shared ComponentSpecs; rebuild.py replays them through manual-ir/v2 and the shared Web/MyST pipeline with the prepared-document shared-style gate and symbol admission. No live Base, queue, source table, HTML_link or asset registry is read or written.",
   "repo_inputs": [],
@@ -477,46 +477,6 @@
       "closest_max_mean_channel_error": 0.0244,
       "status": "pending shared variant (coordinator); row and caption left out of the Web symbol table",
       "description": "product box with water droplets inside a prohibition circle; do not get the product wet"
-    },
-    {
-      "physical_page": 4,
-      "drawing_indices": [
-        64,
-        65,
-        66,
-        67,
-        68,
-        69,
-        70,
-        71,
-        72,
-        73,
-        74
-      ],
-      "glyph_bbox": [
-        33,
-        62,
-        60,
-        87
-      ],
-      "caption_bbox": [
-        70.72,
-        27.44,
-        176.72,
-        118.55
-      ],
-      "caption_ids": [
-        "recycle.title",
-        "recycle.b1",
-        "recycle.b2",
-        "recycle.b3"
-      ],
-      "caption_text": "充電式電池のリサイクルについて本機はリサイクル可能な充電池を内蔵しています。この商品を廃棄する場合は、当社のカスタマーサポートにご連絡ください。充電池の取りはずしはお客様自身では行わないでください。",
-      "pdf_sha256": "717c813db4c64d57f90072da6f40081162131979cc181a440c589e70d9947da4",
-      "closest_shared_variant": "battery_disposal/je2000e-eu-pt-batch1465-native",
-      "closest_max_mean_channel_error": 0.1724,
-      "status": "pending shared variant (coordinator); row and caption left out of the Web symbol table",
-      "description": "Li-ion recycling mark (three chasing arrows) with the lettering 「Li-ion 32」 below; rechargeable-battery recycling row"
     }
   ],
   "inputs": [
@@ -527,8 +487,8 @@
     },
     {
       "path": "README.md",
-      "size": 3660,
-      "sha256": "f596ec637bb62890d3ab045c51e615c440ed5cf023372899224abc90947d0f4b"
+      "size": 3839,
+      "sha256": "f639be337d4e8d51431596557cbbc7fd73f537c29cdaef4752b5b32dc2e4c6b6"
     },
     {
       "path": "assets/ac-charge.png",
@@ -801,6 +761,11 @@
       "sha256": "9b8dae6dd0a2c6d61f407fb5eb7d316e48b8cd65e0fe2a3150e910d8f65241b4"
     },
     {
+      "path": "assets/recycle-li-ion.svg",
+      "size": 6314,
+      "sha256": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5"
+    },
+    {
       "path": "assets/solar-adapter.png",
       "size": 189432,
       "sha256": "f14bbadbfc5143ca0031ab814ec8059245f868f7127ecf4aace35d04dcd98b7a"
@@ -867,8 +832,8 @@
     },
     {
       "path": "build_content.py",
-      "size": 34781,
-      "sha256": "017686b972e25e866aa8103050da93687e46374c5a000ef12a44f6444198167c"
+      "size": 35694,
+      "sha256": "32c1b4ac641a6901c7d36efb041ea1e3b5937da0d41beb610c5cd7a12aa06300"
     },
     {
       "path": "derive_assets.py",
@@ -878,22 +843,22 @@
     {
       "path": "evidence/browser-1280.json",
       "size": 41,
-      "sha256": "3e937202becdb8c8f3ef81ef4e41ced7054ec3dfe473e47221e30dccbaae5703"
+      "sha256": "ed4f13a9f4d0da8501e553530950c72dfdb482cf4c58f6345ab6a1983db950f0"
     },
     {
       "path": "evidence/browser-1280.png",
-      "size": 2370896,
-      "sha256": "33b4afe4b5f88c4edbca93ca22d6c37ec49aaf31bb748381109623c80d40cd12"
+      "size": 2382387,
+      "sha256": "76426c3fa337d02f389534f38522dac130dccb76b52c18e482de7baf65f5ff09"
     },
     {
       "path": "evidence/browser-390.json",
       "size": 39,
-      "sha256": "960c3a3c25add5f2c7efd6e3c38ee452c531b4549b8ffabc11315b73e17aa865"
+      "sha256": "acb4c46155d84d1cfb5cbad2da33799ff403d0b8169d29db9b5fed37505b42cf"
     },
     {
       "path": "evidence/browser-390.png",
-      "size": 1713828,
-      "sha256": "2b169923017afb9d6d568f70f7f4423d7c54ec451ba3872a75d3f8910f804f14"
+      "size": 1721809,
+      "sha256": "e1a3b0aa784b2f18ee917cb9220767aeb085567e65a0c9c6365a475b3b55b749"
     },
     {
       "path": "evidence/ruff.log",
@@ -903,17 +868,17 @@
     {
       "path": "evidence/strict-sphinx.log",
       "size": 1943,
-      "sha256": "ab58b581d7e7a7d6e6f8c2d783b9d45b36917a48a79061bc1021407f1d878043"
+      "sha256": "3ae071f9d59d28f84f255458355e506b0052d2991bdecf5590bf534f30d8a9c1"
     },
     {
       "path": "evidence/target-tests.log",
       "size": 2397,
-      "sha256": "e4e93f683f72e89aca9bde248dd276af949d4645176073645920656a77cbfc0c"
+      "sha256": "568cff8926806836d87dddb7fc3ac63ffd08badf61b564d41c60b6e2eb5e79f9"
     },
     {
       "path": "evidence/validation.json",
-      "size": 2191,
-      "sha256": "6548d7affa3c3e4e87db0c9e6b0527680f17b53cc2c26a604a71cec2dc1e5106"
+      "size": 2534,
+      "sha256": "516a54d8678fbf26dc752533968c3ff2b98ce7f505ee1e738dd3d0f974f0a159"
     },
     {
       "path": "rebuild.py",
@@ -927,33 +892,33 @@
     },
     {
       "path": "source/asset_decisions.json",
-      "size": 64397,
-      "sha256": "1757255c45cbfbacb6b91dcf3beb4673efbe2da32e704dad1d6c7dc58a4b63a4"
+      "size": 65180,
+      "sha256": "0191713ea5e129c60db4b8b23d8e6c8c2f937f28c868b7fcce06667e3c28e9ac"
     },
     {
       "path": "source/asset_recipe.json",
-      "size": 16234,
-      "sha256": "d9a44482abd9164613efdd5a4006e58dfea9c52b733b2b18d38dff32c46ba779"
+      "size": 15977,
+      "sha256": "e6f1c9a668874b213ad5d4cacfb829e7a6b76e11fe20d1a656658c0622c6db2f"
     },
     {
       "path": "source/differences.md",
-      "size": 3404,
-      "sha256": "e5cef74b92bd1380197261e5f368c70c699a51be784c988029b487003427f656"
+      "size": 3512,
+      "sha256": "8b67bc92df6d7f97fc6e18e2017a7ea3d4fd05fc908c9858c0b37532805b9ad6"
     },
     {
       "path": "source/discovery.md",
-      "size": 4014,
-      "sha256": "13eacfe4519dc4f92d7e5a722fad508ffec4b67e6a8854aaf20e65c28250b85f"
+      "size": 4360,
+      "sha256": "75a8efc243a547362fec47f14a5f92ee8f061337eff25ad524a98cd594a48a1e"
     },
     {
       "path": "source/geometry.css",
-      "size": 1395,
-      "sha256": "8c64319f6671b046621f01dad49ff5f48cb8336c995fd7a5590e048989df7a2f"
+      "size": 1566,
+      "sha256": "c66fc17dc9e3ae1a3a4b64af8f77b0656619d4e6529a257e86b0a2dba3de97c7"
     },
     {
       "path": "source/ja/content.json",
-      "size": 308437,
-      "sha256": "c59012c1a60e8fe45df880ff955ff073ec0f4c5684eee4216af21d5f5967b015"
+      "size": 310818,
+      "sha256": "a14bef698d5901c96cb06dfb45db23df9de0eeb1fde662aff6186149dd7f1463"
     },
     {
       "path": "source/transcription.json",
@@ -962,13 +927,13 @@
     },
     {
       "path": "source_manifest.json",
-      "size": 40193,
-      "sha256": "f3f3c6867a01b484117cd93ed439efde11f9d07279eae80432d60cf0f16bfc01"
+      "size": 39841,
+      "sha256": "b7a74d68d1a5a616d0d70634d862b8fc3d00073c63e865003bf8d664e98826c4"
     },
     {
       "path": "web/ja/_static/source_geometry.css",
-      "size": 1395,
-      "sha256": "8c64319f6671b046621f01dad49ff5f48cb8336c995fd7a5590e048989df7a2f"
+      "size": 1566,
+      "sha256": "c66fc17dc9e3ae1a3a4b64af8f77b0656619d4e6529a257e86b0a2dba3de97c7"
     },
     {
       "path": "web/ja/_static/web_manual.css",
@@ -1246,6 +1211,11 @@
       "sha256": "9b8dae6dd0a2c6d61f407fb5eb7d316e48b8cd65e0fe2a3150e910d8f65241b4"
     },
     {
+      "path": "web/ja/assets/recycle-li-ion.svg",
+      "size": 6314,
+      "sha256": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5"
+    },
+    {
       "path": "web/ja/assets/solar-adapter.png",
       "size": 189432,
       "sha256": "f14bbadbfc5143ca0031ab814ec8059245f868f7127ecf4aace35d04dcd98b7a"
@@ -1322,16 +1292,23 @@
     },
     {
       "path": "web/ja/manual.ir.json",
-      "size": 596126,
-      "sha256": "f8cda6bec3bcee856f046412b686683e0354bcff445430798f74c89fcffe2ed7"
+      "size": 599868,
+      "sha256": "9d062dc690bfb5ada73598062b0ed063fc9a3c040329d597970890c662e64c9c"
     },
     {
       "path": "web/ja/manual_je1000h_jp_ja.md",
-      "size": 90560,
-      "sha256": "a0f55c8ada1bab19806eb1345a8ee6b35bd719fd4e266ec5c369e1141cf82e8d"
+      "size": 91295,
+      "sha256": "0ee512b02b1ed52a276df2c4f71d5df6bf2be31a9eeb6ea8c965225bf06dc3f4"
     }
   ],
   "shared_component_exceptions": [
+    {
+      "language": "ja",
+      "page_id": "safety",
+      "kind": "table",
+      "text_sha256": "910f8403b07ec154b716e2c7cbc611b6a96652f6a07abce257e3c626afe5cee7",
+      "reason": "single-row 充電式電池のリサイクルについて notice beside its Li-ion 32 mark (operator-chosen canonical shared icon native/je3000c-kr-78316033-06): HB-TABLE-SYMBOL-ICON requires two non-empty panels and admitted glyphs, and LCD/callout components would drop or misname the mark; a plain two-cell table on the shared manual-table classes (as JE-1000D JP V2)"
+    },
     {
       "language": "ja",
       "page_id": "usage",
@@ -1358,8 +1335,12 @@
       "shared": "HB-TABLE-SYMBOL-ICON/two-panel-responsive with symbol admission (8 admitted rows; 2 pending)"
     },
     {
-      "printed": "WEEE / battery-disposal boxes (Li-ion box pending)",
+      "printed": "WEEE / battery-disposal boxes",
       "shared": "HB-TABLE-SYMBOL-ICON/two-panel-responsive with symbol admission"
+    },
+    {
+      "printed": "充電式電池のリサイクルについて Li-ion 32 box",
+      "shared": "declared plain table (shared_component_exceptions) with the operator-chosen canonical shared Li-ion 32 icon"
     },
     {
       "printed": "警告/注意 icon items",

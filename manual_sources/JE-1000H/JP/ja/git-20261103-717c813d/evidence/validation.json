@@ -1,19 +1,43 @@
 {
   "schema_version": "je1000h-jp-candidate-validation/v1",
   "source_commit": "uncommitted working tree on feat/web-jp-ja-1000c-1000g-1000h-1500b (coordinator commits)",
-  "date": "2026-11-03",
+  "date": "2026-11-03 (Li-ion 32 plain-table follow-up)",
   "environment": "system Python 3.13, pandoc 3.9.0.2 (CI 3.9.0.2), ruff 0.16.9, Playwright Chromium (node)",
   "checks": [
-    {"command": "ruff check manual_sources/JE-1000H/JP/ja/git-20261103-717c813d/*.py tests/test_je1000h_jp_web.py", "result": "pass", "log": "ruff.log"},
-    {"command": "python3 manual_sources/JE-1000H/JP/ja/git-20261103-717c813d/rebuild.py --output tmp/je1000h-jp-2", "result": "pass (14 chapters; HB-CALLOUT-STRIP 29, HB-SPECIAL-APP 2, HB-SPECIAL-INBOX 1, HB-SPECIAL-REFERENCE-FIGURE 20, HB-TABLE-AUTO-RESUME 1, HB-TABLE-KEY-COMBINATIONS 1, HB-TABLE-LCD-ICON 1, HB-TABLE-LCD-MODE 1, HB-TABLE-SPEC 4, HB-TABLE-SYMBOL-ICON 2, HB-TABLE-SYMBOL-SIGNAL 1, HB-TABLE-TROUBLESHOOTING 1, HB-WARRANTY-SECTION 6; symbol admission 10 rows, max error 0.016547)"},
-    {"command": "python3 -m sphinx -n -W --keep-going -b html web/ja <html>", "result": "pass", "log": "strict-sphinx.log"},
-    {"command": "python3 -m unittest tests.test_je1000h_jp_web tests.test_prepared_document_shared_styles", "result": "pass (20 tests)", "log": "target-tests.log"},
-    {"command": "browser 1280 / 390 full page (images forced eager, page scrolled, networkidle; captured in 6000px clips and stitched)", "result": "74 images, 0 broken, document scrollWidth == viewport at both widths; overview/LCD map pan and wide tables scroll inside their components at 390", "files": ["browser-1280.png", "browser-390.png", "browser-1280.json", "browser-390.json"]}
+    {
+      "command": "ruff check manual_sources/JE-1000H/JP/ja/git-20261103-717c813d/*.py tests/test_je1000h_jp_web.py",
+      "result": "pass",
+      "log": "ruff.log"
+    },
+    {
+      "command": "python3 manual_sources/JE-1000H/JP/ja/git-20261103-717c813d/rebuild.py --output tmp/je1000h-jp-3",
+      "result": "pass (14 chapters; HB-CALLOUT-STRIP 29, HB-SPECIAL-APP 2, HB-SPECIAL-INBOX 1, HB-SPECIAL-REFERENCE-FIGURE 20, HB-TABLE-AUTO-RESUME 1, HB-TABLE-KEY-COMBINATIONS 1, HB-TABLE-LCD-ICON 1, HB-TABLE-LCD-MODE 1, HB-TABLE-SPEC 4, HB-TABLE-SYMBOL-ICON 2, HB-TABLE-SYMBOL-SIGNAL 1, HB-TABLE-TROUBLESHOOTING 1, HB-WARRANTY-SECTION 6; declared plain tables 2; symbol admission 10 rows, max error 0.016547)"
+    },
+    {
+      "command": "python3 -m sphinx -n -W --keep-going -b html web/ja <html>",
+      "result": "pass",
+      "log": "strict-sphinx.log"
+    },
+    {
+      "command": "python3 -m unittest tests.test_je1000h_jp_web tests.test_prepared_document_shared_styles",
+      "result": "pass (20 tests)",
+      "log": "target-tests.log"
+    },
+    {
+      "command": "browser 1280 / 390 full page (images forced eager, page scrolled, networkidle; captured in 6000px clips and stitched)",
+      "result": "74 images, 0 broken, document scrollWidth == viewport at both widths; overview/LCD map pan and wide tables scroll inside their components at 390",
+      "files": [
+        "browser-1280.png",
+        "browser-390.png",
+        "browser-1280.json",
+        "browser-390.json"
+      ]
+    }
   ],
   "rebuild_gates": [
     "input SHA-256 inventory",
-    "prepared-document shared-style admission with one declared plain table (省エネモード)",
-    "symbol asset admission: 10 rows on shared variants; 3 printed rows pending a shared variant (source_manifest.json:pending_symbols)",
+    "prepared-document shared-style admission with two declared plain tables (Li-ion 32 recycling notice with the operator-chosen canonical shared icon native/je3000c-kr-78316033-06; 省エネモード)",
+    "symbol asset admission: 10 rows on shared variants; 2 printed rows (read manual, keep dry) pending a shared variant (source_manifest.json:pending_symbols)",
     "candidate: no approval.json; IR publication_eligible false"
   ],
   "not_validated": "full python -m unittest, maintainability guardrails, frozen_package_registry, seal_frozen_web_evidence, RTD deployment (coordinator / after operator review)"

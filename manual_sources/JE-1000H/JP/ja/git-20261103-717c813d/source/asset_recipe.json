@@ -718,6 +718,11 @@
    "path": "assets/button-dc-usb.svg",
    "from": "docs/renderers/web/assets/shared/buttons/dc_usb.svg",
    "sha256": "3355388bad2221362a63dfad0c04fb9c15f521866166144cd3a644bde14e5864"
+  },
+  {
+   "path": "assets/recycle-li-ion.svg",
+   "from": "docs/renderers/web/assets/shared/symbols/native-v1/je3000c-kr-78316033-06.svg",
+   "sha256": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5"
   }
  ],
  "pending_symbols": [
@@ -778,42 +783,6 @@
    ],
    "closest": "keep-dry/h1-jp-native",
    "max_mean_channel_error": 0.0244
-  },
-  {
-   "caption_ids": [
-    "recycle.title",
-    "recycle.b1",
-    "recycle.b2",
-    "recycle.b3"
-   ],
-   "physical_page": 4,
-   "glyph_bbox": [
-    33,
-    62,
-    60,
-    87
-   ],
-   "drawing_indices": [
-    64,
-    65,
-    66,
-    67,
-    68,
-    69,
-    70,
-    71,
-    72,
-    73,
-    74
-   ],
-   "caption_bbox": [
-    70.72,
-    27.44,
-    176.72,
-    118.55
-   ],
-   "closest": "battery_disposal/je2000e-eu-pt-batch1465-native",
-   "max_mean_channel_error": 0.1724
   }
  ]
 }

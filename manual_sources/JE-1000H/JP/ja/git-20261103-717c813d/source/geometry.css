@@ -19,3 +19,6 @@
 
 /* The printed 88H mark sits inline in the energy-saving sentences. */
 #furo-main-content p img[alt="88H"] { display: inline; height: 1.1em; width: auto; vertical-align: -0.15em; margin: 0 .1em; }
+
+/* Recycling notice: the Li-ion 32 mark keeps its print size beside the copy. */
+#furo-main-content table img[src$="recycle-li-ion.svg"] { width: 4.5rem; height: auto; }

@@ -11,7 +11,7 @@ printed order. It writes ``source/ja/content.json``, the frozen input that
 (signal/symbol table headers, the key-combination plus sign) follows the
 JE-1000D JP V2 and JE-2000E JP editions and is listed in
 ``source/differences.md``. ``PENDING_SYMBOL_LINES`` are the captions of the
-three printed symbol rows that no shared variant admits yet; they stay out of
+two printed symbol rows that no shared variant admits yet; they stay out of
 the Web body until the shared catalog gains their variants.
 """
 from __future__ import annotations
@@ -48,7 +48,7 @@ LANGUAGE = "ja"
 SOURCE_SHA256 = "717c813db4c64d57f90072da6f40081162131979cc181a440c589e70d9947da4"
 ECO_ICON = "assets/lcd/22_energy_saving_mode.png"
 # Printed symbol rows without an admissible shared variant (see source_manifest.json:pending_symbols).
-PENDING_SYMBOL_LINES = ("sym.read", "sym.wet", "recycle.title", "recycle.b1", "recycle.b2", "recycle.b3")
+PENDING_SYMBOL_LINES = ("sym.read", "sym.wet")
 
 
 class Lines:
@@ -169,6 +169,16 @@ def bold(key: str) -> dict:
     return node("paragraph", [node("strong", [text(T(key))])])
 
 
+def plain_table(rows: list[list[list[dict]]]) -> dict:
+    """Declared plain table on the shared manual-table classes (shared_component_exceptions)."""
+    body = node("table_body", [node("table_row", [node("table_cell", cell, header=False) for cell in row])
+                               for row in rows])
+    return root(node("group", [node("table", [body],
+                                    presentation={"html": {"attributes": {"class": "manual-table"}}})],
+                     role="container",
+                     presentation={"html": {"attributes": {"class": "table-wrapper docutils container"}}}))
+
+
 def with_icon(key: str) -> dict:
     """A printed sentence whose [88H] mark is the LCD energy-saving icon itself."""
     before, after = T(key).split(" [88H] ")
@@ -201,6 +211,11 @@ def safety() -> list[dict]:
         panels=[[{"asset_index": i, "icon_alt": meanings[i], **pair(meanings[i], "meaning")} for i in rows]
                 for rows in ((0, 1, 2, 3), (4, 5, 6, 7))],
         icon_refs=[ref for _, ref in SYMBOLS], source_ref="native-pdf/page-3/symbols", language=LANGUAGE)
+    # Li-ion 32 notice: declared plain table with the operator-chosen canonical shared icon (as JE-1000D JP V2).
+    liion = plain_table([[
+        [node("image", source="assets/recycle-li-ion.svg", alt=T.rows["recycle.title"]["text"])],
+        [bold("recycle.title"), *(p(k) for k in ("recycle.b1", "recycle.b2", "recycle.b3"))],
+    ]])
     recycle_rows = []
     for index, prefix in enumerate(("weee", "battery")):
         keys = [f"{prefix}.b{i}" for i in (1, 2, 3)]
@@ -224,7 +239,8 @@ def safety() -> list[dict]:
 
     nodes = [chapter_heading("safety.h", "native-safety"), strong("safety.lead"),
              heading("pict.h"), para("pict.p1"), para("pict.p2"), component_flow_node(signal, root=True),
-             heading("sym.h"), component_flow_node(symbols, root=True), component_flow_node(recycle, root=True),
+             heading("sym.h"), component_flow_node(symbols, root=True), liion,
+             component_flow_node(recycle, root=True),
              heading("w.h")]
     nodes += [item(warn, "warning", f"w{i}", 4) for i in range(1, 9)]
     warn2 = T("w2.h")

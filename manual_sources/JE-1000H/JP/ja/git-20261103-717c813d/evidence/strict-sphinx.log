@@ -15,9 +15,9 @@ checking consistency... done
 preparing documents... done
 copying assets... 
 copying static files... 
-Writing evaluated template result to tmp/je1000h-jp-2-html/_static/basic.css
-Writing evaluated template result to tmp/je1000h-jp-2-html/_static/documentation_options.js
-Writing evaluated template result to tmp/je1000h-jp-2-html/_static/language_data.js
+Writing evaluated template result to tmp/je1000h-jp-3-html/_static/basic.css
+Writing evaluated template result to tmp/je1000h-jp-3-html/_static/documentation_options.js
+Writing evaluated template result to tmp/je1000h-jp-3-html/_static/language_data.js
 copying static files: done
 copying extra files... 
 copying extra files: done
@@ -31,4 +31,4 @@ dumping search index in Japanese (code: ja)... done
 dumping object inventory... done
 build succeeded.
 
-The HTML pages are in tmp/je1000h-jp-2-html.
+The HTML pages are in tmp/je1000h-jp-3-html.

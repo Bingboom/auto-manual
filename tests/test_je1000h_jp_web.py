@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PACKAGE = ROOT / "manual_sources/JE-1000H/JP/ja/git-20261103-717c813d"
 SOURCE_SHA = "717c813db4c64d57f90072da6f40081162131979cc181a440c589e70d9947da4"
 MARKDOWN = "manual_je1000h_jp_ja.md"
-PENDING = {"sym.read", "sym.wet", "recycle.title", "recycle.b1", "recycle.b2", "recycle.b3"}
+PENDING = {"sym.read", "sym.wet"}
 CHAPTERS = ["安全上のご注意", "使用上のご注意", "免責事項", "同梱品", "各部の名称", "液晶画面", "使い方", "UPS 機能",
             "接続", "充電方法", "トラブルシューティング", "主な仕様", "基本情報", "入力ポート", "出カポート", "温度範囲",
             "保証について", "Jackeryアプリ ユーザーマニュアル"]

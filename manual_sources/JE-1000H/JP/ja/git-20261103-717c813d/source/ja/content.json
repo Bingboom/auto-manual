@@ -290,6 +290,100 @@
      }
     },
     {
+     "kind": "group",
+     "role": "container",
+     "presentation": {
+      "html": {
+       "attributes": {
+        "class": "table-wrapper docutils container"
+       }
+      }
+     },
+     "children": [
+      {
+       "kind": "table",
+       "presentation": {
+        "html": {
+         "attributes": {
+          "class": "manual-table"
+         }
+        }
+       },
+       "children": [
+        {
+         "kind": "table_body",
+         "children": [
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "image",
+               "source": "assets/recycle-li-ion.svg",
+               "alt": "充電式電池のリサイクルについて"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "strong",
+                 "children": [
+                  {
+                   "kind": "text",
+                   "text": "充電式電池のリサイクルについて"
+                  }
+                 ]
+                }
+               ]
+              },
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "本機はリサイクル可能な充電池を内蔵しています。"
+                }
+               ]
+              },
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "この商品を廃棄する場合は、当社のカスタマーサポートにご連絡ください。"
+                }
+               ]
+              },
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "充電池の取りはずしはお客様自身では行わないでください。"
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
      "schema_version": "manual-flow/v2",
      "kind": "component",
      "component_spec": {

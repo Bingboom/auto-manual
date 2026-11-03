@@ -2,7 +2,7 @@
 
 Coordinator batch (JE-1000C, JE-1000G, JE-1000H, JE-1500B JP/ja): convert the operator-provided monolingual JP manuals to Git-only Web candidates. This package is the JE-1000H Japanese manual of Feishu record `reczz28SfbsHcGfU` (子物料编码 16-0102-000431, 项目号 HTE159, SKU 21-0001-000451).
 
-**Status: `candidate-pending-operator-review`.** No `source/approval.json`; the IR is not publication-eligible. The operator reviews the 1280/390 renders and `source_manifest.json:source_concerns`. Three printed symbol rows wait for shared variants (`pending_symbols`) and are not yet on the Web page.
+**Status: `candidate-pending-operator-review`.** No `source/approval.json`; the IR is not publication-eligible. The operator reviews the 1280/390 renders and `source_manifest.json:source_concerns`. Two printed symbol rows (read manual, keep dry) wait for shared variants (`pending_symbols`) and are not yet on the Web page.
 
 ## Source authority
 
@@ -13,11 +13,11 @@ Coordinator batch (JE-1000C, JE-1000G, JE-1000H, JE-1500B JP/ja): convert the op
 
 ## Layout
 
-The Web body is printed pages 01–25 (physical 3–27); cover, paper TOC and back cover stay in the PDF. Every printed block maps to a shared component (`source_manifest.json:component_map`); the one plain table (省エネモード) is declared in `shared_component_exceptions`. `source/differences.md` lists each deliberate layout difference; `source/geometry.css` is geometry and type size only.
+The Web body is printed pages 01–25 (physical 3–27); cover, paper TOC and back cover stay in the PDF. Every printed block maps to a shared component (`source_manifest.json:component_map`); the two plain tables (Li-ion 32 recycling notice, 省エネモード) are declared in `shared_component_exceptions`. `source/differences.md` lists each deliberate layout difference; `source/geometry.css` is geometry and type size only.
 
 ## Artwork
 
-`source/discovery.md` and `source/asset_decisions.json` record the inventory and every reuse/extract decision. 27 LCD icons and the POWER / DC/USB buttons are reused byte-identically; 10 safety symbols reuse admitted shared variants (fixed 2% admission). Product, operation, charging and App art are complete source panels at 3×; the AC1 button keeps its PDF vector paths and the LIGHT button is its source circle on a transparent ground.
+`source/discovery.md` and `source/asset_decisions.json` record the inventory and every reuse/extract decision. 27 LCD icons and the POWER / DC/USB buttons are reused byte-identically; 10 safety symbols reuse admitted shared variants (fixed 2% admission); the Li-ion 32 notice uses the operator-chosen canonical shared icon `native/je3000c-kr-78316033-06` in a declared plain table. Product, operation, charging and App art are complete source panels at 3×; the AC1 button keeps its PDF vector paths and the LIGHT button is its source circle on a transparent ground.
 
 ## Rebuild
 

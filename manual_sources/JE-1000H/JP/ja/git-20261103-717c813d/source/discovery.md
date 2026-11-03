@@ -36,6 +36,7 @@ Recorded before extraction, per the Web artwork reuse order
 | AC1 button | native PDF vector paths | print reads 「AC1」; shared `ac.svg` reads AC, JE-2000E `ac1-native.svg` reads AC 1 | transparent |
 | LIGHT button | 6× render of the button circle, outside made transparent | bulb glyph absent from shared `led.svg`; LIGHT is a text-layer span the vector selector cannot keep | transparent outside the circle |
 | 10 symbols | reuse admitted shared variants (errors 0.0057–0.0168) | fixed 2% admission | shared glyphs |
-| 3 symbols (read manual, keep dry, Li-ion 32) | **pending**: left out of the Web tables | no shared variant within 0.02 (0.0257, 0.0244, 0.1724) | — |
+| 2 symbols (read manual, keep dry) | **pending**: left out of the Web table | no shared variant within 0.02 (0.0257, 0.0244) | — |
+| Li-ion 32 recycling notice | reuse byte-identical the operator-chosen canonical shared icon `native/je3000c-kr-78316033-06`, as the image of a declared plain table (not a symbol-admission row) | operator decision; measured against the native p4 glyph: max mean channel error 0.1917 (same Li-ion 32 mark, different drawing proportions) | shared transparent glyph |
 | overview front/left/right, LCD map, operation panels, UPS, battery pack, charging, App screens and button map, in-box cards | new complete 3× panels | JE-1000H JP labels and ratings are part of the art; no JP asset of this model existed; JE-2000E JP shows the 2000 Plus chassis | complete panel, leader lines, captions, phone frames kept |
 | App store badges, QR | new crops of this page | same art as JE-1000D/JE-2000E JP but those files are different crops/scales; no byte-identical candidate | badge column / QR frame kept |

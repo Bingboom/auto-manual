@@ -1438,10 +1438,21 @@
   ]
  },
  {
-  "slot": "pending:recycle.title",
-  "decision": "pending shared variant; row left out of the Web table",
-  "reason": "closest shared variant battery_disposal/je2000e-eu-pt-batch1465-native measures 0.1724 > 0.02",
+  "slot": "recycle-li-ion",
+  "searched": [
+   "docs/renderers/web/assets/shared/symbols/manifest.json (all variants, fixed 2% compare_symbol)"
+  ],
+  "decision": "reuse byte-identical (operator-chosen canonical shared icon)",
+  "shared_symbol_key": "native/je3000c-kr-78316033-06",
+  "from": "docs/renderers/web/assets/shared/symbols/native-v1/je3000c-kr-78316033-06.svg",
+  "reason": "operator chose the canonical shared Li-ion 32 icon for the 充電式電池のリサイクルについて notice; it is the image of a declared plain table, not a symbol-admission row. Measured against the native p4 glyph (drawing_indices 64-74, glyph_bbox [33, 62, 60, 87]): max mean channel error 0.1917 (above the 0.02 admission tolerance; same Li-ion 32 mark, different drawing proportions)",
   "physical_page": 4,
+  "glyph_bbox": [
+   33,
+   62,
+   60,
+   87
+  ],
   "drawing_indices": [
    64,
    65,
@@ -1455,11 +1466,9 @@
    73,
    74
   ],
-  "glyph_bbox": [
-   33,
-   62,
-   60,
-   87
-  ]
+  "max_mean_channel_error": 0.1917,
+  "final_path": "assets/recycle-li-ion.svg",
+  "sha256": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5",
+  "background": "shared transparent glyph unchanged"
  }
 ]
