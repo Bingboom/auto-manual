@@ -34,6 +34,15 @@ PACKAGES: dict[str, dict] = {
         "print_only": ("写真はイメージです。実際の商品とは異なる場合があります。", "お買い上げありがとうございます。"),
         "tamper": ("96Wh (5Ah/19.2V DC)", "97Wh (5Ah/19.2V DC)"),
     },
+    "JE-240A": {
+        "path": "manual_sources/JE-240A/JP/ja/git-20261103-e227d165",
+        "sha256": "e227d165efcd389a260bb1b3f1a234c365c81465c01492c7e86d674afd8af2cf",
+        "markdown": "manual_je240a_jp_ja.md",
+        "facts": ("JE-240A", "20Ah/12.8V DC (256Wh)", "約23.1 x 15.3 x 16.8 cm (約3.6kg)"),
+        "foreign": ("JE-100A", "JE-100C", "99.2Wh", "Power Bank"),
+        "print_only": ("お買い上げありがとうございます。",),
+        "tamper": ("20Ah/12.8V DC (256Wh)", "21Ah/12.8V DC (256Wh)"),
+    },
     "JE-76A": {
         "path": "manual_sources/JE-76A/JP/ja/git-20261103-d8f7d338",
         "sha256": "d8f7d338fd208af056c0dda9991422227627ab771245e791858e1480978b013c",
@@ -44,6 +53,8 @@ PACKAGES: dict[str, dict] = {
         "tamper": ("76.8Wh", "77.8Wh"),
     },
 }
+
+NOTE_LINES = {"appm.note1", "appm.note2", "appm.note3"}
 
 
 def load(name: str, path: Path):
@@ -116,7 +127,12 @@ class ExplorerJpJaWebTests(unittest.TestCase):
             missing = []
             for line in lines:
                 text = squash(line["text"]).replace("[+]", "+")
-                if line["id"].startswith(("fig.", "names.")):
+                if line["id"] in NOTE_LINES:
+                    # 「備考：」 becomes the callout label beside its body.
+                    text = text.replace("：", "", 1)
+                # The bracketed [88H] mark is the LCD glyph image itself.
+                text = text.replace("[88H]", "")
+                if line["id"].startswith(("fig.", "names.f.", "names.r.")):
                     if text not in alts:
                         missing.append(line["id"])
                 elif text not in page and text.rstrip(":：") not in page and text not in alts:
