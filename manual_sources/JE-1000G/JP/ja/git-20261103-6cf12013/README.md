@@ -2,7 +2,7 @@
 
 Coordinator batch, 2026-11-03: JP/ja Git-only Web candidates for the 发布文档管理 records of JE-1000C, JE-1000G, JE-1000H and JE-1500B. This package is the JE-1000G Japanese manual of record `reczz28SfbsHbQU5` (子物料编码 16-0102-000396, 项目号 HTE158, SKU 21-0001-000447 / 21-0001-000448, 区域 日规).
 
-**Status: `candidate-pending-operator-review`.** There is no `source/approval.json` and the IR is not publication-eligible. The operator reviews the 1280/390 renders beside the JE-1000F JP Web and the `source_manifest.json:source_concerns` list before any release. One safety symbol (本製品を火気の近くに置かないでください。) is withheld until its shared variant exists (`source_manifest.json:pending_shared_symbols`).
+**Status: `operator-authorized-git-only-release`.** The operator reviewed the 1280/390 renders beside the JE-1000F/JP/ja (published JP Web) Web and the `source_manifest.json:source_concerns` list (PR #1653), then authorized release on 2026-11-03 (「上‘线提交发布：JE-1000C、JE-1000G、JE-1000H、JE-1500B」). `source/approval.json` binds every reviewed `source/` and `assets/` input; the IR is publication-eligible. The source copy goes live as printed; the listed source concerns go back to the source owner. Merge still needs explicit operator authorization (AGENTS.md §8.6). The fire-prohibition symbol row stays withheld until the shared symbol dedupe PR binds it to the operator-chosen canonical `no-open-flame/fire-match-prohibited` (`source_manifest.json:pending_shared_symbols`).
 
 ## Source authority
 

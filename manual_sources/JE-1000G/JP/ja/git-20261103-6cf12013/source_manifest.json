@@ -64,7 +64,7 @@
   "shared_reference_edition_for_review": "JE-1000F JP Web (manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed)",
   "live_bitable_dependency": false,
   "phase2_enrolled": false,
-  "publication_status": "candidate-pending-operator-review",
+  "publication_status": "operator-authorized-git-only-release",
   "build_boundary": "JE-1000G JP is not a phase2 target. build_content.py binds the transcription to shared ComponentSpecs; rebuild.py replays them through manual-ir/v2 and the shared Web/MyST pipeline with the prepared-document shared-style gate and symbol admission. No live Base, queue, source table, HTML_link or asset registry is read or written. Candidate: no source/approval.json; the IR is not publication-eligible.",
   "repo_inputs": [],
   "inputs": [
@@ -75,8 +75,8 @@
     },
     {
       "path": "README.md",
-      "size": 3949,
-      "sha256": "a3d8dc7aa4707bafd2abeda76edde35b405a61c881b9fceac61dc8f9b38cbe5d"
+      "size": 4311,
+      "sha256": "7eeb1d0317517932f643f20b12443c7fd8293d23ec3f514ee40817569dbeab87"
     },
     {
       "path": "assets/ac-output.png",
@@ -417,6 +417,11 @@
       "path": "refresh_manifest.py",
       "size": 2552,
       "sha256": "fca20ecb0a468dc79eed041316b5d1449dfb2944e9dea647d6e81182fe31b81f"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 16113,
+      "sha256": "f65d283b43dd345113d851716ccf9c9aae22129b3c757d529dd87f85788429a5"
     },
     {
       "path": "source/asset_decisions.json",

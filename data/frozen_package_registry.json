@@ -1241,7 +1241,7 @@
       "known_drift": {}
     },
     "manual_sources/JE-1000C/JP/ja/git-20261103-a369a8d0": {
-      "approval": "Operator request 「继续 转日语说明书」 2026-11-03 (JP batch of 24 relayed by the coordinator window; this window: JE-1000C, JE-1000G, JE-1000H, JE-1500B): Git-only JP ja single-language Web candidate, source copy verbatim; candidate intake only, no merge or release authorization",
+      "approval": "Operator 「上‘线提交发布：JE-1000C、JE-1000G、JE-1000H、JE-1500B」 2026-11-03 in the window session, after review of the PR #1653 1280/390 renders beside the reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinator window): Git-only JP ja single-language Web release, source copy verbatim; symbol rows pending the shared dedupe PR are withheld (see source/approval.json); merge not yet authorized",
       "registered": "2026-11-03",
       "known_drift": {}
     },
@@ -1331,7 +1331,7 @@
       "known_drift": {}
     },
     "manual_sources/JE-1000G/JP/ja/git-20261103-6cf12013": {
-      "approval": "Operator request 「继续 转日语说明书」 2026-11-03 (JP batch of 24 relayed by the coordinator window; this window: JE-1000C, JE-1000G, JE-1000H, JE-1500B): Git-only JP ja single-language Web candidate, source copy verbatim; candidate intake only, no merge or release authorization",
+      "approval": "Operator 「上‘线提交发布：JE-1000C、JE-1000G、JE-1000H、JE-1500B」 2026-11-03 in the window session, after review of the PR #1653 1280/390 renders beside the reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinator window): Git-only JP ja single-language Web release, source copy verbatim; symbol rows pending the shared dedupe PR are withheld (see source/approval.json); merge not yet authorized",
       "registered": "2026-11-03",
       "known_drift": {}
     },
@@ -1361,7 +1361,7 @@
       "known_drift": {}
     },
     "manual_sources/JE-1000H/JP/ja/git-20261103-717c813d": {
-      "approval": "Operator request 「继续 转日语说明书」 2026-11-03 (JP batch of 24 relayed by the coordinator window; this window: JE-1000C, JE-1000G, JE-1000H, JE-1500B): Git-only JP ja single-language Web candidate, source copy verbatim; candidate intake only, no merge or release authorization",
+      "approval": "Operator 「上‘线提交发布：JE-1000C、JE-1000G、JE-1000H、JE-1500B」 2026-11-03 in the window session, after review of the PR #1653 1280/390 renders beside the reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinator window): Git-only JP ja single-language Web release, source copy verbatim; symbol rows pending the shared dedupe PR are withheld (see source/approval.json); merge not yet authorized",
       "registered": "2026-11-03",
       "known_drift": {}
     },
@@ -1426,7 +1426,7 @@
       "known_drift": {}
     },
     "manual_sources/JE-1500B/JP/ja/git-20261103-f61d0d68": {
-      "approval": "Operator request 「继续 转日语说明书」 2026-11-03 (JP batch of 24 relayed by the coordinator window; this window: JE-1000C, JE-1000G, JE-1000H, JE-1500B): Git-only JP ja single-language Web candidate, source copy verbatim; candidate intake only, no merge or release authorization",
+      "approval": "Operator 「上‘线提交发布：JE-1000C、JE-1000G、JE-1000H、JE-1500B」 2026-11-03 in the window session, after review of the PR #1653 1280/390 renders beside the reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinator window): Git-only JP ja single-language Web release, source copy verbatim; symbol rows pending the shared dedupe PR are withheld (see source/approval.json); merge not yet authorized",
       "registered": "2026-11-03",
       "known_drift": {}
     },

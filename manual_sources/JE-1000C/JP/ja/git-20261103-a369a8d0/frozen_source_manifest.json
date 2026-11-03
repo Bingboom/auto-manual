@@ -56,7 +56,7 @@
   ],
   "live_bitable_dependency": false,
   "phase2_enrolled": false,
-  "publication_status": "candidate-pending-operator-review",
+  "publication_status": "operator-authorized-git-only-release",
   "build_boundary": "JE-1000C JP is not a phase2 target. build_content.py binds the transcription to shared ComponentSpecs; rebuild.py replays them through manual-ir/v2 and the shared Web/MyST pipeline with the prepared-document shared-style gate and symbol admission.",
   "repo_inputs": [],
   "symbol_asset_admission": {
@@ -296,8 +296,8 @@
     },
     {
       "path": "README.md",
-      "size": 3439,
-      "sha256": "a6b7e39c1ed00c37a9ed281c7d2953ca601539ecc3066d7fdad65d181c8b6273"
+      "size": 3827,
+      "sha256": "0956f4911f863961000605271779985292600f52cd1db3514e9083685445e20c"
     },
     {
       "path": "assets/ac-charge.png",
@@ -481,13 +481,13 @@
     },
     {
       "path": "evidence/strict-sphinx.log",
-      "size": 2012,
-      "sha256": "f2ffbbefdec80d6742c45c9ed84a1065eb9e30a8d0aeca9c4cfc3bcc269f70bc"
+      "size": 2307,
+      "sha256": "25a7369bd4d9d3855e561850497f5a021f5a9cfc5895248e36d9bafd4af5aa2c"
     },
     {
       "path": "evidence/target-tests.log",
       "size": 1739,
-      "sha256": "41ff56147b7a6311402b88d3dcc8232cedcfda625396c50e6f4c963662eaabf8"
+      "sha256": "fb77df006f10095da2bb44bc4b4ac57e98d7702edb297f577485f7b56c0063a6"
     },
     {
       "path": "evidence/validation.json",
@@ -503,6 +503,11 @@
       "path": "refresh_manifest.py",
       "size": 2552,
       "sha256": "0b3e527a1256238cee5e5d5cf66cf04d09489fc3a0d0dba876343281892a2eb7"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 10361,
+      "sha256": "f322a1225d70eb5276f515b631fb3fc4621464dc4c845f1db99d4bc5d8b4c4ff"
     },
     {
       "path": "source/asset_decisions.json",
@@ -541,8 +546,8 @@
     },
     {
       "path": "source_manifest.json",
-      "size": 23530,
-      "sha256": "407f26520a769800d9a5ee93044490f55aa60f6a161d077f720d8d9d01c4714d"
+      "size": 23688,
+      "sha256": "7a2ad897eea58005b400a05197b70e6e8b5dfc293b8c2243c9273391d9afa0f4"
     },
     {
       "path": "web/ja/_static/source_geometry.css",
@@ -711,8 +716,8 @@
     },
     {
       "path": "web/ja/manual.ir.json",
-      "size": 359276,
-      "sha256": "ca8a93fabfe9549d38ac571b4258cef2b11d82f46fbbf045c8ec665637c1f300"
+      "size": 370861,
+      "sha256": "a0208729d7a89122152e60972e44a9242d142964fa027f0e110956f792c68728"
     },
     {
       "path": "web/ja/manual_je1000c_jp_ja.md",

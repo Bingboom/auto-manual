@@ -2,7 +2,7 @@
 
 Coordinator batch (JE-1000C, JE-1000G, JE-1000H, JE-1500B JP/ja): convert the operator-provided monolingual JP manuals to Git-only Web candidates. This package is the JE-1000H Japanese manual of Feishu record `reczz28SfbsHcGfU` (子物料编码 16-0102-000431, 项目号 HTE159, SKU 21-0001-000451).
 
-**Status: `candidate-pending-operator-review`.** No `source/approval.json`; the IR is not publication-eligible. The operator reviews the 1280/390 renders and `source_manifest.json:source_concerns`. Two printed symbol rows (read manual, keep dry) wait for shared variants (`pending_symbols`) and are not yet on the Web page.
+**Status: `operator-authorized-git-only-release`.** The operator reviewed the 1280/390 renders beside the JE-1000H/EU/en (published EU English Web) Web and the `source_manifest.json:source_concerns` list (PR #1653), then authorized release on 2026-11-03 (「上‘线提交发布：JE-1000C、JE-1000G、JE-1000H、JE-1500B」). `source/approval.json` binds every reviewed `source/` and `assets/` input; the IR is publication-eligible. The source copy goes live as printed; the listed source concerns go back to the source owner. Merge still needs explicit operator authorization (AGENTS.md §8.6). The read-manual and keep-dry symbol rows stay withheld until the shared symbol dedupe PR binds them to the operator-chosen canonicals (`pending_symbols`).
 
 ## Source authority
 

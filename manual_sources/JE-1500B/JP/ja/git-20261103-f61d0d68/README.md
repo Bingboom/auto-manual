@@ -2,7 +2,7 @@
 
 This package is the JE-1500B Japanese manual of Feishu record `reczz28SfbsHeofK` (子物料编码 38-0001-000276, 项目号 HTE080, SKU 21-0001-000003, 区域 日规), built as one of the JP/ja Git-only Web candidates (JE-1000C, JE-1000G, JE-1000H, JE-1500B).
 
-**Status: `candidate-pending-operator-review`.** There is no `source/approval.json`; the IR is not publication-eligible. The operator reviews the 1280/390 renders (`evidence/`) beside the JE-1500B US/en Web edition and the source correction list (`source_manifest.json:source_concerns`) before any release.
+**Status: `operator-authorized-git-only-release`.** The operator reviewed the 1280/390 renders beside the JE-1500B/US/en (published US English Web) Web and the `source_manifest.json:source_concerns` list (PR #1653), then authorized release on 2026-11-03 (「上‘线提交发布：JE-1000C、JE-1000G、JE-1000H、JE-1500B」). `source/approval.json` binds every reviewed `source/` and `assets/` input; the IR is publication-eligible. The source copy goes live as printed; the listed source concerns go back to the source owner. Merge still needs explicit operator authorization (AGENTS.md §8.6). The 絵表示の説明 symbol table stays withheld until the shared native selector fix and symbol dedupe PR land (`source/asset_recipe.json:pending_symbols`).
 
 ## Source authority
 

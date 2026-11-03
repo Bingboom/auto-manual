@@ -1,9 +1,5 @@
-[env-preflight] WARN env.python: Python 3.13 differs from the pinned 3.12; tests and builds may fail for environment reasons
-[env-preflight] WARN env.lock: 4 pinned package(s) not installed: aliyun-python-sdk-core, aliyun-python-sdk-kms, crcmod, oss2
-[env-preflight] WARN env.lock: 2 package(s) differ from requirements.lock: certifi 2026.10.18 (lock 2026.6.17), charset-normalizer 3.5.1 (lock 3.4.8)
-[env-preflight] WARN env.lock: to match CI: python -m pip install -r requirements.lock (on the pinned Python)
-...{
-  "output": "<tmp>",
+{
+  "output": "/tmp/tmpmf115wcd/replay",
   "chapters": 14,
   "components": {
     "HB-CALLOUT-STRIP": 29,
@@ -73,8 +69,12 @@
     }
   ]
 }
-.................
+[env-preflight] WARN env.python: Python 3.13 differs from the pinned 3.12; tests and builds may fail for environment reasons
+[env-preflight] WARN env.lock: 4 pinned package(s) not installed: aliyun-python-sdk-core, aliyun-python-sdk-kms, crcmod, oss2
+[env-preflight] WARN env.lock: 2 package(s) differ from requirements.lock: certifi 2026.10.18 (lock 2026.6.17), charset-normalizer 3.5.1 (lock 3.4.8)
+[env-preflight] WARN env.lock: to match CI: python -m pip install -r requirements.lock (on the pinned Python)
+....................
 ----------------------------------------------------------------------
-Ran 20 tests in 60.354s
+Ran 20 tests in 20.784s
 
 OK

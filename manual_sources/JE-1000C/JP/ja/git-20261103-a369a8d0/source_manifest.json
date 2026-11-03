@@ -56,7 +56,7 @@
   ],
   "live_bitable_dependency": false,
   "phase2_enrolled": false,
-  "publication_status": "candidate-pending-operator-review",
+  "publication_status": "operator-authorized-git-only-release",
   "build_boundary": "JE-1000C JP is not a phase2 target. build_content.py binds the transcription to shared ComponentSpecs; rebuild.py replays them through manual-ir/v2 and the shared Web/MyST pipeline with the prepared-document shared-style gate and symbol admission.",
   "repo_inputs": [],
   "symbol_asset_admission": {
@@ -296,8 +296,8 @@
     },
     {
       "path": "README.md",
-      "size": 3439,
-      "sha256": "a6b7e39c1ed00c37a9ed281c7d2953ca601539ecc3066d7fdad65d181c8b6273"
+      "size": 3827,
+      "sha256": "0956f4911f863961000605271779985292600f52cd1db3514e9083685445e20c"
     },
     {
       "path": "assets/ac-charge.png",
@@ -463,6 +463,11 @@
       "path": "refresh_manifest.py",
       "size": 2552,
       "sha256": "0b3e527a1256238cee5e5d5cf66cf04d09489fc3a0d0dba876343281892a2eb7"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 10361,
+      "sha256": "f322a1225d70eb5276f515b631fb3fc4621464dc4c845f1db99d4bc5d8b4c4ff"
     },
     {
       "path": "source/asset_decisions.json",
