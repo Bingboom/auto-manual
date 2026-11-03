@@ -241,6 +241,15 @@ class SymbolAdmissionTests(unittest.TestCase):
         (self.md / row['asset_ref']).write_bytes(legacy)
         with self.assertRaisesRegex(RuntimeError, 'legacy variant fixture-legacy of canonical group read; bind fixture-0'):
             self.check()
+        # A source that already bound the legacy variant when the group was
+        # decided replays unchanged; any other source must bind the canonical.
+        group = self.catalog_extra['canonical_groups'][0]
+        group['legacy_frozen_sources'] = {'fixture-legacy': ['0' * 64]}
+        with self.assertRaisesRegex(RuntimeError, 'legacy variant fixture-legacy'):
+            self.check()
+        group['legacy_frozen_sources'] = {'fixture-legacy': [self.manifest['original_source']['sha256']]}
+        with self.assertRaisesRegex(RuntimeError, 'glyph/background differs'):
+            self.check()  # replay keeps the normal glyph comparison for the legacy variant
 
     def test_shared_caption_must_print_nearer_the_claimed_group(self):
         self.canonical_group(rival=True)

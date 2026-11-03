@@ -46,9 +46,12 @@ GROUP_STATUSES = {'operator-confirmed', 'proposed'}
 
 def _valid_group(group: dict, decisions: dict) -> bool:
     captions = group.get('captions', {})
+    frozen = group.get('legacy_frozen_sources', {})
     if (group.get('status') not in GROUP_STATUSES
             or not isinstance(group.get('legacy_variants'), list)
-            or not isinstance(captions, dict)
+            or not isinstance(captions, dict) or not isinstance(frozen, dict)
+            or not set(frozen) <= set(group['legacy_variants'])
+            or any(not isinstance(v, list) for v in frozen.values())
             or any(not isinstance(v, list) or not all(isinstance(c, str) for c in v)
                    for v in captions.values())):
         return False

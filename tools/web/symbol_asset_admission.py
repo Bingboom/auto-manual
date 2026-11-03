@@ -122,10 +122,16 @@ def _waived_comparison(waivers: list[dict], row: dict, candidate: bytes, suffix:
     return {'max_mean_channel_error': round(error, 6), 'glyph_waiver': waiver['id']}
 
 
-def _require_canonical_binding(row: dict, groups: dict) -> None:
-    """A fresh package binds the canonical of an operator-confirmed group."""
-    group, role = groups.get(row['shared_symbol_key'], (None, None))
-    if role == 'legacy' and group['status'] == 'operator-confirmed':
+def _require_canonical_binding(row: dict, groups: dict, source_sha: str) -> None:
+    """A new source binds the canonical of an operator-confirmed group.
+
+    Sources that already bound a legacy variant when the group was decided
+    are listed in ``legacy_frozen_sources`` and replay unchanged.
+    """
+    key = row['shared_symbol_key']
+    group, role = groups.get(key, (None, None))
+    if (role == 'legacy' and group['status'] == 'operator-confirmed'
+            and source_sha not in group.get('legacy_frozen_sources', {}).get(key, [])):
         raise ValueError(f"symbol binds legacy variant {row['shared_symbol_key']} of canonical "
                          f"group {group['id']}; bind {group['canonical']}")
 
@@ -327,7 +333,7 @@ def require_symbol_asset_admission(markdown_dir: Path, source_root: Path,
                 candidate = _file(markdown_dir, ref, row['asset_sha256'])
                 require_usable_symbol_file(candidate)
                 require_shared_symbol_binding(row, candidate)
-                _require_canonical_binding(row, groups)
+                _require_canonical_binding(row, groups, source['sha256'])
                 if 'web_only_row' in row:
                     report.append({'asset_ref': ref,
                                    **_web_only_comparison(web_only, row, meaning, candidate)})
