@@ -1,0 +1,3 @@
+$ ruff check manual_sources/JE-2000D/JP/ja/git-20261103-62605f21/*.py tests/test_je2000d_jp_web.py
+All checks passed!
+rc=0
