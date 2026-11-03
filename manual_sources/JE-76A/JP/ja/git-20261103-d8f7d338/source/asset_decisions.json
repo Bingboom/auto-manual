@@ -1,0 +1,236 @@
+{
+  "schema_version": "je76a-jp-asset-decisions/v1",
+  "source_sha256": "d8f7d338fd208af056c0dda9991422227627ab771245e791858e1480978b013c",
+  "decisions": [
+    {
+      "asset": "assets/certifications.png",
+      "decision": "extract-new-complete-panel",
+      "physical_page": 3,
+      "bbox": [
+        85,
+        80,
+        192,
+        108
+      ],
+      "role": "complete 認証 mark cluster (no-open-flame, PSE, Li-ion recycling, two crossed-out bins)",
+      "reuse_checked": "no Jackery Power Bank artwork exists in manual_sources/, data/manual_sources/ or docs/renderers/web/assets/",
+      "background": "complete source panel (white page ground kept, as printed)",
+      "sha256": "3a99f0fe09e48389131f06f1cfff98979f49df4bd7abc0e202f3e47afe5bab5d"
+    },
+    {
+      "asset": "assets/inbox-unit.png",
+      "decision": "extract-new-complete-panel",
+      "physical_page": 3,
+      "bbox": [
+        36,
+        152,
+        57,
+        187
+      ],
+      "role": "同梱品 card art ①: Power Bank",
+      "reuse_checked": "no Jackery Power Bank artwork exists in manual_sources/, data/manual_sources/ or docs/renderers/web/assets/",
+      "background": "complete source panel (white page ground kept, as printed)",
+      "sha256": "89f7952a75a5efd818e9d9098a6fc8cdb7b6b915ee099f4a1503b80a66445394"
+    },
+    {
+      "asset": "assets/inbox-cable.png",
+      "decision": "extract-new-complete-panel",
+      "physical_page": 3,
+      "bbox": [
+        95,
+        154,
+        114,
+        186
+      ],
+      "role": "同梱品 card art ②: 1m USB-C to USB-C 電源ケーブル",
+      "reuse_checked": "no Jackery Power Bank artwork exists in manual_sources/, data/manual_sources/ or docs/renderers/web/assets/",
+      "background": "complete source panel (white page ground kept, as printed)",
+      "sha256": "a75f47e9134c541b371910fc15c7ef7376293e9d1d8bf083c852a63b4e07dff0"
+    },
+    {
+      "asset": "assets/inbox-manual.png",
+      "decision": "extract-new-complete-panel",
+      "physical_page": 3,
+      "bbox": [
+        147,
+        154,
+        176,
+        183
+      ],
+      "role": "同梱品 card art ③: 取扱説明書",
+      "reuse_checked": "no Jackery Power Bank artwork exists in manual_sources/, data/manual_sources/ or docs/renderers/web/assets/",
+      "background": "complete source panel (white page ground kept, as printed)",
+      "sha256": "19ea8b7a799e8d62695705af56452708513aeaf5598f282aa9da19fbf5968f5b"
+    },
+    {
+      "asset": "assets/inbox-warranty.png",
+      "decision": "extract-new-complete-panel",
+      "physical_page": 3,
+      "bbox": [
+        205,
+        154,
+        227,
+        183
+      ],
+      "role": "同梱品 card art ④: 保証案内書",
+      "reuse_checked": "no Jackery Power Bank artwork exists in manual_sources/, data/manual_sources/ or docs/renderers/web/assets/",
+      "background": "complete source panel (white page ground kept, as printed)",
+      "sha256": "d7c44eaad072f83568433dd95dab7d5d56a685b70834610a24b6b8b41c33bdb0"
+    },
+    {
+      "asset": "assets/overview.png",
+      "decision": "extract-new-complete-panel",
+      "physical_page": 4,
+      "bbox": [
+        45,
+        84,
+        206,
+        165
+      ],
+      "role": "complete 使用製品 drawing with its A–G leader labels; the native 【Jackery Power Bank】 caption that overlaps the panel corner is painted white (it is Web text)",
+      "reuse_checked": "no Jackery Power Bank artwork exists in manual_sources/, data/manual_sources/ or docs/renderers/web/assets/",
+      "background": "complete source panel (white page ground kept, as printed)",
+      "sha256": "e7d9ae2b2cccd626acf2a10055143e9bea5b4c42fb0da6d91eaef03f473183cb"
+    },
+    {
+      "asset": "assets/lcd-map.png",
+      "decision": "extract-new-complete-panel",
+      "physical_page": 5,
+      "bbox": [
+        94,
+        92,
+        163,
+        135
+      ],
+      "role": "complete LCD表示画面 segment display (188, charging lamp, %)",
+      "reuse_checked": "no Jackery Power Bank artwork exists in manual_sources/, data/manual_sources/ or docs/renderers/web/assets/",
+      "background": "complete source panel (white page ground kept, as printed)",
+      "sha256": "abad8876fb9fd5115229d93e40d2a5b6c26e43fb06cbe0ceb8be377079faff14"
+    },
+    {
+      "asset": "assets/charging-station.png",
+      "decision": "extract-new-complete-panel",
+      "physical_page": 6,
+      "bbox": [
+        48,
+        197,
+        204,
+        290
+      ],
+      "role": "complete 充電ステーション drawing with the insertion detail",
+      "reuse_checked": "no Jackery Power Bank artwork exists in manual_sources/, data/manual_sources/ or docs/renderers/web/assets/",
+      "background": "complete source panel (white page ground kept, as printed)",
+      "sha256": "da2ba73fd050d6449e643691a4b4e40f9e08e337fe079bdade131de3545afe8c"
+    },
+    {
+      "asset": "assets/charging-usb-c.png",
+      "decision": "extract-new-complete-panel",
+      "physical_page": 7,
+      "bbox": [
+        20,
+        200,
+        233,
+        289
+      ],
+      "role": "complete USB-C wall-charger drawing",
+      "reuse_checked": "no Jackery Power Bank artwork exists in manual_sources/, data/manual_sources/ or docs/renderers/web/assets/",
+      "background": "complete source panel (white page ground kept, as printed)",
+      "sha256": "eb09547e626934512dd0d49e9cda8bf23251a31789907fe7b0eb9c60f2c77857"
+    },
+    {
+      "asset": "assets/lcd-ff.png",
+      "decision": "extract-new-complete-panel",
+      "physical_page": 8,
+      "bbox": [
+        156,
+        131,
+        207,
+        161
+      ],
+      "role": "complete FF temperature-protection LCD panel",
+      "reuse_checked": "no Jackery Power Bank artwork exists in manual_sources/, data/manual_sources/ or docs/renderers/web/assets/",
+      "background": "complete source panel (white page ground kept, as printed)",
+      "sha256": "17cb2857692bbf1942e185c7b8b596fb2b0b1cb8d82e74b2d56b0a078cdcc2b0"
+    },
+    {
+      "asset": "assets/recycle-li-ion.svg",
+      "decision": "extract-native-vector",
+      "physical_page": 3,
+      "glyph_bbox": [
+        38,
+        240,
+        72,
+        287
+      ],
+      "drawing_indices": [
+        4312,
+        4313,
+        4314,
+        4315,
+        4316,
+        4317,
+        4318,
+        4319,
+        4320
+      ],
+      "role": "Li-ion recycling mark of the 充電式電池のリサイクルについて box",
+      "reuse_checked": "shared symbols and package LCD/recycle SVGs compared at the fixed 2% glyph tolerance; no match",
+      "background": "transparent (original PDF paths only)",
+      "sha256": "ed79cc43df31df3eec2dcc838b653fcf2ffd80c12791049ea55cb1bf268a5c82"
+    },
+    {
+      "asset": "assets/lcd-percent.svg",
+      "decision": "extract-native-vector",
+      "physical_page": 5,
+      "glyph_bbox": [
+        26,
+        145,
+        43,
+        163
+      ],
+      "drawing_indices": [
+        7384,
+        7385,
+        7386,
+        7387,
+        7388
+      ],
+      "role": "LCD % glyph (バッテリー残量)",
+      "reuse_checked": "shared symbols and package LCD/recycle SVGs compared at the fixed 2% glyph tolerance; no match",
+      "background": "transparent (original PDF paths only)",
+      "sha256": "823920642876677aeaedc14071f47b919a0183d79c2e15649e493dc12034f3e7"
+    },
+    {
+      "asset": "assets/lcd-charging.svg",
+      "decision": "extract-native-vector",
+      "physical_page": 5,
+      "glyph_bbox": [
+        28,
+        169,
+        41,
+        186
+      ],
+      "drawing_indices": [
+        7389,
+        7390,
+        7391
+      ],
+      "role": "LCD charging-lamp glyph (充電表示ランプ)",
+      "reuse_checked": "shared symbols and package LCD/recycle SVGs compared at the fixed 2% glyph tolerance; no match",
+      "background": "transparent (original PDF paths only)",
+      "sha256": "c8ae4f3ee5e0ec41ca7fdf7fbea8eee60dbc25f107a627ad5a482f8cdaeae8c3"
+    },
+    {
+      "asset": null,
+      "decision": "not-used",
+      "physical_page": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "role": "警告/注意 item pictograms and the FF warning triangle",
+      "reuse_checked": "no symbol table is printed; the Web keeps the meaning in each item's bold title (source/differences.md 8)"
+    }
+  ]
+}

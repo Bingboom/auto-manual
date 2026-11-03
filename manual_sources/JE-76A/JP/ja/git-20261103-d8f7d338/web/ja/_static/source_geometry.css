@@ -1,0 +1,19 @@
+/* JE-76A JP: page-local geometry and type size only.
+   Colours, borders and panels come from the shared Web theme (prepared-document shared-style gate). */
+
+/* Print bullets are "・" lines, as in the PDF. */
+#furo-main-content ul > li { list-style-type: "・"; }
+
+/* Complete source panels keep a readable print width. */
+#furo-main-content .hb-reference-figure { max-width: 44rem; margin-inline: auto; }
+#furo-main-content .hb-reference-figure[data-reference-id="certifications"] { max-width: 24rem; margin-inline: 0; }
+#furo-main-content .hb-reference-figure[data-reference-id="lcd-map"] { max-width: 18rem; }
+#furo-main-content .hb-reference-figure[data-reference-id="charging-station"] { max-width: 34rem; }
+#furo-main-content .hb-reference-figure[data-reference-id="lcd-ff"] { max-width: 12rem; margin-inline: 0; }
+@media (max-width: 760px) {
+  #furo-main-content .hb-reference-figure[data-reference-id="overview"] { overflow-x: auto; }
+  #furo-main-content .hb-reference-figure[data-reference-id="overview"] > * { min-width: 26rem; }
+}
+
+/* Recycling notice: the Li-ion mark keeps its print size beside the copy. */
+#furo-main-content table img[src$="recycle-li-ion.svg"] { width: 4.5rem; height: auto; }
