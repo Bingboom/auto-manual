@@ -237,7 +237,7 @@ def spec_carrier(spec):
                                   presentation={"html": {"attributes": {"class": "hb-spec-section-text"}}})],
                  level=2, presentation={"html": {"attributes": {"class": "hb-spec-section hb-spec-group"}}})
     rows = [[node("table_cell", [text(r["label"] if i == 0 else "")], header=True),
-             node("table_cell", [text(v["text"])], header=False)]
+             node("table_cell", inline(v["text"]), header=False)]
             for r in slot("rows") for i, v in enumerate(r["values"])]
     return [title, table(rows)]
 

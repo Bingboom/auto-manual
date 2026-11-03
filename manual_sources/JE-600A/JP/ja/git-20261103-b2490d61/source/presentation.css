@@ -1,0 +1,13 @@
+/* Source geometry only. The shared Web theme owns every colour, border, fill,
+   heading, callout, table, card and figure style (prepared-document shared-style
+   gate). Figures are selected by their shared data attributes. */
+
+/* Source panels keep a print-like width; no visible caption. */
+#furo-main-content .hb-reference-figure { max-width: 680px; margin-left: auto; margin-right: auto; }
+#furo-main-content .hb-reference-figure[data-reference-id="howto-led-light"] { max-width: 320px; }
+
+/* The Li-ion mark beside the recycling notice keeps its print size. */
+#furo-main-content .table-wrapper img[alt="Li-ion 32"] { width: 4.5rem; max-width: none; }
+
+/* Print case for chapter titles, subheadings and the specification titles. */
+#furo-main-content :is(h1, h3, h4), #furo-main-content h2:not(.hb-spec-section) { text-transform: none; }

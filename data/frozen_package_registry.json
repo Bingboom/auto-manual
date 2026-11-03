@@ -1828,6 +1828,11 @@
         }
       }
     },
+    "manual_sources/JE-600A/JP/ja/git-20261103-b2490d61": {
+      "approval": "Operator 2026-11-03 (relayed by the coordinating window): 「继续 转日语说明书」 — Git-only JP Japanese single-language Web candidate from the 发布文档管理 日规 row; candidate intake only, no approval.json, no merge or release authorization",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
     "manual_sources/JE-600A/US/en/git-20261028-9bf5bbb1": {
       "approval": "Operator 2026-10-29 (PR #1639 session): 「上线提交发布：JE-300D、JE-500A、JE-600A、JE-1500C」 after reviewing the 1280/390 renders: Git-only US English single-language Web release from the 发布文档管理 row; acceptance hash-bound in source/approval.json. Merge needs a separate operator authorization.",
       "registered": "2026-10-28",

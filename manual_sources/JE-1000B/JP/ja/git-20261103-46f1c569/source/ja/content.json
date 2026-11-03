@@ -383,7 +383,14 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "12-17.5V⎓8A, 2ポート電流制限16A;\n17.5-60V⎓11A, 2ポート電流制限22A,合計800W"
+                              "text": "12-17.5V⎓8A, 2ポート電流制限16A;"
+                            },
+                            {
+                              "kind": "line_break"
+                            },
+                            {
+                              "kind": "text",
+                              "text": "17.5-60V⎓11A, 2ポート電流制限22A,合計800W"
                             }
                           ]
                         }
@@ -408,7 +415,14 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "100V~ 50Hz/60Hz, 1ポート最大10A/1000W,\n3ポート合計1000W (瞬間最大2000W)"
+                              "text": "100V~ 50Hz/60Hz, 1ポート最大10A/1000W,"
+                            },
+                            {
+                              "kind": "line_break"
+                            },
+                            {
+                              "kind": "text",
+                              "text": "3ポート合計1000W (瞬間最大2000W)"
                             }
                           ]
                         }
@@ -433,7 +447,14 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "Quick Charge 3.0, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A,\n各ポート最大18W"
+                              "text": "Quick Charge 3.0, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A,"
+                            },
+                            {
+                              "kind": "line_break"
+                            },
+                            {
+                              "kind": "text",
+                              "text": "各ポート最大18W"
                             }
                           ]
                         }
@@ -458,7 +479,14 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A,\n各ポート最大100W"
+                              "text": "5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A,"
+                            },
+                            {
+                              "kind": "line_break"
+                            },
+                            {
+                              "kind": "text",
+                              "text": "各ポート最大100W"
                             }
                           ]
                         }

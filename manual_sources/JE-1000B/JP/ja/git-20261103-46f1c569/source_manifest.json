@@ -1897,13 +1897,13 @@
     },
     {
       "path": "source/ja/content.json",
-      "size": 175320,
-      "sha256": "29f55d99c309eacb778b8050aef4caaa05c5c0dbb820148177bc3865ef8484a7"
+      "size": 176352,
+      "sha256": "59d9759921137c90207c40a5c1ca595c5767fcc91fbd6120f61d8b1b135f588e"
     },
     {
       "path": "source/kit.py",
       "size": 11770,
-      "sha256": "0d6089ad7b581b4ffc2b6d3b67f314e602e66b98d4f757c7989882a9af0539a2"
+      "sha256": "a3b36fc59017dda10ead0719187757eaa6820091b813f55d84a49b63c2d05155"
     },
     {
       "path": "source/presentation.css",
@@ -2087,13 +2087,13 @@
     },
     {
       "path": "web/ja/manual.ir.json",
-      "size": 268985,
-      "sha256": "2a438cbd6fb853d6982002e70e7844370ca777ac5e07d4c2483707b4ffc9b48b"
+      "size": 270073,
+      "sha256": "1a5b8f173b12d65f477dd812a429694d566f268269a701833ffa7fc0e093cdd6"
     },
     {
       "path": "web/ja/manual_je1000b_jp_ja.md",
-      "size": 39251,
-      "sha256": "39c8f94bef9e899260a3ea17ee9cc8dc603f312e7ba32e269b32689fe7e959f0"
+      "size": 39267,
+      "sha256": "0c1ed40f14a34cd09306da003b4dd475f14e6bc84b3db0fc9fdd36d7f8d9a725"
     }
   ]
 }

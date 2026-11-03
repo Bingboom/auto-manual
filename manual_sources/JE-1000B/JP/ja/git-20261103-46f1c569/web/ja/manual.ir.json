@@ -31,8 +31,8 @@
     "assets/inbox-warranty.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "e869ea39ef5060c2a4985b9b051aa9008724496da49e3afc2f2e1d78c4e6ee71",
-  "content_sha256": "a74978a47c82db6953eb8e491db36efc0605432e49cfae2c2657b32c6ff09f2d",
+  "bundle_sha256": "1f7d9f30fa61d80c46140352e305da7a055bb6140940922838bdcf29132a771e",
+  "content_sha256": "fffd6c8a8c8868c00a9a92300e6f0121b340eb058eddc977f22cd3a69816d054",
   "language": "ja",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -2096,7 +2096,7 @@
         {
           "asset_refs": [],
           "block_id": "specifications:block-0002",
-          "content_sha256": "a85cdf788d2b67fdd70bd684ae2975c9422a8cc4f13fac2b5d80fc9995d07543",
+          "content_sha256": "6d1490dd8ecd2c2b4aacd939f3ff9c6e5933b6c3dd8b3c74ef31440b1e9aef04",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -2274,7 +2274,14 @@
                             "children": [
                               {
                                 "kind": "text",
-                                "text": "12-17.5V⎓8A, 2ポート電流制限16A;\n17.5-60V⎓11A, 2ポート電流制限22A,合計800W"
+                                "text": "12-17.5V⎓8A, 2ポート電流制限16A;"
+                              },
+                              {
+                                "kind": "line_break"
+                              },
+                              {
+                                "kind": "text",
+                                "text": "17.5-60V⎓11A, 2ポート電流制限22A,合計800W"
                               }
                             ],
                             "header": false,
@@ -2299,7 +2306,14 @@
                             "children": [
                               {
                                 "kind": "text",
-                                "text": "100V~ 50Hz/60Hz, 1ポート最大10A/1000W,\n3ポート合計1000W (瞬間最大2000W)"
+                                "text": "100V~ 50Hz/60Hz, 1ポート最大10A/1000W,"
+                              },
+                              {
+                                "kind": "line_break"
+                              },
+                              {
+                                "kind": "text",
+                                "text": "3ポート合計1000W (瞬間最大2000W)"
                               }
                             ],
                             "header": false,
@@ -2324,7 +2338,14 @@
                             "children": [
                               {
                                 "kind": "text",
-                                "text": "Quick Charge 3.0, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A,\n各ポート最大18W"
+                                "text": "Quick Charge 3.0, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A,"
+                              },
+                              {
+                                "kind": "line_break"
+                              },
+                              {
+                                "kind": "text",
+                                "text": "各ポート最大18W"
                               }
                             ],
                             "header": false,
@@ -2349,7 +2370,14 @@
                             "children": [
                               {
                                 "kind": "text",
-                                "text": "5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A,\n各ポート最大100W"
+                                "text": "5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A,"
+                              },
+                              {
+                                "kind": "line_break"
+                              },
+                              {
+                                "kind": "text",
+                                "text": "各ポート最大100W"
                               }
                             ],
                             "header": false,
@@ -2868,7 +2896,7 @@
       "skipped_raw": 0,
       "source_path": "source/ja/content.json#specifications",
       "source_ref": "transcribed-pdf/specifications",
-      "source_sha256": "4201d4288c1fbd74b0a1162510727c9d9a207e868164c7a358f9dc88f2aabea0"
+      "source_sha256": "b011b896fc2ac39eda091248a175c2f3e8d371fa271038258828514e81f01e39"
     },
     {
       "blocks": [

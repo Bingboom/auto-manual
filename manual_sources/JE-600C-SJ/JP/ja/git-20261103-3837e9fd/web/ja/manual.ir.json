@@ -34,8 +34,8 @@
     "assets/app-2-5.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "0008963bfa2ba223a58560fe506b65448da444ac8c725f026e2faf8e68888462",
-  "content_sha256": "92ccaec666a00a2bdc7ab4643386994195cc38a94a8c5b5c6628db9541124b4a",
+  "bundle_sha256": "6851a7306423ed354fc87e0c371ab7dbba9b3c0c64f178b5815f2ab7f777f78a",
+  "content_sha256": "65e44fab6e0dac7aafb7685f01bee0a1652b4ba8647e83e0508762962bca9ef7",
   "language": "ja",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -2108,7 +2108,7 @@
         {
           "asset_refs": [],
           "block_id": "specifications:block-0002",
-          "content_sha256": "33b9e5bfce83f13e71bd99bbf1da180f822f07ef14fbf1855843603554a96954",
+          "content_sha256": "4e19b6188d1d7e89975b174114b2e5ab77fa46028c6d285c841109f533e202bd",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -2511,7 +2511,14 @@
                             "children": [
                               {
                                 "kind": "text",
-                                "text": "1ヶ月 -20~45°C (-4~113°F); 3ヶ月 0~45°C (32~113°F);\n12ヶ月 0~25°C (32~77°F)"
+                                "text": "1ヶ月 -20~45°C (-4~113°F); 3ヶ月 0~45°C (32~113°F);"
+                              },
+                              {
+                                "kind": "line_break"
+                              },
+                              {
+                                "kind": "text",
+                                "text": "12ヶ月 0~25°C (32~77°F)"
                               }
                             ],
                             "header": false,
@@ -2909,7 +2916,7 @@
       "skipped_raw": 0,
       "source_path": "source/ja/content.json#specifications",
       "source_ref": "transcribed-pdf/specifications",
-      "source_sha256": "a085fbce51a37dafc24595ee53c7815852c3b9910685496d9ee2d8db8baffdc8"
+      "source_sha256": "ab142d956a641c216678637140ebe85f057af619adcd063b3629d590657725e4"
     },
     {
       "blocks": [
