@@ -1,0 +1,559 @@
+[
+  {
+    "language": "ja",
+    "physical_page": 3,
+    "family": "unplug/",
+    "meaning": "コンセントから電源プラグを抜く記号",
+    "glyph_search_box": [
+      29.8,
+      204.0,
+      65.8,
+      230.9
+    ],
+    "caption_search_box": [
+      66.5,
+      204.0,
+      181.4,
+      230.9
+    ],
+    "also_try_families": [
+      "native/je1000d-jp",
+      "native/je1500d-jp"
+    ],
+    "drawing_indices": [
+      6755,
+      6756,
+      6757,
+      6758,
+      6759
+    ],
+    "glyph_bbox": [
+      38.880775451660156,
+      208.7884063720703,
+      56.43577575683594,
+      226.34341430664062
+    ],
+    "caption_bbox": [
+      69.6264,
+      207.5737,
+      174.3681,
+      225.9756
+    ],
+    "row_bbox": [
+      37.8808,
+      206.5737,
+      175.3681,
+      227.3434
+    ],
+    "caption_text": "コンセントから電源プラグを抜く記号",
+    "caption_mode": "outlined-manual-transcription",
+    "caption_sha256": "0bd495e6aa61c849559df67a69a2811a2a595bbaeeb03bfc96816ca12830a075",
+    "shared_symbol_key": "native/je1500d-jp-6ddeef54-05",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/je1500d-jp-6ddeef54-symbol-05.svg",
+    "local_path": "assets/je1500d-jp-6ddeef54-symbol-05.svg",
+    "decision": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)",
+    "candidates": [
+      {
+        "shared_symbol_key": "unplug/h1-jp-native",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1500d-jp-6ddeef54-01",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1500d-jp-6ddeef54-02",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1500d-jp-6ddeef54-04",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1500d-jp-6ddeef54-05",
+        "status": "passed",
+        "max_mean_channel_error": 0.007644
+      }
+    ],
+    "sha256": "e5988a0e4dfcfba253ad8b85f36ec213e8d7c29584160c05a7e3cec0344ea207"
+  },
+  {
+    "language": "ja",
+    "physical_page": 3,
+    "family": "do-not-dismantle/",
+    "meaning": "製品を分解、改造を禁止する記号",
+    "glyph_search_box": [
+      29.8,
+      231.4,
+      65.8,
+      256.1
+    ],
+    "caption_search_box": [
+      66.5,
+      231.4,
+      181.4,
+      256.1
+    ],
+    "also_try_families": [
+      "native/je1000d-jp",
+      "native/je1500d-jp"
+    ],
+    "drawing_indices": [
+      6760,
+      6761,
+      6762,
+      6763,
+      6764,
+      6765,
+      6766,
+      6767,
+      6768,
+      6769,
+      6770,
+      6771,
+      6772,
+      6773,
+      6774,
+      6775,
+      6776
+    ],
+    "glyph_bbox": [
+      38.88050842285156,
+      234.577392578125,
+      56.435508728027344,
+      252.13247680664062
+    ],
+    "caption_bbox": [
+      69.6195,
+      239.4839,
+      175.958,
+      247.8938
+    ],
+    "row_bbox": [
+      37.8805,
+      233.5774,
+      176.958,
+      253.1325
+    ],
+    "caption_text": "製品を分解、改造を禁止する記号",
+    "caption_mode": "outlined-manual-transcription",
+    "caption_sha256": "7feb9c819629bf360c841b4552dc012b834f145d0b1d231d05e08d1dbe9f1225",
+    "shared_symbol_key": "do-not-dismantle/h1-jp-native",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-do_not_dismantle.svg",
+    "local_path": "assets/h1-jp-do_not_dismantle.svg",
+    "decision": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)",
+    "candidates": [
+      {
+        "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited-native-dark",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "do-not-dismantle/h1-jp-native",
+        "status": "passed",
+        "max_mean_channel_error": 0.010978
+      }
+    ],
+    "sha256": "1e600dc9623481ec1950e4cee277d32620bdf1e82a99984ddfce91353ffb173b"
+  },
+  {
+    "language": "ja",
+    "physical_page": 3,
+    "family": "no-wet-hands/",
+    "meaning": "製品に濡れた手で触れることを禁止する記号",
+    "glyph_search_box": [
+      29.8,
+      256.6,
+      65.8,
+      282.7
+    ],
+    "caption_search_box": [
+      66.5,
+      256.6,
+      181.4,
+      282.7
+    ],
+    "also_try_families": [
+      "native/je1000d-jp",
+      "native/je1500d-jp"
+    ],
+    "drawing_indices": [
+      6777,
+      6778,
+      6779,
+      6780,
+      6781,
+      6782,
+      6783,
+      6784,
+      6785,
+      6786,
+      6787
+    ],
+    "glyph_bbox": [
+      38.881385803222656,
+      260.6055908203125,
+      56.43638610839844,
+      278.158935546875
+    ],
+    "caption_bbox": [
+      69.6195,
+      261.3609,
+      176.0004,
+      279.7626
+    ],
+    "row_bbox": [
+      37.8814,
+      259.6056,
+      177.0004,
+      280.7626
+    ],
+    "caption_text": "製品に濡れた手で触れることを禁止する記号",
+    "caption_mode": "outlined-manual-transcription",
+    "caption_sha256": "a6ac875f48d7fd31d9a28f134080a0f8fffcc43494d9908a4b958bfc0c20dd92",
+    "shared_symbol_key": "native/je1500d-jp-6ddeef54-07",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/je1500d-jp-6ddeef54-symbol-07.svg",
+    "local_path": "assets/je1500d-jp-6ddeef54-symbol-07.svg",
+    "decision": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)",
+    "candidates": [
+      {
+        "shared_symbol_key": "no-wet-hands/h1-jp-native",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1500d-jp-6ddeef54-01",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1500d-jp-6ddeef54-02",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1500d-jp-6ddeef54-04",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1500d-jp-6ddeef54-05",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1500d-jp-6ddeef54-07",
+        "status": "passed",
+        "max_mean_channel_error": 0.015168
+      }
+    ],
+    "sha256": "f062577eefb0ba67932bf2b0faec0617a3cafd366b185d69434659ac365b70e3"
+  },
+  {
+    "language": "ja",
+    "physical_page": 3,
+    "family": "mandatory/",
+    "meaning": "行為を指示する記号",
+    "glyph_search_box": [
+      186.7,
+      204.0,
+      223.0,
+      230.9
+    ],
+    "caption_search_box": [
+      223.7,
+      204.0,
+      338.9,
+      230.9
+    ],
+    "also_try_families": [
+      "native/je1000d-jp",
+      "native/je1500d-jp"
+    ],
+    "drawing_indices": [
+      6793
+    ],
+    "glyph_bbox": [
+      195.7435760498047,
+      208.29312133789062,
+      213.29856872558594,
+      225.87411499023438
+    ],
+    "caption_bbox": [
+      228.022,
+      212.4325,
+      292.445,
+      220.8345
+    ],
+    "row_bbox": [
+      194.7436,
+      207.2931,
+      293.445,
+      226.8741
+    ],
+    "caption_text": "行為を指示する記号",
+    "caption_mode": "outlined-manual-transcription",
+    "caption_sha256": "63f3aebef767ac1b80908175ecf8275e3ef360743736cd05d590d1cd75dae1fc",
+    "shared_symbol_key": "mandatory/h1-jp-native",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-mandatory.svg",
+    "local_path": "assets/h1-jp-mandatory.svg",
+    "decision": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)",
+    "candidates": [
+      {
+        "shared_symbol_key": "mandatory/h1-jp-native",
+        "status": "passed",
+        "max_mean_channel_error": 0.00729
+      }
+    ],
+    "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2"
+  },
+  {
+    "language": "ja",
+    "physical_page": 3,
+    "family": "keep-dry/",
+    "meaning": "製品を濡らすことを禁止する記号",
+    "glyph_search_box": [
+      186.7,
+      231.4,
+      223.0,
+      256.1
+    ],
+    "caption_search_box": [
+      223.7,
+      231.4,
+      338.9,
+      256.1
+    ],
+    "also_try_families": [
+      "native/je1000d-jp",
+      "native/je1500d-jp"
+    ],
+    "drawing_indices": [
+      6797,
+      6798,
+      6799,
+      6800,
+      6801,
+      6802,
+      6803,
+      6804,
+      6805,
+      6806,
+      6807
+    ],
+    "glyph_bbox": [
+      195.74412536621094,
+      234.27523803710938,
+      213.2991180419922,
+      251.82933044433594
+    ],
+    "caption_bbox": [
+      228.1063,
+      239.1256,
+      334.445,
+      247.5275
+    ],
+    "row_bbox": [
+      194.7441,
+      233.2752,
+      335.445,
+      252.8293
+    ],
+    "caption_text": "製品を濡らすことを禁止する記号",
+    "caption_mode": "outlined-manual-transcription",
+    "caption_sha256": "99011d418e95f441e1bbc216f3fad50e03e073e7d22f1a3719d122307b9153ab",
+    "shared_symbol_key": "keep-dry/h1-jp-native",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-keep_dry.svg",
+    "local_path": "assets/h1-jp-keep_dry.svg",
+    "decision": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)",
+    "candidates": [
+      {
+        "shared_symbol_key": "keep-dry/h1-jp-native",
+        "status": "passed",
+        "max_mean_channel_error": 0.012713
+      }
+    ],
+    "sha256": "fbd39d4686c3a26a73fa4c2dfec299d8055d9b9446edd973a397ce6d4e21a836"
+  },
+  {
+    "language": "ja",
+    "physical_page": 3,
+    "family": "prohibited/",
+    "meaning": "行為を禁止する記号",
+    "glyph_search_box": [
+      186.7,
+      256.6,
+      223.0,
+      282.7
+    ],
+    "caption_search_box": [
+      223.7,
+      256.6,
+      338.9,
+      282.7
+    ],
+    "also_try_families": [
+      "native/je1000d-jp",
+      "native/je1500d-jp"
+    ],
+    "drawing_indices": [
+      6794,
+      6795,
+      6796
+    ],
+    "glyph_bbox": [
+      195.74331665039062,
+      260.8404541015625,
+      213.29832458496094,
+      278.3955078125
+    ],
+    "caption_bbox": [
+      228.022,
+      265.9962,
+      292.445,
+      274.3976
+    ],
+    "row_bbox": [
+      194.7433,
+      259.8405,
+      293.445,
+      279.3955
+    ],
+    "caption_text": "行為を禁止する記号",
+    "caption_mode": "outlined-manual-transcription",
+    "caption_sha256": "8944694fe1d17ca40c29ef7213ed0852bba95118d0d02e54c40b48c87ba21d81",
+    "shared_symbol_key": "prohibited/h1-jp-native",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-prohibited.svg",
+    "local_path": "assets/h1-jp-prohibited.svg",
+    "decision": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)",
+    "candidates": [
+      {
+        "shared_symbol_key": "prohibited/h1-jp-native",
+        "status": "passed",
+        "max_mean_channel_error": 0.009064
+      }
+    ],
+    "sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d"
+  },
+  {
+    "language": "ja",
+    "physical_page": 7,
+    "family": "li-ion/",
+    "meaning": "充電式電池のリサイクルについて",
+    "glyph_search_box": [
+      31.4,
+      403.0,
+      111.1,
+      493.2
+    ],
+    "caption_search_box": [
+      132.0,
+      417.6,
+      270.0,
+      432.0
+    ],
+    "also_try_families": [
+      "recycle",
+      "battery-recycle/"
+    ],
+    "drawing_indices": [
+      1810,
+      1811,
+      1812,
+      1813,
+      1814,
+      1815,
+      1816,
+      1817,
+      1818,
+      1819,
+      1820
+    ],
+    "glyph_bbox": [
+      45.127685546875,
+      423.8223571777344,
+      97.29471588134766,
+      469.69244384765625
+    ],
+    "caption_bbox": [
+      133.194,
+      419.3618,
+      268.8464,
+      429.7881
+    ],
+    "row_bbox": [
+      44.1277,
+      418.3618,
+      269.8464,
+      470.6924
+    ],
+    "caption_text": "充電式電池のリサイクルについて",
+    "caption_mode": "outlined-manual-transcription",
+    "caption_sha256": "849569e5477b395874418af1480111affa38f211476533d302c87fe4bcc3aa52",
+    "candidates": [
+      {
+        "shared_symbol_key": "li-ion/recycle-li-ion",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "li-ion/recycle-li-ion-native-dark",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "li-ion/htp017-recycle-li-ion",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "battery-recycle/h1-jp-native",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "li-ion/recycle-li-ion-32-gray",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "li_ion/je2000e-eu-pt-batch1465-native",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "li_ion/je2000e-eu-nl-batch1465-native",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "recycle/taiwan-restricted-battery-477dfbd7",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "li-ion/recycle-li-ion-label-hte162",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "li-ion/recycle-li-ion-label-dark-cb256e64",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      }
+    ],
+    "shared_symbol_key": null,
+    "local_path": "assets/li-ion-native-candidate.svg",
+    "decision": "PENDING operator decision: no shared variant passes; native paths proposed as a new shared variant",
+    "sha256": "f888487f2f80bbd33df45e5bd64fc2dfb1efde1a51cb50ae535ad1f72877f98c"
+  }
+]
