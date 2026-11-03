@@ -1866,7 +1866,7 @@
       "known_drift": {}
     },
     "manual_sources/JHP-1000A/US/en/git-20261103-cb256e64-source-alignment": {
-      "approval": "Operator 2026-11-03: 一个一个修 复核通过 就打钩. This revision is the JHP-1000A source-alignment candidate; local validation is recorded in evidence/review.md. Merge and publication remain pending explicit merge authority.",
+      "approval": "Operator 2026-11-03: 授权本批逐本全绿后合入上线. MA-381 covers conditional engineering and publication merge; source/approval.json binds verified inputs. Published-route review and Feishu checkbox remain pending.",
       "registered": "2026-11-03",
       "known_drift": {}
     },

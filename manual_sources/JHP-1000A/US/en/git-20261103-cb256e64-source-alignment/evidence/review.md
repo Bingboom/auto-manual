@@ -10,3 +10,8 @@ Local candidate checks passed. Publication and the Feishu checkbox remain pendin
 - Browser widths 1280, 1024, 390: all 64 images load, four plus signs visible, no uncontained table/image overflow. Desktop key table fits its frame (653/653 and 669/669 px); phone rightmost column is reachable by horizontal scrolling.
 
 The existing suite is reusable without test edits: import `tests.test_jhp1000a_us_web`, set its PACKAGE to this revision, and run `unittest.defaultTestLoader.loadTestsFromModule(module)`. Browser and parity results are in the adjacent JSON files. Source concerns and approved print/Web exclusions remain as in the historical edition.
+
+
+## Conditional release authority (2026-11-03)
+
+Operator grant: 授权本批逐本全绿后合入上线. MA-381 records delegated sequential verification and conditional merge/publication authority. `source/approval.json` binds the exact source inputs. Approval metadata changed; rendered Markdown remains byte-identical to the locally verified v3 candidate. Online verification and Feishu checkbox remain pending.

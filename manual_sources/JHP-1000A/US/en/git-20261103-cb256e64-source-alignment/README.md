@@ -12,6 +12,6 @@ The original attachment is unchanged: `JHP-1000A-US-en-V2.pdf`, SHA-256 `cb256e6
 
 ## Validation and acceptance
 
-Candidate pending the local source, reconstruction and browser checks recorded under `evidence/`. A local pass does not itself update the published page or the Feishu checkbox. Merge follows the repository's operator-approval rule; mark `复核` only after the corrected published route has passed readback.
+Local source, reconstruction and browser checks passed as recorded under `evidence/`. On 2026-11-03 the operator authorized this batch to merge and publish each manual after all checks pass: “授权本批逐本全绿后合入上线”. MA-381 records that conditional authority; this is delegated agent verification, not a claim that the operator personally inspected these renders. Published-route acceptance and the Feishu checkbox remain pending. Mark `复核` only after the corrected published route has passed readback.
 
 The original `derive_assets.py`, `refresh_manifest.py` and `rebuild.py` remain unchanged. `build_content.py` restores only the missing literal `+` in each button pair. Run `refresh_manifest.py`, then `rebuild.py --output <unused-directory>`; store the verified output under `web/en` and run `refresh_manifest.py frozen`. Run the existing JHP-1000A validation suite against this edition as well as the historical edition. The package README owns this target-only correction; no global workflow or CLI behavior changes.
