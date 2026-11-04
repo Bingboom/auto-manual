@@ -520,12 +520,20 @@
         "shared_symbol_key": "battery-weee/crossed-bin-pb-hte154-ink",
         "status": "rejected",
         "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "unplug/h1-jp-native",
+        "status": "canonical-release",
+        "max_mean_channel_error": 0.386509,
+        "canonical_group": "unplug",
+        "canonical_decision": "SCG-20261103"
       }
     ],
-    "shared_symbol_key": null,
-    "local_path": "assets/symbol-unplug-native-candidate.svg",
-    "decision": "PENDING operator decision: no shared variant passes; native paths proposed as a new shared variant",
-    "sha256": "fac8844ac06f7263a1efc56697c257366d1a38bd88b4fc629c4828e69e2dd129"
+    "shared_symbol_key": "unplug/h1-jp-native",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-unplug.svg",
+    "local_path": "assets/h1-jp-unplug.svg",
+    "decision": "reuse the operator-confirmed canonical of the row's symbol group unchanged (canonical release by the printed caption)",
+    "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf"
   },
   {
     "slot": "symbol-do-not-dismantle",
@@ -1485,12 +1493,20 @@
         "shared_symbol_key": "battery-weee/crossed-bin-pb-hte154-ink",
         "status": "rejected",
         "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1000d-jp-00c43a89-03",
+        "status": "canonical-release",
+        "max_mean_channel_error": 0.021782,
+        "canonical_group": "no-wet-hands",
+        "canonical_decision": "SCG-20261103"
       }
     ],
-    "shared_symbol_key": null,
-    "local_path": "assets/symbol-no-wet-hands-native-candidate.svg",
-    "decision": "PENDING operator decision: no shared variant passes; native paths proposed as a new shared variant",
-    "sha256": "dfacc3460f686cea09cec4dbf43d4c50f81eaf8933915e77ebb20ab7d5fcc38f"
+    "shared_symbol_key": "native/je1000d-jp-00c43a89-03",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/je1000d-jp-00c43a89-symbol-03.svg",
+    "local_path": "assets/je1000d-jp-00c43a89-symbol-03.svg",
+    "decision": "reuse the operator-confirmed canonical of the row's symbol group unchanged (canonical release by the printed caption)",
+    "sha256": "585a0c72abdb9fc1d69d31554d249730f1361dfc49a501423dd0204e0637a387"
   },
   {
     "slot": "symbol-mandatory",

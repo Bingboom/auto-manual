@@ -520,12 +520,20 @@
         "shared_symbol_key": "battery-weee/crossed-bin-pb-hte154-ink",
         "status": "rejected",
         "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "unplug/h1-jp-native",
+        "status": "canonical-release",
+        "max_mean_channel_error": 0.115538,
+        "canonical_group": "unplug",
+        "canonical_decision": "SCG-20261103"
       }
     ],
-    "shared_symbol_key": null,
-    "local_path": "assets/symbol-unplug-native-candidate.svg",
-    "decision": "PENDING operator decision: no shared variant passes; native paths proposed as a new shared variant",
-    "sha256": "7a7a6f4b9806a6b79d1086853467aa3dda8abf9283dea791845f63be6512b2f9"
+    "shared_symbol_key": "unplug/h1-jp-native",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-unplug.svg",
+    "local_path": "assets/h1-jp-unplug.svg",
+    "decision": "reuse the operator-confirmed canonical of the row's symbol group unchanged (canonical release by the printed caption)",
+    "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf"
   },
   {
     "slot": "symbol-no-disassembly",
@@ -1060,12 +1068,20 @@
         "shared_symbol_key": "battery-weee/crossed-bin-pb-hte154-ink",
         "status": "rejected",
         "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited",
+        "status": "canonical-release",
+        "max_mean_channel_error": 0.400458,
+        "canonical_group": "do-not-dismantle",
+        "canonical_decision": "SCG-20261103"
       }
     ],
-    "shared_symbol_key": null,
-    "local_path": "assets/symbol-no-disassembly-native-candidate.svg",
-    "decision": "PENDING operator decision: no shared variant passes; native paths proposed as a new shared variant",
-    "sha256": "c580f5bad075c7f7e3d1702f73d0a6f404efe5a69b750aed2cebda0b3b250486"
+    "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_do_not_dismantle.svg",
+    "local_path": "assets/symbol_do_not_dismantle.svg",
+    "decision": "reuse the operator-confirmed canonical of the row's symbol group unchanged (canonical release by the printed caption)",
+    "sha256": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33"
   },
   {
     "slot": "symbol-no-wet-hands",
@@ -1594,12 +1610,20 @@
         "shared_symbol_key": "battery-weee/crossed-bin-pb-hte154-ink",
         "status": "rejected",
         "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1000d-jp-00c43a89-03",
+        "status": "canonical-release",
+        "max_mean_channel_error": 0.034986,
+        "canonical_group": "no-wet-hands",
+        "canonical_decision": "SCG-20261103"
       }
     ],
-    "shared_symbol_key": null,
-    "local_path": "assets/symbol-no-wet-hands-native-candidate.svg",
-    "decision": "PENDING operator decision: no shared variant passes; native paths proposed as a new shared variant",
-    "sha256": "a18ce1a5a198a3d6d2d2aba07f3207fe2669528ecf0aeba50f2054c9e86867f1"
+    "shared_symbol_key": "native/je1000d-jp-00c43a89-03",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/je1000d-jp-00c43a89-symbol-03.svg",
+    "local_path": "assets/je1000d-jp-00c43a89-symbol-03.svg",
+    "decision": "reuse the operator-confirmed canonical of the row's symbol group unchanged (canonical release by the printed caption)",
+    "sha256": "585a0c72abdb9fc1d69d31554d249730f1361dfc49a501423dd0204e0637a387"
   },
   {
     "slot": "symbol-mandatory",
@@ -2313,12 +2337,20 @@
         "shared_symbol_key": "battery-weee/crossed-bin-pb-hte154-ink",
         "status": "rejected",
         "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1000d-jp-00c43a89-05",
+        "status": "canonical-release",
+        "max_mean_channel_error": 0.026527,
+        "canonical_group": "keep-dry",
+        "canonical_decision": "SCG-20261103"
       }
     ],
-    "shared_symbol_key": null,
-    "local_path": "assets/symbol-keep-dry-native-candidate.svg",
-    "decision": "PENDING operator decision: no shared variant passes; native paths proposed as a new shared variant",
-    "sha256": "2bf985feec47a89ea8a7d0e5dcfc3e53f731e22c65018ec196f33520cfdc2d9c"
+    "shared_symbol_key": "native/je1000d-jp-00c43a89-05",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/je1000d-jp-00c43a89-symbol-05.svg",
+    "local_path": "assets/je1000d-jp-00c43a89-symbol-05.svg",
+    "decision": "reuse the operator-confirmed canonical of the row's symbol group unchanged (canonical release by the printed caption)",
+    "sha256": "4728b4a0ab80e8376ff756d9af98d92c1906d3461e44eb4905899b6212cc003c"
   },
   {
     "slot": "symbol-prohibition",
@@ -2839,11 +2871,19 @@
         "shared_symbol_key": "battery-weee/crossed-bin-pb-hte154-ink",
         "status": "rejected",
         "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "prohibited/h1-jp-native",
+        "status": "canonical-release",
+        "max_mean_channel_error": 0.045582,
+        "canonical_group": "prohibited",
+        "canonical_decision": "SCG-20261103"
       }
     ],
-    "shared_symbol_key": null,
-    "local_path": "assets/symbol-prohibition-native-candidate.svg",
-    "decision": "PENDING operator decision: no shared variant passes; native paths proposed as a new shared variant",
-    "sha256": "e08a31509486e4dc585f47a4182b5749b0e7bd90090df76870d4d8551c0653f0"
+    "shared_symbol_key": "prohibited/h1-jp-native",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-prohibited.svg",
+    "local_path": "assets/h1-jp-prohibited.svg",
+    "decision": "reuse the operator-confirmed canonical of the row's symbol group unchanged (canonical release by the printed caption)",
+    "sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d"
   }
 ]

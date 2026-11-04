@@ -38,13 +38,7 @@ Review references: the same-family JP Web editions JE-1000F
 
 - **Inventory first**: no Web edition of this model exists. Art in the Explorer US/en packages carries English
   words and is not reused for panels; all panels are cut from this print.
-- **Symbols**: 13 rows (絵表示の説明 ten pictograms, and the three disposal marks on p04), each compared with
-  every shared variant by the symbol admission's fixed comparison. Eleven reuse shared bytes. The unplug
-  pictogram (solid disc without the shared variant's ring) and the Li-ion 32 recycling mark (heavier arrows
-  and larger label than every shared Li-ion variant) pass no shared variant; they stay as pending native
-  candidates and were reported to the coordinating window for the batch shared-symbol PR — release admission
-  refuses them until the shared library carries them. The per-row pictograms of the 警告/注意 tables
-  (including the protective-earth mark) repeat the legend and are not repeated (template form).
+- **Symbols**: 13 rows (絵表示の説明 ten pictograms, and the three disposal marks on p04). Eleven reuse shared bytes within the fixed 2% comparison. The unplug pictogram (solid disc without a ring) and the Li-ion 32 recycling mark (heavier arrows, larger label) bind their groups' canonicals `unplug/h1-jp-native` and `native/je3000c-kr-78316033-06`. A row that passes no shared variant binds the operator-confirmed canonical of its symbol group (shared PR #1659, decision SCG-20261103) when its printed caption is listed for that group; the release admission re-runs that rule. The per-row pictograms of the 警告/注意 tables (including the protective-earth mark) repeat the legend and are not repeated (template form).
 - **LCD glyphs**: 26 rows; the battery ring and the F8 fault-code glyphs reuse the JE-600C-SJ JP Web glyphs
   byte for byte. Six candidates from the JE-1000D JP Web edition (quiet charging, battery saving, high/low
   temperature, low battery, 88H) fail the fixed comparison; those and the remaining icons are this print's

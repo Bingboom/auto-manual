@@ -42,29 +42,19 @@ reading) and are listed in `source_manifest.json:source_concerns`. Review refere
   the fixed comparison passes: the high/low temperature glyphs reuse the JE-1000D JP Web glyphs, the battery
   ring and the F8 fault-code glyph reuse the JE-600C-SJ JP glyphs, byte for byte. Art from US/en packages
   carries English words and is not reused for panels.
-- **Symbols**: 6 rows (絵表示の説明), each compared with every shared variant by the symbol admission's
-  fixed comparison. Four reuse shared bytes (`mandatory/h1-jp-native`, `native/je1000d-jp-00c43a89-02`,
-  `-05`, `-06`). The unplug and no-wet-hands pictograms pass no shared variant (this print's white backing
-  disc is offset from the glyph, as in JE-600C-SJ JP); they stay as pending native candidates and were
-  reported to the coordinating window for the batch shared-symbol PR — release admission refuses them until
-  the shared library carries them.
+- **Symbols**: 6 rows (絵表示の説明). Four reuse shared bytes within the fixed 2% comparison (`mandatory/h1-jp-native`, `native/je1000d-jp-00c43a89-02`, `-05`, `-06`). The unplug and no-wet-hands pictograms (white backing disc offset from the glyph, as in JE-600C-SJ JP) bind their groups' canonicals `unplug/h1-jp-native` and `native/je1000d-jp-00c43a89-03`. A row that passes no shared variant binds the operator-confirmed canonical of its symbol group (shared PR #1659, decision SCG-20261103) when its printed caption is listed for that group; the release admission re-runs that rule.
 - **LCD glyphs**: low battery and 12H low-power mode are this print's native vector paths (no released glyph
   passes / none exists); the Li-ion 20 recycling mark is native too (the JE-1000D JP mark is Li-ion 32).
 - **Panels**: 16 figures cut from `original.pdf` at 4x (`source/figures.json`), labels kept in the art and
   the alt text; the 2.各部の名称 heading inside the parts panel rectangle and a body line inside the
   SolarSaga 80 panel rectangle are masked.
-- **Extraction caveat**: this PDF repeats the whole artboard on every page and carries off-artboard path
-  records that `tools/asset_pipeline/native_svg.py` cannot map (one degenerate `M0 0Z` SVG path; three
-  fill+stroke pairs whose SVG paths differ by a closing segment), so `source/extract_assets.py` stops on
-  this PDF. The recorded assets were produced by running it under a scratch wrapper that only relaxes that
-  page-wide mapping; the selected glyph paths are unaffected. A shared fix is needed before the package
-  rebuilds from scratch (reported to the coordinating window).
+- **Extraction**: this PDF repeats the whole artboard on every page; its off-artboard path records are mapped since the shared `native_svg` fix in PR #1659, so `source/extract_assets.py` rebuilds the assets from scratch.
 
 ## Rebuild
 
 ```sh
 PKG=manual_sources/JE-1000B/JP/ja/git-20261103-46f1c569
-python3 "$PKG/source/extract_assets.py"     # needs the shared native_svg mapping fix (see Artwork)
+python3 "$PKG/source/extract_assets.py"   
 python3 "$PKG/source/intake.py"
 rm -rf "$PKG/web" && python3 "$PKG/source/refresh_manifest.py"
 PYTHONDONTWRITEBYTECODE=1 python3 "$PKG/rebuild.py" --output "$PKG/web/ja"

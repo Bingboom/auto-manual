@@ -16,9 +16,9 @@
     "assets/solarsaga80-parallel.png",
     "assets/transjack-connection.png",
     "assets/car-charging.png",
-    "assets/symbol-unplug-native-candidate.svg",
+    "assets/h1-jp-unplug.svg",
     "assets/je1000d-jp-00c43a89-symbol-02.svg",
-    "assets/symbol-no-wet-hands-native-candidate.svg",
+    "assets/je1000d-jp-00c43a89-symbol-03.svg",
     "assets/h1-jp-mandatory.svg",
     "assets/je1000d-jp-00c43a89-symbol-05.svg",
     "assets/je1000d-jp-00c43a89-symbol-06.svg",
@@ -31,8 +31,8 @@
     "assets/inbox-warranty.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "1f7d9f30fa61d80c46140352e305da7a055bb6140940922838bdcf29132a771e",
-  "content_sha256": "fffd6c8a8c8868c00a9a92300e6f0121b340eb058eddc977f22cd3a69816d054",
+  "bundle_sha256": "b507abc69df2afcb85546e929f3fe2a03d54fe06662b4e452524d2b896ab90d3",
+  "content_sha256": "863c3a94a1772acb045b14c06550237da745773d7e9c9b059ec88e828be07d31",
   "language": "ja",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -41,6 +41,7 @@
       "assets/car-charging.png": "8981c9314f5ceff980380625647010298302a4bda96810422ee1d0836c00cbbf",
       "assets/cert-quick-charge.png": "442c8d133b9f60f48a0772a83fc3f9f19af7306e7850d5429884f03b6d8b6076",
       "assets/h1-jp-mandatory.svg": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2",
+      "assets/h1-jp-unplug.svg": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf",
       "assets/inbox-ac-cable.png": "dce380a0e861151db3c41e262ee4a10f729ba2ccfb6ce9bdee914ad8dbfd3449",
       "assets/inbox-car-adapter.png": "6839774467d3be114f9a5dbf450cc82c75d3c8ac0e53e207fd06cdb43efab545",
       "assets/inbox-main-unit.png": "30ce69d6a0a2fb58719465afe4d57e7bbde6c4f0747311244a425ce2cdfa0212",
@@ -49,6 +50,7 @@
       "assets/inbox-transjack.png": "919b2783b4c8f4106fa7bafa4583600d72253fb29c3a21f1a0712c7ffcb51f07",
       "assets/inbox-warranty.png": "65d164b67d09ec7fcb1f2de2bcbf238a69e631cfc8f0f0e0d19cc4258b003e4c",
       "assets/je1000d-jp-00c43a89-symbol-02.svg": "0766a51f9ad7d433bed62a7c1ddbacc19ad7c7b68bf55938d5cdbab902b9ea04",
+      "assets/je1000d-jp-00c43a89-symbol-03.svg": "585a0c72abdb9fc1d69d31554d249730f1361dfc49a501423dd0204e0637a387",
       "assets/je1000d-jp-00c43a89-symbol-05.svg": "4728b4a0ab80e8376ff756d9af98d92c1906d3461e44eb4905899b6212cc003c",
       "assets/je1000d-jp-00c43a89-symbol-06.svg": "a5390e01e5ed9ba225377ba6b13de7523f86b8139e4686cf4534ebb2c1048641",
       "assets/lcd-battery-ring.svg": "589baf8ba5f422d5ed7fd4f4b388819db54100815c7ac7c04138bfc128bc281b",
@@ -63,8 +65,6 @@
       "assets/solar-3-panels.png": "14163e4620e68874230a7d02d541fd33645f232ffb01287fab24826335c695cf",
       "assets/solar-4-panels.png": "a64e6958d30ffdc720b87c566cdb8c6445dcca5adc392c4bbb3bcf014dba5056",
       "assets/solarsaga80-parallel.png": "5e6550d3e873d1534d9ffccdbcf0807dd81c17dea212a9b53f954c103a0b7252",
-      "assets/symbol-no-wet-hands-native-candidate.svg": "dfacc3460f686cea09cec4dbf43d4c50f81eaf8933915e77ebb20ab7d5fcc38f",
-      "assets/symbol-unplug-native-candidate.svg": "fac8844ac06f7263a1efc56697c257366d1a38bd88b4fc629c4828e69e2dd129",
       "assets/transjack-connection.png": "87c61ebfe45284a69a86311cc37006fdbbff350c754c3052faaafb84e3da8e4b"
     },
     "block_count": 81,
@@ -5010,21 +5010,21 @@
         },
         {
           "asset_refs": [
-            "assets/symbol-unplug-native-candidate.svg",
+            "assets/h1-jp-unplug.svg",
             "assets/je1000d-jp-00c43a89-symbol-02.svg",
-            "assets/symbol-no-wet-hands-native-candidate.svg",
+            "assets/je1000d-jp-00c43a89-symbol-03.svg",
             "assets/h1-jp-mandatory.svg",
             "assets/je1000d-jp-00c43a89-symbol-05.svg",
             "assets/je1000d-jp-00c43a89-symbol-06.svg"
           ],
           "block_id": "safety:block-0007",
-          "content_sha256": "15633320256d59536091221a7d8534471f6c498ae99dd98836b24831086f2772",
+          "content_sha256": "3a074e842853718606e65739b5fabde5e8a579247eab717d742162cc9831794c",
           "kind": "flow",
           "payload": {
             "component_spec": {
               "assets": [
                 {
-                  "asset_ref": "assets/symbol-unplug-native-candidate.svg",
+                  "asset_ref": "assets/h1-jp-unplug.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 },
@@ -5034,7 +5034,7 @@
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/symbol-no-wet-hands-native-candidate.svg",
+                  "asset_ref": "assets/je1000d-jp-00c43a89-symbol-03.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 },
@@ -6841,7 +6841,7 @@
       "skipped_raw": 0,
       "source_path": "source/ja/content.json#safety",
       "source_ref": "transcribed-pdf/safety",
-      "source_sha256": "a87e3133597602318c17a9a3a39c1c3222712b4ab6ca0b5ed88872bad741e6f6"
+      "source_sha256": "cd1ae6c07f59d4f2d2d4d560a080ba810a49869e4bc1e4d7392e06c88dbc0f47"
     },
     {
       "blocks": [

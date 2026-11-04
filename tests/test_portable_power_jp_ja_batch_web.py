@@ -17,6 +17,7 @@ import unittest
 from tools.manual_ir.hashing import file_sha256
 from tools.utils.path_utils import PathSegments
 from tools.web.prepared_style_audit import require_prepared_style_admission
+from tools.web.symbol_asset_admission import require_symbol_asset_admission
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGES = {
@@ -102,6 +103,16 @@ class PortablePowerJpJaBatchWebTests(unittest.TestCase):
                 for row in read(package / "source/symbols.json"):
                     if row.get("shared_path"):
                         self.assertEqual(file_sha256(package / row["local_path"]), file_sha256(ROOT / row["shared_path"]))
+
+    def test_release_symbol_admission(self):
+        # Every printed symbol row is admitted: within the fixed 2% comparison, or as the
+        # operator-confirmed canonical of its group by its registered caption.
+        for model, package in self.packages():
+            with self.subTest(model=model):
+                manifest = read(package / "source_manifest.json")
+                report = require_symbol_asset_admission(package / "web/ja", package, manifest, "ja")
+                self.assertEqual(len(report), len(read(package / "source/symbols.json")))
+                self.assertEqual(manifest["pending_source_review"], [])
 
     def test_cold_replay_matches_the_frozen_web_tree(self):
         for model, package in self.packages():

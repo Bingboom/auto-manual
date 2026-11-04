@@ -69,9 +69,7 @@
   "source_authority": "operator-designated Japanese PDF from the 发布文档管理 Base row (「单语言说明书」 column, read-only download); the original Japanese governs all copy. Operator instruction (2026-11-03, relayed by the coordinating window): 「继续 转日语说明书」 — 24 Japanese single-language manuals with a customer model and a single-language PDF (封面和目录不上网页; 版面以 PDF 为准; 不改任何日文原文).",
   "publication_status": "review-candidate-no-release-authorization",
   "publication_eligible": false,
-  "pending_source_review": [
-    "symbol rows without a shared variant await the operator's decision"
-  ],
+  "pending_source_review": [],
   "language_scope": "single",
   "live_bitable_dependency": false,
   "reference_edition": "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2 and manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed (same-family Jackery JP Web editions; structure and component reference only; no JE-1000B Web edition exists; no product facts reused)",
@@ -427,9 +425,9 @@
     "locales": {
       "ja": [
         {
-          "asset_ref": "assets/symbol-unplug-native-candidate.svg",
-          "asset_sha256": "fac8844ac06f7263a1efc56697c257366d1a38bd88b4fc629c4828e69e2dd129",
-          "shared_symbol_key": null,
+          "asset_ref": "assets/h1-jp-unplug.svg",
+          "asset_sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf",
+          "shared_symbol_key": "unplug/h1-jp-native",
           "physical_page": 8,
           "drawing_indices": [
             5791,
@@ -507,9 +505,9 @@
           "caption_mode": "outlined-manual-transcription"
         },
         {
-          "asset_ref": "assets/symbol-no-wet-hands-native-candidate.svg",
-          "asset_sha256": "dfacc3460f686cea09cec4dbf43d4c50f81eaf8933915e77ebb20ab7d5fcc38f",
-          "shared_symbol_key": null,
+          "asset_ref": "assets/je1000d-jp-00c43a89-symbol-03.svg",
+          "asset_sha256": "585a0c72abdb9fc1d69d31554d249730f1361dfc49a501423dd0204e0637a387",
+          "shared_symbol_key": "native/je1000d-jp-00c43a89-03",
           "physical_page": 8,
           "drawing_indices": [
             5867,
@@ -835,8 +833,8 @@
     },
     {
       "path": "docs/renderers/web/assets/shared/symbols/manifest.json",
-      "size": 94792,
-      "sha256": "99237c9081076bfc4d7439029eb7f6440fc0b6983b2d48a0f3025c4e4673b969"
+      "size": 138544,
+      "sha256": "08e6473aa4a283a9d9637fcc515eb79bfbbfa18dcbf16409295c8b5e77b0b00c"
     },
     {
       "path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-mandatory.svg",
@@ -844,9 +842,19 @@
       "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2"
     },
     {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-unplug.svg",
+      "size": 2569,
+      "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf"
+    },
+    {
       "path": "docs/renderers/web/assets/shared/symbols/native-v1/je1000d-jp-00c43a89-symbol-02.svg",
       "size": 12347,
       "sha256": "0766a51f9ad7d433bed62a7c1ddbacc19ad7c7b68bf55938d5cdbab902b9ea04"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/je1000d-jp-00c43a89-symbol-03.svg",
+      "size": 11954,
+      "sha256": "585a0c72abdb9fc1d69d31554d249730f1361dfc49a501423dd0204e0637a387"
     },
     {
       "path": "docs/renderers/web/assets/shared/symbols/native-v1/je1000d-jp-00c43a89-symbol-05.svg",
@@ -890,8 +898,8 @@
     },
     {
       "path": "tools/asset_pipeline/native_svg.py",
-      "size": 9464,
-      "sha256": "cc51c407aef9dca7d95338e6c64a38ddb7e890de5a067e0dc9812100b3c86fd7"
+      "size": 10550,
+      "sha256": "6f778d16e3108fe81a17925528e755ae37645ba7691033f3417718593727985b"
     },
     {
       "path": "tools/asset_pipeline/package.py",
@@ -1665,8 +1673,8 @@
     },
     {
       "path": "tools/web/shared_symbol_assets.py",
-      "size": 1835,
-      "sha256": "b6aab8f2aa26dbd87a623b66d491d22f243e99b68659724bb7a60471c4b11ab6"
+      "size": 4215,
+      "sha256": "ba211428ab26a54f77b13d012e98ec7dc7ff7e464b897074982116b35ba77d2a"
     },
     {
       "path": "tools/web/spec_component.py",
@@ -1680,8 +1688,8 @@
     },
     {
       "path": "tools/web/symbol_asset_admission.py",
-      "size": 15908,
-      "sha256": "0cf8dc52d8307d9ae729898fdc4cd44687363b78efa48e3160514287b96d6565"
+      "size": 18398,
+      "sha256": "6db670cf29104705b841d960ebf0415592b4bfcbd7cf351a801ac7138da599f7"
     },
     {
       "path": "tools/web/symbol_components.py",
@@ -1712,8 +1720,8 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 6019,
-      "sha256": "e7fd72d3dfe69b4582867689810e26af48ad9eead39599338aed78c100bc63e5"
+      "size": 5621,
+      "sha256": "30439aa8b1c7e5726dd88288d99dc68fde48d0821528d6c9dd9b08d4de25fb1e"
     },
     {
       "path": "assets/ac-charging.png",
@@ -1734,6 +1742,11 @@
       "path": "assets/h1-jp-mandatory.svg",
       "size": 1292,
       "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2"
+    },
+    {
+      "path": "assets/h1-jp-unplug.svg",
+      "size": 2569,
+      "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf"
     },
     {
       "path": "assets/inbox-ac-cable.png",
@@ -1774,6 +1787,11 @@
       "path": "assets/je1000d-jp-00c43a89-symbol-02.svg",
       "size": 12347,
       "sha256": "0766a51f9ad7d433bed62a7c1ddbacc19ad7c7b68bf55938d5cdbab902b9ea04"
+    },
+    {
+      "path": "assets/je1000d-jp-00c43a89-symbol-03.svg",
+      "size": 11954,
+      "sha256": "585a0c72abdb9fc1d69d31554d249730f1361dfc49a501423dd0204e0637a387"
     },
     {
       "path": "assets/je1000d-jp-00c43a89-symbol-05.svg",
@@ -1846,24 +1864,14 @@
       "sha256": "5e6550d3e873d1534d9ffccdbcf0807dd81c17dea212a9b53f954c103a0b7252"
     },
     {
-      "path": "assets/symbol-no-wet-hands-native-candidate.svg",
-      "size": 5581,
-      "sha256": "dfacc3460f686cea09cec4dbf43d4c50f81eaf8933915e77ebb20ab7d5fcc38f"
-    },
-    {
-      "path": "assets/symbol-unplug-native-candidate.svg",
-      "size": 4085,
-      "sha256": "fac8844ac06f7263a1efc56697c257366d1a38bd88b4fc629c4828e69e2dd129"
-    },
-    {
       "path": "assets/transjack-connection.png",
       "size": 31858,
       "sha256": "87c61ebfe45284a69a86311cc37006fdbbff350c754c3052faaafb84e3da8e4b"
     },
     {
       "path": "audit/review.zh.md",
-      "size": 3033,
-      "sha256": "4da919d03ae6612414d5dd6e81b6622237d43445d6f73ab284a4d258476ff3d9"
+      "size": 2987,
+      "sha256": "fc76d4ebe86bb4a945f9396ded31698080e01616757154cf32358b2375a7ef13"
     },
     {
       "path": "original.pdf",
@@ -1877,8 +1885,8 @@
     },
     {
       "path": "source/extract_assets.py",
-      "size": 9496,
-      "sha256": "0c5a59dbdb0b7417e3a426d2bdfb94a0a3a88207c3aa7c683bf91431f673630a"
+      "size": 11058,
+      "sha256": "6d279150b20747ef98f5eeffb1448c7b703985ffee1181d6585089c80c0dd5e6"
     },
     {
       "path": "source/figures.json",
@@ -1897,8 +1905,8 @@
     },
     {
       "path": "source/ja/content.json",
-      "size": 176352,
-      "sha256": "59d9759921137c90207c40a5c1ca595c5767fcc91fbd6120f61d8b1b135f588e"
+      "size": 176327,
+      "sha256": "21d1733cbc97555c68925fce16094edab1ecbeb45b75692c8c44bb3a697be223"
     },
     {
       "path": "source/kit.py",
@@ -1917,8 +1925,8 @@
     },
     {
       "path": "source/symbols.json",
-      "size": 91799,
-      "sha256": "56793d11cac88f350445b3809ffb9a31f192762937963cc1dc7987ea77faf3fd"
+      "size": 92537,
+      "sha256": "fd7b781b1de94845ebf9db5ac65d9a30b1e167f25b92d125d0107e10dafcf52e"
     },
     {
       "path": "web/ja/_static/source_presentation.css",
@@ -1949,6 +1957,11 @@
       "path": "web/ja/assets/h1-jp-mandatory.svg",
       "size": 1292,
       "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2"
+    },
+    {
+      "path": "web/ja/assets/h1-jp-unplug.svg",
+      "size": 2569,
+      "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf"
     },
     {
       "path": "web/ja/assets/inbox-ac-cable.png",
@@ -1989,6 +2002,11 @@
       "path": "web/ja/assets/je1000d-jp-00c43a89-symbol-02.svg",
       "size": 12347,
       "sha256": "0766a51f9ad7d433bed62a7c1ddbacc19ad7c7b68bf55938d5cdbab902b9ea04"
+    },
+    {
+      "path": "web/ja/assets/je1000d-jp-00c43a89-symbol-03.svg",
+      "size": 11954,
+      "sha256": "585a0c72abdb9fc1d69d31554d249730f1361dfc49a501423dd0204e0637a387"
     },
     {
       "path": "web/ja/assets/je1000d-jp-00c43a89-symbol-05.svg",
@@ -2061,16 +2079,6 @@
       "sha256": "5e6550d3e873d1534d9ffccdbcf0807dd81c17dea212a9b53f954c103a0b7252"
     },
     {
-      "path": "web/ja/assets/symbol-no-wet-hands-native-candidate.svg",
-      "size": 5581,
-      "sha256": "dfacc3460f686cea09cec4dbf43d4c50f81eaf8933915e77ebb20ab7d5fcc38f"
-    },
-    {
-      "path": "web/ja/assets/symbol-unplug-native-candidate.svg",
-      "size": 4085,
-      "sha256": "fac8844ac06f7263a1efc56697c257366d1a38bd88b4fc629c4828e69e2dd129"
-    },
-    {
       "path": "web/ja/assets/transjack-connection.png",
       "size": 31858,
       "sha256": "87c61ebfe45284a69a86311cc37006fdbbff350c754c3052faaafb84e3da8e4b"
@@ -2087,13 +2095,13 @@
     },
     {
       "path": "web/ja/manual.ir.json",
-      "size": 270073,
-      "sha256": "1a5b8f173b12d65f477dd812a429694d566f268269a701833ffa7fc0e093cdd6"
+      "size": 269973,
+      "sha256": "3e87aa08881892c79acbb394d10bb84418e61bd67c27dd9fc7343e5e3557e239"
     },
     {
       "path": "web/ja/manual_je1000b_jp_ja.md",
-      "size": 39267,
-      "sha256": "0c1ed40f14a34cd09306da003b4dd475f14e6bc84b3db0fc9fdd36d7f8d9a725"
+      "size": 39242,
+      "sha256": "1374c8844de95681baceaf3ce71556a602e69a59e8539f6f35a65503467d4abe"
     }
   ]
 }

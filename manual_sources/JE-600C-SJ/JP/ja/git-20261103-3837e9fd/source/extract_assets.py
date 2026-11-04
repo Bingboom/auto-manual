@@ -31,7 +31,8 @@ REPO = next(p for p in Path(__file__).resolve().parents if (p / "build.py").is_f
 sys.path.insert(0, str(REPO))
 
 from tools.asset_pipeline.native_svg import native_symbol_svg  # noqa: E402
-from tools.web.symbol_asset_admission import compare_symbol  # noqa: E402
+from tools.web.shared_symbol_assets import canonical_groups, shared_symbol_file  # noqa: E402
+from tools.web.symbol_asset_admission import _canonical_release, compare_symbol  # noqa: E402
 
 SOURCE = Path(__file__).resolve().parents[1]
 SHARED = "docs/renderers/web/assets/shared/symbols/"
@@ -121,6 +122,25 @@ def symbols(doc):
                        decision="reuse shared Web symbol unchanged (fixed glyph comparison against the print)")
             break
         row["candidates"] = tried
+        if "shared_path" not in row:
+            # No variant passes the fixed comparison. A row whose printed caption is listed
+            # for an operator-confirmed canonical group binds that group's canonical; the
+            # release admission re-runs this same rule (shared PR #1659, SCG-20261103).
+            groups = canonical_groups()
+            for group, role in groups.values():
+                if role != "canonical" or group["status"] != "operator-confirmed":
+                    continue
+                path = shared_symbol_file(group["canonical"])
+                released = _canonical_release(groups, {"shared_symbol_key": group["canonical"]}, row["meaning"],
+                                              row["language"], path.read_bytes(), path.suffix, reference)
+                if released:
+                    asset = next(a for a in library["assets"] if a["key"] == group["canonical"])
+                    tried.append({"shared_symbol_key": group["canonical"], "status": "canonical-release", **released})
+                    row.update(shared_symbol_key=group["canonical"], shared_path=SHARED + asset["path"],
+                               local_path="assets/" + Path(asset["path"]).name,
+                               decision="reuse the operator-confirmed canonical of the row's symbol group "
+                                        "unchanged (canonical release by the printed caption)")
+                    break
         if "shared_path" not in row:
             # No shared variant matches this print. The print's own native paths are the
             # proposed source-bound shared variant; it is not admitted until the operator

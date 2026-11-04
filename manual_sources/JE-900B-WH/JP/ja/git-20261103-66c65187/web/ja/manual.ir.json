@@ -5,12 +5,12 @@
     "assets/symbol_no_open_flame.svg",
     "assets/symbol_keep_away_from_children.svg",
     "assets/screwdriver-prohibited-tw-477dfbd7.svg",
-    "assets/symbol-unplug-native-candidate.svg",
+    "assets/h1-jp-unplug.svg",
     "assets/je1500d-jp-6ddeef54-symbol-07.svg",
     "assets/h1-jp-keep_dry.svg",
     "assets/h1-jp-mandatory.svg",
     "assets/h1-jp-prohibited.svg",
-    "assets/symbol-li-ion-native-candidate.svg",
+    "assets/je3000c-kr-78316033-06.svg",
     "assets/symbol_weee.png",
     "assets/symbol_battery_weee.png",
     "assets/inbox-main-unit.png",
@@ -73,8 +73,8 @@
     "assets/back-qr-code.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "9da0b19561da18ff828a8e531f10f620a55709954ae2ca33143afaafddd21118",
-  "content_sha256": "00cc07222d7c7ee96388829ea0dc9882915a39196ff9f53ef49b70a1fd831abd",
+  "bundle_sha256": "8cd9dab917ae32b11984bae969ef4de8ff58cbd31fbeba6fb089b1c8792e081a",
+  "content_sha256": "e4ef3eb2445bda96b485ba39a1d2dbc98851c0571959587c556810508d3330df",
   "language": "ja",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -96,10 +96,12 @@
       "assets/h1-jp-keep_dry.svg": "fbd39d4686c3a26a73fa4c2dfec299d8055d9b9446edd973a397ce6d4e21a836",
       "assets/h1-jp-mandatory.svg": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2",
       "assets/h1-jp-prohibited.svg": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d",
+      "assets/h1-jp-unplug.svg": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf",
       "assets/inbox-ac-cable.png": "444632117f5e32c3bbd672af00b3c7370d5cc99675192eaecf5cbac00d1d2b5e",
       "assets/inbox-main-unit.png": "84b5f5da4c076e5932deeb4cbc6e86d0a13014b00a5d415be38e0f4696b7e5bf",
       "assets/inbox-manual.png": "175c58bb2c008bbd414cad19aaf735f1072ade9427b5a9709c1630c48e92bf65",
       "assets/je1500d-jp-6ddeef54-symbol-07.svg": "f062577eefb0ba67932bf2b0faec0617a3cafd366b185d69434659ac365b70e3",
+      "assets/je3000c-kr-78316033-06.svg": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5",
       "assets/lcd-12h.svg": "42aa83bd16595a3223e60cfaef359a300e222bf5897ea70c1de9799ea6cf683c",
       "assets/lcd-ac-input.svg": "8aaa42d7b495fa127745e849199b99e5996ae0b92102c6c4d8814431e5dc4f7e",
       "assets/lcd-ac-output.svg": "ab9cf009ed4656a2f9eb6dae73efa1924e1660d80f755aef45f70a8935b7e68f",
@@ -134,8 +136,6 @@
       "assets/parts-front.png": "8fccd7483a7a572f346bfe71237325938cfa3d22d1d6cb9ff257fd08cc393aad",
       "assets/parts-right-side.png": "68a86827a018e7241a04b7d81f8d903804385f6e4b0032aaa021e6e9f865578b",
       "assets/screwdriver-prohibited-tw-477dfbd7.svg": "482e56e11b72b30ca053ee1cc94021f98909ceb9497e9c084738fd2b4a0fe01b",
-      "assets/symbol-li-ion-native-candidate.svg": "5c6f1fbedfa586b1f921330f8667052fcbd1cda0fd7ffc0b494314a603134442",
-      "assets/symbol-unplug-native-candidate.svg": "28b1c544ba12c75e2685408aa2fbc5f52c4a5e38910dccbb4596410cd36b3046",
       "assets/symbol_battery_weee.png": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45",
       "assets/symbol_keep_away_from_children.svg": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899",
       "assets/symbol_no_open_flame.svg": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f",
@@ -2363,14 +2363,14 @@
             "assets/symbol_no_open_flame.svg",
             "assets/symbol_keep_away_from_children.svg",
             "assets/screwdriver-prohibited-tw-477dfbd7.svg",
-            "assets/symbol-unplug-native-candidate.svg",
+            "assets/h1-jp-unplug.svg",
             "assets/je1500d-jp-6ddeef54-symbol-07.svg",
             "assets/h1-jp-keep_dry.svg",
             "assets/h1-jp-mandatory.svg",
             "assets/h1-jp-prohibited.svg"
           ],
           "block_id": "safety:block-0007",
-          "content_sha256": "f14783502ca87d0c59358145ac1930e24464a61f7b7a683c8d6fdf6034a5eab8",
+          "content_sha256": "9748bd31a707a9c375d76fd5e91cae529daa56c19b35715bc09f5699627138f4",
           "kind": "flow",
           "payload": {
             "component_spec": {
@@ -2401,7 +2401,7 @@
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/symbol-unplug-native-candidate.svg",
+                  "asset_ref": "assets/h1-jp-unplug.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 },
@@ -2542,18 +2542,18 @@
         },
         {
           "asset_refs": [
-            "assets/symbol-li-ion-native-candidate.svg",
+            "assets/je3000c-kr-78316033-06.svg",
             "assets/symbol_weee.png",
             "assets/symbol_battery_weee.png"
           ],
           "block_id": "safety:block-0008",
-          "content_sha256": "385c4422bbff7653726e4ba3dc87b697677bbf9aadf0714bf240887e9ae56751",
+          "content_sha256": "b1e95d922baa84e3f657a0e684876a31bf43abe2cca0bb9c58e67dec360d6a37",
           "kind": "flow",
           "payload": {
             "component_spec": {
               "assets": [
                 {
-                  "asset_ref": "assets/symbol-li-ion-native-candidate.svg",
+                  "asset_ref": "assets/je3000c-kr-78316033-06.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 },
@@ -4441,7 +4441,7 @@
       "skipped_raw": 0,
       "source_path": "source/ja/content.json#safety",
       "source_ref": "transcribed-pdf/safety",
-      "source_sha256": "b66a7d2e2951f9b9380cf48e27436aa44e8e13a51bb7780181dc46d7e3dc4445"
+      "source_sha256": "b923ea79aa82f6318bad5d4cc5f456a18471fc73c8943c46460f39965a6705b7"
     },
     {
       "blocks": [

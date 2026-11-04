@@ -283,7 +283,7 @@
               },
               {
                 "role": "icons",
-                "asset_ref": "assets/symbol-unplug-native-candidate.svg",
+                "asset_ref": "assets/h1-jp-unplug.svg",
                 "locale_policy": "shared"
               },
               {
@@ -382,7 +382,7 @@
             "assets": [
               {
                 "role": "icons",
-                "asset_ref": "assets/symbol-li-ion-native-candidate.svg",
+                "asset_ref": "assets/je3000c-kr-78316033-06.svg",
                 "locale_policy": "shared"
               },
               {

@@ -1,11 +1,11 @@
 {
   "asset_refs": [
-    "assets/symbol-unplug-native-candidate.svg",
-    "assets/symbol-no-disassembly-native-candidate.svg",
-    "assets/symbol-no-wet-hands-native-candidate.svg",
+    "assets/h1-jp-unplug.svg",
+    "assets/symbol_do_not_dismantle.svg",
+    "assets/je1000d-jp-00c43a89-symbol-03.svg",
     "assets/h1-jp-mandatory.svg",
-    "assets/symbol-keep-dry-native-candidate.svg",
-    "assets/symbol-prohibition-native-candidate.svg",
+    "assets/je1000d-jp-00c43a89-symbol-05.svg",
+    "assets/h1-jp-prohibited.svg",
     "assets/inbox-unit.png",
     "assets/inbox-ac-cable.png",
     "assets/inbox-user-manual.png",
@@ -39,8 +39,8 @@
     "assets/charge-car.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "c678db2e3427d56c5b07b0ed9d92ac7d77b0be2a5905dfb43b9bbd29e9aeaaf5",
-  "content_sha256": "7198e8567afd5273d0660f7681c6e96c05240c69b8a1f158596ee9b132edd4d3",
+  "bundle_sha256": "20b07fd9d6f4b004f6db152b0ff853c60a816de7a8ac3f82bbcf70507987f27b",
+  "content_sha256": "8fdde596da6a5e1e9d86c5efd9e34ee21f945f0356493be43605a58a4e7a60d4",
   "language": "ja",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -50,6 +50,8 @@
       "assets/charge-solar-dual.png": "06fc49dc66ee29ce563877c05e9a165cdedded2c60a58b34a11c005854815611",
       "assets/charge-solar-single.png": "3997c52c52358af3723e51dbb491f0ce4e184cb7acd6dcb8e17e0bc35230cd50",
       "assets/h1-jp-mandatory.svg": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2",
+      "assets/h1-jp-prohibited.svg": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d",
+      "assets/h1-jp-unplug.svg": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf",
       "assets/howto-ac-output.png": "f927f359ac0de38c1981abf0c2cc186e996695afda4a7425bbf8bbb685ced50d",
       "assets/howto-energy-saving.png": "282a8eb4322dd7e287d5c4209b7dd459fe64c2bba29121c2bde000d72f941767",
       "assets/howto-led-light.png": "ef33ecf484e5797d49748f6607b9d5a70a81988ea2d60fa0e39d1c68a4445f7c",
@@ -58,6 +60,8 @@
       "assets/inbox-ac-cable.png": "6616a666bdc72c7f6ec636b762353c7c7482c396bb0d17d0d8cb50e8f8c9b3f1",
       "assets/inbox-unit.png": "729613c57857acb3d8f428c6aa49d9a1f162734d816594f0269056574262ebcc",
       "assets/inbox-user-manual.png": "342f25d5e9eb79a71ec234aaae8e37e474c307d2c8726a2c63432e13ae725481",
+      "assets/je1000d-jp-00c43a89-symbol-03.svg": "585a0c72abdb9fc1d69d31554d249730f1361dfc49a501423dd0204e0637a387",
+      "assets/je1000d-jp-00c43a89-symbol-05.svg": "4728b4a0ab80e8376ff756d9af98d92c1906d3461e44eb4905899b6212cc003c",
       "assets/lcd-50-60hz.png": "026dfcfc800db22aaac0a7ac05f19691d628df41065d07630976c9dfc496fce4",
       "assets/lcd-ac-power.svg": "ae74b5535c88c6f612bfc8fe4f187bb3b106b6b039ac98a809112b6584d1a7c0",
       "assets/lcd-ac-wall-charging.svg": "8fe4024f27f2963349cc4255a2673d88fac8a7565944ec62b5bc52337bdc284b",
@@ -76,11 +80,7 @@
       "assets/parts-front.png": "f939fe5a1fc4d8b15fa38ecdfe690c74a1aa27ffde64c1824d186cddff4cb44f",
       "assets/parts-right-side.png": "7e0e457c3d5f569ca82c5e6c34629a37d5be6af947e86f851d2fff7f745cc8b6",
       "assets/recycle-li-ion.svg": "8c514e13ad189aac67e833651b5b56131868fb31fef399867e8f0cfd22a40dc9",
-      "assets/symbol-keep-dry-native-candidate.svg": "2bf985feec47a89ea8a7d0e5dcfc3e53f731e22c65018ec196f33520cfdc2d9c",
-      "assets/symbol-no-disassembly-native-candidate.svg": "c580f5bad075c7f7e3d1702f73d0a6f404efe5a69b750aed2cebda0b3b250486",
-      "assets/symbol-no-wet-hands-native-candidate.svg": "a18ce1a5a198a3d6d2d2aba07f3207fe2669528ecf0aeba50f2054c9e86867f1",
-      "assets/symbol-prohibition-native-candidate.svg": "e08a31509486e4dc585f47a4182b5749b0e7bd90090df76870d4d8551c0653f0",
-      "assets/symbol-unplug-native-candidate.svg": "7a7a6f4b9806a6b79d1086853467aa3dda8abf9283dea791845f63be6512b2f9",
+      "assets/symbol_do_not_dismantle.svg": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33",
       "assets/ups-connection.png": "f1093a65f04e0f194e0018420fe6dbf684490a8d702df1eb80793560160e0af9"
     },
     "block_count": 128,
@@ -2266,31 +2266,31 @@
         },
         {
           "asset_refs": [
-            "assets/symbol-unplug-native-candidate.svg",
-            "assets/symbol-no-disassembly-native-candidate.svg",
-            "assets/symbol-no-wet-hands-native-candidate.svg",
+            "assets/h1-jp-unplug.svg",
+            "assets/symbol_do_not_dismantle.svg",
+            "assets/je1000d-jp-00c43a89-symbol-03.svg",
             "assets/h1-jp-mandatory.svg",
-            "assets/symbol-keep-dry-native-candidate.svg",
-            "assets/symbol-prohibition-native-candidate.svg"
+            "assets/je1000d-jp-00c43a89-symbol-05.svg",
+            "assets/h1-jp-prohibited.svg"
           ],
           "block_id": "safety:block-0007",
-          "content_sha256": "b5385eecb6af49831a5695d015220467cbbbbce5ba5345fc6e913e437ce6161e",
+          "content_sha256": "bbda5f7a334bf873215e99846d9ac5e512ef28c092671882e02f6c08a8b2be16",
           "kind": "flow",
           "payload": {
             "component_spec": {
               "assets": [
                 {
-                  "asset_ref": "assets/symbol-unplug-native-candidate.svg",
+                  "asset_ref": "assets/h1-jp-unplug.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/symbol-no-disassembly-native-candidate.svg",
+                  "asset_ref": "assets/symbol_do_not_dismantle.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/symbol-no-wet-hands-native-candidate.svg",
+                  "asset_ref": "assets/je1000d-jp-00c43a89-symbol-03.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 },
@@ -2300,12 +2300,12 @@
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/symbol-keep-dry-native-candidate.svg",
+                  "asset_ref": "assets/je1000d-jp-00c43a89-symbol-05.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/symbol-prohibition-native-candidate.svg",
+                  "asset_ref": "assets/h1-jp-prohibited.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 }
@@ -4310,7 +4310,7 @@
       "skipped_raw": 0,
       "source_path": "source/ja/content.json#safety",
       "source_ref": "transcribed-pdf/safety",
-      "source_sha256": "deb7682fb0aa2c06ebf23f6a8b474eba4dc998923b3ae8361e4cec5f644b150a"
+      "source_sha256": "9693d2243e8b70ef5a805e9c4537a6b2babc6d08bcc83249ba06419c8a150002"
     },
     {
       "blocks": [

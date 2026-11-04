@@ -82,9 +82,7 @@
   "source_authority": "operator-designated Japanese PDF from the 发布文档管理 Base row (「单语言说明书」 column, read-only download); the original Japanese governs all copy. Operator instruction (2026-11-03, relayed by the coordinating window): 「继续 转日语说明书」 — 24 Japanese single-language manuals with a customer model and a single-language PDF (封面和目录不上网页; 版面以 PDF 为准; 不改任何日文原文).",
   "publication_status": "review-candidate-no-release-authorization",
   "publication_eligible": false,
-  "pending_source_review": [
-    "symbol rows without a shared variant await the operator's decision"
-  ],
+  "pending_source_review": [],
   "language_scope": "single",
   "live_bitable_dependency": false,
   "reference_edition": "manual_sources/JE-600A/US/en/git-20261028-9bf5bbb1 (same-model Jackery Explorer 600 US English Web; structure, component and LCD-glyph reuse reference) and manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2 (same-family Jackery ポータブル電源 1000 JP Web; warranty and text-panel form); no Japanese copy or product facts reused",
@@ -558,9 +556,9 @@
     "locales": {
       "ja": [
         {
-          "asset_ref": "assets/symbol-unplug-native-candidate.svg",
-          "asset_sha256": "7a7a6f4b9806a6b79d1086853467aa3dda8abf9283dea791845f63be6512b2f9",
-          "shared_symbol_key": null,
+          "asset_ref": "assets/h1-jp-unplug.svg",
+          "asset_sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf",
+          "shared_symbol_key": "unplug/h1-jp-native",
           "physical_page": 3,
           "drawing_indices": [
             1817,
@@ -592,9 +590,9 @@
           "caption_mode": "outlined-manual-transcription"
         },
         {
-          "asset_ref": "assets/symbol-no-disassembly-native-candidate.svg",
-          "asset_sha256": "c580f5bad075c7f7e3d1702f73d0a6f404efe5a69b750aed2cebda0b3b250486",
-          "shared_symbol_key": null,
+          "asset_ref": "assets/symbol_do_not_dismantle.svg",
+          "asset_sha256": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33",
+          "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited",
           "physical_page": 3,
           "drawing_indices": [
             1822,
@@ -638,9 +636,9 @@
           "caption_mode": "outlined-manual-transcription"
         },
         {
-          "asset_ref": "assets/symbol-no-wet-hands-native-candidate.svg",
-          "asset_sha256": "a18ce1a5a198a3d6d2d2aba07f3207fe2669528ecf0aeba50f2054c9e86867f1",
-          "shared_symbol_key": null,
+          "asset_ref": "assets/je1000d-jp-00c43a89-symbol-03.svg",
+          "asset_sha256": "585a0c72abdb9fc1d69d31554d249730f1361dfc49a501423dd0204e0637a387",
+          "shared_symbol_key": "native/je1000d-jp-00c43a89-03",
           "physical_page": 3,
           "drawing_indices": [
             1839,
@@ -708,9 +706,9 @@
           "caption_mode": "outlined-manual-transcription"
         },
         {
-          "asset_ref": "assets/symbol-keep-dry-native-candidate.svg",
-          "asset_sha256": "2bf985feec47a89ea8a7d0e5dcfc3e53f731e22c65018ec196f33520cfdc2d9c",
-          "shared_symbol_key": null,
+          "asset_ref": "assets/je1000d-jp-00c43a89-symbol-05.svg",
+          "asset_sha256": "4728b4a0ab80e8376ff756d9af98d92c1906d3461e44eb4905899b6212cc003c",
+          "shared_symbol_key": "native/je1000d-jp-00c43a89-05",
           "physical_page": 3,
           "drawing_indices": [
             1859,
@@ -748,9 +746,9 @@
           "caption_mode": "outlined-manual-transcription"
         },
         {
-          "asset_ref": "assets/symbol-prohibition-native-candidate.svg",
-          "asset_sha256": "e08a31509486e4dc585f47a4182b5749b0e7bd90090df76870d4d8551c0653f0",
-          "shared_symbol_key": null,
+          "asset_ref": "assets/h1-jp-prohibited.svg",
+          "asset_sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d",
+          "shared_symbol_key": "prohibited/h1-jp-native",
           "physical_page": 3,
           "drawing_indices": [
             1856,
@@ -965,13 +963,38 @@
     },
     {
       "path": "docs/renderers/web/assets/shared/symbols/manifest.json",
-      "size": 94792,
-      "sha256": "99237c9081076bfc4d7439029eb7f6440fc0b6983b2d48a0f3025c4e4673b969"
+      "size": 138544,
+      "sha256": "08e6473aa4a283a9d9637fcc515eb79bfbbfa18dcbf16409295c8b5e77b0b00c"
     },
     {
       "path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-mandatory.svg",
       "size": 1292,
       "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-prohibited.svg",
+      "size": 1452,
+      "sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-unplug.svg",
+      "size": 2569,
+      "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/je1000d-jp-00c43a89-symbol-03.svg",
+      "size": 11954,
+      "sha256": "585a0c72abdb9fc1d69d31554d249730f1361dfc49a501423dd0204e0637a387"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/je1000d-jp-00c43a89-symbol-05.svg",
+      "size": 13550,
+      "sha256": "4728b4a0ab80e8376ff756d9af98d92c1906d3461e44eb4905899b6212cc003c"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_do_not_dismantle.svg",
+      "size": 6538,
+      "sha256": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33"
     },
     {
       "path": "tools/asset_pipeline/__init__.py",
@@ -1005,8 +1028,8 @@
     },
     {
       "path": "tools/asset_pipeline/native_svg.py",
-      "size": 9464,
-      "sha256": "cc51c407aef9dca7d95338e6c64a38ddb7e890de5a067e0dc9812100b3c86fd7"
+      "size": 10550,
+      "sha256": "6f778d16e3108fe81a17925528e755ae37645ba7691033f3417718593727985b"
     },
     {
       "path": "tools/asset_pipeline/package.py",
@@ -1780,8 +1803,8 @@
     },
     {
       "path": "tools/web/shared_symbol_assets.py",
-      "size": 1835,
-      "sha256": "b6aab8f2aa26dbd87a623b66d491d22f243e99b68659724bb7a60471c4b11ab6"
+      "size": 4215,
+      "sha256": "ba211428ab26a54f77b13d012e98ec7dc7ff7e464b897074982116b35ba77d2a"
     },
     {
       "path": "tools/web/spec_component.py",
@@ -1795,8 +1818,8 @@
     },
     {
       "path": "tools/web/symbol_asset_admission.py",
-      "size": 15908,
-      "sha256": "0cf8dc52d8307d9ae729898fdc4cd44687363b78efa48e3160514287b96d6565"
+      "size": 18398,
+      "sha256": "6db670cf29104705b841d960ebf0415592b4bfcbd7cf351a801ac7138da599f7"
     },
     {
       "path": "tools/web/symbol_components.py",
@@ -1827,8 +1850,8 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 5960,
-      "sha256": "4b2cb7bf764de114fc9ea2a681e4969499701b0927cd0d81c70bd5f7b6d3d96e"
+      "size": 6042,
+      "sha256": "78e2da5ea5e7e3504c35d1f2328a1fffb15e8810cd6a4299fcac54e9dbbf4324"
     },
     {
       "path": "assets/charge-ac.png",
@@ -1854,6 +1877,16 @@
       "path": "assets/h1-jp-mandatory.svg",
       "size": 1292,
       "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2"
+    },
+    {
+      "path": "assets/h1-jp-prohibited.svg",
+      "size": 1452,
+      "sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d"
+    },
+    {
+      "path": "assets/h1-jp-unplug.svg",
+      "size": 2569,
+      "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf"
     },
     {
       "path": "assets/howto-ac-output.png",
@@ -1894,6 +1927,16 @@
       "path": "assets/inbox-user-manual.png",
       "size": 19690,
       "sha256": "342f25d5e9eb79a71ec234aaae8e37e474c307d2c8726a2c63432e13ae725481"
+    },
+    {
+      "path": "assets/je1000d-jp-00c43a89-symbol-03.svg",
+      "size": 11954,
+      "sha256": "585a0c72abdb9fc1d69d31554d249730f1361dfc49a501423dd0204e0637a387"
+    },
+    {
+      "path": "assets/je1000d-jp-00c43a89-symbol-05.svg",
+      "size": 13550,
+      "sha256": "4728b4a0ab80e8376ff756d9af98d92c1906d3461e44eb4905899b6212cc003c"
     },
     {
       "path": "assets/lcd-50-60hz.png",
@@ -1986,29 +2029,9 @@
       "sha256": "8c514e13ad189aac67e833651b5b56131868fb31fef399867e8f0cfd22a40dc9"
     },
     {
-      "path": "assets/symbol-keep-dry-native-candidate.svg",
-      "size": 36739,
-      "sha256": "2bf985feec47a89ea8a7d0e5dcfc3e53f731e22c65018ec196f33520cfdc2d9c"
-    },
-    {
-      "path": "assets/symbol-no-disassembly-native-candidate.svg",
-      "size": 36008,
-      "sha256": "c580f5bad075c7f7e3d1702f73d0a6f404efe5a69b750aed2cebda0b3b250486"
-    },
-    {
-      "path": "assets/symbol-no-wet-hands-native-candidate.svg",
-      "size": 35596,
-      "sha256": "a18ce1a5a198a3d6d2d2aba07f3207fe2669528ecf0aeba50f2054c9e86867f1"
-    },
-    {
-      "path": "assets/symbol-prohibition-native-candidate.svg",
-      "size": 33059,
-      "sha256": "e08a31509486e4dc585f47a4182b5749b0e7bd90090df76870d4d8551c0653f0"
-    },
-    {
-      "path": "assets/symbol-unplug-native-candidate.svg",
-      "size": 34212,
-      "sha256": "7a7a6f4b9806a6b79d1086853467aa3dda8abf9283dea791845f63be6512b2f9"
+      "path": "assets/symbol_do_not_dismantle.svg",
+      "size": 6538,
+      "sha256": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33"
     },
     {
       "path": "assets/ups-connection.png",
@@ -2017,8 +2040,8 @@
     },
     {
       "path": "audit/review.zh.md",
-      "size": 3525,
-      "sha256": "ef591126ef9d1b7895524fd805a3491b772e093ff3f9748d6b53d3c64b6b24f4"
+      "size": 3646,
+      "sha256": "b44071af86d07fcf96e05372089ae5bfa36c03c28247dc5bc629721004b860bd"
     },
     {
       "path": "original.pdf",
@@ -2032,8 +2055,8 @@
     },
     {
       "path": "source/extract_assets.py",
-      "size": 9496,
-      "sha256": "0c5a59dbdb0b7417e3a426d2bdfb94a0a3a88207c3aa7c683bf91431f673630a"
+      "size": 11058,
+      "sha256": "6d279150b20747ef98f5eeffb1448c7b703985ffee1181d6585089c80c0dd5e6"
     },
     {
       "path": "source/figures.json",
@@ -2052,8 +2075,8 @@
     },
     {
       "path": "source/ja/content.json",
-      "size": 277414,
-      "sha256": "1e31cb8287391451670cea0a3b2cc04eeed6f973b87d848d059e048ce84c0b1f"
+      "size": 277352,
+      "sha256": "ce16148adf2649bb1da2503c7c13d4324d24fb283741f8b015db799f19a66645"
     },
     {
       "path": "source/kit.py",
@@ -2072,8 +2095,8 @@
     },
     {
       "path": "source/symbols.json",
-      "size": 103310,
-      "sha256": "2840b7ec9b0823fe914bbd9a8c4c943272d9e2b9ee3a7e5055b2501348a1aca5"
+      "size": 105207,
+      "sha256": "7f733f75cb9b835c0e32dab437009164500b134ebce93268b41809bbb275dc49"
     },
     {
       "path": "web/ja/_static/source_presentation.css",
@@ -2109,6 +2132,16 @@
       "path": "web/ja/assets/h1-jp-mandatory.svg",
       "size": 1292,
       "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2"
+    },
+    {
+      "path": "web/ja/assets/h1-jp-prohibited.svg",
+      "size": 1452,
+      "sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d"
+    },
+    {
+      "path": "web/ja/assets/h1-jp-unplug.svg",
+      "size": 2569,
+      "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf"
     },
     {
       "path": "web/ja/assets/howto-ac-output.png",
@@ -2149,6 +2182,16 @@
       "path": "web/ja/assets/inbox-user-manual.png",
       "size": 19690,
       "sha256": "342f25d5e9eb79a71ec234aaae8e37e474c307d2c8726a2c63432e13ae725481"
+    },
+    {
+      "path": "web/ja/assets/je1000d-jp-00c43a89-symbol-03.svg",
+      "size": 11954,
+      "sha256": "585a0c72abdb9fc1d69d31554d249730f1361dfc49a501423dd0204e0637a387"
+    },
+    {
+      "path": "web/ja/assets/je1000d-jp-00c43a89-symbol-05.svg",
+      "size": 13550,
+      "sha256": "4728b4a0ab80e8376ff756d9af98d92c1906d3461e44eb4905899b6212cc003c"
     },
     {
       "path": "web/ja/assets/lcd-50-60hz.png",
@@ -2241,29 +2284,9 @@
       "sha256": "8c514e13ad189aac67e833651b5b56131868fb31fef399867e8f0cfd22a40dc9"
     },
     {
-      "path": "web/ja/assets/symbol-keep-dry-native-candidate.svg",
-      "size": 36739,
-      "sha256": "2bf985feec47a89ea8a7d0e5dcfc3e53f731e22c65018ec196f33520cfdc2d9c"
-    },
-    {
-      "path": "web/ja/assets/symbol-no-disassembly-native-candidate.svg",
-      "size": 36008,
-      "sha256": "c580f5bad075c7f7e3d1702f73d0a6f404efe5a69b750aed2cebda0b3b250486"
-    },
-    {
-      "path": "web/ja/assets/symbol-no-wet-hands-native-candidate.svg",
-      "size": 35596,
-      "sha256": "a18ce1a5a198a3d6d2d2aba07f3207fe2669528ecf0aeba50f2054c9e86867f1"
-    },
-    {
-      "path": "web/ja/assets/symbol-prohibition-native-candidate.svg",
-      "size": 33059,
-      "sha256": "e08a31509486e4dc585f47a4182b5749b0e7bd90090df76870d4d8551c0653f0"
-    },
-    {
-      "path": "web/ja/assets/symbol-unplug-native-candidate.svg",
-      "size": 34212,
-      "sha256": "7a7a6f4b9806a6b79d1086853467aa3dda8abf9283dea791845f63be6512b2f9"
+      "path": "web/ja/assets/symbol_do_not_dismantle.svg",
+      "size": 6538,
+      "sha256": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33"
     },
     {
       "path": "web/ja/assets/ups-connection.png",
@@ -2282,13 +2305,13 @@
     },
     {
       "path": "web/ja/manual.ir.json",
-      "size": 392184,
-      "sha256": "30803830a96c995865a5199655520e55ed23a3b35c407acd3164cd20bb03838a"
+      "size": 391936,
+      "sha256": "9f36467aa0765555d6fe8b380d5d3178a327d4e19d12514afaf4f54713a7f97e"
     },
     {
       "path": "web/ja/manual_je600a_jp_ja.md",
-      "size": 58864,
-      "sha256": "f0e62163dd85647220fa1293660e190a9395cb24bcbe82018df7c527f688529c"
+      "size": 58802,
+      "sha256": "667aadfdc91bb76af6136e25d04f63f17372e2d3f0a828ef0d5a1bff41645886"
     }
   ]
 }

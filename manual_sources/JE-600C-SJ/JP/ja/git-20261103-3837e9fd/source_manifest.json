@@ -71,9 +71,7 @@
   "source_authority": "operator-designated Japanese PDF from the 发布文档管理 Base row (「单语言说明书」 column, read-only download); the original Japanese governs all copy. Operator instruction (2026-11-03, relayed by the coordinating window): 「继续 转日语说明书」 — 24 Japanese single-language manuals with a customer model and a single-language PDF (封面和目录不上网页; 版面以 PDF 为准; 不改任何日文原文).",
   "publication_status": "review-candidate-no-release-authorization",
   "publication_eligible": false,
-  "pending_source_review": [
-    "symbol rows without a shared variant await the operator's decision"
-  ],
+  "pending_source_review": [],
   "language_scope": "single",
   "live_bitable_dependency": false,
   "reference_edition": "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2 (same-family Jackery ポータブル電源 1000 JP Web; structure and component reference only; no JE-600C-SJ Web edition exists; no product facts reused)",
@@ -537,9 +535,9 @@
     "locales": {
       "ja": [
         {
-          "asset_ref": "assets/symbol-unplug-native-candidate.svg",
-          "asset_sha256": "8cb18d03a75972917549455009e2c7c4090855376fc4515501a768347bc34321",
-          "shared_symbol_key": null,
+          "asset_ref": "assets/h1-jp-unplug.svg",
+          "asset_sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf",
+          "shared_symbol_key": "unplug/h1-jp-native",
           "physical_page": 8,
           "drawing_indices": [
             7919,
@@ -568,36 +566,6 @@
           ],
           "caption_text": "コンセントから電源プラグを抜く記号",
           "caption_sha256": "ab401fbce1335f7ff6b4a4a36e715b2e7eda56e189084dbcd7fef8400d05cfca",
-          "caption_mode": "outlined-manual-transcription"
-        },
-        {
-          "asset_ref": "assets/h1-jp-mandatory.svg",
-          "asset_sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2",
-          "shared_symbol_key": "mandatory/h1-jp-native",
-          "physical_page": 8,
-          "drawing_indices": [
-            7941
-          ],
-          "glyph_bbox": [
-            194.95765686035156,
-            292.89349365234375,
-            211.53765869140625,
-            309.4964904785156
-          ],
-          "caption_bbox": [
-            215.206,
-            296.8857,
-            279.629,
-            305.2867
-          ],
-          "row_bbox": [
-            193.9577,
-            291.8935,
-            280.629,
-            310.4965
-          ],
-          "caption_text": "行為を指示する記号",
-          "caption_sha256": "15c5d9a3e86980f722282e34f8e9bf6a238af2d890414315263ea72121462ab3",
           "caption_mode": "outlined-manual-transcription"
         },
         {
@@ -647,6 +615,76 @@
           "caption_mode": "outlined-manual-transcription"
         },
         {
+          "asset_ref": "assets/je1000d-jp-00c43a89-symbol-03.svg",
+          "asset_sha256": "585a0c72abdb9fc1d69d31554d249730f1361dfc49a501423dd0204e0637a387",
+          "shared_symbol_key": "native/je1000d-jp-00c43a89-03",
+          "physical_page": 8,
+          "drawing_indices": [
+            7995,
+            7996,
+            7997,
+            7998,
+            7999,
+            8000,
+            8001,
+            8002,
+            8003,
+            8004,
+            8005
+          ],
+          "glyph_bbox": [
+            22.541786193847656,
+            338.8233947753906,
+            39.121788024902344,
+            355.40240478515625
+          ],
+          "caption_bbox": [
+            44.038,
+            343.2127,
+            185.377,
+            351.6147
+          ],
+          "row_bbox": [
+            21.5418,
+            337.8234,
+            186.377,
+            356.4024
+          ],
+          "caption_text": "製品に濡れた手で触れることを禁止する記号",
+          "caption_sha256": "31c6646f545134fb29f4a176c2b74bd99b72e04a046283eb336d689d18c5baee",
+          "caption_mode": "outlined-manual-transcription"
+        },
+        {
+          "asset_ref": "assets/h1-jp-mandatory.svg",
+          "asset_sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2",
+          "shared_symbol_key": "mandatory/h1-jp-native",
+          "physical_page": 8,
+          "drawing_indices": [
+            7941
+          ],
+          "glyph_bbox": [
+            194.95765686035156,
+            292.89349365234375,
+            211.53765869140625,
+            309.4964904785156
+          ],
+          "caption_bbox": [
+            215.206,
+            296.8857,
+            279.629,
+            305.2867
+          ],
+          "row_bbox": [
+            193.9577,
+            291.8935,
+            280.629,
+            310.4965
+          ],
+          "caption_text": "行為を指示する記号",
+          "caption_sha256": "15c5d9a3e86980f722282e34f8e9bf6a238af2d890414315263ea72121462ab3",
+          "caption_mode": "outlined-manual-transcription"
+        },
+        {
           "asset_ref": "assets/je1000d-jp-00c43a89-symbol-05.svg",
           "asset_sha256": "4728b4a0ab80e8376ff756d9af98d92c1906d3461e44eb4905899b6212cc003c",
           "shared_symbol_key": "native/je1000d-jp-00c43a89-05",
@@ -685,46 +723,6 @@
           ],
           "caption_text": "製品を濡らすことを禁止する記号",
           "caption_sha256": "47004dbf44eab3368949ddaa0bd07ebb2c2182fa0210a54508c3ed80d0f800a7",
-          "caption_mode": "outlined-manual-transcription"
-        },
-        {
-          "asset_ref": "assets/symbol-no-wet-hands-native-candidate.svg",
-          "asset_sha256": "7f6e12d19c8269ee10bbb147bd0223ce70e8889ac2ba8cc1d65a70ba437ddad2",
-          "shared_symbol_key": null,
-          "physical_page": 8,
-          "drawing_indices": [
-            7995,
-            7996,
-            7997,
-            7998,
-            7999,
-            8000,
-            8001,
-            8002,
-            8003,
-            8004,
-            8005
-          ],
-          "glyph_bbox": [
-            22.541786193847656,
-            338.8233947753906,
-            39.121788024902344,
-            355.40240478515625
-          ],
-          "caption_bbox": [
-            44.038,
-            343.2127,
-            185.377,
-            351.6147
-          ],
-          "row_bbox": [
-            21.5418,
-            337.8234,
-            186.377,
-            356.4024
-          ],
-          "caption_text": "製品に濡れた手で触れることを禁止する記号",
-          "caption_sha256": "31c6646f545134fb29f4a176c2b74bd99b72e04a046283eb336d689d18c5baee",
           "caption_mode": "outlined-manual-transcription"
         },
         {
@@ -945,8 +943,8 @@
     },
     {
       "path": "docs/renderers/web/assets/shared/symbols/manifest.json",
-      "size": 94792,
-      "sha256": "99237c9081076bfc4d7439029eb7f6440fc0b6983b2d48a0f3025c4e4673b969"
+      "size": 138544,
+      "sha256": "08e6473aa4a283a9d9637fcc515eb79bfbbfa18dcbf16409295c8b5e77b0b00c"
     },
     {
       "path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-mandatory.svg",
@@ -954,9 +952,19 @@
       "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2"
     },
     {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-unplug.svg",
+      "size": 2569,
+      "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf"
+    },
+    {
       "path": "docs/renderers/web/assets/shared/symbols/native-v1/je1000d-jp-00c43a89-symbol-02.svg",
       "size": 12347,
       "sha256": "0766a51f9ad7d433bed62a7c1ddbacc19ad7c7b68bf55938d5cdbab902b9ea04"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/je1000d-jp-00c43a89-symbol-03.svg",
+      "size": 11954,
+      "sha256": "585a0c72abdb9fc1d69d31554d249730f1361dfc49a501423dd0204e0637a387"
     },
     {
       "path": "docs/renderers/web/assets/shared/symbols/native-v1/je1000d-jp-00c43a89-symbol-05.svg",
@@ -1000,8 +1008,8 @@
     },
     {
       "path": "tools/asset_pipeline/native_svg.py",
-      "size": 9464,
-      "sha256": "cc51c407aef9dca7d95338e6c64a38ddb7e890de5a067e0dc9812100b3c86fd7"
+      "size": 10550,
+      "sha256": "6f778d16e3108fe81a17925528e755ae37645ba7691033f3417718593727985b"
     },
     {
       "path": "tools/asset_pipeline/package.py",
@@ -1775,8 +1783,8 @@
     },
     {
       "path": "tools/web/shared_symbol_assets.py",
-      "size": 1835,
-      "sha256": "b6aab8f2aa26dbd87a623b66d491d22f243e99b68659724bb7a60471c4b11ab6"
+      "size": 4215,
+      "sha256": "ba211428ab26a54f77b13d012e98ec7dc7ff7e464b897074982116b35ba77d2a"
     },
     {
       "path": "tools/web/spec_component.py",
@@ -1790,8 +1798,8 @@
     },
     {
       "path": "tools/web/symbol_asset_admission.py",
-      "size": 15908,
-      "sha256": "0cf8dc52d8307d9ae729898fdc4cd44687363b78efa48e3160514287b96d6565"
+      "size": 18398,
+      "sha256": "6db670cf29104705b841d960ebf0415592b4bfcbd7cf351a801ac7138da599f7"
     },
     {
       "path": "tools/web/symbol_components.py",
@@ -1822,8 +1830,8 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 4679,
-      "sha256": "c6737eb68f33776b531fb61990d96ddb462e2323b08b31136b180f60a2fd231b"
+      "size": 4704,
+      "sha256": "1b748a08c662f51b05cab6c48277fdf4ed2e72b49cdb82c08433e2eb82d3b47e"
     },
     {
       "path": "assets/ac-charging.png",
@@ -1876,6 +1884,11 @@
       "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2"
     },
     {
+      "path": "assets/h1-jp-unplug.svg",
+      "size": 2569,
+      "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf"
+    },
+    {
       "path": "assets/inbox-ac-cable.png",
       "size": 4427,
       "sha256": "685f0712dad15687d2333797d5e59ef2a71994652ddf63c14cd9a6c5d37b21e6"
@@ -1899,6 +1912,11 @@
       "path": "assets/je1000d-jp-00c43a89-symbol-02.svg",
       "size": 12347,
       "sha256": "0766a51f9ad7d433bed62a7c1ddbacc19ad7c7b68bf55938d5cdbab902b9ea04"
+    },
+    {
+      "path": "assets/je1000d-jp-00c43a89-symbol-03.svg",
+      "size": 11954,
+      "sha256": "585a0c72abdb9fc1d69d31554d249730f1361dfc49a501423dd0204e0637a387"
     },
     {
       "path": "assets/je1000d-jp-00c43a89-symbol-05.svg",
@@ -1976,19 +1994,9 @@
       "sha256": "ae2929e439eefafc2ae399b6f49afe8acfa2ad0417ef21baca6785e76d85433c"
     },
     {
-      "path": "assets/symbol-no-wet-hands-native-candidate.svg",
-      "size": 12691,
-      "sha256": "7f6e12d19c8269ee10bbb147bd0223ce70e8889ac2ba8cc1d65a70ba437ddad2"
-    },
-    {
-      "path": "assets/symbol-unplug-native-candidate.svg",
-      "size": 11206,
-      "sha256": "8cb18d03a75972917549455009e2c7c4090855376fc4515501a768347bc34321"
-    },
-    {
       "path": "audit/review.zh.md",
-      "size": 2267,
-      "sha256": "e2c30765efa4d60bf356598aeb27ed629428ad90c3f7258f1edabcc56b7ccb52"
+      "size": 2323,
+      "sha256": "c67ea40eaed74a9dcd077a544d7d97ccf81bd96a98abccd3c3c15f352f1fd97b"
     },
     {
       "path": "original.pdf",
@@ -2002,8 +2010,8 @@
     },
     {
       "path": "source/extract_assets.py",
-      "size": 9496,
-      "sha256": "0c5a59dbdb0b7417e3a426d2bdfb94a0a3a88207c3aa7c683bf91431f673630a"
+      "size": 11058,
+      "sha256": "6d279150b20747ef98f5eeffb1448c7b703985ffee1181d6585089c80c0dd5e6"
     },
     {
       "path": "source/figures.json",
@@ -2022,8 +2030,8 @@
     },
     {
       "path": "source/ja/content.json",
-      "size": 226367,
-      "sha256": "144e98a64a4996705bd7c1882e21782c836532c111e45fe7be83c5c5a528fe5d"
+      "size": 226342,
+      "sha256": "2a9880131262f69eaf1255eb40987b62562f41b5d6de20a85d544827304597fc"
     },
     {
       "path": "source/kit.py",
@@ -2042,8 +2050,8 @@
     },
     {
       "path": "source/symbols.json",
-      "size": 91797,
-      "sha256": "a49c46b8958db87b220ffb499190b65e06f7602009523054deea5958c0177648"
+      "size": 92534,
+      "sha256": "787e273b7d9d207eda78c00b62917b635a42e1c298ee1940d775fd51949f49fc"
     },
     {
       "path": "web/ja/_static/source_presentation.css",
@@ -2106,6 +2114,11 @@
       "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2"
     },
     {
+      "path": "web/ja/assets/h1-jp-unplug.svg",
+      "size": 2569,
+      "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf"
+    },
+    {
       "path": "web/ja/assets/inbox-ac-cable.png",
       "size": 4427,
       "sha256": "685f0712dad15687d2333797d5e59ef2a71994652ddf63c14cd9a6c5d37b21e6"
@@ -2129,6 +2142,11 @@
       "path": "web/ja/assets/je1000d-jp-00c43a89-symbol-02.svg",
       "size": 12347,
       "sha256": "0766a51f9ad7d433bed62a7c1ddbacc19ad7c7b68bf55938d5cdbab902b9ea04"
+    },
+    {
+      "path": "web/ja/assets/je1000d-jp-00c43a89-symbol-03.svg",
+      "size": 11954,
+      "sha256": "585a0c72abdb9fc1d69d31554d249730f1361dfc49a501423dd0204e0637a387"
     },
     {
       "path": "web/ja/assets/je1000d-jp-00c43a89-symbol-05.svg",
@@ -2206,16 +2224,6 @@
       "sha256": "ae2929e439eefafc2ae399b6f49afe8acfa2ad0417ef21baca6785e76d85433c"
     },
     {
-      "path": "web/ja/assets/symbol-no-wet-hands-native-candidate.svg",
-      "size": 12691,
-      "sha256": "7f6e12d19c8269ee10bbb147bd0223ce70e8889ac2ba8cc1d65a70ba437ddad2"
-    },
-    {
-      "path": "web/ja/assets/symbol-unplug-native-candidate.svg",
-      "size": 11206,
-      "sha256": "8cb18d03a75972917549455009e2c7c4090855376fc4515501a768347bc34321"
-    },
-    {
       "path": "web/ja/conf.py",
       "size": 850,
       "sha256": "5d938f6d46930b31cb1d68a76bd3f72c55eb6d973d537590367512560b60be16"
@@ -2227,13 +2235,13 @@
     },
     {
       "path": "web/ja/manual.ir.json",
-      "size": 330478,
-      "sha256": "d3ced1147624dbb9662ba7c578fe893b5989cd3a39fbb0e7486149d41aa12e7f"
+      "size": 330378,
+      "sha256": "e883639a1545ee28e0e24c4109549585bf1c6681aa729589aa9924756e6763ac"
     },
     {
       "path": "web/ja/manual_je600csj_jp_ja.md",
-      "size": 51432,
-      "sha256": "cf57a6161ecf742ef5be09c1d1654ce7ee0ab7fa5722c20a1f61ade666f8d02f"
+      "size": 51407,
+      "sha256": "42c2f7264a02a5c8ff0028a669ad4ee96e728560e13953d174eccb59a287bb80"
     }
   ]
 }

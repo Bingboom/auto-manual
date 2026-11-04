@@ -51,12 +51,7 @@ Japanese copy is unchanged; suspected source errors stay as printed and are list
   temperature from JE-300C US (the JE-600A US copies are that print's native paths and do not pass). The
   battery-percentage glyph (no released glyph passes; candidate has an opaque backdrop) and the Li-ion 32
   recycling mark (JE-600C-SJ JP / JE-1000D JP marks do not pass) are this print's native vector paths.
-- **Symbols**: 6 rows (絵表示の説明), each compared with every shared variant by the symbol admission's
-  fixed comparison. One reuses shared bytes (`mandatory/h1-jp-native`). Five (unplug, no disassembly, no
-  wet hands, keep dry, prohibition) pass no shared variant: this print draws them on a light-grey filled
-  disc the size of the ring (the unplug mark as a stroked ring over a dark disc), so the glyph background
-  differs. They stay as pending native candidates and were reported to the coordinating window for the batch
-  shared-symbol PR — release admission refuses them until the shared library carries them.
+- **Symbols**: 6 rows (絵表示の説明). One reuses shared bytes within the fixed 2% comparison (`mandatory/h1-jp-native`). The other five print on a light-grey disc the size of the ring and pass no variant; they bind their groups' canonicals: unplug → `unplug/h1-jp-native`, no disassembly → `do-not-dismantle/screwdriver-prohibited`, no wet hands → `native/je1000d-jp-00c43a89-03`, keep dry → `native/je1000d-jp-00c43a89-05`, prohibition → `prohibited/h1-jp-native`. A row that passes no shared variant binds the operator-confirmed canonical of its symbol group (shared PR #1659, decision SCG-20261103) when its printed caption is listed for that group; the release admission re-runs that rule.
 - **Panels**: 17 figures cut from `original.pdf` at 4x (`source/figures.json`), labels kept in the art and
   the alt text. Masks: the ● 右側面 heading inside the right-side panel rectangle, and the UPS speech bubble
   (its text is set as a shared text panel below the figure).

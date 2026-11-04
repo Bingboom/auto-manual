@@ -37,12 +37,7 @@ are listed in `source_manifest.json:source_concerns`. Review reference: JE-1000D
 - **Inventory first**: no Web edition of this model exists. Reused where the fixed comparison passes:
   the Li-ion 32 recycling mark and four LCD glyphs (high/low temperature, quiet charging, battery saving)
   reuse the JE-1000D JP Web glyphs byte for byte.
-- **Symbols**: 6 rows (絵表示の説明), each compared with every shared variant by the symbol admission's
-  fixed comparison. Four reuse shared bytes (`mandatory/h1-jp-native`, `native/je1000d-jp-00c43a89-02`,
-  `-05`, `-06`). The unplug and no-wet-hands pictograms pass no shared variant (this print's white backing
-  disc is offset from the glyph); they stay as pending native candidates and were reported to the
-  coordinating window for the batch shared-symbol PR — release admission refuses them until the shared
-  library carries them.
+- **Symbols**: 6 rows (絵表示の説明). Four reuse shared bytes within the fixed 2% comparison (`mandatory/h1-jp-native`, `native/je1000d-jp-00c43a89-02`, `-05`, `-06`). The unplug and no-wet-hands pictograms (white backing disc offset from the glyph) bind their groups' canonicals `unplug/h1-jp-native` and `native/je1000d-jp-00c43a89-03`. A row that passes no shared variant binds the operator-confirmed canonical of its symbol group (shared PR #1659, decision SCG-20261103) when its printed caption is listed for that group; the release admission re-runs that rule.
 - **LCD glyphs**: battery ring, low battery, energy saving (88H) and fault code are this print's native
   vector paths (no released glyph passes).
 - **Panels**: 17 figures cut from `original.pdf` at 4x (`source/figures.json`), labels kept in the art and

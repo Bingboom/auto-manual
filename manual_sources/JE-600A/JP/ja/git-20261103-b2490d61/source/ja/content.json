@@ -221,17 +221,17 @@
             "assets": [
               {
                 "role": "icons",
-                "asset_ref": "assets/symbol-unplug-native-candidate.svg",
+                "asset_ref": "assets/h1-jp-unplug.svg",
                 "locale_policy": "shared"
               },
               {
                 "role": "icons",
-                "asset_ref": "assets/symbol-no-disassembly-native-candidate.svg",
+                "asset_ref": "assets/symbol_do_not_dismantle.svg",
                 "locale_policy": "shared"
               },
               {
                 "role": "icons",
-                "asset_ref": "assets/symbol-no-wet-hands-native-candidate.svg",
+                "asset_ref": "assets/je1000d-jp-00c43a89-symbol-03.svg",
                 "locale_policy": "shared"
               },
               {
@@ -241,12 +241,12 @@
               },
               {
                 "role": "icons",
-                "asset_ref": "assets/symbol-keep-dry-native-candidate.svg",
+                "asset_ref": "assets/je1000d-jp-00c43a89-symbol-05.svg",
                 "locale_policy": "shared"
               },
               {
                 "role": "icons",
-                "asset_ref": "assets/symbol-prohibition-native-candidate.svg",
+                "asset_ref": "assets/h1-jp-prohibited.svg",
                 "locale_policy": "shared"
               }
             ],
