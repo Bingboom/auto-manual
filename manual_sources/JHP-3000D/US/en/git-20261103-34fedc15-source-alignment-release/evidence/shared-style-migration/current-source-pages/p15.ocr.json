@@ -1,0 +1,114 @@
+[
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "• CHARGING VIA AC WALL OUTLET",
+    "w" : 0.36314363143631434,
+    "x" : 0.08130081754742538,
+    "y" : 0.92952380964285719
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "Connect the AC charging cable to the AC input port of the product and a wall outlet.",
+    "w" : 0.63143631436314362,
+    "x" : 0.07859079222222215,
+    "y" : 0.90857142864761908
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "Jackery",
+    "w" : 0.04065040650406504,
+    "x" : 0.22222222171409212,
+    "y" : 0.83047619040476195
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.015562126522972508,
+    "text" : "CAUTION",
+    "w" : 0.097662380394250722,
+    "x" : 0.094800247270267632,
+    "y" : 0.57698084131377181
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.015238095238095162,
+    "text" : "Make sure the AC charging cable is fully and securely plugged into the AC input",
+    "w" : 0.65040650406504064,
+    "x" : 0.22222221571815726,
+    "y" : 0.59428571420952381
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "port. An incomplete connection may cause unstable current, overheating, poor",
+    "w" : 0.64769647696476951,
+    "x" : 0.22222223031842797,
+    "y" : 0.57714285726190484
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "contact, or device malfunction.",
+    "w" : 0.25745257452574527,
+    "x" : 0.22222222544037934,
+    "y" : 0.56190476195238093
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.017142857142857126,
+    "text" : "• CHARGING VIA SOLAR PANELS (SOLD SEPARATELY)",
+    "w" : 0.54471544715447151,
+    "x" : 0.075880754268292785,
+    "y" : 0.49714285703174599
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333419,
+    "text" : "Jackery HomePower 3000 has two DC8020 input ports and is compatible with the Jackery solar panels. If one",
+    "w" : 0.81842818428184272,
+    "x" : 0.075880771093043822,
+    "y" : 0.4761904764126984
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "DC8020 input port needs to connect two solar panels simultaneously, please refer to the figure below for",
+    "w" : 0.77777777777777779,
+    "x" : 0.075880745934959762,
+    "y" : 0.45904761926984128
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333419,
+    "text" : "charging through the solar panel connector (sold separately, not included as standard).",
+    "w" : 0.65040646271330882,
+    "x" : 0.075880770901701866,
+    "y" : 0.43999999977777771
+  },
+  {
+    "confidence" : 0.30000001192092896,
+    "h" : 0.019047619047619091,
+    "text" : "=018855",
+    "w" : 0.092140921409214094,
+    "x" : 0.14634146456639566,
+    "y" : 0.29142857147619039
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "SolarSaga 200 ×4",
+    "w" : 0.1355013550135501,
+    "x" : 0.69105690921409213,
+    "y" : 0.11619047611428568
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.00952380952380949,
+    "text" : "12",
+    "w" : 0.016260162601625994,
+    "x" : 0.91056910555555548,
+    "y" : 0.026666666746031797
+  }
+]

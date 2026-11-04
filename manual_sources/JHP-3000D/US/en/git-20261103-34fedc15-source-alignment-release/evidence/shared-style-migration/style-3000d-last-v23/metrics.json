@@ -1,0 +1,112 @@
+[
+  {
+    "width": 1400,
+    "broken": [],
+    "overflow": false
+  },
+  {
+    "scrollables": [
+      {
+        "i": 0,
+        "tag": "DIV",
+        "classes": "",
+        "width": 358,
+        "scrollWidth": 660,
+        "actual": 302
+      },
+      {
+        "i": 1,
+        "tag": "DIV",
+        "classes": "",
+        "width": 358,
+        "scrollWidth": 530,
+        "actual": 172
+      },
+      {
+        "i": 2,
+        "tag": "FIGURE",
+        "classes": "hb-lcd-table-composition",
+        "width": 354,
+        "scrollWidth": 640,
+        "actual": 286
+      },
+      {
+        "i": 3,
+        "tag": "DIV",
+        "classes": "hb-reference-composition",
+        "width": 356,
+        "scrollWidth": 660,
+        "actual": 304
+      },
+      {
+        "i": 4,
+        "tag": "DIV",
+        "classes": "hb-reference-composition",
+        "width": 356,
+        "scrollWidth": 660,
+        "actual": 304
+      },
+      {
+        "i": 5,
+        "tag": "DIV",
+        "classes": "",
+        "width": 332,
+        "scrollWidth": 660,
+        "actual": 328
+      },
+      {
+        "i": 6,
+        "tag": "FIGURE",
+        "classes": "hb-auto-resume-composition",
+        "width": 354,
+        "scrollWidth": 640,
+        "actual": 286
+      },
+      {
+        "i": 7,
+        "tag": "DIV",
+        "classes": "",
+        "width": 358,
+        "scrollWidth": 660,
+        "actual": 302
+      },
+      {
+        "i": 8,
+        "tag": "DIV",
+        "classes": "hb-lcd-mode-table-panel",
+        "width": 328,
+        "scrollWidth": 544,
+        "actual": 216
+      },
+      {
+        "i": 9,
+        "tag": "FIGURE",
+        "classes": "hb-key-combination-composition",
+        "width": 354,
+        "scrollWidth": 576,
+        "actual": 222
+      },
+      {
+        "i": 10,
+        "tag": "FIGURE",
+        "classes": "hb-troubleshooting-composition",
+        "width": 354,
+        "scrollWidth": 576,
+        "actual": 222
+      },
+      {
+        "i": 11,
+        "tag": "DIV",
+        "classes": "",
+        "width": 358,
+        "scrollWidth": 570,
+        "actual": 212
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "broken": [],
+    "overflow": false
+  }
+]

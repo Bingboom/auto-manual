@@ -1,0 +1,244 @@
+{
+  "source_pdf": "source/review-reference.pdf",
+  "sha256": "d35114d38afbdcb377441f44b00a3db575ad40710e19a71db4bc7a0a8fdaedb7",
+  "physical_page_count": 24,
+  "excluded": [
+    {
+      "page": 1,
+      "reason": "User explicitly excludes Web front cover."
+    },
+    {
+      "page": 3,
+      "reason": "Historical operator conversion scope excludes paper TOC; Web has native anchor navigation."
+    }
+  ],
+  "pages": [
+    {
+      "physical_page": 2,
+      "source_image": "own-pdf-4x/p02.png",
+      "source_image_sha256": "14923c912f6eb4ae5114fe098411fed878fa3ef19ac6fbfba551fce5ca676582",
+      "web_chapter": "preface",
+      "source_to_web": "checked",
+      "web_to_current_source": "checked",
+      "visual_layout": "checked at desktop and mobile left/right scroll as applicable",
+      "findings_and_disposition": "Preface all three paragraphs and product name; no cover."
+    },
+    {
+      "physical_page": 4,
+      "source_image": "own-pdf-4x/p04.png",
+      "source_image_sha256": "c26b9dbb5eeded20c96d37a65610bdee9aece4a4fcec589efed66fd4bdda633a",
+      "web_chapter": "page-4",
+      "source_to_web": "checked",
+      "web_to_current_source": "checked",
+      "visual_layout": "checked at desktop and mobile left/right scroll as applicable",
+      "findings_and_disposition": "Risk banner, warning lead, two source columns and all bullets; separate charging/discharging ranges retained."
+    },
+    {
+      "physical_page": 5,
+      "source_image": "own-pdf-4x/p05.png",
+      "source_image_sha256": "4bddc9f94634ff6b49ca11a40751faa8861e77acb2706319645ccbf7e8c3ddf6",
+      "web_chapter": "page-5",
+      "source_to_web": "checked",
+      "web_to_current_source": "checked",
+      "visual_layout": "checked at desktop and mobile left/right scroll as applicable",
+      "findings_and_disposition": "Indoor DANGER two sentences including ※, maintenance paragraph, four signal rows with current white triangle, left six/right five symbol pairs."
+    },
+    {
+      "physical_page": 6,
+      "source_image": "own-pdf-4x/p06.png",
+      "source_image_sha256": "121c997ff0f745d9a989aaa021659355aa725d9a305ea9a3e37e99938e660814",
+      "web_chapter": "page-6",
+      "source_to_web": "checked",
+      "web_to_current_source": "checked",
+      "visual_layout": "checked at desktop and mobile left/right scroll as applicable",
+      "findings_and_disposition": "FCC floating mark, two columns, NOTE/These limits separate paragraphs, four mitigation bullets and MODIFICATION; exactly three inbox items unit/AC cable/User Manual with current actual manual-cover art."
+    },
+    {
+      "physical_page": 7,
+      "source_image": "own-pdf-4x/p07.png",
+      "source_image_sha256": "1da2b28cd698d1d7680e2aeeeb3605635dc2f9df2a538471e4969382ba38f133",
+      "web_chapter": "page-7",
+      "source_to_web": "checked",
+      "web_to_current_source": "checked",
+      "visual_layout": "checked at desktop and mobile left/right scroll as applicable",
+      "findings_and_disposition": "Front/right-side connector diagram and all editable labels; four DC Input lines spaced without overlap."
+    },
+    {
+      "physical_page": 8,
+      "source_image": "own-pdf-4x/p08.png",
+      "source_image_sha256": "f06f11bdeb821b45ecc7b558339294593d02f38f4232e87412ee2fa2df699353",
+      "web_chapter": "page-8",
+      "source_to_web": "checked",
+      "web_to_current_source": "checked",
+      "visual_layout": "checked at desktop and mobile left/right scroll as applicable",
+      "findings_and_disposition": "LCD map and numbers; rows 1–8 with paired number 4; current Quiet/Self-powered/Charging Plan copy and source current row 8 placement."
+    },
+    {
+      "physical_page": 9,
+      "source_image": "own-pdf-4x/p09.png",
+      "source_image_sha256": "260f9290e60cccb26a3cd342f58f33f0f8aff97b6a75db3ae5386ad7b5ab7f5a",
+      "web_chapter": "page-9",
+      "source_to_web": "checked",
+      "web_to_current_source": "checked",
+      "visual_layout": "checked at desktop and mobile left/right scroll as applicable",
+      "findings_and_disposition": "LCD rows 9–22 including paired 19; charging versus discharging read from 4x source; old Energy Saving lead absent."
+    },
+    {
+      "physical_page": 10,
+      "source_image": "own-pdf-4x/p10.png",
+      "source_image_sha256": "f34df593c5a381de3cb4db8ecdba21f2e231fa50ae6360e128622e9ffbaf2202",
+      "web_chapter": "page-10",
+      "source_to_web": "checked",
+      "web_to_current_source": "checked",
+      "visual_layout": "checked at desktop and mobile left/right scroll as applicable",
+      "findings_and_disposition": "Power and AC buttons, On/Off labels and 3s; own native gray note frames and tails, current prerequisite and AC Output/USB Output wording."
+    },
+    {
+      "physical_page": 11,
+      "source_image": "own-pdf-4x/p11.png",
+      "source_image_sha256": "d6ec4b259f433aaca8be5c01321af0be34d18fa8bd7395bb21323df98de5c3d0",
+      "web_chapter": "page-11",
+      "source_to_web": "checked",
+      "web_to_current_source": "checked",
+      "visual_layout": "checked at desktop and mobile left/right scroll as applicable",
+      "findings_and_disposition": "USB and Energy Saving diagrams, own frames; full native note, retained Energy Saving state note and refrigerator/router warning."
+    },
+    {
+      "physical_page": 12,
+      "source_image": "own-pdf-4x/p12.png",
+      "source_image_sha256": "cb316405c94e05350bece442f17bd7bbce6b7594defc5550a196b9744c101356",
+      "web_chapter": "page-12",
+      "source_to_web": "checked",
+      "web_to_current_source": "checked",
+      "visual_layout": "checked at desktop and mobile left/right scroll as applicable",
+      "findings_and_disposition": "LCD mode 6 action rows with current text, native button/clock three key-combination rows; absent App-setting sentence removed."
+    },
+    {
+      "physical_page": 13,
+      "source_image": "own-pdf-4x/p13.png",
+      "source_image_sha256": "1ed40b90aa0adc3ab32009f4afb7199823b8fc960f51d9997fbaa28f159f0b0d",
+      "web_chapter": "page-13",
+      "source_to_web": "checked",
+      "web_to_current_source": "checked",
+      "visual_layout": "checked at desktop and mobile left/right scroll as applicable",
+      "findings_and_disposition": "UPS diagram, 10ms/1440W bypass paragraph, warning three equipment bullets and cardiac-pacemaker restriction."
+    },
+    {
+      "physical_page": 14,
+      "source_image": "own-pdf-4x/p14.png",
+      "source_image_sha256": "452df245d53135828a2537464cff018a849835a6616965d37cf6c65f8801f611",
+      "web_chapter": "page-14",
+      "source_to_web": "checked",
+      "web_to_current_source": "checked",
+      "visual_layout": "checked at desktop and mobile left/right scroll as applicable",
+      "findings_and_disposition": "UPS four cautions; battery pack five-unit limit, two 200mm clearances and caution; own source Sold separately/cart badge."
+    },
+    {
+      "physical_page": 15,
+      "source_image": "own-pdf-4x/p15.png",
+      "source_image_sha256": "6d31656132da68dba9e71b1b11f9479b8c83e9c5122ad1acc8592590decf13bc",
+      "web_chapter": "page-15",
+      "source_to_web": "checked",
+      "web_to_current_source": "checked",
+      "visual_layout": "checked at desktop and mobile left/right scroll as applicable",
+      "findings_and_disposition": "Parallel two notes, preconnection caution, four steps, two outcome bullets, connector art and two follow-up cautions."
+    },
+    {
+      "physical_page": 16,
+      "source_image": "own-pdf-4x/p16.png",
+      "source_image_sha256": "1f832cb9521a12973767dc37038a9602e60c1ec5292cb9d02dcb2ea9bdcd3d54",
+      "web_chapter": "page-16",
+      "source_to_web": "checked",
+      "web_to_current_source": "checked",
+      "visual_layout": "checked at desktop and mobile left/right scroll as applicable",
+      "findings_and_disposition": "Interruption text without old rectify clause; parallel illustration and exiting three-step original diagrams."
+    },
+    {
+      "physical_page": 17,
+      "source_image": "own-pdf-4x/p17.png",
+      "source_image_sha256": "9d35784e3285e7c52f01b5dea3e258e33f769d5d384de608d666184c20a0ce79",
+      "web_chapter": "page-17",
+      "source_to_web": "checked",
+      "web_to_current_source": "checked",
+      "visual_layout": "checked at desktop and mobile left/right scroll as applicable",
+      "findings_and_disposition": "Current Green energy first paragraph, initial-charge banner, two temperature notes, AC/caution and four solar panels."
+    },
+    {
+      "physical_page": 18,
+      "source_image": "own-pdf-4x/p18.png",
+      "source_image_sha256": "be2331698df09cd3fe5d42702c41438210213cd466dabe13030efba3f70820d6",
+      "web_chapter": "page-18",
+      "source_to_web": "checked",
+      "web_to_current_source": "checked",
+      "visual_layout": "checked at desktop and mobile left/right scroll as applicable",
+      "findings_and_disposition": "Solar DC8020 at most two panels, two voltage bullets, 16–60V statement, 12V car instructions and three cautions."
+    },
+    {
+      "physical_page": 19,
+      "source_image": "own-pdf-4x/p19.png",
+      "source_image_sha256": "f749b8eceecda1b617cad1fdb995b7c942da4120d9b958f06898b772ec7ac37e",
+      "web_chapter": "page-19",
+      "source_to_web": "checked",
+      "web_to_current_source": "checked",
+      "visual_layout": "checked at desktop and mobile left/right scroll as applicable",
+      "findings_and_disposition": "Storage three ranges and full maintenance paragraph; full F0/F1/F2/F3 through FC fault table, F6 five numbered steps/30cm, F7 Voc 60V; exact current introductory wording."
+    },
+    {
+      "physical_page": 20,
+      "source_image": "own-pdf-4x/p20.png",
+      "source_image_sha256": "3a48a1bce11d5ca980de3713c7511abd0f8ae769c7549b860c9f0e662666254c",
+      "web_chapter": "page-20",
+      "source_to_web": "checked",
+      "web_to_current_source": "checked",
+      "visual_layout": "checked at desktop and mobile left/right scroll as applicable",
+      "findings_and_disposition": "All general/input/output/environment parameters and three footnotes; current DC expansion OUTPUT100A, INPUT only AC/DC8020; no old NEMA5-20R extra."
+    },
+    {
+      "physical_page": 21,
+      "source_image": "own-pdf-4x/p21.png",
+      "source_image_sha256": "6446d0643c47bea315acd09dd57aa936f95f736a15fa9f6846514ddd2f504814",
+      "web_chapter": "page-21",
+      "source_to_web": "checked",
+      "web_to_current_source": "checked",
+      "visual_layout": "checked at desktop and mobile left/right scroll as applicable",
+      "findings_and_disposition": "Warranty lead and six framed sections; 3+2-year columns preserved desktop, stacked mobile; editable pills cross shared frames without clipping."
+    },
+    {
+      "physical_page": 22,
+      "source_image": "own-pdf-4x/p22.png",
+      "source_image_sha256": "11fb8250b879734a59e9b35388e39583dfa6f4af07715befb89976363ce677f9",
+      "web_chapter": "page-22",
+      "source_to_web": "checked",
+      "web_to_current_source": "checked",
+      "visual_layout": "checked at desktop and mobile left/right scroll as applicable",
+      "findings_and_disposition": "Exact To headings, app-download QR/stores, own plus symbol, 2.1/2.2 phones and native controls, two-hour note."
+    },
+    {
+      "physical_page": 23,
+      "source_image": "own-pdf-4x/p23.png",
+      "source_image_sha256": "76db44e5ebcb3bc8fb3a3144e0593b5ba53a2e0743d47b1d30c4b334e2ad2655",
+      "web_chapter": "page-23",
+      "source_to_web": "checked",
+      "web_to_current_source": "checked",
+      "visual_layout": "checked at desktop and mobile left/right scroll as applicable",
+      "findings_and_disposition": "App2.3–2.5, binding notes and fiveGHz restriction, three phone screenshots, unbind and 4.1/4.2/4.3 notes."
+    },
+    {
+      "physical_page": 24,
+      "source_image": "own-pdf-4x/p24.png",
+      "source_image_sha256": "00500ff75faba731aca98997acc0f76d36b6c6192e0491cdc467e72d269c0270",
+      "web_chapter": "page-64",
+      "source_to_web": "checked",
+      "web_to_current_source": "checked",
+      "visual_layout": "checked at desktop and mobile left/right scroll as applicable",
+      "findings_and_disposition": "JACKERY INC/address, phone/email/web/QR and own vector separator; blank back-cover area not carried to Web."
+    }
+  ],
+  "approved_exceptions": [
+    "Previously approved removal of unrelated Explorer 2000 Plus label retained.",
+    "Front cover and paper TOC excluded by explicit operator scope."
+  ],
+  "content_corrections": "source/current-source-copy-corrections.json",
+  "source_concerns": [],
+  "method": "Own hash-bound PDF rendered at 4x, read page-by-page and compared both directions with rendered native text/art. OCR candidates were checked against source pixels, not accepted automatically."
+}

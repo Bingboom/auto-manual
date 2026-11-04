@@ -2619,6 +2619,48 @@
       "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
       "registered": "2026-11-03",
       "known_drift": {}
+    },
+    "manual_sources/JHP-3000D/US/en/git-20261103-34fedc15-source-alignment-release": {
+      "approval": "MA-381: current single-language full source/content/layout review plus independent coordinator strict/cold/art/approval verification; old full-PASS superseded.",
+      "registered": "2026-11-03",
+      "known_drift": {
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 current-reference HomePower repair: preserve real approved cold-replay runtime and frozen outputs. Original pins remain; only JHP-3600A adds the exact actually used shared-rowspan CSS pin. Current source-bound original art, native copy, prepared-style audit, strict build and actual full desktop/mobile coverage verified; no gate or baseline relaxed.",
+          "since": "2026-11-03"
+        },
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 current-reference HomePower repair: preserve real approved cold-replay runtime and frozen outputs. Original pins remain; only JHP-3600A adds the exact actually used shared-rowspan CSS pin. Current source-bound original art, native copy, prepared-style audit, strict build and actual full desktop/mobile coverage verified; no gate or baseline relaxed.",
+          "since": "2026-11-03"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 current-reference HomePower repair: preserve real approved cold-replay runtime and frozen outputs. Original pins remain; only JHP-3600A adds the exact actually used shared-rowspan CSS pin. Current source-bound original art, native copy, prepared-style audit, strict build and actual full desktop/mobile coverage verified; no gate or baseline relaxed.",
+          "since": "2026-11-03"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 current-reference HomePower repair: preserve real approved cold-replay runtime and frozen outputs. Original pins remain; only JHP-3600A adds the exact actually used shared-rowspan CSS pin. Current source-bound original art, native copy, prepared-style audit, strict build and actual full desktop/mobile coverage verified; no gate or baseline relaxed.",
+          "since": "2026-11-03"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 current-reference HomePower repair: preserve real approved cold-replay runtime and frozen outputs. Original pins remain; only JHP-3600A adds the exact actually used shared-rowspan CSS pin. Current source-bound original art, native copy, prepared-style audit, strict build and actual full desktop/mobile coverage verified; no gate or baseline relaxed.",
+          "since": "2026-11-03"
+        }
+      }
+    },
+    "manual_sources/JHP-3600A/US/en/git-20261103-d35114d3-source-alignment-release": {
+      "approval": "MA-381: current single-language full source/content/layout review plus independent coordinator strict/cold/art/approval verification; old full-PASS superseded.",
+      "registered": "2026-11-03",
+      "known_drift": {
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 current-reference HomePower repair: preserve real approved cold-replay runtime and frozen outputs. Original pins remain; only JHP-3600A adds the exact actually used shared-rowspan CSS pin. Current source-bound original art, native copy, prepared-style audit, strict build and actual full desktop/mobile coverage verified; no gate or baseline relaxed.",
+          "since": "2026-11-03"
+        }
+      }
     }
   },
   "drift_log": [
@@ -2823,6 +2865,20 @@
       "packages": 2,
       "handling": "keep-frozen",
       "reason": "MA-381 ordinary main integration: the already-reviewed JE-600A and JE-880B release snapshots retain their exact approved frozen runtime and HTML. The source-only shared rowspan CSS correction is not replayed into these packages; only its newly observed runtime drift is registered. All source, original art and frozen outputs remain byte-identical to engineering PR1665.",
+      "minutes": 0
+    },
+    {
+      "date": "2026-11-03",
+      "files": [
+        "docs/renderers/contracts/web_manual.css",
+        "docs/renderers/web/assets/shared/symbols/manifest.json",
+        "tools/asset_pipeline/native_svg.py",
+        "tools/web/shared_symbol_assets.py",
+        "tools/web/symbol_asset_admission.py"
+      ],
+      "packages": 2,
+      "handling": "keep-frozen",
+      "reason": "MA-381 current-reference HomePower repair: preserve real approved cold-replay runtime and frozen outputs. Original pins remain; only JHP-3600A adds the exact actually used shared-rowspan CSS pin. Current source-bound original art, native copy, prepared-style audit, strict build and actual full desktop/mobile coverage verified; no gate or baseline relaxed.",
       "minutes": 0
     }
   ]

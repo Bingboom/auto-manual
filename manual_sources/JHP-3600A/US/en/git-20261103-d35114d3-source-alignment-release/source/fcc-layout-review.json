@@ -1,0 +1,72 @@
+{
+  "scope": "US native FCC panels; locale copy and source column breaks retained",
+  "component": "HB-SPECIAL-FCC/two-column",
+  "physical_pages": {
+    "en": {
+      "physical_page": 6,
+      "opening_lines": [
+        "This device complies with part 15 of the FCC  Rules. Operation is subject to the following two  conditions:",
+        "(1) This device may not cause harmful  interference, and",
+        "(2) This device must accept any interference received,  including interference that may cause undesired operation."
+      ],
+      "left_paragraphs": [
+        "NOTE: This equipment has been tested and found to comply  with the limits for a Class B digital device, pursuant to part  15 of the FCC Rules.",
+        "These limits are designed to provide reasonable protection  against harmful interference in a residential installation. This  equipment generates, uses, and can radiate radio  frequency energy and, if not installed and used in  accordance with the instructions, may cause harmful  interference to communications. However, there is no  guarantee that radio interference will not occur in a"
+      ],
+      "right_start": "particular installation.  If this equipment does cause harmful interference to  radio or television reception, which can be  determined by turning the equipment off and on, the  user is encouraged to try to correct the interference  by one or more of the following measures:",
+      "list_items": [
+        "Reorient or relocate the receiving antenna.",
+        "Increase the separation between the equipment and  receiver.",
+        "Connect the equipment into an outlet on a circuit  different from that to which the receiver is connected.",
+        "Consult the dealer or an experienced radio/TV  technician for help."
+      ],
+      "final_paragraph": "MODIFICATION: Any changes or modifications not  expressly approved by the grantee of this device could  void the user’s authority to operate the device."
+    },
+    "fr": {
+      "physical_page": 26,
+      "opening_lines": [
+        "Cet appareil est conforme à la partie 15 du  règlement de la FCC. Le fonctionnement  dépend des deux conditions suivantes :",
+        "(1) Cet appareil ne doit pas provoquer  d'interférences dangereuses, et",
+        "(2) Cet appareil doit accepter toute interférence reçue, y  compris les interférences pouvant provoquer un  fonctionnement non désiré."
+      ],
+      "left_paragraphs": [
+        "REMARQUE: Cet équipement a été testé et déclaré conforme  aux limites concernant les appareils numériques de classe B,  conformément à la partie 15 du règlement de la FCC.",
+        "Ces limites sont conçues pour offrir une protection  raisonnable contre les interférences dangereuses dans le  cadre d'une installation résidentielle. Cet équipement  génère, utilise et émet des ondes radios qui peuvent, si cet  équipement n'est pas installé et utilisé conformément aux  instructions, perturber les communications radios. Toutefois,  il n'y a aucune garantie qu'aucune interférence ne se"
+      ],
+      "right_start": "produise lors d'une installation particulière.  Si cet équipement trouble la réception de la radio ou  de la télévision, ce qui peut être déterminé en  éteignant et en allumant cet équipement, l'utilisateur  est encouragé à tenter de corriger ces interférences  en essayant une ou plusieurs des mesures suivantes :",
+      "list_items": [
+        "Réorientez ou déplacez l'antenne de réception.",
+        "Éloignez l'équipement du récepteur.",
+        "Connectez l'équipement à une prise d'un autre  circuit que celui auquel le récepteur est connecté.",
+        "Consultez le revendeur ou bien demandez de l'aide  à un technicien de radio/télévision expérimenté."
+      ],
+      "final_paragraph": "MODIFICATION : Tout changement ou modification  non expressément approuvé par le titulaire de cet  appareil pourrait annuler l'autorisation de l'utilisateur  à utiliser l'appareil."
+    },
+    "es": {
+      "physical_page": 46,
+      "opening_lines": [
+        "Este dispositivo cumple con la parte 15 de  las Reglas de la FCC. El funcionamiento está  sujeto a las siguientes dos condiciones :",
+        "(1) Este dispositivo no debe causar  interferencias dañinas, y",
+        "(2) Este dispositivo debe aceptar cualquier interferencia  recibida, incluidas las interferencias que puedan causar un  funcionamiento no deseado."
+      ],
+      "left_paragraphs": [
+        "NOTA : Este equipo ha sido probado y cumple con los límites  para un dispositivo digital de Clase B, según la parte 15 de  las Reglas de la FCC.",
+        "Estos límites están diseñados para proporcionar una  protección razonable contra las interferencias perjudiciales  en una instalación residencial. Este equipo genera, utiliza y  puede emitir energía de radiofrecuencia y, si no se instala y  utiliza de acuerdo con las instrucciones, puede causar  interferencias perjudiciales en las comunicaciones. Sin  embargo, no hay garantía de que no se produzcan"
+      ],
+      "right_start": "interferencias en una instalación particular. Si este  equipo causa interferencias perjudiciales en la  recepción de radio o televisión, lo que puede  determinarse encendiendo y apagando el equipo, se  recomienda al usuario intentar corregir las  interferencias mediante una o más de las siguientes  medidas :",
+      "list_items": [
+        "Reorientar o reubicar la antena de recepción.",
+        "Aumentar la separación entre el equipo y el receptor.",
+        "Conectar el equipo a una toma de corriente en un  circuito diferente al que está conectado el receptor.",
+        "Consultar al distribuidor o a un técnico experimenta- do en radio/TV para obtener ayuda."
+      ],
+      "final_paragraph": "MODIFICACIÓN : Cualquier cambio o modificación no  expresamente aprobada por la parte responsable de  la conformidad podría anular la autorización del  usuario para operar el dispositivo."
+    }
+  },
+  "asset": {
+    "source": "docs/renderers/web/assets/shared/symbols/native-v1/fcc_mark.svg",
+    "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe",
+    "decision": "verified transparent shared SVG reuse; native nested-C glyph matches PDF; no panel backdrop or caption"
+  },
+  "publication_eligible": false
+}

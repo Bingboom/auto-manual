@@ -1,0 +1,231 @@
+/* Native figure geometry only. Shared Web theme owns headings/tables/callouts. */
+[data-source-layout~="native-figure"] { max-width:760px; margin:1rem auto; min-width:0; }
+[data-source-layout~="native-figure"] .hb-reference-figure { margin:0; max-width:none; }
+#furo-main-content [data-source-layout~="native-figure"] img { width:100% !important; height:auto !important; max-height:none; }
+[data-source-layout~="native-overview"] { max-width:780px; }
+[data-source-layout~="native-lcd-map"] { max-width:640px; }
+[data-source-layout~="native-power"],[data-source-layout~="native-ac-output"],[data-source-layout~="native-operation-frame"] {
+
+}
+[data-source-layout~="native-operation-frame"] { margin:1rem 0; padding:.75rem; }
+[data-source-layout~="native-operation-frame"] > [data-source-layout~="native-figure"] { margin:0; }
+[data-source-layout~="native-operation-frame"] > p { margin:.65rem .3rem; }
+[data-source-layout~="native-power"] .hb-reference-live-pill,[data-source-layout~="native-ac-output"] .hb-reference-live-pill {
+   text-align:left; justify-content:flex-start;
+}
+[data-source-layout~="native-power"] [data-source-line="3"]::before {
+  content:""; position:absolute; left:8%; top:-12px;
+
+
+}
+#furo-main-content [data-source-layout~="native-figure"] .hb-reference-live-label { font-size:max(12px,1.95cqw); line-height:1.2; }
+#furo-main-content [data-source-layout~="native-overview"] .hb-reference-live-label { font-size:max(10px,1.5cqw); align-items:flex-start; line-height:1.12; }
+#furo-main-content [data-source-layout~="native-overview"] .hb-reference-live-label strong { font-size:1.4em; }
+#furo-main-content [data-source-layout~="native-overview"] .hb-reference-live-label > span { width:100%; white-space:nowrap; }
+#furo-main-content [data-source-layout~="native-power"] .hb-reference-live-label:is([data-source-line="0"],[data-source-line="1"]) { align-items:flex-start; }
+#furo-main-content [data-source-layout~="native-power"] .hb-reference-live-label:is([data-source-line="0"],[data-source-line="1"]) { font-size:max(11px,1.74cqw); }
+#furo-main-content [data-source-layout~="native-overview"] .hb-reference-live-label:is([data-source-line="6"],[data-source-line="7"],[data-source-line="8"],[data-source-line="9"],[data-source-line="12"],[data-source-line="13"]) { text-align:right; }
+#furo-main-content :is([data-source-layout~="native-power"],[data-source-layout~="native-ac-output"],[data-source-layout~="native-dc-output"]) .hb-reference-live-label:is([data-source-line="1"],[data-source-line="2"]) strong { font-size:1.5em; }
+#furo-main-content [data-source-layout~="native-power"] :is([data-source-line="0"],[data-source-line="1"]) strong { font-size:1.65em; }
+#furo-main-content [data-source-layout~="native-lcd-map"] .hb-reference-live-label { justify-content:center; font-size:max(11px,2cqw); }
+[data-source-layout~="native-car"] .hb-reference-art-panel {   }
+[data-source-layout~="native-lcd-panel"] .hb-lcd-mode-composition { grid-template-columns:minmax(0,1fr); gap:.75rem; margin:0; }
+[data-source-layout~="native-lcd-panel"] .hb-lcd-mode-art-panel { width:75%; max-width:590px; margin:0 auto; }
+#furo-main-content [data-source-layout~="native-lcd-panel"] .hb-lcd-mode-art { width:100% !important; height:auto !important; max-height:none; }
+#furo-main-content [data-source-layout~="native-button-icon"] { display:inline-block; width:2.2rem !important; height:2.2rem !important; vertical-align:middle; margin:.2rem; }
+[data-source-layout~="native-app-add"] { margin:1rem 0; }
+[data-source-layout~="native-inline-plus"] { display:inline-flex; justify-content:center; align-items:center; width:1.2em; height:1.2em;   line-height:1; }
+[data-source-layout~="native-app-add"] > .hb-reference-figure { max-width:430px; margin:0 auto .65rem; }
+[data-source-layout~="native-controls"] { max-width:700px; }
+#furo-main-content .hb-reference-figure[data-reference-id="app_connect_result_steps"] { max-width:660px; margin:1rem auto; }
+#furo-main-content .hb-table-lcd-icon img { max-height:none; }
+/* Preserve artwork-label relationships at readable size on a contained scroll surface. */
+@media(max-width:760px) {
+  [data-source-layout~="native-dense"],[data-source-layout~="native-lcd"] { overflow-x:auto; padding-bottom:.35rem; }
+  [data-source-layout~="native-dense"] > .hb-reference-figure { min-width:660px; }
+  [data-source-layout~="native-lcd"] > .hb-reference-figure { min-width:530px; }
+  [data-source-layout~="native-controls"] { overflow-x:auto; padding-bottom:.35rem; }
+  [data-source-layout~="native-controls"] > .hb-reference-figure { min-width:570px; }
+  [data-source-layout~="native-lcd-panel"] .hb-lcd-mode-art-panel { width:95%; }
+}
+
+/* ===== Web-layout edition (git-20261013-cebe4aab-web-layout): print structure ===== */
+/* Each rule styles markup that derive_web_layout.py records in source/<lang>/web_layout.json.
+   The safety columns, key-combination and auto-resume tables use the shared component styles. */
+
+/* Speech bubbles and notes inside the operation panels are left-aligned in print (p10-p11). */
+#furo-main-content :is([data-source-layout~="native-power"], [data-source-layout~="native-ac-output"]) .hb-reference-live-pill {
+  justify-content: flex-start;
+  text-align: left;
+}
+/* Print draws every note box in the figures with one corner radius (p10, p11, p16), so
+   multi-line notes are rounded rectangles, not the shared one-line capsule. They take the
+   shared panel radius, as the approved rules above intend but lose to the capsule rule. */
+#furo-main-content [data-source-layout~="native-figure"] .hb-reference-live-pill {  }
+
+/* Safety sub-sections print as dark pills inside the safety chapter (p4-p5). */
+#furo-main-content h2:has(> [data-source-layout~="native-band"]) {
+  max-width: var(--hb-component-band-max);
+  padding: 0.36rem 0.95rem;
+
+
+
+  font-size: clamp(0.92rem, 1.5vw, 1.02rem);
+}
+#furo-main-content h2:has(> [data-source-layout~="native-band"])::before { display: none; }
+#furo-main-content h2:has(> [data-source-layout~="native-band"]) .headerlink {  }
+/* 'GROUNDING INSTRUCTION' is a plain bold title in print, without the section dot. */
+#furo-main-content h2:has(> [data-source-layout~="native-plain-title"])::before { display: none; }
+
+/* WARNING and DANGER (p5): outlined white panels with the print's dark triangle; bodies print bold. */
+#furo-main-content table.hb-source-warning-lockup {   }
+#furo-main-content .hb-source-warning-lockup .manual-callout-label { width: 30% !important; }
+#furo-main-content .hb-source-warning-lockup .manual-callout-body {
+
+  vertical-align: middle !important;
+}
+#furo-main-content .hb-source-warning-lockup .hb-warning-lockup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  font-size: 1.2rem;
+}
+#furo-main-content .hb-source-warning-lockup .hb-warning-lockup img {
+  flex: 0 0 auto;
+  width: 2.5rem !important;
+  height: auto;
+  margin: 0 !important;
+}
+@media (max-width: 40rem) {
+  #furo-main-content .hb-source-warning-lockup :is(.manual-callout-label, .manual-callout-body) { width: 100% !important; }
+}
+
+/* 'Fully charge … before its first use.' prints white on a dark capsule (p14). */
+#furo-main-content p.hb-prose-pill {
+  display: table;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0.75rem 0;
+  padding: 0.22em 0.7em;
+
+
+
+  font-weight: 700;
+  line-height: 1.35;
+}
+#furo-main-content p.hb-prose-pill strong {  }
+
+/* Key combinations (p13): the shared table fits the reading column on desktop; phones scroll inside it. */
+#furo-main-content table.hb-key-combination-table:has(.hb-key-button-pair) { min-width: 36rem; }
+
+/* LCD glossary: circled entry numbers, one shared number for entry 21 (p8-p9). */
+#furo-main-content td.hb-lcd-number { text-align: center; vertical-align: middle !important; }
+#furo-main-content [data-source-layout~="native-lcd-number"] {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.5em;
+  height: 1.5em;
+  padding: 0 0.12em;
+  box-sizing: border-box;
+
+
+  font-size: 0.86em;
+  line-height: 1;
+}
+
+/* The USB trademark note under the specification tables. */
+#furo-main-content p[data-source-layout~="native-trademark"] {  font-size: 0.88rem; }
+
+/* Back cover (p58): company, address, one contact panel and its QR code. */
+#furo-main-content [data-source-layout~="native-contact-card"] { margin: 2.2rem 0 1rem; }
+#furo-main-content p[data-source-layout~="native-contact-company"] { margin: 0; font-size: 1.25rem; }
+#furo-main-content p[data-source-layout~="native-contact-address"] { margin: 0.15rem 0 0.75rem; }
+#furo-main-content [data-source-layout~="native-contact-row"] { display: flex; flex-wrap: wrap; align-items: stretch; gap: 0.6rem; }
+#furo-main-content [data-source-layout~="native-contact-panel"] {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1.4rem;
+  padding: 0.75rem 1.2rem;
+
+
+}
+#furo-main-content [data-source-layout~="native-contact-qr"] {
+  display: grid;
+  place-items: center;
+  padding: 0.35rem;
+
+
+}
+#furo-main-content [data-source-layout~="native-contact-qr"] img { width: 3.6rem !important; height: auto !important; margin: 0 !important; }
+#furo-main-content p[data-source-layout~="native-contact-phone"] { margin: 0; font-size: 1.55rem; line-height: 1.1; }
+#furo-main-content [data-source-layout~="native-contact-region"] { font-size: 0.55em; font-weight: 400; }
+#furo-main-content [data-source-layout~="native-contact-links"] { padding-left: 1.2rem;  }
+#furo-main-content [data-source-layout~="native-contact-links"] p { margin: 0; line-height: 1.5; }
+#furo-main-content img[data-source-layout~="native-contact-glyph"] { display: inline-block; width: auto !important; height: 1.05em !important; margin: 0 0.45em 0 0 !important; vertical-align: -0.12em; }
+#furo-main-content p[data-source-layout~="native-contact-phone"] img[data-source-layout~="native-contact-glyph"] { height: 1.15em !important; vertical-align: -0.2em; margin-right: 0.3em !important; }
+
+/* Current source p17: four ruled code cells with one corrective-measure cell. */
+#furo-main-content td:has(> [data-source-layout~="source-fault-code"]) { padding: 0; }
+#furo-main-content [data-source-layout~="source-fault-code"] { display: block; padding: .2em .5em;  }
+#furo-main-content [data-source-layout~="source-fault-code"]:last-child {  }
+/* Current source p20–21: numbered App headings retain their round markers. */
+#furo-main-content > section#app-setup h2::before { display: inline-block; }
+#furo-main-content > section#app-setup h2 { gap: .5em; }
+
+#furo-main-content .hb-troubleshooting-table td.hb-troubleshooting-code:has(> [data-source-layout~="source-fault-code"]) { padding: 0 !important; }
+
+/* Geometry migration: source grids and shared presentation ownership. */
+[data-source-geometry="0"] {width:30px;height:auto}
+[data-source-geometry="1"] {width:48px;height:auto}
+[data-source-grid="risk"] {display:grid;grid-template-columns:3rem minmax(0,1fr);align-items:center;padding:.35rem .5rem;gap:.55rem;font-size:.8rem;line-height:1.22;}
+[data-source-grid="risk"] p {margin:0!important;}
+[data-source-grid="columns"] {display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1.3rem;font-size:.86rem;line-height:1.26;margin:0 0 .75rem;}
+[data-source-grid="columns"] p,[data-source-grid="columns"] ul {margin:0 0 .3rem;}
+[data-source-grid="columns"] ul {padding-left:.9rem;}
+[data-source-grid="columns"] li+li {margin-top:.18rem;}
+[data-source-grid="lead"] {display:grid;grid-template-columns:28% minmax(0,1fr);font-size:.78rem;line-height:1.18;}
+[data-source-grid="lead"] > [data-safety-cell="0"] {width:auto;min-width:0;height:100%;padding:.3rem;}
+[data-source-grid="lead"] > [data-safety-cell="1"] {padding:.35rem .5rem;}
+[data-source-grid="lead"] > [data-safety-cell="1"] p:first-child {font-size:1.02rem;line-height:1.15;}
+#furo-main-content [data-source-band="safety"] {display:block;width:100%;padding:.35rem .7rem;}
+#furo-main-content [data-source-layout~="native-figure"] .hb-text-panel {display:block;width:100%;padding:.3cqw 1.2cqw;font-size:inherit;line-height:inherit;}
+[data-source-layout~="native-contact-qr"] {margin:0;overflow:hidden;}
+[data-source-layout~="native-contact-panel"] {margin:0;overflow:visible;}
+[data-source-layout~="native-power"] {position:relative;}
+@media(max-width:760px) { [data-source-grid="columns"] {grid-template-columns:minmax(0,1fr);} }
+
+#furo-main-content [data-source-layout~="source-fault-code"]+hr {margin:0;}
+
+[data-source-continuation="safety-6"] {padding-left:.9rem;}
+[data-source-layout~="native-contact-panel"] {position:relative;}
+#furo-main-content hr[data-source-rule="contact"] {position:relative;width:2.6rem;flex:0 0 2.6rem;transform:rotate(90deg);margin:0 -1.5rem;}
+
+#furo-main-content img[data-source-glyph="app-plus"] {display:inline-block;width:1.2em!important;height:1.2em!important;margin:0 .2em;vertical-align:-.15em;}
+#furo-main-content [data-source-table="faults-p17"] td.hb-troubleshooting-code {text-align:center;}
+
+#furo-main-content [data-source-table="faults-p17"] table {font-size:.9rem;line-height:1.28;table-layout:fixed;}
+#furo-main-content [data-source-table="faults-p17"] :is(th,td) {padding:.52rem .72rem!important;vertical-align:middle;}
+#furo-main-content [data-source-table="faults-p17"] th[scope="row"] {font-size:1.12rem;line-height:1.05;text-align:center;font-weight:700;padding-inline:.38rem!important;}
+
+#furo-main-content [data-source-layout~="native-figure"] .hb-text-panel {min-height:inherit;}
+/* Keep the shared note panel flush with its original source-art speech tail. */
+#furo-main-content [data-source-layout~="native-power"] .hb-reference-live-label[data-source-line="3"] {align-items:flex-start;}
+#furo-main-content [data-source-layout~="native-power"] .hb-reference-live-label[data-source-line="3"] .hb-text-panel {min-height:13.27cqw;padding:.9cqw 1.2cqw;}
+#furo-main-content [data-source-table="faults-p17"] :is(th,td) {vertical-align:middle!important;}
+@media(max-width:760px) {#furo-main-content hr[data-source-rule="contact"] {display:none;}}
+
+#furo-main-content img[data-source-glyph="signal-white"] {width:1.25em!important;height:1.25em!important;margin:0 .3em 0 0;display:inline-block;}
+@media(min-width:761px) {.hb-symbol-pair-grid {align-items:stretch;} .hb-symbol-panel {display:flex;align-items:stretch;} .hb-symbol-panel-table {height:100%;}}
+
+/* Current single-language attachment p6: four printed cards in two columns. */
+@media(min-width:521px){#furo-main-content .hb-inbox-composition[data-card-count="4"] .hb-inbox-grid {grid-template-columns:repeat(2,minmax(0,1fr));}}
+/* Current attachment p6: FCC opening text wraps around the original mark. */
+#furo-main-content [data-source-layout="fcc-p6-native-paragraphs"] .hb-fcc-opening {display:flow-root;}
+#furo-main-content [data-source-layout="fcc-p6-native-paragraphs"] .hb-fcc-mark {float:left;width:24%!important;margin:.7rem .65rem .35rem 0!important;}
+
+/* LCD art, live table and closing note share the one source frame. */
+[data-source-layout~="native-lcd-panel"] .hb-lcd-mode-composition {display:contents;}
+#furo-main-content [data-source-grid="risk"] {font-size:1rem;line-height:1.25;}
+#furo-main-content [data-source-list="dash"] {list-style:none;padding-left:.4rem;margin:0;}

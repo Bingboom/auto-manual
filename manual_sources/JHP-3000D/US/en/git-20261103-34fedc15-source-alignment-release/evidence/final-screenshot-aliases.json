@@ -1,0 +1,12 @@
+{
+  "reason": "Older intermediate screenshot aliases remained alongside final -0 screenshots. Canonical aliases now byte-identical to final images. No rendered source change.",
+  "updated": [
+    "1280-faults.png",
+    "390-faults.png",
+    "1280-app.png",
+    "390-fcc.png",
+    "1280-fcc.png",
+    "390-app.png"
+  ],
+  "final_browser_build": "JHP-3000D-html-v6"
+}

@@ -1,0 +1,202 @@
+[
+  {
+    "confidence" : 1,
+    "h" : 0.021904761904761871,
+    "text" : "UNINTERRUPTIBLE POWER SUPPLY (UPS)",
+    "w" : 0.60330576496072574,
+    "x" : 0.084710756899802342,
+    "y" : 0.9171428573138759
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011666666666666714,
+    "text" : "Connect the product to a wall outlet with the AC charging cable, then press the AC output button and power",
+    "w" : 0.80991733623390927,
+    "x" : 0.072314051056599285,
+    "y" : 0.87500000012140045
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664219,
+    "text" : "your appliances at the same time.",
+    "w" : 0.25619833514619328,
+    "x" : 0.070247943067399149,
+    "y" : 0.85755813971442374
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.0090260878063384009,
+    "text" : "Jackery",
+    "w" : 0.043510814346272131,
+    "x" : 0.47307930353141192,
+    "y" : 0.73385904915390676
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664108,
+    "text" : "AC",
+    "w" : 0.022727271082601586,
+    "x" : 0.16735537270250087,
+    "y" : 0.6627906979702376
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.010174418403988805,
+    "text" : "An uninterruptible power supply (UPS) is a type of continual power system that",
+    "w" : 0.53099171708269821,
+    "x" : 0.35330579966113018,
+    "y" : 0.49999999994594024
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761862,
+    "text" : "provides automated backup electric power to a load when the mains grid",
+    "w" : 0.50413219586297431,
+    "x" : 0.35330581129716271,
+    "y" : 0.48523809529274986
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.012944367726643868,
+    "text" : "power fails.",
+    "w" : 0.080942836234240034,
+    "x" : 0.3531236234397625,
+    "y" : 0.47172549075297632
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664108,
+    "text" : "In the event of a sudden loss of grid power, the HomePower 3600 Plus will",
+    "w" : 0.5,
+    "x" : 0.35123967775482062,
+    "y" : 0.44186046539271828
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761862,
+    "text" : "automatically switch to stored power within 10 ms to keep your appliances",
+    "w" : 0.50619833514619317,
+    "x" : 0.35330579616657271,
+    "y" : 0.42857142876686338
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.010174417949858183,
+    "text" : "running.",
+    "w" : 0.055785119695069052,
+    "x" : 0.35123967248717619,
+    "y" : 0.41569767481867559
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011638981047130792,
+    "text" : "In UPS mode, the unit's peak output reaches 1440W before power outages. As simultaneous charging\/discharging",
+    "w" : 0.84504133188304542,
+    "x" : 0.068181823960336507,
+    "y" : 0.34883720951820274
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664108,
+    "text" : "is enabled in Bypass Mode, the actual output power is lower than the rated output power in this mode but returns",
+    "w" : 0.84504133188304542,
+    "x" : 0.066115706145254,
+    "y" : 0.33139534910395863
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761862,
+    "text" : "to rated output power during outages.",
+    "w" : 0.28925619151211046,
+    "x" : 0.068181825215019032,
+    "y" : 0.31380952372968807
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013241787865048371,
+    "text" : "WARNING",
+    "w" : 0.10334672385114962,
+    "x" : 0.086756388849050736,
+    "y" : 0.20922212927078943
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.01461327870686846,
+    "text" : "Do not use this product for applications such as data servers or medical devices, where a",
+    "w" : 0.6612980540205794,
+    "x" : 0.22306551977530345,
+    "y" : 0.28135616838066513
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011630675452096062,
+    "text" : "malfunction could endanger life or cause significant property damage.",
+    "w" : 0.52685947986799209,
+    "x" : 0.22314051678087968,
+    "y" : 0.26598837227256333
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664219,
+    "text" : "For the following equipment, a loss of power supply during use could cause serious harm to",
+    "w" : 0.67355371490726623,
+    "x" : 0.22314050914416261,
+    "y" : 0.24854651185589649
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761862,
+    "text" : "personal safety or property:",
+    "w" : 0.20661157127318341,
+    "x" : 0.22314049328902813,
+    "y" : 0.23095238080180458
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.010174417949858183,
+    "text" : "• Medical devices and other equipment closely related to life safety.",
+    "w" : 0.51859504679031176,
+    "x" : 0.22314049961620769,
+    "y" : 0.21511627945166978
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.010229789188929916,
+    "text" : "• Critical equipment such as social infrastructure and public services.",
+    "w" : 0.52479338193650493,
+    "x" : 0.22314050786094833,
+    "y" : 0.19761904771720074
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761862,
+    "text" : "• Business-critical enterprise equipment, etc.",
+    "w" : 0.34710742981453246,
+    "x" : 0.22314050575389063,
+    "y" : 0.1799999998900319
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013081395285470143,
+    "text" : "Individuals who wear a cardiac pacemaker (pacemaker implant recipients) must not use this",
+    "w" : 0.68595038519965279,
+    "x" : 0.22107439371215717,
+    "y" : 0.16279069786961953
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.010347924005417619,
+    "text" : "product.",
+    "w" : 0.064105026121062003,
+    "x" : 0.22311277699657972,
+    "y" : 0.1467155729333478
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664108,
+    "text" : "10",
+    "w" : 0.020661156351973409,
+    "x" : 0.91528925670693351,
+    "y" : 0.027616279321981851
+  }
+]

@@ -1,0 +1,234 @@
+[
+  {
+    "confidence" : 1,
+    "h" : 0.014767441522507418,
+    "text" : "CONNECT TWO UNITS IN PARALLEL",
+    "w" : 0.3636363373216252,
+    "x" : 0.10537191677307163,
+    "y" : 0.93000000018168605
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.015988371712820859,
+    "text" : "NOTE",
+    "w" : 0.059917356909775163,
+    "x" : 0.11570247814192471,
+    "y" : 0.86046511639649659
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664219,
+    "text" : "• The Jackery Connector for parallel connection is sold separately and available on our",
+    "w" : 0.6528925288337355,
+    "x" : 0.22933886771123119,
+    "y" : 0.88808139560105159
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.010476190476190528,
+    "text" : "official website.",
+    "w" : 0.11363635799749111,
+    "x" : 0.24586777283493211,
+    "y" : 0.8733333335204807
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013081395285470032,
+    "text" : "• During parallel operation, the units can be charged via solar panels only. AC wall",
+    "w" : 0.61363633732162515,
+    "x" : 0.22933884846212149,
+    "y" : 0.85465116276787545
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761973,
+    "text" : "charging is not supported in this mode.",
+    "w" : 0.28925619151211046,
+    "x" : 0.24586777490510181,
+    "y" : 0.84000000006870068
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013950514112200052,
+    "text" : "CAUTION",
+    "w" : 0.093215280755102464,
+    "x" : 0.10111963168704621,
+    "y" : 0.76555381263245759
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.014761904761904754,
+    "text" : "Before connecting the parallel cable, ensure that the AC output on both units is turned",
+    "w" : 0.6425619564728362,
+    "x" : 0.23140496682212189,
+    "y" : 0.78047619043519956
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.015988371712820859,
+    "text" : "off (the AC power button indicator light should be off). Connecting while AC output is",
+    "w" : 0.6322313841119368,
+    "x" : 0.23140497700394883,
+    "y" : 0.76453488396553726
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011652823856898697,
+    "text" : "active may damage the units.",
+    "w" : 0.22520659738762916,
+    "x" : 0.23347108428655727,
+    "y" : 0.75142857134873564
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.010476190476190528,
+    "text" : "1. Ensure that both HP3600 Plus units are powered off.",
+    "w" : 0.40082643090224845,
+    "x" : 0.084710756501354942,
+    "y" : 0.70047619046732912
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664108,
+    "text" : "2. Use one Jackery Connector to connect both units via the AC EXPANSION PORT.",
+    "w" : 0.60330576496072574,
+    "x" : 0.084710763938369515,
+    "y" : 0.68313953501481139
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011955100468226787,
+    "text" : "3. Turn on both units.",
+    "w" : 0.15534092352642276,
+    "x" : 0.084535810502084863,
+    "y" : 0.66561580384337171
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761862,
+    "text" : "4. Within 1 minute, press the AC power button on each unit in sequence to enable AC output.",
+    "w" : 0.68595038519965268,
+    "x" : 0.084710766387776776,
+    "y" : 0.64809523808467695
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011641749427432124,
+    "text" : "• If the connection is successful, the display will show a solid parallel icon.",
+    "w" : 0.54752066594152271,
+    "x" : 0.10123967387324674,
+    "y" : 0.62645348858797023
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011641749427432013,
+    "text" : "• If the setup fails, the display shows the FA code. Press the AC power button on each unit again in sequence.",
+    "w" : 0.80991733623390927,
+    "x" : 0.10123966549186132,
+    "y" : 0.61190476197248533
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664219,
+    "text" : "AC Expansion Port",
+    "w" : 0.13636363166457588,
+    "x" : 0.50826446474622444,
+    "y" : 0.52616279073186556
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.010174418858119427,
+    "text" : "Jackery",
+    "w" : 0.049586774210942819,
+    "x" : 0.21280991859110476,
+    "y" : 0.46220930222307199
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.0090941320146832316,
+    "text" : "Jackery",
+    "w" : 0.045596874826322797,
+    "x" : 0.54538338122220509,
+    "y" : 0.45620874800802025
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.0072674415225074673,
+    "text" : "00",
+    "w" : 0.014462809575605529,
+    "x" : 0.4090909094425691,
+    "y" : 0.36773255836301943
+  },
+  {
+    "confidence" : 0.30000001192092896,
+    "h" : 0.0043604650951566404,
+    "text" : "RSTTENES",
+    "w" : 0.045454542165203171,
+    "x" : 0.68801653039811472,
+    "y" : 0.24273255811375882
+  },
+  {
+    "confidence" : 0.30000001192092896,
+    "h" : 0.014534883045014935,
+    "text" : "ото",
+    "w" : 0.035123967219820473,
+    "x" : 0.69834710747996576,
+    "y" : 0.21511627958941104
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761862,
+    "text" : "Jackery Connector",
+    "w" : 0.14462809575605523,
+    "x" : 0.49173554070668307,
+    "y" : 0.19904761920478287
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.014011502947126053,
+    "text" : "CAUTION",
+    "w" : 0.09529205777134675,
+    "x" : 0.10111430264172092,
+    "y" : 0.094011690468883247
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011641749427432124,
+    "text" : "• After a successful parallel connection, do not disconnect the parallel cable while AC",
+    "w" : 0.63842971925813008,
+    "x" : 0.2272727330362245,
+    "y" : 0.12645348855163308
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011641749427432013,
+    "text" : "output is still active, as this may trigger overload protection in the other unit.",
+    "w" : 0.56404957344861528,
+    "x" : 0.24380166519717988,
+    "y" : 0.1119047620790744
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761973,
+    "text" : "• Do not touch the parallel cable port when AC output is enabled (when the AC power",
+    "w" : 0.64462809575605517,
+    "x" : 0.22727271823767523,
+    "y" : 0.094285714268948162
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013081395285470143,
+    "text" : "button indicator light is on). This port carries 24OV high voltage and poses a risk of",
+    "w" : 0.60743800217543198,
+    "x" : 0.24380165500732548,
+    "y" : 0.078488372064144829
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664219,
+    "text" : "12",
+    "w" : 0.020661156351973409,
+    "x" : 0.90495867822897191,
+    "y" : 0.026162790935353897
+  }
+]

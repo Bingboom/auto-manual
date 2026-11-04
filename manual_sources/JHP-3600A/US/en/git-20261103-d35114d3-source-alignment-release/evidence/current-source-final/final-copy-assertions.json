@@ -1,0 +1,16 @@
+{
+  "current_discharge_time": true,
+  "current_fault_intro": true,
+  "current_input_two_types": true,
+  "current_output_100A": true,
+  "quiet_mode_old_retention_removed": true,
+  "old_lcd_app_setting_removed": true,
+  "old_parallel_rectify_removed": true,
+  "current_charging_plan": true,
+  "current_selfpowered": true,
+  "current_green_energy": true,
+  "current_app_headings": true,
+  "contact_complete": true,
+  "no_foreign_explorer_name": true,
+  "no_cover_or_paper_toc": true
+}

@@ -1,0 +1,234 @@
+[
+  {
+    "confidence" : 1,
+    "h" : 0.018895349048432819,
+    "text" : "CHARGING",
+    "w" : 0.16942148803049312,
+    "x" : 0.1012396701491244,
+    "y" : 0.91715116275776032
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664219,
+    "text" : "Green energy first: We advocate to use the green energy first. This product supports two modes of charging at the",
+    "w" : 0.84710742981453246,
+    "x" : 0.082644621611329086,
+    "y" : 0.88226744200366791
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761973,
+    "text" : "same time: solar charging and AC wall charging.",
+    "w" : 0.36157023939013799,
+    "x" : 0.080578520008787596,
+    "y" : 0.86619047606743926
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011638981047130792,
+    "text" : "When AC wall charging and solar charging are turned on at the same time, the product will give priority to solar",
+    "w" : 0.84917352774601951,
+    "x" : 0.082644651700336941,
+    "y" : 0.84883720955454001
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664108,
+    "text" : "charging and both methods will be used to charge the battery at the maximum permissible power.",
+    "w" : 0.73140495320968835,
+    "x" : 0.08264463997573411,
+    "y" : 0.83139534905308654
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013081395285470143,
+    "text" : "Fully charge the product before its first use.",
+    "w" : 0.36363633732162515,
+    "x" : 0.090909108611914563,
+    "y" : 0.80523255822572426
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013315221695672896,
+    "text" : "NOTE",
+    "w" : 0.055895435777783081,
+    "x" : 0.11771343953497607,
+    "y" : 0.73970866829293236
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013081395285470143,
+    "text" : "• The recommended charging temperature for the product ranges from -4°F to 113°F (-20°C to",
+    "w" : 0.69421485962906504,
+    "x" : 0.20867768547472387,
+    "y" : 0.77761627904694519
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761973,
+    "text" : "45°C), and the discharging temperature ranges from -4°F to 113°F (-20°C to 45°C). Operating",
+    "w" : 0.67975205005345951,
+    "x" : 0.22314050956349052,
+    "y" : 0.76285714269436888
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013081395285470143,
+    "text" : "the product beyond this temperature range may restrict its charging and discharging",
+    "w" : 0.6322313841119368,
+    "x" : 0.22107439045091867,
+    "y" : 0.7456395346973812
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761973,
+    "text" : "capabilities, or even prevent it from charging or discharging.",
+    "w" : 0.44628099891228401,
+    "x" : 0.22314049674220507,
+    "y" : 0.73238095250507274
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013081395285470254,
+    "text" : "• The charging power and battery capacity of the product may vary due to temperature",
+    "w" : 0.66115700326314786,
+    "x" : 0.20661158087531317,
+    "y" : 0.71366279051133463
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.010174417949858183,
+    "text" : "fluctuations.",
+    "w" : 0.095041321545112439,
+    "x" : 0.22107437896573587,
+    "y" : 0.70058139560355936
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.014761904761904754,
+    "text" : "• CHARGING VIA AC WALL OUTLET",
+    "w" : 0.36157023939013799,
+    "x" : 0.08264462935796138,
+    "y" : 0.66714285700681564
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.0072674415225074673,
+    "text" : "Jackery",
+    "w" : 0.03925619668107691,
+    "x" : 0.22314049735505384,
+    "y" : 0.62936046535793233
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664108,
+    "text" : "Connect the AC charging cable to the AC",
+    "w" : 0.30991735690977518,
+    "x" : 0.52272727505750904,
+    "y" : 0.49418604677837719
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333419,
+    "text" : "input port of the product and a wall outlet.",
+    "w" : 0.32024792927067458,
+    "x" : 0.51859503836053056,
+    "y" : 0.47666666665234403
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.014534883953276179,
+    "text" : "CAUTION",
+    "w" : 0.092975202937759377,
+    "x" : 0.10743801894692609,
+    "y" : 0.42005813949138515
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664108,
+    "text" : "Make sure the AC charging cable is fully and securely plugged into the AC input port. An",
+    "w" : 0.65289252883373561,
+    "x" : 0.2355371984963556,
+    "y" : 0.43604651177110987
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "incomplete connection may cause unstable current, overheating, poor contact, or device",
+    "w" : 0.66528924047785398,
+    "x" : 0.23347108630377256,
+    "y" : 0.42142857129807587
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.010174417949858183,
+    "text" : "malfunction.",
+    "w" : 0.095041321545112412,
+    "x" : 0.23553719165512971,
+    "y" : 0.40988372127579775
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.017619047619047645,
+    "text" : "• CHARGING VIA SOLAR PANELS",
+    "w" : 0.33884297606098623,
+    "x" : 0.086776857010829295,
+    "y" : 0.36904761947346598
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761973,
+    "text" : "SOLD SEPARATELY",
+    "w" : 0.15495867845488764,
+    "x" : 0.44628099005974631,
+    "y" : 0.37190476169479225
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011663898286365382,
+    "text" : "Jackery HomePower 3600 Plus has two DC8020 input ports and is compatible with the Jackery solar panels. If one",
+    "w" : 0.84504133188304553,
+    "x" : 0.08884296997445533,
+    "y" : 0.34738372091597414
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664108,
+    "text" : "DC8020 input port needs to connect two solar panels simultaneously, please refer to the figure below for charging",
+    "w" : 0.84504133188304542,
+    "x" : 0.088842978872526707,
+    "y" : 0.33139534904581913
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761862,
+    "text" : "through the solar panel connector (sold separately, not included as standard).",
+    "w" : 0.57851238302422081,
+    "x" : 0.088842991683481601,
+    "y" : 0.3138095236933508
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.0072674415225074673,
+    "text" : "Jackery",
+    "w" : 0.039256196681076938,
+    "x" : 0.1962809919142825,
+    "y" : 0.26598837218932769
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761973,
+    "text" : "SolarSaga 200 x 4",
+    "w" : 0.13016528618044965,
+    "x" : 0.69008264613153836,
+    "y" : 0.063809523953683001
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.010174418858119427,
+    "text" : "14",
+    "w" : 0.018595041621345176,
+    "x" : 0.915289255893873,
+    "y" : 0.026162790510378287
+  }
+]

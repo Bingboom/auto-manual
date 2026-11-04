@@ -1,0 +1,131 @@
+{
+  "en": {
+    "source_page": 21,
+    "source_chapter": 18,
+    "native_titles": [
+      "Limited Warranty",
+      "Warranty Period",
+      "Repair or replacement",
+      "Limited to Original Consumer Buyer",
+      "Exclusions",
+      "Interpretation Rights"
+    ],
+    "native_lead": "We only provide our warranty to customers who purchase from the official Jackery website,  Jackery-branded third-party platforms, or local authorized dealers. ",
+    "native_local_note": "*Warranty period and details may vary according to local laws, regulations, and authorized dealers.",
+    "native_periods": [
+      {
+        "number": "3",
+        "unit": "YEARS",
+        "label": "Standard Warranty",
+        "body_html": "<p>The standard warranty period for Jackery HomePower 3600  Plus is 36 months. In each case, the warranty period is  measured starting on the date of purchase by the original  consumer purchaser. The sales receipt from the first consumer  purchase, or other reasonable documentary proof, is required  in order to establish the start date of the warranty period.</p>",
+        "body_text": "The standard warranty period for Jackery HomePower 3600  Plus is 36 months. In each case, the warranty period is  measured starting on the date of purchase by the original  consumer purchaser. The sales receipt from the first consumer  purchase, or other reasonable documentary proof, is required  in order to establish the start date of the warranty period."
+      },
+      {
+        "number": "2",
+        "unit": "YEARS",
+        "label": "Extended Warranty",
+        "body_html": "<p>To activate the Warranty Extension, you  must register your product online  or  contact our customer service team at  hello@jackery.com to extend the  standard warranty runtime.</p>",
+        "body_text": "To activate the Warranty Extension, you  must register your product online  or  contact our customer service team at  hello@jackery.com to extend the  standard warranty runtime."
+      }
+    ],
+    "native_exclusion_items": [
+      "Misused, abused, modified, damaged by accident, or used for anything other than normal consumer  use as authorized in Jackery's current product literature.",
+      "Attempted repair by anyone other than an authorized facility.",
+      "Any product purchased through an online auction house.",
+      "Jackery's warranty does not apply to the battery cell unless the battery cell is fully charged by you within  seven days after you purchase the product and at least once every 6 months thereafter."
+    ],
+    "registered_components": {
+      "HB-WARRANTY-LEAD": 1,
+      "HB-WARRANTY-SECTION": 5,
+      "HB-WARRANTY-YEARS": 1
+    },
+    "artwork_decision": "CSS draws native empty panels and numeral circles using existing warranty components. Archive every former year-art byte unchanged; no new artwork or extraction.",
+    "body_and_rich_spans_reused": true
+  },
+  "fr": {
+    "source_page": 41,
+    "source_chapter": 18,
+    "native_titles": [
+      "Garantie limitée",
+      "Période de garantie",
+      "Échange",
+      "Limitée à l'acheteur et consommateur d'origine",
+      "Exclusions",
+      "Droits d'interprétation"
+    ],
+    "native_lead": "Nous ne fournissons notre garantie qu'aux clients qui achètent sur le site officiel de  Jackery, sur des plateformes tierces portant la marque Jackery, ou auprès de revendeurs  autorisés locaux.",
+    "native_local_note": "*La durée et les détails de la garantie peuvent varier en fonction des lois, réglementations et revendeurs autorisés locaux.",
+    "native_periods": [
+      {
+        "number": "3",
+        "unit": "ANS",
+        "label": "Garantie standard",
+        "body_html": "<p>La période de garantie standard du Jackery HomePower 3600 Plus  est de 36 mois. Dans tous les cas, la période de garantie commence  à compter de la date d'achat par l'acheteur et consommateur  d'origine. La facture du premier achat du consommateur ou toute  autre preuve documentaire raisonnable est nécessaire afin d'établir  la date de début de la période de garantie.</p>",
+        "body_text": "La période de garantie standard du Jackery HomePower 3600 Plus  est de 36 mois. Dans tous les cas, la période de garantie commence  à compter de la date d'achat par l'acheteur et consommateur  d'origine. La facture du premier achat du consommateur ou toute  autre preuve documentaire raisonnable est nécessaire afin d'établir  la date de début de la période de garantie."
+      },
+      {
+        "number": "2",
+        "unit": "ANS",
+        "label": "Garantie prolongée",
+        "body_html": "<p>Pour activer l'extension de garantie,  vous devez enregistrer votre produit  en ligne ou bien contacter notre  service client à hello@jackery.com  afin de prolonger la durée de la  garantie standard.</p>",
+        "body_text": "Pour activer l'extension de garantie,  vous devez enregistrer votre produit  en ligne ou bien contacter notre  service client à hello@jackery.com  afin de prolonger la durée de la  garantie standard."
+      }
+    ],
+    "native_exclusion_items": [
+      "Une utilisation incorrecte, abusée, modifiée, aux dégâts provoqués par un accident ou toute autre  utilisation qui n'est pas une utilisation normale de ce produit et autorisée par la documentation actuelle  du produit de Jackery.",
+      "À une réparation tentée par quelqu'un d'autre qu'un établissement agréé.",
+      "Tout autre produit acheté par l'intermédiaire d'une vente aux enchères en ligne.",
+      "La garantie de Jackery ne s'applique pas aux cellules de la batterie, sauf si vous avez entièrement chargé  les cellules de la batterie dans les sept jours suivant l'achat du produit et au moins une fois tous les 6 mois  par la suite."
+    ],
+    "registered_components": {
+      "HB-WARRANTY-LEAD": 1,
+      "HB-WARRANTY-SECTION": 5,
+      "HB-WARRANTY-YEARS": 1
+    },
+    "artwork_decision": "CSS draws native empty panels and numeral circles using existing warranty components. Archive every former year-art byte unchanged; no new artwork or extraction.",
+    "body_and_rich_spans_reused": true
+  },
+  "es": {
+    "source_page": 61,
+    "source_chapter": 18,
+    "native_titles": [
+      "Garantía limitada",
+      "Período de garantía",
+      "Reparación o reemplazo",
+      "Limitado al comprador consumidor original",
+      "Exclusiones",
+      "Derechos de interpretación"
+    ],
+    "native_lead": "Solo ofrecemos nuestra garantía a clientes que compren en el sitio web oficial de Jackery,  plataformas de terceros con la marca Jackery o distribuidores autorizados locales. ",
+    "native_local_note": "* El periodo de garantía y los detalles pueden variar según las leyes, regulaciones y distribuidores autorizados locales.",
+    "native_periods": [
+      {
+        "number": "3",
+        "unit": "AÑOS",
+        "label": "Garantía Estándar",
+        "body_html": "<p>El periodo de garantía estándar de Jackery HomePower 3600  Plus es de 36 meses. En cada caso, el período de garantía se  mide a partir de la fecha de compra por parte del comprador  consumidor original. Para establecer la fecha de inicio del  período de garantía, se necesita el recibo de venta de la primera  compra del consumidor u otra prueba documental razonable.</p>",
+        "body_text": "El periodo de garantía estándar de Jackery HomePower 3600  Plus es de 36 meses. En cada caso, el período de garantía se  mide a partir de la fecha de compra por parte del comprador  consumidor original. Para establecer la fecha de inicio del  período de garantía, se necesita el recibo de venta de la primera  compra del consumidor u otra prueba documental razonable."
+      },
+      {
+        "number": "2",
+        "unit": "AÑOS",
+        "label": "Garantía extendida",
+        "body_html": "<p>Para activar la extensión de  garantía,debe registrar su producto  en línea oponerse en contacto con  nuestro equipo de atención al cliente  en hello@jackery.com para ampliar  laduración de la garantia estándar.</p>",
+        "body_text": "Para activar la extensión de  garantía,debe registrar su producto  en línea oponerse en contacto con  nuestro equipo de atención al cliente  en hello@jackery.com para ampliar  laduración de la garantia estándar."
+      }
+    ],
+    "native_exclusion_items": [
+      "Mal uso, abuso, modificación, daño por accidente, o uso para cualquier cosa que no sea el uso normal  del consumidor según lo autorizado en los folletos actuales del producto de Jackery.",
+      "Intento de reparación por cualquier persona que no sea un centro autorizado.",
+      "Cualquier producto adquirido a través de una casa de subastas en línea.",
+      "La garantía de Jackery no se aplica a la célula de la batería a menos que usted la cargue completa- mente en los siete días siguientes a la compra del producto y, a partir de entonces, al menos una vez  cada 6 meses."
+    ],
+    "registered_components": {
+      "HB-WARRANTY-LEAD": 1,
+      "HB-WARRANTY-SECTION": 5,
+      "HB-WARRANTY-YEARS": 1
+    },
+    "artwork_decision": "CSS draws native empty panels and numeral circles using existing warranty components. Archive every former year-art byte unchanged; no new artwork or extraction.",
+    "body_and_rich_spans_reused": true
+  }
+}

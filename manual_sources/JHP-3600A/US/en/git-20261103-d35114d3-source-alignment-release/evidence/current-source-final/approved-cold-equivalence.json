@@ -1,0 +1,16 @@
+{
+  "package": "/private/tmp/manual-web-audit-20261102/jhp3600a-release-worktree/manual_sources/JHP-3600A/US/en/git-20261103-d35114d3-source-alignment-release",
+  "status": "PASS",
+  "frozen_files": 409,
+  "approval_binding_negative_control": "rejected mismatched reviewed_inputs with operator acceptance does not cover these source inputs",
+  "real_pinned_runtime_files": 22,
+  "original21_pins_unchanged": true,
+  "added_shared_css_sha256": "9ee899cc83146bc9cb7cd6228efd48e131c4c9e6f317040921f9871ba6a506fc",
+  "compared_to": "locally visually reviewed v16",
+  "visible_files_equal": 77,
+  "ir_pages_equal": true,
+  "publication_eligible": true,
+  "pending_source_review": [],
+  "approved_output_ir_sha256": "d4dbc1751efab716e9a830e92636b8e1de947d337c7fccacb6c22cc46138dbe9",
+  "note": "First approved and frozen cold replay proof. These evidence files are included in the final source input binding; final IR hash is in source_manifest cold_replay_validation."
+}

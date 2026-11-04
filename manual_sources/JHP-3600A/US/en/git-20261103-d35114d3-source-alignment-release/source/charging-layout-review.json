@@ -1,0 +1,50 @@
+{
+  "en": {
+    "source_page": "page-17",
+    "pill_node": 1,
+    "pill_child": 1,
+    "heading_node": 3,
+    "heading_child": 0,
+    "pill_text": "Fully charge the product before its first use.",
+    "heading_text": "CHARGING VIA AC WALL OUTLET",
+    "temperature_list_items": 2,
+    "wording_and_spans_preserved": true,
+    "shared_styles": [
+      "hb-prose-pill",
+      "HB-TITLE-L2 / native h2 circle marker"
+    ],
+    "artwork": "Reuse byte-identical existing charging-ac base artwork; no extraction or asset change."
+  },
+  "fr": {
+    "source_page": "page-37",
+    "pill_node": 1,
+    "pill_child": 3,
+    "heading_node": 1,
+    "heading_child": 5,
+    "pill_text": "Chargez complètement le produit avant sa première utilisation.",
+    "heading_text": "CHARGEMENT PAR PRISE MURALE CA",
+    "temperature_list_items": 2,
+    "wording_and_spans_preserved": true,
+    "shared_styles": [
+      "hb-prose-pill",
+      "HB-TITLE-L2 / native h2 circle marker"
+    ],
+    "artwork": "Reuse byte-identical existing charging-ac base artwork; no extraction or asset change."
+  },
+  "es": {
+    "source_page": "page-57",
+    "pill_node": 1,
+    "pill_child": 1,
+    "heading_node": 1,
+    "heading_child": 3,
+    "pill_text": "Carga completamente el producto antes de usarlo por primera vez.",
+    "heading_text": "CARGA MEDIANTE UNA TOMA DE CORRIENTE DE PARED  ALTERNA",
+    "temperature_list_items": 2,
+    "wording_and_spans_preserved": true,
+    "shared_styles": [
+      "hb-prose-pill",
+      "HB-TITLE-L2 / native h2 circle marker"
+    ],
+    "artwork": "Reuse byte-identical existing charging-ac base artwork; no extraction or asset change."
+  }
+}

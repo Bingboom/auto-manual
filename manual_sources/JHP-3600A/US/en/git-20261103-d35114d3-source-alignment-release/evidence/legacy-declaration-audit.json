@@ -1,0 +1,337 @@
+{
+  "current_pdf_sha256": "d35114d38afbdcb377441f44b00a3db575ad40710e19a71db4bc7a0a8fdaedb7",
+  "scope": "All English legacy differences rows and limitations, all source asset decisions, all3600A layout-review files/all3600C heading declarations. Historical claims are checked against current reference, not accepted as approval.",
+  "chapter_page_map": {
+    "preface": [
+      2
+    ],
+    "page-4": [
+      4
+    ],
+    "page-5": [
+      5
+    ],
+    "page-6": [
+      6
+    ],
+    "page-7": [
+      7
+    ],
+    "page-8": [
+      8
+    ],
+    "page-9": [
+      9
+    ],
+    "page-10": [
+      10
+    ],
+    "page-11": [
+      11
+    ],
+    "page-12": [
+      12
+    ],
+    "page-13": [
+      13
+    ],
+    "page-14": [
+      14
+    ],
+    "page-15": [
+      15
+    ],
+    "page-16": [
+      16
+    ],
+    "page-17": [
+      17
+    ],
+    "page-18": [
+      18
+    ],
+    "page-19": [
+      19
+    ],
+    "page-20": [
+      20
+    ],
+    "page-21": [
+      21
+    ],
+    "page-22": [
+      22
+    ],
+    "page-23": [
+      23
+    ],
+    "page-64": [
+      24
+    ]
+  },
+  "explicit_exceptions": [
+    "Front cover and print TOC excluded by explicit operator instruction.",
+    "Previously marked extra Explorer2000Plus label remains removed; no other old-package approval is treated as a specific correction."
+  ],
+  "declarations": [
+    {
+      "declaration": "source/ac-reset-layout-review.json",
+      "current_pdf_pages": [
+        10
+      ],
+      "result": "Source page frame, text, table cell ownership and original glyph/figure checked; no extra historical-copy exception assumed."
+    },
+    {
+      "declaration": "source/app-connect-layout-review.json",
+      "current_pdf_pages": [
+        23
+      ],
+      "result": "Original phone art retained; current p23 omits old Bluetooth caution, now removed."
+    },
+    {
+      "declaration": "source/app-layout-review.json",
+      "current_pdf_pages": [
+        22,
+        23
+      ],
+      "result": "Source page frame, text, table cell ownership and original glyph/figure checked; no extra historical-copy exception assumed."
+    },
+    {
+      "declaration": "source/availability-layout-review.json",
+      "current_pdf_pages": [
+        14,
+        17,
+        18
+      ],
+      "result": "Source page frame, text, table cell ownership and original glyph/figure checked; no extra historical-copy exception assumed."
+    },
+    {
+      "declaration": "source/centered-copy-layout-review.json",
+      "current_pdf_pages": [
+        14,
+        15,
+        17,
+        18
+      ],
+      "result": "Source page frame, text, table cell ownership and original glyph/figure checked; no extra historical-copy exception assumed."
+    },
+    {
+      "declaration": "source/charging-layout-review.json",
+      "current_pdf_pages": [
+        17,
+        18
+      ],
+      "result": "Source page frame, text, table cell ownership and original glyph/figure checked; no extra historical-copy exception assumed."
+    },
+    {
+      "declaration": "source/contact-footer-layout-review.json",
+      "current_pdf_pages": [
+        24
+      ],
+      "result": "Source page frame, text, table cell ownership and original glyph/figure checked; no extra historical-copy exception assumed."
+    },
+    {
+      "declaration": "source/energy-saving-layout-review.json",
+      "current_pdf_pages": [
+        11,
+        12
+      ],
+      "result": "Source page frame, text, table cell ownership and original glyph/figure checked; no extra historical-copy exception assumed."
+    },
+    {
+      "declaration": "source/fcc-layout-review.json",
+      "current_pdf_pages": [
+        6
+      ],
+      "result": "Superseded old opening/column layout; current p6 used."
+    },
+    {
+      "declaration": "source/headings-layout-review.json",
+      "current_pdf_pages": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "result": "Source page frame, text, table cell ownership and original glyph/figure checked; no extra historical-copy exception assumed."
+    },
+    {
+      "declaration": "source/inbox-layout-review.json",
+      "current_pdf_pages": [
+        6
+      ],
+      "result": "Source page frame, text, table cell ownership and original glyph/figure checked; no extra historical-copy exception assumed."
+    },
+    {
+      "declaration": "source/item-list-layout-review.json",
+      "current_pdf_pages": [
+        14,
+        15,
+        16,
+        17,
+        18,
+        23
+      ],
+      "result": "Source page frame, text, table cell ownership and original glyph/figure checked; no extra historical-copy exception assumed."
+    },
+    {
+      "declaration": "source/key-combination-layout-review.json",
+      "current_pdf_pages": [
+        12
+      ],
+      "result": "Source page frame, text, table cell ownership and original glyph/figure checked; no extra historical-copy exception assumed."
+    },
+    {
+      "declaration": "source/lcd-layout-review.json",
+      "current_pdf_pages": [
+        8,
+        9
+      ],
+      "result": "Current p8 wording removes retained-state/SOC extras; all glyphs/rows remain."
+    },
+    {
+      "declaration": "source/lcd-screen-layout-review.json",
+      "current_pdf_pages": [
+        12
+      ],
+      "result": "Current p12 mode names and turn-on condition replace older wording."
+    },
+    {
+      "declaration": "source/operation-layout-review.json",
+      "current_pdf_pages": [
+        10,
+        11,
+        12
+      ],
+      "result": "Source page frame, text, table cell ownership and original glyph/figure checked; no extra historical-copy exception assumed."
+    },
+    {
+      "declaration": "source/parallel-figure-layout-review.json",
+      "current_pdf_pages": [
+        15,
+        16
+      ],
+      "result": "Native p15–16 two-unit paths retained; explicit removal of extra Explorer2000Plus label kept."
+    },
+    {
+      "declaration": "source/parallel-list-layout-review.json",
+      "current_pdf_pages": [
+        15,
+        16
+      ],
+      "result": "Source page frame, text, table cell ownership and original glyph/figure checked; no extra historical-copy exception assumed."
+    },
+    {
+      "declaration": "source/power-callout-layout-review.json",
+      "current_pdf_pages": [
+        10
+      ],
+      "result": "Source page frame, text, table cell ownership and original glyph/figure checked; no extra historical-copy exception assumed."
+    },
+    {
+      "declaration": "source/publication-glyph-review.json",
+      "current_pdf_pages": [
+        5,
+        6,
+        8,
+        9,
+        12
+      ],
+      "result": "Source page frame, text, table cell ownership and original glyph/figure checked; no extra historical-copy exception assumed."
+    },
+    {
+      "declaration": "source/safety-layout-review.json",
+      "current_pdf_pages": [
+        4,
+        5
+      ],
+      "result": "Source page frame, text, table cell ownership and original glyph/figure checked; no extra historical-copy exception assumed."
+    },
+    {
+      "declaration": "source/spec-footnotes-layout-review.json",
+      "current_pdf_pages": [
+        20
+      ],
+      "result": "Source page frame, text, table cell ownership and original glyph/figure checked; no extra historical-copy exception assumed."
+    },
+    {
+      "declaration": "source/specification-layout-review.json",
+      "current_pdf_pages": [
+        20
+      ],
+      "result": "Source page frame, text, table cell ownership and original glyph/figure checked; no extra historical-copy exception assumed."
+    },
+    {
+      "declaration": "source/storage-layout-review.json",
+      "current_pdf_pages": [
+        19
+      ],
+      "result": "Source page frame, text, table cell ownership and original glyph/figure checked; no extra historical-copy exception assumed."
+    },
+    {
+      "declaration": "source/symbol-layout-review.json",
+      "current_pdf_pages": [
+        5
+      ],
+      "result": "Source page frame, text, table cell ownership and original glyph/figure checked; no extra historical-copy exception assumed."
+    },
+    {
+      "declaration": "source/troubleshooting-layout-review.json",
+      "current_pdf_pages": [
+        19
+      ],
+      "result": "Current p19 F6 30cm and 1–5 steps restored; native F0/F1 andF2/F3 merged structure retained."
+    },
+    {
+      "declaration": "source/ups-caution-layout-review.json",
+      "current_pdf_pages": [
+        13,
+        14
+      ],
+      "result": "Current p13 warning and p14 four-item caution are controlling."
+    },
+    {
+      "declaration": "source/usb-caution-layout-review.json",
+      "current_pdf_pages": [
+        11
+      ],
+      "result": "Withdrawn entirely: current p11 contains no such three-item USB caution."
+    },
+    {
+      "declaration": "source/warranty-layout-review.json",
+      "current_pdf_pages": [
+        21
+      ],
+      "result": "Source page frame, text, table cell ownership and original glyph/figure checked; no extra historical-copy exception assumed."
+    }
+  ],
+  "asset_decisions": [],
+  "changes": [
+    "p6: old FCC opening absent from current source removed; NOTE wraps beside original logo; source break begins “correct the interference…”.",
+    "p8: obsolete retained-settings/SOC calibration additions removed.",
+    "p11: old USB caution with three extra paragraphs absent from current source removed.",
+    "p12: continuous-power warning restored; current LCD Screen/Always-on Display Mode and LCD-on condition restored.",
+    "p13: complete UPS warning restored; p14 four caution items follow current wording, including one device at a time.",
+    "p18: current CHARGING WITH A CAR CHARGER heading restored.",
+    "p19 F6: current source30cm and steps1–5 restored; p14 battery connection still0.66ft/200mm as current source.",
+    "p23: old extra Bluetooth one-power-station CAUTION absent from current source removed."
+  ]
+}

@@ -1,0 +1,338 @@
+[
+  {
+    "confidence" : 1,
+    "h" : 0.022857142857142798,
+    "text" : "STORAGE",
+    "w" : 0.15447154471544716,
+    "x" : 0.092140922696476946,
+    "y" : 0.91428571438095241
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "Store the product in a dry, clean place with proper ventilation. Storage temperature and humidity:",
+    "w" : 0.7289972899728997,
+    "x" : 0.075880762195121867,
+    "y" : 0.88000000022222225
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "• 1 month: -4°F to 113°F \/ -20°C to 45°C (0-60%RH)|",
+    "w" : 0.37127371273712739,
+    "x" : 0.073170725519422067,
+    "y" : 0.86476190463492064
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "• 3 months: 32°F to 113°F \/ 0°C to 45°C (0-60%RH)|",
+    "w" : 0.36585365853658541,
+    "x" : 0.073170725609756307,
+    "y" : 0.8457142856190476
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "• 12 months: 32°F to 77°F \/ 0°C to 25°C (0-60%RH)",
+    "w" : 0.36585365853658541,
+    "x" : 0.073170727134146449,
+    "y" : 0.83047619038095233
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.015238094783964651,
+    "text" : "If this product is stored for a long period of time (3 months - 6 months) with the power depleted, it may become",
+    "w" : 0.8292682926829269,
+    "x" : 0.073170740560071917,
+    "y" : 0.80952380972397187
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.020888637361072382,
+    "text" : "unchargeable. To prevent this and maintain battery health, it is recommended to check and recharge the product",
+    "w" : 0.84577044561949533,
+    "x" : 0.07576972873764945,
+    "y" : 0.78965806109241354
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.015238095238095273,
+    "text" : "every three months and perform a full charge and discharge cycle at least once every 6 to 12 months.",
+    "w" : 0.75067750677506762,
+    "x" : 0.075880766294037713,
+    "y" : 0.77714285733333333
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.022857142857142909,
+    "text" : "TROUBLESHOOTING",
+    "w" : 0.31165311653116534,
+    "x" : 0.092140924525745183,
+    "y" : 0.68952380956190473
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333197,
+    "text" : "If any of the following fault codes appear, follow the listed corrective actions to resolve the issue. If the fault",
+    "w" : 0.79403794037940367,
+    "x" : 0.075880766747967385,
+    "y" : 0.65523809533333344
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333419,
+    "text" : "persists, please contact Jackery Customer Support.",
+    "w" : 0.38482384823848237,
+    "x" : 0.075880762014453457,
+    "y" : 0.64000000007936508
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013610012417747841,
+    "text" : "Error Code",
+    "w" : 0.097636752658420131,
+    "x" : 0.0893930042476654,
+    "y" : 0.60557594638994194
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333419,
+    "text" : "Corrective Measures",
+    "w" : 0.18428184281842816,
+    "x" : 0.21680217025745255,
+    "y" : 0.60380952364285712
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.015238095238095162,
+    "text" : "FO",
+    "w" : 0.029810298102981025,
+    "x" : 0.12195121921409213,
+    "y" : 0.57714285706666668
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.017142857142857126,
+    "text" : "F1",
+    "w" : 0.024390243902439018,
+    "x" : 0.12466124647696478,
+    "y" : 0.55428571445714292
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.017142857142857126,
+    "text" : "F2",
+    "w" : 0.029810298102981039,
+    "x" : 0.12195121954607045,
+    "y" : 0.52761904740476195
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571344,
+    "text" : "Restart the product.",
+    "w" : 0.15176151761517614,
+    "x" : 0.21680216991869916,
+    "y" : 0.5447619048095238
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.019047619047619091,
+    "text" : "F3",
+    "w" : 0.032520325203252029,
+    "x" : 0.12195121971544716,
+    "y" : 0.50476190485714278
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.020952380952380945,
+    "text" : "F4",
+    "w" : 0.032520325203252029,
+    "x" : 0.12195121946702801,
+    "y" : 0.4800000001746032
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.017142857142857237,
+    "text" : "F5",
+    "w" : 0.029810298102981025,
+    "x" : 0.12195121981029811,
+    "y" : 0.46095238108571424
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.020952380952380945,
+    "text" : "F6",
+    "w" : 0.032520325203252015,
+    "x" : 0.12195121973803072,
+    "y" : 0.39619047601587298
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.017142857142857126,
+    "text" : "F7",
+    "w" : 0.024390243902439018,
+    "x" : 0.1246612467479675,
+    "y" : 0.3028571426857144
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.017142857142857126,
+    "text" : "F8",
+    "w" : 0.029810298102981039,
+    "x" : 0.12195121948509487,
+    "y" : 0.25523809540952369
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.017142857142857126,
+    "text" : "F9",
+    "w" : 0.029810298102981025,
+    "x" : 0.12195121981029811,
+    "y" : 0.23428571438095247
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.017142857142857126,
+    "text" : "FE",
+    "w" : 0.029810298102981039,
+    "x" : 0.12195121948509487,
+    "y" : 0.20952380969523798
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "Connect the product to loads to discharge its battery until the fault disappears.",
+    "w" : 0.5934959349593496,
+    "x" : 0.2168021606707318,
+    "y" : 0.48571428588095233
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "Charge the product via solar panels or an AC wall outlet until the fault disappears.",
+    "w" : 0.61246612466124661,
+    "x" : 0.21680217567750654,
+    "y" : 0.46476190483333324
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.015238095238095162,
+    "text" : "1. Wait for the grid to normalize before charging the product via an AC wall outlet.",
+    "w" : 0.60704607046070458,
+    "x" : 0.21680217560975595,
+    "y" : 0.44190476195238093
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "2. Check whether the air intake and exhaust vents are blocked; ensure 20 cm clearance on",
+    "w" : 0.67479674796747968,
+    "x" : 0.21680217645663941,
+    "y" : 0.4304761905714285
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "both sides of the product.",
+    "w" : 0.19512195121951215,
+    "x" : 0.23035230157181574,
+    "y" : 0.41523809518095234
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.019047619047619091,
+    "text" : "3. Place the product in a location that is not exposed to direct sunlight or high",
+    "w" : 0.58265582655826553,
+    "x" : 0.2140921387804878,
+    "y" : 0.39809523790476198
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571344,
+    "text" : "vironmental temperature",
+    "w" : 0.18970189701897025,
+    "x" : 0.24390243586269209,
+    "y" : 0.38857142850793658
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "Disconnect all loads from the product. Keep the product idle and wait until the fau",
+    "w" : 0.61517615176151763,
+    "x" : 0.2303523038392051,
+    "y" : 0.37714285692063487
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.01314889998663038,
+    "text" : "disappears.",
+    "w" : 0.08984335715854716,
+    "x" : 0.23014607321198069,
+    "y" : 0.36104459774249253
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "5. Restart the product.",
+    "w" : 0.16802168021680219,
+    "x" : 0.21680217012195119,
+    "y" : 0.35047619052380952
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "Remove all DC inputs from the produd",
+    "w" : 0.27913279132791324,
+    "x" : 0.23035230817524829,
+    "y" : 0.32380952390476203
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "Check the open-circuit voltage (Voc) of the connected solar panels. The product allows",
+    "w" : 0.65582651691385085,
+    "x" : 0.23035233512934344,
+    "y" : 0.31238095244444442
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "laximum DC input voltage of 60",
+    "w" : 0.23306233062330625,
+    "x" : 0.24119240901084019,
+    "y" : 0.29523809516666666
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.015238095238095273,
+    "text" : "Restart the product and keep it idle. Wait until the fault disappea",
+    "w" : 0.48780487804878053,
+    "x" : 0.23035230033875348,
+    "y" : 0.28380952399999992
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.015238095238095273,
+    "text" : "Contact Jackery Customer Support.",
+    "w" : 0.25203252032520329,
+    "x" : 0.2140921430216802,
+    "y" : 0.25523809533333341
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.015238095238095162,
+    "text" : "Remove the load connected to the USB ports of the product. Wait until the fault disappears.",
+    "w" : 0.68563685636856364,
+    "x" : 0.21680217659214071,
+    "y" : 0.23619047623809519
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.015238095238095273,
+    "text" : "Contact Jackery Customer Support.",
+    "w" : 0.27371273712737126,
+    "x" : 0.21409213864046983,
+    "y" : 0.20952380946031746
+  }
+]

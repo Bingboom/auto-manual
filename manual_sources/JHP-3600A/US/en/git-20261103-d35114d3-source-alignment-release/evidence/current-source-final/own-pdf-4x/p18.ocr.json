@@ -1,0 +1,218 @@
+[
+  {
+    "confidence" : 1,
+    "h" : 0.015988371712820859,
+    "text" : "CAUTION",
+    "w" : 0.092975202937759363,
+    "x" : 0.1012396723172773,
+    "y" : 0.9215116278972233
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761862,
+    "text" : "One DC8020 input port can be connected to at most two solar panels.",
+    "w" : 0.52479338193650482,
+    "x" : 0.23140496848422676,
+    "y" : 0.92285714288757259
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.015852552141461973,
+    "text" : "CAUTION",
+    "w" : 0.095432312507939501,
+    "x" : 0.10104417527640271,
+    "y" : 0.83945744490442475
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664108,
+    "text" : "Ensure that the input voltage for both DC input ports is the same. Failure to do so may",
+    "w" : 0.63842971925813008,
+    "x" : 0.23140496444118322,
+    "y" : 0.8779069769237261
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.010213177998860568,
+    "text" : "damage the product. For example:",
+    "w" : 0.26446280957560553,
+    "x" : 0.23347107719566831,
+    "y" : 0.86333333337432427
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.01166389783223476,
+    "text" : "• It is recommended to use the same model of Jackery solar panels and the same",
+    "w" : 0.60950410010691902,
+    "x" : 0.23140498083497019,
+    "y" : 0.84738372116791205
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013081395285470143,
+    "text" : "number of panels when connecting solar panels to both DC8020 Input ports.",
+    "w" : 0.57024790859480867,
+    "x" : 0.24586779074391768,
+    "y" : 0.83139534889311761
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761862,
+    "text" : "• Do not charge the product using both a car charger and a solar panel simultaneously.",
+    "w" : 0.65289252883373561,
+    "x" : 0.2314049817814792,
+    "y" : 0.81666666647133801
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013081395285470143,
+    "text" : "Doing so may blow the car fuse or result in charging failure.",
+    "w" : 0.43388428726816564,
+    "x" : 0.24793389665517315,
+    "y" : 0.80087209307916418
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011630675452096062,
+    "text" : "It is recommended to use the Jackery solar panel to charge the product. Ensure that the open-circuit voltage of",
+    "w" : 0.84297515124809463,
+    "x" : 0.080578554128018426,
+    "y" : 0.76598837236946249
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013081395285470143,
+    "text" : "the solar panel is within the DC input range (16V-60V) of the HomePower 3600 Plus. Jackery is not responsible for",
+    "w" : 0.84090905331660737,
+    "x" : 0.080578528197068303,
+    "y" : 0.74854651187761378
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "any damage or loss resulting from the use of third-party solar panels.",
+    "w" : 0.51239667029238656,
+    "x" : 0.08057851581799437,
+    "y" : 0.73095238112261363
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.02215562820434569,
+    "text" : "• CHARGING WITH A CAR CHARGER",
+    "w" : 0.38059794935107555,
+    "x" : 0.076230097609081324,
+    "y" : 0.68006435646554131
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664219,
+    "text" : "SOLD SEPARATELY",
+    "w" : 0.15495867845488753,
+    "x" : 0.49586776976015945,
+    "y" : 0.68750000023767954
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664108,
+    "text" : "This product can be charged using a 12V car charger. Ensure that the car charger and the 12V car power outlet",
+    "w" : 0.82231400652629572,
+    "x" : 0.078512407945529966,
+    "y" : 0.65697674432924935
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "(car cigarette lighter) provide a good connection.",
+    "w" : 0.3698347138195503,
+    "x" : 0.078512399779274281,
+    "y" : 0.64095238092830487
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.0072674415225074673,
+    "text" : "Jackery",
+    "w" : 0.039256196681076938,
+    "x" : 0.18801652910436512,
+    "y" : 0.59156976753816481
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013081395285470143,
+    "text" : "Vehicle",
+    "w" : 0.064049583786548347,
+    "x" : 0.66322314252476988,
+    "y" : 0.59011627916201304
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.015988371712820859,
+    "text" : "*The car charging cable is sold separately.",
+    "w" : 0.39462809575605523,
+    "x" : 0.49793387942913508,
+    "y" : 0.41133720951665165
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.015034934452601845,
+    "text" : "CAUTION",
+    "w" : 0.093131140318666372,
+    "x" : 0.10116170341821115,
+    "y" : 0.30498253295996747
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "• Please start the vehicle before charging your power station.",
+    "w" : 0.45867766920467057,
+    "x" : 0.22727274137906961,
+    "y" : 0.34428571418770992
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664108,
+    "text" : "• If the vehicle is running on bumpy roads, it is forbidden to use the car charger in case it",
+    "w" : 0.65702476604844173,
+    "x" : 0.22727274915553106,
+    "y" : 0.32994186071733067
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761973,
+    "text" : "causes non-standard operation. The Company will not be responsible for any loss caused",
+    "w" : 0.66528924047785398,
+    "x" : 0.24173555336644481,
+    "y" : 0.31523809535301439
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664108,
+    "text" : "by non-standard operation.",
+    "w" : 0.2107437878120236,
+    "x" : 0.23966942558434642,
+    "y" : 0.2994186046369044
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "• Vehicle charging is only applicable to vehicles with 12V DC, not 24V DC. Please do not",
+    "w" : 0.64876029161902937,
+    "x" : 0.22727274337781317,
+    "y" : 0.28476190472645979
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013081395285470143,
+    "text" : "charge this product in 24V vehicle to avoid personal injury and property loss.",
+    "w" : 0.56611567138010255,
+    "x" : 0.24173556217496231,
+    "y" : 0.26889534889311761
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664108,
+    "text" : "15",
+    "w" : 0.018595041621345176,
+    "x" : 0.076446280738914185,
+    "y" : 0.02616279094181384
+  }
+]
