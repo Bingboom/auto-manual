@@ -35,3 +35,5 @@ Accepted immutable package evidence:
 | JE-300E | [Review](../../manual_sources/JE-300E/US/en/git-20261103-04bd8b90-source-alignment-release/evidence/style-admission/review.json) |
 
 Default diff checking also found four trailing spaces in the archived JHP-5000C Sphinx log. Only those line endings were normalized; the raw log is retained in an audit ZIP. The log is not in the source adapter approval input list, and all Web bytes, approved inputs and90 active cold files remain unchanged. The frozen evidence inventory includes the normalization record and raw archive.
+
+The source-commit release preflight required JHP-3600A frozen evidence rows to be path-sorted. Only that manifest inventory order changed; every input path/hash/size, source adapter approval order and Web byte remains identical. Four JP snapshots newly merged from main retain their original CSS pins and immutable outputs under keep-frozen drift handling.

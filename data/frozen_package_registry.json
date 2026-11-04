@@ -1418,7 +1418,13 @@
     "manual_sources/JE-1000B/JP/ja/git-20261103-46f1c569": {
       "approval": "Operator 「上线提交发布：JE-600A、JE-600C-SJ、JE-900B-WH、JE-1000B」 2026-11-04 in the PR #1654 session after reviewing the 1280/390 renders beside the shared reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinating window): Git-only JP ja single-language Web release, source copy verbatim, symbol rows bound per shared PR #1659; acceptance hash-bound in source/approval.json. Merge needs a separate operator authorization.",
       "registered": "2026-11-03",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 narrow shared troubleshooting rowspan divider correction: preserve the four JP packages newly integrated from main with all original runtime pins and generated outputs unchanged; no content, artwork or target re-rendering. Their sole drift is the shared CSS file.",
+          "since": "2026-11-03"
+        }
+      }
     },
     "manual_sources/JE-1000C/JP/ja/git-20261103-a369a8d0": {
       "approval": "Operator 「上‘线提交发布：JE-1000C、JE-1000G、JE-1000H、JE-1500B」 2026-11-03 in the window session, after review of the PR #1653 1280/390 renders beside the reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinator window): Git-only JP ja single-language Web release, source copy verbatim; symbol rows pending the shared dedupe PR are withheld (see source/approval.json); merge not yet authorized",
@@ -2398,7 +2404,13 @@
     "manual_sources/JE-600A/JP/ja/git-20261103-b2490d61": {
       "approval": "Operator 「上线提交发布：JE-600A、JE-600C-SJ、JE-900B-WH、JE-1000B」 2026-11-04 in the PR #1654 session after reviewing the 1280/390 renders beside the shared reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinating window): Git-only JP ja single-language Web release, source copy verbatim, symbol rows bound per shared PR #1659; acceptance hash-bound in source/approval.json. Merge needs a separate operator authorization.",
       "registered": "2026-11-03",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 narrow shared troubleshooting rowspan divider correction: preserve the four JP packages newly integrated from main with all original runtime pins and generated outputs unchanged; no content, artwork or target re-rendering. Their sole drift is the shared CSS file.",
+          "since": "2026-11-03"
+        }
+      }
     },
     "manual_sources/JE-600A/US/en/git-20261028-9bf5bbb1": {
       "approval": "Operator 2026-10-29 (PR #1639 session): 「上线提交发布：JE-300D、JE-500A、JE-600A、JE-1500C」 after reviewing the 1280/390 renders: Git-only US English single-language Web release from the 发布文档管理 row; acceptance hash-bound in source/approval.json. Merge needs a separate operator authorization.",
@@ -2470,7 +2482,13 @@
     "manual_sources/JE-600C-SJ/JP/ja/git-20261103-3837e9fd": {
       "approval": "Operator 「上线提交发布：JE-600A、JE-600C-SJ、JE-900B-WH、JE-1000B」 2026-11-04 in the PR #1654 session after reviewing the 1280/390 renders beside the shared reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinating window): Git-only JP ja single-language Web release, source copy verbatim, symbol rows bound per shared PR #1659; acceptance hash-bound in source/approval.json. Merge needs a separate operator authorization.",
       "registered": "2026-11-03",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 narrow shared troubleshooting rowspan divider correction: preserve the four JP packages newly integrated from main with all original runtime pins and generated outputs unchanged; no content, artwork or target re-rendering. Their sole drift is the shared CSS file.",
+          "since": "2026-11-03"
+        }
+      }
     },
     "manual_sources/JE-880B/US/en/git-20261027-640e83ca": {
       "approval": "Operator 2026-10-28 (PR #1631 session): 「上线提交发布：JE-300C、JE-300E、JE-300E-SG、JE-880B；授权合入 #1631 及其 Hello-Docs 发布 PR」 under MA-365: Git-only US English single-language Web release from the 发布文档管理 row; acceptance hash-bound in source/approval.json",
@@ -2542,7 +2560,13 @@
     "manual_sources/JE-900B-WH/JP/ja/git-20261103-66c65187": {
       "approval": "Operator 「上线提交发布：JE-600A、JE-600C-SJ、JE-900B-WH、JE-1000B」 2026-11-04 in the PR #1654 session after reviewing the 1280/390 renders beside the shared reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinating window): Git-only JP ja single-language Web release, source copy verbatim, symbol rows bound per shared PR #1659; acceptance hash-bound in source/approval.json. Merge needs a separate operator authorization.",
       "registered": "2026-11-03",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 narrow shared troubleshooting rowspan divider correction: preserve the four JP packages newly integrated from main with all original runtime pins and generated outputs unchanged; no content, artwork or target re-rendering. Their sole drift is the shared CSS file.",
+          "since": "2026-11-03"
+        }
+      }
     },
     "manual_sources/JHP-1000A/US/en/git-20261028-cb256e64": {
       "approval": "Operator 「上线提交发布：JHP-1000A、JHP-1000B、JHP-2000A」 2026-10-29 in the engineering session after the 1280/390 renders beside the shared reference edition (PR #1638): Git-only US/en single-language Web release, source copy verbatim; approval bound in source/approval.json",
@@ -2959,6 +2983,16 @@
       "packages": 1,
       "handling": "keep-frozen",
       "reason": "MA-381 selected27 release: retain the exact hash-bound reviewed runtime and source outputs; approval cold rebuild and all visible MD/CSS/art/IR.pages equivalence verified. Current main shared changes do not re-render frozen output; final source-bound symbol/caption and release admission remain required.",
+      "minutes": 0
+    },
+    {
+      "date": "2026-11-03",
+      "files": [
+        "docs/renderers/contracts/web_manual.css"
+      ],
+      "packages": 4,
+      "handling": "keep-frozen",
+      "reason": "MA-381 narrow shared troubleshooting rowspan divider correction: preserve the four JP packages newly integrated from main with all original runtime pins and generated outputs unchanged; no content, artwork or target re-rendering. Their sole drift is the shared CSS file.",
       "minutes": 0
     }
   ]

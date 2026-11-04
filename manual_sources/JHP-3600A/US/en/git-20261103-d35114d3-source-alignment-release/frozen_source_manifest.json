@@ -714,6 +714,11 @@
       "sha256": "152b3ba9188ea53954a9321f29ef7e075a674f4561d96fac772205efa704bd07"
     },
     {
+      "path": "evidence/current-source-final/browser-verification.cjs",
+      "size": 2580,
+      "sha256": "7a7076a03bc1fd13128a3ff53a2df39bad64fae933c981ef3b16722836b96786"
+    },
+    {
       "path": "evidence/current-source-final/browser/1280-000.png",
       "size": 251874,
       "sha256": "d47e28474a34b948d256ee8f920df73dd76a876772d618e16d6163f8296a65ed"
@@ -1122,11 +1127,6 @@
       "path": "evidence/current-source-final/browser/records.json",
       "size": 16925,
       "sha256": "077700dfbea0f9fd1bab6e6c1eda904a04d855962e2c174c13a15f6ff13c3864"
-    },
-    {
-      "path": "evidence/current-source-final/browser-verification.cjs",
-      "size": 2580,
-      "sha256": "7a7076a03bc1fd13128a3ff53a2df39bad64fae933c981ef3b16722836b96786"
     },
     {
       "path": "evidence/current-source-final/final-copy-assertions.json",
