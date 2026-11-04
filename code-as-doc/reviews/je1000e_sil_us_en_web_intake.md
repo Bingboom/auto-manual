@@ -218,3 +218,38 @@ mypy 2.3.1 gate reports zero new/grown/improved/stale errors; tools/utils passes
 Focused declaration tests pass. No type baseline, dependency file or layout
 behavior changed. Source inventories and release receipts are refreshed at the
 new source commit before publication.
+
+## Republish with the CONNECTIONS subheading — 2026-11-04
+
+The released English page went straight from `CONNECTIONS` to its paragraph:
+the printed manual's `CONNECT TO BATTERY PACK (SOLD SEPARATELY)` subheading
+was missing. `connections_en.rst` was the only FridgeGuard page whose single
+section held a single subsection. docutils promotes such a pair to document
+title and subtitle, and the Web fragment converter re-adds only the title, so
+the subtitle was dropped. The template now writes the subheading as a raw
+`<h2>`, as the es/fr `connections.rst` templates already do; the Markdown
+carries `## CONNECT TO BATTERY PACK (SOLD SEPARATELY)` again.
+
+The operator chose a full rebuild (「A」) over a template-only fix. The new
+sibling package `data/manual_sources/JE-1000E-SIL/US/en/git-20261104-9d3b811e`
+copies the AI authority, phase2 snapshot and `source_panels.json` byte for
+byte. It re-pins six of the 134 repo inputs to current blobs: the template,
+`charging_en.rst` (the solar Voc wording already live since
+`git-20261016-ff7aa351-solar-voc`), the family index, `web_manual.css`,
+`web_app_components.css` and `tools/web/stylesheets.py`. The historical
+package keeps its bytes and records the template drift as keep-frozen.
+
+Against the live MyST (asset paths normalized) the only difference is the
+restored subheading; the built `web_manual.css` matched the live site
+stylesheet byte for byte before main's #1666 troubleshooting-border rule,
+which changes no row on this page. The operator reviewed the CONNECTIONS
+renders at 1280 and 390 px beside the live edition and replied
+「上线提交发布」, extending the merge grant to the Hello-Docs publish PR
+(MA-397). Reviewed MyST SHA-256:
+`ff1d64c2513e5a6a78f918f30a315c6546f7cc34d3fa0698ad2614d01678e347`.
+
+The reproduction commands above, with the new data root, pass `check` and
+`md`; the rebuilt Markdown has the reviewed hash and strict Sphinx `-W`
+passes with no broken images or page overflow at either width. Release
+sealing, the Hello-Docs PR, the RTD commit and live acceptance are reported
+only after they are observed.

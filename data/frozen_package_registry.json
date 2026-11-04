@@ -376,6 +376,11 @@
         }
       }
     },
+    "data/manual_sources/JE-1000E-SIL/US/en/git-20261104-9d3b811e": {
+      "approval": "Operator 2026-11-04 (this session): 「上线提交发布」 after reviewing the 1280/390 CONNECTIONS renders beside the live edition (MyST differs from the live page only by the restored CONNECT TO BATTERY PACK (SOLD SEPARATELY) subheading; reviewed MyST sha256 ff1d64c2513e5a6a78f918f30a315c6546f7cc34d3fa0698ad2614d01678e347); merge and Hello-Docs publish under MA-397",
+      "registered": "2026-11-04",
+      "known_drift": {}
+    },
     "data/manual_sources/JE-1000E-SIL/US/es/git-20261002-537939d0": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",
