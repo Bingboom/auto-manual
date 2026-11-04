@@ -1,0 +1,259 @@
+{
+ "schema_version": "je2000e-jp-symbol-recipe/v1",
+ "source_sha256": "f1829cd35ffe05079fe4b04f6c62fef3ca6adfd64270c47d64f7b2203af9780a",
+ "operator_decision": "2026-11-03 standard-icon decision (relayed by the coordination window): one canonical shared icon per symbol group, no new variants; every printed symbol binds to its group canonical (canonical_groups decision SCG-20261103, shared PR #1659): within the fixed 2% admission, or beyond it on its source-verified caption listed for that group",
+ "symbols": [
+  {
+   "path": "web/ja/assets/symbol-01.svg",
+   "physical_page": 3,
+   "glyph_bbox": [
+    38,
+    303,
+    62,
+    324
+   ],
+   "caption_bbox": [
+    77,
+    293,
+    175,
+    333
+   ],
+   "group": "warning",
+   "operator_canonical": "warning/outline-triangle-tinted",
+   "shared_symbol_key": "warning/outline-triangle-tinted",
+   "binding": "canonical",
+   "canonical_decision": "SCG-20261103"
+  },
+  {
+   "path": "web/ja/assets/symbol-02.svg",
+   "physical_page": 3,
+   "glyph_bbox": [
+    38,
+    343,
+    61,
+    361
+   ],
+   "caption_bbox": [
+    77,
+    338,
+    175,
+    368
+   ],
+   "group": "read-manual",
+   "operator_canonical": "read-manual/book-information",
+   "shared_symbol_key": "read-manual/book-information",
+   "binding": "canonical",
+   "canonical_decision": "SCG-20261103"
+  },
+  {
+   "path": "web/ja/assets/symbol-03.svg",
+   "physical_page": 3,
+   "glyph_bbox": [
+    39,
+    380,
+    61,
+    401
+   ],
+   "caption_bbox": [
+    77,
+    376,
+    175,
+    406
+   ],
+   "group": "no-open-flame",
+   "operator_canonical": "no-open-flame/fire-match-prohibited",
+   "shared_symbol_key": "no-open-flame/fire-match-prohibited",
+   "binding": "canonical",
+   "canonical_decision": "SCG-20261103"
+  },
+  {
+   "path": "web/ja/assets/symbol-04.svg",
+   "physical_page": 3,
+   "glyph_bbox": [
+    39,
+    420,
+    61,
+    442
+   ],
+   "caption_bbox": [
+    77,
+    417,
+    175,
+    447
+   ],
+   "group": "keep-away-from-children",
+   "operator_canonical": "keep-away-from-children/adult-child-prohibited",
+   "shared_symbol_key": "keep-away-from-children/adult-child-prohibited",
+   "binding": "canonical",
+   "canonical_decision": "SCG-20261103"
+  },
+  {
+   "path": "web/ja/assets/symbol-05.svg",
+   "physical_page": 3,
+   "glyph_bbox": [
+    39,
+    462,
+    60,
+    482
+   ],
+   "caption_bbox": [
+    77,
+    458,
+    175,
+    488
+   ],
+   "group": "do-not-dismantle",
+   "operator_canonical": "do-not-dismantle/screwdriver-prohibited",
+   "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited",
+   "binding": "canonical",
+   "canonical_decision": "SCG-20261103"
+  },
+  {
+   "path": "web/ja/assets/symbol-06.svg",
+   "physical_page": 3,
+   "glyph_bbox": [
+    195,
+    304,
+    214,
+    323
+   ],
+   "caption_bbox": [
+    227,
+    299,
+    332,
+    329
+   ],
+   "group": "unplug",
+   "operator_canonical": "unplug/h1-jp-native",
+   "shared_symbol_key": "unplug/h1-jp-native",
+   "binding": "canonical",
+   "canonical_decision": "SCG-20261103"
+  },
+  {
+   "path": "web/ja/assets/symbol-07.svg",
+   "physical_page": 3,
+   "glyph_bbox": [
+    195,
+    341,
+    214,
+    361
+   ],
+   "caption_bbox": [
+    227,
+    337,
+    332,
+    367
+   ],
+   "group": "no-wet-hands",
+   "operator_canonical": "native/je1000d-jp-00c43a89-03",
+   "shared_symbol_key": "native/je1000d-jp-00c43a89-03",
+   "binding": "canonical",
+   "canonical_decision": "SCG-20261103"
+  },
+  {
+   "path": "web/ja/assets/symbol-08.svg",
+   "physical_page": 3,
+   "glyph_bbox": [
+    195,
+    383,
+    214,
+    402
+   ],
+   "caption_bbox": [
+    227,
+    381,
+    332,
+    401
+   ],
+   "group": "keep-dry",
+   "operator_canonical": "native/je1000d-jp-00c43a89-05",
+   "shared_symbol_key": "native/je1000d-jp-00c43a89-05",
+   "binding": "canonical",
+   "canonical_decision": "SCG-20261103"
+  },
+  {
+   "path": "web/ja/assets/symbol-09.svg",
+   "physical_page": 3,
+   "glyph_bbox": [
+    194,
+    422,
+    216,
+    443
+   ],
+   "caption_bbox": [
+    227,
+    421,
+    290,
+    441
+   ],
+   "group": "mandatory",
+   "operator_canonical": "mandatory/h1-jp-native",
+   "shared_symbol_key": "mandatory/h1-jp-native",
+   "binding": "canonical",
+   "canonical_decision": "SCG-20261103"
+  },
+  {
+   "path": "web/ja/assets/symbol-10.svg",
+   "physical_page": 3,
+   "glyph_bbox": [
+    194,
+    462,
+    216,
+    484
+   ],
+   "caption_bbox": [
+    227,
+    463,
+    290,
+    483
+   ],
+   "group": "prohibited",
+   "operator_canonical": "prohibited/h1-jp-native",
+   "shared_symbol_key": "prohibited/h1-jp-native",
+   "binding": "canonical",
+   "canonical_decision": "SCG-20261103"
+  },
+  {
+   "path": "web/ja/assets/symbol-11.svg",
+   "physical_page": 4,
+   "glyph_bbox": [
+    37,
+    82,
+    56,
+    100
+   ],
+   "caption_bbox": [
+    68,
+    60,
+    180,
+    137
+   ],
+   "group": "li-ion-32",
+   "operator_canonical": "native/je3000c-kr-78316033-06",
+   "shared_symbol_key": "native/je3000c-kr-78316033-06",
+   "binding": "canonical",
+   "canonical_decision": "SCG-20261103"
+  },
+  {
+   "path": "web/ja/assets/symbol-12.svg",
+   "physical_page": 4,
+   "glyph_bbox": [
+    196,
+    76,
+    213,
+    100
+   ],
+   "caption_bbox": [
+    225,
+    29,
+    338,
+    147
+   ],
+   "group": "weee",
+   "operator_canonical": "native/je3000c-kr-78316033-07",
+   "shared_symbol_key": "native/je3000c-kr-78316033-07",
+   "binding": "canonical",
+   "canonical_decision": "SCG-20261103"
+  }
+ ]
+}

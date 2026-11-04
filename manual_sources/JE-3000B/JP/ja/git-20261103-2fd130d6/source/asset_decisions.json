@@ -1,0 +1,742 @@
+[
+ {
+  "slot": "inbox-unit",
+  "searched": [
+   "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/*/*/*/*/assets (every committed package, 2% glyph comparison for icons)",
+   "docs/renderers/web/assets/shared/symbols/manifest.json"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "in-box card art; JE-3000B US card is a different crop/scale of the front view, no byte-identical file",
+  "physical_page": 2,
+  "bbox": [
+   45,
+   350,
+   93,
+   387
+  ],
+  "final_path": "assets/inbox-unit.png",
+  "sha256": "f399a34eba0dab26d6d5b07d66bc70f7c98952222eb70661756e6c637eff125c",
+  "background": "retain complete panel, leader lines, captions, phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "inbox-cable",
+  "searched": [
+   "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/*/*/*/*/assets (every committed package, 2% glyph comparison for icons)",
+   "docs/renderers/web/assets/shared/symbols/manifest.json"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP cable drawing; JE-1500D JP inbox-cable.svg differs 4.1% (> 2%), JE-3000B US card is an opaque different crop",
+  "physical_page": 2,
+  "bbox": [
+   134,
+   350,
+   162,
+   387
+  ],
+  "final_path": "assets/inbox-cable.png",
+  "sha256": "7b38f74205aef2bc8414610f1d47774421b84152aa7194d1311ef9dd33c87a4f",
+  "background": "retain complete panel, leader lines, captions, phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "inbox-manual",
+  "searched": [
+   "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/*/*/*/*/assets (every committed package, 2% glyph comparison for icons)",
+   "docs/renderers/web/assets/shared/symbols/manifest.json"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "Japanese 取扱説明書 cover; no package carries it",
+  "physical_page": 2,
+  "bbox": [
+   221,
+   350,
+   249,
+   387
+  ],
+  "final_path": "assets/inbox-manual.png",
+  "sha256": "cf845bcbfb0836bb6f6b0fd33bc98cae8b0017b67540baae953bd079468a11b2",
+  "background": "retain complete panel, leader lines, captions, phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "inbox-warranty",
+  "searched": [
+   "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/*/*/*/*/assets (every committed package, 2% glyph comparison for icons)",
+   "docs/renderers/web/assets/shared/symbols/manifest.json"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "Japanese 保証案内書 card; printed only in this edition",
+  "physical_page": 2,
+  "bbox": [
+   292,
+   350,
+   320,
+   387
+  ],
+  "final_path": "assets/inbox-warranty.png",
+  "sha256": "22d110deafbae6f32aa2c20569fcfbd4b4b682cd100d32b408dfe0eff0f422dc",
+  "background": "retain complete panel, leader lines, captions, phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "overview",
+  "searched": [
+   "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/*/*/*/*/assets (every committed package, 2% glyph comparison for icons)",
+   "docs/renderers/web/assets/shared/symbols/manifest.json"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "Japanese leader labels; JE-3000B US overview art carries English labels and is split front/right",
+  "physical_page": 3,
+  "bbox": [
+   26,
+   60,
+   344,
+   234
+  ],
+  "final_path": "assets/overview.png",
+  "sha256": "7095c1b612da55546a756f6bcbb37944bfa0d867fe50577af1be8e2af60a5a91",
+  "background": "retain complete panel, leader lines, captions, phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "lcd-map",
+  "searched": [
+   "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/*/*/*/*/assets (every committed package, 2% glyph comparison for icons)",
+   "docs/renderers/web/assets/shared/symbols/manifest.json"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "line-frame LCD map without the grey bezel of the JE-3000B US lcd-map.png",
+  "physical_page": 3,
+  "bbox": [
+   26,
+   250,
+   344,
+   400
+  ],
+  "final_path": "assets/lcd-map.png",
+  "sha256": "8ca7608f8a6a00978d761adb14f143a7fc9e28caf04e2d570afa827d07651fdf",
+  "background": "retain complete panel, leader lines, captions, phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "self-powered",
+  "searched": [
+   "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/*/*/*/*/assets (every committed package, 2% glyph comparison for icons)",
+   "docs/renderers/web/assets/shared/symbols/manifest.json"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JE-3000B self-powered connection drawing, printed only in this edition",
+  "physical_page": 4,
+  "bbox": [
+   200,
+   428,
+   345,
+   494
+  ],
+  "final_path": "assets/self-powered.png",
+  "sha256": "b6e293c9cb1cde3f2eedec1859520a4121e4206e8f31d19a14851d156342abc2",
+  "background": "retain complete panel, leader lines, captions, phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "ac-charge",
+  "searched": [
+   "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/*/*/*/*/assets (every committed package, 2% glyph comparison for icons)",
+   "docs/renderers/web/assets/shared/symbols/manifest.json"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "caption ポータブル電源 3000 / AC充電ケーブル; JE-3000B US AC panel has English copy",
+  "physical_page": 6,
+  "bbox": [
+   105,
+   338.5,
+   245,
+   442
+  ],
+  "final_path": "assets/ac-charge.png",
+  "sha256": "606b7b03e5ede3e60f5cdcae3d82bc577bd7d8bdd3fdd7550f6e9175fb07268e",
+  "background": "retain complete panel, leader lines, captions, phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "solar",
+  "searched": [
+   "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/*/*/*/*/assets (every committed package, 2% glyph comparison for icons)",
+   "docs/renderers/web/assets/shared/symbols/manifest.json"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "two-panels-per-port drawing with SolarSaga 200 × 2 captions; US prints a different panel set and captions",
+  "physical_page": 7,
+  "bbox": [
+   28,
+   24,
+   342,
+   122
+  ],
+  "final_path": "assets/solar.png",
+  "sha256": "08428be28e2942ebd460a618c7ba5cc9ec3637461e10b63fcfe7a16c11f862a7",
+  "background": "retain complete panel, leader lines, captions, phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "car-charge",
+  "searched": [
+   "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/*/*/*/*/assets (every committed package, 2% glyph comparison for icons)",
+   "docs/renderers/web/assets/shared/symbols/manifest.json"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "caption ポータブル電源3000 and the * cable note; US panel differs",
+  "physical_page": 7,
+  "bbox": [
+   48,
+   214,
+   342,
+   276
+  ],
+  "final_path": "assets/car-charge.png",
+  "sha256": "00a81e319f551392db801b96852d7d47399e4f66927ccb66c91f4fb2741ef25c",
+  "background": "retain complete panel, leader lines, captions, phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "app-badges",
+  "searched": [
+   "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/*/*/*/*/assets (every committed package, 2% glyph comparison for icons)",
+   "docs/renderers/web/assets/shared/symbols/manifest.json"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "horizontal badge pair printed under 10.免責事項; no package carries this crop",
+  "physical_page": 10,
+  "bbox": [
+   27,
+   473,
+   180,
+   499
+  ],
+  "final_path": "assets/app-badges.png",
+  "sha256": "dc4557703aaa81d02644e618f58139e045784112a656a4db5738b187c4c0c7bd",
+  "background": "retain complete panel, leader lines, captions, phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "app-store",
+  "searched": [
+   "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/*/*/*/*/assets (every committed package, 2% glyph comparison for icons)",
+   "docs/renderers/web/assets/shared/symbols/manifest.json"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "stacked badges; JE-1000D JP app-store.png searched at every 1px offset, no identical render",
+  "physical_page": 11,
+  "bbox": [
+   27,
+   95,
+   90,
+   139
+  ],
+  "final_path": "assets/app-store.png",
+  "sha256": "1b076312f2706caeea7bb7017fd9fcbbff2e7aab9fee5c9bcdd3a569dd9c1e79",
+  "background": "retain complete panel, leader lines, captions, phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "app-qr",
+  "searched": [
+   "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/*/*/*/*/assets (every committed package, 2% glyph comparison for icons)",
+   "docs/renderers/web/assets/shared/symbols/manifest.json"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "printed target QR, not assumed equal to any other edition",
+  "physical_page": 11,
+  "bbox": [
+   215,
+   96,
+   259,
+   140
+  ],
+  "final_path": "assets/app-qr.png",
+  "sha256": "6fa89fb08bb91fedcadab2ce2b1fc69cf267b05d8cba27190b9985a3f4252379",
+  "background": "retain complete panel, leader lines, captions, phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "app-add",
+  "searched": [
+   "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/*/*/*/*/assets (every committed package, 2% glyph comparison for icons)",
+   "docs/renderers/web/assets/shared/symbols/manifest.json"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "Japanese App screenshots 2.1/2.2 with captions",
+  "physical_page": 11,
+  "bbox": [
+   92,
+   205,
+   258,
+   360
+  ],
+  "final_path": "assets/app-add.png",
+  "sha256": "b7df0767c5ec5d7375520c4d8531e505682ad37504774c296b70a13740d112a8",
+  "background": "retain complete panel, leader lines, captions, phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "app-control",
+  "searched": [
+   "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/*/*/*/*/assets (every committed package, 2% glyph comparison for icons)",
+   "docs/renderers/web/assets/shared/symbols/manifest.json"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JE-3000B chassis button map with Japanese labels",
+  "physical_page": 11,
+  "bbox": [
+   50,
+   386,
+   306,
+   474
+  ],
+  "final_path": "assets/app-control.png",
+  "sha256": "47b1f3d648b68a1bb6da14dedad30d2c334c22565639182550db798651384717",
+  "background": "retain complete panel, leader lines, captions, phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "app-results",
+  "searched": [
+   "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/*/*/*/*/assets (every committed package, 2% glyph comparison for icons)",
+   "docs/renderers/web/assets/shared/symbols/manifest.json"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "Japanese App screenshots 2.3-2.5 (Explorer 3000 device page)",
+  "physical_page": 12,
+  "bbox": [
+   26,
+   117,
+   342,
+   292.5
+  ],
+  "final_path": "assets/app-results.png",
+  "sha256": "c2b9a29ae8aaeba74048ddc3315743cced0d1cc9dd548d7fdc1078a593e49225",
+  "background": "retain complete panel, leader lines, captions, phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "lcd-energy-saving",
+  "searched": [
+   "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/*/*/*/*/assets (every committed package, 2% glyph comparison for icons)",
+   "docs/renderers/web/assets/shared/symbols/manifest.json"
+  ],
+  "decision": "native vector extraction (original PDF paths)",
+  "reason": "closest JE-1000D JP lcd-energy-saving.svg 2.05% (> 2%); JE-3000B US 13.7%",
+  "physical_page": 4,
+  "bbox": [
+   28,
+   91,
+   50,
+   107
+  ],
+  "final_path": "assets/lcd-energy-saving.svg",
+  "sha256": "d3ba73142b42f5548200a0a4faccde1afbdf9311a863bab89b003db3c2a6212f",
+  "background": "transparent, PDF paths only"
+ },
+ {
+  "slot": "lcd-charging-plan",
+  "searched": [
+   "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/*/*/*/*/assets (every committed package, 2% glyph comparison for icons)",
+   "docs/renderers/web/assets/shared/symbols/manifest.json"
+  ],
+  "decision": "native vector extraction (original PDF paths)",
+  "reason": "no committed glyph passes 2% (JE-3000B US lcd-05-charging-plan.svg 10.6%); clipped duplicate paths kept as printed",
+  "physical_page": 5,
+  "bbox": [
+   24,
+   58,
+   50,
+   79
+  ],
+  "final_path": "assets/lcd-charging-plan.svg",
+  "sha256": "87bb3eff27fe93fc80100c9c740b26146280ed15e5c8e09d5578e30719156c8d",
+  "background": "transparent, PDF paths only"
+ },
+ {
+  "slot": "recycle-li-ion",
+  "searched": [
+   "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/*/*/*/*/assets (every committed package, 2% glyph comparison for icons)",
+   "docs/renderers/web/assets/shared/symbols/manifest.json"
+  ],
+  "decision": "native vector extraction (original PDF paths)",
+  "reason": "no shared or package Li-ion 32 mark passes 2% (JE-1000D JP 13.7%)",
+  "physical_page": 2,
+  "bbox": [
+   36,
+   450,
+   90,
+   496
+  ],
+  "final_path": "assets/recycle-li-ion.svg",
+  "sha256": "5b0660851a0aa9673030ec478d5900e93ca33b5bf6ac07ec697805feb30ab5aa",
+  "background": "transparent, PDF paths only"
+ },
+ {
+  "slot": "lcd-battery-ring",
+  "searched": [
+   "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/*/*/*/*/assets (every committed package, 2% glyph comparison for icons)",
+   "docs/renderers/web/assets/shared/symbols/manifest.json"
+  ],
+  "decision": "reuse byte-identical",
+  "reason": "passes the fixed 2% glyph comparison against this PDF (0.009962); same-model JE-3000B US file",
+  "from": "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets/lcd-12-battery-power.svg",
+  "physical_page": 4,
+  "bbox": [
+   28,
+   29,
+   50,
+   51
+  ],
+  "final_path": "assets/lcd-battery-ring.svg",
+  "sha256": "463a1423db307feeb0045dbe94a9844b65ffcde9977db8de1c5993c046469aa4",
+  "background": "transparent"
+ },
+ {
+  "slot": "lcd-low-battery",
+  "searched": [
+   "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/*/*/*/*/assets (every committed package, 2% glyph comparison for icons)",
+   "docs/renderers/web/assets/shared/symbols/manifest.json"
+  ],
+  "decision": "reuse byte-identical",
+  "reason": "passes the fixed 2% glyph comparison against this PDF (0.014361); same-model JE-3000B US file",
+  "from": "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets/lcd-13-low-battery.svg",
+  "physical_page": 4,
+  "bbox": [
+   28,
+   61,
+   50,
+   74
+  ],
+  "final_path": "assets/lcd-low-battery.svg",
+  "sha256": "31da53ff050afcb161fa399006a51ea4a94ebb960718cb5453ca7952f6aa0c4e",
+  "background": "transparent"
+ },
+ {
+  "slot": "lcd-fault-code",
+  "searched": [
+   "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/*/*/*/*/assets (every committed package, 2% glyph comparison for icons)",
+   "docs/renderers/web/assets/shared/symbols/manifest.json"
+  ],
+  "decision": "reuse byte-identical",
+  "reason": "passes the fixed 2% glyph comparison against this PDF (0.013302); same-model JE-3000B US file",
+  "from": "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets/lcd-15-fault-code.svg",
+  "physical_page": 4,
+  "bbox": [
+   28,
+   286,
+   48.5,
+   306
+  ],
+  "final_path": "assets/lcd-fault-code.svg",
+  "sha256": "a26412e668dec6f865288f0193ffffa310e99cad7a4ee807c7681c19b5b4e01c",
+  "background": "transparent"
+ },
+ {
+  "slot": "lcd-high-temperature",
+  "searched": [
+   "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/*/*/*/*/assets (every committed package, 2% glyph comparison for icons)",
+   "docs/renderers/web/assets/shared/symbols/manifest.json"
+  ],
+  "decision": "reuse byte-identical",
+  "reason": "passes the fixed 2% glyph comparison against this PDF (0.016453); JE-3000B US variant fails (2.21%); best passing file",
+  "from": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-20a-high-temperature.svg",
+  "physical_page": 4,
+  "bbox": [
+   28,
+   336,
+   48.5,
+   356
+  ],
+  "final_path": "assets/lcd-high-temperature.svg",
+  "sha256": "f6805b16897e54b7051b8996a28cd70c6d6a852f70822ad00caf4c511443cdfe",
+  "background": "transparent"
+ },
+ {
+  "slot": "lcd-low-temperature",
+  "searched": [
+   "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/*/*/*/*/assets (every committed package, 2% glyph comparison for icons)",
+   "docs/renderers/web/assets/shared/symbols/manifest.json"
+  ],
+  "decision": "reuse byte-identical",
+  "reason": "passes the fixed 2% glyph comparison against this PDF (0.014286); same-model JE-3000B US file",
+  "from": "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets/lcd-16b-low-temperature.svg",
+  "physical_page": 4,
+  "bbox": [
+   28,
+   364,
+   48.5,
+   384
+  ],
+  "final_path": "assets/lcd-low-temperature.svg",
+  "sha256": "3bc5306353aa3ccdfcf7535ea0754df9f78c26e2a6f79462f2eb0846228cac39",
+  "background": "transparent"
+ },
+ {
+  "slot": "lcd-quiet-charging",
+  "searched": [
+   "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/*/*/*/*/assets (every committed package, 2% glyph comparison for icons)",
+   "docs/renderers/web/assets/shared/symbols/manifest.json"
+  ],
+  "decision": "reuse byte-identical",
+  "reason": "passes the fixed 2% glyph comparison against this PDF (0.013941); same-model JE-3000B US file",
+  "from": "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets/lcd-03-quiet-charging.svg",
+  "physical_page": 4,
+  "bbox": [
+   28.5,
+   389,
+   46.5,
+   407
+  ],
+  "final_path": "assets/lcd-quiet-charging.svg",
+  "sha256": "dccb6bc2b23dff5b753983cd09ce60dff97bbda86849577ef2e870a8d3103416",
+  "background": "transparent"
+ },
+ {
+  "slot": "lcd-self-powered",
+  "searched": [
+   "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/*/*/*/*/assets (every committed package, 2% glyph comparison for icons)",
+   "docs/renderers/web/assets/shared/symbols/manifest.json"
+  ],
+  "decision": "reuse byte-identical",
+  "reason": "passes the fixed 2% glyph comparison against this PDF (0.006243); same-model JE-3000B US file",
+  "from": "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets/lcd-04b-self-powered.svg",
+  "physical_page": 4,
+  "bbox": [
+   28.5,
+   418,
+   43,
+   438
+  ],
+  "final_path": "assets/lcd-self-powered.svg",
+  "sha256": "cb49f9e56435baedca07803863a843d8192ac08a4c671fae2878f8ec26154f07",
+  "background": "transparent"
+ },
+ {
+  "slot": "lcd-battery-saving",
+  "searched": [
+   "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/*/*/*/*/assets (every committed package, 2% glyph comparison for icons)",
+   "docs/renderers/web/assets/shared/symbols/manifest.json"
+  ],
+  "decision": "reuse byte-identical",
+  "reason": "passes the fixed 2% glyph comparison against this PDF (0.009892); same-model JE-3000B US file",
+  "from": "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets/lcd-04a-battery-saving.svg",
+  "physical_page": 5,
+  "bbox": [
+   30.5,
+   29,
+   45,
+   49
+  ],
+  "final_path": "assets/lcd-battery-saving.svg",
+  "sha256": "d27fc71354e5a3783ee26c9dbefa14a5eb80f96d49cdc36408d435ab55495228",
+  "background": "transparent"
+ },
+ {
+  "slot": "symbol-01",
+  "searched": [
+   "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/*/*/*/*/assets (every committed package, 2% glyph comparison for icons)",
+   "docs/renderers/web/assets/shared/symbols/manifest.json"
+  ],
+  "decision": "reuse shared catalog variant",
+  "reason": "symbol admission passes (0.007757); nothing added to the shared catalog",
+  "shared_symbol_key": "native/je1000d-jp-00c43a89-01",
+  "physical_page": 8,
+  "bbox": [
+   28.5,
+   43.9,
+   43.9,
+   60.0
+  ],
+  "final_path": "assets/symbol-01.svg",
+  "sha256": "6826bf335dfb5aa842639eae12531d9cf30ceb89940e77c56c92f3515f120894",
+  "background": "transparent"
+ },
+ {
+  "slot": "symbol-02",
+  "searched": [
+   "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/*/*/*/*/assets (every committed package, 2% glyph comparison for icons)",
+   "docs/renderers/web/assets/shared/symbols/manifest.json"
+  ],
+  "decision": "reuse shared catalog variant",
+  "reason": "symbol admission passes (0.007696); nothing added to the shared catalog",
+  "shared_symbol_key": "native/je1000d-jp-00c43a89-02",
+  "physical_page": 8,
+  "bbox": [
+   27.9,
+   61.7,
+   44.6,
+   77.9
+  ],
+  "final_path": "assets/symbol-02.svg",
+  "sha256": "0766a51f9ad7d433bed62a7c1ddbacc19ad7c7b68bf55938d5cdbab902b9ea04",
+  "background": "transparent"
+ },
+ {
+  "slot": "symbol-03",
+  "searched": [
+   "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/*/*/*/*/assets (every committed package, 2% glyph comparison for icons)",
+   "docs/renderers/web/assets/shared/symbols/manifest.json"
+  ],
+  "decision": "reuse shared catalog variant",
+  "reason": "symbol admission passes (0.014722); nothing added to the shared catalog",
+  "shared_symbol_key": "native/je1000d-jp-00c43a89-03",
+  "physical_page": 8,
+  "bbox": [
+   28.3,
+   79.2,
+   44.6,
+   95.4
+  ],
+  "final_path": "assets/symbol-03.svg",
+  "sha256": "585a0c72abdb9fc1d69d31554d249730f1361dfc49a501423dd0204e0637a387",
+  "background": "transparent"
+ },
+ {
+  "slot": "symbol-04",
+  "searched": [
+   "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/*/*/*/*/assets (every committed package, 2% glyph comparison for icons)",
+   "docs/renderers/web/assets/shared/symbols/manifest.json"
+  ],
+  "decision": "reuse shared catalog variant",
+  "reason": "symbol admission passes (0.005231); nothing added to the shared catalog",
+  "shared_symbol_key": "mandatory/h1-jp-native",
+  "physical_page": 8,
+  "bbox": [
+   202.8,
+   44.1,
+   219.1,
+   60.4
+  ],
+  "final_path": "assets/symbol-04.svg",
+  "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2",
+  "background": "transparent"
+ },
+ {
+  "slot": "symbol-05",
+  "searched": [
+   "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/*/*/*/*/assets (every committed package, 2% glyph comparison for icons)",
+   "docs/renderers/web/assets/shared/symbols/manifest.json"
+  ],
+  "decision": "reuse shared catalog variant",
+  "reason": "symbol admission passes (0.012412); nothing added to the shared catalog",
+  "shared_symbol_key": "native/je1000d-jp-00c43a89-05",
+  "physical_page": 8,
+  "bbox": [
+   202.8,
+   62.2,
+   219.1,
+   78.4
+  ],
+  "final_path": "assets/symbol-05.svg",
+  "sha256": "4728b4a0ab80e8376ff756d9af98d92c1906d3461e44eb4905899b6212cc003c",
+  "background": "transparent"
+ },
+ {
+  "slot": "symbol-06",
+  "searched": [
+   "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/*/*/*/*/assets (every committed package, 2% glyph comparison for icons)",
+   "docs/renderers/web/assets/shared/symbols/manifest.json"
+  ],
+  "decision": "reuse shared catalog variant",
+  "reason": "symbol admission passes (0.004344); nothing added to the shared catalog",
+  "shared_symbol_key": "native/je1000d-jp-00c43a89-06",
+  "physical_page": 8,
+  "bbox": [
+   202.8,
+   79.9,
+   219.1,
+   96.2
+  ],
+  "final_path": "assets/symbol-06.svg",
+  "sha256": "a5390e01e5ed9ba225377ba6b13de7523f86b8139e4686cf4534ebb2c1048641",
+  "background": "transparent"
+ }
+]
