@@ -1,8 +1,8 @@
-# JE-2000D / JP / ja — Git-only Web manual candidate (print model JE-2000D-SG)
+# JE-2000D / JP / ja — Git-only Web manual (print model JE-2000D-SG)
 
 Coordinator brief, 2026-11-03: build the Japanese single-language Web candidate of 发布文档管理 record `reczz28SfbsHec2z` (子物料编码 38-0001-000766, 项目号 HTE117, sku 21-0001-000339; `source_manifest.json:feishu_source`).
 
-**Status: `candidate-pending-operator-review`.** There is no `source/approval.json`; the IR is not publication-eligible. Operator review compares the 1280/390 renders in `evidence/` with the same-model JE-2000D US en Web edition and decides the `source_concerns`.
+**Status: `operator-authorized-git-only-release`.** The operator reviewed the 1280/390 renders beside the shared reference edition (manual_sources/JE-2000D/US/en/git-20261028-3d50ef64) in PR #1655 and instructed 「上线提交发布：JE-2000F、JE-2000D」 on 2026-11-04 in this package's engineering session. `source/approval.json` binds every reviewed `source/`, `assets/` and script input; the IR is publication-eligible. Source copy goes live as printed; `source_manifest.json:source_concerns` go back to the source owner. Merge needs a separate operator grant (AGENTS.md §8.6).
 
 **Route.** `JE-2000D/JP/ja/md`: route JE-2000D per operator decision 2026-11-03 (JE-2000D-SG is the colour variant of JE-2000D; route JE-2000D covers both colours). The 发布文档管理 customer model is JE-2000D-SG (`source_manifest.json:feishu_source`), and the print names JE-2000D-SG on the cover and in the specification table (型番：JE-2000D-SG, 色：サンドゴールド); that printed text stays verbatim on the Web.
 

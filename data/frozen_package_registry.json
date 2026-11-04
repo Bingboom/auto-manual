@@ -1483,7 +1483,7 @@
       "known_drift": {}
     },
     "manual_sources/JE-2000D/JP/ja/git-20261103-62605f21": {
-      "approval": "Operator 2026-11-03 (via coordinator, 「继续 转日语说明书」, 发布文档管理 日规视图; route JE-2000D for colour variant JE-2000D-SG per operator): Git-only JP/ja single-language Web candidate, source copy verbatim; candidate only — no release approval yet",
+      "approval": "Operator 「上线提交发布：JE-2000F、JE-2000D」 2026-11-04 in the engineering session after review of the PR #1655 1280/390 renders beside the shared reference edition; requested by 「继续 转日语说明书」 (发布文档管理 日规视图, via coordinator): Git-only JE-2000D JP/ja single-language Web release, source copy verbatim (see source/approval.json); merge needs a separate operator grant",
       "registered": "2026-11-03",
       "known_drift": {}
     },
@@ -1538,7 +1538,7 @@
       "known_drift": {}
     },
     "manual_sources/JE-2000F/JP/ja/git-20261103-63cdf705": {
-      "approval": "Operator 2026-11-03 (via coordinator, 「继续 转日语说明书」, 发布文档管理 日规视图; route JE-2000F per operator): Git-only JP/ja single-language Web candidate, source copy verbatim; release approval of 8a03698 withdrawn after the operator-decided shared Li-ion 32 reuse — awaiting renewed 「上线提交发布」",
+      "approval": "Operator 「上线提交发布：JE-2000F、JE-2000D」 2026-11-04 in the engineering session after review of the PR #1655 1280/390 renders beside the shared reference edition; requested by 「继续 转日语说明书」 (发布文档管理 日规视图, via coordinator): Git-only JE-2000F JP/ja single-language Web release, source copy verbatim (see source/approval.json); merge needs a separate operator grant",
       "registered": "2026-11-03",
       "known_drift": {}
     },
