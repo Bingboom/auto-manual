@@ -2556,6 +2556,11 @@
           "handling": "keep-frozen",
           "reason": "MA-381 first18: exact reviewed source runtime retained; authorized cold rebuild and unchanged visible MD/CSS/art/IR.pages verified. Current main symbol utility changes do not re-render frozen outputs; fresh source-bound release admission remains required.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 ordinary main integration: the already-reviewed JE-600A and JE-880B release snapshots retain their exact approved frozen runtime and HTML. The source-only shared rowspan CSS correction is not replayed into these packages; only its newly observed runtime drift is registered. All source, original art and frozen outputs remain byte-identical to engineering PR1665.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -2581,6 +2586,11 @@
         "tools/web/symbol_asset_admission.py": {
           "handling": "keep-frozen",
           "reason": "MA-381 first18: exact reviewed source runtime retained; authorized cold rebuild and unchanged visible MD/CSS/art/IR.pages verified. Current main symbol utility changes do not re-render frozen outputs; fresh source-bound release admission remains required.",
+          "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 ordinary main integration: the already-reviewed JE-600A and JE-880B release snapshots retain their exact approved frozen runtime and HTML. The source-only shared rowspan CSS correction is not replayed into these packages; only its newly observed runtime drift is registered. All source, original art and frozen outputs remain byte-identical to engineering PR1665.",
           "since": "2026-11-03"
         }
       }
@@ -2803,6 +2813,16 @@
       "packages": 1,
       "handling": "keep-frozen",
       "reason": "MA-381 JHP-3600C exact approved cold-replay runtime preserved; all original pins remain. Root independently verified all body text and original art unchanged, all83839 restored frame-band pixels match the current own-PDF crop-origin render, nonframe pixels unchanged, strict Sphinx and current prepared-style admission pass.",
+      "minutes": 0
+    },
+    {
+      "date": "2026-11-03",
+      "files": [
+        "docs/renderers/contracts/web_manual.css"
+      ],
+      "packages": 2,
+      "handling": "keep-frozen",
+      "reason": "MA-381 ordinary main integration: the already-reviewed JE-600A and JE-880B release snapshots retain their exact approved frozen runtime and HTML. The source-only shared rowspan CSS correction is not replayed into these packages; only its newly observed runtime drift is registered. All source, original art and frozen outputs remain byte-identical to engineering PR1665.",
       "minutes": 0
     }
   ]
