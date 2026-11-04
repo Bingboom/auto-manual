@@ -107,8 +107,14 @@ so this source runs on a schedule (operator, 2026-10-19). The job:
   `https://<tenant>.feishu.cn/wiki/<node>`). The snapshot's source identity stays
   the 网页文档 binding, so snapshots from before the 审核稿 table still match;
 - writes `docs/knowledge/workspace-data/web_progress_snapshot.json` and opens or
-  updates the content PR `chore/workspace-web_progress`, like the other sources.
-  Nothing is merged automatically, and an unchanged read makes no commit.
+  updates the content PR `chore/workspace-web_progress`, like the other sources;
+  an unchanged read makes no commit;
+- merges that PR when the export succeeded (operator, 2026-11-04). The squash merge
+  is pinned to the commit this run validated (`--match-head-commit`), and the job
+  then dispatches **Workspace Data Verify**, because a merge made with the workflow
+  token triggers no push workflow. A failed export, a refused merge or a failed
+  dispatch fails the run and leaves the PR for review. Deliverables and corpus PRs
+  still wait for review.
 
 A missing secret, a shallow clone, a missing column or a ticked row without a
 Web manual link fails the run and keeps the last snapshot; the failure opens one
