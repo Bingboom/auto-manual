@@ -2441,6 +2441,42 @@
           "since": "2026-11-03"
         }
       }
+    },
+    "manual_sources/JHP-3600C/US/en/git-20261103-cbb7eecb-source-alignment-release": {
+      "approval": "MA-381: independent current-PDF text/art/pixel/style/strict/cold acceptance and review-field readback complete.",
+      "registered": "2026-11-03",
+      "known_drift": {
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 JHP-3600C exact approved cold-replay runtime preserved; all original pins remain. Root independently verified all body text and original art unchanged, all83839 restored frame-band pixels match the current own-PDF crop-origin render, nonframe pixels unchanged, strict Sphinx and current prepared-style admission pass.",
+          "since": "2026-11-03"
+        },
+        "docs/renderers/web/assets/shared/symbols/README.md": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 JHP-3600C exact approved cold-replay runtime preserved; all original pins remain. Root independently verified all body text and original art unchanged, all83839 restored frame-band pixels match the current own-PDF crop-origin render, nonframe pixels unchanged, strict Sphinx and current prepared-style admission pass.",
+          "since": "2026-11-03"
+        },
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 JHP-3600C exact approved cold-replay runtime preserved; all original pins remain. Root independently verified all body text and original art unchanged, all83839 restored frame-band pixels match the current own-PDF crop-origin render, nonframe pixels unchanged, strict Sphinx and current prepared-style admission pass.",
+          "since": "2026-11-03"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 JHP-3600C exact approved cold-replay runtime preserved; all original pins remain. Root independently verified all body text and original art unchanged, all83839 restored frame-band pixels match the current own-PDF crop-origin render, nonframe pixels unchanged, strict Sphinx and current prepared-style admission pass.",
+          "since": "2026-11-03"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 JHP-3600C exact approved cold-replay runtime preserved; all original pins remain. Root independently verified all body text and original art unchanged, all83839 restored frame-band pixels match the current own-PDF crop-origin render, nonframe pixels unchanged, strict Sphinx and current prepared-style admission pass.",
+          "since": "2026-11-03"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 JHP-3600C exact approved cold-replay runtime preserved; all original pins remain. Root independently verified all body text and original art unchanged, all83839 restored frame-band pixels match the current own-PDF crop-origin render, nonframe pixels unchanged, strict Sphinx and current prepared-style admission pass.",
+          "since": "2026-11-03"
+        }
+      }
     }
   },
   "drift_log": [
@@ -2607,6 +2643,21 @@
       "packages": 32,
       "handling": "keep-frozen",
       "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+      "minutes": 0
+    },
+    {
+      "date": "2026-11-03",
+      "files": [
+        "docs/renderers/contracts/web_manual.css",
+        "docs/renderers/web/assets/shared/symbols/README.md",
+        "docs/renderers/web/assets/shared/symbols/manifest.json",
+        "tools/asset_pipeline/native_svg.py",
+        "tools/web/shared_symbol_assets.py",
+        "tools/web/symbol_asset_admission.py"
+      ],
+      "packages": 1,
+      "handling": "keep-frozen",
+      "reason": "MA-381 JHP-3600C exact approved cold-replay runtime preserved; all original pins remain. Root independently verified all body text and original art unchanged, all83839 restored frame-band pixels match the current own-PDF crop-origin render, nonframe pixels unchanged, strict Sphinx and current prepared-style admission pass.",
       "minutes": 0
     }
   ]

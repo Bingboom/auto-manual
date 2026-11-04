@@ -1,0 +1,176 @@
+[
+  {
+    "width": 1280,
+    "selector": ".hb-safety-instruction",
+    "requested": 466.734375,
+    "actual": 467
+  },
+  {
+    "width": 1280,
+    "selector": "[data-source-layout=\"safety-columns\"]",
+    "requested": 523.203125,
+    "actual": 523
+  },
+  {
+    "width": 1280,
+    "selector": "[data-source-heading=\"safety-pill\"]",
+    "requested": 940.734375,
+    "actual": 941
+  },
+  {
+    "width": 1280,
+    "selector": "#power-on-off",
+    "requested": 9360.59375,
+    "actual": 9361
+  },
+  {
+    "width": 1280,
+    "selector": "#usb-output-on-off",
+    "requested": 9796.9375,
+    "actual": 9797
+  },
+  {
+    "width": 1280,
+    "selector": "#ac-output-on-off",
+    "requested": 10539.5,
+    "actual": 10540
+  },
+  {
+    "width": 1280,
+    "selector": "#energy-saving-mode",
+    "requested": 10978.09375,
+    "actual": 10978
+  },
+  {
+    "width": 1280,
+    "selector": "[data-reference-id=\"battery-placement\"]",
+    "requested": 15989.953125,
+    "actual": 15990
+  },
+  {
+    "width": 1280,
+    "selector": "[data-source-role=\"pill-heading\"]",
+    "requested": 16656.734375,
+    "actual": 16657
+  },
+  {
+    "width": 1280,
+    "selector": "[data-reference-id=\"mts-single\"]",
+    "requested": 19337.140625,
+    "actual": 19337
+  },
+  {
+    "width": 1280,
+    "selector": "[data-reference-id=\"mts-cascade\"]",
+    "requested": 20129.71875,
+    "actual": 20130
+  },
+  {
+    "width": 1280,
+    "selector": "#package-list",
+    "requested": 37332.734375,
+    "actual": 37333
+  },
+  {
+    "width": 1280,
+    "selector": "[data-source-role~=\"source-package-cart\"]",
+    "requested": 37729.640625,
+    "actual": 37730
+  },
+  {
+    "width": 1280,
+    "failed": [],
+    "metrics": {
+      "broken": [],
+      "overflow": false,
+      "backgrounds": []
+    }
+  },
+  {
+    "width": 390,
+    "selector": ".hb-safety-instruction",
+    "requested": 680.578125,
+    "actual": 680
+  },
+  {
+    "width": 390,
+    "selector": "[data-source-layout=\"safety-columns\"]",
+    "requested": 775.046875,
+    "actual": 775
+  },
+  {
+    "width": 390,
+    "selector": "[data-source-heading=\"safety-pill\"]",
+    "requested": 1686.078125,
+    "actual": 1686
+  },
+  {
+    "width": 390,
+    "selector": "#power-on-off",
+    "requested": 11866.84375,
+    "actual": 11867
+  },
+  {
+    "width": 390,
+    "selector": "#usb-output-on-off",
+    "requested": 12382.421875,
+    "actual": 12382
+  },
+  {
+    "width": 390,
+    "selector": "#ac-output-on-off",
+    "requested": 13219.25,
+    "actual": 13219
+  },
+  {
+    "width": 390,
+    "selector": "#energy-saving-mode",
+    "requested": 13579.59375,
+    "actual": 13580
+  },
+  {
+    "width": 390,
+    "selector": "[data-reference-id=\"battery-placement\"]",
+    "requested": 19464.453125,
+    "actual": 19464
+  },
+  {
+    "width": 390,
+    "selector": "[data-source-role=\"pill-heading\"]",
+    "requested": 20144.5625,
+    "actual": 20145
+  },
+  {
+    "width": 390,
+    "selector": "[data-reference-id=\"mts-single\"]",
+    "requested": 22974.453125,
+    "actual": 22974
+  },
+  {
+    "width": 390,
+    "selector": "[data-reference-id=\"mts-cascade\"]",
+    "requested": 23975.671875,
+    "actual": 23976
+  },
+  {
+    "width": 390,
+    "selector": "#package-list",
+    "requested": 44202.46875,
+    "actual": 44202
+  },
+  {
+    "width": 390,
+    "selector": "[data-source-role~=\"source-package-cart\"]",
+    "requested": 44899.171875,
+    "actual": 44899
+  },
+  {
+    "width": 390,
+    "failed": [],
+    "metrics": {
+      "broken": [],
+      "overflow": false,
+      "backgrounds": []
+    }
+  }
+]

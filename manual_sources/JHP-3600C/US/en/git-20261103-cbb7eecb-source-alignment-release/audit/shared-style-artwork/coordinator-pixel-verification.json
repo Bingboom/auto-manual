@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "source_sha256": "cbb7eecba3f7a2a035f6c5bc0d3da54505b9d6399377d87eb639fc5683e694d1",
+  "asset_sha256": "42a7b1f7772414552517b69a954769967a24ad0bd9b1d526d15807be76acfe68",
+  "source_page": 16,
+  "bbox": [
+    26.0,
+    287.0,
+    342.0,
+    434.0
+  ],
+  "scale": 3,
+  "pymupdf_version": "1.28.0",
+  "rendering": "Create blank PDF page of clip.width by clip.height; show_pdf_page(new_page.rect, source_document, physical_page-1, clip=clip); render new page with Matrix(3,3), RGB, alpha=False. This is the original extraction method; rendering a clip of the original page directly has slightly different antialias rounding.",
+  "frame_pixels_verified": 83839,
+  "all_frame_pixels_equal_fresh_current_source_crop": true,
+  "all_nonframe_pixels_equal_previous_accepted_art": true
+}

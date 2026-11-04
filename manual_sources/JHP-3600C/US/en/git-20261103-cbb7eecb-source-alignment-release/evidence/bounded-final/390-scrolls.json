@@ -1,0 +1,47 @@
+[
+  {
+    "tag": "FIGURE",
+    "cls": "hb-lcd-table-composition",
+    "scrollLeft": 286,
+    "scrollWidth": 640,
+    "clientWidth": 354,
+    "lastRight": 372,
+    "containerRight": 374
+  },
+  {
+    "tag": "DIV",
+    "cls": "hb-lcd-mode-table-panel",
+    "scrollLeft": 219,
+    "scrollWidth": 544,
+    "clientWidth": 325,
+    "lastRight": 357.515625,
+    "containerRight": 359.484375
+  },
+  {
+    "tag": "FIGURE",
+    "cls": "hb-key-combination-composition",
+    "scrollLeft": 350,
+    "scrollWidth": 704,
+    "clientWidth": 354,
+    "lastRight": 372,
+    "containerRight": 374
+  },
+  {
+    "tag": "FIGURE",
+    "cls": "hb-auto-resume-composition",
+    "scrollLeft": 286,
+    "scrollWidth": 640,
+    "clientWidth": 354,
+    "lastRight": 372,
+    "containerRight": 374
+  },
+  {
+    "tag": "FIGURE",
+    "cls": "hb-troubleshooting-composition",
+    "scrollLeft": 286,
+    "scrollWidth": 640,
+    "clientWidth": 354,
+    "lastRight": 372,
+    "containerRight": 374
+  }
+]
