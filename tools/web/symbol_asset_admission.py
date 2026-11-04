@@ -122,6 +122,32 @@ def _waived_comparison(waivers: list[dict], row: dict, candidate: bytes, suffix:
     return {'max_mean_channel_error': round(error, 6), 'glyph_waiver': waiver['id']}
 
 
+def _legacy_hint(groups: dict, row: dict, exc: ValueError) -> ValueError:
+    """Point a failed legacy-variant row of a confirmed group at its canonical."""
+    group, role = groups.get(row['shared_symbol_key'], (None, None))
+    if role == 'legacy' and group['status'] == 'operator-confirmed':
+        return ValueError(f"{exc}; legacy variant {row['shared_symbol_key']} of group "
+                          f"{group['id']}: bind {group['canonical']}")
+    return exc
+
+
+def _row_comparison(groups: dict, waivers: list[dict], row: dict, meaning: str,
+                    language: str, candidate: Path, reference: bytes) -> dict:
+    """Fixed tolerance, then a confirmed group's canonical release, then a waiver."""
+    data = candidate.read_bytes()
+    try:
+        return compare_symbol(data, candidate.suffix, reference)
+    except ValueError:
+        released = _canonical_release(groups, row, meaning, language, data,
+                                      candidate.suffix, reference)
+        if released:
+            return released
+        try:
+            return _waived_comparison(waivers, row, data, candidate.suffix, reference)
+        except ValueError as exc:
+            raise _legacy_hint(groups, row, exc) from exc
+
+
 def _nearest_member(group: dict, reference: bytes) -> float:
     return min(_symbol_error(path.read_bytes(), path.suffix, reference)
                for path in map(shared_symbol_file, [group['canonical'], *group['legacy_variants']]))
@@ -135,17 +161,12 @@ def _canonical_release(groups: dict, row: dict, meaning: str, language: str,
     applies. The printed row joins the group only through its source-verified
     caption, listed for that language; a caption listed by several groups
     must also print nearer this group's variants than every other group's.
-    Ungrouped and proposed keys are never released here; a legacy variant of a
-    confirmed group keeps the fixed tolerance and is pointed at the canonical.
+    Ungrouped, proposed and legacy keys are never released here; they keep the
+    fixed tolerance and reviewed waivers (see ``_legacy_hint``).
     """
     group, role = groups.get(row['shared_symbol_key'], (None, None))
-    if group is None or group['status'] != 'operator-confirmed':
+    if role != 'canonical' or group['status'] != 'operator-confirmed':
         return None
-    if role == 'legacy':
-        # A legacy variant still passes within 0.02; beyond it only the
-        # canonical is released for the group.
-        raise ValueError(f"symbol glyph/background differs from authoritative PDF; legacy variant "
-                         f"{row['shared_symbol_key']} of group {group['id']}: bind {group['canonical']}")
     caption = _text(meaning)
     if caption not in {_text(c) for c in group['captions'].get(language, [])}:
         return None
@@ -335,13 +356,8 @@ def require_symbol_asset_admission(markdown_dir: Path, source_root: Path,
                 erratum = _matching_erratum(errata, row)
                 reference = _reference(doc[page_number - 1], row, meaning,
                                        erratum)
-                data = candidate.read_bytes()
-                try:
-                    comparison = compare_symbol(data, candidate.suffix, reference)
-                except ValueError:
-                    comparison = (_canonical_release(groups, row, meaning, language, data,
-                                                     candidate.suffix, reference)
-                                  or _waived_comparison(waivers, row, data, candidate.suffix, reference))
+                comparison = _row_comparison(groups, waivers, row, meaning, language,
+                                             candidate, reference)
                 result = {'asset_ref': ref, 'physical_page': page_number, **comparison}
                 if erratum:
                     result['caption_erratum'] = erratum['id']

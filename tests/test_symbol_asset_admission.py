@@ -245,6 +245,15 @@ class SymbolAdmissionTests(unittest.TestCase):
         (self.md / row['asset_ref']).write_bytes(legacy.read_bytes())
         with self.assertRaisesRegex(RuntimeError, 'legacy variant fixture-legacy of group read: bind fixture-0'):
             self.check()  # beyond 0.02 only the canonical is released
+        waiver = {'id': 'legacy-waiver', 'physical_page': row['physical_page'],
+                  'drawing_indices': row['drawing_indices'], 'shared_symbol_key': 'fixture-legacy',
+                  'asset_sha256': row['asset_sha256'], 'max_mean_channel_error': 0.03,
+                  'status': 'operator-approved', 'operator_decision': 'Design variation.'}
+        # Row 0: fixed comparison, then its waiver, both at 0.025; row 1 matches.
+        with patch('tools.web.symbol_asset_admission._glyph_waivers', return_value=[waiver]), \
+                patch('tools.web.symbol_asset_admission._symbol_error',
+                      side_effect=[0.025, 0.025, 0.0]):
+            self.assertEqual(self.check()[0]['glyph_waiver'], 'legacy-waiver')  # reviewed waivers still apply
 
     def test_shared_caption_must_print_nearer_the_claimed_group(self):
         self.canonical_group(rival=True)
