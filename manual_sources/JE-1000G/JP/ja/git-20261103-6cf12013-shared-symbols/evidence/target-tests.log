@@ -1,0 +1,158 @@
+[env-preflight] WARN env.python: Python 3.13 differs from the pinned 3.12; tests and builds may fail for environment reasons
+[env-preflight] WARN env.lock: 4 pinned package(s) not installed: aliyun-python-sdk-core, aliyun-python-sdk-kms, crcmod, oss2
+[env-preflight] WARN env.lock: 2 package(s) differ from requirements.lock: certifi 2026.10.18 (lock 2026.6.17), charset-normalizer 3.5.1 (lock 3.4.8)
+[env-preflight] WARN env.lock: to match CI: python -m pip install -r requirements.lock (on the pinned Python)
+...{
+  "output": "/tmp/tmplcm2ikm5/replay",
+  "chapters": 13,
+  "components": {
+    "HB-CALLOUT-STRIP": 29,
+    "HB-SPECIAL-APP": 2,
+    "HB-SPECIAL-INBOX": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE": 17,
+    "HB-TABLE-AUTO-RESUME": 1,
+    "HB-TABLE-KEY-COMBINATIONS": 1,
+    "HB-TABLE-LCD-ICON": 1,
+    "HB-TABLE-LCD-MODE": 1,
+    "HB-TABLE-SPEC": 4,
+    "HB-TABLE-SYMBOL-ICON": 1,
+    "HB-TABLE-SYMBOL-SIGNAL": 1,
+    "HB-TABLE-TROUBLESHOOTING": 1,
+    "HB-WARRANTY-SECTION": 6
+  },
+  "symbol_admission": [
+    {
+      "asset_ref": "assets/symbol-01.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.016456
+    },
+    {
+      "asset_ref": "assets/symbol-02.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.011315
+    },
+    {
+      "asset_ref": "assets/symbol-03.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.021133,
+      "canonical_group": "no-open-flame",
+      "canonical_decision": "SCG-20261103"
+    },
+    {
+      "asset_ref": "assets/symbol-04.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.015228
+    },
+    {
+      "asset_ref": "assets/symbol-05.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.011329
+    },
+    {
+      "asset_ref": "assets/symbol-06.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.031311,
+      "canonical_group": "unplug",
+      "canonical_decision": "SCG-20261103"
+    },
+    {
+      "asset_ref": "assets/symbol-07.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.048336,
+      "canonical_group": "no-wet-hands",
+      "canonical_decision": "SCG-20261103"
+    },
+    {
+      "asset_ref": "assets/symbol-08.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.054818,
+      "canonical_group": "keep-dry",
+      "canonical_decision": "SCG-20261103"
+    },
+    {
+      "asset_ref": "assets/symbol-09.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.016428
+    },
+    {
+      "asset_ref": "assets/symbol-10.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.003909
+    }
+  ]
+}
+...........{
+  "output": "/tmp/tmp96amwj3l/replay",
+  "chapters": 13,
+  "components": {
+    "HB-CALLOUT-STRIP": 29,
+    "HB-SPECIAL-APP": 2,
+    "HB-SPECIAL-INBOX": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE": 17,
+    "HB-TABLE-AUTO-RESUME": 1,
+    "HB-TABLE-KEY-COMBINATIONS": 1,
+    "HB-TABLE-LCD-ICON": 1,
+    "HB-TABLE-LCD-MODE": 1,
+    "HB-TABLE-SPEC": 4,
+    "HB-TABLE-SYMBOL-ICON": 1,
+    "HB-TABLE-SYMBOL-SIGNAL": 1,
+    "HB-TABLE-TROUBLESHOOTING": 1,
+    "HB-WARRANTY-SECTION": 6
+  },
+  "symbol_admission": [
+    {
+      "asset_ref": "assets/symbol-01.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.016456
+    },
+    {
+      "asset_ref": "assets/symbol-02.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.011315
+    },
+    {
+      "asset_ref": "assets/symbol-03.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.015228
+    },
+    {
+      "asset_ref": "assets/symbol-04.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.011329
+    },
+    {
+      "asset_ref": "assets/symbol-05.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.016557
+    },
+    {
+      "asset_ref": "assets/symbol-06.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.009095
+    },
+    {
+      "asset_ref": "assets/symbol-07.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.00937
+    },
+    {
+      "asset_ref": "assets/symbol-08.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.016428
+    },
+    {
+      "asset_ref": "assets/symbol-09.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.003909
+    }
+  ]
+}
+........................../home/user/auto-manual/tests/test_symbol_asset_admission.py:506: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  self.assertTrue(any(45 <= a <= 60 for a in alpha.getdata()))
+.............../home/user/auto-manual/tests/test_symbol_asset_admission.py:511: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  pixels = list(image.getdata())
+...........
+----------------------------------------------------------------------
+Ran 66 tests in 72.339s
+
+OK
