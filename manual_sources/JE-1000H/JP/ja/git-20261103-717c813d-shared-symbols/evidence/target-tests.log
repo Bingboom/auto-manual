@@ -1,0 +1,169 @@
+[env-preflight] WARN env.python: Python 3.13 differs from the pinned 3.12; tests and builds may fail for environment reasons
+[env-preflight] WARN env.lock: 4 pinned package(s) not installed: aliyun-python-sdk-core, aliyun-python-sdk-kms, crcmod, oss2
+[env-preflight] WARN env.lock: 2 package(s) differ from requirements.lock: certifi 2026.10.18 (lock 2026.6.17), charset-normalizer 3.5.1 (lock 3.4.8)
+[env-preflight] WARN env.lock: to match CI: python -m pip install -r requirements.lock (on the pinned Python)
+...{
+  "output": "<tmp>",
+  "chapters": 14,
+  "components": {
+    "HB-CALLOUT-STRIP": 29,
+    "HB-SPECIAL-APP": 2,
+    "HB-SPECIAL-INBOX": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE": 20,
+    "HB-TABLE-AUTO-RESUME": 1,
+    "HB-TABLE-KEY-COMBINATIONS": 1,
+    "HB-TABLE-LCD-ICON": 1,
+    "HB-TABLE-LCD-MODE": 1,
+    "HB-TABLE-SPEC": 4,
+    "HB-TABLE-SYMBOL-ICON": 2,
+    "HB-TABLE-SYMBOL-SIGNAL": 1,
+    "HB-TABLE-TROUBLESHOOTING": 1,
+    "HB-WARRANTY-SECTION": 6
+  },
+  "symbol_admission": [
+    {
+      "asset_ref": "assets/symbol-warning.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.016456
+    },
+    {
+      "asset_ref": "assets/symbol-read.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.02567,
+      "canonical_group": "read-manual",
+      "canonical_decision": "SCG-20261103"
+    },
+    {
+      "asset_ref": "assets/symbol-fire.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.016547
+    },
+    {
+      "asset_ref": "assets/symbol-children.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.016754
+    },
+    {
+      "asset_ref": "assets/symbol-dismantle.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.011891
+    },
+    {
+      "asset_ref": "assets/symbol-unplug.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.038034,
+      "canonical_group": "unplug",
+      "canonical_decision": "SCG-20261103"
+    },
+    {
+      "asset_ref": "assets/symbol-wethand.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.058064,
+      "canonical_group": "no-wet-hands",
+      "canonical_decision": "SCG-20261103"
+    },
+    {
+      "asset_ref": "assets/symbol-wet.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.063353,
+      "canonical_group": "keep-dry",
+      "canonical_decision": "SCG-20261103"
+    },
+    {
+      "asset_ref": "assets/symbol-mandatory.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.009532
+    },
+    {
+      "asset_ref": "assets/symbol-prohibit.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.005688
+    },
+    {
+      "asset_ref": "assets/symbol-weee.svg",
+      "physical_page": 4,
+      "max_mean_channel_error": 0.0141
+    },
+    {
+      "asset_ref": "assets/symbol-battery.png",
+      "physical_page": 4,
+      "max_mean_channel_error": 0.014287
+    }
+  ]
+}
+...........{
+  "output": "<tmp>",
+  "chapters": 14,
+  "components": {
+    "HB-CALLOUT-STRIP": 29,
+    "HB-SPECIAL-APP": 2,
+    "HB-SPECIAL-INBOX": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE": 20,
+    "HB-TABLE-AUTO-RESUME": 1,
+    "HB-TABLE-KEY-COMBINATIONS": 1,
+    "HB-TABLE-LCD-ICON": 1,
+    "HB-TABLE-LCD-MODE": 1,
+    "HB-TABLE-SPEC": 4,
+    "HB-TABLE-SYMBOL-ICON": 2,
+    "HB-TABLE-SYMBOL-SIGNAL": 1,
+    "HB-TABLE-TROUBLESHOOTING": 1,
+    "HB-WARRANTY-SECTION": 6
+  },
+  "symbol_admission": [
+    {
+      "asset_ref": "assets/symbol-warning.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.016456
+    },
+    {
+      "asset_ref": "assets/symbol-fire.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.016547
+    },
+    {
+      "asset_ref": "assets/symbol-children.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.016754
+    },
+    {
+      "asset_ref": "assets/symbol-dismantle.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.011891
+    },
+    {
+      "asset_ref": "assets/symbol-unplug.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.006994
+    },
+    {
+      "asset_ref": "assets/symbol-wethand.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.008658
+    },
+    {
+      "asset_ref": "assets/symbol-mandatory.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.009532
+    },
+    {
+      "asset_ref": "assets/symbol-prohibit.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.005688
+    },
+    {
+      "asset_ref": "assets/symbol-weee.png",
+      "physical_page": 4,
+      "max_mean_channel_error": 0.011444
+    },
+    {
+      "asset_ref": "assets/symbol-battery.png",
+      "physical_page": 4,
+      "max_mean_channel_error": 0.014287
+    }
+  ]
+}
+.......................
+----------------------------------------------------------------------
+Ran 37 tests in 65.420s
+
+OK
