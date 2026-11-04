@@ -1,0 +1,1237 @@
+IMPORTANT
+
+Congratulations on your new Jackery HomePower 3600 Plus. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for frequent reference.
+
+In compliance with laws and regulations, the right of final interpretation of this document and all related documents of this product resides with the Company.
+
+Please kindly notice that no further notifications will be given in case of any update, revision or termination.
+
+IMPORTANT SAFETY INFORMATION
+
+INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS
+
+WARNING
+
+Always follow these basic precautions when using this product.
+
+Read all the instructions before using the product.
+
+Do not allow children to play on the product. Close supervision of children is necessary when the product is used near children.
+
+Avoid placing hands or fingers inside the product.
+
+Stop using the product immediately if it has been physically damaged or modified. Improper use of the product may cause unpredictable behavior, leading to fire, explosion, or injury.
+
+If any of the following are observed, including but not limited to overheats, emits unusual odors or smoking, leaks, or burns, stop using the product immediately and contact the dealer or our Customer Support.
+
+Never attempt to open, repair, or modify the product. Any tampering, reassembly, or modification of the product can result in electric shock, fire, or battery damage.
+
+Be aware that liquid ejected from the product may cause irritation or burns. Inappropriate or abusive use of the product may lead to battery leakage. Avoid direct contact with leaking liquid. If the liquid contacts your eyes, seek medical help immediately. If it contacts other body parts, flush with running water and consult a medical professional without delay.
+
+Do not expose the product to fire or excessive temperatures. Doing so may result in an explosion if the temperature exceeds 130°C (265°F).
+
+Any use of unrecommended or non-supplied materials or parts with the product may result in a risk of fire, electric shock, or personal injury.
+
+Do not leave the battery charging unattended for long periods. Always monitor the charging process to ensure safe operation.
+
+To reduce the risk of electric shock, unplug the product from any power source before attempting any technical service or troubleshooting.
+
+OPERATING INSTRUCTIONS
+
+SAVE THESE INSTRUCTIONS
+
+Stop using the product immediately if it shows signs of damage. Discontinue use and contact customer support for assistance.
+
+Do not charge the battery in extremely hot or cold environments and strictly adhere to the product's specified operating temperature ranges:
+
+-Charging temperature: -4°F to 113°F (-20°C to 45°C )
+-Discharging temperature: -4°F to 113°F (-20°C to 45°C )
+
+To ensure proper air circulation, keep the product vents uncovered. The area where the product is used must have adequate airflow in a cool, dry environment to prevent overheating.
+
+-Charging in damp or poorly ventilated spaces may cause safety hazards.
+
+-Water can cause short circuits or damage to the charger, leading to safety risks.
+
+Unplug the power cord from a power outlet during a storm.
+
+Immediately turn off the product by pressing the power button if it has fallen, been dropped, or exposed to vibrations.
+
+Ensure the device(s) are powered off before connecting them to the product.
+
+Do not charge the product using a damaged or broken charging cord or plug.
+
+Do not use the product to charge any device with a damaged or broken cable or plug.
+
+Always unplug the charging cord by pulling the plug, not the cord, to reduce the risk of damage.
+
+Ensure the product is properly secured when transporting it in a moving vehicle.
+
+DO NOT place the unit upside down or on its side during use or storage.
+
+DO NOT place the product on the floor or at a height less than 18 inches (457 mm) above the floor during operation in a workshop or repair facility.
+
+DO NOT use the product's accessories with other devices or equipment.
+
+Solar charge time depends on weather conditions. Place your solar panel where it will get as much direct sunlight as possible.
+
+DANGER
+
+This device is intended for indoor use only (Please place this device in a similar indoor environment when using it outdoors, e.g. Home RVs, tents, cabins, etc.).
+
+※ This device is not waterproof or dustproof. Keep away from rain and humid environments during use.
+
+USER MAINTENANCE INSTRUCTIONS
+
+During the lifecycle of energy storage products, a certain degree of capacity and energy degradation is expected. As the number of charge and discharge cycles increases and storage time extends, this degradation will gradually intensify, which is a normal phenomenon consistent with the natural aging of battery cells.
+
+MEANING OF SYMBOLS
+Symbol	Meaning
+
+WARNING
+	Hazardous practices that may result in severe injury, death, and/or property damage.
+
+CAUTION
+	Hazardous practices that may result in personal injury and/or property damage.
+
+NOTE
+	Hazardous practices that may result in equipment damage, data loss, performance deterioration, or unanticipated results.
+
+TIP
+	Supplements the important information or operation tips in the text.
+Symbol	Meaning
+
+	Warning and Caution Symbols. Must read to alert individuals to potential hazards or risks.
+
+	Read the user manual before operation.
+
+	Risk of electric shock
+
+	Battery charging
+
+	Explosive material
+
+	Heavy object
+Symbol	Meaning
+
+	Do not dismantle the product.
+
+	Keep the product away from fire.
+
+	Keep away from children.
+
+	This symbol indicates that a lithium-ion (Li-ion) battery is inside the product and should be disposed of or recycled properly.
+
+	This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling. Proper disposal and recycling can help protect the environment. For more information about the disposal and recycling of this product, contact your local community, disposal service, or dealer.
+
+NOTE: This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules.
+
+
+These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses, and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to communications. However, there is no guarantee that radio interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to
+
+correct the interference by one or more of the following measures:
+
+Reorient or relocate the receiving antenna.
+
+Increase the separation between the equipment and receiver.
+
+Connect the equipment into an outlet on a circuit different from that to which the receiver is connected.
+
+Consult the dealer or an experienced radio/TV technician for help.
+
+MODIFICATION: Any changes or modifications not expressly approved by the grantee of this device could void the user’s authority to operate the device.
+
+WHAT’S IN THE BOX
+1
+2
+AC Charging Cable
+Jackery HomePower 3600 Plus
+3
+User Manual
+TIP
+
+The car charging cable is not included but is available for purchase separately on our website. For assistance, please contact Jackery customer service.
+
+PRODUCT OVERVIEW
+RIGHT SIDE VIEW
+FRONT VIEW
+100W Max, 5V⎓3A, 9V⎓3A,
+12V⎓3A, 15V⎓3A, 20V⎓5A
+18W Max, 5-6V⎓3A,
+6-9V⎓2A, 9-12V⎓1.5A
+AC Output
+AC Power Button
+USB Power Button
+USB-C Output
+USB-A Output
+LCD
+AC Output
+(NEMA TT-30)
+Main Power Button
+120V~ 60 Hz, 30A Max, 3600W
+120V~ 60 Hz, 20A Max, 2400W
+AC Output Reset Button
+AC Input
+DC Input
+100V-120V~ 60 Hz, 15A Max
+2×DC8020 Ports:
+12-16V⎓8A Max, Double to 8A Max;
+16-60V⎓12A Max,
+Double to 24A / 1000W Max
+DC Expansion Port
+Connect to Battery Pack
+Output: 240V~ 60Hz, 30A, 7200W Max,
+14400W Surge peak
+AC Expansion Port
+(For Parallel Connection)
+Wheels
+Retractable Handle
+Press the button on the retractable handle and pull up to extend.
+
+LCD DISPLAY
+21
+22
+9
+10
+1
+11
+2
+12
+13
+14
+15
+16
+18
+19
+20
+3
+4
+5
+7
+8
+6
+17
+
+1
+
+
+
+
+Wi-Fi
+
+
+On: Wi-Fi connected.
+Blink: Ready to connect to Wi-Fi.
+Off: Wi-Fi disconnected.
+
+
+
+2
+
+
+
+
+Bluetooth
+
+
+On: Bluetooth Connected.
+Blink: Ready to connect to Bluetooth.
+Off: Bluetooth disconnected.
+
+
+
+3
+
+
+
+
+Quiet Charging Mode
+
+
+On: The noise during charging is significantly minimized, while the charging power is reduced and the charging speed slows down.
+Off: Quiet Charging Mode is disabled.
+Enable/disable this feature in the Jackery App.
+
+
+
+4
+
+
+
+
+Battery Saving Mode
+
+
+On: Limits the maximum usable battery capacity to extend battery life.
+Off: Battery Saving Mode is disabled.
+Enable/disable this feature in the Jackery App. This feature is not available when the product is connected to battery pack(s).
+
+
+
+
+Self-powered Mode
+
+
+
+Maximizes the use of solar energy and reduces reliance on grid electricity by prioritizing stored solar energy, reducing electricity costs (please enable/disable this feature in the app). The power station must be connected to both solar panels and the grid simultaneously, with load power limited by bypass power.
+
+
+
+
+5
+
+
+
+
+Charging Plan
+
+
+
+Customize the charging time of the Jackery HomePower 3600 Plus. Suitable for situations with fluctuating electricity prices, it allows for charging plans based on peak and off-peak electricity times, reducing electricity costs (Please set in the Jackery App).
+
+
+
+
+6
+
+
+
+
+Parallel
+
+
+Blink: AC Output is enabled and the parallel connection is not set up.
+On: AC Output is enabled and the parallel connection is set up successfully.
+
+
+
+7
+
+
+
+
+AC Power Indicator
+
+
+The AC output (pure sine wave) is on.
+
+
+
+8
+
+
+
+
+Output Voltage and Frequency
+
+
+
+Displays the output voltage and frequency.
+
+9
+
+
+
+
+Input Power
+
+
+Displays the input power in watts.
+
+
+
+10
+
+
+
+
+Remaining Charge Time
+
+
+Displays the remaining charging time.
+
+
+
+11
+
+
+
+
+AC Wall Charging Indicator
+
+
+The product is charged via the AC Input using grid power.
+
+
+
+12
+
+
+
+
+Car Charging Indicator
+
+
+The product is charged via the DC Input (DC8020) using DC 12V (car charging).
+
+
+
+13
+
+
+
+
+Solar Charging Indicator
+
+
+The product is charged via the DC Input (DC8020) using solar panel(s).
+
+
+
+14
+
+
+
+
+Battery Power Indicator
+
+
+When the product is being charged, the orange circle around the battery percentage will light up in sequence. When charging other devices, the orange circle will stay on.
+
+
+
+15
+
+
+
+
+Low Battery Indicator
+
+
+On: The battery level is below 20%.
+Blink: The battery level is below 5%.
+Off: The battery level is not below 20% or the product is charging.
+
+
+
+16
+
+
+
+
+Remaining Battery Percentage
+
+
+Displays the remaining battery percentage.
+
+
+
+17
+
+
+
+
+Battery Pack Indicator and Number of Connected Batteries
+
+
+Displays the quantity of battery packs if any is connected.
+
+
+
+18
+
+
+
+
+Fault code
+
+
+A product error has occurred. Please refer to the Troubleshooting section for details.
+
+
+
+19
+
+
+
+
+High Temperature Indicator
+
+
+High temperature protection is triggered. The product may stop functioning until its temperature returns to the normal operating range.
+
+
+
+
+Low Temperature Indicator
+
+
+Low temperature protection is triggered. The product may stop functioning until its temperature returns to the normal operating range.
+
+
+
+20
+
+
+
+
+Energy Saving Mode
+
+
+On: Energy Saving Mode is enabled.
+Off: Energy Saving Mode is disabled.
+
+
+
+21
+
+
+
+
+Output Power
+
+
+Displays the output power in watts.
+
+
+
+22
+
+
+
+
+Remaining Discharge Time
+
+
+
+Displays the remaining discharging time.
+
+OPERATIONS
+POWER ON/OFF
+Default standby time: 2 hours
+The product will automatically shut down after 2
+hours of inactivity, with no charging or discharging.
+*The standby time can be set in the Jackery App.
+When Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the
+AC Output or USB Output power button is ON but the product is neither charging nor discharging.
+3s
+On
+Oﬀ
+Press once
+Press and hold for 3s
+AC OUTPUT ON/OFF
+Prerequisite: The product is turned on.
+AC Output Reset Button:
+When the Reset Button pops up, you need to remove the load and press the Reset Button to reset.
+On
+Oﬀ
+Press once
+Press once
+USB OUTPUT ON/OFF
+Prerequisite: The product is turned on.
+On
+Oﬀ
+Press once
+Press once
+ENERGY SAVING MODE
+To prevent unnecessary battery consumption from forgetting to turn oﬀ the output, the product
+enables Energy Saving Mode by default. If no device is connected or the connected device's power
+consumption is below a certain threshold (25W AC output or 2W USB output) for 12 hours, the product
+will automatically turn oﬀ the outputs.
+To disable the energy saving mode, press and hold both the AC power button and main power
+button for more than 3 seconds. The product will not automatically turn oﬀ the AC or DC output.
+3s
+Press and hold for 3s
+On/Oﬀ
+Main power button
+AC power button
+NOTE
+Energy Saving Mode resumes previous state after power-on. Manual switching is required
+for mode changes.
+WARNING
+
+When Energy Saving Mode is enabled, the product automatically turns off the AC output if the connected device’s power consumption remains low for the configured period. When powering devices that require continuous power, such as refrigerators, routers, security cameras, or aquarium air pumps, we recommend turning off Energy Saving Mode to prevent unexpected power loss from interrupting their operation.
+
+LCD SCREEN
+
+LCD Screen
+
+
+
+Turn on
+
+
+
+Press the Main Power Button or when the product is charging.
+
+
+
+
+Turn oﬀ
+
+
+
+Press the Main Power Button.
+
+
+
+
+Auto-oﬀ
+
+
+
+The LCD turns oﬀ automatically and enters sleep mode after 2 minutes of inactivity.
+
+
+
+
+Always-on Display Mode (under charging or discharging state)
+
+
+
+Turn on
+
+
+
+Double-click the Main Power Button when the LCD screen is on.
+
+
+
+
+Turn oﬀ
+
+
+
+Press the Main Power Button.
+
+
+
+
+Auto-oﬀ
+
+
+
+The Always-on Display Mode turns off automatically after 2 hours of inactivity.
+
+KEY COMBINATION
+Buttons	Operation	Function
+
+Main power button
++
+USB power button
+
+3s
+
+Press and hold both for 3s
+
+
+
+Reset Wi-Fi and Bluetooth
+
+
+
+Main power button
++
+AC power button
+
+3s
+
+Press and hold both for 3s
+
+
+
+Turn on/off the
+Energy Saving Mode
+
+
+
+USB power button
++
+AC power button
+
+1s
+
+Press and hold both for 1s
+
+
+
+Turn on/off Wi-Fi and
+Bluetooth
+
+UNINTERRUPTIBLE POWER SUPPLY (UPS)
+
+Connect the product to a wall outlet with the AC charging cable, then press the AC power button and power your appliances at the same time.
+
+An uninterruptible power supply (UPS) is a type of continual power system that
+provides automated backup electric power to a load when the mains grid
+power fails.
+In the event of a sudden loss of grid power, the HomePower 3600 Plus will
+automatically switch to stored power within 10 ms to keep your appliances
+running.
+
+In UPS mode, the unit's peak output reaches 1440W before power outages. As simultaneous charging/discharging is enabled in Bypass Mode, the actual output power is lower than the rated output power in this mode but returns to rated output power during outages.
+
+WARNING
+
+Do not use this product for applications such as data servers or medical devices, where a malfunction could endanger life or cause significant property damage.
+
+For the following equipment, a loss of power supply during use could cause serious harm to personal safety or property:
+
+Medical devices and other equipment closely related to life safety.
+Critical equipment such as social infrastructure and public services.
+Business-critical enterprise equipment, etc.
+
+Individuals who wear a cardiac pacemaker (pacemaker implant recipients) must not use this product.
+
+CAUTION
+This product does not support 0 ms switching. Do not connect it to equipment that requires an uninterrupted power supply, such as data servers or workstations.
+Before use, please test compatibility with your device multiple times.
+It is recommended to connect one device at a time. Do not use multiple devices simultaneously, as this may trigger overload protection.
+The UPS function works only when a single unit is connected directly to a wall outlet. Do not connect multiple portable power stations in series (cascade connection). In a cascaded setup, the UPS function will not operate: the unit may fail to switch over during a power outage, causing connected devices to shut down.
+
+CONNECTIONS
+CONNECT TO BATTERY PACK(S)
+SOLD SEPARATELY
+
+This product can support up to 5 battery packs to meet the need for large power capacity. For details on how to use it, please refer to the Jackery Battery Pack 3600 User Manual.
+
+≥ 0.66 ft (≈200 mm)
+≥0.66 ft (≈200 mm)
+CAUTION
+
+Ensure all products are powered off before connecting the HomePower 3600 Plus to the Jackery Battery Pack 3600.
+
+To ensure proper operation of the product, make sure the air intake and exhaust vents on both sides are unobstructed. Leave at least 0.66 ft (≈200 mm) of space between the vents and any objects to allow for proper heat dissipation.
+
+Sold
+separately
+Expansion Cable
+Jackery Battery Pack 3600
+User Manual
+CONNECT TWO UNITS IN PARALLEL
+NOTE
+
+The Jackery Connector for parallel connection is sold separately and available on our official website.
+
+During parallel operation, the units can be charged via solar panels only. AC wall charging is not supported in this mode.
+
+CAUTION
+
+Before connecting the parallel cable, ensure that the AC output on both units is turned off (the AC power button indicator light should be off). Connecting while AC output is active may damage the units.
+
+Ensure that both HP3600 Plus units are powered off.
+
+Use one Jackery Connector to connect both units via the AC EXPANSION PORT.
+
+Turn on both units.
+
+Within 1 minute, press the AC power button on each unit in sequence to enable AC output.
+
+If the connection is successful, the display will show a solid parallel icon.
+
+If the setup fails, the display shows the FA code. Press the AC power button on each unit again in sequence.
+
+Jackery Connector
+AC Expansion Port
+CAUTION
+
+After a successful parallel connection, do not disconnect the parallel cable while AC output is still active, as this may trigger overload protection in the other unit.
+
+Do not touch the parallel cable port when AC output is enabled (when the AC power button indicator light is on). This port carries 240V high voltage and poses a risk of electric shock.
+
+If either unit’s AC power button is pressed or AC output is interrupted due to a fault, both units will immediately stop AC output. The system automatically exits parallel mode. The other unit will display a blinking parallel icon and the FA code, indicating a parallel connection failure. To resume parallel output, press the AC power button on each unit again in sequence.
+
+Jackery Connector
+EXITING PARALLEL MODE
+1. Disconnect all loads.
+2. Turn off AC output on both units.
+3. Remove the parallel cable from the units.
+
+CHARGING
+
+Green energy first: We advocate to use the green energy first. This product supports two modes of charging at the same time: solar charging and AC wall charging. When AC wall charging and solar charging are turned on at the same time, the product will give priority to solar charging and both methods will be used to charge the battery at the maximum permissible power.
+
+Fully charge the product before its first use.
+
+NOTE
+
+The recommended charging temperature for the product ranges from -4°F to 113°F (-20°C to 45°C), and the discharging temperature ranges from -4°F to 113°F (-20°C to 45°C). Operating the product beyond this temperature range may restrict its charging and discharging capabilities, or even prevent it from charging or discharging.
+
+The charging power and battery capacity of the product may vary due to temperature fluctuations.
+
+CHARGING VIA AC WALL OUTLET
+Connect the AC charging cable to the AC
+input port of the product and a wall outlet.
+CAUTION
+
+Make sure the AC charging cable is fully and securely plugged into the AC input port. An incomplete connection may cause unstable current, overheating, poor contact, or device malfunction.
+
+CHARGING VIA SOLAR PANELS
+SOLD SEPARATELY
+
+Jackery HomePower 3600 Plus has two DC8020 input ports and is compatible with the Jackery solar panels. If one DC8020 input port needs to connect two solar panels simultaneously, please refer to the figure below for charging through the solar panel connector (sold separately, not included as standard).
+
+SolarSaga 200 × 4
+CAUTION
+
+One DC8020 input port can be connected to at most two solar panels.
+
+CAUTION
+
+Ensure that the input voltage for both DC input ports is the same. Failure to do so may damage the product. For example:
+
+Use the same model of Jackery solar panels and the same number of panels when connecting solar panels to both DC8020 Input ports.
+
+Do not charge the product using both a car charger and a solar panel simultaneously. Doing so may blow the car fuse or result in charging failure.
+
+It is recommended to use the Jackery solar panel to charge the product. Ensure that the open-circuit voltage of the solar panel is within the DC input range (16V-60V) of the HomePower 3600 Plus. Jackery is not responsible for any damage or loss resulting from the use of third-party solar panels.
+
+CHARGING WITH A CAR CHARGER
+SOLD SEPARATELY
+
+This product can be charged using a 12V car charger. Ensure that the car charger and the 12V car power outlet (car cigarette lighter) provide a good connection.
+
+*The car charging cable is sold separately.
+Vehicle
+CAUTION
+
+Please start the vehicle before charging your power station.
+
+If the vehicle is running on bumpy roads, it is forbidden to use the car charger in case it causes non-standard operation. The Company will not be responsible for any loss caused by non-standard operation.
+
+Vehicle charging is only applicable to vehicles with 12V DC, not 24V DC. Please do not charge this product in 24V vehicle to avoid personal injury and property loss.
+
+STORAGE
+
+Store the product in a dry clean place with proper ventilation. Storage temperature and humidity:
+
+1 month: -4°F to 113°F / -20°C to 45°C (0-60%RH)
+
+3 months: 32°F to 113°F / 0°C to 45°C (0-60%RH)
+
+12 months: 32°F to 77°F / 0°C to 25°C (0-60%RH)
+
+If this product is stored for a long period of time (3 months - 6 months) with the power depleted, it may become unchargeable. To prevent this and maintain battery health, it is recommended to check and recharge the product every three months and perform a full charge and discharge cycle at least once every 6 to 12 months.
+
+TROUBLESHOOTING
+
+If any of the following fault codes appear, follow the listed corrective actions to resolve the issue. If fault persists, please contact Jackery Customer Support.
+
+Error Code
+
+
+
+Corrective Measures
+
+
+
+
+F0/F1
+F2/F3
+
+
+
+Restart the product.
+
+
+
+
+F4
+
+
+
+Connect the product to loads to discharge its battery until the fault disappears.
+
+
+
+
+F5
+
+
+
+Charge the product via solar panels or AC wall outlet until the fault disappears.
+
+
+
+
+F6
+
+
+
+1. Wait for the grid to normalize before charging the product via AC wall outlet.
+
+2. Check whether the air intake and exhaust vents are blocked; ensure 30 cm clearance on both side of the product.
+
+3. Place the product in a location that is not exposed to direct sunlight or high environment temperatures.
+
+4. Disconnect all loads from the product. Keep the product idle and wait until the fault disappears.
+
+5. Restart the product.
+
+
+
+
+F7
+
+
+
+1. Remove all DC inputs from the product.
+
+2. Check the open-circuit voltage (Voc) of the connected solar panels. The product allows a maximum DC input voltage of 60V.
+
+3. Restart the product and keep it idle. Wait until the fault disappears.
+
+
+
+
+F8
+
+
+
+Contact Jackery Customer Support
+
+
+
+
+F9
+
+
+
+Remove the load connected to the USB ports of the product. Wait until the fault disappears.
+
+
+
+
+FA
+
+
+
+1. Turn oﬀ the AC output of both units.
+
+2. Press the AC power button on each unit again within 1 minute.
+
+
+
+
+FC
+
+
+
+1. Restart the battery packs and the HP3600 Plus respectively.
+
+2. If the fault persists, disconnect the battery pack from the HP3600 Plus and connect them again.
+
+SPECIFICATIONS
+GENERAL INFO
+
+Product Name
+
+
+
+Jackery HomePower 3600 Plus
+
+
+
+
+Model No.
+
+
+
+JHP-3600A
+
+
+
+
+Capacity
+
+
+
+80Ah / 44.8V DC (3584 Wh)
+
+
+
+
+Cell Chemistry
+
+
+
+LiFePO₄
+
+
+
+
+Weight
+
+
+
+About 77.16 lbs/35 kg
+
+
+
+
+Dimensions
+
+
+
+15.2×12.2×19.3 in / 38.5×30.9×49.1 cm
+
+
+
+
+Cycle Life
+
+
+
+6000 cycles to 70%+ capacity
+
+INPUT PORTS
+
+1 × AC Input
+
+
+
+Charge Mode : 100-120V~ 60Hz, 15A Max
+
+
+
+
+Bypass Mode① : 120V~ 60Hz, 12A Max, 1440W
+
+
+
+
+2 × DC8020 Ports
+
+	12-16V⎓8A Max, Double to 8A Max;
+16-60V⎓12A Max, Double to 24A / 1000W Max
+OUTPUT PORTS
+
+4 × AC Output
+
+
+
+120V~ 60Hz, 20A Max, 2400W, 3600W in Total
+
+
+
+
+1 × AC Output (NEMA TT-30)
+
+
+
+120V~ 60Hz, 30A Max, 3600W
+
+
+
+
+AC Total Output②
+
+
+
+3600W Rated, 7200W Surge peak
+
+
+
+
+AC Output in Bypass Mode①
+
+
+
+120V~ 60Hz, 12A Max, 1440W
+
+
+
+
+2 × USB-C Output
+
+
+
+100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A
+
+
+
+
+2 × USB-A Output
+
+
+
+18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A
+
+
+
+
+1 × AC Expansion Port③
+
+
+
+240V~ 60Hz, 30A, 7200W Max, 14400W Surge peak
+
+
+
+
+1 × DC Expansion Port
+
+
+
+36.4V-50.4V⎓100A Max
+
+
+Maximum Short Circuit
+Current and Duration
+
+1160A/860μs
+
+ENVIRONMENTAL OPERATING TEMPERATURE
+
+Charge Temperature
+
+
+
+-4°F to 113°F / -20°C to 45°C
+
+
+
+
+Discharge Temperature
+
+
+
+-4°F to 113°F / -20°C to 45°C
+
+※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.
+
+① The product can charge the battery from the AC wall outlet while delivering power through the AC output ports.
+
+② Indicates that two or more AC output ports work together.
+
+③ Indicates the AC output during parallel operation of two units.
+
+WARRANTY
+
+We only provide our warranty to customers who purchase from the official Jackery website, Jackery-branded third-party platforms, or local authorized dealers.
+
+*Warranty period and details may vary according to local laws, regulations, and authorized dealers.
+
+Limited Warranty
+
+Jackery Inc. warrants to the original consumer purchaser that the Jackery product will be free from defects in workmanship and material under normal consumer use during the applicable warranty period identified in the 'Warranty Period' section below, subject to the exclusions set forth below.
+
+This warranty statement sets forth Jackery's total and exclusive warranty obligation. We will not assume, nor authorize any person to assume for us, any other liability in connection with the sale of our products.
+
+Warranty Period
+
+3
+YEARS
+Standard Warranty
+
+The standard warranty period for Jackery HomePower 3600 Plus is 36 months. In each case, the warranty period is measured starting on the date of purchase by the original consumer purchaser. The sales receipt from the first consumer purchase, or other reasonable documentary proof, is required in order to establish the start date of the warranty period.
+
+2
+YEARS
+Extended Warranty
+
+To activate the Warranty Extension, you must register your product online or contact our customer service team at hello@jackery.com to extend the standard warranty runtime.
+
+Repair or replacement
+
+Jackery will repair or replace (at Jackery's expense) any Jackery product that fails to operate during the applicable warranty period due to a defect in workmanship or material. The repaired/replaced product assumes the remaining warranty of the original date of purchase.
+
+Limited to Original Consumer Buyer
+
+The warranty on Jackery's product is limited to the original consumer purchaser and is not transferable to any subsequent owner.
+
+Exclusions
+
+Jackery's warranty does not apply to:
+
+Misused, abused, modified, damaged by accident, or used for anything other than normal consumer use as authorized in Jackery's current product literature.
+
+Attempted repair by anyone other than an authorized facility.
+
+Any product purchased through an online auction house.
+
+Jackery's warranty does not apply to the battery cell unless the battery cell is fully charged by you within seven days after you purchase the product and at least once every 6 months thereafter.
+
+Interpretation Rights
+
+Jackery reserves the right to final interpretation of the above customers' after-sales policy.
+
+APP SETUP
+1. To download the App and log in
+
+Search for "Jackery" in Google Play or App Store to install the App. After that, you can register and log in.
+
+Alternatively, scan the QR code below to download and install the App.
+
+2. To add device
+
+2.1 Click the button  to add your device;
+
+2.2 Press the POWER button on the device to turn on, the Wi-Fi and Bluetooth icons on the device ﬂash to indicate that the device has entered the network conﬁguring mode, tap the “Icon Flashed” button and allow the App to connect to nearby devices and open Bluetooth permissions.
+
+2.1
+2.2
+POWER
+Button
+AC Power
+Buton
+USB Power
+Button
+NOTE
+
+After the device is turned on and not connected to the App within 2 hours, it will automatically turn oﬀ Wi-Fi and Bluetooth. Now, it is required to press and hold USB power button and AC power button to turn on Wi-Fi and Bluetooth again.
+
+2.3 After tapping the searched device icon, the App automatically connects the device via Bluetooth.
+
+NOTE
+
+If "the device has been bound" is prompted during the binding process, the following two ways can be used for connection:
+
+The device owner will share this device with other users through the App.
+
+Press and hold the POWER button and USB power button for 3 seconds to reset the device, and then re-bind the device.
+
+2.4 After the device is successfully connected, enter your Wi-Fi password and tap the OK button.
+
+NOTE
+
+Please select a Wi-Fi network in 2.4GHz band. The device does not support a Wi-Fi network in 5GHz band.
+
+2.5 After the device is successfully added on the App, the Wi-Fi icon on the device will be always on.
+
+The above screenshots are for reference only.
+2.5
+2.3
+2.4
+3600
+3. To unbind the device
+
+Click the Settings icon in the upper right corner of the main interface of the device to enter the settings page, and click the Unbind button at the bottom of the page to unbind the device.
+
+4. Notes
+
+4.1 To turn on Wi-Fi & Bluetooth:
+
+Wi-Fi and Bluetooth are automatically turned on after the device is on, and the Wi-Fi and Bluetooth icons on the screen light up.
+
+Hold the USB power button and the AC power button at the same time until the Wi-Fi & Bluetooth icons on the screen light up.
+
+4.2 To turn oﬀ Wi-Fi & Bluetooth:
+
+Hold the USB power button and AC power button at the same time until the Wi-Fi & Bluetooth icons on the screen are oﬀ.
+
+Wi-Fi and Bluetooth will be automatically turned oﬀ if no device is connected within 2 hours.
+
+4.3 To reset Wi-Fi & Bluetooth：
+
+Hold the POWER button and USB power button at the same time for 3 seconds to reset Wi-Fi & Bluetooth to factory settings and reboot the system. The connected App account will be unbound.
+
+JACKERY INC.
+
+5310 Bunche Dr., Fremont, CA 94538-8301
+
+1-888-502-2236 (US)
+
+hello@jackery.com
+
+www.jackery.com

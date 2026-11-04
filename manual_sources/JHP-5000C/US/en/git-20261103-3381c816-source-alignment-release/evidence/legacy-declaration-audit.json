@@ -1,0 +1,1980 @@
+{
+  "current_pdf_sha256": "3381c816e6bb75bc5e790bcba3faacbb3ad199f1a41cc53c5092368bcd945250",
+  "scope": "All English legacy differences rows and limitations, all source asset decisions, all3600A layout-review files/all3600C heading declarations. Historical claims are checked against current reference, not accepted as approval.",
+  "chapter_page_map": {
+    "preface": [
+      2
+    ],
+    "safety": [
+      4
+    ],
+    "maintenance": [
+      5
+    ],
+    "symbols": [
+      5
+    ],
+    "fcc": [
+      5
+    ],
+    "inbox": [
+      6
+    ],
+    "overview": [
+      6,
+      7
+    ],
+    "lcd": [
+      8,
+      9
+    ],
+    "operations": [
+      10,
+      11,
+      12
+    ],
+    "troubleshooting": [
+      12
+    ],
+    "ups": [
+      13,
+      14
+    ],
+    "connections": [
+      14
+    ],
+    "charging": [
+      15,
+      16,
+      17,
+      18
+    ],
+    "storage": [
+      19
+    ],
+    "app": [
+      20,
+      21
+    ],
+    "warranty": [
+      22
+    ],
+    "specifications": [
+      23
+    ],
+    "ess": [
+      24
+    ],
+    "ess-host": [
+      25
+    ],
+    "ess-battery": [
+      26
+    ],
+    "ess-sts": [
+      26,
+      27
+    ],
+    "ess-package": [
+      27
+    ],
+    "contact": [
+      28
+    ]
+  },
+  "explicit_exceptions": [
+    "Front cover and print TOC excluded by explicit operator instruction."
+  ],
+  "declarations": [
+    {
+      "declaration": "source/differences.md:23",
+      "legacy_text": "| 1–3 | The printed cover and the print TOC are not shown. Navigation has exactly the 14 chapters of the TOC on p3, under each chapter's own page heading. | `nested-under-print-chapter` |",
+      "current_pdf_pages": "1–3",
+      "result": "Matched current source structure/content; English retained. Print navigation excludes cover/TOC; mobile may stack columns."
+    },
+    {
+      "declaration": "source/differences.md:24",
+      "legacy_text": "| 4–6 | User maintenance, Meaning of symbols and the FCC statement are sub-sections of IMPORTANT SAFETY INFORMATION, as printed. | `nested-under-print-chapter` |",
+      "current_pdf_pages": "4–6",
+      "result": "Current source checked; title remains absent. Column break and -- measure markers now restored."
+    },
+    {
+      "declaration": "source/differences.md:25",
+      "legacy_text": "| 24–27 | The HomePower, Battery Pack, Smart Transfer Switch and Package List sections are sub-sections of the AC ESS installation guide. | `nested-under-print-chapter` |",
+      "current_pdf_pages": "24–27",
+      "result": "Matched current source structure/content; English retained. Print navigation excludes cover/TOC; mobile may stack columns."
+    },
+    {
+      "declaration": "source/differences.md:26",
+      "legacy_text": "| 2 | Each language block keeps its outlined region badge (US, FR, ES). | `print-badge` restoration (EN) |",
+      "current_pdf_pages": "2",
+      "result": "Matched current source structure/content; English retained. Print navigation excludes cover/TOC; mobile may stack columns."
+    },
+    {
+      "declaration": "source/differences.md:27",
+      "legacy_text": "| 4 | Both safety lists run in two columns, as printed. The page reuses the two-column safety section of the published template manuals (JE-1000E-SIL): the `hb-safety-instruction` risk banner, the `hb-safety-lead` WARNING panel heading the left column and two `manual-two-col-table` rows, styled by the shared `web_safety_components.css`. Each item stays in the print column it starts in (6 + 5 and 5 + 9 items); phones get one column. | `shared-safety-two-columns` |",
+      "current_pdf_pages": "4",
+      "result": "Matched current source structure/content; English retained. Print navigation excludes cover/TOC; mobile may stack columns."
+    },
+    {
+      "declaration": "source/differences.md:28",
+      "legacy_text": "| 4 | Safety sub-titles are white-on-dark pills. DANGER is an outlined lockup with the dark triangle; its body is bold, and `※` starts its own print line. | `print-pill-title`, `danger-lockup`, `danger-callout-lines` |",
+      "current_pdf_pages": "4",
+      "result": "Matched current source structure/content; English retained. Print navigation excludes cover/TOC; mobile may stack columns."
+    },
+    {
+      "declaration": "source/differences.md:29",
+      "legacy_text": "| 5 | The signal-word table has the print's three rows. | `signal-word-meanings` restoration |",
+      "current_pdf_pages": "5",
+      "result": "Matched current source structure/content; English retained. Print navigation excludes cover/TOC; mobile may stack columns."
+    },
+    {
+      "declaration": "source/differences.md:30",
+      "legacy_text": "| 5 | The FCC statement is a panel without a title; the print has none. | `unprinted-title-removed` |",
+      "current_pdf_pages": "5",
+      "result": "Current source checked; title remains absent. Column break and -- measure markers now restored."
+    },
+    {
+      "declaration": "source/differences.md:31",
+      "legacy_text": "| 6–7 | The front, left and right views are framed so the approved paths are whole: handle-button inset, wheels and panel edge. Edge labels align to the panel edge. Labels render at 95% so none collide at tablet and phone widths. | `full-frame` |",
+      "current_pdf_pages": "6–7",
+      "result": "Matched current source structure/content; English retained. Print navigation excludes cover/TOC; mobile may stack columns."
+    },
+    {
+      "declaration": "source/differences.md:32",
+      "legacy_text": "| 7, 10–11 | State words (on/off, marche/arrêt, encendido/apagado …) are regular weight, as printed. | `regular-state-words` |",
+      "current_pdf_pages": "7, 10–11",
+      "result": "Matched current source structure/content; English retained. Print navigation excludes cover/TOC; mobile may stack columns."
+    },
+    {
+      "declaration": "source/differences.md:33",
+      "legacy_text": "| 8–9 | LCD glossary: circled numbers; one number cell per printed entry, so equal adjacent entries share one cell (12, 13, 20); each state starts its own line. | `lcd-icon-print-structure` |",
+      "current_pdf_pages": "8–9",
+      "result": "Matched current source structure/content; English retained. Print navigation excludes cover/TOC; mobile may stack columns."
+    },
+    {
+      "declaration": "source/differences.md:34",
+      "legacy_text": "| 11 | LCD SCREEN: the device art sits beside its table of two states × three actions. The cells are rebuilt from the print table geometry with exactly the approved words; the Spanish fragments are rejoined. | `lcd-screen-table` |",
+      "current_pdf_pages": "11",
+      "result": "Matched current source structure/content; English retained. Print navigation excludes cover/TOC; mobile may stack columns."
+    },
+    {
+      "declaration": "source/differences.md:35",
+      "legacy_text": "| 12 | Troubleshooting: codes and names are bold; each cause starts its own description line. | `codes-names-bold-cause-lines` |",
+      "current_pdf_pages": "12",
+      "result": "Matched current p12 bold codes/names and separate cause lines."
+    },
+    {
+      "declaration": "source/differences.md:36",
+      "legacy_text": "| 13 | Online UPS: the activation steps and the numbered notes are ordered lists. | `paragraph-numbered-steps`, `callout-numbered-items` |",
+      "current_pdf_pages": "13",
+      "result": "Matched current source structure/content; English retained. Print navigation excludes cover/TOC; mobile may stack columns."
+    },
+    {
+      "declaration": "source/differences.md:37",
+      "legacy_text": "| 14 | SOLD SEPARATELY is a capsule beside its title. The numbered caution items are a list. | `sold-separately-capsule`, `callout-numbered-items` |",
+      "current_pdf_pages": "14",
+      "result": "Matched current source structure/content; English retained. Print navigation excludes cover/TOC; mobile may stack columns."
+    },
+    {
+      "declaration": "source/differences.md:38",
+      "legacy_text": "| 15 | \"Fully charge …\" is a white-on-dark prose capsule. | `prose-pill` |",
+      "current_pdf_pages": "15",
+      "result": "Matched current source structure/content; English retained. Print navigation excludes cover/TOC; mobile may stack columns."
+    },
+    {
+      "declaration": "source/differences.md:39",
+      "legacy_text": "| 16–17 | \"• Connect to …\" lines are bold bullet sub-heads. Low-PV caution item 2 is no longer nested in the example bullet. Numbered notes are lists. A sentence that ends a print line early starts a new paragraph. | `bullet-subhead`, `caution-item-2-unnested`, `callout-numbered-items`, `print-paragraph-break` |",
+      "current_pdf_pages": "16–17",
+      "result": "Matched current source structure/content; English retained. Print navigation excludes cover/TOC; mobile may stack columns."
+    },
+    {
+      "declaration": "source/differences.md:40",
+      "legacy_text": "| 16 | The Caution label the intake read into the middle of its body is the callout label again. ES p59 has the same fix for the car-charging Nota. | `inline-label-callout`, `misplaced-callout-label` restorations |",
+      "current_pdf_pages": "16",
+      "result": "Matched current source structure/content; English retained. Print navigation excludes cover/TOC; mobile may stack columns."
+    },
+    {
+      "declaration": "source/differences.md:41",
+      "legacy_text": "| 19 | Storage: paragraphs split at print line wraps are joined; the split bullet lists are one list each. | `soft-wrap-joined`, `adjacent-lists-merged` |",
+      "current_pdf_pages": "19",
+      "result": "Matched current source structure/content; English retained. Print navigation excludes cover/TOC; mobile may stack columns."
+    },
+    {
+      "declaration": "source/differences.md:42",
+      "legacy_text": "| 20–21 | App: notes whose label was read as its own block, or glued to the body, are callouts. | `glued-label-callout`, `split-label-callout` |",
+      "current_pdf_pages": "20–21",
+      "result": "Matched current source structure/content; English retained. Print navigation excludes cover/TOC; mobile may stack columns."
+    },
+    {
+      "declaration": "source/differences.md:43",
+      "legacy_text": "| 22 | Warranty cards: paragraphs follow the print, and each exclusion is its own paragraph. FR p46 and ES p70 have the year-card title/body boundary fixed. | `warranty-print-paragraphs` |",
+      "current_pdf_pages": "22",
+      "result": "Matched current source structure/content; English retained. Print navigation excludes cover/TOC; mobile may stack columns."
+    },
+    {
+      "declaration": "source/differences.md:44",
+      "legacy_text": "| 23, 25 | Specifications: each print line of a value cell is one value of that label. The `®` marks are superscripts at their print positions. | `spec-value-print-lines`, `trademark-note` |",
+      "current_pdf_pages": "23, 25",
+      "result": "Matched current source value rows, ordering, superscript markers; LiFePO₄ restored;5000C same-line value groups kept with separation."
+    },
+    {
+      "declaration": "source/differences.md:45",
+      "legacy_text": "| 23, 25, 26 | INGESTION HAZARD notes carry the print's warning glyph and bold label. They sit in their print place, before the trademark note (EN p25). FR p47 and ES p71 have the hazard note below the table instead of fused into the last temperature row. | `ingestion-note`, `ingestion-before-trademark`, `hazard-note-below-table` |",
+      "current_pdf_pages": "23, 25, 26",
+      "result": "Matched current source structure/content; English retained. Print navigation excludes cover/TOC; mobile may stack columns."
+    },
+    {
+      "declaration": "source/differences.md:46",
+      "legacy_text": "| 24 | AC ESS: the System Model sits in the title band. The caution requirements are one per print line. | `system-model-in-band`, `callout-print-lines` |",
+      "current_pdf_pages": "24",
+      "result": "Matched current source structure/content; English retained. Print navigation excludes cover/TOC; mobile may stack columns."
+    },
+    {
+      "declaration": "source/differences.md:47",
+      "legacy_text": "| 25–26 | Product sections: the model identity sits at the right of the print band, and \"SPECIFICATIONS\" is a plain bold title. | `model-in-band`, `plain-title` |",
+      "current_pdf_pages": "25–26",
+      "result": "Matched current source structure/content; English retained. Print navigation excludes cover/TOC; mobile may stack columns."
+    },
+    {
+      "declaration": "source/differences.md:48",
+      "legacy_text": "| 4–27 | Bold runs of the print (lead-ins, sub-heads) inside plain paragraphs and list items. | `print-emphasis` |",
+      "current_pdf_pages": "4–27",
+      "result": "Matched current source structure/content; English retained. Print navigation excludes cover/TOC; mobile may stack columns."
+    },
+    {
+      "declaration": "source/differences.md:49",
+      "legacy_text": "| 76 | Back cover: JACKERY INC., the address, and one contact panel with the print's phone, mail and web glyphs, plus the QR code in its own frame. The print has no \"CONTACT US\" title. | `back-cover-card` |",
+      "current_pdf_pages": "28",
+      "result": "Matched current source structure/content; English retained. Print navigation excludes cover/TOC; mobile may stack columns."
+    },
+    {
+      "declaration": "source/differences.md:59",
+      "legacy_text": "| 2 | badge `EN` | `US` |",
+      "current_pdf_pages": "2",
+      "result": "Matched current source structure/content; English retained. Print navigation excludes cover/TOC; mobile may stack columns."
+    },
+    {
+      "declaration": "source/differences.md:60",
+      "legacy_text": "| 4 | DANGER body ends with a repeated `DANGER` | label printed once, as the lockup |",
+      "current_pdf_pages": "4",
+      "result": "Matched current source structure/content; English retained. Print navigation excludes cover/TOC; mobile may stack columns."
+    },
+    {
+      "declaration": "source/differences.md:61",
+      "legacy_text": "| 5 | two signal rows, with shifted meanings | three rows: WARNING (severe injury, death …), CAUTION (personal injury …), Note (equipment damage …) |",
+      "current_pdf_pages": "5",
+      "result": "Matched current source structure/content; English retained. Print navigation excludes cover/TOC; mobile may stack columns."
+    },
+    {
+      "declaration": "source/differences.md:62",
+      "legacy_text": "| 5 | heading `FCC` | no title |",
+      "current_pdf_pages": "5",
+      "result": "Current source checked; title remains absent. Column break and -- measure markers now restored."
+    },
+    {
+      "declaration": "source/differences.md:63",
+      "legacy_text": "| 16 | `… is Caution within 16V-60V …` | label `Caution`, body without it |",
+      "current_pdf_pages": "16",
+      "result": "Matched current source structure/content; English retained. Print navigation excludes cover/TOC; mobile may stack columns."
+    },
+    {
+      "declaration": "source/differences.md:64",
+      "legacy_text": "| 23, 25 | `® ® ※ USB Type-C and USB-C …` | `※ USB Type-C® and USB-C® …` (two notes) |",
+      "current_pdf_pages": "23, 25",
+      "result": "Matched current source structure/content; English retained. Print navigation excludes cover/TOC; mobile may stack columns."
+    },
+    {
+      "declaration": "source/differences.md:65",
+      "legacy_text": "| 26 | `Model: JBP-5000A` under the STS section | in the Battery Pack band |",
+      "current_pdf_pages": "26",
+      "result": "Matched current source structure/content; English retained. Print navigation excludes cover/TOC; mobile may stack columns."
+    },
+    {
+      "declaration": "source/differences.md:66",
+      "legacy_text": "| 76 | heading `CONTACT US` | no title |",
+      "current_pdf_pages": "28",
+      "result": "Matched current source structure/content; English retained. Print navigation excludes cover/TOC; mobile may stack columns."
+    },
+    {
+      "declaration": "source/differences.md:105",
+      "legacy_text": "- **Reused byte-for-byte:**",
+      "current_pdf_pages": "See chapter-page map",
+      "result": "Checked against current English pages; locale-specific FR/ES declarations outside this batch and not changed."
+    },
+    {
+      "declaration": "source/differences.md:108",
+      "legacy_text": "- **Re-framed (only the SVG viewBox changed):** `overview-front.svg`, `overview-left.svg` and `overview-right.svg` grow to their full print frame.",
+      "current_pdf_pages": "See chapter-page map",
+      "result": "Checked against current English pages; locale-specific FR/ES declarations outside this batch and not changed."
+    },
+    {
+      "declaration": "source/differences.md:109",
+      "legacy_text": "- **New native glyphs** (no shared equivalent exists):",
+      "current_pdf_pages": "See chapter-page map",
+      "result": "Checked against current English pages; locale-specific FR/ES declarations outside this batch and not changed."
+    },
+    {
+      "declaration": "source/differences.md:112",
+      "legacy_text": "- **FR/ES print panels.** The French and Spanish pages redraw these panels: scale, zoom circles, brackets and caption-plate positions differ, so the English panel cannot carry the localized label geometry. Each panel is acquired from its own locale page with the same drawing selection as English:",
+      "current_pdf_pages": "See chapter-page map",
+      "result": "Checked against current English pages; locale-specific FR/ES declarations outside this batch and not changed."
+    },
+    {
+      "declaration": "source/differences.md:116",
+      "legacy_text": "- **Car panels:** the FR/ES car panels are re-acquired with their plug cable (`car-fr.svg`, `car-es.svg`); the approved records are marked superseded.",
+      "current_pdf_pages": "See chapter-page map",
+      "result": "Checked against current English pages; locale-specific FR/ES declarations outside this batch and not changed."
+    },
+    {
+      "declaration": "source/differences.md:117",
+      "legacy_text": "- **Per-language asset sets:** each `web/<language>/assets` carries only the art that its own copy and the source stylesheet reference. The other locales' panels stay in the package pool.",
+      "current_pdf_pages": "See chapter-page map",
+      "result": "Checked against current English pages; locale-specific FR/ES declarations outside this batch and not changed."
+    },
+    {
+      "declaration": "source/differences.md:123",
+      "legacy_text": "- **Text in the wrong language:**",
+      "current_pdf_pages": "See chapter-page map",
+      "result": "Checked against current English pages; locale-specific FR/ES declarations outside this batch and not changed."
+    },
+    {
+      "declaration": "source/differences.md:132",
+      "legacy_text": "- **Spelling and spacing:**",
+      "current_pdf_pages": "See chapter-page map",
+      "result": "Checked against current English pages; locale-specific FR/ES declarations outside this batch and not changed."
+    },
+    {
+      "declaration": "source/differences.md:137",
+      "legacy_text": "- **Wording:**",
+      "current_pdf_pages": "See chapter-page map",
+      "result": "Checked against current English pages; locale-specific FR/ES declarations outside this batch and not changed."
+    },
+    {
+      "declaration": "source/differences.md:140",
+      "legacy_text": "- **Legibility:** the ES p65 caption `Desmonte los conectores MC4 con la llave MC4 proporcionada.` is printed almost white on white; the Web shows it as live text.",
+      "current_pdf_pages": "See chapter-page map",
+      "result": "Checked against current English pages; locale-specific FR/ES declarations outside this batch and not changed."
+    },
+    {
+      "declaration": "source/differences.md:141",
+      "legacy_text": "- **Order:** ES p53 prints PRECAUCIÓN above ADVERTENCIA; the Web keeps the print order.",
+      "current_pdf_pages": "See chapter-page map",
+      "result": "Checked against current English pages; locale-specific FR/ES declarations outside this batch and not changed."
+    },
+    {
+      "declaration": "source/differences.md:147",
+      "legacy_text": "- `LiFePO4` keeps a regular 4. The specification table contract compares one text run per value, so a subscript cannot be expressed.",
+      "current_pdf_pages": "See chapter-page map",
+      "result": "Resolved: source LiFePO₄ now retained as Unicode subscript in native table values."
+    },
+    {
+      "declaration": "source/differences.md:148",
+      "legacy_text": "- The FCC statement does not mirror the print's column break.",
+      "current_pdf_pages": "See chapter-page map",
+      "result": "Resolved: current p5 right-column break restored."
+    },
+    {
+      "declaration": "source/differences.md:149",
+      "legacy_text": "- Specification values printed side by side (`Backup UPS … Online UPS …`, `Bypass AC Output`) stay on one line.",
+      "current_pdf_pages": "See chapter-page map",
+      "result": "Checked p23/25: source is same-line value groups; native Web line remains and separation restored."
+    },
+    {
+      "declaration": "source/differences.md:150",
+      "legacy_text": "- The Furo theme chrome (search, navigation labels) is English on the FR/ES pages.",
+      "current_pdf_pages": "See chapter-page map",
+      "result": "Checked against current English pages; locale-specific FR/ES declarations outside this batch and not changed."
+    }
+  ],
+  "asset_decisions": [
+    {
+      "declaration": "source/asset_decisions.json/0",
+      "asset": "assets/symbol_warning_triangle.svg",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "symbols"
+      ],
+      "current_pdf_pages": [
+        5
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/1",
+      "asset": "assets/symbol_electric_shock.svg",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "symbols"
+      ],
+      "current_pdf_pages": [
+        5
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/2",
+      "asset": "assets/symbol_battery_charging.svg",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "symbols"
+      ],
+      "current_pdf_pages": [
+        5
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/3",
+      "asset": "assets/symbol_explosive_material.svg",
+      "legacy_decision": "native source path variant after shared tint-corrected glyph still fails fixed comparison",
+      "current_chapters": [
+        "symbols"
+      ],
+      "current_pdf_pages": [
+        5
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/4",
+      "asset": "assets/symbol_heavy_object.svg",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "symbols"
+      ],
+      "current_pdf_pages": [
+        5
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/5",
+      "asset": "assets/symbol_no_open_flame.svg",
+      "legacy_decision": "shared glyph paths unchanged; match native dark-gray tint only",
+      "current_chapters": [
+        "symbols"
+      ],
+      "current_pdf_pages": [
+        5
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/6",
+      "asset": "assets/symbol_keep_away_from_children.svg",
+      "legacy_decision": "shared glyph paths unchanged; match native dark-gray tint only",
+      "current_chapters": [
+        "symbols"
+      ],
+      "current_pdf_pages": [
+        5
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/7",
+      "asset": "assets/symbol_read_manual.svg",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "symbols"
+      ],
+      "current_pdf_pages": [
+        5
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/8",
+      "asset": "assets/fcc-mark.svg",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "fcc"
+      ],
+      "current_pdf_pages": [
+        5
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/9",
+      "asset": "assets/button-power-bottom.svg",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "operations"
+      ],
+      "current_pdf_pages": [
+        10,
+        11,
+        12
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/10",
+      "asset": "assets/button-usb-bottom.svg",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "operations"
+      ],
+      "current_pdf_pages": [
+        10,
+        11,
+        12
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/11",
+      "asset": "assets/button-ac-bottom.svg",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "operations"
+      ],
+      "current_pdf_pages": [
+        10,
+        11,
+        12
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/12",
+      "asset": "assets/lcd-01.png",
+      "legacy_decision": "rejected glyph for this source",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/13",
+      "asset": "assets/lcd-02.png",
+      "legacy_decision": "rejected glyph for this source",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/14",
+      "asset": "assets/lcd-03.png",
+      "legacy_decision": "rejected glyph for this source",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/15",
+      "asset": "assets/lcd-04.png",
+      "legacy_decision": "rejected glyph for this source",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/16",
+      "asset": "assets/lcd-05.png",
+      "legacy_decision": "rejected glyph for this source",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/17",
+      "asset": "assets/lcd-06.png",
+      "legacy_decision": "rejected glyph for this source",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/18",
+      "asset": "assets/lcd-07.png",
+      "legacy_decision": "rejected glyph for this source",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/19",
+      "asset": "assets/lcd-08.png",
+      "legacy_decision": "rejected glyph for this source",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/20",
+      "asset": "assets/lcd-09.png",
+      "legacy_decision": "rejected glyph for this source",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/21",
+      "asset": "assets/lcd-10.png",
+      "legacy_decision": "rejected glyph for this source",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/22",
+      "asset": "assets/lcd-11.png",
+      "legacy_decision": "rejected glyph for this source",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/23",
+      "asset": "assets/lcd-12.png",
+      "legacy_decision": "rejected glyph for this source",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/24",
+      "asset": "assets/lcd-13.png",
+      "legacy_decision": "rejected glyph for this source",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/25",
+      "asset": "assets/lcd-14.png",
+      "legacy_decision": "rejected glyph for this source",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/26",
+      "asset": "assets/lcd-15.png",
+      "legacy_decision": "rejected glyph for this source",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/27",
+      "asset": "assets/lcd-17.png",
+      "legacy_decision": "rejected glyph for this source",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/28",
+      "asset": "assets/lcd-18.png",
+      "legacy_decision": "rejected glyph for this source",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/29",
+      "asset": "assets/lcd-19.png",
+      "legacy_decision": "rejected glyph for this source",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/30",
+      "asset": "assets/lcd-20.png",
+      "legacy_decision": "rejected glyph for this source",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/31",
+      "asset": "assets/lcd-21.png",
+      "legacy_decision": "rejected glyph for this source",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/32",
+      "asset": "assets/lcd-22.png",
+      "legacy_decision": "rejected glyph for this source",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/33",
+      "asset": "assets/lcd-23.png",
+      "legacy_decision": "rejected glyph for this source",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/34",
+      "asset": "assets/lcd-24.png",
+      "legacy_decision": "rejected glyph for this source",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/35",
+      "asset": "assets/lcd-25.png",
+      "legacy_decision": "rejected glyph for this source",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/36",
+      "asset": "assets/app_store_badges.png",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "app"
+      ],
+      "current_pdf_pages": [
+        20,
+        21
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/37",
+      "asset": "assets/app_download_qr.png",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "app"
+      ],
+      "current_pdf_pages": [
+        20,
+        21
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/38",
+      "asset": "assets/inbox-cable.png",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "inbox"
+      ],
+      "current_pdf_pages": [
+        6
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/39",
+      "asset": "assets/inbox-main.svg",
+      "legacy_decision": "native-source-panel",
+      "current_chapters": [
+        "inbox"
+      ],
+      "current_pdf_pages": [
+        6
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/40",
+      "asset": "assets/inbox-mc4.svg",
+      "legacy_decision": "native-source-panel",
+      "current_chapters": [
+        "inbox"
+      ],
+      "current_pdf_pages": [
+        6
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/41",
+      "asset": "assets/inbox-manual.svg",
+      "legacy_decision": "native picture with exact physical printing; exterior card label is live",
+      "current_chapters": [
+        "inbox"
+      ],
+      "current_pdf_pages": [
+        6
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/42",
+      "asset": "assets/overview-front.svg",
+      "legacy_decision": "native-source-panel",
+      "current_chapters": [
+        "overview"
+      ],
+      "current_pdf_pages": [
+        6,
+        7
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/43",
+      "asset": "assets/overview-left.svg",
+      "legacy_decision": "native-source-panel",
+      "current_chapters": [
+        "overview"
+      ],
+      "current_pdf_pages": [
+        6,
+        7
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/44",
+      "asset": "assets/overview-right.svg",
+      "legacy_decision": "native-source-panel",
+      "current_chapters": [
+        "overview"
+      ],
+      "current_pdf_pages": [
+        6,
+        7
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/45",
+      "asset": "assets/lcd-map.svg",
+      "legacy_decision": "native-source-panel",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/46",
+      "asset": "assets/power.svg",
+      "legacy_decision": "native-source-panel",
+      "current_chapters": [
+        "operations"
+      ],
+      "current_pdf_pages": [
+        10,
+        11,
+        12
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/47",
+      "asset": "assets/ac-output.svg",
+      "legacy_decision": "native-source-panel",
+      "current_chapters": [
+        "operations"
+      ],
+      "current_pdf_pages": [
+        10,
+        11,
+        12
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/48",
+      "asset": "assets/usb-output.svg",
+      "legacy_decision": "native-source-panel",
+      "current_chapters": [
+        "operations"
+      ],
+      "current_pdf_pages": [
+        10,
+        11,
+        12
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/49",
+      "asset": "assets/dc-output.svg",
+      "legacy_decision": "native-source-panel",
+      "current_chapters": [
+        "operations"
+      ],
+      "current_pdf_pages": [
+        10,
+        11,
+        12
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/50",
+      "asset": "assets/lcd-button.svg",
+      "legacy_decision": "native-source-panel",
+      "current_chapters": [
+        "operations"
+      ],
+      "current_pdf_pages": [
+        10,
+        11,
+        12
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/51",
+      "asset": "assets/ups.svg",
+      "legacy_decision": "native-source-panel",
+      "current_chapters": [
+        "ups"
+      ],
+      "current_pdf_pages": [
+        13,
+        14
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/52",
+      "asset": "assets/battery-packs.svg",
+      "legacy_decision": "native-source-panel",
+      "current_chapters": [
+        "connections"
+      ],
+      "current_pdf_pages": [
+        14
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/53",
+      "asset": "assets/sts-connect.svg",
+      "legacy_decision": "native-source-panel",
+      "current_chapters": [
+        "connections"
+      ],
+      "current_pdf_pages": [
+        14
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/54",
+      "asset": "assets/ac-charge.svg",
+      "legacy_decision": "native-source-panel",
+      "current_chapters": [
+        "charging"
+      ],
+      "current_pdf_pages": [
+        15,
+        16,
+        17,
+        18
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/55",
+      "asset": "assets/sts-charge.svg",
+      "legacy_decision": "native-source-panel",
+      "current_chapters": [
+        "charging"
+      ],
+      "current_pdf_pages": [
+        15,
+        16,
+        17,
+        18
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/56",
+      "asset": "assets/low-pv-500.svg",
+      "legacy_decision": "native-source-panel",
+      "current_chapters": [
+        "charging"
+      ],
+      "current_pdf_pages": [
+        15,
+        16,
+        17,
+        18
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/57",
+      "asset": "assets/low-pv-200.svg",
+      "legacy_decision": "native-source-panel",
+      "current_chapters": [
+        "charging"
+      ],
+      "current_pdf_pages": [
+        15,
+        16,
+        17,
+        18
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/58",
+      "asset": "assets/high-pv.svg",
+      "legacy_decision": "native-source-panel",
+      "current_chapters": [
+        "charging"
+      ],
+      "current_pdf_pages": [
+        15,
+        16,
+        17,
+        18
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/59",
+      "asset": "assets/high-pv-lock.svg",
+      "legacy_decision": "native-source-panel",
+      "current_chapters": [
+        "charging"
+      ],
+      "current_pdf_pages": [
+        15,
+        16,
+        17,
+        18
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/60",
+      "asset": "assets/dual-pv.svg",
+      "legacy_decision": "native-source-panel",
+      "current_chapters": [
+        "charging"
+      ],
+      "current_pdf_pages": [
+        15,
+        16,
+        17,
+        18
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/61",
+      "asset": "assets/car.svg",
+      "legacy_decision": "native-source-panel",
+      "current_chapters": [
+        "charging"
+      ],
+      "current_pdf_pages": [
+        15,
+        16,
+        17,
+        18
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/62",
+      "asset": "assets/app-add.svg",
+      "legacy_decision": "native-source-panel",
+      "current_chapters": [
+        "app"
+      ],
+      "current_pdf_pages": [
+        20,
+        21
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/63",
+      "asset": "assets/app-control.svg",
+      "legacy_decision": "native-source-panel",
+      "current_chapters": [
+        "app"
+      ],
+      "current_pdf_pages": [
+        20,
+        21
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/64",
+      "asset": "assets/app-results.svg",
+      "legacy_decision": "native-source-panel",
+      "current_chapters": [
+        "app"
+      ],
+      "current_pdf_pages": [
+        20,
+        21
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/65",
+      "asset": "assets/ess.svg",
+      "legacy_decision": "native-source-panel",
+      "current_chapters": [
+        "ess"
+      ],
+      "current_pdf_pages": [
+        24
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/66",
+      "asset": "assets/package-host.svg",
+      "legacy_decision": "native-source-panel",
+      "current_chapters": [
+        "ess-package"
+      ],
+      "current_pdf_pages": [
+        27
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/67",
+      "asset": "assets/package-battery.svg",
+      "legacy_decision": "native-source-panel",
+      "current_chapters": [
+        "ess-package"
+      ],
+      "current_pdf_pages": [
+        27
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/68",
+      "asset": "assets/package-sts.svg",
+      "legacy_decision": "native-source-panel",
+      "current_chapters": [
+        "ess-package"
+      ],
+      "current_pdf_pages": [
+        27
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/69",
+      "asset": "assets/lcd-high-pv.svg",
+      "legacy_decision": "rejected glyph for this source",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/70",
+      "asset": "assets/lcd-low-pv.svg",
+      "legacy_decision": "rejected glyph for this source",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/71",
+      "asset": "assets/button-dc-bottom.svg",
+      "legacy_decision": "native transparent glyph",
+      "current_chapters": [
+        "operations"
+      ],
+      "current_pdf_pages": [
+        10,
+        11,
+        12
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/72",
+      "asset": "assets/lcd-transfer-switch.png",
+      "legacy_decision": "rejected glyph for this source",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/73",
+      "asset": "assets/lcd-connected-batteries.png",
+      "legacy_decision": "rejected glyph for this source",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/74",
+      "asset": "assets/app-add-fr.svg",
+      "legacy_decision": "native localized UI art; exterior counters remain live",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/75",
+      "asset": "assets/app-results-fr.svg",
+      "legacy_decision": "native localized UI art; exterior counters remain live",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/76",
+      "asset": "assets/app-add-es.svg",
+      "legacy_decision": "native localized UI art; exterior counters remain live",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/77",
+      "asset": "assets/app-results-es.svg",
+      "legacy_decision": "native localized UI art; exterior counters remain live",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/78",
+      "asset": "assets/sold-separately-cart.svg",
+      "legacy_decision": "native transparent glyph reused across locales",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/79",
+      "asset": "assets/lcd-native-01.svg",
+      "legacy_decision": "native transparent glyph shared by all three locales",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/80",
+      "asset": "assets/lcd-native-02.svg",
+      "legacy_decision": "native transparent glyph shared by all three locales",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/81",
+      "asset": "assets/lcd-native-03.svg",
+      "legacy_decision": "native transparent glyph shared by all three locales",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/82",
+      "asset": "assets/lcd-native-04.svg",
+      "legacy_decision": "native transparent glyph shared by all three locales",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/83",
+      "asset": "assets/lcd-native-05.svg",
+      "legacy_decision": "native transparent glyph shared by all three locales",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/84",
+      "asset": "assets/lcd-native-06.svg",
+      "legacy_decision": "native transparent glyph shared by all three locales",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/85",
+      "asset": "assets/lcd-native-07.svg",
+      "legacy_decision": "native transparent glyph shared by all three locales",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/86",
+      "asset": "assets/lcd-native-08.svg",
+      "legacy_decision": "native transparent glyph shared by all three locales",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/87",
+      "asset": "assets/lcd-native-09.svg",
+      "legacy_decision": "native transparent glyph shared by all three locales",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/88",
+      "asset": "assets/lcd-native-10.svg",
+      "legacy_decision": "native transparent glyph shared by all three locales",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/89",
+      "asset": "assets/lcd-native-11.svg",
+      "legacy_decision": "native transparent glyph shared by all three locales",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/90",
+      "asset": "assets/lcd-native-12.svg",
+      "legacy_decision": "native transparent glyph shared by all three locales",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/91",
+      "asset": "assets/lcd-native-13.svg",
+      "legacy_decision": "native transparent glyph shared by all three locales",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/92",
+      "asset": "assets/lcd-native-14.svg",
+      "legacy_decision": "native transparent glyph shared by all three locales",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/93",
+      "asset": "assets/lcd-native-15.svg",
+      "legacy_decision": "native transparent glyph shared by all three locales",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/94",
+      "asset": "assets/lcd-native-16.svg",
+      "legacy_decision": "native transparent glyph shared by all three locales",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/95",
+      "asset": "assets/lcd-native-17.svg",
+      "legacy_decision": "native transparent glyph shared by all three locales",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/96",
+      "asset": "assets/lcd-native-18.svg",
+      "legacy_decision": "native transparent glyph shared by all three locales",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/97",
+      "asset": "assets/lcd-native-19.svg",
+      "legacy_decision": "native transparent glyph shared by all three locales",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/98",
+      "asset": "assets/lcd-native-20.svg",
+      "legacy_decision": "native transparent glyph shared by all three locales",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/99",
+      "asset": "assets/lcd-native-21.svg",
+      "legacy_decision": "native transparent glyph shared by all three locales",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/100",
+      "asset": "assets/lcd-native-22.svg",
+      "legacy_decision": "native transparent glyph shared by all three locales",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/101",
+      "asset": "assets/lcd-native-23.svg",
+      "legacy_decision": "native transparent glyph shared by all three locales",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/102",
+      "asset": "assets/lcd-native-24.svg",
+      "legacy_decision": "native transparent glyph shared by all three locales",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/103",
+      "asset": "assets/lcd-native-25.svg",
+      "legacy_decision": "native transparent glyph shared by all three locales",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/104",
+      "asset": "assets/lcd-native-26.svg",
+      "legacy_decision": "native transparent glyph shared by all three locales",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/105",
+      "asset": "assets/power-fr.svg",
+      "legacy_decision": "reuse artwork and translate existing clock paths only",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/106",
+      "asset": "assets/power-es.svg",
+      "legacy_decision": "reuse artwork and translate existing clock paths only",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/107",
+      "asset": "assets/car-fr.svg",
+      "legacy_decision": "acquire native locale variant after artwork comparison",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/108",
+      "asset": "assets/car-es.svg",
+      "legacy_decision": "acquire native locale variant after artwork comparison",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/109",
+      "asset": "assets/warning_triangle_dark.svg",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "safety"
+      ],
+      "current_pdf_pages": [
+        4
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/110",
+      "asset": "assets/warning_triangle_white.svg",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "safety"
+      ],
+      "current_pdf_pages": [
+        4
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/111",
+      "asset": "assets/symbol_ingestion_hazard.svg",
+      "legacy_decision": "native-source-glyph",
+      "current_chapters": [
+        "specifications",
+        "ess-host",
+        "ess-battery"
+      ],
+      "current_pdf_pages": [
+        23,
+        25,
+        26
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/112",
+      "asset": "assets/contact-phone.svg",
+      "legacy_decision": "native-source-glyph",
+      "current_chapters": [
+        "contact"
+      ],
+      "current_pdf_pages": [
+        28
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/113",
+      "asset": "assets/contact-mail.svg",
+      "legacy_decision": "native-source-glyph",
+      "current_chapters": [
+        "contact"
+      ],
+      "current_pdf_pages": [
+        28
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/114",
+      "asset": "assets/contact-web.svg",
+      "legacy_decision": "native-source-glyph",
+      "current_chapters": [
+        "contact"
+      ],
+      "current_pdf_pages": [
+        28
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/115",
+      "asset": "assets/contact-qr.svg",
+      "legacy_decision": "native-source-glyph",
+      "current_chapters": [
+        "contact"
+      ],
+      "current_pdf_pages": [
+        28
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/116",
+      "asset": "assets/ac-output-fr.svg",
+      "legacy_decision": "acquire native locale variant after artwork comparison",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/117",
+      "asset": "assets/ac-output-es.svg",
+      "legacy_decision": "acquire native locale variant after artwork comparison",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/118",
+      "asset": "assets/usb-output-fr.svg",
+      "legacy_decision": "acquire native locale variant after artwork comparison",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/119",
+      "asset": "assets/usb-output-es.svg",
+      "legacy_decision": "acquire native locale variant after artwork comparison",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/120",
+      "asset": "assets/dc-output-fr.svg",
+      "legacy_decision": "acquire native locale variant after artwork comparison",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/121",
+      "asset": "assets/dc-output-es.svg",
+      "legacy_decision": "acquire native locale variant after artwork comparison",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/122",
+      "asset": "assets/sts-charge-fr.svg",
+      "legacy_decision": "acquire native locale variant after artwork comparison",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/123",
+      "asset": "assets/sts-charge-es.svg",
+      "legacy_decision": "acquire native locale variant after artwork comparison",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/124",
+      "asset": "assets/car-fr.svg",
+      "legacy_decision": "acquire native locale variant after artwork comparison",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/125",
+      "asset": "assets/car-es.svg",
+      "legacy_decision": "acquire native locale variant after artwork comparison",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/126",
+      "asset": "assets/low-pv-500-fr.svg",
+      "legacy_decision": "acquire native locale variant after artwork comparison",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/127",
+      "asset": "assets/low-pv-500-es.svg",
+      "legacy_decision": "acquire native locale variant after artwork comparison",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/128",
+      "asset": "assets/low-pv-200-fr.svg",
+      "legacy_decision": "acquire native locale variant after artwork comparison",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/129",
+      "asset": "assets/low-pv-200-es.svg",
+      "legacy_decision": "acquire native locale variant after artwork comparison",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/130",
+      "asset": "assets/ac-charge-fr.svg",
+      "legacy_decision": "acquire native locale variant after artwork comparison",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/131",
+      "asset": "assets/ac-charge-es.svg",
+      "legacy_decision": "acquire native locale variant after artwork comparison",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/132",
+      "asset": "assets/high-pv-fr.svg",
+      "legacy_decision": "acquire native locale variant after artwork comparison",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/133",
+      "asset": "assets/high-pv-es.svg",
+      "legacy_decision": "acquire native locale variant after artwork comparison",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/134",
+      "asset": "assets/high-pv-lock-fr.svg",
+      "legacy_decision": "acquire native locale variant after artwork comparison",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/135",
+      "asset": "assets/high-pv-lock-es.svg",
+      "legacy_decision": "acquire native locale variant after artwork comparison",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/136",
+      "asset": "assets/dual-pv-fr.svg",
+      "legacy_decision": "acquire native locale variant after artwork comparison",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/137",
+      "asset": "assets/dual-pv-es.svg",
+      "legacy_decision": "acquire native locale variant after artwork comparison",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/138",
+      "asset": "assets/ess-fr.svg",
+      "legacy_decision": "acquire native locale variant after artwork comparison",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/139",
+      "asset": "assets/ess-es.svg",
+      "legacy_decision": "acquire native locale variant after artwork comparison",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/140",
+      "asset": "assets/battery-packs-fr.svg",
+      "legacy_decision": "acquire native locale variant after artwork comparison",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/141",
+      "asset": "assets/battery-packs-es.svg",
+      "legacy_decision": "acquire native locale variant after artwork comparison",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/142",
+      "asset": "assets/package-sts-fr.svg",
+      "legacy_decision": "acquire native locale variant after artwork comparison",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/143",
+      "asset": "assets/overview-left-fr.svg",
+      "legacy_decision": "acquire native locale variant after artwork comparison",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/144",
+      "asset": "assets/overview-left-es.svg",
+      "legacy_decision": "acquire native locale variant after artwork comparison",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/145",
+      "asset": "assets/overview-front-fr.svg",
+      "legacy_decision": "acquire native locale variant after artwork comparison",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/146",
+      "asset": "assets/app-control-fr.svg",
+      "legacy_decision": "acquire native locale variant after artwork comparison",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/147",
+      "asset": "assets/app-control-es.svg",
+      "legacy_decision": "acquire native locale variant after artwork comparison",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    }
+  ],
+  "changes": [
+    "p13: complete source UPS warning and cascade caution restored.",
+    "p5: FCC right column now begins “and on, the user is encouraged…”; source double-hyphen measure markers restored.",
+    "p20–21: source App subsection dots restored.",
+    "p23/25: LiFePO₄ subscript and separate spacing between same-line UPS/bypass values restored; printed Onine is retained."
+  ]
+}

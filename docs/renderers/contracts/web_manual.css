@@ -467,7 +467,8 @@ body {
   overflow-wrap: anywhere;
 }
 
-#furo-main-content table.hb-troubleshooting-table tr > *:last-child {
+/* A code cell can be the last DOM child while the measures cell spans rows. */
+#furo-main-content table.hb-troubleshooting-table tr > *:last-child:not(.hb-troubleshooting-code) {
   border-right: 0 !important;
 }
 

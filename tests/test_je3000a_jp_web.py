@@ -13,6 +13,7 @@ from bs4 import BeautifulSoup
 
 from tools.manual_ir.hashing import file_sha256
 from tools.word.bundle_docx_pandoc import resolve_pandoc_binary
+from tests.historical_app_styles import pre_rowspan_divider_styles
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGE = ROOT / "manual_sources/JE-3000A/JP/ja/git-20261103-002fde5a"
@@ -141,6 +142,7 @@ class Je3000aJpWebTests(unittest.TestCase):
         for row in admission:
             self.assertTrue(row["max_mean_channel_error"] <= 0.02 or "canonical_group" in row, row["asset_ref"])
 
+    @pre_rowspan_divider_styles
     def test_cold_replay_matches_stored_candidate(self):
         try:
             subprocess.run([resolve_pandoc_binary(None), "--version"], check=True, capture_output=True)

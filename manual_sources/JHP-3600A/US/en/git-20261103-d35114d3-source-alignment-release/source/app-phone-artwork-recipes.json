@@ -1,0 +1,158 @@
+[
+  {
+    "asset": "app-phones-native-p22.svg",
+    "source_sha256": "541ca8a5543e3b2e36c85b908b5e733b86c5fb766081392c6e22a50493d59f7e",
+    "physical_page": 22,
+    "crop": [
+      107.32649230957031,
+      214.18109130859375,
+      267.46319580078125,
+      379.2
+    ],
+    "operator": "crop + native_art_svg retain_vector_drawings; preserve_images=True",
+    "drawing_indices": [
+      2,
+      45,
+      46,
+      47,
+      48
+    ],
+    "embedded_phone_images": [
+      {
+        "xref": 6611,
+        "bbox": [
+          197.5575408935547,
+          215.9848175048828,
+          265.8700256347656,
+          363.90411376953125
+        ],
+        "width": 750,
+        "height": 1624
+      },
+      {
+        "xref": 6612,
+        "bbox": [
+          108.9083251953125,
+          215.8717498779297,
+          177.4247283935547,
+          364.23260498046875
+        ],
+        "width": 750,
+        "height": 1624
+      }
+    ],
+    "external_text_ids": [
+      "p22-b6-l0-0",
+      "p22-b6-l1-0"
+    ],
+    "caption_frames_removed": [],
+    "preserve": "Original clipped phone image groups, vector frames, corners, status bars and bottom UI; all source transforms and opacity preserved.",
+    "excluded": "Adjacent control panel starts below crop, at380.2437/382.3235/385.2878pt; no phone object excluded.",
+    "sha256": "fb99bd1e0cbf87d05a94d6bd17d8d441e9e186dd6d245a7715a2b308dc97e38c",
+    "publication_eligible": false
+  },
+  {
+    "asset": "app-phones-native-p42.svg",
+    "source_sha256": "541ca8a5543e3b2e36c85b908b5e733b86c5fb766081392c6e22a50493d59f7e",
+    "physical_page": 42,
+    "crop": [
+      106.63520050048828,
+      224.03530883789062,
+      260.46710205078125,
+      381.3
+    ],
+    "operator": "crop + native_art_svg retain_vector_drawings; preserve_images=True",
+    "drawing_indices": [
+      1,
+      43,
+      44,
+      45,
+      46
+    ],
+    "embedded_phone_images": [
+      {
+        "xref": 3528,
+        "bbox": [
+          193.30801391601562,
+          225.80690002441406,
+          258.8966369628906,
+          367.828125
+        ],
+        "width": 750,
+        "height": 1624
+      },
+      {
+        "xref": 3529,
+        "bbox": [
+          108.19355773925781,
+          225.69837951660156,
+          173.97796630859375,
+          368.1435546875
+        ],
+        "width": 750,
+        "height": 1624
+      }
+    ],
+    "external_text_ids": [
+      "p42-b0-l0-0",
+      "p42-b0-l1-0"
+    ],
+    "caption_frames_removed": [],
+    "preserve": "Original clipped phone image groups, vector frames, corners, status bars and bottom UI; all source transforms and opacity preserved.",
+    "excluded": "Adjacent control panel starts below crop, at380.2437/382.3235/385.2878pt; no phone object excluded.",
+    "sha256": "e3b04b80da814f2e22621596aec83412720ab8f51736eff83fb2d3dcbc40192b",
+    "publication_eligible": false
+  },
+  {
+    "asset": "app-phones-native-p62.svg",
+    "source_sha256": "541ca8a5543e3b2e36c85b908b5e733b86c5fb766081392c6e22a50493d59f7e",
+    "physical_page": 62,
+    "crop": [
+      98.03280639648438,
+      225.3988037109375,
+      268.978271484375,
+      384.2
+    ],
+    "operator": "crop + native_art_svg retain_vector_drawings; preserve_images=True",
+    "drawing_indices": [
+      44,
+      45,
+      46,
+      47,
+      52
+    ],
+    "embedded_phone_images": [
+      {
+        "xref": 580,
+        "bbox": [
+          202.46351623535156,
+          227.15464782714844,
+          267.41375732421875,
+          367.7935791015625
+        ],
+        "width": 750,
+        "height": 1624
+      },
+      {
+        "xref": 581,
+        "bbox": [
+          99.58580780029297,
+          227.05543518066406,
+          164.7299346923828,
+          368.11419677734375
+        ],
+        "width": 750,
+        "height": 1624
+      }
+    ],
+    "external_text_ids": [
+      "p62-b6-l0-0",
+      "p62-b6-l1-0"
+    ],
+    "caption_frames_removed": [],
+    "preserve": "Original clipped phone image groups, vector frames, corners, status bars and bottom UI; all source transforms and opacity preserved.",
+    "excluded": "Adjacent control panel starts below crop, at380.2437/382.3235/385.2878pt; no phone object excluded.",
+    "sha256": "c079f503daa1a5e5ac23c19b61b95af86913e32d26dc59dc9c3860c22ac4fe6e",
+    "publication_eligible": false
+  }
+]

@@ -1,0 +1,36 @@
+{
+  "asset_ref": "assets/contact-qr-native-p64.svg",
+  "source_sha256": "541ca8a5543e3b2e36c85b908b5e733b86c5fb766081392c6e22a50493d59f7e",
+  "physical_page": 64,
+  "operator": "native_symbol_svg; retain every drawing inside reviewed glyph bounds",
+  "drawing_indices": [
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30
+  ],
+  "glyph_bbox": [
+    308.8,
+    463.6,
+    338.4,
+    493.2
+  ],
+  "sha256": "b270e8d6543bd57765c258d1307cda48e5552e66281337ee5e33e5c461752acb",
+  "preserve": "All complete finder squares and code-cell paths, original clipping, transforms and opacity.",
+  "background_policy": "Retain black and white code-cell paths; native quiet area and thin rounded frame drawn with CSS.",
+  "publication_eligible": false
+}

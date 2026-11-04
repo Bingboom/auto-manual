@@ -1,0 +1,330 @@
+[
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "This device complies with part 15 of the FCC If this equipment does cause harmful interference to",
+    "w" : 0.70189701897018963,
+    "x" : 0.18970190871725345,
+    "y" : 0.92380952387301585
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "Rules. Operation is subject to the following",
+    "w" : 0.29810298102981031,
+    "x" : 0.18970190198735304,
+    "y" : 0.91047619053968254
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571344,
+    "text" : "radio or television reception, which can be determined",
+    "w" : 0.38482384823848237,
+    "x" : 0.52303523676603414,
+    "y" : 0.91047619060317464
+  },
+  {
+    "confidence" : 0.30000001192092896,
+    "h" : 0.043976945422944502,
+    "text" : "FC hei eoen ay mooe no пeonоd.",
+    "w" : 0.37985589252254826,
+    "x" : 0.091914875329215245,
+    "y" : 0.87134486066807249
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "two conditions: (1) This device may not cause by turning the equipment off and on, the user is",
+    "w" : 0.67479674796747968,
+    "x" : 0.18428183438346901,
+    "y" : 0.89904761895238094
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "must accept any interference received,",
+    "w" : 0.30623306233062325,
+    "x" : 0.18428184295392952,
+    "y" : 0.87238095260317461
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "encouraged to try to correct the interference by one or",
+    "w" : 0.38753387533875339,
+    "x" : 0.52303523201219515,
+    "y" : 0.88571428588095236
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571344,
+    "text" : "including interference that may cause",
+    "w" : 0.26829268292682928,
+    "x" : 0.18970190149051475,
+    "y" : 0.86095238107936511
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "more of the following measures:",
+    "w" : 0.22764227642276424,
+    "x" : 0.52303523414634134,
+    "y" : 0.87238095247619052
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "undesired operation.",
+    "w" : 0.15176151761517614,
+    "x" : 0.18699186955736224,
+    "y" : 0.84952380971428565
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "•Reorient or relocate the receiving antenna.",
+    "w" : 0.31436312295557034,
+    "x" : 0.52303524592962214,
+    "y" : 0.86095238101587301
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571344,
+    "text" : "• Increase the separation between the equipment and",
+    "w" : 0.38482384823848237,
+    "x" : 0.52303522393857294,
+    "y" : 0.84761904755555562
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "NOTE: This equipment has been tested and found to",
+    "w" : 0.36585365853658536,
+    "x" : 0.086720871781842707,
+    "y" : 0.82857142866666667
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.009523809523809601,
+    "text" : "receiver.",
+    "w" : 0.062330623306233068,
+    "x" : 0.53387533979223123,
+    "y" : 0.83428571438095234
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571344,
+    "text" : "comply with the limits for a Class B digital device, pursuant",
+    "w" : 0.41192411924119243,
+    "x" : 0.086720874074073875,
+    "y" : 0.81714285720634927
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "• Connect the equipment into an outlet on a circuit",
+    "w" : 0.36043360433604332,
+    "x" : 0.52303522434507699,
+    "y" : 0.82095238088888889
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "to part 15 of the FCC Rules.",
+    "w" : 0.19241192411924118,
+    "x" : 0.086720870415537388,
+    "y" : 0.80380952387301585
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571344,
+    "text" : "different from that to which the receiver is connected.",
+    "w" : 0.37398373983739841,
+    "x" : 0.52574525121951243,
+    "y" : 0.80761904755555558
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571344,
+    "text" : "•Consult the dealer or an experienced radio\/TV",
+    "w" : 0.34146341463414631,
+    "x" : 0.52303522608401087,
+    "y" : 0.79428571419047622
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "These limits are designed to provide reasonable protection",
+    "w" : 0.41192411924119232,
+    "x" : 0.08672086034327034,
+    "y" : 0.78857142850793649
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "against harmful interference in a residential installation. This",
+    "w" : 0.41734417344173441,
+    "x" : 0.086720860975609979,
+    "y" : 0.77523809501587304
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "technician for help.",
+    "w" : 0.13821138211382111,
+    "x" : 0.53116531395663957,
+    "y" : 0.78095238101587305
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "equipment generates, uses, and can radiate radio frequency",
+    "w" : 0.42547425474254735,
+    "x" : 0.08672087429990942,
+    "y" : 0.76380952387301582
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.015238095238095162,
+    "text" : "energy and, if not installed and used in accordance with the MODIFICATION: Any changes or modifications not",
+    "w" : 0.79132791327913288,
+    "x" : 0.086720854019873977,
+    "y" : 0.74857142850793656
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571344,
+    "text" : "instructions, may cause harmful interference to communica-",
+    "w" : 0.42005420054200543,
+    "x" : 0.086720860207768993,
+    "y" : 0.73904761898412707
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571344,
+    "text" : "expressly approved by the grantee of this device could",
+    "w" : 0.38753387533875339,
+    "x" : 0.5230352255081302,
+    "y" : 0.73523809514285721
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.015238095238095273,
+    "text" : "tions. However, there is no guarantee that radio interference void the user's authority to operate the device.",
+    "w" : 0.76693766937669372,
+    "x" : 0.086720879990966185,
+    "y" : 0.72190476190476183
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "will not occur in a particular installation.",
+    "w" : 0.27913279132791324,
+    "x" : 0.086720871860885146,
+    "y" : 0.71428571434920629
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.020952380952381056,
+    "text" : "WHAT'S IN THE BOX",
+    "w" : 0.30081300813008133,
+    "x" : 0.092140918401084057,
+    "y" : 0.6476190475238095
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.02857142857142847,
+    "text" : "2",
+    "w" : 0.04065040650406504,
+    "x" : 0.69647696506000778,
+    "y" : 0.58476190485714286
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.009523809523809601,
+    "text" : "Jackery",
+    "w" : 0.048780487804878037,
+    "x" : 0.26016260243902434,
+    "y" : 0.54666666676190467
+  },
+  {
+    "confidence" : 0.30000001192092896,
+    "h" : 0.018199864342099192,
+    "text" : "33: :908",
+    "w" : 0.13305930781170608,
+    "x" : 0.21395814970133001,
+    "y" : 0.50042387753432671
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.017142857142857126,
+    "text" : "Jackery HomePower 3000",
+    "w" : 0.2032520325203252,
+    "x" : 0.18157181480352308,
+    "y" : 0.41904761926190481
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.017142857142857126,
+    "text" : "AC Charging Cable",
+    "w" : 0.1517615176151762,
+    "x" : 0.64227642151761521,
+    "y" : 0.41904761921904754
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.030476190476190435,
+    "text" : "3",
+    "w" : 0.043360433604336057,
+    "x" : 0.26016260135501357,
+    "y" : 0.34285714276190471
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "USB-C Cable",
+    "w" : 0.10298102981029814,
+    "x" : 0.23306233165311649,
+    "y" : 0.19047619055238096
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.009523809523809601,
+    "text" : "Documents",
+    "w" : 0.089430894308943132,
+    "x" : 0.67208672198509489,
+    "y" : 0.190476190547619
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.020952380952380945,
+    "text" : "TIP",
+    "w" : 0.043360433604336057,
+    "x" : 0.13008130124661246,
+    "y" : 0.10666666676190484
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.017142857142857126,
+    "text" : "The car charging cable is not included but is available for purchase separately on our",
+    "w" : 0.63956639566395657,
+    "x" : 0.22493224132791348,
+    "y" : 0.1180952380238095
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.019047619047619091,
+    "text" : "website. For assistance, please contact Jackery Customer Support.",
+    "w" : 0.50135501355013545,
+    "x" : 0.22764227496612466,
+    "y" : 0.099047619285714261
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.017142857142857015,
+    "text" : "03",
+    "w" : 0.027100271002710036,
+    "x" : 0.070460704810298105,
+    "y" : 0.022857142642857209
+  }
+]

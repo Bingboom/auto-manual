@@ -1,0 +1,186 @@
+[
+  {
+    "width": 1280,
+    "file": "1280-00.png",
+    "y": 15505,
+    "sections": [
+      "charging"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-01.png",
+    "y": 16505,
+    "sections": [
+      "charging"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-02.png",
+    "y": 17505,
+    "sections": [
+      "charging",
+      "storage",
+      "troubleshooting"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-03.png",
+    "y": 18505,
+    "sections": [
+      "troubleshooting",
+      "specifications"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-04.png",
+    "y": 19505,
+    "sections": [
+      "specifications",
+      "warranty"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-05.png",
+    "y": 20505,
+    "sections": [
+      "warranty",
+      "app-setup"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-06.png",
+    "y": 21505,
+    "sections": [
+      "warranty",
+      "app-setup"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-07.png",
+    "y": 22505,
+    "sections": [
+      "app-setup"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-08.png",
+    "y": 23505,
+    "sections": [
+      "app-setup",
+      "jackery-inc"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-00.png",
+    "y": 18766,
+    "sections": [
+      "connections",
+      "charging"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-01.png",
+    "y": 19766,
+    "sections": [
+      "charging"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-02.png",
+    "y": 20766,
+    "sections": [
+      "charging"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-03.png",
+    "y": 21766,
+    "sections": [
+      "charging",
+      "storage",
+      "troubleshooting"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-04.png",
+    "y": 22766,
+    "sections": [
+      "troubleshooting",
+      "specifications"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-05.png",
+    "y": 23766,
+    "sections": [
+      "specifications",
+      "warranty"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-06.png",
+    "y": 24766,
+    "sections": [
+      "specifications",
+      "warranty"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-07.png",
+    "y": 25766,
+    "sections": [
+      "warranty",
+      "app-setup"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-08.png",
+    "y": 26766,
+    "sections": [
+      "app-setup"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-09.png",
+    "y": 27766,
+    "sections": [
+      "app-setup"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-10.png",
+    "y": 28766,
+    "sections": [
+      "app-setup",
+      "jackery-inc"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-11.png",
+    "y": 29064,
+    "sections": [
+      "app-setup",
+      "jackery-inc"
+    ]
+  }
+]

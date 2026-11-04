@@ -1,0 +1,521 @@
+[
+  {
+    "width": 1280,
+    "file": "1280-00.png",
+    "y": 16603,
+    "sections": [
+      "connections",
+      "cascade-parallel-connection"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-01.png",
+    "y": 17603,
+    "sections": [
+      "connections",
+      "cascade-parallel-connection",
+      "connect-to-epo-switch",
+      "backup-power-connection"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-02.png",
+    "y": 18603,
+    "sections": [
+      "connections",
+      "backup-power-connection",
+      "connect-to-mts-sold-separately",
+      "single-unit-connection-with-mts"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-03.png",
+    "y": 19603,
+    "sections": [
+      "connections",
+      "single-unit-connection-with-mts",
+      "cascade-parallel-connection-with-mts"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-04.png",
+    "y": 20603,
+    "sections": [
+      "connections",
+      "cascade-parallel-connection-with-mts",
+      "charging",
+      "charging-via-120v-ac-wall-outlet"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-05.png",
+    "y": 21603,
+    "sections": [
+      "charging",
+      "charging-via-120v-ac-wall-outlet",
+      "charging-via-240v-ac-input"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-06.png",
+    "y": 22603,
+    "sections": [
+      "charging",
+      "charging-via-240v-ac-input",
+      "charging-via-solar-panels-sold-separately"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-07.png",
+    "y": 23603,
+    "sections": [
+      "charging",
+      "charging-via-240v-ac-input",
+      "charging-via-solar-panels-sold-separately"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-08.png",
+    "y": 24603,
+    "sections": [
+      "charging",
+      "charging-via-solar-panels-sold-separately",
+      "charging-with-a-car-charger-sold-separately",
+      "troubleshooting"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-09.png",
+    "y": 25603,
+    "sections": [
+      "troubleshooting",
+      "storage"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-10.png",
+    "y": 26603,
+    "sections": [
+      "storage",
+      "specifications"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-11.png",
+    "y": 27603,
+    "sections": [
+      "specifications",
+      "warranty"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-12.png",
+    "y": 28603,
+    "sections": [
+      "warranty",
+      "limited-warranty",
+      "warranty-period",
+      "repair-or-replacement",
+      "limited-to-original-consumer-buyer",
+      "exclusions"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-13.png",
+    "y": 29603,
+    "sections": [
+      "warranty",
+      "exclusions",
+      "interpretation-rights",
+      "app-setup",
+      "download-the-app-and-log-in",
+      "add-device"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-14.png",
+    "y": 30603,
+    "sections": [
+      "app-setup",
+      "add-device"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-15.png",
+    "y": 31603,
+    "sections": [
+      "app-setup",
+      "add-device",
+      "unbind-the-device",
+      "notes",
+      "to-turn-on-wi-fi-bluetooth",
+      "to-turn-off-wi-fi-bluetooth",
+      "to-reset-wi-fi-bluetooth"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-16.png",
+    "y": 32603,
+    "sections": [
+      "app-setup",
+      "notes",
+      "to-turn-off-wi-fi-bluetooth",
+      "to-reset-wi-fi-bluetooth",
+      "smart-home-backup-system-ac-ess-model-hb3600c-ts05a"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-17.png",
+    "y": 33603,
+    "sections": [
+      "smart-home-backup-system-ac-ess-model-hb3600c-ts05a",
+      "specifications-model-jhp-3600c"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-18.png",
+    "y": 34603,
+    "sections": [
+      "specifications-model-jhp-3600c"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-19.png",
+    "y": 35603,
+    "sections": [
+      "specifications-model-jhp-3600c",
+      "jackery-battery-pack-3600-sold-separately",
+      "jackery-automatic-transfer-switch-sold-separately"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-20.png",
+    "y": 36603,
+    "sections": [
+      "jackery-automatic-transfer-switch-sold-separately",
+      "package-list",
+      "jackery-homepower-3600-pro-max"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-21.png",
+    "y": 37603,
+    "sections": [
+      "jackery-automatic-transfer-switch-sold-separately",
+      "package-list",
+      "jackery-homepower-3600-pro-max",
+      "id1",
+      "id2",
+      "contact-us"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-22.png",
+    "y": 37834,
+    "sections": [
+      "jackery-automatic-transfer-switch-sold-separately",
+      "package-list",
+      "id1",
+      "id2",
+      "contact-us"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-00.png",
+    "y": 20023,
+    "sections": [
+      "connections",
+      "connect-to-battery-pack-s-sold-separately",
+      "cascade-parallel-connection"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-01.png",
+    "y": 21023,
+    "sections": [
+      "connections",
+      "cascade-parallel-connection",
+      "connect-to-epo-switch",
+      "backup-power-connection"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-02.png",
+    "y": 22023,
+    "sections": [
+      "connections",
+      "backup-power-connection",
+      "connect-to-mts-sold-separately",
+      "single-unit-connection-with-mts"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-03.png",
+    "y": 23023,
+    "sections": [
+      "connections",
+      "single-unit-connection-with-mts",
+      "cascade-parallel-connection-with-mts"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-04.png",
+    "y": 24023,
+    "sections": [
+      "connections",
+      "cascade-parallel-connection-with-mts",
+      "charging"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-05.png",
+    "y": 25023,
+    "sections": [
+      "charging",
+      "charging-via-120v-ac-wall-outlet",
+      "charging-via-240v-ac-input"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-06.png",
+    "y": 26023,
+    "sections": [
+      "charging",
+      "charging-via-120v-ac-wall-outlet",
+      "charging-via-240v-ac-input"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-07.png",
+    "y": 27023,
+    "sections": [
+      "charging",
+      "charging-via-240v-ac-input",
+      "charging-via-solar-panels-sold-separately"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-08.png",
+    "y": 28023,
+    "sections": [
+      "charging",
+      "charging-via-solar-panels-sold-separately",
+      "charging-with-a-car-charger-sold-separately"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-09.png",
+    "y": 29023,
+    "sections": [
+      "charging",
+      "charging-with-a-car-charger-sold-separately",
+      "troubleshooting"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-10.png",
+    "y": 30023,
+    "sections": [
+      "troubleshooting",
+      "storage"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-11.png",
+    "y": 31023,
+    "sections": [
+      "storage",
+      "specifications"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-12.png",
+    "y": 32023,
+    "sections": [
+      "specifications"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-13.png",
+    "y": 33023,
+    "sections": [
+      "specifications",
+      "warranty",
+      "limited-warranty",
+      "warranty-period"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-14.png",
+    "y": 34023,
+    "sections": [
+      "warranty",
+      "warranty-period",
+      "repair-or-replacement",
+      "limited-to-original-consumer-buyer",
+      "exclusions"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-15.png",
+    "y": 35023,
+    "sections": [
+      "warranty",
+      "exclusions",
+      "interpretation-rights",
+      "app-setup",
+      "download-the-app-and-log-in",
+      "add-device"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-16.png",
+    "y": 36023,
+    "sections": [
+      "app-setup",
+      "add-device"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-17.png",
+    "y": 37023,
+    "sections": [
+      "app-setup",
+      "add-device",
+      "unbind-the-device",
+      "notes",
+      "to-turn-on-wi-fi-bluetooth"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-18.png",
+    "y": 38023,
+    "sections": [
+      "app-setup",
+      "notes",
+      "to-turn-on-wi-fi-bluetooth",
+      "to-turn-off-wi-fi-bluetooth",
+      "to-reset-wi-fi-bluetooth",
+      "smart-home-backup-system-ac-ess-model-hb3600c-ts05a"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-19.png",
+    "y": 39023,
+    "sections": [
+      "smart-home-backup-system-ac-ess-model-hb3600c-ts05a",
+      "specifications-model-jhp-3600c"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-20.png",
+    "y": 40023,
+    "sections": [
+      "specifications-model-jhp-3600c"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-21.png",
+    "y": 41023,
+    "sections": [
+      "specifications-model-jhp-3600c"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-22.png",
+    "y": 42023,
+    "sections": [
+      "specifications-model-jhp-3600c",
+      "jackery-battery-pack-3600-sold-separately"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-23.png",
+    "y": 43023,
+    "sections": [
+      "jackery-battery-pack-3600-sold-separately",
+      "jackery-automatic-transfer-switch-sold-separately"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-24.png",
+    "y": 44023,
+    "sections": [
+      "jackery-automatic-transfer-switch-sold-separately",
+      "package-list",
+      "jackery-homepower-3600-pro-max",
+      "id1",
+      "id2"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-25.png",
+    "y": 45023,
+    "sections": [
+      "jackery-automatic-transfer-switch-sold-separately",
+      "package-list",
+      "id1",
+      "id2",
+      "contact-us"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-26.png",
+    "y": 45380,
+    "sections": [
+      "jackery-automatic-transfer-switch-sold-separately",
+      "package-list",
+      "id2",
+      "contact-us"
+    ]
+  }
+]

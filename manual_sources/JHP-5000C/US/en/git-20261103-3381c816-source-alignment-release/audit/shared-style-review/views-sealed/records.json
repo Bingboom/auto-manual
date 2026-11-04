@@ -1,0 +1,44 @@
+[
+  {
+    "width": 1280,
+    "name": "danger",
+    "target": 2114.84375,
+    "actual": 1935
+  },
+  {
+    "width": 1280,
+    "name": "faults",
+    "target": 11985.1875,
+    "actual": 11805
+  },
+  {
+    "width": 1280,
+    "failed": [],
+    "metrics": {
+      "broken": [],
+      "overflow": false,
+      "backgrounds": []
+    }
+  },
+  {
+    "width": 390,
+    "name": "danger",
+    "target": 3298.109375,
+    "actual": 3117
+  },
+  {
+    "width": 390,
+    "name": "faults",
+    "target": 14981.296875,
+    "actual": 14801
+  },
+  {
+    "width": 390,
+    "failed": [],
+    "metrics": {
+      "broken": [],
+      "overflow": false,
+      "backgrounds": []
+    }
+  }
+]

@@ -13,6 +13,9 @@ from bs4 import BeautifulSoup
 
 from tools.manual_ir.hashing import file_sha256
 from tools.word.bundle_docx_pandoc import resolve_pandoc_binary
+from unittest import mock
+from tools.web import stylesheets
+from tests.historical_app_styles import pre_rowspan_divider_styles
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGE = ROOT / "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native"
@@ -137,13 +140,20 @@ class Je2000eJpWebTests(unittest.TestCase):
         for symbol in recipe:
             self.assertEqual(file_sha256(PACKAGE / symbol["path"]), catalog[symbol["shared_symbol_key"]]["sha256"])
 
+    @pre_rowspan_divider_styles
     def test_cold_replay_matches_stored_candidate(self):
         try:
             subprocess.run([resolve_pandoc_binary(None), "--version"], check=True, capture_output=True)
         except (OSError, RuntimeError, subprocess.CalledProcessError):
             self.skipTest("Pandoc unavailable")
         rebuild = load("je2000e_jp_rebuild", PACKAGE / "rebuild.py")
-        with tempfile.TemporaryDirectory() as temp:
+        # The package pins web_manual.css by hash; verify the historical copy the decorator supplies.
+        historical = stylesheets.get_paths().renderer_contracts_dir / "web_manual.css"
+        live = (ROOT / "docs/renderers/contracts/web_manual.css").resolve()
+        pinned_sha256 = rebuild.file_sha256
+        with tempfile.TemporaryDirectory() as temp, mock.patch.object(
+                rebuild, "file_sha256",
+                lambda path: pinned_sha256(historical if Path(path).resolve() == live else path)):
             output = Path(temp) / "replay"
             rebuild.assemble(output)
             for name in (MARKDOWN, "manual.ir.json", "_static/source_geometry.css"):

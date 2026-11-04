@@ -1,0 +1,335 @@
+[
+  {
+    "width": 1400,
+    "height": 23602,
+    "coordinates": [
+      {
+        "requested": 0,
+        "actual": 0,
+        "file": "1400-00.png"
+      },
+      {
+        "requested": 850,
+        "actual": 850,
+        "file": "1400-01.png"
+      },
+      {
+        "requested": 1700,
+        "actual": 1700,
+        "file": "1400-02.png"
+      },
+      {
+        "requested": 2550,
+        "actual": 2550,
+        "file": "1400-03.png"
+      },
+      {
+        "requested": 3400,
+        "actual": 3400,
+        "file": "1400-04.png"
+      },
+      {
+        "requested": 4250,
+        "actual": 4250,
+        "file": "1400-05.png"
+      },
+      {
+        "requested": 5100,
+        "actual": 5100,
+        "file": "1400-06.png"
+      },
+      {
+        "requested": 5950,
+        "actual": 5950,
+        "file": "1400-07.png"
+      },
+      {
+        "requested": 6800,
+        "actual": 6800,
+        "file": "1400-08.png"
+      },
+      {
+        "requested": 7650,
+        "actual": 7650,
+        "file": "1400-09.png"
+      },
+      {
+        "requested": 8500,
+        "actual": 8500,
+        "file": "1400-10.png"
+      },
+      {
+        "requested": 9350,
+        "actual": 9350,
+        "file": "1400-11.png"
+      },
+      {
+        "requested": 10200,
+        "actual": 10200,
+        "file": "1400-12.png"
+      },
+      {
+        "requested": 11050,
+        "actual": 11050,
+        "file": "1400-13.png"
+      },
+      {
+        "requested": 11900,
+        "actual": 11900,
+        "file": "1400-14.png"
+      },
+      {
+        "requested": 12750,
+        "actual": 12750,
+        "file": "1400-15.png"
+      },
+      {
+        "requested": 13600,
+        "actual": 13600,
+        "file": "1400-16.png"
+      },
+      {
+        "requested": 14450,
+        "actual": 14450,
+        "file": "1400-17.png"
+      },
+      {
+        "requested": 15300,
+        "actual": 15300,
+        "file": "1400-18.png"
+      },
+      {
+        "requested": 16150,
+        "actual": 16150,
+        "file": "1400-19.png"
+      },
+      {
+        "requested": 17000,
+        "actual": 17000,
+        "file": "1400-20.png"
+      },
+      {
+        "requested": 17850,
+        "actual": 17850,
+        "file": "1400-21.png"
+      },
+      {
+        "requested": 18700,
+        "actual": 18700,
+        "file": "1400-22.png"
+      },
+      {
+        "requested": 19550,
+        "actual": 19550,
+        "file": "1400-23.png"
+      },
+      {
+        "requested": 20400,
+        "actual": 20400,
+        "file": "1400-24.png"
+      },
+      {
+        "requested": 21250,
+        "actual": 21250,
+        "file": "1400-25.png"
+      },
+      {
+        "requested": 22100,
+        "actual": 22100,
+        "file": "1400-26.png"
+      },
+      {
+        "requested": 22950,
+        "actual": 22602,
+        "file": "1400-27.png"
+      }
+    ],
+    "failed": [],
+    "broken": [],
+    "overflow": false
+  },
+  {
+    "width": 390,
+    "height": 29512,
+    "coordinates": [
+      {
+        "requested": 0,
+        "actual": 0,
+        "file": "390-00.png"
+      },
+      {
+        "requested": 850,
+        "actual": 849,
+        "file": "390-01.png"
+      },
+      {
+        "requested": 1700,
+        "actual": 1700,
+        "file": "390-02.png"
+      },
+      {
+        "requested": 2550,
+        "actual": 2550,
+        "file": "390-03.png"
+      },
+      {
+        "requested": 3400,
+        "actual": 3400,
+        "file": "390-04.png"
+      },
+      {
+        "requested": 4250,
+        "actual": 4250,
+        "file": "390-05.png"
+      },
+      {
+        "requested": 5100,
+        "actual": 5100,
+        "file": "390-06.png"
+      },
+      {
+        "requested": 5950,
+        "actual": 5950,
+        "file": "390-07.png"
+      },
+      {
+        "requested": 6800,
+        "actual": 6800,
+        "file": "390-08.png"
+      },
+      {
+        "requested": 7650,
+        "actual": 7650,
+        "file": "390-09.png"
+      },
+      {
+        "requested": 8500,
+        "actual": 8500,
+        "file": "390-10.png"
+      },
+      {
+        "requested": 9350,
+        "actual": 9350,
+        "file": "390-11.png"
+      },
+      {
+        "requested": 10200,
+        "actual": 10200,
+        "file": "390-12.png"
+      },
+      {
+        "requested": 11050,
+        "actual": 11050,
+        "file": "390-13.png"
+      },
+      {
+        "requested": 11900,
+        "actual": 11900,
+        "file": "390-14.png"
+      },
+      {
+        "requested": 12750,
+        "actual": 12750,
+        "file": "390-15.png"
+      },
+      {
+        "requested": 13600,
+        "actual": 13600,
+        "file": "390-16.png"
+      },
+      {
+        "requested": 14450,
+        "actual": 14450,
+        "file": "390-17.png"
+      },
+      {
+        "requested": 15300,
+        "actual": 15300,
+        "file": "390-18.png"
+      },
+      {
+        "requested": 16150,
+        "actual": 16150,
+        "file": "390-19.png"
+      },
+      {
+        "requested": 17000,
+        "actual": 17000,
+        "file": "390-20.png"
+      },
+      {
+        "requested": 17850,
+        "actual": 17850,
+        "file": "390-21.png"
+      },
+      {
+        "requested": 18700,
+        "actual": 18700,
+        "file": "390-22.png"
+      },
+      {
+        "requested": 19550,
+        "actual": 19550,
+        "file": "390-23.png"
+      },
+      {
+        "requested": 20400,
+        "actual": 20400,
+        "file": "390-24.png"
+      },
+      {
+        "requested": 21250,
+        "actual": 21250,
+        "file": "390-25.png"
+      },
+      {
+        "requested": 22100,
+        "actual": 22100,
+        "file": "390-26.png"
+      },
+      {
+        "requested": 22950,
+        "actual": 22950,
+        "file": "390-27.png"
+      },
+      {
+        "requested": 23800,
+        "actual": 23800,
+        "file": "390-28.png"
+      },
+      {
+        "requested": 24650,
+        "actual": 24650,
+        "file": "390-29.png"
+      },
+      {
+        "requested": 25500,
+        "actual": 25500,
+        "file": "390-30.png"
+      },
+      {
+        "requested": 26350,
+        "actual": 26350,
+        "file": "390-31.png"
+      },
+      {
+        "requested": 27200,
+        "actual": 27200,
+        "file": "390-32.png"
+      },
+      {
+        "requested": 28050,
+        "actual": 28050,
+        "file": "390-33.png"
+      },
+      {
+        "requested": 28900,
+        "actual": 28511,
+        "file": "390-34.png"
+      }
+    ],
+    "failed": [],
+    "broken": [],
+    "overflow": false
+  }
+]

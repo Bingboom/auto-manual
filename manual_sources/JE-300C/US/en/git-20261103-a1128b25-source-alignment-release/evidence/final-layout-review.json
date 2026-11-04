@@ -1,0 +1,738 @@
+{
+  "model": "JE-300C",
+  "record_id": "reczz28SPRx9psWa",
+  "status": "local_review_passed",
+  "source_sha256": "a1128b25213d72cecd35c48a901a958612f4568cb0b4068b1c72ab8e553e9498",
+  "whole_document_source_pages": [
+    2,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18
+  ],
+  "scope": "Front cover and paper TOC excluded; complete body and back contact/QR included",
+  "differences_review": [
+    {
+      "old_item": 1,
+      "old_statement": "Outlined PDF: original.pdf has no text layer; every English line is a manual transcription from 300 dpi renders, kept as printed (source/intake.py names the physical page of each block).",
+      "current_source": "Outlined current original.pdf physical p2 and p4–18 reviewed in both directions; no source paragraph silently rewritten or legacy-source paragraph retained.",
+      "approval": "No omission or layout approval inferred from old declaration. Explicit original and current user scope excludes front cover and paper TOC."
+    },
+    {
+      "old_item": 2,
+      "old_statement": "Shared Manual IR: content.json is replayed through the shared flow renderer and shared components. No package class, inline style or plain table (prepared-document shared-style gate).",
+      "current_source": "Native ManualIR retained. Source-local geometry restores source pairing and shared theme typography remains a Web carrier difference. Troubleshooting uses native rowspan only where the actual source merges cells.",
+      "approval": "No omission or layout approval inferred from old declaration. Explicit original and current user scope excludes front cover and paper TOC."
+    },
+    {
+      "old_item": 3,
+      "old_statement": "Print weights: bold print runs stay strong; headings keep print case. Printed bullet and number marks become lists; hollow-bullet items nest under their item. Subscripts (V_oc, LiFePO4) stay subscript.",
+      "current_source": "Bold wording, signal-word colons and V_oc/LiFePO₄ subscripts are retained. LCD table uses original circled Unicode row numbers and one shared high/low-temperature number cell.",
+      "approval": "No omission or layout approval inferred from old declaration. Explicit original and current user scope excludes front cover and paper TOC."
+    },
+    {
+      "old_item": 4,
+      "old_statement": "Line ends inside a paragraph are wraps; the print's explicit line breaks inside one block stay line breaks.",
+      "current_source": "Only responsive wraps and repeated spaces differ. Native text preserves original punctuation, technical statements and source concerns; no stylistic content corrections inferred.",
+      "approval": "No omission or layout approval inferred from old declaration. Explicit original and current user scope excludes front cover and paper TOC."
+    },
+    {
+      "old_item": 5,
+      "old_statement": "Figures are source panels cropped just inside the print's panel frame (the decorative frame is drawn by the shared theme); words drawn in the art stay in the art and the alt text carries printed sentences. Notes and cautions the print boxes inside a panel are shared callout strips under the figure.",
+      "current_source": "Original source figure panels and their own pictograms retained. Safety black-risk and white-warning symbols extracted from this exact PDF. Safety/operating columns, FCC opening+two-column body, LCD button/table and input-indicator/table relationships restored.",
+      "approval": "No omission or layout approval inferred from old declaration. Explicit original and current user scope excludes front cover and paper TOC."
+    },
+    {
+      "old_item": 6,
+      "old_statement": "Cover (p1) and table of contents (p3) are not Web content; the back cover (p17) becomes the closing contact section without its phone/mail/web pictograms.",
+      "current_source": "Front coverp1 and paperTOCp3 remain excluded by explicit operator scope. Backcontactp18 native company/address/phone/email/web and ownphone/mail/webpictograms plus originalQR are retained.",
+      "approval": "No omission or layout approval inferred from old declaration. Explicit original and current user scope excludes front cover and paper TOC."
+    }
+  ],
+  "actual_source_changes": [
+    "Own safety risk/warning icons and exact signal words restored; desktop source two-column flow and mobile reading order retained.",
+    "FCC full-width two-condition opening above naturally flowing two-column body; no invented English content.",
+    "LCD native circled numbers and high/low-temperature shared number rowspan restored.",
+    "Original back-contact pictograms and QR restored alongside native contact fields.",
+    "Original troubleshooting F0–F3 Restart cell restored as native rowspan4; correct source-specific header and every remaining F4–F9 cell retained.",
+    "Source p15 long introductory sentence remains in measures header cell, not moved outside or replaced by a generic heading."
+  ],
+  "whole_body_visual": {
+    "method": "1300px sequential viewport screenshots with recorded actual scrollY; final changed components independently recaptured at 1280/390",
+    "tile_audit": {
+      "tiles": [
+        {
+          "tile": 0,
+          "scroll": 9,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        },
+        {
+          "tile": 1,
+          "scroll": 1259,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        },
+        {
+          "tile": 2,
+          "scroll": 2509,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        },
+        {
+          "tile": 3,
+          "scroll": 3759,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        },
+        {
+          "tile": 4,
+          "scroll": 5009,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        },
+        {
+          "tile": 5,
+          "scroll": 6259,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        },
+        {
+          "tile": 6,
+          "scroll": 7509,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        },
+        {
+          "tile": 7,
+          "scroll": 8759,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        },
+        {
+          "tile": 8,
+          "scroll": 10009,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        },
+        {
+          "tile": 9,
+          "scroll": 11259,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        },
+        {
+          "tile": 10,
+          "scroll": 12509,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        },
+        {
+          "tile": 11,
+          "scroll": 13759,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        },
+        {
+          "tile": 12,
+          "scroll": 15009,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        },
+        {
+          "tile": 13,
+          "scroll": 16259,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        },
+        {
+          "tile": 14,
+          "scroll": 17509,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        },
+        {
+          "tile": 15,
+          "scroll": 17850,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        }
+      ],
+      "request_failures": [],
+      "background_images": []
+    }
+  },
+  "forward_source_check": {
+    "model": "JE-300C",
+    "checked_ocr_lines": 156,
+    "candidates": [
+      {
+        "source_page": 4,
+        "source_ocr": "have adequate airfiow in a coo, dry environment to DO NOT place the unit upside down or on its side",
+        "coverage": 0.6142857142857143,
+        "web_near": "DO NOT place the unit upside down or on its side during use or storage.",
+        "source_text": "have adequate airflow in a cool, dry environment to prevent overheating. DO NOT place the unit upside down or on its side during use or storage.",
+        "web_locator": "[data-source-layout=\"operating-columns\"] native list items",
+        "decision": "Originalp4two-columnflow; OCRmerged unrelatedleft/rightlines. Bothcorrectseparatebulletspresent."
+      }
+    ]
+  },
+  "reverse_source_check": {
+    "native_leaves": 232,
+    "exact_source_ocr_char_coverage": 219,
+    "visually_resolved": [
+      {
+        "native_leaf_index": 11,
+        "source_text": "During the lifecycle of energy storage products, a certain degree of capacity and energy degradation is expected. As the number of charge and discharge cycles increases and storage time extends, this degradation will gradually intensify, which is a normal phenomenon consistent with the natural aging of battery cells.",
+        "web_text": "During the lifecycle of energy storage products, a certain degree of capacity and energy degradation is expected. As the number of charge and discharge cycles increases and storage time extends, this degradation will gradually intensify, which is a normal phenomenon consistent with the natural aging of battery cells.",
+        "source_pages": [
+          5
+        ],
+        "source_locator": "USER MAINTENANCE INSTRUCTIONS",
+        "web_locator": "#furo-main-content native leaf 11 (p)",
+        "decision": "Full source capacity/energy degradation, charge/discharge cycles and natural aging paragraph checked visually; outlined OCR omits words but native text matches."
+      },
+      {
+        "native_leaf_index": 24,
+        "source_text": "Warning and Caution Symbols. Must read to alert individuals to potential hazards or risks.",
+        "web_text": "Warning and Caution Symbols. Must read to alert individuals to potential hazards or risks.",
+        "source_pages": [
+          5
+        ],
+        "source_locator": "Meaning of Symbols / warning-triangle row",
+        "web_locator": "#furo-main-content native leaf 24 (td)",
+        "decision": "Exact source Warning and Caution Symbols sentence retained; OCR characters only."
+      },
+      {
+        "native_leaf_index": 26,
+        "source_text": "This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling. Proper disposal and recycling can help protect the environment. For more information about the disposal and recycling of this product, contact your local community, disposal service, or dealer.",
+        "web_text": "This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling. Proper disposal and recycling can help protect the environment. For more information about the disposal and recycling of this product, contact your local community, disposal service, or dealer.",
+        "source_pages": [
+          5
+        ],
+        "source_locator": "Meaning of Symbols / crossed-out-bin row",
+        "web_locator": "#furo-main-content native leaf 26 (td)",
+        "decision": "Whole disposal/recycling/local community/service/dealer paragraph matches source. Native table keeps source two-column symbol groups."
+      },
+      {
+        "native_leaf_index": 37,
+        "source_text": "NOTE: This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules. These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to communications. However, there is no guarantee that radio interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:",
+        "web_text": "NOTE: This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules. These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to communications. However, there is no guarantee that radio interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:",
+        "source_pages": [
+          5
+        ],
+        "source_locator": "FCC NOTE paragraph below full-width opening",
+        "web_locator": "#furo-main-content native leaf 37 (p)",
+        "decision": "Full source Class B/part15/interference/power-cycle/try corrective measures copy is present. Native paragraph flows across two body columns as source."
+      },
+      {
+        "native_leaf_index": 40,
+        "source_text": "Connect the equipment into an outlet on a circuit different from that to which the receiver is connected.",
+        "web_text": "Connect the equipment into an outlet on a circuit different from that to which the receiver is connected.",
+        "source_pages": [
+          5
+        ],
+        "source_locator": "FCC corrective measures third bullet",
+        "web_locator": "#furo-main-content native leaf 40 (p)",
+        "decision": "Source says circuit different from that to which the receiver is connected. Exact sentence retained."
+      },
+      {
+        "native_leaf_index": 42,
+        "source_text": "MODIFICATION: Any changes or modifications not expressly approved by the grantee of this device could void the user’s authority to operate the device.",
+        "web_text": "MODIFICATION: Any changes or modifications not expressly approved by the grantee of this device could void the user’s authority to operate the device.",
+        "source_pages": [
+          5
+        ],
+        "source_locator": "FCC MODIFICATION paragraph",
+        "web_locator": "#furo-main-content native leaf 42 (p)",
+        "decision": "Source grantee/authority-to-operate sentence visually confirmed. OCR wrong best-page assignment is rejected; actual source is p5."
+      },
+      {
+        "native_leaf_index": 68,
+        "source_text": "The product is charged via the DC Input (8020) using DC 12V (car charging).",
+        "web_text": "The product is charged via the DC Input (8020) using DC 12V (car charging).",
+        "source_pages": [
+          8
+        ],
+        "source_locator": "LCD Car Charging Indicator row",
+        "web_locator": "#furo-main-content native leaf 68 (td)",
+        "decision": "Source DC input connector and DC12V(car charging) statement retained verbatim, including source 8020/DC8020 variant."
+      },
+      {
+        "native_leaf_index": 74,
+        "source_text": "When the product is being charged, the orange circle around the battery percentage will light up in sequence. When charging other devices, the orange circle will stay on.",
+        "web_text": "When the product is being charged, the orange circle around the battery percentage will light up in sequence. When charging other devices, the orange circle will stay on.",
+        "source_pages": [
+          8
+        ],
+        "source_locator": "LCD Battery Power Indicator row",
+        "web_locator": "#furo-main-content native leaf 74 (td)",
+        "decision": "Both source clauses retained: orange circle lights up in sequence during charging, stays on when charging other devices."
+      },
+      {
+        "native_leaf_index": 80,
+        "source_text": "A product error has occurred. Please refer to the Troubleshooting section for details.",
+        "web_text": "A product error has occurred. Please refer to the Troubleshooting section for details.",
+        "source_pages": [
+          8
+        ],
+        "source_locator": "LCD Fault Code row",
+        "web_locator": "#furo-main-content native leaf 80 (td)",
+        "decision": "Exact source product-error and Troubleshooting sentence retained."
+      },
+      {
+        "native_leaf_index": 132,
+        "source_text": "The recommended temperature for the product ranges from 32°F to 113°F (0°C to 45°C), and the discharging temperature ranges from 5°F to 113°F (-15°C to 45°C). Operating the product beyond this temperature range may restrict its charging and discharging capabilities, or even prevent it from charging or discharging. The charging power and battery capacity of the product may vary due to temperature fluctuations.",
+        "web_text": "The recommended temperature for the product ranges from 32°F to 113°F (0°C to 45°C), and the discharging temperature ranges from 5°F to 113°F (-15°C to 45°C). Operating the product beyond this temperature range may restrict its charging and discharging capabilities, or even prevent it from charging or discharging. The charging power and battery capacity of the product may vary due to temperature fluctuations.",
+        "source_pages": [
+          13
+        ],
+        "source_locator": "Charging introductory Note",
+        "web_locator": "#furo-main-content native leaf 132 (td)",
+        "decision": "Original32–113F(0–45C) charging and5–113F(-15–45C) discharging ranges and both limitation/power-variation sentences checked."
+      },
+      {
+        "native_leaf_index": 161,
+        "source_text": "1. Wait for the grid to normalize before charging the product via AC wall outlet. 2. Check whether the air intake and exhaust vents are blocked; ensure 30 cm clearance on both side of the product. 3. Place the product in a shaded, well-ventilated area where the ambient temperature is below 45°C. 4. Disconnect all loads from the product, keep it idle and wait until the fault disappears. 5. Restart the product.",
+        "web_text": "1. Wait for the grid to normalize before charging the product via AC wall outlet. 2. Check whether the air intake and exhaust vents are blocked; ensure 30 cm clearance on both side of the product. 3. Place the product in a shaded, well-ventilated area where the ambient temperature is below 45°C. 4. Disconnect all loads from the product, keep it idle and wait until the fault disappears. 5. Restart the product.",
+        "source_pages": [
+          15
+        ],
+        "source_locator": "Troubleshooting F6 five steps",
+        "web_locator": "#furo-main-content native leaf 161 (td)",
+        "decision": "Original grid-normalization,30cm clearance,below45C,remove loads/wait,and restart instructions all retained in order."
+      },
+      {
+        "native_leaf_index": 163,
+        "source_text": "1. Remove all DC inputs from the product. 2. If you charge the product via a solar panel, check the open-circuit voltage (V oc ) of the connected solar panel. The product allows a maximum DC input voltage of 28V. 3. Restart the product and keep it idle. Wait until the fault disappears.",
+        "web_text": "1. Remove all DC inputs from the product. 2. If you charge the product via a solar panel, check the open-circuit voltage (V oc ) of the connected solar panel. The product allows a maximum DC input voltage of 28V. 3. Restart the product and keep it idle. Wait until the fault disappears.",
+        "source_pages": [
+          15
+        ],
+        "source_locator": "Troubleshooting F7 cell",
+        "web_locator": "#furo-main-content native leaf 163 (td)",
+        "decision": "Source three corrective steps including V_oc and maximum28V retained in native text with subscript; OCR joins numbered lines."
+      },
+      {
+        "native_leaf_index": 178,
+        "source_text": "About 8.16 lbs / 3.7 kg",
+        "web_text": "About 8.16 lbs / 3.7 kg",
+        "source_pages": [
+          16
+        ],
+        "source_locator": "Specifications Weight",
+        "web_locator": "#furo-main-content native leaf 178 (td)",
+        "decision": "Source About8.16lbs/3.7kg visually confirmed; OCR fraction/spacing only."
+      }
+    ]
+  },
+  "source_notes": [
+    "No historical editorial correction claimed; all technical wording follows this exact supplied attachment.",
+    "Frontcover/paperTOC exclusion is recorded historical operator scope and current direct user instruction."
+  ],
+  "browser": [
+    {
+      "width": 1280,
+      "images": 49,
+      "broken": [],
+      "uncontained": [],
+      "document": {
+        "viewport": 1280,
+        "width": 1280,
+        "cover": 0
+      },
+      "layouts": [
+        {
+          "key": "inbox",
+          "columns": "auto",
+          "grid": "none",
+          "rectWidth": 657.21875
+        },
+        {
+          "key": "lcd",
+          "columns": "auto",
+          "grid": "none",
+          "rectWidth": 657.21875
+        },
+        {
+          "key": "troubleshooting",
+          "columns": "auto",
+          "grid": "none",
+          "rectWidth": 648.84375
+        },
+        {
+          "key": "contactstrip",
+          "columns": "auto",
+          "grid": "292.078px 253.141px 80px",
+          "rectWidth": 657.21875
+        },
+        {
+          "key": "danger",
+          "columns": "auto",
+          "grid": "36.7969px 63.3281px 541.094px",
+          "rectWidth": 657.21875
+        },
+        {
+          "key": "warning",
+          "columns": "auto",
+          "grid": "80px 230.219px",
+          "rectWidth": 316.609375
+        },
+        {
+          "key": "risk",
+          "columns": "auto",
+          "grid": "none",
+          "rectWidth": 657.21875
+        },
+        {
+          "key": "safety",
+          "columns": "2",
+          "grid": "none",
+          "rectWidth": 657.21875
+        },
+        {
+          "key": "operating",
+          "columns": "2",
+          "grid": "none",
+          "rectWidth": 657.21875
+        },
+        {
+          "key": "fcc",
+          "columns": "2",
+          "grid": "repeat(2, minmax(0px, 1fr))",
+          "rectWidth": 599.625
+        }
+      ],
+      "request_failures": [],
+      "background_images": []
+    },
+    {
+      "width": 390,
+      "images": 49,
+      "broken": [],
+      "uncontained": [],
+      "document": {
+        "viewport": 390,
+        "width": 390,
+        "cover": 0
+      },
+      "layouts": [
+        {
+          "key": "inbox",
+          "columns": "auto",
+          "grid": "none",
+          "rectWidth": 358
+        },
+        {
+          "key": "lcd",
+          "columns": "auto",
+          "grid": "none",
+          "rectWidth": 358
+        },
+        {
+          "key": "troubleshooting",
+          "columns": "auto",
+          "grid": "none",
+          "rectWidth": 640
+        },
+        {
+          "key": "contactstrip",
+          "columns": "auto",
+          "grid": "262px 80px",
+          "rectWidth": 358
+        },
+        {
+          "key": "danger",
+          "columns": "auto",
+          "grid": "36.7969px 313.203px",
+          "rectWidth": 358
+        },
+        {
+          "key": "warning",
+          "columns": "auto",
+          "grid": "80px 271.609px",
+          "rectWidth": 358
+        },
+        {
+          "key": "risk",
+          "columns": "auto",
+          "grid": "none",
+          "rectWidth": 358
+        },
+        {
+          "key": "safety",
+          "columns": "auto",
+          "grid": "none",
+          "rectWidth": 358
+        },
+        {
+          "key": "operating",
+          "columns": "auto",
+          "grid": "none",
+          "rectWidth": 358
+        },
+        {
+          "key": "fcc",
+          "columns": "1",
+          "grid": "minmax(0px, 1fr)",
+          "rectWidth": 326
+        }
+      ],
+      "request_failures": [],
+      "background_images": []
+    }
+  ],
+  "mobile_troubleshooting_scroll": {
+    "clientWidth": 356,
+    "scrollWidth": 646,
+    "scrollLeft": 290,
+    "overflowX": "auto",
+    "rowSpan": 4
+  },
+  "remaining_source_or_layout_issues": [],
+  "acceptance_basis": "Whole-body original-source, bidirectional copy and desktop/mobile review under delegated local acceptance; not release approval",
+  "build": {
+    "strict_sphinx": "passed -n -W --keep-going",
+    "publication_status": "candidate-pending-operator-review",
+    "publication_eligible": false,
+    "candidate_rebuild_markdown_equals_strict_sphinx_verified_render": true,
+    "candidate_css_art_equals_strict_sphinx_verified_render": true,
+    "byte_identical_render_files": [
+      {
+        "path": "index.md",
+        "sha256": "40ec232786479912e0aef796d1484c785ca0305e8d5e286e1351aa148ff463bb"
+      },
+      {
+        "path": "manual_je300c_us_en.md",
+        "sha256": "812eb37804cd1e17ebd3ca61a49f7a72ffbee11126aff71987c0309e31dafc63"
+      },
+      {
+        "path": "_static/web_manual.css",
+        "sha256": "c3604a2e5f22b04bc745bb99cf203b50e60222af70c0aeba3d968cc28adac9ce"
+      },
+      {
+        "path": "_static/source_presentation.css",
+        "sha256": "cc7911138e0ef161c900203a02455fc7b481327d129ed96f2c1dd567e451a5b8"
+      },
+      {
+        "path": "assets/symbol_weee.png",
+        "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5"
+      },
+      {
+        "path": "assets/do_not_dismantle_dark_hte147.svg",
+        "sha256": "10462368d9310033fc5e2626ba2f0934407ecabf42b740d9d1c4ba3026235d47"
+      },
+      {
+        "path": "assets/contact-phone.png",
+        "sha256": "d13d15c4cfbc65fd2e5f3458c6cf25ee4b186696464e4c6541b5fd9e30d63438"
+      },
+      {
+        "path": "assets/lcd-battery-percentage.svg",
+        "sha256": "b577d4b51dd3845ea4df4e38e90bb7d6e1cab1dda332dc6414e51dffeb39e53c"
+      },
+      {
+        "path": "assets/lcd-car-charging.svg",
+        "sha256": "544d91029a10f3a13f50d365ea95cc2160f0c569caadc71ed4de1d516571d9cd"
+      },
+      {
+        "path": "assets/symbol_battery_charging.svg",
+        "sha256": "6a513fe0122fec428c55a3f840c34ed7afdea311f7f1dd9b6e6fd807d087bf55"
+      },
+      {
+        "path": "assets/symbol_electric_shock.svg",
+        "sha256": "a76bd208ea017906cdcb5624307cdf4b4bb092816d45ef3943a4b3367c837d3f"
+      },
+      {
+        "path": "assets/symbol_no_open_flame.svg",
+        "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f"
+      },
+      {
+        "path": "assets/charging-car.png",
+        "sha256": "5760f799ed4ffb12d8f23fee6d309d3c8f592beb2c4928df22567067282387e8"
+      },
+      {
+        "path": "assets/contact-mail.png",
+        "sha256": "536c0041b5a10bca4086ba9b00cb226fe8d42ece81eee6704fd33ac770c2213e"
+      },
+      {
+        "path": "assets/charging-solar.png",
+        "sha256": "c9f4394b932d46caa3d0b6542fe052f1c9da32b26932d1891cded22c7d2db4b6"
+      },
+      {
+        "path": "assets/lcd-fault-code.svg",
+        "sha256": "0390f59d2f20301b2f6b6400b61d589eb0e98e3a1700cf7e10e3731a7e6b35aa"
+      },
+      {
+        "path": "assets/lcd-energy-saving.svg",
+        "sha256": "b0d6afa954c8196d99ad160519439590c22fcc00140cb9b04bb575b7aa927d26"
+      },
+      {
+        "path": "assets/dc-usb-output.png",
+        "sha256": "ffadb9e1af0d37588f49bf3eb69eec33c9daeb4480e67b3e07f091f28ee1a17d"
+      },
+      {
+        "path": "assets/lcd-display.png",
+        "sha256": "8c2227fd6a56450e4dabdf1def4479300e122b045224b884a68daa1c17f900a9"
+      },
+      {
+        "path": "assets/lcd-ac-wall-charging.svg",
+        "sha256": "8fe4024f27f2963349cc4255a2673d88fac8a7565944ec62b5bc52337bdc284b"
+      },
+      {
+        "path": "assets/safety-risk-triangle.png",
+        "sha256": "b831c5fc988dd2177ae9cb1497b80077d5cac1f591d58718b329f13b8672996e"
+      },
+      {
+        "path": "assets/energy-saving.png",
+        "sha256": "0054f95a063c703d3d1c0943dc22039a20a0351a45024cd3ed70a59dcb2184b8"
+      },
+      {
+        "path": "assets/contact-web.png",
+        "sha256": "e904dea9a1be438dbca50d620c1ed3cf702146098954c1fdd9a5cee32cd0d87b"
+      },
+      {
+        "path": "assets/inbox-ac-cable.png",
+        "sha256": "d18c2248112dc7b93f3ce5bebb8e6b9d55be02c698a59e003645b26098464e5b"
+      },
+      {
+        "path": "assets/charging-usbc.png",
+        "sha256": "ba5c981f0c1ed06f8809765ed08d9511242a57d29b032a62f0ed03f9cc5163eb"
+      },
+      {
+        "path": "assets/symbol_explosive_material_native_v2_3e3a39.svg",
+        "sha256": "d4def93f853179fe0ea0cd7c4ba461da5a70d662d33a899bc48f7a2ef5553a1d"
+      },
+      {
+        "path": "assets/led-light.png",
+        "sha256": "09d0b274ad76fad041dd13c5a65dd9b293c9f7de9ebb1e4c233b9ed4e6a072fb"
+      },
+      {
+        "path": "assets/warning_triangle_dark_hte162.svg",
+        "sha256": "7eee1f724544318b77f50d99896735cb11f833fde5a3e24df1a7a394b70de10e"
+      },
+      {
+        "path": "assets/lcd-output-power.svg",
+        "sha256": "42e2c1cfa5b193ddb24af2779649fdfa8126140ae81b0593d1ed5f98598ee9a5"
+      },
+      {
+        "path": "assets/inbox-unit.png",
+        "sha256": "c2924a39ed871a14a57c4481b5e7fa5eb0318bc61d61460803a2529e9eea8888"
+      },
+      {
+        "path": "assets/ups.png",
+        "sha256": "626850a11d331be5b96bafeb92944d1a4e6bb4ca8168ded841fa33820e428a18"
+      },
+      {
+        "path": "assets/lcd-battery-power.svg",
+        "sha256": "5500242f2fe21a6b1b32d363f483f23841d34f0055c057e530eecdcfe2de0c1f"
+      },
+      {
+        "path": "assets/fcc_mark.svg",
+        "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+      },
+      {
+        "path": "assets/lcd-low-temperature.svg",
+        "sha256": "c53c2100f60c81abcbf113e3ad307c99917ff36954b39af233881f17d69d81a7"
+      },
+      {
+        "path": "assets/symbol_read_manual.svg",
+        "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584"
+      },
+      {
+        "path": "assets/lcd-ups.svg",
+        "sha256": "0163808fd1fe991b44267a5efb30ffe510796372cdc2a87e1b03053d08ea1a66"
+      },
+      {
+        "path": "assets/charging-ac.png",
+        "sha256": "49007852e05c286063fe319fa26d1ba5102f6f44e353c3674c1400a7bd03ac67"
+      },
+      {
+        "path": "assets/power-on-off.png",
+        "sha256": "393021d8052d63e37085d509bbbcdcf82c1f0374f5352ecf3e818a40a43ee171"
+      },
+      {
+        "path": "assets/lcd-input-power.svg",
+        "sha256": "064890bdd120a64c923b8ba6957493762ae8228de7dbbbe1698715021dc1412e"
+      },
+      {
+        "path": "assets/safety-warning-icon.png",
+        "sha256": "f4921d912650dba4997be99604914c6fa23f6c453e340fd5e43c6f0442bb5d55"
+      },
+      {
+        "path": "assets/lcd-ac-power.svg",
+        "sha256": "ae74b5535c88c6f612bfc8fe4f187bb3b106b6b039ac98a809112b6584d1a7c0"
+      },
+      {
+        "path": "assets/lcd-screen.png",
+        "sha256": "31a452faf37147f00595f32381f6f6cc285dad9103ccbe61a05feb405f80ec91"
+      },
+      {
+        "path": "assets/ac-output.png",
+        "sha256": "82bfe301c5a948f80c30deb9df089bbadf34194738aa6afdf1f22772aaa8f6e3"
+      },
+      {
+        "path": "assets/lcd-output-voltage.svg",
+        "sha256": "07f99d87d180c223d12a3f6658e63ae23b0c2705e8d8669b8c7e707af13db77b"
+      },
+      {
+        "path": "assets/lcd-solar-charging.svg",
+        "sha256": "c4e8ecbbc808bf7d20dd2147e9b066b2bb29fb6bb39cc93c7b8011e7db90ffee"
+      },
+      {
+        "path": "assets/inbox-user-manual.png",
+        "sha256": "a68491afb3a7ae864e484746ff70c335abccdd395f96021f26e6965189cacbcc"
+      },
+      {
+        "path": "assets/overview-front.png",
+        "sha256": "504dae3319e70845cc8f9e6470140e0d98cc12d652ade37534d589660aee80d1"
+      },
+      {
+        "path": "assets/overview-right.png",
+        "sha256": "fd77fd88be232e0c63d9db5c672e8885e4c1a6f60c66132744b3871dcbe2cf50"
+      },
+      {
+        "path": "assets/lcd-high-temperature.svg",
+        "sha256": "939775d5eb4d88852ce7699cddc75262eae7c74d412ce2ceebe3bb239fb4897c"
+      },
+      {
+        "path": "assets/symbol_li_ion_dark.svg",
+        "sha256": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1"
+      },
+      {
+        "path": "assets/contact-qr.png",
+        "sha256": "4b0944d70f30b5a9df6301876af6968c37c22dcb8c0a4f5b4cf0d8e0c8e19dd5"
+      },
+      {
+        "path": "assets/symbol_keep_away_from_children.svg",
+        "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899"
+      }
+    ]
+  }
+}

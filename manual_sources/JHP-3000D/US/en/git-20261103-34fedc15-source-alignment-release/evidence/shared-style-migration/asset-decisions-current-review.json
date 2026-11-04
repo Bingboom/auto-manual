@@ -1,0 +1,26 @@
+{
+  "source_sha256": "34fedc156d52e8a50ca65d23327d323b3647aee03bd6b6b4aa1d681723e249dc",
+  "scope": "Historical extraction provenance preserved; source figure geometry and retained art visually checked against each current single-language page. Old provenance is not a current approval.",
+  "historical_records": 67,
+  "current_replacements": "source/shared-style-migration.json and source/inbox-main-current-source.json",
+  "retained_art_checked_pages": [
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    15,
+    16,
+    20,
+    21,
+    22
+  ],
+  "current_ac_art_note": "Only new current AC illustration is served; old ac-charge.svg remains in source asset pool for provenance, absent from web/en/assets.",
+  "inbox_current_count": 4,
+  "unresolved": [],
+  "inbox_main_followup": "inbox-main-render-followup/review.json"
+}

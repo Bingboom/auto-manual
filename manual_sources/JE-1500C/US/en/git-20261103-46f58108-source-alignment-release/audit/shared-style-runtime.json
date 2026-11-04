@@ -1,0 +1,6 @@
+{
+  "path": "docs/renderers/contracts/web_manual.css",
+  "before_sha256": "5519f2d75187aca34b0469657680680d3591bbc844450ea57681e26582ee337a",
+  "after_sha256": "9ee899cc83146bc9cb7cd6228efd48e131c4c9e6f317040921f9871ba6a506fc",
+  "reason": "Root-coordinated real shared rowspan fix: last-child:not(.hb-troubleshooting-code). Only this exact validated runtime pin changes."
+}

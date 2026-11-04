@@ -1,0 +1,10 @@
+{
+  "changed_generated_files": [
+    "manual_je500a_us_en.md",
+    "manual.ir.json",
+    "_static/source_presentation.css"
+  ],
+  "all_other_generated_artwork_files_byte_identical": true,
+  "source_change": "../assets/warning_triangle_white.svg -> assets/warning_triangle_white.svg",
+  "final_strict_build": "JE-500A-strict-v6.log"
+}

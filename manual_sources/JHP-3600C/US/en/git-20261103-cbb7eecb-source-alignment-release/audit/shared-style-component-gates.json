@@ -1,0 +1,90 @@
+{
+  "status": "PASS",
+  "build": "v7",
+  "caption_frame": [
+    {
+      "source_ref": "source/content.json#reference-battery-placement",
+      "asset_ref": "assets/placement_native_frames.png",
+      "labels": [
+        {
+          "line": 0,
+          "status": "passed",
+          "baked_fill_fraction": 0.0
+        },
+        {
+          "line": 1,
+          "status": "passed",
+          "baked_fill_fraction": 0.0
+        }
+      ]
+    },
+    {
+      "source_ref": "source/content.json#reference-car_charging",
+      "asset_ref": "assets/car_charging_framefree.svg",
+      "labels": [
+        {
+          "line": 1,
+          "status": "passed",
+          "baked_fill_fraction": 0.0
+        }
+      ]
+    }
+  ],
+  "symbols": [
+    {
+      "asset_ref": "assets/symbol_warning_triangle.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.014021
+    },
+    {
+      "asset_ref": "assets/symbol_read_manual.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.013593
+    },
+    {
+      "asset_ref": "assets/symbol_electric_shock.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "asset_ref": "assets/symbol_battery_charging.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "asset_ref": "assets/symbol_explosive_material.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "asset_ref": "assets/symbol_heavy_object.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "asset_ref": "assets/symbol_do_not_dismantle.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "asset_ref": "assets/symbol_no_open_flame.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "asset_ref": "assets/symbol_keep_away_from_children.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "asset_ref": "assets/symbol_li_ion.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "asset_ref": "assets/symbol_weee.png",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.016987
+    }
+  ]
+}

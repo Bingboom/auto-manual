@@ -1,0 +1,85 @@
+{
+  "status": "passed",
+  "results": [
+    {
+      "version": "before",
+      "cells": {
+        "f0": {
+          "right": "1px",
+          "bottom": "1px",
+          "rowspan": 1
+        },
+        "shared": {
+          "right": "0px",
+          "bottom": "1px",
+          "rowspan": 4
+        },
+        "f1": {
+          "right": "0px",
+          "bottom": "1px",
+          "rowspan": 1
+        },
+        "f2": {
+          "right": "0px",
+          "bottom": "1px",
+          "rowspan": 1
+        },
+        "f3": {
+          "right": "0px",
+          "bottom": "1px",
+          "rowspan": 1
+        },
+        "f4": {
+          "right": "1px",
+          "bottom": "0px",
+          "rowspan": 1
+        },
+        "normal": {
+          "right": "0px",
+          "bottom": "0px",
+          "rowspan": 1
+        }
+      }
+    },
+    {
+      "version": "after",
+      "cells": {
+        "f0": {
+          "right": "1px",
+          "bottom": "1px",
+          "rowspan": 1
+        },
+        "shared": {
+          "right": "0px",
+          "bottom": "1px",
+          "rowspan": 4
+        },
+        "f1": {
+          "right": "1px",
+          "bottom": "1px",
+          "rowspan": 1
+        },
+        "f2": {
+          "right": "1px",
+          "bottom": "1px",
+          "rowspan": 1
+        },
+        "f3": {
+          "right": "1px",
+          "bottom": "1px",
+          "rowspan": 1
+        },
+        "f4": {
+          "right": "1px",
+          "bottom": "0px",
+          "rowspan": 1
+        },
+        "normal": {
+          "right": "0px",
+          "bottom": "0px",
+          "rowspan": 1
+        }
+      }
+    }
+  ]
+}

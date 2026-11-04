@@ -1,0 +1,89 @@
+{
+  "source_to_web": [
+    {
+      "page": 5,
+      "text": "dis ot ene is intent ec for isidooit use nly s,esgs pmaece s, tdet, e inns, i",
+      "coverage": 0.02,
+      "disposition": "OCRcorruption; exactDANGERparagraph verified against currentp5."
+    },
+    {
+      "page": 9,
+      "text": "Hgp tencternitue pritection ts riugered., Thet product mal",
+      "coverage": 0.119,
+      "disposition": "OCRcorruption; exacthigh-temperaturecell verifiedp9."
+    },
+    {
+      "page": 12,
+      "text": "Display Mode Turn off",
+      "coverage": 0.455,
+      "disposition": "OCRcross-cellconcatenation; nativeDisplayMode/Turnoffcells andfullLCDONcondition verifiedp12."
+    },
+    {
+      "page": 18,
+      "text": "Around 38.6 Ibs / 17.5 kg",
+      "coverage": 0.2,
+      "disposition": "OCRl/I andmultiplicationglyph; actualp18weight38.6lbs17.5kganddimensions13.2x10.4x11.6in/33.6x26.4x29.5cm verified."
+    },
+    {
+      "page": 18,
+      "text": "13.2×10.4x11.6 in / 33.6×26.4x29.5 cm",
+      "coverage": 0.235,
+      "disposition": "OCRl/I andmultiplicationglyph; actualp18weight38.6lbs17.5kganddimensions13.2x10.4x11.6in/33.6x26.4x29.5cm verified."
+    },
+    {
+      "page": 20,
+      "text": "Bluetooth configuration",
+      "coverage": 0.4,
+      "disposition": "Embedded text of byte-identical original App screenshot; source p20/p21 checked visually, not omitted native body."
+    },
+    {
+      "page": 20,
+      "text": "Bluetooth configuration mode",
+      "coverage": 0.316,
+      "disposition": "Embedded text of byte-identical original App screenshot; source p20/p21 checked visually, not omitted native body."
+    },
+    {
+      "page": 20,
+      "text": "Hete mie ture the buebtth con n fattrn",
+      "coverage": 0.0,
+      "disposition": "Embedded text of byte-identical original App screenshot; source p20/p21 checked visually, not omitted native body."
+    },
+    {
+      "page": 21,
+      "text": "Please select 2.4 GHz Wi-Fi",
+      "coverage": 0.357,
+      "disposition": "Embedded text of byte-identical original App screenshot; source p20/p21 checked visually, not omitted native body."
+    },
+    {
+      "page": 21,
+      "text": "l you ute 5 CHz WI-A, pleena sot it to 24 GHl",
+      "coverage": 0.0,
+      "disposition": "Embedded text of byte-identical original App screenshot; source p20/p21 checked visually, not omitted native body."
+    },
+    {
+      "page": 21,
+      "text": "Ranembar passwerd",
+      "coverage": 0.0,
+      "disposition": "Embedded text of byte-identical original App screenshot; source p20/p21 checked visually, not omitted native body."
+    },
+    {
+      "page": 21,
+      "text": "Available devicols) scanned",
+      "coverage": 0.118,
+      "disposition": "Embedded text of byte-identical original App screenshot; source p20/p21 checked visually, not omitted native body."
+    }
+  ],
+  "web_to_source": [
+    {
+      "text": "This device is intended for indoor use only (Please place this device in a similar indoor environment when using it outdoors, e.g. Home RVs, tents, cabins, etc.). ※ This device is not waterproof or dustproof. Keep away from rain and humid environments during use.",
+      "disposition": "Exactcurrentp5DANGERparagraph"
+    },
+    {
+      "text": "Double-press the Main Power Button when the LCD screen is ON.",
+      "disposition": "Exactcurrentp12LCDaction:Double-pressMainPowerButtonwhenLCDscreenisON"
+    }
+  ],
+  "numeric_contexts": 97,
+  "numeric_mismatches": 0,
+  "additional_numeric_review": "Everyp18cellandallp4/7–17timing/power/temp/bypass/solar/carconditionsreadvisually; OCRlettercontextcheckaloneisnotacceptance."
+}

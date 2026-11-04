@@ -1,0 +1,15 @@
+{
+  "scope": "Native symbol admission only",
+  "reused_shared_key": "weee/crossed-bin-bar",
+  "asset_ref": "assets/shared-symbol_weee-native.png",
+  "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+  "old_asset_retained_for_history": "assets/shared-symbol_weee_gray_jp.svg",
+  "old_variant_max_mean_channel_error": 0.0565,
+  "source_pages": [
+    5,
+    25,
+    45
+  ],
+  "native_caption_and_table_layout": "unchanged",
+  "explosive_reference_crop": "1pt transparent source padding matches existing exact vector; no target art changes"
+}

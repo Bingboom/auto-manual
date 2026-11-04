@@ -1,0 +1,666 @@
+[
+  {
+    "confidence" : 1,
+    "h" : 0.020492801666259775,
+    "text" : "IMPORTANT SAFETY INFORMATION",
+    "w" : 0.52685947986799209,
+    "x" : 0.092975214353194141,
+    "y" : 0.91569767409246194
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.017441860380626784,
+    "text" : "INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR",
+    "w" : 0.67561981283875339,
+    "x" : 0.16942150416946625,
+    "y" : 0.85174418618565562
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "INJURY TO PERSONS",
+    "w" : 0.20661157127318344,
+    "x" : 0.17561983213200336,
+    "y" : 0.83571428593732433
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664108,
+    "text" : "product can result in electric shock, fire, or battery",
+    "w" : 0.35330576496072574,
+    "x" : 0.52066117063947182,
+    "y" : 0.79505813977256334
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.017703855605352481,
+    "text" : "WARNING",
+    "w" : 0.12610605544837183,
+    "x" : 0.20864118634068585,
+    "y" : 0.78039225837010739
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "Always follow these basic",
+    "w" : 0.2086776898805365,
+    "x" : 0.20661156977342712,
+    "y" : 0.76142857141711473
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013081395285470143,
+    "text" : "precautions when using this",
+    "w" : 0.23140495320968837,
+    "x" : 0.20454546017201522,
+    "y" : 0.74709302337834049
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.012160356612432643,
+    "text" : "product.",
+    "w" : 0.068361995666007674,
+    "x" : 0.20652148218899316,
+    "y" : 0.73519889154309781
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.010174417949858183,
+    "text" : "damage.",
+    "w" : 0.068181815832287995,
+    "x" : 0.51652892793096339,
+    "y" : 0.78197674453766775
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761973,
+    "text" : "• Be aware that liquid ejected from the product may",
+    "w" : 0.38016528618044965,
+    "x" : 0.50206612357644165,
+    "y" : 0.76285714269436888
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664108,
+    "text" : "cause irritation or burns. Inappropriate or abusive use",
+    "w" : 0.38016528618044976,
+    "x" : 0.51652892082162105,
+    "y" : 0.74854651175899733
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761973,
+    "text" : "may lead to battery leakage. Avoid direct contact with",
+    "w" : 0.39256195647283632,
+    "x" : 0.51652893257625421,
+    "y" : 0.73380952401454236
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013081395285470254,
+    "text" : "leaking liquid. If the liquid contacts your eyes, seek",
+    "w" : 0.35950410010691902,
+    "x" : 0.51652893920273901,
+    "y" : 0.71947674443575327
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761862,
+    "text" : "• Read all the instructions before using the product.",
+    "w" : 0.37809914689723068,
+    "x" : 0.074380181751109054,
+    "y" : 0.70619047596499418
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761862,
+    "text" : "medical help immediately. If it contacts other body",
+    "w" : 0.36157023939013799,
+    "x" : 0.51859504587827798,
+    "y" : 0.70619047630414156
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664219,
+    "text" : "• Do not allow children to play on the product. Close",
+    "w" : 0.38636362132664293,
+    "x" : 0.074380167978207554,
+    "y" : 0.68895348847895854
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664219,
+    "text" : "parts, flush with running water and consult a medical",
+    "w" : 0.37603304896574352,
+    "x" : 0.51859504101299614,
+    "y" : 0.69186046548961755
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761973,
+    "text" : "supervision of children is necessary when the product",
+    "w" : 0.39462809575605523,
+    "x" : 0.088842981848211974,
+    "y" : 0.67428571447456165
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011998893192836202,
+    "text" : "professional without delay.",
+    "w" : 0.19239182717754921,
+    "x" : 0.51436697557605859,
+    "y" : 0.67724128414257945
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.010174417949858183,
+    "text" : "is used near children.",
+    "w" : 0.15909090533166073,
+    "x" : 0.086776864035271489,
+    "y" : 0.66133720960549724
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664108,
+    "text" : "• Do not expose the product to fire or excessive",
+    "w" : 0.34710742981453252,
+    "x" : 0.49586777483102557,
+    "y" : 0.65988372130357109
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761862,
+    "text" : "• Avoid placing hands or fingers inside the product.",
+    "w" : 0.37603304896574358,
+    "x" : 0.074380169732004245,
+    "y" : 0.64238095233620007
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761973,
+    "text" : "temperatures. Doing so may result in an explosion if the",
+    "w" : 0.39462809575605529,
+    "x" : 0.51652893226143504,
+    "y" : 0.64523809543750377
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013081395285470143,
+    "text" : "temperature exceeds 130°C (265°F).",
+    "w" : 0.25206609793148704,
+    "x" : 0.51652893657144638,
+    "y" : 0.6308139537380788
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761862,
+    "text" : "• Stop using the product immediately if it has been",
+    "w" : 0.37603304896574352,
+    "x" : 0.07438017599922167,
+    "y" : 0.62333333340290531
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.014534883045014935,
+    "text" : "physically damaged or modified. Improper use of the • Any use of unrecommended or non-supplied materials",
+    "w" : 0.81611571273183425,
+    "x" : 0.088842956478435875,
+    "y" : 0.61046511647167856
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761862,
+    "text" : "product may cause unpredictable behavior, leading",
+    "w" : 0.38636362132664293,
+    "x" : 0.090909104866981366,
+    "y" : 0.59428571441429701
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013092469714936827,
+    "text" : "or parts with the product may result in a risk of fire,",
+    "w" : 0.36157023939013799,
+    "x" : 0.51446280816305801,
+    "y" : 0.59738372088924163
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.010174417949858072,
+    "text" : "to fire, explosion, or injury.",
+    "w" : 0.18801652448287182,
+    "x" : 0.086776858591897557,
+    "y" : 0.58139534914038105
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011644518261864079,
+    "text" : "electric shock, or personal injury.",
+    "w" : 0.23140495320968835,
+    "x" : 0.51652892580562415,
+    "y" : 0.58428571431053378
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "• If any of the following are observed, including but not Do not leave the battery charging unattended for long",
+    "w" : 0.83264457888719523,
+    "x" : 0.074380179487187809,
+    "y" : 0.56380952390878203
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664219,
+    "text" : "limited to overheats, emits unusual odors or smoking,",
+    "w" : 0.3925619564728362,
+    "x" : 0.086776866460551799,
+    "y" : 0.54796511645860968
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.010174417949858183,
+    "text" : "periods. Always monitor the charging process to ensure",
+    "w" : 0.39462809575605529,
+    "x" : 0.5144628050489698,
+    "y" : 0.55232558165007095
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.010476190476190417,
+    "text" : "leaks, or burns, stop using the product immediately",
+    "w" : 0.37603304896574358,
+    "x" : 0.08677686770721077,
+    "y" : 0.53476190487682385
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761862,
+    "text" : "safe operation.",
+    "w" : 0.1115702393901381,
+    "x" : 0.51652892865203848,
+    "y" : 0.53761904756993895
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664219,
+    "text" : "and contact the dealer or our Customer Support.",
+    "w" : 0.36363633732162515,
+    "x" : 0.088842992909435245,
+    "y" : 0.52034883742517946
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664219,
+    "text" : "• To reduce the risk of electric shock, unplug the product",
+    "w" : 0.4090909053316607,
+    "x" : 0.50000000869780581,
+    "y" : 0.51889534906519896
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.010224252428327141,
+    "text" : "• Never attempt to open, repair, or modify the product.",
+    "w" : 0.40702476604844173,
+    "x" : 0.074380185742996541,
+    "y" : 0.50285714266578796
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761862,
+    "text" : "from any power source before attempting any technical",
+    "w" : 0.40082643090224845,
+    "x" : 0.51446282084364148,
+    "y" : 0.50428571429257829
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627907071794841,
+    "text" : "Any tampering, reassembly, or modification of the",
+    "w" : 0.36363633732162515,
+    "x" : 0.088842982303374951,
+    "y" : 0.48837209315434604
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.010174417949858183,
+    "text" : "service or troubleshooting.",
+    "w" : 0.19008264309022482,
+    "x" : 0.51652892876480494,
+    "y" : 0.49127907011300698
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.014534883953276179,
+    "text" : "OPERATING INSTRUCTIONS",
+    "w" : 0.27272726332915181,
+    "x" : 0.095041328717655457,
+    "y" : 0.44186046507278054
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013081395285470143,
+    "text" : "SAVE THESE INSTRUCTIONS",
+    "w" : 0.27479338193650493,
+    "x" : 0.076446281490425261,
+    "y" : 0.40552325577296267
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664108,
+    "text" : "• Stop using the product immediately if it shows signs of • Ensure the device(s) are powered off before connecting",
+    "w" : 0.83884295538512021,
+    "x" : 0.074380185685538849,
+    "y" : 0.37790697696006326
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011666666212536092,
+    "text" : "damage. Discontinue use and contact customer",
+    "w" : 0.35537190424394477,
+    "x" : 0.088842967574997489,
+    "y" : 0.36333333355947417
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.010238094783964535,
+    "text" : "it to the product.",
+    "w" : 0.12396694069632341,
+    "x" : 0.51446280909398712,
+    "y" : 0.36476190483413318
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.010185492379324756,
+    "text" : "support for assistance.",
+    "w" : 0.16942147769256014,
+    "x" : 0.086776867283196418,
+    "y" : 0.35029069802603985
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761973,
+    "text" : "• Do not charge the product using a damaged or broken",
+    "w" : 0.41735533840934114,
+    "x" : 0.49586777914243718,
+    "y" : 0.34571428564405471
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664219,
+    "text" : "• Do not charge the battery in extremely hot or cold",
+    "w" : 0.3822313841119368,
+    "x" : 0.074380170934734161,
+    "y" : 0.33139534898041212
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.010174417949858183,
+    "text" : "charging cord or plug.",
+    "w" : 0.15702478672430764,
+    "x" : 0.51652893091470564,
+    "y" : 0.33139534921911162
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761973,
+    "text" : "environments and strictly adhere to the product's",
+    "w" : 0.35950410010691902,
+    "x" : 0.08884298527711923,
+    "y" : 0.31666666681887945
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761973,
+    "text" : "• Do not use the product to charge any device with a",
+    "w" : 0.38636362132664281,
+    "x" : 0.50000000268895139,
+    "y" : 0.3123809525241551
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664219,
+    "text" : "specified operating temperature ranges:",
+    "w" : 0.305785119695069,
+    "x" : 0.088842981164862111,
+    "y" : 0.30232558164756329
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664108,
+    "text" : "damaged or broken cable or plug.",
+    "w" : 0.25413221653884033,
+    "x" : 0.51446282158595158,
+    "y" : 0.29796511655550906
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761862,
+    "text" : "-Charging temperature: -4°F to 113°F (-20°C to 45°C )",
+    "w" : 0.37603304896574358,
+    "x" : 0.088842975889029077,
+    "y" : 0.28476190459815343
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761862,
+    "text" : "• Always unplug the charging cord by pulling the plug,",
+    "w" : 0.39462809575605523,
+    "x" : 0.49793387942913508,
+    "y" : 0.2804761903010069
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013081395285470143,
+    "text" : "-Discharging temperature: -4°F to 113°F (-20°C to 45°C)",
+    "w" : 0.4090909053316607,
+    "x" : 0.088842970268054128,
+    "y" : 0.26598837205203241
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011630675452096062,
+    "text" : "not the cord, to reduce the risk of damage.",
+    "w" : 0.31611569205596846,
+    "x" : 0.5103305889926768,
+    "y" : 0.2659883723210128
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664219,
+    "text" : "• To ensure proper air circulation, keep the product",
+    "w" : 0.37603304896574358,
+    "x" : 0.074380174432417359,
+    "y" : 0.24854651188012145
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664219,
+    "text" : "• Ensure the product is properly secured when",
+    "w" : 0.33677685745363306,
+    "x" : 0.49793387970982272,
+    "y" : 0.24854651175899733
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.010476190476190528,
+    "text" : "vents uncovered. The area where the product is used",
+    "w" : 0.41735537976107295,
+    "x" : 0.088842976493430287,
+    "y" : 0.23523809543454999
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761862,
+    "text" : "transporting it in a moving vehicle.",
+    "w" : 0.2603305723608994,
+    "x" : 0.50413223014186448,
+    "y" : 0.23380952401454247
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664108,
+    "text" : "must have adequate airflow in a cool, dry",
+    "w" : 0.30578511969506905,
+    "x" : 0.08884297224612954,
+    "y" : 0.21947674431713693
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664219,
+    "text" : "• DO NOT place the unit upside down or on its side",
+    "w" : 0.3719008117510374,
+    "x" : 0.49793388544679551,
+    "y" : 0.21656976757295088
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.010476190476190417,
+    "text" : "environment to prevent overheating.",
+    "w" : 0.26859502611444575,
+    "x" : 0.088842987287129555,
+    "y" : 0.20619047633087395
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.010476190476190417,
+    "text" : "during use or storage.",
+    "w" : 0.16115702393901377,
+    "x" : 0.51239669732801374,
+    "y" : 0.20190476202403729
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.018275576091948076,
+    "text" : "-Charging in damp or poorly ventilated spaces may . DO NOT place the product on the floor or at a height",
+    "w" : 0.81015353732638884,
+    "x" : 0.088731779503315858,
+    "y" : 0.18252075929911271
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761973,
+    "text" : "cause safety hazards.",
+    "w" : 0.16322313220843387,
+    "x" : 0.097107444880631444,
+    "y" : 0.17285714286334775
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761862,
+    "text" : "less than 18 inches (457 mm) above the floor during",
+    "w" : 0.36570247660484412,
+    "x" : 0.51239668948683426,
+    "y" : 0.17000000004660099
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.010191029594058154,
+    "text" : "-Water can cause short circuits or damage to the",
+    "w" : 0.36363633732162515,
+    "x" : 0.088842982303374951,
+    "y" : 0.15552325611712514
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664219,
+    "text" : "operation in a workshop or repair facility.",
+    "w" : 0.2933884287268167,
+    "x" : 0.51446281366689461,
+    "y" : 0.1555232561872919
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011663897832234649,
+    "text" : "charger, leading to safety risks.",
+    "w" : 0.23347107181704144,
+    "x" : 0.097107443189275305,
+    "y" : 0.14095238105799279
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.010174417949858072,
+    "text" : "• DO NOT use the product's accessories with other",
+    "w" : 0.36983471381955035,
+    "x" : 0.49793387659573463,
+    "y" : 0.13808139560355936
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761973,
+    "text" : "• Unplug the power cord from a power outlet during a",
+    "w" : 0.41942147769256022,
+    "x" : 0.074380165458127784,
+    "y" : 0.12190476202779876
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.010476190476190417,
+    "text" : "devices or equipment.",
+    "w" : 0.17148759629991317,
+    "x" : 0.50619835346850062,
+    "y" : 0.12333333312085593
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.0087209301903133918,
+    "text" : "storm.",
+    "w" : 0.047520660772556206,
+    "x" : 0.088842975992854095,
+    "y" : 0.10901162796443631
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664108,
+    "text" : "• Solar charge time depends on weather conditions,",
+    "w" : 0.3822313841119368,
+    "x" : 0.50000001520126292,
+    "y" : 0.10465116297023769
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761973,
+    "text" : "• Immediately turn off the product by pressing the power",
+    "w" : 0.43388428726816564,
+    "x" : 0.074380175839057525,
+    "y" : 0.090000000119572765
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761973,
+    "text" : "place your solar panel where it will get as much direct",
+    "w" : 0.39049585854134905,
+    "x" : 0.51239669394730081,
+    "y" : 0.089999999937886654
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.010174417949858183,
+    "text" : "button if it has fallen, been dropped, or exposed to",
+    "w" : 0.36776857453633127,
+    "x" : 0.088842979329630672,
+    "y" : 0.077034884024101968
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011627906617664108,
+    "text" : "sunlight as possible.",
+    "w" : 0.14462809575605517,
+    "x" : 0.51652892622665558,
+    "y" : 0.075581395334578749
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.010469446636381607,
+    "text" : "vibrations.",
+    "w" : 0.076524791355701643,
+    "x" : 0.088803718750354088,
+    "y" : 0.062352485964830007
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.010174418858119427,
+    "text" : "01",
+    "w" : 0.018595041621345162,
+    "x" : 0.072314049592219973,
+    "y" : 0.027616279003595201
+  }
+]

@@ -1,0 +1,245 @@
+[
+  {
+    "tag": "DIV",
+    "cls": "native-figure native-overview-front native-dense",
+    "scrollLeft": 322,
+    "scrollWidth": 680,
+    "clientWidth": 358,
+    "lastRight": 374,
+    "containerRight": 374
+  },
+  {
+    "tag": "DIV",
+    "cls": "native-figure native-overview-left native-dense",
+    "scrollLeft": 322,
+    "scrollWidth": 680,
+    "clientWidth": 358,
+    "lastRight": 374,
+    "containerRight": 374
+  },
+  {
+    "tag": "DIV",
+    "cls": "native-figure native-overview-right native-dense",
+    "scrollLeft": 322,
+    "scrollWidth": 680,
+    "clientWidth": 358,
+    "lastRight": 374,
+    "containerRight": 374
+  },
+  {
+    "tag": "DIV",
+    "cls": "native-figure native-lcd-map native-dense",
+    "scrollLeft": 322,
+    "scrollWidth": 680,
+    "clientWidth": 358,
+    "lastRight": 374,
+    "containerRight": 374
+  },
+  {
+    "tag": "FIGURE",
+    "cls": "hb-lcd-table-composition",
+    "scrollLeft": 286,
+    "scrollWidth": 640,
+    "clientWidth": 354,
+    "lastRight": 372,
+    "containerRight": 374
+  },
+  {
+    "tag": "DIV",
+    "cls": "native-figure native-power native-dense native-operation",
+    "scrollLeft": 324,
+    "scrollWidth": 680,
+    "clientWidth": 356,
+    "lastRight": 373,
+    "containerRight": 374
+  },
+  {
+    "tag": "DIV",
+    "cls": "native-figure native-ac-output native-dense native-operation",
+    "scrollLeft": 324,
+    "scrollWidth": 680,
+    "clientWidth": 356,
+    "lastRight": 373,
+    "containerRight": 374
+  },
+  {
+    "tag": "DIV",
+    "cls": "native-figure native-usb-output native-dense native-operation",
+    "scrollLeft": 324,
+    "scrollWidth": 680,
+    "clientWidth": 356,
+    "lastRight": 373,
+    "containerRight": 374
+  },
+  {
+    "tag": "DIV",
+    "cls": "native-figure native-dc-output native-dense native-operation",
+    "scrollLeft": 324,
+    "scrollWidth": 680,
+    "clientWidth": 356,
+    "lastRight": 373,
+    "containerRight": 374
+  },
+  {
+    "tag": "DIV",
+    "cls": "hb-lcd-mode-table-panel",
+    "scrollLeft": 219,
+    "scrollWidth": 544,
+    "clientWidth": 325,
+    "lastRight": 357.515625,
+    "containerRight": 359.484375
+  },
+  {
+    "tag": "FIGURE",
+    "cls": "hb-key-combination-composition",
+    "scrollLeft": 222,
+    "scrollWidth": 576,
+    "clientWidth": 354,
+    "lastRight": 372,
+    "containerRight": 374
+  },
+  {
+    "tag": "DIV",
+    "cls": "table-wrapper docutils container",
+    "scrollLeft": 226,
+    "scrollWidth": 582,
+    "clientWidth": 356,
+    "lastRight": 370.1875,
+    "containerRight": 374
+  },
+  {
+    "tag": "DIV",
+    "cls": "native-figure native-ups native-dense native-operation",
+    "scrollLeft": 324,
+    "scrollWidth": 680,
+    "clientWidth": 356,
+    "lastRight": 373,
+    "containerRight": 374
+  },
+  {
+    "tag": "DIV",
+    "cls": "native-figure native-battery-packs native-dense native-operation",
+    "scrollLeft": 324,
+    "scrollWidth": 680,
+    "clientWidth": 356,
+    "lastRight": 373,
+    "containerRight": 374
+  },
+  {
+    "tag": "DIV",
+    "cls": "native-figure native-sts-connect native-dense native-operation",
+    "scrollLeft": 324,
+    "scrollWidth": 680,
+    "clientWidth": 356,
+    "lastRight": 373,
+    "containerRight": 374
+  },
+  {
+    "tag": "DIV",
+    "cls": "native-figure native-ac-charge native-dense native-operation",
+    "scrollLeft": 324,
+    "scrollWidth": 680,
+    "clientWidth": 356,
+    "lastRight": 373,
+    "containerRight": 374
+  },
+  {
+    "tag": "DIV",
+    "cls": "native-figure native-sts-charge native-dense native-operation",
+    "scrollLeft": 324,
+    "scrollWidth": 680,
+    "clientWidth": 356,
+    "lastRight": 373,
+    "containerRight": 374
+  },
+  {
+    "tag": "DIV",
+    "cls": "native-figure native-low-pv-500 native-dense",
+    "scrollLeft": 322,
+    "scrollWidth": 680,
+    "clientWidth": 358,
+    "lastRight": 374,
+    "containerRight": 374
+  },
+  {
+    "tag": "DIV",
+    "cls": "native-figure native-low-pv-200 native-dense",
+    "scrollLeft": 322,
+    "scrollWidth": 680,
+    "clientWidth": 358,
+    "lastRight": 374,
+    "containerRight": 374
+  },
+  {
+    "tag": "DIV",
+    "cls": "native-figure native-high-pv native-dense",
+    "scrollLeft": 322,
+    "scrollWidth": 680,
+    "clientWidth": 358,
+    "lastRight": 374,
+    "containerRight": 374
+  },
+  {
+    "tag": "DIV",
+    "cls": "native-figure native-high-pv-lock native-dense",
+    "scrollLeft": 322,
+    "scrollWidth": 680,
+    "clientWidth": 358,
+    "lastRight": 374,
+    "containerRight": 374
+  },
+  {
+    "tag": "DIV",
+    "cls": "native-figure native-dual-pv native-dense",
+    "scrollLeft": 322,
+    "scrollWidth": 680,
+    "clientWidth": 358,
+    "lastRight": 374,
+    "containerRight": 374
+  },
+  {
+    "tag": "DIV",
+    "cls": "native-figure native-car native-dense",
+    "scrollLeft": 322,
+    "scrollWidth": 680,
+    "clientWidth": 358,
+    "lastRight": 374,
+    "containerRight": 374
+  },
+  {
+    "tag": "DIV",
+    "cls": "native-figure native-ess native-dense native-operation",
+    "scrollLeft": 324,
+    "scrollWidth": 680,
+    "clientWidth": 356,
+    "lastRight": 373,
+    "containerRight": 374
+  },
+  {
+    "tag": "DIV",
+    "cls": "native-figure native-package-host native-dense native-operation",
+    "scrollLeft": 324,
+    "scrollWidth": 680,
+    "clientWidth": 356,
+    "lastRight": 373,
+    "containerRight": 374
+  },
+  {
+    "tag": "DIV",
+    "cls": "native-figure native-package-battery native-dense native-operation",
+    "scrollLeft": 324,
+    "scrollWidth": 680,
+    "clientWidth": 356,
+    "lastRight": 373,
+    "containerRight": 374
+  },
+  {
+    "tag": "DIV",
+    "cls": "native-figure native-package-sts native-dense native-operation",
+    "scrollLeft": 324,
+    "scrollWidth": 680,
+    "clientWidth": 356,
+    "lastRight": 373,
+    "containerRight": 374
+  }
+]

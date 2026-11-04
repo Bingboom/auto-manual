@@ -1,0 +1,61 @@
+[
+  {
+    "asset_ref": "assets/symbol_explosive_material.svg",
+    "shared_symbol_key": "explosive-material/burst-triangle-native-v2-3e3a39",
+    "method": "native source path variant after shared tint-corrected glyph still fails fixed comparison",
+    "prior_sha256": "3ef06cba72b60935ea421b1b59ff41e1ca9c4c6597b8d8ce1d4ae1904ee68fa0",
+    "sha256": "d4def93f853179fe0ea0cd7c4ba461da5a70d662d33a899bc48f7a2ef5553a1d",
+    "drawing_indices": [
+      28,
+      29,
+      30,
+      31
+    ],
+    "glyph_bbox": [
+      38.35389938354492,
+      297.3736938476562,
+      61.0109001159668,
+      317.0687194824219
+    ]
+  },
+  {
+    "asset_ref": "assets/symbol_no_open_flame.svg",
+    "shared_symbol_key": "no-open-flame/fire-match-prohibited-3e3a39",
+    "method": "shared glyph paths unchanged; match native dark-gray tint only",
+    "prior_sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f",
+    "sha256": "ad99d5bda8ad04836ff7903beaec8fff8cd3843bf528a16f88c8be0c5f2a3414",
+    "drawing_indices": [
+      41,
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "glyph_bbox": [
+      198.32979431152344,
+      239.95110168457032,
+      217.7938018798828,
+      259.4131103515625
+    ]
+  },
+  {
+    "asset_ref": "assets/symbol_keep_away_from_children.svg",
+    "shared_symbol_key": "keep-away-from-children/adult-child-prohibited-3e3a39",
+    "method": "shared glyph paths unchanged; match native dark-gray tint only",
+    "prior_sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899",
+    "sha256": "da3ed4aa5fa4e4ec565d39a1b18d7b657d5b18cd4521be1881f21ac6fbb20c6e",
+    "drawing_indices": [
+      55,
+      56,
+      57,
+      58
+    ],
+    "glyph_bbox": [
+      198.33069458007813,
+      269.673681640625,
+      217.79369506835937,
+      289.1366821289063
+    ]
+  }
+]

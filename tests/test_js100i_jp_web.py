@@ -14,6 +14,7 @@ from bs4 import BeautifulSoup
 
 from tools.manual_ir.hashing import file_sha256
 from tools.word.bundle_docx_pandoc import resolve_pandoc_binary
+from tests.historical_app_styles import pre_rowspan_divider_styles
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGE = ROOT / "manual_sources/JS-100I/JP/ja/git-20261026-cc8b3421"
@@ -119,6 +120,7 @@ class Js100iJpWebTests(unittest.TestCase):
             self.assertTrue((PACKAGE / asset["outputs"][0]["path"]).is_file())
             self.assertEqual({t["op"] for t in asset["transforms"]} - {"crop", "whiteout", "copy_pdf_region"}, set())
 
+    @pre_rowspan_divider_styles
     def test_cold_replay_matches_stored_candidate(self):
         # The prepared RST pipeline converts through Pandoc; the CI unit runner has none.
         try:
@@ -189,6 +191,7 @@ class Js100iJpSpecTableEditionTests(unittest.TestCase):
         self.assertTrue(all("hb-spec-value" in cell["class"] for row in rows for cell in row.find_all("td")))
         self.assertEqual(soup.select("div.table-wrapper"), [])
 
+    @pre_rowspan_divider_styles
     def test_cold_replay_matches_stored_edition(self):
         try:
             subprocess.run([resolve_pandoc_binary(None), "--version"], check=True, capture_output=True)

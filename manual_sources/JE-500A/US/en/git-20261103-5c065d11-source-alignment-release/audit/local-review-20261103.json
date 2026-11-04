@@ -1,0 +1,150 @@
+{
+  "model": "JE-500A",
+  "record_id": "reczz28SlRGJjcks",
+  "source_sha256": "5c065d11c0191e7f9f5ef32ecd39fe0ca620f206c296c4eb6401a4b8215cea68",
+  "status": "superseded_by_complete_residual_review",
+  "change": "Two native tables wrapped in shared horizontal-scroll container; no wording or artwork change",
+  "semantic_json_identical_after_unwrapping_two_containers": true,
+  "all_visible_text_identical": true,
+  "assets_identical": 38,
+  "source_pages_reviewed": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18
+  ],
+  "ocr_long_lines_checked": 130,
+  "ocr_candidates_resolved": "Two page-5 OCR-garbled lines match the source indoor-use / waterproof warning; no missing text. PDF contacts and affected pages reviewed.",
+  "strict_sphinx": "passed",
+  "browser": [
+    {
+      "width": 1280,
+      "images": 38,
+      "broken": [],
+      "bad": [],
+      "tables": [
+        {
+          "width": 649,
+          "parentWidth": 655,
+          "parentScroll": 655,
+          "overflowX": "auto",
+          "reachable": true,
+          "rows": 6
+        },
+        {
+          "width": 649,
+          "parentWidth": 655,
+          "parentScroll": 655,
+          "overflowX": "auto",
+          "reachable": true,
+          "rows": 11
+        },
+        {
+          "width": 653,
+          "parentWidth": 653,
+          "parentScroll": 653,
+          "overflowX": "auto",
+          "reachable": true,
+          "rows": 7
+        },
+        {
+          "width": 653,
+          "parentWidth": 653,
+          "parentScroll": 653,
+          "overflowX": "auto",
+          "reachable": true,
+          "rows": 3
+        },
+        {
+          "width": 653,
+          "parentWidth": 653,
+          "parentScroll": 653,
+          "overflowX": "auto",
+          "reachable": true,
+          "rows": 7
+        },
+        {
+          "width": 653,
+          "parentWidth": 653,
+          "parentScroll": 653,
+          "overflowX": "auto",
+          "reachable": true,
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "images": 38,
+      "broken": [],
+      "bad": [],
+      "tables": [
+        {
+          "width": 576,
+          "parentWidth": 356,
+          "parentScroll": 582,
+          "overflowX": "auto",
+          "reachable": true,
+          "rows": 6
+        },
+        {
+          "width": 576,
+          "parentWidth": 356,
+          "parentScroll": 582,
+          "overflowX": "auto",
+          "reachable": true,
+          "rows": 11
+        },
+        {
+          "width": 354,
+          "parentWidth": 354,
+          "parentScroll": 354,
+          "overflowX": "auto",
+          "reachable": true,
+          "rows": 7
+        },
+        {
+          "width": 354,
+          "parentWidth": 354,
+          "parentScroll": 354,
+          "overflowX": "auto",
+          "reachable": true,
+          "rows": 3
+        },
+        {
+          "width": 354,
+          "parentWidth": 354,
+          "parentScroll": 354,
+          "overflowX": "auto",
+          "reachable": true,
+          "rows": 7
+        },
+        {
+          "width": 354,
+          "parentWidth": 354,
+          "parentScroll": 354,
+          "overflowX": "auto",
+          "reachable": true,
+          "rows": 2
+        }
+      ]
+    }
+  ],
+  "excluded_print_elements": "Cover and table of contents remain PDF-only per existing source mapping.",
+  "publication": "not required for local acceptance; not deployed",
+  "superseded_by": "audit/current-source-review/review.json"
+}

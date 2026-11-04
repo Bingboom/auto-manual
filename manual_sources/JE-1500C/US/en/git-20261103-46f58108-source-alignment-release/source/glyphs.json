@@ -1,0 +1,1115 @@
+[
+  {
+    "slot": "lcd-01-wifi",
+    "physical_page": 8,
+    "search_box": [
+      48.8,
+      230.0,
+      84.8,
+      254.8
+    ],
+    "local_path": "assets/lcd-01-wifi.svg",
+    "reuse_candidates": [
+      "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-01-wifi.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-01.svg"
+    ],
+    "drawing_indices": [
+      183,
+      184
+    ],
+    "glyph_bbox": [
+      56.63100051879883,
+      236.4169921875,
+      72.91500091552734,
+      248.6259765625
+    ],
+    "reuse_comparisons": [
+      {
+        "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-01-wifi.svg",
+        "status": "rejected",
+        "reason": "symbol requires real transparent margins; opaque backdrop detected"
+      },
+      {
+        "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-01.svg",
+        "status": "rejected",
+        "reason": "symbol requires real transparent margins; opaque backdrop detected"
+      }
+    ],
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "71c09209572b3e28106039399bf8cbbba409f4fcb2715027881c881be5d6c107"
+  },
+  {
+    "slot": "lcd-02-bluetooth",
+    "physical_page": 8,
+    "search_box": [
+      48.8,
+      256.40000000000003,
+      84.8,
+      282.59999999999997
+    ],
+    "local_path": "assets/lcd-02-bluetooth.svg",
+    "reuse_candidates": [
+      "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-02-bluetooth.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-02.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-01.svg"
+    ],
+    "drawing_indices": [
+      185,
+      186
+    ],
+    "glyph_bbox": [
+      59.04399871826172,
+      262.4329833984375,
+      70.54499816894531,
+      276.3179931640625
+    ],
+    "reuse_comparisons": [
+      {
+        "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-02-bluetooth.svg",
+        "status": "rejected",
+        "reason": "symbol requires real transparent margins; opaque backdrop detected"
+      },
+      {
+        "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-02.svg",
+        "status": "rejected",
+        "reason": "symbol requires real transparent margins; opaque backdrop detected"
+      },
+      {
+        "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-01.svg",
+        "status": "rejected",
+        "reason": "symbol requires real transparent margins; opaque backdrop detected"
+      }
+    ],
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "010ecd186214b8e46a4c04e40fc04c11a5a8dc6ab492468a68750915e4421338"
+  },
+  {
+    "slot": "lcd-03-quiet-charging",
+    "physical_page": 8,
+    "search_box": [
+      48.8,
+      283.8,
+      84.8,
+      322.0
+    ],
+    "local_path": "assets/lcd-03-quiet-charging.svg",
+    "reuse_candidates": [
+      "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-03-quiet-charging.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-03.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-02.svg"
+    ],
+    "drawing_indices": [
+      175,
+      176
+    ],
+    "glyph_bbox": [
+      59.2655029296875,
+      297.8406982421875,
+      70.28019714355469,
+      309.1796875
+    ],
+    "reuse_source": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-03-quiet-charging.svg",
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "reuse_comparisons": [
+      {
+        "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-03-quiet-charging.svg",
+        "status": "passed",
+        "max_mean_channel_error": 0.01616
+      }
+    ],
+    "sha256": "18c777e92a70c7bcfb658e993cac00c26da5b9e1b60cb9f86c08e1416c292272"
+  },
+  {
+    "slot": "lcd-04-battery-saving",
+    "physical_page": 8,
+    "search_box": [
+      48.8,
+      323.20000000000005,
+      84.8,
+      357.0
+    ],
+    "local_path": "assets/lcd-04-battery-saving.svg",
+    "reuse_candidates": [
+      "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-04-battery-saving.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-04.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-03.svg"
+    ],
+    "drawing_indices": [
+      177,
+      178,
+      179,
+      180,
+      181,
+      182
+    ],
+    "glyph_bbox": [
+      60.791099548339844,
+      334.0526123046875,
+      68.75399780273438,
+      345.3915710449219
+    ],
+    "reuse_source": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-04-battery-saving.svg",
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "reuse_comparisons": [
+      {
+        "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-04-battery-saving.svg",
+        "status": "passed",
+        "max_mean_channel_error": 0.013827
+      }
+    ],
+    "sha256": "d27fc71354e5a3783ee26c9dbefa14a5eb80f96d49cdc36408d435ab55495228"
+  },
+  {
+    "slot": "lcd-05-charging-plan",
+    "physical_page": 8,
+    "search_box": [
+      48.8,
+      358.20000000000005,
+      84.8,
+      396.79999999999995
+    ],
+    "local_path": "assets/lcd-05-charging-plan.svg",
+    "reuse_candidates": [
+      "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-05-charging-plan.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-05.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-04.svg"
+    ],
+    "drawing_indices": [
+      562,
+      563,
+      564,
+      565
+    ],
+    "glyph_bbox": [
+      58.688697814941406,
+      371.4385986328125,
+      69.42669677734375,
+      383.3446044921875
+    ],
+    "reuse_source": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-05.svg",
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "reuse_comparisons": [
+      {
+        "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-05-charging-plan.svg",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-05.svg",
+        "status": "passed",
+        "max_mean_channel_error": 0.008068
+      }
+    ],
+    "sha256": "ae2167d3e18827a575ec2d49ccbd168014dc35517dc2dd01a04e499774477e24"
+  },
+  {
+    "slot": "lcd-06-self-powered",
+    "physical_page": 8,
+    "search_box": [
+      48.8,
+      398.0,
+      84.8,
+      442.0
+    ],
+    "local_path": "assets/lcd-06-self-powered.svg",
+    "reuse_candidates": [
+      "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-06-self-powered.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-06.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-05.svg"
+    ],
+    "drawing_indices": [
+      566,
+      567,
+      568,
+      569,
+      570,
+      571,
+      572,
+      573
+    ],
+    "glyph_bbox": [
+      54.4833984375,
+      412.5150146484375,
+      73.16079711914062,
+      427.0539855957031
+    ],
+    "reuse_source": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-06.svg",
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "reuse_comparisons": [
+      {
+        "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-06-self-powered.svg",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-06.svg",
+        "status": "passed",
+        "max_mean_channel_error": 0.002423
+      }
+    ],
+    "sha256": "6264e35ea700fb8ec93473700101202e7d5548ebd7e80bf4e9ebd3907b20aaf4"
+  },
+  {
+    "slot": "lcd-07-ups",
+    "physical_page": 8,
+    "search_box": [
+      48.8,
+      443.20000000000005,
+      84.8,
+      470.79999999999995
+    ],
+    "local_path": "assets/lcd-07-ups.svg",
+    "reuse_candidates": [
+      "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-08-ups.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-07.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-06.svg"
+    ],
+    "drawing_indices": [
+      554,
+      555,
+      556,
+      557,
+      558,
+      559,
+      560,
+      561
+    ],
+    "glyph_bbox": [
+      53.641998291015625,
+      451.052978515625,
+      73.98799896240234,
+      461.2239990234375
+    ],
+    "reuse_comparisons": [
+      {
+        "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-08-ups.svg",
+        "status": "rejected",
+        "reason": "symbol requires real transparent margins; opaque backdrop detected"
+      },
+      {
+        "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-07.svg",
+        "status": "rejected",
+        "reason": "symbol requires real transparent margins; opaque backdrop detected"
+      },
+      {
+        "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-06.svg",
+        "status": "rejected",
+        "reason": "symbol requires real transparent margins; opaque backdrop detected"
+      }
+    ],
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "ae385c871ee394bb2d3617dcb04b173554c353813a5bb9800aaac5da15cb70ec"
+  },
+  {
+    "slot": "lcd-08-ac-power",
+    "physical_page": 8,
+    "search_box": [
+      48.8,
+      472.0,
+      84.8,
+      486.59999999999997
+    ],
+    "local_path": "assets/lcd-08-ac-power.svg",
+    "reuse_candidates": [
+      "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-09-ac-power.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-08.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-07.svg"
+    ],
+    "drawing_indices": [
+      171,
+      172,
+      173,
+      174
+    ],
+    "glyph_bbox": [
+      56.83599853515625,
+      472.19000244140625,
+      72.70999908447266,
+      485.7959899902344
+    ],
+    "reuse_comparisons": [
+      {
+        "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-09-ac-power.svg",
+        "status": "rejected",
+        "reason": "symbol requires real transparent margins; opaque backdrop detected"
+      },
+      {
+        "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-08.svg",
+        "status": "rejected",
+        "reason": "symbol requires real transparent margins; opaque backdrop detected"
+      },
+      {
+        "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-07.svg",
+        "status": "rejected",
+        "reason": "symbol requires real transparent margins; opaque backdrop detected"
+      }
+    ],
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "2cdae40be011d5ba5d385d4eb908ed405db3acb941b869480820611ce1ef627f"
+  },
+  {
+    "slot": "lcd-09-output-voltage-frequency",
+    "physical_page": 9,
+    "search_box": [
+      48.8,
+      33.2,
+      84.8,
+      56.0
+    ],
+    "local_path": "assets/lcd-09-output-voltage-frequency.svg",
+    "reuse_candidates": [
+      "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-10-output-voltage-frequency.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-09.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-08.svg"
+    ],
+    "drawing_indices": [
+      1474,
+      1475,
+      1476,
+      1477,
+      1478,
+      1479,
+      1480,
+      1481,
+      1482,
+      1483
+    ],
+    "glyph_bbox": [
+      50.472999572753906,
+      40.139984130859375,
+      83.1449966430664,
+      46.217987060546875
+    ],
+    "reuse_comparisons": [
+      {
+        "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-10-output-voltage-frequency.svg",
+        "status": "rejected",
+        "reason": "symbol requires real transparent margins; opaque backdrop detected"
+      },
+      {
+        "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-09.svg",
+        "status": "rejected",
+        "reason": "symbol requires real transparent margins; opaque backdrop detected"
+      },
+      {
+        "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-08.svg",
+        "status": "rejected",
+        "reason": "symbol requires real transparent margins; opaque backdrop detected"
+      }
+    ],
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "3735cdce1ef1ad0567ce15b8cf5a75dc142648bfd2e633121a50e9ad30245eba"
+  },
+  {
+    "slot": "lcd-10-input-power",
+    "physical_page": 9,
+    "search_box": [
+      48.8,
+      57.2,
+      84.8,
+      76.2
+    ],
+    "local_path": "assets/lcd-10-input-power.svg",
+    "reuse_candidates": [
+      "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-11-input-power.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-10.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-09.svg"
+    ],
+    "drawing_indices": [
+      393,
+      394,
+      395,
+      396,
+      397,
+      398
+    ],
+    "glyph_bbox": [
+      53.834999084472656,
+      60.251007080078125,
+      80.177001953125,
+      73.35198974609375
+    ],
+    "reuse_comparisons": [
+      {
+        "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-11-input-power.svg",
+        "status": "rejected",
+        "reason": "symbol requires real transparent margins; opaque backdrop detected"
+      },
+      {
+        "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-10.svg",
+        "status": "rejected",
+        "reason": "symbol requires real transparent margins; opaque backdrop detected"
+      },
+      {
+        "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-09.svg",
+        "status": "rejected",
+        "reason": "symbol requires real transparent margins; opaque backdrop detected"
+      }
+    ],
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "ac67d2454f9062e83b6e143e5cb9e92e2301715f41d502d513e6206c71e71241"
+  },
+  {
+    "slot": "lcd-11-remaining-charge-time",
+    "physical_page": 9,
+    "search_box": [
+      48.8,
+      77.39999999999999,
+      84.8,
+      105.0
+    ],
+    "local_path": "assets/lcd-11-remaining-charge-time.svg",
+    "reuse_candidates": [
+      "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-12-remaining-charge-time.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-11.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-10.svg"
+    ],
+    "drawing_indices": [
+      389,
+      390,
+      391,
+      392
+    ],
+    "glyph_bbox": [
+      56.73099899291992,
+      87.052001953125,
+      77.28199768066406,
+      96.07400512695312
+    ],
+    "reuse_comparisons": [
+      {
+        "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-12-remaining-charge-time.svg",
+        "status": "rejected",
+        "reason": "symbol requires real transparent margins; opaque backdrop detected"
+      },
+      {
+        "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-11.svg",
+        "status": "rejected",
+        "reason": "symbol requires real transparent margins; opaque backdrop detected"
+      },
+      {
+        "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-10.svg",
+        "status": "rejected",
+        "reason": "symbol requires real transparent margins; opaque backdrop detected"
+      }
+    ],
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "3a5bc2c28349d69ddd08fe84aa1fc861518b0858afe65e7af7cea148436dabfe"
+  },
+  {
+    "slot": "lcd-12-ac-wall-charging",
+    "physical_page": 9,
+    "search_box": [
+      48.8,
+      106.19999999999999,
+      84.8,
+      132.8
+    ],
+    "local_path": "assets/lcd-12-ac-wall-charging.svg",
+    "reuse_candidates": [
+      "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-13-ac-wall-charging.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-12.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-11.svg"
+    ],
+    "drawing_indices": [
+      288,
+      289,
+      290,
+      291,
+      292,
+      293,
+      294,
+      295,
+      296,
+      297,
+      298,
+      299,
+      300
+    ],
+    "glyph_bbox": [
+      60.32240295410156,
+      113.54088592529297,
+      71.660400390625,
+      124.8798828125
+    ],
+    "reuse_source": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-12.svg",
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "reuse_comparisons": [
+      {
+        "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-13-ac-wall-charging.svg",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-12.svg",
+        "status": "passed",
+        "max_mean_channel_error": 0.003253
+      }
+    ],
+    "sha256": "0fe2c971cd3f076b937fc814afed2c5b9c67c52d1e2f118b89fb3ea76e08d3e2"
+  },
+  {
+    "slot": "lcd-13-car-charging",
+    "physical_page": 9,
+    "search_box": [
+      48.8,
+      134.0,
+      84.8,
+      163.6
+    ],
+    "local_path": "assets/lcd-13-car-charging.svg",
+    "reuse_candidates": [
+      "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-14-car-charging.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-13.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-12.svg"
+    ],
+    "drawing_indices": [
+      324,
+      325,
+      326,
+      327,
+      328,
+      329,
+      330,
+      331,
+      332,
+      333,
+      334,
+      335,
+      336,
+      337,
+      338,
+      339,
+      340
+    ],
+    "glyph_bbox": [
+      60.32240295410156,
+      144.06398010253906,
+      71.660400390625,
+      155.40298461914062
+    ],
+    "reuse_source": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-14-car-charging.svg",
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "reuse_comparisons": [
+      {
+        "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-14-car-charging.svg",
+        "status": "passed",
+        "max_mean_channel_error": 0.018747
+      }
+    ],
+    "sha256": "d6d69675228490e381df91275cb9543244ae79b30b31d62b3aad321c9d6ef87c"
+  },
+  {
+    "slot": "lcd-14-solar-charging",
+    "physical_page": 9,
+    "search_box": [
+      48.8,
+      164.79999999999998,
+      84.8,
+      192.4
+    ],
+    "local_path": "assets/lcd-14-solar-charging.svg",
+    "reuse_candidates": [
+      "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-15-solar-charging.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-14.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-13.svg"
+    ],
+    "drawing_indices": [
+      282,
+      283,
+      284,
+      285,
+      286,
+      287
+    ],
+    "glyph_bbox": [
+      60.197296142578125,
+      172.2115936279297,
+      71.72029876708984,
+      183.73458862304688
+    ],
+    "reuse_comparisons": [
+      {
+        "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-15-solar-charging.svg",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-14.svg",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-13.svg",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      }
+    ],
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "8a817e8fcdee1659c79574cb3545f2bfd7324ea575a223d806bf32b9d434c87c"
+  },
+  {
+    "slot": "lcd-15-battery-power",
+    "physical_page": 9,
+    "search_box": [
+      48.8,
+      193.6,
+      84.8,
+      224.0
+    ],
+    "local_path": "assets/lcd-15-battery-power.svg",
+    "reuse_candidates": [
+      "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-16-battery-power.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-15.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-14.svg"
+    ],
+    "drawing_indices": [
+      82
+    ],
+    "glyph_bbox": [
+      57.82849884033203,
+      199.82901000976562,
+      75.17549896240234,
+      217.17001342773438
+    ],
+    "reuse_source": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-15.svg",
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "reuse_comparisons": [
+      {
+        "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-16-battery-power.svg",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-15.svg",
+        "status": "passed",
+        "max_mean_channel_error": 0.007413
+      }
+    ],
+    "sha256": "463a1423db307feeb0045dbe94a9844b65ffcde9977db8de1c5993c046469aa4"
+  },
+  {
+    "slot": "lcd-16-low-battery",
+    "physical_page": 9,
+    "search_box": [
+      48.8,
+      225.2,
+      84.8,
+      274.0
+    ],
+    "local_path": "assets/lcd-16-low-battery.svg",
+    "reuse_candidates": [
+      "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-17-low-battery.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-16.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-15.svg"
+    ],
+    "drawing_indices": [
+      104
+    ],
+    "glyph_bbox": [
+      57.371097564697266,
+      245.23919677734375,
+      75.63309478759766,
+      255.1602020263672
+    ],
+    "reuse_comparisons": [
+      {
+        "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-17-low-battery.svg",
+        "status": "rejected",
+        "reason": "symbol requires real transparent margins; opaque backdrop detected"
+      },
+      {
+        "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-16.svg",
+        "status": "rejected",
+        "reason": "symbol requires real transparent margins; opaque backdrop detected"
+      },
+      {
+        "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-15.svg",
+        "status": "rejected",
+        "reason": "symbol requires real transparent margins; opaque backdrop detected"
+      }
+    ],
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "86a8974d67277d48c1eb28384a089b9c20e82411009e83dbc305f07ffb34ce1a"
+  },
+  {
+    "slot": "lcd-17-remaining-battery",
+    "physical_page": 9,
+    "search_box": [
+      48.8,
+      275.20000000000005,
+      84.8,
+      300.79999999999995
+    ],
+    "local_path": "assets/lcd-17-remaining-battery.svg",
+    "reuse_candidates": [
+      "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-18-remaining-battery.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-17.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-16.svg"
+    ],
+    "drawing_indices": [
+      187,
+      188,
+      189,
+      190,
+      191,
+      192,
+      193,
+      194,
+      195,
+      196,
+      197,
+      198,
+      199,
+      200,
+      201,
+      202,
+      203,
+      204,
+      205,
+      206,
+      207,
+      208,
+      209,
+      210,
+      211,
+      212,
+      213,
+      214,
+      215,
+      216,
+      217,
+      218,
+      219,
+      220
+    ],
+    "glyph_bbox": [
+      53.71900177001953,
+      282.3269958496094,
+      79.28500366210938,
+      294.6199951171875
+    ],
+    "reuse_comparisons": [
+      {
+        "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-18-remaining-battery.svg",
+        "status": "rejected",
+        "reason": "symbol requires real transparent margins; opaque backdrop detected"
+      },
+      {
+        "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-17.svg",
+        "status": "rejected",
+        "reason": "symbol requires real transparent margins; opaque backdrop detected"
+      },
+      {
+        "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-16.svg",
+        "status": "rejected",
+        "reason": "symbol requires real transparent margins; opaque backdrop detected"
+      }
+    ],
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "9939bb397d3b641928d06dd108a909dcf29b97f0ff528445cde4d1037f3742aa"
+  },
+  {
+    "slot": "lcd-18-fault-code",
+    "physical_page": 9,
+    "search_box": [
+      48.8,
+      302.0,
+      84.8,
+      329.59999999999997
+    ],
+    "local_path": "assets/lcd-18-fault-code.svg",
+    "reuse_candidates": [
+      "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-19-fault-code.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-18.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-17.svg"
+    ],
+    "drawing_indices": [
+      175,
+      176,
+      177
+    ],
+    "glyph_bbox": [
+      58.80710220336914,
+      308.031494140625,
+      74.19409942626953,
+      322.20648193359375
+    ],
+    "reuse_source": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-19-fault-code.svg",
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "reuse_comparisons": [
+      {
+        "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-19-fault-code.svg",
+        "status": "passed",
+        "max_mean_channel_error": 0.008611
+      }
+    ],
+    "sha256": "a26412e668dec6f865288f0193ffffa310e99cad7a4ee807c7681c19b5b4e01c"
+  },
+  {
+    "slot": "lcd-19a-high-temperature",
+    "physical_page": 9,
+    "search_box": [
+      48.8,
+      330.8,
+      84.8,
+      364.2
+    ],
+    "local_path": "assets/lcd-19a-high-temperature.svg",
+    "reuse_candidates": [
+      "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-20a-high-temperature.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-19.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-18.svg"
+    ],
+    "drawing_indices": [
+      361,
+      362
+    ],
+    "glyph_bbox": [
+      59.28669738769531,
+      341.2840881347656,
+      74.66069793701172,
+      355.4590759277344
+    ],
+    "reuse_source": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-20a-high-temperature.svg",
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "reuse_comparisons": [
+      {
+        "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-20a-high-temperature.svg",
+        "status": "passed",
+        "max_mean_channel_error": 0.018209
+      }
+    ],
+    "sha256": "f6805b16897e54b7051b8996a28cd70c6d6a852f70822ad00caf4c511443cdfe"
+  },
+  {
+    "slot": "lcd-19b-low-temperature",
+    "physical_page": 9,
+    "search_box": [
+      48.8,
+      365.40000000000003,
+      84.8,
+      398.79999999999995
+    ],
+    "local_path": "assets/lcd-19b-low-temperature.svg",
+    "reuse_candidates": [
+      "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-20b-low-temperature.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-20.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-19.svg"
+    ],
+    "drawing_indices": [
+      363,
+      364
+    ],
+    "glyph_bbox": [
+      59.32969665527344,
+      374.90771484375,
+      74.70269775390625,
+      389.08270263671875
+    ],
+    "reuse_source": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-20b-low-temperature.svg",
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "reuse_comparisons": [
+      {
+        "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-20b-low-temperature.svg",
+        "status": "passed",
+        "max_mean_channel_error": 0.009968
+      }
+    ],
+    "sha256": "0f131a3e36e0d3e689826b18f6dece30a090848e8254c8aaef78789cc275d075"
+  },
+  {
+    "slot": "lcd-20-energy-saving",
+    "physical_page": 9,
+    "search_box": [
+      48.8,
+      400.0,
+      84.8,
+      429.0
+    ],
+    "local_path": "assets/lcd-20-energy-saving.svg",
+    "reuse_candidates": [
+      "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-21-energy-saving.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-21.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-20.svg"
+    ],
+    "drawing_indices": [
+      166,
+      167,
+      168,
+      169,
+      170,
+      171,
+      172,
+      173,
+      174
+    ],
+    "glyph_bbox": [
+      58.29010009765625,
+      407.4176940917969,
+      74.71309661865234,
+      419.148681640625
+    ],
+    "reuse_source": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-20.svg",
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "reuse_comparisons": [
+      {
+        "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-21-energy-saving.svg",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-21.svg",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-20.svg",
+        "status": "passed",
+        "max_mean_channel_error": 0.012877
+      }
+    ],
+    "sha256": "12223fddf58a3ffe6ed44f9677c824fc2b1e2e0414c7bf7b79e6b5f7d67e86b8"
+  },
+  {
+    "slot": "lcd-21-output-power",
+    "physical_page": 9,
+    "search_box": [
+      48.8,
+      430.20000000000005,
+      84.8,
+      453.0
+    ],
+    "local_path": "assets/lcd-21-output-power.svg",
+    "reuse_candidates": [
+      "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-22-output-power.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-22.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-21.svg"
+    ],
+    "drawing_indices": [
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44
+    ],
+    "glyph_bbox": [
+      51.952999114990234,
+      433.9389953613281,
+      82.11299896240234,
+      448.94000244140625
+    ],
+    "reuse_comparisons": [
+      {
+        "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-22-output-power.svg",
+        "status": "rejected",
+        "reason": "symbol requires real transparent margins; opaque backdrop detected"
+      },
+      {
+        "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-22.svg",
+        "status": "rejected",
+        "reason": "symbol requires real transparent margins; opaque backdrop detected"
+      },
+      {
+        "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-21.svg",
+        "status": "rejected",
+        "reason": "symbol requires real transparent margins; opaque backdrop detected"
+      }
+    ],
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "9212e47a432096a92ca114d0e77d975b4e87efd2ff0313882cf25cd6878a284c"
+  },
+  {
+    "slot": "lcd-22-remaining-discharge-time",
+    "physical_page": 9,
+    "search_box": [
+      48.8,
+      454.20000000000005,
+      84.8,
+      479.4
+    ],
+    "local_path": "assets/lcd-22-remaining-discharge-time.svg",
+    "reuse_candidates": [
+      "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-23-remaining-discharge-time.svg",
+      "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-22.svg"
+    ],
+    "drawing_indices": [
+      45,
+      46,
+      47,
+      48
+    ],
+    "glyph_bbox": [
+      51.9109992980957,
+      461.5889892578125,
+      81.25799560546875,
+      471.2929992675781
+    ],
+    "reuse_comparisons": [
+      {
+        "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-23-remaining-discharge-time.svg",
+        "status": "rejected",
+        "reason": "symbol requires real transparent margins; opaque backdrop detected"
+      },
+      {
+        "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-22.svg",
+        "status": "rejected",
+        "reason": "symbol requires real transparent margins; opaque backdrop detected"
+      }
+    ],
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "19eba0a14f785913e7abc876c99a94695c0f1ced60a06cf2c1452bb713787970"
+  },
+  {
+    "slot": "fcc_mark",
+    "physical_page": 6,
+    "search_box": [
+      33,
+      42,
+      68,
+      67
+    ],
+    "local_path": "assets/fcc_mark.svg",
+    "reuse_candidates": [
+      "docs/renderers/web/assets/shared/symbols/native-v1/fcc_mark.svg"
+    ],
+    "drawing_indices": [
+      8066
+    ],
+    "glyph_bbox": [
+      34.785400390625,
+      44.13948059082031,
+      66.00740051269531,
+      65.8504867553711
+    ],
+    "reuse_source": "docs/renderers/web/assets/shared/symbols/native-v1/fcc_mark.svg",
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "reuse_comparisons": [
+      {
+        "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/fcc_mark.svg",
+        "status": "passed",
+        "max_mean_channel_error": 0.017126
+      }
+    ],
+    "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+  }
+]

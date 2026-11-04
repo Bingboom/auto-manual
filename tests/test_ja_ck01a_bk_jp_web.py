@@ -13,6 +13,7 @@ from bs4 import BeautifulSoup
 
 from tools.manual_ir.hashing import file_sha256
 from tools.word.bundle_docx_pandoc import resolve_pandoc_binary
+from tests.historical_app_styles import pre_rowspan_divider_styles
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGE = ROOT / "manual_sources/JA-CK01A-BK/JP/ja/git-20261023-3ea84ec6-manual"
@@ -92,6 +93,7 @@ class JaCk01aBkJpWebTests(unittest.TestCase):
             self.assertTrue((PACKAGE / output).is_file(), output)
             self.assertEqual({t["op"] for t in asset["transforms"]} - {"crop", "whiteout"}, set())
 
+    @pre_rowspan_divider_styles
     def test_cold_replay_matches_stored_candidate(self):
         # The prepared RST pipeline converts through Pandoc; the CI unit runner has none.
         try:
