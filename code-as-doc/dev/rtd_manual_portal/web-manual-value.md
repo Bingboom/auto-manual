@@ -17,7 +17,7 @@ Both RTD projects serve the same home page, so the copy has two audiences:
 | `RTD_SITE_ROLE` | Band on the home page | Page |
 | --- | --- | --- |
 | `manuals` (public) | title, one sentence and three reader points (便捷阅读, 版本清楚, 持续更新): only what a reader can use today, with no links, status tags, internal names, governance or AI wording | not built |
-| unset or `combined` (private) | eyebrow, heading and subtitle, then the three themes (便捷阅读, 内容治理, 知识积累), each with its facet keywords and a status tag, linking to its section of the page | built |
+| `combined` (the listed private project) | eyebrow, heading and subtitle, then the three themes (便捷阅读, 内容治理, 知识积累), each with its facet keywords and a status tag, linking to its section of the page | built |
 
 Only the public block reaches public HTML: `band_context(..., internal=False)` carries no internal copy. The
 `manuals`-role build in `tests/test_rtd_portal.py` checks the band and the absence of internal words and of
