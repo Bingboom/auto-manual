@@ -62,7 +62,7 @@
   ],
   "live_bitable_dependency": false,
   "phase2_enrolled": false,
-  "publication_status": "candidate-pending-operator-review",
+  "publication_status": "operator-authorized-git-only-release",
   "build_boundary": "JE-100A JP is not a phase2 target. build_content.py binds the transcription to shared ComponentSpecs; rebuild.py replays them through manual-ir/v2 and the shared Web/MyST pipeline with the prepared-document shared-style gate and symbol admission. build.py check of JE-1000F JP is a repository regression gate only; it does not validate this body.",
   "repo_inputs": [],
   "shared_component_exceptions": [
@@ -484,8 +484,8 @@
     },
     {
       "path": "README.md",
-      "size": 3760,
-      "sha256": "e6e7315bac8f644c77d9a4dda3fcd4ced8f06160df98a542a6046adc8cadd685"
+      "size": 4031,
+      "sha256": "5e66840ad57c2f7e47234bebe133954b2e726e03408c533aebff4418d9e178e2"
     },
     {
       "path": "assets/ac-charge.png",
@@ -638,6 +638,11 @@
       "sha256": "6098c0890e7dc20dade42fca3404e8b7e24e3d0b04ef9fe11cf1d9d8ab439712"
     },
     {
+      "path": "source/approval.json",
+      "size": 7416,
+      "sha256": "51cce39fb0709caa0bbbf1bea4861192f1ba7393bf3421dc2a484740c981192f"
+    },
+    {
       "path": "source/asset_decisions.json",
       "size": 5313,
       "sha256": "97ed29f576f91b440dfb9d21dde0d0d52a56cf3dd9d5ff119d9de4ddef88bf7e"
@@ -674,8 +679,8 @@
     },
     {
       "path": "source_manifest.json",
-      "size": 22271,
-      "sha256": "2d0fe896c3fb87a5cec7d535b9b4a40f8f997cd6e314556e32b655450d83c143"
+      "size": 22428,
+      "sha256": "bbf2af455e4153de75aa01b5a49005ad039a5235dd8dc13e75bfa4746b5b44b1"
     },
     {
       "path": "web/ja/_static/source_geometry.css",
@@ -819,8 +824,8 @@
     },
     {
       "path": "web/ja/manual.ir.json",
-      "size": 269627,
-      "sha256": "b49a772f3577fc8b0d8f43eb950ffc93f6445b8bb834821a86b61cfc5a2437fe"
+      "size": 278054,
+      "sha256": "cc1c7c69d7cb7f05509ac867dc0784b0db2fb1e306f6cd071b82157ed75bceaf"
     },
     {
       "path": "web/ja/manual_je100a_jp_ja.md",

@@ -63,7 +63,7 @@
   ],
   "live_bitable_dependency": false,
   "phase2_enrolled": false,
-  "publication_status": "candidate-pending-operator-review",
+  "publication_status": "operator-authorized-git-only-release",
   "build_boundary": "JE-76A JP is not a phase2 target. build_content.py binds the transcription to shared ComponentSpecs; rebuild.py replays them through manual-ir/v2 and the shared Web/MyST pipeline with the prepared-document shared-style gate. build.py check of JE-1000F JP is a repository regression gate only; it does not validate this body.",
   "repo_inputs": [],
   "shared_component_exceptions": [
@@ -262,8 +262,8 @@
     },
     {
       "path": "README.md",
-      "size": 3463,
-      "sha256": "9c639891505e826e2eca08fb07cbf5f56b867dd04d2f0d3a7d64f40f6d5ab6ec"
+      "size": 3957,
+      "sha256": "a5177b15c00bc7fd1d991942e60bc007d77072100cd49c2566edc26a2f92bac0"
     },
     {
       "path": "assets/certifications.png",
@@ -349,6 +349,11 @@
       "path": "refresh_manifest.py",
       "size": 2546,
       "sha256": "b50a8e0d7d4f6bd0791280761afc9a450c5a966d1a55c2bbd9c531688bdf3c04"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 5677,
+      "sha256": "d72e12b8dc02ca3744d6939c7f0f9caf9bb6002a6b71630ae46cdb5cae9109f8"
     },
     {
       "path": "source/asset_decisions.json",

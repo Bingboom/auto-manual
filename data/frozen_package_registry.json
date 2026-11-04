@@ -1466,7 +1466,7 @@
       "known_drift": {}
     },
     "manual_sources/JE-100A/JP/ja/git-20261103-2becaa50": {
-      "approval": "Candidate pending operator review: operator 「继续 转日语说明书」 2026-11-03 (发布文档管理 日规 view, 24-manual JP batch via the coordination window); Git-only JP/ja single-language Web candidate, no release approval yet (no source/approval.json)",
+      "approval": "Operator 「上线提交发布：JE-100A、JE-100C、JE-240A、JE-76A」 2026-11-04 in the engineering session after review of the PR #1652 1280/390 renders beside the reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinator window): Git-only JP ja single-language Web release, source copy verbatim; acceptance hash-bound in source/approval.json; merge not yet authorized",
       "registered": "2026-11-03",
       "known_drift": {}
     },
@@ -1521,7 +1521,7 @@
       "known_drift": {}
     },
     "manual_sources/JE-100C/JP/ja/git-20261103-64dd5f53": {
-      "approval": "Candidate pending operator review: operator 「继续 转日语说明书」 2026-11-03 (发布文档管理 日规 view, 24-manual JP batch via the coordination window); Git-only JP/ja single-language Web candidate, no release approval yet (no source/approval.json)",
+      "approval": "Operator 「上线提交发布：JE-100A、JE-100C、JE-240A、JE-76A」 2026-11-04 in the engineering session after review of the PR #1652 1280/390 renders beside the reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinator window): Git-only JP ja single-language Web release, source copy verbatim; acceptance hash-bound in source/approval.json; merge not yet authorized",
       "registered": "2026-11-03",
       "known_drift": {}
     },
@@ -1698,7 +1698,7 @@
       "known_drift": {}
     },
     "manual_sources/JE-240A/JP/ja/git-20261103-e227d165": {
-      "approval": "Candidate pending operator review: operator 「继续 转日语说明书」 2026-11-03 (发布文档管理 日规 view, 24-manual JP batch via the coordination window); Git-only JP/ja single-language Web candidate, no release approval yet (no source/approval.json)",
+      "approval": "Operator 「上线提交发布：JE-100A、JE-100C、JE-240A、JE-76A」 2026-11-04 in the engineering session after review of the PR #1652 1280/390 renders beside the reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinator window): Git-only JP ja single-language Web release, source copy verbatim; acceptance hash-bound in source/approval.json; merge not yet authorized",
       "registered": "2026-11-03",
       "known_drift": {}
     },
@@ -2080,7 +2080,7 @@
       }
     },
     "manual_sources/JE-76A/JP/ja/git-20261103-d8f7d338": {
-      "approval": "Candidate pending operator review: operator 「继续 转日语说明书」 2026-11-03 (发布文档管理 日规 view, 24-manual JP batch via the coordination window); Git-only JP/ja single-language Web candidate, no release approval yet (no source/approval.json)",
+      "approval": "Operator 「上线提交发布：JE-100A、JE-100C、JE-240A、JE-76A」 2026-11-04 in the engineering session after review of the PR #1652 1280/390 renders beside the reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinator window): Git-only JP ja single-language Web release, source copy verbatim; acceptance hash-bound in source/approval.json; merge not yet authorized",
       "registered": "2026-11-03",
       "known_drift": {}
     },

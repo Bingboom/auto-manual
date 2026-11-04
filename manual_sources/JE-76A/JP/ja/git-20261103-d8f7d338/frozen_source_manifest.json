@@ -63,7 +63,7 @@
   ],
   "live_bitable_dependency": false,
   "phase2_enrolled": false,
-  "publication_status": "candidate-pending-operator-review",
+  "publication_status": "operator-authorized-git-only-release",
   "build_boundary": "JE-76A JP is not a phase2 target. build_content.py binds the transcription to shared ComponentSpecs; rebuild.py replays them through manual-ir/v2 and the shared Web/MyST pipeline with the prepared-document shared-style gate. build.py check of JE-1000F JP is a repository regression gate only; it does not validate this body.",
   "repo_inputs": [],
   "shared_component_exceptions": [
@@ -262,8 +262,8 @@
     },
     {
       "path": "README.md",
-      "size": 3463,
-      "sha256": "9c639891505e826e2eca08fb07cbf5f56b867dd04d2f0d3a7d64f40f6d5ab6ec"
+      "size": 3957,
+      "sha256": "a5177b15c00bc7fd1d991942e60bc007d77072100cd49c2566edc26a2f92bac0"
     },
     {
       "path": "assets/certifications.png",
@@ -361,6 +361,11 @@
       "sha256": "b50a8e0d7d4f6bd0791280761afc9a450c5a966d1a55c2bbd9c531688bdf3c04"
     },
     {
+      "path": "source/approval.json",
+      "size": 5677,
+      "sha256": "d72e12b8dc02ca3744d6939c7f0f9caf9bb6002a6b71630ae46cdb5cae9109f8"
+    },
+    {
       "path": "source/asset_decisions.json",
       "size": 8316,
       "sha256": "9b12e8072621bfda8b41f57d8c7fb1b110a08ec6db24cbfc43fa3604268b9f3d"
@@ -397,8 +402,8 @@
     },
     {
       "path": "source_manifest.json",
-      "size": 15519,
-      "sha256": "726a14f6cd2a0a53d8ba06b06134600da08aa0bb718c8a15edbd95bcc9f59bff"
+      "size": 15676,
+      "sha256": "8db630995937a32dd62a6e223a64ce02fecf740e599a90544c8b241b8607578d"
     },
     {
       "path": "web/ja/_static/source_geometry.css",
@@ -487,8 +492,8 @@
     },
     {
       "path": "web/ja/manual.ir.json",
-      "size": 269179,
-      "sha256": "e6ac343b9853a3469721929e9186b42ab1f1102421bcf41251c9b044009d3dde"
+      "size": 275647,
+      "sha256": "18cf349460f6642fb9ba193c6ca8f9528959e2f6249674823aa2242fbfafde09"
     },
     {
       "path": "web/ja/manual_je76a_jp_ja.md",

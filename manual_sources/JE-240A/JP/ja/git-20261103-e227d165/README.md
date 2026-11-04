@@ -2,7 +2,7 @@
 
 Operator instruction, 2026-11-03: 「继续 转日语说明书」 (发布文档管理, 日规 view `vew0f8smjz`), relayed by the coordination window. This package is the Jackery ポータブル電源 240 (JE-240A) Japanese manual from that table, one of the 24 JP single-language manuals of the batch.
 
-**Status: `candidate-pending-operator-review`.** No `source/approval.json` exists and the IR is not publication-eligible. The operator reviews the 1280/390 renders beside the shared reference edition (the same-model JE-240A US/en Web edition) first; approval is written only after the operator's own 「上线提交发布：…」 in this window. Hello-Docs/RTD publication follows [web publish pipeline §2.2](../../../../../code-as-doc/dev/web_publish_pipeline/input-paths.md#22-git-only-transaction).
+**Status: `operator-authorized-git-only-release`.** The operator reviewed the 1280/390 renders beside the JE-240A US/en Web (published, same model) and the `source_manifest.json:source_concerns` list (PR #1652), then authorized release on 2026-11-04 (「上线提交发布：JE-100A、JE-100C、JE-240A、JE-76A」). `source/approval.json` binds every reviewed `source/` and `assets/` input; the IR is publication-eligible. The source copy goes live as printed; the listed source concerns go back to the source owner. Merge still needs explicit operator authorization (AGENTS.md §8.6). Hello-Docs/RTD publication follows [web publish pipeline §2.2](../../../../../code-as-doc/dev/web_publish_pipeline/input-paths.md#22-git-only-transaction).
 
 ## Source authority
 

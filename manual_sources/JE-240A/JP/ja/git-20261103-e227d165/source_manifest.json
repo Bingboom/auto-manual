@@ -62,7 +62,7 @@
   ],
   "live_bitable_dependency": false,
   "phase2_enrolled": false,
-  "publication_status": "candidate-pending-operator-review",
+  "publication_status": "operator-authorized-git-only-release",
   "build_boundary": "JE-240A JP is not a phase2 target. build_content.py binds the transcription to shared ComponentSpecs; rebuild.py replays them through manual-ir/v2 and the shared Web/MyST pipeline with the prepared-document shared-style gate and symbol admission. build.py check of JE-1000F JP is a repository regression gate only; it does not validate this body.",
   "repo_inputs": [],
   "shared_component_exceptions": [
@@ -523,8 +523,8 @@
     },
     {
       "path": "README.md",
-      "size": 3882,
-      "sha256": "7718265f56c5c93a3451f2f89e7213ce601d2f5086ff2232ca15032d4bd051bc"
+      "size": 4122,
+      "sha256": "f7a7e0447f55d2b0e2677a7450b5cd61f1aa6808500db2be3faf9bc6bde75e89"
     },
     {
       "path": "assets/ac-charge.png",
@@ -675,6 +675,11 @@
       "path": "refresh_manifest.py",
       "size": 2549,
       "sha256": "aed7eda5e7739a7f5a87173373f060d3a96739b5ee71a2a5d1f95fd77bc094b3"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 7782,
+      "sha256": "f1ec597b8ef43e762cfe447fbc709e5b90cf2d57c8bf41c42e2e1f5291c46b4b"
     },
     {
       "path": "source/asset_decisions.json",

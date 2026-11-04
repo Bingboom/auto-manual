@@ -2,7 +2,7 @@
 
 Operator instruction, 2026-11-03: 「继续 转日语说明书」 (发布文档管理, 日规视图 vew0f8smjz), relayed by the coordination window: the Japanese single-language manuals with a customer model and a PDF that are not yet on the Web. This package is the Jackery Explorer 100 Plus (JE-100A) Japanese manual from that table.
 
-**Status: `candidate-pending-operator-review`.** There is no `source/approval.json`; the IR is not publication-eligible. The operator reviews the 1280/390 renders beside the shared reference edition (JE-100A US/en) and the `source_manifest.json:source_concerns` list before any release decision. Hello-Docs/RTD publication follows [web publish pipeline §2.2](../../../../../code-as-doc/dev/web_publish_pipeline/input-paths.md#22-git-only-transaction) only after approval.
+**Status: `operator-authorized-git-only-release`.** The operator reviewed the 1280/390 renders beside the JE-100A US/en Web (published, same model) and the `source_manifest.json:source_concerns` list (PR #1652), then authorized release on 2026-11-04 (「上线提交发布：JE-100A、JE-100C、JE-240A、JE-76A」). `source/approval.json` binds every reviewed `source/` and `assets/` input; the IR is publication-eligible. The source copy goes live as printed; the listed source concerns go back to the source owner. Merge still needs explicit operator authorization (AGENTS.md §8.6). Hello-Docs/RTD publication follows [web publish pipeline §2.2](../../../../../code-as-doc/dev/web_publish_pipeline/input-paths.md#22-git-only-transaction).
 
 ## Source authority
 
