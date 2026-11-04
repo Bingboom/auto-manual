@@ -67,8 +67,8 @@
   "review_reference_edition": "manual_sources/JE-1500B/US/en/git-20261027-bb5a455b (JE-1500B US/en Web)",
   "live_bitable_dependency": false,
   "phase2_enrolled": false,
-  "publication_status": "candidate-pending-operator-review",
-  "publication_eligible": false,
+  "publication_status": "operator-authorized-git-only-release",
+  "publication_eligible": true,
   "build_boundary": "JE-1500B JP is not a phase2 target. build_content.py binds the transcription to shared ComponentSpecs; rebuild.py replays them through manual-ir/v2 and the shared Web/MyST pipeline with the prepared-document shared-style gate and symbol admission. No live Base, queue, source table, HTML_link or asset registry is read or written.",
   "repo_inputs": [],
   "symbol_asset_admission": {
@@ -321,8 +321,8 @@
     },
     {
       "path": "README.md",
-      "size": 4779,
-      "sha256": "b941df193b1107220419fecec9fe7953ed2f99de8de1f32c15f8f54f17f276e0"
+      "size": 4653,
+      "sha256": "c35b4ef6b3a31d292128d781105c651ce4a3def2896ab9c34e04186ee5251041"
     },
     {
       "path": "assets/ac-charge.png",
@@ -516,13 +516,13 @@
     },
     {
       "path": "evidence/strict-sphinx.log",
-      "size": 2251,
-      "sha256": "e5fb939538069c171543dbea8db605ee322cac9a534f68b6a873908ccd6fc294"
+      "size": 2263,
+      "sha256": "d422a907429e916291f956a07ffe023c8c86db03f2c451366098eb0d8e93312f"
     },
     {
       "path": "evidence/target-tests.log",
-      "size": 2284,
-      "sha256": "3a536dc9025b0e57e27d0c2eaa989020c6f4df734732de959b4c8d55f5607788"
+      "size": 1969,
+      "sha256": "9556a9a1961ae0a41b687ca89c4cd48073f30c58cc947bbac4a636be3eb027a3"
     },
     {
       "path": "evidence/validation.json",
@@ -538,6 +538,11 @@
       "path": "refresh_manifest.py",
       "size": 2582,
       "sha256": "8c204a38631e62fef9be66b9aa8dbbcc218c4a8a6cdf95becd66041ea3d6d0cc"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 10991,
+      "sha256": "ae60326dfeff1049c1d9c3693911f9e05025ba8e1611c8e39b853d3a97ab40cf"
     },
     {
       "path": "source/asset_decisions.json",
@@ -576,8 +581,8 @@
     },
     {
       "path": "source_manifest.json",
-      "size": 30909,
-      "sha256": "bb5701412f053fe39cffb9aab5b03bf513ed4343511b497e4cf5f65a37870590"
+      "size": 31066,
+      "sha256": "e3d0c3362efc369f6ea00722f3873768bedebdc6fd4c6d1bcd74b2df76fc0ed4"
     },
     {
       "path": "web/ja/_static/source_geometry.css",
@@ -756,8 +761,8 @@
     },
     {
       "path": "web/ja/manual.ir.json",
-      "size": 337094,
-      "sha256": "35be0f3317bf5fd2dfa5384b61a6011768cb32c06cf36da678a1e6e00b50b9ef"
+      "size": 349317,
+      "sha256": "0862ab719ad6c130c83538e8ccc3bd9fc0295b739c231a1b72328fd23c413a18"
     },
     {
       "path": "web/ja/manual_je1500b_jp_ja.md",

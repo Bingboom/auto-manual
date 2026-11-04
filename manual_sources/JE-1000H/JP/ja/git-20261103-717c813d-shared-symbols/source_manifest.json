@@ -65,11 +65,9 @@
   ],
   "live_bitable_dependency": false,
   "phase2_enrolled": false,
-  "publication_status": "candidate-pending-operator-review",
-  "publication_eligible": false,
-  "pending_source_review": [
-    "Operator re-approval of this shared-symbol version: every 絵表示 row now binds its operator-confirmed shared canonical (SCG-20261103, PR #1659), and the read-manual and keep-dry rows withheld in the released base are added"
-  ],
+  "publication_status": "operator-authorized-git-only-release",
+  "publication_eligible": true,
+  "pending_source_review": [],
   "build_boundary": "JE-1000H JP is not a phase2 target. build_content.py binds the transcription to shared ComponentSpecs; rebuild.py replays them through manual-ir/v2 and the shared Web/MyST pipeline with the prepared-document shared-style gate and symbol admission. No live Base, queue, source table, HTML_link or asset registry is read or written.",
   "repo_inputs": [],
   "symbol_asset_admission": {
@@ -515,8 +513,8 @@
     },
     {
       "path": "README.md",
-      "size": 4647,
-      "sha256": "b560d2e9d741465655ff63a50da266e975bba1a14b8bd5ad9e1b09c4de65a837"
+      "size": 4593,
+      "sha256": "7034d7e35607241a0d10f0cfcb949e83739f0a7aa48344c4b66f59e306b00784"
     },
     {
       "path": "assets/ac-charge.png",
@@ -887,6 +885,11 @@
       "path": "refresh_manifest.py",
       "size": 2582,
       "sha256": "e41fb8c5d67489a8fbcf97546f906bba9a959521aee52a4c73e4df50ad96b450"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 17062,
+      "sha256": "f513bd7a2ffdfe2f3c46f4b13073eaf6bfdd90d780a60420dc37ed5ba9428466"
     },
     {
       "path": "source/asset_decisions.json",

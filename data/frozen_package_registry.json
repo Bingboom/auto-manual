@@ -1436,7 +1436,7 @@
       "known_drift": {}
     },
     "manual_sources/JE-1000G/JP/ja/git-20261103-6cf12013-shared-symbols": {
-      "approval": "Coordinator relay of the operator's canonical-icon decision (SCG-20261103, #1659 / MA-384), within the operator request 「继续 转日语说明书」: shared-symbol follow-up version of the released JP ja Web package, all symbol rows bound to confirmed group canonicals; candidate intake only, no merge or release authorization",
+      "approval": "Operator 「上线提交发布：JE-1000G、JE-1000H、JE-1500B」 2026-11-04 in the window session, after review of the PR #1661 symbol-table close-ups and 1280 renders beside the released base versions: shared-symbol follow-up JP ja Web release, all symbol rows bound to operator-confirmed group canonicals (SCG-20261103, #1659); source copy verbatim (see source/approval.json); merge not yet authorized",
       "registered": "2026-11-04",
       "known_drift": {}
     },
@@ -1471,7 +1471,7 @@
       "known_drift": {}
     },
     "manual_sources/JE-1000H/JP/ja/git-20261103-717c813d-shared-symbols": {
-      "approval": "Coordinator relay of the operator's canonical-icon decision (SCG-20261103, #1659 / MA-384), within the operator request 「继续 转日语说明书」: shared-symbol follow-up version of the released JP ja Web package, all symbol rows bound to confirmed group canonicals; candidate intake only, no merge or release authorization",
+      "approval": "Operator 「上线提交发布：JE-1000G、JE-1000H、JE-1500B」 2026-11-04 in the window session, after review of the PR #1661 symbol-table close-ups and 1280 renders beside the released base versions: shared-symbol follow-up JP ja Web release, all symbol rows bound to operator-confirmed group canonicals (SCG-20261103, #1659); source copy verbatim (see source/approval.json); merge not yet authorized",
       "registered": "2026-11-04",
       "known_drift": {}
     },
@@ -1541,7 +1541,7 @@
       "known_drift": {}
     },
     "manual_sources/JE-1500B/JP/ja/git-20261103-f61d0d68-shared-symbols": {
-      "approval": "Coordinator relay of the operator's canonical-icon decision (SCG-20261103, #1659 / MA-384), within the operator request 「继续 转日语说明书」: shared-symbol follow-up version of the released JP ja Web package, all symbol rows bound to confirmed group canonicals; candidate intake only, no merge or release authorization",
+      "approval": "Operator 「上线提交发布：JE-1000G、JE-1000H、JE-1500B」 2026-11-04 in the window session, after review of the PR #1661 symbol-table close-ups and 1280 renders beside the released base versions: shared-symbol follow-up JP ja Web release, all symbol rows bound to operator-confirmed group canonicals (SCG-20261103, #1659); source copy verbatim (see source/approval.json); merge not yet authorized",
       "registered": "2026-11-04",
       "known_drift": {}
     },

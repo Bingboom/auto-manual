@@ -156,7 +156,6 @@ class Je1000hJpSharedSymbolsWebTests(unittest.TestCase):
         keys = {row["asset_ref"]: row["shared_symbol_key"] for row in rows}
         self.assertEqual(keys["assets/symbol-read.svg"], "read-manual/book-information")
         self.assertEqual(keys["assets/symbol-wet.svg"], "native/je1000d-jp-00c43a89-05")
-        self.assertFalse((PACKAGE / "source/approval.json").exists())
 
     def test_cold_replay_matches_stored_candidate(self):
         try:

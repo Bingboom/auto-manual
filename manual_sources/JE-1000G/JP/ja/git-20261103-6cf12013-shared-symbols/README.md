@@ -2,7 +2,7 @@
 
 Coordinator batch, 2026-11-03: JP/ja Git-only Web candidates for the 发布文档管理 records of JE-1000C, JE-1000G, JE-1000H and JE-1500B. This package is the JE-1000G Japanese manual of record `reczz28SfbsHbQU5` (子物料编码 16-0102-000396, 项目号 HTE158, SKU 21-0001-000447 / 21-0001-000448, 区域 日规). This version follows the released `git-20261103-6cf12013` (frozen, unchanged) after the shared symbol dedupe PR #1659 (`canonical_groups`, MA-384).
 
-**Status: `candidate-pending-operator-review`.** The operator must re-approve: there is no `source/approval.json` and the IR is not publication-eligible. Changes from the released version: the withheld 本製品を火気の近くに置かないでください。 row is now in the 絵表示の説明 table, bound to the operator-chosen canonical `no-open-flame/fire-match-prohibited`, and every symbol row binds the canonical of its operator-confirmed group (unplug → `unplug/h1-jp-native`, wet hands → `native/je1000d-jp-00c43a89-03`, keep dry → `native/je1000d-jp-00c43a89-05`; the other six were already canonicals). Same authoritative PDF, same transcription text and the same artwork otherwise.
+**Status: `operator-authorized-git-only-release`.** The operator reviewed the symbol-table close-ups and 1280 renders of this version beside the released base version (PR #1661), then authorized release on 2026-11-04 (「上线提交发布：JE-1000G、JE-1000H、JE-1500B」). `source/approval.json` binds every reviewed `source/` and `assets/` input; the IR is publication-eligible. Every symbol row binds its operator-confirmed group canonical (SCG-20261103, #1659). The source copy goes live as printed. Merge still needs explicit operator authorization (AGENTS.md §8.6).
 
 ## Source authority
 

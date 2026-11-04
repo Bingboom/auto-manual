@@ -2,7 +2,7 @@
 
 This package is the JE-1500B Japanese manual of Feishu record `reczz28SfbsHeofK` (子物料编码 38-0001-000276, 项目号 HTE080, SKU 21-0001-000003, 区域 日规), built as one of the JP/ja Git-only Web candidates (JE-1000C, JE-1000G, JE-1000H, JE-1500B).
 
-**Status: `candidate-pending-operator-review`.** Sibling of the released `git-20261103-f61d0d68` package, which stays unchanged (released 2026-11-03, 「上‘线提交发布：JE-1000C、JE-1000G、JE-1000H、JE-1500B」). This version adds only the 絵表示の説明 symbol table that the released version withheld: after #1659 (MA-384) fixed the shared `native_symbol_svg` selector for this PDF and recorded the operator-confirmed shared symbol groups (decision SCG-20261103), each of the six rows binds its group canonical. Same authoritative PDF, same transcription, same artwork otherwise. There is no `source/approval.json` and the IR is not publication-eligible until the operator re-approves.
+**Status: `operator-authorized-git-only-release`.** The operator reviewed the symbol-table close-ups and 1280 renders of this version beside the released base version (PR #1661), then authorized release on 2026-11-04 (「上线提交发布：JE-1000G、JE-1000H、JE-1500B」). `source/approval.json` binds every reviewed `source/` and `assets/` input; the IR is publication-eligible. Every symbol row binds its operator-confirmed group canonical (SCG-20261103, #1659). The source copy goes live as printed. Merge still needs explicit operator authorization (AGENTS.md §8.6).
 
 ## Source authority
 
