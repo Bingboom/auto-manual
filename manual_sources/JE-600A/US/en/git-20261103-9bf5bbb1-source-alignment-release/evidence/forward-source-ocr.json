@@ -1,0 +1,15 @@
+{
+  "model": "JE-600A",
+  "checked_ocr_lines": 146,
+  "candidates": [
+    {
+      "source_page": 5,
+      "source_ocr": "This device s intended for indot use dnlyeg plae this, devic, cinci si ney.",
+      "coverage": 0.18,
+      "web_near": "This feature is intended for emergency use only and cannot charge a dead or damaged car battery.",
+      "source_text": "This device is intended for indoor use only (Please place this device in a similar indoor environment when using it outdoors, e.g. Home RVs, tents, cabins, etc.). ※ This device is not waterproof or dustproof. Keep away from rain and humid environments during use.",
+      "web_locator": "[data-source-layout=\"danger-box\"]",
+      "decision": "Original p5 box visually checked; OCR garbled the bold text, not missing source content."
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+[
+  {
+    "width": 1280,
+    "images": 24,
+    "broken": [],
+    "uncontained": [],
+    "document": {
+      "viewport": 1280,
+      "width": 1280,
+      "cover": 0
+    },
+    "layouts": [
+      {
+        "key": "inbox",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 657.21875
+      },
+      {
+        "key": "lcd",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 657.21875
+      },
+      {
+        "key": "charging",
+        "columns": "auto",
+        "grid": "315.453px 325.766px",
+        "rectWidth": 657.21875
+      },
+      {
+        "key": "back",
+        "columns": "auto",
+        "grid": "545.219px 96px",
+        "rectWidth": 657.21875
+      },
+      {
+        "key": "car",
+        "columns": "auto",
+        "grid": "381.172px 260.047px",
+        "rectWidth": 657.21875
+      }
+    ],
+    "request_failures": [],
+    "background_images": []
+  },
+  {
+    "width": 390,
+    "images": 24,
+    "broken": [],
+    "uncontained": [],
+    "document": {
+      "viewport": 390,
+      "width": 390,
+      "cover": 0
+    },
+    "layouts": [
+      {
+        "key": "inbox",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 358
+      },
+      {
+        "key": "lcd",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 358
+      },
+      {
+        "key": "charging",
+        "columns": "auto",
+        "grid": "358px",
+        "rectWidth": 358
+      },
+      {
+        "key": "back",
+        "columns": "auto",
+        "grid": "246px 96px",
+        "rectWidth": 358
+      },
+      {
+        "key": "car",
+        "columns": "auto",
+        "grid": "358px",
+        "rectWidth": 358
+      }
+    ],
+    "request_failures": [],
+    "background_images": []
+  }
+]

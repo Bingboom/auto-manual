@@ -1,0 +1,78 @@
+{
+  "output": "/private/tmp/manual-web-audit-20261102/release27-approved-JHP-2000A",
+  "chapters": 17,
+  "components": {
+    "HB-CALLOUT-STRIP": 13,
+    "HB-SPECIAL-APP": 2,
+    "HB-SPECIAL-FCC": 1,
+    "HB-SPECIAL-INBOX": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE": 18,
+    "HB-TABLE-AUTO-RESUME": 1,
+    "HB-TABLE-KEY-COMBINATIONS": 1,
+    "HB-TABLE-LCD-ICON": 1,
+    "HB-TABLE-LCD-MODE": 1,
+    "HB-TABLE-SPEC": 4,
+    "HB-TABLE-SYMBOL-ICON": 1,
+    "HB-TABLE-TROUBLESHOOTING": 1,
+    "HB-WARRANTY-LEAD": 1,
+    "HB-WARRANTY-SECTION": 5,
+    "HB-WARRANTY-YEARS": 1
+  },
+  "symbol_admission": [
+    {
+      "asset_ref": "assets/symbol-01.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.014248
+    },
+    {
+      "asset_ref": "assets/symbol-02.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.012577
+    },
+    {
+      "asset_ref": "assets/symbol-03.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.001048
+    },
+    {
+      "asset_ref": "assets/symbol-04.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.002045
+    },
+    {
+      "asset_ref": "assets/symbol-05.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.002323
+    },
+    {
+      "asset_ref": "assets/symbol-06.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.001469
+    },
+    {
+      "asset_ref": "assets/symbol-07.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.002765
+    },
+    {
+      "asset_ref": "assets/symbol-08.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.000884
+    },
+    {
+      "asset_ref": "assets/symbol-09.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.002348
+    },
+    {
+      "asset_ref": "assets/symbol-10.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.010011
+    },
+    {
+      "asset_ref": "assets/symbol-11.png",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.016269
+    }
+  ]
+}

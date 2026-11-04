@@ -1,0 +1,64 @@
+{
+  "source_pages": [
+    7,
+    8
+  ],
+  "before": "Ordinary Arabic digits in native LCD table row-number cells; source uses circled digits.",
+  "after": "Source circled Unicode digits in native cells; original table content/order and temperature rowspan retained.",
+  "native_numbers": [
+    "①",
+    "②",
+    "③",
+    "④",
+    "⑤",
+    "⑥",
+    "⑦",
+    "⑧",
+    "⑨",
+    "⑩"
+  ],
+  "number_cell_spans": [
+    {
+      "number": "①",
+      "rowspan": "1"
+    },
+    {
+      "number": "②",
+      "rowspan": "1"
+    },
+    {
+      "number": "③",
+      "rowspan": "1"
+    },
+    {
+      "number": "④",
+      "rowspan": "1"
+    },
+    {
+      "number": "⑤",
+      "rowspan": "1"
+    },
+    {
+      "number": "⑥",
+      "rowspan": "1"
+    },
+    {
+      "number": "⑦",
+      "rowspan": "1"
+    },
+    {
+      "number": "⑧",
+      "rowspan": "2"
+    },
+    {
+      "number": "⑨",
+      "rowspan": "1"
+    },
+    {
+      "number": "⑩",
+      "rowspan": "1"
+    }
+  ],
+  "source_and_web_visual_review": "Original source table and final1280/390browser LCD components compared; all circled digits and corresponding icons/names/copy retained.",
+  "full_body_review": "Previous full-body review remains applicable: this follow-up changes only LCD number glyphs, no other copy/art/CSS geometry."
+}

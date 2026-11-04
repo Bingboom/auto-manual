@@ -1,0 +1,42 @@
+[
+  {
+    "path": "assets/lcd-04-shared.svg",
+    "physical_page": 7,
+    "bbox": [
+      56.42275282915901,
+      342.6530317826705,
+      72.48153632668888,
+      362.17124245383525
+    ],
+    "drawing_indices": [
+      59,
+      60,
+      61,
+      62,
+      63,
+      64
+    ],
+    "sha256": "24c702e95f47003259b081f6928b88ad6457e79c4db514f96ec648f5d5c48032"
+  },
+  {
+    "path": "assets/lcd-16-shared.png",
+    "physical_page": 8,
+    "bbox": [
+      54.0,
+      290.8,
+      70.5,
+      306.5
+    ],
+    "drawing_indices": [
+      304,
+      305,
+      306,
+      307,
+      308,
+      309,
+      310
+    ],
+    "sha256": "5e681cf1422c24fdd7a6b7d71cc61295b9d1c91a463bb33ea69440f4e7c0c2ff",
+    "operation": "Original PDF crop at12x; original knockout rendering retained. SVG export alters overlapping knockout paths, so crop is used instead of redrawing."
+  }
+]

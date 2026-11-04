@@ -1,0 +1,106 @@
+/* JE-3000B US en: page-local geometry and type size only.
+   Colours, frames and panels come from the shared Web theme (prepared-document shared-style gate). */
+
+/* Complete source panels keep a readable print width; dense ones pan on phones. */
+#furo-main-content .hb-reference-figure { max-width: 48rem; margin-inline: auto; }
+#furo-main-content .hb-reference-figure[data-reference-id="app-add"],
+#furo-main-content .hb-reference-figure[data-reference-id="app-results"] { max-width: 36rem; }
+@media (max-width: 760px) {
+  #furo-main-content .hb-reference-figure[data-reference-id="overview-front"],
+  #furo-main-content .hb-reference-figure[data-reference-id="overview-right"],
+  #furo-main-content .hb-reference-figure[data-reference-id="lcd-map"] { overflow-x: auto; }
+  #furo-main-content .hb-reference-figure[data-reference-id="overview-front"] > *,
+  #furo-main-content .hb-reference-figure[data-reference-id="overview-right"] > *,
+  #furo-main-content .hb-reference-figure[data-reference-id="lcd-map"] > * { min-width: 34rem; }
+}
+
+/* Source alignment: desktop table fits the content rail; phone scroll remains. */
+@media (min-width: 761px) {
+  #furo-main-content .hb-key-combination-table:has(.hb-key-button-pair) {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+/* Current source geometry: native text inside preserved source art. */
+#furo-main-content [data-source-layout="panel-scroll"] {overflow-x:auto;margin:1rem 0;}
+#furo-main-content [data-source-layout^="panel-"]:not([data-source-layout="panel-scroll"]) {position:relative;min-width:640px;width:100%;}
+#furo-main-content [data-source-layout^="panel-"] .hb-reference-figure {margin:0;max-width:none;}
+#furo-main-content [data-source-layout^="panel-"] p {margin:0 0 .2em;}
+#furo-main-content .hb-safety-instruction td:first-child {width:7%;}
+#furo-main-content .hb-safety-lead td:first-child {width:16%;}
+#furo-main-content [data-source-layout="safety-columns"] {table-layout:fixed;width:100%;}
+#furo-main-content [data-source-layout="safety-columns"] > tbody > tr > td {width:50%;vertical-align:top;padding:0 .5rem!important;}
+#furo-main-content [data-source-layout="safety-columns"] .hb-symbol-signal-composition {margin-bottom:.4rem;padding:.25rem;}
+#furo-main-content [data-source-layout="signal-dark"] .hb-signal-badge {padding:.2rem;}
+#furo-main-content [data-source-layout="fcc-original"] {padding:1rem;}
+#furo-main-content [data-source-layout="fcc-original"] img {width:5rem;}
+#furo-main-content [data-source-layout="model"] {float:right;font-size:.7em;}
+#furo-main-content [data-source-layout="spec-heading"] {padding:0;margin:.8rem 0;font-size:1.4rem;}
+#furo-main-content [data-source-layout="spec-heading"]::before {display:none;}
+#furo-main-content .hb-lcd-number {font-size:1.05rem;}
+#furo-main-content [data-source-layout="contact"] {margin:3rem 0 1rem;}
+#furo-main-content [data-source-layout="contact"] > p:first-child {font-size:1.7rem;}
+#furo-main-content [data-source-layout="contact-row"] {display:grid;grid-template-columns:1.3fr 1fr 4.6rem;gap:.7rem;align-items:center;}
+#furo-main-content [data-source-layout="contact-phone"],#furo-main-content [data-source-layout="contact-line"] {display:flex;gap:.5rem;align-items:center;}
+#furo-main-content [data-source-layout="contact-phone"] img {width:2.3rem;}
+#furo-main-content [data-source-layout="contact-phone"] p {font-size:1.5rem;font-weight:bold;}
+#furo-main-content [data-source-layout="contact-line"] img {width:1.5rem;}
+#furo-main-content [data-source-layout="contact-row"] p {margin:0;}
+@media(max-width:760px){#furo-main-content [data-source-layout="contact-row"]{grid-template-columns:1fr 4.6rem;}#furo-main-content [data-source-layout="contact-phone"]{grid-column:1;}#furo-main-content [data-source-layout="contact-online"]{grid-column:1;}#furo-main-content [data-source-layout="contact-row"]>img{grid-column:2;grid-row:1/3;} }
+#furo-main-content [data-source-layout="power-copy"]{position:absolute;left:45.7143%;top:58.5938%;width:48.5714%;font-size:13px;line-height:1.22;}
+#furo-main-content [data-source-layout="ac-output-premise"]{position:absolute;left:3.4921%;top:4.5045%;width:43.8095%;font-size:12px;line-height:1.22;}
+#furo-main-content [data-source-layout="ac-output-copy"]{position:absolute;left:3.4921%;top:86.4865%;width:87.6190%;font-size:13px;line-height:1.22;}
+#furo-main-content [data-source-layout="dc-usb-premise"]{position:absolute;left:3.8095%;top:5.1813%;width:43.8095%;font-size:12px;line-height:1.22;}
+#furo-main-content [data-source-layout="ups-premise"]{position:absolute;left:52.6984%;top:4.3290%;width:43.4921%;font-size:12px;line-height:1.22;}
+#furo-main-content [data-source-layout="ups-copy"]{position:absolute;left:40.0000%;top:63.2035%;width:52.6984%;font-size:13px;line-height:1.22;}
+#furo-main-content [data-source-layout="ac-charge-copy"]{position:absolute;left:60.0000%;top:54.4643%;width:37.4603%;font-size:13px;line-height:1.22;}
+#furo-main-content [data-source-layout="car-charge-premise"]{position:absolute;left:54.1401%;top:5.1852%;width:42.9936%;font-size:12px;line-height:1.22;}
+
+#furo-main-content [data-source-layout="safety-pill"] {font-size:1.25rem;line-height:1.1;padding:.3rem .8rem;margin:1.4rem 0 .6rem;}
+#furo-main-content [data-source-layout="safety-pill"]::before {display:none;}
+#furo-main-content [data-source-layout="fcc-original"] .hb-fcc-column {display:block;}
+#furo-main-content [data-source-layout="fcc-original"] img {float:left;width:3.8rem;margin:.2rem .5rem .1rem 0;}
+#furo-main-content [data-source-layout="safety-columns"] .hb-safety-lead {padding:0;}
+#furo-main-content [data-source-layout="safety-columns"] .hb-safety-lead td:first-child {width:25%;}
+#furo-main-content [data-source-layout="signal-inline"] td:nth-child(1) {width:9%;}
+#furo-main-content [data-source-layout="signal-inline"] td:nth-child(2) {width:21%;vertical-align:middle;}
+#furo-main-content [data-source-layout="signal-inline"] td:nth-child(2) p {font-size:1.4rem;}
+#furo-main-content [data-source-layout="signal-inline"] td:nth-child(3) {font-size:.8rem;line-height:1.15;vertical-align:middle;}
+#furo-main-content #native-product-model + h1,#furo-main-content h1:has([data-source-layout="model"]) {text-transform:none;}
+#furo-main-content [data-source-layout="model"] {text-transform:none;}
+#furo-main-content [data-source-layout="spec-group"] {margin:1.3rem 0;}
+#furo-main-content [data-source-layout="contact-row"] {grid-template-columns:minmax(0,1fr) 4.6rem;}
+#furo-main-content [data-source-layout="contact-frame"] {display:grid;grid-template-columns:1.2fr 1fr;gap:.7rem;align-items:center;padding:.6rem;margin:0;}
+#furo-main-content [data-source-layout="contact-qr-frame"] {padding:.3rem;margin:0;}
+#furo-main-content [data-source-layout="contact-phone"] p {font-size:1.25rem;}
+#furo-main-content .hb-lcd-number-marker {width:auto;height:auto;display:inline;}
+@media(max-width:760px){#furo-main-content [data-source-layout="contact-frame"]{grid-template-columns:1fr;}#furo-main-content [data-source-layout="contact-row"]{grid-template-columns:minmax(0,1fr) 4.6rem;}}
+
+#furo-main-content [data-source-layout="signal-scroll"]{overflow-x:auto;}
+@media(max-width:760px){#furo-main-content [data-source-layout="signal-inline"]{min-width:640px;}}
+
+#furo-main-content [data-source-layout="safety-single"] > tbody > tr > td {width:100%!important;padding:0!important;}
+#furo-main-content [data-source-layout="signal-inline"].hb-safety-instruction table {table-layout:fixed;}
+#furo-main-content [data-source-layout="signal-inline"].hb-safety-instruction img {width:2.6rem;}
+#furo-main-content .hb-lcd-mode-composition {grid-template-columns:minmax(0,1fr);}
+#furo-main-content .hb-lcd-mode-art {width:70%;max-height:none;}
+#furo-main-content [data-source-layout="fault-scroll"] {overflow-x:auto;}
+#furo-main-content [data-source-layout="fault-table"] {table-layout:fixed;min-width:38rem;width:100%;font-size:.82rem;}
+#furo-main-content [data-source-layout="fault-table"] tr>*:nth-child(1) {width:12%;text-align:center;vertical-align:middle!important;}
+#furo-main-content [data-source-layout="fault-table"] tr>*:nth-child(2) {width:26%;vertical-align:middle!important;}
+#furo-main-content [data-source-layout="fault-table"] tr>*:nth-child(3) {width:62%;vertical-align:middle!important;}
+#furo-main-content [data-source-layout="fault-table"] p {margin:0;}
+
+#furo-main-content .hb-lcd-name img {width:1.5rem;max-height:2rem;float:left;margin:.1rem .4rem .1rem 0;}
+#furo-main-content [data-source-layout="lcd-qualifier"] {font-size:.75rem;font-weight:400;line-height:1.1;}
+
+#furo-main-content [data-source-layout="first-use"] {display:inline-block;width:auto;padding:.35rem .8rem;font-size:.85rem;text-transform:none;margin:.3rem 0 .8rem;}
+
+#furo-main-content .hb-preface-region {font-size:1rem; padding:0.1rem 0.2rem;}
+
+#furo-main-content > section:has(.hb-app-download-composition) h2[data-source-layout="app-major"] {gap:.58rem;font-size:1.2rem;}
+#furo-main-content > section:has(.hb-app-download-composition) h2[data-source-layout="app-major"]::before {display:block;}
+#furo-main-content h1:has([data-source-layout="model"]) {display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.3rem .8rem;height:auto;}
+#furo-main-content h1 [data-source-layout="model"] {float:none;display:block;}
+#furo-main-content [data-source-layout="first-use"] {white-space:normal;}

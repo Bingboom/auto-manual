@@ -1,0 +1,107 @@
+/* JHP-1000A US: page-local geometry and type size only.
+   Colours, borders and panels come from the shared Web theme (prepared-document shared-style gate). */
+
+/* Complete source panels keep a readable print width; dense ones pan on phones. */
+#furo-main-content .hb-reference-figure { max-width: 48rem; margin-inline: auto; }
+#furo-main-content .hb-reference-figure[data-reference-id="app-add"] { max-width: 24rem; }
+#furo-main-content .hb-reference-figure[data-reference-id="app-results"] { max-width: 36rem; }
+#furo-main-content .hb-reference-figure[data-reference-id="led-light"] { max-width: 40rem; }
+#furo-main-content .hb-reference-figure[data-reference-id="lcd-map"] { max-width: 36rem; }
+@media (max-width: 760px) {
+  #furo-main-content .hb-reference-figure[data-reference-id="overview-front"],
+  #furo-main-content .hb-reference-figure[data-reference-id="overview-right"],
+  #furo-main-content .hb-reference-figure[data-reference-id="app-panel"] { overflow-x: auto; }
+  #furo-main-content .hb-reference-figure[data-reference-id="overview-front"] > *,
+  #furo-main-content .hb-reference-figure[data-reference-id="overview-right"] > *,
+  #furo-main-content .hb-reference-figure[data-reference-id="app-panel"] > * { min-width: 34rem; }
+}
+
+/* This edition: the complete desktop three-column table fits the content rail. */
+@media (min-width: 761px) {
+  #furo-main-content .hb-key-combination-table:has(.hb-key-button-pair) {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+/* Original source spatial relationships, with native editable text. */
+#furo-main-content [data-source-layout~="source-two-columns"] { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; align-items:start; }
+#furo-main-content [data-source-layout~="source-two-columns"] > * { min-width:0; margin-top:0; }
+#furo-main-content [data-source-layout~="source-risk-band"] { display:flex; gap:1rem; align-items:center; }
+#furo-main-content [data-source-layout~="source-risk-band"] > img { width:2.3rem; }
+#furo-main-content [data-source-layout~="source-risk-band"] h3 { margin:0; }
+#furo-main-content [data-source-layout~="source-figure-scroll"] { overflow-x:auto; }
+#furo-main-content [data-source-layout~="source-paint"] { position:relative; container-type:inline-size; min-width:36rem; }
+#furo-main-content [data-source-layout~="source-paint"] .hb-reference-figure { margin:0; max-width:none; }
+#furo-main-content [data-source-layout~="source-paint"] img { width:100%; display:block; }
+#furo-main-content [data-source-layout~="source-overlay"] { position:absolute; font-size:1.9cqw; line-height:1.45; padding:.8cqw; }
+#furo-main-content [data-source-layout~="source-overlay"] p { margin:0; font-size:inherit; line-height:inherit; }
+#furo-main-content [data-source-layout~="standby"] { left:40%; top:56%; width:56%; }
+#furo-main-content [data-source-layout~="prerequisite"] { left:2%; top:3%; width:60%; font-weight:600; }
+#furo-main-content [data-source-layout~="source-ac-output"] [data-source-layout~="footer"] { left:3%; top:84%; width:93%; }
+#furo-main-content [data-source-layout~="led-modes"] { left:4%; top:4%; width:91%; }
+#furo-main-content [data-source-layout~="led-step-1"] { left:73%; top:42%; width:24%; }
+#furo-main-content [data-source-layout~="led-step-2"] { left:73%; top:62%; width:24%; }
+#furo-main-content [data-source-layout~="led-step-3"] { left:73%; top:80%; width:24%; }
+#furo-main-content [data-source-layout~="eco-disable"] { left:3%; top:3%; width:92%; }
+#furo-main-content [data-source-layout~="charging-caption"] { left:6%; top:82%; width:88%; font-size:1.6cqw; }
+#furo-main-content [data-source-layout~="source-contact"] { display:flex; align-items:center; gap:2rem; }
+#furo-main-content [data-source-layout~="source-contact"] [data-reference-id="contact-qr"] { width:6rem; margin:0; }
+@media (max-width:760px) { #furo-main-content [data-source-layout~="source-two-columns"] {grid-template-columns:1fr;} }
+
+#furo-main-content [data-source-layout~="source-overlay"].hb-text-panel { margin:0; }
+
+/* The exact source frames remain artwork; their original words stay editable. */
+#furo-main-content [data-source-layout~="source-frame"], #furo-main-content [data-source-layout~="source-contact-frame"] {position:relative;container-type:inline-size;}
+#furo-main-content [data-source-layout~="source-frame"]>img, #furo-main-content [data-source-layout~="source-contact-frame"]>img {display:block;width:100%;margin:0;}
+#furo-main-content [data-source-layout~="source-copy"] {position:absolute;line-height:1.14;}
+#furo-main-content [data-source-layout~="source-copy"] p {font-size:inherit;line-height:inherit;margin:0;}
+#furo-main-content [data-source-layout~="source-copy-warning-card"] {left:30%;top:8%;width:67%;font-size:4.4cqw;}
+#furo-main-content [data-source-layout~="source-copy-warning-card"] p:first-child {font-size:6cqw;margin:0 0 .6cqw;}
+#furo-main-content [data-source-layout~="source-copy-risk-frame"] {left:11.6%;top:17%;width:86%;font-size:2.4cqw;}
+#furo-main-content [data-source-layout~="source-copy-grounding-frame"], #furo-main-content [data-source-layout~="source-copy-danger-frame"] {left:12%;top:8%;width:86%;font-size:1.9cqw;line-height:1.03;}
+#furo-main-content [data-source-layout~="source-copy-grounding-frame"] p:first-child, #furo-main-content [data-source-layout~="source-copy-danger-frame"] p:first-child {font-size:3.1cqw;margin:0 0 .2cqw;}
+#furo-main-content [data-source-layout~="source-contact-frame"] {min-width:36rem;}
+#furo-main-content [data-source-layout~="source-contact-phone"], #furo-main-content [data-source-layout~="source-contact-mail"], #furo-main-content [data-source-layout~="source-contact-site"] {position:absolute;line-height:1.2;}
+#furo-main-content [data-source-layout~="source-contact-frame"] p {margin:0;font-size:inherit;line-height:inherit;}
+#furo-main-content [data-source-layout~="source-contact-phone"] {left:9.6%;top:25%;width:44%;font-size:4.7cqw;font-weight:700;white-space:nowrap;}
+#furo-main-content [data-contact-country="true"] {font-size:2.4cqw;font-weight:400;}
+#furo-main-content [data-source-layout~="source-contact-mail"] {left:62%;top:24%;width:24%;font-size:2.6cqw;}
+#furo-main-content [data-source-layout~="source-contact-site"] {left:62%;top:53%;width:24%;font-size:2.6cqw;}
+
+#furo-main-content [data-source-pill-title="true"] {display:block;width:100%;margin:1rem 0 .6rem;}
+#furo-main-content [data-source-plain-title="true"] {font-size:1.08rem;margin:.6rem 0;}
+#furo-main-content [data-source-layout~="source-preface-title"] {display:flex;align-items:center;gap:.8rem;margin:.75rem 0;}
+#furo-main-content [data-source-layout~="source-preface-title"] p {margin:0;}
+#furo-main-content [data-source-layout~="source-preface-title"] .hb-prose-pill {font-size:1rem;padding:.1rem .2rem;}
+#furo-main-content [data-source-layout~="source-frame"] {margin:.75rem 0;}
+
+#furo-main-content [data-source-heading-key="app.s1.h"]::before,
+#furo-main-content [data-source-heading-key="app.s2.h"]::before,
+#furo-main-content [data-source-heading-key="app.s3.h"]::before,
+#furo-main-content [data-source-heading-key="app.s4.h"]::before {display:block !important;}
+
+#furo-main-content [data-source-signal="true"] .hb-signal-badge img {width:1.2rem;height:auto;margin:0;}
+#furo-main-content .hb-key-duration img {width:1.4rem;height:auto;margin:0 .3rem 0 0;}
+
+#furo-main-content [data-source-layout~="source-overlay"].hb-text-panel::before,
+#furo-main-content [data-source-layout~="source-overlay"].hb-text-panel::after {display:none;}
+#furo-main-content .hb-spec-label {font-weight:400;}
+#furo-main-content .hb-subbar[data-source-heading-key] {text-transform:none;}
+@media (min-width:761px) {
+ #furo-main-content .hb-lcd-mode-composition {grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:.8rem;padding:.8rem;}
+ #furo-main-content table.hb-lcd-mode-table {min-width:0;width:100%;}
+}
+
+@media (max-width:760px) {
+ #furo-main-content [data-source-layout~="source-paint"] {min-width:44rem;}
+ #furo-main-content [data-source-layout~="source-frame"]:not([data-source-layout~="source-warning-card"]) {min-width:44rem;}
+}
+
+/* Own source p6: text wraps around its FCC mark; NOTE/limits keep their paragraph boundary. */
+#furo-main-content .hb-fcc-column {display:block;font-size:.82rem;line-height:1.3;}
+#furo-main-content .hb-fcc-opening,#furo-main-content .hb-fcc-opening-copy {display:contents;}
+#furo-main-content .hb-fcc-mark {float:left;width:30%!important;margin:0 .5rem .1rem 0!important;}
+#furo-main-content .hb-fcc-column p {white-space:pre-line;margin:0 0 .25rem!important;}
+#furo-main-content .hb-fcc-column ul {display:block;margin:.3rem 0 .65rem!important;}
+#furo-main-content .hb-fcc-grid {gap:1.2rem;}

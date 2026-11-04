@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "applicable_target_checks": 8,
+  "initial_passed": 7,
+  "initial_dependency_error": "Only asset provenance source files absent from sparse checkout; expanded their original tracked directories and reran failed asset check successfully.",
+  "resolved_assets_check": "passed",
+  "old_chapter_test": "Not applicable: hardcodes old chapters and excludes source contact; replaced by complete22page source check and DOM cover exclusion.",
+  "cold_replay": "Original MD/IR/CSS exact-byte target check passed. Final metadata-only sealing has identical visible files and separately compared cold build."
+}

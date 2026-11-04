@@ -1,0 +1,434 @@
+{
+  "model": "JE-880B",
+  "record_id": "reczz28SPRx9mkQB",
+  "status": "local_review_passed",
+  "source_sha256": "640e83cab0c8897253258c9eb6cf247bdfc4f0d5937387a66c3d46be7c2bc1f6",
+  "whole_document_source_pages": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "scope": "Front cover and paper TOC excluded; complete body and back contact/QR included",
+  "differences_review": [
+    {
+      "old_item": 1,
+      "old_statement": "Outlined PDF: original.pdf has no text layer; every English line is a manual transcription from 300 dpi renders, kept as printed, source slips included (source/intake.py names the physical page of each block).",
+      "current_source": "Current outlined original.pdf physical p2–11 visually reviewed; all native paragraphs cross-checked with source OCR in both directions. No old-source extra paragraphs retained.",
+      "approval": "No omission or layout approval inferred from old declaration. Explicit original and current user scope excludes front cover and paper TOC."
+    },
+    {
+      "old_item": 2,
+      "old_statement": "Shared Manual IR: content.json is replayed through the shared flow renderer and shared components. No package class, inline style or plain table (prepared-document shared-style gate).",
+      "current_source": "Native Manual IR is retained. Source-local geometry restores the original wall-charge pairing and certificate heading/art row; shared visual theme is a Web carrier difference.",
+      "approval": "No omission or layout approval inferred from old declaration. Explicit original and current user scope excludes front cover and paper TOC."
+    },
+    {
+      "old_item": 3,
+      "old_statement": "Print weights: bold print runs stay strong; headings keep print case. Printed list markers (a., a), 1), 1., --) are kept as text on their own printed lines; the LCD callout legend 1-15 is an ordered list.",
+      "current_source": "Bold and printed literal list markers retained. The p4 LCD legend now preserves original circled ①–⑮ in the source three-column row-major layout, rather than ordinary automatic numbering.",
+      "approval": "No omission or layout approval inferred from old declaration. Explicit original and current user scope excludes front cover and paper TOC."
+    },
+    {
+      "old_item": 4,
+      "old_statement": "Line ends inside a paragraph are wraps; printed lines that start a new statement stay line breaks. Line-end hyphen splits tempera-/ture, connect-/ed and transfer-/able are rejoined; repeated spaces collapse.",
+      "current_source": "Only line wrapping, repeated spaces and print end-of-line hyphenation differ. Printed wording including OUPUT, form, F6/F9 and low-power terminology remains unchanged.",
+      "approval": "No omission or layout approval inferred from old declaration. Explicit original and current user scope excludes front cover and paper TOC."
+    },
+    {
+      "old_item": 5,
+      "old_statement": "Figures are source drawings cropped from the print; words drawn in the art stay in the art and the alt text carries them. Inline LCD pictograms in run-in subheadings are this print's own pixels (8x, alpha).",
+      "current_source": "All illustration panels and inline LCD pictograms come from this exact source. Native body text remains text; original certification marks and labels are preserved. No complete reference page is rasterized.",
+      "approval": "No omission or layout approval inferred from old declaration. Explicit original and current user scope excludes front cover and paper TOC."
+    },
+    {
+      "old_item": 6,
+      "old_statement": "Cover (p1) is not Web content; the back cover (p11) becomes the closing contact section; the 'US' page tabs and folios are not content.",
+      "current_source": "Front cover p1 and paper navigation are excluded by explicit operator scope. Source p11 original contact text and original QR are both retained and paired in their source order.",
+      "approval": "No omission or layout approval inferred from old declaration. Explicit original and current user scope excludes front cover and paper TOC."
+    }
+  ],
+  "actual_source_changes": [
+    "Physical p2 certification label and its own source marks restored on one row.",
+    "Physical p4 circled LCD numbers and three-column order restored. Source energy table has three separate Defaults cells and remains so.",
+    "Physical p6 wall-charge heading/copy paired with the original AC drawing.",
+    "Physical p11 contact text left and original QR right; no front cover added."
+  ],
+  "whole_body_visual": {
+    "method": "1300px sequential viewport screenshots with recorded actual scrollY; final changed components independently recaptured at 1280/390",
+    "tile_audit": {
+      "tiles": [
+        {
+          "tile": 0,
+          "scroll": 9,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        },
+        {
+          "tile": 1,
+          "scroll": 1259,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        },
+        {
+          "tile": 2,
+          "scroll": 2509,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        },
+        {
+          "tile": 3,
+          "scroll": 3759,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        },
+        {
+          "tile": 4,
+          "scroll": 5009,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        },
+        {
+          "tile": 5,
+          "scroll": 6259,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        },
+        {
+          "tile": 6,
+          "scroll": 7509,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        },
+        {
+          "tile": 7,
+          "scroll": 8759,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        },
+        {
+          "tile": 8,
+          "scroll": 10009,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        },
+        {
+          "tile": 9,
+          "scroll": 11259,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        },
+        {
+          "tile": 10,
+          "scroll": 12428,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        }
+      ],
+      "request_failures": [],
+      "background_images": []
+    }
+  },
+  "forward_source_check": {
+    "model": "JE-880B",
+    "checked_ocr_lines": 192,
+    "candidates": []
+  },
+  "reverse_source_check": {
+    "native_leaves": 113,
+    "exact_source_ocr_char_coverage": 106,
+    "visually_resolved": [
+      {
+        "native_leaf_index": 11,
+        "source_text": "34.0x26.2x25.5cm/13.39x10.32x10.06 in & About 11kg/ About 24.25 lbs",
+        "web_text": "34.0x26.2x25.5cm/13.39x10.32x10.06 in & About 11kg/ About 24.25 lbs",
+        "source_pages": [
+          2
+        ],
+        "source_locator": "Technical specifications, Dimensions row",
+        "web_locator": "#furo-main-content native leaf 11 (td)",
+        "decision": "Exact source dimensions and About 11kg/About 24.25 lbs; OCR dropped/spaced unit glyphs."
+      },
+      {
+        "native_leaf_index": 59,
+        "source_text": "Fault code ( ) : In order to quickly solve the user’s feedback, we set up common fault codes F0-F9 in the system: if you find any fault code of F0、F1、F2、F3、F4、F7 on the display screen, please contact us for after-sales treatment; If F6 code appears, please remove the load or unplug the charging plug, the product can restore by itself, if not, please contact after-sales treatment; If F9 fault code appears, please remove the load and the product can recover by itself, if not, please contact after-sales service.",
+        "web_text": "Fault code ( ) : In order to quickly solve the user’s feedback, we set up common fault codes F0-F9 in the system: if you find any fault code of F0、F1、F2、F3、F4、F7 on the display screen, please contact us for after-sales treatment; If F6 code appears, please remove the load or unplug the charging plug, the product can restore by itself, if not, please contact after-sales treatment; If F9 fault code appears, please remove the load and the product can recover by itself, if not, please contact after-sales service.",
+        "source_pages": [
+          4
+        ],
+        "source_locator": "LCD Fault code paragraph",
+        "web_locator": "#furo-main-content native leaf 59 (p)",
+        "decision": "Source explicitly lists F0/F1/F2/F3/F4/F7, then F6 and F9 recovery. Both clauses and source wording retained."
+      },
+      {
+        "native_leaf_index": 76,
+        "source_text": "Users who have purchased Jackery SolarSaga 80 can charge the product by referring to the connection mode shown below. The Jackery SolarSaga 80 supports the parallel connection or the parallel and then series connections to charge the product. The single input port of the Jackery Explorer 880 Pro supports the input of up to six pieces of SolarSaga 80 solar panels, and two input ports support the input to up to 6 pieces of SolarSaga 80 solar panels. (When the power is connected with six solar panels in a single input port, the solar panels shall be divided into two groups, and each group of three solar panels shall be self-connected in parallel and then connected to Jackery Explorer 880 Pro through the solar series connector. The solar series connector needs to be purchased separately.) For detailed operation instructions on the self-parallel connection of the Jackery SolarSaga 80 solar panel, please refer to the user manual.",
+        "web_text": "Users who have purchased Jackery SolarSaga 80 can charge the product by referring to the connection mode shown below. The Jackery SolarSaga 80 supports the parallel connection or the parallel and then series connections to charge the product. The single input port of the Jackery Explorer 880 Pro supports the input of up to six pieces of SolarSaga 80 solar panels, and two input ports support the input to up to 6 pieces of SolarSaga 80 solar panels. (When the power is connected with six solar panels in a single input port, the solar panels shall be divided into two groups, and each group of three solar panels shall be self-connected in parallel and then connected to Jackery Explorer 880 Pro through the solar series connector. The solar series connector needs to be purchased separately.) For detailed operation instructions on the self-parallel connection of the Jackery SolarSaga 80 solar panel, please refer to the user manual.",
+        "source_pages": [
+          6
+        ],
+        "source_locator": "SolarSaga 80 connection guide",
+        "web_locator": "#furo-main-content native leaf 76 (p)",
+        "decision": "Full six-panel/two-groups/parallel-then-series paragraph matches original; OCR wrap/hyphen artifacts only."
+      },
+      {
+        "native_leaf_index": 81,
+        "source_text": "This product can be charged with a 12V car charger. Please start the vehicle before charging to prevent draining the car battery and prevent your vehicle from being unable to start. Meanwhile, please ensure that the car charger and the car cigarette lighter provide a good connection, and ensure that the car charger is fully inserted. In addition, if the vehicle is running on bumpy roads, it is forbidden to use the car charger in case it burns due to a poor connection. The Company will not be responsible for any loss caused by non-standard operation.",
+        "web_text": "This product can be charged with a 12V car charger. Please start the vehicle before charging to prevent draining the car battery and prevent your vehicle from being unable to start. Meanwhile, please ensure that the car charger and the car cigarette lighter provide a good connection, and ensure that the car charger is fully inserted. In addition, if the vehicle is running on bumpy roads, it is forbidden to use the car charger in case it burns due to a poor connection. The Company will not be responsible for any loss caused by non-standard operation.",
+        "source_pages": [
+          7
+        ],
+        "source_locator": "Charging in the Car",
+        "web_locator": "#furo-main-content native leaf 81 (p)",
+        "decision": "Full 12V/car-start/bumpy-road/non-standard-operation paragraph matches source."
+      },
+      {
+        "native_leaf_index": 84,
+        "source_text": "The basic safety precautions should be followed when using this product, including: a. Please read all instructions before using this product. b. Close supervision is required when using this product near children to reduce the risk. c. Risk of electric shock may occur if using accessories recommended or sold by non-professional product manufacturers. d. When the product is not in use, please unplug the power plug from the product's socket. e. Do not dismantle the product, which may lead to unpredictable risks such as fire, explosion or electric shock. f. Do not use the product through damaged cords or plugs, or damaged output cables, which may cause electric shock. g. Charge the product in a well ventilated area and do not restrict ventilation in any way. h. Please put the product in a ventilated and dry place to avoid rain and water to cause electric shock. i. Do not expose the product to fire or high temperature (under direct sunlight or in vehicle under high heat), which may cause accidents such as fire and explosion. j.Do not disassemble the power pack, take it to a qualified service person when service or repair is required. Incorrect reassembly may result in a risk of fire or electric shock. k.Have servicing performed by a qualified repair person using only identical replacement parts. This will ensure that the safety of the product is maintained.",
+        "web_text": "The basic safety precautions should be followed when using this product, including: a. Please read all instructions before using this product. b. Close supervision is required when using this product near children to reduce the risk. c. Risk of electric shock may occur if using accessories recommended or sold by non-professional product manufacturers. d. When the product is not in use, please unplug the power plug from the product's socket. e. Do not dismantle the product, which may lead to unpredictable risks such as fire, explosion or electric shock. f. Do not use the product through damaged cords or plugs, or damaged output cables, which may cause electric shock. g. Charge the product in a well ventilated area and do not restrict ventilation in any way. h. Please put the product in a ventilated and dry place to avoid rain and water to cause electric shock. i. Do not expose the product to fire or high temperature (under direct sunlight or in vehicle under high heat), which may cause accidents such as fire and explosion. j.Do not disassemble the power pack, take it to a qualified service person when service or repair is required. Incorrect reassembly may result in a risk of fire or electric shock. k.Have servicing performed by a qualified repair person using only identical replacement parts. This will ensure that the safety of the product is maintained.",
+        "source_pages": [
+          7,
+          8
+        ],
+        "source_locator": "Safety Precautions When Using a–k",
+        "web_locator": "#furo-main-content native leaf 84 (p)",
+        "decision": "Source paragraph spans physical pages 7 and 8, so a single-page OCR comparison undercounts; a–k all present in order."
+      },
+      {
+        "native_leaf_index": 86,
+        "source_text": "WARNING–When using this product, basic precautions should always be followed, including the following: a) Read all the instructions before using the product. b) To reduce the risk of injury, close supervision is necessary when the product is used near children. c) Do not put fingers or hands into the product. d) Use of an attachment not recommended or sold by power pack manufacturer may result in a risk of fire, electric shock, or injury to persons. e) To reduce risk of damage to the electric plug and cord, pull the plug rather than the cord when disconnecting the power pack. f) Do not use a battery pack or appliance that is damaged or modified. Damaged or modified batteries may exhibit unpredictable behavior resulting in fire, explosion or risk of injury. g) Do not operate the power pack with a damaged cord or plug, or a damaged output cable. h) Do not disassemble the power pack, take it to a qualified service person when service or repair is required. Incorrect reassembly may result in a risk of fire or electric shock. i) To reduce the risk of electric shock, unplug the power pack form the outlet before attempting any instructed servicing. j) PERSONAL PRECAUTIONS 1)Have plenty of fresh water and soap nearby in case battery acid contacts skin, clothing, or eyes. 2)Wear complete eye protection and clothing protection. Avoid touching eyes while working near battery. 3)If battery acid contacts skin or clothing, wash immediately with soap and water. If acid enters eye, immediately flood eye with running cold water for at least 10 minutes and get medical attention immediately. 4)NEVER smoke or allow a spark or flame in vicinity of battery or engine. 5)Be extra cautious to reduce risk of dropping a metal tool onto battery. It might spark or short-circuit battery or other electrical part that may cause explosion. k) When charging the internal battery, work in a well ventilated area and do not restrict ventilation in any way. l) Under abusive conditions, liquid may be ejected from the battery; avoid contact. If contact accidentally occurs, flush with water. If liquid contacts eyes, additionally seek medical help. Liquid ejected from the battery may cause irritation or burns. m) Do not expose a power pack to fire or excessive temperature. Exposure to fire or temperature above 130°C may cause explosion. The temperature of 130°C can be replaced by the temperature of 265°F. n) Have servicing performed by a qualified repair person using only identical replacement parts. This will ensure that the safety of the product is maintained.",
+        "web_text": "WARNING–When using this product, basic precautions should always be followed, including the following: a) Read all the instructions before using the product. b) To reduce the risk of injury, close supervision is necessary when the product is used near children. c) Do not put fingers or hands into the product. d) Use of an attachment not recommended or sold by power pack manufacturer may result in a risk of fire, electric shock, or injury to persons. e) To reduce risk of damage to the electric plug and cord, pull the plug rather than the cord when disconnecting the power pack. f) Do not use a battery pack or appliance that is damaged or modified. Damaged or modified batteries may exhibit unpredictable behavior resulting in fire, explosion or risk of injury. g) Do not operate the power pack with a damaged cord or plug, or a damaged output cable. h) Do not disassemble the power pack, take it to a qualified service person when service or repair is required. Incorrect reassembly may result in a risk of fire or electric shock. i) To reduce the risk of electric shock, unplug the power pack form the outlet before attempting any instructed servicing. j) PERSONAL PRECAUTIONS 1)Have plenty of fresh water and soap nearby in case battery acid contacts skin, clothing, or eyes. 2)Wear complete eye protection and clothing protection. Avoid touching eyes while working near battery. 3)If battery acid contacts skin or clothing, wash immediately with soap and water. If acid enters eye, immediately flood eye with running cold water for at least 10 minutes and get medical attention immediately. 4)NEVER smoke or allow a spark or flame in vicinity of battery or engine. 5)Be extra cautious to reduce risk of dropping a metal tool onto battery. It might spark or short-circuit battery or other electrical part that may cause explosion. k) When charging the internal battery, work in a well ventilated area and do not restrict ventilation in any way. l) Under abusive conditions, liquid may be ejected from the battery; avoid contact. If contact accidentally occurs, flush with water. If liquid contacts eyes, additionally seek medical help. Liquid ejected from the battery may cause irritation or burns. m) Do not expose a power pack to fire or excessive temperature. Exposure to fire or temperature above 130°C may cause explosion. The temperature of 130°C can be replaced by the temperature of 265°F. n) Have servicing performed by a qualified repair person using only identical replacement parts. This will ensure that the safety of the product is maintained.",
+        "source_pages": [
+          8,
+          9
+        ],
+        "source_locator": "Important Safety Instructions a–n with personal precautions",
+        "web_locator": "#furo-main-content native leaf 86 (p)",
+        "decision": "Source spans two pages. All a–n and personal 1–5 retained; printed form and 130°C/265°F retained unchanged."
+      },
+      {
+        "native_leaf_index": 92,
+        "source_text": "1.Press the AC button, AC output will be turn on; and press the button again, the AC output will turn off， while the AC LED will turn off within 1~2seconds. 2.Press the any 1or 2 way DC(USB or 12V) button, output will be turn on; and press the button again, the DC output will turn off， while the DC LED will turn off within 1~2seconds. 3. If DC or AC output is on LCD will display “OUPUT” icon and output power unless all DC output is off",
+        "web_text": "1.Press the AC button, AC output will be turn on; and press the button again, the AC output will turn off， while the AC LED will turn off within 1~2seconds. 2.Press the any 1or 2 way DC(USB or 12V) button, output will be turn on; and press the button again, the DC output will turn off， while the DC LED will turn off within 1~2seconds. 3. If DC or AC output is on LCD will display “OUPUT” icon and output power unless all DC output is off",
+        "source_pages": [
+          9
+        ],
+        "source_locator": "Discharging instruction 1–3",
+        "web_locator": "#furo-main-content native leaf 92 (p)",
+        "decision": "Exact source 1~2seconds, DC(USB or 12V), OUPUT and unless all DC output is off retained; no inferred grammar correction."
+      }
+    ]
+  },
+  "source_notes": [
+    "No technical wording changes made; source itself has Low Power Mode off-by-default wording followed by the 12-hour condition.",
+    "Source has form the outlet and OUPUT; retained as supplied rather than silently rewriting."
+  ],
+  "browser": [
+    {
+      "width": 1280,
+      "images": 21,
+      "broken": [],
+      "uncontained": [],
+      "document": {
+        "viewport": 1280,
+        "width": 1280,
+        "cover": 0
+      },
+      "layouts": [
+        {
+          "key": "inbox",
+          "columns": "auto",
+          "grid": "none",
+          "rectWidth": 657.21875
+        },
+        {
+          "key": "contactpair",
+          "columns": "auto",
+          "grid": "561.219px 80px",
+          "rectWidth": 657.21875
+        },
+        {
+          "key": "certifications",
+          "columns": "auto",
+          "grid": "128px 517.219px",
+          "rectWidth": 657.21875
+        },
+        {
+          "key": "charging",
+          "columns": "auto",
+          "grid": "315.453px 325.766px",
+          "rectWidth": 657.21875
+        }
+      ],
+      "request_failures": [],
+      "background_images": []
+    },
+    {
+      "width": 390,
+      "images": 21,
+      "broken": [],
+      "uncontained": [],
+      "document": {
+        "viewport": 390,
+        "width": 390,
+        "cover": 0
+      },
+      "layouts": [
+        {
+          "key": "inbox",
+          "columns": "auto",
+          "grid": "none",
+          "rectWidth": 358
+        },
+        {
+          "key": "contactpair",
+          "columns": "auto",
+          "grid": "262px 80px",
+          "rectWidth": 358
+        },
+        {
+          "key": "certifications",
+          "columns": "auto",
+          "grid": "358px",
+          "rectWidth": 358
+        },
+        {
+          "key": "charging",
+          "columns": "auto",
+          "grid": "358px",
+          "rectWidth": 358
+        }
+      ],
+      "request_failures": [],
+      "background_images": []
+    }
+  ],
+  "remaining_source_or_layout_issues": [],
+  "acceptance_basis": "Whole-body original-source, bidirectional copy and desktop/mobile review under delegated local acceptance; not release approval",
+  "build": {
+    "strict_sphinx": "passed -n -W --keep-going",
+    "publication_status": "candidate-pending-operator-review",
+    "publication_eligible": false,
+    "candidate_rebuild_markdown_equals_strict_sphinx_verified_render": true,
+    "candidate_css_art_equals_strict_sphinx_verified_render": true,
+    "byte_identical_render_files": [
+      {
+        "path": "manual_je880b_us_en.md",
+        "sha256": "9771b97aa338b12141c32f50858f82f06ea2fb22bec7640f341222a079efc855"
+      },
+      {
+        "path": "index.md",
+        "sha256": "8c61dd985d3471a3cb51dc5beb934895f52c91ec1ce1dc7431a68424aabc32e2"
+      },
+      {
+        "path": "_static/web_manual.css",
+        "sha256": "c3604a2e5f22b04bc745bb99cf203b50e60222af70c0aeba3d968cc28adac9ce"
+      },
+      {
+        "path": "_static/source_presentation.css",
+        "sha256": "f0afd516a9b130f6820ed7c70c6b6fbff452d8c1b8e59d9deba1c6e53fbe7cdd"
+      },
+      {
+        "path": "assets/glyph-low-temperature.png",
+        "sha256": "b4768f10a3681619540f0791a8cdee08860ed5f108f89ace198f8968226d0a29"
+      },
+      {
+        "path": "assets/charging-car.png",
+        "sha256": "fc4dd5d21d953f823be1df32fd9dbb9c7c7cc7e06e082f8d15d72929c2387c44"
+      },
+      {
+        "path": "assets/lcd-display.png",
+        "sha256": "2e4a130f286405943b3b8fc59cad70ebc38cc771f6599cb25b9bc8c0c407d135"
+      },
+      {
+        "path": "assets/glyph-fault-code.png",
+        "sha256": "7826d793f3303aa6303f53e16937834220e7574a4535ade11527a2ec1bbb65f1"
+      },
+      {
+        "path": "assets/inbox-ac-cable.png",
+        "sha256": "44ab61dd382d57ba9bb1bf30164c3822422c9e3230908b80e1ad4f76762a9db1"
+      },
+      {
+        "path": "assets/dc7909-adaptor.png",
+        "sha256": "6a4ad03306ad3b81e483579a49e2ee96b34f305cbd369f349c72438f512772cc"
+      },
+      {
+        "path": "assets/inbox-quick-start-guide.png",
+        "sha256": "f25b1ddbe51495d503a17e383f7314532262a456eec840a0cd590098e69670bb"
+      },
+      {
+        "path": "assets/glyph-low-battery.png",
+        "sha256": "1f7e22f395ccbe3e6c82cf63f9e01d233ad502806828a69f45fa7311352a4647"
+      },
+      {
+        "path": "assets/solar-two-panels.png",
+        "sha256": "84cf8c81537268238061c36caa072a6a47300df8101d5515bc82e489e499648f"
+      },
+      {
+        "path": "assets/glyph-high-temperature.png",
+        "sha256": "b0e6a729dd6b7eceb342e48593c0a99bd49d4b315e2fe7eb589c457be7411560"
+      },
+      {
+        "path": "assets/inbox-adaptor.png",
+        "sha256": "5f11769c957d8c7209309333d84c2d56ffe7a058ff50fbb9bc6c2f191758babe"
+      },
+      {
+        "path": "assets/inbox-unit.png",
+        "sha256": "a474984a1f1728305c5df00f5bbc345200ac9e5668c09760ea930a48dc17d3b5"
+      },
+      {
+        "path": "assets/glyph-battery-power.png",
+        "sha256": "21e8c5bec802a818cf331c8a7d2c246ba3c303d31010b7b4d3e1eb57f9eba842"
+      },
+      {
+        "path": "assets/inbox-car-cable.png",
+        "sha256": "0e3098be1541a3227603fd423faf7c3979708e7937dabc6d7cf3c4635e6d6558"
+      },
+      {
+        "path": "assets/charging-wall.png",
+        "sha256": "b7e73e197a2dc08b8e506291af372b09353259b5bb807c71df6c71bf1eeb0ca1"
+      },
+      {
+        "path": "assets/glyph-low-power-mode.png",
+        "sha256": "87460339ffe66ebc9ee453027db2e5ce07374c03e1ed277aa628ca8ed26fd01f"
+      },
+      {
+        "path": "assets/certifications.png",
+        "sha256": "1f254ec8f287d4792ee2a5f06d6eb1b3df6d5fe20f874e4235ce252ebaffad14"
+      },
+      {
+        "path": "assets/contact-qr.png",
+        "sha256": "4b563e0e34c201d4e97eb122869b040e6bdf066d37b7fc41c8521d02acdf8327"
+      },
+      {
+        "path": "assets/product-appearance.png",
+        "sha256": "5737bf8313d0e4e542245b465730404c2f3e630835adbf6a90243460742ae462"
+      },
+      {
+        "path": "assets/solarsaga80-parallel.png",
+        "sha256": "9836e93396dff04184c15b0b0ea5cbdb8e869d4e82285d86d341a3dcd199b264"
+      },
+      {
+        "path": "assets/solar-four-panels.png",
+        "sha256": "b436dd8ca7ae1ce02e01147b940f813c66329419162c79e86a183e4e2c119914"
+      }
+    ]
+  }
+}

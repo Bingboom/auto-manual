@@ -1,0 +1,24 @@
+{
+  "exact_letter_contexts_checked": 109,
+  "raw_candidates": [
+    {
+      "page": 17,
+      "source": "Bypass Mode': 100V-120V~60Hz, 12A Max",
+      "web_context": "bypassmode1100v120v60hz12amax",
+      "source_numbers": [
+        "100",
+        "120",
+        "60",
+        "12"
+      ],
+      "web_numbers": [
+        "1100",
+        "120",
+        "60",
+        "12"
+      ]
+    }
+  ],
+  "unresolved_numeric_differences": 0,
+  "resolution": "Only candidate is source superscript1 after Bypass Mode adjacent to100V, which generic text flattening reads1100. Actual source and native HTML preserve the superscript and100V–120V,60Hz,12A. Every spec cell and all power/voltage/current/time/temperature/condition values also read visually."
+}
