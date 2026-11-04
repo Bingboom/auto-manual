@@ -382,7 +382,7 @@ class RtdPortalTests(unittest.TestCase):
         self.assertEqual(band.select_one(".value-eyebrow").get_text(), "HELLO-DOCS · DIGITAL MANUAL LIBRARY")
         themes = band.select("a.value-item")
         self.assertEqual([(a.strong.get_text(), a.em.get_text()) for a in themes],
-                         [("便捷阅读", "可用"), ("内容治理", "部分可用"), ("知识积累", "建设中")])
+                         [("便捷阅读", "可用"), ("机器可读", "部分可用"), ("内容治理", "部分可用"), ("知识积累", "建设中")])
         for link in [*themes, band.select_one(".value-more a")]:
             url = urlsplit(urljoin(site + "index.html", link["href"]))
             self.assertEqual(url.path, "/workspace/positioning/index.html", link["href"])

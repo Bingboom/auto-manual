@@ -24,6 +24,11 @@ schema: hello-docs-knowledge-updates/v1
 
 updates:
   - date: 2026-11-04
+    title: 定位与价值 · 改为四个主题
+    note: 新增「机器可读」，补充扫码直达、修订即发和读者反馈；文字精简，去掉编号标签和长期方向
+    page: positioning
+    evidence: "pr:auto-manual#1673"
+  - date: 2026-11-04
     title: 定位与价值 · 网页说明书的定位与价值
     note: 新增一页：网页说明书的三个主题（便捷阅读、内容治理、知识积累）各自的现状，以及长期方向；说明书资料库首页同步加了定位板块
     page: positioning

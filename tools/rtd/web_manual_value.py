@@ -110,17 +110,6 @@ def _public(raw: object) -> dict[str, Any]:
             "points": [_point(f"public.points[{index}]", point) for index, point in enumerate(points)]}
 
 
-def _direction(raw: object) -> dict[str, Any]:
-    direction = _mapping("internal.direction", raw)
-    revs = _revs("internal.direction", direction.get("revs"))
-    if not revs:
-        raise ValueError(f"{SOURCE_NAME}: internal.direction names the REVs it points to")
-    return {"title": _text("internal.direction.title", direction.get("title")),
-            "line": _text("internal.direction.line", direction.get("line")),
-            "body": _paragraphs("internal.direction.body", direction.get("body")),
-            "note": _text("internal.direction.note", direction.get("note")), "revs": revs}
-
-
 def _internal(raw: object) -> dict[str, Any]:
     internal = _mapping("internal", raw)
     themes = internal.get("themes")
@@ -132,7 +121,6 @@ def _internal(raw: object) -> dict[str, Any]:
     view["intro"] = _paragraphs("internal.intro", internal.get("intro"))
     view["triad"] = _paragraphs("internal.triad", internal.get("triad"))
     view["themes"] = [_theme(f"internal.themes[{index}]", theme, ids) for index, theme in enumerate(themes)]
-    view["direction"] = _direction(internal.get("direction"))
     return view
 
 

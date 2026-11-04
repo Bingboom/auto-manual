@@ -1,6 +1,6 @@
 /* 网页说明书的定位与价值 (workspace/positioning/index): page content inside the shared
    site shell (site-shell.css). Status colours follow the 系统建设 page; 部分可用 is the
-   outlined 可用. The long-term direction is drawn dashed: a direction, not a capability. */
+   outlined 可用. */
 * {box-sizing:border-box}
 a {color:var(--brand-strong);text-underline-offset:3px}
 a:focus-visible,nav:focus-visible {outline:3px solid var(--brand);outline-offset:3px}
@@ -51,16 +51,6 @@ a:focus-visible,nav:focus-visible {outline:3px solid var(--brand);outline-offset
 .vp-facet {font-size:14px;font-weight:600}
 .vp-now .vp-status {justify-self:start}
 .vp-now li p {margin:0;font-size:13.5px;line-height:1.75;color:#50545c}
-.vp-rev {display:inline-block;margin-left:2px;padding:0 5px;border-radius:4px;background:var(--app-bg);
-  color:var(--app-muted);font-size:12px;white-space:nowrap}
-
-.vp-direction {margin-top:28px;padding:28px;border:1px dashed #c3c6cc;border-radius:12px;scroll-margin-top:80px}
-.vp-direction-tag {display:inline-block;margin:0 0 8px;padding:3px 8px;border-radius:4px;background:#eff0f3;
-  color:#5d636e;font-size:12px;font-weight:600;line-height:1.4}
-.vp-direction h2 {margin:0 0 6px;font-size:22px;font-weight:650}
-.vp-direction p {max-width:820px;margin:0 0 10px;font-size:15px;line-height:1.9}
-.vp-direction .vp-direction-line {font-size:17px;font-weight:600}
-.vp-direction .vp-direction-note {margin-top:14px;font-size:13px;color:var(--app-muted)}
 
 .vp-footer {display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px 24px;margin-top:28px;
   padding-top:18px;border-top:1px solid var(--app-line);font-size:13px;color:var(--app-muted)}
@@ -77,7 +67,7 @@ a:focus-visible,nav:focus-visible {outline:3px solid var(--brand);outline-offset
   .vp-tagline {font-size:16px}
   .vp-key {padding:18px}
   .vp-key-idea {font-size:18px}
-  .vp-theme,.vp-direction {padding:22px 18px}
+  .vp-theme {padding:22px 18px}
   .vp-now li {grid-template-columns:auto minmax(0,1fr)}
   .vp-now li p {grid-column:1 / -1}
 }

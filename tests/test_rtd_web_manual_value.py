@@ -41,12 +41,13 @@ class CopyTests(unittest.TestCase):
         themes = wmv.load_value(ASSETS)["internal"]["themes"]
         self.assertEqual([(t["id"], t["theme"], t["status"], t["status_label"]) for t in themes], [
             ("reading", "便捷阅读", "available", "可用"),
+            ("machine", "机器可读", "partial", "部分可用"),
             ("governance", "内容治理", "partial", "部分可用"),
             ("knowledge", "知识积累", "in_progress", "建设中"),
         ])
         self.assertEqual([[f["label"] for f in t["facets"]] for t in themes],
-                         [["统一呈现", "多端适配", "快速查阅"], ["版本追溯", "来源管理", "质量改进"],
-                          ["规范沉淀", "可信复用", "辅助创作"]])
+                         [["统一呈现", "扫码直达", "快速查阅"], ["机读导出", "AI 问答", "市场覆盖"],
+                          ["版本追溯", "读者反馈", "质量改进"], ["规范沉淀", "可信复用", "辅助创作"]])
 
     def test_theme_tag_rule(self):
         cases = {("available", "available"): "available", ("available", "in_progress"): "partial",
@@ -75,9 +76,9 @@ class CopyTests(unittest.TestCase):
         for text in strings(value):
             self.assertIsNone(re.search(r"[0-9]", text), text)
             self.assertNotIn("电子说明书", text)
-        # The full page keeps the key idea, and the direction names the deferred REVs it points to.
+        # The full page keeps the key idea as its 总纲; there is no long-term-direction block.
         self.assertEqual(value["internal"]["key_idea"], "已批准的历史内容，不天然等于可直接复用的标准知识。")
-        self.assertEqual(value["internal"]["direction"]["revs"], ["REV-32", "REV-33"])
+        self.assertNotIn("direction", value["internal"])
 
 
 class ValidationTests(unittest.TestCase):
@@ -110,7 +111,6 @@ class ValidationTests(unittest.TestCase):
             "unique lower-case id": lambda d: d["internal"]["themes"][1].update(id="reading"),
             "public.lead": lambda d: d["public"].update(lead=" "),
             "public.points": lambda d: d["public"].update(points=[]),
-            "direction names": lambda d: d["internal"]["direction"].update(revs=[]),
             "facets": lambda d: d["internal"]["themes"][2].update(facets=[]),
         }
         for message, edit in edits.items():
@@ -127,10 +127,11 @@ class RenderTests(unittest.TestCase):
 
     def test_internal_band_links_each_theme_to_its_section(self):
         band = render("_value_band.html", value=wmv.band_context(wmv.load_value(ASSETS), internal=True))
-        self.assertEqual(band.h2.get_text(), "让产品资料成为持续积累的知识资产")
+        self.assertEqual(band.h2.get_text(), "人能读，机器能读，团队能持续复用")
         self.assertEqual([(a["href"], a.select_one(".value-text").get_text()) for a in band.select("a.value-item")], [
-            (f"{wmv.PAGE}#reading", "统一呈现、多端适配、快速查阅"),
-            (f"{wmv.PAGE}#governance", "版本追溯、来源管理、质量改进"),
+            (f"{wmv.PAGE}#reading", "统一呈现、扫码直达、快速查阅"),
+            (f"{wmv.PAGE}#machine", "机读导出、AI 问答、市场覆盖"),
+            (f"{wmv.PAGE}#governance", "版本追溯、读者反馈、质量改进"),
             (f"{wmv.PAGE}#knowledge", "规范沉淀、可信复用、辅助创作"),
         ])
         self.assertEqual(band.select_one(".value-more a")["href"], wmv.PAGE)
@@ -138,22 +139,22 @@ class RenderTests(unittest.TestCase):
     def test_without_a_band_the_home_renders_nothing_for_it(self):
         self.assertIsNone(render("_value_band.html").select_one("section"))
 
-    def test_page_shows_each_themes_status_now_and_the_direction_apart(self):
+    def test_page_shows_each_themes_status_and_now_without_rev_ids(self):
         value = wmv.load_value(ASSETS)
         page = render(wmv.TEMPLATE, **wmv.page_context(value), site_nav={}, system_entry=True)
         self.assertEqual(page.h1.get_text(), "网页说明书的定位与价值")
         self.assertEqual(page.select_one(".vp-key-idea").get_text(), value["internal"]["key_idea"])
         sections = page.select("section.vp-theme")
-        self.assertEqual([s["id"] for s in sections], ["reading", "governance", "knowledge"])
+        self.assertEqual([s["id"] for s in sections], ["reading", "machine", "governance", "knowledge"])
         for section, theme in zip(sections, value["internal"]["themes"], strict=True):
             now = section.select_one(".vp-now")
             self.assertEqual(now.h3.get_text(), "现状")
             self.assertEqual([(li.select_one(".vp-facet").get_text(), li.em["class"][-1]) for li in now.select("li")],
                              [(f["label"], f"is-{f['status']}") for f in theme["facets"]])
             self.assertEqual(section.select_one(".vp-principle p").get_text(), theme["principle"])
-        direction = page.select_one("#direction")
-        self.assertEqual(direction.select_one(".vp-direction-tag").get_text(), "方向，不是现有能力")
-        self.assertEqual([rev.get_text() for rev in direction.select(".vp-rev")], ["REV-32", "REV-33"])
+        # REV ids are evidence in the data file, never shown; the long-term direction is gone.
+        self.assertNotIn("REV-", page.get_text())
+        self.assertIsNone(page.select_one("#direction"))
         current = page.select('#app-sidebar a[aria-current="page"]')
         self.assertEqual([(a.span.get_text(), a["href"]) for a in current], [("定位与价值", wmv.PAGE)])
         self.assertEqual(page.select_one(".vp-footer a")["href"], "workspace/system/index")

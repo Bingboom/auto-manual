@@ -13,8 +13,10 @@
 # vocabulary: available | validated | in_progress | planned (a planned facet
 # names its REV). The theme's tag is derived from its facets: all available is
 # 可用; any available or validated is 部分可用; all planned is 已规划; otherwise
-# 建设中. Keep what exists apart from the direction, and write no counts: they
-# change with every release, and 说明书工作台 reads them from the publish manifest.
+# 建设中. `revs` are evidence for reviewers and are never shown. State only
+# what exists or is being built, keep each line short, and write no counts:
+# they change with every release, and 说明书工作台 reads them from the publish
+# manifest.
 schema: hello-docs-web-manual-value/v1
 title: 网页说明书的定位与价值
 
@@ -30,80 +32,82 @@ public:
 
 internal:
   eyebrow: HELLO-DOCS · DIGITAL MANUAL LIBRARY
-  heading: 让产品资料成为持续积累的知识资产
-  subtitle: 以已批准的产品资料为基础，提供便捷的数字化阅读体验，并逐步建立可追溯、可治理、可复用的产品内容体系。
-  tagline: 让产品资料从一次性交付的文档，逐步成为可阅读、可检索、可治理、可复用的知识资产。
+  heading: 人能读，机器能读，团队能持续复用
+  subtitle: 网页说明书是已批准说明书的可信发布源：同一份内容，服务用户、客服、AI 助手和资料开发。
+  tagline: 网页说明书是已批准说明书的可信发布源：人能读，机器能读，团队能持续维护和复用。
   intro:
-    - 纸质说明书是产品交付的重要组成部分，承载着特定产品、市场和版本的正式使用信息。随着产品持续迭代，不同阶段积累的说明书在内容组织、术语表达和编写规范上可能存在差异，这些历史资料也构成了企业重要的内容资产。
-    - 网页说明书不仅是纸质说明书的网页化呈现，更是产品资料走向数字化管理与知识积累的重要载体。
+    - 它不只是纸质说明书的网页版，也是产品内容走向数字化管理、机器可读和知识积累的载体。
   key_idea: 已批准的历史内容，不天然等于可直接复用的标准知识。
   triad:
-    - 网页化解决资料的可访问性
-    - 内容治理解决资料的可信性
-    - 知识沉淀解决未来的复用价值
+    - 网页化解决可访问性
+    - 机读解决可引用性
+    - 内容治理解决可信性
+    - 知识沉淀解决复用价值
   themes:
     - id: reading
       theme: 便捷阅读
       title: 更便捷的数字化阅读
       body:
-        - 以已批准的产品说明书为依据，将原有内容转化为适合网页和移动设备阅读的网页说明书。
-        - 通过统一的视觉规范、章节导航和内容检索，让用户能够更便捷地查找、阅读和理解产品信息。
-      principle: 忠实于已批准的原稿，在不擅自改变技术事实的前提下改善阅读体验。
+        - 以已批准的说明书为依据，用统一的版式、章节导航和检索，让用户在手机和电脑上都能快速找到、读懂产品信息。
+      principle: 忠实于已批准的原稿，不改变技术事实。
       facets:
         - label: 统一呈现
           status: available
-          note: 网页说明书使用共享组件和统一主题，按章节导航。
-        - label: 多端适配
+          note: 共享组件和统一主题，按章节导航。
+        - label: 扫码直达
           status: available
-          note: 同一份网页说明书在手机和电脑上都能阅读。
+          note: 包装上的二维码直接打开对应型号的网页版。
         - label: 快速查阅
           status: available
-          note: 说明书资料库可按型号、商品简称和产品名称查找，也能搜索说明书正文。
+          note: 手机电脑都能读，可切换语言，可按型号、名称或正文搜索。
+    - id: machine
+      theme: 机器可读
+      title: 可准确引用的机读内容
+      body:
+        - 网页说明书同时生成结构化的机读内容，附版本和校验信息。AI 助手和业务系统按来源引用，而不是凭记忆作答。
+      principle: 机器引用的必须是已发布版本，来源和版本可以核对。
+      facets:
+        - label: 机读导出
+          status: available
+          note: 发布时导出机读内容和校验回执。
+        - label: AI 问答
+          status: available
+          note: 钉钉问答机器人已在用：先校验，再按机读内容作答。
+        - label: 市场覆盖
+          status: in_progress
+          note: 目前只有欧规；内容从网页提取，尚非同源生成。
     - id: governance
       theme: 内容治理
       title: 可追溯的产品内容资产
       body:
-        - 将分散在不同产品、市场和语言版本中的说明书逐步纳入统一的资料体系。
-        - 保留文档的产品身份、适用市场、语言、来源和版本信息，使资料不仅能够被查阅，也能够被管理和追溯。
-        - 网页化过程中识别出的内容差异和潜在问题，可以作为后续质量改进的线索，经核验后按实际需要处理，而不要求对所有历史资料进行全面重写。
-      principle: 保留历史依据，识别内容差异，让资料逐步具备持续治理的基础。
+        - 每个版本都保留型号、市场、语言、来源和版本信息；修订后直接发布新版本，不用等重印。网页化中发现的差异作为改进线索，核验后按需处理，不要求全面重写。
+      principle: 保留历史依据，识别内容差异，让资料具备持续治理的基础。
       facets:
         - label: 版本追溯
           status: available
-          note: 每个已发布的网页版都在发布清单里登记型号、市场、语言、版本和构建记录。
-        - label: 来源管理
+          note: 发布清单登记每个网页版的型号、市场、语言和版本。
+        - label: 读者反馈
           status: available
-          note: 冻结源包全部登记并写明批准依据，共享输入的漂移逐包记录。
-          revs: [REV-46]
+          note: 每页都有售后反馈入口，站点有访问统计。
         - label: 质量改进
           status: in_progress
-          note: EU 发现台账、回流跟踪、覆盖矩阵和核验工具已有实现，全量验收尚未完成。
+          note: 差异台账和核验工具已有，全量验收未完成。
     - id: knowledge
       theme: 知识积累
       title: 可持续积累的知识资产
       body:
-        - 随着网页说明书不断丰富，系统能够逐步积累产品功能描述、术语、通用内容、图文组件和资料编写经验。
-        - 这些内容可以为资料检索、产品信息查询以及后续说明书开发提供参考。
-        - 但已发布的历史内容并不天然等于标准语料。只有经过来源核验、适用性判断和必要审核的内容，才能进一步沉淀为可信的模板、标准表达和可复用知识，辅助资料开发人员与 AI Agent 开展工作。
+        - 术语、通用内容、图文组件和写作经验逐步积累。已发布的历史内容经来源核验和审核后，才沉淀为可复用的模板和标准表达，辅助资料开发人员与 AI Agent。
       principle: 以已批准内容为依据，以审核后的知识指导未来，而不是简单复制历史资料。
       facets:
         - label: 规范沉淀
           status: in_progress
-          note: 写作规则、共享组件和批准措辞各走现有入口，由人确认后沉淀；从已批准稿件导出知识候选已登记，尚未开工。
+          note: 写作规则、共享组件和批准措辞经人确认后沉淀。
           revs: [REV-48]
         - label: 可信复用
           status: in_progress
-          note: 资料开发工作台调用现有的数据、模板和语料，复用参考稿的结构和措辞；建议与不确定项留在审核备注，由人审核。
+          note: 工作台复用现有数据、模板和语料写审核稿，由人审核。
           revs: [REV-47]
         - label: 辅助创作
           status: in_progress
-          note: 写稿 Agent 在资料开发工作台出审核稿，在私有审核站由人审阅；并行写稿按工作台规则试点。
+          note: 写稿 Agent 在工作台出审核稿，由人审阅。
           revs: [REV-47]
-  direction:
-    title: 我们的长期方向
-    line: 从文档数字化，到内容资产化，再到知识服务。
-    body:
-      - 网页说明书首先是面向用户的可信数字交付渠道，同时也是企业积累产品内容的基础载体。
-      - 我们希望通过持续接入、规范呈现、来源追溯和选择性知识沉淀，让每一份说明书不仅服务于当前用户，也能为未来的产品资料开发、知识检索和内容质量提升创造长期价值。
-    note: 这是方向，不是现有能力。知识服务对应执行台账里暂缓的内容服务与内容接口，有消费团队、质量负责人和维护容量后再对接。
-    revs: [REV-32, REV-33]

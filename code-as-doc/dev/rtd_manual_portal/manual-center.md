@@ -114,7 +114,7 @@ Inside the shell the root page has these bounded zones on one container width
    连接配件 / 保护与搬运), each with a responsive card grid. Sections with no
    visible card after filtering are hidden.
 5. **网页说明书的定位与价值** (white band, after the catalog so the first screen stays search):
-   reader-facing copy in the public role; in the private role the three themes with status tags,
+   reader-facing copy in the public role; in the private role the themes with status tags,
    linking to the internal page. See [网页说明书的定位与价值](web-manual-value.md).
 6. **Footer** (light grey band), which also holds the Read the Docs ad placement.
 
