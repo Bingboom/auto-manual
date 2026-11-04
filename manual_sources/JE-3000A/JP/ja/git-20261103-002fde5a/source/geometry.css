@@ -1,0 +1,25 @@
+/* JE-3000A JP: page-local geometry and type size only.
+   Colours, borders and panels come from the shared Web theme (prepared-document shared-style gate). */
+
+/* Print bullets are "・" lines, as in the PDF. */
+#furo-main-content ul > li { list-style-type: "・"; }
+
+/* Complete source panels keep a readable print width; dense ones pan on phones. */
+#furo-main-content .hb-reference-figure { max-width: 48rem; margin-inline: auto; }
+#furo-main-content .hb-reference-figure[data-reference-id="ac-charge"],
+#furo-main-content .hb-reference-figure[data-reference-id="car-charge"] { max-width: 24rem; }
+#furo-main-content .hb-reference-figure[data-reference-id="qc-logo"] { max-width: 9rem; margin-inline: 0; }
+#furo-main-content .hb-reference-figure[data-reference-id="app-store"] { max-width: 20rem; margin-inline: 0; }
+@media (max-width: 760px) {
+  #furo-main-content .hb-reference-figure[data-reference-id="overview"],
+  #furo-main-content .hb-reference-figure[data-reference-id="lcd-map"] { overflow-x: auto; }
+  #furo-main-content .hb-reference-figure[data-reference-id="overview"] > *,
+  #furo-main-content .hb-reference-figure[data-reference-id="lcd-map"] > * { min-width: 34rem; }
+}
+
+/* The printed 88H and thermometer marks sit inline in the table cell and sentence. */
+#furo-main-content table img[alt="88H"],
+#furo-main-content p > img[alt="低温インジケーター"] { display: inline; height: 1.25em; width: auto; vertical-align: -0.25em; margin: 0 .1em; }
+
+/* Recycling notice: the Li-ion 20 mark keeps its print size beside the copy. */
+#furo-main-content table img[src$="recycle-li-ion.svg"] { width: 4.5rem; height: auto; }

@@ -1,0 +1,22 @@
+{
+  "schema_version": "je3000a-jp-candidate-validation/v1",
+  "date": "2026-11-04",
+  "source_commit": "9f19af05 (origin/main with #1659 abc0e154) + this change",
+  "environment": "Python 3.13 venv (system site packages + Sphinx 8.2.3, myst-parser 4.0.1, furo 2025.12.19, docutils 0.21.2, ruff 0.17.2 from requirements.lock pins); pymupdf 2.1 (lock pins 1.28.0); Node Playwright (/opt/node-tools) with Chromium 1243",
+  "checks": [
+    {"command": "python -m ruff check <package .py files> tests/test_je3000a_jp_web.py", "result": "pass", "log": "ruff.log"},
+    {"command": "python <pkg>/rebuild.py --output <fresh tmp>", "result": "pass: 10 chapters; HB-CALLOUT-STRIP 15, HB-SPECIAL-INBOX 1, HB-SPECIAL-REFERENCE-FIGURE 14, HB-TABLE-LCD-ICON 2, HB-TABLE-REFERENCE 1, HB-TABLE-SPEC 1, HB-TABLE-SYMBOL-ICON 1, HB-TABLE-SYMBOL-SIGNAL 1; standard symbol asset admission 6/6 within the fixed 2% (0.00475-0.019624)", "log": "rebuild.log"},
+    {"command": "python -m sphinx -n -W --keep-going -b html web/ja <html>", "result": "pass", "log": "strict-sphinx.log"},
+    {"command": "python -m unittest tests.test_je3000a_jp_web tests.test_prepared_document_shared_styles tests.test_frozen_web_component_coverage tests.test_shared_symbol_canonical tests.test_symbol_asset_admission", "result": "pass: 66 tests OK (cold replay byte-identical to web/ja)", "log": "target-tests.log"},
+    {"command": "python -m tools.check_maintainability_guardrails", "result": "pass (package registered; 0 new, 0 new drift)", "log": "maintainability.log"},
+    {"command": "seal_frozen_web_evidence preflight (frozen_source_manifest.json, evidence/html written to a scratch directory only)", "result": "stops at require_publishable_manual_ir: pending source review (expected for a candidate); the gates it runs next pass when called separately: fresh component admission, symbol asset admission 6/6, caption-frame admission"},
+    {"command": "browser 1280 / 390 full page (deviceScaleFactor 1)", "result": "38 images, 0 broken, document scrollWidth == viewport at both widths; at 390 the 省エネモード table scrolls inside the shared table wrapper", "files": ["browser-1280.png", "browser-390.png", "browser-1280.json", "browser-390.json"]}
+  ],
+  "rebuild_gates": [
+    "input SHA-256 inventory",
+    "prepared-document shared-style admission with two declared plain tables",
+    "symbol asset admission 6/6 (shared variants only; no waiver)",
+    "candidate only: publication_eligible false, no approval.json"
+  ],
+  "not_validated": "full python -m unittest suite, the real seal (after operator approval), RTD deployment"
+}
