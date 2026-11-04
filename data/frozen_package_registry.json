@@ -1435,6 +1435,11 @@
       "registered": "2026-11-03",
       "known_drift": {}
     },
+    "manual_sources/JE-1000G/JP/ja/git-20261103-6cf12013-shared-symbols": {
+      "approval": "Coordinator relay of the operator's canonical-icon decision (SCG-20261103, #1659 / MA-384), within the operator request 「继续 转日语说明书」: shared-symbol follow-up version of the released JP ja Web package, all symbol rows bound to confirmed group canonicals; candidate intake only, no merge or release authorization",
+      "registered": "2026-11-04",
+      "known_drift": {}
+    },
     "manual_sources/JE-1000H/EU/en/2.0": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",
@@ -1463,6 +1468,11 @@
     "manual_sources/JE-1000H/JP/ja/git-20261103-717c813d": {
       "approval": "Operator 「上‘线提交发布：JE-1000C、JE-1000G、JE-1000H、JE-1500B」 2026-11-03 in the window session, after review of the PR #1653 1280/390 renders beside the reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinator window): Git-only JP ja single-language Web release, source copy verbatim; symbol rows pending the shared dedupe PR are withheld (see source/approval.json); merge not yet authorized",
       "registered": "2026-11-03",
+      "known_drift": {}
+    },
+    "manual_sources/JE-1000H/JP/ja/git-20261103-717c813d-shared-symbols": {
+      "approval": "Coordinator relay of the operator's canonical-icon decision (SCG-20261103, #1659 / MA-384), within the operator request 「继续 转日语说明书」: shared-symbol follow-up version of the released JP ja Web package, all symbol rows bound to confirmed group canonicals; candidate intake only, no merge or release authorization",
+      "registered": "2026-11-04",
       "known_drift": {}
     },
     "manual_sources/JE-100A/US/en/git-20261027-18058b6b": {
@@ -1528,6 +1538,11 @@
     "manual_sources/JE-1500B/JP/ja/git-20261103-f61d0d68": {
       "approval": "Operator 「上‘线提交发布：JE-1000C、JE-1000G、JE-1000H、JE-1500B」 2026-11-03 in the window session, after review of the PR #1653 1280/390 renders beside the reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinator window): Git-only JP ja single-language Web release, source copy verbatim; symbol rows pending the shared dedupe PR are withheld (see source/approval.json); merge not yet authorized",
       "registered": "2026-11-03",
+      "known_drift": {}
+    },
+    "manual_sources/JE-1500B/JP/ja/git-20261103-f61d0d68-shared-symbols": {
+      "approval": "Coordinator relay of the operator's canonical-icon decision (SCG-20261103, #1659 / MA-384), within the operator request 「继续 转日语说明书」: shared-symbol follow-up version of the released JP ja Web package, all symbol rows bound to confirmed group canonicals; candidate intake only, no merge or release authorization",
+      "registered": "2026-11-04",
       "known_drift": {}
     },
     "manual_sources/JE-1500B/US/en/git-20261027-bb5a455b": {
