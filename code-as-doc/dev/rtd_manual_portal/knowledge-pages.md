@@ -49,8 +49,9 @@ package and manual library share the RTD project's visibility settings; the
 workspace path is navigation, not a separate access-control boundary.
 
 The workspace exists in every combined portal build; knowledge pages link back
-to the manual center, but the manual-center homepage does not link into the
-workspace. The system page lives inside it. The sharing package is an
+to the manual center. In the combined role the manual-center homepage links into
+the workspace only through the shared shell and the 定位与价值 band; in the
+public role it links nowhere internal. The system page lives inside it. The sharing package is an
 optional entry. Without `ai-share/00_打开分享.html`, the 知识库首页
 (`workspace/index.html`) hides its 分享资料 section (`#shares`, the share card)
 and the 最近更新 rows (`#updates`) that link to the package. Nothing else changes.
@@ -71,6 +72,10 @@ config `rtd_site_role`); `.readthedocs.yaml` is shared and unchanged.
 | --- | --- | --- |
 | unset or `combined` | everything: manual center, manuals, short aliases, search, `/workspace/`, knowledge pages, `/ai-share/` | the existing private project (`ht-docs-ht-manuals`) |
 | `manuals` | manual center, manuals, short aliases, search, `manual-knowledge.json`, deployment receipt; no `/workspace/`, `/products/`, `/market/` or `/ai-share/` output, and no internal sidebar data is built | a second project whose `latest` version is set to Public |
+
+The home page's 定位与价值 band switches its copy with the role, and its internal
+page is built only in the combined role; see
+[网页说明书的定位与价值](web-manual-value.md).
 
 Any other value fails the build. Absolute URLs (canonical, `hreflang`,
 `og:url`, alias canonical) use the serving project's

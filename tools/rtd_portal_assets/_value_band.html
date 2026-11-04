@@ -1,0 +1,19 @@
+{#- 「网页说明书的定位与价值」 band on the manual-library home, after the catalog: the first screen stays search.
+    `value` comes from tools/rtd/web_manual_value.band_context. The public site role gets only the reader-facing
+    copy, with no links into the knowledge base; the private role gets the internal band, each theme tagged with its
+    status and linked to its section of the full page. -#}
+{%- if value -%}
+<section class="value{% if value.internal %} is-internal{% endif %}" aria-labelledby="value-title"><div class="wrap">
+{%- if value.internal %}
+<p class="value-eyebrow">{{ value.eyebrow|e }}</p>
+<h2 id="value-title">{{ value.heading|e }}</h2>
+<p class="value-lead">{{ value.subtitle|e }}</p>
+<div class="value-grid">{% for theme in value.themes %}<a class="value-item" href="{{ pathto(value.page) }}#{{ theme.id|e }}"><span class="value-head"><strong>{{ theme.theme|e }}</strong><em class="value-status is-{{ theme.status|e }}">{{ theme.status_label|e }}</em></span><span class="value-text">{{ theme.keywords|join('、')|e }}</span></a>{% endfor %}</div>
+<p class="value-more"><a href="{{ pathto(value.page) }}">{{ value.title|e }} <span aria-hidden="true">→</span></a></p>
+{%- else %}
+<h2 id="value-title">{{ value.title|e }}</h2>
+<p class="value-lead">{{ value.lead|e }}</p>
+<div class="value-grid">{% for point in value.points %}<div class="value-item"><strong>{{ point.title|e }}</strong><span class="value-text">{{ point.text|e }}</span></div>{% endfor %}</div>
+{%- endif %}
+</div></section>
+{%- endif -%}
