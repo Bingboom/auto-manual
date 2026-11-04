@@ -62,7 +62,7 @@
   ],
   "live_bitable_dependency": false,
   "phase2_enrolled": false,
-  "publication_status": "candidate-pending-operator-review",
+  "publication_status": "operator-authorized-git-only-release",
   "build_boundary": "JE-1800B JP is not a phase2 target. extract_text.py freezes the text layer; build_content.py binds it to shared ComponentSpecs; rebuild.py replays them through manual-ir/v2 and the shared Web/MyST pipeline with the prepared-document shared-style gate and symbol admission.",
   "repo_inputs": [],
   "symbol_asset_admission": {
@@ -533,8 +533,8 @@
     },
     {
       "path": "README.md",
-      "size": 4128,
-      "sha256": "0224a777abd26a921950a71f5883f7119986cadf2c227217ef50b4f476ccc042"
+      "size": 4517,
+      "sha256": "f94559a4539b7b71179765987e80f9844dad985796d9ffddf56953cf53207a97"
     },
     {
       "path": "assets/ac-charge.png",
@@ -890,6 +890,11 @@
       "path": "refresh_manifest.py",
       "size": 2598,
       "sha256": "605f28a554943fa40c39ceca3edc622f6736ecd570cec287e619a5ca024dccd6"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 15450,
+      "sha256": "cdd477789272701679d75d27d97cffc423df228f4ced7ceb54a0a1153084e327"
     },
     {
       "path": "source/asset_decisions.json",

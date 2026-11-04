@@ -1618,7 +1618,7 @@
       "known_drift": {}
     },
     "manual_sources/JE-1800B/JP/ja/git-20261103-754e8c1d-v2": {
-      "approval": "Operator request 2026-11-03 「继续 转日语说明书」 (relayed by the coordination window): Git-only JE-1800B JP/ja single-language Web candidate from 发布文档管理 record reczz28SfbsHfHUZ, source copy verbatim; symbols bound to shared canonical groups (#1659); no approval.json, release approval pending the operator's 「上线提交发布：JE-1800B」",
+      "approval": "Operator request 2026-11-03 「继续 转日语说明书」 (relayed by the coordination window); symbols bound to shared canonical groups (SCG-20261103, #1659); operator reviewed the rebound 1280/390 renders beside JE-1500D JP and said 「上线提交发布：JE-1800B、JE-2000E」 2026-11-04 in the owning session: Git-only JE-1800B JP/ja single-language Web release from 发布文档管理 record reczz28SfbsHfHUZ, source copy verbatim; acceptance hash-bound in source/approval.json",
       "registered": "2026-11-03",
       "known_drift": {}
     },

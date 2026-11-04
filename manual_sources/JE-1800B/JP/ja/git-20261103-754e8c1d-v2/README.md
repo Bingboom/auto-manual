@@ -1,8 +1,8 @@
-# JE-1800B / JP / ja — Git-only Web manual candidate (V2)
+# JE-1800B / JP / ja — Git-only Web manual (V2)
 
 Operator instruction, 2026-11-03: 「继续 转日语说明书」 (relayed by the coordinator window): convert the JP single-language manuals that have a customer model and a single-language PDF. This package is the JE-1800B manual from the 发布文档管理 Base, 日规 view.
 
-**Status: `candidate-pending-operator-review`.** No operator approval exists; `source/approval.json` is absent and the IR is not publication-eligible.
+**Status: `operator-authorized-git-only-release`.** The operator reviewed the 1280/390 renders beside the shared reference edition (review renders sent in the owning session) and replied 「上线提交发布：JE-1800B、JE-2000E」 on 2026-11-04 in the owning session. Source copy goes live as printed; `source_manifest.json:source_concerns` go back to the source owner. `source/approval.json` binds every reviewed `source/` and `assets/` input; the IR is publication-eligible. Merge still needs the operator's own authorization (AGENTS.md §8.6).
 
 **Shared symbols.** Every printed safety/recycle symbol binds the canonical of its operator-confirmed shared group (decision SCG-20261103, canonical groups in #1659; no new variants). Eight pass the fixed 2% admission; no open flame, unplug, no wet hands, no wetting and Li-ion 32 (2.1–14.4%) are admitted by their source-verified captions listed for the group. The battery bin keeps `battery_disposal/je2000e-eu-nl-batch1465-native` (0.66%; its battery-weee group is still proposed).
 
