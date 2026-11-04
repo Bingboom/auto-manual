@@ -1,0 +1,908 @@
+{
+ "schema_version": "explorer-us-en-transcription/v1",
+ "source_sha256": "18058b6bb7e83041fce1798f3baf98a018d079fa5caa6fd8dceec934df02c0b5",
+ "method": "The PDF has no text layer (every glyph is outlined). Each line was transcribed from 300 dpi page renders and ambiguous glyphs (dashes, apostrophes, full-width brackets, accents) were re-checked on 600-800 dpi clips. One entry is one printed logical line, paragraph, list item or table cell: print line wraps are joined with a single space. strong lists the spans printed in bold, sup the spans printed as superscript. Chapter and section headings are printed in bold and are not listed in strong. Text printed inside product art, LCD art and certification-mark art stays in the artwork; figure leader labels and captions are listed (ids names.* and fig.*) and carried as alt text. The DC symbol is recorded as U+2393, the printed tilde range mark as U+007E. The printed page numbers and the 'US' corner tabs are not transcribed. Physical page 10 is the unnumbered last page (JACKERY INC. / JACKERY MEXICO contact blocks and a QR code).",
+ "pages": [
+  {
+   "physical_page": 1,
+   "printed_page": null,
+   "role": "print-cover",
+   "web": false,
+   "lines": [
+    {
+     "id": "cover.model",
+     "text": "Model: JE-100A"
+    },
+    {
+     "id": "cover.title",
+     "text": "USER MANUAL"
+    },
+    {
+     "id": "cover.name",
+     "text": "Jackery Explorer 100 Plus"
+    },
+    {
+     "id": "cover.contact",
+     "text": "Contact us:"
+    },
+    {
+     "id": "cover.mail",
+     "text": "hello@jackery.com"
+    },
+    {
+     "id": "cover.tel",
+     "text": "1-888-502-2236(US)"
+    },
+    {
+     "id": "cover.version",
+     "text": "Version: JAK-UM-V1"
+    }
+   ]
+  },
+  {
+   "physical_page": 2,
+   "printed_page": "01",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "intro.lang",
+     "text": "US English"
+    },
+    {
+     "id": "intro.model",
+     "text": "Model: JE-100A"
+    },
+    {
+     "id": "intro.p1",
+     "text": "Congratulations on your new Jackery Explorer 100 Plus. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for frequent reference."
+    },
+    {
+     "id": "intro.p2",
+     "text": "In compliance with laws and regulations, the right of final interpretation of this document and all related documents of this product resides with the Company."
+    },
+    {
+     "id": "intro.p3",
+     "text": "Please kindly notice that no further notifications will be given in case of any update, revision or termination."
+    },
+    {
+     "id": "spec.h",
+     "text": "TECHNICAL SPECIFICATIONS"
+    },
+    {
+     "id": "spec.r1.l",
+     "text": "Product Name:"
+    },
+    {
+     "id": "spec.r1.v",
+     "text": "Jackery Explorer 100 Plus"
+    },
+    {
+     "id": "spec.r2.l",
+     "text": "Model No.:"
+    },
+    {
+     "id": "spec.r2.v",
+     "text": "JE-100A"
+    },
+    {
+     "id": "spec.r3.l",
+     "text": "Cell Chemistry:"
+    },
+    {
+     "id": "spec.r3.v",
+     "text": "LiFePO4"
+    },
+    {
+     "id": "spec.r4.l",
+     "text": "Internal Battery :"
+    },
+    {
+     "id": "spec.r4.v",
+     "text": "6.2Ah/16V 99.2Wh equal to 31000mAh 3.2V"
+    },
+    {
+     "id": "spec.r5.l",
+     "text": "Weight:"
+    },
+    {
+     "id": "spec.r5.v",
+     "text": "Around 2.13 lbs / 965 g"
+    },
+    {
+     "id": "spec.r6.l",
+     "text": "Dimensions:"
+    },
+    {
+     "id": "spec.r6.v",
+     "text": "4.96 x 3.41 x 3.43 in / 12.6 x 8.65 x 8.7 cm"
+    },
+    {
+     "id": "spec.r7.l",
+     "text": "Cycle Life:"
+    },
+    {
+     "id": "spec.r7.v",
+     "text": "2000 cycles to 80%+ capacity"
+    },
+    {
+     "id": "spec.r8.l",
+     "text": "USB-A Output:"
+    },
+    {
+     "id": "spec.r8.v",
+     "text": "18W Max, 5V⎓3A, 9V⎓2A, 12V⎓1.5A"
+    },
+    {
+     "id": "spec.r9.l",
+     "text": "USB-C1/C2 Output:"
+    },
+    {
+     "id": "spec.r9.v",
+     "text": "100W Max, 4.5V⎓5A, 5V⎓3A, 5V⎓4.5A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A"
+    },
+    {
+     "id": "spec.r10.l",
+     "text": "PPS:"
+    },
+    {
+     "id": "spec.r10.v",
+     "text": "5-21V⎓5A, 100W Max"
+    },
+    {
+     "id": "spec.r11.l",
+     "text": "USB-C1+USB-C2 Output:"
+    },
+    {
+     "id": "spec.r11.v",
+     "text": "110W Max"
+    },
+    {
+     "id": "spec.r12.l",
+     "text": "USB-C1/C2+USB-A Output:"
+    },
+    {
+     "id": "spec.r12.v",
+     "text": "118W Max"
+    },
+    {
+     "id": "spec.r13.l",
+     "text": "USB-C1+USB-C2+USB-A Output:"
+    },
+    {
+     "id": "spec.r13.v",
+     "text": "128W Max"
+    },
+    {
+     "id": "spec.r14.l",
+     "text": "USB-C1/C2 Input (PD Input):"
+    },
+    {
+     "id": "spec.r14.v",
+     "text": "100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A"
+    },
+    {
+     "id": "spec.r15.l",
+     "text": "USB-C1/C2 Input (Car Input):"
+    },
+    {
+     "id": "spec.r15.v",
+     "text": "60W Max, 11-17.5V⎓5A"
+    },
+    {
+     "id": "spec.r16.l",
+     "text": "USB-C1/C2 Input (Solar Input):"
+    },
+    {
+     "id": "spec.r16.v",
+     "text": "100W Max, 18-27.2V⎓5A"
+    },
+    {
+     "id": "spec.r17.l",
+     "text": "Charge Temperature:"
+    },
+    {
+     "id": "spec.r17.v",
+     "text": "32°F~104°F(0°C~40°C)"
+    },
+    {
+     "id": "spec.r18.l",
+     "text": "Discharge Temperature:"
+    },
+    {
+     "id": "spec.r18.v",
+     "text": "14°F~104°F(-10°C~40°C)"
+    },
+    {
+     "id": "cert.h",
+     "text": "CERTIFICATIONS"
+    },
+    {
+     "id": "fig.cert.ul1",
+     "text": "CONFORMS TO UL STD.62368-1."
+    },
+    {
+     "id": "fig.cert.csa",
+     "text": "CERTIFIED TO CSA STD.C22.2 NO.62368-1."
+    },
+    {
+     "id": "fig.cert.ul2",
+     "text": "CONFORMS TO UL SUBJECT 2056."
+    },
+    {
+     "id": "fig.cert.intertek",
+     "text": "Intertek 5027787"
+    },
+    {
+     "id": "spec.tm",
+     "text": "USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.",
+     "sup": [
+      "®",
+      "®"
+     ]
+    }
+   ]
+  },
+  {
+   "physical_page": 3,
+   "printed_page": "02",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "box.h",
+     "text": "PACKAGE LIST"
+    },
+    {
+     "id": "box.c1",
+     "text": "Jackery Explorer 100 Plus"
+    },
+    {
+     "id": "box.c2",
+     "text": "USB-C Charging Cable"
+    },
+    {
+     "id": "box.c3",
+     "text": "User Manual"
+    },
+    {
+     "id": "ov.h",
+     "text": "GET TO KNOW YOUR GEAR"
+    },
+    {
+     "id": "ov.sub",
+     "text": "Product Appearance"
+    },
+    {
+     "id": "names.lcd",
+     "text": "LCD"
+    },
+    {
+     "id": "names.display",
+     "text": "DISPLAY Button"
+    },
+    {
+     "id": "names.usba",
+     "text": "USB-A Output"
+    },
+    {
+     "id": "names.usbc1",
+     "text": "USB-C1"
+    },
+    {
+     "id": "names.usbc2",
+     "text": "USB-C2"
+    },
+    {
+     "id": "names.usbc",
+     "text": "USB-C Input/Output"
+    },
+    {
+     "id": "lcd.h",
+     "text": "LCD DISPLAY"
+    },
+    {
+     "id": "fig.lcd.n1",
+     "text": "Input Power"
+    },
+    {
+     "id": "fig.lcd.n2",
+     "text": "Remaining Charge Time"
+    },
+    {
+     "id": "fig.lcd.n3",
+     "text": "Battery Power Indicator"
+    },
+    {
+     "id": "fig.lcd.n4",
+     "text": "Low Battery Indicator"
+    },
+    {
+     "id": "fig.lcd.n5",
+     "text": "Remaining Battery Percentage"
+    },
+    {
+     "id": "fig.lcd.n6",
+     "text": "Output Power"
+    },
+    {
+     "id": "fig.lcd.n7",
+     "text": "Remaining Discharge Time"
+    },
+    {
+     "id": "fig.lcd.n8",
+     "text": "Energy Saving Mode"
+    },
+    {
+     "id": "fig.lcd.n9",
+     "text": "Always-on Display Mode"
+    }
+   ]
+  },
+  {
+   "physical_page": 4,
+   "printed_page": "03",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "lcd.ring.t",
+     "text": "Battery Power Indicator"
+    },
+    {
+     "id": "lcd.ring.b",
+     "text": "When the product is being charged, the orange circle around the battery percentage will light up in sequence. When charging other devices, the orange circle will stay on."
+    },
+    {
+     "id": "lcd.low.t",
+     "text": "Low Battery Indicator"
+    },
+    {
+     "id": "lcd.low.b",
+     "text": "When the battery is less than 20%, the Low Battery Indicator will stay on. When less than 5%, the Low Battery Indicator will flash. When it is being charged, the Indicator will be off."
+    },
+    {
+     "id": "lcd.aod.t",
+     "text": "Always-on Display Mode"
+    },
+    {
+     "id": "lcd.aod.b",
+     "text": "After the display screen lights up, double-click the DISPLAY Button and the mode of Always-on display will be on, then press it again to turn off the screen."
+    },
+    {
+     "id": "lcd.eco.t",
+     "text": "Energy Saving Mode"
+    },
+    {
+     "id": "lcd.eco.b",
+     "text": "The Energy Saving Mode is disabled by default. When the Energy Saving Mode is enabled, this occurs if the product is not connected to any device or the USB output power is less than or equal to 2W, the product will automatically turn off all outputs after 12 hours."
+    },
+    {
+     "id": "lcd.eco.on.h",
+     "text": "To turn on the Energy Saving Mode"
+    },
+    {
+     "id": "lcd.eco.on",
+     "text": "Long press the DISPLAY Button until the Energy Saving Mode icon lights up on the screen. Switching on the Energy Saving Mode enables the product to continuously charge devices less than or equal to 2W."
+    },
+    {
+     "id": "lcd.eco.off.h",
+     "text": "To turn off the Energy Saving Mode"
+    },
+    {
+     "id": "lcd.eco.off",
+     "text": "Long press the Display Button until the Energy Saving Mode icon disappears."
+    },
+    {
+     "id": "lcd.fault.t",
+     "text": "Fault code"
+    },
+    {
+     "id": "lcd.fault.b",
+     "text": "In order to respond to the feedback quickly, we set up common fault codes F1, F2, F3 in the system: If any codes appear, please remove the load or unplug the charging plug, the product can restore by itself, if not, please contact after-sales service."
+    },
+    {
+     "id": "lcd.ht.t",
+     "text": "High-temperature warning"
+    },
+    {
+     "id": "lcd.ht.b",
+     "text": "If it appears on the screen, do not worry, the battery will restore automatically after cooling."
+    },
+    {
+     "id": "lcd.lt.t",
+     "text": "Low-temperature Warning"
+    },
+    {
+     "id": "lcd.lt.b",
+     "text": "If it is displayed on the screen, do not worry. It will automatically restore after the ambient temperature is restored."
+    }
+   ]
+  },
+  {
+   "physical_page": 5,
+   "printed_page": "04",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "ops.h",
+     "text": "BASIC OPERATIONS"
+    },
+    {
+     "id": "ops.lcd.h",
+     "text": "LCD Screen On/Off"
+    },
+    {
+     "id": "ops.lcd.p1",
+     "text": "To turn on, press the Display Button or when there's a charging input or discharging output, the screen display will light up automatically. To turn off, press the Display Button again and the screen display will turn off. Or, if there is no operation in 30 seconds, the product will enter a sleep state and the screen display will automatically turn off."
+    },
+    {
+     "id": "ops.lcd.p2",
+     "text": "To turn on/off the Always-on Display (under charging or discharging state), follow these steps:"
+    },
+    {
+     "id": "ops.lcd.p3",
+     "text": "After the display screen lights up, double-click the DISPLAY Button and the mode of Always-on display will be on, then press it again to turn off the screen."
+    },
+    {
+     "id": "ops.lcd.tip",
+     "text": "Tip: During Always-on Display mode, the screen automatically turns off after 2 hours without charging or discharging.",
+     "strong": [
+      "Tip:"
+     ]
+    },
+    {
+     "id": "chg.h",
+     "text": "CHARGING YOUR JACKERY EXPLORER 100 PLUS"
+    },
+    {
+     "id": "chg.wall.h",
+     "text": "Charging from the wall"
+    },
+    {
+     "id": "chg.wall.p",
+     "text": "The USB-C wall charger is not included in the package."
+    },
+    {
+     "id": "fig.wall.cable",
+     "text": "USB–C Charging Cable"
+    },
+    {
+     "id": "fig.wall.unit",
+     "text": "Explorer 100 Plus"
+    },
+    {
+     "id": "chg.solar.h",
+     "text": "Solar charging"
+    },
+    {
+     "id": "chg.solar.g1.h",
+     "text": "Jackery SolarSaga 100 or 60 Solar Panel Connection Guide"
+    },
+    {
+     "id": "chg.solar.g1.p",
+     "text": "The Jackery Explorer 100 Plus adopts USB-C input as the solar charging input. You can refer to the following connection scheme to charge your Explorer 100 Plus."
+    },
+    {
+     "id": "fig.solar1.adaptor",
+     "text": "DC8020 to USB-C Adaptor Cable（Sold Separately）"
+    },
+    {
+     "id": "fig.solar1.male",
+     "text": "DC8020 Male"
+    },
+    {
+     "id": "fig.solar1.port",
+     "text": "USB-C Input port"
+    },
+    {
+     "id": "fig.solar1.panel",
+     "text": "SolarSaga 100"
+    },
+    {
+     "id": "fig.solar1.unit",
+     "text": "Explorer 100 Plus"
+    }
+   ]
+  },
+  {
+   "physical_page": 6,
+   "printed_page": "05",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "chg.solar.g2.h",
+     "text": "Jackery New SolarSaga 40 Mini or 80 Solar Panel Connection Guide"
+    },
+    {
+     "id": "chg.solar.g2.p80",
+     "text": "* For users who have already purchased the 80W solar panel, the following scheme shows how to connect it to the Explorer 100 Plus."
+    },
+    {
+     "id": "fig.solar80.port",
+     "text": "USB-C Input port"
+    },
+    {
+     "id": "fig.solar80.dc",
+     "text": "DC8020"
+    },
+    {
+     "id": "fig.solar80.panel",
+     "text": "SolarSaga 80"
+    },
+    {
+     "id": "fig.solar80.adaptor",
+     "text": "DC8020 to USB-C Adaptor Cable（Sold Separately）"
+    },
+    {
+     "id": "chg.solar.g2.p40",
+     "text": "* For users who have already purchased the 40W solar panel, the following scheme shows how to connect it to the Explorer 100 Plus."
+    },
+    {
+     "id": "fig.solar40.port",
+     "text": "USB-C Input port"
+    },
+    {
+     "id": "fig.solar40.panel",
+     "text": "SolarSaga 40 Mini"
+    },
+    {
+     "id": "fig.solar40.dc",
+     "text": "DC8020"
+    },
+    {
+     "id": "fig.solar40.adaptor",
+     "text": "DC8020 to USB-C Adaptor Cable（Sold Separately）"
+    },
+    {
+     "id": "chg.car.h",
+     "text": "Charging in the Car"
+    },
+    {
+     "id": "chg.car.p1",
+     "text": "This product can be charged with a 12V car charger. Please start the vehicle before charging to prevent draining the car battery and prevent your vehicle from being unable to start."
+    },
+    {
+     "id": "chg.car.p2",
+     "text": "Meanwhile, please ensure that the car charger and the car cigarette lighter provide a good connection, and ensure that the car charger is fully inserted. In addition, if the vehicle is running on bumpy roads, it is forbidden to use the car charger in case it burns due to a poor connection. The Company will not be responsible for any loss caused by non-standard operation."
+    },
+    {
+     "id": "fig.car.unit",
+     "text": "Explorer 100 Plus"
+    },
+    {
+     "id": "fig.car.vehicle",
+     "text": "Vehicle"
+    },
+    {
+     "id": "chg.safe.h",
+     "text": "SAFETY PRECAUTIONS WHEN CHARGING"
+    },
+    {
+     "id": "chg.safe.l1",
+     "text": "1) Vehicle charging is only applicable in 12V vehicles, not in 24V ones. Please do not charge this product in 24V vehicle to avoid personal injury and property loss."
+    },
+    {
+     "id": "chg.safe.l2",
+     "text": "2) It is recommended to use Jackery accessories - solar panels for solar charging. We will not be responsible for the losses caused by using other brands’ solar panels."
+    }
+   ]
+  },
+  {
+   "physical_page": 7,
+   "printed_page": "06",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "use.h",
+     "text": "SAFETY PRECAUTIONS WHEN USING"
+    },
+    {
+     "id": "use.lead",
+     "text": "The basic safety precautions should be followed when using this product, including:",
+     "strong": [
+      "The basic safety precautions should be followed when using this product, including:"
+     ]
+    },
+    {
+     "id": "use.a",
+     "text": "a. Please read all instructions before using this product."
+    },
+    {
+     "id": "use.b",
+     "text": "b. Close supervision is required when using this product near children to reduce the risk."
+    },
+    {
+     "id": "use.c",
+     "text": "c. Risk of electric shock may occur if using accessories recommended or sold by non-professional product manufacturers."
+    },
+    {
+     "id": "use.d",
+     "text": "d. When the product is not in use, please unplug the power plug from the product's socket."
+    },
+    {
+     "id": "use.e",
+     "text": "e. Do not dismantle the product, which may lead to unpredictable risks such as fire, explosion or electric shock."
+    },
+    {
+     "id": "use.f",
+     "text": "f. Do not use the product through damaged cords or plugs, or damaged output cables, which may cause electric shock."
+    },
+    {
+     "id": "use.g",
+     "text": "g. Charge the product in a well ventilated area and do not restrict ventilation in any way."
+    },
+    {
+     "id": "use.h2",
+     "text": "h. Please put the product in a ventilated and dry place to avoid rain and water to cause electric shock."
+    },
+    {
+     "id": "use.i",
+     "text": "i. Do not expose the product to fire or high temperature (under direct sunlight or in vehicle under high heat), which may cause accidents such as fire and explosion."
+    },
+    {
+     "id": "use.j",
+     "text": "j. The product should not be exposed to rain, water, etc."
+    },
+    {
+     "id": "fcc.p",
+     "text": "NOTE: This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules. These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to radio communications. However, there is no guarantee that interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:"
+    },
+    {
+     "id": "fcc.l1",
+     "text": "--Reorient or relocate the receiving antenna."
+    },
+    {
+     "id": "fcc.l2",
+     "text": "--Increase the separation between the equipment and receiver."
+    },
+    {
+     "id": "fcc.l3",
+     "text": "--Connect the equipment into an outlet on a circuit different from that to which the receiver is connected."
+    },
+    {
+     "id": "fcc.l4",
+     "text": "--Consult the dealer or an experienced radio/TV technician for help."
+    },
+    {
+     "id": "fcc.mod",
+     "text": "MODIFICATION: Any changes or modifications not expressly approved by the grantee of this device could void the user’s authority to operate the device."
+    }
+   ]
+  },
+  {
+   "physical_page": 8,
+   "printed_page": "07",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "ins.h",
+     "text": "INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS"
+    },
+    {
+     "id": "ins.sub",
+     "text": "IMPORTANT SAFETY INSTRUCTIONS"
+    },
+    {
+     "id": "ins.warn",
+     "text": "WARNING–When using this product, basic precautions should always be followed, including the following:"
+    },
+    {
+     "id": "ins.a",
+     "text": "a) Read all the instructions before using the product."
+    },
+    {
+     "id": "ins.b",
+     "text": "b) To reduce the risk of injury, close supervision is necessary when the product is used near children."
+    },
+    {
+     "id": "ins.c",
+     "text": "c) Do not put fingers or hands into the product."
+    },
+    {
+     "id": "ins.d",
+     "text": "d) Do not expose power bank to rain or snow."
+    },
+    {
+     "id": "ins.e",
+     "text": "e) Use of a power supply or charger not recommended or sold by power pack manufacturer may result in a risk of fire or injury to persons."
+    },
+    {
+     "id": "ins.f",
+     "text": "f) Do not use the power bank in excess of its output rating. Overload outputs above rating may result in a risk of fire or injury to persons."
+    },
+    {
+     "id": "ins.g",
+     "text": "g) Do not use the power bank that is damaged or modified. Damaged or modified batteries may exhibit unpredictable behavior resulting in fire, explosion or risk of injury."
+    },
+    {
+     "id": "ins.h2",
+     "text": "h) Do not disassemble the power bank. Take it to a qualified service person when service or repair is required. Incorrect reassembly may result in a risk of fire or injury to persons."
+    },
+    {
+     "id": "ins.i",
+     "text": "i) Do not expose a power pack to fire or excessive temperature. Exposure to fire or temperature above 100°C may cause explosion. The temperature of 100°C can be replaced by the temperature of 212°F."
+    },
+    {
+     "id": "ins.j",
+     "text": "j) Have servicing performed by a qualified repair person using only identical replacement parts. This will ensure that the safety of the product is maintained."
+    },
+    {
+     "id": "ins.k",
+     "text": "k) Switch off the power bank when not in use."
+    },
+    {
+     "id": "ins.save",
+     "text": "SAVE THESE INSTRUCTIONS"
+    },
+    {
+     "id": "ins.caution1",
+     "text": "CAUTION: Risk of fire during connection of additional equipment, safeguards against fire of the connected equipment or accessory should be considered.",
+     "strong": [
+      "CAUTION:"
+     ]
+    },
+    {
+     "id": "ins.caution2",
+     "text": "Risk of Fire and Burns. Do Not Open, Crush, Heat Above (manufacturer's specified maximum temperature) or Incinerate. Follow Manufacturer's Instructions."
+    },
+    {
+     "id": "op.h",
+     "text": "SAVE THESE INSTRUCTIONS OPERATING INSTRUCTIONS"
+    },
+    {
+     "id": "op.l1",
+     "text": "Use and store the unit only in a clean and dry environment. DO NOT use and store in dusty and wet environment."
+    },
+    {
+     "id": "op.l2",
+     "text": "Check the unit prior to every use. DO NOT use the unit if it is damaged, broken."
+    },
+    {
+     "id": "op.l3",
+     "text": "If rust, peculiar odors, overheating or other abnormal circumstances are observed, stop using the unit immediately and contact the dealer or our customer service center."
+    },
+    {
+     "id": "op.l4",
+     "text": "Make sure that the unit is properly secured when transporting it in a motor vehicle."
+    },
+    {
+     "id": "op.l5",
+     "text": "Only charge the Explorer 100 Plus within a ambient temperature 32°F~104°F (0°C ~40°C),discharge temperature is 14°F~104°F (-10°C~40°C) and Storage temperature is 6 months: 14°F~77°F (-10°C~25°C)."
+    },
+    {
+     "id": "op.l6",
+     "text": "Switch the unit off immediately if it has accidentally fallen, was dropped or was exposed to vibrations."
+    },
+    {
+     "id": "op.l7",
+     "text": "DO NOT use the unit if the power cord is damaged or broken."
+    },
+    {
+     "id": "op.l8",
+     "text": "Keep the unit away from children. DO NOT let children use the power supply unit. Keep this product away from pets."
+    }
+   ]
+  },
+  {
+   "physical_page": 9,
+   "printed_page": "08",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "war.h",
+     "text": "WARRANTY"
+    },
+    {
+     "id": "war.lead1",
+     "text": "We only provide our warranty to customers who purchase from the official Jackery website, Jackery-branded third-party platforms, or local authorized dealers."
+    },
+    {
+     "id": "war.lead2",
+     "text": "*Warranty period and details may vary according to local laws, regulations, and authorized dealers."
+    },
+    {
+     "id": "war.limited.h",
+     "text": "Limited Warranty"
+    },
+    {
+     "id": "war.limited.p1",
+     "text": "Jackery Inc. warrants to the original consumer purchaser that the Jackery product will be free from defects in workmanship and material under normal consumer use during the applicable warranty period identified in the 'Warranty Period' section below, subject to the exclusions set forth below."
+    },
+    {
+     "id": "war.limited.p2",
+     "text": "This warranty statement sets forth Jackery's total and exclusive warranty obligation. We will not assume, nor authorize any person to assume for us, any other liability in connection with the sale of our products."
+    },
+    {
+     "id": "war.period.h",
+     "text": "Warranty Period"
+    },
+    {
+     "id": "war.period.p",
+     "text": "2 Years Standard Warranty: The standard warranty period for Jackery Explorer 100 Plus is 24 months. In each case, the warranty period is measured starting on the date of purchase by the original consumer purchaser. The sales receipt from the first consumer purchase, or other reasonable documentary proof, is required in order to establish the start date of the warranty period."
+    },
+    {
+     "id": "war.exchange.h",
+     "text": "Exchange"
+    },
+    {
+     "id": "war.exchange.p",
+     "text": "Jackery will replace (at Jackery's expense) any Jackery product that fails to operate during the applicable warranty period due to defect in workmanship or material. A replacement product assumes the remaining warranty of the original product."
+    },
+    {
+     "id": "war.buyer.h",
+     "text": "Limited to Original Consumer Buyer"
+    },
+    {
+     "id": "war.buyer.p",
+     "text": "The warranty on Jackery's product is limited to the original consumer purchaser and is not transferable to any subsequent owner."
+    },
+    {
+     "id": "war.excl.h",
+     "text": "Exclusions"
+    },
+    {
+     "id": "war.excl.lead",
+     "text": "Jackery's warranty does not apply to:"
+    },
+    {
+     "id": "war.excl.l1",
+     "text": "Misused, abused, modified, damaged by accident, or used for anything other than normal consumer use as authorized in Jackery's current product literature."
+    },
+    {
+     "id": "war.excl.l2",
+     "text": "Attempted repair by anyone other than an authorized facility."
+    },
+    {
+     "id": "war.excl.l3",
+     "text": "Any product purchased through an online auction house."
+    },
+    {
+     "id": "war.excl.l4",
+     "text": "Jackery's warranty does not apply to the battery cell unless the battery cell is fully charged by you within seven days after you purchase the product and at least once every 6 months thereafter."
+    }
+   ]
+  },
+  {
+   "physical_page": 10,
+   "printed_page": null,
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "contact.us.h",
+     "text": "JACKERY INC."
+    },
+    {
+     "id": "contact.us.addr",
+     "text": "5310 Bunche Dr, Fremont, CA 94538"
+    },
+    {
+     "id": "contact.us.tel",
+     "text": "Tel: 1-888-502-2236(US)"
+    },
+    {
+     "id": "contact.us.mail",
+     "text": "E-mail: hello@jackery.com"
+    },
+    {
+     "id": "contact.us.web",
+     "text": "Website: www.jackery.com"
+    },
+    {
+     "id": "contact.mx.h",
+     "text": "JACKERY MEXICO S.A. DE C.V."
+    },
+    {
+     "id": "contact.mx.addr",
+     "text": "Calle Poseidón 18 , Crédito Constructor, Benito Juárez, C.P. 03940, Cludad De México, México"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,52 @@
+[
+  {
+    "width": 1280,
+    "images": 21,
+    "broken": [],
+    "uncontained": [],
+    "document": {
+      "viewport": 1280,
+      "width": 1280,
+      "cover": 0
+    },
+    "layouts": [
+      {
+        "key": "back",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 657.21875
+      },
+      {
+        "key": "fcc",
+        "columns": "auto",
+        "grid": "599.625px",
+        "rectWidth": 599.625
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "images": 21,
+    "broken": [],
+    "uncontained": [],
+    "document": {
+      "viewport": 390,
+      "width": 390,
+      "cover": 0
+    },
+    "layouts": [
+      {
+        "key": "back",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 358
+      },
+      {
+        "key": "fcc",
+        "columns": "auto",
+        "grid": "326px",
+        "rectWidth": 326
+      }
+    ]
+  }
+]

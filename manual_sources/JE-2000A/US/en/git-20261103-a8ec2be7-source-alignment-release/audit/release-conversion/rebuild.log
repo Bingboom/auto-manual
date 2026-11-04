@@ -1,0 +1,16 @@
+{
+  "output": "/private/tmp/manual-web-audit-20261102/release8-conversion/JE-2000A-attempt3/fresh",
+  "chapters": 14,
+  "components": {
+    "HB-SPECIAL-REFERENCE-FIGURE": 18
+  },
+  "symbol_admission": []
+}
+{
+  "output": "/private/tmp/manual-web-audit-20261102/release8-conversion/JE-2000A-attempt3/cold",
+  "chapters": 14,
+  "components": {
+    "HB-SPECIAL-REFERENCE-FIGURE": 18
+  },
+  "symbol_admission": []
+}

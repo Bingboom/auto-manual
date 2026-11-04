@@ -1,0 +1,209 @@
+{
+  "method": "Actual viewport screenshots after window.scrollTo; fullPage:false, no page clip, each 1000px high. 200px overlap. Back to top UI hidden only for capture.",
+  "rows": [
+    {
+      "file": "view-01.png",
+      "actual_document_y": 0,
+      "viewport_width": 1280,
+      "viewport_height": 1000
+    },
+    {
+      "file": "view-02.png",
+      "actual_document_y": 800,
+      "viewport_width": 1280,
+      "viewport_height": 1000
+    },
+    {
+      "file": "view-03.png",
+      "actual_document_y": 1600,
+      "viewport_width": 1280,
+      "viewport_height": 1000
+    },
+    {
+      "file": "view-04.png",
+      "actual_document_y": 2400,
+      "viewport_width": 1280,
+      "viewport_height": 1000
+    },
+    {
+      "file": "view-05.png",
+      "actual_document_y": 3200,
+      "viewport_width": 1280,
+      "viewport_height": 1000
+    },
+    {
+      "file": "view-06.png",
+      "actual_document_y": 4000,
+      "viewport_width": 1280,
+      "viewport_height": 1000
+    },
+    {
+      "file": "view-07.png",
+      "actual_document_y": 4800,
+      "viewport_width": 1280,
+      "viewport_height": 1000
+    },
+    {
+      "file": "view-08.png",
+      "actual_document_y": 5600,
+      "viewport_width": 1280,
+      "viewport_height": 1000
+    },
+    {
+      "file": "view-09.png",
+      "actual_document_y": 6400,
+      "viewport_width": 1280,
+      "viewport_height": 1000
+    },
+    {
+      "file": "view-10.png",
+      "actual_document_y": 7200,
+      "viewport_width": 1280,
+      "viewport_height": 1000
+    },
+    {
+      "file": "view-11.png",
+      "actual_document_y": 8000,
+      "viewport_width": 1280,
+      "viewport_height": 1000
+    },
+    {
+      "file": "view-12.png",
+      "actual_document_y": 8800,
+      "viewport_width": 1280,
+      "viewport_height": 1000
+    },
+    {
+      "file": "view-13.png",
+      "actual_document_y": 9600,
+      "viewport_width": 1280,
+      "viewport_height": 1000
+    },
+    {
+      "file": "view-14.png",
+      "actual_document_y": 10400,
+      "viewport_width": 1280,
+      "viewport_height": 1000
+    },
+    {
+      "file": "view-15.png",
+      "actual_document_y": 11200,
+      "viewport_width": 1280,
+      "viewport_height": 1000
+    },
+    {
+      "file": "view-16.png",
+      "actual_document_y": 12000,
+      "viewport_width": 1280,
+      "viewport_height": 1000
+    },
+    {
+      "file": "view-17.png",
+      "actual_document_y": 12800,
+      "viewport_width": 1280,
+      "viewport_height": 1000
+    },
+    {
+      "file": "view-18.png",
+      "actual_document_y": 13600,
+      "viewport_width": 1280,
+      "viewport_height": 1000
+    },
+    {
+      "file": "view-19.png",
+      "actual_document_y": 14400,
+      "viewport_width": 1280,
+      "viewport_height": 1000
+    },
+    {
+      "file": "view-20.png",
+      "actual_document_y": 15200,
+      "viewport_width": 1280,
+      "viewport_height": 1000
+    },
+    {
+      "file": "view-21.png",
+      "actual_document_y": 16000,
+      "viewport_width": 1280,
+      "viewport_height": 1000
+    },
+    {
+      "file": "view-22.png",
+      "actual_document_y": 16800,
+      "viewport_width": 1280,
+      "viewport_height": 1000
+    },
+    {
+      "file": "view-23.png",
+      "actual_document_y": 17600,
+      "viewport_width": 1280,
+      "viewport_height": 1000
+    },
+    {
+      "file": "view-24.png",
+      "actual_document_y": 18400,
+      "viewport_width": 1280,
+      "viewport_height": 1000
+    },
+    {
+      "file": "view-25.png",
+      "actual_document_y": 19200,
+      "viewport_width": 1280,
+      "viewport_height": 1000
+    },
+    {
+      "file": "view-26.png",
+      "actual_document_y": 20000,
+      "viewport_width": 1280,
+      "viewport_height": 1000
+    },
+    {
+      "file": "view-27.png",
+      "actual_document_y": 20800,
+      "viewport_width": 1280,
+      "viewport_height": 1000
+    },
+    {
+      "file": "view-28.png",
+      "actual_document_y": 21600,
+      "viewport_width": 1280,
+      "viewport_height": 1000
+    },
+    {
+      "file": "view-29.png",
+      "actual_document_y": 22400,
+      "viewport_width": 1280,
+      "viewport_height": 1000
+    },
+    {
+      "file": "view-30.png",
+      "actual_document_y": 23200,
+      "viewport_width": 1280,
+      "viewport_height": 1000
+    },
+    {
+      "file": "view-31.png",
+      "actual_document_y": 24000,
+      "viewport_width": 1280,
+      "viewport_height": 1000
+    },
+    {
+      "file": "view-32.png",
+      "actual_document_y": 24800,
+      "viewport_width": 1280,
+      "viewport_height": 1000
+    },
+    {
+      "file": "view-33.png",
+      "actual_document_y": 25600,
+      "viewport_width": 1280,
+      "viewport_height": 1000
+    },
+    {
+      "file": "view-34.png",
+      "actual_document_y": 25924,
+      "viewport_width": 1280,
+      "viewport_height": 1000
+    }
+  ]
+}

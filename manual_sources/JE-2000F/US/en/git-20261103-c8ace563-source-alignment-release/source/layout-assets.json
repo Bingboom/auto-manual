@@ -1,0 +1,79 @@
+[
+  {
+    "path": "assets/source-risk.png",
+    "physical_page": 4,
+    "bbox_pdf_points": [
+      33.41963052188649,
+      54.68666812672335,
+      55.55471047794118,
+      75.08566338034237
+    ],
+    "operation": "exact source clip; no redraw"
+  },
+  {
+    "path": "assets/source-warning.png",
+    "physical_page": 4,
+    "bbox_pdf_points": [
+      33.41963052188649,
+      89.8423833510455,
+      64.6691551657284,
+      118.053759765625
+    ],
+    "operation": "exact source clip; no redraw"
+  },
+  {
+    "path": "assets/source-triangle.png",
+    "physical_page": 5,
+    "bbox_pdf_points": [
+      30.38148229262408,
+      36.02375757553998,
+      50.780477546243105,
+      54.68666812672335
+    ],
+    "operation": "exact source clip; no redraw"
+  },
+  {
+    "path": "assets/contact-phone.png",
+    "physical_page": 22,
+    "bbox_pdf_points": [
+      35.577097598805146,
+      469.87800853056063,
+      55.534981617647055,
+      489.83589254940256
+    ],
+    "operation": "exact source clip; no redraw"
+  },
+  {
+    "path": "assets/contact-mail.png",
+    "physical_page": 22,
+    "bbox_pdf_points": [
+      208.69004811006434,
+      469.87800853056063,
+      219.10285716337316,
+      478.9892164522059
+    ],
+    "operation": "exact source clip; no redraw"
+  },
+  {
+    "path": "assets/contact-web.png",
+    "physical_page": 22,
+    "bbox_pdf_points": [
+      208.25618106617645,
+      480.29081758386945,
+      220.40445829503676,
+      490.7036266371783
+    ],
+    "operation": "exact source clip; no redraw"
+  },
+  {
+    "path": "assets/contact-qr.png",
+    "physical_page": 22,
+    "bbox_pdf_points": [
+      308.045601160386,
+      463.3700028722426,
+      340.1517624080882,
+      495.4761641199448
+    ],
+    "operation": "exact source clip; no redraw"
+  }
+]

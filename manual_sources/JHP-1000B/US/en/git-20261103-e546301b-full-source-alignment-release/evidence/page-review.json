@@ -1,0 +1,405 @@
+{
+  "included_physical_pages": [
+    2,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22
+  ],
+  "excluded": [
+    {
+      "physical_page": 1,
+      "reason": "Explicit operator: 网页版 不需要封面"
+    },
+    {
+      "physical_page": 3,
+      "reason": "Confirmed conversion scope excludes paper TOC"
+    }
+  ],
+  "unresolved_content_candidates": 0,
+  "unresolved_layout_candidates": 0,
+  "pages": [
+    {
+      "physical_page": 2,
+      "title": "Preface",
+      "web_location": "[data-source-preface-title]",
+      "status": "verified",
+      "visual_review": "EN + IMPORTANT compact title; all preface text and bold support link. No cover.",
+      "ocr_lines_checked": 9,
+      "source_to_web_candidates": [],
+      "transcription_to_ocr_candidates": []
+    },
+    {
+      "physical_page": 4,
+      "title": "Safety",
+      "web_location": "[data-native-strip=\"risk-strip\"], [data-native-columns]",
+      "status": "verified",
+      "visual_review": "Original warning card left top; 11 source bullets outside it; exact sixth-item column split. Operating left 9/right 5; grounding and plain WARNING.",
+      "ocr_lines_checked": 91,
+      "source_to_web_candidates": [
+        {
+          "text": "cause satety hazards.",
+          "coverage": 0.111,
+          "characters": 18,
+          "exact": false,
+          "resolution": "OCR reads safety as satety; original page and native copy both read safety."
+        }
+      ],
+      "transcription_to_ocr_candidates": [
+        {
+          "id": "op.l3a",
+          "text": "-Charging in damp or poorly ventilated spaces may cause safety hazards.",
+          "coverage": 0.731,
+          "nearest": "-Charging in damp or poorly ventilated spaces may GROUNDING INSTRUCTION",
+          "resolution": "Original PDF text visually re-read; candidate is OCR segmentation/column-reading loss. Source transcription preserved exactly."
+        }
+      ]
+    },
+    {
+      "physical_page": 5,
+      "title": "Danger, maintenance, symbols",
+      "web_location": "[data-native-strip=\"danger-strip\"], [data-source-signal], .hb-symbol-pair-composition",
+      "status": "verified",
+      "visual_review": "Source danger frame/triangle; native maintenance; four original signal triangles; original 4+3 table placement.",
+      "ocr_lines_checked": 29,
+      "source_to_web_candidates": [],
+      "transcription_to_ocr_candidates": [
+        {
+          "id": "danger.b1",
+          "text": "This device is intended for indoor use only (Please place this device in a similar indoor environment when using it outdoors, e.g. Home RVs, tents, cabins, etc.).",
+          "coverage": 0.034,
+          "nearest": "will gradually intensify, which is a normal phenomenon consistent with the natural aging of battery cells.",
+          "resolution": "Original PDF text visually re-read; candidate is OCR segmentation/column-reading loss. Source transcription preserved exactly."
+        },
+        {
+          "id": "danger.b2",
+          "text": "※ This device is not waterproof or dustproof. Keep away from rain and humid environments during use.",
+          "coverage": 0.257,
+          "nearest": "nvironments during use",
+          "resolution": "Original PDF text visually re-read; candidate is OCR segmentation/column-reading loss. Source transcription preserved exactly."
+        }
+      ]
+    },
+    {
+      "physical_page": 6,
+      "title": "FCC and in-box",
+      "web_location": ".hb-fcc-composition, .hb-inbox-composition",
+      "status": "verified",
+      "visual_review": "FCC two columns with source logo; four source in-box cards and TIPS; no RF/ISED additions. FCC follow-up verified original NOTE/These limits native newline and FCC mark text wrapping at desktop/mobile; component/IR contract retained.",
+      "ocr_lines_checked": 28,
+      "source_to_web_candidates": [
+        {
+          "text": "FCC Rules. Operation is subiect to the",
+          "coverage": 0.591,
+          "characters": 31,
+          "exact": false,
+          "resolution": "OCR reads subject as subiect; exact source word retained."
+        }
+      ],
+      "transcription_to_ocr_candidates": [
+        {
+          "id": "fcc.o1",
+          "text": "This device complies with part 15 of the FCC Rules. Operation is subject to the following two conditions:",
+          "coverage": 0.684,
+          "nearest": "This device complies with part 15 of the",
+          "resolution": "Original PDF text visually re-read; candidate is OCR segmentation/column-reading loss. Source transcription preserved exactly."
+        }
+      ]
+    },
+    {
+      "physical_page": 7,
+      "title": "Overview",
+      "web_location": "#product-overview",
+      "status": "verified",
+      "visual_review": "Own original front/left/right artwork, all leaders, labels, nameplate and ratings preserved. No crop or redraw. Final source own-PDF right view bottom restored; all three product outlines and leader labels visually checked.",
+      "ocr_lines_checked": 15,
+      "source_to_web_candidates": [
+        {
+          "text": "18W Max, 5-6V=34, 6-9V=2A,",
+          "coverage": 0.143,
+          "characters": 16,
+          "exact": false,
+          "resolution": "OCR corrupts small USB-A ratings and product nameplate inside the unchanged original front panel. Source panel hash and visual match confirmed."
+        },
+        {
+          "text": "Han sPower 100 % Plus",
+          "coverage": 0.0,
+          "characters": 16,
+          "exact": false,
+          "resolution": "OCR corrupts small USB-A ratings and product nameplate inside the unchanged original front panel. Source panel hash and visual match confirmed."
+        }
+      ],
+      "transcription_to_ocr_candidates": []
+    },
+    {
+      "physical_page": 8,
+      "title": "LCD map and rows1–6",
+      "web_location": "#lcd-display",
+      "status": "verified",
+      "visual_review": "Original 26-callout map; native icon/name/description columns and exact mode prose.",
+      "ocr_lines_checked": 29,
+      "source_to_web_candidates": [],
+      "transcription_to_ocr_candidates": [
+        {
+          "id": "lcd.d6.b2",
+          "text": "Off: TOU mode is disabled. The product does not follow the TOU (time-of-use) strategy and operates according to the default power supply and charging logic.",
+          "coverage": 0.356,
+          "nearest": "Off: TOU mode is disabled. The product does not follow the TO",
+          "resolution": "Original PDF text visually re-read; candidate is OCR segmentation/column-reading loss. Source transcription preserved exactly."
+        }
+      ]
+    },
+    {
+      "physical_page": 9,
+      "title": "LCD rows7–26",
+      "web_location": ".hb-lcd-table-composition",
+      "status": "verified",
+      "visual_review": "All icon/description pairs retained; 23 spans high/low temperature; Battery Saving notes and charging/output data source exact.",
+      "ocr_lines_checked": 52,
+      "source_to_web_candidates": [],
+      "transcription_to_ocr_candidates": []
+    },
+    {
+      "physical_page": 10,
+      "title": "Power and AC",
+      "web_location": "[data-native-panel=\"power-on-off\"], [data-native-panel=\"ac-output\"]",
+      "status": "verified",
+      "visual_review": "Standby prose, source prerequisites and AC two-port caption restored to original drawing rectangles. Final original panel frame bounds retained. Native panel text position checked in final viewport captures.",
+      "ocr_lines_checked": 10,
+      "source_to_web_candidates": [],
+      "transcription_to_ocr_candidates": []
+    },
+    {
+      "physical_page": 11,
+      "title": "DC/USB and LED",
+      "web_location": "[data-native-panel=\"dc-usb-output\"], [data-native-panel=\"led-light\"]",
+      "status": "verified",
+      "visual_review": "Source DC/USB prerequisite, both CAUTION blocks, charging paragraph, LED mode line and original 1/2/3 step associations. Final original panel frame bounds retained. Native panel text position checked in final viewport captures.",
+      "ocr_lines_checked": 21,
+      "source_to_web_candidates": [],
+      "transcription_to_ocr_candidates": []
+    },
+    {
+      "physical_page": 12,
+      "title": "LCD modes and saving",
+      "web_location": ".hb-lcd-mode-composition, [data-native-panel=\"energy-saving\"]",
+      "status": "verified",
+      "visual_review": "Native two-mode table with 6 conditions; source energy instruction inside figure; NOTE and continuous-power WARNING intact. Final original panel frame bounds retained. Native panel text position checked in final viewport captures. LCD mode artwork crop excludes adjacent table border, with near-equal art/table desktop widths and native action words unbroken.",
+      "ocr_lines_checked": 24,
+      "source_to_web_candidates": [
+        {
+          "text": "Press the prodet is tharging.",
+          "coverage": 0.0,
+          "characters": 24,
+          "exact": false,
+          "resolution": "OCR loses words in the densely typeset mode table; original and native table cells reviewed individually."
+        }
+      ],
+      "transcription_to_ocr_candidates": [
+        {
+          "id": "scr.m1.d1",
+          "text": "Press the POWER button or when the product is charging.",
+          "coverage": 0.474,
+          "nearest": "Press the prodet is tharging.",
+          "resolution": "Original PDF text visually re-read; candidate is OCR segmentation/column-reading loss. Source transcription preserved exactly."
+        },
+        {
+          "id": "scr.m2",
+          "text": "Steady On (in charging or discharging state)",
+          "coverage": 0.69,
+          "nearest": "discharging",
+          "resolution": "Original PDF text visually re-read; candidate is OCR segmentation/column-reading loss. Source transcription preserved exactly."
+        },
+        {
+          "id": "scr.m2.d1",
+          "text": "Press the POWER button twice when the product is powered on.",
+          "coverage": 0.381,
+          "nearest": "Press the POWER button.",
+          "resolution": "Original PDF text visually re-read; candidate is OCR segmentation/column-reading loss. Source transcription preserved exactly."
+        }
+      ]
+    },
+    {
+      "physical_page": 13,
+      "title": "Resume and key combinations",
+      "web_location": ".hb-auto-resume-composition, .hb-key-combination-table",
+      "status": "verified",
+      "visual_review": "Source table rows, button images/labels, four pluses and four original clocks; desktop fits; phone internal scroll.",
+      "ocr_lines_checked": 26,
+      "source_to_web_candidates": [],
+      "transcription_to_ocr_candidates": []
+    },
+    {
+      "physical_page": 14,
+      "title": "UPS",
+      "web_location": "#uninterruptible-power-supply-ups",
+      "status": "verified",
+      "visual_review": "Own wiring art; 12A/15 A source wording; four CAUTION items including cascade; full WARNING paragraphs and 3 bullets.",
+      "ocr_lines_checked": 28,
+      "source_to_web_candidates": [],
+      "transcription_to_ocr_candidates": []
+    },
+    {
+      "physical_page": 15,
+      "title": "Battery packs and AC charging",
+      "web_location": "#connect-to-battery-pack-s-sold-separately, #charging",
+      "status": "verified",
+      "visual_review": "Own connection/options illustration and caption; full charging note; AC caption restored inside art; emergency-charge wording preserved. Final original panel frame bounds retained. Native panel text position checked in final viewport captures. First-charge pill, plain Emergency Charging Mode lead and white-panel AC caption match source.",
+      "ocr_lines_checked": 34,
+      "source_to_web_candidates": [],
+      "transcription_to_ocr_candidates": []
+    },
+    {
+      "physical_page": 16,
+      "title": "Solar and car charging",
+      "web_location": "#charging-via-solar-panels-sold-separately, #charging-via-a-car-charger-sold-separately",
+      "status": "verified",
+      "visual_review": "Own source solar/car panels, accessories/captions, both solar CAUTION blocks and car CAUTION; source 16V–60V retained.",
+      "ocr_lines_checked": 16,
+      "source_to_web_candidates": [],
+      "transcription_to_ocr_candidates": []
+    },
+    {
+      "physical_page": 17,
+      "title": "Storage and troubleshooting",
+      "web_location": "#storage, #troubleshooting",
+      "status": "verified",
+      "visual_review": "Full storage list and all 10 error-code rows; F0/F1/F2/F3 combined as source; F7 solar condition and V_oc subscript.",
+      "ocr_lines_checked": 36,
+      "source_to_web_candidates": [],
+      "transcription_to_ocr_candidates": []
+    },
+    {
+      "physical_page": 18,
+      "title": "Specifications",
+      "web_location": "#source-spec-g; #source-spec-i; #source-spec-o; #source-spec-t",
+      "status": "verified",
+      "visual_review": "All four groups and footnotes; exact model/ports/ratings; 2×USB-C common label spans two source value rows. LiFePO4 and footnote glyphs retained. Four dotted native h2 subgroup labels under one chapter strip.",
+      "ocr_lines_checked": 27,
+      "source_to_web_candidates": [
+        {
+          "text": "12.4 × 7.9 x 9.2 in / 31.4 x 20.1 x 23.4 cm",
+          "coverage": 0.0,
+          "characters": 23,
+          "exact": false,
+          "resolution": "OCR alternates x/× in dimension separators. Source figures and native values are 12.4 × 7.9 × 9.2 in / 31.4 × 20.1 × 23.4 cm."
+        }
+      ],
+      "transcription_to_ocr_candidates": []
+    },
+    {
+      "physical_page": 19,
+      "title": "Warranty",
+      "web_location": "#warranty",
+      "status": "verified",
+      "visual_review": "All six titled sections and exclusions; only 3/2 YEARS descriptions are two columns, matching source.",
+      "ocr_lines_checked": 38,
+      "source_to_web_candidates": [],
+      "transcription_to_ocr_candidates": []
+    },
+    {
+      "physical_page": 20,
+      "title": "App download/add",
+      "web_location": "#app-setup",
+      "status": "verified",
+      "visual_review": "App-store pair/QR text remains paired; original 2.1/2.2 screens and button-control panel retain their source captions; subsection dots restored.",
+      "ocr_lines_checked": 16,
+      "source_to_web_candidates": [
+        {
+          "text": "Bluetooth confouration",
+          "coverage": 0.25,
+          "characters": 21,
+          "exact": false,
+          "resolution": "OCR fragments are embedded phone screenshot UI, including Bluetooth configuration. Original source screen artwork retained and visually checked."
+        },
+        {
+          "text": "Bluetooth configuration mode",
+          "coverage": 0.176,
+          "characters": 26,
+          "exact": false,
+          "resolution": "OCR fragments are embedded phone screenshot UI, including Bluetooth configuration. Original source screen artwork retained and visually checked."
+        },
+        {
+          "text": "Pleose rale sure the Bluetacth icon is flasting",
+          "coverage": 0.0,
+          "characters": 40,
+          "exact": false,
+          "resolution": "OCR fragments are embedded phone screenshot UI, including Bluetooth configuration. Original source screen artwork retained and visually checked."
+        },
+        {
+          "text": "bnaru procuvan so ua палі S9",
+          "coverage": 0.0,
+          "characters": 19,
+          "exact": false,
+          "resolution": "OCR fragments are embedded phone screenshot UI, including Bluetooth configuration. Original source screen artwork retained and visually checked."
+        },
+        {
+          "text": "00n0538iiR 902033100",
+          "coverage": 0.0,
+          "characters": 19,
+          "exact": false,
+          "resolution": "OCR fragments are embedded phone screenshot UI, including Bluetooth configuration. Original source screen artwork retained and visually checked."
+        }
+      ],
+      "transcription_to_ocr_candidates": []
+    },
+    {
+      "physical_page": 21,
+      "title": "App pair/unbind/notes",
+      "web_location": "#app-setup",
+      "status": "verified",
+      "visual_review": "Original 2.3/2.4/2.5 screens and captions; both notes, CAUTION, 3/4 headings and all Wi-Fi/Bluetooth instructions retained.",
+      "ocr_lines_checked": 32,
+      "source_to_web_candidates": [
+        {
+          "text": "Please select 2.4 GHz Wi-Fi",
+          "coverage": 0.25,
+          "characters": 21,
+          "exact": false,
+          "resolution": "OCR fragments are embedded phone screenshot UI. Original three screen images and their captions retained."
+        },
+        {
+          "text": "Ranemibar pasawerd",
+          "coverage": 0.0,
+          "characters": 17,
+          "exact": false,
+          "resolution": "OCR fragments are embedded phone screenshot UI. Original three screen images and their captions retained."
+        },
+        {
+          "text": "Available devicels) scanned",
+          "coverage": 0.0,
+          "characters": 24,
+          "exact": false,
+          "resolution": "OCR fragments are embedded phone screenshot UI. Original three screen images and their captions retained."
+        }
+      ],
+      "transcription_to_ocr_candidates": []
+    },
+    {
+      "physical_page": 22,
+      "title": "Back contact",
+      "web_location": "[data-source-contact=\"back\"]",
+      "status": "verified",
+      "visual_review": "JACKERY INC/address plus exact own-PDF contact frame/icons/QR; selectable telephone/email/website restored.",
+      "ocr_lines_checked": 2,
+      "source_to_web_candidates": [],
+      "transcription_to_ocr_candidates": []
+    }
+  ],
+  "final_visual_evidence": "fcc-followup/viewport-segments/index.json, all33 actual viewports visually inspected"
+}

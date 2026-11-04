@@ -1,0 +1,13 @@
+{
+  "asset": "assets/contact-qr.png",
+  "source": "JE-2000A-US-EN.pdf",
+  "physical_page": 19,
+  "bbox": [
+    310.4104520909927,
+    465.9015850981405,
+    346.39378662109374,
+    502.30691825929756
+  ],
+  "operation": "original QR crop only, no redraw",
+  "sha256": "ce23068055733f9c264b85230c4a85ff975f8b30acdd89d75730c57646a29669"
+}

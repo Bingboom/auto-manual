@@ -1,0 +1,369 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "plainLeads": [
+        {
+          "text": "SAVE THESE INSTRUCTIONS",
+          "tag": "P"
+        },
+        {
+          "text": "Emergency Charging Mode",
+          "tag": "P"
+        }
+      ],
+      "firstCharge": true,
+      "safetyPills": [
+        {
+          "tag": "P",
+          "pill": true
+        },
+        {
+          "tag": "P",
+          "pill": true
+        }
+      ],
+      "specHeadings": [
+        {
+          "title": "GENERAL INFO",
+          "tag": "H2",
+          "bg": "rgba(0, 0, 0, 0)",
+          "beforeDisplay": "block"
+        },
+        {
+          "title": "INPUT PORTS",
+          "tag": "H2",
+          "bg": "rgba(0, 0, 0, 0)",
+          "beforeDisplay": "block"
+        },
+        {
+          "title": "OUTPUT PORTS",
+          "tag": "H2",
+          "bg": "rgba(0, 0, 0, 0)",
+          "beforeDisplay": "block"
+        },
+        {
+          "title": "ENVIRONMENTAL OPERATING TEMPERATURE",
+          "tag": "H2",
+          "bg": "rgba(0, 0, 0, 0)",
+          "beforeDisplay": "block"
+        }
+      ],
+      "appHeadingMarkers": [
+        {
+          "text": "● 1. Download the App and log in¶",
+          "beforeDisplay": "none"
+        },
+        {
+          "text": "● 2. Add device¶",
+          "beforeDisplay": "none"
+        },
+        {
+          "text": "● 3. Unbind the device¶",
+          "beforeDisplay": "none"
+        },
+        {
+          "text": "● 4. Notes¶",
+          "beforeDisplay": "none"
+        }
+      ],
+      "width": 1280,
+      "images": 81,
+      "broken": [],
+      "copy": [
+        {
+          "id": "power-on-off-0",
+          "width": 378,
+          "height": 96,
+          "scrollWidth": 378,
+          "scrollHeight": 96
+        },
+        {
+          "id": "ac-output-0",
+          "width": 288,
+          "height": 33,
+          "scrollWidth": 288,
+          "scrollHeight": 33
+        },
+        {
+          "id": "ac-output-1",
+          "width": 629,
+          "height": 56,
+          "scrollWidth": 629,
+          "scrollHeight": 56
+        },
+        {
+          "id": "dc-usb-output-0",
+          "width": 288,
+          "height": 35,
+          "scrollWidth": 288,
+          "scrollHeight": 35
+        },
+        {
+          "id": "led-light-0",
+          "width": 635,
+          "height": 56,
+          "scrollWidth": 635,
+          "scrollHeight": 56
+        },
+        {
+          "id": "led-light-1",
+          "width": 167,
+          "height": 148,
+          "scrollWidth": 167,
+          "scrollHeight": 148
+        },
+        {
+          "id": "energy-saving-0",
+          "width": 622,
+          "height": 54,
+          "scrollWidth": 622,
+          "scrollHeight": 54
+        },
+        {
+          "id": "charging-ac-0",
+          "width": 618,
+          "height": 29,
+          "scrollWidth": 618,
+          "scrollHeight": 29
+        },
+        {
+          "id": "back-phone",
+          "width": 306,
+          "height": 52,
+          "scrollWidth": 306,
+          "scrollHeight": 52
+        },
+        {
+          "id": "back-mail",
+          "width": 158,
+          "height": 24,
+          "scrollWidth": 158,
+          "scrollHeight": 24
+        },
+        {
+          "id": "back-web",
+          "width": 158,
+          "height": 24,
+          "scrollWidth": 158,
+          "scrollHeight": 24
+        }
+      ],
+      "columns": [
+        {
+          "id": "safety-warning",
+          "columns": "319.016px 319.016px"
+        },
+        {
+          "id": "operating",
+          "columns": "319.016px 319.016px"
+        }
+      ],
+      "uncontained": [],
+      "plus": [
+        "+",
+        "+",
+        "+",
+        "+"
+      ],
+      "lcd23": [
+        "㉓"
+      ],
+      "usb": [
+        "2 × USB-C"
+      ],
+      "subscripts": [
+        "oc"
+      ],
+      "preface": "ENIMPORTANT",
+      "sourceSignal": 4,
+      "sourceClock": 4,
+      "sourceStrips": 2,
+      "sourceSafetyTitles": 2,
+      "frontCover": 0,
+      "appBullets": 4
+    },
+    {
+      "plainLeads": [
+        {
+          "text": "SAVE THESE INSTRUCTIONS",
+          "tag": "P"
+        },
+        {
+          "text": "Emergency Charging Mode",
+          "tag": "P"
+        }
+      ],
+      "firstCharge": true,
+      "safetyPills": [
+        {
+          "tag": "P",
+          "pill": true
+        },
+        {
+          "tag": "P",
+          "pill": true
+        }
+      ],
+      "specHeadings": [
+        {
+          "title": "GENERAL INFO",
+          "tag": "H2",
+          "bg": "rgba(0, 0, 0, 0)",
+          "beforeDisplay": "block"
+        },
+        {
+          "title": "INPUT PORTS",
+          "tag": "H2",
+          "bg": "rgba(0, 0, 0, 0)",
+          "beforeDisplay": "block"
+        },
+        {
+          "title": "OUTPUT PORTS",
+          "tag": "H2",
+          "bg": "rgba(0, 0, 0, 0)",
+          "beforeDisplay": "block"
+        },
+        {
+          "title": "ENVIRONMENTAL OPERATING TEMPERATURE",
+          "tag": "H2",
+          "bg": "rgba(0, 0, 0, 0)",
+          "beforeDisplay": "block"
+        }
+      ],
+      "appHeadingMarkers": [
+        {
+          "text": "● 1. Download the App and log in¶",
+          "beforeDisplay": "none"
+        },
+        {
+          "text": "● 2. Add device¶",
+          "beforeDisplay": "none"
+        },
+        {
+          "text": "● 3. Unbind the device¶",
+          "beforeDisplay": "none"
+        },
+        {
+          "text": "● 4. Notes¶",
+          "beforeDisplay": "none"
+        }
+      ],
+      "width": 390,
+      "images": 81,
+      "broken": [],
+      "copy": [
+        {
+          "id": "power-on-off-0",
+          "width": 368,
+          "height": 93,
+          "scrollWidth": 368,
+          "scrollHeight": 93
+        },
+        {
+          "id": "ac-output-0",
+          "width": 281,
+          "height": 33,
+          "scrollWidth": 281,
+          "scrollHeight": 33
+        },
+        {
+          "id": "ac-output-1",
+          "width": 612,
+          "height": 55,
+          "scrollWidth": 612,
+          "scrollHeight": 55
+        },
+        {
+          "id": "dc-usb-output-0",
+          "width": 281,
+          "height": 35,
+          "scrollWidth": 281,
+          "scrollHeight": 35
+        },
+        {
+          "id": "led-light-0",
+          "width": 618,
+          "height": 55,
+          "scrollWidth": 618,
+          "scrollHeight": 55
+        },
+        {
+          "id": "led-light-1",
+          "width": 163,
+          "height": 144,
+          "scrollWidth": 163,
+          "scrollHeight": 144
+        },
+        {
+          "id": "energy-saving-0",
+          "width": 606,
+          "height": 53,
+          "scrollWidth": 606,
+          "scrollHeight": 53
+        },
+        {
+          "id": "charging-ac-0",
+          "width": 602,
+          "height": 29,
+          "scrollWidth": 602,
+          "scrollHeight": 29
+        },
+        {
+          "id": "back-phone",
+          "width": 298,
+          "height": 50,
+          "scrollWidth": 298,
+          "scrollHeight": 50
+        },
+        {
+          "id": "back-mail",
+          "width": 154,
+          "height": 23,
+          "scrollWidth": 154,
+          "scrollHeight": 23
+        },
+        {
+          "id": "back-web",
+          "width": 154,
+          "height": 23,
+          "scrollWidth": 154,
+          "scrollHeight": 23
+        }
+      ],
+      "columns": [
+        {
+          "id": "safety-warning",
+          "columns": "358px"
+        },
+        {
+          "id": "operating",
+          "columns": "358px"
+        }
+      ],
+      "uncontained": [],
+      "plus": [
+        "+",
+        "+",
+        "+",
+        "+"
+      ],
+      "lcd23": [
+        "㉓"
+      ],
+      "usb": [
+        "2 × USB-C"
+      ],
+      "subscripts": [
+        "oc"
+      ],
+      "preface": "ENIMPORTANT",
+      "sourceSignal": 4,
+      "sourceClock": 4,
+      "sourceStrips": 2,
+      "sourceSafetyTitles": 2,
+      "frontCover": 0,
+      "appBullets": 4
+    }
+  ]
+}

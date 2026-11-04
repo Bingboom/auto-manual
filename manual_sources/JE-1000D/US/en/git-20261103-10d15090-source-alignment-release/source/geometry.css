@@ -1,0 +1,54 @@
+/* JE-1000D US: page-local geometry and type size only.
+   Colours, borders and panels come from the shared Web theme (prepared-document shared-style gate). */
+
+/* Complete source panels keep a readable print width; dense ones pan on phones. */
+#furo-main-content .hb-reference-figure { max-width: 48rem; margin-inline: auto; }
+#furo-main-content .hb-reference-figure[data-reference-id="ac-charge"],
+#furo-main-content .hb-reference-figure[data-reference-id="car-charge"],
+#furo-main-content .hb-reference-figure[data-reference-id="app-add"] { max-width: 30rem; }
+#furo-main-content .hb-reference-figure[data-reference-id="app-store"] { max-width: 18rem; margin-inline: 0; }
+@media (max-width: 760px) {
+  #furo-main-content .hb-reference-figure[data-reference-id="overview"],
+  #furo-main-content .hb-reference-figure[data-reference-id="lcd-map"] { overflow-x: auto; }
+  #furo-main-content .hb-reference-figure[data-reference-id="overview"] > *,
+  #furo-main-content .hb-reference-figure[data-reference-id="lcd-map"] > * { min-width: 34rem; }
+}
+
+/* Certification marks keep their printed size in a row. */
+#furo-main-content p > img[src^="assets/cert-"] { display: inline-block; height: 2.6rem; width: auto; vertical-align: middle; margin: 0 .6rem 0 0; }
+
+/* Source LCD legend: numbered descriptions in three row-major columns. */
+@media(min-width:761px) {
+ #furo-main-content .hb-reference-lcd-descriptions table { min-width:0; width:100%; }
+ #furo-main-content .hb-reference-lcd-descriptions tbody { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); }
+ #furo-main-content .hb-reference-lcd-descriptions tr { display:flex; align-items:center; }
+ #furo-main-content .hb-reference-lcd-descriptions td:first-child { width:1.4rem; flex-shrink:0; }
+ #furo-main-content .hb-reference-lcd-descriptions td { padding:.4rem; font-size:.85rem; }
+}
+
+
+#furo-main-content [data-source-layout="source-back-contact"] img { display:block; width:6rem; height:auto; margin-left:auto; }
+
+#furo-main-content [data-source-layout="charging-pair"] { display:grid; grid-template-columns:48% minmax(0,1fr); gap:1rem; align-items:start; }
+#furo-main-content [data-source-layout="charging-pair"] figure { margin:0; min-width:0; max-width:100%; }
+@media(max-width:760px) { #furo-main-content [data-source-layout="charging-pair"] { grid-template-columns:minmax(0,1fr); } }
+
+#furo-main-content [data-source-layout="certification-pair"] { display:grid; grid-template-columns:38% minmax(0,1fr); gap:1rem; align-items:center; }
+#furo-main-content [data-source-layout="certification-pair"] > p { margin:0; }
+@media(max-width:760px) { #furo-main-content [data-source-layout="certification-pair"] { grid-template-columns:minmax(0,1fr); } }
+
+/* Source LCD descriptions: icon left, bold title directly above its body on right. */
+#furo-main-content .hb-lcd-table-composition { min-width:0; }
+#furo-main-content .hb-lcd-table-composition table.hb-lcd-icon-table { display:block; min-width:0; width:100%; }
+#furo-main-content .hb-lcd-icon-table colgroup { display:none; }
+#furo-main-content .hb-lcd-icon-table tbody { display:block; }
+#furo-main-content .hb-lcd-icon-table tr { display:grid; grid-template-columns:3.5rem minmax(0,1fr); align-items:start; }
+#furo-main-content .hb-lcd-icon-table td { width:auto; }
+#furo-main-content .hb-lcd-icon-table .hb-lcd-icon { grid-column:1; grid-row:1 / 3; padding:.6rem; }
+#furo-main-content .hb-lcd-icon-table .hb-lcd-name { grid-column:2; grid-row:1; padding:.6rem .6rem .1rem; }
+#furo-main-content .hb-lcd-icon-table .hb-lcd-description { grid-column:2; grid-row:2; padding:0 .6rem .6rem; }
+
+#furo-main-content p > img[src="assets/cert-source-strip.png"] { height:3rem; }
+
+#furo-main-content [data-source-layout="source-back-contact"] { display:grid; grid-template-columns:minmax(0,1fr) 6rem; gap:1rem; align-items:end; }
+#furo-main-content [data-source-layout="source-back-contact"] p:last-child { margin-bottom:0; }

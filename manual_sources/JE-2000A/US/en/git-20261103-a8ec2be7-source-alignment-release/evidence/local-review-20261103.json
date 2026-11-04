@@ -1,0 +1,160 @@
+{
+  "model": "JE-2000A",
+  "record_id": "reczz28SPLqH8cvK",
+  "source_sha256": "a8ec2be735be6483d340f2f35c7bc13a9300bf7d9499f60099ed8d5ef5cf689f",
+  "status": "local_review_passed",
+  "change": "Restore PDF p5 two-group LCD legend: left 1-7 plus15, right8-14; original glyph size normalized, native text retained, source groups stack on phone",
+  "semantic_json_identical_except_grouping_of_15_unchanged_rows": true,
+  "assets_identical": 54,
+  "target_tests": "11 passed, including all334 source transcription lines and cold replay parity",
+  "strict_sphinx": "passed",
+  "browser": [
+    {
+      "width": 1280,
+      "images": 56,
+      "broken": [],
+      "bad": [],
+      "tables": [
+        {
+          "width": 653,
+          "parentWidth": 653,
+          "parentScroll": 653,
+          "overflowX": "auto",
+          "reachable": true,
+          "rows": 5
+        },
+        {
+          "width": 653,
+          "parentWidth": 653,
+          "parentScroll": 653,
+          "overflowX": "auto",
+          "reachable": true,
+          "rows": 4
+        },
+        {
+          "width": 653,
+          "parentWidth": 653,
+          "parentScroll": 653,
+          "overflowX": "auto",
+          "reachable": true,
+          "rows": 3
+        },
+        {
+          "width": 653,
+          "parentWidth": 653,
+          "parentScroll": 653,
+          "overflowX": "auto",
+          "reachable": true,
+          "rows": 2
+        },
+        {
+          "width": 312,
+          "parentWidth": 319,
+          "parentScroll": 319,
+          "overflowX": "auto",
+          "reachable": true,
+          "rows": 8
+        },
+        {
+          "width": 312,
+          "parentWidth": 319,
+          "parentScroll": 319,
+          "overflowX": "auto",
+          "reachable": true,
+          "rows": 7
+        },
+        {
+          "width": 649,
+          "parentWidth": 655,
+          "parentScroll": 655,
+          "overflowX": "auto",
+          "reachable": true,
+          "rows": 4
+        },
+        {
+          "width": 649,
+          "parentWidth": 655,
+          "parentScroll": 655,
+          "overflowX": "auto",
+          "reachable": true,
+          "rows": 13
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "images": 56,
+      "broken": [],
+      "bad": [],
+      "tables": [
+        {
+          "width": 354,
+          "parentWidth": 354,
+          "parentScroll": 354,
+          "overflowX": "auto",
+          "reachable": true,
+          "rows": 5
+        },
+        {
+          "width": 354,
+          "parentWidth": 354,
+          "parentScroll": 354,
+          "overflowX": "auto",
+          "reachable": true,
+          "rows": 4
+        },
+        {
+          "width": 354,
+          "parentWidth": 354,
+          "parentScroll": 354,
+          "overflowX": "auto",
+          "reachable": true,
+          "rows": 3
+        },
+        {
+          "width": 354,
+          "parentWidth": 354,
+          "parentScroll": 354,
+          "overflowX": "auto",
+          "reachable": true,
+          "rows": 2
+        },
+        {
+          "width": 350,
+          "parentWidth": 356,
+          "parentScroll": 356,
+          "overflowX": "auto",
+          "reachable": true,
+          "rows": 8
+        },
+        {
+          "width": 350,
+          "parentWidth": 356,
+          "parentScroll": 356,
+          "overflowX": "auto",
+          "reachable": true,
+          "rows": 7
+        },
+        {
+          "width": 576,
+          "parentWidth": 356,
+          "parentScroll": 582,
+          "overflowX": "auto",
+          "reachable": true,
+          "rows": 4
+        },
+        {
+          "width": 576,
+          "parentWidth": 356,
+          "parentScroll": 582,
+          "overflowX": "auto",
+          "reachable": true,
+          "rows": 13
+        }
+      ]
+    }
+  ],
+  "content_audit": "197 OCR long lines checked; only candidate is source back-cover contact omitted by pre-existing print-only mapping. Prior source concerns kept unchanged.",
+  "superseded_by": "audit/current-source-review/review.json",
+  "scope_note": "Initial partial LCD layout review only; complete acceptance uses current-source-review."
+}

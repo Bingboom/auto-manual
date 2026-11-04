@@ -1,0 +1,766 @@
+{
+ "schema_version": "je2000a-us-en-asset-recipe/v1",
+ "source_sha256": "a8ec2be735be6483d340f2f35c7bc13a9300bf7d9499f60099ed8d5ef5cf689f",
+ "panel_scale": 3,
+ "icon_scale": 8,
+ "panels": [
+  {
+   "path": "assets/cert-marks.png",
+   "physical_page": 2,
+   "bbox": [
+    22,
+    413,
+    276,
+    446
+   ],
+   "role": "complete certification mark row with the CAN ICES-003(B)/NMB-003(B) line"
+  },
+  {
+   "path": "assets/inbox-unit.png",
+   "physical_page": 3,
+   "bbox": [
+    62,
+    74,
+    154,
+    171
+   ],
+   "role": "in-box card art (1)"
+  },
+  {
+   "path": "assets/inbox-car-cable.png",
+   "physical_page": 3,
+   "bbox": [
+    220,
+    74,
+    302,
+    175
+   ],
+   "role": "in-box card art (2)"
+  },
+  {
+   "path": "assets/inbox-ac-cable.png",
+   "physical_page": 3,
+   "bbox": [
+    73,
+    231,
+    142,
+    325
+   ],
+   "role": "in-box card art (3)"
+  },
+  {
+   "path": "assets/inbox-adaptor.png",
+   "physical_page": 3,
+   "bbox": [
+    243,
+    225,
+    284,
+    325
+   ],
+   "role": "in-box card art (4)"
+  },
+  {
+   "path": "assets/inbox-guide.png",
+   "physical_page": 3,
+   "bbox": [
+    68,
+    372,
+    144,
+    471
+   ],
+   "role": "in-box card art (5)"
+  },
+  {
+   "path": "assets/overview-front.png",
+   "physical_page": 4,
+   "bbox": [
+    24,
+    84,
+    352,
+    288
+   ],
+   "role": "complete front view with leader labels"
+  },
+  {
+   "path": "assets/overview-rear.png",
+   "physical_page": 4,
+   "bbox": [
+    96,
+    316,
+    352,
+    466
+   ],
+   "role": "complete rear view with leader labels"
+  },
+  {
+   "path": "assets/lcd-map.png",
+   "physical_page": 5,
+   "bbox": [
+    43,
+    67,
+    323,
+    199
+   ],
+   "role": "complete numbered LCD map"
+  },
+  {
+   "path": "assets/operations.png",
+   "physical_page": 7,
+   "bbox": [
+    51,
+    185,
+    331,
+    286
+   ],
+   "role": "complete button callout panel with leader labels"
+  },
+  {
+   "path": "assets/ac-charge.png",
+   "physical_page": 8,
+   "bbox": [
+    77,
+    290,
+    270,
+    441
+   ],
+   "role": "complete wall charging panel with captions"
+  },
+  {
+   "path": "assets/solar-connector.png",
+   "physical_page": 9,
+   "bbox": [
+    38,
+    96,
+    302,
+    219
+   ],
+   "role": "complete Solar Generator Connector panel with leader labels",
+   "omit_native_copy": [
+    {
+     "bbox": [
+      28.5,
+      93.8,
+      114.2,
+      100.3
+     ],
+     "reason": "outlined 'Functions of Main Ports' heading glyphs that sit inside the panel rectangle; the heading is native HTML (solar.ports.h)"
+    }
+   ]
+  },
+  {
+   "path": "assets/solar-two.png",
+   "physical_page": 9,
+   "bbox": [
+    18,
+    400,
+    346,
+    484
+   ],
+   "role": "complete two-panel connection sequence with captions"
+  },
+  {
+   "path": "assets/solar-three.png",
+   "physical_page": 10,
+   "bbox": [
+    19,
+    45,
+    345,
+    118
+   ],
+   "role": "complete three-panel connection sequence with captions"
+  },
+  {
+   "path": "assets/example-1.png",
+   "physical_page": 10,
+   "bbox": [
+    72,
+    214,
+    316,
+    305
+   ],
+   "role": "complete Example 1 panel with inset and captions"
+  },
+  {
+   "path": "assets/example-2.png",
+   "physical_page": 10,
+   "bbox": [
+    77,
+    316,
+    316,
+    502
+   ],
+   "role": "complete Example 2 panel (both variants and OR badge)"
+  },
+  {
+   "path": "assets/example-3.png",
+   "physical_page": 11,
+   "bbox": [
+    76,
+    47,
+    311,
+    165
+   ],
+   "role": "complete Example 3 panel with inset and captions"
+  },
+  {
+   "path": "assets/example-4.png",
+   "physical_page": 11,
+   "bbox": [
+    45,
+    204,
+    333,
+    293
+   ],
+   "role": "complete Example 4 panel with captions"
+  },
+  {
+   "path": "assets/example-5.png",
+   "physical_page": 11,
+   "bbox": [
+    47,
+    333,
+    331,
+    447
+   ],
+   "role": "complete Example 5 panel with captions"
+  },
+  {
+   "path": "assets/prohibited-solar.png",
+   "physical_page": 12,
+   "bbox": [
+    31,
+    42,
+    336,
+    286
+   ],
+   "role": "complete framed prohibited-connection panel (three rows, X marks)"
+  },
+  {
+   "path": "assets/car-charge.png",
+   "physical_page": 12,
+   "bbox": [
+    106,
+    403,
+    256,
+    497
+   ],
+   "role": "complete car charging panel with captions"
+  },
+  {
+   "path": "assets/adaptor-guide.png",
+   "physical_page": 13,
+   "bbox": [
+    101,
+    76,
+    298,
+    138
+   ],
+   "role": "complete DC7909 to DC8020 adaptor panel with leader labels"
+  },
+  {
+   "path": "assets/prohibited-car-solar.png",
+   "physical_page": 13,
+   "bbox": [
+    28,
+    202,
+    331,
+    277
+   ],
+   "role": "complete framed prohibited car + solar panel"
+  }
+ ],
+ "native_icons": [
+  {
+   "path": "assets/icons/lcd-01-input-power.png",
+   "physical_page": 5,
+   "glyph_bbox": [
+    41.5,
+    251.5,
+    68,
+    271.5
+   ],
+   "drawing_indices": [
+    756,
+    757,
+    758,
+    759,
+    760
+   ]
+  },
+  {
+   "path": "assets/icons/lcd-02-remaining-charge-time.png",
+   "physical_page": 5,
+   "glyph_bbox": [
+    41.5,
+    280.8,
+    68,
+    300.7
+   ],
+   "drawing_indices": [
+    751,
+    752,
+    753,
+    754,
+    755
+   ]
+  },
+  {
+   "path": "assets/icons/lcd-03-solar-charging.png",
+   "physical_page": 5,
+   "glyph_bbox": [
+    43,
+    309.5,
+    62.7,
+    329.1
+   ],
+   "drawing_indices": [
+    723,
+    724
+   ]
+  },
+  {
+   "path": "assets/icons/lcd-04-ac-wall-charging.png",
+   "physical_page": 5,
+   "glyph_bbox": [
+    43,
+    338.4,
+    62.7,
+    358
+   ],
+   "drawing_indices": [
+    725,
+    726
+   ]
+  },
+  {
+   "path": "assets/icons/lcd-05-car-charging.png",
+   "physical_page": 5,
+   "glyph_bbox": [
+    43,
+    367.7,
+    62.7,
+    387.3
+   ],
+   "drawing_indices": [
+    761,
+    762,
+    763,
+    764,
+    765,
+    766,
+    767,
+    768
+   ]
+  },
+  {
+   "path": "assets/icons/lcd-06-low-battery.png",
+   "physical_page": 5,
+   "glyph_bbox": [
+    42.8,
+    400.5,
+    62.9,
+    412.4
+   ],
+   "drawing_indices": [
+    769
+   ]
+  },
+  {
+   "path": "assets/icons/lcd-07-battery-percentage.png",
+   "physical_page": 5,
+   "glyph_bbox": [
+    40.1,
+    429.4,
+    65.6,
+    442.2
+   ],
+   "drawing_indices": [
+    703,
+    704,
+    705,
+    706,
+    707,
+    708,
+    709,
+    710,
+    711,
+    712,
+    713,
+    714,
+    715,
+    716,
+    717,
+    718,
+    719
+   ]
+  },
+  {
+   "path": "assets/icons/lcd-08-output-power.png",
+   "physical_page": 5,
+   "glyph_bbox": [
+    194,
+    251.3,
+    220.6,
+    271.3
+   ],
+   "drawing_indices": [
+    739,
+    740,
+    741,
+    742,
+    743,
+    744,
+    745,
+    746,
+    747,
+    748,
+    749,
+    750
+   ]
+  },
+  {
+   "path": "assets/icons/lcd-09-remaining-discharge-time.png",
+   "physical_page": 5,
+   "glyph_bbox": [
+    194,
+    280.3,
+    220.6,
+    300.3
+   ],
+   "drawing_indices": [
+    727,
+    728,
+    729,
+    730,
+    731,
+    732,
+    733,
+    734,
+    735,
+    736,
+    737,
+    738
+   ]
+  },
+  {
+   "path": "assets/icons/lcd-10-fault-code.png",
+   "physical_page": 5,
+   "glyph_bbox": [
+    198,
+    310.8,
+    216.4,
+    327.9
+   ],
+   "drawing_indices": [
+    770,
+    771,
+    772
+   ]
+  },
+  {
+   "path": "assets/icons/lcd-11-high-temperature.png",
+   "physical_page": 5,
+   "glyph_bbox": [
+    198,
+    339.9,
+    216.3,
+    356.9
+   ],
+   "drawing_indices": [
+    775,
+    776
+   ]
+  },
+  {
+   "path": "assets/icons/lcd-12-low-temperature.png",
+   "physical_page": 5,
+   "glyph_bbox": [
+    198,
+    368.7,
+    216.3,
+    385.7
+   ],
+   "drawing_indices": [
+    777,
+    778
+   ]
+  },
+  {
+   "path": "assets/icons/lcd-13-low-power-mode.png",
+   "physical_page": 5,
+   "glyph_bbox": [
+    197.3,
+    396.6,
+    217,
+    416.3
+   ],
+   "drawing_indices": [
+    773,
+    774
+   ]
+  },
+  {
+   "path": "assets/icons/lcd-14-ac-power.png",
+   "physical_page": 5,
+   "glyph_bbox": [
+    195.7,
+    426,
+    218.6,
+    445.5
+   ],
+   "drawing_indices": [
+    779,
+    780
+   ]
+  },
+  {
+   "path": "assets/icons/lcd-15-battery-power-ring.png",
+   "physical_page": 5,
+   "glyph_bbox": [
+    43,
+    455,
+    62.7,
+    474.6
+   ],
+   "drawing_indices": [
+    669
+   ]
+  },
+  {
+   "path": "assets/icons/lcd-inline-battery-ring.png",
+   "physical_page": 6,
+   "glyph_bbox": [
+    108.7,
+    25.0,
+    121.0,
+    37.5
+   ],
+   "drawing_indices": [
+    2238
+   ]
+  },
+  {
+   "path": "assets/icons/lcd-inline-low-power-mode.png",
+   "physical_page": 6,
+   "glyph_bbox": [
+    86.2,
+    110.6,
+    98.8,
+    123.4
+   ],
+   "drawing_indices": [
+    2240,
+    2241
+   ]
+  },
+  {
+   "path": "assets/icons/lcd-inline-fault-code.png",
+   "physical_page": 6,
+   "glyph_bbox": [
+    68.1,
+    362.2,
+    81.6,
+    374.6
+   ],
+   "drawing_indices": [
+    2448,
+    2449,
+    2450
+   ]
+  },
+  {
+   "path": "assets/icons/faq-low-power-mode.png",
+   "physical_page": 16,
+   "glyph_bbox": [
+    153.0,
+    383.0,
+    164.5,
+    395.0
+   ],
+   "drawing_indices": [
+    31040,
+    31041
+   ]
+  },
+  {
+   "path": "assets/icons/ts-f0.png",
+   "physical_page": 17,
+   "glyph_bbox": [
+    98.5,
+    85.2,
+    112.5,
+    98.1
+   ],
+   "drawing_indices": [
+    24206,
+    24207,
+    24208
+   ]
+  },
+  {
+   "path": "assets/icons/ts-f1.png",
+   "physical_page": 17,
+   "glyph_bbox": [
+    99.3,
+    103.7,
+    113.2,
+    116.7
+   ],
+   "drawing_indices": [
+    24209,
+    24210,
+    24211
+   ]
+  },
+  {
+   "path": "assets/icons/ts-f2.png",
+   "physical_page": 17,
+   "glyph_bbox": [
+    99.3,
+    124.0,
+    113.2,
+    137.0
+   ],
+   "drawing_indices": [
+    24215,
+    24216,
+    24217
+   ]
+  },
+  {
+   "path": "assets/icons/ts-f3.png",
+   "physical_page": 17,
+   "glyph_bbox": [
+    99.0,
+    150.0,
+    112.9,
+    162.9
+   ],
+   "drawing_indices": [
+    24212,
+    24213,
+    24214
+   ]
+  },
+  {
+   "path": "assets/icons/ts-f4.png",
+   "physical_page": 17,
+   "glyph_bbox": [
+    98.9,
+    167.9,
+    112.9,
+    180.9
+   ],
+   "drawing_indices": [
+    24227,
+    24228,
+    24229
+   ]
+  },
+  {
+   "path": "assets/icons/ts-f5.png",
+   "physical_page": 17,
+   "glyph_bbox": [
+    98.9,
+    185.6,
+    112.9,
+    198.6
+   ],
+   "drawing_indices": [
+    24230,
+    24231,
+    24232
+   ]
+  },
+  {
+   "path": "assets/icons/ts-f6.png",
+   "physical_page": 17,
+   "glyph_bbox": [
+    98.9,
+    204.3,
+    112.9,
+    217.2
+   ],
+   "drawing_indices": [
+    24233,
+    24234,
+    24235
+   ]
+  },
+  {
+   "path": "assets/icons/ts-f7.png",
+   "physical_page": 17,
+   "glyph_bbox": [
+    98.9,
+    222.4,
+    112.9,
+    235.4
+   ],
+   "drawing_indices": [
+    24218,
+    24219,
+    24220
+   ]
+  },
+  {
+   "path": "assets/icons/ts-f8.png",
+   "physical_page": 17,
+   "glyph_bbox": [
+    98.9,
+    254.7,
+    112.9,
+    267.7
+   ],
+   "drawing_indices": [
+    24224,
+    24225,
+    24226
+   ]
+  },
+  {
+   "path": "assets/icons/ts-f9.png",
+   "physical_page": 17,
+   "glyph_bbox": [
+    98.9,
+    307.0,
+    112.9,
+    319.9
+   ],
+   "drawing_indices": [
+    24221,
+    24222,
+    24223
+   ]
+  },
+  {
+   "path": "assets/icons/ts-high-temperature.png",
+   "physical_page": 17,
+   "glyph_bbox": [
+    53.5,
+    346.5,
+    72.1,
+    363.8
+   ],
+   "drawing_indices": [
+    24202,
+    24203
+   ]
+  },
+  {
+   "path": "assets/icons/ts-low-temperature.png",
+   "physical_page": 17,
+   "glyph_bbox": [
+    53.5,
+    379.7,
+    72.1,
+    397.0
+   ],
+   "drawing_indices": [
+    24204,
+    24205
+   ]
+  }
+ ],
+ "symbols": [],
+ "reused": []
+}

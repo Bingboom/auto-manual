@@ -1,0 +1,118 @@
+{
+  "model": "JHP-2000A",
+  "unresolved_content_candidates": 0,
+  "unresolved_layout_candidates": 0,
+  "pages": [
+    {
+      "physical_page": 2,
+      "status": "verified",
+      "note": "US IMPORTANT compact badge and complete four-paragraph preface."
+    },
+    {
+      "physical_page": 4,
+      "status": "verified",
+      "note": "Own warning risk frame/glyph/native copy; exact safety6/5 columns and operating7/8 columns; no invented small WARNING card."
+    },
+    {
+      "physical_page": 5,
+      "status": "verified",
+      "note": "Grounding last operating bullet; original WARNING/DANGER frame and copy; maintenance pill; complete11 pictograms and original4 signal rows/glyphs."
+    },
+    {
+      "physical_page": 6,
+      "status": "verified",
+      "note": "Own FCC opening/logo wrap, NOTE and These limits independent paragraphs, original two columns/particular-installation continuation; own3inbox items/TIPS."
+    },
+    {
+      "physical_page": 7,
+      "status": "verified",
+      "note": "Own front/left/right overview original art with all port/rating labels. Original30W/140W and DC PV16–60V12A labels verified."
+    },
+    {
+      "physical_page": 8,
+      "status": "verified",
+      "note": "Own original LCD map labels1–26 and definition rows1–5; self-powered and charging-plan body unchanged."
+    },
+    {
+      "physical_page": 9,
+      "status": "verified",
+      "note": "LCD rows6–17, original TOU60%, charging power limit and energy-saving enable/disable conditions."
+    },
+    {
+      "physical_page": 10,
+      "status": "verified",
+      "note": "LCD rows18–26; original circled23 spans high/low temperature; original regular Blink retained."
+    },
+    {
+      "physical_page": 11,
+      "status": "verified",
+      "note": "Own power/AC fullframe/bubble/arrows with native original-coordinate text, standby, ECO note and prerequisite."
+    },
+    {
+      "physical_page": 12,
+      "status": "verified",
+      "note": "DC/USB original frame/native prerequisite; USB140W caution with100W/140W cable values and original own car cautions."
+    },
+    {
+      "physical_page": 13,
+      "status": "verified",
+      "note": "Original ECO top/bottom full paragraphs and LED frame/native3steps. No RC-only WARNING added."
+    },
+    {
+      "physical_page": 14,
+      "status": "verified",
+      "note": "Original LCD matrix with source proportions; all4key rows contain both; original+ and clock,3s/3s/1s/1s preserved."
+    },
+    {
+      "physical_page": 15,
+      "status": "verified",
+      "note": "Own UPS full paragraphs and original drawing with native copy. Only3own source cautions; no RC-only medical/cascade wording added. Auto-resume stays original own position."
+    },
+    {
+      "physical_page": 16,
+      "status": "verified",
+      "note": "Full original battery-stack frame, four stacking cautions and accessory art."
+    },
+    {
+      "physical_page": 17,
+      "status": "verified",
+      "note": "Charging priority/temperature conditions, first-charge pill, source gray AC caption inside original frame; emergency pill and complete ownparagraph."
+    },
+    {
+      "physical_page": 18,
+      "status": "verified",
+      "note": "Full original solar/car artframes and native cautions; original ordinary headings plus separate SOLDSEPARATELY badges; VOCsubscript."
+    },
+    {
+      "physical_page": 19,
+      "status": "verified",
+      "note": "Storage1/3/12month values and complete F0–FE fault table/numbered conditions. F8 punctuation/source abbreviations preserved."
+    },
+    {
+      "physical_page": 20,
+      "status": "verified",
+      "note": "All4native spec groups, exact own2048Wh/40Ah/51.2V/18.8kg/2400W/4800W. AC and DC input2realvaluerows+labelrowspan2; expansion75Ainput/55Aoutput; source Doubleto8A retained."
+    },
+    {
+      "physical_page": 21,
+      "status": "verified",
+      "note": "Complete original warranty lead,6cards and3+2years source panels; no technical rewriting."
+    },
+    {
+      "physical_page": 22,
+      "status": "verified",
+      "note": "Own original App stores/QR/screens/controller, native Appsteps1–2.3 and all pairing bullets."
+    },
+    {
+      "physical_page": 23,
+      "status": "verified",
+      "note": "Complete native App2.4–2.5/bandnote/CAUTION/unbind/4.1–4.3 with original screenshots and fullwidth colon."
+    },
+    {
+      "physical_page": 24,
+      "status": "verified",
+      "note": "Original company/address/contact text, exact native phone/mail/web over original frame/glyph/divider/QR."
+    }
+  ],
+  "method": "All22 included own source pages read visually. All57 actual v6 desktop and phone viewports inspected using instant scroll, two animation frames and recorded actualscrollY; all original dense mobile containers have measured right endpoints. No oversized fullPage bitmap used as acceptance evidence. Sealedv7 changes only metadata; every visible MD/CSS/asset byte identical to reviewedv6."
+}
