@@ -1,0 +1,38 @@
+{
+  "visible_text_identical_except_four_restored_plus_signs": true,
+  "restored_plus_signs": [
+    "+",
+    "+",
+    "+",
+    "+"
+  ],
+  "image_refs_and_alt_text_identical": true,
+  "changed_assets": [
+    "lcd-map.png"
+  ],
+  "original_crop_interior_pixels_identical": true,
+  "raster_boundary_difference_bbox": [
+    713,
+    259,
+    714,
+    333
+  ],
+  "raster_boundary_note": "Only the old rightmost raster column changes antialiasing when the original PDF clip expands; all pre-existing interior pixels are byte-identical.",
+  "transcription_byte_identical": true,
+  "web_transcription_lines_checked_by_unit_test": 491,
+  "source_crop": {
+    "page": 8,
+    "before": [
+      66,
+      52,
+      304,
+      228
+    ],
+    "after": [
+      40,
+      52,
+      313,
+      230
+    ]
+  }
+}
