@@ -1,0 +1,299 @@
+[
+  {
+    "slot": "overview",
+    "physical_page": 3,
+    "bbox": [
+      18,
+      50,
+      346,
+      313
+    ],
+    "caption": "2.各部の名称",
+    "embedded_words": true,
+    "masks": [
+      [
+        18,
+        288,
+        98,
+        309
+      ]
+    ],
+    "local_path": "assets/overview.png",
+    "render_scale": 4,
+    "sha256": "dd53a252bc25a7e07a7eb1741fcd9fea4d9b6a42803df626eb442400ae13b64e",
+    "source_sha256": "3837e9fd2d779f07c7d59c7ddf82013756133dcc92aced9765d21cb8a485e39a",
+    "decision": "extract source panel at 4x (printed heading inside the rectangle masked white)"
+  },
+  {
+    "slot": "lcd-map",
+    "physical_page": 3,
+    "bbox": [
+      40,
+      320,
+      330,
+      470
+    ],
+    "caption": "3.液晶画面",
+    "embedded_words": true,
+    "local_path": "assets/lcd-map.png",
+    "render_scale": 4,
+    "sha256": "f4aab7072604f0d5a5df3d1a6404c8c7d0c09bd05a3f506549e3c9d998be4257",
+    "source_sha256": "3837e9fd2d779f07c7d59c7ddf82013756133dcc92aced9765d21cb8a485e39a",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "ac-charging",
+    "physical_page": 6,
+    "bbox": [
+      175,
+      433,
+      310,
+      501
+    ],
+    "caption": "AC充電ケーブル / ポータブル電源 600 Plus",
+    "embedded_words": true,
+    "local_path": "assets/ac-charging.png",
+    "render_scale": 4,
+    "sha256": "1e91aba53c50bc3af03c4a12619db90e1ea13d0a4bc0a84b9252324da45e68b0",
+    "source_sha256": "3837e9fd2d779f07c7d59c7ddf82013756133dcc92aced9765d21cb8a485e39a",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "solar-single",
+    "physical_page": 7,
+    "bbox": [
+      68,
+      198,
+      300,
+      270
+    ],
+    "caption": "ポータブル電源 600 Plus / SolarSaga x 1",
+    "embedded_words": true,
+    "local_path": "assets/solar-single.png",
+    "render_scale": 4,
+    "sha256": "ae2929e439eefafc2ae399b6f49afe8acfa2ad0417ef21baca6785e76d85433c",
+    "source_sha256": "3837e9fd2d779f07c7d59c7ddf82013756133dcc92aced9765d21cb8a485e39a",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "solar-dual",
+    "physical_page": 7,
+    "bbox": [
+      68,
+      275,
+      300,
+      345
+    ],
+    "caption": "ポータブル電源 600 Plus / SolarSaga x 2",
+    "embedded_words": true,
+    "local_path": "assets/solar-dual.png",
+    "render_scale": 4,
+    "sha256": "726154ef6bb39882281c38b76415385db56a37659532476819d1744da667780b",
+    "source_sha256": "3837e9fd2d779f07c7d59c7ddf82013756133dcc92aced9765d21cb8a485e39a",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "car-charging",
+    "physical_page": 7,
+    "bbox": [
+      116,
+      436,
+      252,
+      505
+    ],
+    "caption": "ポータブル電源600 Plus",
+    "embedded_words": true,
+    "local_path": "assets/car-charging.png",
+    "render_scale": 4,
+    "sha256": "e4787b96ba1f39ebff1ae1a84c5483e53780b34578d1335b3c9e1f94232b95a2",
+    "source_sha256": "3837e9fd2d779f07c7d59c7ddf82013756133dcc92aced9765d21cb8a485e39a",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "inbox-unit",
+    "physical_page": 11,
+    "bbox": [
+      40,
+      330,
+      100,
+      375
+    ],
+    "caption": "本体",
+    "embedded_words": false,
+    "local_path": "assets/inbox-unit.png",
+    "render_scale": 4,
+    "sha256": "bb22261b76edc38b6c9aacee1756db75bbdf7a4cb84e385660260f659be6df72",
+    "source_sha256": "3837e9fd2d779f07c7d59c7ddf82013756133dcc92aced9765d21cb8a485e39a",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "inbox-ac-cable",
+    "physical_page": 11,
+    "bbox": [
+      130,
+      330,
+      190,
+      375
+    ],
+    "caption": "AC充電ケーブル",
+    "embedded_words": false,
+    "local_path": "assets/inbox-ac-cable.png",
+    "render_scale": 4,
+    "sha256": "685f0712dad15687d2333797d5e59ef2a71994652ddf63c14cd9a6c5d37b21e6",
+    "source_sha256": "3837e9fd2d779f07c7d59c7ddf82013756133dcc92aced9765d21cb8a485e39a",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "inbox-user-manual",
+    "physical_page": 11,
+    "bbox": [
+      212,
+      328,
+      258,
+      377
+    ],
+    "caption": "取扱説明書",
+    "embedded_words": true,
+    "local_path": "assets/inbox-user-manual.png",
+    "render_scale": 4,
+    "sha256": "092195fc3776345f68b31f264d6627652e61ed7ee80d25374910e3ac301be8b8",
+    "source_sha256": "3837e9fd2d779f07c7d59c7ddf82013756133dcc92aced9765d21cb8a485e39a",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "inbox-warranty",
+    "physical_page": 11,
+    "bbox": [
+      282,
+      328,
+      328,
+      377
+    ],
+    "caption": "保証案内書",
+    "embedded_words": true,
+    "local_path": "assets/inbox-warranty.png",
+    "render_scale": 4,
+    "sha256": "170b4aa6bbf09f4770ff9859749b294efb984953cbea582362d5c6610782efa6",
+    "source_sha256": "3837e9fd2d779f07c7d59c7ddf82013756133dcc92aced9765d21cb8a485e39a",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "app-store-badges",
+    "physical_page": 12,
+    "bbox": [
+      19,
+      456,
+      166,
+      484
+    ],
+    "caption": "App Store / Google Play",
+    "embedded_words": true,
+    "local_path": "assets/app-store-badges.png",
+    "render_scale": 4,
+    "sha256": "de41b5d165b7c8e7835a739dd747f94de629dc2edef420816a3497fc46c1fffa",
+    "source_sha256": "3837e9fd2d779f07c7d59c7ddf82013756133dcc92aced9765d21cb8a485e39a",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "app-2-1",
+    "physical_page": 13,
+    "bbox": [
+      82,
+      160,
+      162,
+      333
+    ],
+    "caption": "2.1",
+    "embedded_words": true,
+    "local_path": "assets/app-2-1.png",
+    "render_scale": 4,
+    "sha256": "38cc0fd70a4e6221215963007265249c7211d866d8a51d8607deba85e24a2299",
+    "source_sha256": "3837e9fd2d779f07c7d59c7ddf82013756133dcc92aced9765d21cb8a485e39a",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "app-2-2",
+    "physical_page": 13,
+    "bbox": [
+      186,
+      160,
+      266,
+      333
+    ],
+    "caption": "2.2",
+    "embedded_words": true,
+    "local_path": "assets/app-2-2.png",
+    "render_scale": 4,
+    "sha256": "0a02d0f7e2099dc0fd0fcba130f54b1c5b3bea69a8f50c2f7892948c1f18d60f",
+    "source_sha256": "3837e9fd2d779f07c7d59c7ddf82013756133dcc92aced9765d21cb8a485e39a",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "app-buttons",
+    "physical_page": 13,
+    "bbox": [
+      65,
+      358,
+      325,
+      442
+    ],
+    "caption": "DC/USBボタン / ACボタン / POWERボタン",
+    "embedded_words": true,
+    "local_path": "assets/app-buttons.png",
+    "render_scale": 4,
+    "sha256": "8caa765e5af3fdf71848d026afad2b5591d5873c7f75a077d2433fd5d77b2c7c",
+    "source_sha256": "3837e9fd2d779f07c7d59c7ddf82013756133dcc92aced9765d21cb8a485e39a",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "app-2-3",
+    "physical_page": 14,
+    "bbox": [
+      36,
+      118,
+      113,
+      297
+    ],
+    "caption": "2.3",
+    "embedded_words": true,
+    "local_path": "assets/app-2-3.png",
+    "render_scale": 4,
+    "sha256": "87ee671baac4d669b7ecf6ae0b2504520ae797eae83245b8816ca06c4e4cc373",
+    "source_sha256": "3837e9fd2d779f07c7d59c7ddf82013756133dcc92aced9765d21cb8a485e39a",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "app-2-4",
+    "physical_page": 14,
+    "bbox": [
+      140,
+      118,
+      220,
+      297
+    ],
+    "caption": "2.4",
+    "embedded_words": true,
+    "local_path": "assets/app-2-4.png",
+    "render_scale": 4,
+    "sha256": "343caf941c4b4857f0fef0ecdf709cfbd264795890ec4c6fdb899032bf03fa14",
+    "source_sha256": "3837e9fd2d779f07c7d59c7ddf82013756133dcc92aced9765d21cb8a485e39a",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "app-2-5",
+    "physical_page": 14,
+    "bbox": [
+      246,
+      118,
+      327,
+      297
+    ],
+    "caption": "2.5",
+    "embedded_words": true,
+    "local_path": "assets/app-2-5.png",
+    "render_scale": 4,
+    "sha256": "87951d749f736f98b48a3c734aeef52fad28d698cfe5758c21b536fa583e4126",
+    "source_sha256": "3837e9fd2d779f07c7d59c7ddf82013756133dcc92aced9765d21cb8a485e39a",
+    "decision": "extract source panel at 4x"
+  }
+]
