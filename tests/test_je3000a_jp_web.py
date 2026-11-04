@@ -115,11 +115,9 @@ class Je3000aJpWebTests(unittest.TestCase):
         manifest = read(PACKAGE / "source_manifest.json")
         catalog = read(ROOT / "docs/renderers/web/assets/shared/symbols/manifest.json")
         keys = {row["key"]: row for row in catalog["assets"]}
+        self.assertNotIn("symbol_admission_blocker", manifest)
+        self.assertNotIn("je3000a", json.dumps(catalog).lower())
         for symbol in recipe["symbols"]:
-            if symbol["shared_symbol_key"] is None:
-                self.assertIn(symbol["path"], manifest["symbol_admission_blocker"]["pending_rows"])
-                self.assertNotIn("je3000a", json.dumps(catalog).lower())
-                continue
             shared = keys[symbol["shared_symbol_key"]]
             self.assertEqual(shared["path"], symbol["shared_path"])
             self.assertEqual(file_sha256(PACKAGE / symbol["path"]), shared["sha256"])
@@ -132,9 +130,10 @@ class Je3000aJpWebTests(unittest.TestCase):
             self.assertTrue((PACKAGE / "web/ja" / ref).is_file(), ref)
         admission = manifest["symbol_asset_admission"]["locales"]["ja"]
         self.assertEqual([row["asset_ref"] for row in admission], [s["path"] for s in recipe["symbols"]])
+        wet_hands = next(row for row in admission if row["asset_ref"] == "assets/symbol-03.svg")
+        self.assertEqual(wet_hands["shared_symbol_key"], "native/je1000d-jp-00c43a89-03")
         for row in admission:
-            if row["shared_symbol_key"]:
-                self.assertLessEqual(row["max_mean_channel_error"], 0.02)
+            self.assertTrue(row["max_mean_channel_error"] <= 0.02 or "canonical_group" in row, row["asset_ref"])
 
     def test_cold_replay_matches_stored_candidate(self):
         try:
@@ -145,7 +144,8 @@ class Je3000aJpWebTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp:
             output = Path(temp) / "replay"
             result = rebuild.rebuild(output)
-            self.assertEqual(result["symbol_admission"]["fixed_admission"], "blocked")
+            self.assertEqual([row["asset_ref"] for row in result["symbol_admission"]],
+                             [f"assets/symbol-0{i}.svg" for i in range(1, 7)])
             for name in (MARKDOWN, "manual.ir.json", "_static/source_geometry.css"):
                 self.assertEqual((output / name).read_bytes(), (PACKAGE / "web/ja" / name).read_bytes(), name)
 

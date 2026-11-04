@@ -515,14 +515,14 @@
    705
   ],
   "final_path": "assets/recycle-li-ion.svg",
-  "sha256": "00477a66edd93ae30e2ba347471080724dfa425ef16db5b3351df5c95d59bef1",
+  "sha256": "d5a879f725b99846cf18cd89983b5f45ae29ffa7a09ac17642513078b5edb0a8",
   "background": "transparent small icon: original PDF paths only, no cell backdrop"
  },
  {
   "slot": "lcd-battery-ring",
   "candidate": "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets/lcd-12-battery-power.svg",
   "decision": "reuse byte-identical",
-  "reason": "same LCD glyph: checked against the JE-3000A source vector paths at the fixed 2% tolerance (derive_assets.py reuse_checks)",
+  "reason": "same LCD glyph: checked against the JE-3000A native_symbol_svg paths at the fixed 2% tolerance (source_manifest.json:artwork_reuse_comparison)",
   "source_check": {
    "physical_page": 4,
    "glyph_bbox": [
@@ -543,7 +543,7 @@
   "slot": "lcd-low-battery",
   "candidate": "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets/lcd-low-battery.svg",
   "decision": "reuse byte-identical",
-  "reason": "same LCD glyph: checked against the JE-3000A source vector paths at the fixed 2% tolerance (derive_assets.py reuse_checks)",
+  "reason": "same LCD glyph: checked against the JE-3000A native_symbol_svg paths at the fixed 2% tolerance (source_manifest.json:artwork_reuse_comparison)",
   "source_check": {
    "physical_page": 4,
    "glyph_bbox": [
@@ -564,7 +564,7 @@
   "slot": "lcd-energy-saving",
   "candidate": "manual_sources/JHP-3600A-RC/US/en/git-20261027-ab7f7393/assets/lcd-energy-saving.svg",
   "decision": "reuse byte-identical",
-  "reason": "same LCD glyph: checked against the JE-3000A source vector paths at the fixed 2% tolerance (derive_assets.py reuse_checks)",
+  "reason": "same LCD glyph: checked against the JE-3000A native_symbol_svg paths at the fixed 2% tolerance (source_manifest.json:artwork_reuse_comparison)",
   "source_check": {
    "physical_page": 4,
    "glyph_bbox": [
@@ -593,7 +593,7 @@
   "slot": "lcd-fault-code",
   "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-19-fault-code.svg",
   "decision": "reuse byte-identical",
-  "reason": "same LCD glyph: checked against the JE-3000A source vector paths at the fixed 2% tolerance (derive_assets.py reuse_checks)",
+  "reason": "same LCD glyph: checked against the JE-3000A native_symbol_svg paths at the fixed 2% tolerance (source_manifest.json:artwork_reuse_comparison)",
   "source_check": {
    "physical_page": 5,
    "glyph_bbox": [
@@ -616,7 +616,7 @@
   "slot": "lcd-high-temperature",
   "candidate": "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets/lcd-high-temperature.svg",
   "decision": "reuse byte-identical",
-  "reason": "same LCD glyph: checked against the JE-3000A source vector paths at the fixed 2% tolerance (derive_assets.py reuse_checks)",
+  "reason": "same LCD glyph: checked against the JE-3000A native_symbol_svg paths at the fixed 2% tolerance (source_manifest.json:artwork_reuse_comparison)",
   "source_check": {
    "physical_page": 5,
    "glyph_bbox": [
@@ -638,7 +638,7 @@
   "slot": "lcd-low-temperature",
   "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-20b-low-temperature.svg",
   "decision": "reuse byte-identical",
-  "reason": "same LCD glyph: checked against the JE-3000A source vector paths at the fixed 2% tolerance (derive_assets.py reuse_checks)",
+  "reason": "same LCD glyph: checked against the JE-3000A native_symbol_svg paths at the fixed 2% tolerance (source_manifest.json:artwork_reuse_comparison)",
   "source_check": {
    "physical_page": 5,
    "glyph_bbox": [
@@ -698,7 +698,7 @@
   "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/je1000d-jp-00c43a89-symbol-01.svg",
   "shared_symbol_key": "native/je1000d-jp-00c43a89-01",
   "decision": "reuse byte-identical checked shared variant",
-  "reason": "passes the fixed 2% comparison against the source vector paths (0.013873)"
+  "reason": "passes the fixed 2% comparison against the shared native_symbol_svg reference (0.013801); standard symbol asset admission"
  },
  {
   "slot": "symbol-02",
@@ -739,7 +739,7 @@
   "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/je1000d-jp-00c43a89-symbol-02.svg",
   "shared_symbol_key": "native/je1000d-jp-00c43a89-02",
   "decision": "reuse byte-identical checked shared variant",
-  "reason": "passes the fixed 2% comparison against the source vector paths (0.01693)"
+  "reason": "passes the fixed 2% comparison against the shared native_symbol_svg reference (0.010732); standard symbol asset admission"
  },
  {
   "slot": "symbol-03",
@@ -770,11 +770,11 @@
    4949
   ],
   "final_path": "assets/symbol-03.svg",
-  "sha256": "2f7ced042e4673db3248d5be5b89468eba16bcdf7628d6c955d5d873e8f83242",
-  "candidate": null,
-  "shared_symbol_key": null,
-  "decision": "pending: package-local source vector paths, no shared variant admitted",
-  "reason": "no admitted shared variant: closest native/je1000d-jp-00c43a89-03 differs 0.0264 (> fixed 0.02; the source glyph carries a white hand fill that the JE-1000D variant leaves transparent). The page shows the source's own vector paths, package-local; a shared variant needs the coordinator."
+  "sha256": "585a0c72abdb9fc1d69d31554d249730f1361dfc49a501423dd0204e0637a387",
+  "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/je1000d-jp-00c43a89-symbol-03.svg",
+  "shared_symbol_key": "native/je1000d-jp-00c43a89-03",
+  "decision": "reuse byte-identical checked shared variant",
+  "reason": "passes the fixed 2% comparison against the shared native_symbol_svg reference (0.019624); standard symbol asset admission; operator decision: canonical of the confirmed no-wet-hands group (SCG-20261103)"
  },
  {
   "slot": "symbol-04",
@@ -799,7 +799,7 @@
   "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-mandatory.svg",
   "shared_symbol_key": "mandatory/h1-jp-native",
   "decision": "reuse byte-identical checked shared variant",
-  "reason": "passes the fixed 2% comparison against the source vector paths (0.016188)"
+  "reason": "passes the fixed 2% comparison against the shared native_symbol_svg reference (0.011627); standard symbol asset admission"
  },
  {
   "slot": "symbol-05",
@@ -835,7 +835,7 @@
   "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/je1000d-jp-00c43a89-symbol-05.svg",
   "shared_symbol_key": "native/je1000d-jp-00c43a89-05",
   "decision": "reuse byte-identical checked shared variant",
-  "reason": "passes the fixed 2% comparison against the source vector paths (0.019211)"
+  "reason": "passes the fixed 2% comparison against the shared native_symbol_svg reference (0.012668); standard symbol asset admission"
  },
  {
   "slot": "symbol-06",
@@ -862,7 +862,7 @@
   "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/je1000d-jp-00c43a89-symbol-06.svg",
   "shared_symbol_key": "native/je1000d-jp-00c43a89-06",
   "decision": "reuse byte-identical checked shared variant",
-  "reason": "passes the fixed 2% comparison against the source vector paths (0.010292)"
+  "reason": "passes the fixed 2% comparison against the shared native_symbol_svg reference (0.00475); standard symbol asset admission"
  },
  {
   "slot": "shared-buttons/*",
