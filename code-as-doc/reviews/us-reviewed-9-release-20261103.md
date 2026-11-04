@@ -2,7 +2,7 @@
 
 Status: active
 
-This workstream completes the nine source snapshots excluded from the first18 publication. Eight are integrated and locally accepted: JE-500A, JE-1500C, JE-300C, JE-300D, JE-300E, JHP-3600C, JHP-3000D and JHP-3600A. JHP-5000C remains in source review; it is not yet release-ready. The operator-deferred five models remain outside this branch.
+This workstream completes the nine source snapshots excluded from the first18 source integration (#1665). All nine are integrated and locally accepted: JE-500A, JE-1500C, JE-300C, JE-300D, JE-300E, JHP-3600C, JHP-3000D, JHP-3600A and JHP-5000C. All27 local review checkboxes have been read back true; publication remains a separate transaction. The operator-deferred five models remain outside this branch.
 
 The shared troubleshooting stylesheet now preserves the internal code/measures divider when a measures cell spans multiple code rows. It previously treated the last DOM child as the logical last column, removing the divider on F1–F3. Ordinary last-column cells still have no duplicate outer border. Actual browser computed styles and before/after captures are recorded in [the regression receipt](us-reviewed-9-release-20261103/rowspan-border-check.json). The correction leaves source parameters, artwork and existing frozen outputs unchanged. Frozen runtime drift is registered with keep-frozen handling; pins are never blindly rebound.
 
@@ -10,8 +10,28 @@ JE-500A separates the existing contact content from the final warranty box. JE-1
 
 JE-300C/JE-300D/JE-300E migrate only an FCC geometry hook to a source data attribute. C/E use the shared rowspan correction instead of source-owned border paint; their real rows and plain printed-table exceptions remain. Twelve before/after viewport pairs are pixel-identical. Package-local evidence records the exact approved input lists and updated single CSS runtime pin.
 
-Targeted frozen-source, registry and prepared-style tests: 32 passed. Final branch validation and publication receipts follow only after the remaining target completes their original-source review.
+Targeted frozen-source, registry and prepared-style tests: 32 passed. The fixture-backed repository build check passes. Documentation links and frozen registry guardrails pass; every applicable CI check must still pass on the final PR head before merge. Publication receipts are sealed only at the actual merged source SHA.
 
 JHP-3600C removes source paint and restores the two original battery-placement frames from its own current PDF. Independent coordinator validation confirms all83,839 masked frame pixels equal a fresh clip-origin PDF render and every other pixel equals the prior accepted artwork. The exact render method and PyMuPDF version are recorded in the package audit. All normalized native copy and original assets remain unchanged;130 cold files, strict build, current shared-style gate and both actual viewport widths pass. Its review field was restored and read back true, separately from publication.
 
 JHP-3000D was fully re-reviewed against its current22-page attachment. The new review restores the missing USB-C card, current AC plug artwork, original FCC paragraph groups and real table cells/rowspans. Its main-unit card uses an unmodified4x current-PDF crop because the previous SVG dropped thin strokes in Chrome after successful decoding. Independent coordinator verification matched the pixels exactly and all70 cold files. JHP-3600A was fully re-reviewed against its current24-page attachment: obsolete LCD/App sentences and old-source specification values were restored to the current source; source p20 has100A DC output and exactly two input types. No specific historical60A correction authorization was found. Current original frames/clock/manual cover, all22 included pages,79 actual viewport captures and22 scroll containers are recorded. Both pass current style admission, exact approval bindings, independent cold/stored parity and strict Sphinx. Their local review fields were set true and read back, separately from publication.
+
+JHP-5000C was independently compared with all26 included pages of the current28-page source. Fresh final HTML reproduces exactly seven glyph-ownership changes: two font warnings become original-source triangles, four key-combination plus signs become native text, and the App plus becomes its original vector. No sentence, number or operating condition differs from the independently reviewed body. Current original UPS/battery/STS diagrams, source frames, LCD circles, ESS headings, DC Input grouping and genuine12/29/59 troubleshooting columns are restored. All243 old runtime pins remain; current shared drift is explicitly kept frozen. The77 actual desktop/mobile viewport survey and final changed-block/right-scroll views pass. Independent strict build, current style admission, exact approval inputs and all562 frozen hashes pass.
+
+The90 active cold-output files are byte-identical. Seventeen other original Web-folder assets remain retained, baseline-identical and unreferenced by final HTML/MD/CSS; this is recorded rather than claiming107 stored files equal90 cold files. Independent fresh-PDF SVG inspection matched all16,826 distinct structural path commands; the complete cached SVG is not byte-identical to the fresh export and is not claimed to be. See [source proof](us-reviewed-9-release-20261103/JHP-5000C-native-path-check.json), [unused-art inventory](us-reviewed-9-release-20261103/JHP-5000C-retained-unused-assets.json), [copy delta](us-reviewed-9-release-20261103/JHP-5000C-root-copy-delta.json) and [coordinator acceptance](us-reviewed-9-release-20261103/JHP-5000C-reacceptance.json). The previous eight also have an [independent scope/registry review](us-reviewed-9-release-20261103/followup-eight-scope-review.json).
+
+Accepted immutable package evidence:
+
+| Target | Exact release review |
+| --- | --- |
+| JE-500A | [Review](../../manual_sources/JE-500A/US/en/git-20261103-5c065d11-source-alignment-release/audit/shared-style-review/review.json) |
+| JHP-5000C | [Review](../../manual_sources/JHP-5000C/US/en/git-20261103-3381c816-source-alignment-release/audit/shared-style-review/review.json) |
+| JE-1500C | [Review](../../manual_sources/JE-1500C/US/en/git-20261103-46f58108-source-alignment-release/audit/shared-style-review/review.json) |
+| JHP-3600A | [Review](../../manual_sources/JHP-3600A/US/en/git-20261103-d35114d3-source-alignment-release/evidence/current-source-final/page-review.json) |
+| JHP-3000D | [Review](../../manual_sources/JHP-3000D/US/en/git-20261103-34fedc15-source-alignment-release/evidence/shared-style-migration/review.json) |
+| JE-300C | [Review](../../manual_sources/JE-300C/US/en/git-20261103-a1128b25-source-alignment-release/evidence/style-admission/review.json) |
+| JE-300D | [Review](../../manual_sources/JE-300D/US/en/git-20261103-d3f47ff3-source-alignment-release/evidence/style-admission/review.json) |
+| JHP-3600C | [Review](../../manual_sources/JHP-3600C/US/en/git-20261103-cbb7eecb-source-alignment-release/audit/shared-style-review/review.json) |
+| JE-300E | [Review](../../manual_sources/JE-300E/US/en/git-20261103-04bd8b90-source-alignment-release/evidence/style-admission/review.json) |
+
+Default diff checking also found four trailing spaces in the archived JHP-5000C Sphinx log. Only those line endings were normalized; the raw log is retained in an audit ZIP. The log is not in the source adapter approval input list, and all Web bytes, approved inputs and90 active cold files remain unchanged. The frozen evidence inventory includes the normalization record and raw archive.

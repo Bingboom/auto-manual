@@ -1,0 +1,28 @@
+{
+  "model": "JHP-5000C",
+  "record_id": "reczz28SlE2kq2EE",
+  "status": "local_review_passed_after_complete_residual_audit",
+  "source_reference": "source/review-reference.pdf",
+  "reference_sha256": "3381c816e6bb75bc5e790bcba3faacbb3ad199f1a41cc53c5092368bcd945250",
+  "source_pages_reviewed": 28,
+  "native_source_lines_verified": 1055,
+  "ocr_lines_checked": 657,
+  "added_callouts": 2,
+  "preserved_original_content": true,
+  "preserved_asset_files": 80,
+  "desktop_mobile_widths": [
+    1280,
+    390
+  ],
+  "broken_images": 0,
+  "uncontained_overflow": 0,
+  "published": false,
+  "feishu_checked_by_agent": false,
+  "checked_native_fragments": 1095,
+  "images": 87,
+  "legacy_declarations_reviewed": 50,
+  "asset_decisions_reviewed": 148,
+  "publication_status": "pending",
+  "approval_packaging": "pending",
+  "supersedes": "Initial pass withdrawn; this evidence includes residual declaration and reverse-copy audit."
+}

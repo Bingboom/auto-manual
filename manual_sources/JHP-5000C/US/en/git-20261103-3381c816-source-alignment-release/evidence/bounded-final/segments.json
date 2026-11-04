@@ -1,0 +1,399 @@
+[
+  {
+    "width": 1280,
+    "file": "1280-00.png",
+    "y": 15465,
+    "sections": [
+      "charging",
+      "charging-via-ac-wall-outlet",
+      "charging-with-a-smart-transfer-switch"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-01.png",
+    "y": 16465,
+    "sections": [
+      "charging",
+      "charging-with-a-smart-transfer-switch",
+      "charging-with-solar-panels"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-02.png",
+    "y": 17465,
+    "sections": [
+      "charging",
+      "charging-with-solar-panels"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-03.png",
+    "y": 18465,
+    "sections": [
+      "charging",
+      "charging-with-solar-panels"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-04.png",
+    "y": 19465,
+    "sections": [
+      "charging",
+      "charging-with-solar-panels",
+      "charging-with-a-car-charger"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-05.png",
+    "y": 20465,
+    "sections": [
+      "charging",
+      "charging-with-a-car-charger",
+      "storage",
+      "app-setup",
+      "to-download-the-app-and-log-in",
+      "to-add-device"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-06.png",
+    "y": 21465,
+    "sections": [
+      "app-setup",
+      "to-add-device"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-07.png",
+    "y": 22465,
+    "sections": [
+      "app-setup",
+      "to-add-device",
+      "to-unbind-the-device",
+      "notes"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-08.png",
+    "y": 23465,
+    "sections": [
+      "app-setup",
+      "to-unbind-the-device",
+      "notes",
+      "warranty",
+      "limited-warranty",
+      "warranty-period"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-09.png",
+    "y": 24465,
+    "sections": [
+      "warranty",
+      "warranty-period",
+      "repair-or-replacement",
+      "limited-to-original-consumer-buyer",
+      "exclusions",
+      "interpretation-rights",
+      "specifications"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-10.png",
+    "y": 25465,
+    "sections": [
+      "specifications"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-11.png",
+    "y": 26465,
+    "sections": [
+      "specifications",
+      "smart-home-backup-system-ac-ess-installation-guide-system-modelhb5000c-ts02a"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-12.png",
+    "y": 27465,
+    "sections": [
+      "smart-home-backup-system-ac-ess-installation-guide-system-modelhb5000c-ts02a",
+      "jackery-homepower-5000-plus-model-jhp-5000c",
+      "id1"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-13.png",
+    "y": 28465,
+    "sections": [
+      "smart-home-backup-system-ac-ess-installation-guide-system-modelhb5000c-ts02a",
+      "jackery-homepower-5000-plus-model-jhp-5000c",
+      "id1"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-14.png",
+    "y": 29465,
+    "sections": [
+      "smart-home-backup-system-ac-ess-installation-guide-system-modelhb5000c-ts02a",
+      "jackery-homepower-5000-plus-model-jhp-5000c",
+      "id1",
+      "jackery-battery-pack-5000-plus-model-jbp-5000a"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-15.png",
+    "y": 30465,
+    "sections": [
+      "smart-home-backup-system-ac-ess-installation-guide-system-modelhb5000c-ts02a",
+      "jackery-battery-pack-5000-plus-model-jbp-5000a",
+      "jackery-smart-transfer-switch-model-ja-ts02a"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-16.png",
+    "y": 31465,
+    "sections": [
+      "smart-home-backup-system-ac-ess-installation-guide-system-modelhb5000c-ts02a",
+      "jackery-smart-transfer-switch-model-ja-ts02a",
+      "package-list"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-17.png",
+    "y": 32025,
+    "sections": [
+      "smart-home-backup-system-ac-ess-installation-guide-system-modelhb5000c-ts02a",
+      "package-list"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-00.png",
+    "y": 19312,
+    "sections": [
+      "connections",
+      "connect-to-a-smart-transfer-switch-sold-separately",
+      "charging",
+      "charging-via-ac-wall-outlet"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-01.png",
+    "y": 20312,
+    "sections": [
+      "charging",
+      "charging-via-ac-wall-outlet",
+      "charging-with-a-smart-transfer-switch",
+      "charging-with-solar-panels"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-02.png",
+    "y": 21312,
+    "sections": [
+      "charging",
+      "charging-with-solar-panels"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-03.png",
+    "y": 22312,
+    "sections": [
+      "charging",
+      "charging-with-solar-panels"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-04.png",
+    "y": 23312,
+    "sections": [
+      "charging",
+      "charging-with-solar-panels"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-05.png",
+    "y": 24312,
+    "sections": [
+      "charging",
+      "charging-with-solar-panels",
+      "charging-with-a-car-charger"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-06.png",
+    "y": 25312,
+    "sections": [
+      "charging",
+      "charging-with-a-car-charger",
+      "storage",
+      "app-setup",
+      "to-download-the-app-and-log-in"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-07.png",
+    "y": 26312,
+    "sections": [
+      "app-setup",
+      "to-download-the-app-and-log-in",
+      "to-add-device"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-08.png",
+    "y": 27312,
+    "sections": [
+      "app-setup",
+      "to-add-device"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-09.png",
+    "y": 28312,
+    "sections": [
+      "app-setup",
+      "to-add-device",
+      "to-unbind-the-device",
+      "notes",
+      "warranty"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-10.png",
+    "y": 29312,
+    "sections": [
+      "warranty",
+      "limited-warranty",
+      "warranty-period",
+      "repair-or-replacement",
+      "limited-to-original-consumer-buyer"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-11.png",
+    "y": 30312,
+    "sections": [
+      "warranty",
+      "repair-or-replacement",
+      "limited-to-original-consumer-buyer",
+      "exclusions",
+      "interpretation-rights",
+      "specifications"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-12.png",
+    "y": 31312,
+    "sections": [
+      "specifications"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-13.png",
+    "y": 32312,
+    "sections": [
+      "specifications",
+      "smart-home-backup-system-ac-ess-installation-guide-system-modelhb5000c-ts02a"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-14.png",
+    "y": 33312,
+    "sections": [
+      "smart-home-backup-system-ac-ess-installation-guide-system-modelhb5000c-ts02a"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-15.png",
+    "y": 34312,
+    "sections": [
+      "smart-home-backup-system-ac-ess-installation-guide-system-modelhb5000c-ts02a",
+      "jackery-homepower-5000-plus-model-jhp-5000c",
+      "id1"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-16.png",
+    "y": 35312,
+    "sections": [
+      "smart-home-backup-system-ac-ess-installation-guide-system-modelhb5000c-ts02a",
+      "jackery-homepower-5000-plus-model-jhp-5000c",
+      "id1"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-17.png",
+    "y": 36312,
+    "sections": [
+      "smart-home-backup-system-ac-ess-installation-guide-system-modelhb5000c-ts02a",
+      "jackery-homepower-5000-plus-model-jhp-5000c",
+      "id1",
+      "jackery-battery-pack-5000-plus-model-jbp-5000a"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-18.png",
+    "y": 37312,
+    "sections": [
+      "smart-home-backup-system-ac-ess-installation-guide-system-modelhb5000c-ts02a",
+      "jackery-battery-pack-5000-plus-model-jbp-5000a",
+      "jackery-smart-transfer-switch-model-ja-ts02a"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-19.png",
+    "y": 38312,
+    "sections": [
+      "smart-home-backup-system-ac-ess-installation-guide-system-modelhb5000c-ts02a",
+      "jackery-smart-transfer-switch-model-ja-ts02a",
+      "package-list"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-20.png",
+    "y": 39245,
+    "sections": [
+      "smart-home-backup-system-ac-ess-installation-guide-system-modelhb5000c-ts02a",
+      "package-list"
+    ]
+  }
+]

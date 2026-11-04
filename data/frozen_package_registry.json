@@ -1430,6 +1430,11 @@
       "registered": "2026-10-27",
       "known_drift": {}
     },
+    "manual_sources/JE-1000D/US/en/git-20261103-10d15090-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
     "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",
@@ -1555,6 +1560,11 @@
       "registered": "2026-10-27",
       "known_drift": {}
     },
+    "manual_sources/JE-100A/US/en/git-20261103-18058b6b-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
     "manual_sources/JE-100C/EU/de/2.0": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",
@@ -1610,6 +1620,11 @@
       "registered": "2026-10-27",
       "known_drift": {}
     },
+    "manual_sources/JE-100C/US/en/git-20261103-39c58bca-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
     "manual_sources/JE-1500B/JP/ja/git-20261103-f61d0d68": {
       "approval": "Operator 「上‘线提交发布：JE-1000C、JE-1000G、JE-1000H、JE-1500B」 2026-11-03 in the window session, after review of the PR #1653 1280/390 renders beside the reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinator window): Git-only JP ja single-language Web release, source copy verbatim; symbol rows pending the shared dedupe PR are withheld (see source/approval.json); merge not yet authorized",
       "registered": "2026-11-03",
@@ -1623,6 +1638,11 @@
     "manual_sources/JE-1500B/US/en/git-20261027-bb5a455b": {
       "approval": "Operator 「上线提交发布：JE-1000D、JE-1500B、JE-1500D、JE-2000A；授权合入 #1629 及其 Hello-Docs 发布 PR」 2026-10-28 (MA-365), after review of the PR #1629 1280/390 renders beside the shared reference editions; requested by 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 2026-10-27: Git-only JE-1500B US en Web release, source copy verbatim (see source/approval.json)",
       "registered": "2026-10-27",
+      "known_drift": {}
+    },
+    "manual_sources/JE-1500B/US/en/git-20261103-bb5a455b-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
       "known_drift": {}
     },
     "manual_sources/JE-1500C/US/en/git-20261028-46f58108": {
@@ -1655,6 +1675,32 @@
           "since": "2026-11-03"
         },
         "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        }
+      }
+    },
+    "manual_sources/JE-1500C/US/en/git-20261103-46f58108-source-alignment-release": {
+      "approval": "MA-381: selected27 complete local source/content/layout acceptance; deferred5 excluded.",
+      "registered": "2026-11-03",
+      "known_drift": {
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        },
+        "tools/web/symbol_asset_admission.py": {
           "handling": "keep-frozen",
           "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
@@ -1727,6 +1773,11 @@
       "registered": "2026-10-27",
       "known_drift": {}
     },
+    "manual_sources/JE-2000A/US/en/git-20261103-a8ec2be7-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
     "manual_sources/JE-2000C/JP/ja/git-20261103-88b78332": {
       "approval": "Operator request 2026-11-03 「继续 转日语说明书」 (relayed by the coordination window); operator reviewed the 1280/390 renders beside the reference edition and said 「按建议做，上线提交发布」 2026-11-03 in the owning session: Git-only JE-2000C JP/ja single-language Web release from 发布文档管理 record reczz28SfbsHdjSC, source copy verbatim; acceptance hash-bound in source/approval.json",
       "registered": "2026-11-03",
@@ -1737,6 +1788,11 @@
       "registered": "2026-10-27",
       "known_drift": {}
     },
+    "manual_sources/JE-2000C/US/en/git-20261103-c357f54d-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
     "manual_sources/JE-2000D/JP/ja/git-20261103-62605f21": {
       "approval": "Operator 「上线提交发布：JE-2000F、JE-2000D」 2026-11-04 in the engineering session after review of the PR #1655 1280/390 renders beside the shared reference edition; requested by 「继续 转日语说明书」 (发布文档管理 日规视图, via coordinator): Git-only JE-2000D JP/ja single-language Web release, source copy verbatim (see source/approval.json); merge needs a separate operator grant",
       "registered": "2026-11-03",
@@ -1745,6 +1801,11 @@
     "manual_sources/JE-2000D/US/en/git-20261028-3d50ef64": {
       "approval": "Operator 「上线提交发布」 2026-11-02 in the engineering session (session_01PHcxwApS3X7GQ5ZBMtLi9z), in reply to the review of the four PR #1637 candidates JE-2000D, JE-2000F, JE-3000B, JE-5000A (1280/390 renders beside the shared reference edition); bound in source/approval.json: Git-only US/en single-language Web release, source copy verbatim; source_concerns to the source owner",
       "registered": "2026-11-02",
+      "known_drift": {}
+    },
+    "manual_sources/JE-2000D/US/en/git-20261103-3d50ef64-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
       "known_drift": {}
     },
     "manual_sources/JE-2000E/EU/en/2.0": {
@@ -1808,14 +1869,29 @@
       "registered": "2026-11-02",
       "known_drift": {}
     },
+    "manual_sources/JE-2000F/US/en/git-20261103-c8ace563-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
     "manual_sources/JE-240A/US/en/git-20261027-ae3aea4b": {
       "approval": "Operator 「上线提交发布：JE-100A、JE-100C、JE-240A、JE-240B；授权合入 #1630 及其 Hello-Docs 发布 PR」 2026-10-28 after review of PR #1630 renders beside the shared reference editions (MA-365); requested by 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 2026-10-27: Git-only US English Web release, source copy verbatim",
       "registered": "2026-10-27",
       "known_drift": {}
     },
+    "manual_sources/JE-240A/US/en/git-20261103-ae3aea4b-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
     "manual_sources/JE-240B/US/en/git-20261027-3dc1fbba": {
       "approval": "Operator 「上线提交发布：JE-100A、JE-100C、JE-240A、JE-240B；授权合入 #1630 及其 Hello-Docs 发布 PR」 2026-10-28 after review of PR #1630 renders beside the shared reference editions (MA-365); requested by 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 2026-10-27: Git-only US English Web release, source copy verbatim",
       "registered": "2026-10-28",
+      "known_drift": {}
+    },
+    "manual_sources/JE-240B/US/en/git-20261103-3dc1fbba-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
       "known_drift": {}
     },
     "manual_sources/JE-3000A/JP/ja/git-20261103-002fde5a": {
@@ -1831,6 +1907,11 @@
     "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296": {
       "approval": "Operator 「上线提交发布」 2026-11-02 in the engineering session (session_01PHcxwApS3X7GQ5ZBMtLi9z), in reply to the review of the four PR #1637 candidates JE-2000D, JE-2000F, JE-3000B, JE-5000A (1280/390 renders beside the shared reference edition); bound in source/approval.json: Git-only US/en single-language Web release, source copy verbatim; source_concerns to the source owner",
       "registered": "2026-11-02",
+      "known_drift": {}
+    },
+    "manual_sources/JE-3000B/US/en/git-20261103-bd8a8296-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
       "known_drift": {}
     },
     "manual_sources/JE-3000C/EU/en/2.0": {
@@ -1931,6 +2012,32 @@
         }
       }
     },
+    "manual_sources/JE-300C/US/en/git-20261103-a1128b25-source-alignment-release": {
+      "approval": "MA-381: selected27 complete local source/content/layout acceptance; deferred5 excluded.",
+      "registered": "2026-11-03",
+      "known_drift": {
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        }
+      }
+    },
     "manual_sources/JE-300D/EU/en/candidate-2025-10-24": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",
@@ -1966,6 +2073,32 @@
           "since": "2026-11-03"
         },
         "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        }
+      }
+    },
+    "manual_sources/JE-300D/US/en/git-20261103-d3f47ff3-source-alignment-release": {
+      "approval": "MA-381: selected27 complete local source/content/layout acceptance; deferred5 excluded.",
+      "registered": "2026-11-03",
+      "known_drift": {
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        },
+        "tools/web/symbol_asset_admission.py": {
           "handling": "keep-frozen",
           "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
@@ -2038,6 +2171,32 @@
           "since": "2026-11-03"
         },
         "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        }
+      }
+    },
+    "manual_sources/JE-300E/US/en/git-20261103-04bd8b90-source-alignment-release": {
+      "approval": "MA-381: selected27 complete local source/content/layout acceptance; deferred5 excluded.",
+      "registered": "2026-11-03",
+      "known_drift": {
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        },
+        "tools/web/symbol_asset_admission.py": {
           "handling": "keep-frozen",
           "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
@@ -2200,6 +2359,37 @@
         }
       }
     },
+    "manual_sources/JE-500A/US/en/git-20261103-5c065d11-source-alignment-release": {
+      "approval": "MA-381: selected27 complete local source/content/layout acceptance; deferred5 excluded.",
+      "registered": "2026-11-03",
+      "known_drift": {
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        },
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        }
+      }
+    },
     "manual_sources/JE-600A/US/en/git-20261028-9bf5bbb1": {
       "approval": "Operator 2026-10-29 (PR #1639 session): 「上线提交发布：JE-300D、JE-500A、JE-600A、JE-1500C」 after reviewing the 1280/390 renders: Git-only US English single-language Web release from the 发布文档管理 row; acceptance hash-bound in source/approval.json. Merge needs a separate operator authorization.",
       "registered": "2026-10-28",
@@ -2232,6 +2422,37 @@
         "docs/renderers/contracts/web_manual.css": {
           "handling": "keep-frozen",
           "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        }
+      }
+    },
+    "manual_sources/JE-600A/US/en/git-20261103-9bf5bbb1-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
+      "known_drift": {
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 first18: exact reviewed source runtime retained; authorized cold rebuild and unchanged visible MD/CSS/art/IR.pages verified. Current main symbol utility changes do not re-render frozen outputs; fresh source-bound release admission remains required.",
+          "since": "2026-11-03"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 first18: exact reviewed source runtime retained; authorized cold rebuild and unchanged visible MD/CSS/art/IR.pages verified. Current main symbol utility changes do not re-render frozen outputs; fresh source-bound release admission remains required.",
+          "since": "2026-11-03"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 first18: exact reviewed source runtime retained; authorized cold rebuild and unchanged visible MD/CSS/art/IR.pages verified. Current main symbol utility changes do not re-render frozen outputs; fresh source-bound release admission remains required.",
+          "since": "2026-11-03"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 first18: exact reviewed source runtime retained; authorized cold rebuild and unchanged visible MD/CSS/art/IR.pages verified. Current main symbol utility changes do not re-render frozen outputs; fresh source-bound release admission remains required.",
+          "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 ordinary main integration: the already-reviewed JE-600A and JE-880B release snapshots retain their exact approved frozen runtime and HTML. The source-only shared rowspan CSS correction is not replayed into these packages; only its newly observed runtime drift is registered. All source, original art and frozen outputs remain byte-identical to engineering PR1665.",
           "since": "2026-11-03"
         }
       }
@@ -2272,9 +2493,45 @@
         }
       }
     },
+    "manual_sources/JE-880B/US/en/git-20261103-640e83ca-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
+      "known_drift": {
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 first18: exact reviewed source runtime retained; authorized cold rebuild and unchanged visible MD/CSS/art/IR.pages verified. Current main symbol utility changes do not re-render frozen outputs; fresh source-bound release admission remains required.",
+          "since": "2026-11-03"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 first18: exact reviewed source runtime retained; authorized cold rebuild and unchanged visible MD/CSS/art/IR.pages verified. Current main symbol utility changes do not re-render frozen outputs; fresh source-bound release admission remains required.",
+          "since": "2026-11-03"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 first18: exact reviewed source runtime retained; authorized cold rebuild and unchanged visible MD/CSS/art/IR.pages verified. Current main symbol utility changes do not re-render frozen outputs; fresh source-bound release admission remains required.",
+          "since": "2026-11-03"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 first18: exact reviewed source runtime retained; authorized cold rebuild and unchanged visible MD/CSS/art/IR.pages verified. Current main symbol utility changes do not re-render frozen outputs; fresh source-bound release admission remains required.",
+          "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 ordinary main integration: the already-reviewed JE-600A and JE-880B release snapshots retain their exact approved frozen runtime and HTML. The source-only shared rowspan CSS correction is not replayed into these packages; only its newly observed runtime drift is registered. All source, original art and frozen outputs remain byte-identical to engineering PR1665.",
+          "since": "2026-11-03"
+        }
+      }
+    },
     "manual_sources/JHP-1000A/US/en/git-20261028-cb256e64": {
       "approval": "Operator 「上线提交发布：JHP-1000A、JHP-1000B、JHP-2000A」 2026-10-29 in the engineering session after the 1280/390 renders beside the shared reference edition (PR #1638): Git-only US/en single-language Web release, source copy verbatim; approval bound in source/approval.json",
       "registered": "2026-10-28",
+      "known_drift": {}
+    },
+    "manual_sources/JHP-1000A/US/en/git-20261103-cb256e64-full-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
       "known_drift": {}
     },
     "manual_sources/JHP-1000A/US/en/git-20261103-cb256e64-source-alignment": {
@@ -2287,9 +2544,19 @@
       "registered": "2026-10-27",
       "known_drift": {}
     },
+    "manual_sources/JHP-1000B-RC/US/en/git-20261103-af8a0775-full-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
     "manual_sources/JHP-1000B/US/en/git-20261028-e546301b": {
       "approval": "Operator 「上线提交发布：JHP-1000A、JHP-1000B、JHP-2000A」 2026-10-29 in the engineering session after the 1280/390 renders beside the shared reference edition (PR #1638): Git-only US/en single-language Web release, source copy verbatim; approval bound in source/approval.json",
       "registered": "2026-10-28",
+      "known_drift": {}
+    },
+    "manual_sources/JHP-1000B/US/en/git-20261103-e546301b-full-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
       "known_drift": {}
     },
     "manual_sources/JHP-2000A-RC/US/en/git-20261027-e27d4db5": {
@@ -2297,162 +2564,64 @@
       "registered": "2026-10-27",
       "known_drift": {}
     },
+    "manual_sources/JHP-2000A-RC/US/en/git-20261103-e27d4db5-full-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
     "manual_sources/JHP-2000A/US/en/git-20261028-5b60448e": {
       "approval": "Operator 「上线提交发布：JHP-1000A、JHP-1000B、JHP-2000A」 2026-10-29 in the engineering session after the 1280/390 renders beside the shared reference edition (PR #1638): Git-only US/en single-language Web release, source copy verbatim; approval bound in source/approval.json",
       "registered": "2026-10-28",
       "known_drift": {}
+    },
+    "manual_sources/JHP-2000A/US/en/git-20261103-5b60448e-full-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
+    "manual_sources/JHP-3000D/US/en/git-20261103-34fedc15-source-alignment-release": {
+      "approval": "MA-381: current single-language full source/content/layout review plus independent coordinator strict/cold/art/approval verification; old full-PASS superseded.",
+      "registered": "2026-11-03",
+      "known_drift": {
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 current-reference HomePower repair: preserve real approved cold-replay runtime and frozen outputs. Original pins remain; only JHP-3600A adds the exact actually used shared-rowspan CSS pin. Current source-bound original art, native copy, prepared-style audit, strict build and actual full desktop/mobile coverage verified; no gate or baseline relaxed.",
+          "since": "2026-11-03"
+        },
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 current-reference HomePower repair: preserve real approved cold-replay runtime and frozen outputs. Original pins remain; only JHP-3600A adds the exact actually used shared-rowspan CSS pin. Current source-bound original art, native copy, prepared-style audit, strict build and actual full desktop/mobile coverage verified; no gate or baseline relaxed.",
+          "since": "2026-11-03"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 current-reference HomePower repair: preserve real approved cold-replay runtime and frozen outputs. Original pins remain; only JHP-3600A adds the exact actually used shared-rowspan CSS pin. Current source-bound original art, native copy, prepared-style audit, strict build and actual full desktop/mobile coverage verified; no gate or baseline relaxed.",
+          "since": "2026-11-03"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 current-reference HomePower repair: preserve real approved cold-replay runtime and frozen outputs. Original pins remain; only JHP-3600A adds the exact actually used shared-rowspan CSS pin. Current source-bound original art, native copy, prepared-style audit, strict build and actual full desktop/mobile coverage verified; no gate or baseline relaxed.",
+          "since": "2026-11-03"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 current-reference HomePower repair: preserve real approved cold-replay runtime and frozen outputs. Original pins remain; only JHP-3600A adds the exact actually used shared-rowspan CSS pin. Current source-bound original art, native copy, prepared-style audit, strict build and actual full desktop/mobile coverage verified; no gate or baseline relaxed.",
+          "since": "2026-11-03"
+        }
+      }
     },
     "manual_sources/JHP-3600A-RC/US/en/git-20261027-ab7f7393": {
       "approval": "Operator 「上线提交发布：JE-2000C、JHP-1000B-RC、JHP-2000A-RC、JHP-3600A-RC；授权开跟进 PR 写 approval 并合入，以及其 Hello-Docs 发布 PR」 2026-10-28 after 「授权全部合入上线 上线之后 我再一个个核对版面」 (MA-365); candidate merged as #1628, approval bound in the follow-up PR: Git-only US/en single-language Web release, source copy verbatim; layout checked by the operator after go-live",
       "registered": "2026-10-27",
       "known_drift": {}
     },
-    "manual_sources/JS-100I/JP/ja/git-20261026-cc8b3421": {
-      "approval": "User request 2026-10-26 (「分几个窗口把这个目录下面的文档都转成网页文档」「韩语文档除外」): Git-only JS-100I JP Web conversion; operator 「全部照录，版式都接受，上线提交发布，保留疑点后续纠正」 2026-10-27, merged by operator PR review (see source/approval.json)",
-      "registered": "2026-10-26",
-      "known_drift": {}
-    },
-    "manual_sources/JS-100I/JP/ja/git-20261027-cc8b3421-spec-table": {
-      "approval": "Operator live-page review 2026-10-27 (「这个表格样式不对吧」) then 「按新版本包发布」: Git-only spec-table edition of git-20261026-cc8b3421 (電気データ on the shared spec-table frame, copy unchanged); acceptance hash-bound in source/approval.json",
-      "registered": "2026-10-27",
-      "known_drift": {}
-    },
-    "manual_sources/JS-CONNECTION-GUIDE/JP/ja/git-20261026-bc35fd65-connection-guide": {
-      "approval": "User request 2026-10-26 (「分几个窗口把这个目录下面的文档都转成网页文档」「韩语文档除外」; operator chose Japanese side only and route JS-CONNECTION-GUIDE): Git-only JS-CONNECTION-GUIDE JP Web conversion; operator accepted candidate eb61b66 for release 2026-10-27 (「上线提交发布」), merged by operator PR review; acceptance hash-bound in source/approval.json",
-      "registered": "2026-10-26",
-      "known_drift": {}
-    },
-    "manual_sources/JE-1500C/US/en/git-20261103-46f58108-source-alignment-release": {
-      "approval": "MA-381: selected27 complete local source/content/layout acceptance; deferred5 excluded.",
+    "manual_sources/JHP-3600A/US/en/git-20261103-d35114d3-source-alignment-release": {
+      "approval": "MA-381: current single-language full source/content/layout review plus independent coordinator strict/cold/art/approval verification; old full-PASS superseded.",
       "registered": "2026-11-03",
       "known_drift": {
-        "docs/renderers/web/assets/shared/symbols/manifest.json": {
-          "handling": "keep-frozen",
-          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
-          "since": "2026-11-03"
-        },
         "tools/asset_pipeline/native_svg.py": {
           "handling": "keep-frozen",
-          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
-          "since": "2026-11-03"
-        },
-        "tools/web/shared_symbol_assets.py": {
-          "handling": "keep-frozen",
-          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
-          "since": "2026-11-03"
-        },
-        "tools/web/symbol_asset_admission.py": {
-          "handling": "keep-frozen",
-          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
-          "since": "2026-11-03"
-        }
-      }
-    },
-    "manual_sources/JE-300C/US/en/git-20261103-a1128b25-source-alignment-release": {
-      "approval": "MA-381: selected27 complete local source/content/layout acceptance; deferred5 excluded.",
-      "registered": "2026-11-03",
-      "known_drift": {
-        "docs/renderers/web/assets/shared/symbols/manifest.json": {
-          "handling": "keep-frozen",
-          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
-          "since": "2026-11-03"
-        },
-        "tools/asset_pipeline/native_svg.py": {
-          "handling": "keep-frozen",
-          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
-          "since": "2026-11-03"
-        },
-        "tools/web/shared_symbol_assets.py": {
-          "handling": "keep-frozen",
-          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
-          "since": "2026-11-03"
-        },
-        "tools/web/symbol_asset_admission.py": {
-          "handling": "keep-frozen",
-          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
-          "since": "2026-11-03"
-        }
-      }
-    },
-    "manual_sources/JE-300D/US/en/git-20261103-d3f47ff3-source-alignment-release": {
-      "approval": "MA-381: selected27 complete local source/content/layout acceptance; deferred5 excluded.",
-      "registered": "2026-11-03",
-      "known_drift": {
-        "docs/renderers/web/assets/shared/symbols/manifest.json": {
-          "handling": "keep-frozen",
-          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
-          "since": "2026-11-03"
-        },
-        "tools/asset_pipeline/native_svg.py": {
-          "handling": "keep-frozen",
-          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
-          "since": "2026-11-03"
-        },
-        "tools/web/shared_symbol_assets.py": {
-          "handling": "keep-frozen",
-          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
-          "since": "2026-11-03"
-        },
-        "tools/web/symbol_asset_admission.py": {
-          "handling": "keep-frozen",
-          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
-          "since": "2026-11-03"
-        }
-      }
-    },
-    "manual_sources/JE-300E/US/en/git-20261103-04bd8b90-source-alignment-release": {
-      "approval": "MA-381: selected27 complete local source/content/layout acceptance; deferred5 excluded.",
-      "registered": "2026-11-03",
-      "known_drift": {
-        "docs/renderers/web/assets/shared/symbols/manifest.json": {
-          "handling": "keep-frozen",
-          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
-          "since": "2026-11-03"
-        },
-        "tools/asset_pipeline/native_svg.py": {
-          "handling": "keep-frozen",
-          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
-          "since": "2026-11-03"
-        },
-        "tools/web/shared_symbol_assets.py": {
-          "handling": "keep-frozen",
-          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
-          "since": "2026-11-03"
-        },
-        "tools/web/symbol_asset_admission.py": {
-          "handling": "keep-frozen",
-          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
-          "since": "2026-11-03"
-        }
-      }
-    },
-    "manual_sources/JE-500A/US/en/git-20261103-5c065d11-source-alignment-release": {
-      "approval": "MA-381: selected27 complete local source/content/layout acceptance; deferred5 excluded.",
-      "registered": "2026-11-03",
-      "known_drift": {
-        "docs/renderers/contracts/web_manual.css": {
-          "handling": "keep-frozen",
-          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
-          "since": "2026-11-03"
-        },
-        "docs/renderers/web/assets/shared/symbols/manifest.json": {
-          "handling": "keep-frozen",
-          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
-          "since": "2026-11-03"
-        },
-        "tools/asset_pipeline/native_svg.py": {
-          "handling": "keep-frozen",
-          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
-          "since": "2026-11-03"
-        },
-        "tools/web/shared_symbol_assets.py": {
-          "handling": "keep-frozen",
-          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
-          "since": "2026-11-03"
-        },
-        "tools/web/symbol_asset_admission.py": {
-          "handling": "keep-frozen",
-          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "reason": "MA-381 current-reference HomePower repair: preserve real approved cold-replay runtime and frozen outputs. Original pins remain; only JHP-3600A adds the exact actually used shared-rowspan CSS pin. Current source-bound original art, native copy, prepared-style audit, strict build and actual full desktop/mobile coverage verified; no gate or baseline relaxed.",
           "since": "2026-11-03"
         }
       }
@@ -2493,189 +2662,51 @@
         }
       }
     },
-    "manual_sources/JE-1000D/US/en/git-20261103-10d15090-source-alignment-release": {
-      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
-      "registered": "2026-11-03",
-      "known_drift": {}
-    },
-    "manual_sources/JE-100A/US/en/git-20261103-18058b6b-source-alignment-release": {
-      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
-      "registered": "2026-11-03",
-      "known_drift": {}
-    },
-    "manual_sources/JE-100C/US/en/git-20261103-39c58bca-source-alignment-release": {
-      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
-      "registered": "2026-11-03",
-      "known_drift": {}
-    },
-    "manual_sources/JE-1500B/US/en/git-20261103-bb5a455b-source-alignment-release": {
-      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
-      "registered": "2026-11-03",
-      "known_drift": {}
-    },
-    "manual_sources/JE-2000A/US/en/git-20261103-a8ec2be7-source-alignment-release": {
-      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
-      "registered": "2026-11-03",
-      "known_drift": {}
-    },
-    "manual_sources/JE-2000C/US/en/git-20261103-c357f54d-source-alignment-release": {
-      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
-      "registered": "2026-11-03",
-      "known_drift": {}
-    },
-    "manual_sources/JE-2000D/US/en/git-20261103-3d50ef64-source-alignment-release": {
-      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
-      "registered": "2026-11-03",
-      "known_drift": {}
-    },
-    "manual_sources/JE-2000F/US/en/git-20261103-c8ace563-source-alignment-release": {
-      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
-      "registered": "2026-11-03",
-      "known_drift": {}
-    },
-    "manual_sources/JE-240A/US/en/git-20261103-ae3aea4b-source-alignment-release": {
-      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
-      "registered": "2026-11-03",
-      "known_drift": {}
-    },
-    "manual_sources/JE-240B/US/en/git-20261103-3dc1fbba-source-alignment-release": {
-      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
-      "registered": "2026-11-03",
-      "known_drift": {}
-    },
-    "manual_sources/JE-3000B/US/en/git-20261103-bd8a8296-source-alignment-release": {
-      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
-      "registered": "2026-11-03",
-      "known_drift": {}
-    },
-    "manual_sources/JE-600A/US/en/git-20261103-9bf5bbb1-source-alignment-release": {
-      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
-      "registered": "2026-11-03",
-      "known_drift": {
-        "docs/renderers/web/assets/shared/symbols/manifest.json": {
-          "handling": "keep-frozen",
-          "reason": "MA-381 first18: exact reviewed source runtime retained; authorized cold rebuild and unchanged visible MD/CSS/art/IR.pages verified. Current main symbol utility changes do not re-render frozen outputs; fresh source-bound release admission remains required.",
-          "since": "2026-11-03"
-        },
-        "tools/asset_pipeline/native_svg.py": {
-          "handling": "keep-frozen",
-          "reason": "MA-381 first18: exact reviewed source runtime retained; authorized cold rebuild and unchanged visible MD/CSS/art/IR.pages verified. Current main symbol utility changes do not re-render frozen outputs; fresh source-bound release admission remains required.",
-          "since": "2026-11-03"
-        },
-        "tools/web/shared_symbol_assets.py": {
-          "handling": "keep-frozen",
-          "reason": "MA-381 first18: exact reviewed source runtime retained; authorized cold rebuild and unchanged visible MD/CSS/art/IR.pages verified. Current main symbol utility changes do not re-render frozen outputs; fresh source-bound release admission remains required.",
-          "since": "2026-11-03"
-        },
-        "tools/web/symbol_asset_admission.py": {
-          "handling": "keep-frozen",
-          "reason": "MA-381 first18: exact reviewed source runtime retained; authorized cold rebuild and unchanged visible MD/CSS/art/IR.pages verified. Current main symbol utility changes do not re-render frozen outputs; fresh source-bound release admission remains required.",
-          "since": "2026-11-03"
-        },
-        "docs/renderers/contracts/web_manual.css": {
-          "handling": "keep-frozen",
-          "reason": "MA-381 ordinary main integration: the already-reviewed JE-600A and JE-880B release snapshots retain their exact approved frozen runtime and HTML. The source-only shared rowspan CSS correction is not replayed into these packages; only its newly observed runtime drift is registered. All source, original art and frozen outputs remain byte-identical to engineering PR1665.",
-          "since": "2026-11-03"
-        }
-      }
-    },
-    "manual_sources/JE-880B/US/en/git-20261103-640e83ca-source-alignment-release": {
-      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
-      "registered": "2026-11-03",
-      "known_drift": {
-        "docs/renderers/web/assets/shared/symbols/manifest.json": {
-          "handling": "keep-frozen",
-          "reason": "MA-381 first18: exact reviewed source runtime retained; authorized cold rebuild and unchanged visible MD/CSS/art/IR.pages verified. Current main symbol utility changes do not re-render frozen outputs; fresh source-bound release admission remains required.",
-          "since": "2026-11-03"
-        },
-        "tools/asset_pipeline/native_svg.py": {
-          "handling": "keep-frozen",
-          "reason": "MA-381 first18: exact reviewed source runtime retained; authorized cold rebuild and unchanged visible MD/CSS/art/IR.pages verified. Current main symbol utility changes do not re-render frozen outputs; fresh source-bound release admission remains required.",
-          "since": "2026-11-03"
-        },
-        "tools/web/shared_symbol_assets.py": {
-          "handling": "keep-frozen",
-          "reason": "MA-381 first18: exact reviewed source runtime retained; authorized cold rebuild and unchanged visible MD/CSS/art/IR.pages verified. Current main symbol utility changes do not re-render frozen outputs; fresh source-bound release admission remains required.",
-          "since": "2026-11-03"
-        },
-        "tools/web/symbol_asset_admission.py": {
-          "handling": "keep-frozen",
-          "reason": "MA-381 first18: exact reviewed source runtime retained; authorized cold rebuild and unchanged visible MD/CSS/art/IR.pages verified. Current main symbol utility changes do not re-render frozen outputs; fresh source-bound release admission remains required.",
-          "since": "2026-11-03"
-        },
-        "docs/renderers/contracts/web_manual.css": {
-          "handling": "keep-frozen",
-          "reason": "MA-381 ordinary main integration: the already-reviewed JE-600A and JE-880B release snapshots retain their exact approved frozen runtime and HTML. The source-only shared rowspan CSS correction is not replayed into these packages; only its newly observed runtime drift is registered. All source, original art and frozen outputs remain byte-identical to engineering PR1665.",
-          "since": "2026-11-03"
-        }
-      }
-    },
-    "manual_sources/JHP-1000A/US/en/git-20261103-cb256e64-full-source-alignment-release": {
-      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
-      "registered": "2026-11-03",
-      "known_drift": {}
-    },
-    "manual_sources/JHP-1000B-RC/US/en/git-20261103-af8a0775-full-source-alignment-release": {
-      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
-      "registered": "2026-11-03",
-      "known_drift": {}
-    },
-    "manual_sources/JHP-1000B/US/en/git-20261103-e546301b-full-source-alignment-release": {
-      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
-      "registered": "2026-11-03",
-      "known_drift": {}
-    },
-    "manual_sources/JHP-2000A-RC/US/en/git-20261103-e27d4db5-full-source-alignment-release": {
-      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
-      "registered": "2026-11-03",
-      "known_drift": {}
-    },
-    "manual_sources/JHP-2000A/US/en/git-20261103-5b60448e-full-source-alignment-release": {
-      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
-      "registered": "2026-11-03",
-      "known_drift": {}
-    },
-    "manual_sources/JHP-3000D/US/en/git-20261103-34fedc15-source-alignment-release": {
-      "approval": "MA-381: current single-language full source/content/layout review plus independent coordinator strict/cold/art/approval verification; old full-PASS superseded.",
+    "manual_sources/JHP-5000C/US/en/git-20261103-3381c816-source-alignment-release": {
+      "approval": "MA-381: operator delegated complete local source/content/layout acceptance and authorized selected27 publication after all checks pass; deferred5 excluded.",
       "registered": "2026-11-03",
       "known_drift": {
         "docs/renderers/contracts/web_manual.css": {
           "handling": "keep-frozen",
-          "reason": "MA-381 current-reference HomePower repair: preserve real approved cold-replay runtime and frozen outputs. Original pins remain; only JHP-3600A adds the exact actually used shared-rowspan CSS pin. Current source-bound original art, native copy, prepared-style audit, strict build and actual full desktop/mobile coverage verified; no gate or baseline relaxed.",
+          "reason": "MA-381 selected27 release: retain the exact hash-bound reviewed runtime and source outputs; approval cold rebuild and all visible MD/CSS/art/IR.pages equivalence verified. Current main shared changes do not re-render frozen output; final source-bound symbol/caption and release admission remain required.",
           "since": "2026-11-03"
         },
         "docs/renderers/web/assets/shared/symbols/manifest.json": {
           "handling": "keep-frozen",
-          "reason": "MA-381 current-reference HomePower repair: preserve real approved cold-replay runtime and frozen outputs. Original pins remain; only JHP-3600A adds the exact actually used shared-rowspan CSS pin. Current source-bound original art, native copy, prepared-style audit, strict build and actual full desktop/mobile coverage verified; no gate or baseline relaxed.",
+          "reason": "MA-381 selected27 release: retain the exact hash-bound reviewed runtime and source outputs; approval cold rebuild and all visible MD/CSS/art/IR.pages equivalence verified. Current main shared changes do not re-render frozen output; final source-bound symbol/caption and release admission remain required.",
           "since": "2026-11-03"
         },
         "tools/asset_pipeline/native_svg.py": {
           "handling": "keep-frozen",
-          "reason": "MA-381 current-reference HomePower repair: preserve real approved cold-replay runtime and frozen outputs. Original pins remain; only JHP-3600A adds the exact actually used shared-rowspan CSS pin. Current source-bound original art, native copy, prepared-style audit, strict build and actual full desktop/mobile coverage verified; no gate or baseline relaxed.",
+          "reason": "MA-381 selected27 release: retain the exact hash-bound reviewed runtime and source outputs; approval cold rebuild and all visible MD/CSS/art/IR.pages equivalence verified. Current main shared changes do not re-render frozen output; final source-bound symbol/caption and release admission remain required.",
           "since": "2026-11-03"
         },
         "tools/web/shared_symbol_assets.py": {
           "handling": "keep-frozen",
-          "reason": "MA-381 current-reference HomePower repair: preserve real approved cold-replay runtime and frozen outputs. Original pins remain; only JHP-3600A adds the exact actually used shared-rowspan CSS pin. Current source-bound original art, native copy, prepared-style audit, strict build and actual full desktop/mobile coverage verified; no gate or baseline relaxed.",
+          "reason": "MA-381 selected27 release: retain the exact hash-bound reviewed runtime and source outputs; approval cold rebuild and all visible MD/CSS/art/IR.pages equivalence verified. Current main shared changes do not re-render frozen output; final source-bound symbol/caption and release admission remain required.",
           "since": "2026-11-03"
         },
         "tools/web/symbol_asset_admission.py": {
           "handling": "keep-frozen",
-          "reason": "MA-381 current-reference HomePower repair: preserve real approved cold-replay runtime and frozen outputs. Original pins remain; only JHP-3600A adds the exact actually used shared-rowspan CSS pin. Current source-bound original art, native copy, prepared-style audit, strict build and actual full desktop/mobile coverage verified; no gate or baseline relaxed.",
+          "reason": "MA-381 selected27 release: retain the exact hash-bound reviewed runtime and source outputs; approval cold rebuild and all visible MD/CSS/art/IR.pages equivalence verified. Current main shared changes do not re-render frozen output; final source-bound symbol/caption and release admission remain required.",
           "since": "2026-11-03"
         }
       }
     },
-    "manual_sources/JHP-3600A/US/en/git-20261103-d35114d3-source-alignment-release": {
-      "approval": "MA-381: current single-language full source/content/layout review plus independent coordinator strict/cold/art/approval verification; old full-PASS superseded.",
-      "registered": "2026-11-03",
-      "known_drift": {
-        "tools/asset_pipeline/native_svg.py": {
-          "handling": "keep-frozen",
-          "reason": "MA-381 current-reference HomePower repair: preserve real approved cold-replay runtime and frozen outputs. Original pins remain; only JHP-3600A adds the exact actually used shared-rowspan CSS pin. Current source-bound original art, native copy, prepared-style audit, strict build and actual full desktop/mobile coverage verified; no gate or baseline relaxed.",
-          "since": "2026-11-03"
-        }
-      }
+    "manual_sources/JS-100I/JP/ja/git-20261026-cc8b3421": {
+      "approval": "User request 2026-10-26 (「分几个窗口把这个目录下面的文档都转成网页文档」「韩语文档除外」): Git-only JS-100I JP Web conversion; operator 「全部照录，版式都接受，上线提交发布，保留疑点后续纠正」 2026-10-27, merged by operator PR review (see source/approval.json)",
+      "registered": "2026-10-26",
+      "known_drift": {}
+    },
+    "manual_sources/JS-100I/JP/ja/git-20261027-cc8b3421-spec-table": {
+      "approval": "Operator live-page review 2026-10-27 (「这个表格样式不对吧」) then 「按新版本包发布」: Git-only spec-table edition of git-20261026-cc8b3421 (電気データ on the shared spec-table frame, copy unchanged); acceptance hash-bound in source/approval.json",
+      "registered": "2026-10-27",
+      "known_drift": {}
+    },
+    "manual_sources/JS-CONNECTION-GUIDE/JP/ja/git-20261026-bc35fd65-connection-guide": {
+      "approval": "User request 2026-10-26 (「分几个窗口把这个目录下面的文档都转成网页文档」「韩语文档除外」; operator chose Japanese side only and route JS-CONNECTION-GUIDE): Git-only JS-CONNECTION-GUIDE JP Web conversion; operator accepted candidate eb61b66 for release 2026-10-27 (「上线提交发布」), merged by operator PR review; acceptance hash-bound in source/approval.json",
+      "registered": "2026-10-26",
+      "known_drift": {}
     }
   },
   "drift_log": [
@@ -2894,6 +2925,20 @@
       "packages": 2,
       "handling": "keep-frozen",
       "reason": "MA-381 current-reference HomePower repair: preserve real approved cold-replay runtime and frozen outputs. Original pins remain; only JHP-3600A adds the exact actually used shared-rowspan CSS pin. Current source-bound original art, native copy, prepared-style audit, strict build and actual full desktop/mobile coverage verified; no gate or baseline relaxed.",
+      "minutes": 0
+    },
+    {
+      "date": "2026-11-03",
+      "files": [
+        "docs/renderers/contracts/web_manual.css",
+        "docs/renderers/web/assets/shared/symbols/manifest.json",
+        "tools/asset_pipeline/native_svg.py",
+        "tools/web/shared_symbol_assets.py",
+        "tools/web/symbol_asset_admission.py"
+      ],
+      "packages": 1,
+      "handling": "keep-frozen",
+      "reason": "MA-381 selected27 release: retain the exact hash-bound reviewed runtime and source outputs; approval cold rebuild and all visible MD/CSS/art/IR.pages equivalence verified. Current main shared changes do not re-render frozen output; final source-bound symbol/caption and release admission remain required.",
       "minutes": 0
     }
   ]

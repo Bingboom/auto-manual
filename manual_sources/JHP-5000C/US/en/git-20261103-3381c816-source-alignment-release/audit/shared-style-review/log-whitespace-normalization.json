@@ -1,0 +1,9 @@
+{
+  "scope": "Archived Sphinx log only; remove trailing ASCII spaces/tabs, no visible character or line count changes. Source input list, approval bindings and all Web bytes remain unchanged.",
+  "path": "audit/shared-style-review/sphinx.log",
+  "before_sha256": "aa51a497acaa0fed4bd1ecd1cb46b70503455680ff41590890f98214c5873b96",
+  "after_sha256": "306717af48a77f358ab85b5b2f2c973d992046a9e145e9ab0a9107d9ff2ab17c",
+  "raw_archive": "audit/shared-style-review/raw-sphinx-log.zip",
+  "raw_archive_sha256": "5cdbcbacfb840a41e87d4365c7960ec4af9bf07b97302363f3f608eef5978c75",
+  "source_inputs_do_not_include_log": true
+}

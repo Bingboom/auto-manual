@@ -1,0 +1,161 @@
+{
+  "status": "review_passed_no_blocking_findings",
+  "review_type": "Read-only independent scope, registry, documentation and accepted-evidence consistency review; not another full visual review or deployment acceptance",
+  "base_commit": "b15cdd08dc4beaafd5adbbe15ef55d691d6bc56b",
+  "source_head": "38435765ab4bde90cfc573f71f7a0bcc6b1810cc",
+  "post_main_sync_head": "82622d8053477c1378b13d804b5ea69a4c543196",
+  "post_main_sync_base": "ebf428abb2d0de22273a3be3ed54d7a895f2aff4",
+  "selected_eight_same_trees_after_main_sync": true,
+  "branch_diff_paths_unchanged_after_main_sync": true,
+  "findings": [],
+  "packages": [
+    {
+      "model": "JE-1500C",
+      "path": "manual_sources/JE-1500C/US/en/git-20261103-46f58108-source-alignment-release",
+      "git_tree": "5eda9aa1b4e10055ba8859f7178f9218f15fd3c9",
+      "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+      "frozen_files_checked": 266,
+      "exact_approved_input_count": 82,
+      "current_shared_style_issues": 0,
+      "printed_table_declarations": 3,
+      "post_main_sync_same_tree": true
+    },
+    {
+      "model": "JE-300C",
+      "path": "manual_sources/JE-300C/US/en/git-20261103-a1128b25-source-alignment-release",
+      "git_tree": "d55b984261c87815ff8080b944077389d92840ba",
+      "source_sha256": "a1128b25213d72cecd35c48a901a958612f4568cb0b4068b1c72ab8e553e9498",
+      "frozen_files_checked": 171,
+      "exact_approved_input_count": 97,
+      "current_shared_style_issues": 0,
+      "printed_table_declarations": 1,
+      "post_main_sync_same_tree": true
+    },
+    {
+      "model": "JE-300D",
+      "path": "manual_sources/JE-300D/US/en/git-20261103-d3f47ff3-source-alignment-release",
+      "git_tree": "214770d0fc704d520b895799de6bc7e7d21b0de7",
+      "source_sha256": "d3f47ff3afe136665d1594e7395c9838ca00fe23450818e96641fc0fd4e6476b",
+      "frozen_files_checked": 143,
+      "exact_approved_input_count": 84,
+      "current_shared_style_issues": 0,
+      "printed_table_declarations": 0,
+      "post_main_sync_same_tree": true
+    },
+    {
+      "model": "JE-300E",
+      "path": "manual_sources/JE-300E/US/en/git-20261103-04bd8b90-source-alignment-release",
+      "git_tree": "4804f4d2f0aa2ce59584bf9331ff8a3625d9639e",
+      "source_sha256": "04bd8b90f146ff9b65a3ee4b47327d76128c3110c8ef46ac4061e6b0e77b3c8c",
+      "frozen_files_checked": 167,
+      "exact_approved_input_count": 95,
+      "current_shared_style_issues": 0,
+      "printed_table_declarations": 1,
+      "post_main_sync_same_tree": true
+    },
+    {
+      "model": "JE-500A",
+      "path": "manual_sources/JE-500A/US/en/git-20261103-5c065d11-source-alignment-release",
+      "git_tree": "7bacb68a9c45d2aa359ef18e26bc0f035320a535",
+      "source_sha256": "5c065d11c0191e7f9f5ef32ecd39fe0ca620f206c296c4eb6401a4b8215cea68",
+      "frozen_files_checked": 218,
+      "exact_approved_input_count": 55,
+      "current_shared_style_issues": 0,
+      "printed_table_declarations": 3,
+      "post_main_sync_same_tree": true
+    },
+    {
+      "model": "JHP-3000D",
+      "path": "manual_sources/JHP-3000D/US/en/git-20261103-34fedc15-source-alignment-release",
+      "git_tree": "efa00783fcad779f165bf0c04d06d12f9a1aa0a9",
+      "source_sha256": "34fedc156d52e8a50ca65d23327d323b3647aee03bd6b6b4aa1d681723e249dc",
+      "frozen_files_checked": 435,
+      "exact_approved_input_count": 94,
+      "current_shared_style_issues": 0,
+      "printed_table_declarations": 2,
+      "post_main_sync_same_tree": true
+    },
+    {
+      "model": "JHP-3600A",
+      "path": "manual_sources/JHP-3600A/US/en/git-20261103-d35114d3-source-alignment-release",
+      "git_tree": "f2048c26317ab0c0c823c3d5508902496f3cf2a8",
+      "source_sha256": "d35114d38afbdcb377441f44b00a3db575ad40710e19a71db4bc7a0a8fdaedb7",
+      "frozen_files_checked": 415,
+      "exact_approved_input_count": 334,
+      "current_shared_style_issues": 0,
+      "printed_table_declarations": 1,
+      "post_main_sync_same_tree": true
+    },
+    {
+      "model": "JHP-3600C",
+      "path": "manual_sources/JHP-3600C/US/en/git-20261103-cbb7eecb-source-alignment-release",
+      "git_tree": "f719d44ac9f0feb9e4f5d5e3b7618a1f1867d8d4",
+      "source_sha256": "cbb7eecba3f7a2a035f6c5bc0d3da54505b9d6399377d87eb639fc5683e694d1",
+      "frozen_files_checked": 432,
+      "exact_approved_input_count": 156,
+      "current_shared_style_issues": 0,
+      "printed_table_declarations": 0,
+      "post_main_sync_same_tree": true
+    }
+  ],
+  "total_frozen_file_hashes_checked": 2247,
+  "scope": {
+    "only_changed_manual_packages": "The eight US/en release roots listed above",
+    "deferred_five_excluded": [
+      "JHP-3600A-RC",
+      "JE-5000A",
+      "JE-1500D",
+      "JE-1000E-SIL",
+      "JE-1000F-SG"
+    ],
+    "JHP_5000C_release_not_imported": true,
+    "FR_ES_not_modified": true,
+    "phase2_templates_workflows_dependencies_CLI_gate_logic_baselines_unchanged": true
+  },
+  "registry": {
+    "new_release_entries": 8,
+    "removed_entries": 0,
+    "existing_entries_css_keep_frozen_only": 29,
+    "existing_approval_fields_unchanged": true,
+    "historical_output_files_unchanged": true,
+    "note": "Some old JP registry rows share names with deferred US models; these receive only shared-runtime keep-frozen drift bookkeeping, not new source acceptance, content changes or release enrollment.",
+    "post_main_sync": "Only three already-merged JP package registrations added by upstream main; previous registry entries identical."
+  },
+  "shared_change": {
+    "file": "docs/renderers/contracts/web_manual.css",
+    "change": "Exclude real code cells from last-DOM-child outer-border removal so rowspan continuation retains its internal divider.",
+    "documentation": "docs/renderers/contracts/STYLE_DEFINITION/text-callouts-tables.md",
+    "regression": "code-as-doc/reviews/us-reviewed-9-release-20261103/rowspan-border-check.json",
+    "gate_or_baseline_relaxation": false,
+    "new_blanket_exemptions": false,
+    "printed_table_exceptions": "11 target/language/page/text-hash declarations describe real source tables unsupported by component slots; not a baseline or general layout-table waiver. All eight pass unchanged current audit."
+  },
+  "evidence_consistency": {
+    "source_PDF_hashes_verified": true,
+    "all_manifest_inputs_verified": true,
+    "all_frozen_inputs_verified": true,
+    "all_approval_input_lists_exact": true,
+    "all_ir_model_region_locale_and_eligibility_consistent": true,
+    "coordinator_strict_and_cold_receipts_reviewed": true,
+    "package_local_current_style_and_page_reviews_reviewed": true,
+    "workstream_document_matches_eight_accepted_one_pending": true,
+    "old_full_PASS_superseded_for_3000D_3600A": true,
+    "publication_not_claimed": true
+  },
+  "cross_model_review": {
+    "finding": "No cross-model content routing or parameter transplantation found in reviewed changes/evidence. Eight distinct current source hashes and exact target identities bind acceptance.",
+    "specific_check": "JHP-3600A physical p20 source image was independently read: DC output100A and only AC/DC8020 input rows match current Web. JHP-3000D current-p6 art/content followup was independently completed earlier and matches integrated tree.",
+    "limit": "This receipt checks scope and evidence integrity; it does not claim to repeat every sentence/pixel comparison for all eight manuals."
+  },
+  "validation_performed": [
+    "git diff name/scope and semantic registry comparison",
+    "2247 frozen file hashes plus complete manifest input hashes",
+    "exact source/approval.json input-list verification",
+    "current audit_prepared_package_locale on eight stored packages: zero issues",
+    "git diff --check",
+    "post-main-sync tree equivalence for all selected packages"
+  ],
+  "slow_builds_repeated": false,
+  "repository_writes": false,
+  "live_table_or_publication_writes": false
+}
