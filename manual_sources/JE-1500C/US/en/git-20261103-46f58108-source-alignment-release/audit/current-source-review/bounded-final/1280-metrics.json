@@ -1,0 +1,17 @@
+{
+  "images": 72,
+  "broken": [],
+  "uncontained": [],
+  "lcd19": [
+    {
+      "text": "19",
+      "rowspan": 2
+    }
+  ],
+  "power": [
+    {
+      "noteBottom": 8049.390625,
+      "parentBottom": 8049.390625
+    }
+  ]
+}

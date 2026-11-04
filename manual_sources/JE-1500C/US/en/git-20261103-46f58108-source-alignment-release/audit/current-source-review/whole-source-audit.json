@@ -1,0 +1,2889 @@
+{
+  "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+  "source_pages": 22,
+  "exclusions": {
+    "1": "explicitoperatorfrontcoverexclusion",
+    "3": "printTOCexclusion"
+  },
+  "pages": [
+    {
+      "page": 2,
+      "review": "IMPORTANT 前言全文及准确型号。"
+    },
+    {
+      "page": 4,
+      "review": "12条安全事项、14条操作事项；原双栏及 Any tampering 开始的右栏续文；风险横条、WARNING、子项短横线。"
+    },
+    {
+      "page": 5,
+      "review": "DANGER 全文、维护段落、4个信号词原警示图标、左右两组安全图标及说明。"
+    },
+    {
+      "page": 6,
+      "review": "FCC 原左栏 opening/NOTE、右栏 If this equipment；3个装箱物品和TIP。"
+    },
+    {
+      "page": 7,
+      "review": "产品原图及所有端口标注/参数；下方AC总输出局部图保持右对齐。"
+    },
+    {
+      "page": 8,
+      "review": "LCD原图1–22；图例1–8全部状态与条件。"
+    },
+    {
+      "page": 9,
+      "review": "图例9–22；单圈序号；19对应高低温共用号格；On/Blink/Off全文。"
+    },
+    {
+      "page": 10,
+      "review": "原POWER/AC绘图；2小时、12小时、3W条件；右侧原生待机说明气泡和图内NOTE；AC图内先决条件。"
+    },
+    {
+      "page": 11,
+      "review": "原DC/USB绘图及图内先决条件、原生说明/CAUTION；12V而非24V；节能默认、25W、12小时、3秒和App条件。"
+    },
+    {
+      "page": 12,
+      "review": "原节能按键图；完整NOTE/WARNING；6行LCD操作表2分钟/2小时/3W；原按键和时钟图的2行操作表。"
+    },
+    {
+      "page": 13,
+      "review": "UPS的20ms、1440W、旁路条件；灰底图内先决条件；完整WARNING含3类关键设备和起搏器；4条CAUTION含级联；充电优先级和温度降额1000W。"
+    },
+    {
+      "page": 14,
+      "review": "原AC/单太阳能板/连接器绘图；AC警告；2个DC8020和每口最多2块板的说明。"
+    },
+    {
+      "page": 15,
+      "review": "太阳能开路电压16–60V；每口最多2块板；双口电压、板数、车充与太阳能同时使用限制；车充12V而非24V及图内原说明。"
+    },
+    {
+      "page": 16,
+      "review": "原4幅清洁绘图；原生4个圆号灰底卡片，桌面2×2、手机顺序排列；冲洗、干燥及回装全部条件。"
+    },
+    {
+      "page": 17,
+      "review": "储存1/3/12个月、温湿度和充放电周期；F0–F3分格且共用Restart措施；F4–F9全文，包括F6五步/30cm/45°C，F7太阳能条件/60V。"
+    },
+    {
+      "page": 18,
+      "review": "4组规格逐格核对：1536Wh/30Ah/51.2V、4000次、IP65条件；车充12–16V/8A与PV16–60V/12A/24A/800W明确分行；1800W/2000W15分钟/3600W；USB30/100/18W；1000W温度降额；全部脚注。"
+    },
+    {
+      "page": 19,
+      "review": "3+2年保修；全部5组条款、除外事项及解释权。"
+    },
+    {
+      "page": 20,
+      "review": "本型号原App商店/QR/加设备/按键图；2.1、2.2全文；标题1/2的圆点和2小时NOTE。"
+    },
+    {
+      "page": 21,
+      "review": "2.3–2.5全文和NOTE；原1500Ultra界面图；解绑及4.1–4.3 Wi-Fi/Bluetooth 2小时/10秒条件；标题3/4圆点。"
+    },
+    {
+      "page": 22,
+      "review": "公司、地址、电话、邮箱、网址原文；本次原PDF裁剪的3个联系图标和原QR；原生联系框。"
+    }
+  ],
+  "all_inherited_declarations": [
+    {
+      "record": "source_manifest.json#normalizations/0",
+      "old_declaration": "Outlined PDF: original.pdf has no text layer; every English line is a manual transcription from 220-400 dpi renders, kept as printed (source/intake.py names the physical page of each block).",
+      "disposition": "Verified current source PDF and full body transcription."
+    },
+    {
+      "record": "source_manifest.json#normalizations/1",
+      "old_declaration": "Shared Manual IR: content.json is replayed through the shared flow renderer and shared components. No package class, inline style or plain table (prepared-document shared-style gate).",
+      "disposition": "Native components retained; corrective native geometry is needed for original source columns/cells, not a historical text exception."
+    },
+    {
+      "record": "source_manifest.json#normalizations/2",
+      "old_declaration": "Print weights: bold print runs stay strong; headings keep print case. Printed bullet and number marks become lists; hollow-bullet items nest under their item. Subscripts (V_oc, LiFePO4) stay subscript.",
+      "disposition": "Bold/subscripts retained; native dashed subitems, single circled LCDnumbers andfilledcleaningnumbercircles restored."
+    },
+    {
+      "record": "source_manifest.json#normalizations/3",
+      "old_declaration": "Line ends inside a paragraph are wraps; the print's explicit line breaks inside one block stay line breaks.",
+      "disposition": "Native explicitDCinputconditionbreak andtablemergedcells restored; prose wraps remainresponsive."
+    },
+    {
+      "record": "source_manifest.json#normalizations/4",
+      "old_declaration": "Figures are source panels cropped just inside the print's panel frame (the decorative frame is drawn by the shared theme); words drawn in the art stay in the art and the alt text carries printed sentences. Notes and cautions the print boxes inside a panel are shared callout strips under the figure; grey text bubbles and pills inside a panel are shared text panels and their vector objects are left out of the render.",
+      "disposition": "REPAIRED: formerly detached panelcopy restored within sourceframes; native right-side standbybubble andcarcaption restore sourceposition; allsourceartunchanged."
+    },
+    {
+      "record": "source_manifest.json#normalizations/5",
+      "old_declaration": "LCD glyphs reuse the same-generation JE-1500D US or the JE-1500C TW glyph when it passes the fixed comparison against this print; the others are this print's native vector paths.",
+      "disposition": "Each reused glyph visually checked against current p8–9; correctnumber/icon/meaning mapping retained."
+    },
+    {
+      "record": "source_manifest.json#normalizations/6",
+      "old_declaration": "Cover (p1) and table of contents (p3) are not Web content; the back cover (p22) becomes the closing contact section without its phone/mail/web pictograms.",
+      "disposition": "REPAIRED: p22original phone/mail/webpictograms restored; frontcover/paperTOCexcluded byexplicituser instruction."
+    },
+    {
+      "record": "source_manifest.json#shared_component_exceptions/0",
+      "old_declaration": {
+        "kind": "table",
+        "language": "en",
+        "page_id": "operations",
+        "text_sha256": "e8ce2ba4b7ab87969952d7ffd034747e4fc3ea0581c079bb69af5ea2ec8c729b",
+        "reason": "Source p12 has two rows with original button and clock artwork. Shared key component requires three rows and text-reference disallows images; preserve the original two-row native table."
+      },
+      "disposition": "Sourcep12reallyhas2rowsandoriginalbutton/clockimages; native3-column table retained andmobilelastcolumnreachable."
+    }
+  ],
+  "all_asset_decisions": [
+    {
+      "record": "source/figures.json#0",
+      "source_declaration": {
+        "slot": "inbox-unit",
+        "physical_page": 6,
+        "bbox": [
+          48,
+          312,
+          121,
+          376
+        ],
+        "caption": "Jackery Explorer 1500 Ultra",
+        "embedded_words": true,
+        "local_path": "assets/inbox-unit.png",
+        "render_scale": 4,
+        "sha256": "a807633ca89476aa60603b9540d596395e702e88e83e29f001d45ea90165716e",
+        "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+        "decision": "extract source panel at 4x (inside the print frame)"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/figures.json#1",
+      "source_declaration": {
+        "slot": "inbox-ac-cable",
+        "physical_page": 6,
+        "bbox": [
+          168,
+          312,
+          219,
+          376
+        ],
+        "caption": "AC Charging Cable",
+        "embedded_words": false,
+        "local_path": "assets/inbox-ac-cable.png",
+        "render_scale": 4,
+        "sha256": "f0b3f6e292d5134bd18c719ec2e1eed1cde9c3bb3d5afb99c7b087086ea7f938",
+        "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+        "decision": "extract source panel at 4x (inside the print frame)"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/figures.json#2",
+      "source_declaration": {
+        "slot": "inbox-user-manual",
+        "physical_page": 6,
+        "bbox": [
+          270,
+          312,
+          314,
+          376
+        ],
+        "caption": "User Manual",
+        "embedded_words": true,
+        "local_path": "assets/inbox-user-manual.png",
+        "render_scale": 4,
+        "sha256": "0249925d61dd0351c8e9c81a08343e5fac42e5176b737c064934f45110f15a75",
+        "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+        "decision": "extract source panel at 4x (inside the print frame)"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/figures.json#3",
+      "source_declaration": {
+        "slot": "overview-front",
+        "physical_page": 7,
+        "bbox": [
+          25,
+          88,
+          343,
+          322
+        ],
+        "embedded_words": true,
+        "caption": "Front view of the Jackery Explorer 1500 Ultra: LCD; Main Power Button; DC 12V Port, 12V⎓10A Max; Protective Cover; DC Input, 2×DC8020 Ports: Car: 12-16V⎓8A Max, Double to 8A Max, PV: 16-60V⎓12A, Double to 24A / 800W Max; AC Input, 100-120V~60Hz, 15A Max; AC Power Button; USB-C1 Output, 30W Max, 5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A; USB-C2 Output, 100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A; USB-A Output, 18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A; AC Output, 120V~60Hz, 1800W",
+        "local_path": "assets/overview-front.png",
+        "render_scale": 4,
+        "sha256": "ceab5d51a64296b8c4967d2af2156ffea9491b33b9c005ebbf858428ce591e40",
+        "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+        "decision": "extract source panel at 4x (inside the print frame)"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/figures.json#4",
+      "source_declaration": {
+        "slot": "overview-ac-total",
+        "physical_page": 7,
+        "bbox": [
+          160,
+          340,
+          343,
+          400
+        ],
+        "embedded_words": true,
+        "caption": "AC Total Output, 1800W Rated (2000W for 15min. Max) 3600W Surge Peak",
+        "local_path": "assets/overview-ac-total.png",
+        "render_scale": 4,
+        "sha256": "0b4f9009010f986054a710798bbe4f7a73710adb1f350923acdcba71de428fbb",
+        "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+        "decision": "extract source panel at 4x (inside the print frame)"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/figures.json#5",
+      "source_declaration": {
+        "slot": "lcd-map",
+        "physical_page": 8,
+        "bbox": [
+          50,
+          54,
+          320,
+          212
+        ],
+        "embedded_words": true,
+        "caption": "LCD display with callouts 1 to 22",
+        "local_path": "assets/lcd-map.png",
+        "render_scale": 4,
+        "sha256": "331998c732f42adea4fc79ec925cceb177085aaeb896ea3bb44b1adce49d3459",
+        "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+        "decision": "extract source panel at 4x (inside the print frame)"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/figures.json#6",
+      "source_declaration": {
+        "slot": "power-on-off",
+        "physical_page": 10,
+        "bbox": [
+          28.5,
+          74,
+          339,
+          213
+        ],
+        "embedded_words": true,
+        "remove_boxes": [
+          [
+            162,
+            139,
+            333,
+            204.5
+          ]
+        ],
+        "caption": "POWER ON/OFF: on, Press once; off, Press and hold for 3s",
+        "local_path": "assets/power-on-off.png",
+        "render_scale": 4,
+        "sha256": "dcf7ab039883bbf653078c40945738348062f047aeed7943a0b1e0919633c472",
+        "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+        "decision": "extract source panel at 4x (inside the print frame)"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/figures.json#7",
+      "source_declaration": {
+        "slot": "ac-output",
+        "physical_page": 10,
+        "bbox": [
+          28.5,
+          290,
+          339,
+          491.5
+        ],
+        "embedded_words": true,
+        "remove_boxes": [
+          [
+            33,
+            292.5,
+            167,
+            309
+          ]
+        ],
+        "caption": "AC OUTPUT ON/OFF: on, Press once; off, Press once. Open the AC output cover and plug in the device",
+        "local_path": "assets/ac-output.png",
+        "render_scale": 4,
+        "sha256": "12a3f5291f7571677e0ffec283c9009df704697f7b2947813d7317044848a425",
+        "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+        "decision": "extract source panel at 4x (inside the print frame)"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/figures.json#8",
+      "source_declaration": {
+        "slot": "dc-usb-output",
+        "physical_page": 11,
+        "bbox": [
+          29.5,
+          40,
+          340,
+          312
+        ],
+        "embedded_words": false,
+        "remove_boxes": [
+          [
+            32,
+            39.5,
+            172,
+            56
+          ]
+        ],
+        "caption": "DC 12V/USB OUTPUT: open the port covers and connect devices to the USB ports and the DC 12V port",
+        "local_path": "assets/dc-usb-output.png",
+        "render_scale": 4,
+        "sha256": "295482391697efd71cab815d4048fc17876ff71de46a7f6d07716b457d0449e8",
+        "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+        "decision": "extract source panel at 4x (inside the print frame)"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/figures.json#9",
+      "source_declaration": {
+        "slot": "energy-saving",
+        "physical_page": 12,
+        "bbox": [
+          40,
+          28,
+          300,
+          105
+        ],
+        "embedded_words": true,
+        "caption": "Main Power Button + AC Power Button",
+        "local_path": "assets/energy-saving.png",
+        "render_scale": 4,
+        "sha256": "2e60056abde660945f5490af72999e50dda2865a32a93e4c9bc5eca834fe7949",
+        "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+        "decision": "extract source panel at 4x (inside the print frame)"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/figures.json#10",
+      "source_declaration": {
+        "slot": "lcd-screen",
+        "physical_page": 12,
+        "bbox": [
+          40,
+          272,
+          168,
+          382
+        ],
+        "embedded_words": false,
+        "caption": "Press the Main Power Button",
+        "local_path": "assets/lcd-screen.png",
+        "render_scale": 4,
+        "sha256": "5935522ee634d7c230e59c6ef086089b739142a7524a8e2e85044b68a7ff4691",
+        "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+        "decision": "extract source panel at 4x (inside the print frame)"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/figures.json#11",
+      "source_declaration": {
+        "slot": "ups",
+        "physical_page": 13,
+        "bbox": [
+          29.5,
+          118,
+          339.5,
+          196
+        ],
+        "embedded_words": false,
+        "remove_boxes": [
+          [
+            35,
+            121,
+            162,
+            135.5
+          ]
+        ],
+        "caption": "The product connected to a wall outlet with the AC charging cable and powering an appliance through the AC output",
+        "local_path": "assets/ups.png",
+        "render_scale": 4,
+        "sha256": "8a258f9d9f4c5c2a730ecc6f596674a04647e9d5ab17805662e82876a1529edb",
+        "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+        "decision": "extract source panel at 4x (inside the print frame)"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/figures.json#12",
+      "source_declaration": {
+        "slot": "charging-ac",
+        "physical_page": 14,
+        "bbox": [
+          29.3,
+          54.8,
+          339.4,
+          156.9
+        ],
+        "embedded_words": false,
+        "caption": "Connect the AC charging cable to the AC input port of the product and a wall outlet",
+        "local_path": "assets/charging-ac.png",
+        "render_scale": 4,
+        "sha256": "5d05ebfbfd0a3f4ecba4aae2a0a976466df307132ccc10de9822e8a0440b40f1",
+        "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+        "decision": "extract source panel at 4x (inside the print frame)"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/figures.json#13",
+      "source_declaration": {
+        "slot": "charging-solar",
+        "physical_page": 14,
+        "bbox": [
+          29.5,
+          254.5,
+          339,
+          359.3
+        ],
+        "embedded_words": false,
+        "caption": "One solar panel connected to a DC8020 input port",
+        "local_path": "assets/charging-solar.png",
+        "render_scale": 4,
+        "sha256": "7fe5cc287a29a80475f856315163f9f7192e3e7625818c74980444389d3145cf",
+        "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+        "decision": "extract source panel at 4x (inside the print frame)"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/figures.json#14",
+      "source_declaration": {
+        "slot": "charging-solar-connector",
+        "physical_page": 14,
+        "bbox": [
+          29.5,
+          366.2,
+          339,
+          493.3
+        ],
+        "embedded_words": false,
+        "caption": "Two solar panels connected to each DC8020 input port through the solar panel connector",
+        "local_path": "assets/charging-solar-connector.png",
+        "render_scale": 4,
+        "sha256": "7de18781a05b24284674d14df94127bf4a6632cd015025ecebc57387cbd84b61",
+        "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+        "decision": "extract source panel at 4x (inside the print frame)"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/figures.json#15",
+      "source_declaration": {
+        "slot": "charging-car",
+        "physical_page": 15,
+        "bbox": [
+          29.4,
+          204.5,
+          339.4,
+          348.5
+        ],
+        "embedded_words": true,
+        "remove_boxes": [
+          [
+            181,
+            317,
+            327,
+            334
+          ]
+        ],
+        "caption": "Charging with a car charger: Vehicle",
+        "local_path": "assets/charging-car.png",
+        "render_scale": 4,
+        "sha256": "4b9c86ea4ad07bf40887fde989e95d981bbcfae4135632b7ecad1ed8f35df0e6",
+        "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+        "decision": "extract source panel at 4x (inside the print frame)"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/figures.json#16",
+      "source_declaration": {
+        "slot": "cleaning-1",
+        "physical_page": 16,
+        "bbox": [
+          29,
+          103,
+          180,
+          228
+        ],
+        "embedded_words": false,
+        "caption": "Step 1: protective covers closed",
+        "local_path": "assets/cleaning-1.png",
+        "render_scale": 4,
+        "sha256": "1e86cbbf9fd6a720f1a9356ed0726b44c804760e8d7f479ceb5873252e877be9",
+        "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+        "decision": "extract source panel at 4x (inside the print frame)"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/figures.json#17",
+      "source_declaration": {
+        "slot": "cleaning-2",
+        "physical_page": 16,
+        "bbox": [
+          188,
+          100,
+          339,
+          228
+        ],
+        "embedded_words": false,
+        "caption": "Step 2: the product upside down on a dry towel",
+        "local_path": "assets/cleaning-2.png",
+        "render_scale": 4,
+        "sha256": "f42e1a4e900f273f3032e8e0bb27df12b226f48b32da2b8192416c352298edd6",
+        "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+        "decision": "extract source panel at 4x (inside the print frame)"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/figures.json#18",
+      "source_declaration": {
+        "slot": "cleaning-3",
+        "physical_page": 16,
+        "bbox": [
+          29,
+          280,
+          180,
+          472
+        ],
+        "embedded_words": true,
+        "caption": "Step 3: remove the screws (A), then take off the bottom panel (B)",
+        "local_path": "assets/cleaning-3.png",
+        "render_scale": 4,
+        "sha256": "23ebc92bdae3f43da4175763804c64d2def5b9df6a12d7cc33fea67c520e0d61",
+        "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+        "decision": "extract source panel at 4x (inside the print frame)"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/figures.json#19",
+      "source_declaration": {
+        "slot": "cleaning-4",
+        "physical_page": 16,
+        "bbox": [
+          188,
+          300,
+          339,
+          472
+        ],
+        "embedded_words": false,
+        "caption": "Step 4: rinse the cooling fins with clean water",
+        "local_path": "assets/cleaning-4.png",
+        "render_scale": 4,
+        "sha256": "d7942112849781c0faf3287298bf0b54e876efd71ec33ab1ebfd4167a3063a3c",
+        "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+        "decision": "extract source panel at 4x (inside the print frame)"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/figures.json#20",
+      "source_declaration": {
+        "slot": "app-store",
+        "physical_page": 20,
+        "bbox": [
+          45,
+          66,
+          122,
+          118
+        ],
+        "embedded_words": true,
+        "caption": "Available on the App Store, GET IT ON Google Play",
+        "local_path": "assets/app-store.png",
+        "render_scale": 4,
+        "sha256": "b4c654e8e2050fbba8da4ee801d8aa833df84c1e88a14b242caf9bc5f00850bc",
+        "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+        "decision": "extract source panel at 4x (inside the print frame)"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/figures.json#21",
+      "source_declaration": {
+        "slot": "app-qr",
+        "physical_page": 20,
+        "bbox": [
+          199.5,
+          67.5,
+          249.5,
+          118
+        ],
+        "embedded_words": false,
+        "caption": "Jackery App QR code",
+        "local_path": "assets/app-qr.png",
+        "render_scale": 4,
+        "sha256": "2a63f70fb69395698db10847129722925309f61220a3c8dc5eeedf3a69f14de8",
+        "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+        "decision": "extract source panel at 4x (inside the print frame)"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/figures.json#22",
+      "source_declaration": {
+        "slot": "app-add",
+        "physical_page": 20,
+        "bbox": [
+          100,
+          212,
+          275,
+          378
+        ],
+        "embedded_words": true,
+        "caption": "App screenshots 2.1 and 2.2",
+        "local_path": "assets/app-add.png",
+        "render_scale": 4,
+        "sha256": "432ea28980045cabf3dce65d6b9ced296a8a287070d8df9ecc7130f2ec596d54",
+        "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+        "decision": "extract source panel at 4x (inside the print frame)"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/figures.json#23",
+      "source_declaration": {
+        "slot": "app-control",
+        "physical_page": 20,
+        "bbox": [
+          41.5,
+          380.5,
+          340,
+          455
+        ],
+        "embedded_words": true,
+        "caption": "Main Power Button and AC Power Button",
+        "local_path": "assets/app-control.png",
+        "render_scale": 4,
+        "sha256": "15670b94965c4dd0db5b9cd6d2434587c1fedf4db289adec8c89a60d1528de71",
+        "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+        "decision": "extract source panel at 4x (inside the print frame)"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/figures.json#24",
+      "source_declaration": {
+        "slot": "app-results",
+        "physical_page": 21,
+        "bbox": [
+          52,
+          144,
+          325,
+          304
+        ],
+        "embedded_words": true,
+        "caption": "App screenshots 2.3, 2.4 and 2.5",
+        "local_path": "assets/app-results.png",
+        "render_scale": 4,
+        "sha256": "d2d438388c36f9071a01f3158f24f553c4f378eee0b1028506fbe1284772ff3e",
+        "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+        "decision": "extract source panel at 4x (inside the print frame)"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/figures.json#25",
+      "source_declaration": {
+        "slot": "contact-qr",
+        "physical_page": 22,
+        "bbox": [
+          305.5,
+          460.5,
+          341.5,
+          495.5
+        ],
+        "embedded_words": false,
+        "caption": "QR code",
+        "local_path": "assets/contact-qr.png",
+        "render_scale": 4,
+        "sha256": "c47057e03cb3f3655c5ab63b4be69fa18cde5d073e66056b55499be61bdd3c40",
+        "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+        "decision": "extract source panel at 4x (inside the print frame)"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/glyphs.json#0",
+      "source_declaration": {
+        "slot": "lcd-01-wifi",
+        "physical_page": 8,
+        "search_box": [
+          48.8,
+          230.0,
+          84.8,
+          254.8
+        ],
+        "local_path": "assets/lcd-01-wifi.svg",
+        "reuse_candidates": [
+          "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-01-wifi.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-01.svg"
+        ],
+        "drawing_indices": [
+          183,
+          184
+        ],
+        "glyph_bbox": [
+          56.63100051879883,
+          236.4169921875,
+          72.91500091552734,
+          248.6259765625
+        ],
+        "reuse_comparisons": [
+          {
+            "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-01-wifi.svg",
+            "status": "rejected",
+            "reason": "symbol requires real transparent margins; opaque backdrop detected"
+          },
+          {
+            "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-01.svg",
+            "status": "rejected",
+            "reason": "symbol requires real transparent margins; opaque backdrop detected"
+          }
+        ],
+        "decision": "native vector glyph from this print (transparent SVG)",
+        "sha256": "71c09209572b3e28106039399bf8cbbba409f4fcb2715027881c881be5d6c107"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/glyphs.json#1",
+      "source_declaration": {
+        "slot": "lcd-02-bluetooth",
+        "physical_page": 8,
+        "search_box": [
+          48.8,
+          256.40000000000003,
+          84.8,
+          282.59999999999997
+        ],
+        "local_path": "assets/lcd-02-bluetooth.svg",
+        "reuse_candidates": [
+          "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-02-bluetooth.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-02.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-01.svg"
+        ],
+        "drawing_indices": [
+          185,
+          186
+        ],
+        "glyph_bbox": [
+          59.04399871826172,
+          262.4329833984375,
+          70.54499816894531,
+          276.3179931640625
+        ],
+        "reuse_comparisons": [
+          {
+            "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-02-bluetooth.svg",
+            "status": "rejected",
+            "reason": "symbol requires real transparent margins; opaque backdrop detected"
+          },
+          {
+            "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-02.svg",
+            "status": "rejected",
+            "reason": "symbol requires real transparent margins; opaque backdrop detected"
+          },
+          {
+            "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-01.svg",
+            "status": "rejected",
+            "reason": "symbol requires real transparent margins; opaque backdrop detected"
+          }
+        ],
+        "decision": "native vector glyph from this print (transparent SVG)",
+        "sha256": "010ecd186214b8e46a4c04e40fc04c11a5a8dc6ab492468a68750915e4421338"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/glyphs.json#2",
+      "source_declaration": {
+        "slot": "lcd-03-quiet-charging",
+        "physical_page": 8,
+        "search_box": [
+          48.8,
+          283.8,
+          84.8,
+          322.0
+        ],
+        "local_path": "assets/lcd-03-quiet-charging.svg",
+        "reuse_candidates": [
+          "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-03-quiet-charging.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-03.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-02.svg"
+        ],
+        "drawing_indices": [
+          175,
+          176
+        ],
+        "glyph_bbox": [
+          59.2655029296875,
+          297.8406982421875,
+          70.28019714355469,
+          309.1796875
+        ],
+        "reuse_source": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-03-quiet-charging.svg",
+        "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+        "reuse_comparisons": [
+          {
+            "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-03-quiet-charging.svg",
+            "status": "passed",
+            "max_mean_channel_error": 0.01616
+          }
+        ],
+        "sha256": "18c777e92a70c7bcfb658e993cac00c26da5b9e1b60cb9f86c08e1416c292272"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/glyphs.json#3",
+      "source_declaration": {
+        "slot": "lcd-04-battery-saving",
+        "physical_page": 8,
+        "search_box": [
+          48.8,
+          323.20000000000005,
+          84.8,
+          357.0
+        ],
+        "local_path": "assets/lcd-04-battery-saving.svg",
+        "reuse_candidates": [
+          "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-04-battery-saving.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-04.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-03.svg"
+        ],
+        "drawing_indices": [
+          177,
+          178,
+          179,
+          180,
+          181,
+          182
+        ],
+        "glyph_bbox": [
+          60.791099548339844,
+          334.0526123046875,
+          68.75399780273438,
+          345.3915710449219
+        ],
+        "reuse_source": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-04-battery-saving.svg",
+        "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+        "reuse_comparisons": [
+          {
+            "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-04-battery-saving.svg",
+            "status": "passed",
+            "max_mean_channel_error": 0.013827
+          }
+        ],
+        "sha256": "d27fc71354e5a3783ee26c9dbefa14a5eb80f96d49cdc36408d435ab55495228"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/glyphs.json#4",
+      "source_declaration": {
+        "slot": "lcd-05-charging-plan",
+        "physical_page": 8,
+        "search_box": [
+          48.8,
+          358.20000000000005,
+          84.8,
+          396.79999999999995
+        ],
+        "local_path": "assets/lcd-05-charging-plan.svg",
+        "reuse_candidates": [
+          "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-05-charging-plan.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-05.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-04.svg"
+        ],
+        "drawing_indices": [
+          562,
+          563,
+          564,
+          565
+        ],
+        "glyph_bbox": [
+          58.688697814941406,
+          371.4385986328125,
+          69.42669677734375,
+          383.3446044921875
+        ],
+        "reuse_source": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-05.svg",
+        "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+        "reuse_comparisons": [
+          {
+            "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-05-charging-plan.svg",
+            "status": "rejected",
+            "reason": "symbol glyph/background differs from authoritative PDF"
+          },
+          {
+            "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-05.svg",
+            "status": "passed",
+            "max_mean_channel_error": 0.008068
+          }
+        ],
+        "sha256": "ae2167d3e18827a575ec2d49ccbd168014dc35517dc2dd01a04e499774477e24"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/glyphs.json#5",
+      "source_declaration": {
+        "slot": "lcd-06-self-powered",
+        "physical_page": 8,
+        "search_box": [
+          48.8,
+          398.0,
+          84.8,
+          442.0
+        ],
+        "local_path": "assets/lcd-06-self-powered.svg",
+        "reuse_candidates": [
+          "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-06-self-powered.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-06.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-05.svg"
+        ],
+        "drawing_indices": [
+          566,
+          567,
+          568,
+          569,
+          570,
+          571,
+          572,
+          573
+        ],
+        "glyph_bbox": [
+          54.4833984375,
+          412.5150146484375,
+          73.16079711914062,
+          427.0539855957031
+        ],
+        "reuse_source": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-06.svg",
+        "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+        "reuse_comparisons": [
+          {
+            "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-06-self-powered.svg",
+            "status": "rejected",
+            "reason": "symbol glyph/background differs from authoritative PDF"
+          },
+          {
+            "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-06.svg",
+            "status": "passed",
+            "max_mean_channel_error": 0.002423
+          }
+        ],
+        "sha256": "6264e35ea700fb8ec93473700101202e7d5548ebd7e80bf4e9ebd3907b20aaf4"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/glyphs.json#6",
+      "source_declaration": {
+        "slot": "lcd-07-ups",
+        "physical_page": 8,
+        "search_box": [
+          48.8,
+          443.20000000000005,
+          84.8,
+          470.79999999999995
+        ],
+        "local_path": "assets/lcd-07-ups.svg",
+        "reuse_candidates": [
+          "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-08-ups.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-07.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-06.svg"
+        ],
+        "drawing_indices": [
+          554,
+          555,
+          556,
+          557,
+          558,
+          559,
+          560,
+          561
+        ],
+        "glyph_bbox": [
+          53.641998291015625,
+          451.052978515625,
+          73.98799896240234,
+          461.2239990234375
+        ],
+        "reuse_comparisons": [
+          {
+            "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-08-ups.svg",
+            "status": "rejected",
+            "reason": "symbol requires real transparent margins; opaque backdrop detected"
+          },
+          {
+            "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-07.svg",
+            "status": "rejected",
+            "reason": "symbol requires real transparent margins; opaque backdrop detected"
+          },
+          {
+            "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-06.svg",
+            "status": "rejected",
+            "reason": "symbol requires real transparent margins; opaque backdrop detected"
+          }
+        ],
+        "decision": "native vector glyph from this print (transparent SVG)",
+        "sha256": "ae385c871ee394bb2d3617dcb04b173554c353813a5bb9800aaac5da15cb70ec"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/glyphs.json#7",
+      "source_declaration": {
+        "slot": "lcd-08-ac-power",
+        "physical_page": 8,
+        "search_box": [
+          48.8,
+          472.0,
+          84.8,
+          486.59999999999997
+        ],
+        "local_path": "assets/lcd-08-ac-power.svg",
+        "reuse_candidates": [
+          "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-09-ac-power.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-08.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-07.svg"
+        ],
+        "drawing_indices": [
+          171,
+          172,
+          173,
+          174
+        ],
+        "glyph_bbox": [
+          56.83599853515625,
+          472.19000244140625,
+          72.70999908447266,
+          485.7959899902344
+        ],
+        "reuse_comparisons": [
+          {
+            "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-09-ac-power.svg",
+            "status": "rejected",
+            "reason": "symbol requires real transparent margins; opaque backdrop detected"
+          },
+          {
+            "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-08.svg",
+            "status": "rejected",
+            "reason": "symbol requires real transparent margins; opaque backdrop detected"
+          },
+          {
+            "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-07.svg",
+            "status": "rejected",
+            "reason": "symbol requires real transparent margins; opaque backdrop detected"
+          }
+        ],
+        "decision": "native vector glyph from this print (transparent SVG)",
+        "sha256": "2cdae40be011d5ba5d385d4eb908ed405db3acb941b869480820611ce1ef627f"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/glyphs.json#8",
+      "source_declaration": {
+        "slot": "lcd-09-output-voltage-frequency",
+        "physical_page": 9,
+        "search_box": [
+          48.8,
+          33.2,
+          84.8,
+          56.0
+        ],
+        "local_path": "assets/lcd-09-output-voltage-frequency.svg",
+        "reuse_candidates": [
+          "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-10-output-voltage-frequency.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-09.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-08.svg"
+        ],
+        "drawing_indices": [
+          1474,
+          1475,
+          1476,
+          1477,
+          1478,
+          1479,
+          1480,
+          1481,
+          1482,
+          1483
+        ],
+        "glyph_bbox": [
+          50.472999572753906,
+          40.139984130859375,
+          83.1449966430664,
+          46.217987060546875
+        ],
+        "reuse_comparisons": [
+          {
+            "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-10-output-voltage-frequency.svg",
+            "status": "rejected",
+            "reason": "symbol requires real transparent margins; opaque backdrop detected"
+          },
+          {
+            "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-09.svg",
+            "status": "rejected",
+            "reason": "symbol requires real transparent margins; opaque backdrop detected"
+          },
+          {
+            "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-08.svg",
+            "status": "rejected",
+            "reason": "symbol requires real transparent margins; opaque backdrop detected"
+          }
+        ],
+        "decision": "native vector glyph from this print (transparent SVG)",
+        "sha256": "3735cdce1ef1ad0567ce15b8cf5a75dc142648bfd2e633121a50e9ad30245eba"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/glyphs.json#9",
+      "source_declaration": {
+        "slot": "lcd-10-input-power",
+        "physical_page": 9,
+        "search_box": [
+          48.8,
+          57.2,
+          84.8,
+          76.2
+        ],
+        "local_path": "assets/lcd-10-input-power.svg",
+        "reuse_candidates": [
+          "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-11-input-power.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-10.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-09.svg"
+        ],
+        "drawing_indices": [
+          393,
+          394,
+          395,
+          396,
+          397,
+          398
+        ],
+        "glyph_bbox": [
+          53.834999084472656,
+          60.251007080078125,
+          80.177001953125,
+          73.35198974609375
+        ],
+        "reuse_comparisons": [
+          {
+            "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-11-input-power.svg",
+            "status": "rejected",
+            "reason": "symbol requires real transparent margins; opaque backdrop detected"
+          },
+          {
+            "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-10.svg",
+            "status": "rejected",
+            "reason": "symbol requires real transparent margins; opaque backdrop detected"
+          },
+          {
+            "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-09.svg",
+            "status": "rejected",
+            "reason": "symbol requires real transparent margins; opaque backdrop detected"
+          }
+        ],
+        "decision": "native vector glyph from this print (transparent SVG)",
+        "sha256": "ac67d2454f9062e83b6e143e5cb9e92e2301715f41d502d513e6206c71e71241"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/glyphs.json#10",
+      "source_declaration": {
+        "slot": "lcd-11-remaining-charge-time",
+        "physical_page": 9,
+        "search_box": [
+          48.8,
+          77.39999999999999,
+          84.8,
+          105.0
+        ],
+        "local_path": "assets/lcd-11-remaining-charge-time.svg",
+        "reuse_candidates": [
+          "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-12-remaining-charge-time.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-11.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-10.svg"
+        ],
+        "drawing_indices": [
+          389,
+          390,
+          391,
+          392
+        ],
+        "glyph_bbox": [
+          56.73099899291992,
+          87.052001953125,
+          77.28199768066406,
+          96.07400512695312
+        ],
+        "reuse_comparisons": [
+          {
+            "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-12-remaining-charge-time.svg",
+            "status": "rejected",
+            "reason": "symbol requires real transparent margins; opaque backdrop detected"
+          },
+          {
+            "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-11.svg",
+            "status": "rejected",
+            "reason": "symbol requires real transparent margins; opaque backdrop detected"
+          },
+          {
+            "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-10.svg",
+            "status": "rejected",
+            "reason": "symbol requires real transparent margins; opaque backdrop detected"
+          }
+        ],
+        "decision": "native vector glyph from this print (transparent SVG)",
+        "sha256": "3a5bc2c28349d69ddd08fe84aa1fc861518b0858afe65e7af7cea148436dabfe"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/glyphs.json#11",
+      "source_declaration": {
+        "slot": "lcd-12-ac-wall-charging",
+        "physical_page": 9,
+        "search_box": [
+          48.8,
+          106.19999999999999,
+          84.8,
+          132.8
+        ],
+        "local_path": "assets/lcd-12-ac-wall-charging.svg",
+        "reuse_candidates": [
+          "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-13-ac-wall-charging.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-12.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-11.svg"
+        ],
+        "drawing_indices": [
+          288,
+          289,
+          290,
+          291,
+          292,
+          293,
+          294,
+          295,
+          296,
+          297,
+          298,
+          299,
+          300
+        ],
+        "glyph_bbox": [
+          60.32240295410156,
+          113.54088592529297,
+          71.660400390625,
+          124.8798828125
+        ],
+        "reuse_source": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-12.svg",
+        "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+        "reuse_comparisons": [
+          {
+            "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-13-ac-wall-charging.svg",
+            "status": "rejected",
+            "reason": "symbol glyph/background differs from authoritative PDF"
+          },
+          {
+            "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-12.svg",
+            "status": "passed",
+            "max_mean_channel_error": 0.003253
+          }
+        ],
+        "sha256": "0fe2c971cd3f076b937fc814afed2c5b9c67c52d1e2f118b89fb3ea76e08d3e2"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/glyphs.json#12",
+      "source_declaration": {
+        "slot": "lcd-13-car-charging",
+        "physical_page": 9,
+        "search_box": [
+          48.8,
+          134.0,
+          84.8,
+          163.6
+        ],
+        "local_path": "assets/lcd-13-car-charging.svg",
+        "reuse_candidates": [
+          "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-14-car-charging.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-13.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-12.svg"
+        ],
+        "drawing_indices": [
+          324,
+          325,
+          326,
+          327,
+          328,
+          329,
+          330,
+          331,
+          332,
+          333,
+          334,
+          335,
+          336,
+          337,
+          338,
+          339,
+          340
+        ],
+        "glyph_bbox": [
+          60.32240295410156,
+          144.06398010253906,
+          71.660400390625,
+          155.40298461914062
+        ],
+        "reuse_source": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-14-car-charging.svg",
+        "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+        "reuse_comparisons": [
+          {
+            "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-14-car-charging.svg",
+            "status": "passed",
+            "max_mean_channel_error": 0.018747
+          }
+        ],
+        "sha256": "d6d69675228490e381df91275cb9543244ae79b30b31d62b3aad321c9d6ef87c"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/glyphs.json#13",
+      "source_declaration": {
+        "slot": "lcd-14-solar-charging",
+        "physical_page": 9,
+        "search_box": [
+          48.8,
+          164.79999999999998,
+          84.8,
+          192.4
+        ],
+        "local_path": "assets/lcd-14-solar-charging.svg",
+        "reuse_candidates": [
+          "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-15-solar-charging.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-14.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-13.svg"
+        ],
+        "drawing_indices": [
+          282,
+          283,
+          284,
+          285,
+          286,
+          287
+        ],
+        "glyph_bbox": [
+          60.197296142578125,
+          172.2115936279297,
+          71.72029876708984,
+          183.73458862304688
+        ],
+        "reuse_comparisons": [
+          {
+            "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-15-solar-charging.svg",
+            "status": "rejected",
+            "reason": "symbol glyph/background differs from authoritative PDF"
+          },
+          {
+            "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-14.svg",
+            "status": "rejected",
+            "reason": "symbol glyph/background differs from authoritative PDF"
+          },
+          {
+            "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-13.svg",
+            "status": "rejected",
+            "reason": "symbol glyph/background differs from authoritative PDF"
+          }
+        ],
+        "decision": "native vector glyph from this print (transparent SVG)",
+        "sha256": "8a817e8fcdee1659c79574cb3545f2bfd7324ea575a223d806bf32b9d434c87c"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/glyphs.json#14",
+      "source_declaration": {
+        "slot": "lcd-15-battery-power",
+        "physical_page": 9,
+        "search_box": [
+          48.8,
+          193.6,
+          84.8,
+          224.0
+        ],
+        "local_path": "assets/lcd-15-battery-power.svg",
+        "reuse_candidates": [
+          "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-16-battery-power.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-15.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-14.svg"
+        ],
+        "drawing_indices": [
+          82
+        ],
+        "glyph_bbox": [
+          57.82849884033203,
+          199.82901000976562,
+          75.17549896240234,
+          217.17001342773438
+        ],
+        "reuse_source": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-15.svg",
+        "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+        "reuse_comparisons": [
+          {
+            "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-16-battery-power.svg",
+            "status": "rejected",
+            "reason": "symbol glyph/background differs from authoritative PDF"
+          },
+          {
+            "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-15.svg",
+            "status": "passed",
+            "max_mean_channel_error": 0.007413
+          }
+        ],
+        "sha256": "463a1423db307feeb0045dbe94a9844b65ffcde9977db8de1c5993c046469aa4"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/glyphs.json#15",
+      "source_declaration": {
+        "slot": "lcd-16-low-battery",
+        "physical_page": 9,
+        "search_box": [
+          48.8,
+          225.2,
+          84.8,
+          274.0
+        ],
+        "local_path": "assets/lcd-16-low-battery.svg",
+        "reuse_candidates": [
+          "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-17-low-battery.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-16.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-15.svg"
+        ],
+        "drawing_indices": [
+          104
+        ],
+        "glyph_bbox": [
+          57.371097564697266,
+          245.23919677734375,
+          75.63309478759766,
+          255.1602020263672
+        ],
+        "reuse_comparisons": [
+          {
+            "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-17-low-battery.svg",
+            "status": "rejected",
+            "reason": "symbol requires real transparent margins; opaque backdrop detected"
+          },
+          {
+            "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-16.svg",
+            "status": "rejected",
+            "reason": "symbol requires real transparent margins; opaque backdrop detected"
+          },
+          {
+            "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-15.svg",
+            "status": "rejected",
+            "reason": "symbol requires real transparent margins; opaque backdrop detected"
+          }
+        ],
+        "decision": "native vector glyph from this print (transparent SVG)",
+        "sha256": "86a8974d67277d48c1eb28384a089b9c20e82411009e83dbc305f07ffb34ce1a"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/glyphs.json#16",
+      "source_declaration": {
+        "slot": "lcd-17-remaining-battery",
+        "physical_page": 9,
+        "search_box": [
+          48.8,
+          275.20000000000005,
+          84.8,
+          300.79999999999995
+        ],
+        "local_path": "assets/lcd-17-remaining-battery.svg",
+        "reuse_candidates": [
+          "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-18-remaining-battery.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-17.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-16.svg"
+        ],
+        "drawing_indices": [
+          187,
+          188,
+          189,
+          190,
+          191,
+          192,
+          193,
+          194,
+          195,
+          196,
+          197,
+          198,
+          199,
+          200,
+          201,
+          202,
+          203,
+          204,
+          205,
+          206,
+          207,
+          208,
+          209,
+          210,
+          211,
+          212,
+          213,
+          214,
+          215,
+          216,
+          217,
+          218,
+          219,
+          220
+        ],
+        "glyph_bbox": [
+          53.71900177001953,
+          282.3269958496094,
+          79.28500366210938,
+          294.6199951171875
+        ],
+        "reuse_comparisons": [
+          {
+            "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-18-remaining-battery.svg",
+            "status": "rejected",
+            "reason": "symbol requires real transparent margins; opaque backdrop detected"
+          },
+          {
+            "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-17.svg",
+            "status": "rejected",
+            "reason": "symbol requires real transparent margins; opaque backdrop detected"
+          },
+          {
+            "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-16.svg",
+            "status": "rejected",
+            "reason": "symbol requires real transparent margins; opaque backdrop detected"
+          }
+        ],
+        "decision": "native vector glyph from this print (transparent SVG)",
+        "sha256": "9939bb397d3b641928d06dd108a909dcf29b97f0ff528445cde4d1037f3742aa"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/glyphs.json#17",
+      "source_declaration": {
+        "slot": "lcd-18-fault-code",
+        "physical_page": 9,
+        "search_box": [
+          48.8,
+          302.0,
+          84.8,
+          329.59999999999997
+        ],
+        "local_path": "assets/lcd-18-fault-code.svg",
+        "reuse_candidates": [
+          "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-19-fault-code.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-18.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-17.svg"
+        ],
+        "drawing_indices": [
+          175,
+          176,
+          177
+        ],
+        "glyph_bbox": [
+          58.80710220336914,
+          308.031494140625,
+          74.19409942626953,
+          322.20648193359375
+        ],
+        "reuse_source": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-19-fault-code.svg",
+        "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+        "reuse_comparisons": [
+          {
+            "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-19-fault-code.svg",
+            "status": "passed",
+            "max_mean_channel_error": 0.008611
+          }
+        ],
+        "sha256": "a26412e668dec6f865288f0193ffffa310e99cad7a4ee807c7681c19b5b4e01c"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/glyphs.json#18",
+      "source_declaration": {
+        "slot": "lcd-19a-high-temperature",
+        "physical_page": 9,
+        "search_box": [
+          48.8,
+          330.8,
+          84.8,
+          364.2
+        ],
+        "local_path": "assets/lcd-19a-high-temperature.svg",
+        "reuse_candidates": [
+          "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-20a-high-temperature.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-19.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-18.svg"
+        ],
+        "drawing_indices": [
+          361,
+          362
+        ],
+        "glyph_bbox": [
+          59.28669738769531,
+          341.2840881347656,
+          74.66069793701172,
+          355.4590759277344
+        ],
+        "reuse_source": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-20a-high-temperature.svg",
+        "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+        "reuse_comparisons": [
+          {
+            "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-20a-high-temperature.svg",
+            "status": "passed",
+            "max_mean_channel_error": 0.018209
+          }
+        ],
+        "sha256": "f6805b16897e54b7051b8996a28cd70c6d6a852f70822ad00caf4c511443cdfe"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/glyphs.json#19",
+      "source_declaration": {
+        "slot": "lcd-19b-low-temperature",
+        "physical_page": 9,
+        "search_box": [
+          48.8,
+          365.40000000000003,
+          84.8,
+          398.79999999999995
+        ],
+        "local_path": "assets/lcd-19b-low-temperature.svg",
+        "reuse_candidates": [
+          "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-20b-low-temperature.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-20.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-19.svg"
+        ],
+        "drawing_indices": [
+          363,
+          364
+        ],
+        "glyph_bbox": [
+          59.32969665527344,
+          374.90771484375,
+          74.70269775390625,
+          389.08270263671875
+        ],
+        "reuse_source": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-20b-low-temperature.svg",
+        "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+        "reuse_comparisons": [
+          {
+            "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-20b-low-temperature.svg",
+            "status": "passed",
+            "max_mean_channel_error": 0.009968
+          }
+        ],
+        "sha256": "0f131a3e36e0d3e689826b18f6dece30a090848e8254c8aaef78789cc275d075"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/glyphs.json#20",
+      "source_declaration": {
+        "slot": "lcd-20-energy-saving",
+        "physical_page": 9,
+        "search_box": [
+          48.8,
+          400.0,
+          84.8,
+          429.0
+        ],
+        "local_path": "assets/lcd-20-energy-saving.svg",
+        "reuse_candidates": [
+          "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-21-energy-saving.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-21.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-20.svg"
+        ],
+        "drawing_indices": [
+          166,
+          167,
+          168,
+          169,
+          170,
+          171,
+          172,
+          173,
+          174
+        ],
+        "glyph_bbox": [
+          58.29010009765625,
+          407.4176940917969,
+          74.71309661865234,
+          419.148681640625
+        ],
+        "reuse_source": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-20.svg",
+        "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+        "reuse_comparisons": [
+          {
+            "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-21-energy-saving.svg",
+            "status": "rejected",
+            "reason": "symbol glyph/background differs from authoritative PDF"
+          },
+          {
+            "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-21.svg",
+            "status": "rejected",
+            "reason": "symbol glyph/background differs from authoritative PDF"
+          },
+          {
+            "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-20.svg",
+            "status": "passed",
+            "max_mean_channel_error": 0.012877
+          }
+        ],
+        "sha256": "12223fddf58a3ffe6ed44f9677c824fc2b1e2e0414c7bf7b79e6b5f7d67e86b8"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/glyphs.json#21",
+      "source_declaration": {
+        "slot": "lcd-21-output-power",
+        "physical_page": 9,
+        "search_box": [
+          48.8,
+          430.20000000000005,
+          84.8,
+          453.0
+        ],
+        "local_path": "assets/lcd-21-output-power.svg",
+        "reuse_candidates": [
+          "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-22-output-power.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-22.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-21.svg"
+        ],
+        "drawing_indices": [
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44
+        ],
+        "glyph_bbox": [
+          51.952999114990234,
+          433.9389953613281,
+          82.11299896240234,
+          448.94000244140625
+        ],
+        "reuse_comparisons": [
+          {
+            "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-22-output-power.svg",
+            "status": "rejected",
+            "reason": "symbol requires real transparent margins; opaque backdrop detected"
+          },
+          {
+            "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-22.svg",
+            "status": "rejected",
+            "reason": "symbol requires real transparent margins; opaque backdrop detected"
+          },
+          {
+            "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-21.svg",
+            "status": "rejected",
+            "reason": "symbol requires real transparent margins; opaque backdrop detected"
+          }
+        ],
+        "decision": "native vector glyph from this print (transparent SVG)",
+        "sha256": "9212e47a432096a92ca114d0e77d975b4e87efd2ff0313882cf25cd6878a284c"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/glyphs.json#22",
+      "source_declaration": {
+        "slot": "lcd-22-remaining-discharge-time",
+        "physical_page": 9,
+        "search_box": [
+          48.8,
+          454.20000000000005,
+          84.8,
+          479.4
+        ],
+        "local_path": "assets/lcd-22-remaining-discharge-time.svg",
+        "reuse_candidates": [
+          "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-23-remaining-discharge-time.svg",
+          "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-22.svg"
+        ],
+        "drawing_indices": [
+          45,
+          46,
+          47,
+          48
+        ],
+        "glyph_bbox": [
+          51.9109992980957,
+          461.5889892578125,
+          81.25799560546875,
+          471.2929992675781
+        ],
+        "reuse_comparisons": [
+          {
+            "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-23-remaining-discharge-time.svg",
+            "status": "rejected",
+            "reason": "symbol requires real transparent margins; opaque backdrop detected"
+          },
+          {
+            "candidate": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/assets/lcd-22.svg",
+            "status": "rejected",
+            "reason": "symbol requires real transparent margins; opaque backdrop detected"
+          }
+        ],
+        "decision": "native vector glyph from this print (transparent SVG)",
+        "sha256": "19eba0a14f785913e7abc876c99a94695c0f1ced60a06cf2c1452bb713787970"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/glyphs.json#23",
+      "source_declaration": {
+        "slot": "fcc_mark",
+        "physical_page": 6,
+        "search_box": [
+          33,
+          42,
+          68,
+          67
+        ],
+        "local_path": "assets/fcc_mark.svg",
+        "reuse_candidates": [
+          "docs/renderers/web/assets/shared/symbols/native-v1/fcc_mark.svg"
+        ],
+        "drawing_indices": [
+          8066
+        ],
+        "glyph_bbox": [
+          34.785400390625,
+          44.13948059082031,
+          66.00740051269531,
+          65.8504867553711
+        ],
+        "reuse_source": "docs/renderers/web/assets/shared/symbols/native-v1/fcc_mark.svg",
+        "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+        "reuse_comparisons": [
+          {
+            "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/fcc_mark.svg",
+            "status": "passed",
+            "max_mean_channel_error": 0.017126
+          }
+        ],
+        "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/symbols.json#0",
+      "source_declaration": {
+        "language": "en",
+        "physical_page": 5,
+        "family": "warning/",
+        "meaning": "Warning and Caution Symbols. Must read to alert individuals to potential hazards or risks.",
+        "glyph_search_box": [
+          29.8,
+          309.6,
+          68.5,
+          337.79999999999995
+        ],
+        "caption_search_box": [
+          69.5,
+          309.6,
+          181.3,
+          337.79999999999995
+        ],
+        "drawing_indices": [
+          342,
+          343,
+          344
+        ],
+        "glyph_bbox": [
+          38.010501861572266,
+          314.138916015625,
+          59.78950119018555,
+          333.4149169921875
+        ],
+        "caption_bbox": [
+          73.1206,
+          314.005,
+          167.4657,
+          334.1604
+        ],
+        "row_bbox": [
+          37.0105,
+          313.005,
+          168.4657,
+          335.1604
+        ],
+        "caption_text": "Warning and Caution Symbols. Must read to alert individuals to potential hazards or risks.",
+        "caption_mode": "outlined-manual-transcription",
+        "caption_sha256": "780150d459f477a4b8b9677a7713c55b0998ea5e0487df92823a686f4b2868f6",
+        "shared_symbol_key": "warning/outline-triangle-tinted",
+        "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_warning_triangle.svg",
+        "local_path": "assets/symbol_warning_triangle.svg",
+        "decision": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)",
+        "candidates": [
+          {
+            "shared_symbol_key": "warning/outline-triangle-tinted",
+            "status": "passed",
+            "max_mean_channel_error": 0.010933
+          }
+        ],
+        "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/symbols.json#1",
+      "source_declaration": {
+        "language": "en",
+        "physical_page": 5,
+        "family": "read-manual/",
+        "meaning": "Read the user manual before operation.",
+        "glyph_search_box": [
+          29.8,
+          340.0,
+          68.5,
+          368.29999999999995
+        ],
+        "caption_search_box": [
+          69.5,
+          340.0,
+          181.3,
+          368.29999999999995
+        ],
+        "drawing_indices": [
+          1619,
+          1620,
+          1621
+        ],
+        "glyph_bbox": [
+          38.23979949951172,
+          347.57159423828125,
+          59.56079864501953,
+          363.63458251953125
+        ],
+        "caption_bbox": [
+          73.4005,
+          351.732,
+          176.7356,
+          358.9408
+        ],
+        "row_bbox": [
+          37.2398,
+          346.5716,
+          177.7356,
+          364.6346
+        ],
+        "caption_text": "Read the user manual before operation.",
+        "caption_mode": "outlined-manual-transcription",
+        "caption_sha256": "c5e099121a80328162a2c92c661770fc072610b05d1b4d01607c9619da147625",
+        "shared_symbol_key": "read-manual/book-information",
+        "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_read_manual.svg",
+        "local_path": "assets/symbol_read_manual.svg",
+        "decision": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)",
+        "candidates": [
+          {
+            "shared_symbol_key": "read-manual/book-information",
+            "status": "passed",
+            "max_mean_channel_error": 0.018763
+          }
+        ],
+        "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/symbols.json#2",
+      "source_declaration": {
+        "language": "en",
+        "physical_page": 5,
+        "family": "electric-shock/",
+        "meaning": "Risk of electric shock",
+        "glyph_search_box": [
+          29.8,
+          370.8,
+          68.5,
+          399.0
+        ],
+        "caption_search_box": [
+          69.5,
+          370.8,
+          181.3,
+          399.0
+        ],
+        "drawing_indices": [
+          1554,
+          1555,
+          1556
+        ],
+        "glyph_bbox": [
+          38.47690200805664,
+          375.944091796875,
+          60.28089904785156,
+          395.24310302734375
+        ],
+        "caption_bbox": [
+          73.4325,
+          383.114,
+          131.5114,
+          389.6113
+        ],
+        "row_bbox": [
+          37.4769,
+          374.9441,
+          132.5114,
+          396.2431
+        ],
+        "caption_text": "Risk of electric shock",
+        "caption_mode": "outlined-manual-transcription",
+        "caption_sha256": "bb99d588a7aa4744b0e0b4921dc0358dfe291fefd6ae54af5eded4b301f2f5f2",
+        "shared_symbol_key": "electric-shock/bolt-triangle-tinted",
+        "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_electric_shock.svg",
+        "local_path": "assets/symbol_electric_shock.svg",
+        "decision": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)",
+        "candidates": [
+          {
+            "shared_symbol_key": "electric-shock/bolt-triangle-tinted",
+            "status": "passed",
+            "max_mean_channel_error": 0.009962
+          }
+        ],
+        "sha256": "a76bd208ea017906cdcb5624307cdf4b4bb092816d45ef3943a4b3367c837d3f"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/symbols.json#3",
+      "source_declaration": {
+        "language": "en",
+        "physical_page": 5,
+        "family": "battery-charging/",
+        "meaning": "Battery charging",
+        "glyph_search_box": [
+          29.8,
+          401.20000000000005,
+          68.5,
+          429.5
+        ],
+        "caption_search_box": [
+          69.5,
+          401.20000000000005,
+          181.3,
+          429.5
+        ],
+        "drawing_indices": [
+          1557,
+          1558,
+          1559,
+          1560,
+          1561,
+          1562,
+          1563
+        ],
+        "glyph_bbox": [
+          38.47690200805664,
+          406.7027893066406,
+          60.28089904785156,
+          426.0018005371094
+        ],
+        "caption_bbox": [
+          73.4327,
+          412.76,
+          120.6069,
+          420.2416
+        ],
+        "row_bbox": [
+          37.4769,
+          405.7028,
+          121.6069,
+          427.0018
+        ],
+        "caption_text": "Battery charging",
+        "caption_mode": "outlined-manual-transcription",
+        "caption_sha256": "d4e624ed50e0e5059c96c8605ac580c2242833554b004251cfd79be45c41468b",
+        "shared_symbol_key": "battery-charging/flame-battery-triangle-tinted",
+        "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_battery_charging.svg",
+        "local_path": "assets/symbol_battery_charging.svg",
+        "decision": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)",
+        "candidates": [
+          {
+            "shared_symbol_key": "battery-charging/flame-battery-triangle-tinted",
+            "status": "passed",
+            "max_mean_channel_error": 0.012225
+          }
+        ],
+        "sha256": "6a513fe0122fec428c55a3f840c34ed7afdea311f7f1dd9b6e6fd807d087bf55"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/symbols.json#4",
+      "source_declaration": {
+        "language": "en",
+        "physical_page": 5,
+        "family": "explosive-material/",
+        "meaning": "Explosive material",
+        "glyph_search_box": [
+          29.8,
+          431.6,
+          68.5,
+          460.59999999999997
+        ],
+        "caption_search_box": [
+          69.5,
+          431.6,
+          181.3,
+          460.59999999999997
+        ],
+        "drawing_indices": [
+          1564,
+          1565,
+          1566,
+          1567
+        ],
+        "glyph_bbox": [
+          38.31399917602539,
+          436.773681640625,
+          60.770999908447266,
+          456.2687072753906
+        ],
+        "caption_bbox": [
+          73.4326,
+          444.503,
+          123.922,
+          452.0802
+        ],
+        "row_bbox": [
+          37.314,
+          435.7737,
+          124.922,
+          457.2687
+        ],
+        "caption_text": "Explosive material",
+        "caption_mode": "outlined-manual-transcription",
+        "caption_sha256": "a8769e941208a61a16587da77e8c058b5af220f902b4617357e0f04e681e734f",
+        "shared_symbol_key": "explosive-material/burst-triangle-native-v2-3e3a39",
+        "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_explosive_material_native_v2_3e3a39.svg",
+        "local_path": "assets/symbol_explosive_material_native_v2_3e3a39.svg",
+        "decision": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)",
+        "candidates": [
+          {
+            "shared_symbol_key": "explosive-material/burst-triangle-tinted",
+            "status": "rejected",
+            "reason": "symbol glyph/background differs from authoritative PDF"
+          },
+          {
+            "shared_symbol_key": "explosive-material/burst-triangle-native-v2-3e3a39",
+            "status": "passed",
+            "max_mean_channel_error": 0.017078
+          }
+        ],
+        "sha256": "d4def93f853179fe0ea0cd7c4ba461da5a70d662d33a899bc48f7a2ef5553a1d"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/symbols.json#5",
+      "source_declaration": {
+        "language": "en",
+        "physical_page": 5,
+        "family": "heavy-object/",
+        "meaning": "Heavy object",
+        "glyph_search_box": [
+          29.8,
+          462.70000000000005,
+          68.5,
+          494.9
+        ],
+        "caption_search_box": [
+          69.5,
+          462.70000000000005,
+          181.3,
+          494.9
+        ],
+        "drawing_indices": [
+          1628,
+          1629,
+          1630,
+          1631,
+          1632,
+          1633,
+          1634,
+          1635
+        ],
+        "glyph_bbox": [
+          37.446197509765625,
+          468.96258544921875,
+          59.904197692871094,
+          488.4576110839844
+        ],
+        "caption_bbox": [
+          73.4318,
+          477.2461,
+          111.5368,
+          484.7871
+        ],
+        "row_bbox": [
+          36.4462,
+          467.9626,
+          112.5368,
+          489.4576
+        ],
+        "caption_text": "Heavy object",
+        "caption_mode": "outlined-manual-transcription",
+        "caption_sha256": "a38ff532b850a2f8b28e5c92346bbaec11bc43e03cc9c07931e1b9e5c06538b8",
+        "shared_symbol_key": "heavy-object/person-load-triangle-tinted",
+        "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_heavy_object.svg",
+        "local_path": "assets/symbol_heavy_object.svg",
+        "decision": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)",
+        "candidates": [
+          {
+            "shared_symbol_key": "heavy-object/person-load-triangle-tinted",
+            "status": "passed",
+            "max_mean_channel_error": 0.011486
+          }
+        ],
+        "sha256": "5316063a33173d4231610b72babd30cb2282d1fd9d76263bf70e9577352e3910"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/symbols.json#6",
+      "source_declaration": {
+        "language": "en",
+        "physical_page": 5,
+        "family": "do-not-dismantle/",
+        "meaning": "Do not dismantle the product.",
+        "glyph_search_box": [
+          188,
+          309.6,
+          223.3,
+          337.79999999999995
+        ],
+        "caption_search_box": [
+          224.3,
+          309.6,
+          339.2,
+          337.79999999999995
+        ],
+        "drawing_indices": [
+          1539,
+          1540,
+          1541
+        ],
+        "glyph_bbox": [
+          195.93051147460938,
+          315.2923889160156,
+          214.07650756835938,
+          333.4263916015625
+        ],
+        "caption_bbox": [
+          229.3174,
+          321.777,
+          307.5452,
+          328.9852
+        ],
+        "row_bbox": [
+          194.9305,
+          314.2924,
+          308.5452,
+          334.4264
+        ],
+        "caption_text": "Do not dismantle the product.",
+        "caption_mode": "outlined-manual-transcription",
+        "caption_sha256": "fd3094a30d80027eb2922d91f12da829f2b1a571cfb96e5d5fc14ddcb2015755",
+        "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited",
+        "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_do_not_dismantle.svg",
+        "local_path": "assets/symbol_do_not_dismantle.svg",
+        "decision": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)",
+        "candidates": [
+          {
+            "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited",
+            "status": "passed",
+            "max_mean_channel_error": 0.019957
+          }
+        ],
+        "sha256": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/symbols.json#7",
+      "source_declaration": {
+        "language": "en",
+        "physical_page": 5,
+        "family": "no-open-flame/",
+        "meaning": "Keep the product away from fire.",
+        "glyph_search_box": [
+          188,
+          340.0,
+          223.3,
+          368.29999999999995
+        ],
+        "caption_search_box": [
+          224.3,
+          340.0,
+          339.2,
+          368.29999999999995
+        ],
+        "drawing_indices": [
+          1622,
+          1623,
+          1624,
+          1625,
+          1626,
+          1627
+        ],
+        "glyph_bbox": [
+          195.9488983154297,
+          344.9961853027344,
+          215.21290588378906,
+          364.2582092285156
+        ],
+        "caption_bbox": [
+          229.3174,
+          351.9856,
+          314.1272,
+          359.1879
+        ],
+        "row_bbox": [
+          194.9489,
+          343.9962,
+          315.1272,
+          365.2582
+        ],
+        "caption_text": "Keep the product away from fire.",
+        "caption_mode": "outlined-manual-transcription",
+        "caption_sha256": "092c13e220786e7833a96674be6ff20e7d8d1b4f5a080b5645c86760350ecf66",
+        "shared_symbol_key": "no-open-flame/fire-match-prohibited",
+        "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_no_open_flame.svg",
+        "local_path": "assets/symbol_no_open_flame.svg",
+        "decision": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)",
+        "candidates": [
+          {
+            "shared_symbol_key": "no-open-flame/fire-match-prohibited",
+            "status": "passed",
+            "max_mean_channel_error": 0.002819
+          }
+        ],
+        "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/symbols.json#8",
+      "source_declaration": {
+        "language": "en",
+        "physical_page": 5,
+        "family": "keep-away-from-children/",
+        "meaning": "Keep away from children.",
+        "glyph_search_box": [
+          188,
+          370.8,
+          223.3,
+          399.0
+        ],
+        "caption_search_box": [
+          224.3,
+          370.8,
+          339.2,
+          399.0
+        ],
+        "drawing_indices": [
+          1636,
+          1637,
+          1638,
+          1639
+        ],
+        "glyph_bbox": [
+          195.94979858398438,
+          376.13250732421875,
+          215.21279907226562,
+          395.3955078125
+        ],
+        "caption_bbox": [
+          229.3169,
+          382.565,
+          294.8953,
+          389.8119
+        ],
+        "row_bbox": [
+          194.9498,
+          375.1325,
+          295.8953,
+          396.3955
+        ],
+        "caption_text": "Keep away from children.",
+        "caption_mode": "outlined-manual-transcription",
+        "caption_sha256": "1276339c21e7bb0400f61a43974d5aa501c08d4b282288de79102181fe1e0338",
+        "shared_symbol_key": "keep-away-from-children/adult-child-prohibited",
+        "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_keep_away_from_children.svg",
+        "local_path": "assets/symbol_keep_away_from_children.svg",
+        "decision": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)",
+        "candidates": [
+          {
+            "shared_symbol_key": "keep-away-from-children/adult-child-prohibited",
+            "status": "passed",
+            "max_mean_channel_error": 0.002832
+          }
+        ],
+        "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/symbols.json#9",
+      "source_declaration": {
+        "language": "en",
+        "physical_page": 5,
+        "family": "li-ion/",
+        "meaning": "This symbol indicates that a lithium-ion (Li-ion) battery is inside the product and should be disposed of or recycled properly.",
+        "glyph_search_box": [
+          188,
+          401.20000000000005,
+          223.3,
+          429.5
+        ],
+        "caption_search_box": [
+          224.3,
+          401.20000000000005,
+          339.2,
+          429.5
+        ],
+        "drawing_indices": [
+          1542,
+          1543,
+          1544,
+          1545,
+          1546,
+          1547,
+          1548,
+          1549,
+          1550
+        ],
+        "glyph_bbox": [
+          195.29139709472656,
+          405.7735900878906,
+          213.43499755859375,
+          426.097900390625
+        ],
+        "caption_bbox": [
+          225.2976,
+          405.959,
+          336.3318,
+          427.2064
+        ],
+        "row_bbox": [
+          194.2914,
+          404.7736,
+          337.3318,
+          428.2064
+        ],
+        "caption_text": "This symbol indicates that a lithium-ion (Li-ion) battery is inside the product and should be disposed of or recycled properly.",
+        "caption_mode": "outlined-manual-transcription",
+        "caption_sha256": "cdc85c10a61aeda9326164c8b978ff036963746f6b4cb72d69c44f029ff26903",
+        "shared_symbol_key": "li-ion/htp017-recycle-li-ion",
+        "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_li_ion_htp017.svg",
+        "local_path": "assets/symbol_li_ion_htp017.svg",
+        "decision": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)",
+        "candidates": [
+          {
+            "shared_symbol_key": "li-ion/recycle-li-ion",
+            "status": "rejected",
+            "reason": "symbol glyph/background differs from authoritative PDF"
+          },
+          {
+            "shared_symbol_key": "li-ion/recycle-li-ion-native-dark",
+            "status": "rejected",
+            "reason": "symbol glyph/background differs from authoritative PDF"
+          },
+          {
+            "shared_symbol_key": "li-ion/htp017-recycle-li-ion",
+            "status": "passed",
+            "max_mean_channel_error": 0.0005
+          }
+        ],
+        "sha256": "b98301d1742f0695e0b0c1ec523eba3c79f8c9879fc2672565ff5d79fde0bd66"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    },
+    {
+      "record": "source/symbols.json#10",
+      "source_declaration": {
+        "language": "en",
+        "physical_page": 5,
+        "family": "weee/",
+        "meaning": "This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling. Proper disposal and recycling can help protect the environment. For more information about the disposal and recycling of this product, contact your local community, disposal service, or dealer.",
+        "glyph_search_box": [
+          188,
+          431.6,
+          223.3,
+          494.9
+        ],
+        "caption_search_box": [
+          224.3,
+          431.6,
+          339.2,
+          494.9
+        ],
+        "drawing_indices": [
+          1551,
+          1552,
+          1553
+        ],
+        "glyph_bbox": [
+          197.73260498046875,
+          450.5705871582031,
+          213.1645965576172,
+          473.35400390625
+        ],
+        "caption_bbox": [
+          225.2972,
+          433.366,
+          337.348,
+          495.0131
+        ],
+        "row_bbox": [
+          196.7326,
+          432.366,
+          338.348,
+          496.0131
+        ],
+        "caption_text": "This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling. Proper disposal and recycling can help protect the environment. For more information about the disposal and recycling of this product, contact your local community, disposal service, or dealer.",
+        "caption_mode": "outlined-manual-transcription",
+        "caption_sha256": "bc8e2084faf02ef37a251d1566f19da595a7ff95150ea78c37e6cca0db8ac154",
+        "shared_symbol_key": "weee/crossed-bin-bar",
+        "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_weee.png",
+        "local_path": "assets/symbol_weee.png",
+        "decision": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)",
+        "candidates": [
+          {
+            "shared_symbol_key": "weee/crossed-bin-bar",
+            "status": "passed",
+            "max_mean_channel_error": 0.011654
+          }
+        ],
+        "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5"
+      },
+      "review": "Verified sourcepage glyph/panel identity; original assetbytes retained. Source figures with removedtextboxes now have correspondingnativecopy restored within originalpanel; no redraw."
+    }
+  ],
+  "original_assets_unchanged": [
+    {
+      "asset": "ac-output.png",
+      "sha256": "12a3f5291f7571677e0ffec283c9009df704697f7b2947813d7317044848a425"
+    },
+    {
+      "asset": "app-add.png",
+      "sha256": "432ea28980045cabf3dce65d6b9ced296a8a287070d8df9ecc7130f2ec596d54"
+    },
+    {
+      "asset": "app-control.png",
+      "sha256": "15670b94965c4dd0db5b9cd6d2434587c1fedf4db289adec8c89a60d1528de71"
+    },
+    {
+      "asset": "app-qr.png",
+      "sha256": "2a63f70fb69395698db10847129722925309f61220a3c8dc5eeedf3a69f14de8"
+    },
+    {
+      "asset": "app-results.png",
+      "sha256": "d2d438388c36f9071a01f3158f24f553c4f378eee0b1028506fbe1284772ff3e"
+    },
+    {
+      "asset": "app-store.png",
+      "sha256": "b4c654e8e2050fbba8da4ee801d8aa833df84c1e88a14b242caf9bc5f00850bc"
+    },
+    {
+      "asset": "button-ac.png",
+      "sha256": "d83c40724f96505e6739528bd40b124996ecffe7a1753a21324c0e554b643e7b"
+    },
+    {
+      "asset": "button-clock.png",
+      "sha256": "0ba099c074949cfa50c6b1c4c55930e6be0638c7066b0af31fc6d3be2553d3c8"
+    },
+    {
+      "asset": "button-main.png",
+      "sha256": "fb69262a67b0087960ee55d58c6b58f5ec2e8804db4240a5790e6f556ac3d42e"
+    },
+    {
+      "asset": "charging-ac.png",
+      "sha256": "5d05ebfbfd0a3f4ecba4aae2a0a976466df307132ccc10de9822e8a0440b40f1"
+    },
+    {
+      "asset": "charging-car.png",
+      "sha256": "4b9c86ea4ad07bf40887fde989e95d981bbcfae4135632b7ecad1ed8f35df0e6"
+    },
+    {
+      "asset": "charging-solar-connector.png",
+      "sha256": "7de18781a05b24284674d14df94127bf4a6632cd015025ecebc57387cbd84b61"
+    },
+    {
+      "asset": "charging-solar.png",
+      "sha256": "7fe5cc287a29a80475f856315163f9f7192e3e7625818c74980444389d3145cf"
+    },
+    {
+      "asset": "cleaning-1.png",
+      "sha256": "1e86cbbf9fd6a720f1a9356ed0726b44c804760e8d7f479ceb5873252e877be9"
+    },
+    {
+      "asset": "cleaning-2.png",
+      "sha256": "f42e1a4e900f273f3032e8e0bb27df12b226f48b32da2b8192416c352298edd6"
+    },
+    {
+      "asset": "cleaning-3.png",
+      "sha256": "23ebc92bdae3f43da4175763804c64d2def5b9df6a12d7cc33fea67c520e0d61"
+    },
+    {
+      "asset": "cleaning-4.png",
+      "sha256": "d7942112849781c0faf3287298bf0b54e876efd71ec33ab1ebfd4167a3063a3c"
+    },
+    {
+      "asset": "contact-qr.png",
+      "sha256": "c47057e03cb3f3655c5ab63b4be69fa18cde5d073e66056b55499be61bdd3c40"
+    },
+    {
+      "asset": "dc-usb-output.png",
+      "sha256": "295482391697efd71cab815d4048fc17876ff71de46a7f6d07716b457d0449e8"
+    },
+    {
+      "asset": "energy-saving.png",
+      "sha256": "2e60056abde660945f5490af72999e50dda2865a32a93e4c9bc5eca834fe7949"
+    },
+    {
+      "asset": "fcc_mark.svg",
+      "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+    },
+    {
+      "asset": "inbox-ac-cable.png",
+      "sha256": "f0b3f6e292d5134bd18c719ec2e1eed1cde9c3bb3d5afb99c7b087086ea7f938"
+    },
+    {
+      "asset": "inbox-unit.png",
+      "sha256": "a807633ca89476aa60603b9540d596395e702e88e83e29f001d45ea90165716e"
+    },
+    {
+      "asset": "inbox-user-manual.png",
+      "sha256": "0249925d61dd0351c8e9c81a08343e5fac42e5176b737c064934f45110f15a75"
+    },
+    {
+      "asset": "lcd-01-wifi.svg",
+      "sha256": "71c09209572b3e28106039399bf8cbbba409f4fcb2715027881c881be5d6c107"
+    },
+    {
+      "asset": "lcd-02-bluetooth.svg",
+      "sha256": "010ecd186214b8e46a4c04e40fc04c11a5a8dc6ab492468a68750915e4421338"
+    },
+    {
+      "asset": "lcd-03-quiet-charging.svg",
+      "sha256": "18c777e92a70c7bcfb658e993cac00c26da5b9e1b60cb9f86c08e1416c292272"
+    },
+    {
+      "asset": "lcd-04-battery-saving.svg",
+      "sha256": "d27fc71354e5a3783ee26c9dbefa14a5eb80f96d49cdc36408d435ab55495228"
+    },
+    {
+      "asset": "lcd-05-charging-plan.svg",
+      "sha256": "ae2167d3e18827a575ec2d49ccbd168014dc35517dc2dd01a04e499774477e24"
+    },
+    {
+      "asset": "lcd-06-self-powered.svg",
+      "sha256": "6264e35ea700fb8ec93473700101202e7d5548ebd7e80bf4e9ebd3907b20aaf4"
+    },
+    {
+      "asset": "lcd-07-ups.svg",
+      "sha256": "ae385c871ee394bb2d3617dcb04b173554c353813a5bb9800aaac5da15cb70ec"
+    },
+    {
+      "asset": "lcd-08-ac-power.svg",
+      "sha256": "2cdae40be011d5ba5d385d4eb908ed405db3acb941b869480820611ce1ef627f"
+    },
+    {
+      "asset": "lcd-09-output-voltage-frequency.svg",
+      "sha256": "3735cdce1ef1ad0567ce15b8cf5a75dc142648bfd2e633121a50e9ad30245eba"
+    },
+    {
+      "asset": "lcd-10-input-power.svg",
+      "sha256": "ac67d2454f9062e83b6e143e5cb9e92e2301715f41d502d513e6206c71e71241"
+    },
+    {
+      "asset": "lcd-11-remaining-charge-time.svg",
+      "sha256": "3a5bc2c28349d69ddd08fe84aa1fc861518b0858afe65e7af7cea148436dabfe"
+    },
+    {
+      "asset": "lcd-12-ac-wall-charging.svg",
+      "sha256": "0fe2c971cd3f076b937fc814afed2c5b9c67c52d1e2f118b89fb3ea76e08d3e2"
+    },
+    {
+      "asset": "lcd-13-car-charging.svg",
+      "sha256": "d6d69675228490e381df91275cb9543244ae79b30b31d62b3aad321c9d6ef87c"
+    },
+    {
+      "asset": "lcd-14-solar-charging.svg",
+      "sha256": "8a817e8fcdee1659c79574cb3545f2bfd7324ea575a223d806bf32b9d434c87c"
+    },
+    {
+      "asset": "lcd-15-battery-power.svg",
+      "sha256": "463a1423db307feeb0045dbe94a9844b65ffcde9977db8de1c5993c046469aa4"
+    },
+    {
+      "asset": "lcd-16-low-battery.svg",
+      "sha256": "86a8974d67277d48c1eb28384a089b9c20e82411009e83dbc305f07ffb34ce1a"
+    },
+    {
+      "asset": "lcd-17-remaining-battery.svg",
+      "sha256": "9939bb397d3b641928d06dd108a909dcf29b97f0ff528445cde4d1037f3742aa"
+    },
+    {
+      "asset": "lcd-18-fault-code.svg",
+      "sha256": "a26412e668dec6f865288f0193ffffa310e99cad7a4ee807c7681c19b5b4e01c"
+    },
+    {
+      "asset": "lcd-19a-high-temperature.svg",
+      "sha256": "f6805b16897e54b7051b8996a28cd70c6d6a852f70822ad00caf4c511443cdfe"
+    },
+    {
+      "asset": "lcd-19b-low-temperature.svg",
+      "sha256": "0f131a3e36e0d3e689826b18f6dece30a090848e8254c8aaef78789cc275d075"
+    },
+    {
+      "asset": "lcd-20-energy-saving.svg",
+      "sha256": "12223fddf58a3ffe6ed44f9677c824fc2b1e2e0414c7bf7b79e6b5f7d67e86b8"
+    },
+    {
+      "asset": "lcd-21-output-power.svg",
+      "sha256": "9212e47a432096a92ca114d0e77d975b4e87efd2ff0313882cf25cd6878a284c"
+    },
+    {
+      "asset": "lcd-22-remaining-discharge-time.svg",
+      "sha256": "19eba0a14f785913e7abc876c99a94695c0f1ced60a06cf2c1452bb713787970"
+    },
+    {
+      "asset": "lcd-map.png",
+      "sha256": "331998c732f42adea4fc79ec925cceb177085aaeb896ea3bb44b1adce49d3459"
+    },
+    {
+      "asset": "lcd-screen.png",
+      "sha256": "5935522ee634d7c230e59c6ef086089b739142a7524a8e2e85044b68a7ff4691"
+    },
+    {
+      "asset": "overview-ac-total.png",
+      "sha256": "0b4f9009010f986054a710798bbe4f7a73710adb1f350923acdcba71de428fbb"
+    },
+    {
+      "asset": "overview-front.png",
+      "sha256": "ceab5d51a64296b8c4967d2af2156ffea9491b33b9c005ebbf858428ce591e40"
+    },
+    {
+      "asset": "power-on-off.png",
+      "sha256": "dcf7ab039883bbf653078c40945738348062f047aeed7943a0b1e0919633c472"
+    },
+    {
+      "asset": "symbol_battery_charging.svg",
+      "sha256": "6a513fe0122fec428c55a3f840c34ed7afdea311f7f1dd9b6e6fd807d087bf55"
+    },
+    {
+      "asset": "symbol_do_not_dismantle.svg",
+      "sha256": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33"
+    },
+    {
+      "asset": "symbol_electric_shock.svg",
+      "sha256": "a76bd208ea017906cdcb5624307cdf4b4bb092816d45ef3943a4b3367c837d3f"
+    },
+    {
+      "asset": "symbol_explosive_material_native_v2_3e3a39.svg",
+      "sha256": "d4def93f853179fe0ea0cd7c4ba461da5a70d662d33a899bc48f7a2ef5553a1d"
+    },
+    {
+      "asset": "symbol_heavy_object.svg",
+      "sha256": "5316063a33173d4231610b72babd30cb2282d1fd9d76263bf70e9577352e3910"
+    },
+    {
+      "asset": "symbol_keep_away_from_children.svg",
+      "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899"
+    },
+    {
+      "asset": "symbol_li_ion_htp017.svg",
+      "sha256": "b98301d1742f0695e0b0c1ec523eba3c79f8c9879fc2672565ff5d79fde0bd66"
+    },
+    {
+      "asset": "symbol_no_open_flame.svg",
+      "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f"
+    },
+    {
+      "asset": "symbol_read_manual.svg",
+      "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584"
+    },
+    {
+      "asset": "symbol_warning_triangle.svg",
+      "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a"
+    },
+    {
+      "asset": "symbol_weee.png",
+      "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5"
+    },
+    {
+      "asset": "ups.png",
+      "sha256": "8a258f9d9f4c5c2a730ecc6f596674a04647e9d5ab17805662e82876a1529edb"
+    }
+  ],
+  "historical_text_exceptions": []
+}

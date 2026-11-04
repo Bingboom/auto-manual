@@ -1,0 +1,58 @@
+{
+  "changes": [
+    "p4 source two-column safety, correct continuation before Any tampering, original warning glyphs; p5 DANGER source lockup",
+    "p6 original FCC columns with opening block preserved; remove unapproved balanced flow",
+    "p8–9 circled LCD numbers; shared19 high/lowtemperature cell",
+    "p10–11 native copy within original power/AC/DC panels; native default-standby bubble on right; original CAUTION vertical structure",
+    "p13 UPS prerequisite inside originalfigurepanel; p15 carcaption insidepanel",
+    "p17 original four ruled code cells with one shared Restartcell",
+    "p18 two DCinputconditions native linebreak within shared valuecell",
+    "p22 source contact glyphs and nativecontactpanel"
+  ],
+  "new_original_glyphs": [
+    {
+      "asset": "assets/contact-phone.png",
+      "source": "original.pdf",
+      "physical_page": 22,
+      "bbox": [
+        34.70936351102941,
+        467.45288751775564,
+        55.10111457375919,
+        489.1343758070765
+      ],
+      "scale": 6,
+      "operation": "crop-only finished original glyph",
+      "sha256": "9b550907e12c54a5fedae85801c81eaa862d6fe838ad50a0e14d52be5c5b38c1"
+    },
+    {
+      "asset": "assets/contact-mail.png",
+      "source": "original.pdf",
+      "physical_page": 22,
+      "bbox": [
+        206.95457993451285,
+        467.45288751775564,
+        219.53672420726105,
+        476.9927423650568
+      ],
+      "scale": 6,
+      "operation": "crop-only finished original glyph",
+      "sha256": "37cfccf0d18e5ea2c574a52839686c87ab46d3f043071b39fbaeedff30003e65"
+    },
+    {
+      "asset": "assets/contact-web.png",
+      "source": "original.pdf",
+      "physical_page": 22,
+      "bbox": [
+        206.95457993451285,
+        477.8600018966297,
+        219.97059125114887,
+        488.70074604129
+      ],
+      "scale": 6,
+      "operation": "crop-only finished original glyph",
+      "sha256": "a4a6939b8a6db8e1581f55efb0de31bed7408c04e914fa3594be8678459fa91f"
+    }
+  ],
+  "cover_toc": "excluded per user",
+  "old_art": "unchanged; no redraw"
+}

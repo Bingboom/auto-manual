@@ -1,0 +1,8 @@
+{
+  "ocr_candidates": "29candidates: p5DANGER/p15faultheaders are OCR corruption; p6/9–14 original diagram labels/standby instructions remain in byte-identical source figures; p16 dimensions/weight/DC glyph OCR errors checked against original.",
+  "reverse_candidates": "One DANGER paragraph located verbatim onp5; fullwidth source comma retained.",
+  "numeric_contexts": 49,
+  "numeric_mismatches": 0,
+  "additional_numeric_visual_review": "All current p16 cells/conditions and p9–14 timing/charging clauses checked against rendered source, including number-only portions not covered by letter-context matching.",
+  "native_text_rendering": "291native fragments,0missing; original figure embedded text checked visually and byte-for-byte, not counted as native body text."
+}

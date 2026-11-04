@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "model": "JE-1500C",
+  "baseline_commit": "741d35b9",
+  "style_audit": {
+    "profile": "prepared-document-shared-styles/v1",
+    "applicable": true,
+    "model": "JE-1500C",
+    "region": "US",
+    "language": "en",
+    "declared_tables": 3,
+    "issues": []
+  },
+  "audit_tool": "/Users/hello-tech-team/.codex/worktrees/manual-source-alignment/auto-manual-codex/tools/web/prepared_style_audit.py",
+  "audit_tool_sha256": "1600f5efaa5d512ee7434140b6eab7c07dff6a30b6a4cac27b23e763d8c77121",
+  "normalized_body_characters": 23134,
+  "body_text_unchanged": true,
+  "all_original_asset_bytes_unchanged": true,
+  "cold_files_identical": 75,
+  "source_approval_rebound": true,
+  "fault_rowspan": 4,
+  "body_parity_normalization": "Only F0/F1/F2/F3 + Restart the product. flattening order differs because native rows replace CSS drawn lines.",
+  "publication_eligible": true,
+  "pending_source_review": [],
+  "checks": "Strict Sphinx; exact latest shared style audit; independent cold replay; source-art hash parity; body parity excluding whitespace/heading-markup/decorative warning font character now replaced by original SVG; desktop/mobile changed-block screenshots and file request/background checks. Prior full-body content acceptance remains valid.",
+  "changes": [
+    "Layout-only safety tables replaced by native two-column and risk/warning containers on existing shared styles.",
+    "Custom style hooks moved to data attributes; source stylesheet now geometry only.",
+    "Printed signal table preserves original SVG via documented hash-bound native table exception, as shared signal component supports only a font glyph.",
+    "Existing contact company text creates a separate heading boundary after App setup.",
+    "Source p17 four fault code rows retain a real rowspan=4 corrective cell; only flattened reading order is normalized for parity. Exact F0-F3 mapping remains Restart the product.",
+    "Source p16 cleaning uses real shared numbered-step copy and gray panels. Source p15 car drawing uses its own original art with the original white capsule and native caption in HB-SPECIAL-REFERENCE-FIGURE.",
+    "Only repo input docs/renderers/contracts/web_manual.css follows the root-coordinated rowspan correction; audit/shared-style-runtime.json records exact old/new SHA-256."
+  ],
+  "supersedes": "audit/release-conversion/review.json visible-byte parity describes the initial release copy before this shared-style normalization."
+}

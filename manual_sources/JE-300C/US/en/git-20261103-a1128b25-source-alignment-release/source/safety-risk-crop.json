@@ -1,0 +1,11 @@
+{
+  "original_source_sha256": "a1128b25213d72cecd35c48a901a958612f4568cb0b4068b1c72ab8e553e9498",
+  "physical_page": 4,
+  "bbox_points": [
+    33.90237060546875,
+    61.355845458984376,
+    56.38111633300781,
+    81.28338500976562
+  ],
+  "transform": "exact source crop at 5x; no drawing or text replacement"
+}

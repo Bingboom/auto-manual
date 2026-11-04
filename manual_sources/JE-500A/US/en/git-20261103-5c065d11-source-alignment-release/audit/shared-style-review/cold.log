@@ -1,0 +1,16 @@
+{
+  "output": "/private/tmp/manual-web-audit-20261102/style-release/JE-500A/v9/cold",
+  "chapters": 14,
+  "components": {
+    "HB-CALLOUT-STRIP": 4,
+    "HB-SPECIAL-FCC": 1,
+    "HB-SPECIAL-INBOX": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE": 13,
+    "HB-TABLE-LCD-ICON": 1,
+    "HB-TABLE-SPEC": 4,
+    "HB-TABLE-SYMBOL-ICON": 1,
+    "HB-WARRANTY-LEAD": 1,
+    "HB-WARRANTY-SECTION": 5,
+    "HB-WARRANTY-YEARS": 1
+  }
+}

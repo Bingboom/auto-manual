@@ -1,0 +1,71 @@
+{
+  "model": "JE-1500C",
+  "source_pages": 22,
+  "checked_lines": 484,
+  "exclusions": {
+    "1": "historically approved print cover",
+    "3": "historically approved print TOC"
+  },
+  "candidates": [
+    {
+      "page": 5,
+      "text": "dis ot ene is intent ec for isidooit use nly s,esgs pmaece s, tdet, e inns, i",
+      "coverage": 0.02
+    },
+    {
+      "page": 9,
+      "text": "Hgp tencternitue pritection ts riugered., Thet product mal",
+      "coverage": 0.119
+    },
+    {
+      "page": 12,
+      "text": "Display Mode Turn off",
+      "coverage": 0.455
+    },
+    {
+      "page": 18,
+      "text": "Around 38.6 Ibs / 17.5 kg",
+      "coverage": 0.2
+    },
+    {
+      "page": 18,
+      "text": "13.2×10.4x11.6 in / 33.6×26.4x29.5 cm",
+      "coverage": 0.235
+    },
+    {
+      "page": 20,
+      "text": "Bluetooth configuration",
+      "coverage": 0.4
+    },
+    {
+      "page": 20,
+      "text": "Bluetooth configuration mode",
+      "coverage": 0.316
+    },
+    {
+      "page": 20,
+      "text": "Hete mie ture the buebtth con n fattrn",
+      "coverage": 0.0
+    },
+    {
+      "page": 21,
+      "text": "Please select 2.4 GHz Wi-Fi",
+      "coverage": 0.357
+    },
+    {
+      "page": 21,
+      "text": "l you ute 5 CHz WI-A, pleena sot it to 24 GHl",
+      "coverage": 0.0
+    },
+    {
+      "page": 21,
+      "text": "Ranembar passwerd",
+      "coverage": 0.0
+    },
+    {
+      "page": 21,
+      "text": "Available devicols) scanned",
+      "coverage": 0.118
+    }
+  ]
+}
