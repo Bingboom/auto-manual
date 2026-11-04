@@ -1557,11 +1557,6 @@
       "registered": "2026-10-28",
       "known_drift": {}
     },
-    "manual_sources/JE-3000A/JP/ja/git-20261103-002fde5a": {
-      "approval": "Operator 2026-11-03 (via coordinator, 「继续 转日语说明书」, 发布文档管理 日规视图): Git-only JP/ja single-language Web candidate, source copy verbatim; candidate only — no release approval yet (approval.json not written)",
-      "registered": "2026-11-03",
-      "known_drift": {}
-    },
     "manual_sources/JE-3000B/JP/ja/git-20261103-2fd130d6": {
       "approval": "Operator 「上线提交发布」 2026-11-03 in the engineering session after review of the PR #1655 1280/390 renders beside the shared reference edition; requested by 「继续 转日语说明书」 (发布文档管理 日规视图, via coordinator): Git-only JE-3000B JP/ja single-language Web release, source copy verbatim (see source/approval.json); merge needs a separate operator grant",
       "registered": "2026-11-03",
