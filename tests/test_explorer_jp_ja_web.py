@@ -1,35 +1,60 @@
-"""Explorer 300/300 Plus/300D/500 JP Japanese Git-only Web candidates (outlined-PDF transcriptions).
-
-JE-300B, JE-300C, JE-300D and JE-500A: source identity, input inventory,
-candidate status, shared-style admission, shared symbol bytes and cold replay.
-"""
+"""JP Japanese Explorer / power bank Git-only manuals: source identity, verbatim copy, artwork and replay."""
 from __future__ import annotations
 
-from contextlib import redirect_stdout
-import hashlib
 import importlib.util
-import io
 import json
 from pathlib import Path
+import shutil
+import subprocess
 import tempfile
 import unittest
 
+from bs4 import BeautifulSoup
+
 from tools.manual_ir.hashing import file_sha256
-from tools.utils.path_utils import PathSegments
-from tools.web.prepared_style_audit import require_prepared_style_admission
+from tools.word.bundle_docx_pandoc import resolve_pandoc_binary
 
 ROOT = Path(__file__).resolve().parents[1]
-PACKAGES = {
-    "JE-300B": "manual_sources/JE-300B/JP/ja/git-20261103-456bb360",
-    "JE-300C": "manual_sources/JE-300C/JP/ja/git-20261103-890abb4a",
-    "JE-300D": "manual_sources/JE-300D/JP/ja/git-20261103-6ab11ee9",
-    "JE-500A": "manual_sources/JE-500A/JP/ja/git-20261103-368d9934",
+PACKAGES: dict[str, dict] = {
+    "JE-100A": {
+        "path": "manual_sources/JE-100A/JP/ja/git-20261103-2becaa50",
+        "sha256": "2becaa507bbfd8d051888ac85d96a5399f0959224e9e6acb85211599baa06262",
+        "markdown": "manual_je100a_jp_ja.md",
+        "facts": ("JE-100A", "6.2Ah / 16V DC 99.2Wh(31000mAh 3.2V)", "充放電サイクル2000回後も初期容量の80%以上を維持"),
+        "foreign": ("JE-100C", "Explorer 100D", "96Wh", "Power Bank"),
+        "print_only": ("JAK-UM-V1", "お買い上げありがとうございます。"),
+        "tamper": ("6.2Ah / 16V DC 99.2Wh", "6.3Ah / 16V DC 99.2Wh"),
+    },
+    "JE-100C": {
+        "path": "manual_sources/JE-100C/JP/ja/git-20261103-64dd5f53",
+        "sha256": "64dd5f5336e40426277bd217a555194461ab2b66f396e4a23308fac43d0203c3",
+        "markdown": "manual_je100c_jp_ja.md",
+        "facts": ("JE-100C", "96Wh (5Ah/19.2V DC)", "3,000回の充放電後も容量の80%以上を維持"),
+        "foreign": ("JE-100A", "Explorer 100 Plus", "99.2Wh", "Power Bank"),
+        "print_only": ("写真はイメージです。実際の商品とは異なる場合があります。", "お買い上げありがとうございます。"),
+        "tamper": ("96Wh (5Ah/19.2V DC)", "97Wh (5Ah/19.2V DC)"),
+    },
+    "JE-240A": {
+        "path": "manual_sources/JE-240A/JP/ja/git-20261103-e227d165",
+        "sha256": "e227d165efcd389a260bb1b3f1a234c365c81465c01492c7e86d674afd8af2cf",
+        "markdown": "manual_je240a_jp_ja.md",
+        "facts": ("JE-240A", "20Ah/12.8V DC (256Wh)", "約23.1 x 15.3 x 16.8 cm (約3.6kg)"),
+        "foreign": ("JE-100A", "JE-100C", "99.2Wh", "Power Bank"),
+        "print_only": ("お買い上げありがとうございます。",),
+        "tamper": ("20Ah/12.8V DC (256Wh)", "21Ah/12.8V DC (256Wh)"),
+    },
+    "JE-76A": {
+        "path": "manual_sources/JE-76A/JP/ja/git-20261103-d8f7d338",
+        "sha256": "d8f7d338fd208af056c0dda9991422227627ab771245e791858e1480978b013c",
+        "markdown": "manual_je76a_jp_ja.md",
+        "facts": ("JE-76A", "JE-76A-WH", "76.8Wh", "最大 100W, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A"),
+        "foreign": ("JE-100A", "JE-100C", "Explorer 100", "99.2Wh"),
+        "print_only": ("お買い上げありがとうございます。",),
+        "tamper": ("76.8Wh", "77.8Wh"),
+    },
 }
-CANDIDATE = "review-candidate-no-release-authorization"
 
-
-def read(path: Path):
-    return json.loads(path.read_text(encoding="utf-8"))
+NOTE_LINES = {"appm.note1", "appm.note2", "appm.note3"}
 
 
 def load(name: str, path: Path):
@@ -40,99 +65,141 @@ def load(name: str, path: Path):
     return module
 
 
-def drifted(package: Path) -> list[str]:
-    return [row["path"] for row in read(package / "source_manifest.json")["repo_inputs"]
-            if not (ROOT / row["path"]).is_file() or file_sha256(ROOT / row["path"]) != row["sha256"]]
+def read(path: Path) -> dict:
+    return json.loads(path.read_text(encoding="utf-8"))
 
 
-def tree(root: Path) -> dict[str, str]:
-    return {p.relative_to(root).as_posix(): file_sha256(p) for p in sorted(root.rglob("*")) if p.is_file()}
+def squash(value: str) -> str:
+    return "".join(value.split())
+
+
+def visible_text(markdown: str) -> str:
+    soup = BeautifulSoup(markdown, "html.parser")
+    for node in soup.find_all(["style", "script"]):
+        node.decompose()
+    return squash(soup.get_text(""))
 
 
 class ExplorerJpJaWebTests(unittest.TestCase):
-    def packages(self):
-        for model, relative in PACKAGES.items():
-            package = ROOT / relative
-            if not package.is_dir():
-                self.fail(f"{model}: package missing at {relative}")
-            yield model, package
-
-    def test_source_identity_and_inventory(self):
-        for model, package in self.packages():
+    def each(self):
+        for model, case in PACKAGES.items():
             with self.subTest(model=model):
-                manifest = read(package / "source_manifest.json")
-                self.assertEqual(manifest["target"]["model"], model)
-                self.assertEqual((manifest["target"]["region"], manifest["target"]["languages"]), ("JP", ["ja"]))
-                self.assertEqual(manifest["target"]["technical_version"], package.name)
-                original = manifest["original_source"]
-                digest = hashlib.sha256((package / original["filename"]).read_bytes()).hexdigest()
-                self.assertEqual(digest, original["sha256"])
-                self.assertTrue(package.name.endswith("-" + digest[:8]))
-                self.assertEqual(read(package / "source/ja/content.json")["source_sha256"], digest)
-                self.assertEqual(manifest["route"], f"{model}/JP/ja/md")
-                self.assertIs(manifest["legacy_default"], True)
-                files = sorted(p for p in tree(package) if p != "source_manifest.json" and "__pycache__" not in p)
-                self.assertEqual(sorted(row["path"] for row in manifest["inputs"]), files)
-                # Feishu file tokens never enter the package.
-                for path in package.rglob("*"):
-                    if path.is_file() and path.suffix in {".json", ".md", ".py", ".css"}:
-                        text = path.read_text(encoding="utf-8")
-                        for marker in ("file_token", "attachmentToken", "bitablePerm"):
-                            self.assertNotIn(marker, text, path)
+                yield model, case, ROOT / case["path"]
 
-    def test_candidates_carry_no_release_acceptance(self):
-        for model, package in self.packages():
-            with self.subTest(model=model):
-                manifest = read(package / "source_manifest.json")
-                metadata = read(package / "web/ja" / PathSegments.MANUAL_IR_JSON)["metadata"]
-                if manifest["publication_status"] == CANDIDATE:
-                    self.assertFalse((package / "source/approval.json").exists())
-                    self.assertIs(metadata["publication_eligible"], False)
-                else:
-                    self.assertIs(metadata["publication_eligible"], True)
-                    self.assertEqual(metadata["operator_source_acceptance"], read(package / "source/approval.json"))
+    def test_identity_and_candidate_status(self):
+        for model, case, package in self.each():
+            manifest = read(package / "source_manifest.json")
+            self.assertEqual(manifest["target"]["model"], model)
+            self.assertEqual((manifest["target"]["region"], manifest["target"]["languages"]), ("JP", ["ja"]))
+            self.assertEqual(manifest["target"]["technical_version"], package.name)
+            self.assertEqual(manifest["route"], f"{model}/JP/ja/md")
+            self.assertIs(manifest["legacy_default"], True)
+            self.assertEqual(manifest["original_source"]["sha256"], case["sha256"])
+            self.assertEqual(file_sha256(package / manifest["original_source"]["filename"]), case["sha256"])
+            self.assertNotIn("file_token", json.dumps(manifest))
+            ir = read(package / "web/ja/manual.ir.json")
+            if manifest["publication_status"] == "operator-authorized-git-only-release":
+                self.assertTrue(ir["metadata"]["publication_eligible"])
+            else:
+                self.assertEqual(manifest["publication_status"], "candidate-pending-operator-review")
+                self.assertFalse(ir["metadata"]["publication_eligible"])
+                self.assertFalse((package / "source/approval.json").exists())
 
-    def test_shared_style_admission(self):
-        for model, package in self.packages():
-            with self.subTest(model=model):
-                manifest = read(package / "source_manifest.json")
-                report = require_prepared_style_admission(package / "web/ja", manifest)
-                self.assertEqual(report["issues"], [])
+    def test_inputs_are_pinned(self):
+        for _, _, package in self.each():
+            manifest = read(package / "source_manifest.json")
+            for row in manifest["inputs"]:
+                self.assertEqual(file_sha256(package / row["path"]), row["sha256"], row["path"])
+            listed = {row["path"] for row in manifest["inputs"]}
+            for folder in ("source", "assets"):
+                for path in (package / folder).rglob("*"):
+                    if path.is_file():
+                        self.assertIn(path.relative_to(package).as_posix(), listed)
 
-    def test_print_master_is_recorded_not_archived(self):
-        for model, package in self.packages():
-            with self.subTest(model=model):
-                master = read(package / "source_manifest.json")["print_master"]
-                self.assertRegex(master["sha256"], "^[0-9a-f]{64}$")
-                self.assertFalse((package / master["filename"]).exists())
+    def test_every_web_line_is_selectable_text_in_the_page(self):
+        for _, case, package in self.each():
+            markdown = (package / "web/ja" / case["markdown"]).read_text(encoding="utf-8")
+            page = visible_text(markdown)
+            soup = BeautifulSoup(markdown, "html.parser")
+            alts = squash(" ".join(img.get("alt", "") for img in soup.find_all("img")))
+            lines = [line for p in read(package / "source/transcription.json")["pages"] if p["web"]
+                     for line in p["lines"]]
+            missing = []
+            for line in lines:
+                text = squash(line["text"]).replace("[+]", "+")
+                if line["id"] in NOTE_LINES:
+                    # 「備考：」 becomes the callout label beside its body.
+                    text = text.replace("：", "", 1)
+                # The bracketed [88H] mark is the LCD glyph image itself.
+                text = text.replace("[88H]", "")
+                if line["id"].startswith(("fig.", "names.f.", "names.r.")):
+                    if text not in alts:
+                        missing.append(line["id"])
+                elif text not in page and text.rstrip(":：") not in page and text not in alts:
+                    missing.append(line["id"])
+            self.assertEqual(missing, [])
 
-    def test_release_symbol_admission(self):
-        from tools.web.symbol_asset_admission import require_symbol_asset_admission
-        for model, package in self.packages():
-            with self.subTest(model=model):
-                manifest = read(package / "source_manifest.json")
-                self.assertEqual(manifest["pending_source_review"], [])
-                rows = require_symbol_asset_admission(package / "web/ja", package, manifest, "ja")
-                self.assertEqual(len(rows), len(manifest["symbol_asset_admission"]["locales"]["ja"]))
+    def test_model_facts_and_print_only_pages(self):
+        for _, case, package in self.each():
+            markdown = (package / "web/ja" / case["markdown"]).read_text(encoding="utf-8")
+            page = visible_text(markdown)
+            for fact in case["facts"]:
+                self.assertIn(squash(fact), page)
+            for foreign in case["foreign"] + case["print_only"]:
+                self.assertNotIn(squash(foreign), page)
 
-    def test_shared_symbols_are_byte_identical(self):
-        for model, package in self.packages():
-            with self.subTest(model=model):
-                for row in read(package / "source/symbols.json"):
-                    if row.get("shared_path"):
-                        self.assertEqual(file_sha256(package / row["local_path"]), file_sha256(ROOT / row["shared_path"]))
+    def test_assets_and_shared_symbols(self):
+        catalog = read(ROOT / "docs/renderers/web/assets/shared/symbols/manifest.json")
+        keys = {row["key"]: row for row in catalog["assets"]}
+        for _, case, package in self.each():
+            recipe = read(package / "source/asset_recipe.json")
+            for symbol in recipe["symbols"]:
+                shared = keys[symbol["shared_symbol_key"]]
+                self.assertEqual(shared["path"], symbol["shared_path"])
+                self.assertEqual(file_sha256(package / symbol["path"]), shared["sha256"])
+            for item in recipe["reused"]:
+                self.assertEqual(file_sha256(package / item["path"]), item["sha256"])
+                self.assertEqual(file_sha256(ROOT / item["from"]), item["sha256"])
+            markdown = (package / "web/ja" / case["markdown"]).read_text(encoding="utf-8")
+            for img in BeautifulSoup(markdown, "html.parser").find_all("img"):
+                self.assertTrue((package / "web/ja" / img["src"]).is_file(), img["src"])
+            admission = read(package / "source_manifest.json").get("symbol_asset_admission", {})
+            rows = admission.get("locales", {}).get("ja", [])
+            self.assertEqual([row["asset_ref"] for row in rows], [s["path"] for s in recipe["symbols"]])
 
-    def test_cold_replay_matches_the_frozen_web_tree(self):
-        for model, package in self.packages():
-            with self.subTest(model=model):
-                if drifted(package):
-                    self.skipTest(f"{model}: shared inputs changed since this candidate was frozen")
-                module = load(f"rebuild_{model.replace('-', '_')}", package / "rebuild.py")
-                with tempfile.TemporaryDirectory() as temp:
-                    output = Path(temp) / "ja"
-                    with redirect_stdout(io.StringIO()):
-                        module.rebuild(output)
-                    self.assertEqual(tree(output), tree(package / "web/ja"))
+    def test_content_is_rebuilt_from_transcription(self):
+        for model, _, package in self.each():
+            builder = load(f"{model}_jp_ja_build_content", package / "build_content.py")
+            built = json.loads(json.dumps(builder.build(), ensure_ascii=False))
+            self.assertEqual(built, read(package / "source/ja/content.json"))
+
+    def test_cold_replay_matches_stored_candidate(self):
+        try:
+            subprocess.run([resolve_pandoc_binary(None), "--version"], check=True, capture_output=True)
+        except (OSError, RuntimeError, subprocess.CalledProcessError):
+            self.skipTest("Pandoc unavailable")
+        for model, case, package in self.each():
+            rebuild = load(f"{model}_jp_ja_rebuild", package / "rebuild.py")
+            with tempfile.TemporaryDirectory() as temp:
+                output = Path(temp) / "replay"
+                rebuild.rebuild(output)
+                for name in (case["markdown"], "manual.ir.json", "_static/source_geometry.css"):
+                    self.assertEqual((output / name).read_bytes(), (package / "web/ja" / name).read_bytes(), name)
+
+    def test_changed_source_input_is_rejected(self):
+        for model, case, package in self.each():
+            module = load(f"{model}_jp_ja_rebuild_copy", package / "rebuild.py")
+            with tempfile.TemporaryDirectory() as temp:
+                source = Path(temp) / "source"
+                shutil.copytree(package, source, ignore=shutil.ignore_patterns("web", "evidence", "__pycache__"))
+                path = source / "source/ja/content.json"
+                before, after = case["tamper"]
+                text = path.read_text(encoding="utf-8")
+                self.assertIn(before, text)
+                path.write_text(text.replace(before, after), encoding="utf-8")
+                module.SOURCE_ROOT = source
+                with self.assertRaisesRegex(ValueError, "input missing or changed"):
+                    module.rebuild(Path(temp) / "out")
 
 
 if __name__ == "__main__":

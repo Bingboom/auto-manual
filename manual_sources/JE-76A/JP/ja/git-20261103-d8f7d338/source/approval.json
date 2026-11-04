@@ -1,0 +1,173 @@
+{
+  "target": {
+    "model": "JE-76A",
+    "region": "JP",
+    "languages": [
+      "ja"
+    ],
+    "technical_version": "git-20261103-d8f7d338",
+    "printed_manual_version": "unknown",
+    "customer_model": "JE-76A",
+    "product_name": "Jackery Power Bank"
+  },
+  "source_sha256": "d8f7d338fd208af056c0dda9991422227627ab771245e791858e1480978b013c",
+  "operator_quote": "上线提交发布：JE-100A、JE-100C、JE-240A、JE-76A",
+  "authority_date": "2026-11-04",
+  "reviewed_candidate": {
+    "pull_request": "https://github.com/Bingboom/auto-manual/pull/1652",
+    "commit": "1cfb55e4",
+    "renders": [
+      "evidence/browser-1280.png",
+      "evidence/browser-390.png"
+    ],
+    "reference_edition": "JE-100A US/en Web (published, same-period small product) with JE-1000D JP V2 structure"
+  },
+  "acceptance_basis": "Operator received the 1280/390 full-page renders side by side with the reference edition and the source concern list in this engineering session, then authorized release. Source copy is published verbatim; corrections go to the source owner and enter only through a corrected source PDF and a new package.",
+  "merge_authority": "Not granted by this quote. Merge needs explicit operator authorization in this session or a covering live row in code-as-doc/dev/merge_authorizations.md.",
+  "verified_inputs": [
+    {
+      "path": "JE-76A-JP-JA.pdf",
+      "size": 1421229,
+      "sha256": "d8f7d338fd208af056c0dda9991422227627ab771245e791858e1480978b013c"
+    },
+    {
+      "path": "README.md",
+      "size": 3957,
+      "sha256": "a5177b15c00bc7fd1d991942e60bc007d77072100cd49c2566edc26a2f92bac0"
+    },
+    {
+      "path": "assets/certifications.png",
+      "size": 9026,
+      "sha256": "3a99f0fe09e48389131f06f1cfff98979f49df4bd7abc0e202f3e47afe5bab5d"
+    },
+    {
+      "path": "assets/charging-station.png",
+      "size": 35231,
+      "sha256": "da2ba73fd050d6449e643691a4b4e40f9e08e337fe079bdade131de3545afe8c"
+    },
+    {
+      "path": "assets/charging-usb-c.png",
+      "size": 26685,
+      "sha256": "eb09547e626934512dd0d49e9cda8bf23251a31789907fe7b0eb9c60f2c77857"
+    },
+    {
+      "path": "assets/inbox-cable.png",
+      "size": 1772,
+      "sha256": "a75f47e9134c541b371910fc15c7ef7376293e9d1d8bf083c852a63b4e07dff0"
+    },
+    {
+      "path": "assets/inbox-manual.png",
+      "size": 2752,
+      "sha256": "19ea8b7a799e8d62695705af56452708513aeaf5598f282aa9da19fbf5968f5b"
+    },
+    {
+      "path": "assets/inbox-unit.png",
+      "size": 1415,
+      "sha256": "89f7952a75a5efd818e9d9098a6fc8cdb7b6b915ee099f4a1503b80a66445394"
+    },
+    {
+      "path": "assets/inbox-warranty.png",
+      "size": 3985,
+      "sha256": "d7c44eaad072f83568433dd95dab7d5d56a685b70834610a24b6b8b41c33bdb0"
+    },
+    {
+      "path": "assets/lcd-charging.svg",
+      "size": 4541,
+      "sha256": "c8ae4f3ee5e0ec41ca7fdf7fbea8eee60dbc25f107a627ad5a482f8cdaeae8c3"
+    },
+    {
+      "path": "assets/lcd-ff.png",
+      "size": 1912,
+      "sha256": "17cb2857692bbf1942e185c7b8b596fb2b0b1cb8d82e74b2d56b0a078cdcc2b0"
+    },
+    {
+      "path": "assets/lcd-map.png",
+      "size": 5003,
+      "sha256": "abad8876fb9fd5115229d93e40d2a5b6c26e43fb06cbe0ceb8be377079faff14"
+    },
+    {
+      "path": "assets/lcd-percent.svg",
+      "size": 4153,
+      "sha256": "823920642876677aeaedc14071f47b919a0183d79c2e15649e493dc12034f3e7"
+    },
+    {
+      "path": "assets/overview.png",
+      "size": 17244,
+      "sha256": "e7d9ae2b2cccd626acf2a10055143e9bea5b4c42fb0da6d91eaef03f473183cb"
+    },
+    {
+      "path": "assets/recycle-li-ion.svg",
+      "size": 6050,
+      "sha256": "ed79cc43df31df3eec2dcc838b653fcf2ffd80c12791049ea55cb1bf268a5c82"
+    },
+    {
+      "path": "build_content.py",
+      "size": 15715,
+      "sha256": "a1125080c71f147087ed412a73737db18a8d87f1008d7830d8b952fa516d6e45"
+    },
+    {
+      "path": "derive_assets.py",
+      "size": 3676,
+      "sha256": "9b7e7b4be13aea6acd190136f7a15afcbf90aa0daf4d4162222d14e49de94f2c"
+    },
+    {
+      "path": "rebuild.py",
+      "size": 6355,
+      "sha256": "bf7ccda105ac2d72104759d4ce0fdccf04519b660367c69947d9dfb724cc5201"
+    },
+    {
+      "path": "refresh_manifest.py",
+      "size": 2546,
+      "sha256": "b50a8e0d7d4f6bd0791280761afc9a450c5a966d1a55c2bbd9c531688bdf3c04"
+    },
+    {
+      "path": "source/asset_decisions.json",
+      "size": 8316,
+      "sha256": "9b12e8072621bfda8b41f57d8c7fb1b110a08ec6db24cbfc43fa3604268b9f3d"
+    },
+    {
+      "path": "source/asset_recipe.json",
+      "size": 2646,
+      "sha256": "b23bb4fc5876055227dc1fa2b55fd93fa962c312098a4b3ac25ade4611260883"
+    },
+    {
+      "path": "source/differences.md",
+      "size": 2106,
+      "sha256": "06d205aa254c6718bb77b2f55829409eb017e40508c4a924b5a14747befbc6a4"
+    },
+    {
+      "path": "source/discovery.md",
+      "size": 2648,
+      "sha256": "a5fef9b156d637c5e6ea79bd119527ba889ffae0971f596525d3b803bf15b45e"
+    },
+    {
+      "path": "source/geometry.css",
+      "size": 1213,
+      "sha256": "abe78b6504d93036de9c943fa4fffa1e3ca89a05b655f6442e4b2c0db8f436ff"
+    },
+    {
+      "path": "source/ja/content.json",
+      "size": 117795,
+      "sha256": "30631ddd9cbf8a9566e79fcbb0d841bc51f1dd1107a23f8a5b14fd4f9276ffad"
+    },
+    {
+      "path": "source/transcription.json",
+      "size": 28438,
+      "sha256": "3f270a86138f39e9c524518c3935074b1c73e1657f6ad72fb62e6ef93de79956"
+    }
+  ],
+  "validation": {
+    "declared_plain_tables": 4,
+    "symbol_rows": 0,
+    "strict_sphinx": "pass",
+    "target_tests": "pass (tests.test_explorer_jp_ja_web)",
+    "browser": {
+      "viewports": [
+        1280,
+        390
+      ],
+      "missing_images": 0,
+      "page_horizontal_overflow": 0
+    }
+  }
+}
