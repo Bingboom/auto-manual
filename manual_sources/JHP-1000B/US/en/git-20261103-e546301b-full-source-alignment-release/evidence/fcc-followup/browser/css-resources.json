@@ -1,0 +1,5 @@
+{
+  "scope": "Every main-content element and before/after pseudo-element: backgroundImage, maskImage, webkitMaskImage, listStyleImage",
+  "rows": [],
+  "failed": []
+}

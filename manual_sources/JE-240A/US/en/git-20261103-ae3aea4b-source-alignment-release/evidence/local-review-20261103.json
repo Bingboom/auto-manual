@@ -1,0 +1,45 @@
+{
+  "model": "JE-240A",
+  "record_id": "reczz28SPRx9mSKQ",
+  "source_sha256": "ae3aea4bcffa1c87f2de01cbe5c84792713a70eded1716039beb442e38a0a27f",
+  "status": "local_review_passed",
+  "change": "Restore original three-column LCD legend on desktop; numbered order retained on phone",
+  "full_visible_copy_identical": true,
+  "full_semantic_json_unchanged_except_layout_group": true,
+  "original_assets_identical": 20,
+  "strict_sphinx": "passed",
+  "source_content_tests": "21 targeted identity/source-copy/model-fact/artwork tests passed across the original packages; new candidate full text and all images verified identical",
+  "browser": [
+    {
+      "width": 1280,
+      "images": 20,
+      "broken": [],
+      "uncontained": []
+    },
+    {
+      "width": 390,
+      "images": 20,
+      "broken": [],
+      "uncontained": []
+    }
+  ],
+  "layout_evidence": [
+    {
+      "width": 1280,
+      "computedColumns": "218.406px 218.406px 218.406px",
+      "rows": 17,
+      "text": "①Input Power②Remaining Charge Time③AC Wall Charging Indicator④Car Charging Indicator⑤Solar Charging Indicator⑥Low Battery Indicator⑦Remaining Battery Percentage⑧Fault code⑨High Temperature Warning⑩Low Temperature Warning⑪Remaining Discharge Time⑫Output Power⑬Energy Saving Mode⑭AC Power Indicator⑮Battery Power Indicator⑯Wi-Fi⑰Bluetooth"
+    },
+    {
+      "width": 390,
+      "computedColumns": "none",
+      "rows": 17,
+      "text": "①Input Power②Remaining Charge Time③AC Wall Charging Indicator④Car Charging Indicator⑤Solar Charging Indicator⑥Low Battery Indicator⑦Remaining Battery Percentage⑧Fault code⑨High Temperature Warning⑩Low Temperature Warning⑪Remaining Discharge Time⑫Output Power⑬Energy Saving Mode⑭AC Power Indicator⑮Battery Power Indicator⑯Wi-Fi⑰Bluetooth"
+    }
+  ],
+  "source_ocr": {
+    "model": "JE-240A",
+    "checked_ocr_lines": 201,
+    "candidates": []
+  }
+}

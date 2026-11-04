@@ -1,0 +1,131 @@
+{
+  "model": "JE-3000B",
+  "source_pages": 19,
+  "checked_lines": 416,
+  "exclusions": {
+    "1": "historically approved print cover",
+    "3": "historically approved print TOC"
+  },
+  "candidates": [
+    {
+      "page": 5,
+      "text": "• Only charde the Exolorer 3000 within an ambient m, DONOT expose a power back to fire or excessive",
+      "coverage": 0.569,
+      "disposition": "PASS — source present",
+      "reason": "OCR merged two safety columns; both source clauses retained in p5 native operating instructions."
+    },
+    {
+      "page": 6,
+      "text": "120V~,30A Max, 3600W",
+      "coverage": 0.5,
+      "disposition": "PASS — source present",
+      "reason": "Original overview label retained in own artwork, 120V 30A 3600W."
+    },
+    {
+      "page": 6,
+      "text": "120V-, 20A Max, 2400W",
+      "coverage": 0.5,
+      "disposition": "PASS — source present",
+      "reason": "Original overview label retained in own artwork, 120V 20A 2400W."
+    },
+    {
+      "page": 6,
+      "text": "(Jschary Explerer 3000)",
+      "coverage": 0.0,
+      "disposition": "PASS — source present",
+      "reason": "Garbled OCR of original Jackery Explorer 3000 drawing label."
+    },
+    {
+      "page": 8,
+      "text": "atputs25W; USB output≤2W; Car outputs2W), the devi",
+      "coverage": 0.562,
+      "disposition": "PASS — source present",
+      "reason": "OCR inequality/letters corrupted; native AC<=25W, USB<=2W, Car<=2W preserved."
+    },
+    {
+      "page": 9,
+      "text": "Press and hold for 3s",
+      "coverage": 0.5,
+      "disposition": "PASS — source present",
+      "reason": "Original power-panel press-and-hold 3s label retained in artwork."
+    },
+    {
+      "page": 10,
+      "text": "Luchorghangsngor",
+      "coverage": 0.0,
+      "disposition": "PASS — source present",
+      "reason": "Garbled OCR of LCD-mode artwork/table; source visually matched."
+    },
+    {
+      "page": 10,
+      "text": "Tinutes ot ina of cutomaticaly and enters sleep mode after 2",
+      "coverage": 0.512,
+      "disposition": "PASS — source present",
+      "reason": "OCR corruption; native 2 minutes of inactivity retained."
+    },
+    {
+      "page": 10,
+      "text": "hou rs or inactn Dişplay Mode turns off automaticaly after 2",
+      "coverage": 0.5,
+      "disposition": "PASS — source present",
+      "reason": "OCR corruption; native 2 hours of inactivity retained."
+    },
+    {
+      "page": 11,
+      "text": "Doty communication cul batwsan enc Di chargjing modulo an",
+      "coverage": 0.167,
+      "disposition": "PASS — source present",
+      "reason": "OCR corruption; native F2 DC charging module and BMS condition retained."
+    },
+    {
+      "page": 16,
+      "text": "Bluetooth confiquration",
+      "coverage": 0.333,
+      "disposition": "PASS — source present",
+      "reason": "Original Bluetooth screenshot label retained."
+    },
+    {
+      "page": 16,
+      "text": "Bluetooth configuration mode",
+      "coverage": 0.316,
+      "disposition": "PASS — source present",
+      "reason": "Original Bluetooth screenshot label retained."
+    },
+    {
+      "page": 16,
+      "text": "Hease maie sure the blueloth Icon is tlsshing",
+      "coverage": 0.0,
+      "disposition": "PASS — source present",
+      "reason": "Original Bluetooth screenshot prompt retained."
+    },
+    {
+      "page": 17,
+      "text": "Please select 2.4 GHz Wi-Fi",
+      "coverage": 0.357,
+      "disposition": "PASS — source present",
+      "reason": "Original Wi-Fi screenshot 2.4 GHz label retained."
+    },
+    {
+      "page": 17,
+      "text": "• Ranembar password",
+      "coverage": 0.111,
+      "disposition": "PASS — source present",
+      "reason": "Original Wi-Fi screenshot Remember password retained."
+    },
+    {
+      "page": 17,
+      "text": "Available device(s) scarned",
+      "coverage": 0.312,
+      "disposition": "PASS — source present",
+      "reason": "Original App screenshot Available device(s) scanned retained."
+    },
+    {
+      "page": 18,
+      "text": "16.4x12.8x12in /41.6x32.5x30.5cm",
+      "coverage": 0.0,
+      "disposition": "PASS — source present",
+      "reason": "Multiplication sign OCR normalization; native 16.4×12.8×12in /41.6×32.5×30.5cm retained."
+    }
+  ],
+  "unresolved": []
+}

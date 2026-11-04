@@ -1,0 +1,150 @@
+[
+  {
+    "page": 2,
+    "transcription_lines": 7,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 4,
+    "transcription_lines": 40,
+    "low_ocr_candidates": [
+      {
+        "id": "op.l3a",
+        "text": "-Charging in damp or poorly ventilated spaces may cause safety hazards.",
+        "coverage": 0.731,
+        "nearest": "-Charging in damp or poorly ventilated spaces may GROUNDING INSTRUCTION",
+        "resolution": "Verified against original own-PDF page image; OCR drops outlined small text or interleaves columns. Exact native transcription preserved."
+      }
+    ]
+  },
+  {
+    "page": 5,
+    "transcription_lines": 27,
+    "low_ocr_candidates": [
+      {
+        "id": "danger.b1",
+        "text": "This device is intended for indoor use only (Please place this device in a similar indoor environment when using it outdoors, e.g. Home RVs, tents, cabins, etc.).",
+        "coverage": 0.034,
+        "nearest": "will gradually intensify, which is a normal phenomenon consistent with the natural aging of battery cells.",
+        "resolution": "Verified against original own-PDF page image; OCR drops outlined small text or interleaves columns. Exact native transcription preserved."
+      },
+      {
+        "id": "danger.b2",
+        "text": "※ This device is not waterproof or dustproof. Keep away from rain and humid environments during use.",
+        "coverage": 0.257,
+        "nearest": "nvironments during use",
+        "resolution": "Verified against original own-PDF page image; OCR drops outlined small text or interleaves columns. Exact native transcription preserved."
+      }
+    ]
+  },
+  {
+    "page": 6,
+    "transcription_lines": 29,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 7,
+    "transcription_lines": 29,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 8,
+    "transcription_lines": 24,
+    "low_ocr_candidates": [
+      {
+        "id": "lcd.d6.b2",
+        "text": "Off: TOU mode is disabled. The product does not follow the TOU (time-of-use) strategy and operates according to the default power supply and charging logic.",
+        "coverage": 0.356,
+        "nearest": "Off: TOU mode is disabled. The product does not follow the TO",
+        "resolution": "Verified against original own-PDF page image; OCR drops outlined small text or interleaves columns. Exact native transcription preserved."
+      }
+    ]
+  },
+  {
+    "page": 9,
+    "transcription_lines": 56,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 10,
+    "transcription_lines": 25,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 11,
+    "transcription_lines": 23,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 12,
+    "transcription_lines": 28,
+    "low_ocr_candidates": [
+      {
+        "id": "scr.m1.d1",
+        "text": "Press the POWER button or when the product is charging.",
+        "coverage": 0.474,
+        "nearest": "Press the prodet is tharging.",
+        "resolution": "Verified against original own-PDF page image; OCR drops outlined small text or interleaves columns. Exact native transcription preserved."
+      },
+      {
+        "id": "scr.m2",
+        "text": "Steady On (in charging or discharging state)",
+        "coverage": 0.69,
+        "nearest": "discharging",
+        "resolution": "Verified against original own-PDF page image; OCR drops outlined small text or interleaves columns. Exact native transcription preserved."
+      },
+      {
+        "id": "scr.m2.d1",
+        "text": "Press the POWER button twice when the product is powered on.",
+        "coverage": 0.381,
+        "nearest": "Press the POWER button.",
+        "resolution": "Verified against original own-PDF page image; OCR drops outlined small text or interleaves columns. Exact native transcription preserved."
+      }
+    ]
+  },
+  {
+    "page": 13,
+    "transcription_lines": 39,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 14,
+    "transcription_lines": 23,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 15,
+    "transcription_lines": 20,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 16,
+    "transcription_lines": 12,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 17,
+    "transcription_lines": 32,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 18,
+    "transcription_lines": 49,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 19,
+    "transcription_lines": 27,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 20,
+    "transcription_lines": 13,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 21,
+    "transcription_lines": 25,
+    "low_ocr_candidates": []
+  }
+]

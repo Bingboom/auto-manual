@@ -1,0 +1,389 @@
+{
+  "model": "JE-3000B",
+  "pdf": "/Users/hello-tech-team/.codex/worktrees/manual-warning-alignment/auto-manual-codex/manual_sources/JE-3000B/US/en/git-20261103-bd8a8296-source-alignment/JE-3000B-US-EN.pdf",
+  "sha256": "bd8a82962865ae64cd52e9c6ebf9a20d8495652773ba09806d1911cb0f360294",
+  "manifest_sha256": "bd8a82962865ae64cd52e9c6ebf9a20d8495652773ba09806d1911cb0f360294",
+  "page_count": 19,
+  "pages": [
+    {
+      "page": 1,
+      "direct_render": "/private/tmp/manual-web-audit-20261102/own-source-render/JE-3000B/p01.png",
+      "cache": "/private/tmp/manual-web-audit-20261102/pdf-pages/JE-3000B/p01.png",
+      "same_size": true,
+      "direct_size": [
+        850,
+        1210
+      ],
+      "cached_size": [
+        850,
+        1210
+      ],
+      "pixel_exact": true,
+      "mean_channel_diff": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "page": 2,
+      "direct_render": "/private/tmp/manual-web-audit-20261102/own-source-render/JE-3000B/p02.png",
+      "cache": "/private/tmp/manual-web-audit-20261102/pdf-pages/JE-3000B/p02.png",
+      "same_size": true,
+      "direct_size": [
+        850,
+        1210
+      ],
+      "cached_size": [
+        850,
+        1210
+      ],
+      "pixel_exact": true,
+      "mean_channel_diff": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "page": 3,
+      "direct_render": "/private/tmp/manual-web-audit-20261102/own-source-render/JE-3000B/p03.png",
+      "cache": "/private/tmp/manual-web-audit-20261102/pdf-pages/JE-3000B/p03.png",
+      "same_size": true,
+      "direct_size": [
+        850,
+        1210
+      ],
+      "cached_size": [
+        850,
+        1210
+      ],
+      "pixel_exact": true,
+      "mean_channel_diff": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "page": 4,
+      "direct_render": "/private/tmp/manual-web-audit-20261102/own-source-render/JE-3000B/p04.png",
+      "cache": "/private/tmp/manual-web-audit-20261102/pdf-pages/JE-3000B/p04.png",
+      "same_size": true,
+      "direct_size": [
+        850,
+        1210
+      ],
+      "cached_size": [
+        850,
+        1210
+      ],
+      "pixel_exact": true,
+      "mean_channel_diff": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "page": 5,
+      "direct_render": "/private/tmp/manual-web-audit-20261102/own-source-render/JE-3000B/p05.png",
+      "cache": "/private/tmp/manual-web-audit-20261102/pdf-pages/JE-3000B/p05.png",
+      "same_size": true,
+      "direct_size": [
+        850,
+        1210
+      ],
+      "cached_size": [
+        850,
+        1210
+      ],
+      "pixel_exact": true,
+      "mean_channel_diff": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "page": 6,
+      "direct_render": "/private/tmp/manual-web-audit-20261102/own-source-render/JE-3000B/p06.png",
+      "cache": "/private/tmp/manual-web-audit-20261102/pdf-pages/JE-3000B/p06.png",
+      "same_size": true,
+      "direct_size": [
+        850,
+        1210
+      ],
+      "cached_size": [
+        850,
+        1210
+      ],
+      "pixel_exact": true,
+      "mean_channel_diff": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "page": 7,
+      "direct_render": "/private/tmp/manual-web-audit-20261102/own-source-render/JE-3000B/p07.png",
+      "cache": "/private/tmp/manual-web-audit-20261102/pdf-pages/JE-3000B/p07.png",
+      "same_size": true,
+      "direct_size": [
+        850,
+        1210
+      ],
+      "cached_size": [
+        850,
+        1210
+      ],
+      "pixel_exact": true,
+      "mean_channel_diff": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "page": 8,
+      "direct_render": "/private/tmp/manual-web-audit-20261102/own-source-render/JE-3000B/p08.png",
+      "cache": "/private/tmp/manual-web-audit-20261102/pdf-pages/JE-3000B/p08.png",
+      "same_size": true,
+      "direct_size": [
+        850,
+        1210
+      ],
+      "cached_size": [
+        850,
+        1210
+      ],
+      "pixel_exact": true,
+      "mean_channel_diff": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "page": 9,
+      "direct_render": "/private/tmp/manual-web-audit-20261102/own-source-render/JE-3000B/p09.png",
+      "cache": "/private/tmp/manual-web-audit-20261102/pdf-pages/JE-3000B/p09.png",
+      "same_size": true,
+      "direct_size": [
+        850,
+        1210
+      ],
+      "cached_size": [
+        850,
+        1210
+      ],
+      "pixel_exact": true,
+      "mean_channel_diff": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "page": 10,
+      "direct_render": "/private/tmp/manual-web-audit-20261102/own-source-render/JE-3000B/p10.png",
+      "cache": "/private/tmp/manual-web-audit-20261102/pdf-pages/JE-3000B/p10.png",
+      "same_size": true,
+      "direct_size": [
+        850,
+        1210
+      ],
+      "cached_size": [
+        850,
+        1210
+      ],
+      "pixel_exact": true,
+      "mean_channel_diff": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "page": 11,
+      "direct_render": "/private/tmp/manual-web-audit-20261102/own-source-render/JE-3000B/p11.png",
+      "cache": "/private/tmp/manual-web-audit-20261102/pdf-pages/JE-3000B/p11.png",
+      "same_size": true,
+      "direct_size": [
+        850,
+        1210
+      ],
+      "cached_size": [
+        850,
+        1210
+      ],
+      "pixel_exact": true,
+      "mean_channel_diff": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "page": 12,
+      "direct_render": "/private/tmp/manual-web-audit-20261102/own-source-render/JE-3000B/p12.png",
+      "cache": "/private/tmp/manual-web-audit-20261102/pdf-pages/JE-3000B/p12.png",
+      "same_size": true,
+      "direct_size": [
+        850,
+        1210
+      ],
+      "cached_size": [
+        850,
+        1210
+      ],
+      "pixel_exact": true,
+      "mean_channel_diff": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "page": 13,
+      "direct_render": "/private/tmp/manual-web-audit-20261102/own-source-render/JE-3000B/p13.png",
+      "cache": "/private/tmp/manual-web-audit-20261102/pdf-pages/JE-3000B/p13.png",
+      "same_size": true,
+      "direct_size": [
+        850,
+        1210
+      ],
+      "cached_size": [
+        850,
+        1210
+      ],
+      "pixel_exact": true,
+      "mean_channel_diff": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "page": 14,
+      "direct_render": "/private/tmp/manual-web-audit-20261102/own-source-render/JE-3000B/p14.png",
+      "cache": "/private/tmp/manual-web-audit-20261102/pdf-pages/JE-3000B/p14.png",
+      "same_size": true,
+      "direct_size": [
+        850,
+        1210
+      ],
+      "cached_size": [
+        850,
+        1210
+      ],
+      "pixel_exact": true,
+      "mean_channel_diff": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "page": 15,
+      "direct_render": "/private/tmp/manual-web-audit-20261102/own-source-render/JE-3000B/p15.png",
+      "cache": "/private/tmp/manual-web-audit-20261102/pdf-pages/JE-3000B/p15.png",
+      "same_size": true,
+      "direct_size": [
+        850,
+        1210
+      ],
+      "cached_size": [
+        850,
+        1210
+      ],
+      "pixel_exact": true,
+      "mean_channel_diff": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "page": 16,
+      "direct_render": "/private/tmp/manual-web-audit-20261102/own-source-render/JE-3000B/p16.png",
+      "cache": "/private/tmp/manual-web-audit-20261102/pdf-pages/JE-3000B/p16.png",
+      "same_size": true,
+      "direct_size": [
+        850,
+        1210
+      ],
+      "cached_size": [
+        850,
+        1210
+      ],
+      "pixel_exact": true,
+      "mean_channel_diff": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "page": 17,
+      "direct_render": "/private/tmp/manual-web-audit-20261102/own-source-render/JE-3000B/p17.png",
+      "cache": "/private/tmp/manual-web-audit-20261102/pdf-pages/JE-3000B/p17.png",
+      "same_size": true,
+      "direct_size": [
+        850,
+        1210
+      ],
+      "cached_size": [
+        850,
+        1210
+      ],
+      "pixel_exact": true,
+      "mean_channel_diff": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "page": 18,
+      "direct_render": "/private/tmp/manual-web-audit-20261102/own-source-render/JE-3000B/p18.png",
+      "cache": "/private/tmp/manual-web-audit-20261102/pdf-pages/JE-3000B/p18.png",
+      "same_size": true,
+      "direct_size": [
+        850,
+        1210
+      ],
+      "cached_size": [
+        850,
+        1210
+      ],
+      "pixel_exact": true,
+      "mean_channel_diff": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "page": 19,
+      "direct_render": "/private/tmp/manual-web-audit-20261102/own-source-render/JE-3000B/p19.png",
+      "cache": "/private/tmp/manual-web-audit-20261102/pdf-pages/JE-3000B/p19.png",
+      "same_size": true,
+      "direct_size": [
+        850,
+        1210
+      ],
+      "cached_size": [
+        850,
+        1210
+      ],
+      "pixel_exact": true,
+      "mean_channel_diff": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  ]
+}

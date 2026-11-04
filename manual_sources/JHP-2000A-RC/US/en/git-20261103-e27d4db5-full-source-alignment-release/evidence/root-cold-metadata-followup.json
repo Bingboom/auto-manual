@@ -1,0 +1,10 @@
+{
+  "visible_files": 77,
+  "visible_differences": [],
+  "manual_ir_bytes_equal": true,
+  "source_manifest_exclusions": [
+    "print cover (physical 1), excluded by user",
+    "paper TOC (physical 3), print-only navigation",
+    "printed page numbers"
+  ]
+}

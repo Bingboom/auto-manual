@@ -1,0 +1,56 @@
+[
+  {
+    "tag": "FIGURE",
+    "cls": "hb-reference-figure",
+    "scrollLeft": 186,
+    "scrollWidth": 544,
+    "clientWidth": 358,
+    "lastRight": 374,
+    "containerRight": 374
+  },
+  {
+    "tag": "FIGURE",
+    "cls": "hb-reference-figure",
+    "scrollLeft": 186,
+    "scrollWidth": 544,
+    "clientWidth": 358,
+    "lastRight": 374,
+    "containerRight": 374
+  },
+  {
+    "tag": "DIV",
+    "cls": "docutils container",
+    "scrollLeft": 282,
+    "scrollWidth": 640,
+    "clientWidth": 358,
+    "lastRight": 374,
+    "containerRight": 374
+  },
+  {
+    "tag": "DIV",
+    "cls": "table-wrapper docutils container",
+    "scrollLeft": 226,
+    "scrollWidth": 582,
+    "clientWidth": 356,
+    "lastRight": 370.1875,
+    "containerRight": 374
+  },
+  {
+    "tag": "FIGURE",
+    "cls": "hb-reference-figure",
+    "scrollLeft": 186,
+    "scrollWidth": 544,
+    "clientWidth": 358,
+    "lastRight": 374,
+    "containerRight": 374
+  },
+  {
+    "tag": "DIV",
+    "cls": "table-wrapper docutils container",
+    "scrollLeft": 226,
+    "scrollWidth": 582,
+    "clientWidth": 356,
+    "lastRight": 370.1875,
+    "containerRight": 374
+  }
+]

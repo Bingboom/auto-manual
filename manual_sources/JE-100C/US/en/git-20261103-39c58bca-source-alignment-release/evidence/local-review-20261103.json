@@ -1,0 +1,60 @@
+{
+  "model": "JE-100C",
+  "record_id": "reczz28SPRx9p8Z3",
+  "source_sha256": "39c58bca661f635fc9d500bc9362317b62b5da6f007589fbf8e4ebfcc8e0bad0",
+  "status": "local_review_passed",
+  "change": "Restore source p9 LCD original left artwork and right native operation table; phone stacks",
+  "full_visible_copy_identical": true,
+  "full_semantic_json_unchanged_except_layout_group": true,
+  "original_assets_identical": 40,
+  "strict_sphinx": "passed",
+  "source_content_tests": "21 targeted identity/source-copy/model-fact/artwork tests passed across the original packages; new candidate full text and all images verified identical",
+  "browser": [
+    {
+      "width": 1280,
+      "images": 43,
+      "broken": [],
+      "uncontained": []
+    },
+    {
+      "width": 390,
+      "images": 43,
+      "broken": [],
+      "uncontained": []
+    }
+  ],
+  "layout_evidence": [
+    {
+      "width": 1280,
+      "computedColumns": "none",
+      "rows": 5,
+      "text": "FunctionDescriptionScreen Wake-UpLights up when the DISPLAY button is briefly pressed, or automatically during charging or discharging.Screen Always OnWhile the screen is lit, double-press the DISPLAY button.Screen SwitchingAfter the screen lights up, briefly press the DISPLAY button to switch pages.Turn Off Screen Always-OnDouble-press the DISPLAY button again.Auto Screen Off10 seconds after lighting up with no operation, or 2 hours after entering always-on mode."
+    },
+    {
+      "width": 390,
+      "computedColumns": "none",
+      "rows": 5,
+      "text": "FunctionDescriptionScreen Wake-UpLights up when the DISPLAY button is briefly pressed, or automatically during charging or discharging.Screen Always OnWhile the screen is lit, double-press the DISPLAY button.Screen SwitchingAfter the screen lights up, briefly press the DISPLAY button to switch pages.Turn Off Screen Always-OnDouble-press the DISPLAY button again.Auto Screen Off10 seconds after lighting up with no operation, or 2 hours after entering always-on mode."
+    }
+  ],
+  "source_ocr": {
+    "model": "JE-100C",
+    "checked_ocr_lines": 81,
+    "candidates": [
+      {
+        "page": 7,
+        "text": "te nstopaf opeioting rhilits temperature returns to",
+        "coverage": 0.444,
+        "near": "Low temperature protection is triggered. The product may stop functioning until its temperature returns to the normal operating range.",
+        "similarity": 0.478
+      }
+    ]
+  },
+  "ocr_candidate_resolutions": [
+    {
+      "page": 7,
+      "verdict": "Low-temperature OCR garble; native text matches source: Low temperature protection is triggered. The product may stop functioning until its temperature returns to the normal operating range.",
+      "web_location": "LCD DISPLAY > interface-1 unnumbered state table"
+    }
+  ]
+}

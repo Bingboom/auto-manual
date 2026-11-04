@@ -1,0 +1,35 @@
+{
+  "model": "JE-2000A",
+  "source_pages": 19,
+  "checked_lines": 361,
+  "exclusions": {
+    "1": "historically approved print cover"
+  },
+  "candidates": [
+    {
+      "page": 2,
+      "text": "38.4 × 26.90 x 30.75cm / About 19.5kg",
+      "coverage": 0.529
+    },
+    {
+      "page": 2,
+      "text": "quakcrango 3.0 UN38.3 FC BC",
+      "coverage": 0.0
+    },
+    {
+      "page": 2,
+      "text": "CAN ICES-003(B)/NMB-003(B)",
+      "coverage": 0.0
+    },
+    {
+      "page": 4,
+      "text": "LCD Screen Button",
+      "coverage": 0.25
+    },
+    {
+      "page": 6,
+      "text": "Low Power Mode ((12H)) :",
+      "coverage": 0.625
+    }
+  ]
+}

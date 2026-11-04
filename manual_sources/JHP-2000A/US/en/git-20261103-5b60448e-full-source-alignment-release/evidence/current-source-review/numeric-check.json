@@ -1,0 +1,42 @@
+{
+  "exact_letter_contexts_checked": 123,
+  "raw_candidates": [
+    {
+      "page": 20,
+      "source": "1 x DC Expansion Port",
+      "web_context": "x1dcexpansionport",
+      "source_numbers": [],
+      "web_numbers": [
+        "1"
+      ]
+    },
+    {
+      "page": 20,
+      "source": "Bypass Mode®: 100V-120V~ 60Hz, 15A Max",
+      "web_context": "bypassmode1100v120v60hz15amax",
+      "source_numbers": [
+        "100",
+        "120",
+        "60",
+        "15"
+      ],
+      "web_numbers": [
+        "1100",
+        "120",
+        "60",
+        "15"
+      ]
+    },
+    {
+      "page": 20,
+      "source": "1x DC Expansion Port",
+      "web_context": "x1dcexpansionport",
+      "source_numbers": [],
+      "web_numbers": [
+        "1"
+      ]
+    }
+  ],
+  "unresolved_numeric_differences": 0,
+  "resolution": "Two DCExpansionPort labels: generic context extraction drops leading1 at multiplication boundary; actual source/native each1×DCExpansionPort. BypassMode superscriptfootnote1 adjacent100V flattens to1100; actual native/source100V–120V60Hz15A. Every specification/port/time/temperature/condition value also visually read."
+}

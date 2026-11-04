@@ -1,0 +1,83 @@
+{
+  "source_to_web": [
+    {
+      "page": 4,
+      "source_ocr": "Chargiemperatre:14°to113°(10°to45°()",
+      "disposition": "OCR mangled charging-temperature line; exact14°Fto113°F/-10°Cto45°C visually confirmed."
+    },
+    {
+      "page": 7,
+      "source_ocr": "30W Max, 5Vm3A, 9Vm3А,",
+      "disposition": "Embedded original port-art text; own-source30W/100W ratings preserved and visually confirmed."
+    },
+    {
+      "page": 7,
+      "source_ocr": "100W Max, 5Vm3A, 9V-3A,",
+      "disposition": "Embedded original port-art text; own-source30W/100W ratings preserved and visually confirmed."
+    },
+    {
+      "page": 12,
+      "source_ocr": "Tumnon Press the proder liu tharging.",
+      "disposition": "OCR crossed LCD state/action cells; original turn-on/off state/condition cells visually confirmed."
+    },
+    {
+      "page": 17,
+      "source_ocr": "About 23.4 Ibs/10.6 kg",
+      "disposition": "OCR l/I, multiplication and superscript variants. Weight23.4lbs/10.6kg and dimensions12.4x7.9x9.2in/31.4x20.1x23.4cm exact. Bypass Mode superscript1 is source footnote marker, not digit of100V. Source footnote inconsistency preserved."
+    },
+    {
+      "page": 17,
+      "source_ocr": "12.4 × 7.9 x 9.2 in / 31.4 × 20.1 × 23.4 cm",
+      "disposition": "OCR l/I, multiplication and superscript variants. Weight23.4lbs/10.6kg and dimensions12.4x7.9x9.2in/31.4x20.1x23.4cm exact. Bypass Mode superscript1 is source footnote marker, not digit of100V. Source footnote inconsistency preserved."
+    },
+    {
+      "page": 17,
+      "source_ocr": "Bypass Mode': 100V-120V~60Hz, 12A Max",
+      "disposition": "OCR l/I, multiplication and superscript variants. Weight23.4lbs/10.6kg and dimensions12.4x7.9x9.2in/31.4x20.1x23.4cm exact. Bypass Mode superscript1 is source footnote marker, not digit of100V. Source footnote inconsistency preserved."
+    },
+    {
+      "page": 19,
+      "source_ocr": "Bluetooth configuration",
+      "disposition": "Text inside unchanged original App artwork; checked visually against own page."
+    },
+    {
+      "page": 19,
+      "source_ocr": "Bluetooth configuration mode",
+      "disposition": "Text inside unchanged original App artwork; checked visually against own page."
+    },
+    {
+      "page": 19,
+      "source_ocr": "Heaienon see be bnbuh kone Tlssio",
+      "disposition": "Text inside unchanged original App artwork; checked visually against own page."
+    },
+    {
+      "page": 19,
+      "source_ocr": "tefore proceating to the next stop.",
+      "disposition": "Text inside unchanged original App artwork; checked visually against own page."
+    },
+    {
+      "page": 19,
+      "source_ocr": "100n0538iiR 9020331 00",
+      "disposition": "Text inside unchanged original App artwork; checked visually against own page."
+    },
+    {
+      "page": 20,
+      "source_ocr": "Please select 2.4 GHz Wi-Fi",
+      "disposition": "Text inside unchanged original App artwork; checked visually against own page."
+    },
+    {
+      "page": 20,
+      "source_ocr": "Ramerbar pasawerd",
+      "disposition": "Text inside unchanged original App artwork; checked visually against own page."
+    },
+    {
+      "page": 20,
+      "source_ocr": "Available devicels) scanned",
+      "disposition": "Text inside unchanged original App artwork; checked visually against own page."
+    }
+  ],
+  "web_to_source_unresolved": [],
+  "transcription_to_source_low_ocr_candidates": "Six candidates in jhp1000a-reverse-coverage.json individually located on own source pages4/7/8/12; OCR/window concatenation only, text exact.",
+  "source_technical_concerns": "Retain all source_manifest.source_concerns verbatim; none silently corrected.",
+  "historical_approval": "No inherited difference statement treated as approval. Current user explicitly excludes cover1/TOC3."
+}
