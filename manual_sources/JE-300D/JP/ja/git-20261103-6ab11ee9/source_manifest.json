@@ -73,8 +73,8 @@
     "ja": "web/ja"
   },
   "source_authority": "operator-designated Japanese single-language PDF (「单语言说明书」) from the 发布文档管理 Base row (read-only download); the original Japanese governs all copy (封面和目录不上网页; 版面以 PDF 为准; 不改任何日文原文).",
-  "publication_status": "review-candidate-no-release-authorization",
-  "publication_eligible": false,
+  "publication_status": "operator-approved-git-only-release",
+  "publication_eligible": true,
   "pending_source_review": [],
   "language_scope": "single",
   "live_bitable_dependency": false,
@@ -1876,8 +1876,8 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 4146,
-      "sha256": "1d98e62d0a7f92b2a2a994af288f1629cdaf405dbbf59d62789e7da9db4ab732"
+      "size": 4388,
+      "sha256": "af2cf6b5a98169f97f1922ab03a8b1b2aac39c6e55ae6cce071a2b0dfa8439e2"
     },
     {
       "path": "assets/charging-car.png",
@@ -2071,8 +2071,8 @@
     },
     {
       "path": "audit/review.zh.md",
-      "size": 4623,
-      "sha256": "b648d5b1317b8975136a5f440b1d47d4c3b16e29b4bbd55efae386b3dd2e0a7f"
+      "size": 4783,
+      "sha256": "a17c460cf00d43c916f6faf9a1423828d00afca411bfe426b4b6e89f86f2eea3"
     },
     {
       "path": "original.pdf",
@@ -2083,6 +2083,11 @@
       "path": "rebuild.py",
       "size": 8200,
       "sha256": "d1ee618a2d771b6efd58975dbe233a6f1a0361c19a78ca74ac31bdd93c497d7d"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 9212,
+      "sha256": "1c47c7ba5976cbd703d9af021b62122fa783e30377fcde1bd8fe6b75ddf3563d"
     },
     {
       "path": "source/extract_assets.py",
@@ -2341,8 +2346,8 @@
     },
     {
       "path": "web/ja/manual.ir.json",
-      "size": 374928,
-      "sha256": "e761dcb201647437f21f73ed16d1a7cb657eba360f09954b9f56f1db7fef368e"
+      "size": 385120,
+      "sha256": "987feb251849479643164e2337c66fe044f53e1778bcbd0562743a55039a7c5e"
     },
     {
       "path": "web/ja/manual_je300d_jp_ja.md",

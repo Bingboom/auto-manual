@@ -1,9 +1,9 @@
-# JE-300D JP/ja 审核要点（候选稿，未批准）
+# JE-300D JP/ja 审核要点（2026-11-04 操作员「上线提交发布」，PR #1657）
 
 来源：发布文档管理 Base 行 `reczz28SfbsHcCzi`（物料号 38-0001-000961，项目号 HTE150）的日文单语 PDF
 （`【Jackery ポータブル電源 300D】说明书-JP.pdf`，SHA-256 `6ab11ee9…`），21 页，89×129 mm，转曲无文字层。
 网页为逐行人工转录，日文原文未改动。共用参考版：同型号 JE-300D US 英文 Web（`git-20261028-d3f47ff3`）。
-状态：`review-candidate-no-release-authorization`，无 approval.json。
+状态：`operator-approved-git-only-release`。2026-11-04 操作员看过 1280/390 对照图后说「上线提交发布：JE-300B、JE-300C、JE-300D、JE-500A」，接受见 `source/approval.json`。
 
 请操作员确认（默认按下列处理）：
 

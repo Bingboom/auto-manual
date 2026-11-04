@@ -1,9 +1,9 @@
-# JE-300C JP/ja 审核要点（候选稿，未获批准）
+# JE-300C JP/ja 审核要点（2026-11-04 操作员「上线提交发布」，PR #1657）
 
 来源：发布文档管理 Base 行 `reczz28SfbsHdirt`（物料号 16-0102-000066，项目号 HTE142）的日文单语 PDF
 `【Jackery ポータブル電源 300 New】说明书-JP.pdf`，23 页，130 × 185 mm，转曲（无文字层）。网页为逐行人工转录，
 日文原文（含全角/半角标点、空格、数字、单位）未改动。共用参考版：同型号已发布的 JE-300C US 英文 Web。
-状态：`review-candidate-no-release-authorization`，无 approval.json。
+状态：`operator-approved-git-only-release`。2026-11-04 操作员看过 1280/390 对照图后说「上线提交发布：JE-300B、JE-300C、JE-300D、JE-500A」，接受见 `source/approval.json`。
 
 请操作员确认（默认按下列处理）：
 

@@ -1754,13 +1754,13 @@
       }
     },
     "manual_sources/JE-300B/JP/ja/git-20261103-456bb360": {
-      "approval": "Operator 2026-11-03 「继续 转日语说明书」 (发布文档管理 日规 view, relayed by the coordination window): Git-only JP/ja single-language Web candidate from the row's 单语言说明书 PDF; candidate intake only, no approval, merge or release authorization",
-      "registered": "2026-11-03",
+      "approval": "Operator 2026-11-04 (PR #1657 session): 「上线提交发布：JE-300B、JE-300C、JE-300D、JE-500A」 after reviewing the 1280/390 renders beside the shared reference edition: Git-only JP/ja single-language Web release from the 发布文档管理 日规 row's 单语言说明书 PDF, source copy verbatim; acceptance hash-bound in source/approval.json",
+      "registered": "2026-11-04",
       "known_drift": {}
     },
     "manual_sources/JE-300C/JP/ja/git-20261103-890abb4a": {
-      "approval": "Operator 2026-11-03 「继续 转日语说明书」 (发布文档管理 日规 view, relayed by the coordination window): Git-only JP/ja single-language Web candidate from the row's 单语言说明书 PDF; candidate intake only, no approval, merge or release authorization",
-      "registered": "2026-11-03",
+      "approval": "Operator 2026-11-04 (PR #1657 session): 「上线提交发布：JE-300B、JE-300C、JE-300D、JE-500A」 after reviewing the 1280/390 renders beside the shared reference edition: Git-only JP/ja single-language Web release from the 发布文档管理 日规 row's 单语言说明书 PDF, source copy verbatim; acceptance hash-bound in source/approval.json",
+      "registered": "2026-11-04",
       "known_drift": {}
     },
     "manual_sources/JE-300C/US/en/git-20261027-a1128b25": {
@@ -1800,8 +1800,8 @@
       "known_drift": {}
     },
     "manual_sources/JE-300D/JP/ja/git-20261103-6ab11ee9": {
-      "approval": "Operator 2026-11-03 「继续 转日语说明书」 (发布文档管理 日规 view, relayed by the coordination window): Git-only JP/ja single-language Web candidate from the row's 单语言说明书 PDF; candidate intake only, no approval, merge or release authorization",
-      "registered": "2026-11-03",
+      "approval": "Operator 2026-11-04 (PR #1657 session): 「上线提交发布：JE-300B、JE-300C、JE-300D、JE-500A」 after reviewing the 1280/390 renders beside the shared reference edition: Git-only JP/ja single-language Web release from the 发布文档管理 日规 row's 单语言说明书 PDF, source copy verbatim; acceptance hash-bound in source/approval.json",
+      "registered": "2026-11-04",
       "known_drift": {}
     },
     "manual_sources/JE-300D/US/en/git-20261028-d3f47ff3": {
@@ -2018,8 +2018,8 @@
       "known_drift": {}
     },
     "manual_sources/JE-500A/JP/ja/git-20261103-368d9934": {
-      "approval": "Operator 2026-11-03 「继续 转日语说明书」 (发布文档管理 日规 view, relayed by the coordination window): Git-only JP/ja single-language Web candidate from the row's 单语言说明书 PDF; candidate intake only, no approval, merge or release authorization",
-      "registered": "2026-11-03",
+      "approval": "Operator 2026-11-04 (PR #1657 session): 「上线提交发布：JE-300B、JE-300C、JE-300D、JE-500A」 after reviewing the 1280/390 renders beside the shared reference edition: Git-only JP/ja single-language Web release from the 发布文档管理 日规 row's 单语言说明书 PDF, source copy verbatim; acceptance hash-bound in source/approval.json",
+      "registered": "2026-11-04",
       "known_drift": {}
     },
     "manual_sources/JE-500A/US/en/git-20261028-5c065d11": {

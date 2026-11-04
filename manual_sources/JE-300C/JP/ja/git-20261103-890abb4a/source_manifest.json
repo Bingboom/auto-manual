@@ -82,8 +82,8 @@
     "ja": "web/ja"
   },
   "source_authority": "operator-designated Japanese single-language PDF (「单语言说明书」) from the 发布文档管理 Base row (read-only download); the original Japanese governs all copy (封面和目录不上网页; 版面以 PDF 为准; 不改任何日文原文).",
-  "publication_status": "review-candidate-no-release-authorization",
-  "publication_eligible": false,
+  "publication_status": "operator-approved-git-only-release",
+  "publication_eligible": true,
   "pending_source_review": [],
   "language_scope": "single",
   "live_bitable_dependency": false,
@@ -1791,8 +1791,8 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 4299,
-      "sha256": "3eb3c3305e7e767f3150d55b87d5a1839fa11dc499d53062390c4dac0f212f6b"
+      "size": 4514,
+      "sha256": "07d505b0c96793fdca9871d406e4f0ac3bc7f099668483eea4902115063231ba"
     },
     {
       "path": "assets/ac-output.png",
@@ -2036,8 +2036,8 @@
     },
     {
       "path": "audit/review.zh.md",
-      "size": 5562,
-      "sha256": "052ff2426b549cbf76ce400dfc4409fc8f2eade584b82e6030dcbc291cee1be7"
+      "size": 5719,
+      "sha256": "07f9755e7682d2c1c00dbf3fd94b88efa2f0e7e33ce04c018700af56cb548d8b"
     },
     {
       "path": "original.pdf",
@@ -2048,6 +2048,11 @@
       "path": "rebuild.py",
       "size": 8200,
       "sha256": "d1ee618a2d771b6efd58975dbe233a6f1a0361c19a78ca74ac31bdd93c497d7d"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 10809,
+      "sha256": "8ef48d00af37a5f66ff5d8bfd7e5aaa7ba689a331544eca56054d8a99e2ec3a1"
     },
     {
       "path": "source/extract_assets.py",
@@ -2356,8 +2361,8 @@
     },
     {
       "path": "web/ja/manual.ir.json",
-      "size": 411536,
-      "sha256": "a2696b7ce0dfc40ccea5bb2403a2d754199c9759374c34bbebdb24b900256d54"
+      "size": 423525,
+      "sha256": "38c401aa5339d3dc17b138c2fbd4df8151d5b783bbe85d90fc5361757420511a"
     },
     {
       "path": "web/ja/manual_je300c_jp_ja.md",

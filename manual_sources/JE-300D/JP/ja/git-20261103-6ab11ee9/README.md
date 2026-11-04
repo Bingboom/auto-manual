@@ -1,13 +1,11 @@
-# JE-300D / JP / Japanese — Git-only Web candidate
+# JE-300D / JP / Japanese — Git-only Web release
 
 Operator decision, 2026-11-03 (「继续 转日语说明书」): convert the JP single-language manuals that have a customer
 model and a single-language PDF and are not yet on the Web. This package converts the Japanese manual of the
 Jackery ポータブル電源 300D (model JE-300D) from the 发布文档管理 Base row `reczz28SfbsHcCzi` (material
 38-0001-000961, project HTE150). Route `JE-300D/JP/ja/md`, `legacy_default`.
 
-**Status: `review-candidate-no-release-authorization`.** Not approved: there is no `source/approval.json`, the IR
-is not publication-eligible, and nothing here authorizes a merge or release. The default layout decisions the
-operator should check are listed in [`audit/review.zh.md`](audit/review.zh.md).
+**Status: `operator-approved-git-only-release`.** On 2026-11-04 the operator reviewed the 1280/390 renders beside the shared reference edition (PR #1657, reviewed commit `76fe0a13`) and said 「上线提交发布：JE-300B、JE-300C、JE-300D、JE-500A」 in the engineering session. `source/approval.json` binds that acceptance to these exact source inputs and the IR is publication-eligible. Source copy is published verbatim; `source_concerns` go to the source owner. The PR is merged only on the operator's own authorization (AGENTS.md §8.6).
 
 ## Source authority
 
