@@ -1,0 +1,16 @@
+{
+  "schema_version": "je2000d-jp-candidate-validation/v1",
+  "date": "2026-11-03",
+  "status": "candidate-pending-operator-review",
+  "environment": "Python 3.13 with Sphinx 8.2.3 / myst-parser 4.0.1 / furo 2025.12.19 / docutils 0.21.2 (requirements.lock pins), ruff, Pandoc via tools.word.bundle_docx_pandoc, Node Playwright with Chromium 1243",
+  "checks": [
+    {"command": "ruff check manual_sources/JE-2000D/JP/ja/git-20261103-62605f21/*.py tests/test_je2000d_jp_web.py", "result": "pass", "log": "ruff.log"},
+    {"command": "python <pkg>/derive_assets.py; python <pkg>/build_content.py; python <pkg>/refresh_manifest.py; python <pkg>/rebuild.py --output <fresh tmp>", "result": "pass: input hashes, prepared-document shared-style admission (two declared plain tables), symbol admission 6/6 (max mean channel error 0.0132); IR publication_eligible false"},
+    {"command": "python -m sphinx -n -W --keep-going -b html web/ja <html>", "result": "pass", "log": "strict-sphinx.log"},
+    {"command": "python -m unittest tests.test_je2000d_jp_web -v", "result": "pass: 9 tests OK (cold replay byte-identical to web/ja)", "log": "target-tests.log"},
+    {"command": "python -m unittest tests.test_je2000d_us_web tests.test_je1000d_jp_web", "result": "pass: 18 tests OK (neighbouring packages unaffected)"},
+    {"command": "python -m tools.check_maintainability_guardrails", "result": "expected failure only: [frozen-packages] NEW manual_sources/JE-2000D/JP/ja/git-20261103-62605f21 (unregistered; the coordinator registers it); all other guardrails pass", "log": "maintainability.log"},
+    {"command": "browser 1280 / 390 full page (Playwright Chromium, deviceScaleFactor 1)", "result": "36 images, 0 broken; document scrollWidth == viewport at both widths; at 390 the LCD icon tables scroll inside their shared component as in the precedents", "files": ["browser-1280.png", "browser-390.png", "browser-1280.json", "browser-390.json"]}
+  ],
+  "not_validated": "full python -m unittest suite; RTD deployment and production routes (after approval and the Hello-Docs publication PR)"
+}

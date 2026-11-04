@@ -1,0 +1,83 @@
+/usr/local/lib/python3.13/site-packages/fitz/__init__.py:17: FutureWarning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
+  warnings.warn(
+{
+  "output": "/tmp/claude-0/-home-user-auto-manual/1c3a35ed-f5d2-5b12-a9ca-72f0cdfc8654/scratchpad/je2000fwh/out/r4",
+  "chapters": 13,
+  "components": {
+    "HB-CALLOUT-STRIP": 28,
+    "HB-SPECIAL-APP": 2,
+    "HB-SPECIAL-INBOX": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE": 17,
+    "HB-TABLE-AUTO-RESUME": 1,
+    "HB-TABLE-KEY-COMBINATIONS": 1,
+    "HB-TABLE-LCD-ICON": 1,
+    "HB-TABLE-LCD-MODE": 1,
+    "HB-TABLE-SPEC": 4,
+    "HB-TABLE-SYMBOL-ICON": 2,
+    "HB-TABLE-SYMBOL-SIGNAL": 1,
+    "HB-TABLE-TROUBLESHOOTING": 1,
+    "HB-WARRANTY-SECTION": 6
+  },
+  "symbol_admission": [
+    {
+      "asset_ref": "assets/symbol-01.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.01263
+    },
+    {
+      "asset_ref": "assets/symbol-02.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.013625
+    },
+    {
+      "asset_ref": "assets/symbol-03.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.007814
+    },
+    {
+      "asset_ref": "assets/symbol-04.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.0079
+    },
+    {
+      "asset_ref": "assets/symbol-05.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.004492
+    },
+    {
+      "asset_ref": "assets/symbol-06.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.00778
+    },
+    {
+      "asset_ref": "assets/symbol-07.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.013396
+    },
+    {
+      "asset_ref": "assets/symbol-08.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.010765
+    },
+    {
+      "asset_ref": "assets/symbol-09.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.004465
+    },
+    {
+      "asset_ref": "assets/symbol-10.svg",
+      "physical_page": 3,
+      "max_mean_channel_error": 0.004822
+    },
+    {
+      "asset_ref": "assets/symbol-11.png",
+      "physical_page": 4,
+      "max_mean_channel_error": 0.013972
+    },
+    {
+      "asset_ref": "assets/symbol-12.png",
+      "physical_page": 4,
+      "max_mean_channel_error": 0.004516
+    }
+  ]
+}

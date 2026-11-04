@@ -1,0 +1,22 @@
+{
+  "schema_version": "je3000b-jp-candidate-validation/v1",
+  "date": "2026-11-03",
+  "status": "candidate-pending-operator-review",
+  "environment": "Python 3.13 (system), Pandoc on PATH, Sphinx 8.2.3 / furo 2025.12.19 / myst-parser 4.0.1 (requirements.lock pins, scratch venv), ruff 0.16.9, Playwright 1.63 + Google Chrome",
+  "checks": [
+    {"command": "ruff check manual_sources/JE-3000B/JP tests/test_je3000b_jp_web.py", "result": "pass", "log": "ruff.log"},
+    {"command": "python -I derive_assets.py; python -I build_content.py; python -I refresh_manifest.py; python -I rebuild.py --output <fresh tmp>", "result": "pass: shared-style gate with two declared plain tables, symbol admission 6/6, reuse comparison 8/8"},
+    {"command": "python -m sphinx -n -W --keep-going -b html <fresh rebuild> <html>", "result": "pass", "log": "strict-sphinx.log"},
+    {"command": "python -m unittest tests.test_je3000b_jp_web", "result": "pass: 9 tests (cold replay byte-identical to web/ja)", "log": "target-tests.log"},
+    {"command": "python -m tools.check_maintainability_guardrails", "result": "expected failure only: [frozen-packages] NEW package not registered (the coordinator registers); all other guards pass", "log": "maintainability.log"},
+    {"command": "browser 1280 / 390 full page (deviceScaleFactor 1, lazy images scrolled in)", "result": "38 images, 0 broken, document scrollWidth == viewport at both widths; LCD map and overview pan inside their figure at 390", "files": ["browser-1280.png", "browser-390.png", "browser-1280.json", "browser-390.json"]}
+  ],
+  "rebuild_gates": [
+    "input SHA-256 inventory",
+    "prepared-document shared-style admission with two declared plain tables",
+    "symbol asset admission 6/6 against existing shared variants (max mean channel error 0.0147)",
+    "artwork reuse comparison 8/8 LCD glyphs within 2% (max 0.0165)",
+    "no approval.json; IR publication_eligible false"
+  ],
+  "not_validated": "frozen package registration, full python -m unittest suite, RTD/Hello-Docs publication"
+}
