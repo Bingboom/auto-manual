@@ -1,0 +1,266 @@
+[
+  {
+    "slot": "inbox-unit",
+    "physical_page": 7,
+    "bbox": [
+      35,
+      83,
+      79,
+      146
+    ],
+    "caption": "本体",
+    "embedded_words": false,
+    "reuse_review": "compared visually with the JE-300D US inbox-unit asset: the same text-free line drawing of the unit (handle on the left); only the card margin differs, so the existing US asset is reused unchanged",
+    "source": "manual_sources/JE-300D/US/en/git-20261028-d3f47ff3/assets/inbox-unit.png",
+    "local_path": "assets/inbox-unit.png",
+    "sha256": "cefb22be7800f204198241310753e803d7f631fa59f1adc3571a0e6d763d5a37",
+    "decision": "reuse the existing repository asset unchanged (reuse_review)"
+  },
+  {
+    "slot": "inbox-shoulder-belt",
+    "physical_page": 7,
+    "bbox": [
+      112,
+      85,
+      148,
+      135
+    ],
+    "caption": "ショルダーベルト",
+    "embedded_words": false,
+    "reuse_review": "no same-model US/EU asset shows the shoulder belt (US ships an adjustable strap sold separately); cropped from this JP print",
+    "local_path": "assets/inbox-shoulder-belt.png",
+    "render_scale": 4,
+    "sha256": "97e0f49c9c196037a2757c4386db0b3e21cb1676b3bc3b46a4923efc276add19",
+    "source_sha256": "6ab11ee92b1cc729e585084d6c3fecd14b9dd98cc97a6c52da48c5fd9fa83559",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "inbox-user-manual",
+    "physical_page": 7,
+    "bbox": [
+      183,
+      84,
+      222,
+      136
+    ],
+    "caption": "取扱説明書",
+    "embedded_words": true,
+    "reuse_review": "the JP manual card shows this edition's Japanese cover (取扱説明書, 国内専用); the US card shows the English cover; cropped from this JP print",
+    "local_path": "assets/inbox-user-manual.png",
+    "render_scale": 4,
+    "sha256": "da00fb02e6e05b1f801b7ef5ce871ea60926b2675d6b70c53ecfdb8a39f6627c",
+    "source_sha256": "6ab11ee92b1cc729e585084d6c3fecd14b9dd98cc97a6c52da48c5fd9fa83559",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "overview-front",
+    "physical_page": 8,
+    "bbox": [
+      18,
+      61,
+      237,
+      184
+    ],
+    "caption": "各部の名称（製品の外観）: LCDディスプレイ; 主電源ボタン; DC出力ボタン; シガーソケット出力ポート 12V⎓10A; DC入力ポート（DC8020） PV: 16V-28V⎓6A, 最大100W シガーソケット: 11V-16V⎓6A, 最大96W; USB-C1入力/出力ポート 最大140W, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A, 28V⎓5A; LEDライトボタン; LEDライト; USB-A出力ポート 最大 15W, 5V⎓3A; USB-C3出力ポート 最大65W, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓3.25A; USB-C2出力ポート 最大140W, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A, 28V⎓5A; * 2-in-1キャリーハンドル 140W USB-C充電ケーブルとキャリーハンドルの両方",
+    "embedded_words": true,
+    "reuse_review": "the same-model US asset carries English words where this panel draws Japanese ones; Japanese callout labels are drawn in the panel; the US overview carries English labels; cropped from this JP print",
+    "local_path": "assets/overview-front.png",
+    "render_scale": 4,
+    "sha256": "c7fe0be3e61f5422b7af49ed79160ae7bb569e3d5263c6fc9450f1642baf4593",
+    "source_sha256": "6ab11ee92b1cc729e585084d6c3fecd14b9dd98cc97a6c52da48c5fd9fa83559",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "shoulder-strap",
+    "physical_page": 8,
+    "bbox": [
+      76,
+      224,
+      170,
+      343
+    ],
+    "caption": "ショルダーストラップを取り付けた本製品",
+    "embedded_words": false,
+    "reuse_review": "compared visually with the JE-300D US adjustable-strap asset: the same text-free drawing of the unit with the strap attached to the handle rings; reused unchanged",
+    "source": "manual_sources/JE-300D/US/en/git-20261028-d3f47ff3/assets/adjustable-strap.png",
+    "local_path": "assets/shoulder-strap.png",
+    "sha256": "a47283c35a58970ae260bd512ab663346eb4a49adc48ea6531de77046b28f467",
+    "decision": "reuse the existing repository asset unchanged (reuse_review)"
+  },
+  {
+    "slot": "lcd-display",
+    "physical_page": 9,
+    "bbox": [
+      30,
+      40,
+      229,
+      128
+    ],
+    "caption": "液晶画面（①〜⑩）: INPUT: 888 W, 188 %, OUTPUT: 888 W",
+    "embedded_words": true,
+    "reuse_review": "compared visually with the JE-300D US lcd-display asset: the same LCD drawing with the same circled callouts ①–⑩ and the same English segment labels (INPUT:/OUTPUT:); no Japanese words in the art; reused unchanged",
+    "source": "manual_sources/JE-300D/US/en/git-20261028-d3f47ff3/assets/lcd-display.png",
+    "local_path": "assets/lcd-display.png",
+    "sha256": "9825448d6445842ab1102c9e2af44279da50fc1c6c923ab93fbc6079de3c4973",
+    "decision": "reuse the existing repository asset unchanged (reuse_review)"
+  },
+  {
+    "slot": "power-on-off",
+    "physical_page": 10,
+    "bbox": [
+      22,
+      53,
+      234,
+      126
+    ],
+    "caption": "POWER（主電源ボタン）。オン: 1回押す。オフ: 3秒間長押し",
+    "embedded_words": true,
+    "reuse_review": "the Japanese on/off labels (オン 1回押す / オフ 3秒間長押し) are drawn in the panel; the US power-on-off art carries English labels; cropped from this JP print; the grey note strip under the drawing is set as text",
+    "local_path": "assets/power-on-off.png",
+    "render_scale": 4,
+    "sha256": "eaad2e05397bb2db8bb1a1801f321a777ddd2d8144717e99c481a96122723539",
+    "source_sha256": "6ab11ee92b1cc729e585084d6c3fecd14b9dd98cc97a6c52da48c5fd9fa83559",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "usb-output",
+    "physical_page": 10,
+    "bbox": [
+      22,
+      193,
+      234,
+      268
+    ],
+    "caption": "USBポートでスマートフォンとノートパソコンを充電",
+    "embedded_words": false,
+    "reuse_review": "compared visually with the JE-300D US usb-output asset: the same text-free panel drawing (unit, USB port close-up, phone and laptop); reused unchanged",
+    "source": "manual_sources/JE-300D/US/en/git-20261028-d3f47ff3/assets/usb-output.png",
+    "local_path": "assets/usb-output.png",
+    "sha256": "1ee4a4a5c7da0438fdfdf7d8bd5a9715028e91b5d89d29427a6696c2d35a1523",
+    "decision": "reuse the existing repository asset unchanged (reuse_review)"
+  },
+  {
+    "slot": "dc-output",
+    "physical_page": 11,
+    "bbox": [
+      25,
+      49,
+      232,
+      134
+    ],
+    "caption": "DC出力ボタン。オン: 1回押す。オフ: 1回押す。シガーソケット出力ポートから機器に給電",
+    "embedded_words": true,
+    "reuse_review": "the same-model US asset carries English words where this panel draws Japanese ones; Japanese on/off labels drawn in the panel; cropped from this JP print; the grey note strips above and below are set as text",
+    "local_path": "assets/dc-output.png",
+    "render_scale": 4,
+    "sha256": "aab49434b2348c954f4cffb04ce52b59a09d062bac68a6c62643abf66a69a17a",
+    "source_sha256": "6ab11ee92b1cc729e585084d6c3fecd14b9dd98cc97a6c52da48c5fd9fa83559",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "energy-saving",
+    "physical_page": 12,
+    "bbox": [
+      22,
+      97,
+      232,
+      174
+    ],
+    "caption": "POWER（主電源ボタン）。オン: 3回押してください。オフ: 3回押してください",
+    "embedded_words": true,
+    "reuse_review": "the same-model US asset carries English words where this panel draws Japanese ones; Japanese on/off labels drawn in the panel; cropped from this JP print",
+    "local_path": "assets/energy-saving.png",
+    "render_scale": 4,
+    "sha256": "14b6464c2a0763a510585689911d7861c4d6ad80c09b422af27434fb11552609",
+    "source_sha256": "6ab11ee92b1cc729e585084d6c3fecd14b9dd98cc97a6c52da48c5fd9fa83559",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "led-light",
+    "physical_page": 12,
+    "bbox": [
+      22,
+      250,
+      234,
+      336
+    ],
+    "caption": "LEDライトボタン。1. LEDスイッチを短く押すとLEDライトが点灯し 2. SOS: 再度短く押すとSOSモードに切り替わります。 3. 再度短く押すとでライトが消灯します。",
+    "embedded_words": true,
+    "reuse_review": "the same-model US asset carries English words where this panel draws Japanese ones; the three printed Japanese steps are drawn beside the button in the panel; cropped from this JP print",
+    "local_path": "assets/led-light.png",
+    "render_scale": 4,
+    "sha256": "c142a9af4e6ddbc338e4fa679bc92636f60408fad6026a406690f655c65af884",
+    "source_sha256": "6ab11ee92b1cc729e585084d6c3fecd14b9dd98cc97a6c52da48c5fd9fa83559",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "lcd-screen",
+    "physical_page": 13,
+    "bbox": [
+      21,
+      36,
+      99,
+      184
+    ],
+    "caption": "本製品のPOWER（主電源ボタン）",
+    "embedded_words": true,
+    "reuse_review": "the same-model US asset carries English words where this panel draws Japanese ones; left art cell of the LCDスクリーン オン/オフ table (shared lcd-mode artwork); cropped from this JP print",
+    "local_path": "assets/lcd-screen.png",
+    "render_scale": 4,
+    "sha256": "21d58fd240779d62915ee0e0b07572b781b6e4ea5dbe9be67ca52a2a554011e8",
+    "source_sha256": "6ab11ee92b1cc729e585084d6c3fecd14b9dd98cc97a6c52da48c5fd9fa83559",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "charging-usbc",
+    "physical_page": 14,
+    "bbox": [
+      21,
+      56,
+      235,
+      128
+    ],
+    "caption": "①② USB-Cケーブルとしても使える2-in-1キャリーハンドルを取り外し、製品のUSB-C1ポートと電源コンセントに接続",
+    "embedded_words": true,
+    "reuse_review": "compared visually with the JE-300D US charging-usbc asset: the same panel drawing (steps ① ②, wall charger, USB-C1 close-up) with no words; the JP instruction above it is set as text; reused unchanged",
+    "source": "manual_sources/JE-300D/US/en/git-20261028-d3f47ff3/assets/charging-usbc.png",
+    "local_path": "assets/charging-usbc.png",
+    "sha256": "94b89cfcfe2b5248729a9adfa1f5098f2ab14a19a8be2e7aa32d17cbc96def47",
+    "decision": "reuse the existing repository asset unchanged (reuse_review)"
+  },
+  {
+    "slot": "charging-solar",
+    "physical_page": 14,
+    "bbox": [
+      20,
+      220,
+      236,
+      312
+    ],
+    "caption": "本製品のDC入力ポート（DC8020）とSolarSaga 40 Air x1を接続",
+    "embedded_words": true,
+    "reuse_review": "compared visually with the JE-300D US charging-solar asset: the same panel drawing; its only words are the product name SolarSaga 40 Air x1, identical in both editions; reused unchanged",
+    "source": "manual_sources/JE-300D/US/en/git-20261028-d3f47ff3/assets/charging-solar.png",
+    "local_path": "assets/charging-solar.png",
+    "sha256": "d5087f326b1e4072858eb8823268e9619fa7d1a6d38a08e4a33993c3f3845605",
+    "decision": "reuse the existing repository asset unchanged (reuse_review)"
+  },
+  {
+    "slot": "charging-car",
+    "physical_page": 15,
+    "bbox": [
+      19,
+      83,
+      234,
+      164
+    ],
+    "caption": "本製品のDC入力ポート（DC8020）と車のシガーソケットを接続。車",
+    "embedded_words": true,
+    "reuse_review": "the same-model US asset carries English words where this panel draws Japanese ones; the Japanese word 車 is drawn in the panel (US: Vehicle); cropped from this JP print; the ※ strip is set as text",
+    "local_path": "assets/charging-car.png",
+    "render_scale": 4,
+    "sha256": "6da2b659a86ee8768489cdd517d4ad65f35509c3f5c4e343fa288d6b1d88011e",
+    "source_sha256": "6ab11ee92b1cc729e585084d6c3fecd14b9dd98cc97a6c52da48c5fd9fa83559",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  }
+]
