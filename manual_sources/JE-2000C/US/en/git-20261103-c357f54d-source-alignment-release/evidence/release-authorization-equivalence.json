@@ -1,0 +1,163 @@
+{
+  "model": "JE-2000C",
+  "record_id": "reczz28SPLqH8n46",
+  "status": "approved_release_snapshot_verified",
+  "candidate_package": "manual_sources/JE-2000C/US/en/git-20261103-c357f54d-source-alignment",
+  "release_package": "manual_sources/JE-2000C/US/en/git-20261103-c357f54d-source-alignment-release",
+  "original_source_sha256": "c357f54dfed27d11d72a2a4893e485450a49c1b562e21f0f272708857f1510ab",
+  "candidate_source_manifest_sha256": "c6370196701433582bf81d4164a1fab665cdc443f8cb80a585a5041de2a6610d",
+  "approval_sha256": "6f76e1e6fdd53471eb588421c9218427a02c3cf9d975c919dce9aa66f39e6bfb",
+  "approval_contract": "operator-authorized-git-only-release",
+  "approval_current_inputs_verified": true,
+  "repo_input_count": 0,
+  "repo_input_hashes_unchanged": true,
+  "runtime": {
+    "matching_worktree_head": "68589e5118ab25111a1e2395e3dd7ff44efa4677",
+    "repo_inputs": []
+  },
+  "cold_build_passed": true,
+  "final_stored_output_inventory_verified": true,
+  "publication_eligible": true,
+  "pending_source_review": [],
+  "ir_pages_byte_structure_equal": true,
+  "ir_pages_canonical_sha256": "bdf6729c3e1e69b7f1d73161188dba384f40befa60551d90eefeafdb91957964",
+  "visible_render_files_byte_identical": [
+    {
+      "path": "manual_je2000c_us_en.md",
+      "sha256": "c4ea6400c67945962b879a6d1bd83e341ea924cf9a049704d6ae0ede5fa067ca"
+    },
+    {
+      "path": "index.md",
+      "sha256": "193c400e4037b52ab2297aaf42a590ec2b093976ced41c7e0c0bc65ced386a10"
+    },
+    {
+      "path": "_static/source_geometry.css",
+      "sha256": "4ef03e0cc0e91d4305c45296553537bde775fa3bca85b0d232966afbef22a090"
+    },
+    {
+      "path": "_static/web_manual.css",
+      "sha256": "c3604a2e5f22b04bc745bb99cf203b50e60222af70c0aeba3d968cc28adac9ce"
+    },
+    {
+      "path": "assets/lcd-map.png",
+      "sha256": "e4970a9bb3400db9e2ef60e874e76b8a10cec81d88e513dc82a9166366e64e07"
+    },
+    {
+      "path": "assets/fcc-mark.svg",
+      "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+    },
+    {
+      "path": "assets/car-charge.png",
+      "sha256": "b4f1c235cef565618991254f4923ba14467b761f78bc9f1f837e27f161999147"
+    },
+    {
+      "path": "assets/solar-3-3.png",
+      "sha256": "4a8adf9f95873b2848d3a3c9a7c1f404e9afe3168e83c54c68f01c85a9329f12"
+    },
+    {
+      "path": "assets/lcd-low-battery.png",
+      "sha256": "4ecace7dc932a209e7f8afc77052070544989d080edf14109756dd381e062c57"
+    },
+    {
+      "path": "assets/wall-charge.png",
+      "sha256": "d9b73768f5921988ca1401255d3dfa6ecb4959c4c891c56bc2d6daa53e008ef7"
+    },
+    {
+      "path": "assets/lcd-fault-code.png",
+      "sha256": "6e2aae1004349a65c9a9f1a755155a3e9364d8f7823c0058f60938fc56a48a1e"
+    },
+    {
+      "path": "assets/lcd-energy-saving.png",
+      "sha256": "30c3f3ec6ddf33cbd162636edf4be86d683a57d7546a3d977ef476e83fe169b5"
+    },
+    {
+      "path": "assets/inbox-ac-cable.png",
+      "sha256": "517b6c94a1b4a83ac40338dcbde14a31910a1ebbdb96d40063afd597c6e25ab3"
+    },
+    {
+      "path": "assets/solar-80.png",
+      "sha256": "ba97f8a8f0a272c692da4d9065ad57afc8e4f7eeb922a530791d0743c8fa654c"
+    },
+    {
+      "path": "assets/inbox-adaptor.png",
+      "sha256": "029e451239c48828a4a1e326da48e09402514ac2cd25ffc2692cae9a000e9d3f"
+    },
+    {
+      "path": "assets/solar-2-2.png",
+      "sha256": "119d67c2e273f5d5d85622a40379cd0919dce290d0c7fb34221e9fd9227e2ef0"
+    },
+    {
+      "path": "assets/solar-prohibited.png",
+      "sha256": "723cdaa3ed90ccd35944bddd6f0f6317ac0581ac387d60a2237d7d6747d6434d"
+    },
+    {
+      "path": "assets/inbox-unit.png",
+      "sha256": "4806dd8c6c9ebc35c86b9278ceccba3803838636977939c53d2d387d62871452"
+    },
+    {
+      "path": "assets/solar-3.png",
+      "sha256": "5b068f11ac3e2008426194a5a2fbfe4e942563084888d62e7ebfe80bb264ec8f"
+    },
+    {
+      "path": "assets/back-contact-qr.png",
+      "sha256": "24f5b7a1559c389977286ab03cf940bc3d6b09e62afbe51169ce87c35b7ec1b1"
+    },
+    {
+      "path": "assets/lcd-high-temperature.png",
+      "sha256": "5319b4108e4fd9234149cfe5d4d9472d4194e79d94ab00c2238c29418c1c10d3"
+    },
+    {
+      "path": "assets/inbox-manual.png",
+      "sha256": "e0b3c1b99a2d8afade7afeca50af4dc9069c6a1ba002b1734e4d590bfc23d6e6"
+    },
+    {
+      "path": "assets/lcd-ac-expansion.png",
+      "sha256": "402e40d7687c2ad84665c9b9ecbb0cbe9a0ef838223f4f7ac09b27105bf9ba86"
+    },
+    {
+      "path": "assets/inbox-car-cable.png",
+      "sha256": "d497cf0345a28d848cb0558c71f084addacf187a1620b96d84c87938cf66f3cd"
+    },
+    {
+      "path": "assets/app-store.png",
+      "sha256": "297986042aaee7768f06f601bdd503ff3648d9f299af7b1bc92c56b89608bf75"
+    },
+    {
+      "path": "assets/inbox-bag.png",
+      "sha256": "c1232e5a7ff3a6b8834d94bed7e209742e1ba73a1e6bc7df099d436d8063f146"
+    },
+    {
+      "path": "assets/certifications.png",
+      "sha256": "6efbaf4497d1c644f02890dad905273cce9c85f7962bab9620506df792cb2ef6"
+    },
+    {
+      "path": "assets/lcd-low-temperature.png",
+      "sha256": "fbcd63d36e6f004f2d272c497fc625c7bf2b0844a591eb6ecf6826a3d9abdf0b"
+    },
+    {
+      "path": "assets/overview-front.png",
+      "sha256": "5ade546e23bfc5a7db143bc4d16607121a67f2a3dbce303653529f2450cff24b"
+    },
+    {
+      "path": "assets/lcd-battery-power.png",
+      "sha256": "4765f1894521b13d4b69dbbd4ddd7fb80e6d50395dbe0db815371672667d9f93"
+    },
+    {
+      "path": "assets/car-solar-prohibited.png",
+      "sha256": "140925c0cf9284d503c7ac0186585f1d952ffa193c808db9513957e5d382e6c2"
+    },
+    {
+      "path": "assets/solar-adaptor.png",
+      "sha256": "9259c89eccd599e42cd43f4563518c7d958ad068868351b68b1b92d2536b8d15"
+    },
+    {
+      "path": "assets/overview-rear.png",
+      "sha256": "c68caf1a45ca77f3e8e3ad5e2c0e5a36a52181c8eeda09c6cc96b0f75d82e4a8"
+    }
+  ],
+  "prior_full_review": {
+    "path": "evidence/final-layout-review.json",
+    "sha256": "1aaf8262d3421b4a90b68bb8be45f5421c3f6d9641fa447acd16ddc86b8821ae"
+  },
+  "scope": "Approval packaging only. No candidate source, visible text/style/art, shared code, registry, Feishu record or deployment was changed."
+}

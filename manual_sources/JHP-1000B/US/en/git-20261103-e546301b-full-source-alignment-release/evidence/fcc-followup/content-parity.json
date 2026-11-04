@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "non_fcc_markup_byte_identical_after_removing_styles": true,
+  "fcc_whitespace_normalized_text_identical": true,
+  "source_transcription_bytes_unchanged": true,
+  "new_content": [],
+  "missing_content": [],
+  "native_slot_change": "NOTE and These limits joined with newline to retain source paragraph boundary under shared FCC projection",
+  "all_33_actual_viewports_visually_reviewed": true
+}

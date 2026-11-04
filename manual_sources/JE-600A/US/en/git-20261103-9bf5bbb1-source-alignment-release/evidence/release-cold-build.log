@@ -1,0 +1,17 @@
+{
+  "output": "/private/tmp/manual-web-audit-20261102/remaining-fixes/release14/JE-600A/cold-approved",
+  "chapters": 14,
+  "components": {
+    "HB-CALLOUT-STRIP": 7,
+    "HB-SPECIAL-FCC": 1,
+    "HB-SPECIAL-INBOX": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE": 14,
+    "HB-TABLE-LCD-ICON": 1,
+    "HB-TABLE-SPEC": 4,
+    "HB-TABLE-SYMBOL-ICON": 1,
+    "HB-TABLE-SYMBOL-SIGNAL": 1,
+    "HB-WARRANTY-LEAD": 1,
+    "HB-WARRANTY-SECTION": 5,
+    "HB-WARRANTY-YEARS": 1
+  }
+}

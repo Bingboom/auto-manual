@@ -1,0 +1,1388 @@
+[
+  {
+    "text": "Congratulations on your new Jackery Explorer 600. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for frequent reference.",
+    "source_page": 2,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "In compliance with laws and regulations, the right of final interpretation of this document and all related documents of this product resides with the Company.",
+    "source_page": 2,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "Please kindly notice that no further notifications will be given in case of any update, revision or termination.",
+    "source_page": 2,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS",
+    "source_page": 4,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "WARNING",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "Always follow these basic precautions when using this product.",
+    "source_page": 4,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "OPERATING INSTRUCTIONS ",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "h2"
+  },
+  {
+    "text": "SAVE THESE INSTRUCTIONS ",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "h3"
+  },
+  {
+    "text": "DANGER",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "This device is intended for indoor use only (Please place this device in a similar indoor environment when using it outdoors， e.g. Home RVs, tents, cabins, etc.).\n※ This device is not waterproof or dustproof. Keep away from rain and humid environments during use.",
+    "source_page": 5,
+    "source_ocr_char_coverage": 0.6377,
+    "dom_tag": "p"
+  },
+  {
+    "text": "USER MAINTENANCE INSTRUCTIONS ",
+    "source_page": 5,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "h2"
+  },
+  {
+    "text": "During the lifecycle of energy storage products, a certain degree of capacity and energy degradation is expected. As the number of charge and discharge cycles increases and storage time extends, this degradation will gradually intensify, which is a normal phenomenon consistent with the natural aging of battery cells.",
+    "source_page": 5,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "Symbol",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "th"
+  },
+  {
+    "text": "Meaning",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "th"
+  },
+  {
+    "text": "⚠ WARNING",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Hazardous practices that may result in severe injury, death, and/or property damage.",
+    "source_page": 5,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "⚠ CAUTION",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Hazardous practices that may result in personal injury and/or property damage.",
+    "source_page": 5,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "NOTE",
+    "source_page": 18,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Hazardous practices that may result in equipment damage, data loss, performance deterioration, or unanticipated results.",
+    "source_page": 5,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "TIP",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Supplements the important information or operation tips in the text.",
+    "source_page": 5,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Symbol",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "th"
+  },
+  {
+    "text": "Meaning",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "th"
+  },
+  {
+    "text": "Warning and Caution Symbols. Must read to alert individuals to potential hazards or risks.",
+    "source_page": 5,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Read the user manual before operation.",
+    "source_page": 5,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Do not dismantle the product.",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Keep the product away from fire.",
+    "source_page": 5,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Keep away from children.",
+    "source_page": 5,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Symbol",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "th"
+  },
+  {
+    "text": "Meaning",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "th"
+  },
+  {
+    "text": "This symbol indicates that a lithium-ion (Liion) battery is inside the product and should be disposed of or recycled properly.",
+    "source_page": 5,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling. Proper disposal and recycling can help protect the environment. For more information about the disposal and recycling of this product, contact your local community, disposal service, or dealer.",
+    "source_page": 5,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "NOTE: This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules. These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to radio communications. However, there is no guarantee that interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:",
+    "source_page": 5,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "Reorient or relocate the receiving antenna.",
+    "source_page": 5,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "Increase the separation between the equipment and receiver.",
+    "source_page": 5,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "Connect the equipment into an outlet on a circuit different from that to which the receiver is connected.",
+    "source_page": 5,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "Consult the dealer or an experienced radio/TV technician for help.",
+    "source_page": 5,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "MODIFICATION: Any changes or modifications not expressly approved by the grantee of this device could void the user’s authority to operate the device.",
+    "source_page": 5,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "Jackery Explorer 600",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "AC Charging Cable",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "User Manual",
+    "source_page": 15,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "FRONT VIEW ",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "h2"
+  },
+  {
+    "text": "RIGHT SIDE VIEW ",
+    "source_page": 13,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "h2"
+  },
+  {
+    "text": "1",
+    "source_page": 18,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "UPS",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "On: The product is in bypass mode, and the switchover time from grid power to the internal battery is 10 ms. Off: The product is not in bypass mode.",
+    "source_page": 7,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "2",
+    "source_page": 18,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "AC Power Indicator",
+    "source_page": 15,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "The AC output (pure sine wave) is on.",
+    "source_page": 14,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "3",
+    "source_page": 18,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Input Power",
+    "source_page": 14,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Displays the input power in watts.",
+    "source_page": 8,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "4",
+    "source_page": 18,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Output Power",
+    "source_page": 14,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Displays the output power in watts.",
+    "source_page": 8,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "5",
+    "source_page": 18,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "AC Wall Charging Indicator",
+    "source_page": 15,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "The product is charged via the AC Input using grid power.",
+    "source_page": 8,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "6",
+    "source_page": 18,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Car Charging Indicator",
+    "source_page": 15,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "The product is charged via the DC Input (8020) using DC 12V (car charging).",
+    "source_page": 8,
+    "source_ocr_char_coverage": 0.8947,
+    "dom_tag": "td"
+  },
+  {
+    "text": "7",
+    "source_page": 16,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Solar Charging Indicator",
+    "source_page": 15,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "The product is charged via the DC Input (8020) using solar panel(s).",
+    "source_page": 8,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "8",
+    "source_page": 18,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Battery Power Indicator",
+    "source_page": 13,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "When the product is being charged, the orange circle around the battery percentage will light up in sequence. When charging other devices, the orange circle will stay on.",
+    "source_page": 8,
+    "source_ocr_char_coverage": 0.9281,
+    "dom_tag": "td"
+  },
+  {
+    "text": "9",
+    "source_page": 18,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Remaining Battery Percentage",
+    "source_page": 14,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Displays the remaining battery percentage.",
+    "source_page": 8,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "10",
+    "source_page": 18,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Fault Code",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "A product error has occurred. Please refer to the Troubleshooting section for details.",
+    "source_page": 8,
+    "source_ocr_char_coverage": 0.9861,
+    "dom_tag": "td"
+  },
+  {
+    "text": "11",
+    "source_page": 18,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "High Temperature Indicator",
+    "source_page": 13,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "High temperature protection is triggered. The product may stop functioning until its temperature returns to the normal operating range.",
+    "source_page": 8,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Low Temperature Indicator",
+    "source_page": 13,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Low temperature protection is triggered. The product may stop functioning until its temperature returns to the normal operating range.",
+    "source_page": 8,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "12",
+    "source_page": 18,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Energy Saving Mode",
+    "source_page": 10,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "On: Energy Saving Mode is enabled. Off: Energy Saving Mode is disabled.",
+    "source_page": 8,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "POWER ON/OFF ",
+    "source_page": 16,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "h2"
+  },
+  {
+    "text": "* When Energy Saving Mode is enabled and either the AC or DC power button is turned on, the system will automatically turn off all outputs and shut down if there is no charging or discharging activity, or if the power consumption of connected devices remains below the defined thresholds for 6 hours (25W or less on the AC output, and 2W or less on the USB ports and cigarette lighter port).",
+    "source_page": 9,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "AC OUTPUT ON/OFF ",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "h2"
+  },
+  {
+    "text": "DC/USB OUTPUT ON/OFF ",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "h2"
+  },
+  {
+    "text": "* The product can charge your car battery using the Jackery 12V automobile battery charging cable, which is sold separately and available on our website.",
+    "source_page": 10,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "CAUTION",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "The cigarette lighter port is only compatible with 12V car batteries and not suitable for 24V systems. Do not start the car while the product is charging the car battery through the 12V DC output port (cigarette lighter port), as this may damage the product. This feature is intended for emergency use only and cannot charge a dead or damaged car battery.",
+    "source_page": 10,
+    "source_ocr_char_coverage": 0.9792,
+    "dom_tag": "td"
+  },
+  {
+    "text": "ENERGY SAVING MODE ",
+    "source_page": 10,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "h2"
+  },
+  {
+    "text": "To prevent unnecessary battery consumption due to forgetting to turn off the output, please manually enable Energy Saving Mode. Once enabled, if the connected device's power consumption is below a certain threshold (AC output ≤ 25W; USB output + cigarette lighter port ≤ 2W), the device will automatically turn off all outputs after 6 hours.",
+    "source_page": 10,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "WARNING",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "When Energy Saving Mode is enabled, the product automatically turns off the AC output if the connected device’s power consumption remains low for the configured period. When powering devices that require continuous power, such as refrigerators, routers, security cameras, or aquarium air pumps, we recommend turning off Energy Saving Mode to prevent unexpected power loss from interrupting their operation.",
+    "source_page": 10,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "LED LIGHT ON/OFF ",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "h2"
+  },
+  {
+    "text": "The LED light has two modes: Light mode and SOS mode.",
+    "source_page": 11,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "* The default setting is Light mode. * In any mode, press and hold the LED light button to turn off the light.",
+    "source_page": 11,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "LCD SCREEN ON/OFF ",
+    "source_page": 16,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "h2"
+  },
+  {
+    "text": "LCD Screen",
+    "source_page": 16,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Turn on",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Press the Main Power Button or when the product is charging.",
+    "source_page": 11,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Turn off",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Press the Main Power Button.",
+    "source_page": 11,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Auto-off",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "The LCD turns off automatically and enters sleep mode after 2 minutes of inactivity.",
+    "source_page": 11,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Always-on Display Mode (under charging or discharging state)",
+    "source_page": 11,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Turn on",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Double-click the Main Power Button when the LCD screen is ON.",
+    "source_page": 11,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Turn off",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Press the Main Power Button.",
+    "source_page": 11,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Auto-off",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "The Always-on Display Mode turns off automatically after 2 hours of inactivity.",
+    "source_page": 11,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "An uninterruptible power supply (UPS) is a type of continual power system that provides automated backup electric power to a load when the mains grid power fails.",
+    "source_page": 12,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "In the event of a sudden loss of grid power, the Explorer 600 will automatically switch to stored power within 10 ms to keep your appliances running.",
+    "source_page": 12,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "WARNING",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Do not use this product for applications such as data servers or medical devices, where a malfunction could endanger life or cause significant property damage. For the following equipment, a loss of power supply during use could cause serious harm to personal safety or property:",
+    "source_page": 12,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "Individuals who wear a cardiac pacemaker (pacemaker implant recipients) must not use this product.",
+    "source_page": 12,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "CAUTION",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "This product does not support 0 ms switching. Do not connect it to equipment that requires a 0 ms switching power supply, such as data servers or workstations. Before use, please test compatibility with your device multiple times. It is recommended to connect one device at a time. Do not use multiple devices simultaneously, as this may trigger overload protection. The UPS function works only when a single unit is connected directly to a wall outlet.Do not connect multiple portable power stations in series (cascade connection). In a cascaded setup, the UPS function will not operate: the unit may fail to switch over during a power outage, causing connected devices to shut down.",
+    "source_page": 12,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Green energy first: We advocate to use the green energy first. This product supports two modes of charging at the same time: solar charging and AC wall charging. When AC wall charging and solar charging are turned on at the same time, the product will give priority to solar charging and both methods will be used to charge the battery at the maximum permissible power.",
+    "source_page": 13,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "Fully charge the product before its first use.",
+    "source_page": 15,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "Note",
+    "source_page": 18,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "The recommended charging temperature for the product ranges from −4°F to 113°F / -20°C to 45°C, and the discharging temperature ranges from −4°F to 113°F / -20°C to 45°C. Operating the product outside this temperature range may restrict its charging and discharging capabilities, prevent it from charging or discharging. The charging power and battery capacity of the product may vary due to temperature fluctuations.",
+    "source_page": 13,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "CHARGING VIA AC WALL OUTLET ",
+    "source_page": 15,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "h2"
+  },
+  {
+    "text": "* Make sure the AC charging cable is fully and securely plugged into the AC input port. An incomplete connection may cause unstable current, overheating, poor contact, or device malfunction.",
+    "source_page": 13,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "CHARGING WITH SOLAR PANELS ",
+    "source_page": 14,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "h2"
+  },
+  {
+    "text": "The Jackery Explorer 600 has one DC8020 input port, which supports direct connection of either one 100W or one 200W solar panel. If you need to connect two 100W solar panels simultaneously to a DC8020 input port, please use a solar panel connector (sold separately, not included). Please refer to the diagram below for connection details.",
+    "source_page": 13,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "CAUTION",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "It is recommended to use the Jackery solar panel to charge the Jackery Explorer 600. Ensure that the open-circuit voltage (V oc ) of the solar panel falls within the Jackery Explorer 600's DC input voltage range (16V–60V). Jackery is not responsible for any damage or loss resulting from the use of third-party solar panels.",
+    "source_page": 14,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "CHARGING WITH A CAR CHARGER ",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "h2"
+  },
+  {
+    "text": "This product can be charged using a 12V car charger. Ensure that the car charger and the car cigarette lighter provide a good connection.",
+    "source_page": 14,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "CAUTION",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Please start the vehicle before charging your product. If the vehicle is running on bumpy roads, it is forbidden to use the car charger in case it burns due to a poor connection. The Company will not be responsible for any loss caused by non-standard operation. Vehicle charging is only applicable to vehicles with 12V DC, not 24V DC. Please do not charge this product in 24V vehicle to avoid personal injury and property loss. It is recommended to use the Jackery Solar Panel to charge the Explorer 600. Jackery is not responsible for any losses caused by using solar panels from other brands.",
+    "source_page": 14,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Store the product in a dry clean place with proper ventilation. Storage temperature and humidity:",
+    "source_page": 15,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "If this product is stored for a long period of time (3 months - 6 months) with the power depleted, it may become unchargeable. To prevent this and maintain battery health, it is recommended to check and recharge the product every three months and perform a full charge and discharge cycle at least once every 6 to 12 months.",
+    "source_page": 15,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "Error Code",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "th"
+  },
+  {
+    "text": "Name",
+    "source_page": 18,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "th"
+  },
+  {
+    "text": "Description (For Internal Fault Maintenance Only)",
+    "source_page": 15,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "th"
+  },
+  {
+    "text": "F0",
+    "source_page": 18,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "BMS Data Communication Error",
+    "source_page": 15,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Data communication failure between the BMS and mainboard",
+    "source_page": 15,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "F1",
+    "source_page": 18,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Inverter Data Communication Error",
+    "source_page": 15,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Data communication failure between the inverter and mainboard",
+    "source_page": 15,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "F2",
+    "source_page": 18,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "DC Input Data Communication Error",
+    "source_page": 15,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Data communication failure between the DC charging module and BMS",
+    "source_page": 15,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "F3",
+    "source_page": 18,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "BMS or Battery Failure",
+    "source_page": 15,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "BMS or battery failuare",
+    "source_page": 15,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "F4",
+    "source_page": 18,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Battery Overvoltage",
+    "source_page": 15,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Battery overvoltage",
+    "source_page": 15,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "F5",
+    "source_page": 18,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Battery Undervoltage",
+    "source_page": 15,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Battery undervoltage",
+    "source_page": 15,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "F6",
+    "source_page": 18,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Inverter Failure",
+    "source_page": 15,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "AC output overcurrent / overload / short circuit protection triggered Grid input over-voltage / undervoltage / overfrequency / underfrequency protection triggered Inverter over-temperature protection triggered Insulation detection failure",
+    "source_page": 15,
+    "source_ocr_char_coverage": 0.9902,
+    "dom_tag": "td"
+  },
+  {
+    "text": "F7",
+    "source_page": 16,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "DC Charging Module (PV) Failure",
+    "source_page": 15,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "PV input overvoltage; DC charging module overtemperature protection on/triggered; Output overcurrent protection of the DC charging module on/triggered",
+    "source_page": 15,
+    "source_ocr_char_coverage": 0.9767,
+    "dom_tag": "td"
+  },
+  {
+    "text": "F8",
+    "source_page": 18,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Battery Charging / Discharging Overcurrent / Short Circuit",
+    "source_page": 15,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "BMS overcurrent / short circuit protection triggered",
+    "source_page": 15,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "F9",
+    "source_page": 18,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "DC Output Overcurrent / Short Circuit",
+    "source_page": 15,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "USB short circuit protection triggered",
+    "source_page": 15,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "GENERAL INFO",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "h2"
+  },
+  {
+    "text": "Product Name",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "th"
+  },
+  {
+    "text": "Jackery Explorer 600",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Model No.",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "th"
+  },
+  {
+    "text": "JE-600A",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Capacity",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "th"
+  },
+  {
+    "text": "20Ah/32V DC(640Wh)",
+    "source_page": 16,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Cell Chemistry",
+    "source_page": 16,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "th"
+  },
+  {
+    "text": "LiFePO₄",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Weight",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "th"
+  },
+  {
+    "text": "About 14.11 lbs / 6.4kg",
+    "source_page": 16,
+    "source_ocr_char_coverage": 0.9375,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Dimensions",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "th"
+  },
+  {
+    "text": "12.2×8.1×6.2in / 31.1×20.5×15.7 cm",
+    "source_page": 16,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Cycle Life",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "th"
+  },
+  {
+    "text": "6000 cycles to 70%+ capacity",
+    "source_page": 16,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "INPUT PORTS",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "h2"
+  },
+  {
+    "text": "Charge Mode AC Input",
+    "source_page": 16,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "th"
+  },
+  {
+    "text": "100V-120V~ 60Hz, 15A Max",
+    "source_page": 16,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "1×DC8020 Port",
+    "source_page": 16,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "th"
+  },
+  {
+    "text": "11V-16V⎓8A Max",
+    "source_page": 16,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "16V-60V⎓10.5A, 200W Max",
+    "source_page": 16,
+    "source_ocr_char_coverage": 0.9412,
+    "dom_tag": "td"
+  },
+  {
+    "text": "OUTPUT PORTS",
+    "source_page": 16,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "h2"
+  },
+  {
+    "text": "2 × AC Output",
+    "source_page": 16,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "th"
+  },
+  {
+    "text": "120V~ 60Hz, 4.2A",
+    "source_page": 16,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Bypass Mode AC Output",
+    "source_page": 16,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "th"
+  },
+  {
+    "text": "100V-120V~ 60Hz, 500W",
+    "source_page": 16,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "AC Total Output",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "th"
+  },
+  {
+    "text": "500W Rated, 1000W Surge Peak",
+    "source_page": 16,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "USB-C1 Output",
+    "source_page": 16,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "th"
+  },
+  {
+    "text": "100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A",
+    "source_page": 16,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "USB-C2 Output",
+    "source_page": 16,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "th"
+  },
+  {
+    "text": "30W Max, 5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A",
+    "source_page": 16,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "USB-A Output",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "th"
+  },
+  {
+    "text": "18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A",
+    "source_page": 16,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Cigarette Lighter Port",
+    "source_page": 16,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "th"
+  },
+  {
+    "text": "12V⎓10A Max",
+    "source_page": 16,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "ENVIRONMENTAL OPERATING TEMPERATURE",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "h2"
+  },
+  {
+    "text": "Charge Temperature",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "th"
+  },
+  {
+    "text": "-4°F to 113°F / -20°C to 45°C",
+    "source_page": 16,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "Discharge Temperature",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "th"
+  },
+  {
+    "text": "-4°F to 113°F / -20°C to 45°C",
+    "source_page": 16,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "td"
+  },
+  {
+    "text": "※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.",
+    "source_page": 16,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "Limited Warranty ",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "h2"
+  },
+  {
+    "text": "Jackery Inc. warrants to the original consumer purchaser that the Jackery product will be free from defects in workmanship and material under normal consumer use during the applicable warranty period identified in the 'Warranty Period' section below, subject to the exclusions set forth below.",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "This warranty statement sets forth Jackery's total and exclusive warranty obligation. We will not assume, nor authorize any person to assume for us, any other liability in connection with the sale of our products.",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "Warranty Period ",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "h2"
+  },
+  {
+    "text": "The standard warranty period for Jackery Explorer 600 is 36 months. In each case, the warranty period is measured starting on the date of purchase by the original consumer purchaser. The sales receipt from the first consumer purchase, or other reasonable documentary proof, is required in order to establish the start date of the warranty period.",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "To activate the Warranty Extension, you must register your product online or contact our customer service team at hello@jackery.com to extend the standard warranty runtime.",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "Repair or replacement ",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "h2"
+  },
+  {
+    "text": "Jackery will repair or replace (at Jackery's expense) any Jackery product that fails to operate during the applicable warranty period due to a defect in workmanship or material. The repaired/replaced product assumes the remaining warranty of the original date of purchase.",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "Limited to Original Consumer Buyer ",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "h2"
+  },
+  {
+    "text": "The warranty on Jackery's product is limited to the original consumer purchaser and is not transferable to any subsequent owner.",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "Exclusions ",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "h2"
+  },
+  {
+    "text": "Jackery's warranty does not apply to:",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "Misused, abused, modified, damaged by accident, or used for anything other than normal consumer use as authorized in Jackery's current product literature.",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "Attempted repair by anyone other than an authorized facility.",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "Any product purchased through an online auction house.",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "Jackery's warranty does not apply to the battery cell unless the battery cell is fully charged by you within seven days after you purchase the product and at least once every 6 months thereafter.",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "Interpretation Rights ",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "h2"
+  },
+  {
+    "text": "Jackery reserves the right to final interpretation of the above customers' after-sales policy.",
+    "source_page": 17,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "5310 Bunche Dr., Fremont, CA 94538-8301",
+    "source_page": 18,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "1-888-502-2236 (US)",
+    "source_page": 18,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "hello@jackery.com",
+    "source_page": 18,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  },
+  {
+    "text": "www.jackery.com",
+    "source_page": 18,
+    "source_ocr_char_coverage": 1.0,
+    "dom_tag": "p"
+  }
+]

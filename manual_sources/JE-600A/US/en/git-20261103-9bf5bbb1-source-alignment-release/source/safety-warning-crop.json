@@ -1,0 +1,11 @@
+{
+  "original_source_sha256": "9bf5bbb12aefc9aac72662b305f7de2e0b39ec65ac254ea910e006cc92885886",
+  "physical_page": 4,
+  "bbox_points": [
+    28.374810180664063,
+    92.0,
+    71.48978149414063,
+    135.5
+  ],
+  "transform": "exact original white warning triangle and dark icon cell crop; no redraw"
+}

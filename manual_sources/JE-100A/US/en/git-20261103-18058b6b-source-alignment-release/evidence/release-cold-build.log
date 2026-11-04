@@ -1,0 +1,13 @@
+{
+  "output": "/private/tmp/manual-web-audit-20261102/remaining-fixes/release14/JE-100A/cold-approved",
+  "chapters": 11,
+  "components": {
+    "HB-SPECIAL-FCC": 1,
+    "HB-SPECIAL-INBOX": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE": 8,
+    "HB-TABLE-LCD-ICON": 2,
+    "HB-TABLE-SPEC": 1,
+    "HB-WARRANTY-SECTION": 5
+  },
+  "symbol_admission": []
+}
