@@ -1,0 +1,6454 @@
+{
+ "model": "JE-2000C",
+ "region": "JP",
+ "language": "ja",
+ "title": "Jackery ポータブル電源 2000 Plus 取扱説明書",
+ "source_sha256": "88b78332342866ccd994cfa054a8a63a5fe30fa41131de5c7d53f16cd590690b",
+ "chapters": [
+  {
+   "id": "specifications",
+   "title": "1.主な仕様",
+   "nodes": [
+    {
+     "kind": "heading",
+     "level": 2,
+     "anchor": "native-specifications",
+     "children": [
+      {
+       "kind": "text",
+       "text": "1.主な仕様"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-TABLE-SPEC",
+      "variant": "vertical",
+      "source_ref": "native-pdf/page-2/spec",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "section_title",
+        "content_kind": "inline_text",
+        "content": "【Jackery ポータブル電源 2000 Plus】"
+       },
+       {
+        "role": "rows",
+        "content_kind": "structured_rows",
+        "content": [
+         {
+          "label": "製品の名称 :",
+          "label_rowspan": 1,
+          "values": [
+           {
+            "text": "Jackery ポータブル電源 2000 Plus",
+            "references": []
+           }
+          ],
+          "references": []
+         },
+         {
+          "label": "型番 :",
+          "label_rowspan": 1,
+          "values": [
+           {
+            "text": "JE-2000C",
+            "references": []
+           }
+          ],
+          "references": []
+         },
+         {
+          "label": "バッテリータイプ :",
+          "label_rowspan": 1,
+          "values": [
+           {
+            "text": "LiFePO4（リン酸鉄リチウムイオン電池）",
+            "references": []
+           }
+          ],
+          "references": []
+         },
+         {
+          "label": "定格容量 :",
+          "label_rowspan": 1,
+          "values": [
+           {
+            "text": "リチウムイオン電池 45.6Ah/44.8V DC(2042.8Wh)",
+            "references": []
+           }
+          ],
+          "references": []
+         },
+         {
+          "label": "サイズ＆重量 :",
+          "label_rowspan": 1,
+          "values": [
+           {
+            "text": "約473 x 359 x 373 mm (約27.9kg）",
+            "references": []
+           }
+          ],
+          "references": []
+         },
+         {
+          "label": "AC入力 :",
+          "label_rowspan": 1,
+          "values": [
+           {
+            "text": "100V~ 50Hz/60Hz, 最大15A",
+            "references": []
+           }
+          ],
+          "references": []
+         },
+         {
+          "label": "DC入力ポート:",
+          "label_rowspan": 1,
+          "values": [
+           {
+            "text": "11-17.5V(動作電圧)⎓8A, 2ポート電流制限8A;\n17.5-60V(動作電圧)⎓12A, 2ポート電流制限24A,合計1400W",
+            "references": []
+           }
+          ],
+          "references": []
+         },
+         {
+          "label": "4×AC出力 :",
+          "label_rowspan": 1,
+          "values": [
+           {
+            "text": "100V~ 50Hz/60Hz, 最大20A",
+            "references": []
+           }
+          ],
+          "references": []
+         },
+         {
+          "label": "1×AC出力 :",
+          "label_rowspan": 2,
+          "values": [
+           {
+            "text": "100V~ 50Hz/60Hz, 最大30A",
+            "references": []
+           },
+           {
+            "text": "5ポート合計3000W (瞬間最大6000W)",
+            "references": []
+           }
+          ],
+          "references": []
+         },
+         {
+          "label": "AC拡張ポート :",
+          "label_rowspan": 1,
+          "values": [
+           {
+            "text": "100V~50Hz/60Hz, 最大30A",
+            "references": []
+           }
+          ],
+          "references": []
+         },
+         {
+          "label": "DC拡張ポート :",
+          "label_rowspan": 1,
+          "values": [
+           {
+            "text": "32.2V-50.4V⎓97A, 電流制限97A",
+            "references": []
+           }
+          ],
+          "references": []
+         },
+         {
+          "label": "2×USB-A出力 :",
+          "label_rowspan": 1,
+          "values": [
+           {
+            "text": "Quick Charge 3.0,  5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A，\n各ポート最大18W",
+            "references": []
+           }
+          ],
+          "references": []
+         },
+         {
+          "label": "2×USB-C出力 :",
+          "label_rowspan": 1,
+          "values": [
+           {
+            "text": "5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A, 各ポート最大100W",
+            "references": []
+           }
+          ],
+          "references": []
+         },
+         {
+          "label": "シガーソケット出力 :",
+          "label_rowspan": 1,
+          "values": [
+           {
+            "text": "12V⎓10A, 最大10A",
+            "references": []
+           }
+          ],
+          "references": []
+         },
+         {
+          "label": "充電温度 :",
+          "label_rowspan": 1,
+          "values": [
+           {
+            "text": "0~45 °C (32~113 °F)",
+            "references": []
+           }
+          ],
+          "references": []
+         },
+         {
+          "label": "動作温度 :",
+          "label_rowspan": 1,
+          "values": [
+           {
+            "text": "-10~45 °C (14~113 °F)",
+            "references": []
+           }
+          ],
+          "references": []
+         },
+         {
+          "label": "保存温度 :",
+          "label_rowspan": 1,
+          "values": [
+           {
+            "text": "1年間 0~25℃ (32~77℉)；3ヶ月 0~45℃ (32~113℉)；\n1ヶ月 -20~45℃ (-4~113℉)",
+            "references": []
+           }
+          ],
+          "references": []
+         }
+        ]
+       }
+      ],
+      "assets": [],
+      "token_roles": [
+       "component.table.spec"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "heading",
+       "level": 2,
+       "presentation": {
+        "html": {
+         "attributes": {
+          "class": [
+           "hb-spec-section"
+          ]
+         }
+        }
+       },
+       "children": [
+        {
+         "kind": "inline_group",
+         "presentation": {
+          "html": {
+           "attributes": {
+            "class": [
+             "hb-spec-section-text"
+            ]
+           }
+          }
+         },
+         "children": [
+          {
+           "kind": "text",
+           "text": "【Jackery ポータブル電源 2000 Plus】"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "table",
+       "children": [
+        {
+         "kind": "table_body",
+         "children": [
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "製品の名称 :"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "Jackery ポータブル電源 2000 Plus"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "型番 :"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "JE-2000C"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "バッテリータイプ :"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "LiFePO4（リン酸鉄リチウムイオン電池）"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "定格容量 :"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "リチウムイオン電池 45.6Ah/44.8V DC(2042.8Wh)"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "サイズ＆重量 :"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "約473 x 359 x 373 mm (約27.9kg）"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "AC入力 :"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "100V~ 50Hz/60Hz, 最大15A"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "DC入力ポート:"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "11-17.5V(動作電圧)⎓8A, 2ポート電流制限8A;"
+              },
+              {
+               "kind": "line_break"
+              },
+              {
+               "kind": "text",
+               "text": "17.5-60V(動作電圧)⎓12A, 2ポート電流制限24A,合計1400W"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "4×AC出力 :"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "100V~ 50Hz/60Hz, 最大20A"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "1×AC出力 :"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "100V~ 50Hz/60Hz, 最大30A"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": ""
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "5ポート合計3000W (瞬間最大6000W)"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "AC拡張ポート :"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "100V~50Hz/60Hz, 最大30A"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "DC拡張ポート :"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "32.2V-50.4V⎓97A, 電流制限97A"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "2×USB-A出力 :"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "Quick Charge 3.0,  5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A，"
+              },
+              {
+               "kind": "line_break"
+              },
+              {
+               "kind": "text",
+               "text": "各ポート最大18W"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "2×USB-C出力 :"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A, 各ポート最大100W"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "シガーソケット出力 :"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "12V⎓10A, 最大10A"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "充電温度 :"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "0~45 °C (32~113 °F)"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "動作温度 :"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "-10~45 °C (14~113 °F)"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "保存温度 :"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "1年間 0~25℃ (32~77℉)；3ヶ月 0~45℃ (32~113℉)；"
+              },
+              {
+               "kind": "line_break"
+              },
+              {
+               "kind": "text",
+               "text": "1ヶ月 -20~45℃ (-4~113℉)"
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "strong",
+       "children": [
+        {
+         "kind": "text",
+         "text": "認証："
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+      "variant": "semantic-fallback",
+      "source_ref": "native-pdf/page-2/certifications",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "certifications"
+       },
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "UN38.3 / Qualcomm quick charge 3.0"
+       },
+       {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "embedded"
+       },
+       {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+       }
+      ],
+      "assets": [
+       {
+        "role": "source_art",
+        "asset_ref": "assets/certifications.png",
+        "locale_policy": "exact"
+       }
+      ],
+      "token_roles": [
+       "component.special.reference-figure"
+      ],
+      "metadata": {
+       "embedded_labels": [],
+       "physical_page": 2,
+       "image_key": "certifications",
+       "web_replace_key": "",
+       "source_fragment_sha256": "b762340083ff0a917b292d5875bf8094fefdf24915ab490812b037906dcfbfc5"
+      },
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "image",
+       "source": "assets/certifications.png",
+       "alt": "UN38.3 / Qualcomm quick charge 3.0"
+      }
+     ]
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "※USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "※Qualcomm Quick Charge is a product of Qualcomm Technologies,Inc. and/or its subsidiaries. Qualcomm and Quick Charge are trademarks or registered trademarks of Qualcomm Incorporated."
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "strong",
+       "children": [
+        {
+         "kind": "text",
+         "text": "本機の仕様および外観は、改善のため予告なく変更することがあります。"
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "group",
+     "role": "container",
+     "presentation": {
+      "html": {
+       "attributes": {
+        "class": "table-wrapper docutils container"
+       }
+      }
+     },
+     "children": [
+      {
+       "kind": "table",
+       "presentation": {
+        "html": {
+         "attributes": {
+          "class": "manual-table"
+         }
+        }
+       },
+       "children": [
+        {
+         "kind": "table_body",
+         "children": [
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "image",
+               "source": "assets/recycle-arrows.svg",
+               "alt": "Li-ion 32"
+              },
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "strong",
+                 "children": [
+                  {
+                   "kind": "text",
+                   "text": "Li-ion 32"
+                  }
+                 ]
+                }
+               ]
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "strong",
+                 "children": [
+                  {
+                   "kind": "text",
+                   "text": "充電式電池のリサイクルについて"
+                  }
+                 ]
+                }
+               ]
+              },
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "本機はリサイクル可能な充電池を内蔵しています。"
+                }
+               ]
+              },
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "この商品を廃棄する場合は、当社のカスタマーサポートにご連絡ください。"
+                }
+               ]
+              },
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "充電池の取りはずしはお客様自身では行わないでください。"
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    }
+   ]
+  },
+  {
+   "id": "product_overview",
+   "title": "2.各部の名称",
+   "nodes": [
+    {
+     "kind": "heading",
+     "level": 2,
+     "anchor": "native-product-overview",
+     "children": [
+      {
+       "kind": "text",
+       "text": "2.各部の名称"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+      "variant": "semantic-fallback",
+      "source_ref": "native-pdf/page-3/overview",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "overview"
+       },
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "主電源ボタン / シガーソケット出力ポート / USB-A出力ポート / USB-C出力ポート / DC出力ボタン / LCDディスプレイ / AC出力ポート / AC出力ポート / AC出力ボタン / 格納式ハンドル（格納式ハンドルのボタンを押し、引くと伸びます） / AC 拡張ポート（追加のJackery ポータブル電源2000 Plusに接続） / AC 過電流リセットキー / AC入力ポート / DC入力ポート（2×DC8020，ソーラー入力とシガーソケット入力） / DC 拡張ポート（バッテリーパックに接続)"
+       },
+       {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "embedded"
+       },
+       {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+       }
+      ],
+      "assets": [
+       {
+        "role": "source_art",
+        "asset_ref": "assets/overview.png",
+        "locale_policy": "exact"
+       }
+      ],
+      "token_roles": [
+       "component.special.reference-figure"
+      ],
+      "metadata": {
+       "embedded_labels": [
+        "主電源ボタン",
+        "シガーソケット出力ポート",
+        "USB-A出力ポート",
+        "USB-C出力ポート",
+        "DC出力ボタン",
+        "LCDディスプレイ",
+        "AC出力ポート",
+        "AC出力ポート",
+        "AC出力ボタン",
+        "格納式ハンドル（格納式ハンドルのボタンを押し、引くと伸びます）",
+        "AC 拡張ポート（追加のJackery ポータブル電源2000 Plusに接続）",
+        "AC 過電流リセットキー",
+        "AC入力ポート",
+        "DC入力ポート（2×DC8020，ソーラー入力とシガーソケット入力）",
+        "DC 拡張ポート（バッテリーパックに接続)"
+       ],
+       "physical_page": 3,
+       "image_key": "overview",
+       "web_replace_key": "",
+       "source_fragment_sha256": "fddac83a81734383d4321cad15a7d443a625edfaa24a0e9a6a259966f6f87051"
+      },
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "image",
+       "source": "assets/overview.png",
+       "alt": "主電源ボタン / シガーソケット出力ポート / USB-A出力ポート / USB-C出力ポート / DC出力ボタン / LCDディスプレイ / AC出力ポート / AC出力ポート / AC出力ボタン / 格納式ハンドル（格納式ハンドルのボタンを押し、引くと伸びます） / AC 拡張ポート（追加のJackery ポータブル電源2000 Plusに接続） / AC 過電流リセットキー / AC入力ポート / DC入力ポート（2×DC8020，ソーラー入力とシガーソケット入力） / DC 拡張ポート（バッテリーパックに接続)"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lcd_display",
+   "title": "3.液晶画面",
+   "nodes": [
+    {
+     "kind": "heading",
+     "level": 2,
+     "anchor": "native-lcd-display",
+     "children": [
+      {
+       "kind": "text",
+       "text": "3.液晶画面"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+      "variant": "semantic-fallback",
+      "source_ref": "native-pdf/page-3/lcd-map",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "lcd-map"
+       },
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "3.液晶画面"
+       },
+       {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "embedded"
+       },
+       {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+       }
+      ],
+      "assets": [
+       {
+        "role": "source_art",
+        "asset_ref": "assets/lcd-map.png",
+        "locale_policy": "exact"
+       }
+      ],
+      "token_roles": [
+       "component.special.reference-figure"
+      ],
+      "metadata": {
+       "embedded_labels": [],
+       "physical_page": 3,
+       "image_key": "lcd-map",
+       "web_replace_key": "",
+       "source_fragment_sha256": "05f156db50e840e5673f42f2b05d69f2246ddace6a388f8b5dbd69fc4daabdea"
+      },
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "image",
+       "source": "assets/lcd-map.png",
+       "alt": "3.液晶画面"
+      }
+     ]
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-TABLE-REFERENCE",
+      "variant": "lcd-descriptions",
+      "source_ref": "native-pdf/page-4/lcd-legend",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "3.液晶画面"
+       },
+       {
+        "role": "headers",
+        "content_kind": "ordered_headers",
+        "content": []
+       },
+       {
+        "role": "rows",
+        "content_kind": "ordered_rows",
+        "content": [
+         [
+          {
+           "html": "①",
+           "text": "①"
+          },
+          {
+           "html": "Wi-Fi",
+           "text": "Wi-Fi"
+          }
+         ],
+         [
+          {
+           "html": "②",
+           "text": "②"
+          },
+          {
+           "html": "Bluetooth",
+           "text": "Bluetooth"
+          }
+         ],
+         [
+          {
+           "html": "③",
+           "text": "③"
+          },
+          {
+           "html": "静音充電モード",
+           "text": "静音充電モード"
+          }
+         ],
+         [
+          {
+           "html": "④",
+           "text": "④"
+          },
+          {
+           "html": "バッテリー保護",
+           "text": "バッテリー保護"
+          }
+         ],
+         [
+          {
+           "html": "⑤",
+           "text": "⑤"
+          },
+          {
+           "html": "入力電力表示",
+           "text": "入力電力表示"
+          }
+         ],
+         [
+          {
+           "html": "⑥",
+           "text": "⑥"
+          },
+          {
+           "html": "充電残り時間",
+           "text": "充電残り時間"
+          }
+         ],
+         [
+          {
+           "html": "⑦",
+           "text": "⑦"
+          },
+          {
+           "html": "AC入力電力表示",
+           "text": "AC入力電力表示"
+          }
+         ],
+         [
+          {
+           "html": "⑧",
+           "text": "⑧"
+          },
+          {
+           "html": "シガーソケット入力電力表示",
+           "text": "シガーソケット入力電力表示"
+          }
+         ],
+         [
+          {
+           "html": "⑨",
+           "text": "⑨"
+          },
+          {
+           "html": "ソーラー(グリーンエネルギー)充電接続",
+           "text": "ソーラー(グリーンエネルギー)充電接続"
+          }
+         ],
+         [
+          {
+           "html": "⑩",
+           "text": "⑩"
+          },
+          {
+           "html": "バッテリーアイコン",
+           "text": "バッテリーアイコン"
+          }
+         ],
+         [
+          {
+           "html": "⑪",
+           "text": "⑪"
+          },
+          {
+           "html": "バッテリー残量警告灯",
+           "text": "バッテリー残量警告灯"
+          }
+         ],
+         [
+          {
+           "html": "⑫",
+           "text": "⑫"
+          },
+          {
+           "html": "バッテリーレベルパーセントタグ",
+           "text": "バッテリーレベルパーセントタグ"
+          }
+         ],
+         [
+          {
+           "html": "⑬",
+           "text": "⑬"
+          },
+          {
+           "html": "エラーコード",
+           "text": "エラーコード"
+          }
+         ],
+         [
+          {
+           "html": "⑭",
+           "text": "⑭"
+          },
+          {
+           "html": "高温インジケーター",
+           "text": "高温インジケーター"
+          }
+         ],
+         [
+          {
+           "html": "⑮",
+           "text": "⑮"
+          },
+          {
+           "html": "低温インジケーター",
+           "text": "低温インジケーター"
+          }
+         ],
+         [
+          {
+           "html": "⑯",
+           "text": "⑯"
+          },
+          {
+           "html": "省エネモード",
+           "text": "省エネモード"
+          }
+         ],
+         [
+          {
+           "html": "⑰",
+           "text": "⑰"
+          },
+          {
+           "html": "交流電源による出力マーク",
+           "text": "交流電源による出力マーク"
+          }
+         ],
+         [
+          {
+           "html": "⑱",
+           "text": "⑱"
+          },
+          {
+           "html": "消費電力パワー",
+           "text": "消費電力パワー"
+          }
+         ],
+         [
+          {
+           "html": "⑲",
+           "text": "⑲"
+          },
+          {
+           "html": "バッテリー使用可能時間",
+           "text": "バッテリー使用可能時間"
+          }
+         ],
+         [
+          {
+           "html": "⑳",
+           "text": "⑳"
+          },
+          {
+           "html": "バッテリーパックインジケータと接続された量",
+           "text": "バッテリーパックインジケータと接続された量"
+          }
+         ],
+         [
+          {
+           "html": "㉑",
+           "text": "㉑"
+          },
+          {
+           "html": "AC 拡張インジケータ",
+           "text": "AC 拡張インジケータ"
+          }
+         ]
+        ]
+       }
+      ],
+      "assets": [],
+      "token_roles": [
+       "component.table.reference"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     }
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "strong",
+       "children": [
+        {
+         "kind": "text",
+         "text": "バッテリー保護:"
+        }
+       ]
+      },
+      {
+       "kind": "text",
+       "text": " この機能を有効にすると、電池の充電容量が85％、放充電容量が15％に制限されます。電池の寿命を延ばすため、容量が80％を下回る場合にのみ電池が充電されます。この機能の設定には、Jackery アプリを使用します。"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "strong",
+       "children": [
+        {
+         "kind": "text",
+         "text": "静音充電モード:"
+        }
+       ]
+      },
+      {
+       "kind": "text",
+       "text": " この充電モードでは騒音レベルが30dB以下になります。この機能は、Jackery アプリで設定できます。"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-TABLE-LCD-ICON",
+      "variant": "icon-catalog-unnumbered",
+      "source_ref": "native-pdf/page-4/lcd-icons",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "バッテリーアイコン"
+       },
+       {
+        "role": "rows",
+        "content_kind": "ordered_rows",
+        "content": [
+         {
+          "name_html": "バッテリーアイコン",
+          "name_text": "バッテリーアイコン",
+          "description_html": "本製品の充電時、アイコンは時計回りに回転します。本製品の放電時、アイコンは現在の電力を表示します。",
+          "description_text": "本製品の充電時、アイコンは時計回りに回転します。本製品の放電時、アイコンは現在の電力を表示します。",
+          "icon_alt": "バッテリーアイコン",
+          "asset_index": 0
+         },
+         {
+          "name_html": "バッテリー残量警告灯",
+          "name_text": "バッテリー残量警告灯",
+          "description_html": "バッテリー残量が20％未満の場合は、ローバッテリーランプが表示されます。バッテリー残量が5％未満の場合は、ローバッテリーランプが点滅します。バッテリー充電中は、ランプは表示されません。",
+          "description_text": "バッテリー残量が20％未満の場合は、ローバッテリーランプが表示されます。バッテリー残量が5％未満の場合は、ローバッテリーランプが点滅します。バッテリー充電中は、ランプは表示されません。",
+          "icon_alt": "バッテリー残量警告灯",
+          "asset_index": 1
+         },
+         {
+          "name_html": "省エネモード",
+          "name_text": "省エネモード",
+          "description_html": "電池の消費につながる出力の切り忘れを防ぐため、本製品は、初期設定で省エネモードをオンにします。これは接続しているデバイスがない場合、または接続しているデバイスがある値以下の場合に起動します。（詳しくは以下の表をご参照ください）、設定時間たつと本デバイスは自動的にすべての出力をオフにします。",
+          "description_text": "電池の消費につながる出力の切り忘れを防ぐため、本製品は、初期設定で省エネモードをオンにします。これは接続しているデバイスがない場合、または接続しているデバイスがある値以下の場合に起動します。（詳しくは以下の表をご参照ください）、設定時間たつと本デバイスは自動的にすべての出力をオフにします。",
+          "icon_alt": "省エネモード",
+          "asset_index": 2
+         }
+        ]
+       }
+      ],
+      "assets": [
+       {
+        "role": "icons",
+        "asset_ref": "assets/lcd-battery-power.svg",
+        "locale_policy": "exact"
+       },
+       {
+        "role": "icons",
+        "asset_ref": "assets/lcd-low-battery.svg",
+        "locale_policy": "exact"
+       },
+       {
+        "role": "icons",
+        "asset_ref": "assets/lcd-energy-saving.svg",
+        "locale_policy": "exact"
+       }
+      ],
+      "token_roles": [
+       "component.table.lcd-icon"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     }
+    },
+    {
+     "kind": "group",
+     "role": "container",
+     "presentation": {
+      "html": {
+       "attributes": {
+        "class": "table-wrapper docutils container"
+       }
+      }
+     },
+     "children": [
+      {
+       "kind": "table",
+       "presentation": {
+        "html": {
+         "attributes": {
+          "class": "manual-table"
+         }
+        }
+       },
+       "children": [
+        {
+         "kind": "table_head",
+         "children": [
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "出力ポートタイプ"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "電力設定値"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "text",
+               "text": "デフォルト設定"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": true,
+             "children": [
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "省エネモード"
+                },
+                {
+                 "kind": "image",
+                 "source": "assets/lcd-energy-saving.svg",
+                 "alt": "88H"
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "kind": "table_body",
+         "children": [
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "AC出力ポート"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "≤25W"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "設定時間後に自動的にシャットダウンします"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "ON（dispalyに"
+                },
+                {
+                 "kind": "image",
+                 "source": "assets/lcd-energy-saving.svg",
+                 "alt": "88H"
+                },
+                {
+                 "kind": "text",
+                 "text": "がある）"
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "USB出力ポート"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "≤2W"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "設定時間後に自動的にシャットダウンします"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "ON（dispalyに"
+                },
+                {
+                 "kind": "image",
+                 "source": "assets/lcd-energy-saving.svg",
+                 "alt": "88H"
+                },
+                {
+                 "kind": "text",
+                 "text": "がある）"
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "シガーソケット出力ポート"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "≤2W"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "text",
+               "text": "設定時間後に自動的にシャットダウンします"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "ON（dispalyに"
+                },
+                {
+                 "kind": "image",
+                 "source": "assets/lcd-energy-saving.svg",
+                 "alt": "88H"
+                },
+                {
+                 "kind": "text",
+                 "text": "がある）"
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "strong",
+       "children": [
+        {
+         "kind": "text",
+         "text": "省エネモードをOFFにするため:"
+        }
+       ]
+      },
+      {
+       "kind": "text",
+       "text": " ACまたはDCいずれかのの出力ボタンがオンになっている状態で、画面に省エネモードのアイコンが消えるまで、「AC出力ボタン+主電源ボタン」を長押しします。」省エネモードがOFFの場合、出力の切り忘れによる電力不足を防ぐため、製品を使用しない時は電源を切るよう注意してください。"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "strong",
+       "children": [
+        {
+         "kind": "text",
+         "text": "省エネモードをONにするため:"
+        }
+       ]
+      },
+      {
+       "kind": "text",
+       "text": " ACまたはDCいずれかのの出力ボタンをオンの状態で、画面に省エネモードのアイコンが表示されるまで、「AC出力ボタン+主電源ボタン」を長押ししてください。"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "strong",
+       "children": [
+        {
+         "kind": "text",
+         "text": "50Hz/60Hz周波数の切り替え:"
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "2つの方法があります。一つは自動識別です。初めてACで充電する時、お客様のお住まいの地域に応じて周波数を自動的に識別し、対応する出力に自動調整されます。もう一つは手動による調整です。AC出力ボタンを長押しすることで周波数を切り替えることができ、対応する周波数が画面に表示されます。なお、工場出荷時のデフォルト設定は60Hzに設定されています。"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-TABLE-LCD-ICON",
+      "variant": "icon-catalog-unnumbered",
+      "source_ref": "native-pdf/page-5/lcd-icons",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "故障コード"
+       },
+       {
+        "role": "rows",
+        "content_kind": "ordered_rows",
+        "content": [
+         {
+          "name_html": "故障コード",
+          "name_text": "故障コード",
+          "description_html": "フィードバックに迅速に対応するため、システムに一般的な障害コード F0-FE を設定しています。F8コードが表示された場合は、給電を停止するか、充電プラグを抜いてください。本製品は自動的に回復します。回復しない場合は、アフターサービスにご連絡ください；F9障害コードが表示された場合は、給電を停止してください。製品は自然に回復します。そうならない場合は、アフターサービスにご連絡ください。その他のコードが表示された場合は、アフターサービスにご連絡ください。",
+          "description_text": "フィードバックに迅速に対応するため、システムに一般的な障害コード F0-FE を設定しています。F8コードが表示された場合は、給電を停止するか、充電プラグを抜いてください。本製品は自動的に回復します。回復しない場合は、アフターサービスにご連絡ください；F9障害コードが表示された場合は、給電を停止してください。製品は自然に回復します。そうならない場合は、アフターサービスにご連絡ください。その他のコードが表示された場合は、アフターサービスにご連絡ください。",
+          "icon_alt": "故障コード",
+          "asset_index": 0
+         },
+         {
+          "name_html": "高温警告",
+          "name_text": "高温警告",
+          "description_html": "環境温度が高温時に表示されます。直射日光などが当たっている場合は移動してください。電池が冷めたら、自動的に表示がオフになります。",
+          "description_text": "環境温度が高温時に表示されます。直射日光などが当たっている場合は移動してください。電池が冷めたら、自動的に表示がオフになります。",
+          "icon_alt": "高温警告",
+          "asset_index": 1
+         },
+         {
+          "name_html": "低温警告",
+          "name_text": "低温警告",
+          "description_html": "環境温度が低い場合に表示されます。温度が通常になれば自動的に回復します。",
+          "description_text": "環境温度が低い場合に表示されます。温度が通常になれば自動的に回復します。",
+          "icon_alt": "低温警告",
+          "asset_index": 2
+         },
+         {
+          "name_html": "AC拡張インジケータ:",
+          "name_text": "AC拡張インジケータ:",
+          "description_html": "Jackery Connector（別売り）を介してもう一つのJackery ポータブル電源 2000 Plusに接続すると、電力が2倍になります。 詳細は、Jackery Connector の取扱説明書をご参照ください。",
+          "description_text": "Jackery Connector（別売り）を介してもう一つのJackery ポータブル電源 2000 Plusに接続すると、電力が2倍になります。 詳細は、Jackery Connector の取扱説明書をご参照ください。",
+          "icon_alt": "AC拡張インジケータ:",
+          "asset_index": 3
+         }
+        ]
+       }
+      ],
+      "assets": [
+       {
+        "role": "icons",
+        "asset_ref": "assets/lcd-fault-code.png",
+        "locale_policy": "exact"
+       },
+       {
+        "role": "icons",
+        "asset_ref": "assets/lcd-high-temperature.svg",
+        "locale_policy": "exact"
+       },
+       {
+        "role": "icons",
+        "asset_ref": "assets/lcd-low-temperature.png",
+        "locale_policy": "exact"
+       },
+       {
+        "role": "icons",
+        "asset_ref": "assets/lcd-ac-expansion.svg",
+        "locale_policy": "exact"
+       }
+      ],
+      "token_roles": [
+       "component.table.lcd-icon"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     }
+    }
+   ]
+  },
+  {
+   "id": "usage",
+   "title": "4.使用について",
+   "nodes": [
+    {
+     "kind": "heading",
+     "level": 2,
+     "anchor": "native-usage",
+     "children": [
+      {
+       "kind": "text",
+       "text": "4.使用について"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "heading",
+     "level": 3,
+     "children": [
+      {
+       "kind": "text",
+       "text": "出力オン/オフ"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "主電源ボタン"
+      },
+      {
+       "kind": "strong",
+       "children": [
+        {
+         "kind": "text",
+         "text": "/オフ:"
+        }
+       ]
+      },
+      {
+       "kind": "text",
+       "text": " 「主電源ボタン」を押すと、作動インジケータが点灯し、LCD ディスプレイの明かりがつきます。 本製品は 2 分間操作しない場合、休止状態に入り、ディスプレイが自動的にオフになります。主電源を切る必要がある場合は、作動インジケータが消灯するまで「主電源ボタン」を長押ししてください。この製品の初期設定の待機時間は2時間です。他の出力スイッチがオンになっておらず、又は製品に充電入力がない場合、本製品は 2 時間後に自動的にシャットダウンします。 自動シャットダウン時間は、Jackery アプリで設定できます。"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "strong",
+       "children": [
+        {
+         "kind": "text",
+         "text": "AC出力のオン/オフ:"
+        }
+       ]
+      },
+      {
+       "kind": "text",
+       "text": " 主電源ボタンになっていることを確認します。 AC ボタンを押すと、AC 出力作動インジケータが点灯します。この後、AC充電が必要な機器を接続できます。再度ACボタンを押すと、AC出力がオフになります。"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "strong",
+       "children": [
+        {
+         "kind": "text",
+         "text": "USB/カーポート出力オン/オフ:"
+        }
+       ]
+      },
+      {
+       "kind": "text",
+       "text": " 主電源がオンになっていることを確認します。DCボタンを押すと、DC出力作動インジケータが点灯します。この後、USB/カーポート出力ポートを外部負荷デバイスに接続できます。再度DC ボタンを押すと、USB/カーポート出力がオフになります。"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "strong",
+       "children": [
+        {
+         "kind": "text",
+         "text": "シガーソケット出力のON/OFF:"
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "シガーソケット出力ボタンを短く押すと、シガーソケット出力インジケーターが点灯し、シガーソケット出力ポートが外部機器に給電ができます。シガーソケット出力ボタンをもう一度短く押すと、出力がOFFになります。"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "電源ボタンまたは任意出力ボタンを押す、あるいは充電が入力されば、ディスプレイが点灯します。再び押せば、ディスプレイが消灯します。2分間内に操作しないと、製品はスリープ状態に入り、ディスプレイも自動的に消灯します。充電時及び放電時に、ディスプレイの常時点灯が必要であれば、操作手順は以下の通り：ディスプレイが点灯した後、「主電源ボタン」を2回押せば常時点灯になります。ディスプレイの常時点灯をOFFにする操作手順は以下の通り：「主電源ボタン」を押せば、ディスプレイが消灯します。"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "strong",
+       "children": [
+        {
+         "kind": "text",
+         "text": "注意："
+        }
+       ]
+      },
+      {
+       "kind": "text",
+       "text": "ディスプレイの常時点灯モードにおいて、充電または設備への接続をしない場合、2時間後にディスプレイが自動的に消灯します。"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "strong",
+       "children": [
+        {
+         "kind": "text",
+         "text": "AC入力過電流リセットキー:"
+        }
+       ]
+      },
+      {
+       "kind": "text",
+       "text": " 過電流保護機能が作動すると、リセットキーが突出します。接続機器を外し、リセットキーを再度押すと回復します。"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "strong",
+       "children": [
+        {
+         "kind": "text",
+         "text": "EPS機能："
+        }
+       ]
+      },
+      {
+       "kind": "text",
+       "text": "電気製品のコンセントをポータブル電源のAC出力ポートに接続し、ポータブル電源のAC入力ポートを家庭のコンセントにつなぐことで、停電時などにポータブル電源を予備電源として活用できます。電気系統の電気が突然に切れた場合、本製品は20ms(0.020秒)以内に自動的にバッテリー給電モードに切り替わります。この機能は非専門レベルのUPS機能のため、0msで切り替えることができません。そのため、データサーバーまたはワークステーションのような無停止充電が必要な要求の高い設備に接続しないようにしてください。あるいは、複数回のテストを実施し、コンパチビリティを確認してから使用してください。ただし、複数の設備への同時的な接続によって過負荷保護になる可能性があるため、使用時には一台だけの設備に接続することをお勧めします。指示通りに操作しなかったことにより、設備が正常に作動できなかったり、データが消失した場合、当社は責任を負いかねます。"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    }
+   ]
+  },
+  {
+   "id": "battery_pack",
+   "title": "5. バッテリーパック（別売）と併用",
+   "nodes": [
+    {
+     "kind": "heading",
+     "level": 2,
+     "anchor": "native-battery-pack",
+     "children": [
+      {
+       "kind": "text",
+       "text": "5. バッテリーパック（別売）と併用"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "本製品は最大10個のバッテリーパックを追加可能であり、大電力容量のニーズに対応します。 使用方法の詳細は、Jackery Battery Pack 2000 Plus 取扱説明書をご参照ください。"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    }
+   ]
+  },
+  {
+   "id": "app_connection",
+   "title": "6.アプリの接続",
+   "nodes": [
+    {
+     "kind": "heading",
+     "level": 2,
+     "anchor": "native-app-connection",
+     "children": [
+      {
+       "kind": "text",
+       "text": "6.アプリの接続"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "strong",
+       "children": [
+        {
+         "kind": "text",
+         "text": "本製品は、Jackeryアプリのリモート接続に対応します。ユーザーは、App StoreまたはAndroid アプリケーションマーケットからJackeryアプリをダウンロードできます。接続手順の詳細については、Jackery アプリのユーザー マニュアルをご参照ください。"
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    }
+   ]
+  },
+  {
+   "id": "charging",
+   "title": "7.充電方法",
+   "nodes": [
+    {
+     "kind": "heading",
+     "level": 2,
+     "anchor": "native-charging",
+     "children": [
+      {
+       "kind": "text",
+       "text": "7.充電方法"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "グリーンエネルギー優先モード:"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "本製品はグリーンエネルギー優先モードを搭載していますが、ソーラーパネルとAC充電ケーブルを使って同時に充電できます。同時に充電すると、ソーラーが優先されますが、バッテリーの最大許容電力で同時に充電されます。"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-CALLOUT-STRIP",
+      "variant": "caution",
+      "source_ref": "native-pdf/page-6/caution",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "label",
+        "content_kind": "inline_text",
+        "content": "ご注意"
+       },
+       {
+        "role": "body",
+        "content_kind": "rich_text",
+        "content": "はじめてお使いになるときは、本製品をフル充電してからご使用ください。\n充電池は空の状態で長期保管(3カ月～6カ月）すると、性能が劣化したり、充電できなくなる場合があります。\n本機を長期保管する場合には、3ヵ月に１度を目安に本体にACアダプターやソーラーパネルを通して蓄電が可能か、他製品に給電可能かなど動作確認をお願い致します。保管時の残量につきましては、60%～80%ほどを目安に保管することを推奨します。"
+       },
+       {
+        "role": "items",
+        "content_kind": "list_items",
+        "content": [
+         "はじめてお使いになるときは、本製品をフル充電してからご使用ください。",
+         "充電池は空の状態で長期保管(3カ月～6カ月）すると、性能が劣化したり、充電できなくなる場合があります。",
+         "本機を長期保管する場合には、3ヵ月に１度を目安に本体にACアダプターやソーラーパネルを通して蓄電が可能か、他製品に給電可能かなど動作確認をお願い致します。保管時の残量につきましては、60%～80%ほどを目安に保管することを推奨します。"
+        ]
+       }
+      ],
+      "assets": [],
+      "token_roles": [
+       "component.callout"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "table",
+       "presentation": {
+        "html": {
+         "attributes": {
+          "class": "manual-callout-table manual-callout-table"
+         }
+        }
+       },
+       "children": [
+        {
+         "kind": "table_body",
+         "children": [
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-label"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "text",
+               "text": "ご注意"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-body"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "list",
+               "ordered": false,
+               "children": [
+                {
+                 "kind": "list_item",
+                 "children": [
+                  {
+                   "kind": "text",
+                   "text": "はじめてお使いになるときは、本製品をフル充電してからご使用ください。"
+                  }
+                 ]
+                },
+                {
+                 "kind": "list_item",
+                 "children": [
+                  {
+                   "kind": "text",
+                   "text": "充電池は空の状態で長期保管(3カ月～6カ月）すると、性能が劣化したり、充電できなくなる場合があります。"
+                  }
+                 ]
+                },
+                {
+                 "kind": "list_item",
+                 "children": [
+                  {
+                   "kind": "text",
+                   "text": "本機を長期保管する場合には、3ヵ月に１度を目安に本体にACアダプターやソーラーパネルを通して蓄電が可能か、他製品に給電可能かなど動作確認をお願い致します。保管時の残量につきましては、60%～80%ほどを目安に保管することを推奨します。"
+                  }
+                 ]
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "heading",
+     "level": 3,
+     "children": [
+      {
+       "kind": "text",
+       "text": "AC充電ケーブル"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "付属のAC充電ケーブルをご使用ください。"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+      "variant": "semantic-fallback",
+      "source_ref": "native-pdf/page-7/ac-charge",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "ac-charge"
+       },
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "AC充電ケーブル / ポータブル電源 2000 Plus"
+       },
+       {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "embedded"
+       },
+       {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+       }
+      ],
+      "assets": [
+       {
+        "role": "source_art",
+        "asset_ref": "assets/ac-charge.png",
+        "locale_policy": "exact"
+       }
+      ],
+      "token_roles": [
+       "component.special.reference-figure"
+      ],
+      "metadata": {
+       "embedded_labels": [
+        "AC充電ケーブル",
+        "ポータブル電源 2000 Plus"
+       ],
+       "physical_page": 7,
+       "image_key": "ac-charge",
+       "web_replace_key": "",
+       "source_fragment_sha256": "05d2c47c40fa6ee6077e1f57e696c81345a6f7e6e4ac31704c46d2c84581e6ef"
+      },
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "image",
+       "source": "assets/ac-charge.png",
+       "alt": "AC充電ケーブル / ポータブル電源 2000 Plus"
+      }
+     ]
+    },
+    {
+     "kind": "heading",
+     "level": 3,
+     "children": [
+      {
+       "kind": "text",
+       "text": "ソーラー充電"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "heading",
+     "level": 4,
+     "children": [
+      {
+       "kind": "text",
+       "text": "Jackery SolarSaga 60、100、200 の接続操作説明"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "1枚または2枚のソーラーパネルを接続する場合は、ソーラーパネルのDC8020ポートをJackeryポータブル電源 2000 Plus のDC 8020ポートに接続して充電することができます。3枚または4枚のソーラーパネルを接続する場合は、次の図のようにソーラーパネル直列アダプターを使って充電してください（注意：ソーラーパネル直列アダプターは標準付属品ではなく、別途購入する必要があります。使用前にソーラーパネル直列アダプターの詳細な操作説明を参照してください ）"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+      "variant": "semantic-fallback",
+      "source_ref": "native-pdf/page-7/solar-3",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "solar-3"
+       },
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "ポータブル電源 2000 Plus / SolarSaga ×3"
+       },
+       {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "embedded"
+       },
+       {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+       }
+      ],
+      "assets": [
+       {
+        "role": "source_art",
+        "asset_ref": "assets/solar-3.png",
+        "locale_policy": "exact"
+       }
+      ],
+      "token_roles": [
+       "component.special.reference-figure"
+      ],
+      "metadata": {
+       "embedded_labels": [
+        "ポータブル電源 2000 Plus",
+        "SolarSaga ×3"
+       ],
+       "physical_page": 7,
+       "image_key": "solar-3",
+       "web_replace_key": "",
+       "source_fragment_sha256": "015e73337256ea2cf9f910b0d36588b1aff11e8f143bd1714beaa331a2d3b24f"
+      },
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "image",
+       "source": "assets/solar-3.png",
+       "alt": "ポータブル電源 2000 Plus / SolarSaga ×3"
+      }
+     ]
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+      "variant": "semantic-fallback",
+      "source_ref": "native-pdf/page-7/solar-2-2",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "solar-2-2"
+       },
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "SolarSaga×2 / ポータブル電源 2000 Plus / SolarSaga×2"
+       },
+       {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "embedded"
+       },
+       {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+       }
+      ],
+      "assets": [
+       {
+        "role": "source_art",
+        "asset_ref": "assets/solar-2-2.png",
+        "locale_policy": "exact"
+       }
+      ],
+      "token_roles": [
+       "component.special.reference-figure"
+      ],
+      "metadata": {
+       "embedded_labels": [
+        "SolarSaga×2",
+        "ポータブル電源 2000 Plus",
+        "SolarSaga×2"
+       ],
+       "physical_page": 7,
+       "image_key": "solar-2-2",
+       "web_replace_key": "",
+       "source_fragment_sha256": "219c6bde38854ad32979f9a13038b8d15c739079208b932bfb4a936c12641de4"
+      },
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "image",
+       "source": "assets/solar-2-2.png",
+       "alt": "SolarSaga×2 / ポータブル電源 2000 Plus / SolarSaga×2"
+      }
+     ]
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+      "variant": "semantic-fallback",
+      "source_ref": "native-pdf/page-7/solar-3-3",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "solar-3-3"
+       },
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "SolarSaga×3 / ポータブル電源 2000 Plus / SolarSaga ×3"
+       },
+       {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "embedded"
+       },
+       {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+       }
+      ],
+      "assets": [
+       {
+        "role": "source_art",
+        "asset_ref": "assets/solar-3-3.png",
+        "locale_policy": "exact"
+       }
+      ],
+      "token_roles": [
+       "component.special.reference-figure"
+      ],
+      "metadata": {
+       "embedded_labels": [
+        "SolarSaga×3",
+        "ポータブル電源 2000 Plus",
+        "SolarSaga ×3"
+       ],
+       "physical_page": 7,
+       "image_key": "solar-3-3",
+       "web_replace_key": "",
+       "source_fragment_sha256": "0feb5682669bc87a5cd1586dca8500bf6044c64337ceb53e58c990c106ed8395"
+      },
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "image",
+       "source": "assets/solar-3-3.png",
+       "alt": "SolarSaga×3 / ポータブル電源 2000 Plus / SolarSaga ×3"
+      }
+     ]
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "strong",
+       "children": [
+        {
+         "kind": "text",
+         "text": "ご注意："
+        }
+       ]
+      },
+      {
+       "kind": "text",
+       "text": "Jackery ポータブル電源 2000 Plusで2つのDC入力ポートを使って同時に充電する場合は、接続するソーラーパネルの最大出力と数を各ポートで揃えてお使いください。"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "下記のような方法で接続を行った場合、本体が故障する恐れがあります。ご注意ください。"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+      "variant": "semantic-fallback",
+      "source_ref": "native-pdf/page-8/solar-prohibited",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "solar-prohibited"
+       },
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "SolarSaga×2 / ポータブル電源 2000 Plus / SolarSaga×1 / SolarSaga×3 / ポータブル電源 2000 Plus / SolarSaga×1 / SolarSaga×3 / ポータブル電源 2000 Plus / SolarSaga×2"
+       },
+       {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "embedded"
+       },
+       {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+       }
+      ],
+      "assets": [
+       {
+        "role": "source_art",
+        "asset_ref": "assets/solar-prohibited.png",
+        "locale_policy": "exact"
+       }
+      ],
+      "token_roles": [
+       "component.special.reference-figure"
+      ],
+      "metadata": {
+       "embedded_labels": [
+        "SolarSaga×2",
+        "ポータブル電源 2000 Plus",
+        "SolarSaga×1",
+        "SolarSaga×3",
+        "ポータブル電源 2000 Plus",
+        "SolarSaga×1",
+        "SolarSaga×3",
+        "ポータブル電源 2000 Plus",
+        "SolarSaga×2"
+       ],
+       "physical_page": 8,
+       "image_key": "solar-prohibited",
+       "web_replace_key": "",
+       "source_fragment_sha256": "8e378ad2001c57f0d70f70bbad9e4ac1193c8de11d5e55ed73d80c10fb6ac09f"
+      },
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "image",
+       "source": "assets/solar-prohibited.png",
+       "alt": "SolarSaga×2 / ポータブル電源 2000 Plus / SolarSaga×1 / SolarSaga×3 / ポータブル電源 2000 Plus / SolarSaga×1 / SolarSaga×3 / ポータブル電源 2000 Plus / SolarSaga×2"
+      }
+     ]
+    },
+    {
+     "kind": "heading",
+     "level": 4,
+     "children": [
+      {
+       "kind": "text",
+       "text": "Jackery SolarSaga 80 接続説明"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "Jackery SolarSaga 80の接続方法は下の図をご参照ください。Jackery SolarSaga 80は並列に接続、または並列に接続後に直列に接続することによって本製品を充電することができます。Jackery ポータブル電源 2000 Plus は1つの入力ポートで最大6枚のJackery SolarSaga 80 の入力をサポートします。６枚で接続する時は2組に分け、1組3枚のJackery SolarSaga 80を並列に接続してからソーラーパネル直列アダプター（別売り）を通じてポータブル電源を充電してください。"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "Jackery SolarSaga 80の並列接続の詳細な操作説明は、ソーラーパネルの説明書を参照してください。"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+      "variant": "semantic-fallback",
+      "source_ref": "native-pdf/page-8/solar-80",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "solar-80"
+       },
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "ポータブル電源への接続ポート（タイプ：DC8020、また先端にDC8020→DC7909のトランスジャックが付属されています） / 並列ポート(DC8020ポート)"
+       },
+       {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "embedded"
+       },
+       {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+       }
+      ],
+      "assets": [
+       {
+        "role": "source_art",
+        "asset_ref": "assets/solar-80.png",
+        "locale_policy": "exact"
+       }
+      ],
+      "token_roles": [
+       "component.special.reference-figure"
+      ],
+      "metadata": {
+       "embedded_labels": [
+        "ポータブル電源への接続ポート（タイプ：DC8020、また先端にDC8020→DC7909のトランスジャックが付属されています）",
+        "並列ポート(DC8020ポート)"
+       ],
+       "physical_page": 8,
+       "image_key": "solar-80",
+       "web_replace_key": "",
+       "source_fragment_sha256": "a482a128da2b6f017d7337202c372458b2617646de51651e44052d611efea8cf"
+      },
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "image",
+       "source": "assets/solar-80.png",
+       "alt": "ポータブル電源への接続ポート（タイプ：DC8020、また先端にDC8020→DC7909のトランスジャックが付属されています） / 並列ポート(DC8020ポート)"
+      }
+     ]
+    },
+    {
+     "kind": "heading",
+     "level": 3,
+     "children": [
+      {
+       "kind": "text",
+       "text": "シガーソケット充電"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "本製品は12Vの車のシガーソケットに対応し、充電ができます。車のバッテリーが上がってしまわないように、エンジンを始動してから、シガーソケットを使用してください。使用の際は車の充電ポートと入力ケーブルのシガーライターの接触に問題がないことを確認し、シガーソケットの所定の場所に差し込めることを確認してください。道路状況が悪くて、車の振動が多い場合は、充電が接触不良になりますので、接触部分が焼損するのを防ぐために、シガーソケット充電を中止してください。本製品の誤った取り扱いによる損害が発生した場合も当社は一切の責任を負いかねます。"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+      "variant": "semantic-fallback",
+      "source_ref": "native-pdf/page-9/car-charge",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "car-charge"
+       },
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "ポータブル電源 2000 Plus"
+       },
+       {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "embedded"
+       },
+       {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+       }
+      ],
+      "assets": [
+       {
+        "role": "source_art",
+        "asset_ref": "assets/car-charge.png",
+        "locale_policy": "exact"
+       }
+      ],
+      "token_roles": [
+       "component.special.reference-figure"
+      ],
+      "metadata": {
+       "embedded_labels": [
+        "ポータブル電源 2000 Plus"
+       ],
+       "physical_page": 9,
+       "image_key": "car-charge",
+       "web_replace_key": "",
+       "source_fragment_sha256": "83c142f12c80af4af50370833297e9f16eee4536bb7236dc5f1ac94556dcf74d"
+      },
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "image",
+       "source": "assets/car-charge.png",
+       "alt": "ポータブル電源 2000 Plus"
+      }
+     ]
+    },
+    {
+     "kind": "heading",
+     "level": 3,
+     "children": [
+      {
+       "kind": "text",
+       "text": "充電に関する安全上のご注意"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "1)本製品の2つのソーラーDC入力を同時に使用する場合は、直列に接続されたソーラーパネルの枚数が同じであることを確認し、同型番のソーラーパネルを使用するようにしてください。"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "2)シガーソケット充電とソーラー充電を同時に使用しないでください。同時に使用すると、車のヒューズが損傷する可能性があります。"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "3)シガーソケット充電は12V車専用で、24V車は充電できません。人身傷害や物的損害を避けるため、本製品の充電に24V車を使用しないでください。"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "4)Jackeryブランド以外の付属品を使用して充電しないでください。特に、ソーラーパネルで充電する際は、Jackeryのソーラーパネルを使用することをお勧めします。他社ソーラーパネルで充電することによる損失について、当社は一切の責任を負いません。"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    }
+   ]
+  },
+  {
+   "id": "safety",
+   "title": "8.安全上のご注意",
+   "nodes": [
+    {
+     "kind": "heading",
+     "level": 2,
+     "anchor": "native-safety",
+     "children": [
+      {
+       "kind": "text",
+       "text": "8.安全上のご注意"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "strong",
+       "children": [
+        {
+         "kind": "text",
+         "text": "ご使用の前にこの「安全上のご注意」をよくお読みのうえ、正しくお使いください。"
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "heading",
+     "level": 3,
+     "children": [
+      {
+       "kind": "text",
+       "text": "絵表示について"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "製品を安全に正しくお使いいただき、お客様や他の方々への危害や財産への損害を未然に防止するための表示です。"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "内容をよく理解してから本文をお読みください。"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-TABLE-SYMBOL-SIGNAL",
+      "variant": "localized-badges",
+      "source_ref": "native-pdf/page-10/signal",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "絵表示について"
+       },
+       {
+        "role": "headers",
+        "content_kind": "ordered_headers",
+        "content": [
+         {
+          "content_html": "表示",
+          "content_text": "表示"
+         },
+         {
+          "content_html": "意味",
+          "content_text": "意味"
+         }
+        ]
+       },
+       {
+        "role": "rows",
+        "content_kind": "ordered_rows",
+        "content": [
+         {
+          "label": "警告",
+          "show_icon": true,
+          "meaning_html": "この表示を無視して、誤った取り扱いをすると、人が死亡または重傷を負う可能性が想定される内容を示しています。",
+          "meaning_text": "この表示を無視して、誤った取り扱いをすると、人が死亡または重傷を負う可能性が想定される内容を示しています。"
+         },
+         {
+          "label": "注意",
+          "show_icon": true,
+          "meaning_html": "この表示を無視して、誤った取り扱いをすると、人が傷害を負う可能性が想定される内容または物的損害の発生が想定される内容を示しています。",
+          "meaning_text": "この表示を無視して、誤った取り扱いをすると、人が傷害を負う可能性が想定される内容または物的損害の発生が想定される内容を示しています。"
+         }
+        ]
+       }
+      ],
+      "assets": [],
+      "token_roles": [
+       "component.table.symbol-signal"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     }
+    },
+    {
+     "kind": "heading",
+     "level": 3,
+     "children": [
+      {
+       "kind": "text",
+       "text": "絵表示の説明"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-TABLE-SYMBOL-ICON",
+      "variant": "two-panel-responsive",
+      "source_ref": "native-pdf/page-10/symbols",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "絵表示の説明"
+       },
+       {
+        "role": "headers",
+        "content_kind": "ordered_headers",
+        "content": [
+         {
+          "content_html": "記号",
+          "content_text": "記号"
+         },
+         {
+          "content_html": "意味",
+          "content_text": "意味"
+         },
+         {
+          "content_html": "記号",
+          "content_text": "記号"
+         },
+         {
+          "content_html": "意味",
+          "content_text": "意味"
+         }
+        ]
+       },
+       {
+        "role": "panels",
+        "content_kind": "ordered_panels",
+        "content": [
+         [
+          {
+           "asset_index": 0,
+           "icon_alt": "コンセントから電源プラグを抜く記号",
+           "meaning_html": "コンセントから電源プラグを抜く記号",
+           "meaning_text": "コンセントから電源プラグを抜く記号"
+          },
+          {
+           "asset_index": 1,
+           "icon_alt": "製品を分解、改造を禁止する記号",
+           "meaning_html": "製品を分解、改造を禁止する記号",
+           "meaning_text": "製品を分解、改造を禁止する記号"
+          },
+          {
+           "asset_index": 2,
+           "icon_alt": "製品に濡れた手で触れることを禁止する記号",
+           "meaning_html": "製品に濡れた手で触れることを禁止する記号",
+           "meaning_text": "製品に濡れた手で触れることを禁止する記号"
+          }
+         ],
+         [
+          {
+           "asset_index": 3,
+           "icon_alt": "行為を指示する記号",
+           "meaning_html": "行為を指示する記号",
+           "meaning_text": "行為を指示する記号"
+          },
+          {
+           "asset_index": 4,
+           "icon_alt": "製品を濡らすことを禁止する記号",
+           "meaning_html": "製品を濡らすことを禁止する記号",
+           "meaning_text": "製品を濡らすことを禁止する記号"
+          },
+          {
+           "asset_index": 5,
+           "icon_alt": "行為を禁止する記号",
+           "meaning_html": "行為を禁止する記号",
+           "meaning_text": "行為を禁止する記号"
+          }
+         ]
+        ]
+       }
+      ],
+      "assets": [
+       {
+        "role": "icons",
+        "asset_ref": "assets/symbol-01.svg",
+        "locale_policy": "shared"
+       },
+       {
+        "role": "icons",
+        "asset_ref": "assets/symbol-02.svg",
+        "locale_policy": "shared"
+       },
+       {
+        "role": "icons",
+        "asset_ref": "assets/symbol-03.svg",
+        "locale_policy": "shared"
+       },
+       {
+        "role": "icons",
+        "asset_ref": "assets/symbol-04.svg",
+        "locale_policy": "shared"
+       },
+       {
+        "role": "icons",
+        "asset_ref": "assets/symbol-05.svg",
+        "locale_policy": "shared"
+       },
+       {
+        "role": "icons",
+        "asset_ref": "assets/symbol-06.svg",
+        "locale_policy": "shared"
+       }
+      ],
+      "token_roles": [
+       "component.table.symbol-icon"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     }
+    },
+    {
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-CALLOUT-STRIP",
+      "variant": "warning",
+      "source_ref": "native-pdf/page-10/warning-1",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "label",
+        "content_kind": "inline_text",
+        "content": "警告"
+       },
+       {
+        "role": "body",
+        "content_kind": "rich_text",
+        "content": "万が一、次のような異常が発生したときはすぐに使用をやめる\n煙が出ている、異臭がする\n落としたり、破損したとき\n異音がする\n内部に水や異物が入ったとき\n電源コード  (ACアダプター)  が傷んだとき\nこのような異常が発生したまま使用していると、火災や感電の原因になります。\nすぐにACアダプターをコンセントから抜いてください。また、本製品に接続されている機器もすべて外してください。\n万が一発煙や発火したら、大量の水で消火して煙が見えなくなるまで本製品を水浸しにしてください。\n煙が出なくなることを確認してからカスタマーサポートにご連絡ください。\nお客様による修理は危険ですので絶対におやめください。"
+       },
+       {
+        "role": "items",
+        "content_kind": "list_items",
+        "content": [
+         "煙が出ている、異臭がする",
+         "落としたり、破損したとき",
+         "異音がする",
+         "内部に水や異物が入ったとき",
+         "電源コード  (ACアダプター)  が傷んだとき"
+        ]
+       }
+      ],
+      "assets": [],
+      "token_roles": [
+       "component.callout"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "table",
+       "presentation": {
+        "html": {
+         "attributes": {
+          "class": "manual-callout-table manual-callout-table"
+         }
+        }
+       },
+       "children": [
+        {
+         "kind": "table_body",
+         "children": [
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-label"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "text",
+               "text": "警告"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-body"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "strong",
+                 "children": [
+                  {
+                   "kind": "text",
+                   "text": "万が一、次のような異常が発生したときはすぐに使用をやめる"
+                  }
+                 ]
+                }
+               ]
+              },
+              {
+               "kind": "list",
+               "ordered": false,
+               "children": [
+                {
+                 "kind": "list_item",
+                 "children": [
+                  {
+                   "kind": "text",
+                   "text": "煙が出ている、異臭がする"
+                  }
+                 ]
+                },
+                {
+                 "kind": "list_item",
+                 "children": [
+                  {
+                   "kind": "text",
+                   "text": "落としたり、破損したとき"
+                  }
+                 ]
+                },
+                {
+                 "kind": "list_item",
+                 "children": [
+                  {
+                   "kind": "text",
+                   "text": "異音がする"
+                  }
+                 ]
+                },
+                {
+                 "kind": "list_item",
+                 "children": [
+                  {
+                   "kind": "text",
+                   "text": "内部に水や異物が入ったとき"
+                  }
+                 ]
+                },
+                {
+                 "kind": "list_item",
+                 "children": [
+                  {
+                   "kind": "text",
+                   "text": "電源コード  (ACアダプター)  が傷んだとき"
+                  }
+                 ]
+                }
+               ]
+              },
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "このような異常が発生したまま使用していると、火災や感電の原因になります。"
+                }
+               ]
+              },
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "すぐにACアダプターをコンセントから抜いてください。また、本製品に接続されている機器もすべて外してください。"
+                }
+               ]
+              },
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "strong",
+                 "children": [
+                  {
+                   "kind": "text",
+                   "text": "万が一発煙や発火したら、大量の水で消火して煙が見えなくなるまで本製品を水浸しにしてください。"
+                  }
+                 ]
+                }
+               ]
+              },
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "煙が出なくなることを確認してからカスタマーサポートにご連絡ください。"
+                }
+               ]
+              },
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "お客様による修理は危険ですので絶対におやめください。"
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-CALLOUT-STRIP",
+      "variant": "warning",
+      "source_ref": "native-pdf/page-10/warning-2",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "label",
+        "content_kind": "inline_text",
+        "content": "警告"
+       },
+       {
+        "role": "body",
+        "content_kind": "rich_text",
+        "content": "分解、改造しない\n故障、発熱、火災·感電の原因になります。"
+       }
+      ],
+      "assets": [],
+      "token_roles": [
+       "component.callout"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "table",
+       "presentation": {
+        "html": {
+         "attributes": {
+          "class": "manual-callout-table manual-callout-table"
+         }
+        }
+       },
+       "children": [
+        {
+         "kind": "table_body",
+         "children": [
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-label"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "text",
+               "text": "警告"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-body"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "strong",
+                 "children": [
+                  {
+                   "kind": "text",
+                   "text": "分解、改造しない"
+                  }
+                 ]
+                }
+               ]
+              },
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "故障、発熱、火災·感電の原因になります。"
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-CALLOUT-STRIP",
+      "variant": "warning",
+      "source_ref": "native-pdf/page-10/warning-3",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "label",
+        "content_kind": "inline_text",
+        "content": "警告"
+       },
+       {
+        "role": "body",
+        "content_kind": "rich_text",
+        "content": "表示された電源電圧以外で使用しない\n故障、発熱、火災·感電の原因になります。また、本製品を使用できるのは日本国内のみです。"
+       }
+      ],
+      "assets": [],
+      "token_roles": [
+       "component.callout"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "table",
+       "presentation": {
+        "html": {
+         "attributes": {
+          "class": "manual-callout-table manual-callout-table"
+         }
+        }
+       },
+       "children": [
+        {
+         "kind": "table_body",
+         "children": [
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-label"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "text",
+               "text": "警告"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-body"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "strong",
+                 "children": [
+                  {
+                   "kind": "text",
+                   "text": "表示された電源電圧以外で使用しない"
+                  }
+                 ]
+                }
+               ]
+              },
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "故障、発熱、火災·感電の原因になります。また、本製品を使用できるのは日本国内のみです。"
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-CALLOUT-STRIP",
+      "variant": "warning",
+      "source_ref": "native-pdf/page-10/warning-4",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "label",
+        "content_kind": "inline_text",
+        "content": "警告"
+       },
+       {
+        "role": "body",
+        "content_kind": "rich_text",
+        "content": "付属品と本製品が破損した場合は、ご自身で修理をしない"
+       }
+      ],
+      "assets": [],
+      "token_roles": [
+       "component.callout"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "table",
+       "presentation": {
+        "html": {
+         "attributes": {
+          "class": "manual-callout-table manual-callout-table"
+         }
+        }
+       },
+       "children": [
+        {
+         "kind": "table_body",
+         "children": [
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-label"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "text",
+               "text": "警告"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-body"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "strong",
+                 "children": [
+                  {
+                   "kind": "text",
+                   "text": "付属品と本製品が破損した場合は、ご自身で修理をしない"
+                  }
+                 ]
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-CALLOUT-STRIP",
+      "variant": "warning",
+      "source_ref": "native-pdf/page-11/warning-5",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "label",
+        "content_kind": "inline_text",
+        "content": "警告"
+       },
+       {
+        "role": "body",
+        "content_kind": "rich_text",
+        "content": "火のそばや炎天下の車内、熱器具の周辺など高温（40℃以上）になる場所で使用したり、放置しない\n発熱や発火、破裂する原因になります。"
+       }
+      ],
+      "assets": [],
+      "token_roles": [
+       "component.callout"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "table",
+       "presentation": {
+        "html": {
+         "attributes": {
+          "class": "manual-callout-table manual-callout-table"
+         }
+        }
+       },
+       "children": [
+        {
+         "kind": "table_body",
+         "children": [
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-label"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "text",
+               "text": "警告"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-body"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "strong",
+                 "children": [
+                  {
+                   "kind": "text",
+                   "text": "火のそばや炎天下の車内、熱器具の周辺など高温（40℃以上）になる場所で使用したり、放置しない"
+                  }
+                 ]
+                }
+               ]
+              },
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "発熱や発火、破裂する原因になります。"
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-CALLOUT-STRIP",
+      "variant": "warning",
+      "source_ref": "native-pdf/page-11/warning-6",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "label",
+        "content_kind": "inline_text",
+        "content": "警告"
+       },
+       {
+        "role": "body",
+        "content_kind": "rich_text",
+        "content": "強い衝撃を与えたり、投げつけたりしない\n発熱や発火、破裂する原因になります。"
+       }
+      ],
+      "assets": [],
+      "token_roles": [
+       "component.callout"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "table",
+       "presentation": {
+        "html": {
+         "attributes": {
+          "class": "manual-callout-table manual-callout-table"
+         }
+        }
+       },
+       "children": [
+        {
+         "kind": "table_body",
+         "children": [
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-label"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "text",
+               "text": "警告"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-body"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "strong",
+                 "children": [
+                  {
+                   "kind": "text",
+                   "text": "強い衝撃を与えたり、投げつけたりしない"
+                  }
+                 ]
+                }
+               ]
+              },
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "発熱や発火、破裂する原因になります。"
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-CALLOUT-STRIP",
+      "variant": "warning",
+      "source_ref": "native-pdf/page-11/warning-7",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "label",
+        "content_kind": "inline_text",
+        "content": "警告"
+       },
+       {
+        "role": "body",
+        "content_kind": "rich_text",
+        "content": "水など、液体を入れたり、濡らしたりしない\n発熱や発火の原因になります。"
+       }
+      ],
+      "assets": [],
+      "token_roles": [
+       "component.callout"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "table",
+       "presentation": {
+        "html": {
+         "attributes": {
+          "class": "manual-callout-table manual-callout-table"
+         }
+        }
+       },
+       "children": [
+        {
+         "kind": "table_body",
+         "children": [
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-label"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "text",
+               "text": "警告"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-body"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "strong",
+                 "children": [
+                  {
+                   "kind": "text",
+                   "text": "水など、液体を入れたり、濡らしたりしない"
+                  }
+                 ]
+                }
+               ]
+              },
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "発熱や発火の原因になります。"
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-CALLOUT-STRIP",
+      "variant": "warning",
+      "source_ref": "native-pdf/page-11/warning-8",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "label",
+        "content_kind": "inline_text",
+        "content": "警告"
+       },
+       {
+        "role": "body",
+        "content_kind": "rich_text",
+        "content": "濡れた手で本体や接続するケーブルを触らない\n火災や感電の原因になります。"
+       }
+      ],
+      "assets": [],
+      "token_roles": [
+       "component.callout"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "table",
+       "presentation": {
+        "html": {
+         "attributes": {
+          "class": "manual-callout-table manual-callout-table"
+         }
+        }
+       },
+       "children": [
+        {
+         "kind": "table_body",
+         "children": [
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-label"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "text",
+               "text": "警告"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-body"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "strong",
+                 "children": [
+                  {
+                   "kind": "text",
+                   "text": "濡れた手で本体や接続するケーブルを触らない"
+                  }
+                 ]
+                }
+               ]
+              },
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "火災や感電の原因になります。"
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-CALLOUT-STRIP",
+      "variant": "warning",
+      "source_ref": "native-pdf/page-11/warning-9",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "label",
+        "content_kind": "inline_text",
+        "content": "警告"
+       },
+       {
+        "role": "body",
+        "content_kind": "rich_text",
+        "content": "端子部にケーブル以外の金属類を差し込まない\n発熱や発火の原因になります。"
+       }
+      ],
+      "assets": [],
+      "token_roles": [
+       "component.callout"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "table",
+       "presentation": {
+        "html": {
+         "attributes": {
+          "class": "manual-callout-table manual-callout-table"
+         }
+        }
+       },
+       "children": [
+        {
+         "kind": "table_body",
+         "children": [
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-label"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "text",
+               "text": "警告"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-body"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "strong",
+                 "children": [
+                  {
+                   "kind": "text",
+                   "text": "端子部にケーブル以外の金属類を差し込まない"
+                  }
+                 ]
+                }
+               ]
+              },
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "発熱や発火の原因になります。"
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-CALLOUT-STRIP",
+      "variant": "warning",
+      "source_ref": "native-pdf/page-11/warning-10",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "label",
+        "content_kind": "inline_text",
+        "content": "警告"
+       },
+       {
+        "role": "body",
+        "content_kind": "rich_text",
+        "content": "雷が鳴りだしたら、電源プラグにふれない  (充電をしない)\n感電の原因になります。"
+       }
+      ],
+      "assets": [],
+      "token_roles": [
+       "component.callout"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "table",
+       "presentation": {
+        "html": {
+         "attributes": {
+          "class": "manual-callout-table manual-callout-table"
+         }
+        }
+       },
+       "children": [
+        {
+         "kind": "table_body",
+         "children": [
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-label"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "text",
+               "text": "警告"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-body"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "strong",
+                 "children": [
+                  {
+                   "kind": "text",
+                   "text": "雷が鳴りだしたら、電源プラグにふれない  (充電をしない)"
+                  }
+                 ]
+                }
+               ]
+              },
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "感電の原因になります。"
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-CALLOUT-STRIP",
+      "variant": "warning",
+      "source_ref": "native-pdf/page-11/warning-11",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "label",
+        "content_kind": "inline_text",
+        "content": "警告"
+       },
+       {
+        "role": "body",
+        "content_kind": "rich_text",
+        "content": "各接続端子には確実に差し込む\n差し込みが不十分だと、発熱したりほこりが付着して火災や感電の原因になります。"
+       }
+      ],
+      "assets": [],
+      "token_roles": [
+       "component.callout"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "table",
+       "presentation": {
+        "html": {
+         "attributes": {
+          "class": "manual-callout-table manual-callout-table"
+         }
+        }
+       },
+       "children": [
+        {
+         "kind": "table_body",
+         "children": [
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-label"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "text",
+               "text": "警告"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-body"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "strong",
+                 "children": [
+                  {
+                   "kind": "text",
+                   "text": "各接続端子には確実に差し込む"
+                  }
+                 ]
+                }
+               ]
+              },
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "差し込みが不十分だと、発熱したりほこりが付着して火災や感電の原因になります。"
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-CALLOUT-STRIP",
+      "variant": "caution",
+      "source_ref": "native-pdf/page-11/caution-1",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "label",
+        "content_kind": "inline_text",
+        "content": "注意"
+       },
+       {
+        "role": "body",
+        "content_kind": "rich_text",
+        "content": "本製品の上に物を載せたり、不安定な場所に置かない\n倒れたり、落ちたりしてけがの原因になります。"
+       }
+      ],
+      "assets": [],
+      "token_roles": [
+       "component.callout"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "table",
+       "presentation": {
+        "html": {
+         "attributes": {
+          "class": "manual-callout-table manual-callout-table"
+         }
+        }
+       },
+       "children": [
+        {
+         "kind": "table_body",
+         "children": [
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-label"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "text",
+               "text": "注意"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-body"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "strong",
+                 "children": [
+                  {
+                   "kind": "text",
+                   "text": "本製品の上に物を載せたり、不安定な場所に置かない"
+                  }
+                 ]
+                }
+               ]
+              },
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "倒れたり、落ちたりしてけがの原因になります。"
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-CALLOUT-STRIP",
+      "variant": "caution",
+      "source_ref": "native-pdf/page-11/caution-2",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "label",
+        "content_kind": "inline_text",
+        "content": "注意"
+       },
+       {
+        "role": "body",
+        "content_kind": "rich_text",
+        "content": "データサーバや医療機器など、非常時に不具合が起こると人命 / 財産に重大な危険を及ぼしうる用途でのご使用はお控えください。次のようなような機器では、万が一使用中に給電ができなくなった場合、人命 / 財産にかかわる被害が想定されます。\n医療機器や使用上、生命に関わるような機器\n社会的、公共的に重要な機器など\n重要な事業用機器など"
+       },
+       {
+        "role": "items",
+        "content_kind": "list_items",
+        "content": [
+         "医療機器や使用上、生命に関わるような機器",
+         "社会的、公共的に重要な機器など",
+         "重要な事業用機器など"
+        ]
+       }
+      ],
+      "assets": [],
+      "token_roles": [
+       "component.callout"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "table",
+       "presentation": {
+        "html": {
+         "attributes": {
+          "class": "manual-callout-table manual-callout-table"
+         }
+        }
+       },
+       "children": [
+        {
+         "kind": "table_body",
+         "children": [
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-label"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "text",
+               "text": "注意"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-body"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "strong",
+                 "children": [
+                  {
+                   "kind": "text",
+                   "text": "データサーバや医療機器など、非常時に不具合が起こると人命 / 財産に重大な危険を及ぼしうる用途でのご使用はお控えください。次のようなような機器では、万が一使用中に給電ができなくなった場合、人命 / 財産にかかわる被害が想定されます。"
+                  }
+                 ]
+                }
+               ]
+              },
+              {
+               "kind": "list",
+               "ordered": false,
+               "children": [
+                {
+                 "kind": "list_item",
+                 "children": [
+                  {
+                   "kind": "text",
+                   "text": "医療機器や使用上、生命に関わるような機器"
+                  }
+                 ]
+                },
+                {
+                 "kind": "list_item",
+                 "children": [
+                  {
+                   "kind": "text",
+                   "text": "社会的、公共的に重要な機器など"
+                  }
+                 ]
+                },
+                {
+                 "kind": "list_item",
+                 "children": [
+                  {
+                   "kind": "text",
+                   "text": "重要な事業用機器など"
+                  }
+                 ]
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-CALLOUT-STRIP",
+      "variant": "caution",
+      "source_ref": "native-pdf/page-11/caution-3",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "label",
+        "content_kind": "inline_text",
+        "content": "注意"
+       },
+       {
+        "role": "body",
+        "content_kind": "rich_text",
+        "content": "心臓にペースメーカーを装着している方は使用しない\nペースメーカーが、本製品の影響を受ける恐れがあります。"
+       }
+      ],
+      "assets": [],
+      "token_roles": [
+       "component.callout"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "table",
+       "presentation": {
+        "html": {
+         "attributes": {
+          "class": "manual-callout-table manual-callout-table"
+         }
+        }
+       },
+       "children": [
+        {
+         "kind": "table_body",
+         "children": [
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-label"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "text",
+               "text": "注意"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-body"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "strong",
+                 "children": [
+                  {
+                   "kind": "text",
+                   "text": "心臓にペースメーカーを装着している方は使用しない"
+                  }
+                 ]
+                }
+               ]
+              },
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "ペースメーカーが、本製品の影響を受ける恐れがあります。"
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-CALLOUT-STRIP",
+      "variant": "caution",
+      "source_ref": "native-pdf/page-11/caution-4",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "label",
+        "content_kind": "inline_text",
+        "content": "注意"
+       },
+       {
+        "role": "body",
+        "content_kind": "rich_text",
+        "content": "格納式ハンドルを使用してJackery ポータブル電源 2000 Plus を移動するときは、積み重ねたり、上に他の物を置いたりしないでください。落下して怪我をする場合があります。\nバッテリー パックを使用する場合、Jackery ポータブル電源 2000 Plus/Battery Pack 2000 Plusの上に 3 つ以上のバッテリー パックを積み重ねないでください。落下して怪我をする場合があります。"
+       }
+      ],
+      "assets": [],
+      "token_roles": [
+       "component.callout"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "table",
+       "presentation": {
+        "html": {
+         "attributes": {
+          "class": "manual-callout-table manual-callout-table"
+         }
+        }
+       },
+       "children": [
+        {
+         "kind": "table_body",
+         "children": [
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-label"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "text",
+               "text": "注意"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-body"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "strong",
+                 "children": [
+                  {
+                   "kind": "text",
+                   "text": "格納式ハンドルを使用してJackery ポータブル電源 2000 Plus を移動するときは、積み重ねたり、上に他の物を置いたりしないでください。落下して怪我をする場合があります。"
+                  }
+                 ]
+                }
+               ]
+              },
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "バッテリー パックを使用する場合、Jackery ポータブル電源 2000 Plus/Battery Pack 2000 Plusの上に 3 つ以上のバッテリー パックを積み重ねないでください。落下して怪我をする場合があります。"
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    }
+   ]
+  },
+  {
+   "id": "usage_precautions",
+   "title": "9.使用上のご注意",
+   "nodes": [
+    {
+     "kind": "heading",
+     "level": 2,
+     "anchor": "native-usage-precautions",
+     "children": [
+      {
+       "kind": "text",
+       "text": "9.使用上のご注意"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "list",
+     "ordered": false,
+     "children": [
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "本製品は防塵·防水仕様ではありませんので、ほこりや水、海水などがかからないように注意してください。"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "ほこりが多い場所や高温多湿の場所での充電および使用、放置をしないでください。"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "本製品を不安定な場所に置かないでください。必ず、平坦で安定した場所に置いて使用してください。"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "本製品の通風孔は、安全上絶対にふさがないでください。また、本製品の各面から5cm以上スペースを空けてください。"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "充電または給電中は本製品が温かくなります(故障ではありません)、周囲には物を置かないでください。"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "本製品接続機器のケーブルを差すときは、真っすぐな向きに差してください。"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "接続機器のケーブルを抜くときは、必ずプラグ部分を持って抜いてください。ケーブルを引っ張ったり折り曲げると、断線などの原因となります。"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "給電する機器の充電制御や充電状況、環境などにより給電できない、または急速充電にならない場合があります。"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "充電または給電中はラジオやチューナー、テレビなどに雑音が入る場合があります。雑音が入る場合には、それらの製品から離れた場所でお使いください。"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "本体が汚れたらコンセントから電源プラグを抜き、柔らかい布で乾拭きしてください。"
+          }
+         ]
+        },
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "汚れがひどいときは、水または薄めた中性洗剤でふきとってください。シンナーやベンジンなどは絶対に使わないでください。"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "付属のACアダプターは、電源コードの抜き差しで電源が入ったり切れたりするため、異常時に電源コードを容易に抜き差しできるスペースを空けておいてください。"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "入出力の電力(W)"
+          }
+         ]
+        },
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "接続機器の入力仕様が本製品の出力値の上限を超えている場合、電源を自動的に遮断します。消費電力が仕様以下であることを確認してから出力ボタンを押してください。"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "低/高温警報"
+          }
+         ]
+        },
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "本製品は、-10 ~ 45℃ (14 ~113℉)の温度範囲でお使いの機器に電力を供給できます。"
+          }
+         ]
+        },
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "動作温度が上記範囲外にある場合、本製品が動作しないことがあります。"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "容量表示に関しては、あくまで参考値となり、電圧により電力が算出され、表示数値にズレが発生することがあります。"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    }
+   ]
+  },
+  {
+   "id": "in_the_box",
+   "title": "10.同梱品",
+   "nodes": [
+    {
+     "kind": "heading",
+     "level": 2,
+     "anchor": "native-in-the-box",
+     "children": [
+      {
+       "kind": "text",
+       "text": "10.同梱品"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-SPECIAL-INBOX",
+      "variant": "responsive-card-grid",
+      "source_ref": "native-pdf/page-13/inbox",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "10.同梱品"
+       },
+       {
+        "role": "cards",
+        "content_kind": "ordered_cards",
+        "content": [
+         {
+          "number": 1,
+          "image_asset_role": "card_art",
+          "alt": "本体",
+          "label": "本体"
+         },
+         {
+          "number": 2,
+          "image_asset_role": "card_art",
+          "alt": "車載用充電シガーアダプター",
+          "label": "車載用充電シガーアダプター"
+         },
+         {
+          "number": 3,
+          "image_asset_role": "card_art",
+          "alt": "AC充電ケーブル",
+          "label": "AC充電ケーブル"
+         },
+         {
+          "number": 4,
+          "image_asset_role": "card_art",
+          "alt": "収納ポーチ",
+          "label": "収納ポーチ"
+         },
+         {
+          "number": 5,
+          "image_asset_role": "card_art",
+          "alt": "取扱説明書",
+          "label": "取扱説明書"
+         },
+         {
+          "number": 6,
+          "image_asset_role": "card_art",
+          "alt": "保証案内書",
+          "label": "保証案内書"
+         }
+        ]
+       },
+       {
+        "role": "tip_label",
+        "content_kind": "inline_text",
+        "content": ""
+       },
+       {
+        "role": "tip_body",
+        "content_kind": "rich_text",
+        "content": ""
+       }
+      ],
+      "assets": [
+       {
+        "role": "card_art",
+        "asset_ref": "assets/inbox-unit.png",
+        "locale_policy": "shared"
+       },
+       {
+        "role": "card_art",
+        "asset_ref": "assets/inbox-car-cable.png",
+        "locale_policy": "shared"
+       },
+       {
+        "role": "card_art",
+        "asset_ref": "assets/inbox-ac-cable.png",
+        "locale_policy": "shared"
+       },
+       {
+        "role": "card_art",
+        "asset_ref": "assets/inbox-pouch.png",
+        "locale_policy": "shared"
+       },
+       {
+        "role": "card_art",
+        "asset_ref": "assets/inbox-manual.png",
+        "locale_policy": "shared"
+       },
+       {
+        "role": "card_art",
+        "asset_ref": "assets/inbox-warranty.png",
+        "locale_policy": "shared"
+       }
+      ],
+      "token_roles": [
+       "component.special.inbox"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "table",
+       "presentation": {
+        "html": {
+         "attributes": {
+          "class": "manual-table"
+         }
+        }
+       },
+       "children": [
+        {
+         "kind": "table_body",
+         "children": [
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "image",
+               "source": "assets/inbox-unit.png",
+               "alt": "本体"
+              },
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "本体"
+                }
+               ]
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "image",
+               "source": "assets/inbox-car-cable.png",
+               "alt": "車載用充電シガーアダプター"
+              },
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "車載用充電シガーアダプター"
+                }
+               ]
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "image",
+               "source": "assets/inbox-ac-cable.png",
+               "alt": "AC充電ケーブル"
+              },
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "AC充電ケーブル"
+                }
+               ]
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "image",
+               "source": "assets/inbox-pouch.png",
+               "alt": "収納ポーチ"
+              },
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "収納ポーチ"
+                }
+               ]
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "image",
+               "source": "assets/inbox-manual.png",
+               "alt": "取扱説明書"
+              },
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "取扱説明書"
+                }
+               ]
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "children": [
+              {
+               "kind": "image",
+               "source": "assets/inbox-warranty.png",
+               "alt": "保証案内書"
+              },
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "保証案内書"
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "※付属品を故障、紛失等してしまった場合はカスタマーサポートまでご連絡ください。"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    }
+   ]
+  },
+  {
+   "id": "disclaimer",
+   "title": "11.免責事項",
+   "nodes": [
+    {
+     "kind": "heading",
+     "level": 2,
+     "anchor": "native-disclaimer",
+     "children": [
+      {
+       "kind": "text",
+       "text": "11.免責事項"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "list",
+     "ordered": false,
+     "children": [
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "火災、地震、第三者による行為、その他の事故、お客様の故意または過失誤用・誤動作・その他の異常な条件下での使用により生じた損害に関して、当社は一切責任を負いません。"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "付属品と本製品が破損した場合は、ご自身で修理を行わないでください。"
+          }
+         ]
+        },
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "ご自身で分解・修理したことにより生じた損害に関し、当社は一切責任を負いません。"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "保証範囲は利用規約に適用され、記載されていない内容は当社の保証範囲外となります。"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "取扱説明書の記載事項が遵守されないことにより生じた不適合について当社は責任を負いかねます。"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "本製品の使用、または使用不能から発生する付随的な損害(事業利益損失含む)、当社が関与しない接続機器との組み合わせによる誤動作などから生じた損害に関して、当社は一切の責任を負いません。"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "本製品は病院仕様のCPAP（シーバップ）、ECMO（エクモ）、ペースメーカなど、身の安全に関わる医療救急機械の電源としての使用、または、消費電力の大きいな設備、例えば核施設設備、スペースシャトル製造などの使用は推薦されません。上記設備の使用後、火災、機器故障など個人安全を脅かす事故の責任を取りません。"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    }
+   ]
+  },
+  {
+   "id": "app_setup",
+   "title": "Jackeryアプリ ユーザーマニュアル",
+   "nodes": [
+    {
+     "kind": "heading",
+     "level": 2,
+     "anchor": "native-app-manual",
+     "children": [
+      {
+       "kind": "text",
+       "text": "Jackeryアプリ ユーザーマニュアル"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "heading",
+     "level": 3,
+     "children": [
+      {
+       "kind": "text",
+       "text": "1. アプリをダウンロードしてログインするには"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "Google PlayまたはApp Storeで「Jackery」と検索し、アプリをインストールしてください。その後、登録とログインを行ってください。"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "heading",
+     "level": 3,
+     "children": [
+      {
+       "kind": "text",
+       "text": "2. デバイスを追加するには"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-SPECIAL-APP",
+      "variant": "inline-control",
+      "source_ref": "native-pdf/page-14/add-button",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "+"
+       },
+       {
+        "role": "paragraph",
+        "content_kind": "rich_text",
+        "content": {
+         "html": "2.1  APPの右上にあるデバイス追加ボタン <strong>+</strong> をクリックします；",
+         "text": "2.1  APPの右上にあるデバイス追加ボタン + をクリックします；"
+        }
+       }
+      ],
+      "assets": [],
+      "token_roles": [
+       "component.special.app"
+      ],
+      "metadata": {
+       "visual_recovery": "pdf-vector-plus-control-in-text-gap"
+      },
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "paragraph",
+       "children": [
+        {
+         "kind": "text",
+         "text": "2.1  APPの右上にあるデバイス追加ボタン "
+        },
+        {
+         "kind": "strong",
+         "children": [
+          {
+           "kind": "text",
+           "text": "+"
+          }
+         ]
+        },
+        {
+         "kind": "text",
+         "text": " をクリックします；"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "2.2デバイスの主電源ボタンを長押しして電源をいれると、ディスプレー画面にWi-FiとBluetoothのアイコンが点滅し、デバイスがネットワーク設定モードに入ったことを示します。アイコン点滅中ボタンをクリックし、アプリが近くのデバイスに接続し、Bluetoothのアクセス許可を開くことを許可します；"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+      "variant": "semantic-fallback",
+      "source_ref": "native-pdf/page-14/app-add",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "app-add"
+       },
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "2.1 / 2.2"
+       },
+       {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "embedded"
+       },
+       {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+       }
+      ],
+      "assets": [
+       {
+        "role": "source_art",
+        "asset_ref": "assets/app-add.png",
+        "locale_policy": "exact"
+       }
+      ],
+      "token_roles": [
+       "component.special.reference-figure"
+      ],
+      "metadata": {
+       "embedded_labels": [
+        "2.1",
+        "2.2"
+       ],
+       "physical_page": 14,
+       "image_key": "app-add",
+       "web_replace_key": "",
+       "source_fragment_sha256": "fc9a8ec1c41a893e5ea613e9ee6f459ca7796785ed4cbdb2064c8846b6d2578e"
+      },
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "image",
+       "source": "assets/app-add.png",
+       "alt": "2.1 / 2.2"
+      }
+     ]
+    },
+    {
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-CALLOUT-STRIP",
+      "variant": "note",
+      "source_ref": "native-pdf/page-14/note-1",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "label",
+        "content_kind": "inline_text",
+        "content": "備考"
+       },
+       {
+        "role": "body",
+        "content_kind": "rich_text",
+        "content": "電源を入れた後、アプリが5分以内接続されていないと、デバイスは自動的にWi-FiとBluetoothをオフにします。再度Wi-FiとBluetoothをオンにするには、「DC/USBボタン」と「ACボタン」を同時長押しする必要があります。"
+       }
+      ],
+      "assets": [],
+      "token_roles": [
+       "component.callout"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "table",
+       "presentation": {
+        "html": {
+         "attributes": {
+          "class": "manual-callout-table manual-callout-table"
+         }
+        }
+       },
+       "children": [
+        {
+         "kind": "table_body",
+         "children": [
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-label"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "text",
+               "text": "備考"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-body"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "電源を入れた後、アプリが5分以内接続されていないと、デバイスは自動的にWi-FiとBluetoothをオフにします。再度Wi-FiとBluetoothをオンにするには、「DC/USBボタン」と「ACボタン」を同時長押しする必要があります。"
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+      "variant": "semantic-fallback",
+      "source_ref": "native-pdf/page-14/app-control",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "app-control"
+       },
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "DC/USBボタン / ACボタン / POWERボタン"
+       },
+       {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "embedded"
+       },
+       {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+       }
+      ],
+      "assets": [
+       {
+        "role": "source_art",
+        "asset_ref": "assets/app-control.png",
+        "locale_policy": "exact"
+       }
+      ],
+      "token_roles": [
+       "component.special.reference-figure"
+      ],
+      "metadata": {
+       "embedded_labels": [
+        "DC/USBボタン",
+        "ACボタン",
+        "POWERボタン"
+       ],
+       "physical_page": 14,
+       "image_key": "app-control",
+       "web_replace_key": "",
+       "source_fragment_sha256": "8e88eda20dd2cdaf8689fedf2611ca0901ca180d3df1f64334758cf46298b471"
+      },
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "image",
+       "source": "assets/app-control.png",
+       "alt": "DC/USBボタン / ACボタン / POWERボタン"
+      }
+     ]
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "2.3 検出されたデバイスアイコンをクリックすると、アプリは自動的にBluetoothでデバイスを接続します。"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-CALLOUT-STRIP",
+      "variant": "note",
+      "source_ref": "native-pdf/page-14/note-2",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "label",
+        "content_kind": "inline_text",
+        "content": "備考"
+       },
+       {
+        "role": "body",
+        "content_kind": "rich_text",
+        "content": "バインド処理中に「デバイスがバインドされました」と表示された場合は、以下の2つの方法で接続できます：\nデバイス所有者は、アプリを通じてこのデバイスを他のユーザーと共有します。詳細は、「機器共有」をご参照ください。\n「POWERボタン」と「DC/USBボタン」を3秒間長押ししてデバイスをリセットし、再度バインドしてくだい。"
+       },
+       {
+        "role": "items",
+        "content_kind": "list_items",
+        "content": [
+         "デバイス所有者は、アプリを通じてこのデバイスを他のユーザーと共有します。詳細は、「機器共有」をご参照ください。",
+         "「POWERボタン」と「DC/USBボタン」を3秒間長押ししてデバイスをリセットし、再度バインドしてくだい。"
+        ]
+       }
+      ],
+      "assets": [],
+      "token_roles": [
+       "component.callout"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "table",
+       "presentation": {
+        "html": {
+         "attributes": {
+          "class": "manual-callout-table manual-callout-table"
+         }
+        }
+       },
+       "children": [
+        {
+         "kind": "table_body",
+         "children": [
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-label"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "text",
+               "text": "備考"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-body"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "バインド処理中に「デバイスがバインドされました」と表示された場合は、以下の2つの方法で接続できます："
+                }
+               ]
+              },
+              {
+               "kind": "list",
+               "ordered": false,
+               "children": [
+                {
+                 "kind": "list_item",
+                 "children": [
+                  {
+                   "kind": "text",
+                   "text": "デバイス所有者は、アプリを通じてこのデバイスを他のユーザーと共有します。詳細は、「機器共有」をご参照ください。"
+                  }
+                 ]
+                },
+                {
+                 "kind": "list_item",
+                 "children": [
+                  {
+                   "kind": "text",
+                   "text": "「POWERボタン」と「DC/USBボタン」を3秒間長押ししてデバイスをリセットし、再度バインドしてくだい。"
+                  }
+                 ]
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "2.4 デバイスが正常に接続されると、デバイスが接続するWi-Fiの名前とパスワードを入力する必要があり、デバイスは自動的にWi-Fiネットワークに接続します。"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-CALLOUT-STRIP",
+      "variant": "note",
+      "source_ref": "native-pdf/page-15/note-3",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "label",
+        "content_kind": "inline_text",
+        "content": "備考"
+       },
+       {
+        "role": "body",
+        "content_kind": "rich_text",
+        "content": "2.4GHz帯のWi-Fiネットワークを選択してください。デバイスは、5GHz帯のWi-Fiネットワークには対応していません。"
+       }
+      ],
+      "assets": [],
+      "token_roles": [
+       "component.callout"
+      ],
+      "metadata": {},
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "table",
+       "presentation": {
+        "html": {
+         "attributes": {
+          "class": "manual-callout-table manual-callout-table"
+         }
+        }
+       },
+       "children": [
+        {
+         "kind": "table_body",
+         "children": [
+          {
+           "kind": "table_row",
+           "children": [
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-label"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "text",
+               "text": "備考"
+              }
+             ]
+            },
+            {
+             "kind": "table_cell",
+             "header": false,
+             "presentation": {
+              "html": {
+               "attributes": {
+                "class": "manual-callout-body"
+               }
+              }
+             },
+             "children": [
+              {
+               "kind": "paragraph",
+               "children": [
+                {
+                 "kind": "text",
+                 "text": "2.4GHz帯のWi-Fiネットワークを選択してください。デバイスは、5GHz帯のWi-Fiネットワークには対応していません。"
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "2.5 デバイスのホーム画面でデバイスが正常に追加されると、デバイスのWi-Fi アイコンは常にオンになります。"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+      "variant": "semantic-fallback",
+      "source_ref": "native-pdf/page-15/app-results",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "app-results"
+       },
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "2.3 / 2.4 / 2.5"
+       },
+       {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "embedded"
+       },
+       {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+       }
+      ],
+      "assets": [
+       {
+        "role": "source_art",
+        "asset_ref": "assets/app-results.png",
+        "locale_policy": "exact"
+       }
+      ],
+      "token_roles": [
+       "component.special.reference-figure"
+      ],
+      "metadata": {
+       "embedded_labels": [
+        "2.3",
+        "2.4",
+        "2.5"
+       ],
+       "physical_page": 15,
+       "image_key": "app-results",
+       "web_replace_key": "",
+       "source_fragment_sha256": "4f2bb27855c86e943cf90e140f630ebe15469a57d97108e29ac9c6ddf4e2c3fd"
+      },
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "image",
+       "source": "assets/app-results.png",
+       "alt": "2.3 / 2.4 / 2.5"
+      }
+     ]
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "上記のスクリーンショットはご参考まで。"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "heading",
+     "level": 3,
+     "children": [
+      {
+       "kind": "text",
+       "text": "3. デバイスのバインドを解除するには"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "デバイスのメインインターフェースの右上隅にある「Setting」（設定）ボタンをクリックして設定ページに入り、ページの下部にある「Unbind」（バインド解除）ボタンをクリックしてデバイスのバインドを解除します。"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "heading",
+     "level": 3,
+     "children": [
+      {
+       "kind": "text",
+       "text": "4. ご確認"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "4.1 Wi-FiとBluetoothをオンにするには（ディスプレーにWi-FiとBluetoothのアイコンが点灯）："
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "list",
+     "ordered": false,
+     "children": [
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "デバイスがオンになれば自動的にオンになり、ディスプレーにWi-FiとBluetoothのアイコンが点灯します；"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "上記アイコンが点灯しない場合、ディスプレーにWi-FiとBluetoothのアイコンが点灯するまで、DC/USB出力ボタンとAC出力ボタンを同時長押しします。"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "4.2 Wi-FiとBluetoothをオフにするには（ディスプレーにWi-FiとBluetoothのアイコンが消える）："
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "list",
+     "ordered": false,
+     "children": [
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "ディスプレーにWi-FiとBluetoothのアイコンが消えるまで、DC/USB出力ボタンとAC出力ボタンを同時長押しします；"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "5分以内にデバイスが接続されない場合、Wi-FiとBluetooth は自動的にオフになります。"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "4.3 Wi-FiとBluetoothをリセットするには："
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "list",
+     "ordered": false,
+     "children": [
+      {
+       "kind": "list_item",
+       "children": [
+        {
+         "kind": "paragraph",
+         "children": [
+          {
+           "kind": "text",
+           "text": "主電源ボタンとDC/USBボタンを同時に3秒間押すと、Wi-FiとBluetoothが初期化され、システムが再起動します。接続されているアプリアカウントはバインド解除されます。"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "kind": "paragraph",
+     "children": [
+      {
+       "kind": "text",
+       "text": "本製品はJackeryアプリケーションによるスマートコントロールに対応しています。ご利用いただくには、下記のアプリストアより「Jackery」で検索して「Jackery アプリ」をダウンロードしてください。"
+      }
+     ],
+     "schema_version": "manual-flow/v2"
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+      "variant": "semantic-fallback",
+      "source_ref": "native-pdf/page-16/app-store",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "app-store"
+       },
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "App Store / Google Play"
+       },
+       {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "embedded"
+       },
+       {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+       }
+      ],
+      "assets": [
+       {
+        "role": "source_art",
+        "asset_ref": "assets/app-store.png",
+        "locale_policy": "exact"
+       }
+      ],
+      "token_roles": [
+       "component.special.reference-figure"
+      ],
+      "metadata": {
+       "embedded_labels": [],
+       "physical_page": 16,
+       "image_key": "app-store",
+       "web_replace_key": "",
+       "source_fragment_sha256": "bd07e34882b832f4a88beee8e0fff1f77973569182d2987abfbaa9e37c515095"
+      },
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "image",
+       "source": "assets/app-store.png",
+       "alt": "App Store / Google Play"
+      }
+     ]
+    },
+    {
+     "schema_version": "manual-flow/v2",
+     "kind": "component",
+     "component_spec": {
+      "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+      "variant": "semantic-fallback",
+      "source_ref": "native-pdf/page-16/app-qr",
+      "language": "ja",
+      "slots": [
+       {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "app-qr"
+       },
+       {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "Jackery App QR"
+       },
+       {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "embedded"
+       },
+       {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+       }
+      ],
+      "assets": [
+       {
+        "role": "source_art",
+        "asset_ref": "assets/app-qr.png",
+        "locale_policy": "exact"
+       }
+      ],
+      "token_roles": [
+       "component.special.reference-figure"
+      ],
+      "metadata": {
+       "embedded_labels": [],
+       "physical_page": 16,
+       "image_key": "app-qr",
+       "web_replace_key": "",
+       "source_fragment_sha256": "8a1e1c0a84fe70a7b361b4f81f51510a7a4a1fdb13d544a8ad94bb722072b7c2"
+      },
+      "schema_version": "component-spec/v1"
+     },
+     "carrier_flow": [
+      {
+       "kind": "image",
+       "source": "assets/app-qr.png",
+       "alt": "Jackery App QR"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

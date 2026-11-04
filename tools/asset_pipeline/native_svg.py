@@ -37,13 +37,15 @@ def _axis_path_tokens(tokens: list[str]) -> list[str]:
             return tokens
         if command == 'H':
             x = float(values[0])
-            result.extend(['L', f'{x:g}', f'{y:g}'])
+            result.extend(['L', repr(x), repr(y)])
         elif command == 'V':
             y = float(values[0])
-            result.extend(['L', f'{x:g}', f'{y:g}'])
+            result.extend(['L', repr(x), repr(y)])
         else:
             x, y = map(float, values[-2:])
-            result.extend(values)
+            # One spelling per coordinate (``-.078`` == ``-0.078``) so that
+            # H/V endpoints and copied closure endpoints compare by value.
+            result.extend(repr(float(v)) for v in values)
             if command == 'M':
                 start_x, start_y = x, y
                 command = 'L'
@@ -82,10 +84,29 @@ def _path_key(path: ET.Element) -> tuple[str, ...]:
     return tuple(tokens)
 
 
+def _moveto_only(path: ET.Element) -> bool:
+    """True for a path whose subpaths have no segment, e.g. ``M0 0Z``.
+
+    It paints nothing, and get_drawings() does not report it, so it can
+    never be a selected glyph path.
+    """
+    tokens = re.findall(r'[A-Za-z]|[-+]?(?:\d*\.\d+|\d+\.?\d*)(?:[eE][-+]?\d+)?', path.get('d', ''))
+    return bool(tokens) and re.fullmatch(r'(MddZ?)+', ''.join(
+        'M' if t == 'M' else 'Z' if t in {'Z', 'z'} else 'd' if not t.isalpha() else '?'
+        for t in tokens)) is not None
+
+
 def _drawing_paths(drawings: list[dict], visible: list[ET.Element]) -> list[list[ET.Element]]:
+    expected = sum(2 if d['type'] == 'fs' else 1 for d in drawings)
+    if len(visible) not in {len(drawings), expected}:
+        # MuPDF's SVG device emits moveto-only paths that get_drawings() omits.
+        # Drop them only when that alone restores an exact one-to-one count.
+        painted = [path for path in visible if not _moveto_only(path)]
+        if len(painted) in {len(drawings), expected}:
+            visible = painted
     if len(visible) == len(drawings):
         return [[path] for path in visible]
-    if len(visible) == sum(2 if d['type'] == 'fs' else 1 for d in drawings):
+    if len(visible) == expected:
         # MuPDF may emit a fill-and-stroke drawing as two original SVG paths.
         # Retain both, including their ancestor opacity/transform groups.
         mapped = []
