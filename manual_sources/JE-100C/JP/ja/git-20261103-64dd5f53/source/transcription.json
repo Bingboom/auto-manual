@@ -1,0 +1,1329 @@
+{
+ "schema_version": "explorer-jp-ja-transcription/v1",
+ "source_sha256": "64dd5f5336e40426277bd217a555194461ab2b66f396e4a23308fac43d0203c3",
+ "method": "The PDF has no text layer: every glyph is outlined. Each line was transcribed from 1000 dpi-equivalent (5x) page renders, with 12x clips for ambiguous punctuation. One entry is one printed logical line or paragraph: print line wraps inside a Japanese sentence are joined without a space; spaces, half-width and full-width punctuation, half-width katakana and DC marks (⎓) are kept as printed. strong lists spans printed in bold where a line mixes weights, sub/sup the spans printed as sub- or superscript. Text printed inside product and LCD art stays in the artwork; figure leader labels and captions are listed (ids names.* and fig.*) and carried as alt text. Cover (physical 1) and the back-cover QR page (physical 16) are recorded for traceability and are not on the Web page.",
+ "pages": [
+  {
+   "physical_page": 1,
+   "printed_page": null,
+   "role": "print-cover",
+   "web": false,
+   "lines": [
+    {
+     "id": "cover.model",
+     "text": "型番：JE-100C / JE-100C-SG"
+    },
+    {
+     "id": "cover.caption",
+     "text": "写真はイメージです。実際の商品とは異なる場合があります。"
+    },
+    {
+     "id": "cover.name",
+     "text": "Jackery Explorer 100D"
+    },
+    {
+     "id": "cover.title",
+     "text": "取扱説明書"
+    },
+    {
+     "id": "cover.region",
+     "text": "国内専用/For use only in Japan"
+    },
+    {
+     "id": "cover.support",
+     "text": "カスタマーサポート: jackery.jp@jackery.com"
+    },
+    {
+     "id": "cover.thanks",
+     "text": "お買い上げありがとうございます。"
+    },
+    {
+     "id": "cover.l1",
+     "text": "ご使用の前にこの「取扱説明書」をよくお読みのうえ、正しくお使いください。"
+    },
+    {
+     "id": "cover.l2",
+     "text": "特に「安全上のご注意」は、必ずお読みいただき、安全にお使いください。"
+    },
+    {
+     "id": "cover.l3",
+     "text": "お読みになったあとは、すぐに取り出せる場所に大切に保管してください。"
+    },
+    {
+     "id": "cover.l4",
+     "text": "本製品の取扱説明書は随時更新されますので、最新の取扱説明書は公式サイトでご確認ください。"
+    }
+   ]
+  },
+  {
+   "physical_page": 2,
+   "printed_page": "01",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "safety.h",
+     "text": "安全上のご注意"
+    },
+    {
+     "id": "safety.lead",
+     "text": "ご使用の前にこの「安全上のご注意」をよくお読みのうえ、正しくお使いください。"
+    },
+    {
+     "id": "safety.pict.h",
+     "text": "絵表示について"
+    },
+    {
+     "id": "safety.pict1",
+     "text": "製品を安全に正しくお使いいただき、お客様や他の方々への危害や財産への損害を未然に防止するための表示です。"
+    },
+    {
+     "id": "safety.pict2",
+     "text": "内容をよく理解してから本文をお読みください。"
+    },
+    {
+     "id": "signal.warn.l",
+     "text": "警告"
+    },
+    {
+     "id": "signal.warn.m",
+     "text": "この表示を無視して、誤った取り扱いをすると、人が死亡または重傷を負う可能性が想定される内容を示しています。"
+    },
+    {
+     "id": "signal.caut.l",
+     "text": "ご注意"
+    },
+    {
+     "id": "signal.caut.m",
+     "text": "この表示を無視して、誤った取り扱いをすると、人が傷害を負う可能性が想定される内容または物的損害の発生が想定される内容を示しています。"
+    },
+    {
+     "id": "signal.expl.l",
+     "text": "説明"
+    },
+    {
+     "id": "signal.expl.m",
+     "text": "この表示を無視して誤った取り扱いをすると、機器の損傷、データの消失、性能の低下、または予期しない動作が発生する可能性があることを示しています。"
+    },
+    {
+     "id": "signal.hint.l",
+     "text": "ヒント"
+    },
+    {
+     "id": "signal.hint.m",
+     "text": "文章内の重要な情報や操作のヒントを補足する内容を示しています。"
+    },
+    {
+     "id": "symbols.h",
+     "text": "絵表示の説明"
+    },
+    {
+     "id": "sym.warning",
+     "text": "潜在的な危険やリスクについて注意喚起するために、必ずお読みください。"
+    },
+    {
+     "id": "sym.manual",
+     "text": "操作の前に取扱説明書をお読みください。"
+    },
+    {
+     "id": "sym.fire",
+     "text": "本製品を火気の近くに置かないでください。"
+    },
+    {
+     "id": "sym.children",
+     "text": "小さなお子様の手の届かない場所に保管してください。"
+    },
+    {
+     "id": "sym.dismantle",
+     "text": "製品を分解、改造を禁止する記号"
+    },
+    {
+     "id": "sym.wethand",
+     "text": "製品に濡れた手で触れることを禁止する記号"
+    },
+    {
+     "id": "sym.mandatory",
+     "text": "行為を指示する記号"
+    },
+    {
+     "id": "sym.liion.t",
+     "text": "充電式電池のリサイクルについて"
+    },
+    {
+     "id": "sym.liion.b1",
+     "text": "本機はリサイクル可能な充電池を内蔵しています。"
+    },
+    {
+     "id": "sym.liion.b2",
+     "text": "この商品を廃棄する場合は、当社のカスタマーサポートにご連絡ください。"
+    },
+    {
+     "id": "sym.liion.b3",
+     "text": "充電池の取りはずしはお客様自身では行わないでください。"
+    },
+    {
+     "id": "sym.weee.b1",
+     "text": "このシンボルは、本製品を一般家庭ごみとして廃棄せず、リサイクルのために指定の回収施設に持ち込む必要があることを示しています。"
+    },
+    {
+     "id": "sym.weee.b2",
+     "text": "適切な廃棄およびリサイクルは、環境保護に役立ちます。"
+    },
+    {
+     "id": "sym.weee.b3",
+     "text": "本製品の廃棄やリサイクルについての詳細は、お住まいの自治体、廃棄物処理業者、または販売店にお問い合わせください。"
+    },
+    {
+     "id": "sym.wet",
+     "text": "製品を濡らすことを禁止する記号"
+    },
+    {
+     "id": "sym.prohibit",
+     "text": "行為を禁止する記号"
+    }
+   ]
+  },
+  {
+   "physical_page": 3,
+   "printed_page": "02",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "w1.band",
+     "text": "警告"
+    },
+    {
+     "id": "w1.i1.t",
+     "text": "火のそばや炎天下の車内、熱器具の周辺など高温（45°C以上）になる場所で使用したり、放置しない"
+    },
+    {
+     "id": "w1.i1.b",
+     "text": "発熱や発火、破裂する原因になります。"
+    },
+    {
+     "id": "w1.i2.t",
+     "text": "強い衝撃を与えたり、投げつけたりしない"
+    },
+    {
+     "id": "w1.i2.b",
+     "text": "発熱や発火、破裂する原因になります。"
+    },
+    {
+     "id": "w1.i3.t",
+     "text": "各接続端子には確実に差し込む"
+    },
+    {
+     "id": "w1.i3.b",
+     "text": "差し込みが不十分だと、発熱したりほこりが付着して火災や感電の原因になります。"
+    },
+    {
+     "id": "w1.i4.t",
+     "text": "濡れた手で本体や接続するケーブルを触らない"
+    },
+    {
+     "id": "w1.i4.b",
+     "text": "火災や感電の原因になります。"
+    },
+    {
+     "id": "w1.i5.t",
+     "text": "端子部にケーブル以外の金属類を差し込まない"
+    },
+    {
+     "id": "w1.i5.b",
+     "text": "発熱や発火の原因になります。"
+    },
+    {
+     "id": "w1.i6.t",
+     "text": "雷が鳴りだしたら、電源プラグにふれない (充電をしない)"
+    },
+    {
+     "id": "w1.i6.b",
+     "text": "感電の原因になります。"
+    },
+    {
+     "id": "w1.i7.t",
+     "text": "水など、液体を入れたり、濡らしたりしない"
+    },
+    {
+     "id": "w1.i7.b",
+     "text": "発熱や発火の原因になります。"
+    },
+    {
+     "id": "w1.i8.t",
+     "text": "接地接続は必ず、電源プラグを電源につなぐ前に行って下さい"
+    },
+    {
+     "id": "w1.i8.b",
+     "text": "また、接地接続を外す場合は、必ず電源プラグを切り離してから行って下さい。"
+    },
+    {
+     "id": "w2.band",
+     "text": "警告"
+    },
+    {
+     "id": "w2.i1.lead",
+     "text": "万が一、次のような異常が発生したときはすぐに使用をやめる"
+    },
+    {
+     "id": "w2.i1.l1",
+     "text": "煙が出ている、異臭がする"
+    },
+    {
+     "id": "w2.i1.l2",
+     "text": "落としたり、破損したとき"
+    },
+    {
+     "id": "w2.i1.l3",
+     "text": "異音がする"
+    },
+    {
+     "id": "w2.i1.l4",
+     "text": "内部に水や異物が入ったとき"
+    },
+    {
+     "id": "w2.i1.b",
+     "text": "このような異常が発生したまま使用していると、火災や感電の原因になります。"
+    },
+    {
+     "id": "w2.i1.t2",
+     "text": "万が一発煙や発火したら、大量の水で消火して煙が見えなくなるまで本製品を水浸しにしてください。"
+    },
+    {
+     "id": "w2.i1.b2",
+     "text": "煙が出なくなることを確認してからカスタマーサポートにご連絡ください。"
+    },
+    {
+     "id": "w2.i1.b3",
+     "text": "お客様による修理は危険ですので絶対におやめください。"
+    },
+    {
+     "id": "w2.i2.t",
+     "text": "分解、改造しない"
+    },
+    {
+     "id": "w2.i2.b",
+     "text": "故障、発熱、火災･感電の原因になります。"
+    },
+    {
+     "id": "w2.i3.t",
+     "text": "表示された電源電圧以外で使用しない"
+    },
+    {
+     "id": "w2.i3.b",
+     "text": "故障、発熱、火災･感電の原因になります。また、本製品を使用できるのは日本国内のみです。"
+    },
+    {
+     "id": "w2.i4.t",
+     "text": "付属品と本製品が破損した場合は、ご自身で修理をしない"
+    }
+   ]
+  },
+  {
+   "physical_page": 4,
+   "printed_page": "03",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "c1.band",
+     "text": "注意"
+    },
+    {
+     "id": "c1.i1.t",
+     "text": "本製品の上に物を載せたり、不安定な場所に置かない"
+    },
+    {
+     "id": "c1.i1.b",
+     "text": "倒れたり、落ちたりしてけがの原因になります。"
+    },
+    {
+     "id": "c1.i2.t",
+     "text": "データサーバや医療機器など、非常時に不具合が起こると人命 / 財産に重大な危険を及ぼしうる用途でのご使用はお控えください。次のようなような機器では、万が一使用中に給電ができなくなった場合、人命 / 財産にかかわる被害が想定されます。"
+    },
+    {
+     "id": "c1.i2.l1",
+     "text": "医療機器や使用上、生命に関わるような機器"
+    },
+    {
+     "id": "c1.i2.l2",
+     "text": "社会的、公共的に重要な機器など"
+    },
+    {
+     "id": "c1.i2.l3",
+     "text": "重要な事業用機器など"
+    },
+    {
+     "id": "c1.i3.t",
+     "text": "心臓にペースメーカーを装着している方は使用しない"
+    },
+    {
+     "id": "c1.i3.b",
+     "text": "ペースメーカーが、本製品の影響を受ける恐れがあります。"
+    },
+    {
+     "id": "c1.i4.t",
+     "text": "格納式ハンドルを使用してJackery Explorer 100Dを移動するときは、積み重ねたり、上に他の物を置いたりしないでください。落下して怪我をする場合があります。"
+    },
+    {
+     "id": "prec.h",
+     "text": "使用上のご注意"
+    },
+    {
+     "id": "prec.p1",
+     "text": "Jackery Explorer 100Dは、定格出力158Wです。"
+    },
+    {
+     "id": "prec.p2",
+     "text": "定格出力158Wは、一定の電力で動く機器への出力可能範囲を指しています。"
+    },
+    {
+     "id": "prec.p3",
+     "text": "158Wの出力を超えた場合は、電気回路が自動的に調整され、電力が低減、または保護機能が作動し自動で遮断することがあります。"
+    },
+    {
+     "id": "prec.box.l",
+     "text": "ご注意"
+    },
+    {
+     "id": "prec.box.b",
+     "text": "始動電力が出力上限値(定格出力)を大幅に超える可能性のある製品のご利用や、定格出力を超え給電がストップした製品を繰り返し利用することはポータブル電源のバッテリーが損傷するリスクがありますのでお控えください。"
+    },
+    {
+     "id": "prec.feed.h",
+     "text": "■ 給電に関する注意事項"
+    },
+    {
+     "id": "prec.feed.p",
+     "text": "出力上限値を超える電化製品は使用しないでください。"
+    },
+    {
+     "id": "prec.feed.l1",
+     "text": "給電中、機器の制御や環境により、急速充電にならない・給電できない場合があります。"
+    },
+    {
+     "id": "prec.feed.l2",
+     "text": "充電または給電中、ラジオ・チューナー・テレビなどに雑音が入る場合があります。その際は、それらの機器から離してご使用ください。"
+    }
+   ]
+  },
+  {
+   "physical_page": 5,
+   "printed_page": "04",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "prec.env.h",
+     "text": "■ 使用環境について"
+    },
+    {
+     "id": "prec.env.l1",
+     "text": "本製品は防塵・防水仕様ではありません。ほこり、水、海水などがかからないようご注意ください。"
+    },
+    {
+     "id": "prec.env.l2",
+     "text": "ほこりの多い場所や高温多湿の場所での充電・使用・放置は避けてください。"
+    },
+    {
+     "id": "prec.env.l3",
+     "text": "平坦で安定した場所に設置し、不安定な場所に置かないでください。"
+    },
+    {
+     "id": "prec.env.l4",
+     "text": "充電・給電中は本体が温かくなります。周囲に物を置かないでください。"
+    },
+    {
+     "id": "prec.conn.h",
+     "text": "■ 接続時の注意事項"
+    },
+    {
+     "id": "prec.conn.l1",
+     "text": "ケーブルを接続する際は、まっすぐに差し込んでください。"
+    },
+    {
+     "id": "prec.conn.l2",
+     "text": "抜く際は必ずプラグ部分を持って抜いてください。ケーブルを引っ張ったり折り曲げたりしないでください。"
+    },
+    {
+     "id": "prec.care.h",
+     "text": "■ お手入れについて"
+    },
+    {
+     "id": "prec.care.l1",
+     "text": "本体が汚れた場合は、電源プラグを抜いた状態で、柔らかい布で乾拭きしてください。"
+    },
+    {
+     "id": "prec.care.l2",
+     "text": "汚れがひどい場合は、水または薄めた中性洗剤で拭き取ってください。"
+    },
+    {
+     "id": "prec.care.l3",
+     "text": "シンナーやベンジンなどの使用は絶対に使わないでください。"
+    },
+    {
+     "id": "prec.io.h",
+     "text": "■ 入出力・温度・表示に関するご注意"
+    },
+    {
+     "id": "prec.io.l1",
+     "text": "接続機器の入力が本製品の出力上限を超えている場合、自動で電源が遮断されます。"
+    },
+    {
+     "id": "prec.io.l2",
+     "text": "本機は -20°C~45°C の温度範囲でお使いの機器に電力供給が可能となり、本機の蓄電は 0°C~45°C で行えます。"
+    },
+    {
+     "id": "prec.io.l2a",
+     "text": "動作温度が上記範囲外にある場合、本製品が温度異常マークが表示され、動作しない可能性があります。"
+    },
+    {
+     "id": "prec.io.l2b",
+     "text": "温度異常マークが表示された場合は、本製品を 2 時間以上、動作温度範囲内の環境に置いてください。"
+    },
+    {
+     "id": "prec.io.l3",
+     "text": "容量表示は参考値であり、電圧により表示数値と実際の容量に差異が出る場合があります。"
+    },
+    {
+     "id": "disc.h",
+     "text": "免責事項"
+    },
+    {
+     "id": "disc.l1",
+     "text": "火災、地震、第三者による行為、その他の事故、お客様の故意または過失誤用・誤動作・その他の異常な条件下での使用により生じた損害に関して、当社は一切責任を負いません。"
+    },
+    {
+     "id": "disc.l2",
+     "text": "付属品と本製品が破損した場合は、ご自身で修理を行わないでください。ご自身で分解・修理したことにより生じた損害に関し、当社は一切責任を負いません。"
+    },
+    {
+     "id": "disc.l3",
+     "text": "保証範囲は利用規約に適用され、記載されていない内容は当社の保証範囲外となります。"
+    },
+    {
+     "id": "disc.l4",
+     "text": "取扱説明書の記載事項が遵守されないことにより生じた不適合について当社は責任を負いかねます。"
+    },
+    {
+     "id": "disc.l5",
+     "text": "本製品の使用、または使用不能から発生する付随的な損害 ( 事業利益損失含む )、当社が関与しない接続機器との組み合わせによる誤動作などから生じた損害に関して、当社は一切の責任を負いません。"
+    }
+   ]
+  },
+  {
+   "physical_page": 6,
+   "printed_page": "05",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "box.h",
+     "text": "同梱品"
+    },
+    {
+     "id": "box.c1",
+     "text": "本体"
+    },
+    {
+     "id": "box.c2",
+     "text": "USB-Cケーブル"
+    },
+    {
+     "id": "box.c3",
+     "text": "取扱説明書"
+    },
+    {
+     "id": "box.n1",
+     "text": "※ 付属品を故障、紛失等してしまった場合はカスタマーサポートまでご連絡ください。"
+    },
+    {
+     "id": "box.n2",
+     "text": "※ 本充電ケーブルユニットは、同梱されている電気機器以外には使用しないでください。"
+    },
+    {
+     "id": "box.n3",
+     "text": "※ シガーソケット充電ケーブルは別売りです。Jackery公式サイトよりご購入いただけます。"
+    },
+    {
+     "id": "box.n4",
+     "text": "サポートが必要な場合は、Jackeryカスタマーサポートまでお問い合わせください。"
+    },
+    {
+     "id": "box.change",
+     "text": "■本機の仕様および外観は、改善のため予告なく変更することがあります。"
+    },
+    {
+     "id": "ov.h",
+     "text": "各部の名称"
+    },
+    {
+     "id": "ov.sub",
+     "text": "製品の外観"
+    },
+    {
+     "id": "names.handle",
+     "text": "ハンドル"
+    },
+    {
+     "id": "names.lcd",
+     "text": "LCDディスプレイ"
+    },
+    {
+     "id": "names.c1",
+     "text": "USB-C 140W MAX IN/OUTポート"
+    },
+    {
+     "id": "names.c1.in",
+     "text": "入力：5V-28V⎓5A Max, 最大140W"
+    },
+    {
+     "id": "names.c1.out",
+     "text": "出力：5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A, 28V⎓5A, 最大140W"
+    },
+    {
+     "id": "names.a",
+     "text": "USB-A 18W MAX出力ポート"
+    },
+    {
+     "id": "names.a.v",
+     "text": "5V⎓2A, 9V⎓2A, 12V⎓1.5A, 最大18W"
+    },
+    {
+     "id": "names.display",
+     "text": "DISPLAYボタン"
+    },
+    {
+     "id": "names.c2",
+     "text": "USB-C 140W MAX OUTポート"
+    },
+    {
+     "id": "names.c2.v",
+     "text": "5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 28V⎓5A, 最大140W"
+    },
+    {
+     "id": "ov.strap",
+     "text": "※ 追加ストラップは別売りで購入でき、製品の側面に取り付けることができます。"
+    }
+   ]
+  },
+  {
+   "physical_page": 7,
+   "printed_page": "06",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "lcd.h",
+     "text": "液晶画面"
+    },
+    {
+     "id": "lcd.if1",
+     "text": "インターフェース1"
+    },
+    {
+     "id": "lcd.i1.n",
+     "text": "入力電力表示"
+    },
+    {
+     "id": "lcd.i1.d",
+     "text": "入力電力をワットで表示します。"
+    },
+    {
+     "id": "lcd.i2.n",
+     "text": "充電残り時間"
+    },
+    {
+     "id": "lcd.i2.d",
+     "text": "充電残り時間を表示します。"
+    },
+    {
+     "id": "lcd.i3.n",
+     "text": "常時点灯モード"
+    },
+    {
+     "id": "lcd.i3.d1",
+     "text": "オン:常時点灯モードが有効になっています。",
+     "strong": [
+      "オン:"
+     ]
+    },
+    {
+     "id": "lcd.i3.d2",
+     "text": "オフ:常時点灯モードが無効になっています。",
+     "strong": [
+      "オフ:"
+     ]
+    },
+    {
+     "id": "lcd.i4.n",
+     "text": "温度制御による出力制限"
+    },
+    {
+     "id": "lcd.i4.d1",
+     "text": "オン:バッテリー温度が高い状態です。　放電出力制限が有効になっています。",
+     "strong": [
+      "オン:"
+     ]
+    },
+    {
+     "id": "lcd.i4.d2",
+     "text": "オフ:放電出力制限が無効になっています。",
+     "strong": [
+      "オフ:"
+     ]
+    },
+    {
+     "id": "lcd.i5.n",
+     "text": "省エネモード"
+    },
+    {
+     "id": "lcd.i5.d1",
+     "text": "アイコン表示:省エネモードがオンになっています。"
+    },
+    {
+     "id": "lcd.i5.d2",
+     "text": "アイコン無表示:省エネモードがオフになっています。"
+    },
+    {
+     "id": "lcd.i6.n",
+     "text": "バッテリーアイコン"
+    },
+    {
+     "id": "lcd.i6.d",
+     "text": "製品の充電中は、バッテリーのパーセンテージを囲むオレンジ色の円が順番に点灯します。他のデバイスの充電時には、オレンジ色の円は点灯したままになります。"
+    },
+    {
+     "id": "lcd.i7.n",
+     "text": "バッテリー残量警告灯"
+    },
+    {
+     "id": "lcd.i7.d1",
+     "text": "オン:バッテリー残量が20%未満です。",
+     "strong": [
+      "オン:"
+     ]
+    },
+    {
+     "id": "lcd.i7.d2",
+     "text": "点滅:バッテリー残量が5%未満です。",
+     "strong": [
+      "点滅:"
+     ]
+    },
+    {
+     "id": "lcd.i7.d3",
+     "text": "オフ:製品は充電中です。",
+     "strong": [
+      "オフ:"
+     ]
+    },
+    {
+     "id": "lcd.i8.n",
+     "text": "バッテリーレベルパーセントタグ"
+    },
+    {
+     "id": "lcd.i8.d",
+     "text": "バッテリー残量を表示します。"
+    },
+    {
+     "id": "lcd.i9.n",
+     "text": "バッテリー使用可能時間"
+    },
+    {
+     "id": "lcd.i9.d",
+     "text": "接続した機器の使用可能な時間を表示します。"
+    },
+    {
+     "id": "lcd.i10.n",
+     "text": "消費電力"
+    },
+    {
+     "id": "lcd.i10.d",
+     "text": "出力電力をワットで表示します。"
+    }
+   ]
+  },
+  {
+   "physical_page": 8,
+   "printed_page": "07",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "lcd.f.n",
+     "text": "故障コード"
+    },
+    {
+     "id": "lcd.f.d",
+     "text": "負荷を取り外すか、充電プラグを抜いてください。問題が解決しない場合は、Jackeryカスタマーサポートまでお問い合わせください。"
+    },
+    {
+     "id": "lcd.ht.n",
+     "text": "高温インジケーター"
+    },
+    {
+     "id": "lcd.ht.d",
+     "text": "高温保護が作動しました。製品の温度が通常の動作範囲に戻るまで、製品の機能が停止する場合があります。"
+    },
+    {
+     "id": "lcd.lt.n",
+     "text": "低温インジケーター"
+    },
+    {
+     "id": "lcd.lt.d",
+     "text": "低温保護が作動しました。製品の温度が通常の動作範囲に戻るまで、製品の機能が停止する場合があります。"
+    },
+    {
+     "id": "lcd.if2",
+     "text": "インターフェース2"
+    },
+    {
+     "id": "lcd.p1.n",
+     "text": "放電インジケーター"
+    },
+    {
+     "id": "lcd.p1.d",
+     "text": "このUSBポートは放電中です。"
+    },
+    {
+     "id": "lcd.p2.n",
+     "text": "充電インジケーター"
+    },
+    {
+     "id": "lcd.p2.d",
+     "text": "このUSBポートは充電中です。"
+    },
+    {
+     "id": "lcd.p3.n",
+     "text": "充電または放電出力"
+    },
+    {
+     "id": "lcd.p3.d",
+     "text": "対応するポートの充電または放電出力を表示します。"
+    },
+    {
+     "id": "lcd.if3",
+     "text": "インターフェース3"
+    }
+   ]
+  },
+  {
+   "physical_page": 9,
+   "printed_page": "08",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "lcd.h1.n",
+     "text": "バッテリーの健全性とサイクル回数"
+    },
+    {
+     "id": "lcd.h1.d",
+     "text": "現在のバッテリーの健全性（%）と充放電サイクル回数を表示します。"
+    },
+    {
+     "id": "lcd.h1.l1",
+     "text": "緑:健全な状態です。"
+    },
+    {
+     "id": "lcd.h1.l2",
+     "text": "黄:健全性がやや低下しています。"
+    },
+    {
+     "id": "lcd.h1.l3",
+     "text": "赤:健全性が低下しています。"
+    },
+    {
+     "id": "lcd.h2.n",
+     "text": "バッテリー温度"
+    },
+    {
+     "id": "lcd.h2.d",
+     "text": "現在のバッテリー温度を表示します。"
+    }
+   ]
+  },
+  {
+   "physical_page": 10,
+   "printed_page": "09",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "op.h",
+     "text": "使い方"
+    },
+    {
+     "id": "op.out.h",
+     "text": "出力オン/オフ"
+    },
+    {
+     "id": "op.out.l1",
+     "text": "機器を接続すると給電を開始します。"
+    },
+    {
+     "id": "op.caution.l",
+     "text": "注意"
+    },
+    {
+     "id": "op.caution.i1",
+     "text": "USB-C 140W MAXは、USB-PD Power Source 3 (PS3) の高出力ポートです。接続されたユーザーデバイスまたはアクセサリーが安全基準を満たしていない場合、火災の危険性があります。これらのポートを使用する前に、接続するデバイスまたはアクセサリーに耐火安全保護が備わっていることを確認してください。"
+    },
+    {
+     "id": "op.caution.i2",
+     "text": "Jackery Explorer 100Dは、IEC/EN/UL 62368-1（または同等の規格）の6.3、6.4、6.5条に準拠したデバイスまたはアクセサリーのみに接続してください。"
+    },
+    {
+     "id": "op.caution.i3",
+     "text": "最大出力を得るためには、公式のJackery USB-C to USB-C 5Aケーブル（20V DC/5A、100W；28V DC/5A、140W）を使用してください。"
+    },
+    {
+     "id": "op.eco.h",
+     "text": "省エネモード"
+    },
+    {
+     "id": "op.eco.p1",
+     "text": "省エネモードはデフォルトで無効になっています。出力の消し忘れによる不要なバッテリー消耗を防ぐため、DISPLAYボタンを長押しして省エネモードを有効にします。"
+    },
+    {
+     "id": "op.eco.p2",
+     "text": "デバイスが接続されていない場合、または接続されたデバイスの消費電力が2時間にわたり2W未満の場合、製品は自動的に出力をオフにします。"
+    },
+    {
+     "id": "op.eco.p3",
+     "text": "出力がオンのとき、画面に「2H」アイコンが表示されます。"
+    },
+    {
+     "id": "fig.eco.press",
+     "text": "3秒長押しで省エネモードを有効/無効"
+    },
+    {
+     "id": "op.eco.note.l",
+     "text": "注意"
+    },
+    {
+     "id": "op.eco.note.b",
+     "text": "省エネモードは電源投入後に以前の状態に戻ります。モードの変更には手動での切り替えが必要です。"
+    }
+   ]
+  },
+  {
+   "physical_page": 11,
+   "printed_page": "10",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "op.lcd.h",
+     "text": "LCDスクリーン"
+    },
+    {
+     "id": "op.lcd.th1",
+     "text": "機能"
+    },
+    {
+     "id": "op.lcd.th2",
+     "text": "説明"
+    },
+    {
+     "id": "op.lcd.r1.f",
+     "text": "画面点灯"
+    },
+    {
+     "id": "op.lcd.r1.d",
+     "text": "DISPLAYボタンを短く押したとき、または充電中・放電中に自動的に点灯します。"
+    },
+    {
+     "id": "op.lcd.r2.f",
+     "text": "画面常時点灯"
+    },
+    {
+     "id": "op.lcd.r2.d",
+     "text": "画面が点灯している状態で、DISPLAYボタンを2回押します。"
+    },
+    {
+     "id": "op.lcd.r3.f",
+     "text": "画面切替"
+    },
+    {
+     "id": "op.lcd.r3.d",
+     "text": "画面が点灯した後、DISPLAYボタンを短く押すとページが切り替わります。"
+    },
+    {
+     "id": "op.lcd.r4.f",
+     "text": "画面常時点灯をオフ"
+    },
+    {
+     "id": "op.lcd.r4.d",
+     "text": "もう一度 DISPLAYボタンを2回押します。"
+    },
+    {
+     "id": "op.lcd.r5.f",
+     "text": "自動画面消灯"
+    },
+    {
+     "id": "op.lcd.r5.d",
+     "text": "操作がない場合、2時間後にLCDは自動的に消灯します。"
+    },
+    {
+     "id": "chg.h",
+     "text": "充電方法"
+    },
+    {
+     "id": "chg.caution.l",
+     "text": "注意"
+    },
+    {
+     "id": "chg.caution.i1",
+     "text": "製品の充電動作温度範囲は0°C~45°C、放電動作温度範囲は-20°C~45°Cです。上限・下限温度を超えた場合、充放電が制限され、または充放電不可の可能性があります。"
+    },
+    {
+     "id": "chg.caution.i2",
+     "text": "温度によって、製品の充電効率と実際の容量は異なります。"
+    },
+    {
+     "id": "chg.caution.i3",
+     "text": "はじめてお使いになるときは、本製品をフル充電してからご使用ください。"
+    },
+    {
+     "id": "chg.caution.i4",
+     "text": "充電池は空の状態で長期保管(3カ月~6カ月）すると、性能が劣化したり、充電できなくなる場合があります。"
+    },
+    {
+     "id": "chg.caution.i5",
+     "text": "長期保管中は、電池残量が0%にならないよう、3か月に一度の充電をおすすめします。"
+    }
+   ]
+  },
+  {
+   "physical_page": 12,
+   "printed_page": "11",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "chg.usbc.h",
+     "text": "USB-C充電器での充電"
+    },
+    {
+     "id": "chg.usbc.sold",
+     "text": "※ USB-C充電器は別売りです。"
+    },
+    {
+     "id": "chg.solar.h",
+     "text": "ソーラーパネルでの充電（別売り）"
+    },
+    {
+     "id": "chg.solar.lead",
+     "text": "40Wまたは100Wソーラーパネルで充電する場合："
+    },
+    {
+     "id": "fig.solar.panel",
+     "text": "SolarSaga 40 Air x1"
+    },
+    {
+     "id": "chg.solar.sold",
+     "text": "※ DC8020からUSB-Cへのケーブルは別売りです。"
+    },
+    {
+     "id": "chg.solar.p1",
+     "text": "本製品は最大100Wのソーラー充電に対応しており、Jackery SolarSagaシリーズのソーラーパネルが使用できます。"
+    },
+    {
+     "id": "chg.solar.p2",
+     "text": "Jackeryブランド以外の付属品を使用して充電しないでください。特に、ソーラーパネルで充電する際は、Jackeryのソーラーパネルを使用することをお勧めします。ソーラーパネルの開放電圧（Voc）が、Jackery Explorer 100DのDC入力電圧範囲（10V〜30V）内に収まっていることを確認してください。他社ソーラーパネルで充電することによる損失について、当社は一切の責任を負いません。",
+     "sub": [
+      "oc"
+     ]
+    },
+    {
+     "id": "chg.solar.note.l",
+     "text": "ご注意"
+    },
+    {
+     "id": "chg.solar.note.b",
+     "text": "本製品は、日照が弱く、バッテリー残量が少ない状態でソーラーパネルを接続をした場合、バッテリーが過放電によって劣化する可能性があります。この場合はソーラーパネルの接続を外し、早めにACコンセント等を使って、充電するようにしてください。"
+    }
+   ]
+  },
+  {
+   "physical_page": 13,
+   "printed_page": "12",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "chg.car.h",
+     "text": "シガーソケット充電"
+    },
+    {
+     "id": "chg.car.lead",
+     "text": "本製品は車載シガーソケットからの充電に対応しています。",
+     "strong": [
+      "本製品は車載シガーソケットからの充電に対応しています。"
+     ]
+    },
+    {
+     "id": "chg.car.p",
+     "text": "ご使用の際は、以下にご注意ください。"
+    },
+    {
+     "id": "chg.car.l1",
+     "text": "必ず車のエンジンを始動させてから接続してください。エンジン停止状態で使用すると、車両のバッテリーが上がる恐れがあります。"
+    },
+    {
+     "id": "chg.car.l2",
+     "text": "車の充電ポートとシガーソケット充電ケーブルの接触状態をご確認ください。"
+    },
+    {
+     "id": "chg.car.l3",
+     "text": "ケーブルが確実に奥まで差し込まれていることをご確認ください。"
+    },
+    {
+     "id": "chg.car.l4",
+     "text": "悪路などで車両の振動が激しい場合は、接触不良や発熱・焼損の恐れがあるため、充電を中止してください。"
+    },
+    {
+     "id": "chg.car.l5",
+     "text": "誤使用による故障・損傷については、弊社では責任を負いかねます。あらかじめご了承ください。"
+    },
+    {
+     "id": "fig.car.vehicle",
+     "text": "車"
+    },
+    {
+     "id": "chg.car.sold",
+     "text": "※ シガーソケット充電ケーブルは別売りです。"
+    }
+   ]
+  },
+  {
+   "physical_page": 14,
+   "printed_page": "13",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "spec.h",
+     "text": "主な仕様"
+    },
+    {
+     "id": "spec.gen.h",
+     "text": "基本情報"
+    },
+    {
+     "id": "spec.gen.r1.l",
+     "text": "製品の名称"
+    },
+    {
+     "id": "spec.gen.r1.v",
+     "text": "Jackery Explorer 100D"
+    },
+    {
+     "id": "spec.gen.r2.l",
+     "text": "型番"
+    },
+    {
+     "id": "spec.gen.r2.v",
+     "text": "JE-100C/ JE-100C-SG"
+    },
+    {
+     "id": "spec.gen.r3.l",
+     "text": "定格容量"
+    },
+    {
+     "id": "spec.gen.r3.v",
+     "text": "96Wh (5Ah/19.2V DC)"
+    },
+    {
+     "id": "spec.gen.r4.l",
+     "text": "バッテリータイプ"
+    },
+    {
+     "id": "spec.gen.r4.v",
+     "text": "LiFePO₄（リン酸鉄リチウムイオン電池）"
+    },
+    {
+     "id": "spec.gen.r5.l",
+     "text": "サイズ&重量"
+    },
+    {
+     "id": "spec.gen.r5.v",
+     "text": "(118.7±1)×(82.6±0.5)×(85.68±0.8) mm/ (855g±10g)"
+    },
+    {
+     "id": "spec.gen.r6.l",
+     "text": "サイクル寿命"
+    },
+    {
+     "id": "spec.gen.r6.v",
+     "text": "3,000回の充放電後も容量の80%以上を維持"
+    },
+    {
+     "id": "spec.in.h",
+     "text": "入力ポート"
+    },
+    {
+     "id": "spec.in.r1.l",
+     "text": "USB-C1"
+    },
+    {
+     "id": "spec.in.r1.v1",
+     "text": "5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A, 28V⎓5A, 最大140W"
+    },
+    {
+     "id": "spec.in.r1.v2",
+     "text": "ｼｶﾞｰｿｹｯﾄ: 12V⎓最大5A , 24V⎓最大5A"
+    },
+    {
+     "id": "spec.in.r1.v3",
+     "text": "PV: 10V-30V⎓, 最大5A, 最大100W"
+    },
+    {
+     "id": "spec.out.h",
+     "text": "出力ポート"
+    },
+    {
+     "id": "spec.out.r1.l",
+     "text": "USB-A"
+    },
+    {
+     "id": "spec.out.r1.v",
+     "text": "5V⎓2A, 9V⎓2A, 12V⎓1.5A, 最大18W"
+    },
+    {
+     "id": "spec.out.r2.l",
+     "text": "USB-C1/USB-C2"
+    },
+    {
+     "id": "spec.out.r2.v",
+     "text": "5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A, 28V⎓5A, 最大140W"
+    },
+    {
+     "id": "spec.tot.h",
+     "text": "出力合計"
+    },
+    {
+     "id": "spec.tot.r1.l",
+     "text": "USB-C1 + USB-C2"
+    },
+    {
+     "id": "spec.tot.r1.v",
+     "text": "最大（70W + 70W）"
+    },
+    {
+     "id": "spec.tot.r2.l",
+     "text": "USB-C1 + USB-A / USB-C2 + USB-A"
+    },
+    {
+     "id": "spec.tot.r2.v",
+     "text": "最大（140W +  18W）"
+    },
+    {
+     "id": "spec.tot.r3.l",
+     "text": "USB-C1 + USB-C2 + USB-A"
+    },
+    {
+     "id": "spec.tot.r3.v",
+     "text": "最大（70W + 70W + 18W）"
+    },
+    {
+     "id": "spec.env.h",
+     "text": "温度範囲"
+    },
+    {
+     "id": "spec.env.r1.l",
+     "text": "充電温度"
+    },
+    {
+     "id": "spec.env.r1.v",
+     "text": "0°C ～ 45°C"
+    },
+    {
+     "id": "spec.env.r2.l",
+     "text": "動作温度"
+    },
+    {
+     "id": "spec.env.r2.v",
+     "text": "-20°C ～ 45°C"
+    },
+    {
+     "id": "spec.env.r3.l",
+     "text": "保存温度"
+    },
+    {
+     "id": "spec.env.r3.v",
+     "text": "-20°C ～ 60°C"
+    },
+    {
+     "id": "spec.tm",
+     "text": "※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.",
+     "sup": [
+      "®",
+      "®"
+     ]
+    }
+   ]
+  },
+  {
+   "physical_page": 15,
+   "printed_page": "14",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "war.h",
+     "text": "保証について"
+    },
+    {
+     "id": "war.contact.h",
+     "text": "お問い合わせ"
+    },
+    {
+     "id": "war.contact.p",
+     "text": "製品に関するご質問やご相談、不具合が発生した場合は、電話またはメールにてお問い合わせください。"
+    },
+    {
+     "id": "war.contact.tel",
+     "text": "電話:050-3198-9007"
+    },
+    {
+     "id": "war.contact.mail",
+     "text": "メール:jackery.jp@jackery.com"
+    },
+    {
+     "id": "war.service.h",
+     "text": "カスタマーサービス"
+    },
+    {
+     "id": "war.service.l1",
+     "text": "2年間限定保証"
+    },
+    {
+     "id": "war.service.l2",
+     "text": "製品のご使用期間中のテクニカルサポート"
+    },
+    {
+     "id": "back.web",
+     "text": "公式サイト: http://www.jackery.jp"
+    },
+    {
+     "id": "back.mail",
+     "text": "カスタマーサポート: jackery.jp@jackery.com"
+    },
+    {
+     "id": "back.tel",
+     "text": "お問い合わせ電話番号: 050-3198-9007"
+    }
+   ]
+  },
+  {
+   "physical_page": 16,
+   "printed_page": null,
+   "role": "back-cover-qr",
+   "web": false,
+   "lines": []
+  }
+ ]
+}
