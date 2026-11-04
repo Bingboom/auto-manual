@@ -41,6 +41,11 @@
           "handling": "keep-frozen",
           "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
           "since": "2026-10-28"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -72,6 +77,11 @@
           "handling": "keep-frozen",
           "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
           "since": "2026-10-28"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -138,6 +148,11 @@
           "handling": "keep-frozen",
           "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
           "since": "2026-10-19"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -169,6 +184,11 @@
           "handling": "keep-frozen",
           "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
           "since": "2026-10-28"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -200,6 +220,11 @@
           "handling": "keep-frozen",
           "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
           "since": "2026-10-28"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -236,6 +261,11 @@
           "handling": "keep-frozen",
           "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
           "since": "2026-10-28"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -272,6 +302,11 @@
           "handling": "keep-frozen",
           "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
           "since": "2026-10-28"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -406,6 +441,11 @@
           "handling": "keep-frozen",
           "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
           "since": "2026-10-28"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -447,6 +487,11 @@
           "handling": "keep-frozen",
           "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
           "since": "2026-10-28"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -483,6 +528,11 @@
           "handling": "keep-frozen",
           "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
           "since": "2026-10-28"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -536,6 +586,11 @@
           "handling": "keep-frozen",
           "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
           "since": "2026-10-28"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -589,6 +644,11 @@
           "handling": "keep-frozen",
           "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
           "since": "2026-10-28"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -625,6 +685,11 @@
           "handling": "keep-frozen",
           "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
           "since": "2026-10-28"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -661,6 +726,11 @@
           "handling": "keep-frozen",
           "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
           "since": "2026-10-28"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -727,6 +797,11 @@
           "handling": "keep-frozen",
           "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
           "since": "2026-10-19"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -758,6 +833,11 @@
           "handling": "keep-frozen",
           "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
           "since": "2026-10-28"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -860,6 +940,11 @@
           "handling": "keep-frozen",
           "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
           "since": "2026-10-19"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -951,6 +1036,11 @@
           "handling": "keep-frozen",
           "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
           "since": "2026-10-19"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -1017,6 +1107,11 @@
           "handling": "keep-frozen",
           "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
           "since": "2026-10-28"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -1053,6 +1148,11 @@
           "handling": "keep-frozen",
           "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
           "since": "2026-10-28"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -1240,6 +1340,11 @@
       "registered": "2026-10-19",
       "known_drift": {}
     },
+    "manual_sources/JE-1000C/JP/ja/git-20261103-a369a8d0": {
+      "approval": "Operator 「上‘线提交发布：JE-1000C、JE-1000G、JE-1000H、JE-1500B」 2026-11-03 in the window session, after review of the PR #1653 1280/390 renders beside the reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinator window): Git-only JP ja single-language Web release, source copy verbatim; symbol rows pending the shared dedupe PR are withheld (see source/approval.json); merge not yet authorized",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
     "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2": {
       "approval": "Operator 「上线提交发布」 2026-10-27 after review of PR #1612 renders and correction list (「先提交 再来列纠正清单」); requested by 「分几个窗口把这个目录下面的文档都转成网页文档」「韩语文档除外」 2026-10-26: Git-only JE-1000D JP V2 Web release, source copy verbatim; engineering merge by the operator",
       "registered": "2026-10-26",
@@ -1325,6 +1430,11 @@
       "registered": "2026-10-19",
       "known_drift": {}
     },
+    "manual_sources/JE-1000G/JP/ja/git-20261103-6cf12013": {
+      "approval": "Operator 「上‘线提交发布：JE-1000C、JE-1000G、JE-1000H、JE-1500B」 2026-11-03 in the window session, after review of the PR #1653 1280/390 renders beside the reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinator window): Git-only JP ja single-language Web release, source copy verbatim; symbol rows pending the shared dedupe PR are withheld (see source/approval.json); merge not yet authorized",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
     "manual_sources/JE-1000H/EU/en/2.0": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",
@@ -1348,6 +1458,11 @@
     "manual_sources/JE-1000H/EU/three-language/git-20261026-8bcb378f-shared-symbols": {
       "approval": "操作者「上线提交发布」2026-10-27（七行版），经工程 PR 审核合入（见 approval.json）",
       "registered": "2026-10-26",
+      "known_drift": {}
+    },
+    "manual_sources/JE-1000H/JP/ja/git-20261103-717c813d": {
+      "approval": "Operator 「上‘线提交发布：JE-1000C、JE-1000G、JE-1000H、JE-1500B」 2026-11-03 in the window session, after review of the PR #1653 1280/390 renders beside the reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinator window): Git-only JP ja single-language Web release, source copy verbatim; symbol rows pending the shared dedupe PR are withheld (see source/approval.json); merge not yet authorized",
+      "registered": "2026-11-03",
       "known_drift": {}
     },
     "manual_sources/JE-100A/US/en/git-20261027-18058b6b": {
@@ -1410,6 +1525,11 @@
       "registered": "2026-10-27",
       "known_drift": {}
     },
+    "manual_sources/JE-1500B/JP/ja/git-20261103-f61d0d68": {
+      "approval": "Operator 「上‘线提交发布：JE-1000C、JE-1000G、JE-1000H、JE-1500B」 2026-11-03 in the window session, after review of the PR #1653 1280/390 renders beside the reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinator window): Git-only JP ja single-language Web release, source copy verbatim; symbol rows pending the shared dedupe PR are withheld (see source/approval.json); merge not yet authorized",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
     "manual_sources/JE-1500B/US/en/git-20261027-bb5a455b": {
       "approval": "Operator 「上线提交发布：JE-1000D、JE-1500B、JE-1500D、JE-2000A；授权合入 #1629 及其 Hello-Docs 发布 PR」 2026-10-28 (MA-365), after review of the PR #1629 1280/390 renders beside the shared reference editions; requested by 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 2026-10-27: Git-only JE-1500B US en Web release, source copy verbatim (see source/approval.json)",
       "registered": "2026-10-27",
@@ -1428,6 +1548,21 @@
           "handling": "keep-frozen",
           "reason": "The waiver ledger only gained JE-1000F entries keyed to the JE-1000F revised AI; entries are matched by source SHA-256, model, region and language, so this package's admission is unchanged.",
           "since": "2026-11-02"
+        },
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -1464,6 +1599,11 @@
           "handling": "keep-frozen",
           "reason": "native_svg._path_key 新增等价：子路径 Z 与显式 L 回到起点视为同一闭合（操作者 2026-10-28「同意」，fix/web-us-shared-symbols）。只放宽 fill/stroke 配对比较，原本能配对的路径结果不变；已发布字节不变，下次修订该书时重建",
           "since": "2026-10-28"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -1472,9 +1612,19 @@
       "registered": "2026-10-27",
       "known_drift": {}
     },
+    "manual_sources/JE-1800A/JP/ja/git-20261103-ccd8ebe2": {
+      "approval": "Operator request 2026-11-03 「继续 转日语说明书」 (relayed by the coordination window); operator reviewed the 1280/390 renders beside the reference edition and said 「按建议做，上线提交发布」 2026-11-03 in the owning session: Git-only JE-1800A JP/ja single-language Web release from 发布文档管理 record reczz28SfbsHfSTa, source copy verbatim; acceptance hash-bound in source/approval.json",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
     "manual_sources/JE-2000A/US/en/git-20261027-a8ec2be7": {
       "approval": "Operator 「上线提交发布：JE-1000D、JE-1500B、JE-1500D、JE-2000A；授权合入 #1629 及其 Hello-Docs 发布 PR」 2026-10-28 (MA-365), after review of the PR #1629 1280/390 renders beside the shared reference editions; requested by 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 2026-10-27: Git-only JE-2000A US en Web release, source copy verbatim (see source/approval.json)",
       "registered": "2026-10-27",
+      "known_drift": {}
+    },
+    "manual_sources/JE-2000C/JP/ja/git-20261103-88b78332": {
+      "approval": "Operator request 2026-11-03 「继续 转日语说明书」 (relayed by the coordination window); operator reviewed the 1280/390 renders beside the reference edition and said 「按建议做，上线提交发布」 2026-11-03 in the owning session: Git-only JE-2000C JP/ja single-language Web release from 发布文档管理 record reczz28SfbsHdjSC, source copy verbatim; acceptance hash-bound in source/approval.json",
+      "registered": "2026-11-03",
       "known_drift": {}
     },
     "manual_sources/JE-2000C/US/en/git-20261027-c357f54d": {
@@ -1631,6 +1781,16 @@
           "handling": "keep-frozen",
           "reason": "The waiver ledger only gained JE-1000F entries keyed to the JE-1000F revised AI; entries are matched by source SHA-256, model, region and language, so this package's admission is unchanged.",
           "since": "2026-11-02"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -1657,6 +1817,21 @@
           "handling": "keep-frozen",
           "reason": "The waiver ledger only gained JE-1000F entries keyed to the JE-1000F revised AI; entries are matched by source SHA-256, model, region and language, so this package's admission is unchanged.",
           "since": "2026-11-02"
+        },
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -1678,6 +1853,16 @@
           "handling": "keep-frozen",
           "reason": "The waiver ledger only gained JE-1000F entries keyed to the JE-1000F revised AI; entries are matched by source SHA-256, model, region and language, so this package's admission is unchanged.",
           "since": "2026-11-02"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -1699,6 +1884,16 @@
           "handling": "keep-frozen",
           "reason": "The waiver ledger only gained JE-1000F entries keyed to the JE-1000F revised AI; entries are matched by source SHA-256, model, region and language, so this package's admission is unchanged.",
           "since": "2026-11-02"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -1840,6 +2035,21 @@
           "handling": "keep-frozen",
           "reason": "The waiver ledger only gained JE-1000F entries keyed to the JE-1000F revised AI; entries are matched by source SHA-256, model, region and language, so this package's admission is unchanged.",
           "since": "2026-11-02"
+        },
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -1856,6 +2066,21 @@
           "handling": "keep-frozen",
           "reason": "The waiver ledger only gained JE-1000F entries keyed to the JE-1000F revised AI; entries are matched by source SHA-256, model, region and language, so this package's admission is unchanged.",
           "since": "2026-11-02"
+        },
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -1877,12 +2102,27 @@
           "handling": "keep-frozen",
           "reason": "The waiver ledger only gained JE-1000F entries keyed to the JE-1000F revised AI; entries are matched by source SHA-256, model, region and language, so this package's admission is unchanged.",
           "since": "2026-11-02"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
         }
       }
     },
     "manual_sources/JHP-1000A/US/en/git-20261028-cb256e64": {
       "approval": "Operator 「上线提交发布：JHP-1000A、JHP-1000B、JHP-2000A」 2026-10-29 in the engineering session after the 1280/390 renders beside the shared reference edition (PR #1638): Git-only US/en single-language Web release, source copy verbatim; approval bound in source/approval.json",
       "registered": "2026-10-28",
+      "known_drift": {}
+    },
+    "manual_sources/JHP-1000A/US/en/git-20261103-cb256e64-source-alignment": {
+      "approval": "Operator 2026-11-03: 授权本批逐本全绿后合入上线. MA-381 covers conditional engineering and publication merge; source/approval.json binds verified inputs. Published-route review and Feishu checkbox remain pending.",
+      "registered": "2026-11-03",
       "known_drift": {}
     },
     "manual_sources/JHP-1000B-RC/US/en/git-20261027-af8a0775": {
@@ -2065,6 +2305,18 @@
       "handling": "keep-frozen",
       "reason": "The waiver ledger only gained JE-1000F entries keyed to the JE-1000F revised AI; entries are matched by source SHA-256, model, region and language, so this package's admission is unchanged.",
       "minutes": 0
+    },
+    {
+      "date": "2026-11-03",
+      "files": [
+        "docs/renderers/web/assets/shared/symbols/manifest.json",
+        "tools/asset_pipeline/native_svg.py",
+        "tools/web/shared_symbol_assets.py"
+      ],
+      "packages": 29,
+      "handling": "keep-frozen",
+      "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+      "minutes": 10
     }
   ]
 }
