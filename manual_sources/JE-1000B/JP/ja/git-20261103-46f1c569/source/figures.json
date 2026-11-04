@@ -1,0 +1,306 @@
+[
+  {
+    "slot": "cert-quick-charge",
+    "physical_page": 2,
+    "bbox": [
+      158,
+      286,
+      205.5,
+      301
+    ],
+    "caption": "Qualcomm quick charge 3.0",
+    "embedded_words": true,
+    "local_path": "assets/cert-quick-charge.png",
+    "render_scale": 4,
+    "sha256": "442c8d133b9f60f48a0772a83fc3f9f19af7306e7850d5429884f03b6d8b6076",
+    "source_sha256": "46f1c569caee710858f23eb3d20f5edaa066c25b729bf3de3f1e46672bfcbadd",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "parts-front",
+    "physical_page": 3,
+    "bbox": [
+      22,
+      30,
+      345,
+      298
+    ],
+    "caption": "2.各部の名称",
+    "embedded_words": true,
+    "masks": [
+      [
+        20,
+        20,
+        104,
+        37
+      ]
+    ],
+    "printed_notes": [
+      "AC入力ポート",
+      "DC入力ポート（2×DC8020，ソーラー入力とシガーソケット入力）",
+      "LEDライトボタン",
+      "LEDライト",
+      "USB-A出力ポート",
+      "USB-C出力ポート",
+      "Quick Charge 3.0",
+      "USB出力ボタン",
+      "LCDディスプレイ",
+      "LCDボタン",
+      "シガーソケット出力ポート",
+      "シガーソケット出力ボタン",
+      "AC出力ポート",
+      "AC出力ボタン"
+    ],
+    "local_path": "assets/parts-front.png",
+    "render_scale": 4,
+    "sha256": "a9d5b20b6fb7f934e40129fa4581c8732a9939e8743e3e60f937e24f8c1e82d6",
+    "source_sha256": "46f1c569caee710858f23eb3d20f5edaa066c25b729bf3de3f1e46672bfcbadd",
+    "decision": "extract source panel at 4x (printed heading inside the rectangle masked white)"
+  },
+  {
+    "slot": "lcd-screen",
+    "physical_page": 3,
+    "bbox": [
+      22,
+      321,
+      345,
+      447
+    ],
+    "caption": "3.液晶画面",
+    "embedded_words": true,
+    "local_path": "assets/lcd-screen.png",
+    "render_scale": 4,
+    "sha256": "0dbf96d5829e1855c955d4b576f357061497bb3deaf35e8cb89d9ce8da902ae2",
+    "source_sha256": "46f1c569caee710858f23eb3d20f5edaa066c25b729bf3de3f1e46672bfcbadd",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "ac-charging",
+    "physical_page": 6,
+    "bbox": [
+      124,
+      164,
+      231,
+      217
+    ],
+    "caption": "AC充電ケーブル / ポータブル電源 1000 Pro",
+    "embedded_words": true,
+    "local_path": "assets/ac-charging.png",
+    "render_scale": 4,
+    "sha256": "058306d088493c195096dbbeb643129786cd56d766c0804c57c2619984c250dd",
+    "source_sha256": "46f1c569caee710858f23eb3d20f5edaa066c25b729bf3de3f1e46672bfcbadd",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "solar-3-panels",
+    "physical_page": 6,
+    "bbox": [
+      66,
+      318,
+      292,
+      384
+    ],
+    "caption": "ソーラーパネル直列アダプター / SolarSaga × 2 / ポータブル電源 1000 Pro / SolarSaga × 1",
+    "embedded_words": true,
+    "local_path": "assets/solar-3-panels.png",
+    "render_scale": 4,
+    "sha256": "14163e4620e68874230a7d02d541fd33645f232ffb01287fab24826335c695cf",
+    "source_sha256": "46f1c569caee710858f23eb3d20f5edaa066c25b729bf3de3f1e46672bfcbadd",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "solar-4-panels",
+    "physical_page": 6,
+    "bbox": [
+      66,
+      388,
+      292,
+      459
+    ],
+    "caption": "ソーラーパネル直列アダプター / SolarSaga × 2 / ポータブル電源 1000 Pro / SolarSaga × 2",
+    "embedded_words": true,
+    "local_path": "assets/solar-4-panels.png",
+    "render_scale": 4,
+    "sha256": "a64e6958d30ffdc720b87c566cdb8c6445dcca5adc392c4bbb3bcf014dba5056",
+    "source_sha256": "46f1c569caee710858f23eb3d20f5edaa066c25b729bf3de3f1e46672bfcbadd",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "solarsaga80-parallel",
+    "physical_page": 7,
+    "bbox": [
+      40,
+      116,
+      346,
+      178
+    ],
+    "caption": "並列ポート(DC8020ポート) / ポータブル電源への接続ポート（タイプ:DC8020、また先端にDC8020→DC7909のトランスジャックが付属されています）",
+    "embedded_words": true,
+    "local_path": "assets/solarsaga80-parallel.png",
+    "render_scale": 4,
+    "sha256": "5e6550d3e873d1534d9ffccdbcf0807dd81c17dea212a9b53f954c103a0b7252",
+    "source_sha256": "46f1c569caee710858f23eb3d20f5edaa066c25b729bf3de3f1e46672bfcbadd",
+    "decision": "extract source panel at 4x (printed heading inside the rectangle masked white)",
+    "masks": [
+      [
+        38,
+        110,
+        110,
+        126.5
+      ]
+    ]
+  },
+  {
+    "slot": "transjack-connection",
+    "physical_page": 7,
+    "bbox": [
+      82,
+      238,
+      268,
+      302
+    ],
+    "caption": "トランスジャック（DC7909→DC8020） / DC7909ポート / DC8020ポート / ポータブル電源 1000 Pro",
+    "embedded_words": true,
+    "local_path": "assets/transjack-connection.png",
+    "render_scale": 4,
+    "sha256": "87c61ebfe45284a69a86311cc37006fdbbff350c754c3052faaafb84e3da8e4b",
+    "source_sha256": "46f1c569caee710858f23eb3d20f5edaa066c25b729bf3de3f1e46672bfcbadd",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "car-charging",
+    "physical_page": 7,
+    "bbox": [
+      126,
+      443,
+      226,
+      503
+    ],
+    "caption": "ポータブル電源 1000 Pro",
+    "embedded_words": true,
+    "local_path": "assets/car-charging.png",
+    "render_scale": 4,
+    "sha256": "8981c9314f5ceff980380625647010298302a4bda96810422ee1d0836c00cbbf",
+    "source_sha256": "46f1c569caee710858f23eb3d20f5edaa066c25b729bf3de3f1e46672bfcbadd",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "inbox-main-unit",
+    "physical_page": 11,
+    "bbox": [
+      50,
+      60,
+      96,
+      110
+    ],
+    "caption": "本体",
+    "embedded_words": true,
+    "local_path": "assets/inbox-main-unit.png",
+    "render_scale": 4,
+    "sha256": "30ce69d6a0a2fb58719465afe4d57e7bbde6c4f0747311244a425ce2cdfa0212",
+    "source_sha256": "46f1c569caee710858f23eb3d20f5edaa066c25b729bf3de3f1e46672bfcbadd",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "inbox-car-adapter",
+    "physical_page": 11,
+    "bbox": [
+      148,
+      62,
+      178,
+      107
+    ],
+    "caption": "車載用充電シガーアダプター",
+    "embedded_words": true,
+    "local_path": "assets/inbox-car-adapter.png",
+    "render_scale": 4,
+    "sha256": "6839774467d3be114f9a5dbf450cc82c75d3c8ac0e53e207fd06cdb43efab545",
+    "source_sha256": "46f1c569caee710858f23eb3d20f5edaa066c25b729bf3de3f1e46672bfcbadd",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "inbox-ac-cable",
+    "physical_page": 11,
+    "bbox": [
+      227,
+      62,
+      262,
+      107
+    ],
+    "caption": "AC充電ケーブル",
+    "embedded_words": false,
+    "local_path": "assets/inbox-ac-cable.png",
+    "render_scale": 4,
+    "sha256": "dce380a0e861151db3c41e262ee4a10f729ba2ccfb6ce9bdee914ad8dbfd3449",
+    "source_sha256": "46f1c569caee710858f23eb3d20f5edaa066c25b729bf3de3f1e46672bfcbadd",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "inbox-pouch",
+    "physical_page": 11,
+    "bbox": [
+      297,
+      68,
+      346,
+      101
+    ],
+    "caption": "収納ポーチ",
+    "embedded_words": true,
+    "local_path": "assets/inbox-pouch.png",
+    "render_scale": 4,
+    "sha256": "61de7206a707c5ae68727beb273b01ac10e7ad18e26d02fbd1dd2dd8b2ed5eda",
+    "source_sha256": "46f1c569caee710858f23eb3d20f5edaa066c25b729bf3de3f1e46672bfcbadd",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "inbox-transjack",
+    "physical_page": 11,
+    "bbox": [
+      63,
+      160,
+      87,
+      213
+    ],
+    "caption": "トランスジャック（DC7909→DC8020）x 2",
+    "embedded_words": false,
+    "local_path": "assets/inbox-transjack.png",
+    "render_scale": 4,
+    "sha256": "919b2783b4c8f4106fa7bafa4583600d72253fb29c3a21f1a0712c7ffcb51f07",
+    "source_sha256": "46f1c569caee710858f23eb3d20f5edaa066c25b729bf3de3f1e46672bfcbadd",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "inbox-manual",
+    "physical_page": 11,
+    "bbox": [
+      141,
+      164,
+      176,
+      210
+    ],
+    "caption": "取扱説明書",
+    "embedded_words": true,
+    "local_path": "assets/inbox-manual.png",
+    "render_scale": 4,
+    "sha256": "64f30067fd61a3bbf2e76f7a6c78765a112c85446838fdc46e8b8e51d467e3fc",
+    "source_sha256": "46f1c569caee710858f23eb3d20f5edaa066c25b729bf3de3f1e46672bfcbadd",
+    "decision": "extract source panel at 4x"
+  },
+  {
+    "slot": "inbox-warranty",
+    "physical_page": 11,
+    "bbox": [
+      223,
+      164,
+      257,
+      210
+    ],
+    "caption": "保証書",
+    "embedded_words": true,
+    "local_path": "assets/inbox-warranty.png",
+    "render_scale": 4,
+    "sha256": "65d164b67d09ec7fcb1f2de2bcbf238a69e631cfc8f0f0e0d19cc4258b003e4c",
+    "source_sha256": "46f1c569caee710858f23eb3d20f5edaa066c25b729bf3de3f1e46672bfcbadd",
+    "decision": "extract source panel at 4x"
+  }
+]
