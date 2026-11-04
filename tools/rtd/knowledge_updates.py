@@ -25,6 +25,7 @@ UPDATES_SCHEMA = "hello-docs-knowledge-updates/v1"
 # Page key -> docname. The share package is not a Sphinx page: the home page links it.
 PAGES: dict[str, str | None] = {
     "share": None,
+    "positioning": "workspace/positioning/index",
     "product-knowledge": "products/knowledge",
     "product-matrix": "products/matrix",
     "market-policy": "market/policy",

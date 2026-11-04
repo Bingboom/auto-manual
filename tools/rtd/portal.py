@@ -28,6 +28,9 @@ from tools.rtd.page_metadata import (
 )
 from tools.rtd.system_data import system_data_page_context
 from tools.rtd.system_workspace import SYSTEM_PAGE, SYSTEM_TEMPLATE, system_page_context
+from tools.rtd.web_manual_value import (
+    PAGE as VALUE_PAGE, TEMPLATE as VALUE_TEMPLATE, band_context, load_value, page_context as value_page_context,
+)
 from tools.safe_copy import copytree_replace_no_symlinks
 
 ASSETS = Path(__file__).resolve().parents[1] / "rtd_portal_assets"
@@ -269,6 +272,8 @@ def page_context(app, pagename, templatename, context, doctree):
     context["navigation"] = navigation_view(settings, products)
     context["site_nav"] = site_nav(app)
     context["internal_shell"] = not manuals_only(app)
+    # 网页说明书的定位与价值 band: the public role gets only the reader-facing copy.
+    context["value"] = band_context(load_value(ASSETS), internal=not manuals_only(app))
     context["analytics_beacon"] = beacon_markup(beacon_token)
     context["portal_head_meta"] = portal_head_markup(site_base_url=site_base_url)
     context["product_voc"] = voc_markup
@@ -385,6 +390,8 @@ def collect_workspace_pages(app):
         "matrix_entry": matrix is not None,
         "updates": updates_view(entries, built),
     }, "workspace_portal.html"
+    yield VALUE_PAGE, {**value_page_context(load_value(ASSETS)), "site_nav": site_nav(app),
+                       "system_entry": system is not None}, VALUE_TEMPLATE
     if system is not None:
         from tools.rtd.workspace_revision import page_revision
 
