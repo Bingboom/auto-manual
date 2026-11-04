@@ -1,0 +1,872 @@
+[
+ {
+  "slot": "qc-logo",
+  "searched": [
+   "manual_sources/JE-2000A/US/en/git-20261027-a8ec2be7/assets (Explorer 2000 Pro, same Pro generation)",
+   "manual_sources/JE-1500B/US/en/git-20261027-bb5a455b/assets (Explorer 1500 Pro, same Pro generation)",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets (JP precedent)",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/**/assets (2,967 SVG/PNG files, fixed 2% glyph comparison for small marks)",
+   "docs/renderers/web/assets/shared/ (symbols, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "certification logo printed in the 認証 value cell; no repository file carries the Qualcomm quick charge 3.0 mark",
+  "physical_page": 2,
+  "bbox": [
+   159.5,
+   316,
+   205,
+   330.5
+  ],
+  "final_path": "assets/qc-logo.png",
+  "sha256": "c5074750b7db7425bc0e3c255e47408b58fbba293c63ce6abb1be521b487b193",
+  "background": "retain complete panel, frames, leader lines, captions and cross marks; no body/table screenshot"
+ },
+ {
+  "slot": "overview",
+  "searched": [
+   "manual_sources/JE-2000A/US/en/git-20261027-a8ec2be7/assets (Explorer 2000 Pro, same Pro generation)",
+   "manual_sources/JE-1500B/US/en/git-20261027-bb5a455b/assets (Explorer 1500 Pro, same Pro generation)",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets (JP precedent)",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/**/assets (2,967 SVG/PNG files, fixed 2% glyph comparison for small marks)",
+   "docs/renderers/web/assets/shared/ (symbols, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JE-3000A chassis (four AC outlets + TT-30 outlet, front cigarette socket, rear INPUT panel, retractable handle) and 「Jackery Explorer 3000 Pro」 silk differ from every reference; JE-2000A/JE-1500B art is a different chassis with English labels",
+  "physical_page": 3,
+  "bbox": [
+   20,
+   46,
+   346,
+   324
+  ],
+  "final_path": "assets/overview.png",
+  "sha256": "c59f5eca64b00f7ad9c7366a00a5e343a37d4d254f0fcc539a19dc5e6f5fa89a",
+  "background": "retain complete panel, frames, leader lines, captions and cross marks; no body/table screenshot"
+ },
+ {
+  "slot": "lcd-map",
+  "searched": [
+   "manual_sources/JE-2000A/US/en/git-20261027-a8ec2be7/assets (Explorer 2000 Pro, same Pro generation)",
+   "manual_sources/JE-1500B/US/en/git-20261027-bb5a455b/assets (Explorer 1500 Pro, same Pro generation)",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets (JP precedent)",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/**/assets (2,967 SVG/PNG files, fixed 2% glyph comparison for small marks)",
+   "docs/renderers/web/assets/shared/ (symbols, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JE-3000A LCD with 19 numbered positions and Japanese numbering layout; no reference LCD map matches",
+  "physical_page": 3,
+  "bbox": [
+   40,
+   350,
+   327,
+   503
+  ],
+  "final_path": "assets/lcd-map.png",
+  "sha256": "196ec06319eb543ee3620e2b91a211e2c361de7e49bedbe5f488217e1db3cdef",
+  "background": "retain complete panel, frames, leader lines, captions and cross marks; no body/table screenshot"
+ },
+ {
+  "slot": "ac-charge",
+  "searched": [
+   "manual_sources/JE-2000A/US/en/git-20261027-a8ec2be7/assets (Explorer 2000 Pro, same Pro generation)",
+   "manual_sources/JE-1500B/US/en/git-20261027-bb5a455b/assets (Explorer 1500 Pro, same Pro generation)",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets (JP precedent)",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/**/assets (2,967 SVG/PNG files, fixed 2% glyph comparison for small marks)",
+   "docs/renderers/web/assets/shared/ (symbols, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JE-3000A rear view with the AC inlet and caption ポータブル電源 3000 Pro",
+  "physical_page": 6,
+  "bbox": [
+   174,
+   428,
+   301,
+   500
+  ],
+  "final_path": "assets/ac-charge.png",
+  "sha256": "098c9c9e1a5eeefa9d53843793ee54a617b6783d259be2b17a037f7eba20ffe3",
+  "background": "retain complete panel, frames, leader lines, captions and cross marks; no body/table screenshot"
+ },
+ {
+  "slot": "solar-three",
+  "searched": [
+   "manual_sources/JE-2000A/US/en/git-20261027-a8ec2be7/assets (Explorer 2000 Pro, same Pro generation)",
+   "manual_sources/JE-1500B/US/en/git-20261027-bb5a455b/assets (Explorer 1500 Pro, same Pro generation)",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets (JP precedent)",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/**/assets (2,967 SVG/PNG files, fixed 2% glyph comparison for small marks)",
+   "docs/renderers/web/assets/shared/ (symbols, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JE-3000A rear view with the series adapter; captions SolarSaga ×3 / ポータブル電源 3000 Pro",
+  "physical_page": 7,
+  "bbox": [
+   18,
+   111,
+   340,
+   223
+  ],
+  "final_path": "assets/solar-three.png",
+  "sha256": "03ddf27c4728459f6f80df8ccb662339a7c9a79772f1d2d50d4bc311f3d0f0c0",
+  "background": "retain complete panel, frames, leader lines, captions and cross marks; no body/table screenshot"
+ },
+ {
+  "slot": "solar-four",
+  "searched": [
+   "manual_sources/JE-2000A/US/en/git-20261027-a8ec2be7/assets (Explorer 2000 Pro, same Pro generation)",
+   "manual_sources/JE-1500B/US/en/git-20261027-bb5a455b/assets (Explorer 1500 Pro, same Pro generation)",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets (JP precedent)",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/**/assets (2,967 SVG/PNG files, fixed 2% glyph comparison for small marks)",
+   "docs/renderers/web/assets/shared/ (symbols, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JE-3000A two-port connection; Japanese captions",
+  "physical_page": 7,
+  "bbox": [
+   12,
+   229,
+   350,
+   318
+  ],
+  "final_path": "assets/solar-four.png",
+  "sha256": "1e00509832f84fde231cf7bf5581050e84936379d495675f82cc156a8ce71c36",
+  "background": "retain complete panel, frames, leader lines, captions and cross marks; no body/table screenshot"
+ },
+ {
+  "slot": "solar-six",
+  "searched": [
+   "manual_sources/JE-2000A/US/en/git-20261027-a8ec2be7/assets (Explorer 2000 Pro, same Pro generation)",
+   "manual_sources/JE-1500B/US/en/git-20261027-bb5a455b/assets (Explorer 1500 Pro, same Pro generation)",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets (JP precedent)",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/**/assets (2,967 SVG/PNG files, fixed 2% glyph comparison for small marks)",
+   "docs/renderers/web/assets/shared/ (symbols, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JE-3000A two-port connection; Japanese captions",
+  "physical_page": 7,
+  "bbox": [
+   18,
+   329,
+   355,
+   442
+  ],
+  "final_path": "assets/solar-six.png",
+  "sha256": "077ea771fc4017384bd2dd61851ba0cc256b87b03149c44764547436c718fb7c",
+  "background": "retain complete panel, frames, leader lines, captions and cross marks; no body/table screenshot"
+ },
+ {
+  "slot": "prohibited-1",
+  "searched": [
+   "manual_sources/JE-2000A/US/en/git-20261027-a8ec2be7/assets (Explorer 2000 Pro, same Pro generation)",
+   "manual_sources/JE-1500B/US/en/git-20261027-bb5a455b/assets (Explorer 1500 Pro, same Pro generation)",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets (JP precedent)",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/**/assets (2,967 SVG/PNG files, fixed 2% glyph comparison for small marks)",
+   "docs/renderers/web/assets/shared/ (symbols, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JE-3000A prohibited unequal-port connection frame with its cross mark; Japanese captions",
+  "physical_page": 8,
+  "bbox": [
+   21,
+   21,
+   345.7,
+   99
+  ],
+  "final_path": "assets/prohibited-1.png",
+  "sha256": "b0b674e7437434e13acc984ef16a1bacb1f27f6adf45e2b84bd85051cd3456e3",
+  "background": "retain complete panel, frames, leader lines, captions and cross marks; no body/table screenshot"
+ },
+ {
+  "slot": "prohibited-2",
+  "searched": [
+   "manual_sources/JE-2000A/US/en/git-20261027-a8ec2be7/assets (Explorer 2000 Pro, same Pro generation)",
+   "manual_sources/JE-1500B/US/en/git-20261027-bb5a455b/assets (Explorer 1500 Pro, same Pro generation)",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets (JP precedent)",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/**/assets (2,967 SVG/PNG files, fixed 2% glyph comparison for small marks)",
+   "docs/renderers/web/assets/shared/ (symbols, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JE-3000A prohibited unequal-port connection frame with its cross mark; Japanese captions",
+  "physical_page": 8,
+  "bbox": [
+   21,
+   97.5,
+   345.7,
+   185
+  ],
+  "final_path": "assets/prohibited-2.png",
+  "sha256": "15e7f3ee0134b8254a1ceed13d032309419eac4de51fcdc457cdfc6d12a7cf13",
+  "background": "retain complete panel, frames, leader lines, captions and cross marks; no body/table screenshot"
+ },
+ {
+  "slot": "prohibited-3",
+  "searched": [
+   "manual_sources/JE-2000A/US/en/git-20261027-a8ec2be7/assets (Explorer 2000 Pro, same Pro generation)",
+   "manual_sources/JE-1500B/US/en/git-20261027-bb5a455b/assets (Explorer 1500 Pro, same Pro generation)",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets (JP precedent)",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/**/assets (2,967 SVG/PNG files, fixed 2% glyph comparison for small marks)",
+   "docs/renderers/web/assets/shared/ (symbols, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JE-3000A prohibited unequal-port connection frame with its cross mark; Japanese captions",
+  "physical_page": 8,
+  "bbox": [
+   21,
+   183,
+   345.7,
+   268
+  ],
+  "final_path": "assets/prohibited-3.png",
+  "sha256": "66b79200407073a7a495273a4c46f2d76db235c16d9eeeec5f5f3f6f5ae696e7",
+  "background": "retain complete panel, frames, leader lines, captions and cross marks; no body/table screenshot"
+ },
+ {
+  "slot": "solarsaga80",
+  "searched": [
+   "manual_sources/JE-2000A/US/en/git-20261027-a8ec2be7/assets (Explorer 2000 Pro, same Pro generation)",
+   "manual_sources/JE-1500B/US/en/git-20261027-bb5a455b/assets (Explorer 1500 Pro, same Pro generation)",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets (JP precedent)",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/**/assets (2,967 SVG/PNG files, fixed 2% glyph comparison for small marks)",
+   "docs/renderers/web/assets/shared/ (symbols, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "SolarSaga 80 parallel panel with Japanese leader labels; no Japanese reference crop",
+  "physical_page": 8,
+  "bbox": [
+   21.5,
+   376,
+   346.1,
+   474
+  ],
+  "final_path": "assets/solarsaga80.png",
+  "sha256": "da106823310b48e1747bea95a34eb43adfa2b599e238b11304ea5e68b2d7458a",
+  "background": "retain complete panel, frames, leader lines, captions and cross marks; no body/table screenshot"
+ },
+ {
+  "slot": "transjack",
+  "searched": [
+   "manual_sources/JE-2000A/US/en/git-20261027-a8ec2be7/assets (Explorer 2000 Pro, same Pro generation)",
+   "manual_sources/JE-1500B/US/en/git-20261027-bb5a455b/assets (Explorer 1500 Pro, same Pro generation)",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets (JP precedent)",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/**/assets (2,967 SVG/PNG files, fixed 2% glyph comparison for small marks)",
+   "docs/renderers/web/assets/shared/ (symbols, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JE-3000A trans-jack panel with Japanese leader labels",
+  "physical_page": 9,
+  "bbox": [
+   22,
+   84,
+   346.6,
+   222.5
+  ],
+  "final_path": "assets/transjack.png",
+  "sha256": "51c91c2f37bfed494ca90924b6792a9a905b3e71428dd5cc15933996405d33cb",
+  "background": "retain complete panel, frames, leader lines, captions and cross marks; no body/table screenshot"
+ },
+ {
+  "slot": "car-charge",
+  "searched": [
+   "manual_sources/JE-2000A/US/en/git-20261027-a8ec2be7/assets (Explorer 2000 Pro, same Pro generation)",
+   "manual_sources/JE-1500B/US/en/git-20261027-bb5a455b/assets (Explorer 1500 Pro, same Pro generation)",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets (JP precedent)",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/**/assets (2,967 SVG/PNG files, fixed 2% glyph comparison for small marks)",
+   "docs/renderers/web/assets/shared/ (symbols, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JE-3000A rear view with the car-socket inset and caption",
+  "physical_page": 9,
+  "bbox": [
+   212,
+   312,
+   346,
+   396
+  ],
+  "final_path": "assets/car-charge.png",
+  "sha256": "89e56b1fd514a7e1eea601fa1879c0a88ce5345f6bf7eecae8edaff0809728ef",
+  "background": "retain complete panel, frames, leader lines, captions and cross marks; no body/table screenshot"
+ },
+ {
+  "slot": "inbox-unit",
+  "searched": [
+   "manual_sources/JE-2000A/US/en/git-20261027-a8ec2be7/assets (Explorer 2000 Pro, same Pro generation)",
+   "manual_sources/JE-1500B/US/en/git-20261027-bb5a455b/assets (Explorer 1500 Pro, same Pro generation)",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets (JP precedent)",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/**/assets (2,967 SVG/PNG files, fixed 2% glyph comparison for small marks)",
+   "docs/renderers/web/assets/shared/ (symbols, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JE-3000A front",
+  "physical_page": 13,
+  "bbox": [
+   46,
+   57,
+   100,
+   100
+  ],
+  "final_path": "assets/inbox-unit.png",
+  "sha256": "0333e88c932fdd2a9d1ecda09486c240ac38ea4ee956fbc59212a92fcbd18a33",
+  "background": "retain complete panel, frames, leader lines, captions and cross marks; no body/table screenshot"
+ },
+ {
+  "slot": "inbox-car-adapter",
+  "searched": [
+   "manual_sources/JE-2000A/US/en/git-20261027-a8ec2be7/assets (Explorer 2000 Pro, same Pro generation)",
+   "manual_sources/JE-1500B/US/en/git-20261027-bb5a455b/assets (Explorer 1500 Pro, same Pro generation)",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets (JP precedent)",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/**/assets (2,967 SVG/PNG files, fixed 2% glyph comparison for small marks)",
+   "docs/renderers/web/assets/shared/ (symbols, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "card art at the JE-3000A in-box scale; the JE-2000A US car-cable card is a different drawing and crop",
+  "physical_page": 13,
+  "bbox": [
+   150,
+   53,
+   177,
+   95
+  ],
+  "final_path": "assets/inbox-car-adapter.png",
+  "sha256": "299f992b0ad1c49a36b45a351bd30b48e3aab23bf3b1dbdeab347a2e9dc0cc16",
+  "background": "retain complete panel, frames, leader lines, captions and cross marks; no body/table screenshot"
+ },
+ {
+  "slot": "inbox-ac-cable",
+  "searched": [
+   "manual_sources/JE-2000A/US/en/git-20261027-a8ec2be7/assets (Explorer 2000 Pro, same Pro generation)",
+   "manual_sources/JE-1500B/US/en/git-20261027-bb5a455b/assets (Explorer 1500 Pro, same Pro generation)",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets (JP precedent)",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/**/assets (2,967 SVG/PNG files, fixed 2% glyph comparison for small marks)",
+   "docs/renderers/web/assets/shared/ (symbols, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "2-pin AC cable drawing printed here; the JE-1500D/JE-1000D JP inbox-cable.svg and JE-2000A US card show different plugs",
+  "physical_page": 13,
+  "bbox": [
+   231,
+   53,
+   262,
+   95
+  ],
+  "final_path": "assets/inbox-ac-cable.png",
+  "sha256": "cac5550abfda1fb9ba9a782b5d3872c2bbdebde3f99ffe4c46b8ca62dbcf5cce",
+  "background": "retain complete panel, frames, leader lines, captions and cross marks; no body/table screenshot"
+ },
+ {
+  "slot": "inbox-pouch",
+  "searched": [
+   "manual_sources/JE-2000A/US/en/git-20261027-a8ec2be7/assets (Explorer 2000 Pro, same Pro generation)",
+   "manual_sources/JE-1500B/US/en/git-20261027-bb5a455b/assets (Explorer 1500 Pro, same Pro generation)",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets (JP precedent)",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/**/assets (2,967 SVG/PNG files, fixed 2% glyph comparison for small marks)",
+   "docs/renderers/web/assets/shared/ (symbols, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "storage pouch is unique to this in-box list",
+  "physical_page": 13,
+  "bbox": [
+   291,
+   59,
+   339,
+   89
+  ],
+  "final_path": "assets/inbox-pouch.png",
+  "sha256": "dc3178d32e0e38548a5f443b7217feefafbdb48d5f53fd4404b9ff9f45eab15e",
+  "background": "retain complete panel, frames, leader lines, captions and cross marks; no body/table screenshot"
+ },
+ {
+  "slot": "inbox-transjack",
+  "searched": [
+   "manual_sources/JE-2000A/US/en/git-20261027-a8ec2be7/assets (Explorer 2000 Pro, same Pro generation)",
+   "manual_sources/JE-1500B/US/en/git-20261027-bb5a455b/assets (Explorer 1500 Pro, same Pro generation)",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets (JP precedent)",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/**/assets (2,967 SVG/PNG files, fixed 2% glyph comparison for small marks)",
+   "docs/renderers/web/assets/shared/ (symbols, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "DC7909→DC8020 trans-jack card is unique to this in-box list",
+  "physical_page": 13,
+  "bbox": [
+   66,
+   142,
+   84,
+   191
+  ],
+  "final_path": "assets/inbox-transjack.png",
+  "sha256": "4945e3f51f310e55fccf3ca016e5a70511d4ec0a1b903e75b9f42684f8de3ea2",
+  "background": "retain complete panel, frames, leader lines, captions and cross marks; no body/table screenshot"
+ },
+ {
+  "slot": "inbox-manual",
+  "searched": [
+   "manual_sources/JE-2000A/US/en/git-20261027-a8ec2be7/assets (Explorer 2000 Pro, same Pro generation)",
+   "manual_sources/JE-1500B/US/en/git-20261027-bb5a455b/assets (Explorer 1500 Pro, same Pro generation)",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets (JP precedent)",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/**/assets (2,967 SVG/PNG files, fixed 2% glyph comparison for small marks)",
+   "docs/renderers/web/assets/shared/ (symbols, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JE-3000A JP manual cover",
+  "physical_page": 13,
+  "bbox": [
+   143,
+   144,
+   176,
+   188
+  ],
+  "final_path": "assets/inbox-manual.png",
+  "sha256": "aed90d4ffbc55483e7f99b2020f8d565e6a5de3211ce43c4c9b723324b8d6a82",
+  "background": "retain complete panel, frames, leader lines, captions and cross marks; no body/table screenshot"
+ },
+ {
+  "slot": "inbox-warranty",
+  "searched": [
+   "manual_sources/JE-2000A/US/en/git-20261027-a8ec2be7/assets (Explorer 2000 Pro, same Pro generation)",
+   "manual_sources/JE-1500B/US/en/git-20261027-bb5a455b/assets (Explorer 1500 Pro, same Pro generation)",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets (JP precedent)",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/**/assets (2,967 SVG/PNG files, fixed 2% glyph comparison for small marks)",
+   "docs/renderers/web/assets/shared/ (symbols, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP 保証サービス leaflet as printed here",
+  "physical_page": 13,
+  "bbox": [
+   226,
+   144,
+   258,
+   188
+  ],
+  "final_path": "assets/inbox-warranty.png",
+  "sha256": "51e54c17df48ebfeedbae342ec03745fc7f39cfcd614a8113ff1291924599817",
+  "background": "retain complete panel, frames, leader lines, captions and cross marks; no body/table screenshot"
+ },
+ {
+  "slot": "app-store",
+  "searched": [
+   "manual_sources/JE-2000A/US/en/git-20261027-a8ec2be7/assets (Explorer 2000 Pro, same Pro generation)",
+   "manual_sources/JE-1500B/US/en/git-20261027-bb5a455b/assets (Explorer 1500 Pro, same Pro generation)",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets (JP precedent)",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/**/assets (2,967 SVG/PNG files, fixed 2% glyph comparison for small marks)",
+   "docs/renderers/web/assets/shared/ (symbols, buttons)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "badge pair printed on this back cover (complete pair, target crop)",
+  "physical_page": 14,
+  "bbox": [
+   20,
+   474,
+   173,
+   501
+  ],
+  "final_path": "assets/app-store.png",
+  "sha256": "49800caefb1c2997f5bef78486aad2fd69b060308bc3fcd727c56c45fb846f75",
+  "background": "retain complete panel, frames, leader lines, captions and cross marks; no body/table screenshot"
+ },
+ {
+  "slot": "recycle-li-ion",
+  "searched": [
+   "manual_sources/JE-2000A/US/en/git-20261027-a8ec2be7/assets (Explorer 2000 Pro, same Pro generation)",
+   "manual_sources/JE-1500B/US/en/git-20261027-bb5a455b/assets (Explorer 1500 Pro, same Pro generation)",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets (JP precedent)",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "manual_sources/**/assets (2,967 SVG/PNG files, fixed 2% glyph comparison for small marks)",
+   "docs/renderers/web/assets/shared/ (symbols, buttons)"
+  ],
+  "decision": "extract native vector glyph",
+  "reason": "Li-ion 20 recycling mark: closest repository file (JE-1000D JP Li-ion 32) differs 0.036 (> 0.02); not a symbol-table row",
+  "physical_page": 2,
+  "glyph_bbox": [
+   46,
+   427.9,
+   90.6,
+   469.3
+  ],
+  "drawing_indices": [
+   695,
+   696,
+   697,
+   698,
+   699,
+   700,
+   701,
+   702,
+   703,
+   704,
+   705
+  ],
+  "final_path": "assets/recycle-li-ion.svg",
+  "sha256": "d5a879f725b99846cf18cd89983b5f45ae29ffa7a09ac17642513078b5edb0a8",
+  "background": "transparent small icon: original PDF paths only, no cell backdrop"
+ },
+ {
+  "slot": "lcd-battery-ring",
+  "candidate": "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296/assets/lcd-12-battery-power.svg",
+  "decision": "reuse byte-identical",
+  "reason": "same LCD glyph: checked against the JE-3000A native_symbol_svg paths at the fixed 2% tolerance (source_manifest.json:artwork_reuse_comparison)",
+  "source_check": {
+   "physical_page": 4,
+   "glyph_bbox": [
+    21.5,
+    185,
+    44,
+    207.5
+   ],
+   "drawing_indices": [
+    20732
+   ]
+  },
+  "sha256": "463a1423db307feeb0045dbe94a9844b65ffcde9977db8de1c5993c046469aa4",
+  "final_path": "assets/lcd-battery-ring.svg",
+  "background": "transparent small icon (existing file unchanged)"
+ },
+ {
+  "slot": "lcd-low-battery",
+  "candidate": "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets/lcd-low-battery.svg",
+  "decision": "reuse byte-identical",
+  "reason": "same LCD glyph: checked against the JE-3000A native_symbol_svg paths at the fixed 2% tolerance (source_manifest.json:artwork_reuse_comparison)",
+  "source_check": {
+   "physical_page": 4,
+   "glyph_bbox": [
+    21.5,
+    220.6,
+    43.7,
+    233.1
+   ],
+   "drawing_indices": [
+    20733
+   ]
+  },
+  "sha256": "d5019853534148f388bad51234caf2f5d504a9f15e7ed3e0c0a5a034a4c0bfe8",
+  "final_path": "assets/lcd-low-battery.svg",
+  "background": "transparent small icon (existing file unchanged)"
+ },
+ {
+  "slot": "lcd-energy-saving",
+  "candidate": "manual_sources/JHP-3600A-RC/US/en/git-20261027-ab7f7393/assets/lcd-energy-saving.svg",
+  "decision": "reuse byte-identical",
+  "reason": "same LCD glyph: checked against the JE-3000A native_symbol_svg paths at the fixed 2% tolerance (source_manifest.json:artwork_reuse_comparison)",
+  "source_check": {
+   "physical_page": 4,
+   "glyph_bbox": [
+    21.5,
+    266.8,
+    44,
+    283.2
+   ],
+   "drawing_indices": [
+    20734,
+    20735,
+    20736,
+    20737,
+    20738,
+    20739,
+    20740,
+    20741,
+    20742
+   ]
+  },
+  "sha256": "e612bdc3f018aca61a0a03f7b363b5e2785f2baa7273a88a209fa5d057928b16",
+  "final_path": "assets/lcd-energy-saving.svg",
+  "background": "transparent small icon (existing file unchanged)"
+ },
+ {
+  "slot": "lcd-fault-code",
+  "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-19-fault-code.svg",
+  "decision": "reuse byte-identical",
+  "reason": "same LCD glyph: checked against the JE-3000A native_symbol_svg paths at the fixed 2% tolerance (source_manifest.json:artwork_reuse_comparison)",
+  "source_check": {
+   "physical_page": 5,
+   "glyph_bbox": [
+    21.5,
+    106.2,
+    44,
+    127.2
+   ],
+   "drawing_indices": [
+    22792,
+    22793,
+    22794
+   ]
+  },
+  "sha256": "a26412e668dec6f865288f0193ffffa310e99cad7a4ee807c7681c19b5b4e01c",
+  "final_path": "assets/lcd-fault-code.svg",
+  "background": "transparent small icon (existing file unchanged)"
+ },
+ {
+  "slot": "lcd-high-temperature",
+  "candidate": "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets/lcd-high-temperature.svg",
+  "decision": "reuse byte-identical",
+  "reason": "same LCD glyph: checked against the JE-3000A native_symbol_svg paths at the fixed 2% tolerance (source_manifest.json:artwork_reuse_comparison)",
+  "source_check": {
+   "physical_page": 5,
+   "glyph_bbox": [
+    21.5,
+    196.4,
+    44,
+    217.4
+   ],
+   "drawing_indices": [
+    22903,
+    22904
+   ]
+  },
+  "sha256": "505ee25a2d28b966acac1e9ab3cae8e30b58a8116d7a706d85752325d20d38f8",
+  "final_path": "assets/lcd-high-temperature.svg",
+  "background": "transparent small icon (existing file unchanged)"
+ },
+ {
+  "slot": "lcd-low-temperature",
+  "candidate": "manual_sources/JE-1500D/US/en/git-20261027-772c3698/assets/lcd-20b-low-temperature.svg",
+  "decision": "reuse byte-identical",
+  "reason": "same LCD glyph: checked against the JE-3000A native_symbol_svg paths at the fixed 2% tolerance (source_manifest.json:artwork_reuse_comparison)",
+  "source_check": {
+   "physical_page": 5,
+   "glyph_bbox": [
+    21.5,
+    232.1,
+    44,
+    253.1
+   ],
+   "drawing_indices": [
+    22905,
+    22906
+   ]
+  },
+  "also_checks": [
+   {
+    "physical_page": 5,
+    "glyph_bbox": [
+     260.7,
+     256.7,
+     274.7,
+     269.7
+    ],
+    "drawing_indices": [
+     22907,
+     22908
+    ],
+    "role": "inline low-temperature mark in 低温モード paragraph"
+   }
+  ],
+  "sha256": "0f131a3e36e0d3e689826b18f6dece30a090848e8254c8aaef78789cc275d075",
+  "final_path": "assets/lcd-low-temperature.svg",
+  "background": "transparent small icon (existing file unchanged)"
+ },
+ {
+  "slot": "symbol-01",
+  "physical_page": 10,
+  "glyph_bbox": [
+   22.5,
+   205,
+   38.6,
+   222.5
+  ],
+  "caption_bbox": [
+   44.8,
+   210.6,
+   163.3,
+   218.1
+  ],
+  "drawing_indices": [
+   4864,
+   4865,
+   4866,
+   4867
+  ],
+  "final_path": "assets/symbol-01.svg",
+  "sha256": "6826bf335dfb5aa842639eae12531d9cf30ceb89940e77c56c92f3515f120894",
+  "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/je1000d-jp-00c43a89-symbol-01.svg",
+  "shared_symbol_key": "native/je1000d-jp-00c43a89-01",
+  "decision": "reuse byte-identical checked shared variant",
+  "reason": "passes the fixed 2% comparison against the shared native_symbol_svg reference (0.013801); standard symbol asset admission"
+ },
+ {
+  "slot": "symbol-02",
+  "physical_page": 10,
+  "glyph_bbox": [
+   21,
+   227,
+   40,
+   246
+  ],
+  "caption_bbox": [
+   44,
+   233,
+   149.3,
+   240.4
+  ],
+  "drawing_indices": [
+   4907,
+   4908,
+   4909,
+   4910,
+   4911,
+   4912,
+   4913,
+   4914,
+   4915,
+   4916,
+   4917,
+   4918,
+   4919,
+   4920,
+   4921,
+   4922,
+   4923
+  ],
+  "final_path": "assets/symbol-02.svg",
+  "sha256": "0766a51f9ad7d433bed62a7c1ddbacc19ad7c7b68bf55938d5cdbab902b9ea04",
+  "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/je1000d-jp-00c43a89-symbol-02.svg",
+  "shared_symbol_key": "native/je1000d-jp-00c43a89-02",
+  "decision": "reuse byte-identical checked shared variant",
+  "reason": "passes the fixed 2% comparison against the shared native_symbol_svg reference (0.010732); standard symbol asset admission"
+ },
+ {
+  "slot": "symbol-03",
+  "physical_page": 10,
+  "glyph_bbox": [
+   21,
+   250.5,
+   40,
+   269.5
+  ],
+  "caption_bbox": [
+   44.4,
+   256.6,
+   184.8,
+   264
+  ],
+  "drawing_indices": [
+   4939,
+   4940,
+   4941,
+   4942,
+   4943,
+   4944,
+   4945,
+   4946,
+   4947,
+   4948,
+   4949
+  ],
+  "final_path": "assets/symbol-03.svg",
+  "sha256": "585a0c72abdb9fc1d69d31554d249730f1361dfc49a501423dd0204e0637a387",
+  "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/je1000d-jp-00c43a89-symbol-03.svg",
+  "shared_symbol_key": "native/je1000d-jp-00c43a89-03",
+  "decision": "reuse byte-identical checked shared variant",
+  "reason": "passes the fixed 2% comparison against the shared native_symbol_svg reference (0.019624); standard symbol asset admission; operator decision: canonical of the confirmed no-wet-hands group (SCG-20261103)"
+ },
+ {
+  "slot": "symbol-04",
+  "physical_page": 10,
+  "glyph_bbox": [
+   193.5,
+   204.5,
+   212.5,
+   223.5
+  ],
+  "caption_bbox": [
+   215.6,
+   210.3,
+   279,
+   217.7
+  ],
+  "drawing_indices": [
+   4885
+  ],
+  "final_path": "assets/symbol-04.svg",
+  "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2",
+  "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-mandatory.svg",
+  "shared_symbol_key": "mandatory/h1-jp-native",
+  "decision": "reuse byte-identical checked shared variant",
+  "reason": "passes the fixed 2% comparison against the shared native_symbol_svg reference (0.011627); standard symbol asset admission"
+ },
+ {
+  "slot": "symbol-05",
+  "physical_page": 10,
+  "glyph_bbox": [
+   193.5,
+   227.5,
+   212.5,
+   246.5
+  ],
+  "caption_bbox": [
+   215.7,
+   233.2,
+   321,
+   240.6
+  ],
+  "drawing_indices": [
+   4970,
+   4971,
+   4972,
+   4973,
+   4974,
+   4975,
+   4976,
+   4977,
+   4978,
+   4979,
+   4980,
+   4981
+  ],
+  "final_path": "assets/symbol-05.svg",
+  "sha256": "4728b4a0ab80e8376ff756d9af98d92c1906d3461e44eb4905899b6212cc003c",
+  "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/je1000d-jp-00c43a89-symbol-05.svg",
+  "shared_symbol_key": "native/je1000d-jp-00c43a89-05",
+  "decision": "reuse byte-identical checked shared variant",
+  "reason": "passes the fixed 2% comparison against the shared native_symbol_svg reference (0.012668); standard symbol asset admission"
+ },
+ {
+  "slot": "symbol-06",
+  "physical_page": 10,
+  "glyph_bbox": [
+   193.5,
+   251.5,
+   212.5,
+   270.5
+  ],
+  "caption_bbox": [
+   215.6,
+   256.8,
+   279,
+   264.2
+  ],
+  "drawing_indices": [
+   4895,
+   4896,
+   4897
+  ],
+  "final_path": "assets/symbol-06.svg",
+  "sha256": "a5390e01e5ed9ba225377ba6b13de7523f86b8139e4686cf4534ebb2c1048641",
+  "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/je1000d-jp-00c43a89-symbol-06.svg",
+  "shared_symbol_key": "native/je1000d-jp-00c43a89-06",
+  "decision": "reuse byte-identical checked shared variant",
+  "reason": "passes the fixed 2% comparison against the shared native_symbol_svg reference (0.00475); standard symbol asset admission"
+ },
+ {
+  "slot": "shared-buttons/*",
+  "decision": "not used",
+  "reason": "JE-3000A JP prints no key-combination table; button operations are prose"
+ }
+]

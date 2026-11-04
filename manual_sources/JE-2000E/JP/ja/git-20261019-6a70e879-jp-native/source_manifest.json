@@ -9,25 +9,65 @@
     "technical_version": "git-20261019-6a70e879-jp-native"
   },
   "original_source": {
-    "filename": "Jackery ポータブル電源 2000 Plus取扱説明書V2.0-2026-06-29.pdf",
-    "path": "source/original.pdf",
-    "sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661",
+    "filename": "JE-2000E-JP-V2.pdf",
+    "operator_filename": "【Jackery ポータブル電源 2000 Plus】说明书-JP.pdf",
+    "sha256": "f1829cd35ffe05079fe4b04f6c62fef3ca6adfd64270c47d64f7b2203af9780a",
+    "size": 2387105,
     "page_count": 28,
-    "printed_version": "V2",
-    "supplied_filename_version": "V2.0-2026-06-29"
+    "printed_version": "V2"
   },
+  "intake_identity": {
+    "technical_version_prefix": "6a70e879",
+    "note": "The package path keeps its 2026-10-19 intake identity (operator decision 2026-11-03: continue on this candidate). That intake used the print master below; the authority is now the table single-language PDF. Both files have identical text layers, identical drawing lists and pixel-identical renders on all 28 pages (poppler 200 dpi, MuPDF 3x).",
+    "previous_original_source": {
+      "filename": "Jackery ポータブル電源 2000 Plus取扱説明書V2.0-2026-06-29.pdf",
+      "path": "source/original.pdf",
+      "sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661",
+      "size": 9178453
+    }
+  },
+  "source_record": {
+    "base": "WGVwb2HctauRi7sEiKqcIzTRn1c",
+    "table": "tbljbjaXaTD6V9PO",
+    "view": "日规",
+    "record_id": "reczz28SfbsHbvLy",
+    "客户型号": "JE-2000E",
+    "子物料编码": "16-0102-000389",
+    "项目号": "HTE152",
+    "sku": "21-0001-000403",
+    "single_language_manual": {
+      "filename": "【Jackery ポータブル電源 2000 Plus】说明书-JP.pdf",
+      "sha256": "f1829cd35ffe05079fe4b04f6c62fef3ca6adfd64270c47d64f7b2203af9780a",
+      "size": 2387105,
+      "role": "authoritative Web and symbol-admission source"
+    },
+    "print_master": {
+      "filename": "16-0102-000389 Jackery ポータブル電源 2000PlusV2 电子版取扱説明書.pdf",
+      "sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661",
+      "size": 9178453,
+      "role": "recorded only; not an extraction source"
+    }
+  },
+  "operator_instruction": "2026-11-03 「继续 转日语说明书」 (relayed by the coordination window); 2026-11-03 「按建议做」 in the owning session: keep this candidate and make the table single-language PDF the authoritative source",
   "scope": "Git-only JP/ja native Web candidate; no online-table or queue writes",
   "reference_structure": {
     "target": "JE-1000F/JP/ja",
     "package": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed",
     "usage": "shared semantic chapters/components only; no product copy/spec substitution"
   },
+  "reference_editions": [
+    "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2",
+    "manual_sources/JE-1800B/JP/ja/git-20261103-754e8c1d-v2"
+  ],
+  "reference_note": "No JE-2000E English or Japanese Web edition exists (EU Web covers nl/pl/pt only); the review reference is the published JE-1500D JP V2 Web edition of the same layout generation.",
   "live_bitable_dependency": false,
   "phase2_enrolled": false,
   "web_roots": {
     "ja": "web/ja"
   },
-  "publication_status": "candidate-pending-operator-review",
+  "publication_status": "operator-authorized-git-only-release",
+  "route": "JE-2000E/JP/ja/md",
+  "legacy_default": true,
   "included_pages": [
     3,
     4,
@@ -56,16 +96,21 @@
     27,
     28
   ],
-  "front_matter": "Cover identity and opening prose retained; printed cover artwork and paper TOC excluded from Web flow",
+  "web_exclusions": [
+    "print cover (physical 1)",
+    "paper TOC (physical 2)",
+    "printed page numbers"
+  ],
+  "front_matter": "Printed cover (physical 1) and paper TOC (physical 2) are print-only: no cover identity or opening prose on the Web. The back cover App reminder (physical 28) is retained as the closing App block.",
   "normalizations": [
     "Join PDF line wraps without changing Japanese wording",
     "Recover F6 from the private-use glyph F\\uf6b7 after visual comparison of PDF p22",
-    "Source table heading 出カポート is presented as 出力ポート",
     "Native vector plus in App add-device instruction recovered as selectable +",
     "Printed LCD number 23 spans high/low-temperature rows; preserve number and bind two separate semantic icons",
     "Restore the oc subscript to Voc in solar charging prose from its positioned source glyph",
     "Source-stream order in the dismantling warning restored to visible heading then consequence",
-    "Illustration crops use direct PDF PNG rendering at 3x to preserve nested clipping; original vector PDF is unchanged"
+    "Illustration crops use direct PDF PNG rendering at 3x to preserve nested clipping; original vector PDF is unchanged",
+    "Printed bold headings inside 16 safety callouts (PDF bold font spans of the callout's own source blocks) are restored as separate strong paragraphs; the callout text is unchanged"
   ],
   "repo_inputs": [
     {
@@ -186,24 +231,44 @@
   ],
   "inputs": [
     {
+      "path": "JE-2000E-JP-V2.pdf",
+      "size": 2387105,
+      "sha256": "f1829cd35ffe05079fe4b04f6c62fef3ca6adfd64270c47d64f7b2203af9780a"
+    },
+    {
       "path": "README.md",
-      "size": 4226,
-      "sha256": "79292a873dc6c522f87374825cb7f71ecd7d9fa1a66621665228549ebf1ce9e1"
+      "size": 4598,
+      "sha256": "c7b2074562349c1f04c58d7d49b8aa7a121d0659a32f81ff5c1357ea8e01fc11"
+    },
+    {
+      "path": "derive_symbols.py",
+      "size": 4868,
+      "sha256": "3f1969b1ece7a15cb4ac30908dfd4b077b190d35fffadf0afcf64e71ba0dd72e"
     },
     {
       "path": "rebuild.py",
-      "size": 5525,
-      "sha256": "16a250a85335f3fd5ca7ea677584a5cf7f891b830f67083c19d61c26de32878a"
+      "size": 6547,
+      "sha256": "1da0037ed2b533c06a3f760f65e958a1d923d74ede1efe6e7d0f474380532c69"
+    },
+    {
+      "path": "refresh_manifest.py",
+      "size": 1353,
+      "sha256": "95ea2c6fe655476c0f8366507e7e60df276f2fd5ceec21d061533db0459bcb89"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 16181,
+      "sha256": "ca4966748da446eef4521bea6b68bc11ced0174cbf96b6918bbcf0fa088ffe1c"
     },
     {
       "path": "source/asset_decisions.json",
-      "size": 50052,
-      "sha256": "dd9c8c9adc9d5ba6b15463ddc0fbbbfeb8cb0a009043c853ff917212fc008c32"
+      "size": 55013,
+      "sha256": "790057b0b46ff2689be8d206d2d0d08306f3bd78d56389839eda354aea0af525"
     },
     {
       "path": "source/document.json",
-      "size": 452006,
-      "sha256": "6ee6c69327bd2b9d3fc49f906f537f557ecc2e725c702676e913273952c34124"
+      "size": 458236,
+      "sha256": "72b01d8273983c3b881823416f85a78a8078462c11acef482d68ae9a603bac67"
     },
     {
       "path": "source/geometry.css",
@@ -221,9 +286,9 @@
       "sha256": "d388207f1858fbd6ba7e3e53f032b19b69f4f2af08994aa4a945d9f4910eb1b8"
     },
     {
-      "path": "source/original.pdf",
-      "size": 9178453,
-      "sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661"
+      "path": "source/symbol_recipe.json",
+      "size": 5376,
+      "sha256": "0d3a00b35a36951d0f3aec43a4a20e935a020e81e7fe31b87ee96ed55a3011b2"
     },
     {
       "path": "source/text_bindings.json",
@@ -232,48 +297,8 @@
     },
     {
       "path": "source/text_coverage_review.json",
-      "size": 1204,
-      "sha256": "deed6216dba6cf0c5c2c29fd329f3c7acd664b37864541f0f79f704d0477d722"
-    },
-    {
-      "path": "validation/1280-buttons.png",
-      "size": 68372,
-      "sha256": "c292fa5ed9d7c0781e4caf48ee3f5a6db536aa3f43e3f2991bd370d4f43fbd28"
-    },
-    {
-      "path": "validation/1280-front.png",
-      "size": 55693,
-      "sha256": "9bceaede024a43842a98aa306625ef540c6becb269396ca563f2ad3132d14ea2"
-    },
-    {
-      "path": "validation/1280-solar-four.png",
-      "size": 114837,
-      "sha256": "7d961adc5c1a0663d5c051ea98d471f554c7873e7483974e25654307dd761867"
-    },
-    {
-      "path": "validation/390-app-control.png",
-      "size": 15752,
-      "sha256": "0759d5144d313567d1ba1837a2175c661ccbad39ad2a5506e6a63d81c0dec902"
-    },
-    {
-      "path": "validation/390-front.png",
-      "size": 58740,
-      "sha256": "e46f7226b6c023567ee2ac7110df1e9cd65f328deaff46d930652f67f58b8b10"
-    },
-    {
-      "path": "validation/acceptance.json",
-      "size": 1574,
-      "sha256": "422c80389f1c09b9cefc20a3af16459232feb8a44fa8d8963fa55aaf25134d51"
-    },
-    {
-      "path": "validation/browser-qc.json",
-      "size": 1181,
-      "sha256": "560474137130bb32a38b56056a17452841a7f86e77b6b93115737bdb0bd024c7"
-    },
-    {
-      "path": "validation/replay-integrity.json",
-      "size": 732,
-      "sha256": "ceee501dd0ad128afacfe55a0f7a31ea4f9d0da3e22f3909d0544bb9a8f2dcda"
+      "size": 1203,
+      "sha256": "f87aa0f31dad8e712cd3923bf8e7d51915ff1e769103b29ae3b7defac99d7baf"
     },
     {
       "path": "web/ja/_static/source_geometry.css",
@@ -282,8 +307,8 @@
     },
     {
       "path": "web/ja/_static/web_manual.css",
-      "size": 123623,
-      "sha256": "4c01adf9222e7faa8fb5552490d8b8fa4ebba550b4ef2a1e7171a1b9a6538434"
+      "size": 124849,
+      "sha256": "c3604a2e5f22b04bc745bb99cf203b50e60222af70c0aeba3d968cc28adac9ce"
     },
     {
       "path": "web/ja/assets/10_Input_Power_LOAZbnxfqoHFwIxx2Myc532jnzb.png",
@@ -496,66 +521,6 @@
       "sha256": "192c13b469811a698256498c0c6ada2417424aba4d6351bd971a6cb6e12421c5"
     },
     {
-      "path": "web/ja/assets/h1-jp-battery_recycle.svg",
-      "size": 5303,
-      "sha256": "4ece7680add5525499da868786eec13e2b1b20dd831fca2f54bfb9840e608f8d"
-    },
-    {
-      "path": "web/ja/assets/h1-jp-do_not_dismantle.svg",
-      "size": 4358,
-      "sha256": "1e600dc9623481ec1950e4cee277d32620bdf1e82a99984ddfce91353ffb173b"
-    },
-    {
-      "path": "web/ja/assets/h1-jp-keep_away_from_children.svg",
-      "size": 3409,
-      "sha256": "e6bd4396d07232ba7668b5fe72425341b55c3d3918bbb71bf8711741a1f91efe"
-    },
-    {
-      "path": "web/ja/assets/h1-jp-keep_dry.svg",
-      "size": 5105,
-      "sha256": "fbd39d4686c3a26a73fa4c2dfec299d8055d9b9446edd973a397ce6d4e21a836"
-    },
-    {
-      "path": "web/ja/assets/h1-jp-mandatory.svg",
-      "size": 1292,
-      "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2"
-    },
-    {
-      "path": "web/ja/assets/h1-jp-no_open_flame.svg",
-      "size": 2148,
-      "sha256": "414e01f2e6b76ab3575eedc88cf2d8e3ebb8622f68fc62b4f1302397536bd0a8"
-    },
-    {
-      "path": "web/ja/assets/h1-jp-no_wet_hands.svg",
-      "size": 3972,
-      "sha256": "d14a9720367b40d5a498a03d92ad0417bbc70d64fd0cea99c8891e0eb9725450"
-    },
-    {
-      "path": "web/ja/assets/h1-jp-prohibited.svg",
-      "size": 1452,
-      "sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d"
-    },
-    {
-      "path": "web/ja/assets/h1-jp-read_manual.svg",
-      "size": 3075,
-      "sha256": "d77bdba4899e5d56d0502a10732bd3488d90aa88639ce336cab9ff42d35cfd30"
-    },
-    {
-      "path": "web/ja/assets/h1-jp-unplug.svg",
-      "size": 2569,
-      "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf"
-    },
-    {
-      "path": "web/ja/assets/h1-jp-warning_triangle.svg",
-      "size": 1363,
-      "sha256": "0c96a5da3d0b96d01ce96d0874341b93a06db419a4008eaceb1d8b44a4f1f42b"
-    },
-    {
-      "path": "web/ja/assets/h1-jp-weee.svg",
-      "size": 2560,
-      "sha256": "21fd7d31c0d22590a0f461da3821869eee28a23122edc994b471642a89ad3e92"
-    },
-    {
       "path": "web/ja/assets/inbox-cable.png",
       "size": 6024,
       "sha256": "6b9a7acb80d2a7bbb98c8310cef8ff9977a6a5b95c5975fe57090d7da2208fb7"
@@ -626,6 +591,66 @@
       "sha256": "526d1ed3ff1226c6348f8bd9842266d09b42888849c0213381fa933effbc9c03"
     },
     {
+      "path": "web/ja/assets/symbol-01.svg",
+      "size": 4481,
+      "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a"
+    },
+    {
+      "path": "web/ja/assets/symbol-02.svg",
+      "size": 4961,
+      "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584"
+    },
+    {
+      "path": "web/ja/assets/symbol-03.svg",
+      "size": 5630,
+      "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f"
+    },
+    {
+      "path": "web/ja/assets/symbol-04.svg",
+      "size": 6300,
+      "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899"
+    },
+    {
+      "path": "web/ja/assets/symbol-05.svg",
+      "size": 6538,
+      "sha256": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33"
+    },
+    {
+      "path": "web/ja/assets/symbol-06.svg",
+      "size": 2569,
+      "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf"
+    },
+    {
+      "path": "web/ja/assets/symbol-07.svg",
+      "size": 11954,
+      "sha256": "585a0c72abdb9fc1d69d31554d249730f1361dfc49a501423dd0204e0637a387"
+    },
+    {
+      "path": "web/ja/assets/symbol-08.svg",
+      "size": 13550,
+      "sha256": "4728b4a0ab80e8376ff756d9af98d92c1906d3461e44eb4905899b6212cc003c"
+    },
+    {
+      "path": "web/ja/assets/symbol-09.svg",
+      "size": 1292,
+      "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2"
+    },
+    {
+      "path": "web/ja/assets/symbol-10.svg",
+      "size": 1452,
+      "sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d"
+    },
+    {
+      "path": "web/ja/assets/symbol-11.svg",
+      "size": 6314,
+      "sha256": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5"
+    },
+    {
+      "path": "web/ja/assets/symbol-12.svg",
+      "size": 3136,
+      "sha256": "7a07f68dc10f6d748ef90fa56822330ce831eac6ef25954bca8f4ddfc0cfbe34"
+    },
+    {
       "path": "web/ja/assets/ups.png",
       "size": 56516,
       "sha256": "566fa7fa87f451f2d01f0794280f2ae24dc303031758b24ca975fbf1edd141b8"
@@ -642,13 +667,13 @@
     },
     {
       "path": "web/ja/manual.ir.json",
-      "size": 568672,
-      "sha256": "00458793ab72449d72f536c759dc1901ce9c9cee8e19f3e4332ebf02e93177f9"
+      "size": 590390,
+      "sha256": "9f2ccf684644afe6dafa36777fe0491358ef04a4f4ef3ecce5c14db30513b5ad"
     },
     {
       "path": "web/ja/manual_je2000e_jp_ja.md",
-      "size": 104791,
-      "sha256": "8259e836d5d420b78a87751a1ee1cd63fc8da704de32cc51bea9f7ab1642acb4"
+      "size": 104374,
+      "sha256": "0704d73a07e0c89f9702d107060265108d7febc259e45f9fa03a74a4b1400e9c"
     }
   ],
   "shared_component_exceptions": [
@@ -659,5 +684,564 @@
       "text_sha256": "92d5a307eeb262ca318521434eb5652bc233b489fd5ef06096b636759d7c5149",
       "reason": "Source energy-saving threshold comparison has three columns and two rows; existing LCD/reference variants do not represent power thresholds. Use shared manual-table styling without package CSS."
     }
-  ]
+  ],
+  "component_map": [
+    {
+      "printed": "chapter titles (安全上のご注意 … Jackeryアプリ ユーザーマニュアル)",
+      "shared": "chapter h2 headings (shared theme)"
+    },
+    {
+      "printed": "警告/注意 signal definitions",
+      "shared": "HB-TABLE-SYMBOL-SIGNAL"
+    },
+    {
+      "printed": "絵表示の説明 pictograms (p3)",
+      "shared": "HB-TABLE-SYMBOL-ICON (source-bound symbol admission)"
+    },
+    {
+      "printed": "Li-ion recycling and WEEE notices (p4)",
+      "shared": "HB-TABLE-SYMBOL-ICON (source-bound symbol admission)"
+    },
+    {
+      "printed": "警告 / 注意 rows with pictograms, App 備考 notes",
+      "shared": "HB-CALLOUT-STRIP"
+    },
+    {
+      "printed": "使用上のご注意 / 免責事項 bullet groups",
+      "shared": "native headings and lists"
+    },
+    {
+      "printed": "同梱品",
+      "shared": "HB-SPECIAL-INBOX"
+    },
+    {
+      "printed": "各部の名称 front / left / right drawings",
+      "shared": "HB-SPECIAL-REFERENCE-FIGURE with native positioned labels"
+    },
+    {
+      "printed": "液晶画面 map and 27-row glossary",
+      "shared": "HB-SPECIAL-REFERENCE-FIGURE + HB-TABLE-LCD-ICON"
+    },
+    {
+      "printed": "power / AC / DC / LED operation panels",
+      "shared": "HB-SPECIAL-OPERATION"
+    },
+    {
+      "printed": "screen modes",
+      "shared": "HB-TABLE-LCD-MODE"
+    },
+    {
+      "printed": "button combinations",
+      "shared": "HB-TABLE-KEY-COMBINATIONS"
+    },
+    {
+      "printed": "output auto-resume",
+      "shared": "HB-TABLE-AUTO-RESUME"
+    },
+    {
+      "printed": "省エネモード threshold table",
+      "shared": "declared plain table (shared_component_exceptions)"
+    },
+    {
+      "printed": "UPS / expansion / connection / charging illustrations",
+      "shared": "HB-SPECIAL-REFERENCE-FIGURE (complete source panels)"
+    },
+    {
+      "printed": "トラブルシューティング fault codes",
+      "shared": "HB-TABLE-TROUBLESHOOTING"
+    },
+    {
+      "printed": "主な仕様 four groups",
+      "shared": "HB-TABLE-SPEC/vertical ×4"
+    },
+    {
+      "printed": "保証について",
+      "shared": "HB-WARRANTY-LEAD / HB-WARRANTY-SECTION / HB-WARRANTY-YEARS"
+    },
+    {
+      "printed": "App add-device + button",
+      "shared": "HB-SPECIAL-APP"
+    },
+    {
+      "printed": "App screenshots (complete phone frames), back-cover App download",
+      "shared": "HB-SPECIAL-REFERENCE-FIGURE"
+    }
+  ],
+  "source_concerns": [
+    {
+      "page": 4,
+      "text": "行って下さい",
+      "issue": "下さい here vs ください elsewhere",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 5,
+      "text": "次のようなような機器",
+      "issue": "duplicated ような",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 6,
+      "text": "AC出力ポート4つ…2つ同時にご利用頂く場合、合計して2400W以内",
+      "issue": "four AC ports but the limit is phrased for two used simultaneously",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 6,
+      "text": "各面から 5cm 以上 / 20cm",
+      "issue": "general ventilation clearance 5cm vs 20cm in the heat-dissipation figure, UPS and F6 remedy",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 7,
+      "text": "消費電力の大きいな設備 … 推薦されません … 責任を取りません",
+      "issue": "ungrammatical 大きいな and unidiomatic 推薦されません / 責任を取りません in the disclaimer",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 12,
+      "text": "主電源ボタン/オフ",
+      "issue": "heading omits オン (on/off)",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 15,
+      "text": "再度短く押すとでライト",
+      "issue": "extra particle で",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 23,
+      "text": "出カポート",
+      "issue": "spec group heading prints katakana カ instead of 力 (出力)",
+      "disposition": "preserved verbatim (the earlier candidate normalized it to 出力ポート; reverted); source owner review"
+    },
+    {
+      "page": 23,
+      "text": "ｼｶﾞｰｿｹｯﾄ",
+      "issue": "half-width katakana in the specification table; elsewhere シガーソケット",
+      "disposition": "preserved verbatim; source owner review"
+    }
+  ],
+  "symbol_asset_admission": {
+    "schema_version": "auto-manual-symbol-asset-admission/v1",
+    "locales": {
+      "ja": [
+        {
+          "asset_ref": "assets/symbol-01.svg",
+          "asset_sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+          "physical_page": 3,
+          "drawing_indices": [
+            56,
+            57,
+            58
+          ],
+          "glyph_bbox": [
+            38,
+            303,
+            62,
+            324
+          ],
+          "caption_bbox": [
+            77,
+            293,
+            175,
+            333
+          ],
+          "row_bbox": [
+            37.0,
+            292.0,
+            176.0,
+            334.0
+          ],
+          "caption_text": "潜在的な危険やリスクについて注意喚起するために、必ずお読みください。",
+          "caption_sha256": "b7ada9a53183dec859f782967e7bd30a5adf880f39d4c79e1888889fdce71334",
+          "shared_symbol_key": "warning/outline-triangle-tinted",
+          "max_mean_channel_error": 0.006065
+        },
+        {
+          "asset_ref": "assets/symbol-02.svg",
+          "asset_sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
+          "physical_page": 3,
+          "drawing_indices": [
+            62,
+            63,
+            64
+          ],
+          "glyph_bbox": [
+            38,
+            343,
+            61,
+            361
+          ],
+          "caption_bbox": [
+            77,
+            338,
+            175,
+            368
+          ],
+          "row_bbox": [
+            37.0,
+            337.0,
+            176.0,
+            369.0
+          ],
+          "caption_text": "操作の前に取扱説明書をお読みください。",
+          "caption_sha256": "8817092c98c6a78e17dd8045810161ed13e010d76e9c7e880c3680b2b55e8e07",
+          "shared_symbol_key": "read-manual/book-information",
+          "max_mean_channel_error": 0.012355
+        },
+        {
+          "asset_ref": "assets/symbol-03.svg",
+          "asset_sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f",
+          "physical_page": 3,
+          "drawing_indices": [
+            65,
+            66,
+            67,
+            68,
+            69,
+            70
+          ],
+          "glyph_bbox": [
+            39,
+            380,
+            61,
+            401
+          ],
+          "caption_bbox": [
+            77,
+            376,
+            175,
+            406
+          ],
+          "row_bbox": [
+            38.0,
+            375.0,
+            176.0,
+            407.0
+          ],
+          "caption_text": "本製品を火気の近くに置かないでください。",
+          "caption_sha256": "c7dac1fd876df8fe29b208616cd656590096e3d1ce8cc0a17134da3bb4b80f22",
+          "shared_symbol_key": "no-open-flame/fire-match-prohibited",
+          "max_mean_channel_error": 0.021045,
+          "canonical_group": "no-open-flame",
+          "canonical_decision": "SCG-20261103"
+        },
+        {
+          "asset_ref": "assets/symbol-04.svg",
+          "asset_sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899",
+          "physical_page": 3,
+          "drawing_indices": [
+            71,
+            72,
+            73,
+            74
+          ],
+          "glyph_bbox": [
+            39,
+            420,
+            61,
+            442
+          ],
+          "caption_bbox": [
+            77,
+            417,
+            175,
+            447
+          ],
+          "row_bbox": [
+            38.0,
+            416.0,
+            176.0,
+            448.0
+          ],
+          "caption_text": "小さなお子様の手の届かない場所に保管してください。",
+          "caption_sha256": "3d56a2b85f81159f380df2e26556c788ca5a3bfbde5e48eb340bbfe375ad5b68",
+          "shared_symbol_key": "keep-away-from-children/adult-child-prohibited",
+          "max_mean_channel_error": 0.016352
+        },
+        {
+          "asset_ref": "assets/symbol-05.svg",
+          "asset_sha256": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33",
+          "physical_page": 3,
+          "drawing_indices": [
+            59,
+            60,
+            61
+          ],
+          "glyph_bbox": [
+            39,
+            462,
+            60,
+            482
+          ],
+          "caption_bbox": [
+            77,
+            458,
+            175,
+            488
+          ],
+          "row_bbox": [
+            38.0,
+            457.0,
+            176.0,
+            489.0
+          ],
+          "caption_text": "製品を分解、改造を禁止する記号",
+          "caption_sha256": "3ebfab7ce84f3348a7f5abb8a8a516617a752019d5c8c249e3dbf427525615bb",
+          "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited",
+          "max_mean_channel_error": 0.019356
+        },
+        {
+          "asset_ref": "assets/symbol-06.svg",
+          "asset_sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf",
+          "physical_page": 3,
+          "drawing_indices": [
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "glyph_bbox": [
+            195,
+            304,
+            214,
+            323
+          ],
+          "caption_bbox": [
+            227,
+            299,
+            332,
+            329
+          ],
+          "row_bbox": [
+            194.0,
+            298.0,
+            333.0,
+            330.0
+          ],
+          "caption_text": "コンセントから電源プラグを抜く記号",
+          "caption_sha256": "00a9a4a0a0d2da7f188a8c52db732aa7cec1980bd671b4d3fc927423d264dcb2",
+          "shared_symbol_key": "unplug/h1-jp-native",
+          "max_mean_channel_error": 0.038034,
+          "canonical_group": "unplug",
+          "canonical_decision": "SCG-20261103"
+        },
+        {
+          "asset_ref": "assets/symbol-07.svg",
+          "asset_sha256": "585a0c72abdb9fc1d69d31554d249730f1361dfc49a501423dd0204e0637a387",
+          "physical_page": 3,
+          "drawing_indices": [
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "glyph_bbox": [
+            195,
+            341,
+            214,
+            361
+          ],
+          "caption_bbox": [
+            227,
+            337,
+            332,
+            367
+          ],
+          "row_bbox": [
+            194.0,
+            336.0,
+            333.0,
+            368.0
+          ],
+          "caption_text": "製品に濡れた手で触れることを禁止する記号",
+          "caption_sha256": "6f82aefb532e83e0cfa53757371f3dbdc22f43d5dd05ae6c5d892f8af672a95b",
+          "shared_symbol_key": "native/je1000d-jp-00c43a89-03",
+          "max_mean_channel_error": 0.051722,
+          "canonical_group": "no-wet-hands",
+          "canonical_decision": "SCG-20261103"
+        },
+        {
+          "asset_ref": "assets/symbol-08.svg",
+          "asset_sha256": "4728b4a0ab80e8376ff756d9af98d92c1906d3461e44eb4905899b6212cc003c",
+          "physical_page": 3,
+          "drawing_indices": [
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44
+          ],
+          "glyph_bbox": [
+            195,
+            383,
+            214,
+            402
+          ],
+          "caption_bbox": [
+            227,
+            381,
+            332,
+            401
+          ],
+          "row_bbox": [
+            194.0,
+            380.0,
+            333.0,
+            403.0
+          ],
+          "caption_text": "製品を濡らすことを禁止する記号",
+          "caption_sha256": "885e00e315a34c5bef39ba2af5231fe74bd8307802e02dd9bcf24c86e9403b38",
+          "shared_symbol_key": "native/je1000d-jp-00c43a89-05",
+          "max_mean_channel_error": 0.053698,
+          "canonical_group": "keep-dry",
+          "canonical_decision": "SCG-20261103"
+        },
+        {
+          "asset_ref": "assets/symbol-09.svg",
+          "asset_sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2",
+          "physical_page": 3,
+          "drawing_indices": [
+            75
+          ],
+          "glyph_bbox": [
+            194,
+            422,
+            216,
+            443
+          ],
+          "caption_bbox": [
+            227,
+            421,
+            290,
+            441
+          ],
+          "row_bbox": [
+            193.0,
+            420.0,
+            291.0,
+            444.0
+          ],
+          "caption_text": "行為を指示する記号",
+          "caption_sha256": "a67302a29df8502e3c79ad7346ff15f3dafeb09ab27b020a71ea75d4320593b8",
+          "shared_symbol_key": "mandatory/h1-jp-native",
+          "max_mean_channel_error": 0.010227
+        },
+        {
+          "asset_ref": "assets/symbol-10.svg",
+          "asset_sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d",
+          "physical_page": 3,
+          "drawing_indices": [
+            76,
+            77,
+            78
+          ],
+          "glyph_bbox": [
+            194,
+            462,
+            216,
+            484
+          ],
+          "caption_bbox": [
+            227,
+            463,
+            290,
+            483
+          ],
+          "row_bbox": [
+            193.0,
+            461.0,
+            291.0,
+            485.0
+          ],
+          "caption_text": "行為を禁止する記号",
+          "caption_sha256": "a0160521d9370bbf09cc6b268a981a527271305f3a55c1245b1607171044df1d",
+          "shared_symbol_key": "prohibited/h1-jp-native",
+          "max_mean_channel_error": 0.005097
+        },
+        {
+          "asset_ref": "assets/symbol-11.svg",
+          "asset_sha256": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5",
+          "physical_page": 4,
+          "drawing_indices": [
+            58,
+            59,
+            60
+          ],
+          "glyph_bbox": [
+            37,
+            82,
+            56,
+            100
+          ],
+          "caption_bbox": [
+            68,
+            60,
+            180,
+            137
+          ],
+          "row_bbox": [
+            36.0,
+            59.0,
+            181.0,
+            138.0
+          ],
+          "caption_text": "本機はリサイクル可能な充電池を内蔵しています。この商品を廃棄する場合は、当社のカスタマーサポートにご連絡ください。充電池の取りはずしはお客様自身では行わないでください。",
+          "caption_sha256": "5d4f3fd53217851a1dc108c00fdf4fad6a32309baf3fb3b3354ff35ce4df7c9e",
+          "shared_symbol_key": "native/je3000c-kr-78316033-06",
+          "max_mean_channel_error": 0.275595,
+          "canonical_group": "li-ion-32",
+          "canonical_decision": "SCG-20261103"
+        },
+        {
+          "asset_ref": "assets/symbol-12.svg",
+          "asset_sha256": "7a07f68dc10f6d748ef90fa56822330ce831eac6ef25954bca8f4ddfc0cfbe34",
+          "physical_page": 4,
+          "drawing_indices": [
+            64,
+            65,
+            66
+          ],
+          "glyph_bbox": [
+            196,
+            76,
+            213,
+            100
+          ],
+          "caption_bbox": [
+            225,
+            29,
+            338,
+            147
+          ],
+          "row_bbox": [
+            195.0,
+            28.0,
+            339.0,
+            148.0
+          ],
+          "caption_text": "このシンボルは、本製品を一般家庭ごみとして廃棄せず、リサイクルのために指定の回収施設に持ち込む必要があることを示しています。適切な廃棄およびリサイクルは、環境保護に役立ちます。本製品の廃棄やリサイクルについての詳細は、お住まいの自治体、廃棄物処理業者、または販売店にお問い合わせください。",
+          "caption_sha256": "1450c361c8f2eea35df54f3acba52f27848fb570b4b69d5dc59a4cd96f80603c",
+          "shared_symbol_key": "native/je3000c-kr-78316033-07",
+          "max_mean_channel_error": 0.013831
+        }
+      ]
+    }
+  }
 }
