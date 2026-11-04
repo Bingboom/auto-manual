@@ -1,55 +1,37 @@
-# JE-2000E 日本語 Web candidate
+# JE-2000E / JP / ja — Git-only Web manual candidate
 
-This is a Git-only conversion candidate for operator review. It does not enroll a phase2 target, create queue records, merge engineering changes, or publish to Read the Docs.
+**Status: `candidate-pending-operator-review`.** Not publication-eligible: there is no `source/approval.json`. Approval is written only after the operator reviews the 1280/390 renders beside the reference edition and says 「上线提交发布」 in the owning session. No phase2 target, queue record, live Base write or Read the Docs publication is involved.
 
 ## Source authority
 
-- Product: Jackery ポータブル電源 2000 Plus; cover model **JE-2000E**; JP / ja.
-- Supplied filename: `Jackery ポータブル電源 2000 Plus取扱説明書V2.0-2026-06-29.pdf`.
-- Original PDF: `source/original.pdf`, 28 pages, SHA-256 `6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661`.
-- Printed cover: `V2`. Filename version: `V2.0-2026-06-29`. The technical snapshot version is independent of these.
-- Printed body p01–25 maps to PDF physical p3–27; p28's App reminder is retained. The printed cover artwork and paper TOC are omitted from Web flow; opening copy and identity remain native text.
+- 发布文档管理 (日规) record `reczz28SfbsHbvLy`: 客户型号 JE-2000E, 子物料编码 16-0102-000389, 项目号 HTE152, sku 21-0001-000403 (`source_manifest.json:source_record`).
+- Authority: the record's 单语言说明书 「【Jackery ポータブル電源 2000 Plus】说明书-JP.pdf」, stored byte-exact as `JE-2000E-JP-V2.pdf`, 28 pages, SHA-256 `f1829cd35ffe05079fe4b04f6c62fef3ca6adfd64270c47d64f7b2203af9780a`. Cover: Jackery ポータブル電源 2000 Plus, JE-2000E, V2, 国内専用.
+- Operator decision 2026-11-03 (「按建议做」): continue on this 2026-10-19 candidate and rebind it to the table PDF. The package path keeps its intake identity (`6a70e879`, the record's 说明书文件 print master 「16-0102-000389 Jackery ポータブル電源 2000PlusV2 电子版取扱説明書.pdf」, 9178453 bytes, recorded only). The two files have identical text layers and drawing lists and render pixel-identically on all 28 pages (poppler 200 dpi, MuPDF 3×), so every coordinate, crop and binding carries over unchanged.
+- Web body: physical pages 3–28. The printed cover (p1) and paper TOC (p2) stay in the PDF; the back-cover App reminder (p28) closes the App chapter. Japanese copy is kept as printed; `source_manifest.json:source_concerns` lists suspected source errors for the source owner, including the 出カポート specification heading that the earlier candidate had normalized (reverted).
 
 ## Reference and component map
 
-Reference: `manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed`. Reuse its shared Web structure, never its product specifications or operating instructions.
+Structure follows JE-1000F JP; all model facts come from this PDF. No JE-2000E English or Japanese Web edition exists (EU Web covers nl/pl/pt), so the review reference is the published JE-1500D JP V2 Web edition of the same layout generation. Every printed block maps to a shared component (`source_manifest.json:component_map`); the 省エネモード threshold table is the one declared plain table (`shared_component_exceptions`).
 
-| Printed content | Shared presentation |
-| --- | --- |
-| Safety signal definitions | HB-TABLE-SYMBOL-SIGNAL |
-| Pictograms and recycling | HB-TABLE-SYMBOL-ICON |
-| Warning / caution / App notes | HB-CALLOUT-STRIP |
-| Inbox | HB-SPECIAL-INBOX |
-| Front / left / right diagrams | HB-SPECIAL-REFERENCE-FIGURE with native positioned labels |
-| LCD glossary | HB-TABLE-LCD-ICON, 27 rows; source number 23 spans two temperature rows |
-| Power / AC / DC / LED operation | HB-SPECIAL-OPERATION; native footer instructions |
-| Screen modes | HB-TABLE-LCD-MODE |
-| Button combinations | HB-TABLE-KEY-COMBINATIONS, including native AC1 artwork |
-| Output auto-resume | HB-TABLE-AUTO-RESUME |
-| UPS / expansion / charging / App illustrations | HB-SPECIAL-REFERENCE-FIGURE |
-| Fault codes | HB-TABLE-TROUBLESHOOTING |
-| Specifications | Four HB-TABLE-SPEC groups |
-| Warranty | HB-WARRANTY-LEAD / SECTION / YEARS |
-| App add button | HB-SPECIAL-APP |
-| Energy-saving thresholds | Declared plain semantic table; no registered power-threshold matrix fits |
+## Artwork and symbols
 
-The source's maximum five battery packs, independent AC1/AC2 controls, 2400W total output, 2048Wh capacity, 800W solar limit and Japanese 100V output come exclusively from this PDF.
+`source/document.json` holds the reviewed source flow; `native_pages.json`, `text_bindings.json`, `lcd_rows.json`, `text_coverage_review.json` and `asset_decisions.json` retain source coordinates and decisions. Shared LCD icons and matching buttons are byte-identical copies; illustration crops are complete 3× source panels with phone frames kept. `source/geometry.css` is label geometry/typography only.
 
-## Frozen inputs and artwork
+Safety symbols follow the operator's 2026-11-03 standard-icon decision (one canonical shared icon per group, no new variants). `derive_symbols.py` binds every printed symbol to its group canonical from the shared catalog's `canonical_groups` (decision SCG-20261103, shared PR #1659; `source/symbol_recipe.json`). Seven pass the fixed 2% admission. Five (no open flame 2.1%, unplug 3.8%, no wet hands 5.2%, no wetting 5.4%, Li-ion 32 27.6%) are released to the canonical on their source-verified caption, which the operator-confirmed group lists; the admission report names the group and decision. No variant is added to the shared catalog.
 
-`source/document.json` holds the reviewed source flow. `native_pages.json`, `text_bindings.json`, `lcd_rows.json`, `text_coverage_review.json` and `asset_decisions.json` retain source coordinates and decisions. Shared symbols, LCD icons and matching buttons are byte-identical copies. AC1 is extracted from its native source button because generic AC has different silk.
+## Rebuild
 
-Source-specific illustration crops use 3× direct PDF rendering: SVG export from this Illustrator PDF loses nested clipping and reveals unrelated hidden geometry. This affects illustration regions only; prose, labels, warnings and tables remain native HTML. The untouched original vector PDF is archived. Complete phone frames are retained. Independent empty caption frames are removed with fully-covered graphics removal and recreated by the shared caption carrier. `source/geometry.css` contains label geometry/typography only; the shared theme owns all paint.
+From the repository root (`requirements.lock`), once every recipe symbol is in the catalog:
 
-## Rebuild and validation
-
-Run from the repository root; output must be a new directory:
-
-```bash
-python3 manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native/rebuild.py --output tmp/je2000e-jp-replay
-python3 -m sphinx -W -b html tmp/je2000e-jp-replay tmp/je2000e-jp-html
+```sh
+PKG=manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native
+python "$PKG/derive_symbols.py"      # symbol bindings + admission rows
+python "$PKG/refresh_manifest.py"    # input inventory
+python "$PKG/rebuild.py" --output tmp/je2000e-jp
+python -m sphinx -n -W --keep-going -b html tmp/je2000e-jp tmp/je2000e-jp-html
+python -m unittest tests.test_je2000e_jp_web
 ```
 
-The adapter verifies frozen source/assets and pinned shared libraries before replaying with the existing Manual IR and Web consumers. It makes no network or online-table calls. `web/ja/` is the stored MyST/IR/CSS/assets candidate, and `validation/acceptance.json` records local verification.
+`rebuild.py` checks every input hash and the pinned shared files, replays the source flow through manual-ir/v2 and the shared Web/MyST pipeline, and enforces the prepared-document shared-style gate and symbol admission. Copy a fresh render to `web/ja` and refresh the manifest after any source change.
 
-The existing JP family check uses `JE-1000F` and fixture data as a repository regression gate only. The native JE-2000E body is validated separately through source parity, shared-style admission, strict Sphinx, cold replay, source/asset tamper rejection, and 1280px/390px browser checks. This is local candidate evidence; production and deployment acceptance remain pending operator review.
+Not touched: live Base, queue, source tables, HTML_link, asset registry, workflows, dependencies and the shared symbol catalog.

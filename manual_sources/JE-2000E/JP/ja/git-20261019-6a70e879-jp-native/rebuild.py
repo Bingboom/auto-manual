@@ -27,13 +27,14 @@ from tools.markdown_bundle import _write_myst_sphinx_scaffold
 from tools.web.frozen_ai_web import replay_package
 from tools.web.prepared_style_audit import require_prepared_document_styles
 from tools.web.presentation import load_web_manual_contract
+from tools.web.symbol_asset_admission import require_symbol_asset_admission
 
 
 def assemble(output: Path) -> dict:
     manifest = json.loads((PACKAGE / 'source_manifest.json').read_text())
     for entry in manifest['inputs']:
         # Frozen inputs are verified before any output is created.
-        if (entry['path'].startswith('web/') and not entry['path'].startswith('web/ja/assets/')) or entry['path'].startswith('validation/'):
+        if entry['path'].startswith('web/') and not entry['path'].startswith('web/ja/assets/'):
             continue
         path = PACKAGE / entry['path']
         if path.stat().st_size != entry['size'] or file_sha256(path) != entry['sha256']:
@@ -42,7 +43,7 @@ def assemble(output: Path) -> dict:
         if file_sha256(REPO / entry['path']) != entry['sha256']:
             raise ValueError('shared input drift: ' + entry['path'])
     source = json.loads((PACKAGE / 'source/document.json').read_text())
-    if file_sha256(PACKAGE / 'source/original.pdf') != source['source_sha256']:
+    if file_sha256(PACKAGE / manifest['original_source']['filename']) != source['source_sha256']:
         raise ValueError('original PDF identity changed')
     if output.exists():
         raise ValueError('output must be a new directory')
@@ -94,7 +95,9 @@ def assemble(output: Path) -> dict:
     style = require_prepared_document_styles(ir.to_dict(), stylesheet=(PACKAGE / 'source/geometry.css').read_text(), exceptions=manifest.get('shared_component_exceptions', []))
     write_manual_ir(ir, output / 'manual.ir.json')
     replay_package(output)
-    return {'components': metadata['component_inventory'], 'assets': len(assets), 'style_admission': style}
+    symbols = require_symbol_asset_admission(output, PACKAGE, manifest, 'ja')
+    return {'components': metadata['component_inventory'], 'assets': len(assets), 'style_admission': style,
+            'symbol_admission': symbols}
 
 
 if __name__ == '__main__':

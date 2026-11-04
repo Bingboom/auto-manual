@@ -1658,7 +1658,7 @@
       "known_drift": {}
     },
     "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native": {
-      "approval": "User request 2026-10-19: Git-only JP Web candidate, JE-1000F JP structure",
+      "approval": "User request 2026-10-19: Git-only JP Web candidate, JE-1000F JP structure; operator 「按建议做」 2026-11-03: continue this candidate rebound to the 发布文档管理 record reczz28SfbsHbvLy single-language PDF (sha f1829cd3, pixel- and text-identical to the original 6a70e879 print master); still a candidate, release approval pending the operator's 「上线提交发布」",
       "registered": "2026-10-19",
       "known_drift": {}
     },
