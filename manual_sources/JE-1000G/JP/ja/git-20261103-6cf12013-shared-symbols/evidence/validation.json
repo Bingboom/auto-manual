@@ -1,0 +1,44 @@
+{
+  "schema_version": "je1000g-jp-shared-symbols-candidate-validation/v1",
+  "source_commit": "uncommitted working tree on feat/web-jp-ja-shared-symbols-1000g-1000h-1500b (base main abc0e154, #1659; coordinator commits)",
+  "date": "2026-11-04",
+  "environment": "system Python 3.13, Pandoc 3.9.0.2, ruff 0.16.9, Playwright 1.63 Chromium (node)",
+  "checks": [
+    {
+      "command": "ruff check manual_sources/JE-1000G/JP/ja/git-20261103-6cf12013-shared-symbols/*.py tests/test_je1000g_jp_shared_symbols_web.py",
+      "result": "pass",
+      "log": "ruff.log"
+    },
+    {
+      "command": "python manual_sources/JE-1000G/JP/ja/git-20261103-6cf12013-shared-symbols/rebuild.py --output <scratchpad>/g1000ss/out-2",
+      "result": "pass (13 chapters; HB-TABLE-SYMBOL-ICON 10 rows: 6 within the fixed 2%, 4 released to their confirmed canonical under SCG-20261103)"
+    },
+    {
+      "command": "python -m sphinx -n -W --keep-going -b html manual_sources/JE-1000G/JP/ja/git-20261103-6cf12013-shared-symbols/web/ja <scratchpad>/g1000ss/html-2",
+      "result": "pass",
+      "log": "strict-sphinx.log"
+    },
+    {
+      "command": "python -m unittest tests.test_je1000g_jp_shared_symbols_web tests.test_je1000g_jp_web tests.test_prepared_document_shared_styles tests.test_symbol_asset_admission tests.test_shared_symbol_canonical",
+      "result": "pass (66 tests; the released version's test still passes unchanged)",
+      "log": "target-tests.log"
+    },
+    {
+      "command": "browser 1280 / 390 full page (images forced eager, page scrolled, networkidle; stitched 6000 px clips)",
+      "result": "72 images, 0 broken, document scrollWidth == viewport at both widths",
+      "files": [
+        "browser-1280.png",
+        "browser-390.png",
+        "browser-1280.json",
+        "browser-390.json"
+      ]
+    }
+  ],
+  "rebuild_gates": [
+    "input SHA-256 inventory",
+    "prepared-document shared-style admission with two declared plain tables",
+    "symbol asset admission: 10 rows, each bound to its operator-confirmed canonical_groups canonical; no glyph waiver",
+    "candidate: no approval.json; IR publication_eligible false"
+  ],
+  "not_validated": "full python -m unittest, maintainability guardrails, frozen_package_registry, seal_frozen_web_evidence, RTD deployment (coordinator / after operator re-approval)"
+}
