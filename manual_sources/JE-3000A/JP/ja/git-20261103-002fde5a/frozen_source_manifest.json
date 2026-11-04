@@ -76,7 +76,7 @@
   ],
   "live_bitable_dependency": false,
   "phase2_enrolled": false,
-  "publication_status": "candidate-pending-operator-review",
+  "publication_status": "operator-authorized-git-only-release",
   "publication_eligible": false,
   "build_boundary": "JE-3000A JP is not a phase2 target. build_content.py binds the transcription to shared ComponentSpecs; rebuild.py replays them through manual-ir/v2 and the shared Web/MyST pipeline with the prepared-document shared-style gate and the standard symbol asset admission (6/6 rows within the fixed 2% tolerance). No live Base, queue, source table, HTML_link or asset registry is read or written.",
   "repo_inputs": [],
@@ -317,8 +317,8 @@
     },
     {
       "path": "README.md",
-      "size": 3471,
-      "sha256": "2f1d9431365ad2f1b6404865e2b23c5b9891c447833e5c39557861e759d6ca06"
+      "size": 3840,
+      "sha256": "0f43341a98f02089afda91c494f0c5083fb4e6dba8497643b115331364ec2144"
     },
     {
       "path": "assets/ac-charge.png",
@@ -561,6 +561,11 @@
       "sha256": "8316d5c2e04f6318c367312b96eb682eb8c1d2430c4c9247365030fcf61b93b2"
     },
     {
+      "path": "source/approval.json",
+      "size": 8790,
+      "sha256": "fb6e0eea63d38234e365f3ac77a93eb7725fd49d5d6f67b25142a3b300edc42b"
+    },
+    {
       "path": "source/asset_decisions.json",
       "size": 31907,
       "sha256": "dc0cce244ff3690aba4849bf74411bcc316e2ce79badb49dfde0307a6f6c6c50"
@@ -597,8 +602,8 @@
     },
     {
       "path": "source_manifest.json",
-      "size": 31572,
-      "sha256": "b299a458b22f8b6f8b59bb1af58a94ef748f9fbe6b05154402278944c007bcf8"
+      "size": 31729,
+      "sha256": "c062c041e5fe6a6e2e15a50f379ed374b1e8f595d67a77566d599374a44757e9"
     },
     {
       "path": "web/ja/_static/source_geometry.css",
@@ -792,8 +797,8 @@
     },
     {
       "path": "web/ja/manual.ir.json",
-      "size": 346179,
-      "sha256": "f0c7edeeef62d7991bd84d1a11493ad143fae3df2c89142d272fd929742c56a0"
+      "size": 356079,
+      "sha256": "60fea8a809344078c06ab13934856d2ba6b50445f29675d361114f4661873334"
     },
     {
       "path": "web/ja/manual_je3000a_jp_ja.md",

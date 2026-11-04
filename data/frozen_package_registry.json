@@ -1698,7 +1698,7 @@
       "known_drift": {}
     },
     "manual_sources/JE-3000A/JP/ja/git-20261103-002fde5a": {
-      "approval": "Operator 2026-11-03 (via coordinator, 「继续 转日语说明书」, 发布文档管理 日规视图): Git-only JE-3000A JP/ja single-language Web candidate, source copy verbatim; symbols bound through the shared admission after #1659; candidate only — no release approval yet",
+      "approval": "Operator 「上线提交发布：JE-3000A；授权合入 #1655、#1662 及其 Hello-Docs 发布 PR」 2026-11-04 in the engineering session after review of the PR #1662 1280/390 renders beside the shared reference edition; requested by 「继续 转日语说明书」 (发布文档管理 日规视图, via coordinator): Git-only JE-3000A JP/ja single-language Web release, source copy verbatim (see source/approval.json)",
       "registered": "2026-11-03",
       "known_drift": {}
     },

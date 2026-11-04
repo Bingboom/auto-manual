@@ -1,8 +1,8 @@
-# JE-3000A / JP / ja — Git-only Web manual candidate
+# JE-3000A / JP / ja — Git-only Web manual
 
 Jackery ポータブル電源 3000 Pro (JE-3000A, project HTE097), Japanese single-language manual.
 
-**Status: `candidate-pending-operator-review`.** No `source/approval.json`; the IR is not publication-eligible. Release follows only after the operator approves the renders and `source_concerns`.
+**Status: `operator-authorized-git-only-release`.** The operator reviewed the 1280/390 renders beside the shared reference edition (manual_sources/JE-2000A/US/en/git-20261027-a8ec2be7) in PR #1662 and instructed 「上线提交发布：JE-3000A」 on 2026-11-04 in this package's engineering session. `source/approval.json` binds every reviewed `source/`, `assets/` and script input; the IR is publication-eligible. Source copy goes live as printed; `source_manifest.json:source_concerns` go back to the source owner. Merge needs a separate operator grant (AGENTS.md §8.6).
 
 ## Source authority
 

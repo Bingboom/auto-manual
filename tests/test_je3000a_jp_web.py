@@ -63,9 +63,15 @@ class Je3000aJpWebTests(unittest.TestCase):
         self.assertEqual((feishu["record_id"], feishu["single_language_pdf"]["sha256"]), ("reczz28SfbsHdQ1I", SOURCE_SHA))
         self.assertIn("recorded only", feishu["print_master"]["role"])
         self.assertNotIn("token", json.dumps(feishu).lower())
-        self.assertEqual(manifest["publication_status"], "candidate-pending-operator-review")
-        self.assertFalse(read(PACKAGE / "web/ja/manual.ir.json")["metadata"]["publication_eligible"])
-        self.assertFalse((PACKAGE / "source/approval.json").exists())
+        eligible = read(PACKAGE / "web/ja/manual.ir.json")["metadata"]["publication_eligible"]
+        if manifest["publication_status"] == "operator-authorized-git-only-release":
+            self.assertTrue(eligible)
+            approval = read(PACKAGE / "source/approval.json")
+            self.assertEqual((approval["target"], approval["source_sha256"]), (manifest["target"], SOURCE_SHA))
+        else:
+            self.assertEqual(manifest["publication_status"], "candidate-pending-operator-review")
+            self.assertFalse(eligible)
+            self.assertFalse((PACKAGE / "source/approval.json").exists())
 
     def test_inputs_are_pinned(self):
         manifest = read(PACKAGE / "source_manifest.json")
