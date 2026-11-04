@@ -1,0 +1,48 @@
+{
+  "schema_version": "je2000c-jp-asset-recipe/v1",
+  "source_sha256": "88b78332342866ccd994cfa054a8a63a5fe30fa41131de5c7d53f16cd590690b",
+  "panel_scale": 3,
+  "panels": [
+    {"path": "assets/certifications.png", "physical_page": 2, "bbox": [118, 341.5, 195, 356], "role": "complete 認証 logo row (UN38.3, Qualcomm Quick Charge 3.0)"},
+    {"path": "assets/overview.png", "physical_page": 3, "bbox": [20, 45, 350, 320], "role": "complete front + rear leader-label panel"},
+    {"path": "assets/lcd-map.png", "physical_page": 3, "bbox": [22, 351, 350, 500], "role": "complete numbered LCD map"},
+    {"path": "assets/ac-charge.png", "physical_page": 7, "bbox": [170, 28, 350, 93], "role": "complete AC charging panel with captions"},
+    {"path": "assets/solar-3.png", "physical_page": 7, "bbox": [20, 180, 350, 291], "role": "complete three-panel connection with captions"},
+    {"path": "assets/solar-2-2.png", "physical_page": 7, "bbox": [20, 292, 350, 378], "role": "complete two-input 2+2 connection with captions"},
+    {"path": "assets/solar-3-3.png", "physical_page": 7, "bbox": [20, 385, 350, 498], "role": "complete two-input 3+3 connection with captions"},
+    {"path": "assets/solar-prohibited.png", "physical_page": 8, "bbox": [21, 60, 349, 306], "role": "complete framed panel of the three prohibited connections"},
+    {"path": "assets/solar-80.png", "physical_page": 8, "bbox": [21, 393, 349, 502], "role": "complete framed SolarSaga 80 parallel connection panel"},
+    {"path": "assets/car-charge.png", "physical_page": 9, "bbox": [21, 108, 349, 241], "role": "complete framed car charging panel with caption"},
+    {"path": "assets/inbox-unit.png", "physical_page": 13, "bbox": [46, 58, 100, 99], "role": "in-box card art 1"},
+    {"path": "assets/inbox-car-cable.png", "physical_page": 13, "bbox": [142, 58, 184, 99], "role": "in-box card art 2"},
+    {"path": "assets/inbox-ac-cable.png", "physical_page": 13, "bbox": [228, 58, 268, 99], "role": "in-box card art 3"},
+    {"path": "assets/inbox-pouch.png", "physical_page": 13, "bbox": [291, 58, 343, 99], "role": "in-box card art 4"},
+    {"path": "assets/inbox-manual.png", "physical_page": 13, "bbox": [63, 143, 98, 187], "role": "in-box card art 5"},
+    {"path": "assets/inbox-warranty.png", "physical_page": 13, "bbox": [142, 143, 187, 187], "role": "in-box card art 6"},
+    {"path": "assets/app-add.png", "physical_page": 14, "bbox": [80, 160, 270, 331], "role": "two complete phone frames with 2.1/2.2 captions"},
+    {"path": "assets/app-control.png", "physical_page": 14, "bbox": [60, 352, 335, 437], "role": "complete App button-map panel with leader labels"},
+    {"path": "assets/app-results.png", "physical_page": 15, "bbox": [33, 116, 333, 292], "role": "three complete phone frames with 2.3-2.5 captions"},
+    {"path": "assets/app-store.png", "physical_page": 16, "bbox": [27, 472.5, 179, 498], "role": "complete back-cover App Store / Google Play badge pair"},
+    {"path": "assets/app-qr.png", "physical_page": 16, "bbox": [304, 460.3, 342.5, 498.3], "role": "complete back-cover App QR"}
+  ],
+  "native_icons": [
+    {"path": "assets/lcd-battery-power.svg", "physical_page": 4, "glyph_bbox": [22.5, 192.56, 44.75, 214.81], "drawing_indices": [21]},
+    {"path": "assets/lcd-low-battery.svg", "physical_page": 4, "glyph_bbox": [22.5, 230.05, 44.31, 242.17], "drawing_indices": [22]},
+    {"path": "assets/lcd-energy-saving.svg", "physical_page": 4, "glyph_bbox": [21.33, 276.85, 43.73, 293.02], "drawing_indices": [30, 31, 32, 33]},
+    {"path": "assets/lcd-high-temperature.svg", "physical_page": 5, "glyph_bbox": [22.49, 130.36, 44.76, 150.95], "drawing_indices": [17, 18]},
+    {"path": "assets/lcd-ac-expansion.svg", "physical_page": 5, "glyph_bbox": [21.23, 193.96, 46.03, 211.01], "drawing_indices": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]},
+    {"path": "assets/recycle-arrows.svg", "physical_page": 2, "glyph_bbox": [56, 441.5, 85.5, 469], "drawing_indices": [1, 2, 3]}
+  ],
+  "reused": [
+    {"path": "assets/lcd-fault-code.png", "from": "manual_sources/JE-2000C/US/en/git-20261027-c357f54d/assets/lcd-fault-code.png", "sha256": "6e2aae1004349a65c9a9f1a755155a3e9364d8f7823c0058f60938fc56a48a1e"},
+    {"path": "assets/lcd-low-temperature.png", "from": "manual_sources/JE-2000C/US/en/git-20261027-c357f54d/assets/lcd-low-temperature.png", "sha256": "fbcd63d36e6f004f2d272c497fc625c7bf2b0844a591eb6ecf6826a3d9abdf0b"}
+  ],
+  "symbols": [
+    {"path": "assets/symbol-01.svg", "shared_symbol_key": "native/je1000d-jp-00c43a89-01", "shared_path": "native-v1/je1000d-jp-00c43a89-symbol-01.svg", "physical_page": 10, "glyph_bbox": [23.3, 206.1, 39.25, 222.8], "caption_id": "sym.unplug"},
+    {"path": "assets/symbol-02.svg", "shared_symbol_key": "native/je1000d-jp-00c43a89-02", "shared_path": "native-v1/je1000d-jp-00c43a89-symbol-02.svg", "physical_page": 10, "glyph_bbox": [22.2, 228.3, 40, 246.1], "caption_id": "sym.disassemble"},
+    {"path": "assets/symbol-03.svg", "shared_symbol_key": "native/je1000d-jp-00c43a89-03", "shared_path": "native-v1/je1000d-jp-00c43a89-symbol-03.svg", "physical_page": 10, "glyph_bbox": [22.7, 252, 40.4, 269.8], "caption_id": "sym.wethand"},
+    {"path": "assets/symbol-04.svg", "shared_symbol_key": "mandatory/h1-jp-native", "shared_path": "native-v1/h1-jp-mandatory.svg", "physical_page": 10, "glyph_bbox": [195.1, 206, 212.9, 223.8], "caption_id": "sym.mandatory"},
+    {"path": "assets/symbol-05.svg", "shared_symbol_key": "native/je1000d-jp-00c43a89-05", "shared_path": "native-v1/je1000d-jp-00c43a89-symbol-05.svg", "physical_page": 10, "glyph_bbox": [195.1, 228.9, 212.9, 246.7], "caption_id": "sym.wet"},
+    {"path": "assets/symbol-06.svg", "shared_symbol_key": "native/je1000d-jp-00c43a89-06", "shared_path": "native-v1/je1000d-jp-00c43a89-symbol-06.svg", "physical_page": 10, "glyph_bbox": [195.1, 252.8, 212.9, 270.6], "caption_id": "sym.prohibit"}
+  ]
+}
