@@ -112,6 +112,7 @@ class ValidationTests(unittest.TestCase):
             "public.lead": lambda d: d["public"].update(lead=" "),
             "public.points": lambda d: d["public"].update(points=[]),
             "facets": lambda d: d["internal"]["themes"][2].update(facets=[]),
+            "internal.themes[0].summary": lambda d: d["internal"]["themes"][0].update(summary=" "),
         }
         for message, edit in edits.items():
             with self.subTest(message), self.assertRaisesRegex(ValueError, re.escape(message)):
@@ -139,19 +140,24 @@ class RenderTests(unittest.TestCase):
     def test_without_a_band_the_home_renders_nothing_for_it(self):
         self.assertIsNone(render("_value_band.html").select_one("section"))
 
-    def test_page_shows_each_themes_status_and_now_without_rev_ids(self):
+    def test_page_leads_with_one_card_per_theme_and_folds_the_details(self):
         value = wmv.load_value(ASSETS)
         page = render(wmv.TEMPLATE, **wmv.page_context(value), site_nav={}, system_entry=True)
         self.assertEqual(page.h1.get_text(), "网页说明书的定位与价值")
-        self.assertEqual(page.select_one(".vp-key-idea").get_text(), value["internal"]["key_idea"])
-        sections = page.select("section.vp-theme")
-        self.assertEqual([s["id"] for s in sections], ["reading", "machine", "governance", "knowledge"])
-        for section, theme in zip(sections, value["internal"]["themes"], strict=True):
-            now = section.select_one(".vp-now")
-            self.assertEqual(now.h3.get_text(), "现状")
-            self.assertEqual([(li.select_one(".vp-facet").get_text(), li.em["class"][-1]) for li in now.select("li")],
+        self.assertIn(value["internal"]["key_idea"], page.select_one(".vp-key").get_text())
+        cards = page.select("article.vp-card")
+        self.assertEqual([card["id"] for card in cards], ["reading", "machine", "governance", "knowledge"])
+        for card, theme in zip(cards, value["internal"]["themes"], strict=True):
+            # First level: name, status and one sentence.
+            self.assertEqual(card.h2.get_text(), theme["theme"])
+            self.assertEqual(card.select_one(".vp-card-head .vp-status")["class"][-1], f"is-{theme['status']}")
+            self.assertEqual(card.select_one(".vp-summary").get_text(), theme["summary"])
+            # Second level, folded: the facets and the principle.
+            more = card.select_one("details.vp-more")
+            self.assertFalse(more.has_attr("open"))
+            self.assertEqual([(li.select_one(".vp-facet").get_text(), li.em["class"][-1]) for li in more.select("li")],
                              [(f["label"], f"is-{f['status']}") for f in theme["facets"]])
-            self.assertEqual(section.select_one(".vp-principle p").get_text(), theme["principle"])
+            self.assertIn(theme["principle"], more.select_one(".vp-principle").get_text())
         # REV ids are evidence in the data file, never shown; the long-term direction is gone.
         self.assertNotIn("REV-", page.get_text())
         self.assertIsNone(page.select_one("#direction"))

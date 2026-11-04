@@ -29,9 +29,10 @@ the page; the combined build checks that each theme link lands on an existing se
 `tools/rtd/web_manual_value.py` reads and validates it, and a malformed file fails the build.
 
 The page opens with one positioning line: 网页说明书是已批准说明书的可信发布源，人能读，机器能读，团队能持续维护和复用.
-The key idea 「已批准的历史内容，不天然等于可直接复用的标准知识。」 stands above the themes as their 总纲. Each
-theme then gets one or two sentences, its 核心原则 and a 现状 list with one line per facet. The copy is kept
-short on purpose (operator, 2026-11-04). The page has no long-term-direction block.
+The key idea 「已批准的历史内容，不天然等于可直接复用的标准知识。」 stands under it as the 总纲. The first
+level is one card per theme with its name, status and one sentence (`summary`). Each card folds its 现状 list,
+one line per facet, and its 核心原则 under 「现状与原则」. The page is kept to one screen on purpose (operator,
+2026-11-04: too much content, no clear hierarchy). It has no long-term-direction block.
 
 Each 现状 facet carries a status from the 系统建设 page's vocabulary: `available` 可用, `validated` 已验证,
 `in_progress` 建设中 or `planned` 已规划. A planned facet must name its REV. REV ids (`revs`) are evidence for

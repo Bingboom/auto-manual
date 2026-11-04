@@ -13,7 +13,8 @@
 # vocabulary: available | validated | in_progress | planned (a planned facet
 # names its REV). The theme's tag is derived from its facets: all available is
 # 可用; any available or validated is 部分可用; all planned is 已规划; otherwise
-# 建设中. `revs` are evidence for reviewers and are never shown. State only
+# 建设中. The page shows each theme's summary and folds its facets and principle
+# away. `revs` are evidence for reviewers and are never shown. State only
 # what exists or is being built, keep each line short, and write no counts:
 # they change with every release, and 说明书工作台 reads them from the publish
 # manifest.
@@ -35,20 +36,11 @@ internal:
   heading: 人能读，机器能读，团队能持续复用
   subtitle: 网页说明书是已批准说明书的可信发布源：同一份内容，服务用户、客服、AI 助手和资料开发。
   tagline: 网页说明书是已批准说明书的可信发布源：人能读，机器能读，团队能持续维护和复用。
-  intro:
-    - 它不只是纸质说明书的网页版，也是产品内容走向数字化管理、机器可读和知识积累的载体。
   key_idea: 已批准的历史内容，不天然等于可直接复用的标准知识。
-  triad:
-    - 网页化解决可访问性
-    - 机读解决可引用性
-    - 内容治理解决可信性
-    - 知识沉淀解决复用价值
   themes:
     - id: reading
       theme: 便捷阅读
-      title: 更便捷的数字化阅读
-      body:
-        - 以已批准的说明书为依据，用统一的版式、章节导航和检索，让用户在手机和电脑上都能快速找到、读懂产品信息。
+      summary: 扫码直达，手机电脑都能读，可按型号、名称或正文搜索。
       principle: 忠实于已批准的原稿，不改变技术事实。
       facets:
         - label: 统一呈现
@@ -62,9 +54,7 @@ internal:
           note: 手机电脑都能读，可切换语言，可按型号、名称或正文搜索。
     - id: machine
       theme: 机器可读
-      title: 可准确引用的机读内容
-      body:
-        - 网页说明书同时生成结构化的机读内容，附版本和校验信息。AI 助手和业务系统按来源引用，而不是凭记忆作答。
+      summary: 同步生成带版本校验的机读内容，AI 助手按来源引用。
       principle: 机器引用的必须是已发布版本，来源和版本可以核对。
       facets:
         - label: 机读导出
@@ -78,9 +68,7 @@ internal:
           note: 目前只有欧规；内容从网页提取，尚非同源生成。
     - id: governance
       theme: 内容治理
-      title: 可追溯的产品内容资产
-      body:
-        - 每个版本都保留型号、市场、语言、来源和版本信息；修订后直接发布新版本，不用等重印。网页化中发现的差异作为改进线索，核验后按需处理，不要求全面重写。
+      summary: 每个版本都可追溯；修订后直接发新版，不用等重印。
       principle: 保留历史依据，识别内容差异，让资料具备持续治理的基础。
       facets:
         - label: 版本追溯
@@ -94,9 +82,7 @@ internal:
           note: 差异台账和核验工具已有，全量验收未完成。
     - id: knowledge
       theme: 知识积累
-      title: 可持续积累的知识资产
-      body:
-        - 术语、通用内容、图文组件和写作经验逐步积累。已发布的历史内容经来源核验和审核后，才沉淀为可复用的模板和标准表达，辅助资料开发人员与 AI Agent。
+      summary: 经审核的术语、组件和写作经验沉淀下来，用于开发新说明书。
       principle: 以已批准内容为依据，以审核后的知识指导未来，而不是简单复制历史资料。
       facets:
         - label: 规范沉淀

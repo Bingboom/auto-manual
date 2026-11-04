@@ -4,7 +4,8 @@
 ``hello-docs-web-manual-value/v1``) holds the copy for two audiences. The
 public manuals project gets only :func:`band_context`'s public view, so the
 internal copy never reaches public HTML; the private site gets the internal
-band and the full page at :data:`PAGE`. Each theme's tag is derived from its
+band and the full page at :data:`PAGE`, which shows each theme's summary and
+folds its facets and principle away. Each theme's tag is derived from its
 facets' statuses, which use the 系统建设 page's vocabulary. A malformed file
 fails the build, like the other engineering-owned portal assets.
 """
@@ -32,12 +33,6 @@ def _text(where: str, value: object) -> str:
     if not isinstance(value, str) or not value.strip():
         raise ValueError(f"{SOURCE_NAME}: {where} needs text")
     return value.strip()
-
-
-def _paragraphs(where: str, value: object) -> list[str]:
-    if not isinstance(value, list) or not value:
-        raise ValueError(f"{SOURCE_NAME}: {where} needs a list of paragraphs")
-    return [_text(f"{where}[{index}]", item) for index, item in enumerate(value)]
 
 
 def _mapping(where: str, value: object) -> dict:
@@ -90,8 +85,7 @@ def _theme(where: str, raw: object, ids: set[str]) -> dict[str, Any]:
     views = [_facet(f"{where}.facets[{index}]", facet) for index, facet in enumerate(facets)]
     status, label = theme_status([facet["status"] for facet in views])
     return {"id": key, "theme": _text(f"{where}.theme", theme.get("theme")),
-            "title": _text(f"{where}.title", theme.get("title")),
-            "body": _paragraphs(f"{where}.body", theme.get("body")),
+            "summary": _text(f"{where}.summary", theme.get("summary")),
             "principle": _text(f"{where}.principle", theme.get("principle")),
             "facets": views, "status": status, "status_label": label}
 
@@ -118,8 +112,6 @@ def _internal(raw: object) -> dict[str, Any]:
     ids: set[str] = set()
     view: dict[str, Any] = {key: _text(f"internal.{key}", internal.get(key))
                             for key in ("eyebrow", "heading", "subtitle", "tagline", "key_idea")}
-    view["intro"] = _paragraphs("internal.intro", internal.get("intro"))
-    view["triad"] = _paragraphs("internal.triad", internal.get("triad"))
     view["themes"] = [_theme(f"internal.themes[{index}]", theme, ids) for index, theme in enumerate(themes)]
     return view
 
