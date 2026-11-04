@@ -1,0 +1,179 @@
+[
+  {
+    "width": 1280,
+    "file": "1280-00.png",
+    "y": 16863,
+    "sections": [
+      "storage",
+      "troubleshooting"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-01.png",
+    "y": 17863,
+    "sections": [
+      "troubleshooting",
+      "specifications"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-02.png",
+    "y": 18863,
+    "sections": [
+      "specifications",
+      "warranty",
+      "limited-warranty",
+      "warranty-period"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-03.png",
+    "y": 19863,
+    "sections": [
+      "warranty",
+      "warranty-period",
+      "repair-or-replacement",
+      "limited-to-original-consumer-buyer",
+      "exclusions",
+      "interpretation-rights",
+      "app-setup",
+      "download-the-app-and-log-in"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-04.png",
+    "y": 20863,
+    "sections": [
+      "app-setup",
+      "download-the-app-and-log-in",
+      "add-device"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-05.png",
+    "y": 21863,
+    "sections": [
+      "app-setup",
+      "add-device"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-06.png",
+    "y": 22843,
+    "sections": [
+      "app-setup",
+      "add-device",
+      "unbind-the-device",
+      "notes",
+      "to-turn-on-wi-fi-and-bluetooth",
+      "to-turn-off-wi-fi-and-bluetooth",
+      "to-reset-wi-fi-and-bluetooth"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-00.png",
+    "y": 21053,
+    "sections": [
+      "charging",
+      "charging-via-a-car-charger-sold-separately",
+      "storage",
+      "troubleshooting"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-01.png",
+    "y": 22053,
+    "sections": [
+      "troubleshooting",
+      "specifications"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-02.png",
+    "y": 23053,
+    "sections": [
+      "specifications",
+      "warranty"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-03.png",
+    "y": 24053,
+    "sections": [
+      "warranty",
+      "limited-warranty",
+      "warranty-period",
+      "repair-or-replacement"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-04.png",
+    "y": 25053,
+    "sections": [
+      "warranty",
+      "repair-or-replacement",
+      "limited-to-original-consumer-buyer",
+      "exclusions",
+      "interpretation-rights",
+      "app-setup",
+      "download-the-app-and-log-in"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-05.png",
+    "y": 26053,
+    "sections": [
+      "app-setup",
+      "download-the-app-and-log-in",
+      "add-device"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-06.png",
+    "y": 27053,
+    "sections": [
+      "app-setup",
+      "add-device"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-07.png",
+    "y": 28053,
+    "sections": [
+      "app-setup",
+      "add-device",
+      "unbind-the-device",
+      "notes",
+      "to-turn-on-wi-fi-and-bluetooth",
+      "to-turn-off-wi-fi-and-bluetooth",
+      "to-reset-wi-fi-and-bluetooth"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-08.png",
+    "y": 28264,
+    "sections": [
+      "app-setup",
+      "unbind-the-device",
+      "notes",
+      "to-turn-on-wi-fi-and-bluetooth",
+      "to-turn-off-wi-fi-and-bluetooth",
+      "to-reset-wi-fi-and-bluetooth"
+    ]
+  }
+]

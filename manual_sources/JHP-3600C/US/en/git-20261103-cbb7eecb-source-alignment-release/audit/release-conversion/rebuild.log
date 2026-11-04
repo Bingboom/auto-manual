@@ -1,0 +1,46 @@
+{
+  "output": "/private/tmp/manual-web-audit-20261102/release8-conversion/JHP-3600C-attempt4/fresh",
+  "chapters": 20,
+  "components": {
+    "HB-CALLOUT-STRIP": 26,
+    "HB-SPECIAL-APP": 2,
+    "HB-SPECIAL-FCC": 1,
+    "HB-SPECIAL-INBOX": 1,
+    "HB-SPECIAL-OPERATION": 4,
+    "HB-SPECIAL-REFERENCE-FIGURE": 11,
+    "HB-TABLE-AUTO-RESUME": 1,
+    "HB-TABLE-KEY-COMBINATIONS": 1,
+    "HB-TABLE-LCD-ICON": 1,
+    "HB-TABLE-LCD-MODE": 1,
+    "HB-TABLE-SPEC": 14,
+    "HB-TABLE-SYMBOL-ICON": 1,
+    "HB-TABLE-SYMBOL-SIGNAL": 1,
+    "HB-TABLE-TROUBLESHOOTING": 1,
+    "HB-WARRANTY-LEAD": 1,
+    "HB-WARRANTY-SECTION": 5,
+    "HB-WARRANTY-YEARS": 1
+  }
+}
+{
+  "output": "/private/tmp/manual-web-audit-20261102/release8-conversion/JHP-3600C-attempt4/cold",
+  "chapters": 20,
+  "components": {
+    "HB-CALLOUT-STRIP": 26,
+    "HB-SPECIAL-APP": 2,
+    "HB-SPECIAL-FCC": 1,
+    "HB-SPECIAL-INBOX": 1,
+    "HB-SPECIAL-OPERATION": 4,
+    "HB-SPECIAL-REFERENCE-FIGURE": 11,
+    "HB-TABLE-AUTO-RESUME": 1,
+    "HB-TABLE-KEY-COMBINATIONS": 1,
+    "HB-TABLE-LCD-ICON": 1,
+    "HB-TABLE-LCD-MODE": 1,
+    "HB-TABLE-SPEC": 14,
+    "HB-TABLE-SYMBOL-ICON": 1,
+    "HB-TABLE-SYMBOL-SIGNAL": 1,
+    "HB-TABLE-TROUBLESHOOTING": 1,
+    "HB-WARRANTY-LEAD": 1,
+    "HB-WARRANTY-SECTION": 5,
+    "HB-WARRANTY-YEARS": 1
+  }
+}

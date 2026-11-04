@@ -1,0 +1,90 @@
+{
+  "source_pdf": "source/review-reference.pdf",
+  "source_sha256": "d35114d38afbdcb377441f44b00a3db575ad40710e19a71db4bc7a0a8fdaedb7",
+  "changes": [
+    {
+      "page": 8,
+      "item": "Self-powered Mode",
+      "before": "Maximizes the use of solar energy and reduces reliance on grid  electricity by prioritizing stored solar energy, reducing electricity  costs. The power station must be connected to both solar  panels and the grid simultaneously, with load power limited by  bypass power. Enable/disable this feature in the Jackery App. The setting is  retained when the device is powered off.",
+      "after": "Maximizes the use of solar energy and reduces reliance on grid electricity by prioritizing stored solar energy, reducing electricity costs (please enable/disable this feature in the app). The power station must be connected to both solar panels and the grid simultaneously, with load power limited by bypass power."
+    },
+    {
+      "page": 8,
+      "item": "Charging Plan",
+      "before": "Customizes the charging time of the Jackery HomePower 3600  Plus. Suitable for situations with fluctuating electricity prices, it  allows for charging plans based on peak and off-peak  electricity times, reducing electricity costs.  Enable/disable this feature in the Jackery App. The setting is  retained when the device is powered off.",
+      "after": "Customize the charging time of the Jackery HomePower 3600 Plus. Suitable for situations with fluctuating electricity prices, it allows for charging plans based on peak and off-peak electricity times, reducing electricity costs (Please set in the Jackery App)."
+    },
+    {
+      "page": 9,
+      "item": "Output Voltage and Frequency",
+      "before": "Displays the output voltage and frequency when the AC  output is turned on.",
+      "after": "Displays the output voltage and frequency."
+    },
+    {
+      "page": 8,
+      "item": "Quiet Charging Mode",
+      "before": "Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off.",
+      "after": "Enable/disable this feature in the Jackery App."
+    }
+  ],
+  "spec_page20": {
+    "before": "DC expansion output 60A; input AC/DC8020/DC Expansion; AC output NEMA 5-20R extra",
+    "after": "DC expansion output 100A; input AC/DC8020 only; 4 × AC Output",
+    "history_checked": [
+      "MA-295 is release approval for original 541ca8 PDF only",
+      "old source/specification-layout-review.json labels 60A/output and100A/input as native source parameters, not approved corrections",
+      "git log --all -G 60A|100A for both exact JHP-3600A paths has only old intake and copied packages; no specific correction approval"
+    ],
+    "specific_approved_correction_found": false
+  },
+  "source_concerns": [],
+  "other_corrections": [
+    "p6 third inbox label Documents→User Manual; source contains exactly 3 items",
+    "p8 indicator8 restored to same table after7",
+    "p9 removed old Energy Saving introduction",
+    "p10/p11 prerequisites powered on→turned on",
+    "p12 removed absent App setting sentence",
+    "p22/p23 restore To in app step headings"
+  ],
+  "resolved_visual_question": {
+    "page": 9,
+    "item": "Remaining Discharge Time",
+    "finding": "4x ownPDF confirms remaining discharging time, matching original web. Initial small-image charging reading rejected; final retains discharging.",
+    "final_output_assertion": "LCD22 final rendered description is Displays the remaining discharging time.; charging remains only in row10."
+  },
+  "literal_wording_deltas": [
+    {
+      "before": "AC or USB power button is ON",
+      "after": "AC Output or USB Output power button is ON"
+    },
+    {
+      "before": "To resume parallel output, rectify the issue and ",
+      "after": "To resume parallel output, "
+    },
+    {
+      "before": "We advocate using the green energy first.",
+      "after": "We advocate to use the green energy first."
+    },
+    {
+      "before": "or an AC wall outlet until the fault disappears.",
+      "after": "or AC wall outlet until the fault disappears."
+    },
+    {
+      "before": "high environmental ",
+      "after": "high environment "
+    },
+    {
+      "before": "in a 24V vehicle",
+      "after": "in 24V vehicle"
+    },
+    {
+      "before": " a 24V ",
+      "after": " 24V "
+    },
+    {
+      "page": 19,
+      "before": "If the fault persists, please contact Jackery Customer Support.",
+      "after": "If fault persists, please contact Jackery Customer Support."
+    }
+  ]
+}

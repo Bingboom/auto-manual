@@ -1,0 +1,47 @@
+[
+  {
+    "width": 1280,
+    "pageWidth": 1280,
+    "broken": [],
+    "uncontained": [],
+    "plusSigns": 3,
+    "key": {
+      "tableWidth": 653.21875,
+      "frameClient": 653,
+      "frameScroll": 653,
+      "rightVisible": true,
+      "overflowX": "auto"
+    },
+    "images": 103
+  },
+  {
+    "width": 1024,
+    "pageWidth": 1024,
+    "broken": [],
+    "uncontained": [],
+    "plusSigns": 3,
+    "key": {
+      "tableWidth": 668.5625,
+      "frameClient": 669,
+      "frameScroll": 669,
+      "rightVisible": true,
+      "overflowX": "auto"
+    },
+    "images": 103
+  },
+  {
+    "width": 390,
+    "pageWidth": 390,
+    "broken": [],
+    "uncontained": [],
+    "plusSigns": 3,
+    "key": {
+      "tableWidth": 704,
+      "frameClient": 354,
+      "frameScroll": 704,
+      "rightVisible": true,
+      "overflowX": "auto"
+    },
+    "images": 103
+  }
+]

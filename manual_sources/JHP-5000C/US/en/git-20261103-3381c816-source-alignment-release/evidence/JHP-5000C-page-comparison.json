@@ -1,0 +1,132 @@
+[
+  {
+    "page": 2,
+    "relative_ink_difference": 0.5434,
+    "changed_pixels": 24458
+  },
+  {
+    "page": 4,
+    "relative_ink_difference": 0.0006,
+    "changed_pixels": 121
+  },
+  {
+    "page": 5,
+    "relative_ink_difference": 0.0003,
+    "changed_pixels": 57
+  },
+  {
+    "page": 6,
+    "relative_ink_difference": 0.0034,
+    "changed_pixels": 565
+  },
+  {
+    "page": 7,
+    "relative_ink_difference": 0.0717,
+    "changed_pixels": 6182
+  },
+  {
+    "page": 8,
+    "relative_ink_difference": 0.0235,
+    "changed_pixels": 3846
+  },
+  {
+    "page": 9,
+    "relative_ink_difference": 0.0346,
+    "changed_pixels": 4243
+  },
+  {
+    "page": 10,
+    "relative_ink_difference": 0.0099,
+    "changed_pixels": 1001
+  },
+  {
+    "page": 11,
+    "relative_ink_difference": 0.0415,
+    "changed_pixels": 2863
+  },
+  {
+    "page": 12,
+    "relative_ink_difference": 0.0328,
+    "changed_pixels": 4843
+  },
+  {
+    "page": 13,
+    "relative_ink_difference": 0.3576,
+    "changed_pixels": 39185
+  },
+  {
+    "page": 14,
+    "relative_ink_difference": 0.6912,
+    "changed_pixels": 85780
+  },
+  {
+    "page": 15,
+    "relative_ink_difference": 0.0035,
+    "changed_pixels": 461
+  },
+  {
+    "page": 16,
+    "relative_ink_difference": 0.0097,
+    "changed_pixels": 844
+  },
+  {
+    "page": 17,
+    "relative_ink_difference": 0.0067,
+    "changed_pixels": 387
+  },
+  {
+    "page": 18,
+    "relative_ink_difference": 0.0065,
+    "changed_pixels": 466
+  },
+  {
+    "page": 19,
+    "relative_ink_difference": 0.0004,
+    "changed_pixels": 28
+  },
+  {
+    "page": 20,
+    "relative_ink_difference": 0.0064,
+    "changed_pixels": 965
+  },
+  {
+    "page": 21,
+    "relative_ink_difference": 0.0028,
+    "changed_pixels": 190
+  },
+  {
+    "page": 22,
+    "relative_ink_difference": 0.0005,
+    "changed_pixels": 76
+  },
+  {
+    "page": 23,
+    "relative_ink_difference": 0.0001,
+    "changed_pixels": 18
+  },
+  {
+    "page": 24,
+    "relative_ink_difference": 0.0031,
+    "changed_pixels": 391
+  },
+  {
+    "page": 25,
+    "relative_ink_difference": 0.0001,
+    "changed_pixels": 13
+  },
+  {
+    "page": 26,
+    "relative_ink_difference": 0.0,
+    "changed_pixels": 1
+  },
+  {
+    "page": 27,
+    "relative_ink_difference": 0.2079,
+    "changed_pixels": 13809
+  },
+  {
+    "page": 28,
+    "relative_ink_difference": 0.0,
+    "changed_pixels": 0
+  }
+]

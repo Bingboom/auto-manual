@@ -46,6 +46,11 @@
           "handling": "keep-frozen",
           "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -81,6 +86,11 @@
         "tools/web/shared_symbol_assets.py": {
           "handling": "keep-frozen",
           "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
         }
       }
@@ -189,6 +199,11 @@
           "handling": "keep-frozen",
           "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -224,6 +239,11 @@
         "tools/web/shared_symbol_assets.py": {
           "handling": "keep-frozen",
           "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
         }
       }
@@ -266,6 +286,11 @@
           "handling": "keep-frozen",
           "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -306,6 +331,11 @@
         "tools/web/shared_symbol_assets.py": {
           "handling": "keep-frozen",
           "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
         }
       }
@@ -446,6 +476,11 @@
           "handling": "keep-frozen",
           "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -492,6 +527,11 @@
           "handling": "keep-frozen",
           "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -532,6 +572,11 @@
         "tools/web/shared_symbol_assets.py": {
           "handling": "keep-frozen",
           "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
         }
       }
@@ -591,6 +636,11 @@
           "handling": "keep-frozen",
           "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -649,6 +699,11 @@
           "handling": "keep-frozen",
           "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -690,6 +745,11 @@
           "handling": "keep-frozen",
           "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -730,6 +790,11 @@
         "tools/web/shared_symbol_assets.py": {
           "handling": "keep-frozen",
           "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
         }
       }
@@ -837,6 +902,11 @@
         "tools/web/shared_symbol_assets.py": {
           "handling": "keep-frozen",
           "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
         }
       }
@@ -1153,6 +1223,11 @@
           "handling": "keep-frozen",
           "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -1343,7 +1418,13 @@
     "manual_sources/JE-1000B/JP/ja/git-20261103-46f1c569": {
       "approval": "Operator 「上线提交发布：JE-600A、JE-600C-SJ、JE-900B-WH、JE-1000B」 2026-11-04 in the PR #1654 session after reviewing the 1280/390 renders beside the shared reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinating window): Git-only JP ja single-language Web release, source copy verbatim, symbol rows bound per shared PR #1659; acceptance hash-bound in source/approval.json. Merge needs a separate operator authorization.",
       "registered": "2026-11-03",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 narrow shared troubleshooting rowspan divider correction: preserve the four JP packages newly integrated from main with all original runtime pins and generated outputs unchanged; no content, artwork or target re-rendering. Their sole drift is the shared CSS file.",
+          "since": "2026-11-03"
+        }
+      }
     },
     "manual_sources/JE-1000C/JP/ja/git-20261103-a369a8d0": {
       "approval": "Operator 「上‘线提交发布：JE-1000C、JE-1000G、JE-1000H、JE-1500B」 2026-11-03 in the window session, after review of the PR #1653 1280/390 renders beside the reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinator window): Git-only JP ja single-language Web release, source copy verbatim; symbol rows pending the shared dedupe PR are withheld (see source/approval.json); merge not yet authorized",
@@ -1613,6 +1694,37 @@
           "handling": "keep-frozen",
           "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        }
+      }
+    },
+    "manual_sources/JE-1500C/US/en/git-20261103-46f58108-source-alignment-release": {
+      "approval": "MA-381: selected27 complete local source/content/layout acceptance; deferred5 excluded.",
+      "registered": "2026-11-03",
+      "known_drift": {
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -1653,6 +1765,11 @@
         "tools/web/shared_symbol_assets.py": {
           "handling": "keep-frozen",
           "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
         }
       }
@@ -1735,7 +1852,13 @@
     "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native": {
       "approval": "Operator request 2026-11-03 「继续 转日语说明书」 and source choice 「按建议做」 (table single-language PDF f1829cd3 replaces the 6a70e879 print-master intake); symbols bound to shared canonical groups (SCG-20261103, #1659); operator 「上线提交发布：JE-1800B、JE-2000E」 and, after the rebound renders, 「授权合入」 2026-11-04 in the owning session: Git-only JE-2000E JP/ja single-language Web release from 发布文档管理 record reczz28SfbsHbvLy, source copy verbatim; acceptance hash-bound in source/approval.json",
       "registered": "2026-10-19",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        }
+      }
     },
     "manual_sources/JE-2000F/EU/en/2.0": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
@@ -1855,7 +1978,13 @@
     "manual_sources/JE-3000C/JP/ja/git-20261019-b16b82c6-jp-native": {
       "approval": "User request 2026-10-19: Git-only JE-3000C JP Web conversion; candidate only, no merge or publication authority",
       "registered": "2026-10-19",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        }
+      }
     },
     "manual_sources/JE-3000C/KR/ko/git-20261021-78316033": {
       "approval": "User chat 2026-10-21: supplied JE-3000C KR PDF; remove landscape first sheet and convert via Git-only; isolated worktree and complete first-use sentence approved. Candidate only; no merge or publication approval.",
@@ -1865,18 +1994,35 @@
           "handling": "keep-frozen",
           "reason": "JE-1000D JP V2 Git-only candidate (user request 2026-10-26): append-only five native JE-1000D JP symbol variants to the shared symbol catalog; existing entries and bytes unchanged; preserve historical package bytes and approvals until their next authorized revision.",
           "since": "2026-10-26"
+        },
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
         }
       }
     },
     "manual_sources/JE-300B/JP/ja/git-20261103-456bb360": {
       "approval": "Operator 2026-11-04 (PR #1657 session): 「上线提交发布：JE-300B、JE-300C、JE-300D、JE-500A」 after reviewing the 1280/390 renders beside the shared reference edition: Git-only JP/ja single-language Web release from the 发布文档管理 日规 row's 单语言说明书 PDF, source copy verbatim; acceptance hash-bound in source/approval.json",
       "registered": "2026-11-04",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "#1666 troubleshooting rowspan divider selector; JP editions sealed and published with the prior web_manual.css (Hello-Docs #290), immutable output kept",
+          "since": "2026-11-04"
+        }
+      }
     },
     "manual_sources/JE-300C/JP/ja/git-20261103-890abb4a": {
       "approval": "Operator 2026-11-04 (PR #1657 session): 「上线提交发布：JE-300B、JE-300C、JE-300D、JE-500A」 after reviewing the 1280/390 renders beside the shared reference edition: Git-only JP/ja single-language Web release from the 发布文档管理 日规 row's 单语言说明书 PDF, source copy verbatim; acceptance hash-bound in source/approval.json",
       "registered": "2026-11-04",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "#1666 troubleshooting rowspan divider selector; JP editions sealed and published with the prior web_manual.css (Hello-Docs #290), immutable output kept",
+          "since": "2026-11-04"
+        }
+      }
     },
     "manual_sources/JE-300C/US/en/git-20261027-a1128b25": {
       "approval": "Operator 2026-10-28 (PR #1631 session): 「上线提交发布：JE-300C、JE-300E、JE-300E-SG、JE-880B；授权合入 #1631 及其 Hello-Docs 发布 PR」 under MA-365: Git-only US English single-language Web release from the 发布文档管理 row; acceptance hash-bound in source/approval.json",
@@ -1906,6 +2052,37 @@
           "handling": "keep-frozen",
           "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        }
+      }
+    },
+    "manual_sources/JE-300C/US/en/git-20261103-a1128b25-source-alignment-release": {
+      "approval": "MA-381: selected27 complete local source/content/layout acceptance; deferred5 excluded.",
+      "registered": "2026-11-03",
+      "known_drift": {
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -1917,7 +2094,13 @@
     "manual_sources/JE-300D/JP/ja/git-20261103-6ab11ee9": {
       "approval": "Operator 2026-11-04 (PR #1657 session): 「上线提交发布：JE-300B、JE-300C、JE-300D、JE-500A」 after reviewing the 1280/390 renders beside the shared reference edition: Git-only JP/ja single-language Web release from the 发布文档管理 日规 row's 单语言说明书 PDF, source copy verbatim; acceptance hash-bound in source/approval.json",
       "registered": "2026-11-04",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "#1666 troubleshooting rowspan divider selector; JP editions sealed and published with the prior web_manual.css (Hello-Docs #290), immutable output kept",
+          "since": "2026-11-04"
+        }
+      }
     },
     "manual_sources/JE-300D/US/en/git-20261028-d3f47ff3": {
       "approval": "Operator 2026-10-29 (PR #1639 session): 「上线提交发布：JE-300D、JE-500A、JE-600A、JE-1500C」 after reviewing the 1280/390 renders: Git-only US English single-language Web release from the 发布文档管理 row; acceptance hash-bound in source/approval.json. Merge needs a separate operator authorization.",
@@ -1946,6 +2129,37 @@
         "tools/web/shared_symbol_assets.py": {
           "handling": "keep-frozen",
           "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        }
+      }
+    },
+    "manual_sources/JE-300D/US/en/git-20261103-d3f47ff3-source-alignment-release": {
+      "approval": "MA-381: selected27 complete local source/content/layout acceptance; deferred5 excluded.",
+      "registered": "2026-11-03",
+      "known_drift": {
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
         }
       }
@@ -1978,6 +2192,11 @@
           "handling": "keep-frozen",
           "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -2008,6 +2227,37 @@
         "tools/web/shared_symbol_assets.py": {
           "handling": "keep-frozen",
           "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
+          "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        }
+      }
+    },
+    "manual_sources/JE-300E/US/en/git-20261103-04bd8b90-source-alignment-release": {
+      "approval": "MA-381: selected27 complete local source/content/layout acceptance; deferred5 excluded.",
+      "registered": "2026-11-03",
+      "known_drift": {
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
         }
       }
@@ -2135,7 +2385,13 @@
     "manual_sources/JE-500A/JP/ja/git-20261103-368d9934": {
       "approval": "Operator 2026-11-04 (PR #1657 session): 「上线提交发布：JE-300B、JE-300C、JE-300D、JE-500A」 after reviewing the 1280/390 renders beside the shared reference edition: Git-only JP/ja single-language Web release from the 发布文档管理 日规 row's 单语言说明书 PDF, source copy verbatim; acceptance hash-bound in source/approval.json",
       "registered": "2026-11-04",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "#1666 troubleshooting rowspan divider selector; JP editions sealed and published with the prior web_manual.css (Hello-Docs #290), immutable output kept",
+          "since": "2026-11-04"
+        }
+      }
     },
     "manual_sources/JE-500A/US/en/git-20261028-5c065d11": {
       "approval": "Operator 2026-10-29 (PR #1639 session): 「上线提交发布：JE-300D、JE-500A、JE-600A、JE-1500C」 after reviewing the 1280/390 renders: Git-only US English single-language Web release from the 发布文档管理 row; acceptance hash-bound in source/approval.json. Merge needs a separate operator authorization.",
@@ -2165,13 +2421,55 @@
           "handling": "keep-frozen",
           "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        }
+      }
+    },
+    "manual_sources/JE-500A/US/en/git-20261103-5c065d11-source-alignment-release": {
+      "approval": "MA-381: selected27 complete local source/content/layout acceptance; deferred5 excluded.",
+      "registered": "2026-11-03",
+      "known_drift": {
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        },
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
         }
       }
     },
     "manual_sources/JE-600A/JP/ja/git-20261103-b2490d61": {
       "approval": "Operator 「上线提交发布：JE-600A、JE-600C-SJ、JE-900B-WH、JE-1000B」 2026-11-04 in the PR #1654 session after reviewing the 1280/390 renders beside the shared reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinating window): Git-only JP ja single-language Web release, source copy verbatim, symbol rows bound per shared PR #1659; acceptance hash-bound in source/approval.json. Merge needs a separate operator authorization.",
       "registered": "2026-11-03",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 narrow shared troubleshooting rowspan divider correction: preserve the four JP packages newly integrated from main with all original runtime pins and generated outputs unchanged; no content, artwork or target re-rendering. Their sole drift is the shared CSS file.",
+          "since": "2026-11-03"
+        }
+      }
     },
     "manual_sources/JE-600A/US/en/git-20261028-9bf5bbb1": {
       "approval": "Operator 2026-10-29 (PR #1639 session): 「上线提交发布：JE-300D、JE-500A、JE-600A、JE-1500C」 after reviewing the 1280/390 renders: Git-only US English single-language Web release from the 发布文档管理 row; acceptance hash-bound in source/approval.json. Merge needs a separate operator authorization.",
@@ -2201,6 +2499,11 @@
           "handling": "keep-frozen",
           "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -2227,13 +2530,24 @@
           "handling": "keep-frozen",
           "reason": "MA-381 first18: exact reviewed source runtime retained; authorized cold rebuild and unchanged visible MD/CSS/art/IR.pages verified. Current main symbol utility changes do not re-render frozen outputs; fresh source-bound release admission remains required.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 ordinary main integration: the already-reviewed JE-600A and JE-880B release snapshots retain their exact approved frozen runtime and HTML. The source-only shared rowspan CSS correction is not replayed into these packages; only its newly observed runtime drift is registered. All source, original art and frozen outputs remain byte-identical to engineering PR1665.",
+          "since": "2026-11-03"
         }
       }
     },
     "manual_sources/JE-600C-SJ/JP/ja/git-20261103-3837e9fd": {
       "approval": "Operator 「上线提交发布：JE-600A、JE-600C-SJ、JE-900B-WH、JE-1000B」 2026-11-04 in the PR #1654 session after reviewing the 1280/390 renders beside the shared reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinating window): Git-only JP ja single-language Web release, source copy verbatim, symbol rows bound per shared PR #1659; acceptance hash-bound in source/approval.json. Merge needs a separate operator authorization.",
       "registered": "2026-11-03",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 narrow shared troubleshooting rowspan divider correction: preserve the four JP packages newly integrated from main with all original runtime pins and generated outputs unchanged; no content, artwork or target re-rendering. Their sole drift is the shared CSS file.",
+          "since": "2026-11-03"
+        }
+      }
     },
     "manual_sources/JE-76A/JP/ja/git-20261103-d8f7d338": {
       "approval": "Operator 「上线提交发布：JE-100A、JE-100C、JE-240A、JE-76A」 2026-11-04 in the engineering session after review of the PR #1652 1280/390 renders beside the reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinator window): Git-only JP ja single-language Web release, source copy verbatim; acceptance hash-bound in source/approval.json; merge not yet authorized",
@@ -2268,6 +2582,11 @@
           "handling": "keep-frozen",
           "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+          "since": "2026-11-03"
         }
       }
     },
@@ -2294,13 +2613,24 @@
           "handling": "keep-frozen",
           "reason": "MA-381 first18: exact reviewed source runtime retained; authorized cold rebuild and unchanged visible MD/CSS/art/IR.pages verified. Current main symbol utility changes do not re-render frozen outputs; fresh source-bound release admission remains required.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 ordinary main integration: the already-reviewed JE-600A and JE-880B release snapshots retain their exact approved frozen runtime and HTML. The source-only shared rowspan CSS correction is not replayed into these packages; only its newly observed runtime drift is registered. All source, original art and frozen outputs remain byte-identical to engineering PR1665.",
+          "since": "2026-11-03"
         }
       }
     },
     "manual_sources/JE-900B-WH/JP/ja/git-20261103-66c65187": {
       "approval": "Operator 「上线提交发布：JE-600A、JE-600C-SJ、JE-900B-WH、JE-1000B」 2026-11-04 in the PR #1654 session after reviewing the 1280/390 renders beside the shared reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinating window): Git-only JP ja single-language Web release, source copy verbatim, symbol rows bound per shared PR #1659; acceptance hash-bound in source/approval.json. Merge needs a separate operator authorization.",
       "registered": "2026-11-03",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 narrow shared troubleshooting rowspan divider correction: preserve the four JP packages newly integrated from main with all original runtime pins and generated outputs unchanged; no content, artwork or target re-rendering. Their sole drift is the shared CSS file.",
+          "since": "2026-11-03"
+        }
+      }
     },
     "manual_sources/JHP-1000A/US/en/git-20261028-cb256e64": {
       "approval": "Operator 「上线提交发布：JHP-1000A、JHP-1000B、JHP-2000A」 2026-10-29 in the engineering session after the 1280/390 renders beside the shared reference edition (PR #1638): Git-only US/en single-language Web release, source copy verbatim; approval bound in source/approval.json",
@@ -2357,10 +2687,119 @@
       "registered": "2026-11-03",
       "known_drift": {}
     },
+    "manual_sources/JHP-3000D/US/en/git-20261103-34fedc15-source-alignment-release": {
+      "approval": "MA-381: current single-language full source/content/layout review plus independent coordinator strict/cold/art/approval verification; old full-PASS superseded.",
+      "registered": "2026-11-03",
+      "known_drift": {
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 current-reference HomePower repair: preserve real approved cold-replay runtime and frozen outputs. Original pins remain; only JHP-3600A adds the exact actually used shared-rowspan CSS pin. Current source-bound original art, native copy, prepared-style audit, strict build and actual full desktop/mobile coverage verified; no gate or baseline relaxed.",
+          "since": "2026-11-03"
+        },
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 current-reference HomePower repair: preserve real approved cold-replay runtime and frozen outputs. Original pins remain; only JHP-3600A adds the exact actually used shared-rowspan CSS pin. Current source-bound original art, native copy, prepared-style audit, strict build and actual full desktop/mobile coverage verified; no gate or baseline relaxed.",
+          "since": "2026-11-03"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 current-reference HomePower repair: preserve real approved cold-replay runtime and frozen outputs. Original pins remain; only JHP-3600A adds the exact actually used shared-rowspan CSS pin. Current source-bound original art, native copy, prepared-style audit, strict build and actual full desktop/mobile coverage verified; no gate or baseline relaxed.",
+          "since": "2026-11-03"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 current-reference HomePower repair: preserve real approved cold-replay runtime and frozen outputs. Original pins remain; only JHP-3600A adds the exact actually used shared-rowspan CSS pin. Current source-bound original art, native copy, prepared-style audit, strict build and actual full desktop/mobile coverage verified; no gate or baseline relaxed.",
+          "since": "2026-11-03"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 current-reference HomePower repair: preserve real approved cold-replay runtime and frozen outputs. Original pins remain; only JHP-3600A adds the exact actually used shared-rowspan CSS pin. Current source-bound original art, native copy, prepared-style audit, strict build and actual full desktop/mobile coverage verified; no gate or baseline relaxed.",
+          "since": "2026-11-03"
+        }
+      }
+    },
     "manual_sources/JHP-3600A-RC/US/en/git-20261027-ab7f7393": {
       "approval": "Operator 「上线提交发布：JE-2000C、JHP-1000B-RC、JHP-2000A-RC、JHP-3600A-RC；授权开跟进 PR 写 approval 并合入，以及其 Hello-Docs 发布 PR」 2026-10-28 after 「授权全部合入上线 上线之后 我再一个个核对版面」 (MA-365); candidate merged as #1628, approval bound in the follow-up PR: Git-only US/en single-language Web release, source copy verbatim; layout checked by the operator after go-live",
       "registered": "2026-10-27",
       "known_drift": {}
+    },
+    "manual_sources/JHP-3600A/US/en/git-20261103-d35114d3-source-alignment-release": {
+      "approval": "MA-381: current single-language full source/content/layout review plus independent coordinator strict/cold/art/approval verification; old full-PASS superseded.",
+      "registered": "2026-11-03",
+      "known_drift": {
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 current-reference HomePower repair: preserve real approved cold-replay runtime and frozen outputs. Original pins remain; only JHP-3600A adds the exact actually used shared-rowspan CSS pin. Current source-bound original art, native copy, prepared-style audit, strict build and actual full desktop/mobile coverage verified; no gate or baseline relaxed.",
+          "since": "2026-11-03"
+        }
+      }
+    },
+    "manual_sources/JHP-3600C/US/en/git-20261103-cbb7eecb-source-alignment-release": {
+      "approval": "MA-381: independent current-PDF text/art/pixel/style/strict/cold acceptance and review-field readback complete.",
+      "registered": "2026-11-03",
+      "known_drift": {
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 JHP-3600C exact approved cold-replay runtime preserved; all original pins remain. Root independently verified all body text and original art unchanged, all83839 restored frame-band pixels match the current own-PDF crop-origin render, nonframe pixels unchanged, strict Sphinx and current prepared-style admission pass.",
+          "since": "2026-11-03"
+        },
+        "docs/renderers/web/assets/shared/symbols/README.md": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 JHP-3600C exact approved cold-replay runtime preserved; all original pins remain. Root independently verified all body text and original art unchanged, all83839 restored frame-band pixels match the current own-PDF crop-origin render, nonframe pixels unchanged, strict Sphinx and current prepared-style admission pass.",
+          "since": "2026-11-03"
+        },
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 JHP-3600C exact approved cold-replay runtime preserved; all original pins remain. Root independently verified all body text and original art unchanged, all83839 restored frame-band pixels match the current own-PDF crop-origin render, nonframe pixels unchanged, strict Sphinx and current prepared-style admission pass.",
+          "since": "2026-11-03"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 JHP-3600C exact approved cold-replay runtime preserved; all original pins remain. Root independently verified all body text and original art unchanged, all83839 restored frame-band pixels match the current own-PDF crop-origin render, nonframe pixels unchanged, strict Sphinx and current prepared-style admission pass.",
+          "since": "2026-11-03"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 JHP-3600C exact approved cold-replay runtime preserved; all original pins remain. Root independently verified all body text and original art unchanged, all83839 restored frame-band pixels match the current own-PDF crop-origin render, nonframe pixels unchanged, strict Sphinx and current prepared-style admission pass.",
+          "since": "2026-11-03"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 JHP-3600C exact approved cold-replay runtime preserved; all original pins remain. Root independently verified all body text and original art unchanged, all83839 restored frame-band pixels match the current own-PDF crop-origin render, nonframe pixels unchanged, strict Sphinx and current prepared-style admission pass.",
+          "since": "2026-11-03"
+        }
+      }
+    },
+    "manual_sources/JHP-5000C/US/en/git-20261103-3381c816-source-alignment-release": {
+      "approval": "MA-381: operator delegated complete local source/content/layout acceptance and authorized selected27 publication after all checks pass; deferred5 excluded.",
+      "registered": "2026-11-03",
+      "known_drift": {
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 release: retain the exact hash-bound reviewed runtime and source outputs; approval cold rebuild and all visible MD/CSS/art/IR.pages equivalence verified. Current main shared changes do not re-render frozen output; final source-bound symbol/caption and release admission remain required.",
+          "since": "2026-11-03"
+        },
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 release: retain the exact hash-bound reviewed runtime and source outputs; approval cold rebuild and all visible MD/CSS/art/IR.pages equivalence verified. Current main shared changes do not re-render frozen output; final source-bound symbol/caption and release admission remain required.",
+          "since": "2026-11-03"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 release: retain the exact hash-bound reviewed runtime and source outputs; approval cold rebuild and all visible MD/CSS/art/IR.pages equivalence verified. Current main shared changes do not re-render frozen output; final source-bound symbol/caption and release admission remain required.",
+          "since": "2026-11-03"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 release: retain the exact hash-bound reviewed runtime and source outputs; approval cold rebuild and all visible MD/CSS/art/IR.pages equivalence verified. Current main shared changes do not re-render frozen output; final source-bound symbol/caption and release admission remain required.",
+          "since": "2026-11-03"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 selected27 release: retain the exact hash-bound reviewed runtime and source outputs; approval cold rebuild and all visible MD/CSS/art/IR.pages equivalence verified. Current main shared changes do not re-render frozen output; final source-bound symbol/caption and release admission remain required.",
+          "since": "2026-11-03"
+        }
+      }
     },
     "manual_sources/JS-100I/JP/ja/git-20261026-cc8b3421": {
       "approval": "User request 2026-10-26 (「分几个窗口把这个目录下面的文档都转成网页文档」「韩语文档除外」): Git-only JS-100I JP Web conversion; operator 「全部照录，版式都接受，上线提交发布，保留疑点后续纠正」 2026-10-27, merged by operator PR review (see source/approval.json)",
@@ -2541,6 +2980,93 @@
       "packages": 2,
       "handling": "keep-frozen",
       "reason": "MA-381 first18: exact reviewed source runtime retained; authorized cold rebuild and unchanged visible MD/CSS/art/IR.pages verified. Current main symbol utility changes do not re-render frozen outputs; fresh source-bound release admission remains required.",
+      "minutes": 0
+    },
+    {
+      "date": "2026-11-03",
+      "files": [
+        "docs/renderers/contracts/web_manual.css",
+        "docs/renderers/web/assets/shared/symbols/manifest.json",
+        "tools/asset_pipeline/native_svg.py",
+        "tools/web/shared_symbol_assets.py",
+        "tools/web/symbol_asset_admission.py"
+      ],
+      "packages": 32,
+      "handling": "keep-frozen",
+      "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
+      "minutes": 0
+    },
+    {
+      "date": "2026-11-03",
+      "files": [
+        "docs/renderers/contracts/web_manual.css",
+        "docs/renderers/web/assets/shared/symbols/README.md",
+        "docs/renderers/web/assets/shared/symbols/manifest.json",
+        "tools/asset_pipeline/native_svg.py",
+        "tools/web/shared_symbol_assets.py",
+        "tools/web/symbol_asset_admission.py"
+      ],
+      "packages": 1,
+      "handling": "keep-frozen",
+      "reason": "MA-381 JHP-3600C exact approved cold-replay runtime preserved; all original pins remain. Root independently verified all body text and original art unchanged, all83839 restored frame-band pixels match the current own-PDF crop-origin render, nonframe pixels unchanged, strict Sphinx and current prepared-style admission pass.",
+      "minutes": 0
+    },
+    {
+      "date": "2026-11-03",
+      "files": [
+        "docs/renderers/contracts/web_manual.css"
+      ],
+      "packages": 2,
+      "handling": "keep-frozen",
+      "reason": "MA-381 ordinary main integration: the already-reviewed JE-600A and JE-880B release snapshots retain their exact approved frozen runtime and HTML. The source-only shared rowspan CSS correction is not replayed into these packages; only its newly observed runtime drift is registered. All source, original art and frozen outputs remain byte-identical to engineering PR1665.",
+      "minutes": 0
+    },
+    {
+      "date": "2026-11-03",
+      "files": [
+        "docs/renderers/contracts/web_manual.css",
+        "docs/renderers/web/assets/shared/symbols/manifest.json",
+        "tools/asset_pipeline/native_svg.py",
+        "tools/web/shared_symbol_assets.py",
+        "tools/web/symbol_asset_admission.py"
+      ],
+      "packages": 2,
+      "handling": "keep-frozen",
+      "reason": "MA-381 current-reference HomePower repair: preserve real approved cold-replay runtime and frozen outputs. Original pins remain; only JHP-3600A adds the exact actually used shared-rowspan CSS pin. Current source-bound original art, native copy, prepared-style audit, strict build and actual full desktop/mobile coverage verified; no gate or baseline relaxed.",
+      "minutes": 0
+    },
+    {
+      "date": "2026-11-03",
+      "files": [
+        "docs/renderers/contracts/web_manual.css",
+        "docs/renderers/web/assets/shared/symbols/manifest.json",
+        "tools/asset_pipeline/native_svg.py",
+        "tools/web/shared_symbol_assets.py",
+        "tools/web/symbol_asset_admission.py"
+      ],
+      "packages": 1,
+      "handling": "keep-frozen",
+      "reason": "MA-381 selected27 release: retain the exact hash-bound reviewed runtime and source outputs; approval cold rebuild and all visible MD/CSS/art/IR.pages equivalence verified. Current main shared changes do not re-render frozen output; final source-bound symbol/caption and release admission remain required.",
+      "minutes": 0
+    },
+    {
+      "date": "2026-11-03",
+      "files": [
+        "docs/renderers/contracts/web_manual.css"
+      ],
+      "packages": 4,
+      "handling": "keep-frozen",
+      "reason": "MA-381 narrow shared troubleshooting rowspan divider correction: preserve the four JP packages newly integrated from main with all original runtime pins and generated outputs unchanged; no content, artwork or target re-rendering. Their sole drift is the shared CSS file.",
+      "minutes": 0
+    },
+    {
+      "date": "2026-11-04",
+      "files": [
+        "docs/renderers/contracts/web_manual.css"
+      ],
+      "packages": 4,
+      "handling": "keep-frozen",
+      "reason": "#1666 troubleshooting rowspan divider selector; JP editions sealed and published with the prior web_manual.css (Hello-Docs #290), immutable output kept",
       "minutes": 0
     }
   ]

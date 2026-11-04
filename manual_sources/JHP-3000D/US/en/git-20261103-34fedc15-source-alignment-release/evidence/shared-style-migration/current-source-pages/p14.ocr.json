@@ -1,0 +1,290 @@
+[
+  {
+    "confidence" : 1,
+    "h" : 0.013508223579043466,
+    "text" : "WARNING",
+    "w" : 0.10302657874296027,
+    "x" : 0.10024822953136443,
+    "y" : 0.85134112642257698
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "Do not use this product for applications such as data servers or medical devices,",
+    "w" : 0.65853658536585369,
+    "x" : 0.23306232239159907,
+    "y" : 0.92380952373809522
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "where a malfunction could endanger life or cause significant property damage.",
+    "w" : 0.64769647696476962,
+    "x" : 0.23306233871951199,
+    "y" : 0.90666666673809526
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "For the following equipment, a loss of power supply during use could cause serious",
+    "w" : 0.67479674796747968,
+    "x" : 0.23306233905826543,
+    "y" : 0.88952380959523814
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "harm to personal safety or property:",
+    "w" : 0.29810298102981031,
+    "x" : 0.23306233096205958,
+    "y" : 0.87238095254761905
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333419,
+    "text" : "• Medical devices and other equipment closely related to life safety.",
+    "w" : 0.57452574525745259,
+    "x" : 0.23035229394760642,
+    "y" : 0.85523809514285709
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "• Critical equipment such as social infrastructure and public services.",
+    "w" : 0.58265582655826553,
+    "x" : 0.23306234033423634,
+    "y" : 0.83809523812698417
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "• Business-critical enterprise equipment, etc.",
+    "w" : 0.38211382113821146,
+    "x" : 0.23306232584688361,
+    "y" : 0.82095238083333333
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "Individuals who wear a cardiac pacemaker (pacemaker implant recipients) must not",
+    "w" : 0.68834688346883466,
+    "x" : 0.23306232201897037,
+    "y" : 0.80380952373809522
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "use this product.",
+    "w" : 0.14363143631436309,
+    "x" : 0.23035230112917804,
+    "y" : 0.78666666660317464
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.016437875656854506,
+    "text" : "CAUTION",
+    "w" : 0.10332683366811696,
+    "x" : 0.10280812916622406,
+    "y" : 0.65082868132944027
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333197,
+    "text" : "• This product does not support 0 ms switching. Do not connect it to equipment",
+    "w" : 0.65040650406504075,
+    "x" : 0.23035231165311634,
+    "y" : 0.72761904769047625
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "that requires a 0 ms switching power supply, such as data serversor workstations.",
+    "w" : 0.66395659821466368,
+    "x" : 0.24119242153404152,
+    "y" : 0.71047619041269838
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "• Before use,please test compatibility with your device multiple times.",
+    "w" : 0.57181571815718157,
+    "x" : 0.23035231067073161,
+    "y" : 0.69333333340476189
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "•Do not connectloads exceedingthe maximum output power of the product.",
+    "w" : 0.64227642276422769,
+    "x" : 0.23035230857046063,
+    "y" : 0.6761904763571428
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "Otherwise, overload protection will be triggered.",
+    "w" : 0.39295392953929542,
+    "x" : 0.24390244393631424,
+    "y" : 0.65904761911904763
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "• The UPS function works only when a single unit is connected directly to a wall",
+    "w" : 0.64227638141249588,
+    "x" : 0.22493225929375249,
+    "y" : 0.64190476180952383
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333419,
+    "text" : "outlet.Do not connect multiple portable power stations in series (cascade",
+    "w" : 0.59891598915989164,
+    "x" : 0.24390244651083995,
+    "y" : 0.62476190483333327
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "connection). In a cascaded setup, the UPS function will not operate: the unit may",
+    "w" : 0.65853654401412176,
+    "x" : 0.24390245920341791,
+    "y" : 0.60761904784126985
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.015989814031691751,
+    "text" : "fail to switch over during a power outage, causing connected devices to shut",
+    "w" : 0.63155933576547674,
+    "x" : 0.24111687584596336,
+    "y" : 0.58785308969310823
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.012016922178722633,
+    "text" : "down.",
+    "w" : 0.054445757775448828,
+    "x" : 0.24377983204400835,
+    "y" : 0.57303915801191352
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.020952380952380945,
+    "text" : "CHARGING",
+    "w" : 0.17073170731707316,
+    "x" : 0.092140919749322522,
+    "y" : 0.49523809497619042
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333419,
+    "text" : "Green energy first: We advocate using green energy first. This product supports two modes of charging at the",
+    "w" : 0.81842818428184283,
+    "x" : 0.075880757994579995,
+    "y" : 0.46095238073015876
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333419,
+    "text" : "same time: solar charging and AC wall charging. When AC wall charging and solar charging are turned on at",
+    "w" : 0.81029810298102978,
+    "x" : 0.07588075722673901,
+    "y" : 0.44380952358730152
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333419,
+    "text" : "the same time, the product will give priority to solar charging, and both methods will be used to charge the",
+    "w" : 0.7967479674796748,
+    "x" : 0.075880772086720463,
+    "y" : 0.42666666676190479
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "battery at the maximum permissible power. |",
+    "w" : 0.32791327913279134,
+    "x" : 0.07588076290650396,
+    "y" : 0.4114285714761905
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.015238095238095162,
+    "text" : "Fully charge the product before its first use.",
+    "w" : 0.37127371273712734,
+    "x" : 0.075880762520325148,
+    "y" : 0.37714285721904772
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "NOTE",
+    "w" : 0.062330623306233054,
+    "x" : 0.10840108504968381,
+    "y" : 0.29142857152380963
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.015238095238095162,
+    "text" : "• The recommended charging temperature for the product ranges from 32°F to 113°F",
+    "w" : 0.68563681501683171,
+    "x" : 0.20054201466863958,
+    "y" : 0.33523809517460323
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.015238095238095273,
+    "text" : "(0°C to 45°C), and the discharging temperature ranges from 14°F to 113°F (-10°C to",
+    "w" : 0.66666666666666663,
+    "x" : 0.21138212215447139,
+    "y" : 0.31809523819047625
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "45°C). Operating the product beyond this temperature range may restrict its",
+    "w" : 0.62601621881086977,
+    "x" : 0.21138212406340015,
+    "y" : 0.30285714276190467
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.015238095238095162,
+    "text" : "charging and discharging capabilities, or even prevent it from charging or",
+    "w" : 0.60704607046070458,
+    "x" : 0.21138212393857234,
+    "y" : 0.28380952393650793
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.014967112768264013,
+    "text" : "discharging.",
+    "w" : 0.10608343315641408,
+    "x" : 0.21389595455659052,
+    "y" : 0.26584977707169988
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.01523809478396454,
+    "text" : "• The charging power and battery capacity of the product may vary due to",
+    "w" : 0.61788617886178865,
+    "x" : 0.20054200704607045,
+    "y" : 0.24952380972397203
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "temperature fluctuations.",
+    "w" : 0.2168021680216802,
+    "x" : 0.21138211743450755,
+    "y" : 0.23428571434920631
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "11",
+    "w" : 0.013550135501355018,
+    "x" : 0.073170731571815723,
+    "y" : 0.026666666780952308
+  }
+]

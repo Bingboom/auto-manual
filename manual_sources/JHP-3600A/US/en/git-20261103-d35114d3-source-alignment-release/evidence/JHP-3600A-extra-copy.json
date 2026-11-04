@@ -1,0 +1,22 @@
+[
+  {
+    "text": "This device is intended for indoor use only (Please place this device in a similar indoor environment when using it outdoors, e.g. Home RVs, tents, cabins, etc.).",
+    "coverage": 0.143
+  },
+  {
+    "text": "※ This device is not waterproof or dustproof. Keep away from rain and humid environments during use.",
+    "coverage": 0.23
+  },
+  {
+    "text": "The LCD turns oﬀ automatically and enters sleep mode after 2 minutes of inactivity.",
+    "coverage": 0.413
+  },
+  {
+    "text": "Double-click the Main Power Button when the LCD screen is on.",
+    "coverage": 0.5
+  },
+  {
+    "text": "You can also set the screen display mode in the Jackery App.",
+    "coverage": 0.39
+  }
+]

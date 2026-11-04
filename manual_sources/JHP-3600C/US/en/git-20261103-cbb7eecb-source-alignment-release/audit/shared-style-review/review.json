@@ -1,0 +1,40 @@
+{
+  "status": "PASS",
+  "model": "JHP-3600C",
+  "baseline_commit": "741d35b9",
+  "style_audit": {
+    "profile": "prepared-document-shared-styles/v1",
+    "applicable": true,
+    "model": "JHP-3600C",
+    "region": "US",
+    "language": "en",
+    "declared_tables": 0,
+    "issues": []
+  },
+  "audit_tool": "/Users/hello-tech-team/.codex/worktrees/manual-source-alignment/auto-manual-codex/tools/web/prepared_style_audit.py",
+  "audit_tool_sha256": "1600f5efaa5d512ee7434140b6eab7c07dff6a30b6a4cac27b23e763d8c77121",
+  "normalized_body_characters": 37288,
+  "body_text_unchanged": true,
+  "all_original_asset_bytes_unchanged": true,
+  "new_original_frame_asset": {
+    "path": "assets/placement_native_frames.png",
+    "sha256": "42a7b1f7772414552517b69a954769967a24ad0bd9b1d526d15807be76acfe68",
+    "provenance": "source/placement-native-frames.json",
+    "pixel_proof": "audit/shared-style-artwork/frame-pixel-mask.png"
+  },
+  "all_repo_input_pins_unchanged": true,
+  "cold_files_identical": 130,
+  "source_approval_rebound": true,
+  "publication_eligible": true,
+  "pending_source_review": [],
+  "checks": "Strict Sphinx; exact latest shared style audit; independent cold replay; source-art hash parity; body parity excluding whitespace/heading-markup/decorative warning font character now replaced by original SVG; desktop/mobile changed-block screenshots and file request/background checks. Prior full-body content acceptance remains valid.",
+  "changes": [
+    "Source safety layout tables are native grids; no table exceptions were added.",
+    "Source stylesheet geometry uses data attributes; all paint comes from genuine shared classes/components.",
+    "Safety strips, small gray labels and native energy-saving text panel use existing shared styles; all source text remains native.",
+    "Battery placement structural frame pixels restored from its current source PDF; every non-frame pixel retains the prior accepted PNG. Independent caption pills remain native shared CSS. Original SVG extraction was rejected for browser hairline rendering and is not shipped.",
+    "MTS native steps retain original desktop relationship and readable mobile reflow on shared source panel; no wording/number/artwork changes.",
+    "Original App/FCC historical approvals remain unchanged."
+  ],
+  "supersedes": "audit/release-conversion/review.json visible-byte parity describes the initial release copy before this shared-style normalization."
+}

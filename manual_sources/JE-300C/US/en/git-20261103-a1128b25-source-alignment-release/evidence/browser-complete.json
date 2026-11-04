@@ -1,0 +1,152 @@
+[
+  {
+    "width": 1280,
+    "images": 49,
+    "broken": [],
+    "uncontained": [],
+    "document": {
+      "viewport": 1280,
+      "width": 1280,
+      "cover": 0
+    },
+    "layouts": [
+      {
+        "key": "inbox",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 657.21875
+      },
+      {
+        "key": "lcd",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 657.21875
+      },
+      {
+        "key": "troubleshooting",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 648.84375
+      },
+      {
+        "key": "contactstrip",
+        "columns": "auto",
+        "grid": "292.078px 253.141px 80px",
+        "rectWidth": 657.21875
+      },
+      {
+        "key": "danger",
+        "columns": "auto",
+        "grid": "36.7969px 63.3281px 541.094px",
+        "rectWidth": 657.21875
+      },
+      {
+        "key": "warning",
+        "columns": "auto",
+        "grid": "80px 230.219px",
+        "rectWidth": 316.609375
+      },
+      {
+        "key": "risk",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 657.21875
+      },
+      {
+        "key": "safety",
+        "columns": "2",
+        "grid": "none",
+        "rectWidth": 657.21875
+      },
+      {
+        "key": "operating",
+        "columns": "2",
+        "grid": "none",
+        "rectWidth": 657.21875
+      },
+      {
+        "key": "fcc",
+        "columns": "2",
+        "grid": "repeat(2, minmax(0px, 1fr))",
+        "rectWidth": 599.625
+      }
+    ],
+    "request_failures": [],
+    "background_images": []
+  },
+  {
+    "width": 390,
+    "images": 49,
+    "broken": [],
+    "uncontained": [],
+    "document": {
+      "viewport": 390,
+      "width": 390,
+      "cover": 0
+    },
+    "layouts": [
+      {
+        "key": "inbox",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 358
+      },
+      {
+        "key": "lcd",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 358
+      },
+      {
+        "key": "troubleshooting",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 640
+      },
+      {
+        "key": "contactstrip",
+        "columns": "auto",
+        "grid": "262px 80px",
+        "rectWidth": 358
+      },
+      {
+        "key": "danger",
+        "columns": "auto",
+        "grid": "36.7969px 313.203px",
+        "rectWidth": 358
+      },
+      {
+        "key": "warning",
+        "columns": "auto",
+        "grid": "80px 271.609px",
+        "rectWidth": 358
+      },
+      {
+        "key": "risk",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 358
+      },
+      {
+        "key": "safety",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 358
+      },
+      {
+        "key": "operating",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 358
+      },
+      {
+        "key": "fcc",
+        "columns": "1",
+        "grid": "minmax(0px, 1fr)",
+        "rectWidth": 326
+      }
+    ],
+    "request_failures": [],
+    "background_images": []
+  }
+]

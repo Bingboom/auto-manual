@@ -1,0 +1,24 @@
+{
+  "model": "JE-300E",
+  "checked_ocr_lines": 130,
+  "candidates": [
+    {
+      "source_page": 5,
+      "source_ocr": "morescut the interference lby one or more of the following",
+      "coverage": 0.575,
+      "web_near": "Read the user manual before operation.",
+      "source_text": "correct the interference by one or more of the following measures:",
+      "web_locator": ".hb-fcc-grid",
+      "decision": "Originalp5FCCsmallprintvisuallychecked; correct nativeparagraphpresent,OCRgarbledoutlineglyphs."
+    },
+    {
+      "source_page": 5,
+      "source_ocr": "Hhorty by pherate the deticie device could void the user",
+      "coverage": 0.3684210526315789,
+      "web_near": "MODIFICATION: Any changes or modifications not expressly approved by the grantee of this device could void the user’s authority to operate the device.",
+      "source_text": "Any changes or modifications not expressly approved by the grantee of this device could void the user’s authority to operate the device.",
+      "web_locator": ".hb-fcc-grid",
+      "decision": "Originalp5FCCsmallprintvisuallychecked; correct nativeparagraphpresent,OCRgarbledoutlineglyphs."
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+[
+  {
+    "tag": "DIV",
+    "cls": "native-figure native-overview native-dense",
+    "scrollLeft": 302,
+    "scrollWidth": 660,
+    "clientWidth": 358,
+    "lastRight": 374,
+    "containerRight": 374
+  },
+  {
+    "tag": "DIV",
+    "cls": "native-figure native-lcd-map native-lcd",
+    "scrollLeft": 172,
+    "scrollWidth": 530,
+    "clientWidth": 358,
+    "lastRight": 374,
+    "containerRight": 374
+  },
+  {
+    "tag": "FIGURE",
+    "cls": "hb-lcd-table-composition",
+    "scrollLeft": 286,
+    "scrollWidth": 640,
+    "clientWidth": 354,
+    "lastRight": 372,
+    "containerRight": 374
+  },
+  {
+    "tag": "DIV",
+    "cls": "native-figure native-power native-dense",
+    "scrollLeft": 306,
+    "scrollWidth": 660,
+    "clientWidth": 354,
+    "lastRight": 372,
+    "containerRight": 374
+  },
+  {
+    "tag": "DIV",
+    "cls": "native-figure native-ac-output native-dense",
+    "scrollLeft": 306,
+    "scrollWidth": 660,
+    "clientWidth": 354,
+    "lastRight": 372,
+    "containerRight": 374
+  },
+  {
+    "tag": "DIV",
+    "cls": "native-figure native-dc-output native-dense",
+    "scrollLeft": 330,
+    "scrollWidth": 660,
+    "clientWidth": 330,
+    "lastRight": 360,
+    "containerRight": 360
+  },
+  {
+    "tag": "FIGURE",
+    "cls": "hb-auto-resume-composition",
+    "scrollLeft": 286,
+    "scrollWidth": 640,
+    "clientWidth": 354,
+    "lastRight": 372,
+    "containerRight": 374
+  },
+  {
+    "tag": "DIV",
+    "cls": "native-figure native-energy native-dense",
+    "scrollLeft": 302,
+    "scrollWidth": 660,
+    "clientWidth": 358,
+    "lastRight": 374,
+    "containerRight": 374
+  },
+  {
+    "tag": "DIV",
+    "cls": "hb-lcd-mode-table-panel",
+    "scrollLeft": 247,
+    "scrollWidth": 544,
+    "clientWidth": 297,
+    "lastRight": 343.515625,
+    "containerRight": 345.484375
+  },
+  {
+    "tag": "FIGURE",
+    "cls": "hb-key-combination-composition",
+    "scrollLeft": 222,
+    "scrollWidth": 576,
+    "clientWidth": 354,
+    "lastRight": 372,
+    "containerRight": 374
+  },
+  {
+    "tag": "FIGURE",
+    "cls": "hb-troubleshooting-composition",
+    "scrollLeft": 286,
+    "scrollWidth": 640,
+    "clientWidth": 354,
+    "lastRight": 372,
+    "containerRight": 374
+  },
+  {
+    "tag": "DIV",
+    "cls": "native-figure native-app-control native-controls",
+    "scrollLeft": 212,
+    "scrollWidth": 570,
+    "clientWidth": 358,
+    "lastRight": 374,
+    "containerRight": 374
+  }
+]

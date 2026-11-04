@@ -1,0 +1,362 @@
+[
+  {
+    "confidence" : 1,
+    "h" : 0.022857142857142798,
+    "text" : "WARRANTY",
+    "w" : 0.18428184281842819,
+    "x" : 0.089430892953929544,
+    "y" : 0.91428571405714287
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333419,
+    "text" : "We only provide our warranty to customers who purchase from the official Jackery",
+    "w" : 0.72628726287262868,
+    "x" : 0.097560984688346689,
+    "y" : 0.8723809524523809
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333419,
+    "text" : "website, Jackery-branded third-party platforms, or local authorized dealers.",
+    "w" : 0.67750673371601888,
+    "x" : 0.094850957893571869,
+    "y" : 0.85523809514285709
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333419,
+    "text" : "*Warranty period and details may vary according to local laws, regulations, and authorized dealers.",
+    "w" : 0.73983739837398377,
+    "x" : 0.078590795155826343,
+    "y" : 0.82285714292857137
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.017142857142857126,
+    "text" : "Limited Warranty",
+    "w" : 0.19241192411924118,
+    "x" : 0.094850950433604322,
+    "y" : 0.79047619053333329
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "Jackery Inc. warrants to the original consumer purchaser that the Jackery product will be free from defects",
+    "w" : 0.79132791327913288,
+    "x" : 0.10298101860885314,
+    "y" : 0.7676190473968254
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "in workmanship and material under normal consumer use during the applicable warranty period identified in",
+    "w" : 0.80487804878048785,
+    "x" : 0.10027099264905175,
+    "y" : 0.7542857142142857
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "the 'Warranty Period' section below, subject to the exclusions set forth below.",
+    "w" : 0.57181571815718157,
+    "x" : 0.10027099661246637,
+    "y" : 0.74095238073015868
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571344,
+    "text" : "This warranty statement sets forth Jackery's total and exclusive warranty obligation. We will not assume, nor",
+    "w" : 0.80216802168021673,
+    "x" : 0.1002709893405605,
+    "y" : 0.7238095237460318
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "authorize any person to assume for us, any other liability in connection with the sale of our products.",
+    "w" : 0.73983739837398377,
+    "x" : 0.10298104214092095,
+    "y" : 0.70857142866666667
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.017142857142857126,
+    "text" : "Warranty Period",
+    "w" : 0.17344173441734417,
+    "x" : 0.10298103125564585,
+    "y" : 0.65714285725396826
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.040000000000000036,
+    "text" : "3 sanderas",
+    "w" : 0.17344173441734417,
+    "x" : 0.10027100357723577,
+    "y" : 0.6000000001619048
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571344,
+    "text" : "Standard Warranty",
+    "w" : 0.17886178861788615,
+    "x" : 0.16260162303523046,
+    "y" : 0.59999999993650799
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333419,
+    "text" : "The standard warranty period for the Jackery HomePower",
+    "w" : 0.43360433604336041,
+    "x" : 0.10027100993676578,
+    "y" : 0.57904761914285707
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333419,
+    "text" : "3000 is 36 months. In each case, the warranty period is",
+    "w" : 0.41192411924119238,
+    "x" : 0.10027100785907844,
+    "y" : 0.56571428578571425
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "measured starting on the date of purchase by the original",
+    "w" : 0.43360433604336046,
+    "x" : 0.10027099548328841,
+    "y" : 0.55238095231746032
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "consumer purchaser. The sales receipt from the first consumer",
+    "w" : 0.46070460704607047,
+    "x" : 0.10027100846883456,
+    "y" : 0.54095238099999998
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333197,
+    "text" : "purchaser, or other reasonable documentary proof, is required",
+    "w" : 0.46070460704607052,
+    "x" : 0.10298102990063231,
+    "y" : 0.52571428593650804
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571566,
+    "text" : "in order to establish the start date of the warranty period.",
+    "w" : 0.42547425474254741,
+    "x" : 0.10298102555555565,
+    "y" : 0.51238095230476177
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.030476190476190546,
+    "text" : "2",
+    "w" : 0.046070460704607075,
+    "x" : 0.62330623344625102,
+    "y" : 0.60380952390476184
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.015238095238095273,
+    "text" : "YEARS",
+    "w" : 0.1192411924119241,
+    "x" : 0.66666666766034322,
+    "y" : 0.61904761914285711
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.015238094783964651,
+    "text" : "Extended Warranty",
+    "w" : 0.18428184281842808,
+    "x" : 0.67479675094850944,
+    "y" : 0.59809523829540046
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "To activate the Warranty Extension,",
+    "w" : 0.2710027100271003,
+    "x" : 0.61246612804878042,
+    "y" : 0.57904761907142854
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333419,
+    "text" : "you must register your product online",
+    "w" : 0.27913279132791324,
+    "x" : 0.61246612733739825,
+    "y" : 0.56571428588095229
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "or contact our customer service team",
+    "w" : 0.28184281842818426,
+    "x" : 0.61517615645889789,
+    "y" : 0.55238095250793651
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333419,
+    "text" : "at hello@jackery.com to extend the",
+    "w" : 0.26558265582655827,
+    "x" : 0.61246612439024395,
+    "y" : 0.53904761882539676
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "standard warranty runtime.",
+    "w" : 0.20054200542005418,
+    "x" : 0.61517615338753395,
+    "y" : 0.52571428588095237
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "Repair or replacement",
+    "w" : 0.23035230352303521,
+    "x" : 0.10840108631436313,
+    "y" : 0.4723809524761905
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333419,
+    "text" : "Jackery will repair or replace (at Jackery's expense) any Jackery product that fails to operate during the",
+    "w" : 0.77235772357723587,
+    "x" : 0.10298103946476937,
+    "y" : 0.44380952392857143
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "applicable warranty period due to a defect in workmanship or material. The repaired\/replaced product",
+    "w" : 0.76964769647696474,
+    "x" : 0.10298103943089408,
+    "y" : 0.43047619059523812
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "assumes the remaining warranty of the original date of purchase.",
+    "w" : 0.48509485094850952,
+    "x" : 0.10027099462511319,
+    "y" : 0.417142857047619
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.019047619047619091,
+    "text" : "Limited to Original Consumer Buyer",
+    "w" : 0.36585365853658536,
+    "x" : 0.10569105728319786,
+    "y" : 0.37142857166666654
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "The warranty on Jackery's product is limited to the original consumer purchaser and is not transferable to",
+    "w" : 0.7804878048780487,
+    "x" : 0.10027098970189749,
+    "y" : 0.34857142850793654
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "any subsequent owner.",
+    "w" : 0.17615176151761519,
+    "x" : 0.10027099977416454,
+    "y" : 0.33523809511111113
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.015916221255347862,
+    "text" : "Exclusions",
+    "w" : 0.11400096655538089,
+    "x" : 0.10018108711416523,
+    "y" : 0.28918474642843195
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "Jackery's warranty does not apply to:",
+    "w" : 0.2791327913279133,
+    "x" : 0.10298102994579948,
+    "y" : 0.26476190495238083
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.015238095238095273,
+    "text" : "• Misused, abused, modified, damaged by accident, or used for anything other than normal",
+    "w" : 0.74254742547425479,
+    "x" : 0.10027099342818446,
+    "y" : 0.24190476185714294
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.01523809478396454,
+    "text" : "consumer use as authorized in Jackery's current product literature.",
+    "w" : 0.5420054200542006,
+    "x" : 0.1111111154471543,
+    "y" : 0.22476190496206727
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.015238094783964651,
+    "text" : "• Attempted repair by anyone other than an authorized facility.",
+    "w" : 0.50948509485094851,
+    "x" : 0.10027101111111085,
+    "y" : 0.20761904781921003
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333419,
+    "text" : "• Any product purchased through an online auction house.",
+    "w" : 0.47696476964769652,
+    "x" : 0.09756098355916866,
+    "y" : 0.19238095241269837
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "• Jackery's warranty does not apply to the battery cell unless the battery cell is fully charged by you",
+    "w" : 0.80758807588075887,
+    "x" : 0.10027101280487781,
+    "y" : 0.17523809530952383
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.015238094783964651,
+    "text" : "within seven days after you purchase the product and at least once every 6 months thereafter.",
+    "w" : 0.77235772357723587,
+    "x" : 0.10840108279132803,
+    "y" : 0.15619047639063866
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.019047619047619091,
+    "text" : "Interpretation Rights",
+    "w" : 0.21680216802168023,
+    "x" : 0.10840108292682926,
+    "y" : 0.10857142833333333
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "Jackery reserves the right to the final interpretation of the above customer after-sales policy.",
+    "w" : 0.69105686921737386,
+    "x" : 0.10027101186827828,
+    "y" : 0.085714285650793642
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.019047619047619202,
+    "text" : "16",
+    "w" : 0.024390243902439046,
+    "x" : 0.90514905172764226,
+    "y" : 0.020952380714285623
+  }
+]

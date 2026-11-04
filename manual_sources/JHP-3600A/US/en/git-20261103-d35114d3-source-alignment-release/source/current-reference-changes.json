@@ -1,0 +1,507 @@
+[
+  {
+    "page": 14,
+    "before": {
+      "kind": "component",
+      "component_spec": {
+        "component_id": "HB-CALLOUT-STRIP",
+        "variant": "caution",
+        "source_ref": "pdf/p13-b8-l0-0",
+        "language": "en",
+        "slots": [
+          {
+            "role": "label",
+            "content_kind": "inline_text",
+            "content": "CAUTION"
+          },
+          {
+            "role": "body",
+            "content_kind": "rich_text",
+            "content": "This product does not support 0 ms switching. Do not connect it to equipment that  requires a 0 ms switching power supply, such as data servers or workstations.\nBefore use, please test compatibility with your device multiple times.\nDo not connect loads exceeding the maximum output power of the product. Otherwise,  overload protection will be triggered."
+          },
+          {
+            "role": "items",
+            "content_kind": "list_items",
+            "content": [
+              "This product does not support 0 ms switching. Do not connect it to equipment that  requires a 0 ms switching power supply, such as data servers or workstations.",
+              "Before use, please test compatibility with your device multiple times.",
+              "Do not connect loads exceeding the maximum output power of the product. Otherwise,  overload protection will be triggered."
+            ]
+          }
+        ],
+        "assets": [],
+        "token_roles": [
+          "component.callout"
+        ],
+        "metadata": {},
+        "schema_version": "component-spec/v1"
+      },
+      "carrier_flow": [
+        {
+          "kind": "table",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "manual-callout-table ht-native-ups-caution"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "table_body",
+              "children": [
+                {
+                  "kind": "table_row",
+                  "children": [
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "manual-callout-label"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "CAUTION"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "manual-callout-body"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "list",
+                          "ordered": false,
+                          "children": [
+                            {
+                              "kind": "list_item",
+                              "children": [
+                                {
+                                  "kind": "paragraph",
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "This product does not support 0 ms switching. Do not connect it to equipment that "
+                                    },
+                                    {
+                                      "kind": "text",
+                                      "text": " "
+                                    },
+                                    {
+                                      "kind": "text",
+                                      "text": "requires a 0 ms switching power supply, such as data servers or workstations."
+                                    },
+                                    {
+                                      "kind": "text",
+                                      "text": " "
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "list_item",
+                              "children": [
+                                {
+                                  "kind": "paragraph",
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "Before use, please test compatibility with your device multiple times."
+                                    },
+                                    {
+                                      "kind": "text",
+                                      "text": " "
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "list_item",
+                              "children": [
+                                {
+                                  "kind": "paragraph",
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "Do not connect loads exceeding the maximum output power of the product. Otherwise, "
+                                    },
+                                    {
+                                      "kind": "text",
+                                      "text": " "
+                                    },
+                                    {
+                                      "kind": "text",
+                                      "text": "overload protection will be triggered. "
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "schema_version": "manual-flow/v2"
+    },
+    "after": {
+      "kind": "component",
+      "component_spec": {
+        "component_id": "HB-CALLOUT-STRIP",
+        "variant": "caution",
+        "source_ref": "review-reference/physical-page-14/ups-caution",
+        "language": "en",
+        "slots": [
+          {
+            "role": "label",
+            "content_kind": "inline_text",
+            "content": "CAUTION"
+          },
+          {
+            "role": "body",
+            "content_kind": "rich_text",
+            "content": "This product does not support 0 ms switching. Do not connect it to equipment that requires an uninterrupted power supply, such as data servers or workstations.\nBefore use, please test compatibility with your device multiple times.\nIt is recommended to connect one device at a time. Do not use multiple devices simultaneously, as this may trigger overload protection.\nThe UPS function works only when a single unit is connected directly to a wall outlet. Do not connect multiple portable power stations in series (cascade connection). In a cascaded setup, the UPS function will not operate: the unit may fail to switch over during a power outage, causing connected devices to shut down."
+          },
+          {
+            "role": "items",
+            "content_kind": "list_items",
+            "content": [
+              "This product does not support 0 ms switching. Do not connect it to equipment that requires an uninterrupted power supply, such as data servers or workstations.",
+              "Before use, please test compatibility with your device multiple times.",
+              "It is recommended to connect one device at a time. Do not use multiple devices simultaneously, as this may trigger overload protection.",
+              "The UPS function works only when a single unit is connected directly to a wall outlet. Do not connect multiple portable power stations in series (cascade connection). In a cascaded setup, the UPS function will not operate: the unit may fail to switch over during a power outage, causing connected devices to shut down."
+            ]
+          }
+        ],
+        "assets": [],
+        "token_roles": [
+          "component.callout"
+        ],
+        "metadata": {},
+        "schema_version": "component-spec/v1"
+      },
+      "carrier_flow": [
+        {
+          "kind": "table",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "manual-callout-table manual-callout-table"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "table_body",
+              "children": [
+                {
+                  "kind": "table_row",
+                  "children": [
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "manual-callout-label"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "CAUTION"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "manual-callout-body"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "list",
+                          "ordered": false,
+                          "children": [
+                            {
+                              "kind": "list_item",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "This product does not support 0 ms switching. Do not connect it to equipment that requires an uninterrupted power supply, such as data servers or workstations."
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "list_item",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "Before use, please test compatibility with your device multiple times."
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "list_item",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "It is recommended to connect one device at a time. Do not use multiple devices simultaneously, as this may trigger overload protection."
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "list_item",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "The UPS function works only when a single unit is connected directly to a wall outlet. Do not connect multiple portable power stations in series (cascade connection). In a cascaded setup, the UPS function will not operate: the unit may fail to switch over during a power outage, causing connected devices to shut down."
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "schema_version": "manual-flow/v2"
+    },
+    "reason": "Current reference wording; no specific historical correction found in prior package, approval record or introduction history."
+  },
+  {
+    "page": 8,
+    "before": {
+      "number_html": "<p>4</p>",
+      "number_text": "4",
+      "name_html": "<p><strong>Battery Saving </strong> <strong>Mode</strong></p>",
+      "name_text": "Battery Saving  Mode",
+      "description_html": "<div class=\"line-block\"><div class=\"line\"><strong>On:</strong> Limits the maximum usable battery capacity to extend  battery life.</div><div class=\"line\"><strong>Off: </strong>Battery Saving Mode is disabled.</div><div class=\"line\">Enable/disable this feature in the Jackery App. The setting is  retained when the device is powered off.</div><div class=\"line\"><strong>Note 1:</strong> This feature is not available when the product is  connected to battery pack(s).</div><div class=\"line\"><strong>Note 2:</strong> When this feature is enabled, the product occasionally  performs a full charge and discharge cycle to calibrate the SOC.</div></div>",
+      "description_text": "On: Limits the maximum usable battery capacity to extend  battery life. Off: Battery Saving Mode is disabled. Enable/disable this feature in the Jackery App. The setting is  retained when the device is powered off. Note 1: This feature is not available when the product is  connected to battery pack(s). Note 2: When this feature is enabled, the product occasionally  performs a full charge and discharge cycle to calibrate the SOC.",
+      "icon_alt": "Battery Saving  Mode",
+      "asset_index": 3
+    },
+    "after": {
+      "number_html": "<p>4</p>",
+      "number_text": "4",
+      "name_html": "<p><strong>Battery Saving </strong> <strong>Mode</strong></p>",
+      "name_text": "Battery Saving  Mode",
+      "description_html": "<div class=\"line-block\"><div class=\"line\"><strong>On:</strong> Limits the maximum usable battery capacity to extend battery life.</div><div class=\"line\"><strong>Off:</strong> Battery Saving Mode is disabled.</div><div class=\"line\">Enable/disable this feature in the Jackery App. This feature is not available when the product is connected to battery pack(s).</div></div>",
+      "description_text": "On: Limits the maximum usable battery capacity to extend battery life. Off: Battery Saving Mode is disabled. Enable/disable this feature in the Jackery App. This feature is not available when the product is connected to battery pack(s).",
+      "icon_alt": "Battery Saving  Mode",
+      "asset_index": 3
+    },
+    "reason": "Current single-language reference has no retained-settings or SOC calibration sentences; no specific historical correction found."
+  },
+  {
+    "page": 12,
+    "before": {
+      "kind": "component",
+      "component_spec": {
+        "component_id": "HB-TABLE-LCD-MODE",
+        "variant": "two-state-three-action",
+        "source_ref": "native-pdf/physical-page-12#lcd-screen",
+        "language": "en",
+        "slots": [
+          {
+            "role": "accessibility_label",
+            "content_kind": "inline_text",
+            "content": "LCD SCREEN"
+          },
+          {
+            "role": "groups",
+            "content_kind": "ordered_groups",
+            "content": [
+              {
+                "state_html": "<p><span class=\"ht-source-line\">Shortly On</span></p>",
+                "state_text": "Shortly On",
+                "actions": [
+                  {
+                    "action_html": "<p><span class=\"ht-source-line\">Turn on</span></p>",
+                    "action_text": "Turn on",
+                    "description_html": "<p><span class=\"ht-source-line\">Press the Main Power Button or </span><span class=\"ht-source-line\">when the product is charging.</span></p>",
+                    "description_text": "Press the Main Power Button or  when the product is charging."
+                  },
+                  {
+                    "action_html": "<p><span class=\"ht-source-line\">Turn oﬀ</span></p>",
+                    "action_text": "Turn oﬀ",
+                    "description_html": "<p><span class=\"ht-source-line\">Press the Main Power Button.</span></p>",
+                    "description_text": "Press the Main Power Button."
+                  },
+                  {
+                    "action_html": "<p><span class=\"ht-source-line\">Auto-oﬀ</span></p>",
+                    "action_text": "Auto-oﬀ",
+                    "description_html": "<p><span class=\"ht-source-line\">The LCD turns oﬀ automatically </span><span class=\"ht-source-line\">and enters sleep mode after 2 </span><span class=\"ht-source-line\">minutes of inactivity.</span></p>",
+                    "description_text": "The LCD turns oﬀ automatically  and enters sleep mode after 2  minutes of inactivity."
+                  }
+                ]
+              },
+              {
+                "state_html": "<p><span class=\"ht-source-line\">Steady On </span><span class=\"ht-source-line\">(in charging </span><span class=\"ht-source-line\">or </span><span class=\"ht-source-line\">discharging </span><span class=\"ht-source-line\">state)</span></p>",
+                "state_text": "Steady On  (in charging  or  discharging  state)",
+                "actions": [
+                  {
+                    "action_html": "<p><span class=\"ht-source-line\">Turn on</span></p>",
+                    "action_text": "Turn on",
+                    "description_html": "<p><span class=\"ht-source-line\">Press the Main Power Button </span><span class=\"ht-source-line\">twice when the product is </span><span class=\"ht-source-line\">powered on.</span></p>",
+                    "description_text": "Press the Main Power Button  twice when the product is  powered on."
+                  },
+                  {
+                    "action_html": "<p><span class=\"ht-source-line\">Turn oﬀ</span></p>",
+                    "action_text": "Turn oﬀ",
+                    "description_html": "<p><span class=\"ht-source-line\">Press the Main Power Button.</span></p>",
+                    "description_text": "Press the Main Power Button."
+                  },
+                  {
+                    "action_html": "<p><span class=\"ht-source-line\">Auto-oﬀ</span></p>",
+                    "action_text": "Auto-oﬀ",
+                    "description_html": "<p><span class=\"ht-source-line\">The LCD turns oﬀ </span><span class=\"ht-source-line\">automatically after 2 hours of </span><span class=\"ht-source-line\">inactivity.</span></p>",
+                    "description_text": "The LCD turns oﬀ  automatically after 2 hours of  inactivity."
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "assets": [
+          {
+            "role": "artwork",
+            "asset_ref": "assets/lcd-screen-p12.svg",
+            "locale_policy": "shared"
+          }
+        ],
+        "token_roles": [
+          "component.table.lcd-mode"
+        ],
+        "metadata": {
+          "native_page": 12,
+          "native_line_breaks_preserved": true
+        },
+        "schema_version": "component-spec/v1"
+      }
+    },
+    "after": {
+      "kind": "component",
+      "component_spec": {
+        "component_id": "HB-TABLE-LCD-MODE",
+        "variant": "two-state-three-action",
+        "source_ref": "native-pdf/physical-page-12#lcd-screen",
+        "language": "en",
+        "slots": [
+          {
+            "role": "accessibility_label",
+            "content_kind": "inline_text",
+            "content": "LCD SCREEN"
+          },
+          {
+            "role": "groups",
+            "content_kind": "ordered_groups",
+            "content": [
+              {
+                "state_html": "<p>LCD Screen</p>",
+                "state_text": "LCD Screen",
+                "actions": [
+                  {
+                    "action_html": "<p><span class=\"ht-source-line\">Turn on</span></p>",
+                    "action_text": "Turn on",
+                    "description_html": "<p><span class=\"ht-source-line\">Press the Main Power Button or </span><span class=\"ht-source-line\">when the product is charging.</span></p>",
+                    "description_text": "Press the Main Power Button or  when the product is charging."
+                  },
+                  {
+                    "action_html": "<p><span class=\"ht-source-line\">Turn oﬀ</span></p>",
+                    "action_text": "Turn oﬀ",
+                    "description_html": "<p><span class=\"ht-source-line\">Press the Main Power Button.</span></p>",
+                    "description_text": "Press the Main Power Button."
+                  },
+                  {
+                    "action_html": "<p><span class=\"ht-source-line\">Auto-oﬀ</span></p>",
+                    "action_text": "Auto-oﬀ",
+                    "description_html": "<p><span class=\"ht-source-line\">The LCD turns oﬀ automatically </span><span class=\"ht-source-line\">and enters sleep mode after 2 </span><span class=\"ht-source-line\">minutes of inactivity.</span></p>",
+                    "description_text": "The LCD turns oﬀ automatically  and enters sleep mode after 2  minutes of inactivity."
+                  }
+                ]
+              },
+              {
+                "state_html": "<p>Always-on Display Mode (under charging or discharging state)</p>",
+                "state_text": "Always-on Display Mode (under charging or discharging state)",
+                "actions": [
+                  {
+                    "action_html": "<p><span class=\"ht-source-line\">Turn on</span></p>",
+                    "action_text": "Turn on",
+                    "description_html": "<p>Double-click the Main Power Button when the LCD screen is on.</p>",
+                    "description_text": "Double-click the Main Power Button when the LCD screen is on."
+                  },
+                  {
+                    "action_html": "<p><span class=\"ht-source-line\">Turn oﬀ</span></p>",
+                    "action_text": "Turn oﬀ",
+                    "description_html": "<p><span class=\"ht-source-line\">Press the Main Power Button.</span></p>",
+                    "description_text": "Press the Main Power Button."
+                  },
+                  {
+                    "action_html": "<p><span class=\"ht-source-line\">Auto-oﬀ</span></p>",
+                    "action_text": "Auto-oﬀ",
+                    "description_html": "<p>The Always-on Display Mode turns off automatically after 2 hours of inactivity.</p>",
+                    "description_text": "The Always-on Display Mode turns off automatically after 2 hours of inactivity."
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "assets": [
+          {
+            "role": "artwork",
+            "asset_ref": "assets/lcd-screen-p12.svg",
+            "locale_policy": "shared"
+          }
+        ],
+        "token_roles": [
+          "component.table.lcd-mode"
+        ],
+        "metadata": {
+          "native_page": 12,
+          "native_line_breaks_preserved": true
+        },
+        "schema_version": "component-spec/v1"
+      }
+    },
+    "reason": "Current reference LCD mode names and LCD-on condition restored, no specific historical correction."
+  },
+  {
+    "page": 18,
+    "before": "CHARGING VIA A CAR CHARGER",
+    "after": "CHARGING WITH A CAR CHARGER",
+    "reason": "Current reference heading."
+  }
+]

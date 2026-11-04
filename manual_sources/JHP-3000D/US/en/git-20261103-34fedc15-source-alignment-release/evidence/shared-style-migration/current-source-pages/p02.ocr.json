@@ -1,0 +1,90 @@
+[
+  {
+    "confidence" : 1,
+    "h" : 0.01904761904761898,
+    "text" : "EN IMPORTANT",
+    "w" : 0.23848238482384826,
+    "x" : 0.094850950894308908,
+    "y" : 0.91047619059047624
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "Congratulations on your new Jackery HomePower 3000. Please read this manual carefully",
+    "w" : 0.77777777777777779,
+    "x" : 0.097560967831978471,
+    "y" : 0.88190476180952382
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.015238095238095162,
+    "text" : "before using the product, particularly the relevant precautions to ensure proper use. Keep",
+    "w" : 0.77235772357723587,
+    "x" : 0.09756096859756111,
+    "y" : 0.86095238076190483
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "this manual in an accessible place for future reference.",
+    "w" : 0.48509485094850946,
+    "x" : 0.094850956594399044,
+    "y" : 0.84380952390476194
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.01523809478396454,
+    "text" : "In compliance with laws and regulations, the right of final interpretation of this document",
+    "w" : 0.76964769647696474,
+    "x" : 0.097560971996386719,
+    "y" : 0.81904761924778147
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.015238094783964651,
+    "text" : "and all related documents of this product resides with the Company. Although every effort",
+    "w" : 0.7804878048780487,
+    "x" : 0.097560984733513711,
+    "y" : 0.80000000020016238
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "has been made to ensure the accuracy of this manual, Jackery Inc. assumes no responsibility",
+    "w" : 0.80487804878048774,
+    "x" : 0.094850935094851402,
+    "y" : 0.78285714276190477
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.015238094783964651,
+    "text" : "for any errors that may appear.",
+    "w" : 0.27642276422764228,
+    "x" : 0.094850950496838241,
+    "y" : 0.7619047621049243
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "Please note that no further notifications will be given in case of any update, revision, or",
+    "w" : 0.75067750677506762,
+    "x" : 0.097560988121047507,
+    "y" : 0.74095238104761907
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333419,
+    "text" : "termination. For the latest version of the product manuals, visit support.jackery.com.",
+    "w" : 0.7289972899728997,
+    "x" : 0.092140909259259662,
+    "y" : 0.72190476180952379
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.019664043244861484,
+    "text" : "*The images are for reference purposes only. Please refer to the actual product.",
+    "w" : 0.69400768745236274,
+    "x" : 0.094712844333895291,
+    "y" : 0.69467672016438597
+  }
+]

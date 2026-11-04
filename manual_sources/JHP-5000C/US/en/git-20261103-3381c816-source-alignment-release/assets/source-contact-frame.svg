@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ns1="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="273.20000000000005" height="37.599999999999966" viewBox="-1477.8966796875 459.3 273.20000000000005 37.599999999999966" preserveAspectRatio="none"><defs>
+<clipPath id="clip_2">
+<path transform="matrix(1,0,0,-1,-2392.5303,6693.3835)" d="M0 0H11914.6V8405.89H0Z" />
+</clipPath>
+<clipPath id="clip_8174">
+<path transform="matrix(1,0,0,-1,-2392.5303,6693.3835)" d="M0 8405.89H11914.583V0H0Z" />
+</clipPath>
+</defs>
+<g><g><g clip-path="url(#clip_2)"><g ns1:groupmode="layer" ns1:label="图层 1"><g clip-path="url(#clip_8174)"><path transform="matrix(1,0,0,-1,-1210.1148,496.31886)" d="M0 0H-262.345C-264.992 0-267.157 2.165-267.157 4.812V31.646C-267.157 34.292-264.992 36.457-262.345 36.457H0C2.646 36.457 4.812 34.292 4.812 31.646V4.812C4.812 2.165 2.646 0 0 0" fill="#ffffff" data-pdf-drawing-index="201998" />
+<path transform="matrix(1,0,0,-1,-1210.1148,496.31886)" stroke-width=".25" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#96989b" d="M0 0H-262.345C-264.992 0-267.157 2.165-267.157 4.812V31.646C-267.157 34.292-264.992 36.457-262.345 36.457H0C2.646 36.457 4.812 34.292 4.812 31.646V4.812C4.812 2.165 2.646 0 0 0Z" data-pdf-drawing-index="201998" />
+<path transform="matrix(1,0,0,-1,-1306.7109,468.792)" stroke-width=".249" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#454546" d="M0 0V-8.386L1.515-9.744 .053-11.054V-19.421" data-pdf-drawing-index="202090" />
+</g></g></g></g></g></svg>

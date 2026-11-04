@@ -1,0 +1,354 @@
+{
+  "physical_pages": [
+    4,
+    5
+  ],
+  "method": "OCR aid plus source visual transcription; source PDF remains authoritative",
+  "page4": [
+    {
+      "id": "p4-outline-0",
+      "block": 10000,
+      "bbox": [
+        32,
+        31,
+        182,
+        43
+      ],
+      "text": "IMPORTANT SAFETY INFORMATION",
+      "size": 12,
+      "origin": "outline-copy visually recovered from authoritative PDF",
+      "spans": [
+        {
+          "text": "IMPORTANT SAFETY INFORMATION",
+          "font": "Bold",
+          "size": 12,
+          "flags": 16
+        }
+      ]
+    },
+    {
+      "id": "p4-outline-1",
+      "block": 10001,
+      "bbox": [
+        62,
+        69,
+        212,
+        78
+      ],
+      "text": "INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS",
+      "size": 9,
+      "origin": "outline-copy visually recovered from authoritative PDF",
+      "spans": [
+        {
+          "text": "INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS",
+          "font": "Bold",
+          "size": 9,
+          "flags": 16
+        }
+      ]
+    },
+    {
+      "id": "p4-outline-2",
+      "block": 10002,
+      "bbox": [
+        76,
+        107,
+        226,
+        116
+      ],
+      "text": "WARNING",
+      "size": 9,
+      "origin": "outline-copy visually recovered from authoritative PDF",
+      "spans": [
+        {
+          "text": "WARNING",
+          "font": "Bold",
+          "size": 9,
+          "flags": 16
+        }
+      ]
+    },
+    {
+      "id": "p4-outline-3",
+      "block": 10003,
+      "bbox": [
+        76,
+        119,
+        226,
+        126
+      ],
+      "text": "Always follow these basic precautions when using this product.",
+      "size": 7,
+      "origin": "outline-copy visually recovered from authoritative PDF",
+      "spans": [
+        {
+          "text": "Always follow these basic precautions when using this product.",
+          "font": "Regular",
+          "size": 7,
+          "flags": 0
+        }
+      ]
+    },
+    {
+      "id": "p4-outline-4",
+      "block": 10004,
+      "bbox": [
+        28,
+        150,
+        178,
+        156
+      ],
+      "text": "Read all the instructions before using the product.",
+      "size": 6,
+      "origin": "outline-copy visually recovered from authoritative PDF",
+      "spans": [
+        {
+          "text": "Read all the instructions before using the product.",
+          "font": "Regular",
+          "size": 6,
+          "flags": 0
+        }
+      ]
+    },
+    {
+      "id": "p4-outline-5",
+      "block": 10005,
+      "bbox": [
+        28,
+        159,
+        178,
+        165
+      ],
+      "text": "Do not allow children to play on the product. Close supervision of children is necessary when the product is used near children.",
+      "size": 6,
+      "origin": "outline-copy visually recovered from authoritative PDF",
+      "spans": [
+        {
+          "text": "Do not allow children to play on the product. Close supervision of children is necessary when the product is used near children.",
+          "font": "Regular",
+          "size": 6,
+          "flags": 0
+        }
+      ]
+    },
+    {
+      "id": "p4-outline-6",
+      "block": 10006,
+      "bbox": [
+        28,
+        184,
+        178,
+        190
+      ],
+      "text": "Avoid placing hands or fingers inside the product.",
+      "size": 6,
+      "origin": "outline-copy visually recovered from authoritative PDF",
+      "spans": [
+        {
+          "text": "Avoid placing hands or fingers inside the product.",
+          "font": "Regular",
+          "size": 6,
+          "flags": 0
+        }
+      ]
+    },
+    {
+      "id": "p4-outline-7",
+      "block": 10007,
+      "bbox": [
+        28,
+        193,
+        178,
+        199
+      ],
+      "text": "Stop using the product immediately if it has been physically damaged or modified. Improper use of the product may cause unpredictable behavior, leading to fire, explosion, or injury.",
+      "size": 6,
+      "origin": "outline-copy visually recovered from authoritative PDF",
+      "spans": [
+        {
+          "text": "Stop using the product immediately if it has been physically damaged or modified. Improper use of the product may cause unpredictable behavior, leading to fire, explosion, or injury.",
+          "font": "Regular",
+          "size": 6,
+          "flags": 0
+        }
+      ]
+    },
+    {
+      "id": "p4-outline-8",
+      "block": 10008,
+      "bbox": [
+        28,
+        225,
+        178,
+        231
+      ],
+      "text": "If any of the following are observed, including but not limited to overheats, emits unusual odors or smoking, leaks, or burns, stop using the product immediately and contact the dealer or our Customer Support.",
+      "size": 6,
+      "origin": "outline-copy visually recovered from authoritative PDF",
+      "spans": [
+        {
+          "text": "If any of the following are observed, including but not limited to overheats, emits unusual odors or smoking, leaks, or burns, stop using the product immediately and contact the dealer or our Customer Support.",
+          "font": "Regular",
+          "size": 6,
+          "flags": 0
+        }
+      ]
+    },
+    {
+      "id": "p4-outline-9",
+      "block": 10009,
+      "bbox": [
+        28,
+        257,
+        178,
+        263
+      ],
+      "text": "Never attempt to open, repair, or modify the product. Any tampering, reassembly, or modification of the product can result in electric shock, fire, or battery damage.",
+      "size": 6,
+      "origin": "outline-copy visually recovered from authoritative PDF",
+      "spans": [
+        {
+          "text": "Never attempt to open, repair, or modify the product. Any tampering, reassembly, or modification of the product can result in electric shock, fire, or battery damage.",
+          "font": "Regular",
+          "size": 6,
+          "flags": 0
+        }
+      ]
+    },
+    {
+      "id": "p4-outline-10",
+      "block": 10010,
+      "bbox": [
+        191,
+        119,
+        341,
+        125
+      ],
+      "text": "Be aware that liquid ejected from the product may cause irritation or burns. Inappropriate or abusive use of the product may lead to battery leakage. Avoid direct contact with leaking liquid. If the liquid contacts your eyes, seek medical help immediately. If it contacts other body parts, flush with running water and consult a medical professional without delay.",
+      "size": 6,
+      "origin": "outline-copy visually recovered from authoritative PDF",
+      "spans": [
+        {
+          "text": "Be aware that liquid ejected from the product may cause irritation or burns. Inappropriate or abusive use of the product may lead to battery leakage. Avoid direct contact with leaking liquid. If the liquid contacts your eyes, seek medical help immediately. If it contacts other body parts, flush with running water and consult a medical professional without delay.",
+          "font": "Regular",
+          "size": 6,
+          "flags": 0
+        }
+      ]
+    },
+    {
+      "id": "p4-outline-11",
+      "block": 10011,
+      "bbox": [
+        191,
+        174,
+        341,
+        180
+      ],
+      "text": "Do not expose the product to fire or excessive temperatures. Doing so may result in an explosion if the temperature exceeds 130°C (265°F).",
+      "size": 6,
+      "origin": "outline-copy visually recovered from authoritative PDF",
+      "spans": [
+        {
+          "text": "Do not expose the product to fire or excessive temperatures. Doing so may result in an explosion if the temperature exceeds 130°C (265°F).",
+          "font": "Regular",
+          "size": 6,
+          "flags": 0
+        }
+      ]
+    },
+    {
+      "id": "p4-outline-12",
+      "block": 10012,
+      "bbox": [
+        191,
+        198,
+        341,
+        204
+      ],
+      "text": "Any use of unrecommended or non-supplied materials or parts with the product may result in a risk of fire, electric shock, or personal injury.",
+      "size": 6,
+      "origin": "outline-copy visually recovered from authoritative PDF",
+      "spans": [
+        {
+          "text": "Any use of unrecommended or non-supplied materials or parts with the product may result in a risk of fire, electric shock, or personal injury.",
+          "font": "Regular",
+          "size": 6,
+          "flags": 0
+        }
+      ]
+    },
+    {
+      "id": "p4-outline-13",
+      "block": 10013,
+      "bbox": [
+        191,
+        222,
+        341,
+        228
+      ],
+      "text": "Do not leave the battery charging unattended for long periods. Always monitor the charging process to ensure safe operation.",
+      "size": 6,
+      "origin": "outline-copy visually recovered from authoritative PDF",
+      "spans": [
+        {
+          "text": "Do not leave the battery charging unattended for long periods. Always monitor the charging process to ensure safe operation.",
+          "font": "Regular",
+          "size": 6,
+          "flags": 0
+        }
+      ]
+    },
+    {
+      "id": "p4-outline-14",
+      "block": 10014,
+      "bbox": [
+        191,
+        247,
+        341,
+        253
+      ],
+      "text": "To reduce the risk of electric shock, unplug the product from any power source before attempting any technical service or troubleshooting.",
+      "size": 6,
+      "origin": "outline-copy visually recovered from authoritative PDF",
+      "spans": [
+        {
+          "text": "To reduce the risk of electric shock, unplug the product from any power source before attempting any technical service or troubleshooting.",
+          "font": "Regular",
+          "size": 6,
+          "flags": 0
+        }
+      ]
+    },
+    {
+      "id": "p4-outline-15",
+      "block": 10015,
+      "bbox": [
+        32,
+        286,
+        182,
+        295
+      ],
+      "text": "OPERATING INSTRUCTIONS",
+      "size": 9,
+      "origin": "outline-copy visually recovered from authoritative PDF",
+      "spans": [
+        {
+          "text": "OPERATING INSTRUCTIONS",
+          "font": "Bold",
+          "size": 9,
+          "flags": 16
+        }
+      ]
+    }
+  ],
+  "page5": "Source-local explicit signal/pictogram table copy below",
+  "page5_safety_copy": [
+    "DANGER",
+    "This device is intended for indoor use only (Please place this device in a similar indoor environment when using it outdoors, e.g. Home RVs, tents, cabins, etc.).",
+    "※ This device is not waterproof or dustproof. Keep away from rain and humid environments during use.",
+    "USER MAINTENANCE INSTRUCTIONS",
+    "During the lifecycle of energy storage products, a certain degree of capacity and energy degradation is expected. As the number of charge and discharge cycles increases and storage time extends, this degradation will gradually intensify, which is a normal phenomenon consistent with the natural aging of battery cells."
+  ],
+  "page5_note_marker": "Source-visible outline glyph ※ restored as editable HTML."
+}

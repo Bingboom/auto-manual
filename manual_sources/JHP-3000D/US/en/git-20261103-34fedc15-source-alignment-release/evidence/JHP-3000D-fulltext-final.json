@@ -1,0 +1,66 @@
+{
+  "model": "JHP-3000D",
+  "source_pages": 22,
+  "checked_lines": 527,
+  "exclusions": {
+    "1": "historically approved print cover",
+    "3": "historically approved print TOC"
+  },
+  "candidates": [
+    {
+      "page": 6,
+      "text": "FC Tour coet ryhetieno odnc",
+      "coverage": 0.0
+    },
+    {
+      "page": 8,
+      "text": "UPS C 888/888v 88Hz-",
+      "coverage": 0.0
+    },
+    {
+      "page": 9,
+      "text": "88.8H Discharge Time",
+      "coverage": 0.6
+    },
+    {
+      "page": 9,
+      "text": "Luw teming uture prertepeion is ereered roet r ig age.",
+      "coverage": 0.0
+    },
+    {
+      "page": 18,
+      "text": "17.1 × 12.8 x 11.1 in / 43.5 × 32.6 × 28.1 cm",
+      "coverage": 0.562
+    },
+    {
+      "page": 20,
+      "text": "Bluetooth configurasion",
+      "coverage": 0.467
+    },
+    {
+      "page": 20,
+      "text": "Hete mie ture the buebtth con n fattrn",
+      "coverage": 0.0
+    },
+    {
+      "page": 20,
+      "text": "100108079400097 010 030 09",
+      "coverage": 0.0
+    },
+    {
+      "page": 21,
+      "text": "Please select 2.4 GHz Wi-Fi",
+      "coverage": 0.357
+    },
+    {
+      "page": 21,
+      "text": "Wwsure vort oruce isoaov Mu",
+      "coverage": 0.0
+    },
+    {
+      "page": 21,
+      "text": "Ayailshla cevicelsi scarred",
+      "coverage": 0.0
+    }
+  ]
+}

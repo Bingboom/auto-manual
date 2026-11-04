@@ -1,0 +1,492 @@
+{
+  "status": "pass",
+  "head": "11e191d52ddeddc87d8228c2ef8eccfee097df74",
+  "base": "cfebc33bb24d3657d01c3b01de491c06c0647b05",
+  "scope": [
+    "manual_sources/JE-1500C/US/en/git-20261103-46f58108-source-alignment-release",
+    "manual_sources/JE-300C/US/en/git-20261103-a1128b25-source-alignment-release",
+    "manual_sources/JE-300D/US/en/git-20261103-d3f47ff3-source-alignment-release",
+    "manual_sources/JE-300E/US/en/git-20261103-04bd8b90-source-alignment-release",
+    "manual_sources/JE-500A/US/en/git-20261103-5c065d11-source-alignment-release",
+    "manual_sources/JHP-3000D/US/en/git-20261103-34fedc15-source-alignment-release",
+    "manual_sources/JHP-3600A/US/en/git-20261103-d35114d3-source-alignment-release",
+    "manual_sources/JHP-3600C/US/en/git-20261103-cbb7eecb-source-alignment-release",
+    "manual_sources/JHP-5000C/US/en/git-20261103-3381c816-source-alignment-release"
+  ],
+  "packages": [
+    {
+      "model": "JE-500A",
+      "package": "manual_sources/JE-500A/US/en/git-20261103-5c065d11-source-alignment-release",
+      "record_id": "reczz28SlRGJjcks",
+      "source_sha256": "5c065d11c0191e7f9f5ef32ecd39fe0ca620f206c296c4eb6401a4b8215cea68",
+      "frozen_files": 218,
+      "frozen_inventory_complete": true,
+      "approved_inputs": 55,
+      "approval_exact": true,
+      "publication_metadata": {
+        "pending_source_review": [],
+        "publication_eligible": true
+      },
+      "style_gate": {
+        "profile": "prepared-document-shared-styles/v1",
+        "applicable": true,
+        "model": "JE-500A",
+        "region": "US",
+        "language": "en",
+        "declared_tables": 3,
+        "issues": []
+      }
+    },
+    {
+      "model": "JHP-5000C",
+      "package": "manual_sources/JHP-5000C/US/en/git-20261103-3381c816-source-alignment-release",
+      "record_id": "reczz28SlE2kq2EE",
+      "source_sha256": "3381c816e6bb75bc5e790bcba3faacbb3ad199f1a41cc53c5092368bcd945250",
+      "frozen_files": 562,
+      "frozen_inventory_complete": true,
+      "approved_inputs": 144,
+      "approval_exact": true,
+      "publication_metadata": {
+        "pending_source_review": [],
+        "publication_eligible": true
+      },
+      "style_gate": {
+        "profile": "prepared-document-shared-styles/v1",
+        "applicable": true,
+        "model": "JHP-5000C",
+        "region": "US",
+        "language": "en",
+        "declared_tables": 4,
+        "issues": []
+      }
+    },
+    {
+      "model": "JE-1500C",
+      "package": "manual_sources/JE-1500C/US/en/git-20261103-46f58108-source-alignment-release",
+      "record_id": "reczz28SlRGJhd6E",
+      "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+      "frozen_files": 266,
+      "frozen_inventory_complete": true,
+      "approved_inputs": 82,
+      "approval_exact": true,
+      "publication_metadata": {
+        "pending_source_review": [],
+        "publication_eligible": true
+      },
+      "style_gate": {
+        "profile": "prepared-document-shared-styles/v1",
+        "applicable": true,
+        "model": "JE-1500C",
+        "region": "US",
+        "language": "en",
+        "declared_tables": 3,
+        "issues": []
+      }
+    },
+    {
+      "model": "JHP-3600A",
+      "package": "manual_sources/JHP-3600A/US/en/git-20261103-d35114d3-source-alignment-release",
+      "record_id": "reczz28SPRx9p8Cu",
+      "source_sha256": "d35114d38afbdcb377441f44b00a3db575ad40710e19a71db4bc7a0a8fdaedb7",
+      "frozen_files": 415,
+      "frozen_inventory_complete": true,
+      "approved_inputs": 334,
+      "approval_exact": true,
+      "publication_metadata": {
+        "pending_source_review": [],
+        "publication_eligible": true
+      },
+      "style_gate": {
+        "profile": "prepared-document-shared-styles/v1",
+        "applicable": true,
+        "model": "JHP-3600A",
+        "region": "US",
+        "language": "en",
+        "declared_tables": 1,
+        "issues": []
+      }
+    },
+    {
+      "model": "JHP-3000D",
+      "package": "manual_sources/JHP-3000D/US/en/git-20261103-34fedc15-source-alignment-release",
+      "record_id": "reczz28SlRGJguaO",
+      "source_sha256": "34fedc156d52e8a50ca65d23327d323b3647aee03bd6b6b4aa1d681723e249dc",
+      "frozen_files": 435,
+      "frozen_inventory_complete": true,
+      "approved_inputs": 94,
+      "approval_exact": true,
+      "publication_metadata": {
+        "pending_source_review": [],
+        "publication_eligible": true
+      },
+      "style_gate": {
+        "profile": "prepared-document-shared-styles/v1",
+        "applicable": true,
+        "model": "JHP-3000D",
+        "region": "US",
+        "language": "en",
+        "declared_tables": 2,
+        "issues": []
+      }
+    },
+    {
+      "model": "JE-300C",
+      "package": "manual_sources/JE-300C/US/en/git-20261103-a1128b25-source-alignment-release",
+      "record_id": "reczz28SPRx9psWa",
+      "source_sha256": "a1128b25213d72cecd35c48a901a958612f4568cb0b4068b1c72ab8e553e9498",
+      "frozen_files": 171,
+      "frozen_inventory_complete": true,
+      "approved_inputs": 97,
+      "approval_exact": true,
+      "publication_metadata": {
+        "pending_source_review": [],
+        "publication_eligible": true
+      },
+      "style_gate": {
+        "profile": "prepared-document-shared-styles/v1",
+        "applicable": true,
+        "model": "JE-300C",
+        "region": "US",
+        "language": "en",
+        "declared_tables": 1,
+        "issues": []
+      }
+    },
+    {
+      "model": "JE-300D",
+      "package": "manual_sources/JE-300D/US/en/git-20261103-d3f47ff3-source-alignment-release",
+      "record_id": "reczz28SlRGJh85k",
+      "source_sha256": "d3f47ff3afe136665d1594e7395c9838ca00fe23450818e96641fc0fd4e6476b",
+      "frozen_files": 143,
+      "frozen_inventory_complete": true,
+      "approved_inputs": 84,
+      "approval_exact": true,
+      "publication_metadata": {
+        "pending_source_review": [],
+        "publication_eligible": true
+      },
+      "style_gate": {
+        "profile": "prepared-document-shared-styles/v1",
+        "applicable": true,
+        "model": "JE-300D",
+        "region": "US",
+        "language": "en",
+        "declared_tables": 0,
+        "issues": []
+      }
+    },
+    {
+      "model": "JHP-3600C",
+      "package": "manual_sources/JHP-3600C/US/en/git-20261103-cbb7eecb-source-alignment-release",
+      "record_id": "reczz28SlRGJgPNN",
+      "source_sha256": "cbb7eecba3f7a2a035f6c5bc0d3da54505b9d6399377d87eb639fc5683e694d1",
+      "frozen_files": 432,
+      "frozen_inventory_complete": true,
+      "approved_inputs": 156,
+      "approval_exact": true,
+      "publication_metadata": {
+        "pending_source_review": [],
+        "publication_eligible": true
+      },
+      "style_gate": {
+        "profile": "prepared-document-shared-styles/v1",
+        "applicable": true,
+        "model": "JHP-3600C",
+        "region": "US",
+        "language": "en",
+        "declared_tables": 0,
+        "issues": []
+      }
+    },
+    {
+      "model": "JE-300E",
+      "package": "manual_sources/JE-300E/US/en/git-20261103-04bd8b90-source-alignment-release",
+      "record_id": "reczz28SPRx9pHAk",
+      "source_sha256": "04bd8b90f146ff9b65a3ee4b47327d76128c3110c8ef46ac4061e6b0e77b3c8c",
+      "frozen_files": 167,
+      "frozen_inventory_complete": true,
+      "approved_inputs": 95,
+      "approval_exact": true,
+      "publication_metadata": {
+        "pending_source_review": [],
+        "publication_eligible": true
+      },
+      "style_gate": {
+        "profile": "prepared-document-shared-styles/v1",
+        "applicable": true,
+        "model": "JE-300E",
+        "region": "US",
+        "language": "en",
+        "declared_tables": 1,
+        "issues": []
+      }
+    }
+  ],
+  "findings": [],
+  "registry": {
+    "new_packages": [
+      "manual_sources/JE-1500C/US/en/git-20261103-46f58108-source-alignment-release",
+      "manual_sources/JE-300C/US/en/git-20261103-a1128b25-source-alignment-release",
+      "manual_sources/JE-300D/US/en/git-20261103-d3f47ff3-source-alignment-release",
+      "manual_sources/JE-300E/US/en/git-20261103-04bd8b90-source-alignment-release",
+      "manual_sources/JE-500A/US/en/git-20261103-5c065d11-source-alignment-release",
+      "manual_sources/JHP-3000D/US/en/git-20261103-34fedc15-source-alignment-release",
+      "manual_sources/JHP-3600A/US/en/git-20261103-d35114d3-source-alignment-release",
+      "manual_sources/JHP-3600C/US/en/git-20261103-cbb7eecb-source-alignment-release",
+      "manual_sources/JHP-5000C/US/en/git-20261103-3381c816-source-alignment-release"
+    ],
+    "removed_packages": [],
+    "existing_entries_changed_only_css_keep_frozen": [
+      {
+        "package": "manual_sources/JE-900B-WH/JP/ja/git-20261103-66c65187",
+        "added_keep_frozen": [
+          "docs/renderers/contracts/web_manual.css"
+        ]
+      },
+      {
+        "package": "manual_sources/JE-3000C/KR/ko/git-20261021-78316033",
+        "added_keep_frozen": [
+          "docs/renderers/contracts/web_manual.css"
+        ]
+      },
+      {
+        "package": "manual_sources/JE-600C-SJ/JP/ja/git-20261103-3837e9fd",
+        "added_keep_frozen": [
+          "docs/renderers/contracts/web_manual.css"
+        ]
+      },
+      {
+        "package": "manual_sources/JE-880B/US/en/git-20261027-640e83ca",
+        "added_keep_frozen": [
+          "docs/renderers/contracts/web_manual.css"
+        ]
+      },
+      {
+        "package": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed",
+        "added_keep_frozen": [
+          "docs/renderers/contracts/web_manual.css"
+        ]
+      },
+      {
+        "package": "manual_sources/JE-3000C/JP/ja/git-20261019-b16b82c6-jp-native",
+        "added_keep_frozen": [
+          "docs/renderers/contracts/web_manual.css"
+        ]
+      },
+      {
+        "package": "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed",
+        "added_keep_frozen": [
+          "docs/renderers/contracts/web_manual.css"
+        ]
+      },
+      {
+        "package": "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout",
+        "added_keep_frozen": [
+          "docs/renderers/contracts/web_manual.css"
+        ]
+      },
+      {
+        "package": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7",
+        "added_keep_frozen": [
+          "docs/renderers/contracts/web_manual.css"
+        ]
+      },
+      {
+        "package": "manual_sources/JE-300E-SG/US/en/git-20261027-e47cb322",
+        "added_keep_frozen": [
+          "docs/renderers/contracts/web_manual.css"
+        ]
+      },
+      {
+        "package": "manual_sources/JE-880B/US/en/git-20261103-640e83ca-source-alignment-release",
+        "added_keep_frozen": [
+          "docs/renderers/contracts/web_manual.css"
+        ]
+      },
+      {
+        "package": "manual_sources/JE-500A/US/en/git-20261028-5c065d11",
+        "added_keep_frozen": [
+          "docs/renderers/contracts/web_manual.css"
+        ]
+      },
+      {
+        "package": "data/manual_sources/JE-3600A/JP/git-20261015-fd06cd04-shared",
+        "added_keep_frozen": [
+          "docs/renderers/contracts/web_manual.css"
+        ]
+      },
+      {
+        "package": "data/manual_sources/JA-TS02A/US/added-locales/git-20261014-11ce66b1",
+        "added_keep_frozen": [
+          "docs/renderers/contracts/web_manual.css"
+        ]
+      },
+      {
+        "package": "manual_sources/JE-1000B/JP/ja/git-20261103-46f1c569",
+        "added_keep_frozen": [
+          "docs/renderers/contracts/web_manual.css"
+        ]
+      },
+      {
+        "package": "manual_sources/JE-300D/US/en/git-20261028-d3f47ff3",
+        "added_keep_frozen": [
+          "docs/renderers/contracts/web_manual.css"
+        ]
+      },
+      {
+        "package": "manual_sources/JE-600A/US/en/git-20261028-9bf5bbb1",
+        "added_keep_frozen": [
+          "docs/renderers/contracts/web_manual.css"
+        ]
+      },
+      {
+        "package": "manual_sources/JE-300C/US/en/git-20261027-a1128b25",
+        "added_keep_frozen": [
+          "docs/renderers/contracts/web_manual.css"
+        ]
+      },
+      {
+        "package": "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1",
+        "added_keep_frozen": [
+          "docs/renderers/contracts/web_manual.css"
+        ]
+      },
+      {
+        "package": "manual_sources/JE-600A/US/en/git-20261103-9bf5bbb1-source-alignment-release",
+        "added_keep_frozen": [
+          "docs/renderers/contracts/web_manual.css"
+        ]
+      },
+      {
+        "package": "data/manual_sources/JBP-3600A/US/git-20261014-16ae12b0",
+        "added_keep_frozen": [
+          "docs/renderers/contracts/web_manual.css"
+        ]
+      },
+      {
+        "package": "manual_sources/JE-1500C/US/en/git-20261028-46f58108",
+        "added_keep_frozen": [
+          "docs/renderers/contracts/web_manual.css"
+        ]
+      },
+      {
+        "package": "data/manual_sources/JBP-3600A/JP/ja/git-20261014-56860f2f",
+        "added_keep_frozen": [
+          "docs/renderers/contracts/web_manual.css"
+        ]
+      },
+      {
+        "package": "data/manual_sources/JBP-5000A/JP/git-20261011-cdd40510",
+        "added_keep_frozen": [
+          "docs/renderers/contracts/web_manual.css"
+        ]
+      },
+      {
+        "package": "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout",
+        "added_keep_frozen": [
+          "docs/renderers/contracts/web_manual.css"
+        ]
+      },
+      {
+        "package": "data/manual_sources/JE-3600A/CN/git-20261015-caa5370a-shared",
+        "added_keep_frozen": [
+          "docs/renderers/contracts/web_manual.css"
+        ]
+      },
+      {
+        "package": "data/manual_sources/JBP-5000A/JP/git-20261011-cdd40510-reviewed",
+        "added_keep_frozen": [
+          "docs/renderers/contracts/web_manual.css"
+        ]
+      },
+      {
+        "package": "manual_sources/JE-300E/US/en/git-20261027-04bd8b90",
+        "added_keep_frozen": [
+          "docs/renderers/contracts/web_manual.css"
+        ]
+      },
+      {
+        "package": "manual_sources/JE-600A/JP/ja/git-20261103-b2490d61",
+        "added_keep_frozen": [
+          "docs/renderers/contracts/web_manual.css"
+        ]
+      },
+      {
+        "package": "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2",
+        "added_keep_frozen": [
+          "docs/renderers/contracts/web_manual.css"
+        ]
+      },
+      {
+        "package": "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native",
+        "added_keep_frozen": [
+          "docs/renderers/contracts/web_manual.css"
+        ]
+      },
+      {
+        "package": "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2",
+        "added_keep_frozen": [
+          "docs/renderers/contracts/web_manual.css"
+        ]
+      },
+      {
+        "package": "data/manual_sources/JE-300E/EU/en/git-20261016-50b910fd",
+        "added_keep_frozen": [
+          "docs/renderers/contracts/web_manual.css"
+        ]
+      }
+    ]
+  },
+  "jhp3600a_order_only": {
+    "changed_files": [
+      "manual_sources/JHP-3600A/US/en/git-20261103-d35114d3-source-alignment-release/frozen_source_manifest.json"
+    ],
+    "same_input_rows": true,
+    "source_approval_bytes_unchanged": true
+  },
+  "jhp5000c_retained_output": {
+    "active_cold_hashes_verified": 90,
+    "stored_files": 107,
+    "retained_original_unused_files": 17,
+    "baseline": "376d04cd",
+    "all_retained_hashes_match_baseline": true,
+    "md_css_unreferenced": true,
+    "raw_log_archive_verified": true,
+    "log_change_only_trailing_spaces": true
+  },
+  "frozen_hashes_verified": 2809,
+  "source_scope_excludes_deferred_five": true,
+  "review_limit": "Read-only exact branch scope, stored file inventory/hash, approval bindings, current style gate and published evidence consistency. No new full source/visual survey, slow build, merge or publication performed.",
+  "upstream_four_jp": {
+    "paths": [
+      "manual_sources/JE-1000B/JP/ja/git-20261103-46f1c569",
+      "manual_sources/JE-600A/JP/ja/git-20261103-b2490d61",
+      "manual_sources/JE-600C-SJ/JP/ja/git-20261103-3837e9fd",
+      "manual_sources/JE-900B-WH/JP/ja/git-20261103-66c65187"
+    ],
+    "package_files_unchanged": true,
+    "registry_change": "CSS keep-frozen drift only; original source/approval pins retained"
+  },
+  "guardrail_scope": {
+    "no_baseline_gate_parser_template_phase2_workflow_dependency_cli_changes": true,
+    "no_deletions": true,
+    "shared_runtime_change": "One web_manual.css selector keeps internal right border on troubleshooting code cells beneath a measures rowspan; unchanged gate code. Corresponding contract and actual-browser regression evidence present.",
+    "exact_source_table_declarations": "Previously reviewed 11 narrow table declarations retained across eight packages; 5000C adds four exact language/page/text-hash-bound genuine printed tables (three-column fault table, original signal glyph table, and two DC Input group-row tables). They are validated by unchanged style audit, not a baseline waiver."
+  },
+  "prior_eight_continuity": {
+    "prior_head": "82622d8053477c1378b13d804b5ea69a4c543196",
+    "seven_package_trees_unchanged": true,
+    "eighth": "JHP-3600A frozen inventory sorting only,415 identical input rows; source/approval bytes unchanged",
+    "prior_receipt": "/Users/hello-tech-team/.codex/worktrees/manual-reviewed-nine/auto-manual-codex/code-as-doc/reviews/us-reviewed-9-release-20261103/followup-eight-scope-review.json"
+  },
+  "jhp5000c_evidence_consistency": {
+    "reacceptance_counts_match": true,
+    "native_path_proof_source_asset_hashes_verified": 25,
+    "source_sha256": "3381c816e6bb75bc5e790bcba3faacbb3ad199f1a41cc53c5092368bcd945250",
+    "path_membership_evidence": "Root independently recorded16826 fresh current-PDF path commands; this review verifies listed source-asset hashes and scope, does not rerun SVG extraction. Some source assets are retained inactive rather than in final web.",
+    "copy_delta": "Committed seven glyph-ownership deltas agree with existing independent26-page body audit; no new claimed sentence/number alteration.",
+    "approval_fields": "MA-381 actual user grant and exact current source bindings. JE-300C/D/E use merge_authority key, others merge_authorization; no missing authorization."
+  },
+  "documentation_consistency": "Final workstream lists all nine accepted,27 checkboxes and five deferred; publication remains separate. Describes90 active+17 retained,562 frozen files, whitespace-only log archival,3600A sorting and four upstream JP pins consistently.",
+  "cross_model_scope": "No deferred US/en package changed; exact target/version/current-PDF hashes and model identities match all nine. Prior eight tree continuity plus5000C own-PDF independent audit and bounded glyph-only delta show no cross-model value import evidence. This receipt is not a new full nine-book content reread."
+}

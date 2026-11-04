@@ -101,3 +101,19 @@ id = "generic-api-key"
   regexes = [
     '''^\s*"assets/native-key-clock\.svg": "6868179c99f3f7e885860ddfee41e8aee1385f1ed713aa8fb19abba4039a6430",?\s*$''',
   ]
+
+
+  # JHP-3600A current-source clock: SHA-256 verified against the actual SVG.
+  # Scope is the exact IR path, asset field and content digest together.
+  # Other values, fields, files and credential patterns remain scanned.
+  [[rules.allowlists]]
+  description = "JHP-3600A current-source clock SVG content digest"
+  condition = "AND"
+  regexTarget = "line"
+  paths = [
+    '''^manual_sources/JHP-3600A/US/en/git-20261103-d35114d3-source-alignment-release/web/en/manual\.ir\.json$''',
+    '''^docs/publish/(?:sources/web|web)/JHP-3600A/US/en/md/manual\.ir\.json$''',
+  ]
+  regexes = [
+    '''^\s*"assets/key-clock-current\.svg": "888dc723cc53ad7a51834355fe09dce051c8941a71b7eae9298dd8ca408a5e8d",?\s*$''',
+  ]

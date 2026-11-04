@@ -1,0 +1,546 @@
+[
+  {
+    "width": 1280,
+    "file": "1280-00.png",
+    "y": 0,
+    "sections": [
+      "important",
+      "important-safety-information",
+      "operating-instructions",
+      "save-these-instructions"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-01.png",
+    "y": 1000,
+    "sections": [
+      "important-safety-information",
+      "operating-instructions",
+      "save-these-instructions",
+      "user-maintenance-instructions",
+      "meaning-of-symbols"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-02.png",
+    "y": 2000,
+    "sections": [
+      "meaning-of-symbols"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-03.png",
+    "y": 3000,
+    "sections": [
+      "meaning-of-symbols",
+      "what-s-in-the-box"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-04.png",
+    "y": 4000,
+    "sections": [
+      "what-s-in-the-box",
+      "product-overview",
+      "front-view"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-05.png",
+    "y": 5000,
+    "sections": [
+      "product-overview",
+      "front-view",
+      "lcd-display"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-06.png",
+    "y": 6000,
+    "sections": [
+      "lcd-display"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-07.png",
+    "y": 7000,
+    "sections": [
+      "lcd-display",
+      "operations",
+      "power-on-off"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-08.png",
+    "y": 8000,
+    "sections": [
+      "operations",
+      "power-on-off",
+      "ac-output-on-off",
+      "dc-12v-usb-output"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-09.png",
+    "y": 9000,
+    "sections": [
+      "operations",
+      "dc-12v-usb-output",
+      "energy-saving-mode"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-10.png",
+    "y": 10000,
+    "sections": [
+      "operations",
+      "energy-saving-mode",
+      "lcd-screen-on-off"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-11.png",
+    "y": 11000,
+    "sections": [
+      "operations",
+      "lcd-screen-on-off",
+      "button-operations",
+      "uninterruptible-power-supply-ups"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-12.png",
+    "y": 12000,
+    "sections": [
+      "uninterruptible-power-supply-ups",
+      "charging"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-13.png",
+    "y": 13000,
+    "sections": [
+      "charging",
+      "charging-via-ac-wall-outlet",
+      "charging-via-solar-panels"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-14.png",
+    "y": 14000,
+    "sections": [
+      "charging",
+      "charging-via-ac-wall-outlet",
+      "charging-via-solar-panels"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-15.png",
+    "y": 15000,
+    "sections": [
+      "charging",
+      "charging-via-solar-panels",
+      "charging-with-a-car-charger",
+      "bottom-cleaning"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-16.png",
+    "y": 16000,
+    "sections": [
+      "bottom-cleaning",
+      "storage"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-17.png",
+    "y": 17000,
+    "sections": [
+      "bottom-cleaning",
+      "storage",
+      "troubleshooting"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-18.png",
+    "y": 18000,
+    "sections": [
+      "troubleshooting",
+      "specifications"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-19.png",
+    "y": 19000,
+    "sections": [
+      "specifications",
+      "warranty",
+      "limited-warranty",
+      "warranty-period"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-20.png",
+    "y": 20000,
+    "sections": [
+      "warranty",
+      "warranty-period",
+      "repair-or-replacement",
+      "limited-to-original-consumer-buyer",
+      "exclusions",
+      "interpretation-rights",
+      "app-setup",
+      "to-download-the-app-and-log-in",
+      "to-add-device"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-21.png",
+    "y": 21000,
+    "sections": [
+      "app-setup",
+      "to-download-the-app-and-log-in",
+      "to-add-device"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-22.png",
+    "y": 22000,
+    "sections": [
+      "app-setup",
+      "to-add-device",
+      "to-unbind-the-device",
+      "notes",
+      "to-turn-on-wi-fi-and-bluetooth"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-23.png",
+    "y": 22671,
+    "sections": [
+      "app-setup",
+      "to-add-device",
+      "to-unbind-the-device",
+      "notes",
+      "to-turn-on-wi-fi-and-bluetooth",
+      "to-turn-off-wi-fi-and-bluetooth",
+      "to-reset-wi-fi-and-bluetooth"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-00.png",
+    "y": 9,
+    "sections": [
+      "important",
+      "important-safety-information"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-01.png",
+    "y": 1009,
+    "sections": [
+      "important-safety-information",
+      "operating-instructions",
+      "save-these-instructions"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-02.png",
+    "y": 2009,
+    "sections": [
+      "important-safety-information",
+      "operating-instructions",
+      "save-these-instructions"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-03.png",
+    "y": 3009,
+    "sections": [
+      "important-safety-information",
+      "operating-instructions",
+      "save-these-instructions",
+      "user-maintenance-instructions",
+      "meaning-of-symbols"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-04.png",
+    "y": 4009,
+    "sections": [
+      "meaning-of-symbols"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-05.png",
+    "y": 5009,
+    "sections": [
+      "meaning-of-symbols",
+      "what-s-in-the-box"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-06.png",
+    "y": 6009,
+    "sections": [
+      "what-s-in-the-box",
+      "product-overview",
+      "front-view",
+      "lcd-display"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-07.png",
+    "y": 7009,
+    "sections": [
+      "lcd-display"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-08.png",
+    "y": 8009,
+    "sections": [
+      "lcd-display"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-09.png",
+    "y": 9009,
+    "sections": [
+      "lcd-display",
+      "operations",
+      "power-on-off",
+      "ac-output-on-off"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-10.png",
+    "y": 10009,
+    "sections": [
+      "operations",
+      "ac-output-on-off",
+      "dc-12v-usb-output"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-11.png",
+    "y": 11009,
+    "sections": [
+      "operations",
+      "dc-12v-usb-output",
+      "energy-saving-mode"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-12.png",
+    "y": 12009,
+    "sections": [
+      "operations",
+      "energy-saving-mode",
+      "lcd-screen-on-off",
+      "button-operations"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-13.png",
+    "y": 13009,
+    "sections": [
+      "operations",
+      "button-operations",
+      "uninterruptible-power-supply-ups"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-14.png",
+    "y": 14009,
+    "sections": [
+      "uninterruptible-power-supply-ups"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-15.png",
+    "y": 15009,
+    "sections": [
+      "uninterruptible-power-supply-ups",
+      "charging",
+      "charging-via-ac-wall-outlet"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-16.png",
+    "y": 16009,
+    "sections": [
+      "charging",
+      "charging-via-ac-wall-outlet",
+      "charging-via-solar-panels"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-17.png",
+    "y": 17009,
+    "sections": [
+      "charging",
+      "charging-via-solar-panels",
+      "charging-with-a-car-charger"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-18.png",
+    "y": 18009,
+    "sections": [
+      "charging",
+      "charging-with-a-car-charger",
+      "bottom-cleaning"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-19.png",
+    "y": 19009,
+    "sections": [
+      "bottom-cleaning"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-20.png",
+    "y": 20009,
+    "sections": [
+      "bottom-cleaning",
+      "storage",
+      "troubleshooting"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-21.png",
+    "y": 21009,
+    "sections": [
+      "troubleshooting",
+      "specifications"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-22.png",
+    "y": 22009,
+    "sections": [
+      "specifications"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-23.png",
+    "y": 23009,
+    "sections": [
+      "specifications",
+      "warranty",
+      "limited-warranty",
+      "warranty-period"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-24.png",
+    "y": 24009,
+    "sections": [
+      "warranty",
+      "warranty-period",
+      "repair-or-replacement",
+      "limited-to-original-consumer-buyer",
+      "exclusions",
+      "interpretation-rights",
+      "app-setup"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-25.png",
+    "y": 25009,
+    "sections": [
+      "warranty",
+      "interpretation-rights",
+      "app-setup",
+      "to-download-the-app-and-log-in",
+      "to-add-device"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-26.png",
+    "y": 26009,
+    "sections": [
+      "app-setup",
+      "to-add-device"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-27.png",
+    "y": 27009,
+    "sections": [
+      "app-setup",
+      "to-add-device",
+      "to-unbind-the-device",
+      "notes",
+      "to-turn-on-wi-fi-and-bluetooth",
+      "to-turn-off-wi-fi-and-bluetooth",
+      "to-reset-wi-fi-and-bluetooth"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-28.png",
+    "y": 27328,
+    "sections": [
+      "app-setup",
+      "to-unbind-the-device",
+      "notes",
+      "to-turn-on-wi-fi-and-bluetooth",
+      "to-turn-off-wi-fi-and-bluetooth",
+      "to-reset-wi-fi-and-bluetooth"
+    ]
+  }
+]

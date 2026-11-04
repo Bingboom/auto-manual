@@ -179,6 +179,8 @@ IDML 普通行由 `idml_spec_table_row_height` 控制；多行单元格使用 `c
 
 表头默认 `Error Code` / `Corrective Measures`；plain-Markdown 可用类型化
 `:headers: A | B` 提供两个本地化表头（见 [附录 B](appendix-b-boundaries.md#附录-b-已知边界)）。IDML 关闭自动缩放；批准语言的行 minima、表头/正文高度修正、内外线宽、面板下限、导入安全余量和 portable glyph-width 估算全部由 `idml_trouble_*` / `lang_*_idml_trouble_*` token 控制。
+Web 原生表若以 `rowspan` 合并措施格，后续行最后一个 DOM 子元素仍可能是代码格；共享样式须保留其右侧内部竖线，只移除逻辑末列措施格的外边线。源包不得用局部边线覆盖补画。
+
 紧凑表的可见外壳高度严格等于可见行高总和；原生终止标记余量使用独立透明载体，最终化不得把余量加到圆角外框底部。
 
 IDML production 由普通 block 流进入 `components/prose_table.py` 的公共

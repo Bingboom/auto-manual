@@ -1,0 +1,67 @@
+{
+  "slot": "battery_placement",
+  "decision": "restore own PDF structural frame pixels",
+  "source": "source/review-reference.pdf",
+  "source_sha256": "cbb7eecba3f7a2a035f6c5bc0d3da54505b9d6399377d87eb639fc5683e694d1",
+  "physical_page": 16,
+  "bbox": [
+    26.0,
+    287.0,
+    342.0,
+    434.0
+  ],
+  "scale": 3,
+  "original_artwork": "assets/placement_framefree.png",
+  "original_artwork_sha256": "2dc586aea7e86b79daa7f0b0219cdf963ccef0668212657ae0357aaa7a6427a4",
+  "frame_regions_px": [
+    {
+      "source_drawing": 20,
+      "outer": [
+        2,
+        1,
+        472,
+        439
+      ],
+      "inner": [
+        26,
+        25,
+        447,
+        414
+      ]
+    },
+    {
+      "source_drawing": 21,
+      "outer": [
+        477,
+        1,
+        944,
+        439
+      ],
+      "inner": [
+        501,
+        25,
+        919,
+        414
+      ]
+    }
+  ],
+  "final_path": "assets/placement_native_frames.png",
+  "sha256": "42a7b1f7772414552517b69a954769967a24ad0bd9b1d526d15807be76acfe68",
+  "invariant": "Every pixel outside the two frame edge bands is byte-identical to prior accepted placement_framefree PNG. Every pixel inside the bands is byte-identical to the current source PDF crop. No paint, generated shape, artwork redraw or caption pixels used. Frame bands explicitly exclude these two caption regions.",
+  "source_finished_crop_pixel_identical": false,
+  "authority": "User requires original layout and no invented drawings; root explicitly authorized original source frame restoration.",
+  "excluded_caption_regions_pt": [
+    [
+      33,
+      296,
+      118,
+      312
+    ],
+    [
+      192,
+      296,
+      263,
+      312
+    ]
+  ]
+}

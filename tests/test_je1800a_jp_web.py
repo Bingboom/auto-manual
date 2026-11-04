@@ -13,6 +13,7 @@ from bs4 import BeautifulSoup
 
 from tools.manual_ir.hashing import file_sha256
 from tools.word.bundle_docx_pandoc import resolve_pandoc_binary
+from tests.historical_app_styles import pre_rowspan_divider_styles
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGE = ROOT / "manual_sources/JE-1800A/JP/ja/git-20261103-ccd8ebe2"
@@ -144,6 +145,7 @@ class Je1800aJpWebTests(unittest.TestCase):
         self.assertEqual(manifest["base_record"]["record_id"], "reczz28SfbsHfSTa")
         self.assertFalse(manifest["live_bitable_dependency"])
 
+    @pre_rowspan_divider_styles
     def test_cold_replay_matches_stored_candidate(self):
         try:
             subprocess.run([resolve_pandoc_binary(None), "--version"], check=True, capture_output=True)
