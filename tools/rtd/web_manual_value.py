@@ -5,7 +5,7 @@
 public manuals project gets only :func:`band_context`'s public view, so the
 internal copy never reaches public HTML; the private site gets the internal
 band and the full page at :data:`PAGE`, which shows each theme's summary and
-folds its facets and principle away. Each theme's tag is derived from its
+folds its facets away. Each theme's tag is derived from its
 facets' statuses, which use the 系统建设 page's vocabulary. A malformed file
 fails the build, like the other engineering-owned portal assets.
 """
@@ -86,7 +86,6 @@ def _theme(where: str, raw: object, ids: set[str]) -> dict[str, Any]:
     status, label = theme_status([facet["status"] for facet in views])
     return {"id": key, "theme": _text(f"{where}.theme", theme.get("theme")),
             "summary": _text(f"{where}.summary", theme.get("summary")),
-            "principle": _text(f"{where}.principle", theme.get("principle")),
             "facets": views, "status": status, "status_label": label}
 
 
@@ -111,7 +110,7 @@ def _internal(raw: object) -> dict[str, Any]:
         raise ValueError(f"{SOURCE_NAME}: internal.themes needs entries")
     ids: set[str] = set()
     view: dict[str, Any] = {key: _text(f"internal.{key}", internal.get(key))
-                            for key in ("eyebrow", "heading", "subtitle", "tagline", "key_idea")}
+                            for key in ("eyebrow", "heading", "subtitle", "tagline")}
     view["themes"] = [_theme(f"internal.themes[{index}]", theme, ids) for index, theme in enumerate(themes)]
     return view
 

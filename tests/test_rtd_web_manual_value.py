@@ -61,7 +61,7 @@ class CopyTests(unittest.TestCase):
         band = wmv.band_context(wmv.load_value(ASSETS), internal=False)
         self.assertEqual(set(band), {"internal", "title", "lead", "points"})
         self.assertEqual(band["title"], "网页说明书的定位与价值")
-        self.assertEqual(band["lead"], "网页说明书以已批准的产品说明书为依据，在不改变技术事实的前提下，提供更方便查找和阅读的网页版本。")
+        self.assertEqual(band["lead"], "网页说明书以已批准的产品说明书为依据，提供更方便查找和阅读的网页版本。")
         self.assertEqual([(p["title"], p["text"]) for p in band["points"]], [
             ("便捷阅读", "统一的版式和章节导航，手机和电脑都能读，可按型号、产品名称或正文搜索。"),
             ("版本清楚", "每份说明书都标明型号、适用市场和语言。"),
@@ -76,9 +76,13 @@ class CopyTests(unittest.TestCase):
         for text in strings(value):
             self.assertIsNone(re.search(r"[0-9]", text), text)
             self.assertNotIn("电子说明书", text)
-        # The full page keeps the key idea as its 总纲; there is no long-term-direction block.
-        self.assertEqual(value["internal"]["key_idea"], "已批准的历史内容，不天然等于可直接复用的标准知识。")
-        self.assertNotIn("direction", value["internal"])
+        # Our own knowledge base says what the web manuals do: no 总纲, principles, direction block or
+        # defensive caveats; what is unfinished shows as a status tag (operator, 2026-11-04).
+        self.assertFalse({"key_idea", "direction", "intro", "triad"} & set(value["internal"]))
+        self.assertFalse(any("principle" in theme for theme in value["internal"]["themes"]))
+        for text in strings(value):
+            for caveat in ("不天然", "而不是", "不改变技术事实", "尚非", "未完成"):
+                self.assertNotIn(caveat, text)
 
 
 class ValidationTests(unittest.TestCase):
@@ -142,9 +146,8 @@ class RenderTests(unittest.TestCase):
 
     def test_page_leads_with_one_card_per_theme_and_folds_the_details(self):
         value = wmv.load_value(ASSETS)
-        page = render(wmv.TEMPLATE, **wmv.page_context(value), site_nav={}, system_entry=True)
+        page = render(wmv.TEMPLATE, **wmv.page_context(value), site_nav={})
         self.assertEqual(page.h1.get_text(), "网页说明书的定位与价值")
-        self.assertIn(value["internal"]["key_idea"], page.select_one(".vp-key").get_text())
         cards = page.select("article.vp-card")
         self.assertEqual([card["id"] for card in cards], ["reading", "machine", "governance", "knowledge"])
         for card, theme in zip(cards, value["internal"]["themes"], strict=True):
@@ -152,23 +155,19 @@ class RenderTests(unittest.TestCase):
             self.assertEqual(card.h2.get_text(), theme["theme"])
             self.assertEqual(card.select_one(".vp-card-head .vp-status")["class"][-1], f"is-{theme['status']}")
             self.assertEqual(card.select_one(".vp-summary").get_text(), theme["summary"])
-            # Second level, folded: the facets and the principle.
+            # Second level, folded: the facets.
             more = card.select_one("details.vp-more")
             self.assertFalse(more.has_attr("open"))
+            self.assertEqual(more.summary.get_text(), "现状")
             self.assertEqual([(li.select_one(".vp-facet").get_text(), li.em["class"][-1]) for li in more.select("li")],
                              [(f["label"], f"is-{f['status']}") for f in theme["facets"]])
-            self.assertIn(theme["principle"], more.select_one(".vp-principle").get_text())
         # REV ids are evidence in the data file, never shown; the long-term direction is gone.
         self.assertNotIn("REV-", page.get_text())
         self.assertIsNone(page.select_one("#direction"))
         current = page.select('#app-sidebar a[aria-current="page"]')
         self.assertEqual([(a.span.get_text(), a["href"]) for a in current], [("定位与价值", wmv.PAGE)])
-        self.assertEqual(page.select_one(".vp-footer a")["href"], "workspace/system/index")
-
-    def test_page_names_the_system_page_without_linking_it_when_it_is_not_built(self):
-        page = render(wmv.TEMPLATE, **wmv.page_context(wmv.load_value(ASSETS)), site_nav={}, system_entry=False)
         self.assertEqual([a["href"] for a in page.select(".vp-footer a")], ["index"])
-        self.assertIn("系统建设", page.select_one(".vp-footer p").get_text())
+        self.assertIsNone(page.select_one(".vp-key, .vp-principle"))
 
 
 if __name__ == "__main__":

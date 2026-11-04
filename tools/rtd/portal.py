@@ -390,8 +390,7 @@ def collect_workspace_pages(app):
         "matrix_entry": matrix is not None,
         "updates": updates_view(entries, built),
     }, "workspace_portal.html"
-    yield VALUE_PAGE, {**value_page_context(load_value(ASSETS)), "site_nav": site_nav(app),
-                       "system_entry": system is not None}, VALUE_TEMPLATE
+    yield VALUE_PAGE, {**value_page_context(load_value(ASSETS)), "site_nav": site_nav(app)}, VALUE_TEMPLATE
     if system is not None:
         from tools.rtd.workspace_revision import page_revision
 

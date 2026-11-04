@@ -25,7 +25,7 @@ schema: hello-docs-knowledge-updates/v1
 updates:
   - date: 2026-11-04
     title: 定位与价值 · 改为四个主题卡片
-    note: 新增「机器可读」，补充扫码直达、修订即发和读者反馈；每个主题一句话，现状和原则收进卡片，去掉编号标签和长期方向
+    note: 新增「机器可读」，补充扫码直达、修订即发和读者反馈；每个主题一句话，现状收进卡片，去掉编号标签、长期方向和防御性表述
     page: positioning
     evidence: "pr:auto-manual#1673"
   - date: 2026-11-04

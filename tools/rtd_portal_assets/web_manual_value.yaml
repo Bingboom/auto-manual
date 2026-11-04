@@ -13,16 +13,17 @@
 # vocabulary: available | validated | in_progress | planned (a planned facet
 # names its REV). The theme's tag is derived from its facets: all available is
 # 可用; any available or validated is 部分可用; all planned is 已规划; otherwise
-# 建设中. The page shows each theme's summary and folds its facets and principle
-# away. `revs` are evidence for reviewers and are never shown. State only
-# what exists or is being built, keep each line short, and write no counts:
+# 建设中. The page shows each theme's summary and folds its facets away.
+# `revs` are evidence for reviewers and are never shown. Say what the web
+# manuals do, without defensive caveats: what is not finished shows as a
+# status tag. Keep each line short and write no counts:
 # they change with every release, and 说明书工作台 reads them from the publish
 # manifest.
 schema: hello-docs-web-manual-value/v1
 title: 网页说明书的定位与价值
 
 public:
-  lead: 网页说明书以已批准的产品说明书为依据，在不改变技术事实的前提下，提供更方便查找和阅读的网页版本。
+  lead: 网页说明书以已批准的产品说明书为依据，提供更方便查找和阅读的网页版本。
   points:
     - title: 便捷阅读
       text: 统一的版式和章节导航，手机和电脑都能读，可按型号、产品名称或正文搜索。
@@ -36,12 +37,10 @@ internal:
   heading: 人能读，机器能读，团队能持续复用
   subtitle: 网页说明书是已批准说明书的可信发布源：同一份内容，服务用户、客服、AI 助手和资料开发。
   tagline: 网页说明书是已批准说明书的可信发布源：人能读，机器能读，团队能持续维护和复用。
-  key_idea: 已批准的历史内容，不天然等于可直接复用的标准知识。
   themes:
     - id: reading
       theme: 便捷阅读
       summary: 扫码直达，手机电脑都能读，可按型号、名称或正文搜索。
-      principle: 忠实于已批准的原稿，不改变技术事实。
       facets:
         - label: 统一呈现
           status: available
@@ -55,7 +54,6 @@ internal:
     - id: machine
       theme: 机器可读
       summary: 同步生成带版本校验的机读内容，AI 助手按来源引用。
-      principle: 机器引用的必须是已发布版本，来源和版本可以核对。
       facets:
         - label: 机读导出
           status: available
@@ -65,11 +63,10 @@ internal:
           note: 钉钉问答机器人已在用：先校验，再按机读内容作答。
         - label: 市场覆盖
           status: in_progress
-          note: 目前只有欧规；内容从网页提取，尚非同源生成。
+          note: 欧规已覆盖，其他市场陆续接入。
     - id: governance
       theme: 内容治理
       summary: 每个版本都可追溯；修订后直接发新版，不用等重印。
-      principle: 保留历史依据，识别内容差异，让资料具备持续治理的基础。
       facets:
         - label: 版本追溯
           status: available
@@ -79,11 +76,10 @@ internal:
           note: 每页都有售后反馈入口，站点有访问统计。
         - label: 质量改进
           status: in_progress
-          note: 差异台账和核验工具已有，全量验收未完成。
+          note: 差异台账和核验工具已经建成，验收进行中。
     - id: knowledge
       theme: 知识积累
       summary: 经审核的术语、组件和写作经验沉淀下来，用于开发新说明书。
-      principle: 以已批准内容为依据，以审核后的知识指导未来，而不是简单复制历史资料。
       facets:
         - label: 规范沉淀
           status: in_progress

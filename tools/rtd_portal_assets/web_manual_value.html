@@ -8,8 +8,8 @@
 <link rel="stylesheet" href="{{ pathto('_static/web-manual-value.css', 1) }}">
 </head>
 {#- 「网页说明书的定位与价值」, internal only: tools/rtd/web_manual_value.py builds the context from
-    web_manual_value.yaml. The first level is the positioning line, the 总纲 and one card per theme (name, status,
-    one sentence); each card folds its 现状 facets and 核心原则 away. -#}
+    web_manual_value.yaml. The first level is the positioning line and one card per theme (name, status, one
+    sentence); each card folds its 现状 facets away. -#}
 {% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
 <body class="app">
 <a class="skip" href="#themes">跳到四个主题</a>
@@ -20,7 +20,6 @@
 <header class="vp-head">
   <h1>{{ title|e }}</h1>
   <p class="vp-tagline">{{ tagline|e }}</p>
-  <p class="vp-key"><span>总纲</span>{{ key_idea|e }}</p>
 </header>
 <section id="themes" class="vp-grid" aria-label="主题" tabindex="-1">
 {% for theme in themes %}
@@ -28,16 +27,12 @@
   <header class="vp-card-head"><h2>{{ theme.theme|e }}</h2><em class="vp-status is-{{ theme.status|e }}">{{ theme.status_label|e }}</em></header>
   <p class="vp-summary">{{ theme.summary|e }}</p>
   <details class="vp-more">
-    <summary>现状与原则</summary>
+    <summary>现状</summary>
     <ul class="vp-facets">{% for facet in theme.facets %}<li><span class="vp-facet">{{ facet.label|e }}</span><em class="vp-status is-{{ facet.status|e }}">{{ facet.status_label|e }}</em><p>{{ facet.note|e }}</p></li>{% endfor %}</ul>
-    <p class="vp-principle"><strong>核心原则</strong>{{ theme.principle|e }}</p>
   </details>
 </article>
 {% endfor %}
 </section>
-<footer class="vp-footer">
-  <p>可用＝已在生产使用；部分可用＝有的已可用、有的在建；建设中＝已有实现，验收或覆盖未完成。用词与{% if system_entry %}<a href="{{ pathto('workspace/system/index') }}">系统建设</a>{% else %}系统建设{% endif %}页一致。</p>
-  <a href="{{ pathto('index') }}">查找产品说明书 →</a>
-</footer>
+<footer class="vp-footer"><a href="{{ pathto('index') }}">查找产品说明书 →</a></footer>
 </main>
 </div>{{ site_script() }}</body></html>
