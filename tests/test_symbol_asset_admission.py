@@ -79,9 +79,13 @@ class SymbolAdmissionTests(unittest.TestCase):
         # glyph rendering, file/hash checks and withdrawal rules remain real.
         withdrawn = json.loads((Path(__file__).resolve().parents[1] /
                                'docs/renderers/web/assets/shared/symbols/manifest.json').read_text())['withdrawn']
+        self.catalog_extra = {}
         patcher = patch('tools.web.shared_symbol_assets._catalog', side_effect=lambda: (
             self.md, {'assets': [{'key': r['shared_symbol_key'], 'path': r['asset_ref'],
-                                 'sha256': r['asset_sha256']} for r in self.rows], 'withdrawn': withdrawn}))
+                                 'sha256': r['asset_sha256']} for r in self.rows]
+                      + self.catalog_extra.get('assets', []),
+                      'withdrawn': withdrawn,
+                      **{k: v for k, v in self.catalog_extra.items() if k != 'assets'}}))
         patcher.start()
         self.addCleanup(patcher.stop)
 
@@ -177,6 +181,86 @@ class SymbolAdmissionTests(unittest.TestCase):
         with patch('tools.web.symbol_asset_admission._glyph_waivers', return_value=[waiver]), \
                 self.assertRaisesRegex(RuntimeError, 'beyond its reviewed waiver'):
             self.check()
+
+    def canonical_group(self, *, status='operator-confirmed', captions=None, rival=None):
+        """Group fixture-0 (canonical) with a legacy copy of fixture-1's glyph."""
+        legacy = self.md / 'assets/legacy.svg'
+        legacy.write_bytes((self.md / self.rows[1]['asset_ref']).read_bytes())
+        assets = [{'key': 'fixture-legacy', 'path': 'assets/legacy.svg',
+                   'sha256': hashlib.sha256(legacy.read_bytes()).hexdigest()}]
+        groups = [{'id': 'read', 'meaning': 'read', 'status': status, 'canonical': 'fixture-0',
+                   'legacy_variants': ['fixture-legacy'],
+                   'captions': {'en': ['Read the manual.'] if captions is None else captions},
+                   'decision': 'SCG-TEST'}]
+        if rival:
+            groups.append({'id': 'rival', 'meaning': 'rival', 'status': 'proposed',
+                           'canonical': 'fixture-1', 'legacy_variants': [],
+                           'captions': {'en': ['Read the manual.']}, 'decision': None})
+        self.catalog_extra = {'assets': assets, 'canonical_groups': groups, 'canonical_decisions': [
+            {'id': 'SCG-TEST', 'date': '2026-11-03', 'operator_quotes': [{'quote': 'same icon'}]}]}
+
+    def far_from_print(self, value=0.4):
+        """Row 0 prints a design variation far beyond the 0.03 waiver ceiling."""
+        canonical = (self.md / self.rows[0]['asset_ref']).read_bytes()
+        return patch('tools.web.symbol_asset_admission._symbol_error',
+                     side_effect=lambda c, s, r: value if c == canonical else 0.0)
+
+    def test_confirmed_canonical_admits_its_group_printed_row_without_ceiling(self):
+        self.canonical_group()
+        with self.far_from_print():
+            report = self.check()
+        self.assertEqual((report[0]['canonical_group'], report[0]['canonical_decision']), ('read', 'SCG-TEST'))
+        self.assertEqual(report[0]['max_mean_channel_error'], 0.4)
+        self.assertNotIn('canonical_group', report[1])
+
+    def test_canonical_release_needs_confirmed_group_and_listed_caption(self):
+        for kwargs in [{'status': 'proposed'}, {'captions': ['Electric shock.']}, {'captions': []}]:
+            with self.subTest(**kwargs):
+                self.canonical_group(**kwargs)
+                with self.far_from_print(), self.assertRaisesRegex(RuntimeError, 'glyph/background differs'):
+                    self.check()
+
+    def test_ungrouped_symbols_keep_fixed_tolerance_and_waiver_ceiling(self):
+        self.canonical_group()
+        row = self.rows[1]
+        other = (self.md / row['asset_ref']).read_bytes()
+        with patch('tools.web.symbol_asset_admission._symbol_error',
+                   side_effect=lambda c, s, r: 0.025 if c == other else 0.0), \
+                self.assertRaisesRegex(RuntimeError, 'glyph/background differs'):
+            self.check()
+
+    def test_confirmed_group_legacy_variant_keeps_fixed_tolerance(self):
+        self.canonical_group()
+        row = self.rows[0]
+        canonical = self.md / 'assets/canonical.svg'
+        canonical.write_bytes((self.md / row['asset_ref']).read_bytes())
+        self.catalog_extra['assets'] = [{'key': 'fixture-0', 'path': 'assets/canonical.svg',
+                                         'sha256': row['asset_sha256']}]
+        legacy = self.md / 'assets/legacy.svg'
+        legacy.write_bytes(canonical.read_bytes())  # a legacy copy that matches the print
+        row.update(shared_symbol_key='fixture-legacy')
+        self.assertNotIn('canonical_group', self.check()[0])  # within 0.02: still admitted
+        legacy.write_bytes((self.md / self.rows[1]['asset_ref']).read_bytes())
+        row['asset_sha256'] = hashlib.sha256(legacy.read_bytes()).hexdigest()
+        (self.md / row['asset_ref']).write_bytes(legacy.read_bytes())
+        with self.assertRaisesRegex(RuntimeError, 'legacy variant fixture-legacy of group read: bind fixture-0'):
+            self.check()  # beyond 0.02 only the canonical is released
+
+    def test_shared_caption_must_print_nearer_the_claimed_group(self):
+        self.canonical_group(rival=True)
+        with self.far_from_print(), self.assertRaisesRegex(RuntimeError, 'nearer symbol group rival'):
+            self.check()  # rival canonical prints at 0.0, the claimed group at 0.4
+
+    def test_confirmed_group_requires_dated_operator_words(self):
+        from tools.web.shared_symbol_assets import canonical_groups
+        self.canonical_group()
+        self.catalog_extra['canonical_decisions'][0]['operator_quotes'] = []
+        with self.assertRaisesRegex(ValueError, 'undated operator decision'):
+            canonical_groups()
+        self.canonical_group()
+        self.catalog_extra['canonical_groups'][0]['legacy_variants'] = ['fixture-0']
+        with self.assertRaisesRegex(ValueError, 'doubly grouped'):
+            canonical_groups()
 
     def test_unbound_printed_word_split_and_inline_hyphens_remain_significant(self):
         self.assertNotEqual(_text('recyclingcen-\ntrum'), _text('recyclingcentrum'))
