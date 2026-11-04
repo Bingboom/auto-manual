@@ -1,0 +1,13 @@
+{
+  "source_pdf_sha256": "541ca8a5543e3b2e36c85b908b5e733b86c5fb766081392c6e22a50493d59f7e",
+  "native_pages": {
+    "en": 15,
+    "fr": 35,
+    "es": 55
+  },
+  "layout": "Four separate numbered steps followed by two separate bullet items; no additional paragraph gap within either list.",
+  "change": "Source-local CSS removes inherited paragraph/item margins and preserves the small separation between the two lists.",
+  "body_copy_and_semantic_structure_unchanged": true,
+  "operator_layout_acceptance": "pending combined review",
+  "publication_eligible": false
+}

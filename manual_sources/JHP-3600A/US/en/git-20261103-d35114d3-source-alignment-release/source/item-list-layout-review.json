@@ -1,0 +1,474 @@
+{
+  "native_source": {
+    "callouts": {
+      "en": [
+        {
+          "topic": "battery-connection",
+          "physical_page": 14,
+          "source_ref": "pdf/p14-b6-l0-0",
+          "label": "CAUTION",
+          "variant": "caution",
+          "items": [
+            "Ensure all products are powered off before connecting the HomePower 3600 Plus to the  Jackery Battery Pack 3600.",
+            "To ensure proper operation of the product, make sure the air intake and exhaust vents on  both sides are unobstructed. Leave at least 0.66 ft (≈200 mm) of space between the  vents and any objects to allow for proper heat dissipation."
+          ],
+          "semantic_item_count": 2,
+          "native_wording_and_bold_spans_preserved": true,
+          "source_node": [
+            11,
+            3
+          ]
+        },
+        {
+          "topic": "parallel-note",
+          "physical_page": 15,
+          "source_ref": "pdf/p15-b5-l0-0",
+          "label": "NOTE",
+          "variant": "note",
+          "items": [
+            "The Jackery Connector for parallel connection is sold separately and available on our  official website.",
+            "During parallel operation, the units can be charged via solar panels only. AC wall  charging is not supported in this mode."
+          ],
+          "semantic_item_count": 2,
+          "native_wording_and_bold_spans_preserved": true,
+          "source_node": [
+            12,
+            1
+          ]
+        },
+        {
+          "topic": "parallel-caution",
+          "physical_page": 15,
+          "source_ref": "pdf/p15-b8-l0-0",
+          "label": "CAUTION",
+          "variant": "caution",
+          "items": [
+            "After a successful parallel connection, do not disconnect the parallel cable while AC  output is still active, as this may trigger overload protection in the other unit.",
+            "Do not touch the parallel cable port when AC output is enabled (when the AC power  button indicator light is on). This port carries 240V high voltage and poses a risk of  electric shock."
+          ],
+          "semantic_item_count": 2,
+          "native_wording_and_bold_spans_preserved": true,
+          "source_node": [
+            12,
+            5
+          ]
+        },
+        {
+          "topic": "charging-temperature",
+          "physical_page": 17,
+          "source_ref": "pdf/p17-b7-l0-0",
+          "label": "NOTE",
+          "variant": "note",
+          "items": [
+            "The recommended charging temperature for the product ranges from -4°F to 113°F (-20°C to  45°C), and the discharging temperature ranges from -4°F to 113°F (-20°C to 45°C). Operating  the product beyond this temperature range may restrict its charging and discharging  capabilities, or even prevent it from charging or discharging.",
+            "The charging power and battery capacity of the product may vary due to temperature  fluctuations."
+          ],
+          "semantic_item_count": 2,
+          "native_wording_and_bold_spans_preserved": true,
+          "source_node": [
+            14,
+            2
+          ]
+        },
+        {
+          "topic": "dc-input",
+          "physical_page": 18,
+          "source_ref": "pdf/p18-b3-l0-0",
+          "label": "CAUTION",
+          "variant": "caution",
+          "items": [
+            "Use the same model of Jackery solar panels and the same number of panels when  connecting solar panels to both DC8020 Input ports.",
+            "Do not charge the product using both a car charger and a solar panel simultaneously.  Doing so may blow the car fuse or result in charging failure."
+          ],
+          "semantic_item_count": 2,
+          "native_wording_and_bold_spans_preserved": true,
+          "source_node": [
+            15,
+            1
+          ]
+        },
+        {
+          "topic": "car-charging",
+          "physical_page": 18,
+          "source_ref": "pdf/p18-b10-l0-0",
+          "label": "CAUTION",
+          "variant": "caution",
+          "items": [
+            "Please start the vehicle before charging your power station.",
+            "If the vehicle is running on bumpy roads, it is forbidden to use the car charger in case it  causes non-standard operation. The Company will not be responsible for any loss caused  by non-standard operation.",
+            "Vehicle charging is only applicable to vehicles with 12V DC, not 24V DC. Please do not  charge this product in a 24V vehicle to avoid personal injury and property loss."
+          ],
+          "semantic_item_count": 3,
+          "native_wording_and_bold_spans_preserved": true,
+          "source_node": [
+            15,
+            4
+          ]
+        },
+        {
+          "topic": "app-bound",
+          "physical_page": 23,
+          "source_ref": "pdf/p23-b19-l0-0",
+          "label": "NOTE",
+          "variant": "note",
+          "items": [
+            "The device owner will share this device with other users through the App.",
+            "Press and hold the POWER button and USB power button for 3 seconds to reset the  device, and then re-bind the device."
+          ],
+          "semantic_item_count": 2,
+          "native_wording_and_bold_spans_preserved": true,
+          "source_node": [
+            20,
+            1
+          ]
+        }
+      ],
+      "fr": [
+        {
+          "topic": "battery-connection",
+          "physical_page": 34,
+          "source_ref": "pdf/p34-b4-l0-0",
+          "label": "ATTENTION",
+          "variant": "caution",
+          "items": [
+            "Assurez-vous que tous les produits sont éteints avant de connecter le HomePower  3600 Plus au(x) Jackery Battery Pack 3600.",
+            "Pour assurer le bon fonctionnement du produit, assurez-vous que les entrées et sorties  d'air sur les deux côtés ne sont pas obstruées. Laissez un espace d'au moins 0,66 pied  (≈200 mm) entre les ouvertures et tout objet pour permettre une dissipation thermique  adéquate."
+          ],
+          "semantic_item_count": 2,
+          "native_wording_and_bold_spans_preserved": true,
+          "source_node": [
+            11,
+            3
+          ]
+        },
+        {
+          "topic": "parallel-note",
+          "physical_page": 35,
+          "source_ref": "pdf/p35-b4-l0-0",
+          "label": "REMARQUE",
+          "variant": "note",
+          "items": [
+            "Le connecteur Jackery pour la connexion en parallèle est vendu séparément et  disponible sur notre site web officiel.",
+            "Pendant le fonctionnement en parallèle, les unités ne peuvent être chargées que via des  panneaux solaires.La charge murale CA n'est pas prise en charge dans ce mode."
+          ],
+          "semantic_item_count": 2,
+          "native_wording_and_bold_spans_preserved": true,
+          "source_node": [
+            12,
+            1
+          ]
+        },
+        {
+          "topic": "parallel-caution",
+          "physical_page": 35,
+          "source_ref": "pdf/p35-b7-l0-0",
+          "label": "ATTENTION",
+          "variant": "caution",
+          "items": [
+            "Après une connexion en parallèle réussie, ne débranchez pas le câble parallèle tant que  la sortie CA est encore active, car cela peut déclencher la protection contre les  surcharges dans l'autre unité.",
+            "Ne touchez pas le port du câble parallèle lorsque la sortie CA est activée (lorsque  l'indicateur lumineux du bouton d'alimentation CA est allumé).Ce port transporte une  haute tension de 240V et présente un risque d'électrocution."
+          ],
+          "semantic_item_count": 2,
+          "native_wording_and_bold_spans_preserved": true,
+          "source_node": [
+            12,
+            5
+          ]
+        },
+        {
+          "topic": "charging-temperature",
+          "physical_page": 37,
+          "source_ref": "native-pdf/page-37#charging-temperature-list",
+          "label": "Remarque",
+          "variant": "note",
+          "items": [
+            "La température de charge recommandée pour le produit est comprise entre -4°F et 113°F  (-20°C à 45°C), et la température de décharge est comprise entre -4°F et 113°F (-20°C à  45°C). Utiliser le produit en dehors de cette plage de températures peut limiter ses capacités  de charge et de décharge, voire empêcher la charge ou la décharge.",
+            "La puissance de charge et la capacité de la batterie du produit peuvent varier en raison des  fluctuations de température."
+          ],
+          "semantic_item_count": 2,
+          "native_wording_and_bold_spans_preserved": true,
+          "source_node": [
+            14,
+            1
+          ]
+        },
+        {
+          "topic": "dc-input",
+          "physical_page": 38,
+          "source_ref": "pdf/p38-b10-l0-0",
+          "label": "ATTENTION",
+          "variant": "caution",
+          "items": [
+            "Utiliser le même modèle de panneaux solaires Jackery et le même nombre de panneaux  lors de la connexion des panneaux solaires aux deux ports d'entrée DC8020.",
+            "Ne chargez pas le produit à la fois avec un chargeur de voiture et un panneau solaire  simultanément. Cela pourrait faire sauter le fusible de la voiture ou entraîner un échec  de la charge."
+          ],
+          "semantic_item_count": 2,
+          "native_wording_and_bold_spans_preserved": true,
+          "source_node": [
+            15,
+            1
+          ]
+        },
+        {
+          "topic": "car-charging",
+          "physical_page": 38,
+          "source_ref": "pdf/p38-b2-l0-0",
+          "label": "ATTENTION",
+          "variant": "caution",
+          "items": [
+            "Veuillez démarrer le véhicule avant de charger votre station d’alimentation.",
+            "Si le véhicule roule sur des routes accidentées, il est interdit d’utiliser le chargeur de voiture  afin d’éviter tout risque de surchauffe dû à une mauvaise connexion. La société ne sera  pas responsable des pertes causées par une utilisation non conforme.",
+            "La charge par véhicule est uniquement applicable aux véhicules en 12 V CC, pas en 24 V  CC. Veuillez ne pas charger ce produit dans un véhicule 24 V afin d’éviter tout risque de  blessure ou de dommage matériel."
+          ],
+          "semantic_item_count": 3,
+          "native_wording_and_bold_spans_preserved": true,
+          "source_node": [
+            15,
+            4
+          ]
+        },
+        {
+          "topic": "app-bound",
+          "physical_page": 43,
+          "source_ref": "native-pdf/page-43#app-bound-list",
+          "label": "Remarque",
+          "variant": "note",
+          "items": [
+            "Le propriétaire de l’appareil peut partager ce dernier avec d’autres utilisateurs dans  l’application.",
+            "Maintenez le bouton d’alimentation principal et le bouton d’alimentation USB enfoncés  pendant 3 secondes pour réinitialiser l’appareil et l’associer de nouveau."
+          ],
+          "semantic_item_count": 2,
+          "native_wording_and_bold_spans_preserved": true,
+          "source_node": [
+            20,
+            0
+          ]
+        }
+      ],
+      "es": [
+        {
+          "topic": "battery-connection",
+          "physical_page": 54,
+          "source_ref": "pdf/p54-b5-l0-0",
+          "label": "PRECAUCIÓN",
+          "variant": "caution",
+          "items": [
+            "Asegúrese de que todos los productos estén apagados antes de conectar el  HomePower 3600 Plus al paquete de Jackery Battery Pack 3600.",
+            "Para asegurar el funcionamiento adecuado del producto, asegúrese de que las  rejillas de entrada y salida de aire en ambos lados estén despejadas. Deje al menos  0,66 pies (≈200 mm) de espacio entre las rejillas y cualquier objeto para permitir una  disipación de calor adecuada."
+          ],
+          "semantic_item_count": 2,
+          "native_wording_and_bold_spans_preserved": true,
+          "source_node": [
+            11,
+            3
+          ]
+        },
+        {
+          "topic": "parallel-note",
+          "physical_page": 55,
+          "source_ref": "pdf/p55-b5-l0-0",
+          "label": "NOTA",
+          "variant": "note",
+          "items": [
+            "El conector Jackery para conexión en paralelo se vende por separado y está  disponible en nuestro sitio web oficial.",
+            "Durante la operación en paralelo, las unidades solo pueden cargarse mediante  paneles solares.La carga mediante toma de corriente CA no es compatible en este  modo."
+          ],
+          "semantic_item_count": 2,
+          "native_wording_and_bold_spans_preserved": true,
+          "source_node": [
+            12,
+            1
+          ]
+        },
+        {
+          "topic": "parallel-caution",
+          "physical_page": 55,
+          "source_ref": "pdf/p55-b8-l0-0",
+          "label": "PRECAUCIÓN",
+          "variant": "caution",
+          "items": [
+            "Después de una conexión en paralelo exitosa, no desconecte el cable paralelo  mientras la salida CA aún esté activa, ya que esto puede activar la protección contra  sobrecarga en la otra unidad.",
+            "No toque el puerto del cable paralelo cuando la salida de CA esté habilitada (cuando  la luz indicadora del botón de alimentación CA esté encendida).Este puerto maneja  un alto voltaje de 240 V y representa un riesgo de descarga eléctrica."
+          ],
+          "semantic_item_count": 2,
+          "native_wording_and_bold_spans_preserved": true,
+          "source_node": [
+            12,
+            5
+          ]
+        },
+        {
+          "topic": "charging-temperature",
+          "physical_page": 57,
+          "source_ref": "native-pdf/page-57#charging-temperature-list",
+          "label": "Nota",
+          "variant": "note",
+          "items": [
+            "La temperatura de carga recomendada para el producto está entre -4 °F y 113 °F (-20 °C a  45 °C), y la temperatura de descarga está entre -4 °F y 113 °F (-20 °C a 45 °C). Operar el  producto fuera de este rango de temperatura puede limitar sus capacidades de carga y  descarga, e incluso impedir la carga o descarga.",
+            "La potencia de carga y la capacidad de la batería del producto pueden variar debido a  fluctuaciones de temperatura."
+          ],
+          "semantic_item_count": 2,
+          "native_wording_and_bold_spans_preserved": true,
+          "source_node": [
+            14,
+            1
+          ]
+        },
+        {
+          "topic": "dc-input",
+          "physical_page": 58,
+          "source_ref": "pdf/p58-b5-l0-0",
+          "label": "PRECAUCIÓN",
+          "variant": "caution",
+          "items": [
+            "Utilizar paneles solares Jackery del mismo modelo y la misma cantidad de paneles al  conectar paneles solares a ambos puertos de entrada DC8020.",
+            "No cargue el producto utilizando simultáneamente un cargador de automóvil y un panel  solar. Hacerlo podría quemar el fusible del automóvil o resultar en un fallo de carga."
+          ],
+          "semantic_item_count": 2,
+          "native_wording_and_bold_spans_preserved": true,
+          "source_node": [
+            15,
+            1
+          ]
+        },
+        {
+          "topic": "car-charging",
+          "physical_page": 58,
+          "source_ref": "native-pdf/page-58#car-charging-list",
+          "label": "Importante",
+          "variant": "caution",
+          "items": [
+            "Por favor, encienda el vehículo antes de cargar su estación de energía.",
+            "Si el vehículo circula por caminos accidentados, está prohibido usar el cargador de  coche para evitar que se queme debido a una mala conexión. La empresa no se  responsabiliza por pérdidas causadas por un uso incorrecto.",
+            "La carga en vehículo solo es aplicable a vehículos con 12 V CC, no a 24 V CC. Por favor,  no cargue este producto en vehículos de 24 V para evitar lesiones personales y daños  materiales."
+          ],
+          "semantic_item_count": 3,
+          "native_wording_and_bold_spans_preserved": true,
+          "source_node": [
+            15,
+            4
+          ]
+        },
+        {
+          "topic": "app-bound",
+          "physical_page": 63,
+          "source_ref": "pdf/p63-b21-l0-0",
+          "label": "NOTA",
+          "variant": "note",
+          "items": [
+            "El propietario del dispositivo lo compartirá con otros usuarios a través de la App.",
+            "Mantenga pulsados el botón POWER y el botón USB durante 3 segundos para reiniciar el  dispositivo y, a continuación, vuelva a vincularlo."
+          ],
+          "semantic_item_count": 2,
+          "native_wording_and_bold_spans_preserved": true,
+          "source_node": [
+            20,
+            1
+          ]
+        }
+      ]
+    },
+    "changed_nodes": {
+      "en": [
+        [
+          11,
+          3
+        ],
+        [
+          12,
+          1
+        ],
+        [
+          12,
+          5
+        ],
+        [
+          14,
+          2
+        ],
+        [
+          15,
+          1
+        ],
+        [
+          15,
+          4
+        ],
+        [
+          20,
+          1
+        ]
+      ],
+      "fr": [
+        [
+          11,
+          3
+        ],
+        [
+          12,
+          1
+        ],
+        [
+          12,
+          5
+        ],
+        [
+          14,
+          1
+        ],
+        [
+          15,
+          1
+        ],
+        [
+          15,
+          4
+        ],
+        [
+          20,
+          0
+        ]
+      ],
+      "es": [
+        [
+          11,
+          3
+        ],
+        [
+          12,
+          1
+        ],
+        [
+          12,
+          5
+        ],
+        [
+          14,
+          1
+        ],
+        [
+          15,
+          1
+        ],
+        [
+          15,
+          4
+        ],
+        [
+          20,
+          1
+        ]
+      ]
+    }
+  },
+  "shared_component": "HB-CALLOUT-STRIP",
+  "shared_list_styles": true,
+  "new_list_css": false,
+  "preserved": [
+    "Original wording and bold spans",
+    "Existing base artwork",
+    "Previous layout repairs"
+  ],
+  "publication_eligible": false,
+  "operator_acceptance": "pending combined layout review"
+}

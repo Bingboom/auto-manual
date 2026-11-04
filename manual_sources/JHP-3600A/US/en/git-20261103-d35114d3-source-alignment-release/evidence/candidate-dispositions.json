@@ -1,0 +1,8 @@
+{
+  "fulltext": "All OCR candidates checked against source render; graphics text is in original images, remaining string differences are OCR errors/line joins.",
+  "reverse_copy": "All final candidates visually located in source:5000C p16 water sentence;3600A p5 DANGER andp12 LCD;3000D p5 grounding/DANGER;3600C p5 DANGER,p8 schedule andp13 mode. No remaining extra body text.",
+  "numeric_contexts_checked": 104,
+  "numeric_candidates": "Source image checked; differences are OCR substitutions or superscript footnote serialization.3600A F6 independently restored30cm and sequential numbering; allsource spec grids checked including units and condition branches.",
+  "front_cover_and_print_toc": "Explicitly excluded, not defects.",
+  "back_contact": "Retained original company,address,phone,mail,web,QR on final source page."
+}

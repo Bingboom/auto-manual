@@ -133,6 +133,14 @@ class RtdPortalTests(unittest.TestCase):
         root_page = BeautifulSoup((out / "index.html").read_text(), "html.parser")
         self.assertEqual([g.get_text() for g in root_page.select(".app-nav-group")], ["说明书"])
         self.assertIsNone(root_page.select_one(".app-switch"))
+        # The public band carries only the reader-facing copy: no internal wording, statuses or links.
+        band = root_page.select_one("section.value")
+        self.assertEqual(band.h2.get_text(), "网页说明书的定位与价值")
+        self.assertEqual([item.strong.get_text() for item in band.select(".value-item")], ["便捷阅读", "版本清楚", "持续更新"])
+        self.assertEqual(band.select("a, .value-status, .value-eyebrow"), [])
+        public_text = (out / "index.html").read_text()
+        for internal_word in ("positioning", "治理", "Agent", "HELLO-DOCS", "知识资产", "建设中"):
+            self.assertNotIn(internal_word, public_text)
         self.assertTrue((out / "JE-TEST/EU/md/manual_EU.html").is_file())
         alias = (out / "manual_EU.html").read_text()
         self.assertIn('href="https://manuals.example.com/en/latest/JE-TEST/EU/md/manual_EU.html"', alias)
@@ -347,11 +355,11 @@ class RtdPortalTests(unittest.TestCase):
             return groups
 
         manuals = [("说明书", ["说明书资料库", "搜索说明书正文"])]
-        knowledge = [*manuals, ("知识库", ["首页"]), ("产品与市场", ["产品知识", "产品矩阵", "市场与政策"]),
+        knowledge = [*manuals, ("知识库", ["首页", "定位与价值"]), ("产品与市场", ["产品知识", "产品矩阵", "市场与政策"]),
                      ("说明书生产", ["说明书工作台", "系统建设", "设计规范"])]
         pages = ("products/knowledge.html", "products/matrix.html", "market/policy.html", "workspace/index.html",
-                 "workspace/system/index.html", "workspace/deliverables/index.html",
-                 "workspace/design/index.html")
+                 "workspace/positioning/index.html", "workspace/system/index.html",
+                 "workspace/deliverables/index.html", "workspace/design/index.html")
         self.assertEqual({page: outline(sidebar) for page, sidebar in sidebars.items()},
                          {"index.html": knowledge, **dict.fromkeys(pages, knowledge)})
         site = "https://site.invalid/"
@@ -369,6 +377,17 @@ class RtdPortalTests(unittest.TestCase):
             self.assertTrue(target.is_file(), row["href"])
             if url.fragment:
                 self.assertIn(f'id="{url.fragment}"', target.read_text(encoding="utf-8"), row["href"])
+        # The private home's band tags each theme and links it to its section of the full page.
+        band = BeautifulSoup((out / "index.html").read_text(encoding="utf-8"), "html.parser").select_one("section.value")
+        self.assertEqual(band.select_one(".value-eyebrow").get_text(), "HELLO-DOCS · DIGITAL MANUAL LIBRARY")
+        themes = band.select("a.value-item")
+        self.assertEqual([(a.strong.get_text(), a.em.get_text()) for a in themes],
+                         [("便捷阅读", "可用"), ("内容治理", "部分可用"), ("知识积累", "建设中")])
+        for link in [*themes, band.select_one(".value-more a")]:
+            url = urlsplit(urljoin(site + "index.html", link["href"]))
+            self.assertEqual(url.path, "/workspace/positioning/index.html", link["href"])
+            if url.fragment:
+                self.assertIn(f'id="{url.fragment}"', (out / url.path.removeprefix("/")).read_text(encoding="utf-8"))
         for page, sidebar in sidebars.items():
             links = sidebar.select("a.app-nav-link")
             for link in links:

@@ -1,0 +1,146 @@
+{
+  "model": "JHP-1000B-RC",
+  "pages": [
+    {
+      "physical_page": 2,
+      "source_png": "pdf-pages/JHP-1000B-RC/p02.png",
+      "transcription_lines": 7,
+      "visual_review": "Own preface including American Red Cross registered-trademark paragraph, EN/IMPORTANT.",
+      "status": "verified"
+    },
+    {
+      "physical_page": 4,
+      "source_png": "pdf-pages/JHP-1000B-RC/p04.png",
+      "transcription_lines": 40,
+      "visual_review": "Warning strip, small warning card and split safety/operating columns; exact inside-item split and plain SAVE/GROUNDING/WARNING.",
+      "status": "verified"
+    },
+    {
+      "physical_page": 5,
+      "source_png": "pdf-pages/JHP-1000B-RC/p05.png",
+      "transcription_lines": 27,
+      "visual_review": "Own danger outline and native text, maintenance pill, signal and 4+3 pictogram tables.",
+      "status": "verified"
+    },
+    {
+      "physical_page": 6,
+      "source_png": "pdf-pages/JHP-1000B-RC/p06.png",
+      "transcription_lines": 29,
+      "visual_review": "Own FCC/ISED/RF copy and two columns; three box cards (no USB-C accessory), TIP singular.",
+      "status": "verified"
+    },
+    {
+      "physical_page": 7,
+      "source_png": "pdf-pages/JHP-1000B-RC/p07.png",
+      "transcription_lines": 29,
+      "visual_review": "Own Red Cross front/side/right views, all leader labels and complete right outline.",
+      "status": "verified"
+    },
+    {
+      "physical_page": 8,
+      "source_png": "pdf-pages/JHP-1000B-RC/p08.png",
+      "transcription_lines": 24,
+      "visual_review": "Own LCD map and entries1–6 including exact TOU on/off copy.",
+      "status": "verified"
+    },
+    {
+      "physical_page": 9,
+      "source_png": "pdf-pages/JHP-1000B-RC/p09.png",
+      "transcription_lines": 56,
+      "visual_review": "Own LCD entries7–26, shared number23 span for high/low temperatures.",
+      "status": "verified"
+    },
+    {
+      "physical_page": 10,
+      "source_png": "pdf-pages/JHP-1000B-RC/p10.png",
+      "transcription_lines": 25,
+      "visual_review": "Power/AC own artwork with original text positions and framed panels.",
+      "status": "verified"
+    },
+    {
+      "physical_page": 11,
+      "source_png": "pdf-pages/JHP-1000B-RC/p11.png",
+      "transcription_lines": 23,
+      "visual_review": "DC/USB original panel and own three USB-C cautions, automobile cautions, LED own steps.",
+      "status": "verified"
+    },
+    {
+      "physical_page": 12,
+      "source_png": "pdf-pages/JHP-1000B-RC/p12.png",
+      "transcription_lines": 28,
+      "visual_review": "Native six LCD mode rows beside own original art, energy-saving panel and full warning.",
+      "status": "verified"
+    },
+    {
+      "physical_page": 13,
+      "source_png": "pdf-pages/JHP-1000B-RC/p13.png",
+      "transcription_lines": 39,
+      "visual_review": "Own four key button pairs/clocks/pluses/captions, followed by UPS own drawing.",
+      "status": "verified"
+    },
+    {
+      "physical_page": 14,
+      "source_png": "pdf-pages/JHP-1000B-RC/p14.png",
+      "transcription_lines": 23,
+      "visual_review": "Own full UPS cautions/warning/pacemaker sentence; battery stack and accessories original Red Cross artwork.",
+      "status": "verified"
+    },
+    {
+      "physical_page": 15,
+      "source_png": "pdf-pages/JHP-1000B-RC/p15.png",
+      "transcription_lines": 20,
+      "visual_review": "Own battery precautions, green energy copy, first-charge pill, AC panel and Emergency lead.",
+      "status": "verified"
+    },
+    {
+      "physical_page": 16,
+      "source_png": "pdf-pages/JHP-1000B-RC/p16.png",
+      "transcription_lines": 12,
+      "visual_review": "Own solar/car illustrations with input conditions and exact source voltage range.",
+      "status": "verified"
+    },
+    {
+      "physical_page": 17,
+      "source_png": "pdf-pages/JHP-1000B-RC/p17.png",
+      "transcription_lines": 32,
+      "visual_review": "Own car cautions/storage, complete fault table including F7 solar condition and subscript.",
+      "status": "verified"
+    },
+    {
+      "physical_page": 18,
+      "source_png": "pdf-pages/JHP-1000B-RC/p18.png",
+      "transcription_lines": 49,
+      "visual_review": "Own model JHP-1000B-RC and all spec values, USB-C two rows, footnotes/trademark.",
+      "status": "verified"
+    },
+    {
+      "physical_page": 19,
+      "source_png": "pdf-pages/JHP-1000B-RC/p19.png",
+      "transcription_lines": 27,
+      "visual_review": "Own warranty clauses; only3/2-year panel two columns; six titled sections.",
+      "status": "verified"
+    },
+    {
+      "physical_page": 20,
+      "source_png": "pdf-pages/JHP-1000B-RC/p20.png",
+      "transcription_lines": 13,
+      "visual_review": "Own App download/QR and steps1–2.4, original phone screenshots and note text.",
+      "status": "verified"
+    },
+    {
+      "physical_page": 21,
+      "source_png": "pdf-pages/JHP-1000B-RC/p21.png",
+      "transcription_lines": 25,
+      "visual_review": "Own app result screens/unbind/notes4.1–4.3 and operation instructions.",
+      "status": "verified"
+    },
+    {
+      "physical_page": 22,
+      "source_png": "pdf-pages/JHP-1000B-RC/p22.png",
+      "transcription_lines": 0,
+      "visual_review": "Own JACKERY INC/address/phone/mail/web/QR retained, native contact copy.",
+      "status": "verified"
+    }
+  ],
+  "final_visual_evidence": "viewport-segments/index.json;34 actual instant-scroll viewports fully visually inspected"
+}

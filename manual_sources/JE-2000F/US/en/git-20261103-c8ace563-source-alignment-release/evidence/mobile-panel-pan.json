@@ -1,0 +1,44 @@
+[
+  {
+    "panel": "power-panel",
+    "clientWidth": 358,
+    "scrollWidth": 650,
+    "scrollLeft": 292,
+    "overflowX": "auto"
+  },
+  {
+    "panel": "output-panel",
+    "clientWidth": 358,
+    "scrollWidth": 650,
+    "scrollLeft": 292,
+    "overflowX": "auto"
+  },
+  {
+    "panel": "output-panel",
+    "clientWidth": 358,
+    "scrollWidth": 650,
+    "scrollLeft": 292,
+    "overflowX": "auto"
+  },
+  {
+    "panel": "led-panel",
+    "clientWidth": 358,
+    "scrollWidth": 650,
+    "scrollLeft": 292,
+    "overflowX": "auto"
+  },
+  {
+    "panel": "energy-panel",
+    "clientWidth": 358,
+    "scrollWidth": 650,
+    "scrollLeft": 292,
+    "overflowX": "auto"
+  },
+  {
+    "panel": "charging-panel",
+    "clientWidth": 358,
+    "scrollWidth": 650,
+    "scrollLeft": 292,
+    "overflowX": "auto"
+  }
+]

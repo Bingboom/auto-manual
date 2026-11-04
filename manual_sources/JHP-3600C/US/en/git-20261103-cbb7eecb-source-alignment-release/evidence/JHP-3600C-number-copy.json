@@ -1,0 +1,122 @@
+{
+  "model": "JHP-3600C",
+  "exact_letter_contexts_checked": 199,
+  "numeric_differences": [
+    {
+      "page": 7,
+      "source": "HomePower $600 Pro Max",
+      "web_context": "homepower3600promax",
+      "source_numbers": [
+        "600"
+      ],
+      "web_numbers": [
+        "3600"
+      ]
+    },
+    {
+      "page": 7,
+      "source": "16-60V=12A Max, Double to 24A /",
+      "web_context": "v8amaxdoubleto8a",
+      "source_numbers": [
+        "12",
+        "24"
+      ],
+      "web_numbers": [
+        "8",
+        "8"
+      ]
+    },
+    {
+      "page": 26,
+      "source": "port, 1440W® in Total",
+      "web_context": "port4000wintotal",
+      "source_numbers": [
+        "1440"
+      ],
+      "web_numbers": [
+        "4000"
+      ]
+    },
+    {
+      "page": 26,
+      "source": "NEMA 14-50R: 240V~ 60Hz, 1440W* Max",
+      "web_context": "nema1450r240v60hz1440w4max",
+      "source_numbers": [
+        "1450",
+        "240",
+        "60",
+        "1440"
+      ],
+      "web_numbers": [
+        "1450",
+        "240",
+        "60",
+        "1440",
+        "4"
+      ]
+    },
+    {
+      "page": 31,
+      "source": "Bypass Mode® : 100V-120V~ 60Hz, 12A Max, 1440W",
+      "web_context": "bypassmode1100v120v60hz12amax1440w",
+      "source_numbers": [
+        "100",
+        "120",
+        "60",
+        "12",
+        "1440"
+      ],
+      "web_numbers": [
+        "1100",
+        "120",
+        "60",
+        "12",
+        "1440"
+      ]
+    },
+    {
+      "page": 31,
+      "source": "16-60V®-12A Max, Double to 24A, 1200W Max",
+      "web_context": "v212amaxdoubleto24a1200wmax",
+      "source_numbers": [
+        "12",
+        "24",
+        "1200"
+      ],
+      "web_numbers": [
+        "212",
+        "24",
+        "1200"
+      ]
+    },
+    {
+      "page": 31,
+      "source": "port, 1440W® in Total",
+      "web_context": "port4000wintotal",
+      "source_numbers": [
+        "1440"
+      ],
+      "web_numbers": [
+        "4000"
+      ]
+    },
+    {
+      "page": 31,
+      "source": "NEMA 14-50R: 240V~ 60Hz, 1440W* Max",
+      "web_context": "nema1450r240v60hz1440w4max",
+      "source_numbers": [
+        "1450",
+        "240",
+        "60",
+        "1440"
+      ],
+      "web_numbers": [
+        "1450",
+        "240",
+        "60",
+        "1440",
+        "4"
+      ]
+    }
+  ]
+}

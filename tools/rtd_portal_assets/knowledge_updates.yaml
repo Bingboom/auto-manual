@@ -12,8 +12,8 @@
 #             shows 日期未记录 and sorts last; the build date is never used.
 #   title     the row's bold line
 #   note      one line: what changed
-#   page      where the row links: share | product-knowledge | product-matrix |
-#             market-policy | deliverables | system | design-system
+#   page      where the row links: share | positioning | product-knowledge |
+#             product-matrix | market-policy | deliverables | system | design-system
 #             (hidden while that page, or the share package, is not built)
 #   anchor    optional lower-case id on that page, such as work-map
 #   evidence  pr:<repo>#<n>, or a list of them, for reviewers; never shown
@@ -23,6 +23,11 @@
 schema: hello-docs-knowledge-updates/v1
 
 updates:
+  - date: 2026-11-04
+    title: 定位与价值 · 网页说明书的定位与价值
+    note: 新增一页：网页说明书的三个主题（便捷阅读、内容治理、知识积累）各自的现状，以及长期方向；说明书资料库首页同步加了定位板块
+    page: positioning
+    evidence: "pr:auto-manual#1669"
   - date: 2026-10-22
     title: 产品知识 · 美规 ATS 与日本切替分電盤
     note: 新增一项：两种家庭备电接法里主机所处位置不同，以及哪些美规描述不能照搬到日本

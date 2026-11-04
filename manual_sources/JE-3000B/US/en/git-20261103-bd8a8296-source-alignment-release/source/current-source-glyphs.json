@@ -1,0 +1,69 @@
+[
+  {
+    "path": "assets/warning-dark.png",
+    "physical_page": 4,
+    "bbox": [
+      33.41963052188649,
+      57.25341796875,
+      58.59285870720358,
+      79.37405672940342
+    ],
+    "sha256": "6a22091719d9a1efe1a5e4ecaf3af7cae9e2c6ae5d484b6626c76a6affa44ea7"
+  },
+  {
+    "path": "assets/warning-white.svg",
+    "physical_page": 4,
+    "bbox": [
+      33.41963052188649,
+      94.55488725142045,
+      67.27328221938188,
+      127.51897638494317
+    ],
+    "sha256": "98241fea665677ae122595ca772d88d8d6a2b807fe9a0bfe56c7660344132597",
+    "operation": "Original outlined path 291 from physical page 4; native white warning artwork, no redrawing."
+  },
+  {
+    "path": "assets/contact-phone.png",
+    "physical_page": 19,
+    "bbox": [
+      35.14323055491728,
+      468.3201470493285,
+      55.534981617647055,
+      490.0016353386493
+    ],
+    "sha256": "09850ec574fab48ed41c8c8f89838f256c1a5f7443b3100ad628fee7ee27608a"
+  },
+  {
+    "path": "assets/contact-mail.png",
+    "physical_page": 19,
+    "bbox": [
+      206.95457993451285,
+      468.7537768151149,
+      220.40445829503676,
+      478.7272614282025
+    ],
+    "sha256": "0e9283d2b800e679f7f60272a87aa35163cfb6cf7d3f7e11e1b92f5723bb98c1"
+  },
+  {
+    "path": "assets/contact-web.png",
+    "physical_page": 19,
+    "bbox": [
+      206.95457993451285,
+      479.16089119398885,
+      220.83832533892465,
+      490.0016353386493
+    ],
+    "sha256": "44f5b3fbec1236d45d0ea5f0265dcf0c7c935dcaeaedec52de5bff4762304533"
+  },
+  {
+    "path": "assets/contact-qr.png",
+    "physical_page": 19,
+    "bbox": [
+      308.045601160386,
+      463.1165898598915,
+      340.15176240808825,
+      495.6388222938727
+    ],
+    "sha256": "d9d7d4103ab77b2e32191377f54b67d3de0107982edd4d4232b06fff224b83a8"
+  }
+]

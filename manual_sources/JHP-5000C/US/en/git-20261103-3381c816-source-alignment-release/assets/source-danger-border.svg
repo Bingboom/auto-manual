@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ns1="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="313.0" height="33.60000000000002" viewBox="25.3 463.5 313.0 33.60000000000002" preserveAspectRatio="none"><defs>
+<clipPath id="clip_2">
+<path transform="matrix(1,0,0,-1,-2392.5303,6693.3835)" d="M0 0H11914.6V8405.89H0Z" />
+</clipPath>
+<clipPath id="clip_5002">
+<path transform="matrix(1,0,0,-1,-2392.5303,6693.3835)" d="M0 8405.89H11914.583V0H0Z" />
+</clipPath>
+</defs>
+<g><g><g clip-path="url(#clip_2)"><g ns1:groupmode="layer" ns1:label="图层 1"><g clip-path="url(#clip_5002)"><path transform="matrix(1,0,0,-1,331.61598,496.37794)" stroke-width=".75" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#454546" d="M0 0H-299.63C-302.883 0-305.521 2.637-305.521 5.89V26.248C-305.521 29.501-302.883 32.139-299.63 32.139H0C3.253 32.139 5.891 29.501 5.891 26.248V5.89C5.891 2.637 3.253 0 0 0Z" data-pdf-drawing-index="103936" />
+</g></g></g></g></g></svg>

@@ -1,0 +1,7 @@
+{
+  "model": "JHP-3600A",
+  "status": "reopened_review",
+  "changes": [
+    "p6 remove old extra FCC opening, preserve source paragraph and column breaks"
+  ]
+}

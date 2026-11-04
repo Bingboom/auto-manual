@@ -1,0 +1,147 @@
+/* Source geometry only. The shared Web theme owns every colour, border, fill,
+   heading, callout, table, card and figure style (prepared-document shared-style
+   gate). Figures are selected by their shared data attributes. */
+
+/* Source panels keep the print's own width; no visible caption. */
+#furo-main-content .hb-reference-figure { max-width: 680px; margin-left: auto; margin-right: auto; }
+
+/* Small print drawings and marks keep a print-like size. */
+#furo-main-content .hb-reference-figure[data-reference-id="overview-ac-total"] { max-width: 400px; }
+#furo-main-content .hb-reference-figure[data-reference-id="lcd-map"] { max-width: 560px; }
+#furo-main-content .hb-reference-figure[data-reference-id="energy-saving"] { max-width: 560px; }
+#furo-main-content .hb-reference-figure[data-reference-id="app-add"] { max-width: 380px; }
+#furo-main-content .hb-reference-figure[data-reference-id="app-results"] { max-width: 560px; }
+#furo-main-content .hb-reference-figure:is([data-reference-id^="cleaning-"]) { max-width: 330px; }
+#furo-main-content .hb-reference-figure[data-reference-id="contact-qr"] { max-width: 6.5rem; margin-left: 0; }
+
+/* Print case for chapter and subheadings; shared markers stay. */
+#furo-main-content :is(h1, h3, h4), #furo-main-content h2:not(.hb-spec-section) { text-transform: none; }
+
+/* Native two-row source button table; original crops, no redrawn icon. */
+#furo-main-content [data-source-layout="button-operations"] table { min-width: 0; width: 100%; }
+#furo-main-content [data-source-layout="button-operations"] td:first-child { width: 38%; text-align: center; }
+#furo-main-content [data-source-button] { display: inline-flex; vertical-align: middle; align-items: center; flex-direction: column; width: 5rem; }
+#furo-main-content [data-source-button] img { width: 2.5rem; height: 2.5rem; object-fit: contain; }
+#furo-main-content [data-source-button] p { margin: .25rem 0 0; font-size: .75rem; }
+#furo-main-content img[src$="button-clock.png"] { width: 1rem; height: 1rem; display: inline; vertical-align: middle; }
+#furo-main-content [data-source-layout="cleaning-steps"] { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+@media (max-width: 760px) {
+ #furo-main-content [data-source-layout="button-operations"] table { min-width: 40rem; }
+ #furo-main-content [data-source-layout="cleaning-steps"] { grid-template-columns: minmax(0, 1fr); }
+}
+#furo-main-content [data-source-role~="native-contact-card"] { margin: 2.2rem 0 1rem; }
+#furo-main-content p[data-source-role~="native-contact-company"] { margin: 0; font-size: 1.25rem; }
+#furo-main-content p[data-source-role~="native-contact-address"] { margin: 0.15rem 0 0.75rem; }
+#furo-main-content [data-source-role~="native-contact-row"] { display: flex; flex-wrap: wrap; align-items: stretch; gap: 0.6rem; }
+#furo-main-content [data-source-role~="native-contact-panel"] {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1.4rem;
+  padding: 0.75rem 1.2rem;
+
+
+}
+#furo-main-content [data-source-role~="native-contact-qr"] {
+  display: grid;
+  place-items: center;
+  padding: 0.35rem;
+
+
+}
+#furo-main-content [data-source-role~="native-contact-qr"] img { width: 3.6rem !important; height: auto !important; margin: 0 !important; }
+#furo-main-content p[data-source-role~="native-contact-phone"] { margin: 0; font-size: 1.55rem; line-height: 1.1; }
+#furo-main-content [data-source-role~="native-contact-region"] { font-size: 0.55em; font-weight: 400; }
+#furo-main-content [data-source-role~="native-contact-links"] { padding-left: 1.2rem;  }
+#furo-main-content [data-source-role~="native-contact-links"] p { margin: 0; line-height: 1.5; }
+#furo-main-content img[data-source-role~="native-contact-glyph"] { display: inline-block; width: auto !important; height: 1.05em !important; margin: 0 0.45em 0 0 !important; vertical-align: -0.12em; }
+#furo-main-content p[data-source-role~="native-contact-phone"] img[data-source-role~="native-contact-glyph"] { height: 1.15em !important; vertical-align: -0.2em; margin-right: 0.3em !important; }
+#furo-main-content .manual-two-col-table {width:100%;table-layout:fixed;}
+#furo-main-content .manual-two-col-table > tbody > tr > td {width:50%;vertical-align:top;padding:0 .6rem 0 0;}
+#furo-main-content .manual-two-col-table > tbody > tr > td + td {padding:0 0 0 .6rem;}
+#furo-main-content :is(h2,h3):has(> [data-source-role~="native-band"]) {display:block;padding:.35rem .7rem;}
+#furo-main-content :is(h2,h3):has(> [data-source-role~="native-band"])::before {display:none;}
+#furo-main-content [data-source-role~="native-contained-panel"] {max-width:680px;margin:1rem auto;padding:.6rem;}
+#furo-main-content [data-source-role~="native-contained-panel"] .hb-reference-figure {margin:.2rem auto;}
+#furo-main-content [data-source-role~="native-panel-note"] {padding:.7rem;margin:.5rem 0;}
+#furo-main-content [data-source-role~="native-panel-note"] > :last-child {margin-bottom:0;}
+#furo-main-content [data-source-role~="native-gray-panel"] {}
+#furo-main-content .native-prose-pill {display:inline-block;padding:.1rem .55rem;margin-bottom:.4rem;}
+#furo-main-content .native-prose-pill p {margin:0;font-size:.85rem;}
+#furo-main-content [data-source-role~="native-contact-panel"] {}
+@media(max-width:640px){#furo-main-content .manual-two-col-table > tbody > tr > td {width:100%;padding:0;}}
+
+#furo-main-content td.hb-lcd-number { text-align: center; vertical-align: middle !important; }
+#furo-main-content .native-lcd-number {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.5em;
+  height: 1.5em;
+  padding: 0 0.12em;
+  box-sizing: border-box;
+
+
+  font-size: 0.86em;
+  line-height: 1;
+}
+
+/* Source p5 uses the original white warning glyph, not a font character. */
+
+/* Source p10: native text occupies the original right-hand bubble. */
+#furo-main-content [data-source-role~="native-figure-scroll"] {overflow-x:auto;}
+#furo-main-content [data-source-role~="native-power-figure"] {position:relative;min-width:660px;}
+#furo-main-content [data-source-role~="native-power-figure"] .hb-reference-figure {padding:0;}
+#furo-main-content [data-source-role~="native-power-note"] {position:absolute;top:57%;left:44%;right:1%;font-size:.8rem;line-height:1.2;}
+#furo-main-content [data-source-role~="native-power-note"] p {margin:0;}
+#furo-main-content [data-source-role~="native-contained-panel"] > .hb-reference-figure {}
+#furo-main-content .hb-troubleshooting-table td.hb-troubleshooting-code:has(> .source-fault-code) {padding:0!important;}
+#furo-main-content .source-fault-code {display:block;padding:.2em .5em;}
+#furo-main-content .source-fault-code:last-child {}
+#furo-main-content .hb-fcc-opening {align-items:center;}
+#furo-main-content .hb-spec-table td {vertical-align:top;}
+
+#furo-main-content [data-source-role~="native-power-figure"] {min-width:620px;}
+#furo-main-content [data-source-role~="native-power-note"] {position:relative;top:auto;left:auto;right:auto;margin-left:44%;margin-top:-125px;}
+#furo-main-content [data-source-role~="native-power-note"] .hb-text-panel, #furo-main-content [data-source-role~="native-power-note"] .hb-text-panel p {font-size:.78rem;line-height:1.25;}
+#furo-main-content [data-source-role~="native-power-note"] .hb-text-panel {padding:.6rem;}
+#furo-main-content #save-these-instructions>h3::before {display:none;}
+#furo-main-content .manual-two-col-table ul ul {list-style-type:"- ";}
+#furo-main-content [data-source-role~="native-contained-panel"]>.hb-text-panel {display:table;padding:.35rem .75rem;margin:.2rem 0;}
+
+/* Current source p7 right-hand AC total detail andp15 native caption. */
+#furo-main-content .hb-reference-figure[data-reference-id="overview-ac-total"] {margin-left:auto;margin-right:0;}
+#furo-main-content [data-source-role~="native-car-note"] {position:relative;margin:-2.7rem 0 .5rem 45%;padding:.3rem .5rem;font-size:.8rem;line-height:1.25;}
+#furo-main-content [data-source-role~="native-car-note"] p {margin:0;}
+#furo-main-content [data-source-layout="cleaning-steps"]>.container {padding:1rem;}
+#furo-main-content [data-source-layout="cleaning-steps"] .hb-reference-figure {margin:0;}
+#furo-main-content .native-step-number {display:inline-grid;place-items:center;min-width:1.35em;height:1.35em;line-height:1;}
+#furo-main-content #app-setup>section>h2::before {display:inline-block;}
+@media(max-width:760px){#furo-main-content [data-source-role~="native-car-note"] {margin:0;}}
+
+#furo-main-content #app-setup>section>h2 {gap:.5em;}
+
+#furo-main-content [data-source-geometry="inline-1"]{width:30px;height:auto}
+#furo-main-content [data-source-geometry="inline-2"]{width:48px;height:auto}
+#furo-main-content [data-source-layout="safety-columns"] {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.2rem;}
+#furo-main-content [data-source-layout="risk-strip"] {display:grid;grid-template-columns:7% minmax(0,1fr);align-items:center;font-size:.8rem;line-height:1.22;}
+#furo-main-content [data-source-layout="warning-lead"] {display:grid;grid-template-columns:20% minmax(0,1fr);align-items:center;font-size:.78rem;line-height:1.18;}
+#furo-main-content [data-source-layout="risk-strip"] > *, #furo-main-content [data-source-layout="warning-lead"] > * {padding:.35rem .5rem;}
+#furo-main-content [data-source-layout="warning-lead"] [data-source-part="0"] {padding:0;align-self:stretch;display:flex;}
+#furo-main-content [data-source-layout="warning-lead"] p {margin:0;}
+#furo-main-content [data-source-layout="warning-lead"] [data-source-part="1"] p:first-child {margin-bottom:.15rem;font-size:1.02rem;line-height:1.15;}
+#furo-main-content [data-source-heading="safety-pill"] {display:block;width:100%;font-size:1rem;padding:.35rem .7rem;}
+#furo-main-content .hb-symbol-signal-table img.hb-signal-icon {width:1.15rem!important;height:1.15rem!important;margin:0!important;object-fit:contain;}
+@media(max-width:640px){#furo-main-content [data-source-layout="safety-columns"] {grid-template-columns:minmax(0,1fr);gap:0;}}
+
+#furo-main-content #jackery-inc > h2 {display:block;font-size:1.25rem;line-height:1.2;}
+#furo-main-content #jackery-inc > h2::before {display:none;}
+#furo-main-content [data-source-layout="cleaning-steps"] .hb-step-copy {grid-template-columns:1.35rem minmax(0,1fr);gap:.35rem;}
+#furo-main-content [data-source-layout="cleaning-steps"] .hb-step-copy > .rubric {width:1.35rem;height:1.35rem;font-size:1rem;line-height:1;}
+#furo-main-content [data-source-layout="cleaning-steps"] .hb-step-copy > .rubric + p {padding:0;}
+@media(max-width:640px){#furo-main-content [data-source-role~="native-contact-panel"] {flex:1;min-width:0;padding:.5rem .6rem;gap:.3rem;}#furo-main-content [data-source-role~="native-contact-phone"] {font-size:1.2rem;}#furo-main-content [data-source-role~="native-contact-links"] {padding-left:1.2rem;}#furo-main-content [data-source-role~="native-contact-row"] {flex-wrap:nowrap;align-items:center;}}
+
+#furo-main-content #app-setup #jackery-inc > h2::before {display:none;}
+@media(max-width:640px){#furo-main-content p[data-source-role~="native-contact-phone"] {font-size:1.2rem;}}
+
+#furo-main-content [data-source-role~="native-car-panel"] {padding:0;}
+#furo-main-content [data-source-role~="native-car-panel"] .hb-reference-figure {margin:0;}

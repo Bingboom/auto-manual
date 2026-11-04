@@ -1,0 +1,767 @@
+[
+  {
+    "width": 1280,
+    "name": "safety",
+    "target": 394.6875,
+    "actual": 345
+  },
+  {
+    "width": 1280,
+    "name": "warning",
+    "target": 463.46875,
+    "actual": 413
+  },
+  {
+    "width": 1280,
+    "name": "danger",
+    "target": 2114.84375,
+    "actual": 2065
+  },
+  {
+    "width": 1280,
+    "name": "fcc",
+    "target": 3134.609375,
+    "actual": 3085
+  },
+  {
+    "width": 1280,
+    "name": "inbox",
+    "target": 3823.859375,
+    "actual": 3774
+  },
+  {
+    "width": 1280,
+    "name": "power",
+    "target": 9134.328125,
+    "actual": 9084
+  },
+  {
+    "width": 1280,
+    "name": "ac-output",
+    "target": 9546.625,
+    "actual": 9497
+  },
+  {
+    "width": 1280,
+    "name": "usb",
+    "target": 10015.65625,
+    "actual": 9966
+  },
+  {
+    "width": 1280,
+    "name": "dc",
+    "target": 10332.3125,
+    "actual": 10282
+  },
+  {
+    "width": 1280,
+    "name": "faults",
+    "target": 11988.375,
+    "actual": 11938
+  },
+  {
+    "width": 1280,
+    "name": "ups",
+    "target": 13823.40625,
+    "actual": 13773
+  },
+  {
+    "width": 1280,
+    "name": "battery",
+    "target": 15060.515625,
+    "actual": 15011
+  },
+  {
+    "width": 1280,
+    "name": "sts",
+    "target": 15631.21875,
+    "actual": 15581
+  },
+  {
+    "width": 1280,
+    "name": "ac-charge",
+    "target": 16621.1875,
+    "actual": 16571
+  },
+  {
+    "width": 1280,
+    "name": "sts-charge",
+    "target": 16930.859375,
+    "actual": 16881
+  },
+  {
+    "width": 1280,
+    "name": "ess",
+    "target": 27814.3125,
+    "actual": 27764
+  },
+  {
+    "width": 1280,
+    "name": "package-host",
+    "target": 32472.3125,
+    "actual": 32422
+  },
+  {
+    "width": 1280,
+    "name": "package-battery",
+    "target": 32719.875,
+    "actual": 32542
+  },
+  {
+    "width": 1280,
+    "name": "package-sts",
+    "target": 32908.90625,
+    "actual": 32542
+  },
+  {
+    "width": 1280,
+    "name": "contact",
+    "target": 33229.96875,
+    "actual": 32542
+  },
+  {
+    "width": 1280,
+    "name": "signals",
+    "target": 2408.734375,
+    "actual": 2359
+  },
+  {
+    "width": 1280,
+    "name": "icons",
+    "target": 2694.0625,
+    "actual": 2644
+  },
+  {
+    "width": 1280,
+    "name": "overview",
+    "target": 4469.96875,
+    "actual": 4420
+  },
+  {
+    "width": 1280,
+    "name": "lcdmap",
+    "target": 6221.1875,
+    "actual": 6171
+  },
+  {
+    "width": 1280,
+    "name": "lcdtable",
+    "target": 6615.21875,
+    "actual": 6565
+  },
+  {
+    "width": 1280,
+    "name": "keys",
+    "target": 11446.75,
+    "actual": 11397
+  },
+  {
+    "width": 1280,
+    "name": "solar",
+    "target": 20058.84375,
+    "actual": 20009
+  },
+  {
+    "width": 1280,
+    "name": "app",
+    "target": 22082.796875,
+    "actual": 22033
+  },
+  {
+    "width": 1280,
+    "name": "specs",
+    "target": 26401.78125,
+    "actual": 26352
+  },
+  {
+    "width": 1280,
+    "name": "ess-heading",
+    "target": 27558.859375,
+    "actual": 27509
+  },
+  {
+    "width": 1280,
+    "name": "esshost",
+    "target": 28743.6875,
+    "actual": 28694
+  },
+  {
+    "width": 1280,
+    "name": "essbattery",
+    "target": 30545.84375,
+    "actual": 30496
+  },
+  {
+    "width": 1280,
+    "name": "esssts",
+    "target": 31471.265625,
+    "actual": 31421
+  },
+  {
+    "width": 1280,
+    "failed": [],
+    "metrics": {
+      "broken": [],
+      "overflow": false,
+      "backgrounds": []
+    }
+  },
+  {
+    "width": 390,
+    "name": "safety",
+    "target": 581.71875,
+    "actual": 531
+  },
+  {
+    "width": 390,
+    "name": "warning",
+    "target": 649.5,
+    "actual": 600
+  },
+  {
+    "width": 390,
+    "name": "danger",
+    "target": 3297.109375,
+    "actual": 3247
+  },
+  {
+    "width": 390,
+    "name": "fcc",
+    "target": 4768.46875,
+    "actual": 4718
+  },
+  {
+    "width": 390,
+    "name": "inbox",
+    "target": 5738.484375,
+    "actual": 5688
+  },
+  {
+    "width": 390,
+    "name": "power",
+    "target": 11774.515625,
+    "actual": 11725
+  },
+  {
+    "width": 390,
+    "name": "ac-output",
+    "target": 12192.6875,
+    "actual": 12143
+  },
+  {
+    "width": 390,
+    "name": "usb",
+    "target": 12669.546875,
+    "actual": 12620
+  },
+  {
+    "width": 390,
+    "name": "dc",
+    "target": 12988.75,
+    "actual": 12939
+  },
+  {
+    "width": 390,
+    "name": "faults",
+    "target": 14984.484375,
+    "actual": 14934
+  },
+  {
+    "width": 390,
+    "name": "ups",
+    "target": 17171.484375,
+    "actual": 17121
+  },
+  {
+    "width": 390,
+    "name": "battery",
+    "target": 18740.90625,
+    "actual": 18691
+  },
+  {
+    "width": 390,
+    "name": "sts",
+    "target": 19486.1875,
+    "actual": 19436
+  },
+  {
+    "width": 390,
+    "name": "ac-charge",
+    "target": 20719.21875,
+    "actual": 20669
+  },
+  {
+    "width": 390,
+    "name": "sts-charge",
+    "target": 21050.71875,
+    "actual": 21001
+  },
+  {
+    "width": 390,
+    "name": "ess",
+    "target": 33929.453125,
+    "actual": 33879
+  },
+  {
+    "width": 390,
+    "name": "package-host",
+    "target": 39661.4375,
+    "actual": 39611
+  },
+  {
+    "width": 390,
+    "name": "package-battery",
+    "target": 39923.40625,
+    "actual": 39742
+  },
+  {
+    "width": 390,
+    "name": "package-sts",
+    "target": 40124.828125,
+    "actual": 39742
+  },
+  {
+    "width": 390,
+    "name": "contact",
+    "target": 40462.1875,
+    "actual": 39742
+  },
+  {
+    "width": 390,
+    "name": "signals",
+    "target": 3715.765625,
+    "actual": 3666
+  },
+  {
+    "width": 390,
+    "name": "icons",
+    "target": 4029.578125,
+    "actual": 3980
+  },
+  {
+    "width": 390,
+    "name": "overview",
+    "target": 6989.875,
+    "actual": 6940
+  },
+  {
+    "width": 390,
+    "name": "lcdmap",
+    "target": 8772.046875,
+    "actual": 8722
+  },
+  {
+    "width": 390,
+    "name": "lcdtable",
+    "target": 9185.515625,
+    "actual": 9136
+  },
+  {
+    "width": 390,
+    "name": "keys",
+    "target": 14408.578125,
+    "actual": 14359
+  },
+  {
+    "width": 390,
+    "name": "solar",
+    "target": 24815.828125,
+    "actual": 24766
+  },
+  {
+    "width": 390,
+    "name": "app",
+    "target": 27170.703125,
+    "actual": 27121
+  },
+  {
+    "width": 390,
+    "name": "specs",
+    "target": 32124.125,
+    "actual": 32074
+  },
+  {
+    "width": 390,
+    "name": "ess-heading",
+    "target": 33551.984375,
+    "actual": 33502
+  },
+  {
+    "width": 390,
+    "name": "esshost",
+    "target": 35038.46875,
+    "actual": 34988
+  },
+  {
+    "width": 390,
+    "name": "essbattery",
+    "target": 37213.390625,
+    "actual": 37163
+  },
+  {
+    "width": 390,
+    "name": "esssts",
+    "target": 38353.046875,
+    "actual": 38303
+  },
+  {
+    "width": 390,
+    "scrollRight": {
+      "actual": 322,
+      "max": 322,
+      "role": "native-figure native-overview-front native-dense",
+      "tag": ""
+    }
+  },
+  {
+    "width": 390,
+    "scrollRight": {
+      "actual": 322,
+      "max": 322,
+      "role": "native-figure native-overview-left native-dense",
+      "tag": ""
+    }
+  },
+  {
+    "width": 390,
+    "scrollRight": {
+      "actual": 322,
+      "max": 322,
+      "role": "native-figure native-overview-right native-dense",
+      "tag": ""
+    }
+  },
+  {
+    "width": 390,
+    "scrollRight": {
+      "actual": 322,
+      "max": 322,
+      "role": "native-figure native-lcd-map native-dense",
+      "tag": ""
+    }
+  },
+  {
+    "width": 390,
+    "scrollRight": {
+      "actual": 286,
+      "max": 286,
+      "role": null,
+      "tag": "hb-lcd-table-composition"
+    }
+  },
+  {
+    "width": 390,
+    "scrollRight": {
+      "actual": 322,
+      "max": 322,
+      "role": "native-figure native-power native-dense native-operation",
+      "tag": ""
+    }
+  },
+  {
+    "width": 390,
+    "scrollRight": {
+      "actual": 322,
+      "max": 322,
+      "role": "native-figure native-ac-output native-dense native-operation",
+      "tag": ""
+    }
+  },
+  {
+    "width": 390,
+    "scrollRight": {
+      "actual": 322,
+      "max": 322,
+      "role": "native-figure native-usb-output native-dense native-operation",
+      "tag": ""
+    }
+  },
+  {
+    "width": 390,
+    "scrollRight": {
+      "actual": 322,
+      "max": 322,
+      "role": "native-figure native-dc-output native-dense native-operation",
+      "tag": ""
+    }
+  },
+  {
+    "width": 390,
+    "scrollRight": {
+      "actual": 219,
+      "max": 219,
+      "role": null,
+      "tag": "hb-lcd-mode-table-panel"
+    }
+  },
+  {
+    "width": 390,
+    "scrollRight": {
+      "actual": 222,
+      "max": 222,
+      "role": null,
+      "tag": "hb-key-combination-composition"
+    }
+  },
+  {
+    "width": 390,
+    "scrollRight": {
+      "actual": 0,
+      "max": 0,
+      "role": "native-troubleshooting",
+      "tag": "manual-table hb-spec-table"
+    }
+  },
+  {
+    "width": 390,
+    "scrollRight": {
+      "actual": 322,
+      "max": 322,
+      "role": "native-figure native-ups native-dense native-operation",
+      "tag": ""
+    }
+  },
+  {
+    "width": 390,
+    "scrollRight": {
+      "actual": 322,
+      "max": 322,
+      "role": "native-figure native-battery-packs native-dense native-operation",
+      "tag": ""
+    }
+  },
+  {
+    "width": 390,
+    "scrollRight": {
+      "actual": 322,
+      "max": 322,
+      "role": "native-figure native-sts-connect native-dense native-operation",
+      "tag": ""
+    }
+  },
+  {
+    "width": 390,
+    "scrollRight": {
+      "actual": 322,
+      "max": 322,
+      "role": "native-figure native-ac-charge native-dense native-operation",
+      "tag": ""
+    }
+  },
+  {
+    "width": 390,
+    "scrollRight": {
+      "actual": 322,
+      "max": 322,
+      "role": "native-figure native-sts-charge native-dense native-operation",
+      "tag": ""
+    }
+  },
+  {
+    "width": 390,
+    "scrollRight": {
+      "actual": 322,
+      "max": 322,
+      "role": "native-figure native-low-pv-500 native-dense",
+      "tag": ""
+    }
+  },
+  {
+    "width": 390,
+    "scrollRight": {
+      "actual": 322,
+      "max": 322,
+      "role": "native-figure native-low-pv-200 native-dense",
+      "tag": ""
+    }
+  },
+  {
+    "width": 390,
+    "scrollRight": {
+      "actual": 322,
+      "max": 322,
+      "role": "native-figure native-high-pv native-dense",
+      "tag": ""
+    }
+  },
+  {
+    "width": 390,
+    "scrollRight": {
+      "actual": 322,
+      "max": 322,
+      "role": "native-figure native-high-pv-lock native-dense",
+      "tag": ""
+    }
+  },
+  {
+    "width": 390,
+    "scrollRight": {
+      "actual": 322,
+      "max": 322,
+      "role": "native-figure native-dual-pv native-dense",
+      "tag": ""
+    }
+  },
+  {
+    "width": 390,
+    "scrollRight": {
+      "actual": 322,
+      "max": 322,
+      "role": "native-figure native-car native-dense",
+      "tag": ""
+    }
+  },
+  {
+    "width": 390,
+    "scrollRight": {
+      "actual": 0,
+      "max": 0,
+      "role": null,
+      "tag": "hb-spec-table-composition"
+    }
+  },
+  {
+    "width": 390,
+    "scrollRight": {
+      "actual": 0,
+      "max": 0,
+      "role": null,
+      "tag": "hb-spec-table-composition"
+    }
+  },
+  {
+    "width": 390,
+    "scrollRight": {
+      "actual": 0,
+      "max": 0,
+      "role": null,
+      "tag": "hb-spec-table-composition"
+    }
+  },
+  {
+    "width": 390,
+    "scrollRight": {
+      "actual": 0,
+      "max": 0,
+      "role": null,
+      "tag": "hb-spec-table-composition"
+    }
+  },
+  {
+    "width": 390,
+    "scrollRight": {
+      "actual": 322,
+      "max": 322,
+      "role": "native-figure native-ess native-dense native-operation",
+      "tag": ""
+    }
+  },
+  {
+    "width": 390,
+    "scrollRight": {
+      "actual": 0,
+      "max": 0,
+      "role": null,
+      "tag": "hb-spec-table-composition"
+    }
+  },
+  {
+    "width": 390,
+    "scrollRight": {
+      "actual": 0,
+      "max": 0,
+      "role": null,
+      "tag": "hb-spec-table-composition"
+    }
+  },
+  {
+    "width": 390,
+    "scrollRight": {
+      "actual": 0,
+      "max": 0,
+      "role": null,
+      "tag": "hb-spec-table-composition"
+    }
+  },
+  {
+    "width": 390,
+    "scrollRight": {
+      "actual": 0,
+      "max": 0,
+      "role": null,
+      "tag": "hb-spec-table-composition"
+    }
+  },
+  {
+    "width": 390,
+    "scrollRight": {
+      "actual": 0,
+      "max": 0,
+      "role": null,
+      "tag": "hb-spec-table-composition"
+    }
+  },
+  {
+    "width": 390,
+    "scrollRight": {
+      "actual": 0,
+      "max": 0,
+      "role": null,
+      "tag": "hb-spec-table-composition"
+    }
+  },
+  {
+    "width": 390,
+    "scrollRight": {
+      "actual": 0,
+      "max": 0,
+      "role": null,
+      "tag": "hb-spec-table-composition"
+    }
+  },
+  {
+    "width": 390,
+    "scrollRight": {
+      "actual": 0,
+      "max": 0,
+      "role": null,
+      "tag": "hb-spec-table-composition"
+    }
+  },
+  {
+    "width": 390,
+    "scrollRight": {
+      "actual": 322,
+      "max": 322,
+      "role": "native-figure native-package-host native-dense native-operation",
+      "tag": ""
+    }
+  },
+  {
+    "width": 390,
+    "scrollRight": {
+      "actual": 322,
+      "max": 322,
+      "role": "native-figure native-package-battery native-dense native-operation",
+      "tag": ""
+    }
+  },
+  {
+    "width": 390,
+    "scrollRight": {
+      "actual": 322,
+      "max": 322,
+      "role": "native-figure native-package-sts native-dense native-operation",
+      "tag": ""
+    }
+  },
+  {
+    "width": 390,
+    "failed": [],
+    "metrics": {
+      "broken": [],
+      "overflow": false,
+      "backgrounds": []
+    }
+  }
+]

@@ -1,0 +1,104 @@
+[
+  {
+    "width": 1280,
+    "selector": "[data-source-layout=\"risk-strip\"]",
+    "requested": 415.65625,
+    "actual": 416
+  },
+  {
+    "width": 1280,
+    "selector": "[data-source-heading=\"safety-pill\"]",
+    "requested": 914.09375,
+    "actual": 914
+  },
+  {
+    "width": 1280,
+    "selector": "[data-source-role~=\"native-fcc-source\"]",
+    "requested": 2802.90625,
+    "actual": 2803
+  },
+  {
+    "width": 1280,
+    "selector": "[data-source-role~=\"native-contained-panel\"]",
+    "requested": 6424.734375,
+    "actual": 6425
+  },
+  {
+    "width": 1280,
+    "selector": "[data-source-role~=\"native-gray-panel\"]",
+    "requested": 8198.1875,
+    "actual": 8198
+  },
+  {
+    "width": 1280,
+    "selector": "[data-source-role~=\"native-contact-card\"]",
+    "requested": 16842.765625,
+    "actual": 16193
+  },
+  {
+    "width": 1280,
+    "selector": "[aria-label=\"Signal words\"]",
+    "requested": 1943.90625,
+    "actual": 1944
+  },
+  {
+    "width": 1280,
+    "failed": [],
+    "metrics": {
+      "broken": [],
+      "overflow": false,
+      "backgrounds": []
+    }
+  },
+  {
+    "width": 390,
+    "selector": "[data-source-layout=\"risk-strip\"]",
+    "requested": 553.765625,
+    "actual": 553
+  },
+  {
+    "width": 390,
+    "selector": "[data-source-heading=\"safety-pill\"]",
+    "requested": 1583.1875,
+    "actual": 1583
+  },
+  {
+    "width": 390,
+    "selector": "[data-source-role~=\"native-fcc-source\"]",
+    "requested": 4651.1875,
+    "actual": 4651
+  },
+  {
+    "width": 390,
+    "selector": "[data-source-role~=\"native-contained-panel\"]",
+    "requested": 8388.5,
+    "actual": 8389
+  },
+  {
+    "width": 390,
+    "selector": "[data-source-role~=\"native-gray-panel\"]",
+    "requested": 9924.828125,
+    "actual": 9925
+  },
+  {
+    "width": 390,
+    "selector": "[data-source-role~=\"native-contact-card\"]",
+    "requested": 19375.78125,
+    "actual": 18722
+  },
+  {
+    "width": 390,
+    "selector": "[aria-label=\"Signal words\"]",
+    "requested": 3427.359375,
+    "actual": 3427
+  },
+  {
+    "width": 390,
+    "failed": [],
+    "metrics": {
+      "broken": [],
+      "overflow": false,
+      "backgrounds": []
+    }
+  }
+]

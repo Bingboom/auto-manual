@@ -1,0 +1,236 @@
+{
+  "model": "JHP-5000C",
+  "scope": "Read-only independent copy and numeric audit of baseline Web against current single-language reference; not final visual/style/release acceptance",
+  "source_pdf": "/Users/hello-tech-team/.codex/worktrees/homepower-table-alignment/auto-manual-codex/manual_sources/JHP-5000C/US/en/git-20261103-3381c816-source-alignment-release/source/review-reference.pdf",
+  "source_sha256": "3381c816e6bb75bc5e790bcba3faacbb3ad199f1a41cc53c5092368bcd945250",
+  "baseline_html": "/private/tmp/manual-web-audit-20261102/root-5000c/baseline-html/manual_jhp5000c_us_en.html",
+  "baseline_html_sha256": "449b165a40230bdd0c1903abad7e5c638484ce322d7363e6e3063d5269ee2a80",
+  "content_json_sha256": "79546e5662ed5bd0d48a07328601a8bd2317196a7069896cc29e08906fb17af1",
+  "physical_pages_reviewed": [
+    2,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28
+  ],
+  "excluded_pages": {
+    "1": "front cover excluded by operator",
+    "3": "paper table of contents excluded by operator"
+  },
+  "method": [
+    "Fresh 3x PyMuPDF images rendered directly from the 28-page reference; all 26 in-scope pages visually read",
+    "Source-to-Web clause, caption and table-row comparison against complete baseline body text; reverse Web-to-source read including ESS duplicate host table and package-label fragments",
+    "Old cached OCR not used as proof; old 76-page top-level PDF not used as content authority"
+  ],
+  "copy_findings": [],
+  "numeric_findings": [],
+  "historical_approval_exceptions_used": [],
+  "coverage": [
+    {
+      "physical_page": 2,
+      "web_chapter": "preface",
+      "checked": "IMPORTANT: congratulation, legal interpretation and revision notice",
+      "copy_numeric_result": "no discrepancy found"
+    },
+    {
+      "physical_page": 4,
+      "web_chapter": "safety",
+      "checked": "All 11 safety bullets including split tampering sentence; operating 5+9 bullets and subordinate temperature/ventilation clauses; DANGER indoor/waterproof wording",
+      "copy_numeric_result": "no discrepancy found"
+    },
+    {
+      "physical_page": 5,
+      "web_chapter": "maintenance/symbols/fcc",
+      "checked": "Maintenance paragraph; three signal definitions; eight symbol meanings; NOTE FCC whole two-column flow and four remedies; MODIFICATION. Current source has no extra FCC two-condition opening or RF-exposure paragraph.",
+      "copy_numeric_result": "no discrepancy found"
+    },
+    {
+      "physical_page": 6,
+      "web_chapter": "inbox/overview",
+      "checked": "Four contents: HomePower 5000 Plus, AC Charging Cable, MC4 Wrench, User Manual; optional car cable note; all front interface labels/output ratings",
+      "copy_numeric_result": "no discrepancy found"
+    },
+    {
+      "physical_page": 7,
+      "web_chapter": "overview",
+      "checked": "All left/right labels, AC expansion 240V/16.7A/4000W and 240V/30A/7200W, NEMA outputs, reset instruction, low/high-PV ratings, 120V/15A AC input",
+      "copy_numeric_result": "no discrepancy found"
+    },
+    {
+      "physical_page": 8,
+      "web_chapter": "lcd",
+      "checked": "Numbers 1–10, all states and APP notes",
+      "copy_numeric_result": "no discrepancy found"
+    },
+    {
+      "physical_page": 9,
+      "web_chapter": "lcd",
+      "checked": "Numbers 11–23, merged 12/13/20 alternatives, 20%/5%, 12-hour Energy Saving thresholds and toggle",
+      "copy_numeric_result": "no discrepancy found"
+    },
+    {
+      "physical_page": 10,
+      "web_chapter": "operations",
+      "checked": "12-hour note, on/off 3s, default 2h standby, AC prerequisite/on/off",
+      "copy_numeric_result": "no discrepancy found"
+    },
+    {
+      "physical_page": 11,
+      "web_chapter": "operations",
+      "checked": "USB/DC on/off, 12V car battery note and all 3 cautions, full six-row LCD action table",
+      "copy_numeric_result": "no discrepancy found"
+    },
+    {
+      "physical_page": 12,
+      "web_chapter": "operations/troubleshooting",
+      "checked": "Four combinations 3s/3s/1s/3s with both; F0–F9/FA/FC complete names/descriptions",
+      "copy_numeric_result": "no discrepancy found"
+    },
+    {
+      "physical_page": 13,
+      "web_chapter": "ups",
+      "checked": "Definition, all warning clauses, backup 20ms/1440W, full cascade caution, online mode two activation methods",
+      "copy_numeric_result": "no discrepancy found"
+    },
+    {
+      "physical_page": 14,
+      "web_chapter": "ups/connections",
+      "checked": "Three notes 1440W/120V/3600W; up to 5 packs, both 1ft/300mm labels, two cautions, STS 20ms/5s paragraphs",
+      "copy_numeric_result": "no discrepancy found"
+    },
+    {
+      "physical_page": 15,
+      "web_chapter": "charging",
+      "checked": "Green-energy priority, first-charge pill, both temperature notes incl 3600W derating, AC instruction, complete STS backup reserve instructions and last note",
+      "copy_numeric_result": "no discrepancy found"
+    },
+    {
+      "physical_page": 16,
+      "web_chapter": "charging",
+      "checked": "16–60V/135–450V caution, one 500W or three 200W per port, SolarSaga 500 X ×2 and 200 ×6 labels, same voltage/model/count cautions and disclaimer",
+      "copy_numeric_result": "no discrepancy found"
+    },
+    {
+      "physical_page": 17,
+      "web_chapter": "charging",
+      "checked": "135–450V, three high-PV cautions, MC4 disconnect text, Lock/Unlock text",
+      "copy_numeric_result": "no discrepancy found"
+    },
+    {
+      "physical_page": 18,
+      "web_chapter": "charging",
+      "checked": "Both low/high input voltage labels, car charger introductory text and all three cautions",
+      "copy_numeric_result": "no discrepancy found"
+    },
+    {
+      "physical_page": 19,
+      "web_chapter": "storage",
+      "checked": "All 1/3/12-month temperature and RH values; 3–6 month depletion, 3-month recharge, 6–12 month cycle",
+      "copy_numeric_result": "no discrepancy found"
+    },
+    {
+      "physical_page": 20,
+      "web_chapter": "app",
+      "checked": "Download instructions, 2.1/2.2, four power button labels, 2h remarks",
+      "copy_numeric_result": "no discrepancy found"
+    },
+    {
+      "physical_page": 21,
+      "web_chapter": "app",
+      "checked": "2.3–2.5, both binding remedies, 2.4GHz/5GHz note, screenshot reference note, unbind and all 4.1–4.3 instructions",
+      "copy_numeric_result": "no discrepancy found"
+    },
+    {
+      "physical_page": 22,
+      "web_chapter": "warranty",
+      "checked": "Eligibility, limited warranty, 60-month standard/2-year paid extension, repair, original buyer, all exclusions, interpretation rights",
+      "copy_numeric_result": "no discrepancy found"
+    },
+    {
+      "physical_page": 23,
+      "web_chapter": "specifications",
+      "checked": "Every general/input/output/environment row and ingestion/USB trademark notes",
+      "copy_numeric_result": "no discrepancy found"
+    },
+    {
+      "physical_page": 24,
+      "web_chapter": "ess",
+      "checked": "HB5000C-TS02A, both connection paragraphs incl source Explorer wording, detailed-manual note, all installation cautions",
+      "copy_numeric_result": "no discrepancy found"
+    },
+    {
+      "physical_page": 25,
+      "web_chapter": "ess-host",
+      "checked": "Every repeated host spec value independently checked against this physical page",
+      "copy_numeric_result": "no discrepancy found"
+    },
+    {
+      "physical_page": 26,
+      "web_chapter": "ess-battery/ess-sts",
+      "checked": "All battery rows incl 45Ah/112Vdc, 81.57lbs/37kg, 2600A/5ms/IP20; DC input41A/output98A; STS 100A/60A,60A/33.4A,10KA,IV,≤20ms,12,2AWG",
+      "copy_numeric_result": "no discrepancy found"
+    },
+    {
+      "physical_page": 27,
+      "web_chapter": "ess-sts/ess-package",
+      "checked": "Remaining five STS rows, 240V statement,575.16lbs/260.89kg note; package captions4+3+8 incl2*Wall Bracket and4*M4 Phillips Flat Head Screw",
+      "copy_numeric_result": "no discrepancy found"
+    },
+    {
+      "physical_page": 28,
+      "web_chapter": "contact",
+      "checked": "JACKERY INC.,5310 Bunche Dr.,Fremont,CA94538-8301,1-888-502-2236(US),hello@jackery.com,www.jackery.com",
+      "copy_numeric_result": "no discrepancy found"
+    }
+  ],
+  "source_quirks_preserved": [
+    {
+      "pages": [
+        12
+      ],
+      "text": "BMS or battery failuare; FA phrase includes 5000 Plus failure caused by both units defective.",
+      "disposition": "Exact current source wording preserved; no unapproved editorial correction proposed."
+    },
+    {
+      "pages": [
+        23,
+        25
+      ],
+      "text": "Onine UPS: 0ms; DC Input blank value; Bypass Mode AC Input 12A with parenthetical current exceeds 12A",
+      "disposition": "Verified printed source; not treated as transcription defects."
+    },
+    {
+      "pages": [
+        24
+      ],
+      "text": "link the Explorer 5000 Plus AC expansion port",
+      "disposition": "Exact source mixed product wording preserved."
+    }
+  ],
+  "limitations": [
+    "This content-only audit does not certify geometry, glyph visibility, SVG rendering, asset crop parity, responsiveness, or final rebuilt package. B owns those checks.",
+    "Embedded screenshot/document miniature text remains image-owned. Native body text around it was compared; no independent OCR claim is made for every subpixel letter in miniatures."
+  ],
+  "writes": "Only this scratch evidence directory; no packages, live records or checkbox edited."
+}

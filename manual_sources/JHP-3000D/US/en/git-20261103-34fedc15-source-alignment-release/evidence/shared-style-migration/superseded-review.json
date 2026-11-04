@@ -1,0 +1,24 @@
+{
+  "model": "JHP-3000D",
+  "record_id": "reczz28SlRGJguaO",
+  "status": "superseded_not_valid_for_current_release",
+  "reference_sha256": "34fedc156d52e8a50ca65d23327d323b3647aee03bd6b6b4aa1d681723e249dc",
+  "source_pages_reviewed": 22,
+  "ocr_lines_checked": 527,
+  "checked_native_fragments": 501,
+  "missing_native_fragments": [],
+  "images": 68,
+  "desktop_mobile_widths": [
+    1280,
+    390
+  ],
+  "broken_images": 0,
+  "uncontained_overflow": 0,
+  "publication_status": "pending",
+  "feishu_checked_by_agent": false,
+  "legacy_declarations_reviewed": 41,
+  "asset_decisions_reviewed": 66,
+  "approval_packaging": "pending",
+  "supersedes": "Initial pass withdrawn; this evidence includes residual declaration and reverse-copy audit.",
+  "reason": "The old full-review PASS is superseded: it missed current p6 USB-C card and used old p14 AC wall-socket artwork instead of current p15 free-plug artwork. New review uses only current single-language source/review-reference.pdf, not cached old PDF page images."
+}

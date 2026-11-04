@@ -1,0 +1,391 @@
+[
+  {
+    "width": 1280,
+    "file": "1280-00.png",
+    "y": 0,
+    "sections": [
+      "important",
+      "important-safety-information",
+      "operating-instructions"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-01.png",
+    "y": 1000,
+    "sections": [
+      "important-safety-information",
+      "operating-instructions",
+      "user-maintenance-instructions",
+      "meaning-of-symbols"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-02.png",
+    "y": 2000,
+    "sections": [
+      "meaning-of-symbols"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-03.png",
+    "y": 3000,
+    "sections": [
+      "meaning-of-symbols",
+      "what-s-in-the-box",
+      "product-overview",
+      "front-view"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-04.png",
+    "y": 4000,
+    "sections": [
+      "product-overview",
+      "front-view",
+      "right-side-view",
+      "lcd-display"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-05.png",
+    "y": 5000,
+    "sections": [
+      "lcd-display"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-06.png",
+    "y": 6000,
+    "sections": [
+      "lcd-display",
+      "operations",
+      "power-on-off",
+      "ac-output-on-off"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-07.png",
+    "y": 7000,
+    "sections": [
+      "operations",
+      "ac-output-on-off",
+      "dc-usb-output-on-off"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-08.png",
+    "y": 8000,
+    "sections": [
+      "operations",
+      "dc-usb-output-on-off",
+      "energy-saving-mode",
+      "led-light-on-off"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-09.png",
+    "y": 9000,
+    "sections": [
+      "operations",
+      "led-light-on-off",
+      "lcd-screen-on-off",
+      "uninterruptible-power-supply-ups"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-10.png",
+    "y": 10000,
+    "sections": [
+      "uninterruptible-power-supply-ups",
+      "charging"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-11.png",
+    "y": 11000,
+    "sections": [
+      "charging",
+      "charging-via-ac-wall-outlet",
+      "charging-with-solar-panels"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-12.png",
+    "y": 12000,
+    "sections": [
+      "charging",
+      "charging-with-solar-panels",
+      "charging-with-a-car-charger"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-13.png",
+    "y": 13000,
+    "sections": [
+      "charging",
+      "charging-with-a-car-charger",
+      "storage",
+      "troubleshooting"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-14.png",
+    "y": 14000,
+    "sections": [
+      "troubleshooting",
+      "specifications"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-15.png",
+    "y": 15000,
+    "sections": [
+      "specifications",
+      "warranty",
+      "limited-warranty"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-16.png",
+    "y": 16000,
+    "sections": [
+      "warranty",
+      "limited-warranty",
+      "warranty-period",
+      "repair-or-replacement",
+      "limited-to-original-consumer-buyer",
+      "exclusions",
+      "interpretation-rights"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-17.png",
+    "y": 16361,
+    "sections": [
+      "warranty",
+      "warranty-period",
+      "repair-or-replacement",
+      "limited-to-original-consumer-buyer",
+      "exclusions",
+      "interpretation-rights"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-00.png",
+    "y": 9,
+    "sections": [
+      "important",
+      "important-safety-information"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-01.png",
+    "y": 1009,
+    "sections": [
+      "important-safety-information",
+      "operating-instructions"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-02.png",
+    "y": 2009,
+    "sections": [
+      "important-safety-information",
+      "operating-instructions"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-03.png",
+    "y": 3009,
+    "sections": [
+      "important-safety-information",
+      "operating-instructions",
+      "user-maintenance-instructions",
+      "meaning-of-symbols"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-04.png",
+    "y": 4009,
+    "sections": [
+      "meaning-of-symbols"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-05.png",
+    "y": 5009,
+    "sections": [
+      "meaning-of-symbols",
+      "what-s-in-the-box"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-06.png",
+    "y": 6009,
+    "sections": [
+      "what-s-in-the-box",
+      "product-overview",
+      "front-view",
+      "right-side-view",
+      "lcd-display"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-07.png",
+    "y": 7009,
+    "sections": [
+      "lcd-display"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-08.png",
+    "y": 8009,
+    "sections": [
+      "lcd-display",
+      "operations",
+      "power-on-off",
+      "ac-output-on-off"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-09.png",
+    "y": 9009,
+    "sections": [
+      "operations",
+      "ac-output-on-off",
+      "dc-usb-output-on-off",
+      "energy-saving-mode"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-10.png",
+    "y": 10009,
+    "sections": [
+      "operations",
+      "energy-saving-mode",
+      "led-light-on-off",
+      "lcd-screen-on-off"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-11.png",
+    "y": 11009,
+    "sections": [
+      "operations",
+      "lcd-screen-on-off",
+      "uninterruptible-power-supply-ups"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-12.png",
+    "y": 12009,
+    "sections": [
+      "uninterruptible-power-supply-ups",
+      "charging",
+      "charging-via-ac-wall-outlet"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-13.png",
+    "y": 13009,
+    "sections": [
+      "charging",
+      "charging-via-ac-wall-outlet",
+      "charging-with-solar-panels"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-14.png",
+    "y": 14009,
+    "sections": [
+      "charging",
+      "charging-with-solar-panels",
+      "charging-with-a-car-charger",
+      "storage"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-15.png",
+    "y": 15009,
+    "sections": [
+      "storage",
+      "troubleshooting"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-16.png",
+    "y": 16009,
+    "sections": [
+      "troubleshooting",
+      "specifications"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-17.png",
+    "y": 17009,
+    "sections": [
+      "specifications",
+      "warranty",
+      "limited-warranty"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-18.png",
+    "y": 18009,
+    "sections": [
+      "warranty",
+      "limited-warranty",
+      "warranty-period",
+      "repair-or-replacement",
+      "limited-to-original-consumer-buyer",
+      "exclusions"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-19.png",
+    "y": 18977,
+    "sections": [
+      "warranty",
+      "limited-to-original-consumer-buyer",
+      "exclusions",
+      "interpretation-rights"
+    ]
+  }
+]

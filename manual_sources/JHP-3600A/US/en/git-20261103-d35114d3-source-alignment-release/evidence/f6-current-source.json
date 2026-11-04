@@ -1,0 +1,36 @@
+{
+  "current_reference_page": 19,
+  "changes": [
+    {
+      "path": "/chapters/16/nodes/4/children/0/component_spec/slots/1/content/3/measures_html",
+      "before": "<p class=\"ht-troubleshooting-step\">1.  Wait for the grid to normalize before charging the product via AC wall outlet. </p><p class=\"ht-troubleshooting-step\">2. Check whether the air intake and exhaust vents are blocked; ensure 0.66 ft (≈200 mm)  clearance on both side of the product. </p><p class=\"ht-troubleshooting-step\">2. Place the product in a location that is not exposed to direct sunlight or high environmental  temperatures. </p><p class=\"ht-troubleshooting-step\">3. Disconnect all loads from the product. Keep the product idle and wait until the fault  disappears. </p><p class=\"ht-troubleshooting-step\">4. Restart the product.</p>",
+      "after": "<p class=\"ht-troubleshooting-step\">1.  Wait for the grid to normalize before charging the product via AC wall outlet. </p><p class=\"ht-troubleshooting-step\">2. Check whether the air intake and exhaust vents are blocked; ensure 30 cm  clearance on both side of the product. </p><p class=\"ht-troubleshooting-step\">3. Place the product in a location that is not exposed to direct sunlight or high environmental  temperatures. </p><p class=\"ht-troubleshooting-step\">4. Disconnect all loads from the product. Keep the product idle and wait until the fault  disappears. </p><p class=\"ht-troubleshooting-step\">5. Restart the product.</p>"
+    },
+    {
+      "path": "/chapters/16/nodes/4/children/0/component_spec/slots/1/content/3/measures_text",
+      "before": "1.  Wait for the grid to normalize before charging the product via AC wall outlet. 2. Check whether the air intake and exhaust vents are blocked; ensure 0.66 ft (≈200 mm)  clearance on both side of the product. 2. Place the product in a location that is not exposed to direct sunlight or high environmental  temperatures. 3. Disconnect all loads from the product. Keep the product idle and wait until the fault  disappears. 4. Restart the product.",
+      "after": "1.  Wait for the grid to normalize before charging the product via AC wall outlet. 2. Check whether the air intake and exhaust vents are blocked; ensure 30 cm  clearance on both side of the product. 3. Place the product in a location that is not exposed to direct sunlight or high environmental  temperatures. 4. Disconnect all loads from the product. Keep the product idle and wait until the fault  disappears. 5. Restart the product."
+    },
+    {
+      "path": "/chapters/16/nodes/4/children/0/carrier_flow/0/children/0/children/0/children/4/children/1/children/0/children/3/text",
+      "before": "Check whether the air intake and exhaust vents are blocked; ensure 0.66 ft (≈200 mm) ",
+      "after": "Check whether the air intake and exhaust vents are blocked; ensure 30 cm "
+    },
+    {
+      "path": "/chapters/16/nodes/4/children/0/carrier_flow/0/children/0/children/0/children/4/children/1/children/0/children/7/text",
+      "before": "2. Place the product in a location that is not exposed to direct sunlight or high environmental ",
+      "after": "3. Place the product in a location that is not exposed to direct sunlight or high environmental "
+    },
+    {
+      "path": "/chapters/16/nodes/4/children/0/carrier_flow/0/children/0/children/0/children/4/children/1/children/0/children/11/text",
+      "before": "3. Disconnect all loads from the product. Keep the product idle and wait until the fault ",
+      "after": "4. Disconnect all loads from the product. Keep the product idle and wait until the fault "
+    },
+    {
+      "path": "/chapters/16/nodes/4/children/0/carrier_flow/0/children/0/children/0/children/4/children/1/children/0/children/15/text",
+      "before": "4. Restart the product.",
+      "after": "5. Restart the product."
+    }
+  ],
+  "unchanged": "Battery connection page14 retains current source 0.66ft /200mm; only F6 uses30cm."
+}

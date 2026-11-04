@@ -1,0 +1,1346 @@
+[
+  {
+    "page": 3,
+    "id": "safety.h",
+    "text": "IMPORTANT SAFETY INFORMATION",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "safety.risk",
+    "text": "INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "safety.warn.l",
+    "text": "WARNING:",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "safety.warn.b",
+    "text": "Always follow these basic precautions when using this product.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "safety.l1",
+    "text": "Read all the instructions before using the product.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "safety.l2",
+    "text": "To Reduce the Risk of Injury, close supervision is necessary when the product is used near children.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "safety.l3",
+    "text": "Do not put fingers or hands into the product.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "safety.l4",
+    "text": "Do not expose power bank to rain or snow.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "safety.l5",
+    "text": "Do not expose power bank to heat or fire. Do not store in direct sunlight or in a vehicle.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "safety.l6",
+    "text": "Use of a power supply or charger not recommended or sold by power bank manufacturer may result in a risk of fire or injury to persons.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "safety.l7",
+    "text": "Do not use the power bank in excess of its output rating. Overload outputs above rating may result in a risk of fire or injury to persons.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "safety.l8",
+    "text": "Do not use the power bank that is damaged or modified. Damaged or modified batteries may exhibit unpredictable behavior resulting in fire, explosion or risk of injury.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "safety.l9",
+    "text": "Do not disassemble the power bank. Take it to a qualified service person when service or repair is required. Incorrect reassembly may result in a risk of fire or injury to persons.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "safety.l10",
+    "text": "Do not expose a power bank to fire or excessive temperature. Exposure to fire or temperature above 60°C may cause explosion.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "safety.l11",
+    "text": "Have servicing performed by a qualified service or repair person using only identical replacement parts. This will ensure that the safety of the product is maintained.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "safety.l12",
+    "text": "Switch off the power bank when not in use.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "safety.save",
+    "text": "SAVE THESE INSTRUCTIONS",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "safety.caution.l",
+    "text": "CAUTION",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "safety.caution.b",
+    "text": "Risk of Fire and Burns. Do Not Open, Crush, Heat Above 60 °C or Incinerate. Follow Manufacturer's Instructions.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "safety.d1",
+    "text": "Disposal of a battery in fire or a hot oven, or mechanically crushing or cutting of a battery, that can result in an explosion;",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "safety.d2",
+    "text": "leaving a battery in an extremely high temperature surrounding environment that can result in an explosion or the leakage of flammable liquid or gas; and",
+    "source_ocr_char_coverage": 0.9766
+  },
+  {
+    "page": 3,
+    "id": "safety.d3",
+    "text": "a battery subjected to extremely low air pressure that can result in an explosion or the leakage of flammable liquid or gas.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "maint.h",
+    "text": "USER MAINTENANCE INSTRUCTIONS",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "maint.p",
+    "text": "During the lifecycle of energy storage products, a certain degree of capacity and energy degradation is expected. As the number of charge and discharge cycles increases and storage time extends, this degradation will gradually intensify, which is a normal phenomenon consistent with the natural aging of battery cells.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "sym.h",
+    "text": "MEANING OF SYMBOLS",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "signal.th1",
+    "text": "Symbol",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "signal.th2",
+    "text": "Meaning",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "signal.warn.l",
+    "text": "WARNING",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "signal.warn.m",
+    "text": "Hazardous practices that may result in severe injury, death, and/or property damage.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "signal.caut.l",
+    "text": "CAUTION",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "signal.caut.m",
+    "text": "Hazardous practices that may result in personal injury and/or property damage.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "signal.note.l",
+    "text": "NOTE",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "signal.note.m",
+    "text": "Hazardous practices that may result in equipment damage, data loss, performance deterioration, or unanticipated results.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "signal.tip.l",
+    "text": "TIP",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "signal.tip.m",
+    "text": "Supplements the important information or operation tips in the text.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "symbols.th1",
+    "text": "Symbol",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "symbols.th2",
+    "text": "Meaning",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "symbols.th3",
+    "text": "Symbol",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "symbols.th4",
+    "text": "Meaning",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "sym.warning",
+    "text": "Warning and Caution Symbols. Must read to alert individuals to potential hazards or risks.",
+    "source_ocr_char_coverage": 0.96
+  },
+  {
+    "page": 4,
+    "id": "sym.manual",
+    "text": "Read the user manual before operation.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "sym.weee1",
+    "text": "This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling.",
+    "source_ocr_char_coverage": 0.9697
+  },
+  {
+    "page": 4,
+    "id": "sym.weee2",
+    "text": "Proper disposal and recycling can help protect the environment. For more information about the disposal and recycling of this product, contact your local community, disposal service, or dealer.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "sym.dismantle",
+    "text": "Do not dismantle the product.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "sym.fire",
+    "text": "Keep the product away from fire.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "sym.children",
+    "text": "Keep away from children.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "sym.liion",
+    "text": "This symbol indicates that a lithium-ion (Li-ion) battery is inside the product and should be disposed of or recycled properly.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "fcc.p1",
+    "text": "This device complies with part 15 of the FCC Rules. Operation is subject to the following two conditions: (1) This device may not cause harmful interference, and (2) this device must accept any interference received, including interference that may cause undesired operation.",
+    "source_ocr_char_coverage": 0.7156
+  },
+  {
+    "page": 4,
+    "id": "fcc.note",
+    "text": "NOTE: This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules. These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to communications. However, there is no guarantee that radio interference will not occur in a particular installation.",
+    "source_ocr_char_coverage": 0.989
+  },
+  {
+    "page": 4,
+    "id": "fcc.p3",
+    "text": "If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:",
+    "source_ocr_char_coverage": 0.7861
+  },
+  {
+    "page": 4,
+    "id": "fcc.l1",
+    "text": "Reorient or relocate the receiving antenna.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "fcc.l2",
+    "text": "Increase the separation between the equipment and receiver.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "fcc.l3",
+    "text": "Connect the equipment into an outlet on a circuit different from that to which the receiver is connected.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "fcc.l4",
+    "text": "Consult the dealer or an experienced radio/TV technician for help.",
+    "source_ocr_char_coverage": 0.9273
+  },
+  {
+    "page": 4,
+    "id": "fcc.mod",
+    "text": "MODIFICATION: Any changes or modifications not expressly approved by the grantee of this device could void the user’s authority to operate the device.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 5,
+    "id": "box.h",
+    "text": "WHAT'S IN THE BOX",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 5,
+    "id": "box.c1",
+    "text": "Jackery Explorer 100D",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 5,
+    "id": "box.c2",
+    "text": "USB-C Cable",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 5,
+    "id": "box.c3",
+    "text": "Documents",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 5,
+    "id": "ov.h",
+    "text": "PRODUCT OVERVIEW",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 5,
+    "id": "ov.front",
+    "text": "FRONT VIEW",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 5,
+    "id": "names.handle",
+    "text": "Handle",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 5,
+    "id": "names.lcd",
+    "text": "LCD Screen",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 5,
+    "id": "names.usbc",
+    "text": "USB-C 140W MAX IN/OUT",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 5,
+    "id": "names.usbc.in",
+    "text": "Input: 5V-28V⎓5A Max, 140W Max",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 5,
+    "id": "names.usbc.out",
+    "text": "Output: 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A, 28V⎓5A, 140W Max",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 5,
+    "id": "names.usba",
+    "text": "USB-A 18W MAX Output",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 5,
+    "id": "names.usba.v",
+    "text": "5V⎓2A, 9V⎓2A, 12V⎓1.5A, 18W Max",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 5,
+    "id": "names.display",
+    "text": "DISPLAY Button",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 5,
+    "id": "names.usbc2",
+    "text": "USB-C 140W MAX OUT",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 5,
+    "id": "names.usbc2.v",
+    "text": "5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A, 28V⎓5A, 140W Max",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 5,
+    "id": "ov.straps",
+    "text": "Additional straps can be purchased and attached to the sides of the product.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "lcd.h",
+    "text": "LCD DISPLAY",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "lcd.if1",
+    "text": "INTERFACE 1",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "lcd.i1.n",
+    "text": "Input Power",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "lcd.i1.d",
+    "text": "Displays the input power in watts.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "lcd.i2.n",
+    "text": "Remaining Charging Time",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "lcd.i2.d",
+    "text": "Displays the remaining charging time.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "lcd.i3.n",
+    "text": "Steady-on Mode",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "lcd.i3.d1",
+    "text": "On: Steady-on Mode is enabled.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "lcd.i3.d2",
+    "text": "Off: Steady-on Mode is disabled.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "lcd.i4.n",
+    "text": "Discharging Power Limit",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "lcd.i4.d1",
+    "text": "On: The battery temperature is high. Discharging Power Limit is enabled.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "lcd.i4.d2",
+    "text": "Off: Discharging Power Limit is disabled.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "lcd.i5.n",
+    "text": "Energy Saving Mode",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "lcd.i5.d1",
+    "text": "On: Energy Saving Mode is enabled.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "lcd.i5.d2",
+    "text": "Off: Energy Saving Mode is disabled.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "lcd.i6.n",
+    "text": "Battery Power Indicator",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "lcd.i6.d",
+    "text": "When the product is being charged, the orange circle around the battery percentage will light up in sequence. When charging other devices, the orange circle will stay on.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "lcd.i7.n",
+    "text": "Battery Power Indicator",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "lcd.i7.d1",
+    "text": "On: The battery level is below 20%.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "lcd.i7.d2",
+    "text": "Blink: The battery level is below 5%.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "lcd.i7.d3",
+    "text": "Off: The battery level is not below 20% or the product is charging.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "lcd.i8.n",
+    "text": "Remaining Battery Percentage",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "lcd.i8.d",
+    "text": "Displays the remaining battery percentage.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "lcd.i9.n",
+    "text": "Remaining Discharge Time",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "lcd.i9.d",
+    "text": "Displays the remaining discharging time.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "lcd.i10.n",
+    "text": "Output Power",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "lcd.i10.d",
+    "text": "Displays the output power in watts.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 7,
+    "id": "lcd.f.n",
+    "text": "Fault code",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 7,
+    "id": "lcd.f.d",
+    "text": "Remove the load or unplug the charging plug. If the problem cannot be resolved, please contact the Jackery Customer Support.",
+    "source_ocr_char_coverage": 0.9804
+  },
+  {
+    "page": 7,
+    "id": "lcd.ht.n",
+    "text": "High Temperature Indicator",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 7,
+    "id": "lcd.ht.d",
+    "text": "High temperature protection is triggered. The product may stop functioning until its temperature returns to the normal operating range.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 7,
+    "id": "lcd.lt.n",
+    "text": "Low Temperature Indicator",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 7,
+    "id": "lcd.lt.d",
+    "text": "Low temperature protection is triggered. The product may stop functioning until its temperature returns to the normal operating range.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 7,
+    "id": "lcd.if2",
+    "text": "INTERFACE 2",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 7,
+    "id": "lcd.p1.n",
+    "text": "Discharging Indicator",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 7,
+    "id": "lcd.p1.d",
+    "text": "This USB port is discharging.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 7,
+    "id": "lcd.p2.n",
+    "text": "Charging Indicator",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 7,
+    "id": "lcd.p2.d",
+    "text": "This USB port is charging.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 7,
+    "id": "lcd.p3.n",
+    "text": "Charging or Discharging Power",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 7,
+    "id": "lcd.p3.d",
+    "text": "Displays charging or discharging power of the corresponding port.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 7,
+    "id": "lcd.if3",
+    "text": "INTERFACE 3",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 8,
+    "id": "lcd.h1.n",
+    "text": "Battery Health and Cycle Count",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 8,
+    "id": "lcd.h1.d",
+    "text": "Displays the current battery health percentage and the number of charge/discharge cycles.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 8,
+    "id": "lcd.h1.l1",
+    "text": "Green: Battery health is high.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 8,
+    "id": "lcd.h1.l2",
+    "text": "Yellow: Battery health is moderate.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 8,
+    "id": "lcd.h1.l3",
+    "text": "Red: Battery health is low.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 8,
+    "id": "lcd.h2.n",
+    "text": "Battery Temperature",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 8,
+    "id": "lcd.h2.d",
+    "text": "Displays the current battery temperature.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 8,
+    "id": "op.h",
+    "text": "OPERATIONS",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 8,
+    "id": "op.out.h",
+    "text": "OUTPUT ON/OFF",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 8,
+    "id": "op.out.l1",
+    "text": "Connect to a load to start output.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 8,
+    "id": "op.caution.l",
+    "text": "CAUTION",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 8,
+    "id": "op.caution.i1",
+    "text": "USB-C 140W MAX is a USB-PD Power Source 3 (PS3) high-power output port. If the connected user device or accessory does not meet safety requirements, there may be a fire risk. Before using these ports, ensure that the connected device or accessory has fire safety protection.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 8,
+    "id": "op.caution.i2",
+    "text": "Only connect the 100D to devices or accessories that comply with clauses 6.3, 6.4, and 6.5 of IEC/EN/UL 62368-1 (or other equivalent standards).",
+    "source_ocr_char_coverage": 0.973
+  },
+  {
+    "page": 8,
+    "id": "op.caution.i3",
+    "text": "To obtain maximum output power, use the USB-C to USB-C 5A cable (20V DC/5A, 100W; 28V DC/5A, 140W).",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "op.eco.h",
+    "text": "ENERGY SAVING MODE",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "op.eco.p1",
+    "text": "The Energy Saving Mode is disabled by default. To prevent unnecessary battery drain caused by forgetting to turn off the output, press and hold the DISPLAY button to enable Energy Saving Mode.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "op.eco.p2",
+    "text": "If no device is connected or the connected device's power consumption is below 2W for 2 hours, the product automatically turns off the outputs.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "op.eco.p3",
+    "text": "When the output is on, the icon \"2H\" will appear on the screen.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "fig.eco.press",
+    "text": "Press and hold 3s to enable/disable Energy Saving Mode",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "op.eco.note.l",
+    "text": "NOTE",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "op.eco.note.b",
+    "text": "Energy Saving Mode resumes its previous state after powering on. Manual switching is required for mode changes.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "op.lcd.h",
+    "text": "LCD SCREEN",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "op.lcd.th1",
+    "text": "Function",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "op.lcd.th2",
+    "text": "Description",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "op.lcd.r1.f",
+    "text": "Screen Wake-Up",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "op.lcd.r1.d",
+    "text": "Lights up when the DISPLAY button is briefly pressed, or automatically during charging or discharging.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "op.lcd.r2.f",
+    "text": "Screen Always On",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "op.lcd.r2.d",
+    "text": "While the screen is lit, double-press the DISPLAY button.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "op.lcd.r3.f",
+    "text": "Screen Switching",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "op.lcd.r3.d",
+    "text": "After the screen lights up, briefly press the DISPLAY button to switch pages.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "op.lcd.r4.f",
+    "text": "Turn Off Screen Always-On",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "op.lcd.r4.d",
+    "text": "Double-press the DISPLAY button again.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "op.lcd.r5.f",
+    "text": "Auto Screen Off",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "op.lcd.r5.d",
+    "text": "10 seconds after lighting up with no operation, or 2 hours after entering always-on mode.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 10,
+    "id": "chg.h",
+    "text": "CHARGING",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 10,
+    "id": "chg.first",
+    "text": "Fully charge the product before its first use.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 10,
+    "id": "chg.caution.l",
+    "text": "CAUTION",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 10,
+    "id": "chg.caution.i1",
+    "text": "The recommended charging temperature for the product ranges from 32°F to 113°F (0°C to 45°C) and the discharging temperature ranges from -4°F to 113°F ( -20°C to 45°C). Operating the product beyond this temperature range may restrict its charging and discharging capabilities, or even prevent it from charging or discharging.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 10,
+    "id": "chg.caution.i2",
+    "text": "The charging power and battery capacity of the product may vary due to temperature fluctuations.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 10,
+    "id": "chg.usbc.h",
+    "text": "CHARGING VIA A USB-C CHARGER",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 10,
+    "id": "chg.usbc.sold",
+    "text": "USB-C charger sold separately.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 10,
+    "id": "chg.solar.h",
+    "text": "CHARGING VIA SOLAR PANELS (SOLD SEPARATELY)",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 10,
+    "id": "chg.solar.p",
+    "text": "This product supports a maximum solar charging power of 100W and can be used with the Jackery SolarSaga series solar panels.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 10,
+    "id": "chg.solar.by",
+    "text": "Charged by 40W or 100W solar panel:",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 10,
+    "id": "fig.solar.panel",
+    "text": "SolarSaga 40 Air x1",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 10,
+    "id": "chg.solar.sold",
+    "text": "The DC8020 to USB-C cable is sold separately.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 11,
+    "id": "chg.solar.rec",
+    "text": "It is recommended to use the Jackery solar panel to charge the product. Ensure that the open-circuit voltage (Voc) of the solar panel is within the DC input range (10V-30V) of the 100D. Jackery is not responsible for any damage or loss resulting from the use of third-party solar panels.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 11,
+    "id": "chg.car.h",
+    "text": "CHARGING VIA A CAR CHARGER (SOLD SEPARATELY)",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 11,
+    "id": "chg.car.p",
+    "text": "This product can be charged using 12V and 24V car chargers. Ensure that the car charger and the car power outlet (car cigarette lighter) provide a good connection.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 11,
+    "id": "fig.car.vehicle",
+    "text": "Vehicle",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 11,
+    "id": "chg.car.sold",
+    "text": "The car charging cable and DC8020 to USB-C cable are sold separately.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 11,
+    "id": "chg.car.caution.l",
+    "text": "CAUTION",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 11,
+    "id": "chg.car.caution.i1",
+    "text": "Please start the vehicle before charging your power bank.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 11,
+    "id": "chg.car.caution.i2",
+    "text": "If the vehicle is running on bumpy roads, it is forbidden to use the car charger, to avoid burning caused by poor contact. The Company will not be responsible for any loss caused by improper use.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 12,
+    "id": "sto.h",
+    "text": "STORAGE",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 12,
+    "id": "sto.p1",
+    "text": "Store the product in a dry, clean place with proper ventilation. Storage temperature and humidity:",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 12,
+    "id": "sto.l1",
+    "text": "Storage temperature: -4°F to 140°F / -20°C to 60°C",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 12,
+    "id": "sto.l2",
+    "text": "Storage humidity: 5-95% RH",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 12,
+    "id": "sto.p2",
+    "text": "If this product is stored for a long period of time (3 months - 6 months) with the power depleted, it may become unchargeable. To prevent this and maintain battery health, it is recommended to check and recharge the product every three months and perform a full charge and discharge cycle at least once every 6 to 12 months.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 13,
+    "id": "spec.h",
+    "text": "SPECIFICATIONS",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 13,
+    "id": "spec.gen.h",
+    "text": "GENERAL INFO",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 13,
+    "id": "spec.gen.r1.l",
+    "text": "Product Name",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 13,
+    "id": "spec.gen.r1.v",
+    "text": "Jackery Explorer 100D",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 13,
+    "id": "spec.gen.r2.l",
+    "text": "Model No.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 13,
+    "id": "spec.gen.r2.v",
+    "text": "JE-100C",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 13,
+    "id": "spec.gen.r3.l",
+    "text": "Capacity",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 13,
+    "id": "spec.gen.r3.v",
+    "text": "96Wh (5Ah/19.2V DC)",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 13,
+    "id": "spec.gen.r4.l",
+    "text": "Cell Chemistry",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 13,
+    "id": "spec.gen.r4.v",
+    "text": "LiFePO4",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 13,
+    "id": "spec.gen.r5.l",
+    "text": "Weight",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 13,
+    "id": "spec.gen.r5.v",
+    "text": "(1.89 ± 0.02) lbs/(855 ± 10) g",
+    "source_ocr_char_coverage": 0.9333
+  },
+  {
+    "page": 13,
+    "id": "spec.gen.r6.l",
+    "text": "Dimensions",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 13,
+    "id": "spec.gen.r6.v1",
+    "text": "(4.67 ± 0.04) × (3.25 ± 0.02) × (3.37 ± 0.03) in /",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 13,
+    "id": "spec.gen.r6.v2",
+    "text": "(118.7 ± 1) × (82.6 ± 0.5) × (85.68 ± 0.8) mm",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 13,
+    "id": "spec.gen.r7.l",
+    "text": "Cycle Life",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 13,
+    "id": "spec.gen.r7.v",
+    "text": "3000 cycles to 80%+ capacity",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 13,
+    "id": "spec.in.h",
+    "text": "INPUT PORTS",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 13,
+    "id": "spec.in.r1.l",
+    "text": "USB-C1",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 13,
+    "id": "spec.in.r1.v1",
+    "text": "5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A, 28V⎓5A, 140W Max",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 13,
+    "id": "spec.in.r1.v2",
+    "text": "Vehicle: 12V⎓5A Max, 24V⎓5A Max",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 13,
+    "id": "spec.in.r1.v3",
+    "text": "PV: 10V-30V⎓, 5A Max, 100W Max",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 13,
+    "id": "spec.out.h",
+    "text": "OUTPUT PORTS",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 13,
+    "id": "spec.out.r1.l",
+    "text": "USB-A",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 13,
+    "id": "spec.out.r1.v",
+    "text": "5V⎓2A, 9V⎓2A, 12V⎓1.5A, 18W Max",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 13,
+    "id": "spec.out.r2.l",
+    "text": "USB-C1 / USB-C2",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 13,
+    "id": "spec.out.r2.v",
+    "text": "5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A, 28V⎓5A, 140W Max",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 13,
+    "id": "spec.tot.h",
+    "text": "TOTAL OUTPUT",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 13,
+    "id": "spec.tot.r1.l",
+    "text": "USB-C1 + USB-C2",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 13,
+    "id": "spec.tot.r1.v",
+    "text": "( 70W + 70W ) Max",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 13,
+    "id": "spec.tot.r2.l",
+    "text": "USB-C1 + USB-A / USB-C2 + USB-A",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 13,
+    "id": "spec.tot.r2.v",
+    "text": "( 140W + 18W ) Max",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 13,
+    "id": "spec.tot.r3.l",
+    "text": "USB-C1 + USB-C2 + USB-A",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 13,
+    "id": "spec.tot.r3.v",
+    "text": "( 70W + 70W + 18W ) Max",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 13,
+    "id": "spec.env.h",
+    "text": "ENVIRONMENTAL OPERATING TEMPERATURE",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 13,
+    "id": "spec.env.r1.l",
+    "text": "Charge Temperature",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 13,
+    "id": "spec.env.r1.v",
+    "text": "32°F to 113°F(0°C to 45°C)",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 13,
+    "id": "spec.env.r2.l",
+    "text": "Discharge Temperature",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 13,
+    "id": "spec.env.r2.v",
+    "text": "-4°F to 113°F(-20°C to 45°C)",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 13,
+    "id": "spec.tm",
+    "text": "※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 14,
+    "id": "war.h",
+    "text": "WARRANTY",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 14,
+    "id": "war.contact.h",
+    "text": "Contact Us",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 14,
+    "id": "war.contact.p",
+    "text": "For any inquiries or comments concerning our products, please send an email to hello@jackery.com, and we will respond to you as soon as possible. If there is any quality-related issue with the product, you may request a replacement or refund by submitting a request form at www.jackery.com.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 14,
+    "id": "war.service.h",
+    "text": "Customer Service",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 14,
+    "id": "war.service.l1",
+    "text": "2-year limited warranty",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 14,
+    "id": "war.service.l2",
+    "text": "hello@jackery.com",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 14,
+    "id": "war.service.l3",
+    "text": "Lifetime technical support",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 15,
+    "id": "back.company",
+    "text": "JACKERY INC.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 15,
+    "id": "back.address",
+    "text": "5310 Bunche Dr., Fremont, CA 94538-8301",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 15,
+    "id": "back.tel",
+    "text": "1-888-502-2236 (US)",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 15,
+    "id": "back.mail",
+    "text": "hello@jackery.com",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 15,
+    "id": "back.web",
+    "text": "www.jackery.com",
+    "source_ocr_char_coverage": 1.0
+  }
+]

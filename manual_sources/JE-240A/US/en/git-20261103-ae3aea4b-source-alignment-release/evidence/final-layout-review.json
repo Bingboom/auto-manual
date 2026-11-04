@@ -1,0 +1,305 @@
+{
+  "model": "JE-240A",
+  "record_id": "reczz28SPRx9mSKQ",
+  "status": "local_review_passed",
+  "source_sha256": "ae3aea4bcffa1c87f2de01cbe5c84792713a70eded1716039beb442e38a0a27f",
+  "whole_document_source_pages": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+  ],
+  "scope": "No front cover; physical 2–14 body/contact reviewed",
+  "differences_review": [
+    {
+      "old_item": 1,
+      "old_statement": "Cover and back QR omitted",
+      "current_source": "p1 cover; p14 original contact and QR",
+      "approval": "Cover excluded by current operator; no QR omission approval",
+      "disposition": "No cover; own source QR restored right aligned alongside retained contact"
+    },
+    {
+      "old_item": 2,
+      "old_statement": "Shared chapter strips and model label",
+      "current_source": "p2 US English/model band; body original headings",
+      "approval": "Native Web carrier",
+      "disposition": "Keep heading texts and original hierarchy; paper pagination omitted"
+    },
+    {
+      "old_item": 3,
+      "old_statement": "18-row specification table and LiFePO4",
+      "current_source": "p2 18 rows; source 4 is baseline",
+      "approval": "No text correction",
+      "disposition": "All labels, values, DC symbols and baseline 4 preserved"
+    },
+    {
+      "old_item": 4,
+      "old_statement": "Certification panel and shared inbox numbers",
+      "current_source": "p2 cert title/marks in same row; numbered ①–③ package list",
+      "approval": "No layout deviation approval",
+      "disposition": "Cert title/art paired; numbered 3-item inbox retains source sequence"
+    },
+    {
+      "old_item": 5,
+      "old_statement": "LCD three-column legend flattened to list",
+      "current_source": "p3–4 17 numbered labels in three row-major columns",
+      "approval": "No approval for flattening",
+      "disposition": "Original 3-column layout restored; native single sequence on phone"
+    },
+    {
+      "old_item": 6,
+      "old_statement": "LCD icon rows and energy table",
+      "current_source": "p4–5 3+3 icon blocks around source energy table; Defaults spans three rows",
+      "approval": "Native table carrier",
+      "disposition": "Own icons and merged Defaults cell preserved; no content reorder"
+    },
+    {
+      "old_item": 7,
+      "old_statement": "Bold run-in leads",
+      "current_source": "p4–10 UPS/Main power/Tip/WARNING/DANGER leads",
+      "approval": "No correction",
+      "disposition": "Native bold/paragraphs preserve source signal words and exact full wording"
+    },
+    {
+      "old_item": 8,
+      "old_statement": "FCC split into two columns",
+      "current_source": "p8 mark and full text stacked in one column",
+      "approval": "No split approval",
+      "disposition": "Single column restored; source -- text without duplicate bullets; mark kept"
+    },
+    {
+      "old_item": 9,
+      "old_statement": "Warranty and app download badges",
+      "current_source": "p11 all warranty headings/copy and complete download panel",
+      "approval": "Native component carrier",
+      "disposition": "Retain order, own badge artwork and exact text"
+    },
+    {
+      "old_item": 10,
+      "old_statement": "Native plus glyph for app add control",
+      "current_source": "p12 2.1 plus sign, two phone screens, remark/device panel; p13 three phone screens",
+      "approval": "Native glyph carrier",
+      "disposition": "Plus retained; own complete phone frames and source pairing retained"
+    },
+    {
+      "old_item": 11,
+      "old_statement": "Labels inside source panels",
+      "current_source": "p3 appearance/map; p6 AC; p7 solar/car; p12–13 app panels",
+      "approval": "Original-art carrier",
+      "disposition": "Own original panels retained with all labels; no redraw or whole-page raster"
+    },
+    {
+      "old_item": 12,
+      "old_statement": "Mobile scroll",
+      "current_source": "Wide source diagrams and native tables",
+      "approval": "Responsive carrier",
+      "disposition": "390px no body overflow or broken images; local diagram/table scroll preserves full content"
+    }
+  ],
+  "bidirectional_native": {
+    "model": "JE-240A",
+    "source_to_web_missing": [],
+    "web_to_source_candidates": [],
+    "native_elements_checked": 237,
+    "source_line_count": 278
+  },
+  "reverse_source_check": {
+    "transcribed_lines": 278,
+    "exact_source_ocr_char_coverage": 276,
+    "visually_resolved": [
+      {
+        "page": 2,
+        "id": "spec.r5.v",
+        "source": "Around 7.94 lbs / 3.6 kg",
+        "web": "Around 7.94 lbs / 3.6 kg",
+        "decision": "Source image confirms lowercase lbs; OCR glyph mismatch only"
+      },
+      {
+        "page": 5,
+        "id": "icon.fault.b",
+        "source": "common fault codes F0-FE ... If the F8 code appears ... If the F9 code appears",
+        "web": "identical full 431-character source paragraph retained",
+        "decision": "Source render confirms F0-FE, F8/F9 and both recovery/service instructions; OCR one-character glyph mismatch"
+      }
+    ]
+  },
+  "browser": [
+    {
+      "width": 1280,
+      "images": 21,
+      "broken": [],
+      "uncontained": [],
+      "document": {
+        "viewport": 1280,
+        "width": 1280,
+        "cover": 0
+      },
+      "layouts": [
+        {
+          "key": "back",
+          "columns": "auto",
+          "grid": "none",
+          "rectWidth": 657.21875
+        },
+        {
+          "key": "fcc",
+          "columns": "auto",
+          "grid": "599.625px",
+          "rectWidth": 599.625
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "images": 21,
+      "broken": [],
+      "uncontained": [],
+      "document": {
+        "viewport": 390,
+        "width": 390,
+        "cover": 0
+      },
+      "layouts": [
+        {
+          "key": "back",
+          "columns": "auto",
+          "grid": "none",
+          "rectWidth": 358
+        },
+        {
+          "key": "fcc",
+          "columns": "auto",
+          "grid": "326px",
+          "rectWidth": 326
+        }
+      ]
+    }
+  ],
+  "build": {
+    "strict_sphinx": "passed -n -W --keep-going",
+    "source_integrity": "all package inputs verified",
+    "publication_status": "candidate-pending-operator-review",
+    "candidate_rebuild_markdown_equals_strict_sphinx_verified_render": true,
+    "candidate_css_art_equals_strict_sphinx_verified_render": true,
+    "byte_identical_render_files": [
+      {
+        "path": "manual_je240a_us_en.md",
+        "sha256": "5857d8afb02edee4852f59f25a72da510514390429319b73d3d6c84c8e547efc"
+      },
+      {
+        "path": "index.md",
+        "sha256": "0af28d21de98ff02e0611d47c48a587ff4e038a1fa99c18edc687b2620e2b7f6"
+      },
+      {
+        "path": "_static/source_geometry.css",
+        "sha256": "57d3b115c359a387a30e98c6b9a671c9b118179e7103f2792079fe7d21bb36ba"
+      },
+      {
+        "path": "_static/web_manual.css",
+        "sha256": "c3604a2e5f22b04bc745bb99cf203b50e60222af70c0aeba3d968cc28adac9ce"
+      },
+      {
+        "path": "assets/lcd-map.png",
+        "sha256": "0166141841adb6b5ff6d8dcaea40601c8b9b51c308847c6b42b6116c6b21db9d"
+      },
+      {
+        "path": "assets/fcc-mark.svg",
+        "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+      },
+      {
+        "path": "assets/app-control.png",
+        "sha256": "06c8a72c4fdbb3e812560786be1e91a94624b9beaa0f6fc1e0c833e87596b09d"
+      },
+      {
+        "path": "assets/app-add.png",
+        "sha256": "20f35aa98ce6c02ee14b029367add6a43e600ffcab531113d65c67af9c13adec"
+      },
+      {
+        "path": "assets/charging-car.png",
+        "sha256": "f8460147378ab087d7318f49006095167948682fb51a3fb0f4d25f1c43d7e7d6"
+      },
+      {
+        "path": "assets/lcd-low-battery.png",
+        "sha256": "f43fc2acdbd0c6dd2f9bcaa3014f95d32637ab741e679cf22267b4ed8ece80f4"
+      },
+      {
+        "path": "assets/charging-solar.png",
+        "sha256": "aed4d9b8b8763cc8b34f7eae368e669a385b65cd98d687a0b83aee21fe602dd9"
+      },
+      {
+        "path": "assets/lcd-energy-saving.png",
+        "sha256": "ce8160e2ee6465ef74c6b98ee3d57a793afa59465d7a092f694d14cd4e421bf0"
+      },
+      {
+        "path": "assets/overview.png",
+        "sha256": "3a0e8718f21090ad23163945e640d79a006bca3a4590fb393f2402f2d850e4bb"
+      },
+      {
+        "path": "assets/app-results.png",
+        "sha256": "a699b8e3a3c613ddb13105404cd215e4ea5c15378f9a3f7a56bec400d5935ee0"
+      },
+      {
+        "path": "assets/inbox-unit.png",
+        "sha256": "cdb684fd49d5deaab8405782b96e9eabb8d1649c717ff6ebea59dc0bf37c94f4"
+      },
+      {
+        "path": "assets/app-badges.png",
+        "sha256": "a03188724ab17714dbaef130579171d6eb43497958f35e396ec80e448a35c21b"
+      },
+      {
+        "path": "assets/back-contact-qr.png",
+        "sha256": "5b75a3227425b947dff798e48daf9feeb98d99d53cd4d62c6004b5c4fed63c34"
+      },
+      {
+        "path": "assets/lcd-high-temperature.png",
+        "sha256": "a0cf814b3552789fbbb97d4ed3d37134d0712191f95f9bfda2c704e94e831d10"
+      },
+      {
+        "path": "assets/inbox-manual.png",
+        "sha256": "b025b2d4de76c0b80c4fc43da5a35f183a2343f0c178f7922c1e8d379155d110"
+      },
+      {
+        "path": "assets/charging-ac.png",
+        "sha256": "0eb55dd82fc5a6b755596bdfef70b288044276caeff5cfea95efc5c014b0fb23"
+      },
+      {
+        "path": "assets/certifications.png",
+        "sha256": "04bb4c371990535261210b579046fe0c60c200932da94e205d0d6ab100dc1521"
+      },
+      {
+        "path": "assets/lcd-low-temperature.png",
+        "sha256": "12256a6c0dffefce52d60ffdd53cdb3ad0fd9f5864f8394676561db5f5fb5589"
+      },
+      {
+        "path": "assets/inbox-cable.png",
+        "sha256": "e517aafa0686468876c335a9927be3c5ec339410134c44a8b9b76ab81b9edf40"
+      },
+      {
+        "path": "assets/shared-lcd/17_Battery_Power_Indicator_VLufb9exvoVLfgxz47pcfnRGnaf.png",
+        "sha256": "85921a9ad7fbfa58f98ee7bb0dc904377f31fe3dbface4083d2493144b05362f"
+      },
+      {
+        "path": "assets/shared-lcd/25_Fault_code_LaTmb4IQYo3vwvxMqQNcC2RgnIf.png",
+        "sha256": "3b51b98d7199d32f7b286bdf5ce3de4cb41971ed942820091053fd1d87bf0a7a"
+      }
+    ]
+  },
+  "remaining_source_or_layout_issues": [],
+  "historical_corrections": "No new text correction; original source concerns retained. Current operator explicitly excludes front cover.",
+  "acceptance_basis": "Full-source body and native text in both directions, original artwork and desktop/mobile review by agent under delegated local acceptance; no publication approval inferred.",
+  "whole_body_visual": {
+    "evidence": "whole-body-viewport-review.json",
+    "complete": true,
+    "rebuild_needed": false,
+    "reason": "Read-only coverage confirmation of the already verified HTML; source and output unchanged"
+  }
+}

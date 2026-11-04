@@ -1,0 +1,330 @@
+{
+ "schema_version": "jhp3000d-web-layout-changes/v1",
+ "language": "en",
+ "approved_source": "../git-20261009-cebe4aab/source/en/content.json",
+ "changes": [
+  {
+   "chapter": "*",
+   "action": "regular-state-words",
+   "removed": [
+    {
+     "chapter": "lcd",
+     "word": "Blink",
+     "context": "On: The battery level is below 20%. Blink: The battery level is below 5%. Off: The battery level is not below 20% or the"
+    },
+    {
+     "chapter": "operations",
+     "word": "on",
+     "context": "Prerequisite: The product is powered on."
+    },
+    {
+     "chapter": "operations",
+     "word": "on",
+     "context": "Prerequisite: The product is powered on."
+    },
+    {
+     "chapter": "operations",
+     "word": "on",
+     "context": "Prerequisite: The product is powered on."
+    },
+    {
+     "chapter": "operations",
+     "word": "on",
+     "context": "Prerequisite: The product is powered on."
+    }
+   ]
+  },
+  {
+   "chapter": "fcc",
+   "action": "unprinted-title-removed",
+   "title": "FCC",
+   "follows": "symbols"
+  },
+  {
+   "chapter": "safety",
+   "action": "print-pill-title",
+   "title": "OPERATING INSTRUCTIONS"
+  },
+  {
+   "chapter": "safety",
+   "action": "plain-title",
+   "title": "GROUNDING INSTRUCTION"
+  },
+  {
+   "chapter": "safety",
+   "action": "print-pill-title",
+   "title": "USER MAINTENANCE INSTRUCTIONS"
+  },
+  {
+   "chapter": "safety",
+   "action": "signal-lockup",
+   "label": "WARNING",
+   "bold_body": true,
+   "print_lines": 1
+  },
+  {
+   "chapter": "safety",
+   "action": "signal-lockup",
+   "label": "DANGER",
+   "bold_body": true,
+   "print_lines": 2
+  },
+  {
+   "chapter": "operations",
+   "action": "callout-label-restored",
+   "label": "CAUTION",
+   "removed": "The product can cable, which is"
+  },
+  {
+   "chapter": "lcd",
+   "action": "lcd-label-print-weight",
+   "labels": [
+    {
+     "row": "4",
+     "label": "Note",
+     "bold": true
+    }
+   ]
+  },
+  {
+   "chapter": "lcd",
+   "action": "lcd-icon-print-structure",
+   "description_line_breaks": 19,
+   "shared_numbers": [
+    "21"
+   ]
+  },
+  {
+   "chapter": "operations",
+   "action": "shared-auto-resume",
+   "page": 11,
+   "conditions": [
+    3,
+    4
+   ]
+  },
+  {
+   "chapter": "operations",
+   "action": "shared-key-combinations",
+   "page": 13,
+   "names": [
+    [
+     "POWER button",
+     "AC power button"
+    ],
+    [
+     "POWER button",
+     "DC/USB power button"
+    ],
+    [
+     "DC/USB power button",
+     "AC power button"
+    ]
+   ],
+   "reordered_rows": [
+    2,
+    3
+   ],
+   "hold_times": [
+    "3s",
+    "3s",
+    "1s"
+   ]
+  },
+  {
+   "chapter": "troubleshooting",
+   "action": "stacked-fault-codes",
+   "codes": [
+    "F0 / F1 / F2 / F3"
+   ]
+  },
+  {
+   "chapter": "warranty",
+   "action": "warranty-print-paragraphs",
+   "component": "HB-WARRANTY-SECTION"
+  },
+  {
+   "chapter": "specifications",
+   "action": "spec-value-print-lines",
+   "table": "INPUT PORTS",
+   "values": [
+    "100V-120V ~, 60Hz, 15A Max Bypass Mode①: 100-120V ~, 60Hz, 15A Max (reduced to 12A after 3h)",
+    "12V-16V⎓8A Max, Double to 8A Max 16V-60V⎓12A Max, Double to 24A / 1000W Max"
+   ]
+  },
+  {
+   "chapter": "specifications",
+   "action": "trademark-note"
+  },
+  {
+   "chapter": "app",
+   "action": "soft-wrap-joined",
+   "text": "Click the Settings icon in the upper right corner of the main interface of the d",
+   "joined": "settings page, and click the Unbind butt"
+  },
+  {
+   "chapter": "operations",
+   "action": "print-paragraph-break",
+   "starts": [
+    "To prevent unnecessary battery consumpti",
+    "To disable the energy saving mode, press"
+   ]
+  },
+  {
+   "chapter": "ups",
+   "action": "print-paragraph-break",
+   "starts": [
+    "Connect the product to a wall outlet wit",
+    "An Uninterruptible Power Supply (UPS) is",
+    "In the event of a sudden loss of grid po",
+    "In UPS mode, the unit's peak output reac"
+   ]
+  },
+  {
+   "chapter": "charging",
+   "action": "prose-pill",
+   "text": "Fully charge the product before its first use."
+  },
+  {
+   "chapter": "safety",
+   "action": "shared-safety-two-columns",
+   "page": 4,
+   "label": "WARNING",
+   "items_left_right": [
+    [
+     6,
+     5
+    ],
+    [
+     5,
+     9
+    ]
+   ],
+   "left_column_head": "SAVE THESE INSTRUCTIONS"
+  },
+  {
+   "chapter": "*",
+   "action": "print-emphasis",
+   "items": [
+    {
+     "chapter": "charging",
+     "text": "Green energy first: We advocate using green energy first. This product",
+     "bold": [
+      "Green energy first:"
+     ]
+    },
+    {
+     "chapter": "app",
+     "text": "2.2 Press the POWER button on the device to turn on, the Wi-Fi and Blu",
+     "bold": [
+      "POWER",
+      "Icon Flashed"
+     ]
+    },
+    {
+     "chapter": "app",
+     "text": "2.4 After the device is successfully connected, enter your Wi-Fi passw",
+     "bold": [
+      "OK"
+     ]
+    },
+    {
+     "chapter": "app",
+     "text": "Click the Settings icon in the upper right corner of the main interfac",
+     "bold": [
+      "Settings",
+      "Unbind"
+     ]
+    },
+    {
+     "chapter": "app",
+     "text": "If \"the device has been bound\" is prompted during the binding process,",
+     "bold": [
+      "the device has been bound"
+     ]
+    },
+    {
+     "chapter": "contact",
+     "text": "hello@jackery.com www.jackery.com 1-888-502-2236 (US)",
+     "bold": [
+      "1-888-502-2236"
+     ]
+    }
+   ]
+  },
+  {
+   "chapter": "contact",
+   "action": "back-cover-card",
+   "company": "JACKERY INC."
+  },
+  {
+   "chapter": "operations",
+   "action": "standby-bubble-sentence-wrap",
+   "joined_before": [
+    "inactivity,"
+   ]
+  },
+  {
+   "chapter": "app",
+   "action": "native-app-screens",
+   "figure": "app_connect_result_steps",
+   "art": "assets/app-steps-2-3-to-2-5.png",
+   "replaced": "assets/app_connect_result_steps.png"
+  },
+  {
+   "chapter": "*",
+   "action": "reference-figures-rebound",
+   "figures": [
+    "native-pdf/page-10/power",
+    "native-pdf/page-10/ac-output",
+    "native-pdf/page-11/dc-output"
+   ]
+  }
+ ],
+ "copy_restorations": [
+  {
+   "chapter": "fcc",
+   "kind": "unprinted-title",
+   "approved": "FCC",
+   "pdf": null
+  },
+  {
+   "chapter": "operations",
+   "kind": "callout-label-stray-words",
+   "approved": "The product can cable, which is CAUTION",
+   "pdf": "CAUTION"
+  },
+  {
+   "chapter": "operations",
+   "kind": "button-name-order",
+   "approved": [
+    "DC/USB power button POWER button",
+    "AC power button DC/USB power button"
+   ],
+   "pdf": [
+    "POWER button | DC/USB power button",
+    "DC/USB power button | AC power button"
+   ]
+  },
+  {
+   "chapter": "operations",
+   "kind": "print-hold-times",
+   "approved": null,
+   "pdf": [
+    "3s",
+    "3s",
+    "1s"
+   ]
+  },
+  {
+   "chapter": "troubleshooting",
+   "kind": "fault-code-separators",
+   "approved": [
+    "F0 / F1 / F2 / F3"
+   ],
+   "pdf": [
+    "F0 | F1 | F2 | F3"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,23 @@
+{
+  "model": "JHP-3600A",
+  "status": "visual_supplement_passed",
+  "viewport_height": 1100,
+  "segments": 21,
+  "source": "existing final built HTML, no rebuild",
+  "coverage": "continuous body from charging (5000C/3600A), storage (3000D), cascade connection (3600C) through final contact; current source p17 onward",
+  "review": "all segments visually inspected; no compositor wrap, no new layout defect; native wide tables/figures intentionally use functioning horizontal containers on phone",
+  "checks": {
+    "1280": {
+      "file_requestfailed": 0,
+      "css_background_loads": "pass",
+      "horizontal_containers": 0,
+      "last_content_reachable": true
+    },
+    "390": {
+      "file_requestfailed": 0,
+      "css_background_loads": "pass",
+      "horizontal_containers": 22,
+      "last_content_reachable": true
+    }
+  }
+}

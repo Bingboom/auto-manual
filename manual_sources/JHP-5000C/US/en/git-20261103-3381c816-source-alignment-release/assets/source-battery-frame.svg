@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ns1="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="313.6999999999998" height="134.09999999999997" viewBox="3807.87177734375 149.4796875 313.6999999999998 134.09999999999997"><defs>
+<clipPath id="clip_2">
+<path transform="matrix(1,0,0,-1,-2392.5303,6693.3835)" d="M0 0H11914.6V8405.89H0Z" />
+</clipPath>
+<clipPath id="clip_8759">
+<path transform="matrix(1,0,0,-1,-2392.5303,6693.3835)" d="M0 8405.89H11914.583V0H0Z" />
+</clipPath>
+</defs>
+<g><g><g clip-path="url(#clip_2)"><g ns1:groupmode="layer" ns1:label="图层 1"><g clip-path="url(#clip_8759)"><path transform="matrix(1,0,0,-1,4120.5598,253.07373)" d="M0 0-89.559-6.605-88.34 1.208-240.678-12.626-240.828 103.026-7.725 102.84C-3.368 102.847 .161 99.302 .134 94.945Z" fill="#ebecec" data-pdf-drawing-index="256617" />
+<path transform="matrix(1,0,0,-1,4111.688,282.8125)" stroke-width="1.131" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#ebecec" d="M0 0-294.068 .656C-299.173 .656-303.312 4.794-303.312 9.899V123.418C-303.312 128.523-299.173 132.661-294.068 132.661L0 132.005C5.105 132.005 9.243 127.867 9.243 122.762V9.244C9.243 4.139 5.105 0 0 0Z" data-pdf-drawing-index="256624" />
+</g></g></g></g></g></svg>

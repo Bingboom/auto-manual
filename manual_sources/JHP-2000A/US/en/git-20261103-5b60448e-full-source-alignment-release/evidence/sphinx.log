@@ -1,0 +1,117 @@
+{"chapters": ["preface", "safety", "symbols", "fcc", "in_the_box", "product_overview", "lcd_display", "operations", "ups", "battery_packs", "charging", "storage", "troubleshooting", "specifications", "warranty", "app_setup"], "lines": 506}
+{"inputs": 81}
+{"inputs": 81}
+{
+  "output": "/private/tmp/manual-web-audit-20261102/homepower-fixes/JHP-2000A/web",
+  "chapters": 16,
+  "components": {
+    "HB-CALLOUT-STRIP": 16,
+    "HB-SPECIAL-APP": 2,
+    "HB-SPECIAL-FCC": 1,
+    "HB-SPECIAL-INBOX": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE": 18,
+    "HB-TABLE-AUTO-RESUME": 1,
+    "HB-TABLE-KEY-COMBINATIONS": 1,
+    "HB-TABLE-LCD-ICON": 1,
+    "HB-TABLE-LCD-MODE": 1,
+    "HB-TABLE-SPEC": 4,
+    "HB-TABLE-SYMBOL-ICON": 1,
+    "HB-TABLE-SYMBOL-SIGNAL": 1,
+    "HB-TABLE-TROUBLESHOOTING": 1,
+    "HB-WARRANTY-LEAD": 1,
+    "HB-WARRANTY-SECTION": 5,
+    "HB-WARRANTY-YEARS": 1
+  },
+  "symbol_admission": [
+    {
+      "asset_ref": "assets/symbol-01.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.014248
+    },
+    {
+      "asset_ref": "assets/symbol-02.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.012577
+    },
+    {
+      "asset_ref": "assets/symbol-03.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.001048
+    },
+    {
+      "asset_ref": "assets/symbol-04.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.002045
+    },
+    {
+      "asset_ref": "assets/symbol-05.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.002323
+    },
+    {
+      "asset_ref": "assets/symbol-06.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.001469
+    },
+    {
+      "asset_ref": "assets/symbol-07.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.002765
+    },
+    {
+      "asset_ref": "assets/symbol-08.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.000884
+    },
+    {
+      "asset_ref": "assets/symbol-09.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.002348
+    },
+    {
+      "asset_ref": "assets/symbol-10.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.010011
+    },
+    {
+      "asset_ref": "assets/symbol-11.png",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.016269
+    }
+  ]
+}
+Running Sphinx v8.2.3
+loading translations [en]... done
+making output directory... done
+myst v4.0.1: MdParserConfig(commonmark_only=False, gfm_only=False, enable_extensions=set(), disable_syntax=[], all_links_external=False, links_external_new_tab=False, url_schemes=('http', 'https', 'mailto', 'ftp'), ref_domains=None, fence_as_directive=set(), number_code_blocks=[], title_to_header=False, heading_anchors=3, heading_slug_func=None, html_meta={}, footnote_sort=True, footnote_transition=True, words_per_minute=200, substitutions={}, linkify_fuzzy_links=True, dmath_allow_labels=True, dmath_allow_space=True, dmath_allow_digits=True, dmath_double_inline=False, update_mathjax=True, mathjax_classes='tex2jax_process|mathjax_process|math|output_area', enable_checkboxes=False, suppress_warnings=[], highlight_code_blocks=True)
+building [mo]: targets for 0 po files that are out of date
+writing output...
+building [html]: targets for 2 source files that are out of date
+updating environment: [new config] 2 added, 0 changed, 0 removed
+reading sources... [ 50%] index
+reading sources... [100%] manual_jhp2000a_us_en
+
+looking for now-outdated files... none found
+pickling environment... done
+checking consistency... done
+preparing documents... done
+copying assets...
+copying static files...
+Writing evaluated template result to /private/tmp/manual-web-audit-20261102/homepower-fixes/JHP-2000A/html/_static/basic.css
+Writing evaluated template result to /private/tmp/manual-web-audit-20261102/homepower-fixes/JHP-2000A/html/_static/language_data.js
+Writing evaluated template result to /private/tmp/manual-web-audit-20261102/homepower-fixes/JHP-2000A/html/_static/documentation_options.js
+copying static files: done
+copying extra files...
+copying extra files: done
+copying assets: done
+writing output... [ 50%] index
+writing output... [100%] manual_jhp2000a_us_en
+
+generating indices... genindex done
+writing additional pages... search done
+dumping search index in English (code: en)... done
+dumping object inventory... done
+build succeeded.
+
+The HTML pages are in ../../../../../../private/tmp/manual-web-audit-20261102/homepower-fixes/JHP-2000A/html.
+{"model": "JHP-2000A", "package": "/Users/hello-tech-team/.codex/worktrees/homepower-table-alignment/auto-manual-codex/manual_sources/JHP-2000A/US/en/git-20261103-5b60448e-source-alignment", "plus_restored": true, "record_id": "reczz28SlRGJkKmO"}

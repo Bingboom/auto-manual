@@ -1,0 +1,156 @@
+{
+  "model": "JE-500A",
+  "source_pages": 18,
+  "checked_lines": 380,
+  "exclusions": {
+    "1": "historically approved print cover",
+    "3": "historically approved print TOC"
+  },
+  "candidates": [
+    {
+      "page": 5,
+      "text": "Thioor eieis iment ehfnrisinoot use cnlys, 6g. pmce thi, devtis, cincin, etes.",
+      "coverage": 0.0
+    },
+    {
+      "page": 5,
+      "text": "a Tironmeite iuring wsterproof or dustproot. Keep away from rain and humid",
+      "coverage": 0.509
+    },
+    {
+      "page": 6,
+      "text": "AC SCOW PURE OHE MANT",
+      "coverage": 0.0
+    },
+    {
+      "page": 6,
+      "text": "Energy Saving Mode Switch",
+      "coverage": 0.6
+    },
+    {
+      "page": 8,
+      "text": "DDc 1270 (cucrt ig crganged via the DC Input (8020) using",
+      "coverage": 0.486
+    },
+    {
+      "page": 9,
+      "text": "Press and hold for 3s",
+      "coverage": 0.5
+    },
+    {
+      "page": 9,
+      "text": "Default standby time: 2 hours",
+      "coverage": 0.059
+    },
+    {
+      "page": 9,
+      "text": "If the AC power button, DC power button, and LED light",
+      "coverage": 0.371
+    },
+    {
+      "page": 9,
+      "text": "button are all turned off and there is no charging input,",
+      "coverage": 0.308
+    },
+    {
+      "page": 9,
+      "text": "the product will automatically shut down after 2 hours.",
+      "coverage": 0.59
+    },
+    {
+      "page": 9,
+      "text": "Prerequisite: Ensure the Main Power Button is on.",
+      "coverage": 0.485
+    },
+    {
+      "page": 10,
+      "text": "Prerequisite: Ensure the Main Power Button is on.",
+      "coverage": 0.485
+    },
+    {
+      "page": 10,
+      "text": "Slide the switch to",
+      "coverage": 0.333
+    },
+    {
+      "page": 10,
+      "text": "Slide the switch to",
+      "coverage": 0.333
+    },
+    {
+      "page": 11,
+      "text": "Press the LED Light",
+      "coverage": 0.556
+    },
+    {
+      "page": 11,
+      "text": "button once to turn on",
+      "coverage": 0.0
+    },
+    {
+      "page": 11,
+      "text": "Press it again to switch",
+      "coverage": 0.0
+    },
+    {
+      "page": 11,
+      "text": "Press it a third time to",
+      "coverage": 0.0
+    },
+    {
+      "page": 12,
+      "text": "Connect the product to a wall outlet with the AC charging",
+      "coverage": 0.475
+    },
+    {
+      "page": 12,
+      "text": "cable, then press the AC output button and power your",
+      "coverage": 0.167
+    },
+    {
+      "page": 12,
+      "text": "appliances at the same time.",
+      "coverage": 0.562
+    },
+    {
+      "page": 13,
+      "text": "Connect the AC charging cable to the",
+      "coverage": 0.609
+    },
+    {
+      "page": 13,
+      "text": "AC input port of the product and a wall outlet.",
+      "coverage": 0.533
+    },
+    {
+      "page": 15,
+      "text": "EMS Duniaion Erro",
+      "coverage": 0.0
+    },
+    {
+      "page": 15,
+      "text": "Conmturniation Error",
+      "coverage": 0.25
+    },
+    {
+      "page": 15,
+      "text": "DehnuniDaton Eror",
+      "coverage": 0.0
+    },
+    {
+      "page": 16,
+      "text": "About 12.57 Ibs/5.7kg",
+      "coverage": 0.222
+    },
+    {
+      "page": 16,
+      "text": "12.2×8.1x6.2 in / 31.1×20.5×15.7 cm",
+      "coverage": 0.571
+    },
+    {
+      "page": 16,
+      "text": "16V-6OV=10.5A, 200W Max",
+      "coverage": 0.5
+    }
+  ]
+}

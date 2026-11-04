@@ -1,0 +1,3117 @@
+{
+ "schema_version": "je1000h-jp-transcription/v1",
+ "source_sha256": "717c813db4c64d57f90072da6f40081162131979cc181a440c589e70d9947da4",
+ "method": "The PDF carries a text layer. Every line was taken from that layer (PyMuPDF) and checked against 300 dpi page renders, with high-zoom clips for small type, spacing and look-alike glyphs. One entry is one printed logical line or paragraph: print line wraps are joined by removing the line break and the wrap whitespace (line-end space and continuation indent); a single space is kept only where the wrap separates Latin or numeric tokens (\"15V⎓3A, 20V⎓5A\"). Spaces the text layer carries inside a line are kept, including doubled ones. The two superscript ® marks of the trademark line are separate text-layer spans; they are placed where they print, replacing the blank run the line carries there with ® and one space. Printed list markers (•, ・, ◦, ·, the drawn bullets) and the drawn ■ before 本機の仕様… are list/heading structure and are not part of the text. Inline artwork in running text is recorded as a placeholder in square brackets: [88H] is the LCD energy-saving mark printed inside 省エネモード sentences and [+] is the App add-device button; the blank run the text layer carries at those positions is replaced by the placeholder with one space on each side. Two troubleshooting digits are mapped to private-use code points (U+F6B3, U+F6B7) in the text layer; the renders show 2 (F2 / F3) and 6 (F6), recorded as ASCII digits like the other codes. Look-alike code points the layer does carry (出カポート with katakana カ, 拡張ポ一卜 with 一 and 卜, ｼｶﾞｰｿｹｯﾄ in half-width) are kept and listed in source_concerns. Ids are stable keys that build_content.py binds to shared components. strong lists the spans printed in bold. Text printed inside product, LCD, charging and App artwork is listed only where it is a figure caption, leader label or button marking; the LCD map numbers 1-26 and table row numbers are listed as printed digits. Printed page numbers are print navigation and are not listed.",
+ "pages": [
+  {
+   "physical_page": 1,
+   "printed_page": null,
+   "role": "print-cover",
+   "web": false,
+   "lines": [
+    {
+     "id": "cover.model",
+     "text": "型番：JE-1000H"
+    },
+    {
+     "id": "cover.version",
+     "text": "V2"
+    },
+    {
+     "id": "cover.disclaimer",
+     "text": "写真はイメージです。実際の商品とは異なる場合があります。"
+    },
+    {
+     "id": "cover.title1",
+     "text": "Jackery ポータブル電源 1000 Plus"
+    },
+    {
+     "id": "cover.title2",
+     "text": "取扱説明書"
+    },
+    {
+     "id": "cover.market",
+     "text": "国内専用/For use only in Japan"
+    },
+    {
+     "id": "cover.support",
+     "text": "カスタマーサポート: jackery.jp@jackery.com"
+    },
+    {
+     "id": "cover.thanks",
+     "text": "お買い上げありがとうございます。"
+    },
+    {
+     "id": "cover.b1",
+     "text": "ご使用の前にこの「取扱説明書」をよくお読みのうえ、正しくお使いください。"
+    },
+    {
+     "id": "cover.b2",
+     "text": "特に「安全上のご注意」は、必ずお読みいただき、安全にお使いください。"
+    },
+    {
+     "id": "cover.b3",
+     "text": "お読みになったあとは、すぐに取り出せる場所に大切に保管してください。"
+    },
+    {
+     "id": "cover.b4",
+     "text": "本製品の取扱説明書は随時更新されますので、最新の取扱説明書は公式サイトでご確認ください。"
+    }
+   ]
+  },
+  {
+   "physical_page": 2,
+   "printed_page": null,
+   "role": "print-toc",
+   "web": false,
+   "lines": [
+    {
+     "id": "toc.h",
+     "text": "目次"
+    },
+    {
+     "id": "toc.band",
+     "text": "JP 日本語 01-25"
+    },
+    {
+     "id": "toc.1",
+     "text": "安全上のご注意 01"
+    },
+    {
+     "id": "toc.2",
+     "text": "使用上のご注意 04"
+    },
+    {
+     "id": "toc.3",
+     "text": "免責事項 05"
+    },
+    {
+     "id": "toc.4",
+     "text": "同梱品 06"
+    },
+    {
+     "id": "toc.5",
+     "text": "各部の名称 06"
+    },
+    {
+     "id": "toc.6",
+     "text": "液晶画面 07"
+    },
+    {
+     "id": "toc.7",
+     "text": "使い方 10"
+    },
+    {
+     "id": "toc.8",
+     "text": "UPS 機能 14"
+    },
+    {
+     "id": "toc.9",
+     "text": "接続 15"
+    },
+    {
+     "id": "toc.10",
+     "text": "充電方法 16"
+    },
+    {
+     "id": "toc.11",
+     "text": "トラブルシューティング 20"
+    },
+    {
+     "id": "toc.12",
+     "text": "主な仕様 21"
+    },
+    {
+     "id": "toc.13",
+     "text": "保証について 22"
+    },
+    {
+     "id": "toc.14",
+     "text": "Jackeryアプリ ユーザーマニュアル 24"
+    }
+   ]
+  },
+  {
+   "physical_page": 3,
+   "printed_page": "01",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "safety.h",
+     "text": "安全上のご注意"
+    },
+    {
+     "id": "safety.lead",
+     "text": "ご使用の前にこの「安全上のご注意」をよくお読みのうえ、正しくお使いください。"
+    },
+    {
+     "id": "pict.h",
+     "text": "絵表示について"
+    },
+    {
+     "id": "pict.p1",
+     "text": "製品を安全に正しくお使いいただき、お客様や他の方々への危害や財産への損害を未然に防止するための表示です。"
+    },
+    {
+     "id": "pict.p2",
+     "text": "内容をよく理解してから本文をお読みください。"
+    },
+    {
+     "id": "signal.warn.l",
+     "text": "警告"
+    },
+    {
+     "id": "signal.warn.m",
+     "text": "この表示を無視して、誤った取り扱いをすると、人が死亡または重傷を負う可能性が想定される内容を示しています。"
+    },
+    {
+     "id": "signal.caut.l",
+     "text": "注意"
+    },
+    {
+     "id": "signal.caut.m",
+     "text": "この表示を無視して、誤った取り扱いをすると、人が傷害を負う可能性が想定される内容または物的損害の発生が想定される内容を示しています。"
+    },
+    {
+     "id": "signal.expl.l",
+     "text": "説明"
+    },
+    {
+     "id": "signal.expl.m",
+     "text": "この表示を無視して誤った取り扱いをすると、機器の損傷、データの消失、性能の低下、または予期しない動作が発生する可能性があることを示しています。"
+    },
+    {
+     "id": "signal.hint.l",
+     "text": "ヒント"
+    },
+    {
+     "id": "signal.hint.m",
+     "text": "文章内の重要な情報や操作のヒントを補足する内容を示しています。"
+    },
+    {
+     "id": "sym.h",
+     "text": "絵表示の説明"
+    },
+    {
+     "id": "sym.warning",
+     "text": "潜在的な危険やリスクについて注意喚起するために、必ずお読みください。"
+    },
+    {
+     "id": "sym.read",
+     "text": "操作の前に取扱説明書をお読みください。"
+    },
+    {
+     "id": "sym.fire",
+     "text": "本製品を火気の近くに置かないでください。"
+    },
+    {
+     "id": "sym.children",
+     "text": "小さなお子様の手の届かない場所に保管してください。"
+    },
+    {
+     "id": "sym.dismantle",
+     "text": "製品を分解、改造を禁止する記号"
+    },
+    {
+     "id": "sym.unplug",
+     "text": "コンセントから電源プラグを抜く記号"
+    },
+    {
+     "id": "sym.wethand",
+     "text": "製品に濡れた手で触れることを禁止する記号"
+    },
+    {
+     "id": "sym.wet",
+     "text": "製品を濡らすことを禁止する記号"
+    },
+    {
+     "id": "sym.mandatory",
+     "text": "行為を指示する記号"
+    },
+    {
+     "id": "sym.prohibit",
+     "text": "行為を禁止する記号"
+    }
+   ]
+  },
+  {
+   "physical_page": 4,
+   "printed_page": "02",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "recycle.title",
+     "text": "充電式電池のリサイクルについて"
+    },
+    {
+     "id": "recycle.b1",
+     "text": "本機はリサイクル可能な充電池を内蔵しています。"
+    },
+    {
+     "id": "recycle.b2",
+     "text": "この商品を廃棄する場合は、当社のカスタマーサポートにご連絡ください。"
+    },
+    {
+     "id": "recycle.b3",
+     "text": "充電池の取りはずしはお客様自身では行わないでください。"
+    },
+    {
+     "id": "weee.b1",
+     "text": "このシンボルは、本製品を一般家庭ごみとして廃棄せず、リサイクルのために指定の回収施設に持ち込む必要があることを示しています。"
+    },
+    {
+     "id": "weee.b2",
+     "text": "適切な廃棄およびリサイクルは、環境保護に役立ちます。"
+    },
+    {
+     "id": "weee.b3",
+     "text": "本製品の廃棄やリサイクルについての詳細は、お住まいの自治体、廃棄物処理業者、または販売店にお問い合わせください。"
+    },
+    {
+     "id": "battery.b1",
+     "text": "電池および蓄電池は家庭ごみと一緒に廃棄してはいけません。"
+    },
+    {
+     "id": "battery.b2",
+     "text": "消費者の皆様は、有害物質の有無にかかわらず、すべての電池および蓄電池を指定された収集場所で廃棄することが法律で義務付けられています。"
+    },
+    {
+     "id": "battery.b3",
+     "text": "使用済みの電池および蓄電池は、お近くの収集拠点、リサイクルセンター、または購入した小売店にお持ちください。 適切な廃棄は環境に配慮したリサイクルを確保し、人間の健康と環境への潜在的な害を防ぎます。"
+    },
+    {
+     "id": "w.h",
+     "text": "警告"
+    },
+    {
+     "id": "w1.t",
+     "text": "火のそばや炎天下の車内、熱器具の周辺など高温（45℃以上）になる場所で使用したり、放置しない"
+    },
+    {
+     "id": "w1.b",
+     "text": "発熱や発火、破裂する原因になります。"
+    },
+    {
+     "id": "w2.t",
+     "text": "強い衝撃を与えたり、投げつけたりしない"
+    },
+    {
+     "id": "w2.b",
+     "text": "発熱や発火、破裂する原因になります。"
+    },
+    {
+     "id": "w3.t",
+     "text": "水など、液体を入れたり、濡らしたりしない"
+    },
+    {
+     "id": "w3.b",
+     "text": "発熱や発火の原因になります。"
+    },
+    {
+     "id": "w4.t",
+     "text": "濡れた手で本体や接続するケーブルを触らない"
+    },
+    {
+     "id": "w4.b",
+     "text": "火災や感電の原因になります。"
+    },
+    {
+     "id": "w5.t",
+     "text": "端子部にケーブル以外の金属類を差し込まない"
+    },
+    {
+     "id": "w5.b",
+     "text": "発熱や発火の原因になります。"
+    },
+    {
+     "id": "w6.t",
+     "text": "雷が鳴りだしたら、電源プラグにふれない  (充電をしない)"
+    },
+    {
+     "id": "w6.b",
+     "text": "感電の原因になります。"
+    },
+    {
+     "id": "w7.t",
+     "text": "各接続端子には確実に差し込む"
+    },
+    {
+     "id": "w7.b",
+     "text": "差し込みが不十分だと、発熱したりほこりが付着して火災や感電の原因になります。"
+    },
+    {
+     "id": "w8.t",
+     "text": "接地接続は必ず、電源プラグを電源につなぐ前に行って下さい"
+    },
+    {
+     "id": "w8.b",
+     "text": "また、接地接続を外す場合は、必ず電源プラグを切り離してから行って下さい。"
+    }
+   ]
+  },
+  {
+   "physical_page": 5,
+   "printed_page": "03",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "w2.h",
+     "text": "警告"
+    },
+    {
+     "id": "w9.t",
+     "text": "万が一、次のような異常が発生したときはすぐに使用をやめる"
+    },
+    {
+     "id": "w9.l1",
+     "text": "煙が出ている、異臭がする"
+    },
+    {
+     "id": "w9.l2",
+     "text": "落としたり、破損したとき"
+    },
+    {
+     "id": "w9.l3",
+     "text": "異音がする"
+    },
+    {
+     "id": "w9.l4",
+     "text": "内部に水や異物が入ったとき"
+    },
+    {
+     "id": "w9.l5",
+     "text": "電源コード  (AC充電ケーブル)  が傷んだとき"
+    },
+    {
+     "id": "w9.b1",
+     "text": "このような異常が発生したまま使用していると、火災や感電の原因になります。"
+    },
+    {
+     "id": "w9.b2",
+     "text": "すぐにAC充電ケーブルをコンセントから抜いてください。また、本製品に接続されている機器もすべて外してください。"
+    },
+    {
+     "id": "w9.t2",
+     "text": "万が一発煙や発火したら、大量の水で消火して煙が見えなくなるまで本製品を水浸しにしてください。"
+    },
+    {
+     "id": "w9.b3",
+     "text": "煙が出なくなることを確認してからカスタマーサポートにご連絡ください。"
+    },
+    {
+     "id": "w9.b4",
+     "text": "お客様による修理は危険ですので絶対におやめください。"
+    },
+    {
+     "id": "w10.t",
+     "text": "分解、改造しない"
+    },
+    {
+     "id": "w10.b",
+     "text": "故障、発熱、火災·感電の原因になります。"
+    },
+    {
+     "id": "w11.t",
+     "text": "表示された電源電圧以外で使用しない"
+    },
+    {
+     "id": "w11.b",
+     "text": "故障、発熱、火災·感電の原因になります。また、本製品を使用できるのは日本国内のみです。"
+    },
+    {
+     "id": "w12.t",
+     "text": "付属品と本製品が破損した場合は、ご自身で修理をしない"
+    },
+    {
+     "id": "c.h",
+     "text": "注意"
+    },
+    {
+     "id": "c1.t",
+     "text": "本製品の上に物を載せたり、不安定な場所に置かない"
+    },
+    {
+     "id": "c1.b",
+     "text": "倒れたり、落ちたりしてけがの原因になります。"
+    },
+    {
+     "id": "c2.t",
+     "text": "データサーバや医療機器など、非常時に不具合が起こると人命 / 財産に重大な危険を及ぼしうる用途でのご使用はお控えください。次のようなような機器では、万が一使用中に給電ができなくなった場合、人命 / 財産にかかわる被害が想定されます。"
+    },
+    {
+     "id": "c2.l1",
+     "text": "医療機器や使用上、生命に関わるような機器"
+    },
+    {
+     "id": "c2.l2",
+     "text": "社会的、公共的に重要な機器など"
+    },
+    {
+     "id": "c2.l3",
+     "text": "重要な事業用機器など"
+    },
+    {
+     "id": "c3.t",
+     "text": "心臓にペースメーカーを装着している方は使用しない"
+    },
+    {
+     "id": "c3.b",
+     "text": "ペースメーカーが、本製品の影響を受ける恐れがあります。"
+    },
+    {
+     "id": "c4.t",
+     "text": "格納式ハンドルを使用してJackery ポータブル電源 1000 Plus を移動するときは、積み重ねたり、上に他の物を置いたりしないでください。落下して怪我をする場合があります。"
+    }
+   ]
+  },
+  {
+   "physical_page": 6,
+   "printed_page": "04",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "prec.h",
+     "text": "使用上のご注意"
+    },
+    {
+     "id": "prec.p1",
+     "text": "Jackery ポータブル電源 1000 Plusは、定格出力1800Wです。通常時で消費電力が1800Wまでの機器に給電ができるため、多くの電化製品や端末に対応可能です。ただし、電気モーターを搭載している製品（掃除機、ポンプ、冷蔵庫、電動丸ノコ、エアコン、洗濯機、電子レンジ、ドライヤーなど)は、起動時に「誘導負荷」が発生し、公称電力の3~7倍の電力が必要となります。",
+     "strong": [
+      "Jackery ポータブル電源 1000 Plus"
+     ]
+    },
+    {
+     "id": "prec.p2",
+     "text": "定格出力1800Wは、一定の電力で動く機器への出力可能範囲を指しています。"
+    },
+    {
+     "id": "prec.p3",
+     "text": "1800Wの出力を超えた場合は、電気回路が自動的に調整され、電力が低減、または保護機能が作動し自動で遮断することがあります。"
+    },
+    {
+     "id": "prec.p4",
+     "text": "またAC出力ポート4つ搭載されておりますが、2つ同時にご利用頂く場合、合計して1800W以内であることをご確認の上ご利用ください。"
+    },
+    {
+     "id": "prec.caution.l",
+     "text": "ご注意"
+    },
+    {
+     "id": "prec.caution",
+     "text": "始動電力が出力上限値( 定格出力) を大幅に超える可能性のある製品のご利用や、定格出力を超え給電がストップした製品を繰り返し利用することはポータブル電源のバッテリーが損傷するリスクがありますのでお控えください。"
+    },
+    {
+     "id": "prec.s1.h",
+     "text": "■ 給電に関する注意事項"
+    },
+    {
+     "id": "prec.s1.p",
+     "text": "出力上限値を超える電化製品は使用しないでください。"
+    },
+    {
+     "id": "prec.s1.l1",
+     "text": "特に、始動電力が公称電力の3~7 倍になる誘導負荷（ポンプ、ヒーター、掃除機、冷蔵庫、エアコン、電気丸ノコなどの電動道具、洗濯機、電子レンジなど）の使用にはご注意ください。"
+    },
+    {
+     "id": "prec.s1.l2",
+     "text": "接続機器の消費電力が本製品の出力範囲内であることをご確認の上、出力ボタンを押してください。"
+    },
+    {
+     "id": "prec.s1.l3",
+     "text": "給電中、機器の制御や環境により、急速充電にならない・給電できない場合があります。"
+    },
+    {
+     "id": "prec.s1.l4",
+     "text": "充電または給電中、ラジオ・チューナー・テレビなどに雑音が入る場合があります。その際は、それらの機器から離してご使用ください。"
+    },
+    {
+     "id": "prec.s2.h",
+     "text": "■ 使用環境について"
+    },
+    {
+     "id": "prec.s2.l1",
+     "text": "本製品は防塵・防水仕様ではありません。ほこり、水、海水などがかからないようご注意ください。"
+    },
+    {
+     "id": "prec.s2.l2",
+     "text": "ほこりの多い場所や高温多湿の場所での充電・使用・放置は避けてください。"
+    },
+    {
+     "id": "prec.s2.l3",
+     "text": "平坦で安定した場所に設置し、不安定な場所に置かないでください。"
+    },
+    {
+     "id": "prec.s2.l4",
+     "text": "本製品の通風孔は、安全上絶対にふさがないでください。各面から5cm 以上スペースを確保してください。"
+    },
+    {
+     "id": "prec.s2.l5",
+     "text": "充電・給電中は本体が温かくなります。周囲に物を置かないでください。"
+    }
+   ]
+  },
+  {
+   "physical_page": 7,
+   "printed_page": "05",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "prec.s3.h",
+     "text": "■ 接続時の注意事項"
+    },
+    {
+     "id": "prec.s3.l1",
+     "text": "ケーブルを接続する際は、まっすぐに差し込んでください。"
+    },
+    {
+     "id": "prec.s3.l2",
+     "text": "抜く際は必ずプラグ部分を持って抜いてください。ケーブルを引っ張ったり折り曲げたりしないでください。"
+    },
+    {
+     "id": "prec.s4.h",
+     "text": "■ お手入れについて"
+    },
+    {
+     "id": "prec.s4.l1",
+     "text": "本体が汚れた場合は、電源プラグを抜いた状態で、柔らかい布で乾拭きしてください。"
+    },
+    {
+     "id": "prec.s4.l2",
+     "text": "汚れがひどい場合は、水または薄めた中性洗剤で拭き取ってください。"
+    },
+    {
+     "id": "prec.s4.l3",
+     "text": "シンナーやベンジンなどの使用は絶対に使わないでください。"
+    },
+    {
+     "id": "prec.s5.h",
+     "text": "■ 入出力・温度・表示に関するご注意"
+    },
+    {
+     "id": "prec.s5.l1",
+     "text": "接続機器の入力が本製品の出力上限を超えている場合、自動で電源が遮断されます。"
+    },
+    {
+     "id": "prec.s5.l2",
+     "text": "本機は -10°C~45°C の温度範囲でお使いの機器に電力供給が可能となり、本機の蓄電は -10°C~45°C で行えます。"
+    },
+    {
+     "id": "prec.s5.l2a",
+     "text": "動作温度が上記範囲外にある場合、本製品が温度異常マークが表示され、動作しない可能性があります。"
+    },
+    {
+     "id": "prec.s5.l2b",
+     "text": "温度異常マークが表示された場合は、本製品を2 時間以上、動作温度範囲内の環境に置いてください。"
+    },
+    {
+     "id": "prec.s5.l3",
+     "text": "容量表示は参考値であり、電圧により表示数値と実際の容量に差異が出る場合があります。"
+    },
+    {
+     "id": "disc.h",
+     "text": "免責事項"
+    },
+    {
+     "id": "disc.l1",
+     "text": "火災、地震、第三者による行為、その他の事故、お客様の故意または過失誤用・誤動作・その他の異常な条件下での使用により生じた損害に関して、当社は一切責任を負いません。"
+    },
+    {
+     "id": "disc.l2",
+     "text": "付属品と本製品が破損した場合は、ご自身で修理を行わないでください。ご自身で分解・修理したことにより生じた損害に関し、当社は一切責任を負いません。"
+    },
+    {
+     "id": "disc.l3",
+     "text": "保証範囲は利用規約に適用され、記載されていない内容は当社の保証範囲外となります。"
+    },
+    {
+     "id": "disc.l4",
+     "text": "取扱説明書の記載事項が遵守されないことにより生じた不適合について当社は責任を負いかねます。"
+    },
+    {
+     "id": "disc.l5",
+     "text": "本製品の使用、または使用不能から発生する付随的な損害( 事業利益損失含む)、当社が関与しない接続機器との組み合わせによる誤動作などから生じた損害に関して、当社は一切の責任を負いません。"
+    },
+    {
+     "id": "disc.l6",
+     "text": "本製品は病院仕様のシーパップ（CPAP）、エクモ（ECMO）、ペースメーカなど、身の安全に関わる医療救急機械の電源としての使用、または、消費電力の大きいな設備、例えば核施設設備、スペースシャトル製造などの使用は推薦されません。上記設備の使用後、火災、機器故障など個人安全を脅かす事故の責任を取りません。"
+    }
+   ]
+  },
+  {
+   "physical_page": 8,
+   "printed_page": "06",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "box.h",
+     "text": "同梱品"
+    },
+    {
+     "id": "box.k1",
+     "text": "1"
+    },
+    {
+     "id": "box.c1",
+     "text": "本体"
+    },
+    {
+     "id": "box.k2",
+     "text": "2"
+    },
+    {
+     "id": "box.c2",
+     "text": "AC充電ケーブル"
+    },
+    {
+     "id": "box.k3",
+     "text": "3"
+    },
+    {
+     "id": "box.c3",
+     "text": "取扱説明書"
+    },
+    {
+     "id": "box.n1",
+     "text": "※ 付属品を故障、紛失等してしまった場合はカスタマーサポートまでご連絡ください。"
+    },
+    {
+     "id": "box.n2",
+     "text": "※ AC充電ケーブルは、同梱されている本体以外には使用しないでください。"
+    },
+    {
+     "id": "box.n3",
+     "text": "※ シガーソケット充電ケーブルは別売りです。Jackery公式サイトよりご購入いただけます。サポートが必要な場合は、Jackeryカスタマーサポートまでお問い合わせください。"
+    },
+    {
+     "id": "box.change",
+     "text": "本機の仕様および外観は、改善のため予告なく変更することがあります。"
+    },
+    {
+     "id": "names.h",
+     "text": "各部の名称"
+    },
+    {
+     "id": "names.front",
+     "text": "正面"
+    },
+    {
+     "id": "names.f.power",
+     "text": "主電源ボタン"
+    },
+    {
+     "id": "names.f.car",
+     "text": "シガーソケット出力ポート"
+    },
+    {
+     "id": "names.f.car.v",
+     "text": "12V⎓最大10A"
+    },
+    {
+     "id": "names.f.dcbtn",
+     "text": "DC/USB出力ボタン"
+    },
+    {
+     "id": "names.f.c140",
+     "text": "USB-C 140W出力ポート"
+    },
+    {
+     "id": "names.f.c140.v",
+     "text": "5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A, 28V⎓5A，最大140W"
+    },
+    {
+     "id": "names.f.usba",
+     "text": "USB-A 18W出力ポート"
+    },
+    {
+     "id": "names.f.usba.v",
+     "text": "5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A，最大18W"
+    },
+    {
+     "id": "names.f.c30",
+     "text": "USB-C 30W出力ポート"
+    },
+    {
+     "id": "names.f.c30.v",
+     "text": "5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A，最大30W"
+    },
+    {
+     "id": "names.f.lcd",
+     "text": "LCDディスプレイ"
+    },
+    {
+     "id": "names.f.ledbtn",
+     "text": "LEDライトボタン"
+    },
+    {
+     "id": "names.f.led",
+     "text": "LEDライト"
+    },
+    {
+     "id": "names.f.ac1",
+     "text": "AC 1出力ボタン"
+    },
+    {
+     "id": "names.f.ac2",
+     "text": "AC 2出力ボタン"
+    },
+    {
+     "id": "names.f.acout",
+     "text": "AC出力ポート"
+    },
+    {
+     "id": "names.f.acout.v",
+     "text": "100V~ 50Hz/60Hz，18A，定格1800W"
+    }
+   ]
+  },
+  {
+   "physical_page": 9,
+   "printed_page": "07",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "names.left",
+     "text": "左側面"
+    },
+    {
+     "id": "names.l.dcx",
+     "text": "DC拡張ポート端子"
+    },
+    {
+     "id": "names.l.dcx.in",
+     "text": "入力: 36.8V-56V⎓最大59A"
+    },
+    {
+     "id": "names.l.dcx.out",
+     "text": "出力: 36.8V-56V⎓最大36A"
+    },
+    {
+     "id": "names.right",
+     "text": "右側面"
+    },
+    {
+     "id": "names.r.dcin",
+     "text": "DC入力ポート（DC8020）"
+    },
+    {
+     "id": "names.r.dcin.pv",
+     "text": "PV：16V-60V⎓12A，2ポート最大21A，最大400W"
+    },
+    {
+     "id": "names.r.dcin.car",
+     "text": "ｼｶﾞｰｿｹｯﾄ ：11V-16V⎓最大8A，2ポート最大8A"
+    },
+    {
+     "id": "names.r.acin",
+     "text": "AC入力ポート"
+    },
+    {
+     "id": "names.r.acin.v",
+     "text": "100V-120V~ 50Hz/60Hz，最大15A"
+    },
+    {
+     "id": "lcd.h",
+     "text": "液晶画面"
+    },
+    {
+     "id": "lcd.map.1",
+     "text": "1"
+    },
+    {
+     "id": "lcd.map.2",
+     "text": "2"
+    },
+    {
+     "id": "lcd.map.3",
+     "text": "3"
+    },
+    {
+     "id": "lcd.map.4",
+     "text": "4"
+    },
+    {
+     "id": "lcd.map.5",
+     "text": "5"
+    },
+    {
+     "id": "lcd.map.6",
+     "text": "6"
+    },
+    {
+     "id": "lcd.map.7",
+     "text": "7"
+    },
+    {
+     "id": "lcd.map.8",
+     "text": "8"
+    },
+    {
+     "id": "lcd.map.9",
+     "text": "9"
+    },
+    {
+     "id": "lcd.map.10",
+     "text": "10"
+    },
+    {
+     "id": "lcd.map.11",
+     "text": "11"
+    },
+    {
+     "id": "lcd.map.12",
+     "text": "12"
+    },
+    {
+     "id": "lcd.map.13",
+     "text": "13"
+    },
+    {
+     "id": "lcd.map.14",
+     "text": "14"
+    },
+    {
+     "id": "lcd.map.15",
+     "text": "15"
+    },
+    {
+     "id": "lcd.map.16",
+     "text": "16"
+    },
+    {
+     "id": "lcd.map.17",
+     "text": "17"
+    },
+    {
+     "id": "lcd.map.18",
+     "text": "18"
+    },
+    {
+     "id": "lcd.map.19",
+     "text": "19"
+    },
+    {
+     "id": "lcd.map.20",
+     "text": "20"
+    },
+    {
+     "id": "lcd.map.21",
+     "text": "21"
+    },
+    {
+     "id": "lcd.map.22",
+     "text": "22"
+    },
+    {
+     "id": "lcd.map.23",
+     "text": "23"
+    },
+    {
+     "id": "lcd.map.24",
+     "text": "24"
+    },
+    {
+     "id": "lcd.map.25",
+     "text": "25"
+    },
+    {
+     "id": "lcd.map.26",
+     "text": "26"
+    }
+   ]
+  },
+  {
+   "physical_page": 10,
+   "printed_page": "08",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "lcd.r1.n",
+     "text": "1"
+    },
+    {
+     "id": "lcd.r1.t",
+     "text": "Wi-Fi"
+    },
+    {
+     "id": "lcd.r1.b1",
+     "text": "オン：Wi-Fiに接続されています。",
+     "strong": [
+      "オン："
+     ]
+    },
+    {
+     "id": "lcd.r1.b2",
+     "text": "点滅：Wi-Fi接続の準備中です。",
+     "strong": [
+      "点滅："
+     ]
+    },
+    {
+     "id": "lcd.r1.b3",
+     "text": "オフ：Wi-Fiは切断されています。",
+     "strong": [
+      "オフ："
+     ]
+    },
+    {
+     "id": "lcd.r2.n",
+     "text": "2"
+    },
+    {
+     "id": "lcd.r2.t",
+     "text": "Bluetooth"
+    },
+    {
+     "id": "lcd.r2.b1",
+     "text": "オン：Bluetoothに接続されています。",
+     "strong": [
+      "オン："
+     ]
+    },
+    {
+     "id": "lcd.r2.b2",
+     "text": "点滅：Bluetooth接続の準備中です。",
+     "strong": [
+      "点滅："
+     ]
+    },
+    {
+     "id": "lcd.r2.b3",
+     "text": "オフ：Bluetoothは切断されています。",
+     "strong": [
+      "オフ："
+     ]
+    },
+    {
+     "id": "lcd.r3.n",
+     "text": "3"
+    },
+    {
+     "id": "lcd.r3.t",
+     "text": "静音充電モード"
+    },
+    {
+     "id": "lcd.r3.b1",
+     "text": "オン：充電中のノイズが大幅に低減され、充電電力が低下し、充電速度が低減します。",
+     "strong": [
+      "オン："
+     ]
+    },
+    {
+     "id": "lcd.r3.b2",
+     "text": "オフ：静音充電モードが無効になっています。",
+     "strong": [
+      "オフ："
+     ]
+    },
+    {
+     "id": "lcd.r3.b3",
+     "text": "（Jackeryアプリで有効/無効にできます。電源オフ時も設定は保持されます。）"
+    },
+    {
+     "id": "lcd.r4.n",
+     "text": "4"
+    },
+    {
+     "id": "lcd.r4.t",
+     "text": "計画充電モード"
+    },
+    {
+     "id": "lcd.r4.b1",
+     "text": "Jackery ポータブル電源 1000 Plus の充電時間をカスタマイズすることで、電気料金のピーク時間とオフピーク時間に基づいた充電プランを選択。これにより月々の電気料金を削減することができます。"
+    },
+    {
+     "id": "lcd.r4.b2",
+     "text": "（Jackeryアプリで設定してください。電源オフ時も設定は保持されます。）"
+    },
+    {
+     "id": "lcd.r5.n",
+     "text": "5"
+    },
+    {
+     "id": "lcd.r5.t",
+     "text": "自家発電モード"
+    },
+    {
+     "id": "lcd.r5.b1",
+     "text": "点灯時：自家発電モードがオンになっており、太陽光エネルギーの利用を最大化し、電力会社からの電力消費を削減して電気代を節約します。",
+     "strong": [
+      "点灯時："
+     ]
+    },
+    {
+     "id": "lcd.r5.b2",
+     "text": "消灯時：自家発電モードがオフ、または未設定の状態です。",
+     "strong": [
+      "消灯時："
+     ]
+    },
+    {
+     "id": "lcd.r5.b3",
+     "text": "（Jackeryアプリで設定してください。電源オフ時も設定は保持されます。）"
+    },
+    {
+     "id": "lcd.r6.n",
+     "text": "6"
+    },
+    {
+     "id": "lcd.r6.t",
+     "text": "TOUモード"
+    },
+    {
+     "id": "lcd.r6.b1",
+     "text": "オン：TOU（時間帯別料金）モードが有効になります（デフォルトのバックアップSOC：60%）。ピーク時間帯に、蓄積エネルギーがバックアップSOCを超えると、本製品はバッテリー放電を優先し、ピーク時の電気料金を削減します。オフピーク時間帯には、系統からバッテリーを充電し、ピークカットと谷埋めを実現します。",
+     "strong": [
+      "オン："
+     ]
+    },
+    {
+     "id": "lcd.r6.b2",
+     "text": "オフ：TOUモードは無効になります。デバイスはTOU戦略に従わず、デフォルトの電力供給および充電ロジックに基づいて動作します。",
+     "strong": [
+      "オフ："
+     ]
+    },
+    {
+     "id": "lcd.r6.b3",
+     "text": "Jackeryアプリでこのモードを有効/無効にします。デバイスの電源がオフの場合でも、設定は保持されます。"
+    },
+    {
+     "id": "lcd.r6.b4",
+     "text": "（Jackeryアプリで設定してください。電源オフ時も設定は保持されます。）"
+    },
+    {
+     "id": "lcd.r7.n",
+     "text": "7"
+    },
+    {
+     "id": "lcd.r7.t",
+     "text": "UPS機能"
+    },
+    {
+     "id": "lcd.r7.b1",
+     "text": "点灯時：製品が給電と充電を同時に行う「パススルー充電」状態にあります。停電時には家庭用電源からポータブル電源の切り替え時間が10ミリ秒で行われます。",
+     "strong": [
+      "点灯時："
+     ]
+    },
+    {
+     "id": "lcd.r7.b2",
+     "text": "消灯時：製品がパススルー充電状態ではありません。",
+     "strong": [
+      "消灯時："
+     ]
+    },
+    {
+     "id": "lcd.r8.n",
+     "text": "8"
+    },
+    {
+     "id": "lcd.r8.t",
+     "text": "交流電源による出力マーク（正弦波)"
+    },
+    {
+     "id": "lcd.r8.b1",
+     "text": "AC出力（純正弦波）がオンになっています。"
+    },
+    {
+     "id": "lcd.r9.n",
+     "text": "9"
+    },
+    {
+     "id": "lcd.r9.t",
+     "text": "出力電圧と周波数"
+    },
+    {
+     "id": "lcd.r9.b1",
+     "text": "出力される電圧と周波数を表示します。"
+    },
+    {
+     "id": "lcd.r10.n",
+     "text": "10"
+    },
+    {
+     "id": "lcd.r10.t",
+     "text": "入力電力表示"
+    },
+    {
+     "id": "lcd.r10.b1",
+     "text": "入力電力をワットで表示します。"
+    },
+    {
+     "id": "lcd.r11.n",
+     "text": "11"
+    },
+    {
+     "id": "lcd.r11.t",
+     "text": "充電残り時間"
+    },
+    {
+     "id": "lcd.r11.b1",
+     "text": "充電残り時間を表示します。"
+    },
+    {
+     "id": "lcd.r12.n",
+     "text": "12"
+    },
+    {
+     "id": "lcd.r12.t",
+     "text": "AC入力電力表示"
+    },
+    {
+     "id": "lcd.r12.b1",
+     "text": "製品は、系統電力を使用し、AC入力を介して充電されます。"
+    },
+    {
+     "id": "lcd.r13.n",
+     "text": "13"
+    },
+    {
+     "id": "lcd.r13.t",
+     "text": "シガーソケット入力電力表示"
+    },
+    {
+     "id": "lcd.r13.b1",
+     "text": "製品は、DC 12V（カーチャージ）を使用し、8020入力ポートを介して充電されます。"
+    }
+   ]
+  },
+  {
+   "physical_page": 11,
+   "printed_page": "09",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "lcd.r14.n",
+     "text": "14"
+    },
+    {
+     "id": "lcd.r14.t",
+     "text": "ソーラー(グリーンエネルギー)充電接続"
+    },
+    {
+     "id": "lcd.r14.b1",
+     "text": "製品は、ソーラーパネルを使用し、8020入力ポートを介して充電されています。"
+    },
+    {
+     "id": "lcd.r15.n",
+     "text": "15"
+    },
+    {
+     "id": "lcd.r15.t",
+     "text": "バッテリー節約モード"
+    },
+    {
+     "id": "lcd.r15.t2",
+     "text": "Jackeryアプリで有効/無効にできます"
+    },
+    {
+     "id": "lcd.r15.b1",
+     "text": "バッテリー節約モード設定時は、バッテリー残量が既定値に設定されるため、バッテリーの寿命を延ばすことが可能です。"
+    },
+    {
+     "id": "lcd.r15.b2",
+     "text": "注1: 本製品がバッテリーパックに接続されている場合、この機能は使用できません。"
+    },
+    {
+     "id": "lcd.r15.b3",
+     "text": "この機能が有効な場合、本製品はSOCを較正するために、時折フル充放電サイクルを実行します。"
+    },
+    {
+     "id": "lcd.r16.n",
+     "text": "16"
+    },
+    {
+     "id": "lcd.r16.t",
+     "text": "充電速度制限"
+    },
+    {
+     "id": "lcd.r16.b1",
+     "text": "点灯時：アプリ側で充電速度制限が有効になっています。",
+     "strong": [
+      "点灯時："
+     ]
+    },
+    {
+     "id": "lcd.r16.b2",
+     "text": "消灯時：アプリ側で充電速度制限が無効になっています。",
+     "strong": [
+      "消灯時："
+     ]
+    },
+    {
+     "id": "lcd.r16.b3",
+     "text": "（Jackeryアプリで設定してください。電源オフ時も設定は保持されます。）"
+    },
+    {
+     "id": "lcd.r17.n",
+     "text": "17"
+    },
+    {
+     "id": "lcd.r17.t",
+     "text": "バッテリーアイコン"
+    },
+    {
+     "id": "lcd.r17.b1",
+     "text": "製品の充電中は、バッテリーのパーセンテージを囲むオレンジ色の円が順番に点灯します。他のデバイスの充電時には、オレンジ色の円は点灯したままになります。"
+    },
+    {
+     "id": "lcd.r18.n",
+     "text": "18"
+    },
+    {
+     "id": "lcd.r18.t",
+     "text": "バッテリー残量警告灯"
+    },
+    {
+     "id": "lcd.r18.b1",
+     "text": "オン：バッテリー残量が20％未満です。",
+     "strong": [
+      "オン："
+     ]
+    },
+    {
+     "id": "lcd.r18.b2",
+     "text": "点滅：バッテリー残量が5％未満です。",
+     "strong": [
+      "点滅："
+     ]
+    },
+    {
+     "id": "lcd.r18.b3",
+     "text": "オフ：製品は充電中です。",
+     "strong": [
+      "オフ："
+     ]
+    },
+    {
+     "id": "lcd.r19.n",
+     "text": "19"
+    },
+    {
+     "id": "lcd.r19.t",
+     "text": "バッテリーレベルパーセントタグ"
+    },
+    {
+     "id": "lcd.r19.b1",
+     "text": "バッテリー残量を表示します。"
+    },
+    {
+     "id": "lcd.r20.n",
+     "text": "20"
+    },
+    {
+     "id": "lcd.r20.t",
+     "text": "放電タイマー"
+    },
+    {
+     "id": "lcd.r20.b1",
+     "text": "オン：放電タイマーが設定されています。",
+     "strong": [
+      "オン："
+     ]
+    },
+    {
+     "id": "lcd.r20.b2",
+     "text": "オフ：放電タイマーは設定されていません。",
+     "strong": [
+      "オフ："
+     ]
+    },
+    {
+     "id": "lcd.r20.b3",
+     "text": "Jackeryアプリで設定してください。本設定は、デバイスの電源を切ると保持されません。"
+    },
+    {
+     "id": "lcd.r21.n",
+     "text": "21"
+    },
+    {
+     "id": "lcd.r21.t",
+     "text": "バッテリーパックインジケータと接続された量"
+    },
+    {
+     "id": "lcd.r21.b1",
+     "text": "本製品に接続されているバッテリーパックの台数を表示します。"
+    },
+    {
+     "id": "lcd.r22.n",
+     "text": "22"
+    },
+    {
+     "id": "lcd.r22.t",
+     "text": "省エネモード"
+    },
+    {
+     "id": "lcd.r22.b1",
+     "text": "AC 1/2またはDC/USB出力ボタンを押して出力をオンにしたとき："
+    },
+    {
+     "id": "lcd.r22.b2",
+     "text": "アイコン表示：省エネモードがオンになっています。",
+     "strong": [
+      "アイコン表示："
+     ]
+    },
+    {
+     "id": "lcd.r22.b3",
+     "text": "アイコン無表示：省エネモードがオフになっています。",
+     "strong": [
+      "アイコン無表示："
+     ]
+    },
+    {
+     "id": "lcd.r23.n",
+     "text": "23"
+    },
+    {
+     "id": "lcd.r23.t",
+     "text": "高温インジケーター"
+    },
+    {
+     "id": "lcd.r23.b1",
+     "text": "高温保護が作動しました。製品の温度が通常の動作範囲に戻るまで、製品の機能が停止する場合があります。"
+    },
+    {
+     "id": "lcd.r23b.t",
+     "text": "低温インジケーター"
+    },
+    {
+     "id": "lcd.r23b.b1",
+     "text": "低温保護が作動しました。製品の温度が通常の動作範囲に戻るまで、製品の機能が停止する場合があります。"
+    },
+    {
+     "id": "lcd.r24.n",
+     "text": "24"
+    },
+    {
+     "id": "lcd.r24.t",
+     "text": "エラーコード"
+    },
+    {
+     "id": "lcd.r24.b1",
+     "text": "製品エラーが発生しました。詳細については、トラブルシューティングのセクションを参照してください。"
+    },
+    {
+     "id": "lcd.r25.n",
+     "text": "25"
+    },
+    {
+     "id": "lcd.r25.t",
+     "text": "消費電力"
+    },
+    {
+     "id": "lcd.r25.b1",
+     "text": "出力電力をワットで表示します。"
+    },
+    {
+     "id": "lcd.r26.n",
+     "text": "26"
+    },
+    {
+     "id": "lcd.r26.t",
+     "text": "バッテリー使用可能時間"
+    },
+    {
+     "id": "lcd.r26.b1",
+     "text": "接続した機器の使用可能な時間を表示します。"
+    }
+   ]
+  },
+  {
+   "physical_page": 12,
+   "printed_page": "10",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "use.h",
+     "text": "使い方"
+    },
+    {
+     "id": "use.power.h",
+     "text": "主電源ボタン/オフ"
+    },
+    {
+     "id": "fig.power.on",
+     "text": "オン"
+    },
+    {
+     "id": "fig.power.on.i",
+     "text": "1回押す"
+    },
+    {
+     "id": "fig.power.off",
+     "text": "オフ"
+    },
+    {
+     "id": "fig.power.off.i",
+     "text": "3秒間長押し"
+    },
+    {
+     "id": "fig.power.3s",
+     "text": "3S"
+    },
+    {
+     "id": "fig.power.note",
+     "text": "本製品のデフォルトの待機時間は2時間です（充電または放電がない場合、2時間後に自動的にシャットダウンします）。 待機時間はJackeryアプリで設定できます。"
+    },
+    {
+     "id": "use.power.eco",
+     "text": "省エネモードがオンのとき、AC出力またはDC/USB出力がオンでも、12時間連続して充放電が行われない場合は、自動的に電源がオフになります。"
+    },
+    {
+     "id": "use.ac.h",
+     "text": "AC出力のオン/オフ"
+    },
+    {
+     "id": "use.ac.pre",
+     "text": "前提：主電源ボタンがオンになっていることを確認してください。",
+     "strong": [
+      "前提："
+     ]
+    },
+    {
+     "id": "fig.ac.on1",
+     "text": "オン"
+    },
+    {
+     "id": "fig.ac.on1.i",
+     "text": "1回押す"
+    },
+    {
+     "id": "fig.ac.off1",
+     "text": "オフ"
+    },
+    {
+     "id": "fig.ac.off1.i",
+     "text": "1回押す"
+    },
+    {
+     "id": "fig.ac.on2",
+     "text": "オン"
+    },
+    {
+     "id": "fig.ac.on2.i",
+     "text": "1回押す"
+    },
+    {
+     "id": "fig.ac.off2",
+     "text": "オフ"
+    },
+    {
+     "id": "fig.ac.off2.i",
+     "text": "1回押す"
+    },
+    {
+     "id": "use.ac.p",
+     "text": "AC 1およびAC 2電源ボタンは、2組の独立したACコンセントを制御します。 各ボタンを押すと、対応するACコンセントのオン/オフが切り替わります。"
+    }
+   ]
+  },
+  {
+   "physical_page": 13,
+   "printed_page": "11",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "use.freq.h",
+     "text": "50Hz/60Hz周波数の切り替え:"
+    },
+    {
+     "id": "use.freq.default",
+     "text": "※ 工場出荷時のデフォルト設定は60Hzに設定されています。"
+    },
+    {
+     "id": "use.freq.auto",
+     "text": "自動識別：お客様のお住まいの地域に応じて周波数を自動的に識別し、対応する出力に自動調整されます。"
+    },
+    {
+     "id": "use.freq.manual",
+     "text": "手動調整：AC出力がオンの状態で、AC 1またはAC 2出力ボタンを5秒間長押しすることで周波数を切り替えることができ、対応する周波数が画面に表示されます。"
+    },
+    {
+     "id": "fig.freq.50",
+     "text": "50HZ"
+    },
+    {
+     "id": "fig.freq.60",
+     "text": "60HZ"
+    },
+    {
+     "id": "use.usb.h",
+     "text": "USB/カーポート出力オン/オフ"
+    },
+    {
+     "id": "use.usb.pre",
+     "text": "前提：主電源ボタンがオンになっていることを確認してください。",
+     "strong": [
+      "前提："
+     ]
+    },
+    {
+     "id": "fig.usb.on",
+     "text": "オン"
+    },
+    {
+     "id": "fig.usb.on.i",
+     "text": "1回押す"
+    },
+    {
+     "id": "fig.usb.off",
+     "text": "オフ"
+    },
+    {
+     "id": "fig.usb.off.i",
+     "text": "1回押す"
+    },
+    {
+     "id": "use.usb.caution.l",
+     "text": "ご注意"
+    },
+    {
+     "id": "use.usb.c1",
+     "text": "USB-C 140W は、USB-PD Power Source 3 (PS3) の高出力ポートです。接続されたユーザーデバイスまたはアクセサリーが安全基準を満たしていない場合、火災の危険性があります。これらのポートを使用する前に、接続するデバイスまたはアクセサリーに耐火安全保護が備わっていることを確認してください。"
+    },
+    {
+     "id": "use.usb.c2",
+     "text": "Jackery ポータブル電源 1000 Plus は、IEC/EN/UL 62368-1（または同等の規格）の6.3、6.4、6.5 条に準拠したデバイスまたはアクセサリーのみに接続してください。"
+    },
+    {
+     "id": "use.usb.c3",
+     "text": "最大出力を得るためには、公式の USB-C to USB-C 5A ケーブル（20V DC/5A、100W；28V DC/5A、140W）を使用してください。"
+    }
+   ]
+  },
+  {
+   "physical_page": 14,
+   "printed_page": "12",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "use.car.p1",
+     "text": "本製品は、別売のJackery 12V 自動車用バッテリー充電ケーブルを使用することで、車のバッテリーへの充電が可能です。"
+    },
+    {
+     "id": "use.car.p2",
+     "text": "※Jackery 12V 自動車用バッテリー充電ケーブルは付属しておりません。Jackery 公式サイトよりお求めいただけます。"
+    },
+    {
+     "id": "use.car.caution.l",
+     "text": "ご注意"
+    },
+    {
+     "id": "use.car.c1",
+     "text": "12V 車専用であり、24V 車には対応しておりません。"
+    },
+    {
+     "id": "use.car.c2",
+     "text": "本製品の12V DC 出力（シガーソケット）から車のバッテリーへ充電中は、エンジンを始動しないでください。製品の故障につながる恐れがあります。"
+    },
+    {
+     "id": "use.car.c3",
+     "text": "この機能はあくまで車のバッテリーの緊急補助用であり、深刻なバッテリー上がりや故障したバッテリーには対応しておりません。"
+    },
+    {
+     "id": "eco.h",
+     "text": "省エネモード"
+    },
+    {
+     "id": "eco.p1",
+     "text": "省エネモードは、出力ボタンの消し忘れによる無駄なバッテリー消耗を防ぐための機能で、初期設定ではオンになっています。AC出力が25W以下、またはDC/USB出力が2W以下の状態が12時間続くと、自動的に出力がオフになります。ACまたはDC/USB出力がオンの状態では、画面に省エネアイコン [88H] が表示されます。アイコンの表示時間は、設定された省エネ時間に応じて変わります。"
+    },
+    {
+     "id": "eco.th1",
+     "text": "出力ポートタイプ"
+    },
+    {
+     "id": "eco.th2",
+     "text": "電力設定値"
+    },
+    {
+     "id": "eco.th3",
+     "text": "デフォルト設定"
+    },
+    {
+     "id": "eco.r1.c1",
+     "text": "AC出力ポート"
+    },
+    {
+     "id": "eco.r1.c2",
+     "text": "≤25W"
+    },
+    {
+     "id": "eco.r2.c1",
+     "text": "DC/USB 出力ポート"
+    },
+    {
+     "id": "eco.r2.c2",
+     "text": "≤2W"
+    },
+    {
+     "id": "eco.default",
+     "text": "12時間経つとすべての出力は自動的にオフになります"
+    },
+    {
+     "id": "eco.p2",
+     "text": "※ 交流25Wおよび直流2W以下の低消費電力機器をご使用の場合、出力が途中で自動的にオフにならないように、省エネモードをオフにしてください。省エネモードをオフにすると、画面上の [88H] アイコンは表示されなくなります。"
+    },
+    {
+     "id": "eco.p3",
+     "text": "ACボタンがオンの状態で、AC 1ボタンと主電源ボタンを同時に長押しし、省エネアイコンの表示（オン）／非表示（オフ）が切り替わるまで押し続けてください。"
+    },
+    {
+     "id": "fig.eco.ac1",
+     "text": "AC 1出力ボタン"
+    },
+    {
+     "id": "fig.eco.power",
+     "text": "主電源ボタン"
+    },
+    {
+     "id": "fig.eco.3s",
+     "text": "3s"
+    },
+    {
+     "id": "fig.eco.onoff",
+     "text": "オン/オフ"
+    },
+    {
+     "id": "fig.eco.both",
+     "text": "両方を3秒間長押し"
+    },
+    {
+     "id": "eco.note.l",
+     "text": "説明"
+    },
+    {
+     "id": "eco.note",
+     "text": "省エネモードは電源投入後に前回の状態を維持します。モード変更には手動での切り替えが必要です。"
+    }
+   ]
+  },
+  {
+   "physical_page": 15,
+   "printed_page": "13",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "led.h",
+     "text": "LEDライト"
+    },
+    {
+     "id": "led.p",
+     "text": "LEDライトには、照明モードとSOSモードの2つのモードがあります。いずれのモードでも、LEDスイッチを長押しすることでLEDライトを消灯できます。"
+    },
+    {
+     "id": "fig.led.light",
+     "text": "LIGHT"
+    },
+    {
+     "id": "fig.led.1",
+     "text": "1"
+    },
+    {
+     "id": "fig.led.s1",
+     "text": "LEDスイッチを短く押すとLEDライトが点灯し"
+    },
+    {
+     "id": "fig.led.2",
+     "text": "2"
+    },
+    {
+     "id": "fig.led.sos",
+     "text": "SOS"
+    },
+    {
+     "id": "fig.led.s2",
+     "text": "再度短く押すとSOSモードに切り替わります。"
+    },
+    {
+     "id": "fig.led.3",
+     "text": "3"
+    },
+    {
+     "id": "fig.led.s3",
+     "text": "再度短く押すとでライトが消灯します。"
+    },
+    {
+     "id": "mode.h",
+     "text": "LCDスクリーン"
+    },
+    {
+     "id": "mode.short",
+     "text": "短くオン"
+    },
+    {
+     "id": "mode.s.on",
+     "text": "オンにする"
+    },
+    {
+     "id": "mode.s.on.d",
+     "text": "主電源ボタンを押すか、充電入力がある場合。"
+    },
+    {
+     "id": "mode.s.off",
+     "text": "オフにする"
+    },
+    {
+     "id": "mode.s.off.d",
+     "text": "主電源ボタンを押します。"
+    },
+    {
+     "id": "mode.s.auto",
+     "text": "自動オフ"
+    },
+    {
+     "id": "mode.s.auto.d",
+     "text": "2分後にLCDは自動的に消灯し、スリープモードになります。"
+    },
+    {
+     "id": "mode.always",
+     "text": "常時オン"
+    },
+    {
+     "id": "mode.a.on",
+     "text": "オンにする"
+    },
+    {
+     "id": "mode.a.on.d",
+     "text": "デバイスが起動している状態で主電源ボタンを2回押します。"
+    },
+    {
+     "id": "mode.a.off",
+     "text": "オフにする"
+    },
+    {
+     "id": "mode.a.off.d",
+     "text": "主電源ボタンを押します。"
+    },
+    {
+     "id": "mode.a.auto",
+     "text": "自動オフ"
+    },
+    {
+     "id": "mode.a.auto.d",
+     "text": "常時点灯ディスプレイモードは、2時間操作がないと自動的に消灯します。"
+    },
+    {
+     "id": "mode.app",
+     "text": "Jackeryアプリで画面表示モードを設定することもできます。"
+    },
+    {
+     "id": "keys.h",
+     "text": "ボタン操作"
+    },
+    {
+     "id": "keys.th1",
+     "text": "ボタン"
+    },
+    {
+     "id": "keys.th2",
+     "text": "操作"
+    },
+    {
+     "id": "keys.th3",
+     "text": "機能"
+    },
+    {
+     "id": "keys.r1.b1",
+     "text": "主電源ボタン"
+    },
+    {
+     "id": "keys.r1.b2",
+     "text": "AC 1出力ボタン"
+    },
+    {
+     "id": "keys.r1.d",
+     "text": "3s"
+    },
+    {
+     "id": "keys.r1.op",
+     "text": "両方を3秒間長押し"
+    },
+    {
+     "id": "keys.r1.f",
+     "text": "省エネモードのオン / オフを切り替えます"
+    },
+    {
+     "id": "keys.r2.b1",
+     "text": "主電源ボタン"
+    },
+    {
+     "id": "keys.r2.b2",
+     "text": "DC/USB出力ボタン"
+    },
+    {
+     "id": "keys.r2.d",
+     "text": "3s"
+    },
+    {
+     "id": "keys.r2.op",
+     "text": "両方を3秒間長押し"
+    },
+    {
+     "id": "keys.r2.f",
+     "text": "Wi-Fiのリセット"
+    },
+    {
+     "id": "keys.r3.b1",
+     "text": "AC 1出力ボタン"
+    },
+    {
+     "id": "keys.r3.b2",
+     "text": "DC/USB出力ボタン"
+    },
+    {
+     "id": "keys.r3.d",
+     "text": "1s"
+    },
+    {
+     "id": "keys.r3.op",
+     "text": "両方を1秒間長押し"
+    },
+    {
+     "id": "keys.r3.f",
+     "text": "Wi-Fi＆Bluetooth オン / オフ"
+    },
+    {
+     "id": "keys.r4.b1",
+     "text": "主電源ボタン"
+    },
+    {
+     "id": "keys.r4.b2",
+     "text": "LEDライトボタン"
+    },
+    {
+     "id": "keys.r4.b2art",
+     "text": "LIGHT"
+    },
+    {
+     "id": "keys.r4.d",
+     "text": "1s"
+    },
+    {
+     "id": "keys.r4.op",
+     "text": "両方を1秒間長押し"
+    },
+    {
+     "id": "keys.r4.f",
+     "text": "緊急充電モードを有効化/無効化してください"
+    }
+   ]
+  },
+  {
+   "physical_page": 16,
+   "printed_page": "14",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "resume.h",
+     "text": "ACおよびDC出力の復帰機能"
+    },
+    {
+     "id": "resume.p",
+     "text": "本機能は出力状態を記憶し、所定の条件下でACおよびDC出力を自動的に再開します。"
+    },
+    {
+     "id": "resume.th1",
+     "text": "自動復帰する条件"
+    },
+    {
+     "id": "resume.th2",
+     "text": "自動復帰しない条件"
+    },
+    {
+     "id": "resume.y1",
+     "text": "シャットダウンまたは再起動後の電源オン／再起動"
+    },
+    {
+     "id": "resume.y2",
+     "text": "バッテリーSOCが放電制限に達した後、制限値＋10％以上に回復した場合"
+    },
+    {
+     "id": "resume.y3",
+     "text": "OTAアップグレード完了後"
+    },
+    {
+     "id": "resume.n1",
+     "text": "手動で出力をオフにした場合（ボタン／アプリ）"
+    },
+    {
+     "id": "resume.n2",
+     "text": "省エネモードによる出力オフ"
+    },
+    {
+     "id": "resume.n3",
+     "text": "保護動作による出力オフ"
+    },
+    {
+     "id": "resume.n4",
+     "text": "放電タイマーによる出力オフ"
+    },
+    {
+     "id": "ups.h",
+     "text": "UPS 機能"
+    },
+    {
+     "id": "fig.ups.note",
+     "text": "電気製品のコンセントをポータブル電源のAC 出力ポートに接続し、ポータブル電源のAC入力ポートを家庭のコンセントにつなぐことで、停電時などにポータブル電源を予備電源として活用できます。"
+    },
+    {
+     "id": "ups.p1",
+     "text": "本製品は、電気系統（家庭内の電源など）が突然停止した場合、自動的にバッテリー給電モードに切り替わるUPS（無停電電源装置）機能を備えています。切替時間は約10 ミリ秒（0.010 秒）以内です。"
+    },
+    {
+     "id": "ups.p2",
+     "text": "ただし、本機能は0ms での完全な無停止給電には対応しておりません。そのため、以下のような高精度な連続電源供給を必要とする機器への接続はお控えください。"
+    },
+    {
+     "id": "ups.l1",
+     "text": "データサーバー"
+    },
+    {
+     "id": "ups.l2",
+     "text": "ワークステーション"
+    },
+    {
+     "id": "ups.l3",
+     "text": "医療機器など"
+    },
+    {
+     "id": "ups.l4",
+     "text": "その他、停電・瞬断の許容時間が10ms 以下の精密機器/ 業務機器全般"
+    },
+    {
+     "id": "ups.p3",
+     "text": "これらの機器でご使用を希望される場合は、事前に複数回の動作テストを実施し、機器との互換性をご確認の上でご使用ください。"
+    },
+    {
+     "id": "ups.p4",
+     "text": "※記載の手順に従わずに機器が正常に動作しなかったり、データ消失などの損害が発生した場合、弊社では責任を負いかねます。あらかじめご了承ください。"
+    },
+    {
+     "id": "ups.p5",
+     "text": "UPS として使用している際はパススルー機能により充電と出力が同時に行われている状態のため、ポータブル電源の最大出力は1500W に制限され、停電時には定格出力に戻ります。複数の機器をUPS モードで同時に接続する場合は、合計負荷電力がバイパス時の最大出力（1500W）を超えないようにしてください。超えると、機器が過負荷保護により停止するおそれがあります。"
+    }
+   ]
+  },
+  {
+   "physical_page": 17,
+   "printed_page": "15",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "conn.h",
+     "text": "接続"
+    },
+    {
+     "id": "conn.bp.h",
+     "text": "バッテリーパック（別売）に接続"
+    },
+    {
+     "id": "conn.bp.p",
+     "text": "本製品は最大5個のバッテリーパックに対応し、大容量電源のニーズに応えることができます。使用方法の詳細については、Jackery Battery Pack 2000の取扱説明書を参照してください。"
+    },
+    {
+     "id": "fig.exp.power",
+     "text": "POWER"
+    },
+    {
+     "id": "fig.exp.bp",
+     "text": "Battery Pack 2000"
+    },
+    {
+     "id": "fig.exp.gap",
+     "text": "≥ 20cm"
+    },
+    {
+     "id": "fig.acc.bp",
+     "text": "Jackery Battery Pack 2000"
+    },
+    {
+     "id": "fig.acc.cable",
+     "text": "拡張ケーブル"
+    },
+    {
+     "id": "fig.acc.manual",
+     "text": "取扱説明書"
+    },
+    {
+     "id": "fig.acc.sold",
+     "text": "別売"
+    },
+    {
+     "id": "conn.caution.l",
+     "text": "ご注意"
+    },
+    {
+     "id": "conn.c1",
+     "text": "Jackery Battery Pack 2000 を Jackery ポータブル電源 1000 Plus に接続する前に、両方の電源がオフになっていることを確認してください。"
+    },
+    {
+     "id": "conn.c2",
+     "text": "製品が適切に動作するよう、両側の吸気口と排気口が遮られていないことを確認してください。適切な放熱を確保するため、通気口と物との間に少なくとも20cm の空間を空けてください。"
+    },
+    {
+     "id": "conn.c3",
+     "text": "製品をバッテリーパックと接続して使用する場合、積み重ねるバッテリーパックの最大数はデフォルトで 3 台 とし、製品は平坦で安定しており、十分な耐荷重性のある床面に設置してください。"
+    },
+    {
+     "id": "conn.c4",
+     "text": "4 台以上 のバッテリーパックを積み重ねる必要がある場合は、製品を壁際で外力による衝突を受けにくい安定した場所に設置し、必要な転倒防止固定措置を講じてください。"
+    }
+   ]
+  },
+  {
+   "physical_page": 18,
+   "printed_page": "16",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "chg.h",
+     "text": "充電方法"
+    },
+    {
+     "id": "chg.green.h",
+     "text": "グリーンエネルギー優先モード:"
+    },
+    {
+     "id": "chg.green",
+     "text": "本製品はグリーンエネルギー優先モードを搭載していますが、ソーラーパネルとAC充電ケーブルを使って同時に充電できます。同時に充電すると、ソーラーが優先されますが、バッテリーの最大許容電力で同時に充電されます。"
+    },
+    {
+     "id": "chg.c1.l",
+     "text": "ご注意"
+    },
+    {
+     "id": "chg.c1.i1",
+     "text": "製品の充電動作温度範囲は-10°C~45°C、放電動作温度範囲は-10℃~45℃です。上限・下限温度を超えた場合、充放電が制限され、または充放電不可の可能性があります。"
+    },
+    {
+     "id": "chg.c1.i2",
+     "text": "温度によって、製品の充電効率と実際の容量は異なります。"
+    },
+    {
+     "id": "chg.c2.l",
+     "text": "ご注意"
+    },
+    {
+     "id": "chg.c2.i1",
+     "text": "はじめてお使いになるときは、本製品をフル充電してからご使用ください。"
+    },
+    {
+     "id": "chg.c2.i2",
+     "text": "充電池は空の状態で長期保管(3カ月~6カ月）すると、性能が劣化したり、充電できなくなる場合があります。"
+    },
+    {
+     "id": "chg.c2.i3",
+     "text": "長期保管中は、電池残量が0％にならないよう、3か月に一度の充電をおすすめします。"
+    },
+    {
+     "id": "chg.ac.h",
+     "text": "AC充電ケーブル"
+    },
+    {
+     "id": "chg.ac.p",
+     "text": "コンセントよりJackery ポータブル電源 1000 Plus 本体に充電する場合、電流容量が大きいため、他機器と併用したり途中接続をすると、コンセントの電流上限値を超え充電停止したり、配線やコンセント・接続部が発熱し、火災の原因となる恐れがあります。必ず電源タップなどを介して他の電気製品と併用しないでください。"
+    },
+    {
+     "id": "fig.ac.caption",
+     "text": "付属のAC充電ケーブルをご使用ください。"
+    },
+    {
+     "id": "chg.c3.l",
+     "text": "ご注意"
+    },
+    {
+     "id": "chg.c3",
+     "text": "AC充電ケーブルのプラグが製品のAC入力ポートにしっかりと、かつ完全に差し込まれていることを確認してください。差し込みが不完全な場合、電流の不安定、発熱、接触不良などが発生し、機器の正常な動作に支障をきたす恐れがあります。"
+    }
+   ]
+  },
+  {
+   "physical_page": 19,
+   "printed_page": "17",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "chg.emg.h",
+     "text": "緊急充電モード："
+    },
+    {
+     "id": "chg.emg1",
+     "text": "ACコンセントからの充電時、お急ぎの場合には緊急充電モードを使って充電することができます。"
+    },
+    {
+     "id": "chg.emg2",
+     "text": "使用するには「Jackery App」でこの機能を「有効」または「無効」に設定してください。緊急充電モードでは、バッテリーの残量(SOC)を示す円形のライトの点滅速度が速くなります。"
+    },
+    {
+     "id": "chg.emg3",
+     "text": "※バッテリーは通常の速度で充電することでバッテリーを最大限に保護できるよう設計されているため、緊急充電は必要場合にのみ使用し、常時使用することはお勧めしません。"
+    },
+    {
+     "id": "solar.h",
+     "text": "ソーラー充電"
+    },
+    {
+     "id": "solar.p",
+     "text": "ソーラーパネル接続用のDC入力ポート（8020メス）×2を搭載しており、合計最大入力電力は400Wです。そのため、ソーラーパネル100Wの場合は最大4枚までとなります。"
+    },
+    {
+     "id": "solar.acc.h",
+     "text": "■ 必要なアクセサリー"
+    },
+    {
+     "id": "solar.acc.l1",
+     "text": "1枚または2枚接続時：アクセサリー不要、直接本体に接続可能です。"
+    },
+    {
+     "id": "solar.acc.l2",
+     "text": "4枚接続時：別売りの「SolarSagaアダプター（Pro/Plus/New専用）」を2個ご用意いただく必要があります。"
+    },
+    {
+     "id": "solar.acc.note",
+     "text": "※Jackery SolarSagaアダプターを使って3枚接続はできません（電圧が許容範囲を超え、故障のリスクがあります）。"
+    },
+    {
+     "id": "solar.two.l1",
+     "text": "直接接続可能です。"
+    },
+    {
+     "id": "solar.two.l2",
+     "text": "追加のアクセサリーは不要です。"
+    },
+    {
+     "id": "solar.two.l3",
+     "text": "本製品のDC入力ポートは「8020メス」です。ソーラーパネル側の「8020オス」と接続してください。"
+    },
+    {
+     "id": "fig.solar2.caption",
+     "text": "SolarSaga 200 × 2"
+    }
+   ]
+  },
+  {
+   "physical_page": 20,
+   "printed_page": "18",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "solar.four.l1",
+     "text": "別売りの「Jackery SolarSaga アダプター(Pro/Plus/New専用)」が必要です。"
+    },
+    {
+     "id": "solar.four.s1",
+     "text": "「Jackery SolarSaga アダプター(Pro/Plus/New専用)」（オス・メス）とも8020端子です。"
+    },
+    {
+     "id": "solar.four.s2",
+     "text": "ソーラーパネルの8020オス端子を「Jackery SolarSaga アダプター(Pro/Plus/New専用)」の8020メス端子に接続してください。"
+    },
+    {
+     "id": "fig.solar4.caption",
+     "text": "SolarSaga 100 Air × 4"
+    },
+    {
+     "id": "fig.solar4.adapter",
+     "text": "SolarSaga アダプター（Pro/Plus/New専用）別売り"
+    },
+    {
+     "id": "solar.c.l",
+     "text": "ご注意"
+    },
+    {
+     "id": "solar.c.p1",
+     "text": "DC入力ポートの電圧を一致させてください。"
+    },
+    {
+     "id": "solar.c.p2",
+     "text": "2つのDC入力ポートに接続する電源の電圧は必ず一致させてください。電圧が異なると、製品の異常動作や故障の原因となる可能性があります。"
+    },
+    {
+     "id": "solar.c.p3",
+     "text": "例："
+    },
+    {
+     "id": "solar.c.i1",
+     "text": "2つのDC8020入力ポートにソーラーパネルを接続する際は、同じ型番のJackery製ソーラーパネルを使用し、接続する枚数も揃えてください。異なる型番や接続枚数で接続すると、電圧が不均一になり、製品が故障するおそれがあります。"
+    },
+    {
+     "id": "solar.c.i2",
+     "text": "車載充電器とソーラーパネルを同時に使用して製品を充電しないでください。車のヒューズが切れたり、充電が正常に行われなかったりする可能性があります。"
+    },
+    {
+     "id": "solar.brand",
+     "text": "Jackeryブランド以外の付属品を使用して充電しないでください。特に、ソーラーパネルで充電する際は、Jackeryのソーラーパネルを使用することをお勧めします。ソーラーパネルの開放電圧（Voc）が、Jackeryポータブル電源 1000 PlusのDC入力電圧範囲（16V～60V）内に収まっていることを確認してください。他社ソーラーパネルで充電することによる損失について、当社は一切の責任を負いません。"
+    }
+   ]
+  },
+  {
+   "physical_page": 21,
+   "printed_page": "19",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "car.h",
+     "text": "シガーソケット充電"
+    },
+    {
+     "id": "car.lead",
+     "text": "■本製品は、12V/10A 出力の車載シガーソケットからの充電に対応しています。"
+    },
+    {
+     "id": "car.p",
+     "text": "ご使用の際は、以下にご注意ください。"
+    },
+    {
+     "id": "car.l1",
+     "text": "必ず車のエンジンを始動させてから接続してください。エンジン停止状態で使用すると、車両のバッテリーが上がる恐れがあります。"
+    },
+    {
+     "id": "car.l2",
+     "text": "車の充電ポートとシガーソケット充電ケーブルの接触状態をご確認ください。"
+    },
+    {
+     "id": "car.l3",
+     "text": "ケーブルが確実に奥まで差し込まれていることをご確認ください。"
+    },
+    {
+     "id": "car.l4",
+     "text": "悪路などで車両の振動が激しい場合は、接触不良や発熱・焼損の恐れがあるため、充電を中止してください。"
+    },
+    {
+     "id": "car.l5",
+     "text": "誤使用による故障・損傷については、弊社では責任を負いかねます。あらかじめご了承ください。"
+    },
+    {
+     "id": "fig.car.vehicle",
+     "text": "車"
+    },
+    {
+     "id": "fig.car.caption",
+     "text": "※ シガーソケット充電ケーブルは別売りです。"
+    },
+    {
+     "id": "car.c.l",
+     "text": "ご注意"
+    },
+    {
+     "id": "car.c1",
+     "text": "シガーソケット充電とソーラー充電を同時に使用しないでください。同時に使用すると、車のヒューズが損傷する可能性があります。"
+    },
+    {
+     "id": "car.c2",
+     "text": "シガーソケット充電は 12V, 10A 車専用で、24V 車は充電できません。人身傷害や物的損害を避けるため、本製品の充電に 24V 車を使用しないでください。"
+    }
+   ]
+  },
+  {
+   "physical_page": 22,
+   "printed_page": "20",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "ts.h",
+     "text": "トラブルシューティング"
+    },
+    {
+     "id": "ts.p1",
+     "text": "次のいずれかのエラーコードが表示された場合は、記載されている対処方法に従って問題を解決してください。"
+    },
+    {
+     "id": "ts.p2",
+     "text": "問題が解決しない場合は、Jackeryカスタマーサポートまでご連絡ください。"
+    },
+    {
+     "id": "ts.th1",
+     "text": "エラーコード"
+    },
+    {
+     "id": "ts.th2",
+     "text": "対処方法"
+    },
+    {
+     "id": "ts.r1.c1",
+     "text": "F0 / F1"
+    },
+    {
+     "id": "ts.r1.c2",
+     "text": "F2 / F3"
+    },
+    {
+     "id": "ts.r1.m",
+     "text": "製品を再起動してください。"
+    },
+    {
+     "id": "ts.r2.c",
+     "text": "F4"
+    },
+    {
+     "id": "ts.r2.m",
+     "text": "製品に負荷を接続してバッテリーを放電し、エラーが消えるまで続けてください。"
+    },
+    {
+     "id": "ts.r3.c",
+     "text": "F5"
+    },
+    {
+     "id": "ts.r3.m",
+     "text": "ソーラーパネルまたはAC電源コンセントを使用して、エラーが消えるまで製品を充電してください。"
+    },
+    {
+     "id": "ts.r4.c",
+     "text": "F6"
+    },
+    {
+     "id": "ts.r4.m1",
+     "text": "1. AC 電源コンセントから充電する前に、電力グリッドが安定するのを待ってください。"
+    },
+    {
+     "id": "ts.r4.m2",
+     "text": "2. 吸気口および排気口が塞がれていないか確認し、製品の両側に20cm のスペースを確保してください。"
+    },
+    {
+     "id": "ts.r4.m3",
+     "text": "3. 製品は日陰で通気の良い場所に設置し、周囲温度が45℃未満であることを確認してください。"
+    },
+    {
+     "id": "ts.r4.m4",
+     "text": "4. 製品からすべての負荷を取り外し、アイドル状態にして、エラーが消えるまで待ってください。ご使用の機器の起動時消費電力が本製品の出力範囲を超えていないかをご確認ください。"
+    },
+    {
+     "id": "ts.r4.m5",
+     "text": "5. 製品を再起動してください。"
+    },
+    {
+     "id": "ts.r5.c",
+     "text": "F7"
+    },
+    {
+     "id": "ts.r5.m1",
+     "text": "1. 製品からすべてのDC 入力を取り外してください。"
+    },
+    {
+     "id": "ts.r5.m2",
+     "text": "2. ソーラーパネルで充電する場合は、接続されたソーラーパネルの開放電圧（Voc）を確認してください。本製品の最大DC 入力電圧は60V です。"
+    },
+    {
+     "id": "ts.r5.m3",
+     "text": "3. 製品を再起動し、アイドル状態を保ってください。エラーが消えるまで待ってください。"
+    },
+    {
+     "id": "ts.r6.c",
+     "text": "F8"
+    },
+    {
+     "id": "ts.r6.m",
+     "text": "販売店またはJackeryカスタマーサポートにお問い合わせください。"
+    },
+    {
+     "id": "ts.r7.c",
+     "text": "F9"
+    },
+    {
+     "id": "ts.r7.m",
+     "text": "製品のDC/USB ポートに接続されている負荷を取り外してください。故障が消えるまで待機してください。"
+    },
+    {
+     "id": "ts.r8.c",
+     "text": "FC"
+    },
+    {
+     "id": "ts.r8.m1",
+     "text": "1. バッテリーパックとポータブル電源 1000 Plus をそれぞれ再起動します。"
+    },
+    {
+     "id": "ts.r8.m2",
+     "text": "2. 障害が続く場合は、バッテリーパックをポータブル電源 1000 Plus から切断し、再度接続してください。"
+    },
+    {
+     "id": "ts.r9.c",
+     "text": "FE"
+    },
+    {
+     "id": "ts.r9.m",
+     "text": "販売店またはJackery カスタマーサポートにお問い合わせください。"
+    }
+   ]
+  },
+  {
+   "physical_page": 23,
+   "printed_page": "21",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "spec.h",
+     "text": "主な仕様"
+    },
+    {
+     "id": "spec.g1",
+     "text": "基本情報"
+    },
+    {
+     "id": "spec.g1.r1.l",
+     "text": "製品の名称"
+    },
+    {
+     "id": "spec.g1.r1.v",
+     "text": "Jackery ポータブル電源 1000 Plus"
+    },
+    {
+     "id": "spec.g1.r2.l",
+     "text": "型番"
+    },
+    {
+     "id": "spec.g1.r2.v",
+     "text": "JE-1000H"
+    },
+    {
+     "id": "spec.g1.r3.l",
+     "text": "定格容量"
+    },
+    {
+     "id": "spec.g1.r3.v",
+     "text": "1024Wh (20Ah/51.2V DC)"
+    },
+    {
+     "id": "spec.g1.r4.l",
+     "text": "バッテリータイプ"
+    },
+    {
+     "id": "spec.g1.r4.v",
+     "text": "LiFePO₄（リン酸鉄リチウムイオン電池）"
+    },
+    {
+     "id": "spec.g1.r5.l",
+     "text": "サイクル寿命"
+    },
+    {
+     "id": "spec.g1.r5.v",
+     "text": "6000回（6000回の充放電後も初期容量の70％以上を維持）"
+    },
+    {
+     "id": "spec.g1.r6.l",
+     "text": "サイズ＆重量"
+    },
+    {
+     "id": "spec.g1.r6.v",
+     "text": "約313.5×201×233.5 mm (約10.8 kg）"
+    },
+    {
+     "id": "spec.g2",
+     "text": "入力ポート"
+    },
+    {
+     "id": "spec.g2.r1.l",
+     "text": "1×ACポート"
+    },
+    {
+     "id": "spec.g2.r1.v1",
+     "text": "100V-120V~ 50Hz/60Hz，最大15A"
+    },
+    {
+     "id": "spec.g2.r1.v2",
+     "text": "パススルー①：100V-120V~ 50Hz/60Hz，最大15A"
+    },
+    {
+     "id": "spec.g2.r2.l",
+     "text": "2×DC8020ポート"
+    },
+    {
+     "id": "spec.g2.r2.v1",
+     "text": "PV：16V-60V⎓12A，2ポート最大21A，最大400W"
+    },
+    {
+     "id": "spec.g2.r2.v2",
+     "text": "ｼｶﾞｰｿｹｯﾄ ：11V-16V⎓最大8A，2ポート最大8A"
+    },
+    {
+     "id": "spec.g2.r3.l",
+     "text": "1×DC拡張ポ一卜"
+    },
+    {
+     "id": "spec.g2.r3.v",
+     "text": "36.8V-56V⎓最大59A"
+    },
+    {
+     "id": "spec.g3",
+     "text": "出カポート"
+    },
+    {
+     "id": "spec.g3.r1.l",
+     "text": "4×ACポート"
+    },
+    {
+     "id": "spec.g3.r1.v",
+     "text": "100V~50Hz/60Hz，18A，定格1800W，瞬間最大3600W"
+    },
+    {
+     "id": "spec.g3.r2.l",
+     "text": "AC出力合計"
+    },
+    {
+     "id": "spec.g3.r2.v",
+     "text": "1800W，瞬間最大3600W"
+    },
+    {
+     "id": "spec.g3.r3.l",
+     "text": "AC出力（パススルー）①"
+    },
+    {
+     "id": "spec.g3.r3.v",
+     "text": "100V-120V~ 50Hz/60Hz，最大15A"
+    },
+    {
+     "id": "spec.g3.r4.l",
+     "text": "2×USB-Cポート"
+    },
+    {
+     "id": "spec.g3.r4.v1",
+     "text": "USB-C 30Wポート： 5V⎓3A，9V⎓3A，12V⎓2.5A，15V⎓2A，20V⎓1.5A，最大30W"
+    },
+    {
+     "id": "spec.g3.r4.v2",
+     "text": "USB-C 140Wポート： 5V⎓3A，9V⎓3A，12V⎓3A，15V⎓3A，20V⎓5A，28V⎓5A，最大140W"
+    },
+    {
+     "id": "spec.g3.r5.l",
+     "text": "1×USB-Aポート"
+    },
+    {
+     "id": "spec.g3.r5.v",
+     "text": "5-6V⎓3A，6-9V⎓2A，9-12V⎓1.5A，最大18W"
+    },
+    {
+     "id": "spec.g3.r6.l",
+     "text": "シガーソケット出力"
+    },
+    {
+     "id": "spec.g3.r6.v",
+     "text": "12V⎓最大10A"
+    },
+    {
+     "id": "spec.g3.r7.l",
+     "text": "1×DC拡張ポ一卜"
+    },
+    {
+     "id": "spec.g3.r7.v",
+     "text": "36.8V-56V⎓最大36A"
+    },
+    {
+     "id": "spec.g4",
+     "text": "温度範囲"
+    },
+    {
+     "id": "spec.g4.r1.l",
+     "text": "充電温度"
+    },
+    {
+     "id": "spec.g4.r1.v",
+     "text": "-10°C ~ 45°C"
+    },
+    {
+     "id": "spec.g4.r2.l",
+     "text": "動作温度"
+    },
+    {
+     "id": "spec.g4.r2.v",
+     "text": "-10°C ~ 45°C"
+    },
+    {
+     "id": "spec.g4.r3.l",
+     "text": "保存温度"
+    },
+    {
+     "id": "spec.g4.r3.v1",
+     "text": "1ヶ月 -20℃ ~ 45℃"
+    },
+    {
+     "id": "spec.g4.r3.v2",
+     "text": "3ヶ月 0℃ ~ 45℃"
+    },
+    {
+     "id": "spec.g4.r3.v3",
+     "text": "1年 0℃ ~ 25℃"
+    },
+    {
+     "id": "spec.tm",
+     "text": "※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum."
+    },
+    {
+     "id": "spec.fn1",
+     "text": "①  本製品は、ACコンセントからバッテリーを充電しながら、AC出力ポートを通じて給電することができます。"
+    }
+   ]
+  },
+  {
+   "physical_page": 24,
+   "printed_page": "22",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "war.h",
+     "text": "保証について"
+    },
+    {
+     "id": "war.lead1",
+     "text": "このたびはJackery 製品をご購入いただき、誠にありがとうございます。"
+    },
+    {
+     "id": "war.lead2",
+     "text": "本保証書は、Jackery ポータブル電源製品に関する保証内容を明確にご案内するものです。"
+    },
+    {
+     "id": "war.lead3",
+     "text": "ご使用前に必ずご確認のうえ、大切に保管してください。"
+    },
+    {
+     "id": "war.period.h",
+     "text": "保証期間"
+    },
+    {
+     "id": "war.period1",
+     "text": "電源本体：ご購入日より3 年間"
+    },
+    {
+     "id": "war.period2",
+     "text": "付属品（AC 充電ケーブルなど）：ご購入日より1 年間"
+    },
+    {
+     "id": "war.period3",
+     "text": "なお、延長保証にご登録いただいた場合、電源本体の保証期間はさらに2 年間延長されます。"
+    },
+    {
+     "id": "war.period4",
+     "text": "※付属品（AC 充電ケーブルなど）は延長保証の対象外です。"
+    },
+    {
+     "id": "war.period5",
+     "text": "詳細につきましては、公式サイトをご確認ください。"
+    },
+    {
+     "id": "war.period.note",
+     "text": "※ Jackery 公式オンラインストアまたは正規代理店以外での購入品は保証対象外となります。"
+    },
+    {
+     "id": "war.scope.h",
+     "text": "保証の適用範囲"
+    },
+    {
+     "id": "war.scope1.t",
+     "text": "1. 購入チャネルについて"
+    },
+    {
+     "id": "war.scope1.b",
+     "text": "本保証は、Jackery公式オンラインストアまたは正規代理店で購入された製品に限り有効です。"
+    },
+    {
+     "id": "war.scope.note",
+     "text": "※ Jackery 公式オンラインストアまたは正規代理店以外での購入品は保証対象外となります。"
+    },
+    {
+     "id": "war.scope2.t",
+     "text": "2. 保証提供地域"
+    },
+    {
+     "id": "war.scope2.b",
+     "text": "保証は、日本国内に在住の方が、日本国内で使用する場合に限り有効です。"
+    },
+    {
+     "id": "war.cond.h",
+     "text": "保証の適用条件"
+    },
+    {
+     "id": "war.cond.lead",
+     "text": "以下のすべての条件を満たす場合に、保証の適用対象となります。"
+    },
+    {
+     "id": "war.cond.l1",
+     "text": "Jackery公式オンラインストアまたは正規代理店にてご購入されたこと"
+    },
+    {
+     "id": "war.cond.l2",
+     "text": "保証期間内であること"
+    },
+    {
+     "id": "war.cond.l3",
+     "text": "下記の「保証対象外」に該当しないこと"
+    },
+    {
+     "id": "war.excl.h",
+     "text": "保証対象外となる場合"
+    },
+    {
+     "id": "war.excl.lead",
+     "text": "以下のいずれかに該当する場合、保証期間内であっても保証の対象外となります。"
+    },
+    {
+     "id": "war.excl.l1",
+     "text": "1.故障・損傷が保証期間内に発生していても、保証期間終了後に申請された場合"
+    },
+    {
+     "id": "war.excl.l2",
+     "text": "2.使用上の誤り（取扱説明書や本体ラベルに記載の注意事項に従わなかった使用）による故障・損傷"
+    },
+    {
+     "id": "war.excl.l3",
+     "text": "3.他機器からの影響、不適切な修理または改造による故障・損傷"
+    },
+    {
+     "id": "war.excl.l4",
+     "text": "4.移設・輸送・落下などに起因する故障・損傷"
+    },
+    {
+     "id": "war.excl.l5",
+     "text": "5.火災・地震・風水害・落雷などの天災、または公害・塩害・異常電圧などによる故障・損傷"
+    },
+    {
+     "id": "war.excl.l6",
+     "text": "6.消耗部品の劣化や摩耗、または外観の汚損など"
+    }
+   ]
+  },
+  {
+   "physical_page": 25,
+   "printed_page": "23",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "war.proof.h",
+     "text": "購入証明について"
+    },
+    {
+     "id": "war.proof.lead",
+     "text": "保証をご利用の際には、以下いずれかの購入証明書類をご提示いただく必要があります。"
+    },
+    {
+     "id": "war.proof.l1",
+     "text": "Jackery公式オンラインストアでの購入：注文番号（注文履歴画面または確認メール）"
+    },
+    {
+     "id": "war.proof.l2",
+     "text": "正規代理店での購入：購入日・販売店名の記載された領収書または納品書"
+    },
+    {
+     "id": "war.proof.note",
+     "text": "※  ご提示がない場合、保証対応いたしかねます。"
+    },
+    {
+     "id": "war.cont.h",
+     "text": "保証内容"
+    },
+    {
+     "id": "war.cont1.t",
+     "text": "1. 初期不良による交換"
+    },
+    {
+     "id": "war.cont1.p",
+     "text": "（ご購入日から30日以内）"
+    },
+    {
+     "id": "war.cont1.l1",
+     "text": "取扱説明書に従った正常な使用中に不具合が発生した場合、同一製品の新品と交換いたします。"
+    },
+    {
+     "id": "war.cont1.l2",
+     "text": "在庫切れや販売終了の場合は、同等品への交換または返金にて対応いたします。"
+    },
+    {
+     "id": "war.cont2.t",
+     "text": "2. 無償修理"
+    },
+    {
+     "id": "war.cont2.p",
+     "text": "（ご購入日から31日以上～保証期間内）"
+    },
+    {
+     "id": "war.cont2.l1",
+     "text": "保証条件を満たす自然故障については、無料で修理対応いたします。"
+    },
+    {
+     "id": "war.cont2.l2",
+     "text": "修理が困難な場合は、同等品（同モデルまたは同等スペック品）への交換にて対応いたします。"
+    },
+    {
+     "id": "war.cont3.t",
+     "text": "3. 有償修理"
+    },
+    {
+     "id": "war.cont3.lead",
+     "text": "以下に該当する場合は、有償での修理対応となります。"
+    },
+    {
+     "id": "war.cont3.l1",
+     "text": "保証期間を超えた製品"
+    },
+    {
+     "id": "war.cont3.l2",
+     "text": "保証対象外と判断された場合"
+    },
+    {
+     "id": "war.cont3.l3",
+     "text": "Jackery公式オンラインストアまたは正規代理店以外で購入された製品"
+    },
+    {
+     "id": "war.cont3.after",
+     "text": "有償修理後の保証期間は、修理完了日より90日間です。"
+    },
+    {
+     "id": "war.cont.note",
+     "text": "*無償修理の場合、残りの保証期間が90日未満であれば「90日間」、90日以上であれば「元の保証期間に準じます」。"
+    },
+    {
+     "id": "war.disc.h",
+     "text": "免責事項"
+    },
+    {
+     "id": "war.disc1",
+     "text": "1. 弊社では、いかなる場合においても、間接的損害または付随的損害（データの損失・逸失利益など）に対して責任を負いません。"
+    },
+    {
+     "id": "war.disc2",
+     "text": "2. 本保証書は、お客様が法律上有する権利を制限するものではありません。"
+    },
+    {
+     "id": "war.disc3",
+     "text": "3. 保証内容は、予告なく変更される場合がございます。あらかじめご了承ください。"
+    },
+    {
+     "id": "war.disc4",
+     "text": "Jackery 製品を安心してご使用いただくために、本保証書の内容をご確認のうえ、ご活用くださいますようお願いいたします。"
+    },
+    {
+     "id": "war.disc5",
+     "text": "ご不明点がございましたら、Jackery カスタマーサービスまでお問い合わせください。"
+    },
+    {
+     "id": "contact.web",
+     "text": "公式サイト: https://www.jackery.jp"
+    },
+    {
+     "id": "contact.mail",
+     "text": "カスタマーサポート: jackery.jp@jackery.com"
+    },
+    {
+     "id": "contact.tel",
+     "text": "お問い合わせ電話番号: 050-3198-9007"
+    }
+   ]
+  },
+  {
+   "physical_page": 26,
+   "printed_page": "24",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "appm.h",
+     "text": "Jackeryアプリ ユーザーマニュアル"
+    },
+    {
+     "id": "appm.s1.h",
+     "text": "1. アプリをダウンロードしてログインするには"
+    },
+    {
+     "id": "appm.s1.store",
+     "text": "Google PlayまたはApp Storeで「Jackery」と検索し、アプリをインストールしてください。その後、登録とログインを行ってください。"
+    },
+    {
+     "id": "appm.s1.qr",
+     "text": "または、下の QR コードをスキャンしてアプリをダウンロードし、インストールしてください。"
+    },
+    {
+     "id": "appm.s2.h",
+     "text": "2. デバイスを追加するには"
+    },
+    {
+     "id": "appm.s21",
+     "text": "2.1    APPの右上にあるデバイス追加ボタン [+] をクリックします。"
+    },
+    {
+     "id": "appm.s22",
+     "text": "2.2 デバイスの主電源ボタンを長押しして電源をいれると、ディスプレー画面にWi-FiとBluetoothのアイコンが点滅し、デバイスがネットワーク設定モードに入ったことを示します。アイコン点滅中ボタンをクリックし、アプリが近くのデバイスに接続し、Bluetoothのアクセス許可を開くことを許可します。"
+    },
+    {
+     "id": "fig.app.c21",
+     "text": "2.1"
+    },
+    {
+     "id": "fig.app.c22",
+     "text": "2.2"
+    },
+    {
+     "id": "fig.ctl.power",
+     "text": "主電源ボタン"
+    },
+    {
+     "id": "fig.ctl.dc",
+     "text": "DC/USB出力ボタン"
+    },
+    {
+     "id": "fig.ctl.ac2",
+     "text": "AC 2出力ボタン"
+    },
+    {
+     "id": "fig.ctl.ac1",
+     "text": "AC 1出力ボタン"
+    },
+    {
+     "id": "appm.s23",
+     "text": "2.3 検出されたデバイスアイコンをクリックすると、アプリは自動的にBluetoothでデバイスを接続します。"
+    }
+   ]
+  },
+  {
+   "physical_page": 27,
+   "printed_page": "25",
+   "role": "body",
+   "web": true,
+   "lines": [
+    {
+     "id": "appm.note1.l",
+     "text": "備考"
+    },
+    {
+     "id": "appm.note1",
+     "text": "バインド処理中に「デバイスがバインドされました」と表示された場合は、以下の2つの方法で接続できます。"
+    },
+    {
+     "id": "appm.note1.l1",
+     "text": "デバイス所有者は、アプリを通じてこのデバイスを他のユーザーと共有します。"
+    },
+    {
+     "id": "appm.note1.l2",
+     "text": "主電源ボタンとDC/USB出力ボタンを同時に3秒間押すと、Wi-FiとBluetoothが初期化されます。"
+    },
+    {
+     "id": "appm.s24",
+     "text": "2.4 デバイスが正常に接続されると、デバイスが接続するWi-Fiの名前とパスワードを入力する必要があり、デバイスは自動的にWi-Fiネットワークに接続します。"
+    },
+    {
+     "id": "appm.note2.l",
+     "text": "備考"
+    },
+    {
+     "id": "appm.note2",
+     "text": "2.4GHz帯のWi-Fiネットワークを選択してください。デバイスは、5GHz帯のWi-Fiネットワークには対応していません。"
+    },
+    {
+     "id": "appm.s25",
+     "text": "2.5 デバイスのホーム画面でデバイスが正常に追加されると、デバイスのWi-Fi アイコンは常にオンになります。"
+    },
+    {
+     "id": "fig.app.c23",
+     "text": "2.3"
+    },
+    {
+     "id": "fig.app.c24",
+     "text": "2.4"
+    },
+    {
+     "id": "fig.app.c25",
+     "text": "2.5"
+    },
+    {
+     "id": "fig.app.dev1",
+     "text": "Explorer 1000 Plus"
+    },
+    {
+     "id": "fig.app.dev2",
+     "text": "Explorer 1000 Plus"
+    },
+    {
+     "id": "appm.shots",
+     "text": "上記のスクリーンショットはイメージです。"
+    },
+    {
+     "id": "appm.note3.l",
+     "text": "備考"
+    },
+    {
+     "id": "appm.note3",
+     "text": "Jackeryアプリは、一度に1台のポータブル電源としかBluetooth接続できません。 デバイスリストに戻ると、自動的にBluetoothが切断されます。 リスト内のポータブル電源をもう一度タップすると、自動的に再接続されます。"
+    },
+    {
+     "id": "appm.s3.h",
+     "text": "3. デバイスのバインドを解除するには"
+    },
+    {
+     "id": "appm.s3",
+     "text": "デバイスのメインインターフェースの右上隅にある「設定」ボタンをクリックして設定ページに入り、ページの下部にある「バインド解除」ボタンをクリックしてデバイスのバインドを解除します。"
+    },
+    {
+     "id": "appm.s4.h",
+     "text": "4. Wi-Fi・Bluetoothの設定"
+    },
+    {
+     "id": "appm.s41.h",
+     "text": "4.1 Wi-FiとBluetoothをオンにするには（ディスプレーにWi-FiとBluetoothのアイコンが点灯）："
+    },
+    {
+     "id": "appm.s41.l1",
+     "text": "デバイスがオンになれば自動的にオンになり、ディスプレーにWi-FiとBluetoothのアイコンが点灯します。"
+    },
+    {
+     "id": "appm.s41.l2",
+     "text": "上記アイコンが点灯しない場合、ディスプレーにWi-FiとBluetoothのアイコンが点灯するまで、DC/USB出力ボタンとAC 1出力ボタンを同時長押しします。"
+    },
+    {
+     "id": "appm.s42.h",
+     "text": "4.2 Wi-FiとBluetoothをオフにするには（ディスプレーにWi-FiとBluetoothのアイコンが消える）："
+    },
+    {
+     "id": "appm.s42.l1",
+     "text": "ディスプレーにWi-FiとBluetoothのアイコンが消えるまで、DC/USB出力ボタンとAC 1出力ボタンを同時長押しします。"
+    },
+    {
+     "id": "appm.s43.h",
+     "text": "4.3 Wi-FiとBluetoothをリセットするには："
+    },
+    {
+     "id": "appm.s43.l1",
+     "text": "主電源ボタンとDC/USB出力ボタンを同時に3秒間押すと、Wi-FiとBluetoothが初期化され、接続されているポータブル電源はバインド解除されます。"
+    }
+   ]
+  },
+  {
+   "physical_page": 28,
+   "printed_page": null,
+   "role": "back-cover",
+   "web": false,
+   "lines": [
+    {
+     "id": "back.p1",
+     "text": "本製品はJackeryアプリケーションによるスマートコントロールに対応しています。"
+    },
+    {
+     "id": "back.p2",
+     "text": "ご利用いただくには、下記のアプリストアより「Jackery」で検索して「Jackery アプリ」をダウンロードしてください。"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,19 @@
+/* Source geometry only. The shared Web theme owns every colour, border, fill,
+   heading, callout, table, card and figure style (prepared-document shared-style
+   gate). Figures are selected by their shared data attributes. */
+
+/* Source panels keep a print-like width; no visible caption. */
+#furo-main-content .hb-reference-figure { max-width: 680px; margin-left: auto; margin-right: auto; }
+#furo-main-content .hb-reference-figure:is([data-reference-id="use-led-light"], [data-reference-id="charge-ac-cable"]) { max-width: 420px; }
+
+/* App screenshots keep a phone-like size; store badges and QR codes a badge size. */
+#furo-main-content .hb-reference-figure[data-reference-id^="app-screen-"] { max-width: 220px; }
+#furo-main-content .hb-reference-figure[data-reference-id="back-store-badges"] { max-width: 300px; margin-left: 0; }
+#furo-main-content .hb-reference-figure[data-reference-id="back-qr-code"] { max-width: 6.5rem; margin-left: 0; }
+
+/* Inline LCD and LED pictograms keep their print size. */
+#furo-main-content .hb-text-panel img[alt="12H"] { height: 1.1em; width: auto; vertical-align: middle; }
+#furo-main-content .table-wrapper img:is([alt="点灯"], [alt="SOS"], [alt="消灯"]) { width: 2.25rem; max-width: none; }
+
+/* Print case for chapter and subheadings; shared markers stay. */
+#furo-main-content :is(h1, h3, h4), #furo-main-content h2:not(.hb-spec-section) { text-transform: none; }

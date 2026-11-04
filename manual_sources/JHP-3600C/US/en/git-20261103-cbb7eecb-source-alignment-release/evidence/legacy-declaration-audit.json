@@ -1,0 +1,2401 @@
+{
+  "current_pdf_sha256": "cbb7eecba3f7a2a035f6c5bc0d3da54505b9d6399377d87eb639fc5683e694d1",
+  "scope": "All English legacy differences rows and limitations, all source asset decisions, all3600A layout-review files/all3600C heading declarations. Historical claims are checked against current reference, not accepted as approval.",
+  "chapter_page_map": {
+    "important": [
+      2
+    ],
+    "safety": [
+      4,
+      5
+    ],
+    "symbols": [
+      5
+    ],
+    "fcc": [
+      6
+    ],
+    "inbox": [
+      6
+    ],
+    "overview": [
+      7
+    ],
+    "lcd": [
+      8,
+      9,
+      10
+    ],
+    "operations": [
+      11,
+      12,
+      13,
+      14
+    ],
+    "ups": [
+      14,
+      15
+    ],
+    "connections": [
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "charging": [
+      21,
+      22,
+      23,
+      24
+    ],
+    "troubleshooting": [
+      24,
+      25
+    ],
+    "storage": [
+      25
+    ],
+    "specifications": [
+      25,
+      26
+    ],
+    "warranty": [
+      27
+    ],
+    "app": [
+      28,
+      29
+    ],
+    "ess": [
+      30
+    ],
+    "ess-specifications": [
+      31,
+      32,
+      33
+    ],
+    "ess-package": [
+      34
+    ],
+    "contact": [
+      35
+    ]
+  },
+  "explicit_exceptions": [
+    "Front cover and print TOC excluded by explicit operator instruction.",
+    "Shared App UI: PR1447/commit3a556be836b105929dacbb1a27888cd7b2c876ee, code-as-doc/reviews/jhp3600c_us_en_web_intake_2026-10.md lines442–448, user “用共用图啊 边缘不完整”.",
+    "FCC balanced flow: same evidence lines518–522, operator asked to remove uneven empty column; retain this specifically accepted Web flow."
+  ],
+  "declarations": [
+    {
+      "declaration": "source/heading_audit.json#headings/0",
+      "title": "Jackery HomePower 3600 Pro Max User Manual",
+      "current_pdf_pages": [
+        2
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/1",
+      "title": "IMPORTANT",
+      "current_pdf_pages": [
+        2
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/2",
+      "title": "IMPORTANT SAFETY INFORMATION",
+      "current_pdf_pages": [
+        4,
+        5
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/3",
+      "title": "OPERATING INSTRUCTIONS",
+      "current_pdf_pages": [
+        4,
+        5
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/4",
+      "title": "GROUNDING INSTRUCTIONS",
+      "current_pdf_pages": [
+        4,
+        5
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/5",
+      "title": "USER MAINTENANCE INSTRUCTIONS",
+      "current_pdf_pages": [
+        4,
+        5
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/6",
+      "title": "MEANING OF SYMBOLS",
+      "current_pdf_pages": [
+        5
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/7",
+      "title": "FCC",
+      "current_pdf_pages": [
+        6
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/8",
+      "title": "WHAT'S IN THE BOX",
+      "current_pdf_pages": [
+        6
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/9",
+      "title": "PRODUCT OVERVIEW",
+      "current_pdf_pages": [
+        7
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/10",
+      "title": "FRONT VIEW",
+      "current_pdf_pages": [
+        7
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/11",
+      "title": "RIGHT SIDE VIEW",
+      "current_pdf_pages": [
+        7
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/12",
+      "title": "LCD DISPLAY",
+      "current_pdf_pages": [
+        8,
+        9,
+        10
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/13",
+      "title": "OPERATIONS",
+      "current_pdf_pages": [
+        11,
+        12,
+        13,
+        14
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/14",
+      "title": "POWER ON/OFF",
+      "current_pdf_pages": [
+        11,
+        12,
+        13,
+        14
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/15",
+      "title": "USB OUTPUT ON/OFF",
+      "current_pdf_pages": [
+        11,
+        12,
+        13,
+        14
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/16",
+      "title": "AC OUTPUT ON/OFF",
+      "current_pdf_pages": [
+        11,
+        12,
+        13,
+        14
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/17",
+      "title": "ENERGY SAVING MODE",
+      "current_pdf_pages": [
+        11,
+        12,
+        13,
+        14
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/18",
+      "title": "LCD SCREEN",
+      "current_pdf_pages": [
+        11,
+        12,
+        13,
+        14
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/19",
+      "title": "KEY COMBINATION",
+      "current_pdf_pages": [
+        11,
+        12,
+        13,
+        14
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/20",
+      "title": "AC AND DC OUTPUT RESUME FUNCTION",
+      "current_pdf_pages": [
+        11,
+        12,
+        13,
+        14
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/21",
+      "title": "UNINTERRUPTIBLE POWER SUPPLY (UPS)",
+      "current_pdf_pages": [
+        14,
+        15
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/22",
+      "title": "WITH 120V AC INPUT",
+      "current_pdf_pages": [
+        14,
+        15
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/23",
+      "title": "WITH 240V AC INPUT",
+      "current_pdf_pages": [
+        14,
+        15
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/24",
+      "title": "CONNECTIONS",
+      "current_pdf_pages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/25",
+      "title": "CONNECT TO BATTERY PACK(S) — SOLD SEPARATELY",
+      "current_pdf_pages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/26",
+      "title": "CASCADE PARALLEL CONNECTION",
+      "current_pdf_pages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/27",
+      "title": "Required Accessories",
+      "current_pdf_pages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/28",
+      "title": "Connection Steps",
+      "current_pdf_pages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/29",
+      "title": "CONNECT TO EPO SWITCH",
+      "current_pdf_pages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/30",
+      "title": "BACKUP POWER CONNECTION",
+      "current_pdf_pages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/31",
+      "title": "CONNECT TO ATS — SOLD SEPARATELY",
+      "current_pdf_pages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/32",
+      "title": "CONNECT TO MTS — SOLD SEPARATELY",
+      "current_pdf_pages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/33",
+      "title": "MTS Installation Notice",
+      "current_pdf_pages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/34",
+      "title": "SINGLE UNIT CONNECTION WITH MTS",
+      "current_pdf_pages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/35",
+      "title": "CASCADE PARALLEL CONNECTION WITH MTS",
+      "current_pdf_pages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/36",
+      "title": "CHARGING",
+      "current_pdf_pages": [
+        21,
+        22,
+        23,
+        24
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/37",
+      "title": "CHARGING VIA 120V AC WALL OUTLET",
+      "current_pdf_pages": [
+        21,
+        22,
+        23,
+        24
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/38",
+      "title": "CHARGING VIA 240V AC INPUT",
+      "current_pdf_pages": [
+        21,
+        22,
+        23,
+        24
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/39",
+      "title": "240V AC Outlet",
+      "current_pdf_pages": [
+        21,
+        22,
+        23,
+        24
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/40",
+      "title": "TRANSFER SWITCH (ATS)",
+      "current_pdf_pages": [
+        21,
+        22,
+        23,
+        24
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/41",
+      "title": "CHARGING VIA SOLAR PANELS — SOLD SEPARATELY",
+      "current_pdf_pages": [
+        21,
+        22,
+        23,
+        24
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/42",
+      "title": "CHARGING WITH A CAR CHARGER — SOLD SEPARATELY",
+      "current_pdf_pages": [
+        21,
+        22,
+        23,
+        24
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/43",
+      "title": "TROUBLESHOOTING",
+      "current_pdf_pages": [
+        24,
+        25
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/44",
+      "title": "STORAGE",
+      "current_pdf_pages": [
+        25
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/45",
+      "title": "SPECIFICATIONS",
+      "current_pdf_pages": [
+        25,
+        26
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/46",
+      "title": "GENERAL INFO",
+      "current_pdf_pages": [
+        25,
+        26
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/47",
+      "title": "INPUT PORTS",
+      "current_pdf_pages": [
+        25,
+        26
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/48",
+      "title": "OUTPUT PORTS",
+      "current_pdf_pages": [
+        25,
+        26
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/49",
+      "title": "EXPANSION PORTS",
+      "current_pdf_pages": [
+        25,
+        26
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/50",
+      "title": "ENVIRONMENTAL SPECIFICATIONS",
+      "current_pdf_pages": [
+        25,
+        26
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/51",
+      "title": "WARRANTY",
+      "current_pdf_pages": [
+        27
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/52",
+      "title": "Limited Warranty",
+      "current_pdf_pages": [
+        27
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/53",
+      "title": "Warranty Period",
+      "current_pdf_pages": [
+        27
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/54",
+      "title": "Repair or replacement",
+      "current_pdf_pages": [
+        27
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/55",
+      "title": "Limited to Original Consumer Buyer",
+      "current_pdf_pages": [
+        27
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/56",
+      "title": "Exclusions",
+      "current_pdf_pages": [
+        27
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/57",
+      "title": "Interpretation Rights",
+      "current_pdf_pages": [
+        27
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/58",
+      "title": "APP SETUP",
+      "current_pdf_pages": [
+        28,
+        29
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/59",
+      "title": "1. Download the App and log in",
+      "current_pdf_pages": [
+        28,
+        29
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/60",
+      "title": "2. Add device",
+      "current_pdf_pages": [
+        28,
+        29
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/61",
+      "title": "3. Unbind the device",
+      "current_pdf_pages": [
+        28,
+        29
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/62",
+      "title": "4. Notes",
+      "current_pdf_pages": [
+        28,
+        29
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/63",
+      "title": "4.1 To turn on Wi-Fi & Bluetooth:",
+      "current_pdf_pages": [
+        28,
+        29
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/64",
+      "title": "4.2 To turn off Wi-Fi & Bluetooth:",
+      "current_pdf_pages": [
+        28,
+        29
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/65",
+      "title": "4.3 To reset Wi-Fi & Bluetooth:",
+      "current_pdf_pages": [
+        28,
+        29
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/66",
+      "title": "SMART HOME BACKUP SYSTEM (AC ESS) Model: HB3600C-TS05A",
+      "current_pdf_pages": [
+        30
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/67",
+      "title": "SPECIFICATIONS Model: JHP-3600C",
+      "current_pdf_pages": [
+        31,
+        32,
+        33
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/68",
+      "title": "GENERAL INFO",
+      "current_pdf_pages": [
+        31,
+        32,
+        33
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/69",
+      "title": "INPUT PORTS",
+      "current_pdf_pages": [
+        31,
+        32,
+        33
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/70",
+      "title": "OUTPUT PORTS",
+      "current_pdf_pages": [
+        31,
+        32,
+        33
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/71",
+      "title": "EXPANSION PORTS",
+      "current_pdf_pages": [
+        31,
+        32,
+        33
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/72",
+      "title": "ENVIRONMENTAL SPECIFICATIONS",
+      "current_pdf_pages": [
+        31,
+        32,
+        33
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/73",
+      "title": "Jackery Battery Pack 3600 — SOLD SEPARATELY",
+      "current_pdf_pages": [
+        31,
+        32,
+        33
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/74",
+      "title": "GENERAL INFO",
+      "current_pdf_pages": [
+        31,
+        32,
+        33
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/75",
+      "title": "INPUT/OUTPUT PORTS",
+      "current_pdf_pages": [
+        31,
+        32,
+        33
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/76",
+      "title": "ENVIRONMENTAL OPERATING TEMPERATURE",
+      "current_pdf_pages": [
+        31,
+        32,
+        33
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/77",
+      "title": "Jackery Automatic Transfer Switch — SOLD SEPARATELY",
+      "current_pdf_pages": [
+        31,
+        32,
+        33
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/78",
+      "title": "Jackery Automatic Transfer Switch",
+      "current_pdf_pages": [
+        31,
+        32,
+        33
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/79",
+      "title": "PACKAGE LIST",
+      "current_pdf_pages": [
+        34
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/80",
+      "title": "Jackery HomePower 3600 Pro Max",
+      "current_pdf_pages": [
+        34
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/81",
+      "title": "Jackery Battery Pack 3600 — Sold separately",
+      "current_pdf_pages": [
+        34
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/82",
+      "title": "Jackery Automatic Transfer Switch — Sold separately",
+      "current_pdf_pages": [
+        34
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    },
+    {
+      "declaration": "source/heading_audit.json#headings/83",
+      "title": "CONTACT US",
+      "current_pdf_pages": [
+        35
+      ],
+      "result": "Source hierarchy retained; synthetic identity/FCC/contact labels stay hidden; no cover/printTOC rendered."
+    }
+  ],
+  "asset_decisions": [
+    {
+      "declaration": "source/asset_decisions.json/0",
+      "asset": "assets/symbol_warning_triangle.svg",
+      "legacy_decision": "reuse corrected existing shared SVG",
+      "current_chapters": [
+        "symbols"
+      ],
+      "current_pdf_pages": [
+        5
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/1",
+      "asset": "assets/symbol_read_manual.svg",
+      "legacy_decision": "reuse corrected existing shared SVG",
+      "current_chapters": [
+        "symbols"
+      ],
+      "current_pdf_pages": [
+        5
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/2",
+      "asset": "assets/symbol_electric_shock.svg",
+      "legacy_decision": "shared library repair: source-native variant where no matching suitable asset exists",
+      "current_chapters": [
+        "symbols"
+      ],
+      "current_pdf_pages": [
+        5
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/3",
+      "asset": "assets/symbol_battery_charging.svg",
+      "legacy_decision": "shared library repair: source-native variant where no matching suitable asset exists",
+      "current_chapters": [
+        "symbols"
+      ],
+      "current_pdf_pages": [
+        5
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/4",
+      "asset": "assets/symbol_explosive_material.svg",
+      "legacy_decision": "shared library repair: source-native variant where no matching suitable asset exists",
+      "current_chapters": [
+        "symbols"
+      ],
+      "current_pdf_pages": [
+        5
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/5",
+      "asset": "assets/symbol_heavy_object.svg",
+      "legacy_decision": "shared library repair: source-native variant where no matching suitable asset exists",
+      "current_chapters": [
+        "symbols"
+      ],
+      "current_pdf_pages": [
+        5
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/6",
+      "asset": "assets/symbol_do_not_dismantle.svg",
+      "legacy_decision": "shared library repair: source-native variant where no matching suitable asset exists",
+      "current_chapters": [
+        "symbols"
+      ],
+      "current_pdf_pages": [
+        5
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/7",
+      "asset": "assets/symbol_no_open_flame.svg",
+      "legacy_decision": "shared library repair: source-native variant where no matching suitable asset exists",
+      "current_chapters": [
+        "symbols"
+      ],
+      "current_pdf_pages": [
+        5
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/8",
+      "asset": "assets/symbol_keep_away_from_children.svg",
+      "legacy_decision": "shared library repair: source-native variant where no matching suitable asset exists",
+      "current_chapters": [
+        "symbols"
+      ],
+      "current_pdf_pages": [
+        5
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/9",
+      "asset": "assets/symbol_li_ion.svg",
+      "legacy_decision": "shared library repair: source-native variant where no matching suitable asset exists",
+      "current_chapters": [
+        "symbols"
+      ],
+      "current_pdf_pages": [
+        5
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/10",
+      "asset": "assets/symbol_weee.png",
+      "legacy_decision": "reuse existing shared PNG byte-identical",
+      "current_chapters": [
+        "symbols"
+      ],
+      "current_pdf_pages": [
+        5
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/11",
+      "asset": "assets/45f309ed8b3f_fcc_mark.png",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "fcc"
+      ],
+      "current_pdf_pages": [
+        6
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/12",
+      "asset": "assets/inbox_unit.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "inbox",
+        "ess-package"
+      ],
+      "current_pdf_pages": [
+        6,
+        34
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/13",
+      "asset": "assets/inbox_ac.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "inbox",
+        "ess-package"
+      ],
+      "current_pdf_pages": [
+        6,
+        34
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/14",
+      "asset": "assets/inbox_terminal.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "inbox",
+        "ess-package"
+      ],
+      "current_pdf_pages": [
+        6,
+        34
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/15",
+      "asset": "assets/87ac44e52863_manual_icon1.png",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "inbox",
+        "ess-package"
+      ],
+      "current_pdf_pages": [
+        6,
+        34
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/16",
+      "asset": "assets/overview_front.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "overview"
+      ],
+      "current_pdf_pages": [
+        7
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/17",
+      "asset": "assets/overview_side.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "overview"
+      ],
+      "current_pdf_pages": [
+        7
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/18",
+      "asset": "assets/lcd_map.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9,
+        10
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/19",
+      "asset": "assets/fc4cc02b42ef_fc4cc02b42ef_fc4cc02b42ef_1_Wi-Fi_KCcAbdDk7o4RjKx82micuKJ5nyf.png",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9,
+        10
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/20",
+      "asset": "assets/7e1392ba6a45_7e1392ba6a45_7e1392ba6a45_2_Bluetooth_HVgvbJhq5o4EDKxhm7McCF4FnjB.png",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9,
+        10
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/21",
+      "asset": "assets/7f743182c050_7f743182c050_7f743182c050_3_Quiet_Charging_Mode_WLkMbiHS1oGsOtxUCp7cRhFAn1g.png",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9,
+        10
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/22",
+      "asset": "assets/e32e6ae96321_e32e6ae96321_e32e6ae96321_15_Battery_Saving_Mode_ClYfbtOGSoK5q2xySXCcgehVn8f.png",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9,
+        10
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/23",
+      "asset": "assets/71017f43bab4_71017f43bab4_71017f43bab4_4_Charging_Plan_M96RbyZQxoGjRRxQHsuczeIln1b.png",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9,
+        10
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/24",
+      "asset": "assets/21b5f19ca9a6_21b5f19ca9a6_21b5f19ca9a6_16_Charging_Power_Limit_VLf2bJfrkoCL0CxJoMNcL5ZxnCt.png",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9,
+        10
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/25",
+      "asset": "assets/73225cf9faa8_73225cf9faa8_73225cf9faa8_5_Self-powered_Mode_FYTnb9vttoexjbxVMchcJaobnCg.png",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9,
+        10
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/26",
+      "asset": "assets/f4cdcb551105_f4cdcb551105_f4cdcb551105_6_TOU_Mode_BjEkbz0rFo6Bw4xiwNpcod9qnnc.png",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9,
+        10
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/27",
+      "asset": "assets/lcd_parallel.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9,
+        10
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/28",
+      "asset": "assets/e422a56922eb_e422a56922eb_e422a56922eb_7_UPS_Lgdgb8pvvoGwaLxSf8ec2QeHn3c.png",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9,
+        10
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/29",
+      "asset": "assets/8be87c5a0849_8be87c5a0849_8be87c5a0849_8_AC_Power_Indicator_HFPSbvWBgosvCux69jMcuWe6nnh.png",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9,
+        10
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/30",
+      "asset": "assets/7623ef10e229_7623ef10e229_7623ef10e229_9_Output_Voltage_and_Frequency_Jh3JbmBDBoKlmOxaRJDcIMJAn6b.png",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9,
+        10
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/31",
+      "asset": "assets/d5100a538e96_d5100a538e96_d5100a538e96_10_Input_Power_LOAZbnxfqoHFwIxx2Myc532jnzb.png",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9,
+        10
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/32",
+      "asset": "assets/cfb69b1ffc0b_cfb69b1ffc0b_cfb69b1ffc0b_11_Remaining_Charge_Time_KIWHbHFOvotGuBxJsxlcunSDnPf.png",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9,
+        10
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/33",
+      "asset": "assets/28f3cad42ae3_28f3cad42ae3_28f3cad42ae3_12_AC_Wall_Charging_Indicator_ZpOmbCjx8oYUTVxyl4JcvcTanPe.png",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9,
+        10
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/34",
+      "asset": "assets/eed3299c3f6a_eed3299c3f6a_eed3299c3f6a_13_Car_Charging_Indicator_DLkibYaP1ot6d5x1S0jcUr1knlb.png",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9,
+        10
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/35",
+      "asset": "assets/91cec82eeaa5_91cec82eeaa5_91cec82eeaa5_14_Solar_Charging_Indicator_RgAUbPXNWoRxiHxKNgkc2gqDnEb.png",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9,
+        10
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/36",
+      "asset": "assets/lcd_ac-expansion-in.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9,
+        10
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/37",
+      "asset": "assets/lcd_ac-expansion-out.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9,
+        10
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/38",
+      "asset": "assets/lcd_transfer-switch.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9,
+        10
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/39",
+      "asset": "assets/lcd_ev-charging.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9,
+        10
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/40",
+      "asset": "assets/85921a9ad7fb_85921a9ad7fb_85921a9ad7fb_17_Battery_Power_Indicator_VLufb9exvoVLfgxz47pcfnRGnaf.png",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9,
+        10
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/41",
+      "asset": "assets/c7862a87e742_c7862a87e742_c7862a87e742_19_Low_Battery_Indicator_KDk9bhs8poHUBdx96PLckPganhd.png",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9,
+        10
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/42",
+      "asset": "assets/747147be99d7_747147be99d7_747147be99d7_18_Remaining_Battery_Percentage_VkJcbUDbUoYC1hxrU6rc168OnJe.png",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9,
+        10
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/43",
+      "asset": "assets/lcd_smart-meter.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9,
+        10
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/44",
+      "asset": "assets/6aab9a14900a_6aab9a14900a_6aab9a14900a_20_Discharge_Timer_DHPMbkjSWoiuALxJyJ8cWyQOn0e.png",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9,
+        10
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/45",
+      "asset": "assets/lcd_connected-batteries.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9,
+        10
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/46",
+      "asset": "assets/c4b830c769a3_c4b830c769a3_c4b830c769a3_22_Energy_Saving_Mode_O4Jdb5pUQoCBAqx0sfQcm9Nbntd.png",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9,
+        10
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/47",
+      "asset": "assets/f548c6504f49_f548c6504f49_f548c6504f49_23_High_Temperature_Indicator_UmkEbOgCKoKyxoxDSINcfO6LnQd.png",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9,
+        10
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/48",
+      "asset": "assets/bdbf602db74a_bdbf602db74a_bdbf602db74a_24_Low_Temperature_Indicator_JDMEbD96noSbyWxbOnVcgip1nab.png",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9,
+        10
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/49",
+      "asset": "assets/lcd_fault-code.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9,
+        10
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/50",
+      "asset": "assets/58c1d3604ca7_58c1d3604ca7_58c1d3604ca7_26_Output_Power_PviebR618oofvKxcKVRcHLlInqd.png",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9,
+        10
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/51",
+      "asset": "assets/9b148ea95d3a_9b148ea95d3a_9b148ea95d3a_27_Remaining_Discharge_Time_JEpobf59DoBV4dxWlnxcNtIinke.png",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "lcd"
+      ],
+      "current_pdf_pages": [
+        8,
+        9,
+        10
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/52",
+      "asset": "assets/power.png",
+      "legacy_decision": "superseded-do-not-reuse",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/53",
+      "asset": "assets/usb.png",
+      "legacy_decision": "superseded-do-not-reuse",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/54",
+      "asset": "assets/ac.png",
+      "legacy_decision": "superseded-do-not-reuse",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/55",
+      "asset": "assets/energy_saving.png",
+      "legacy_decision": "superseded-do-not-reuse",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/56",
+      "asset": "assets/lcd_device.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "operations"
+      ],
+      "current_pdf_pages": [
+        11,
+        12,
+        13,
+        14
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/57",
+      "asset": "assets/457285c35d6d_power.svg",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/58",
+      "asset": "assets/3355388bad22_dc_usb.svg",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/59",
+      "asset": "assets/74bcd0bb2a82_ac.svg",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/60",
+      "asset": "assets/ups120.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "ups"
+      ],
+      "current_pdf_pages": [
+        14,
+        15
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/61",
+      "asset": "assets/ups240.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "ups"
+      ],
+      "current_pdf_pages": [
+        14,
+        15
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/62",
+      "asset": "assets/battery_packs.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "connections"
+      ],
+      "current_pdf_pages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/63",
+      "asset": "assets/battery_placement.png",
+      "legacy_decision": "superseded-do-not-reuse",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/64",
+      "asset": "assets/cascade.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "connections"
+      ],
+      "current_pdf_pages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/65",
+      "asset": "assets/epo.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "connections"
+      ],
+      "current_pdf_pages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/66",
+      "asset": "assets/ats_lock.png",
+      "legacy_decision": "superseded-do-not-reuse",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/67",
+      "asset": "assets/mts_single.png",
+      "legacy_decision": "superseded-do-not-reuse",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/68",
+      "asset": "assets/mts_cascade.png",
+      "legacy_decision": "superseded-do-not-reuse",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/69",
+      "asset": "assets/charge120.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "charging"
+      ],
+      "current_pdf_pages": [
+        21,
+        22,
+        23,
+        24
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/70",
+      "asset": "assets/charge240.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "charging"
+      ],
+      "current_pdf_pages": [
+        21,
+        22,
+        23,
+        24
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/71",
+      "asset": "assets/ats_app.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "charging"
+      ],
+      "current_pdf_pages": [
+        21,
+        22,
+        23,
+        24
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/72",
+      "asset": "assets/solar500.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "charging"
+      ],
+      "current_pdf_pages": [
+        21,
+        22,
+        23,
+        24
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/73",
+      "asset": "assets/solar200.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "charging"
+      ],
+      "current_pdf_pages": [
+        21,
+        22,
+        23,
+        24
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/74",
+      "asset": "assets/car_charging.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/75",
+      "asset": "assets/app_download.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/76",
+      "asset": "assets/app_add.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "app"
+      ],
+      "current_pdf_pages": [
+        28,
+        29
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/77",
+      "asset": "assets/app_control.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "app"
+      ],
+      "current_pdf_pages": [
+        28,
+        29
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/78",
+      "asset": "assets/app_result.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/79",
+      "asset": "assets/ess_connection.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "ess"
+      ],
+      "current_pdf_pages": [
+        30
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/80",
+      "asset": "assets/ess_station_package.png",
+      "legacy_decision": "superseded-do-not-reuse",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/81",
+      "asset": "assets/ess_battery_package.png",
+      "legacy_decision": "superseded-do-not-reuse",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/82",
+      "asset": "assets/ess_ats_package.png",
+      "legacy_decision": "superseded-do-not-reuse",
+      "current_chapters": [],
+      "current_pdf_pages": [],
+      "result": "Not a current English output asset / rejected or superseded record; no approval inference."
+    },
+    {
+      "declaration": "source/asset_decisions.json/83",
+      "asset": "assets/e1746d6937db_warning_triangle_dark.svg",
+      "legacy_decision": "reuse byte-identical",
+      "current_chapters": [
+        "safety",
+        "ess"
+      ],
+      "current_pdf_pages": [
+        4,
+        5,
+        30
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/84",
+      "asset": "assets/7b5fa9057ca9_power-bottom.svg",
+      "legacy_decision": "source-native shared variant",
+      "current_chapters": [
+        "operations"
+      ],
+      "current_pdf_pages": [
+        11,
+        12,
+        13,
+        14
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/85",
+      "asset": "assets/4025f864c192_usb-bottom.svg",
+      "legacy_decision": "source-native shared variant",
+      "current_chapters": [
+        "operations"
+      ],
+      "current_pdf_pages": [
+        11,
+        12,
+        13,
+        14
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/86",
+      "asset": "assets/ad437a82a4fe_ac-bottom.svg",
+      "legacy_decision": "source-native shared variant",
+      "current_chapters": [
+        "operations"
+      ],
+      "current_pdf_pages": [
+        11,
+        12,
+        13,
+        14
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/87",
+      "asset": "assets/car_charging_framefree.svg",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "charging"
+      ],
+      "current_pdf_pages": [
+        21,
+        22,
+        23,
+        24
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/88",
+      "asset": "assets/app_store_badges.png",
+      "legacy_decision": "reuse byte-identical existing shared artwork",
+      "current_chapters": [
+        "app"
+      ],
+      "current_pdf_pages": [
+        28,
+        29
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/89",
+      "asset": "assets/app_download_qr.png",
+      "legacy_decision": "reuse byte-identical existing shared artwork",
+      "current_chapters": [
+        "app"
+      ],
+      "current_pdf_pages": [
+        28,
+        29
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/90",
+      "asset": "assets/app_connect_result_steps.png",
+      "legacy_decision": "reuse byte-identical existing shared reference UI per user instruction",
+      "current_chapters": [
+        "app"
+      ],
+      "current_pdf_pages": [
+        28,
+        29
+      ],
+      "result": "Retained specific operator-approved App example exception; see history evidence, not a generic approval."
+    },
+    {
+      "declaration": "source/asset_decisions.json/91",
+      "asset": "assets/package_ats.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "ess-package"
+      ],
+      "current_pdf_pages": [
+        34
+      ],
+      "result": "Current p34 product/accessory art retained; historical generic-document sentence is superseded only for four miniature manual illustrations. The source generic Documents pictogram remains for station package; four manuals and cart now direct original crops."
+    },
+    {
+      "declaration": "source/asset_decisions.json/92",
+      "asset": "assets/package_template.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "ess-package"
+      ],
+      "current_pdf_pages": [
+        34
+      ],
+      "result": "Current p34 product/accessory art retained; historical generic-document sentence is superseded only for four miniature manual illustrations. The source generic Documents pictogram remains for station package; four manuals and cart now direct original crops."
+    },
+    {
+      "declaration": "source/asset_decisions.json/93",
+      "asset": "assets/package_power_cable.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "ess-package"
+      ],
+      "current_pdf_pages": [
+        34
+      ],
+      "result": "Current p34 product/accessory art retained; historical generic-document sentence is superseded only for four miniature manual illustrations. The source generic Documents pictogram remains for station package; four manuals and cart now direct original crops."
+    },
+    {
+      "declaration": "source/asset_decisions.json/94",
+      "asset": "assets/package_neutral_wire.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "ess-package"
+      ],
+      "current_pdf_pages": [
+        34
+      ],
+      "result": "Current p34 product/accessory art retained; historical generic-document sentence is superseded only for four miniature manual illustrations. The source generic Documents pictogram remains for station package; four manuals and cart now direct original crops."
+    },
+    {
+      "declaration": "source/asset_decisions.json/95",
+      "asset": "assets/package_gland.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "ess-package"
+      ],
+      "current_pdf_pages": [
+        34
+      ],
+      "result": "Current p34 product/accessory art retained; historical generic-document sentence is superseded only for four miniature manual illustrations. The source generic Documents pictogram remains for station package; four manuals and cart now direct original crops."
+    },
+    {
+      "declaration": "source/asset_decisions.json/96",
+      "asset": "assets/package_jumper.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "ess-package"
+      ],
+      "current_pdf_pages": [
+        34
+      ],
+      "result": "Current p34 product/accessory art retained; historical generic-document sentence is superseded only for four miniature manual illustrations. The source generic Documents pictogram remains for station package; four manuals and cart now direct original crops."
+    },
+    {
+      "declaration": "source/asset_decisions.json/97",
+      "asset": "assets/inbox_unit.png",
+      "legacy_decision": "byte-identical shared reuse",
+      "current_chapters": [
+        "inbox",
+        "ess-package"
+      ],
+      "current_pdf_pages": [
+        6,
+        34
+      ],
+      "result": "Current p34 product/accessory art retained; historical generic-document sentence is superseded only for four miniature manual illustrations. The source generic Documents pictogram remains for station package; four manuals and cart now direct original crops."
+    },
+    {
+      "declaration": "source/asset_decisions.json/98",
+      "asset": "assets/inbox_ac.png",
+      "legacy_decision": "byte-identical shared reuse",
+      "current_chapters": [
+        "inbox",
+        "ess-package"
+      ],
+      "current_pdf_pages": [
+        6,
+        34
+      ],
+      "result": "Current p34 product/accessory art retained; historical generic-document sentence is superseded only for four miniature manual illustrations. The source generic Documents pictogram remains for station package; four manuals and cart now direct original crops."
+    },
+    {
+      "declaration": "source/asset_decisions.json/99",
+      "asset": "assets/inbox_terminal.png",
+      "legacy_decision": "byte-identical shared reuse",
+      "current_chapters": [
+        "inbox",
+        "ess-package"
+      ],
+      "current_pdf_pages": [
+        6,
+        34
+      ],
+      "result": "Current p34 product/accessory art retained; historical generic-document sentence is superseded only for four miniature manual illustrations. The source generic Documents pictogram remains for station package; four manuals and cart now direct original crops."
+    },
+    {
+      "declaration": "source/asset_decisions.json/100",
+      "asset": "assets/package_battery.png",
+      "legacy_decision": "byte-identical shared reuse",
+      "current_chapters": [
+        "ess-package"
+      ],
+      "current_pdf_pages": [
+        34
+      ],
+      "result": "Current p34 product/accessory art retained; historical generic-document sentence is superseded only for four miniature manual illustrations. The source generic Documents pictogram remains for station package; four manuals and cart now direct original crops."
+    },
+    {
+      "declaration": "source/asset_decisions.json/101",
+      "asset": "assets/package_expansion.png",
+      "legacy_decision": "byte-identical shared reuse",
+      "current_chapters": [
+        "ess-package"
+      ],
+      "current_pdf_pages": [
+        34
+      ],
+      "result": "Current p34 product/accessory art retained; historical generic-document sentence is superseded only for four miniature manual illustrations. The source generic Documents pictogram remains for station package; four manuals and cart now direct original crops."
+    },
+    {
+      "declaration": "source/asset_decisions.json/102",
+      "asset": "assets/87ac44e52863_manual_icon1.png",
+      "legacy_decision": "byte-identical shared reuse",
+      "current_chapters": [
+        "inbox",
+        "ess-package"
+      ],
+      "current_pdf_pages": [
+        6,
+        34
+      ],
+      "result": "Current p34 product/accessory art retained; historical generic-document sentence is superseded only for four miniature manual illustrations. The source generic Documents pictogram remains for station package; four manuals and cart now direct original crops."
+    },
+    {
+      "declaration": "source/asset_decisions.json/103",
+      "asset": "assets/power_framefree.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "operations"
+      ],
+      "current_pdf_pages": [
+        11,
+        12,
+        13,
+        14
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/104",
+      "asset": "assets/usb_framefree.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "operations"
+      ],
+      "current_pdf_pages": [
+        11,
+        12,
+        13,
+        14
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/105",
+      "asset": "assets/ac_framefree.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "operations"
+      ],
+      "current_pdf_pages": [
+        11,
+        12,
+        13,
+        14
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/106",
+      "asset": "assets/energy_framefree.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "operations"
+      ],
+      "current_pdf_pages": [
+        11,
+        12,
+        13,
+        14
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/107",
+      "asset": "assets/placement_framefree.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "connections"
+      ],
+      "current_pdf_pages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/108",
+      "asset": "assets/ats_live.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "connections"
+      ],
+      "current_pdf_pages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/109",
+      "asset": "assets/mts_single_live.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "connections"
+      ],
+      "current_pdf_pages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/110",
+      "asset": "assets/mts_cascade_live.png",
+      "legacy_decision": "new source extraction",
+      "current_chapters": [
+        "connections"
+      ],
+      "current_pdf_pages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/111",
+      "asset": "assets/package_battery_manual.png",
+      "legacy_decision": "current-source crop-only original artwork",
+      "current_chapters": [
+        "ess-package"
+      ],
+      "current_pdf_pages": [
+        34
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/112",
+      "asset": "assets/package_owner_manual.png",
+      "legacy_decision": "current-source crop-only original artwork",
+      "current_chapters": [
+        "ess-package"
+      ],
+      "current_pdf_pages": [
+        34
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/113",
+      "asset": "assets/package_installation_manual.png",
+      "legacy_decision": "current-source crop-only original artwork",
+      "current_chapters": [
+        "ess-package"
+      ],
+      "current_pdf_pages": [
+        34
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/114",
+      "asset": "assets/package_quick_start.png",
+      "legacy_decision": "current-source crop-only original artwork",
+      "current_chapters": [
+        "ess-package"
+      ],
+      "current_pdf_pages": [
+        34
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    },
+    {
+      "declaration": "source/asset_decisions.json/115",
+      "asset": "assets/package_source_cart.png",
+      "legacy_decision": "current-source crop-only original artwork",
+      "current_chapters": [
+        "ess-package"
+      ],
+      "current_pdf_pages": [
+        34
+      ],
+      "result": "Current English source illustration/glyph compared; original paths/edges retained; external captions native."
+    }
+  ],
+  "changes": [
+    "p13: desktop key-combination table fits content; phone horizontal scrolling retains all columns and plus signs.",
+    "p6: source text split recorded at particular installation; explicitly approved balanced Web flow retained.",
+    "p34: source battery/ATS miniature manual artwork and source shopping-cart image restored instead of generic icon/CSS cart; direct finished-illustration crops only.",
+    "p29: explicitly approved shared App screenshot exception retained; no product values inferred from generic demonstration UI."
+  ]
+}

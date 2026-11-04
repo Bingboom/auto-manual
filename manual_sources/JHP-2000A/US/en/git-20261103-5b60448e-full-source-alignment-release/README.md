@@ -1,0 +1,11 @@
+# JHP-2000A US English complete source alignment candidate
+
+This edition restores all own-source body pages2,4–24, including its contact/QR page. The front cover1 and paper TOC3 are excluded by operator. Its unchanged PDF SHA256 is5b60448e69a76d5a8386227bc800ffc83309c837dfc32f5b3fb1f0901bd3d738. Source technical concerns remain verbatim; source differences from RC are intentional, never copied from a sibling.
+
+The original6/5safety and7/8operating columns, exact risk/grounding/danger frames, US badge, source full-width subsection pills, FCC own column continuation, native operation/UPS/charging text positions, original clock/plus marks, LCD23shared number, ordinary solar/car headings and original contact graphics are restored. All figure copy remains native text over its own source art. No complete reference page is used as a bitmap.
+
+Run build_content.py then refresh_manifest.py and rebuild.py --output <unused directory>. Source layout is owned by source_layout_jhp2000a.py; no shared code or source tables are modified. Generated outputs remain under web/en. All22 included original source pages and57 actual desktop/phone viewports have been visually reviewed. Native512line coverage, reverse source comparison, numeric/asset provenance, strict Sphinx and8applicable target checks passed. Dense original panels and tables scroll within their own phone containers; rightmost endpoints are reachable. Detailed current evidence is under evidence/current-source-review; older root evidence files belong to the superseded partial review. Publication remains candidate, no source approval binding or active registry switch in this edition.
+
+## Conditional publication snapshot
+
+This separate release snapshot retains the locally accepted candidate and its historical evidence. The operator authorized this batch to merge and publish after all checks pass (MA-381), and accepts local source/content/layout review for the checkbox. Release authority is bound in source/approval.json to the current exact inputs. No claim of personal operator render inspection or completed publication is made. release-conversion/equivalence.json binds the visible output to the reviewed candidate. The other five deferred models are outside this release.

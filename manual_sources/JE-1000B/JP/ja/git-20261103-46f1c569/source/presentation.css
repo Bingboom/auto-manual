@@ -1,0 +1,19 @@
+/* Source geometry only. The shared Web theme owns every colour, border, fill,
+   heading, callout, table, card and figure style (prepared-document shared-style
+   gate). Figures are selected by their shared data attributes. */
+
+/* Source panels keep a print-like width; no visible caption. */
+#furo-main-content .hb-reference-figure { max-width: 680px; margin-left: auto; margin-right: auto; }
+#furo-main-content .hb-reference-figure:is([data-reference-id="ac-charging"], [data-reference-id="car-charging"]) { max-width: 360px; }
+
+/* The Quick Charge 3.0 mark of the 認証 row keeps a mark size beside the table. */
+#furo-main-content .hb-reference-figure[data-reference-id="cert-quick-charge"] { max-width: 160px; margin-left: 0; }
+
+/* The Li-ion mark beside the recycling notice keeps its print size. */
+#furo-main-content .table-wrapper img[alt="Li-ion 20"] { width: 4.5rem; max-width: none; }
+
+/* LCD glyphs printed inline in a sentence keep a text size. */
+#furo-main-content p img:is([alt="バッテリーアイコン"], [alt="バッテリー残量警告灯"], [alt="12H"], [alt="F8"], [alt="高温インジケーター"], [alt="低温インジケーター"]) { height: 1.5em; width: auto; vertical-align: middle; display: inline; margin: 0; }
+
+/* Print case for chapter titles, subheadings and the specification title. */
+#furo-main-content :is(h1, h3, h4), #furo-main-content h2:not(.hb-spec-section) { text-transform: none; }

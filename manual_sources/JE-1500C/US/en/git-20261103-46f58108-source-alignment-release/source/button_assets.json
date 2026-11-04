@@ -1,0 +1,44 @@
+[
+  {
+    "path": "assets/button-main.png",
+    "physical_page": 12,
+    "bbox": [
+      47,
+      429,
+      70,
+      451
+    ],
+    "scale": 5,
+    "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+    "sha256": "fb69262a67b0087960ee55d58c6b58f5ec2e8804db4240a5790e6f556ac3d42e",
+    "decision": "Original PDF artwork crop only, native captions and operation text remain HTML."
+  },
+  {
+    "path": "assets/button-ac.png",
+    "physical_page": 12,
+    "bbox": [
+      101.5,
+      429,
+      124,
+      451
+    ],
+    "scale": 5,
+    "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+    "sha256": "d83c40724f96505e6739528bd40b124996ecffe7a1753a21324c0e554b643e7b",
+    "decision": "Original PDF artwork crop only, native captions and operation text remain HTML."
+  },
+  {
+    "path": "assets/button-clock.png",
+    "physical_page": 12,
+    "bbox": [
+      151,
+      434,
+      163,
+      446
+    ],
+    "scale": 5,
+    "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+    "sha256": "0ba099c074949cfa50c6b1c4c55930e6be0638c7066b0af31fc6d3be2553d3c8",
+    "decision": "Original PDF artwork crop only, native captions and operation text remain HTML."
+  }
+]

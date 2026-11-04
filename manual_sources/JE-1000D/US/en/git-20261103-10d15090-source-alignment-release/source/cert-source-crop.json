@@ -1,0 +1,12 @@
+{
+  "source_sha256": "10d15090f944d3a0a1518e495dca4cf5cad15252220990c1b0e324564519316f",
+  "physical_page": 2,
+  "bbox_points": [
+    156,
+    367,
+    225,
+    395
+  ],
+  "operation": "unaltered own-source certification-mark strip crop at 5x",
+  "asset": "assets/cert-source-strip.png"
+}

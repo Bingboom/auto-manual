@@ -1,0 +1,3812 @@
+{
+  "model": "JHP-2000A",
+  "html": "/private/tmp/manual-web-audit-20261102/jhp2000a-full-v6-html/manual_jhp2000a_us_en.html",
+  "pages": [
+    {
+      "page": 1,
+      "checked_lines": 4,
+      "long_lines": 0,
+      "candidates": [
+        {
+          "text": "arssssassossssas",
+          "coverage": 0.0,
+          "characters": 16,
+          "exact": false
+        }
+      ],
+      "lines": [
+        {
+          "text": "arssssassossssas",
+          "coverage": 0.0,
+          "characters": 16,
+          "exact": false
+        },
+        {
+          "text": "HomePower 2000 Plus",
+          "coverage": 1.0,
+          "characters": 17,
+          "exact": true
+        },
+        {
+          "text": "Jackery HomePower 2000 Plus",
+          "coverage": 1.0,
+          "characters": 24,
+          "exact": true
+        },
+        {
+          "text": "hello@jackery.com",
+          "coverage": 1.0,
+          "characters": 15,
+          "exact": true
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "checked_lines": 10,
+      "long_lines": 9,
+      "candidates": [],
+      "lines": [
+        {
+          "text": "Congratulations on your new Jackery HomePower 2000 Plus. Please read this manual",
+          "coverage": 1.0,
+          "characters": 68,
+          "exact": true
+        },
+        {
+          "text": "carefully before using the product, particularly the relevant precautions to ensure proper use.",
+          "coverage": 1.0,
+          "characters": 81,
+          "exact": true
+        },
+        {
+          "text": "Keep this manual in an accessible place for future reference.",
+          "coverage": 1.0,
+          "characters": 51,
+          "exact": true
+        },
+        {
+          "text": "In compliance with laws and regulations, the right of final interpretation of this document",
+          "coverage": 1.0,
+          "characters": 77,
+          "exact": true
+        },
+        {
+          "text": "and all related documents of this product resides with the Company. Although every effort",
+          "coverage": 1.0,
+          "characters": 75,
+          "exact": true
+        },
+        {
+          "text": "has been made to ensure the accuracy of this manual, Jackery Inc. assumes no responsibility",
+          "coverage": 1.0,
+          "characters": 75,
+          "exact": true
+        },
+        {
+          "text": "for any errors that may appear.",
+          "coverage": 1.0,
+          "characters": 25,
+          "exact": true
+        },
+        {
+          "text": "Please note that no further notifications will be given in case of any update, revision, or",
+          "coverage": 1.0,
+          "characters": 74,
+          "exact": true
+        },
+        {
+          "text": "termination. For the latest version of the product manuals, visit support.jackery.com.",
+          "coverage": 1.0,
+          "characters": 71,
+          "exact": true
+        },
+        {
+          "text": "*The images are for reference purposes only. Please refer to the actual product.",
+          "coverage": 1.0,
+          "characters": 65,
+          "exact": true
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "checked_lines": 7,
+      "long_lines": 0,
+      "candidates": [
+        {
+          "text": "TABLE OF CONTENTS",
+          "coverage": 0.0,
+          "characters": 15,
+          "exact": false
+        }
+      ],
+      "lines": [
+        {
+          "text": "TABLE OF CONTENTS",
+          "coverage": 0.0,
+          "characters": 15,
+          "exact": false
+        },
+        {
+          "text": "IMPORTANT SAFETY INFORMATION",
+          "coverage": 1.0,
+          "characters": 26,
+          "exact": true
+        },
+        {
+          "text": "MEANING OF SYMBOLS ...",
+          "coverage": 1.0,
+          "characters": 16,
+          "exact": true
+        },
+        {
+          "text": "PRODUCT OVERVIEW ..",
+          "coverage": 1.0,
+          "characters": 15,
+          "exact": true
+        },
+        {
+          "text": "UNINTERRUPTIBLE POWER SUPPLY (UPS) .....12",
+          "coverage": 0.909,
+          "characters": 31,
+          "exact": false
+        },
+        {
+          "text": "CONNECT TO BATTERY PACK(S)",
+          "coverage": 1.0,
+          "characters": 21,
+          "exact": true
+        },
+        {
+          "text": "TROUBLESHOOTING",
+          "coverage": 1.0,
+          "characters": 15,
+          "exact": true
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "checked_lines": 89,
+      "long_lines": 8,
+      "candidates": [],
+      "lines": [
+        {
+          "text": "IMPORTANT SAFETY INFORMATION",
+          "coverage": 1.0,
+          "characters": 26,
+          "exact": true
+        },
+        {
+          "text": "INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC",
+          "coverage": 1.0,
+          "characters": 42,
+          "exact": true
+        },
+        {
+          "text": "SHOCK, OR INJURY TO PERSONS",
+          "coverage": 1.0,
+          "characters": 22,
+          "exact": true
+        },
+        {
+          "text": "Always follow these basic precautions when",
+          "coverage": 1.0,
+          "characters": 37,
+          "exact": true
+        },
+        {
+          "text": "using this product.",
+          "coverage": 1.0,
+          "characters": 16,
+          "exact": true
+        },
+        {
+          "text": "• Read all the instructions before using the product.",
+          "coverage": 1.0,
+          "characters": 43,
+          "exact": true
+        },
+        {
+          "text": "• Do not allow children to play on the product. Close",
+          "coverage": 1.0,
+          "characters": 41,
+          "exact": true
+        },
+        {
+          "text": "supervision of children is necessary when the",
+          "coverage": 1.0,
+          "characters": 39,
+          "exact": true
+        },
+        {
+          "text": "product is used near children.",
+          "coverage": 1.0,
+          "characters": 25,
+          "exact": true
+        },
+        {
+          "text": "• Avoid placing hands or fingers inside the product.",
+          "coverage": 1.0,
+          "characters": 42,
+          "exact": true
+        },
+        {
+          "text": "• Stop using the product immediately if it has been",
+          "coverage": 1.0,
+          "characters": 41,
+          "exact": true
+        },
+        {
+          "text": "physically damaged or modified. Improper use of",
+          "coverage": 1.0,
+          "characters": 40,
+          "exact": true
+        },
+        {
+          "text": "the product may cause unpredictable benavior,",
+          "coverage": 0.8,
+          "characters": 39,
+          "exact": false
+        },
+        {
+          "text": "leading to fire, explosion, or injury.",
+          "coverage": 1.0,
+          "characters": 30,
+          "exact": true
+        },
+        {
+          "text": "• If any of the following are observed, including but",
+          "coverage": 1.0,
+          "characters": 42,
+          "exact": true
+        },
+        {
+          "text": "not limited to overheating, emits unusual odors or",
+          "coverage": 1.0,
+          "characters": 42,
+          "exact": true
+        },
+        {
+          "text": "smoking, leaks, or burns, stop using the product",
+          "coverage": 1.0,
+          "characters": 38,
+          "exact": true
+        },
+        {
+          "text": "immediately and contact the dealer or our",
+          "coverage": 1.0,
+          "characters": 35,
+          "exact": true
+        },
+        {
+          "text": "Customer Support.",
+          "coverage": 1.0,
+          "characters": 15,
+          "exact": true
+        },
+        {
+          "text": "• Never attempt to open, repair, or modify the",
+          "coverage": 1.0,
+          "characters": 35,
+          "exact": true
+        },
+        {
+          "text": "product. Any tampering, reassembly, or",
+          "coverage": 1.0,
+          "characters": 31,
+          "exact": true
+        },
+        {
+          "text": "modification of the product can result in electric",
+          "coverage": 1.0,
+          "characters": 43,
+          "exact": true
+        },
+        {
+          "text": "shock, fire, or battery damage.",
+          "coverage": 1.0,
+          "characters": 24,
+          "exact": true
+        },
+        {
+          "text": "• Be aware that liquid ejected from the product may",
+          "coverage": 1.0,
+          "characters": 41,
+          "exact": true
+        },
+        {
+          "text": "cause irritation or bums. Inappropriate or abusive use",
+          "coverage": 0.73,
+          "characters": 46,
+          "exact": false
+        },
+        {
+          "text": "may lead to battery leakage. Avoid direct contact",
+          "coverage": 1.0,
+          "characters": 41,
+          "exact": true
+        },
+        {
+          "text": "with leaking liquid. If the liquid contacts your eyes,",
+          "coverage": 1.0,
+          "characters": 44,
+          "exact": true
+        },
+        {
+          "text": "seek medical help immediately.If it contacts other",
+          "coverage": 1.0,
+          "characters": 43,
+          "exact": true
+        },
+        {
+          "text": "body parts, flush with running water and consult a",
+          "coverage": 1.0,
+          "characters": 41,
+          "exact": true
+        },
+        {
+          "text": "medical professional without delay.",
+          "coverage": 1.0,
+          "characters": 31,
+          "exact": true
+        },
+        {
+          "text": "• Do not expose the product to fire or excessive",
+          "coverage": 1.0,
+          "characters": 38,
+          "exact": true
+        },
+        {
+          "text": "temperatures. Doing so may result in an explosion if",
+          "coverage": 1.0,
+          "characters": 43,
+          "exact": true
+        },
+        {
+          "text": "the temperature exceeds 130°C (265°F).",
+          "coverage": 1.0,
+          "characters": 29,
+          "exact": true
+        },
+        {
+          "text": "• Any use of unrecommended or non-supplied",
+          "coverage": 1.0,
+          "characters": 34,
+          "exact": true
+        },
+        {
+          "text": "materials or parts with the product may result in a risk",
+          "coverage": 1.0,
+          "characters": 46,
+          "exact": true
+        },
+        {
+          "text": "of fire, electric shock, or personal injury.",
+          "coverage": 1.0,
+          "characters": 35,
+          "exact": true
+        },
+        {
+          "text": "• Do not leave the battery charging unattended for",
+          "coverage": 1.0,
+          "characters": 41,
+          "exact": true
+        },
+        {
+          "text": "long periods. Always monitor the charging process to",
+          "coverage": 1.0,
+          "characters": 44,
+          "exact": true
+        },
+        {
+          "text": "ensure safe operation.",
+          "coverage": 1.0,
+          "characters": 19,
+          "exact": true
+        },
+        {
+          "text": "• To reduce the risk of electric shock, unplug the",
+          "coverage": 1.0,
+          "characters": 39,
+          "exact": true
+        },
+        {
+          "text": "product from any power source before attempting",
+          "coverage": 1.0,
+          "characters": 41,
+          "exact": true
+        },
+        {
+          "text": "any technical service or troubleshooting.",
+          "coverage": 1.0,
+          "characters": 36,
+          "exact": true
+        },
+        {
+          "text": "OPERATING INSTRUCTIONS",
+          "coverage": 1.0,
+          "characters": 21,
+          "exact": true
+        },
+        {
+          "text": "SAVE THESE INSTRUCTIONS",
+          "coverage": 1.0,
+          "characters": 21,
+          "exact": true
+        },
+        {
+          "text": "• Stop using the product immediately if it shows signs • Do not use the product to charge any device with a",
+          "coverage": 0.88,
+          "characters": 84,
+          "exact": false
+        },
+        {
+          "text": "of damage. Discontinue use and contact customer",
+          "coverage": 1.0,
+          "characters": 40,
+          "exact": true
+        },
+        {
+          "text": "damaged or broken cable or plug.",
+          "coverage": 1.0,
+          "characters": 26,
+          "exact": true
+        },
+        {
+          "text": "support for assistance.",
+          "coverage": 1.0,
+          "characters": 20,
+          "exact": true
+        },
+        {
+          "text": "• Do not charge the battery in extremely hot or cold",
+          "coverage": 1.0,
+          "characters": 41,
+          "exact": true
+        },
+        {
+          "text": "• Always unplug the charging cord by pulling the plug,",
+          "coverage": 1.0,
+          "characters": 43,
+          "exact": true
+        },
+        {
+          "text": "environments and strictly adhere to the product's",
+          "coverage": 1.0,
+          "characters": 42,
+          "exact": true
+        },
+        {
+          "text": "not the cord, to reduce the risk of damage.",
+          "coverage": 1.0,
+          "characters": 33,
+          "exact": true
+        },
+        {
+          "text": "specified operating temperature ranges:",
+          "coverage": 1.0,
+          "characters": 35,
+          "exact": true
+        },
+        {
+          "text": "• Ensure the product is properly secured when",
+          "coverage": 1.0,
+          "characters": 37,
+          "exact": true
+        },
+        {
+          "text": "transporting it in a moving vehicle.",
+          "coverage": 1.0,
+          "characters": 30,
+          "exact": true
+        },
+        {
+          "text": "-Charging temperature: 14°F to 113°F (-10°C to 45°C)",
+          "coverage": 1.0,
+          "characters": 36,
+          "exact": true
+        },
+        {
+          "text": "-Discharging temperature: 14°F to 113°F (-10°C to 45°C) • DO NOT place the unit upside down or on its side",
+          "coverage": 0.882,
+          "characters": 77,
+          "exact": false
+        },
+        {
+          "text": "during use or storage.",
+          "coverage": 1.0,
+          "characters": 18,
+          "exact": true
+        },
+        {
+          "text": "• To ensure proper air circulation, keep the product",
+          "coverage": 1.0,
+          "characters": 42,
+          "exact": true
+        },
+        {
+          "text": "vents uncovered. The ared where the productis used • DONOT place the product on the floor or at a height",
+          "coverage": 0.743,
+          "characters": 83,
+          "exact": false
+        },
+        {
+          "text": "must have adequate airflow in a cool, dry",
+          "coverage": 1.0,
+          "characters": 33,
+          "exact": true
+        },
+        {
+          "text": "less than 18 inches (457 mm) above the floor during",
+          "coverage": 1.0,
+          "characters": 40,
+          "exact": true
+        },
+        {
+          "text": "environment to prevent overheating.",
+          "coverage": 1.0,
+          "characters": 31,
+          "exact": true
+        },
+        {
+          "text": "operation in a workshop or repair facility.",
+          "coverage": 1.0,
+          "characters": 36,
+          "exact": true
+        },
+        {
+          "text": "-Charging in damp or poorly ventilated spaces may • DO NOT use the product's accessories with other",
+          "coverage": 0.887,
+          "characters": 80,
+          "exact": false
+        },
+        {
+          "text": "cause safety hazards.",
+          "coverage": 1.0,
+          "characters": 18,
+          "exact": true
+        },
+        {
+          "text": "devices or equipment.",
+          "coverage": 1.0,
+          "characters": 18,
+          "exact": true
+        },
+        {
+          "text": "-Water can cause short circuits or damage to the",
+          "coverage": 1.0,
+          "characters": 39,
+          "exact": true
+        },
+        {
+          "text": "• Solar charge time depends on weather conditions.",
+          "coverage": 1.0,
+          "characters": 41,
+          "exact": true
+        },
+        {
+          "text": "charger, leading to safety risks.",
+          "coverage": 1.0,
+          "characters": 27,
+          "exact": true
+        },
+        {
+          "text": "Place your solar panel where it will get as much direct",
+          "coverage": 1.0,
+          "characters": 45,
+          "exact": true
+        },
+        {
+          "text": "• Unplug the power cord from a power outlet during a",
+          "coverage": 1.0,
+          "characters": 41,
+          "exact": true
+        },
+        {
+          "text": "sunlight as possible.",
+          "coverage": 1.0,
+          "characters": 18,
+          "exact": true
+        },
+        {
+          "text": "• GROUNDING INSTRUCTION-This product must be",
+          "coverage": 1.0,
+          "characters": 37,
+          "exact": true
+        },
+        {
+          "text": "• Immediately turn off the product by pressing the",
+          "coverage": 1.0,
+          "characters": 41,
+          "exact": true
+        },
+        {
+          "text": "power button if it has fallen, been dropped, or",
+          "coverage": 1.0,
+          "characters": 37,
+          "exact": true
+        },
+        {
+          "text": "grounded. If it should malfunction or breakdown,",
+          "coverage": 1.0,
+          "characters": 40,
+          "exact": true
+        },
+        {
+          "text": "grounding provides a path of least resistance for",
+          "coverage": 1.0,
+          "characters": 42,
+          "exact": true
+        },
+        {
+          "text": "exposed to vibrations.",
+          "coverage": 1.0,
+          "characters": 19,
+          "exact": true
+        },
+        {
+          "text": "electric current to reduce the risk of electric shock.",
+          "coverage": 1.0,
+          "characters": 45,
+          "exact": true
+        },
+        {
+          "text": "• Ensure the device(s) are powered off before",
+          "coverage": 1.0,
+          "characters": 35,
+          "exact": true
+        },
+        {
+          "text": "This product is equipped with a cord having an",
+          "coverage": 1.0,
+          "characters": 38,
+          "exact": true
+        },
+        {
+          "text": "connecting them to the product.",
+          "coverage": 1.0,
+          "characters": 26,
+          "exact": true
+        },
+        {
+          "text": "equipment grounding conductor and a grounding",
+          "coverage": 1.0,
+          "characters": 40,
+          "exact": true
+        },
+        {
+          "text": "plug. The plug must be plugged into an outlet that is",
+          "coverage": 1.0,
+          "characters": 42,
+          "exact": true
+        },
+        {
+          "text": "• Do not charge the product using a damaged or",
+          "coverage": 1.0,
+          "characters": 36,
+          "exact": true
+        },
+        {
+          "text": "properly installed and grounded in accordance with",
+          "coverage": 1.0,
+          "characters": 44,
+          "exact": true
+        },
+        {
+          "text": "broken charging cord or plug.",
+          "coverage": 1.0,
+          "characters": 24,
+          "exact": true
+        },
+        {
+          "text": "all local codes and ordinances.",
+          "coverage": 1.0,
+          "characters": 26,
+          "exact": true
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "checked_lines": 38,
+      "long_lines": 13,
+      "candidates": [],
+      "lines": [
+        {
+          "text": "nproper connection of the equipment grounding conductor is able to resu",
+          "coverage": 0.981,
+          "characters": 61,
+          "exact": false
+        },
+        {
+          "text": "1 a risk of electric shock. Check with a qualified electrician if you are in douk",
+          "coverage": 0.964,
+          "characters": 65,
+          "exact": false
+        },
+        {
+          "text": "stalled by a qualified electriciar",
+          "coverage": 0.952,
+          "characters": 30,
+          "exact": false
+        },
+        {
+          "text": "This device is intended for indoor use only (Please place this device in a similar",
+          "coverage": 1.0,
+          "characters": 67,
+          "exact": true
+        },
+        {
+          "text": "indoor environment when using it outdoors, e.g., Home, RVs, tents, cabins, etc.).",
+          "coverage": 1.0,
+          "characters": 59,
+          "exact": true
+        },
+        {
+          "text": ":This device is not waterproof or dustproof. Keep away from rain and humi",
+          "coverage": 1.0,
+          "characters": 59,
+          "exact": true
+        },
+        {
+          "text": "vironments during us",
+          "coverage": 1.0,
+          "characters": 18,
+          "exact": true
+        },
+        {
+          "text": "USER MAINTENANCE INSTRUCTIONS",
+          "coverage": 1.0,
+          "characters": 27,
+          "exact": true
+        },
+        {
+          "text": "During the lifecycle of energy storage products, a certain degree of capacity and energy degradation is",
+          "coverage": 1.0,
+          "characters": 87,
+          "exact": true
+        },
+        {
+          "text": "expected. As the number of charge and discharge cycles increases and storage time extends, this degradation",
+          "coverage": 1.0,
+          "characters": 90,
+          "exact": true
+        },
+        {
+          "text": "will gradually intensify, which is a normal phenomenon consistent with the natural aging of battery cells.",
+          "coverage": 1.0,
+          "characters": 89,
+          "exact": true
+        },
+        {
+          "text": "MEANING OF SYMBOLS",
+          "coverage": 1.0,
+          "characters": 16,
+          "exact": true
+        },
+        {
+          "text": "Hazardous practices that may result in severe injury, death, and/or property",
+          "coverage": 1.0,
+          "characters": 63,
+          "exact": true
+        },
+        {
+          "text": "Hazardous practices that may result in personal injury and/or property",
+          "coverage": 1.0,
+          "characters": 60,
+          "exact": true
+        },
+        {
+          "text": "Hazardous practices that may result in equipment damage, data loss,",
+          "coverage": 1.0,
+          "characters": 56,
+          "exact": true
+        },
+        {
+          "text": "performance deterioration, or unanticipated results.",
+          "coverage": 1.0,
+          "characters": 46,
+          "exact": true
+        },
+        {
+          "text": "Supplements the important information or operation tips in the text.",
+          "coverage": 1.0,
+          "characters": 58,
+          "exact": true
+        },
+        {
+          "text": "Alerts individuals to information that",
+          "coverage": 1.0,
+          "characters": 34,
+          "exact": true
+        },
+        {
+          "text": "must be read to avoid potential",
+          "coverage": 1.0,
+          "characters": 26,
+          "exact": true
+        },
+        {
+          "text": "Do not dismantle the product.",
+          "coverage": 1.0,
+          "characters": 24,
+          "exact": true
+        },
+        {
+          "text": "Read the user manual before operation.",
+          "coverage": 1.0,
+          "characters": 32,
+          "exact": true
+        },
+        {
+          "text": "Keep the product away from fire.",
+          "coverage": 1.0,
+          "characters": 26,
+          "exact": true
+        },
+        {
+          "text": "Risk of electric shock",
+          "coverage": 1.0,
+          "characters": 19,
+          "exact": true
+        },
+        {
+          "text": "Battery charging",
+          "coverage": 1.0,
+          "characters": 15,
+          "exact": true
+        },
+        {
+          "text": "Keep away from children.",
+          "coverage": 1.0,
+          "characters": 20,
+          "exact": true
+        },
+        {
+          "text": "Explosive material",
+          "coverage": 1.0,
+          "characters": 17,
+          "exact": true
+        },
+        {
+          "text": "This symbol indicates that a lithium-ion",
+          "coverage": 1.0,
+          "characters": 34,
+          "exact": true
+        },
+        {
+          "text": "(Li-ion) battery is inside the product and",
+          "coverage": 1.0,
+          "characters": 33,
+          "exact": true
+        },
+        {
+          "text": "should be disposed of or recycled properly.",
+          "coverage": 1.0,
+          "characters": 36,
+          "exact": true
+        },
+        {
+          "text": "This symbol indicates that the product",
+          "coverage": 1.0,
+          "characters": 33,
+          "exact": true
+        },
+        {
+          "text": "shall not be disposed of as household",
+          "coverage": 1.0,
+          "characters": 31,
+          "exact": true
+        },
+        {
+          "text": "waste, and should be delivered to a",
+          "coverage": 1.0,
+          "characters": 28,
+          "exact": true
+        },
+        {
+          "text": "designated collection facility for recycling.",
+          "coverage": 1.0,
+          "characters": 40,
+          "exact": true
+        },
+        {
+          "text": "Proper disposal and recycling can help",
+          "coverage": 1.0,
+          "characters": 33,
+          "exact": true
+        },
+        {
+          "text": "protect the environment. For more",
+          "coverage": 1.0,
+          "characters": 28,
+          "exact": true
+        },
+        {
+          "text": "information about the disposal and",
+          "coverage": 1.0,
+          "characters": 30,
+          "exact": true
+        },
+        {
+          "text": "recycling of this product, contact your local",
+          "coverage": 1.0,
+          "characters": 38,
+          "exact": true
+        },
+        {
+          "text": "community, disposal service, or dealer.",
+          "coverage": 1.0,
+          "characters": 32,
+          "exact": true
+        }
+      ]
+    },
+    {
+      "page": 6,
+      "checked_lines": 33,
+      "long_lines": 12,
+      "candidates": [],
+      "lines": [
+        {
+          "text": "This device complies with part 15 of the FCC",
+          "coverage": 1.0,
+          "characters": 36,
+          "exact": true
+        },
+        {
+          "text": "particular installation.",
+          "coverage": 1.0,
+          "characters": 22,
+          "exact": true
+        },
+        {
+          "text": "•Rules. Operation is subject to the following two If this equipment does cause harmful interference to",
+          "coverage": 0.882,
+          "characters": 85,
+          "exact": false
+        },
+        {
+          "text": "radio or television reception, which can be",
+          "coverage": 1.0,
+          "characters": 36,
+          "exact": true
+        },
+        {
+          "text": "(1) This device may not cause harmful",
+          "coverage": 1.0,
+          "characters": 29,
+          "exact": true
+        },
+        {
+          "text": "determined by turning the equipment off and on, the",
+          "coverage": 1.0,
+          "characters": 42,
+          "exact": true
+        },
+        {
+          "text": "interference, and",
+          "coverage": 1.0,
+          "characters": 15,
+          "exact": true
+        },
+        {
+          "text": "(2) Thisdevice must acceptany interference received,",
+          "coverage": 1.0,
+          "characters": 44,
+          "exact": true
+        },
+        {
+          "text": "user is encouraged to try to correct the interference",
+          "coverage": 1.0,
+          "characters": 45,
+          "exact": true
+        },
+        {
+          "text": "by one or more of the following measures:",
+          "coverage": 1.0,
+          "characters": 33,
+          "exact": true
+        },
+        {
+          "text": "including interference that may cause undesired operation.",
+          "coverage": 1.0,
+          "characters": 51,
+          "exact": true
+        },
+        {
+          "text": "•Reorient or relocate the receiving antenna.",
+          "coverage": 1.0,
+          "characters": 37,
+          "exact": true
+        },
+        {
+          "text": "NOTE: This equipment has been tested and found to comply",
+          "coverage": 1.0,
+          "characters": 46,
+          "exact": true
+        },
+        {
+          "text": "• Increase the separation between the equipment and",
+          "coverage": 1.0,
+          "characters": 43,
+          "exact": true
+        },
+        {
+          "text": "with the limits for a Class B digital device, pursuant to part",
+          "coverage": 1.0,
+          "characters": 50,
+          "exact": true
+        },
+        {
+          "text": "15 of the FCC Rules. (",
+          "coverage": 1.0,
+          "characters": 15,
+          "exact": true
+        },
+        {
+          "text": "• Connect the equipment into an outlet on a circuit",
+          "coverage": 1.0,
+          "characters": 41,
+          "exact": true
+        },
+        {
+          "text": "These limits are designed to provide reasonable protection",
+          "coverage": 1.0,
+          "characters": 51,
+          "exact": true
+        },
+        {
+          "text": "different from that to which the receiver is connected.",
+          "coverage": 1.0,
+          "characters": 46,
+          "exact": true
+        },
+        {
+          "text": "against harmful interference in a residential installation. This • Consult the dealer or an experienced radio/TV",
+          "coverage": 0.894,
+          "characters": 94,
+          "exact": false
+        },
+        {
+          "text": "equipment generates, uses, and can radiate radio",
+          "coverage": 1.0,
+          "characters": 40,
+          "exact": true
+        },
+        {
+          "text": "technician for help.",
+          "coverage": 1.0,
+          "characters": 17,
+          "exact": true
+        },
+        {
+          "text": "frequency energy and, if not installed and used in",
+          "coverage": 1.0,
+          "characters": 41,
+          "exact": true
+        },
+        {
+          "text": "accordance with the instructions, may cause harmful",
+          "coverage": 1.0,
+          "characters": 44,
+          "exact": true
+        },
+        {
+          "text": "interference to communications. However, there is no",
+          "coverage": 1.0,
+          "characters": 44,
+          "exact": true
+        },
+        {
+          "text": "guarantee that radio interference will not occur in a",
+          "coverage": 1.0,
+          "characters": 45,
+          "exact": true
+        },
+        {
+          "text": "MODIFICATION: Any changes or modifications not",
+          "coverage": 1.0,
+          "characters": 40,
+          "exact": true
+        },
+        {
+          "text": "expressly approved by the grantee of this device could",
+          "coverage": 1.0,
+          "characters": 46,
+          "exact": true
+        },
+        {
+          "text": "void the user's authority to operate the device.",
+          "coverage": 1.0,
+          "characters": 39,
+          "exact": true
+        },
+        {
+          "text": "Jackery HomePower",
+          "coverage": 1.0,
+          "characters": 16,
+          "exact": true
+        },
+        {
+          "text": "AC Charging Cable",
+          "coverage": 1.0,
+          "characters": 15,
+          "exact": true
+        },
+        {
+          "text": "The car charging cable is not included but is available for purchase separately on our",
+          "coverage": 1.0,
+          "characters": 72,
+          "exact": true
+        },
+        {
+          "text": "website. For assistance, please contact Jackery customer service",
+          "coverage": 1.0,
+          "characters": 55,
+          "exact": true
+        }
+      ]
+    },
+    {
+      "page": 7,
+      "checked_lines": 13,
+      "long_lines": 0,
+      "candidates": [
+        {
+          "text": "140W Max, SV=3A, 9V-3A, 12V-3A, 15V-3A,",
+          "coverage": 0.5,
+          "characters": 25,
+          "exact": false
+        },
+        {
+          "text": "HomdPowor 2000 Plus)",
+          "coverage": 0.0,
+          "characters": 17,
+          "exact": false
+        },
+        {
+          "text": "DC Input (2xDC8020 Ports)",
+          "coverage": 0.182,
+          "characters": 20,
+          "exact": false
+        },
+        {
+          "text": "PV: :6-0V-24 Max, Doulble to 21A/800W Max",
+          "coverage": 0.3,
+          "characters": 29,
+          "exact": false
+        }
+      ],
+      "lines": [
+        {
+          "text": "PRODUCT OVERVIEW",
+          "coverage": 1.0,
+          "characters": 15,
+          "exact": true
+        },
+        {
+          "text": "Main Power Button",
+          "coverage": 1.0,
+          "characters": 15,
+          "exact": true
+        },
+        {
+          "text": "DC/USB Power Button",
+          "coverage": 1.0,
+          "characters": 16,
+          "exact": true
+        },
+        {
+          "text": "12V~2.5A, 15V-2A, 20V~1.5A|",
+          "coverage": 1.0,
+          "characters": 17,
+          "exact": true
+        },
+        {
+          "text": "18W Max, 5-6V-3A, 6-9V-2A,",
+          "coverage": 1.0,
+          "characters": 16,
+          "exact": true
+        },
+        {
+          "text": "140W Max, SV=3A, 9V-3A, 12V-3A, 15V-3A,",
+          "coverage": 0.5,
+          "characters": 25,
+          "exact": false
+        },
+        {
+          "text": "HomdPowor 2000 Plus)",
+          "coverage": 0.0,
+          "characters": 17,
+          "exact": false
+        },
+        {
+          "text": "DC Expansion Port",
+          "coverage": 1.0,
+          "characters": 15,
+          "exact": true
+        },
+        {
+          "text": "Connect to Battery Pack",
+          "coverage": 1.0,
+          "characters": 20,
+          "exact": true
+        },
+        {
+          "text": "DC Input (2xDC8020 Ports)",
+          "coverage": 0.182,
+          "characters": 20,
+          "exact": false
+        },
+        {
+          "text": "PV: :6-0V-24 Max, Doulble to 21A/800W Max",
+          "coverage": 0.3,
+          "characters": 29,
+          "exact": false
+        },
+        {
+          "text": "-16V-8A Max, Double to 8A Max",
+          "coverage": 1.0,
+          "characters": 21,
+          "exact": true
+        },
+        {
+          "text": "100V-120V~ 60 Hz, 15A Max",
+          "coverage": 1.0,
+          "characters": 18,
+          "exact": true
+        }
+      ]
+    },
+    {
+      "page": 8,
+      "checked_lines": 22,
+      "long_lines": 9,
+      "candidates": [],
+      "lines": [
+        {
+          "text": "Quiet Charging Mode",
+          "coverage": 1.0,
+          "characters": 17,
+          "exact": true
+        },
+        {
+          "text": "Self-powered Mode",
+          "coverage": 1.0,
+          "characters": 15,
+          "exact": true
+        },
+        {
+          "text": "On: Wi-Fi connected",
+          "coverage": 1.0,
+          "characters": 15,
+          "exact": true
+        },
+        {
+          "text": "Blink: Ready to connect to Wi-Fi.",
+          "coverage": 1.0,
+          "characters": 25,
+          "exact": true
+        },
+        {
+          "text": "Off: Wi-Fi disconnected.",
+          "coverage": 1.0,
+          "characters": 19,
+          "exact": true
+        },
+        {
+          "text": "On: Bluetooth Connected",
+          "coverage": 1.0,
+          "characters": 20,
+          "exact": true
+        },
+        {
+          "text": "Blink: Ready to connect to Bluetooth.",
+          "coverage": 1.0,
+          "characters": 30,
+          "exact": true
+        },
+        {
+          "text": "Off: Bluetooth disconnected.",
+          "coverage": 1.0,
+          "characters": 24,
+          "exact": true
+        },
+        {
+          "text": "On: The noise during charging is significantly minimized, while",
+          "coverage": 1.0,
+          "characters": 53,
+          "exact": true
+        },
+        {
+          "text": "the charging power is reduced, and the charging speed slows",
+          "coverage": 1.0,
+          "characters": 49,
+          "exact": true
+        },
+        {
+          "text": "Off: Quiet Charging Mode is disabled",
+          "coverage": 1.0,
+          "characters": 30,
+          "exact": true
+        },
+        {
+          "text": "Enable/disable this feature in the Jackery App. The setting is",
+          "coverage": 1.0,
+          "characters": 51,
+          "exact": true
+        },
+        {
+          "text": "retained when the device is powered off.",
+          "coverage": 1.0,
+          "characters": 33,
+          "exact": true
+        },
+        {
+          "text": "Customizes the charging time of the Jackery HomePower",
+          "coverage": 1.0,
+          "characters": 46,
+          "exact": true
+        },
+        {
+          "text": "2000 Plus. Suitable for situations with fluctuating electricity",
+          "coverage": 1.0,
+          "characters": 55,
+          "exact": true
+        },
+        {
+          "text": "prices, it allows for charging plans based on peak and",
+          "coverage": 1.0,
+          "characters": 44,
+          "exact": true
+        },
+        {
+          "text": "off-peak electricity times, reducing electricity costs",
+          "coverage": 1.0,
+          "characters": 47,
+          "exact": true
+        },
+        {
+          "text": "inable/disable this feature in the Jackery App. The settind",
+          "coverage": 0.95,
+          "characters": 49,
+          "exact": false
+        },
+        {
+          "text": "is retained when the device is powered off.",
+          "coverage": 1.0,
+          "characters": 35,
+          "exact": true
+        },
+        {
+          "text": "Maximizes the use of solar energy and reduces reliance on",
+          "coverage": 1.0,
+          "characters": 48,
+          "exact": true
+        },
+        {
+          "text": "grid electricity by prioritizing stored solar energy, reducing",
+          "coverage": 1.0,
+          "characters": 54,
+          "exact": true
+        },
+        {
+          "text": "is retained when the device is powered off.",
+          "coverage": 1.0,
+          "characters": 35,
+          "exact": true
+        }
+      ]
+    },
+    {
+      "page": 9,
+      "checked_lines": 41,
+      "long_lines": 17,
+      "candidates": [],
+      "lines": [
+        {
+          "text": "On: TOU mode is enabled (default backup SOC: 60%).",
+          "coverage": 1.0,
+          "characters": 36,
+          "exact": true
+        },
+        {
+          "text": "During peak periods, the product prioritizes discharging the",
+          "coverage": 1.0,
+          "characters": 52,
+          "exact": true
+        },
+        {
+          "text": "battery to reduce peak electricity costs when the stored",
+          "coverage": 1.0,
+          "characters": 48,
+          "exact": true
+        },
+        {
+          "text": "energy exceeds the backup SOC. During off-peak periods,",
+          "coverage": 1.0,
+          "characters": 45,
+          "exact": true
+        },
+        {
+          "text": "the product charges the battery from the grid to achieve",
+          "coverage": 1.0,
+          "characters": 47,
+          "exact": true
+        },
+        {
+          "text": "peak-shaving and valley-filling.",
+          "coverage": 1.0,
+          "characters": 27,
+          "exact": true
+        },
+        {
+          "text": "Off: TOU mode is disabled. The product does not follow the",
+          "coverage": 1.0,
+          "characters": 46,
+          "exact": true
+        },
+        {
+          "text": "TOU (time-of-use) strategy and operates according to the",
+          "coverage": 1.0,
+          "characters": 45,
+          "exact": true
+        },
+        {
+          "text": "default power supply and charging logic.",
+          "coverage": 1.0,
+          "characters": 34,
+          "exact": true
+        },
+        {
+          "text": "Enable/disable this feature in the Jackery App. The setting",
+          "coverage": 1.0,
+          "characters": 49,
+          "exact": true
+        },
+        {
+          "text": "is retained when the device is powered off.",
+          "coverage": 1.0,
+          "characters": 35,
+          "exact": true
+        },
+        {
+          "text": "On: The product is in bypass mode, and the switchover time",
+          "coverage": 1.0,
+          "characters": 46,
+          "exact": true
+        },
+        {
+          "text": "from grid power to the internal battery is 10 ms.",
+          "coverage": 1.0,
+          "characters": 39,
+          "exact": true
+        },
+        {
+          "text": "Off: The product is not in bypass mode",
+          "coverage": 1.0,
+          "characters": 30,
+          "exact": true
+        },
+        {
+          "text": "The AC output (pure sine wave) is on.",
+          "coverage": 1.0,
+          "characters": 27,
+          "exact": true
+        },
+        {
+          "text": "AC Power Indicator",
+          "coverage": 1.0,
+          "characters": 16,
+          "exact": true
+        },
+        {
+          "text": "Output Voltage and",
+          "coverage": 1.0,
+          "characters": 16,
+          "exact": true
+        },
+        {
+          "text": "Displays the output voltage and frequency when the AC",
+          "coverage": 1.0,
+          "characters": 45,
+          "exact": true
+        },
+        {
+          "text": "output is turned on.",
+          "coverage": 1.0,
+          "characters": 16,
+          "exact": true
+        },
+        {
+          "text": "Displays the input power in watts.",
+          "coverage": 1.0,
+          "characters": 28,
+          "exact": true
+        },
+        {
+          "text": "Remaining Charge Time",
+          "coverage": 1.0,
+          "characters": 19,
+          "exact": true
+        },
+        {
+          "text": "Car Charging Indicator",
+          "coverage": 1.0,
+          "characters": 20,
+          "exact": true
+        },
+        {
+          "text": "Displays the remaining charging time.",
+          "coverage": 1.0,
+          "characters": 32,
+          "exact": true
+        },
+        {
+          "text": "The product is charged via the AC Input using grid power.",
+          "coverage": 1.0,
+          "characters": 46,
+          "exact": true
+        },
+        {
+          "text": "Battery Saving Mode",
+          "coverage": 1.0,
+          "characters": 17,
+          "exact": true
+        },
+        {
+          "text": "The product is charged via the DC Input (DC8020) using DC",
+          "coverage": 1.0,
+          "characters": 45,
+          "exact": true
+        },
+        {
+          "text": "The product is charged via the DC Input (DC8020) using",
+          "coverage": 1.0,
+          "characters": 43,
+          "exact": true
+        },
+        {
+          "text": "On: Limits the maximum usable battery capacity to extend",
+          "coverage": 1.0,
+          "characters": 47,
+          "exact": true
+        },
+        {
+          "text": "Off: Battery Saving Mode is disabled.",
+          "coverage": 1.0,
+          "characters": 30,
+          "exact": true
+        },
+        {
+          "text": "Enable/disable this feature in the Jackery App. The setting",
+          "coverage": 1.0,
+          "characters": 49,
+          "exact": true
+        },
+        {
+          "text": "is retained when the device is powered off.",
+          "coverage": 1.0,
+          "characters": 35,
+          "exact": true
+        },
+        {
+          "text": "Note 1: This feature is not available when the product is",
+          "coverage": 1.0,
+          "characters": 46,
+          "exact": true
+        },
+        {
+          "text": "connected to battery pack(s).",
+          "coverage": 1.0,
+          "characters": 23,
+          "exact": true
+        },
+        {
+          "text": "Note 2: When this feature is enabled, the product",
+          "coverage": 1.0,
+          "characters": 39,
+          "exact": true
+        },
+        {
+          "text": "occasionally performs a full charge and discharge cycle to",
+          "coverage": 1.0,
+          "characters": 50,
+          "exact": true
+        },
+        {
+          "text": "calibrate the SOC.",
+          "coverage": 1.0,
+          "characters": 15,
+          "exact": true
+        },
+        {
+          "text": "Charging Power Limit",
+          "coverage": 1.0,
+          "characters": 18,
+          "exact": true
+        },
+        {
+          "text": "When the product is being charged, the orange circle",
+          "coverage": 1.0,
+          "characters": 43,
+          "exact": true
+        },
+        {
+          "text": "Battery Power Indicator",
+          "coverage": 1.0,
+          "characters": 21,
+          "exact": true
+        },
+        {
+          "text": "around the battery percentage will light up in sequence.",
+          "coverage": 1.0,
+          "characters": 47,
+          "exact": true
+        },
+        {
+          "text": "When charging other devices, the orange circle will stay on.",
+          "coverage": 1.0,
+          "characters": 49,
+          "exact": true
+        }
+      ]
+    },
+    {
+      "page": 10,
+      "checked_lines": 23,
+      "long_lines": 6,
+      "candidates": [],
+      "lines": [
+        {
+          "text": "Low Battery Indicator",
+          "coverage": 1.0,
+          "characters": 19,
+          "exact": true
+        },
+        {
+          "text": "Remaining Battery",
+          "coverage": 1.0,
+          "characters": 16,
+          "exact": true
+        },
+        {
+          "text": "Displays the remaining battery percentage.",
+          "coverage": 1.0,
+          "characters": 37,
+          "exact": true
+        },
+        {
+          "text": "On: A discharge timer is set.",
+          "coverage": 1.0,
+          "characters": 22,
+          "exact": true
+        },
+        {
+          "text": "Off: No discharge timer is set.",
+          "coverage": 1.0,
+          "characters": 24,
+          "exact": true
+        },
+        {
+          "text": "Enable/disable this feature in the Jackery App. The setting",
+          "coverage": 1.0,
+          "characters": 49,
+          "exact": true
+        },
+        {
+          "text": "s not retained when the device is powered oft",
+          "coverage": 0.964,
+          "characters": 37,
+          "exact": false
+        },
+        {
+          "text": "Connected Batteries",
+          "coverage": 1.0,
+          "characters": 18,
+          "exact": true
+        },
+        {
+          "text": "Energy Saving Mode",
+          "coverage": 1.0,
+          "characters": 16,
+          "exact": true
+        },
+        {
+          "text": "High Temperature",
+          "coverage": 1.0,
+          "characters": 15,
+          "exact": true
+        },
+        {
+          "text": "Displays the quantity of battery packs if any are connected",
+          "coverage": 1.0,
+          "characters": 50,
+          "exact": true
+        },
+        {
+          "text": "When the AC or DC output is turned on by pressing the",
+          "coverage": 1.0,
+          "characters": 42,
+          "exact": true
+        },
+        {
+          "text": "AC1/2 or DC/USB power button:",
+          "coverage": 1.0,
+          "characters": 22,
+          "exact": true
+        },
+        {
+          "text": "On: Energy Saving Mode is enablec",
+          "coverage": 0.944,
+          "characters": 27,
+          "exact": false
+        },
+        {
+          "text": "Off: Energy Saving Mode is disabled",
+          "coverage": 1.0,
+          "characters": 29,
+          "exact": true
+        },
+        {
+          "text": "igh temperature protection is triggered. The product ma",
+          "coverage": 1.0,
+          "characters": 47,
+          "exact": true
+        },
+        {
+          "text": "›o functionina until its temperature returns to the norm",
+          "coverage": 0.711,
+          "characters": 47,
+          "exact": false
+        },
+        {
+          "text": "Low temperature protection is triggered. The product may",
+          "coverage": 1.0,
+          "characters": 48,
+          "exact": true
+        },
+        {
+          "text": "stop functioning until its temperature returns to the normal",
+          "coverage": 1.0,
+          "characters": 52,
+          "exact": true
+        },
+        {
+          "text": "A product error has occurred. Please refer to the",
+          "coverage": 1.0,
+          "characters": 40,
+          "exact": true
+        },
+        {
+          "text": "Troubleshooting section for details.",
+          "coverage": 1.0,
+          "characters": 32,
+          "exact": true
+        },
+        {
+          "text": "Displays the output power in watts.",
+          "coverage": 1.0,
+          "characters": 29,
+          "exact": true
+        },
+        {
+          "text": "Displays the remaining discharging time.",
+          "coverage": 1.0,
+          "characters": 35,
+          "exact": true
+        }
+      ]
+    },
+    {
+      "page": 11,
+      "checked_lines": 10,
+      "long_lines": 3,
+      "candidates": [],
+      "lines": [
+        {
+          "text": "Press and hold for 3s",
+          "coverage": 1.0,
+          "characters": 17,
+          "exact": true
+        },
+        {
+          "text": "Default standby time: 2 hours",
+          "coverage": 1.0,
+          "characters": 24,
+          "exact": true
+        },
+        {
+          "text": "The product will automatically shut down after 2",
+          "coverage": 1.0,
+          "characters": 41,
+          "exact": true
+        },
+        {
+          "text": "hours of inactivity, with no charging or discharging.",
+          "coverage": 1.0,
+          "characters": 44,
+          "exact": true
+        },
+        {
+          "text": "*The standby time can be set in the Jackery App.",
+          "coverage": 1.0,
+          "characters": 37,
+          "exact": true
+        },
+        {
+          "text": "When Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the",
+          "coverage": 1.0,
+          "characters": 81,
+          "exact": true
+        },
+        {
+          "text": "AC or USB power button is ON but the product is neither charging nor discharging.",
+          "coverage": 1.0,
+          "characters": 66,
+          "exact": true
+        },
+        {
+          "text": "Prerequisite: The product is powered on.",
+          "coverage": 1.0,
+          "characters": 33,
+          "exact": true
+        },
+        {
+          "text": "AC1 and AC2 power buttons control two separate pairs of AC outlets. Pressing each button turns its",
+          "coverage": 1.0,
+          "characters": 81,
+          "exact": true
+        },
+        {
+          "text": "corresponding AC outlet pair on or off.",
+          "coverage": 1.0,
+          "characters": 32,
+          "exact": true
+        }
+      ]
+    },
+    {
+      "page": 12,
+      "checked_lines": 17,
+      "long_lines": 10,
+      "candidates": [
+        {
+          "text": "100W; 28V DC/SA, 140W).",
+          "coverage": 0.0,
+          "characters": 15,
+          "exact": false
+        }
+      ],
+      "lines": [
+        {
+          "text": "• DC 12V/USB OUTPUT ON/OFF",
+          "coverage": 1.0,
+          "characters": 19,
+          "exact": true
+        },
+        {
+          "text": "Prerequisite: The product is powered on.",
+          "coverage": 1.0,
+          "characters": 33,
+          "exact": true
+        },
+        {
+          "text": "• USB-C 140W is a USB-PD Power Source 3 (PS3) high-power output port. If the",
+          "coverage": 1.0,
+          "characters": 55,
+          "exact": true
+        },
+        {
+          "text": "connected user device or accessory does not meet safety requirements, there may be",
+          "coverage": 1.0,
+          "characters": 69,
+          "exact": true
+        },
+        {
+          "text": "a fire risk. Before using these ports, ensure that the connected device or accessory has",
+          "coverage": 1.0,
+          "characters": 72,
+          "exact": true
+        },
+        {
+          "text": "fire safety protection.",
+          "coverage": 1.0,
+          "characters": 20,
+          "exact": true
+        },
+        {
+          "text": "• Only connect theJackery HomePower 2000 Plus to devices or accessories that comply",
+          "coverage": 1.0,
+          "characters": 70,
+          "exact": true
+        },
+        {
+          "text": "with clauses 6.3, 6.4, and 6.5 of IEC/EN/UL 62368-1 (or other equivalent standards).",
+          "coverage": 1.0,
+          "characters": 61,
+          "exact": true
+        },
+        {
+          "text": "• To obtain maximum output power, use the USB-C to USB-C 5A cable (20V DC/SA,",
+          "coverage": 0.957,
+          "characters": 56,
+          "exact": false
+        },
+        {
+          "text": "100W; 28V DC/SA, 140W).",
+          "coverage": 0.0,
+          "characters": 15,
+          "exact": false
+        },
+        {
+          "text": "The product cancharge your carbattery using theJackery 12V automobile battery charging cable, which is",
+          "coverage": 1.0,
+          "characters": 88,
+          "exact": true
+        },
+        {
+          "text": "sold separately and available on our website.",
+          "coverage": 1.0,
+          "characters": 38,
+          "exact": true
+        },
+        {
+          "text": "• The DC 12Vportis only compatible with 12V car batteries and not suitable for 24V",
+          "coverage": 1.0,
+          "characters": 67,
+          "exact": true
+        },
+        {
+          "text": "• Do not start the car while the product is charging the car battery through the 12V DC",
+          "coverage": 1.0,
+          "characters": 69,
+          "exact": true
+        },
+        {
+          "text": "output port, as this may damage the product.",
+          "coverage": 1.0,
+          "characters": 35,
+          "exact": true
+        },
+        {
+          "text": "• This feature is intended foremergency useonly and cannot charge a dead or",
+          "coverage": 1.0,
+          "characters": 62,
+          "exact": true
+        },
+        {
+          "text": "damaged car battery.",
+          "coverage": 1.0,
+          "characters": 17,
+          "exact": true
+        }
+      ]
+    },
+    {
+      "page": 13,
+      "checked_lines": 23,
+      "long_lines": 12,
+      "candidates": [],
+      "lines": [
+        {
+          "text": "ENERGY SAVING MODE",
+          "coverage": 1.0,
+          "characters": 16,
+          "exact": true
+        },
+        {
+          "text": "To prevent unnecessary battery consumption from forgetting to turn off the output, the product",
+          "coverage": 1.0,
+          "characters": 80,
+          "exact": true
+        },
+        {
+          "text": "enables Energy Saving Mode by default. When the AC or DC/USB output is turned on, the Energy",
+          "coverage": 1.0,
+          "characters": 73,
+          "exact": true
+        },
+        {
+          "text": "Saving Mode icon will be displayed on the LCD screen. If no device is connected or the connected",
+          "coverage": 1.0,
+          "characters": 78,
+          "exact": true
+        },
+        {
+          "text": "device's power consumption is below a certain threshold (25W AC output or 2W DC/USB output) for",
+          "coverage": 1.0,
+          "characters": 76,
+          "exact": true
+        },
+        {
+          "text": "12 hours, the product automatically turns off the outputs. Please setthe Energy Saving Mode",
+          "coverage": 1.0,
+          "characters": 76,
+          "exact": true
+        },
+        {
+          "text": "duration in the Jackery App.",
+          "coverage": 1.0,
+          "characters": 23,
+          "exact": true
+        },
+        {
+          "text": "Main power button",
+          "coverage": 1.0,
+          "characters": 15,
+          "exact": true
+        },
+        {
+          "text": "Press and hold for 3s",
+          "coverage": 1.0,
+          "characters": 17,
+          "exact": true
+        },
+        {
+          "text": "To disable the energy saving mode,press and hold both the ACl power button and the main power",
+          "coverage": 0.851,
+          "characters": 76,
+          "exact": false
+        },
+        {
+          "text": "button for more than 3 seconds. Once Energy Saving Mode is disabled, the icon will no longer appear",
+          "coverage": 1.0,
+          "characters": 80,
+          "exact": true
+        },
+        {
+          "text": "on the LCD screen, and the product will not automatically turn off the AC or USB output.",
+          "coverage": 1.0,
+          "characters": 70,
+          "exact": true
+        },
+        {
+          "text": "When powering low-power devices (AC≤ 25 W or DC/USB ≤ 2 W), disable Energy Saving Mode to",
+          "coverage": 1.0,
+          "characters": 66,
+          "exact": true
+        },
+        {
+          "text": "prevent the output from shutting down automatically during operation.",
+          "coverage": 1.0,
+          "characters": 60,
+          "exact": true
+        },
+        {
+          "text": "Energy Saving Mode resumes its previous state after powering on. Manual switching is",
+          "coverage": 1.0,
+          "characters": 71,
+          "exact": true
+        },
+        {
+          "text": "required for mode changes.",
+          "coverage": 1.0,
+          "characters": 22,
+          "exact": true
+        },
+        {
+          "text": "The LED lighthas two modes: Light mode and SOS mode. In any mode, press and hold",
+          "coverage": 1.0,
+          "characters": 62,
+          "exact": true
+        },
+        {
+          "text": "the LED light button to turn off the light.",
+          "coverage": 1.0,
+          "characters": 34,
+          "exact": true
+        },
+        {
+          "text": "Press the LED Light button",
+          "coverage": 1.0,
+          "characters": 22,
+          "exact": true
+        },
+        {
+          "text": "once to turn on the light.",
+          "coverage": 1.0,
+          "characters": 20,
+          "exact": true
+        },
+        {
+          "text": "Press it again to switch to",
+          "coverage": 1.0,
+          "characters": 22,
+          "exact": true
+        },
+        {
+          "text": "Press it a third time to",
+          "coverage": 1.0,
+          "characters": 19,
+          "exact": true
+        },
+        {
+          "text": "turn off the light.",
+          "coverage": 1.0,
+          "characters": 15,
+          "exact": true
+        }
+      ]
+    },
+    {
+      "page": 14,
+      "checked_lines": 23,
+      "long_lines": 1,
+      "candidates": [
+        {
+          "text": "he eocterunesot auromoriea)",
+          "coverage": 0.0,
+          "characters": 24,
+          "exact": false
+        }
+      ],
+      "lines": [
+        {
+          "text": "You can also set the screen display mode in the Jackery App.",
+          "coverage": 1.0,
+          "characters": 48,
+          "exact": true
+        },
+        {
+          "text": "Main POWER button",
+          "coverage": 1.0,
+          "characters": 15,
+          "exact": true
+        },
+        {
+          "text": "DC/USB power button",
+          "coverage": 1.0,
+          "characters": 16,
+          "exact": true
+        },
+        {
+          "text": "Main POWER button",
+          "coverage": 1.0,
+          "characters": 15,
+          "exact": true
+        },
+        {
+          "text": "DC/USB power button",
+          "coverage": 1.0,
+          "characters": 16,
+          "exact": true
+        },
+        {
+          "text": "Main POWER button",
+          "coverage": 1.0,
+          "characters": 15,
+          "exact": true
+        },
+        {
+          "text": "Press and hold both for 3s",
+          "coverage": 1.0,
+          "characters": 21,
+          "exact": true
+        },
+        {
+          "text": "Press and hold both for 3s",
+          "coverage": 1.0,
+          "characters": 21,
+          "exact": true
+        },
+        {
+          "text": "Press and hold both for 1s",
+          "coverage": 1.0,
+          "characters": 21,
+          "exact": true
+        },
+        {
+          "text": "Press and hold both for 1s",
+          "coverage": 1.0,
+          "characters": 21,
+          "exact": true
+        },
+        {
+          "text": "ess the Main Power Button",
+          "coverage": 1.0,
+          "characters": 21,
+          "exact": true
+        },
+        {
+          "text": "len the product is chargin",
+          "coverage": 0.923,
+          "characters": 22,
+          "exact": false
+        },
+        {
+          "text": "Press the Main Power Button.",
+          "coverage": 1.0,
+          "characters": 23,
+          "exact": true
+        },
+        {
+          "text": "he eocterunesot auromoriea)",
+          "coverage": 0.0,
+          "characters": 24,
+          "exact": false
+        },
+        {
+          "text": "inutes of inactivity",
+          "coverage": 1.0,
+          "characters": 18,
+          "exact": true
+        },
+        {
+          "text": "ress the Main Power Buttor",
+          "coverage": 0.923,
+          "characters": 22,
+          "exact": false
+        },
+        {
+          "text": "Nice when the product i",
+          "coverage": 0.9,
+          "characters": 19,
+          "exact": false
+        },
+        {
+          "text": "Press the Main Power Button.",
+          "coverage": 1.0,
+          "characters": 23,
+          "exact": true
+        },
+        {
+          "text": "automatically after 2 hours of",
+          "coverage": 1.0,
+          "characters": 26,
+          "exact": true
+        },
+        {
+          "text": "Reset Wi-Fi and Bluetooth",
+          "coverage": 1.0,
+          "characters": 21,
+          "exact": true
+        },
+        {
+          "text": "Energy Saving Mode",
+          "coverage": 1.0,
+          "characters": 16,
+          "exact": true
+        },
+        {
+          "text": "Turn on/off Wi-Fi and",
+          "coverage": 1.0,
+          "characters": 16,
+          "exact": true
+        },
+        {
+          "text": "Turn on/off Emergency",
+          "coverage": 1.0,
+          "characters": 18,
+          "exact": true
+        }
+      ]
+    },
+    {
+      "page": 15,
+      "checked_lines": 29,
+      "long_lines": 13,
+      "candidates": [],
+      "lines": [
+        {
+          "text": "• AC AND DC OUTPUT RESUME FUNCTION",
+          "coverage": 1.0,
+          "characters": 27,
+          "exact": true
+        },
+        {
+          "text": "This function memorizes the output status and automatically resumes AC and DC outputs under",
+          "coverage": 1.0,
+          "characters": 78,
+          "exact": true
+        },
+        {
+          "text": "defined conditions.",
+          "coverage": 1.0,
+          "characters": 17,
+          "exact": true
+        },
+        {
+          "text": "Auto Resume Conditions",
+          "coverage": 1.0,
+          "characters": 20,
+          "exact": true
+        },
+        {
+          "text": "Power-on/Restart after shutdown or restart",
+          "coverage": 1.0,
+          "characters": 36,
+          "exact": true
+        },
+        {
+          "text": "Battery SOC ≥ discharge limit +10% after reaching limit",
+          "coverage": 1.0,
+          "characters": 44,
+          "exact": true
+        },
+        {
+          "text": "OTA upgrade completed",
+          "coverage": 1.0,
+          "characters": 19,
+          "exact": true
+        },
+        {
+          "text": "Not Auto Resume Conditions",
+          "coverage": 1.0,
+          "characters": 23,
+          "exact": true
+        },
+        {
+          "text": "Manual output off (button/App)",
+          "coverage": 1.0,
+          "characters": 24,
+          "exact": true
+        },
+        {
+          "text": "Energy Saving mode output off",
+          "coverage": 1.0,
+          "characters": 25,
+          "exact": true
+        },
+        {
+          "text": "Protection-triggered output off",
+          "coverage": 1.0,
+          "characters": 28,
+          "exact": true
+        },
+        {
+          "text": "Discharge timer-triggered output off",
+          "coverage": 1.0,
+          "characters": 32,
+          "exact": true
+        },
+        {
+          "text": "UNINTERRUPTIBLE POWER SUPPLY (UPS)",
+          "coverage": 1.0,
+          "characters": 29,
+          "exact": true
+        },
+        {
+          "text": "Connect the product to a wall outlet with the AC charging cable, then press the AC1/2 power button and power",
+          "coverage": 1.0,
+          "characters": 87,
+          "exact": true
+        },
+        {
+          "text": "your appliances at the same time.",
+          "coverage": 1.0,
+          "characters": 27,
+          "exact": true
+        },
+        {
+          "text": "An uninterruptible power supply (UPS) is a continuous power system that",
+          "coverage": 1.0,
+          "characters": 59,
+          "exact": true
+        },
+        {
+          "text": "automatically supplies backup power to connected loads when grid power fails.",
+          "coverage": 1.0,
+          "characters": 66,
+          "exact": true
+        },
+        {
+          "text": "If grid power is suddenly lost, the HomePower 2000 Plus switches to stored",
+          "coverage": 1.0,
+          "characters": 61,
+          "exact": true
+        },
+        {
+          "text": "power within 10 ms to keep your appliances running.",
+          "coverage": 1.0,
+          "characters": 42,
+          "exact": true
+        },
+        {
+          "text": "When operating in UPS mode, the unit works in Bypass Mode under normal grid conditions and provides up to 15 A",
+          "coverage": 1.0,
+          "characters": 89,
+          "exact": true
+        },
+        {
+          "text": "(1800 W) of output. If the output current remains above 12 A for more than 3 hours, the output is reduced to 12 A",
+          "coverage": 1.0,
+          "characters": 86,
+          "exact": true
+        },
+        {
+          "text": "(1440 W). Because charging and dischargingmay occur simultaneously in Bypass Mode, the available output",
+          "coverage": 1.0,
+          "characters": 86,
+          "exact": true
+        },
+        {
+          "text": "power in this mode may be lower than the rated output power. During a power outage, the unit switches to",
+          "coverage": 1.0,
+          "characters": 83,
+          "exact": true
+        },
+        {
+          "text": "battery output and returns to its rated output power.",
+          "coverage": 1.0,
+          "characters": 44,
+          "exact": true
+        },
+        {
+          "text": "• This product does not support 0ms switching. Do not connect it to equipment that",
+          "coverage": 1.0,
+          "characters": 66,
+          "exact": true
+        },
+        {
+          "text": "requires a 0 ms switching power supply, such as data servers or workstations.",
+          "coverage": 1.0,
+          "characters": 63,
+          "exact": true
+        },
+        {
+          "text": "• Before use, please test compatibility with your device multiple times.",
+          "coverage": 1.0,
+          "characters": 59,
+          "exact": true
+        },
+        {
+          "text": "• Do not connect loads exceeding the maximum output power of the product. Otherwise,",
+          "coverage": 1.0,
+          "characters": 68,
+          "exact": true
+        },
+        {
+          "text": "overload protection will be triggered.",
+          "coverage": 1.0,
+          "characters": 33,
+          "exact": true
+        }
+      ]
+    },
+    {
+      "page": 16,
+      "checked_lines": 15,
+      "long_lines": 10,
+      "candidates": [],
+      "lines": [
+        {
+          "text": "CONNECT TO BATTERY PACK(S)",
+          "coverage": 1.0,
+          "characters": 21,
+          "exact": true
+        },
+        {
+          "text": "This product can support up to 5 battery packs to meet the need for large power capacity. For details on how to",
+          "coverage": 1.0,
+          "characters": 89,
+          "exact": true
+        },
+        {
+          "text": "use it, please refer to the Jackery Battery Pack 2000 User Manual.",
+          "coverage": 1.0,
+          "characters": 53,
+          "exact": true
+        },
+        {
+          "text": "• Ensure all products are powered off before connecting the HomePower 2000 Plus to the",
+          "coverage": 1.0,
+          "characters": 71,
+          "exact": true
+        },
+        {
+          "text": "Jackery Battery Pack 2000.",
+          "coverage": 1.0,
+          "characters": 22,
+          "exact": true
+        },
+        {
+          "text": "• To ensure proper operation of the product, make sure the air intake and exhaust vents on",
+          "coverage": 1.0,
+          "characters": 72,
+          "exact": true
+        },
+        {
+          "text": "both sides are unobstructed. Leave at least 0.66 ft (=200 mm) of space between the",
+          "coverage": 1.0,
+          "characters": 63,
+          "exact": true
+        },
+        {
+          "text": "vents and any objects to allow for proper heat dissipation.",
+          "coverage": 1.0,
+          "characters": 49,
+          "exact": true
+        },
+        {
+          "text": "• When the product is used with connected battery packs, the default maximum number",
+          "coverage": 1.0,
+          "characters": 68,
+          "exact": true
+        },
+        {
+          "text": "of stacked battery packs is 3, and the product must be placed on a flat, stable surface",
+          "coverage": 1.0,
+          "characters": 69,
+          "exact": true
+        },
+        {
+          "text": "with sufficient load-bearing capacity.",
+          "coverage": 1.0,
+          "characters": 33,
+          "exact": true
+        },
+        {
+          "text": "• If 4 or more battery packs need to be stacked, the product must be placed in a stable",
+          "coverage": 1.0,
+          "characters": 67,
+          "exact": true
+        },
+        {
+          "text": "area against a wall and protected from external impact, and the necessary anti-tip",
+          "coverage": 1.0,
+          "characters": 68,
+          "exact": true
+        },
+        {
+          "text": "securing measures must be taken.",
+          "coverage": 1.0,
+          "characters": 27,
+          "exact": true
+        },
+        {
+          "text": "Jackery Battery Pack 2000",
+          "coverage": 1.0,
+          "characters": 22,
+          "exact": true
+        }
+      ]
+    },
+    {
+      "page": 17,
+      "checked_lines": 26,
+      "long_lines": 19,
+      "candidates": [],
+      "lines": [
+        {
+          "text": "Green energy first: We advocate using green energy first. This product supports two modes of charging at the same",
+          "coverage": 1.0,
+          "characters": 93,
+          "exact": true
+        },
+        {
+          "text": "time: solar charging and AC wall charging. When AC wall charging and solar charging are turned on at the same",
+          "coverage": 1.0,
+          "characters": 88,
+          "exact": true
+        },
+        {
+          "text": "time, the product will give priority to solar charging, and both methods will be used to charge the battery at the",
+          "coverage": 1.0,
+          "characters": 92,
+          "exact": true
+        },
+        {
+          "text": "maximum permissible power.",
+          "coverage": 1.0,
+          "characters": 23,
+          "exact": true
+        },
+        {
+          "text": "Fully charge the product before its first use.",
+          "coverage": 1.0,
+          "characters": 38,
+          "exact": true
+        },
+        {
+          "text": "•The recommended charging temperature for the product ranges from 14°F to 113°F (-10°C to",
+          "coverage": 1.0,
+          "characters": 70,
+          "exact": true
+        },
+        {
+          "text": "45°C), and the discharging temperature ranges from 14°F to 113°F (-10°C to 45°C). Operating",
+          "coverage": 1.0,
+          "characters": 67,
+          "exact": true
+        },
+        {
+          "text": "the product beyond thistemperature range may restrict its charging and discharging",
+          "coverage": 1.0,
+          "characters": 72,
+          "exact": true
+        },
+        {
+          "text": "capabilities, or even prevent it from charging or discharging",
+          "coverage": 1.0,
+          "characters": 52,
+          "exact": true
+        },
+        {
+          "text": "•The charging powerand battery capacity of the product mayvary due to temperature",
+          "coverage": 1.0,
+          "characters": 69,
+          "exact": true
+        },
+        {
+          "text": "• CHARGING VIA AC WALL OUTLET",
+          "coverage": 1.0,
+          "characters": 23,
+          "exact": true
+        },
+        {
+          "text": "Connect the AC charging cable to the AC",
+          "coverage": 1.0,
+          "characters": 32,
+          "exact": true
+        },
+        {
+          "text": "input port of the product and a wall outlet.",
+          "coverage": 1.0,
+          "characters": 35,
+          "exact": true
+        },
+        {
+          "text": "Make sure the AC charging cable is fully and securely plugged into the AC input port. An",
+          "coverage": 1.0,
+          "characters": 71,
+          "exact": true
+        },
+        {
+          "text": "incomplete connection may cause unstable current, overheating, poor contact, or device",
+          "coverage": 1.0,
+          "characters": 73,
+          "exact": true
+        },
+        {
+          "text": "Emergency Charging Mode",
+          "coverage": 1.0,
+          "characters": 21,
+          "exact": true
+        },
+        {
+          "text": "Under this mode, you can rapidly power up the portable power station using the AC charging method. This",
+          "coverage": 1.0,
+          "characters": 84,
+          "exact": true
+        },
+        {
+          "text": "emergency charge function can be activated or deactivated through the Jackery App. When in emergency",
+          "coverage": 1.0,
+          "characters": 85,
+          "exact": true
+        },
+        {
+          "text": "charging mode, the circular light indicating the state of charge (SOC) will blink at an increased pace.",
+          "coverage": 1.0,
+          "characters": 83,
+          "exact": true
+        },
+        {
+          "text": "•To maximize battery life, it is best to charge at normal speed. Use emergency charging mode only when",
+          "coverage": 1.0,
+          "characters": 82,
+          "exact": true
+        },
+        {
+          "text": "necessary. It's not recommended for regular, long-term use.",
+          "coverage": 1.0,
+          "characters": 47,
+          "exact": true
+        },
+        {
+          "text": "• CHARGING VIA SOLAR PANELS (SOLD SEPARATELY",
+          "coverage": 1.0,
+          "characters": 36,
+          "exact": true
+        },
+        {
+          "text": "Jackery HomePower 2000 Plus has two DC8020 input ports and is compatible with the Jackery solar panels. If one",
+          "coverage": 1.0,
+          "characters": 91,
+          "exact": true
+        },
+        {
+          "text": "DC8020 input port needs to connect two solar panels simultaneously, please refer to the figure below for charging",
+          "coverage": 1.0,
+          "characters": 95,
+          "exact": true
+        },
+        {
+          "text": "through the solar panel connector (sold separately, not included as standard).",
+          "coverage": 1.0,
+          "characters": 64,
+          "exact": true
+        },
+        {
+          "text": "One DC8020 input port can be connected to at most two solar panels.",
+          "coverage": 1.0,
+          "characters": 54,
+          "exact": true
+        }
+      ]
+    },
+    {
+      "page": 18,
+      "checked_lines": 19,
+      "long_lines": 13,
+      "candidates": [],
+      "lines": [
+        {
+          "text": "Ensure that the input voltage for both DC input ports is the same. Failure to do somay",
+          "coverage": 1.0,
+          "characters": 69,
+          "exact": true
+        },
+        {
+          "text": "damage the product. For example:",
+          "coverage": 1.0,
+          "characters": 26,
+          "exact": true
+        },
+        {
+          "text": "• Use the same model of Jackery solar panels and the same number of panels when",
+          "coverage": 1.0,
+          "characters": 63,
+          "exact": true
+        },
+        {
+          "text": "connecting solar panels to both DC8020 Input ports.",
+          "coverage": 1.0,
+          "characters": 43,
+          "exact": true
+        },
+        {
+          "text": "•Do not chargethe product using both a car charger and a solar panel simultaneously.",
+          "coverage": 1.0,
+          "characters": 69,
+          "exact": true
+        },
+        {
+          "text": "Doing so may blow the car fuse or result in charging failure.",
+          "coverage": 1.0,
+          "characters": 49,
+          "exact": true
+        },
+        {
+          "text": "It is recommended to use the Jackery solar panel to charge the product. Ensure that the open-circuit voltage (Voc)",
+          "coverage": 1.0,
+          "characters": 92,
+          "exact": true
+        },
+        {
+          "text": "of the solar panel is within the DC input range (16V-6OV) of the HomePower 2000 Plus. Jackery is not responsible for",
+          "coverage": 0.88,
+          "characters": 92,
+          "exact": false
+        },
+        {
+          "text": "any damage or loss resulting from the use of third-party solar panels.",
+          "coverage": 1.0,
+          "characters": 57,
+          "exact": true
+        },
+        {
+          "text": "• CHARGING VIA A CAR CHARGER",
+          "coverage": 1.0,
+          "characters": 22,
+          "exact": true
+        },
+        {
+          "text": "This product can be charged using a 12V car charger. Ensure that the car charger and the 12V car power outlet",
+          "coverage": 1.0,
+          "characters": 88,
+          "exact": true
+        },
+        {
+          "text": "(car cigarette lighter) provide a good connection.",
+          "coverage": 1.0,
+          "characters": 41,
+          "exact": true
+        },
+        {
+          "text": "*The car charging cable is sold separately.",
+          "coverage": 1.0,
+          "characters": 35,
+          "exact": true
+        },
+        {
+          "text": "• Please start the vehicle before charging your power station.",
+          "coverage": 1.0,
+          "characters": 51,
+          "exact": true
+        },
+        {
+          "text": "• If the vehicle is running on bumpy roads, it is forbidden to use the car charger in case it",
+          "coverage": 1.0,
+          "characters": 72,
+          "exact": true
+        },
+        {
+          "text": "causes non-standard operation. The Company will not be responsible for any loss caused",
+          "coverage": 1.0,
+          "characters": 72,
+          "exact": true
+        },
+        {
+          "text": "by non-standard operation.",
+          "coverage": 1.0,
+          "characters": 22,
+          "exact": true
+        },
+        {
+          "text": "• Vehiclecharging is only applicableto vehicles with 12V DC, not 24V DC. Please do not",
+          "coverage": 1.0,
+          "characters": 69,
+          "exact": true
+        },
+        {
+          "text": "charge this product in a 24V vehicle to avoid personal injury and property loss.",
+          "coverage": 1.0,
+          "characters": 66,
+          "exact": true
+        }
+      ]
+    },
+    {
+      "page": 19,
+      "checked_lines": 32,
+      "long_lines": 16,
+      "candidates": [],
+      "lines": [
+        {
+          "text": "Store the product in a dry, clean place with proper ventilation. Storage temperature and humidity:",
+          "coverage": 1.0,
+          "characters": 81,
+          "exact": true
+        },
+        {
+          "text": "• 1 month: -4°F to 113°F / -20°C to 45°C (0-60%RH)",
+          "coverage": 1.0,
+          "characters": 27,
+          "exact": true
+        },
+        {
+          "text": "• 3 months: 32°F to 113°F / 0°C to 45°C (0-60%RH)",
+          "coverage": 1.0,
+          "characters": 28,
+          "exact": true
+        },
+        {
+          "text": "• 12 months: 32°F to 77°F / 0°C to 25°C (0-60%RH)",
+          "coverage": 1.0,
+          "characters": 28,
+          "exact": true
+        },
+        {
+          "text": "If this product is stored for a long period of time (3 months - 6 months) with the power depleted, it may become",
+          "coverage": 1.0,
+          "characters": 86,
+          "exact": true
+        },
+        {
+          "text": "unchargeable. To preventthis and maintainbattery health,it is recommended tocheck and recharge the",
+          "coverage": 1.0,
+          "characters": 85,
+          "exact": true
+        },
+        {
+          "text": "product every three months and perform a full charge and discharge cycle at least once every 6 to 12 months.",
+          "coverage": 1.0,
+          "characters": 88,
+          "exact": true
+        },
+        {
+          "text": "TROUBLESHOOTING",
+          "coverage": 1.0,
+          "characters": 15,
+          "exact": true
+        },
+        {
+          "text": "If any of the following fault codes appear, follow the listed corrective actions to resolve the issue. If the fault",
+          "coverage": 1.0,
+          "characters": 94,
+          "exact": true
+        },
+        {
+          "text": "persists, please contact Jackery Customer Support.",
+          "coverage": 1.0,
+          "characters": 43,
+          "exact": true
+        },
+        {
+          "text": "Corrective Measures",
+          "coverage": 1.0,
+          "characters": 18,
+          "exact": true
+        },
+        {
+          "text": "Restart the product.",
+          "coverage": 1.0,
+          "characters": 17,
+          "exact": true
+        },
+        {
+          "text": "Restart the product.",
+          "coverage": 1.0,
+          "characters": 17,
+          "exact": true
+        },
+        {
+          "text": "Restart the product.",
+          "coverage": 1.0,
+          "characters": 17,
+          "exact": true
+        },
+        {
+          "text": "Restart the product.",
+          "coverage": 1.0,
+          "characters": 17,
+          "exact": true
+        },
+        {
+          "text": "Connect the product to loads to discharge its battery until the fault disappears.",
+          "coverage": 1.0,
+          "characters": 68,
+          "exact": true
+        },
+        {
+          "text": "Charge the product via solar panels or an AC wall outlet until the fault disappears.",
+          "coverage": 1.0,
+          "characters": 69,
+          "exact": true
+        },
+        {
+          "text": "1. Wait for the grid to normalize before charging the product via an AC wall outlet.",
+          "coverage": 1.0,
+          "characters": 67,
+          "exact": true
+        },
+        {
+          "text": "2. Check whether the air intake and exhaust vents are blocked; ensure 0.66 ft (20 cm) clearance",
+          "coverage": 1.0,
+          "characters": 74,
+          "exact": true
+        },
+        {
+          "text": "on both sides of the product.",
+          "coverage": 1.0,
+          "characters": 23,
+          "exact": true
+        },
+        {
+          "text": "3. Place the product in a location that is not exposed to direct sunlight or high environmental",
+          "coverage": 1.0,
+          "characters": 78,
+          "exact": true
+        },
+        {
+          "text": "4. Disconnect all loads from the product. Keep the product idle and wait until the fault",
+          "coverage": 1.0,
+          "characters": 71,
+          "exact": true
+        },
+        {
+          "text": "5. Restart the product.",
+          "coverage": 1.0,
+          "characters": 18,
+          "exact": true
+        },
+        {
+          "text": "1. Remove all DC inputs from the product.",
+          "coverage": 1.0,
+          "characters": 32,
+          "exact": true
+        },
+        {
+          "text": "2. Check the open-circuit voltage (Voc) of the connected solar panels. The product allows a",
+          "coverage": 1.0,
+          "characters": 72,
+          "exact": true
+        },
+        {
+          "text": "maximum DC input voltage of 60V.",
+          "coverage": 1.0,
+          "characters": 26,
+          "exact": true
+        },
+        {
+          "text": "3. Restart the product and keep it idle. Wait until the fault disappears.",
+          "coverage": 1.0,
+          "characters": 58,
+          "exact": true
+        },
+        {
+          "text": "Contact Jackery Customer Support",
+          "coverage": 1.0,
+          "characters": 29,
+          "exact": true
+        },
+        {
+          "text": "Remove the load connected to the USB ports of the product. Wait until the fault disappears.",
+          "coverage": 1.0,
+          "characters": 74,
+          "exact": true
+        },
+        {
+          "text": "1. Restart the battery packs and the HP2000 Plus, respectively.",
+          "coverage": 1.0,
+          "characters": 51,
+          "exact": true
+        },
+        {
+          "text": "2. If the fault persists, disconnect the battery pack from the HP2000 Plus and connect",
+          "coverage": 1.0,
+          "characters": 70,
+          "exact": true
+        },
+        {
+          "text": "Contact Jackery Customer Support.",
+          "coverage": 1.0,
+          "characters": 29,
+          "exact": true
+        }
+      ]
+    },
+    {
+      "page": 20,
+      "checked_lines": 26,
+      "long_lines": 3,
+      "candidates": [
+        {
+          "text": "14.4 × 10.0 x 10.7 in / 36.6 × 25.5 × 27.2 cm",
+          "coverage": 0.5,
+          "characters": 23,
+          "exact": false
+        }
+      ],
+      "lines": [
+        {
+          "text": "Jackery HomePower 2000 Plus",
+          "coverage": 1.0,
+          "characters": 24,
+          "exact": true
+        },
+        {
+          "text": "2048 Wh (40Ah/51.2V DC)",
+          "coverage": 1.0,
+          "characters": 16,
+          "exact": true
+        },
+        {
+          "text": "About 41.45 lbs/18.8 kg",
+          "coverage": 1.0,
+          "characters": 17,
+          "exact": true
+        },
+        {
+          "text": "14.4 × 10.0 x 10.7 in / 36.6 × 25.5 × 27.2 cm",
+          "coverage": 0.5,
+          "characters": 23,
+          "exact": false
+        },
+        {
+          "text": "6000 cycles to 70%+ capacity",
+          "coverage": 1.0,
+          "characters": 22,
+          "exact": true
+        },
+        {
+          "text": "1 x DC Expansion Port",
+          "coverage": 0.75,
+          "characters": 17,
+          "exact": false
+        },
+        {
+          "text": "Charge Mode: 100V-120V~ 60Hz, 15A Max",
+          "coverage": 1.0,
+          "characters": 28,
+          "exact": true
+        },
+        {
+          "text": "Bypass Mode®: 100V-120V~ 60Hz, 15A Max",
+          "coverage": 0.789,
+          "characters": 28,
+          "exact": false
+        },
+        {
+          "text": "16V-60V=12A Max, Double to 21A / 800W Max",
+          "coverage": 1.0,
+          "characters": 30,
+          "exact": true
+        },
+        {
+          "text": "11V-16V=8A Max, Double to 8A Max",
+          "coverage": 1.0,
+          "characters": 24,
+          "exact": true
+        },
+        {
+          "text": "AC Output in Bypass Mode®",
+          "coverage": 1.0,
+          "characters": 20,
+          "exact": true
+        },
+        {
+          "text": "1 x USB-C 30W Output",
+          "coverage": 0.667,
+          "characters": 15,
+          "exact": false
+        },
+        {
+          "text": "1 x USB-C 140W Output",
+          "coverage": 0.714,
+          "characters": 16,
+          "exact": false
+        },
+        {
+          "text": "1x DC Expansion Port",
+          "coverage": 0.75,
+          "characters": 17,
+          "exact": false
+        },
+        {
+          "text": "120V~ 60Hz, 20A Max, 2400W Rated per port, 2400W in Total,",
+          "coverage": 1.0,
+          "characters": 43,
+          "exact": true
+        },
+        {
+          "text": "100V-120V~ 60Hz, 15A Max. (<3 hours when current exceeds 12A)",
+          "coverage": 1.0,
+          "characters": 45,
+          "exact": true
+        },
+        {
+          "text": "18W Max, 5-6V-3A, 6-9V-2A, 9-12V=1.5A",
+          "coverage": 1.0,
+          "characters": 23,
+          "exact": true
+        },
+        {
+          "text": "30W Max, 5V-3A, 9V-3A, 12V-2.5A, 15V-2A, 20V=1.5A",
+          "coverage": 1.0,
+          "characters": 31,
+          "exact": true
+        },
+        {
+          "text": "140W Max, 5V=3A, 9V=3A, 12V=3A, 15V=3A, 20V=5A, 28V=5A",
+          "coverage": 1.0,
+          "characters": 35,
+          "exact": true
+        },
+        {
+          "text": "• ENVIRONMENTAL OPERATING TEMPERATURE",
+          "coverage": 1.0,
+          "characters": 33,
+          "exact": true
+        },
+        {
+          "text": "Charge Temperature",
+          "coverage": 1.0,
+          "characters": 17,
+          "exact": true
+        },
+        {
+          "text": "Discharge Temperature",
+          "coverage": 1.0,
+          "characters": 20,
+          "exact": true
+        },
+        {
+          "text": "14°F to 113°F / -10°C to 45°C",
+          "coverage": 1.0,
+          "characters": 17,
+          "exact": true
+        },
+        {
+          "text": "14°F to 113°F / -10°C to 45°C",
+          "coverage": 1.0,
+          "characters": 17,
+          "exact": true
+        },
+        {
+          "text": "* USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.",
+          "coverage": 1.0,
+          "characters": 60,
+          "exact": true
+        },
+        {
+          "text": "1 The product can charge the battery from the AC wall outlet while delivering power through the AC output ports.",
+          "coverage": 1.0,
+          "characters": 92,
+          "exact": true
+        }
+      ]
+    },
+    {
+      "page": 21,
+      "checked_lines": 38,
+      "long_lines": 24,
+      "candidates": [],
+      "lines": [
+        {
+          "text": "This warranty applies only to customers who purchase from the official Jackery website,",
+          "coverage": 1.0,
+          "characters": 74,
+          "exact": true
+        },
+        {
+          "text": "Jackery-branded third-party platforms, or local authorized dealers.",
+          "coverage": 1.0,
+          "characters": 57,
+          "exact": true
+        },
+        {
+          "text": "\"Warranty period and details may vary according to local laws, regulations, and authorized dealers.",
+          "coverage": 1.0,
+          "characters": 82,
+          "exact": true
+        },
+        {
+          "text": "Limited Warranty",
+          "coverage": 1.0,
+          "characters": 15,
+          "exact": true
+        },
+        {
+          "text": "Jackery Inc. warrants to the original consumer purchaser that the Jackery product will be free from defects",
+          "coverage": 1.0,
+          "characters": 90,
+          "exact": true
+        },
+        {
+          "text": "in workmanship and material under normal consumer use during the applicable warranty period identified in",
+          "coverage": 1.0,
+          "characters": 91,
+          "exact": true
+        },
+        {
+          "text": "the 'Warranty Period' section below, subject to the exclusions set forth below.",
+          "coverage": 1.0,
+          "characters": 64,
+          "exact": true
+        },
+        {
+          "text": "This warranty statement sets forth Jackery's total and exclusive warranty obligation. We will not assume, nor",
+          "coverage": 1.0,
+          "characters": 91,
+          "exact": true
+        },
+        {
+          "text": "authorize any person to assume for us, any other liability in connection with the sale of our products.",
+          "coverage": 1.0,
+          "characters": 84,
+          "exact": true
+        },
+        {
+          "text": "Standard Warranty",
+          "coverage": 1.0,
+          "characters": 16,
+          "exact": true
+        },
+        {
+          "text": "The standard warranty period for Jackery HomePower 2000",
+          "coverage": 1.0,
+          "characters": 48,
+          "exact": true
+        },
+        {
+          "text": "Plus is 36 months. In each case, the warranty period is",
+          "coverage": 1.0,
+          "characters": 43,
+          "exact": true
+        },
+        {
+          "text": "measured starting on the date of purchase by the original",
+          "coverage": 1.0,
+          "characters": 48,
+          "exact": true
+        },
+        {
+          "text": "consumer purchaser. The sales receipt from the first consumer",
+          "coverage": 1.0,
+          "characters": 52,
+          "exact": true
+        },
+        {
+          "text": "purchaser, or other reasonable documentary proof, is required",
+          "coverage": 1.0,
+          "characters": 52,
+          "exact": true
+        },
+        {
+          "text": "in order to establish the start date of the warranty period.",
+          "coverage": 1.0,
+          "characters": 49,
+          "exact": true
+        },
+        {
+          "text": "Extended Warranty",
+          "coverage": 1.0,
+          "characters": 16,
+          "exact": true
+        },
+        {
+          "text": "To activate the Warranty Extension, you",
+          "coverage": 1.0,
+          "characters": 33,
+          "exact": true
+        },
+        {
+          "text": "must register your product online or",
+          "coverage": 1.0,
+          "characters": 31,
+          "exact": true
+        },
+        {
+          "text": "contact our customer service team at",
+          "coverage": 1.0,
+          "characters": 31,
+          "exact": true
+        },
+        {
+          "text": "hello@jackery.com to extend the",
+          "coverage": 1.0,
+          "characters": 26,
+          "exact": true
+        },
+        {
+          "text": "standard warranty runtime.",
+          "coverage": 1.0,
+          "characters": 23,
+          "exact": true
+        },
+        {
+          "text": "Repair or replacement",
+          "coverage": 1.0,
+          "characters": 19,
+          "exact": true
+        },
+        {
+          "text": "Jackery will repair or replace (at Jackery's expense) any Jackery product that fails to operate during the",
+          "coverage": 1.0,
+          "characters": 87,
+          "exact": true
+        },
+        {
+          "text": "applicable warranty period due to a defect in workmanship or material. The repaired/replaced product",
+          "coverage": 1.0,
+          "characters": 85,
+          "exact": true
+        },
+        {
+          "text": "assumes the remaining warranty of the original date of purchase.",
+          "coverage": 1.0,
+          "characters": 54,
+          "exact": true
+        },
+        {
+          "text": "Limited to Original Consumer Buyer",
+          "coverage": 1.0,
+          "characters": 30,
+          "exact": true
+        },
+        {
+          "text": "The warranty on Jackery's product is limited to the original consumer purchaser and is not transferable to",
+          "coverage": 1.0,
+          "characters": 89,
+          "exact": true
+        },
+        {
+          "text": "any subsequent owner.",
+          "coverage": 1.0,
+          "characters": 18,
+          "exact": true
+        },
+        {
+          "text": "Jackery's warranty does not apply to:",
+          "coverage": 1.0,
+          "characters": 30,
+          "exact": true
+        },
+        {
+          "text": "• Any product that has been misused, abused, modified, damaged by accident, or used for anything",
+          "coverage": 1.0,
+          "characters": 76,
+          "exact": true
+        },
+        {
+          "text": "other than normal consumer use as authorized in Jackery's current product literature",
+          "coverage": 1.0,
+          "characters": 72,
+          "exact": true
+        },
+        {
+          "text": "• Attempted repair by anyone other than an authorized facility.",
+          "coverage": 1.0,
+          "characters": 52,
+          "exact": true
+        },
+        {
+          "text": "• Any product purchased through an online auction house.",
+          "coverage": 1.0,
+          "characters": 46,
+          "exact": true
+        },
+        {
+          "text": "• Jackery's warranty does not apply to the battery cell unless the battery cell is fully charged by you within",
+          "coverage": 1.0,
+          "characters": 89,
+          "exact": true
+        },
+        {
+          "text": "seven days after you purchase the product and at least once every 6 months thereafter.",
+          "coverage": 1.0,
+          "characters": 71,
+          "exact": true
+        },
+        {
+          "text": "Interpretation Rights",
+          "coverage": 1.0,
+          "characters": 20,
+          "exact": true
+        },
+        {
+          "text": "Jackery reserves the right to the final interpretation of the above after-sales policy.",
+          "coverage": 1.0,
+          "characters": 73,
+          "exact": true
+        }
+      ]
+    },
+    {
+      "page": 22,
+      "checked_lines": 18,
+      "long_lines": 8,
+      "candidates": [
+        {
+          "text": "Bluetooth confguration",
+          "coverage": 0.25,
+          "characters": 21,
+          "exact": false
+        },
+        {
+          "text": "-ooch comewanon mook",
+          "coverage": 0.0,
+          "characters": 17,
+          "exact": false
+        }
+      ],
+      "lines": [
+        {
+          "text": "1. Download the App and log in",
+          "coverage": 1.0,
+          "characters": 23,
+          "exact": true
+        },
+        {
+          "text": "Search for \"Jackery\" in Google Play or",
+          "coverage": 1.0,
+          "characters": 30,
+          "exact": true
+        },
+        {
+          "text": "App Store to install the App. After that,",
+          "coverage": 1.0,
+          "characters": 32,
+          "exact": true
+        },
+        {
+          "text": "you can register and log in.",
+          "coverage": 1.0,
+          "characters": 22,
+          "exact": true
+        },
+        {
+          "text": "Alternatively, scan the QR",
+          "coverage": 1.0,
+          "characters": 22,
+          "exact": true
+        },
+        {
+          "text": "code below to download and",
+          "coverage": 1.0,
+          "characters": 22,
+          "exact": true
+        },
+        {
+          "text": "2.1 Click the (+ button to add your device;",
+          "coverage": 1.0,
+          "characters": 31,
+          "exact": true
+        },
+        {
+          "text": "2.2 Press the POWER button on the device to turn on, the Wi-Fi and Bluetooth icons on the device",
+          "coverage": 1.0,
+          "characters": 75,
+          "exact": true
+        },
+        {
+          "text": "flash to indicate that the device has entered the network configuration mode, tap the \"Icon Flashed\"",
+          "coverage": 1.0,
+          "characters": 82,
+          "exact": true
+        },
+        {
+          "text": "button, and allow the App to connect to nearby devices and open Bluetooth permissions.",
+          "coverage": 1.0,
+          "characters": 71,
+          "exact": true
+        },
+        {
+          "text": "Bluetooth confguration",
+          "coverage": 0.25,
+          "characters": 21,
+          "exact": false
+        },
+        {
+          "text": "-ooch comewanon mook",
+          "coverage": 0.0,
+          "characters": 17,
+          "exact": false
+        },
+        {
+          "text": "2.3 After tapping the searched device icon, the App automatically connects the device via Bluetooth.",
+          "coverage": 1.0,
+          "characters": 83,
+          "exact": true
+        },
+        {
+          "text": "If \"the device has been bound\" is prompted during the binding process, the following two",
+          "coverage": 1.0,
+          "characters": 71,
+          "exact": true
+        },
+        {
+          "text": "ways can be used for connection:",
+          "coverage": 1.0,
+          "characters": 26,
+          "exact": true
+        },
+        {
+          "text": "• The device owner will share this device with other users through the App.",
+          "coverage": 1.0,
+          "characters": 60,
+          "exact": true
+        },
+        {
+          "text": "•Press and hold the POWER button and DC/USB power button for 3 seconds to reset the",
+          "coverage": 1.0,
+          "characters": 66,
+          "exact": true
+        },
+        {
+          "text": "device's Wi-Fi and Bluetooth, and then re-bind the device.",
+          "coverage": 1.0,
+          "characters": 45,
+          "exact": true
+        }
+      ]
+    },
+    {
+      "page": 23,
+      "checked_lines": 27,
+      "long_lines": 12,
+      "candidates": [
+        {
+          "text": "HomcRoer 2000 Pls9",
+          "coverage": 0.0,
+          "characters": 16,
+          "exact": false
+        },
+        {
+          "text": "Please select 2.4 GHz Wi-Fi",
+          "coverage": 0.25,
+          "characters": 21,
+          "exact": false
+        },
+        {
+          "text": "HwuRAS COWR nasa te it tn 2e tral",
+          "coverage": 0.0,
+          "characters": 26,
+          "exact": false
+        },
+        {
+          "text": "• Ramenber password",
+          "coverage": 0.0,
+          "characters": 16,
+          "exact": false
+        },
+        {
+          "text": "Avallable devicels) scanned",
+          "coverage": 0.0,
+          "characters": 24,
+          "exact": false
+        }
+      ],
+      "lines": [
+        {
+          "text": "2.4 After the device is successfully connected, enter your Wi-Fi password and tap the OK button.",
+          "coverage": 1.0,
+          "characters": 77,
+          "exact": true
+        },
+        {
+          "text": "Please select a Wi-Fi network in 2.4 GHz band. The device does not support a Wi-Fi",
+          "coverage": 1.0,
+          "characters": 63,
+          "exact": true
+        },
+        {
+          "text": "network in the 5 GHz band.",
+          "coverage": 1.0,
+          "characters": 20,
+          "exact": true
+        },
+        {
+          "text": "2.5 After the device is successfully added to the App, the Wi-Fi icon on the device will always be on.",
+          "coverage": 1.0,
+          "characters": 79,
+          "exact": true
+        },
+        {
+          "text": "HomcRoer 2000 Pls9",
+          "coverage": 0.0,
+          "characters": 16,
+          "exact": false
+        },
+        {
+          "text": "Please select 2.4 GHz Wi-Fi",
+          "coverage": 0.25,
+          "characters": 21,
+          "exact": false
+        },
+        {
+          "text": "HwuRAS COWR nasa te it tn 2e tral",
+          "coverage": 0.0,
+          "characters": 26,
+          "exact": false
+        },
+        {
+          "text": "• Ramenber password",
+          "coverage": 0.0,
+          "characters": 16,
+          "exact": false
+        },
+        {
+          "text": "Avallable devicels) scanned",
+          "coverage": 0.0,
+          "characters": 24,
+          "exact": false
+        },
+        {
+          "text": "The above screenshots are for reference only.",
+          "coverage": 1.0,
+          "characters": 38,
+          "exact": true
+        },
+        {
+          "text": "The Jackery App can connect to only one power station via Bluetooth at a time. Returning",
+          "coverage": 1.0,
+          "characters": 72,
+          "exact": true
+        },
+        {
+          "text": "to the device list automatically disconnects Bluetooth. Tap the power station in the list",
+          "coverage": 1.0,
+          "characters": 75,
+          "exact": true
+        },
+        {
+          "text": "again to reconnect automatically.",
+          "coverage": 1.0,
+          "characters": 29,
+          "exact": true
+        },
+        {
+          "text": "3. Unbind the device",
+          "coverage": 1.0,
+          "characters": 16,
+          "exact": true
+        },
+        {
+          "text": "Click the Settings icon in the upper right corner of the main interface of the device to enter the",
+          "coverage": 1.0,
+          "characters": 80,
+          "exact": true
+        },
+        {
+          "text": "settings page, and click the Unbind button at the bottom of the page to unbind the device.",
+          "coverage": 1.0,
+          "characters": 72,
+          "exact": true
+        },
+        {
+          "text": "4.1 To turn on Wi-Fi & Bluetooth:",
+          "coverage": 1.0,
+          "characters": 23,
+          "exact": true
+        },
+        {
+          "text": "• Wi-Fi and Bluetooth are automatically turned on after the device is on, and the Wi-Fi and",
+          "coverage": 1.0,
+          "characters": 71,
+          "exact": true
+        },
+        {
+          "text": "Bluetooth icons on the screen light up.",
+          "coverage": 1.0,
+          "characters": 32,
+          "exact": true
+        },
+        {
+          "text": "• Hold the DC/USB power button and the AC1 power button at the same time until the Wi-Fi and",
+          "coverage": 1.0,
+          "characters": 71,
+          "exact": true
+        },
+        {
+          "text": "Bluetooth icons on the screen light up.",
+          "coverage": 1.0,
+          "characters": 32,
+          "exact": true
+        },
+        {
+          "text": "4.2 To turn off Wi-Fi & Bluetooth:",
+          "coverage": 1.0,
+          "characters": 24,
+          "exact": true
+        },
+        {
+          "text": "Hold the DC/USB power button and the AC1 power button at the same time until the Wi-Fi and",
+          "coverage": 1.0,
+          "characters": 71,
+          "exact": true
+        },
+        {
+          "text": "Bluetooth icons on the screen are off.",
+          "coverage": 1.0,
+          "characters": 31,
+          "exact": true
+        },
+        {
+          "text": "4.3 To reset Wi-Fi & Bluetooth:",
+          "coverage": 1.0,
+          "characters": 22,
+          "exact": true
+        },
+        {
+          "text": "Hold the POWER button and DC/USB power button at the same time for 3 seconds to reset Wi-Fi",
+          "coverage": 1.0,
+          "characters": 72,
+          "exact": true
+        },
+        {
+          "text": "and Bluetooth to factory settings. The connected App account will be unbound.",
+          "coverage": 1.0,
+          "characters": 64,
+          "exact": true
+        }
+      ]
+    },
+    {
+      "page": 24,
+      "checked_lines": 2,
+      "long_lines": 0,
+      "candidates": [],
+      "lines": [
+        {
+          "text": "5310 Bunche Dr., Fremont, CA 94538-8301",
+          "coverage": 1.0,
+          "characters": 30,
+          "exact": true
+        },
+        {
+          "text": "• hello@jackery.com",
+          "coverage": 1.0,
+          "characters": 15,
+          "exact": true
+        }
+      ]
+    }
+  ]
+}

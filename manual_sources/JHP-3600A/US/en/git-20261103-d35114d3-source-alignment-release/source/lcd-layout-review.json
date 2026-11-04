@@ -1,0 +1,1043 @@
+{
+  "scope": "JHP-3600A/US en/fr/es LCD only; local candidate",
+  "source_sha256": "541ca8a5543e3b2e36c85b908b5e733b86c5fb766081392c6e22a50493d59f7e",
+  "reuse_order": [
+    "target package",
+    "same-model/region locales",
+    "shared/template libraries"
+  ],
+  "inventory": [
+    {
+      "path": "manual_sources/JE-1000F/EU/en-fr/2.0/phase2/_attachments/lcd_icons/5_Self-powered_Mode_FYTnb9vttoexjbxVMchcJaobnCg.png",
+      "sha256": "73225cf9faa868bbe937df298d55a696828a4156f40e90da5c2a7f0011f0b783",
+      "decision": "reject for this source",
+      "reason": "Previously reviewed candidates show a lightning/side-arrow battery or circular-arrow leaf; source requires vertical battery with three/one bars."
+    },
+    {
+      "path": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/5_Self-powered_Mode_VLkXbWOFpoMJYsxWp0xcXkkpn1g.png",
+      "sha256": "c45de286ee70636b16fd833440c7ed92b560d2fe987c48031bd02191ef4ca8a1",
+      "decision": "reject for this source",
+      "reason": "Previously reviewed candidates show a lightning/side-arrow battery or circular-arrow leaf; source requires vertical battery with three/one bars."
+    },
+    {
+      "path": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-battery-saving.png",
+      "sha256": "e32e6ae96321aa47b39c0c65a18a59da6c90cf87a0d7c8d61556ead273789c3a",
+      "decision": "reject for this source",
+      "reason": "Previously reviewed candidates show a lightning/side-arrow battery or circular-arrow leaf; source requires vertical battery with three/one bars."
+    },
+    {
+      "path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/nl/p137_lcd.icon.self-powered.png",
+      "sha256": "78a3dac349eecab990c97565e438db725c5190f03c28d6b9014b60d0828daec4",
+      "decision": "reject for this source",
+      "reason": "Previously reviewed candidates show a lightning/side-arrow battery or circular-arrow leaf; source requires vertical battery with three/one bars."
+    },
+    {
+      "path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/nl/p138_lcd.icon.battery-saving.png",
+      "sha256": "ef31bbd8afcc00c7e801657df2551942ee484c15a328526c3f686b0b9f746204",
+      "decision": "reject for this source",
+      "reason": "Previously reviewed candidates show a lightning/side-arrow battery or circular-arrow leaf; source requires vertical battery with three/one bars."
+    },
+    {
+      "path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/pl/p155_lcd.icon.self-powered.png",
+      "sha256": "d89cff96700afc512e8dbe1e64819b026be034d080d6f7a9f1304f498a00e100",
+      "decision": "reject for this source",
+      "reason": "Previously reviewed candidates show a lightning/side-arrow battery or circular-arrow leaf; source requires vertical battery with three/one bars."
+    },
+    {
+      "path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/pl/p156_lcd.icon.battery-saving.png",
+      "sha256": "dbf27bc22b345f44735201ac8cb9b2d47832f715c658ae9e597975f57eb5c59a",
+      "decision": "reject for this source",
+      "reason": "Previously reviewed candidates show a lightning/side-arrow battery or circular-arrow leaf; source requires vertical battery with three/one bars."
+    },
+    {
+      "path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/pt/p119_lcd.icon.self-powered.png",
+      "sha256": "15548a2fc8022ee3d53b18cf2c4afa5843fba7015647bcbd2739816706ccbff8",
+      "decision": "reject for this source",
+      "reason": "Previously reviewed candidates show a lightning/side-arrow battery or circular-arrow leaf; source requires vertical battery with three/one bars."
+    },
+    {
+      "path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/pt/p120_lcd.icon.battery-saving.png",
+      "sha256": "e4e7fa31836881b142905f810db6b062e671713d963cb56aac4bb83dca9993ff",
+      "decision": "reject for this source",
+      "reason": "Previously reviewed candidates show a lightning/side-arrow battery or circular-arrow leaf; source requires vertical battery with three/one bars."
+    },
+    {
+      "path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/uk/p101_lcd.icon.self-powered.png",
+      "sha256": "9c9bf50853bb5faa7a2444a5f98759a2561d68af2439e112460619efe3d8d0f4",
+      "decision": "reject for this source",
+      "reason": "Previously reviewed candidates show a lightning/side-arrow battery or circular-arrow leaf; source requires vertical battery with three/one bars."
+    },
+    {
+      "path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/uk/p102_lcd.icon.battery-saving.png",
+      "sha256": "d4a41c752fd566aa7a41b58a30bd3dde69ac9cb7465abc659d34e39929f679a7",
+      "decision": "reject for this source",
+      "reason": "Previously reviewed candidates show a lightning/side-arrow battery or circular-arrow leaf; source requires vertical battery with three/one bars."
+    },
+    {
+      "path": "manual_sources/JE-3000C/EU/three-language/git-20261002-45219a6e-pv-intake/artwork/shared/lcd-icon-car-charging.png",
+      "sha256": "eed3299c3f6a15766e433ebbae7a40af8939e6d32489a0aa33a37fe902232a64",
+      "decision": "reject for this source",
+      "reason": "Source needs complete native circle/triangle/pill or square battery. Available candidate has another outline or opaque cell backdrop; connected-batteries variant is admitted separately."
+    },
+    {
+      "path": "manual_sources/JE-3000C/EU/three-language/git-20261002-45219a6e-pv-intake/artwork/shared/lcd-icon-solar-charging.png",
+      "sha256": "91cec82eeaa553477868d38789d68a4937cb11c5c4d794de74db1edddb3aeea4",
+      "decision": "reject for this source",
+      "reason": "Source needs complete native circle/triangle/pill or square battery. Available candidate has another outline or opaque cell backdrop; connected-batteries variant is admitted separately."
+    },
+    {
+      "path": "manual_sources/JE-3000C/EU/three-language/git-20261002-45219a6e-pv-intake/artwork/shared/lcd-icon-high-temperature.png",
+      "sha256": "f548c6504f495da4f208cd8e5fe6eac6076daea05e314115abd26b46a9326ba5",
+      "decision": "reject for this source",
+      "reason": "Source needs complete native circle/triangle/pill or square battery. Available candidate has another outline or opaque cell backdrop; connected-batteries variant is admitted separately."
+    },
+    {
+      "path": "manual_sources/JE-3000C/EU/three-language/git-20261002-45219a6e-pv-intake/artwork/shared/lcd-icon-low-temperature.png",
+      "sha256": "bdbf602db74ade39a2a162209c0ff535315dee5e27e4832b2e6a201764b6941a",
+      "decision": "reject for this source",
+      "reason": "Source needs complete native circle/triangle/pill or square battery. Available candidate has another outline or opaque cell backdrop; connected-batteries variant is admitted separately."
+    },
+    {
+      "path": "manual_sources/JE-3000C/EU/three-language/git-20261002-45219a6e-pv-intake/artwork/shared/lcd-icon-energy-saving.png",
+      "sha256": "c4b830c769a3de7f9effaee82466752f5706a0741ba29675cce45633c1cd8222",
+      "decision": "reject for this source",
+      "reason": "Source needs complete native circle/triangle/pill or square battery. Available candidate has another outline or opaque cell backdrop; connected-batteries variant is admitted separately."
+    },
+    {
+      "path": "manual_sources/JE-3000C/EU/three-language/git-20261002-45219a6e-pv-intake/artwork/shared/lcd-icon-ac-wall-charging.png",
+      "sha256": "28f3cad42ae32e9e895abfd7cdb16a21b99dfa822c57d542f0e3f59a4b452c6c",
+      "decision": "reject for this source",
+      "reason": "Source needs complete native circle/triangle/pill or square battery. Available candidate has another outline or opaque cell backdrop; connected-batteries variant is admitted separately."
+    },
+    {
+      "path": "manual_sources/JE-3000C/EU/three-language/git-20261002-45219a6e-pv-intake/artwork/shared/lcd-icon-low-battery.png",
+      "sha256": "c7862a87e742d6927b4e1d63a8d0ccb09fbcf980ae662ff94b9134e256e56889",
+      "decision": "reject for this source",
+      "reason": "Source needs complete native circle/triangle/pill or square battery. Available candidate has another outline or opaque cell backdrop; connected-batteries variant is admitted separately."
+    },
+    {
+      "path": "manual_sources/JHP-3600A/US/git-20261012-541ca8a5/assets/lcd-connected-batteries.png",
+      "sha256": "a1f1a5236ea916b088aebe42a22157ad058cbbd18bd29961091831beeeecffd1",
+      "decision": "reject for this source",
+      "reason": "Source needs complete native circle/triangle/pill or square battery. Available candidate has another outline or opaque cell backdrop; connected-batteries variant is admitted separately."
+    },
+    {
+      "path": "manual_sources/JE-3600A/EU/pl/git-20261004-47a346dc/assets/lcd-icon-connected-batteries.png",
+      "sha256": "336c1ec5b3fa7e84e58bab85bfd4b4ab8c9300f114b46a557d866de167ae1b0b",
+      "decision": "admit byte-identical reuse",
+      "reason": "Reviewed source-matching battery x5 inside the open capsule; real alpha, unchanged bytes."
+    },
+    {
+      "path": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-connected-batteries.png",
+      "sha256": "8d7e2187cdbcdae4f2fef1f18428e54450cdfd27731061bc93499946613ab188",
+      "decision": "reject for this source",
+      "reason": "Source needs complete native circle/triangle/pill or square battery. Available candidate has another outline or opaque cell backdrop; connected-batteries variant is admitted separately."
+    },
+    {
+      "path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/pl/p156_lcd.icon.energy-saving.png",
+      "sha256": "eec52ec71ccac58071d863d56cd3883901fc159d408a32adf168c435485d9da3",
+      "decision": "reject for this source",
+      "reason": "Source needs complete native circle/triangle/pill or square battery. Available candidate has another outline or opaque cell backdrop; connected-batteries variant is admitted separately."
+    },
+    {
+      "path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/pl/p156_lcd.icon.high-temperature.png",
+      "sha256": "88609b0550f5232ef8cac41b56b7307c5598f3689aca81d6ab916601ee4dbb40",
+      "decision": "reject for this source",
+      "reason": "Source needs complete native circle/triangle/pill or square battery. Available candidate has another outline or opaque cell backdrop; connected-batteries variant is admitted separately."
+    },
+    {
+      "path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/pl/p156_lcd.icon.low-battery.png",
+      "sha256": "051c6bc607d15fc36b1220688387ef5b8ace0d47a5f5120f3b510ddb3343881a",
+      "decision": "reject for this source",
+      "reason": "Source needs complete native circle/triangle/pill or square battery. Available candidate has another outline or opaque cell backdrop; connected-batteries variant is admitted separately."
+    },
+    {
+      "path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/pl/p156_lcd.icon.car-charging.png",
+      "sha256": "4c430e494a2f96568c2d40ebb991808553c3948ea936b8216cc1de16a5c6cb85",
+      "decision": "reject for this source",
+      "reason": "Source needs complete native circle/triangle/pill or square battery. Available candidate has another outline or opaque cell backdrop; connected-batteries variant is admitted separately."
+    },
+    {
+      "path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/pl/p156_lcd.icon.solar-charging.png",
+      "sha256": "0a2ed2d3eb3d7864f334d8c896c102c168300648f32579d3d37ffde74cb904f9",
+      "decision": "reject for this source",
+      "reason": "Source needs complete native circle/triangle/pill or square battery. Available candidate has another outline or opaque cell backdrop; connected-batteries variant is admitted separately."
+    },
+    {
+      "path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/pl/p156_lcd.icon.ac-wall-charging.png",
+      "sha256": "a89375c8e65fff25d49fcc53ce5bc72668b97b6db2bbda1fe18e8c55abd03f81",
+      "decision": "reject for this source",
+      "reason": "Source needs complete native circle/triangle/pill or square battery. Available candidate has another outline or opaque cell backdrop; connected-batteries variant is admitted separately."
+    },
+    {
+      "path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/pl/p156_lcd.icon.low-temperature.png",
+      "sha256": "e5dc1e5b31cc0bab11f07ef3b2a45237faf2809d48115a82f5130f4f76cbe417",
+      "decision": "reject for this source",
+      "reason": "Source needs complete native circle/triangle/pill or square battery. Available candidate has another outline or opaque cell backdrop; connected-batteries variant is admitted separately."
+    },
+    {
+      "path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/pt/p120_lcd.icon.high-temperature.png",
+      "sha256": "e6f27524be6054e4acac69d8b4f36a23f0c720d7216cf52674f5af64405d5c00",
+      "decision": "reject for this source",
+      "reason": "Source needs complete native circle/triangle/pill or square battery. Available candidate has another outline or opaque cell backdrop; connected-batteries variant is admitted separately."
+    },
+    {
+      "path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/pt/p120_lcd.icon.car-charging.png",
+      "sha256": "eb11d75b34184f7ecc24578d3d0e09ecf168ff557eb269a648ccae6a27752e05",
+      "decision": "reject for this source",
+      "reason": "Source needs complete native circle/triangle/pill or square battery. Available candidate has another outline or opaque cell backdrop; connected-batteries variant is admitted separately."
+    },
+    {
+      "path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/pt/p120_lcd.icon.low-battery.png",
+      "sha256": "98fd912cf31e1f054c25acb38e060f17bff78b30d66f02916c38fe6228d05e95",
+      "decision": "reject for this source",
+      "reason": "Source needs complete native circle/triangle/pill or square battery. Available candidate has another outline or opaque cell backdrop; connected-batteries variant is admitted separately."
+    },
+    {
+      "path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/pt/p120_lcd.icon.low-temperature.png",
+      "sha256": "479d9958e69d71f2a79cd2da1fcc669675a75233e86166c285144e7d6f767c12",
+      "decision": "reject for this source",
+      "reason": "Source needs complete native circle/triangle/pill or square battery. Available candidate has another outline or opaque cell backdrop; connected-batteries variant is admitted separately."
+    },
+    {
+      "path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/pt/p120_lcd.icon.ac-wall-charging.png",
+      "sha256": "76218957354ad0c5e387dcb8cf5ae6d53510e19bc966b8518abcd57d7766edc7",
+      "decision": "reject for this source",
+      "reason": "Source needs complete native circle/triangle/pill or square battery. Available candidate has another outline or opaque cell backdrop; connected-batteries variant is admitted separately."
+    },
+    {
+      "path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/pt/p120_lcd.icon.energy-saving.png",
+      "sha256": "f40fa57575e7ade821bec1ad69917f4506c87a21ccef6f4290b4003428128e82",
+      "decision": "reject for this source",
+      "reason": "Source needs complete native circle/triangle/pill or square battery. Available candidate has another outline or opaque cell backdrop; connected-batteries variant is admitted separately."
+    },
+    {
+      "path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/pt/p120_lcd.icon.solar-charging.png",
+      "sha256": "48de963da29fc2be04361dbb249748085327c367822be80e33a86fc3fe3c460c",
+      "decision": "reject for this source",
+      "reason": "Source needs complete native circle/triangle/pill or square battery. Available candidate has another outline or opaque cell backdrop; connected-batteries variant is admitted separately."
+    },
+    {
+      "path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/uk/p102_lcd.icon.car-charging.png",
+      "sha256": "fffd00c0ac3310ee2c17864909e8bfce55ce05bb5ad8168cda101a1688f43d33",
+      "decision": "reject for this source",
+      "reason": "Source needs complete native circle/triangle/pill or square battery. Available candidate has another outline or opaque cell backdrop; connected-batteries variant is admitted separately."
+    },
+    {
+      "path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/uk/p102_lcd.icon.low-battery.png",
+      "sha256": "f7896ab77b72b4a85ddefc1427d6b791294aca2957eb0cfccfd0e79e5d6e0131",
+      "decision": "reject for this source",
+      "reason": "Source needs complete native circle/triangle/pill or square battery. Available candidate has another outline or opaque cell backdrop; connected-batteries variant is admitted separately."
+    },
+    {
+      "path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/uk/p102_lcd.icon.high-temperature.png",
+      "sha256": "95a980559977f9964cd3d5ec98aae7853d02ff009a15da828a48028587c3d2f5",
+      "decision": "reject for this source",
+      "reason": "Source needs complete native circle/triangle/pill or square battery. Available candidate has another outline or opaque cell backdrop; connected-batteries variant is admitted separately."
+    },
+    {
+      "path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/uk/p102_lcd.icon.energy-saving.png",
+      "sha256": "ba65769046093417029856cd97f633fb262820de6cc915b5ff114a6101f8e5cc",
+      "decision": "reject for this source",
+      "reason": "Source needs complete native circle/triangle/pill or square battery. Available candidate has another outline or opaque cell backdrop; connected-batteries variant is admitted separately."
+    },
+    {
+      "path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/uk/p102_lcd.icon.solar-charging.png",
+      "sha256": "61c6ba5fca8b94f87023599a762d77dab114c9b31e950f2d559c6d2725a139c9",
+      "decision": "reject for this source",
+      "reason": "Source needs complete native circle/triangle/pill or square battery. Available candidate has another outline or opaque cell backdrop; connected-batteries variant is admitted separately."
+    },
+    {
+      "path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/uk/p102_lcd.icon.low-temperature.png",
+      "sha256": "a168e6a7172077747ba4a1c03d7fc23641b45c535976e3203abd438c81865e85",
+      "decision": "reject for this source",
+      "reason": "Source needs complete native circle/triangle/pill or square battery. Available candidate has another outline or opaque cell backdrop; connected-batteries variant is admitted separately."
+    },
+    {
+      "path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/uk/p102_lcd.icon.ac-wall-charging.png",
+      "sha256": "c4861dac66dae2958607835a2f7d617006c6e6150aca3734668900ad2f4be115",
+      "decision": "reject for this source",
+      "reason": "Source needs complete native circle/triangle/pill or square battery. Available candidate has another outline or opaque cell backdrop; connected-batteries variant is admitted separately."
+    },
+    {
+      "path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/nl/p138_lcd.icon.high-temperature.png",
+      "sha256": "14dc5434c66414deb1814ee9d7f2a8dbb548443aeba829bcc5f525e986214765",
+      "decision": "reject for this source",
+      "reason": "Source needs complete native circle/triangle/pill or square battery. Available candidate has another outline or opaque cell backdrop; connected-batteries variant is admitted separately."
+    },
+    {
+      "path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/nl/p138_lcd.icon.energy-saving.png",
+      "sha256": "fcebc2406c2b656ffeb81e6b9ee70200507e746a49a3aec980707f9da75918d0",
+      "decision": "reject for this source",
+      "reason": "Source needs complete native circle/triangle/pill or square battery. Available candidate has another outline or opaque cell backdrop; connected-batteries variant is admitted separately."
+    },
+    {
+      "path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/nl/p138_lcd.icon.low-temperature.png",
+      "sha256": "34a0be61430a3e9a759f56bbbe3294ac27d081f9c249b122bbc62ab3bb14a656",
+      "decision": "reject for this source",
+      "reason": "Source needs complete native circle/triangle/pill or square battery. Available candidate has another outline or opaque cell backdrop; connected-batteries variant is admitted separately."
+    },
+    {
+      "path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/nl/p138_lcd.icon.solar-charging.png",
+      "sha256": "631e01ab494c8b88abe4b8ef88996858a1b6990f6c2dfcc45587a230e3e92176",
+      "decision": "reject for this source",
+      "reason": "Source needs complete native circle/triangle/pill or square battery. Available candidate has another outline or opaque cell backdrop; connected-batteries variant is admitted separately."
+    },
+    {
+      "path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/nl/p138_lcd.icon.ac-wall-charging.png",
+      "sha256": "4bba85826e7feb73f9e54b7b44c4163571e00ad3d2fde540d8a3f1b5f22ef72f",
+      "decision": "reject for this source",
+      "reason": "Source needs complete native circle/triangle/pill or square battery. Available candidate has another outline or opaque cell backdrop; connected-batteries variant is admitted separately."
+    },
+    {
+      "path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/nl/p138_lcd.icon.car-charging.png",
+      "sha256": "23d6566b2b70e211c8692bba5b8ef4bae22816028f4b1ab34266c6c756ec5c7c",
+      "decision": "reject for this source",
+      "reason": "Source needs complete native circle/triangle/pill or square battery. Available candidate has another outline or opaque cell backdrop; connected-batteries variant is admitted separately."
+    }
+  ],
+  "extractions": [
+    {
+      "asset": "lcd-battery-saving-bars.svg",
+      "source": [
+        {
+          "physical_page": 8,
+          "drawing_indices": [
+            26,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "glyph_bbox": [
+            61.56809997558594,
+            309.96478271484375,
+            69.53109741210938,
+            321.3038024902344
+          ],
+          "same_native_geometry_within_pt": 0.002
+        },
+        {
+          "physical_page": 28,
+          "drawing_indices": [
+            20,
+            21,
+            22,
+            23,
+            24,
+            25
+          ],
+          "glyph_bbox": [
+            60.80260467529297,
+            319.05511474609375,
+            68.7655029296875,
+            330.3940734863281
+          ],
+          "same_native_geometry_within_pt": 0.002
+        },
+        {
+          "physical_page": 48,
+          "drawing_indices": [
+            20,
+            21,
+            22,
+            23,
+            24,
+            25
+          ],
+          "glyph_bbox": [
+            60.80260467529297,
+            320.5321960449219,
+            68.7655029296875,
+            331.8711853027344
+          ],
+          "same_native_geometry_within_pt": 0.002
+        }
+      ],
+      "native_operator": "native_symbol_svg; retain original paths, transforms and opacity; omit every non-glyph object",
+      "canvas_pt": [
+        57.549598693847656,
+        307.63429260253906,
+        73.54959869384766,
+        323.63429260253906
+      ],
+      "sha256": "d727efb9121fbb878d1dc52798c101e83ed272354b4c5d9002a1176ef628dd05",
+      "alpha_min": 0,
+      "all_four_edges_alpha_max": 0,
+      "inspection_scale": 12,
+      "reuse": "extract once from EN; FR/ES original vector geometry verified then share exact bytes",
+      "unused_definitions_removed": true,
+      "replaces": "assets/lcd-battery-saving.png"
+    },
+    {
+      "asset": "lcd-self-powered-bar.svg",
+      "source": [
+        {
+          "physical_page": 8,
+          "drawing_indices": [
+            32,
+            33,
+            34,
+            35
+          ],
+          "glyph_bbox": [
+            61.84100341796875,
+            370.09088134765625,
+            69.80400085449219,
+            381.4299011230469
+          ],
+          "same_native_geometry_within_pt": 0.002
+        },
+        {
+          "physical_page": 28,
+          "drawing_indices": [
+            26,
+            27,
+            28,
+            29
+          ],
+          "glyph_bbox": [
+            61.07550048828125,
+            381.31097412109375,
+            69.03839874267578,
+            392.65008544921875
+          ],
+          "same_native_geometry_within_pt": 0.002
+        },
+        {
+          "physical_page": 48,
+          "drawing_indices": [
+            26,
+            27,
+            28,
+            29
+          ],
+          "glyph_bbox": [
+            61.07550048828125,
+            383.2334899902344,
+            69.03839874267578,
+            394.5724792480469
+          ],
+          "same_native_geometry_within_pt": 0.002
+        }
+      ],
+      "native_operator": "native_symbol_svg; retain original paths, transforms and opacity; omit every non-glyph object",
+      "canvas_pt": [
+        57.82250213623047,
+        367.76039123535156,
+        73.82250213623047,
+        383.76039123535156
+      ],
+      "sha256": "11c9401f7a720a9bd945b2bc15f7ff932f5946bea09fc6560cc0d162f09f6cda",
+      "alpha_min": 0,
+      "all_four_edges_alpha_max": 0,
+      "inspection_scale": 12,
+      "reuse": "extract once from EN; FR/ES original vector geometry verified then share exact bytes",
+      "unused_definitions_removed": true,
+      "replaces": "assets/lcd-self-powered.png"
+    },
+    {
+      "asset": "lcd-ac-wall-charging-circle.svg",
+      "source": [
+        {
+          "physical_page": 9,
+          "drawing_indices": [
+            139,
+            140,
+            141,
+            142,
+            143,
+            144,
+            145,
+            146,
+            147,
+            148,
+            149,
+            150,
+            151
+          ],
+          "glyph_bbox": [
+            60.12940216064453,
+            117.99739837646484,
+            71.46739959716797,
+            129.33639526367188
+          ],
+          "same_native_geometry_within_pt": 0.002
+        },
+        {
+          "physical_page": 29,
+          "drawing_indices": [
+            139,
+            140,
+            141,
+            142,
+            143,
+            144,
+            145,
+            146,
+            147,
+            148,
+            149,
+            150,
+            151
+          ],
+          "glyph_bbox": [
+            58.51689910888672,
+            130.26719665527344,
+            69.85489654541016,
+            141.606201171875
+          ],
+          "same_native_geometry_within_pt": 0.002
+        },
+        {
+          "physical_page": 49,
+          "drawing_indices": [
+            139,
+            140,
+            141,
+            142,
+            143,
+            144,
+            145,
+            146,
+            147,
+            148,
+            149,
+            150,
+            151
+          ],
+          "glyph_bbox": [
+            58.51689910888672,
+            139.6976776123047,
+            69.85489654541016,
+            151.03668212890625
+          ],
+          "same_native_geometry_within_pt": 0.002
+        }
+      ],
+      "native_operator": "native_symbol_svg; retain original paths, transforms and opacity; omit every non-glyph object",
+      "canvas_pt": [
+        57.79840087890625,
+        115.66689682006836,
+        73.79840087890625,
+        131.66689682006836
+      ],
+      "sha256": "902b8c9e312ac26d0bf8d7edf3ca3547c2f72bcd3e54e47f29209d5935a13084",
+      "alpha_min": 0,
+      "all_four_edges_alpha_max": 0,
+      "inspection_scale": 12,
+      "reuse": "extract once from EN; FR/ES original vector geometry verified then share exact bytes",
+      "unused_definitions_removed": true,
+      "replaces": "assets/lcd-ac-wall-charging.png"
+    },
+    {
+      "asset": "lcd-car-charging-circle.svg",
+      "source": [
+        {
+          "physical_page": 9,
+          "drawing_indices": [
+            152,
+            153,
+            154,
+            155,
+            156,
+            157,
+            158,
+            159,
+            160,
+            161,
+            162,
+            163,
+            164,
+            165,
+            166,
+            167,
+            168
+          ],
+          "glyph_bbox": [
+            60.55970001220703,
+            142.18479919433594,
+            71.89769744873047,
+            153.5238037109375
+          ],
+          "same_native_geometry_within_pt": 0.002
+        },
+        {
+          "physical_page": 29,
+          "drawing_indices": [
+            152,
+            153,
+            154,
+            155,
+            156,
+            157,
+            158,
+            159,
+            160,
+            161,
+            162,
+            163,
+            164,
+            165,
+            166,
+            167,
+            168
+          ],
+          "glyph_bbox": [
+            58.560401916503906,
+            155.1822967529297,
+            69.89839935302734,
+            166.52130126953125
+          ],
+          "same_native_geometry_within_pt": 0.002
+        },
+        {
+          "physical_page": 49,
+          "drawing_indices": [
+            152,
+            153,
+            154,
+            155,
+            156,
+            157,
+            158,
+            159,
+            160,
+            161,
+            162,
+            163,
+            164,
+            165,
+            166,
+            167,
+            168
+          ],
+          "glyph_bbox": [
+            58.560401916503906,
+            168.26329040527344,
+            69.89839935302734,
+            179.602294921875
+          ],
+          "same_native_geometry_within_pt": 0.002
+        }
+      ],
+      "native_operator": "native_symbol_svg; retain original paths, transforms and opacity; omit every non-glyph object",
+      "canvas_pt": [
+        58.22869873046875,
+        139.85430145263672,
+        74.22869873046875,
+        155.85430145263672
+      ],
+      "sha256": "76afbae0a0d4303a0c7e1e65bb51faa8cc90226e740cb1e098d1ab5fb4e16a86",
+      "alpha_min": 0,
+      "all_four_edges_alpha_max": 0,
+      "inspection_scale": 12,
+      "reuse": "extract once from EN; FR/ES original vector geometry verified then share exact bytes",
+      "unused_definitions_removed": true,
+      "replaces": "assets/lcd-car-charging.png"
+    },
+    {
+      "asset": "lcd-solar-charging-pill.svg",
+      "source": [
+        {
+          "physical_page": 9,
+          "drawing_indices": [
+            114,
+            115,
+            116,
+            117,
+            118,
+            119,
+            120,
+            121,
+            122,
+            123,
+            124,
+            125
+          ],
+          "glyph_bbox": [
+            56.367000579833984,
+            165.22100830078125,
+            75.55500030517578,
+            178.30401611328125
+          ],
+          "same_native_geometry_within_pt": 0.002
+        },
+        {
+          "physical_page": 29,
+          "drawing_indices": [
+            115,
+            116,
+            117,
+            118,
+            119,
+            120,
+            121,
+            122,
+            123,
+            124,
+            125,
+            126
+          ],
+          "glyph_bbox": [
+            54.62799835205078,
+            181.40499877929688,
+            73.81599426269531,
+            194.48800659179688
+          ],
+          "same_native_geometry_within_pt": 0.002
+        },
+        {
+          "physical_page": 49,
+          "drawing_indices": [
+            115,
+            116,
+            117,
+            118,
+            119,
+            120,
+            121,
+            122,
+            123,
+            124,
+            125,
+            126
+          ],
+          "glyph_bbox": [
+            54.62799835205078,
+            190.27099609375,
+            73.81599426269531,
+            203.35400390625
+          ],
+          "same_native_geometry_within_pt": 0.002
+        }
+      ],
+      "native_operator": "native_symbol_svg; retain original paths, transforms and opacity; omit every non-glyph object",
+      "canvas_pt": [
+        54.367000579833984,
+        160.16851234436035,
+        77.55500030517578,
+        183.35651206970215
+      ],
+      "sha256": "1fa9ef1ffffeddec822c41e8cc67be9644deced36bb2650286bacb0477dd4aaf",
+      "alpha_min": 0,
+      "all_four_edges_alpha_max": 0,
+      "inspection_scale": 12,
+      "reuse": "extract once from EN; FR/ES original vector geometry verified then share exact bytes",
+      "unused_definitions_removed": true,
+      "replaces": "assets/lcd-solar-charging.png"
+    },
+    {
+      "asset": "lcd-low-battery-outline.svg",
+      "source": [
+        {
+          "physical_page": 9,
+          "drawing_indices": [
+            24
+          ],
+          "glyph_bbox": [
+            57.78779983520508,
+            225.05160522460938,
+            76.04979705810547,
+            234.9726104736328
+          ],
+          "same_native_geometry_within_pt": 0.002
+        },
+        {
+          "physical_page": 29,
+          "drawing_indices": [
+            25
+          ],
+          "glyph_bbox": [
+            55.82210159301758,
+            246.92538452148438,
+            74.08409881591797,
+            256.84637451171875
+          ],
+          "same_native_geometry_within_pt": 0.002
+        },
+        {
+          "physical_page": 49,
+          "drawing_indices": [
+            25
+          ],
+          "glyph_bbox": [
+            55.82210159301758,
+            256.72528076171875,
+            74.08409881591797,
+            266.6462707519531
+          ],
+          "same_native_geometry_within_pt": 0.002
+        }
+      ],
+      "native_operator": "native_symbol_svg; retain original paths, transforms and opacity; omit every non-glyph object",
+      "canvas_pt": [
+        55.78779983520508,
+        218.8811092376709,
+        78.04979705810547,
+        241.1431064605713
+      ],
+      "sha256": "386af7c839615aca02f89eb76e60e8ecbee75679eac500349e944dfce1523841",
+      "alpha_min": 0,
+      "all_four_edges_alpha_max": 0,
+      "inspection_scale": 12,
+      "reuse": "extract once from EN; FR/ES original vector geometry verified then share exact bytes",
+      "unused_definitions_removed": true,
+      "replaces": "assets/lcd-low-battery.png"
+    },
+    {
+      "asset": "lcd-high-temperature-triangle.svg",
+      "source": [
+        {
+          "physical_page": 9,
+          "drawing_indices": [
+            37,
+            38
+          ],
+          "glyph_bbox": [
+            57.976200103759766,
+            357.18768310546875,
+            73.8302001953125,
+            371.8056945800781
+          ],
+          "same_native_geometry_within_pt": 0.002
+        },
+        {
+          "physical_page": 29,
+          "drawing_indices": [
+            38,
+            39
+          ],
+          "glyph_bbox": [
+            57.03090286254883,
+            359.007080078125,
+            72.88490295410156,
+            373.6250915527344
+          ],
+          "same_native_geometry_within_pt": 0.002
+        },
+        {
+          "physical_page": 49,
+          "drawing_indices": [
+            38,
+            39
+          ],
+          "glyph_bbox": [
+            57.03090286254883,
+            371.1330871582031,
+            72.88490295410156,
+            385.7510986328125
+          ],
+          "same_native_geometry_within_pt": 0.002
+        }
+      ],
+      "native_operator": "native_symbol_svg; retain original paths, transforms and opacity; omit every non-glyph object",
+      "canvas_pt": [
+        55.976200103759766,
+        354.56968879699707,
+        75.8302001953125,
+        374.4236888885498
+      ],
+      "sha256": "07a89b92824a25a4fc5ee5755e74655e9148e82bf5a3cdd4a1397de8f3842eb2",
+      "alpha_min": 0,
+      "all_four_edges_alpha_max": 0,
+      "inspection_scale": 12,
+      "reuse": "extract once from EN; FR/ES original vector geometry verified then share exact bytes",
+      "unused_definitions_removed": true,
+      "replaces": "assets/lcd-high-temperature.png"
+    },
+    {
+      "asset": "lcd-low-temperature-triangle.svg",
+      "source": [
+        {
+          "physical_page": 9,
+          "drawing_indices": [
+            39,
+            40
+          ],
+          "glyph_bbox": [
+            57.75100326538086,
+            391.3663024902344,
+            73.6050033569336,
+            405.98431396484375
+          ],
+          "same_native_geometry_within_pt": 0.002
+        },
+        {
+          "physical_page": 29,
+          "drawing_indices": [
+            40,
+            41
+          ],
+          "glyph_bbox": [
+            57.03090286254883,
+            392.11798095703125,
+            72.88490295410156,
+            406.7359924316406
+          ],
+          "same_native_geometry_within_pt": 0.002
+        },
+        {
+          "physical_page": 49,
+          "drawing_indices": [
+            40,
+            41
+          ],
+          "glyph_bbox": [
+            57.03090286254883,
+            397.0768737792969,
+            72.88490295410156,
+            411.69488525390625
+          ],
+          "same_native_geometry_within_pt": 0.002
+        }
+      ],
+      "native_operator": "native_symbol_svg; retain original paths, transforms and opacity; omit every non-glyph object",
+      "canvas_pt": [
+        55.75100326538086,
+        388.7483081817627,
+        75.6050033569336,
+        408.60230827331543
+      ],
+      "sha256": "00f89c34af22e21eca385336702ce505cd05cba762eb9695bc59d7a51468ede7",
+      "alpha_min": 0,
+      "all_four_edges_alpha_max": 0,
+      "inspection_scale": 12,
+      "reuse": "extract once from EN; FR/ES original vector geometry verified then share exact bytes",
+      "unused_definitions_removed": true,
+      "replaces": "assets/lcd-low-temperature.png"
+    },
+    {
+      "asset": "lcd-energy-saving-pill.svg",
+      "source": [
+        {
+          "physical_page": 9,
+          "drawing_indices": [
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33
+          ],
+          "glyph_bbox": [
+            58.44459533691406,
+            426.4468994140625,
+            74.31859588623047,
+            437.785888671875
+          ],
+          "same_native_geometry_within_pt": 0.002
+        },
+        {
+          "physical_page": 29,
+          "drawing_indices": [
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34
+          ],
+          "glyph_bbox": [
+            57.07579803466797,
+            426.87921142578125,
+            72.94979858398438,
+            438.21820068359375
+          ],
+          "same_native_geometry_within_pt": 0.002
+        },
+        {
+          "physical_page": 49,
+          "drawing_indices": [
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34
+          ],
+          "glyph_bbox": [
+            56.28239440917969,
+            426.9718933105469,
+            72.1563949584961,
+            438.3108825683594
+          ],
+          "same_native_geometry_within_pt": 0.002
+        }
+      ],
+      "native_operator": "native_symbol_svg; retain original paths, transforms and opacity; omit every non-glyph object",
+      "canvas_pt": [
+        56.44459533691406,
+        422.17939376831055,
+        76.31859588623047,
+        442.05339431762695
+      ],
+      "sha256": "f182a5bd3aeaa6f9699b335457ca0fc602473d9bf0f79d5afd3065f8d2d325eb",
+      "alpha_min": 0,
+      "all_four_edges_alpha_max": 0,
+      "inspection_scale": 12,
+      "reuse": "extract once from EN; FR/ES original vector geometry verified then share exact bytes",
+      "unused_definitions_removed": true,
+      "replaces": "assets/lcd-energy-saving.png"
+    }
+  ],
+  "publication_eligible": false,
+  "reuse": [
+    {
+      "asset": "lcd-connected-batteries-pill.png",
+      "candidate": "manual_sources/JE-3600A/EU/pl/git-20261004-47a346dc/assets/lcd-icon-connected-batteries.png",
+      "sha256": "336c1ec5b3fa7e84e58bab85bfd4b4ab8c9300f114b46a557d866de167ae1b0b",
+      "reason": "Reviewed source-matching battery x5 inside the open capsule; real alpha, unchanged bytes.",
+      "css_alpha_crop": {
+        "canvas_pixels": [
+          348,
+          264
+        ],
+        "alpha_bbox_pixels": [
+          33,
+          103,
+          258,
+          236
+        ],
+        "visible_ink_width_rem": 2.5,
+        "method": "CSS inset clip of transparent margins; source file unchanged; center visible ink in icon cell"
+      }
+    }
+  ],
+  "component": "HB-TABLE-LCD-ICON/icon-catalog",
+  "number_cell_layout": "span-adjacent-equal: 4 and 19 each span two source rows",
+  "row_groups": {
+    "en": [
+      8,
+      16
+    ],
+    "fr": [
+      7,
+      17
+    ],
+    "es": [
+      7,
+      17
+    ]
+  },
+  "unchanged_glyphs": "14 prior transparent glyph files reused unchanged after visual source comparison; 9 native variants exported once and shared; 1 existing exact capsule variant reused.",
+  "proof": {
+    "source_reuse_census": "validation/lcd-source-icon-census.png",
+    "native_paths_12x": [
+      "validation/lcd-native-glyphs-12x-0.png",
+      "validation/lcd-native-glyphs-12x-1.png"
+    ],
+    "svg_raster_verification": "CairoSVG preserves source clip-path transforms; every selected native drawing matched across locales; unused-definitions prune is RGBA-identical at 12x",
+    "browser": "validation/lcd-browser.json"
+  }
+}

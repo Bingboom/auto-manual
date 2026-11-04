@@ -1,0 +1,26 @@
+{
+  "asset": "assets/inbox-main-current-source.png",
+  "source_pdf": "source/review-reference.pdf",
+  "source_sha256": "34fedc156d52e8a50ca65d23327d323b3647aee03bd6b6b4aa1d681723e249dc",
+  "physical_page": 6,
+  "clip_pdf_points": [
+    63,
+    221,
+    150,
+    294
+  ],
+  "matrix": [
+    4,
+    4
+  ],
+  "alpha": false,
+  "pixel_dimensions": [
+    348,
+    292
+  ],
+  "method": "Unmodified PyMuPDF get_pixmap of exact current PDF artwork region. No drawing, recoloring, stroke modification, text transcription, resampling or image enhancement. Native product silkscreen is retained; editable card caption stays outside crop.",
+  "supersedes_served_asset": "assets/inbox-main.svg",
+  "superseded_asset_sha256": "35cec3a529f6655b0e93a2085a0ef82d0ac8e7ad54f4e3e7233c2ec8a59170aa",
+  "sha256": "5f45f0d32259998cbc909f78cc2667ffcd8991fda25881d5fadc495564e9812e",
+  "reason": "Existing source-native SVG renders hairline paths as broken/dotted pale strokes in Chrome even after successful img.decode(); 4x current-PDF crop retains original complete lines at identical 87:73 composition ratio."
+}

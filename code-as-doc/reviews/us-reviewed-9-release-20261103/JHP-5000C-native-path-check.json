@@ -1,0 +1,167 @@
+{
+  "status": "all_structural_path_commands_belong_to_fresh_current_PDF_SVG",
+  "source_sha256": "3381c816e6bb75bc5e790bcba3faacbb3ad199f1a41cc53c5092368bcd945250",
+  "source_svg_sha256": "ba9b84a7a50b55f7d7db677932140b5d67b441df0807de97219081f3ce654715",
+  "cached_svg_provenance": "Current reference PDF page4 spread; agent-reported shared-page drawing indices/transforms additionally retained in package provenance",
+  "source_paths_scanned": 440055,
+  "distinct_asset_path_commands_verified": 16826,
+  "assets": [
+    {
+      "asset": "source-risk-frame.svg",
+      "path_count": 4,
+      "source_page": 4,
+      "sha256": "eea6ba8a2706976b5f4a9bba31023ed0b324d115a952150ceff947860a8d7b46"
+    },
+    {
+      "asset": "source-warning-frame.svg",
+      "path_count": 5,
+      "source_page": 4,
+      "sha256": "5251e4e6e4241bc87039406c4f1727d6b5a8a2f9d93a70d1e3a793b36ebd13ef"
+    },
+    {
+      "asset": "source-danger-frame.svg",
+      "path_count": 4,
+      "source_page": 4,
+      "sha256": "66228f55c20360788a7e97cc63a7bb87433e954e9481ddc762ee1771cbb3cafb"
+    },
+    {
+      "asset": "source-power-frame.svg",
+      "path_count": 5,
+      "source_page": 10,
+      "sha256": "158a75aa5603ba54c9b42b7db26b969aac202224a1e3641f9a6efa11c42ab0c8"
+    },
+    {
+      "asset": "source-ac-frame.svg",
+      "path_count": 3,
+      "source_page": 10,
+      "sha256": "40090ba312eb868e2d96f21ad97a1f7fec706603571d911cf8bc2fd8f3e0dcf3"
+    },
+    {
+      "asset": "source-ups-frame.svg",
+      "path_count": 6,
+      "source_page": 13,
+      "sha256": "08e36b28aaafbdfce3a11c72edf28fd845952a1e3a2d989d1e7f77d53011bf14"
+    },
+    {
+      "asset": "source-battery-frame.svg",
+      "path_count": 4,
+      "source_page": 14,
+      "sha256": "869096675107dc60ccc98add9354066c57e3d4b4232e300bb10dac455e727af5"
+    },
+    {
+      "asset": "source-sts-frame.svg",
+      "path_count": 6,
+      "source_page": 14,
+      "sha256": "97d0a6ab6ffdefb58b6fce908f2cf05e85a0de1346ea6253ef707779e17f93e9"
+    },
+    {
+      "asset": "source-package-host-frame.svg",
+      "path_count": 3,
+      "source_page": 27,
+      "sha256": "ea0f1df680b5edb1ace7304fb2a6b44c3c2532c866d1a4392fe707a0ba67d0d0"
+    },
+    {
+      "asset": "source-package-battery-frame.svg",
+      "path_count": 9,
+      "source_page": 27,
+      "sha256": "afae123fb2c582896d27c1c3c45d8e9e6c07948348cce93ef213cf1f18e5d37c"
+    },
+    {
+      "asset": "source-package-sts-frame.svg",
+      "path_count": 9,
+      "source_page": 27,
+      "sha256": "ae423ad38fce8fc68ed4b8283e7b543798de65569c361eedab6dd3780dfcb1f6"
+    },
+    {
+      "asset": "source-contact-frame.svg",
+      "path_count": 5,
+      "source_page": 28,
+      "sha256": "3e67e1292c35e64d567cc07fe1968b3c79a195e7767ed1b0b4ea4e6411c9b99b"
+    },
+    {
+      "asset": "source-app-plus.svg",
+      "path_count": 3,
+      "source_page": 20,
+      "sha256": "c34f1fa4049f13553ebef12d1a77d5dac3bcd14d50a22a511ed51c754224bdef"
+    },
+    {
+      "asset": "source-usb-frame.svg",
+      "path_count": 3,
+      "source_page": 11,
+      "sha256": "81883ff25ba4af2590c58266092ad02e2a74aac216b79d2a7606b57c698b398d"
+    },
+    {
+      "asset": "source-dc-frame.svg",
+      "path_count": 3,
+      "source_page": 11,
+      "sha256": "f2d7c81983affeffd0bd000a92f1e12cbe6900f5b6a48bcbaca051e6aca9d869"
+    },
+    {
+      "asset": "source-ac-charge-frame.svg",
+      "path_count": 3,
+      "source_page": 15,
+      "sha256": "31e0889e685c4d538d8c1659b7417779cff0bf16a29817ab940c7a0991a685ee"
+    },
+    {
+      "asset": "source-sts-charge-frame.svg",
+      "path_count": 3,
+      "source_page": 15,
+      "sha256": "a16e341dfd80e9b2c6e0dc336838bfed365c13dc120dfe47e8094f6a81f035ef"
+    },
+    {
+      "asset": "source-ess-frame.svg",
+      "path_count": 3,
+      "source_page": 24,
+      "sha256": "4af7d6fbc69f1176b57d885c8b67f6ad32a79bc3ef4cadf60ff74e5b2bad8ac0"
+    },
+    {
+      "asset": "source-contact-qr.svg",
+      "path_count": 28,
+      "source_page": 28,
+      "sha256": "f370db562ddb2441577c736d99f0ea865d52889989768e4e342817551df30ccb"
+    },
+    {
+      "asset": "current-ups-art.svg",
+      "path_count": 4077,
+      "source_page": 13,
+      "sha256": "27ffa5dfda7b2e6ff51c7dee04bce99565c49b326b8cdaf1e2eac85fa6081825"
+    },
+    {
+      "asset": "current-battery-art.svg",
+      "path_count": 10816,
+      "source_page": 14,
+      "sha256": "736a564f06372d9127df6acbd62f5ba3e6c2dc21f782214d03287f2d95fe2cdd"
+    },
+    {
+      "asset": "current-sts-art.svg",
+      "path_count": 5337,
+      "source_page": 14,
+      "sha256": "be084b8f96543e4a17ead10aed561628725afc099bd2e0312c36ee540bf1583b"
+    },
+    {
+      "asset": "source-signal-white.svg",
+      "path_count": 3,
+      "source_page": 5,
+      "sha256": "8831f4aee0c9999f5db7e4be1e3b2b334472081f54bcb088b8f6bd8096bdcaf8"
+    },
+    {
+      "asset": "source-danger-border.svg",
+      "path_count": 3,
+      "source_page": 4,
+      "sha256": "67e332ef076901d026344cf10c3f601a601db26398c1ddc3ad4446a46cc45851"
+    },
+    {
+      "asset": "source-danger-triangle.svg",
+      "path_count": 3,
+      "source_page": 4,
+      "sha256": "b72f0175fe1bbda158ffac0057472279131b9996dee2adc1c815cd48bd9d1cc7"
+    }
+  ],
+  "scope": "Independent original path-command membership against fresh current-PDF SVG and listed file hashes; cached full SVG byte identity is explicitly not claimed. Ancestor transforms/page mapping are separately documented in package provenance.",
+  "fresh_svg_sha256": "91600d71ef3d19e66358c26f639649ee6a6ca9a5a4d643ef3a2fafd58500a2f7",
+  "fresh_svg_byte_equal_to_cache": false,
+  "fresh_source_paths_scanned": 440111,
+  "fresh_distinct_asset_path_commands_matched": 16826,
+  "fresh_missing_command_count": 0,
+  "pymupdf_version": "1.28.0"
+}

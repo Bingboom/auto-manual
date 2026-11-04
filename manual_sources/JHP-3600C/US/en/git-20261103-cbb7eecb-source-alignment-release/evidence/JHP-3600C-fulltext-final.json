@@ -1,0 +1,146 @@
+{
+  "model": "JHP-3600C",
+  "source_pages": 35,
+  "checked_lines": 794,
+  "exclusions": {
+    "1": "historically approved print cover",
+    "3": "historically approved print TOC"
+  },
+  "candidates": [
+    {
+      "page": 4,
+      "text": "charger, leading to satety risks.",
+      "coverage": 0.6
+    },
+    {
+      "page": 5,
+      "text": "anmbtonmene aing uernpaing o utpot lego mry tom ni andihu ni .",
+      "coverage": 0.0
+    },
+    {
+      "page": 6,
+      "text": "OTE:Thiseguipmentasbeentestedandfondocomply",
+      "coverage": 0.343
+    },
+    {
+      "page": 7,
+      "text": "HomePower $600 Pro Max",
+      "coverage": 0.364
+    },
+    {
+      "page": 7,
+      "text": "iscade parallel operati",
+      "coverage": 0.571
+    },
+    {
+      "page": 7,
+      "text": "DC Input (2×DC8020 Ports)",
+      "coverage": 0.417
+    },
+    {
+      "page": 7,
+      "text": "L1 and L2 respectively",
+      "coverage": 0.417
+    },
+    {
+      "page": 7,
+      "text": "from left to right",
+      "coverage": 0.0
+    },
+    {
+      "page": 7,
+      "text": "For ATS connection or",
+      "coverage": 0.636
+    },
+    {
+      "page": 7,
+      "text": "Input/Output: 240V~ 60Hz,",
+      "coverage": 0.5
+    },
+    {
+      "page": 7,
+      "text": "To connect to an external",
+      "coverage": 0.571
+    },
+    {
+      "page": 7,
+      "text": "emergency stop button",
+      "coverage": 0.5
+    },
+    {
+      "page": 10,
+      "text": "stpdungioning unti its temperature retums to the normal",
+      "coverage": 0.463
+    },
+    {
+      "page": 23,
+      "text": "SolarSaga 500 X x 2",
+      "coverage": 0.0
+    },
+    {
+      "page": 26,
+      "text": "port, 1440W® in Total",
+      "coverage": 0.444
+    },
+    {
+      "page": 28,
+      "text": "Bluetooth configurasion",
+      "coverage": 0.467
+    },
+    {
+      "page": 28,
+      "text": "Heme mske ture the buetth ion n toitr",
+      "coverage": 0.0
+    },
+    {
+      "page": 29,
+      "text": "HoeePyntr 36:0 Pro MyrS",
+      "coverage": 0.0
+    },
+    {
+      "page": 29,
+      "text": "Please select 2.4 GHz Wi-Fi",
+      "coverage": 0.357
+    },
+    {
+      "page": 29,
+      "text": "_ Rerombar passacra",
+      "coverage": 0.0
+    },
+    {
+      "page": 29,
+      "text": "Mne sure yout 0ee 5 020404 3",
+      "coverage": 0.0
+    },
+    {
+      "page": 29,
+      "text": "aуaince driceisi scaea",
+      "coverage": 0.0
+    },
+    {
+      "page": 31,
+      "text": "14.76 × 10.83 x 17.72 in / 37.5×27.5×45.0 cm",
+      "coverage": 0.579
+    },
+    {
+      "page": 31,
+      "text": "port, 1440W® in Total",
+      "coverage": 0.444
+    },
+    {
+      "page": 32,
+      "text": "svolnoe ngtienen ats hiogr aon pris wo or 20v AC inpu,theproduce withdrows poner from the bateary to moe",
+      "coverage": 0.127
+    },
+    {
+      "page": 33,
+      "text": "About 23.1 Ibs/10.5 kg",
+      "coverage": 0.111
+    },
+    {
+      "page": 34,
+      "text": "INSTALLATICH MANIAL",
+      "coverage": 0.273
+    }
+  ]
+}

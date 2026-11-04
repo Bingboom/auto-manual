@@ -1,0 +1,635 @@
+{
+  "model": "JE-100C",
+  "record_id": "reczz28SPRx9p8Z3",
+  "status": "local_review_passed",
+  "source_sha256": "39c58bca661f635fc9d500bc9362317b62b5da6f007589fbf8e4ebfcc8e0bad0",
+  "whole_document_source_pages": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "scope": "Original body only; front cover and paper TOC excluded; back contact/QR retained",
+  "differences_review": [
+    {
+      "old_item": 1,
+      "old_statement": "Cover/TOC/back QR omitted",
+      "current_source": "p1 cover, p2 paper TOC, p15 native contact and QR",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Cover/TOC exclusion retained; own p15 QR restored"
+    },
+    {
+      "old_item": 2,
+      "old_statement": "Risk heading triangle omitted",
+      "current_source": "p3 black triangle beside risk heading",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Restore own exact PDF black triangle with native heading"
+    },
+    {
+      "old_item": 3,
+      "old_statement": "User maintenance placed before symbols",
+      "current_source": "p4 maintenance then symbol tables",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Keep original order and native complete text"
+    },
+    {
+      "old_item": 4,
+      "old_statement": "WARNING label colon dropped",
+      "current_source": "p3 white triangle/dark cell, WARNING: and bold body",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Restore own exact white icon cell, native WARNING: with bold body; other callouts keep original copy"
+    },
+    {
+      "old_item": 5,
+      "old_statement": "Signal symbol table rendered by shared components",
+      "current_source": "p4 WARNING/CAUTION with triangle; NOTE/TIP without",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Keep source signal words and matching symbol rows"
+    },
+    {
+      "old_item": 6,
+      "old_statement": "FCC opening confined to left column",
+      "current_source": "p4 opening across full width above two body columns",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Opening spans both columns; all paragraphs/measures unchanged; responsive line wrapping remains"
+    },
+    {
+      "old_item": 7,
+      "old_statement": "Shared inbox numbers",
+      "current_source": "p5 numbered 1–3 cards",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Source numbering, 3 images and labels retained"
+    },
+    {
+      "old_item": 8,
+      "old_statement": "Shared LCD rows",
+      "current_source": "p6–8 numbered interface tables and unnumbered fault states",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Keep original groups, own diagram art, bold labels and battery health bullets"
+    },
+    {
+      "old_item": 9,
+      "old_statement": "LCD screen drawing above table",
+      "current_source": "p9 drawing in left column beside native action table",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Restore left-art/right-table source grouping; phone reflow preserves association"
+    },
+    {
+      "old_item": 10,
+      "old_statement": "Output and energy caption paragraphs outside art raster",
+      "current_source": "p8–9 native copy immediately above corresponding illustration",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Keep contiguous native text/original art in same subsection; no body text rasterization"
+    },
+    {
+      "old_item": 11,
+      "old_statement": "Purchase strips",
+      "current_source": "p5 and p10–11 cart mark plus exact accessory text",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Cart symbol and original native text retained beside the corresponding figure"
+    },
+    {
+      "old_item": 12,
+      "old_statement": "Specification subscript lost",
+      "current_source": "p13 LiFePO₄; p11 V_oc",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Restore ₄ and native subscript oc; all five specification groups and multi-line values unchanged"
+    },
+    {
+      "old_item": 13,
+      "old_statement": "Warranty pills adapted to native headings/cards",
+      "current_source": "p14 Contact Us / Customer Service",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Both exact sections and p15 contact preserved"
+    },
+    {
+      "old_item": 14,
+      "old_statement": "Figure embedded captions/leader labels",
+      "current_source": "p5–11 all diagram panels",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Complete original panels retained; no invented product drawing"
+    },
+    {
+      "old_item": 15,
+      "old_statement": "Mobile diagrams/tables scroll locally",
+      "current_source": "Wide source overview and native LCD tables",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "390px complete art/table local scroll with zero document overflow"
+    }
+  ],
+  "bidirectional_native": {
+    "model": "JE-100C",
+    "source_to_web_missing": [],
+    "web_to_source_candidates": [],
+    "native_elements_checked": 202,
+    "source_line_count": 224
+  },
+  "reverse_source_check": {
+    "transcribed_lines": 224,
+    "exact_source_ocr_char_coverage": 214,
+    "visually_resolved": [
+      {
+        "page": 3,
+        "id": "safety.d2",
+        "source_text": "leaving a battery in an extremely high temperature surrounding environment that can result in an explosion or the leakage of flammable liquid or gas; and",
+        "web_text": "leaving a battery in an extremely high temperature surrounding environment that can result in an explosion or the leakage of flammable liquid or gas; and",
+        "source_locator": "original PDF physical p3 / source/transcription.json#safety.d2",
+        "web_locator": "source/en/content.json bound from transcription #safety.d2",
+        "decision": "p3 source confirms full high-temperature surroundings sentence; OCR line-wrap artifact"
+      },
+      {
+        "page": 4,
+        "id": "sym.warning",
+        "source_text": "Warning and Caution Symbols. Must read to alert individuals to potential hazards or risks.",
+        "web_text": "Warning and Caution Symbols. Must read to alert individuals to potential hazards or risks.",
+        "source_locator": "original PDF physical p4 / source/transcription.json#sym.warning",
+        "web_locator": "source/en/content.json bound from transcription #sym.warning",
+        "decision": "p4 source table contains full Warning and Caution Symbols description; OCR cross-column order"
+      },
+      {
+        "page": 4,
+        "id": "sym.weee1",
+        "source_text": "This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling.",
+        "web_text": "This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling.",
+        "source_locator": "original PDF physical p4 / source/transcription.json#sym.weee1",
+        "web_locator": "source/en/content.json bound from transcription #sym.weee1",
+        "decision": "p4 source WEEE cell matches native full disposal sentence; OCR table order"
+      },
+      {
+        "page": 4,
+        "id": "fcc.p1",
+        "source_text": "This device complies with part 15 of the FCC Rules. Operation is subject to the following two conditions: (1) This device may not cause harmful interference, and (2) this device must accept any interference received, including interference that may cause undesired operation.",
+        "web_text": "This device complies with part 15 of the FCC Rules. Operation is subject to the following two conditions: (1) This device may not cause harmful interference, and (2) this device must accept any interference received, including interference that may cause undesired operation.",
+        "source_locator": "original PDF physical p4 / source/transcription.json#fcc.p1",
+        "web_locator": "source/en/content.json bound from transcription #fcc.p1",
+        "decision": "p4 source top full-width opening; OCR interleaved columns; exact two conditions retained"
+      },
+      {
+        "page": 4,
+        "id": "fcc.note",
+        "source_text": "NOTE: This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules. These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to communications. However, there is no guarantee that radio interference will not occur in a particular installation.",
+        "web_text": "NOTE: This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules. These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to communications. However, there is no guarantee that radio interference will not occur in a particular installation.",
+        "source_locator": "original PDF physical p4 / source/transcription.json#fcc.note",
+        "web_locator": "source/en/content.json bound from transcription #fcc.note",
+        "decision": "p4 NOTE full paragraph visually confirmed including source communications/radio wording"
+      },
+      {
+        "page": 4,
+        "id": "fcc.p3",
+        "source_text": "If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:",
+        "web_text": "If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:",
+        "source_locator": "original PDF physical p4 / source/transcription.json#fcc.p3",
+        "web_locator": "source/en/content.json bound from transcription #fcc.p3",
+        "decision": "p4 paragraph crosses source columns; complete sentence retained native, not extra content"
+      },
+      {
+        "page": 4,
+        "id": "fcc.l4",
+        "source_text": "Consult the dealer or an experienced radio/TV technician for help.",
+        "web_text": "Consult the dealer or an experienced radio/TV technician for help.",
+        "source_locator": "original PDF physical p4 / source/transcription.json#fcc.l4",
+        "web_locator": "source/en/content.json bound from transcription #fcc.l4",
+        "decision": "p4 source says experienced radio/TV technician for help; OCR slash glyph"
+      },
+      {
+        "page": 7,
+        "id": "lcd.f.d",
+        "source_text": "Remove the load or unplug the charging plug. If the problem cannot be resolved, please contact the Jackery Customer Support.",
+        "web_text": "Remove the load or unplug the charging plug. If the problem cannot be resolved, please contact the Jackery Customer Support.",
+        "source_locator": "original PDF physical p7 / source/transcription.json#lcd.f.d",
+        "web_locator": "source/en/content.json bound from transcription #lcd.f.d",
+        "decision": "p7 source full Remove the load...Jackery Customer Support sentence confirmed"
+      },
+      {
+        "page": 8,
+        "id": "op.caution.i2",
+        "source_text": "Only connect the 100D to devices or accessories that comply with clauses 6.3, 6.4, and 6.5 of IEC/EN/UL 62368-1 (or other equivalent standards).",
+        "web_text": "Only connect the 100D to devices or accessories that comply with clauses 6.3, 6.4, and 6.5 of IEC/EN/UL 62368-1 (or other equivalent standards).",
+        "source_locator": "original PDF physical p8 / source/transcription.json#op.caution.i2",
+        "web_locator": "source/en/content.json bound from transcription #op.caution.i2",
+        "decision": "p8 source explicitly says Only connect the 100D ... clauses 6.3, 6.4, and 6.5 ...62368-1; retained"
+      },
+      {
+        "page": 13,
+        "id": "spec.gen.r5.v",
+        "source_text": "(1.89 ± 0.02) lbs/(855 ± 10) g",
+        "web_text": "(1.89 ± 0.02) lbs/(855 ± 10) g",
+        "source_locator": "original PDF physical p13 / source/transcription.json#spec.gen.r5.v",
+        "web_locator": "source/en/content.json bound from transcription #spec.gen.r5.v",
+        "decision": "p13 source weight (1.89 ± 0.02) lbs/(855 ± 10) g confirmed"
+      }
+    ]
+  },
+  "source_notes": [
+    "Source itself names Explorer 100D / 100D while Model No. is JE-100C; exact source wording retained, not transplanted or silently corrected.",
+    "FCC source wording includes harmful interference to communications and later radio interference; retained verbatim, not standardized."
+  ],
+  "browser": [
+    {
+      "width": 1280,
+      "images": 46,
+      "broken": [],
+      "uncontained": [],
+      "document": {
+        "viewport": 1280,
+        "width": 1280,
+        "cover": 0
+      },
+      "layouts": [
+        {
+          "key": "inbox",
+          "columns": "auto",
+          "grid": "none",
+          "rectWidth": 657.21875
+        },
+        {
+          "key": "lcd",
+          "columns": "auto",
+          "grid": "none",
+          "rectWidth": 657.21875
+        },
+        {
+          "key": "warning",
+          "columns": "auto",
+          "grid": "80px 570.828px",
+          "rectWidth": 657.21875
+        },
+        {
+          "key": "back",
+          "columns": "auto",
+          "grid": "none",
+          "rectWidth": 621.21875
+        },
+        {
+          "key": "risk",
+          "columns": "auto",
+          "grid": "none",
+          "rectWidth": 657.21875
+        },
+        {
+          "key": "fcc",
+          "columns": "auto",
+          "grid": "282.219px 282.219px",
+          "rectWidth": 599.625
+        }
+      ],
+      "request_failures": [],
+      "background_images": []
+    },
+    {
+      "width": 390,
+      "images": 46,
+      "broken": [],
+      "uncontained": [],
+      "document": {
+        "viewport": 390,
+        "width": 390,
+        "cover": 0
+      },
+      "layouts": [
+        {
+          "key": "inbox",
+          "columns": "auto",
+          "grid": "none",
+          "rectWidth": 358
+        },
+        {
+          "key": "lcd",
+          "columns": "auto",
+          "grid": "none",
+          "rectWidth": 358
+        },
+        {
+          "key": "warning",
+          "columns": "auto",
+          "grid": "80px 271.609px",
+          "rectWidth": 358
+        },
+        {
+          "key": "back",
+          "columns": "auto",
+          "grid": "none",
+          "rectWidth": 330
+        },
+        {
+          "key": "risk",
+          "columns": "auto",
+          "grid": "none",
+          "rectWidth": 358
+        },
+        {
+          "key": "fcc",
+          "columns": "auto",
+          "grid": "326px",
+          "rectWidth": 326
+        }
+      ],
+      "request_failures": [],
+      "background_images": []
+    }
+  ],
+  "remaining_source_or_layout_issues": [],
+  "acceptance_basis": "Whole-body original-source, bidirectional native-copy and desktop/mobile review by agent under delegated local acceptance. No personal operator visual approval or release/deployment approval inferred.",
+  "build": {
+    "strict_sphinx": "passed -n -W --keep-going",
+    "source_integrity": "all manifest input hashes verified",
+    "publication_status": "candidate-pending-operator-review",
+    "candidate_rebuild_markdown_equals_strict_sphinx_verified_render": true,
+    "candidate_css_art_equals_strict_sphinx_verified_render": true,
+    "byte_identical_render_files": [
+      {
+        "path": "manual_je100c_us_en.md",
+        "sha256": "e8edf9e0906161f951e030fa7063f59a79b529bc4050a1d58b7179dbe892a722"
+      },
+      {
+        "path": "index.md",
+        "sha256": "8c10c5d8196ca561301e77e169e0b5e7cbdeeeef3946da429d388bcc73913f6b"
+      },
+      {
+        "path": "_static/source_geometry.css",
+        "sha256": "3533541c32ef81f6759ab63deb5474fb994ed68d04faeb7694b1120950e72540"
+      },
+      {
+        "path": "_static/web_manual.css",
+        "sha256": "c3604a2e5f22b04bc745bb99cf203b50e60222af70c0aeba3d968cc28adac9ce"
+      },
+      {
+        "path": "assets/lcd_interface_2.png",
+        "sha256": "fc613c38fa55870a9f3bbde3c09e3967755da14b86de1b22bfef42c0bfa761ef"
+      },
+      {
+        "path": "assets/fcc-mark.svg",
+        "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+      },
+      {
+        "path": "assets/lcd_interface_3.png",
+        "sha256": "7282f47a25d4216f3306267313b027a3a0a7133f62cf66d7b3dc516aa038b539"
+      },
+      {
+        "path": "assets/charging_ac.png",
+        "sha256": "6b4866ef484b9ca9a5ff10dd4cf3fb1f9a18146e02bb38aa27a4c1697c7b5d22"
+      },
+      {
+        "path": "assets/lcd_interface_1.png",
+        "sha256": "523ab4c85b2e737b9d22510fa91ae6a3d7382e842bcc2171c11e563ee4c9fa85"
+      },
+      {
+        "path": "assets/charging_solar.png",
+        "sha256": "96adfad1e72c557534fb1a3eaee933f045d01552429f2afbc95d43eac7bb8367"
+      },
+      {
+        "path": "assets/inbox_unit.png",
+        "sha256": "9e8cfb5917ef0d87bda25b46850c3d566b22b48d52fc7d01f875a220f7b37bed"
+      },
+      {
+        "path": "assets/sold-separately.png",
+        "sha256": "02bb73ccbdbb42c043b769decd554886fcaa3b5d36b6b2570128a94540a35bb3"
+      },
+      {
+        "path": "assets/charging_car.png",
+        "sha256": "439af9be59566f839c65c898bd363142e7dc30eaffdc673bda7494d3f1d1ef3e"
+      },
+      {
+        "path": "assets/operation-energy.png",
+        "sha256": "16fb681afba0313be1c4e67f7612a7f7d11561efa33c94e404b7ab4da127033b"
+      },
+      {
+        "path": "assets/safety-risk-triangle.png",
+        "sha256": "3dd1c193c66515cf6a17fe70a923b534423900bb404ec10734c2f3ef32f0d1b8"
+      },
+      {
+        "path": "assets/overview.png",
+        "sha256": "f1a11b8f9078d9e62f8e27cc3c252b0809addc4486b05ab04baa417fa3368311"
+      },
+      {
+        "path": "assets/symbol-01.svg",
+        "sha256": "7eee1f724544318b77f50d99896735cb11f833fde5a3e24df1a7a394b70de10e"
+      },
+      {
+        "path": "assets/back-contact-qr.png",
+        "sha256": "bb3b7e27dd5d1e0a88d9b998060c8eab2a7828d28b509eea55fd14cda73d2aa0"
+      },
+      {
+        "path": "assets/symbol-02.svg",
+        "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584"
+      },
+      {
+        "path": "assets/symbol-06.svg",
+        "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899"
+      },
+      {
+        "path": "assets/symbol-07.svg",
+        "sha256": "a901f6a790ada85f96010194a777fd019188c5f5fbfc872938e5cdb35b618a74"
+      },
+      {
+        "path": "assets/operation-output.png",
+        "sha256": "b9727b9e83cde872c907d17fca4df69b6ac625d74e394a42e30fb30fcc48e96e"
+      },
+      {
+        "path": "assets/inbox_manual.png",
+        "sha256": "4320efcbbc0506ca4cabe0cd0b4c268357fc87a224b3a76cf69cffd2f8771075"
+      },
+      {
+        "path": "assets/symbol-05.svg",
+        "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f"
+      },
+      {
+        "path": "assets/symbol-04.svg",
+        "sha256": "562aa9d004d818fe9ac907cabd0a5bb44831801e26911f0929be7887971834fb"
+      },
+      {
+        "path": "assets/safety-warning-icon.png",
+        "sha256": "99afb307a4205c32422678a25c7d7f78d42af89ffd2a566b7e94db045a02b81e"
+      },
+      {
+        "path": "assets/inbox_cable.png",
+        "sha256": "440667657c702a6cb0c99f574430f9303253b3ada6a32aa8609cf562306d2a6e"
+      },
+      {
+        "path": "assets/operation-lcd.png",
+        "sha256": "9e413c2d2772d533714d5e4f047291c0ade296217ca413373abc9bc5e527c10e"
+      },
+      {
+        "path": "assets/symbol-03.png",
+        "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5"
+      },
+      {
+        "path": "assets/shared-lcd/lcd_energy.png",
+        "sha256": "abffef2553a3ff4c6aec158c2eeca3c411a752983fcd9499d444b46363a635e0"
+      },
+      {
+        "path": "assets/shared-lcd/lcd_discharge_time.png",
+        "sha256": "a6254ee6c2442338ce3be607854e610e87454464a34471c200a3e15b754504ac"
+      },
+      {
+        "path": "assets/shared-lcd/lcd_thermal.png",
+        "sha256": "d8afe79c89066a0c48cea82e68b7cc32175cfb8e7894793105dca8bafeaf3bcd"
+      },
+      {
+        "path": "assets/shared-lcd/lcd_steady.png",
+        "sha256": "6ae3372cbf05adfa1915451b65e5179de273c5db9dfa256f6702a025fa5ea142"
+      },
+      {
+        "path": "assets/shared-lcd/lcd_temperature.png",
+        "sha256": "60c5cbfe5f8497b1ea4bdf9a6c2c0ed58670557da37738e7b52112279c29ad72"
+      },
+      {
+        "path": "assets/shared-lcd/lcd_watts.png",
+        "sha256": "7da3de69f1cc2e3d06cb208ca58dc282e30d4251ce1332322079c8637c2f1433"
+      },
+      {
+        "path": "assets/shared-lcd/lcd_low_battery.png",
+        "sha256": "8aba48b4eeefd20e8cb0eaa4306c99e5bef4f3b00aacbe7624d3c987e9610e72"
+      },
+      {
+        "path": "assets/shared-lcd/lcd_charging.png",
+        "sha256": "65b2acf888574217b4837b443b6a2ef962d8752080ec2a152c7d25aa149fd7ce"
+      },
+      {
+        "path": "assets/shared-lcd/lcd_charge_time.png",
+        "sha256": "30ca3526ad823eb0bcb86ed426556305c3a88f3822b9afe0b338faefadf663b5"
+      },
+      {
+        "path": "assets/shared-lcd/lcd_health.png",
+        "sha256": "e97ce3a6dcc8de61459628138749323ace0aedf4472ab94c5f54e8c5a22fa7b7"
+      },
+      {
+        "path": "assets/shared-lcd/lcd_high_temperature.png",
+        "sha256": "3bc177aa1ca91a3172263fd9ed24e529eca1def19489bd50408aad730da53c57"
+      },
+      {
+        "path": "assets/shared-lcd/lcd_low_temperature.png",
+        "sha256": "9a6f857384d84940df6a0a04569eb20f3327fb7608f822a3eec4fc3c6d8eede8"
+      },
+      {
+        "path": "assets/shared-lcd/lcd_ring.png",
+        "sha256": "116e805fbbb3afefab436e34075834edddf54bed96d38054072a9307acdb40c6"
+      },
+      {
+        "path": "assets/shared-lcd/lcd_fault.png",
+        "sha256": "9a4dcfb95f2780c03a70f9ad6c34f29b31c7bcab8165309018dc366ef8a22ad3"
+      },
+      {
+        "path": "assets/shared-lcd/lcd_discharging.png",
+        "sha256": "196dfcec907c1922ec559a59639f12677b94f0a40fef2163703bb512f93e2d27"
+      },
+      {
+        "path": "assets/shared-lcd/lcd_input.png",
+        "sha256": "d885d71e56e89be78deaaba7d1fe02c6d4d2c8ae4e92b21129fe302d5a44503d"
+      },
+      {
+        "path": "assets/shared-lcd/lcd_output.png",
+        "sha256": "595a94ae122a1f50c02bd8b92ac70cbaa1548edf18365e0eb5eec9dbf41ccdac"
+      },
+      {
+        "path": "assets/shared-lcd/lcd_percentage.png",
+        "sha256": "442522aad3e203194cd620402e723f7e7ba2735748e4bcefdf86289b3aa4c8f1"
+      }
+    ]
+  },
+  "whole_body_visual": {
+    "evidence": "whole-body-viewport-review.json",
+    "complete": true,
+    "rebuild_needed": false,
+    "reason": "Read-only coverage confirmation of the already verified HTML; source and output unchanged"
+  },
+  "number_shape_followup": {
+    "source_pages": [
+      6,
+      7,
+      8
+    ],
+    "before": "Ordinary Arabic digits in native LCD table row-number cells; source uses circled digits.",
+    "after": "Source circled Unicode digits in native cells; original table content/order and temperature rowspan retained.",
+    "native_numbers": [
+      "①",
+      "②",
+      "③",
+      "④",
+      "⑤",
+      "⑥",
+      "⑦",
+      "⑧",
+      "⑨",
+      "⑩",
+      "①",
+      "②",
+      "③",
+      "①",
+      "②"
+    ],
+    "number_cell_spans": [
+      {
+        "number": "①",
+        "rowspan": "1"
+      },
+      {
+        "number": "②",
+        "rowspan": "1"
+      },
+      {
+        "number": "③",
+        "rowspan": "1"
+      },
+      {
+        "number": "④",
+        "rowspan": "1"
+      },
+      {
+        "number": "⑤",
+        "rowspan": "1"
+      },
+      {
+        "number": "⑥",
+        "rowspan": "1"
+      },
+      {
+        "number": "⑦",
+        "rowspan": "1"
+      },
+      {
+        "number": "⑧",
+        "rowspan": "1"
+      },
+      {
+        "number": "⑨",
+        "rowspan": "1"
+      },
+      {
+        "number": "⑩",
+        "rowspan": "1"
+      },
+      {
+        "number": "①",
+        "rowspan": "1"
+      },
+      {
+        "number": "②",
+        "rowspan": "1"
+      },
+      {
+        "number": "③",
+        "rowspan": "1"
+      },
+      {
+        "number": "①",
+        "rowspan": "1"
+      },
+      {
+        "number": "②",
+        "rowspan": "1"
+      }
+    ],
+    "source_and_web_visual_review": "Original source table and final1280/390browser LCD components compared; all circled digits and corresponding icons/names/copy retained.",
+    "full_body_review": "Previous full-body review remains applicable: this follow-up changes only LCD number glyphs, no other copy/art/CSS geometry."
+  }
+}

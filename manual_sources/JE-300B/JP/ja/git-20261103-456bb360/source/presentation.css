@@ -1,0 +1,17 @@
+/* Source geometry only. The shared Web theme owns every colour, border, fill,
+   heading, callout, table, card and figure style (prepared-document shared-style
+   gate). Figures are selected by their shared data attributes. */
+
+/* Source panels keep the print's own width; no visible caption. */
+#furo-main-content .hb-reference-figure { max-width: 680px; margin-left: auto; margin-right: auto; }
+
+/* Small print drawings and marks keep a print-like size. */
+#furo-main-content .hb-reference-figure[data-reference-id="lcd-map"] { max-width: 600px; }
+#furo-main-content .hb-reference-figure:is([data-reference-id="charging-ac"], [data-reference-id="charging-car"]) { max-width: 360px; }
+#furo-main-content .hb-reference-figure[data-reference-id="app-control"] { max-width: 520px; }
+
+/* The Li-ion 32 recycling mark keeps its print size beside the notice. */
+#furo-main-content img[src$="li-ion-native-candidate.svg"] { width: 5.5rem; height: auto; }
+
+/* Print case for chapter and subheadings; shared markers stay. */
+#furo-main-content :is(h1, h3, h4), #furo-main-content h2:not(.hb-spec-section) { text-transform: none; }

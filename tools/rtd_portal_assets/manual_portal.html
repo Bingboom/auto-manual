@@ -19,7 +19,9 @@
 <div id="empty" hidden><h3>没有找到匹配的说明书</h3><p>可以换一个型号、关键词或产品类型再试。</p><button id="reset">清除筛选</button></div>
 <div class="catalog-foot"><details class="all-manuals"><summary>按目录查看全部说明书</summary><ul>{% for product in products %}{% for publication in product.publications %}<li><a href="{{ pathto(publication.url, 1) }}">{{ publication.label|e }}</a></li>{% endfor %}{% endfor %}</ul></details>
 <noscript><p>可以通过上方“按目录查看全部说明书”浏览全部区域。</p></noscript></div>
-</div></section>{% if product_voc %}<div class="wrap">{{ product_voc | safe }}</div><link rel="stylesheet" href="{{ pathto('_static/product-voc.css', 1) }}"><script defer src="{{ pathto('_static/product-voc.js', 1) }}"></script>{% endif %}</main>
+</div></section>
+{% include "_value_band.html" %}
+{% if product_voc %}<div class="wrap">{{ product_voc | safe }}</div><link rel="stylesheet" href="{{ pathto('_static/product-voc.css', 1) }}"><script defer src="{{ pathto('_static/product-voc.js', 1) }}"></script>{% endif %}</main>
 <footer class="site-footer"><div class="wrap footer-inner"><div class="footer-brand">工作资料</div><div class="footer-meta">覆盖区域 {{ portal.regions.keys()|join(' · ')|e }}</div><a href="{{ pathto('search') }}">搜索说明书正文 →</a></div>
 <div class="wrap platform"><div id="ethical-ad-placement"></div><p>Hosted by <a href="https://readthedocs.org/">Read the Docs</a></p></div></footer>
 </div>

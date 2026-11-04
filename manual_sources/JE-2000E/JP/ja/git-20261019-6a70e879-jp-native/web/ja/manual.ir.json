@@ -1,17 +1,17 @@
 {
   "asset_refs": [
-    "assets/h1-jp-warning_triangle.svg",
-    "assets/h1-jp-read_manual.svg",
-    "assets/h1-jp-no_open_flame.svg",
-    "assets/h1-jp-keep_away_from_children.svg",
-    "assets/h1-jp-do_not_dismantle.svg",
-    "assets/h1-jp-unplug.svg",
-    "assets/h1-jp-no_wet_hands.svg",
-    "assets/h1-jp-keep_dry.svg",
-    "assets/h1-jp-mandatory.svg",
-    "assets/h1-jp-prohibited.svg",
-    "assets/h1-jp-battery_recycle.svg",
-    "assets/h1-jp-weee.svg",
+    "assets/symbol-01.svg",
+    "assets/symbol-02.svg",
+    "assets/symbol-03.svg",
+    "assets/symbol-04.svg",
+    "assets/symbol-05.svg",
+    "assets/symbol-06.svg",
+    "assets/symbol-07.svg",
+    "assets/symbol-08.svg",
+    "assets/symbol-09.svg",
+    "assets/symbol-10.svg",
+    "assets/symbol-11.svg",
+    "assets/symbol-12.svg",
     "assets/inbox-main.png",
     "assets/inbox-cable.png",
     "assets/inbox-manual.png",
@@ -71,8 +71,8 @@
     "assets/app-footer.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "8aead78010453c06304c6ed48d8a949dc00ae1dd5fc90c62fc35344e5189acf1",
-  "content_sha256": "6b932b6223b356513feb98de111bc7afd39258de440f80cbe7cd35536c00f971",
+  "bundle_sha256": "d29abd7c1265dcbccae2f8cdebfc5a993ddc164631d0f90e1a4e6b2fb00cd5a2",
+  "content_sha256": "75ba372cef10bc0a3b1471bdbd9c1162fe8e2bdec3442c7681fe09ac7296324e",
   "language": "ja",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -119,18 +119,6 @@
       "assets/expansion-accessories.png": "0e5bb5ec80a779afd2626798efd25456318093a1c4d8ca5fee0870e80741fa22",
       "assets/expansion.png": "ef5a44c3441ef0bc629d9f5787d58185b1210942f43ed357523667a515479a95",
       "assets/frequency.png": "192c13b469811a698256498c0c6ada2417424aba4d6351bd971a6cb6e12421c5",
-      "assets/h1-jp-battery_recycle.svg": "4ece7680add5525499da868786eec13e2b1b20dd831fca2f54bfb9840e608f8d",
-      "assets/h1-jp-do_not_dismantle.svg": "1e600dc9623481ec1950e4cee277d32620bdf1e82a99984ddfce91353ffb173b",
-      "assets/h1-jp-keep_away_from_children.svg": "e6bd4396d07232ba7668b5fe72425341b55c3d3918bbb71bf8711741a1f91efe",
-      "assets/h1-jp-keep_dry.svg": "fbd39d4686c3a26a73fa4c2dfec299d8055d9b9446edd973a397ce6d4e21a836",
-      "assets/h1-jp-mandatory.svg": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2",
-      "assets/h1-jp-no_open_flame.svg": "414e01f2e6b76ab3575eedc88cf2d8e3ebb8622f68fc62b4f1302397536bd0a8",
-      "assets/h1-jp-no_wet_hands.svg": "d14a9720367b40d5a498a03d92ad0417bbc70d64fd0cea99c8891e0eb9725450",
-      "assets/h1-jp-prohibited.svg": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d",
-      "assets/h1-jp-read_manual.svg": "d77bdba4899e5d56d0502a10732bd3488d90aa88639ce336cab9ff42d35cfd30",
-      "assets/h1-jp-unplug.svg": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf",
-      "assets/h1-jp-warning_triangle.svg": "0c96a5da3d0b96d01ce96d0874341b93a06db419a4008eaceb1d8b44a4f1f42b",
-      "assets/h1-jp-weee.svg": "21fd7d31c0d22590a0f461da3821869eee28a23122edc994b471642a89ad3e92",
       "assets/inbox-cable.png": "6b9a7acb80d2a7bbb98c8310cef8ff9977a6a5b95c5975fe57090d7da2208fb7",
       "assets/inbox-main.png": "6f645dbc51f83d03d3de9404dae97767ba82b6a4f6580ff49ec20aeae7005ed4",
       "assets/inbox-manual.png": "d351b9ef8e00c4aff26bc4b409cba40880295ec0792300df7dfbcd3b1e24605a",
@@ -145,9 +133,21 @@
       "assets/power.svg": "457285c35d6deb52a01bf2e86a430cdbbd1553299a6eac652a372427bfa6c2ed",
       "assets/solar-four.png": "3042840e81a5a31e5d8c1e5fe73d4f8ae8b3937e1fdd77b34383f10bb1404639",
       "assets/solar-two.png": "526d1ed3ff1226c6348f8bd9842266d09b42888849c0213381fa933effbc9c03",
+      "assets/symbol-01.svg": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+      "assets/symbol-02.svg": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
+      "assets/symbol-03.svg": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f",
+      "assets/symbol-04.svg": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899",
+      "assets/symbol-05.svg": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33",
+      "assets/symbol-06.svg": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf",
+      "assets/symbol-07.svg": "585a0c72abdb9fc1d69d31554d249730f1361dfc49a501423dd0204e0637a387",
+      "assets/symbol-08.svg": "4728b4a0ab80e8376ff756d9af98d92c1906d3461e44eb4905899b6212cc003c",
+      "assets/symbol-09.svg": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2",
+      "assets/symbol-10.svg": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d",
+      "assets/symbol-11.svg": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5",
+      "assets/symbol-12.svg": "7a07f68dc10f6d748ef90fa56822330ce831eac6ef25954bca8f4ddfc0cfbe34",
       "assets/ups.png": "566fa7fa87f451f2d01f0794280f2ae24dc303031758b24ca975fbf1edd141b8"
     },
-    "block_count": 202,
+    "block_count": 193,
     "component_inventory": {
       "HB-CALLOUT-STRIP": 29,
       "HB-SPECIAL-APP": 1,
@@ -1373,7 +1373,7 @@
     "declared_languages": [
       "ja"
     ],
-    "frozen_stylesheet_sha256": "4c01adf9222e7faa8fb5552490d8b8fa4ebba550b4ef2a1e7171a1b9a6538434",
+    "frozen_stylesheet_sha256": "c3604a2e5f22b04bc745bb99cf203b50e60222af70c0aeba3d968cc28adac9ce",
     "manual_theme": {
       "component_roles": {
         "component.callout": {
@@ -1953,12 +1953,463 @@
     },
     "manual_theme_sha256": "e8fc88458d239edef85f2cfb0b26b71df2e83859c8e51e9c093e5abc2982b47d",
     "markdown_filename": "manual_je2000e_jp_ja.md",
-    "original_source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661",
-    "page_count": 16,
+    "operator_source_acceptance": {
+      "acceptance_basis": "Operator reviewed the rebound 1280/390 full-page renders and symbol close-ups beside JE-1500D JP and the source_concerns list, then confirmed with 「授权合入」 after 「上线提交发布：JE-1800B、JE-2000E」. Source copy is published verbatim; suspected source errors stay listed for the source owner.",
+      "authority_date": "2026-11-04",
+      "merge_authority": "none recorded; the engineering PR is merged only on the operator's own authorization (AGENTS.md §8.6)",
+      "operator_confirmation_after_rebound_review": "授权合入",
+      "operator_quote": "上线提交发布：JE-1800B、JE-2000E",
+      "preceding_operator_decision": "Shared symbol canonical groups decided by the operator (SCG-20261103, #1659). 「上线提交发布：JE-1800B、JE-2000E」 was given before the rebound JE-2000E renders were shown; after the rebound 1280/390 renders and symbol close-ups were sent with the request 「确认 JE-2000E」, the operator replied 「授权合入」 (2026-11-04), taken as confirmation and merge authorization.",
+      "reviewed_candidate": {
+        "commit": "00545ac9",
+        "pull_request": "https://github.com/Bingboom/auto-manual/pull/1664",
+        "reference_edition": "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2",
+        "renders": [
+          "1280/390 full-page renders sent in the owning session"
+        ]
+      },
+      "source_sha256": "f1829cd35ffe05079fe4b04f6c62fef3ca6adfd64270c47d64f7b2203af9780a",
+      "target": {
+        "languages": [
+          "ja"
+        ],
+        "model": "JE-2000E",
+        "region": "JP",
+        "technical_version": "git-20261019-6a70e879-jp-native"
+      },
+      "validation": {
+        "browser": {
+          "page_horizontal_overflow": 0,
+          "viewports": [
+            1280,
+            390
+          ]
+        },
+        "declared_plain_tables": 1,
+        "shared_style_issues": 0,
+        "strict_sphinx": "pass",
+        "symbol_source_bound_glyphs": 12,
+        "target_tests": "pass"
+      },
+      "verified_inputs": [
+        {
+          "path": "JE-2000E-JP-V2.pdf",
+          "sha256": "f1829cd35ffe05079fe4b04f6c62fef3ca6adfd64270c47d64f7b2203af9780a",
+          "size": 2387105
+        },
+        {
+          "path": "README.md",
+          "sha256": "c7b2074562349c1f04c58d7d49b8aa7a121d0659a32f81ff5c1357ea8e01fc11",
+          "size": 4598
+        },
+        {
+          "path": "derive_symbols.py",
+          "sha256": "3f1969b1ece7a15cb4ac30908dfd4b077b190d35fffadf0afcf64e71ba0dd72e",
+          "size": 4868
+        },
+        {
+          "path": "rebuild.py",
+          "sha256": "1da0037ed2b533c06a3f760f65e958a1d923d74ede1efe6e7d0f474380532c69",
+          "size": 6547
+        },
+        {
+          "path": "refresh_manifest.py",
+          "sha256": "95ea2c6fe655476c0f8366507e7e60df276f2fd5ceec21d061533db0459bcb89",
+          "size": 1353
+        },
+        {
+          "path": "source/asset_decisions.json",
+          "sha256": "790057b0b46ff2689be8d206d2d0d08306f3bd78d56389839eda354aea0af525",
+          "size": 55013
+        },
+        {
+          "path": "source/document.json",
+          "sha256": "72b01d8273983c3b881823416f85a78a8078462c11acef482d68ae9a603bac67",
+          "size": 458236
+        },
+        {
+          "path": "source/geometry.css",
+          "sha256": "cb58d9b424fe36ec03d967d6ccfae9e9ca81af3caf6cb93e7581796b670fa73f",
+          "size": 1255
+        },
+        {
+          "path": "source/lcd_rows.json",
+          "sha256": "4817c4fce4118fbfc3a4a0e9e3278ddb86109057ddf611c5665236253014786b",
+          "size": 10592
+        },
+        {
+          "path": "source/native_pages.json",
+          "sha256": "d388207f1858fbd6ba7e3e53f032b19b69f4f2af08994aa4a945d9f4910eb1b8",
+          "size": 389038
+        },
+        {
+          "path": "source/symbol_recipe.json",
+          "sha256": "0d3a00b35a36951d0f3aec43a4a20e935a020e81e7fe31b87ee96ed55a3011b2",
+          "size": 5376
+        },
+        {
+          "path": "source/text_bindings.json",
+          "sha256": "a93324abd6d66954f2cb07257a9d2ae8cdbb7562fd1b1e041ac642694559a3c6",
+          "size": 125519
+        },
+        {
+          "path": "source/text_coverage_review.json",
+          "sha256": "f87aa0f31dad8e712cd3923bf8e7d51915ff1e769103b29ae3b7defac99d7baf",
+          "size": 1203
+        },
+        {
+          "path": "web/ja/assets/10_Input_Power_LOAZbnxfqoHFwIxx2Myc532jnzb.png",
+          "sha256": "d5100a538e964da13e04241a98134e6aeaa36af8991aceeecac3c5d063b6968b",
+          "size": 4730
+        },
+        {
+          "path": "web/ja/assets/11_Remaining_Charge_Time_KIWHbHFOvotGuBxJsxlcunSDnPf.png",
+          "sha256": "cfb69b1ffc0b30c51216fb6b1e00e35b412dd0148b6999d3d40ac90fbfe108cb",
+          "size": 1974
+        },
+        {
+          "path": "web/ja/assets/12_AC_Wall_Charging_Indicator_ZpOmbCjx8oYUTVxyl4JcvcTanPe.png",
+          "sha256": "28f3cad42ae32e9e895abfd7cdb16a21b99dfa822c57d542f0e3f59a4b452c6c",
+          "size": 2223
+        },
+        {
+          "path": "web/ja/assets/13_Car_Charging_Indicator_DLkibYaP1ot6d5x1S0jcUr1knlb.png",
+          "sha256": "eed3299c3f6a15766e433ebbae7a40af8939e6d32489a0aa33a37fe902232a64",
+          "size": 1599
+        },
+        {
+          "path": "web/ja/assets/14_Solar_Charging_Indicator_RgAUbPXNWoRxiHxKNgkc2gqDnEb.png",
+          "sha256": "91cec82eeaa553477868d38789d68a4937cb11c5c4d794de74db1edddb3aeea4",
+          "size": 3059
+        },
+        {
+          "path": "web/ja/assets/15_Battery_Saving_Mode_ClYfbtOGSoK5q2xySXCcgehVn8f.png",
+          "sha256": "e32e6ae96321aa47b39c0c65a18a59da6c90cf87a0d7c8d61556ead273789c3a",
+          "size": 1481
+        },
+        {
+          "path": "web/ja/assets/16_Charging_Power_Limit_VLf2bJfrkoCL0CxJoMNcL5ZxnCt.png",
+          "sha256": "21b5f19ca9a6e39d8bd515128297cc1b99e43fd263e39ffba4fdf102d50a4bad",
+          "size": 2772
+        },
+        {
+          "path": "web/ja/assets/17_Battery_Power_Indicator_VLufb9exvoVLfgxz47pcfnRGnaf.png",
+          "sha256": "85921a9ad7fbfa58f98ee7bb0dc904377f31fe3dbface4083d2493144b05362f",
+          "size": 4879
+        },
+        {
+          "path": "web/ja/assets/18_Remaining_Battery_Percentage_VkJcbUDbUoYC1hxrU6rc168OnJe.png",
+          "sha256": "747147be99d76bb486c858aeca2289d7d05ad3be1f1ea1f0825f54cb29b7fd10",
+          "size": 3712
+        },
+        {
+          "path": "web/ja/assets/19_Low_Battery_Indicator_KDk9bhs8poHUBdx96PLckPganhd.png",
+          "sha256": "c7862a87e742d6927b4e1d63a8d0ccb09fbcf980ae662ff94b9134e256e56889",
+          "size": 1293
+        },
+        {
+          "path": "web/ja/assets/1_Wi-Fi_KCcAbdDk7o4RjKx82micuKJ5nyf.png",
+          "sha256": "fc4cc02b42efc31a32429ada2b78c4480a2fcbca647406da29b2ce75a8a8c1dc",
+          "size": 1814
+        },
+        {
+          "path": "web/ja/assets/20_Discharge_Timer_DHPMbkjSWoiuALxJyJ8cWyQOn0e.png",
+          "sha256": "6aab9a14900a08fcd8f8261e6e36fbb9a1220eb931df94ebd149b23930063723",
+          "size": 3194
+        },
+        {
+          "path": "web/ja/assets/21_Connected_Batteries_ZeHlbv3HEoRcq2xIXacchUcTndg.png",
+          "sha256": "b4744a483fa95db386bbb269f277a53f678279c7eda8f8cbf24a78f2b426f2a7",
+          "size": 1581
+        },
+        {
+          "path": "web/ja/assets/22_Energy_Saving_Mode_O4Jdb5pUQoCBAqx0sfQcm9Nbntd.png",
+          "sha256": "c4b830c769a3de7f9effaee82466752f5706a0741ba29675cce45633c1cd8222",
+          "size": 2056
+        },
+        {
+          "path": "web/ja/assets/23_High_Temperature_Indicator_UmkEbOgCKoKyxoxDSINcfO6LnQd.png",
+          "sha256": "f548c6504f495da4f208cd8e5fe6eac6076daea05e314115abd26b46a9326ba5",
+          "size": 2248
+        },
+        {
+          "path": "web/ja/assets/24_Low_Temperature_Indicator_JDMEbD96noSbyWxbOnVcgip1nab.png",
+          "sha256": "bdbf602db74ade39a2a162209c0ff535315dee5e27e4832b2e6a201764b6941a",
+          "size": 2206
+        },
+        {
+          "path": "web/ja/assets/25_Fault_code_Oz87bX3BGo8H7Zxe0XvcTd7FnJL.png",
+          "sha256": "ce913ebfc7750764f4206250f5e21aa09bd1cfc074bdee5b0484d61610f1b579",
+          "size": 3966
+        },
+        {
+          "path": "web/ja/assets/26_Output_Power_PviebR618oofvKxcKVRcHLlInqd.png",
+          "sha256": "58c1d3604ca7b9774b069c6928775a13465ccb9477f477e9e4d4b30e7f75b88d",
+          "size": 6085
+        },
+        {
+          "path": "web/ja/assets/27_Remaining_Discharge_Time_JEpobf59DoBV4dxWlnxcNtIinke.png",
+          "sha256": "9b148ea95d3a3450591c7220908b0913048f2cdea1e61d200534181c52b47cab",
+          "size": 2496
+        },
+        {
+          "path": "web/ja/assets/2_Bluetooth_HVgvbJhq5o4EDKxhm7McCF4FnjB.png",
+          "sha256": "7e1392ba6a45e66a2e7367ae5df737ccc41ad2de46c4ac7d6baf062ff63bb361",
+          "size": 2023
+        },
+        {
+          "path": "web/ja/assets/3_Quiet_Charging_Mode_WLkMbiHS1oGsOtxUCp7cRhFAn1g.png",
+          "sha256": "7f743182c0509307793dde001356fff5c3d20dd32b09105b6a1d467af7e7f66d",
+          "size": 1414
+        },
+        {
+          "path": "web/ja/assets/4_Charging_Plan_M96RbyZQxoGjRRxQHsuczeIln1b.png",
+          "sha256": "71017f43bab44852d5586d1d4f996f3c52d8451bceaa9249e29864652c2f537d",
+          "size": 2759
+        },
+        {
+          "path": "web/ja/assets/5_Self-powered_Mode_FYTnb9vttoexjbxVMchcJaobnCg.png",
+          "sha256": "73225cf9faa868bbe937df298d55a696828a4156f40e90da5c2a7f0011f0b783",
+          "size": 3466
+        },
+        {
+          "path": "web/ja/assets/6_TOU_Mode_BjEkbz0rFo6Bw4xiwNpcod9qnnc.png",
+          "sha256": "f4cdcb5511058eaaf1879a69a429317dd3d98325dd5e19f5dd95b06ea2c965af",
+          "size": 2712
+        },
+        {
+          "path": "web/ja/assets/7_UPS_Lgdgb8pvvoGwaLxSf8ec2QeHn3c.png",
+          "sha256": "e422a56922eb749ae90802fd964cb451a08d833658c1849abe10a63c60b173cc",
+          "size": 2868
+        },
+        {
+          "path": "web/ja/assets/8_AC_Power_Indicator_HFPSbvWBgosvCux69jMcuWe6nnh.png",
+          "sha256": "8be87c5a084994e3b4b6ddff46ce0296207a5c49c732f8ed13adfbcb28a36538",
+          "size": 3962
+        },
+        {
+          "path": "web/ja/assets/9_Output_Voltage_and_Frequency_Jh3JbmBDBoKlmOxaRJDcIMJAn6b.png",
+          "sha256": "7623ef10e229bcfe66c872f3733d26b86c97d703ed30012188a88bb4a168e6df",
+          "size": 3553
+        },
+        {
+          "path": "web/ja/assets/ac-charge.png",
+          "sha256": "c64cd5f4e83991d30c65d44371f31c949a7f09cb1e53d09035bb038116f0a3e8",
+          "size": 51510
+        },
+        {
+          "path": "web/ja/assets/ac-output.png",
+          "sha256": "f4ed0967966e34c5cf33dbc041cf00e68dcaa325f75914c8e5d78323edada61a",
+          "size": 46959
+        },
+        {
+          "path": "web/ja/assets/ac1-native.svg",
+          "sha256": "d936f4db3a950e18ddb7c5587656b0233d531bf75157c8d536e5752e49d88e75",
+          "size": 5194
+        },
+        {
+          "path": "web/ja/assets/app-add-phones.png",
+          "sha256": "f0a6cdc87cd75c0bd86d70b952d054b0fcdab39b8d97641576e95ab4f754064c",
+          "size": 52630
+        },
+        {
+          "path": "web/ja/assets/app-connect.png",
+          "sha256": "8309200f5106429e6fa7bfbcb93519c32e7d1d7efc9bc258bc06c4249e4d6cd4",
+          "size": 38021
+        },
+        {
+          "path": "web/ja/assets/app-control.png",
+          "sha256": "58847bab73c56510473ef3147b1d1f692214d1b9003dea09aa1049f24f69b49d",
+          "size": 13371
+        },
+        {
+          "path": "web/ja/assets/app-download.png",
+          "sha256": "8aa17f304240e0a4f8db14586e7a14640e83c234540fbd0f86b21c12963f191d",
+          "size": 29892
+        },
+        {
+          "path": "web/ja/assets/app-footer.png",
+          "sha256": "ded8a95a733d8c1dc963f372360438f5aac22ad9919bee98a8f8c72a5d9eb0a8",
+          "size": 13791
+        },
+        {
+          "path": "web/ja/assets/car-charge.png",
+          "sha256": "51d6248eea21dd179bdfddb44743bf6d7caed13693b081a99192aee0fd95ee9f",
+          "size": 73315
+        },
+        {
+          "path": "web/ja/assets/dc-output.png",
+          "sha256": "84f13d6358982de0727e1efa47ab88a2ddfa323f139e20a1253c73c18a3a9f34",
+          "size": 53915
+        },
+        {
+          "path": "web/ja/assets/dc_usb.svg",
+          "sha256": "3355388bad2221362a63dfad0c04fb9c15f521866166144cd3a644bde14e5864",
+          "size": 2936
+        },
+        {
+          "path": "web/ja/assets/energy-saving.png",
+          "sha256": "17ae42846c49890dea5b1603461424116f7fb0f7acc5fb7f599416bf9ea6d10f",
+          "size": 44450
+        },
+        {
+          "path": "web/ja/assets/expansion-accessories.png",
+          "sha256": "0e5bb5ec80a779afd2626798efd25456318093a1c4d8ca5fee0870e80741fa22",
+          "size": 16049
+        },
+        {
+          "path": "web/ja/assets/expansion.png",
+          "sha256": "ef5a44c3441ef0bc629d9f5787d58185b1210942f43ed357523667a515479a95",
+          "size": 49921
+        },
+        {
+          "path": "web/ja/assets/frequency.png",
+          "sha256": "192c13b469811a698256498c0c6ada2417424aba4d6351bd971a6cb6e12421c5",
+          "size": 34106
+        },
+        {
+          "path": "web/ja/assets/inbox-cable.png",
+          "sha256": "6b9a7acb80d2a7bbb98c8310cef8ff9977a6a5b95c5975fe57090d7da2208fb7",
+          "size": 6024
+        },
+        {
+          "path": "web/ja/assets/inbox-main.png",
+          "sha256": "6f645dbc51f83d03d3de9404dae97767ba82b6a4f6580ff49ec20aeae7005ed4",
+          "size": 9321
+        },
+        {
+          "path": "web/ja/assets/inbox-manual.png",
+          "sha256": "d351b9ef8e00c4aff26bc4b409cba40880295ec0792300df7dfbcd3b1e24605a",
+          "size": 2492
+        },
+        {
+          "path": "web/ja/assets/lcd-mode.png",
+          "sha256": "064e92c652e969ac918c0b3b7ed14016aeed583f8e8f50aa6977fd6d8b18e414",
+          "size": 30823
+        },
+        {
+          "path": "web/ja/assets/lcd-overview.png",
+          "sha256": "b70995d4868cd7005c23b74dc0449079e63939deed0e24ff783a2e22f2684949",
+          "size": 69573
+        },
+        {
+          "path": "web/ja/assets/led-light.png",
+          "sha256": "124aae4efb621a0e464eda6dc7ff765372ab6aee5c86ba5519c5e49e0f1b7661",
+          "size": 31279
+        },
+        {
+          "path": "web/ja/assets/led.svg",
+          "sha256": "9bfcc75dae807c470b6a6647de0112a986804e82abfede0c93cc2b100dcd3268",
+          "size": 2008
+        },
+        {
+          "path": "web/ja/assets/main-power.png",
+          "sha256": "6989173e152b83698de2970b1a28587e6150f0bc5cb8b6eac1d4c2a9e6085359",
+          "size": 36250
+        },
+        {
+          "path": "web/ja/assets/overview-front.png",
+          "sha256": "69e93391c5762417c7a50c38eca8f4fd73f5ab6203286ece35d92415048c6546",
+          "size": 34273
+        },
+        {
+          "path": "web/ja/assets/overview-left.png",
+          "sha256": "e6ac7c1e93887321a0343de6f37b5919da5e719e0755ae97e653892bbd0490f7",
+          "size": 12381
+        },
+        {
+          "path": "web/ja/assets/overview-right.png",
+          "sha256": "b998f40b9558de7b2ee3065faddd28fbc498f87f2153717d0ea0c7e870639ba9",
+          "size": 15072
+        },
+        {
+          "path": "web/ja/assets/power.svg",
+          "sha256": "457285c35d6deb52a01bf2e86a430cdbbd1553299a6eac652a372427bfa6c2ed",
+          "size": 2319
+        },
+        {
+          "path": "web/ja/assets/solar-four.png",
+          "sha256": "3042840e81a5a31e5d8c1e5fe73d4f8ae8b3937e1fdd77b34383f10bb1404639",
+          "size": 126094
+        },
+        {
+          "path": "web/ja/assets/solar-two.png",
+          "sha256": "526d1ed3ff1226c6348f8bd9842266d09b42888849c0213381fa933effbc9c03",
+          "size": 93517
+        },
+        {
+          "path": "web/ja/assets/symbol-01.svg",
+          "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+          "size": 4481
+        },
+        {
+          "path": "web/ja/assets/symbol-02.svg",
+          "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
+          "size": 4961
+        },
+        {
+          "path": "web/ja/assets/symbol-03.svg",
+          "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f",
+          "size": 5630
+        },
+        {
+          "path": "web/ja/assets/symbol-04.svg",
+          "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899",
+          "size": 6300
+        },
+        {
+          "path": "web/ja/assets/symbol-05.svg",
+          "sha256": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33",
+          "size": 6538
+        },
+        {
+          "path": "web/ja/assets/symbol-06.svg",
+          "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf",
+          "size": 2569
+        },
+        {
+          "path": "web/ja/assets/symbol-07.svg",
+          "sha256": "585a0c72abdb9fc1d69d31554d249730f1361dfc49a501423dd0204e0637a387",
+          "size": 11954
+        },
+        {
+          "path": "web/ja/assets/symbol-08.svg",
+          "sha256": "4728b4a0ab80e8376ff756d9af98d92c1906d3461e44eb4905899b6212cc003c",
+          "size": 13550
+        },
+        {
+          "path": "web/ja/assets/symbol-09.svg",
+          "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2",
+          "size": 1292
+        },
+        {
+          "path": "web/ja/assets/symbol-10.svg",
+          "sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d",
+          "size": 1452
+        },
+        {
+          "path": "web/ja/assets/symbol-11.svg",
+          "sha256": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5",
+          "size": 6314
+        },
+        {
+          "path": "web/ja/assets/symbol-12.svg",
+          "sha256": "7a07f68dc10f6d748ef90fa56822330ce831eac6ef25954bca8f4ddfc0cfbe34",
+          "size": 3136
+        },
+        {
+          "path": "web/ja/assets/ups.png",
+          "sha256": "566fa7fa87f451f2d01f0794280f2ae24dc303031758b24ca975fbf1edd141b8",
+          "size": 56516
+        }
+      ]
+    },
+    "original_source_sha256": "f1829cd35ffe05079fe4b04f6c62fef3ca6adfd64270c47d64f7b2203af9780a",
+    "page_count": 15,
     "page_declarations": {},
     "projection": "whole-document-components/v1",
-    "publication_eligible": false,
-    "publication_status": "candidate-pending-operator-review",
+    "publication_eligible": true,
+    "publication_status": "operator-authorized-git-only-release",
     "skipped_raw": 0,
     "source_page_map": {
       "app-reminder": [
@@ -1982,9 +2433,6 @@
       ],
       "in-the-box": [
         8
-      ],
-      "introduction": [
-        1
       ],
       "lcd-display": [
         9,
@@ -2195,170 +2643,6 @@
       "blocks": [
         {
           "asset_refs": [],
-          "block_id": "introduction:block-0001",
-          "content_sha256": "3e662dad0b099f749e615cb9bcd93241adb4e2caafb27fea6cd55e79be995197",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "Jackery ポータブル電源 2000 Plus"
-              }
-            ],
-            "kind": "heading",
-            "level": 1,
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "ja/introduction#block-1"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "introduction:block-0002",
-          "content_sha256": "ed1608aead38b3c6e705e2e696593259ce1c10cf3188ef0278cc1cf554c5cce6",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "取扱説明書｜JE-2000E｜日本語"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "ja/introduction#block-2"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "introduction:block-0003",
-          "content_sha256": "5f77aa7e89a9f0a7e3389e6d9832eb0f6c063d2f577ec398065d11c58cd3b950",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "国内専用/For use only in Japan"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "ja/introduction#block-3"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "introduction:block-0004",
-          "content_sha256": "c1a4fccc02ca103aa68755578a580a1b8d48e8054c520809a27c6380e30a9ddc",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "カスタマーサポート: jackery.jp@jackery.com"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "ja/introduction#block-4"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "introduction:block-0005",
-          "content_sha256": "b6028fc7e483d890a2be5d1657f1bc4027176518c25e04d6a3c8b01e67242afe",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "お買い上げありがとうございます。"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "ja/introduction#block-5"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "introduction:block-0006",
-          "content_sha256": "edaef701a32deeec82185bfafec11b23ebef4b75ec83288820ce45f177db42ea",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "ご使用の前にこの「取扱説明書」をよくお読みのうえ、正しくお使いください。"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "ja/introduction#block-6"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "introduction:block-0007",
-          "content_sha256": "ef6982de61806150316c2844c67a848e0eb38adbc47eba6f4515cb6c05671476",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "特に「安全上のご注意」は、必ずお読みいただき、安全にお使いください。"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "ja/introduction#block-7"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "introduction:block-0008",
-          "content_sha256": "f09d0be54ecc51402e4b0b6a2dbbcaeec14d10a277401d29e6f923240fa2aefc",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "お読みになったあとは、すぐに取り出せる場所に大切に保管してください。"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "ja/introduction#block-8"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "introduction:block-0009",
-          "content_sha256": "c24272886f637583d45ef3fa9de851ed6265d5cbfdafc50e03a1858753be63b8",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "本製品の取扱説明書は随時更新されますので、最新の取扱説明書は公式サイトでご確認ください。"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "ja/introduction#block-9"
-        }
-      ],
-      "language": "ja",
-      "page_id": "introduction",
-      "skipped_raw": 0,
-      "source_path": "source/original.pdf",
-      "source_ref": "ja/introduction",
-      "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661"
-    },
-    {
-      "blocks": [
-        {
-          "asset_refs": [],
           "block_id": "safety:block-0001",
           "content_sha256": "58c76ef1c0f00ebc9f5c3e3d15625854b439785c0fe18d2ad11979965956d6d0",
           "kind": "flow",
@@ -2522,70 +2806,70 @@
         },
         {
           "asset_refs": [
-            "assets/h1-jp-warning_triangle.svg",
-            "assets/h1-jp-read_manual.svg",
-            "assets/h1-jp-no_open_flame.svg",
-            "assets/h1-jp-keep_away_from_children.svg",
-            "assets/h1-jp-do_not_dismantle.svg",
-            "assets/h1-jp-unplug.svg",
-            "assets/h1-jp-no_wet_hands.svg",
-            "assets/h1-jp-keep_dry.svg",
-            "assets/h1-jp-mandatory.svg",
-            "assets/h1-jp-prohibited.svg"
+            "assets/symbol-01.svg",
+            "assets/symbol-02.svg",
+            "assets/symbol-03.svg",
+            "assets/symbol-04.svg",
+            "assets/symbol-05.svg",
+            "assets/symbol-06.svg",
+            "assets/symbol-07.svg",
+            "assets/symbol-08.svg",
+            "assets/symbol-09.svg",
+            "assets/symbol-10.svg"
           ],
           "block_id": "safety:block-0007",
-          "content_sha256": "8a53e9480e24e388ed5f28ca88456663f4d44196b193a4d8210d17e8fec365e5",
+          "content_sha256": "2177815f9ff08f9b52027a54b0d94a6ad678648a594638f69d1dc32ccb068c90",
           "kind": "flow",
           "payload": {
             "component_spec": {
               "assets": [
                 {
-                  "asset_ref": "assets/h1-jp-warning_triangle.svg",
+                  "asset_ref": "assets/symbol-01.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/h1-jp-read_manual.svg",
+                  "asset_ref": "assets/symbol-02.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/h1-jp-no_open_flame.svg",
+                  "asset_ref": "assets/symbol-03.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/h1-jp-keep_away_from_children.svg",
+                  "asset_ref": "assets/symbol-04.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/h1-jp-do_not_dismantle.svg",
+                  "asset_ref": "assets/symbol-05.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/h1-jp-unplug.svg",
+                  "asset_ref": "assets/symbol-06.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/h1-jp-no_wet_hands.svg",
+                  "asset_ref": "assets/symbol-07.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/h1-jp-keep_dry.svg",
+                  "asset_ref": "assets/symbol-08.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/h1-jp-mandatory.svg",
+                  "asset_ref": "assets/symbol-09.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/h1-jp-prohibited.svg",
+                  "asset_ref": "assets/symbol-10.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 }
@@ -2706,22 +2990,22 @@
         },
         {
           "asset_refs": [
-            "assets/h1-jp-battery_recycle.svg",
-            "assets/h1-jp-weee.svg"
+            "assets/symbol-11.svg",
+            "assets/symbol-12.svg"
           ],
           "block_id": "safety:block-0008",
-          "content_sha256": "4b4214e3e099e33a8bf14843d73828197ef9b212403b587c892f7fc24c3e326c",
+          "content_sha256": "ee77ebdd41879d2eeb0d99ff700cb9049501fd5386bbdf73f3b1fda5a36ba3dc",
           "kind": "flow",
           "payload": {
             "component_spec": {
               "assets": [
                 {
-                  "asset_ref": "assets/h1-jp-battery_recycle.svg",
+                  "asset_ref": "assets/symbol-11.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/h1-jp-weee.svg",
+                  "asset_ref": "assets/symbol-12.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 }
@@ -2764,8 +3048,8 @@
                       {
                         "asset_index": 0,
                         "icon_alt": "充電式電池のリサイクル",
-                        "meaning_html": "充電式電池のリサイクルについて本機はリサイクル可能な充電池を内蔵しています。この商品を廃棄する場合は、当社のカスタマーサポートにご連絡ください。充電池の取りはずしはお客様自身では行わないでください。",
-                        "meaning_text": "充電式電池のリサイクルについて本機はリサイクル可能な充電池を内蔵しています。この商品を廃棄する場合は、当社のカスタマーサポートにご連絡ください。充電池の取りはずしはお客様自身では行わないでください。"
+                        "meaning_html": "<strong>充電式電池のリサイクルについて</strong><br/>本機はリサイクル可能な充電池を内蔵しています。この商品を廃棄する場合は、当社のカスタマーサポートにご連絡ください。充電池の取りはずしはお客様自身では行わないでください。",
+                        "meaning_text": "本機はリサイクル可能な充電池を内蔵しています。この商品を廃棄する場合は、当社のカスタマーサポートにご連絡ください。充電池の取りはずしはお客様自身では行わないでください。"
                       }
                     ],
                     [
@@ -2813,7 +3097,7 @@
         {
           "asset_refs": [],
           "block_id": "safety:block-0010",
-          "content_sha256": "3a13afb7c699cdcc261ace29a5f84117ee64031e6a71236118613d99e70578b0",
+          "content_sha256": "eaad656febbe3fc1ad5c1889ef155a28029351c2675befd937adcfb62ef314c6",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -2845,8 +3129,22 @@
                               {
                                 "children": [
                                   {
+                                    "children": [
+                                      {
+                                        "kind": "text",
+                                        "text": "火のそばや炎天下の車内、熱器具の周辺など高温（45℃以上）になる場所で使用したり、放置しない"
+                                      }
+                                    ],
+                                    "kind": "strong"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              },
+                              {
+                                "children": [
+                                  {
                                     "kind": "text",
-                                    "text": "火のそばや炎天下の車内、熱器具の周辺など高温（45℃以上）になる場所で使用したり、放置しない発熱や発火、破裂する原因になります。"
+                                    "text": "発熱や発火、破裂する原因になります。"
                                   }
                                 ],
                                 "kind": "paragraph"
@@ -2892,7 +3190,7 @@
                   "role": "label"
                 },
                 {
-                  "content": "火のそばや炎天下の車内、熱器具の周辺など高温（45℃以上）になる場所で使用したり、放置しない発熱や発火、破裂する原因になります。",
+                  "content": "火のそばや炎天下の車内、熱器具の周辺など高温（45℃以上）になる場所で使用したり、放置しない\n発熱や発火、破裂する原因になります。",
                   "content_kind": "rich_text",
                   "role": "body"
                 }
@@ -2911,7 +3209,7 @@
         {
           "asset_refs": [],
           "block_id": "safety:block-0011",
-          "content_sha256": "6c6a6fc49cb6f127f977fc2cfe8df92c11b60dd9e402fe208f0766b95bfadd11",
+          "content_sha256": "6b8efc4430556028bf6bc99d98628d7debf271cf417b8b71616e7c2ebf42612c",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -2943,8 +3241,22 @@
                               {
                                 "children": [
                                   {
+                                    "children": [
+                                      {
+                                        "kind": "text",
+                                        "text": "強い衝撃を与えたり、投げつけたりしない"
+                                      }
+                                    ],
+                                    "kind": "strong"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              },
+                              {
+                                "children": [
+                                  {
                                     "kind": "text",
-                                    "text": "強い衝撃を与えたり、投げつけたりしない発熱や発火、破裂する原因になります。"
+                                    "text": "発熱や発火、破裂する原因になります。"
                                   }
                                 ],
                                 "kind": "paragraph"
@@ -2990,7 +3302,7 @@
                   "role": "label"
                 },
                 {
-                  "content": "強い衝撃を与えたり、投げつけたりしない発熱や発火、破裂する原因になります。",
+                  "content": "強い衝撃を与えたり、投げつけたりしない\n発熱や発火、破裂する原因になります。",
                   "content_kind": "rich_text",
                   "role": "body"
                 }
@@ -3009,7 +3321,7 @@
         {
           "asset_refs": [],
           "block_id": "safety:block-0012",
-          "content_sha256": "6a2691b06e54ec05c11e05e30a3a2413b0c0b051ef9b428dc71718e07204bf31",
+          "content_sha256": "db88105fed0d4dd23a19de55f2889819befdc0e74d973d428731cc9672aacc29",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -3041,8 +3353,22 @@
                               {
                                 "children": [
                                   {
+                                    "children": [
+                                      {
+                                        "kind": "text",
+                                        "text": "水など、液体を入れたり、濡らしたりしない"
+                                      }
+                                    ],
+                                    "kind": "strong"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              },
+                              {
+                                "children": [
+                                  {
                                     "kind": "text",
-                                    "text": "水など、液体を入れたり、濡らしたりしない発熱や発火の原因になります。"
+                                    "text": "発熱や発火の原因になります。"
                                   }
                                 ],
                                 "kind": "paragraph"
@@ -3088,7 +3414,7 @@
                   "role": "label"
                 },
                 {
-                  "content": "水など、液体を入れたり、濡らしたりしない発熱や発火の原因になります。",
+                  "content": "水など、液体を入れたり、濡らしたりしない\n発熱や発火の原因になります。",
                   "content_kind": "rich_text",
                   "role": "body"
                 }
@@ -3107,7 +3433,7 @@
         {
           "asset_refs": [],
           "block_id": "safety:block-0013",
-          "content_sha256": "9ef3186b6642eaca181f8b78cc6100164fe0d8386665c98ba595e18efcd2ff1e",
+          "content_sha256": "d6095a550b1705c1789d72721bb7d8c47966a126d5c88da3b68d5a1cdf3f3a82",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -3139,8 +3465,22 @@
                               {
                                 "children": [
                                   {
+                                    "children": [
+                                      {
+                                        "kind": "text",
+                                        "text": "濡れた手で本体や接続するケーブルを触らない"
+                                      }
+                                    ],
+                                    "kind": "strong"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              },
+                              {
+                                "children": [
+                                  {
                                     "kind": "text",
-                                    "text": "濡れた手で本体や接続するケーブルを触らない火災や感電の原因になります。"
+                                    "text": "火災や感電の原因になります。"
                                   }
                                 ],
                                 "kind": "paragraph"
@@ -3186,7 +3526,7 @@
                   "role": "label"
                 },
                 {
-                  "content": "濡れた手で本体や接続するケーブルを触らない火災や感電の原因になります。",
+                  "content": "濡れた手で本体や接続するケーブルを触らない\n火災や感電の原因になります。",
                   "content_kind": "rich_text",
                   "role": "body"
                 }
@@ -3205,7 +3545,7 @@
         {
           "asset_refs": [],
           "block_id": "safety:block-0014",
-          "content_sha256": "f559a459e6136f968b70dabd3fb67a77f72cd7ae260a4885450dfa95fedf49a0",
+          "content_sha256": "cdbbe518db999e403a527013313efce77de4fdbdacb5d5307f22fbaadd5341b5",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -3237,8 +3577,22 @@
                               {
                                 "children": [
                                   {
+                                    "children": [
+                                      {
+                                        "kind": "text",
+                                        "text": "端子部にケーブル以外の金属類を差し込まない"
+                                      }
+                                    ],
+                                    "kind": "strong"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              },
+                              {
+                                "children": [
+                                  {
                                     "kind": "text",
-                                    "text": "端子部にケーブル以外の金属類を差し込まない発熱や発火の原因になります。"
+                                    "text": "発熱や発火の原因になります。"
                                   }
                                 ],
                                 "kind": "paragraph"
@@ -3284,7 +3638,7 @@
                   "role": "label"
                 },
                 {
-                  "content": "端子部にケーブル以外の金属類を差し込まない発熱や発火の原因になります。",
+                  "content": "端子部にケーブル以外の金属類を差し込まない\n発熱や発火の原因になります。",
                   "content_kind": "rich_text",
                   "role": "body"
                 }
@@ -3303,7 +3657,7 @@
         {
           "asset_refs": [],
           "block_id": "safety:block-0015",
-          "content_sha256": "11e13172062491e8376c704f51a4a70a054d1e823e6f234edc21dfda3a1f7385",
+          "content_sha256": "d2ce75f5588a06c09c511049a57dea1fbf8ffc2591fc8b61c85214ad96c2a187",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -3335,8 +3689,22 @@
                               {
                                 "children": [
                                   {
+                                    "children": [
+                                      {
+                                        "kind": "text",
+                                        "text": "雷が鳴りだしたら、電源プラグにふれない (充電をしない)"
+                                      }
+                                    ],
+                                    "kind": "strong"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              },
+                              {
+                                "children": [
+                                  {
                                     "kind": "text",
-                                    "text": "雷が鳴りだしたら、電源プラグにふれない (充電をしない)感電の原因になります。"
+                                    "text": "感電の原因になります。"
                                   }
                                 ],
                                 "kind": "paragraph"
@@ -3382,7 +3750,7 @@
                   "role": "label"
                 },
                 {
-                  "content": "雷が鳴りだしたら、電源プラグにふれない (充電をしない)感電の原因になります。",
+                  "content": "雷が鳴りだしたら、電源プラグにふれない (充電をしない)\n感電の原因になります。",
                   "content_kind": "rich_text",
                   "role": "body"
                 }
@@ -3401,7 +3769,7 @@
         {
           "asset_refs": [],
           "block_id": "safety:block-0016",
-          "content_sha256": "c73135f9d1463d7deabc4815c1f36ea8c9771ff1318dcfb44a97de6e3e0b2eaf",
+          "content_sha256": "d1ae776feee187eb2761c702b175de19f3366819e2d53b1cc8beec05689d06a3",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -3433,8 +3801,22 @@
                               {
                                 "children": [
                                   {
+                                    "children": [
+                                      {
+                                        "kind": "text",
+                                        "text": "各接続端子には確実に差し込む"
+                                      }
+                                    ],
+                                    "kind": "strong"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              },
+                              {
+                                "children": [
+                                  {
                                     "kind": "text",
-                                    "text": "各接続端子には確実に差し込む差し込みが不十分だと、発熱したりほこりが付着して火災や感電の原因になります。"
+                                    "text": "差し込みが不十分だと、発熱したりほこりが付着して火災や感電の原因になります。"
                                   }
                                 ],
                                 "kind": "paragraph"
@@ -3480,7 +3862,7 @@
                   "role": "label"
                 },
                 {
-                  "content": "各接続端子には確実に差し込む差し込みが不十分だと、発熱したりほこりが付着して火災や感電の原因になります。",
+                  "content": "各接続端子には確実に差し込む\n差し込みが不十分だと、発熱したりほこりが付着して火災や感電の原因になります。",
                   "content_kind": "rich_text",
                   "role": "body"
                 }
@@ -3499,7 +3881,7 @@
         {
           "asset_refs": [],
           "block_id": "safety:block-0017",
-          "content_sha256": "34afaa5e022b599f1ae3448516d7d99943ad34eb3f1b6b8f88bf108762fbcfa1",
+          "content_sha256": "1229633064c17d956171fa786bd51902cd4ed23b3ab89e6e5ac3354ae6946b14",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -3531,8 +3913,22 @@
                               {
                                 "children": [
                                   {
+                                    "children": [
+                                      {
+                                        "kind": "text",
+                                        "text": "接地接続は必ず、電源プラグを電源につなぐ前に行って下さい"
+                                      }
+                                    ],
+                                    "kind": "strong"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              },
+                              {
+                                "children": [
+                                  {
                                     "kind": "text",
-                                    "text": "接地接続は必ず、電源プラグを電源につなぐ前に行って下さいまた、接地接続を外す場合は、必ず電源プラグを切り離してから行って下さい。"
+                                    "text": "また、接地接続を外す場合は、必ず電源プラグを切り離してから行って下さい。"
                                   }
                                 ],
                                 "kind": "paragraph"
@@ -3578,7 +3974,7 @@
                   "role": "label"
                 },
                 {
-                  "content": "接地接続は必ず、電源プラグを電源につなぐ前に行って下さいまた、接地接続を外す場合は、必ず電源プラグを切り離してから行って下さい。",
+                  "content": "接地接続は必ず、電源プラグを電源につなぐ前に行って下さい\nまた、接地接続を外す場合は、必ず電源プラグを切り離してから行って下さい。",
                   "content_kind": "rich_text",
                   "role": "body"
                 }
@@ -3597,7 +3993,7 @@
         {
           "asset_refs": [],
           "block_id": "safety:block-0018",
-          "content_sha256": "65507638b46b799aeb861e1e0f83de0892682872f7f30c7b626bb529d5c1159e",
+          "content_sha256": "b82015d4188869f471b04b547161b68aade4e89b09284005bc0227d0a1824154",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -3629,8 +4025,45 @@
                               {
                                 "children": [
                                   {
+                                    "children": [
+                                      {
+                                        "kind": "text",
+                                        "text": "万が一、次のような異常が発生したときはすぐに使用をやめる"
+                                      }
+                                    ],
+                                    "kind": "strong"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              },
+                              {
+                                "children": [
+                                  {
                                     "kind": "text",
-                                    "text": "万が一、次のような異常が発生したときはすぐに使用をやめる煙が出ている、異臭がする落としたり、破損したとき異音がする内部に水や異物が入ったとき電源コード (AC充電ケーブル) が傷んだときこのような異常が発生したまま使用していると、火災や感電の原因になります。すぐにAC充電ケーブルをコンセントから抜いてください。また、本製品に接続されている機器もすべて外してください。万が一発煙や発火したら、大量の水で消火して煙が見えなくなるまで本製品を水浸しにしてください。煙が出なくなることを確認してからカスタマーサポートにご連絡ください。お客様による修理は危険ですので絶対におやめください。"
+                                    "text": "煙が出ている、異臭がする落としたり、破損したとき異音がする内部に水や異物が入ったとき電源コード (AC充電ケーブル) が傷んだときこのような異常が発生したまま使用していると、火災や感電の原因になります。すぐにAC充電ケーブルをコンセントから抜いてください。また、本製品に接続されている機器もすべて外してください。"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "children": [
+                                      {
+                                        "kind": "text",
+                                        "text": "万が一発煙や発火したら、大量の水で消火して煙が見えなくなるまで本製品を水浸しにしてください。"
+                                      }
+                                    ],
+                                    "kind": "strong"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "煙が出なくなることを確認してからカスタマーサポートにご連絡ください。お客様による修理は危険ですので絶対におやめください。"
                                   }
                                 ],
                                 "kind": "paragraph"
@@ -3676,7 +4109,7 @@
                   "role": "label"
                 },
                 {
-                  "content": "万が一、次のような異常が発生したときはすぐに使用をやめる煙が出ている、異臭がする落としたり、破損したとき異音がする内部に水や異物が入ったとき電源コード (AC充電ケーブル) が傷んだときこのような異常が発生したまま使用していると、火災や感電の原因になります。すぐにAC充電ケーブルをコンセントから抜いてください。また、本製品に接続されている機器もすべて外してください。万が一発煙や発火したら、大量の水で消火して煙が見えなくなるまで本製品を水浸しにしてください。煙が出なくなることを確認してからカスタマーサポートにご連絡ください。お客様による修理は危険ですので絶対におやめください。",
+                  "content": "万が一、次のような異常が発生したときはすぐに使用をやめる\n煙が出ている、異臭がする落としたり、破損したとき異音がする内部に水や異物が入ったとき電源コード (AC充電ケーブル) が傷んだときこのような異常が発生したまま使用していると、火災や感電の原因になります。すぐにAC充電ケーブルをコンセントから抜いてください。また、本製品に接続されている機器もすべて外してください。\n万が一発煙や発火したら、大量の水で消火して煙が見えなくなるまで本製品を水浸しにしてください。\n煙が出なくなることを確認してからカスタマーサポートにご連絡ください。お客様による修理は危険ですので絶対におやめください。",
                   "content_kind": "rich_text",
                   "role": "body"
                 }
@@ -3695,7 +4128,7 @@
         {
           "asset_refs": [],
           "block_id": "safety:block-0019",
-          "content_sha256": "34504f891e9ccaeb46b310ea62b149aa7a1cccbe0c8e5f40622a21226f0a8ce8",
+          "content_sha256": "73c15d3f56668bba556039ac50cb4254d5d83b1a361fa614b1a4849acf384b43",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -3727,8 +4160,22 @@
                               {
                                 "children": [
                                   {
+                                    "children": [
+                                      {
+                                        "kind": "text",
+                                        "text": "分解、改造しない"
+                                      }
+                                    ],
+                                    "kind": "strong"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              },
+                              {
+                                "children": [
+                                  {
                                     "kind": "text",
-                                    "text": "分解、改造しない。故障、発熱、火災·感電の原因になります。"
+                                    "text": "故障、発熱、火災·感電の原因になります。"
                                   }
                                 ],
                                 "kind": "paragraph"
@@ -3774,7 +4221,7 @@
                   "role": "label"
                 },
                 {
-                  "content": "分解、改造しない。故障、発熱、火災·感電の原因になります。",
+                  "content": "分解、改造しない\n故障、発熱、火災·感電の原因になります。",
                   "content_kind": "rich_text",
                   "role": "body"
                 }
@@ -3793,7 +4240,7 @@
         {
           "asset_refs": [],
           "block_id": "safety:block-0020",
-          "content_sha256": "0ced0a3567069dd4caa6050f16e81c392483f724f6da3ea48896f180338d458f",
+          "content_sha256": "49d034f40aaa65510e3b1169e8cf2cb1ff524cd57fcef352a4d07700f8a9aae0",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -3825,8 +4272,22 @@
                               {
                                 "children": [
                                   {
+                                    "children": [
+                                      {
+                                        "kind": "text",
+                                        "text": "表示された電源電圧以外で使用しない"
+                                      }
+                                    ],
+                                    "kind": "strong"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              },
+                              {
+                                "children": [
+                                  {
                                     "kind": "text",
-                                    "text": "表示された電源電圧以外で使用しない故障、発熱、火災·感電の原因になります。また、本製品を使用できるのは日本国内のみです。"
+                                    "text": "故障、発熱、火災·感電の原因になります。また、本製品を使用できるのは日本国内のみです。"
                                   }
                                 ],
                                 "kind": "paragraph"
@@ -3872,7 +4333,7 @@
                   "role": "label"
                 },
                 {
-                  "content": "表示された電源電圧以外で使用しない故障、発熱、火災·感電の原因になります。また、本製品を使用できるのは日本国内のみです。",
+                  "content": "表示された電源電圧以外で使用しない\n故障、発熱、火災·感電の原因になります。また、本製品を使用できるのは日本国内のみです。",
                   "content_kind": "rich_text",
                   "role": "body"
                 }
@@ -3891,7 +4352,7 @@
         {
           "asset_refs": [],
           "block_id": "safety:block-0021",
-          "content_sha256": "fb9247185b9f1b5dc2ba0e08714eaaa912832c3130f4a3d2145bbbae25d343bd",
+          "content_sha256": "a4ddd92c21935a7036e0ababcbbba73f62cb50c19a8d88c2a8670d4c316bc1cb",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -3923,8 +4384,13 @@
                               {
                                 "children": [
                                   {
-                                    "kind": "text",
-                                    "text": "付属品と本製品が破損した場合は、ご自身で修理をしない"
+                                    "children": [
+                                      {
+                                        "kind": "text",
+                                        "text": "付属品と本製品が破損した場合は、ご自身で修理をしない"
+                                      }
+                                    ],
+                                    "kind": "strong"
                                   }
                                 ],
                                 "kind": "paragraph"
@@ -4007,7 +4473,7 @@
         {
           "asset_refs": [],
           "block_id": "safety:block-0023",
-          "content_sha256": "f14c927f433162e5d381c22cde548e0c16037bd136e9dcf8d253d3e71f298360",
+          "content_sha256": "cc78451ca1e11f77c4500cf58d4d6817f3d076b1445600e41e3e79698cd2c891",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -4039,8 +4505,22 @@
                               {
                                 "children": [
                                   {
+                                    "children": [
+                                      {
+                                        "kind": "text",
+                                        "text": "本製品の上に物を載せたり、不安定な場所に置かない"
+                                      }
+                                    ],
+                                    "kind": "strong"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              },
+                              {
+                                "children": [
+                                  {
                                     "kind": "text",
-                                    "text": "本製品の上に物を載せたり、不安定な場所に置かない倒れたり、落ちたりしてけがの原因になります。"
+                                    "text": "倒れたり、落ちたりしてけがの原因になります。"
                                   }
                                 ],
                                 "kind": "paragraph"
@@ -4086,7 +4566,7 @@
                   "role": "label"
                 },
                 {
-                  "content": "本製品の上に物を載せたり、不安定な場所に置かない倒れたり、落ちたりしてけがの原因になります。",
+                  "content": "本製品の上に物を載せたり、不安定な場所に置かない\n倒れたり、落ちたりしてけがの原因になります。",
                   "content_kind": "rich_text",
                   "role": "body"
                 }
@@ -4105,7 +4585,7 @@
         {
           "asset_refs": [],
           "block_id": "safety:block-0024",
-          "content_sha256": "39800576161044cf5a94fa8b9efcfa98faca5cc712fbbfb41e85dbce5864c2ec",
+          "content_sha256": "7695429660d563cf88fe8e739d690d983afe3157f54c33aa687a4f3e764dce4c",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -4137,8 +4617,22 @@
                               {
                                 "children": [
                                   {
+                                    "children": [
+                                      {
+                                        "kind": "text",
+                                        "text": "データサーバや医療機器など、非常時に不具合が起こると人命 / 財産に重大な危険を及ぼしうる用途でのご使用はお控えください。次のようなような機器では、万が一使用中に給電ができなくなった場合、人命 / 財産にかかわる被害が想定されます。"
+                                      }
+                                    ],
+                                    "kind": "strong"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              },
+                              {
+                                "children": [
+                                  {
                                     "kind": "text",
-                                    "text": "データサーバや医療機器など、非常時に不具合が起こると人命 / 財産に重大な危険を及ぼしうる用途でのご使用はお控えください。次のようなような機器では、万が一使用中に給電ができなくなった場合、人命 / 財産にかかわる被害が想定されます。• 医療機器や使用上、生命に関わるような機器• 社会的、公共的に重要な機器など• 重要な事業用機器など"
+                                    "text": "• 医療機器や使用上、生命に関わるような機器• 社会的、公共的に重要な機器など• 重要な事業用機器など"
                                   }
                                 ],
                                 "kind": "paragraph"
@@ -4184,7 +4678,7 @@
                   "role": "label"
                 },
                 {
-                  "content": "データサーバや医療機器など、非常時に不具合が起こると人命 / 財産に重大な危険を及ぼしうる用途でのご使用はお控えください。次のようなような機器では、万が一使用中に給電ができなくなった場合、人命 / 財産にかかわる被害が想定されます。• 医療機器や使用上、生命に関わるような機器• 社会的、公共的に重要な機器など• 重要な事業用機器など",
+                  "content": "データサーバや医療機器など、非常時に不具合が起こると人命 / 財産に重大な危険を及ぼしうる用途でのご使用はお控えください。次のようなような機器では、万が一使用中に給電ができなくなった場合、人命 / 財産にかかわる被害が想定されます。\n• 医療機器や使用上、生命に関わるような機器• 社会的、公共的に重要な機器など• 重要な事業用機器など",
                   "content_kind": "rich_text",
                   "role": "body"
                 }
@@ -4203,7 +4697,7 @@
         {
           "asset_refs": [],
           "block_id": "safety:block-0025",
-          "content_sha256": "c31bb588c39aa086505e432d75c21f224b573001e13387476a66b548d2128266",
+          "content_sha256": "3e85587ffe5174e97ccca6d097af5f25ff55bc85bb5cf144f1e7a453ae125775",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -4235,8 +4729,22 @@
                               {
                                 "children": [
                                   {
+                                    "children": [
+                                      {
+                                        "kind": "text",
+                                        "text": "心臓にペースメーカーを装着している方は使用しない"
+                                      }
+                                    ],
+                                    "kind": "strong"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              },
+                              {
+                                "children": [
+                                  {
                                     "kind": "text",
-                                    "text": "心臓にペースメーカーを装着している方は使用しないペースメーカーが、本製品の影響を受ける恐れがあります。"
+                                    "text": "ペースメーカーが、本製品の影響を受ける恐れがあります。"
                                   }
                                 ],
                                 "kind": "paragraph"
@@ -4282,7 +4790,7 @@
                   "role": "label"
                 },
                 {
-                  "content": "心臓にペースメーカーを装着している方は使用しないペースメーカーが、本製品の影響を受ける恐れがあります。",
+                  "content": "心臓にペースメーカーを装着している方は使用しない\nペースメーカーが、本製品の影響を受ける恐れがあります。",
                   "content_kind": "rich_text",
                   "role": "body"
                 }
@@ -4301,7 +4809,7 @@
         {
           "asset_refs": [],
           "block_id": "safety:block-0026",
-          "content_sha256": "7d8d598e2916b28991d4f2356927a4e18385004d93c7ad315c009b75d512fca6",
+          "content_sha256": "a0815cb950e6d6d575edf7513232db494019b158c19a95dbe4ff9886386c8b8f",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -4333,8 +4841,13 @@
                               {
                                 "children": [
                                   {
-                                    "kind": "text",
-                                    "text": "格納式ハンドルを使用してJackery ポータブル電源 2000 Plus を移動するときは、積み重ねたり、上に他の物を置いたりしないでください。落下して怪我をする場合があります。"
+                                    "children": [
+                                      {
+                                        "kind": "text",
+                                        "text": "格納式ハンドルを使用してJackery ポータブル電源 2000 Plus を移動するときは、積み重ねたり、上に他の物を置いたりしないでください。落下して怪我をする場合があります。"
+                                      }
+                                    ],
+                                    "kind": "strong"
                                   }
                                 ],
                                 "kind": "paragraph"
@@ -4400,9 +4913,9 @@
       "language": "ja",
       "page_id": "safety",
       "skipped_raw": 0,
-      "source_path": "source/original.pdf",
+      "source_path": "JE-2000E-JP-V2.pdf",
       "source_ref": "ja/safety",
-      "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661"
+      "source_sha256": "f1829cd35ffe05079fe4b04f6c62fef3ca6adfd64270c47d64f7b2203af9780a"
     },
     {
       "blocks": [
@@ -4901,9 +5414,9 @@
       "language": "ja",
       "page_id": "usage-notes",
       "skipped_raw": 0,
-      "source_path": "source/original.pdf",
+      "source_path": "JE-2000E-JP-V2.pdf",
       "source_ref": "ja/usage-notes",
-      "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661"
+      "source_sha256": "f1829cd35ffe05079fe4b04f6c62fef3ca6adfd64270c47d64f7b2203af9780a"
     },
     {
       "blocks": [
@@ -4998,9 +5511,9 @@
       "language": "ja",
       "page_id": "disclaimer",
       "skipped_raw": 0,
-      "source_path": "source/original.pdf",
+      "source_path": "JE-2000E-JP-V2.pdf",
       "source_ref": "ja/disclaimer",
-      "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661"
+      "source_sha256": "f1829cd35ffe05079fe4b04f6c62fef3ca6adfd64270c47d64f7b2203af9780a"
     },
     {
       "blocks": [
@@ -5248,9 +5761,9 @@
       "language": "ja",
       "page_id": "in-the-box",
       "skipped_raw": 0,
-      "source_path": "source/original.pdf",
+      "source_path": "JE-2000E-JP-V2.pdf",
       "source_ref": "ja/in-the-box",
-      "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661"
+      "source_sha256": "f1829cd35ffe05079fe4b04f6c62fef3ca6adfd64270c47d64f7b2203af9780a"
     },
     {
       "blocks": [
@@ -6297,9 +6810,9 @@
       "language": "ja",
       "page_id": "overview",
       "skipped_raw": 0,
-      "source_path": "source/original.pdf",
+      "source_path": "JE-2000E-JP-V2.pdf",
       "source_ref": "ja/overview",
-      "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661"
+      "source_sha256": "f1829cd35ffe05079fe4b04f6c62fef3ca6adfd64270c47d64f7b2203af9780a"
     },
     {
       "blocks": [
@@ -6874,9 +7387,9 @@
       "language": "ja",
       "page_id": "lcd-display",
       "skipped_raw": 0,
-      "source_path": "source/original.pdf",
+      "source_path": "JE-2000E-JP-V2.pdf",
       "source_ref": "ja/lcd-display",
-      "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661"
+      "source_sha256": "f1829cd35ffe05079fe4b04f6c62fef3ca6adfd64270c47d64f7b2203af9780a"
     },
     {
       "blocks": [
@@ -9663,9 +10176,9 @@
       "language": "ja",
       "page_id": "operations",
       "skipped_raw": 0,
-      "source_path": "source/original.pdf",
+      "source_path": "JE-2000E-JP-V2.pdf",
       "source_ref": "ja/operations",
-      "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661"
+      "source_sha256": "f1829cd35ffe05079fe4b04f6c62fef3ca6adfd64270c47d64f7b2203af9780a"
     },
     {
       "blocks": [
@@ -9836,9 +10349,9 @@
       "language": "ja",
       "page_id": "ups",
       "skipped_raw": 0,
-      "source_path": "source/original.pdf",
+      "source_path": "JE-2000E-JP-V2.pdf",
       "source_ref": "ja/ups",
-      "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661"
+      "source_sha256": "f1829cd35ffe05079fe4b04f6c62fef3ca6adfd64270c47d64f7b2203af9780a"
     },
     {
       "blocks": [
@@ -10286,9 +10799,9 @@
       "language": "ja",
       "page_id": "connection",
       "skipped_raw": 0,
-      "source_path": "source/original.pdf",
+      "source_path": "JE-2000E-JP-V2.pdf",
       "source_ref": "ja/connection",
-      "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661"
+      "source_sha256": "f1829cd35ffe05079fe4b04f6c62fef3ca6adfd64270c47d64f7b2203af9780a"
     },
     {
       "blocks": [
@@ -11649,9 +12162,9 @@
       "language": "ja",
       "page_id": "charging",
       "skipped_raw": 0,
-      "source_path": "source/original.pdf",
+      "source_path": "JE-2000E-JP-V2.pdf",
       "source_ref": "ja/charging",
-      "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661"
+      "source_sha256": "f1829cd35ffe05079fe4b04f6c62fef3ca6adfd64270c47d64f7b2203af9780a"
     },
     {
       "blocks": [
@@ -11829,9 +12342,9 @@
       "language": "ja",
       "page_id": "troubleshooting",
       "skipped_raw": 0,
-      "source_path": "source/original.pdf",
+      "source_path": "JE-2000E-JP-V2.pdf",
       "source_ref": "ja/troubleshooting",
-      "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661"
+      "source_sha256": "f1829cd35ffe05079fe4b04f6c62fef3ca6adfd64270c47d64f7b2203af9780a"
     },
     {
       "blocks": [
@@ -12345,7 +12858,7 @@
         {
           "asset_refs": [],
           "block_id": "specifications:block-0004",
-          "content_sha256": "821dde5c9a7e7a27b5e6352a064f39d656e2e61250bd55b1a3253171956eaab8",
+          "content_sha256": "b3735afd50641db975c94b481847e1c12c0ced8756991fb308ea0f134c2049e7",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -12355,7 +12868,7 @@
                     "children": [
                       {
                         "kind": "text",
-                        "text": "出力ポート"
+                        "text": "出カポート"
                       }
                     ],
                     "kind": "inline_group",
@@ -12576,7 +13089,7 @@
               "schema_version": "component-spec/v1",
               "slots": [
                 {
-                  "content": "出力ポート",
+                  "content": "出カポート",
                   "content_kind": "inline_text",
                   "role": "section_title"
                 },
@@ -12904,9 +13417,9 @@
       "language": "ja",
       "page_id": "specifications",
       "skipped_raw": 0,
-      "source_path": "source/original.pdf",
+      "source_path": "JE-2000E-JP-V2.pdf",
       "source_ref": "ja/specifications",
-      "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661"
+      "source_sha256": "f1829cd35ffe05079fe4b04f6c62fef3ca6adfd64270c47d64f7b2203af9780a"
     },
     {
       "blocks": [
@@ -13607,9 +14120,9 @@
       "language": "ja",
       "page_id": "warranty",
       "skipped_raw": 0,
-      "source_path": "source/original.pdf",
+      "source_path": "JE-2000E-JP-V2.pdf",
       "source_ref": "ja/warranty",
-      "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661"
+      "source_sha256": "f1829cd35ffe05079fe4b04f6c62fef3ca6adfd64270c47d64f7b2203af9780a"
     },
     {
       "blocks": [
@@ -14746,9 +15259,9 @@
       "language": "ja",
       "page_id": "app-setup",
       "skipped_raw": 0,
-      "source_path": "source/original.pdf",
+      "source_path": "JE-2000E-JP-V2.pdf",
       "source_ref": "ja/app-setup",
-      "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661"
+      "source_sha256": "f1829cd35ffe05079fe4b04f6c62fef3ca6adfd64270c47d64f7b2203af9780a"
     },
     {
       "blocks": [
@@ -14849,9 +15362,9 @@
       "language": "ja",
       "page_id": "app-reminder",
       "skipped_raw": 0,
-      "source_path": "source/original.pdf",
+      "source_path": "JE-2000E-JP-V2.pdf",
       "source_ref": "ja/app-reminder",
-      "source_sha256": "6a70e879d65c14741462d0107e45c22f3ce1507b8835a4de1b5647cc4087c661"
+      "source_sha256": "f1829cd35ffe05079fe4b04f6c62fef3ca6adfd64270c47d64f7b2203af9780a"
     }
   ],
   "region": "JP",
