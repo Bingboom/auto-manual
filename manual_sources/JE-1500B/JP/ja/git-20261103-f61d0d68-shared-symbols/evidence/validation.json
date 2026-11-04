@@ -1,0 +1,21 @@
+{
+  "schema_version": "je1500b-jp-candidate-validation/v1",
+  "source_commit": "uncommitted working tree on feat/web-jp-ja-shared-symbols-1000g-1000h-1500b over main abc0e154 (#1659, MA-384); coordinator commits",
+  "date": "2026-11-04",
+  "environment": "system Python 3.13 (PYTHONDONTWRITEBYTECODE=1), Pandoc 3.9.0.2, ruff 0.16.9, Playwright Chromium (Node)",
+  "checks": [
+    {"command": "ruff check manual_sources/JE-1500B/JP/ja/git-20261103-f61d0d68-shared-symbols/*.py tests/test_je1500b_jp_shared_symbols.py", "result": "pass", "log": "ruff.log"},
+    {"command": "python <pkg>/derive_assets.py && python <pkg>/build_content.py && python <pkg>/refresh_manifest.py", "result": "pass (5 LCD reuse checks within 2%; 6 symbol rows bound to operator-confirmed group canonicals)"},
+    {"command": "python <pkg>/rebuild.py --output <scratchpad>/w2/je1500b-jp-ss-2", "result": "pass (9 chapters; HB-CALLOUT-STRIP 17, HB-SPECIAL-INBOX 1, HB-SPECIAL-REFERENCE-FIGURE 11, HB-TABLE-LCD-ICON 3, HB-TABLE-REFERENCE 1, HB-TABLE-SPEC 1, HB-TABLE-SYMBOL-ICON 1, HB-TABLE-SYMBOL-SIGNAL 1; symbol admission 6/6: unplug 0.385545 (group unplug, SCG-20261103), do-not-dismantle 0.396527 (group do-not-dismantle, SCG-20261103), no-wet-hands 0.016142, mandatory 0.004941, keep-dry 0.016057, prohibited 0.061882 (group prohibited, SCG-20261103))"},
+    {"command": "python -m sphinx -n -W --keep-going -b html web/ja <scratchpad>/w2/je1500b-jp-ss-2-html", "result": "pass", "log": "strict-sphinx.log"},
+    {"command": "python -m unittest tests.test_je1500b_jp_shared_symbols tests.test_je1500b_jp_web", "result": "pass (21 tests; the frozen released version's test still passes)", "log": "target-tests.log"},
+    {"command": "browser 1280 / 390 full page (images forced eager, page scrolled, networkidle)", "result": "31 images, 0 broken, document scrollWidth == viewport at both widths", "files": ["browser-1280.png", "browser-390.png", "browser-1280.json", "browser-390.json"]}
+  ],
+  "rebuild_gates": [
+    "input SHA-256 inventory",
+    "prepared-document shared-style admission with two declared plain tables (recycling notice, 低電力モード)",
+    "symbol asset admission: six HB-TABLE-SYMBOL-ICON rows, each the canonical of its operator-confirmed shared group; three released through the group (caption listed) above the fixed 2%",
+    "candidate: no approval.json; IR publication_eligible false"
+  ],
+  "not_validated": "full python -m unittest, maintainability guardrails, frozen_package_registry, seal_frozen_web_evidence, RTD deployment (coordinator / after operator re-approval)"
+}
