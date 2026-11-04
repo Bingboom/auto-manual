@@ -229,27 +229,22 @@ class SymbolAdmissionTests(unittest.TestCase):
                 self.assertRaisesRegex(RuntimeError, 'glyph/background differs'):
             self.check()
 
-    def test_confirmed_group_legacy_variant_cannot_be_bound(self):
+    def test_confirmed_group_legacy_variant_keeps_fixed_tolerance(self):
         self.canonical_group()
         row = self.rows[0]
         canonical = self.md / 'assets/canonical.svg'
         canonical.write_bytes((self.md / row['asset_ref']).read_bytes())
         self.catalog_extra['assets'] = [{'key': 'fixture-0', 'path': 'assets/canonical.svg',
                                          'sha256': row['asset_sha256']}]
-        legacy = (self.md / 'assets/legacy.svg').read_bytes()
-        row.update(shared_symbol_key='fixture-legacy', asset_sha256=hashlib.sha256(legacy).hexdigest())
-        (self.md / row['asset_ref']).write_bytes(legacy)
-        with self.assertRaisesRegex(RuntimeError, 'legacy variant fixture-legacy of canonical group read; bind fixture-0'):
-            self.check()
-        # A source that already bound the legacy variant when the group was
-        # decided replays unchanged; any other source must bind the canonical.
-        group = self.catalog_extra['canonical_groups'][0]
-        group['legacy_frozen_sources'] = {'fixture-legacy': ['0' * 64]}
-        with self.assertRaisesRegex(RuntimeError, 'legacy variant fixture-legacy'):
-            self.check()
-        group['legacy_frozen_sources'] = {'fixture-legacy': [self.manifest['original_source']['sha256']]}
-        with self.assertRaisesRegex(RuntimeError, 'glyph/background differs'):
-            self.check()  # replay keeps the normal glyph comparison for the legacy variant
+        legacy = self.md / 'assets/legacy.svg'
+        legacy.write_bytes(canonical.read_bytes())  # a legacy copy that matches the print
+        row.update(shared_symbol_key='fixture-legacy')
+        self.assertNotIn('canonical_group', self.check()[0])  # within 0.02: still admitted
+        legacy.write_bytes((self.md / self.rows[1]['asset_ref']).read_bytes())
+        row['asset_sha256'] = hashlib.sha256(legacy.read_bytes()).hexdigest()
+        (self.md / row['asset_ref']).write_bytes(legacy.read_bytes())
+        with self.assertRaisesRegex(RuntimeError, 'legacy variant fixture-legacy of group read: bind fixture-0'):
+            self.check()  # beyond 0.02 only the canonical is released
 
     def test_shared_caption_must_print_nearer_the_claimed_group(self):
         self.canonical_group(rival=True)

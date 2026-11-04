@@ -122,20 +122,6 @@ def _waived_comparison(waivers: list[dict], row: dict, candidate: bytes, suffix:
     return {'max_mean_channel_error': round(error, 6), 'glyph_waiver': waiver['id']}
 
 
-def _require_canonical_binding(row: dict, groups: dict, source_sha: str) -> None:
-    """A new source binds the canonical of an operator-confirmed group.
-
-    Sources that already bound a legacy variant when the group was decided
-    are listed in ``legacy_frozen_sources`` and replay unchanged.
-    """
-    key = row['shared_symbol_key']
-    group, role = groups.get(key, (None, None))
-    if (role == 'legacy' and group['status'] == 'operator-confirmed'
-            and source_sha not in group.get('legacy_frozen_sources', {}).get(key, [])):
-        raise ValueError(f"symbol binds legacy variant {row['shared_symbol_key']} of canonical "
-                         f"group {group['id']}; bind {group['canonical']}")
-
-
 def _nearest_member(group: dict, reference: bytes) -> float:
     return min(_symbol_error(path.read_bytes(), path.suffix, reference)
                for path in map(shared_symbol_file, [group['canonical'], *group['legacy_variants']]))
@@ -149,11 +135,17 @@ def _canonical_release(groups: dict, row: dict, meaning: str, language: str,
     applies. The printed row joins the group only through its source-verified
     caption, listed for that language; a caption listed by several groups
     must also print nearer this group's variants than every other group's.
-    Ungrouped, proposed and legacy keys are never released here.
+    Ungrouped and proposed keys are never released here; a legacy variant of a
+    confirmed group keeps the fixed tolerance and is pointed at the canonical.
     """
     group, role = groups.get(row['shared_symbol_key'], (None, None))
-    if role != 'canonical' or group['status'] != 'operator-confirmed':
+    if group is None or group['status'] != 'operator-confirmed':
         return None
+    if role == 'legacy':
+        # A legacy variant still passes within 0.02; beyond it only the
+        # canonical is released for the group.
+        raise ValueError(f"symbol glyph/background differs from authoritative PDF; legacy variant "
+                         f"{row['shared_symbol_key']} of group {group['id']}: bind {group['canonical']}")
     caption = _text(meaning)
     if caption not in {_text(c) for c in group['captions'].get(language, [])}:
         return None
@@ -333,7 +325,6 @@ def require_symbol_asset_admission(markdown_dir: Path, source_root: Path,
                 candidate = _file(markdown_dir, ref, row['asset_sha256'])
                 require_usable_symbol_file(candidate)
                 require_shared_symbol_binding(row, candidate)
-                _require_canonical_binding(row, groups, source['sha256'])
                 if 'web_only_row' in row:
                     report.append({'asset_ref': ref,
                                    **_web_only_comparison(web_only, row, meaning, candidate)})

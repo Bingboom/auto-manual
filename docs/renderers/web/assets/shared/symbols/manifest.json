@@ -2704,6 +2704,10 @@
         {
           "quote": "先写进分组但不生效（推荐）",
           "context": "操作员在去重会话中选择：其余待定组登记为 proposed，不放行"
+        },
+        {
+          "quote": "按协调窗口放宽",
+          "context": "操作员在去重会话中选择：同组旧变体按 2% 通过的绑定照常有效（含在途包）；超出 2% 的行只能经标准图标放行；不再向图库登记该组新变体"
         }
       ],
       "review_page": "https://claude.ai/artifact/TKVFaeNUZSw1pCcwfGsvCT"
@@ -2725,15 +2729,7 @@
           "万が一、次のような異常が発生したときはすぐに使用をやめる 煙が出ている、異臭がする 落としたり、破損したとき 異音がする 内部に水や異物が入ったとき電源コード (AC充電ケーブル) が傷んだとき このような異常が発生したまま使用していると、火災や感電の原因になります。 すぐにAC充電ケーブルをコンセントから抜いてください。また、本製品に接続されている機器もすべて外してください。 万が一発煙や発火したら、大量の水で消火して煙が見えなくなるまで本製品を水浸しにしてください。 煙が出なくなることを確認してからカスタマーサポートにご連絡ください。 お客様による修理は危険ですので絶対におやめください。"
         ]
       },
-      "decision": "SCG-20261103",
-      "legacy_frozen_sources": {
-        "native/je1500d-jp-6ddeef54-05": [
-          "6ddeef548ccf8552185ffd300a7222df849e7ac8f5e16bdc67fd081a976862e6"
-        ],
-        "native/je1000d-jp-00c43a89-01": [
-          "00c43a89bd07babbea3a82b6bfbbc4a1c7b52f7a72cb8030b0dbfb349de601a4"
-        ]
-      }
+      "decision": "SCG-20261103"
     },
     {
       "id": "no-wet-hands",
@@ -2750,16 +2746,7 @@
           "製品に濡れた手で触れることを禁止する記号"
         ]
       },
-      "decision": "SCG-20261103",
-      "legacy_frozen_sources": {
-        "no-wet-hands/h1-jp-native": [
-          "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be",
-          "fd06cd04653d0c336dfa119ccfb29cbee79fecf4508feee9ccda61df5eeb8dd6"
-        ],
-        "native/je1500d-jp-6ddeef54-07": [
-          "6ddeef548ccf8552185ffd300a7222df849e7ac8f5e16bdc67fd081a976862e6"
-        ]
-      }
+      "decision": "SCG-20261103"
     },
     {
       "id": "keep-dry",
@@ -2775,14 +2762,7 @@
           "製品を濡らすことを禁止する記号"
         ]
       },
-      "decision": "SCG-20261103",
-      "legacy_frozen_sources": {
-        "keep-dry/h1-jp-native": [
-          "6ddeef548ccf8552185ffd300a7222df849e7ac8f5e16bdc67fd081a976862e6",
-          "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be",
-          "fd06cd04653d0c336dfa119ccfb29cbee79fecf4508feee9ccda61df5eeb8dd6"
-        ]
-      }
+      "decision": "SCG-20261103"
     },
     {
       "id": "do-not-dismantle",
@@ -2840,46 +2820,7 @@
           "請勿拆解本產品。"
         ]
       },
-      "decision": "SCG-20261103",
-      "legacy_frozen_sources": {
-        "native/je1000d-jp-00c43a89-02": [
-          "00c43a89bd07babbea3a82b6bfbbc4a1c7b52f7a72cb8030b0dbfb349de601a4"
-        ],
-        "do-not-dismantle/screwdriver-prohibited-native-dark": [
-          "7afcb2a1e9e7b2011ddbfbe3ed81aa6c5ec5d196e4d9ad008208195fa06b6137"
-        ],
-        "do-not-dismantle/h1-jp-native": [
-          "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be"
-        ],
-        "do-not-dismantle/screwdriver-circle-gray": [
-          "3aa6c0039b413716274089e5335dc2ce5853264dca4d7b0a6e5e110b6b0b302c",
-          "6ddeef548ccf8552185ffd300a7222df849e7ac8f5e16bdc67fd081a976862e6"
-        ],
-        "do_not_dismantle/je2000e-eu-pt-batch1465-native": [
-          "02960a5f51576d9d8a3d825b3844dbf2f8cacc6240cabeee0639c197271a6cf3"
-        ],
-        "do_not_dismantle/je2000e-eu-nl-batch1465-native": [
-          "02960a5f51576d9d8a3d825b3844dbf2f8cacc6240cabeee0639c197271a6cf3"
-        ],
-        "do-not-dismantle/screwdriver-prohibited-tw-477dfbd7": [
-          "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c",
-          "477dfbd75e15c4f5cf0ef1cfb16142467027b8ab272bec04dfd92371d2d4fdc0",
-          "50b910fdd761010f2e0609afae924e4cad2ca109c5a4717d99a4edf294672800",
-          "5c065d11c0191e7f9f5ef32ecd39fe0ca620f206c296c4eb6401a4b8215cea68",
-          "78316033826380d2786a495562d1a09c3193ede98d9bbcb4fdb2e81b1872ad37",
-          "9bf5bbb12aefc9aac72662b305f7de2e0b39ec65ac254ea910e006cc92885886"
-        ],
-        "do-not-dismantle/screwdriver-prohibited-dark-hte162": [
-          "39c58bca661f635fc9d500bc9362317b62b5da6f007589fbf8e4ebfcc8e0bad0",
-          "3dc1fbbaf28908f216955e32de05b88dc9b0477854e8c0b5df7926a542572521"
-        ],
-        "do-not-dismantle/screwdriver-prohibited-dark-hte147": [
-          "04bd8b90f146ff9b65a3ee4b47327d76128c3110c8ef46ac4061e6b0e77b3c8c",
-          "a1128b25213d72cecd35c48a901a958612f4568cb0b4068b1c72ab8e553e9498",
-          "d3f47ff3afe136665d1594e7395c9838ca00fe23450818e96641fc0fd4e6476b",
-          "e47cb3227267e799431d6231c8cd5eb950ceb0b7a9908e10cdb8e7abcf72c5d1"
-        ]
-      }
+      "decision": "SCG-20261103"
     },
     {
       "id": "prohibited",
@@ -2904,12 +2845,7 @@
           "雷が鳴りだしたら、電源プラグにふれない (充電をしない) 感電の原因になります。"
         ]
       },
-      "decision": "SCG-20261103",
-      "legacy_frozen_sources": {
-        "native/je1000d-jp-00c43a89-06": [
-          "00c43a89bd07babbea3a82b6bfbbc4a1c7b52f7a72cb8030b0dbfb349de601a4"
-        ]
-      }
+      "decision": "SCG-20261103"
     },
     {
       "id": "mandatory",
@@ -2923,8 +2859,7 @@
           "行為を指示する記号"
         ]
       },
-      "decision": "SCG-20261103",
-      "legacy_frozen_sources": {}
+      "decision": "SCG-20261103"
     },
     {
       "id": "read-manual",
@@ -2986,36 +2921,7 @@
           "操作前請閱讀說明書。"
         ]
       },
-      "decision": "SCG-20261103",
-      "legacy_frozen_sources": {
-        "read-manual/person-reading-circle": [
-          "7afcb2a1e9e7b2011ddbfbe3ed81aa6c5ec5d196e4d9ad008208195fa06b6137"
-        ],
-        "read-manual/h1-jp-native": [
-          "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be"
-        ],
-        "read-manual/person-book-circle-gray": [
-          "3aa6c0039b413716274089e5335dc2ce5853264dca4d7b0a6e5e110b6b0b302c"
-        ],
-        "read-manual/person-circle-jhp3000d-native": [
-          "cebe4aab0a65d5fb2c36bb1867cdb6497e2a6db5251c46c61a33a530b862cf27"
-        ],
-        "read_manual/je2000e-eu-pt-batch1465-native": [
-          "02960a5f51576d9d8a3d825b3844dbf2f8cacc6240cabeee0639c197271a6cf3"
-        ],
-        "read_manual/je2000e-eu-nl-batch1465-native": [
-          "02960a5f51576d9d8a3d825b3844dbf2f8cacc6240cabeee0639c197271a6cf3"
-        ],
-        "read-manual/person-reading-circle-tw-477dfbd7": [
-          "477dfbd75e15c4f5cf0ef1cfb16142467027b8ab272bec04dfd92371d2d4fdc0"
-        ],
-        "native/je1500d-jp-6ddeef54-02": [
-          "6ddeef548ccf8552185ffd300a7222df849e7ac8f5e16bdc67fd081a976862e6"
-        ],
-        "native/je3000c-kr-78316033-02": [
-          "78316033826380d2786a495562d1a09c3193ede98d9bbcb4fdb2e81b1872ad37"
-        ]
-      }
+      "decision": "SCG-20261103"
     },
     {
       "id": "no-open-flame",
@@ -3076,41 +2982,7 @@
           "請使產品遠離火源。"
         ]
       },
-      "decision": "SCG-20261103",
-      "legacy_frozen_sources": {
-        "no-open-flame/crossed-flame": [
-          "7afcb2a1e9e7b2011ddbfbe3ed81aa6c5ec5d196e4d9ad008208195fa06b6137"
-        ],
-        "no-open-flame/h1-jp-native": [
-          "6ddeef548ccf8552185ffd300a7222df849e7ac8f5e16bdc67fd081a976862e6",
-          "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be"
-        ],
-        "no-open-flame/fire-match-crossed-gray": [
-          "3aa6c0039b413716274089e5335dc2ce5853264dca4d7b0a6e5e110b6b0b302c",
-          "477dfbd75e15c4f5cf0ef1cfb16142467027b8ab272bec04dfd92371d2d4fdc0",
-          "78316033826380d2786a495562d1a09c3193ede98d9bbcb4fdb2e81b1872ad37",
-          "cebe4aab0a65d5fb2c36bb1867cdb6497e2a6db5251c46c61a33a530b862cf27"
-        ],
-        "no-open-flame/fire-match-prohibited-3e3a39": [
-          "051169dd15831f5670ada665146c3499e71e415c092a379fd782578bb517c26a"
-        ],
-        "no_open_flame/je2000e-eu-pt-batch1465-native": [
-          "02960a5f51576d9d8a3d825b3844dbf2f8cacc6240cabeee0639c197271a6cf3"
-        ],
-        "no_open_flame/je2000e-eu-nl-batch1465-native": [
-          "02960a5f51576d9d8a3d825b3844dbf2f8cacc6240cabeee0639c197271a6cf3"
-        ],
-        "no-open-flame/crossed-fire-je2000f": [
-          "b6587afd053f92578c49eb7acff0dccabe10dc04a70bd178d60996419c9c82d7"
-        ],
-        "no-open-flame/fire-match-prohibited-dark-804ebe78": [
-          "804ebe784c84a698800b2c1cc0f4d28ec692057b1600c48fcc3604e27c86f013"
-        ],
-        "no-open-flame/fire-match-prohibited-dark-5c065d11": [
-          "5c065d11c0191e7f9f5ef32ecd39fe0ca620f206c296c4eb6401a4b8215cea68",
-          "9bf5bbb12aefc9aac72662b305f7de2e0b39ec65ac254ea910e006cc92885886"
-        ]
-      }
+      "decision": "SCG-20261103"
     },
     {
       "id": "keep-away-from-children",
@@ -3170,38 +3042,7 @@
           "請放置在兒童無法接觸的地方。"
         ]
       },
-      "decision": "SCG-20261103",
-      "legacy_frozen_sources": {
-        "keep-away-from-children/adult-child-panel": [
-          "7afcb2a1e9e7b2011ddbfbe3ed81aa6c5ec5d196e4d9ad008208195fa06b6137"
-        ],
-        "keep-away-from-children/h1-jp-native": [
-          "b6587afd053f92578c49eb7acff0dccabe10dc04a70bd178d60996419c9c82d7",
-          "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be"
-        ],
-        "keep-away-from-children/adult-child-frame-gray": [
-          "3aa6c0039b413716274089e5335dc2ce5853264dca4d7b0a6e5e110b6b0b302c",
-          "477dfbd75e15c4f5cf0ef1cfb16142467027b8ab272bec04dfd92371d2d4fdc0",
-          "78316033826380d2786a495562d1a09c3193ede98d9bbcb4fdb2e81b1872ad37",
-          "cebe4aab0a65d5fb2c36bb1867cdb6497e2a6db5251c46c61a33a530b862cf27"
-        ],
-        "keep-away-from-children/adult-child-prohibited-3e3a39": [
-          "051169dd15831f5670ada665146c3499e71e415c092a379fd782578bb517c26a"
-        ],
-        "keep_away_from_children/je2000e-eu-pt-batch1465-native": [
-          "02960a5f51576d9d8a3d825b3844dbf2f8cacc6240cabeee0639c197271a6cf3"
-        ],
-        "keep_away_from_children/je2000e-eu-nl-batch1465-native": [
-          "02960a5f51576d9d8a3d825b3844dbf2f8cacc6240cabeee0639c197271a6cf3"
-        ],
-        "native/je1500d-jp-6ddeef54-04": [
-          "6ddeef548ccf8552185ffd300a7222df849e7ac8f5e16bdc67fd081a976862e6"
-        ],
-        "keep-away-from-children/adult-child-prohibited-dark-5c065d11": [
-          "5c065d11c0191e7f9f5ef32ecd39fe0ca620f206c296c4eb6401a4b8215cea68",
-          "9bf5bbb12aefc9aac72662b305f7de2e0b39ec65ac254ea910e006cc92885886"
-        ]
-      }
+      "decision": "SCG-20261103"
     },
     {
       "id": "warning",
@@ -3267,33 +3108,7 @@
           "警告及注意符號。請務必閱讀，以注意潛在的危險或風險。"
         ]
       },
-      "decision": "SCG-20261103",
-      "legacy_frozen_sources": {
-        "warning-triangle/h1-jp-native": [
-          "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be"
-        ],
-        "warning/filled-triangle-gray": [
-          "3aa6c0039b413716274089e5335dc2ce5853264dca4d7b0a6e5e110b6b0b302c"
-        ],
-        "general_warning/je2000e-eu-pt-batch1465-native": [
-          "02960a5f51576d9d8a3d825b3844dbf2f8cacc6240cabeee0639c197271a6cf3"
-        ],
-        "general_warning/je2000e-eu-nl-batch1465-native": [
-          "02960a5f51576d9d8a3d825b3844dbf2f8cacc6240cabeee0639c197271a6cf3"
-        ],
-        "native/je1500d-jp-6ddeef54-01": [
-          "6ddeef548ccf8552185ffd300a7222df849e7ac8f5e16bdc67fd081a976862e6",
-          "78316033826380d2786a495562d1a09c3193ede98d9bbcb4fdb2e81b1872ad37"
-        ],
-        "warning/outline-triangle-dark-hte162": [
-          "04bd8b90f146ff9b65a3ee4b47327d76128c3110c8ef46ac4061e6b0e77b3c8c",
-          "39c58bca661f635fc9d500bc9362317b62b5da6f007589fbf8e4ebfcc8e0bad0",
-          "3dc1fbbaf28908f216955e32de05b88dc9b0477854e8c0b5df7926a542572521",
-          "a1128b25213d72cecd35c48a901a958612f4568cb0b4068b1c72ab8e553e9498",
-          "d3f47ff3afe136665d1594e7395c9838ca00fe23450818e96641fc0fd4e6476b",
-          "e47cb3227267e799431d6231c8cd5eb950ceb0b7a9908e10cdb8e7abcf72c5d1"
-        ]
-      }
+      "decision": "SCG-20261103"
     },
     {
       "id": "li-ion-32",
@@ -3315,18 +3130,7 @@
           "이 기호는 제품 내부에 리튬이온(Li-ion) 배터리가 포함되어 있음을 나타내며, 적절히 폐기 또는 재활용해야 합니다."
         ]
       },
-      "decision": "SCG-20261103",
-      "legacy_frozen_sources": {
-        "battery-recycle/h1-jp-native": [
-          "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be"
-        ],
-        "li-ion/recycle-li-ion-32-gray": [
-          "3aa6c0039b413716274089e5335dc2ce5853264dca4d7b0a6e5e110b6b0b302c"
-        ],
-        "native/je1500d-jp-6ddeef54-09": [
-          "6ddeef548ccf8552185ffd300a7222df849e7ac8f5e16bdc67fd081a976862e6"
-        ]
-      }
+      "decision": "SCG-20261103"
     },
     {
       "id": "weee",
@@ -3376,54 +3180,7 @@
           "Цей символ вказує, що продукт не можна утилізувати разом із побутовими відходами, і його слід передати до спеціалізованого пункту збору для переробки. Правильна утилізація та переробка допомагають захистити довкілля. Для отримання додаткової інформації щодо утилізації та переробки цього продукту зверніться до місцевої громади, служби утилізації або дилера."
         ]
       },
-      "decision": "SCG-20261103",
-      "legacy_frozen_sources": {
-        "weee/crossed-bin-bar": [
-          "04bd8b90f146ff9b65a3ee4b47327d76128c3110c8ef46ac4061e6b0e77b3c8c",
-          "09e0fb4ece44e62040abcf104be6099b88458e2c3357bc3ce0ae5a98e10687b3",
-          "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c",
-          "30bcad90ac8c130874db95c76666fb5c905cacc1b59073bd8f9d2db8d714eaf6",
-          "31fd069216fb282968bf90ba8ef7da0e885a875140667e083bca5cbc9e0122c7",
-          "39c58bca661f635fc9d500bc9362317b62b5da6f007589fbf8e4ebfcc8e0bad0",
-          "3dc1fbbaf28908f216955e32de05b88dc9b0477854e8c0b5df7926a542572521",
-          "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
-          "47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
-          "50b910fdd761010f2e0609afae924e4cad2ca109c5a4717d99a4edf294672800",
-          "541ca8a5543e3b2e36c85b908b5e733b86c5fb766081392c6e22a50493d59f7e",
-          "5b60448e69a76d5a8386227bc800ffc83309c837dfc32f5b3fb1f0901bd3d738",
-          "5c065d11c0191e7f9f5ef32ecd39fe0ca620f206c296c4eb6401a4b8215cea68",
-          "6ddeef548ccf8552185ffd300a7222df849e7ac8f5e16bdc67fd081a976862e6",
-          "772c36987b4233c2c243d64cf0a2e9c8a3fd1f37ad87ad739600cbf474977a79",
-          "7afcb2a1e9e7b2011ddbfbe3ed81aa6c5ec5d196e4d9ad008208195fa06b6137",
-          "9bf5bbb12aefc9aac72662b305f7de2e0b39ec65ac254ea910e006cc92885886",
-          "a1128b25213d72cecd35c48a901a958612f4568cb0b4068b1c72ab8e553e9498",
-          "ab7f7393ed6fd1e08656f19a48bdc7fce8f827ee9be629f8aebfd95b7d5cf857",
-          "af8a0775d0ba23a137fe024ae961c8b77f35797e1c8838a943ddbf8d418d9251",
-          "b6587afd053f92578c49eb7acff0dccabe10dc04a70bd178d60996419c9c82d7",
-          "b7d7fca4207792e6337c6e14003d12fd418fcd192ecc23137519c1147b6f85a3",
-          "c8ace563cc4575909156b4bcd224016fbd30cf9f8f077cd97738638f67e509e4",
-          "cb256e64ddf9a998f4717e3ec2b038b9ef7711572f7d9b752667f1d6e64077c1",
-          "cebe4aab0a65d5fb2c36bb1867cdb6497e2a6db5251c46c61a33a530b862cf27",
-          "d3f47ff3afe136665d1594e7395c9838ca00fe23450818e96641fc0fd4e6476b",
-          "e27d4db5606c140439dd32b7d17ab4ed428a62fbfbb5567c7664d8ac22032d51",
-          "e47cb3227267e799431d6231c8cd5eb950ceb0b7a9908e10cdb8e7abcf72c5d1",
-          "e546301b5cba7a6774418544a74c689f69712fd0fac6189df016f8020c0d98b1",
-          "ffbad263b763f60b34df14beabc5afaaf68b9bb8c9b64332f29ce2bc93281fa4"
-        ],
-        "weee/h1-jp-native": [
-          "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be"
-        ],
-        "weee/crossed-bin-bar-gray": [
-          "3aa6c0039b413716274089e5335dc2ce5853264dca4d7b0a6e5e110b6b0b302c",
-          "fd06cd04653d0c336dfa119ccfb29cbee79fecf4508feee9ccda61df5eeb8dd6"
-        ],
-        "weee/je2000e-eu-pt-batch1465-native": [
-          "02960a5f51576d9d8a3d825b3844dbf2f8cacc6240cabeee0639c197271a6cf3"
-        ],
-        "weee/je2000e-eu-nl-batch1465-native": [
-          "02960a5f51576d9d8a3d825b3844dbf2f8cacc6240cabeee0639c197271a6cf3"
-        ]
-      }
+      "decision": "SCG-20261103"
     },
     {
       "id": "li-ion",
@@ -3473,48 +3230,7 @@
           "Цей символ вказує, що всередині продукту є літій-іонна (Li-ion) батарея, яку необхідно утилізувати або переробити належним чином."
         ]
       },
-      "decision": null,
-      "legacy_frozen_sources": {
-        "li-ion/recycle-li-ion-native-dark": [
-          "04bd8b90f146ff9b65a3ee4b47327d76128c3110c8ef46ac4061e6b0e77b3c8c",
-          "30bcad90ac8c130874db95c76666fb5c905cacc1b59073bd8f9d2db8d714eaf6",
-          "3dc1fbbaf28908f216955e32de05b88dc9b0477854e8c0b5df7926a542572521",
-          "50b910fdd761010f2e0609afae924e4cad2ca109c5a4717d99a4edf294672800",
-          "5b60448e69a76d5a8386227bc800ffc83309c837dfc32f5b3fb1f0901bd3d738",
-          "5c065d11c0191e7f9f5ef32ecd39fe0ca620f206c296c4eb6401a4b8215cea68",
-          "772c36987b4233c2c243d64cf0a2e9c8a3fd1f37ad87ad739600cbf474977a79",
-          "7afcb2a1e9e7b2011ddbfbe3ed81aa6c5ec5d196e4d9ad008208195fa06b6137",
-          "9bf5bbb12aefc9aac72662b305f7de2e0b39ec65ac254ea910e006cc92885886",
-          "a1128b25213d72cecd35c48a901a958612f4568cb0b4068b1c72ab8e553e9498",
-          "af8a0775d0ba23a137fe024ae961c8b77f35797e1c8838a943ddbf8d418d9251",
-          "d3f47ff3afe136665d1594e7395c9838ca00fe23450818e96641fc0fd4e6476b",
-          "e27d4db5606c140439dd32b7d17ab4ed428a62fbfbb5567c7664d8ac22032d51",
-          "e47cb3227267e799431d6231c8cd5eb950ceb0b7a9908e10cdb8e7abcf72c5d1",
-          "e546301b5cba7a6774418544a74c689f69712fd0fac6189df016f8020c0d98b1",
-          "ffbad263b763f60b34df14beabc5afaaf68b9bb8c9b64332f29ce2bc93281fa4"
-        ],
-        "li-ion/htp017-recycle-li-ion": [
-          "09e0fb4ece44e62040abcf104be6099b88458e2c3357bc3ce0ae5a98e10687b3",
-          "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c",
-          "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
-          "ab7f7393ed6fd1e08656f19a48bdc7fce8f827ee9be629f8aebfd95b7d5cf857",
-          "b6587afd053f92578c49eb7acff0dccabe10dc04a70bd178d60996419c9c82d7",
-          "b7d7fca4207792e6337c6e14003d12fd418fcd192ecc23137519c1147b6f85a3"
-        ],
-        "li_ion/je2000e-eu-pt-batch1465-native": [
-          "02960a5f51576d9d8a3d825b3844dbf2f8cacc6240cabeee0639c197271a6cf3"
-        ],
-        "li_ion/je2000e-eu-nl-batch1465-native": [
-          "02960a5f51576d9d8a3d825b3844dbf2f8cacc6240cabeee0639c197271a6cf3"
-        ],
-        "li-ion/recycle-li-ion-label-hte162": [
-          "39c58bca661f635fc9d500bc9362317b62b5da6f007589fbf8e4ebfcc8e0bad0",
-          "c8ace563cc4575909156b4bcd224016fbd30cf9f8f077cd97738638f67e509e4"
-        ],
-        "li-ion/recycle-li-ion-label-dark-cb256e64": [
-          "cb256e64ddf9a998f4717e3ec2b038b9ef7711572f7d9b752667f1d6e64077c1"
-        ]
-      }
+      "decision": null
     },
     {
       "id": "battery-weee",
@@ -3559,15 +3275,7 @@
           "Батареї та акумулятори не можна утилізувати разом із побутовими відходами. Як споживач, ви зобов'язані за законом утилізувати всі батареї та акумулятори у спеціально відведених пунктах збору, незалежно від того, чи містять вони небезпечні речовини. Будь ласка, повертайте використані батарейки та акумулятори до місцевих пунктів збору, центрів переробки або до продавця, у якого їх було придбано. Правильна утилізація забезпечує екологічно безпечну переробку та запобігає потенційній шкоді для здоров’я людей і довкілля."
         ]
       },
-      "decision": null,
-      "legacy_frozen_sources": {
-        "battery_disposal/je2000e-eu-pt-batch1465-native": [
-          "02960a5f51576d9d8a3d825b3844dbf2f8cacc6240cabeee0639c197271a6cf3"
-        ],
-        "battery_disposal/je2000e-eu-nl-batch1465-native": [
-          "02960a5f51576d9d8a3d825b3844dbf2f8cacc6240cabeee0639c197271a6cf3"
-        ]
-      }
+      "decision": null
     },
     {
       "id": "battery-weee-pb",
@@ -3576,8 +3284,7 @@
       "canonical": "battery-weee/crossed-bin-pb-hte154-ink",
       "legacy_variants": [],
       "captions": {},
-      "decision": null,
-      "legacy_frozen_sources": {}
+      "decision": null
     },
     {
       "id": "explosive-material",
@@ -3601,19 +3308,7 @@
           "Symbole de matériau explosif pour avertissement de risque d'explosion."
         ]
       },
-      "decision": null,
-      "legacy_frozen_sources": {
-        "explosive-material/burst-triangle-native-v2-3e3a39": [
-          "04bd8b90f146ff9b65a3ee4b47327d76128c3110c8ef46ac4061e6b0e77b3c8c",
-          "051169dd15831f5670ada665146c3499e71e415c092a379fd782578bb517c26a",
-          "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c",
-          "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
-          "a1128b25213d72cecd35c48a901a958612f4568cb0b4068b1c72ab8e553e9498",
-          "ab7f7393ed6fd1e08656f19a48bdc7fce8f827ee9be629f8aebfd95b7d5cf857",
-          "c8ace563cc4575909156b4bcd224016fbd30cf9f8f077cd97738638f67e509e4",
-          "e47cb3227267e799431d6231c8cd5eb950ceb0b7a9908e10cdb8e7abcf72c5d1"
-        ]
-      }
+      "decision": null
     },
     {
       "id": "heavy-object",
@@ -3637,13 +3332,7 @@
           "Symbole d'objet lourd pour précautions de manutention."
         ]
       },
-      "decision": null,
-      "legacy_frozen_sources": {
-        "heavy-object/person-load-triangle-dark-772c3698": [
-          "772c36987b4233c2c243d64cf0a2e9c8a3fd1f37ad87ad739600cbf474977a79",
-          "c8ace563cc4575909156b4bcd224016fbd30cf9f8f077cd97738638f67e509e4"
-        ]
-      }
+      "decision": null
     },
     {
       "id": "electric-shock",
@@ -3665,8 +3354,7 @@
           "Symbole de danger de choc électrique pour avertissement de danger électrique."
         ]
       },
-      "decision": null,
-      "legacy_frozen_sources": {}
+      "decision": null
     },
     {
       "id": "battery-charging",
@@ -3688,8 +3376,7 @@
           "Symbole de charge de batterie indiquant qu'une batterie est en cours de charge."
         ]
       },
-      "decision": null,
-      "legacy_frozen_sources": {}
+      "decision": null
     },
     {
       "id": "ingestion-hazard",
@@ -3698,8 +3385,7 @@
       "canonical": "ingestion-hazard/coin-battery-triangle-dark-804ebe78",
       "legacy_variants": [],
       "captions": {},
-      "decision": null,
-      "legacy_frozen_sources": {}
+      "decision": null
     },
     {
       "id": "fcc",
@@ -3708,8 +3394,7 @@
       "canonical": "fcc/nested-c-native-dark",
       "legacy_variants": [],
       "captions": {},
-      "decision": null,
-      "legacy_frozen_sources": {}
+      "decision": null
     },
     {
       "id": "tw-recycle",
@@ -3722,8 +3407,7 @@
           "此符號表示產品內含鋰離子（Li-ion） 電池，應妥善廢棄或回收處理。"
         ]
       },
-      "decision": null,
-      "legacy_frozen_sources": {}
+      "decision": null
     },
     {
       "id": "ce",
@@ -3732,8 +3416,7 @@
       "canonical": "ce/label-hte156-ink",
       "legacy_variants": [],
       "captions": {},
-      "decision": null,
-      "legacy_frozen_sources": {}
+      "decision": null
     },
     {
       "id": "ukca",
@@ -3742,8 +3425,7 @@
       "canonical": "ukca/label-hte156-ink",
       "legacy_variants": [],
       "captions": {},
-      "decision": null,
-      "legacy_frozen_sources": {}
+      "decision": null
     },
     {
       "id": "ua",
@@ -3752,8 +3434,7 @@
       "canonical": "ua-conformity/label-hte156-ink",
       "legacy_variants": [],
       "captions": {},
-      "decision": null,
-      "legacy_frozen_sources": {}
+      "decision": null
     },
     {
       "id": "un38-3",
@@ -3762,8 +3443,7 @@
       "canonical": "un38-3/box-label-hte156-ink",
       "legacy_variants": [],
       "captions": {},
-      "decision": null,
-      "legacy_frozen_sources": {}
+      "decision": null
     },
     {
       "id": "triman-packaging",
@@ -3772,8 +3452,7 @@
       "canonical": "triman/info-tri-packaging-hte156-ink",
       "legacy_variants": [],
       "captions": {},
-      "decision": null,
-      "legacy_frozen_sources": {}
+      "decision": null
     },
     {
       "id": "triman-device",
@@ -3782,8 +3461,7 @@
       "canonical": "triman/info-tri-device-hte156-ink",
       "legacy_variants": [],
       "captions": {},
-      "decision": null,
-      "legacy_frozen_sources": {}
+      "decision": null
     },
     {
       "id": "ec-rep",
@@ -3792,8 +3470,7 @@
       "canonical": "ec-rep/label-hte154-ink",
       "legacy_variants": [],
       "captions": {},
-      "decision": null,
-      "legacy_frozen_sources": {}
+      "decision": null
     },
     {
       "id": "uk-rep",
@@ -3802,8 +3479,7 @@
       "canonical": "uk-rep/label-hte154-ink",
       "legacy_variants": [],
       "captions": {},
-      "decision": null,
-      "legacy_frozen_sources": {}
+      "decision": null
     }
   ]
 }
