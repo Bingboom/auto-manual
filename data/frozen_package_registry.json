@@ -1492,9 +1492,19 @@
       "registered": "2026-10-27",
       "known_drift": {}
     },
+    "manual_sources/JE-1800A/JP/ja/git-20261103-ccd8ebe2": {
+      "approval": "Operator request 2026-11-03 「继续 转日语说明书」 (relayed by the coordination window); operator reviewed the 1280/390 renders beside the reference edition and said 「按建议做，上线提交发布」 2026-11-03 in the owning session: Git-only JE-1800A JP/ja single-language Web release from 发布文档管理 record reczz28SfbsHfSTa, source copy verbatim; acceptance hash-bound in source/approval.json",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
     "manual_sources/JE-2000A/US/en/git-20261027-a8ec2be7": {
       "approval": "Operator 「上线提交发布：JE-1000D、JE-1500B、JE-1500D、JE-2000A；授权合入 #1629 及其 Hello-Docs 发布 PR」 2026-10-28 (MA-365), after review of the PR #1629 1280/390 renders beside the shared reference editions; requested by 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 2026-10-27: Git-only JE-2000A US en Web release, source copy verbatim (see source/approval.json)",
       "registered": "2026-10-27",
+      "known_drift": {}
+    },
+    "manual_sources/JE-2000C/JP/ja/git-20261103-88b78332": {
+      "approval": "Operator request 2026-11-03 「继续 转日语说明书」 (relayed by the coordination window); operator reviewed the 1280/390 renders beside the reference edition and said 「按建议做，上线提交发布」 2026-11-03 in the owning session: Git-only JE-2000C JP/ja single-language Web release from 发布文档管理 record reczz28SfbsHdjSC, source copy verbatim; acceptance hash-bound in source/approval.json",
+      "registered": "2026-11-03",
       "known_drift": {}
     },
     "manual_sources/JE-2000C/US/en/git-20261027-c357f54d": {
