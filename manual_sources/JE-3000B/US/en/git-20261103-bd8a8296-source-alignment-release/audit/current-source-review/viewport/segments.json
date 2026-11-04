@@ -1,0 +1,473 @@
+[
+  {
+    "width": 1280,
+    "file": "1280-00.png",
+    "targetY": 0,
+    "y": 0,
+    "sections": [
+      "important-safety-information",
+      "grounding-instructions"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-01.png",
+    "targetY": 1000,
+    "y": 1000,
+    "sections": [
+      "important-safety-information",
+      "grounding-instructions",
+      "user-maintenance-instructions",
+      "save-these-instructions-operating-instructions",
+      "moving-and-storage-instructions"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-02.png",
+    "targetY": 2000,
+    "y": 2000,
+    "sections": [
+      "important-safety-information",
+      "save-these-instructions-operating-instructions",
+      "moving-and-storage-instructions",
+      "what-s-in-the-box"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-03.png",
+    "targetY": 3000,
+    "y": 3000,
+    "sections": [
+      "what-s-in-the-box",
+      "product-overview",
+      "front-view",
+      "right-side-view",
+      "lcd-display"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-04.png",
+    "targetY": 4000,
+    "y": 4000,
+    "sections": [
+      "lcd-display"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-05.png",
+    "targetY": 5000,
+    "y": 5000,
+    "sections": [
+      "lcd-display"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-06.png",
+    "targetY": 6000,
+    "y": 6000,
+    "sections": [
+      "lcd-display",
+      "basic-operations",
+      "power-on-off",
+      "ac-output-on-off"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-07.png",
+    "targetY": 7000,
+    "y": 7000,
+    "sections": [
+      "basic-operations",
+      "ac-output-on-off",
+      "dc-usb-output-on-off",
+      "lcd-screen"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-08.png",
+    "targetY": 8000,
+    "y": 8000,
+    "sections": [
+      "basic-operations",
+      "lcd-screen",
+      "key-combinations",
+      "troubleshooting"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-09.png",
+    "targetY": 9000,
+    "y": 9000,
+    "sections": [
+      "troubleshooting",
+      "ups"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-10.png",
+    "targetY": 10000,
+    "y": 10000,
+    "sections": [
+      "ups",
+      "charging"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-11.png",
+    "targetY": 11000,
+    "y": 11000,
+    "sections": [
+      "charging",
+      "charging-via-ac-wall-outlet",
+      "charging-via-solar-panels"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-12.png",
+    "targetY": 12000,
+    "y": 12000,
+    "sections": [
+      "charging",
+      "charging-via-solar-panels",
+      "charging-via-car-charge"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-13.png",
+    "targetY": 13000,
+    "y": 13000,
+    "sections": [
+      "charging",
+      "charging-via-car-charge",
+      "warranty",
+      "limited-warranty",
+      "warranty-period"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-14.png",
+    "targetY": 14000,
+    "y": 14000,
+    "sections": [
+      "warranty",
+      "warranty-period",
+      "exchange",
+      "limited-to-original-consumer-buyer",
+      "exclusions",
+      "interpretation-rights",
+      "app-setup"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-15.png",
+    "targetY": 15000,
+    "y": 15000,
+    "sections": [
+      "app-setup"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-16.png",
+    "targetY": 16000,
+    "y": 16000,
+    "sections": [
+      "app-setup"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-17.png",
+    "targetY": 17000,
+    "y": 17000,
+    "sections": [
+      "app-setup",
+      "to-turn-on-wi-fi-bluetooth",
+      "to-turn-off-wi-fi-bluetooth",
+      "to-reset-wi-fi-bluetooth",
+      "jackery-explorer-3000model-je-3000b"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-18.png",
+    "targetY": 18000,
+    "y": 18000,
+    "sections": [
+      "jackery-explorer-3000model-je-3000b"
+    ]
+  },
+  {
+    "width": 1280,
+    "file": "1280-19.png",
+    "targetY": 19000,
+    "y": 18254,
+    "sections": [
+      "jackery-explorer-3000model-je-3000b"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-00.png",
+    "targetY": 9,
+    "y": 8,
+    "sections": [
+      "important-safety-information"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-01.png",
+    "targetY": 1009,
+    "y": 1009,
+    "sections": [
+      "important-safety-information",
+      "grounding-instructions"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-02.png",
+    "targetY": 2009,
+    "y": 2009,
+    "sections": [
+      "important-safety-information",
+      "grounding-instructions",
+      "user-maintenance-instructions",
+      "save-these-instructions-operating-instructions"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-03.png",
+    "targetY": 3009,
+    "y": 3009,
+    "sections": [
+      "important-safety-information",
+      "save-these-instructions-operating-instructions",
+      "moving-and-storage-instructions"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-04.png",
+    "targetY": 4009,
+    "y": 4009,
+    "sections": [
+      "important-safety-information",
+      "moving-and-storage-instructions",
+      "what-s-in-the-box"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-05.png",
+    "targetY": 5009,
+    "y": 5009,
+    "sections": [
+      "what-s-in-the-box",
+      "product-overview",
+      "front-view",
+      "right-side-view",
+      "lcd-display"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-06.png",
+    "targetY": 6009,
+    "y": 6009,
+    "sections": [
+      "lcd-display"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-07.png",
+    "targetY": 7009,
+    "y": 7009,
+    "sections": [
+      "lcd-display",
+      "basic-operations"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-08.png",
+    "targetY": 8009,
+    "y": 8009,
+    "sections": [
+      "basic-operations",
+      "power-on-off",
+      "ac-output-on-off"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-09.png",
+    "targetY": 9009,
+    "y": 9009,
+    "sections": [
+      "basic-operations",
+      "ac-output-on-off",
+      "dc-usb-output-on-off",
+      "lcd-screen"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-10.png",
+    "targetY": 10009,
+    "y": 10009,
+    "sections": [
+      "basic-operations",
+      "lcd-screen",
+      "key-combinations",
+      "troubleshooting"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-11.png",
+    "targetY": 11009,
+    "y": 11009,
+    "sections": [
+      "troubleshooting",
+      "ups"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-12.png",
+    "targetY": 12009,
+    "y": 12009,
+    "sections": [
+      "ups",
+      "charging"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-13.png",
+    "targetY": 13009,
+    "y": 13009,
+    "sections": [
+      "charging",
+      "charging-via-ac-wall-outlet",
+      "charging-via-solar-panels"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-14.png",
+    "targetY": 14009,
+    "y": 14009,
+    "sections": [
+      "charging",
+      "charging-via-solar-panels",
+      "charging-via-car-charge"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-15.png",
+    "targetY": 15009,
+    "y": 15009,
+    "sections": [
+      "charging",
+      "charging-via-car-charge",
+      "warranty",
+      "limited-warranty"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-16.png",
+    "targetY": 16009,
+    "y": 16009,
+    "sections": [
+      "warranty",
+      "limited-warranty",
+      "warranty-period",
+      "exchange",
+      "limited-to-original-consumer-buyer",
+      "exclusions"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-17.png",
+    "targetY": 17009,
+    "y": 17009,
+    "sections": [
+      "warranty",
+      "exclusions",
+      "interpretation-rights",
+      "app-setup"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-18.png",
+    "targetY": 18009,
+    "y": 18009,
+    "sections": [
+      "app-setup"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-19.png",
+    "targetY": 19009,
+    "y": 19009,
+    "sections": [
+      "app-setup",
+      "to-turn-on-wi-fi-bluetooth"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-20.png",
+    "targetY": 20009,
+    "y": 20009,
+    "sections": [
+      "app-setup",
+      "to-turn-on-wi-fi-bluetooth",
+      "to-turn-off-wi-fi-bluetooth",
+      "to-reset-wi-fi-bluetooth",
+      "jackery-explorer-3000model-je-3000b"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-21.png",
+    "targetY": 21009,
+    "y": 21009,
+    "sections": [
+      "jackery-explorer-3000model-je-3000b"
+    ]
+  },
+  {
+    "width": 390,
+    "file": "390-22.png",
+    "targetY": 22009,
+    "y": 21475,
+    "sections": [
+      "jackery-explorer-3000model-je-3000b"
+    ]
+  }
+]

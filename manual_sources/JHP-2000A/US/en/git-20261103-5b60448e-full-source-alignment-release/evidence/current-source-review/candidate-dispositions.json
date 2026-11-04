@@ -1,0 +1,183 @@
+{
+  "source_to_web": [
+    {
+      "page": 7,
+      "source_ocr": "140W Max, SV=3A, 9V-3A, 12V-3A, 15V-3A,",
+      "disposition": "OCR errors in original embedded port/product artwork; own exact30W/140W and PV16–60V12A labels visually verified against original."
+    },
+    {
+      "page": 7,
+      "source_ocr": "HomdPowor 2000 Plus)",
+      "disposition": "OCR errors in original embedded port/product artwork; own exact30W/140W and PV16–60V12A labels visually verified against original."
+    },
+    {
+      "page": 7,
+      "source_ocr": "DC Input (2xDC8020 Ports)",
+      "disposition": "OCR errors in original embedded port/product artwork; own exact30W/140W and PV16–60V12A labels visually verified against original."
+    },
+    {
+      "page": 7,
+      "source_ocr": "PV: :6-0V-24 Max, Doulble to 21A/800W Max",
+      "disposition": "OCR errors in original embedded port/product artwork; own exact30W/140W and PV16–60V12A labels visually verified against original."
+    },
+    {
+      "page": 12,
+      "source_ocr": "100W; 28V DC/SA, 140W).",
+      "disposition": "OCR S/5 substitution; source/native paragraph100W;28VDC/5A,140W exact."
+    },
+    {
+      "page": 14,
+      "source_ocr": "he eocterunesot auromoriea)",
+      "disposition": "OCR crossed LCD cells and source-drawing boundary; actual original LCD actions/conditions and all4 both key instructions verified."
+    },
+    {
+      "page": 20,
+      "source_ocr": "14.4 × 10.0 x 10.7 in / 36.6 × 25.5 × 27.2 cm",
+      "disposition": "Multiplication-symbol OCR x/×; native/source dimensions14.4×10.0×10.7in/36.6×25.5×27.2cm exact."
+    },
+    {
+      "page": 22,
+      "source_ocr": "Bluetooth confguration",
+      "disposition": "Unchanged original phone screenshot text, including Bluetoothconfiguration; own artwork visually matched."
+    },
+    {
+      "page": 22,
+      "source_ocr": "-ooch comewanon mook",
+      "disposition": "Unchanged original phone screenshot text, including Bluetoothconfiguration; own artwork visually matched."
+    },
+    {
+      "page": 23,
+      "source_ocr": "HomcRoer 2000 Pls9",
+      "disposition": "Original phone screenshot text OCR gibberish/wordspacing only; unchanged own source art visually matched."
+    },
+    {
+      "page": 23,
+      "source_ocr": "Please select 2.4 GHz Wi-Fi",
+      "disposition": "Original phone screenshot text OCR gibberish/wordspacing only; unchanged own source art visually matched."
+    },
+    {
+      "page": 23,
+      "source_ocr": "HwuRAS COWR nasa te it tn 2e tral",
+      "disposition": "Original phone screenshot text OCR gibberish/wordspacing only; unchanged own source art visually matched."
+    },
+    {
+      "page": 23,
+      "source_ocr": "• Ramenber password",
+      "disposition": "Original phone screenshot text OCR gibberish/wordspacing only; unchanged own source art visually matched."
+    },
+    {
+      "page": 23,
+      "source_ocr": "Avallable devicels) scanned",
+      "disposition": "Original phone screenshot text OCR gibberish/wordspacing only; unchanged own source art visually matched."
+    }
+  ],
+  "transcription_to_source": [
+    {
+      "id": "w2.body",
+      "text": "Improper connection of the equipment grounding conductor is able to result in a risk of electric shock. Check with a qualified electrician if you are in doubt as to whether the product is properly grounded. Do not modify the plug provided with the product – if it will not fit the outlet, have a proper outlet installed by a qualified electrician.",
+      "coverage": 0.509,
+      "nearest": "1 a risk of electric shock. Check with a qualified electrician if you are in douk",
+      "page": 5,
+      "disposition": "Located and visually read on own hash-bound PDF page; native/source text exact. OCR segmentation or poor recognition; no source correction inferred."
+    },
+    {
+      "id": "ov.f.usbc30.v",
+      "text": "30W Max, 5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A",
+      "coverage": 0.708,
+      "nearest": "140W Max, SV=3A, 9V-3A, 12V-3A, 15V-3A,",
+      "page": 7,
+      "disposition": "Located and visually read on own hash-bound PDF page; native/source text exact. OCR segmentation or poor recognition; no source correction inferred."
+    },
+    {
+      "id": "ov.f.usbc140.v",
+      "text": "140W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A, 28V⎓5A",
+      "coverage": 0.714,
+      "nearest": "140W Max, SV=3A, 9V-3A, 12V-3A, 15V-3A,",
+      "page": 7,
+      "disposition": "Located and visually read on own hash-bound PDF page; native/source text exact. OCR segmentation or poor recognition; no source correction inferred."
+    },
+    {
+      "id": "ov.r.dcin.v1",
+      "text": "PV: 16-60V⎓12A Max, Double to 21A / 800W Max",
+      "coverage": 0.542,
+      "nearest": "PV: :6-0V-24 Max, Doulble to 21A/800W Max",
+      "page": 7,
+      "disposition": "Located and visually read on own hash-bound PDF page; native/source text exact. OCR segmentation or poor recognition; no source correction inferred."
+    },
+    {
+      "id": "lcd.d5.b1",
+      "text": "Maximizes the use of solar energy and reduces reliance on grid electricity by prioritizing stored solar energy, reducing electricity costs. The power station must be connected to both solar panels and the grid simultaneously, with the load power limited by bypass power.",
+      "coverage": 0.518,
+      "nearest": "grid electricity by prioritizing stored solar energy, reducing",
+      "page": 8,
+      "disposition": "Located and visually read on own hash-bound PDF page; native/source text exact. OCR segmentation or poor recognition; no source correction inferred."
+    },
+    {
+      "id": "lcd.d16.b1",
+      "text": "On: Charging Power limit is enabled in the Jackery App.",
+      "coverage": 0.622,
+      "nearest": "Charging Power Limit",
+      "page": 9,
+      "disposition": "Located and visually read on own hash-bound PDF page; native/source text exact. OCR segmentation or poor recognition; no source correction inferred."
+    },
+    {
+      "id": "lcd.d16.b2",
+      "text": "Off: Charging Power limit is disabled in the Jackery App.",
+      "coverage": 0.564,
+      "nearest": "Charging Power Limit",
+      "page": 9,
+      "disposition": "Located and visually read on own hash-bound PDF page; native/source text exact. OCR segmentation or poor recognition; no source correction inferred."
+    },
+    {
+      "id": "lcd.d18.b3",
+      "text": "Off: The battery level is not below 20% or the product is charging.",
+      "coverage": 0.133,
+      "nearest": "igh temperature protection is triggered. The product ma",
+      "page": 10,
+      "disposition": "Located and visually read on own hash-bound PDF page; native/source text exact. OCR segmentation or poor recognition; no source correction inferred."
+    },
+    {
+      "id": "opr.usb.caut3",
+      "text": "To obtain maximum output power, use the USB-C to USB-C 5A cable (20V DC/5A, 100W; 28V DC/5A, 140W).",
+      "coverage": 0.781,
+      "nearest": "• To obtain maximum output power, use the USB-C to USB-C 5A cable (20V DC/SA,",
+      "page": 12,
+      "disposition": "Located and visually read on own hash-bound PDF page; native/source text exact. OCR segmentation or poor recognition; no source correction inferred."
+    },
+    {
+      "id": "lcdm.s.on.v",
+      "text": "Press the Main Power Button or when the product is charging.",
+      "coverage": 0.786,
+      "nearest": "Press the Main Power Button.",
+      "page": 14,
+      "disposition": "Located and visually read on own hash-bound PDF page; native/source text exact. OCR segmentation or poor recognition; no source correction inferred."
+    },
+    {
+      "id": "lcdm.s.auto.v",
+      "text": "The LCD turns off automatically and enters sleep mode after 2 minutes of inactivity.",
+      "coverage": 0.508,
+      "nearest": "automatically after 2 hours of",
+      "page": 14,
+      "disposition": "Located and visually read on own hash-bound PDF page; native/source text exact. OCR segmentation or poor recognition; no source correction inferred."
+    },
+    {
+      "id": "lcdm.steady",
+      "text": "Steady On (in charging or discharging state)",
+      "coverage": 0.69,
+      "nearest": "discharging",
+      "page": 14,
+      "disposition": "Located and visually read on own hash-bound PDF page; native/source text exact. OCR segmentation or poor recognition; no source correction inferred."
+    },
+    {
+      "id": "lcdm.t.on.v",
+      "text": "Press the Main Power Button twice when the product is powered on.",
+      "coverage": 0.674,
+      "nearest": "Press the Main Power Button.",
+      "page": 14,
+      "disposition": "Located and visually read on own hash-bound PDF page; native/source text exact. OCR segmentation or poor recognition; no source correction inferred."
+    }
+  ],
+  "web_to_source_unresolved": [],
+  "source_technical_concerns": "All10source_manifest.source_concerns retained verbatim; no sibling values or safety paragraphs imported.",
+  "historical_approval": "No inherited conversion decision treated as operator approval. User excludescover1/TOC3 only."
+}

@@ -1,0 +1,623 @@
+{
+  "model": "JE-240B",
+  "record_id": "reczz28SPRx9noYZ",
+  "status": "local_review_passed",
+  "source_sha256": "3dc1fbbaf28908f216955e32de05b88dc9b0477854e8c0b5df7926a542572521",
+  "whole_document_source_pages": [
+    2,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "scope": "Original body only; front cover and paper TOC excluded; back contact/QR retained",
+  "differences_review": [
+    {
+      "old_item": 1,
+      "old_statement": "Cover/TOC/back QR omitted",
+      "current_source": "p1 cover, p3 paper TOC, p15 contact and QR",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Keep cover/TOC exclusion, restore own p15 QR and contact"
+    },
+    {
+      "old_item": 2,
+      "old_statement": "IMPORTANT front matter retained",
+      "current_source": "p2 IMPORTANT text, paper US tab",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Native complete IMPORTANT page retained; paper tab omitted"
+    },
+    {
+      "old_item": 3,
+      "old_statement": "Risk box triangle omitted",
+      "current_source": "p4 black triangle beside native risk heading",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Restore own exact source icon; heading text unchanged"
+    },
+    {
+      "old_item": 4,
+      "old_statement": "Safety/operating lists flattened",
+      "current_source": "p4 paired two-column lists",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Restore two columns desktop, source left-then-right reading order on phone"
+    },
+    {
+      "old_item": 5,
+      "old_statement": "Maintenance before symbols",
+      "current_source": "p5 maintenance precedes meaning of symbols",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Original order and full native copy retained"
+    },
+    {
+      "old_item": 6,
+      "old_statement": "WARNING/DANGER colons removed",
+      "current_source": "p4 WARNING: white icon cell; DANGER: black triangle; native body",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Restore both source colons and own source icon crops; full bodies preserved"
+    },
+    {
+      "old_item": 7,
+      "old_statement": "FCC opening within left column",
+      "current_source": "p5 opening spans full width above two body columns",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Full-width opening restored, all original native text retained"
+    },
+    {
+      "old_item": 8,
+      "old_statement": "Inbox shared numbered cards and TIP",
+      "current_source": "p6 three numbered cards and TIP",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Source card order, art/labels and native TIP retained"
+    },
+    {
+      "old_item": 9,
+      "old_statement": "LCD number 8 repeated",
+      "current_source": "p7 8 spans high/low-temperature rows",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Shared component span-adjacent-equal restores one rowspan=2 number 8"
+    },
+    {
+      "old_item": 10,
+      "old_statement": "LCD screen table",
+      "current_source": "p9 drawing in left column; two groups of 3 state/action rows",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Original left-image/table relationship preserved"
+    },
+    {
+      "old_item": 11,
+      "old_statement": "Panel captions made native outside raster",
+      "current_source": "p9 USB output; p11 USB-C; p12 car caption",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Keep each native caption adjacent to its original panel; no wording lost or rasterized"
+    },
+    {
+      "old_item": 12,
+      "old_statement": "Troubleshooting native table",
+      "current_source": "p10 F0–F9 and F7 three numbered measures",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Exact cells, source measures and native oc subscript retained"
+    },
+    {
+      "old_item": 13,
+      "old_statement": "Specification subscript lost",
+      "current_source": "p13 LiFePO₄ and grouped input/output values",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Restore subscript ₄; retain source row spans and all values"
+    },
+    {
+      "old_item": 14,
+      "old_statement": "Warranty native headings/cards/badges",
+      "current_source": "p14 two warranty years columns and all subsections",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Original 3/2 years pairing and complete copy retained"
+    },
+    {
+      "old_item": 15,
+      "old_statement": "Embedded illustration labels",
+      "current_source": "p6–12 diagram/label panels",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Original complete artwork retained; no new drawing"
+    },
+    {
+      "old_item": 16,
+      "old_statement": "Phone scrolling",
+      "current_source": "Wide source illustrations and LCD/spec/troubleshooting tables",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Local scroll retains all cells/art; no document overflow at 390px"
+    }
+  ],
+  "bidirectional_native": {
+    "model": "JE-240B",
+    "source_to_web_missing": [],
+    "web_to_source_candidates": [],
+    "native_elements_checked": 246,
+    "source_line_count": 300
+  },
+  "reverse_source_check": {
+    "transcribed_lines": 300,
+    "exact_source_ocr_char_coverage": 291,
+    "visually_resolved": [
+      {
+        "page": 5,
+        "id": "sym.warning",
+        "source_text": "Warning and Caution Symbols. Must read to alert individuals to potential hazards or risks.",
+        "web_text": "Warning and Caution Symbols. Must read to alert individuals to potential hazards or risks.",
+        "source_locator": "original PDF physical p5 / source/transcription.json#sym.warning",
+        "web_locator": "source/en/content.json bound from transcription #sym.warning",
+        "decision": "p5 source symbol-table description visually confirmed; OCR column wrap"
+      },
+      {
+        "page": 5,
+        "id": "fcc.p3",
+        "source_text": "If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:",
+        "web_text": "If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:",
+        "source_locator": "original PDF physical p5 / source/transcription.json#fcc.p3",
+        "web_locator": "source/en/content.json bound from transcription #fcc.p3",
+        "decision": "p5 interference paragraph flows across source columns; complete native sentence matches"
+      },
+      {
+        "page": 9,
+        "id": "op.usb.c1",
+        "source_text": "USB-C1 and USB-C2 are USB-PD Power Source 3 (PS3) high-power output ports. If the connected user device or accessory does not meet safety requirements, there may be a fire risk. Before using these ports, ensure that the connected device or accessory has fire safety protection.",
+        "web_text": "USB-C1 and USB-C2 are USB-PD Power Source 3 (PS3) high-power output ports. If the connected user device or accessory does not meet safety requirements, there may be a fire risk. Before using these ports, ensure that the connected device or accessory has fire safety protection.",
+        "source_locator": "original PDF physical p9 / source/transcription.json#op.usb.c1",
+        "web_locator": "source/en/content.json bound from transcription #op.usb.c1",
+        "decision": "p9 all USB-PD PS3/high-power/safety/fire-risk text visibly present; OCR split block order, not legacy extra text"
+      },
+      {
+        "page": 9,
+        "id": "op.usb.c3",
+        "source_text": "To obtain maximum output power, use the official Jackery USB-C to USB-C 5A cable (20V DC/5A, 100W; 28V DC/5A, 140W).",
+        "web_text": "To obtain maximum output power, use the official Jackery USB-C to USB-C 5A cable (20V DC/5A, 100W; 28V DC/5A, 140W).",
+        "source_locator": "original PDF physical p9 / source/transcription.json#op.usb.c3",
+        "web_locator": "source/en/content.json bound from transcription #op.usb.c3",
+        "decision": "p9 source 20V DC/5A 100W and 28V DC/5A 140W sentence confirmed"
+      },
+      {
+        "page": 9,
+        "id": "op.eco.p1",
+        "source_text": "To prevent unnecessary battery consumption from forgetting to turn off the output, the product enables Energy Saving Mode by default. If no device is connected, or if the combined output of the USB-A and USB-C ports is 2W or less, the product will automatically turn off the output after 6 hours.",
+        "web_text": "To prevent unnecessary battery consumption from forgetting to turn off the output, the product enables Energy Saving Mode by default. If no device is connected, or if the combined output of the USB-A and USB-C ports is 2W or less, the product will automatically turn off the output after 6 hours.",
+        "source_locator": "original PDF physical p9 / source/transcription.json#op.eco.p1",
+        "web_locator": "source/en/content.json bound from transcription #op.eco.p1",
+        "decision": "p9 source default-enabled / 2W or less / 6 hours sentence confirmed unchanged"
+      },
+      {
+        "page": 9,
+        "id": "op.lcd.g1.d3",
+        "source_text": "The LCD turns off automatically after 2 minutes of inactivity.",
+        "web_text": "The LCD turns off automatically after 2 minutes of inactivity.",
+        "source_locator": "original PDF physical p9 / source/transcription.json#op.lcd.g1.d3",
+        "web_locator": "source/en/content.json bound from transcription #op.lcd.g1.d3",
+        "decision": "p9 native table source says automatically after 2 minutes of inactivity"
+      },
+      {
+        "page": 9,
+        "id": "op.lcd.g2.d3",
+        "source_text": "The Always-on Display Mode turns off automatically after 2 hours of inactivity.",
+        "web_text": "The Always-on Display Mode turns off automatically after 2 hours of inactivity.",
+        "source_locator": "original PDF physical p9 / source/transcription.json#op.lcd.g2.d3",
+        "web_locator": "source/en/content.json bound from transcription #op.lcd.g2.d3",
+        "decision": "p9 always-on source says automatically after 2 hours of inactivity"
+      },
+      {
+        "page": 11,
+        "id": "chg.solar.rec",
+        "source_text": "It is recommended to use a Jackery solar panel to charge the product. Ensure that the open-circuit voltage (Voc) of the solar panel falls within the Jackery Explorer 240D's DC input voltage range (16V–28V). Jackery is not responsible for any damage or loss resulting from the use of third-party solar panels.",
+        "web_text": "It is recommended to use a Jackery solar panel to charge the product. Ensure that the open-circuit voltage (Voc) of the solar panel falls within the Jackery Explorer 240D's DC input voltage range (16V–28V). Jackery is not responsible for any damage or loss resulting from the use of third-party solar panels.",
+        "source_locator": "original PDF physical p11 / source/transcription.json#chg.solar.rec",
+        "web_locator": "source/en/content.json bound from transcription #chg.solar.rec",
+        "decision": "p11 source 240D DC input 16V–28V sentence confirmed; V_oc subscript restored"
+      },
+      {
+        "page": 14,
+        "id": "war.y1.b",
+        "source_text": "The standard warranty period for Jackery Explorer 240D is 36 months. In each case, the warranty period is measured starting on the date of purchase by the original consumer purchaser. The sales receipt from the first consumer purchaser, or other reasonable documentary proof, is required in order to establish the start date of the warranty period.",
+        "web_text": "The standard warranty period for Jackery Explorer 240D is 36 months. In each case, the warranty period is measured starting on the date of purchase by the original consumer purchaser. The sales receipt from the first consumer purchaser, or other reasonable documentary proof, is required in order to establish the start date of the warranty period.",
+        "source_locator": "original PDF physical p14 / source/transcription.json#war.y1.b",
+        "web_locator": "source/en/content.json bound from transcription #war.y1.b",
+        "decision": "p14 source standard warranty 36 months / original consumer purchaser paragraph confirmed"
+      }
+    ]
+  },
+  "source_notes": [
+    "Source names Jackery Explorer 240D while Model No. is JE-240B; preserved as printed.",
+    "Source indoor-use DANGER has both similar-indoor-environment qualification and waterproof/dustproof warning; both retained verbatim."
+  ],
+  "browser": [
+    {
+      "width": 1280,
+      "images": 39,
+      "broken": [],
+      "uncontained": [],
+      "document": {
+        "viewport": 1280,
+        "width": 1280,
+        "cover": 0
+      },
+      "layouts": [
+        {
+          "key": "inbox",
+          "columns": "auto",
+          "grid": "none",
+          "rectWidth": 657.21875
+        },
+        {
+          "key": "lcd",
+          "columns": "auto",
+          "grid": "none",
+          "rectWidth": 657.21875
+        },
+        {
+          "key": "danger",
+          "columns": "auto",
+          "grid": "36.7969px 67.625px 536.797px",
+          "rectWidth": 657.21875
+        },
+        {
+          "key": "warning",
+          "columns": "auto",
+          "grid": "80px 230.219px",
+          "rectWidth": 316.609375
+        },
+        {
+          "key": "back",
+          "columns": "auto",
+          "grid": "none",
+          "rectWidth": 621.21875
+        },
+        {
+          "key": "risk",
+          "columns": "auto",
+          "grid": "none",
+          "rectWidth": 657.21875
+        },
+        {
+          "key": "safety",
+          "columns": "2",
+          "grid": "none",
+          "rectWidth": 657.21875
+        },
+        {
+          "key": "operating",
+          "columns": "2",
+          "grid": "none",
+          "rectWidth": 657.21875
+        },
+        {
+          "key": "fcc",
+          "columns": "auto",
+          "grid": "282.219px 282.219px",
+          "rectWidth": 599.625
+        }
+      ],
+      "request_failures": [],
+      "background_images": []
+    },
+    {
+      "width": 390,
+      "images": 39,
+      "broken": [],
+      "uncontained": [],
+      "document": {
+        "viewport": 390,
+        "width": 390,
+        "cover": 0
+      },
+      "layouts": [
+        {
+          "key": "inbox",
+          "columns": "auto",
+          "grid": "none",
+          "rectWidth": 358
+        },
+        {
+          "key": "lcd",
+          "columns": "auto",
+          "grid": "none",
+          "rectWidth": 358
+        },
+        {
+          "key": "danger",
+          "columns": "auto",
+          "grid": "36.7969px 313.203px",
+          "rectWidth": 358
+        },
+        {
+          "key": "warning",
+          "columns": "auto",
+          "grid": "80px 271.609px",
+          "rectWidth": 358
+        },
+        {
+          "key": "back",
+          "columns": "auto",
+          "grid": "none",
+          "rectWidth": 330
+        },
+        {
+          "key": "risk",
+          "columns": "auto",
+          "grid": "none",
+          "rectWidth": 358
+        },
+        {
+          "key": "safety",
+          "columns": "auto",
+          "grid": "none",
+          "rectWidth": 358
+        },
+        {
+          "key": "operating",
+          "columns": "auto",
+          "grid": "none",
+          "rectWidth": 358
+        },
+        {
+          "key": "fcc",
+          "columns": "auto",
+          "grid": "326px",
+          "rectWidth": 326
+        }
+      ],
+      "request_failures": [],
+      "background_images": []
+    }
+  ],
+  "remaining_source_or_layout_issues": [],
+  "acceptance_basis": "Whole-body original-source, bidirectional native-copy and desktop/mobile review by agent under delegated local acceptance. No personal operator visual approval or release/deployment approval inferred.",
+  "build": {
+    "strict_sphinx": "passed -n -W --keep-going",
+    "source_integrity": "all manifest input hashes verified",
+    "publication_status": "candidate-pending-operator-review",
+    "candidate_rebuild_markdown_equals_strict_sphinx_verified_render": true,
+    "candidate_css_art_equals_strict_sphinx_verified_render": true,
+    "byte_identical_render_files": [
+      {
+        "path": "index.md",
+        "sha256": "33d012c872b754e32cf2e23ebc276065f8ed4b085be82c14919ce284e9548a5b"
+      },
+      {
+        "path": "manual_je240b_us_en.md",
+        "sha256": "e57389d28427622f8306f0bb78eaf40c22d64eb1ba0f4583d2ac350bc3f11a2d"
+      },
+      {
+        "path": "_static/source_geometry.css",
+        "sha256": "7152f011ea3ce75f147fc19325027f0bca4cdae3df65e3a7d891c4220ecf07e4"
+      },
+      {
+        "path": "_static/web_manual.css",
+        "sha256": "c3604a2e5f22b04bc745bb99cf203b50e60222af70c0aeba3d968cc28adac9ce"
+      },
+      {
+        "path": "assets/lcd-map.png",
+        "sha256": "5161f0231298a46a95fe8d1d8c02d1cf418c811af1ebac479127599b2a763024"
+      },
+      {
+        "path": "assets/fcc-mark.svg",
+        "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+      },
+      {
+        "path": "assets/lcd-output-power.png",
+        "sha256": "f714c8e9d0ba1219fa05c527d60c93d500debb3eb15eed5a0769cb6ccda78cb8"
+      },
+      {
+        "path": "assets/sold-separately.png",
+        "sha256": "02bb73ccbdbb42c043b769decd554886fcaa3b5d36b6b2570128a94540a35bb3"
+      },
+      {
+        "path": "assets/charging-car.png",
+        "sha256": "5c476b77fefad559fca99f0c8a9add280a0f0cd363889485a9c7799065dd011f"
+      },
+      {
+        "path": "assets/charging-solar.png",
+        "sha256": "511312e17acf77d4088be2943808a17eae3a6109c5df3ecc852cae551167e9d8"
+      },
+      {
+        "path": "assets/lcd-fault-code.png",
+        "sha256": "ac31edf66e61aabb774b2bc9f711d85e7d7d8cf4c0bc4f267467815b1a61bca5"
+      },
+      {
+        "path": "assets/lcd-energy-saving.png",
+        "sha256": "8bd11e25ddc4dc2845083fc467c52f5a8d071b653157d441022d58aea37f43a7"
+      },
+      {
+        "path": "assets/symbol-09.svg",
+        "sha256": "6a513fe0122fec428c55a3f840c34ed7afdea311f7f1dd9b6e6fd807d087bf55"
+      },
+      {
+        "path": "assets/safety-risk-triangle.png",
+        "sha256": "a0ae20b5beff568f5ef9f770878367a99a5ef2cc0c143eaff3842f7eda8ccb04"
+      },
+      {
+        "path": "assets/symbol-08.svg",
+        "sha256": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1"
+      },
+      {
+        "path": "assets/usb-output.png",
+        "sha256": "740bafef9d956c09fb1088a0d00c3ba06c6ece1b3f480ecc25f17040391411ee"
+      },
+      {
+        "path": "assets/strap.png",
+        "sha256": "a1a5622099e3f7c47ddd047467ca7eea44c343c3af7d7f2da5a71488d9118258"
+      },
+      {
+        "path": "assets/overview.png",
+        "sha256": "7201bd0d7b91909993fe703a881529b4267bf90638bd88c05899dad76ef2058d"
+      },
+      {
+        "path": "assets/charging-usbc.png",
+        "sha256": "6e26ee4deaa07cc06b3d69ffcb3f4e8c82da5afbc7b51082755b6b4f0ca4cb75"
+      },
+      {
+        "path": "assets/lcd-car-charging.png",
+        "sha256": "1e6028e4da450a341d6df0063be1f53fa393f07fb2095030bdfbfa8c0fc4d1e5"
+      },
+      {
+        "path": "assets/lcd-battery-percentage.png",
+        "sha256": "04d60c1b4570216d7972c06a3b685a3d45b4c1d73f20233120d974a1c09d3ae3"
+      },
+      {
+        "path": "assets/inbox-unit.png",
+        "sha256": "1c1dc65815d9247e509e6f9eea1cc98d5654bde82bb94712bbd1061e5c8a4144"
+      },
+      {
+        "path": "assets/symbol-01.svg",
+        "sha256": "7eee1f724544318b77f50d99896735cb11f833fde5a3e24df1a7a394b70de10e"
+      },
+      {
+        "path": "assets/back-contact-qr.png",
+        "sha256": "8d0f6c5f4694c9d3550c8de873addff47308935c9911c5f397cbf838519ecd0f"
+      },
+      {
+        "path": "assets/symbol-02.svg",
+        "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584"
+      },
+      {
+        "path": "assets/lcd-high-temperature.png",
+        "sha256": "c63dddaaf861bdf88f0b05bedfd60a11a333d691808083c59ff052ddf5d0b64f"
+      },
+      {
+        "path": "assets/lcd-solar-charging.png",
+        "sha256": "e8ff94f06f1997212dc61b61aceac2e2791b13198e88c87a414f4fc2ede00fc5"
+      },
+      {
+        "path": "assets/symbol-06.svg",
+        "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f"
+      },
+      {
+        "path": "assets/inbox-manual.png",
+        "sha256": "b622f70d86c272ce0975b1bc91f7421dcadb06906538629afacc5d13f83851fb"
+      },
+      {
+        "path": "assets/symbol-07.svg",
+        "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899"
+      },
+      {
+        "path": "assets/lcd-usbc-charging.png",
+        "sha256": "000d1efda35503959e1b0171ad87a2f1b7c56ae52c657e6f2cb5dd5941d98597"
+      },
+      {
+        "path": "assets/symbol-05.svg",
+        "sha256": "562aa9d004d818fe9ac907cabd0a5bb44831801e26911f0929be7887971834fb"
+      },
+      {
+        "path": "assets/symbol-10.svg",
+        "sha256": "3ef06cba72b60935ea421b1b59ff41e1ca9c4c6597b8d8ce1d4ae1904ee68fa0"
+      },
+      {
+        "path": "assets/symbol-04.svg",
+        "sha256": "a76bd208ea017906cdcb5624307cdf4b4bb092816d45ef3943a4b3367c837d3f"
+      },
+      {
+        "path": "assets/lcd-input-power.png",
+        "sha256": "be9fe59bb73f8c2603057ddab3101c48f2367f36cfe9ac66b4218c7c5fc94a37"
+      },
+      {
+        "path": "assets/power-on-off.png",
+        "sha256": "62a6c9584bc5310e91204dc7f3b4199d8d143822535d2dc0d7567e566c5f1a07"
+      },
+      {
+        "path": "assets/safety-warning-icon.png",
+        "sha256": "bffb459c13451efaa12e2fdc464041c0c31557cf6e35a019e29cd8e7d0a6f04c"
+      },
+      {
+        "path": "assets/lcd-screen.png",
+        "sha256": "a79cee24c6cdf4e505116e7e21e8c13e1d920125434fa1c5288d569ff8906886"
+      },
+      {
+        "path": "assets/lcd-low-temperature.png",
+        "sha256": "266206a0afff91eb2d29a05338fece6c6dadf105bce27044a0143a291149f977"
+      },
+      {
+        "path": "assets/symbol-03.png",
+        "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5"
+      },
+      {
+        "path": "assets/inbox-cable.png",
+        "sha256": "2d887944b15a3f1a07430ed7c708d43812566e444be52f17eacea51f46aacd6b"
+      },
+      {
+        "path": "assets/lcd-battery-ring.png",
+        "sha256": "dd8fa0968eab35a11dbfe4a79895ff66c510535101208d4b7577aac8eca1f2c4"
+      }
+    ]
+  },
+  "whole_body_visual": {
+    "evidence": "whole-body-viewport-review.json",
+    "complete": true,
+    "rebuild_needed": false,
+    "reason": "Read-only coverage confirmation of the already verified HTML; source and output unchanged"
+  },
+  "number_shape_followup": {
+    "source_pages": [
+      7,
+      8
+    ],
+    "before": "Ordinary Arabic digits in native LCD table row-number cells; source uses circled digits.",
+    "after": "Source circled Unicode digits in native cells; original table content/order and temperature rowspan retained.",
+    "native_numbers": [
+      "①",
+      "②",
+      "③",
+      "④",
+      "⑤",
+      "⑥",
+      "⑦",
+      "⑧",
+      "⑨",
+      "⑩"
+    ],
+    "number_cell_spans": [
+      {
+        "number": "①",
+        "rowspan": "1"
+      },
+      {
+        "number": "②",
+        "rowspan": "1"
+      },
+      {
+        "number": "③",
+        "rowspan": "1"
+      },
+      {
+        "number": "④",
+        "rowspan": "1"
+      },
+      {
+        "number": "⑤",
+        "rowspan": "1"
+      },
+      {
+        "number": "⑥",
+        "rowspan": "1"
+      },
+      {
+        "number": "⑦",
+        "rowspan": "1"
+      },
+      {
+        "number": "⑧",
+        "rowspan": "2"
+      },
+      {
+        "number": "⑨",
+        "rowspan": "1"
+      },
+      {
+        "number": "⑩",
+        "rowspan": "1"
+      }
+    ],
+    "source_and_web_visual_review": "Original source table and final1280/390browser LCD components compared; all circled digits and corresponding icons/names/copy retained.",
+    "full_body_review": "Previous full-body review remains applicable: this follow-up changes only LCD number glyphs, no other copy/art/CSS geometry."
+  }
+}

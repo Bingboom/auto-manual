@@ -1,0 +1,43 @@
+/* JE-100C US English: page-local geometry and type size only.
+   Colours, borders and panels come from the shared Web theme (prepared-document shared-style gate). */
+
+/* Complete source panels keep a readable print width. */
+#furo-main-content .hb-reference-figure { max-width: 44rem; margin-inline: auto; }
+#furo-main-content .hb-reference-figure[data-reference-id="lcd-interface-3"],
+#furo-main-content .hb-reference-figure[data-reference-id="operation-lcd"] { max-width: 16rem; }
+#furo-main-content .hb-reference-figure[data-reference-id^="lcd-interface"] { max-width: 30rem; }
+@media (max-width: 760px) {
+  #furo-main-content .hb-reference-figure[data-reference-id="overview"] { overflow-x: auto; }
+  #furo-main-content .hb-reference-figure[data-reference-id="overview"] > * { min-width: 30rem; }
+}
+
+/* Source p9: original artwork on the left and native operation table on the right. */
+#furo-main-content [data-source-layout="lcd-screen"] { display:grid; grid-template-columns: 30% minmax(0, 1fr); gap:.75rem; align-items:center; }
+#furo-main-content [data-source-layout="lcd-screen"] figure { min-width:0; max-width:100%; margin:0; }
+#furo-main-content [data-source-layout="lcd-screen"] table { min-width:0; width:100%; }
+@media(max-width:760px) { #furo-main-content [data-source-layout="lcd-screen"] { grid-template-columns:minmax(0, 1fr); } }
+
+/* The safety title keeps the original warning triangle beside native text. */
+#furo-main-content [data-source-layout="risk-title"] { display:flex; gap:.65rem; align-items:center; padding:.5rem; }
+#furo-main-content [data-source-layout="risk-title"] img { width:2.3rem; height:auto; flex:none; }
+#furo-main-content [data-source-layout="risk-title"] p { margin:0; font-weight:bold; }
+
+#furo-main-content [data-source-layout="source-back-contact"] img { display:block; width:6rem; height:auto; margin-left:auto; }
+
+#furo-main-content [data-source-layout="warning-with-icon"] { display:flex; gap:.4rem; align-items:center; break-inside:avoid; }
+#furo-main-content [data-source-layout="warning-with-icon"] > img { width:2.3rem; height:auto; flex:none; }
+#furo-main-content [data-source-layout="warning-with-icon"] > table { min-width:0; }
+
+#furo-main-content [data-source-layout="warning-with-icon"] { display:grid; grid-template-columns:2.5rem minmax(0,1fr); }
+#furo-main-content [data-source-layout="warning-copy"] p { margin:.1rem 0; }
+
+/* Source FCC opening spans the paired body columns. */
+#furo-main-content .hb-fcc-column-left { display:contents; }
+#furo-main-content .hb-fcc-opening { grid-column:1 / -1; }
+#furo-main-content .hb-fcc-column-left > p { grid-column:1; grid-row:2; }
+#furo-main-content .hb-fcc-column-right { grid-column:2; grid-row:2; }
+@media(max-width:760px) { #furo-main-content .hb-fcc-column-left > p, #furo-main-content .hb-fcc-column-right { grid-column:1; grid-row:auto; } }
+
+#furo-main-content [data-source-layout="warning-with-icon"] { grid-template-columns:5rem minmax(0,1fr); align-items:center; }
+#furo-main-content [data-source-layout="warning-with-icon"] > img { width:5rem; height:auto; }
+#furo-main-content [data-source-layout="warning-copy"] > p:first-child { font-size:1.3rem; }

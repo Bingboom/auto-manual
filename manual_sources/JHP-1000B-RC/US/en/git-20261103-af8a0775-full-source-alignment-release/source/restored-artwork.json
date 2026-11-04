@@ -1,0 +1,362 @@
+[
+  {
+    "path": "assets/source-warning-dark.png",
+    "physical_page": 5,
+    "bbox": [
+      33,
+      34,
+      53,
+      52
+    ],
+    "sha256": "a85c150ec983b16abd2b790a03c6351a3183c170613e52bbd1d758f072f216f4",
+    "operation": "Direct original PDF crop; no reconstruction"
+  },
+  {
+    "path": "assets/source-warning-light.png",
+    "physical_page": 4,
+    "bbox": [
+      33,
+      100,
+      60,
+      125
+    ],
+    "sha256": "a51fb05b4761f707182ad8582415f36de318465f5d5ccb204e46ba7bb12b0883",
+    "operation": "Direct original PDF crop; no reconstruction"
+  },
+  {
+    "path": "assets/back-qr.png",
+    "physical_page": 22,
+    "bbox": [
+      307,
+      462,
+      339,
+      493
+    ],
+    "sha256": "9ea322b0f65cabbd8c79c84720e7c839cd8d999b4f610f3c187c178cc48fc55d",
+    "operation": "Direct original PDF crop; no reconstruction"
+  },
+  {
+    "path": "assets/contact-phone.png",
+    "physical_page": 22,
+    "bbox": [
+      33,
+      469,
+      56,
+      493
+    ],
+    "sha256": "42605262e02e0f2bd8117da358337d61676994f7a403c6fe23589120f7dd57de",
+    "operation": "Direct original PDF crop; no reconstruction"
+  },
+  {
+    "path": "assets/contact-mail.png",
+    "physical_page": 22,
+    "bbox": [
+      207,
+      469,
+      220,
+      479
+    ],
+    "sha256": "238cfe4ea7252df45fdc478832f62524679d3ba8254ac35cffe095dc1bdf53b0",
+    "operation": "Direct original PDF crop; no reconstruction"
+  },
+  {
+    "path": "assets/contact-web.png",
+    "physical_page": 22,
+    "bbox": [
+      207,
+      479,
+      220,
+      491
+    ],
+    "sha256": "3c17fff3cce238ed414bea9496319aacc8b06adeec0710a90bea658692306c70",
+    "operation": "Direct original PDF crop; no reconstruction"
+  },
+  {
+    "path": "assets/source-warning-card.png",
+    "physical_page": 4,
+    "bbox": [
+      26,
+      95,
+      178,
+      136
+    ],
+    "strip": [
+      [
+        73,
+        98,
+        176,
+        133
+      ]
+    ],
+    "sha256": "9bdca9fc6fa53757a728421b787cbbaf24d3b3611bc898b92abe9e0d8b671043",
+    "operation": "Original PDF crop; card text vectors removed only within declared strip, no reconstruction or overpaint"
+  },
+  {
+    "path": "assets/source-signal-glyph.png",
+    "physical_page": 5,
+    "bbox": [
+      37,
+      195,
+      47.5,
+      204.5
+    ],
+    "strip": [],
+    "sha256": "ff6c36bd8a600370518fcfe0e6d5cb893f1a8dc5494c1a877341bb3ee70af81a",
+    "operation": "Original PDF crop; card text vectors removed only within declared strip, no reconstruction or overpaint"
+  },
+  {
+    "path": "assets/source-clock.png",
+    "physical_page": 13,
+    "bbox": [
+      157.5,
+      158,
+      170,
+      170.5
+    ],
+    "strip": [],
+    "sha256": "0a1430c39d2f62ea2510326c8c46c9d5b6ba80b60169374e0e5c6208cd749e8d",
+    "operation": "Original PDF crop; card text vectors removed only within declared strip, no reconstruction or overpaint"
+  },
+  {
+    "path": "assets/back-contact-base.png",
+    "physical_page": 22,
+    "bbox": [
+      27,
+      460,
+      342,
+      498
+    ],
+    "strip": [
+      [
+        57,
+        467,
+        202,
+        494
+      ],
+      [
+        220,
+        468,
+        299,
+        479
+      ],
+      [
+        220,
+        479,
+        299,
+        491
+      ]
+    ],
+    "sha256": "3967e3f3e4e7577f42a63dcec0122b4242fac3713c510a84813b01aba2dc0e27",
+    "operation": "Retain original contact frames, icons and QR. Delete only source body text vectors and render those words as native HTML at source positions."
+  },
+  {
+    "path": "assets/risk-strip.png",
+    "physical_page": 4,
+    "bbox": [
+      26,
+      55,
+      338,
+      85
+    ],
+    "strip": [
+      [
+        56,
+        59,
+        116,
+        81
+      ],
+      [
+        118,
+        58,
+        335,
+        83
+      ]
+    ],
+    "sha256": "61dcd03ae8fa26615b80423b8bbdcc4b7cb3608e693a0d7bf883e85b5829fd17",
+    "operation": "Original warning strip frame and icon retained. Source body/label paths removed; the same source strings are native overlay."
+  },
+  {
+    "path": "assets/danger-strip.png",
+    "physical_page": 5,
+    "bbox": [
+      26,
+      27,
+      338,
+      61
+    ],
+    "strip": [
+      [
+        55,
+        35,
+        108,
+        54
+      ],
+      [
+        111,
+        29,
+        335,
+        59
+      ]
+    ],
+    "sha256": "a441856574a9ce31d971d394410a7456459b1289edc469433c83871509ff92b7",
+    "operation": "Original warning strip frame and icon retained. Source body/label paths removed; the same source strings are native overlay."
+  },
+  {
+    "path": "assets/overview-right.png",
+    "physical_page": 7,
+    "bbox": [
+      26,
+      386,
+      345,
+      492
+    ],
+    "strip": [],
+    "sha256": "2cec827834c27bfffa0c3c89040d09dcc9e944935ac8b46cf8687dd076e9753c",
+    "operation": "Re-crop this source PDF to retain full product outline and complete original frame; declared text strips only, native copy elsewhere."
+  },
+  {
+    "path": "assets/power-on-off.png",
+    "physical_page": 10,
+    "bbox": [
+      26,
+      71,
+      341,
+      199
+    ],
+    "strip": [
+      [
+        150,
+        141,
+        331,
+        187
+      ]
+    ],
+    "sha256": "91d51a30bf4edb3a590e44a35673949e6b1001c45bf36daf2c2a26331673bdb3",
+    "operation": "Re-crop this source PDF to retain full product outline and complete original frame; declared text strips only, native copy elsewhere."
+  },
+  {
+    "path": "assets/ac-output.png",
+    "physical_page": 10,
+    "bbox": [
+      25.7,
+      248.75,
+      340.44,
+      496.33
+    ],
+    "strip": [
+      [
+        29,
+        255,
+        167,
+        271
+      ],
+      [
+        31,
+        465,
+        332,
+        492
+      ]
+    ],
+    "sha256": "726aaef40feb58ea0c17b27860f292d2dbbc2ec0f4e7648f9e1979185d58c3f4",
+    "operation": "Re-crop this source PDF to retain full product outline and complete original frame; declared text strips only, native copy elsewhere."
+  },
+  {
+    "path": "assets/dc-usb-output.png",
+    "physical_page": 11,
+    "bbox": [
+      25.7,
+      42.47,
+      340.44,
+      212.65
+    ],
+    "strip": [
+      [
+        31,
+        49,
+        169,
+        66
+      ]
+    ],
+    "sha256": "165bec4b6e1d03cab13ff364f5d8cab05ae50fb73e7b2a96913e5032292d923e",
+    "operation": "Re-crop this source PDF to retain full product outline and complete original frame; declared text strips only, native copy elsewhere."
+  },
+  {
+    "path": "assets/led-light.png",
+    "physical_page": 11,
+    "bbox": [
+      27.34,
+      369.49,
+      342.08,
+      499.63
+    ],
+    "strip": [
+      [
+        31,
+        376,
+        335,
+        403
+      ],
+      [
+        253,
+        416,
+        333,
+        487
+      ]
+    ],
+    "sha256": "4c6bce009d87b576111cfb08d0ac4dcc8069ab949194c82ab3564e536774c781",
+    "operation": "Re-crop this source PDF to retain full product outline and complete original frame; declared text strips only, native copy elsewhere."
+  },
+  {
+    "path": "assets/lcd-screen.png",
+    "physical_page": 12,
+    "bbox": [
+      34,
+      48,
+      177,
+      140
+    ],
+    "strip": [],
+    "sha256": "d975202db108e16cefbdb9c04a42a653d0d791e7156b603a826472a847c05253",
+    "operation": "Re-crop this source PDF to retain full product outline and complete original frame; declared text strips only, native copy elsewhere."
+  },
+  {
+    "path": "assets/energy-saving.png",
+    "physical_page": 12,
+    "bbox": [
+      24.56,
+      229.11,
+      339.29,
+      381.13
+    ],
+    "strip": [
+      [
+        32,
+        237,
+        330,
+        263
+      ]
+    ],
+    "sha256": "2239c50a5a646276ee14f2c77b2376f04628c11157dde7cdecfe326a686adafc",
+    "operation": "Re-crop this source PDF to retain full product outline and complete original frame; declared text strips only, native copy elsewhere."
+  },
+  {
+    "path": "assets/charging-ac.png",
+    "physical_page": 15,
+    "bbox": [
+      23.08,
+      255.63,
+      337.81,
+      380.95
+    ],
+    "strip": [
+      [
+        31,
+        362,
+        271,
+        377
+      ]
+    ],
+    "sha256": "e78deafe4679daa4caf133297785edf7ff800365566ee74d8cdc5109f678fd44",
+    "operation": "Re-crop this source PDF to retain full product outline and complete original frame; declared text strips only, native copy elsewhere."
+  }
+]
