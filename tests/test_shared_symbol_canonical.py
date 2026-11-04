@@ -5,7 +5,7 @@ import xml.etree.ElementTree as ET
 from tools.asset_pipeline.native_svg import _drawing_paths, _path_key
 from tools.web.shared_symbol_assets import _catalog, canonical_decision, canonical_groups
 
-# Operator decisions of 2026-11-03 (SCG-20261103).
+# Operator decisions SCG-20261103 and SCG-20261104.
 CONFIRMED = {
     'unplug': 'unplug/h1-jp-native',
     'no-wet-hands': 'native/je1000d-jp-00c43a89-03',
@@ -19,6 +19,25 @@ CONFIRMED = {
     'warning': 'warning/outline-triangle-tinted',
     'li-ion-32': 'native/je3000c-kr-78316033-06',
     'weee': 'native/je3000c-kr-78316033-07',
+    # SCG-20261104
+    'li-ion': 'li-ion/recycle-li-ion',
+    'battery-weee': 'battery_disposal/je2000e-eu-nl-batch1465-native',
+    'battery-weee-pb': 'battery-weee/crossed-bin-pb-hte154-ink',
+    'explosive-material': 'explosive-material/burst-triangle-tinted',
+    'heavy-object': 'heavy-object/person-load-triangle-tinted',
+    'electric-shock': 'electric-shock/bolt-triangle-tinted',
+    'battery-charging': 'battery-charging/flame-battery-triangle-tinted',
+    'ingestion-hazard': 'ingestion-hazard/coin-battery-triangle-dark-804ebe78',
+    'fcc': 'fcc/nested-c-native-dark',
+    'tw-recycle': 'recycle/taiwan-restricted-battery-477dfbd7',
+    'ce': 'ce/label-hte156-ink',
+    'ukca': 'ukca/label-hte156-ink',
+    'ua': 'ua-conformity/label-hte156-ink',
+    'un38-3': 'un38-3/box-label-hte156-ink',
+    'triman-packaging': 'triman/info-tri-packaging-hte156-ink',
+    'triman-device': 'triman/info-tri-device-hte156-ink',
+    'ec-rep': 'ec-rep/label-hte154-ink',
+    'uk-rep': 'uk-rep/label-hte154-ink',
 }
 
 
@@ -38,6 +57,8 @@ class CanonicalCatalogTests(unittest.TestCase):
         self.assertEqual(decision['date'], '2026-11-03')
         self.assertIn('用无底色的', [q['quote'] for q in decision['operator_quotes']])
         self.assertIn('native/je1000d-jp-00c43a89-02', groups['do-not-dismantle']['legacy_variants'])
+        self.assertIn('battery-weee/crossed-bin-no-bar', groups['battery-weee']['legacy_variants'])
+        self.assertEqual(canonical_decision('SCG-20261104')['date'], '2026-11-04')
 
     def test_proposed_groups_never_cite_a_decision(self):
         for group, _ in canonical_groups().values():
