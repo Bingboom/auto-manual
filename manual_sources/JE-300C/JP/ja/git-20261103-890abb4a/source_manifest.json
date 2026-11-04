@@ -84,9 +84,7 @@
   "source_authority": "operator-designated Japanese single-language PDF (「单语言说明书」) from the 发布文档管理 Base row (read-only download); the original Japanese governs all copy (封面和目录不上网页; 版面以 PDF 为准; 不改任何日文原文).",
   "publication_status": "review-candidate-no-release-authorization",
   "publication_eligible": false,
-  "pending_source_review": [
-    "symbol rows without a shared variant await the operator's decision"
-  ],
+  "pending_source_review": [],
   "language_scope": "single",
   "live_bitable_dependency": false,
   "reference_edition": "manual_sources/JE-300C/US/en/git-20261027-a1128b25 (same model's released US English Web: structure, components, theme, LCD glyph and text-free art reuse reference; no US wording reused)",
@@ -438,9 +436,9 @@
           "caption_mode": "outlined-manual-transcription"
         },
         {
-          "asset_ref": "assets/unplug-native-candidate.svg",
-          "asset_sha256": "bc046a6bb51ea30c5c741f33dbca65e17834a53e66cfbf74a2e289df902b3f60",
-          "shared_symbol_key": null,
+          "asset_ref": "assets/h1-jp-unplug.svg",
+          "asset_sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf",
+          "shared_symbol_key": "unplug/h1-jp-native",
           "physical_page": 3,
           "drawing_indices": [
             454,
@@ -614,9 +612,9 @@
           "caption_mode": "outlined-manual-transcription"
         },
         {
-          "asset_ref": "assets/li-ion-native-candidate.svg",
-          "asset_sha256": "91b62a553de99767361bf2c2b643fe70e5fb3f8dbe18377212aeda134161cec2",
-          "shared_symbol_key": null,
+          "asset_ref": "assets/je3000c-kr-78316033-06.svg",
+          "asset_sha256": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5",
+          "shared_symbol_key": "native/je3000c-kr-78316033-06",
           "physical_page": 4,
           "drawing_indices": [
             668,
@@ -871,8 +869,8 @@
     },
     {
       "path": "docs/renderers/web/assets/shared/symbols/manifest.json",
-      "size": 94792,
-      "sha256": "99237c9081076bfc4d7439029eb7f6440fc0b6983b2d48a0f3025c4e4673b969"
+      "size": 138544,
+      "sha256": "08e6473aa4a283a9d9637fcc515eb79bfbbfa18dcbf16409295c8b5e77b0b00c"
     },
     {
       "path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-keep_dry.svg",
@@ -890,6 +888,11 @@
       "sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d"
     },
     {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-unplug.svg",
+      "size": 2569,
+      "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf"
+    },
+    {
       "path": "docs/renderers/web/assets/shared/symbols/native-v1/je1500d-jp-6ddeef54-symbol-07.svg",
       "size": 4521,
       "sha256": "f062577eefb0ba67932bf2b0faec0617a3cafd366b185d69434659ac365b70e3"
@@ -898,6 +901,11 @@
       "path": "docs/renderers/web/assets/shared/symbols/native-v1/je3000c-kr-78316033-02.svg",
       "size": 3768,
       "sha256": "9314a0d781b00c728c10576206b64cde9c2cb8eaf47c294c418869d996878adf"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/je3000c-kr-78316033-06.svg",
+      "size": 6314,
+      "sha256": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5"
     },
     {
       "path": "docs/renderers/web/assets/shared/symbols/native-v1/screwdriver-prohibited-tw-477dfbd7.svg",
@@ -961,8 +969,8 @@
     },
     {
       "path": "tools/asset_pipeline/native_svg.py",
-      "size": 9464,
-      "sha256": "cc51c407aef9dca7d95338e6c64a38ddb7e890de5a067e0dc9812100b3c86fd7"
+      "size": 10550,
+      "sha256": "6f778d16e3108fe81a17925528e755ae37645ba7691033f3417718593727985b"
     },
     {
       "path": "tools/asset_pipeline/package.py",
@@ -1736,8 +1744,8 @@
     },
     {
       "path": "tools/web/shared_symbol_assets.py",
-      "size": 1835,
-      "sha256": "b6aab8f2aa26dbd87a623b66d491d22f243e99b68659724bb7a60471c4b11ab6"
+      "size": 4215,
+      "sha256": "ba211428ab26a54f77b13d012e98ec7dc7ff7e464b897074982116b35ba77d2a"
     },
     {
       "path": "tools/web/spec_component.py",
@@ -1751,8 +1759,8 @@
     },
     {
       "path": "tools/web/symbol_asset_admission.py",
-      "size": 15908,
-      "sha256": "0cf8dc52d8307d9ae729898fdc4cd44687363b78efa48e3160514287b96d6565"
+      "size": 18398,
+      "sha256": "6db670cf29104705b841d960ebf0415592b4bfcbd7cf351a801ac7138da599f7"
     },
     {
       "path": "tools/web/symbol_components.py",
@@ -1783,8 +1791,8 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 4132,
-      "sha256": "7e39c2237824c8d286187f541afd21640bcb778e4d86b50741d074fec3ead312"
+      "size": 4299,
+      "sha256": "3eb3c3305e7e767f3150d55b87d5a1839fa11dc499d53062390c4dac0f212f6b"
     },
     {
       "path": "assets/ac-output.png",
@@ -1857,6 +1865,11 @@
       "sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d"
     },
     {
+      "path": "assets/h1-jp-unplug.svg",
+      "size": 2569,
+      "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf"
+    },
+    {
       "path": "assets/inbox-ac-cable.png",
       "size": 8697,
       "sha256": "9215ebba453b5555b01c2db74949991d258737e9e92bcb66d6a14afb0d64501a"
@@ -1880,6 +1893,11 @@
       "path": "assets/je3000c-kr-78316033-02.svg",
       "size": 3768,
       "sha256": "9314a0d781b00c728c10576206b64cde9c2cb8eaf47c294c418869d996878adf"
+    },
+    {
+      "path": "assets/je3000c-kr-78316033-06.svg",
+      "size": 6314,
+      "sha256": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5"
     },
     {
       "path": "assets/lcd-ac-power.svg",
@@ -1962,11 +1980,6 @@
       "sha256": "c692eeee7ddebc2478973d71a782153c5c1d7eb5ce196df143bdb78f96749914"
     },
     {
-      "path": "assets/li-ion-native-candidate.svg",
-      "size": 5441,
-      "sha256": "91b62a553de99767361bf2c2b643fe70e5fb3f8dbe18377212aeda134161cec2"
-    },
-    {
       "path": "assets/overview-front.png",
       "size": 108035,
       "sha256": "2aec1388d5c485fed4c614e4efbdd1518e9720222db49a5a74f084fc4c9e2a6f"
@@ -2017,19 +2030,14 @@
       "sha256": "c53c2100f60c81abcbf113e3ad307c99917ff36954b39af233881f17d69d81a7"
     },
     {
-      "path": "assets/unplug-native-candidate.svg",
-      "size": 3485,
-      "sha256": "bc046a6bb51ea30c5c741f33dbca65e17834a53e66cfbf74a2e289df902b3f60"
-    },
-    {
       "path": "assets/ups.png",
       "size": 150404,
       "sha256": "004e0665d69c4ecfa5173c6ee1ac485aa848ef2d17d499980541a6437d19edfb"
     },
     {
       "path": "audit/review.zh.md",
-      "size": 5605,
-      "sha256": "6ebbd26c7ffca78d91712a9a9cc09a0c86c21648b6e1f390c07dd951c0713b49"
+      "size": 5562,
+      "sha256": "052ff2426b549cbf76ce400dfc4409fc8f2eade584b82e6030dcbc291cee1be7"
     },
     {
       "path": "original.pdf",
@@ -2043,8 +2051,8 @@
     },
     {
       "path": "source/extract_assets.py",
-      "size": 9375,
-      "sha256": "654e42889be81b5f0f09ce6c321ef8698ddafb0f9a3efe3047bcf6c6c8c53479"
+      "size": 10980,
+      "sha256": "81e2e83e832f8ca52feac645afa684699a1b8ac4cf52599698fdc9302a95d71e"
     },
     {
       "path": "source/figures.json",
@@ -2063,8 +2071,8 @@
     },
     {
       "path": "source/ja/content.json",
-      "size": 291209,
-      "sha256": "8a906a4591ddfee1a933ea18065f07b110475f4d0e94b0068c603c2b56cc3790"
+      "size": 291197,
+      "sha256": "d8c19bd1ae78f87c4fad227195c8174ad7b7e661b6509ded5c0cd055021573ff"
     },
     {
       "path": "source/kit.py",
@@ -2078,13 +2086,13 @@
     },
     {
       "path": "source/refresh_manifest.py",
-      "size": 5372,
-      "sha256": "9920d1e755cd03a0f2f6bf44221e417165c95ec8c7d15978a9605218abdc2c82"
+      "size": 6099,
+      "sha256": "802d19eb56cf4be4db11fa94b9c765b64d8d1c90be54e0d94b7360f3e3727a0d"
     },
     {
       "path": "source/symbols.json",
-      "size": 30993,
-      "sha256": "efb6e2eda047dabd927ddca1b0db5c0a36dfc9eb7bf09aace6a37348f71bbe07"
+      "size": 31661,
+      "sha256": "d9388439dde7bac8a8e146f06179d683f212c45c1bfaf6a21113c2b5638a9be1"
     },
     {
       "path": "web/ja/_static/source_presentation.css",
@@ -2167,6 +2175,11 @@
       "sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d"
     },
     {
+      "path": "web/ja/assets/h1-jp-unplug.svg",
+      "size": 2569,
+      "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf"
+    },
+    {
       "path": "web/ja/assets/inbox-ac-cable.png",
       "size": 8697,
       "sha256": "9215ebba453b5555b01c2db74949991d258737e9e92bcb66d6a14afb0d64501a"
@@ -2190,6 +2203,11 @@
       "path": "web/ja/assets/je3000c-kr-78316033-02.svg",
       "size": 3768,
       "sha256": "9314a0d781b00c728c10576206b64cde9c2cb8eaf47c294c418869d996878adf"
+    },
+    {
+      "path": "web/ja/assets/je3000c-kr-78316033-06.svg",
+      "size": 6314,
+      "sha256": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5"
     },
     {
       "path": "web/ja/assets/lcd-ac-power.svg",
@@ -2272,11 +2290,6 @@
       "sha256": "c692eeee7ddebc2478973d71a782153c5c1d7eb5ce196df143bdb78f96749914"
     },
     {
-      "path": "web/ja/assets/li-ion-native-candidate.svg",
-      "size": 5441,
-      "sha256": "91b62a553de99767361bf2c2b643fe70e5fb3f8dbe18377212aeda134161cec2"
-    },
-    {
       "path": "web/ja/assets/overview-front.png",
       "size": 108035,
       "sha256": "2aec1388d5c485fed4c614e4efbdd1518e9720222db49a5a74f084fc4c9e2a6f"
@@ -2327,11 +2340,6 @@
       "sha256": "c53c2100f60c81abcbf113e3ad307c99917ff36954b39af233881f17d69d81a7"
     },
     {
-      "path": "web/ja/assets/unplug-native-candidate.svg",
-      "size": 3485,
-      "sha256": "bc046a6bb51ea30c5c741f33dbca65e17834a53e66cfbf74a2e289df902b3f60"
-    },
-    {
       "path": "web/ja/assets/ups.png",
       "size": 150404,
       "sha256": "004e0665d69c4ecfa5173c6ee1ac485aa848ef2d17d499980541a6437d19edfb"
@@ -2348,13 +2356,13 @@
     },
     {
       "path": "web/ja/manual.ir.json",
-      "size": 411584,
-      "sha256": "2debc16dd6944ac5a4bfce11266a3400c4d8e83c572ded0f09c77d2c21e1c16d"
+      "size": 411536,
+      "sha256": "a2696b7ce0dfc40ccea5bb2403a2d754199c9759374c34bbebdb24b900256d54"
     },
     {
       "path": "web/ja/manual_je300c_jp_ja.md",
-      "size": 66674,
-      "sha256": "5e8efd67e5701a9e233a3497ce7b680053ad8b5033e3e4537560d4e5605345d2"
+      "size": 66662,
+      "sha256": "7c940809fee8eca481a21b74090ca069d63b03577c0291f56a179c9a4472653d"
     }
   ]
 }

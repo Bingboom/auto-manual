@@ -809,7 +809,7 @@
           "children": [
             {
               "kind": "image",
-              "source": "assets/li-ion-native-candidate.svg",
+              "source": "assets/je3000c-kr-78316033-06.svg",
               "alt": "Li-ion 32"
             }
           ],
@@ -2638,7 +2638,7 @@
             "assets": [
               {
                 "role": "icons",
-                "asset_ref": "assets/unplug-native-candidate.svg",
+                "asset_ref": "assets/h1-jp-unplug.svg",
                 "locale_policy": "exact"
               },
               {
@@ -2648,7 +2648,7 @@
               },
               {
                 "role": "icons",
-                "asset_ref": "assets/no-wet-hands-native-candidate.svg",
+                "asset_ref": "assets/je1000d-jp-00c43a89-symbol-03.svg",
                 "locale_policy": "exact"
               },
               {

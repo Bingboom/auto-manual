@@ -40,8 +40,8 @@
 - p16「搭載していますが、」逻辑不通；「長期保管 (3 カ月 ~6 カ月）」括号宽度不一，「カ月」与 p20「ヶ月」、p16「か月」混用。
 - p20「AC出力（パススルー)②」全角左括号配半角右括号。
 
-待决符号（未加入共用图库，仅生成 native candidate）：
-- p3「コンセントから電源プラグを抜く記号」（unplug/）：无共用变体通过固定比对。
-- p4「充電式電池のリサイクルについて」Li-ion 32（li-ion/）：无共用变体通过固定比对（含 li-ion/recycle-li-ion-32-gray、battery-recycle/h1-jp-native）。
+按共用标准图标绑定（PR #1659，SCG-20261103；固定比对均未通过，admission 按组已登记图注放行组 canonical）：
+- p3「コンセントから電源プラグを抜く記号」→ unplug/h1-jp-native。
+- p4「充電式電池のリサイクルについて」Li-ion 32 → native/je3000c-kr-78316033-06。
 
 截图（审核用，未入库）：本版与参考版 US/en 的 1280/390 整页截图在会话 scratchpad `work/JE-300C/shots/`。

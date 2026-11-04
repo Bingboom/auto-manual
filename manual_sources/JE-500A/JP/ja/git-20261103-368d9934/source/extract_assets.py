@@ -31,7 +31,8 @@ REPO = next(p for p in Path(__file__).resolve().parents if (p / "build.py").is_f
 sys.path.insert(0, str(REPO))
 
 from tools.asset_pipeline.native_svg import native_symbol_svg  # noqa: E402
-from tools.web.symbol_asset_admission import compare_symbol  # noqa: E402
+from tools.web.shared_symbol_assets import canonical_groups  # noqa: E402
+from tools.web.symbol_asset_admission import _canonical_release, compare_symbol  # noqa: E402
 
 SOURCE = Path(__file__).resolve().parents[1]
 SHARED = "docs/renderers/web/assets/shared/symbols/"
@@ -122,6 +123,28 @@ def symbols(doc):
                        local_path="assets/" + Path(asset["path"]).name,
                        decision="reuse shared Web symbol unchanged (fixed glyph comparison against the print)")
             break
+        if "shared_path" not in row:
+            # No variant passes the fixed comparison: an operator-confirmed canonical
+            # group whose source-verified ja captions list this row's caption releases
+            # its canonical (the same rule the release admission re-runs).
+            groups = canonical_groups()
+            for key in dict.fromkeys(group["canonical"] for group, _ in groups.values()):
+                asset = next(a for a in library["assets"] if a["key"] == key)
+                data = (REPO / SHARED / asset["path"]).read_bytes()
+                try:
+                    released = _canonical_release(groups, {"shared_symbol_key": key}, row["meaning"], "ja",
+                                                  data, Path(asset["path"]).suffix, reference)
+                except ValueError as exc:
+                    tried.append({"shared_symbol_key": key, "status": "rejected", "reason": str(exc)})
+                    continue
+                if released is None:
+                    continue
+                tried.append({"shared_symbol_key": key, "status": "canonical-release", **released})
+                row.update(shared_symbol_key=key, shared_path=SHARED + asset["path"],
+                           local_path="assets/" + Path(asset["path"]).name,
+                           decision="reuse the operator-confirmed canonical of group "
+                                    f"{released['canonical_group']} ({released['canonical_decision']}) unchanged")
+                break
         row["candidates"] = tried
         if "shared_path" not in row:
             # No shared variant matches this print. The print's own native paths are the

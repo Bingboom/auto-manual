@@ -36,10 +36,8 @@ for review: the same model's US English Web package `manual_sources/JE-300D/US/e
   panel are set as text.
 - **LCD glyphs**: 10 of 11 reuse the JE-300D US Web glyphs after the fixed comparison against this print; the
   battery-percentage glyph is this print's native vector paths (the candidate failed the transparency check).
-- **Symbols**: 10 of 12 rows reuse a shared symbol byte for byte. The unplug row and the Li-ion recycling row have
-  no passing shared variant and are **PENDING** the operator's decision; their native-path candidates
-  (`assets/unplug-native-candidate.svg`, `assets/li-ion-native-candidate.svg`) are shown meanwhile and nothing was
-  added to the shared library.
+- **Symbols**: 10 of 12 rows reuse a shared symbol byte for byte. The unplug row (`unplug/h1-jp-native`) and the Li-ion
+  recycling row (`native/je3000c-kr-78316033-06`) bind the operator-confirmed canonical of its shared symbol group (PR #1659, decision SCG-20261103): no variant passes the fixed comparison, and the release admission releases the group canonical because the printed caption is a source-verified caption of that group. Nothing was added to the shared library.
 
 ## Rebuild
 
@@ -60,4 +58,4 @@ Git-only: no Feishu/Base/source-table, queue, asset-registry, build/link or HTML
 target is registered and no shared renderer, component, contract, symbol library or workflow changed. Release
 follows the Git-only transaction
 ([web publish pipeline §2.2](../../../../../code-as-doc/dev/web_publish_pipeline.md#22-git-only-transaction))
-only after the operator accepts the renders and the pending symbols, and authorizes the release.
+only after the operator accepts the renders and authorizes the release.

@@ -106,6 +106,15 @@ class ExplorerJpJaWebTests(unittest.TestCase):
                 self.assertRegex(master["sha256"], "^[0-9a-f]{64}$")
                 self.assertFalse((package / master["filename"]).exists())
 
+    def test_release_symbol_admission(self):
+        from tools.web.symbol_asset_admission import require_symbol_asset_admission
+        for model, package in self.packages():
+            with self.subTest(model=model):
+                manifest = read(package / "source_manifest.json")
+                self.assertEqual(manifest["pending_source_review"], [])
+                rows = require_symbol_asset_admission(package / "web/ja", package, manifest, "ja")
+                self.assertEqual(len(rows), len(manifest["symbol_asset_admission"]["locales"]["ja"]))
+
     def test_shared_symbols_are_byte_identical(self):
         for model, package in self.packages():
             with self.subTest(model=model):

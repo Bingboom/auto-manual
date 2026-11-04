@@ -45,9 +45,10 @@ Shared reference edition for review: the same-generation JE-300C US English Web 
   low battery, 省エネモード, fault code and the two temperature glyphs failed the comparison against their
   candidates (JE-300C US / JE-1000D JP) and are this print's native vector paths.
 - **Symbols** (7 rows): 行為を指示する (`mandatory/h1-jp-native`), 分解・改造禁止, 濡らすこと禁止 and 行為禁止
-  (`native/je1000d-jp-00c43a89-02/-05/-06`) reuse the shared library byte for byte. **PENDING** (no shared variant
-  passes; native candidates written, nothing added to the shared library): コンセントから電源プラグを抜く記号 and
-  製品に濡れた手で触れることを禁止する記号 (p8), and the Li-ion 32 recycling mark (p2).
+  (`native/je1000d-jp-00c43a89-02/-05/-06`) reuse the shared library byte for byte. コンセントから電源プラグを抜く記号
+  (`unplug/h1-jp-native`) and 製品に濡れた手で触れることを禁止する記号 (`native/je1000d-jp-00c43a89-03`, p8) bind the
+  operator-confirmed canonical of its shared symbol group (PR #1659, decision SCG-20261103): no variant passes the fixed comparison, and the release admission releases the group canonical because the printed caption is a source-verified caption of that group. The Li-ion 32 recycling mark (p2) sits outside the symbol table (recycling note) and reuses the group
+  canonical `native/je3000c-kr-78316033-06` byte for byte; it is not a symbol-table admission row.
 
 ## Rebuild
 
@@ -68,4 +69,4 @@ Git-only: no Feishu/Base/source-table, queue, asset-registry, build/link or HTML
 target is registered and no shared renderer, component, contract, symbol library or workflow changed. Release
 follows the Git-only transaction
 ([web publish pipeline §2.2](../../../../../code-as-doc/dev/web_publish_pipeline.md#22-git-only-transaction))
-only after the operator decides the pending symbols, accepts the renders and says 「上线提交发布」.
+only after the operator accepts the renders and says 「上线提交发布」.

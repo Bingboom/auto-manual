@@ -40,9 +40,9 @@ the same model's released US English Web.
   comparison; 9 reuse it (UPS, output voltage, AC wall charging, battery ring, thermometer ×3, 6H inline ×2),
   8 are this print's native vector paths (AC power, input/output power, car/solar charging, battery
   percentage, fault code, energy saving).
-- **Symbols** (`source/symbols.json`): 12 rows; 10 reuse a shared symbol byte for byte. `unplug/` (p3) and
-  `li-ion/` (p4, Li-ion 32) have no passing shared variant and are **PENDING**: this print's native paths
-  are written as `assets/*-native-candidate.svg`; nothing was added to the shared library.
+- **Symbols** (`source/symbols.json`): 12 rows; 10 reuse a shared symbol byte for byte. The `unplug/` row (p3,
+  `unplug/h1-jp-native`) and the Li-ion 32 row (p4, `native/je3000c-kr-78316033-06`) bind the operator-confirmed canonical of its shared symbol group (PR #1659, decision SCG-20261103): no variant passes the fixed comparison, and the release admission releases the group canonical because the printed caption is a source-verified caption of that group.
+  Nothing was added to the shared library.
 
 ## Rebuild
 
@@ -61,5 +61,5 @@ A fresh rebuild is byte-identical to `web/ja`; the prepared-document shared-styl
 
 Git-only candidate: no Feishu/Base/source-table, queue, asset-registry, build/link or HTML_link writes; no
 phase2 or print target is registered and no shared renderer, component, contract, symbol library or workflow
-changed. Release needs the operator's acceptance of the renders, a decision on the PENDING symbols and a
+changed. Release needs the operator's acceptance of the renders and a
 separate merge/release authorization.

@@ -4,11 +4,11 @@
     "assets/symbol_read_manual.svg",
     "assets/symbol_no_open_flame.svg",
     "assets/symbol_keep_away_from_children.svg",
-    "assets/unplug-native-candidate.svg",
+    "assets/h1-jp-unplug.svg",
     "assets/h1-jp-do_not_dismantle.svg",
     "assets/h1-jp-no_wet_hands.svg",
     "assets/h1-jp-mandatory.svg",
-    "assets/li-ion-native-candidate.svg",
+    "assets/je3000c-kr-78316033-06.svg",
     "assets/symbol_weee.png",
     "assets/h1-jp-keep_dry.svg",
     "assets/h1-jp-prohibited.svg",
@@ -40,8 +40,8 @@
     "assets/charging-car.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "50d7c40ed795ebdd048d26520af0350821321c5710dd5a723c42e271113c8bb1",
-  "content_sha256": "91ff347f01d3d5f83f85b32f3f633c0cb782f4fd11e073391be107d1dc6f87c7",
+  "bundle_sha256": "353f1083ae477e0473d0b23a2da3e48c9d4d4524fdde2ef7866ef914b923cb85",
+  "content_sha256": "a8a4dd1288719db84ad7a2ceb26f260c2da5112b0626f589227b0669886f9849",
   "language": "ja",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -56,10 +56,12 @@
       "assets/h1-jp-mandatory.svg": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2",
       "assets/h1-jp-no_wet_hands.svg": "d14a9720367b40d5a498a03d92ad0417bbc70d64fd0cea99c8891e0eb9725450",
       "assets/h1-jp-prohibited.svg": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d",
+      "assets/h1-jp-unplug.svg": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf",
       "assets/inbox-shoulder-belt.png": "97e0f49c9c196037a2757c4386db0b3e21cb1676b3bc3b46a4923efc276add19",
       "assets/inbox-unit.png": "cefb22be7800f204198241310753e803d7f631fa59f1adc3571a0e6d763d5a37",
       "assets/inbox-user-manual.png": "da00fb02e6e05b1f801b7ef5ce871ea60926b2675d6b70c53ecfdb8a39f6627c",
       "assets/je1500d-jp-6ddeef54-symbol-01.svg": "42ca4108169a476569b3d874d9fe73eb444512e4f62a5bf4d5f8f5f3b8a2e6a2",
+      "assets/je3000c-kr-78316033-06.svg": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5",
       "assets/lcd-battery-percentage.svg": "b311756a789994c58371ed6bb38f547b3a01609c731449111d9cb14eedf25ac4",
       "assets/lcd-battery-power.svg": "5500242f2fe21a6b1b32d363f483f23841d34f0055c057e530eecdcfe2de0c1f",
       "assets/lcd-car-charging.svg": "b61431ab2cc4cb0e33ad2c08a2c0e3abf5ef2dccaef6d2378bcc174d798d782c",
@@ -74,7 +76,6 @@
       "assets/lcd-solar-charging.svg": "88841187714e1f4ac64dc7f53859e5fab109009786e19adf45255e892a80801b",
       "assets/lcd-usbc-charging.svg": "e412e3b4ab9c5eb12451b6987ccad1e911dfe7d9bdd432d8200fe2d76f22e9d9",
       "assets/led-light.png": "c142a9af4e6ddbc338e4fa679bc92636f60408fad6026a406690f655c65af884",
-      "assets/li-ion-native-candidate.svg": "c747c86f378f5583c6aa850b99a1f70a4c3e8a54dd78bfaea12bd57577bb238c",
       "assets/overview-front.png": "c7fe0be3e61f5422b7af49ed79160ae7bb569e3d5263c6fc9450f1642baf4593",
       "assets/power-on-off.png": "eaad2e05397bb2db8bb1a1801f321a777ddd2d8144717e99c481a96122723539",
       "assets/shoulder-strap.png": "a47283c35a58970ae260bd512ab663346eb4a49adc48ea6531de77046b28f467",
@@ -82,7 +83,6 @@
       "assets/symbol_no_open_flame.svg": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f",
       "assets/symbol_read_manual.svg": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
       "assets/symbol_weee.png": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
-      "assets/unplug-native-candidate.svg": "808f0db9da53b5bdaf8a35ec8fd400e2d28d02ca82438b222f4b1a0d55f2a77c",
       "assets/usb-output.png": "1ee4a4a5c7da0438fdfdf7d8bd5a9715028e91b5d89d29427a6696c2d35a1523"
     },
     "block_count": 131,
@@ -2286,17 +2286,17 @@
             "assets/symbol_read_manual.svg",
             "assets/symbol_no_open_flame.svg",
             "assets/symbol_keep_away_from_children.svg",
-            "assets/unplug-native-candidate.svg",
+            "assets/h1-jp-unplug.svg",
             "assets/h1-jp-do_not_dismantle.svg",
             "assets/h1-jp-no_wet_hands.svg",
             "assets/h1-jp-mandatory.svg",
-            "assets/li-ion-native-candidate.svg",
+            "assets/je3000c-kr-78316033-06.svg",
             "assets/symbol_weee.png",
             "assets/h1-jp-keep_dry.svg",
             "assets/h1-jp-prohibited.svg"
           ],
           "block_id": "safety:block-0007",
-          "content_sha256": "85f341c659cb19dfee8bb9fafb1b0cdfdd923ed032d773136a4923802e0c700a",
+          "content_sha256": "aeb7ed31f899338e4898d9df98da1a8049b0319a7d561e918336294ef915b0ca",
           "kind": "flow",
           "payload": {
             "component_spec": {
@@ -2322,7 +2322,7 @@
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/unplug-native-candidate.svg",
+                  "asset_ref": "assets/h1-jp-unplug.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 },
@@ -2342,7 +2342,7 @@
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/li-ion-native-candidate.svg",
+                  "asset_ref": "assets/je3000c-kr-78316033-06.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 },
@@ -4180,7 +4180,7 @@
       "skipped_raw": 0,
       "source_path": "source/ja/content.json#safety",
       "source_ref": "transcribed-pdf/safety",
-      "source_sha256": "3bca1a2915d9a2c654b2bfbacd74b137ee55088e69ea2253ee3f665173e3d3c9"
+      "source_sha256": "7568d2772b228a0ff871e255183752ed4ada419851672591bde72c9b129ee7e6"
     },
     {
       "blocks": [

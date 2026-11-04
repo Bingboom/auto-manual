@@ -48,6 +48,10 @@
     "caption_text": "コンセントから電源プラグを抜く記号",
     "caption_mode": "outlined-manual-transcription",
     "caption_sha256": "efe8f6569db0584cc55f0ea0a807df1e030545affadae8c5c98631cb3e109056",
+    "shared_symbol_key": "unplug/h1-jp-native",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-unplug.svg",
+    "local_path": "assets/h1-jp-unplug.svg",
+    "decision": "reuse the operator-confirmed canonical of group unplug (SCG-20261103) unchanged",
     "candidates": [
       {
         "shared_symbol_key": "unplug/h1-jp-native",
@@ -108,12 +112,16 @@
         "shared_symbol_key": "native/je1000d-jp-00c43a89-06",
         "status": "rejected",
         "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "unplug/h1-jp-native",
+        "status": "canonical-release",
+        "max_mean_channel_error": 0.386497,
+        "canonical_group": "unplug",
+        "canonical_decision": "SCG-20261103"
       }
     ],
-    "shared_symbol_key": null,
-    "local_path": "assets/unplug-native-candidate.svg",
-    "decision": "PENDING operator decision: no shared variant passes; native paths proposed as a new shared variant",
-    "sha256": "0a0a4ae0d861664f81a836ef5390968e354e4b2e8420e1020f188ac7861cd010"
+    "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf"
   },
   {
     "language": "ja",
@@ -314,6 +322,10 @@
     "caption_text": "製品に濡れた手で触れることを禁止する記号",
     "caption_mode": "outlined-manual-transcription",
     "caption_sha256": "621d02553f475d07cc1fcf64506445e33a302695dea78b7c0e06efb62ac5ec92",
+    "shared_symbol_key": "native/je1000d-jp-00c43a89-03",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/je1000d-jp-00c43a89-symbol-03.svg",
+    "local_path": "assets/je1000d-jp-00c43a89-symbol-03.svg",
+    "decision": "reuse the operator-confirmed canonical of group no-wet-hands (SCG-20261103) unchanged",
     "candidates": [
       {
         "shared_symbol_key": "no-wet-hands/h1-jp-native",
@@ -374,12 +386,16 @@
         "shared_symbol_key": "native/je1000d-jp-00c43a89-06",
         "status": "rejected",
         "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1000d-jp-00c43a89-03",
+        "status": "canonical-release",
+        "max_mean_channel_error": 0.021742,
+        "canonical_group": "no-wet-hands",
+        "canonical_decision": "SCG-20261103"
       }
     ],
-    "shared_symbol_key": null,
-    "local_path": "assets/no-wet-hands-native-candidate.svg",
-    "decision": "PENDING operator decision: no shared variant passes; native paths proposed as a new shared variant",
-    "sha256": "6713ee39b4b210d68457efdc4f6698451c65e3436e61d17ea00e5677a1c01cdb"
+    "sha256": "585a0c72abdb9fc1d69d31554d249730f1361dfc49a501423dd0204e0637a387"
   },
   {
     "language": "ja",
@@ -728,6 +744,10 @@
     "caption_text": "充電式電池のリサイクルについて",
     "caption_mode": "outlined-manual-transcription",
     "caption_sha256": "1d09226a68f3896a7a1227569f80ebb78cebe7ac16f7f02843feed0108d5a53d",
+    "shared_symbol_key": "native/je3000c-kr-78316033-06",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/je3000c-kr-78316033-06.svg",
+    "local_path": "assets/je3000c-kr-78316033-06.svg",
+    "decision": "reuse the operator-confirmed canonical of group li-ion-32 (SCG-20261103) unchanged",
     "candidates": [
       {
         "shared_symbol_key": "li-ion/recycle-li-ion",
@@ -778,11 +798,15 @@
         "shared_symbol_key": "li-ion/recycle-li-ion-label-dark-cb256e64",
         "status": "rejected",
         "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je3000c-kr-78316033-06",
+        "status": "canonical-release",
+        "max_mean_channel_error": 0.210888,
+        "canonical_group": "li-ion-32",
+        "canonical_decision": "SCG-20261103"
       }
     ],
-    "shared_symbol_key": null,
-    "local_path": "assets/li-ion-native-candidate.svg",
-    "decision": "PENDING operator decision: no shared variant passes; native paths proposed as a new shared variant",
-    "sha256": "5d3aaa7eec90987a6ea0bf17d43b46d328c4ac2347fb65fa4a29810476f087ca"
+    "sha256": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5"
   }
 ]

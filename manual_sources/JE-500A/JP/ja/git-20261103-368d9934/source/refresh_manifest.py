@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 from pathlib import Path
 import sys
 
@@ -70,6 +71,22 @@ def refresh():
     # The shared symbol admission re-reads these source-bound rows at release.
     keys = ("asset_ref", "asset_sha256", "shared_symbol_key", "physical_page", "drawing_indices",
             "glyph_bbox", "caption_bbox", "row_bbox", "caption_text", "caption_sha256", "caption_mode")
+    # Admission covers the rows the shared symbol table renders; a mark set outside
+    # the table (e.g. the recycling note) is shared bytes but not a symbol-table row.
+    tabled = set()
+
+    def collect(item):
+        if isinstance(item, dict):
+            if item.get("component_id") == "HB-TABLE-SYMBOL-ICON":
+                tabled.update(re.findall(r"assets/[A-Za-z0-9_.\-]+", json.dumps(item)))
+            for value in item.values():
+                collect(value)
+        elif isinstance(item, list):
+            for value in item:
+                collect(value)
+
+    collect(json.loads((SOURCE / "source/ja/content.json").read_text()))
+    symbols = [row for row in symbols if row["local_path"] in tabled]
     manifest["symbol_asset_admission"] = {
         "schema_version": "auto-manual-symbol-asset-admission/v1",
         "locales": {language: [{key: {"asset_ref": row["local_path"], "asset_sha256": row.get("sha256")}.get(key, row.get(key))

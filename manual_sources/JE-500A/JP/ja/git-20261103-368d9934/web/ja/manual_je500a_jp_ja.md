@@ -112,7 +112,7 @@
 
 ### 充電式電池のリサイクルについて
 
-<figure class="hb-reference-figure" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="recycle-li-ion" data-source-fragment-sha256="7d55e963fb892fb38c109b7dd1d14abe72609f9a77e3c5f2cca5e5ebf186238f" data-step-captions="embedded"><div class="hb-reference-semantic" data-reference-id="recycle-li-ion.semantic"><img alt="Li-ion 32" class="hb-reference-art hb-composite-art" src="assets/li-ion-native-candidate.svg"/></div></figure>
+<figure class="hb-reference-figure" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="recycle-li-ion" data-source-fragment-sha256="7d55e963fb892fb38c109b7dd1d14abe72609f9a77e3c5f2cca5e5ebf186238f" data-step-captions="embedded"><div class="hb-reference-semantic" data-reference-id="recycle-li-ion.semantic"><img alt="Li-ion 32" class="hb-reference-art hb-composite-art" src="assets/je3000c-kr-78316033-06.svg"/></div></figure>
 
 <p>本機はリサイクル可能な充電池を内蔵しています。<br/>この商品を廃棄する場合は、当社のカスタマーサポートにご連絡ください。<br/>充電池の取りはずしはお客様自身では行わないでください。</p>
 

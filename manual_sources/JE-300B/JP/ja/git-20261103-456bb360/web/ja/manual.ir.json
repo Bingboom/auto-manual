@@ -1,6 +1,6 @@
 {
   "asset_refs": [
-    "assets/li-ion-native-candidate.svg",
+    "assets/je3000c-kr-78316033-06.svg",
     "assets/overview.png",
     "assets/lcd-map.png",
     "assets/lcd-battery-icon.svg",
@@ -12,9 +12,9 @@
     "assets/charging-ac.png",
     "assets/charging-solar.png",
     "assets/charging-car.png",
-    "assets/unplug-native-candidate.svg",
+    "assets/h1-jp-unplug.svg",
     "assets/je1000d-jp-00c43a89-symbol-02.svg",
-    "assets/no-wet-hands-native-candidate.svg",
+    "assets/je1000d-jp-00c43a89-symbol-03.svg",
     "assets/h1-jp-mandatory.svg",
     "assets/je1000d-jp-00c43a89-symbol-05.svg",
     "assets/je1000d-jp-00c43a89-symbol-06.svg",
@@ -28,8 +28,8 @@
     "assets/app-results.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "06d2a1a4e3cf8d3a6f5739b630c8343fdbcd0a47f2ae1601ae9030aeb6d45e2c",
-  "content_sha256": "bef926eb9394316b5071084d3c950fbc4df073eb4b9c8ed29e96342975dee063",
+  "bundle_sha256": "1da7ec85f3ebc787b36cf3757fa4047f3cba9b13b3f0359ac5f55d05f39e1cde",
+  "content_sha256": "5fd106a57c87df79ff232b7213caee4276b701e22eaf0e692c46e5eb0236b82a",
   "language": "ja",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -42,13 +42,16 @@
       "assets/charging-car.png": "eea5f7474f3febc3b4e67d408956d55eadbd23029c1fd6ff7c7e3634b60abcbb",
       "assets/charging-solar.png": "4aed844f14b83390e1f194f0ec00d626b9af4d0790eb0e2313db9acbec001fe2",
       "assets/h1-jp-mandatory.svg": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2",
+      "assets/h1-jp-unplug.svg": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf",
       "assets/inbox-ac-cable.png": "fbab666613d6bc04561044fd4f524635dccfb36f526231cd57530a8d5e54433e",
       "assets/inbox-unit.png": "3b0666779610180e3cce1f40cfd118ad6e47bb4c3cc5a31a90108a56b313b7b4",
       "assets/inbox-user-manual.png": "37ac9d50ef51fbf9c91857a1d7a0bd6698c87a636cf01f50d54f02581a64834a",
       "assets/inbox-warranty.png": "7943929e85aadb1b5a0bf59fcd4baa0d3d63006063c396c0af9041008a879220",
       "assets/je1000d-jp-00c43a89-symbol-02.svg": "0766a51f9ad7d433bed62a7c1ddbacc19ad7c7b68bf55938d5cdbab902b9ea04",
+      "assets/je1000d-jp-00c43a89-symbol-03.svg": "585a0c72abdb9fc1d69d31554d249730f1361dfc49a501423dd0204e0637a387",
       "assets/je1000d-jp-00c43a89-symbol-05.svg": "4728b4a0ab80e8376ff756d9af98d92c1906d3461e44eb4905899b6212cc003c",
       "assets/je1000d-jp-00c43a89-symbol-06.svg": "a5390e01e5ed9ba225377ba6b13de7523f86b8139e4686cf4534ebb2c1048641",
+      "assets/je3000c-kr-78316033-06.svg": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5",
       "assets/lcd-battery-icon.svg": "5500242f2fe21a6b1b32d363f483f23841d34f0055c057e530eecdcfe2de0c1f",
       "assets/lcd-energy-saving.svg": "2ec35ee3a80d112ade030bb54c29bd877804cfbd0848cd9ef5fcf7f4250e124b",
       "assets/lcd-fault-code.svg": "9c59ce4d35a1805714ce1c314f6ffbaa738a561d91a7de6dda8ca204b053458c",
@@ -56,10 +59,7 @@
       "assets/lcd-low-battery.svg": "3f15994f7d22feb032b891d8eaa35a29296153084e4f0337a5db67375fb52862",
       "assets/lcd-low-temperature.svg": "d084b5c7071a68212dcaeacc4b130ccaee40ec01e8f61e6ddd0e894f6534575f",
       "assets/lcd-map.png": "716ee7e2e22266a79baa6b83c578b1b56d7e9746f1c930c677613ee7da4b2257",
-      "assets/li-ion-native-candidate.svg": "5d3aaa7eec90987a6ea0bf17d43b46d328c4ac2347fb65fa4a29810476f087ca",
-      "assets/no-wet-hands-native-candidate.svg": "6713ee39b4b210d68457efdc4f6698451c65e3436e61d17ea00e5677a1c01cdb",
-      "assets/overview.png": "0cced5f207084662dd37c5016fece05d89d0b1bbc850f712415768ccd3be8aff",
-      "assets/unplug-native-candidate.svg": "0a0a4ae0d861664f81a836ef5390968e354e4b2e8420e1020f188ac7861cd010"
+      "assets/overview.png": "0cced5f207084662dd37c5016fece05d89d0b1bbc850f712415768ccd3be8aff"
     },
     "block_count": 109,
     "component_inventory": {
@@ -2894,17 +2894,17 @@
         },
         {
           "asset_refs": [
-            "assets/li-ion-native-candidate.svg"
+            "assets/je3000c-kr-78316033-06.svg"
           ],
           "block_id": "specifications:block-0005",
-          "content_sha256": "06ee50750bfd2eceacadb7d66965baa1f656565fa1effa0764f8761e13e7d1ae",
+          "content_sha256": "84d0b801b6abe6c6193c46e038e26e43ef722dc976bc20ff212342ebb083e152",
           "kind": "flow",
           "payload": {
             "children": [
               {
                 "alt": "Li-ion 32",
                 "kind": "image",
-                "source": "assets/li-ion-native-candidate.svg"
+                "source": "assets/je3000c-kr-78316033-06.svg"
               }
             ],
             "kind": "paragraph",
@@ -2991,7 +2991,7 @@
       "skipped_raw": 0,
       "source_path": "source/ja/content.json#specifications",
       "source_ref": "transcribed-pdf/specifications",
-      "source_sha256": "1526555b79b3e734b84b91396c130c9524af0cc671c23950e693f9a6dc9c8710"
+      "source_sha256": "601c4405a71429a9ac3cbc60c3a6487f56dd8ff660066af37b8a636c1af783c9"
     },
     {
       "blocks": [
@@ -5047,21 +5047,21 @@
         },
         {
           "asset_refs": [
-            "assets/unplug-native-candidate.svg",
+            "assets/h1-jp-unplug.svg",
             "assets/je1000d-jp-00c43a89-symbol-02.svg",
-            "assets/no-wet-hands-native-candidate.svg",
+            "assets/je1000d-jp-00c43a89-symbol-03.svg",
             "assets/h1-jp-mandatory.svg",
             "assets/je1000d-jp-00c43a89-symbol-05.svg",
             "assets/je1000d-jp-00c43a89-symbol-06.svg"
           ],
           "block_id": "safety:block-0008",
-          "content_sha256": "02c8c18d63a96c9561f53d38470b0b21379e5105c4f1b295ef2c94a7afcf9240",
+          "content_sha256": "6f93e81e94bfa591375264790b018f4d194c4e267935c1a5318cad0d883c7a80",
           "kind": "flow",
           "payload": {
             "component_spec": {
               "assets": [
                 {
-                  "asset_ref": "assets/unplug-native-candidate.svg",
+                  "asset_ref": "assets/h1-jp-unplug.svg",
                   "locale_policy": "exact",
                   "role": "icons"
                 },
@@ -5071,7 +5071,7 @@
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/no-wet-hands-native-candidate.svg",
+                  "asset_ref": "assets/je1000d-jp-00c43a89-symbol-03.svg",
                   "locale_policy": "exact",
                   "role": "icons"
                 },
@@ -6882,7 +6882,7 @@
       "skipped_raw": 0,
       "source_path": "source/ja/content.json#safety",
       "source_ref": "transcribed-pdf/safety",
-      "source_sha256": "2643de6ab0a430fcf1025e351bd69af9b3a64a2f0fe739c2659189c0f3eb8b26"
+      "source_sha256": "0d343d0ea8100b242091d04ce9fcb85f8d680a72787b587c0d22b8cda0976bfe"
     },
     {
       "blocks": [

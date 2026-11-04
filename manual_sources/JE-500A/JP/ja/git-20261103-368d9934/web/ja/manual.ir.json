@@ -9,7 +9,7 @@
     "assets/inbox-unit.png",
     "assets/inbox-ac-cable.png",
     "assets/inbox-user-manual.png",
-    "assets/li-ion-native-candidate.svg",
+    "assets/je3000c-kr-78316033-06.svg",
     "assets/overview-front.png",
     "assets/overview-right.png",
     "assets/lcd-display.png",
@@ -40,8 +40,8 @@
     "assets/contact-qr.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "6f037f679710a2c17672da1fccaf2d54285920fd347a949c58e473b0dd2c49a6",
-  "content_sha256": "5aef34bafc9e1b891940142512a14d8e36aadc74b33d71e5f73807ed242d2706",
+  "bundle_sha256": "67680772461855c932c45e17058a876575a2f8d90f7eea630a6d4abaffe22688",
+  "content_sha256": "3a9dd7978b62c03df7a69b29bca1aebde8c0e606aa350be8fa3bad84e146f014",
   "language": "ja",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -64,6 +64,7 @@
       "assets/inbox-user-manual.png": "b4b3fc0fd66a397e1dfd69412aced895eb74cdb6fa6c24116bf4779300e0a513",
       "assets/je1500d-jp-6ddeef54-symbol-05.svg": "e5988a0e4dfcfba253ad8b85f36ec213e8d7c29584160c05a7e3cec0344ea207",
       "assets/je1500d-jp-6ddeef54-symbol-07.svg": "f062577eefb0ba67932bf2b0faec0617a3cafd366b185d69434659ac365b70e3",
+      "assets/je3000c-kr-78316033-06.svg": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5",
       "assets/lcd-ac-power.svg": "ae74b5535c88c6f612bfc8fe4f187bb3b106b6b039ac98a809112b6584d1a7c0",
       "assets/lcd-ac-wall-charging.svg": "8fe4024f27f2963349cc4255a2673d88fac8a7565944ec62b5bc52337bdc284b",
       "assets/lcd-battery-percentage.svg": "accfd308ddcfa0f8075eb23a9a2079529005a8632bde6df3da3255d82596264c",
@@ -79,7 +80,6 @@
       "assets/lcd-solar-charging.svg": "c4e8ecbbc808bf7d20dd2147e9b066b2bb29fb6bb39cc93c7b8011e7db90ffee",
       "assets/lcd-ups.svg": "0163808fd1fe991b44267a5efb30ffe510796372cdc2a87e1b03053d08ea1a66",
       "assets/led-light.png": "92035422deddb27eadbecd927a81366ed63f40e85f87f7183eecebbde35c04dc",
-      "assets/li-ion-native-candidate.svg": "f888487f2f80bbd33df45e5bd64fc2dfb1efde1a51cb50ae535ad1f72877f98c",
       "assets/overview-front.png": "bb768e6fa64860dcb3d1228bb4b811b7a7d4b8765cda52323f97772a84144f65",
       "assets/overview-right.png": "2ae0012bf60b5333dbba5c78a8c5f0aa318b9364bcf58233263d320b48452f01",
       "assets/power-on-off.png": "b90e64e0045398e3af44da7eb9e797a1915578e86bbaf292dfb65beb3dc07387",
@@ -5211,23 +5211,23 @@
         },
         {
           "asset_refs": [
-            "assets/li-ion-native-candidate.svg"
+            "assets/je3000c-kr-78316033-06.svg"
           ],
           "block_id": "in_the_box:block-0007",
-          "content_sha256": "782d81d48142c09eaa3980f7807edd4f3120406caf463725b9662a2191673fc9",
+          "content_sha256": "3a7f8c9034e1c4a965db1f1ccc95ac69ba351d758c8c6f2d8e46de4682e931a1",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
               {
                 "alt": "Li-ion 32",
                 "kind": "image",
-                "source": "assets/li-ion-native-candidate.svg"
+                "source": "assets/je3000c-kr-78316033-06.svg"
               }
             ],
             "component_spec": {
               "assets": [
                 {
-                  "asset_ref": "assets/li-ion-native-candidate.svg",
+                  "asset_ref": "assets/je3000c-kr-78316033-06.svg",
                   "locale_policy": "exact",
                   "role": "source_art"
                 }
@@ -5311,7 +5311,7 @@
       "skipped_raw": 0,
       "source_path": "source/ja/content.json#in_the_box",
       "source_ref": "transcribed-pdf/in_the_box",
-      "source_sha256": "23e2901c245151a37691f7d16d2debb6e3ab69401aa5317a71180c3c9b16ae4d"
+      "source_sha256": "84f07d24fe3c72b24e01f40bde972ab5bf683c58cf14d2dc9a7a97552fe32542"
     },
     {
       "blocks": [

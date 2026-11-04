@@ -499,6 +499,10 @@
     "caption_text": "充電式電池のリサイクルについて",
     "caption_mode": "outlined-manual-transcription",
     "caption_sha256": "849569e5477b395874418af1480111affa38f211476533d302c87fe4bcc3aa52",
+    "shared_symbol_key": "native/je3000c-kr-78316033-06",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/je3000c-kr-78316033-06.svg",
+    "local_path": "assets/je3000c-kr-78316033-06.svg",
+    "decision": "reuse the operator-confirmed canonical of group li-ion-32 (SCG-20261103) unchanged",
     "candidates": [
       {
         "shared_symbol_key": "li-ion/recycle-li-ion",
@@ -549,11 +553,15 @@
         "shared_symbol_key": "li-ion/recycle-li-ion-label-dark-cb256e64",
         "status": "rejected",
         "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je3000c-kr-78316033-06",
+        "status": "canonical-release",
+        "max_mean_channel_error": 0.187765,
+        "canonical_group": "li-ion-32",
+        "canonical_decision": "SCG-20261103"
       }
     ],
-    "shared_symbol_key": null,
-    "local_path": "assets/li-ion-native-candidate.svg",
-    "decision": "PENDING operator decision: no shared variant passes; native paths proposed as a new shared variant",
-    "sha256": "f888487f2f80bbd33df45e5bd64fc2dfb1efde1a51cb50ae535ad1f72877f98c"
+    "sha256": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5"
   }
 ]

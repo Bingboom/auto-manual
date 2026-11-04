@@ -6,8 +6,8 @@ single-language manual of the Jackery ポータブル電源 500 New (model JE-50
 `reczz28SfbsHbzWg` (material 38-0001-000963, project HTE132). Route `JE-500A/JP/ja/md`, `legacy_default`.
 
 **Status: `review-candidate-no-release-authorization`.** Not approved: there is no `source/approval.json`
-and the IR is not publication-eligible. One symbol row (Li-ion 32) is PENDING an operator decision (no
-shared variant passes the fixed comparison). Review points are in [`audit/review.zh.md`](audit/review.zh.md).
+and the IR is not publication-eligible. The Li-ion 32 recycling mark reuses the operator-confirmed
+group canonical (PR #1659). Review points are in [`audit/review.zh.md`](audit/review.zh.md).
 
 ## Source authority
 
@@ -43,8 +43,9 @@ precedent: `manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2` (checked aga
   unplug `native/je1500d-jp-6ddeef54-05`, no-wet-hands `native/je1500d-jp-6ddeef54-07`, do-not-dismantle /
   mandatory / keep-dry / prohibited `*/h1-jp-native`. The `*-dark-5c065d11` variants (no-open-flame,
   keep-away-from-children) belong to families this print does not use. The Li-ion 32 recycling mark (p7)
-  has no passing shared variant (incl. `li-ion/recycle-li-ion-32-gray`): its native paths are written as
-  `assets/li-ion-native-candidate.svg` and the row is PENDING; nothing was added to the shared library.
+  sits outside the symbol table (recycling note); no variant passes the fixed comparison, so it reuses the
+  operator-confirmed canonical of its group, `native/je3000c-kr-78316033-06` (PR #1659, SCG-20261103), byte for byte.
+  It is not a symbol-table admission row. Nothing was added to the shared library.
 - **LCD glyphs**: 12 of 13 reuse the JE-500A US/en glyphs unchanged (they pass the fixed comparison against
   this print); battery percentage is this print's native vector paths (the US package made the same call).
 - **Panels** (`source/figures.json`, each with a `reuse_review`): the 本体 inbox card reuses the US
@@ -70,4 +71,4 @@ Git-only: no Feishu/Base/source-table, queue, asset-registry, build/link or HTML
 print target is registered and no shared renderer, component, contract, symbol library or workflow changed.
 Release follows the Git-only transaction
 ([web publish pipeline §2.2](../../../../../code-as-doc/dev/web_publish_pipeline.md#22-git-only-transaction))
-only after the operator accepts the renders, decides the PENDING symbol row and says 「上线提交发布」.
+only after the operator accepts the renders and says 「上线提交发布」.

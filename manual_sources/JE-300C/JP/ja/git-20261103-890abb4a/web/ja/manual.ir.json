@@ -5,12 +5,12 @@
     "assets/symbol_no_open_flame.svg",
     "assets/symbol_keep_away_from_children.svg",
     "assets/screwdriver-prohibited-tw-477dfbd7.svg",
-    "assets/unplug-native-candidate.svg",
+    "assets/h1-jp-unplug.svg",
     "assets/je1500d-jp-6ddeef54-symbol-07.svg",
     "assets/h1-jp-keep_dry.svg",
     "assets/h1-jp-mandatory.svg",
     "assets/h1-jp-prohibited.svg",
-    "assets/li-ion-native-candidate.svg",
+    "assets/je3000c-kr-78316033-06.svg",
     "assets/symbol_weee.png",
     "assets/inbox-unit.png",
     "assets/inbox-ac-cable.png",
@@ -48,8 +48,8 @@
     "assets/contact-qr.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "24f9a64d1203bf143bebbb6b9401eaf627674e538b8e45355bb69d5c88bcb0ea",
-  "content_sha256": "3efbfa334324e38117fc68d896d883a15f9fa233a19f733a5b053a04cd97c32c",
+  "bundle_sha256": "ef679ea1f30ee27a9bdb989ae917bc9e64a30569c987c1f4c1f5d9c6df2617a2",
+  "content_sha256": "2cdc0dbfb95446b17fad6c7ae738520df5246f986ca1eb45506334da156e98ef",
   "language": "ja",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -68,11 +68,13 @@
       "assets/h1-jp-keep_dry.svg": "fbd39d4686c3a26a73fa4c2dfec299d8055d9b9446edd973a397ce6d4e21a836",
       "assets/h1-jp-mandatory.svg": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2",
       "assets/h1-jp-prohibited.svg": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d",
+      "assets/h1-jp-unplug.svg": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf",
       "assets/inbox-ac-cable.png": "9215ebba453b5555b01c2db74949991d258737e9e92bcb66d6a14afb0d64501a",
       "assets/inbox-unit.png": "075656f1f4cb3c03561df5b191e2d691d8a2cf77fd755012d9d07a80e1afa9c0",
       "assets/inbox-user-manual.png": "c4034d2cd6bc9ea427af8a3e2633f1b0b16db266e98425758b084c607083b7f1",
       "assets/je1500d-jp-6ddeef54-symbol-07.svg": "f062577eefb0ba67932bf2b0faec0617a3cafd366b185d69434659ac365b70e3",
       "assets/je3000c-kr-78316033-02.svg": "9314a0d781b00c728c10576206b64cde9c2cb8eaf47c294c418869d996878adf",
+      "assets/je3000c-kr-78316033-06.svg": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5",
       "assets/lcd-ac-power.svg": "0a8a91b35dff67332662afcad11d05ffb196b99f2f6ecacc76d9a51cc8dd5d18",
       "assets/lcd-ac-wall-charging.svg": "8fe4024f27f2963349cc4255a2673d88fac8a7565944ec62b5bc52337bdc284b",
       "assets/lcd-battery-percentage.svg": "8b1dd7257badeb565d2ca14c591a64730460e5d8fc489b32a1e4058e5b835d67",
@@ -89,7 +91,6 @@
       "assets/lcd-temperature.svg": "939775d5eb4d88852ce7699cddc75262eae7c74d412ce2ceebe3bb239fb4897c",
       "assets/lcd-ups.svg": "0163808fd1fe991b44267a5efb30ffe510796372cdc2a87e1b03053d08ea1a66",
       "assets/led-light.png": "c692eeee7ddebc2478973d71a782153c5c1d7eb5ce196df143bdb78f96749914",
-      "assets/li-ion-native-candidate.svg": "91b62a553de99767361bf2c2b643fe70e5fb3f8dbe18377212aeda134161cec2",
       "assets/overview-front.png": "2aec1388d5c485fed4c614e4efbdd1518e9720222db49a5a74f084fc4c9e2a6f",
       "assets/overview-right.png": "e52122d7415d01b00e100df4a3b6080f08e5f179660e104708490b141687538f",
       "assets/power-on-off.png": "d4a47d5cf3e0db9d48c36374107e4fa4a018acdb48a3d9c010cc995e0127d78b",
@@ -100,7 +101,6 @@
       "assets/symbol_weee.png": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
       "assets/ts-high-temperature.svg": "939775d5eb4d88852ce7699cddc75262eae7c74d412ce2ceebe3bb239fb4897c",
       "assets/ts-low-temperature.svg": "c53c2100f60c81abcbf113e3ad307c99917ff36954b39af233881f17d69d81a7",
-      "assets/unplug-native-candidate.svg": "bc046a6bb51ea30c5c741f33dbca65e17834a53e66cfbf74a2e289df902b3f60",
       "assets/ups.png": "004e0665d69c4ecfa5173c6ee1ac485aa848ef2d17d499980541a6437d19edfb"
     },
     "block_count": 139,
@@ -2308,14 +2308,14 @@
             "assets/symbol_no_open_flame.svg",
             "assets/symbol_keep_away_from_children.svg",
             "assets/screwdriver-prohibited-tw-477dfbd7.svg",
-            "assets/unplug-native-candidate.svg",
+            "assets/h1-jp-unplug.svg",
             "assets/je1500d-jp-6ddeef54-symbol-07.svg",
             "assets/h1-jp-keep_dry.svg",
             "assets/h1-jp-mandatory.svg",
             "assets/h1-jp-prohibited.svg"
           ],
           "block_id": "safety:block-0007",
-          "content_sha256": "a34473de48655369ee4ddcd21460ab0d19ac5eccac41d5a8807e65705a1b1082",
+          "content_sha256": "7c6a78911093e22c9a04f1a3af3fc29c43d8593e3f822b65d724278d230b9a83",
           "kind": "flow",
           "payload": {
             "component_spec": {
@@ -2346,7 +2346,7 @@
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/unplug-native-candidate.svg",
+                  "asset_ref": "assets/h1-jp-unplug.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 },
@@ -2487,17 +2487,17 @@
         },
         {
           "asset_refs": [
-            "assets/li-ion-native-candidate.svg",
+            "assets/je3000c-kr-78316033-06.svg",
             "assets/symbol_weee.png"
           ],
           "block_id": "safety:block-0008",
-          "content_sha256": "f750e97d8abc039796183feb90f5a4129ef9fea69e3e5fa7abac1b0e094df89a",
+          "content_sha256": "9471a216577c8483aa5b73752448ee84775cd5ced685989f0759bd2a04a402cd",
           "kind": "flow",
           "payload": {
             "component_spec": {
               "assets": [
                 {
-                  "asset_ref": "assets/li-ion-native-candidate.svg",
+                  "asset_ref": "assets/je3000c-kr-78316033-06.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 },
@@ -4485,7 +4485,7 @@
       "skipped_raw": 0,
       "source_path": "source/ja/content.json#safety",
       "source_ref": "transcribed-pdf/safety",
-      "source_sha256": "5baaa409bd58529b00dbf224ce57814b7d9be6629e7505284b98c87d80960033"
+      "source_sha256": "e6cb5ac47a0b59622d9c4e8cfec2fe4d91a8bf5278f8e8468d2a7cb55f0d5e80"
     },
     {
       "blocks": [

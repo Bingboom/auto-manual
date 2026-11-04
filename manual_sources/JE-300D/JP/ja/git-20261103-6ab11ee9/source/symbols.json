@@ -306,6 +306,10 @@
     "caption_text": "コンセントから電源プラグを抜く記号",
     "caption_mode": "outlined-manual-transcription",
     "caption_sha256": "5571eb50c5d9007f6dd1cbbad1ed1728a35ac2675b9d1e980e19bb9dff611ce0",
+    "shared_symbol_key": "unplug/h1-jp-native",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-unplug.svg",
+    "local_path": "assets/h1-jp-unplug.svg",
+    "decision": "reuse the operator-confirmed canonical of group unplug (SCG-20261103) unchanged",
     "candidates": [
       {
         "shared_symbol_key": "unplug/h1-jp-native",
@@ -366,12 +370,16 @@
         "shared_symbol_key": "native/je1000d-jp-00c43a89-06",
         "status": "rejected",
         "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "unplug/h1-jp-native",
+        "status": "canonical-release",
+        "max_mean_channel_error": 0.113543,
+        "canonical_group": "unplug",
+        "canonical_decision": "SCG-20261103"
       }
     ],
-    "shared_symbol_key": null,
-    "local_path": "assets/unplug-native-candidate.svg",
-    "decision": "PENDING operator decision: no shared variant passes; native paths proposed as a new shared variant",
-    "sha256": "808f0db9da53b5bdaf8a35ec8fd400e2d28d02ca82438b222f4b1a0d55f2a77c"
+    "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf"
   },
   {
     "language": "ja",
@@ -639,6 +647,10 @@
     "caption_text": "充電式電池のリサイクルについて 本機はリサイクル可能な充電池を内蔵しています。 この商品を廃棄する場合は、当社のカスタマーサポートにご連絡ください。 充電池の取りはずしはお客様自身では行わないでください。",
     "caption_mode": "outlined-manual-transcription",
     "caption_sha256": "5ff07a2d2a0fa4fc99a43bda8851afb2b0a8f0ac0907e08947652336037b4716",
+    "shared_symbol_key": "native/je3000c-kr-78316033-06",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/je3000c-kr-78316033-06.svg",
+    "local_path": "assets/je3000c-kr-78316033-06.svg",
+    "decision": "reuse the operator-confirmed canonical of group li-ion-32 (SCG-20261103) unchanged",
     "candidates": [
       {
         "shared_symbol_key": "li-ion/recycle-li-ion",
@@ -739,12 +751,16 @@
         "shared_symbol_key": "li-ion/recycle-li-ion-label-dark-cb256e64",
         "status": "rejected",
         "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je3000c-kr-78316033-06",
+        "status": "canonical-release",
+        "max_mean_channel_error": 0.030279,
+        "canonical_group": "li-ion-32",
+        "canonical_decision": "SCG-20261103"
       }
     ],
-    "shared_symbol_key": null,
-    "local_path": "assets/li-ion-native-candidate.svg",
-    "decision": "PENDING operator decision: no shared variant passes; native paths proposed as a new shared variant",
-    "sha256": "c747c86f378f5583c6aa850b99a1f70a4c3e8a54dd78bfaea12bd57577bb238c"
+    "sha256": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5"
   },
   {
     "language": "ja",

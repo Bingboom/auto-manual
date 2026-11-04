@@ -75,9 +75,7 @@
   "source_authority": "operator-designated Japanese single-language PDF (「单语言说明书」) from the 发布文档管理 Base row (read-only download); the original Japanese governs all copy (封面和目录不上网页; 版面以 PDF 为准; 不改任何日文原文).",
   "publication_status": "review-candidate-no-release-authorization",
   "publication_eligible": false,
-  "pending_source_review": [
-    "symbol rows without a shared variant await the operator's decision"
-  ],
+  "pending_source_review": [],
   "language_scope": "single",
   "live_bitable_dependency": false,
   "reference_edition": "manual_sources/JE-300D/US/en/git-20261028-d3f47ff3",
@@ -452,9 +450,9 @@
           "caption_mode": "outlined-manual-transcription"
         },
         {
-          "asset_ref": "assets/unplug-native-candidate.svg",
-          "asset_sha256": "808f0db9da53b5bdaf8a35ec8fd400e2d28d02ca82438b222f4b1a0d55f2a77c",
-          "shared_symbol_key": null,
+          "asset_ref": "assets/h1-jp-unplug.svg",
+          "asset_sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf",
+          "shared_symbol_key": "unplug/h1-jp-native",
           "physical_page": 3,
           "drawing_indices": [
             6675,
@@ -602,9 +600,9 @@
           "caption_mode": "outlined-manual-transcription"
         },
         {
-          "asset_ref": "assets/li-ion-native-candidate.svg",
-          "asset_sha256": "c747c86f378f5583c6aa850b99a1f70a4c3e8a54dd78bfaea12bd57577bb238c",
-          "shared_symbol_key": null,
+          "asset_ref": "assets/je3000c-kr-78316033-06.svg",
+          "asset_sha256": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5",
+          "shared_symbol_key": "native/je3000c-kr-78316033-06",
           "physical_page": 3,
           "drawing_indices": [
             6726,
@@ -931,8 +929,8 @@
     },
     {
       "path": "docs/renderers/web/assets/shared/symbols/manifest.json",
-      "size": 94792,
-      "sha256": "99237c9081076bfc4d7439029eb7f6440fc0b6983b2d48a0f3025c4e4673b969"
+      "size": 138544,
+      "sha256": "08e6473aa4a283a9d9637fcc515eb79bfbbfa18dcbf16409295c8b5e77b0b00c"
     },
     {
       "path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-do_not_dismantle.svg",
@@ -960,9 +958,19 @@
       "sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d"
     },
     {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-unplug.svg",
+      "size": 2569,
+      "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf"
+    },
+    {
       "path": "docs/renderers/web/assets/shared/symbols/native-v1/je1500d-jp-6ddeef54-symbol-01.svg",
       "size": 2205,
       "sha256": "42ca4108169a476569b3d874d9fe73eb444512e4f62a5bf4d5f8f5f3b8a2e6a2"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/je3000c-kr-78316033-06.svg",
+      "size": 6314,
+      "sha256": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5"
     },
     {
       "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_keep_away_from_children.svg",
@@ -1046,8 +1054,8 @@
     },
     {
       "path": "tools/asset_pipeline/native_svg.py",
-      "size": 9464,
-      "sha256": "cc51c407aef9dca7d95338e6c64a38ddb7e890de5a067e0dc9812100b3c86fd7"
+      "size": 10550,
+      "sha256": "6f778d16e3108fe81a17925528e755ae37645ba7691033f3417718593727985b"
     },
     {
       "path": "tools/asset_pipeline/package.py",
@@ -1821,8 +1829,8 @@
     },
     {
       "path": "tools/web/shared_symbol_assets.py",
-      "size": 1835,
-      "sha256": "b6aab8f2aa26dbd87a623b66d491d22f243e99b68659724bb7a60471c4b11ab6"
+      "size": 4215,
+      "sha256": "ba211428ab26a54f77b13d012e98ec7dc7ff7e464b897074982116b35ba77d2a"
     },
     {
       "path": "tools/web/spec_component.py",
@@ -1836,8 +1844,8 @@
     },
     {
       "path": "tools/web/symbol_asset_admission.py",
-      "size": 15908,
-      "sha256": "0cf8dc52d8307d9ae729898fdc4cd44687363b78efa48e3160514287b96d6565"
+      "size": 18398,
+      "sha256": "6db670cf29104705b841d960ebf0415592b4bfcbd7cf351a801ac7138da599f7"
     },
     {
       "path": "tools/web/symbol_components.py",
@@ -1868,8 +1876,8 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 4056,
-      "sha256": "192e740c0405d15082e03e9b409cf5828e040d2a1972762cb01db42536b34b37"
+      "size": 4146,
+      "sha256": "1d98e62d0a7f92b2a2a994af288f1629cdaf405dbbf59d62789e7da9db4ab732"
     },
     {
       "path": "assets/charging-car.png",
@@ -1922,6 +1930,11 @@
       "sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d"
     },
     {
+      "path": "assets/h1-jp-unplug.svg",
+      "size": 2569,
+      "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf"
+    },
+    {
       "path": "assets/inbox-shoulder-belt.png",
       "size": 9107,
       "sha256": "97e0f49c9c196037a2757c4386db0b3e21cb1676b3bc3b46a4923efc276add19"
@@ -1940,6 +1953,11 @@
       "path": "assets/je1500d-jp-6ddeef54-symbol-01.svg",
       "size": 2205,
       "sha256": "42ca4108169a476569b3d874d9fe73eb444512e4f62a5bf4d5f8f5f3b8a2e6a2"
+    },
+    {
+      "path": "assets/je3000c-kr-78316033-06.svg",
+      "size": 6314,
+      "sha256": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5"
     },
     {
       "path": "assets/lcd-battery-percentage.svg",
@@ -2012,11 +2030,6 @@
       "sha256": "c142a9af4e6ddbc338e4fa679bc92636f60408fad6026a406690f655c65af884"
     },
     {
-      "path": "assets/li-ion-native-candidate.svg",
-      "size": 17080,
-      "sha256": "c747c86f378f5583c6aa850b99a1f70a4c3e8a54dd78bfaea12bd57577bb238c"
-    },
-    {
       "path": "assets/overview-front.png",
       "size": 100553,
       "sha256": "c7fe0be3e61f5422b7af49ed79160ae7bb569e3d5263c6fc9450f1642baf4593"
@@ -2052,19 +2065,14 @@
       "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5"
     },
     {
-      "path": "assets/unplug-native-candidate.svg",
-      "size": 14065,
-      "sha256": "808f0db9da53b5bdaf8a35ec8fd400e2d28d02ca82438b222f4b1a0d55f2a77c"
-    },
-    {
       "path": "assets/usb-output.png",
       "size": 32727,
       "sha256": "1ee4a4a5c7da0438fdfdf7d8bd5a9715028e91b5d89d29427a6696c2d35a1523"
     },
     {
       "path": "audit/review.zh.md",
-      "size": 4544,
-      "sha256": "3940b5b9ae9b684d888e36ed19afb9211d7509916fd78d1e39ccb575890e88b1"
+      "size": 4623,
+      "sha256": "b648d5b1317b8975136a5f440b1d47d4c3b16e29b4bbd55efae386b3dd2e0a7f"
     },
     {
       "path": "original.pdf",
@@ -2078,8 +2086,8 @@
     },
     {
       "path": "source/extract_assets.py",
-      "size": 9375,
-      "sha256": "654e42889be81b5f0f09ce6c321ef8698ddafb0f9a3efe3047bcf6c6c8c53479"
+      "size": 10980,
+      "sha256": "81e2e83e832f8ca52feac645afa684699a1b8ac4cf52599698fdc9302a95d71e"
     },
     {
       "path": "source/figures.json",
@@ -2098,8 +2106,8 @@
     },
     {
       "path": "source/ja/content.json",
-      "size": 260155,
-      "sha256": "cb0017e50b65f2141d7e7d41ec35ef849f40ac73a151b978f1fcd62a618e446f"
+      "size": 260143,
+      "sha256": "8c7fdf2d016deb52799b84e2e61132f51d443a192f680663ab896b3addde67b2"
     },
     {
       "path": "source/kit.py",
@@ -2113,13 +2121,13 @@
     },
     {
       "path": "source/refresh_manifest.py",
-      "size": 5372,
-      "sha256": "9920d1e755cd03a0f2f6bf44221e417165c95ec8c7d15978a9605218abdc2c82"
+      "size": 6099,
+      "sha256": "802d19eb56cf4be4db11fa94b9c765b64d8d1c90be54e0d94b7360f3e3727a0d"
     },
     {
       "path": "source/symbols.json",
-      "size": 26742,
-      "sha256": "bde849a4819967dd3de75d1cffde1ca4053c99089b34c7c5b82daf53331fd1f0"
+      "size": 27410,
+      "sha256": "901a513a5b25ff926ea781adbc83e6810ddbbeb4f98d0f3914a8982f999f9c92"
     },
     {
       "path": "web/ja/_static/source_presentation.css",
@@ -2182,6 +2190,11 @@
       "sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d"
     },
     {
+      "path": "web/ja/assets/h1-jp-unplug.svg",
+      "size": 2569,
+      "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf"
+    },
+    {
       "path": "web/ja/assets/inbox-shoulder-belt.png",
       "size": 9107,
       "sha256": "97e0f49c9c196037a2757c4386db0b3e21cb1676b3bc3b46a4923efc276add19"
@@ -2200,6 +2213,11 @@
       "path": "web/ja/assets/je1500d-jp-6ddeef54-symbol-01.svg",
       "size": 2205,
       "sha256": "42ca4108169a476569b3d874d9fe73eb444512e4f62a5bf4d5f8f5f3b8a2e6a2"
+    },
+    {
+      "path": "web/ja/assets/je3000c-kr-78316033-06.svg",
+      "size": 6314,
+      "sha256": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5"
     },
     {
       "path": "web/ja/assets/lcd-battery-percentage.svg",
@@ -2272,11 +2290,6 @@
       "sha256": "c142a9af4e6ddbc338e4fa679bc92636f60408fad6026a406690f655c65af884"
     },
     {
-      "path": "web/ja/assets/li-ion-native-candidate.svg",
-      "size": 17080,
-      "sha256": "c747c86f378f5583c6aa850b99a1f70a4c3e8a54dd78bfaea12bd57577bb238c"
-    },
-    {
       "path": "web/ja/assets/overview-front.png",
       "size": 100553,
       "sha256": "c7fe0be3e61f5422b7af49ed79160ae7bb569e3d5263c6fc9450f1642baf4593"
@@ -2312,11 +2325,6 @@
       "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5"
     },
     {
-      "path": "web/ja/assets/unplug-native-candidate.svg",
-      "size": 14065,
-      "sha256": "808f0db9da53b5bdaf8a35ec8fd400e2d28d02ca82438b222f4b1a0d55f2a77c"
-    },
-    {
       "path": "web/ja/assets/usb-output.png",
       "size": 32727,
       "sha256": "1ee4a4a5c7da0438fdfdf7d8bd5a9715028e91b5d89d29427a6696c2d35a1523"
@@ -2333,13 +2341,13 @@
     },
     {
       "path": "web/ja/manual.ir.json",
-      "size": 374976,
-      "sha256": "377349639fa811ff76ed5b2a63d8afd513f4b84134f4d5bc4c5402a7352f5052"
+      "size": 374928,
+      "sha256": "e761dcb201647437f21f73ed16d1a7cb657eba360f09954b9f56f1db7fef368e"
     },
     {
       "path": "web/ja/manual_je300d_jp_ja.md",
-      "size": 59004,
-      "sha256": "12af5408c6b7a92e6545dd1b52e8a0d0873f1ef19976195283d64f284b32f79d"
+      "size": 58992,
+      "sha256": "5bdeb098ca2cc4f0c4261e02c5af665b45176b0d4244c4bd04016f03c293efb5"
     }
   ]
 }
