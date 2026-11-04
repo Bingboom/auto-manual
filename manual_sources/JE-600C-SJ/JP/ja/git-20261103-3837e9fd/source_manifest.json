@@ -69,8 +69,8 @@
     "ja": "web/ja"
   },
   "source_authority": "operator-designated Japanese PDF from the 发布文档管理 Base row (「单语言说明书」 column, read-only download); the original Japanese governs all copy. Operator instruction (2026-11-03, relayed by the coordinating window): 「继续 转日语说明书」 — 24 Japanese single-language manuals with a customer model and a single-language PDF (封面和目录不上网页; 版面以 PDF 为准; 不改任何日文原文).",
-  "publication_status": "review-candidate-no-release-authorization",
-  "publication_eligible": false,
+  "publication_status": "operator-approved-git-only-release",
+  "publication_eligible": true,
   "pending_source_review": [],
   "language_scope": "single",
   "live_bitable_dependency": false,
@@ -1830,8 +1830,8 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 4704,
-      "sha256": "1b748a08c662f51b05cab6c48277fdf4ed2e72b49cdb82c08433e2eb82d3b47e"
+      "size": 4930,
+      "sha256": "9986db65d618cf04ba0b24676f5c5850047622c1804c44ddbe306cc7b3159eff"
     },
     {
       "path": "assets/ac-charging.png",
@@ -1995,8 +1995,8 @@
     },
     {
       "path": "audit/review.zh.md",
-      "size": 2323,
-      "sha256": "c67ea40eaed74a9dcd077a544d7d97ccf81bd96a98abccd3c3c15f352f1fd97b"
+      "size": 2351,
+      "sha256": "d7833e5427418be6131daae4e5227a8289d393064cdced4567c18c2c0b0f81f0"
     },
     {
       "path": "original.pdf",
@@ -2007,6 +2007,11 @@
       "path": "rebuild.py",
       "size": 8200,
       "sha256": "d1ee618a2d771b6efd58975dbe233a6f1a0361c19a78ca74ac31bdd93c497d7d"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 8042,
+      "sha256": "30546e18870ba8807408b85761096c2519b79f1d055d66878c798c86150e1bd9"
     },
     {
       "path": "source/extract_assets.py",
@@ -2235,8 +2240,8 @@
     },
     {
       "path": "web/ja/manual.ir.json",
-      "size": 330378,
-      "sha256": "e883639a1545ee28e0e24c4109549585bf1c6681aa729589aa9924756e6763ac"
+      "size": 339276,
+      "sha256": "963555c345621d8f0873a2f7fc55beeb3171cf6b735a5b937240389eb02c168e"
     },
     {
       "path": "web/ja/manual_je600csj_jp_ja.md",

@@ -6,9 +6,7 @@ single-language PDF and no Web edition yet. This package converts the Japanese m
 ポータブル電源 1000 Pro (model JE-1000B) from the row `reczz28SfbsHcrCU` (material 38-0001-000030, project
 HTE081). Route `JE-1000B/JP/ja/md`, `legacy_default` (no Web edition exists for this model).
 
-**Status: `review-candidate-no-release-authorization`.** No `source/approval.json`; the IR is not
-publication-eligible until the operator reviews the 1280/390 renders beside the reference editions and says
-「上线提交发布」 in this package's PR session. Review points are in [`audit/review.zh.md`](audit/review.zh.md).
+**Status: `operator-approved-git-only-release`.** On 2026-11-04 the operator confirmed 「上线提交发布：JE-600A、JE-600C-SJ、JE-900B-WH、JE-1000B」 in the PR #1654 session after reviewing the 1280/390 renders beside the shared reference edition (with the symbol rows bound to the canonical groups of shared PR #1659). `source/approval.json` binds that acceptance to these exact source inputs and the IR is publication-eligible. Merge needs a separate operator authorization. Review points are in [`audit/review.zh.md`](audit/review.zh.md).
 
 ## Source authority
 

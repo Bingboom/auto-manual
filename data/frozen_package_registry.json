@@ -1341,7 +1341,7 @@
       "known_drift": {}
     },
     "manual_sources/JE-1000B/JP/ja/git-20261103-46f1c569": {
-      "approval": "Operator 2026-11-03 (relayed by the coordinating window): 「继续 转日语说明书」 — Git-only JP Japanese single-language Web candidate from the 发布文档管理 日规 row; candidate intake only, no approval.json, no merge or release authorization",
+      "approval": "Operator 「上线提交发布：JE-600A、JE-600C-SJ、JE-900B-WH、JE-1000B」 2026-11-04 in the PR #1654 session after reviewing the 1280/390 renders beside the shared reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinating window): Git-only JP ja single-language Web release, source copy verbatim, symbol rows bound per shared PR #1659; acceptance hash-bound in source/approval.json. Merge needs a separate operator authorization.",
       "registered": "2026-11-03",
       "known_drift": {}
     },
@@ -2039,7 +2039,7 @@
       }
     },
     "manual_sources/JE-600A/JP/ja/git-20261103-b2490d61": {
-      "approval": "Operator 2026-11-03 (relayed by the coordinating window): 「继续 转日语说明书」 — Git-only JP Japanese single-language Web candidate from the 发布文档管理 日规 row; candidate intake only, no approval.json, no merge or release authorization",
+      "approval": "Operator 「上线提交发布：JE-600A、JE-600C-SJ、JE-900B-WH、JE-1000B」 2026-11-04 in the PR #1654 session after reviewing the 1280/390 renders beside the shared reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinating window): Git-only JP ja single-language Web release, source copy verbatim, symbol rows bound per shared PR #1659; acceptance hash-bound in source/approval.json. Merge needs a separate operator authorization.",
       "registered": "2026-11-03",
       "known_drift": {}
     },
@@ -2075,7 +2075,7 @@
       }
     },
     "manual_sources/JE-600C-SJ/JP/ja/git-20261103-3837e9fd": {
-      "approval": "Operator 2026-11-03 (relayed by the coordinating window): 「继续 转日语说明书」 — Git-only JP Japanese single-language Web candidate from the 发布文档管理 日规 row; candidate intake only, no approval.json, no merge or release authorization",
+      "approval": "Operator 「上线提交发布：JE-600A、JE-600C-SJ、JE-900B-WH、JE-1000B」 2026-11-04 in the PR #1654 session after reviewing the 1280/390 renders beside the shared reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinating window): Git-only JP ja single-language Web release, source copy verbatim, symbol rows bound per shared PR #1659; acceptance hash-bound in source/approval.json. Merge needs a separate operator authorization.",
       "registered": "2026-11-03",
       "known_drift": {}
     },
@@ -2111,7 +2111,7 @@
       }
     },
     "manual_sources/JE-900B-WH/JP/ja/git-20261103-66c65187": {
-      "approval": "Operator 2026-11-03 (relayed by the coordinating window): 「继续 转日语说明书」 — Git-only JP Japanese single-language Web candidate from the 发布文档管理 日规 row; candidate intake only, no approval.json, no merge or release authorization",
+      "approval": "Operator 「上线提交发布：JE-600A、JE-600C-SJ、JE-900B-WH、JE-1000B」 2026-11-04 in the PR #1654 session after reviewing the 1280/390 renders beside the shared reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinating window): Git-only JP ja single-language Web release, source copy verbatim, symbol rows bound per shared PR #1659; acceptance hash-bound in source/approval.json. Merge needs a separate operator authorization.",
       "registered": "2026-11-03",
       "known_drift": {}
     },
