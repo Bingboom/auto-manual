@@ -496,7 +496,7 @@
       }
     },
     "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0": {
-      "approval": "User 2026-10-19: 走Git only转日规网页版说明书 参考JE-1000F日规说明书的结构; candidate intake only, no merge or release authorization",
+      "approval": "User 2026-10-19: 走Git only转日规网页版说明书 参考JE-1000F日规说明书的结构; candidate intake only, no merge or release authorization; VOIDED by operator 2026-11-03 (「旧候选作废」, then 「1. ok」 to keep files): never to be released, superseded by manual_sources/JE-2000F/JP/ja/git-20261103-63cdf705; files kept only as artwork provenance cited by manual_sources/JE-2000F/US/en/git-20261028-c8ace563",
       "registered": "2026-10-19",
       "known_drift": {}
     },
@@ -1637,6 +1637,11 @@
       "registered": "2026-10-27",
       "known_drift": {}
     },
+    "manual_sources/JE-2000D/JP/ja/git-20261103-62605f21": {
+      "approval": "Operator 「上线提交发布：JE-2000F、JE-2000D」 2026-11-04 in the engineering session after review of the PR #1655 1280/390 renders beside the shared reference edition; requested by 「继续 转日语说明书」 (发布文档管理 日规视图, via coordinator): Git-only JE-2000D JP/ja single-language Web release, source copy verbatim (see source/approval.json); merge needs a separate operator grant",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
     "manual_sources/JE-2000D/US/en/git-20261028-3d50ef64": {
       "approval": "Operator 「上线提交发布」 2026-11-02 in the engineering session (session_01PHcxwApS3X7GQ5ZBMtLi9z), in reply to the review of the four PR #1637 candidates JE-2000D, JE-2000F, JE-3000B, JE-5000A (1280/390 renders beside the shared reference edition); bound in source/approval.json: Git-only US/en single-language Web release, source copy verbatim; source_concerns to the source owner",
       "registered": "2026-11-02",
@@ -1687,6 +1692,11 @@
       "registered": "2026-10-19",
       "known_drift": {}
     },
+    "manual_sources/JE-2000F/JP/ja/git-20261103-63cdf705": {
+      "approval": "Operator 「上线提交发布：JE-2000F、JE-2000D」 2026-11-04 in the engineering session after review of the PR #1655 1280/390 renders beside the shared reference edition; requested by 「继续 转日语说明书」 (发布文档管理 日规视图, via coordinator): Git-only JE-2000F JP/ja single-language Web release, source copy verbatim (see source/approval.json); merge needs a separate operator grant",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
     "manual_sources/JE-2000F/US/en/git-20261028-c8ace563": {
       "approval": "Operator 「上线提交发布」 2026-11-02 in the engineering session (session_01PHcxwApS3X7GQ5ZBMtLi9z), in reply to the review of the four PR #1637 candidates JE-2000D, JE-2000F, JE-3000B, JE-5000A (1280/390 renders beside the shared reference edition); bound in source/approval.json: Git-only US/en single-language Web release, source copy verbatim; source_concerns to the source owner",
       "registered": "2026-11-02",
@@ -1700,6 +1710,16 @@
     "manual_sources/JE-240B/US/en/git-20261027-3dc1fbba": {
       "approval": "Operator 「上线提交发布：JE-100A、JE-100C、JE-240A、JE-240B；授权合入 #1630 及其 Hello-Docs 发布 PR」 2026-10-28 after review of PR #1630 renders beside the shared reference editions (MA-365); requested by 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 2026-10-27: Git-only US English Web release, source copy verbatim",
       "registered": "2026-10-28",
+      "known_drift": {}
+    },
+    "manual_sources/JE-3000A/JP/ja/git-20261103-002fde5a": {
+      "approval": "Operator 「上线提交发布：JE-3000A；授权合入 #1655、#1662 及其 Hello-Docs 发布 PR」 2026-11-04 in the engineering session after review of the PR #1662 1280/390 renders beside the shared reference edition; requested by 「继续 转日语说明书」 (发布文档管理 日规视图, via coordinator): Git-only JE-3000A JP/ja single-language Web release, source copy verbatim (see source/approval.json)",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
+    "manual_sources/JE-3000B/JP/ja/git-20261103-2fd130d6": {
+      "approval": "Operator 「上线提交发布」 2026-11-03 in the engineering session after review of the PR #1655 1280/390 renders beside the shared reference edition; requested by 「继续 转日语说明书」 (发布文档管理 日规视图, via coordinator): Git-only JE-3000B JP/ja single-language Web release, source copy verbatim (see source/approval.json); merge needs a separate operator grant",
+      "registered": "2026-11-03",
       "known_drift": {}
     },
     "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296": {

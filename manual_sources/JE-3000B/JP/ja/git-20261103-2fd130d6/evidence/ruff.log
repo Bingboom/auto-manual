@@ -1,0 +1,2 @@
+$ ruff check manual_sources/JE-3000B/JP tests/test_je3000b_jp_web.py (ruff 0.16.9, repo pyproject)
+All checks passed!
