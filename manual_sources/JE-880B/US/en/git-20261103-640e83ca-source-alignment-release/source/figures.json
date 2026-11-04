@@ -1,0 +1,257 @@
+[
+  {
+    "slot": "certifications",
+    "physical_page": 2,
+    "bbox": [
+      96,
+      316,
+      347,
+      357.4
+    ],
+    "caption": "Certification marks: TÜV Rheinland C US, BC, FCC, UN38.3, TÜV Rheinland ID:0000012345, Verified Energy Performance / Performance Énergétique Vérifiée",
+    "embedded_words": true,
+    "local_path": "assets/certifications.png",
+    "render_scale": 4,
+    "sha256": "1f254ec8f287d4792ee2a5f06d6eb1b3df6d5fe20f874e4235ce252ebaffad14",
+    "source_sha256": "640e83cab0c8897253258c9eb6cf247bdfc4f0d5937387a66c3d46be7c2bc1f6",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "inbox-unit",
+    "physical_page": 3,
+    "bbox": [
+      37,
+      88,
+      90,
+      144
+    ],
+    "caption": "Jackery Explorer 880 Pro",
+    "embedded_words": true,
+    "local_path": "assets/inbox-unit.png",
+    "render_scale": 4,
+    "sha256": "a474984a1f1728305c5df00f5bbc345200ac9e5668c09760ea930a48dc17d3b5",
+    "source_sha256": "640e83cab0c8897253258c9eb6cf247bdfc4f0d5937387a66c3d46be7c2bc1f6",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "inbox-car-cable",
+    "physical_page": 3,
+    "bbox": [
+      116,
+      86,
+      156,
+      144
+    ],
+    "caption": "Car Charge Cable",
+    "embedded_words": false,
+    "local_path": "assets/inbox-car-cable.png",
+    "render_scale": 4,
+    "sha256": "0e3098be1541a3227603fd423faf7c3979708e7937dabc6d7cf3c4635e6d6558",
+    "source_sha256": "640e83cab0c8897253258c9eb6cf247bdfc4f0d5937387a66c3d46be7c2bc1f6",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "inbox-ac-cable",
+    "physical_page": 3,
+    "bbox": [
+      180,
+      88,
+      211,
+      144
+    ],
+    "caption": "AC Charge Cable",
+    "embedded_words": false,
+    "local_path": "assets/inbox-ac-cable.png",
+    "render_scale": 4,
+    "sha256": "44ab61dd382d57ba9bb1bf30164c3822422c9e3230908b80e1ad4f76762a9db1",
+    "source_sha256": "640e83cab0c8897253258c9eb6cf247bdfc4f0d5937387a66c3d46be7c2bc1f6",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "inbox-adaptor",
+    "physical_page": 3,
+    "bbox": [
+      240,
+      88,
+      264,
+      142
+    ],
+    "caption": "DC7909 to DC8020 Adaptor x 2",
+    "embedded_words": false,
+    "local_path": "assets/inbox-adaptor.png",
+    "render_scale": 4,
+    "sha256": "5f11769c957d8c7209309333d84c2d56ffe7a058ff50fbb9bc6c2f191758babe",
+    "source_sha256": "640e83cab0c8897253258c9eb6cf247bdfc4f0d5937387a66c3d46be7c2bc1f6",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "inbox-quick-start-guide",
+    "physical_page": 3,
+    "bbox": [
+      297,
+      87,
+      338,
+      142
+    ],
+    "caption": "Quick Start Guide",
+    "embedded_words": true,
+    "local_path": "assets/inbox-quick-start-guide.png",
+    "render_scale": 4,
+    "sha256": "f25b1ddbe51495d503a17e383f7314532262a456eec840a0cd590098e69670bb",
+    "source_sha256": "640e83cab0c8897253258c9eb6cf247bdfc4f0d5937387a66c3d46be7c2bc1f6",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "product-appearance",
+    "physical_page": 3,
+    "bbox": [
+      20,
+      215.2,
+      347,
+      503
+    ],
+    "caption": "Product Appearance: AC Input Port; DC Input Port (2×DC8020, solar charging input and car charging input); LCD Screen Button; LCD Display; Car Port; Car Port Button; AC Output; AC Button; LED Light; LED Light Button; USB-A Output; USB-C Output; USB Button",
+    "embedded_words": true,
+    "local_path": "assets/product-appearance.png",
+    "render_scale": 4,
+    "sha256": "5737bf8313d0e4e542245b465730404c2f3e630835adbf6a90243460742ae462",
+    "source_sha256": "640e83cab0c8897253258c9eb6cf247bdfc4f0d5937387a66c3d46be7c2bc1f6",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "lcd-display",
+    "physical_page": 4,
+    "bbox": [
+      80,
+      38,
+      286,
+      118
+    ],
+    "caption": "LCD display with callouts 1 to 15",
+    "embedded_words": true,
+    "local_path": "assets/lcd-display.png",
+    "render_scale": 4,
+    "sha256": "2e4a130f286405943b3b8fc59cad70ebc38cc771f6599cb25b9bc8c0c407d135",
+    "source_sha256": "640e83cab0c8897253258c9eb6cf247bdfc4f0d5937387a66c3d46be7c2bc1f6",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "charging-wall",
+    "physical_page": 6,
+    "bbox": [
+      222,
+      24,
+      313,
+      93
+    ],
+    "caption": "Charging from the wall: AC Charger to Explorer 880 Pro",
+    "embedded_words": true,
+    "local_path": "assets/charging-wall.png",
+    "render_scale": 4,
+    "sha256": "b7e73e197a2dc08b8e506291af372b09353259b5bb807c71df6c71bf1eeb0ca1",
+    "source_sha256": "640e83cab0c8897253258c9eb6cf247bdfc4f0d5937387a66c3d46be7c2bc1f6",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "solar-two-panels",
+    "physical_page": 6,
+    "bbox": [
+      66,
+      175,
+      214,
+      238
+    ],
+    "caption": "Two SolarSaga panels connected through a solar series connector to the Explorer 880 Pro",
+    "embedded_words": true,
+    "local_path": "assets/solar-two-panels.png",
+    "render_scale": 4,
+    "sha256": "84cf8c81537268238061c36caa072a6a47300df8101d5515bc82e489e499648f",
+    "source_sha256": "640e83cab0c8897253258c9eb6cf247bdfc4f0d5937387a66c3d46be7c2bc1f6",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "solar-four-panels",
+    "physical_page": 6,
+    "bbox": [
+      72,
+      250,
+      290,
+      320
+    ],
+    "caption": "Four SolarSaga panels: two solar series connectors, one to each DC8020 input of the Explorer 880 Pro",
+    "embedded_words": true,
+    "local_path": "assets/solar-four-panels.png",
+    "render_scale": 4,
+    "sha256": "b436dd8ca7ae1ce02e01147b940f813c66329419162c79e86a183e4e2c119914",
+    "source_sha256": "640e83cab0c8897253258c9eb6cf247bdfc4f0d5937387a66c3d46be7c2bc1f6",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "solarsaga80-parallel",
+    "physical_page": 7,
+    "bbox": [
+      27.5,
+      22.6,
+      316,
+      80
+    ],
+    "caption": "SolarSaga 80 panels connected in parallel: the solar panel charging output port (DC8020 male, with DC8020 to DC7909 Adaptor) and the parallel port (DC 8020 female)",
+    "embedded_words": true,
+    "local_path": "assets/solarsaga80-parallel.png",
+    "render_scale": 4,
+    "sha256": "9836e93396dff04184c15b0b0ea5cbdb8e869d4e82285d86d341a3dcd199b264",
+    "source_sha256": "640e83cab0c8897253258c9eb6cf247bdfc4f0d5937387a66c3d46be7c2bc1f6",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "dc7909-adaptor",
+    "physical_page": 7,
+    "bbox": [
+      84,
+      160,
+      271,
+      221
+    ],
+    "caption": "DC7909 to DC8020 Adaptor: DC7909 male into the adaptor, the adaptor into the DC8020 female port of the Explorer",
+    "embedded_words": true,
+    "local_path": "assets/dc7909-adaptor.png",
+    "render_scale": 4,
+    "sha256": "6a4ad03306ad3b81e483579a49e2ee96b34f305cbd369f349c72438f512772cc",
+    "source_sha256": "640e83cab0c8897253258c9eb6cf247bdfc4f0d5937387a66c3d46be7c2bc1f6",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "charging-car",
+    "physical_page": 7,
+    "bbox": [
+      130,
+      306,
+      232,
+      369
+    ],
+    "caption": "Charging in the car from the vehicle's car charger outlet",
+    "embedded_words": true,
+    "local_path": "assets/charging-car.png",
+    "render_scale": 4,
+    "sha256": "fc4dd5d21d953f823be1df32fd9dbb9c7c7cc7e06e082f8d15d72929c2387c44",
+    "source_sha256": "640e83cab0c8897253258c9eb6cf247bdfc4f0d5937387a66c3d46be7c2bc1f6",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "contact-qr",
+    "physical_page": 11,
+    "bbox": [
+      309,
+      467,
+      348,
+      505
+    ],
+    "caption": "QR code",
+    "embedded_words": false,
+    "local_path": "assets/contact-qr.png",
+    "render_scale": 4,
+    "sha256": "4b563e0e34c201d4e97eb122869b040e6bdf066d37b7fc41c8521d02acdf8327",
+    "source_sha256": "640e83cab0c8897253258c9eb6cf247bdfc4f0d5937387a66c3d46be7c2bc1f6",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  }
+]

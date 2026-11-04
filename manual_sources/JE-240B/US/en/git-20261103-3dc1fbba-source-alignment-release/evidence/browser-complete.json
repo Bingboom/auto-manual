@@ -1,0 +1,140 @@
+[
+  {
+    "width": 1280,
+    "images": 39,
+    "broken": [],
+    "uncontained": [],
+    "document": {
+      "viewport": 1280,
+      "width": 1280,
+      "cover": 0
+    },
+    "layouts": [
+      {
+        "key": "inbox",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 657.21875
+      },
+      {
+        "key": "lcd",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 657.21875
+      },
+      {
+        "key": "danger",
+        "columns": "auto",
+        "grid": "36.7969px 67.625px 536.797px",
+        "rectWidth": 657.21875
+      },
+      {
+        "key": "warning",
+        "columns": "auto",
+        "grid": "80px 230.219px",
+        "rectWidth": 316.609375
+      },
+      {
+        "key": "back",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 621.21875
+      },
+      {
+        "key": "risk",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 657.21875
+      },
+      {
+        "key": "safety",
+        "columns": "2",
+        "grid": "none",
+        "rectWidth": 657.21875
+      },
+      {
+        "key": "operating",
+        "columns": "2",
+        "grid": "none",
+        "rectWidth": 657.21875
+      },
+      {
+        "key": "fcc",
+        "columns": "auto",
+        "grid": "282.219px 282.219px",
+        "rectWidth": 599.625
+      }
+    ],
+    "request_failures": [],
+    "background_images": []
+  },
+  {
+    "width": 390,
+    "images": 39,
+    "broken": [],
+    "uncontained": [],
+    "document": {
+      "viewport": 390,
+      "width": 390,
+      "cover": 0
+    },
+    "layouts": [
+      {
+        "key": "inbox",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 358
+      },
+      {
+        "key": "lcd",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 358
+      },
+      {
+        "key": "danger",
+        "columns": "auto",
+        "grid": "36.7969px 313.203px",
+        "rectWidth": 358
+      },
+      {
+        "key": "warning",
+        "columns": "auto",
+        "grid": "80px 271.609px",
+        "rectWidth": 358
+      },
+      {
+        "key": "back",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 330
+      },
+      {
+        "key": "risk",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 358
+      },
+      {
+        "key": "safety",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 358
+      },
+      {
+        "key": "operating",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 358
+      },
+      {
+        "key": "fcc",
+        "columns": "auto",
+        "grid": "326px",
+        "rectWidth": 326
+      }
+    ],
+    "request_failures": [],
+    "background_images": []
+  }
+]

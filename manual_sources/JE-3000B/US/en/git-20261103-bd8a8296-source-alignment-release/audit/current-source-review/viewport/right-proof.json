@@ -1,0 +1,138 @@
+[
+  {
+    "class": "docutils container",
+    "layout": "signal-scroll",
+    "width": 358,
+    "scrollLeft": 282,
+    "scrollWidth": 640,
+    "height": 61,
+    "actualY": 3438
+  },
+  {
+    "class": "docutils container",
+    "layout": "signal-scroll",
+    "width": 358,
+    "scrollLeft": 282,
+    "scrollWidth": 640,
+    "height": 79,
+    "actualY": 3498
+  },
+  {
+    "class": "hb-reference-figure",
+    "layout": null,
+    "width": 358,
+    "scrollLeft": 186,
+    "scrollWidth": 544,
+    "height": 216,
+    "actualY": 5191
+  },
+  {
+    "class": "hb-reference-figure",
+    "layout": null,
+    "width": 358,
+    "scrollLeft": 186,
+    "scrollWidth": 544,
+    "height": 126,
+    "actualY": 5483
+  },
+  {
+    "class": "hb-reference-figure",
+    "layout": null,
+    "width": 358,
+    "scrollLeft": 186,
+    "scrollWidth": 544,
+    "height": 309,
+    "actualY": 5711
+  },
+  {
+    "class": "hb-lcd-table-composition",
+    "layout": null,
+    "width": 354,
+    "scrollLeft": 286,
+    "scrollWidth": 640,
+    "height": 1856,
+    "actualY": 6052,
+    "bottomActualY": 6982
+  },
+  {
+    "class": "docutils container",
+    "layout": "panel-scroll",
+    "width": 358,
+    "scrollLeft": 282,
+    "scrollWidth": 640,
+    "height": 260,
+    "actualY": 8311
+  },
+  {
+    "class": "docutils container",
+    "layout": "panel-scroll",
+    "width": 358,
+    "scrollLeft": 282,
+    "scrollWidth": 640,
+    "height": 451,
+    "actualY": 8641
+  },
+  {
+    "class": "docutils container",
+    "layout": "panel-scroll",
+    "width": 358,
+    "scrollLeft": 282,
+    "scrollWidth": 640,
+    "height": 392,
+    "actualY": 9163
+  },
+  {
+    "class": "hb-lcd-mode-table-panel",
+    "layout": null,
+    "width": 325,
+    "scrollLeft": 219,
+    "scrollWidth": 544,
+    "height": 239,
+    "actualY": 9776
+  },
+  {
+    "class": "hb-key-combination-composition",
+    "layout": null,
+    "width": 354,
+    "scrollLeft": 350,
+    "scrollWidth": 704,
+    "height": 398,
+    "actualY": 10102
+  },
+  {
+    "class": "docutils container hb-lcd-mode-table-panel",
+    "layout": "fault-scroll",
+    "width": 354,
+    "scrollLeft": 190,
+    "scrollWidth": 544,
+    "height": 667,
+    "actualY": 10605
+  },
+  {
+    "class": "docutils container",
+    "layout": "panel-scroll",
+    "width": 358,
+    "scrollLeft": 282,
+    "scrollWidth": 640,
+    "height": 469,
+    "actualY": 11759
+  },
+  {
+    "class": "docutils container",
+    "layout": "panel-scroll",
+    "width": 358,
+    "scrollLeft": 282,
+    "scrollWidth": 640,
+    "height": 228,
+    "actualY": 13516
+  },
+  {
+    "class": "docutils container",
+    "layout": "panel-scroll",
+    "width": 358,
+    "scrollLeft": 282,
+    "scrollWidth": 640,
+    "height": 275,
+    "actualY": 14845
+  }
+]

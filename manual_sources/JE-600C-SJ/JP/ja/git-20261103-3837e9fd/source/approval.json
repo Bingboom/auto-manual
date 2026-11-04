@@ -1,0 +1,244 @@
+{
+  "schema_version": "source-operator-acceptance/v1",
+  "target": {
+    "model": "JE-600C-SJ",
+    "region": "JP",
+    "technical_version": "git-20261103-3837e9fd"
+  },
+  "languages": [
+    "ja"
+  ],
+  "operator_quote": "上线提交发布：JE-600A、JE-600C-SJ、JE-900B-WH、JE-1000B",
+  "date": "2026-11-04",
+  "reviewed": "Operator confirmation in the PR #1654 session, 2026-11-04, after the 1280/390 renders beside the shared reference edition were delivered for review, with every symbol row admitted (fixed 2% comparison or the operator-confirmed canonical of its group, shared PR #1659).",
+  "reviewed_source_commit": "f2639c2c",
+  "original_source_sha256": "3837e9fd2d779f07c7d59c7ddf82013756133dcc92aced9765d21cb8a485e39a",
+  "scope": "Git-only ja Web release of git-20261103-3837e9fd; printed source unchanged; no Feishu/Base/source-table, queue, asset-registry or HTML_link writes.",
+  "reviewed_inputs": [
+    {
+      "path": "README.md",
+      "size": 4930,
+      "sha256": "9986db65d618cf04ba0b24676f5c5850047622c1804c44ddbe306cc7b3159eff"
+    },
+    {
+      "path": "assets/ac-charging.png",
+      "size": 15563,
+      "sha256": "1e91aba53c50bc3af03c4a12619db90e1ea13d0a4bc0a84b9252324da45e68b0"
+    },
+    {
+      "path": "assets/app-2-1.png",
+      "size": 72969,
+      "sha256": "38cc0fd70a4e6221215963007265249c7211d866d8a51d8607deba85e24a2299"
+    },
+    {
+      "path": "assets/app-2-2.png",
+      "size": 26474,
+      "sha256": "0a02d0f7e2099dc0fd0fcba130f54b1c5b3bea69a8f50c2f7892948c1f18d60f"
+    },
+    {
+      "path": "assets/app-2-3.png",
+      "size": 28395,
+      "sha256": "87ee671baac4d669b7ecf6ae0b2504520ae797eae83245b8816ca06c4e4cc373"
+    },
+    {
+      "path": "assets/app-2-4.png",
+      "size": 26885,
+      "sha256": "343caf941c4b4857f0fef0ecdf709cfbd264795890ec4c6fdb899032bf03fa14"
+    },
+    {
+      "path": "assets/app-2-5.png",
+      "size": 37297,
+      "sha256": "87951d749f736f98b48a3c734aeef52fad28d698cfe5758c21b536fa583e4126"
+    },
+    {
+      "path": "assets/app-buttons.png",
+      "size": 30398,
+      "sha256": "8caa765e5af3fdf71848d026afad2b5591d5873c7f75a077d2433fd5d77b2c7c"
+    },
+    {
+      "path": "assets/app-store-badges.png",
+      "size": 12449,
+      "sha256": "de41b5d165b7c8e7835a739dd747f94de629dc2edef420816a3497fc46c1fffa"
+    },
+    {
+      "path": "assets/car-charging.png",
+      "size": 30172,
+      "sha256": "e4787b96ba1f39ebff1ae1a84c5483e53780b34578d1335b3c9e1f94232b95a2"
+    },
+    {
+      "path": "assets/h1-jp-mandatory.svg",
+      "size": 1292,
+      "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2"
+    },
+    {
+      "path": "assets/h1-jp-unplug.svg",
+      "size": 2569,
+      "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf"
+    },
+    {
+      "path": "assets/inbox-ac-cable.png",
+      "size": 4427,
+      "sha256": "685f0712dad15687d2333797d5e59ef2a71994652ddf63c14cd9a6c5d37b21e6"
+    },
+    {
+      "path": "assets/inbox-unit.png",
+      "size": 8429,
+      "sha256": "bb22261b76edc38b6c9aacee1756db75bbdf7a4cb84e385660260f659be6df72"
+    },
+    {
+      "path": "assets/inbox-user-manual.png",
+      "size": 7998,
+      "sha256": "092195fc3776345f68b31f264d6627652e61ed7ee80d25374910e3ac301be8b8"
+    },
+    {
+      "path": "assets/inbox-warranty.png",
+      "size": 13829,
+      "sha256": "170b4aa6bbf09f4770ff9859749b294efb984953cbea582362d5c6610782efa6"
+    },
+    {
+      "path": "assets/je1000d-jp-00c43a89-symbol-02.svg",
+      "size": 12347,
+      "sha256": "0766a51f9ad7d433bed62a7c1ddbacc19ad7c7b68bf55938d5cdbab902b9ea04"
+    },
+    {
+      "path": "assets/je1000d-jp-00c43a89-symbol-03.svg",
+      "size": 11954,
+      "sha256": "585a0c72abdb9fc1d69d31554d249730f1361dfc49a501423dd0204e0637a387"
+    },
+    {
+      "path": "assets/je1000d-jp-00c43a89-symbol-05.svg",
+      "size": 13550,
+      "sha256": "4728b4a0ab80e8376ff756d9af98d92c1906d3461e44eb4905899b6212cc003c"
+    },
+    {
+      "path": "assets/je1000d-jp-00c43a89-symbol-06.svg",
+      "size": 9416,
+      "sha256": "a5390e01e5ed9ba225377ba6b13de7523f86b8139e4686cf4534ebb2c1048641"
+    },
+    {
+      "path": "assets/lcd-battery-ring.svg",
+      "size": 10719,
+      "sha256": "589baf8ba5f422d5ed7fd4f4b388819db54100815c7ac7c04138bfc128bc281b"
+    },
+    {
+      "path": "assets/lcd-battery-saving.svg",
+      "size": 10640,
+      "sha256": "a6f22a36a43b7815c8cf8b34d6a4f324cffc005f53c337e9f317f1062f6413d2"
+    },
+    {
+      "path": "assets/lcd-energy-saving.svg",
+      "size": 13173,
+      "sha256": "4b59dfd7c7561afb3e305448166f34afd713e967b3f2f9990eec00472acd4a81"
+    },
+    {
+      "path": "assets/lcd-fault-code.svg",
+      "size": 11742,
+      "sha256": "7b81b32941504b5b9f930677d534538aa9eae5445a946e7f0e05d04515a41e81"
+    },
+    {
+      "path": "assets/lcd-high-temperature.svg",
+      "size": 11573,
+      "sha256": "505ee25a2d28b966acac1e9ab3cae8e30b58a8116d7a706d85752325d20d38f8"
+    },
+    {
+      "path": "assets/lcd-low-battery.svg",
+      "size": 9723,
+      "sha256": "cbd8eaa2cd9b0c644da8ec08e2859cb49ab76f3cf106243b627dfacb9954bffa"
+    },
+    {
+      "path": "assets/lcd-low-temperature.svg",
+      "size": 11574,
+      "sha256": "3bc5306353aa3ccdfcf7535ea0754df9f78c26e2a6f79462f2eb0846228cac39"
+    },
+    {
+      "path": "assets/lcd-map.png",
+      "size": 78904,
+      "sha256": "f4aab7072604f0d5a5df3d1a6404c8c7d0c09bd05a3f506549e3c9d998be4257"
+    },
+    {
+      "path": "assets/lcd-quiet-charging.svg",
+      "size": 9664,
+      "sha256": "b2e9476117ef2438af6cfae5211f84ec47f28eca91c44a6f21999a097a61f22d"
+    },
+    {
+      "path": "assets/overview.png",
+      "size": 110704,
+      "sha256": "dd53a252bc25a7e07a7eb1741fcd9fea4d9b6a42803df626eb442400ae13b64e"
+    },
+    {
+      "path": "assets/recycle-li-ion.svg",
+      "size": 13160,
+      "sha256": "2300e6ab829ede0b7916873c857aca318cbe00481d33e7912e8baf3a06d0ff31"
+    },
+    {
+      "path": "assets/solar-dual.png",
+      "size": 66357,
+      "sha256": "726154ef6bb39882281c38b76415385db56a37659532476819d1744da667780b"
+    },
+    {
+      "path": "assets/solar-single.png",
+      "size": 40005,
+      "sha256": "ae2929e439eefafc2ae399b6f49afe8acfa2ad0417ef21baca6785e76d85433c"
+    },
+    {
+      "path": "audit/review.zh.md",
+      "size": 2351,
+      "sha256": "d7833e5427418be6131daae4e5227a8289d393064cdced4567c18c2c0b0f81f0"
+    },
+    {
+      "path": "original.pdf",
+      "size": 3539831,
+      "sha256": "3837e9fd2d779f07c7d59c7ddf82013756133dcc92aced9765d21cb8a485e39a"
+    },
+    {
+      "path": "rebuild.py",
+      "size": 8200,
+      "sha256": "d1ee618a2d771b6efd58975dbe233a6f1a0361c19a78ca74ac31bdd93c497d7d"
+    },
+    {
+      "path": "source/extract_assets.py",
+      "size": 11058,
+      "sha256": "6d279150b20747ef98f5eeffb1448c7b703985ffee1181d6585089c80c0dd5e6"
+    },
+    {
+      "path": "source/figures.json",
+      "size": 8188,
+      "sha256": "27d1a97dbd711ada3d7712147554abe4dea762cbf8ddba6482f0d5c8274a9d11"
+    },
+    {
+      "path": "source/glyphs.json",
+      "size": 6886,
+      "sha256": "6b2c69b5060ea5ae9670450d738042ff765aad5a05806f33b71236d6724f3700"
+    },
+    {
+      "path": "source/intake.py",
+      "size": 42578,
+      "sha256": "b0ea9b424d0859deddbacea8fd6a7e3e90d901cc8cb621daf753c7e0f3c47b44"
+    },
+    {
+      "path": "source/ja/content.json",
+      "size": 226342,
+      "sha256": "2a9880131262f69eaf1255eb40987b62562f41b5d6de20a85d544827304597fc"
+    },
+    {
+      "path": "source/kit.py",
+      "size": 11770,
+      "sha256": "a3b36fc59017dda10ead0719187757eaa6820091b813f55d84a49b63c2d05155"
+    },
+    {
+      "path": "source/presentation.css",
+      "size": 1165,
+      "sha256": "330efc6ed891f918cc0df645c60df61fd43ed35a8c269a282a1251d991c0eb56"
+    },
+    {
+      "path": "source/refresh_manifest.py",
+      "size": 4964,
+      "sha256": "21492914f266a4e0c1cb90a5147c7801c07c2ddc12008359be5e5630836ab487"
+    },
+    {
+      "path": "source/symbols.json",
+      "size": 92534,
+      "sha256": "787e273b7d9d207eda78c00b62917b635a42e1c298ee1940d775fd51949f49fc"
+    }
+  ]
+}

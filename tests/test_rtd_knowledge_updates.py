@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 from jinja2 import Environment, FileSystemLoader
 
 from tools.rtd import knowledge_updates as ku
-from tools.rtd import design_system, market_policy, product_learning, product_matrix
+from tools.rtd import design_system, market_policy, product_learning, product_matrix, web_manual_value
 from tools.rtd.deliverables import DELIVERABLES_PAGE
 from tools.rtd.portal import ASSETS
 from tools.rtd.system_workspace import SYSTEM_PAGE
@@ -49,7 +49,8 @@ class LoadUpdatesTests(unittest.TestCase):
 
     def test_page_keys_name_the_pages_the_portal_builds(self):
         self.assertEqual(ku.PAGES, {
-            "share": None, "product-knowledge": product_learning.PAGE, "product-matrix": product_matrix.PAGE,
+            "share": None, "positioning": web_manual_value.PAGE,
+            "product-knowledge": product_learning.PAGE, "product-matrix": product_matrix.PAGE,
             "market-policy": market_policy.PAGE, "deliverables": DELIVERABLES_PAGE, "system": SYSTEM_PAGE,
             "design-system": design_system.PAGE,
         })

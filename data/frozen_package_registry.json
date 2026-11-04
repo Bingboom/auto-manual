@@ -1345,6 +1345,11 @@
       "registered": "2026-10-19",
       "known_drift": {}
     },
+    "manual_sources/JE-1000B/JP/ja/git-20261103-46f1c569": {
+      "approval": "Operator 「上线提交发布：JE-600A、JE-600C-SJ、JE-900B-WH、JE-1000B」 2026-11-04 in the PR #1654 session after reviewing the 1280/390 renders beside the shared reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinating window): Git-only JP ja single-language Web release, source copy verbatim, symbol rows bound per shared PR #1659; acceptance hash-bound in source/approval.json. Merge needs a separate operator authorization.",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
     "manual_sources/JE-1000C/JP/ja/git-20261103-a369a8d0": {
       "approval": "Operator 「上‘线提交发布：JE-1000C、JE-1000G、JE-1000H、JE-1500B」 2026-11-03 in the window session, after review of the PR #1653 1280/390 renders beside the reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinator window): Git-only JP ja single-language Web release, source copy verbatim; symbol rows pending the shared dedupe PR are withheld (see source/approval.json); merge not yet authorized",
       "registered": "2026-11-03",
@@ -1358,6 +1363,11 @@
     "manual_sources/JE-1000D/US/en/git-20261027-10d15090": {
       "approval": "Operator 「上线提交发布：JE-1000D、JE-1500B、JE-1500D、JE-2000A；授权合入 #1629 及其 Hello-Docs 发布 PR」 2026-10-28 (MA-365), after review of the PR #1629 1280/390 renders beside the shared reference editions; requested by 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 2026-10-27: Git-only JE-1000D US en Web release, source copy verbatim (see source/approval.json)",
       "registered": "2026-10-27",
+      "known_drift": {}
+    },
+    "manual_sources/JE-1000D/US/en/git-20261103-10d15090-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
       "known_drift": {}
     },
     "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3": {
@@ -1440,6 +1450,11 @@
       "registered": "2026-11-03",
       "known_drift": {}
     },
+    "manual_sources/JE-1000G/JP/ja/git-20261103-6cf12013-shared-symbols": {
+      "approval": "Operator 「上线提交发布：JE-1000G、JE-1000H、JE-1500B」 2026-11-04 in the window session, after review of the PR #1661 symbol-table close-ups and 1280 renders beside the released base versions: shared-symbol follow-up JP ja Web release, all symbol rows bound to operator-confirmed group canonicals (SCG-20261103, #1659); source copy verbatim (see source/approval.json); merge not yet authorized",
+      "registered": "2026-11-04",
+      "known_drift": {}
+    },
     "manual_sources/JE-1000H/EU/en/2.0": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",
@@ -1470,9 +1485,24 @@
       "registered": "2026-11-03",
       "known_drift": {}
     },
+    "manual_sources/JE-1000H/JP/ja/git-20261103-717c813d-shared-symbols": {
+      "approval": "Operator 「上线提交发布：JE-1000G、JE-1000H、JE-1500B」 2026-11-04 in the window session, after review of the PR #1661 symbol-table close-ups and 1280 renders beside the released base versions: shared-symbol follow-up JP ja Web release, all symbol rows bound to operator-confirmed group canonicals (SCG-20261103, #1659); source copy verbatim (see source/approval.json); merge not yet authorized",
+      "registered": "2026-11-04",
+      "known_drift": {}
+    },
+    "manual_sources/JE-100A/JP/ja/git-20261103-2becaa50": {
+      "approval": "Operator 「上线提交发布：JE-100A、JE-100C、JE-240A、JE-76A」 2026-11-04 in the engineering session after review of the PR #1652 1280/390 renders beside the reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinator window): Git-only JP ja single-language Web release, source copy verbatim; acceptance hash-bound in source/approval.json; merge not yet authorized",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
     "manual_sources/JE-100A/US/en/git-20261027-18058b6b": {
       "approval": "Operator 「上线提交发布：JE-100A、JE-100C、JE-240A、JE-240B；授权合入 #1630 及其 Hello-Docs 发布 PR」 2026-10-28 after review of PR #1630 renders beside the shared reference editions (MA-365); requested by 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 2026-10-27: Git-only US English Web release, source copy verbatim",
       "registered": "2026-10-27",
+      "known_drift": {}
+    },
+    "manual_sources/JE-100A/US/en/git-20261103-18058b6b-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
       "known_drift": {}
     },
     "manual_sources/JE-100C/EU/de/2.0": {
@@ -1520,6 +1550,11 @@
       "registered": "2026-10-19",
       "known_drift": {}
     },
+    "manual_sources/JE-100C/JP/ja/git-20261103-64dd5f53": {
+      "approval": "Operator 「上线提交发布：JE-100A、JE-100C、JE-240A、JE-76A」 2026-11-04 in the engineering session after review of the PR #1652 1280/390 renders beside the reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinator window): Git-only JP ja single-language Web release, source copy verbatim; acceptance hash-bound in source/approval.json; merge not yet authorized",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
     "manual_sources/JE-100C/KR/ko/V0.3-Q": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",
@@ -1530,14 +1565,29 @@
       "registered": "2026-10-27",
       "known_drift": {}
     },
+    "manual_sources/JE-100C/US/en/git-20261103-39c58bca-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
     "manual_sources/JE-1500B/JP/ja/git-20261103-f61d0d68": {
       "approval": "Operator 「上‘线提交发布：JE-1000C、JE-1000G、JE-1000H、JE-1500B」 2026-11-03 in the window session, after review of the PR #1653 1280/390 renders beside the reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinator window): Git-only JP ja single-language Web release, source copy verbatim; symbol rows pending the shared dedupe PR are withheld (see source/approval.json); merge not yet authorized",
       "registered": "2026-11-03",
       "known_drift": {}
     },
+    "manual_sources/JE-1500B/JP/ja/git-20261103-f61d0d68-shared-symbols": {
+      "approval": "Operator 「上线提交发布：JE-1000G、JE-1000H、JE-1500B」 2026-11-04 in the window session, after review of the PR #1661 symbol-table close-ups and 1280 renders beside the released base versions: shared-symbol follow-up JP ja Web release, all symbol rows bound to operator-confirmed group canonicals (SCG-20261103, #1659); source copy verbatim (see source/approval.json); merge not yet authorized",
+      "registered": "2026-11-04",
+      "known_drift": {}
+    },
     "manual_sources/JE-1500B/US/en/git-20261027-bb5a455b": {
       "approval": "Operator 「上线提交发布：JE-1000D、JE-1500B、JE-1500D、JE-2000A；授权合入 #1629 及其 Hello-Docs 发布 PR」 2026-10-28 (MA-365), after review of the PR #1629 1280/390 renders beside the shared reference editions; requested by 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 2026-10-27: Git-only JE-1500B US en Web release, source copy verbatim (see source/approval.json)",
       "registered": "2026-10-27",
+      "known_drift": {}
+    },
+    "manual_sources/JE-1500B/US/en/git-20261103-bb5a455b-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
       "known_drift": {}
     },
     "manual_sources/JE-1500C/US/en/git-20261028-46f58108": {
@@ -1632,6 +1682,11 @@
       "registered": "2026-10-27",
       "known_drift": {}
     },
+    "manual_sources/JE-2000A/US/en/git-20261103-a8ec2be7-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
     "manual_sources/JE-2000C/JP/ja/git-20261103-88b78332": {
       "approval": "Operator request 2026-11-03 「继续 转日语说明书」 (relayed by the coordination window); operator reviewed the 1280/390 renders beside the reference edition and said 「按建议做，上线提交发布」 2026-11-03 in the owning session: Git-only JE-2000C JP/ja single-language Web release from 发布文档管理 record reczz28SfbsHdjSC, source copy verbatim; acceptance hash-bound in source/approval.json",
       "registered": "2026-11-03",
@@ -1642,6 +1697,11 @@
       "registered": "2026-10-27",
       "known_drift": {}
     },
+    "manual_sources/JE-2000C/US/en/git-20261103-c357f54d-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
     "manual_sources/JE-2000D/JP/ja/git-20261103-62605f21": {
       "approval": "Operator 「上线提交发布：JE-2000F、JE-2000D」 2026-11-04 in the engineering session after review of the PR #1655 1280/390 renders beside the shared reference edition; requested by 「继续 转日语说明书」 (发布文档管理 日规视图, via coordinator): Git-only JE-2000D JP/ja single-language Web release, source copy verbatim (see source/approval.json); merge needs a separate operator grant",
       "registered": "2026-11-03",
@@ -1650,6 +1710,11 @@
     "manual_sources/JE-2000D/US/en/git-20261028-3d50ef64": {
       "approval": "Operator 「上线提交发布」 2026-11-02 in the engineering session (session_01PHcxwApS3X7GQ5ZBMtLi9z), in reply to the review of the four PR #1637 candidates JE-2000D, JE-2000F, JE-3000B, JE-5000A (1280/390 renders beside the shared reference edition); bound in source/approval.json: Git-only US/en single-language Web release, source copy verbatim; source_concerns to the source owner",
       "registered": "2026-11-02",
+      "known_drift": {}
+    },
+    "manual_sources/JE-2000D/US/en/git-20261103-3d50ef64-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
       "known_drift": {}
     },
     "manual_sources/JE-2000E/EU/en/2.0": {
@@ -1707,14 +1772,34 @@
       "registered": "2026-11-02",
       "known_drift": {}
     },
+    "manual_sources/JE-2000F/US/en/git-20261103-c8ace563-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
+    "manual_sources/JE-240A/JP/ja/git-20261103-e227d165": {
+      "approval": "Operator 「上线提交发布：JE-100A、JE-100C、JE-240A、JE-76A」 2026-11-04 in the engineering session after review of the PR #1652 1280/390 renders beside the reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinator window): Git-only JP ja single-language Web release, source copy verbatim; acceptance hash-bound in source/approval.json; merge not yet authorized",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
     "manual_sources/JE-240A/US/en/git-20261027-ae3aea4b": {
       "approval": "Operator 「上线提交发布：JE-100A、JE-100C、JE-240A、JE-240B；授权合入 #1630 及其 Hello-Docs 发布 PR」 2026-10-28 after review of PR #1630 renders beside the shared reference editions (MA-365); requested by 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 2026-10-27: Git-only US English Web release, source copy verbatim",
       "registered": "2026-10-27",
       "known_drift": {}
     },
+    "manual_sources/JE-240A/US/en/git-20261103-ae3aea4b-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
     "manual_sources/JE-240B/US/en/git-20261027-3dc1fbba": {
       "approval": "Operator 「上线提交发布：JE-100A、JE-100C、JE-240A、JE-240B；授权合入 #1630 及其 Hello-Docs 发布 PR」 2026-10-28 after review of PR #1630 renders beside the shared reference editions (MA-365); requested by 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 2026-10-27: Git-only US English Web release, source copy verbatim",
       "registered": "2026-10-28",
+      "known_drift": {}
+    },
+    "manual_sources/JE-240B/US/en/git-20261103-3dc1fbba-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
       "known_drift": {}
     },
     "manual_sources/JE-3000A/JP/ja/git-20261103-002fde5a": {
@@ -1730,6 +1815,11 @@
     "manual_sources/JE-3000B/US/en/git-20261028-bd8a8296": {
       "approval": "Operator 「上线提交发布」 2026-11-02 in the engineering session (session_01PHcxwApS3X7GQ5ZBMtLi9z), in reply to the review of the four PR #1637 candidates JE-2000D, JE-2000F, JE-3000B, JE-5000A (1280/390 renders beside the shared reference edition); bound in source/approval.json: Git-only US/en single-language Web release, source copy verbatim; source_concerns to the source owner",
       "registered": "2026-11-02",
+      "known_drift": {}
+    },
+    "manual_sources/JE-3000B/US/en/git-20261103-bd8a8296-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
       "known_drift": {}
     },
     "manual_sources/JE-3000C/EU/en/2.0": {
@@ -1783,6 +1873,16 @@
         }
       }
     },
+    "manual_sources/JE-300B/JP/ja/git-20261103-456bb360": {
+      "approval": "Operator 2026-11-04 (PR #1657 session): 「上线提交发布：JE-300B、JE-300C、JE-300D、JE-500A」 after reviewing the 1280/390 renders beside the shared reference edition: Git-only JP/ja single-language Web release from the 发布文档管理 日规 row's 单语言说明书 PDF, source copy verbatim; acceptance hash-bound in source/approval.json",
+      "registered": "2026-11-04",
+      "known_drift": {}
+    },
+    "manual_sources/JE-300C/JP/ja/git-20261103-890abb4a": {
+      "approval": "Operator 2026-11-04 (PR #1657 session): 「上线提交发布：JE-300B、JE-300C、JE-300D、JE-500A」 after reviewing the 1280/390 renders beside the shared reference edition: Git-only JP/ja single-language Web release from the 发布文档管理 日规 row's 单语言说明书 PDF, source copy verbatim; acceptance hash-bound in source/approval.json",
+      "registered": "2026-11-04",
+      "known_drift": {}
+    },
     "manual_sources/JE-300C/US/en/git-20261027-a1128b25": {
       "approval": "Operator 2026-10-28 (PR #1631 session): 「上线提交发布：JE-300C、JE-300E、JE-300E-SG、JE-880B；授权合入 #1631 及其 Hello-Docs 发布 PR」 under MA-365: Git-only US English single-language Web release from the 发布文档管理 row; acceptance hash-bound in source/approval.json",
       "registered": "2026-10-28",
@@ -1817,6 +1917,11 @@
     "manual_sources/JE-300D/EU/en/candidate-2025-10-24": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-300D/JP/ja/git-20261103-6ab11ee9": {
+      "approval": "Operator 2026-11-04 (PR #1657 session): 「上线提交发布：JE-300B、JE-300C、JE-300D、JE-500A」 after reviewing the 1280/390 renders beside the shared reference edition: Git-only JP/ja single-language Web release from the 发布文档管理 日规 row's 单语言说明书 PDF, source copy verbatim; acceptance hash-bound in source/approval.json",
+      "registered": "2026-11-04",
       "known_drift": {}
     },
     "manual_sources/JE-300D/US/en/git-20261028-d3f47ff3": {
@@ -2032,6 +2137,11 @@
       "registered": "2026-10-19",
       "known_drift": {}
     },
+    "manual_sources/JE-500A/JP/ja/git-20261103-368d9934": {
+      "approval": "Operator 2026-11-04 (PR #1657 session): 「上线提交发布：JE-300B、JE-300C、JE-300D、JE-500A」 after reviewing the 1280/390 renders beside the shared reference edition: Git-only JP/ja single-language Web release from the 发布文档管理 日规 row's 单语言说明书 PDF, source copy verbatim; acceptance hash-bound in source/approval.json",
+      "registered": "2026-11-04",
+      "known_drift": {}
+    },
     "manual_sources/JE-500A/US/en/git-20261028-5c065d11": {
       "approval": "Operator 2026-10-29 (PR #1639 session): 「上线提交发布：JE-300D、JE-500A、JE-600A、JE-1500C」 after reviewing the 1280/390 renders: Git-only US English single-language Web release from the 发布文档管理 row; acceptance hash-bound in source/approval.json. Merge needs a separate operator authorization.",
       "registered": "2026-10-28",
@@ -2062,6 +2172,11 @@
           "since": "2026-11-03"
         }
       }
+    },
+    "manual_sources/JE-600A/JP/ja/git-20261103-b2490d61": {
+      "approval": "Operator 「上线提交发布：JE-600A、JE-600C-SJ、JE-900B-WH、JE-1000B」 2026-11-04 in the PR #1654 session after reviewing the 1280/390 renders beside the shared reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinating window): Git-only JP ja single-language Web release, source copy verbatim, symbol rows bound per shared PR #1659; acceptance hash-bound in source/approval.json. Merge needs a separate operator authorization.",
+      "registered": "2026-11-03",
+      "known_drift": {}
     },
     "manual_sources/JE-600A/US/en/git-20261028-9bf5bbb1": {
       "approval": "Operator 2026-10-29 (PR #1639 session): 「上线提交发布：JE-300D、JE-500A、JE-600A、JE-1500C」 after reviewing the 1280/390 renders: Git-only US English single-language Web release from the 发布文档管理 row; acceptance hash-bound in source/approval.json. Merge needs a separate operator authorization.",
@@ -2094,6 +2209,42 @@
         }
       }
     },
+    "manual_sources/JE-600A/US/en/git-20261103-9bf5bbb1-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
+      "known_drift": {
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 first18: exact reviewed source runtime retained; authorized cold rebuild and unchanged visible MD/CSS/art/IR.pages verified. Current main symbol utility changes do not re-render frozen outputs; fresh source-bound release admission remains required.",
+          "since": "2026-11-03"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 first18: exact reviewed source runtime retained; authorized cold rebuild and unchanged visible MD/CSS/art/IR.pages verified. Current main symbol utility changes do not re-render frozen outputs; fresh source-bound release admission remains required.",
+          "since": "2026-11-03"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 first18: exact reviewed source runtime retained; authorized cold rebuild and unchanged visible MD/CSS/art/IR.pages verified. Current main symbol utility changes do not re-render frozen outputs; fresh source-bound release admission remains required.",
+          "since": "2026-11-03"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 first18: exact reviewed source runtime retained; authorized cold rebuild and unchanged visible MD/CSS/art/IR.pages verified. Current main symbol utility changes do not re-render frozen outputs; fresh source-bound release admission remains required.",
+          "since": "2026-11-03"
+        }
+      }
+    },
+    "manual_sources/JE-600C-SJ/JP/ja/git-20261103-3837e9fd": {
+      "approval": "Operator 「上线提交发布：JE-600A、JE-600C-SJ、JE-900B-WH、JE-1000B」 2026-11-04 in the PR #1654 session after reviewing the 1280/390 renders beside the shared reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinating window): Git-only JP ja single-language Web release, source copy verbatim, symbol rows bound per shared PR #1659; acceptance hash-bound in source/approval.json. Merge needs a separate operator authorization.",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
+    "manual_sources/JE-76A/JP/ja/git-20261103-d8f7d338": {
+      "approval": "Operator 「上线提交发布：JE-100A、JE-100C、JE-240A、JE-76A」 2026-11-04 in the engineering session after review of the PR #1652 1280/390 renders beside the reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinator window): Git-only JP ja single-language Web release, source copy verbatim; acceptance hash-bound in source/approval.json; merge not yet authorized",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
     "manual_sources/JE-880B/US/en/git-20261027-640e83ca": {
       "approval": "Operator 2026-10-28 (PR #1631 session): 「上线提交发布：JE-300C、JE-300E、JE-300E-SG、JE-880B；授权合入 #1631 及其 Hello-Docs 发布 PR」 under MA-365: Git-only US English single-language Web release from the 发布文档管理 row; acceptance hash-bound in source/approval.json",
       "registered": "2026-10-28",
@@ -2125,9 +2276,45 @@
         }
       }
     },
+    "manual_sources/JE-880B/US/en/git-20261103-640e83ca-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
+      "known_drift": {
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 first18: exact reviewed source runtime retained; authorized cold rebuild and unchanged visible MD/CSS/art/IR.pages verified. Current main symbol utility changes do not re-render frozen outputs; fresh source-bound release admission remains required.",
+          "since": "2026-11-03"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 first18: exact reviewed source runtime retained; authorized cold rebuild and unchanged visible MD/CSS/art/IR.pages verified. Current main symbol utility changes do not re-render frozen outputs; fresh source-bound release admission remains required.",
+          "since": "2026-11-03"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 first18: exact reviewed source runtime retained; authorized cold rebuild and unchanged visible MD/CSS/art/IR.pages verified. Current main symbol utility changes do not re-render frozen outputs; fresh source-bound release admission remains required.",
+          "since": "2026-11-03"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 first18: exact reviewed source runtime retained; authorized cold rebuild and unchanged visible MD/CSS/art/IR.pages verified. Current main symbol utility changes do not re-render frozen outputs; fresh source-bound release admission remains required.",
+          "since": "2026-11-03"
+        }
+      }
+    },
+    "manual_sources/JE-900B-WH/JP/ja/git-20261103-66c65187": {
+      "approval": "Operator 「上线提交发布：JE-600A、JE-600C-SJ、JE-900B-WH、JE-1000B」 2026-11-04 in the PR #1654 session after reviewing the 1280/390 renders beside the shared reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinating window): Git-only JP ja single-language Web release, source copy verbatim, symbol rows bound per shared PR #1659; acceptance hash-bound in source/approval.json. Merge needs a separate operator authorization.",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
     "manual_sources/JHP-1000A/US/en/git-20261028-cb256e64": {
       "approval": "Operator 「上线提交发布：JHP-1000A、JHP-1000B、JHP-2000A」 2026-10-29 in the engineering session after the 1280/390 renders beside the shared reference edition (PR #1638): Git-only US/en single-language Web release, source copy verbatim; approval bound in source/approval.json",
       "registered": "2026-10-28",
+      "known_drift": {}
+    },
+    "manual_sources/JHP-1000A/US/en/git-20261103-cb256e64-full-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
       "known_drift": {}
     },
     "manual_sources/JHP-1000A/US/en/git-20261103-cb256e64-source-alignment": {
@@ -2140,9 +2327,19 @@
       "registered": "2026-10-27",
       "known_drift": {}
     },
+    "manual_sources/JHP-1000B-RC/US/en/git-20261103-af8a0775-full-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
     "manual_sources/JHP-1000B/US/en/git-20261028-e546301b": {
       "approval": "Operator 「上线提交发布：JHP-1000A、JHP-1000B、JHP-2000A」 2026-10-29 in the engineering session after the 1280/390 renders beside the shared reference edition (PR #1638): Git-only US/en single-language Web release, source copy verbatim; approval bound in source/approval.json",
       "registered": "2026-10-28",
+      "known_drift": {}
+    },
+    "manual_sources/JHP-1000B/US/en/git-20261103-e546301b-full-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
       "known_drift": {}
     },
     "manual_sources/JHP-2000A-RC/US/en/git-20261027-e27d4db5": {
@@ -2150,9 +2347,19 @@
       "registered": "2026-10-27",
       "known_drift": {}
     },
+    "manual_sources/JHP-2000A-RC/US/en/git-20261103-e27d4db5-full-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
     "manual_sources/JHP-2000A/US/en/git-20261028-5b60448e": {
       "approval": "Operator 「上线提交发布：JHP-1000A、JHP-1000B、JHP-2000A」 2026-10-29 in the engineering session after the 1280/390 renders beside the shared reference edition (PR #1638): Git-only US/en single-language Web release, source copy verbatim; approval bound in source/approval.json",
       "registered": "2026-10-28",
+      "known_drift": {}
+    },
+    "manual_sources/JHP-2000A/US/en/git-20261103-5b60448e-full-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
       "known_drift": {}
     },
     "manual_sources/JHP-3600A-RC/US/en/git-20261027-ab7f7393": {
@@ -2327,6 +2534,19 @@
       "handling": "keep-frozen",
       "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
       "minutes": 10
+    },
+    {
+      "date": "2026-11-03",
+      "files": [
+        "docs/renderers/web/assets/shared/symbols/manifest.json",
+        "tools/asset_pipeline/native_svg.py",
+        "tools/web/shared_symbol_assets.py",
+        "tools/web/symbol_asset_admission.py"
+      ],
+      "packages": 2,
+      "handling": "keep-frozen",
+      "reason": "MA-381 first18: exact reviewed source runtime retained; authorized cold rebuild and unchanged visible MD/CSS/art/IR.pages verified. Current main symbol utility changes do not re-render frozen outputs; fresh source-bound release admission remains required.",
+      "minutes": 0
     },
     {
       "date": "2026-11-04",

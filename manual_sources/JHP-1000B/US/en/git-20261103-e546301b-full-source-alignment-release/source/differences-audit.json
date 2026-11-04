@@ -1,0 +1,155 @@
+{
+  "model": "JHP-1000B",
+  "source_sha256": "e546301b5cba7a6774418544a74c689f69712fd0fac6189df016f8020c0d98b1",
+  "operator_scope": "No front cover or paper TOC. Source body and back contact information retained. Local verification only; publication remains candidate.",
+  "rows": [
+    {
+      "item": 1,
+      "old_statement": "Cover (p1), paper TOC (p3), back cover (p22), printed page numbers and the EN language badge beside IMPORTANT are not on the Web (`web_exclusions`).",
+      "old_statement_is_approval": false,
+      "physical_pages": [
+        1,
+        2,
+        3,
+        22
+      ],
+      "web_location": "[data-source-preface-title]; [data-source-contact=\"back\"]",
+      "status": "verified",
+      "resolution": "Front cover and paper TOC excluded by explicit operator scope. Restored EN next to IMPORTANT and the back contact address, source frame/icons/QR, and native telephone/email/website."
+    },
+    {
+      "item": 2,
+      "old_statement": "The print's two-column safety, FCC and warranty pages flow in one column; column breaks are not kept.",
+      "old_statement_is_approval": false,
+      "physical_pages": [
+        4,
+        6,
+        19
+      ],
+      "web_location": "[data-native-columns]; .hb-fcc-composition; .hb-warranty-period-card",
+      "status": "verified",
+      "resolution": "Restored two safety columns and the exact inside-item column break. FCC was already two columns and remains so. Warranty source has two columns only inside the 3/2 YEARS period panel; its other sections remain full width. The old blanket claim was inaccurate. Own-PDF p6 follow-up: preserved NOTE/These limits paragraph boundary as native newline within its shared FCC text slot and carrier, with pre-line geometry; source FCC mark floats left so opening text wraps around it. No shared renderer change."
+    },
+    {
+      "item": 3,
+      "old_statement": "Chapter title strips, ● subsection titles and bold lead-in labels use the shared h2/h3/h4 headings.",
+      "old_statement_is_approval": false,
+      "physical_pages": [
+        2,
+        4,
+        5,
+        7,
+        10,
+        11,
+        12,
+        13,
+        15,
+        16,
+        20,
+        21
+      ],
+      "web_location": "[data-source-preface-title]; [data-source-safety-title]; native h1/h2/h3",
+      "status": "verified",
+      "resolution": "Restored compact IMPORTANT badge/title, dark safety subsection bars, and four App subsection dots. Chapter bars and other source hierarchy remain native with the shared theme. Responsive line wrapping and vertical spacing are not fixed PDF pagination. The four SPECIFICATIONS group headings retain raw native h2/hb-subbar, preventing MyST from promoting them to dark chapter bars. SAVE THESE INSTRUCTIONS, GROUNDING INSTRUCTION and Emergency Charging Mode are source plain bold leads without theme dots. The two safety subbars and first-charge reminder use the existing native hb-prose-pill treatment."
+    },
+    {
+      "item": 4,
+      "old_statement": "The top WARNING strip and the WARNING precaution box on p4, the grounding WARNING, the DANGER box and every CAUTION/NOTE/WARNING side box use the shared `HB-CALLOUT-STRIP` callout; the shared signal triangle replaces the print's per-box glyph.",
+      "old_statement_is_approval": false,
+      "physical_pages": [
+        4,
+        5,
+        11,
+        12,
+        14,
+        15,
+        16,
+        21
+      ],
+      "web_location": "[data-native-strip]; [data-source-warning-card]; .manual-callout-table",
+      "status": "verified",
+      "resolution": "Top WARNING/DANGER use their exact source frame and warning mark with selectable copy. The basic WARNING card occupies the left column top only; bullets remain outside. Grounding WARNING is a plain bold lead followed by its source bullet. Other source side-label CAUTION/NOTE/WARNING callouts retain native label/body relationships."
+    },
+    {
+      "item": 5,
+      "old_statement": "Five operation/charging panels hold body copy inside the drawing (standby time box, prerequisite pills, footer notes, energy-saving instruction, LED mode line and steps, AC charging caption). That copy is removed from the panel art by vector strip and set as native text in the shared grey `hb-text-panel` or, for the three LED steps, an ordered list beside the remaining ①②③ icons.",
+      "old_statement_is_approval": false,
+      "physical_pages": [
+        10,
+        11,
+        12,
+        15
+      ],
+      "web_location": "[data-native-panel]; [data-native-copy]",
+      "status": "verified",
+      "resolution": "Restored all six source panel copy placements, including power standby, AC/DC prerequisites, AC outlet note, LED modes and three original step rows, energy-saving instruction, AC charging caption. Exact source asset rectangles are in asset_recipe.json and layout-positions.css. Native copy remains editable; source artwork is not drawn or rasterized as complete pages."
+    },
+    {
+      "item": 6,
+      "old_statement": "The LCD SCREEN mode table and its button art use the shared `HB-TABLE-LCD-MODE`; the KEY COMBINATIONS table uses `HB-TABLE-KEY-COMBINATIONS`, whose shared 44rem minimum width scrolls inside the component (also at 1280 px in the 46rem reading column).",
+      "old_statement_is_approval": false,
+      "physical_pages": [
+        12,
+        13
+      ],
+      "web_location": ".hb-lcd-mode-composition; .hb-key-combination-table",
+      "status": "verified",
+      "resolution": "Native mode/key tables preserve source row order and button/description association. Restored all four plus signs and exact original clock glyphs. Desktop fits the reading rail; phone scrolls internally without changing row associations. LCD mode illustration and table use source near-equal desktop widths; native action labels remain unbroken."
+    },
+    {
+      "item": 7,
+      "old_statement": "The two Symbol/Meaning pictogram tables use one `HB-TABLE-SYMBOL-ICON` with two panels (4 + 3 rows); the signal-word table shows the shared triangle on every badge.",
+      "old_statement_is_approval": false,
+      "physical_pages": [
+        5
+      ],
+      "web_location": "[data-source-signal]; .hb-symbol-pair-composition",
+      "status": "verified",
+      "resolution": "Signal labels use the own-PDF triangle rather than a generic drawn mark; words and meanings remain native. Source 4+3 pictogram tables remain side by side on desktop. All seven admitted symbol assets pass the existing own-PDF admission threshold."
+    },
+    {
+      "item": 8,
+      "old_statement": "Specification groups use the shared `HB-TABLE-SPEC` section strips; numbered troubleshooting steps show one step per line.",
+      "old_statement_is_approval": false,
+      "physical_pages": [
+        9,
+        17,
+        18
+      ],
+      "web_location": ".hb-lcd-table-composition; #troubleshooting; #source-spec-o",
+      "status": "verified",
+      "resolution": "Restored LCD number 23 spanning high/low temperature rows, original two-row USB-C label span, and F7 V_oc subscript. Source troubleshooting steps remain separate lines; all source values remain unchanged. Source group headings are four small dotted labels under the single SPECIFICATIONS chapter bar."
+    },
+    {
+      "item": 9,
+      "old_statement": "The FCC panel (this edition prints no RF exposure statement and no ISED panel) keeps a navigation-only \"FCC\" title hidden by the shared FCC style, as every published FCC section does.",
+      "old_statement_is_approval": false,
+      "physical_pages": [
+        6
+      ],
+      "web_location": ".hb-fcc-composition",
+      "status": "verified",
+      "resolution": "FCC native two-column paragraph/list block retains its source mark. Navigation-only FCC title remains visually hidden. No RF or ISED text is added; this source has neither."
+    },
+    {
+      "item": 10,
+      "old_statement": "Leader labels, button silk, step numbers and screenshot captions stay in the complete source panels; they are listed in `transcription.json` (`fig.*`) and bound to each figure's alt text and IR `embedded_labels`.",
+      "old_statement_is_approval": false,
+      "physical_pages": [
+        7,
+        8,
+        10,
+        11,
+        12,
+        14,
+        15,
+        16,
+        20,
+        21
+      ],
+      "web_location": ".hb-reference-figure",
+      "status": "verified",
+      "resolution": "Complete source leader/port/nameplate/screen panels remain the same model artwork. Every existing asset decision is rechecked against own-source recipe/hash or the symbol-admission evidence, rather than treated as approval. Native moved body text is overlaid in its original panel rectangles. Final full-viewport review corrected old clipped right-view bottom and operation-panel edges using exact own-PDF drawing bounds. LCD illustration crop excludes the adjacent table border. AC charging caption is native plain text on the original white panel, without the old extra grey box."
+    }
+  ]
+}

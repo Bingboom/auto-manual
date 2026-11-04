@@ -1,0 +1,67 @@
+{
+  "model": "JE-3000B",
+  "record_id": "reczz28SlRGJim2Y",
+  "status": "LOCAL_SOURCE_REVIEW_PASS",
+  "publication_status": "candidate",
+  "publication_eligible": false,
+  "source_sha256": "bd8a82962865ae64cd52e9c6ebf9a20d8495652773ba09806d1911cb0f360294",
+  "scope_pages": [
+    2,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+  ],
+  "excluded_pages": {
+    "1": "front cover per operator",
+    "3": "paper TOC per operator"
+  },
+  "native_fragments": 371,
+  "missing_native": 0,
+  "source_ocr_lines": 416,
+  "source_candidates_disposed": 17,
+  "reverse_candidates_disposed": 5,
+  "numeric_contexts": 73,
+  "numeric_differences": 0,
+  "unresolved": [],
+  "visual": {
+    "widths": [
+      1280,
+      390
+    ],
+    "viewport_height": 1100,
+    "scroll": "instant; actual scrollY read and checked before screenshot",
+    "segments": 43,
+    "right_end_views": 16,
+    "old_v11_review": "All43 viewed. Final v12 upstream identical; changed charging/App/spec and all downstream re-viewed; all16right-end views reviewed.",
+    "resource_failures": 0,
+    "broken_images": 0,
+    "image_uses": 60,
+    "uncontained_overflow": 0,
+    "CSS_backgrounds": "Computed background URLs checked independently; none present in current body."
+  },
+  "source_art": "40 inherited assets unchanged; 5 panels re-extracted from own PDF with text-only path removal.",
+  "content_note": "No technical facts inferred. Original duplicated safety clause and printed typos retained. No whole-page raster or hand-drawn original art.",
+  "checks": [
+    "manifest source/hash verification",
+    "prepared document shared-style admission and ComponentSpec/native parity",
+    "strict Sphinx -W --keep-going",
+    "source/native/reverse/numeric comparison",
+    "own-PDF hash-bound rendering and full body visual review",
+    "viewport/resource/scroll checks",
+    "cold rebuild byte comparison in cold-build.json"
+  ],
+  "authority": "User local construction/content/layout pass is checkbox condition; no release/deployment required."
+}

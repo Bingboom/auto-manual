@@ -1,0 +1,127 @@
+{
+  "model": "JE-100A",
+  "record_id": "reczz28SPRx9qFmY",
+  "status": "approved_release_snapshot_verified",
+  "candidate_package": "manual_sources/JE-100A/US/en/git-20261103-18058b6b-source-alignment",
+  "release_package": "manual_sources/JE-100A/US/en/git-20261103-18058b6b-source-alignment-release",
+  "original_source_sha256": "18058b6bb7e83041fce1798f3baf98a018d079fa5caa6fd8dceec934df02c0b5",
+  "candidate_source_manifest_sha256": "8cdcfc30ee3826041b8cadc306e054cace89b1c428b3b5dd0e56bbb1c635c63d",
+  "approval_sha256": "1d69027e1477411c093c9825f1470a7b8758977044571a0ab48860b44580c973",
+  "approval_contract": "operator-authorized-git-only-release",
+  "approval_current_inputs_verified": true,
+  "repo_input_count": 0,
+  "repo_input_hashes_unchanged": true,
+  "runtime": {
+    "matching_worktree_head": "68589e5118ab25111a1e2395e3dd7ff44efa4677",
+    "repo_inputs": []
+  },
+  "cold_build_passed": true,
+  "final_stored_output_inventory_verified": true,
+  "publication_eligible": true,
+  "pending_source_review": [],
+  "ir_pages_byte_structure_equal": true,
+  "ir_pages_canonical_sha256": "e1455aec657d72ab25098baa51252406da20049942c6ff03dc1ebdad0c5d8796",
+  "visible_render_files_byte_identical": [
+    {
+      "path": "manual_je100a_us_en.md",
+      "sha256": "07076dc2770f2eac428c023216422784fbb5424ec693e39b18b5cebed2b8550e"
+    },
+    {
+      "path": "index.md",
+      "sha256": "fbdee32d6f42fdae94151594608f5acc4c67396671a1764acdb89d3700f9816a"
+    },
+    {
+      "path": "_static/source_geometry.css",
+      "sha256": "7ad075de7e2d5788a89cf5b031dc23b10f3bcca8092c366af641aa0c8829cdba"
+    },
+    {
+      "path": "_static/web_manual.css",
+      "sha256": "c3604a2e5f22b04bc745bb99cf203b50e60222af70c0aeba3d968cc28adac9ce"
+    },
+    {
+      "path": "assets/lcd-map.png",
+      "sha256": "72bd1ee56d96b0feb67587a34bbc4f056805659849a64935a3c6eb94ebd1df19"
+    },
+    {
+      "path": "assets/fcc-mark.svg",
+      "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+    },
+    {
+      "path": "assets/charging-car.png",
+      "sha256": "128c7093ea9ebbe2b785a6cf930561242abba11da02bf3480000d014c6b12912"
+    },
+    {
+      "path": "assets/lcd-low-battery.png",
+      "sha256": "78a8b10568487f169b1c7733603fe27d700234a0aaf68d16ec368c50ac5a8775"
+    },
+    {
+      "path": "assets/lcd-energy-saving.png",
+      "sha256": "f857204fa0bd408f9dc65f4350ae4ae1eae8fdfd3e28de59b306214b7e4406d5"
+    },
+    {
+      "path": "assets/solar-40.png",
+      "sha256": "1e03b43b2e68c272e78102ba8079eacac1b479388766daae83fc1c0bc0ba9c99"
+    },
+    {
+      "path": "assets/overview.png",
+      "sha256": "2c608d938b0678aeafbe22e91b9c02b06d3bddba4616f8223eb80e17f8ba9523"
+    },
+    {
+      "path": "assets/lcd-always-on.png",
+      "sha256": "69c0d203f4ce041fccc53b9be755902ac6f0f616cb13f17555201c5106860723"
+    },
+    {
+      "path": "assets/solar-80.png",
+      "sha256": "40431907bc1781160e20e3936b8e0befc1365c16becd640526a31867d83cf9d2"
+    },
+    {
+      "path": "assets/inbox-unit.png",
+      "sha256": "b5418e3c0ed863b3ef953fc0074f1f1dfc1ff1db877c2d276a534500fb8ce441"
+    },
+    {
+      "path": "assets/back-contact-qr.png",
+      "sha256": "653ecfb33deb34dca1866a4a5b5bbd40cb7f859874827406db95d9fb21f279dc"
+    },
+    {
+      "path": "assets/lcd-high-temperature.png",
+      "sha256": "f2ce8028ad3623e4e5723d2ad6acaf4415feb83596dc8169ce231c60a20c430c"
+    },
+    {
+      "path": "assets/solar-100.png",
+      "sha256": "3aaa4ad7c5ff546f1d97d3bd579f3539dc1c7b13f30e450652d0031dc51de5f5"
+    },
+    {
+      "path": "assets/inbox-manual.png",
+      "sha256": "37493c0ca03225dfb1ad213fb900ee207b292617f81b59e8e4fd119b718a5c75"
+    },
+    {
+      "path": "assets/charging-wall.png",
+      "sha256": "040db66326e6c09a9013d68a7f21f915cc1f4b70d03d7529b7cf7abe50d128e6"
+    },
+    {
+      "path": "assets/certifications.png",
+      "sha256": "d03033403e5970862af4d0a5eb9e39b849819614833a751ad307299182930e3e"
+    },
+    {
+      "path": "assets/lcd-low-temperature.png",
+      "sha256": "bb168c5b32f118fc64842fa82d9a92b868307b9326a0ae8622c953bbae4d172b"
+    },
+    {
+      "path": "assets/inbox-cable.png",
+      "sha256": "4b0ebeb8a6292ba4cc0509bc2c1af2db436432694ec56209be682d5aa0e47fb9"
+    },
+    {
+      "path": "assets/lcd-battery-ring.png",
+      "sha256": "1248583dd67c892387d13ee711efe42b3540dd39103418bee5189b959c2f6dcd"
+    },
+    {
+      "path": "assets/shared-lcd/25_Fault_code_LaTmb4IQYo3vwvxMqQNcC2RgnIf.png",
+      "sha256": "3b51b98d7199d32f7b286bdf5ce3de4cb41971ed942820091053fd1d87bf0a7a"
+    }
+  ],
+  "prior_full_review": {
+    "path": "evidence/final-layout-review.json",
+    "sha256": "8322f2c243a4a4da73ded73d3e4549f6fd2dc22d62eb20b120c13b999e4baa45"
+  },
+  "scope": "Approval packaging only. No candidate source, visible text/style/art, shared code, registry, Feishu record or deployment was changed."
+}

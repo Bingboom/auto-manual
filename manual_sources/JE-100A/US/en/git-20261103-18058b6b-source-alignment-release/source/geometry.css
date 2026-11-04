@@ -1,0 +1,29 @@
+/* JE-100A US English: page-local geometry and type size only.
+   Colours, borders and panels come from the shared Web theme (prepared-document shared-style gate). */
+
+/* Complete source panels keep a readable print width. */
+#furo-main-content .hb-reference-figure { max-width: 44rem; margin-inline: auto; }
+#furo-main-content .hb-reference-figure[data-reference-id="charging-wall"] { max-width: 24rem; }
+#furo-main-content .hb-reference-figure[data-reference-id="charging-car"] { max-width: 17rem; }
+#furo-main-content .hb-reference-figure[data-reference-id="certifications"] { max-width: 26rem; margin-inline: 0; }
+@media (max-width: 760px) {
+  #furo-main-content .hb-reference-figure:is([data-reference-id="overview"], [data-reference-id="lcd-map"]) { overflow-x: auto; }
+  #furo-main-content .hb-reference-figure:is([data-reference-id="overview"], [data-reference-id="lcd-map"]) > * { min-width: 30rem; }
+}
+
+/* Source FCC block: original single-column mark, paragraph and measures. */
+#furo-main-content .hb-fcc-grid { grid-template-columns:minmax(0,1fr); }
+#furo-main-content .hb-fcc-column { min-width:0; }
+
+#furo-main-content [data-source-layout="source-back-contact"] img { display:block; width:6rem; height:auto; margin-left:auto; }
+
+#furo-main-content .hb-inbox-card::before { display:none; }
+
+#furo-main-content .hb-fcc-column-right ul { list-style:none; padding-left:0; }
+
+#furo-main-content [data-source-layout="charging-pair"] { display:grid; grid-template-columns:48% minmax(0,1fr); gap:1rem; align-items:start; }
+#furo-main-content [data-source-layout="certification-pair"] { display:grid; grid-template-columns:38% minmax(0,1fr); gap:1rem; align-items:start; }
+#furo-main-content [data-source-layout="charging-pair"] figure, #furo-main-content [data-source-layout="certification-pair"] figure { margin:0; min-width:0; max-width:100%; }
+#furo-main-content .hb-fcc-mark { width:4rem; height:auto; }
+#furo-main-content .hb-fcc-grid { row-gap:0; }
+@media(max-width:760px) { #furo-main-content [data-source-layout="charging-pair"], #furo-main-content [data-source-layout="certification-pair"] { grid-template-columns:minmax(0,1fr); } }

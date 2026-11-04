@@ -1,0 +1,32 @@
+[
+  {
+    "text": "Risk of Electric Shock. Never use power pack to supply power tools to cut or access to live parts or live wirings, or materials that may contain live parts or live wirings inside, such as building walls, etc.",
+    "coverage": 0.126,
+    "physical_page": 4,
+    "disposition": "PASS — directly read on own PDF page; OCR missed or corrupted this exact source clause."
+  },
+  {
+    "text": "This device is intended for indoor use only (Please place this device in a similar indoor environment when using it outdoors，e.g. Home RVs, tents, cabins, etc.).\n※ This device is not waterproof or dustproof. Keep away from rain and humid environments during use.",
+    "coverage": 0.16,
+    "physical_page": 5,
+    "disposition": "PASS — directly read on own PDF page; OCR missed or corrupted this exact source clause."
+  },
+  {
+    "text": "-- Consult the dealer or an experienced radio/TV technician for help.",
+    "coverage": 0.646,
+    "physical_page": 5,
+    "disposition": "PASS — directly read on own PDF page; OCR missed or corrupted this exact source clause."
+  },
+  {
+    "text": "The LCD turns off automatically and enters sleep mode after 2 minutes of inactivity.",
+    "coverage": 0.619,
+    "physical_page": 10,
+    "disposition": "PASS — directly read on own PDF page; OCR missed or corrupted this exact source clause."
+  },
+  {
+    "text": "Output overcurrent protection of the DC charging module on/triggered",
+    "coverage": 0.615,
+    "physical_page": 11,
+    "disposition": "PASS — directly read on own PDF page; OCR missed or corrupted this exact source clause."
+  }
+]

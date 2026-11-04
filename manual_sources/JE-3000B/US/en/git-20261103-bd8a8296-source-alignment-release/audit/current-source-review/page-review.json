@@ -1,0 +1,104 @@
+[
+  {
+    "physical_page": 2,
+    "status": "PASS",
+    "checks": "Both directions: body, numbers, units, qualifiers, original art and relative layout; desktop and phone.",
+    "detail": "Preface all three paragraphs and US badge."
+  },
+  {
+    "physical_page": 4,
+    "status": "PASS",
+    "checks": "Both directions: body, numbers, units, qualifiers, original art and relative layout; desktop and phone.",
+    "detail": "Safety risk strip, two columns, cross-column continuation, warning lockups, grounding and maintenance."
+  },
+  {
+    "physical_page": 5,
+    "status": "PASS",
+    "checks": "Both directions: body, numbers, units, qualifiers, original art and relative layout; desktop and phone.",
+    "detail": "Operating two columns, warning/DANGER, moving and exact FCC columns/mark/-- items."
+  },
+  {
+    "physical_page": 6,
+    "status": "PASS",
+    "checks": "Both directions: body, numbers, units, qualifiers, original art and relative layout; desktop and phone.",
+    "detail": "Three package items, availability note, front/right overview and all port ratings in original art."
+  },
+  {
+    "physical_page": 7,
+    "status": "PASS",
+    "checks": "Both directions: body, numbers, units, qualifiers, original art and relative layout; desktop and phone.",
+    "detail": "LCD map and rows 1–5; row4 shared primary icon/number plus both small icons and App qualifiers."
+  },
+  {
+    "physical_page": 8,
+    "status": "PASS",
+    "checks": "Both directions: body, numbers, units, qualifiers, original art and relative layout; desktop and phone.",
+    "detail": "LCD rows6–19; row16 primary icon/number spanning both temperatures; Energy Saving threshold/12h."
+  },
+  {
+    "physical_page": 9,
+    "status": "PASS",
+    "checks": "Both directions: body, numbers, units, qualifiers, original art and relative layout; desktop and phone.",
+    "detail": "Power/AC panels, original bubbles/arrows, 2h/3s and reset note native inside art."
+  },
+  {
+    "physical_page": 10,
+    "status": "PASS",
+    "checks": "Both directions: body, numbers, units, qualifiers, original art and relative layout; desktop and phone.",
+    "detail": "DC panel, vertical LCD image/table and 2min/2h conditions."
+  },
+  {
+    "physical_page": 11,
+    "status": "PASS",
+    "checks": "Both directions: body, numbers, units, qualifiers, original art and relative layout; desktop and phone.",
+    "detail": "Native button/key table plus F0–F9 complete three-column descriptions and outer frame."
+  },
+  {
+    "physical_page": 12,
+    "status": "PASS",
+    "checks": "Both directions: body, numbers, units, qualifiers, original art and relative layout; desktop and phone.",
+    "detail": "UPS paragraphs, original diagram, premise/bubble and all three warnings incl one device at a time."
+  },
+  {
+    "physical_page": 13,
+    "status": "PASS",
+    "checks": "Both directions: body, numbers, units, qualifiers, original art and relative layout; desktop and phone.",
+    "detail": "Charging intro, first-use capsule, three temperature notes, AC panel and solar description/first figure."
+  },
+  {
+    "physical_page": 14,
+    "status": "PASS",
+    "checks": "Both directions: body, numbers, units, qualifiers, original art and relative layout; desktop and phone.",
+    "detail": "Second solar figure, matching-panel warning, car charging figure/caption and all four notes."
+  },
+  {
+    "physical_page": 15,
+    "status": "PASS",
+    "checks": "Both directions: body, numbers, units, qualifiers, original art and relative layout; desktop and phone.",
+    "detail": "Warranty lead/note, five cards, 36months and 3+2years, no deleted exclusions."
+  },
+  {
+    "physical_page": 16,
+    "status": "PASS",
+    "checks": "Both directions: body, numbers, units, qualifiers, original art and relative layout; desktop and phone.",
+    "detail": "App steps1–2.2, QR/store marks, original screenshots/device buttons and first Remarks."
+  },
+  {
+    "physical_page": 17,
+    "status": "PASS",
+    "checks": "Both directions: body, numbers, units, qualifiers, original art and relative layout; desktop and phone.",
+    "detail": "App2.3–2.5, both Remarks and bullets, three screenshots, unbind and all4.1–4.3 conditions."
+  },
+  {
+    "physical_page": 18,
+    "status": "PASS",
+    "checks": "Both directions: body, numbers, units, qualifiers, original art and relative layout; desktop and phone.",
+    "detail": "Product/model band, all four native spec groups, exact DC lines, both discharge conditions one cell, trademark."
+  },
+  {
+    "physical_page": 19,
+    "status": "PASS",
+    "checks": "Both directions: body, numbers, units, qualifiers, original art and relative layout; desktop and phone.",
+    "detail": "Company, full address, phone/email/web with original icons and QR."
+  }
+]

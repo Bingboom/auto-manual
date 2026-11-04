@@ -1,0 +1,45 @@
+{
+  "model": "JE-1500B",
+  "record_id": "reczz28SPLqH7mCa",
+  "source_sha256": "bb5a455b5c3e03b70ee95d6d6ceb74a9c98b671addc1d30d9637f9bb974a7dbb",
+  "status": "local_review_passed",
+  "change": "Restore original three-column LCD legend on desktop; numbered order retained on phone",
+  "full_visible_copy_identical": true,
+  "full_semantic_json_unchanged_except_layout_group": true,
+  "original_assets_identical": 23,
+  "strict_sphinx": "passed",
+  "source_content_tests": "21 targeted identity/source-copy/model-fact/artwork tests passed across the original packages; new candidate full text and all images verified identical",
+  "browser": [
+    {
+      "width": 1280,
+      "images": 23,
+      "broken": [],
+      "uncontained": []
+    },
+    {
+      "width": 390,
+      "images": 23,
+      "broken": [],
+      "uncontained": []
+    }
+  ],
+  "layout_evidence": [
+    {
+      "width": 1280,
+      "computedColumns": "218.406px 218.406px 218.406px",
+      "rows": 15,
+      "text": "①Input Power②Remaining Charge Time③Solar Charging Indicator④AC Wall Charging Indicator⑤Car Charging Indicator⑥Low Battery Indicator⑦Remaining Battery Percentage⑧Output Power⑨Remaining Discharge Time10Fault code⑪High Temperature Warning⑫Low Temperature Warning⑬Low Power Mode⑭AC Power Indicator⑮Battery Power Indicator"
+    },
+    {
+      "width": 390,
+      "computedColumns": "none",
+      "rows": 15,
+      "text": "①Input Power②Remaining Charge Time③Solar Charging Indicator④AC Wall Charging Indicator⑤Car Charging Indicator⑥Low Battery Indicator⑦Remaining Battery Percentage⑧Output Power⑨Remaining Discharge Time10Fault code⑪High Temperature Warning⑫Low Temperature Warning⑬Low Power Mode⑭AC Power Indicator⑮Battery Power Indicator"
+    }
+  ],
+  "source_ocr": {
+    "model": "JE-1500B",
+    "checked_ocr_lines": 132,
+    "candidates": []
+  }
+}

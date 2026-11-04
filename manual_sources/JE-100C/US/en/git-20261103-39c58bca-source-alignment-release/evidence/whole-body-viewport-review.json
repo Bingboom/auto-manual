@@ -1,0 +1,85 @@
+{
+  "tiles": [
+    {
+      "tile": 0,
+      "scroll": 9,
+      "x": 392,
+      "width": 736,
+      "height": 1300
+    },
+    {
+      "tile": 1,
+      "scroll": 1259,
+      "x": 392,
+      "width": 736,
+      "height": 1300
+    },
+    {
+      "tile": 2,
+      "scroll": 2509,
+      "x": 392,
+      "width": 736,
+      "height": 1300
+    },
+    {
+      "tile": 3,
+      "scroll": 3759,
+      "x": 392,
+      "width": 736,
+      "height": 1300
+    },
+    {
+      "tile": 4,
+      "scroll": 5009,
+      "x": 392,
+      "width": 736,
+      "height": 1300
+    },
+    {
+      "tile": 5,
+      "scroll": 6259,
+      "x": 392,
+      "width": 736,
+      "height": 1300
+    },
+    {
+      "tile": 6,
+      "scroll": 7509,
+      "x": 392,
+      "width": 736,
+      "height": 1300
+    },
+    {
+      "tile": 7,
+      "scroll": 8759,
+      "x": 392,
+      "width": 736,
+      "height": 1300
+    },
+    {
+      "tile": 8,
+      "scroll": 10009,
+      "x": 392,
+      "width": 736,
+      "height": 1300
+    },
+    {
+      "tile": 9,
+      "scroll": 11259,
+      "x": 392,
+      "width": 736,
+      "height": 1300
+    },
+    {
+      "tile": 10,
+      "scroll": 12251,
+      "x": 392,
+      "width": 736,
+      "height": 1300
+    }
+  ],
+  "request_failures": [],
+  "background_images": [],
+  "method": "1300px viewport screenshots; behavior instant; scrollY is asserted to equal requested document coordinate clamped at page end",
+  "visual_review": "Every sequential tile reviewed through last contact/QR; no omitted lower-body sections or repeated-opening captures"
+}

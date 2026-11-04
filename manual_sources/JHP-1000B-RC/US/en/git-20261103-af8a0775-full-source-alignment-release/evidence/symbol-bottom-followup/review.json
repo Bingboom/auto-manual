@@ -1,0 +1,29 @@
+{
+  "model": "JHP-1000B-RC",
+  "record_id": "reczz28SPRx9mkta",
+  "status": "local_review_passed",
+  "source_sha256": "af8a0775d0ba23a137fe024ae961c8b77f35797e1c8838a943ddbf8d418d9251",
+  "source_page": 5,
+  "source_page_render_sha256": "93c4f745c40b1cf38e61070aa227ff75c9b5be2c1ea5758d5e1142f3470fd116",
+  "scope": "Only this model package source geometry restores the common bottom edge of its original two symbol panels; no shared renderer or content change.",
+  "cold_rebuild": "rebuild.log",
+  "strict_sphinx": "after-sphinx.log",
+  "native_markdown_without_style_identical": true,
+  "manual_ir_pages_identical": true,
+  "all_asset_bytes_identical": true,
+  "browser_whole_body_text_identical": true,
+  "browser_widths": [
+    1280,
+    390
+  ],
+  "broken_images": 0,
+  "uncontained_overflow": 0,
+  "actual_instant_scroll_viewports": 30,
+  "pixel_identical_viewports": 28,
+  "changed_viewports_visually_checked": [
+    "view-04.png",
+    "view-05.png"
+  ],
+  "no_new_css_resource_urls": true,
+  "test_scope": "Target cold rebuild runs all existing content/style/symbol admission gates, strict Sphinx, then browser before/after equivalence and exact whole-body/IR/artwork comparison. Unaffected prior full-source content/visual evidence remains valid."
+}

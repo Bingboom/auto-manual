@@ -1,0 +1,41 @@
+{
+  "schema_version": "je76a-jp-asset-recipe/v1",
+  "source_sha256": "d8f7d338fd208af056c0dda9991422227627ab771245e791858e1480978b013c",
+  "panel_scale": 3,
+  "panels": [
+    {"path": "assets/certifications.png", "physical_page": 3, "bbox": [85, 80, 192, 108],
+     "role": "complete 認証 mark cluster (no-open-flame, PSE, Li-ion recycling, two crossed-out bins)"},
+    {"path": "assets/inbox-unit.png", "physical_page": 3, "bbox": [36, 152, 57, 187],
+     "role": "同梱品 card art ①: Power Bank"},
+    {"path": "assets/inbox-cable.png", "physical_page": 3, "bbox": [95, 154, 114, 186],
+     "role": "同梱品 card art ②: 1m USB-C to USB-C 電源ケーブル"},
+    {"path": "assets/inbox-manual.png", "physical_page": 3, "bbox": [147, 154, 176, 183],
+     "role": "同梱品 card art ③: 取扱説明書"},
+    {"path": "assets/inbox-warranty.png", "physical_page": 3, "bbox": [205, 154, 227, 183],
+     "role": "同梱品 card art ④: 保証案内書"},
+    {"path": "assets/overview.png", "physical_page": 4, "bbox": [45, 84, 206, 165],
+     "mask": [[44, 83, 88, 100.5]],
+     "role": "complete 使用製品 drawing with its A–G leader labels; the native 【Jackery Power Bank】 caption that overlaps the panel corner is painted white (it is Web text)"},
+    {"path": "assets/lcd-map.png", "physical_page": 5, "bbox": [94, 92, 163, 135],
+     "role": "complete LCD表示画面 segment display (188, charging lamp, %)"},
+    {"path": "assets/charging-station.png", "physical_page": 6, "bbox": [48, 197, 204, 290],
+     "role": "complete 充電ステーション drawing with the insertion detail"},
+    {"path": "assets/charging-usb-c.png", "physical_page": 7, "bbox": [20, 200, 233, 289],
+     "role": "complete USB-C wall-charger drawing"},
+    {"path": "assets/lcd-ff.png", "physical_page": 8, "bbox": [156, 131, 207, 161],
+     "role": "complete FF temperature-protection LCD panel"}
+  ],
+  "native_icons": [
+    {"path": "assets/recycle-li-ion.svg", "physical_page": 3, "glyph_bbox": [38, 240, 72, 287],
+     "drawing_indices": [4312, 4313, 4314, 4315, 4316, 4317, 4318, 4319, 4320],
+     "role": "Li-ion recycling mark of the 充電式電池のリサイクルについて box"},
+    {"path": "assets/lcd-percent.svg", "physical_page": 5, "glyph_bbox": [26, 145, 43, 163],
+     "drawing_indices": [7384, 7385, 7386, 7387, 7388],
+     "role": "LCD % glyph (バッテリー残量)"},
+    {"path": "assets/lcd-charging.svg", "physical_page": 5, "glyph_bbox": [28, 169, 41, 186],
+     "drawing_indices": [7389, 7390, 7391],
+     "role": "LCD charging-lamp glyph (充電表示ランプ)"}
+  ],
+  "symbols": [],
+  "reused": []
+}

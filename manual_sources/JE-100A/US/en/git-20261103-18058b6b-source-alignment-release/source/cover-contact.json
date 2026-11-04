@@ -1,0 +1,20 @@
+{
+  "last_page": 10,
+  "back_copy": [],
+  "back_qr": true,
+  "source_sha256": "18058b6bb7e83041fce1798f3baf98a018d079fa5caa6fd8dceec934df02c0b5",
+  "crops": [
+    {
+      "asset": "assets/back-contact-qr.png",
+      "physical_page": 10,
+      "bbox_points": [
+        198.15969604492187,
+        310.7269658203125,
+        234.07295715332032,
+        347.1747971191406
+      ],
+      "operation": "unaltered original crop with full QR quiet zone at 5x"
+    }
+  ],
+  "historical_front_cover_exclusion": "2026-10-27 operator constraint in the historical source_manifest.source_authority: 封面和目录不上网页; 版面以 PDF 为准; 不改任何英文原文"
+}

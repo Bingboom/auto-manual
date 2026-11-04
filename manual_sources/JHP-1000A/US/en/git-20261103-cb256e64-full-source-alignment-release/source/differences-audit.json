@@ -1,0 +1,130 @@
+{
+  "source_sha256": "cb256e64ddf9a998f4717e3ec2b038b9ef7711572f7d9b752667f1d6e64077c1",
+  "old_declarations": [
+    {
+      "item": 1,
+      "source_pages": [
+        1,
+        3,
+        21
+      ],
+      "disposition": "Exclude cover and TOC; restore all source contact text, exact original phone/mail/web glyphs, divider, border and QR on p21."
+    },
+    {
+      "item": 2,
+      "source_pages": [
+        4,
+        5,
+        6,
+        18
+      ],
+      "disposition": "Restore safety/operating columns. FCC already uses its own two original columns; warranty is one main column with two warranty-year panels, as the current source actually prints."
+    },
+    {
+      "item": 3,
+      "source_pages": [
+        2,
+        4,
+        5,
+        7,
+        10,
+        11,
+        12,
+        14,
+        15,
+        19,
+        20
+      ],
+      "disposition": "Restore EN/IMPORTANT compact preface, full-width operating/maintenance pills, single subsection bullets and original App/plain subheading hierarchy."
+    },
+    {
+      "item": 4,
+      "source_pages": [
+        4,
+        5
+      ],
+      "disposition": "Use original risk/grounding/danger/card frames and glyphs with native source copy; no invented risk signal word. Standard side notes use the established native callout carrier."
+    },
+    {
+      "item": 5,
+      "source_pages": [
+        4,
+        5
+      ],
+      "disposition": "Grounding stays the last operating-instruction bullet; its following warning retains the original source lockup."
+    },
+    {
+      "item": 6,
+      "source_pages": [
+        10,
+        11,
+        12,
+        14
+      ],
+      "disposition": "Return all stripped body copy to its original field inside its own model drawing. White AC charging caption has no gray speech panel. No extra speech pointers."
+    },
+    {
+      "item": 7,
+      "source_pages": [
+        12,
+        13
+      ],
+      "disposition": "LCD mode retains original side-by-side proportions and six actions. Key table retains all 4 original plus marks, exact source clock, 3 columns and mobile scrolling."
+    },
+    {
+      "item": 8,
+      "source_pages": [
+        5
+      ],
+      "disposition": "Restore exact original white signal glyph; retain both 3+4 source pictogram panels and seven source-bound symbol admissions."
+    },
+    {
+      "item": 9,
+      "source_pages": [
+        16,
+        17
+      ],
+      "disposition": "All numeric/condition rows retained. Specifications have source small headings, source label weight and USB-C shared label spanning two value rows. V_oc and chemical subscripts remain source-authored."
+    },
+    {
+      "item": 10,
+      "source_pages": [
+        6
+      ],
+      "disposition": "FCC navigation title remains hidden because the source panel has no printed FCC heading."
+    },
+    {
+      "item": 11,
+      "source_pages": [
+        6,
+        7,
+        8,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        19,
+        20
+      ],
+      "disposition": "Original labels, button silk, leaders and screenshots remain original artwork; source labels are also bound in figure metadata. Expanded tight panel crops preserve actual source frame/stroke bounds."
+    },
+    {
+      "item": 12,
+      "source_pages": [
+        8
+      ],
+      "disposition": "Earlier LCD crop repair retained: all 25 numbered labels and leaders complete, verified against original source."
+    },
+    {
+      "item": 13,
+      "source_pages": [
+        13
+      ],
+      "disposition": "Earlier four plus separators retained as native text between the original button images."
+    }
+  ],
+  "unresolved": [],
+  "historical_specific_text_exceptions": []
+}
