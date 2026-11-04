@@ -13,6 +13,7 @@ from bs4 import BeautifulSoup
 
 from tools.manual_ir.hashing import file_sha256
 from tools.word.bundle_docx_pandoc import resolve_pandoc_binary
+from tests.historical_app_styles import pre_rowspan_divider_styles
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGE = ROOT / "manual_sources/JE-2000D/JP/ja/git-20261103-62605f21"
@@ -159,6 +160,7 @@ class Je2000dJpWebTests(unittest.TestCase):
             self.assertTrue((PACKAGE / "web/ja" / ref).is_file(), ref)
             self.assertEqual(file_sha256(PACKAGE / "web/ja" / ref), file_sha256(PACKAGE / ref), ref)
 
+    @pre_rowspan_divider_styles
     def test_cold_replay_matches_stored_candidate(self):
         try:
             subprocess.run([resolve_pandoc_binary(None), "--version"], check=True, capture_output=True)

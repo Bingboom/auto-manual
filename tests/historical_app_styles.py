@@ -33,16 +33,24 @@ def _pre_rowspan_divider_contracts(target: Path) -> Path:
     return target
 
 
+def pre_rowspan_divider_styles(test):
+    """Run a byte comparison of an edition frozen before the #1666 divider rule."""
+    @wraps(test)
+    def run(*args, **kwargs):
+        with tempfile.TemporaryDirectory() as tmp:
+            contracts = _pre_rowspan_divider_contracts(Path(tmp))
+            paths = SimpleNamespace(renderer_contracts_dir=contracts)
+            with mock.patch.object(stylesheets, "get_paths", return_value=paths):
+                return test(*args, **kwargs)
+    return run
+
+
 def pre_four_control_styles(test):
     """Run an immutable edition's byte comparison before the new module exists."""
     @wraps(test)
     def run(*args, **kwargs):
         parts = tuple(part for part in stylesheets.WEB_STYLESHEET_PARTS
                       if part != "web_app_control_labels.css")
-        with tempfile.TemporaryDirectory() as tmp, \
-                mock.patch.object(stylesheets, "WEB_STYLESHEET_PARTS", parts):
-            contracts = _pre_rowspan_divider_contracts(Path(tmp))
-            paths = SimpleNamespace(renderer_contracts_dir=contracts)
-            with mock.patch.object(stylesheets, "get_paths", return_value=paths):
-                return test(*args, **kwargs)
+        with mock.patch.object(stylesheets, "WEB_STYLESHEET_PARTS", parts):
+            return pre_rowspan_divider_styles(test)(*args, **kwargs)
     return run

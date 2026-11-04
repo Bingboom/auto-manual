@@ -13,6 +13,7 @@ from bs4 import BeautifulSoup
 
 from tools.manual_ir.hashing import file_sha256
 from tools.word.bundle_docx_pandoc import resolve_pandoc_binary
+from tests.historical_app_styles import pre_rowspan_divider_styles
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGES: dict[str, dict] = {
@@ -173,6 +174,7 @@ class ExplorerJpJaWebTests(unittest.TestCase):
             built = json.loads(json.dumps(builder.build(), ensure_ascii=False))
             self.assertEqual(built, read(package / "source/ja/content.json"))
 
+    @pre_rowspan_divider_styles
     def test_cold_replay_matches_stored_candidate(self):
         try:
             subprocess.run([resolve_pandoc_binary(None), "--version"], check=True, capture_output=True)
