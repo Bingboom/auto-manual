@@ -1,0 +1,12 @@
+{
+  "status": "resolved",
+  "unresolved": [],
+  "cover_and_toc": "p1/p3 excluded by explicit user scope",
+  "p4": "OCR satety typo/interleaved columns; source safety hazards preserved.",
+  "p5": "Outlined danger small print omitted by OCR; original full source image read and own unchanged native copy verified.",
+  "p7": "Outlined USB-A range OCR 34/6-9 text is retained inside original own source panel; no technical data inferred.",
+  "p8": "OCR lost TOU Off line; own source p8 image confirms full native sentence.",
+  "p12": "OCR corrupts tiny LCD operation cells; own source image confirms six rows/merged states and original native words.",
+  "p18": "lbs lowercase l vs OCR I; source dimensions multiplication marks; own model and numbers verified.",
+  "p20_p21": "Candidate strings are inside original source phone screenshots; source screenshots preserved pixel-backed, not retyped."
+}

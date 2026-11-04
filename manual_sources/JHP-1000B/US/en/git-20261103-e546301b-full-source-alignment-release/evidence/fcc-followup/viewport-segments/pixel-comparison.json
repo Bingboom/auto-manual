@@ -1,0 +1,358 @@
+{
+  "rows": [
+    {
+      "file": "view-01.png",
+      "changed_bbox": [
+        431,
+        533,
+        1089,
+        697
+      ],
+      "sha256": "b1d8fce79c7cbe5fa41dfdc1d20aa14aeb8c3d7fde78881b41d3ea7a1577fac8",
+      "status": "visually_reviewed_final_frame"
+    },
+    {
+      "file": "view-02.png",
+      "changed_bbox": null,
+      "sha256": "b2db3dc3052cc58c72f85debe807bb1eef5670ecdf8ca5b6994ba442578979e5",
+      "status": "visually_reviewed_final_frame"
+    },
+    {
+      "file": "view-03.png",
+      "changed_bbox": null,
+      "sha256": "d27eb117fba76b503b56e44d113d15e57dbba2830f35d304bb48f827d1a5c7a3",
+      "status": "visually_reviewed_final_frame"
+    },
+    {
+      "file": "view-04.png",
+      "changed_bbox": [
+        463,
+        961,
+        1029,
+        1000
+      ],
+      "sha256": "7ad76edf8c9cc28a651a6d87d8f73068011117e2f12327eec640c19f21a30970",
+      "status": "visually_reviewed_final_frame"
+    },
+    {
+      "file": "view-05.png",
+      "changed_bbox": [
+        431,
+        161,
+        1089,
+        1000
+      ],
+      "sha256": "b9bbd75dcca850f6aa4c7cafbc038b18bc327729389bc3af6e4c41f28e481366",
+      "status": "visually_reviewed_final_frame"
+    },
+    {
+      "file": "view-06.png",
+      "changed_bbox": [
+        437,
+        228,
+        1083,
+        1000
+      ],
+      "sha256": "e2126ce15ecbf6cdc57692e83eedb60bd9be9fb065d1af90bf02511a2a40aa47",
+      "status": "visually_reviewed_final_frame"
+    },
+    {
+      "file": "view-07.png",
+      "changed_bbox": [
+        431,
+        0,
+        1081,
+        1000
+      ],
+      "sha256": "b03d4587ee5d8365c2ae3c03240d681329d5ba9176ebf3863f88dd393e9b5fdd",
+      "status": "visually_reviewed_final_frame"
+    },
+    {
+      "file": "view-08.png",
+      "changed_bbox": [
+        433,
+        188,
+        1087,
+        1000
+      ],
+      "sha256": "bd10fcc80b8141e2ebd9826486248d4b991fc6d0ad6d8f9ba736bc4907c984af",
+      "status": "visually_reviewed_final_frame"
+    },
+    {
+      "file": "view-09.png",
+      "changed_bbox": [
+        556,
+        86,
+        909,
+        898
+      ],
+      "sha256": "9b11154e05da0c4598306f64114efd505bcb6fab4575515a8e4a433524488e9b",
+      "status": "visually_reviewed_final_frame"
+    },
+    {
+      "file": "view-10.png",
+      "changed_bbox": [
+        445,
+        83,
+        1061,
+        971
+      ],
+      "sha256": "fb31d23ed3171d224ba1ef7cd0b63a50892f070959c2ff13b26748ec00ad7829",
+      "status": "visually_reviewed_final_frame"
+    },
+    {
+      "file": "view-11.png",
+      "changed_bbox": [
+        445,
+        154,
+        1087,
+        1000
+      ],
+      "sha256": "254a755cf736cdc2ac44dc9677a5e58778487711e4e1b9f6d1665fd30be672b0",
+      "status": "visually_reviewed_final_frame"
+    },
+    {
+      "file": "view-12.png",
+      "changed_bbox": [
+        448,
+        83,
+        1089,
+        1000
+      ],
+      "sha256": "95fd8c7a3e5b06b0ee758eb1b4b6931fe3d3741ba0f1c12bba2ea89cbb836613",
+      "status": "visually_reviewed_final_frame"
+    },
+    {
+      "file": "view-13.png",
+      "changed_bbox": [
+        431,
+        10,
+        1038,
+        886
+      ],
+      "sha256": "7074ec0e0e354ddd87408040cd0c06bd82266bbb14a4607c291be79372a22f86",
+      "status": "visually_reviewed_final_frame"
+    },
+    {
+      "file": "view-14.png",
+      "changed_bbox": [
+        439,
+        0,
+        1074,
+        967
+      ],
+      "sha256": "844dc3bf5b6d130062fbcd66f00bcb6bd1d3e2043afe36f38b78501786aca8ef",
+      "status": "visually_reviewed_final_frame"
+    },
+    {
+      "file": "view-15.png",
+      "changed_bbox": [
+        439,
+        17,
+        1076,
+        1000
+      ],
+      "sha256": "210807b848570e43f8452b037dea2568a7e2a5f23c7bb3b22301c83c9f3362b9",
+      "status": "visually_reviewed_final_frame"
+    },
+    {
+      "file": "view-16.png",
+      "changed_bbox": [
+        431,
+        188,
+        1089,
+        550
+      ],
+      "sha256": "4efefe7e671433a8c4224e5508ac03e22b09483a8b0b20770d15828546f6bb2d",
+      "status": "visually_reviewed_final_frame"
+    },
+    {
+      "file": "view-17.png",
+      "changed_bbox": [
+        431,
+        248,
+        1085,
+        856
+      ],
+      "sha256": "9fba7a86cbfc20f07c1917eb4887b5ce7ed8af4cdb572d6e2fbcebe6ef2931d8",
+      "status": "visually_reviewed_final_frame"
+    },
+    {
+      "file": "view-18.png",
+      "changed_bbox": [
+        435,
+        52,
+        1085,
+        579
+      ],
+      "sha256": "97808236ef1e4df5c66904827c0a22ab7438e77dec1440d6a0841d8022c340f2",
+      "status": "visually_reviewed_final_frame"
+    },
+    {
+      "file": "view-19.png",
+      "changed_bbox": [
+        435,
+        652,
+        887,
+        752
+      ],
+      "sha256": "ea5a2a45814b83756068409a8c9bbf5deadc8952da6b7ccc90a09c4856733d19",
+      "status": "visually_reviewed_final_frame"
+    },
+    {
+      "file": "view-20.png",
+      "changed_bbox": [
+        431,
+        202,
+        1089,
+        979
+      ],
+      "sha256": "9b95362e64ccd0d5e78f5ac63ca35b5ea23bcefb51f04006cb7830cb1f9ce7c3",
+      "status": "visually_reviewed_final_frame"
+    },
+    {
+      "file": "view-21.png",
+      "changed_bbox": [
+        574,
+        106,
+        1040,
+        333
+      ],
+      "sha256": "466c5e29e5219eb4e6d8f8d455cfb76ee000c70cdd179da4cd42b3c09e2f030f",
+      "status": "visually_reviewed_final_frame"
+    },
+    {
+      "file": "view-22.png",
+      "changed_bbox": [
+        554,
+        203,
+        1065,
+        493
+      ],
+      "sha256": "c267f11ef655948279836dfaf56101cb82e27bdc3b274e9168db6081e83a9a81",
+      "status": "visually_reviewed_final_frame"
+    },
+    {
+      "file": "view-23.png",
+      "changed_bbox": [
+        432,
+        228,
+        1077,
+        907
+      ],
+      "sha256": "986c24543a1aceedada3e0acf8caa2a7d1a63a64382edbf70009e09ebb7037ec",
+      "status": "visually_reviewed_final_frame"
+    },
+    {
+      "file": "view-24.png",
+      "changed_bbox": [
+        432,
+        89,
+        1077,
+        566
+      ],
+      "sha256": "ce02050198ba1be32c1f0bf9cb15f21bdc97cdb907c67b07bdf962f02205214a",
+      "status": "visually_reviewed_final_frame"
+    },
+    {
+      "file": "view-25.png",
+      "changed_bbox": [
+        536,
+        893,
+        795,
+        908
+      ],
+      "sha256": "d06c09a3793564bbae76c60b633c1d36a2c966bda06d7b8e6f15d0a0ffebced6",
+      "status": "visually_reviewed_final_frame"
+    },
+    {
+      "file": "view-26.png",
+      "changed_bbox": [
+        433,
+        93,
+        1087,
+        968
+      ],
+      "sha256": "6a0198aa6c3618626c52f7ab9456ffa2a3a22793653ffa46cbe81aab4602ecb5",
+      "status": "visually_reviewed_final_frame"
+    },
+    {
+      "file": "view-27.png",
+      "changed_bbox": [
+        433,
+        86,
+        1087,
+        793
+      ],
+      "sha256": "6682639cf8d461be29d305a92023512649149eed33281d93d41cbabc02055415",
+      "status": "visually_reviewed_final_frame"
+    },
+    {
+      "file": "view-28.png",
+      "changed_bbox": [
+        449,
+        568,
+        1061,
+        584
+      ],
+      "sha256": "0d828250e2d633b84208906ea909283d97a57d384aef01b05b804edfead6f6bd",
+      "status": "visually_reviewed_final_frame"
+    },
+    {
+      "file": "view-29.png",
+      "changed_bbox": [
+        431,
+        218,
+        1089,
+        424
+      ],
+      "sha256": "7d7e9bf97eee32229f4a3dc93418e57e2422d6ed2e95f303fec157a4e1783c2d",
+      "status": "visually_reviewed_final_frame"
+    },
+    {
+      "file": "view-30.png",
+      "changed_bbox": [
+        573,
+        350,
+        944,
+        830
+      ],
+      "sha256": "03602a1e21faa7d6693372ebca2b4df7f5048399d91c065167def956ebd3517b",
+      "status": "visually_reviewed_final_frame"
+    },
+    {
+      "file": "view-31.png",
+      "changed_bbox": [
+        431,
+        0,
+        1089,
+        1000
+      ],
+      "sha256": "80f5ce05060e9c09fb9d7ef5ca02e3933d38e99b777908411b41defc329d6056",
+      "status": "visually_reviewed_final_frame"
+    },
+    {
+      "file": "view-32.png",
+      "changed_bbox": [
+        431,
+        27,
+        1074,
+        963
+      ],
+      "sha256": "ae92ac1e9d24f7fc337bb93ee5257f1be7ab80d5277037d271f183345c9c058d",
+      "status": "visually_reviewed_final_frame"
+    },
+    {
+      "file": "view-33.png",
+      "changed_bbox": [
+        431,
+        152,
+        1074,
+        404
+      ],
+      "sha256": "42d91a04b3e271123ba5fcbaa6ec0328057565054d1bb476820c118ff51212f3",
+      "status": "visually_reviewed_final_frame"
+    }
+  ],
+  "review_method": "All33 actual viewport body images visually inspected in nine labeled contact sheets, plus FCC desktop/mobile component at full size. Pixel differences caused by fractional scroll offsets were not assumed identical."
+}

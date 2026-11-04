@@ -1,0 +1,80 @@
+[
+  {
+    "asset": "assets/power.png",
+    "outside_text_regions_pixel_exact": true,
+    "zoom_factor": 12,
+    "zoom_bbox": [
+      161.71070861816406,
+      185.61740112304688,
+      205.71070861816406,
+      225.61740112304688
+    ],
+    "pair": "power-12x.png",
+    "operation": "left original/right text-only extraction; original bubble/pill/arrow path preserved"
+  },
+  {
+    "asset": "assets/ac-output.png",
+    "outside_text_regions_pixel_exact": true,
+    "zoom_factor": 12,
+    "zoom_bbox": [
+      29.317779541015625,
+      452.7189025878906,
+      73.31777954101562,
+      492.7189025878906
+    ],
+    "pair": "ac-output-12x.png",
+    "operation": "left original/right text-only extraction; original bubble/pill/arrow path preserved"
+  },
+  {
+    "asset": "assets/dc-usb.png",
+    "outside_text_regions_pixel_exact": true,
+    "zoom_factor": 12,
+    "zoom_bbox": [
+      31.6571044921875,
+      48.0,
+      75.6571044921875,
+      85.83849334716797
+    ],
+    "pair": "dc-usb-12x.png",
+    "operation": "left original/right text-only extraction; original bubble/pill/arrow path preserved"
+  },
+  {
+    "asset": "assets/ups.png",
+    "outside_text_regions_pixel_exact": true,
+    "zoom_factor": 12,
+    "zoom_bbox": [
+      143.65431213378906,
+      259.67218017578125,
+      187.65431213378906,
+      299.67218017578125
+    ],
+    "pair": "ups-12x.png",
+    "operation": "left original/right text-only extraction; original bubble/pill/arrow path preserved"
+  },
+  {
+    "asset": "assets/ac-charge.png",
+    "outside_text_regions_pixel_exact": true,
+    "zoom_factor": 12,
+    "zoom_bbox": [
+      213.7515899658203,
+      243.24498291015624,
+      257.7515899658203,
+      283.24498291015624
+    ],
+    "pair": "ac-charge-12x.png",
+    "operation": "left original/right text-only extraction; original bubble/pill/arrow path preserved"
+  },
+  {
+    "asset": "assets/car-charge.png",
+    "outside_text_regions_pixel_exact": true,
+    "zoom_factor": 12,
+    "zoom_bbox": [
+      191.10728454589844,
+      277.0,
+      235.10728454589844,
+      312.1315002441406
+    ],
+    "pair": "car-charge-12x.png",
+    "operation": "left original/right text-only extraction; original bubble/pill/arrow path preserved"
+  }
+]

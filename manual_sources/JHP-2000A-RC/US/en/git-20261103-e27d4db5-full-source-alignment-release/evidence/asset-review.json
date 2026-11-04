@@ -1,0 +1,7 @@
+{
+  "status": "passed",
+  "count": 73,
+  "source": "../source/asset_decisions.json",
+  "restored_frames": "../source/restored-artwork.json",
+  "scope": "Each own panel and all reused shared symbols checked against its declared own PDF location. Native copy and text-free art retain original frames and pairing. No full-page bitmap; no foreign model data."
+}

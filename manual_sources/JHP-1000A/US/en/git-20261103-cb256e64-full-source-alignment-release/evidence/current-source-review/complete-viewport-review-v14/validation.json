@@ -1,0 +1,486 @@
+[
+  {
+    "width": 1280,
+    "documentWidth": 1280,
+    "images": 77,
+    "broken": [],
+    "cssImages": [],
+    "uncontained": [],
+    "frames": [
+      {
+        "id": "source-copy source-copy-risk-frame",
+        "bottomBeyond": -16.34375,
+        "rightBeyond": -15.78125
+      },
+      {
+        "id": "source-copy source-copy-warning-card",
+        "bottomBeyond": -6.390625,
+        "rightBeyond": -9.515625
+      },
+      {
+        "id": "source-copy source-copy-grounding-frame",
+        "bottomBeyond": -5.53125,
+        "rightBeyond": -13.15625
+      },
+      {
+        "id": "source-copy source-copy-danger-frame",
+        "bottomBeyond": -1.65625,
+        "rightBeyond": -13.15625
+      }
+    ],
+    "scrolls": [],
+    "cover": 0,
+    "height": 25291,
+    "fileRequestFailures": [],
+    "segments": [
+      {
+        "path": "1280-viewport-00.png",
+        "requestedY": 0,
+        "actualY": 0
+      },
+      {
+        "path": "1280-viewport-01.png",
+        "requestedY": 1000,
+        "actualY": 1000
+      },
+      {
+        "path": "1280-viewport-02.png",
+        "requestedY": 2000,
+        "actualY": 2000
+      },
+      {
+        "path": "1280-viewport-03.png",
+        "requestedY": 3000,
+        "actualY": 3000
+      },
+      {
+        "path": "1280-viewport-04.png",
+        "requestedY": 4000,
+        "actualY": 4000
+      },
+      {
+        "path": "1280-viewport-05.png",
+        "requestedY": 5000,
+        "actualY": 5000
+      },
+      {
+        "path": "1280-viewport-06.png",
+        "requestedY": 6000,
+        "actualY": 6000
+      },
+      {
+        "path": "1280-viewport-07.png",
+        "requestedY": 7000,
+        "actualY": 7000
+      },
+      {
+        "path": "1280-viewport-08.png",
+        "requestedY": 8000,
+        "actualY": 8000
+      },
+      {
+        "path": "1280-viewport-09.png",
+        "requestedY": 9000,
+        "actualY": 9000
+      },
+      {
+        "path": "1280-viewport-10.png",
+        "requestedY": 10000,
+        "actualY": 10000
+      },
+      {
+        "path": "1280-viewport-11.png",
+        "requestedY": 11000,
+        "actualY": 11000
+      },
+      {
+        "path": "1280-viewport-12.png",
+        "requestedY": 12000,
+        "actualY": 12000
+      },
+      {
+        "path": "1280-viewport-13.png",
+        "requestedY": 13000,
+        "actualY": 13000
+      },
+      {
+        "path": "1280-viewport-14.png",
+        "requestedY": 14000,
+        "actualY": 14000
+      },
+      {
+        "path": "1280-viewport-15.png",
+        "requestedY": 15000,
+        "actualY": 15000
+      },
+      {
+        "path": "1280-viewport-16.png",
+        "requestedY": 16000,
+        "actualY": 16000
+      },
+      {
+        "path": "1280-viewport-17.png",
+        "requestedY": 17000,
+        "actualY": 17000
+      },
+      {
+        "path": "1280-viewport-18.png",
+        "requestedY": 18000,
+        "actualY": 18000
+      },
+      {
+        "path": "1280-viewport-19.png",
+        "requestedY": 19000,
+        "actualY": 19000
+      },
+      {
+        "path": "1280-viewport-20.png",
+        "requestedY": 20000,
+        "actualY": 20000
+      },
+      {
+        "path": "1280-viewport-21.png",
+        "requestedY": 21000,
+        "actualY": 21000
+      },
+      {
+        "path": "1280-viewport-22.png",
+        "requestedY": 22000,
+        "actualY": 22000
+      },
+      {
+        "path": "1280-viewport-23.png",
+        "requestedY": 23000,
+        "actualY": 23000
+      },
+      {
+        "path": "1280-viewport-24.png",
+        "requestedY": 24000,
+        "actualY": 24000
+      },
+      {
+        "path": "1280-viewport-25.png",
+        "requestedY": 25000,
+        "actualY": 24191
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "documentWidth": 390,
+    "images": 77,
+    "broken": [],
+    "cssImages": [],
+    "uncontained": [],
+    "frames": [
+      {
+        "id": "source-copy source-copy-risk-frame",
+        "bottomBeyond": -17.5,
+        "rightBeyond": -16.90625
+      },
+      {
+        "id": "source-copy source-copy-warning-card",
+        "bottomBeyond": -5.359375,
+        "rightBeyond": -10.75
+      },
+      {
+        "id": "source-copy source-copy-grounding-frame",
+        "bottomBeyond": -5.890625,
+        "rightBeyond": -14.09375
+      },
+      {
+        "id": "source-copy source-copy-danger-frame",
+        "bottomBeyond": -1.765625,
+        "rightBeyond": -14.09375
+      }
+    ],
+    "scrolls": [
+      {
+        "class": "container",
+        "source": "source-figure-scroll",
+        "width": 358,
+        "scrollWidth": 704,
+        "rightmostReachable": true
+      },
+      {
+        "class": "container",
+        "source": "source-figure-scroll",
+        "width": 358,
+        "scrollWidth": 704,
+        "rightmostReachable": true
+      },
+      {
+        "class": "container",
+        "source": "source-figure-scroll",
+        "width": 358,
+        "scrollWidth": 704,
+        "rightmostReachable": true
+      },
+      {
+        "class": "hb-reference-figure",
+        "source": "",
+        "width": 358,
+        "scrollWidth": 544,
+        "rightmostReachable": true
+      },
+      {
+        "class": "hb-reference-figure",
+        "source": "",
+        "width": 358,
+        "scrollWidth": 544,
+        "rightmostReachable": true
+      },
+      {
+        "class": "hb-lcd-table-composition",
+        "source": "",
+        "width": 354,
+        "scrollWidth": 640,
+        "rightmostReachable": true
+      },
+      {
+        "class": "container",
+        "source": "source-figure-scroll",
+        "width": 358,
+        "scrollWidth": 704,
+        "rightmostReachable": true
+      },
+      {
+        "class": "container",
+        "source": "source-figure-scroll",
+        "width": 358,
+        "scrollWidth": 704,
+        "rightmostReachable": true
+      },
+      {
+        "class": "container",
+        "source": "source-figure-scroll",
+        "width": 358,
+        "scrollWidth": 704,
+        "rightmostReachable": true
+      },
+      {
+        "class": "container",
+        "source": "source-figure-scroll",
+        "width": 358,
+        "scrollWidth": 704,
+        "rightmostReachable": true
+      },
+      {
+        "class": "hb-auto-resume-composition",
+        "source": "",
+        "width": 354,
+        "scrollWidth": 640,
+        "rightmostReachable": true
+      },
+      {
+        "class": "hb-lcd-mode-table-panel",
+        "source": "",
+        "width": 325,
+        "scrollWidth": 544,
+        "rightmostReachable": true
+      },
+      {
+        "class": "container",
+        "source": "source-figure-scroll",
+        "width": 358,
+        "scrollWidth": 704,
+        "rightmostReachable": true
+      },
+      {
+        "class": "hb-key-combination-composition",
+        "source": "",
+        "width": 354,
+        "scrollWidth": 704,
+        "rightmostReachable": true
+      },
+      {
+        "class": "container",
+        "source": "source-figure-scroll",
+        "width": 358,
+        "scrollWidth": 704,
+        "rightmostReachable": true
+      },
+      {
+        "class": "hb-troubleshooting-composition",
+        "source": "",
+        "width": 354,
+        "scrollWidth": 640,
+        "rightmostReachable": true
+      },
+      {
+        "class": "hb-reference-figure",
+        "source": "",
+        "width": 358,
+        "scrollWidth": 544,
+        "rightmostReachable": true
+      },
+      {
+        "class": "container",
+        "source": "source-figure-scroll",
+        "width": 358,
+        "scrollWidth": 576,
+        "rightmostReachable": true
+      }
+    ],
+    "cover": 0,
+    "height": 30456,
+    "fileRequestFailures": [],
+    "segments": [
+      {
+        "path": "390-viewport-00.png",
+        "requestedY": 0,
+        "actualY": 0
+      },
+      {
+        "path": "390-viewport-01.png",
+        "requestedY": 1000,
+        "actualY": 999
+      },
+      {
+        "path": "390-viewport-02.png",
+        "requestedY": 2000,
+        "actualY": 2000
+      },
+      {
+        "path": "390-viewport-03.png",
+        "requestedY": 3000,
+        "actualY": 3000
+      },
+      {
+        "path": "390-viewport-04.png",
+        "requestedY": 4000,
+        "actualY": 4000
+      },
+      {
+        "path": "390-viewport-05.png",
+        "requestedY": 5000,
+        "actualY": 5000
+      },
+      {
+        "path": "390-viewport-06.png",
+        "requestedY": 6000,
+        "actualY": 6000
+      },
+      {
+        "path": "390-viewport-07.png",
+        "requestedY": 7000,
+        "actualY": 7000
+      },
+      {
+        "path": "390-viewport-08.png",
+        "requestedY": 8000,
+        "actualY": 8000
+      },
+      {
+        "path": "390-viewport-09.png",
+        "requestedY": 9000,
+        "actualY": 9000
+      },
+      {
+        "path": "390-viewport-10.png",
+        "requestedY": 10000,
+        "actualY": 10000
+      },
+      {
+        "path": "390-viewport-11.png",
+        "requestedY": 11000,
+        "actualY": 11000
+      },
+      {
+        "path": "390-viewport-12.png",
+        "requestedY": 12000,
+        "actualY": 12000
+      },
+      {
+        "path": "390-viewport-13.png",
+        "requestedY": 13000,
+        "actualY": 13000
+      },
+      {
+        "path": "390-viewport-14.png",
+        "requestedY": 14000,
+        "actualY": 14000
+      },
+      {
+        "path": "390-viewport-15.png",
+        "requestedY": 15000,
+        "actualY": 15000
+      },
+      {
+        "path": "390-viewport-16.png",
+        "requestedY": 16000,
+        "actualY": 16000
+      },
+      {
+        "path": "390-viewport-17.png",
+        "requestedY": 17000,
+        "actualY": 17000
+      },
+      {
+        "path": "390-viewport-18.png",
+        "requestedY": 18000,
+        "actualY": 18000
+      },
+      {
+        "path": "390-viewport-19.png",
+        "requestedY": 19000,
+        "actualY": 19000
+      },
+      {
+        "path": "390-viewport-20.png",
+        "requestedY": 20000,
+        "actualY": 20000
+      },
+      {
+        "path": "390-viewport-21.png",
+        "requestedY": 21000,
+        "actualY": 21000
+      },
+      {
+        "path": "390-viewport-22.png",
+        "requestedY": 22000,
+        "actualY": 22000
+      },
+      {
+        "path": "390-viewport-23.png",
+        "requestedY": 23000,
+        "actualY": 23000
+      },
+      {
+        "path": "390-viewport-24.png",
+        "requestedY": 24000,
+        "actualY": 24000
+      },
+      {
+        "path": "390-viewport-25.png",
+        "requestedY": 25000,
+        "actualY": 25000
+      },
+      {
+        "path": "390-viewport-26.png",
+        "requestedY": 26000,
+        "actualY": 26000
+      },
+      {
+        "path": "390-viewport-27.png",
+        "requestedY": 27000,
+        "actualY": 27000
+      },
+      {
+        "path": "390-viewport-28.png",
+        "requestedY": 28000,
+        "actualY": 28000
+      },
+      {
+        "path": "390-viewport-29.png",
+        "requestedY": 29000,
+        "actualY": 29000
+      },
+      {
+        "path": "390-viewport-30.png",
+        "requestedY": 30000,
+        "actualY": 29355
+      }
+    ]
+  }
+]

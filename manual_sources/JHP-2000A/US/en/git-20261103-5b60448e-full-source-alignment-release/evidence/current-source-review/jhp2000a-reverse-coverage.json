@@ -1,0 +1,197 @@
+[
+  {
+    "page": 2,
+    "transcription_lines": 6,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 4,
+    "transcription_lines": 36,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 5,
+    "transcription_lines": 33,
+    "low_ocr_candidates": [
+      {
+        "id": "w2.body",
+        "text": "Improper connection of the equipment grounding conductor is able to result in a risk of electric shock. Check with a qualified electrician if you are in doubt as to whether the product is properly grounded. Do not modify the plug provided with the product – if it will not fit the outlet, have a proper outlet installed by a qualified electrician.",
+        "coverage": 0.509,
+        "nearest": "1 a risk of electric shock. Check with a qualified electrician if you are in douk"
+      }
+    ]
+  },
+  {
+    "page": 6,
+    "transcription_lines": 17,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 7,
+    "transcription_lines": 29,
+    "low_ocr_candidates": [
+      {
+        "id": "ov.f.usbc30.v",
+        "text": "30W Max, 5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A",
+        "coverage": 0.708,
+        "nearest": "140W Max, SV=3A, 9V-3A, 12V-3A, 15V-3A,"
+      },
+      {
+        "id": "ov.f.usbc140.v",
+        "text": "140W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A, 28V⎓5A",
+        "coverage": 0.714,
+        "nearest": "140W Max, SV=3A, 9V-3A, 12V-3A, 15V-3A,"
+      },
+      {
+        "id": "ov.r.dcin.v1",
+        "text": "PV: 16-60V⎓12A Max, Double to 21A / 800W Max",
+        "coverage": 0.542,
+        "nearest": "PV: :6-0V-24 Max, Doulble to 21A/800W Max"
+      }
+    ]
+  },
+  {
+    "page": 8,
+    "transcription_lines": 19,
+    "low_ocr_candidates": [
+      {
+        "id": "lcd.d5.b1",
+        "text": "Maximizes the use of solar energy and reduces reliance on grid electricity by prioritizing stored solar energy, reducing electricity costs. The power station must be connected to both solar panels and the grid simultaneously, with the load power limited by bypass power.",
+        "coverage": 0.518,
+        "nearest": "grid electricity by prioritizing stored solar energy, reducing"
+      }
+    ]
+  },
+  {
+    "page": 9,
+    "transcription_lines": 33,
+    "low_ocr_candidates": [
+      {
+        "id": "lcd.d16.b1",
+        "text": "On: Charging Power limit is enabled in the Jackery App.",
+        "coverage": 0.622,
+        "nearest": "Charging Power Limit"
+      },
+      {
+        "id": "lcd.d16.b2",
+        "text": "Off: Charging Power limit is disabled in the Jackery App.",
+        "coverage": 0.564,
+        "nearest": "Charging Power Limit"
+      }
+    ]
+  },
+  {
+    "page": 10,
+    "transcription_lines": 26,
+    "low_ocr_candidates": [
+      {
+        "id": "lcd.d18.b3",
+        "text": "Off: The battery level is not below 20% or the product is charging.",
+        "coverage": 0.133,
+        "nearest": "igh temperature protection is triggered. The product ma"
+      }
+    ]
+  },
+  {
+    "page": 11,
+    "transcription_lines": 18,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 12,
+    "transcription_lines": 15,
+    "low_ocr_candidates": [
+      {
+        "id": "opr.usb.caut3",
+        "text": "To obtain maximum output power, use the USB-C to USB-C 5A cable (20V DC/5A, 100W; 28V DC/5A, 140W).",
+        "coverage": 0.781,
+        "nearest": "• To obtain maximum output power, use the USB-C to USB-C 5A cable (20V DC/SA,"
+      }
+    ]
+  },
+  {
+    "page": 13,
+    "transcription_lines": 16,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 14,
+    "transcription_lines": 40,
+    "low_ocr_candidates": [
+      {
+        "id": "lcdm.s.on.v",
+        "text": "Press the Main Power Button or when the product is charging.",
+        "coverage": 0.786,
+        "nearest": "Press the Main Power Button."
+      },
+      {
+        "id": "lcdm.s.auto.v",
+        "text": "The LCD turns off automatically and enters sleep mode after 2 minutes of inactivity.",
+        "coverage": 0.508,
+        "nearest": "automatically after 2 hours of"
+      },
+      {
+        "id": "lcdm.steady",
+        "text": "Steady On (in charging or discharging state)",
+        "coverage": 0.69,
+        "nearest": "discharging"
+      },
+      {
+        "id": "lcdm.t.on.v",
+        "text": "Press the Main Power Button twice when the product is powered on.",
+        "coverage": 0.674,
+        "nearest": "Press the Main Power Button."
+      }
+    ]
+  },
+  {
+    "page": 15,
+    "transcription_lines": 20,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 16,
+    "transcription_lines": 13,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 17,
+    "transcription_lines": 18,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 18,
+    "transcription_lines": 15,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 19,
+    "transcription_lines": 41,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 20,
+    "transcription_lines": 47,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 21,
+    "transcription_lines": 27,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 22,
+    "transcription_lines": 18,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 23,
+    "transcription_lines": 20,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 24,
+    "transcription_lines": 5,
+    "low_ocr_candidates": []
+  }
+]

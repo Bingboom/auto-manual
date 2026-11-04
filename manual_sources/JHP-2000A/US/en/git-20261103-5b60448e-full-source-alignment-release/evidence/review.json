@@ -1,0 +1,46 @@
+{
+  "model": "JHP-2000A",
+  "record_id": "reczz28SlRGJkKmO",
+  "status": "local-source-layout-review-passed",
+  "source_sha256": "5b60448e69a76d5a8386227bc800ffc83309c837dfc32f5b3fb1f0901bd3d738",
+  "source_attachment_hash_match": true,
+  "corrections": [
+    "Fit source key-combination table to desktop content rail while retaining native mobile scrolling",
+    "Restore original plus symbols between button pairs in source PDF"
+  ],
+  "content_checks": "Model-specific tests cover every web transcription line; unchanged transcription and visible-copy parity except source plus restoration; model facts and all source-derived/reused art hashes checked. Prior 32-record attachment audit retained.",
+  "layout_checks": [
+    {
+      "width": 1280,
+      "broken": [],
+      "uncontained": [],
+      "rows": 4,
+      "plusSigns": 4,
+      "key": {
+        "tableWidth": 653.21875,
+        "frameClient": 653,
+        "frameScroll": 653,
+        "rightVisible": true
+      },
+      "images": 72
+    },
+    {
+      "width": 390,
+      "broken": [],
+      "uncontained": [],
+      "rows": 4,
+      "plusSigns": 4,
+      "key": {
+        "tableWidth": 704,
+        "frameClient": 354,
+        "frameScroll": 704,
+        "rightVisible": true
+      },
+      "images": 72
+    }
+  ],
+  "visual_review": "Agent inspected source key table and resulting desktop/mobile key table; full-document browser rendering checked for broken art and uncontained overflow. Original native drawings retained.",
+  "acceptance_authority": "2026-11-03 operator: 本地构建复核通过就可以了. Deployment is not required for checkbox.",
+  "publication_status": "not_deployed",
+  "feishu_checkbox": "coordinator_writes_after_readback"
+}

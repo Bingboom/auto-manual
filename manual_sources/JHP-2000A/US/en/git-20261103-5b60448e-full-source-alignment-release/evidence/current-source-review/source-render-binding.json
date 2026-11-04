@@ -1,0 +1,318 @@
+{
+  "model": "JHP-2000A",
+  "pdf_sha256": "5b60448e69a76d5a8386227bc800ffc83309c837dfc32f5b3fb1f0901bd3d738",
+  "pages": [
+    {
+      "page": 1,
+      "cached_size": [
+        850,
+        1210
+      ],
+      "fresh_render": "/private/tmp/manual-web-audit-20261102/source-bound-pages/JHP-2000A/p01.png",
+      "pixel_identical": true,
+      "mean_pixel_difference": 0.0,
+      "ink_xor_fraction": 0.0,
+      "cached_sha256": "8878d327a12e47030908d5631fdb349ad2611a89c891c0bada9183a663a65c75",
+      "fresh_sha256": "8ebac2bcdb6132d58cfb1a5fca94fd48ada4e33e69b208a1120541dac135cae7"
+    },
+    {
+      "page": 2,
+      "cached_size": [
+        850,
+        1210
+      ],
+      "fresh_render": "/private/tmp/manual-web-audit-20261102/source-bound-pages/JHP-2000A/p02.png",
+      "pixel_identical": true,
+      "mean_pixel_difference": 0.0,
+      "ink_xor_fraction": 0.0,
+      "cached_sha256": "00c4746c4aa6da40455fbbd87614fff79bca394aabcc1776370f86864a0fcfae",
+      "fresh_sha256": "f9022bdb788be694f6cc641627ec11b1497ebdfb24fda3b664e592d1212f01df"
+    },
+    {
+      "page": 3,
+      "cached_size": [
+        850,
+        1210
+      ],
+      "fresh_render": "/private/tmp/manual-web-audit-20261102/source-bound-pages/JHP-2000A/p03.png",
+      "pixel_identical": true,
+      "mean_pixel_difference": 0.0,
+      "ink_xor_fraction": 0.0,
+      "cached_sha256": "55f0cd14655b09f0b57175e7307033fe93c89cbb37104fcf1a84eeff76403040",
+      "fresh_sha256": "6b5cd663059cb46a184677b015d79de2127b9e8936add8fb0689572294cf5ce4"
+    },
+    {
+      "page": 4,
+      "cached_size": [
+        850,
+        1210
+      ],
+      "fresh_render": "/private/tmp/manual-web-audit-20261102/source-bound-pages/JHP-2000A/p04.png",
+      "pixel_identical": true,
+      "mean_pixel_difference": 0.0,
+      "ink_xor_fraction": 0.0,
+      "cached_sha256": "3dee94f7079af6809ace61886faa5eb48a2915fd72fe8c358938733f3d01c335",
+      "fresh_sha256": "97a48ff76542b1f98fa316e8c698c4f830de1a1e722922867eb009991df22515"
+    },
+    {
+      "page": 5,
+      "cached_size": [
+        850,
+        1210
+      ],
+      "fresh_render": "/private/tmp/manual-web-audit-20261102/source-bound-pages/JHP-2000A/p05.png",
+      "pixel_identical": true,
+      "mean_pixel_difference": 0.0,
+      "ink_xor_fraction": 0.0,
+      "cached_sha256": "23e9fdc0c2fc6bf087a04570ad9f8139d9e48bb14ecf879d70502f60a3a080ae",
+      "fresh_sha256": "5f07dd27d315d45ee3867767225c4044f3d3a8e7f67a06cb8ceae0e411feeb90"
+    },
+    {
+      "page": 6,
+      "cached_size": [
+        850,
+        1210
+      ],
+      "fresh_render": "/private/tmp/manual-web-audit-20261102/source-bound-pages/JHP-2000A/p06.png",
+      "pixel_identical": true,
+      "mean_pixel_difference": 0.0,
+      "ink_xor_fraction": 0.0,
+      "cached_sha256": "2bf99a6e942b2a94142c383ddeb7e55fcfc85363e987f0e99a337c1b7f4ba256",
+      "fresh_sha256": "ed033b0700b11f628a209c4a2b760c103d8e7abc41c11db31856cb859a62fdb7"
+    },
+    {
+      "page": 7,
+      "cached_size": [
+        850,
+        1210
+      ],
+      "fresh_render": "/private/tmp/manual-web-audit-20261102/source-bound-pages/JHP-2000A/p07.png",
+      "pixel_identical": true,
+      "mean_pixel_difference": 0.0,
+      "ink_xor_fraction": 0.0,
+      "cached_sha256": "39660e5f2b7f37ac8fea4764aa3ff5acedc2793b342a427f88a47dd0c7000d02",
+      "fresh_sha256": "43eb905b97da9af870d47c26dc25724b184115d4a45c25ddab61953dc73958be"
+    },
+    {
+      "page": 8,
+      "cached_size": [
+        850,
+        1210
+      ],
+      "fresh_render": "/private/tmp/manual-web-audit-20261102/source-bound-pages/JHP-2000A/p08.png",
+      "pixel_identical": true,
+      "mean_pixel_difference": 0.0,
+      "ink_xor_fraction": 0.0,
+      "cached_sha256": "9bd44b9b081fda322eacf2e5fc948c6a73986c09e344c9280f716a24f5516ec3",
+      "fresh_sha256": "d1eff0bba418949de3996b0dc4c8bb4f158ad1d4d09c61e4fc75c7ffe4bacd14"
+    },
+    {
+      "page": 9,
+      "cached_size": [
+        850,
+        1210
+      ],
+      "fresh_render": "/private/tmp/manual-web-audit-20261102/source-bound-pages/JHP-2000A/p09.png",
+      "pixel_identical": true,
+      "mean_pixel_difference": 0.0,
+      "ink_xor_fraction": 0.0,
+      "cached_sha256": "b50a5508ec86f49d2c7e4af9b408de5a21eb8d0735d18fb8e7bfb64e6229bf60",
+      "fresh_sha256": "6b8196663c94ced9c8a43dbaad31a3aede93f4a610db3dc4630d144e5833c9a2"
+    },
+    {
+      "page": 10,
+      "cached_size": [
+        850,
+        1210
+      ],
+      "fresh_render": "/private/tmp/manual-web-audit-20261102/source-bound-pages/JHP-2000A/p10.png",
+      "pixel_identical": true,
+      "mean_pixel_difference": 0.0,
+      "ink_xor_fraction": 0.0,
+      "cached_sha256": "900fe6b82f3f320ef8ff252ecb5a844419287de68f0b5926faa0533c97652bda",
+      "fresh_sha256": "6d279919029f967a937cea5892076c935f2ceb13279a41efbc62301c5f0c4024"
+    },
+    {
+      "page": 11,
+      "cached_size": [
+        850,
+        1210
+      ],
+      "fresh_render": "/private/tmp/manual-web-audit-20261102/source-bound-pages/JHP-2000A/p11.png",
+      "pixel_identical": true,
+      "mean_pixel_difference": 0.0,
+      "ink_xor_fraction": 0.0,
+      "cached_sha256": "6c8eff6b5c9d2a4ec9511a3b7162b4af03a8eeaaae51931a07cc939d39f3be3c",
+      "fresh_sha256": "8b38e5e718c3e5a94b09b43e983d08b109f44aa296895ae6e12f8b3d6b62d387"
+    },
+    {
+      "page": 12,
+      "cached_size": [
+        850,
+        1210
+      ],
+      "fresh_render": "/private/tmp/manual-web-audit-20261102/source-bound-pages/JHP-2000A/p12.png",
+      "pixel_identical": true,
+      "mean_pixel_difference": 0.0,
+      "ink_xor_fraction": 0.0,
+      "cached_sha256": "fee4fdba8bf0b0ec786f4f5a968cbfb8750ae6eb5520f90198b3bba329e4a4d6",
+      "fresh_sha256": "f70bd0c2ede9dc9d4248eaacea6c4976796b65dd6be7bdd3e3ff0eb211cf50f4"
+    },
+    {
+      "page": 13,
+      "cached_size": [
+        850,
+        1210
+      ],
+      "fresh_render": "/private/tmp/manual-web-audit-20261102/source-bound-pages/JHP-2000A/p13.png",
+      "pixel_identical": true,
+      "mean_pixel_difference": 0.0,
+      "ink_xor_fraction": 0.0,
+      "cached_sha256": "393a2c27121fa70bdb8463b022dfeacd226425aee9a29536d562c571ab7f3f59",
+      "fresh_sha256": "fad869598de0c0cfd9cea6eb0cde73126763b1b6a56f96f0b6b9247f40993659"
+    },
+    {
+      "page": 14,
+      "cached_size": [
+        850,
+        1210
+      ],
+      "fresh_render": "/private/tmp/manual-web-audit-20261102/source-bound-pages/JHP-2000A/p14.png",
+      "pixel_identical": true,
+      "mean_pixel_difference": 0.0,
+      "ink_xor_fraction": 0.0,
+      "cached_sha256": "31eb97bb4ce80db6f17080141d1b5e9101bbeec90cdcfc1965303cdd30b4f5dd",
+      "fresh_sha256": "0d72c5509287cda830a80cdad3a32e409a6d7830c5aec424b6bfdf5e71a8beb6"
+    },
+    {
+      "page": 15,
+      "cached_size": [
+        850,
+        1210
+      ],
+      "fresh_render": "/private/tmp/manual-web-audit-20261102/source-bound-pages/JHP-2000A/p15.png",
+      "pixel_identical": true,
+      "mean_pixel_difference": 0.0,
+      "ink_xor_fraction": 0.0,
+      "cached_sha256": "ee584d3de098b8e366cba02c18db21a679972ca66f86cc99111d842d28c4ed09",
+      "fresh_sha256": "faa5cff6fc6a48d4363dab54f0218d834659a9051d8e54e590273e842b734716"
+    },
+    {
+      "page": 16,
+      "cached_size": [
+        850,
+        1210
+      ],
+      "fresh_render": "/private/tmp/manual-web-audit-20261102/source-bound-pages/JHP-2000A/p16.png",
+      "pixel_identical": true,
+      "mean_pixel_difference": 0.0,
+      "ink_xor_fraction": 0.0,
+      "cached_sha256": "f3df7b458eb391a115ead919645030f1ead81bd4df85beb0df5930232fbcc6a8",
+      "fresh_sha256": "40f3846c43cc2c0b4b506dd644f323f5d12f64b4f642f28f70448604905cd0fb"
+    },
+    {
+      "page": 17,
+      "cached_size": [
+        850,
+        1210
+      ],
+      "fresh_render": "/private/tmp/manual-web-audit-20261102/source-bound-pages/JHP-2000A/p17.png",
+      "pixel_identical": true,
+      "mean_pixel_difference": 0.0,
+      "ink_xor_fraction": 0.0,
+      "cached_sha256": "374735edd30769defe9b2997620dca89821ef9cb11c5618fc3a74126fea84ebb",
+      "fresh_sha256": "6e10bb56ff150c6ad77d67fcd7edacef5abe878392656fbc418308f54da350d7"
+    },
+    {
+      "page": 18,
+      "cached_size": [
+        850,
+        1210
+      ],
+      "fresh_render": "/private/tmp/manual-web-audit-20261102/source-bound-pages/JHP-2000A/p18.png",
+      "pixel_identical": true,
+      "mean_pixel_difference": 0.0,
+      "ink_xor_fraction": 0.0,
+      "cached_sha256": "8ce14ccf2123ba215ceaa4a1630186eee5b54689dc1322c6de0d981f5ad0dbcd",
+      "fresh_sha256": "1bb836d2b9b0ede17bd3ddbfdb777bb7d180d768ccbc3a5ea89f48b43908b02f"
+    },
+    {
+      "page": 19,
+      "cached_size": [
+        850,
+        1210
+      ],
+      "fresh_render": "/private/tmp/manual-web-audit-20261102/source-bound-pages/JHP-2000A/p19.png",
+      "pixel_identical": true,
+      "mean_pixel_difference": 0.0,
+      "ink_xor_fraction": 0.0,
+      "cached_sha256": "c34a64648937180f828d7d4af1691b2052ba4f8166e5f0ccc5437e1751bbdfd6",
+      "fresh_sha256": "fd76153daef7950f524c526f97125192e039ec171993ae112232fade85488628"
+    },
+    {
+      "page": 20,
+      "cached_size": [
+        850,
+        1210
+      ],
+      "fresh_render": "/private/tmp/manual-web-audit-20261102/source-bound-pages/JHP-2000A/p20.png",
+      "pixel_identical": true,
+      "mean_pixel_difference": 0.0,
+      "ink_xor_fraction": 0.0,
+      "cached_sha256": "c4f09383d078a37aa7c1323e9f051aeb467080c09a0c83f6d7d4d615c88b912b",
+      "fresh_sha256": "2d5adf740fbc1878a7574dba51d7b22b2e3180c688df2b47a1fedf8de7b9ee2b"
+    },
+    {
+      "page": 21,
+      "cached_size": [
+        850,
+        1210
+      ],
+      "fresh_render": "/private/tmp/manual-web-audit-20261102/source-bound-pages/JHP-2000A/p21.png",
+      "pixel_identical": true,
+      "mean_pixel_difference": 0.0,
+      "ink_xor_fraction": 0.0,
+      "cached_sha256": "a9c2feba16711c2d8cb841b4b25874e4465d8fe600781b639d099dd2c658f340",
+      "fresh_sha256": "67677e775da759422c492e08f2cac116d03303099b2b29bf6d640d9aa08d1096"
+    },
+    {
+      "page": 22,
+      "cached_size": [
+        850,
+        1210
+      ],
+      "fresh_render": "/private/tmp/manual-web-audit-20261102/source-bound-pages/JHP-2000A/p22.png",
+      "pixel_identical": true,
+      "mean_pixel_difference": 0.0,
+      "ink_xor_fraction": 0.0,
+      "cached_sha256": "b7248f99751b96a6b0ce1ac31d44b6021d759f34125bbf1a1b7344af959f63c8",
+      "fresh_sha256": "fbc7c874118722b90d2f4dae17188429bfb9188737505471bd273f38541383ba"
+    },
+    {
+      "page": 23,
+      "cached_size": [
+        850,
+        1210
+      ],
+      "fresh_render": "/private/tmp/manual-web-audit-20261102/source-bound-pages/JHP-2000A/p23.png",
+      "pixel_identical": true,
+      "mean_pixel_difference": 0.0,
+      "ink_xor_fraction": 0.0,
+      "cached_sha256": "6e03860552a014e5d0ce8244a6e0899d624c1e2a809432111145afb8e6480510",
+      "fresh_sha256": "7cfc8f89398ecad708a8060deb6eadab5c8be42ae02bf3a11b6fdca867a73509"
+    },
+    {
+      "page": 24,
+      "cached_size": [
+        850,
+        1210
+      ],
+      "fresh_render": "/private/tmp/manual-web-audit-20261102/source-bound-pages/JHP-2000A/p24.png",
+      "pixel_identical": true,
+      "mean_pixel_difference": 0.0,
+      "ink_xor_fraction": 0.0,
+      "cached_sha256": "fbd233061580ac677463a63b7803c9a59650197bfa4ace9f17d9fa14bf6030a4",
+      "fresh_sha256": "0ab646f73542693c8de192a9be298a57fb5ff18b58ba629253fbb0fc47bd07cc"
+    }
+  ]
+}

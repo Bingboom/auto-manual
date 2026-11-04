@@ -1,5 +1,5 @@
 {
-  "authority": "source/original.pdf",
+  "authority": "JE-2000E-JP-V2.pdf",
   "source_pages": 28,
   "coverage_unit": "native PDF lines of at least 12 normalized characters; physical p3-p28; page numbers excluded",
   "native_text_lines_matched": 509,

@@ -1,0 +1,137 @@
+[
+  {
+    "page": 2,
+    "transcription_lines": 6,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 4,
+    "transcription_lines": 35,
+    "low_ocr_candidates": [
+      {
+        "id": "op.l3b",
+        "text": "-Water can cause short circuits or damage to the charger, leading to safety risks.",
+        "coverage": 0.763,
+        "nearest": "-Water can case short circuitsor damage tothe"
+      }
+    ]
+  },
+  {
+    "page": 5,
+    "transcription_lines": 30,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 6,
+    "transcription_lines": 18,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 7,
+    "transcription_lines": 26,
+    "low_ocr_candidates": [
+      {
+        "id": "ov.f.c30.s",
+        "text": "30W Max, 5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A",
+        "coverage": 0.542,
+        "nearest": "12V=2.5A, 15V=2A, 20V=1.5A"
+      },
+      {
+        "id": "ov.f.c100.s",
+        "text": "100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A",
+        "coverage": 0.696,
+        "nearest": "12V-3A, 15V=3A, 20V-5A"
+      }
+    ]
+  },
+  {
+    "page": 8,
+    "transcription_lines": 24,
+    "low_ocr_candidates": [
+      {
+        "id": "lcd.d6.b2",
+        "text": "Off: TOU mode is disabled. The product does not follow the TOU (time-of-use) strategy and operates according to the default power supply and charging logic.",
+        "coverage": 0.78,
+        "nearest": "Off: TOU mode is disabled. The product does not follow the TOU"
+      }
+    ]
+  },
+  {
+    "page": 9,
+    "transcription_lines": 53,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 10,
+    "transcription_lines": 20,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 11,
+    "transcription_lines": 23,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 12,
+    "transcription_lines": 37,
+    "low_ocr_candidates": [
+      {
+        "id": "scr.m1.d1",
+        "text": "Press the POWER button or when the product is charging.",
+        "coverage": 0.632,
+        "nearest": "Press the POWER button twice"
+      },
+      {
+        "id": "scr.m2.d1",
+        "text": "Press the POWER button twice when the product is powered on.",
+        "coverage": 0.786,
+        "nearest": "Press the POWER button twice"
+      }
+    ]
+  },
+  {
+    "page": 13,
+    "transcription_lines": 32,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 14,
+    "transcription_lines": 27,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 15,
+    "transcription_lines": 12,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 16,
+    "transcription_lines": 36,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 17,
+    "transcription_lines": 45,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 18,
+    "transcription_lines": 27,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 19,
+    "transcription_lines": 15,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 20,
+    "transcription_lines": 26,
+    "low_ocr_candidates": []
+  },
+  {
+    "page": 21,
+    "transcription_lines": 5,
+    "low_ocr_candidates": []
+  }
+]

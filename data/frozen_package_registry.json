@@ -1753,7 +1753,7 @@
       "known_drift": {}
     },
     "manual_sources/JE-2000E/JP/ja/git-20261019-6a70e879-jp-native": {
-      "approval": "User request 2026-10-19: Git-only JP Web candidate, JE-1000F JP structure",
+      "approval": "Operator request 2026-11-03 「继续 转日语说明书」 and source choice 「按建议做」 (table single-language PDF f1829cd3 replaces the 6a70e879 print-master intake); symbols bound to shared canonical groups (SCG-20261103, #1659); operator 「上线提交发布：JE-1800B、JE-2000E」 and, after the rebound renders, 「授权合入」 2026-11-04 in the owning session: Git-only JE-2000E JP/ja single-language Web release from 发布文档管理 record reczz28SfbsHbvLy, source copy verbatim; acceptance hash-bound in source/approval.json",
       "registered": "2026-10-19",
       "known_drift": {
         "docs/renderers/contracts/web_manual.css": {
@@ -2477,6 +2477,138 @@
           "since": "2026-11-03"
         }
       }
+    },
+    "manual_sources/JE-1000D/US/en/git-20261103-10d15090-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
+    "manual_sources/JE-100A/US/en/git-20261103-18058b6b-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
+    "manual_sources/JE-100C/US/en/git-20261103-39c58bca-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
+    "manual_sources/JE-1500B/US/en/git-20261103-bb5a455b-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
+    "manual_sources/JE-2000A/US/en/git-20261103-a8ec2be7-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
+    "manual_sources/JE-2000C/US/en/git-20261103-c357f54d-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
+    "manual_sources/JE-2000D/US/en/git-20261103-3d50ef64-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
+    "manual_sources/JE-2000F/US/en/git-20261103-c8ace563-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
+    "manual_sources/JE-240A/US/en/git-20261103-ae3aea4b-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
+    "manual_sources/JE-240B/US/en/git-20261103-3dc1fbba-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
+    "manual_sources/JE-3000B/US/en/git-20261103-bd8a8296-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
+    "manual_sources/JE-600A/US/en/git-20261103-9bf5bbb1-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
+      "known_drift": {
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 first18: exact reviewed source runtime retained; authorized cold rebuild and unchanged visible MD/CSS/art/IR.pages verified. Current main symbol utility changes do not re-render frozen outputs; fresh source-bound release admission remains required.",
+          "since": "2026-11-03"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 first18: exact reviewed source runtime retained; authorized cold rebuild and unchanged visible MD/CSS/art/IR.pages verified. Current main symbol utility changes do not re-render frozen outputs; fresh source-bound release admission remains required.",
+          "since": "2026-11-03"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 first18: exact reviewed source runtime retained; authorized cold rebuild and unchanged visible MD/CSS/art/IR.pages verified. Current main symbol utility changes do not re-render frozen outputs; fresh source-bound release admission remains required.",
+          "since": "2026-11-03"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 first18: exact reviewed source runtime retained; authorized cold rebuild and unchanged visible MD/CSS/art/IR.pages verified. Current main symbol utility changes do not re-render frozen outputs; fresh source-bound release admission remains required.",
+          "since": "2026-11-03"
+        }
+      }
+    },
+    "manual_sources/JE-880B/US/en/git-20261103-640e83ca-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
+      "known_drift": {
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 first18: exact reviewed source runtime retained; authorized cold rebuild and unchanged visible MD/CSS/art/IR.pages verified. Current main symbol utility changes do not re-render frozen outputs; fresh source-bound release admission remains required.",
+          "since": "2026-11-03"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 first18: exact reviewed source runtime retained; authorized cold rebuild and unchanged visible MD/CSS/art/IR.pages verified. Current main symbol utility changes do not re-render frozen outputs; fresh source-bound release admission remains required.",
+          "since": "2026-11-03"
+        },
+        "tools/web/shared_symbol_assets.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 first18: exact reviewed source runtime retained; authorized cold rebuild and unchanged visible MD/CSS/art/IR.pages verified. Current main symbol utility changes do not re-render frozen outputs; fresh source-bound release admission remains required.",
+          "since": "2026-11-03"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-381 first18: exact reviewed source runtime retained; authorized cold rebuild and unchanged visible MD/CSS/art/IR.pages verified. Current main symbol utility changes do not re-render frozen outputs; fresh source-bound release admission remains required.",
+          "since": "2026-11-03"
+        }
+      }
+    },
+    "manual_sources/JHP-1000A/US/en/git-20261103-cb256e64-full-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
+    "manual_sources/JHP-1000B-RC/US/en/git-20261103-af8a0775-full-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
+    "manual_sources/JHP-1000B/US/en/git-20261103-e546301b-full-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
+    "manual_sources/JHP-2000A-RC/US/en/git-20261103-e27d4db5-full-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
+      "known_drift": {}
+    },
+    "manual_sources/JHP-2000A/US/en/git-20261103-5b60448e-full-source-alignment-release": {
+      "approval": "MA-381 selected27 batch, first18 that pass current prepared-style gate; deferred5 excluded. Local review passed; all-green PR and source-bound publication gates required.",
+      "registered": "2026-11-03",
+      "known_drift": {}
     }
   },
   "drift_log": [
@@ -2630,6 +2762,19 @@
       "handling": "keep-frozen",
       "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
       "minutes": 10
+    },
+    {
+      "date": "2026-11-03",
+      "files": [
+        "docs/renderers/web/assets/shared/symbols/manifest.json",
+        "tools/asset_pipeline/native_svg.py",
+        "tools/web/shared_symbol_assets.py",
+        "tools/web/symbol_asset_admission.py"
+      ],
+      "packages": 2,
+      "handling": "keep-frozen",
+      "reason": "MA-381 first18: exact reviewed source runtime retained; authorized cold rebuild and unchanged visible MD/CSS/art/IR.pages verified. Current main symbol utility changes do not re-render frozen outputs; fresh source-bound release admission remains required.",
+      "minutes": 0
     },
     {
       "date": "2026-11-03",

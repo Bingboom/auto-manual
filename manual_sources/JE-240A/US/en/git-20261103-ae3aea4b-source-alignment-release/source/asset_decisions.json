@@ -1,0 +1,306 @@
+{
+  "schema_version": "explorer-us-en-asset-decisions/v1",
+  "decisions": [
+    {
+      "slot": "assets/shared-lcd/17_Battery_Power_Indicator_VLufb9exvoVLfgxz47pcfnRGnaf.png",
+      "decision": "reuse byte-identical",
+      "from": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/17_Battery_Power_Indicator_VLufb9exvoVLfgxz47pcfnRGnaf.png",
+      "sha256": "85921a9ad7fbfa58f98ee7bb0dc904377f31fe3dbface4083d2493144b05362f",
+      "identity": "same LCD glyph design as the JE-240A print (semantic key match)",
+      "background": "transparent"
+    },
+    {
+      "slot": "assets/shared-lcd/25_Fault_code_LaTmb4IQYo3vwvxMqQNcC2RgnIf.png",
+      "decision": "reuse byte-identical",
+      "from": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/25_Fault_code_LaTmb4IQYo3vwvxMqQNcC2RgnIf.png",
+      "sha256": "3b51b98d7199d32f7b286bdf5ce3de4cb41971ed942820091053fd1d87bf0a7a",
+      "identity": "same LCD glyph design as the JE-240A print (semantic key match)",
+      "background": "transparent"
+    },
+    {
+      "slot": "assets/fcc-mark.svg",
+      "decision": "reuse byte-identical",
+      "from": "docs/renderers/web/assets/shared/symbols/native-v1/fcc_mark.svg",
+      "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe",
+      "identity": "FC compliance mark",
+      "background": "transparent"
+    },
+    {
+      "slot": "assets/certifications.png",
+      "decision": "new extraction",
+      "source": "JE-240A-US-EN.pdf",
+      "physical_page": 2,
+      "bbox_pt": [
+        146,
+        362,
+        218,
+        389
+      ],
+      "scale": 3,
+      "reason": "no existing Explorer 240 art: CERTIFICATIONS marks row (FCC, BC, crossed-out bin)",
+      "background": "complete panel kept"
+    },
+    {
+      "slot": "assets/inbox-unit.png",
+      "decision": "new extraction",
+      "source": "JE-240A-US-EN.pdf",
+      "physical_page": 2,
+      "bbox_pt": [
+        42.4,
+        436.8,
+        95.2,
+        490.7
+      ],
+      "scale": 3,
+      "reason": "no existing Explorer 240 art: package card art without the printed ordinal",
+      "background": "complete panel kept"
+    },
+    {
+      "slot": "assets/inbox-cable.png",
+      "decision": "new extraction",
+      "source": "JE-240A-US-EN.pdf",
+      "physical_page": 2,
+      "bbox_pt": [
+        178,
+        436.1,
+        205.5,
+        489.2
+      ],
+      "scale": 3,
+      "reason": "no existing Explorer 240 art: package card art without the printed ordinal",
+      "background": "complete panel kept"
+    },
+    {
+      "slot": "assets/inbox-manual.png",
+      "decision": "new extraction",
+      "source": "JE-240A-US-EN.pdf",
+      "physical_page": 2,
+      "bbox_pt": [
+        282.2,
+        436.6,
+        319.2,
+        488
+      ],
+      "scale": 3,
+      "reason": "no existing Explorer 240 art: package card art without the printed ordinal",
+      "background": "complete panel kept"
+    },
+    {
+      "slot": "assets/overview.png",
+      "decision": "new extraction",
+      "source": "JE-240A-US-EN.pdf",
+      "physical_page": 3,
+      "bbox_pt": [
+        25,
+        48,
+        342,
+        298
+      ],
+      "scale": 3,
+      "reason": "no existing Explorer 240 art: complete front view with leader labels and AC Input inset",
+      "background": "complete panel kept"
+    },
+    {
+      "slot": "assets/lcd-map.png",
+      "decision": "new extraction",
+      "source": "JE-240A-US-EN.pdf",
+      "physical_page": 3,
+      "bbox_pt": [
+        25,
+        312,
+        342,
+        443
+      ],
+      "scale": 3,
+      "reason": "no existing Explorer 240 art: complete LCD map with circled callouts 1-17",
+      "background": "complete panel kept"
+    },
+    {
+      "slot": "assets/charging-ac.png",
+      "decision": "new extraction",
+      "source": "JE-240A-US-EN.pdf",
+      "physical_page": 6,
+      "bbox_pt": [
+        205,
+        411,
+        336,
+        492
+      ],
+      "scale": 3,
+      "reason": "no existing Explorer 240 art: complete AC wall charging drawing with captions",
+      "background": "complete panel kept"
+    },
+    {
+      "slot": "assets/charging-solar.png",
+      "decision": "new extraction",
+      "source": "JE-240A-US-EN.pdf",
+      "physical_page": 7,
+      "bbox_pt": [
+        30,
+        100,
+        336,
+        189
+      ],
+      "scale": 3,
+      "reason": "no existing Explorer 240 art: complete SolarSaga USB-C connection drawing with leader labels and captions",
+      "background": "complete panel kept"
+    },
+    {
+      "slot": "assets/charging-car.png",
+      "decision": "new extraction",
+      "source": "JE-240A-US-EN.pdf",
+      "physical_page": 7,
+      "bbox_pt": [
+        84,
+        306,
+        290,
+        424
+      ],
+      "scale": 3,
+      "reason": "no existing Explorer 240 art: complete car charging drawing with captions",
+      "background": "complete panel kept"
+    },
+    {
+      "slot": "assets/app-badges.png",
+      "decision": "new extraction",
+      "source": "JE-240A-US-EN.pdf",
+      "physical_page": 11,
+      "bbox_pt": [
+        27.5,
+        476.5,
+        177.5,
+        500
+      ],
+      "scale": 3,
+      "reason": "no existing Explorer 240 art: complete App Store / Google Play badge pair",
+      "background": "complete panel kept"
+    },
+    {
+      "slot": "assets/app-add.png",
+      "decision": "new extraction",
+      "source": "JE-240A-US-EN.pdf",
+      "physical_page": 12,
+      "bbox_pt": [
+        83,
+        142,
+        266,
+        315
+      ],
+      "scale": 3,
+      "reason": "no existing Explorer 240 art: two complete phone frames with 2.1/2.2 captions",
+      "background": "complete panel kept"
+    },
+    {
+      "slot": "assets/app-control.png",
+      "decision": "new extraction",
+      "source": "JE-240A-US-EN.pdf",
+      "physical_page": 12,
+      "bbox_pt": [
+        57,
+        360,
+        312,
+        442
+      ],
+      "scale": 3,
+      "reason": "no existing Explorer 240 art: complete App button-map panel with leader labels",
+      "background": "complete panel kept"
+    },
+    {
+      "slot": "assets/app-results.png",
+      "decision": "new extraction",
+      "source": "JE-240A-US-EN.pdf",
+      "physical_page": 13,
+      "bbox_pt": [
+        36,
+        113,
+        330,
+        290
+      ],
+      "scale": 3,
+      "reason": "no existing Explorer 240 art: three complete phone frames with 2.3-2.5 captions",
+      "background": "complete panel kept"
+    },
+    {
+      "slot": "assets/lcd-low-battery.png",
+      "decision": "new transparent crop",
+      "source": "JE-240A-US-EN.pdf",
+      "physical_page": 4,
+      "bbox_pt": [
+        26,
+        259,
+        50,
+        274
+      ],
+      "scale": 6,
+      "reason": "Low Battery Indicator glyph differs from every shared LCD glyph",
+      "background": "transparent (page rendered with alpha; glyph pixels only)"
+    },
+    {
+      "slot": "assets/lcd-energy-saving.png",
+      "decision": "new transparent crop",
+      "source": "JE-240A-US-EN.pdf",
+      "physical_page": 4,
+      "bbox_pt": [
+        26,
+        298,
+        50,
+        317
+      ],
+      "scale": 6,
+      "reason": "88H Energy Saving Mode glyph differs from every shared LCD glyph",
+      "background": "transparent (page rendered with alpha; glyph pixels only)"
+    },
+    {
+      "slot": "assets/lcd-high-temperature.png",
+      "decision": "new transparent crop",
+      "source": "JE-240A-US-EN.pdf",
+      "physical_page": 5,
+      "bbox_pt": [
+        30,
+        96,
+        54,
+        118
+      ],
+      "scale": 6,
+      "reason": "triangle high-temperature glyph differs from every shared LCD glyph",
+      "background": "transparent (page rendered with alpha; glyph pixels only)"
+    },
+    {
+      "slot": "assets/lcd-low-temperature.png",
+      "decision": "new transparent crop",
+      "source": "JE-240A-US-EN.pdf",
+      "physical_page": 5,
+      "bbox_pt": [
+        30,
+        134,
+        54,
+        157
+      ],
+      "scale": 6,
+      "reason": "triangle low-temperature glyph differs from every shared LCD glyph",
+      "background": "transparent (page rendered with alpha; glyph pixels only)"
+    }
+  ],
+  "rejected_candidates": [
+    {
+      "slot": "Low Battery Indicator",
+      "candidate": "JE-1000F JP 19_Low_Battery_Indicator",
+      "reason": "thinner rounded outline and smaller fill; different glyph"
+    },
+    {
+      "slot": "Energy Saving Mode",
+      "candidate": "JE-1000F JP 22_Energy_Saving_Mode",
+      "reason": "88H in a rectangle; the print uses an oval"
+    },
+    {
+      "slot": "High/Low Temperature",
+      "candidate": "JE-1000F JP 23_/24_, je100c_eu_shared lcd_high/low_temperature",
+      "reason": "bare thermometers; the print sets them inside a rounded triangle"
+    },
+    {
+      "slot": "App Store / Google Play badges",
+      "candidate": "JE-1000D JP / JE-1500D JP app-store.png, JE-2000E/F EU badge crops",
+      "reason": "same badges but stacked vertically (and JE-1500D JP includes Japanese text below); the US print sets the pair side by side"
+    }
+  ]
+}

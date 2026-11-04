@@ -1,0 +1,60 @@
+{
+  "model": "JE-1000D",
+  "record_id": "reczz28SPRx9pE14",
+  "source_sha256": "10d15090f944d3a0a1518e495dca4cf5cad15252220990c1b0e324564519316f",
+  "status": "local_review_passed",
+  "change": "Restore original three-column LCD legend on desktop; numbered order retained on phone",
+  "full_visible_copy_identical": true,
+  "full_semantic_json_unchanged_except_layout_group": true,
+  "original_assets_identical": 25,
+  "strict_sphinx": "passed",
+  "source_content_tests": "21 targeted identity/source-copy/model-fact/artwork tests passed across the original packages; new candidate full text and all images verified identical",
+  "browser": [
+    {
+      "width": 1280,
+      "images": 26,
+      "broken": [],
+      "uncontained": []
+    },
+    {
+      "width": 390,
+      "images": 26,
+      "broken": [],
+      "uncontained": []
+    }
+  ],
+  "layout_evidence": [
+    {
+      "width": 1280,
+      "computedColumns": "218.406px 218.406px 218.406px",
+      "rows": 19,
+      "text": "①Battery Saving Mode②Quiet Charging Mode③Wi-Fi④Bluetooth⑤Input Power⑥Remaining Charge Time⑦AC Wall Charging Indicator⑧Car Charging Indicator⑨Solar Charging Indicator⑩Low Battery Indicator⑪Remaining Battery Percentage⑫Fault Code⑬High Temperature Warning⑭Low Temperature Warning⑮Energy Saving Mode⑯Remaining Discharge Time⑰Output Power⑱AC Power Indicator⑲Battery Power Indicator"
+    },
+    {
+      "width": 390,
+      "computedColumns": "none",
+      "rows": 19,
+      "text": "①Battery Saving Mode②Quiet Charging Mode③Wi-Fi④Bluetooth⑤Input Power⑥Remaining Charge Time⑦AC Wall Charging Indicator⑧Car Charging Indicator⑨Solar Charging Indicator⑩Low Battery Indicator⑪Remaining Battery Percentage⑫Fault Code⑬High Temperature Warning⑭Low Temperature Warning⑮Energy Saving Mode⑯Remaining Discharge Time⑰Output Power⑱AC Power Indicator⑲Battery Power Indicator"
+    }
+  ],
+  "source_ocr": {
+    "model": "JE-1000D",
+    "checked_ocr_lines": 199,
+    "candidates": [
+      {
+        "page": 13,
+        "text": "An incarect Wil-Fi passmord as one of the coftman naasor",
+        "coverage": 0.0,
+        "near": "Remaining Charge Time",
+        "similarity": 0.369
+      }
+    ]
+  },
+  "ocr_candidate_resolutions": [
+    {
+      "page": 13,
+      "verdict": "OCR garble occurs inside original App screenshot. Source screenshot was not retyped; exact original image retained, same bytes, no missing screenshot copy.",
+      "web_location": "App setup screenshot"
+    }
+  ]
+}

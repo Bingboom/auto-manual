@@ -1,0 +1,103 @@
+{
+  "model": "JHP-1000A",
+  "unresolved_content_candidates": 0,
+  "unresolved_layout_candidates": 0,
+  "pages": [
+    {
+      "physical_page": 2,
+      "status": "verified",
+      "note": "Preface EN badge, four paragraphs and source notice retained."
+    },
+    {
+      "physical_page": 4,
+      "status": "verified",
+      "note": "Own warning frames/glyphs with native copy; left/right source safety flow and operating temperatures verified."
+    },
+    {
+      "physical_page": 5,
+      "status": "verified",
+      "note": "Operating items and grounding instruction, warning/danger, maintenance and complete source signal/pictogram tables verified."
+    },
+    {
+      "physical_page": 6,
+      "status": "verified",
+      "note": "FCC own two columns, source mark with wrapped opening, NOTE then separate These limits paragraph; original inbox3 and TIPS."
+    },
+    {
+      "physical_page": 7,
+      "status": "verified",
+      "note": "Complete own front/right-view crops, all port names and original numeric ratings verified."
+    },
+    {
+      "physical_page": 8,
+      "status": "verified",
+      "note": "Own LCD map retains labels1–25; all mode definitions, on/off and enable/disable conditions retained."
+    },
+    {
+      "physical_page": 9,
+      "status": "verified",
+      "note": "LCD continuation and shared22 temperature number span, all icon meanings retained."
+    },
+    {
+      "physical_page": 10,
+      "status": "verified",
+      "note": "Power/AC/DC original panels and in-panel native prerequisites/standby/body notes; all timing/current/output copy verified."
+    },
+    {
+      "physical_page": 11,
+      "status": "verified",
+      "note": "DC cautions, original LED panel/native3steps, original resumption conditions retained verbatim."
+    },
+    {
+      "physical_page": 12,
+      "status": "verified",
+      "note": "LCD state/action/body cells and source illustration proportions; saving-mode native explanation and disable panel."
+    },
+    {
+      "physical_page": 13,
+      "status": "verified",
+      "note": "Saving warnings/notes and all4key rows, original plus signs and own clock; 3s/3s/1s/1s."
+    },
+    {
+      "physical_page": 14,
+      "status": "verified",
+      "note": "UPS full copy/medical/cascade cautions and source power conditions; charging priority, temperature and first-use emphasis."
+    },
+    {
+      "physical_page": 15,
+      "status": "verified",
+      "note": "AC caption remains white, emergency charging, solar diagram/conditions/Voc and original car diagram/notes."
+    },
+    {
+      "physical_page": 16,
+      "status": "verified",
+      "note": "Complete storage intervals and troubleshooting F0–FE; original restart and protective conditions retained."
+    },
+    {
+      "physical_page": 17,
+      "status": "verified",
+      "note": "All four spec groups/values, original USB-C2value rows, conditional lines and footnotes; source technical inconsistencies preserved."
+    },
+    {
+      "physical_page": 18,
+      "status": "verified",
+      "note": "Complete native warranty lead, six sections and3+2year panels."
+    },
+    {
+      "physical_page": 19,
+      "status": "verified",
+      "note": "App original store/QR/screens/panel and all original control/setup steps; image-embedded text retained."
+    },
+    {
+      "physical_page": 20,
+      "status": "verified",
+      "note": "Complete App Wi-Fi/Bluetooth, band choice, caution, unbind and reset wording; original screenshots retained."
+    },
+    {
+      "physical_page": 21,
+      "status": "verified",
+      "note": "Original company/address/contact strings, own contact-frame/glyph/divider/QR preserved."
+    }
+  ],
+  "method": "All19 included original pages visually read. Complete v14 real viewport sweep was viewed. Final v15 changes only FCC: non-FCC HTML byte-identical after removing styles; added CSS is FCC-scoped. Final FCC real viewports separately inspected at1280/390. v15 actual positions/resources/horizontal endpoints validated throughout. No oversized fullPage capture is acceptance evidence."
+}

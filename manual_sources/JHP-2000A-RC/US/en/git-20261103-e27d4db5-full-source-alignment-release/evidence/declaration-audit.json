@@ -1,0 +1,110 @@
+{
+  "basis": "Own current PDF plus current operator cover/TOC exclusion. Old design statements and whole-package release approval are not wording/layout correction authorization.",
+  "items": [
+    {
+      "prior_item": 1,
+      "source_pages": "1,2,3,24",
+      "web_locator": "#preface / #back-cover",
+      "resolution": "Front cover and paper TOC excluded under current user scope. US badge and back address/contact/QR restored. Print pagination is navigation only.",
+      "status": "verified"
+    },
+    {
+      "prior_item": 2,
+      "source_pages": "4\u201323",
+      "web_locator": "chapter headings and subsection headings",
+      "resolution": "Native chapter bars retained. Own p4/p5 safety subsection full-width pills, plain SAVE. Source subsection markers and app numbered headings checked individually.",
+      "status": "verified"
+    },
+    {
+      "prior_item": 3,
+      "source_pages": "6",
+      "web_locator": ".hb-fcc-composition / [data-native-columns=ised]",
+      "resolution": "FCC logo floats within own left column; conditions, NOTE and These limits preserve starts; exact source split before correct the interference; MODIFICATION and RF own right column. ISED six left paragraphs and RF right restored.",
+      "status": "verified"
+    },
+    {
+      "prior_item": 4,
+      "source_pages": "4,5,12,13,15\u201319,22,23",
+      "web_locator": "[data-native-columns] / [data-native-strip] / .manual-callout-table",
+      "resolution": "Safety original risk strip, 6/5 bullet columns, operating 7/8 columns; own p5 grounding WARNING and DANGER strips. Remaining source callouts preserve labels, paragraph/list counts including UPS four cautions and full warning.",
+      "status": "verified"
+    },
+    {
+      "prior_item": 5,
+      "source_pages": "5",
+      "web_locator": "[data-source-signal] / .hb-symbol-icon-composition",
+      "resolution": "Original white triangle crop used only WARNING/CAUTION; NOTE/TIP have none. Original pictograms remain 6+5.",
+      "status": "verified"
+    },
+    {
+      "prior_item": 6,
+      "source_pages": "8\u201310",
+      "web_locator": ".hb-lcd-table-composition",
+      "resolution": "Own 26 numbered entries; number23 spans high/low rows once. Source icons and native descriptions complete.",
+      "status": "verified"
+    },
+    {
+      "prior_item": 7,
+      "source_pages": "11\u201317",
+      "web_locator": "[data-native-panel]",
+      "resolution": "Own full frames and native copy restored to original rectangles: power2, AC2, DC1, energy3 paragraphs, LED header+3 steps, UPS2, AC chargecaption. No complete text/table raster.",
+      "status": "verified"
+    },
+    {
+      "prior_item": 8,
+      "source_pages": "14",
+      "web_locator": ".hb-lcd-mode-composition / .hb-key-combination-table / .hb-auto-resume",
+      "resolution": "LCD art/native matrix 40/60, states/actions normal weight. Own four pluses and source clock; desktop key fits rail, mobile pans. All four exact source both phrases retained; preliminary low-resolution reading was resolved by enlarged own-PDF crop.",
+      "status": "verified"
+    },
+    {
+      "prior_item": 9,
+      "source_pages": "16\u201318",
+      "web_locator": "[data-source-sold-heading] / battery pack heading",
+      "resolution": "Battery sold label below title; solar/car regular bullet headings with separate dark SOLD SEPARATELY labels.",
+      "status": "verified"
+    },
+    {
+      "prior_item": 10,
+      "source_pages": "17",
+      "web_locator": "[data-source-first-charge] / [data-source-emergency]",
+      "resolution": "Both original dark pills restored; no generic dotted emergency heading.",
+      "status": "verified"
+    },
+    {
+      "prior_item": 11,
+      "source_pages": "20",
+      "web_locator": "h2.hb-subbar / .hb-spec-table",
+      "resolution": "Four compact original titles, native input AC/DC value-row divisions with merged labels, normal label weight, own values/units and notes.",
+      "status": "verified"
+    },
+    {
+      "prior_item": 12,
+      "source_pages": "19",
+      "web_locator": "#troubleshooting",
+      "resolution": "Native exact numbered measures and source OC subscript preserved, own F7 three steps and FC battery wording.",
+      "status": "verified"
+    },
+    {
+      "prior_item": 13,
+      "source_pages": "21",
+      "web_locator": "#warranty",
+      "resolution": "Lead/limited/repair/originalbuyer/exclusions/interpretation full width; only 3/2 years form two columns as source.",
+      "status": "verified"
+    },
+    {
+      "prior_item": 14,
+      "source_pages": "22,23",
+      "web_locator": "#app-setup",
+      "resolution": "Original badge/QR, complete own screenshots/panel and steps, numbered headings with no added bullet; app UI text preserved as source art.",
+      "status": "verified"
+    },
+    {
+      "prior_item": 15,
+      "source_pages": "7,8,11\u201317,22,23",
+      "web_locator": "mobile component scroll containers",
+      "resolution": "390px mode maintains internal panning for diagrams/dense tables; normal paragraphs reflow and two-column prose stacks. Native copy scales with its own source image.",
+      "status": "verified"
+    }
+  ]
+}
