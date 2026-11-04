@@ -1,0 +1,155 @@
+[
+  {
+    "path": "assets/power-on-off.png",
+    "physical_page": 10,
+    "previous_bbox": [
+      27,
+      71,
+      341,
+      199
+    ],
+    "bbox": [
+      27,
+      71,
+      342,
+      199
+    ],
+    "reason": "Same-source frame bounds plus stroke retained; LCD artwork excludes the original outer frame because native composition owns that frame."
+  },
+  {
+    "path": "assets/ac-output.png",
+    "physical_page": 10,
+    "previous_bbox": [
+      27,
+      273,
+      341,
+      495
+    ],
+    "bbox": [
+      26,
+      273,
+      342,
+      497
+    ],
+    "reason": "Same-source frame bounds plus stroke retained; LCD artwork excludes the original outer frame because native composition owns that frame."
+  },
+  {
+    "path": "assets/dc-usb-output.png",
+    "physical_page": 11,
+    "previous_bbox": [
+      27,
+      43,
+      341,
+      212
+    ],
+    "bbox": [
+      26,
+      43,
+      342,
+      214
+    ],
+    "reason": "Same-source frame bounds plus stroke retained; LCD artwork excludes the original outer frame because native composition owns that frame."
+  },
+  {
+    "path": "assets/led-light.png",
+    "physical_page": 11,
+    "previous_bbox": [
+      27,
+      369,
+      341,
+      496
+    ],
+    "bbox": [
+      28,
+      369,
+      344,
+      501
+    ],
+    "reason": "Same-source frame bounds plus stroke retained; LCD artwork excludes the original outer frame because native composition owns that frame."
+  },
+  {
+    "path": "assets/lcd-screen.png",
+    "physical_page": 12,
+    "previous_bbox": [
+      27,
+      143,
+      172,
+      253
+    ],
+    "bbox": [
+      35,
+      151,
+      173,
+      248
+    ],
+    "reason": "Same-source frame bounds plus stroke retained; LCD artwork excludes the original outer frame because native composition owns that frame."
+  },
+  {
+    "path": "assets/energy-saving.png",
+    "physical_page": 12,
+    "previous_bbox": [
+      27,
+      321,
+      341,
+      455
+    ],
+    "bbox": [
+      25,
+      321,
+      341,
+      455
+    ],
+    "reason": "Same-source frame bounds plus stroke retained; LCD artwork excludes the original outer frame because native composition owns that frame."
+  },
+  {
+    "path": "assets/ups.png",
+    "physical_page": 13,
+    "previous_bbox": [
+      24,
+      284,
+      340,
+      431
+    ],
+    "bbox": [
+      23,
+      284,
+      340,
+      431
+    ],
+    "reason": "Same-source frame bounds plus stroke retained; LCD artwork excludes the original outer frame because native composition owns that frame."
+  },
+  {
+    "path": "assets/charging-ac.png",
+    "physical_page": 14,
+    "previous_bbox": [
+      26,
+      303,
+      342,
+      386
+    ],
+    "bbox": [
+      26,
+      303,
+      343,
+      386
+    ],
+    "reason": "Same-source frame bounds plus stroke retained; LCD artwork excludes the original outer frame because native composition owns that frame."
+  },
+  {
+    "path": "assets/charging-car.png",
+    "physical_page": 15,
+    "previous_bbox": [
+      28,
+      364,
+      343,
+      495
+    ],
+    "bbox": [
+      24,
+      360,
+      341,
+      496
+    ],
+    "reason": "Same-source frame bounds plus stroke retained; LCD artwork excludes the original outer frame because native composition owns that frame."
+  }
+]

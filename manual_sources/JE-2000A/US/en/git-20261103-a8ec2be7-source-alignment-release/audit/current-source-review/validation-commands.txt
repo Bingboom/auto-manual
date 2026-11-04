@@ -1,0 +1,12 @@
+PY=.venv/bin/python
+PKG=manual_sources/JE-2000A/US/en/git-20261103-a8ec2be7-source-alignment
+$PY $PKG/rebuild.py --output <new-md-dir>
+$PY -m sphinx -q -W --keep-going -b html <new-md-dir> <new-html-dir>
+Final review build: /private/tmp/manual-web-audit-20261102/remaining-warning-build/JE-2000A-md-v8
+Cold equivalent: /private/tmp/manual-web-audit-20261102/remaining-warning-build/JE-2000A-md-v9-cold
+Browser script: /private/tmp/manual-web-audit-20261102/je2000-final-bounded-v8.cjs
+Rightmost content: /private/tmp/manual-web-audit-20261102/je2000-right-ends-v8.cjs
+Native text: /private/tmp/manual-web-audit-20261102/check_native_copy.py
+Source OCR: /private/tmp/manual-web-audit-20261102/je2000-fulltext.py
+Reverse text: /private/tmp/manual-web-audit-20261102/je2000-extra-copy.py
+Numeric contexts: /private/tmp/manual-web-audit-20261102/je2000-number-copy.py

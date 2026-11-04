@@ -1,0 +1,59 @@
+{
+  "model": "JE-2000C",
+  "record_id": "reczz28SPLqH8n46",
+  "source_sha256": "c357f54dfed27d11d72a2a4893e485450a49c1b562e21f0f272708857f1510ab",
+  "status": "local_review_passed",
+  "change": "Restore original three-column LCD legend on desktop; numbered order retained on phone",
+  "full_visible_copy_identical": true,
+  "full_semantic_json_unchanged_except_layout_group": true,
+  "original_assets_identical": 28,
+  "strict_sphinx": "passed",
+  "source_content_tests": "21 targeted identity/source-copy/model-fact/artwork tests passed across the original packages; new candidate full text and all images verified identical",
+  "browser": [
+    {
+      "width": 1280,
+      "images": 28,
+      "broken": [],
+      "uncontained": []
+    },
+    {
+      "width": 390,
+      "images": 28,
+      "broken": [],
+      "uncontained": []
+    }
+  ],
+  "layout_evidence": [
+    {
+      "width": 1280,
+      "computedColumns": "218.406px 218.406px 218.406px",
+      "rows": 21,
+      "text": "①WiFi②Bluetooth③Quiet Charging Mode④Battery Saving Mode⑤AC Expansion Indicator⑥Input Power⑦Remaining Charge Time⑧AC Wall Charging Indicator⑨Car Charging Indicator⑩Solar Charging Indicator⑪Battery Power Indicator⑫Low Battery Indicator⑬Remaining Battery Percentage⑭Error Code⑮High Temperature Warning⑯Low Temperature Warning⑰Energy Saving Mode⑱AC Power Indicator⑲Output Power⑳Remaining Discharge Time㉑Battery Pack Indicator and Connected Quantity"
+    },
+    {
+      "width": 390,
+      "computedColumns": "none",
+      "rows": 21,
+      "text": "①WiFi②Bluetooth③Quiet Charging Mode④Battery Saving Mode⑤AC Expansion Indicator⑥Input Power⑦Remaining Charge Time⑧AC Wall Charging Indicator⑨Car Charging Indicator⑩Solar Charging Indicator⑪Battery Power Indicator⑫Low Battery Indicator⑬Remaining Battery Percentage⑭Error Code⑮High Temperature Warning⑯Low Temperature Warning⑰Energy Saving Mode⑱AC Power Indicator⑲Output Power⑳Remaining Discharge Time㉑Battery Pack Indicator and Connected Quantity"
+    }
+  ],
+  "source_ocr": {
+    "model": "JE-2000C",
+    "checked_ocr_lines": 197,
+    "candidates": [
+      {
+        "page": 14,
+        "text": "Tel:1-888-502-2236(US) E-mail:hello@jackery.com Website:www.jackery.com",
+        "coverage": 0.149,
+        "near": "EPS: Emergency Power System.",
+        "similarity": 0.354
+      }
+    ]
+  },
+  "ocr_candidate_resolutions": [
+    {
+      "page": 14,
+      "verdict": "Back-cover contact text is print-only according to the pre-existing source page mapping; not a body deletion in this correction."
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "model": "JE-3000B",
+  "record_id": "reczz28SlRGJim2Y",
+  "status": "local-source-layout-review-passed",
+  "source_sha256": "bd8a82962865ae64cd52e9c6ebf9a20d8495652773ba09806d1911cb0f360294",
+  "source_attachment_hash_match": true,
+  "corrections": [
+    "Fit source key-combination table to desktop content rail while retaining native mobile scrolling"
+  ],
+  "content_checks": "Model-specific tests cover every web transcription line; unchanged transcription and visible-copy parity except source plus restoration; model facts and all source-derived/reused art hashes checked. Prior 32-record attachment audit retained.",
+  "layout_checks": [
+    {
+      "width": 1280,
+      "broken": [],
+      "uncontained": [],
+      "rows": 3,
+      "plusSigns": 3,
+      "key": {
+        "tableWidth": 653.21875,
+        "frameClient": 653,
+        "frameScroll": 653,
+        "rightVisible": true
+      },
+      "images": 49
+    },
+    {
+      "width": 390,
+      "broken": [],
+      "uncontained": [],
+      "rows": 3,
+      "plusSigns": 3,
+      "key": {
+        "tableWidth": 704,
+        "frameClient": 354,
+        "frameScroll": 704,
+        "rightVisible": true
+      },
+      "images": 49
+    }
+  ],
+  "visual_review": "Agent inspected source key table and resulting desktop/mobile key table; full-document browser rendering checked for broken art and uncontained overflow. Original native drawings retained.",
+  "acceptance_authority": "2026-11-03 operator: 本地构建复核通过就可以了. Deployment is not required for checkbox.",
+  "publication_status": "not_deployed",
+  "feishu_checkbox": "coordinator_writes_after_readback"
+}

@@ -1,0 +1,54 @@
+{
+  "status": "local-source-review-pass",
+  "model": "JE-2000A",
+  "record_id": "reczz28SPLqH8cvK",
+  "source_pages_reviewed": 18,
+  "native_fragments": 285,
+  "native_missing": 0,
+  "ocr_lines": 361,
+  "ocr_candidates": 5,
+  "reverse_candidates": 0,
+  "numeric_contexts": 76,
+  "numeric_differences": 0,
+  "original_assets_unchanged": 54,
+  "new_original_assets": [
+    "assets/contact-qr.png"
+  ],
+  "bounded_screenshots": 45,
+  "extra_mobile_right_end_views": 6,
+  "browser": {
+    "1280": {
+      "bounded_views": 21,
+      "first_scroll_y": 0,
+      "last_scroll_y": 19760,
+      "images": 57,
+      "requestfailed": 0,
+      "background_failures": 0,
+      "uncontained_overflow": 0,
+      "scroll_containers": 0,
+      "scroll_reach": "pass",
+      "scroll_behavior": "instant; actual scrollY asserted before every PNG",
+      "viewport_height": 1100
+    },
+    "390": {
+      "bounded_views": 24,
+      "first_scroll_y": 8,
+      "last_scroll_y": 22324,
+      "images": 57,
+      "requestfailed": 0,
+      "background_failures": 0,
+      "uncontained_overflow": 0,
+      "scroll_containers": 6,
+      "scroll_reach": "pass",
+      "scroll_behavior": "instant; actual scrollY asserted before every PNG",
+      "viewport_height": 1100
+    }
+  },
+  "strict_sphinx": "pass -W --keep-going",
+  "shared_style_gate": "pass unchanged",
+  "symbol_admission": "pass (no symbol table in this source)",
+  "cold_files_identical": 61,
+  "unresolved": [],
+  "publication_status": "candidate; not published",
+  "navigation_limitation": "Original-native HTML headings retain source anchors; automatic Sphinx chapter sidebar is replaced by document title only."
+}

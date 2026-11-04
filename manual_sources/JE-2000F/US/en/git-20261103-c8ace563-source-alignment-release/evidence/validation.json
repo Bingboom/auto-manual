@@ -1,0 +1,30 @@
+[
+  {
+    "width": 1280,
+    "broken": [],
+    "uncontained": [],
+    "rows": 4,
+    "plusSigns": 4,
+    "key": {
+      "tableWidth": 653.21875,
+      "frameClient": 653,
+      "frameScroll": 653,
+      "rightVisible": true
+    },
+    "images": 71
+  },
+  {
+    "width": 390,
+    "broken": [],
+    "uncontained": [],
+    "rows": 4,
+    "plusSigns": 4,
+    "key": {
+      "tableWidth": 704,
+      "frameClient": 354,
+      "frameScroll": 704,
+      "rightVisible": true
+    },
+    "images": 71
+  }
+]

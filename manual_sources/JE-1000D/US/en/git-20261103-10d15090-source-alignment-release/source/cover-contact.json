@@ -1,0 +1,24 @@
+{
+  "last_page": 14,
+  "back_copy": [
+    "JACKERY INC.",
+    "5310 Bunche Dr, Fremont, CA 94538-8301",
+    "Tel:1-888-502-2236(US)  E-mail:hello@jackery.com  Website:www.jackery.com"
+  ],
+  "back_qr": true,
+  "source_sha256": "10d15090f944d3a0a1518e495dca4cf5cad15252220990c1b0e324564519316f",
+  "crops": [
+    {
+      "asset": "assets/back-contact-qr.png",
+      "physical_page": 14,
+      "bbox_points": [
+        304.7,
+        460.65,
+        342.3,
+        498.34
+      ],
+      "operation": "unaltered original crop with full QR quiet zone at 5x"
+    }
+  ],
+  "historical_front_cover_exclusion": "2026-10-27 operator constraint in the historical source_manifest.source_authority: 封面和目录不上网页; 版面以 PDF 为准; 不改任何英文原文"
+}

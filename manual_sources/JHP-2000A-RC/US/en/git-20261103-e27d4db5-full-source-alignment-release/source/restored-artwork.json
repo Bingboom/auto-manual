@@ -1,0 +1,341 @@
+[
+  {
+    "path": "assets/risk-strip.png",
+    "physical_page": 4,
+    "bbox": [
+      27.75,
+      54.21,
+      341.46,
+      84.23
+    ],
+    "strip": [
+      [
+        61,
+        60,
+        118,
+        79
+      ],
+      [
+        132,
+        59,
+        338,
+        80
+      ]
+    ],
+    "sha256": "dbdca7de4e6dcae5f232881d5368dae1422051342243d3ff101410ef76d62729",
+    "operation": "Own PDF crop; only declared prose paths removed, original frame/icon preserved; corresponding text native HTML."
+  },
+  {
+    "path": "assets/ground-strip.png",
+    "physical_page": 5,
+    "bbox": [
+      29.01,
+      26.63,
+      341.42,
+      64.46
+    ],
+    "strip": [
+      [
+        57,
+        39,
+        114,
+        53
+      ],
+      [
+        116,
+        29,
+        337,
+        61
+      ]
+    ],
+    "sha256": "dab6319f35b4facf3e9d9ae1ffc451b493715b8c3a13e82820aeeac041e8d932",
+    "operation": "Own PDF crop; only declared prose paths removed, original frame/icon preserved; corresponding text native HTML."
+  },
+  {
+    "path": "assets/danger-strip.png",
+    "physical_page": 5,
+    "bbox": [
+      29.01,
+      67.48,
+      341.42,
+      98.47
+    ],
+    "strip": [
+      [
+        58,
+        78,
+        108,
+        90
+      ],
+      [
+        114,
+        70,
+        339,
+        97
+      ]
+    ],
+    "sha256": "b54d815c208ebc0bdb933c738cc26ffda75ba67e0581ef50b06a99634e09b029",
+    "operation": "Own PDF crop; only declared prose paths removed, original frame/icon preserved; corresponding text native HTML."
+  },
+  {
+    "path": "assets/source-signal-glyph.png",
+    "physical_page": 5,
+    "bbox": [
+      39.5,
+      196.5,
+      49.5,
+      205.5
+    ],
+    "strip": [],
+    "sha256": "1cbb7ece6300f454be82134cb35b92d7e65262eb97a61f82de00b4403f952448",
+    "operation": "Own PDF crop; only declared prose paths removed, original frame/icon preserved; corresponding text native HTML."
+  },
+  {
+    "path": "assets/source-clock.png",
+    "physical_page": 14,
+    "bbox": [
+      161.5,
+      260.4,
+      173,
+      272.3
+    ],
+    "strip": [],
+    "sha256": "4af8dea6c4c19b3df7676f1be4468798d2dbc0ed221f6403e128108275f1c109",
+    "operation": "Own PDF crop; only declared prose paths removed, original frame/icon preserved; corresponding text native HTML."
+  },
+  {
+    "path": "assets/back-contact-base.png",
+    "physical_page": 24,
+    "bbox": [
+      27,
+      459,
+      343,
+      497
+    ],
+    "strip": [
+      [
+        57,
+        468,
+        195,
+        494
+      ],
+      [
+        221,
+        467,
+        296,
+        479
+      ],
+      [
+        221,
+        479,
+        296,
+        491
+      ]
+    ],
+    "sha256": "a3cb38c05b15af0ed0b610eb96d190341497d471374b8c16c4f7b0485291230e",
+    "operation": "Own PDF crop; only declared prose paths removed, original frame/icon preserved; corresponding text native HTML."
+  },
+  {
+    "path": "assets/power-on-off.png",
+    "physical_page": 11,
+    "bbox": [
+      27.55,
+      74.53,
+      341.29,
+      248.15
+    ],
+    "strip": [
+      [
+        176,
+        167,
+        326,
+        199
+      ],
+      [
+        48,
+        216,
+        325,
+        234
+      ]
+    ],
+    "sha256": "aa705685092be75d24b3f8ea9aebada82a7ae04ae2518ab3d08dfcf685ad1f84",
+    "operation": "Own PDF frame bounds restored, declared prose removed and native HTML copy at source coordinates."
+  },
+  {
+    "path": "assets/ac-output.png",
+    "physical_page": 11,
+    "bbox": [
+      27.55,
+      274.21,
+      341.29,
+      496.45
+    ],
+    "strip": [
+      [
+        44,
+        284,
+        169,
+        296
+      ],
+      [
+        44,
+        308,
+        322,
+        329
+      ]
+    ],
+    "sha256": "1477bbdcb38cf64dc0662b9b47ac943c9426237bb20e50af4152d876a857e39b",
+    "operation": "Own PDF frame bounds restored, declared prose removed and native HTML copy at source coordinates."
+  },
+  {
+    "path": "assets/dc-usb-output.png",
+    "physical_page": 12,
+    "bbox": [
+      28.68,
+      45.99,
+      342.42,
+      273.46
+    ],
+    "strip": [
+      [
+        44,
+        59,
+        171,
+        71
+      ]
+    ],
+    "sha256": "41935584040abb27c98c54da1bd441c279ccc7f03aaaef0aad33328757126686",
+    "operation": "Own PDF frame bounds restored, declared prose removed and native HTML copy at source coordinates."
+  },
+  {
+    "path": "assets/energy-saving.png",
+    "physical_page": 13,
+    "bbox": [
+      27.89,
+      46.82,
+      341.62,
+      272.6
+    ],
+    "strip": [
+      [
+        40,
+        58,
+        330,
+        117
+      ],
+      [
+        40,
+        228,
+        330,
+        269
+      ]
+    ],
+    "sha256": "23377077d33af2393329b74bc7c6ad46c8140f91349b85771b4ae1c8acf09ed7",
+    "operation": "Own PDF frame bounds restored, declared prose removed and native HTML copy at source coordinates."
+  },
+  {
+    "path": "assets/led-light.png",
+    "physical_page": 13,
+    "bbox": [
+      27.89,
+      390.09,
+      341.62,
+      502.37
+    ],
+    "strip": [
+      [
+        40,
+        396,
+        323,
+        422
+      ],
+      [
+        254,
+        427,
+        329,
+        495
+      ]
+    ],
+    "sha256": "723121efd30d91eea7b82a5eea5f921550b8f10da0649daf43d5f4a284fbb4d3",
+    "operation": "Own PDF frame bounds restored, declared prose removed and native HTML copy at source coordinates."
+  },
+  {
+    "path": "assets/ups.png",
+    "physical_page": 15,
+    "bbox": [
+      27.19,
+      73.84,
+      340.93,
+      271.11
+    ],
+    "strip": [
+      [
+        129,
+        215,
+        333,
+        256
+      ]
+    ],
+    "sha256": "61c17bfc3b1992287d40af1f52cd60182781dfc9b7c6d74d4fa03739a4c339d8",
+    "operation": "Own PDF frame bounds restored, declared prose removed and native HTML copy at source coordinates."
+  },
+  {
+    "path": "assets/battery-stack.png",
+    "physical_page": 16,
+    "bbox": [
+      29.54,
+      98.33,
+      343.28,
+      305.03
+    ],
+    "strip": [],
+    "sha256": "9d678003a46354b8ebc8a23c5a2c3f1940b885f9d439afea8708931bba885c36",
+    "operation": "Own PDF frame bounds restored, declared prose removed and native HTML copy at source coordinates."
+  },
+  {
+    "path": "assets/charging-ac.png",
+    "physical_page": 17,
+    "bbox": [
+      30.32,
+      197.92,
+      344.05,
+      297.5
+    ],
+    "strip": [
+      [
+        191,
+        273,
+        313,
+        290
+      ]
+    ],
+    "sha256": "15ede19b49977111b9d7d32b24258e1d11a47a2d50ff67e3662bbb56e870af78",
+    "operation": "Own PDF frame bounds restored, declared prose removed and native HTML copy at source coordinates."
+  },
+  {
+    "path": "assets/charging-solar.png",
+    "physical_page": 18,
+    "bbox": [
+      27.81,
+      29.27,
+      341.56,
+      165.59
+    ],
+    "strip": [],
+    "sha256": "418574965967316f0c195cd0e8a3c5342aed1d82a4c0c358925704916bf3f507",
+    "operation": "Own PDF frame bounds restored, declared prose removed and native HTML copy at source coordinates."
+  },
+  {
+    "path": "assets/charging-car.png",
+    "physical_page": 18,
+    "bbox": [
+      27.49,
+      306.2,
+      340.63,
+      434.54
+    ],
+    "strip": [],
+    "sha256": "005e31a5c6e8483dfd1426cb9c6d9b3cbb4214fe616cba48d2d7435b69267827",
+    "operation": "Own PDF frame bounds restored, declared prose removed and native HTML copy at source coordinates."
+  }
+]

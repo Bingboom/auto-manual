@@ -1,0 +1,1256 @@
+[
+  {
+    "page": 2,
+    "id": "band.model",
+    "text": "Model: JE-1500B",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "intro.p1",
+    "text": "Congratulations on your new Jackery Explorer 1500 Pro. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for frequent reference.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "intro.p2",
+    "text": "In compliance with laws and regulations, the right of final interpretation of this document and all related documents of this product resides with the Company.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "intro.p3",
+    "text": "Please kindly notice that no further notifications will be given in case of any update, revision or termination.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "spec.h",
+    "text": "TECHNICAL SPECIFICATIONS",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "spec.g1",
+    "text": "GENERAL INFO",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "spec.g1.r1.l",
+    "text": "Product Name",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "spec.g1.r1.v",
+    "text": "Jackery Explorer 1500 Pro",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "spec.g1.r2.l",
+    "text": "Model No.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "spec.g1.r2.v",
+    "text": "JE-1500B",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "spec.g1.r3.l",
+    "text": "Capacity",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "spec.g1.r3.v",
+    "text": "Lithium-ion 35Ah/43.2V DC (1512Wh)",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "spec.g1.r4.l",
+    "text": "Weight",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "spec.g1.r4.v",
+    "text": "About 37.48 lbs/About 17 kg",
+    "source_ocr_char_coverage": 0.9524
+  },
+  {
+    "page": 2,
+    "id": "spec.g1.r5.l",
+    "text": "Dimensions",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "spec.g1.r5.v",
+    "text": "15.12x10.59x12.11 in/38.4x26.9x30.75 cm",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "spec.g1.r6.l",
+    "text": "Cycle Life",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "spec.g1.r6.v",
+    "text": "2000 cycles to 70%+ capacity",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "spec.g2",
+    "text": "OUTPUT PORTS",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "spec.g2.r1.l",
+    "text": "3 x AC Output",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "spec.g2.r1.v",
+    "text": "AC 120V, 60Hz, 15A, 1800W Rated, 3600W Surge peak",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "spec.g2.r2.l",
+    "text": "2 x USB-A Output",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "spec.g2.r2.v",
+    "text": "Quick Charge 3.0, 18W Max 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "spec.g2.r3.l",
+    "text": "2 x USB-C Output",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "spec.g2.r3.v",
+    "text": "100W Max 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "spec.g2.r4.l",
+    "text": "Car Port",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "spec.g2.r4.v",
+    "text": "12V⎓10A",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "spec.g3",
+    "text": "INPUT PORTS",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "spec.g3.r1.l",
+    "text": "AC Input",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "spec.g3.r1.v",
+    "text": "AC 120V~ 60Hz, 15A max",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "spec.g3.r2.l",
+    "text": "DC Input",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "spec.g3.r2.v1",
+    "text": "11-17.5V (Working Voltage) ⎓8A max, double to 8A max;",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "spec.g3.r2.v2",
+    "text": "17.5-60V (Working Voltage) ⎓12A, double to 24A/1400W max",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "spec.g4",
+    "text": "ENVIRONMENTAL OPERATING TEMPERATURE",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "spec.g4.r1.l",
+    "text": "Charge Temperature",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "spec.g4.r1.v",
+    "text": "32°F~104°F (0°C~40°C)",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "spec.g4.r2.l",
+    "text": "Discharge Temperature",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "spec.g4.r2.v",
+    "text": "-4°F~104°F (-20°C~40°C)",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "spec.cert",
+    "text": "CERTIFICATIONS",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "spec.fn1",
+    "text": "※ USB Type-C®and USB-C®are registered trademarks of USB Implementers Forum.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "spec.fn2a",
+    "text": "※ Qualcomm Quick Charge is a product of Qualcomm Technologles,Inc. and/or its subsidiaries.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 2,
+    "id": "spec.fn2b",
+    "text": "Qualcomm and Quick Charge are trademarks or registered trademarks of  Qualcomm Incorporated.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "mod.p",
+    "text": "MODIFICATION: Any changes or modifications not expressly approved by the grantee of this device could void the user’s authority to operate the device.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "box.h",
+    "text": "PACKAGE LIST",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "box.c1",
+    "text": "Jackery Explorer 1500 Pro",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "box.c2",
+    "text": "Car Charge Cable",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "box.c3",
+    "text": "AC Charge Cable",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "box.c4",
+    "text": "DC7909 to DC8020 Adaptor x 2",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "box.c5",
+    "text": "Quick Start Guide",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "gear.h",
+    "text": "GET TO KNOW YOUR GEAR",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "gear.h2",
+    "text": "Product Appearance",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "names.dcin",
+    "text": "DC Input Port( 2×DC8020, solar charging input and car charging input )",
+    "source_ocr_char_coverage": 0.9273
+  },
+  {
+    "page": 3,
+    "id": "names.acin",
+    "text": "AC Input Port",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "names.ledbtn",
+    "text": "LED Light Button",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "names.led",
+    "text": "LED Light",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "names.usba",
+    "text": "USB-A Output",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "names.usbc",
+    "text": "USB-C  Output",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "names.qc",
+    "text": "Quick Charge 3.0",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "names.usbbtn",
+    "text": "USB Button",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "names.lcdbtn",
+    "text": "LCD Screen Button",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "names.car",
+    "text": "Car Port",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "names.carbtn",
+    "text": "Car Port Button",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "names.acout",
+    "text": "AC Output",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 3,
+    "id": "names.acbtn",
+    "text": "AC Button",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "lcd.h",
+    "text": "LCD DISPLAY",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "lcd.n1",
+    "text": "Input Power",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "lcd.n2",
+    "text": "Remaining Charge Time",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "lcd.n3",
+    "text": "Solar Charging Indicator",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "lcd.n4",
+    "text": "AC Wall Charging Indicator",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "lcd.n5",
+    "text": "Car Charging Indicator",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "lcd.n6",
+    "text": "Low Battery Indicator",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "lcd.n7",
+    "text": "Remaining Battery Percentage",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "lcd.n8",
+    "text": "Output Power",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "lcd.n9",
+    "text": "Remaining Discharge Time",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "lcd.n10",
+    "text": "Fault code",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "lcd.n11",
+    "text": "High Temperature Warning",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "lcd.n12",
+    "text": "Low Temperature Warning",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "lcd.n13",
+    "text": "Low Power Mode",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "lcd.n14",
+    "text": "AC Power Indicator",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "lcd.n15",
+    "text": "Battery Power Indicator",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "lcd.ring.t",
+    "text": "Battery Power Indicator",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "lcd.ring.b",
+    "text": "When the product is being charged, the orange circle around the battery percentage will light up in sequence. When charging other devices, the orange circle will stay on.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "lcd.lowbat.t",
+    "text": "Low Battery Indicator",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "lcd.lowbat.b",
+    "text": "When the battery is less than 20%, the Low Battery Indicator will stay on. When less than 5%, the Low Battery Indicator will flash. When it is being charged, the Indicator will be off.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "lcd.lpm.t",
+    "text": "Low Power Mode",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "lcd.lpm.b",
+    "text": "To avoid forgetting to turn off the output during use that results in battery consumption, the product turns the Low Power Mode off by default. This occurs when no device is connected or the connected device is less than or equal to a certain value. (Refer to the table below for more details), the device will automatically shut down after 12 hours.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "lpm.th1",
+    "text": "Output",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "lpm.th2",
+    "text": "Output Power",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "lpm.th3",
+    "text": "Defaults",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "lpm.r1.c1",
+    "text": "AC Output",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "lpm.r1.c2",
+    "text": "≤25W",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "lpm.r2.c1",
+    "text": "USB Output",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "lpm.r2.c2",
+    "text": "≤2W",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "lpm.r3.c1",
+    "text": "Car Output",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "lpm.r3.c2",
+    "text": "≤2W",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "lpm.default",
+    "text": "The device will automatically shut down after 12 hours",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "lpm.on.h",
+    "text": "To turn on the Low Power Mode",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "lpm.on",
+    "text": "Long press the AC Button and DISPLAY Button until the Low Power Mode icon lights up. In Low Power Mode, please remember to turn off the output to avoid battery consumption.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "lpm.off.h",
+    "text": "To turn off the Low Power Mode",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 4,
+    "id": "lpm.off",
+    "text": "Long press the AC Button and DISPLAY Button until the Low Power Mode icon disappears on the screen.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 5,
+    "id": "lcd.fault.t",
+    "text": "Fault code",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 5,
+    "id": "lcd.fault.b",
+    "text": "In order to quickly solve the user’s feedback, we set up common fault codes F0-F9 in the system: if you find any fault code of F0、F1、F2、F3、F4、F5、F6、F7 on the display screen, please contact us for after-sales treatment; If F6 code appears, please remove the load or unplug the charging plug, the product can restore by itself, if not, please contact after-sales treatment; If F9 fault code appears, please remove the load and the product can recover by itself, if not, please contact after-sales service.",
+    "source_ocr_char_coverage": 0.9949
+  },
+  {
+    "page": 5,
+    "id": "lcd.hot.t",
+    "text": "High-temperature warning",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 5,
+    "id": "lcd.hot.b",
+    "text": "If it appears on the screen, do not worry, the battery will restore automatically after cooling.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 5,
+    "id": "lcd.cold.t",
+    "text": "Low-temperature Warning",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 5,
+    "id": "lcd.cold.b",
+    "text": "If it is displayed on the screen, do not worry. It will automatically restore after the ambient temperature is restored.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 5,
+    "id": "ops.h",
+    "text": "BASIC OPERATIONS",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 5,
+    "id": "ops.power.h",
+    "text": "Power On/Off",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 5,
+    "id": "ops.ac",
+    "text": "AC Output On/Off: Press the AC Button, the AC Output operation indicator lights up. Then you can connect the equipment that needs AC charging. Press the AC Button again to turn off the AC Output.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 5,
+    "id": "ops.usb",
+    "text": "USB Output On/Off: Press the USB Button, the USB Output operation indicator lights up. Then USB-A and USB-C Output Ports can be connected to external load devices. Press the USB Button again to turn off the USB Output.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 5,
+    "id": "ops.car",
+    "text": "Car Port On/Off: Press the Car Port Button, the Car Port operation indicator lights up. Then the Car Port can be connected to the external load devices. Press the Car Port Button again to turn off the output.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 5,
+    "id": "ops.lcd.h",
+    "text": "LCD Screen On/Off",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 5,
+    "id": "ops.lcd1",
+    "text": "To Turn On, press the DISPLAY Button, any Output Power Button, or LED Light Button. Or, when there’s a charging input, the screen display will light up automatically.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 5,
+    "id": "ops.lcd2",
+    "text": "To Turn Off, press the DISPLAY Button again and the screen display will turn off. Or,  if there is no operation in 30 seconds, the product will enter a sleep state and the screen display will automatically turn off.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 5,
+    "id": "ops.lcd3",
+    "text": "To get the screen always-on (under charging or discharging state), follow these steps: After the display screen lights up, double-click the DISPLAY Button and the mode of Always-On Display will be on.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 5,
+    "id": "ops.lcd4",
+    "text": "To turn off Always-On Display, follow these steps: Press the DISPLAY Button and the screen will be turned off in 30 seconds.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 5,
+    "id": "ops.lcd.tip",
+    "text": "Tip:During Always-On mode, the screen automatically turns off after 2 hours without charging or discharging.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 5,
+    "id": "ops.led.h",
+    "text": "LED Light On/Off",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 5,
+    "id": "ops.led1",
+    "text": "There are three modes of LED Light: Low Light mode, Bright Light mode, and SOS mode.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 5,
+    "id": "ops.led2",
+    "text": "The operations are as follows: Press the LED Light Button, the LED will be turned on. The light will always turn on in Low Light mode and the output power on the screen is 1W. Press again to enter the Bright Light mode and the output power on the screen is 3W. Press the third time to enter the SOS mode and the output power on the screen is 3W. Then, press again to turn off the LED Light. In any of these modes, the light can be turned off by a long press.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "chg.h",
+    "text": "CHARGING YOUR JACKERY EXPLORER 1500 PRO",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "chg.p1",
+    "text": "Green energy first: We advocate to use the green energy first. This product supports two modes of charging at the same time: solar charging and AC wall charging.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "chg.p2",
+    "text": "When AC wall charging and solar charging are turned on at the same time, the product will give priority to solar charging and both methods will be used to charge the battery at the maximum permissible power.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "wall.h",
+    "text": "CHARGING FROM THE WALL",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "wall.p",
+    "text": "Please use the AC cable included in the package.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "fig.ac.charger",
+    "text": "AC Charger",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "fig.ac.unit",
+    "text": "Explorer 1500 Pro",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "solar.h",
+    "text": "SOLAR ENERGY CHARGING",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "solar.g1.h",
+    "text": "Jackery SolarSaga 200 or 100 or 60 Solar Panel Connection Guide",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "solar.g1.p1",
+    "text": "If one or two solar panels are connected, you can directly connect the DC8020 port of the solar panel to theDC8020 port of Jackery Explorer 1500 Pro for charging. If three or four solar panels are connected,",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "solar.g1.p2",
+    "text": "please refer to the method shown in the following figure to charge through the solar series connector (Note: The solar series connector is not in standard configuration, so you need to purchase it separately. Please refer to the detailed operation instructions of the solar series connector before using it.)",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "fig.s3.unit",
+    "text": "Explorer 1500 Pro",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "fig.s3.panels",
+    "text": "SolarSaga×3",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "fig.s22.left",
+    "text": "SolarSaga×2",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "fig.s22.unit",
+    "text": "Explorer 1500 Pro",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 6,
+    "id": "fig.s22.right",
+    "text": "SolarSaga×2",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 7,
+    "id": "fig.s33.unit",
+    "text": "Explorer 1500 Pro",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 7,
+    "id": "fig.s33.left",
+    "text": "SolarSaga×3",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 7,
+    "id": "fig.s33.right",
+    "text": "SolarSaga×3",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 7,
+    "id": "solar.caution",
+    "text": "Caution: When the two inputs are used at the same time, please make sure to use the same type of solar panel and the number of solar panels in the two inputs must be the same to avoid damage or charging problems of the equipment due to inconsistent voltages of the two channels.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 7,
+    "id": "solar.prohibited",
+    "text": "The following way of connections are prohibited to charge this product:",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 7,
+    "id": "fig.x1.left",
+    "text": "SolarSaga×2",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 7,
+    "id": "fig.x1.unit",
+    "text": "Explorer 1500 Pro",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 7,
+    "id": "fig.x1.right",
+    "text": "SolarSaga×1",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 7,
+    "id": "fig.x2.left",
+    "text": "SolarSaga×3",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 7,
+    "id": "fig.x2.unit",
+    "text": "Explorer 1500 Pro",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 7,
+    "id": "fig.x2.right",
+    "text": "SolarSaga×1",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 7,
+    "id": "fig.x3.left",
+    "text": "SolarSaga×3",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 7,
+    "id": "fig.x3.unit",
+    "text": "Explorer 1500 Pro",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 7,
+    "id": "fig.x3.right",
+    "text": "SolarSaga×2",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 8,
+    "id": "solar.g2.h",
+    "text": "Jackery SolarSaga 80 Solar Panel Connection Guide",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 8,
+    "id": "solar.g2.p1",
+    "text": "Users who have purchased Jackery SolarSaga 80  can charge the product by referring to the connection mode shown below. The Jackery SolarSaga 80  supports the parallel connection or the parallel and then series connections to charge the product. The single input port of the Jackery Explorer 1500 Pro supports the input of up to six pieces of SolarSaga 80 solar panels, and two input ports support the input to up to 12 pieces of SolarSaga 80 solar panels. (When the power is connected with six solar panels in a single input port, the solar panels shall be divided into two groups, and each group of three solar panels shall be self-connected in parallel and then connected to Jackery Explorer 1500 Pro through the solar series connector. The solar series connector needs to be purchased separately.)",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 8,
+    "id": "solar.g2.p2",
+    "text": "For detailed operation instructions on the self-parallel connection of the Jackery SolarSaga 80 solar panel, please refer to the user manual.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 8,
+    "id": "fig.s80.out",
+    "text": "The solar panel charging output port(DC8020 male, with DC8020 to DC7909 Adaptor)",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 8,
+    "id": "fig.s80.par",
+    "text": "Parallel port（DC 8020 female）",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 8,
+    "id": "solar.g2.tip",
+    "text": "Warm Tip: Users can enter the number of solar panels in their own combination according to the number of solar panels they purchased. Currently, the product supports charging with 1, 2, 3, 4, 6, 8, and 12 80W solar panels in combination.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 8,
+    "id": "solar.g3.h",
+    "text": "DC7909 to DC8020 Adaptor Operation Guide",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 8,
+    "id": "solar.g3.p",
+    "text": "All of our solar panels on sale have been upgraded to include a DC7909 to DC8020 adapter. If you have purchased a Jackery solar panel without a DC7909 to DC8020 adapter, you can charge your Jackery Explorer 1500 Pro by following the connection instructions below.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 8,
+    "id": "fig.ad.female",
+    "text": "DC8020 female",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 8,
+    "id": "fig.ad.adaptor",
+    "text": "DC7909 to DC8020 Adaptor",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 8,
+    "id": "fig.ad.male",
+    "text": "DC7909 male",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 8,
+    "id": "fig.ad.unit",
+    "text": "Explorer 1500 Pro",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "car.h",
+    "text": "CHARGING IN THE CAR",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "car.p1",
+    "text": "This product can be charged with a 12V car charger. Please start the vehicle before charging to prevent draining the car battery and prevent your vehicle from being unable to start.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "car.p2",
+    "text": "Meanwhile, please ensure that the car charger and the car cigarette lighter provide a good connection, and ensure that the car charger is fully inserted. In addition, if the vehicle is running on bumpy roads, it is forbidden to use the car charger in case it burns due to a poor connection. The Company will not be responsible for any loss caused by non-standard operation.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "fig.car.vehicle",
+    "text": "Vehicle",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "fig.car.unit",
+    "text": "Explorer 1500 Pro",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "car.safe.h",
+    "text": "Safety Precautions When Charging",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "car.safe1",
+    "text": "1) Vehicle charging is only applicable in 12V vehicles, not in 24V ones. Please do not charge this product in 24V vehicle to avoid personal injury and property loss.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "car.safe2",
+    "text": "2) It is recommended to use Jackery accessories - solar panels for solar charging. We will not be responsible for the losses caused by using other brands’ solar panels.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "safety.h",
+    "text": "SAFETY PRECAUTIONS WHEN USING",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "safety.lead",
+    "text": "The basic safety precautions should be followed when using this product, including:",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "safety.a",
+    "text": "a. Please read all instructions before using this product.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "safety.b",
+    "text": "b. Close supervision is required when using this product near children to reduce the risk.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "safety.c",
+    "text": "c. Risk of electric shock may occur if using accessories recommended or sold by non-professional product manufacturers.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "safety.d",
+    "text": "d. When the product is not in use, please unplug the power plug from the product's socket.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "safety.e",
+    "text": "e. Do not dismantle the product, which may lead to unpredictable risks such as fire, explosion or electric shock.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "safety.f",
+    "text": "f. Do not use the product through damaged cords or plugs, or damaged output cables, which may cause electric shock.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "safety.g",
+    "text": "g. Charge the product in a well ventilated area and do not restrict ventilation in any way.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "safety.h2",
+    "text": "h. Please put the product in a ventilated and dry place to avoid rain and water to cause electric shock.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "safety.i",
+    "text": "i. Do not expose the product to fire or high temperature (under direct sunlight or in vehicle under high heat), which may cause accidents such as fire and explosion.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "safety.j",
+    "text": "j.Do not disassemble the power pack, take it to a qualified service person when service or repair is required. Incorrect reassembly may result in a risk of fire or electric shock.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "safety.k",
+    "text": "k.Have servicing performed by a qualified repair person using only identical replacement parts. This will ensure that the safety of the product is maintained.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "fcc.note",
+    "text": "NOTE: This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules. These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to radio communications. However, there is no guarantee that interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "fcc.m1",
+    "text": "--Reorient or relocate the receiving antenna.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "fcc.m2",
+    "text": "--Increase the separation between the equipment and receiver.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "fcc.m3",
+    "text": "--Connect the equipment into an outlet on a circuit different from that to which the receiver is connected.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 9,
+    "id": "fcc.m4",
+    "text": "--Consult the dealer or an experienced radio/TV technician for help.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 10,
+    "id": "war.h",
+    "text": "WARRANTY",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 10,
+    "id": "war.note",
+    "text": "Note: We only provide our warranty for the buyer who purchased on Amazon (Jackery Inc.), Jackery website or local authorized dealers.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 10,
+    "id": "war.lim.h",
+    "text": "Limited Warranty",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 10,
+    "id": "war.lim1",
+    "text": "Jackery Inc. warrants to the original consumer purchaser that the Jackery product will be free from defects in workmanship and material under normal consumer use during the applicable warranty period identified in the 'Warranty Period' section below, subject to the exclusions set forth below.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 10,
+    "id": "war.lim2",
+    "text": "This warranty statement sets forth Jackery's total and exclusive warranty obligation. We will not assume, nor authorize any person to assume for us, any other liability in connection with the sale of our products.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 10,
+    "id": "war.per.h",
+    "text": "Warranty Period",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 10,
+    "id": "war.per1",
+    "text": "3 Years Standard Warranty: The standard warranty period for Jackery Explorer 1500 Pro is 36 months. In each case, the warranty period is measured starting on the date of purchase by the original consumer purchaser. The sales receipt from the first consumer purchase, or other reasonable documentary proof, is required in order to establish the start date of the warranty period.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 10,
+    "id": "war.per2",
+    "text": "2 Years Extended Warranty: To activate the Warranty Extension, you must register your product online  or contact our customer service team at hello@jackery.com to extend the standard warranty runtime.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 10,
+    "id": "war.exc.h",
+    "text": "Exchange",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 10,
+    "id": "war.exc",
+    "text": "Jackery will replace (at Jackery's expense) any Jackery product that fails to operate during the applicable warranty period due to defect in workmanship or material. A replacement product assumes the remaining warranty of the original product.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 10,
+    "id": "war.buy.h",
+    "text": "Limited to Original Consumer Buyer",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 10,
+    "id": "war.buy",
+    "text": "The warranty on Jackery's product is limited to the original consumer purchaser and is not transfer-able to any subsequent owner.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 10,
+    "id": "war.ex.h",
+    "text": "Exclusions",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 10,
+    "id": "war.ex.lead",
+    "text": "Jackery's warranty does not apply to:",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 10,
+    "id": "war.ex1",
+    "text": "Misused, abused, modified, damaged by accident, or used for anything other than normal consumer use as authorized in Jackery's current product literature.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 10,
+    "id": "war.ex2",
+    "text": "Attempted repair by anyone other than an authorized facility.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 10,
+    "id": "war.ex3",
+    "text": "Any product purchased through an online auction house.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 10,
+    "id": "war.ex4",
+    "text": "Jackery's warranty does not apply to the battery cell unless the battery cell is fully charged by you within seven days after you purchase the product and at least once every 6 months thereafter.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 11,
+    "id": "back.name",
+    "text": "JACKERY INC.",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 11,
+    "id": "back.addr",
+    "text": "5310 Bunche Dr, Fremont, CA 94538",
+    "source_ocr_char_coverage": 1.0
+  },
+  {
+    "page": 11,
+    "id": "back.contact",
+    "text": "Tel:1-888-502-2236(US)    E-mail:hello@jackery.com    Website:www.jackery.com",
+    "source_ocr_char_coverage": 1.0
+  }
+]

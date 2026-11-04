@@ -1,0 +1,169 @@
+[
+  {
+    "slot": "glyph-battery-power",
+    "physical_page": 4,
+    "search_box": [
+      103.1,
+      198.0,
+      114.9,
+      209.9
+    ],
+    "local_path": "assets/glyph-battery-power.png",
+    "reuse_candidate": null,
+    "drawing_indices": [
+      38639
+    ],
+    "glyph_bbox": [
+      103.20783233642578,
+      198.228271484375,
+      114.7058334350586,
+      209.72227478027344
+    ],
+    "reuse_comparison": {
+      "status": "not-compared",
+      "reason": "native PDF drawing/SVG path mapping is unsupported"
+    },
+    "decision": "native raster glyph from this print at 8x with alpha (native SVG mapping unsupported)",
+    "sha256": "21e8c5bec802a818cf331c8a7d2c246ba3c303d31010b7b4d3e1eb57f9eba842"
+  },
+  {
+    "slot": "glyph-low-battery",
+    "physical_page": 4,
+    "search_box": [
+      96.2,
+      228.5,
+      114.7,
+      238.7
+    ],
+    "local_path": "assets/glyph-low-battery.png",
+    "reuse_candidate": null,
+    "drawing_indices": [
+      38640
+    ],
+    "glyph_bbox": [
+      96.3559799194336,
+      228.703369140625,
+      114.46697998046875,
+      238.54237365722656
+    ],
+    "reuse_comparison": {
+      "status": "not-compared",
+      "reason": "native PDF drawing/SVG path mapping is unsupported"
+    },
+    "decision": "native raster glyph from this print at 8x with alpha (native SVG mapping unsupported)",
+    "sha256": "1f7e22f395ccbe3e6c82cf63f9e01d233ad502806828a69f45fa7311352a4647"
+  },
+  {
+    "slot": "glyph-low-power-mode",
+    "physical_page": 4,
+    "search_box": [
+      80.6,
+      257.4,
+      93.4,
+      270.3
+    ],
+    "local_path": "assets/glyph-low-power-mode.png",
+    "reuse_candidate": null,
+    "drawing_indices": [
+      38641,
+      38642
+    ],
+    "glyph_bbox": [
+      80.752197265625,
+      257.608154296875,
+      93.25019836425781,
+      270.10614013671875
+    ],
+    "reuse_comparison": {
+      "status": "not-compared",
+      "reason": "native PDF drawing/SVG path mapping is unsupported"
+    },
+    "decision": "native raster glyph from this print at 8x with alpha (native SVG mapping unsupported)",
+    "sha256": "87460339ffe66ebc9ee453027db2e5ce07374c03e1ed277aa628ca8ed26fd01f"
+  },
+  {
+    "slot": "glyph-fault-code",
+    "physical_page": 4,
+    "search_box": [
+      61.3,
+      431.4,
+      74.7,
+      443.8
+    ],
+    "local_path": "assets/glyph-fault-code.png",
+    "reuse_candidate": "docs/renderers/web/assets/shared/lcd/lcd_fault-code.png",
+    "drawing_indices": [
+      39545,
+      39546,
+      39547
+    ],
+    "glyph_bbox": [
+      61.54019546508789,
+      431.59881591796875,
+      74.5241928100586,
+      443.559814453125
+    ],
+    "reuse_comparison": {
+      "status": "not-compared",
+      "reason": "native PDF drawing/SVG path mapping is unsupported"
+    },
+    "decision": "native raster glyph from this print at 8x with alpha (native SVG mapping unsupported)",
+    "sha256": "7826d793f3303aa6303f53e16937834220e7574a4535ade11527a2ec1bbb65f1"
+  },
+  {
+    "slot": "glyph-high-temperature",
+    "physical_page": 5,
+    "search_box": [
+      115.4,
+      21.8,
+      128.1,
+      33.5
+    ],
+    "local_path": "assets/glyph-high-temperature.png",
+    "reuse_candidate": null,
+    "drawing_indices": [
+      40000,
+      40001
+    ],
+    "glyph_bbox": [
+      115.56394958496094,
+      21.976276397705078,
+      127.86294555664062,
+      33.31627655029297
+    ],
+    "reuse_comparison": {
+      "status": "not-compared",
+      "reason": "native PDF drawing/SVG path mapping is unsupported"
+    },
+    "decision": "native raster glyph from this print at 8x with alpha (native SVG mapping unsupported)",
+    "sha256": "b0e6a729dd6b7eceb342e48593c0a99bd49d4b315e2fe7eb589c457be7411560"
+  },
+  {
+    "slot": "glyph-low-temperature",
+    "physical_page": 5,
+    "search_box": [
+      116.4,
+      50.0,
+      129.1,
+      61.7
+    ],
+    "local_path": "assets/glyph-low-temperature.png",
+    "reuse_candidate": null,
+    "drawing_indices": [
+      42133,
+      42134
+    ],
+    "glyph_bbox": [
+      116.63523864746094,
+      50.19917678833008,
+      128.93423461914062,
+      61.53917694091797
+    ],
+    "reuse_comparison": {
+      "status": "not-compared",
+      "reason": "native PDF drawing/SVG path mapping is unsupported"
+    },
+    "decision": "native raster glyph from this print at 8x with alpha (native SVG mapping unsupported)",
+    "sha256": "b4768f10a3681619540f0791a8cdee08860ed5f108f89ace198f8968226d0a29"
+  }
+]
