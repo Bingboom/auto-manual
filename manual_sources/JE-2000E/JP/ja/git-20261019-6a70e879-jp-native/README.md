@@ -1,6 +1,6 @@
-# JE-2000E / JP / ja — Git-only Web manual candidate
+# JE-2000E / JP / ja — Git-only Web manual
 
-**Status: `candidate-pending-operator-review`.** Not publication-eligible: there is no `source/approval.json`. Approval is written only after the operator reviews the 1280/390 renders beside the reference edition and says 「上线提交发布」 in the owning session. No phase2 target, queue record, live Base write or Read the Docs publication is involved.
+**Status: `operator-authorized-git-only-release`.** The operator reviewed the 1280/390 renders beside the shared reference edition (review renders sent in the owning session) and replied 「上线提交发布：JE-1800B、JE-2000E」 on 2026-11-04 in the owning session; after the rebound renders and symbol close-ups were sent it confirmed with 「授权合入」. Source copy goes live as printed; `source_manifest.json:source_concerns` go back to the source owner. `source/approval.json` binds every reviewed `source/` and `assets/` input; the IR is publication-eligible. Merge still needs the operator's own authorization (AGENTS.md §8.6).
 
 ## Source authority
 

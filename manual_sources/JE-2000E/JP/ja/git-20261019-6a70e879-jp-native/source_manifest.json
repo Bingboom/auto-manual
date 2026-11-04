@@ -65,7 +65,7 @@
   "web_roots": {
     "ja": "web/ja"
   },
-  "publication_status": "candidate-pending-operator-review",
+  "publication_status": "operator-authorized-git-only-release",
   "route": "JE-2000E/JP/ja/md",
   "legacy_default": true,
   "included_pages": [
@@ -237,8 +237,8 @@
     },
     {
       "path": "README.md",
-      "size": 4323,
-      "sha256": "b61f3b926fa284c70bb032e19f2f10d52aec5f9cdcd35291769fa1055c70e30d"
+      "size": 4598,
+      "sha256": "c7b2074562349c1f04c58d7d49b8aa7a121d0659a32f81ff5c1357ea8e01fc11"
     },
     {
       "path": "derive_symbols.py",
@@ -247,13 +247,18 @@
     },
     {
       "path": "rebuild.py",
-      "size": 5693,
-      "sha256": "658d8e94cbe72bfbd7fd0f580ffb79ffbbba3b1a02a0a49336f981b45caea580"
+      "size": 6547,
+      "sha256": "1da0037ed2b533c06a3f760f65e958a1d923d74ede1efe6e7d0f474380532c69"
     },
     {
       "path": "refresh_manifest.py",
       "size": 1353,
       "sha256": "95ea2c6fe655476c0f8366507e7e60df276f2fd5ceec21d061533db0459bcb89"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 16181,
+      "sha256": "ca4966748da446eef4521bea6b68bc11ced0174cbf96b6918bbcf0fa088ffe1c"
     },
     {
       "path": "source/asset_decisions.json",
@@ -662,8 +667,8 @@
     },
     {
       "path": "web/ja/manual.ir.json",
-      "size": 572372,
-      "sha256": "9bdd68012dd2df3e0a40ec3336077881f09e435f94a166b9c4c5bdd776626fb1"
+      "size": 590390,
+      "sha256": "9f2ccf684644afe6dafa36777fe0491358ef04a4f4ef3ecce5c14db30513b5ad"
     },
     {
       "path": "web/ja/manual_je2000e_jp_ja.md",
