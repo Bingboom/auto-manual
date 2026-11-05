@@ -160,7 +160,8 @@
         "逆变器 DC → AC",
         "交流插座 → 家电"
       ],
-      "diagram_caption": "Cdc 稳定直流母线；H 桥控制电压极性；Lf/Cf 为输出滤波；虚线表示控制与反馈，不是功率导线。"
+      "diagram_caption": "Cdc 稳定直流母线；H 桥控制电压极性；Lf/Cf 为输出滤波；虚线表示控制与反馈，不是功率导线。",
+      "circuit": "circuit-inverter.svg"
     },
     {
       "id": "ac-total",
@@ -185,7 +186,8 @@
         "AC 插座 1",
         "AC 插座 2 / 其他"
       ],
-      "diagram_caption": "两条交流供电导线接到各并联支路；负载电流汇总到公共电源路径。图中电阻符号代表电器等效负载，实际电器未必是纯电阻。"
+      "diagram_caption": "两条交流供电导线接到各并联支路；负载电流汇总到公共电源路径。图中电阻符号代表电器等效负载，实际电器未必是纯电阻。",
+      "circuit": "circuit-parallel.svg"
     },
     {
       "id": "ac-match",
@@ -474,7 +476,8 @@
         "供电切换",
         "AC 负载"
       ],
-      "diagram_caption": "有市电时可走旁路，断电后由电池经逆变器供电；是否支持与切换时间按型号确认。"
+      "diagram_caption": "有市电时可走旁路，断电后由电池经逆变器供电；是否支持与切换时间按型号确认。",
+      "circuit": "circuit-transfer.svg"
     },
     {
       "id": "transfer-switch",

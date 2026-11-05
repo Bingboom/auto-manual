@@ -1,6 +1,6 @@
-<svg viewBox="0 0 420 240" role="img" aria-labelledby="diagram-{{ topic.id|e }}">
-<title id="diagram-{{ topic.id|e }}">{{ topic.title|e }}：{{ topic.diagram_caption|e }}</title>
-<defs><marker id="arrow-{{ topic.id|e }}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><polygon points="0,0 10,5 0,10" fill="#687481"/></marker></defs>
+{#- A topic's picture: its hand-drawn diagram below when it has one, else its nodes as a chain of HTML steps. The
+    chain stays legible in the narrow figure column; a card whose figure is an svg gives it a wider column. -#}
+{%- set drawing -%}
 {% if topic.id == 'ac-total' %}
 <rect class="source" x="105" y="12" width="210" height="52" rx="5"/><text x="210" y="44">共享 AC 输出能力</text>
 <path d="M210 64 V100 H100 V125 M210 100 H320 V125" marker-end="url(#arrow-{{ topic.id }})"/>
@@ -58,11 +58,14 @@
 <path d="M160 174 H180 V126 H197" marker-end="url(#arrow-{{ topic.id }})"/>
 <path d="M310 113 H327" marker-end="url(#arrow-{{ topic.id }})"/>
 <text class="diagram-note" x="210" y="228">同一时刻只接一路 · 防止电倒送回电网</text>
-{% else %}
-{% for node in topic.diagram_nodes %}
-<rect{% if loop.first %} class="source"{% endif %} x="45" y="{{ 8 + loop.index0 * 80 }}" width="330" height="52" rx="5"/>
-<text x="210" y="{{ 40 + loop.index0 * 80 }}">{{ node|e }}</text>
-{% if not loop.last %}<path d="M210 {{ 60 + loop.index0 * 80 }} V{{ 83 + loop.index0 * 80 }}" marker-end="url(#arrow-{{ topic.id }})"/>{% endif %}
-{% endfor %}
 {% endif %}
+{%- endset -%}
+{%- if drawing|trim %}
+<svg viewBox="0 0 420 240" role="img" aria-labelledby="diagram-{{ topic.id|e }}">
+<title id="diagram-{{ topic.id|e }}">{{ topic.title|e }}：{{ topic.diagram_caption|e }}</title>
+<defs><marker id="arrow-{{ topic.id|e }}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><polygon points="0,0 10,5 0,10" fill="#687481"/></marker></defs>
+{{ drawing }}
 </svg>
+{%- else %}
+<ol class="pk-chain">{% for node in topic.diagram_nodes %}<li{% if loop.first %} class="is-source"{% endif %}>{{ node|e }}</li>{% endfor %}</ol>
+{%- endif %}

@@ -1,92 +1,221 @@
-:root {--learn-ink:#23262b;--learn-muted:#666e78;--learn-line:#e2e5e9;--learn-orange:#cf4e09;--learn-surface:#f5f6f8}
-body {margin:0;background:var(--learn-surface);color:var(--learn-ink);font-family:system-ui,-apple-system,"PingFang SC",sans-serif;line-height:1.65}
-* {box-sizing:border-box}
+/* 产品知识, the 2026-11 design: the knowledge pages' 1120px container on the cool ground of body.app.kb; an
+   energy-flow map and a theme map first, then one card per topic, then the case.
+   Layout changes follow the container (pk), so they track the sidebar too. */
 [hidden] {display:none!important}
-a {color:var(--learn-orange);text-underline-offset:3px}
-button,select {font:inherit}
-button,a,select {touch-action:manipulation}
-button {cursor:pointer}
-button:focus-visible,a:focus-visible,select:focus-visible {outline:3px solid #ee9e72;outline-offset:3px}
 .skip {position:absolute;left:20px;top:-70px;z-index:100;padding:10px;background:#fff}
 .skip:focus {top:10px}
-.learning {max-width:1180px;margin:0 auto;padding:42px 38px 50px}
-.learning-head {max-width:740px;margin-bottom:30px}
-.eyebrow {color:var(--learn-orange);font-size:13px;font-weight:650}
-h1 {font-size:36px;line-height:1.25;letter-spacing:-.03em;margin:10px 0 14px}
-.learning-head p {color:var(--learn-muted);font-size:16px;margin:0 0 14px}
-.learning-head a {font-size:14px}
-.energy {background:#fff;border:1px solid var(--learn-line);border-radius:16px;padding:22px 24px;margin-bottom:28px}
-.section-title {display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
-.section-title h2 {font-size:18px;margin:0}
-.section-title>span {color:var(--learn-muted);font-size:12px}
-.energy-flow {display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:16px;align-items:center;margin:20px 0}
-.energy-flow button {text-align:left;display:flex;flex-direction:column;gap:5px;min-width:0;background:#f6f7f9;border:1px solid var(--learn-line);border-radius:10px;padding:16px;color:var(--learn-ink)}
-.energy-flow button:hover {border-color:var(--learn-orange)}
-.energy-flow small,.energy-flow button>span {font-size:12px;color:var(--learn-muted)}
-.energy-flow strong {font-size:15px}
-.flow-arrow {color:var(--learn-muted);font-size:22px}
-.energy-note {font-size:13px;color:var(--learn-muted);margin:0}
-.selectors {display:grid;grid-template-columns:minmax(140px,190px) minmax(200px,1fr);gap:16px;max-width:770px}
-.selectors label {display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:600}
-.selectors select {width:100%;min-width:0;padding:10px 12px;border:1px solid #d6dbe2;background:#fff;border-radius:8px;font-weight:400;color:var(--learn-ink)}
-.topic-filters {display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
-.topic-filters button {border:1px solid var(--learn-line);border-radius:22px;background:#fff;color:var(--learn-muted);padding:7px 14px;font-size:13px}
-.topic-filters button.selected {background:var(--learn-ink);border-color:var(--learn-ink);color:#fff}
-#learning-count {margin:15px 0;color:var(--learn-muted);font-size:13px}
-.knowledge-list {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:start}
-.knowledge-item {background:#fff;border:1px solid var(--learn-line);border-radius:14px;padding:24px;scroll-margin-top:90px;min-width:0}
-.card-top {display:flex;align-items:center;gap:12px;margin-bottom:13px}
-.card-number {color:var(--learn-orange);font-size:13px;font-variant-numeric:tabular-nums;font-weight:600}
-.card-tags {display:flex;flex-wrap:wrap;gap:7px}
-.card-tags span {font-size:11px;background:#f1f3f6;color:var(--learn-muted);padding:2px 7px;border-radius:4px}
-.knowledge-item h2 {font-size:19px;margin:0 0 12px;line-height:1.45}
-.knowledge-item .answer {font-size:15px;line-height:1.8;margin:0 0 20px}
-.knowledge-item h3 {font-size:12px;margin:0 0 5px;font-weight:650}
-.application p,.boundary p {font-size:13px;margin:0;line-height:1.8}
-.application {margin-bottom:16px}
-.boundary {padding:13px 15px;background:#fff7f0;border-left:3px solid #efbc96;border-radius:0 6px 6px 0}
-.boundary h3 {color:#9b4d18}
-.references {border-top:1px solid var(--learn-line);margin-top:20px;padding-top:14px}
-.references summary {cursor:pointer;font-size:13px;color:var(--learn-orange)}
-.reference-count {color:var(--learn-muted)}
-.read-hint {font-size:12px;color:var(--learn-muted);line-height:1.6}
-.references ul {list-style:none;padding:0;margin:0}
-.references li+li {border-top:1px solid var(--learn-line)}
-.references a {display:grid;grid-template-columns:1fr auto;gap:2px 8px;text-decoration:none;padding:9px 0;font-size:13px;color:var(--learn-ink);overflow-wrap:anywhere}
-.references a small {grid-column:1;font-size:11px;color:var(--learn-muted)}
-.references a>span {grid-column:2;grid-row:1/3;color:var(--learn-orange);align-self:center}
-.learning-footer {margin-top:30px;border-top:1px solid var(--learn-line);padding-top:20px;font-size:12px;color:var(--learn-muted)}
-.learning-footer p {max-width:840px}
-#learning-empty {padding:30px 0}
-#learning-empty h2 {font-size:18px}
-#learning-empty button {padding:9px 16px;border:1px solid var(--learn-line);border-radius:8px;background:#fff}
-@media(max-width:900px){.learning {padding:30px 24px}.energy-flow {gap:10px}.energy-flow button {padding:12px}.knowledge-item {padding:20px}}
-@media(max-width:600px){.learning {padding:28px 18px}h1 {font-size:30px}.learning-head p {font-size:14px}.energy {padding:18px}.energy-flow {grid-template-columns:1fr;gap:8px}.flow-arrow {transform:rotate(90deg);justify-self:center;line-height:1}.energy-flow button {padding:12px 14px}.selectors {grid-template-columns:1fr}.selectors select {font-size:16px}.knowledge-list {grid-template-columns:1fr}.topic-filters button {min-height:42px}.knowledge-item {padding:20px}.knowledge-item h2 {font-size:18px}}
+.learning {max-width:1120px;margin:0 auto;padding:40px 48px 80px;container:pk / inline-size;display:flex;flex-direction:column;gap:24px}
+.learning a {color:var(--brand);text-decoration:none}
+.learning button,.learning select {font:inherit}
+.learning button {cursor:pointer}
+.learning button:focus-visible,.learning a:focus-visible,.learning select:focus-visible {outline:3px solid var(--brand);outline-offset:2px}
+.pk-icon {flex:none}
 
-/* Knowledge is a continuous reading list, with each principle beside its explanation. */
-.knowledge-list {display:block;background:#fff;padding:0 28px}
-.knowledge-item {background:transparent;border:0;border-bottom:1px solid var(--learn-line);border-radius:0;padding:30px 0}
-.knowledge-item:last-child {border-bottom:0}
-.topic-content {display:grid;grid-template-columns:minmax(260px,0.9fr) minmax(0,1.1fr);gap:30px;align-items:start}
-.principle-figure {margin:0;padding:18px 0}
-.principle-figure svg {width:100%;height:auto;display:block}
-.principle-figure figcaption {font-size:13px;color:var(--learn-muted);margin-top:12px;line-height:1.8}
-.principle-figure rect {fill:#f4f6f8;stroke:#bac2cb;stroke-width:1.5}
-.principle-figure .source {fill:#fff2e8;stroke:#ce783d}
-.principle-figure text {font-family:system-ui,-apple-system,'PingFang SC',sans-serif;font-size:14px;fill:#23262b;text-anchor:middle}
-.principle-figure path {fill:none;stroke:#687481;stroke-width:2}
-.principle-figure .diagram-note {font-size:12px;fill:#666e78}
-.topic-explanation {min-width:0}
-@media(max-width:800px){.topic-content {grid-template-columns:1fr;gap:12px}.knowledge-list {padding:0 20px}.principle-figure {max-width:520px;padding:4px 0}.knowledge-item {padding:26px 0}}
+/* Head: title and lead, then the counts and the sibling page. */
+.pk-head {display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 32px}
+.pk-head > div:first-child {display:flex;flex-direction:column;gap:8px;max-width:640px}
+.pk-head h1 {margin:0;font-size:30px;line-height:38px;font-weight:700}
+.pk-head p {margin:0;font-size:15px;line-height:24px;color:var(--app-text2)}
+.pk-head-meta {display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.pk-pill {display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:999px;background:#fff;
+  border:1px solid var(--app-line);font-size:12px;color:var(--app-text2);white-space:nowrap}
+.pk-pill i {width:8px;height:8px;border-radius:50%;background:var(--status-available)}
+.pk-head-meta a {margin-left:4px;font-size:13px;font-weight:500}
+.pk-section-head {display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 16px}
+.pk-section-head h2 {margin:0;font-size:18px;line-height:26px;font-weight:600}
+.pk-themes .pk-section-head h2 {font-size:20px;line-height:28px;font-weight:700}
+.pk-section-head span {font-size:12.5px;line-height:20px;color:var(--app-muted)}
 
-.circuit-item .topic-content {display:block}
-.circuit-item .principle-figure {max-width:none;padding:8px 0 20px}
-.circuit-art {display:block;width:100%;height:auto;background:#fff}
-.circuit-item .topic-explanation {max-width:850px}
-.backup-example {background:#fff;margin-top:28px;padding:28px;border-top:3px solid var(--learn-orange)}
-.backup-example h2 {font-size:23px;line-height:1.5}
-.backup-example p {font-size:15px;line-height:1.9}
-.backup-lessons {padding-left:24px}
-.backup-lessons>li {padding:15px 0 24px;border-bottom:1px solid var(--learn-line)}
-.backup-lessons h3 {font-size:19px}
-@media(max-width:600px){.backup-example {padding:20px}.backup-lessons {padding-left:18px}.circuit-art {min-width:620px}.circuit-item .principle-figure,.backup-example .principle-figure {overflow-x:auto;max-width:100%}.principle-figure figcaption {position:sticky;left:0}}
+/* Energy flow: sources → charging → battery → conversion → devices; expansion hangs under the battery and the
+   bypass runs underneath. Every node sets the theme filter. */
+.pk-panel {display:flex;flex-direction:column;gap:18px;padding:24px 28px 22px;background:#fff;border:1px solid var(--app-line);border-radius:18px}
+.pk-flow {display:grid;grid-template-columns:164px 36px minmax(0,1fr) 36px minmax(0,1fr) 36px minmax(0,1fr) 36px 164px;
+  grid-template-areas:"src a1 chg a2 bat a3 inv a4 out" ". . . . exp . . . ." "byp byp byp byp byp byp byp byp byp";
+  align-items:center;row-gap:10px}
+.pk-src {grid-area:src} .pk-out {grid-area:out} .pk-chg {grid-area:chg} .pk-bat {grid-area:bat} .pk-inv {grid-area:inv}
+.pk-a1 {grid-area:a1} .pk-a2 {grid-area:a2} .pk-a3 {grid-area:a3} .pk-a4 {grid-area:a4} .pk-exp {grid-area:exp} .pk-byp {grid-area:byp}
+.pk-arrow {display:flex;justify-content:center;color:var(--app-faint)}
+.pk-ends {display:flex;flex-direction:column;gap:6px;padding:10px;border-radius:14px;background:var(--app-bg)}
+.pk-ends-label {padding:0 4px;font-size:11px;line-height:14px;font-weight:600;letter-spacing:.06em;color:var(--app-muted)}
+.pk-end {display:flex;align-items:center;gap:8px;height:32px;padding:0 10px;border-radius:9px;background:#fff;border:1px solid var(--app-line);
+  font-size:13px;font-weight:500;color:var(--app-ink);white-space:nowrap}
+.pk-end .pk-icon {width:16px;height:16px;color:var(--app-muted)}
+.pk-node {display:flex;flex-direction:column;align-items:flex-start;gap:10px;min-width:0;padding:16px;border-radius:16px;background:#fff;
+  border:1px solid var(--app-line);color:var(--app-ink);text-align:left;transition:box-shadow .15s ease,border-color .15s ease}
+.pk-node:hover {box-shadow:0 8px 22px #15202b14}
+.pk-node.is-core {border:1.5px solid #e9c7b6;box-shadow:0 6px 18px #a64e2414}
+.pk-node-icon {display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;background:var(--app-tile);color:var(--brand)}
+.pk-node.is-core .pk-node-icon {background:var(--brand-soft)}
+.pk-node-icon .pk-icon {width:20px;height:20px}
+.pk-node-text {display:flex;flex-direction:column;gap:2px}
+.pk-node-text small {font-size:11.5px;line-height:16px;color:var(--app-muted)}
+.pk-node-text strong {font-size:15px;line-height:22px;font-weight:600}
+.pk-node-text span {font-size:12.5px;line-height:19px;color:var(--app-muted)}
+.pk-node-count {display:inline-flex;align-items:center;height:24px;padding:0 9px;border-radius:999px;background:var(--brand-soft);color:var(--brand);
+  font-size:12px;font-weight:600}
+.pk-exp {display:flex;flex-direction:column;align-items:center;gap:4px}
+.pk-dash {width:0;height:16px;border-left:1.5px dashed var(--app-faint)}
+.pk-exp button {display:inline-flex;align-items:center;height:28px;padding:0 11px;border-radius:999px;background:#fff;border:1.5px dashed #d9b8a6;
+  color:var(--brand);font-size:12px;font-weight:600}
+.pk-byp {display:flex;align-items:center;gap:10px;padding:0 70px}
+.pk-dash-line {flex:1;border-top:1.5px dashed var(--app-faint)}
+.pk-dash-line.is-end {position:relative}
+.pk-dash-line.is-end::after {content:"";position:absolute;right:0;top:-5.5px;width:7px;height:7px;border-top:1.6px solid var(--app-faint);
+  border-right:1.6px solid var(--app-faint);transform:rotate(45deg)}
+.pk-byp button {display:inline-flex;align-items:center;gap:4px;height:28px;padding:0 11px;border:0;border-radius:999px;background:var(--app-bg);
+  color:var(--app-text2);font-size:12px;font-weight:500}
+.pk-byp b {font-weight:600;color:var(--brand)}
+.pk-energy-note {margin:0;padding-top:14px;border-top:1px solid var(--app-divider);font-size:13px;line-height:21px;color:var(--app-muted)}
+
+/* 按主题找: one card per theme with an entry for each of its topics. */
+.pk-themes {display:flex;flex-direction:column;gap:14px}
+.pk-map {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.pk-theme {display:flex;flex-direction:column;gap:12px;min-width:0;padding:16px 16px 18px;background:#fff;border:1px solid var(--app-line);border-radius:16px}
+.pk-theme-head {display:flex;align-items:center;gap:10px;padding:0;border:0;background:none;color:var(--app-ink);text-align:left}
+.pk-theme-icon {flex:none;display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;background:var(--app-tile);color:var(--brand)}
+.pk-theme-head strong {flex:1;font-size:15px;line-height:22px;font-weight:600}
+.pk-theme-head:hover strong {color:var(--brand)}
+.pk-theme-count {font-size:13px;color:var(--app-muted);white-space:nowrap}
+.pk-theme-count b {font-size:18px;font-weight:700;color:var(--app-ink);font-variant-numeric:tabular-nums}
+.pk-theme-topics {display:flex;flex-wrap:wrap;gap:6px}
+.learning .pk-topic {display:inline-flex;align-items:center;min-height:26px;padding:3px 9px;border-radius:999px;background:var(--app-bg);color:var(--app-text2);
+  font-size:12.5px;line-height:18px}
+.learning .pk-topic:hover {background:var(--brand-soft);color:var(--brand)}
+
+/* Filters: region and product, then the themes with their counts. */
+.pk-filters {display:flex;flex-direction:column;gap:12px;margin-top:8px;padding:14px 16px;background:#fff;border:1px solid var(--app-line);border-radius:14px;
+  box-shadow:0 6px 18px #15202b0d}
+.pk-selectors {display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px 14px}
+.pk-selectors label {display:flex;flex-direction:column;gap:4px;font-size:12px;line-height:16px;color:var(--app-muted)}
+.pk-selectors select {height:36px;min-width:150px;padding:0 10px;border:1px solid var(--app-line);border-radius:10px;background:#fff;color:var(--app-ink);font-size:14px}
+.pk-selectors .pk-product {flex:1;min-width:220px}
+.pk-selectors .pk-product select {width:100%}
+#learning-count {margin:0 0 0 auto;padding-bottom:8px;font-size:13px;line-height:20px;color:var(--app-muted)}
+.pk-chips {display:flex;flex-wrap:wrap;gap:6px}
+.pk-chips button {display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px;border-radius:999px;background:#fff;border:1px solid var(--app-line);
+  color:var(--app-text2);font-size:13px;font-weight:500}
+.pk-chips button span {font-weight:400;color:var(--app-faint)}
+.pk-chips button:hover {border-color:#d3d9e1;color:var(--app-ink)}
+.pk-chips button.selected {background:var(--app-ink);border-color:var(--app-ink);color:#fff;font-weight:600}
+.pk-chips button.selected span {color:#ffffffb3}
+
+/* Topic cards: a chain of steps beside the text. Every figure keeps its labels readable: a hand-drawn diagram (an
+   svg) takes a wider column, and a teaching circuit sits above the text, opening full size on click. */
+.pk-list {display:flex;flex-direction:column;gap:16px}
+.pk-card {display:grid;grid-template-columns:300px minmax(0,1fr);background:#fff;border:1px solid var(--app-line);border-radius:18px;overflow:hidden;
+  scroll-margin-top:calc(var(--app-topbar) + 16px)}
+.pk-card:has(> .pk-figure > svg) {grid-template-columns:420px minmax(0,1fr)}
+.pk-card.is-circuit {grid-template-columns:minmax(0,1fr)}
+.pk-figure {display:flex;flex-direction:column;justify-content:center;gap:14px;margin:0;padding:22px;background:var(--app-bg);border-right:1px solid var(--app-divider)}
+.pk-card.is-circuit .pk-figure {align-items:center;padding:24px 28px 18px;border-right:0;border-bottom:1px solid var(--app-divider)}
+.pk-card.is-circuit figcaption {max-width:760px;text-align:center}
+.pk-chain {display:flex;flex-direction:column;gap:24px;margin:0;padding:0;list-style:none}
+.pk-chain li {position:relative;padding:11px 12px;border-radius:10px;background:#fff;border:1px solid var(--app-line);color:var(--app-ink);
+  font-size:13.5px;line-height:18px;font-weight:600;text-align:center}
+.pk-chain li.is-source {background:var(--brand-soft);border-color:#e9c7b6;color:var(--brand)}
+.pk-chain li + li::before,.pk-chain li + li::after {content:"";position:absolute;left:50%}
+.pk-chain li + li::before {top:-21px;width:1.6px;height:14px;margin-left:-.8px;background:var(--app-faint)}
+.pk-chain li + li::after {top:-14px;width:6px;height:6px;margin-left:-3.8px;border-right:1.6px solid var(--app-faint);
+  border-bottom:1.6px solid var(--app-faint);transform:rotate(45deg)}
+.pk-figure svg {display:block;width:100%;max-width:420px;height:auto;margin:0 auto}
+.pk-figure rect {fill:#fff;stroke:var(--app-line);stroke-width:1.5}
+.pk-figure .source {fill:var(--brand-soft);stroke:#e9c7b6}
+.pk-figure text {font-family:inherit;font-size:14px;font-weight:600;fill:var(--app-ink);text-anchor:middle}
+.pk-figure path {fill:none;stroke:var(--app-faint);stroke-width:2}
+.pk-figure .diagram-note {font-size:12px;font-weight:400;fill:var(--app-muted)}
+.pk-figure figcaption {font-size:12px;line-height:18px;color:var(--app-muted)}
+.pk-circuit {display:block;width:100%;max-width:760px;box-sizing:border-box;padding:10px;border-radius:12px;background:#fff;border:1px solid var(--app-line)}
+.pk-circuit:hover {border-color:#e9c7b6}
+.pk-circuit img {display:block;width:100%;height:auto}
+.pk-body {display:flex;flex-direction:column;gap:14px;min-width:0;padding:22px 26px 20px 28px}
+.pk-card-top {display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.pk-num {font-size:13px;line-height:16px;font-weight:800;letter-spacing:.04em;color:var(--brand);font-variant-numeric:tabular-nums}
+.pk-tag {display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:6px;background:var(--app-tile);color:var(--app-text2);font-size:12px}
+.pk-body h2 {margin:0;font-size:19px;line-height:28px;font-weight:700}
+.pk-body .answer {margin:0;font-size:14.5px;line-height:25px;color:var(--app-ink)}
+.pk-two {display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pk-two > div {display:flex;flex-direction:column;gap:4px;padding:12px 14px;border-radius:12px;background:var(--app-bg)}
+.pk-two > .boundary {background:#fdf6e7}
+.pk-two h3 {display:flex;align-items:center;gap:6px;margin:0;font-size:12px;line-height:18px;font-weight:600;color:var(--app-text2)}
+.pk-two .boundary h3 {color:#7a4a00}
+.pk-two h3 .pk-icon {width:14px;height:14px}
+.pk-two p {margin:0;font-size:13px;line-height:21px;color:var(--app-text2)}
+.pk-refs {display:flex;flex-direction:column;gap:8px;padding-top:12px;border-top:1px solid var(--app-divider)}
+.pk-ref-list {display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.pk-ref-label {margin-right:4px;font-size:12px;font-weight:600;color:var(--app-muted)}
+.learning .pk-ref {display:inline-flex;align-items:center;gap:5px;min-height:26px;padding:3px 10px;border-radius:999px;border:1px solid var(--app-line);background:#fff;
+  color:var(--app-ink);font-size:12.5px;line-height:18px}
+.learning .pk-ref:hover {border-color:#e9c7b6;color:var(--brand)}
+.pk-ref small {font-size:11px;color:var(--app-faint)}
+.pk-one-region .pk-ref small {display:none}
+.pk-card:not(.is-open) .pk-ref.is-extra {display:none}
+.pk-more {height:26px;padding:0 10px;border-radius:999px;border:1px dashed var(--app-line);background:#fff;color:var(--app-text2);font-size:12.5px}
+.pk-refs .read-hint {margin:0;font-size:12px;line-height:18px;color:var(--app-muted)}
+#learning-empty {padding:30px 0;text-align:center}
+#learning-empty h2 {margin:0 0 6px;font-size:18px}
+#learning-empty p {margin:0 0 12px;font-size:13px;color:var(--app-muted)}
+#learning-empty button {height:34px;padding:0 16px;border:1px solid var(--app-line);border-radius:10px;background:#fff}
+
+/* The case: four questions, each beside its circuit or the key figures from the manual. */
+.pk-case {display:flex;flex-direction:column;gap:18px;margin-top:8px;padding:28px 28px 26px;background:#fff;border:1px solid var(--app-line);border-radius:20px}
+.pk-case-head {display:flex;flex-direction:column;gap:6px;max-width:760px}
+.pk-eyebrow {font-size:12px;line-height:16px;font-weight:600;letter-spacing:.12em;color:var(--brand)}
+.pk-case-head h2 {margin:0;font-size:22px;line-height:30px;font-weight:700}
+.pk-case-head p {margin:0;font-size:13px;line-height:21px;color:var(--app-muted)}
+.pk-lessons {list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
+.pk-lessons > li {display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);grid-template-areas:"head figure" "text figure";
+  grid-template-rows:auto 1fr;align-items:start;gap:12px 28px;padding:20px 22px;border-radius:16px;background:var(--app-bg)}
+.pk-lesson-head {grid-area:head;display:flex;align-items:center;gap:10px}
+.pk-lessons > li > figure,.pk-lessons > li > .pk-figures {grid-area:figure}
+.pk-lesson-text {grid-area:text;display:flex;flex-direction:column;gap:10px}
+.pk-lesson-head span {flex:none;display:flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--app-ink);color:#fff;
+  font-size:13px;font-weight:700}
+.pk-lesson-head h3 {margin:0;font-size:15.5px;line-height:23px;font-weight:600}
+.pk-lessons .principle-figure {display:flex;flex-direction:column;gap:8px;margin:0}
+.pk-lessons figcaption {font-size:12px;line-height:18px;color:var(--app-muted)}
+.pk-figures {display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pk-figures > div {display:flex;flex-direction:column;justify-content:center;gap:4px;padding:12px;border-radius:12px;background:#fff;border:1px solid var(--app-line)}
+.pk-figures small,.pk-figures span {font-size:11.5px;line-height:16px;color:var(--app-muted)}
+.pk-figures b {font-size:24px;line-height:30px;font-weight:700;font-variant-numeric:tabular-nums}
+.pk-lessons p {margin:0;font-size:13px;line-height:21px;color:var(--app-text2)}
+.learning-footer {display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 24px;margin-top:8px;padding-top:18px;border-top:1px solid var(--app-line)}
+.learning-footer p {margin:0;max-width:720px;font-size:13px;line-height:21px;color:var(--app-muted)}
+.learning-footer a {font-size:13px;font-weight:500}
+
+/* Narrower containers: three nodes in a row with sources and devices above and below, then one column. */
+@container pk (max-width: 879px) {
+  .pk-flow {grid-template-columns:minmax(0,1fr) 28px minmax(0,1fr) 28px minmax(0,1fr);
+    grid-template-areas:"src src src src src" "chg a2 bat a3 inv" ". . exp . ." "out out out out out" "byp byp byp byp byp"}
+  .pk-edge {display:none}
+  .pk-ends {flex-direction:row;flex-wrap:wrap;align-items:center}
+  .pk-byp {padding:0}
+  .pk-map {grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pk-card {grid-template-columns:240px minmax(0,1fr)}
+  .pk-card:has(> .pk-figure > svg) {grid-template-columns:minmax(0,1fr)}
+  .pk-card:has(> .pk-figure > svg) .pk-figure {border-right:0;border-bottom:1px solid var(--app-divider)}
+  .pk-two {grid-template-columns:1fr}
+  .pk-lessons > li {grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "figure" "text";grid-template-rows:none}
+}
+@container pk (max-width: 599px) {
+  .pk-flow {grid-template-columns:1fr;grid-template-areas:"src" "chg" "a2" "bat" "exp" "a3" "inv" "out" "byp"}
+  .pk-mid {transform:rotate(90deg)}
+  .pk-byp {flex-wrap:wrap}
+  .pk-byp .pk-dash-line {display:none}
+  .pk-byp button {display:block;height:auto;padding:6px 12px;border-radius:14px;line-height:18px;text-align:left}
+  .pk-map {grid-template-columns:1fr;gap:8px}
+  .pk-theme {padding:12px 14px}
+  .pk-theme-topics {display:none}
+  .pk-card {grid-template-columns:1fr}
+  .pk-figure {border-right:0;border-bottom:1px solid var(--app-divider)}
+  .pk-chain {width:100%;max-width:420px;margin:0 auto}
+  .pk-panel,.pk-case {padding:20px 18px}
+  .pk-body {padding:18px}
+  .pk-lessons > li {padding:16px}
+  .pk-circuit {overflow-x:auto}
+  .pk-circuit img {min-width:620px}
+  .pk-selectors select {font-size:16px}
+}
+@media (max-width:660px) {
+  .learning {padding:25px 18px 48px}
+  .pk-head h1 {font-size:26px;line-height:34px}
+}
