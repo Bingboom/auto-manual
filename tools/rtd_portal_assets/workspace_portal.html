@@ -13,11 +13,11 @@
 {#- 知识库首页 answers two questions on one screen: how things stand now (现在) and where to go (去哪里).
     Then the web manuals' positioning (定位与价值, from web_manual_value.yaml) and 最近更新. Figures come from the
     pages that own them (tools/rtd/workspace_home.py); the entry cards carry no numbers. -#}
-{%- macro door(group, note, links) -%}
+{#- One 去哪里 card per sidebar group: the sidebar's glyph and label for each page, no counts. -#}
+{%- macro door(group, links) -%}
 <section class="home-group">
   <h2>{{ group }}</h2>
-  <p>{{ note }}</p>
-  <div class="home-cards">{% for docname, label in links %}<a class="home-card" href="{{ pathto(docname) }}"><strong>{{ label }}</strong><b aria-hidden="true">→</b></a>{% endfor %}</div>
+  <div class="home-cards">{% for docname, icon, label in links %}<a class="home-card" href="{{ pathto(docname) }}"><i aria-hidden="true">{{ icon }}</i><strong>{{ label }}</strong></a>{% endfor %}</div>
 </section>
 {%- endmacro -%}
 <body class="app">
@@ -31,18 +31,17 @@
         <h1>知识库</h1>
         <p class="home-line">{% if value %}{{ value.tagline|e }}{% else %}产品与市场的知识、说明书生产的工作台与进度，从这里进入。{% endif %}</p>
       </div>
-      <a class="text-link" href="{{ pathto('index') }}">进入说明书资料库 <span>↗</span></a>
     </section>
 
     {% if now and (now.lanes or now.figures) %}<section id="now" class="home-now" aria-labelledby="now-title">
       <div class="section-header"><div><h2 id="now-title">现在</h2></div>{% if now.system %}<a class="text-link" href="{{ pathto('workspace/system/index') }}">系统建设 →</a>{% endif %}</div>
-      <div class="home-now-grid">
+      <div class="home-now-panel">
+        <div class="home-figures">{% for figure in now.figures %}<a class="home-figure" href="{{ pathto('workspace/deliverables/index') }}#{{ figure.anchor|e }}"><strong>{% if figure.value is none %}<em>无数据</em>{% else %}{{ figure.value|e }}<small>{{ figure.unit|e }}</small>{% endif %}</strong><span>{{ figure.label|e }}</span></a>{% endfor %}</div>
         {% if now.lanes %}<div class="home-lanes">
           <h3>当前主线</h3>
           <ul>{% for lane in now.lanes %}<li><strong>{{ lane.title|e }}</strong>{% if lane.goal %}<span>{{ lane.goal|e }}</span>{% endif %}</li>{% endfor %}</ul>
           {% if now.doing %}<p class="home-doing"><b>正在做</b>{{ now.doing|join('；')|e }}</p>{% endif %}
         </div>{% endif %}
-        <div class="home-figures">{% for figure in now.figures %}<a class="home-figure" href="{{ pathto('workspace/deliverables/index') }}#{{ figure.anchor|e }}"><span>{{ figure.label|e }}</span><strong>{% if figure.value is none %}<em>无数据</em>{% else %}{{ figure.value|e }}<small>{{ figure.unit|e }}</small>{% endif %}</strong></a>{% endfor %}</div>
       </div>
     </section>{% endif %}
 
@@ -50,11 +49,11 @@
     <section id="doors" aria-labelledby="doors-title">
       <div class="section-header"><div><h2 id="doors-title">去哪里</h2></div></div>
       <div class="home-doors">
-        {{ door('说明书', '查已发布的说明书', [('index', '说明书资料库'), ('search', '搜索说明书正文')]) }}
-        {%- set learn = [('products/knowledge', '产品知识')] + ([('products/matrix', '产品矩阵')] if matrix_entry else []) + [('market/policy', '市场与政策')] %}
-        {{ door('产品与市场', '产品原理、规格对照和各地政策', learn) }}
-        {%- set make = ([('workspace/deliverables/index', '说明书工作台')] if deliverables_entry else []) + ([('workspace/system/index', '系统建设')] if system_entry else []) + ([('workspace/design/index', '设计规范')] if design_entry else []) %}
-        {{ door('说明书生产', '进度、交付与规范', make) }}
+        {{ door('说明书', [('index', '▤', '说明书资料库'), ('search', '⌕', '搜索说明书正文')]) }}
+        {%- set learn = [('products/knowledge', '◇', '产品知识')] + ([('products/matrix', '⊞', '产品矩阵')] if matrix_entry else []) + [('market/policy', '◎', '市场与政策')] %}
+        {{ door('产品与市场', learn) }}
+        {%- set make = ([('workspace/deliverables/index', '▦', '说明书工作台')] if deliverables_entry else []) + ([('workspace/system/index', '◈', '系统建设')] if system_entry else []) + ([('workspace/design/index', '◐', '设计规范')] if design_entry else []) %}
+        {{ door('说明书生产', make) }}
       </div>
       {% if share_entry %}<p id="shares" class="home-share"><span>分享资料</span><a class="share-card" href="{{ share_entry|e }}">AI 使用知识分享 →</a></p>{% endif %}
     </section>
@@ -74,7 +73,7 @@
     </section>{% endif %}
 
     {#- Rows come from knowledge_updates.yaml (tools/rtd/knowledge_updates.py): built pages only, newest first. #}
-    <section id="updates">
+    <section id="updates" class="home-updates">
       <div class="section-header"><div><h2>最近更新</h2></div></div>
       {% if updates %}<div class="updates-list">
         {%- for item in updates %}
