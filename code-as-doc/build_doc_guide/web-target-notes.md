@@ -72,6 +72,12 @@ with the explicit data root; no online Base write or queue row is required.
 See [source and acceptance record](../reviews/je1000e_sil_us_en_web_intake.md)
 for the exact command and retained source errata.
 
+A page whose single section holds a single subsection loses that subheading in
+Web output: docutils promotes it to a document subtitle, which the fragment
+converter does not re-add. Write such a subheading as a raw `<h2>`, as the
+FridgeGuard `connections` templates do (2026-11-04 rebuild
+`git-20261104-9d3b811e`).
+
 Web symbol legends use warning triangles for WARNING/CAUTION; NOTE/TIP remain text-only badges, using the shared localized signal-word classification.
 
 FCC binding is content-driven for every model and region: an exact FCC heading, `hb-source-fcc` declaration, or governed FCC source filename requires `HB-SPECIAL-FCC`. A Part 15 opening declares only a headingless orphan fragment; compact statements on mixed pages with other headings remain native source content. Whole-document source assembly rejects a missing or duplicate FCC claim; completed-IR rendering and legacy fragment rendering reject absent FCC output. The existing parser still requires the opening, localized column split, measures and modification copy. Unsupported or incomplete source structure fails with its source path; it never falls back to plain text. New targets need no model allowlist or per-model FCC configuration.
