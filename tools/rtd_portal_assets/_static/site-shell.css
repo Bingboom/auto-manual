@@ -11,6 +11,19 @@
   --app-bg:#f4f5f7;
   --app-sidebar:232px;
   --app-topbar:60px;
+  /* Design tokens (2026-11-05), adopted page by page; 知识库首页 first. One type scale (CJK line heights), one
+     spacing scale, one radius scale; text greys are --app-ink / --app-muted / --app-faint, the one accent --brand.
+     Nested shapes take radius = outer radius - gap. No one-sided card borders, no gradients. */
+  --text-xs:12px; --text-sm:14px; --text-base:16px; --text-lg:18px; --text-xl:20px; --text-2xl:24px;
+  --text-3xl:30px; --text-4xl:36px;
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-6:24px; --space-8:32px; --space-12:48px;
+  --radius-sm:4px; --radius-md:8px; --radius-lg:12px; --radius-full:999px;
+  --surface:#ffffff;
+  --shadow-raised:0 1px 2px rgba(29,31,35,.04),0 8px 24px rgba(29,31,35,.05);
+  --status-available:#1f7a52; --status-available-bg:#e6f4ec;
+  --status-validated:#245f9e; --status-validated-bg:#e7eff9;
+  --status-in-progress:#a8520f; --status-in-progress-bg:#fdf0e3;
+  --status-planned:#5d636e; --status-planned-bg:#eff0f3;
 }
 /* Chinese-first stack: system UI Latin, then the platform CJK face. */
 body.app {margin:0;background:var(--app-bg);color:var(--app-ink);font-size:15px;line-height:1.6;
