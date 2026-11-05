@@ -19,7 +19,7 @@
   <script defer src="{{ pathto('_static/system-data.js', 1) }}?v={{ asset_v.get('system-data.js', '')|e }}"></script>
 </head>
 {% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
-<body class="app system-workspace deliverables">
+<body class="app kb system-workspace deliverables">
 {%- macro web_chips(items) -%}{% if items %}<div class="dl-chips">{% for item in items %}<a class="dl-chip" href="{{ pathto(item.docname)|e }}" title="{{ item.title|e }}"><b>{{ item.label|e }}</b>{{ item.version|e }}</a>{% set record = progress.record_links.get(item.docname) %}{% if record %}<a class="dl-feishu" href="{{ record|e }}" target="_blank" rel="noopener" title="在飞书网页文档表打开这一行">飞书</a>{% endif %}{% endfor %}</div>{% else %}<span class="dl-none">—</span>{% endif %}{%- endmacro -%}
 {{ site_sidebar('deliverables', {'system': system_entry, 'deliverables': True, 'design': design_entry, 'matrix': matrix_entry}) }}
 <div class="app-content">

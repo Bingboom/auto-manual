@@ -3,37 +3,47 @@
 Status: active · Part of the [RTD manual-center entrance](../rtd_manual_portal.md); its index lists the
 other portal surfaces. Add new notes for this surface here, not to the hub.
 
-## Band and page (2026-11-04)
+## Band and home section
 
 The positioning of web manuals, in the operator's words, shows on two surfaces:
 
 - **A band on the manual-library home**, after the catalog (zone 5 of the
   [home page layout](manual-center.md#page-layout)). The first screen stays the search hero.
-- **An internal page**, `workspace/positioning/index.html` (知识库 · 定位与价值), with its own entry
-  in the sidebar's 知识库 group.
+- **The 定位与价值 section of 知识库首页** (`workspace/index.html#value`), private site only. From
+  2026-11-04 to 2026-11-05 this was a page of its own (`workspace/positioning/index.html`) with a sidebar
+  entry; it folded into the home page when that became a one-screen overview, see
+  [knowledge-base entry](knowledge-pages.md#personal-workspace-entry).
 
 Both RTD projects serve the same home page, so the copy has two audiences:
 
-| `RTD_SITE_ROLE` | Band on the home page | Page |
+| `RTD_SITE_ROLE` | Band on the manual-library home | 知识库首页 section |
 | --- | --- | --- |
 | `manuals` (public) | title, one sentence and three reader points (便捷阅读, 版本清楚, 持续更新): only what a reader can use today, with no links, status tags, internal names, governance or AI wording | not built |
-| `combined` (the listed private project) | eyebrow, heading and subtitle, then the three themes (便捷阅读, 内容治理, 知识积累), each with its facet keywords and a status tag, linking to its section of the page | built |
+| `combined` (the listed private project) | eyebrow, heading and subtitle, then the four themes (便捷阅读, AI 可读, 内容治理, 知识积累), each with its facet keywords and a status tag, linking to its card on 知识库首页 | built |
 
 Only the public block reaches public HTML: `band_context(..., internal=False)` carries no internal copy. The
 `manuals`-role build in `tests/test_rtd_portal.py` checks the band and the absence of internal words and of
-the page; the combined build checks that each theme link lands on an existing section.
+the knowledge base; the combined build checks that each theme link lands on an existing card.
 
 ## Copy and status
 
 `tools/rtd_portal_assets/web_manual_value.yaml` (schema `hello-docs-web-manual-value/v1`) holds both blocks.
-`tools/rtd/web_manual_value.py` reads and validates it, and a malformed file fails the build. The page carries
-the operator's full text, with 电子说明书 written as 网页说明书 (the site's term throughout). The key idea
-「已批准的历史内容，不天然等于可直接复用的标准知识。」 stands above the themes as their 总纲. Each theme then
-has its body, its 核心原则 and a 现状 list.
+`tools/rtd/web_manual_value.py` reads and validates it, and a malformed file fails the build.
+
+知识库首页 opens with the positioning line: 网页说明书基于印刷版 PDF 转录：人能读，AI 能读，团队能持续维护和复用.
+Its 定位与价值 section has one card per theme with its name, status and one sentence (`summary`), then its
+facets, one line each with a status mark; a facet's note is its row's tooltip, and a legend explains the marks
+in use (2026-11 design). The cards stay short on purpose (operator, 2026-11-04: too much content, no clear
+hierarchy). The theme formerly called 机器可读 is 「AI 可读」 (operator, 2026-11-05).
+
+The copy says what the web manuals do, with no defensive caveats: this is the team's own knowledge base
+(operator, 2026-11-04). So there is no 总纲, no 核心原则 and no long-term-direction block; the one legend only names the status marks.
+What is unfinished shows only as a status tag, and `tests/test_rtd_web_manual_value.py` rejects the old
+caveat phrasings.
 
 Each 现状 facet carries a status from the 系统建设 page's vocabulary: `available` 可用, `validated` 已验证,
-`in_progress` 建设中 or `planned` 已规划. A planned facet must name its REV. The theme tag is derived from the
-facets and never written by hand:
+`in_progress` 建设中 or `planned` 已规划. A planned facet must name its REV. REV ids (`revs`) are evidence for
+reviewers and are never shown. The theme tag is derived from the facets and never written by hand:
 
 - every facet available: 可用;
 - any facet available or validated, the rest not: 部分可用 (drawn as the outlined 可用);
@@ -42,20 +52,21 @@ facets and never written by hand:
 
 On 2026-11-04 that gives:
 
-- 便捷阅读: 可用.
-- 内容治理: 部分可用. 版本追溯 and 来源管理 are available
-  ([REV-46](../manual_revitalization_execution.md#rev-46)); 质量改进 is in progress, as the
-  [positioning doc](../../architecture/Hello_Docs_Positioning.md) §7 records.
+- 便捷阅读: 可用. Shared components and theme, QR codes that open the model's web manual, and search by
+  model, name or text on phone and desktop.
+- AI 可读: 部分可用. The machine-readable export and its checked receipt are produced at build, and the
+  DingTalk bot answers from them ([EU manual query](../eu_manual_query.md)). Coverage is EU only and the
+  content is extracted from the published HTML, not generated from the same source; see the
+  [positioning doc](../../architecture/Hello_Docs_Positioning.md) §6.
+- 内容治理: 部分可用. Version tracing and reader feedback (an after-sales link on every page, plus site
+  analytics) are available; 质量改进 is in progress, as the positioning doc §7 records.
 - 知识积累: 建设中. The workbench reuses data, templates and corpus under
   [REV-47](../manual_revitalization_execution.md#rev-47). Exporting knowledge candidates from approved drafts is
   the planned second part of [REV-48](../manual_revitalization_execution.md#rev-48).
 
-The long-term direction is drawn apart and labelled 「方向，不是现有能力」. Its 知识服务 points at the deferred
-[REV-32](../manual_revitalization_execution.md#rev-32) and [REV-33](../manual_revitalization_execution.md#rev-33)
-and is not a capability.
-
 The copy writes no counts, because they change with every release; 说明书工作台 reads them from the publish
-manifest. `tests/test_rtd_web_manual_value.py` fails on any digit outside the REV ids. When a facet's state
-changes, edit its status and note in the YAML: the tags on the band and on the page follow.
+manifest. `tests/test_rtd_web_manual_value.py` fails on any digit outside the REV ids, and on a REV id shown
+on 知识库首页. When a facet's state changes, edit its status and note in the YAML: the tags on the band and on
+知识库首页 follow.
 
 Rollback: revert the change. Frozen manuals, short aliases and search are unaffected.

@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="{{ pathto('_static/system-workspace.css', 1) }}?v={{ workspace_revision.revision|e }}">
 </head>
 {% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
-<body class="app system-workspace">
+<body class="app kb system-workspace">
 {%- macro badge(status, label) -%}<span class="sw-badge is-{{ status|e }}">{{ label|e }}</span>{%- endmacro -%}
 {%- macro num(value) -%}{{ '{:,}'.format(value) }}{%- endmacro -%}
 {%- macro stale_mark(reasons) -%}{% if reasons %}<span class="sw-stale" title="{{ reasons|join('；')|e }}">待复核</span>{% endif %}{%- endmacro -%}

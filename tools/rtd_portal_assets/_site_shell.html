@@ -2,35 +2,54 @@
     Import with context so pathto() resolves relative to the calling page:
       {% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
     `nav` carries the optional entries: system (bool), deliverables (bool), design (bool), matrix (bool).
-    Internal pages add three groups after 说明书: 知识库 (首页, 定位与价值), 产品与市场 (产品知识, 产品矩阵, 市场与政策) and
-    说明书生产 (说明书工作台, 系统建设, 设计规范). Every sidebar entry is a page, so it is marked current on
-    that page; sections of a page (知识库首页's 分享资料 and 最近更新) are not sidebar entries.
+    Internal pages open with 首页 (知识库首页, no group label), then 说明书 and two more groups: 产品与市场 (产品知识,
+    产品矩阵, 市场与政策) and 说明书生产 (说明书工作台, 系统建设, 设计规范). Every sidebar entry is a page, so it is
+    marked current on that page; sections of a page (知识库首页's 分享资料 and 最近更新) are not sidebar entries.
     The manual-library root passes internal=false only in the manuals-only (public) site role: only the `internal`
     branches are left out there. In the combined (private) role it gets the full shell, so readers can switch back to
-    the knowledge base. 「工作资料」 is the brand only. -#}
-{%- macro nav_link(href, icon, label, is_active, count='') -%}
-<a href="{{ href }}" class="app-nav-link{% if is_active %} active{% endif %}"{% if is_active %} aria-current="page"{% endif %}><i aria-hidden="true">{{ icon }}</i><span>{{ label }}</span>{% if count %}<em>{{ count }}</em>{% endif %}</a>
+    the knowledge base. 「工作资料」 is the brand only.
+    Icons are one line set (24 grid, 1.75 stroke, round caps) drawn in currentColor; `icon()` is shared with the
+    pages. A path marked ic-accent is the one detail a page may tint (知识库首页's entry cards do); everywhere else
+    it keeps the line colour. -#}
+{%- macro icon(name, size=18) -%}
+<svg class="ic ic-{{ name }}" width="{{ size }}" height="{{ size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+{%- if name == 'home' -%}<path d="M4 10.4L12 4l8 6.4V19a1.2 1.2 0 0 1-1.2 1.2H5.2A1.2 1.2 0 0 1 4 19z"/><path class="ic-accent" d="M9.6 20.2v-5.4h4.8v5.4"/>
+{%- elif name == 'book' -%}<path d="M12 7.2C10.4 5.9 8.2 5.2 5.5 5.2H4v12.6h1.5c2.7 0 4.9.7 6.5 2 1.6-1.3 3.8-2 6.5-2H20V5.2h-1.5c-2.7 0-4.9.7-6.5 2z"/><path class="ic-accent" d="M12 7.2v12.6"/>
+{%- elif name == 'search' -%}<circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.4 15.4L20 20"/><path class="ic-accent" d="M7.8 9h5.4M7.8 12h3.4"/>
+{%- elif name == 'product' -%}<rect x="3.5" y="8.2" width="17" height="12" rx="2.4"/><path d="M8.2 8.2V5.6a1 1 0 0 1 1-1h5.6a1 1 0 0 1 1 1v2.6"/><path class="ic-accent" d="M12.9 10.9l-2.2 3.3h2.6l-2.2 3.3"/>
+{%- elif name == 'matrix' -%}<rect x="4" y="4" width="6.8" height="6.8" rx="1.6"/><rect x="13.2" y="4" width="6.8" height="6.8" rx="1.6"/><rect x="4" y="13.2" width="6.8" height="6.8" rx="1.6"/><rect class="ic-accent" x="13.2" y="13.2" width="6.8" height="6.8" rx="1.6"/>
+{%- elif name == 'globe' -%}<circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path class="ic-accent" d="M12 3.5c2.3 2.3 3.5 5.1 3.5 8.5s-1.2 6.2-3.5 8.5c-2.3-2.3-3.5-5.1-3.5-8.5s1.2-6.2 3.5-8.5z"/>
+{%- elif name == 'workbench' -%}<path d="M18.4 10.6V8.4l-4.8-4.8H7.4a2 2 0 0 0-2 2v12.8a2 2 0 0 0 2 2h3.4"/><path d="M13.6 3.6v3.8a1 1 0 0 0 1 1h3.8"/><path class="ic-accent" d="M19.3 13.4a1.45 1.45 0 0 1 2.05 2.05l-5.1 5.1-2.75.7.7-2.75z"/>
+{%- elif name == 'system' -%}<rect x="9" y="3.5" width="6" height="5" rx="1.3"/><rect x="3.5" y="15.5" width="6" height="5" rx="1.3"/><rect x="14.5" y="15.5" width="6" height="5" rx="1.3"/><path class="ic-accent" d="M12 8.5v3.5M6.5 15.5v-2A1.5 1.5 0 0 1 8 12h8a1.5 1.5 0 0 1 1.5 1.5v2"/>
+{%- elif name == 'design' -%}<path d="M12 3.5a8.5 8.5 0 1 0 0 17c1 0 1.6-.6 1.6-1.4 0-.4-.15-.7-.4-1-.25-.3-.4-.6-.4-1 0-.8.6-1.4 1.4-1.4h1.7a4.6 4.6 0 0 0 4.6-4.6c0-4.1-3.8-7.6-8.5-7.6z"/><path class="ic-accent" stroke-width="2.6" d="M7.6 11.6h.01M9.8 7.8h.01M14.3 7.8h.01"/>
+{%- elif name == 'share' -%}<path d="M10 4.5l1.5 4 4 1.5-4 1.5-1.5 4-1.5-4-4-1.5 4-1.5z"/><path class="ic-accent" d="M17.5 14l.75 2 2 .75-2 .75-.75 2-.75-2-2-.75 2-.75z"/>
+{%- elif name == 'languages' -%}<path d="M3.5 6h9M8 4v2M11 6c-1 3.8-3.4 6.8-7 8.5"/><path d="M6 9.5c1.2 2 3 3.6 5 4.5"/><path d="M13 20l3.75-9 3.75 9M14.25 17h5"/>
+{%- elif name == 'image' -%}<rect x="3.5" y="4.5" width="17" height="15" rx="2.2"/><circle cx="9" cy="9.6" r="1.6"/><path d="M20.5 15.2l-4.6-4.6L6.2 19.5"/>
+{%- elif name == 'chapters' -%}<path d="M8.5 3.5h6.5l4 4V16a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 7 16V5a1.5 1.5 0 0 1 1.5-1.5z"/><path d="M15 3.5v4h4"/><path d="M4 7.5v11.5a1.5 1.5 0 0 0 1.5 1.5h9"/>
+{%- elif name == 'chevron' -%}<path d="M9.5 6.5L15 12l-5.5 5.5"/>
+{%- elif name == 'arrow' -%}<path d="M5 12h14M13.5 6.5L19 12l-5.5 5.5"/>
+{%- endif -%}</svg>
+{%- endmacro -%}
+{%- macro nav_link(href, glyph, label, is_active, count='') -%}
+<a href="{{ href }}" class="app-nav-link{% if is_active %} active{% endif %}"{% if is_active %} aria-current="page"{% endif %}>{{ icon(glyph) }}<span>{{ label }}</span>{% if count %}<em>{{ count }}</em>{% endif %}</a>
 {%- endmacro -%}
 {%- macro site_sidebar(active, nav, internal=true) -%}
-{%- set home = pathto('workspace/index') -%}
 <aside class="app-sidebar" id="app-sidebar">
-  <a class="app-brand" href="{{ pathto('index') }}">工作资料<span>.</span></a>
+  <a class="app-brand" href="{{ pathto('index') }}"><i class="app-brand-mark" aria-hidden="true">{{ icon('book', 17) }}</i><b>工作资料<span>.</span></b></a>
   <nav class="app-nav" aria-label="站点导航">
+    {% if internal %}{{ nav_link(pathto('workspace/index'), 'home', '首页', active == 'overview') }}{% endif %}
     <div class="app-nav-group">说明书</div>
-    {{ nav_link(pathto('index'), '▤', '说明书资料库', active == 'manuals') }}
-    {{ nav_link(pathto('search'), '⌕', '搜索说明书正文', active == 'search') }}
+    {{ nav_link(pathto('index'), 'book', '说明书资料库', active == 'manuals') }}
+    {{ nav_link(pathto('search'), 'search', '搜索说明书正文', active == 'search') }}
     {% if internal %}
-    <div class="app-nav-group">知识库</div>
-    {{ nav_link(home, '⌂', '首页', active == 'overview') }}
-    {{ nav_link(pathto('workspace/positioning/index'), '✦', '定位与价值', active == 'positioning') }}
     <div class="app-nav-group">产品与市场</div>
-    {{ nav_link(pathto('products/knowledge'), '◇', '产品知识', active == 'product-knowledge') }}
-    {% if nav.matrix %}{{ nav_link(pathto('products/matrix'), '⊞', '产品矩阵', active == 'product-matrix') }}{% endif %}
-    {{ nav_link(pathto('market/policy'), '◎', '市场与政策', active == 'market-policy') }}
+    {{ nav_link(pathto('products/knowledge'), 'product', '产品知识', active == 'product-knowledge') }}
+    {% if nav.matrix %}{{ nav_link(pathto('products/matrix'), 'matrix', '产品矩阵', active == 'product-matrix') }}{% endif %}
+    {{ nav_link(pathto('market/policy'), 'globe', '市场与政策', active == 'market-policy') }}
     <div class="app-nav-group">说明书生产</div>
-    {% if nav.deliverables %}{{ nav_link(pathto('workspace/deliverables/index'), '▦', '说明书工作台', active == 'deliverables') }}{% endif %}
-    {% if nav.system %}{{ nav_link(pathto('workspace/system/index'), '◈', '系统建设', active == 'system') }}{% endif %}
-    {% if nav.design %}{{ nav_link(pathto('workspace/design/index'), '◐', '设计规范', active == 'design-system') }}{% endif %}
+    {% if nav.deliverables %}{{ nav_link(pathto('workspace/deliverables/index'), 'workbench', '说明书工作台', active == 'deliverables') }}{% endif %}
+    {% if nav.system %}{{ nav_link(pathto('workspace/system/index'), 'system', '系统建设', active == 'system') }}{% endif %}
+    {% if nav.design %}{{ nav_link(pathto('workspace/design/index'), 'design', '设计规范', active == 'design-system') }}{% endif %}
     {% endif %}
   </nav>
 </aside>

@@ -1,6 +1,6 @@
 # 知识库首页「最近更新」(#updates): one entry per knowledge-page change a reader
 # should notice, newest first. tools/rtd/knowledge_updates.py reads this file;
-# the page shows the newest 8 entries whose page this build made.
+# the page shows the newest 5 entries whose page this build made.
 #
 # No build-time source carries per-page change dates (the data dates measure
 # freshness, which 说明书工作台 and 系统建设 already show), so the list is
@@ -12,7 +12,7 @@
 #             shows 日期未记录 and sorts last; the build date is never used.
 #   title     the row's bold line
 #   note      one line: what changed
-#   page      where the row links: share | positioning | product-knowledge |
+#   page      where the row links: share | home | product-knowledge |
 #             product-matrix | market-policy | deliverables | system | design-system
 #             (hidden while that page, or the share package, is not built)
 #   anchor    optional lower-case id on that page, such as work-map
@@ -23,10 +23,16 @@
 schema: hello-docs-knowledge-updates/v1
 
 updates:
+  - date: 2026-11-05
+    title: 知识库首页 · 新版首页
+    note: 首页先看已积累的可复用资产（语料、图片素材、通用章节、产品知识），再看现在在做、去哪里、定位与价值和最近 5 条更新；换用新图标与配色，「机器可读」改称「AI 可读」
+    page: home
+    evidence: "pr:auto-manual#1673"
   - date: 2026-11-04
     title: 定位与价值 · 网页说明书的定位与价值
     note: 新增一页：网页说明书的三个主题（便捷阅读、内容治理、知识积累）各自的现状，以及长期方向；说明书资料库首页同步加了定位板块
-    page: positioning
+    page: home
+    anchor: value
     evidence: "pr:auto-manual#1669"
   - date: 2026-10-22
     title: 产品知识 · 美规 ATS 与日本切替分電盤

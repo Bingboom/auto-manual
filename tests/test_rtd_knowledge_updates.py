@@ -49,7 +49,7 @@ class LoadUpdatesTests(unittest.TestCase):
 
     def test_page_keys_name_the_pages_the_portal_builds(self):
         self.assertEqual(ku.PAGES, {
-            "share": None, "positioning": web_manual_value.PAGE,
+            "share": None, "home": web_manual_value.HOME,
             "product-knowledge": product_learning.PAGE, "product-matrix": product_matrix.PAGE,
             "market-policy": market_policy.PAGE, "deliverables": DELIVERABLES_PAGE, "system": SYSTEM_PAGE,
             "design-system": design_system.PAGE,
@@ -120,7 +120,8 @@ class UpdatesViewTests(unittest.TestCase):
                                entry(page="product-matrix", title="matrix", date=dt.date(2026, 10, 21)))
         built = {**dict.fromkeys(ku.PAGES, True), "product-matrix": False}
         view = ku.updates_view(entries, built)
-        self.assertEqual([row["title"] for row in view], ["share", "s10", "s9", "s8", "s7", "s6", "s5", "s4"])
+        # The home page keeps 最近更新 short: the newest 5 rows.
+        self.assertEqual([row["title"] for row in view], ["share", "s10", "s9", "s8", "s7"])
         self.assertIsNone(view[0]["docname"])
         self.assertEqual([row["title"] for row in ku.updates_view(entries, built, limit=2)], ["share", "s10"])
         self.assertEqual(ku.updates_view(entries, {}), [])
@@ -136,8 +137,9 @@ class HomeTemplateTests(unittest.TestCase):
 
     def test_cards_follow_the_entries_and_carry_no_numbers(self):
         soup = self.render(matrix_entry=False, system_entry=False)
-        groups = [(s.h2.text, [c.strong.text for c in s.select(".home-card")]) for s in soup.select(".home-group")]
-        self.assertEqual(groups, [("产品与市场", ["产品知识", "市场与政策"]),
+        groups = [(s.h3.text, [c.strong.text for c in s.select(".home-card")]) for s in soup.select(".home-group")]
+        self.assertEqual(groups, [("说明书", ["说明书资料库", "搜索说明书正文"]),
+                                  ("产品与市场", ["产品知识", "市场与政策"]),
                                   ("说明书生产", ["说明书工作台", "设计规范"])])
         self.assertFalse(re.search(r"\d", "".join(c.text for c in soup.select(".home-card"))))
         self.assertIsNone(soup.select_one("#shares"))
