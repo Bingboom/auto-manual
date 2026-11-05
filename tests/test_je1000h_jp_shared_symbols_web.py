@@ -152,7 +152,11 @@ class Je1000hJpSharedSymbolsWebTests(unittest.TestCase):
         self.assertEqual(len(rows), 12)
         for row in rows:
             group, role = groups[row["shared_symbol_key"]]
-            self.assertEqual(role, "canonical", row["asset_ref"])
+            # SCG-20261104 moved the battery-disposal canonical to the native SVG
+            # after this package was sealed; its PNG row stays a legacy binding
+            # admitted within the fixed tolerance (see the cold replay).
+            expected = "legacy" if group["id"] == "battery-weee" else "canonical"
+            self.assertEqual(role, expected, row["asset_ref"])
             self.assertEqual(row["canonical_group"], group["id"])
         keys = {row["asset_ref"]: row["shared_symbol_key"] for row in rows}
         self.assertEqual(keys["assets/symbol-read.svg"], "read-manual/book-information")

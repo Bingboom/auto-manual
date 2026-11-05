@@ -2711,6 +2711,34 @@
         }
       ],
       "review_page": "https://claude.ai/artifact/TKVFaeNUZSw1pCcwfGsvCT"
+    },
+    {
+      "id": "SCG-20261104",
+      "date": "2026-11-04",
+      "scope": "the 18 groups proposed in SCG-20261103",
+      "operator_quotes": [
+        {
+          "quote": "开始定 18 个待定组的标准图标",
+          "context": "操作员在去重会话中发起"
+        },
+        {
+          "quote": "li-ion/recycle-li-ion（推荐）",
+          "context": "Li-ion（不带 32）组标准图标"
+        },
+        {
+          "quote": "battery_disposal/je2000e-eu-nl-batch1465-native",
+          "context": "电池 WEEE（无横条）组标准图标，取代建议的 battery-weee/crossed-bin-no-bar（PNG），后者与 pt 版列为旧变体"
+        },
+        {
+          "quote": "都用原灰底着色版（推荐）",
+          "context": "爆炸物 → explosive-material/burst-triangle-tinted；重物 → heavy-object/person-load-triangle-tinted"
+        },
+        {
+          "quote": "全部确认（推荐）",
+          "context": "其余 14 组按图库中唯一一份确认为标准图标"
+        }
+      ],
+      "review_page": "https://claude.ai/artifact/TKVFaeNUZSw1pCcwfGsvCT"
     }
   ],
   "canonical_groups": [
@@ -3185,7 +3213,7 @@
     {
       "id": "li-ion",
       "meaning": "Li-ion 回收（无 32）",
-      "status": "proposed",
+      "status": "operator-confirmed",
       "canonical": "li-ion/recycle-li-ion",
       "legacy_variants": [
         "li-ion/recycle-li-ion-native-dark",
@@ -3230,16 +3258,16 @@
           "Цей символ вказує, що всередині продукту є літій-іонна (Li-ion) батарея, яку необхідно утилізувати або переробити належним чином."
         ]
       },
-      "decision": null
+      "decision": "SCG-20261104"
     },
     {
       "id": "battery-weee",
       "meaning": "电池 WEEE（无横条）",
-      "status": "proposed",
-      "canonical": "battery-weee/crossed-bin-no-bar",
+      "status": "operator-confirmed",
+      "canonical": "battery_disposal/je2000e-eu-nl-batch1465-native",
       "legacy_variants": [
-        "battery_disposal/je2000e-eu-pt-batch1465-native",
-        "battery_disposal/je2000e-eu-nl-batch1465-native"
+        "battery-weee/crossed-bin-no-bar",
+        "battery_disposal/je2000e-eu-pt-batch1465-native"
       ],
       "captions": {
         "de": [
@@ -3275,21 +3303,21 @@
           "Батареї та акумулятори не можна утилізувати разом із побутовими відходами. Як споживач, ви зобов'язані за законом утилізувати всі батареї та акумулятори у спеціально відведених пунктах збору, незалежно від того, чи містять вони небезпечні речовини. Будь ласка, повертайте використані батарейки та акумулятори до місцевих пунктів збору, центрів переробки або до продавця, у якого їх було придбано. Правильна утилізація забезпечує екологічно безпечну переробку та запобігає потенційній шкоді для здоров’я людей і довкілля."
         ]
       },
-      "decision": null
+      "decision": "SCG-20261104"
     },
     {
       "id": "battery-weee-pb",
       "meaning": "电池 WEEE + Pb",
-      "status": "proposed",
+      "status": "operator-confirmed",
       "canonical": "battery-weee/crossed-bin-pb-hte154-ink",
       "legacy_variants": [],
       "captions": {},
-      "decision": null
+      "decision": "SCG-20261104"
     },
     {
       "id": "explosive-material",
       "meaning": "爆炸物",
-      "status": "proposed",
+      "status": "operator-confirmed",
       "canonical": "explosive-material/burst-triangle-tinted",
       "legacy_variants": [
         "explosive-material/burst-triangle-native-v2-3e3a39"
@@ -3308,12 +3336,12 @@
           "Symbole de matériau explosif pour avertissement de risque d'explosion."
         ]
       },
-      "decision": null
+      "decision": "SCG-20261104"
     },
     {
       "id": "heavy-object",
       "meaning": "重物",
-      "status": "proposed",
+      "status": "operator-confirmed",
       "canonical": "heavy-object/person-load-triangle-tinted",
       "legacy_variants": [
         "heavy-object/person-load-triangle-dark-772c3698"
@@ -3332,12 +3360,12 @@
           "Symbole d'objet lourd pour précautions de manutention."
         ]
       },
-      "decision": null
+      "decision": "SCG-20261104"
     },
     {
       "id": "electric-shock",
       "meaning": "电击",
-      "status": "proposed",
+      "status": "operator-confirmed",
       "canonical": "electric-shock/bolt-triangle-tinted",
       "legacy_variants": [],
       "captions": {
@@ -3354,12 +3382,12 @@
           "Symbole de danger de choc électrique pour avertissement de danger électrique."
         ]
       },
-      "decision": null
+      "decision": "SCG-20261104"
     },
     {
       "id": "battery-charging",
       "meaning": "电池充电/火灾",
-      "status": "proposed",
+      "status": "operator-confirmed",
       "canonical": "battery-charging/flame-battery-triangle-tinted",
       "legacy_variants": [],
       "captions": {
@@ -3376,30 +3404,30 @@
           "Symbole de charge de batterie indiquant qu'une batterie est en cours de charge."
         ]
       },
-      "decision": null
+      "decision": "SCG-20261104"
     },
     {
       "id": "ingestion-hazard",
       "meaning": "纽扣电池吞食",
-      "status": "proposed",
+      "status": "operator-confirmed",
       "canonical": "ingestion-hazard/coin-battery-triangle-dark-804ebe78",
       "legacy_variants": [],
       "captions": {},
-      "decision": null
+      "decision": "SCG-20261104"
     },
     {
       "id": "fcc",
       "meaning": "FCC",
-      "status": "proposed",
+      "status": "operator-confirmed",
       "canonical": "fcc/nested-c-native-dark",
       "legacy_variants": [],
       "captions": {},
-      "decision": null
+      "decision": "SCG-20261104"
     },
     {
       "id": "tw-recycle",
       "meaning": "台湾废电池回收",
-      "status": "proposed",
+      "status": "operator-confirmed",
       "canonical": "recycle/taiwan-restricted-battery-477dfbd7",
       "legacy_variants": [],
       "captions": {
@@ -3407,79 +3435,79 @@
           "此符號表示產品內含鋰離子（Li-ion） 電池，應妥善廢棄或回收處理。"
         ]
       },
-      "decision": null
+      "decision": "SCG-20261104"
     },
     {
       "id": "ce",
       "meaning": "CE",
-      "status": "proposed",
+      "status": "operator-confirmed",
       "canonical": "ce/label-hte156-ink",
       "legacy_variants": [],
       "captions": {},
-      "decision": null
+      "decision": "SCG-20261104"
     },
     {
       "id": "ukca",
       "meaning": "UKCA",
-      "status": "proposed",
+      "status": "operator-confirmed",
       "canonical": "ukca/label-hte156-ink",
       "legacy_variants": [],
       "captions": {},
-      "decision": null
+      "decision": "SCG-20261104"
     },
     {
       "id": "ua",
       "meaning": "乌克兰合格标志",
-      "status": "proposed",
+      "status": "operator-confirmed",
       "canonical": "ua-conformity/label-hte156-ink",
       "legacy_variants": [],
       "captions": {},
-      "decision": null
+      "decision": "SCG-20261104"
     },
     {
       "id": "un38-3",
       "meaning": "UN38.3",
-      "status": "proposed",
+      "status": "operator-confirmed",
       "canonical": "un38-3/box-label-hte156-ink",
       "legacy_variants": [],
       "captions": {},
-      "decision": null
+      "decision": "SCG-20261104"
     },
     {
       "id": "triman-packaging",
       "meaning": "Triman/Info-tri（包装）",
-      "status": "proposed",
+      "status": "operator-confirmed",
       "canonical": "triman/info-tri-packaging-hte156-ink",
       "legacy_variants": [],
       "captions": {},
-      "decision": null
+      "decision": "SCG-20261104"
     },
     {
       "id": "triman-device",
       "meaning": "Triman/Info-tri（设备）",
-      "status": "proposed",
+      "status": "operator-confirmed",
       "canonical": "triman/info-tri-device-hte156-ink",
       "legacy_variants": [],
       "captions": {},
-      "decision": null
+      "decision": "SCG-20261104"
     },
     {
       "id": "ec-rep",
       "meaning": "EC REP",
-      "status": "proposed",
+      "status": "operator-confirmed",
       "canonical": "ec-rep/label-hte154-ink",
       "legacy_variants": [],
       "captions": {},
-      "decision": null
+      "decision": "SCG-20261104"
     },
     {
       "id": "uk-rep",
       "meaning": "UK REP",
-      "status": "proposed",
+      "status": "operator-confirmed",
       "canonical": "uk-rep/label-hte154-ink",
       "legacy_variants": [],
       "captions": {},
-      "decision": null
+      "decision": "SCG-20261104"
     }
   ]
 }
