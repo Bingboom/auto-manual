@@ -20,7 +20,8 @@ what has built up and can be reused, what is being done now, and where to go:
     languages, approved share); links to the 语言资产 tab.
   - 图片素材: `data/asset_registry.csv`: finished assets, the share without
     language-specific text (语言维度 中立) and those every model uses (适用机型
-    ALL); links to the workbench 数据统计 tab, where the registry is listed.
+    ALL); links to the workbench 数据统计 (`#statistics`, in its 交付物 tab), where the
+    registry is listed.
   - 通用章节: the shared chapter templates under `docs/templates/page_shared`,
     counted per page and language, with the warranty, troubleshooting, charging
     and storage chapters named.
@@ -140,16 +141,24 @@ same private site.
 ## Deliverables page
 
 `/workspace/deliverables/` (说明书工作台) is the production navigation surface.
-The stable URL is retained. Below the hero, the key-metric row (网页说明书,
-语言版本, Word 云文档, 印刷交付包) sits above four tabs: **交付物** (the
-deliverables matrix, open by default), **数据统计** (see [数据统计](#数据统计)),
-**工作入口** and **生产与资产**; see
-[Page layout](manual-center.md#page-layout). The 工作入口 tab draws the work map
-**Content Authority → Source Binding → Assembly / IR → Human + Machine Surface**:
-either content authority (structured sources or a Git-native manual source)
-passes through source binding into assembly, which derives both surfaces.
-Selecting a node reveals its work destinations, operating guides and next step.
-The 生产与资产 tab holds the production evidence. The system workspace remains
+The stable URL is retained. Since the 2026-11 redesign the title carries one chip
+per snapshot (交付链接, 语料, 网页进度: its date, and its state when not 有效) and a
+link to 系统建设「数据来源」. Below it the four delivery totals (网页说明书 with the
+books per region, 语言版本 with the published languages, Word 云文档 and 印刷交付包,
+which carry the 交付快照's 待复核) share one card, then the **常用入口** strip: the
+structured production data (产品与规格, 文案与变量, 翻译与术语, 插图资产) and the
+Git-native manual sources (冻结发布源, 评审稿, 来源声明), from
+`_work_links.html`. Three tabs follow: **进度** (网页说明书进度, open by default),
+**交付物** (the coverage matrix, 语言版本明细 and [数据统计](#数据统计)) and
+**资产与证据** (the production evidence and 快照与校验); see
+[Page layout](manual-center.md#page-layout).
+
+The work map **Content Authority → Source Binding → Assembly / IR → Human +
+Machine Surface** (工作入口, `manual_workbench.html`) moved to 系统建设「能力与架构」
+(`#work-map`); the 常用入口 strip links there as 全部工作入口. Either content
+authority (structured sources or a Git-native manual source) passes through source
+binding into assembly, which derives both surfaces. Selecting a node reveals its
+work destinations, operating guides and next step. The system workspace remains
 the capability/progress view; this page links to it.
 
 The page's stylesheet and script links carry `?v=<content hash>`
@@ -163,12 +172,14 @@ largest first, labelled by the system contract's `focus.regions`); 系统建设
 shows no publication count and links here. 系统建设 owns the corpus and
 skeleton totals: the 语料库 and 模板与骨架 cards and the asset ledger keep their
 maintenance links and adoption status and point to 系统建设「语言资产」
-(`#tab-corpus`) and 「骨架扩展」 (`#lane-skeletons`). The 数据更新时间
-disclosure keeps both snapshot freshness spans that Workspace Data Verify reads
-and links the registry's rules (系统建设「数据来源」, `#sources`). The pointers
-show only when the system page is built.
+(`#tab-corpus`) and 「骨架扩展」 (`#lane-skeletons`). The snapshot chips keep the
+`data-workspace-source` freshness marks that Workspace Data Verify reads;
+资产与证据「快照与校验」 (`#snapshots`) lists each snapshot's date, state, hash and
+update run and links the registry's rules (系统建设「数据来源」, `#sources`). The
+pointers show only when the system page is built.
 
-`tools/rtd_portal_assets/manual_workbench.html` owns the curated navigation links,
+`tools/rtd_portal_assets/manual_workbench.html` owns the curated navigation links
+(their shared destinations, also used by the 常用入口 strip, are in `_work_links.html`),
 using business destinations from `user-guide/two_plane_map.md` and the README's
 existing authoritative guides. Templates/configuration link to auto-manual;
 business Actions and PRs link to Hello-Docs. Feishu links require the user's
@@ -179,19 +190,19 @@ business coordinates must update the authoritative topology and this entry map.
 All links and panels are rendered at build time. `manual-workbench.js` only
 switches the selected panel, using native buttons and `aria-pressed`; without
 JavaScript, every panel stays visible. Styling is scoped to the workbench and
-reuses the workspace shell. The key-metric cards link to `#deliverables`, the
+reuses the workspace shell. The delivery totals link to `#deliverables`, the
 交付物 tab that holds the matrix.
 
-The 交付物 tab shows Web manuals only (2026-10-19). It opens with
-网页说明书进度, described on [its own page](web-progress.md), and then 语言版本明细,
-collapsed. That list groups the language versions by model, one row per region.
+The 进度 and 交付物 tabs show Web manuals only (2026-10-19). 进度 is
+网页说明书进度, described on [its own page](web-progress.md); 交付物 opens with its
+coverage matrix, then 语言版本明细, collapsed. That list groups the language versions by model, one row per region.
 Each chip is one language and its version, linked to its page on this site.
 Two selects filter by model and by region. On a phone each region becomes a
 card. Product names come from the manual center; a model the manual center
 does not list shows its code only.
 
 The Feishu snapshot below no longer shows on this tab. It still feeds the
-page summary's Word 云文档 and 印刷交付包 counts and 生产与资产. Its links stay in
+page summary's Word 云文档 and 印刷交付包 counts and 资产与证据. Its links stay in
 the snapshot: the operator chose on 2026-09-25 to list them (「直接放飞书链接」),
 the site can be made public at any time, and only https Feishu or Lark links
 are accepted.
@@ -233,7 +244,7 @@ fails the export instead of silently dropping a format.
 
 ### 数据统计
 
-The 数据统计 tab (`#statistics`, after 交付物) holds what the 系统数据 page
+数据统计 (`#statistics`, the last section of the 交付物 tab) holds what the 系统数据 page
 counted: what the repository holds about the manuals, narrowed by region and
 model. `production_statistics.html` renders it from the context that
 `tools/rtd/system_data.py` builds once per build; the page receives it as
@@ -262,7 +273,7 @@ have another shape. The tab loads `_static/system-data.js` and
   29 of 37 targets (9 of 16 models) remain. The 产品矩阵 page's 功能矩阵 is not
   filtered; it still lists every model of the capability table.
 - **Asset counts are registry entries.** 素材登记 counts the rows of
-  `data/asset_registry.csv`, not deduplicated artwork; the 生产与资产 tab's
+  `data/asset_registry.csv`, not deduplicated artwork; the 资产与证据 tab's
   Artwork Assets stays Not tracked yet.
 - **Filters are client-side.** The rows travel as one JSON block
   (`<` escaped) and `_static/system-data.js` filters and counts them. A region
@@ -347,8 +358,8 @@ library does not link to it.
 ## System data page
 
 The standalone 系统数据 page and its sidebar/home entries have been removed.
-Its statistics live in the 说明书工作台 tab [数据统计](#数据统计), and its
-工程规模 in the 系统建设 tab 工具与工程规模 (see
+Its statistics live in 说明书工作台 [数据统计](#数据统计) (the 交付物 tab), and its
+工程规模 in 系统建设「能力与架构」 (see
 [Engineering scale](system-workspace.md#engineering-scale)).
 
 In combined builds, `/workspace/data/` and `/workspace/data/index.html` still

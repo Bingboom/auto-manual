@@ -101,6 +101,10 @@
     if (!panel) return false;
     show(panel.id);
     const target = document.getElementById(decodeURIComponent(hash.slice(1)));
+    /* A target inside a collapsed section (其他能力, 语言版本明细) opens it. */
+    for (let node = target; node && node !== panel; node = node.parentElement) {
+      if (node.tagName === "DETAILS") node.open = true;
+    }
     if (scroll && target && target !== panel) target.scrollIntoView({block: "start"});
     return true;
   };

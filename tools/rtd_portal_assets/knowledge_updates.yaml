@@ -24,6 +24,16 @@ schema: hello-docs-knowledge-updates/v1
 
 updates:
   - date: 2026-11-05
+    title: 说明书工作台 · 新版页面
+    note: 标题旁看各数据快照的日期，四个规模数合成一张卡，常用入口一行直达；分进度、交付物、资产与证据三个标签，工作入口移到系统建设
+    page: deliverables
+    evidence: "pr:auto-manual#1679"
+  - date: 2026-11-05
+    title: 系统建设 · 新版页面
+    note: 页首是阶段门进度条和接下来要做的事；近期事项写明所属主线；七个标签合并为当前工作、能力与架构、来源与演变
+    page: system
+    evidence: "pr:auto-manual#1679"
+  - date: 2026-11-05
     title: 知识库首页 · 新版首页
     note: 首页先看已积累的可复用资产（语料、图片素材、通用章节、产品知识），再看现在在做、去哪里、定位与价值和最近 5 条更新；换用新图标与配色，「机器可读」改称「AI 可读」
     page: home
