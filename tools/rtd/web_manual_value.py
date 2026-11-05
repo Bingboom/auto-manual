@@ -1,12 +1,12 @@
-"""「网页说明书的定位与价值」: the manual-library home band and its internal page.
+"""「网页说明书的定位与价值」: the manual-library home band and the 知识库首页 section.
 
 ``tools/rtd_portal_assets/web_manual_value.yaml`` (schema
 ``hello-docs-web-manual-value/v1``) holds the copy for two audiences. The
 public manuals project gets only :func:`band_context`'s public view, so the
-internal copy never reaches public HTML; the private site gets the internal
-band and the full page at :data:`PAGE`, which shows each theme's summary and
-folds its facets away. Each theme's tag is derived from its
-facets' statuses, which use the 系统建设 page's vocabulary. A malformed file
+internal copy never reaches public HTML. The private site gets the internal
+band and the 定位与价值 section of 知识库首页 (:data:`HOME`): one card per theme
+with its summary and its facets folded away. Each theme's tag is derived from
+its facets' statuses, which use the 系统建设 page's vocabulary. A malformed file
 fails the build, like the other engineering-owned portal assets.
 """
 from __future__ import annotations
@@ -19,8 +19,8 @@ import yaml
 
 from tools.rtd.system_workspace import STATUS_LABELS
 
-PAGE = "workspace/positioning/index"
-TEMPLATE = "web_manual_value.html"
+# The private copy lives on 知识库首页 (section #value, one card per theme id).
+HOME = "workspace/index"
 SOURCE_NAME = "web_manual_value.yaml"
 SCHEMA = "hello-docs-web-manual-value/v1"
 FACET_STATUSES = ("available", "validated", "in_progress", "planned")
@@ -129,7 +129,7 @@ def band_context(value: dict[str, Any], *, internal: bool) -> dict[str, Any]:
     if not internal:
         return {"internal": False, "title": value["title"], **value["public"]}
     band = value["internal"]
-    return {"internal": True, "title": value["title"], "page": PAGE, "eyebrow": band["eyebrow"],
+    return {"internal": True, "title": value["title"], "page": HOME, "eyebrow": band["eyebrow"],
             "heading": band["heading"], "subtitle": band["subtitle"],
             "themes": [{"id": theme["id"], "theme": theme["theme"], "status": theme["status"],
                         "status_label": theme["status_label"],
@@ -138,5 +138,5 @@ def band_context(value: dict[str, Any], *, internal: bool) -> dict[str, Any]:
 
 
 def page_context(value: dict[str, Any]) -> dict[str, Any]:
-    """The internal page's context: the title plus the internal copy."""
+    """The 知识库首页 context for its 定位与价值 section: the title plus the internal copy."""
     return {"title": value["title"], **value["internal"]}

@@ -1,5 +1,5 @@
 # 「网页说明书的定位与价值」: one copy source for the 说明书资料库 home band and
-# the internal page workspace/positioning/index. tools/rtd/web_manual_value.py
+# the 定位与价值 section of 知识库首页 (#value). tools/rtd/web_manual_value.py
 # reads this file; a malformed file fails the build.
 #
 # The home page is shared by two RTD projects, so the copy has two audiences:
@@ -7,13 +7,13 @@
 #             only what a reader can use today. No internal names, governance or
 #             AI wording, and no links into the knowledge base. Only this block
 #             reaches public HTML.
-#   internal  the band on the private site's home and the full page.
+#   internal  the band on the private site's home and the 知识库首页 section.
 #
 # Each theme lists its facets with a status from system_workspace.yaml's
 # vocabulary: available | validated | in_progress | planned (a planned facet
 # names its REV). The theme's tag is derived from its facets: all available is
 # 可用; any available or validated is 部分可用; all planned is 已规划; otherwise
-# 建设中. The page shows each theme's summary and folds its facets away.
+# 建设中. 知识库首页 shows each theme's summary and folds its facets away.
 # `revs` are evidence for reviewers and are never shown. Say what the web
 # manuals do, without defensive caveats: what is not finished shows as a
 # status tag. Keep each line short and write no counts:

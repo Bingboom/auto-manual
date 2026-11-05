@@ -3,34 +3,36 @@
 Status: active · Part of the [RTD manual-center entrance](../rtd_manual_portal.md); its index lists the
 other portal surfaces. Add new notes for this surface here, not to the hub.
 
-## Band and page (2026-11-04)
+## Band and home section
 
 The positioning of web manuals, in the operator's words, shows on two surfaces:
 
 - **A band on the manual-library home**, after the catalog (zone 5 of the
   [home page layout](manual-center.md#page-layout)). The first screen stays the search hero.
-- **An internal page**, `workspace/positioning/index.html` (知识库 · 定位与价值), with its own entry
-  in the sidebar's 知识库 group.
+- **The 定位与价值 section of 知识库首页** (`workspace/index.html#value`), private site only. From
+  2026-11-04 to 2026-11-05 this was a page of its own (`workspace/positioning/index.html`) with a sidebar
+  entry; it folded into the home page when that became a one-screen overview, see
+  [knowledge-base entry](knowledge-pages.md#personal-workspace-entry).
 
 Both RTD projects serve the same home page, so the copy has two audiences:
 
-| `RTD_SITE_ROLE` | Band on the home page | Page |
+| `RTD_SITE_ROLE` | Band on the manual-library home | 知识库首页 section |
 | --- | --- | --- |
 | `manuals` (public) | title, one sentence and three reader points (便捷阅读, 版本清楚, 持续更新): only what a reader can use today, with no links, status tags, internal names, governance or AI wording | not built |
-| unset or `combined` (private) | eyebrow, heading and subtitle, then the four themes (便捷阅读, 机器可读, 内容治理, 知识积累), each with its facet keywords and a status tag, linking to its section of the page | built |
+| unset or `combined` (private) | eyebrow, heading and subtitle, then the four themes (便捷阅读, 机器可读, 内容治理, 知识积累), each with its facet keywords and a status tag, linking to its card on 知识库首页 | built |
 
 Only the public block reaches public HTML: `band_context(..., internal=False)` carries no internal copy. The
 `manuals`-role build in `tests/test_rtd_portal.py` checks the band and the absence of internal words and of
-the page; the combined build checks that each theme link lands on an existing section.
+the knowledge base; the combined build checks that each theme link lands on an existing card.
 
 ## Copy and status
 
 `tools/rtd_portal_assets/web_manual_value.yaml` (schema `hello-docs-web-manual-value/v1`) holds both blocks.
 `tools/rtd/web_manual_value.py` reads and validates it, and a malformed file fails the build.
 
-The page opens with one positioning line: 网页说明书是已批准说明书的可信发布源，人能读，机器能读，团队能持续维护和复用.
-The first level is one card per theme with its name, status and one sentence (`summary`). Each card folds its
-现状 list, one line per facet, under 「现状」. The page is kept to one screen on purpose (operator, 2026-11-04:
+知识库首页 opens with the positioning line: 网页说明书是已批准说明书的可信发布源，人能读，机器能读，团队能持续维护和复用.
+Its 定位与价值 section has one card per theme with its name, status and one sentence (`summary`). Each card
+folds its 现状 list, one line per facet, under 「现状」. The cards stay short on purpose (operator, 2026-11-04:
 too much content, no clear hierarchy).
 
 The copy says what the web manuals do, with no defensive caveats: this is the team's own knowledge base
@@ -63,7 +65,7 @@ On 2026-11-04 that gives:
 
 The copy writes no counts, because they change with every release; 说明书工作台 reads them from the publish
 manifest. `tests/test_rtd_web_manual_value.py` fails on any digit outside the REV ids, and on a REV id shown
-on the page. When a facet's state changes, edit its status and note in the YAML: the tags on the band and on
-the page follow.
+on 知识库首页. When a facet's state changes, edit its status and note in the YAML: the tags on the band and on
+知识库首页 follow.
 
 Rollback: revert the change. Frozen manuals, short aliases and search are unaffected.

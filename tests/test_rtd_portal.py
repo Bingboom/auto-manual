@@ -355,18 +355,19 @@ class RtdPortalTests(unittest.TestCase):
             return groups
 
         manuals = [("说明书", ["说明书资料库", "搜索说明书正文"])]
-        knowledge = [*manuals, ("知识库", ["首页", "定位与价值"]), ("产品与市场", ["产品知识", "产品矩阵", "市场与政策"]),
+        knowledge = [*manuals, ("知识库", ["首页"]), ("产品与市场", ["产品知识", "产品矩阵", "市场与政策"]),
                      ("说明书生产", ["说明书工作台", "系统建设", "设计规范"])]
         pages = ("products/knowledge.html", "products/matrix.html", "market/policy.html", "workspace/index.html",
-                 "workspace/positioning/index.html", "workspace/system/index.html",
-                 "workspace/deliverables/index.html", "workspace/design/index.html")
+                 "workspace/system/index.html", "workspace/deliverables/index.html", "workspace/design/index.html")
+        # 定位与价值 folded into 知识库首页 on 2026-11-05: its old page is gone.
+        self.assertFalse((out / "workspace" / "positioning").exists())
         self.assertEqual({page: outline(sidebar) for page, sidebar in sidebars.items()},
                          {"index.html": knowledge, **dict.fromkeys(pages, knowledge)})
         site = "https://site.invalid/"
         home = BeautifulSoup((out / "workspace" / "index.html").read_text(encoding="utf-8"), "html.parser")
-        # The 知识库首页 cards mirror the sidebar's groups after 知识库, in its order (every page is built here).
+        # 知识库首页's 去哪里 cards mirror the sidebar's groups except 知识库, in its order (every page is built here).
         self.assertEqual([(s.h2.text, [c.strong.text for c in s.select(".home-card")])
-                          for s in home.select(".home-group")], knowledge[2:])
+                          for s in home.select("#doors .home-group")], [knowledge[0], *knowledge[2:]])
         # Each 最近更新 row is dated and links to a page, and an id on it, that this build made.
         rows = home.select("#updates a")
         self.assertTrue(rows)
@@ -377,7 +378,7 @@ class RtdPortalTests(unittest.TestCase):
             self.assertTrue(target.is_file(), row["href"])
             if url.fragment:
                 self.assertIn(f'id="{url.fragment}"', target.read_text(encoding="utf-8"), row["href"])
-        # The private home's band tags each theme and links it to its section of the full page.
+        # The private home's band tags each theme and links it to its card on 知识库首页.
         band = BeautifulSoup((out / "index.html").read_text(encoding="utf-8"), "html.parser").select_one("section.value")
         self.assertEqual(band.select_one(".value-eyebrow").get_text(), "HELLO-DOCS · DIGITAL MANUAL LIBRARY")
         themes = band.select("a.value-item")
@@ -385,7 +386,7 @@ class RtdPortalTests(unittest.TestCase):
                          [("便捷阅读", "可用"), ("机器可读", "部分可用"), ("内容治理", "部分可用"), ("知识积累", "建设中")])
         for link in [*themes, band.select_one(".value-more a")]:
             url = urlsplit(urljoin(site + "index.html", link["href"]))
-            self.assertEqual(url.path, "/workspace/positioning/index.html", link["href"])
+            self.assertEqual(url.path, "/workspace/index.html", link["href"])
             if url.fragment:
                 self.assertIn(f'id="{url.fragment}"', (out / url.path.removeprefix("/")).read_text(encoding="utf-8"))
         for page, sidebar in sidebars.items():

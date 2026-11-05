@@ -48,7 +48,7 @@ its market list from the same settings, and CN/JP display their own market notes
 
 ## Page layout
 
-Every portal page (manual library root, 知识库首页, 定位与价值, 产品知识, 市场与政策, 系统建设, 说明书工作台, 设计规范, 产品矩阵)
+Every portal page (manual library root, 知识库首页, 产品知识, 市场与政策, 系统建设, 说明书工作台, 设计规范, 产品矩阵)
 shares one site shell from `tools/rtd_portal_assets/_site_shell.html` and
 `_static/site-shell.css`. In the manuals-only public role (`RTD_SITE_ROLE=manuals`)
 the manual library root passes `internal=false` to both shell macros: its sidebar
@@ -57,7 +57,7 @@ region selector, with no internal knowledge links or 知识库 / 说明书资料
 In the combined (private) role the root gets the full internal shell, so a reader
 can return to the knowledge base: the same sidebar groups as internal pages and the
 switch, with 说明书资料库 marked selected. Internal pages add three groups
-after 说明书: 知识库 (首页, 定位与价值), 产品与市场 (产品知识, 产品矩阵, 市场与政策) and
+after 说明书: 知识库 (首页), 产品与市场 (产品知识, 产品矩阵, 市场与政策) and
 说明书生产 (说明书工作台, 系统建设, 设计规范), plus the switch. Their breadcrumb section is 知识库,
 and 工作资料 is only the brand. The root keeps 工作资料 as title, crumb and footer in
 both roles. Every sidebar entry is a page and carries
@@ -115,7 +115,7 @@ Inside the shell the root page has these bounded zones on one container width
    visible card after filtering are hidden.
 5. **网页说明书的定位与价值** (white band, after the catalog so the first screen stays search):
    reader-facing copy in the public role; in the private role the themes with status tags,
-   linking to the internal page. See [网页说明书的定位与价值](web-manual-value.md).
+   linking to their cards on 知识库首页. See [网页说明书的定位与价值](web-manual-value.md).
 6. **Footer** (light grey band), which also holds the Read the Docs ad placement.
 
 The need and accessory groups are product positioning, curated in

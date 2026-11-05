@@ -6,23 +6,31 @@ other portal surfaces. Add new notes for this surface here, not to the hub.
 ## Personal workspace entry
 
 The manual library root (说明书资料库) remains independent. The portal extension
-also builds `/workspace/` (知识库 · 首页) as the knowledge-base entry page, in one
-column from top to bottom:
+also builds `/workspace/` (知识库 · 首页) as the knowledge-base entry page. Since
+2026-11-05 it is a one-screen overview: its first screen answers how things stand
+now and where to go (operator: the knowledge base had too much content and no
+clear hierarchy). From top to bottom:
 
-- The page header links to the manual library (labelled 说明书资料库) for
-  product, region, language and manual-content search.
-- **Entry cards** in the sidebar's two groups after 知识库: 产品与市场
-  (`#products`: 产品知识, 产品矩阵, 市场与政策) and 说明书生产 (`#production`:
-  说明书工作台, 系统建设, 设计规范). A card has the sidebar entry's glyph
-  and label and one line on what the page holds, and shows only when its sidebar
-  entry does, so it never links to a page this build skipped. Cards carry no
-  counts; those stay on their own pages. The sidebar test in
-  `tests/test_rtd_portal.py` pins the cards to the sidebar's groups and order.
-- **分享资料** (`#shares`) holds the share card for the bundled
-  beginner-facing AI sharing package at `/ai-share/00_打开分享.html`.
+- The page header gives the web manuals' positioning in one line and links to
+  the manual library (labelled 说明书资料库).
+- **现在** (`#now`, `tools/rtd/workspace_home.py`) shows the 系统建设 page's current
+  main lines (title and goal) and its 正在做 labels, without REV ids, next to
+  three figures from 说明书工作台: 网页说明书, 语言版本 and 审核中. The figures
+  link to the workbench sections that own them; a missing input reads 无数据.
+  The home page keeps no numbers of its own.
+- **去哪里** (`#doors`) has one card per sidebar group except 知识库: 说明书
+  (说明书资料库, 搜索说明书正文), 产品与市场 (产品知识, 产品矩阵, 市场与政策) and
+  说明书生产 (说明书工作台, 系统建设, 设计规范). A link shows only when its sidebar
+  entry does, so it never points to a page this build skipped, and the cards
+  carry no counts. The sidebar test in `tests/test_rtd_portal.py` pins the cards
+  to the sidebar's groups and order. Under the cards, **分享资料** (`#shares`) is
+  one link to the bundled beginner-facing AI sharing package at
+  `/ai-share/00_打开分享.html`.
+- **定位与价值** (`#value`) holds the four theme cards, each with its status, one
+  sentence and its 现状 folded; see [网页说明书的定位与价值](web-manual-value.md).
 - **最近更新** (`#updates`) lists dated changes, `YYYY-MM-DD · title / note`, from
   `tools/rtd_portal_assets/knowledge_updates.yaml`
-  (`tools/rtd/knowledge_updates.py` reads it): the newest 8 entries whose page
+  (`tools/rtd/knowledge_updates.py` reads it): the newest 5 entries whose page
   this build made, newest first, ties in file order. The date is the change's
   merge day, as `git log --date=short` shows the squash commit on main, and each
   entry cites `pr:<repo>#<n>` as evidence for reviewers (not shown). The list is
@@ -53,7 +61,7 @@ to the manual center. In the combined role the manual-center homepage links into
 the workspace only through the shared shell and the 定位与价值 band; in the
 public role it links nowhere internal. The system page lives inside it. The sharing package is an
 optional entry. Without `ai-share/00_打开分享.html`, the 知识库首页
-(`workspace/index.html`) hides its 分享资料 section (`#shares`, the share card)
+(`workspace/index.html`) hides its 分享资料 link (`#shares`)
 and the 最近更新 rows (`#updates`) that link to the package. Nothing else changes.
 分享资料 and 最近更新 are sections of the 知识库首页, not sidebar entries: the
 sidebar lists pages only, so each entry is marked current on its own page.

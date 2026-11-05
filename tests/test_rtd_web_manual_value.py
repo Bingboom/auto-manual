@@ -130,44 +130,44 @@ class RenderTests(unittest.TestCase):
         self.assertEqual(len(band.select(".value-item")), 3)
         self.assertEqual(band.select("a, .value-status, .value-eyebrow"), [])
 
-    def test_internal_band_links_each_theme_to_its_section(self):
+    def test_internal_band_links_each_theme_to_its_card_on_the_knowledge_home(self):
         band = render("_value_band.html", value=wmv.band_context(wmv.load_value(ASSETS), internal=True))
         self.assertEqual(band.h2.get_text(), "人能读，机器能读，团队能持续复用")
         self.assertEqual([(a["href"], a.select_one(".value-text").get_text()) for a in band.select("a.value-item")], [
-            (f"{wmv.PAGE}#reading", "统一呈现、扫码直达、快速查阅"),
-            (f"{wmv.PAGE}#machine", "机读导出、AI 问答、市场覆盖"),
-            (f"{wmv.PAGE}#governance", "版本追溯、读者反馈、质量改进"),
-            (f"{wmv.PAGE}#knowledge", "规范沉淀、可信复用、辅助创作"),
+            (f"{wmv.HOME}#reading", "统一呈现、扫码直达、快速查阅"),
+            (f"{wmv.HOME}#machine", "机读导出、AI 问答、市场覆盖"),
+            (f"{wmv.HOME}#governance", "版本追溯、读者反馈、质量改进"),
+            (f"{wmv.HOME}#knowledge", "规范沉淀、可信复用、辅助创作"),
         ])
-        self.assertEqual(band.select_one(".value-more a")["href"], wmv.PAGE)
+        self.assertEqual(band.select_one(".value-more a")["href"], f"{wmv.HOME}#value")
 
     def test_without_a_band_the_home_renders_nothing_for_it(self):
         self.assertIsNone(render("_value_band.html").select_one("section"))
 
-    def test_page_leads_with_one_card_per_theme_and_folds_the_details(self):
+    def test_knowledge_home_shows_one_card_per_theme_and_folds_the_details(self):
         value = wmv.load_value(ASSETS)
-        page = render(wmv.TEMPLATE, **wmv.page_context(value), site_nav={})
-        self.assertEqual(page.h1.get_text(), "网页说明书的定位与价值")
-        cards = page.select("article.vp-card")
+        home = render("workspace_portal.html", value=wmv.page_context(value), share_entry="", system_entry=True,
+                      deliverables_entry=True, design_entry=True, matrix_entry=True, updates=[])
+        self.assertEqual(home.select_one(".home-line").get_text(), value["internal"]["tagline"])
+        cards = home.select("#value article.home-theme")
         self.assertEqual([card["id"] for card in cards], ["reading", "machine", "governance", "knowledge"])
         for card, theme in zip(cards, value["internal"]["themes"], strict=True):
             # First level: name, status and one sentence.
-            self.assertEqual(card.h2.get_text(), theme["theme"])
-            self.assertEqual(card.select_one(".vp-card-head .vp-status")["class"][-1], f"is-{theme['status']}")
-            self.assertEqual(card.select_one(".vp-summary").get_text(), theme["summary"])
+            self.assertEqual(card.h3.get_text(), theme["theme"])
+            self.assertEqual(card.select_one("header .home-status")["class"][-1], f"is-{theme['status']}")
+            self.assertEqual(card.select_one(":scope > p").get_text(), theme["summary"])
             # Second level, folded: the facets.
-            more = card.select_one("details.vp-more")
+            more = card.select_one("details")
             self.assertFalse(more.has_attr("open"))
             self.assertEqual(more.summary.get_text(), "现状")
-            self.assertEqual([(li.select_one(".vp-facet").get_text(), li.em["class"][-1]) for li in more.select("li")],
+            self.assertEqual([(li.span.get_text(), li.em["class"][-1]) for li in more.select("li")],
                              [(f["label"], f"is-{f['status']}") for f in theme["facets"]])
-        # REV ids are evidence in the data file, never shown; the long-term direction is gone.
-        self.assertNotIn("REV-", page.get_text())
-        self.assertIsNone(page.select_one("#direction"))
-        current = page.select('#app-sidebar a[aria-current="page"]')
-        self.assertEqual([(a.span.get_text(), a["href"]) for a in current], [("定位与价值", wmv.PAGE)])
-        self.assertEqual([a["href"] for a in page.select(".vp-footer a")], ["index"])
-        self.assertIsNone(page.select_one(".vp-key, .vp-principle"))
+        # REV ids are evidence in the data file, never shown; no 总纲, principles or direction block.
+        self.assertNotIn("REV-", home.get_text())
+        self.assertIsNone(home.select_one("#direction, .vp-key, .vp-principle"))
+        current = home.select('#app-sidebar a[aria-current="page"]')
+        self.assertEqual([(a.span.get_text(), a["href"]) for a in current], [("首页", wmv.HOME)])
+        self.assertNotIn("定位与价值", [a.span.get_text() for a in home.select("#app-sidebar a.app-nav-link")])
 
 
 if __name__ == "__main__":
