@@ -96,7 +96,7 @@
         {{ door('说明书', [('index', 'book', '说明书资料库', '按型号、市场和语言查找'), ('search', 'search', '搜索说明书正文', '按关键词检索说明书正文')], 'manuals') }}
         {%- set learn = [('products/knowledge', 'product', '产品知识', '参数、电池、逆变、充电与备电')] + ([('products/matrix', 'matrix', '产品矩阵', '产品线、容量与发布市场')] if matrix_entry else []) + [('market/policy', 'globe', '市场与政策', '各地区的市场与政策')] %}
         {{ door('产品与市场', learn, 'products') }}
-        {%- set make = ([('workspace/deliverables/index', 'workbench', '说明书工作台', '生产结果、交付物与数据统计')] if deliverables_entry else []) + ([('workspace/system/index', 'system', '系统建设', '当前重点、能力与阶段进度')] if system_entry else []) + ([('workspace/design/index', 'design', '设计规范', '颜色、字体、组件与图标')] if design_entry else []) %}
+        {%- set make = ([('workspace/deliverables/index', 'workbench', '说明书工作台', '网页说明书进度、交付物与生产证据')] if deliverables_entry else []) + ([('workspace/system/index', 'system', '系统建设', '阶段门、当前主线与能力架构')] if system_entry else []) + ([('workspace/design/index', 'design', '设计规范', '颜色、字体、组件与图标')] if design_entry else []) %}
         {{ door('说明书生产', make, 'production') }}
       </div>
       {% if share_entry %}<p id="shares" class="home-share-row"><a class="share-card" href="{{ share_entry|e }}"><span class="home-tile">{{ icon('share', 18) }}</span><small>分享资料</small><strong>AI 使用知识分享</strong>{{ icon('chevron', 16) }}</a></p>{% endif %}

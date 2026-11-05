@@ -131,3 +131,89 @@ a.wp-chip.is-extra { margin-left: 4px; font-size: 11.5px; padding: 1px 6px; }
 .dl-details > summary .dl-section-title > span { color: #8a8f99; font-size: 13px; }
 .dl-details > summary h2::before { content: "▸"; display: inline-block; width: 1.1em; color: #a3a8b1; }
 .dl-details[open] > summary h2::before { content: "▾"; }
+
+/* 说明书工作台, the 2026-11 design: snapshot chips beside the title, four totals in one card, the 常用入口 strip; in
+   进度, ordinal market bars (darker is further along) and one filled trend line in the accent. */
+.deliverables .wb-hero { flex-wrap: wrap; align-items: flex-end; gap: 16px 32px; margin: 0 0 24px; }
+.deliverables .wb-hero h1 { font-size: 30px; line-height: 38px; font-weight: 700; }
+.deliverables .wb-hero p { margin-top: 8px; font-size: 15px; color: var(--app-text2); }
+.wb-fresh { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.wb-fresh-chip { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border-radius: 999px; background: #fff; border: 1px solid var(--app-line); font-size: 12px; color: var(--app-text2); white-space: nowrap; text-decoration: none; }
+.wb-fresh-chip i, .wb-kpi-stale i { width: 8px; height: 8px; border-radius: 50%; background: var(--status-available); }
+.wb-fresh-chip.is-stale { background: #fbf0da; border-color: #fbf0da; color: #7a4a00; }
+.wb-fresh-chip.is-stale i, .wb-kpi-stale i { background: #c27c0e; }
+.wb-fresh-link { display: inline-flex; align-items: center; gap: 4px; margin-left: 4px; font-size: 13px; font-weight: 500; color: var(--brand); text-decoration: none; }
+.wb-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1px; margin: 0 0 16px; background: var(--app-line); border: 1px solid var(--app-line); border-radius: 14px; overflow: hidden; box-shadow: 0 1px 2px #1c1a170a; }
+.wb-kpi { display: flex; flex-direction: column; gap: 6px; padding: 18px 20px; background: #fff; color: inherit; text-decoration: none; }
+.wb-kpi:hover { background: #fbfcfd; }
+.wb-kpi > span { font-size: 13px; line-height: 20px; color: var(--app-muted); }
+.wb-kpi > strong { font-size: 30px; line-height: 36px; font-weight: 700; color: var(--app-ink); font-variant-numeric: tabular-nums; }
+.wb-kpi > strong small { margin-left: 4px; font-size: 13px; font-weight: 500; color: var(--app-muted); }
+.wb-kpi > em { font-style: normal; font-size: 12px; line-height: 18px; color: var(--app-muted); }
+.wb-kpi > em.wb-kpi-stale { display: inline-flex; align-items: center; gap: 6px; color: #7a4a00; }
+.wb-entries { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin: 0 0 8px; padding: 12px 16px; background: #fff; border: 1px solid var(--app-line); border-radius: 12px; }
+.wb-entries-label { font-size: 12px; font-weight: 500; letter-spacing: .04em; color: var(--app-muted); }
+.wb-entries-links { display: flex; flex-wrap: wrap; gap: 6px; }
+.wb-entries-links a { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px; border-radius: 8px; background: var(--app-bg); border: 1px solid var(--app-divider); font-size: 13px; font-weight: 500; color: var(--app-text2); text-decoration: none; }
+.wb-entries-links a:hover { border-color: #c9d2dd; color: var(--app-ink); }
+.wb-entries-links a span { font-size: 11px; color: var(--app-faint); }
+.wb-entries-sep { width: 1px; height: 20px; background: var(--app-line); }
+.wb-entries-note { margin-left: auto; font-size: 12px; color: var(--app-muted); }
+.wb-entries-note a { color: var(--brand); text-decoration: none; }
+.wb-snapshots { margin-top: 28px; }
+.wb-snapshot-list { margin: 8px 0; padding-left: 18px; display: grid; gap: 4px; }
+.wb-snapshot-list code { overflow-wrap: anywhere; }
+
+body.app.kb .wp { --wp-full: #a64e24; --wp-partial: #cf7d55; --wp-review: #e3a483; --wp-gap: var(--app-track); --wp-blue: var(--brand); }
+.wp-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; margin-bottom: 16px; }
+.wp-head .dl-section-title { display: block; margin: 0; }
+.wp-head .dl-section-title p { margin-top: 2px; }
+.wp-head .wp-sources { margin-left: 0; gap: 14px; }
+.wp-kpis .kpi { border-radius: 12px; }
+.wp-kpis .kpi > em { font-size: 12px; color: var(--app-muted); }
+.wp-reviews { gap: 14px; margin: 16px 0 4px; padding: 20px 24px 12px; background: #fff; border: 1px solid var(--app-line); border-radius: 14px; }
+.wp-reviews-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; }
+.wp-reviews h3 { font-size: 16px; }
+.wp-reviews h3 span { font-size: 13px; color: var(--app-muted); }
+.wp-reviews .dl-table-wrap { border: 0; border-radius: 0; }
+.wp-review-table { font-size: 13px; }
+.wp-review-table thead th { padding: 0 12px 10px 0; font-size: 12px; font-weight: 500; color: var(--app-muted); border-bottom-color: var(--app-divider); }
+.wp-review-table tbody th, .wp-review-table td { padding: 12px 12px 12px 0; border-bottom-color: #eef1f5; }
+.wp-review-table tbody tr:last-child > * { border-bottom: 0; }
+.wp-review-table tbody th b { font-weight: 600; }
+.wp-review-table tbody th span { font-size: 12px; color: var(--app-muted); }
+.wp-review-table .wp-n { text-align: right; font-weight: 700; }
+.wp-status { min-width: 180px; }
+.wp-status small { display: block; margin-top: 2px; font-size: 12px; line-height: 18px; color: var(--app-muted); }
+.wp-state { display: inline-flex; align-items: center; height: 22px; padding: 0 8px; border-radius: 999px; background: var(--app-tile); color: var(--app-text2); font-size: 12px; font-weight: 500; }
+.wp-state.is-review { background: var(--status-in-progress-bg); color: var(--status-in-progress); }
+.wp-open { min-width: 0; padding: 0; background: none; color: var(--app-ink); font-weight: 700; }
+.wp-links a { color: var(--brand); }
+.wp-card { gap: 12px; padding: 20px; border-color: var(--app-line); border-radius: 14px; box-shadow: 0 1px 2px #1c1a170a; }
+.wp-card h3 { font-size: 16px; }
+.wp-totals { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 18px; margin: 0; font-size: 12px; color: var(--app-muted); }
+.wp-totals b { margin-right: 4px; font-size: 18px; font-weight: 700; color: var(--app-ink); font-variant-numeric: tabular-nums; }
+.wp-totals span:first-child b { font-size: 26px; }
+.wp-card-foot { margin: 0; padding-top: 12px; border-top: 1px solid #eef1f5; font-size: 12px; line-height: 18px; color: var(--app-muted); }
+.wp-trend .wp-area { fill: var(--brand-soft); fill-opacity: .7; }
+.wp-trend .wp-line { fill: none; stroke: var(--brand); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.wp-trend .wp-dot { fill: var(--brand); stroke: #fff; stroke-width: 2; }
+.wp-trend .wp-grid { stroke: var(--app-divider); stroke-dasharray: 3 4; }
+.wp-trend .wp-base { stroke: var(--app-line); }
+.wp-trend .wp-rule { stroke: #c4c8cf; }
+.wp-trend .wp-end { fill: var(--app-ink); font-size: 11px; font-weight: 600; }
+.wp-bar { gap: 0; height: 10px; border-radius: 3px; background: transparent; }
+.wp-bar i { box-shadow: inset -2px 0 #fff; }
+.wp-bar .is-review { opacity: 1; }
+.wp-bar .is-gap { background: var(--wp-gap); }
+.wp-legend .is-review { opacity: 1; }
+.wp-legend .is-gap { outline: 1px solid #c9d2dd; }
+#web-progress-matrix { margin-top: 8px; }
+@media (max-width: 760px) {
+  .wb-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .wb-kpi { padding: 14px 16px; }
+  .wb-kpi > strong { font-size: 24px; line-height: 30px; }
+  .wb-entries-sep { display: none; }
+  .wb-entries-note { margin-left: 0; }
+  .wp-reviews { padding: 16px 16px 8px; }
+}

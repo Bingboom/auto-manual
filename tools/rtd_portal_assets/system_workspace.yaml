@@ -69,6 +69,7 @@ focus:
       goal: 在 Hello-Docs-Review 调用现有的基础设施、数据、模板和语料写作，由人审核；自动构建按需使用
       action: 用参考稿复用写作技能出审核稿、在私有审核站审阅；并行写稿按 REV-47 规则（一条稿线一个写者、写稿会话对公开仓库只读），下一批 2–3 条稿线做并行试点；审核通过的稿件作为批准原稿进入 Hello-Docs 发布与追溯的衔接待立项
       items: [agent_operations.workbench]
+      metrics: [reviews]
       revs: [REV-47]
     - id: web
       horizon: now
@@ -76,6 +77,7 @@ focus:
       goal: 先收口发布基线，再用真实修订验证发布、恢复与维护全过程
       action: 完成 REV-09 修订、发布与恢复演练 → 验收 G1 → 开始 G2 维护试点
       card: web_publishing
+      metrics: [capabilities]
       gates: [G1, G2]
     - id: corpus
       horizon: support
@@ -87,10 +89,11 @@ focus:
       revs: [REV-11, REV-18, REV-35..REV-38]
     - id: ssot
       horizon: support
-      title: SSOT · 贯穿全程
+      title: 来源登记（SSOT） · 贯穿全程
       goal: 每碰到一类实际数据，就明确来源、写入者、批准者和发布快照
       action: 按需求扩展现有来源登记；无需先建完所有事实域、任务状态和审批系统
       items: [agent_operations.source_registry]
+      metrics: [sources]
       revs: [REV-44]
     - id: shared_ir
       horizon: deferred
@@ -113,6 +116,7 @@ focus:
       horizon: deferred
       title: 工作台协作 · 按试点再启动
       goal: 多 agent 写稿已在工作台发生；认领与交接工具暂不建设
+      items: [agent_operations.agent_dispatch]
       action: 先按 REV-47 的规则运行（一条稿线一个写者、写稿会话对公开仓库只读）；首个并行试点显示认领或交接成为瓶颈时，再评估重启 REV-45；不作为网页、语料、SSOT 或 Shared IR（共享底稿）的前置条件
   regions: {EU: 欧规, US: 美规, UK: 英规, JP: 日规, KR: 韩规, CN: 中规, AU: 澳规, BR: 巴西规, TW: 台规}
   skeleton_families:
@@ -517,7 +521,7 @@ now_next:
     - {id: G4, label: 协作与服务准备, revs: [REV-29..REV-31], fold: true}
   now_labels:
     REV-09: 代表目标修订、发布与恢复演练
-    REV-47: 资料开发工作台：写作规则与并行试点
+    REV-47: 写作规则与并行试点
 
 # Skills and hooks: read from the tree at build time (.agents/skills,
 # .claude/skills, .claude/settings.json, .githooks/pre-push); nothing is

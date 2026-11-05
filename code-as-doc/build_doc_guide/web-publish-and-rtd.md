@@ -25,11 +25,11 @@ group opacity; SVG cannot use fill overrides or stroke suppression.
 
 设计规范（原“设计系统”）`/workspace/design/index.html` 由同一 portal 在构建时读取 `tools/web/stylesheets.py` 拼装的 `web_manual.css`，生成颜色、字体与组件预览；“图标与素材”分页列出共享素材清单与目录里的文件，“印刷规格”分页读取 `data/layout_params.csv`。说明与预览标记维护在 `tools/rtd_portal_assets/design_system/`，见 [RTD portal](../dev/rtd_manual_portal/knowledge-pages.md#design-system-page)。
 
-说明书工作台的“数据统计”标签（`/workspace/deliverables/index.html#statistics`）在构建时读取发布清单 `docs/publish/publish_manifest.json`、`data/model_capabilities.csv`、`data/model_languages.csv`、`docs/_review/` 与 `data/asset_registry.csv`，汇总已发布网页说明书、机型能力（只列至少有一本已发布说明书的型号）和素材登记情况，可按区域和机型筛选；原系统数据页已移除，`/workspace/data/`（含 `index.html`）自动跳转到该标签并保留全部查询参数；停用 JavaScript 时提供可点击的目标链接。见 [RTD portal](../dev/rtd_manual_portal/knowledge-pages.md#数据统计)。
+说明书工作台“交付物”标签里的“数据统计”（`/workspace/deliverables/index.html#statistics`）在构建时读取发布清单 `docs/publish/publish_manifest.json`、`data/model_capabilities.csv`、`data/model_languages.csv`、`docs/_review/` 与 `data/asset_registry.csv`，汇总已发布网页说明书、机型能力（只列至少有一本已发布说明书的型号）和素材登记情况，可按区域和机型筛选；原系统数据页已移除，`/workspace/data/`（含 `index.html`）自动跳转到这里并保留全部查询参数；停用 JavaScript 时提供可点击的目标链接。见 [RTD portal](../dev/rtd_manual_portal/knowledge-pages.md#数据统计)。
 
 产品矩阵 `/products/matrix.html` 在构建时读取发布清单、各型号已发布网页说明书的规格表、说明书资料库目录与导航分组和 `data/model_capabilities.csv`，按产品线 × 容量排列电源与电池，并列出配套产品、规格对照、功能矩阵和说明书写明的搭配关系；说明书没有写明的归类和搭配维护在 `tools/rtd_portal_assets/product_matrix.json`，见 [RTD portal](../dev/rtd_manual_portal/knowledge-pages.md#product-matrix-page)。
 
-说明书工作台 `/workspace/deliverables/index.html` 由现有 RTD portal 构建时聚合发布目录、交付与语料快照、组件定义与明确目标绑定。页首四张规模卡（网页说明书、语言版本、Word 云文档、印刷交付包）链到交付物矩阵，其下分四个标签：“交付物”（默认打开，只看网页说明书：网页说明书进度与语言版本明细，见 [网页说明书进度](../dev/rtd_manual_portal/web-progress.md)）、“数据统计”（发布、机型能力与素材登记，可按区域和机型筛选）、“工作入口”（内容权威源工作地图）和“生产与资产”（交付关注、生产规模、资产管理与消费、生产投入与回流再利用，周期活动和资产总览收在“更多数据”折叠区）。锚点链接会切到目标所在标签并展开折叠；配置引用不等于实际消费。指标口径、来源时间、SHA-256 和对象列表可展开核验。无事件历史时显示 Not tracked yet，读取失败显示 Unavailable；详见 [工作台统计契约](../dev/workspace_production_evidence.md)。
+说明书工作台 `/workspace/deliverables/index.html` 由现有 RTD portal 构建时聚合发布目录、交付与语料快照、组件定义与明确目标绑定。标题旁按快照显示数据日期（交付链接、语料、网页进度，过期标“待复核”）；四个规模数（网页说明书、语言版本、Word 云文档、印刷交付包）在同一张卡里，链到交付物；其下“常用入口”一行列出产品与规格、文案与变量、翻译与术语、插图资产和冻结发布源、评审稿、来源声明。再下分三个标签：“进度”（默认打开，只看网页说明书，见 [网页说明书进度](../dev/rtd_manual_portal/web-progress.md)）、“交付物”（覆盖矩阵、语言版本明细，以及发布、机型能力与素材登记的“数据统计”，可按区域和机型筛选）和“资产与证据”（交付关注、生产规模、资产管理与消费、生产投入与回流再利用，周期活动和资产总览收在“更多数据”折叠区，快照日期、状态与 SHA-256 收在“快照与校验”）。锚点链接会切到目标所在标签并展开折叠；配置引用不等于实际消费。指标口径、来源时间、SHA-256 和对象列表可展开核验。无事件历史时显示 Not tracked yet，读取失败显示 Unavailable；详见 [工作台统计契约](../dev/workspace_production_evidence.md)。
 
 Web 引用块在深色站点主题下仍使用配对的浅底深字；源稿要求左侧灰标签、右侧白正文时，可在 `manual-callout-table` 上使用 `hb-callout-label-shaded`。已发布内容的结构勘误须更新冻结源并重新发布，修改模板本身不会改变线上快照。
 JBP-3600A EU/en 概览使用不含标题的独立正面/侧面插图，LCD 使用带引线插图和原生两列说明；见[版面修复记录](../reviews/jbp3600a-overview-lcd-20260916.md)。
@@ -162,8 +162,9 @@ Manual Center 的 HTML 构建会从已发布手册生成静态章节检索索引
 见[知识库首页](../dev/rtd_manual_portal/knowledge-pages.md#personal-workspace-entry)。分享包是可选的：缺失时 `/workspace/` 与系统建设页照常生成，只隐藏分享入口。
 知识库各页侧栏在“说明书”组后分“知识库”（首页）、“产品与市场”（产品知识、产品矩阵、市场与政策）和“说明书生产”（说明书工作台、系统建设、设计规范）三组，顶部切换为“知识库 / 说明书资料库”；“工作资料”只作站点名，说明书资料库根页不变。
 说明书资料库首页在目录之后放「网页说明书的定位与价值」板块，首屏仍是搜索：公开站只放面向读者的精简版，私有站放各主题和状态标签并链接到知识库首页的「定位与价值」；文案与状态维护见[网页说明书的定位与价值](../dev/rtd_manual_portal/web-manual-value.md)。
-系统建设页的「当前工作」标签集中展示任务优先级、完成数量、台账进度和下一步安排，
-保留原有 `#tab-progress` 链接。「系统演变」展示历史阶段、变化原因和未排期的长期方向，
+系统建设页首是阶段门进度条（G1–G3，当前门高亮，下方一行写“接下来”和其他阶段门），其下三个标签：
+「当前工作」（保留 `#tab-progress` 链接）先列近期事项（状态、事项、所属主线），再按主线 / 同期支撑 / 后置列各线的状态、目标、数字和台账进度；
+「能力与架构」收能力地图、生产流程、工作入口、系统架构、语言资产、技能与工程规模；「来源与演变」收数据来源与系统演变，原标签锚点仍可用。「系统演变」展示历史阶段、变化原因和未排期的长期方向，
 另以贯穿全过程的横向路标记录多轮维护与重构，不重复展示当前状态概览与任务进度。
 样式组件化起点与随网页手册积累完善的整本 IR 共享分开记录；Web 整本复用已实现，
 跨格式共用整本包仍待扩展，审核经验积累独立列项。历史正文及同源 YAML 摘要只维护在
@@ -181,7 +182,7 @@ RTD 构建经来源登记读取，不手改网页。摘要区分已完成、持�
 `tools/rtd_portal_assets/system_workspace.yaml`，阶段门进度来自执行台账。“当前工作”内的“当前重点”按
 配置里的 `focus.lanes` 列出“交付主线 / 同期支撑 / IR 试点 / 稳定后扩展 / 按需后置”，数字取自语料快照和骨架定义
 `docs/manifests/skeletons/*/blueprint.yaml`（按 `skeleton_id` 计数），进度取自各线列出的阶段门或台账行；发布规模看说明书工作台，系统建设页只放指向它的链接。
-“系统架构”标签（`/workspace/system/#tab-architecture`）展示人的入口、AI 能力入口与企业数据入口，围绕同一套可信内容和文档生产体系。现有多维表展示产品信息、内容模块、规格参数、多语言内容及业务维护与评审，经数据校验与快照进入 auto-manual；系统共用多维表、Git 原稿和批准素材，以及 Shared IR（共享底稿）与样式组件，支持文档生产、专业文件处理和内容查询。内容权威、组装、渲染与发布是其中的文档生产链路。MCP 与 PLM／ERP 同步及字段映射接入用虚线及“未来方向”标注；当前 Agent／Bot 单独列出。MCP 仅作为规划中的协议适配层，正式图稿修改保留人工批准。Shared IR（共享底稿）的 Web 整本与样式复用已有基础，机读语料目前仍从已发布 HTML 派生；已有基础按现有文件预翻译、AI 图稿与页码处理、PDF 标注、回写及构建技能列出，钩子标明触发与启用条件。架构视图也读取原有演进史摘要，不另建台账。
+“系统架构”（`/workspace/system/#tab-architecture`，在「能力与架构」里）展示人的入口、AI 能力入口与企业数据入口，围绕同一套可信内容和文档生产体系。现有多维表展示产品信息、内容模块、规格参数、多语言内容及业务维护与评审，经数据校验与快照进入 auto-manual；系统共用多维表、Git 原稿和批准素材，以及 Shared IR（共享底稿）与样式组件，支持文档生产、专业文件处理和内容查询。内容权威、组装、渲染与发布是其中的文档生产链路。MCP 与 PLM／ERP 同步及字段映射接入用虚线及“未来方向”标注；当前 Agent／Bot 单独列出。MCP 仅作为规划中的协议适配层，正式图稿修改保留人工批准。Shared IR（共享底稿）的 Web 整本与样式复用已有基础，机读语料目前仍从已发布 HTML 派生；已有基础按现有文件预翻译、AI 图稿与页码处理、PDF 标注、回写及构建技能列出，钩子标明触发与启用条件。架构视图也读取原有演进史摘要，不另建台账。
 
 修改状态配置后运行 `python -m tools.rtd.system_workspace check`（加 `--online` 可再核对 PR 与链接）。
 构建同时生成页面版本回执 `_static/system-workspace-revision.json`。「数据来源」内可展开「页面版本与更新」，页首与演变引言不再显示版本信息及辅助跳转提示。main 经镜像同步、RTD 成功构建后，已打开页面会检测已发布版本并提供刷新入口；提交版本属于 RTD 构建仓库，不能把镜像成功当作线上更新成功。详见 [Published version and refresh](../dev/rtd_manual_portal/system-workspace.md#published-version-and-refresh)。
@@ -189,15 +190,15 @@ RTD 构建经来源登记读取，不手改网页。摘要区分已完成、持�
 资产批次完成后复用 `python -m tools.rtd.system_workspace corpus-export` 的读取逻辑，通过 Workspace Data Refresh 导出并提交内容 PR；
 导出会把往月汇总数带进快照的 `history`，页面据此显示与上期的对比。
 柱状图是语料库句对覆盖（各语言有译文的句对占记忆库全部句对的比例），不是说明书翻译完成率，页面在图下写明。
-页内“工具与工程规模”标签先列“技能与钩子”块：构建时读取 `.agents/skills`、`.claude/skills`、`.claude/settings.json` 与 `.githooks/pre-push`，
+「能力与架构」里的“技能与钩子”块：构建时读取 `.agents/skills`、`.claude/skills`、`.claude/settings.json` 与 `.githooks/pre-push`，
 按重点线列出技能，标出未登记的技能和没有测试的钩子；`check` 对这些缺口给出警告。
-同一标签的“工程规模”块在构建时用 `git ls-files` 按顶层目录和文件类型统计代码与文档行数（行数最多的 10 个目录），拿不到 git 文件清单时显示无数据；详见 [Engineering scale](../dev/rtd_manual_portal/system-workspace.md#engineering-scale)。
+其后的“工程规模”块在构建时用 `git ls-files` 按顶层目录和文件类型统计代码与文档行数（行数最多的 10 个目录），拿不到 git 文件清单时显示无数据；详见 [Engineering scale](../dev/rtd_manual_portal/system-workspace.md#engineering-scale)。
 各数据的来源、快照、多少天算过期和取不到时的显示，统一登记在 `tools/rtd_portal_assets/source_registry.yaml`，系统建设页和说明书工作台都从这里读取，系统建设页底部列出“数据来源”表；详见
 [Source registry](../dev/rtd_manual_portal/system-workspace.md#source-registry)。
 状态配置写错时构建只跳过该页并输出警告，不影响手册站点；详见
 [System workspace page](../dev/rtd_manual_portal/system-workspace.md#system-workspace-page)。
 
-同一构建还生成 `/workspace/deliverables/` 说明书工作台：页首四张规模卡下分“交付物”“数据统计”“工作入口”“生产与资产”四个标签，默认打开“交付物”。“工作入口”标签是“Content Authority → Source Binding → Assembly / IR → Human + Machine Surface”工作地图，点击节点可查看业务工作位置、使用指引与下一步。链接配置集中在 `tools/rtd_portal_assets/manual_workbench.html`，业务位置以双平面地图为准；页面只负责导航，不直接执行构建或写入飞书。“交付物”标签自 2026-10-19 起只看网页说明书（进度与语言版本明细，网页链接在构建时从发布清单生成）。页首的 Word 云文档、印刷交付包两张规模卡和“生产与资产”仍读飞书文档构建表的快照 `tools/rtd_portal_assets/deliverables_snapshot.json`，正式交付写回并读回成功后每批自动刷新一次，候选数据通过 Hello-Docs 内容 PR 审核；手动補做统一使用 Workspace Data Refresh。飞书链接需要登录才能打开，但能打开本页的人都看得到地址；站点当前私有（Read the Docs for Business，2026-10-13 起），操作者可随时改为公开，所以按已公开处理。详见 [Deliverables page](../dev/rtd_manual_portal/knowledge-pages.md#deliverables-page)。
+同一构建还生成 `/workspace/deliverables/` 说明书工作台：页首规模卡与常用入口下分“进度”“交付物”“资产与证据”三个标签，默认打开“进度”。“Content Authority → Source Binding → Assembly / IR → Human + Machine Surface”工作地图（工作入口）在系统建设「能力与架构」，点击节点可查看业务工作位置、使用指引与下一步。链接配置集中在 `tools/rtd_portal_assets/manual_workbench.html` 与共用的 `_work_links.html`，业务位置以双平面地图为准；页面只负责导航，不直接执行构建或写入飞书。“进度”与“交付物”自 2026-10-19 起只看网页说明书（网页链接在构建时从发布清单生成）。页首的 Word 云文档、印刷交付包两个规模数和“资产与证据”仍读飞书文档构建表的快照 `tools/rtd_portal_assets/deliverables_snapshot.json`，正式交付写回并读回成功后每批自动刷新一次，候选数据通过 Hello-Docs 内容 PR 审核；手动補做统一使用 Workspace Data Refresh。飞书链接需要登录才能打开，但能打开本页的人都看得到地址；站点当前私有（Read the Docs for Business，2026-10-13 起），操作者可随时改为公开，所以按已公开处理。详见 [Deliverables page](../dev/rtd_manual_portal/knowledge-pages.md#deliverables-page)。
 
 RTD 构建中的说明书目录与发布证据每轮校验一次，由页面生成及搜索索引复用；
 构建结束或失败后清除缓存，下次构建仍重新校验。见

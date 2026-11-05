@@ -32,7 +32,7 @@ Published HTML → Semantic Extraction → manual-knowledge.json
 ```
 
 属于 **HTML-derived Compatibility Surface**，不是与网页同源直接生成的
-Native Machine Surface。工作台「工作入口」图已标注
+Native Machine Surface。系统建设「能力与架构」的工作入口图已标注
 「当前：HTML-derived · Compatibility」。这一现实必须在 Workspace、Manifest
 和文档中如实表达，不得描述成 IR-native。
 
