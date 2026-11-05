@@ -1,0 +1,538 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>JE-2000F/EU DE Operation flow preview</title><style>/* Base-art operation figures (tools/web_base_art_operation.py).
+   Frozen, text-free artwork carries the product drawing; live, searchable copy
+   sits on the anchors the target contract declares for that exact art hash.
+   Every rule is scoped to .hb-base-art-live-copy, so other figures and the
+   approved composites keep their existing presentation. */
+
+.hb-base-art-live-copy > .hb-operation-stage {
+  container-type: inline-size;
+}
+
+/* The canvas holds the art box and the steps; the art box is exactly the art,
+   so pill, clock and duration anchors resolve against the drawing alone. */
+.hb-base-art-live-copy .hb-operation-canvas,
+.hb-base-art-live-copy .hb-operation-art-box {
+  position: relative;
+}
+
+/* The art already draws the brackets, pills and clock the copy belongs to, so
+   overlays are transparent: nothing may cover a line of the drawing. */
+.hb-base-art-live-copy .hb-operation-canvas > .hb-operation-steps {
+  position: absolute;
+  inset: 0;
+  width: auto;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  pointer-events: none;
+}
+
+/* Each anchor is a drawn bracket arm: the label sits on it and the
+   instruction hangs below, however many lines the language needs. The offset
+   is the label's line box (2.8cqw x 1.1). */
+.hb-base-art-live-copy .hb-operation-canvas .hb-operation-step {
+  position: absolute;
+  top: calc(var(--hb-step-y) - 3.08cqw);
+  left: var(--hb-step-x);
+  width: var(--hb-step-width);
+  margin: 0;
+  pointer-events: auto;
+}
+
+.hb-base-art-live-copy .hb-operation-step .line {
+  font-weight: 400;
+}
+
+/* A label is one word on a drawn arm ("Encendido"): it may overhang its step
+   box by a few pixels, never split mid-word onto a second line. */
+.hb-base-art-live-copy .hb-operation-step-label,
+.hb-base-art-live-copy .hb-operation-mode-label {
+  display: block;
+  font-size: 2.8cqw;
+  font-weight: 700;
+  line-height: 1.1;
+  overflow-wrap: normal;
+}
+
+.hb-base-art-live-copy .hb-operation-step-label strong {
+  font-weight: inherit;
+}
+
+/* Two instruction lines (3.3cqw) must end above art drawn below an arm, such
+   as the main-power clock 3.85cqw under its lower arm. */
+.hb-base-art-live-copy .hb-operation-step-instruction {
+  display: block;
+  font-size: 1.5cqw;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.hb-base-art-live-copy .hb-operation-prerequisite {
+  position: absolute;
+  top: var(--hb-y);
+  left: var(--hb-x);
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: var(--hb-width);
+  height: var(--hb-height);
+  padding: 0 0 0 1.9cqw;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  font-size: 1.85cqw;
+  font-weight: 700;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+/* The page paragraph rhythm (#furo-main-content p) must not push the copy off
+   the pill's centre. */
+#furo-main-content .hb-base-art-live-copy .hb-operation-prerequisite > p {
+  margin: 0;
+}
+
+.hb-base-art-live-copy .hb-operation-duration {
+  position: absolute;
+  top: var(--hb-y);
+  left: var(--hb-x);
+  font-size: 2.1cqw;
+  line-height: 1;
+  transform: translateY(-50%);
+}
+
+.hb-base-art-live-copy .hb-operation-footer {
+  position: relative;
+  box-sizing: border-box;
+  padding: 0 1.8cqw 2.4cqw var(--hb-footer-x);
+}
+
+.hb-base-art-live-copy .hb-operation-footer > .hb-operation-duration {
+  top: 0.3em;
+  right: calc(100% - var(--hb-footer-x) + 1.4cqw);
+  left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.35em;
+  transform: none;
+}
+
+/* The same clock glyph the IDML panel places from icon_clock_3s.png. */
+.hb-base-art-live-copy .hb-operation-footer > .hb-operation-duration::before,
+.hb-operation-copy-flow .hb-operation-duration::before {
+  content: "";
+  flex: none;
+  width: 1.45em;
+  height: 1.45em;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%23343031'/%3E%3Cpath d='M12 5.2V12h5.4' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+}
+
+.hb-base-art-live-copy .hb-operation-footer .hb-operation-steps {
+  position: static;
+  width: auto;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+}
+
+.hb-base-art-live-copy .hb-operation-footer .hb-operation-step {
+  margin: 0;
+}
+
+/* Footer-panel cards (LED): the lead is its own soft panel above the art, and
+   the art shares the row below with numbered steps. The text-free art carries
+   no numbers or step glyphs, so they are drawn here, as the IDML card draws
+   them natively. The lead keeps its prerequisite role; only this rule moves
+   it off the drawn-pill geometry the other layouts use. */
+.hb-base-art-live-copy .hb-operation-prerequisite.hb-operation-lead {
+  position: static;
+  display: block;
+  box-sizing: border-box;
+  width: auto;
+  min-width: 0;
+  max-width: none;
+  height: auto;
+  margin: 2.2cqw 2.2cqw 0;
+  padding: 1.5cqw 2.4cqw;
+  border-radius: 2.6cqw;
+  background: var(--hb-surface);
+  font-size: 1.85cqw;
+  font-weight: 400;
+  line-height: 1.45;
+  white-space: normal;
+}
+
+.hb-base-art-live-copy .hb-operation-panel {
+  display: grid;
+  grid-template-columns: var(--hb-art-width) minmax(0, 1fr);
+  align-items: center;
+  column-gap: 1.2cqw;
+  padding: 1.2cqw 2.2cqw 2.2cqw;
+}
+
+/* One step per row: the editable LED fallback lays its steps out in three
+   columns (web_manual.css); the card stacks them beside the art. */
+.hb-base-art-live-copy .hb-operation-panel > .hb-operation-steps {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2.2cqw;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  counter-reset: hb-panel-step;
+}
+
+.hb-base-art-live-copy .hb-operation-panel .hb-operation-step {
+  display: grid;
+  grid-template-columns: 3.4cqw 4.8cqw minmax(0, 1fr);
+  align-items: center;
+  column-gap: 1.4cqw;
+  margin: 0;
+  counter-increment: hb-panel-step;
+}
+
+.hb-base-art-live-copy .hb-operation-panel .hb-operation-step::before {
+  content: counter(hb-panel-step);
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+  width: 3.4cqw;
+  height: 3.4cqw;
+  border: 0.2cqw solid var(--hb-text);
+  border-radius: 50%;
+  font-size: 1.9cqw;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.hb-base-art-live-copy .hb-operation-step-marker {
+  justify-self: center;
+}
+
+.hb-base-art-live-copy .hb-operation-marker-bulb-lit,
+.hb-base-art-live-copy .hb-operation-marker-bulb-off {
+  width: 3.6cqw;
+  height: 3.6cqw;
+  background: center / contain no-repeat;
+}
+
+.hb-base-art-live-copy .hb-operation-marker-bulb-lit {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23343031' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 1.6v2M5.3 4.3l1.4 1.4M18.7 4.3l-1.4 1.4'/%3E%3Cpath d='M12 7a5 5 0 0 0-3.1 8.9c.6.5 1 1.2 1 2V19h4.2v-1.1c0-.8.4-1.5 1-2A5 5 0 0 0 12 7z'/%3E%3Cpath d='M10 21.3h4'/%3E%3C/svg%3E");
+}
+
+.hb-base-art-live-copy .hb-operation-marker-bulb-off {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23343031' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 7a5 5 0 0 0-3.1 8.9c.6.5 1 1.2 1 2V19h4.2v-1.1c0-.8.4-1.5 1-2A5 5 0 0 0 12 7z'/%3E%3Cpath d='M10 21.3h4'/%3E%3C/svg%3E");
+}
+
+/* The badge is one word in every locale ("SOS"): it never wraps inside its
+   pill, and the marker column is sized to hold it. */
+.hb-base-art-live-copy .hb-operation-marker-sos {
+  white-space: nowrap;
+  padding: 0.25cqw 0.7cqw;
+  border: 0.18cqw solid var(--hb-text);
+  border-radius: 999px;
+  font-size: 1.45cqw;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.hb-base-art-live-copy .hb-operation-panel .hb-operation-step-instruction {
+  font-size: 1.75cqw;
+  line-height: 1.35;
+}
+
+/* Base-art reference figures (tools/web_base_art_reference.py): the registered
+   art sits at the bottom of a panel of its own measured tone, a top band holds
+   copy the print card places above the drawing, and the figure's source lines
+   sit on the rectangles the contract declares, as percentages of the panel. */
+.hb-reference-figure.hb-base-art-live-copy .hb-reference-art-panel {
+  position: relative;
+  container-type: inline-size;
+  padding-top: var(--hb-panel-top);
+  overflow: hidden;
+  border-radius: var(--hb-panel-radius);
+  background: var(--hb-panel-fill);
+}
+
+/* The art's own hairline white edge and corner cut-outs would show as seams
+   inside the panel; clip them so the panel tone runs through. */
+.hb-reference-figure.hb-base-art-live-copy .hb-reference-art-panel > .hb-reference-art {
+  display: block;
+  border-radius: 0;
+  clip-path: inset(0 0.24% 0.65% 0.16%);
+}
+
+.hb-reference-figure.hb-base-art-live-copy .hb-reference-live-label {
+  position: absolute;
+  top: var(--hb-y);
+  left: var(--hb-x);
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: var(--hb-width);
+  min-height: var(--hb-height);
+  color: var(--hb-text);
+  font-size: 1.99cqw;
+  line-height: 1.16;
+}
+
+/* A pill grows downward when a language needs a second line. */
+.hb-reference-figure.hb-base-art-live-copy .hb-reference-live-pill {
+  justify-content: center;
+  padding: 0.3cqw 1.2cqw;
+  border-radius: 999px;
+  background: var(--hb-fill);
+  text-align: center;
+}
+
+/* Narrow screens: the drawing scales below readable overlay sizes, so copy
+   stacks under the art in source order instead of shrinking. */
+/* Opt-in for art without printed text containers. Copy grows in document
+   flow; no art-relative anchors or fixed text height apply to this carrier. */
+.hb-operation-copy-flow > .hb-operation-stage {
+  overflow: visible;
+}
+
+.hb-operation-copy-flow .hb-operation-flow-row {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+}
+
+.hb-operation-copy-flow .hb-operation-flow-row > .hb-operation-art {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  min-width: 0;
+}
+
+.hb-operation-copy-flow .hb-operation-steps {
+  position: static;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  min-width: 0;
+  min-height: 0;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+
+.hb-operation-copy-flow .hb-operation-step {
+  position: static;
+  width: auto;
+  min-width: 0;
+  margin: 0;
+}
+
+.hb-operation-copy-flow .hb-operation-step-label {
+  font-size: 1rem;
+  overflow-wrap: anywhere;
+}
+
+.hb-operation-copy-flow .hb-operation-step-instruction {
+  font-size: 0.88rem;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.hb-operation-copy-flow .hb-operation-prerequisite {
+  position: static;
+  display: block;
+  width: auto;
+  min-width: 0;
+  max-width: none;
+  height: auto;
+  margin: 0.65rem;
+  padding: 0.5rem 0.75rem;
+  border: 0;
+  border-radius: 0.8rem;
+  background: var(--hb-surface);
+  font-size: 0.88rem;
+  line-height: 1.45;
+  white-space: normal;
+  overflow: visible;
+  overflow-wrap: anywhere;
+}
+
+.hb-operation-copy-flow .hb-operation-supporting-copy {
+  font-size: 0.88rem;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.hb-operation-copy-flow .hb-operation-duration {
+  position: static;
+  display: flex;
+  align-items: center;
+  gap: 0.35em;
+  margin-top: 0.4rem;
+  font-size: 0.88rem;
+  transform: none;
+}
+
+@media (max-width: 760px) {
+  .hb-base-art-live-copy > .hb-operation-stage {
+    display: block;
+  }
+
+  .hb-base-art-live-copy .hb-operation-canvas > .hb-operation-steps {
+    position: static;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+    padding: 0.55rem 0.65rem;
+    border-top: 1px solid var(--hb-line-soft);
+    pointer-events: auto;
+  }
+
+  .hb-base-art-live-copy .hb-operation-canvas .hb-operation-step {
+    position: static;
+    width: auto;
+    transform: none;
+  }
+
+  .hb-base-art-live-copy .hb-operation-step-label,
+  .hb-base-art-live-copy .hb-operation-mode-label {
+    font-size: 1rem;
+  }
+
+  .hb-base-art-live-copy .hb-operation-step-instruction {
+    font-size: 0.88rem;
+  }
+
+  /* The prerequisite stays on the art's own pill, but readable: it may grow
+     into the blank area the contract declares safe (--hb-max-width) and fills
+     with the pill tone the contract measured from that art (--hb-fill), so the
+     drawn pill never shows as an empty box. */
+  .hb-base-art-live-copy .hb-operation-prerequisite {
+    width: max-content;
+    min-width: var(--hb-width);
+    max-width: var(--hb-max-width, var(--hb-width));
+    height: auto;
+    min-height: var(--hb-height);
+    padding: 0.28rem 0.7rem;
+    border-radius: 999px;
+    background: var(--hb-fill);
+    font-size: 0.78rem;
+    white-space: normal;
+  }
+
+  .hb-base-art-live-copy .hb-operation-art-box > .hb-operation-duration {
+    display: none;
+  }
+
+  .hb-base-art-live-copy .hb-operation-footer {
+    padding: 0.55rem 0.65rem;
+    border-top: 1px solid var(--hb-line-soft);
+  }
+
+  .hb-base-art-live-copy .hb-operation-footer > .hb-operation-duration {
+    position: static;
+    margin-bottom: 0.3rem;
+    font-size: 0.88rem;
+  }
+
+  .hb-base-art-live-copy .hb-operation-prerequisite.hb-operation-lead {
+    margin: 0.65rem 0.65rem 0;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.8rem;
+    font-size: 0.88rem;
+  }
+
+  .hb-base-art-live-copy .hb-operation-panel {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 0.5rem;
+    padding: 0.5rem 0.65rem 0.65rem;
+  }
+
+  .hb-base-art-live-copy .hb-operation-panel > .hb-operation-steps {
+    gap: 0.6rem;
+  }
+
+  .hb-base-art-live-copy .hb-operation-panel .hb-operation-step {
+    grid-template-columns: 1.6rem 2.5rem minmax(0, 1fr);
+    column-gap: 0.55rem;
+  }
+
+  .hb-base-art-live-copy .hb-operation-panel .hb-operation-step::before {
+    width: 1.6rem;
+    height: 1.6rem;
+    border-width: 1.5px;
+    font-size: 0.9rem;
+  }
+
+  .hb-base-art-live-copy .hb-operation-marker-bulb-lit,
+  .hb-base-art-live-copy .hb-operation-marker-bulb-off {
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+
+  .hb-base-art-live-copy .hb-operation-marker-sos {
+    padding: 0.1rem 0.3rem;
+    border-width: 1.5px;
+    font-size: 0.72rem;
+  }
+
+  .hb-base-art-live-copy .hb-operation-panel .hb-operation-step-instruction {
+    font-size: 0.88rem;
+  }
+
+  /* The drawing scales below readable label sizes: the source lines stack
+     under the art in source order, on the panel tone. */
+  .hb-reference-figure.hb-base-art-live-copy .hb-reference-art-panel {
+    padding-top: 0;
+    padding-bottom: 0.55rem;
+  }
+
+  .hb-reference-figure.hb-base-art-live-copy .hb-reference-live-label {
+    position: static;
+    display: block;
+    width: auto;
+    min-height: 0;
+    margin: 0.45rem 0.65rem 0;
+    font-size: 0.88rem;
+  }
+
+  .hb-reference-figure.hb-base-art-live-copy .hb-reference-live-pill {
+    width: fit-content;
+    max-width: calc(100% - 1.3rem);
+    padding: 0.15rem 0.7rem;
+  }
+
+  .hb-operation-copy-flow .hb-operation-flow-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hb-operation-copy-flow .hb-operation-prerequisite {
+    width: auto;
+    min-width: 0;
+    max-width: none;
+    min-height: 0;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.8rem;
+    background: var(--hb-surface);
+    font-size: 0.88rem;
+  }
+}
+</style><style>body{font:16px system-ui,sans-serif;color:#272727;max-width:1100px;margin:auto;padding:24px}h1{font-size:1.5rem}h2{margin:2rem 0 .75rem}section{border-top:1px solid #ddd}figure{margin:0}.hb-operation-figure{--hb-surface:#f5f5f5;--hb-line-soft:#ddd}.line{display:block}.hb-operation-step .line{display:block}.hb-operation-supporting-copy .line{margin:.35rem 0}</style></head><body><h1>JE-2000F/EU DE Operation flow preview</h1><p>Preview on shared renderer d6b65465 with candidate illustrations. The full-target figure gate remains blocked by the missing JE-2000F/EU Overview instance; this is a three-slot layout review only. The screenshots show the figures before the adjacent source caution was appended; formal CUA browser acceptance is pending.</p><section><h2>Hauptstromversorgung Ein/Aus</h2><figure class="hb-operation-figure hb-operation-layout-status-right hb-base-art-live-copy hb-operation-copy-flow" data-operation-id="main-power" data-source-fragment-sha256="26bc24685e52a5100a97eb9512a95de497af1edfe36518beceddd8b281ad0389" data-web-base-art-ref="operation/main_power" data-web-presentation-mode="base-art-live-copy" data-web-replace-key="operation.main-power"><div class="hb-operation-stage"><div class="hb-operation-flow-row"><img alt="" class="hb-operation-art" src="de_power.png" style="width: 360px;"/><div class="line-block hb-operation-steps" data-callout-id="operation.main-power.steps"><div class="hb-operation-step" data-callout-id="operation.main-power.on" data-step-id="on"><div class="line" data-step-id="on" data-step-part="summary"><span class="hb-operation-step-label">Ein</span><span class="hb-operation-step-instruction">Einmal drücken.</span></div></div><div class="hb-operation-step" data-callout-id="operation.main-power.off" data-step-id="off"><div class="line" data-step-id="off" data-step-part="summary"><span class="hb-operation-step-label">Aus</span><span class="hb-operation-step-instruction">3 s lang gedrückt halten.</span></div><div aria-hidden="true" class="hb-operation-duration">3s</div></div></div></div><div class="hb-operation-supporting-copy" data-callout-id="operation.main-power.supporting-copy"><div class="line"><strong>Standard-Standby-Zeit:</strong> 2 Stunden.</div><div class="line">Das Produkt schaltet sich nach 2 Stunden Inaktivität automatisch aus, wenn weder geladen noch entladen wird.</div><div class="line">*Die Standby-Zeit kann in der Jackery-App eingestellt werden.</div><div class="line">Wenn der Energiesparmodus aktiviert ist, schaltet sich das Produkt automatisch nach 12 Stunden aus, wenn die AC- oder DC/USB-Einschalttaste eingeschaltet ist, das Produkt jedoch weder lädt noch entlädt.</div></div></div></figure></section>
+<section><h2>AC-Ausgang Ein/Aus</h2><figure class="hb-operation-figure hb-operation-layout-status-right hb-base-art-live-copy hb-operation-copy-flow" data-operation-id="ac-output" data-source-fragment-sha256="003e1edc68e5eaf7beeca38b1ceb31c56010eb16595a7c795b728c8c7e4e6ee6" data-web-base-art-ref="operation/ac_output" data-web-presentation-mode="base-art-live-copy" data-web-replace-key="operation.ac-output"><div class="hb-operation-stage"><div class="hb-operation-prerequisite" data-callout-id="operation.ac-output.prerequisite"><p><strong>Voraussetzung</strong>: Das Produkt ist eingeschaltet.</p></div><div class="hb-operation-flow-row"><img alt="" class="hb-operation-art" src="de_ac.png" style="width: 360px;"/><div class="line-block hb-operation-steps" data-callout-id="operation.ac-output.steps"><div class="hb-operation-step" data-callout-id="operation.ac-output.on" data-step-id="on"><div class="line hb-operation-step-label" data-step-id="on" data-step-part="label"><strong>Ein</strong></div><div class="line hb-operation-step-instruction" data-step-id="on" data-step-part="instruction">Einmal drücken</div></div><div class="hb-operation-step" data-callout-id="operation.ac-output.off" data-step-id="off"><div class="line hb-operation-step-label" data-step-id="off" data-step-part="label"><strong>Aus</strong></div><div class="line hb-operation-step-instruction" data-step-id="off" data-step-part="instruction">Einmal drücken</div></div></div></div></div></figure></section>
+<section><h2>DC 12V/USB-Ausgang Ein/Aus</h2><figure class="hb-operation-figure hb-operation-layout-status-right hb-base-art-live-copy hb-operation-copy-flow" data-operation-id="dc-usb-output" data-source-fragment-sha256="896337c1b26d03b73565987ac28fb1fbb224e6536afec6a4921a960b2c8f9f25" data-web-base-art-ref="operation/dc_usb_output" data-web-presentation-mode="base-art-live-copy" data-web-replace-key="operation.dc-usb-output"><div class="hb-operation-stage"><div class="hb-operation-prerequisite" data-callout-id="operation.dc-usb-output.prerequisite"><p><strong>Voraussetzung</strong>: Das Produkt ist eingeschaltet.</p></div><div class="hb-operation-flow-row"><img alt="" class="hb-operation-art" src="de_dc.png" style="width: 360px;"/><div class="line-block hb-operation-steps" data-callout-id="operation.dc-usb-output.steps"><div class="hb-operation-step" data-callout-id="operation.dc-usb-output.on" data-step-id="on"><div class="line hb-operation-step-label" data-step-id="on" data-step-part="label"><strong>Ein</strong></div><div class="line hb-operation-step-instruction" data-step-id="on" data-step-part="instruction">Einmal drücken</div></div><div class="hb-operation-step" data-callout-id="operation.dc-usb-output.off" data-step-id="off"><div class="line hb-operation-step-label" data-step-id="off" data-step-part="label"><strong>Aus</strong></div><div class="line hb-operation-step-instruction" data-step-id="off" data-step-part="instruction">Einmal drücken</div></div></div></div></div></figure><div class="adjacent-warning"><h3>Angrenzender Warnhinweis</h3><table class="manual-callout-table" style="width:100%; border-collapse:collapse; margin:0 0 16px 0;"><tbody><tr><td class="manual-callout-label" style="width:16%; border:1px solid #000; padding:6px 8px; vertical-align:top;"><p><strong>VORSICHT</strong></p></td><td class="manual-callout-body" style="border:1px solid #000; padding:6px 8px; vertical-align:top;"><ul class="simple">
+<li><p><strong>Der USB-C-100-W-Anschluss ist ein Hochleistungs-Ausgangsanschluss des USB-PD-Typs Power Source 3 (PS3).</strong> Wenn das angeschlossene Benutzergerät oder Zubehör die Sicherheitsanforderungen nicht erfüllt, kann Brandgefahr bestehen. Stellen Sie vor der Verwendung dieses Anschlusses sicher, dass das angeschlossene Gerät oder Zubehör über Brandschutz verfügt.</p></li>
+<li><p>Schließen Sie Jackery Explorer 2000 nur an Geräte oder Zubehör an, die den Abschnitten 6.3, 6.4 und 6.5 der IEC/EN/UL 62368-1 (oder anderen gleichwertigen Normen) entsprechen.</p></li>
+<li><p>Verwenden Sie für die maximale Ausgangsleistung das USB-C-auf-USB-C-5 A-Kabel (20 V DC/5 A, 100 W).</p></li>
+</ul>
+</td></tr></tbody></table></div></section></body></html>
