@@ -5,16 +5,43 @@ other portal surfaces. Add new notes for this surface here, not to the hub.
 
 ## System workspace page
 
-The 「当前工作」 tab keeps the existing `#tab-progress` anchor and owns current
-priorities, completion counts, ledger progress and next actions. Its metrics
-appear only in this panel. 「系统演变」 owns the historical stages, reasons for
-change, long-term directions and cross-cutting maintenance history. The two
-panels remain directly accessible through the shared tabs without repeating a
-current-state overview or navigation-hint paragraphs. The evolution introduction
-shows only its title and narrative; update metadata and provenance are available
-under 「数据来源」.
+Since the 2026-11 redesign the page has the 阶段门 stepper above three tabs.
 
-The 「系统架构」 tab (`#tab-architecture`) reads optional `architecture` from
+- **阶段门** (`#gates`, `stepper_view`): the unfolded gates G1–G3 in order, each with
+  its count, bar and ledger tally. The first gate not yet done is 当前 and filled
+  with the accent; the next one reads 「G1 验收后开始」. A 接下来 line names the
+  current gate's open ledger rows when `now_next.now_labels` labels all of them
+  (else counts them), then 验收 the gate and starts the next; the folded gates
+  (IDML, G4) follow on the same line.
+- **「当前工作」** (`#tab-progress`, kept): the focus note, **近期事项** (`#now-next`, one
+  row per `now_labels` entry: a ledger chip such as 在做 or 待做, the item, and the
+  lane it belongs to, e.g. 「网页发布与维护闭环 · G1 最后一项」; a lane listing the
+  row in its own `revs` wins over a lane holding it through a gate), then the lanes
+  by horizon. A lane card shows its name (the title before 「 · 」; the rest is its
+  condition, shown in its footer), a status chip (its one capability item's
+  status, else its card's), its goal, its figures, and a footer with its ledger
+  tally and the 能力与证据 link (its card, or the card of its first item). The
+  后置 · 按需 lanes are rows of one card. Item titles in `now_labels` name the work
+  only, never the lane; REV ids stay out of the body text and remain in the links.
+- **「能力与架构」** (`#tab-capabilities`): the capability map and production flow,
+  工作入口 (`manual_workbench.html`, moved from 说明书工作台), the system architecture
+  (`#tab-architecture`), language assets (`#tab-corpus`) and skills and engineering
+  scale (`#tab-tooling`), with a row of jump links. 待复核 marks gather here.
+- **「来源与演变」** (`#tab-sources`): 数据来源, then 系统演变 (`#tab-evolution`).
+
+Status colours follow the 知识库首页: 可用 and 已验证 green, 建设中 blue, 已规划 a
+dashed grey ring. 「系统演变」 owns the historical stages, reasons for change,
+long-term directions and cross-cutting maintenance history. The evolution
+introduction shows only its title and narrative; update metadata and provenance
+are available under 「数据来源」.
+
+Lane figures (`focus.lanes[].metrics`) are `publications`, `regions`, `corpus`,
+`skeletons`, `reviews` (the 审核稿 rows of the 网页说明书进度 snapshot, the
+workbench's output: 审核中 本 and 待研发确认), `capabilities` (the lane card's items
+available / all, with their short names) and `sources` (the registered data
+domains). A figure whose source is unreadable shows 无数据, never zero.
+
+The system architecture section (`#tab-architecture`) reads optional `architecture` from
 the same marked history summary as System Evolution. Each node has a status
 and repository evidence; malformed architecture follows the evolution fallback,
 while older summaries without this optional field remain readable.
@@ -111,10 +138,9 @@ Maintenance contract:
   Text is escaped, not executed as HTML.
 
 
-`/workspace/system/` (系统建设) opens on 当前工作 with the current focus: the lanes being
-ordered by delivery priority, each with its next action and ledger progress.
-Stage acceptance follows immediately; corpus statistics, capabilities and evidence
-remain available in their respective tabs. The page is built at RTD time from
+`/workspace/system/` (系统建设) opens with the 阶段门 stepper and 当前工作: 近期事项,
+then the lanes ordered by delivery priority, each with its figures and ledger
+progress. Corpus statistics, capabilities and evidence sit in 能力与架构. The page is built at RTD time from
 frozen inputs only. The build never contacts Feishu or GitHub; browser version
 checks read only the already-published same-origin receipt.
 
@@ -123,12 +149,11 @@ checks read only the already-published same-origin receipt.
   labels. It is maintained in auto-manual and reaches Hello-Docs through the
   mirror.
 - `docs/publish/publish_manifest.json` gives the publication counts, which
-  说明书工作台 owns; this page shows none and links there below its metric
-  row. The REV-04 caliber is the site's vocabulary: a 说明书 (unit 本) is one
+  说明书工作台 owns; this page shows none. The REV-04 caliber is the site's vocabulary: a 说明书 (unit 本) is one
   model × region, a 语言版本 (unit 个) one model × region × language; a
   repeated route, version or rebuild counts once, and 份 is never a unit.
   `publication_facts` in `tools/rtd/production_evidence.py` is the single
-  count for 说明书工作台 (its 数据统计 tab included, whose filters recount
+  count for 说明书工作台 (its 数据统计 included, whose filters recount
   distinct values in the browser) and 产品矩阵; this page wraps it for the
   `publications` and `regions` lane metrics, with `editions` = `variants`.
 - The execution ledger named by `now_next.source` supplies REV statuses, the
@@ -218,9 +243,8 @@ success and served page. A webhook returning 200 is only trigger acceptance.
 `tools/rtd/workspace_revision.py` stamps the HTML and
 `_static/system-workspace-revision.json` with the same checkout SHA and UTC build
 time. On RTD the SHA belongs to the Hello-Docs checkout, not auto-manual/main.
-The system page's 「页面版本与更新」 disclosure sits inside 「数据来源」;
-it no longer occupies the page header. The tab opens with a pointer to the
-daily entries (知识库首页, 说明书工作台「工作入口」).
+The system page's 「页面版本与更新」 disclosure sits inside 「数据来源」; the page
+header shows only a 页面版本 chip that links there.
 The page displays that identity. Its JS probes only the same-origin deployed
 receipt on entry, every minute while visible, and on returning to the tab.
 A different, later-built receipt offers **刷新到新版本**, preserving the URL anchor
@@ -302,7 +326,7 @@ and hooks without tests. A lane mapping that names a missing skill is an error.
 
 ### Engineering scale
 
-The 工程规模 block (`#codebase`) follows 技能与钩子 in the 工具与工程规模 tab.
+The 工程规模 block (`#codebase`) follows 技能与钩子 in 「能力与架构」.
 At build time `tools/rtd/system_tooling.py` lists the checkout with
 `git ls-files` and counts the lines of every tracked `.py`, `.md`, `.rst`,
 `.yaml`/`.yml` and `.csv` file per top-level directory and file type, as an

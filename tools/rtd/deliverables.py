@@ -419,8 +419,12 @@ def deliverables_page_context(app, assets: Path, names: dict[tuple[str, str], st
     books = publication_facts(targets or [])["books_by_region"]
     view["books_by_region"] = [f"{labels.get(region, region)} {books[region]}"
                                for region in sorted(books, key=lambda code: (-books[code], code))]
+    # The 语言版本 KPI's sub-line: published languages, one per language code.
+    view["languages"] = len({str(target["lang"]) for target in targets or [] if target.get("lang")})
     from tools.workspace_freshness import freshness
     view["freshness"] = freshness(repo_root(), registry or {}, today)
+    # The Word and print KPIs come from the Feishu 交付快照: they carry its state when it is not 有效.
+    view["delivery_freshness"] = next((row for row in view["freshness"] if row["kind"] == "deliverables"), None)
     view["page_built_at"] = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
     view["asset_v"] = asset_versions(assets)
     view["production"] = production_context(

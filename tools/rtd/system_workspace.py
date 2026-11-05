@@ -97,10 +97,10 @@ CORPUS_UNLABELLED = "(未标注)"
 CORPUS_HISTORY_KEYS = ("exported_at", "sentence_pairs", "terms", "approved")
 CORPUS_HISTORY_KEEP = 24  # months of headline figures carried by each snapshot
 HORIZON_LABELS = {
-    "now": "01 · 当前主线", "support": "同期 · 持续支撑",
-    "next": "02 · 代表试点", "later": "03 · 稳定后扩展", "deferred": "后置 · 按需",
+    "now": "当前主线", "support": "同期 · 持续支撑",
+    "next": "代表试点", "later": "稳定后扩展", "deferred": "后置 · 按需",
 }
-FOCUS_METRICS = ("publications", "regions", "corpus", "skeletons")
+FOCUS_METRICS = ("publications", "regions", "corpus", "skeletons", "reviews", "capabilities", "sources")
 SKELETON_SCHEMA = "skeleton-blueprint/v1"
 _UNSTATUSED = frozenset({"hero", "focus"})  # evidence-bearing entries without a status
 
@@ -914,9 +914,45 @@ def _metric(label: str, value: object = None, unit: str = "", sub: str = "", del
     return {"label": label, "no_data": False, "value": str(value), "unit": unit, "sub": sub, "delta": delta}
 
 
+def _review_figure(reviews: list[dict[str, Any]] | None = None, **_: Any) -> dict[str, Any]:
+    """The workbench's output: the 审核稿 rows of the 网页说明书进度 snapshot and their open questions."""
+    if reviews is None:
+        return _metric("工作台输出 · 审核中")
+    return _metric("工作台输出 · 审核中", len(reviews), "本",
+                   f"待研发确认 {sum(int(row.get('open') or 0) for row in reviews)} 项")
+
+
+def _capability_figure(card: dict[str, Any] | None = None, **_: Any) -> dict[str, Any]:
+    """The lane card's items available out of all, with their short names."""
+    if not card or not card["entries"]:
+        return _metric("能力")
+    ready = sum(entry["status"] == "available" for entry in card["entries"])
+    return _metric(f"{card['title']}能力", f"{ready} / {len(card['entries'])}", "可用",
+                   " · ".join(entry["short"] for entry in card["entries"]))
+
+
+def _source_figure(sources: list[dict[str, Any]] | None = None, **_: Any) -> dict[str, Any]:
+    """The data domains the source registry names."""
+    if not sources:
+        return _metric("已登记来源")
+    return _metric("已登记来源", len(sources), "类", "以哪里为准、多久算过期、取不到时显示什么")
+
+
+# Lane figures read from what the page already holds rather than from the manifest or a snapshot of their own.
+_LANE_FIGURES = {"reviews": _review_figure, "capabilities": _capability_figure, "sources": _source_figure}
+
+
 def lane_metrics(name: str, *, focus: dict[str, Any], facts: dict[str, Any] | None,
-                 corpus: dict[str, Any] | None, skeletons: list[dict[str, str]] | None) -> list[dict[str, Any]]:
-    """The figures one focus lane shows; each source missing renders as 无数据, never as zero."""
+                 corpus: dict[str, Any] | None, skeletons: list[dict[str, str]] | None,
+                 reviews: list[dict[str, Any]] | None = None, card: dict[str, Any] | None = None,
+                 sources: list[dict[str, Any]] | None = None) -> list[dict[str, Any]]:
+    """The figures one focus lane shows; each source missing renders as 无数据, never as zero.
+
+    ``reviews`` are the 审核稿 rows of the 网页说明书进度 snapshot (the workbench's output), ``card`` the
+    lane's capability card and ``sources`` the rows of the source registry.
+    """
+    if name in _LANE_FIGURES:
+        return [_LANE_FIGURES[name](reviews=reviews, card=card, sources=sources)]
     if name == "publications":
         if not facts:
             return [_metric("网页说明书")]
@@ -959,45 +995,118 @@ def _gate_and_now_views(contract: dict[str, Any], ledger: Ledger | None, lanes: 
     if ledger is None:
         return gates, now
     for gate in contract["now_next"]["gates"]:
+        revs = expand_revs(gate["revs"])
         gates.append({"id": gate["id"], "label": gate["label"], "fold": bool(gate.get("fold")),
                       "lanes": [_lane_tag(lane) for lane in lanes if gate["id"] in (lane.get("gates") or [])],
-                      **_progress(expand_revs(gate["revs"]), ledger)})
+                      "remaining": [rev for rev in revs if ledger.statuses.get(rev, "planned") != "done"],
+                      **_progress(revs, ledger)})
+    gates_by_id = {gate["id"]: gate for gate in gates}
     for rev, label in (contract["now_next"].get("now_labels") or {}).items():
         state = ledger.statuses.get(rev, "planned")
-        now.append({"rev": rev, "label": label, "status": state,
+        now.append({"rev": rev, "label": label, "status": state, "context": _now_context(rev, lanes, gates_by_id),
                     "status_label": LEDGER_LABELS.get(state, state), "href": f"{ledger_url}#{rev.lower()}"})
     return gates, now
 
 
+def _now_context(rev: str, lanes: list[dict[str, Any]], gates_by_id: dict[str, dict[str, Any]]) -> str:
+    """Which lane a 近期事项 row belongs to, and its place in that lane's gate: "网页发布与维护闭环 · G1 最后一项".
+
+    A lane that lists the row in its own ``revs`` wins over a lane that only holds it through a gate.
+    """
+    for lane in lanes:
+        if lane.get("revs") and rev in expand_revs(lane["revs"]):
+            return str(lane["title"]).partition(" · ")[0]
+    for lane in lanes:
+        name = str(lane["title"]).partition(" · ")[0]
+        for gid in lane.get("gates") or []:
+            gate = gates_by_id.get(gid)
+            if gate is None or rev not in gate["remaining"]:
+                continue
+            left = len(gate["remaining"])
+            return f"{name} · {gid} " + ("最后一项" if left == 1 else f"剩余 {left} 项")
+    return ""
+
+
+def stepper_view(gates: list[dict[str, Any]], now_next: dict[str, Any]) -> dict[str, Any] | None:
+    """The 阶段门 stepper: the main gates in order, the current one, and the steps to the next gate.
+
+    The steps name the current gate's open ledger rows when ``now_next.now_labels`` labels all of them,
+    else count them; then 验收 the gate and start the next one.
+    """
+    labels = now_next.get("now_labels") or {}
+    main = [gate for gate in gates if not gate["fold"]]
+    current = next((gate for gate in main if gate["state"] != "done"), None)
+    steps: list[str] = []
+    if current is not None:
+        remaining = current["remaining"]
+        if remaining and all(rev in labels for rev in remaining):
+            steps = [labels[rev] for rev in remaining]
+        elif remaining:
+            steps = [f"完成 {current['id']} 剩余 {len(remaining)} 项"]
+        steps.append(f"验收 {current['id']}")
+        after = main[main.index(current) + 1:]
+        if after:
+            steps.append(f"开始 {after[0]['id']} {after[0]['label']}")
+    return {"gates": main, "current": current["id"] if current else "",
+            "next_gate": main[main.index(current) + 1]["id"] if current and current is not main[-1] else "",
+            "steps": steps, "folded": [gate for gate in gates if gate["fold"]]} if main else None
+
+
+def _lane_status(source: dict[str, Any] | None) -> dict[str, str]:
+    """A lane's status chip from its one capability item or its card; neither gives no chip."""
+    return {"status": source["status"] if source else "", "status_label": source["status_label"] if source else ""}
+
+
+def _lane_progress(lane: dict[str, Any], *, ledger: Ledger | None, gates_by_id: dict[str, Any],
+                   ledger_url: str) -> list[dict[str, Any]]:
+    """A lane's ledger progress: the gates it names, then its own ledger rows; none without a ledger."""
+    progress: list[dict[str, Any]] = []
+    if ledger is None:
+        return progress
+    for gid in lane.get("gates") or []:
+        if gid in gates_by_id:
+            progress.append({"kind": "gate", **gates_by_id[gid]})
+    if lane.get("revs"):
+        revs = expand_revs(lane["revs"])
+        rows = []
+        for rev in revs:
+            state = ledger.statuses.get(rev, "planned")
+            rows.append({"rev": rev, "status": state, "status_label": LEDGER_LABELS.get(state, state),
+                         "href": f"{ledger_url}#{rev.lower()}"})
+        progress.append({"kind": "revs", "id": "台账", "label": "执行台账", "revs": rows,
+                         **_progress(revs, ledger)})
+    return progress
+
+
 def _lane_view(lane: dict[str, Any], *, ledger: Ledger | None, gates_by_id: dict[str, Any], ledger_url: str,
                focus: dict[str, Any], facts: dict[str, Any] | None, corpus_block: dict[str, Any] | None,
-               skeletons: list[dict[str, str]] | None, items_by_ref: dict[str, dict[str, Any]]) -> dict[str, Any]:
+               skeletons: list[dict[str, str]] | None, items_by_ref: dict[str, dict[str, Any]],
+               cards_by_id: dict[str, dict[str, Any]] | None = None, reviews: list[dict[str, Any]] | None = None,
+               sources: list[dict[str, Any]] | None = None) -> dict[str, Any]:
+    """One focus lane: its name and condition (the title split at " · "), status, figures and ledger tally.
+
+    The status chip is the lane's one capability item when it names exactly one, else its card's status.
+    """
+    entries = [items_by_ref[ref] for ref in lane.get("items") or []]
+    card = (cards_by_id or {}).get(lane.get("card") or "")
+    name, _, condition = str(lane["title"]).partition(" · ")
     tracked = bool(lane.get("gates") or lane.get("revs"))
-    progress: list[dict[str, Any]] = []
-    if ledger is not None:
-        for gid in lane.get("gates") or []:
-            if gid in gates_by_id:
-                progress.append({"kind": "gate", **gates_by_id[gid]})
-        if lane.get("revs"):
-            revs = expand_revs(lane["revs"])
-            rows = []
-            for rev in revs:
-                state = ledger.statuses.get(rev, "planned")
-                rows.append({"rev": rev, "status": state, "status_label": LEDGER_LABELS.get(state, state),
-                             "href": f"{ledger_url}#{rev.lower()}"})
-            progress.append({"kind": "revs", "id": "台账", "label": "执行台账", "revs": rows,
-                             **_progress(revs, ledger)})
+    progress = _lane_progress(lane, ledger=ledger, gates_by_id=gates_by_id, ledger_url=ledger_url)
+    figures = {"focus": focus, "facts": facts, "corpus": corpus_block, "skeletons": skeletons,
+               "reviews": reviews, "card": card, "sources": sources}
     return {
         "id": lane["id"], "title": lane["title"], "goal": lane.get("goal") or "",
+        "name": name, "condition": condition, **_lane_status(entries[0] if len(entries) == 1 else card),
         "action": lane.get("action") or "",
         "horizon": lane["horizon"], "horizon_label": HORIZON_LABELS[lane["horizon"]],
-        "card": lane.get("card") or "",
-        "metrics": [metric for name in lane.get("metrics") or []
-                    for metric in lane_metrics(name, focus=focus, facts=facts,
-                                               corpus=corpus_block, skeletons=skeletons)],
+        # The card that holds the lane's evidence: its own card, else the card of its first item.
+        "card": lane.get("card") or str((lane.get("items") or [""])[0]).partition(".")[0],
+        "metrics": [metric for metric_name in lane.get("metrics") or []
+                    for metric in lane_metrics(metric_name, **figures)],
         # Not "items": Jinja resolves lane.items to the dict method.
-        "entries": [items_by_ref[ref] for ref in lane.get("items") or []],
+        "entries": entries,
         "progress": progress,
+        "tally": " · ".join(f"{row['id']} {row['done']} / {row['total']}" for row in progress),
         "untracked": not tracked and lane["horizon"] != "deferred",
         "ledger_missing": tracked and ledger is None,
     }
@@ -1010,7 +1119,8 @@ def build_context(contract: dict[str, Any], *, root: Path, ledger: Ledger | None
                   skeletons: list[dict[str, str]] | None = None,
                   skills: list[dict[str, Any]] | None = None,
                   hooks: list[dict[str, Any]] | None = None,
-                  codebase: list[dict[str, Any]] | None = None) -> dict[str, Any]:
+                  codebase: list[dict[str, Any]] | None = None,
+                  reviews: list[dict[str, Any]] | None = None) -> dict[str, Any]:
     repositories = {k: str(v).rstrip("/") for k, v in (contract.get("repositories") or {}).items()}
     ledger_repo, ledger_path = ledger_ref(contract)
     ledger_url = f"{repositories[ledger_repo]}/blob/main/{ledger_path}"
@@ -1028,6 +1138,7 @@ def build_context(contract: dict[str, Any], *, root: Path, ledger: Ledger | None
         }
 
     cards = []
+    cards_by_id: dict[str, dict[str, Any]] = {}
     items_by_ref: dict[str, dict[str, Any]] = {}
     for card in contract["capabilities"]:
         entries = []
@@ -1039,6 +1150,7 @@ def build_context(contract: dict[str, Any], *, root: Path, ledger: Ledger | None
                       "summary": card.get("summary") or "", "entries": entries, "fold": bool(card.get("fold")),
                       "lanes": [_lane_tag(lane) for lane in lanes if lane.get("card") == card["id"]],
                       **_status_view(card["status"])})
+        cards_by_id[card["id"]] = cards[-1]
 
     flow = [{"source": link["from"], "target": link["to"], "mode": link["mode"],
              "mode_label": MODE_LABELS[link["mode"]], **entry_view(link)} for link in contract["flow"]]
@@ -1047,6 +1159,8 @@ def build_context(contract: dict[str, Any], *, root: Path, ledger: Ledger | None
 
     corpus_block = corpus_view(contract, corpus, today, int(registry["corpus"]["stale_after_days"])) if corpus else None
     gates_by_id = {gate["id"]: gate for gate in gates}
+    sources = sources_view(registry, assets=assets, today=today,
+                           link=lambda ref: evidence_view(ref, repositories, ledger_url))
 
     focus_view = None
     if lanes:
@@ -1054,7 +1168,8 @@ def build_context(contract: dict[str, Any], *, root: Path, ledger: Ledger | None
         for horizon, label in HORIZON_LABELS.items():
             views = [_lane_view(lane, ledger=ledger, gates_by_id=gates_by_id, ledger_url=ledger_url, focus=focus,
                                 facts=facts, corpus_block=corpus_block, skeletons=skeletons,
-                                items_by_ref=items_by_ref)
+                                items_by_ref=items_by_ref, cards_by_id=cards_by_id,
+                                reviews=reviews, sources=sources)
                      for lane in lanes if lane["horizon"] == horizon]
             if views:
                 groups.append({"horizon": horizon, "label": label, "lanes": views})
@@ -1081,6 +1196,7 @@ def build_context(contract: dict[str, Any], *, root: Path, ledger: Ledger | None
         "cards": cards,
         "flow": flow,
         "gates": gates,
+        "stepper": stepper_view(gates, contract["now_next"]),
         "now": now,
         "stale_after_days": review_days,
         "verified_on": contract["verified_on"].isoformat(),
@@ -1091,8 +1207,7 @@ def build_context(contract: dict[str, Any], *, root: Path, ledger: Ledger | None
         "tooling": tooling,
         "codebase": codebase_view(codebase),
         "fallbacks": {domain_id: domain["fallback"] for domain_id, domain in registry.items()},
-        "sources": sources_view(registry, assets=assets, today=today,
-                                link=lambda ref: evidence_view(ref, repositories, ledger_url)),
+        "sources": sources,
     }
 
 
@@ -1142,7 +1257,20 @@ def system_page_context(app, assets: Path) -> dict[str, Any] | None:
     return build_context(contract, root=root, ledger=ledger, facts=facts, today=today,
                          registry=registry, assets=assets, corpus=corpus,
                          skeletons=skeleton_facts(root), skills=skill_facts(root), hooks=hook_facts(root),
-                         codebase=codebase_rows(root, tracked_files(root)))
+                         codebase=codebase_rows(root, tracked_files(root)), reviews=workbench_reviews(registry, assets))
+
+
+def workbench_reviews(registry: Registry, assets: Path) -> list[dict[str, Any]] | None:
+    """The 审核稿 rows of the 网页说明书进度 snapshot (the workbench's output), or None when unreadable."""
+    from tools.rtd import web_progress
+
+    domain = registry.get(web_progress.DOMAIN)
+    if domain is None:
+        return None
+    snapshot, problems = web_progress.load_snapshot(snapshot_path(assets, str(domain["snapshot"])))
+    if problems or snapshot is None or "reviews" not in snapshot:
+        return None
+    return list(snapshot["reviews"])
 
 
 # --- CLI ----------------------------------------------------------------------

@@ -34,7 +34,7 @@ which writes only whitelisted fields.
 | Code sync | `sync-hello-docs.yml` job `sync-review` → [`scripts/sync_mirror.sh`](../../../scripts/sync_mirror.sh), keeping `docs/review-drafts` | automatic on every auto-manual `main` push |
 | Landing page | [`mirrors/Hello-Docs-Review/README.md`](../../../mirrors/Hello-Docs-Review/README.md), installed as the repository's `README.md` by the same sync (`MIRROR_README`) | auto-manual PRs |
 | Hosting | a private Read the Docs project built from `Hello-Docs-Review/main` | the operator (RTD dashboard) |
-| Entry | 说明书工作台 → 工作入口 → 构建与发布 → 「审核稿（私有）」 | `review_site` in `manual_workbench.html` |
+| Entry | 系统建设 → 能力与架构 → 工作入口 → 构建与发布 → 「审核稿（私有）」 | `review_site` in `manual_workbench.html` |
 
 The mirror sync uses the same composition as Hello-Docs: the auto-manual tree
 plus the paths the mirror owns. Both mirror jobs refuse a source tree that

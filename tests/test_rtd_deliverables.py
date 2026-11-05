@@ -284,13 +284,17 @@ class RealSphinxTests(unittest.TestCase):
 
             _, page = build("good")
             self.assertIn("<h1>说明书工作台", page)
-            self.assertIn("打开说明书资料库", page)
             self.assertIn('<tbody data-model="JE-1000F">', page)
             # The 交付物 tab lists Web manuals only: a region or model with Feishu formats alone has no row.
             self.assertNotIn('<tr data-region="pt-BR">', page)
             self.assertIn('href="../../JE-1000F/US/en/md/manual_je1000f_us.html"', page)
             self.assertNotIn("t.feishu.cn", page)
             soup = BeautifulSoup(page, 'html.parser')
+            # 常用入口: the structured production data and the Git manual sources; the full map is on 系统建设.
+            self.assertEqual([a.contents[0] for a in soup.select('.wb-entries-links a')],
+                             ['产品与规格', '文案与变量', '翻译与术语', '插图资产', '冻结发布源', '评审稿', '来源声明'])
+            self.assertTrue(soup.select('.wb-entries a[href="../system/index.html#work-map"]'))
+            self.assertFalse(soup.select('[data-workbench-node]'))
             sections = [section.get('id') for section in soup.select('#production-evidence > section')]
             self.assertLess(sections.index('production-overview'), sections.index('reuse'))
             self.assertLess(sections.index('reuse'), sections.index('production-effort'))
@@ -305,10 +309,10 @@ class RealSphinxTests(unittest.TestCase):
             for card in soup.select('[data-metric]'):
                 self.assertTrue(card.select('details'))
             self.assertTrue(soup.select('.pe-attention a[href]'))
-            # 数据统计: the statistics moved from 系统数据, with their own JSON block, script and filters.
+            # 数据统计 (from 系统数据, with its own JSON block, script and filters) sits in 交付物.
             self.assertEqual([tab['data-tab'] for tab in soup.select('.page-tabs [data-tab]')],
-                             ['deliverables', 'statistics', 'work-entries', 'production-evidence'])
-            statistics = soup.select_one('#statistics.tab-panel.system-data')
+                             ['progress', 'deliverables', 'production-evidence'])
+            statistics = soup.select_one('#deliverables.tab-panel #statistics.system-data')
             payload = json.loads(statistics.select_one('script#system-data-json').string)
             # Capability rows list published models only: JE-1000F, in every region of the capability table.
             self.assertTrue(payload['targets'])
@@ -329,11 +333,12 @@ class RealSphinxTests(unittest.TestCase):
 
             self.assertFalse(soup.select('.dl-table a[target="_blank"]'))
             self.assertNotIn('<option value="JE-1800B">', page)
-            # 网页说明书进度 leads the tab; its matrix links each market version to its page.
+            # 网页说明书进度 is the 进度 tab; the coverage matrix leads 交付物 and links each market version to its page.
+            self.assertEqual(soup.select_one('#progress.tab-panel').find(['section', 'details'])['id'], 'web-progress')
             tab = soup.select_one('#deliverables.tab-panel')
-            self.assertEqual(tab.find(['section', 'details'])['id'], 'web-progress')
+            self.assertEqual(tab.find(['section', 'details'])['id'], 'web-progress-matrix')
             self.assertTrue(soup.select_one('details#deliverables-matrix'))
-            rows = soup.select('#web-progress .wp-table tr[data-open]')
+            rows = soup.select('#web-progress-matrix .wp-table tr[data-open]')
             self.assertEqual([row.th.b.text for row in rows], ['JE-1000F'])
             chip = rows[0].select_one('a.wp-chip')
             self.assertEqual((chip.text, chip['href']), ('1/1', '../../JE-1000F/US/en/md/manual_je1000f_us.html'))
@@ -349,15 +354,18 @@ class RealSphinxTests(unittest.TestCase):
             self.assertIn('href="../deliverables/index.html"', system)
             self.assertIn('href="../system/index.html"', page)
 
-            # The work map remains usable without JS and points at real repo resources.
-            nodes = soup.select('[data-workbench-node]')
+            # The work map (工作入口, now on 系统建设「能力与架构」) remains usable without JS and points at real
+            # repo resources.
+            system_soup = BeautifulSoup(system, "html.parser")
+            self.assertIn("打开说明书资料库", system)
+            nodes = system_soup.select('#tab-capabilities [data-workbench-node]')
             self.assertEqual(len(nodes), 5)
             for node in nodes:
-                panel = soup.find(id=node['aria-controls'])
+                panel = system_soup.find(id=node['aria-controls'])
                 self.assertIsNotNone(panel)
                 self.assertFalse(panel.has_attr('hidden'))
                 self.assertTrue(panel.select('a[href]'))
-            for anchor in soup.select('.wb-workflow a[href]'):
+            for anchor in system_soup.select('.wb-workflow a[href]'):
                 url = urlsplit(anchor['href'])
                 if url.hostname == 'github.com' and url.path.startswith('/Bingboom/auto-manual/'):
                     path = unquote(url.path.split('/main/', 1)[1])
@@ -369,7 +377,7 @@ class RealSphinxTests(unittest.TestCase):
             for name in ('manual-workbench.css', 'manual-workbench.js', 'machine-surface-stats.js'):
                 self.assertTrue((base / 'good' / '_static' / name).is_file())
             # Coverage is read at view time from the sealed manifest; the static page keeps a fallback.
-            surface = soup.select_one('#wb-machine [data-surface-manifest]')
+            surface = system_soup.select_one('#wb-machine [data-surface-manifest]')
             self.assertEqual(surface['data-surface-manifest'], '../../machine_surface_manifest.json')
             self.assertEqual(surface['data-surface-receipt'], '../../manual-deployment.json')
             self.assertTrue(surface.select_one('[data-surface-stats]').has_attr('hidden'))
@@ -377,9 +385,9 @@ class RealSphinxTests(unittest.TestCase):
             self.assertIn('说明书工作台', workspace)
             self.assertIn('说明书工作台', system)
             # This page owns the publication counts: its 网页说明书 KPI carries the books per region.
-            kpis = {kpi.span.text: kpi for kpi in soup.select('.kpi-row a.kpi')}
+            kpis = {kpi.span.text: kpi for kpi in soup.select('.wb-kpis a.wb-kpi')}
             self.assertEqual(kpis['网页说明书'].em.text, '美规 1')
-            self.assertIsNone(kpis['语言版本'].em)
+            self.assertEqual(kpis['语言版本'].em.text, '1 种发布语言')
             # Both snapshot freshness spans stay here for Workspace Data Verify; the rules sit on 系统建设.
             for kind in ('deliverables', 'corpus', 'web_progress'):
                 self.assertIsNotNone(soup.select_one(f'[data-workspace-source="{kind}"]'), kind)
