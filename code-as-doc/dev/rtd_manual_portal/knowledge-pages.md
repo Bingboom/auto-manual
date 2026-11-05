@@ -64,20 +64,33 @@ content, QR aliases and nested manual URLs are unchanged.
 ## Public manuals project (site role)
 
 One frozen `docs/publish/web` source can feed two Read the Docs projects, so
-the manuals can be public while the knowledge base stays internal. Each
-project selects its half with the `RTD_SITE_ROLE` environment variable (Sphinx
-config `rtd_site_role`); `.readthedocs.yaml` is shared and unchanged.
+the manuals can be public while the knowledge base stays internal. The role
+is resolved by `tools/rtd/site_role.py` from the `RTD_SITE_ROLE` environment
+variable (Sphinx config `rtd_site_role`) and the building project;
+`.readthedocs.yaml` is shared and unchanged.
 
-| `RTD_SITE_ROLE` | Builds | Intended project |
+| Role | Builds | Who builds it |
 | --- | --- | --- |
-| unset or `combined` | everything: manual center, manuals, short aliases, search, `/workspace/`, knowledge pages, `/ai-share/` | the existing private project (`ht-docs-ht-manuals`) |
-| `manuals` | manual center, manuals, short aliases, search, `manual-knowledge.json`, deployment receipt; no `/workspace/`, `/products/`, `/market/` or `/ai-share/` output, and no internal sidebar data is built | a second project whose `latest` version is set to Public |
+| `combined` | everything: manual center, manuals, short aliases, search, `/workspace/`, knowledge pages, `/ai-share/` | on Read the Docs, only a project listed in `PRIVATE_RTD_PROJECTS` (today the private `ht-docs-ht-manuals`), when `RTD_SITE_ROLE` is unset or `combined`; local builds by default |
+| `manuals` | manual center, manuals, short aliases, search, `manual-knowledge.json`, deployment receipt; no `/workspace/`, `/products/`, `/market/` or `/ai-share/` output, and no internal sidebar data is built | every other Read the Docs project, with or without `RTD_SITE_ROLE=manuals` (the public `ht-docs-ht-user-manuals` sets it); any build with `RTD_SITE_ROLE=manuals` |
+
+The rule fails closed (2026-11-04). Until then an unset variable meant
+`combined`, and the public project, created without the variable, served the
+whole knowledge base until `RTD_SITE_ROLE=manuals` was added and it rebuilt.
+Now a project missing from the list builds the manuals only, and
+`RTD_SITE_ROLE=combined` on it fails the build. Adding a private project is a
+reviewed PR to `PRIVATE_RTD_PROJECTS`. Each build logs `RTD site role: …` with
+the reason.
+
+The role decides what a build contains, not who can open it. That is each
+project's Privacy level in Read the Docs: keep the private project's versions
+Private.
 
 The home page's 定位与价值 band switches its copy with the role, and its internal
 page is built only in the combined role; see
 [网页说明书的定位与价值](web-manual-value.md).
 
-Any other value fails the build. Absolute URLs (canonical, `hreflang`,
+Any other `RTD_SITE_ROLE` value fails the build. Absolute URLs (canonical, `hreflang`,
 `og:url`, alias canonical) use the serving project's
 `READTHEDOCS_CANONICAL_URL`, which Read the Docs sets per project and version
 (custom domains included); `site_base_url` in the portal settings is the
@@ -85,10 +98,9 @@ fallback for local builds. Each project therefore gets its own canonical root
 without a per-project settings file, and the public domain can be chosen
 later without a code change.
 
-Set the public project's version to Public only after its first `manuals`
-build succeeds: before that, the project has no pages to expose, and an
-unset role would publish the internal pages. Knowledge pages in the combined
-site keep linking to the manuals inside the same private site.
+Check a new project's first build before setting its version to Public.
+Knowledge pages in the combined site keep linking to the manuals inside the
+same private site.
 
 ## Deliverables page
 

@@ -27,6 +27,7 @@ from tools.rtd.page_metadata import (
     head_markup, normalize_site_base_url, page_description, page_title, portal_head_markup, SITE_NAME,
 )
 from tools.rtd.system_data import system_data_page_context
+from tools.rtd.site_role import resolve_site_role
 from tools.rtd.system_workspace import SYSTEM_PAGE, SYSTEM_TEMPLATE, system_page_context
 from tools.rtd.web_manual_value import (
     PAGE as VALUE_PAGE, TEMPLATE as VALUE_TEMPLATE, band_context, load_value, page_context as value_page_context,
@@ -35,9 +36,9 @@ from tools.safe_copy import copytree_replace_no_symlinks
 
 ASSETS = Path(__file__).resolve().parents[1] / "rtd_portal_assets"
 # One frozen source can serve two RTD projects: the combined (internal) site
-# and a manuals-only site that is safe to publish. Each project sets
-# RTD_SITE_ROLE in its environment; unset keeps the combined build.
-SITE_ROLES = ("combined", "manuals")
+# and a manuals-only site that is safe to publish. tools/rtd/site_role.py
+# picks the role; on Read the Docs only the listed private project builds
+# the combined site.
 _LINK = re.compile(r"^- \[([^\n]+)\]\(([^\s]+\.md)\)\s*$", re.MULTILINE)
 
 
@@ -135,10 +136,16 @@ def configure(app, config) -> None:
 
 
 def site_role(app) -> str:
-    role = app.config.rtd_site_role
-    if role not in SITE_ROLES:
-        raise ValueError(f"rtd_site_role must be one of {SITE_ROLES}, got {role!r}")
-    return role
+    """The build's role; see tools/rtd/site_role.py for the Read the Docs rule."""
+    return resolve_site_role(app.config.rtd_site_role, os.environ)[0]
+
+
+def announce_site_role(app) -> None:
+    """Fail a misconfigured build before any page is written, and log the role it builds."""
+    from sphinx.util import logging as sphinx_logging
+
+    role, reason = resolve_site_role(app.config.rtd_site_role, os.environ)
+    sphinx_logging.getLogger(__name__).info("RTD site role: %s (%s)", role, reason)
 
 
 def manuals_only(app) -> bool:
@@ -442,10 +449,12 @@ def setup(app):
     from tools.rtd.workspace_revision import write_workspace_revision
 
     app.add_config_value("rtd_knowledge_dir", "", "html")
-    app.add_config_value("rtd_site_role", os.environ.get("RTD_SITE_ROLE", "combined"), "html")
+    # Empty means unset: tools/rtd/site_role.py decides, failing closed on Read the Docs.
+    app.add_config_value("rtd_site_role", os.environ.get("RTD_SITE_ROLE", ""), "html")
     # ISO date for the system and deliverables pages' staleness rules; empty means the build date (UTC).
     app.add_config_value("rtd_system_workspace_date", "", "html")
     app.connect("config-inited", configure)
+    app.connect("builder-inited", announce_site_role)
     app.connect("builder-inited", prepare_catalog)
     app.connect("html-page-context", page_context)
     app.connect("html-collect-pages", collect_workspace_pages)
