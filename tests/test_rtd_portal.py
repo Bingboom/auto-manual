@@ -150,6 +150,42 @@ class RtdPortalTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "rtd_site_role"):
             rtd_portal.site_role(app)
 
+    def test_unlisted_read_the_docs_project_builds_manuals_without_the_variable(self):
+        # 2026-11-04: a public project without RTD_SITE_ROLE served the whole knowledge base.
+        root = self.assemble()
+        assets = self.root / "portal-assets"
+        shutil.copytree(rtd_portal.ASSETS, assets)
+        (assets / "settings.json").write_text(json.dumps(dict(self.settings, product_voc_endpoint="")))
+        share = self.root / "knowledge" / "ai-share"
+        share.mkdir(parents=True)
+        (share / "00_打开分享.html").write_text("<!doctype html><p>业务资料</p>")
+        with (root / "conf.py").open("a") as conf:
+            conf.write(f"\nfrom pathlib import Path\nfrom tools.rtd import portal\nportal.ASSETS = Path({str(assets)!r})\n")
+            conf.write(f"rtd_knowledge_dir = {str(self.root / 'knowledge')!r}\n")
+        base = {key: value for key, value in os.environ.items() if key != "RTD_SITE_ROLE"}
+
+        def build(name, **extra):
+            env = {**base, "READTHEDOCS": "True", "READTHEDOCS_PROJECT": "ht-docs-new-project", **extra}
+            return subprocess.run(
+                [sys.executable, "-m", "sphinx", "-q", "-b", "html", "-D", "extensions=myst_parser,tools.rtd.portal",
+                 str(root), str(self.root / name)],
+                cwd=Path(__file__).resolve().parents[1], capture_output=True, text=True, check=False, env=env,
+            )
+
+        result = build("unlisted")
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        out = self.root / "unlisted"
+        for internal in ("workspace", "products", "market", "ai-share"):
+            self.assertFalse((out / internal).exists(), internal)
+        self.assertNotIn("业务资料", "".join(p.read_text(errors="ignore") for p in out.rglob("*.html")))
+        root_page = BeautifulSoup((out / "index.html").read_text(), "html.parser")
+        self.assertEqual([g.get_text() for g in root_page.select(".app-nav-group")], ["说明书"])
+        self.assertTrue((out / "JE-TEST/EU/md/manual_EU.html").is_file())
+        refused = build("refused", RTD_SITE_ROLE="combined")
+        self.assertNotEqual(refused.returncode, 0)
+        self.assertIn("PRIVATE_RTD_PROJECTS", refused.stdout + refused.stderr)
+        self.assertFalse((self.root / "refused" / "workspace").exists())
+
     def test_real_sphinx_changes_home_only_and_preserves_sources(self):
         root = self.assemble()
         # This test isolates portal/alias transforms; VOC has its own opt-in tests.
@@ -256,7 +292,9 @@ class RtdPortalTests(unittest.TestCase):
         design = (design_root / "index.html").read_text()
         for tab in ("overview", "colors", "type", "components", "assets", "print"):
             self.assertIn(f'data-tab="{tab}"', design)
-        self.assertIn('aria-current="page"><i aria-hidden="true">◐</i><span>设计规范</span>', design)
+        current = BeautifulSoup(design, "html.parser").select_one('#app-sidebar a[aria-current="page"]')
+        self.assertEqual(current.span.get_text(), "设计规范")
+        self.assertIsNotNone(current.select_one("svg.ic-design"))
         self.assertIn("<title>设计规范</title>", design)
         self.assertIn('src="previews/title-l1.html"', design)
         self.assertIn('src="assets/symbols/symbol_warning_triangle.svg"', design)
@@ -346,27 +384,28 @@ class RtdPortalTests(unittest.TestCase):
             if sidebar:
                 sidebars[path.relative_to(out).as_posix()] = sidebar
         def outline(sidebar):
-            groups = []
+            groups = [("", [])]  # 首页 opens the internal sidebar without a group label
             for node in sidebar.select(".app-nav-group, a.app-nav-link"):
                 if "app-nav-group" in node["class"]:
                     groups.append((node.get_text(), []))
                 else:
                     groups[-1][1].append(node.span.get_text())
-            return groups
+            return [group for group in groups if group != ("", [])]
 
         manuals = [("说明书", ["说明书资料库", "搜索说明书正文"])]
-        knowledge = [*manuals, ("知识库", ["首页", "定位与价值"]), ("产品与市场", ["产品知识", "产品矩阵", "市场与政策"]),
+        knowledge = [("", ["首页"]), *manuals, ("产品与市场", ["产品知识", "产品矩阵", "市场与政策"]),
                      ("说明书生产", ["说明书工作台", "系统建设", "设计规范"])]
         pages = ("products/knowledge.html", "products/matrix.html", "market/policy.html", "workspace/index.html",
-                 "workspace/positioning/index.html", "workspace/system/index.html",
-                 "workspace/deliverables/index.html", "workspace/design/index.html")
+                 "workspace/system/index.html", "workspace/deliverables/index.html", "workspace/design/index.html")
+        # 定位与价值 folded into 知识库首页 on 2026-11-05: its old page is gone.
+        self.assertFalse((out / "workspace" / "positioning").exists())
         self.assertEqual({page: outline(sidebar) for page, sidebar in sidebars.items()},
                          {"index.html": knowledge, **dict.fromkeys(pages, knowledge)})
         site = "https://site.invalid/"
         home = BeautifulSoup((out / "workspace" / "index.html").read_text(encoding="utf-8"), "html.parser")
-        # The 知识库首页 cards mirror the sidebar's groups after 知识库, in its order (every page is built here).
-        self.assertEqual([(s.h2.text, [c.strong.text for c in s.select(".home-card")])
-                          for s in home.select(".home-group")], knowledge[2:])
+        # 知识库首页's 去哪里 cards mirror the sidebar's groups after 首页, in its order (every page is built here).
+        self.assertEqual([(s.h3.text, [c.strong.text for c in s.select(".home-card")])
+                          for s in home.select("#doors .home-group")], knowledge[1:])
         # Each 最近更新 row is dated and links to a page, and an id on it, that this build made.
         rows = home.select("#updates a")
         self.assertTrue(rows)
@@ -377,15 +416,15 @@ class RtdPortalTests(unittest.TestCase):
             self.assertTrue(target.is_file(), row["href"])
             if url.fragment:
                 self.assertIn(f'id="{url.fragment}"', target.read_text(encoding="utf-8"), row["href"])
-        # The private home's band tags each theme and links it to its section of the full page.
+        # The private home's band tags each theme and links it to its card on 知识库首页.
         band = BeautifulSoup((out / "index.html").read_text(encoding="utf-8"), "html.parser").select_one("section.value")
         self.assertEqual(band.select_one(".value-eyebrow").get_text(), "HELLO-DOCS · DIGITAL MANUAL LIBRARY")
         themes = band.select("a.value-item")
         self.assertEqual([(a.strong.get_text(), a.em.get_text()) for a in themes],
-                         [("便捷阅读", "可用"), ("内容治理", "部分可用"), ("知识积累", "建设中")])
+                         [("便捷阅读", "可用"), ("AI 可读", "部分可用"), ("内容治理", "部分可用"), ("知识积累", "建设中")])
         for link in [*themes, band.select_one(".value-more a")]:
             url = urlsplit(urljoin(site + "index.html", link["href"]))
-            self.assertEqual(url.path, "/workspace/positioning/index.html", link["href"])
+            self.assertEqual(url.path, "/workspace/index.html", link["href"])
             if url.fragment:
                 self.assertIn(f'id="{url.fragment}"', (out / url.path.removeprefix("/")).read_text(encoding="utf-8"))
         for page, sidebar in sidebars.items():

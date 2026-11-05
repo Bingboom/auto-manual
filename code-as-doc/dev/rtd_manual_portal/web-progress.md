@@ -2,37 +2,41 @@
 
 Status: active
 
-Since 2026-10-19 the 交付物 tab of 说明书工作台 (`/workspace/deliverables/`) shows
-Web manuals only (operator: 「这个交付物 我现在 只想看 网页文档」). The operator is
-converting manuals to the Web until the catalog is complete enough, so the tab
-opens with progress: what is online, per market, and what is still to convert.
-Then comes 语言版本明细, collapsed, which lists every language version (see
-[Deliverables page](knowledge-pages.md#deliverables-page)).
+Since 2026-10-19 说明书工作台 (`/workspace/deliverables/`) shows Web manuals only
+(operator: 「这个交付物 我现在 只想看 网页文档」). The operator is converting manuals
+to the Web until the catalog is complete enough, so the page opens with progress:
+what is online, per market, and what is still to convert. Since the 2026-11
+redesign that is its own first tab, 进度; the coverage matrix (`web_progress_matrix.html`)
+leads the 交付物 tab, followed by 语言版本明细, collapsed, which lists every language
+version (see [Deliverables page](knowledge-pages.md#deliverables-page)).
 
 Since 2026-10-23 it also shows the manuals still in review, from the 审核稿 table
 of the same Base, and links back to the Feishu rows (operator: 「既要有网页文档
 也要有审核稿的数据 带多维表跳转链接」).
 
 `tools/rtd/web_progress.py` builds the view, `tools/rtd/web_reviews.py` reads the
-审核稿 rows, `web_progress.html` renders it, and `_static/web-progress.js` draws
-the timeline and filters the matrix.
+审核稿 rows, `web_progress.html` (进度) and `web_progress_matrix.html` (交付物) render
+it, and `_static/web-progress.js` draws the timeline and filters the matrix.
 
 ## What the section shows
 
 - **Counts.** 审核中 (drafts in the 审核稿 table, with the open 待研发确认 questions
-  and the last update), 已上线型号 (with its categories), 待转市场版本, 语言未齐 and
-  内容已核对 (checked / language versions).
+  and the last update), 待转, 语言未齐 and 内容已核对 (checked / language versions).
+  已上线型号 and its categories sit under 上线进度.
 - **审核中.** One row per 审核稿 table row, newest first: model and product name,
   market and language, version, update date, status, 待研发确认, and links to the
   draft and its review page (the private review site, login needed) and to the
-  row in Feishu. The section title links to the table. 网页说明书 and 语言版本 stay in the page summary
+  row in Feishu. A status such as 审核中（含待确认项） reads as a chip (blue for 审核中)
+  and its note. The section title links to the table. 网页说明书 and 语言版本 stay in the page summary
   above the tabs, which owns them.
-- **上线进度.** For each day the catalog grew, the cumulative language versions,
-  market versions (model × region) and models. A running total holds its value
-  until the next day that adds to it, so the lines are steps. Hover shows the
-  day's additions.
-- **各市场进度.** One bar per market: market versions with every language the
-  market has online (语言齐全), versions short of that (语言未齐), 审核中 and 待转.
+- **上线进度.** The current totals (语言版本, 本, 型号), then one filled step line in
+  the page accent: for each day the catalog grew, the cumulative language
+  versions. A running total holds its value until the next day that adds to it.
+  Hover shows the day's additions and all three totals.
+- **各市场进度.** One bar per market, the market with the most online first:
+  market versions with every language the market has online (语言齐全), versions
+  short of that (语言未齐), 审核中 and 待转. The colours are one ramp, darker the
+  further along; 待转 is the empty track.
 - **覆盖矩阵.** One row per model with a Web manual, one column per market.
   A cell shows the languages it has against the languages that market has
   online, for example 1/9. It links to the English page, or to the first
@@ -107,8 +111,14 @@ so this source runs on a schedule (operator, 2026-10-19). The job:
   `https://<tenant>.feishu.cn/wiki/<node>`). The snapshot's source identity stays
   the 网页文档 binding, so snapshots from before the 审核稿 table still match;
 - writes `docs/knowledge/workspace-data/web_progress_snapshot.json` and opens or
-  updates the content PR `chore/workspace-web_progress`, like the other sources.
-  Nothing is merged automatically, and an unchanged read makes no commit.
+  updates the content PR `chore/workspace-web_progress`, like the other sources;
+  an unchanged read makes no commit;
+- merges that PR when the export succeeded (operator, 2026-11-04). The squash merge
+  is pinned to the commit this run validated (`--match-head-commit`), and the job
+  then dispatches **Workspace Data Verify**, because a merge made with the workflow
+  token triggers no push workflow. A failed export, a refused merge or a failed
+  dispatch fails the run and leaves the PR for review. Deliverables and corpus PRs
+  still wait for review.
 
 A missing secret, a shallow clone, a missing column or a ticked row without a
 Web manual link fails the run and keeps the last snapshot; the failure opens one

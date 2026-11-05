@@ -41,12 +41,13 @@ class CopyTests(unittest.TestCase):
         themes = wmv.load_value(ASSETS)["internal"]["themes"]
         self.assertEqual([(t["id"], t["theme"], t["status"], t["status_label"]) for t in themes], [
             ("reading", "便捷阅读", "available", "可用"),
+            ("machine", "AI 可读", "partial", "部分可用"),
             ("governance", "内容治理", "partial", "部分可用"),
             ("knowledge", "知识积累", "in_progress", "建设中"),
         ])
         self.assertEqual([[f["label"] for f in t["facets"]] for t in themes],
-                         [["统一呈现", "多端适配", "快速查阅"], ["版本追溯", "来源管理", "质量改进"],
-                          ["规范沉淀", "可信复用", "辅助创作"]])
+                         [["统一呈现", "扫码直达", "快速查阅"], ["机读导出", "AI 问答", "市场覆盖"],
+                          ["版本追溯", "读者反馈", "质量改进"], ["规范沉淀", "可信复用", "辅助创作"]])
 
     def test_theme_tag_rule(self):
         cases = {("available", "available"): "available", ("available", "in_progress"): "partial",
@@ -60,7 +61,7 @@ class CopyTests(unittest.TestCase):
         band = wmv.band_context(wmv.load_value(ASSETS), internal=False)
         self.assertEqual(set(band), {"internal", "title", "lead", "points"})
         self.assertEqual(band["title"], "网页说明书的定位与价值")
-        self.assertEqual(band["lead"], "网页说明书以已批准的产品说明书为依据，在不改变技术事实的前提下，提供更方便查找和阅读的网页版本。")
+        self.assertEqual(band["lead"], "网页说明书基于印刷版 PDF 转录，提供更方便查找和阅读的网页版本。")
         self.assertEqual([(p["title"], p["text"]) for p in band["points"]], [
             ("便捷阅读", "统一的版式和章节导航，手机和电脑都能读，可按型号、产品名称或正文搜索。"),
             ("版本清楚", "每份说明书都标明型号、适用市场和语言。"),
@@ -75,9 +76,13 @@ class CopyTests(unittest.TestCase):
         for text in strings(value):
             self.assertIsNone(re.search(r"[0-9]", text), text)
             self.assertNotIn("电子说明书", text)
-        # The full page keeps the key idea, and the direction names the deferred REVs it points to.
-        self.assertEqual(value["internal"]["key_idea"], "已批准的历史内容，不天然等于可直接复用的标准知识。")
-        self.assertEqual(value["internal"]["direction"]["revs"], ["REV-32", "REV-33"])
+        # Our own knowledge base says what the web manuals do: no 总纲, principles, direction block or
+        # defensive caveats; what is unfinished shows as a status tag (operator, 2026-11-04).
+        self.assertFalse({"key_idea", "direction", "intro", "triad"} & set(value["internal"]))
+        self.assertFalse(any("principle" in theme for theme in value["internal"]["themes"]))
+        for text in strings(value):
+            for caveat in ("不天然", "而不是", "不改变技术事实", "尚非", "未完成"):
+                self.assertNotIn(caveat, text)
 
 
 class ValidationTests(unittest.TestCase):
@@ -110,8 +115,8 @@ class ValidationTests(unittest.TestCase):
             "unique lower-case id": lambda d: d["internal"]["themes"][1].update(id="reading"),
             "public.lead": lambda d: d["public"].update(lead=" "),
             "public.points": lambda d: d["public"].update(points=[]),
-            "direction names": lambda d: d["internal"]["direction"].update(revs=[]),
             "facets": lambda d: d["internal"]["themes"][2].update(facets=[]),
+            "internal.themes[0].summary": lambda d: d["internal"]["themes"][0].update(summary=" "),
         }
         for message, edit in edits.items():
             with self.subTest(message), self.assertRaisesRegex(ValueError, re.escape(message)):
@@ -125,43 +130,44 @@ class RenderTests(unittest.TestCase):
         self.assertEqual(len(band.select(".value-item")), 3)
         self.assertEqual(band.select("a, .value-status, .value-eyebrow"), [])
 
-    def test_internal_band_links_each_theme_to_its_section(self):
+    def test_internal_band_links_each_theme_to_its_card_on_the_knowledge_home(self):
         band = render("_value_band.html", value=wmv.band_context(wmv.load_value(ASSETS), internal=True))
-        self.assertEqual(band.h2.get_text(), "让产品资料成为持续积累的知识资产")
+        self.assertEqual(band.h2.get_text(), "人能读，AI 能读，团队能持续复用")
         self.assertEqual([(a["href"], a.select_one(".value-text").get_text()) for a in band.select("a.value-item")], [
-            (f"{wmv.PAGE}#reading", "统一呈现、多端适配、快速查阅"),
-            (f"{wmv.PAGE}#governance", "版本追溯、来源管理、质量改进"),
-            (f"{wmv.PAGE}#knowledge", "规范沉淀、可信复用、辅助创作"),
+            (f"{wmv.HOME}#reading", "统一呈现、扫码直达、快速查阅"),
+            (f"{wmv.HOME}#machine", "机读导出、AI 问答、市场覆盖"),
+            (f"{wmv.HOME}#governance", "版本追溯、读者反馈、质量改进"),
+            (f"{wmv.HOME}#knowledge", "规范沉淀、可信复用、辅助创作"),
         ])
-        self.assertEqual(band.select_one(".value-more a")["href"], wmv.PAGE)
+        self.assertEqual(band.select_one(".value-more a")["href"], f"{wmv.HOME}#value")
 
     def test_without_a_band_the_home_renders_nothing_for_it(self):
         self.assertIsNone(render("_value_band.html").select_one("section"))
 
-    def test_page_shows_each_themes_status_now_and_the_direction_apart(self):
+    def test_knowledge_home_shows_one_card_per_theme_with_its_facets(self):
         value = wmv.load_value(ASSETS)
-        page = render(wmv.TEMPLATE, **wmv.page_context(value), site_nav={}, system_entry=True)
-        self.assertEqual(page.h1.get_text(), "网页说明书的定位与价值")
-        self.assertEqual(page.select_one(".vp-key-idea").get_text(), value["internal"]["key_idea"])
-        sections = page.select("section.vp-theme")
-        self.assertEqual([s["id"] for s in sections], ["reading", "governance", "knowledge"])
-        for section, theme in zip(sections, value["internal"]["themes"], strict=True):
-            now = section.select_one(".vp-now")
-            self.assertEqual(now.h3.get_text(), "现状")
-            self.assertEqual([(li.select_one(".vp-facet").get_text(), li.em["class"][-1]) for li in now.select("li")],
+        home = render("workspace_portal.html", value=wmv.page_context(value), share_entry="", system_entry=True,
+                      deliverables_entry=True, design_entry=True, matrix_entry=True, updates=[])
+        self.assertEqual(home.select_one(".home-line").get_text(), value["internal"]["tagline"])
+        cards = home.select("#value article.home-theme")
+        self.assertEqual([card["id"] for card in cards], ["reading", "machine", "governance", "knowledge"])
+        for card, theme in zip(cards, value["internal"]["themes"], strict=True):
+            # First level: name, status and one sentence.
+            self.assertEqual(card.h3.get_text(), theme["theme"])
+            self.assertEqual(card.select_one("header .home-status")["class"][-1], f"is-{theme['status']}")
+            self.assertEqual(card.select_one(":scope > p").get_text(), theme["summary"])
+            # Then each facet with its status mark; the note is the row's tooltip.
+            facets = card.select("ul > li")
+            self.assertEqual([(li.span.get_text(), li.svg["class"][-1]) for li in facets],
                              [(f["label"], f"is-{f['status']}") for f in theme["facets"]])
-            self.assertEqual(section.select_one(".vp-principle p").get_text(), theme["principle"])
-        direction = page.select_one("#direction")
-        self.assertEqual(direction.select_one(".vp-direction-tag").get_text(), "方向，不是现有能力")
-        self.assertEqual([rev.get_text() for rev in direction.select(".vp-rev")], ["REV-32", "REV-33"])
-        current = page.select('#app-sidebar a[aria-current="page"]')
-        self.assertEqual([(a.span.get_text(), a["href"]) for a in current], [("定位与价值", wmv.PAGE)])
-        self.assertEqual(page.select_one(".vp-footer a")["href"], "workspace/system/index")
-
-    def test_page_names_the_system_page_without_linking_it_when_it_is_not_built(self):
-        page = render(wmv.TEMPLATE, **wmv.page_context(wmv.load_value(ASSETS)), site_nav={}, system_entry=False)
-        self.assertEqual([a["href"] for a in page.select(".vp-footer a")], ["index"])
-        self.assertIn("系统建设", page.select_one(".vp-footer p").get_text())
+            self.assertEqual([li["title"] for li in facets],
+                             [f"{f['status_label']}：{f['note']}" for f in theme["facets"]])
+        # REV ids are evidence in the data file, never shown; no 总纲, principles or direction block.
+        self.assertNotIn("REV-", home.get_text())
+        self.assertIsNone(home.select_one("#direction, .vp-key, .vp-principle"))
+        current = home.select('#app-sidebar a[aria-current="page"]')
+        self.assertEqual([(a.span.get_text(), a["href"]) for a in current], [("首页", wmv.HOME)])
+        self.assertNotIn("定位与价值", [a.span.get_text() for a in home.select("#app-sidebar a.app-nav-link")])
 
 
 if __name__ == "__main__":

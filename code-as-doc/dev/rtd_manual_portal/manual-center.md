@@ -48,7 +48,7 @@ its market list from the same settings, and CN/JP display their own market notes
 
 ## Page layout
 
-Every portal page (manual library root, 知识库首页, 定位与价值, 产品知识, 市场与政策, 系统建设, 说明书工作台, 设计规范, 产品矩阵)
+Every portal page (manual library root, 知识库首页, 产品知识, 市场与政策, 系统建设, 说明书工作台, 设计规范, 产品矩阵)
 shares one site shell from `tools/rtd_portal_assets/_site_shell.html` and
 `_static/site-shell.css`. In the manuals-only public role (`RTD_SITE_ROLE=manuals`)
 the manual library root passes `internal=false` to both shell macros: its sidebar
@@ -57,7 +57,7 @@ region selector, with no internal knowledge links or 知识库 / 说明书资料
 In the combined (private) role the root gets the full internal shell, so a reader
 can return to the knowledge base: the same sidebar groups as internal pages and the
 switch, with 说明书资料库 marked selected. Internal pages add three groups
-after 说明书: 知识库 (首页, 定位与价值), 产品与市场 (产品知识, 产品矩阵, 市场与政策) and
+after 说明书: 知识库 (首页), 产品与市场 (产品知识, 产品矩阵, 市场与政策) and
 说明书生产 (说明书工作台, 系统建设, 设计规范), plus the switch. Their breadcrumb section is 知识库,
 and 工作资料 is only the brand. The root keeps 工作资料 as title, crumb and footer in
 both roles. Every sidebar entry is a page and carries
@@ -69,18 +69,22 @@ with the sidebar). Page stylesheets style only what
 sits inside `.app-content`; the brand accent is the shared `--brand` orange.
 The Furo search page and manual pages keep their theme.
 
-The 系统建设 and 说明书工作台 pages share two more shell components: a key-metric
-row (`.kpi-row`) and page tabs (`.page-tabs` /
-`.tab-panel`, wired by `site_script()`). Tabs are anchors over panels, so
-without JavaScript every panel shows; any in-page link or URL hash that
-points inside a panel opens that panel. 系统建设 tabs: 当前工作, 系统架构,
-能力与流程, 语言资产, 工具与工程规模, 系统演变, 数据来源. The unfolded
-stage gates form the metric row inside 当前工作; other tabs do not repeat it.
-A pointer below the row leads to 说明书工作台, which owns the publication counts.
-说明书工作台 tabs: 交付物 (the deliverables matrix, open by
-default), 数据统计, 工作入口, 生产与资产, with web manuals (books per region beneath),
-language editions, Word and print counts as the metric row. The 工作入口 tab draws the content-authority map (`manual_workbench.html`)
-and states current maturity rather than a target architecture:
+The 系统建设 and 说明书工作台 pages share the page tabs (`.page-tabs` /
+`.tab-panel`, wired by `site_script()`) and, since the 2026-11 redesign, the
+知识库首页's 1120px container, status marks and palette. Tabs are anchors over
+panels, so without JavaScript every panel shows; any in-page link or URL hash that
+points inside a panel opens that panel, and any collapsed section around it.
+系统建设 opens with the 阶段门 stepper (G1–G3 with the current gate filled, then a
+接下来 line and the folded gates) above three tabs: 当前工作 (近期事项 and the
+focus lanes), 能力与架构 (capability map, production flow, 工作入口, architecture,
+language assets, skills and engineering scale) and 来源与演变 (data sources, then
+the system's evolution). The former tab ids (`#tab-architecture`, `#tab-corpus`,
+`#tab-tooling`, `#tab-evolution`) stay on their sections. 说明书工作台 opens with
+snapshot chips beside the title, the four delivery totals in one card and the
+常用入口 strip, above three tabs: 进度 (open by default), 交付物 and 资产与证据; it
+owns the publication counts. 工作入口 (`manual_workbench.html`, on 系统建设「能力与架构」)
+draws the content-authority map and states current maturity rather than a target
+architecture:
 CONTENT AUTHORITY 当前内容权威源 offers two alternatives, 01 结构化内容源
 (规格 · 文案 · 语料 · 资产) or 02 Git 原生说明书源 (RST · MyST · Components ·
 Frozen Source, the authority for many web manuals today); SOURCE BINDING says
@@ -95,7 +99,7 @@ states that `manual-knowledge.json` is currently extracted from published HTML
 as a compatibility path, not the target. The machine card carries the same fact as a status badge
 (当前：HTML-derived · Compatibility); when the corpus is generated from
 Assembly / Shared IR instead, change the badge to IR-native · Same-source. The panel's coverage tiles (versions, fresh vs receipt, generation mode, revisions, callout severity, images without alt) are filled at view time by `_static/machine-surface-stats.js` from the deployed `machine_surface_manifest.json` and `manual-deployment.json`, because the manifest is written after pages render; without JS or either file the panel keeps a note and the download link. Build times, snapshot dates and hashes sit in
-the collapsed 页面版本与更新 / 数据更新时间 disclosure.
+the collapsed 页面版本与更新 (系统建设) and 快照与校验 (说明书工作台) disclosures.
 
 Inside the shell the root page has these bounded zones on one container width
 (`.wrap`, 1200px):
@@ -114,8 +118,8 @@ Inside the shell the root page has these bounded zones on one container width
    连接配件 / 保护与搬运), each with a responsive card grid. Sections with no
    visible card after filtering are hidden.
 5. **网页说明书的定位与价值** (white band, after the catalog so the first screen stays search):
-   reader-facing copy in the public role; in the private role the three themes with status tags,
-   linking to the internal page. See [网页说明书的定位与价值](web-manual-value.md).
+   reader-facing copy in the public role; in the private role the themes with status tags,
+   linking to their cards on 知识库首页. See [网页说明书的定位与价值](web-manual-value.md).
 6. **Footer** (light grey band), which also holds the Read the Docs ad placement.
 
 The need and accessory groups are product positioning, curated in

@@ -19,7 +19,7 @@ Status: active
 5. 合入后的独立验证检查目标 commit、来源哈希与线上页面字节；失败可单独重跑。
 
 不新增事件推断、实时浏览器飞书查询、定时轮询、分析平台或全量说明书构建。
-不自动合入或修改源表。工作流修改需 AGENTS.md §8.7 单独批准。
+不修改源表；除每日网页说明书进度外不自动合入。工作流修改需 AGENTS.md §8.7 单独批准。
 
 ## 验证计划
 
@@ -57,7 +57,12 @@ python -m tools.workspace_refresh_batch corpus -- python -m tools.revision_ledge
 （Base 的飞书地址，用于回链），并完整拉取提交历史（`fetch-depth: 0`、`filter: blob:none`）来给语言版本定首次上线日期。
 其余来源仍不定时轮询。规则见 [网页说明书进度](rtd_manual_portal/web-progress.md#refreshing)。
 导出失败保留旧值并提交可审核的失败状态；同一事件仅一个 GitHub issue，不重复评论。
-已有内容 PR 会被复用，不自动合入。审核人员检查来源、减少保护和执行记录后合入。
+已有内容 PR 会被复用。交付和语料的内容 PR 不自动合入，审核人员检查来源、减少保护和执行记录后合入。
+网页说明书进度例外：本次导出成功（`changed` 或 `unchanged`）时，`workspace_refresh_publish` 用
+`gh pr merge --squash --match-head-commit` 只合入本次校验过的那个提交，再用 `gh workflow run` 启动
+Workspace Data Verify——工作流令牌做的合入不会触发 push 工作流，所以刷新工作流多一项 `actions: write`。
+导出失败的状态 PR 仍等审核；合入或启动核验被拒时任务失败、开 issue，PR 原样留给人工处理。
+自动合入不等于线上已更新，仍以 Workspace Data Verify 的结果为准。
 内容 PR 合入或关闭后留下的分支不再复用：下一次刷新从 main 重开该分支，用 `--force-with-lease`
 只替换刚读到的那个提交，以免已 squash 合入的旧提交让新 PR 与 main 冲突（Hello-Docs #242）。
 
@@ -67,6 +72,8 @@ python -m tools.workspace_refresh_batch corpus -- python -m tools.revision_ledge
 | 导出、分页或校验失败 | 查看 workspace-refresh artifact；确认源表或权限后重新运行 Workspace Data Refresh |
 | 内容 PR 提交失败 | 重跑补刷任务；幂等比较避免重复提交，不重跑生产 |
 | 内容 PR 待审核 | 打开日志中的 PR，按现有审核流程处理 |
+| 网页进度自动合入被拒（`auto-merge`） | PR 仍开着：查明原因后人工合入，或重跑 Workspace Data Refresh |
+| 已自动合入但未启动核验（`verify-dispatch`） | 在 Hello-Docs 手动运行 Workspace Data Verify |
 | 工程镜像同步失败 | 在 auto-manual 重跑 Sync Hello-Docs Mirror |
 | RTD 构建失败 | 在 RTD 重试目标版本的构建 |
 | 线上版本／快照不一致 | 在 Hello-Docs 手动运行 Workspace Data Verify；只查版本与哈希 |
@@ -119,6 +126,8 @@ python -m tools.workspace_refresh_batch corpus -- python -m tools.revision_ledge
 - 工作流修改获操作者明确批准（2026-10-02：“授权按该范围修改工作流”）。
   不含自动合入授权。真实新增交付的自动触发与 RTD 最终验收须在工程 PR 审核发布后进行，
   不以本地 fixtures 或试导出代替线上生产验收。
+- 2026-11-04：操作者授权每日网页说明书进度内容 PR 自动合入（“把每日刷新的内容PR也设成自动合入”），
+  并批准为此给刷新工作流加 `actions: write`（“授权改工作流”）。交付和语料仍须审核合入。
 
 - 2026-10-03 UTC：真实 TM-B 完整分页试导出通过，返回 `changed`；候选仅在 `.tmp`，未发布业务数据。
 

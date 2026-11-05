@@ -1,0 +1,20 @@
+{#- Production-entry destinations shared by 工作入口 (manual_workbench.html, on 系统建设「能力与架构」) and the
+    常用入口 strip on 说明书工作台 (deliverables.html). Import it: {% import '_work_links.html' as links %}.
+    Business destinations come from user-guide/two_plane_map.md. -#}
+{%- set engineering = 'https://github.com/Bingboom/auto-manual' -%}
+{%- set business = 'https://github.com/Bingboom/Hello-Docs' -%}
+{%- set source_base = 'https://xcn57j1urbe6.feishu.cn/wiki/BLYEwfMMFiS7wsk9MuvcOvdVnje' -%}
+{%- set corpus_base = 'https://xcn57j1urbe6.feishu.cn/wiki/FRUywcjrPiMoPrkxnadcQhhenmb' -%}
+{%- set catalog_base = 'https://xcn57j1urbe6.feishu.cn/wiki/QKNGwHFwPiY7J7kZ0bzcximKnyb' -%}
+{#- 常用入口: the structured production data (Feishu, needs a login) and the Git-native manual sources. -#}
+{%- set materials = [
+  ('产品与规格', source_base ~ '?table=tblPUFJqt2uGGvTT'),
+  ('文案与变量', source_base ~ '?table=tblboUMUiLbWk9nF'),
+  ('翻译与术语', corpus_base),
+  ('插图资产', source_base ~ '?table=tblsXlZx61Ff5pQC'),
+] -%}
+{%- set manual_sources = [
+  ('冻结发布源', business ~ '/tree/main/docs/publish/web'),
+  ('评审稿', engineering ~ '/tree/main/docs/_review'),
+  ('来源声明', engineering ~ '/blob/main/code-as-doc/dev/web_publish_pipeline.md'),
+] -%}

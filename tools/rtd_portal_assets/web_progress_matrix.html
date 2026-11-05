@@ -1,0 +1,36 @@
+{#- 覆盖矩阵 on 说明书工作台「交付物」: each converted model's Web manuals per market (moved from the 进度 tab in the
+    2026-11 design). Context: `progress` from tools/rtd/web_progress.py; web-progress.js filters it. -#}
+{%- set p = progress -%}
+{%- if p.available %}
+<section class="sw-section wp" id="web-progress-matrix" aria-labelledby="wp-matrix-title">
+  <div class="dl-section-title"><h2 id="wp-matrix-title">覆盖矩阵</h2>
+    <p>数字是已有语言 / 该市场已上线的语言种数，点开是这本网页说明书；“旧版”是旧路由，语言范围待核对；蓝色是审核中的版本号，点开是审核稿；“待转”表示有在用 SKU 但还没有网页版；空白表示该市场没有在用 SKU。</p></div>
+  <div class="wp-matrix">
+    <div class="dl-toolbar">
+      <label class="dl-select"><span>类别</span><select id="wp-category"><option value="">全部类别</option>{% for c in p.categories %}<option value="{{ c.label|e }}">{{ c.label|e }}</option>{% endfor %}</select></label>
+      <label class="wp-check"><input type="checkbox" id="wp-gaps"> 只看还有待转、审核中或语言未齐的型号</label>
+    </div>
+    <div class="dl-table-wrap" role="region" aria-label="覆盖矩阵，可横向滚动" tabindex="0">
+      <table class="wp-table">
+        <caption class="wb-sr-only">已转型号在各市场的网页说明书状态</caption>
+        <thead><tr><th scope="col">型号</th>{% for m in p.markets %}<th scope="col">{{ m.label|e }}<small>{% if m.expected %}{{ m.expected }} 种语言{% else %}暂无网页版{% endif %}</small></th>{% endfor %}<th scope="col" class="wp-n">待转</th></tr></thead>
+        {%- for c in p.categories %}
+        <tbody data-category="{{ c.label|e }}">
+          <tr class="wp-group"><th colspan="{{ p.markets|length + 2 }}">{{ c.label|e }}<span>{{ c.count }} 个型号</span></th></tr>
+          {%- for r in p.rows if r.category == c.label %}
+          <tr data-open="{{ 1 if (r.gaps or r.partial or r.reviews) else 0 }}">
+            <th scope="row"><b>{{ r.model|e }}</b>{% if r.name %}<span>{{ r.name|e }}</span>{% endif %}</th>
+            {%- for cell in r.cells %}
+            <td>{% if cell.docname %}<a class="wp-chip is-{{ cell.state }}" href="{{ pathto(cell.docname)|e }}" title="{{ cell.title|e }}">{{ cell.text|e }}{% if cell.legacy %}<em>旧版</em>{% endif %}</a>{% if cell.review %}<a class="wp-chip is-review is-extra" href="{{ cell.review.href|e }}" target="_blank" rel="noopener" title="{{ cell.review.title|e }}">{{ cell.review.text|e }}</a>{% endif %}{% elif cell.state == 'review' %}<a class="wp-chip is-review" href="{{ cell.href|e }}" target="_blank" rel="noopener" title="{{ cell.title|e }}">{{ cell.text|e }}</a>{% elif cell.state == 'gap' %}<span class="wp-chip is-gap" title="{{ cell.title|e }}">待转</span>{% endif %}</td>
+            {%- endfor %}
+            <td class="wp-n">{% if p.snapshot %}{{ r.gaps }}{% else %}—{% endif %}</td>
+          </tr>
+          {%- endfor %}
+        </tbody>
+        {%- endfor %}
+      </table>
+    </div>
+    <p class="dl-empty" id="wp-empty" hidden>没有符合筛选条件的型号。</p>
+  </div>
+</section>
+{%- endif %}

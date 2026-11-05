@@ -2,8 +2,9 @@ CONNECTIONS
 ===========
 
 
-CONNECT TO BATTERY PACK (SOLD SEPARATELY)
------------------------------------------
+.. raw:: html
+
+   <h2>CONNECT TO BATTERY PACK (SOLD SEPARATELY)</h2>
 
 This product can support the battery pack to meet the need for large power capacity. For details on how to use it, please refer to the Jackery Battery Pack User Manual.
 

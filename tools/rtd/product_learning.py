@@ -12,6 +12,7 @@ TEMPLATE = "product_knowledge.html"
 # The HomePower case in TEMPLATE quotes this manual; it is left out while the catalog lacks it.
 BACKUP_CASE = ("JHP-3600C", "US")
 _ID = re.compile(r"[a-z][a-z0-9-]*")
+_DATE = re.compile(r"\d{4}-\d{2}-\d{2}")
 
 
 def _validate_topic(topic: dict, ids: set[str], tag_ids: list[str], groups: dict) -> None:
@@ -26,6 +27,9 @@ def _validate_topic(topic: dict, ids: set[str], tag_ids: list[str], groups: dict
     for field in ("title", "answer", "application", "boundary", "read"):
         if not isinstance(topic[field], str) or not topic[field].strip():
             raise ValueError(f"knowledge topic {key} needs {field}")
+    # `added` (first published, YYYY-MM-DD) feeds 知识库首页's growth line; optional, but checked when present.
+    if "added" in topic and not _DATE.fullmatch(str(topic["added"])):
+        raise ValueError(f"knowledge topic {key} has an invalid added date: {topic['added']!r}")
 
 
 def _references(products: list[dict], models: set[str]) -> list[dict]:

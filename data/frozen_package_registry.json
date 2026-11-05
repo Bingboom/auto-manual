@@ -368,8 +368,18 @@
           "handling": "keep-frozen",
           "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
           "since": "2026-10-19"
+        },
+        "docs/templates/page_fridgeguard/en/connections_en.rst": {
+          "handling": "keep-frozen",
+          "reason": "由 git-20261104-9d3b811e 取代：CONNECTIONS 小标题改用 raw html h2 后按当前输入重建重发（操作者 2026-11-04「A」）；本包已发布字节不变，留作历史版本",
+          "since": "2026-11-04"
         }
       }
+    },
+    "data/manual_sources/JE-1000E-SIL/US/en/git-20261104-9d3b811e": {
+      "approval": "Operator 2026-11-04 (this session): 「上线提交发布」 after reviewing the 1280/390 CONNECTIONS renders beside the live edition (MyST differs from the live page only by the restored CONNECT TO BATTERY PACK (SOLD SEPARATELY) subheading; reviewed MyST sha256 ff1d64c2513e5a6a78f918f30a315c6546f7cc34d3fa0698ad2614d01678e347); merge and Hello-Docs publish under MA-397",
+      "registered": "2026-11-04",
+      "known_drift": {}
     },
     "data/manual_sources/JE-1000E-SIL/US/es/git-20261002-537939d0": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
@@ -3148,6 +3158,16 @@
       "handling": "keep-frozen",
       "reason": "#1666 troubleshooting rowspan divider selector; JP editions sealed and published with the prior web_manual.css (Hello-Docs #290), immutable output kept",
       "minutes": 0
+    },
+    {
+      "date": "2026-11-04",
+      "files": [
+        "docs/templates/page_fridgeguard/en/connections_en.rst"
+      ],
+      "packages": 1,
+      "handling": "keep-frozen",
+      "reason": "由 git-20261104-9d3b811e 取代：CONNECTIONS 小标题改用 raw html h2 后按当前输入重建重发（操作者 2026-11-04「A」）；本包已发布字节不变，留作历史版本",
+      "minutes": 1
     },
     {
       "date": "2026-11-05",

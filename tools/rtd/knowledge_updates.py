@@ -22,10 +22,11 @@ import yaml
 
 UPDATES_NAME = "knowledge_updates.yaml"
 UPDATES_SCHEMA = "hello-docs-knowledge-updates/v1"
-# Page key -> docname. The share package is not a Sphinx page: the home page links it.
+# Page key -> docname. The share package is not a Sphinx page: the home page links it. "home" is
+# 知识库首页 itself, for changes to its own sections (its 定位与价值 is the #value anchor).
 PAGES: dict[str, str | None] = {
     "share": None,
-    "positioning": "workspace/positioning/index",
+    "home": "workspace/index",
     "product-knowledge": "products/knowledge",
     "product-matrix": "products/matrix",
     "market-policy": "market/policy",
@@ -97,7 +98,7 @@ def load_updates(assets: Path) -> tuple[list[dict[str, str]], list[str]]:
     return entries, problems
 
 
-def updates_view(entries: list[dict[str, str]], built: dict[str, bool], limit: int = 8) -> list[dict[str, Any]]:
+def updates_view(entries: list[dict[str, str]], built: dict[str, bool], limit: int = 5) -> list[dict[str, Any]]:
     """The newest ``limit`` entries whose page this build made.
 
     ``built`` maps a page key to whether its page (for ``share``, the sharing

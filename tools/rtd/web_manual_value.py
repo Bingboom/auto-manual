@@ -1,11 +1,12 @@
-"""「网页说明书的定位与价值」: the manual-library home band and its internal page.
+"""「网页说明书的定位与价值」: the manual-library home band and the 知识库首页 section.
 
 ``tools/rtd_portal_assets/web_manual_value.yaml`` (schema
 ``hello-docs-web-manual-value/v1``) holds the copy for two audiences. The
 public manuals project gets only :func:`band_context`'s public view, so the
-internal copy never reaches public HTML; the private site gets the internal
-band and the full page at :data:`PAGE`. Each theme's tag is derived from its
-facets' statuses, which use the 系统建设 page's vocabulary. A malformed file
+internal copy never reaches public HTML. The private site gets the internal
+band and the 定位与价值 section of 知识库首页 (:data:`HOME`): one card per theme
+with its summary and its facets folded away. Each theme's tag is derived from
+its facets' statuses, which use the 系统建设 page's vocabulary. A malformed file
 fails the build, like the other engineering-owned portal assets.
 """
 from __future__ import annotations
@@ -18,8 +19,8 @@ import yaml
 
 from tools.rtd.system_workspace import STATUS_LABELS
 
-PAGE = "workspace/positioning/index"
-TEMPLATE = "web_manual_value.html"
+# The private copy lives on 知识库首页 (section #value, one card per theme id).
+HOME = "workspace/index"
 SOURCE_NAME = "web_manual_value.yaml"
 SCHEMA = "hello-docs-web-manual-value/v1"
 FACET_STATUSES = ("available", "validated", "in_progress", "planned")
@@ -32,12 +33,6 @@ def _text(where: str, value: object) -> str:
     if not isinstance(value, str) or not value.strip():
         raise ValueError(f"{SOURCE_NAME}: {where} needs text")
     return value.strip()
-
-
-def _paragraphs(where: str, value: object) -> list[str]:
-    if not isinstance(value, list) or not value:
-        raise ValueError(f"{SOURCE_NAME}: {where} needs a list of paragraphs")
-    return [_text(f"{where}[{index}]", item) for index, item in enumerate(value)]
 
 
 def _mapping(where: str, value: object) -> dict:
@@ -90,9 +85,7 @@ def _theme(where: str, raw: object, ids: set[str]) -> dict[str, Any]:
     views = [_facet(f"{where}.facets[{index}]", facet) for index, facet in enumerate(facets)]
     status, label = theme_status([facet["status"] for facet in views])
     return {"id": key, "theme": _text(f"{where}.theme", theme.get("theme")),
-            "title": _text(f"{where}.title", theme.get("title")),
-            "body": _paragraphs(f"{where}.body", theme.get("body")),
-            "principle": _text(f"{where}.principle", theme.get("principle")),
+            "summary": _text(f"{where}.summary", theme.get("summary")),
             "facets": views, "status": status, "status_label": label}
 
 
@@ -110,17 +103,6 @@ def _public(raw: object) -> dict[str, Any]:
             "points": [_point(f"public.points[{index}]", point) for index, point in enumerate(points)]}
 
 
-def _direction(raw: object) -> dict[str, Any]:
-    direction = _mapping("internal.direction", raw)
-    revs = _revs("internal.direction", direction.get("revs"))
-    if not revs:
-        raise ValueError(f"{SOURCE_NAME}: internal.direction names the REVs it points to")
-    return {"title": _text("internal.direction.title", direction.get("title")),
-            "line": _text("internal.direction.line", direction.get("line")),
-            "body": _paragraphs("internal.direction.body", direction.get("body")),
-            "note": _text("internal.direction.note", direction.get("note")), "revs": revs}
-
-
 def _internal(raw: object) -> dict[str, Any]:
     internal = _mapping("internal", raw)
     themes = internal.get("themes")
@@ -128,11 +110,8 @@ def _internal(raw: object) -> dict[str, Any]:
         raise ValueError(f"{SOURCE_NAME}: internal.themes needs entries")
     ids: set[str] = set()
     view: dict[str, Any] = {key: _text(f"internal.{key}", internal.get(key))
-                            for key in ("eyebrow", "heading", "subtitle", "tagline", "key_idea")}
-    view["intro"] = _paragraphs("internal.intro", internal.get("intro"))
-    view["triad"] = _paragraphs("internal.triad", internal.get("triad"))
+                            for key in ("eyebrow", "heading", "subtitle", "tagline")}
     view["themes"] = [_theme(f"internal.themes[{index}]", theme, ids) for index, theme in enumerate(themes)]
-    view["direction"] = _direction(internal.get("direction"))
     return view
 
 
@@ -150,7 +129,7 @@ def band_context(value: dict[str, Any], *, internal: bool) -> dict[str, Any]:
     if not internal:
         return {"internal": False, "title": value["title"], **value["public"]}
     band = value["internal"]
-    return {"internal": True, "title": value["title"], "page": PAGE, "eyebrow": band["eyebrow"],
+    return {"internal": True, "title": value["title"], "page": HOME, "eyebrow": band["eyebrow"],
             "heading": band["heading"], "subtitle": band["subtitle"],
             "themes": [{"id": theme["id"], "theme": theme["theme"], "status": theme["status"],
                         "status_label": theme["status_label"],
@@ -159,5 +138,5 @@ def band_context(value: dict[str, Any], *, internal: bool) -> dict[str, Any]:
 
 
 def page_context(value: dict[str, Any]) -> dict[str, Any]:
-    """The internal page's context: the title plus the internal copy."""
+    """The 知识库首页 context for its 定位与价值 section: the title plus the internal copy."""
     return {"title": value["title"], **value["internal"]}

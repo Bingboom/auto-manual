@@ -6,23 +6,50 @@ other portal surfaces. Add new notes for this surface here, not to the hub.
 ## Personal workspace entry
 
 The manual library root (说明书资料库) remains independent. The portal extension
-also builds `/workspace/` (知识库 · 首页) as the knowledge-base entry page, in one
-column from top to bottom:
+also builds `/workspace/` (知识库 · 首页) as the knowledge-base entry page. Its
+2026-11 design (an operator-approved design canvas) answers, from top to bottom,
+what has built up and can be reused, what is being done now, and where to go:
 
-- The page header links to the manual library (labelled 说明书资料库) for
-  product, region, language and manual-content search.
-- **Entry cards** in the sidebar's two groups after 知识库: 产品与市场
-  (`#products`: 产品知识, 产品矩阵, 市场与政策) and 说明书生产 (`#production`:
-  说明书工作台, 系统建设, 设计规范). A card has the sidebar entry's glyph
-  and label and one line on what the page holds, and shows only when its sidebar
-  entry does, so it never links to a page this build skipped. Cards carry no
-  counts; those stay on their own pages. The sidebar test in
-  `tests/test_rtd_portal.py` pins the cards to the sidebar's groups and order.
-- **分享资料** (`#shares`) holds the share card for the bundled
-  beginner-facing AI sharing package at `/ai-share/00_打开分享.html`.
-- **最近更新** (`#updates`) lists dated changes, `YYYY-MM-DD · title / note`, from
+- The page header gives the web manuals' positioning in one line (the `tagline`
+  of `web_manual_value.yaml`).
+- **现在** (`#now`, `tools/rtd/workspace_home.py`) opens with 「已积累的可复用资产」:
+  four cards, each the amount built up so far and how much of it can be reused
+  now. Every figure is read from the source that owns it; an unreadable source
+  shows its card as 无数据 and never fails the build.
+  - 翻译语料: the translation-memory snapshot as 系统建设 shows it (句对, 术语,
+    languages, approved share); links to the 语言资产 tab.
+  - 图片素材: `data/asset_registry.csv`: finished assets, the share without
+    language-specific text (语言维度 中立) and those every model uses (适用机型
+    ALL); links to the workbench 数据统计 (`#statistics`, in its 交付物 tab), where the
+    registry is listed.
+  - 通用章节: the shared chapter templates under `docs/templates/page_shared`,
+    counted per page and language, with the warranty, troubleshooting, charging
+    and storage chapters named.
+  - 产品知识: the topics in `product_knowledge.json`, with a growth line drawn
+    from each topic's `added` date; the line is left out while any topic lacks
+    one.
+
+  Below the cards, 当前主线 lists the 系统建设 focus lanes marked `now` (titles
+  only). 正在做 comes from `tools/rtd_portal_assets/workspace_home.yaml`: plain
+  wording that only this page shows, while the 系统建设 page keeps its own
+  ledger-based list. A malformed `workspace_home.yaml` fails the build.
+- **去哪里** (`#doors`) has one card per sidebar group after 首页: 说明书
+  (说明书资料库, 搜索说明书正文), 产品与市场 (产品知识, 产品矩阵, 市场与政策) and
+  说明书生产 (说明书工作台, 系统建设, 设计规范). Each entry carries its sidebar
+  icon and one line on what is there. A link shows only when its sidebar entry
+  does, so it never points to a page this build skipped, and the cards carry no
+  counts. The sidebar test in `tests/test_rtd_portal.py` pins the cards to the
+  sidebar's groups and order. Under the cards, **分享资料** (`#shares`) is one
+  link to the bundled beginner-facing AI sharing package at
+  `/ai-share/00_打开分享.html`.
+- **定位与价值** (`#value`) holds the four theme cards, each with its status, one
+  sentence and its facets with status marks (a facet's note is its row's
+  tooltip), under a legend of the marks used; see
+  [网页说明书的定位与价值](web-manual-value.md).
+- **最近更新** (`#updates`) lists dated changes, one line each (`YYYY-MM-DD`,
+  page · title, the note cut to fit), from
   `tools/rtd_portal_assets/knowledge_updates.yaml`
-  (`tools/rtd/knowledge_updates.py` reads it): the newest 8 entries whose page
+  (`tools/rtd/knowledge_updates.py` reads it): the newest 5 entries whose page
   this build made, newest first, ties in file order. The date is the change's
   merge day, as `git log --date=short` shows the squash commit on main, and each
   entry cites `pr:<repo>#<n>` as evidence for reviewers (not shown). The list is
@@ -33,6 +60,15 @@ column from top to bottom:
   Both log `Knowledge home update skipped`, and the build date is never shown
   instead. An unreadable file leaves 暂无更新记录。 A PR that adds a knowledge
   page, or changes one in a way readers should notice, adds its entry there.
+
+The shared shell (`_site_shell.html`) draws one line icon set (24 grid, 1.75
+stroke, round caps, `currentColor`); pages import its `icon()` macro, and a path
+marked `ic-accent` is the one detail a page may tint (the home's entry cards
+do). 首页 opens the internal sidebar without a group label. Knowledge pages set
+`body.app.kb`, which re-tints the shell tokens and the `workspace.css` page
+tokens to the 2026-11 palette: a cool ground (`#f3f6fa`), white cards and a
+terracotta accent (`#a64e24`). The 说明书资料库 pages keep the brand orange. The
+numbers use the system font stack; no web font is loaded.
 
 The sharing package is owned by **Hello-Docs** under
 `docs/knowledge/ai-share/`; it must not be committed to auto-manual.
@@ -53,7 +89,7 @@ to the manual center. In the combined role the manual-center homepage links into
 the workspace only through the shared shell and the 定位与价值 band; in the
 public role it links nowhere internal. The system page lives inside it. The sharing package is an
 optional entry. Without `ai-share/00_打开分享.html`, the 知识库首页
-(`workspace/index.html`) hides its 分享资料 section (`#shares`, the share card)
+(`workspace/index.html`) hides its 分享资料 link (`#shares`)
 and the 最近更新 rows (`#updates`) that link to the package. Nothing else changes.
 分享资料 and 最近更新 are sections of the 知识库首页, not sidebar entries: the
 sidebar lists pages only, so each entry is marked current on its own page.
@@ -64,20 +100,33 @@ content, QR aliases and nested manual URLs are unchanged.
 ## Public manuals project (site role)
 
 One frozen `docs/publish/web` source can feed two Read the Docs projects, so
-the manuals can be public while the knowledge base stays internal. Each
-project selects its half with the `RTD_SITE_ROLE` environment variable (Sphinx
-config `rtd_site_role`); `.readthedocs.yaml` is shared and unchanged.
+the manuals can be public while the knowledge base stays internal. The role
+is resolved by `tools/rtd/site_role.py` from the `RTD_SITE_ROLE` environment
+variable (Sphinx config `rtd_site_role`) and the building project;
+`.readthedocs.yaml` is shared and unchanged.
 
-| `RTD_SITE_ROLE` | Builds | Intended project |
+| Role | Builds | Who builds it |
 | --- | --- | --- |
-| unset or `combined` | everything: manual center, manuals, short aliases, search, `/workspace/`, knowledge pages, `/ai-share/` | the existing private project (`ht-docs-ht-manuals`) |
-| `manuals` | manual center, manuals, short aliases, search, `manual-knowledge.json`, deployment receipt; no `/workspace/`, `/products/`, `/market/` or `/ai-share/` output, and no internal sidebar data is built | a second project whose `latest` version is set to Public |
+| `combined` | everything: manual center, manuals, short aliases, search, `/workspace/`, knowledge pages, `/ai-share/` | on Read the Docs, only a project listed in `PRIVATE_RTD_PROJECTS` (today the private `ht-docs-ht-manuals`), when `RTD_SITE_ROLE` is unset or `combined`; local builds by default |
+| `manuals` | manual center, manuals, short aliases, search, `manual-knowledge.json`, deployment receipt; no `/workspace/`, `/products/`, `/market/` or `/ai-share/` output, and no internal sidebar data is built | every other Read the Docs project, with or without `RTD_SITE_ROLE=manuals` (the public `ht-docs-ht-user-manuals` sets it); any build with `RTD_SITE_ROLE=manuals` |
+
+The rule fails closed (2026-11-04). Until then an unset variable meant
+`combined`, and the public project, created without the variable, served the
+whole knowledge base until `RTD_SITE_ROLE=manuals` was added and it rebuilt.
+Now a project missing from the list builds the manuals only, and
+`RTD_SITE_ROLE=combined` on it fails the build. Adding a private project is a
+reviewed PR to `PRIVATE_RTD_PROJECTS`. Each build logs `RTD site role: …` with
+the reason.
+
+The role decides what a build contains, not who can open it. That is each
+project's Privacy level in Read the Docs: keep the private project's versions
+Private.
 
 The home page's 定位与价值 band switches its copy with the role, and its internal
 page is built only in the combined role; see
 [网页说明书的定位与价值](web-manual-value.md).
 
-Any other value fails the build. Absolute URLs (canonical, `hreflang`,
+Any other `RTD_SITE_ROLE` value fails the build. Absolute URLs (canonical, `hreflang`,
 `og:url`, alias canonical) use the serving project's
 `READTHEDOCS_CANONICAL_URL`, which Read the Docs sets per project and version
 (custom domains included); `site_base_url` in the portal settings is the
@@ -85,24 +134,31 @@ fallback for local builds. Each project therefore gets its own canonical root
 without a per-project settings file, and the public domain can be chosen
 later without a code change.
 
-Set the public project's version to Public only after its first `manuals`
-build succeeds: before that, the project has no pages to expose, and an
-unset role would publish the internal pages. Knowledge pages in the combined
-site keep linking to the manuals inside the same private site.
+Check a new project's first build before setting its version to Public.
+Knowledge pages in the combined site keep linking to the manuals inside the
+same private site.
 
 ## Deliverables page
 
 `/workspace/deliverables/` (说明书工作台) is the production navigation surface.
-The stable URL is retained. Below the hero, the key-metric row (网页说明书,
-语言版本, Word 云文档, 印刷交付包) sits above four tabs: **交付物** (the
-deliverables matrix, open by default), **数据统计** (see [数据统计](#数据统计)),
-**工作入口** and **生产与资产**; see
-[Page layout](manual-center.md#page-layout). The 工作入口 tab draws the work map
-**Content Authority → Source Binding → Assembly / IR → Human + Machine Surface**:
-either content authority (structured sources or a Git-native manual source)
-passes through source binding into assembly, which derives both surfaces.
-Selecting a node reveals its work destinations, operating guides and next step.
-The 生产与资产 tab holds the production evidence. The system workspace remains
+The stable URL is retained. Since the 2026-11 redesign the title carries one chip
+per snapshot (交付链接, 语料, 网页进度: its date, and its state when not 有效) and a
+link to 系统建设「数据来源」. Below it the four delivery totals (网页说明书 with the
+books per region, 语言版本 with the published languages, Word 云文档 and 印刷交付包,
+which carry the 交付快照's 待复核) share one card, then the **常用入口** strip: the
+structured production data (产品与规格, 文案与变量, 翻译与术语, 插图资产) and the
+Git-native manual sources (冻结发布源, 评审稿, 来源声明), from
+`_work_links.html`. Three tabs follow: **进度** (网页说明书进度, open by default),
+**交付物** (the coverage matrix, 语言版本明细 and [数据统计](#数据统计)) and
+**资产与证据** (the production evidence and 快照与校验); see
+[Page layout](manual-center.md#page-layout).
+
+The work map **Content Authority → Source Binding → Assembly / IR → Human +
+Machine Surface** (工作入口, `manual_workbench.html`) moved to 系统建设「能力与架构」
+(`#work-map`); the 常用入口 strip links there as 全部工作入口. Either content
+authority (structured sources or a Git-native manual source) passes through source
+binding into assembly, which derives both surfaces. Selecting a node reveals its
+work destinations, operating guides and next step. The system workspace remains
 the capability/progress view; this page links to it.
 
 The page's stylesheet and script links carry `?v=<content hash>`
@@ -116,12 +172,14 @@ largest first, labelled by the system contract's `focus.regions`); 系统建设
 shows no publication count and links here. 系统建设 owns the corpus and
 skeleton totals: the 语料库 and 模板与骨架 cards and the asset ledger keep their
 maintenance links and adoption status and point to 系统建设「语言资产」
-(`#tab-corpus`) and 「骨架扩展」 (`#lane-skeletons`). The 数据更新时间
-disclosure keeps both snapshot freshness spans that Workspace Data Verify reads
-and links the registry's rules (系统建设「数据来源」, `#sources`). The pointers
-show only when the system page is built.
+(`#tab-corpus`) and 「骨架扩展」 (`#lane-skeletons`). The snapshot chips keep the
+`data-workspace-source` freshness marks that Workspace Data Verify reads;
+资产与证据「快照与校验」 (`#snapshots`) lists each snapshot's date, state, hash and
+update run and links the registry's rules (系统建设「数据来源」, `#sources`). The
+pointers show only when the system page is built.
 
-`tools/rtd_portal_assets/manual_workbench.html` owns the curated navigation links,
+`tools/rtd_portal_assets/manual_workbench.html` owns the curated navigation links
+(their shared destinations, also used by the 常用入口 strip, are in `_work_links.html`),
 using business destinations from `user-guide/two_plane_map.md` and the README's
 existing authoritative guides. Templates/configuration link to auto-manual;
 business Actions and PRs link to Hello-Docs. Feishu links require the user's
@@ -132,19 +190,19 @@ business coordinates must update the authoritative topology and this entry map.
 All links and panels are rendered at build time. `manual-workbench.js` only
 switches the selected panel, using native buttons and `aria-pressed`; without
 JavaScript, every panel stays visible. Styling is scoped to the workbench and
-reuses the workspace shell. The key-metric cards link to `#deliverables`, the
+reuses the workspace shell. The delivery totals link to `#deliverables`, the
 交付物 tab that holds the matrix.
 
-The 交付物 tab shows Web manuals only (2026-10-19). It opens with
-网页说明书进度, described on [its own page](web-progress.md), and then 语言版本明细,
-collapsed. That list groups the language versions by model, one row per region.
+The 进度 and 交付物 tabs show Web manuals only (2026-10-19). 进度 is
+网页说明书进度, described on [its own page](web-progress.md); 交付物 opens with its
+coverage matrix, then 语言版本明细, collapsed. That list groups the language versions by model, one row per region.
 Each chip is one language and its version, linked to its page on this site.
 Two selects filter by model and by region. On a phone each region becomes a
 card. Product names come from the manual center; a model the manual center
 does not list shows its code only.
 
 The Feishu snapshot below no longer shows on this tab. It still feeds the
-page summary's Word 云文档 and 印刷交付包 counts and 生产与资产. Its links stay in
+page summary's Word 云文档 and 印刷交付包 counts and 资产与证据. Its links stay in
 the snapshot: the operator chose on 2026-09-25 to list them (「直接放飞书链接」),
 the site can be made public at any time, and only https Feishu or Lark links
 are accepted.
@@ -186,7 +244,7 @@ fails the export instead of silently dropping a format.
 
 ### 数据统计
 
-The 数据统计 tab (`#statistics`, after 交付物) holds what the 系统数据 page
+数据统计 (`#statistics`, the last section of the 交付物 tab) holds what the 系统数据 page
 counted: what the repository holds about the manuals, narrowed by region and
 model. `production_statistics.html` renders it from the context that
 `tools/rtd/system_data.py` builds once per build; the page receives it as
@@ -215,7 +273,7 @@ have another shape. The tab loads `_static/system-data.js` and
   29 of 37 targets (9 of 16 models) remain. The 产品矩阵 page's 功能矩阵 is not
   filtered; it still lists every model of the capability table.
 - **Asset counts are registry entries.** 素材登记 counts the rows of
-  `data/asset_registry.csv`, not deduplicated artwork; the 生产与资产 tab's
+  `data/asset_registry.csv`, not deduplicated artwork; the 资产与证据 tab's
   Artwork Assets stays Not tracked yet.
 - **Filters are client-side.** The rows travel as one JSON block
   (`<` escaped) and `_static/system-data.js` filters and counts them. A region
@@ -300,8 +358,8 @@ library does not link to it.
 ## System data page
 
 The standalone 系统数据 page and its sidebar/home entries have been removed.
-Its statistics live in the 说明书工作台 tab [数据统计](#数据统计), and its
-工程规模 in the 系统建设 tab 工具与工程规模 (see
+Its statistics live in 说明书工作台 [数据统计](#数据统计) (the 交付物 tab), and its
+工程规模 in 系统建设「能力与架构」 (see
 [Engineering scale](system-workspace.md#engineering-scale)).
 
 In combined builds, `/workspace/data/` and `/workspace/data/index.html` still
@@ -379,7 +437,7 @@ public manual library does not link to it.
 
 产品知识（产品案例是其末节）、市场与政策都与说明书共用同一个 RTD 项目（2026-10-06 定为同项目发布）。2026-10-13 起 Hello-Docs 转为私有仓库，站点改由 Read the Docs for Business 托管于 `https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest/`，访问需要登录并具备项目权限；页面路径须带 `/en/latest/` 前缀，例如 `/en/latest/products/knowledge.html`。知识库可以跳转到说明书，说明书首页、侧栏和顶部不提供知识库入口；分享知识页直达链接给有权限的人。
 
-`/products/knowledge.html` 提供围绕已发布产品的最少必要技术知识，按标签、型号和区域筛选。通用功能原理、常见误区与阅读提示维护在 `tools/rtd_portal_assets/product_knowledge.json`。适用产品取产品矩阵的定位层（`tools/rtd/product_matrix.py` 的 `positioning_groups`）：首页 `navigation` 分组加上 `product_matrix.json` 的产品线与 `assign`（备电线的说明书证据句只在产品矩阵页核对），导航未收录的已发布型号因此也有对应知识，型号选择只列出至少有一项知识的产品。`product_matrix.json` 缺失或格式有误时，知识页只用 `navigation` 分组并给出 Sphinx 警告，条目引用的其他分组（如 `homebackup`）按空组处理并在警告中列出，构建不中断。每项的说明书入口只从当前冻结发布目录取得，优先现有英文页，缺少英文时使用实际可用语言，不拼接或猜测型号路径。
+`/products/knowledge.html` 提供围绕已发布产品的最少必要技术知识，按标签、型号和区域筛选。通用功能原理、常见误区与阅读提示维护在 `tools/rtd_portal_assets/product_knowledge.json`。每项写入 `added`（首次发布日期，YYYY-MM-DD）；知识库首页的增长线读取它，有一项缺少时只显示主题数。适用产品取产品矩阵的定位层（`tools/rtd/product_matrix.py` 的 `positioning_groups`）：首页 `navigation` 分组加上 `product_matrix.json` 的产品线与 `assign`（备电线的说明书证据句只在产品矩阵页核对），导航未收录的已发布型号因此也有对应知识，型号选择只列出至少有一项知识的产品。`product_matrix.json` 缺失或格式有误时，知识页只用 `navigation` 分组并给出 Sphinx 警告，条目引用的其他分组（如 `homebackup`）按空组处理并在警告中列出，构建不中断。每项的说明书入口只从当前冻结发布目录取得，优先现有英文页，缺少英文时使用实际可用语言，不拼接或猜测型号路径。
 
 通用知识不构成某型号内部电路、芯片或跨产品兼容性的认定，也不把教程中的算例当作产品实测。标签和型号过滤只控制阅读范围；技术值、操作和兼容条件仍以对应地区说明书为准。未启用 JavaScript 时全部知识条目与来源链接可读。工程面的模板、交互和课程词条与业务面的 `docs/knowledge/**` 个人分享文章分别维护。
 

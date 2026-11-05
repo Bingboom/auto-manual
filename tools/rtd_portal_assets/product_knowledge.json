@@ -36,6 +36,7 @@
   "topics": [
     {
       "id": "watts",
+      "added": "2026-10-08",
       "title": "能不能启动：额定功率与启动冲击有什么不同？",
       "tags": [
         "basics",
@@ -60,6 +61,7 @@
     },
     {
       "id": "watt-hours",
+      "added": "2026-10-08",
       "title": "Wh：大致能用多久？",
       "tags": [
         "basics",
@@ -86,6 +88,7 @@
     },
     {
       "id": "bms",
+      "added": "2026-10-08",
       "title": "BMS：为什么电池会限制充放电？",
       "tags": [
         "battery"
@@ -111,6 +114,7 @@
     },
     {
       "id": "soc-soh",
+      "added": "2026-10-08",
       "title": "SOC、SOH：电量与健康度有什么不同？",
       "tags": [
         "battery"
@@ -136,6 +140,7 @@
     },
     {
       "id": "inverter",
+      "added": "2026-10-08",
       "title": "逆变器：直流电怎样给家电用？",
       "tags": [
         "inverter"
@@ -159,6 +164,7 @@
     },
     {
       "id": "ac-total",
+      "added": "2026-10-08",
       "title": "多个 AC 插座：单口功率和总功率怎样看？",
       "tags": [
         "basics",
@@ -183,6 +189,7 @@
     },
     {
       "id": "ac-match",
+      "added": "2026-10-08",
       "title": "能不能接：电压、频率与波形要匹配",
       "tags": [
         "inverter"
@@ -206,6 +213,7 @@
     },
     {
       "id": "split-phase",
+      "added": "2026-10-21",
       "title": "100V 与 200V：为什么同一个家里有两种电压？",
       "tags": [
         "basics"
@@ -228,6 +236,7 @@
     },
     {
       "id": "single-in-split-out",
+      "added": "2026-10-22",
       "title": "单进裂出：只接 100V 市电，怎么同时给出 200V？",
       "tags": [
         "basics",
@@ -249,6 +258,7 @@
     },
     {
       "id": "nema-sockets",
+      "added": "2026-10-21",
       "title": "插座形状：为什么插孔各不相同？",
       "tags": [
         "basics",
@@ -272,6 +282,7 @@
     },
     {
       "id": "region-grid",
+      "added": "2026-10-21",
       "title": "美规与日规：同一型号为什么功率参数不同？",
       "tags": [
         "basics"
@@ -294,6 +305,7 @@
     },
     {
       "id": "ac-boost",
+      "added": "2026-10-08",
       "title": "升功率模式：为什么不能当作额定功率提高？",
       "tags": [
         "inverter"
@@ -317,6 +329,7 @@
     },
     {
       "id": "ac-protection",
+      "added": "2026-10-08",
       "title": "过载或自动关机：怎样判断和恢复？",
       "tags": [
         "inverter"
@@ -340,6 +353,7 @@
     },
     {
       "id": "energy-saving",
+      "added": "2026-10-22",
       "title": "节能模式与待机关机：输出为什么会自己关掉？",
       "tags": [
         "backup",
@@ -364,6 +378,7 @@
     },
     {
       "id": "solar-mppt",
+      "added": "2026-10-08",
       "title": "太阳能与 MPPT：为什么不是一直满功率？",
       "tags": [
         "charging"
@@ -388,6 +403,7 @@
     },
     {
       "id": "charging-path",
+      "added": "2026-10-08",
       "title": "市电、车充与快充：补能路径有什么区别？",
       "tags": [
         "charging"
@@ -413,6 +429,7 @@
     },
     {
       "id": "battery-expansion",
+      "added": "2026-10-08",
       "title": "扩容：增加续航，还是增加输出功率？",
       "tags": [
         "expansion",
@@ -436,6 +453,7 @@
     },
     {
       "id": "ups",
+      "added": "2026-10-08",
       "title": "备电与旁路：停电时会怎样？",
       "tags": [
         "backup",
@@ -460,6 +478,7 @@
     },
     {
       "id": "transfer-switch",
+      "added": "2026-10-21",
       "title": "家庭回路备电：为什么要用切换开关？",
       "tags": [
         "backup"
@@ -481,6 +500,7 @@
     },
     {
       "id": "distribution-board-ats",
+      "added": "2026-10-22",
       "title": "分电盘与 ATS：日本的「切替分電盤」是什么？",
       "tags": [
         "backup"
@@ -502,6 +522,7 @@
     },
     {
       "id": "ats-position-us-jp",
+      "added": "2026-10-22",
       "title": "美规 ATS 与日本切替分電盤：主机在电路里的位置有什么不同？",
       "tags": [
         "backup"
@@ -523,6 +544,7 @@
     },
     {
       "id": "earth-leakage",
+      "added": "2026-10-22",
       "title": "漏电保护：美国 GFCI 与日本漏電遮断器有什么不同？",
       "tags": [
         "backup",
@@ -546,6 +568,7 @@
     },
     {
       "id": "ports-pd",
+      "added": "2026-10-08",
       "title": "接口能插上，就能正常充电吗？",
       "tags": [
         "ports",
@@ -574,6 +597,7 @@
     },
     {
       "id": "environment",
+      "added": "2026-10-08",
       "title": "温度、重量与保护：为什么也影响选型？",
       "tags": [
         "environment"

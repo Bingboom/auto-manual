@@ -80,10 +80,10 @@ writer. Nothing here writes a stylesheet, an asset, a manifest or the token
 table. See [design system page](../rtd_manual_portal/knowledge-pages.md#design-system-page).
 
 [`tools/rtd/system_data.py`](../../../tools/rtd/system_data.py) owns the read-only
-context of the 说明书工作台 数据统计 tab: it reads the publish manifest, the
+context of 说明书工作台 数据统计 (in its 交付物 tab): it reads the publish manifest, the
 capability, language and asset CSVs and the review page counts, keeps the
 capability rows of published models only (`published_targets`), and hands the
-rows to the tab as JSON for `_static/system-data.js` to filter. `rtd_portal`
+rows to the section as JSON for `_static/system-data.js` to filter. `rtd_portal`
 passes it to the deliverables page as `statistics` and builds a minimal
 `moved_page.html` redirect for the retired `/workspace/data/` URL; `product_matrix.py` reuses
 `read_targets`. See [数据统计](../rtd_manual_portal/knowledge-pages.md#数据统计).

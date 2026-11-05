@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <meta name="description" content="说明书工作台：生产结果、资产引用与回流复用证据和数据统计，按目标查找多格式交付物。">
+  <meta name="description" content="说明书工作台：网页说明书进度，按目标查找交付物与数据统计，资产与生产证据。">
   <title>说明书工作台</title>
   <link rel="stylesheet" href="{{ pathto('_static/workspace.css', 1) }}?v={{ asset_v.get('workspace.css', '')|e }}">
   <link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}?v={{ asset_v.get('site-shell.css', '')|e }}">
@@ -13,13 +13,16 @@
   <link rel="stylesheet" href="{{ pathto('_static/manual-workbench.css', 1) }}?v={{ asset_v.get('manual-workbench.css', '')|e }}">
   <link rel="stylesheet" href="{{ pathto('_static/production-evidence.css', 1) }}?v={{ asset_v.get('production-evidence.css', '')|e }}">
   <link rel="stylesheet" href="{{ pathto('_static/system-data.css', 1) }}?v={{ asset_v.get('system-data.css', '')|e }}">
-  <script defer src="{{ pathto('_static/manual-workbench.js', 1) }}?v={{ asset_v.get('manual-workbench.js', '')|e }}"></script>
   <script defer src="{{ pathto('_static/web-progress.js', 1) }}?v={{ asset_v.get('web-progress.js', '')|e }}"></script>
-  <script defer src="{{ pathto('_static/machine-surface-stats.js', 1) }}?v={{ asset_v.get('machine-surface-stats.js', '')|e }}"></script>
   <script defer src="{{ pathto('_static/system-data.js', 1) }}?v={{ asset_v.get('system-data.js', '')|e }}"></script>
 </head>
-{% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
-<body class="app system-workspace deliverables">
+{% from "_site_shell.html" import site_sidebar, site_topbar, site_script, icon with context %}
+{% import '_work_links.html' as links %}
+<body class="app kb system-workspace deliverables">
+{#- 说明书工作台 (2026-11 design): snapshot chips beside the title, the four delivery totals, the 常用入口 strip,
+    then three tabs. 进度 is 网页说明书进度; 交付物 the coverage matrix, every language version and the statistics
+    (#statistics); 资产与证据 the production evidence and the snapshot hashes. 工作入口 moved to 系统建设. -#}
+{%- set chip_names = {'deliverables': '交付链接', 'corpus': '语料', 'web_progress': '网页进度'} -%}
 {%- macro web_chips(items) -%}{% if items %}<div class="dl-chips">{% for item in items %}<a class="dl-chip" href="{{ pathto(item.docname)|e }}" title="{{ item.title|e }}"><b>{{ item.label|e }}</b>{{ item.version|e }}</a>{% set record = progress.record_links.get(item.docname) %}{% if record %}<a class="dl-feishu" href="{{ record|e }}" target="_blank" rel="noopener" title="在飞书网页文档表打开这一行">飞书</a>{% endif %}{% endfor %}</div>{% else %}<span class="dl-none">—</span>{% endif %}{%- endmacro -%}
 {{ site_sidebar('deliverables', {'system': system_entry, 'deliverables': True, 'design': design_entry, 'matrix': matrix_entry}) }}
 <div class="app-content">
@@ -28,22 +31,41 @@
   <main id="top">
     <section class="wb-hero page-head">
       <div>
-      <h1>说明书工作台</h1>
-      <p>看交付成果、用共享资产、跟进生产与修订。</p></div>
+        <h1>说明书工作台</h1>
+        <p>看交付成果、用共享资产、跟进生产与修订。</p>
+      </div>
+      <div class="wb-fresh" aria-label="数据快照">
+        {%- for item in freshness %}
+        <a class="wb-fresh-chip{% if item.state != '有效' %} is-stale{% endif %}" href="#snapshots" data-workspace-source="{{ item.kind|e }}" data-snapshot-sha256="{{ item.hash|e }}" title="{{ item.label|e }}：{{ item.date|e }} · {{ item.state|e }}"><i aria-hidden="true"></i>{{ chip_names.get(item.kind, item.label)|e }} {% if item.hash %}{{ item.date[5:]|e }}{% else %}{{ item.date|e }}{% endif %}{% if item.state != '有效' %} · {{ item.state|e }}{% endif %}</a>
+        {%- endfor %}
+        {%- if system_entry %}<a class="wb-fresh-link" href="{{ pathto('workspace/system/index') }}#sources">数据来源{{ icon('arrow', 14) }}</a>{% endif %}
+      </div>
     </section>
 
     {% include 'workbench_summary.html' %}
 
-    <nav class="page-tabs" role="tablist" aria-label="工作台分类">
-      <a role="tab" href="#deliverables" data-tab="deliverables" aria-selected="true">交付物</a>
-      <a role="tab" href="#statistics" data-tab="statistics">数据统计</a>
-      <a role="tab" href="#work-entries" data-tab="work-entries">工作入口</a>
-      <a role="tab" href="#production-evidence" data-tab="production-evidence">生产与资产</a>
+    <nav class="wb-entries" aria-label="常用入口">
+      <span class="wb-entries-label">维护生产资料</span>
+      <span class="wb-entries-links">{% for label, url in links.materials %}<a href="{{ url|e }}" target="_blank" rel="noopener">{{ label|e }}<span aria-hidden="true">↗</span></a>{% endfor %}</span>
+      <span class="wb-entries-sep" aria-hidden="true"></span>
+      <span class="wb-entries-label">说明书源</span>
+      <span class="wb-entries-links">{% for label, url in links.manual_sources %}<a href="{{ url|e }}" target="_blank" rel="noopener">{{ label|e }}<span aria-hidden="true">↗</span></a>{% endfor %}</span>
+      <span class="wb-entries-note">飞书需登录{% if system_entry %} · <a href="{{ pathto('workspace/system/index') }}#work-map">全部工作入口</a>{% endif %}</span>
     </nav>
+
+    <nav class="page-tabs" role="tablist" aria-label="工作台分类">
+      <a role="tab" href="#progress" data-tab="progress" aria-selected="true">进度</a>
+      <a role="tab" href="#deliverables" data-tab="deliverables">交付物</a>
+      <a role="tab" href="#production-evidence" data-tab="production-evidence">资产与证据</a>
+    </nav>
+
+    <div class="tab-panel" id="progress" role="tabpanel" aria-label="进度">
+    {% include 'web_progress.html' %}
+    </div>
 
     <div class="tab-panel" id="deliverables" role="tabpanel" aria-label="交付物">
 
-    {% include 'web_progress.html' %}
+    {% include 'web_progress_matrix.html' %}
 
     <details class="sw-section dl-details" id="deliverables-matrix">
       <summary><span class="dl-section-title"><h2 id="deliverables-title">语言版本明细</h2><span>按型号与区域列出每个语言版本 · 点语言标签打开，「飞书」打开它在网页文档表里的行</span></span></summary>
@@ -78,21 +100,24 @@
       {%- endif %}
       <p class="dl-note">每个标签是一个语言版本和它的版本号。</p>
     </details>
-    </div>
 
     {#- The statistics moved from 系统数据; `statistics` is None when a capability or asset CSV is unreadable. #}
-    <div class="tab-panel system-data" id="statistics" role="tabpanel" aria-label="数据统计">
+    <section class="system-data" id="statistics" aria-label="数据统计">
       {% if statistics %}{% include 'production_statistics.html' %}{% else %}<div class="empty-state"><h3>无数据</h3><p>机型能力表或素材登记表不可读，构建日志有告警。</p></div>{% endif %}
+    </section>
     </div>
 
-    <div class="tab-panel" id="work-entries" role="tabpanel" aria-label="工作入口">
-      {% include 'manual_workbench.html' %}
-    </div>
-
-    <div class="tab-panel" id="production-evidence" role="tabpanel" aria-label="生产与资产">
+    <div class="tab-panel" id="production-evidence" role="tabpanel" aria-label="资产与证据">
       {% include 'production_evidence.html' %}
       <details class="pe-system-entry" id="more-evidence"><summary>更多数据：周期活动、资产总览与统计口径</summary>
         {% include 'production_evidence_details.html' %}
+      </details>
+      {#- Moved from the head: each snapshot's date, state, hash and update run. -#}
+      <details class="page-meta wb-snapshots" id="snapshots"><summary>快照与校验</summary>
+        <p>按型号 × 区域计本数，显示当前存量，不代表本周新增。待复核表示需要重新确认，仍展示上次有效数据；页面构建不代表业务来源已刷新。</p>
+        <div class="ws-update"><span>页面构建：{{ page_built_at|e }}</span><a href="https://github.com/Bingboom/Hello-Docs/actions" target="_blank" rel="noopener">查看更新记录 ↗</a></div>
+        <ul class="wb-snapshot-list">{% for item in freshness %}<li><b>{{ item.label|e }}</b>：{{ item.date|e }} · {{ item.state|e }} · SHA256 <code>{{ item.hash|default('Unavailable', true)|e }}</code>{% if item.execution.startswith('https://github.com/') %} · <a href="{{ item.execution|e }}" target="_blank" rel="noopener">执行记录 ↗</a>{% endif %}</li>{% endfor %}</ul>
+        {% if system_entry %}<p class="sw-pointer">全部数据来源与过期规则见<a href="{{ pathto('workspace/system/index') }}#sources">系统建设「数据来源」→</a></p>{% endif %}
       </details>
     </div>
 

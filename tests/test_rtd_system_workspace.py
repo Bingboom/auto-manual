@@ -4,6 +4,7 @@ import copy
 import datetime as dt
 import io
 import json
+import re
 import shutil
 import subprocess
 import sys
@@ -320,7 +321,7 @@ class SystemWorkspaceContextTests(unittest.TestCase):
     def test_focus_groups_lanes_by_horizon_in_contract_order(self):
         focus = self.context()["focus"]
         self.assertEqual([(g["label"], [lane["id"] for lane in g["lanes"]]) for g in focus["groups"]],
-                         [("01 · 当前主线", ["web", "tm"]), ("02 · 代表试点", ["sk"])])
+                         [("当前主线", ["web", "tm"]), ("代表试点", ["sk"])])
         self.assertEqual([ev["label"] for ev in focus["evidence"]], ["ledger.md", "操作者确认 2026-09-24"])
         self.assertEqual(focus["stale"], [])
 
@@ -359,7 +360,7 @@ class SystemWorkspaceContextTests(unittest.TestCase):
         self.assertEqual([(c["id"], c["fold"], [t["title"] for t in c["lanes"]]) for c in view["cards"]],
                          [("prod", False, ["网页化"]), ("other", True, [])])
         self.assertEqual([(g["id"], g["fold"], [t["horizon_label"] for t in g["lanes"]]) for g in view["gates"]],
-                         [("G1", False, ["01 · 当前主线"]), ("G2", True, [])])
+                         [("G1", False, ["当前主线"]), ("G2", True, [])])
 
     def test_missing_sources_render_as_no_data(self):
         view = self.context(facts=None, skeletons=None)
@@ -379,7 +380,7 @@ class SystemWorkspaceContextTests(unittest.TestCase):
         view = sw.build_context(data, root=self.root, ledger=sw.parse_ledger(LEDGER), facts=None, today=TODAY,
                                 registry=registry(), assets=self.root, skills=skills, hooks=hooks)["tooling"]
         self.assertEqual([(g["title"], g["horizon_label"], [r["id"] for r in g["rows"]]) for g in view["groups"]],
-                         [("网页化", "01 · 当前主线", ["alpha"]), ("骨架", "02 · 代表试点", [])])
+                         [("网页化", "当前主线", ["alpha"]), ("骨架", "代表试点", [])])
         self.assertEqual(view["hooks"][0]["mode_label"], "拦截")
 
     def test_gates_and_now_items_read_the_ledger(self):
@@ -389,7 +390,7 @@ class SystemWorkspaceContextTests(unittest.TestCase):
                          (1, 2, 50, "active", "完成 1 · 在验 1"))
         self.assertEqual((g2["state"], g2["tally"]), ("idle", "待做 1"))
         self.assertEqual(view["now"], [{"rev": "REV-02", "label": "在验项", "status": "verifying",
-                                        "status_label": "在验",
+                                        "status_label": "在验", "context": "语料",
                                         "href": "https://github.com/o/auto-manual/blob/main/ledger.md#rev-02"}])
 
     def test_evidence_links_map_every_kind(self):
@@ -739,13 +740,27 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             result = build("good")
             self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
             page = (base / "good" / "workspace" / "system" / "index.html").read_text(encoding="utf-8")
-            headings = ("当前重点", "正在做与下一步", "语言资产", "能力地图", "生产流程与连接", "技能与钩子", "工程规模",
-                        "数据来源")
-            self.assertEqual([page.find(f"<h2>{h}</h2>") >= 0 for h in headings], [True] * len(headings))
-            self.assertEqual(sorted(headings, key=lambda h: page.find(f"<h2>{h}</h2>")), list(headings))
-            progress_panel = page.split('id="tab-progress"', 1)[1].split('id="tab-corpus"', 1)[0]
-            self.assertIn('class="kpi-row"', progress_panel)
-            self.assertNotIn('class="kpi-row"', page.split('id="tab-progress"', 1)[0])
+            # The 2026-11 layout: the 阶段门 stepper above three tabs, the sections in this order.
+            headings = ("阶段门", "近期事项", "当前主线", "同期 · 持续支撑", "后置 · 按需", "能力地图", "生产流程与连接",
+                        "工作入口", "语言资产", "技能与钩子", "工程规模", "数据来源")
+            found = [re.search(rf"<h2[^>]*>{re.escape(h)}</h2>", page) for h in headings]
+            self.assertEqual([bool(m) for m in found], [True] * len(headings))
+            self.assertEqual([m.start() for m in found], sorted(m.start() for m in found))
+            self.assertEqual(re.findall(r'data-tab="([^"]+)"[^>]*>([^<]+)</a>', page),
+                             [("tab-progress", "当前工作"), ("tab-capabilities", "能力与架构"),
+                              ("tab-sources", "来源与演变")])
+            head = page.split('id="tab-progress"', 1)[0]
+            self.assertIn('class="sw-stepper"', head)
+            self.assertNotIn('class="kpi-row"', page)
+            self.assertEqual(head.count('<li class="sw-step '), 3)  # G1–G3; the folded gates are one line below
+            self.assertEqual(head.count(' is-current"'), 1)
+            self.assertIn('<span class="sw-next-more">其他阶段门：IDML 印刷独立验收', head)
+            web_lane = page.split('id="lane-web"', 1)[1].split("</article>", 1)[0]
+            self.assertIn('<span class="sw-chip is-available">', web_lane)
+            self.assertIn("网页发布能力", web_lane)
+            self.assertIn("<h3>来源登记（SSOT）</h3>", page)
+            self.assertIn("工作台输出 · 审核中", page)
+            self.assertNotIn("REV-47 规则", page.split('id="tab-progress"', 1)[1].split('id="tab-capabilities"', 1)[0])
             self.assertIn('id="lane-web"', page)
             lanes = ["workbench", "web", "corpus", "ssot", "shared_ir", "skeletons", "multi_agent"]
             self.assertEqual(sorted(lanes, key=lambda lane: page.index(f'id="lane-{lane}"')), lanes)
@@ -755,25 +770,26 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             self.assertIn(f'data-revision="{receipt["revision"]}"', page)
             self.assertIn(f'data-built-at="{receipt["built_at"]}"', page)
             self.assertTrue((base / "good" / "_static" / "system-workspace.js").is_file())
-            # Publication counts and the daily entries belong to 说明书工作台 and the 知识库首页: pointers only.
+            # Publication counts belong to 说明书工作台; 工作入口 moved here, into 能力与架构.
             self.assertNotIn("个语言版本", page)
             self.assertNotIn("美规 1 本", page)
-            self.assertIn('<p class="sw-pointer">发布规模、交付物与生产证据：<a href="../deliverables/index.html">', page)
-            self.assertIn('href="../deliverables/index.html#work-entries"', page)
-            self.assertIn('data-tab="tab-sources">数据来源</a>', page)
+            capabilities = page.split('id="tab-capabilities"', 1)[1].split('id="tab-sources"', 1)[0]
+            self.assertIn('id="work-map"', capabilities)
+            self.assertIn('href="../deliverables/index.html#deliverables"', capabilities)
+            self.assertNotIn("系统建设进度 →", page)
             self.assertNotIn('id="working"', page)
             self.assertIn("便携电源", page)  # a declared skeleton family, built or not
             self.assertIn('href="#cap-web_publishing"', page)
             # The shipped contract names the manual library as the site does.
             self.assertIn("<b>说明书资料库</b>", page)
             self.assertNotIn("手册中心", page)
-            self.assertEqual(page.count('<details class="sw-more">'), 2)  # folded cards and gates
+            self.assertEqual(page.count('<details class="sw-more">'), 1)  # folded cards; folded gates are a line
             # Skills and hooks come from this tree, not from the contract.
             self.assertIn('id="tooling"', page)
             self.assertIn("<code>hardcore-task-execution</code>", page)
             self.assertIn("scripts/git_branch_guard.py", page)
             # 工程规模 shares their tab. The REPO build is a git checkout, so its bars are real.
-            self.assertIn('data-tab="tab-tooling">工具与工程规模</a>', page)
+            self.assertIn('<div class="sw-subpanel" id="tab-tooling">', capabilities)
             self.assertIn('id="codebase"', page)
             self.assertIn("RST 模板/页面", page)
             self.assertRegex(page, r'<i class="sw-code-type-\d" style="width:[\d.]+%"></i>')
