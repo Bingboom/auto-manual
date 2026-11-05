@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Submit scoped frozen-data PRs; never merge or write the default branch."""
+"""Submit scoped frozen-data PRs; only a sound daily web_progress PR merges itself.
+
+No source writes the default branch directly. Operator 2026-11-04 (「把每日刷新的内容PR也设成自动合入」)
+lets the scheduled 网页说明书进度 PR squash-merge at the head this run validated; every other source
+and every failed export still waits for review.
+"""
 from __future__ import annotations
 
 import argparse
@@ -16,6 +21,9 @@ if __package__ in (None, ""):
 from tools.workspace_snapshot import NAMES, atomic_json, content_digest, data_dir, loss_problems
 
 REPOSITORY = "Bingboom/Hello-Docs"
+AUTO_MERGE_KINDS = frozenset({"web_progress"})
+# A merge made with the workflow token starts no push workflow, so verification is dispatched.
+VERIFY_WORKFLOW = "workspace-data-verify.yml"
 
 
 def command(args, *, cwd=None) -> str:
@@ -58,7 +66,17 @@ def _candidates(root: Path, kind: str):
     return candidates, report
 
 
-def submit(root: Path, kind: str) -> str:
+def pr_body(kind: str) -> str:
+    merge_rule = "导出成功时自动合入（操作者 2026-11-04 授权）。" if kind in AUTO_MERGE_KINDS else "需审核后合入。"
+    return (f"刷新工作台冻结数据；生产源表保持权威，{merge_rule}\n\n"
+            "- 范围：仅 docs/knowledge/workspace-data 中对应来源的快照和状态。\n"
+            "- 校验：完整分页、来源身份、快照结构和减少保护；失败时保留上次有效数据。\n"
+            "- 执行证据：对应状态文件的 execution 与 content_sha256。\n"
+            "- 合入不代表线上生效；需 Workspace Data Verify 核验目标提交、快照和页面哈希。\n")
+
+
+def submit(root: Path, kind: str, state: dict | None = None) -> str:
+    """Open or update the content PR; ``state["head"]`` receives the commit it now points at."""
     candidates, report = _candidates(root, kind)
     if not candidates:
         return "no-change"
@@ -106,39 +124,65 @@ def submit(root: Path, kind: str) -> str:
                 # Replace the leftover branch only while it still holds the commit read above.
                 push.insert(2, f"--force-with-lease=refs/heads/{branch}:{remote.split()[0]}")
             command(push, cwd=checkout)
+        if state is not None:  # main() merges only a run that names a PR, at this head
+            state["head"] = command(["git", "rev-parse", "HEAD"], cwd=checkout)
         if pending:
             return pending[0]["url"]
         if not changed:
             return "no-change"
         body = Path(tmp) / "body.md"
-        body.write_text("刷新工作台冻结数据；生产源表保持权威，需审核后合入。\n\n"
-                        "- 范围：仅 docs/knowledge/workspace-data 中对应来源的快照和状态。\n"
-                        "- 校验：完整分页、来源身份、快照结构和减少保护；失败时保留上次有效数据。\n"
-                        "- 执行证据：对应状态文件的 execution 与 content_sha256。\n"
-                        "- 合入不代表线上生效；需 Workspace Data Verify 核验目标提交、快照和页面哈希。\n", encoding="utf-8")
+        body.write_text(pr_body(kind), encoding="utf-8")
         return command(["gh", "pr", "create", "--repo", REPOSITORY, "--base", "main", "--head", branch,
                         "--title", f"chore(workspace): refresh {kind} data", "--body-file", str(body)])
 
 
-def main() -> int:
+def exported(report: dict) -> bool:
+    return report.get("export_status", report.get("status")) in ("changed", "unchanged")
+
+
+def auto_merge(url: str, head: str, report: dict) -> None:
+    """Squash-merge ``url`` only while it still points at ``head``, then start online verification."""
+    report["stage"] = "auto-merge"
+    command(["gh", "pr", "merge", url, "--squash", "--match-head-commit", head])
+    report["review"] = {"status": "auto-merged", "url": url, "head": head}
+    report["stage"] = "verify-dispatch"
+    command(["gh", "workflow", "run", VERIFY_WORKFLOW, "--repo", REPOSITORY, "--ref", "main"])
+    report["stage"] = "verify-dispatched"
+
+
+def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("kind", choices=NAMES)
     parser.add_argument("--root", type=Path, default=Path.cwd())
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
     log = args.root / ".tmp/workspace-refresh/result.json"
     report = json.loads(log.read_text()) if log.exists() else {"kind": args.kind}
+    state: dict = {}
     try:
-        outcome = submit(args.root.resolve(), args.kind)
+        outcome = submit(args.root.resolve(), args.kind, state)
         report["review"] = {"status": "not-needed" if outcome == "no-change" else "awaiting-review", "url": outcome}
         atomic_json(log, report)
         print(outcome)
-        return 0
     except (RuntimeError, OSError, ValueError, KeyError, TypeError) as exc:
         report.setdefault("export_status", report.get("status"))
         report.update(stage="review-submission", status="failed", error_type=type(exc).__name__)
         atomic_json(log, report)
         print("Snapshot retained; review submission failed. Retry submission without rerunning production.")
         return 1
+    if outcome == "no-change" or args.kind not in AUTO_MERGE_KINDS or not exported(report) or "head" not in state:
+        return 0
+    try:
+        auto_merge(outcome, state["head"], report)
+    except RuntimeError as exc:
+        report.setdefault("export_status", report.get("status"))
+        report.update(status="failed", error_type=type(exc).__name__)
+        atomic_json(log, report)
+        print("Snapshot retained. Auto-merge stopped at " + report["stage"] + ": an unmerged PR waits for "
+              "review; a merged one needs Workspace Data Verify run by hand.")
+        return 1
+    atomic_json(log, report)
+    print("merged", outcome)
+    return 0
 
 
 if __name__ == "__main__":
