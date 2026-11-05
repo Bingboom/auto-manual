@@ -1,69 +1,147 @@
 # 设计规范页的文字与取值来源。数值不写在这里：构建时从仓库当前的 web_manual.css
 # 读取（见 tools/rtd/design_system.py）。每条 `selector` / `requires` 都必须在样式表中
 # 存在，否则单元测试失败，页面不会展示过期的规则。
-# 行内格式只有两种：`代码` 与 **加粗**。
-schema_version: 1
-lead: 说明书的视觉规则：网页版的颜色、字体与组件，共享的图标素材，以及印刷版的版式参数。每次构建都读取仓库当前的网页样式表、素材目录和印刷参数表，并用它们渲染下面所有数值和预览，所以这里看到的就是说明书正在用的规则。
+# 行内格式只有三种：`代码`、**加粗** 与 *强调*。
+schema_version: 2
+lead: 网页版的颜色、字体与组件，共享的图标素材，以及印刷版的版式参数。每次构建都读取仓库当前的样式表、素材目录和印刷参数表，所以这里看到的就是说明书正在用的规则。
 
-overview:
-  - id: identity
-    title: 风格
-    paragraphs:
-      - 一本安静的技术手册：白纸上的暖近黑、一套粗壮的几何无衬线字体、圆角表格外框和深色胶囊标题。没有强调色，强调只靠字重、大小写和品牌深色填充。
-      - 同一份来源输出四种格式：响应式**网页**、固定版面的 **PDF**、可编辑的 **IDML** 和 **Word**。34 个 `HB-*` 语义样式 ID 是共同的契约，由各个渲染器分别投影；本页展示的是网页投影。
-  - id: content
-    title: 内容原则
-    items:
-      - "**文字只来自来源，不由渲染器编造。** 标题、表头、警示词、按键名、状态词、时长、图注和替代文字，都能追溯到来源文件、来源表或显式配置。缺少标签的组件保持为空或直接失败，绝不自动填入 `WARNING`、文件名或内部类型名。"
-      - "**指令清楚、平实。** 用简短的祈使句点明对象，例如 “Restart the product.”。只有动作属于读者时才称呼 *you*，例如保修注册。"
-      - "**产品名是变量。** 共享文案里写 `|PRODUCT_NAME|`、`|LEGAL_COMPANY_NAME|`、`|WARRANTY_EMAIL|`，不要把具体型号写死在共享文案里。"
-      - "**大小写。** H1、H2 由样式表转成大写，来源保留原有大小写；H3、保修标题和 App 步骤标题保持来源大小写；警示词一律大写；规格标签用词首大写，例如 Cell Chemistry。"
-      - "**警示词含义固定。** WARNING 表示可能导致严重伤害、死亡和/或财产损失；CAUTION 表示可能导致人身伤害和/或财产损失；NOTE 表示可能导致设备损坏、数据丢失、性能下降或意外结果；TIP 用于补充正文中的重要信息或操作提示。DANGER 是独立的变体，不是更醒目的 WARNING。各语言使用已登记的译名。"
-      - "**状态词** 放在显示屏或指示灯说明的行首（On、Blink、Off），加粗并翻译，绝不只靠颜色表达状态。"
-      - "**数字与单位** 之间留一个空格，例如 1024 Wh、0 °C to 45 °C。数量用 ×（2 × AC），尺寸用 x（31.4 x 20.1 x 23.4 cm）；交流写 `~`，直流写 `⎓`，上限以 max. 结尾。规格脚注在标签里用 ①，注释前再以正常字号重复一次。"
-      - "**多步骤处理** 逐行编号。来源用 ` / ` 分隔步骤，每一步单独成行。"
-      - "**不用表情符号。** 只有警示徽标里的 ⚠，以及数据中的 ⎓、~、×、●、① 这几个字符。"
-  - id: foundations
-    title: 视觉基础
-    items:
-      - "**颜色。** 所有内容都放在 `--hb-paper` 白纸上；即使嵌在深色界面里，手册也保持白纸，所以只有一套主题。`--hb-brand-dark` 是唯一的品牌色，用于 H1 深色条、标题圆点、警示徽标、数字和所有强边框。正文与表格文字用 `--hb-text`，次要文字用 `--hb-text-muted`；标签和表头单元格用 `--hb-surface`，数值单元格保持白底。两种细线在白底上的对比都不到 3:1，所以细线从不单独表达含义。状态灯颜色只出现在指示灯说明里，并且始终配文字。"
-      - "**字体。** 只有一套字体：Gilroy 是商业授权字体，不随网站分发；读者电脑上没有时，依次回退到 Avenir Next、Avenir、Segoe UI、Helvetica、Arial。网页正文用 400，表格标签和表头用 600，标题、徽标和标签用 700。多数网页字号是随视口变化的 `clamp()` 区间，具体见“字体”分页。"
-      - "**版式。** 居中单栏，宽度为 `--hb-reading-width`，连续正文不超过 `--hb-copy-width`。所有通栏组件（H1 深色条、表格外框、组合组件）共用一条外宽契约：`box-sizing: border-box; width: 100%; max-width: var(--hb-component-band-max)`，新增通栏组件也必须加入这条规则。共用断点是 760px（字号收缩、双栏变单栏）、520px（警示框的标签和正文上下排列）以及打印。宽表格保留最小宽度并在外框内部横向滚动，不压缩、不断词。网页不分页，页码和页脚只属于印刷版。"
-      - "**形状。** 外框分两类：规格、故障排除、警示词、符号、对比、按键组合和显示屏模式表格用品牌深色外框；警示框、装箱卡片和保修卡用柔和细线外框；FCC 面板只有浅灰填充。外框内最后一行不画下边线、最后一列不画右边线，外侧只由外框画出。H1 深色条上边切平、下边两角为圆角（`--hb-h1-radius`）；胶囊是全圆角，数字放在圆形里。"
-      - "**层次与动效。** 只有一层阴影：`--hb-shadow` 把纸面从页面上托起，760px 以下和打印时去掉。纸面内部全部是平的，靠线和填充区分，从不用阴影。没有动效。"
-      - "**状态。** 说明书是用来阅读的，不是操作界面。链接是品牌深色，下划线用 `--hb-line`。语言切换是原生下拉框，保留浏览器自带的焦点框。"
-      - "**图像。** 产品图按机型提供，从不重画。首选“无字底图 + 实时网页文字”：标签、胶囊和步骤都是网页文字，可搜索、可翻译。已批准的成品面板整块使用，并保留它自带的边框。先复用现有素材再提取新素材；保留完整面板和 App 截图的手机外框；不要在非白色背景上盖白框。"
-  - id: usage
-    title: 使用方式
-    items:
-      - "只加载由 `tools/web/stylesheets.py` 按顺序拼装的 `web_manual.css`；样式里引用 `var(--hb-*)`，不要把数值抄进去。"
-      - "手册内容放在 `#furo-main-content` 容器里。章节内直接写 `h1`、`h2`、`h3`、`p`、`ul`、`ol`、`blockquote`，由容器的作用域统一排版。"
-      - "组件只照抄“组件”分页里的结构，不要自造类名：没有登记的 `hb-*` 类不会有任何样式。"
-      - "新增内容时保持外宽契约、760px 与 520px 两个断点的行为，以及“宽内容在外框内滚动”的规则。"
+# 「概览」分页（2026-11 版式，见 tools/rtd/design_overview.py）：先看图，再读文字。
+# 图：视觉基础的七张图卡、showcase 列出的组件和图标墙；文字：风格、内容原则、
+# 视觉基础细则和使用方式。
+style:
+  - 一本安静的技术手册：白纸上的暖近黑、一套粗壮的几何无衬线字体、圆角表格外框和深色胶囊标题。没有强调色，强调只靠字重、大小写和品牌深色填充。
+  - 同一份来源输出四种格式：响应式**网页**、固定版面的 **PDF**、可编辑的 **IDML** 和 **Word**。34 个 `HB-*` 语义样式 ID 是共同的契约，由各个渲染器分别投影；本页展示的是网页投影。
 
+# 视觉基础：每条既是一张图卡（card 是卡片小标题，caption 是一句话说明，图由模板按 id 画），
+# 也是「视觉基础细则」里的一条（text）。id 只能是模板会画的七种，顺序就是图卡和细则的顺序。
+foundations:
+  - id: color
+    title: 颜色
+    card: 只有一个品牌色
+    caption: 暖近黑用在 H1 深色条、标题圆点、警示徽标和所有强边框上；状态色只在指示灯说明里出现，并且总配状态词。
+    text: 所有内容都放在 `--hb-paper` 白纸上；即使嵌在深色界面里，手册也保持白纸，所以只有一套主题。`--hb-brand-dark` 是唯一的品牌色，用于 H1 深色条、标题圆点、警示徽标、数字和所有强边框。正文与表格文字用 `--hb-text`，次要文字用 `--hb-text-muted`；标签和表头单元格用 `--hb-surface`，数值单元格保持白底。两种细线在白底上的对比都不到 3:1，所以细线从不单独表达含义。状态灯颜色只出现在指示灯说明里，并且始终配文字。
+  - id: type
+    title: 字体
+    card: 一套几何无衬线
+    caption: Gilroy 不随网站分发，读者电脑上没有时依次回退到 Avenir Next、Avenir、Segoe UI。
+    text: 只有一套字体：Gilroy 是商业授权字体，不随网站分发；读者电脑上没有时，依次回退到 Avenir Next、Avenir、Segoe UI、Helvetica、Arial。网页正文用 400，表格标签和表头用 600，标题、徽标和标签用 700。多数网页字号是随视口变化的 `clamp()` 区间，具体见“字体”分页。
+  - id: layout
+    title: 版式
+    card: 居中单栏
+    caption: 通栏组件共用一条外宽契约；宽表格在外框内横向滚动，不压缩、不断词。
+    text: "居中单栏，宽度为 `--hb-reading-width`，连续正文不超过 `--hb-copy-width`。所有通栏组件（H1 深色条、表格外框、组合组件）共用一条外宽契约：`box-sizing: border-box; width: 100%; max-width: var(--hb-component-band-max)`，新增通栏组件也必须加入这条规则。共用断点是 760px（字号收缩、双栏变单栏）、520px（警示框的标签和正文上下排列）以及打印。宽表格保留最小宽度并在外框内部横向滚动，不压缩、不断词。网页不分页，页码和页脚只属于印刷版。"
+  - id: shape
+    title: 形状
+    card: 两类外框
+    caption: 表格用品牌深色外框，警示框、装箱和保修卡用柔和细线；H1 条上平下圆，胶囊全圆角，数字放在圆里。
+    text: 外框分两类：规格、故障排除、警示词、符号、对比、按键组合和显示屏模式表格用品牌深色外框；警示框、装箱卡片和保修卡用柔和细线外框；FCC 面板只有浅灰填充。外框内最后一行不画下边线、最后一列不画右边线，外侧只由外框画出。H1 深色条上边切平、下边两角为圆角（`--hb-h1-radius`）；胶囊是全圆角，数字放在圆形里。
+  - id: depth
+    title: 层次与动效
+    card: 只有一层阴影
+    caption: 阴影只把纸面从页面上托起；纸面内部全是平的，靠线和填充区分，没有动效。
+    text: 只有一层阴影：`--hb-shadow` 把纸面从页面上托起，760px 以下和打印时去掉。纸面内部全部是平的，靠线和填充区分，从不用阴影。没有动效。
+  - id: image
+    title: 图像
+    card: 无字底图配网页文字
+    caption: 首选无字底图加网页文字：标签、胶囊和步骤都是网页文字，可搜索、可翻译。
+    points:
+      - title: 文字留在网页里
+        text: 标签、胶囊和步骤可搜索、可翻译
+      - title: 产品图按机型提供
+        text: 从不重画；已批准的面板整块使用
+      - title: 先复用，再提取
+        text: 保留完整面板和 App 截图外框
+    text: 产品图按机型提供，从不重画。首选“无字底图 + 实时网页文字”：标签、胶囊和步骤都是网页文字，可搜索、可翻译。已批准的成品面板整块使用，并保留它自带的边框。先复用现有素材再提取新素材；保留完整面板和 App 截图的手机外框；不要在非白色背景上盖白框。
+  - id: state
+    title: 状态
+    card: 用来阅读，不是操作界面
+    caption: 链接是品牌深色配细线下划线；语言切换用原生下拉框，保留浏览器自带的焦点框。
+    text: 说明书是用来阅读的，不是操作界面。链接是品牌深色，下划线用 `--hb-line`。语言切换是原生下拉框，保留浏览器自带的焦点框。
+
+principles:
+  - title: 文字只来自来源，不由渲染器编造
+    text: 标题、表头、警示词、按键名、状态词、时长、图注和替代文字，都能追溯到来源文件、来源表或显式配置。缺少标签的组件保持为空或直接失败，绝不自动填入 `WARNING`、文件名或内部类型名。
+  - title: 指令清楚、平实
+    text: 用简短的祈使句点明对象，例如 “Restart the product.”。只有动作属于读者时才称呼 *you*，例如保修注册。
+  - title: 产品名是变量
+    text: 共享文案里写 `|PRODUCT_NAME|`、`|LEGAL_COMPANY_NAME|`、`|WARRANTY_EMAIL|`，不要把具体型号写死在共享文案里。
+  - title: 大小写
+    text: H1、H2 由样式表转成大写，来源保留原有大小写；H3、保修标题和 App 步骤标题保持来源大小写；警示词一律大写；规格标签用词首大写，例如 Cell Chemistry。
+  - title: 警示词含义固定
+    text: WARNING 表示可能导致严重伤害、死亡和/或财产损失；CAUTION 表示可能导致人身伤害和/或财产损失；NOTE 表示可能导致设备损坏、数据丢失、性能下降或意外结果；TIP 用于补充正文中的重要信息或操作提示。DANGER 是独立的变体，不是更醒目的 WARNING。各语言使用已登记的译名。
+  - title: 状态词
+    text: 放在显示屏或指示灯说明的行首（On、Blink、Off），加粗并翻译，绝不只靠颜色表达状态。
+  - title: 数字与单位
+    text: 数字与单位之间留一个空格，例如 1024 Wh、0 °C to 45 °C。数量用 ×（2 × AC），尺寸用 x（31.4 x 20.1 x 23.4 cm）；交流写 `~`，直流写 `⎓`，上限以 max. 结尾。规格脚注在标签里用 ①，注释前再以正常字号重复一次。
+  - title: 多步骤处理
+    text: 逐行编号。来源用 ` / ` 分隔步骤，每一步单独成行。
+  - title: 不用表情符号
+    text: 只有警示徽标里的 ⚠，以及数据中的 ⎓、~、×、●、① 这几个字符。
+
+usage:
+  - title: 只加载 `web_manual.css`
+    text: 由 `tools/web/stylesheets.py` 按顺序拼装；样式里引用 `var(--hb-*)`，不要把数值抄进去。
+  - title: 内容放进 `#furo-main-content`
+    text: 章节内直接写 `h1`、`h2`、`h3`、`p`、`ul`、`ol`、`blockquote`，由容器的作用域统一排版。
+  - title: 照抄组件结构
+    text: 只用“组件”分页里的结构，不要自造类名：没有登记的 `hb-*` 类不会有任何样式。
+  - title: 守住外宽与断点
+    text: 新增内容时保持外宽契约、760px 与 520px 两个断点的行为，以及“宽内容在外框内滚动”的规则。
+
+# 概览里的图：封面浮起的符号、「图像」图卡的线稿（标签是网页文字）、组件卡片（组件分页的
+# id，卡片用它的线上预览）和图标墙（素材分组 id 与文件名）。名字对不上任何组件或已列出的
+# 素材时测试失败。
+showcase:
+  cover_icon: symbols/symbol_warning_triangle.svg
+  image_art:
+    - {file: inbox/ac_charging_cable.png, label: AC Charging Cable}
+    - {file: inbox/manual_icon1.png, label: User Manual}
+  components: [callout, spec-table, troubleshooting-table, status-lamp-table, inbox-cards, warranty-years]
+  icons:
+    - group: symbols
+      note: 安全、认证与回收
+      files: [symbol_warning_triangle.svg, symbol_read_manual.svg, symbol_electric_shock.svg, symbol_battery_charging.svg,
+              symbol_explosive_material.svg, symbol_heavy_object.svg, symbol_do_not_dismantle.svg, symbol_no_open_flame.svg,
+              symbol_keep_away_from_children.svg, symbol_li_ion.svg, fcc_mark.svg, symbol_weee.png]
+    - group: buttons
+      files: [power.svg, ac.svg, dc_usb.svg, led.svg]
+    - group: lcd
+      files: [lcd_ev-charging.png, lcd_fault-code.png, lcd_parallel.png, lcd_connected-batteries.png]
+    - group: symbols-jp
+      files: [h1-jp-unplug.svg, h1-jp-no_wet_hands.svg]
+
+# 颜色：key 是概览图卡和封面取色用的名字（见 design_overview.PALETTE）。
 colors:
   - name: 品牌深色
+    key: dark
     token: "--hb-brand-dark"
     note: 唯一的品牌色：H1 深色条、H2/H3 圆点、警示徽标、装箱编号、保修标题标签与年份圆、“另售”胶囊；规格、故障排除、符号、对比和显示屏模式表格的外框与内线；链接文字。上面放白字。印刷对应 BrandDark（CMYK 0 0 0 90）。
   - name: 正文
+    key: text
     token: "--hb-text"
     note: 正文、表格和标题文字。可以放在白纸、浅灰面、加深浅灰面和前提说明底色上。印刷对应 TextK90。
   - name: 次要文字
+    key: muted
     token: "--hb-text-muted"
     note: 斜体强调、规格注释与脚注、参考图图注、标题锚点链接、产品概览的引线。
   - name: 结构细线
+    key: line
     token: "--hb-line"
     note: 图示区、参考表格、显示屏图标表的外框与网格、引用块竖线、链接下划线。对比度不到 3:1，源样式就是如此，所以从不单独表达含义。印刷对应 LineK40。
   - name: 柔和细线
+    key: line_soft
     token: "--hb-line-soft"
     note: 网页纸面边框，警示框、装箱卡片和保修卡的外框，显示屏模式组合的外框。纯装饰；需要被看清的外框改用品牌深色。
   - name: 纸面
+    key: paper
     token: "--hb-paper"
     note: 说明书唯一的底色：纸面、表格数值单元格、警示框标签格、卡片。也是品牌深色填充上的文字颜色。
   - name: 浅灰面
+    key: surface
     token: "--hb-surface"
     note: 标签与表头单元格（规格标签、故障代码、显示屏编号与名称、对比表左列、符号图标列）、警示框正文、FCC 面板、保修引言，以及手机版操作卡片。印刷对应 BgK05。
   - name: 加深浅灰面
+    key: surface_strong
     token: "--hb-surface-strong"
     note: 浅灰标签的警示框变体、状态表表头、来源的安全标题和电源面板。
   - name: 前提说明底色
@@ -71,22 +149,27 @@ colors:
     property: "--hb-prerequisite-surface"
     note: 叠在无字操作底图上的浅灰前提说明胶囊。
   - name: 状态灯 · 绿
+    key: lamp_green
     selector: "#furo-main-content :is(.hb-lamp-green, .hb-lamp-red, .hb-lamp-blinking, .hb-lamp-off)::before"
     property: background
     note: “亮”和“闪烁”行的指示灯色块。色块旁边始终写状态词，颜色从不单独表达状态。
   - name: 状态灯 · 闪烁光晕
+    key: lamp_glow
     selector: "#furo-main-content .hb-lamp-blinking::before"
     property: box-shadow
     note: 绿色色块外的一圈光晕，用来标示“闪烁”。
   - name: 状态词 · 绿
+    key: status_green
     selector: "#furo-main-content :is(.hb-lamp-green, .hb-lamp-blinking)"
     property: color
     note: “亮”和“闪烁”行的状态词文字，只放在白色单元格上。
   - name: 状态灯 · 红
+    key: lamp_red
     selector: "#furo-main-content .hb-lamp-red::before"
     property: background
     note: 红灯色块，也是它的状态词颜色。作为文字时对比度略低于正文要求，所以一定保留色块并写出状态词。
   - name: 熄灭灯外框
+    key: lamp_off
     selector: "#furo-main-content .hb-lamp-off::before"
     property: border
     note: 白色“熄灭”色块的外框；状态由 Off 这个词表达。

@@ -18,7 +18,9 @@ from bs4 import BeautifulSoup
 from tools.rtd import portal as rtd_portal
 from tools.rtd.alias_entry import alias_head_markup, forward_markers
 from tools.readthedocs_source import assemble_rtd_source
+from tools.rtd.design_overview import semantic_style_count
 from tools.rtd.design_system_css import live_stylesheet_text
+from tools.utils.path_utils import repo_root
 
 
 class RtdPortalTests(unittest.TestCase):
@@ -299,9 +301,22 @@ class RtdPortalTests(unittest.TestCase):
         self.assertIn('src="previews/title-l1.html"', design)
         self.assertIn('src="assets/symbols/symbol_warning_triangle.svg"', design)
         self.assertIn('src="print/page.html"', design)
-        # Versions are a line of small text under the counts, not KPI tiles.
-        self.assertIn('class="ds-versions"', design)
-        self.assertEqual(design.split('class="ds-versions"', 1)[0].count('class="kpi"'), 4)
+        # The 2026-11 cover carries the versions as one line of small text; five figures follow it, the last
+        # counted from the manual style contract.
+        page = BeautifulSoup(design, "html.parser")
+        self.assertIsNotNone(page.select_one(".ds-cover .ds-versions"))
+        figures = [figure.b.get_text() for figure in page.select(".ds-figures > div")]
+        self.assertEqual(len(figures), 5)
+        self.assertEqual(figures[-1], str(semantic_style_count(repo_root())))
+        # 概览 shows pictures first: the foundation cards, live previews that open their component, the icon wall.
+        self.assertEqual(len(page.select("#overview .ds-bento .ds-card")), 7)
+        shots = page.select("#overview .ds-shot")
+        self.assertEqual(len(shots), 6)
+        for shot in shots:
+            self.assertTrue((design_root / shot.iframe["src"]).is_file(), shot.iframe["src"])
+            self.assertIsNotNone(page.select_one(shot.select_one("h3 a")["href"]), shot.h3)
+        for image in page.select(".ds-cover img, #overview img"):
+            self.assertTrue((design_root / image["src"]).is_file(), image["src"])
         self.assertNotIn("Jackery", design)
         self.assertEqual((design_root / "web_manual.css").read_text(), live_stylesheet_text())
         self.assertIn('href="../web_manual.css"', (design_root / "previews" / "title-l1.html").read_text())

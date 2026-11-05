@@ -308,6 +308,26 @@ design-system name) shows the manual's visual rules in six tabs: 概览, 颜色,
 组件, 图标与素材 and 印刷规格. It is listed under 说明书生产; the public manual
 library does not link to it.
 
+- **Pictures first (the 2026-11 layout).** A cover in the manual's own warm
+  near-black carries the lead, the four outputs and the version line, with a
+  sample page rising from its bottom edge. Five figures follow: colours, type
+  styles, components, assets and the HB-* semantic styles of
+  `docs/renderers/contracts/manual_style.yaml`. 概览 then has four numbered
+  blocks, built by `tools/rtd/design_overview.py`:
+  - 01 视觉基础: one card per `foundations` entry. The template draws it
+    (`foundation_art`) with the live colours (`--m-*` on `<main>`, from the
+    colours that carry a `key`) and the live font stack.
+  - 02 组件: the `showcase.components` previews, the same iframe documents as
+    the 组件 tab. Each is laid out 720px wide, where the widest table fits,
+    and `_static/design-system.js` scales it to its card. A card links to its
+    component.
+  - 03 图标与素材: the `showcase.icons` files from the gallery, with each
+    group's count.
+  - 04 风格与写法: `style`, `principles`, the `foundations` rules in a
+    collapsed `<details>`, and `usage`.
+
+  Layout follows the page container (`container: ds`): two columns below 880px
+  of content, one below 600px.
 - **Values are live.** At build time `tools/rtd/design_system.py` reads the
   stylesheet that `tools/web/stylesheets.py` assembles
   (`tools/rtd/design_system_css.py`). Colours, contrast ratios, type sizes and
@@ -337,8 +357,9 @@ library does not link to it.
   actual-size odd-page preview (`print/page.html`). Weights are not in the
   table; the LaTeX modules and IDML styles own them.
 - **Notes are data.** The Chinese text, the selectors and keys each value comes
-  from and the preview markup live in `tools/rtd_portal_assets/design_system/`
-  (`content.yaml`, `previews/<id>.html`, `print_page.html`, `print_page.css`).
+  from, what 概览 shows and the preview markup live in
+  `tools/rtd_portal_assets/design_system/` (`content.yaml` with
+  `schema_version: 2`, `previews/<id>.html`, `print_page.html`, `print_page.css`).
   Previews may use only `asset:<group>/<file>` art and `slot:<w>:<h>:<label>`
   placeholders: no remote, data or absolute URLs. The print preview may use only
   tokens the table defines.
@@ -348,7 +369,10 @@ library does not link to it.
   - an asset note names a file or key that no longer exists;
   - a shown or copied file carries a hash the symbol manifest has withdrawn;
   - a print key, a print colour's screen token, or a token the print preview
-    uses is gone.
+    uses is gone;
+  - a `foundations` id the template does not draw, a colour `key` the drawings
+    use, or a showcased component, file or asset group is gone
+    (`tests/test_rtd_design_overview.py`).
 
   A failed page is skipped with a Sphinx warning and its sidebar entry
   disappears, rather than showing stale rules. Additions, such as a new symbol

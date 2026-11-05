@@ -1,15 +1,15 @@
-/* 设计系统 page. Owns only what sits inside .app-content (see site-shell.css). */
-.design-system main {padding-bottom:32px}
+/* 设计规范 page. Owns only what sits inside .app-content (see site-shell.css). The 2026-11 design: the knowledge
+   pages' 1120px container, a cover in the manual's own warm near-black and a 概览 that shows pictures first.
+   --m-* on <main> are the live web_manual.css colours and --m-font its type, so every drawing below paints with
+   the manual's real values. Layout changes follow the container (ds), so they track the sidebar too. */
+body.app.kb.design-system main {max-width:1120px;padding:40px 48px 72px;container:ds / inline-size}
 .design-system code {font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.86em;
   padding:1px 5px;border-radius:5px;background:#eef0f3;color:#3a3d44;overflow-wrap:anywhere}
 
 .ds-section {margin:0 0 36px}
 .ds-section > h2 {margin:0 0 12px;font-size:20px;font-weight:650;line-height:1.4}
 .ds-section > p {margin:0 0 12px;font-size:15px;line-height:1.85;color:var(--app-ink)}
-.ds-list {display:grid;gap:10px;margin:0;padding-left:20px;font-size:15px;line-height:1.85}
 .ds-hint {color:var(--app-muted)!important;font-size:14px!important}
-.ds-versions {margin:4px 0 18px;font-size:12.5px;line-height:1.7;color:var(--app-faint)}
-.ds-versions code {font-size:.92em}
 
 /* Colours */
 .ds-swatches {display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
@@ -81,9 +81,329 @@
   .ds-print-page {grid-template-columns:1fr}
 }
 
+@media (max-width:660px) {
+  body.app.kb.design-system main {padding:25px 18px 48px}
+}
+
 @media (max-width:760px) {
   .ds-type {grid-template-columns:1fr;gap:12px}
   .ds-assets {grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
   .ds-notes > div {grid-template-columns:1fr;gap:2px}
   .ds-component {padding:14px 14px 16px}
+}
+
+/* Cover: the manual's warm near-black on a faint dot grid, no accent colour; a page rises from the bottom edge. */
+.ds-cover {display:flex;flex-direction:column;align-items:center;gap:30px;margin:0 0 24px;padding:44px 40px 0;border-radius:24px;
+  background-color:var(--m-dark);background-image:radial-gradient(#ffffff12 1px,transparent 1.3px);background-size:18px 18px;
+  color:#fff;text-align:center;overflow:hidden}
+.ds-cover-text {display:flex;flex-direction:column;align-items:center;gap:16px;max-width:620px}
+.design-system .ds-cover h1 {display:inline-flex;align-items:center;gap:12px;margin:0;font-size:13px;line-height:18px;font-weight:600;
+  letter-spacing:.16em;color:#cdc8ca}
+.ds-cover h1::before,.ds-cover h1::after {content:"";width:24px;height:1.5px;border-radius:2px;background:#8e888b}
+.ds-cover-text > p {margin:0;font-size:17px;line-height:30px;color:#edeaeb}
+.ds-formats {display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px}
+.ds-formats span {margin-right:4px;font-size:12px;line-height:18px;color:#b5b0b2}
+.ds-formats b,.ds-formats i {display:inline-flex;align-items:center;height:30px;padding:0 13px;border-radius:999px;font-size:13px;font-style:normal}
+.ds-formats b {background:#fff;color:var(--m-dark);font-weight:600}
+.ds-formats i {border:1px solid #ffffff4d;color:#fff;font-weight:500}
+.ds-cover-text > p.ds-versions {font-size:12px;line-height:18px;color:#a9a3a6}
+.ds-cover-art {position:relative;width:100%;max-width:440px;height:266px}
+.ds-sheet {position:absolute;top:0;left:0;right:0;height:340px;display:flex;flex-direction:column;gap:14px;padding:0 26px;
+  border-radius:14px 14px 0 0;background:var(--m-paper);box-shadow:0 -12px 50px #00000059;color:var(--m-text);
+  font-family:var(--m-font);text-align:left}
+.ds-sheet p {margin:0;font-size:12.5px;line-height:19px}
+.ds-sheet-h1 {padding:13px 16px 12px;border-radius:0 0 10px 10px;background:var(--m-dark);color:#fff;font-size:20px;line-height:24px;
+  font-weight:700;letter-spacing:.01em}
+.ds-sheet-table {display:grid;grid-template-columns:76px minmax(0,1fr);border:1.5px solid var(--m-dark);border-radius:8px;overflow:hidden;
+  font-size:12px;line-height:17px}
+.ds-sheet-table span {display:flex;align-items:center;padding:7px 10px;border-bottom:1.25px solid var(--m-dark)}
+.ds-sheet-table span:nth-last-child(-n+2) {border-bottom:0}
+.ds-sheet-table .is-code {justify-content:center;padding:7px 6px;background:var(--m-surface);border-right:1.25px solid var(--m-dark);
+  font-size:15px;line-height:18px;font-weight:700}
+.ds-sheet-table .is-head {font-weight:700}
+.ds-sheet-table .is-code.is-head {font-size:11px;line-height:14px;text-align:center}
+.ds-sheet-h2 {display:flex;align-items:center;gap:8px;margin-top:2px;font-size:13.5px;line-height:18px;font-weight:700;letter-spacing:.01em}
+.ds-sheet-h2::before {content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--m-dark)}
+.ds-sheet-callout {display:grid;grid-template-columns:82px minmax(0,1fr);border:1px solid var(--m-line-soft);border-radius:8px;
+  overflow:hidden;font-size:12px;line-height:17px}
+.ds-sheet-callout span:first-child {display:flex;align-items:center;justify-content:center;padding:9px 8px;font-weight:700;letter-spacing:.02em}
+.ds-sheet-callout span + span {padding:9px 12px;background:var(--m-surface)}
+.ds-float {position:absolute;display:flex;background:#fff;box-shadow:0 14px 30px #00000052;color:var(--m-text)}
+.ds-float-sign {top:18px;left:-104px;align-items:center;justify-content:center;width:78px;height:78px;border-radius:20px}
+.ds-float-sign img {width:48px;height:48px;object-fit:contain}
+.ds-float-type {top:116px;left:-122px;flex-direction:column;align-items:center;gap:4px;width:96px;padding:12px 8px 11px;border-radius:20px}
+.ds-float-type b {font-family:var(--m-font);font-size:34px;line-height:38px;font-weight:700}
+.ds-float-type strong {font-family:var(--m-font);font-size:12px;line-height:15px;font-weight:700}
+.ds-float-type em {font-style:normal;font-size:10px;line-height:13px;color:var(--m-muted);white-space:nowrap}
+.ds-float-dots {top:28px;right:-82px;flex-direction:column;gap:6px;padding:10px;border-radius:18px}
+.ds-float-dots i {width:26px;height:26px;border-radius:50%}
+.ds-float-dots i:nth-child(1) {background:var(--m-dark)}
+.ds-float-dots i:nth-child(2) {background:var(--m-muted)}
+.ds-float-dots i:nth-child(3) {background:var(--m-line)}
+.ds-float-dots i:nth-child(4) {background:var(--m-surface);box-shadow:inset 0 0 0 1px var(--m-line-soft)}
+
+/* Figures: one card split by hairlines; a wrapped row never leaves an empty cell. */
+.ds-figures {display:flex;flex-wrap:wrap;gap:1px;background:var(--app-line);border:1px solid var(--app-line);border-radius:14px;overflow:hidden}
+.ds-figures > div {flex:1 1 175px;display:flex;flex-direction:column;gap:4px;padding:16px 18px;background:#fff}
+.ds-figures span {display:inline-flex;align-items:baseline;gap:4px;font-size:13px;color:var(--app-muted);white-space:nowrap}
+.ds-figures b {font-size:26px;line-height:32px;font-weight:700;color:var(--app-ink);font-variant-numeric:tabular-nums}
+.ds-figures em {font-style:normal;font-size:12px;line-height:18px;color:var(--app-muted)}
+
+/* 概览: four numbered blocks. Tokens in the copy break only where a word would. */
+.ds-overview {display:flex;flex-direction:column;gap:44px;padding-top:4px}
+.ds-overview code {overflow-wrap:normal}
+.ds-block {display:flex;flex-direction:column;gap:16px}
+.ds-block-head {display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:6px 16px}
+.ds-block-head > div {display:flex;flex-direction:column;gap:4px}
+.ds-block-head > div > span {font-size:12px;line-height:16px;font-weight:600;letter-spacing:.12em;color:var(--brand)}
+.design-system .ds-block-head h2 {margin:0;font-size:24px;line-height:32px;font-weight:700}
+.ds-block-head > p {margin:0;font-size:13px;line-height:20px;color:var(--app-muted)}
+.ds-block-head a {display:inline-flex;align-items:center;gap:4px;font-size:13px;line-height:20px;font-weight:500;color:var(--brand)}
+.ds-block-head a:hover {color:#7e3313}
+
+/* 01 视觉基础: a bento of drawings on a faint dot mat, each painted with the live colours. */
+.ds-bento {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-flow:dense;gap:16px}
+.ds-card {display:flex;flex-direction:column;min-width:0;background:#fff;border:1px solid var(--app-line);border-radius:18px;overflow:hidden}
+.ds-card-color,.ds-card-image {grid-column:span 2}
+.ds-art {flex:none;height:204px;padding:20px 24px;border-bottom:1px solid var(--app-divider);background-color:#fff;
+  background-image:radial-gradient(#3430311a 1px,transparent 1.3px);background-size:14px 14px}
+.ds-card-text {display:flex;flex-direction:column;gap:6px;padding:18px 22px 20px}
+.design-system .ds-card-text h3 {margin:0;font-size:16px;line-height:24px;font-weight:600}
+.ds-card-text h3 span {margin:0 6px;color:#b3b7b6;font-weight:400}
+.ds-card-text p {margin:0;font-size:13px;line-height:21px;color:var(--app-text2)}
+.ds-mini {font-size:11px;line-height:14px;font-weight:600;letter-spacing:.06em;color:var(--app-muted)}
+
+.ds-art-color {display:flex;align-items:stretch;gap:22px;padding:22px 24px}
+.ds-brand {position:relative;flex:none;display:flex;flex-direction:column;justify-content:flex-end;gap:2px;width:156px;padding:16px;
+  border-radius:16px;background:var(--m-dark);color:#fff;box-shadow:0 10px 24px #3430312e}
+.ds-brand em {position:absolute;top:14px;right:14px;display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:999px;
+  background:#ffffff24;font-style:normal;font-size:11px;font-weight:600}
+.ds-brand strong {font-family:var(--m-font);font-size:15px;line-height:20px;font-weight:700}
+.ds-brand span {font-size:12px;line-height:16px;color:#cdc8ca}
+.ds-colorset {display:flex;flex:1;flex-direction:column;justify-content:space-between;gap:10px;min-width:0}
+.ds-colorset > div {display:flex;flex-direction:column;gap:8px}
+.ds-neutrals {display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin:0;padding:0;list-style:none}
+.ds-neutrals li {display:flex;flex-direction:column;gap:2px;min-width:0}
+.ds-neutrals i {height:40px;margin-bottom:4px;border-radius:10px;box-shadow:inset 0 0 0 1px var(--m-line-soft)}
+.ds-neutrals b {font-size:10.5px;line-height:14px;font-weight:600;white-space:nowrap;color:var(--app-ink)}
+.ds-neutrals span {font-size:10.5px;line-height:13px;color:var(--app-muted)}
+.ds-lamps {display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none;font-family:var(--m-font)}
+.ds-lamps li {display:inline-flex;align-items:center;gap:7px;height:26px;padding:0 11px 0 9px;border-radius:999px;background:#fff;
+  box-shadow:inset 0 0 0 1px var(--m-line-soft);font-size:12px;font-weight:700}
+.ds-lamps li::before {content:"";width:10px;height:10px;border-radius:50%}
+.ds-lamps .is-on,.ds-lamps .is-blink {color:var(--m-status-green)}
+.ds-lamps .is-on::before,.ds-lamps .is-blink::before {background:var(--m-lamp-green)}
+.ds-lamps .is-blink {gap:9px}
+.ds-lamps .is-blink::before {box-shadow:0 0 0 4px var(--m-lamp-glow)}
+.ds-lamps .is-red {color:var(--m-lamp-red)}
+.ds-lamps .is-red::before {background:var(--m-lamp-red)}
+.ds-lamps .is-off {color:var(--m-text)}
+.ds-lamps .is-off::before {background:#fff;border:1.5px solid var(--m-lamp-off)}
+
+.ds-art-type {display:flex;flex-direction:column;justify-content:space-between;padding:16px 24px 20px;color:var(--m-text)}
+.ds-specimen {display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.ds-aa {font-family:var(--m-font);font-size:96px;line-height:96px;font-weight:700;letter-spacing:-.04em}
+.ds-font-name {display:flex;flex-direction:column;align-items:flex-end;gap:2px;padding-top:10px;text-align:right;font-size:11px;line-height:15px;
+  color:var(--app-muted)}
+.ds-font-name b {font-family:var(--m-font);font-size:14px;line-height:18px;font-weight:700;color:var(--m-text)}
+.ds-weights {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.ds-weights > span {display:flex;flex-direction:column;gap:1px;min-width:0;padding:7px 9px;border-radius:10px;background:var(--m-surface)}
+.ds-weights b {font-family:var(--m-font);font-size:16px;line-height:20px}
+.ds-weights span span {font-size:10.5px;line-height:14px;color:var(--m-muted);white-space:nowrap}
+.ds-weights .is-400 b {font-weight:400}
+.ds-weights .is-600 b {font-weight:600}
+.ds-weights .is-700 {background:var(--m-dark);color:#fff}
+.ds-weights .is-700 b {font-weight:700}
+.ds-weights .is-700 span {color:#cdc8ca}
+
+.ds-art-layout {display:flex;flex-direction:column;justify-content:center;padding:18px 24px}
+.ds-breaks {display:flex;flex-direction:column;gap:12px}
+.ds-breaks > div {display:grid;grid-template-columns:136px minmax(0,1fr);align-items:center;gap:12px}
+.ds-breaks > div > span:last-child {display:flex;flex-direction:column;font-size:11.5px;line-height:15px;color:var(--app-text2)}
+.ds-breaks b {font-weight:600;color:var(--app-ink)}
+.ds-page {display:flex;flex-direction:column;gap:4px;padding:0 10px 10px;border-radius:6px;background:#fff;
+  box-shadow:inset 0 0 0 1px var(--m-line-soft)}
+.ds-page i {height:3px;border-radius:2px;background:var(--m-line-soft)}
+.ds-page i:first-child {height:9px;border-radius:0 0 3px 3px;background:var(--m-dark)}
+.ds-page i:nth-child(3) {width:72%}
+.ds-page i:nth-child(4) {height:12px;border-radius:3px;background:none;box-shadow:inset 0 0 0 1px var(--m-dark)}
+.ds-page.is-desk {width:136px;box-shadow:0 6px 14px #34303129}
+.ds-page.is-mid {width:96px;padding:0 8px 8px}
+.ds-page.is-mid i:first-child {height:8px}
+.ds-page.is-mid i:nth-child(4) {height:10px}
+.ds-page.is-narrow {width:64px;padding:0 6px 6px}
+.ds-page.is-narrow i:first-child {height:7px}
+.ds-page.is-narrow i:nth-child(3) {width:auto;height:5px;background:var(--m-surface);box-shadow:inset 0 0 0 1px var(--m-line-soft)}
+.ds-page.is-narrow i:nth-child(4) {height:9px;background:var(--m-surface);box-shadow:inset 0 0 0 1px var(--m-line-soft)}
+
+.ds-art-shape {display:flex;align-items:center;padding:20px 22px;color:var(--m-text);font-family:var(--m-font)}
+.ds-shapes {display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:12px;width:100%}
+.ds-shape-table {display:grid;grid-template-columns:44% 1fr;border:1.5px solid var(--m-dark);border-radius:8px;overflow:hidden;background:#fff;
+  font-size:10.5px;line-height:14px}
+.ds-shape-table span {padding:5px 7px}
+.ds-shape-table span:nth-child(odd) {background:var(--m-surface);font-weight:600;border-right:1px solid var(--m-dark)}
+.ds-shape-table span:nth-child(-n+2) {border-bottom:1px solid var(--m-dark)}
+.ds-shape-card {display:flex;flex-direction:column;justify-content:center;gap:3px;padding:7px 10px;border:1px solid var(--m-line-soft);
+  border-radius:8px;background:#fff;font-size:10.5px;line-height:14px}
+.ds-shape-card b {font-weight:700}
+.ds-shape-card span {color:var(--m-muted)}
+.ds-shape-bar {display:flex;align-items:center;height:28px;padding:0 10px;border-radius:0 0 8px 8px;background:var(--m-dark);color:#fff;
+  font-size:11px;font-weight:700;letter-spacing:.02em}
+.ds-shape-pills {display:flex;align-items:center;gap:8px;min-width:0}
+.ds-shape-pills i {display:inline-flex;align-items:center;height:22px;padding:0 10px;border-radius:999px;background:var(--m-dark);color:#fff;
+  font-style:normal;font-size:10px;font-weight:700;white-space:nowrap}
+.ds-shape-pills b {flex:none;display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;
+  background:var(--m-dark);color:#fff;font-size:12px;font-weight:700}
+
+.ds-art-depth {display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background-color:var(--m-surface-strong)}
+.ds-page.is-lifted {width:168px;gap:7px;padding:0 16px 14px;border-radius:10px;box-shadow:0 18px 34px #3430313d}
+.ds-page.is-lifted i {height:4px}
+.ds-page.is-lifted i:first-child {height:12px;border-radius:0 0 4px 4px}
+.ds-page.is-lifted i:nth-child(3) {width:76%}
+.ds-page.is-lifted i:nth-child(4) {height:22px;border-radius:5px;background:var(--m-surface);box-shadow:none}
+.ds-page.is-lifted i:nth-child(5) {width:58%}
+.ds-lift-note {display:inline-flex;align-items:center;height:22px;padding:0 10px;border-radius:999px;background:#ffffffcc;font-style:normal;
+  font-size:11px;font-weight:600;color:var(--app-text2)}
+
+.ds-art-image {display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:center;gap:28px}
+.ds-image-art {display:grid;grid-template-columns:1fr 1fr;gap:12px;color:var(--m-text);font-family:var(--m-font)}
+.ds-image-art figure {position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;min-width:0;margin:0;padding:14px 10px 12px;
+  border-radius:12px;background:#fff;box-shadow:inset 0 0 0 1px var(--m-line-soft)}
+.ds-image-art figure b {position:absolute;top:8px;left:8px;display:flex;align-items:center;justify-content:center;width:20px;height:20px;
+  border-radius:50%;background:var(--m-dark);color:#fff;font-size:11px;font-weight:700}
+.ds-image-art img {height:96px;max-width:100%;object-fit:contain}
+.ds-image-art figcaption {display:inline-flex;align-items:center;height:22px;max-width:100%;padding:0 10px;border-radius:999px;
+  background:var(--m-surface);font-size:11px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ds-points {display:flex;flex-direction:column;gap:12px;margin:0;padding:0;list-style:none}
+.ds-points li {display:flex;align-items:flex-start;gap:10px;font-size:12.5px;line-height:18px;color:var(--app-text2)}
+.ds-points b {display:block;font-weight:600;color:var(--app-ink)}
+.ds-check {flex:none;margin-top:1px;color:var(--brand)}
+
+.ds-art-state {display:flex;flex-direction:column;justify-content:center;gap:16px}
+.ds-state-link {display:flex;flex-direction:column;gap:5px;padding:12px 14px;border-radius:10px;background:#fff;
+  box-shadow:inset 0 0 0 1px var(--m-line-soft)}
+.ds-state-link span {font-size:11px;line-height:14px;color:var(--app-muted)}
+.ds-state-link b {font-family:var(--m-font);font-size:14px;line-height:20px;font-weight:600;color:var(--m-dark);text-decoration:underline;
+  text-decoration-color:var(--m-line);text-decoration-thickness:1.5px;text-underline-offset:4px}
+.ds-state-select {display:flex;align-items:center;gap:14px}
+.ds-select {display:inline-flex;align-items:center;gap:16px;height:32px;padding:0 9px 0 11px;border-radius:6px;background:#fff;
+  border:1px solid var(--m-line);outline:2px solid var(--status-in-progress);outline-offset:2px;font-family:var(--m-font);font-size:13px;
+  color:var(--m-text)}
+.ds-state-select > span:last-child {font-size:11px;line-height:15px;color:var(--app-muted)}
+
+/* 02 组件: the real previews (the 组件 tab's iframe documents), laid out 720px wide, where even the widest table
+   (min-width 40rem) fits, and scaled to the card by design-system.js (--ds-shot-scale); without it, half size.
+   The whole card links to the component. */
+.ds-gallery {display:grid;grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));gap:16px}
+.ds-shot {position:relative;display:flex;flex-direction:column;min-width:0;background:#fff;border:1px solid var(--app-line);border-radius:18px;
+  overflow:hidden;transition:box-shadow .15s}
+.ds-shot:hover {box-shadow:0 6px 22px #15202b14}
+.ds-shot:has(a:focus-visible) {outline:3px solid var(--brand);outline-offset:2px}
+.ds-shot-frame {position:relative;height:224px;overflow:hidden;background:var(--m-paper);border-bottom:1px solid var(--app-divider)}
+.ds-shot-frame iframe {position:absolute;top:0;left:0;width:720px;height:calc(224px / var(--ds-shot-scale,.5));border:0;
+  transform:scale(var(--ds-shot-scale,.5));transform-origin:0 0;pointer-events:none}
+.ds-shot-label {display:flex;align-items:center;justify-content:space-between;gap:8px;padding:14px 18px}
+.design-system .ds-shot-label h3 {margin:0;font-size:15px;line-height:22px;font-weight:600}
+.ds-shot-label a {color:var(--app-ink)}
+.ds-shot-label a::after {content:"";position:absolute;inset:0}
+.ds-shot-label a:focus-visible {outline:none}
+.ds-shot-label > span {display:inline-flex;align-items:center;height:22px;max-width:60%;padding:0 8px;border-radius:6px;background:var(--app-tile);
+  font-size:11px;font-weight:500;color:var(--app-text2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* 03 图标与素材: the shared files themselves, on the manual's light surface. */
+.ds-wall {display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:16px}
+.ds-wall-group {display:flex;flex-direction:column;gap:12px;min-width:0;padding:18px 20px;background:#fff;border:1px solid var(--app-line);
+  border-radius:18px}
+.ds-wall-group header {display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 8px}
+.design-system .ds-wall-group h3 {margin:0;font-size:15px;line-height:22px;font-weight:600}
+.ds-wall-group header span {font-size:12px;color:var(--app-muted)}
+.ds-wall-icons {display:flex;flex-wrap:wrap;gap:8px}
+.ds-wall-icons span {display:flex;align-items:center;justify-content:center;width:50px;height:50px;border-radius:13px;background:var(--m-surface)}
+.ds-wall-icons img {width:30px;height:30px;object-fit:contain}
+.ds-wall-group.is-lead {gap:16px;padding:22px}
+.ds-wall-group.is-lead .ds-wall-icons {display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+.ds-wall-group.is-lead .ds-wall-icons span {width:auto;height:auto;aspect-ratio:1;border-radius:14px}
+.ds-wall-group.is-lead .ds-wall-icons img {width:58%;height:58%}
+.ds-wall-group p {margin:auto 0 0;font-size:12px;line-height:18px;color:var(--app-muted)}
+
+/* 04 风格与写法: the words come last. */
+.ds-style {display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);background:#fff;border:1px solid var(--app-line);border-radius:18px;
+  overflow:hidden}
+.ds-style-text {display:flex;flex-direction:column;gap:14px;padding:28px 30px}
+.ds-kicker {font-size:12px;line-height:16px;font-weight:600;letter-spacing:.08em;color:var(--app-muted)}
+.ds-style-text p {margin:0;font-size:14px;line-height:24px;color:var(--app-text2)}
+.ds-style-text p.is-lead {font-size:19px;line-height:32px;font-weight:500;color:var(--app-ink)}
+.ds-style-demo {display:flex;flex-direction:column;justify-content:center;gap:10px;padding:26px 28px;background:var(--m-surface);
+  border-left:1px solid var(--app-divider)}
+.ds-style-demo > div {display:grid;grid-template-columns:60px minmax(0,1fr);align-items:center;gap:12px;padding:10px 14px;border-radius:10px;
+  background:#fff}
+.ds-style-demo > div > span:first-child {font-size:11.5px;color:var(--app-muted)}
+.ds-m {font-family:var(--m-font);font-size:14px;line-height:20px;color:var(--m-text)}
+.ds-m.is-row {display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px}
+.ds-m b {font-weight:700}
+.ds-m .is-from {color:var(--m-muted)}
+.ds-m svg {flex:none;color:var(--m-line)}
+.ds-pill {display:inline-flex;align-items:center;height:22px;padding:0 10px;border-radius:999px;background:var(--m-dark);color:#fff;
+  font-style:normal;font-size:11px;font-weight:700}
+.ds-style-demo > div.is-none {background:transparent;box-shadow:inset 0 0 0 1px var(--m-line-soft)}
+.ds-style-demo > div.is-none > span:last-child {display:flex;align-items:center;gap:10px;font-size:13px;line-height:20px;color:var(--app-text2)}
+.ds-no-swatch {flex:none;width:20px;height:20px;border-radius:6px;box-shadow:inset 0 0 0 1.5px var(--m-line);
+  background:linear-gradient(135deg,transparent 45%,var(--m-line) 45%,var(--m-line) 55%,transparent 55%)}
+.ds-sub {display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;margin-top:8px}
+.design-system .ds-sub h3 {margin:0;font-size:18px;line-height:26px;font-weight:700}
+.ds-sub span {font-size:13px;line-height:20px;color:var(--app-muted)}
+.ds-principles {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px 28px;margin:0;padding:0;list-style:none}
+.ds-principles li {display:flex;flex-direction:column;gap:8px;min-width:0;padding-top:14px;border-top:1.5px solid var(--app-ink)}
+.ds-principles li > span {font-size:13px;line-height:16px;font-weight:800;letter-spacing:.04em;color:var(--brand);font-variant-numeric:tabular-nums}
+.design-system .ds-principles h4,.design-system .ds-usage h4 {margin:0;font-size:15px;line-height:22px;font-weight:700}
+.ds-principles p {margin:0;font-size:13px;line-height:21px;color:var(--app-text2)}
+.ds-rules {margin-top:8px;background:#fff;border:1px solid var(--app-line);border-radius:18px;overflow:hidden}
+.ds-rules > summary {display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 24px;cursor:pointer;list-style:none}
+.ds-rules > summary::-webkit-details-marker {display:none}
+.ds-rules > summary > span {display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px}
+.ds-rules > summary b {font-size:18px;line-height:26px;font-weight:700}
+.ds-rules > summary em {font-style:normal;font-size:13px;line-height:20px;color:var(--app-muted)}
+.ds-rules > summary:focus-visible {outline:3px solid var(--brand);outline-offset:-3px}
+.ds-chevron {flex:none;color:var(--app-muted);transition:transform .15s}
+.ds-rules[open] .ds-chevron {transform:rotate(180deg)}
+.ds-rules dl {margin:0;border-top:1px solid var(--app-divider)}
+.ds-rules dl > div {display:grid;grid-template-columns:120px minmax(0,1fr);gap:24px;padding:18px 24px;border-bottom:1px solid var(--app-divider)}
+.ds-rules dl > div:last-child {border-bottom:0}
+.ds-rules dt {font-size:14px;line-height:23px;font-weight:600}
+.ds-rules dd {margin:0;font-size:13.5px;line-height:23px;color:var(--app-text2)}
+.ds-usage {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:0;padding:0;list-style:none}
+.ds-usage li {display:flex;flex-direction:column;gap:10px;min-width:0;padding:18px;background:#fff;border:1px solid var(--app-line);border-radius:16px}
+.ds-usage li > span {display:flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--m-dark);
+  color:#fff;font-family:var(--m-font);font-size:13px;font-weight:700}
+.design-system .ds-usage h4 {font-size:14.5px;line-height:21px;overflow-wrap:anywhere}
+.ds-usage p {margin:0;font-size:12.5px;line-height:20px;color:var(--app-text2)}
+
+/* Narrower containers: two columns, then one; the floating tiles and the wide card's notes go first. */
+@container ds (max-width: 879px) {
+  .ds-bento {grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ds-card-image {grid-column:auto}
+  .ds-art-image {grid-template-columns:1fr}
+  .ds-points {display:none}
+  .ds-style {grid-template-columns:1fr}
+  .ds-style-demo {border-left:0;border-top:1px solid var(--app-divider)}
+  .ds-principles,.ds-usage {grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ds-wall {grid-template-columns:1fr}
+  .ds-wall-group.is-lead {grid-row:auto !important}
+}
+@container ds (max-width: 599px) {
+  .ds-cover {padding:28px 20px 0;border-radius:18px}
+  .ds-cover-text > p {font-size:15px;line-height:26px}
+  .ds-float {display:none}
+  .ds-bento,.ds-principles,.ds-usage {grid-template-columns:1fr}
+  .ds-card-color {grid-column:auto}
+  .ds-art {height:auto;min-height:204px}
+  .ds-art-color {flex-direction:column}
+  .ds-brand {width:auto;min-height:96px}
+  .ds-neutrals {grid-template-columns:repeat(3,minmax(0,1fr))}
+  .ds-wall-group.is-lead .ds-wall-icons {grid-template-columns:repeat(4,minmax(0,1fr))}
+  .ds-style-text {padding:22px 20px}
+  .ds-style-text p.is-lead {font-size:17px;line-height:29px}
+  .ds-style-demo {padding:20px}
+  .ds-rules > summary {padding:16px 18px}
+  .ds-rules dl > div {grid-template-columns:1fr;gap:6px;padding:16px 18px}
 }

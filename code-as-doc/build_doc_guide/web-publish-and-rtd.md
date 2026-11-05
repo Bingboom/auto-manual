@@ -23,7 +23,7 @@ group opacity; SVG cannot use fill overrides or stroke suppression.
 
 生产完成触发、冻结快照审核与线上哈希确认见 [工作台数据持续更新](../dev/workspace_data_refresh.md)。
 
-设计规范（原“设计系统”）`/workspace/design/index.html` 由同一 portal 在构建时读取 `tools/web/stylesheets.py` 拼装的 `web_manual.css`，生成颜色、字体与组件预览；“图标与素材”分页列出共享素材清单与目录里的文件，“印刷规格”分页读取 `data/layout_params.csv`。说明与预览标记维护在 `tools/rtd_portal_assets/design_system/`，见 [RTD portal](../dev/rtd_manual_portal/knowledge-pages.md#design-system-page)。
+设计规范（原“设计系统”）`/workspace/design/index.html` 由同一 portal 在构建时读取 `tools/web/stylesheets.py` 拼装的 `web_manual.css`，生成颜色、字体与组件预览；“概览”先以图示（视觉基础图卡、常用组件的线上预览和图标墙）展示规则，风格、内容原则、视觉基础细则和使用方式放在后面，页首规模栏另列 `docs/renderers/contracts/manual_style.yaml` 里的 HB-* 语义样式数；“图标与素材”分页列出共享素材清单与目录里的文件，“印刷规格”分页读取 `data/layout_params.csv`。说明与预览标记维护在 `tools/rtd_portal_assets/design_system/`，见 [RTD portal](../dev/rtd_manual_portal/knowledge-pages.md#design-system-page)。
 
 说明书工作台“交付物”标签里的“数据统计”（`/workspace/deliverables/index.html#statistics`）在构建时读取发布清单 `docs/publish/publish_manifest.json`、`data/model_capabilities.csv`、`data/model_languages.csv`、`docs/_review/` 与 `data/asset_registry.csv`，汇总已发布网页说明书、机型能力（只列至少有一本已发布说明书的型号）和素材登记情况，可按区域和机型筛选；原系统数据页已移除，`/workspace/data/`（含 `index.html`）自动跳转到这里并保留全部查询参数；停用 JavaScript 时提供可点击的目标链接。见 [RTD portal](../dev/rtd_manual_portal/knowledge-pages.md#数据统计)。
 

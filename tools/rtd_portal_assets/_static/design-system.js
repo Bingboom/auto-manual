@@ -17,6 +17,17 @@
       // A cross-origin frame keeps its declared height.
     }
   };
+  // 概览's gallery lays each preview out SHOT_WIDTH px wide (the manual's widest table fits) and scales it to
+  // its card; a hidden card measures 0 and is scaled when it is shown.
+  const SHOT_WIDTH = 720;
+  const scaleShot = box => {
+    const width = box.clientWidth;
+    if (width > 0) box.style.setProperty('--ds-shot-scale', String(Math.min(1, width / SHOT_WIDTH)));
+  };
+  document.querySelectorAll('.ds-shot-frame').forEach(box => {
+    scaleShot(box);
+    if ('ResizeObserver' in window) new ResizeObserver(() => scaleShot(box)).observe(box);
+  });
   document.querySelectorAll('iframe.ds-preview').forEach(frame => {
     frame.addEventListener('load', () => {
       fit(frame);
