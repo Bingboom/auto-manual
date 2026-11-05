@@ -12,6 +12,9 @@ on:
         options: [deliverables, corpus, web_progress]
         required: true
 permissions:
+  # actions: write lets a self-merged web_progress PR start Workspace Data Verify, which a merge
+  # made with this token would not trigger (operator approved 2026-11-04).
+  actions: write
   contents: write
   pull-requests: write
   issues: write
