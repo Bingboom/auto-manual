@@ -61,7 +61,7 @@ class CopyTests(unittest.TestCase):
         band = wmv.band_context(wmv.load_value(ASSETS), internal=False)
         self.assertEqual(set(band), {"internal", "title", "lead", "points"})
         self.assertEqual(band["title"], "网页说明书的定位与价值")
-        self.assertEqual(band["lead"], "网页说明书以已批准的产品说明书为依据，提供更方便查找和阅读的网页版本。")
+        self.assertEqual(band["lead"], "网页说明书基于印刷版 PDF 转录，提供更方便查找和阅读的网页版本。")
         self.assertEqual([(p["title"], p["text"]) for p in band["points"]], [
             ("便捷阅读", "统一的版式和章节导航，手机和电脑都能读，可按型号、产品名称或正文搜索。"),
             ("版本清楚", "每份说明书都标明型号、适用市场和语言。"),

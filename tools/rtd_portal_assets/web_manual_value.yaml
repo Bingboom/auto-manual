@@ -23,7 +23,7 @@ schema: hello-docs-web-manual-value/v1
 title: 网页说明书的定位与价值
 
 public:
-  lead: 网页说明书以已批准的产品说明书为依据，提供更方便查找和阅读的网页版本。
+  lead: 网页说明书基于印刷版 PDF 转录，提供更方便查找和阅读的网页版本。
   points:
     - title: 便捷阅读
       text: 统一的版式和章节导航，手机和电脑都能读，可按型号、产品名称或正文搜索。
