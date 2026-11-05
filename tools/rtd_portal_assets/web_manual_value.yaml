@@ -34,9 +34,9 @@ public:
 
 internal:
   eyebrow: HELLO-DOCS · DIGITAL MANUAL LIBRARY
-  heading: 人能读，机器能读，团队能持续复用
+  heading: 人能读，AI 能读，团队能持续复用
   subtitle: 网页说明书是已批准说明书的可信发布源：同一份内容，服务用户、客服、AI 助手和资料开发。
-  tagline: 网页说明书是已批准说明书的可信发布源：人能读，机器能读，团队能持续维护和复用。
+  tagline: 网页说明书基于印刷版 PDF 转录：人能读，AI 能读，团队能持续维护和复用。
   themes:
     - id: reading
       theme: 便捷阅读
@@ -52,7 +52,7 @@ internal:
           status: available
           note: 手机电脑都能读，可切换语言，可按型号、名称或正文搜索。
     - id: machine
-      theme: 机器可读
+      theme: AI 可读
       summary: 同步生成带版本校验的机读内容，AI 助手按来源引用。
       facets:
         - label: 机读导出

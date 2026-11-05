@@ -137,7 +137,7 @@ class HomeTemplateTests(unittest.TestCase):
 
     def test_cards_follow_the_entries_and_carry_no_numbers(self):
         soup = self.render(matrix_entry=False, system_entry=False)
-        groups = [(s.h2.text, [c.strong.text for c in s.select(".home-card")]) for s in soup.select(".home-group")]
+        groups = [(s.h3.text, [c.strong.text for c in s.select(".home-card")]) for s in soup.select(".home-group")]
         self.assertEqual(groups, [("说明书", ["说明书资料库", "搜索说明书正文"]),
                                   ("产品与市场", ["产品知识", "市场与政策"]),
                                   ("说明书生产", ["说明书工作台", "设计规范"])])

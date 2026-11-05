@@ -1,0 +1,17 @@
+# 知识库首页 copy that no other page owns. tools/rtd/workspace_home.py reads
+# this file; a malformed file fails the build.
+#
+#   assets_note  one line beside 「已积累的可复用资产」: why the cards matter.
+#                The cards' figures are never written here: each is read from
+#                the source that owns it (see workspace_home.py).
+#   doing        「正在做」 on the home page: what the team is doing now, in
+#                plain words. `lead` is the short bold name, `text` the one-line
+#                explanation. The 系统建设 page keeps its own 正在做 list from
+#                the execution ledger (system_workspace.yaml now_next).
+schema: hello-docs-workspace-home/v1
+assets_note: 每写一本都在积累，下一本直接复用
+doing:
+  - lead: 网页化
+    text: 印刷版说明书持续转成网页版
+  - lead: 多格式输出
+    text: Agent 复用积累的语料、图片素材和设计规范，一份内容出多种格式

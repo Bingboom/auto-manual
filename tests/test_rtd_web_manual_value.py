@@ -41,7 +41,7 @@ class CopyTests(unittest.TestCase):
         themes = wmv.load_value(ASSETS)["internal"]["themes"]
         self.assertEqual([(t["id"], t["theme"], t["status"], t["status_label"]) for t in themes], [
             ("reading", "便捷阅读", "available", "可用"),
-            ("machine", "机器可读", "partial", "部分可用"),
+            ("machine", "AI 可读", "partial", "部分可用"),
             ("governance", "内容治理", "partial", "部分可用"),
             ("knowledge", "知识积累", "in_progress", "建设中"),
         ])
@@ -132,7 +132,7 @@ class RenderTests(unittest.TestCase):
 
     def test_internal_band_links_each_theme_to_its_card_on_the_knowledge_home(self):
         band = render("_value_band.html", value=wmv.band_context(wmv.load_value(ASSETS), internal=True))
-        self.assertEqual(band.h2.get_text(), "人能读，机器能读，团队能持续复用")
+        self.assertEqual(band.h2.get_text(), "人能读，AI 能读，团队能持续复用")
         self.assertEqual([(a["href"], a.select_one(".value-text").get_text()) for a in band.select("a.value-item")], [
             (f"{wmv.HOME}#reading", "统一呈现、扫码直达、快速查阅"),
             (f"{wmv.HOME}#machine", "机读导出、AI 问答、市场覆盖"),
@@ -144,7 +144,7 @@ class RenderTests(unittest.TestCase):
     def test_without_a_band_the_home_renders_nothing_for_it(self):
         self.assertIsNone(render("_value_band.html").select_one("section"))
 
-    def test_knowledge_home_shows_one_card_per_theme_and_folds_the_details(self):
+    def test_knowledge_home_shows_one_card_per_theme_with_its_facets(self):
         value = wmv.load_value(ASSETS)
         home = render("workspace_portal.html", value=wmv.page_context(value), share_entry="", system_entry=True,
                       deliverables_entry=True, design_entry=True, matrix_entry=True, updates=[])
@@ -156,12 +156,12 @@ class RenderTests(unittest.TestCase):
             self.assertEqual(card.h3.get_text(), theme["theme"])
             self.assertEqual(card.select_one("header .home-status")["class"][-1], f"is-{theme['status']}")
             self.assertEqual(card.select_one(":scope > p").get_text(), theme["summary"])
-            # Second level, folded: the facets.
-            more = card.select_one("details")
-            self.assertFalse(more.has_attr("open"))
-            self.assertEqual(more.summary.get_text(), "现状")
-            self.assertEqual([(li.span.get_text(), li.em["class"][-1]) for li in more.select("li")],
+            # Then each facet with its status mark; the note is the row's tooltip.
+            facets = card.select("ul > li")
+            self.assertEqual([(li.span.get_text(), li.svg["class"][-1]) for li in facets],
                              [(f["label"], f"is-{f['status']}") for f in theme["facets"]])
+            self.assertEqual([li["title"] for li in facets],
+                             [f"{f['status_label']}：{f['note']}" for f in theme["facets"]])
         # REV ids are evidence in the data file, never shown; no 总纲, principles or direction block.
         self.assertNotIn("REV-", home.get_text())
         self.assertIsNone(home.select_one("#direction, .vp-key, .vp-principle"))

@@ -24,8 +24,8 @@ schema: hello-docs-knowledge-updates/v1
 
 updates:
   - date: 2026-11-05
-    title: 知识库首页 · 一屏总览
-    note: 首页改为现在、去哪里、定位与价值三块，最近更新只留 5 条；定位与价值并入首页，新增「机器可读」，去掉防御性表述
+    title: 知识库首页 · 新版首页
+    note: 首页先看已积累的可复用资产（语料、图片素材、通用章节、产品知识），再看现在在做、去哪里、定位与价值和最近 5 条更新；换用新图标与配色，「机器可读」改称「AI 可读」
     page: home
     evidence: "pr:auto-manual#1673"
   - date: 2026-11-04

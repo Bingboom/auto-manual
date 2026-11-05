@@ -30,32 +30,47 @@ body.app {margin:0;background:var(--app-bg);color:var(--app-ink);font-size:15px;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei UI","Microsoft YaHei","Noto Sans CJK SC","Noto Sans SC","Source Han Sans SC",sans-serif;
   -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 body.app h1,body.app h2,body.app h3,body.app h4 {letter-spacing:0}
+/* 知识库 pages (body.app.kb, the 2026-11 design): a cool ground, white cards and a terracotta accent. The
+   说明书资料库 pages keep the brand orange above. --app-text2 sits between --app-ink and --app-muted. */
+body.app.kb {--brand:#a64e24;--brand-strong:#a64e24;--brand-soft:#f8e6dc;--brand-mark-accent:#e7a27c;
+  --app-ink:#28302f;--app-text2:#474e4e;--app-muted:#686f70;--app-faint:#80878a;--app-line:#e2e7ee;--app-bg:#f3f6fa;
+  --app-track:#e5eaf0;--app-tile:#edf1f6;--app-divider:#ebeff4;
+  --status-available:#1f6b4a;--status-available-bg:#e6f2ec;--status-validated:#1f6b4a;--status-validated-bg:#e6f2ec;
+  --status-in-progress:#2457a6;--status-in-progress-bg:#e8eef8;--status-planned:#5b6265;--status-planned-bg:#eef1f4;
+  /* workspace.css page tokens follow the palette too */
+  --orange:var(--brand);--ink:var(--app-ink);--muted:var(--app-muted);--line:var(--app-line);--bg:var(--app-bg)}
 
 .app-sidebar {position:fixed;inset:0 auto 0 0;z-index:40;width:var(--app-sidebar);display:flex;flex-direction:column;
   background:#fff;border-right:1px solid var(--app-line);padding:22px 14px 16px;overflow-y:auto}
-.app-brand {display:block;padding:0 12px;margin-bottom:24px;font-size:21px;font-weight:700;line-height:1.1;
-  color:var(--app-ink);text-decoration:none}
+.app-brand {display:flex;align-items:center;gap:10px;padding:0 10px;margin-bottom:24px;font-size:18px;font-weight:700;
+  line-height:1.2;letter-spacing:.02em;color:var(--app-ink);text-decoration:none}
+.app-brand b {font-weight:inherit}
 .app-brand span {color:var(--brand)}
+.app-brand-mark {flex:none;display:grid;place-items:center;width:30px;height:30px;border-radius:8px;
+  background:var(--app-ink);color:#fff}
+.app-brand-mark .ic-accent {stroke:var(--brand-mark-accent,var(--brand))}
 .app-nav {display:flex;flex-direction:column;gap:2px}
-.app-nav-group {margin:18px 12px 6px;font-size:12px;font-weight:600;color:var(--app-faint)}
+.app-nav-group {margin:18px 12px 6px;font-size:12px;font-weight:500;letter-spacing:.04em;color:var(--app-muted)}
 .app-nav-group:first-child {margin-top:0}
-.app-nav-link {display:flex;align-items:center;gap:10px;height:40px;padding:0 12px;border-radius:8px;
-  font-size:14.5px;color:#50545c;text-decoration:none;transition:background .15s,color .15s}
-.app-nav-link i {width:18px;text-align:center;font-style:normal;font-size:15px;color:var(--app-faint)}
+/* Sidebar icons stay one colour: the line set's accent detail is for page cards only. */
+.app-nav-link {display:flex;align-items:center;gap:10px;height:38px;padding:0 12px;border-radius:8px;
+  font-size:14px;font-weight:500;color:var(--app-text2,#50545c);text-decoration:none;transition:background .15s,color .15s}
+.app-nav-link .ic {flex:none;color:var(--app-muted)}
 .app-nav-link:hover {background:var(--app-bg);color:var(--app-ink)}
-.app-nav-link.active {background:var(--brand-soft);color:var(--brand-strong);font-weight:650}
-.app-nav-link.active i {color:var(--brand)}
+.app-nav-link.active {background:var(--brand-soft);color:var(--brand-strong);font-weight:600}
+.app-nav-link.active .ic {color:var(--brand-strong)}
 .app-scrim {display:none}
 
 .app-content {margin-left:var(--app-sidebar);min-width:0}
 .app-topbar {position:sticky;top:0;z-index:30;height:var(--app-topbar);display:flex;align-items:center;gap:16px;
   padding:0 32px;background:#ffffffeb;backdrop-filter:blur(8px);border-bottom:1px solid var(--app-line)}
+body.app.kb .app-topbar {background:#f3f6faeb}
 .app-menu {display:none;border:0;background:none;font-size:20px;width:36px;height:36px;border-radius:8px;cursor:pointer;color:var(--app-ink)}
 .app-crumb {font-size:13px;color:var(--app-faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .app-crumb span {margin:0 8px;color:#c6c9cf}
 .app-crumb b {font-weight:600;color:var(--app-ink)}
 .app-topbar-right {margin-left:auto;display:flex;align-items:center;gap:16px}
-.app-switch {display:flex;padding:3px;border-radius:8px;background:var(--app-bg)}
+.app-switch {display:flex;padding:3px;border-radius:8px;background:var(--app-track,var(--app-bg))}
 .app-switch a {padding:6px 14px;border-radius:6px;font-size:13px;color:var(--app-muted);text-decoration:none;white-space:nowrap}
 .app-switch a.selected {background:#fff;color:var(--app-ink);font-weight:600;box-shadow:0 1px 3px #17191f1a}
 .app-sidebar a:focus-visible,.app-topbar a:focus-visible,.app-topbar button:focus-visible,.app-topbar select:focus-visible {

@@ -19,7 +19,7 @@ Both RTD projects serve the same home page, so the copy has two audiences:
 | `RTD_SITE_ROLE` | Band on the manual-library home | 知识库首页 section |
 | --- | --- | --- |
 | `manuals` (public) | title, one sentence and three reader points (便捷阅读, 版本清楚, 持续更新): only what a reader can use today, with no links, status tags, internal names, governance or AI wording | not built |
-| unset or `combined` (private) | eyebrow, heading and subtitle, then the four themes (便捷阅读, 机器可读, 内容治理, 知识积累), each with its facet keywords and a status tag, linking to its card on 知识库首页 | built |
+| unset or `combined` (private) | eyebrow, heading and subtitle, then the four themes (便捷阅读, AI 可读, 内容治理, 知识积累), each with its facet keywords and a status tag, linking to its card on 知识库首页 | built |
 
 Only the public block reaches public HTML: `band_context(..., internal=False)` carries no internal copy. The
 `manuals`-role build in `tests/test_rtd_portal.py` checks the band and the absence of internal words and of
@@ -30,13 +30,14 @@ the knowledge base; the combined build checks that each theme link lands on an e
 `tools/rtd_portal_assets/web_manual_value.yaml` (schema `hello-docs-web-manual-value/v1`) holds both blocks.
 `tools/rtd/web_manual_value.py` reads and validates it, and a malformed file fails the build.
 
-知识库首页 opens with the positioning line: 网页说明书是已批准说明书的可信发布源，人能读，机器能读，团队能持续维护和复用.
-Its 定位与价值 section has one card per theme with its name, status and one sentence (`summary`). Each card
-folds its 现状 list, one line per facet, under 「现状」. The cards stay short on purpose (operator, 2026-11-04:
-too much content, no clear hierarchy).
+知识库首页 opens with the positioning line: 网页说明书基于印刷版 PDF 转录：人能读，AI 能读，团队能持续维护和复用.
+Its 定位与价值 section has one card per theme with its name, status and one sentence (`summary`), then its
+facets, one line each with a status mark; a facet's note is its row's tooltip, and a legend explains the marks
+in use (2026-11 design). The cards stay short on purpose (operator, 2026-11-04: too much content, no clear
+hierarchy). The theme formerly called 机器可读 is 「AI 可读」 (operator, 2026-11-05).
 
 The copy says what the web manuals do, with no defensive caveats: this is the team's own knowledge base
-(operator, 2026-11-04). So there is no 总纲, no 核心原则, no status legend and no long-term-direction block.
+(operator, 2026-11-04). So there is no 总纲, no 核心原则 and no long-term-direction block; the one legend only names the status marks.
 What is unfinished shows only as a status tag, and `tests/test_rtd_web_manual_value.py` rejects the old
 caveat phrasings.
 
@@ -53,7 +54,7 @@ On 2026-11-04 that gives:
 
 - 便捷阅读: 可用. Shared components and theme, QR codes that open the model's web manual, and search by
   model, name or text on phone and desktop.
-- 机器可读: 部分可用. The machine-readable export and its checked receipt are produced at build, and the
+- AI 可读: 部分可用. The machine-readable export and its checked receipt are produced at build, and the
   DingTalk bot answers from them ([EU manual query](../eu_manual_query.md)). Coverage is EU only and the
   content is extracted from the published HTML, not generated from the same source; see the
   [positioning doc](../../architecture/Hello_Docs_Positioning.md) §6.

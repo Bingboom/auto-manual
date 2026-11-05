@@ -29,7 +29,7 @@ from tools.rtd.page_metadata import (
 from tools.rtd.system_data import system_data_page_context
 from tools.rtd.system_workspace import SYSTEM_PAGE, SYSTEM_TEMPLATE, system_page_context
 from tools.rtd.web_manual_value import band_context, load_value, page_context as value_page_context
-from tools.rtd.workspace_home import now_view
+from tools.rtd.workspace_home import load_home_copy, now_view, reusable_assets
 from tools.safe_copy import copytree_replace_no_symlinks
 
 ASSETS = Path(__file__).resolve().parents[1] / "rtd_portal_assets"
@@ -387,8 +387,10 @@ def collect_workspace_pages(app):
         "deliverables_entry": True,
         "design_entry": design is not None,
         "matrix_entry": matrix is not None,
-        # One screen: 现在 (from the pages that own the facts), 去哪里, 定位与价值 and the newest 5 updates.
-        "now": now_view(system, deliverables),
+        # 现在: reusable assets (each from the source that owns it), main lines and the home copy's 正在做;
+        # then 去哪里, 定位与价值 and the newest 5 updates.
+        "now": now_view(system, load_home_copy(ASSETS)),
+        "assets": reusable_assets(system, ASSETS, repo_root()),
         "value": value_page_context(load_value(ASSETS)),
         "updates": updates_view(entries, built),
     }, "workspace_portal.html"
