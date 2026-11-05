@@ -21,7 +21,7 @@
    \hline
    \HBTypeSpecLabel{Розміри} & \HBTypeSpecValue{31,4 × 20,1 × 23,4 см} \\
    \hline
-   \HBTypeSpecLabel{Ресурс циклів} & \HBTypeSpecValue{6000 циклів до 70\%+ ємності} \\
+   \HBTypeSpecLabel{Ресурс циклів} & \HBTypeSpecValue{4000 циклів до 70\%+ ємності} \\
    \end{tabularx}
    \end{spectable}
 
@@ -120,7 +120,7 @@
           </tr>
           <tr>
             <th scope="row" class="hb-spec-label">Ресурс циклів</th>
-            <td class="hb-spec-value">6000 циклів до 70%+ ємності</td>
+            <td class="hb-spec-value">4000 циклів до 70%+ ємності</td>
           </tr>
         </tbody>
       </table>
