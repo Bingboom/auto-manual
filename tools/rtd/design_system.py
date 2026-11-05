@@ -2,9 +2,10 @@
 
 Colours, type and component previews are read from the web_manual.css that
 tools/web/stylesheets.py assembles, the 图标与素材 gallery from the shared asset
-folders and manifests (design_assets.py), and the 印刷规格 tab from
-data/layout_params.csv (design_print.py), all at build time; only the Chinese
-notes and the preview markup are committed data
+folders and manifests (design_assets.py), the 印刷规格 tab from
+data/layout_params.csv (design_print.py), and the 概览 tab and cover from all of
+these (design_overview.py), all at build time; only the Chinese notes and the
+preview markup are committed data
 (tools/rtd_portal_assets/design_system/). A selector, class, asset or token the
 page relies on that no longer exists is an authoring error: the page is skipped
 with a warning rather than showing stale rules, and the unit tests fail first.
@@ -22,6 +23,7 @@ import yaml
 
 from tools.rtd.design_assets import GROUNDS, asset_gallery, asset_source, check_not_withdrawn, withdrawn_hashes
 from tools.rtd.design_content import CONTENT_DIR, DesignSystemError, inline, load_content
+from tools.rtd.design_overview import overview_context
 from tools.rtd.design_print import print_page_document, print_spec
 from tools.rtd.design_system_css import class_names, declared, live_stylesheet_text, parse_css
 from tools.utils.path_utils import repo_root
@@ -77,7 +79,7 @@ def _colors(content: dict, rules: list, paper: str) -> list[dict]:
             raise DesignSystemError(f"colour {entry['name']}: {selector} no longer declares {prop}")
         value = match.group(0).lower()
         colors.append({
-            "name": entry["name"], "token": prop, "selector": selector, "declared": raw,
+            "name": entry["name"], "key": entry.get("key"), "token": prop, "selector": selector, "declared": raw,
             "value": value, "contrast": contrast_ratio(value, paper), "note": inline(entry["note"]),
         })
     return colors
@@ -183,12 +185,10 @@ def design_system_context(assets: Path) -> dict[str, Any]:
     type_styles = _type_styles(content, rules)
     font_family = declared(rules, ":root", "--hb-font-family") or ""
     screen_tokens = {prop for rule in rules if ":root" in rule.selectors for prop in rule.declarations}
+    overview = overview_context(content, colors=colors, groups=groups, library=library, root=root,
+                                font_family=font_family)
     return {
-        "lead": content["lead"],
-        "overview": [{"id": section["id"], "title": section["title"],
-                      "paragraphs": [inline(text) for text in section.get("paragraphs", [])],
-                      "items": [inline(text) for text in section.get("items", [])]}
-                     for section in content["overview"]],
+        "lead": content["lead"], "overview": overview,
         "colors": colors, "type_styles": type_styles, "component_groups": groups, "paper": paper, "grounds": grounds,
         "component_count": sum(len(group["items"]) for group in groups),
         "font_family": font_family, "asset_library": library,

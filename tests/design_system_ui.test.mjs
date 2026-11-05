@@ -50,3 +50,17 @@ test('a hidden or cross-origin preview keeps its declared height', () => {
   assert.equal(hidden.style.height, undefined);
   assert.equal(foreign.style.height, undefined);
 });
+
+test('a gallery card scales its preview from the 720px layout width; a hidden card waits for its size', () => {
+  const set = [];
+  const box = (clientWidth) => ({clientWidth, style: {setProperty: (name, value) => set.push([clientWidth, name, value])}});
+  const observed = [];
+  const window = {ResizeObserver: class { observe(target) { observed.push(target); } }};
+  const boxes = [box(360), box(0), box(900)];
+  vm.runInNewContext(script, {
+    window, ResizeObserver: window.ResizeObserver,
+    document: {querySelectorAll: (selector) => (selector === '.ds-shot-frame' ? boxes : [])},
+  });
+  assert.deepEqual(set, [[360, '--ds-shot-scale', '0.5'], [900, '--ds-shot-scale', '1']]);
+  assert.equal(observed.length, 3);
+});

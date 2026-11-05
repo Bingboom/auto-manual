@@ -40,10 +40,13 @@ def inline(text: str) -> Markup:
     return Markup("".join(parts))
 
 
+SCHEMA_VERSION = 2  # 2: the 概览 tab reads style, foundations, principles, usage and showcase.
+
+
 def load_content(assets: Path) -> dict[str, Any]:
     data = yaml.safe_load((assets / CONTENT_DIR / "content.yaml").read_text(encoding="utf-8"))
-    if not isinstance(data, dict) or data.get("schema_version") != 1:
-        raise DesignSystemError("design_system/content.yaml needs schema_version 1")
+    if not isinstance(data, dict) or data.get("schema_version") != SCHEMA_VERSION:
+        raise DesignSystemError(f"design_system/content.yaml needs schema_version {SCHEMA_VERSION}")
     return data
 
 
