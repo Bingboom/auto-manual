@@ -1423,6 +1423,16 @@
           "handling": "keep-frozen",
           "reason": "MA-381 narrow shared troubleshooting rowspan divider correction: preserve the four JP packages newly integrated from main with all original runtime pins and generated outputs unchanged; no content, artwork or target re-rendering. Their sole drift is the shared CSS file.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "SCG-20261104 confirms the remaining shared symbol groups and lets reviewed glyph waivers cover legacy variants; frozen packages keep their sealed bytes and evidence, and every replayed symbol row still passes (legacy bindings within the fixed tolerance or their waiver).",
+          "since": "2026-11-05"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "SCG-20261104 confirms the remaining shared symbol groups and lets reviewed glyph waivers cover legacy variants; frozen packages keep their sealed bytes and evidence, and every replayed symbol row still passes (legacy bindings within the fixed tolerance or their waiver).",
+          "since": "2026-11-05"
         }
       }
     },
@@ -2010,6 +2020,16 @@
           "handling": "keep-frozen",
           "reason": "#1666 troubleshooting rowspan divider selector; JP editions sealed and published with the prior web_manual.css (Hello-Docs #290), immutable output kept",
           "since": "2026-11-04"
+        },
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "SCG-20261104 confirms the remaining shared symbol groups and lets reviewed glyph waivers cover legacy variants; frozen packages keep their sealed bytes and evidence, and every replayed symbol row still passes (legacy bindings within the fixed tolerance or their waiver).",
+          "since": "2026-11-05"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "SCG-20261104 confirms the remaining shared symbol groups and lets reviewed glyph waivers cover legacy variants; frozen packages keep their sealed bytes and evidence, and every replayed symbol row still passes (legacy bindings within the fixed tolerance or their waiver).",
+          "since": "2026-11-05"
         }
       }
     },
@@ -2021,6 +2041,16 @@
           "handling": "keep-frozen",
           "reason": "#1666 troubleshooting rowspan divider selector; JP editions sealed and published with the prior web_manual.css (Hello-Docs #290), immutable output kept",
           "since": "2026-11-04"
+        },
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "SCG-20261104 confirms the remaining shared symbol groups and lets reviewed glyph waivers cover legacy variants; frozen packages keep their sealed bytes and evidence, and every replayed symbol row still passes (legacy bindings within the fixed tolerance or their waiver).",
+          "since": "2026-11-05"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "SCG-20261104 confirms the remaining shared symbol groups and lets reviewed glyph waivers cover legacy variants; frozen packages keep their sealed bytes and evidence, and every replayed symbol row still passes (legacy bindings within the fixed tolerance or their waiver).",
+          "since": "2026-11-05"
         }
       }
     },
@@ -2099,6 +2129,16 @@
           "handling": "keep-frozen",
           "reason": "#1666 troubleshooting rowspan divider selector; JP editions sealed and published with the prior web_manual.css (Hello-Docs #290), immutable output kept",
           "since": "2026-11-04"
+        },
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "SCG-20261104 confirms the remaining shared symbol groups and lets reviewed glyph waivers cover legacy variants; frozen packages keep their sealed bytes and evidence, and every replayed symbol row still passes (legacy bindings within the fixed tolerance or their waiver).",
+          "since": "2026-11-05"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "SCG-20261104 confirms the remaining shared symbol groups and lets reviewed glyph waivers cover legacy variants; frozen packages keep their sealed bytes and evidence, and every replayed symbol row still passes (legacy bindings within the fixed tolerance or their waiver).",
+          "since": "2026-11-05"
         }
       }
     },
@@ -2390,6 +2430,16 @@
           "handling": "keep-frozen",
           "reason": "#1666 troubleshooting rowspan divider selector; JP editions sealed and published with the prior web_manual.css (Hello-Docs #290), immutable output kept",
           "since": "2026-11-04"
+        },
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "SCG-20261104 confirms the remaining shared symbol groups and lets reviewed glyph waivers cover legacy variants; frozen packages keep their sealed bytes and evidence, and every replayed symbol row still passes (legacy bindings within the fixed tolerance or their waiver).",
+          "since": "2026-11-05"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "SCG-20261104 confirms the remaining shared symbol groups and lets reviewed glyph waivers cover legacy variants; frozen packages keep their sealed bytes and evidence, and every replayed symbol row still passes (legacy bindings within the fixed tolerance or their waiver).",
+          "since": "2026-11-05"
         }
       }
     },
@@ -2468,6 +2518,16 @@
           "handling": "keep-frozen",
           "reason": "MA-381 narrow shared troubleshooting rowspan divider correction: preserve the four JP packages newly integrated from main with all original runtime pins and generated outputs unchanged; no content, artwork or target re-rendering. Their sole drift is the shared CSS file.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "SCG-20261104 confirms the remaining shared symbol groups and lets reviewed glyph waivers cover legacy variants; frozen packages keep their sealed bytes and evidence, and every replayed symbol row still passes (legacy bindings within the fixed tolerance or their waiver).",
+          "since": "2026-11-05"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "SCG-20261104 confirms the remaining shared symbol groups and lets reviewed glyph waivers cover legacy variants; frozen packages keep their sealed bytes and evidence, and every replayed symbol row still passes (legacy bindings within the fixed tolerance or their waiver).",
+          "since": "2026-11-05"
         }
       }
     },
@@ -2546,6 +2606,16 @@
           "handling": "keep-frozen",
           "reason": "MA-381 narrow shared troubleshooting rowspan divider correction: preserve the four JP packages newly integrated from main with all original runtime pins and generated outputs unchanged; no content, artwork or target re-rendering. Their sole drift is the shared CSS file.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "SCG-20261104 confirms the remaining shared symbol groups and lets reviewed glyph waivers cover legacy variants; frozen packages keep their sealed bytes and evidence, and every replayed symbol row still passes (legacy bindings within the fixed tolerance or their waiver).",
+          "since": "2026-11-05"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "SCG-20261104 confirms the remaining shared symbol groups and lets reviewed glyph waivers cover legacy variants; frozen packages keep their sealed bytes and evidence, and every replayed symbol row still passes (legacy bindings within the fixed tolerance or their waiver).",
+          "since": "2026-11-05"
         }
       }
     },
@@ -2629,6 +2699,16 @@
           "handling": "keep-frozen",
           "reason": "MA-381 narrow shared troubleshooting rowspan divider correction: preserve the four JP packages newly integrated from main with all original runtime pins and generated outputs unchanged; no content, artwork or target re-rendering. Their sole drift is the shared CSS file.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "SCG-20261104 confirms the remaining shared symbol groups and lets reviewed glyph waivers cover legacy variants; frozen packages keep their sealed bytes and evidence, and every replayed symbol row still passes (legacy bindings within the fixed tolerance or their waiver).",
+          "since": "2026-11-05"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "SCG-20261104 confirms the remaining shared symbol groups and lets reviewed glyph waivers cover legacy variants; frozen packages keep their sealed bytes and evidence, and every replayed symbol row still passes (legacy bindings within the fixed tolerance or their waiver).",
+          "since": "2026-11-05"
         }
       }
     },
@@ -3068,6 +3148,17 @@
       "handling": "keep-frozen",
       "reason": "#1666 troubleshooting rowspan divider selector; JP editions sealed and published with the prior web_manual.css (Hello-Docs #290), immutable output kept",
       "minutes": 0
+    },
+    {
+      "date": "2026-11-05",
+      "files": [
+        "docs/renderers/web/assets/shared/symbols/manifest.json",
+        "tools/web/symbol_asset_admission.py"
+      ],
+      "packages": 8,
+      "handling": "keep-frozen",
+      "reason": "SCG-20261104 confirms the remaining shared symbol groups and lets reviewed glyph waivers cover legacy variants; frozen packages keep their sealed bytes and evidence, and every replayed symbol row still passes (legacy bindings within the fixed tolerance or their waiver).",
+      "minutes": 10
     }
   ]
 }
