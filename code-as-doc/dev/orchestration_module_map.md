@@ -52,9 +52,9 @@ Do not move new low-level implementation back into these files unless the behavi
 
 工作台数据更新由 [`tools/workspace_snapshot.py`](../../tools/workspace_snapshot.py) 负责
 完整读取与安全快照；`workspace_refresh_trigger` 在队列／TM 批次完成后发请求，
-`workspace_refresh` 复用现有导出器，`workspace_refresh_publish` 只提交业务内容 PR，
+`workspace_refresh` 复用现有导出器，`workspace_refresh_publish` 提交业务内容 PR（每日网页进度导出成功时自合入），
 `workspace_refresh_verify` 独立核验线上版本，`workspace_freshness` 仅提供冻结读取模型。
-失败提醒复用 GitHub issue；模块不合入、不生产说明书、不推断历史活动。
+失败提醒复用 GitHub issue；其余来源不合入，模块不生产说明书、不推断历史活动。
 见 [工作台数据持续更新](workspace_data_refresh.md)。
 
 Read-only intake work packets and shared-art review live in

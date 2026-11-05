@@ -150,6 +150,42 @@ class RtdPortalTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "rtd_site_role"):
             rtd_portal.site_role(app)
 
+    def test_unlisted_read_the_docs_project_builds_manuals_without_the_variable(self):
+        # 2026-11-04: a public project without RTD_SITE_ROLE served the whole knowledge base.
+        root = self.assemble()
+        assets = self.root / "portal-assets"
+        shutil.copytree(rtd_portal.ASSETS, assets)
+        (assets / "settings.json").write_text(json.dumps(dict(self.settings, product_voc_endpoint="")))
+        share = self.root / "knowledge" / "ai-share"
+        share.mkdir(parents=True)
+        (share / "00_打开分享.html").write_text("<!doctype html><p>业务资料</p>")
+        with (root / "conf.py").open("a") as conf:
+            conf.write(f"\nfrom pathlib import Path\nfrom tools.rtd import portal\nportal.ASSETS = Path({str(assets)!r})\n")
+            conf.write(f"rtd_knowledge_dir = {str(self.root / 'knowledge')!r}\n")
+        base = {key: value for key, value in os.environ.items() if key != "RTD_SITE_ROLE"}
+
+        def build(name, **extra):
+            env = {**base, "READTHEDOCS": "True", "READTHEDOCS_PROJECT": "ht-docs-new-project", **extra}
+            return subprocess.run(
+                [sys.executable, "-m", "sphinx", "-q", "-b", "html", "-D", "extensions=myst_parser,tools.rtd.portal",
+                 str(root), str(self.root / name)],
+                cwd=Path(__file__).resolve().parents[1], capture_output=True, text=True, check=False, env=env,
+            )
+
+        result = build("unlisted")
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        out = self.root / "unlisted"
+        for internal in ("workspace", "products", "market", "ai-share"):
+            self.assertFalse((out / internal).exists(), internal)
+        self.assertNotIn("业务资料", "".join(p.read_text(errors="ignore") for p in out.rglob("*.html")))
+        root_page = BeautifulSoup((out / "index.html").read_text(), "html.parser")
+        self.assertEqual([g.get_text() for g in root_page.select(".app-nav-group")], ["说明书"])
+        self.assertTrue((out / "JE-TEST/EU/md/manual_EU.html").is_file())
+        refused = build("refused", RTD_SITE_ROLE="combined")
+        self.assertNotEqual(refused.returncode, 0)
+        self.assertIn("PRIVATE_RTD_PROJECTS", refused.stdout + refused.stderr)
+        self.assertFalse((self.root / "refused" / "workspace").exists())
+
     def test_real_sphinx_changes_home_only_and_preserves_sources(self):
         root = self.assemble()
         # This test isolates portal/alias transforms; VOC has its own opt-in tests.

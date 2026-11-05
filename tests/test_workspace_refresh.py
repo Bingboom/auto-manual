@@ -312,6 +312,58 @@ class SubmissionTests(unittest.TestCase):
             self.assertEqual(json.loads(path.read_text()), ["not a snapshot"])
 
 
+class AutoMergeTests(unittest.TestCase):
+    URL = "https://github.com/Bingboom/Hello-Docs/pull/9"
+
+    def run_main(self, kind, status, fail=None):
+        from tools import workspace_refresh_publish as publisher
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            log = root / ".tmp/workspace-refresh/result.json"
+            snap.atomic_json(log, {"kind": kind, "status": status, "stage": "snapshot-validated"})
+            calls = []
+            def submit(_root, _kind, state):
+                state["head"] = "a" * 40
+                return self.URL
+            def execute(args, cwd=None):
+                calls.append(list(args))
+                if fail and args[:3] == fail:
+                    raise RuntimeError("gh failed (exit 1); retry this stage")
+                return ""
+            with patch.object(publisher, "submit", side_effect=submit), \
+                    patch.object(publisher, "command", side_effect=execute), redirect_stdout(io.StringIO()):
+                code = publisher.main([kind, "--root", str(root)])
+            return code, json.loads(log.read_text()), calls
+
+    def test_daily_web_progress_merges_at_the_validated_head_then_dispatches_verify(self):
+        code, report, calls = self.run_main("web_progress", "changed")
+        self.assertEqual(code, 0)
+        self.assertEqual(calls, [["gh", "pr", "merge", self.URL, "--squash", "--match-head-commit", "a" * 40],
+                                 ["gh", "workflow", "run", "workspace-data-verify.yml", "--repo", "Bingboom/Hello-Docs",
+                                  "--ref", "main"]])
+        self.assertEqual(report["review"], {"status": "auto-merged", "url": self.URL, "head": "a" * 40})
+        self.assertEqual(report["stage"], "verify-dispatched")
+
+    def test_other_sources_and_failed_exports_wait_for_review(self):
+        for kind, status in (("deliverables", "changed"), ("corpus", "unchanged"), ("web_progress", "failed")):
+            with self.subTest(kind=kind, status=status):
+                code, report, calls = self.run_main(kind, status)
+                self.assertEqual((code, calls), (0, []))
+                self.assertEqual(report["review"]["status"], "awaiting-review")
+
+    def test_a_refused_merge_keeps_the_pr_for_review_and_skips_verification(self):
+        code, report, calls = self.run_main("web_progress", "changed", fail=["gh", "pr", "merge"])
+        self.assertEqual(code, 1)
+        self.assertEqual(len(calls), 1)
+        self.assertEqual((report["stage"], report["status"], report["export_status"]), ("auto-merge", "failed", "changed"))
+        self.assertEqual(report["review"]["status"], "awaiting-review")
+
+    def test_a_failed_dispatch_after_merge_reports_the_verify_stage(self):
+        code, report, _calls = self.run_main("web_progress", "unchanged", fail=["gh", "workflow", "run"])
+        self.assertEqual(code, 1)
+        self.assertEqual((report["stage"], report["review"]["status"]), ("verify-dispatch", "auto-merged"))
+
+
 class RealGitHandoffTests(unittest.TestCase):
     @staticmethod
     def seed_remote(base: Path, original_command) -> tuple[Path, Path]:
@@ -348,11 +400,14 @@ class RealGitHandoffTests(unittest.TestCase):
                 return original_command(args, cwd=cwd)
             def head():
                 return original_command(["git", "rev-parse", "refs/heads/chore/workspace-deliverables"], cwd=remote)
+            state = {}
             with patch.object(publisher, "command", side_effect=execute):
-                self.assertTrue(publisher.submit(root, "deliverables").endswith("/1"))
+                self.assertTrue(publisher.submit(root, "deliverables", state).endswith("/1"))
                 first = head()
-                publisher.submit(root, "deliverables")
+                self.assertEqual(state.pop("head"), first)
+                publisher.submit(root, "deliverables", state)
                 self.assertEqual(first, head())
+                self.assertEqual(state["head"], first)  # an unchanged retry still names the open PR's head
                 snap.atomic_json(status, {"status": "unchanged", "stage": "snapshot-validated", "content_sha256": "a"})
                 publisher.submit(root, "deliverables")
                 recovered = head()
