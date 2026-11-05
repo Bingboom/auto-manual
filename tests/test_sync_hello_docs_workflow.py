@@ -183,6 +183,98 @@ class SyncHelloDocsWorkflowTests(unittest.TestCase):
             self.assertIn("auto-manual must not own docs/review-drafts", result.stdout)
             self.assertEqual(git(mirror, "rev-parse", "HEAD"), synced)
 
+    def _race_fixture(self, root: Path, *, races: int, reject_all: bool = False):
+        """A review mirror whose branch gains a draft commit from another writer on each of the
+        first ``races`` pushes the sync attempts (a client-side pre-push hook), or whose remote
+        rejects every push."""
+        def git(where, *args):
+            return subprocess.run(["git", "-C", str(where), *args], check=True,
+                                  capture_output=True, text=True).stdout.strip()
+
+        remote = root / "remote.git"
+        git(root, "init", "--bare", "-b", "main", "remote.git")
+        for name in ("source", "mirror"):
+            git(root, "init", "-b", "main", name)
+            tree = root / name
+            git(tree, "config", "user.name", "Test")
+            git(tree, "config", "user.email", "test@example.invalid")
+            (tree / "engine.txt").write_text(name)
+            if name == "mirror":
+                draft = tree / "docs" / "review-drafts" / "M" / "JP" / "draft.html"
+                draft.parent.mkdir(parents=True)
+                draft.write_text("v1")
+            git(tree, "add", ".")
+            git(tree, "commit", "-m", "Initial fixture")
+        mirror, source = root / "mirror", root / "source"
+        git(mirror, "remote", "add", "origin", str(remote))
+        git(mirror, "push", "origin", "main")
+        other = root / "other"
+        git(root, "clone", "-q", str(remote), "other")
+        git(other, "config", "user.name", "Writer")
+        git(other, "config", "user.email", "writer@example.invalid")
+        count = root / "races"
+        count.write_text("0")
+        hook = mirror / ".git" / "hooks" / "pre-push"
+        hook.write_text(f"""#!/bin/sh
+n=$(cat "{count}")
+[ "$n" -ge {races} ] && exit 0
+echo $((n + 1)) > "{count}"
+unset GIT_DIR GIT_WORK_TREE GIT_INDEX_FILE
+cd "{other}" && git pull -q origin main \\
+  && echo "race $n" > docs/review-drafts/M/JP/race-$n.html \\
+  && git add . && git commit -q -m "draft race $n" && git push -q origin main
+""")
+        hook.chmod(0o755)
+        if reject_all:
+            receive = remote / "hooks" / "pre-receive"
+            receive.write_text("#!/bin/sh\necho rejected by test >&2\nexit 1\n")
+            receive.chmod(0o755)
+        env = dict(os.environ, SOURCE_REPOSITORY="local/source",
+                   SOURCE_SHA=git(source, "rev-parse", "HEAD"), SOURCE_RUN_URL="local-test",
+                   MIRROR_BRANCH="main", MIRROR_KEEP_PATHS="docs/review-drafts",
+                   SOURCE_FORBIDDEN_PATHS=ALL_CONTENT)
+        return git, env
+
+    def test_real_sync_recomposes_when_a_draft_lands_during_the_push(self) -> None:
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            git, env = self._race_fixture(root, races=1)
+            result = subprocess.run(["bash", str(SCRIPT_PATH)], cwd=root, env=env,
+                                    capture_output=True, text=True, check=False)
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertIn("recomposing on it (attempt 2 of 3)", result.stdout)
+            remote = root / "remote.git"
+            self.assertEqual(git(remote, "show", "main:engine.txt"), "source")
+            # The racing draft commit is kept: it is the parent of the sync commit and its file survives.
+            self.assertEqual(git(remote, "log", "-1", "--format=%s", "main^"), "draft race 0")
+            self.assertEqual(git(remote, "show", "main:docs/review-drafts/M/JP/race-0.html"), "race 0")
+            self.assertEqual(git(remote, "show", "main:docs/review-drafts/M/JP/draft.html"), "v1")
+            self.assertEqual(git(remote, "rev-list", "--count", "main"), "3")
+
+    def test_real_sync_gives_up_after_its_attempts_without_forcing(self) -> None:
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            git, env = self._race_fixture(root, races=5)
+            result = subprocess.run(["bash", str(SCRIPT_PATH)], cwd=root,
+                                    env=dict(env, MIRROR_PUSH_ATTEMPTS="2"),
+                                    capture_output=True, text=True, check=False)
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("still rejected after 2 attempts", result.stdout)
+            remote = root / "remote.git"
+            self.assertEqual(git(remote, "log", "-1", "--format=%s", "main"), "draft race 1")
+            self.assertEqual(git(remote, "show", "main:engine.txt"), "mirror")
+
+    def test_real_sync_does_not_retry_a_rejection_that_is_not_a_race(self) -> None:
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            git, env = self._race_fixture(root, races=0, reject_all=True)
+            before = git(root / "remote.git", "rev-parse", "main")
+            result = subprocess.run(["bash", str(SCRIPT_PATH)], cwd=root, env=env,
+                                    capture_output=True, text=True, check=False)
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("the branch has not moved; not retrying", result.stdout)
+            self.assertEqual(git(root / "remote.git", "rev-parse", "main"), before)
+
     def test_real_sync_installs_the_mirror_readme_kept_in_the_source(self) -> None:
         with TemporaryDirectory() as directory:
             root = Path(directory)
