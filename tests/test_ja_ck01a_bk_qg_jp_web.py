@@ -14,6 +14,7 @@ from bs4 import BeautifulSoup
 
 from tools.manual_ir.hashing import file_sha256
 from tools.word.bundle_docx_pandoc import resolve_pandoc_binary
+from tests.historical_app_styles import pre_rowspan_divider_styles
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGE = ROOT / 'manual_sources/JA-CK01A-BK-QG/JP/ja/git-20261023-e67d2460-quick-guide'
@@ -158,6 +159,7 @@ class JACK01ABKQuickGuideWebTest(unittest.TestCase):
             render_module.render(source, self.root / 'out')
         self.assertFalse((self.root / 'out').exists())
 
+    @pre_rowspan_divider_styles
     def test_cold_render_matches_committed_web(self):
         # The prepared RST pipeline converts through Pandoc; the CI unit runner has none.
         try:

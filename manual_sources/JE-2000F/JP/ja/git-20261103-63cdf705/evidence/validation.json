@@ -1,0 +1,51 @@
+{
+  "schema_version": "je2000f-jp-candidate-validation/v1",
+  "date": "2026-11-03",
+  "environment": "Python 3.13 with the repository modules, Sphinx 8.2.3 / myst-parser 4.0.1 / furo 2025.12.19 (requirements.lock pins), Pandoc, ruff 0.17.3, Playwright Chromium (Node 22)",
+  "checks": [
+    {
+      "command": "python -m ruff check <package>/*.py tests/test_je2000f_jp_web.py",
+      "result": "pass",
+      "log": "ruff.log"
+    },
+    {
+      "command": "transcription vs PDF text layer (character multiset per page, all 27 pages)",
+      "result": "pass (also a unit test)",
+      "log": "target-tests.log"
+    },
+    {
+      "command": "python <package>/rebuild.py --output <fresh dir>; diff -r <fresh dir> web/ja",
+      "result": "pass: byte-identical stored render; shared-style gate passes with 2 declared plain tables; symbol admission 12/12 (max mean channel error 0.013972)",
+      "log": "rebuild.log"
+    },
+    {
+      "command": "python -m sphinx -n -W --keep-going -b html <fresh dir> <html>",
+      "result": "pass",
+      "log": "strict-sphinx.log"
+    },
+    {
+      "command": "python -m unittest tests.test_je2000f_jp_web; python -m unittest tests.test_prepared_document_shared_styles",
+      "result": "pass (11 + 10 tests)",
+      "log": "target-tests.log"
+    },
+    {
+      "command": "python -m tools.check_maintainability_guardrails",
+      "result": "only finding for this package: [frozen-packages] NEW, awaiting frozen_package_registry registration (expected for a candidate; the coordinator registers)",
+      "log": "maintainability.log"
+    },
+    {
+      "command": "browser 1280 / 390 full page (deviceScaleFactor 1; 6000 px tiles stitched because Chromium blanks single full-page captures past ~16k px)",
+      "result": "73 images, 0 broken; document scrollWidth == viewport at both widths; LCD, key-combination and auto-resume tables scroll inside their shared components and overview/LCD map/App panel pan inside their figures at 390",
+      "files": [
+        "browser-1280.png",
+        "browser-390.png",
+        "browser-1280.json",
+        "browser-390.json"
+      ]
+    }
+  ],
+  "pending": [
+    "Li-ion 32 recycling mark: no admitted shared symbol variant (source_manifest.json:pending_shared_symbols)",
+    "frozen package registration and operator approval"
+  ]
+}

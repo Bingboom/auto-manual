@@ -1,0 +1,44 @@
+{
+  "schema_version": "je2000a-us-en-candidate-validation/v1",
+  "date": "2026-10-27",
+  "source_commit": "uncommitted working tree on feat/web-explorer-je1000d-je2000a-us-en (coordinator commits)",
+  "environment": "Python 3.13 system interpreter (CI pins 3.12), Pandoc 3.1.3 (CI 3.9.0.2), ruff 0.16.9, Playwright Chromium",
+  "checks": [
+    {
+      "command": "ruff check <package scripts> tests/test_je2000a_us_web.py",
+      "result": "pass",
+      "log": "ruff.log"
+    },
+    {
+      "command": "python -I manual_sources/JE-2000A/US/en/git-20261027-a8ec2be7/rebuild.py --output <tmp>",
+      "result": "pass; byte-identical to web/en (markdown, manual.ir.json, source_geometry.css); prepared-document shared-style gate pass with 3 declared tables; symbol admission 0 rows (no symbol table)",
+      "log": "rebuild.log"
+    },
+    {
+      "command": "python -m sphinx -n -W --keep-going -b html <render> <html>",
+      "result": "pass",
+      "log": "strict-sphinx.log"
+    },
+    {
+      "command": "python -m unittest tests.test_je2000a_us_web tests.test_prepared_document_shared_styles",
+      "result": "pass (21 tests)",
+      "log": "target-tests.log"
+    },
+    {
+      "command": "Playwright full-page 1280 and 390 (eager images, scroll, networkidle)",
+      "result": "pass: 56 images, 0 broken, no horizontal page overflow at either width",
+      "evidence": [
+        "browser-1280.png",
+        "browser-1280.json",
+        "browser-390.png",
+        "browser-390.json"
+      ]
+    }
+  ],
+  "not_run": [
+    "python -m unittest (full suite; coordinator)",
+    "refresh_manifest.py frozen (after operator review)",
+    "python -m tools.check_maintainability_guardrails (coordinator)"
+  ],
+  "publication_status": "candidate-pending-operator-review"
+}

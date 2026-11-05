@@ -1,0 +1,15 @@
+{
+  "model": "JE-2000F",
+  "checked_ocr_lines": 249,
+  "candidates": [
+    {
+      "source_page": 4,
+      "source_ocr": "•Ensere the devicels) are powered off before connectin",
+      "coverage": 0.6388888888888888,
+      "web_near": "Ensure the device(s) are powered off before connecting it to the product.",
+      "source_text": "Ensure the device(s) are powered off before connecting it to the product.",
+      "web_locator": "[data-source-layout=operating-columns]",
+      "decision": "Own PDF p4 exact instruction present; source OCR misspells Ensure/device(s)/connecting."
+    }
+  ]
+}

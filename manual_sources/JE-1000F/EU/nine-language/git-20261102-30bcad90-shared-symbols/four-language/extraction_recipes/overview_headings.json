@@ -1,0 +1,186 @@
+[
+  {
+    "language": "uk",
+    "view": "front",
+    "heading": "ВИГЛЯД СПЕРЕДУ",
+    "clip": [
+      16,
+      95,
+      350,
+      310
+    ],
+    "original_clip": [
+      16.0,
+      60.0,
+      350.0,
+      310.0
+    ],
+    "retained_pixels_exact": true,
+    "heading_outside_clip": true,
+    "source": "HTE153-EU-9国语言-0923.ai",
+    "source_sha256": "c38415f5c2d96832119105d963737a10901e470f70c5e7518ef6404f83625eb2",
+    "asset_sha256": "c1221434eb451168f9d540593e2ff8c72a2e95d18d55f4bdaeabf3d72b03d8c2",
+    "approved_erratum": null
+  },
+  {
+    "language": "uk",
+    "view": "right",
+    "heading": "ВИГЛЯД СПРАВА",
+    "clip": [
+      16,
+      333,
+      350,
+      500
+    ],
+    "original_clip": [
+      16.0,
+      310.0,
+      350.0,
+      500.0
+    ],
+    "retained_pixels_exact": true,
+    "heading_outside_clip": true,
+    "source": "HTE153-EU-9国语言-0923.ai",
+    "source_sha256": "c38415f5c2d96832119105d963737a10901e470f70c5e7518ef6404f83625eb2",
+    "asset_sha256": "689d83ca9c9774844e527224ff3efe44c07e2e284133f9bce04a61df4fa854d7",
+    "approved_erratum": null
+  },
+  {
+    "language": "pt",
+    "view": "front",
+    "heading": "VISTA FRONTAL",
+    "clip": [
+      16,
+      95,
+      350,
+      310
+    ],
+    "original_clip": [
+      16.0,
+      60.0,
+      350.0,
+      310.0
+    ],
+    "retained_pixels_exact": true,
+    "heading_outside_clip": true,
+    "source": "HTE153-EU-9国语言-0923.ai",
+    "source_sha256": "c38415f5c2d96832119105d963737a10901e470f70c5e7518ef6404f83625eb2",
+    "asset_sha256": "4b8beece81163c3a2db0704299361f75fd1c075d3b69c1c82e5abae9b521f54e",
+    "approved_erratum": null
+  },
+  {
+    "language": "pt",
+    "view": "right",
+    "heading": "VISTA LATERAL DIREITA",
+    "clip": [
+      16,
+      333,
+      350,
+      500
+    ],
+    "original_clip": [
+      16.0,
+      310.0,
+      350.0,
+      500.0
+    ],
+    "retained_pixels_exact": true,
+    "heading_outside_clip": true,
+    "source": "HTE153-EU-9国语言-0923.ai",
+    "source_sha256": "c38415f5c2d96832119105d963737a10901e470f70c5e7518ef6404f83625eb2",
+    "asset_sha256": "7b75e299d332e61ddf84ffe77f4d69613b2ebe77006ab1f1a38761c7a95d04e6",
+    "approved_erratum": null
+  },
+  {
+    "language": "nl",
+    "view": "front",
+    "heading": "VOORAANZICHT",
+    "clip": [
+      16,
+      95,
+      350,
+      310
+    ],
+    "original_clip": [
+      16.0,
+      60.0,
+      350.0,
+      310.0
+    ],
+    "retained_pixels_exact": true,
+    "heading_outside_clip": true,
+    "source": "manual_sources/JE-1000F/EU/nine-language/git-20260927-c38415f5/four-language/corrections/nl/p129_front_view_AC.pdf",
+    "source_sha256": "868022a8c3d0f0a7544b3dd180428f85e489bf8cf464d5fa657ae6a1a26eca1d",
+    "asset_sha256": "669e984a741222ddb52062affb36d80d61cf2c199868bbf3cae6d085fba3b8c9",
+    "approved_erratum": "JE1000F-EU-NL-AC-LABEL"
+  },
+  {
+    "language": "nl",
+    "view": "right",
+    "heading": "RECHTERZIJAANZICHT",
+    "clip": [
+      16,
+      333,
+      350,
+      500
+    ],
+    "original_clip": [
+      16.0,
+      310.0,
+      350.0,
+      500.0
+    ],
+    "retained_pixels_exact": true,
+    "heading_outside_clip": true,
+    "source": "HTE153-EU-9国语言-0923.ai",
+    "source_sha256": "c38415f5c2d96832119105d963737a10901e470f70c5e7518ef6404f83625eb2",
+    "asset_sha256": "c9a6e9b4b31f32d8682aa7381b3a67712c493dd2e16ef1555ede5b796aa08d45",
+    "approved_erratum": null
+  },
+  {
+    "language": "pl",
+    "view": "front",
+    "heading": "WIDOK Z PRZODU",
+    "clip": [
+      16,
+      95,
+      350,
+      310
+    ],
+    "original_clip": [
+      16.0,
+      60.0,
+      350.0,
+      310.0
+    ],
+    "retained_pixels_exact": true,
+    "heading_outside_clip": true,
+    "source": "HTE153-EU-9国语言-0923.ai",
+    "source_sha256": "c38415f5c2d96832119105d963737a10901e470f70c5e7518ef6404f83625eb2",
+    "asset_sha256": "2fcc304ec9b83893c5fe819e4632bd03a3703878cbfd187c882392c5926d9b0c",
+    "approved_erratum": null
+  },
+  {
+    "language": "pl",
+    "view": "right",
+    "heading": "WIDOK Z PRAWEJ STRONY",
+    "clip": [
+      16,
+      333,
+      350,
+      500
+    ],
+    "original_clip": [
+      16.0,
+      310.0,
+      350.0,
+      500.0
+    ],
+    "retained_pixels_exact": true,
+    "heading_outside_clip": true,
+    "source": "HTE153-EU-9国语言-0923.ai",
+    "source_sha256": "c38415f5c2d96832119105d963737a10901e470f70c5e7518ef6404f83625eb2",
+    "asset_sha256": "faadda716e35ab4f1874396d6293197579251bcf1f9542f74f95cabb20a27827",
+    "approved_erratum": null
+  }
+]

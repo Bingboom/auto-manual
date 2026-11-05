@@ -19,7 +19,9 @@ from tools.manual_ir.components import component_specs_in_flow
 from tools.utils.path_utils import PathSegments, get_paths
 from tools.web.language_release_evidence import _safe_relative, _sha256
 from tools.asset_pipeline.native_svg import native_symbol_svg
-from tools.web.shared_symbol_assets import require_shared_symbol_binding, require_usable_symbol_file
+from tools.web.shared_symbol_assets import (
+    canonical_groups, require_shared_symbol_binding, require_usable_symbol_file, shared_symbol_file,
+)
 
 SCHEMA = 'auto-manual-symbol-asset-admission/v1'
 
@@ -120,6 +122,45 @@ def _waived_comparison(waivers: list[dict], row: dict, candidate: bytes, suffix:
     return {'max_mean_channel_error': round(error, 6), 'glyph_waiver': waiver['id']}
 
 
+def _nearest_member(group: dict, reference: bytes) -> float:
+    return min(_symbol_error(path.read_bytes(), path.suffix, reference)
+               for path in map(shared_symbol_file, [group['canonical'], *group['legacy_variants']]))
+
+
+def _canonical_release(groups: dict, row: dict, meaning: str, language: str,
+                       candidate: bytes, suffix: str, reference: bytes) -> dict | None:
+    """Admit a confirmed group's canonical for a printed row of that group.
+
+    Group membership is the operator's recorded decision, so no pixel ceiling
+    applies. The printed row joins the group only through its source-verified
+    caption, listed for that language; a caption listed by several groups
+    must also print nearer this group's variants than every other group's.
+    Ungrouped and proposed keys are never released here; a legacy variant of a
+    confirmed group keeps the fixed tolerance and is pointed at the canonical.
+    """
+    group, role = groups.get(row['shared_symbol_key'], (None, None))
+    if group is None or group['status'] != 'operator-confirmed':
+        return None
+    if role == 'legacy':
+        # A legacy variant still passes within 0.02; beyond it only the
+        # canonical is released for the group.
+        raise ValueError(f"symbol glyph/background differs from authoritative PDF; legacy variant "
+                         f"{row['shared_symbol_key']} of group {group['id']}: bind {group['canonical']}")
+    caption = _text(meaning)
+    if caption not in {_text(c) for c in group['captions'].get(language, [])}:
+        return None
+    rivals = {g['id']: g for g, _ in groups.values() if g['id'] != group['id']
+              and caption in {_text(c) for c in g['captions'].get(language, [])}}
+    if rivals:
+        own = _nearest_member(group, reference)
+        for rival in rivals.values():
+            if _nearest_member(rival, reference) <= own:
+                raise ValueError(f"shared caption prints nearer symbol group {rival['id']} "
+                                 f"than {group['id']}")
+    return {'max_mean_channel_error': round(_symbol_error(candidate, suffix, reference), 6),
+            'canonical_group': group['id'], 'canonical_decision': group['decision']}
+
+
 def _text(value: str) -> str:
     return re.sub(r'\s+', '', value).casefold()
 
@@ -202,6 +243,48 @@ def _reference(page, row: dict, meaning: str, erratum: dict | None = None) -> by
     return native_symbol_svg(page, row['drawing_indices'], row['glyph_bbox'])
 
 
+def _web_only_rows(source_sha: str, model: str, region: str, language: str) -> list[dict]:
+    path = get_paths().renderer_contracts_dir / 'symbol_web_only_rows.json'
+    if not path.is_file():
+        return []
+    ledger = json.loads(path.read_text(encoding='utf-8'))
+    if ledger.get('schema_version') != 'auto-manual-symbol-web-only-rows/v1':
+        raise ValueError('unsupported trusted web-only symbol rows')
+    return [row for row in ledger['entries']
+            if (row['source_sha256'], row['model'], row['region'], row['language'])
+            == (source_sha, model, region, language)]
+
+
+def _web_only_comparison(entries: list[dict], row: dict, meaning: str, candidate: Path) -> dict:
+    """Admit an operator-approved Web-only row against the printed row it reuses.
+
+    The target's own print has no such row. The trusted entry names one printed
+    donor row in another hash-bound source; that row's glyph drawings, caption
+    text and caption pixels are checked exactly like a native row.
+    """
+    matches = [e for e in entries if e['id'] == row['web_only_row']]
+    if len(matches) != 1:
+        raise ValueError('web-only symbol row requires one trusted entry')
+    (entry,) = matches
+    donor = entry['donor']
+    if (entry.get('status') != 'operator-approved' or not entry.get('operator_decision')
+            or (entry['shared_symbol_key'], entry['asset_sha256'])
+            != (row['shared_symbol_key'], row['asset_sha256'])
+            or row.get('donor_source') != {'path': donor['source_path'], 'sha256': donor['source_sha256']}
+            or (row['physical_page'], row['drawing_indices'], row['caption_sha256'])
+            != (donor['physical_page'], donor['drawing_indices'], donor['caption_sha256'])):
+        raise ValueError('web-only symbol row differs from its reviewed entry')
+    pdf = _file(get_paths().root, donor['source_path'], donor['source_sha256'])
+    with fitz.open(pdf) as doc:
+        page_number = row['physical_page']
+        if not isinstance(page_number, int) or not 1 <= page_number <= len(doc):
+            raise ValueError('web-only symbol page outside its donor source')
+        reference = _reference(doc[page_number - 1], row, meaning)
+    comparison = compare_symbol(candidate.read_bytes(), candidate.suffix, reference)
+    return {'physical_page': page_number, **comparison, 'web_only_row': entry['id'],
+            'donor_source_sha256': donor['source_sha256']}
+
+
 def _component_rows(specs):
     expected = []
     for spec in specs:
@@ -234,12 +317,18 @@ def require_symbol_asset_admission(markdown_dir: Path, source_root: Path,
         pdf = _file(source_root, source['filename'], source['sha256'])
         errata = _caption_errata(source['sha256'], ir.model, ir.region, language)
         waivers = _glyph_waivers(source['sha256'], ir.model, ir.region, language)
+        web_only = _web_only_rows(source['sha256'], ir.model, ir.region, language)
+        groups = canonical_groups()
         report = []
         with fitz.open(pdf) as doc:
             for row, (ref, meaning) in zip(rows, expected, strict=True):
                 candidate = _file(markdown_dir, ref, row['asset_sha256'])
                 require_usable_symbol_file(candidate)
                 require_shared_symbol_binding(row, candidate)
+                if 'web_only_row' in row:
+                    report.append({'asset_ref': ref,
+                                   **_web_only_comparison(web_only, row, meaning, candidate)})
+                    continue
                 page_number = row['physical_page']
                 if not isinstance(page_number, int) or not 1 <= page_number <= len(doc):
                     raise ValueError('symbol physical page outside authoritative PDF')
@@ -250,7 +339,9 @@ def require_symbol_asset_admission(markdown_dir: Path, source_root: Path,
                 try:
                     comparison = compare_symbol(data, candidate.suffix, reference)
                 except ValueError:
-                    comparison = _waived_comparison(waivers, row, data, candidate.suffix, reference)
+                    comparison = (_canonical_release(groups, row, meaning, language, data,
+                                                     candidate.suffix, reference)
+                                  or _waived_comparison(waivers, row, data, candidate.suffix, reference))
                 result = {'asset_ref': ref, 'physical_page': page_number, **comparison}
                 if erratum:
                     result['caption_erratum'] = erratum['id']

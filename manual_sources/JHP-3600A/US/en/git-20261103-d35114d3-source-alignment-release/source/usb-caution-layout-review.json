@@ -1,0 +1,60 @@
+{
+  "scope": "US EN/FR/ES USB-output caution; native PDF pages 11/31/51",
+  "change": "Restore three semantic list items inside the registered HB-CALLOUT-STRIP component.",
+  "native_source_copy": {
+    "en": {
+      "source_ref": "pdf/p11-b14-l0-0",
+      "physical_page": 11,
+      "items": [
+        "USB-C 100W is a USB-PD Power Source 3 (PS3) high-power output port. If the  connected user device or accessory does not meet safety requirements, there may be a  fire risk. Before using these ports, ensure that the connected device or accessory has fire  safety protection.",
+        "Only connect the Jackery HomePower 3600 Plus to devices or accessories that comply  with clauses 6.3, 6.4, and 6.5 of IEC/EN/UL 62368-1 (or other equivalent standards).",
+        "To obtain maximum output power, use the official Jackery USB-C to USB-C 5A cable  (20V DC/5A, 100W)."
+      ],
+      "bold_opening": [
+        "USB-C 100W is a USB-PD Power Source 3 (PS3) high-power output port. "
+      ],
+      "original_native_wording_and_bold_spans_preserved": true,
+      "semantic_items": 3
+    },
+    "fr": {
+      "source_ref": "pdf/p31-b17-l0-0",
+      "physical_page": 31,
+      "items": [
+        "Les ports USB-C de 140 W sont des ports de sortie haute puissance de type Source  d’alimentation 3 (PS3) selon USB-PD. Si l'appareil utilisateur ou l'accessoire connecté ne  répond pas aux exigences de sécurité, il peut présenter un risque d'incendie. Avant  d'utiliser ces ports, assurez-vous que l'appareil ou l'accessoire connecté dispose d'une  protection contre les incendies.",
+        "Ne connectez le Jackery HomePower 3600 Plus qu'à des appareils ou accessoires  conformes aux clauses 6.3, 6.4 et 6.5 de la norme IEC/EN/UL 62368-1 (ou autres normes  équivalentes).",
+        "Pour obtenir la puissance de sortie maximale, utilisez le câble officiel Jackery USB-C  vers USB-C 5A (20 V CC/5A, 100 W)."
+      ],
+      "bold_opening": [
+        "Les ports USB-C de 140 W sont des ports de sortie haute puissance de type Source ",
+        "d’alimentation 3 (PS3) selon USB-PD. "
+      ],
+      "original_native_wording_and_bold_spans_preserved": true,
+      "semantic_items": 3
+    },
+    "es": {
+      "source_ref": "pdf/p51-b17-l0-0",
+      "physical_page": 51,
+      "items": [
+        "El puerto USB-C de 100 W es una salida de alta potencia de tipo Fuente de  Alimentación 3 (PS3) según USB-PD.  Si el dispositivo del usuario o accesorio  conectado no cumple con los requisitos de seguridad, puede existir riesgo de  incendio. Antes de usar estos puertos, asegúrese de que el dispositivo o accesorio  conectado tenga protección contra incendios.",
+        "Solo conecte el Jackery HomePower 3600 Plus a dispositivos o accesorios que  cumplan con las cláusulas 6.3, 6.4 y 6.5 de IEC/EN/UL 62368-1 (u otros estándares  equivalentes).",
+        "Para obtener la potencia máxima de salida, utilice el cable oficial Jackery USB-C  a USB-C de 5 A (20 V CC/5 A, 100W)."
+      ],
+      "bold_opening": [
+        "El puerto USB-C de 100 W es una salida de alta potencia de tipo Fuente de ",
+        "Alimentación 3 (PS3) según USB-PD.  "
+      ],
+      "original_native_wording_and_bold_spans_preserved": true,
+      "semantic_items": 3
+    }
+  },
+  "shared_styles": "Existing shared callout and list styles; no CSS change.",
+  "preserved": [
+    "All native prose and bold spans",
+    "All base-art assets",
+    "Other source nodes and layout fixes"
+  ],
+  "browser_evidence": "validation/usb-caution-browser.json",
+  "checks": "validation/usb-caution-closure.json",
+  "publication_eligible": false,
+  "operator_acceptance": "pending combined layout review"
+}

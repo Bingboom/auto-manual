@@ -56,7 +56,7 @@
   ],
   "live_bitable_dependency": false,
   "phase2_enrolled": false,
-  "publication_status": "candidate-pending-operator-review",
+  "publication_status": "operator-authorized-git-only-release",
   "build_boundary": "JHP-3600A-RC US is not a phase2 target. build_content.py binds the transcription to shared ComponentSpecs; rebuild.py replays them through manual-ir/v2 and the shared Web/MyST pipeline with the prepared-document shared-style gate and symbol admission.",
   "repo_inputs": [],
   "symbol_asset_admission": {
@@ -446,8 +446,8 @@
     },
     {
       "path": "README.md",
-      "size": 2985,
-      "sha256": "be68f94dd7757f58665203e4efdcad51a27aac77628842145c452ebb86a4641c"
+      "size": 3292,
+      "sha256": "97106a299ded3b931d59ea9707a66f2241db23be8fab2e542aa0be4483d62428"
     },
     {
       "path": "assets/ac-output.png",
@@ -830,6 +830,11 @@
       "sha256": "7cecc9d72d2e29faa24fc7e537ec31e5221d6361728cca2996b53ce1270649d3"
     },
     {
+      "path": "source/approval.json",
+      "size": 13532,
+      "sha256": "2ea3221621ad16cbe14f0aa400af2dbba16a6a15b137ff3d49c20e2b0bb9cbf1"
+    },
+    {
       "path": "source/asset_decisions.json",
       "size": 45865,
       "sha256": "9cb5511c0776fc6c18bd0d177c8b253e3314d7e6c902192c2db29803f3a10645"
@@ -866,8 +871,8 @@
     },
     {
       "path": "source_manifest.json",
-      "size": 31846,
-      "sha256": "78bcc47d7ddbe9d99e0507872695b7fad8c2fe9d58875abca4d431957dcd042a"
+      "size": 32004,
+      "sha256": "c25b26563471b68662ef783cac642cafc4b00402c2a0a9a019f4b936d4d73dce"
     },
     {
       "path": "web/en/_static/source_geometry.css",
@@ -1211,8 +1216,8 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 502800,
-      "sha256": "b82f4fb243aef532344c96d9c7581cdce4fc1ada1c9a68fee5ebe62596b915bd"
+      "size": 518084,
+      "sha256": "f41fd03450fab8550a4696dbcf3cb9d86738a4a71d63ed7acb1e5b20600dde48"
     },
     {
       "path": "web/en/manual_jhp3600arc_us_en.md",

@@ -1,0 +1,311 @@
+{
+  "source": "source/review-reference.pdf",
+  "source_sha256": "34fedc156d52e8a50ca65d23327d323b3647aee03bd6b6b4aa1d681723e249dc",
+  "pages": [
+    {
+      "page": 2,
+      "line_count": 11,
+      "candidates": [],
+      "review_result": "pass",
+      "visual_scope": "EN badge and all four preface paragraphs retained; front cover and paper TOC excluded per operator."
+    },
+    {
+      "page": 4,
+      "line_count": 94,
+      "candidates": [],
+      "review_result": "pass",
+      "visual_scope": "Risk header, small WARNING card, 6/5 split and sixth-item continuation; operating 5/9 split, subordinate dashes, grounding."
+    },
+    {
+      "page": 5,
+      "line_count": 54,
+      "candidates": [
+        {
+          "text": "vironments durina us",
+          "coverage": 0.667,
+          "resolution": "Read against current own-PDF page and actual Web; OCR distortion, multiplication normalization or retained original-art text, no missing native text."
+        }
+      ],
+      "review_result": "pass",
+      "visual_scope": "Both lockups, native four signal rows with white glyphs, 4/3 symbol panels with aligned bottom."
+    },
+    {
+      "page": 6,
+      "line_count": 41,
+      "candidates": [
+        {
+          "text": "FC hei eoen ay mooe no \u043feon\u043ed.",
+          "coverage": 0.0,
+          "resolution": "Read against current own-PDF page and actual Web; OCR distortion, multiplication normalization or retained original-art text, no missing native text."
+        }
+      ],
+      "review_result": "pass",
+      "visual_scope": "All FCC opening, NOTE, These limits, interference measures and MODIFICATION retained in original two columns with logo float; exact four cards and TIP."
+    },
+    {
+      "page": 7,
+      "line_count": 37,
+      "candidates": [
+        {
+          "text": "100W Max, SVm3A, 9Vm3A,",
+          "coverage": 0.0,
+          "resolution": "Read against current own-PDF page and actual Web; OCR distortion, multiplication normalization or retained original-art text, no missing native text."
+        },
+        {
+          "text": "AC OUTRUT RESET",
+          "coverage": 0.0,
+          "resolution": "Read against current own-PDF page and actual Web; OCR distortion, multiplication normalization or retained original-art text, no missing native text."
+        },
+        {
+          "text": "DC Input (2xDC8020 Ports)",
+          "coverage": 0.182,
+          "resolution": "Read against current own-PDF page and actual Web; OCR distortion, multiplication normalization or retained original-art text, no missing native text."
+        },
+        {
+          "text": "16V-6OV-12A Max,",
+          "coverage": 0.0,
+          "resolution": "Read against current own-PDF page and actual Web; OCR distortion, multiplication normalization or retained original-art text, no missing native text."
+        }
+      ],
+      "review_result": "pass",
+      "visual_scope": "All port names, values and connectors paired with own front/right figures; multiplication OCR and embedded reset label resolved against image."
+    },
+    {
+      "page": 8,
+      "line_count": 73,
+      "candidates": [
+        {
+          "text": "UPS \u00a9 888/888v 88Hz-",
+          "coverage": 0.0,
+          "resolution": "Read against current own-PDF page and actual Web; OCR distortion, multiplication normalization or retained original-art text, no missing native text."
+        }
+      ],
+      "review_result": "pass",
+      "visual_scope": "25-number LCD art and rows 1\u20138 inspected; LCD miniature screen glyph text retained in source art."
+    },
+    {
+      "page": 9,
+      "line_count": 79,
+      "candidates": [
+        {
+          "text": "Discharge Tir",
+          "coverage": 0.667,
+          "resolution": "Read against current own-PDF page and actual Web; OCR distortion, multiplication normalization or retained original-art text, no missing native text."
+        },
+        {
+          "text": "Tongioning ui ie enptentrine he ni pr tng",
+          "coverage": 0.0,
+          "resolution": "Read against current own-PDF page and actual Web; OCR distortion, multiplication normalization or retained original-art text, no missing native text."
+        },
+        {
+          "text": "Lo temporeture protection ti erigread. The produet may stig range",
+          "coverage": 0.13,
+          "resolution": "Read against current own-PDF page and actual Web; OCR distortion, multiplication normalization or retained original-art text, no missing native text."
+        },
+        {
+          "text": "Se prion tor detalias occurred. Please refer to the Troubleshooting",
+          "coverage": 0.667,
+          "resolution": "Read against current own-PDF page and actual Web; OCR distortion, multiplication normalization or retained original-art text, no missing native text."
+        }
+      ],
+      "review_result": "pass",
+      "visual_scope": "Rows 9\u201325 including 21 shared high/low number, time labels and fault descriptions checked directly; OCR corrupted temperature lines resolved."
+    },
+    {
+      "page": 10,
+      "line_count": 26,
+      "candidates": [],
+      "review_result": "pass",
+      "visual_scope": "Power/AC on-off source panels, clock and 2h/12h notes, original native pointer and reset text."
+    },
+    {
+      "page": 11,
+      "line_count": 40,
+      "candidates": [],
+      "review_result": "pass",
+      "visual_scope": "DC panel, PS3 and car-battery cautions, auto-resume merged-cell table."
+    },
+    {
+      "page": 12,
+      "line_count": 48,
+      "candidates": [],
+      "review_result": "pass",
+      "visual_scope": "Energy Saving prose, both buttons and clock, note/warning, one LCD art/table/note frame."
+    },
+    {
+      "page": 13,
+      "line_count": 37,
+      "candidates": [],
+      "review_result": "pass",
+      "visual_scope": "Three shortcut rows with original both/3s/1s, UPS four paragraphs and original illustration."
+    },
+    {
+      "page": 14,
+      "line_count": 36,
+      "candidates": [],
+      "review_result": "pass",
+      "visual_scope": "Full UPS WARNING and cascade CAUTION, Green energy paragraph, first-use pill and temperature NOTE."
+    },
+    {
+      "page": 15,
+      "line_count": 14,
+      "candidates": [],
+      "review_result": "pass",
+      "visual_scope": "Free-plug AC illustration re-extracted from current PDF, AC caution, solar paragraph, own four-panel illustration and caption."
+    },
+    {
+      "page": 16,
+      "line_count": 26,
+      "candidates": [],
+      "review_result": "pass",
+      "visual_scope": "Two solar cautions, Voc paragraph, car scene and original three bullets."
+    },
+    {
+      "page": 17,
+      "line_count": 42,
+      "candidates": [],
+      "review_result": "pass",
+      "visual_scope": "Storage durations and temperatures; fault F0\u2013F3 four code cells with one rowspan4 remedy; all F4\u2013FE measures."
+    },
+    {
+      "page": 18,
+      "line_count": 47,
+      "candidates": [
+        {
+          "text": "2 x DC8020 Ports",
+          "coverage": 0.5,
+          "resolution": "Read against current own-PDF page and actual Web; OCR distortion, multiplication normalization or retained original-art text, no missing native text."
+        },
+        {
+          "text": "17.1 x 12.8 \u00d7 11.1 in / 43.5 x 32.6 \u00d7 28.1 cm",
+          "coverage": 0.133,
+          "resolution": "Read against current own-PDF page and actual Web; OCR distortion, multiplication normalization or retained original-art text, no missing native text."
+        },
+        {
+          "text": "120V ~, 6OHz, 20A, 2400W Rated",
+          "coverage": 0.5,
+          "resolution": "Read against current own-PDF page and actual Web; OCR distortion, multiplication normalization or retained original-art text, no missing native text."
+        },
+        {
+          "text": "120V ~, 6OHz, 30A, 3600W Rated",
+          "coverage": 0.5,
+          "resolution": "Read against current own-PDF page and actual Web; OCR distortion, multiplication normalization or retained original-art text, no missing native text."
+        },
+        {
+          "text": "100-120V ~, 6OHz, 15A Max (reduced to 12A after 3h)|",
+          "coverage": 0.667,
+          "resolution": "Read against current own-PDF page and actual Web; OCR distortion, multiplication normalization or retained original-art text, no missing native text."
+        },
+        {
+          "text": "Ahe ourodutporan charge the battery from the AC wall outilet or AS while dellvering power through the",
+          "coverage": 0.487,
+          "resolution": "Read against current own-PDF page and actual Web; OCR distortion, multiplication normalization or retained original-art text, no missing native text."
+        }
+      ],
+      "review_result": "pass",
+      "visual_scope": "All four spec tables, values and symbols verified. AC and DC each have two lines within one value cell, no internal separator (PDF drawing456 confirms); two numbered notes and USB trademark note."
+    },
+    {
+      "page": 19,
+      "line_count": 45,
+      "candidates": [],
+      "review_result": "pass",
+      "visual_scope": "Warranty lead, limitation, 3+2 years two columns, repair/original-buyer/exclusions/interpretation sections."
+    },
+    {
+      "page": 20,
+      "line_count": 32,
+      "candidates": [
+        {
+          "text": "Available on the",
+          "coverage": 0.4,
+          "resolution": "Read against current own-PDF page and actual Web; OCR distortion, multiplication normalization or retained original-art text, no missing native text."
+        },
+        {
+          "text": "Buelooth confguration",
+          "coverage": 0.0,
+          "resolution": "Read against current own-PDF page and actual Web; OCR distortion, multiplication normalization or retained original-art text, no missing native text."
+        },
+        {
+          "text": "Blustooth contguration mode",
+          "coverage": 0.188,
+          "resolution": "Read against current own-PDF page and actual Web; OCR distortion, multiplication normalization or retained original-art text, no missing native text."
+        },
+        {
+          "text": "Teae nse sre felsancel con i faetes",
+          "coverage": 0.0,
+          "resolution": "Read against current own-PDF page and actual Web; OCR distortion, multiplication normalization or retained original-art text, no missing native text."
+        },
+        {
+          "text": "etreirccealiw to fefew wo",
+          "coverage": 0.0,
+          "resolution": "Read against current own-PDF page and actual Web; OCR distortion, multiplication normalization or retained original-art text, no missing native text."
+        }
+      ],
+      "review_result": "pass",
+      "visual_scope": "Download buttons/QR, plus graphic and app steps with original screenshots and matching button illustration."
+    },
+    {
+      "page": 21,
+      "line_count": 48,
+      "candidates": [
+        {
+          "text": "Please select 2.4 GHz Wi-Fi",
+          "coverage": 0.25,
+          "resolution": "Read against current own-PDF page and actual Web; OCR distortion, multiplication normalization or retained original-art text, no missing native text."
+        },
+        {
+          "text": "ooorar DCNco.d",
+          "coverage": 0.0,
+          "resolution": "Read against current own-PDF page and actual Web; OCR distortion, multiplication normalization or retained original-art text, no missing native text."
+        }
+      ],
+      "review_result": "pass",
+      "visual_scope": "Remaining app steps, both NOTE, screenshot labels, CAUTION and all unbind/network reset bullets."
+    },
+    {
+      "page": 22,
+      "line_count": 5,
+      "candidates": [],
+      "review_result": "pass",
+      "visual_scope": "JACKERY INC., full address, US phone, mail, web and original QR retained."
+    }
+  ],
+  "reverse_candidates": [
+    {
+      "text": "Remaining Charge Time",
+      "coverage": 0.6,
+      "resolution": "Confirmed verbatim on current own-PDF p9 or p18; OCR misrecognition/multiplication glyph normalization, not extra Web copy."
+    },
+    {
+      "text": "High temperature protection is triggered. The product may stop functioning until its temperature returns to the normal operating range.",
+      "coverage": 0.274,
+      "resolution": "Confirmed verbatim on current own-PDF p9 or p18; OCR misrecognition/multiplication glyph normalization, not extra Web copy."
+    },
+    {
+      "text": "Low temperature protection is triggered. The product may stop functioning until its temperature returns to the normal operating range.",
+      "coverage": 0.267,
+      "resolution": "Confirmed verbatim on current own-PDF p9 or p18; OCR misrecognition/multiplication glyph normalization, not extra Web copy."
+    },
+    {
+      "text": "A product error has occurred. Please refer to the Troubleshooting section for details.",
+      "coverage": 0.508,
+      "resolution": "Confirmed verbatim on current own-PDF p9 or p18; OCR misrecognition/multiplication glyph normalization, not extra Web copy."
+    },
+    {
+      "text": "17.1 \u00d7 12.8 \u00d7 11.1 in / 43.5 \u00d7 32.6 \u00d7 28.1 cm",
+      "coverage": 0.154,
+      "resolution": "Confirmed verbatim on current own-PDF p9 or p18; OCR misrecognition/multiplication glyph normalization, not extra Web copy."
+    },
+    {
+      "text": "120V ~, 60Hz, 20A, 2400W Rated",
+      "coverage": 0.5,
+      "resolution": "Confirmed verbatim on current own-PDF p9 or p18; OCR misrecognition/multiplication glyph normalization, not extra Web copy."
+    },
+    {
+      "text": "\u2460 The product can charge the battery from the AC wall outlet or ATS while delivering power through the AC output ports.",
+      "coverage": 0.659,
+      "resolution": "Confirmed verbatim on current own-PDF p9 or p18; OCR misrecognition/multiplication glyph normalization, not extra Web copy."
+    }
+  ]
+}

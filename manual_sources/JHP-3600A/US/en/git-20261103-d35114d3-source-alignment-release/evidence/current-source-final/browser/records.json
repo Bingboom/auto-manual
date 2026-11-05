@@ -1,0 +1,876 @@
+[
+  {
+    "width": 1280,
+    "failures": [],
+    "bodyWidth": 1280,
+    "broken": [],
+    "headings": [
+      {
+        "text": "IMPORTANT",
+        "y": 108.1875
+      },
+      {
+        "text": "IMPORTANT SAFETY INFORMATION",
+        "y": 427.265625
+      },
+      {
+        "text": "MEANING OF SYMBOLS",
+        "y": 2070.09375
+      },
+      {
+        "text": "WHAT’S IN THE BOX",
+        "y": 3790.78125
+      },
+      {
+        "text": "PRODUCT OVERVIEW",
+        "y": 4443.953125
+      },
+      {
+        "text": "LCD DISPLAY",
+        "y": 5475.5
+      },
+      {
+        "text": "OPERATIONS",
+        "y": 7887.53125
+      },
+      {
+        "text": "POWER ON/OFF",
+        "y": 7959.53125
+      },
+      {
+        "text": "AC OUTPUT ON/OFF",
+        "y": 8382.25
+      },
+      {
+        "text": "USB OUTPUT ON/OFF",
+        "y": 8906.6875
+      },
+      {
+        "text": "ENERGY SAVING MODE",
+        "y": 9263.046875
+      },
+      {
+        "text": "LCD SCREEN",
+        "y": 9994.609375
+      },
+      {
+        "text": "KEY COMBINATION",
+        "y": 10433.640625
+      },
+      {
+        "text": "UNINTERRUPTIBLE POWER SUPPLY (UPS)",
+        "y": 10815.046875
+      },
+      {
+        "text": "CONNECTIONS",
+        "y": 12309.046875
+      },
+      {
+        "text": "CONNECT TO BATTERY PACK(S)\nSOLD SEPARATELY",
+        "y": 12381.046875
+      },
+      {
+        "text": "CONNECT TWO UNITS IN PARALLEL",
+        "y": 13352.4375
+      },
+      {
+        "text": "EXITING PARALLEL MODE",
+        "y": 15138.640625
+      },
+      {
+        "text": "CHARGING",
+        "y": 15652.03125
+      },
+      {
+        "text": "CHARGING VIA AC WALL OUTLET",
+        "y": 16164.078125
+      },
+      {
+        "text": "CHARGING VIA SOLAR PANELS\nSOLD SEPARATELY",
+        "y": 16562.21875
+      },
+      {
+        "text": "CHARGING WITH A CAR CHARGER\nSOLD SEPARATELY",
+        "y": 17470.78125
+      },
+      {
+        "text": "STORAGE",
+        "y": 18150.5625
+      },
+      {
+        "text": "TROUBLESHOOTING",
+        "y": 18481.6875
+      },
+      {
+        "text": "SPECIFICATIONS",
+        "y": 19223.34375
+      },
+      {
+        "text": "GENERAL INFO",
+        "y": 19294.546875
+      },
+      {
+        "text": "INPUT PORTS",
+        "y": 19560.4375
+      },
+      {
+        "text": "OUTPUT PORTS",
+        "y": 19726.515625
+      },
+      {
+        "text": "ENVIRONMENTAL OPERATING TEMPERATURE",
+        "y": 20092.78125
+      },
+      {
+        "text": "WARRANTY",
+        "y": 20368.640625
+      },
+      {
+        "text": "APP SETUP",
+        "y": 21641.0625
+      },
+      {
+        "text": "1. To download the App and log in",
+        "y": 21713.0625
+      },
+      {
+        "text": "2. To add device",
+        "y": 21965.109375
+      },
+      {
+        "text": "3. To unbind the device",
+        "y": 23738.75
+      },
+      {
+        "text": "4. Notes",
+        "y": 23872.21875
+      }
+    ],
+    "scrolls": [
+      {
+        "requested": 0,
+        "actual": 0,
+        "right": false
+      },
+      {
+        "requested": 1100,
+        "actual": 1100,
+        "right": false
+      },
+      {
+        "requested": 2200,
+        "actual": 2200,
+        "right": false
+      },
+      {
+        "requested": 3300,
+        "actual": 3300,
+        "right": false
+      },
+      {
+        "requested": 4400,
+        "actual": 4400,
+        "right": false
+      },
+      {
+        "requested": 5500,
+        "actual": 5500,
+        "right": false
+      },
+      {
+        "requested": 6600,
+        "actual": 6600,
+        "right": false
+      },
+      {
+        "requested": 7700,
+        "actual": 7700,
+        "right": false
+      },
+      {
+        "requested": 8800,
+        "actual": 8800,
+        "right": false
+      },
+      {
+        "requested": 9900,
+        "actual": 9900,
+        "right": false
+      },
+      {
+        "requested": 11000,
+        "actual": 11000,
+        "right": false
+      },
+      {
+        "requested": 12100,
+        "actual": 12100,
+        "right": false
+      },
+      {
+        "requested": 13200,
+        "actual": 13200,
+        "right": false
+      },
+      {
+        "requested": 14300,
+        "actual": 14300,
+        "right": false
+      },
+      {
+        "requested": 15400,
+        "actual": 15400,
+        "right": false
+      },
+      {
+        "requested": 16500,
+        "actual": 16500,
+        "right": false
+      },
+      {
+        "requested": 17600,
+        "actual": 17600,
+        "right": false
+      },
+      {
+        "requested": 18700,
+        "actual": 18700,
+        "right": false
+      },
+      {
+        "requested": 19800,
+        "actual": 19800,
+        "right": false
+      },
+      {
+        "requested": 20900,
+        "actual": 20900,
+        "right": false
+      },
+      {
+        "requested": 22000,
+        "actual": 22000,
+        "right": false
+      },
+      {
+        "requested": 23100,
+        "actual": 23100,
+        "right": false
+      },
+      {
+        "requested": 24200,
+        "actual": 23639,
+        "right": false
+      }
+    ],
+    "backgrounds": [],
+    "height": 24839
+  },
+  {
+    "width": 390,
+    "failures": [],
+    "bodyWidth": 390,
+    "broken": [],
+    "headings": [
+      {
+        "text": "IMPORTANT",
+        "y": 103.578125
+      },
+      {
+        "text": "IMPORTANT SAFETY INFORMATION",
+        "y": 546.59375
+      },
+      {
+        "text": "MEANING OF SYMBOLS",
+        "y": 3148.5625
+      },
+      {
+        "text": "WHAT’S IN THE BOX",
+        "y": 5502.6875
+      },
+      {
+        "text": "PRODUCT OVERVIEW",
+        "y": 6210.234375
+      },
+      {
+        "text": "LCD DISPLAY",
+        "y": 7210.53125
+      },
+      {
+        "text": "OPERATIONS",
+        "y": 9643.703125
+      },
+      {
+        "text": "POWER ON/OFF",
+        "y": 9710.046875
+      },
+      {
+        "text": "AC OUTPUT ON/OFF",
+        "y": 10128.890625
+      },
+      {
+        "text": "USB OUTPUT ON/OFF",
+        "y": 10646.78125
+      },
+      {
+        "text": "ENERGY SAVING MODE",
+        "y": 11001
+      },
+      {
+        "text": "LCD SCREEN",
+        "y": 11921.890625
+      },
+      {
+        "text": "KEY COMBINATION",
+        "y": 12348.71875
+      },
+      {
+        "text": "UNINTERRUPTIBLE POWER SUPPLY (UPS)",
+        "y": 12710.390625
+      },
+      {
+        "text": "CONNECTIONS",
+        "y": 14671.96875
+      },
+      {
+        "text": "CONNECT TO BATTERY PACK(S)\nSOLD SEPARATELY",
+        "y": 14738.3125
+      },
+      {
+        "text": "CONNECT TWO UNITS IN PARALLEL",
+        "y": 15899.4375
+      },
+      {
+        "text": "EXITING PARALLEL MODE",
+        "y": 18144.125
+      },
+      {
+        "text": "CHARGING",
+        "y": 18642.28125
+      },
+      {
+        "text": "CHARGING VIA AC WALL OUTLET",
+        "y": 19379.65625
+      },
+      {
+        "text": "CHARGING VIA SOLAR PANELS\nSOLD SEPARATELY",
+        "y": 19874.078125
+      },
+      {
+        "text": "CHARGING WITH A CAR CHARGER\nSOLD SEPARATELY",
+        "y": 21137.125
+      },
+      {
+        "text": "STORAGE",
+        "y": 21996.578125
+      },
+      {
+        "text": "TROUBLESHOOTING",
+        "y": 22485.1875
+      },
+      {
+        "text": "SPECIFICATIONS",
+        "y": 23258.296875
+      },
+      {
+        "text": "GENERAL INFO",
+        "y": 23323.84375
+      },
+      {
+        "text": "INPUT PORTS",
+        "y": 23608.359375
+      },
+      {
+        "text": "OUTPUT PORTS",
+        "y": 23823.28125
+      },
+      {
+        "text": "ENVIRONMENTAL OPERATING TEMPERATURE",
+        "y": 24260.171875
+      },
+      {
+        "text": "WARRANTY",
+        "y": 24613.09375
+      },
+      {
+        "text": "APP SETUP",
+        "y": 26394.421875
+      },
+      {
+        "text": "1. To download the App and log in",
+        "y": 26460.765625
+      },
+      {
+        "text": "2. To add device",
+        "y": 26719.6875
+      },
+      {
+        "text": "3. To unbind the device",
+        "y": 28743.703125
+      },
+      {
+        "text": "4. Notes",
+        "y": 28894.71875
+      }
+    ],
+    "scrolls": [
+      {
+        "requested": 0,
+        "actual": 0,
+        "right": false
+      },
+      {
+        "requested": 1100,
+        "actual": 1100,
+        "right": false
+      },
+      {
+        "requested": 2200,
+        "actual": 2200,
+        "right": false
+      },
+      {
+        "requested": 3300,
+        "actual": 3300,
+        "right": false
+      },
+      {
+        "requested": 4400,
+        "actual": 4400,
+        "right": false
+      },
+      {
+        "requested": 5500,
+        "actual": 5500,
+        "right": false
+      },
+      {
+        "requested": 6600,
+        "actual": 6600,
+        "right": false
+      },
+      {
+        "requested": 7700,
+        "actual": 7700,
+        "right": false
+      },
+      {
+        "requested": 8800,
+        "actual": 8800,
+        "right": false
+      },
+      {
+        "requested": 9900,
+        "actual": 9900,
+        "right": false
+      },
+      {
+        "requested": 11000,
+        "actual": 11000,
+        "right": false
+      },
+      {
+        "requested": 12100,
+        "actual": 12100,
+        "right": false
+      },
+      {
+        "requested": 13200,
+        "actual": 13200,
+        "right": false
+      },
+      {
+        "requested": 14300,
+        "actual": 14300,
+        "right": false
+      },
+      {
+        "requested": 15400,
+        "actual": 15400,
+        "right": false
+      },
+      {
+        "requested": 16500,
+        "actual": 16500,
+        "right": false
+      },
+      {
+        "requested": 17600,
+        "actual": 17600,
+        "right": false
+      },
+      {
+        "requested": 18700,
+        "actual": 18700,
+        "right": false
+      },
+      {
+        "requested": 19800,
+        "actual": 19800,
+        "right": false
+      },
+      {
+        "requested": 20900,
+        "actual": 20900,
+        "right": false
+      },
+      {
+        "requested": 22000,
+        "actual": 22000,
+        "right": false
+      },
+      {
+        "requested": 23100,
+        "actual": 23100,
+        "right": false
+      },
+      {
+        "requested": 24200,
+        "actual": 24200,
+        "right": false
+      },
+      {
+        "requested": 25300,
+        "actual": 25300,
+        "right": false
+      },
+      {
+        "requested": 26400,
+        "actual": 26400,
+        "right": false
+      },
+      {
+        "requested": 27500,
+        "actual": 27500,
+        "right": false
+      },
+      {
+        "requested": 28600,
+        "actual": 28600,
+        "right": false
+      },
+      {
+        "requested": 29700,
+        "actual": 28793,
+        "right": false
+      },
+      {
+        "requested": 0,
+        "actual": 0,
+        "right": true
+      },
+      {
+        "requested": 1100,
+        "actual": 1100,
+        "right": true
+      },
+      {
+        "requested": 2200,
+        "actual": 2200,
+        "right": true
+      },
+      {
+        "requested": 3300,
+        "actual": 3300,
+        "right": true
+      },
+      {
+        "requested": 4400,
+        "actual": 4400,
+        "right": true
+      },
+      {
+        "requested": 5500,
+        "actual": 5500,
+        "right": true
+      },
+      {
+        "requested": 6600,
+        "actual": 6600,
+        "right": true
+      },
+      {
+        "requested": 7700,
+        "actual": 7700,
+        "right": true
+      },
+      {
+        "requested": 8800,
+        "actual": 8800,
+        "right": true
+      },
+      {
+        "requested": 9900,
+        "actual": 9900,
+        "right": true
+      },
+      {
+        "requested": 11000,
+        "actual": 11000,
+        "right": true
+      },
+      {
+        "requested": 12100,
+        "actual": 12100,
+        "right": true
+      },
+      {
+        "requested": 13200,
+        "actual": 13200,
+        "right": true
+      },
+      {
+        "requested": 14300,
+        "actual": 14300,
+        "right": true
+      },
+      {
+        "requested": 15400,
+        "actual": 15400,
+        "right": true
+      },
+      {
+        "requested": 16500,
+        "actual": 16500,
+        "right": true
+      },
+      {
+        "requested": 17600,
+        "actual": 17600,
+        "right": true
+      },
+      {
+        "requested": 18700,
+        "actual": 18700,
+        "right": true
+      },
+      {
+        "requested": 19800,
+        "actual": 19800,
+        "right": true
+      },
+      {
+        "requested": 20900,
+        "actual": 20900,
+        "right": true
+      },
+      {
+        "requested": 22000,
+        "actual": 22000,
+        "right": true
+      },
+      {
+        "requested": 23100,
+        "actual": 23100,
+        "right": true
+      },
+      {
+        "requested": 24200,
+        "actual": 24200,
+        "right": true
+      },
+      {
+        "requested": 25300,
+        "actual": 25300,
+        "right": true
+      },
+      {
+        "requested": 26400,
+        "actual": 26400,
+        "right": true
+      },
+      {
+        "requested": 27500,
+        "actual": 27500,
+        "right": true
+      },
+      {
+        "requested": 28600,
+        "actual": 28600,
+        "right": true
+      },
+      {
+        "requested": 29700,
+        "actual": 28793,
+        "right": true
+      }
+    ],
+    "backgrounds": [],
+    "height": 29994,
+    "horizontal": [
+      {
+        "tag": "DIV",
+        "class": "",
+        "layout": "ht-figure ht-dense ht-native-inbox",
+        "client": 358,
+        "scroll": 640,
+        "actual": 282
+      },
+      {
+        "tag": "DIV",
+        "class": "",
+        "layout": "ht-figure ht-dense",
+        "client": 358,
+        "scroll": 640,
+        "actual": 282
+      },
+      {
+        "tag": "DIV",
+        "class": "",
+        "layout": "ht-figure ht-dense",
+        "client": 358,
+        "scroll": 640,
+        "actual": 282
+      },
+      {
+        "tag": "FIGURE",
+        "class": "hb-lcd-table-composition",
+        "client": 354,
+        "scroll": 640,
+        "actual": 286
+      },
+      {
+        "tag": "FIGURE",
+        "class": "hb-lcd-table-composition",
+        "client": 354,
+        "scroll": 640,
+        "actual": 286
+      },
+      {
+        "tag": "DIV",
+        "class": "",
+        "layout": "ht-figure ht-dense",
+        "client": 358,
+        "scroll": 640,
+        "actual": 282
+      },
+      {
+        "tag": "DIV",
+        "class": "",
+        "layout": "ht-figure ht-dense",
+        "client": 358,
+        "scroll": 640,
+        "actual": 282
+      },
+      {
+        "tag": "DIV",
+        "class": "",
+        "layout": "ht-figure ht-dense",
+        "client": 358,
+        "scroll": 640,
+        "actual": 282
+      },
+      {
+        "tag": "DIV",
+        "class": "",
+        "layout": "ht-figure ht-dense",
+        "client": 358,
+        "scroll": 640,
+        "actual": 282
+      },
+      {
+        "tag": "DIV",
+        "class": "",
+        "layout": "ht-lcd-pair",
+        "client": 358,
+        "scroll": 640,
+        "actual": 282
+      },
+      {
+        "tag": "DIV",
+        "class": "",
+        "layout": "ht-native-key",
+        "client": 358,
+        "scroll": 640,
+        "actual": 282
+      },
+      {
+        "tag": "DIV",
+        "class": "",
+        "layout": "ht-figure ht-dense",
+        "client": 358,
+        "scroll": 640,
+        "actual": 282
+      },
+      {
+        "tag": "DIV",
+        "class": "",
+        "layout": "ht-figure ht-dense",
+        "client": 358,
+        "scroll": 640,
+        "actual": 282
+      },
+      {
+        "tag": "DIV",
+        "class": "",
+        "layout": "ht-figure ht-dense",
+        "client": 358,
+        "scroll": 640,
+        "actual": 282
+      },
+      {
+        "tag": "DIV",
+        "class": "",
+        "layout": "ht-figure ht-dense",
+        "client": 358,
+        "scroll": 640,
+        "actual": 282
+      },
+      {
+        "tag": "DIV",
+        "class": "",
+        "layout": "ht-figure ht-dense",
+        "client": 358,
+        "scroll": 640,
+        "actual": 282
+      },
+      {
+        "tag": "DIV",
+        "class": "",
+        "layout": "ht-figure ht-dense",
+        "client": 358,
+        "scroll": 640,
+        "actual": 282
+      },
+      {
+        "tag": "DIV",
+        "class": "",
+        "layout": "ht-figure ht-dense",
+        "client": 358,
+        "scroll": 640,
+        "actual": 282
+      },
+      {
+        "tag": "DIV",
+        "class": "",
+        "layout": "ht-figure ht-dense",
+        "client": 358,
+        "scroll": 640,
+        "actual": 282
+      },
+      {
+        "tag": "DIV",
+        "class": "",
+        "layout": "ht-figure ht-dense",
+        "client": 358,
+        "scroll": 640,
+        "actual": 282
+      },
+      {
+        "tag": "FIGURE",
+        "class": "hb-troubleshooting-composition",
+        "client": 354,
+        "scroll": 640,
+        "actual": 286
+      },
+      {
+        "tag": "DIV",
+        "class": "",
+        "layout": "ht-figure ht-dense",
+        "client": 358,
+        "scroll": 640,
+        "actual": 282
+      }
+    ]
+  }
+]

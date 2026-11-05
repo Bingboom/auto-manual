@@ -1,0 +1,41 @@
+{
+  "en": {
+    "physical_page": 19,
+    "intro": "Store the product in a dry clean place with proper ventilation. Storage temperature and humidity: ",
+    "items": [
+      "1 month: -4°F to 113°F / -20°C to 45°C (0-60%RH) ",
+      "3 months: 32°F to 113°F / 0°C to 45°C (0-60%RH) ",
+      "12 months: 32°F to 77°F / 0°C to 25°C (0-60%RH) "
+    ],
+    "closing": "If this product is stored for a long period of time (3 months - 6 months) with the power depleted, it may become  unchargeable. To prevent this and maintain battery health, it is recommended to check and recharge the  product every three months and perform a full charge and discharge cycle at least once every 6 to 12 months.",
+    "native_semantic_bullets": 3,
+    "native_wording_preserved": true,
+    "gray_panel_drawn_with_css": true
+  },
+  "fr": {
+    "physical_page": 39,
+    "intro": "Conservez le produit dans un endroit propre et sec avec une ventilation adéquate.Température et humidité de  stockage : ",
+    "items": [
+      "1 mois : -4°F à 113°F / -20°C à 45°C (0-60% HR) ",
+      "3 mois : 32°F à 113°F / 0°C à 45°C (0-60% HR) ",
+      "12 mois : 32°F à 77°F / 0°C à 25°C (0-60% HR) "
+    ],
+    "closing": "Si ce produit est stocké pendant une longue période (3 à 6 mois) avec la batterie déchargée, il peut devenir  impossible de le recharger. Pour éviter cela et préserver la santé de la batterie, il est recommandé de vérifier et  de recharger le produit tous les trois mois, et d'effectuer un cycle de charge et de décharge complet au moins  une fois tous les 6 à 12 mois.",
+    "native_semantic_bullets": 3,
+    "native_wording_preserved": true,
+    "gray_panel_drawn_with_css": true
+  },
+  "es": {
+    "physical_page": 59,
+    "intro": "Almacene el producto en un lugar seco y limpio con ventilación adecuada.Temperatura y humedad de  almacenamiento: ",
+    "items": [
+      "1 mes: -4°F a 113°F / -20 a 45 °C (0-60 % HR) ",
+      "3 meses: 32°F a 113°F / 0 a 45 °C (0-60 % HR) ",
+      "12 meses: 32°F a 77°F / 0 a 25 °C (0-60 % HR) "
+    ],
+    "closing": "Si este producto se almacena durante un período prolongado (de 3 a 6 meses) con la batería descargada,  podría volverse imposible recargarlo. Para evitar esto y mantener la salud de la batería, se recomienda revisar  y recargar el producto cada tres meses, y realizar un ciclo completo de carga y descarga al menos una vez  cada 6 a 12 meses.",
+    "native_semantic_bullets": 3,
+    "native_wording_preserved": true,
+    "gray_panel_drawn_with_css": true
+  }
+}

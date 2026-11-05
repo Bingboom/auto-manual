@@ -1,0 +1,92 @@
+{
+  "en": {
+    "source_page": 20,
+    "source_node": [
+      17,
+      5
+    ],
+    "native_trademark_line_id": "p20-b48-l0-0",
+    "native_trademark_text_without_superscripts": "※ USB Type-C   and USB-C   are registered trademarks of USB Implementers Forum.",
+    "registered_terms": [
+      "USB Type-C",
+      "USB-C"
+    ],
+    "trademark_marks_moved_not_deleted": 2,
+    "source_footnote_text": [
+      "① The product can charge the battery from the AC wall outlet while delivering power through the AC output ports.",
+      "② Indicates that two or more AC output ports work together.",
+      "③ Indicates the AC output during parallel operation of two units."
+    ],
+    "native_footnote_markers": [
+      "①",
+      "②",
+      "③"
+    ],
+    "shared_styles": [
+      "manual-spec-note",
+      "manual-spec-footnote"
+    ],
+    "native_wording_preserved": true,
+    "artwork_decision": "Reuse existing artwork unchanged; text-only source repair."
+  },
+  "fr": {
+    "source_page": 40,
+    "source_node": [
+      17,
+      5
+    ],
+    "native_trademark_line_id": "p40-b34-l0-0",
+    "native_trademark_text_without_superscripts": "※ USB Type-C   and USB-C   are registered trademarks of USB Implementers Forum.",
+    "registered_terms": [
+      "USB Type-C",
+      "USB-C"
+    ],
+    "trademark_marks_moved_not_deleted": 2,
+    "source_footnote_text": [
+      "① Le produit peut charger la batterie à partir d'une prise murale CA tout en fournissant de l'énergie via les ports de sortie CA.",
+      "② Indique que deux ports de sortie CA ou plus fonctionnent ensemble.",
+      "③ Indique la sortie CA lors du fonctionnement en parallèle de deux unités."
+    ],
+    "native_footnote_markers": [
+      "①",
+      "②",
+      "③"
+    ],
+    "shared_styles": [
+      "manual-spec-note",
+      "manual-spec-footnote"
+    ],
+    "native_wording_preserved": true,
+    "artwork_decision": "Reuse existing artwork unchanged; text-only source repair."
+  },
+  "es": {
+    "source_page": 60,
+    "source_node": [
+      17,
+      5
+    ],
+    "native_trademark_line_id": "p60-b2-l0-0",
+    "native_trademark_text_without_superscripts": "※ USB Type-C  y USB-C  son marcas registradas de USB Implementers Forum.",
+    "registered_terms": [
+      "USB Type-C",
+      "USB-C"
+    ],
+    "trademark_marks_moved_not_deleted": 2,
+    "source_footnote_text": [
+      "① El producto puede cargar la batería desde una toma de corriente CA mientras suministra energía a través de los puertos de  salida CA.",
+      "② Indica que dos o más puertos de salida CA trabajan en conjunto.",
+      "③ Indica la salida CA durante la operación en paralelo de dos unidades."
+    ],
+    "native_footnote_markers": [
+      "①",
+      "②",
+      "③"
+    ],
+    "shared_styles": [
+      "manual-spec-note",
+      "manual-spec-footnote"
+    ],
+    "native_wording_preserved": true,
+    "artwork_decision": "Reuse existing artwork unchanged; text-only source repair."
+  }
+}

@@ -1,0 +1,1006 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "target": {
+    "model": "JE-2000A",
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "technical_version": "git-20261027-a8ec2be7",
+    "printed_manual_version": "Version: JAK-UM-V1.0"
+  },
+  "original_source": {
+    "filename": "JE-2000A-US-EN.pdf",
+    "operator_filename": "【Jackery Explorer 2000 Pro】说明书-EN.pdf",
+    "sha256": "a8ec2be735be6483d340f2f35c7bc13a9300bf7d9499f60099ed8d5ef5cf689f",
+    "size": 5437332,
+    "page_count": 19,
+    "page_size_mm": [
+      130,
+      185
+    ],
+    "printed_version": "Version: JAK-UM-V1.0"
+  },
+  "original_artwork": {
+    "operator_filename": "38-0001-000200 说明书 HTE0782000A-US-JAK 说明书 ROHS REACH.pdf",
+    "sha256": "2a7450bb2e320d364b4a86a9313b1bfcaf27c574dcbb2e8218f982b6506486a8",
+    "size": 41389092,
+    "committed": false,
+    "role": "reference only (too large to commit); not read by any script"
+  },
+  "feishu_record": {
+    "record_id": "reczz28SPLqH8cvK",
+    "物料号文本": "38-0001-000200",
+    "项目号": "HTE078",
+    "sku": [
+      "21-0001-000099"
+    ]
+  },
+  "physical_page_map": {
+    "print_cover": 1,
+    "en_body": [
+      2,
+      18
+    ],
+    "back_cover": 19
+  },
+  "web_roots": {
+    "en": "web/en"
+  },
+  "route": "JE-2000A/US/en/md",
+  "source_authority": "Operator-designated Feishu record reczz28SPLqH8cvK (物料号「文本」38-0001-000200, 项目号 HTE078): 「【Jackery Explorer 2000 Pro】说明书-EN.pdf」, the English section of the original artwork with its artwork and printed page numbers retained; read-only download stored byte-exact as JE-2000A-US-EN.pdf. Every glyph is outlined: source/transcription.json is the line-by-line transcription the Web copy is bound to. All model facts come from this PDF; JE-1000D JP V2 and the JE-2000F EU / JA-AD500A-SIL US English editions supply structure and component idiom only.",
+  "operator_instruction": "2026-10-27 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」",
+  "reference_editions": [
+    "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2",
+    "manual_sources/JE-2000F/EU/nine-language/git-20261010-1465-web/three-language",
+    "manual_sources/JA-AD500A-SIL/US/en/git-20261016-a6d1659e-solar-voc"
+  ],
+  "live_bitable_dependency": false,
+  "phase2_enrolled": false,
+  "publication_status": "operator-authorized-git-only-release",
+  "publication_eligible": true,
+  "build_boundary": "JE-2000A US is not a phase2 target. build_content.py binds the transcription to shared ComponentSpecs; rebuild.py replays them through manual-ir/v2 and the shared Web/MyST pipeline with the prepared-document shared-style gate and symbol admission (no symbol table is printed, so admission covers zero rows). No live Base, queue, source table, HTML_link or asset registry is read or written.",
+  "repo_inputs": [],
+  "symbol_asset_admission": {
+    "schema_version": "auto-manual-symbol-asset-admission/v1",
+    "locales": {
+      "en": []
+    }
+  },
+  "inputs": [
+    {
+      "path": "JE-2000A-US-EN.pdf",
+      "size": 5437332,
+      "sha256": "a8ec2be735be6483d340f2f35c7bc13a9300bf7d9499f60099ed8d5ef5cf689f"
+    },
+    {
+      "path": "README.md",
+      "size": 3759,
+      "sha256": "3833daa4a44b8544e4148e11390841b5f7d3c23e16f15f58280429044c30c186"
+    },
+    {
+      "path": "assets/ac-charge.png",
+      "size": 23856,
+      "sha256": "51c1bceb0fee9356c288abe829bcc49740ecfd7b885222a8139a20f6567914df"
+    },
+    {
+      "path": "assets/adaptor-guide.png",
+      "size": 22988,
+      "sha256": "2534fbb768f6e7c923d62721332bb1159cad3662b7f0c6fae2e4e58d179cf660"
+    },
+    {
+      "path": "assets/car-charge.png",
+      "size": 29343,
+      "sha256": "d4b969c153b0dab06e0d126fe14cc8520a458843cbeaac15f66990e363aff54b"
+    },
+    {
+      "path": "assets/cert-marks.png",
+      "size": 20254,
+      "sha256": "d762cd0475b36f3021352232253d1177e036ec10ae4c0bb22cbad1f2af9d0f51"
+    },
+    {
+      "path": "assets/example-1.png",
+      "size": 40776,
+      "sha256": "1ba61b68f9af9d805783f57510c9a67d4aa9278a0493a64d2dcf0e9555f8d73c"
+    },
+    {
+      "path": "assets/example-2.png",
+      "size": 101106,
+      "sha256": "8f2e2a8d36faa3d46c4f4f2ad0367b793a0ce0a85664c5ff849c831e667bcad5"
+    },
+    {
+      "path": "assets/example-3.png",
+      "size": 67468,
+      "sha256": "7685706436b5c7118919324a7fe75ab6c27fd8132f49481fdd6c28ac03b50cbb"
+    },
+    {
+      "path": "assets/example-4.png",
+      "size": 69717,
+      "sha256": "bdbdadb9c65775a686c43bf2967e9d4dfbd010d2759f85b9965fb0e4b881c9f0"
+    },
+    {
+      "path": "assets/example-5.png",
+      "size": 100551,
+      "sha256": "b3326455f2d78f0b02eb37d1d87b73a73b392d6ad3ea042a62d1978b6f4af2eb"
+    },
+    {
+      "path": "assets/icons/faq-low-power-mode.png",
+      "size": 2225,
+      "sha256": "7d3255822a398ee82fe27143c1d2df8fc0366260129cc1c8fe72369f66292daf"
+    },
+    {
+      "path": "assets/icons/lcd-01-input-power.png",
+      "size": 6200,
+      "sha256": "6e63b5b87cfd6a26dcfe562b5ed049568b7d6582b5214d94d18430e81ec55ed5"
+    },
+    {
+      "path": "assets/icons/lcd-02-remaining-charge-time.png",
+      "size": 6389,
+      "sha256": "63eaa739de04587ef6d1998405952494a61199ed781211a4cbcb6738903a572e"
+    },
+    {
+      "path": "assets/icons/lcd-03-solar-charging.png",
+      "size": 5844,
+      "sha256": "3e873f8f7eff0a05ba801a0945c85e2d4441aac7cdaf3b807c711085f482fa25"
+    },
+    {
+      "path": "assets/icons/lcd-04-ac-wall-charging.png",
+      "size": 4757,
+      "sha256": "bb3f88ea3540f0b34569bdfc71ba3e0504244af10cb43c3f1f51cfe3f5df41de"
+    },
+    {
+      "path": "assets/icons/lcd-05-car-charging.png",
+      "size": 5308,
+      "sha256": "666090b9790c0ab1a4bab53f1bf9a8262be70800bffceeb6555fed10e6d916fb"
+    },
+    {
+      "path": "assets/icons/lcd-06-low-battery.png",
+      "size": 574,
+      "sha256": "fa419f306380a419bc08e03d2b67fe1ed35501e1fa9803f5913fd78774ab4654"
+    },
+    {
+      "path": "assets/icons/lcd-07-battery-percentage.png",
+      "size": 3973,
+      "sha256": "85ff1b8313456ccf7759bd7e9cd72a160bb2427a075f3fcb213b6e94210b461c"
+    },
+    {
+      "path": "assets/icons/lcd-08-output-power.png",
+      "size": 7057,
+      "sha256": "cd446a3fed6d211ffb7e8f0d70050ac1db632b3f6955a3e2a911844a66225628"
+    },
+    {
+      "path": "assets/icons/lcd-09-remaining-discharge-time.png",
+      "size": 7094,
+      "sha256": "a1929071e31bb98b9e1bd9a2ce0c9a4429b4979f759e86b61fa5f11cf38f6b94"
+    },
+    {
+      "path": "assets/icons/lcd-10-fault-code.png",
+      "size": 4016,
+      "sha256": "bd476cbbca9cf66f30a8dce0684384f8e6cdf65a3d8851c60b12a4c1275d1802"
+    },
+    {
+      "path": "assets/icons/lcd-11-high-temperature.png",
+      "size": 4347,
+      "sha256": "acb0b9180999239d2b67a601bbb429105f15fbd3f1d9f4b0c3df8f1957487abb"
+    },
+    {
+      "path": "assets/icons/lcd-12-low-temperature.png",
+      "size": 4303,
+      "sha256": "fefc61bc822dd8aee2338c99d595c0a07028ea217488edde1392a6f2cdb0be6a"
+    },
+    {
+      "path": "assets/icons/lcd-13-low-power-mode.png",
+      "size": 4956,
+      "sha256": "9504f583ac0b79a7c62d42d639a95bcd3e63d3a1e7c8dcc4be9273290dbcc317"
+    },
+    {
+      "path": "assets/icons/lcd-14-ac-power.png",
+      "size": 5032,
+      "sha256": "5e5a6994d6dcec4dbc00dd5e3be5bb023e2bb0c8e2f3d48e857077c7d8cc53f8"
+    },
+    {
+      "path": "assets/icons/lcd-15-battery-power-ring.png",
+      "size": 4135,
+      "sha256": "ecadac67b3d2e1931e1cc2c2e05b9c66b479fa283dbf93e2ff6e43bff41782ca"
+    },
+    {
+      "path": "assets/icons/lcd-inline-battery-ring.png",
+      "size": 2636,
+      "sha256": "1ec288d1d1fdf6cbba4bc57feb891b17e12b72e4aa59341893712ffd6d754d4e"
+    },
+    {
+      "path": "assets/icons/lcd-inline-fault-code.png",
+      "size": 3112,
+      "sha256": "28ab3bcd4221e9e7fb9295993ff2776a6d786232e46e415e92ce6af9c85db0c3"
+    },
+    {
+      "path": "assets/icons/lcd-inline-low-power-mode.png",
+      "size": 3413,
+      "sha256": "960c1e71c9eb05ba578b352b6431aa6e19f02c6ff963b13c4c876326101b46bc"
+    },
+    {
+      "path": "assets/icons/ts-f0.png",
+      "size": 2986,
+      "sha256": "4bab61401364be160444f267dd3ce386d4b0959e33c1f6175368b472b6f4f3d3"
+    },
+    {
+      "path": "assets/icons/ts-f1.png",
+      "size": 2831,
+      "sha256": "75876ade531f3b5f141223596ecc70c9a2d0e8a0042475144c74ad47d335ea7f"
+    },
+    {
+      "path": "assets/icons/ts-f2.png",
+      "size": 2921,
+      "sha256": "f0c1ebd350bbd3ebe6f270bf5b994c4e4a6f2f9853dd027ccd8fa46e3af975be"
+    },
+    {
+      "path": "assets/icons/ts-f3.png",
+      "size": 2987,
+      "sha256": "b7fb4b06e29cdf20204459073ec4e15807a0664774dfbadbc91deee2297a708e"
+    },
+    {
+      "path": "assets/icons/ts-f4.png",
+      "size": 2918,
+      "sha256": "c0eac00dbb92fb5aaf38ad497ad8e3f5a7914b41cc02f2363dbe556cc09b7d3d"
+    },
+    {
+      "path": "assets/icons/ts-f5.png",
+      "size": 2969,
+      "sha256": "1cebf87e406cd328c14c5033d22e3f4000a5fab6d287c522048ca8a70081e545"
+    },
+    {
+      "path": "assets/icons/ts-f6.png",
+      "size": 2998,
+      "sha256": "8d79b233f0070d734da7537a7dda36482553ad90035779725d6381f443d64462"
+    },
+    {
+      "path": "assets/icons/ts-f7.png",
+      "size": 2890,
+      "sha256": "5f1a9a1a3f717481cd8be2338f4246739d82e37584125564b2f0724e940c2cdb"
+    },
+    {
+      "path": "assets/icons/ts-f8.png",
+      "size": 3053,
+      "sha256": "91fe368d9ef2239f5d82b3f87fc3e4a89b3e26b1c6d78e6e03dbf04d8aa60694"
+    },
+    {
+      "path": "assets/icons/ts-f9.png",
+      "size": 3050,
+      "sha256": "a101166bad008d0022ca7baa571f6a83e4d7d47027f4195ce7da12a1f94ad954"
+    },
+    {
+      "path": "assets/icons/ts-high-temperature.png",
+      "size": 4649,
+      "sha256": "aaa643b1fb4a7b6f11421ccef56aa10a4f4201bccba8a32fb9804109659f2372"
+    },
+    {
+      "path": "assets/icons/ts-low-temperature.png",
+      "size": 4550,
+      "sha256": "df7d0d8ed7157e625b8b4f9208dc39435cb990b07099eb4e66cbd6f6d18b48eb"
+    },
+    {
+      "path": "assets/inbox-ac-cable.png",
+      "size": 7246,
+      "sha256": "e22c4d450172e619299609bda343746a5ec6f73679cb9cf3d3f531dd3faa1e8e"
+    },
+    {
+      "path": "assets/inbox-adaptor.png",
+      "size": 7844,
+      "sha256": "c92d13e111bc1c59ccda8ea92c0a1c4deac33de426642bcab8af326822ab2dc6"
+    },
+    {
+      "path": "assets/inbox-car-cable.png",
+      "size": 9738,
+      "sha256": "ed359ca491102b6cc1cb85aa0aee067f91e9e3b609c8ff59c0eedbcc039007c1"
+    },
+    {
+      "path": "assets/inbox-guide.png",
+      "size": 10696,
+      "sha256": "f7140153dcf1c0fed4eafb366a723688bd29ac788f0cd1b4533a6add40f24ae4"
+    },
+    {
+      "path": "assets/inbox-unit.png",
+      "size": 15983,
+      "sha256": "4769741b0dfeb849a5d76bfbc16d3c98c487b88539eef49a9cb70c45ae9a72b1"
+    },
+    {
+      "path": "assets/lcd-map.png",
+      "size": 46019,
+      "sha256": "b022638fb96eea1843c79a9ba964d516e97e91645021975b05cd454ee4541ec2"
+    },
+    {
+      "path": "assets/operations.png",
+      "size": 43072,
+      "sha256": "e848a28a8592cbaf0f62196cb37756d901ea1cc4ec9feb8e6c48689c0beee436"
+    },
+    {
+      "path": "assets/overview-front.png",
+      "size": 65415,
+      "sha256": "ce374217d12e961fd282d27c8fe252f0aabd96ee2f121e39a72ce57b9b8fb0f2"
+    },
+    {
+      "path": "assets/overview-rear.png",
+      "size": 30076,
+      "sha256": "3a1c20795d05d62b01f48f8f3969d0f02a63dd50f50b1d1f1f6d09d4d32bd404"
+    },
+    {
+      "path": "assets/prohibited-car-solar.png",
+      "size": 33339,
+      "sha256": "f9c1ae79866b62950cd5e4de1374df2d1a408eb6b148f13cd497c4776a59071e"
+    },
+    {
+      "path": "assets/prohibited-solar.png",
+      "size": 164765,
+      "sha256": "4f4b173f8ec42c613d4dc0a1dc063fd2166bf19b6b8696c2609ff7fc1bbc4304"
+    },
+    {
+      "path": "assets/solar-connector.png",
+      "size": 39389,
+      "sha256": "bbf070a4f01640ebdc88a8b0754bf899bb66077fa0187ea90b4f23ff296ee423"
+    },
+    {
+      "path": "assets/solar-three.png",
+      "size": 58460,
+      "sha256": "33f9d43a2475f3b26be6855cd6af41530ee5fed5be6f16cfc50481cd17426daa"
+    },
+    {
+      "path": "assets/solar-two.png",
+      "size": 69749,
+      "sha256": "53c3c2a9b20d9dd51c887cf78961af1a2c66a5927df7af193543ce98df1c9965"
+    },
+    {
+      "path": "build_content.py",
+      "size": 20515,
+      "sha256": "3390b9bf2da9d67325d208b6258a2079e6b5636cd59f48cf3842bd403f6a4028"
+    },
+    {
+      "path": "derive_assets.py",
+      "size": 9252,
+      "sha256": "8754f2c9b08c0827aeaa6080ea00a3efbce5b964fa53b2c4956d5139bef795f1"
+    },
+    {
+      "path": "evidence/browser-1280.json",
+      "size": 238,
+      "sha256": "d3f816733835d36f3b601fb391f18005274f3cfbde009f02a48527969dc06e3f"
+    },
+    {
+      "path": "evidence/browser-1280.png",
+      "size": 3888786,
+      "sha256": "cf3dbaff4972e6cb94eed242036feb8de10e38e8360d72d5d49ab97705d6ea7f"
+    },
+    {
+      "path": "evidence/browser-390.json",
+      "size": 235,
+      "sha256": "929b64791ece0aa8c2bf79896e9ee9ae1fa36a89f57bb957aec3f95f5e06e1fa"
+    },
+    {
+      "path": "evidence/browser-390.png",
+      "size": 2684145,
+      "sha256": "d44e0ac65da79fba99b8aaf53b1acab969bdaa9817164b9bd8a246de17b9185f"
+    },
+    {
+      "path": "evidence/rebuild.log",
+      "size": 332,
+      "sha256": "91d69e474a94cc71e98269a8b71ff4e6b7951c2248060569fc4de7e8d3f08d61"
+    },
+    {
+      "path": "evidence/ruff.log",
+      "size": 19,
+      "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "path": "evidence/strict-sphinx.log",
+      "size": 2266,
+      "sha256": "34e23f29238153e33fafe10178a2da14174e013b63548e786d95023dce786271"
+    },
+    {
+      "path": "evidence/target-tests.log",
+      "size": 886,
+      "sha256": "8695a83a76d79c61ac06e8bba01bdd6e0331553a5b0e77dd93f564cb3b10e15c"
+    },
+    {
+      "path": "evidence/validation.json",
+      "size": 1768,
+      "sha256": "051abfad4060c82e311047c67fabfd5b93dbaa3e24510207251f2c3c0e61c134"
+    },
+    {
+      "path": "rebuild.py",
+      "size": 6427,
+      "sha256": "58607c17feb82ad5514573f56a40b4586652eab8be58ab6a8854680e4e65c0df"
+    },
+    {
+      "path": "refresh_manifest.py",
+      "size": 2552,
+      "sha256": "74204f9004021467fdaf17a2539c8d7231436d908872c193590ed7844acfeb1a"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 12517,
+      "sha256": "de5a7f8918ae6cc3a4b8184b6c713a8636536f6f843418caf32b8cb7129bf524"
+    },
+    {
+      "path": "source/asset_decisions.json",
+      "size": 55294,
+      "sha256": "7bd5a304679b0b4f604ef49608805f6c9e89be3c606bebf682cfe13d47525b1b"
+    },
+    {
+      "path": "source/asset_recipe.json",
+      "size": 11153,
+      "sha256": "1ca5c1be2a40018c42402187444b4260ebd4db2c91a05effb696e511da5400d3"
+    },
+    {
+      "path": "source/differences.md",
+      "size": 2286,
+      "sha256": "99a825969ed19ddd5730b6935e4dd903ff24f2d4653f18a7d63de3ab903257f5"
+    },
+    {
+      "path": "source/discovery.md",
+      "size": 3615,
+      "sha256": "8db4abc786de4645a303224a55c8c0373dc4ee5ec2746f3a08e0732da73bf557"
+    },
+    {
+      "path": "source/en/content.json",
+      "size": 153477,
+      "sha256": "969ac921ed3de83e97772830026b87135397538c5be1d9ac91aec3b1ccc95d1a"
+    },
+    {
+      "path": "source/geometry.css",
+      "size": 1921,
+      "sha256": "04f39576f626cfd1a175441ae18eb227e687d6c365226ed70049afd56851e38a"
+    },
+    {
+      "path": "source/transcription.json",
+      "size": 47350,
+      "sha256": "5081c8bd25a61bfe4ba12a933392f543b1beaeb0f6a2041fc07492832a9c4ea3"
+    },
+    {
+      "path": "source_manifest.json",
+      "size": 24057,
+      "sha256": "71e29a066b07de8bc8f478fc1ea32c126c9bb9f202f609d9ee1afed179898f8a"
+    },
+    {
+      "path": "web/en/_static/source_geometry.css",
+      "size": 1921,
+      "sha256": "04f39576f626cfd1a175441ae18eb227e687d6c365226ed70049afd56851e38a"
+    },
+    {
+      "path": "web/en/_static/web_manual.css",
+      "size": 124849,
+      "sha256": "c3604a2e5f22b04bc745bb99cf203b50e60222af70c0aeba3d968cc28adac9ce"
+    },
+    {
+      "path": "web/en/assets/ac-charge.png",
+      "size": 23856,
+      "sha256": "51c1bceb0fee9356c288abe829bcc49740ecfd7b885222a8139a20f6567914df"
+    },
+    {
+      "path": "web/en/assets/adaptor-guide.png",
+      "size": 22988,
+      "sha256": "2534fbb768f6e7c923d62721332bb1159cad3662b7f0c6fae2e4e58d179cf660"
+    },
+    {
+      "path": "web/en/assets/car-charge.png",
+      "size": 29343,
+      "sha256": "d4b969c153b0dab06e0d126fe14cc8520a458843cbeaac15f66990e363aff54b"
+    },
+    {
+      "path": "web/en/assets/cert-marks.png",
+      "size": 20254,
+      "sha256": "d762cd0475b36f3021352232253d1177e036ec10ae4c0bb22cbad1f2af9d0f51"
+    },
+    {
+      "path": "web/en/assets/example-1.png",
+      "size": 40776,
+      "sha256": "1ba61b68f9af9d805783f57510c9a67d4aa9278a0493a64d2dcf0e9555f8d73c"
+    },
+    {
+      "path": "web/en/assets/example-2.png",
+      "size": 101106,
+      "sha256": "8f2e2a8d36faa3d46c4f4f2ad0367b793a0ce0a85664c5ff849c831e667bcad5"
+    },
+    {
+      "path": "web/en/assets/example-3.png",
+      "size": 67468,
+      "sha256": "7685706436b5c7118919324a7fe75ab6c27fd8132f49481fdd6c28ac03b50cbb"
+    },
+    {
+      "path": "web/en/assets/example-4.png",
+      "size": 69717,
+      "sha256": "bdbdadb9c65775a686c43bf2967e9d4dfbd010d2759f85b9965fb0e4b881c9f0"
+    },
+    {
+      "path": "web/en/assets/example-5.png",
+      "size": 100551,
+      "sha256": "b3326455f2d78f0b02eb37d1d87b73a73b392d6ad3ea042a62d1978b6f4af2eb"
+    },
+    {
+      "path": "web/en/assets/icons/faq-low-power-mode.png",
+      "size": 2225,
+      "sha256": "7d3255822a398ee82fe27143c1d2df8fc0366260129cc1c8fe72369f66292daf"
+    },
+    {
+      "path": "web/en/assets/icons/lcd-01-input-power.png",
+      "size": 6200,
+      "sha256": "6e63b5b87cfd6a26dcfe562b5ed049568b7d6582b5214d94d18430e81ec55ed5"
+    },
+    {
+      "path": "web/en/assets/icons/lcd-02-remaining-charge-time.png",
+      "size": 6389,
+      "sha256": "63eaa739de04587ef6d1998405952494a61199ed781211a4cbcb6738903a572e"
+    },
+    {
+      "path": "web/en/assets/icons/lcd-03-solar-charging.png",
+      "size": 5844,
+      "sha256": "3e873f8f7eff0a05ba801a0945c85e2d4441aac7cdaf3b807c711085f482fa25"
+    },
+    {
+      "path": "web/en/assets/icons/lcd-04-ac-wall-charging.png",
+      "size": 4757,
+      "sha256": "bb3f88ea3540f0b34569bdfc71ba3e0504244af10cb43c3f1f51cfe3f5df41de"
+    },
+    {
+      "path": "web/en/assets/icons/lcd-05-car-charging.png",
+      "size": 5308,
+      "sha256": "666090b9790c0ab1a4bab53f1bf9a8262be70800bffceeb6555fed10e6d916fb"
+    },
+    {
+      "path": "web/en/assets/icons/lcd-06-low-battery.png",
+      "size": 574,
+      "sha256": "fa419f306380a419bc08e03d2b67fe1ed35501e1fa9803f5913fd78774ab4654"
+    },
+    {
+      "path": "web/en/assets/icons/lcd-07-battery-percentage.png",
+      "size": 3973,
+      "sha256": "85ff1b8313456ccf7759bd7e9cd72a160bb2427a075f3fcb213b6e94210b461c"
+    },
+    {
+      "path": "web/en/assets/icons/lcd-08-output-power.png",
+      "size": 7057,
+      "sha256": "cd446a3fed6d211ffb7e8f0d70050ac1db632b3f6955a3e2a911844a66225628"
+    },
+    {
+      "path": "web/en/assets/icons/lcd-09-remaining-discharge-time.png",
+      "size": 7094,
+      "sha256": "a1929071e31bb98b9e1bd9a2ce0c9a4429b4979f759e86b61fa5f11cf38f6b94"
+    },
+    {
+      "path": "web/en/assets/icons/lcd-10-fault-code.png",
+      "size": 4016,
+      "sha256": "bd476cbbca9cf66f30a8dce0684384f8e6cdf65a3d8851c60b12a4c1275d1802"
+    },
+    {
+      "path": "web/en/assets/icons/lcd-11-high-temperature.png",
+      "size": 4347,
+      "sha256": "acb0b9180999239d2b67a601bbb429105f15fbd3f1d9f4b0c3df8f1957487abb"
+    },
+    {
+      "path": "web/en/assets/icons/lcd-12-low-temperature.png",
+      "size": 4303,
+      "sha256": "fefc61bc822dd8aee2338c99d595c0a07028ea217488edde1392a6f2cdb0be6a"
+    },
+    {
+      "path": "web/en/assets/icons/lcd-13-low-power-mode.png",
+      "size": 4956,
+      "sha256": "9504f583ac0b79a7c62d42d639a95bcd3e63d3a1e7c8dcc4be9273290dbcc317"
+    },
+    {
+      "path": "web/en/assets/icons/lcd-14-ac-power.png",
+      "size": 5032,
+      "sha256": "5e5a6994d6dcec4dbc00dd5e3be5bb023e2bb0c8e2f3d48e857077c7d8cc53f8"
+    },
+    {
+      "path": "web/en/assets/icons/lcd-15-battery-power-ring.png",
+      "size": 4135,
+      "sha256": "ecadac67b3d2e1931e1cc2c2e05b9c66b479fa283dbf93e2ff6e43bff41782ca"
+    },
+    {
+      "path": "web/en/assets/icons/lcd-inline-battery-ring.png",
+      "size": 2636,
+      "sha256": "1ec288d1d1fdf6cbba4bc57feb891b17e12b72e4aa59341893712ffd6d754d4e"
+    },
+    {
+      "path": "web/en/assets/icons/lcd-inline-fault-code.png",
+      "size": 3112,
+      "sha256": "28ab3bcd4221e9e7fb9295993ff2776a6d786232e46e415e92ce6af9c85db0c3"
+    },
+    {
+      "path": "web/en/assets/icons/lcd-inline-low-power-mode.png",
+      "size": 3413,
+      "sha256": "960c1e71c9eb05ba578b352b6431aa6e19f02c6ff963b13c4c876326101b46bc"
+    },
+    {
+      "path": "web/en/assets/icons/ts-f0.png",
+      "size": 2986,
+      "sha256": "4bab61401364be160444f267dd3ce386d4b0959e33c1f6175368b472b6f4f3d3"
+    },
+    {
+      "path": "web/en/assets/icons/ts-f1.png",
+      "size": 2831,
+      "sha256": "75876ade531f3b5f141223596ecc70c9a2d0e8a0042475144c74ad47d335ea7f"
+    },
+    {
+      "path": "web/en/assets/icons/ts-f2.png",
+      "size": 2921,
+      "sha256": "f0c1ebd350bbd3ebe6f270bf5b994c4e4a6f2f9853dd027ccd8fa46e3af975be"
+    },
+    {
+      "path": "web/en/assets/icons/ts-f3.png",
+      "size": 2987,
+      "sha256": "b7fb4b06e29cdf20204459073ec4e15807a0664774dfbadbc91deee2297a708e"
+    },
+    {
+      "path": "web/en/assets/icons/ts-f4.png",
+      "size": 2918,
+      "sha256": "c0eac00dbb92fb5aaf38ad497ad8e3f5a7914b41cc02f2363dbe556cc09b7d3d"
+    },
+    {
+      "path": "web/en/assets/icons/ts-f5.png",
+      "size": 2969,
+      "sha256": "1cebf87e406cd328c14c5033d22e3f4000a5fab6d287c522048ca8a70081e545"
+    },
+    {
+      "path": "web/en/assets/icons/ts-f6.png",
+      "size": 2998,
+      "sha256": "8d79b233f0070d734da7537a7dda36482553ad90035779725d6381f443d64462"
+    },
+    {
+      "path": "web/en/assets/icons/ts-f7.png",
+      "size": 2890,
+      "sha256": "5f1a9a1a3f717481cd8be2338f4246739d82e37584125564b2f0724e940c2cdb"
+    },
+    {
+      "path": "web/en/assets/icons/ts-f8.png",
+      "size": 3053,
+      "sha256": "91fe368d9ef2239f5d82b3f87fc3e4a89b3e26b1c6d78e6e03dbf04d8aa60694"
+    },
+    {
+      "path": "web/en/assets/icons/ts-f9.png",
+      "size": 3050,
+      "sha256": "a101166bad008d0022ca7baa571f6a83e4d7d47027f4195ce7da12a1f94ad954"
+    },
+    {
+      "path": "web/en/assets/icons/ts-high-temperature.png",
+      "size": 4649,
+      "sha256": "aaa643b1fb4a7b6f11421ccef56aa10a4f4201bccba8a32fb9804109659f2372"
+    },
+    {
+      "path": "web/en/assets/icons/ts-low-temperature.png",
+      "size": 4550,
+      "sha256": "df7d0d8ed7157e625b8b4f9208dc39435cb990b07099eb4e66cbd6f6d18b48eb"
+    },
+    {
+      "path": "web/en/assets/inbox-ac-cable.png",
+      "size": 7246,
+      "sha256": "e22c4d450172e619299609bda343746a5ec6f73679cb9cf3d3f531dd3faa1e8e"
+    },
+    {
+      "path": "web/en/assets/inbox-adaptor.png",
+      "size": 7844,
+      "sha256": "c92d13e111bc1c59ccda8ea92c0a1c4deac33de426642bcab8af326822ab2dc6"
+    },
+    {
+      "path": "web/en/assets/inbox-car-cable.png",
+      "size": 9738,
+      "sha256": "ed359ca491102b6cc1cb85aa0aee067f91e9e3b609c8ff59c0eedbcc039007c1"
+    },
+    {
+      "path": "web/en/assets/inbox-guide.png",
+      "size": 10696,
+      "sha256": "f7140153dcf1c0fed4eafb366a723688bd29ac788f0cd1b4533a6add40f24ae4"
+    },
+    {
+      "path": "web/en/assets/inbox-unit.png",
+      "size": 15983,
+      "sha256": "4769741b0dfeb849a5d76bfbc16d3c98c487b88539eef49a9cb70c45ae9a72b1"
+    },
+    {
+      "path": "web/en/assets/lcd-map.png",
+      "size": 46019,
+      "sha256": "b022638fb96eea1843c79a9ba964d516e97e91645021975b05cd454ee4541ec2"
+    },
+    {
+      "path": "web/en/assets/operations.png",
+      "size": 43072,
+      "sha256": "e848a28a8592cbaf0f62196cb37756d901ea1cc4ec9feb8e6c48689c0beee436"
+    },
+    {
+      "path": "web/en/assets/overview-front.png",
+      "size": 65415,
+      "sha256": "ce374217d12e961fd282d27c8fe252f0aabd96ee2f121e39a72ce57b9b8fb0f2"
+    },
+    {
+      "path": "web/en/assets/overview-rear.png",
+      "size": 30076,
+      "sha256": "3a1c20795d05d62b01f48f8f3969d0f02a63dd50f50b1d1f1f6d09d4d32bd404"
+    },
+    {
+      "path": "web/en/assets/prohibited-car-solar.png",
+      "size": 33339,
+      "sha256": "f9c1ae79866b62950cd5e4de1374df2d1a408eb6b148f13cd497c4776a59071e"
+    },
+    {
+      "path": "web/en/assets/prohibited-solar.png",
+      "size": 164765,
+      "sha256": "4f4b173f8ec42c613d4dc0a1dc063fd2166bf19b6b8696c2609ff7fc1bbc4304"
+    },
+    {
+      "path": "web/en/assets/solar-connector.png",
+      "size": 39389,
+      "sha256": "bbf070a4f01640ebdc88a8b0754bf899bb66077fa0187ea90b4f23ff296ee423"
+    },
+    {
+      "path": "web/en/assets/solar-three.png",
+      "size": 58460,
+      "sha256": "33f9d43a2475f3b26be6855cd6af41530ee5fed5be6f16cfc50481cd17426daa"
+    },
+    {
+      "path": "web/en/assets/solar-two.png",
+      "size": 69749,
+      "sha256": "53c3c2a9b20d9dd51c887cf78961af1a2c66a5927df7af193543ce98df1c9965"
+    },
+    {
+      "path": "web/en/conf.py",
+      "size": 853,
+      "sha256": "3cbf8af80aaa5ad4f631af148358af3f426e501052f54bdeba43832440dada2b"
+    },
+    {
+      "path": "web/en/index.md",
+      "size": 93,
+      "sha256": "4c574bbc28b12a6a73532147126b5245107611e2df93a140993eabf400411378"
+    },
+    {
+      "path": "web/en/manual.ir.json",
+      "size": 375828,
+      "sha256": "e9710ef24a17d15064b17c263bba5b90b17e2b5e48fa5870cfd359aa2d7c6088"
+    },
+    {
+      "path": "web/en/manual_je2000a_us_en.md",
+      "size": 44568,
+      "sha256": "a643260a560cd45940eca5e7d42c295b83556f09d37017c2c3035eb678672e7c"
+    }
+  ],
+  "shared_component_exceptions": [
+    {
+      "language": "en",
+      "page_id": "lcd_display",
+      "kind": "table",
+      "text_sha256": "63a39dcfa087e288ad940891f0ee16f60126aed0f8b82cf471a321f116d473f8",
+      "reason": "①–⑮ LCD legend printed as number + LCD glyph + name with no description: HB-TABLE-LCD-ICON requires a description cell for every row (adding one would invent copy) and HB-TABLE-REFERENCE/lcd-descriptions carries no icon asset; a plain three-column table on the shared manual-table classes keeps every printed glyph and name"
+    },
+    {
+      "language": "en",
+      "page_id": "lcd_display",
+      "kind": "table",
+      "text_sha256": "37c38f43e973d467973f659550f44d0619c71d9e7efb8fd6ceb71f6cfb750eb9",
+      "reason": "Low Power Mode Output / Output Power / Defaults threshold table: not an LCD legend, LCD action, symbol or troubleshooting shape (HB-TABLE-REFERENCE variants are LCD- or symbol-semantic); a plain table on the shared manual-table classes"
+    },
+    {
+      "language": "en",
+      "page_id": "troubleshooting",
+      "kind": "table",
+      "text_sha256": "f679107f464dec6be56f2678e5203b9c110e3eacf1d8c022c9a0762e8ab26356",
+      "reason": "three-column Errors / Types / Solutions table with the 'Error Code (F0-F9)' cell spanning ten rows, an F0–F9 glyph in each Types cell and the temperature glyphs in the Errors column: HB-TABLE-TROUBLESHOOTING is two text columns without icons and HB-TABLE-LCD-ICON has no header row and needs a number per row; a plain table (rowspan kept) on the shared manual-table classes"
+    }
+  ],
+  "component_map": [
+    {
+      "printed": "chapter titles (TECHNICAL SPECIFICATIONS … WARRANTY)",
+      "shared": "chapter h2 headings (shared theme)"
+    },
+    {
+      "printed": "'Model: JE-2000A' band text and the three opening paragraphs",
+      "shared": "paragraphs (band text in strong)"
+    },
+    {
+      "printed": "GENERAL INFO / OUTPUT PORTS / INPUT PORTS / ENVIRONMENTAL OPERATING TEMPERATURE label-value rows",
+      "shared": "HB-TABLE-SPEC/vertical, one per printed group (DC Input second line as a spanned row)"
+    },
+    {
+      "printed": "CERTIFICATIONS: mark row with CAN ICES-003(B)/NMB-003(B)",
+      "shared": "h3 + HB-SPECIAL-REFERENCE-FIGURE complete source panel (marks are not a symbol table)"
+    },
+    {
+      "printed": "trademark notices",
+      "shared": "plain paragraphs"
+    },
+    {
+      "printed": "PACKAGE LIST ①–⑤ cards",
+      "shared": "HB-SPECIAL-INBOX/variable (five cards, printed marker leads each label)"
+    },
+    {
+      "printed": "Product Appearance front and rear leader-label drawings",
+      "shared": "HB-SPECIAL-REFERENCE-FIGURE complete source panels, labels in alt and IR"
+    },
+    {
+      "printed": "LCD DISPLAY numbered map",
+      "shared": "HB-SPECIAL-REFERENCE-FIGURE complete source panel"
+    },
+    {
+      "printed": "①–⑮ LCD legend (number, glyph, name)",
+      "shared": "declared plain table (shared_component_exceptions)"
+    },
+    {
+      "printed": "Battery Power Indicator / Low Battery Indicator / Low Power Mode / Fault Code run-in titles with inline glyph",
+      "shared": "strong paragraphs with the inline native LCD glyph (printed '( ) :' frame kept verbatim) + body paragraphs"
+    },
+    {
+      "printed": "Low Power Mode Output / Output Power / Defaults table",
+      "shared": "declared plain table (shared_component_exceptions)"
+    },
+    {
+      "printed": "bold run-in leads (AC Output On/Off: …, Green energy first: …)",
+      "shared": "paragraphs with strong"
+    },
+    {
+      "printed": "BASIC OPERATIONS button callout drawing",
+      "shared": "HB-SPECIAL-REFERENCE-FIGURE complete source panel"
+    },
+    {
+      "printed": "Tip: (p06)",
+      "shared": "HB-CALLOUT-STRIP/tip"
+    },
+    {
+      "printed": "wall, solar, connector, example 1–5, prohibited, car and adaptor drawings (solar connection examples)",
+      "shared": "HB-SPECIAL-REFERENCE-FIGURE complete source panels (frames, X marks, OR badge, insets, captions kept)"
+    },
+    {
+      "printed": "❶–❹ numbered paragraphs",
+      "shared": "paragraphs with the printed marker"
+    },
+    {
+      "printed": "Caution: (p10)",
+      "shared": "HB-CALLOUT-STRIP/caution"
+    },
+    {
+      "printed": "a.–i., a)–n), 1)–5), 1.–3. lettered/numbered items",
+      "shared": "paragraphs with the printed marker"
+    },
+    {
+      "printed": "· bullet lists (OPERATING / MOVIN AND STORAGE / USER MAINTENANCE INSTRUCTIONS)",
+      "shared": "lists (marker drawn by geometry.css list-style)"
+    },
+    {
+      "printed": "WARNING： / DANGER: lines (p14)",
+      "shared": "HB-CALLOUT-STRIP/warning and /danger"
+    },
+    {
+      "printed": "FAQ Q/A pairs (inline 12H glyph in A6)",
+      "shared": "strong question paragraphs + answer paragraphs (no shared FAQ component exists)"
+    },
+    {
+      "printed": "TROUBLESHOOTING Errors / Types / Solutions table with F0–F9 and temperature glyphs",
+      "shared": "declared plain table (shared_component_exceptions)"
+    },
+    {
+      "printed": "WARRANTY note and Limited Warranty / Warranty Period / Exchange / Limited to Original Consumer Buyer",
+      "shared": "strong paragraph + heading and HB-WARRANTY-SECTION/rounded-card per section"
+    },
+    {
+      "printed": "Jackery Inc. copyright / edition block",
+      "shared": "h3 + paragraphs"
+    }
+  ],
+  "web_exclusions": [
+    "print cover (physical 1: model, USER MANUAL, contact, Version: JAK-UM-V1.0)",
+    "back cover (physical 19: JACKERY INC. address/contact and QR)",
+    "'US' region tabs and the 'US English' band label (page furniture)",
+    "printed page numbers 01–17"
+  ],
+  "source_concerns": [
+    {
+      "page": 2,
+      "line_id": "tm.p2",
+      "issue": "「Qualcomm Technologles,Inc.」 (Technologies; no space after the comma)",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 2,
+      "line_id": "spec.g3.r2.v1",
+      "issue": "DC Input 11V-17.5V line prints 「8A Max, Double to 8A Max」 (doubling to the same 8A)",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 2,
+      "line_id": "spec.g2.r1.v / spec.g3.r1.v",
+      "issue": "inconsistent spacing 「120V~60Hz」 vs 「120V~ 60Hz」",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 6,
+      "line_id": "lcd.lpm.b",
+      "issue": "Low Power Mode said to be turned 「off by default」 while the auto shut-down it describes is the active behaviour (FAQ A6 repeats this); likely 'on by default'",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 6,
+      "line_id": "lpm.r3.c1 / faq.a6",
+      "issue": "table row 「Car Output」 vs FAQ 「Car Port≤2W」",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 9,
+      "line_id": "solar.conn / adp.p",
+      "issue": "「adapter」 and 「Adaptor」 both used for the same accessory",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 11,
+      "line_id": "fig.ex3.s",
+      "issue": "caption 「SolarSaga 200× 3」 lacks the space used in every other caption (200 × 3)",
+      "disposition": "preserved verbatim in the panel art and alt; source owner review"
+    },
+    {
+      "page": 12,
+      "line_id": "prohib.lead",
+      "issue": "「The following way of connections are prohibited」 (number agreement)",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 15,
+      "line_id": "save.warn.l / dis.1 / dis.2",
+      "issue": "full-width punctuation in English copy: 「WARNING：」 and 「turn off，」",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 15,
+      "line_id": "save.warn",
+      "issue": "sentence ends without a full stop (「…as soon as possible」)",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 15,
+      "line_id": "dis.1 / dis.2",
+      "issue": "「will be turn on」, 「Press the any 1 or 2 way DC」, 「1~2seconds」 (missing space)",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 15,
+      "line_id": "dis.3",
+      "issue": "「“OUPUT” icon」 (OUTPUT, as printed on the LCD)",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 15,
+      "line_id": "mov.h",
+      "issue": "heading 「MOVIN AND STORAGE INSTRUCTIONS」 (MOVING)",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 15,
+      "line_id": "chgi.2",
+      "issue": "sentence ends without a full stop (「…display Input power」)",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 16,
+      "line_id": "faq.a3",
+      "issue": "「( i.e.」 stray space inside the bracket",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 16,
+      "line_id": "faq.a6",
+      "issue": "「device(AC」 missing space; sentence ends 「until [12H] .」 with a space before the stop and no verb (likely '…until the icon disappears')",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 18,
+      "line_id": "war.exc",
+      "issue": "「applicablewarranty」 (missing space)",
+      "disposition": "preserved verbatim; source owner review"
+    },
+    {
+      "page": 14,
+      "line_id": "save.h",
+      "issue": "two headings run together: 「SAVE THESE INSTRUCTIONS OPERATING INSTRUCTIONS」",
+      "disposition": "preserved verbatim as one heading; source owner review"
+    },
+    {
+      "page": 17,
+      "line_id": "ts.f0.t … ts.f9.t",
+      "issue": "Types are lower-case except 「BMS communication failure」 and 「Overcurrent/short circuit …」",
+      "disposition": "preserved verbatim; source owner review"
+    }
+  ],
+  "artwork_inventory": "source/discovery.md, source/asset_decisions.json"
+}

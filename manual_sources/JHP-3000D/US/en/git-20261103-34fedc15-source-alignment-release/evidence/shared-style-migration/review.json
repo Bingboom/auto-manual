@@ -1,0 +1,75 @@
+{
+  "model": "JHP-3000D",
+  "record_id": "reczz28SlRGJguaO",
+  "status": "local_review_passed",
+  "source_sha256": "34fedc156d52e8a50ca65d23327d323b3647aee03bd6b6b4aa1d681723e249dc",
+  "source_reference": "source/review-reference.pdf",
+  "source_pages_reviewed": [
+    2,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22
+  ],
+  "excluded_pages": {
+    "1": "front cover excluded by operator",
+    "3": "paper TOC excluded by operator"
+  },
+  "pdf_total_pages": 22,
+  "full_current_source_review": true,
+  "bidirectional_content_audit": "current-reference-bidirectional-audit.json",
+  "whole_viewports": {
+    "desktop1400": 28,
+    "mobile390": 35,
+    "capture": "style_3000d_whole_v20.cjs",
+    "actual_scrollY_verified": true,
+    "v22_delta": [
+      "safety dashes/risk font",
+      "LCD single frame",
+      "current AC charging art"
+    ],
+    "v23_delta": [
+      "input spec real two-line cells"
+    ]
+  },
+  "mobile_scroll_containers_tested": 12,
+  "broken_images": 0,
+  "uncontained_page_overflow": 0,
+  "css_background_resources_loaded": true,
+  "source_art_redrawn": false,
+  "shared_style_baseline_waiver": false,
+  "shared_table_exceptions": [
+    "p5 actual printed signal table: source glyph asset not supported by component",
+    "p17 actual printed fault table: rowspan4 not supported by component"
+  ],
+  "supersedes": "The old full-review PASS is superseded: it missed current p6 USB-C card and used old p14 AC wall-socket artwork instead of current p15 free-plug artwork. New review uses only current single-language source/review-reference.pdf, not cached old PDF page images.",
+  "feishu_write_performed": false,
+  "publication_performed": false,
+  "cold_replay_matches_stored_md_ir_css": true,
+  "cold_replay_all_files_identical": true,
+  "cold_replay_file_count": 70,
+  "strict_sphinx": "passed -W --keep-going",
+  "shared_style_audit": "passed: zero issues; root current audit_prepared_package_locale",
+  "publication_eligible": true,
+  "pending_source_review": [],
+  "approval_binding": "source/approval.json exact current input hashes; MA-381 conditional operator grant, no personal-review claim",
+  "legacy_declarations_reviewed": 41,
+  "historical_asset_decisions_reviewed": 66,
+  "inbox_main_render_followup": "evidence/shared-style-migration/inbox-main-render-followup/review.json",
+  "inbox_main_rendering": "Current own-PDF p6 raw 4x pixel crop replaces Chrome-broken SVG; new desktop/mobile delta inspected, source strokes untouched."
+}

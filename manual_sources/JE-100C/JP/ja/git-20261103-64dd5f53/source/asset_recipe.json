@@ -1,0 +1,553 @@
+{
+  "schema_version": "explorer-jp-ja-asset-recipe/v1",
+  "source_sha256": "64dd5f5336e40426277bd217a555194461ab2b66f396e4a23308fac43d0203c3",
+  "panel_scale": 5,
+  "panels": [
+    {
+      "path": "assets/overview.png",
+      "physical_page": 6,
+      "bbox": [
+        18,
+        206,
+        240,
+        336
+      ],
+      "role": "complete 製品の外観 drawing with its Japanese leader labels"
+    },
+    {
+      "path": "assets/operation-energy.png",
+      "physical_page": 10,
+      "bbox": [
+        30,
+        258,
+        236,
+        322
+      ],
+      "role": "省エネモード drawing with the Japanese 「3秒長押しで省エネモードを有効/無効」 label"
+    },
+    {
+      "path": "assets/charging_car.png",
+      "physical_page": 13,
+      "bbox": [
+        20,
+        108,
+        237,
+        191
+      ],
+      "role": "complete シガーソケット充電 panel with the Japanese 「車」 label; the 「※ …別売りです。」 pill below is native text"
+    }
+  ],
+  "native_icons": [],
+  "reused": [
+    {
+      "path": "assets/inbox_unit.png",
+      "from": "docs/renderers/web/assets/je100c_eu_en/inbox_unit.png",
+      "sha256": "9e8cfb5917ef0d87bda25b46850c3d566b22b48d52fc7d01f875a220f7b37bed",
+      "reason": "textless package-list card art (same drawing)"
+    },
+    {
+      "path": "assets/inbox_cable.png",
+      "from": "docs/renderers/web/assets/je100c_eu_en/inbox_cable.png",
+      "sha256": "440667657c702a6cb0c99f574430f9303253b3ada6a32aa8609cf562306d2a6e",
+      "reason": "textless package-list card art (same drawing)"
+    },
+    {
+      "path": "assets/inbox_manual.png",
+      "from": "docs/renderers/web/assets/je100c_eu_en/inbox_manual.png",
+      "sha256": "4320efcbbc0506ca4cabe0cd0b4c268357fc87a224b3a76cf69cffd2f8771075",
+      "reason": "textless package-list card art (same drawing)"
+    },
+    {
+      "path": "assets/lcd_interface_1.png",
+      "from": "docs/renderers/web/assets/je100c_eu_en/lcd_interface_1.png",
+      "sha256": "523ab4c85b2e737b9d22510fa91ae6a3d7382e842bcc2171c11e563ee4c9fa85",
+      "reason": "same LCD interface 1 drawing; on-screen Input/Output and ①–⑩ identical in the JP print"
+    },
+    {
+      "path": "assets/lcd_interface_2.png",
+      "from": "docs/renderers/web/assets/je100c_eu_en/lcd_interface_2.png",
+      "sha256": "fc613c38fa55870a9f3bbde3c09e3967755da14b86de1b22bfef42c0bfa761ef",
+      "reason": "same LCD interface 2 drawing, ①–③ identical"
+    },
+    {
+      "path": "assets/lcd_interface_3.png",
+      "from": "docs/renderers/web/assets/je100c_eu_en/lcd_interface_3.png",
+      "sha256": "7282f47a25d4216f3306267313b027a3a0a7133f62cf66d7b3dc516aa038b539",
+      "reason": "same LCD interface 3 drawing, ①–② identical"
+    },
+    {
+      "path": "assets/charging_ac.png",
+      "from": "docs/renderers/web/assets/je100c_eu_en/charging_ac.png",
+      "sha256": "6b4866ef484b9ca9a5ff10dd4cf3fb1f9a18146e02bb38aa27a4c1697c7b5d22",
+      "reason": "same textless USB-C charger panel; the JP pill is native text"
+    },
+    {
+      "path": "assets/charging_solar.png",
+      "from": "docs/renderers/web/assets/je100c_eu_en/charging_solar.png",
+      "sha256": "96adfad1e72c557534fb1a3eaee933f045d01552429f2afbc95d43eac7bb8367",
+      "reason": "same panel; its only label 「SolarSaga 40 Air x1」 is printed identically in the JP edition"
+    },
+    {
+      "path": "assets/operation-output.png",
+      "from": "manual_sources/JE-100C/US/en/git-20261027-39c58bca/assets/operation-output.png",
+      "sha256": "b9727b9e83cde872c907d17fca4df69b6ac625d74e394a42e30fb30fcc48e96e",
+      "reason": "same textless output drawing (US edition crop below the pill)"
+    },
+    {
+      "path": "assets/operation-lcd.png",
+      "from": "manual_sources/JE-100C/US/en/git-20261027-39c58bca/assets/operation-lcd.png",
+      "sha256": "9e413c2d2772d533714d5e4f047291c0ade296217ca413373abc9bc5e527c10e",
+      "reason": "same textless DISPLAY-button drawing beside the LCD SCREEN table"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_input.png",
+      "from": "docs/renderers/web/assets/je100c_eu_shared/lcd_input.png",
+      "sha256": "d885d71e56e89be78deaaba7d1fe02c6d4d2c8ae4e92b21129fe302d5a44503d",
+      "reason": "same LCD glyph (JE-100C EU/US shared icon)"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_charge_time.png",
+      "from": "docs/renderers/web/assets/je100c_eu_shared/lcd_charge_time.png",
+      "sha256": "30ca3526ad823eb0bcb86ed426556305c3a88f3822b9afe0b338faefadf663b5",
+      "reason": "same LCD glyph (JE-100C EU/US shared icon)"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_steady.png",
+      "from": "docs/renderers/web/assets/je100c_eu_shared/lcd_steady.png",
+      "sha256": "6ae3372cbf05adfa1915451b65e5179de273c5db9dfa256f6702a025fa5ea142",
+      "reason": "same LCD glyph (JE-100C EU/US shared icon)"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_thermal.png",
+      "from": "docs/renderers/web/assets/je100c_eu_shared/lcd_thermal.png",
+      "sha256": "d8afe79c89066a0c48cea82e68b7cc32175cfb8e7894793105dca8bafeaf3bcd",
+      "reason": "same LCD glyph (JE-100C EU/US shared icon)"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_energy.png",
+      "from": "docs/renderers/web/assets/je100c_eu_shared/lcd_energy.png",
+      "sha256": "abffef2553a3ff4c6aec158c2eeca3c411a752983fcd9499d444b46363a635e0",
+      "reason": "same LCD glyph (JE-100C EU/US shared icon)"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_ring.png",
+      "from": "docs/renderers/web/assets/je100c_eu_shared/lcd_ring.png",
+      "sha256": "116e805fbbb3afefab436e34075834edddf54bed96d38054072a9307acdb40c6",
+      "reason": "same LCD glyph (JE-100C EU/US shared icon)"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_low_battery.png",
+      "from": "docs/renderers/web/assets/je100c_eu_shared/lcd_low_battery.png",
+      "sha256": "8aba48b4eeefd20e8cb0eaa4306c99e5bef4f3b00aacbe7624d3c987e9610e72",
+      "reason": "same LCD glyph (JE-100C EU/US shared icon)"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_percentage.png",
+      "from": "docs/renderers/web/assets/je100c_eu_shared/lcd_percentage.png",
+      "sha256": "442522aad3e203194cd620402e723f7e7ba2735748e4bcefdf86289b3aa4c8f1",
+      "reason": "same LCD glyph (JE-100C EU/US shared icon)"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_discharge_time.png",
+      "from": "docs/renderers/web/assets/je100c_eu_shared/lcd_discharge_time.png",
+      "sha256": "a6254ee6c2442338ce3be607854e610e87454464a34471c200a3e15b754504ac",
+      "reason": "same LCD glyph (JE-100C EU/US shared icon)"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_output.png",
+      "from": "docs/renderers/web/assets/je100c_eu_shared/lcd_output.png",
+      "sha256": "595a94ae122a1f50c02bd8b92ac70cbaa1548edf18365e0eb5eec9dbf41ccdac",
+      "reason": "same LCD glyph (JE-100C EU/US shared icon)"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_fault.png",
+      "from": "docs/renderers/web/assets/je100c_eu_shared/lcd_fault.png",
+      "sha256": "9a4dcfb95f2780c03a70f9ad6c34f29b31c7bcab8165309018dc366ef8a22ad3",
+      "reason": "same LCD glyph (JE-100C EU/US shared icon)"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_high_temperature.png",
+      "from": "docs/renderers/web/assets/je100c_eu_shared/lcd_high_temperature.png",
+      "sha256": "3bc177aa1ca91a3172263fd9ed24e529eca1def19489bd50408aad730da53c57",
+      "reason": "same LCD glyph (JE-100C EU/US shared icon)"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_low_temperature.png",
+      "from": "docs/renderers/web/assets/je100c_eu_shared/lcd_low_temperature.png",
+      "sha256": "9a6f857384d84940df6a0a04569eb20f3327fb7608f822a3eec4fc3c6d8eede8",
+      "reason": "same LCD glyph (JE-100C EU/US shared icon)"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_discharging.png",
+      "from": "docs/renderers/web/assets/je100c_eu_shared/lcd_discharging.png",
+      "sha256": "196dfcec907c1922ec559a59639f12677b94f0a40fef2163703bb512f93e2d27",
+      "reason": "same LCD glyph (JE-100C EU/US shared icon)"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_charging.png",
+      "from": "docs/renderers/web/assets/je100c_eu_shared/lcd_charging.png",
+      "sha256": "65b2acf888574217b4837b443b6a2ef962d8752080ec2a152c7d25aa149fd7ce",
+      "reason": "same LCD glyph (JE-100C EU/US shared icon)"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_watts.png",
+      "from": "docs/renderers/web/assets/je100c_eu_shared/lcd_watts.png",
+      "sha256": "7da3de69f1cc2e3d06cb208ca58dc282e30d4251ce1332322079c8637c2f1433",
+      "reason": "same LCD glyph (JE-100C EU/US shared icon)"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_health.png",
+      "from": "docs/renderers/web/assets/je100c_eu_shared/lcd_health.png",
+      "sha256": "e97ce3a6dcc8de61459628138749323ace0aedf4472ab94c5f54e8c5a22fa7b7",
+      "reason": "same LCD glyph (JE-100C EU/US shared icon)"
+    },
+    {
+      "path": "assets/shared-lcd/lcd_temperature.png",
+      "from": "docs/renderers/web/assets/je100c_eu_shared/lcd_temperature.png",
+      "sha256": "60c5cbfe5f8497b1ea4bdf9a6c2c0ed58670557da37738e7b52112279c29ad72",
+      "reason": "same LCD glyph (JE-100C EU/US shared icon)"
+    }
+  ],
+  "symbols": [
+    {
+      "path": "assets/symbol-01.svg",
+      "shared_symbol_key": "native/je1500d-jp-6ddeef54-01",
+      "shared_path": "native-v1/je1500d-jp-6ddeef54-symbol-01.svg",
+      "physical_page": 2,
+      "glyph_bbox": [
+        26,
+        180.8,
+        41,
+        194.2
+      ],
+      "caption_bbox": [
+        48,
+        178.5,
+        128,
+        198
+      ],
+      "caption_ids": [
+        "sym.warning"
+      ],
+      "drawing_indices": [
+        843
+      ],
+      "reuse": true
+    },
+    {
+      "path": "assets/symbol-02.svg",
+      "shared_symbol_key": "read-manual/book-information",
+      "shared_path": "native-v1/symbol_read_manual.svg",
+      "physical_page": 2,
+      "glyph_bbox": [
+        25.7,
+        203.9,
+        41.5,
+        216
+      ],
+      "caption_bbox": [
+        48,
+        202,
+        128,
+        215
+      ],
+      "caption_ids": [
+        "sym.manual"
+      ],
+      "drawing_indices": [
+        857,
+        858,
+        859
+      ],
+      "reuse": true
+    },
+    {
+      "path": "assets/symbol-03.svg",
+      "shared_symbol_key": "no-open-flame/fire-match-prohibited",
+      "shared_path": "native-v1/symbol_no_open_flame.svg",
+      "physical_page": 2,
+      "glyph_bbox": [
+        26.9,
+        224.1,
+        41.3,
+        238.4
+      ],
+      "caption_bbox": [
+        48,
+        223.5,
+        128,
+        237.5
+      ],
+      "caption_ids": [
+        "sym.fire"
+      ],
+      "drawing_indices": [
+        847,
+        848,
+        849,
+        850,
+        851,
+        852
+      ],
+      "reuse": true
+    },
+    {
+      "path": "assets/symbol-04.svg",
+      "shared_symbol_key": "keep-away-from-children/adult-child-prohibited",
+      "shared_path": "native-v1/symbol_keep_away_from_children.svg",
+      "physical_page": 2,
+      "glyph_bbox": [
+        26.2,
+        246,
+        40.6,
+        260.3
+      ],
+      "caption_bbox": [
+        48,
+        246.5,
+        128,
+        264
+      ],
+      "caption_ids": [
+        "sym.children"
+      ],
+      "drawing_indices": [
+        853,
+        854,
+        855,
+        856
+      ],
+      "reuse": true
+    },
+    {
+      "path": "assets/symbol-05.svg",
+      "shared_symbol_key": "do-not-dismantle/screwdriver-circle-gray",
+      "shared_path": "native-v1/symbol_do_not_dismantle_gray_jp.svg",
+      "physical_page": 2,
+      "glyph_bbox": [
+        26.7,
+        267.4,
+        39.8,
+        280.5
+      ],
+      "caption_bbox": [
+        48,
+        269.5,
+        128,
+        277.5
+      ],
+      "caption_ids": [
+        "sym.dismantle"
+      ],
+      "drawing_indices": [
+        814,
+        815,
+        816,
+        817,
+        818,
+        819,
+        820,
+        821,
+        822,
+        823,
+        824,
+        825,
+        826,
+        827,
+        828,
+        829,
+        830
+      ],
+      "reuse": true
+    },
+    {
+      "path": "assets/symbol-06.svg",
+      "shared_symbol_key": "native/je1500d-jp-6ddeef54-07",
+      "shared_path": "native-v1/je1500d-jp-6ddeef54-symbol-07.svg",
+      "physical_page": 2,
+      "glyph_bbox": [
+        27,
+        288.6,
+        40.2,
+        301.7
+      ],
+      "caption_bbox": [
+        48,
+        288.5,
+        128,
+        302
+      ],
+      "caption_ids": [
+        "sym.wethand"
+      ],
+      "drawing_indices": [
+        831,
+        832,
+        833,
+        834,
+        835,
+        836,
+        837,
+        838,
+        839,
+        840,
+        841
+      ],
+      "reuse": true
+    },
+    {
+      "path": "assets/symbol-07.svg",
+      "shared_symbol_key": "mandatory/h1-jp-native",
+      "shared_path": "native-v1/h1-jp-mandatory.svg",
+      "physical_page": 2,
+      "glyph_bbox": [
+        26.5,
+        310.5,
+        39.7,
+        323.7
+      ],
+      "caption_bbox": [
+        48,
+        314,
+        128,
+        321.5
+      ],
+      "caption_ids": [
+        "sym.mandatory"
+      ],
+      "drawing_indices": [
+        842
+      ],
+      "reuse": true
+    },
+    {
+      "path": "assets/symbol-08.svg",
+      "shared_symbol_key": "native/je3000c-kr-78316033-06",
+      "shared_path": "native-v1/je3000c-kr-78316033-06.svg",
+      "physical_page": 2,
+      "glyph_bbox": [
+        136.1,
+        196.1,
+        148.8,
+        207.9
+      ],
+      "caption_bbox": [
+        155,
+        178.5,
+        235,
+        226.5
+      ],
+      "caption_ids": [
+        "sym.liion.t",
+        "sym.liion.b1",
+        "sym.liion.b2",
+        "sym.liion.b3"
+      ],
+      "drawing_indices": [
+        860,
+        861,
+        862,
+        863,
+        864,
+        865,
+        866,
+        867,
+        868,
+        869,
+        870
+      ],
+      "reuse": true
+    },
+    {
+      "path": "assets/symbol-09.svg",
+      "shared_symbol_key": "native/je3000c-kr-78316033-07",
+      "shared_path": "native-v1/je3000c-kr-78316033-07.svg",
+      "physical_page": 2,
+      "glyph_bbox": [
+        136.2,
+        249.7,
+        147.2,
+        265.4
+      ],
+      "caption_bbox": [
+        155,
+        229.5,
+        235,
+        288
+      ],
+      "caption_ids": [
+        "sym.weee.b1",
+        "sym.weee.b2",
+        "sym.weee.b3"
+      ],
+      "drawing_indices": [
+        844,
+        845,
+        846
+      ],
+      "reuse": true
+    },
+    {
+      "path": "assets/symbol-10.svg",
+      "shared_symbol_key": "keep-dry/h1-jp-native",
+      "shared_path": "native-v1/h1-jp-keep_dry.svg",
+      "physical_page": 2,
+      "glyph_bbox": [
+        135.4,
+        293.7,
+        148.5,
+        306.9
+      ],
+      "caption_bbox": [
+        155,
+        297,
+        236,
+        304
+      ],
+      "caption_ids": [
+        "sym.wet"
+      ],
+      "drawing_indices": [
+        650,
+        651,
+        652,
+        653,
+        654,
+        655,
+        656,
+        657,
+        658,
+        659,
+        660
+      ],
+      "reuse": true
+    },
+    {
+      "path": "assets/symbol-11.svg",
+      "shared_symbol_key": "prohibited/h1-jp-native",
+      "shared_path": "native-v1/h1-jp-prohibited.svg",
+      "physical_page": 2,
+      "glyph_bbox": [
+        135.4,
+        312,
+        148.5,
+        325.1
+      ],
+      "caption_bbox": [
+        155,
+        315,
+        236,
+        322
+      ],
+      "caption_ids": [
+        "sym.prohibit"
+      ],
+      "drawing_indices": [
+        647,
+        648,
+        649
+      ],
+      "reuse": true
+    }
+  ]
+}

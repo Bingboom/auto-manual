@@ -1,0 +1,25 @@
+{
+  "schema_version": "je2000d-us-candidate-validation/v1",
+  "source_commit": "working tree on feat/web-explorer-us-en-2000d-2000f-3000b-5000a (uncommitted candidate)",
+  "date": "2026-10-28",
+  "environment": "system Python 3.13 (not the requirements.lock venv), ruff 0.16.9 binary, Sphinx 8.2.3 / MyST 4.0.1, Playwright Chromium",
+  "checks": [
+    {"command": "ruff check manual_sources/JE-2000D/US/en/git-20261028-3d50ef64 tests/test_je2000d_us_web.py", "result": "pass", "log": "ruff.log"},
+    {"command": "python3 manual_sources/JE-2000D/US/en/git-20261028-3d50ef64/rebuild.py --output <tmp>", "result": "pass; copied to web/en; cold replay in the target test is byte-identical for manual_je2000d_us_en.md, manual.ir.json and _static/source_geometry.css"},
+    {"command": "python3 -m sphinx -n -W --keep-going -b html web/en <html>", "result": "pass", "log": "strict-sphinx.log"},
+    {"command": "python3 -m unittest tests.test_je2000d_us_web tests.test_prepared_document_shared_styles", "result": "pass: 19 tests OK", "log": "target-tests.log"},
+    {"command": "browser 1280 / 390 full page (images forced eager, page scrolled, networkidle)", "result": "26 images, 0 broken, document scrollWidth == viewport at both widths; LCD description and Energy Saving Mode tables scroll inside their shared wrappers at 390; overview and LCD map pan inside the figure", "files": ["browser-1280.png", "browser-390.png", "browser-1280.json", "browser-390.json"]}
+  ],
+  "rebuild_gates": [
+    "input SHA-256 inventory",
+    "prepared-document shared-style admission with one declared plain table (Energy Saving Mode)",
+    "symbol asset admission: no symbol table printed, 0 rows",
+    "reused artwork: 11 glyph comparisons against native PDF paths within the fixed 2% (max 0.0179) and 5 panel render comparisons (max 0.0016)"
+  ],
+  "not_run_here": [
+    "python -m unittest (full suite; run by the coordinating window)",
+    "python -m tools.check_maintainability_guardrails (the [frozen-packages] NEW failure for an unregistered candidate is expected; registry not touched)",
+    "refresh_manifest.py frozen and seal_frozen_web_evidence (after operator review)"
+  ],
+  "not_validated": "RTD deployment and production routes"
+}

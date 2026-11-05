@@ -1,0 +1,15 @@
+{
+  "model": "JE-300D",
+  "checked_ocr_lines": 122,
+  "candidates": [
+    {
+      "source_page": 4,
+      "source_ocr": "A DANGER: Taiodreicilogimend wdhenr isnoir ut doy , eg. prae s, ei ce in tnc.",
+      "coverage": 0.0,
+      "web_near": "The warranty on Jackery's product is limited to the original consumer purchaser and is not transferable to any subsequent owner.",
+      "source_text": "This device is intended for indoor use only (Please place this device in a similar indoor environment when using it outdoors, e.g. Home RVs, tents, cabins, etc.). * This device is not waterproof or dustproof. Keep away from rain and humid environments during use.",
+      "web_locator": "[data-source-layout=\"danger-box\"]",
+      "decision": "Originalp4boldbox visuallyconfirmed; both sentencespresent. SourceOCRgarbled it."
+    }
+  ]
+}

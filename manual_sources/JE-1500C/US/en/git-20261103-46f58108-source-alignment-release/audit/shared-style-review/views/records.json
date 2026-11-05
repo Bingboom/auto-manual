@@ -1,0 +1,152 @@
+[
+  {
+    "width": 1280,
+    "selector": "[data-source-layout=\"risk-strip\"]",
+    "requested": 415.65625,
+    "actual": 416
+  },
+  {
+    "width": 1280,
+    "selector": "[data-source-heading=\"safety-pill\"]",
+    "requested": 938.765625,
+    "actual": 939
+  },
+  {
+    "width": 1280,
+    "selector": "[data-source-role~=\"native-contained-panel\"]",
+    "requested": 7653.171875,
+    "actual": 7653
+  },
+  {
+    "width": 1280,
+    "selector": "[data-source-role~=\"native-gray-panel\"]",
+    "requested": 11826.671875,
+    "actual": 11827
+  },
+  {
+    "width": 1280,
+    "selector": "[data-source-role~=\"native-contact-card\"]",
+    "requested": 23214.921875,
+    "actual": 22605
+  },
+  {
+    "width": 1280,
+    "selector": "[aria-label=\"Signal words\"]",
+    "requested": 1919.28125,
+    "actual": 1919
+  },
+  {
+    "width": 1280,
+    "selector": "[data-source-role~=\"native-power-figure\"]",
+    "requested": 7666.953125,
+    "actual": 7667
+  },
+  {
+    "width": 1280,
+    "selector": "[data-source-role~=\"native-car-panel\"]",
+    "requested": 15192.5625,
+    "actual": 15193
+  },
+  {
+    "width": 1280,
+    "selector": "[data-source-layout=\"cleaning-steps\"]",
+    "requested": 15872.8125,
+    "actual": 15873
+  },
+  {
+    "width": 1280,
+    "selector": "[data-source-layout=\"fault-rowspan\"]",
+    "requested": 17346.015625,
+    "actual": 17346
+  },
+  {
+    "width": 1280,
+    "selector": "[data-source-layout=\"button-operations\"]",
+    "requested": 11177.25,
+    "actual": 11177
+  },
+  {
+    "width": 1280,
+    "failed": [],
+    "metrics": {
+      "broken": [],
+      "overflow": false,
+      "backgrounds": []
+    }
+  },
+  {
+    "width": 390,
+    "selector": "[data-source-layout=\"risk-strip\"]",
+    "requested": 553.765625,
+    "actual": 553
+  },
+  {
+    "width": 390,
+    "selector": "[data-source-heading=\"safety-pill\"]",
+    "requested": 1649.25,
+    "actual": 1649
+  },
+  {
+    "width": 390,
+    "selector": "[data-source-role~=\"native-contained-panel\"]",
+    "requested": 9240.34375,
+    "actual": 9240
+  },
+  {
+    "width": 390,
+    "selector": "[data-source-role~=\"native-gray-panel\"]",
+    "requested": 13705.21875,
+    "actual": 13705
+  },
+  {
+    "width": 390,
+    "selector": "[data-source-role~=\"native-contact-card\"]",
+    "requested": 27778.078125,
+    "actual": 27159
+  },
+  {
+    "width": 390,
+    "selector": "[aria-label=\"Signal words\"]",
+    "requested": 3370.578125,
+    "actual": 3371
+  },
+  {
+    "width": 390,
+    "selector": "[data-source-role~=\"native-power-figure\"]",
+    "requested": 9254.125,
+    "actual": 9254
+  },
+  {
+    "width": 390,
+    "selector": "[data-source-role~=\"native-car-panel\"]",
+    "requested": 17715.640625,
+    "actual": 17716
+  },
+  {
+    "width": 390,
+    "selector": "[data-source-layout=\"cleaning-steps\"]",
+    "requested": 18357.59375,
+    "actual": 18358
+  },
+  {
+    "width": 390,
+    "selector": "[data-source-layout=\"fault-rowspan\"]",
+    "requested": 20885.78125,
+    "actual": 20886
+  },
+  {
+    "width": 390,
+    "selector": "[data-source-layout=\"button-operations\"]",
+    "requested": 12900.84375,
+    "actual": 12901
+  },
+  {
+    "width": 390,
+    "failed": [],
+    "metrics": {
+      "broken": [],
+      "overflow": false,
+      "backgrounds": []
+    }
+  }
+]

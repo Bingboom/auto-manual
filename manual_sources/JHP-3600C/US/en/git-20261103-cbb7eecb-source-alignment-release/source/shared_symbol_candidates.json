@@ -1,0 +1,299 @@
+{
+  "assets/symbol_warning_triangle.svg": [
+    {
+      "path": "manual_sources/JBP-3600A/EU/git-20261003-44b6ce61-reviewed/web/en/assets/ir/ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8/symbol_warning.png",
+      "sha256": "ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8",
+      "error": 0.052941
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/warning_triangle_dark.svg",
+      "sha256": "e1746d6937db78115fcd8e1f80a71943cb6615561e326bebe2605139a886cce5",
+      "error": 0.213533
+    },
+    {
+      "path": "manual_sources/JE-1000F/EU/en-fr/2.0/phase2/_attachments/symbols/4_battery_charging_WIeDb0QIoo4eSbxUDoDcCV3fn8c.png",
+      "sha256": "dc89195f3ece3d0d821c3901a645a737360d68c4629d0f3a4a792511edba5425",
+      "error": 0.22602
+    },
+    {
+      "path": "manual_sources/JE-1000F/EU/en-fr/2.0/phase2/_attachments/symbols/5_explosive_material_Zkz9b74mDoSXlZx8jJwcbLErnge.png",
+      "sha256": "cb30b49051857ba566fe6e8caa4190b39f584f7585bd595d97a99a04db3ebe2d",
+      "error": 0.227831
+    },
+    {
+      "path": "manual_sources/JBP-3600A/EU/native-0924/web/nl-r1/assets/ir/ff4be9faf9fbc1e2bd00a54328e6ef1cb9204a6f5541e5f585397408a2e3d62d/symbol_warning.png",
+      "sha256": "ff4be9faf9fbc1e2bd00a54328e6ef1cb9204a6f5541e5f585397408a2e3d62d",
+      "error": 0.228319
+    }
+  ],
+  "assets/symbol_read_manual.svg": [
+    {
+      "path": "docs/_build/JE-1000F/JP/rst/_assets/templates/word_template/common_assets/symbols/battery_recycle.png",
+      "sha256": "434d0907250f36a8c8ee800aaa327a8bbcb7ffcffef58b09c63d64520edc5cdd",
+      "error": 0.169747
+    },
+    {
+      "path": "manual_sources/JE-3000C/EU/en/2.0/phase2/_attachments/symbols/2_read_manual_MAQxbZ9MooQjaaxqb6qctq6Sncg.png",
+      "sha256": "89dae4b809de62e67e42949d33826c6e05b147b57e94b3e9c42f4bfff9af591a",
+      "error": 0.173682
+    },
+    {
+      "path": "manual_sources/JBP-3600A/EU/git-20261003-44b6ce61-reviewed/web/en/assets/ir/e0ea61a86d361997c3f183bb97dd110eaaa45efc09757ff5fb7b82de0299ca61/symbol_manual.png",
+      "sha256": "e0ea61a86d361997c3f183bb97dd110eaaa45efc09757ff5fb7b82de0299ca61",
+      "error": 0.174366
+    },
+    {
+      "path": "manual_sources/JE-3000C/EU/three-language/git-20261001-45219a6e-native-web/web/nl/assets/e36930ae4711_symbol-read_manual.png",
+      "sha256": "e36930ae47111aed8e3024f886e4a5840c38d44a728be6a2bf971049f201c79e",
+      "error": 0.177539
+    },
+    {
+      "path": "docs/_build/JE-1000F/JP/rst/_assets/templates/word_template/common_assets/symbols/grounding.png",
+      "sha256": "54c57e5ecc98f1cf0e0edc1562f88f93e403a5fcecd5b309303de4089b316430",
+      "error": 0.186859
+    }
+  ],
+  "assets/symbol_electric_shock.svg": [
+    {
+      "path": "manual_sources/JBP-3600A/EU/git-20261003-44b6ce61-reviewed/web/en/assets/ir/ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8/symbol_warning.png",
+      "sha256": "ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8",
+      "error": 0.077038
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/warning_triangle_dark.svg",
+      "sha256": "e1746d6937db78115fcd8e1f80a71943cb6615561e326bebe2605139a886cce5",
+      "error": 0.203443
+    },
+    {
+      "path": "manual_sources/JE-1000F/EU/en-fr/2.0/phase2/_attachments/symbols/4_battery_charging_WIeDb0QIoo4eSbxUDoDcCV3fn8c.png",
+      "sha256": "dc89195f3ece3d0d821c3901a645a737360d68c4629d0f3a4a792511edba5425",
+      "error": 0.215961
+    },
+    {
+      "path": "manual_sources/JE-1000F/EU/en-fr/2.0/phase2/_attachments/symbols/5_explosive_material_Zkz9b74mDoSXlZx8jJwcbLErnge.png",
+      "sha256": "cb30b49051857ba566fe6e8caa4190b39f584f7585bd595d97a99a04db3ebe2d",
+      "error": 0.217773
+    },
+    {
+      "path": "manual_sources/JE-1000F/EU/en-fr/2.0/phase2/_attachments/symbols/6_heavy_object_IGFubhmSFowSsoxFCIdcgW7lnUd.png",
+      "sha256": "6b991847e3f8cf40f77f04af996215acbd7ba9a37c481745d167c91cf1df9f7e",
+      "error": 0.219092
+    }
+  ],
+  "assets/symbol_battery_charging.svg": [
+    {
+      "path": "manual_sources/JBP-3600A/EU/git-20261003-44b6ce61-reviewed/web/en/assets/ir/ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8/symbol_warning.png",
+      "sha256": "ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8",
+      "error": 0.115091
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/warning_triangle_dark.svg",
+      "sha256": "e1746d6937db78115fcd8e1f80a71943cb6615561e326bebe2605139a886cce5",
+      "error": 0.180035
+    },
+    {
+      "path": "manual_sources/JE-1000F/EU/en-fr/2.0/phase2/_attachments/symbols/4_battery_charging_WIeDb0QIoo4eSbxUDoDcCV3fn8c.png",
+      "sha256": "dc89195f3ece3d0d821c3901a645a737360d68c4629d0f3a4a792511edba5425",
+      "error": 0.192553
+    },
+    {
+      "path": "manual_sources/JE-1000F/EU/en-fr/2.0/phase2/_attachments/symbols/5_explosive_material_Zkz9b74mDoSXlZx8jJwcbLErnge.png",
+      "sha256": "cb30b49051857ba566fe6e8caa4190b39f584f7585bd595d97a99a04db3ebe2d",
+      "error": 0.194366
+    },
+    {
+      "path": "manual_sources/JE-1000F/EU/en-fr/2.0/phase2/_attachments/symbols/6_heavy_object_IGFubhmSFowSsoxFCIdcgW7lnUd.png",
+      "sha256": "6b991847e3f8cf40f77f04af996215acbd7ba9a37c481745d167c91cf1df9f7e",
+      "error": 0.195684
+    }
+  ],
+  "assets/symbol_explosive_material.svg": [
+    {
+      "path": "manual_sources/JBP-3600A/EU/git-20261003-44b6ce61-reviewed/web/en/assets/ir/ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8/symbol_warning.png",
+      "sha256": "ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8",
+      "error": 0.173863
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/warning_triangle_dark.svg",
+      "sha256": "e1746d6937db78115fcd8e1f80a71943cb6615561e326bebe2605139a886cce5",
+      "error": 0.176445
+    },
+    {
+      "path": "manual_sources/JE-1000F/EU/en-fr/2.0/phase2/_attachments/symbols/4_battery_charging_WIeDb0QIoo4eSbxUDoDcCV3fn8c.png",
+      "sha256": "dc89195f3ece3d0d821c3901a645a737360d68c4629d0f3a4a792511edba5425",
+      "error": 0.195237
+    },
+    {
+      "path": "manual_sources/JE-1000F/EU/en-fr/2.0/phase2/_attachments/symbols/5_explosive_material_Zkz9b74mDoSXlZx8jJwcbLErnge.png",
+      "sha256": "cb30b49051857ba566fe6e8caa4190b39f584f7585bd595d97a99a04db3ebe2d",
+      "error": 0.195711
+    },
+    {
+      "path": "manual_sources/JE-1000F/EU/en-fr/2.0/phase2/_attachments/symbols/6_heavy_object_IGFubhmSFowSsoxFCIdcgW7lnUd.png",
+      "sha256": "6b991847e3f8cf40f77f04af996215acbd7ba9a37c481745d167c91cf1df9f7e",
+      "error": 0.196827
+    }
+  ],
+  "assets/symbol_heavy_object.svg": [
+    {
+      "path": "manual_sources/JBP-3600A/EU/git-20261003-44b6ce61-reviewed/web/en/assets/ir/ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8/symbol_warning.png",
+      "sha256": "ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8",
+      "error": 0.150041
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/warning_triangle_dark.svg",
+      "sha256": "e1746d6937db78115fcd8e1f80a71943cb6615561e326bebe2605139a886cce5",
+      "error": 0.211946
+    },
+    {
+      "path": "manual_sources/JE-1000F/EU/en-fr/2.0/phase2/_attachments/symbols/4_battery_charging_WIeDb0QIoo4eSbxUDoDcCV3fn8c.png",
+      "sha256": "dc89195f3ece3d0d821c3901a645a737360d68c4629d0f3a4a792511edba5425",
+      "error": 0.230776
+    },
+    {
+      "path": "manual_sources/JE-1000F/EU/en-fr/2.0/phase2/_attachments/symbols/5_explosive_material_Zkz9b74mDoSXlZx8jJwcbLErnge.png",
+      "sha256": "cb30b49051857ba566fe6e8caa4190b39f584f7585bd595d97a99a04db3ebe2d",
+      "error": 0.231249
+    },
+    {
+      "path": "manual_sources/JE-1000F/EU/en-fr/2.0/phase2/_attachments/symbols/6_heavy_object_IGFubhmSFowSsoxFCIdcgW7lnUd.png",
+      "sha256": "6b991847e3f8cf40f77f04af996215acbd7ba9a37c481745d167c91cf1df9f7e",
+      "error": 0.232366
+    }
+  ],
+  "assets/symbol_do_not_dismantle.svg": [
+    {
+      "path": "docs/_build/JE-1000F/JP/rst/_assets/templates/word_template/common_assets/symbols/battery_recycle.png",
+      "sha256": "434d0907250f36a8c8ee800aaa327a8bbcb7ffcffef58b09c63d64520edc5cdd",
+      "error": 0.380032
+    },
+    {
+      "path": "manual_sources/JBP-3600A/EU/git-20261003-44b6ce61-reviewed/web/en/assets/ir/6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5/symbol_weee.png",
+      "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+      "error": 0.381522
+    },
+    {
+      "path": "manual_sources/JE-3000C/EU/en/2.0/phase2/_attachments/symbols/11_weee_WGswbCb5zoaeDSxlHvyc5rFXn7g.png",
+      "sha256": "7e4de290ea13b86bd50fbb209b4510116116d4fb403b7ef4f83cf1c1db873989",
+      "error": 0.388563
+    },
+    {
+      "path": "docs/_build/JE-1000F/JP/rst/_assets/templates/word_template/common_assets/symbols/weee.png",
+      "sha256": "e9fc75301b8ab2d31f1c1095ee3a87d244e8596a0a9e94bb5e792b36667250db",
+      "error": 0.388563
+    },
+    {
+      "path": "manual_sources/JBP-3600A/EU/git-20261003-44b6ce61-reviewed/web/en/assets/ir/f3e73715b8d162d565997f94284fa374a51252d3ada90f88f39381d22b1796e8/symbol_dismantle.png",
+      "sha256": "f3e73715b8d162d565997f94284fa374a51252d3ada90f88f39381d22b1796e8",
+      "error": 0.392747
+    }
+  ],
+  "assets/symbol_no_open_flame.svg": [
+    {
+      "path": "manual_sources/JBP-3600A/EU/native-0924/review/transparent-symbol-r1/inputs/hte152-x8/verification-12x.png",
+      "sha256": "4b257058d4897dc5a7f753fd256463de156d4f0e8ec5b7228ad930972a27574b",
+      "error": 0.380845
+    },
+    {
+      "path": "manual_sources/JBP-3600A/EU/native-0924/review/transparent-symbol-r1/inputs/hte152-x8/connected-batteries-x8-transparent.png",
+      "sha256": "81983db46972ddbd56bfd4dbd97ff16629d3179eeb710727a2a0fb518c111dc3",
+      "error": 0.382274
+    },
+    {
+      "path": "manual_sources/JBP-3600A/EU/native-0924/review/transparent-symbol-r1/inputs/hte152-x8/connected-batteries-x8-transparent.svg",
+      "sha256": "7280b724ebf5aa6536503ea0f49ef443f7cdb4c2dd472163f6d5cc1ecd4e4f95",
+      "error": 0.382348
+    },
+    {
+      "path": "docs/_build/JE-1000F/JP/rst/_assets/templates/word_template/common_assets/symbols/battery_recycle.png",
+      "sha256": "434d0907250f36a8c8ee800aaa327a8bbcb7ffcffef58b09c63d64520edc5cdd",
+      "error": 0.387727
+    },
+    {
+      "path": "manual_sources/JE-3000C/EU/three-language/git-20261001-45219a6e-native-web/web/nl/assets/5bb172a98c92_symbol-keep_away_from_fire.png",
+      "sha256": "5bb172a98c923d9688e9260db6d27a5cbe26d7dd39ed17adff5b340c02cdcc90",
+      "error": 0.389766
+    }
+  ],
+  "assets/symbol_keep_away_from_children.svg": [
+    {
+      "path": "docs/_build/JE-1000F/JP/rst/_assets/templates/word_template/common_assets/symbols/prohibited.png",
+      "sha256": "4bbbd7aa8e76674281f94e3d65ff4aa85a7e93fb5638cadf175d17b1f8afa697",
+      "error": 0.379121
+    },
+    {
+      "path": "docs/_build/JE-1000F/JP/rst/_assets/templates/word_template/common_assets/symbols/battery_recycle.png",
+      "sha256": "434d0907250f36a8c8ee800aaa327a8bbcb7ffcffef58b09c63d64520edc5cdd",
+      "error": 0.379383
+    },
+    {
+      "path": "manual_sources/JE-3000C/EU/three-language/git-20261001-45219a6e-native-web/web/nl/assets/e36930ae4711_symbol-read_manual.png",
+      "sha256": "e36930ae47111aed8e3024f886e4a5840c38d44a728be6a2bf971049f201c79e",
+      "error": 0.379732
+    },
+    {
+      "path": "manual_sources/JE-3000C/EU/three-language/git-20261001-45219a6e-native-web/web/nl/assets/2c7663a3294d_symbol-do_not_disassemble.png",
+      "sha256": "2c7663a3294d2f73c14f7bc17a6eefdd04414495f76dbe0e76b893f11c0f919f",
+      "error": 0.381879
+    },
+    {
+      "path": "docs/_build/JE-1000F/JP/rst/_assets/templates/word_template/common_assets/symbols/do_not_dismantle.png",
+      "sha256": "908c33c16c067b87c1b1dc5d6663f159ed88146bbb34b9cdbcfd172a59f9058c",
+      "error": 0.382404
+    }
+  ],
+  "assets/symbol_li_ion.svg": [
+    {
+      "path": "manual_sources/JBP-3600A/EU/git-20261003-44b6ce61-reviewed/web/en/assets/ir/81c8856189a40c97bad96998b51131030f8ce01652183fe9ef19655a09acb804/symbol_li_ion.png",
+      "sha256": "81c8856189a40c97bad96998b51131030f8ce01652183fe9ef19655a09acb804",
+      "error": 0.104855
+    },
+    {
+      "path": "docs/_build/JE-1000F/JP/rst/_assets/templates/word_template/common_assets/symbols/battery_recycle.png",
+      "sha256": "434d0907250f36a8c8ee800aaa327a8bbcb7ffcffef58b09c63d64520edc5cdd",
+      "error": 0.20474
+    },
+    {
+      "path": "manual_sources/JE-3000C/EU/three-language/git-20261001-45219a6e-native-web/web/nl/assets/e36930ae4711_symbol-read_manual.png",
+      "sha256": "e36930ae47111aed8e3024f886e4a5840c38d44a728be6a2bf971049f201c79e",
+      "error": 0.21107
+    },
+    {
+      "path": "manual_sources/JE-3000C/EU/three-language/git-20261001-45219a6e-native-web/web/nl/assets/40529e39bab8_symbol-weee.png",
+      "sha256": "40529e39bab80505522965d934be95e94c03e2ac6a56f7d6208ddfec6b19d8d7",
+      "error": 0.216237
+    },
+    {
+      "path": "manual_sources/JE-3000C/EU/three-language/git-20261001-45219a6e-native-web/web/nl/assets/11f1a73a4cb5_symbol-lithium_battery.png",
+      "sha256": "11f1a73a4cb5b6c4ec69a51f71f3f16480fd792c61882135ee77569f78b192b8",
+      "error": 0.216468
+    }
+  ],
+  "assets/symbol_weee.svg": [
+    {
+      "path": "manual_sources/JBP-3600A/EU/git-20261003-44b6ce61-reviewed/web/en/assets/ir/6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5/symbol_weee.png",
+      "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+      "error": 0.016987
+    },
+    {
+      "path": "manual_sources/JE-3000C/EU/en/2.0/phase2/_attachments/symbols/11_weee_WGswbCb5zoaeDSxlHvyc5rFXn7g.png",
+      "sha256": "7e4de290ea13b86bd50fbb209b4510116116d4fb403b7ef4f83cf1c1db873989",
+      "error": 0.024859
+    },
+    {
+      "path": "docs/_build/JE-1000F/JP/rst/_assets/templates/word_template/common_assets/symbols/weee.png",
+      "sha256": "e9fc75301b8ab2d31f1c1095ee3a87d244e8596a0a9e94bb5e792b36667250db",
+      "error": 0.094371
+    },
+    {
+      "path": "docs/_build/JE-1000F/JP/rst/_assets/templates/word_template/common_assets/symbols/battery_recycle.png",
+      "sha256": "434d0907250f36a8c8ee800aaa327a8bbcb7ffcffef58b09c63d64520edc5cdd",
+      "error": 0.172817
+    },
+    {
+      "path": "manual_sources/JE-3000C/EU/three-language/git-20261001-45219a6e-native-web/web/nl/assets/e36930ae4711_symbol-read_manual.png",
+      "sha256": "e36930ae47111aed8e3024f886e4a5840c38d44a728be6a2bf971049f201c79e",
+      "error": 0.17806
+    }
+  ]
+}

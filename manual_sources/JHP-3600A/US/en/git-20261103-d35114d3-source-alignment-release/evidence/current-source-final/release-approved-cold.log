@@ -1,0 +1,18 @@
+{
+  "output": "/private/tmp/manual-web-audit-20261102/jhp3600a-review/release-approved-cold",
+  "chapters": 22,
+  "components": {
+    "HB-CALLOUT-STRIP": 18,
+    "HB-SPECIAL-APP": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE": 19,
+    "HB-TABLE-KEY-COMBINATIONS": 1,
+    "HB-TABLE-LCD-ICON": 2,
+    "HB-TABLE-LCD-MODE": 1,
+    "HB-TABLE-SPEC": 4,
+    "HB-TABLE-SYMBOL-ICON": 1,
+    "HB-TABLE-TROUBLESHOOTING": 1,
+    "HB-WARRANTY-LEAD": 1,
+    "HB-WARRANTY-SECTION": 5,
+    "HB-WARRANTY-YEARS": 1
+  }
+}

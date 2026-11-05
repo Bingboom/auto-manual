@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ns1="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="23.5" height="23.0" viewBox="27.5 245.0 23.5 23.0"><defs>
+<clipPath id="clip_1">
+<path transform="matrix(1,0,0,-1,0,524.409)" d="M0 524.409H368.504V0H0Z" />
+</clipPath>
+<clipPath id="clip_2">
+<path transform="matrix(1,0,0,-1,0,524.409)" d="M0 524.409H368.504V0H0Z" />
+</clipPath>
+<clipPath id="clip_3">
+<path transform="matrix(1,0,0,-1,0,524.409)" d="M0 524.409H368.504V0H0Z" />
+</clipPath>
+<clipPath id="clip_4">
+<path transform="matrix(1,0,0,-1,0,524.409)" d="M0 524.409H368.504V0H0Z" />
+</clipPath>
+<clipPath id="clip_5">
+<path transform="matrix(1,0,0,-1,0,524.409)" d="M0 524.409H368.504V0H0Z" />
+</clipPath>
+<clipPath id="clip_6">
+<path transform="matrix(1,0,0,-1,0,524.409)" d="M0 524.409H368.504V0H0Z" />
+</clipPath>
+<clipPath id="clip_7">
+<path transform="matrix(1,0,0,-1,0,524.409)" d="M0 524.409H368.504V0H0Z" />
+</clipPath>
+<clipPath id="clip_8">
+<path transform="matrix(1,0,0,-1,0,524.409)" d="M0 524.409H368.504V0H0Z" />
+</clipPath>
+<clipPath id="clip_9">
+<path transform="matrix(1,0,0,-1,0,524.409)" d="M0 524.409H368.504V0H0Z" />
+</clipPath>
+<clipPath id="clip_10">
+<path transform="matrix(1,0,0,-1,0,524.409)" d="M0 524.409H368.504V0H0Z" />
+</clipPath>
+<clipPath id="clip_11">
+<path transform="matrix(1,0,0,-1,0,524.409)" d="M0 524.409H368.504V0H0Z" />
+</clipPath>
+<clipPath id="clip_12">
+<path transform="matrix(1,0,0,-1,0,524.409)" d="M0 524.409H368.504V0H0Z" />
+</clipPath>
+<clipPath id="clip_13">
+<path transform="matrix(1,0,0,-1,0,524.409)" d="M0 524.409H368.504V0H0Z" />
+</clipPath>
+<clipPath id="clip_14">
+<path transform="matrix(1,0,0,-1,0,524.409)" d="M0 524.409H368.504V0H0Z" />
+</clipPath>
+<clipPath id="clip_15">
+<path transform="matrix(1,0,0,-1,0,524.409)" d="M0 524.409H368.504V0H0Z" />
+</clipPath>
+<clipPath id="clip_16">
+<path transform="matrix(1,0,0,-1,0,524.409)" d="M0 524.409H368.504V0H0Z" />
+</clipPath>
+<clipPath id="clip_17">
+<path transform="matrix(1,0,0,-1,0,524.409)" d="M0 524.409H368.504V0H0Z" />
+</clipPath>
+<clipPath id="clip_18">
+<path transform="matrix(1,0,0,-1,0,524.409)" d="M0 524.409H368.504V0H0Z" />
+</clipPath>
+<clipPath id="clip_19">
+<path transform="matrix(1,0,0,-1,0,524.409)" d="M0 524.409H368.504V0H0Z" />
+</clipPath>
+<clipPath id="clip_20">
+<path transform="matrix(1,0,0,-1,0,524.409)" d="M45.449 204.878V202.248H43.07V204.878H42.193V198.711H43.07V201.51H45.449V198.711H46.322V204.878Z" />
+</clipPath>
+<clipPath id="clip_21">
+<path transform="matrix(1,0,0,-1,0,524.409)" d="M0 524.409H368.504V0H0Z" />
+</clipPath>
+<clipPath id="clip_22">
+<path transform="matrix(1,0,0,-1,0,524.409)" d="M0 524.409H368.504V0H0Z" />
+</clipPath>
+</defs>
+<g><g ns1:groupmode="layer" ns1:label="图层 1"><g clip-path="url(#clip_16)"><path transform="matrix(1,0,0,-1,39.4781,245.5539)" d="M0 0C2.178-.053 4.195-.751 5.872-1.908L5.275-2.729C3.766-1.694 1.955-1.068 0-1.015ZM-.541-1.015C-2.496-1.068-4.309-1.694-5.817-2.729L-6.413-1.907C-4.738-.751-2.719-.053-.541 0ZM-6.254-3.047C-7.734-4.187-8.879-5.741-9.517-7.534L-10.482-7.22C-9.777-5.22-8.502-3.491-6.852-2.226ZM-9.684-8.048C-9.942-8.928-10.082-9.859-10.082-10.822-10.082-11.786-9.942-12.716-9.684-13.596L-10.649-13.91C-10.94-12.932-11.097-11.895-11.097-10.822-11.097-9.75-10.94-8.714-10.649-7.735ZM-9.517-14.112C-8.879-15.904-7.734-17.457-6.254-18.597L-6.85-19.419C-8.502-18.154-9.777-16.424-10.482-14.425ZM6.309-2.226C7.96-3.492 9.235-5.221 9.941-7.22L8.974-7.534C8.338-5.741 7.192-4.188 5.713-3.047ZM10.108-7.735C10.399-8.714 10.555-9.75 10.555-10.822 10.555-11.895 10.399-12.932 10.108-13.91L9.142-13.596C9.401-12.716 9.54-11.786 9.54-10.822 9.54-9.859 9.401-8.928 9.142-8.048ZM9.941-14.425C9.235-16.424 7.96-18.154 6.309-19.419L5.713-18.598C7.192-17.458 8.338-15.905 8.976-14.112ZM5.872-19.737C4.196-20.895 2.178-21.592 0-21.644V-20.629C1.955-20.576 3.766-19.952 5.275-18.915ZM-.541-21.644C-2.719-21.592-4.738-20.895-6.413-19.737L-5.817-18.915C-4.309-19.952-2.496-20.576-.541-20.629Z" fill="#454546" fill-rule="evenodd" />
+</g></g></g></svg>

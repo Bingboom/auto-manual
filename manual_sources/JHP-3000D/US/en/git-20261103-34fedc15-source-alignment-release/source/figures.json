@@ -1,0 +1,191 @@
+[
+  {
+    "id": "inbox-main",
+    "page": 6,
+    "bbox": [
+      43,
+      308,
+      130,
+      381
+    ],
+    "removed_caption_probes": []
+  },
+  {
+    "id": "overview",
+    "page": 7,
+    "bbox": [
+      27,
+      89,
+      343,
+      438
+    ],
+    "removed_caption_probes": []
+  },
+  {
+    "id": "lcd-map",
+    "page": 8,
+    "bbox": [
+      40,
+      52,
+      325,
+      196
+    ],
+    "removed_caption_probes": []
+  },
+  {
+    "id": "power",
+    "page": 10,
+    "bbox": [
+      27,
+      72,
+      342,
+      240
+    ],
+    "removed_caption_probes": [
+      [
+        320,
+        169,
+        321,
+        170
+      ],
+      [
+        320,
+        211,
+        321,
+        212
+      ],
+      [
+        178,
+        143,
+        179,
+        144
+      ]
+    ]
+  },
+  {
+    "id": "ac-output",
+    "page": 10,
+    "bbox": [
+      27,
+      268,
+      342,
+      480
+    ],
+    "removed_caption_probes": [
+      [
+        158,
+        280,
+        159,
+        281
+      ],
+      [
+        325,
+        455,
+        326,
+        456
+      ]
+    ]
+  },
+  {
+    "id": "dc-output",
+    "page": 11,
+    "bbox": [
+      28,
+      43,
+      342,
+      201
+    ],
+    "removed_caption_probes": [
+      [
+        160,
+        55,
+        161,
+        56
+      ]
+    ]
+  },
+  {
+    "id": "energy",
+    "page": 12,
+    "bbox": [
+      28,
+      124,
+      342,
+      222
+    ],
+    "removed_caption_probes": []
+  },
+  {
+    "id": "lcd-button",
+    "page": 12,
+    "bbox": [
+      48,
+      289,
+      294,
+      370
+    ],
+    "removed_caption_probes": []
+  },
+  {
+    "id": "ups",
+    "page": 13,
+    "bbox": [
+      27,
+      301,
+      342,
+      427
+    ],
+    "removed_caption_probes": []
+  },
+  {
+    "id": "ac-charge",
+    "page": 14,
+    "bbox": [
+      27,
+      235,
+      342,
+      367
+    ],
+    "removed_caption_probes": []
+  },
+  {
+    "id": "solar",
+    "page": 15,
+    "bbox": [
+      27,
+      77,
+      342,
+      254
+    ],
+    "removed_caption_probes": []
+  },
+  {
+    "id": "car",
+    "page": 16,
+    "bbox": [
+      28,
+      62,
+      342,
+      210
+    ],
+    "removed_caption_probes": [
+      [
+        328,
+        190,
+        329,
+        191
+      ]
+    ]
+  },
+  {
+    "id": "app-control",
+    "page": 20,
+    "bbox": [
+      33,
+      383,
+      336,
+      452
+    ],
+    "removed_caption_probes": []
+  }
+]

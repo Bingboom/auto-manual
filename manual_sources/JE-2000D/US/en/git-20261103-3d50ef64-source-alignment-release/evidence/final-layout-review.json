@@ -1,0 +1,542 @@
+{
+  "model": "JE-2000D",
+  "record_id": "reczz28SlRGJhr8p",
+  "status": "local_review_passed",
+  "source_sha256": "3d50ef6490217a0893119567ef0d276f40b23d45e52e51560e97f724b6ca8c77",
+  "whole_document_source_pages": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+  ],
+  "whole_body_visual": {
+    "method": "1300px sequential viewport tiles, no fullPage screenshot; final changed components independently recaptured at 1280 and 390px",
+    "tile_audit": {
+      "tiles": [
+        {
+          "tile": 0,
+          "scroll": 9,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        },
+        {
+          "tile": 1,
+          "scroll": 1259,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        },
+        {
+          "tile": 2,
+          "scroll": 2509,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        },
+        {
+          "tile": 3,
+          "scroll": 3759,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        },
+        {
+          "tile": 4,
+          "scroll": 5009,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        },
+        {
+          "tile": 5,
+          "scroll": 6259,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        },
+        {
+          "tile": 6,
+          "scroll": 7509,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        },
+        {
+          "tile": 7,
+          "scroll": 8759,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        },
+        {
+          "tile": 8,
+          "scroll": 10009,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        },
+        {
+          "tile": 9,
+          "scroll": 11259,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        },
+        {
+          "tile": 10,
+          "scroll": 12509,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        },
+        {
+          "tile": 11,
+          "scroll": 13759,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        },
+        {
+          "tile": 12,
+          "scroll": 15009,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        },
+        {
+          "tile": 13,
+          "scroll": 16011,
+          "x": 392,
+          "width": 736,
+          "height": 1300
+        }
+      ],
+      "request_failures": [],
+      "background_images": []
+    }
+  },
+  "scope": "Original body only; front cover and paper TOC excluded; back contact/QR retained",
+  "differences_review": [
+    {
+      "old_item": 1,
+      "old_statement": "Cover (physical 1), the paper CONTENTS page (physical 2) and the back cover (physical 14: JACKERY INC. address, contact line, QR) are not on the Web page; the running US tabs and printed page numbers are dropped.",
+      "current_source": "p1 cover; p2 paper contents; p14 contact/QR",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Exclude front cover and paper TOC; preserve complete native back contact and own QR"
+    },
+    {
+      "old_item": 2,
+      "old_statement": "The p01 section band (US English / Model: JE-2000D) is a shared hb-text-panel before the intro paragraphs.",
+      "current_source": "p3 US English / model band and intro",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Native model/language and all introduction text retained; paper tab/folio not repeated"
+    },
+    {
+      "old_item": 3,
+      "old_statement": "The TECHNICAL SPECIFICATIONS heading is the HB-TABLE-SPEC section title (the shared spec carrier draws it as the chapter h2). The DC Input value's two print lines are one wrapped value.",
+      "current_source": "p3 technical table and multiline DC values",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Native complete table and source line groups retained"
+    },
+    {
+      "old_item": 4,
+      "old_statement": "CERTIFICATIONS marks are three images in one paragraph (FCC and WEEE shared catalog files, BC the JE-1000D US native file); the p08 FCC mark is its own native paths.",
+      "current_source": "p3 CERTIFICATIONS heading beside three original marks",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Restore same-row grouping; replace previous shared/borrowed marks with unaltered crop of this exact source strip; original FCC mark later remains"
+    },
+    {
+      "old_item": 5,
+      "old_statement": "PACKAGE LIST ①–③ become the numbered cards of HB-SPECIAL-INBOX; the shared component draws the numbers.",
+      "current_source": "p3 three numbered package items",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "All three own drawings and exact labels retained"
+    },
+    {
+      "old_item": 6,
+      "old_statement": "The ①–⑲ LCD legend printed in three columns across p02/p03 is one HB-TABLE-REFERENCE/lcd-descriptions list in number order.",
+      "current_source": "p4-5 19-entry three-column LCD legend",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Native numbered legend restored to three row-major columns; source icons stay left of their original bold heading and body, not separate title/body columns. Shared theme typography/borders and responsive wraps are Web carrier differences."
+    },
+    {
+      "old_item": 7,
+      "old_statement": "Each LCD description block (icon, bold title, text) becomes a row of HB-TABLE-LCD-ICON (unnumbered), in printed order, in two tables (p03 and p04 groups) with the Energy Saving Mode table and its on/off instructions between them as printed.",
+      "current_source": "p5-6 LCD descriptions around energy table",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Native original icon/heading/body pairing and original block sequence retained"
+    },
+    {
+      "old_item": 8,
+      "old_statement": "The Energy Saving Mode table keeps its printed Defaults cell spanning the three port rows (declared plain table).",
+      "current_source": "p5 Energy Saving Mode Defaults span",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Source merged Defaults cell still spans all three output rows"
+    },
+    {
+      "old_item": 9,
+      "old_statement": "Bold run-in titles printed in the small bold style (UPS:, To turn off/on the Energy Saving Mode, LCD Screen On/Off, LCD is off automatically, Emergency Charging Mode, SAVE THESE INSTRUCTIONS) stay bold paragraphs; section headings printed in the larger style are h3.",
+      "current_source": "p4-9 bold run-in operation and charging headings",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Native original bold run-ins retained; Charging via headings maintain meaningful Web navigation hierarchy"
+    },
+    {
+      "old_item": 10,
+      "old_statement": "The WARNING: / DANGER: run-in notices (p08) and the Remarks: notes (p10, p11) become HB-CALLOUT-STRIP warning / danger / note. The shared strip shows the signal word without its printed trailing colon (callout label normalisation, as in the JE-1000D editions); the words are unchanged. The ※ not-waterproof line after DANGER stays a plain paragraph.",
+      "current_source": "p10 warning/danger, p12-13 remarks and 1000D caution blocks",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Restore printed trailing colons and native run-in paragraph/list layout; all source copy retained"
+    },
+    {
+      "old_item": 11,
+      "old_statement": "Bullet glyphs (·, grey dots) are list markers of shared lists. The a)–m) safety items keep their printed letters as text in one paragraph each.",
+      "current_source": "p9-10 numbered/lettered safety and operating items",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "All printed letters/numbers retained; native list marker reflow only"
+    },
+    {
+      "old_item": 12,
+      "old_statement": "The Note: 1./2. charging notes, *-prefixed notes and Tip: stay plain paragraphs as printed (no frame in the print). The bold weight of the leading asterisks is not reproduced.",
+      "current_source": "p6-13 Note:/Tip: and leading asterisk paragraphs",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Keep original plain paragraphs and exact prefix text; restore bold leading asterisks for 2000D"
+    },
+    {
+      "old_item": 13,
+      "old_statement": "The 2.1 「+」 add-device glyph is native text in HB-SPECIAL-APP/inline-control.",
+      "current_source": "p12 add-device + control",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Native bold + glyph retained with full step text"
+    },
+    {
+      "old_item": 14,
+      "old_statement": "Figure captions and leader labels printed inside panels stay in the panel art and are carried as alt text and IR metadata, not repeated as visible text. The Emergency Charging note printed beside the AC charging drawing is a paragraph before the figure.",
+      "current_source": "p3-8 and p12-13 original artwork",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Original complete panels/leader labels retained; p7 emergency charging note restored beside AC illustration"
+    },
+    {
+      "old_item": 15,
+      "old_statement": "Warranty sections (including Interpretation Rights) are h3 headings with paragraphs (the print draws no cards). Download the Jackery Mobile App is an h3 followed by the complete badge pair.",
+      "current_source": "p11 warranty and App download badges",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Exact warranty sections remain native heading/paragraphs; original badge pair retained"
+    },
+    {
+      "old_item": 16,
+      "old_statement": "On phones, the overview and LCD map pan sideways inside the figure; the LCD description and Energy Saving Mode tables scroll inside the shared table wrapper.",
+      "current_source": "Wide original overview/LCD/art and native tables",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Phone local scroll and source association retained without document overflow"
+    },
+    {
+      "old_item": 17,
+      "old_statement": "Encoding of the outlined print: U+2393 ⎓ for the DC symbol, U+00D7 × only where the raised multiplication sign is printed, U+00B0 for every degree sign, U+FF0C / U+FF1A for the printed full-width comma (DANGER) and colon (4.3), curly or straight quotes as printed. Multiple spaces visible in the print are kept in the transcription; HTML displays them as one.",
+      "current_source": "Source glyphs, ligatures, DC symbol, superscripts and full-width punctuation",
+      "approval": "No approval inferred from old layout declaration; current explicit cover exclusion governs scope",
+      "disposition": "Native encoding follows visible source; ligatures expand to equivalent letters; source spacing and punctuation otherwise retained"
+    }
+  ],
+  "bidirectional_native": {
+    "model": "JE-2000D",
+    "source_to_web_missing": [],
+    "web_to_source_candidates": [],
+    "native_elements_checked": 228,
+    "source_line_count": 275
+  },
+  "reverse_source_check": {
+    "transcribed_lines": 275,
+    "exact_source_ocr_char_coverage": 270,
+    "visually_resolved": [
+      {
+        "page": 3,
+        "id": "spec.r5.v",
+        "source_text": "Around 39.5 lbs / 17.9 kg",
+        "web_text": "Around 39.5 lbs / 17.9 kg",
+        "source_locator": "original PDF physical p3 / source/transcription.json#spec.r5.v",
+        "web_locator": "source/en/content.json bound from transcription #spec.r5.v",
+        "decision": "p3 Weight visibly confirms Around 39.5 lbs / 17.9 kg"
+      },
+      {
+        "page": 6,
+        "id": "lcd.d12.b",
+        "source_text": "In order to respond to the feedback quickly, we set up common fault codes F0-FE in the system: If the F8 code appears, please remove the load or unplug the charging plug, the product can restore by itself, if not, please contact after-sales service; If the F9 code appears, please remove the load and the product can recover by itself, if not, please contact after-sales service. In case of any other code appears, please contact our after-sales service.",
+        "web_text": "In order to respond to the feedback quickly, we set up common fault codes F0-FE in the system: If the F8 code appears, please remove the load or unplug the charging plug, the product can restore by itself, if not, please contact after-sales service; If the F9 code appears, please remove the load and the product can recover by itself, if not, please contact after-sales service. In case of any other code appears, please contact our after-sales service.",
+        "source_locator": "original PDF physical p6 / source/transcription.json#lcd.d12.b",
+        "web_locator": "source/en/content.json bound from transcription #lcd.d12.b",
+        "decision": "p6 source fault-code block confirms F0-FE, F8/F9 and full recovery/support text"
+      },
+      {
+        "page": 7,
+        "id": "fig.led.m1",
+        "source_text": "1. Low Light mode",
+        "web_text": "1. Low Light mode",
+        "source_locator": "original PDF physical p7 / source/transcription.json#fig.led.m1",
+        "web_locator": "source/en/content.json bound from transcription #fig.led.m1",
+        "decision": "p7 own LED artwork shows circled 1. Low Light mode; exact source image retained"
+      },
+      {
+        "page": 7,
+        "id": "fig.led.m2",
+        "source_text": "2. High Light mode",
+        "web_text": "2. High Light mode",
+        "source_locator": "original PDF physical p7 / source/transcription.json#fig.led.m2",
+        "web_locator": "source/en/content.json bound from transcription #fig.led.m2",
+        "decision": "p7 own LED artwork shows circled 2. High Light mode; exact source image retained"
+      },
+      {
+        "page": 7,
+        "id": "fig.led.m3",
+        "source_text": "3. SOS mode",
+        "web_text": "3. SOS mode",
+        "source_locator": "original PDF physical p7 / source/transcription.json#fig.led.m3",
+        "web_locator": "source/en/content.json bound from transcription #fig.led.m3",
+        "decision": "p7 own LED artwork shows circled 3. SOS mode; exact source image retained"
+      }
+    ]
+  },
+  "source_notes": [
+    "Original source LiFePO4 is normal-baseline 4 in the specification; retain as printed rather than inventing a subscript.",
+    "The exact current PDF source has been compared bidirectionally with every transcribed body/contact line; no legacy extra paragraph found."
+  ],
+  "browser": [
+    {
+      "width": 1280,
+      "images": 25,
+      "broken": [],
+      "uncontained": [],
+      "document": {
+        "viewport": 1280,
+        "width": 1280,
+        "cover": 0
+      },
+      "layouts": [
+        {
+          "key": "inbox",
+          "columns": "auto",
+          "grid": "none",
+          "rectWidth": 657.21875
+        },
+        {
+          "key": "lcd",
+          "columns": "auto",
+          "grid": "none",
+          "rectWidth": 657.21875
+        },
+        {
+          "key": "certifications",
+          "columns": "auto",
+          "grid": "249.734px 391.484px",
+          "rectWidth": 657.21875
+        },
+        {
+          "key": "charging",
+          "columns": "auto",
+          "grid": "315.453px 325.766px",
+          "rectWidth": 657.21875
+        },
+        {
+          "key": "back",
+          "columns": "auto",
+          "grid": "545.219px 96px",
+          "rectWidth": 657.21875
+        }
+      ],
+      "request_failures": [],
+      "background_images": []
+    },
+    {
+      "width": 390,
+      "images": 25,
+      "broken": [],
+      "uncontained": [],
+      "document": {
+        "viewport": 390,
+        "width": 390,
+        "cover": 0
+      },
+      "layouts": [
+        {
+          "key": "inbox",
+          "columns": "auto",
+          "grid": "none",
+          "rectWidth": 358
+        },
+        {
+          "key": "lcd",
+          "columns": "auto",
+          "grid": "none",
+          "rectWidth": 358
+        },
+        {
+          "key": "certifications",
+          "columns": "auto",
+          "grid": "358px",
+          "rectWidth": 358
+        },
+        {
+          "key": "charging",
+          "columns": "auto",
+          "grid": "358px",
+          "rectWidth": 358
+        },
+        {
+          "key": "back",
+          "columns": "auto",
+          "grid": "246px 96px",
+          "rectWidth": 358
+        }
+      ],
+      "request_failures": [],
+      "background_images": []
+    }
+  ],
+  "remaining_source_or_layout_issues": [],
+  "acceptance_basis": "Whole-body original-source, bidirectional native-copy and desktop/mobile review by agent under delegated local acceptance. No personal operator visual approval or release/deployment approval inferred.",
+  "build": {
+    "strict_sphinx": "passed -n -W --keep-going",
+    "source_integrity": "all manifest input hashes verified",
+    "publication_status": "candidate-pending-operator-review",
+    "candidate_rebuild_markdown_equals_strict_sphinx_verified_render": true,
+    "candidate_css_art_equals_strict_sphinx_verified_render": true,
+    "byte_identical_render_files": [
+      {
+        "path": "manual_je2000d_us_en.md",
+        "sha256": "580f72669fc50294fa6ae05f830df036f8d62e4f8e455f5d10f779776f817c8d"
+      },
+      {
+        "path": "index.md",
+        "sha256": "68390d9e50b86171622b1ec20c2bfeb6a8a5da6527566959ba1623ba68b6ff33"
+      },
+      {
+        "path": "_static/source_geometry.css",
+        "sha256": "ef1718021aba30e4710afc12ab161d0f3cb3a3060241c45d32a43d37e6afbf77"
+      },
+      {
+        "path": "_static/web_manual.css",
+        "sha256": "c3604a2e5f22b04bc745bb99cf203b50e60222af70c0aeba3d968cc28adac9ce"
+      },
+      {
+        "path": "assets/lcd-map.png",
+        "sha256": "3e8df5af53365166366aa389e866c0237703d6d93058f0fc6dfdc58b085ae386"
+      },
+      {
+        "path": "assets/cert-weee.png",
+        "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5"
+      },
+      {
+        "path": "assets/car-charge.png",
+        "sha256": "f13520e6de3c99e6a3dee534ea0cb2eb6a6ac063937bb7ab1801478c592f4623"
+      },
+      {
+        "path": "assets/cert-fcc-p08.svg",
+        "sha256": "07da45b1af2a40a62851983eb5efc5d7d943c087de4be06f8ebe0f574f937086"
+      },
+      {
+        "path": "assets/app-control.png",
+        "sha256": "5bf4ae40d97edb0f84abf2487c83ba8551a7977a0458068fe14c1406b4831f73"
+      },
+      {
+        "path": "assets/lcd-quiet-charging.svg",
+        "sha256": "dccb6bc2b23dff5b753983cd09ce60dff97bbda86849577ef2e870a8d3103416"
+      },
+      {
+        "path": "assets/app-add.png",
+        "sha256": "77d7c4778d280176acd7c8284137d927c05c4024477aeb0a636382664dc402d8"
+      },
+      {
+        "path": "assets/lcd-fault-code.svg",
+        "sha256": "b472f7eea89a7c44a3c5111c0deecbc812611af94c01c3c1e9ce2459f9ea3478"
+      },
+      {
+        "path": "assets/lcd-energy-saving.svg",
+        "sha256": "da1280908ce873d8452b480e7e8700c7cb378cf00dcaf26b048e3f515dec647e"
+      },
+      {
+        "path": "assets/ac-charge.png",
+        "sha256": "8074545813eacb0830c663b494a8c0b56fd191713c9924e718516de111baae0d"
+      },
+      {
+        "path": "assets/led-modes.png",
+        "sha256": "4a95ee08a9c91876eb509de4269953e12be810414391e1c602173071143a55bc"
+      },
+      {
+        "path": "assets/lcd-low-battery.svg",
+        "sha256": "d5019853534148f388bad51234caf2f5d504a9f15e7ed3e0c0a5a034a4c0bfe8"
+      },
+      {
+        "path": "assets/overview.png",
+        "sha256": "e438f80514b4ac161dc212db151a408bf0a5303aaaf91ca78283d2ad317d78ff"
+      },
+      {
+        "path": "assets/cert-source-strip.png",
+        "sha256": "0ad08134935e41fdbcd76aa6f59914d6dbdc71c548ca7864a49dc604f559eab5"
+      },
+      {
+        "path": "assets/app-results.png",
+        "sha256": "74e2b1706865b2288ac14450022385f5ee3c368bff72504619010b4476bea963"
+      },
+      {
+        "path": "assets/inbox-unit.png",
+        "sha256": "da1b199916d19cd7dce1296793939330b186721e80cb3665938189605565c538"
+      },
+      {
+        "path": "assets/lcd-battery-ring.svg",
+        "sha256": "4985a6c6ac02a25ff36c381ea7adda43e5ccbc4629f6a6026c259d9c7159816b"
+      },
+      {
+        "path": "assets/cert-fcc.svg",
+        "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+      },
+      {
+        "path": "assets/back-contact-qr.png",
+        "sha256": "da71703b097dda3ebe641d58407ed992e1d94abdb2253dc6b95b7916bbdfbcc5"
+      },
+      {
+        "path": "assets/lcd-low-temperature.svg",
+        "sha256": "3bc5306353aa3ccdfcf7535ea0754df9f78c26e2a6f79462f2eb0846228cac39"
+      },
+      {
+        "path": "assets/inbox-manual.png",
+        "sha256": "41c4f763f9e0201e08301d5d088feb6d4723d37ae78a9df5c6438db829b02eea"
+      },
+      {
+        "path": "assets/solar-adapter.png",
+        "sha256": "1c949530b2ea52a27f940379db62a61b47a03642ab2292b0ffff140b8a3eb10d"
+      },
+      {
+        "path": "assets/app-store.png",
+        "sha256": "aed9c69d85b53a545cafd784b2855a6ecaef6daddac4ce001b026c2ffe6cdefa"
+      },
+      {
+        "path": "assets/lcd-battery-saving.svg",
+        "sha256": "a6f22a36a43b7815c8cf8b34d6a4f324cffc005f53c337e9f317f1062f6413d2"
+      },
+      {
+        "path": "assets/solar-direct.png",
+        "sha256": "55dc1708aad4946c1a87dd0e61c2b6d8027892658db3ba3a095d9a3bb414f8e3"
+      },
+      {
+        "path": "assets/lcd-high-temperature.svg",
+        "sha256": "505ee25a2d28b966acac1e9ab3cae8e30b58a8116d7a706d85752325d20d38f8"
+      },
+      {
+        "path": "assets/inbox-cable.png",
+        "sha256": "8cffefe447b00b178ff6c0f9416b77543e2cd558529d4f18bcece397d0464377"
+      },
+      {
+        "path": "assets/cert-bc.svg",
+        "sha256": "6ac3843fc76e1e89699d0851a78b627457cb6de18fc6228aff159e91f3b7d317"
+      }
+    ]
+  }
+}

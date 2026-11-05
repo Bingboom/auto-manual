@@ -1,0 +1,76 @@
+{
+  "scope": "US source safety page; operator layout acceptance pending",
+  "shared_style": "docs/renderers/contracts/web_safety_components.css",
+  "languages": {
+    "en": {
+      "physical_page": 4,
+      "warning_left_items": 6,
+      "warning_right_items": 5,
+      "operating_right_start": "Ensure the device(s) are powered off before  connecting them to the product.",
+      "editable_text_preserved": true,
+      "instruction_is_h1": false,
+      "warning_label_is_heading": false,
+      "native_notice": {
+        "physical_page": 5,
+        "label": "DANGER",
+        "shared_component": "HB-CALLOUT-STRIP/danger + hb-source-warning-lockup",
+        "marker": "※",
+        "maintenance_heading": "USER MAINTENANCE INSTRUCTIONS",
+        "maintenance_level": 2,
+        "maintenance_style": "shared heading tokens with native full-round source geometry"
+      }
+    },
+    "fr": {
+      "physical_page": 24,
+      "warning_left_items": 5,
+      "warning_right_items": 6,
+      "operating_right_start": "Assurez-vous que les appareils sont éteints avant de les  connecter au produit.",
+      "editable_text_preserved": true,
+      "instruction_is_h1": false,
+      "warning_label_is_heading": false,
+      "native_notice": {
+        "physical_page": 25,
+        "label": "AVERTISSEMENT",
+        "shared_component": "HB-CALLOUT-STRIP/warning + hb-source-warning-lockup",
+        "marker": "※",
+        "maintenance_heading": "INSTRUCTIONS D’ENTRETIEN PAR L’UTILISATEUR",
+        "maintenance_level": 2,
+        "maintenance_style": "shared heading tokens with native full-round source geometry"
+      }
+    },
+    "es": {
+      "physical_page": 44,
+      "warning_left_items": 6,
+      "warning_right_items": 5,
+      "operating_right_start": "Asegúrate de que los dispositivos estén apagados antes  de conectarlos al producto.",
+      "editable_text_preserved": true,
+      "instruction_is_h1": false,
+      "warning_label_is_heading": false,
+      "native_notice": {
+        "physical_page": 45,
+        "label": "PELIGRO:",
+        "shared_component": "HB-CALLOUT-STRIP/danger + hb-source-warning-lockup",
+        "marker": "※",
+        "maintenance_heading": "INSTRUCCIONES DE MANTENIMIENTO PARA EL USUARIO",
+        "maintenance_level": 2,
+        "maintenance_style": "shared heading tokens with native full-round source geometry"
+      }
+    }
+  },
+  "assets": [
+    {
+      "asset": "shared-warning-triangle-dark.svg",
+      "decision": "verified transparent shared SVG reuse",
+      "source": "docs/templates/word_template/common_assets/symbols/warning_triangle_dark.svg",
+      "sha256": "e1746d6937db78115fcd8e1f80a71943cb6615561e326bebe2605139a886cce5",
+      "reason": "Compared source safety-page triangle shape and dark/white variant; SVG has no canvas fill or caption frame."
+    },
+    {
+      "asset": "shared-warning-triangle-white.svg",
+      "decision": "verified transparent shared SVG reuse",
+      "source": "docs/templates/word_template/common_assets/symbols/warning_triangle_white.svg",
+      "sha256": "5e5fc8a41e7c547ecd55ef8ffdb24df9e9b7e6b9fd4fe0d7bcc00c2eaad7cb15",
+      "reason": "Compared source safety-page triangle shape and dark/white variant; SVG has no canvas fill or caption frame."
+    }
+  ]
+}

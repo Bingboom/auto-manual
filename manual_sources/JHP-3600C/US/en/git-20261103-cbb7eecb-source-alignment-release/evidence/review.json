@@ -1,0 +1,25 @@
+{
+  "model": "JHP-3600C",
+  "record_id": "reczz28SlRGJgPNN",
+  "status": "local_review_passed_after_complete_residual_audit",
+  "reference_sha256": "cbb7eecba3f7a2a035f6c5bc0d3da54505b9d6399377d87eb639fc5683e694d1",
+  "source_pages_reviewed": 35,
+  "ocr_lines_checked": 794,
+  "checked_native_fragments": 842,
+  "missing_native_fragments": [],
+  "images": 105,
+  "desktop_mobile_widths": [
+    1280,
+    1024,
+    390
+  ],
+  "broken_images": 0,
+  "uncontained_overflow": 0,
+  "publication_status": "pending",
+  "feishu_checked_by_agent": false,
+  "legacy_declarations_reviewed": 84,
+  "asset_decisions_reviewed": 116,
+  "approval_packaging": "pending",
+  "supersedes": "Initial pass withdrawn; this evidence includes residual declaration and reverse-copy audit.",
+  "dc_input_line_review": "passed: explicit native br in both source tables at1280/390"
+}

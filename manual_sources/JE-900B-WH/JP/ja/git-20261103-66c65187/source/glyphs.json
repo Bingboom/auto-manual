@@ -1,0 +1,948 @@
+[
+  {
+    "slot": "lcd-wifi",
+    "physical_page": 10,
+    "search_box": [
+      48.9,
+      29.7,
+      82.0,
+      56.1
+    ],
+    "local_path": "assets/lcd-wifi.svg",
+    "reuse_candidate": null,
+    "drawing_indices": [
+      1181
+    ],
+    "glyph_bbox": [
+      60.229705810546875,
+      40.26818084716797,
+      70.26370239257812,
+      47.35417938232422
+    ],
+    "reuse_comparison": {
+      "status": "no-candidate",
+      "reason": "no reuse candidate recorded for this icon"
+    },
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "1ab000d57364066dcbb6aa4bbd620696a128ec5816a546a1bc87ed95a4e7916a"
+  },
+  {
+    "slot": "lcd-bluetooth",
+    "physical_page": 10,
+    "search_box": [
+      48.9,
+      57.3,
+      82.0,
+      82.9
+    ],
+    "local_path": "assets/lcd-bluetooth.svg",
+    "reuse_candidate": null,
+    "drawing_indices": [
+      1182
+    ],
+    "glyph_bbox": [
+      60.56429672241211,
+      59.7981071472168,
+      69.10429382324219,
+      69.84410858154297
+    ],
+    "reuse_comparison": {
+      "status": "no-candidate",
+      "reason": "no reuse candidate recorded for this icon"
+    },
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "b02fcc74c1e71ecd4dc2cd2a51603a3a0698f4b734d75892554b0e3e674035ad"
+  },
+  {
+    "slot": "lcd-quiet-charging",
+    "physical_page": 10,
+    "search_box": [
+      48.9,
+      84.1,
+      82.0,
+      129.7
+    ],
+    "local_path": "assets/lcd-quiet-charging.svg",
+    "reuse_candidate": "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets/lcd-quiet-charging.svg",
+    "drawing_indices": [
+      1183,
+      1184
+    ],
+    "glyph_bbox": [
+      61.3291015625,
+      102.40899658203125,
+      70.37200164794922,
+      111.50799560546875
+    ],
+    "reuse_comparison": {
+      "status": "rejected",
+      "reason": "symbol glyph/background differs from authoritative PDF"
+    },
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "cfd0aa0bbad8b78ff05ca2ae3e1623c73c707caeeb6dcf975294b982bd8b7af5"
+  },
+  {
+    "slot": "lcd-scheduled-charging",
+    "physical_page": 10,
+    "search_box": [
+      48.9,
+      130.9,
+      82.0,
+      183.9
+    ],
+    "local_path": "assets/lcd-scheduled-charging.svg",
+    "reuse_candidate": null,
+    "drawing_indices": [
+      1185
+    ],
+    "glyph_bbox": [
+      60.31340026855469,
+      151.37210083007812,
+      69.72239685058594,
+      161.29310607910156
+    ],
+    "reuse_comparison": {
+      "status": "no-candidate",
+      "reason": "no reuse candidate recorded for this icon"
+    },
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "54fc4719d82ee1082864324c7ca7f9f6ba11327ac8fcd4a566dfa7848d9d980a"
+  },
+  {
+    "slot": "lcd-self-consumption",
+    "physical_page": 10,
+    "search_box": [
+      48.9,
+      185.1,
+      82.0,
+      239.7
+    ],
+    "local_path": "assets/lcd-self-consumption.svg",
+    "reuse_candidate": null,
+    "drawing_indices": [
+      1186
+    ],
+    "glyph_bbox": [
+      60.42380142211914,
+      206.45001220703125,
+      71.23480224609375,
+      216.37100219726562
+    ],
+    "reuse_comparison": {
+      "status": "no-candidate",
+      "reason": "no reuse candidate recorded for this icon"
+    },
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "76345110fcc7f88bbfb0897f03b4be490ce62eeedd8bd5204c3576d7cff1b69f"
+  },
+  {
+    "slot": "lcd-tou",
+    "physical_page": 10,
+    "search_box": [
+      48.9,
+      240.9,
+      82.0,
+      324.7
+    ],
+    "local_path": "assets/lcd-tou.svg",
+    "reuse_candidate": null,
+    "drawing_indices": [
+      1215,
+      1216,
+      1217,
+      1218
+    ],
+    "glyph_bbox": [
+      57.83049774169922,
+      273.92181396484375,
+      72.09850311279297,
+      283.2518005371094
+    ],
+    "reuse_comparison": {
+      "status": "no-candidate",
+      "reason": "no reuse candidate recorded for this icon"
+    },
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "3e2f4c25d49f19a0d5322604c9dc5779c717e4b97e44d183f4105fe874dc6b8b"
+  },
+  {
+    "slot": "lcd-ups",
+    "physical_page": 10,
+    "search_box": [
+      48.9,
+      325.9,
+      82.0,
+      386.4
+    ],
+    "local_path": "assets/lcd-ups.svg",
+    "reuse_candidate": null,
+    "drawing_indices": [
+      1207,
+      1208,
+      1209,
+      1210
+    ],
+    "glyph_bbox": [
+      58.06859588623047,
+      350.55841064453125,
+      71.85059356689453,
+      359.56939697265625
+    ],
+    "reuse_comparison": {
+      "status": "no-candidate",
+      "reason": "no reuse candidate recorded for this icon"
+    },
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "6fea01a312259d8499e641ef106bf350afada8e7b6f6ed9d758f5be52a04a01d"
+  },
+  {
+    "slot": "lcd-ac-output",
+    "physical_page": 10,
+    "search_box": [
+      48.9,
+      387.6,
+      82.0,
+      405.7
+    ],
+    "local_path": "assets/lcd-ac-output.svg",
+    "reuse_candidate": null,
+    "drawing_indices": [
+      1211,
+      1212
+    ],
+    "glyph_bbox": [
+      58.68119812011719,
+      391.07159423828125,
+      72.2991943359375,
+      402.214599609375
+    ],
+    "reuse_comparison": {
+      "status": "no-candidate",
+      "reason": "no reuse candidate recorded for this icon"
+    },
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "ab9cf009ed4656a2f9eb6dae73efa1924e1660d80f755aef45f70a8935b7e68f"
+  },
+  {
+    "slot": "lcd-voltage-frequency",
+    "physical_page": 10,
+    "search_box": [
+      48.9,
+      406.9,
+      82.0,
+      423.1
+    ],
+    "local_path": "assets/lcd-voltage-frequency.svg",
+    "reuse_candidate": null,
+    "drawing_indices": [
+      1197,
+      1198,
+      1199,
+      1200,
+      1201,
+      1202,
+      1203,
+      1204,
+      1205,
+      1206
+    ],
+    "glyph_bbox": [
+      49.7400016784668,
+      411.2409973144531,
+      81.36600494384766,
+      417.125
+    ],
+    "reuse_comparison": {
+      "status": "no-candidate",
+      "reason": "no reuse candidate recorded for this icon"
+    },
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "bfdb659fa83731e6671a95ff0a2aafaee7fc27f3a73044a61b50930a7393c79f"
+  },
+  {
+    "slot": "lcd-input-power",
+    "physical_page": 10,
+    "search_box": [
+      48.9,
+      424.3,
+      82.0,
+      442.6
+    ],
+    "local_path": "assets/lcd-input-power.svg",
+    "reuse_candidate": null,
+    "drawing_indices": [
+      1191,
+      1192,
+      1193,
+      1194,
+      1195,
+      1196
+    ],
+    "glyph_bbox": [
+      52.04399871826172,
+      426.41497802734375,
+      78.38600158691406,
+      439.5169982910156
+    ],
+    "reuse_comparison": {
+      "status": "no-candidate",
+      "reason": "no reuse candidate recorded for this icon"
+    },
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "6739dfec40981479e13b0418a3fa57ec05129006a52db568c6f88a38cd15ae3f"
+  },
+  {
+    "slot": "lcd-charge-time",
+    "physical_page": 10,
+    "search_box": [
+      48.9,
+      443.8,
+      82.0,
+      457.5
+    ],
+    "local_path": "assets/lcd-charge-time.svg",
+    "reuse_candidate": null,
+    "drawing_indices": [
+      1187,
+      1188,
+      1189,
+      1190
+    ],
+    "glyph_bbox": [
+      54.939998626708984,
+      445.8529968261719,
+      75.49099731445312,
+      454.875
+    ],
+    "reuse_comparison": {
+      "status": "no-candidate",
+      "reason": "no reuse candidate recorded for this icon"
+    },
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "fb744d09c4c6156cbe86737dd5126c0eab4edc0f1af5fce029f89b4e3292f83f"
+  },
+  {
+    "slot": "lcd-ac-input",
+    "physical_page": 10,
+    "search_box": [
+      48.9,
+      458.7,
+      82.0,
+      474.8
+    ],
+    "local_path": "assets/lcd-ac-input.svg",
+    "reuse_candidate": null,
+    "drawing_indices": [
+      1213
+    ],
+    "glyph_bbox": [
+      59.93000030517578,
+      461.7922058105469,
+      68.65999603271484,
+      471.8962097167969
+    ],
+    "reuse_comparison": {
+      "status": "no-candidate",
+      "reason": "no reuse candidate recorded for this icon"
+    },
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "8aaa42d7b495fa127745e849199b99e5996ae0b92102c6c4d8814431e5dc4f7e"
+  },
+  {
+    "slot": "lcd-car-input",
+    "physical_page": 10,
+    "search_box": [
+      48.9,
+      476.0,
+      82.0,
+      495.3
+    ],
+    "local_path": "assets/lcd-car-input.svg",
+    "reuse_candidate": null,
+    "drawing_indices": [
+      1214
+    ],
+    "glyph_bbox": [
+      60.56509780883789,
+      480.0579833984375,
+      68.56509399414062,
+      490.2469787597656
+    ],
+    "reuse_comparison": {
+      "status": "no-candidate",
+      "reason": "no reuse candidate recorded for this icon"
+    },
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "8e3d7996c1eb0e6c1552734286daf1e0bf6ed1d5e8c5840baabd55bf0673f734"
+  },
+  {
+    "slot": "lcd-solar-input",
+    "physical_page": 11,
+    "search_box": [
+      48.2,
+      29.0,
+      85.3,
+      58.6
+    ],
+    "local_path": "assets/lcd-solar-input.svg",
+    "reuse_candidate": null,
+    "drawing_indices": [
+      969,
+      970,
+      971,
+      972,
+      973,
+      974,
+      975
+    ],
+    "glyph_bbox": [
+      61.42350387573242,
+      39.614803314208984,
+      71.28730010986328,
+      49.39628219604492
+    ],
+    "reuse_comparison": {
+      "status": "no-candidate",
+      "reason": "no reuse candidate recorded for this icon"
+    },
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "c1a5267a42b8f1d32d3e16da97e41e3cda85930f6ea1ac55e220dfec16198cc2"
+  },
+  {
+    "slot": "lcd-battery-saving",
+    "physical_page": 11,
+    "search_box": [
+      48.2,
+      59.8,
+      85.3,
+      111.4
+    ],
+    "local_path": "assets/lcd-battery-saving.svg",
+    "reuse_candidate": "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets/lcd-battery-saving.svg",
+    "drawing_indices": [
+      976,
+      977,
+      978,
+      979,
+      980,
+      981
+    ],
+    "glyph_bbox": [
+      62.187896728515625,
+      79.46050262451172,
+      70.96810150146484,
+      89.14558410644531
+    ],
+    "reuse_comparison": {
+      "status": "rejected",
+      "reason": "symbol glyph/background differs from authoritative PDF"
+    },
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "dafc46f7a3845a9cc85e724d990f3fc2046f87f1d8d3ade8e5aa06e6322b4dd0"
+  },
+  {
+    "slot": "lcd-charge-speed-limit",
+    "physical_page": 11,
+    "search_box": [
+      48.2,
+      112.6,
+      85.3,
+      150.1
+    ],
+    "local_path": "assets/lcd-charge-speed-limit.svg",
+    "reuse_candidate": null,
+    "drawing_indices": [
+      982,
+      983,
+      984
+    ],
+    "glyph_bbox": [
+      61.70490264892578,
+      128.40570068359375,
+      71.4509048461914,
+      137.66029357910156
+    ],
+    "reuse_comparison": {
+      "status": "no-candidate",
+      "reason": "no reuse candidate recorded for this icon"
+    },
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "0ee31d41bd3f2f2b4f9d78a6c7fec43ebbfc2d49bd3720a6feb39bdd2f973c91"
+  },
+  {
+    "slot": "lcd-battery-ring",
+    "physical_page": 11,
+    "search_box": [
+      48.2,
+      151.3,
+      85.3,
+      185.9
+    ],
+    "local_path": "assets/lcd-battery-ring.svg",
+    "reuse_candidate": "manual_sources/JE-600C-SJ/JP/ja/git-20261103-3837e9fd/assets/lcd-battery-ring.svg",
+    "drawing_indices": [
+      858
+    ],
+    "glyph_bbox": [
+      57.90440368652344,
+      159.97479248046875,
+      75.25140380859375,
+      177.3157958984375
+    ],
+    "reuse_comparison": {
+      "status": "passed",
+      "max_mean_channel_error": 0.000132
+    },
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "sha256": "589baf8ba5f422d5ed7fd4f4b388819db54100815c7ac7c04138bfc128bc281b"
+  },
+  {
+    "slot": "lcd-low-battery",
+    "physical_page": 11,
+    "search_box": [
+      48.2,
+      187.1,
+      85.3,
+      216.9
+    ],
+    "local_path": "assets/lcd-low-battery.svg",
+    "reuse_candidate": "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets/lcd-low-battery.svg",
+    "drawing_indices": [
+      1044,
+      1045,
+      1046
+    ],
+    "glyph_bbox": [
+      60.71620178222656,
+      200.71649169921875,
+      72.439697265625,
+      206.86248779296875
+    ],
+    "reuse_comparison": {
+      "status": "rejected",
+      "reason": "symbol requires real transparent margins; opaque backdrop detected"
+    },
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "acf90267d66b2cc79e9e81d2c5d4950de190e948551cb385c5e54e50ce4c48e9"
+  },
+  {
+    "slot": "lcd-battery-percent",
+    "physical_page": 11,
+    "search_box": [
+      48.2,
+      218.1,
+      85.3,
+      249.8
+    ],
+    "local_path": "assets/lcd-battery-percent.svg",
+    "reuse_candidate": null,
+    "drawing_indices": [
+      919,
+      920,
+      921,
+      922,
+      923,
+      924,
+      925,
+      926,
+      927,
+      928,
+      929,
+      930,
+      931,
+      932,
+      933,
+      934,
+      935,
+      936,
+      937,
+      938,
+      939,
+      940,
+      941,
+      942,
+      943,
+      944,
+      945,
+      946,
+      947,
+      948,
+      949,
+      950,
+      951,
+      952
+    ],
+    "glyph_bbox": [
+      53.79499816894531,
+      231.0830078125,
+      79.36100006103516,
+      243.37600708007812
+    ],
+    "reuse_comparison": {
+      "status": "no-candidate",
+      "reason": "no reuse candidate recorded for this icon"
+    },
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "b53cb645b43d1e0758b1558e3c19d4ee70bb171e92ac9a975cbecbb64ebfbf8e"
+  },
+  {
+    "slot": "lcd-discharge-timer",
+    "physical_page": 11,
+    "search_box": [
+      48.2,
+      251.0,
+      85.3,
+      288.8
+    ],
+    "local_path": "assets/lcd-discharge-timer.svg",
+    "reuse_candidate": null,
+    "drawing_indices": [
+      1049,
+      1050,
+      1051
+    ],
+    "glyph_bbox": [
+      61.17799758911133,
+      263.7579650878906,
+      71.99530029296875,
+      276.1509704589844
+    ],
+    "reuse_comparison": {
+      "status": "no-candidate",
+      "reason": "no reuse candidate recorded for this icon"
+    },
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "0a8cb25133308b62d14bddc15508ab4e502d76a807508fe2f22afbe590f9e62a"
+  },
+  {
+    "slot": "lcd-energy-saving",
+    "physical_page": 11,
+    "search_box": [
+      48.2,
+      290.0,
+      85.3,
+      321.0
+    ],
+    "local_path": "assets/lcd-energy-saving.svg",
+    "reuse_candidate": "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets/lcd-energy-saving.svg",
+    "drawing_indices": [
+      953,
+      954,
+      955,
+      956,
+      957,
+      958,
+      959,
+      960,
+      961,
+      962,
+      963,
+      964,
+      965,
+      966,
+      967,
+      968
+    ],
+    "glyph_bbox": [
+      60.07789611816406,
+      302.1182861328125,
+      73.07789611816406,
+      310.3182678222656
+    ],
+    "reuse_comparison": {
+      "status": "rejected",
+      "reason": "symbol requires real transparent margins; opaque backdrop detected"
+    },
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "cc09cb4c462affc0d2549bbf41933a1bee5adbb1bd3607bb433cb2e43ef7110d"
+  },
+  {
+    "slot": "lcd-high-temperature",
+    "physical_page": 11,
+    "search_box": [
+      48.2,
+      322.2,
+      85.3,
+      353.1
+    ],
+    "local_path": "assets/lcd-high-temperature.svg",
+    "reuse_candidate": "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets/lcd-high-temperature.svg",
+    "drawing_indices": [
+      1047
+    ],
+    "glyph_bbox": [
+      63.577999114990234,
+      332.8570861816406,
+      69.5780029296875,
+      342.40509033203125
+    ],
+    "reuse_comparison": {
+      "status": "rejected",
+      "reason": "symbol glyph/background differs from authoritative PDF"
+    },
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "2f1e6a9037cfa7e65a81677ddda9112ab7e9903d39454f89893fa326d17c0e38"
+  },
+  {
+    "slot": "lcd-low-temperature",
+    "physical_page": 11,
+    "search_box": [
+      48.2,
+      354.3,
+      85.3,
+      385.3
+    ],
+    "local_path": "assets/lcd-low-temperature.svg",
+    "reuse_candidate": "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets/lcd-low-temperature.svg",
+    "drawing_indices": [
+      1048
+    ],
+    "glyph_bbox": [
+      63.577999114990234,
+      363.84197998046875,
+      69.5780029296875,
+      373.3899841308594
+    ],
+    "reuse_comparison": {
+      "status": "rejected",
+      "reason": "symbol glyph/background differs from authoritative PDF"
+    },
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "1b100a6a05e2be085d320d7b81a082c22567f517c178067c34f91bf429c7e9e9"
+  },
+  {
+    "slot": "lcd-fault-code",
+    "physical_page": 11,
+    "search_box": [
+      48.2,
+      386.5,
+      85.3,
+      417.5
+    ],
+    "local_path": "assets/lcd-fault-code.svg",
+    "reuse_candidate": "manual_sources/JE-600C-SJ/JP/ja/git-20261103-3837e9fd/assets/lcd-fault-code.svg",
+    "drawing_indices": [
+      859,
+      860,
+      861
+    ],
+    "glyph_bbox": [
+      58.826698303222656,
+      394.1365966796875,
+      74.32669830322266,
+      408.31158447265625
+    ],
+    "reuse_comparison": {
+      "status": "passed",
+      "max_mean_channel_error": 0.01213
+    },
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "sha256": "7b81b32941504b5b9f930677d534538aa9eae5445a946e7f0e05d04515a41e81"
+  },
+  {
+    "slot": "lcd-output-power",
+    "physical_page": 11,
+    "search_box": [
+      48.2,
+      418.7,
+      85.3,
+      449.8
+    ],
+    "local_path": "assets/lcd-output-power.svg",
+    "reuse_candidate": null,
+    "drawing_indices": [
+      862,
+      863,
+      864,
+      865,
+      866,
+      867,
+      868,
+      869,
+      870,
+      871,
+      872,
+      873,
+      874,
+      875,
+      876,
+      877,
+      878,
+      879,
+      880,
+      881,
+      882,
+      883,
+      884,
+      885
+    ],
+    "glyph_bbox": [
+      51.49800109863281,
+      426.4570007324219,
+      81.65799713134766,
+      441.4580078125
+    ],
+    "reuse_comparison": {
+      "status": "no-candidate",
+      "reason": "no reuse candidate recorded for this icon"
+    },
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "8faa5c9c3d1d813823aab571f4434d713391128cf965e6b37e5140979cf02635"
+  },
+  {
+    "slot": "lcd-runtime",
+    "physical_page": 11,
+    "search_box": [
+      48.2,
+      451.0,
+      85.3,
+      482.3
+    ],
+    "local_path": "assets/lcd-runtime.svg",
+    "reuse_candidate": null,
+    "drawing_indices": [
+      886,
+      887,
+      888,
+      889
+    ],
+    "glyph_bbox": [
+      51.90399932861328,
+      461.8769836425781,
+      81.2509994506836,
+      471.58099365234375
+    ],
+    "reuse_comparison": {
+      "status": "no-candidate",
+      "reason": "no reuse candidate recorded for this icon"
+    },
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "333a1c9a8172826caf7d0b908719f876ecafe41e02cf9af77706ba4aceba7305"
+  },
+  {
+    "slot": "lcd-12h",
+    "physical_page": 14,
+    "search_box": [
+      298,
+      294,
+      322,
+      310
+    ],
+    "local_path": "assets/lcd-12h.svg",
+    "reuse_candidate": null,
+    "drawing_indices": [
+      1230,
+      1231,
+      1232,
+      1233,
+      1234,
+      1235,
+      1236,
+      1237,
+      1238
+    ],
+    "glyph_bbox": [
+      304.9232177734375,
+      298.7333068847656,
+      317.9232177734375,
+      306.93328857421875
+    ],
+    "reuse_comparison": {
+      "status": "no-candidate",
+      "reason": "no reuse candidate recorded for this icon"
+    },
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "42aa83bd16595a3223e60cfaef359a300e222bf5897ea70c1de9799ea6cf683c"
+  },
+  {
+    "slot": "led-light-on",
+    "physical_page": 15,
+    "search_box": [
+      229,
+      94,
+      254,
+      116
+    ],
+    "local_path": "assets/led-light-on.svg",
+    "reuse_candidate": null,
+    "drawing_indices": [
+      882,
+      883,
+      884,
+      885,
+      886,
+      887
+    ],
+    "glyph_bbox": [
+      234.73638916015625,
+      96.72229766845703,
+      246.36309814453125,
+      113.16349792480469
+    ],
+    "reuse_comparison": {
+      "status": "no-candidate",
+      "reason": "no reuse candidate recorded for this icon"
+    },
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "84179ea623d811ef66ccc7023893bd34eff885e5bce7f8b1773e96f087b86eed"
+  },
+  {
+    "slot": "led-sos",
+    "physical_page": 15,
+    "search_box": [
+      226,
+      120,
+      254,
+      138
+    ],
+    "local_path": "assets/led-sos.svg",
+    "reuse_candidate": null,
+    "drawing_indices": [
+      897,
+      898,
+      899,
+      900
+    ],
+    "glyph_bbox": [
+      231.8859100341797,
+      126.35420989990234,
+      248.83889770507812,
+      134.31820678710938
+    ],
+    "reuse_comparison": {
+      "status": "no-candidate",
+      "reason": "no reuse candidate recorded for this icon"
+    },
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "5ef1e2fd577fe517d9a2df77077f9a7f9f90332f3e53e98634cb021aacfc533f"
+  },
+  {
+    "slot": "led-light-off",
+    "physical_page": 15,
+    "search_box": [
+      229,
+      142,
+      254,
+      166
+    ],
+    "local_path": "assets/led-light-off.svg",
+    "reuse_candidate": null,
+    "drawing_indices": [
+      890,
+      891,
+      892
+    ],
+    "glyph_bbox": [
+      236.05780029296875,
+      148.5509033203125,
+      244.747802734375,
+      161.9488067626953
+    ],
+    "reuse_comparison": {
+      "status": "no-candidate",
+      "reason": "no reuse candidate recorded for this icon"
+    },
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "5bd01511da1c49a50d2d2a78a73af7bdd0e6e493a3883230c8b3c9fa39cca744"
+  }
+]

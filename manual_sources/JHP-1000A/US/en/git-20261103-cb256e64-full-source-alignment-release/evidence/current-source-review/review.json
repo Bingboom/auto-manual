@@ -1,0 +1,66 @@
+{
+  "model": "JHP-1000A",
+  "record_id": "reczz28SlRGJh40c",
+  "status": "local_review_passed_after_complete_source_and_layout_audit",
+  "source_sha256": "cb256e64ddf9a998f4717e3ec2b038b9ef7711572f7d9b752667f1d6e64077c1",
+  "included_physical_pages": [
+    2,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21
+  ],
+  "excluded_physical_pages": [
+    1,
+    3
+  ],
+  "checks": {
+    "strict_sphinx": "passed",
+    "cold_replay_matches_stored_md_ir_css": true,
+    "unresolved_content_candidates": 0,
+    "old_differences_items_checked": 13,
+    "broken_images": 0,
+    "uncontained_overflow": 0,
+    "native_panel_text_overflow": 0,
+    "browser_widths": [
+      1280,
+      390
+    ],
+    "file_request_failures": 0,
+    "css_image_decode_failures": 0,
+    "original_source_asset_decisions": 69,
+    "transcription_lines": 497,
+    "source_to_web_missing": 0,
+    "web_to_source_unresolved": 0,
+    "native_target_checks_passed": 9
+  },
+  "evidence": {
+    "page_review": "page-review.json",
+    "candidate_dispositions": "candidate-dispositions.json",
+    "browser": "final-viewport-validation-v15/validation.json",
+    "numeric": "numeric-check.json",
+    "tests": "target-checks.json"
+  },
+  "render_evidence_binding": {
+    "reviewed_md_sha256": "2258d0c6c7c967a954dda7e0c01bdf4be16e8b9825bcd913959925b224c550da",
+    "stored_md_sha256": "2258d0c6c7c967a954dda7e0c01bdf4be16e8b9825bcd913959925b224c550da",
+    "stored_ir_sha256": "21dd47021eaec5d7e314ad20105e914f582f4aeb0f90e4be42980401b26abb44",
+    "reviewed_css_sha256": "06343d6bf445f2d446c853f7f4a96d14f9ad71defe0689d41d29beeb1329e57e"
+  },
+  "visual_acceptance": "Complete v14 body sweep57 actual viewport screenshots viewed; v15 scoped FCC fix separately viewed and complete viewport coverage/resources checked, non-FCC markup identical. Original source19pages all viewed. Dense tables/panels remain within measured mobile horizontal-scroll containers and every rightmost endpoint is reachable.",
+  "publication": "candidate only; local acceptance per user, publication separate MA-381."
+}

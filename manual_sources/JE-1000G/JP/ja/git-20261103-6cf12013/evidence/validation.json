@@ -1,0 +1,44 @@
+{
+  "schema_version": "je1000g-jp-candidate-validation/v1",
+  "source_commit": "uncommitted working tree on feat/web-jp-ja-1000c-1000g-1000h-1500b (coordinator commits)",
+  "date": "2026-11-03",
+  "environment": "system Python 3.13, Pandoc 3.9.0.2, ruff 0.16.9, Playwright 1.63 Chromium (node)",
+  "checks": [
+    {
+      "command": "ruff check manual_sources/JE-1000G/JP/ja/git-20261103-6cf12013/*.py tests/test_je1000g_jp_web.py",
+      "result": "pass",
+      "log": "ruff.log"
+    },
+    {
+      "command": "python manual_sources/JE-1000G/JP/ja/git-20261103-6cf12013/rebuild.py --output tmp/je1000g-jp-5",
+      "result": "pass (13 chapters; HB-CALLOUT-STRIP 29, HB-SPECIAL-APP 2, HB-SPECIAL-INBOX 1, HB-SPECIAL-REFERENCE-FIGURE 17, HB-TABLE-AUTO-RESUME 1, HB-TABLE-KEY-COMBINATIONS 1, HB-TABLE-LCD-ICON 1, HB-TABLE-LCD-MODE 1, HB-TABLE-SPEC 4, HB-TABLE-SYMBOL-ICON 1, HB-TABLE-SYMBOL-SIGNAL 1, HB-TABLE-TROUBLESHOOTING 1, HB-WARRANTY-SECTION 6; symbol admission 9 rows)"
+    },
+    {
+      "command": "python -m sphinx -n -W --keep-going -b html manual_sources/JE-1000G/JP/ja/git-20261103-6cf12013/web/ja tmp/je1000g-jp-6-html",
+      "result": "pass",
+      "log": "strict-sphinx.log"
+    },
+    {
+      "command": "python -m unittest tests.test_je1000g_jp_web tests.test_prepared_document_shared_styles",
+      "result": "pass (19 tests)",
+      "log": "target-tests.log"
+    },
+    {
+      "command": "browser 1280 / 390 full page (images forced eager, page scrolled, networkidle; stitched 6000 px clips)",
+      "result": "71 images, 0 broken, document scrollWidth == viewport at both widths; overview/LCD map/App panel pan and the LCD table scrolls inside its component at 390",
+      "files": [
+        "browser-1280.png",
+        "browser-390.png",
+        "browser-1280.json",
+        "browser-390.json"
+      ]
+    }
+  ],
+  "rebuild_gates": [
+    "input SHA-256 inventory",
+    "prepared-document shared-style admission with two declared plain tables (recycling box, 省エネモード port table)",
+    "symbol asset admission: 9 rows against existing shared variants; 1 row withheld (pending_shared_symbols: sym.s3)",
+    "candidate: no approval.json; IR publication_eligible false"
+  ],
+  "not_validated": "full python -m unittest, maintainability guardrails, frozen_package_registry, seal_frozen_web_evidence, RTD deployment (coordinator / after operator review)"
+}

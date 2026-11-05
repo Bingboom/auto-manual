@@ -1,0 +1,308 @@
+{
+  "reason": "Absent from current single-language source pp11 and23; prior usb-caution-layout-review records old native copy, no specific correction exception. PR1515/MA295 only prior whole-package publication.",
+  "removed_blocks": [
+    {
+      "kind": "component",
+      "component_spec": {
+        "component_id": "HB-CALLOUT-STRIP",
+        "variant": "caution",
+        "source_ref": "pdf/p11-b14-l0-0",
+        "language": "en",
+        "slots": [
+          {
+            "role": "label",
+            "content_kind": "inline_text",
+            "content": "CAUTION"
+          },
+          {
+            "role": "body",
+            "content_kind": "rich_text",
+            "content": "USB-C 100W is a USB-PD Power Source 3 (PS3) high-power output port.\nIf the  connected user device or accessory does not meet safety requirements, there may be a  fire risk. Before using these ports, ensure that the connected device or accessory has fire  safety protection.\nOnly connect the Jackery HomePower 3600 Plus to devices or accessories that comply  with clauses 6.3, 6.4, and 6.5 of IEC/EN/UL 62368-1 (or other equivalent standards).\nTo obtain maximum output power, use the official Jackery USB-C to USB-C 5A cable  (20V DC/5A, 100W)."
+          },
+          {
+            "role": "items",
+            "content_kind": "list_items",
+            "content": [
+              "USB-C 100W is a USB-PD Power Source 3 (PS3) high-power output port. If the  connected user device or accessory does not meet safety requirements, there may be a  fire risk. Before using these ports, ensure that the connected device or accessory has fire  safety protection.",
+              "Only connect the Jackery HomePower 3600 Plus to devices or accessories that comply  with clauses 6.3, 6.4, and 6.5 of IEC/EN/UL 62368-1 (or other equivalent standards).",
+              "To obtain maximum output power, use the official Jackery USB-C to USB-C 5A cable  (20V DC/5A, 100W)."
+            ]
+          }
+        ],
+        "assets": [],
+        "token_roles": [
+          "component.callout"
+        ],
+        "metadata": {},
+        "schema_version": "component-spec/v1"
+      },
+      "carrier_flow": [
+        {
+          "kind": "table",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "manual-callout-table manual-callout-table ht-native-usb-caution"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "table_body",
+              "children": [
+                {
+                  "kind": "table_row",
+                  "children": [
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "manual-callout-label"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "CAUTION"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "manual-callout-body"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "list",
+                          "ordered": false,
+                          "children": [
+                            {
+                              "kind": "list_item",
+                              "children": [
+                                {
+                                  "kind": "paragraph",
+                                  "children": [
+                                    {
+                                      "kind": "strong",
+                                      "children": [
+                                        {
+                                          "kind": "text",
+                                          "text": "USB-C 100W is a USB-PD Power Source 3 (PS3) high-power output port. "
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "kind": "text",
+                                      "text": "If the "
+                                    },
+                                    {
+                                      "kind": "text",
+                                      "text": " "
+                                    },
+                                    {
+                                      "kind": "text",
+                                      "text": "connected user device or accessory does not meet safety requirements, there may be a "
+                                    },
+                                    {
+                                      "kind": "text",
+                                      "text": " "
+                                    },
+                                    {
+                                      "kind": "text",
+                                      "text": "fire risk. Before using these ports, ensure that the connected device or accessory has fire "
+                                    },
+                                    {
+                                      "kind": "text",
+                                      "text": " "
+                                    },
+                                    {
+                                      "kind": "text",
+                                      "text": "safety protection. "
+                                    },
+                                    {
+                                      "kind": "text",
+                                      "text": " "
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "list_item",
+                              "children": [
+                                {
+                                  "kind": "paragraph",
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "Only connect the Jackery HomePower 3600 Plus to devices or accessories that comply "
+                                    },
+                                    {
+                                      "kind": "text",
+                                      "text": " "
+                                    },
+                                    {
+                                      "kind": "text",
+                                      "text": "with clauses 6.3, 6.4, and 6.5 of IEC/EN/UL 62368-1 (or other equivalent standards). "
+                                    },
+                                    {
+                                      "kind": "text",
+                                      "text": " "
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "list_item",
+                              "children": [
+                                {
+                                  "kind": "paragraph",
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "To obtain maximum output power, use the official Jackery USB-C to USB-C 5A cable "
+                                    },
+                                    {
+                                      "kind": "text",
+                                      "text": " "
+                                    },
+                                    {
+                                      "kind": "text",
+                                      "text": "(20V DC/5A, 100W). "
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "schema_version": "manual-flow/v2"
+    },
+    {
+      "kind": "component",
+      "component_spec": {
+        "component_id": "HB-CALLOUT-STRIP",
+        "variant": "caution",
+        "source_ref": "pdf/p23-b21-l3-0",
+        "language": "en",
+        "slots": [
+          {
+            "role": "label",
+            "content_kind": "inline_text",
+            "content": "CAUTION"
+          },
+          {
+            "role": "body",
+            "content_kind": "rich_text",
+            "content": "The Jackery app can connect to only one power station via Bluetooth at a time. Returning  to the device list automatically disconnects Bluetooth. Tap the power station in the list  again to reconnect automatically."
+          }
+        ],
+        "assets": [],
+        "token_roles": [
+          "component.callout"
+        ],
+        "metadata": {},
+        "schema_version": "component-spec/v1"
+      },
+      "carrier_flow": [
+        {
+          "kind": "table",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "manual-callout-table manual-callout-table"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "table_body",
+              "children": [
+                {
+                  "kind": "table_row",
+                  "children": [
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "manual-callout-label"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "CAUTION"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "manual-callout-body"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "paragraph",
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "The Jackery app can connect to only one power station via Bluetooth at a time. Returning "
+                            },
+                            {
+                              "kind": "text",
+                              "text": " "
+                            },
+                            {
+                              "kind": "text",
+                              "text": "to the device list automatically disconnects Bluetooth. Tap the power station in the list "
+                            },
+                            {
+                              "kind": "text",
+                              "text": " "
+                            },
+                            {
+                              "kind": "text",
+                              "text": "again to reconnect automatically."
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "schema_version": "manual-flow/v2"
+    }
+  ]
+}

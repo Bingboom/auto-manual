@@ -1,0 +1,44 @@
+[
+  {
+    "kind": "delete",
+    "old": "⚠",
+    "new": "",
+    "context": "cells.MEANINGOFSYMBOLSSymbolMeaning⚠WARNINGHazardouspracticesthatmayres"
+  },
+  {
+    "kind": "delete",
+    "old": "⚠",
+    "new": "",
+    "context": "einjury,death,and/orpropertydamage.⚠CAUTIONHazardouspracticesthatmayres"
+  },
+  {
+    "kind": "insert",
+    "old": "",
+    "new": "+",
+    "context": "onsOperationFunctionMainPowerButtonUSBPowerButton3sPressandholdbothfor"
+  },
+  {
+    "kind": "insert",
+    "old": "",
+    "new": "+",
+    "context": "ResetWi-Fi&BluetoothMainPowerButtonACPowerButton3sPressandholdbothfor3"
+  },
+  {
+    "kind": "insert",
+    "old": "",
+    "new": "+",
+    "context": "fftheEnergySavingModeUSBPowerButtonACPowerButton1sPressandholdbothfor1"
+  },
+  {
+    "kind": "insert",
+    "old": "",
+    "new": "+",
+    "context": "non/offWi-Fi&BluetoothDCPowerButtonACPowerButton3sPressandholdbothfor3"
+  },
+  {
+    "kind": "delete",
+    "old": "+",
+    "new": "",
+    "context": "eApp.2.Toadddevice2.1Clickthebutton+toaddyourdevice;2.2Turnontheproduct"
+  }
+]

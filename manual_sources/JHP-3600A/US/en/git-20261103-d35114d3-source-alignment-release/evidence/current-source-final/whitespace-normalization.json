@@ -1,0 +1,34 @@
+{
+  "scope": "Archived evidence only; strip ASCII spaces/tabs at line ends. Line count and every non-trailing character unchanged. Raw prior evidence preserved losslessly in the zip.",
+  "raw_archive": "evidence/current-source-final/raw-evidence-before-whitespace-normalization.zip",
+  "raw_archive_sha256": "955262c9bfec3e4bb1ee8ebd6c5ce83f7f857ae5d98c6a05f2caadf7f6e410bc",
+  "files": [
+    {
+      "path": "evidence/current-source-final/browser/1280-visible-text.txt",
+      "before_sha256": "aa59e377ea9310bed22ad1f2dbdb938a61b7ae94794e2e0888f1cae26bb9bd06",
+      "after_sha256": "f9b684cac5f2fb766aa360ff1f057ee9c588d372817dea069f9ffb0f128811fb",
+      "changed_lines": 131
+    },
+    {
+      "path": "evidence/current-source-final/browser/390-visible-text.txt",
+      "before_sha256": "91b99f6f2c10cdd91b9bbb0687a30a04c7525bdd7e042f2f959fdf9f4e6a2a62",
+      "after_sha256": "b0779ad463cfe8a1445b10250b695c3d727c4b28101884b70219aa38efa310f2",
+      "changed_lines": 113
+    },
+    {
+      "path": "evidence/current-source-final/release-frozen-strict.log",
+      "before_sha256": "63587300242eca3b6c2604c3832ed4a4843eeec20ec50ba2dc5a8862200d58ee",
+      "after_sha256": "66ff118bb68302cfc95673c1a3def312924e474da6d8b913bf85cf3623d6de44",
+      "changed_lines": 4
+    },
+    {
+      "path": "evidence/current-source-final/strict-sphinx.log",
+      "before_sha256": "3cd4fffedb34f3051a19c4ff59d8d74cf7074ba8111b0bd918e3861167256b13",
+      "after_sha256": "171d7cfb0cb4b2199e612a510fba15eedf71fa36f1f582984084e2b9fe8d1186",
+      "changed_lines": 4
+    }
+  ],
+  "source_inputs_bound": true,
+  "action": "Rebind reviewed inputs and cold replay with actual unchanged22 runtime pins. Final cold validation is recorded in source_manifest.json.",
+  "web_content_and_screenshots": "Unchanged; visible MD/CSS/art and IR.pages verified against pre-normalization release."
+}

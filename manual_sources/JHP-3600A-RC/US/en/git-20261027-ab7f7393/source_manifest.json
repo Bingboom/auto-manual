@@ -56,7 +56,7 @@
   ],
   "live_bitable_dependency": false,
   "phase2_enrolled": false,
-  "publication_status": "candidate-pending-operator-review",
+  "publication_status": "operator-authorized-git-only-release",
   "build_boundary": "JHP-3600A-RC US is not a phase2 target. build_content.py binds the transcription to shared ComponentSpecs; rebuild.py replays them through manual-ir/v2 and the shared Web/MyST pipeline with the prepared-document shared-style gate and symbol admission.",
   "repo_inputs": [],
   "symbol_asset_admission": {
@@ -446,8 +446,8 @@
     },
     {
       "path": "README.md",
-      "size": 2985,
-      "sha256": "be68f94dd7757f58665203e4efdcad51a27aac77628842145c452ebb86a4641c"
+      "size": 3292,
+      "sha256": "97106a299ded3b931d59ea9707a66f2241db23be8fab2e542aa0be4483d62428"
     },
     {
       "path": "assets/ac-output.png",
@@ -788,6 +788,11 @@
       "path": "refresh_manifest.py",
       "size": 2564,
       "sha256": "7cecc9d72d2e29faa24fc7e537ec31e5221d6361728cca2996b53ce1270649d3"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 13532,
+      "sha256": "2ea3221621ad16cbe14f0aa400af2dbba16a6a15b137ff3d49c20e2b0bb9cbf1"
     },
     {
       "path": "source/asset_decisions.json",

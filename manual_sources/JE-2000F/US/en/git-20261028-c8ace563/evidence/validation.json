@@ -1,0 +1,43 @@
+{
+  "schema_version": "je2000f-us-candidate-validation/v1",
+  "date": "2026-10-28",
+  "environment": "Python 3 with the repository requirements, Pandoc, ruff 0.17.3, Playwright Chromium (Node 22)",
+  "checks": [
+    {
+      "command": "python -m ruff check <package> tests/test_je2000f_us_web.py",
+      "result": "pass",
+      "log": "ruff.log"
+    },
+    {
+      "command": "python <package>/rebuild.py --output <fresh dir>; diff -r <fresh dir> web/en",
+      "result": "pass: byte-identical stored render; shared-style gate 0 issues, 0 declared plain tables; symbol admission 12/12 (max mean channel error 0.018727)",
+      "log": "rebuild.log"
+    },
+    {
+      "command": "python -m sphinx -n -W --keep-going -b html web/en <html>",
+      "result": "pass",
+      "log": "strict-sphinx.log"
+    },
+    {
+      "command": "python -m unittest tests.test_je2000f_us_web tests.test_prepared_document_shared_styles",
+      "result": "pass (19 tests)",
+      "log": "target-tests.log"
+    },
+    {
+      "command": "python -m tools.check_maintainability_guardrails",
+      "result": "only finding for this package: [frozen-packages] NEW, awaiting frozen_package_registry registration with its approval (expected for a candidate)",
+      "log": "maintainability.log"
+    },
+    {
+      "command": "browser 1280 / 390 full page",
+      "result": "71 images, 0 broken; document scrollWidth == viewport at both widths; KEY COMBINATIONS and LCD tables scroll inside their shared components, overview/LCD map/App panel pan inside their figures at 390",
+      "files": [
+        "browser-1280.png",
+        "browser-390.png",
+        "browser-1280.json",
+        "browser-390.json"
+      ]
+    }
+  ],
+  "not_validated": "full python -m unittest suite, build.py regression check, frozen_package_registry registration, seal_frozen_web_evidence, RTD deployment"
+}

@@ -1,0 +1,36 @@
+{
+  "model": "JHP-3000D",
+  "exact_letter_contexts_checked": 97,
+  "numeric_differences": [
+    {
+      "page": 8,
+      "source": "Customizes the charging time of the Jackery HomePower 5000. Suitable",
+      "web_context": "customizesthechargingtimeofthejackeryhomepower3000.suitable",
+      "source_numbers": [
+        "5000"
+      ],
+      "web_numbers": [
+        "3000"
+      ]
+    },
+    {
+      "page": 18,
+      "source": "Bypass Mode®: 100-120V ~, 60Hz, 15A Max (reduced to 12A after 3h)",
+      "web_context": "bypassmode1100120v60hz15amaxreducedto12aafter3h",
+      "source_numbers": [
+        "100120",
+        "60",
+        "15",
+        "12",
+        "3"
+      ],
+      "web_numbers": [
+        "1100120",
+        "60",
+        "15",
+        "12",
+        "3"
+      ]
+    }
+  ]
+}

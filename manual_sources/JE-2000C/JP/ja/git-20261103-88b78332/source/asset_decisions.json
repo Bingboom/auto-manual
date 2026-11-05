@@ -1,0 +1,750 @@
+[
+ {
+  "slot": "certifications",
+  "searched": [
+   "manual_sources/JE-2000C/US/en/git-20261027-c357f54d/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "US/en certifications row carries FCC/BC/WEEE marks, JP prints UN38.3 + Qualcomm QC3.0 only",
+  "physical_page": 2,
+  "bbox": [
+   118,
+   341.5,
+   195,
+   356
+  ],
+  "final_path": "assets/certifications.png",
+  "sha256": "6575f319d73bdbaf58d752c900b84769df3d60bc3586baa90d83eb9a9ffa1814",
+  "background": "retain complete panel, frames, leader lines, captions and phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "overview",
+  "searched": [
+   "manual_sources/JE-2000C/US/en/git-20261027-c357f54d/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "same chassis as the US/en edition, but US/en panels carry English leader labels; JP labels are part of the panel",
+  "physical_page": 3,
+  "bbox": [
+   20,
+   45,
+   350,
+   320
+  ],
+  "final_path": "assets/overview.png",
+  "sha256": "41a23caf0040babfeb26e42b6469f1486a6ca6c92ddda6c65d6a9045e61bd16d",
+  "background": "retain complete panel, frames, leader lines, captions and phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "lcd-map",
+  "searched": [
+   "manual_sources/JE-2000C/US/en/git-20261027-c357f54d/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP numbering (①–㉑ positions) differs from the US/en LCD map numbering",
+  "physical_page": 3,
+  "bbox": [
+   22,
+   351,
+   350,
+   500
+  ],
+  "final_path": "assets/lcd-map.png",
+  "sha256": "5e8af310dd81f32f8c1479325bc780a61a2fa50e2b9be923815801673d76ed19",
+  "background": "retain complete panel, frames, leader lines, captions and phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "ac-charge",
+  "searched": [
+   "manual_sources/JE-2000C/US/en/git-20261027-c357f54d/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "US/en wall-charge panel carries English captions",
+  "physical_page": 7,
+  "bbox": [
+   170,
+   28,
+   350,
+   93
+  ],
+  "final_path": "assets/ac-charge.png",
+  "sha256": "98e0699121dcd34c8c129c028eec5b24028302e0000d8c8e473dc87fca6579f3",
+  "background": "retain complete panel, frames, leader lines, captions and phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "solar-3",
+  "searched": [
+   "manual_sources/JE-2000C/US/en/git-20261027-c357f54d/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "US/en panel carries English captions",
+  "physical_page": 7,
+  "bbox": [
+   20,
+   180,
+   350,
+   291
+  ],
+  "final_path": "assets/solar-3.png",
+  "sha256": "0a9f8ab19d289dab9606282f6e2ee6893cb1922b3c0a6b630dde1bd33cc641a4",
+  "background": "retain complete panel, frames, leader lines, captions and phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "solar-2-2",
+  "searched": [
+   "manual_sources/JE-2000C/US/en/git-20261027-c357f54d/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "US/en panel carries English captions",
+  "physical_page": 7,
+  "bbox": [
+   20,
+   292,
+   350,
+   378
+  ],
+  "final_path": "assets/solar-2-2.png",
+  "sha256": "b3b049a1fb0ee57bdd9142ee0e7ae12605b1b29c7dc4e97a01a1bf96cce23368",
+  "background": "retain complete panel, frames, leader lines, captions and phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "solar-3-3",
+  "searched": [
+   "manual_sources/JE-2000C/US/en/git-20261027-c357f54d/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "US/en panel carries English captions",
+  "physical_page": 7,
+  "bbox": [
+   20,
+   385,
+   350,
+   498
+  ],
+  "final_path": "assets/solar-3-3.png",
+  "sha256": "b4dc4d5e6ff43351d1856858ed34c89f22c4a1ea0179260716d896c44e59d9db",
+  "background": "retain complete panel, frames, leader lines, captions and phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "solar-prohibited",
+  "searched": [
+   "manual_sources/JE-2000C/US/en/git-20261027-c357f54d/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "US/en panel carries English captions",
+  "physical_page": 8,
+  "bbox": [
+   21,
+   60,
+   349,
+   306
+  ],
+  "final_path": "assets/solar-prohibited.png",
+  "sha256": "1aa0c967554ec7749ad8191c7e4e62692c43541e6e1c62ce6864557963c68a77",
+  "background": "retain complete panel, frames, leader lines, captions and phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "solar-80",
+  "searched": [
+   "manual_sources/JE-2000C/US/en/git-20261027-c357f54d/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "US/en panel carries English captions",
+  "physical_page": 8,
+  "bbox": [
+   21,
+   393,
+   349,
+   502
+  ],
+  "final_path": "assets/solar-80.png",
+  "sha256": "7c3b4982132fe94dc78c59f7e9be3c4d91c80ca414294131cf72ceaaf7db4fbd",
+  "background": "retain complete panel, frames, leader lines, captions and phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "car-charge",
+  "searched": [
+   "manual_sources/JE-2000C/US/en/git-20261027-c357f54d/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "US/en panel carries English captions; JP panel is framed with its own caption",
+  "physical_page": 9,
+  "bbox": [
+   21,
+   108,
+   349,
+   241
+  ],
+  "final_path": "assets/car-charge.png",
+  "sha256": "502c6206d28cea06da95a90d60a05f2dec020c3099f302e51f2010e1bc949abc",
+  "background": "retain complete panel, frames, leader lines, captions and phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "inbox-unit",
+  "searched": [
+   "manual_sources/JE-2000C/US/en/git-20261027-c357f54d/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "same unit drawing family, but the US/en card is a different crop and scale; taken from this PDF so all six JP cards share one source and scale",
+  "physical_page": 13,
+  "bbox": [
+   46,
+   58,
+   100,
+   99
+  ],
+  "final_path": "assets/inbox-unit.png",
+  "sha256": "ca3cec9ba90560ca2fd9763ab5df1696857c386ef52f06fd7034297a954aeee8",
+  "background": "retain complete panel, frames, leader lines, captions and phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "inbox-car-cable",
+  "searched": [
+   "manual_sources/JE-2000C/US/en/git-20261027-c357f54d/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP car charging cable drawing differs from the US/en card",
+  "physical_page": 13,
+  "bbox": [
+   142,
+   58,
+   184,
+   99
+  ],
+  "final_path": "assets/inbox-car-cable.png",
+  "sha256": "90f7fb0e304a67b9b58ff1fe9d01194e94b7a9a1508bae667c66c1968768f07a",
+  "background": "retain complete panel, frames, leader lines, captions and phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "inbox-ac-cable",
+  "searched": [
+   "manual_sources/JE-2000C/US/en/git-20261027-c357f54d/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP AC cable (Japanese plug) differs from the US/en card",
+  "physical_page": 13,
+  "bbox": [
+   228,
+   58,
+   268,
+   99
+  ],
+  "final_path": "assets/inbox-ac-cable.png",
+  "sha256": "5067fff0b2be9403c41ccf0b586fbea3b62ab131125a2d15357427b5b5fa3bcd",
+  "background": "retain complete panel, frames, leader lines, captions and phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "inbox-pouch",
+  "searched": [
+   "manual_sources/JE-2000C/US/en/git-20261027-c357f54d/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP storage pouch drawing differs from the US/en bag card",
+  "physical_page": 13,
+  "bbox": [
+   291,
+   58,
+   343,
+   99
+  ],
+  "final_path": "assets/inbox-pouch.png",
+  "sha256": "17fe9c4cc2590ea3e6e02b622d6d823b7b45fc3062727efd20a7ef3cfc1e1f01",
+  "background": "retain complete panel, frames, leader lines, captions and phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "inbox-manual",
+  "searched": [
+   "manual_sources/JE-2000C/US/en/git-20261027-c357f54d/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP manual cover (取扱説明書); US/en card shows the English manual",
+  "physical_page": 13,
+  "bbox": [
+   63,
+   143,
+   98,
+   187
+  ],
+  "final_path": "assets/inbox-manual.png",
+  "sha256": "dcafeb514a7901524a4a768a4082e45060ec66aa24ad911e49b65da1352dfe90",
+  "background": "retain complete panel, frames, leader lines, captions and phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "inbox-warranty",
+  "searched": [
+   "manual_sources/JE-2000C/US/en/git-20261027-c357f54d/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP-only 保証案内書 card; no reference counterpart",
+  "physical_page": 13,
+  "bbox": [
+   142,
+   143,
+   187,
+   187
+  ],
+  "final_path": "assets/inbox-warranty.png",
+  "sha256": "c366fc659f7c4e9e66f1c0d5bfd7442836093a892571c31bd901c058ba3d8960",
+  "background": "retain complete panel, frames, leader lines, captions and phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "app-add",
+  "searched": [
+   "manual_sources/JE-2000C/US/en/git-20261027-c357f54d/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP App screenshots (2.1/2.2); US/en edition prints no App manual; JE-1000D JP crops show a different model frame and scale",
+  "physical_page": 14,
+  "bbox": [
+   80,
+   160,
+   270,
+   331
+  ],
+  "final_path": "assets/app-add.png",
+  "sha256": "e9b678ce2d42dee9a390c6e81294c7aad0a220917ce300a0cd0ad35094133249",
+  "background": "retain complete panel, frames, leader lines, captions and phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "app-control",
+  "searched": [
+   "manual_sources/JE-2000C/US/en/git-20261027-c357f54d/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JE-2000C button map with JP leader labels",
+  "physical_page": 14,
+  "bbox": [
+   60,
+   352,
+   335,
+   437
+  ],
+  "final_path": "assets/app-control.png",
+  "sha256": "cfd9006a45c9db3cf3a82061315383de96de4d17318174da0d895de4d485b436",
+  "background": "retain complete panel, frames, leader lines, captions and phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "app-results",
+  "searched": [
+   "manual_sources/JE-2000C/US/en/git-20261027-c357f54d/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "JP App screenshots (2.3–2.5) at this source scale",
+  "physical_page": 15,
+  "bbox": [
+   33,
+   116,
+   333,
+   292
+  ],
+  "final_path": "assets/app-results.png",
+  "sha256": "7e881088c90957a0062b6b2fe234147ab9b73dda326cf19970c660b733b6ec7f",
+  "background": "retain complete panel, frames, leader lines, captions and phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "app-store",
+  "searched": [
+   "manual_sources/JE-2000C/US/en/git-20261027-c357f54d/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "printed target badges; US/en badge crop has a different scale",
+  "physical_page": 16,
+  "bbox": [
+   27,
+   472.5,
+   179,
+   498
+  ],
+  "final_path": "assets/app-store.png",
+  "sha256": "e15847f34bed02beb03c0cf4ed8d0a2f10cf9decf37c7c7b31ca1bfe08ad4f3e",
+  "background": "retain complete panel, frames, leader lines, captions and phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "app-qr",
+  "searched": [
+   "manual_sources/JE-2000C/US/en/git-20261027-c357f54d/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "extract target original complete panel",
+  "reason": "printed target QR; QR not assumed equal to another edition",
+  "physical_page": 16,
+  "bbox": [
+   304,
+   460.3,
+   342.5,
+   498.3
+  ],
+  "final_path": "assets/app-qr.png",
+  "sha256": "066af7d3d51a208b0f4b065b5c21b1fb076af9644746c407241dd47ee1b637e7",
+  "background": "retain complete panel, frames, leader lines, captions and phone frames; no body/table screenshot"
+ },
+ {
+  "slot": "lcd-battery-power",
+  "searched": [
+   "manual_sources/JE-2000C/US/en/git-20261027-c357f54d/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "native vector extraction (PDF paths only)",
+  "reason": "US/en lcd-battery-power.png differs at admission tint/shape (0.2257 mean channel error)",
+  "physical_page": 4,
+  "bbox": [
+   22.5,
+   192.56,
+   44.75,
+   214.81
+  ],
+  "drawing_indices": [
+   21
+  ],
+  "final_path": "assets/lcd-battery-power.svg",
+  "sha256": "26359ec48abe463b1c7cac4f333b3ea6c72a976f49988677893c1c13eefa0e50",
+  "background": "transparent, no page or cell backdrop"
+ },
+ {
+  "slot": "lcd-low-battery",
+  "searched": [
+   "manual_sources/JE-2000C/US/en/git-20261027-c357f54d/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "native vector extraction (PDF paths only)",
+  "reason": "US/en lcd-low-battery.png differs (0.1950)",
+  "physical_page": 4,
+  "bbox": [
+   22.5,
+   230.05,
+   44.31,
+   242.17
+  ],
+  "drawing_indices": [
+   22
+  ],
+  "final_path": "assets/lcd-low-battery.svg",
+  "sha256": "fcadcc6450743f8a34175a31e2d749f0747786d67ee06da146dfac5beee3aef2",
+  "background": "transparent, no page or cell backdrop"
+ },
+ {
+  "slot": "lcd-energy-saving",
+  "searched": [
+   "manual_sources/JE-2000C/US/en/git-20261027-c357f54d/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "native vector extraction (PDF paths only)",
+  "reason": "US/en lcd-energy-saving.png shows a 12H glyph (0.0954); JP prints 88H",
+  "physical_page": 4,
+  "bbox": [
+   21.33,
+   276.85,
+   43.73,
+   293.02
+  ],
+  "drawing_indices": [
+   30,
+   31,
+   32,
+   33
+  ],
+  "final_path": "assets/lcd-energy-saving.svg",
+  "sha256": "793eb4901dba2855f02f9295ce95eddfa5e9c12c76e9405b7b71c3e09265ea10",
+  "background": "transparent, no page or cell backdrop"
+ },
+ {
+  "slot": "lcd-high-temperature",
+  "searched": [
+   "manual_sources/JE-2000C/US/en/git-20261027-c357f54d/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "native vector extraction (PDF paths only)",
+  "reason": "US/en lcd-high-temperature.png 0.0210, above the 2% reuse bar",
+  "physical_page": 5,
+  "bbox": [
+   22.49,
+   130.36,
+   44.76,
+   150.95
+  ],
+  "drawing_indices": [
+   17,
+   18
+  ],
+  "final_path": "assets/lcd-high-temperature.svg",
+  "sha256": "1034d81fdcba33f749448bd3048f2e930beca4400613ca87017b7ace1eeb839c",
+  "background": "transparent, no page or cell backdrop"
+ },
+ {
+  "slot": "lcd-ac-expansion",
+  "searched": [
+   "manual_sources/JE-2000C/US/en/git-20261027-c357f54d/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "native vector extraction (PDF paths only)",
+  "reason": "US/en lcd-ac-expansion.png differs (0.4147)",
+  "physical_page": 5,
+  "bbox": [
+   21.23,
+   193.96,
+   46.03,
+   211.01
+  ],
+  "drawing_indices": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13
+  ],
+  "final_path": "assets/lcd-ac-expansion.svg",
+  "sha256": "6517fe34ff78819ab979deb1fcecf9d9e4d517f36c202adb5fd7a74ee67fa837",
+  "background": "transparent, no page or cell backdrop"
+ },
+ {
+  "slot": "recycle-arrows",
+  "searched": [
+   "manual_sources/JE-2000C/US/en/git-20261027-c357f54d/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "native vector extraction (PDF paths only)",
+  "reason": "JE-1000D recycle-li-ion.svg embeds outlined Li-ion 32 text; here the label is real text, so only the arrows are vector art",
+  "physical_page": 2,
+  "bbox": [
+   56,
+   441.5,
+   85.5,
+   469
+  ],
+  "drawing_indices": [
+   1,
+   2,
+   3
+  ],
+  "final_path": "assets/recycle-arrows.svg",
+  "sha256": "0aa917bb3edbd45c93d5f6b78fce3e91b8594e6d02da0386ae2637f30998736a",
+  "background": "transparent, no page or cell backdrop"
+ },
+ {
+  "slot": "lcd-fault-code",
+  "searched": [
+   "manual_sources/JE-2000C/US/en/git-20261027-c357f54d/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "reuse byte-identical",
+  "reason": "same JE-2000C LCD glyph; passes the fixed 2% comparison against this PDF (fault code 0.0086, low temperature 0.0120)",
+  "from": "manual_sources/JE-2000C/US/en/git-20261027-c357f54d/assets/lcd-fault-code.png",
+  "final_path": "assets/lcd-fault-code.png",
+  "sha256": "6e2aae1004349a65c9a9f1a755155a3e9364d8f7823c0058f60938fc56a48a1e",
+  "background": "transparent"
+ },
+ {
+  "slot": "lcd-low-temperature",
+  "searched": [
+   "manual_sources/JE-2000C/US/en/git-20261027-c357f54d/assets",
+   "manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets",
+   "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/assets",
+   "docs/renderers/web/assets/shared/ (lcd, buttons, symbols)"
+  ],
+  "decision": "reuse byte-identical",
+  "reason": "same JE-2000C LCD glyph; passes the fixed 2% comparison against this PDF (fault code 0.0086, low temperature 0.0120)",
+  "from": "manual_sources/JE-2000C/US/en/git-20261027-c357f54d/assets/lcd-low-temperature.png",
+  "final_path": "assets/lcd-low-temperature.png",
+  "sha256": "fbcd63d36e6f004f2d272c497fc625c7bf2b0844a591eb6ecf6826a3d9abdf0b",
+  "background": "transparent"
+ },
+ {
+  "slot": "symbol-01",
+  "searched": [
+   "docs/renderers/web/assets/shared/symbols/manifest.json (all SVG variants incl. #1632/#1640/#1641 additions)"
+  ],
+  "decision": "reuse shared catalog variant",
+  "shared_symbol_key": "native/je1000d-jp-00c43a89-01",
+  "reason": "passes the fixed 2% symbol admission against this PDF (see source_manifest.json:symbol_asset_admission)",
+  "physical_page": 10,
+  "bbox": [
+   23.3,
+   206.1,
+   39.25,
+   222.8
+  ],
+  "final_path": "assets/symbol-01.svg",
+  "sha256": "6826bf335dfb5aa842639eae12531d9cf30ceb89940e77c56c92f3515f120894",
+  "background": "transparent"
+ },
+ {
+  "slot": "symbol-02",
+  "searched": [
+   "docs/renderers/web/assets/shared/symbols/manifest.json (all SVG variants incl. #1632/#1640/#1641 additions)"
+  ],
+  "decision": "reuse shared catalog variant",
+  "shared_symbol_key": "native/je1000d-jp-00c43a89-02",
+  "reason": "passes the fixed 2% symbol admission against this PDF (see source_manifest.json:symbol_asset_admission)",
+  "physical_page": 10,
+  "bbox": [
+   22.2,
+   228.3,
+   40,
+   246.1
+  ],
+  "final_path": "assets/symbol-02.svg",
+  "sha256": "0766a51f9ad7d433bed62a7c1ddbacc19ad7c7b68bf55938d5cdbab902b9ea04",
+  "background": "transparent"
+ },
+ {
+  "slot": "symbol-03",
+  "searched": [
+   "docs/renderers/web/assets/shared/symbols/manifest.json (all SVG variants incl. #1632/#1640/#1641 additions)"
+  ],
+  "decision": "reuse shared catalog variant",
+  "shared_symbol_key": "native/je1000d-jp-00c43a89-03",
+  "reason": "passes the fixed 2% symbol admission against this PDF (see source_manifest.json:symbol_asset_admission)",
+  "physical_page": 10,
+  "bbox": [
+   22.7,
+   252,
+   40.4,
+   269.8
+  ],
+  "final_path": "assets/symbol-03.svg",
+  "sha256": "585a0c72abdb9fc1d69d31554d249730f1361dfc49a501423dd0204e0637a387",
+  "background": "transparent"
+ },
+ {
+  "slot": "symbol-04",
+  "searched": [
+   "docs/renderers/web/assets/shared/symbols/manifest.json (all SVG variants incl. #1632/#1640/#1641 additions)"
+  ],
+  "decision": "reuse shared catalog variant",
+  "shared_symbol_key": "mandatory/h1-jp-native",
+  "reason": "passes the fixed 2% symbol admission against this PDF (see source_manifest.json:symbol_asset_admission)",
+  "physical_page": 10,
+  "bbox": [
+   195.1,
+   206,
+   212.9,
+   223.8
+  ],
+  "final_path": "assets/symbol-04.svg",
+  "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2",
+  "background": "transparent"
+ },
+ {
+  "slot": "symbol-05",
+  "searched": [
+   "docs/renderers/web/assets/shared/symbols/manifest.json (all SVG variants incl. #1632/#1640/#1641 additions)"
+  ],
+  "decision": "reuse shared catalog variant",
+  "shared_symbol_key": "native/je1000d-jp-00c43a89-05",
+  "reason": "passes the fixed 2% symbol admission against this PDF (see source_manifest.json:symbol_asset_admission)",
+  "physical_page": 10,
+  "bbox": [
+   195.1,
+   228.9,
+   212.9,
+   246.7
+  ],
+  "final_path": "assets/symbol-05.svg",
+  "sha256": "4728b4a0ab80e8376ff756d9af98d92c1906d3461e44eb4905899b6212cc003c",
+  "background": "transparent"
+ },
+ {
+  "slot": "symbol-06",
+  "searched": [
+   "docs/renderers/web/assets/shared/symbols/manifest.json (all SVG variants incl. #1632/#1640/#1641 additions)"
+  ],
+  "decision": "reuse shared catalog variant",
+  "shared_symbol_key": "native/je1000d-jp-00c43a89-06",
+  "reason": "passes the fixed 2% symbol admission against this PDF (see source_manifest.json:symbol_asset_admission)",
+  "physical_page": 10,
+  "bbox": [
+   195.1,
+   252.8,
+   212.9,
+   270.6
+  ],
+  "final_path": "assets/symbol-06.svg",
+  "sha256": "a5390e01e5ed9ba225377ba6b13de7523f86b8139e4686cf4534ebb2c1048641",
+  "background": "transparent"
+ }
+]

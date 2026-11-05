@@ -1,0 +1,69 @@
+/* Source geometry only. The shared Web theme owns every colour, border, fill,
+   heading, callout, table, card and figure style (prepared-document shared-style
+   gate). Figures are selected by their shared data attributes. */
+
+/* Source panels keep the print's own width; no visible caption. */
+#furo-main-content .hb-reference-figure { max-width: 680px; margin-left: auto; margin-right: auto; }
+
+/* Small print drawings and marks keep a print-like size. */
+#furo-main-content .hb-reference-figure[data-reference-id="adjustable-strap"] { max-width: 420px; }
+#furo-main-content .hb-reference-figure[data-reference-id="lcd-display"] { max-width: 560px; }
+#furo-main-content .hb-reference-figure[data-reference-id="contact-qr"] { max-width: 6.5rem; margin-left: 0; }
+
+/* Print case for chapter and subheadings; shared markers stay. */
+#furo-main-content :is(h1, h3, h4), #furo-main-content h2:not(.hb-spec-section) { text-transform: none; }
+
+/* The safety title keeps the original warning triangle beside native text. */
+#furo-main-content [data-source-layout="risk-title"] { display:flex; gap:.65rem; align-items:center; padding:.5rem; }
+#furo-main-content [data-source-layout="risk-title"] img { width:2.3rem; height:auto; flex:none; }
+#furo-main-content [data-source-layout="risk-title"] p { margin:0; font-weight:bold; }
+
+@media(min-width:761px) { #furo-main-content [data-source-layout="safety-columns"], #furo-main-content [data-source-layout="operating-columns"] { column-count:2; column-gap:1.5rem; }
+#furo-main-content [data-source-layout="safety-columns"] table { break-inside:avoid; }
+#furo-main-content [data-source-layout="operating-columns"] > ul > li { break-inside:avoid; }
+}
+
+#furo-main-content [data-source-layout="source-back-contact"] img { display:block; width:6rem; height:auto; }
+
+#furo-main-content [data-source-layout="warning-with-icon"] { display:flex; gap:.4rem; align-items:center; break-inside:avoid; }
+#furo-main-content [data-source-layout="warning-with-icon"] > img { width:2.3rem; height:auto; flex:none; }
+#furo-main-content [data-source-layout="warning-with-icon"] > table { min-width:0; }
+
+#furo-main-content [data-source-layout="warning-with-icon"] { display:grid; grid-template-columns:2.5rem minmax(0,1fr); }
+#furo-main-content [data-source-layout="warning-copy"] p { margin:.1rem 0; }
+
+#furo-main-content [data-source-layout="danger-box"] { display:grid; grid-template-columns:2.3rem auto minmax(0,1fr); gap:.5rem; align-items:center; }
+#furo-main-content [data-source-layout="danger-box"] img { width:2.3rem; height:auto; }
+#furo-main-content [data-source-layout="danger-box"] p { margin:.25rem 0; }
+@media(max-width:760px) { #furo-main-content [data-source-layout="danger-box"] { grid-template-columns:2.3rem minmax(0,1fr); }
+#furo-main-content [data-source-layout="danger-box"] > p:last-child { grid-column:1 / -1; } }
+
+#furo-main-content [data-source-layout="warning-with-icon"] { grid-template-columns:5rem minmax(0,1fr); align-items:center; }
+#furo-main-content [data-source-layout="warning-with-icon"] > img { width:5rem; height:auto; }
+#furo-main-content [data-source-layout="warning-copy"] > p:first-child { font-size:1.3rem; }
+
+/* Source back-contact strip: telephone, email/web pair, and its own QR. */
+#furo-main-content [data-source-layout="contact-strip"] { display:grid; grid-template-columns:minmax(0,1.5fr) minmax(0,1.3fr) 5rem; gap:1rem; align-items:center; }
+#furo-main-content [data-source-layout="contact-phone"], #furo-main-content [data-source-layout="contact-mail"], #furo-main-content [data-source-layout="contact-web"] { display:flex; gap:.5rem; align-items:center; }
+#furo-main-content [data-source-layout="contact-phone"] > img { width:2.3rem; }
+#furo-main-content [data-source-layout="contact-mailweb"] img { width:1.3rem; }
+#furo-main-content [data-source-layout="contact-strip"] p { margin:0; }
+#furo-main-content [data-source-layout="contact-strip"] figure { width:5rem; max-width:100%; margin:0; }
+@media(max-width:760px) { #furo-main-content [data-source-layout="contact-strip"] { grid-template-columns:minmax(0,1fr) 5rem; } #furo-main-content [data-source-layout="contact-phone"] { grid-column:1 / -1; } }
+
+#furo-main-content [data-source-layout="safety-columns"] li { break-inside:avoid; }
+
+/* Source FCC opening spans the full width above the two body columns. */
+#furo-main-content .hb-fcc-grid .hb-fcc-column-left { display:contents; }
+#furo-main-content .hb-fcc-grid .hb-fcc-opening { grid-column:1 / -1; }
+#furo-main-content .hb-fcc-grid .hb-fcc-column-left > p { grid-column:1; grid-row:2; }
+#furo-main-content .hb-fcc-grid .hb-fcc-column-right { grid-column:2; grid-row:2; }
+@media(max-width:760px) { #furo-main-content .hb-fcc-grid .hb-fcc-column-left > p, #furo-main-content .hb-fcc-grid .hb-fcc-column-right { grid-column:1; grid-row:auto; } }
+
+/* The original opening spans both body columns; the following paragraph flows across them. */
+#furo-main-content [data-source-layout="fcc-full-opening"] .hb-fcc-grid { display:block; column-count:2; column-gap:2rem; font-size:.92rem; line-height:1.34; }
+#furo-main-content [data-source-layout="fcc-full-opening"] .hb-fcc-column { display:contents; }
+#furo-main-content [data-source-layout="fcc-full-opening"] .hb-fcc-opening { column-span:all; display:grid; margin-bottom:1rem; }
+#furo-main-content [data-source-layout="fcc-full-opening"] .hb-fcc-column > p, #furo-main-content [data-source-layout="fcc-full-opening"] .hb-fcc-column > ul { margin-bottom:.65rem!important; }
+#furo-main-content [data-source-layout="fcc-full-opening"] .hb-fcc-column li { break-inside:avoid; }
+@media(max-width:760px) { #furo-main-content [data-source-layout="fcc-full-opening"] .hb-fcc-grid { column-count:1; } }

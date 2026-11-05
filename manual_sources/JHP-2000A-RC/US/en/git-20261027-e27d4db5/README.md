@@ -1,8 +1,8 @@
-# JHP-2000A-RC / US / en — Git-only Web manual candidate (V2)
+# JHP-2000A-RC / US / en — Git-only Web manual (V2)
 
 Operator instruction, 2026-10-27: 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 for the 发布文档管理 table. This package is the Jackery HomePower 2000 Plus English manual of record `reczz28SPRx9pzTt` (物料号 16-0102-000417, 项目号 HTE2606, sku 21-0001-000518 / 21-0001-000623). Route `JHP-2000A-RC/US/en/md`; there is no earlier US Web edition of this model, so it is the legacy default.
 
-**Status: `candidate-pending-operator-review`.** There is no `source/approval.json`; the IR is not publication-eligible until the operator accepts the 1280/390 renders beside the JHP-3600A US reference edition and an approval is bound to these inputs.
+**Status: `operator-authorized-git-only-release`.** On 2026-10-28 the operator authorized release (「授权全部合入上线 上线之后 我再一个个核对版面」 in the coordination session, then 「上线提交发布」 for this package in its engineering session). `source/approval.json` binds every reviewed `source/` and `assets/` input and the IR is publication-eligible. The operator checks the layout after go-live; corrections enter only through a new package. The candidate was merged as PR #1628; the approval landed in a follow-up PR.
 
 ## Source authority
 

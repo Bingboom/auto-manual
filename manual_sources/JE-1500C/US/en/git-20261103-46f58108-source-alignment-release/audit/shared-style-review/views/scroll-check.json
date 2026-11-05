@@ -1,0 +1,23 @@
+[
+  {
+    "name": "power",
+    "scrollY": 9252,
+    "scrollLeft": 283,
+    "scrollWidth": 620,
+    "clientWidth": 337
+  },
+  {
+    "name": "faults",
+    "scrollY": 20884,
+    "scrollLeft": 286,
+    "scrollWidth": 640,
+    "clientWidth": 354
+  },
+  {
+    "name": "buttons",
+    "scrollY": 12901,
+    "scrollLeft": 290,
+    "scrollWidth": 646,
+    "clientWidth": 356
+  }
+]

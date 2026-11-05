@@ -1,0 +1,15 @@
+{
+  "model": "JE-300C",
+  "checked_ocr_lines": 156,
+  "candidates": [
+    {
+      "source_page": 4,
+      "source_ocr": "have adequate airfiow in a coo, dry environment to DO NOT place the unit upside down or on its side",
+      "coverage": 0.6142857142857143,
+      "web_near": "DO NOT place the unit upside down or on its side during use or storage.",
+      "source_text": "have adequate airflow in a cool, dry environment to prevent overheating. DO NOT place the unit upside down or on its side during use or storage.",
+      "web_locator": "[data-source-layout=\"operating-columns\"] native list items",
+      "decision": "Originalp4two-columnflow; OCRmerged unrelatedleft/rightlines. Bothcorrectseparatebulletspresent."
+    }
+  ]
+}

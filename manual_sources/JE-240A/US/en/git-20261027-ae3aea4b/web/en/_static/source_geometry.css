@@ -1,0 +1,20 @@
+/* JE-240A US English: page-local geometry and type size only.
+   Colours, borders and panels come from the shared Web theme (prepared-document shared-style gate). */
+
+/* Complete source panels keep a readable print width. */
+#furo-main-content .hb-reference-figure { max-width: 44rem; margin-inline: auto; }
+#furo-main-content .hb-reference-figure[data-reference-id="certifications"] { max-width: 11rem; margin-inline: 0; }
+#furo-main-content .hb-reference-figure[data-reference-id="app-badges"] { max-width: 20rem; margin-inline: 0; }
+#furo-main-content .hb-reference-figure[data-reference-id="charging-ac"] { max-width: 22rem; }
+#furo-main-content .hb-reference-figure[data-reference-id="charging-car"] { max-width: 30rem; }
+#furo-main-content .hb-reference-figure:is([data-reference-id="app-add"], [data-reference-id="app-results"]) { max-width: 34rem; }
+@media (max-width: 760px) {
+  #furo-main-content .hb-reference-figure[data-reference-id="overview"],
+  #furo-main-content .hb-reference-figure[data-reference-id="lcd-map"] { overflow-x: auto; }
+  #furo-main-content .hb-reference-figure[data-reference-id="overview"] > *,
+  #furo-main-content .hb-reference-figure[data-reference-id="lcd-map"] > * { min-width: 30rem; }
+}
+
+/* Headings keep print case (「US English」, 「Product Appearance」, 「Output On/Off」); the doubled id
+   outranks the shared strips' uppercase rule (#furo-main-content h2:not(.hb-spec-section)). */
+#furo-main-content#furo-main-content :is(h1, h2, h3, h4) { text-transform: none; }

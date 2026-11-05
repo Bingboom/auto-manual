@@ -1,0 +1,142 @@
+{
+  "source_sha256": "e27d4db5606c140439dd32b7d17ab4ed428a62fbfbb5567c7664d8ac22032d51",
+  "method": "Current own PDF directly rendered at2.3x; content compared bidirectionally with native transcription/HTML and own illustrations. Body pages visually checked against final actual viewport captures.",
+  "excluded": {
+    "1": "front cover per user",
+    "3": "paper TOC per user"
+  },
+  "pages": [
+    {
+      "physical_page": 2,
+      "status": "passed",
+      "scope": "US IMPORTANT, five paragraphs plus Red Cross trademark; native body.",
+      "own_pdf_render_sha256": "b25346671b22c272f260b5e0e051bc817f14335dc96ffcce834696eb6e275461"
+    },
+    {
+      "physical_page": 4,
+      "status": "passed",
+      "scope": "Full risk strip; safety 6/5 and operating 7/8 columns, exact boundary; no invented warning card.",
+      "own_pdf_render_sha256": "83b9a27058c6c70f26775da653c28c6096ad51a27d7f9c667dac4d9f9bacc260"
+    },
+    {
+      "physical_page": 5,
+      "status": "passed",
+      "scope": "Ground WARNING and DANGER source frames, maintenance pill, signal warning/caution glyphs and all11 symbol rows.",
+      "own_pdf_render_sha256": "ce426015a8225de337ff24ba34dfad0fa4a6fb353d0dd9f64238645467acd017"
+    },
+    {
+      "physical_page": 6,
+      "status": "passed",
+      "scope": "FCC logo float/native opening NOTE/These limits breaks; source 2 columns; separate RF and ISED; own3 box cards.",
+      "own_pdf_render_sha256": "2749c2d8c6754b5e440d66593a753f5c79f5aa8d0e11a4d47b772b39920bab3c"
+    },
+    {
+      "physical_page": 7,
+      "status": "passed",
+      "scope": "Own front/left/right artwork all port callouts preserved; tiny DC values directly verified.",
+      "own_pdf_render_sha256": "7437eb43d84c0ad6b5ddaff1955f6cb0975ee367c64efb20772838dad2f069e8"
+    },
+    {
+      "physical_page": 8,
+      "status": "passed",
+      "scope": "Own LCD display plus rows1-5.",
+      "own_pdf_render_sha256": "4b22a2a1a4cdee972cf02ca1fa6f0c24e52ce821246e7b527ff41f5bd74f8273"
+    },
+    {
+      "physical_page": 9,
+      "status": "passed",
+      "scope": "LCD rows6-17, TOU SOC60%; charging power limit on/off sentences checked visually.",
+      "own_pdf_render_sha256": "6283dde0cf5863e89350c45b237a7b9535dc303abcece47ea3be19d09c811e14"
+    },
+    {
+      "physical_page": 10,
+      "status": "passed",
+      "scope": "LCD rows18-26 including shared23 number for high/low temperature.",
+      "own_pdf_render_sha256": "73621419763b375072ba25e6856a45b31d40d765a6477efeb1010711aaecd374"
+    },
+    {
+      "physical_page": 11,
+      "status": "passed",
+      "scope": "Power and AC frames and gray prose backgrounds, native original-coordinate copy.",
+      "own_pdf_render_sha256": "7e41c1ec14ad314db290b3e92dbc0211b41e792f0b12f58211fd97cf68efea3f"
+    },
+    {
+      "physical_page": 12,
+      "status": "passed",
+      "scope": "DC/USB native prerequisite and own diagram; own USB and car cautions retained.",
+      "own_pdf_render_sha256": "6ebd6779a8da62ef2f4bbe4a58b9478d64a980bd6d7609af20174fff1150c696"
+    },
+    {
+      "physical_page": 13,
+      "status": "passed",
+      "scope": "Energy mode and LED original-frame native copy and warnings.",
+      "own_pdf_render_sha256": "fa74f1c9078dcbd043f2240cdcdd121a5631f85922e4cc6214c766c32db50e9a"
+    },
+    {
+      "physical_page": 14,
+      "status": "passed",
+      "scope": "LCD mode matrix; four keys + and sourceclock; all four operations explicitly contain both; auto-resume.",
+      "own_pdf_render_sha256": "0b0c6c7a9bd1aea88d41eb1d74247708284bca5a8501f14cfdf20faa1f4a0ad0"
+    },
+    {
+      "physical_page": 15,
+      "status": "passed",
+      "scope": "UPS source panel with native prose in original positions; full four cautions and warning paragraphs.",
+      "own_pdf_render_sha256": "aa72c687e059324dcb24f1b662277038aa78195e2be402c461dfddefb547b06b"
+    },
+    {
+      "physical_page": 16,
+      "status": "passed",
+      "scope": "Battery stack complete source frame, all four cautions, accessorystrip.",
+      "own_pdf_render_sha256": "fa2df83f6e48f927885501825f8d6578b2b69d604f1937f4df1c94168b366dd9"
+    },
+    {
+      "physical_page": 17,
+      "status": "passed",
+      "scope": "Charging lead, original fully-charge/emergency pills, AC originalframe caption, solar lead.",
+      "own_pdf_render_sha256": "e0c5b6a16938e247f68e2a31ef579728d3fb20af766ea5697509307a0ee07bf4"
+    },
+    {
+      "physical_page": 18,
+      "status": "passed",
+      "scope": "Solar/car original fullframes and source cautions; VOC subscript.",
+      "own_pdf_render_sha256": "37079bc668a526a8dd074e6a322d414be0a793faf4e815227186826826e96000"
+    },
+    {
+      "physical_page": 19,
+      "status": "passed",
+      "scope": "Storage and fault table F0-FE, original text and VOC subscript.",
+      "own_pdf_render_sha256": "dbce842beb995218a841c2ee8ec9048208142f87f7d0b9a95522ad4ef682513e"
+    },
+    {
+      "physical_page": 20,
+      "status": "passed",
+      "scope": "All specs own values; AC and DC8020 each2 value rows with label rowspan2; original heading scale; no invented split outputvalues.",
+      "own_pdf_render_sha256": "ef7242101429ed38d189f2f4a040cd8ff4c945e325cec9ca7d00e8bfc768ecde"
+    },
+    {
+      "physical_page": 21,
+      "status": "passed",
+      "scope": "Warranty6blocks; only 3/2 years in columns; all text.",
+      "own_pdf_render_sha256": "40c698f9b578a47ec469fe014e6786de0410542f3479e13f47daa80487743c30"
+    },
+    {
+      "physical_page": 22,
+      "status": "passed",
+      "scope": "App steps1/2, ownQR/storebuttons/phones/controlleroriginalart and native paragraphs.",
+      "own_pdf_render_sha256": "c0902ded51fea054fafd10da1c3c38c886eaec7642dfe1edcf8c05e991a0f152"
+    },
+    {
+      "physical_page": 23,
+      "status": "passed",
+      "scope": "App remaining pairing/unbind/notes; ownphoneart and all instructions.",
+      "own_pdf_render_sha256": "08241e8bc664e4fa7b88b6ebd26f8626d2f8da698b45d3051dcd61fc07258706"
+    },
+    {
+      "physical_page": 24,
+      "status": "passed",
+      "scope": "Back company/address plus originalphone/mail/web/QR artwork with native text.",
+      "own_pdf_render_sha256": "b1065432d6444ead53438cc6d9357ae1399e36f8fb522ab769dbba649cd70512"
+    }
+  ]
+}

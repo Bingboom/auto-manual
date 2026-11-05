@@ -1,0 +1,72 @@
+{
+  "caption_frame": [
+    {
+      "source_ref": "transcribed-pdf/page-15/charging-car",
+      "asset_ref": "assets/charging-car.png",
+      "labels": [
+        {
+          "line": 0,
+          "status": "passed",
+          "baked_fill_fraction": 0.0
+        }
+      ]
+    }
+  ],
+  "symbols": [
+    {
+      "asset_ref": "assets/symbol_warning_triangle.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.010933
+    },
+    {
+      "asset_ref": "assets/symbol_read_manual.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.018763
+    },
+    {
+      "asset_ref": "assets/symbol_electric_shock.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.009962
+    },
+    {
+      "asset_ref": "assets/symbol_battery_charging.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.012225
+    },
+    {
+      "asset_ref": "assets/symbol_explosive_material_native_v2_3e3a39.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.017078
+    },
+    {
+      "asset_ref": "assets/symbol_heavy_object.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.011486
+    },
+    {
+      "asset_ref": "assets/symbol_do_not_dismantle.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.019957
+    },
+    {
+      "asset_ref": "assets/symbol_no_open_flame.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.002819
+    },
+    {
+      "asset_ref": "assets/symbol_keep_away_from_children.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.002832
+    },
+    {
+      "asset_ref": "assets/symbol_li_ion_htp017.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.0005
+    },
+    {
+      "asset_ref": "assets/symbol_weee.png",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.011654
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "status": "all_boundary_controls_passed",
+  "verified_svg_sha256": "888dc723cc53ad7a51834355fe09dce051c8941a71b7eae9298dd8ca408a5e8d",
+  "scanner_version": "8.30.1",
+  "cases": [
+    {
+      "case": "exact-source",
+      "expected_exit": 0,
+      "actual_exit": 0
+    },
+    {
+      "case": "exact-stored",
+      "expected_exit": 0,
+      "actual_exit": 0
+    },
+    {
+      "case": "exact-served",
+      "expected_exit": 0,
+      "actual_exit": 0
+    },
+    {
+      "case": "wrong-digest",
+      "expected_exit": 1,
+      "actual_exit": 1
+    },
+    {
+      "case": "wrong-path",
+      "expected_exit": 1,
+      "actual_exit": 1
+    },
+    {
+      "case": "credential-field",
+      "expected_exit": 1,
+      "actual_exit": 1
+    },
+    {
+      "case": "another-asset-field",
+      "expected_exit": 1,
+      "actual_exit": 1
+    }
+  ]
+}

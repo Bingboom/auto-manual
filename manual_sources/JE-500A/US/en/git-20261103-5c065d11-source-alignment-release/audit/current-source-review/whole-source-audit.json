@@ -1,0 +1,545 @@
+{
+  "source_sha256": "5c065d11c0191e7f9f5ef32ecd39fe0ca620f206c296c4eb6401a4b8215cea68",
+  "exclusions": [
+    {
+      "page": 1,
+      "reason": "Operator explicitly excludes Web cover"
+    },
+    {
+      "page": 3,
+      "reason": "Operator explicitly excludes printTOC"
+    }
+  ],
+  "pages": [
+    {
+      "page": 2,
+      "review": "Original IMPORTANT preface, US badge and product identity."
+    },
+    {
+      "page": 4,
+      "review": "Risk icon without extra WARNING; source2columns with exact text continuation, 11safety items and15operating items; original bold/strip titles."
+    },
+    {
+      "page": 5,
+      "review": "DANGER source lockup; maintenance; signal table and original pictograms; FCC full wording/sourcebreak before and on / -- markers."
+    },
+    {
+      "page": 6,
+      "review": "Three inventory items, car-cableTIP, original front-view diagram and all port labels."
+    },
+    {
+      "page": 7,
+      "review": "Original side-view/DC/AC ratings; original LCD diagram and UPS/AC indicators."
+    },
+    {
+      "page": 8,
+      "review": "LCD rows3–12; circled numbers, high/low temperature share11; all status clauses."
+    },
+    {
+      "page": 9,
+      "review": "POWER/AC source drawings; standby2h and energy-saving6h/25W/2W conditions verified; native note inside source panel."
+    },
+    {
+      "page": 10,
+      "review": "DC/USB source drawing, car-battery note inside panel; original caution items and manual energy-saving switch left/right positions."
+    },
+    {
+      "page": 11,
+      "review": "LED native source steps/circled1–3, native introductory and bottomnotes inside panel; six-row LCD table unchanged, source2min/2h and LCD-on doubleclick condition."
+    },
+    {
+      "page": 12,
+      "review": "UPS10ms body, original diagram; three Important Notes in graypanel, one-device/cascade conditions unchanged."
+    },
+    {
+      "page": 13,
+      "review": "Charging priority/initialcharge/temperature notes; AC originaldrawing and inside-panel note; exact100W/200W solar conditions."
+    },
+    {
+      "page": 14,
+      "review": "Original parallel-panel drawing; source solar caution; car source drawing and four source paragraphs without invented CAUTION label."
+    },
+    {
+      "page": 15,
+      "review": "Graystoragepanel1/3/12monthtemps and3–6month recharge conditions; fullF0–F9 3-columnfaulttable and exactdescriptions."
+    },
+    {
+      "page": 16,
+      "review": "Four native specgroups;512Wh,25.6V,6000cycles,DC11–16V8A and16–60V10.5A/200W,500W/1000Woutputs,USB1/2ratings,dimensions/weights/temps/subscripts verified; current line ownership retained."
+    },
+    {
+      "page": 17,
+      "review": "Warranty3+2years, five textsections/exclusions/interpretationrights unchanged."
+    },
+    {
+      "page": 18,
+      "review": "Exact company/address/phone/email/web; original3contactglyph crops and existingoriginalQR, source enclosing panel."
+    }
+  ],
+  "inherited_normalizations": [
+    {
+      "record": "source_manifest.json#normalizations/0",
+      "declaration": "Outlined PDF: original.pdf has no text layer; every English line is a manual transcription from 300 dpi renders, kept as printed (source/intake.py names the physical page of each block).",
+      "result": "Verified current source. Earlier note relocation and removed contact pictogram assumptions are superseded by current native grouping and original glyph restoration."
+    },
+    {
+      "record": "source_manifest.json#normalizations/1",
+      "declaration": "Shared Manual IR: content.json is replayed through the shared flow renderer and shared components. Target-local source geometry uses native shared components; the two plain tables are declared in shared_component_exceptions (prepared-document shared-style gate).",
+      "result": "Verified current source. Earlier note relocation and removed contact pictogram assumptions are superseded by current native grouping and original glyph restoration."
+    },
+    {
+      "record": "source_manifest.json#normalizations/2",
+      "declaration": "Print weights: bold print runs stay strong; headings keep print case. Printed bullet and number marks become lists; hollow-bullet items nest under their item. Subscripts (V_oc, LiFePO4) stay subscript.",
+      "result": "Verified current source. Earlier note relocation and removed contact pictogram assumptions are superseded by current native grouping and original glyph restoration."
+    },
+    {
+      "record": "source_manifest.json#normalizations/3",
+      "declaration": "Line ends inside a paragraph are wraps; the print's explicit line breaks inside one block stay line breaks.",
+      "result": "Verified current source. Earlier note relocation and removed contact pictogram assumptions are superseded by current native grouping and original glyph restoration."
+    },
+    {
+      "record": "source_manifest.json#normalizations/4",
+      "declaration": "Figures are source panels cropped just inside the print's panel frame (the decorative frame is drawn by the shared theme); words drawn in the art stay in the art and the alt text carries printed sentences. Notes inside source panels remain native text within their original enclosing panel; detached print callouts remain shared strips.",
+      "result": "Verified current source. Earlier note relocation and removed contact pictogram assumptions are superseded by current native grouping and original glyph restoration."
+    },
+    {
+      "record": "source_manifest.json#normalizations/5",
+      "declaration": "Cover (p1) and table of contents (p3) are not Web content; the back cover (p18) becomes the closing native contact panel with original phone/mail/web glyphs and QR.",
+      "result": "Verified current source. Earlier note relocation and removed contact pictogram assumptions are superseded by current native grouping and original glyph restoration."
+    },
+    {
+      "record": "source_manifest.json#shared_component_exceptions/0",
+      "declaration": "HB-TABLE-LCD-MODE requires its button artwork; this print sets the LCD SCREEN ON/OFF table without any drawing, so the printed three-column state/action/description table is kept as a plain shared table.",
+      "result": "Current p11 /p15 really are three-column native tables; keep source cells/rowspans. Both mobile last columns verified reachable."
+    },
+    {
+      "record": "source_manifest.json#shared_component_exceptions/1",
+      "declaration": "HB-TABLE-TROUBLESHOOTING is two-column (error code + corrective measures); this print's fault table has three columns (Error Code / Name / Description for internal fault maintenance) and no corrective measures, so it is kept as a plain shared table.",
+      "result": "Current p11 /p15 really are three-column native tables; keep source cells/rowspans. Both mobile last columns verified reachable."
+    }
+  ],
+  "all_asset_decisions": [
+    {
+      "record": "source/figures.json#0",
+      "asset": "assets/inbox-unit.png",
+      "current_pdf_page": 6,
+      "decision": "Original source glyph/panel retained; matches same authoritative PDF. External detached panel notes now regrouped as native text.",
+      "source_declaration": "extract source panel at 4x (inside the print frame)"
+    },
+    {
+      "record": "source/figures.json#1",
+      "asset": "assets/inbox-ac-cable.png",
+      "current_pdf_page": 6,
+      "decision": "Original source glyph/panel retained; matches same authoritative PDF. External detached panel notes now regrouped as native text.",
+      "source_declaration": "extract source panel at 4x (inside the print frame)"
+    },
+    {
+      "record": "source/figures.json#2",
+      "asset": "assets/inbox-user-manual.png",
+      "current_pdf_page": 6,
+      "decision": "Original source glyph/panel retained; matches same authoritative PDF. External detached panel notes now regrouped as native text.",
+      "source_declaration": "extract source panel at 4x (inside the print frame)"
+    },
+    {
+      "record": "source/figures.json#3",
+      "asset": "assets/overview-front.png",
+      "current_pdf_page": 6,
+      "decision": "Original source glyph/panel retained; matches same authoritative PDF. External detached panel notes now regrouped as native text.",
+      "source_declaration": "extract source panel at 4x (inside the print frame)"
+    },
+    {
+      "record": "source/figures.json#4",
+      "asset": "assets/overview-right.png",
+      "current_pdf_page": 7,
+      "decision": "Original source glyph/panel retained; matches same authoritative PDF. External detached panel notes now regrouped as native text.",
+      "source_declaration": "extract source panel at 4x (inside the print frame)"
+    },
+    {
+      "record": "source/figures.json#5",
+      "asset": "assets/lcd-display.png",
+      "current_pdf_page": 7,
+      "decision": "Original source glyph/panel retained; matches same authoritative PDF. External detached panel notes now regrouped as native text.",
+      "source_declaration": "extract source panel at 4x (inside the print frame)"
+    },
+    {
+      "record": "source/figures.json#6",
+      "asset": "assets/power-on-off.png",
+      "current_pdf_page": 9,
+      "decision": "Original source glyph/panel retained; matches same authoritative PDF. External detached panel notes now regrouped as native text.",
+      "source_declaration": "extract source panel at 4x (inside the print frame)"
+    },
+    {
+      "record": "source/figures.json#7",
+      "asset": "assets/ac-output.png",
+      "current_pdf_page": 9,
+      "decision": "Original source glyph/panel retained; matches same authoritative PDF. External detached panel notes now regrouped as native text.",
+      "source_declaration": "extract source panel at 4x (inside the print frame)"
+    },
+    {
+      "record": "source/figures.json#8",
+      "asset": "assets/dc-usb-output.png",
+      "current_pdf_page": 10,
+      "decision": "Original source glyph/panel retained; matches same authoritative PDF. External detached panel notes now regrouped as native text.",
+      "source_declaration": "extract source panel at 4x (inside the print frame)"
+    },
+    {
+      "record": "source/figures.json#9",
+      "asset": "assets/energy-saving.png",
+      "current_pdf_page": 10,
+      "decision": "Original source glyph/panel retained; matches same authoritative PDF. External detached panel notes now regrouped as native text.",
+      "source_declaration": "extract source panel at 4x (inside the print frame)"
+    },
+    {
+      "record": "source/figures.json#10",
+      "asset": "assets/led-light.png",
+      "current_pdf_page": 11,
+      "decision": "Original source glyph/panel retained; matches same authoritative PDF. External detached panel notes now regrouped as native text.",
+      "source_declaration": "extract source panel at 4x (inside the print frame)"
+    },
+    {
+      "record": "source/figures.json#11",
+      "asset": "assets/ups.png",
+      "current_pdf_page": 12,
+      "decision": "Original source glyph/panel retained; matches same authoritative PDF. External detached panel notes now regrouped as native text.",
+      "source_declaration": "extract source panel at 4x (inside the print frame)"
+    },
+    {
+      "record": "source/figures.json#12",
+      "asset": "assets/charging-ac.png",
+      "current_pdf_page": 13,
+      "decision": "Original source glyph/panel retained; matches same authoritative PDF. External detached panel notes now regrouped as native text.",
+      "source_declaration": "extract source panel at 4x (inside the print frame)"
+    },
+    {
+      "record": "source/figures.json#13",
+      "asset": "assets/charging-solar-single.png",
+      "current_pdf_page": 13,
+      "decision": "Original source glyph/panel retained; matches same authoritative PDF. External detached panel notes now regrouped as native text.",
+      "source_declaration": "extract source panel at 4x (inside the print frame)"
+    },
+    {
+      "record": "source/figures.json#14",
+      "asset": "assets/charging-solar-pair.png",
+      "current_pdf_page": 14,
+      "decision": "Original source glyph/panel retained; matches same authoritative PDF. External detached panel notes now regrouped as native text.",
+      "source_declaration": "extract source panel at 4x (inside the print frame)"
+    },
+    {
+      "record": "source/figures.json#15",
+      "asset": "assets/charging-car.png",
+      "current_pdf_page": 14,
+      "decision": "Original source glyph/panel retained; matches same authoritative PDF. External detached panel notes now regrouped as native text.",
+      "source_declaration": "extract source panel at 4x (inside the print frame)"
+    },
+    {
+      "record": "source/figures.json#16",
+      "asset": "assets/contact-qr.png",
+      "current_pdf_page": 18,
+      "decision": "Original source glyph/panel retained; matches same authoritative PDF. External detached panel notes now regrouped as native text.",
+      "source_declaration": "extract source panel at 4x (inside the print frame)"
+    },
+    {
+      "record": "source/glyphs.json#0",
+      "asset": "assets/lcd-ups.svg",
+      "current_pdf_page": 7,
+      "decision": "Original source glyph/panel retained; matches same authoritative PDF. External detached panel notes now regrouped as native text.",
+      "source_declaration": "reuse the candidate unchanged (passes the fixed comparison against this print)"
+    },
+    {
+      "record": "source/glyphs.json#1",
+      "asset": "assets/lcd-ac-power.svg",
+      "current_pdf_page": 7,
+      "decision": "Original source glyph/panel retained; matches same authoritative PDF. External detached panel notes now regrouped as native text.",
+      "source_declaration": "reuse the candidate unchanged (passes the fixed comparison against this print)"
+    },
+    {
+      "record": "source/glyphs.json#2",
+      "asset": "assets/lcd-input-power.svg",
+      "current_pdf_page": 8,
+      "decision": "Original source glyph/panel retained; matches same authoritative PDF. External detached panel notes now regrouped as native text.",
+      "source_declaration": "reuse the candidate unchanged (passes the fixed comparison against this print)"
+    },
+    {
+      "record": "source/glyphs.json#3",
+      "asset": "assets/lcd-output-power.svg",
+      "current_pdf_page": 8,
+      "decision": "Original source glyph/panel retained; matches same authoritative PDF. External detached panel notes now regrouped as native text.",
+      "source_declaration": "reuse the candidate unchanged (passes the fixed comparison against this print)"
+    },
+    {
+      "record": "source/glyphs.json#4",
+      "asset": "assets/lcd-ac-wall-charging.svg",
+      "current_pdf_page": 8,
+      "decision": "Original source glyph/panel retained; matches same authoritative PDF. External detached panel notes now regrouped as native text.",
+      "source_declaration": "reuse the candidate unchanged (passes the fixed comparison against this print)"
+    },
+    {
+      "record": "source/glyphs.json#5",
+      "asset": "assets/lcd-car-charging.svg",
+      "current_pdf_page": 8,
+      "decision": "Original source glyph/panel retained; matches same authoritative PDF. External detached panel notes now regrouped as native text.",
+      "source_declaration": "reuse the candidate unchanged (passes the fixed comparison against this print)"
+    },
+    {
+      "record": "source/glyphs.json#6",
+      "asset": "assets/lcd-solar-charging.svg",
+      "current_pdf_page": 8,
+      "decision": "Original source glyph/panel retained; matches same authoritative PDF. External detached panel notes now regrouped as native text.",
+      "source_declaration": "reuse the candidate unchanged (passes the fixed comparison against this print)"
+    },
+    {
+      "record": "source/glyphs.json#7",
+      "asset": "assets/lcd-battery-power.svg",
+      "current_pdf_page": 8,
+      "decision": "Original source glyph/panel retained; matches same authoritative PDF. External detached panel notes now regrouped as native text.",
+      "source_declaration": "reuse the candidate unchanged (passes the fixed comparison against this print)"
+    },
+    {
+      "record": "source/glyphs.json#8",
+      "asset": "assets/lcd-battery-percentage.svg",
+      "current_pdf_page": 8,
+      "decision": "Original source glyph/panel retained; matches same authoritative PDF. External detached panel notes now regrouped as native text.",
+      "source_declaration": "native vector glyph from this print (transparent SVG)"
+    },
+    {
+      "record": "source/glyphs.json#9",
+      "asset": "assets/lcd-fault-code.svg",
+      "current_pdf_page": 8,
+      "decision": "Original source glyph/panel retained; matches same authoritative PDF. External detached panel notes now regrouped as native text.",
+      "source_declaration": "reuse the candidate unchanged (passes the fixed comparison against this print)"
+    },
+    {
+      "record": "source/glyphs.json#10",
+      "asset": "assets/lcd-high-temperature.svg",
+      "current_pdf_page": 8,
+      "decision": "Original source glyph/panel retained; matches same authoritative PDF. External detached panel notes now regrouped as native text.",
+      "source_declaration": "native vector glyph from this print (transparent SVG)"
+    },
+    {
+      "record": "source/glyphs.json#11",
+      "asset": "assets/lcd-low-temperature.svg",
+      "current_pdf_page": 8,
+      "decision": "Original source glyph/panel retained; matches same authoritative PDF. External detached panel notes now regrouped as native text.",
+      "source_declaration": "native vector glyph from this print (transparent SVG)"
+    },
+    {
+      "record": "source/glyphs.json#12",
+      "asset": "assets/lcd-energy-saving.svg",
+      "current_pdf_page": 8,
+      "decision": "Original source glyph/panel retained; matches same authoritative PDF. External detached panel notes now regrouped as native text.",
+      "source_declaration": "reuse the candidate unchanged (passes the fixed comparison against this print)"
+    },
+    {
+      "record": "source/glyphs.json#13",
+      "asset": "assets/fcc_mark.svg",
+      "current_pdf_page": 5,
+      "decision": "Original source glyph/panel retained; matches same authoritative PDF. External detached panel notes now regrouped as native text.",
+      "source_declaration": "reuse the candidate unchanged (passes the fixed comparison against this print)"
+    },
+    {
+      "record": "source/symbols.json#0",
+      "asset": "assets/symbol_warning_triangle.svg",
+      "current_pdf_page": 5,
+      "decision": "Original source glyph/panel retained; matches same authoritative PDF. External detached panel notes now regrouped as native text.",
+      "source_declaration": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)"
+    },
+    {
+      "record": "source/symbols.json#1",
+      "asset": "assets/symbol_read_manual.svg",
+      "current_pdf_page": 5,
+      "decision": "Original source glyph/panel retained; matches same authoritative PDF. External detached panel notes now regrouped as native text.",
+      "source_declaration": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)"
+    },
+    {
+      "record": "source/symbols.json#2",
+      "asset": "assets/screwdriver-prohibited-tw-477dfbd7.svg",
+      "current_pdf_page": 5,
+      "decision": "Original source glyph/panel retained; matches same authoritative PDF. External detached panel notes now regrouped as native text.",
+      "source_declaration": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)"
+    },
+    {
+      "record": "source/symbols.json#3",
+      "asset": "assets/no_open_flame_dark_5c065d11.svg",
+      "current_pdf_page": 5,
+      "decision": "Original source glyph/panel retained; matches same authoritative PDF. External detached panel notes now regrouped as native text.",
+      "source_declaration": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)"
+    },
+    {
+      "record": "source/symbols.json#4",
+      "asset": "assets/keep_away_from_children_dark_5c065d11.svg",
+      "current_pdf_page": 5,
+      "decision": "Original source glyph/panel retained; matches same authoritative PDF. External detached panel notes now regrouped as native text.",
+      "source_declaration": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)"
+    },
+    {
+      "record": "source/symbols.json#5",
+      "asset": "assets/symbol_li_ion_dark.svg",
+      "current_pdf_page": 5,
+      "decision": "Original source glyph/panel retained; matches same authoritative PDF. External detached panel notes now regrouped as native text.",
+      "source_declaration": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)"
+    },
+    {
+      "record": "source/symbols.json#6",
+      "asset": "assets/symbol_weee.png",
+      "current_pdf_page": 5,
+      "decision": "Original source glyph/panel retained; matches same authoritative PDF. External detached panel notes now regrouped as native text.",
+      "source_declaration": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)"
+    }
+  ],
+  "original_assets_unchanged": [
+    {
+      "asset": "ac-output.png",
+      "sha256": "67ddcb1c68d432476031621da1f15ebd415abd12f0a722db858482c40dc717fe"
+    },
+    {
+      "asset": "charging-ac.png",
+      "sha256": "e7924b0cbdda614f7e45d898859c3d2c0571ba7f3fdaddf7484987fcce985f64"
+    },
+    {
+      "asset": "charging-car.png",
+      "sha256": "3c670f253f37ddcda5fd63064b849c6ff96be7388ff5b2e89b5c27e5f4c83370"
+    },
+    {
+      "asset": "charging-solar-pair.png",
+      "sha256": "f69b72581575f2c94864fb961fe6ba84497d4d698b50aaae772997512a7f1191"
+    },
+    {
+      "asset": "charging-solar-single.png",
+      "sha256": "a1932fc8a8d6557a17ad8ceb3efa0eba13b372bf3fce7969b54842f3b59de63d"
+    },
+    {
+      "asset": "contact-qr.png",
+      "sha256": "c92d9e67b471254a8925fdaa12b5c7148fefce48ca589154a8df09797bdf6427"
+    },
+    {
+      "asset": "dc-usb-output.png",
+      "sha256": "1cf240ecb01b6746c2db423d56f4ad294a0c9d7e5cc4147a9fadea580dc4eb95"
+    },
+    {
+      "asset": "energy-saving.png",
+      "sha256": "66c2e2dcc6758560e4361c902135f35b3bae59539266dc187f0d82cd84486364"
+    },
+    {
+      "asset": "fcc_mark.svg",
+      "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+    },
+    {
+      "asset": "inbox-ac-cable.png",
+      "sha256": "8d6be587ca1b56058378c96bc5b6a24e020d9e802c01bfc2dc4a432875b530e5"
+    },
+    {
+      "asset": "inbox-unit.png",
+      "sha256": "6e744a31be1f5f24235545f9863fabce65e216d2971b6b70801e98474edd3813"
+    },
+    {
+      "asset": "inbox-user-manual.png",
+      "sha256": "78cd3a9612b8af337867c8adde47fa69df1cc52e7c7b4dc8fdfc5a790169da1c"
+    },
+    {
+      "asset": "keep_away_from_children_dark_5c065d11.svg",
+      "sha256": "b7c9f8c42b21e7ae0146c827fe15a0a9ce08b254e7a2a1f09b7998683ce63bd1"
+    },
+    {
+      "asset": "lcd-ac-power.svg",
+      "sha256": "ae74b5535c88c6f612bfc8fe4f187bb3b106b6b039ac98a809112b6584d1a7c0"
+    },
+    {
+      "asset": "lcd-ac-wall-charging.svg",
+      "sha256": "8fe4024f27f2963349cc4255a2673d88fac8a7565944ec62b5bc52337bdc284b"
+    },
+    {
+      "asset": "lcd-battery-percentage.svg",
+      "sha256": "4aa18aa8c42405acb0b1b9eb08a01c92d10447220b9b716ad6d2e0d347aca2ae"
+    },
+    {
+      "asset": "lcd-battery-power.svg",
+      "sha256": "5500242f2fe21a6b1b32d363f483f23841d34f0055c057e530eecdcfe2de0c1f"
+    },
+    {
+      "asset": "lcd-car-charging.svg",
+      "sha256": "544d91029a10f3a13f50d365ea95cc2160f0c569caadc71ed4de1d516571d9cd"
+    },
+    {
+      "asset": "lcd-display.png",
+      "sha256": "2fcb5ed91915b6e8757318d911b84cf8148c3ceabafa548b16db888a11560dd3"
+    },
+    {
+      "asset": "lcd-energy-saving.svg",
+      "sha256": "b0d6afa954c8196d99ad160519439590c22fcc00140cb9b04bb575b7aa927d26"
+    },
+    {
+      "asset": "lcd-fault-code.svg",
+      "sha256": "0390f59d2f20301b2f6b6400b61d589eb0e98e3a1700cf7e10e3731a7e6b35aa"
+    },
+    {
+      "asset": "lcd-high-temperature.svg",
+      "sha256": "094eabd2eb6a5804ad3926ccc98129ae9774024b4244a69ed3b7c70289018e91"
+    },
+    {
+      "asset": "lcd-input-power.svg",
+      "sha256": "064890bdd120a64c923b8ba6957493762ae8228de7dbbbe1698715021dc1412e"
+    },
+    {
+      "asset": "lcd-low-temperature.svg",
+      "sha256": "f8181b68568d0593c815a15bcee7da7c588efe10b9e545726c1423080e95aa2b"
+    },
+    {
+      "asset": "lcd-output-power.svg",
+      "sha256": "42e2c1cfa5b193ddb24af2779649fdfa8126140ae81b0593d1ed5f98598ee9a5"
+    },
+    {
+      "asset": "lcd-solar-charging.svg",
+      "sha256": "c4e8ecbbc808bf7d20dd2147e9b066b2bb29fb6bb39cc93c7b8011e7db90ffee"
+    },
+    {
+      "asset": "lcd-ups.svg",
+      "sha256": "0163808fd1fe991b44267a5efb30ffe510796372cdc2a87e1b03053d08ea1a66"
+    },
+    {
+      "asset": "led-light.png",
+      "sha256": "e18330da6be5a97f2c78c1d7145c2581175f519e1db7829fe08c69b279f2349c"
+    },
+    {
+      "asset": "no_open_flame_dark_5c065d11.svg",
+      "sha256": "376dda9ce60a47eb10e9e5a3f9b940ffd8f1581b1a7dfd1f726a6279d51de024"
+    },
+    {
+      "asset": "overview-front.png",
+      "sha256": "7926426e5e4c12006f00f35c382d27a1c90e94c8a1d041d647ee51aad4af1a21"
+    },
+    {
+      "asset": "overview-right.png",
+      "sha256": "daa2d3a707ea33199b443d4df4065d0e447b5a1ffd293a48f8a796cfbf28d965"
+    },
+    {
+      "asset": "power-on-off.png",
+      "sha256": "d7734232a89fb4b75ba2b6e46918c3f24f3538a676de1129eb7311734d8e19ce"
+    },
+    {
+      "asset": "screwdriver-prohibited-tw-477dfbd7.svg",
+      "sha256": "482e56e11b72b30ca053ee1cc94021f98909ceb9497e9c084738fd2b4a0fe01b"
+    },
+    {
+      "asset": "symbol_li_ion_dark.svg",
+      "sha256": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1"
+    },
+    {
+      "asset": "symbol_read_manual.svg",
+      "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584"
+    },
+    {
+      "asset": "symbol_warning_triangle.svg",
+      "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a"
+    },
+    {
+      "asset": "symbol_weee.png",
+      "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5"
+    },
+    {
+      "asset": "ups.png",
+      "sha256": "f1b221fac4e7ab76092997fd68269afc322bf0c6654cf34b2dba00d229e9ff64"
+    }
+  ],
+  "restoration_record": "audit/residual-layout.json",
+  "historical_text_exceptions": []
+}

@@ -1,0 +1,50 @@
+{
+  "model": "JE-500A",
+  "record_id": "reczz28SlRGJjcks",
+  "status": "local_review_passed_after_complete_residual_audit",
+  "source_pages": 18,
+  "included_pages": [
+    2,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18
+  ],
+  "source_sha256": "5c065d11c0191e7f9f5ef32ecd39fe0ca620f206c296c4eb6401a4b8215cea68",
+  "native_fragments": 291,
+  "missing_native_fragments": 0,
+  "ocr_lines": 380,
+  "numeric_contexts": 49,
+  "all_original_drawing_assets_unchanged": 38,
+  "browser_widths": [
+    1280,
+    390
+  ],
+  "images": 44,
+  "broken_images": 0,
+  "uncontained_overflow": 0,
+  "horizontal_tables": "LCD andfault last columns reachable; screenshots and measured bounds stored",
+  "publication_status": "candidate; pending",
+  "feishu_writeback": false,
+  "final_browser_build": "JE-500A-html-v6",
+  "final_bounded_visual": {
+    "segments": 38,
+    "height": 1100,
+    "all_sections": true,
+    "requestfailed": 0,
+    "css_backgrounds_decoded": true,
+    "evidence": "bounded-final/segments.json"
+  },
+  "signal_glyph_fix": "Inline source CSS requires assets/ not ../assets/; WARNING/CAUTION glyphs visually confirmed; NOTE/TIP have no glyph in current original."
+}

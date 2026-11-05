@@ -73,6 +73,10 @@ POWER、AC、DC/USB、LIGHT 按钮图也按 `button/power`、`button/ac`、
 `caption_bbox`、`row_bbox`、`caption_text`、说明区域的 `caption_sha256`
 及 `shared_symbol_key`。
 `locales` 按语言记录，顺序必须与实际组件行一致；缺项或文件名相同不能跳过。
+印刷稿没有、网页版必须补的符号行（例如电池回收标志）须经操作者批准记入
+`symbol_web_only_rows.json`，该行改绑仓库内另一份印刷稿中的同义行
+（`web_only_row` + `donor_source`），字形、说明文字和像素照常核对，见
+[网页专有符号行](../../../../code-as-doc/build_doc_guide/web-component-admission.md#reviewed-web-only-symbol-rows)。
 选材统一从 [`shared/symbols/manifest.json`](../../web/assets/shared/symbols/manifest.json)
 按语义与明确图形变体选择（例如 `read-manual/book-information`），冻结复制须字节
 不变。`withdrawn` 按哈希停用旧错误素材，改名或搬进新包仍拒绝；旧文件保留历史
@@ -82,6 +86,15 @@ POWER、AC、DC/USB、LIGHT 按钮图也按 `button/power`、`button/ac`、
 页面/单元格对象，再检查资产真实透明边缘、归一化 alpha 与预乘 RGB。
 RGBA 中画有矩形灰底、只有语义相同但轮廓不同、源页/说明/哈希不符均拒绝封存。
 固定像素容差为每通道平均误差 2%，不能由候选稿放宽；仍需桌面、窄屏和棋盘底视觉验收。
+同一含义的图标以 manifest 的 `canonical_groups` 为准：操作员确认（`operator-confirmed`）
+的组只有一个标准图标（`canonical`），其余列为 `legacy_variants`，文件保留、已冻结包
+不重建；绑定旧变体的行仍按 2% 照常放行，超出 2% 只能改绑标准图标，
+该含义不再登记新变体。印刷字形与标准图标超出 2% 时，只要该行经源 PDF
+核对的说明文字列在该组本语言的 `captions` 中，就以标准图标放行，不受 0.03 上限，
+报告记下组与决定编号（`canonical_decisions` 里存操作员原话与日期）；同一说明被几个组
+列出时，印刷字形还须离本组变体最近。`proposed` 组只登记、不放行；未分组的图标仍按
+2% 与豁免规则，见
+[标准图标组](../../../../code-as-doc/build_doc_guide/web-component-admission.md#operator-confirmed-canonical-symbol-groups)。
 
 源文字可提取时逐行比对原文；转曲说明的逐字转录与坐标必须人工核对，程序核验
 该说明区域的原稿渲染哈希及组件文字绑定，哈希不等于 OCR 或人工批准。

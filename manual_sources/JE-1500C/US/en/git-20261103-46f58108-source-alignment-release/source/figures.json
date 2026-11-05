@@ -1,0 +1,484 @@
+[
+  {
+    "slot": "inbox-unit",
+    "physical_page": 6,
+    "bbox": [
+      48,
+      312,
+      121,
+      376
+    ],
+    "caption": "Jackery Explorer 1500 Ultra",
+    "embedded_words": true,
+    "local_path": "assets/inbox-unit.png",
+    "render_scale": 4,
+    "sha256": "a807633ca89476aa60603b9540d596395e702e88e83e29f001d45ea90165716e",
+    "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "inbox-ac-cable",
+    "physical_page": 6,
+    "bbox": [
+      168,
+      312,
+      219,
+      376
+    ],
+    "caption": "AC Charging Cable",
+    "embedded_words": false,
+    "local_path": "assets/inbox-ac-cable.png",
+    "render_scale": 4,
+    "sha256": "f0b3f6e292d5134bd18c719ec2e1eed1cde9c3bb3d5afb99c7b087086ea7f938",
+    "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "inbox-user-manual",
+    "physical_page": 6,
+    "bbox": [
+      270,
+      312,
+      314,
+      376
+    ],
+    "caption": "User Manual",
+    "embedded_words": true,
+    "local_path": "assets/inbox-user-manual.png",
+    "render_scale": 4,
+    "sha256": "0249925d61dd0351c8e9c81a08343e5fac42e5176b737c064934f45110f15a75",
+    "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "overview-front",
+    "physical_page": 7,
+    "bbox": [
+      25,
+      88,
+      343,
+      322
+    ],
+    "embedded_words": true,
+    "caption": "Front view of the Jackery Explorer 1500 Ultra: LCD; Main Power Button; DC 12V Port, 12V⎓10A Max; Protective Cover; DC Input, 2×DC8020 Ports: Car: 12-16V⎓8A Max, Double to 8A Max, PV: 16-60V⎓12A, Double to 24A / 800W Max; AC Input, 100-120V~60Hz, 15A Max; AC Power Button; USB-C1 Output, 30W Max, 5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A; USB-C2 Output, 100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A; USB-A Output, 18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A; AC Output, 120V~60Hz, 1800W",
+    "local_path": "assets/overview-front.png",
+    "render_scale": 4,
+    "sha256": "ceab5d51a64296b8c4967d2af2156ffea9491b33b9c005ebbf858428ce591e40",
+    "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "overview-ac-total",
+    "physical_page": 7,
+    "bbox": [
+      160,
+      340,
+      343,
+      400
+    ],
+    "embedded_words": true,
+    "caption": "AC Total Output, 1800W Rated (2000W for 15min. Max) 3600W Surge Peak",
+    "local_path": "assets/overview-ac-total.png",
+    "render_scale": 4,
+    "sha256": "0b4f9009010f986054a710798bbe4f7a73710adb1f350923acdcba71de428fbb",
+    "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "lcd-map",
+    "physical_page": 8,
+    "bbox": [
+      50,
+      54,
+      320,
+      212
+    ],
+    "embedded_words": true,
+    "caption": "LCD display with callouts 1 to 22",
+    "local_path": "assets/lcd-map.png",
+    "render_scale": 4,
+    "sha256": "331998c732f42adea4fc79ec925cceb177085aaeb896ea3bb44b1adce49d3459",
+    "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "power-on-off",
+    "physical_page": 10,
+    "bbox": [
+      28.5,
+      74,
+      339,
+      213
+    ],
+    "embedded_words": true,
+    "remove_boxes": [
+      [
+        162,
+        139,
+        333,
+        204.5
+      ]
+    ],
+    "caption": "POWER ON/OFF: on, Press once; off, Press and hold for 3s",
+    "local_path": "assets/power-on-off.png",
+    "render_scale": 4,
+    "sha256": "dcf7ab039883bbf653078c40945738348062f047aeed7943a0b1e0919633c472",
+    "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "ac-output",
+    "physical_page": 10,
+    "bbox": [
+      28.5,
+      290,
+      339,
+      491.5
+    ],
+    "embedded_words": true,
+    "remove_boxes": [
+      [
+        33,
+        292.5,
+        167,
+        309
+      ]
+    ],
+    "caption": "AC OUTPUT ON/OFF: on, Press once; off, Press once. Open the AC output cover and plug in the device",
+    "local_path": "assets/ac-output.png",
+    "render_scale": 4,
+    "sha256": "12a3f5291f7571677e0ffec283c9009df704697f7b2947813d7317044848a425",
+    "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "dc-usb-output",
+    "physical_page": 11,
+    "bbox": [
+      29.5,
+      40,
+      340,
+      312
+    ],
+    "embedded_words": false,
+    "remove_boxes": [
+      [
+        32,
+        39.5,
+        172,
+        56
+      ]
+    ],
+    "caption": "DC 12V/USB OUTPUT: open the port covers and connect devices to the USB ports and the DC 12V port",
+    "local_path": "assets/dc-usb-output.png",
+    "render_scale": 4,
+    "sha256": "295482391697efd71cab815d4048fc17876ff71de46a7f6d07716b457d0449e8",
+    "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "energy-saving",
+    "physical_page": 12,
+    "bbox": [
+      40,
+      28,
+      300,
+      105
+    ],
+    "embedded_words": true,
+    "caption": "Main Power Button + AC Power Button",
+    "local_path": "assets/energy-saving.png",
+    "render_scale": 4,
+    "sha256": "2e60056abde660945f5490af72999e50dda2865a32a93e4c9bc5eca834fe7949",
+    "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "lcd-screen",
+    "physical_page": 12,
+    "bbox": [
+      40,
+      272,
+      168,
+      382
+    ],
+    "embedded_words": false,
+    "caption": "Press the Main Power Button",
+    "local_path": "assets/lcd-screen.png",
+    "render_scale": 4,
+    "sha256": "5935522ee634d7c230e59c6ef086089b739142a7524a8e2e85044b68a7ff4691",
+    "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "ups",
+    "physical_page": 13,
+    "bbox": [
+      29.5,
+      118,
+      339.5,
+      196
+    ],
+    "embedded_words": false,
+    "remove_boxes": [
+      [
+        35,
+        121,
+        162,
+        135.5
+      ]
+    ],
+    "caption": "The product connected to a wall outlet with the AC charging cable and powering an appliance through the AC output",
+    "local_path": "assets/ups.png",
+    "render_scale": 4,
+    "sha256": "8a258f9d9f4c5c2a730ecc6f596674a04647e9d5ab17805662e82876a1529edb",
+    "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "charging-ac",
+    "physical_page": 14,
+    "bbox": [
+      29.3,
+      54.8,
+      339.4,
+      156.9
+    ],
+    "embedded_words": false,
+    "caption": "Connect the AC charging cable to the AC input port of the product and a wall outlet",
+    "local_path": "assets/charging-ac.png",
+    "render_scale": 4,
+    "sha256": "5d05ebfbfd0a3f4ecba4aae2a0a976466df307132ccc10de9822e8a0440b40f1",
+    "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "charging-solar",
+    "physical_page": 14,
+    "bbox": [
+      29.5,
+      254.5,
+      339,
+      359.3
+    ],
+    "embedded_words": false,
+    "caption": "One solar panel connected to a DC8020 input port",
+    "local_path": "assets/charging-solar.png",
+    "render_scale": 4,
+    "sha256": "7fe5cc287a29a80475f856315163f9f7192e3e7625818c74980444389d3145cf",
+    "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "charging-solar-connector",
+    "physical_page": 14,
+    "bbox": [
+      29.5,
+      366.2,
+      339,
+      493.3
+    ],
+    "embedded_words": false,
+    "caption": "Two solar panels connected to each DC8020 input port through the solar panel connector",
+    "local_path": "assets/charging-solar-connector.png",
+    "render_scale": 4,
+    "sha256": "7de18781a05b24284674d14df94127bf4a6632cd015025ecebc57387cbd84b61",
+    "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "charging-car",
+    "physical_page": 15,
+    "bbox": [
+      29.4,
+      204.5,
+      339.4,
+      348.5
+    ],
+    "embedded_words": true,
+    "remove_boxes": [
+      [
+        181,
+        317,
+        327,
+        334
+      ]
+    ],
+    "caption": "Charging with a car charger: Vehicle",
+    "local_path": "assets/charging-car.png",
+    "render_scale": 4,
+    "sha256": "4b9c86ea4ad07bf40887fde989e95d981bbcfae4135632b7ecad1ed8f35df0e6",
+    "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "cleaning-1",
+    "physical_page": 16,
+    "bbox": [
+      29,
+      103,
+      180,
+      228
+    ],
+    "embedded_words": false,
+    "caption": "Step 1: protective covers closed",
+    "local_path": "assets/cleaning-1.png",
+    "render_scale": 4,
+    "sha256": "1e86cbbf9fd6a720f1a9356ed0726b44c804760e8d7f479ceb5873252e877be9",
+    "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "cleaning-2",
+    "physical_page": 16,
+    "bbox": [
+      188,
+      100,
+      339,
+      228
+    ],
+    "embedded_words": false,
+    "caption": "Step 2: the product upside down on a dry towel",
+    "local_path": "assets/cleaning-2.png",
+    "render_scale": 4,
+    "sha256": "f42e1a4e900f273f3032e8e0bb27df12b226f48b32da2b8192416c352298edd6",
+    "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "cleaning-3",
+    "physical_page": 16,
+    "bbox": [
+      29,
+      280,
+      180,
+      472
+    ],
+    "embedded_words": true,
+    "caption": "Step 3: remove the screws (A), then take off the bottom panel (B)",
+    "local_path": "assets/cleaning-3.png",
+    "render_scale": 4,
+    "sha256": "23ebc92bdae3f43da4175763804c64d2def5b9df6a12d7cc33fea67c520e0d61",
+    "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "cleaning-4",
+    "physical_page": 16,
+    "bbox": [
+      188,
+      300,
+      339,
+      472
+    ],
+    "embedded_words": false,
+    "caption": "Step 4: rinse the cooling fins with clean water",
+    "local_path": "assets/cleaning-4.png",
+    "render_scale": 4,
+    "sha256": "d7942112849781c0faf3287298bf0b54e876efd71ec33ab1ebfd4167a3063a3c",
+    "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "app-store",
+    "physical_page": 20,
+    "bbox": [
+      45,
+      66,
+      122,
+      118
+    ],
+    "embedded_words": true,
+    "caption": "Available on the App Store, GET IT ON Google Play",
+    "local_path": "assets/app-store.png",
+    "render_scale": 4,
+    "sha256": "b4c654e8e2050fbba8da4ee801d8aa833df84c1e88a14b242caf9bc5f00850bc",
+    "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "app-qr",
+    "physical_page": 20,
+    "bbox": [
+      199.5,
+      67.5,
+      249.5,
+      118
+    ],
+    "embedded_words": false,
+    "caption": "Jackery App QR code",
+    "local_path": "assets/app-qr.png",
+    "render_scale": 4,
+    "sha256": "2a63f70fb69395698db10847129722925309f61220a3c8dc5eeedf3a69f14de8",
+    "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "app-add",
+    "physical_page": 20,
+    "bbox": [
+      100,
+      212,
+      275,
+      378
+    ],
+    "embedded_words": true,
+    "caption": "App screenshots 2.1 and 2.2",
+    "local_path": "assets/app-add.png",
+    "render_scale": 4,
+    "sha256": "432ea28980045cabf3dce65d6b9ced296a8a287070d8df9ecc7130f2ec596d54",
+    "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "app-control",
+    "physical_page": 20,
+    "bbox": [
+      41.5,
+      380.5,
+      340,
+      455
+    ],
+    "embedded_words": true,
+    "caption": "Main Power Button and AC Power Button",
+    "local_path": "assets/app-control.png",
+    "render_scale": 4,
+    "sha256": "15670b94965c4dd0db5b9cd6d2434587c1fedf4db289adec8c89a60d1528de71",
+    "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "app-results",
+    "physical_page": 21,
+    "bbox": [
+      52,
+      144,
+      325,
+      304
+    ],
+    "embedded_words": true,
+    "caption": "App screenshots 2.3, 2.4 and 2.5",
+    "local_path": "assets/app-results.png",
+    "render_scale": 4,
+    "sha256": "d2d438388c36f9071a01f3158f24f553c4f378eee0b1028506fbe1284772ff3e",
+    "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "contact-qr",
+    "physical_page": 22,
+    "bbox": [
+      305.5,
+      460.5,
+      341.5,
+      495.5
+    ],
+    "embedded_words": false,
+    "caption": "QR code",
+    "local_path": "assets/contact-qr.png",
+    "render_scale": 4,
+    "sha256": "c47057e03cb3f3655c5ab63b4be69fa18cde5d073e66056b55499be61bdd3c40",
+    "source_sha256": "46f58108dd1ba4d69a830ab3e0f9a197a9a5a5dad8177583c087d6cecb0e51ee",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  }
+]

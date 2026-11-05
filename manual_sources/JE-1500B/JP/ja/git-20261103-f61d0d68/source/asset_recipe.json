@@ -1,0 +1,549 @@
+{
+ "schema_version": "je1500b-jp-asset-recipe/v1",
+ "source_sha256": "f61d0d68f37c32ceb7441d0853da40ad1087e7241a4bf925089d86f8074b0a65",
+ "panel_scale": 3,
+ "panels": [
+  {
+   "path": "assets/qc-mark.png",
+   "physical_page": 2,
+   "bbox": [
+    159.5,
+    286,
+    204.5,
+    300
+   ],
+   "role": "Qualcomm Quick Charge 3.0 mark printed in the 認証 row"
+  },
+  {
+   "path": "assets/overview.png",
+   "physical_page": 3,
+   "bbox": [
+    16,
+    20,
+    352,
+    287
+   ],
+   "role": "complete front view + AC/DC input detail circle with every Japanese leader label",
+   "masks": [
+    [
+     20,
+     20,
+     110,
+     36
+    ]
+   ],
+   "mask_reason": "the chapter title 2.各部の名称 prints beside the detail circle; it is the native h2, so its glyph area is painted white"
+  },
+  {
+   "path": "assets/lcd-map.png",
+   "physical_page": 3,
+   "bbox": [
+    16,
+    302,
+    352,
+    414.5
+   ],
+   "role": "complete numbered LCD map"
+  },
+  {
+   "path": "assets/ac-charge.png",
+   "physical_page": 6,
+   "bbox": [
+    112,
+    264,
+    245,
+    320
+   ],
+   "role": "complete AC charging panel with Japanese captions"
+  },
+  {
+   "path": "assets/solar-three.png",
+   "physical_page": 6,
+   "bbox": [
+    95,
+    420,
+    282,
+    506
+   ],
+   "role": "complete three-panel series-adapter connection with captions"
+  },
+  {
+   "path": "assets/solar-two-two.png",
+   "physical_page": 7,
+   "bbox": [
+    18,
+    18,
+    352,
+    99
+   ],
+   "role": "complete two-input 2+2 connection with captions"
+  },
+  {
+   "path": "assets/solar-three-three.png",
+   "physical_page": 7,
+   "bbox": [
+    18,
+    99,
+    352,
+    208
+   ],
+   "role": "complete two-input 3+3 connection with captions"
+  },
+  {
+   "path": "assets/solar-prohibited.png",
+   "physical_page": 7,
+   "bbox": [
+    28,
+    256,
+    340,
+    504
+   ],
+   "role": "complete framed prohibited-connection panel (three rows, X marks, captions)"
+  },
+  {
+   "path": "assets/solar-saga80.png",
+   "physical_page": 8,
+   "bbox": [
+    36,
+    117,
+    300,
+    178
+   ],
+   "role": "complete SolarSaga 80 parallel panel with leader labels",
+   "masks": [
+    [
+     20,
+     115,
+     70,
+     130
+    ]
+   ],
+   "mask_reason": "the last body line てください。 prints beside the 並列ポート label; it stays native text, so its glyph area is painted white"
+  },
+  {
+   "path": "assets/adaptor.png",
+   "physical_page": 8,
+   "bbox": [
+    84,
+    236,
+    295,
+    304
+   ],
+   "role": "complete DC7909-DC8020 transjack panel with leader labels"
+  },
+  {
+   "path": "assets/car-charge.png",
+   "physical_page": 8,
+   "bbox": [
+    112,
+    446,
+    262,
+    506
+   ],
+   "role": "complete car charging panel with caption"
+  },
+  {
+   "path": "assets/inbox-unit.png",
+   "physical_page": 13,
+   "bbox": [
+    48,
+    59,
+    89,
+    109
+   ],
+   "role": "in-box card art"
+  },
+  {
+   "path": "assets/inbox-car-cable.png",
+   "physical_page": 13,
+   "bbox": [
+    122,
+    61,
+    159,
+    106
+   ],
+   "role": "in-box card art"
+  },
+  {
+   "path": "assets/inbox-ac-cable.png",
+   "physical_page": 13,
+   "bbox": [
+    200,
+    62,
+    237,
+    106
+   ],
+   "role": "in-box card art (JP two-prong plug)"
+  },
+  {
+   "path": "assets/inbox-transjack.png",
+   "physical_page": 13,
+   "bbox": [
+    288,
+    61,
+    310,
+    106
+   ],
+   "role": "in-box card art"
+  },
+  {
+   "path": "assets/inbox-manual.png",
+   "physical_page": 13,
+   "bbox": [
+    53,
+    163,
+    87,
+    210
+   ],
+   "role": "in-box card art"
+  },
+  {
+   "path": "assets/inbox-warranty.png",
+   "physical_page": 13,
+   "bbox": [
+    126,
+    163,
+    160,
+    210
+   ],
+   "role": "in-box card art"
+  },
+  {
+   "path": "assets/inbox-pouch.png",
+   "physical_page": 13,
+   "bbox": [
+    197,
+    170,
+    246,
+    200
+   ],
+   "role": "in-box card art"
+  }
+ ],
+ "native_icons": [
+  {
+   "path": "assets/recycle-li-ion.svg",
+   "physical_page": 2,
+   "glyph_bbox": [
+    47.5,
+    424.7,
+    90.1,
+    466
+   ],
+   "drawing_indices": [
+    724,
+    725,
+    726,
+    727,
+    728,
+    729,
+    730,
+    731,
+    732,
+    733,
+    734
+   ]
+  },
+  {
+   "path": "assets/lcd-high-temperature.svg",
+   "physical_page": 6,
+   "glyph_bbox": [
+    65.3,
+    78.6,
+    78.1,
+    90.4
+   ],
+   "drawing_indices": [
+    3993,
+    3994
+   ]
+  }
+ ],
+ "reused": [
+  {
+   "path": "assets/lcd-battery-power.svg",
+   "from": "manual_sources/JE-1500B/US/en/git-20261027-bb5a455b/assets/lcd-battery-power.svg",
+   "source_check": {
+    "physical_page": 4,
+    "glyph_bbox": [
+     102.5,
+     21,
+     114.6,
+     33.1
+    ],
+    "drawing_indices": [
+     1884
+    ]
+   },
+   "sha256": "00a69765a8e031ae3301631f7e7397526c26a8f0e503e6c5a2ce423e1f9644d6"
+  },
+  {
+   "path": "assets/lcd-low-battery.svg",
+   "from": "manual_sources/JE-1500B/US/en/git-20261027-bb5a455b/assets/lcd-low-battery.svg",
+   "source_check": {
+    "physical_page": 4,
+    "glyph_bbox": [
+     111.8,
+     63.1,
+     129.4,
+     72.9
+    ],
+    "drawing_indices": [
+     1885
+    ]
+   },
+   "sha256": "d5019853534148f388bad51234caf2f5d504a9f15e7ed3e0c0a5a034a4c0bfe8"
+  },
+  {
+   "path": "assets/lcd-low-power-mode.svg",
+   "from": "manual_sources/JE-1500B/US/en/git-20261027-bb5a455b/assets/lcd-low-power-mode.svg",
+   "source_check": {
+    "physical_page": 4,
+    "glyph_bbox": [
+     78,
+     116.9,
+     90,
+     128.8
+    ],
+    "drawing_indices": [
+     1886,
+     1887
+    ]
+   },
+   "sha256": "45540b6d7dff9f8e8ea2f61b69c21fedbd946eef690d73c61fd187422c6573fa"
+  },
+  {
+   "path": "assets/lcd-fault-code.svg",
+   "from": "manual_sources/JE-1500B/US/en/git-20261027-bb5a455b/assets/lcd-fault-code.svg",
+   "source_check": {
+    "physical_page": 4,
+    "glyph_bbox": [
+     70.5,
+     393,
+     83.3,
+     404.8
+    ],
+    "drawing_indices": [
+     3997,
+     3998,
+     3999
+    ]
+   },
+   "sha256": "caa74781023649074ad104ead1e56449d19cc3e7f478afce208f2ebd0979f9be"
+  },
+  {
+   "path": "assets/lcd-low-temperature.svg",
+   "from": "manual_sources/JE-1500B/US/en/git-20261027-bb5a455b/assets/lcd-low-temperature.svg",
+   "source_check": {
+    "physical_page": 6,
+    "glyph_bbox": [
+     65.1,
+     104.9,
+     77.9,
+     116.7
+    ],
+    "drawing_indices": [
+     3995,
+     3996
+    ]
+   },
+   "sha256": "3bc5306353aa3ccdfcf7535ea0754df9f78c26e2a6f79462f2eb0846228cac39"
+  }
+ ],
+ "symbols": [],
+ "pending_symbols": [
+  {
+   "slot": "symbol-01",
+   "caption_id": "sym.unplug",
+   "physical_page": 9,
+   "drawing_indices": [
+    15149,
+    15150,
+    15151,
+    15152,
+    15153
+   ],
+   "glyph_bbox": [
+    21,
+    277,
+    40,
+    296.5
+   ],
+   "caption_bbox": [
+    45.0,
+    283.4,
+    163.1,
+    290.4
+   ],
+   "caption_sha256": "4efccaf7a7a806aa7ee8e1e212be046a492755fac2b95c9f13dd027d247ed36d",
+   "closest_shared_variant": "docs/renderers/web/assets/shared/symbols/native-v1/je1000d-jp-00c43a89-symbol-01.svg",
+   "closest_error_unclipped_reference": null,
+   "description": "unplug: dark disc, arrow and plug pulled from an outlet",
+   "status": "pending: tools.asset_pipeline.native_svg.native_symbol_svg refuses this PDF page (native PDF fill/stroke SVG mapping is unsupported), so symbol admission cannot build its reference"
+  },
+  {
+   "slot": "symbol-02",
+   "caption_id": "sym.disassemble",
+   "physical_page": 9,
+   "drawing_indices": [
+    15193,
+    15194,
+    15195,
+    15196,
+    15197,
+    15198,
+    15199,
+    15200,
+    15201,
+    15202,
+    15203,
+    15204,
+    15205,
+    15206,
+    15207,
+    15208,
+    15209
+   ],
+   "glyph_bbox": [
+    21,
+    299.6,
+    40,
+    318.3
+   ],
+   "caption_bbox": [
+    44.2,
+    305.7,
+    149.1,
+    312.7
+   ],
+   "caption_sha256": "51151d60173ccb87e8f820cd0a8d75a3561eca797753d14372f4469f83d0eb26",
+   "closest_shared_variant": "docs/renderers/web/assets/shared/symbols/native-v1/je1000d-jp-00c43a89-symbol-02.svg",
+   "closest_error_unclipped_reference": 0.017,
+   "description": "prohibition ring over a screwdriver (do not disassemble)",
+   "status": "pending: tools.asset_pipeline.native_svg.native_symbol_svg refuses this PDF page (native PDF fill/stroke SVG mapping is unsupported), so symbol admission cannot build its reference"
+  },
+  {
+   "slot": "symbol-03",
+   "caption_id": "sym.wethand",
+   "physical_page": 9,
+   "drawing_indices": [
+    15225,
+    15226,
+    15227,
+    15228,
+    15229,
+    15230,
+    15231,
+    15232,
+    15233,
+    15234,
+    15235
+   ],
+   "glyph_bbox": [
+    21,
+    323,
+    40,
+    342
+   ],
+   "caption_bbox": [
+    44.6,
+    329.4,
+    184.6,
+    336.4
+   ],
+   "caption_sha256": "0454bc0c8e1fe0f74026f1479ca13aba64bfcb94d37ebe4304020b8fadbd97fb",
+   "closest_shared_variant": "docs/renderers/web/assets/shared/symbols/native-v1/je1000d-jp-00c43a89-symbol-03.svg",
+   "closest_error_unclipped_reference": 0.0229,
+   "description": "prohibition ring over a wet hand with drops",
+   "status": "pending: tools.asset_pipeline.native_svg.native_symbol_svg refuses this PDF page (native PDF fill/stroke SVG mapping is unsupported), so symbol admission cannot build its reference"
+  },
+  {
+   "slot": "symbol-04",
+   "caption_id": "sym.mandatory",
+   "physical_page": 9,
+   "drawing_indices": [
+    15171
+   ],
+   "glyph_bbox": [
+    194,
+    277,
+    212.5,
+    296
+   ],
+   "caption_bbox": [
+    215.8,
+    283.0,
+    278.8,
+    290.0
+   ],
+   "caption_sha256": "e2c088726122c5df2e0b33a56e6fc0754d872c465e3fdd441946076f04877030",
+   "closest_shared_variant": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-mandatory.svg",
+   "closest_error_unclipped_reference": 0.0144,
+   "description": "mandatory action: dark disc with white exclamation mark",
+   "status": "pending: tools.asset_pipeline.native_svg.native_symbol_svg refuses this PDF page (native PDF fill/stroke SVG mapping is unsupported), so symbol admission cannot build its reference"
+  },
+  {
+   "slot": "symbol-05",
+   "caption_id": "sym.wet",
+   "physical_page": 9,
+   "drawing_indices": [
+    15256,
+    15257,
+    15258,
+    15259,
+    15260,
+    15261,
+    15262,
+    15263,
+    15264,
+    15265,
+    15266,
+    15267
+   ],
+   "glyph_bbox": [
+    194,
+    300,
+    212.5,
+    319
+   ],
+   "caption_bbox": [
+    215.9,
+    305.9,
+    320.8,
+    312.9
+   ],
+   "caption_sha256": "61f20a85a3884d181b19dd97ca5f9891c3af9cf91b47b13c55620d7dbda3ebed",
+   "closest_shared_variant": "docs/renderers/web/assets/shared/symbols/native-v1/je1000d-jp-00c43a89-symbol-05.svg",
+   "closest_error_unclipped_reference": 0.0223,
+   "description": "prohibition ring over a cube with water drops (keep dry)",
+   "status": "pending: tools.asset_pipeline.native_svg.native_symbol_svg refuses this PDF page (native PDF fill/stroke SVG mapping is unsupported), so symbol admission cannot build its reference"
+  },
+  {
+   "slot": "symbol-06",
+   "caption_id": "sym.prohibit",
+   "physical_page": 9,
+   "drawing_indices": [
+    15181,
+    15182,
+    15183
+   ],
+   "glyph_bbox": [
+    194,
+    324,
+    212.5,
+    342.8
+   ],
+   "caption_bbox": [
+    215.8,
+    329.6,
+    278.8,
+    336.6
+   ],
+   "caption_sha256": "97ec3ebf7291afddd024e2889719f58e710f7436307527544f10553ab158292d",
+   "closest_shared_variant": "docs/renderers/web/assets/shared/symbols/native-v1/je1000d-jp-00c43a89-symbol-06.svg",
+   "closest_error_unclipped_reference": 0.0089,
+   "description": "general prohibition ring with slash",
+   "status": "pending: tools.asset_pipeline.native_svg.native_symbol_svg refuses this PDF page (native PDF fill/stroke SVG mapping is unsupported), so symbol admission cannot build its reference"
+  }
+ ]
+}

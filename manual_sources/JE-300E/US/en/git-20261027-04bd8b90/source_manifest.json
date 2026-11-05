@@ -1,0 +1,2112 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "target": {
+    "model": "JE-300E",
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "technical_version": "git-20261027-04bd8b90",
+    "printed_manual_version": null
+  },
+  "route": "JE-300E/US/en/md",
+  "legacy_default": true,
+  "original_source": {
+    "filename": "original.pdf",
+    "supplied_filename": "【Jackery Explorer 300】说明书-EN.pdf",
+    "sha256": "04bd8b90f146ff9b65a3ee4b47327d76128c3110c8ef46ac4061e6b0e77b3c8c",
+    "size_bytes": 3448702,
+    "physical_page_count": 17,
+    "format": "PDF, outlined text (no text layer), 130 × 185 mm",
+    "role": "English single-language manual (authoritative Web source)"
+  },
+  "print_master": {
+    "filename": "16-0102-000002 HTE147300A-USCA-JAK 说明书 RoHS REACH.pdf",
+    "sha256": "a7cf79a5d838b4edf40e3a97cc8a843c76a326ba7b109964798b8cd227cfbf98",
+    "size_bytes": 18911610,
+    "role": "Illustrator print master (one artboard: EN/FR/ES booklets plus title block 版本 V0.1 / 第一次发行 / 2025-11-03 / 产品料号 16-0102-000002); recorded for traceability, not archived in Git"
+  },
+  "document_identity": {
+    "source_table": "发布文档管理 (Base WGVwb2HctauRi7sEiKqcIzTRn1c, table tbljbjaXaTD6V9PO)",
+    "record_id": "reczz28SPRx9pHAk",
+    "material_number": "16-0102-000002",
+    "project": "HTE147",
+    "sku": [
+      "21-0001-000418",
+      "21-0001-000418",
+      "21-0001-000367",
+      "21-0001-000496",
+      "21-0014-000311"
+    ],
+    "customer_model": "JE-300E",
+    "product_name": "Jackery Explorer 300"
+  },
+  "included_pages": {
+    "en": {
+      "physical_pages": [
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "printed_pages": [
+        "01",
+        "13"
+      ]
+    }
+  },
+  "excluded_pages": {
+    "cover": [
+      1
+    ],
+    "contents": [
+      3
+    ]
+  },
+  "web_roots": {
+    "en": "web/en"
+  },
+  "source_authority": "operator-designated English PDF from the 发布文档管理 Base row (read-only download); original English governs all copy. Operator instruction 2026-10-27: 「把这个表中 未转网页版的说明书 走git only进行单语网页文档的转换」 (封面和目录不上网页; 版面以 PDF 为准; 不改任何英文原文).",
+  "publication_status": "operator-approved-git-only-release",
+  "publication_eligible": true,
+  "pending_source_review": [],
+  "language_scope": "single",
+  "live_bitable_dependency": false,
+  "reference_edition": "data/manual_sources/JE-300E/EU/en/git-20261016-50b910fd (same model, released EU English Web; structure, components and theme reference; no EU product facts reused)",
+  "validation_boundary": {
+    "build_py_check": "Existing JE-1000F/US fixture regression only; does not validate JE-300E US or register it in phase2.",
+    "native_body": [
+      "line-by-line transcription review against 300 dpi renders of the named PDF pages",
+      "shared Manual IR validation and replay",
+      "cold replay byte parity",
+      "strict Sphinx",
+      "desktop/tablet/mobile browser"
+    ]
+  },
+  "component_map": [
+    {
+      "printed": "IMPORTANT (p2)",
+      "shared": "plain flow paragraphs"
+    },
+    {
+      "printed": "chapter bars (IMPORTANT SAFETY INFORMATION ... WARRANTY)",
+      "shared": "chapter h2 (shared theme)"
+    },
+    {
+      "printed": "● subheadings and OPERATING INSTRUCTIONS / USER MAINTENANCE INSTRUCTIONS bars",
+      "shared": "h3 (shared theme)"
+    },
+    {
+      "printed": "INSTRUCTIONS PERTAINING ... box, WARNING box, DANGER box",
+      "shared": "HB-CALLOUT-STRIP warning/warning/danger"
+    },
+    {
+      "printed": "NOTE / Note / CAUTION boxes",
+      "shared": "HB-CALLOUT-STRIP note/caution with the print's own signal word"
+    },
+    {
+      "printed": "WARNING/CAUTION/NOTE/TIP signal table",
+      "shared": "HB-TABLE-SYMBOL-SIGNAL"
+    },
+    {
+      "printed": "10-row symbol table",
+      "shared": "HB-TABLE-SYMBOL-ICON with source-bound symbol admission"
+    },
+    {
+      "printed": "FCC block",
+      "shared": "HB-SPECIAL-FCC (two-column)"
+    },
+    {
+      "printed": "WHAT'S IN THE BOX cards",
+      "shared": "HB-SPECIAL-INBOX responsive-card-grid"
+    },
+    {
+      "printed": "FRONT VIEW, LCD drawing, operation and charging panels, DC input port drawing, back-cover QR",
+      "shared": "HB-SPECIAL-REFERENCE-FIGURE"
+    },
+    {
+      "printed": "LCD icon table",
+      "shared": "HB-TABLE-LCD-ICON"
+    },
+    {
+      "printed": "LCD SCREEN ON/OFF drawing + table",
+      "shared": "HB-TABLE-LCD-MODE"
+    },
+    {
+      "printed": "DC INPUT INDICATOR table",
+      "shared": "HB-TABLE-REFERENCE lcd-actions-compact"
+    },
+    {
+      "printed": "TROUBLESHOOTING table",
+      "shared": "HB-TABLE-TROUBLESHOOTING (F0-F3 merged cell repeated per code, JE-300E EU D6 precedent)"
+    },
+    {
+      "printed": "SPECIFICATIONS tables",
+      "shared": "HB-TABLE-SPEC ×4"
+    },
+    {
+      "printed": "WARRANTY lead, sections, years card",
+      "shared": "HB-WARRANTY-LEAD / HB-WARRANTY-SECTION ×5 / HB-WARRANTY-YEARS"
+    },
+    {
+      "printed": "STORAGE grey panel",
+      "shared": "plain flow (paragraph + list)"
+    }
+  ],
+  "shared_component_exceptions": [],
+  "normalizations": [
+    "Outlined PDF: original.pdf has no text layer; every English line is a manual transcription from 300 dpi renders, kept as printed (source/intake.py names the physical page of each block).",
+    "Shared Manual IR: content.json is replayed through the shared flow renderer and shared components. No package class, inline style or plain table (prepared-document shared-style gate).",
+    "Print weights: bold print runs stay strong; headings keep print case. Printed bullet and number marks become lists; hollow-bullet items nest under their item. Subscripts (V_oc, LiFePO4) stay subscript.",
+    "Line ends inside a paragraph are wraps; the print's explicit line breaks inside one block stay line breaks.",
+    "Figures are source panels cropped just inside the print's panel frame (the decorative frame is drawn by the shared theme); words drawn in the art stay in the art and the alt text carries printed sentences. Notes and cautions the print boxes inside a panel are shared callout strips under the figure.",
+    "Cover (p1) and table of contents (p3) are not Web content; the back cover (p17) becomes the closing contact section without its phone/mail/web pictograms."
+  ],
+  "symbol_asset_admission": {
+    "schema_version": "auto-manual-symbol-asset-admission/v1",
+    "locales": {
+      "en": [
+        {
+          "asset_ref": "assets/warning_triangle_dark_hte162.svg",
+          "asset_sha256": "7eee1f724544318b77f50d99896735cb11f833fde5a3e24df1a7a394b70de10e",
+          "shared_symbol_key": "warning/outline-triangle-dark-hte162",
+          "physical_page": 5,
+          "drawing_indices": [
+            29371,
+            29372
+          ],
+          "glyph_bbox": [
+            38.74797058105469,
+            225.11073303222656,
+            58.28797149658203,
+            242.40573120117188
+          ],
+          "caption_bbox": [
+            72.7611,
+            225.1807,
+            173.0547,
+            243.9481
+          ],
+          "row_bbox": [
+            37.748,
+            224.1107,
+            174.0547,
+            244.9481
+          ],
+          "caption_text": "Warning and Caution Symbols. Must read to alert individuals to potential hazards or risks.",
+          "caption_sha256": "10a5f4139691cfc9f2dbb9e9eb44872c97afd799329ea47d94f45e3be71972a9",
+          "caption_mode": "outlined-manual-transcription"
+        },
+        {
+          "asset_ref": "assets/symbol_read_manual.svg",
+          "asset_sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
+          "shared_symbol_key": "read-manual/book-information",
+          "physical_page": 5,
+          "drawing_indices": [
+            29992,
+            29993,
+            29994
+          ],
+          "glyph_bbox": [
+            38.53852081298828,
+            248.2982177734375,
+            59.7185173034668,
+            264.2562255859375
+          ],
+          "caption_bbox": [
+            72.8208,
+            249.2356,
+            153.4385,
+            262.9548
+          ],
+          "row_bbox": [
+            37.5385,
+            247.2982,
+            154.4385,
+            265.2562
+          ],
+          "caption_text": "Read the user manual before operation.",
+          "caption_sha256": "b35b81e96b89a5b2b6c47a5ecfeb9d7a0af05b89ed7e0ce4c143c573a66d39c2",
+          "caption_mode": "outlined-manual-transcription"
+        },
+        {
+          "asset_ref": "assets/symbol_weee.png",
+          "asset_sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+          "shared_symbol_key": "weee/crossed-bin-bar",
+          "physical_page": 5,
+          "drawing_indices": [
+            29995,
+            29996,
+            29997
+          ],
+          "glyph_bbox": [
+            37.86041259765625,
+            283.6438293457031,
+            59.899410247802734,
+            316.18359375
+          ],
+          "caption_bbox": [
+            72.6418,
+            269.0747,
+            176.5884,
+            335.6506
+          ],
+          "row_bbox": [
+            36.8604,
+            268.0747,
+            177.5884,
+            336.6506
+          ],
+          "caption_text": "This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling. Proper disposal and recycling can help protect the environment. For more information about the disposal and recycling of this product, contact your local community, disposal service, or dealer.",
+          "caption_sha256": "c2a425e9e90eed7108468f0482804c1bdd7c11d4a77e4b85d802368d41923aeb",
+          "caption_mode": "outlined-manual-transcription"
+        },
+        {
+          "asset_ref": "assets/symbol_electric_shock.svg",
+          "asset_sha256": "a76bd208ea017906cdcb5624307cdf4b4bb092816d45ef3943a4b3367c837d3f",
+          "shared_symbol_key": "electric-shock/bolt-triangle-tinted",
+          "physical_page": 5,
+          "drawing_indices": [
+            30011,
+            30012,
+            30013
+          ],
+          "glyph_bbox": [
+            36.75708770751953,
+            346.5870666503906,
+            59.995086669921875,
+            367.154052734375
+          ],
+          "caption_bbox": [
+            73.7274,
+            353.3945,
+            131.4414,
+            359.8697
+          ],
+          "row_bbox": [
+            35.7571,
+            345.5871,
+            132.4414,
+            368.1541
+          ],
+          "caption_text": "Risk of electric shock",
+          "caption_sha256": "17ab297d41ce627713857046d9d6116f69cb5c50b396f2f71e755fb505fe75f5",
+          "caption_mode": "outlined-manual-transcription"
+        },
+        {
+          "asset_ref": "assets/do_not_dismantle_dark_hte147.svg",
+          "asset_sha256": "10462368d9310033fc5e2626ba2f0934407ecabf42b740d9d1c4ba3026235d47",
+          "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited-dark-hte147",
+          "physical_page": 5,
+          "drawing_indices": [
+            30007,
+            30008,
+            30009,
+            30010
+          ],
+          "glyph_bbox": [
+            197.44027709960938,
+            224.79354858398438,
+            216.57928466796875,
+            243.93154907226562
+          ],
+          "caption_bbox": [
+            232.4631,
+            231.0427,
+            315.5997,
+            238.5915
+          ],
+          "row_bbox": [
+            196.4403,
+            223.7935,
+            316.5997,
+            244.9315
+          ],
+          "caption_text": "Do not dismantle the product.",
+          "caption_sha256": "28d76f69b668d0e695d77254c1cd15eab61d7de6e87c2e9a9f6a1c4c8537c843",
+          "caption_mode": "outlined-manual-transcription"
+        },
+        {
+          "asset_ref": "assets/symbol_no_open_flame.svg",
+          "asset_sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f",
+          "shared_symbol_key": "no-open-flame/fire-match-prohibited",
+          "physical_page": 5,
+          "drawing_indices": [
+            29802,
+            29803,
+            29804,
+            29805,
+            29806,
+            29807
+          ],
+          "glyph_bbox": [
+            197.50326538085938,
+            247.99960327148438,
+            216.64227294921875,
+            267.1376037597656
+          ],
+          "caption_bbox": [
+            232.4628,
+            254.7747,
+            322.5431,
+            262.3179
+          ],
+          "row_bbox": [
+            196.5033,
+            246.9996,
+            323.5431,
+            268.1376
+          ],
+          "caption_text": "Keep the product away from fire.",
+          "caption_sha256": "e01c84fab3f978ec29a057505cdf3a0a0f0fcfe585c829a45c7357fb44177177",
+          "caption_mode": "outlined-manual-transcription"
+        },
+        {
+          "asset_ref": "assets/symbol_keep_away_from_children.svg",
+          "asset_sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899",
+          "shared_symbol_key": "keep-away-from-children/adult-child-prohibited",
+          "physical_page": 5,
+          "drawing_indices": [
+            29808,
+            29809,
+            29810,
+            29811
+          ],
+          "glyph_bbox": [
+            197.50482177734375,
+            272.6026611328125,
+            216.64080810546875,
+            291.7396545410156
+          ],
+          "caption_bbox": [
+            232.4628,
+            278.0427,
+            302.1344,
+            285.6333
+          ],
+          "row_bbox": [
+            196.5048,
+            271.6027,
+            303.1344,
+            292.7397
+          ],
+          "caption_text": "Keep away from children.",
+          "caption_sha256": "12863c51ba5a167ab050c72821411faff6e145e134d95fcb18b86c8704d7c38b",
+          "caption_mode": "outlined-manual-transcription"
+        },
+        {
+          "asset_ref": "assets/symbol_li_ion_dark.svg",
+          "asset_sha256": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1",
+          "shared_symbol_key": "li-ion/recycle-li-ion-native-dark",
+          "physical_page": 5,
+          "drawing_indices": [
+            29998,
+            29999,
+            30000,
+            30001,
+            30002,
+            30003,
+            30004,
+            30005,
+            30006
+          ],
+          "glyph_bbox": [
+            196.9290008544922,
+            296.5017395019531,
+            216.82852172851562,
+            318.97412109375
+          ],
+          "caption_bbox": [
+            232.1044,
+            295.5896,
+            332.9002,
+            324.7056
+          ],
+          "row_bbox": [
+            195.929,
+            294.5896,
+            333.9002,
+            325.7056
+          ],
+          "caption_text": "This symbol indicates that a lithium-ion (Li-ion) battery is inside the product and should be disposed of or recycled properly.",
+          "caption_sha256": "18b5571f64fe26ebacbedcf31bb1025b59a984667552d4666c2513f8d2de8e0a",
+          "caption_mode": "outlined-manual-transcription"
+        },
+        {
+          "asset_ref": "assets/symbol_battery_charging.svg",
+          "asset_sha256": "6a513fe0122fec428c55a3f840c34ed7afdea311f7f1dd9b6e6fd807d087bf55",
+          "shared_symbol_key": "battery-charging/flame-battery-triangle-tinted",
+          "physical_page": 5,
+          "drawing_indices": [
+            30014,
+            30015,
+            30016,
+            30017,
+            30018,
+            30019,
+            30020
+          ],
+          "glyph_bbox": [
+            195.38121032714844,
+            327.93865966796875,
+            217.5692138671875,
+            347.57666015625
+          ],
+          "caption_bbox": [
+            232.4637,
+            334.3557,
+            279.3495,
+            341.809
+          ],
+          "row_bbox": [
+            194.3812,
+            326.9387,
+            280.3495,
+            348.5767
+          ],
+          "caption_text": "Battery charging",
+          "caption_sha256": "97c54e6268ca5b2e4f8ddc68d9025fb48c91634e9f772260b1b50f62f4772a35",
+          "caption_mode": "outlined-manual-transcription"
+        },
+        {
+          "asset_ref": "assets/symbol_explosive_material_native_v2_3e3a39.svg",
+          "asset_sha256": "d4def93f853179fe0ea0cd7c4ba461da5a70d662d33a899bc48f7a2ef5553a1d",
+          "shared_symbol_key": "explosive-material/burst-triangle-native-v2-3e3a39",
+          "physical_page": 5,
+          "drawing_indices": [
+            30021,
+            30022,
+            30023,
+            30024
+          ],
+          "glyph_bbox": [
+            195.18563842773438,
+            354.0843811035156,
+            218.8466339111328,
+            374.6253967285156
+          ],
+          "caption_bbox": [
+            232.9401,
+            360.3147,
+            283.1149,
+            367.864
+          ],
+          "row_bbox": [
+            194.1856,
+            353.0844,
+            284.1149,
+            375.6254
+          ],
+          "caption_text": "Explosive material",
+          "caption_sha256": "20531779c4f96fbd0cace1477e0b70ddd083ad753adce0ee4edbf683aea012f5",
+          "caption_mode": "outlined-manual-transcription"
+        }
+      ]
+    }
+  },
+  "repo_inputs": [
+    {
+      "path": "docs/renderers/contracts/component_registry.yaml",
+      "size": 15821,
+      "sha256": "8c2313fc7382808efd5fd59e57a14adcd41423fb873498dd6033637647bd6795"
+    },
+    {
+      "path": "docs/renderers/contracts/manual_style.yaml",
+      "size": 54018,
+      "sha256": "aa2e008e56a284224882177cced938824e4265f9b8ebf8afcf436044c0021818"
+    },
+    {
+      "path": "docs/renderers/contracts/manual_theme.yaml",
+      "size": 8700,
+      "sha256": "8dd02bb2897cfc1982eb144fdb05d7a2267f2a7c97581c455eb408c2b20a0537"
+    },
+    {
+      "path": "docs/renderers/contracts/overview_component_instances.json",
+      "size": 19981,
+      "sha256": "98e00b04a92702e3e7c060790688e4ce3231b93552c05de0183c7a13fd6592a3"
+    },
+    {
+      "path": "docs/renderers/contracts/prepared_component_admission.json",
+      "size": 329614,
+      "sha256": "e14062442cbe8269226e8003f864f5bd440b7ea79cda348bc5b58879fb6d4a0d"
+    },
+    {
+      "path": "docs/renderers/contracts/prepared_style_baseline.json",
+      "size": 25894,
+      "sha256": "320e428e070944a2cc757f3354011a1a16824c7b493ae752ad3c88a97175b57e"
+    },
+    {
+      "path": "docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json",
+      "size": 26001,
+      "sha256": "dc9aa7b4137120e43cd5c1eddd8609827e655f18c54d1cf09132edcc5ee15a8f"
+    },
+    {
+      "path": "docs/renderers/contracts/reference_layout_registry.json",
+      "size": 587,
+      "sha256": "3ac4af5d3b9ff6a074d835597bc2b2bc8aeabab935eb0fb9dc631d89075fdd44"
+    },
+    {
+      "path": "docs/renderers/contracts/symbol_caption_errata.json",
+      "size": 1040,
+      "sha256": "5e6eb78ea050810c2fc0dfef12b3084d72843dcbe07c14b0199e8ba1b0092d5b"
+    },
+    {
+      "path": "docs/renderers/contracts/symbol_glyph_waivers.json",
+      "size": 2740,
+      "sha256": "ed65e44ba8ec06cbe43830476e85ae109fd8e6672fc972139846ee9ace8aec7f"
+    },
+    {
+      "path": "docs/renderers/contracts/target_assembly/jbp2000b_eu_v1_candidate.json",
+      "size": 35709,
+      "sha256": "0a5ca273a27a13fd8e1f6f3ebeaab693f05b65b54f34fbcbbab6ccc97910361e"
+    },
+    {
+      "path": "docs/renderers/contracts/target_assembly/jbp2000b_jp_v1_candidate.json",
+      "size": 5961,
+      "sha256": "1d0d6e803802085fe6603e3cdad106adb96d3b2643d76ee1e15f00e644a7dcf2"
+    },
+    {
+      "path": "docs/renderers/contracts/target_assembly/jbp2000b_us_v1_candidate.json",
+      "size": 16745,
+      "sha256": "4c61eb8384dd63859560a19e8d8b50a829c3452baacda5b620d8e7f449278f48"
+    },
+    {
+      "path": "docs/renderers/contracts/target_assembly/je3000c_kr_v1_candidate.json",
+      "size": 11030,
+      "sha256": "9a349b53da9e6a4c8ff634cef9157c11d230dfde0d5dfefa793015b6a314c390"
+    },
+    {
+      "path": "docs/renderers/contracts/web_app_components.css",
+      "size": 3442,
+      "sha256": "24b5364d0ca23552344685c782db270ddec9e727014aa71441f8a3170b311e6d"
+    },
+    {
+      "path": "docs/renderers/contracts/web_app_control_labels.css",
+      "size": 1225,
+      "sha256": "21d1efd3ad4a65196518c6a8ea787d68f45dd22be28cb989e4195cd91758ee94"
+    },
+    {
+      "path": "docs/renderers/contracts/web_base_art_components.css",
+      "size": 20333,
+      "sha256": "a9d5fad3dcb9a104ac10daef583be0c8c93a1818296c604e855e349a66985a6d"
+    },
+    {
+      "path": "docs/renderers/contracts/web_battery_pack_components.css",
+      "size": 10570,
+      "sha256": "a36844c9c4beaa9ea9f93b90ac602d9b62fc44924dff52eb52a0e0dffdf6d7e3"
+    },
+    {
+      "path": "docs/renderers/contracts/web_fcc_components.css",
+      "size": 3224,
+      "sha256": "f293ec637ef164e78c793d998d93cfeafe8fae9ef40adf6c1fe36cd0d456e83f"
+    },
+    {
+      "path": "docs/renderers/contracts/web_fcc_statement.css",
+      "size": 960,
+      "sha256": "34cf40b5b37310ec2f44c560a2ab65a2465211221f75f0b746eb83752e7f361c"
+    },
+    {
+      "path": "docs/renderers/contracts/web_inbox_components.css",
+      "size": 4296,
+      "sha256": "6290fca45ef5509f510947957ecc1108c4eae848434215459179a53c7175dfa1"
+    },
+    {
+      "path": "docs/renderers/contracts/web_manual.css",
+      "size": 47733,
+      "sha256": "5519f2d75187aca34b0469657680680d3591bbc844450ea57681e26582ee337a"
+    },
+    {
+      "path": "docs/renderers/contracts/web_manual.json",
+      "size": 603,
+      "sha256": "f4d0628d8655402d2db30d9e92158290ad0f1c1e5a1f2690f9fb726cf93e1280"
+    },
+    {
+      "path": "docs/renderers/contracts/web_operation_clock.css",
+      "size": 649,
+      "sha256": "8b5229d556bfc4accdcb71f14eb46f88cdab2ff9c31571894e04c18d6a02eabd"
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/battery_pack_v1.json",
+      "size": 110,
+      "sha256": "8029edd4b59d5fd220f0fa139b65e8290fd2d78845db8949bb02778ae0718dd4"
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/charger_v1.json",
+      "size": 307,
+      "sha256": "3cd1160ce052d979d2774834bb779f35774694d11a69d674a820cf636b5830b0"
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/figure_debt_baseline.json",
+      "size": 2844,
+      "sha256": "e082c63df83cc4f2a09c6d21e9d0679079075f82e717447fdae3aec8950294a5"
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/portable_power_station_v1.json",
+      "size": 9656,
+      "sha256": "d51fcdefb468da99b1e8d8c174382810ef9cdb8dd2f967d2f26a68198452c7a2"
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/shared_base.json",
+      "size": 3643,
+      "sha256": "30293c328bfbbe4424321265b2bb52935c9cb0f782b36bb46ec204e6e2488298"
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/solar_v1.json",
+      "size": 305,
+      "sha256": "75daf185a72e20bc3011e063a53c035a5fbe07719783ffa841b98987fdf4822f"
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
+      "size": 52438,
+      "sha256": "6337f537ac3b8b7248e00632d9f3d899a410fbadad4319a718b0e39905717a9d"
+    },
+    {
+      "path": "docs/renderers/contracts/web_registration_components.css",
+      "size": 916,
+      "sha256": "a112dd88a80191254f946e91947a265680d8a99239f1cb60198e37f2e7acb23c"
+    },
+    {
+      "path": "docs/renderers/contracts/web_safety_components.css",
+      "size": 3803,
+      "sha256": "a8d40a22cfbf58e92b3cccf8488400f7af2f6dd5153cb7c71bc489183fc76025"
+    },
+    {
+      "path": "docs/renderers/contracts/web_source_panels.css",
+      "size": 24791,
+      "sha256": "cab398c74bf0cd9610336c422d9129a9257f26edeb3d83579fbd44de567d1719"
+    },
+    {
+      "path": "docs/renderers/contracts/web_symbols_fcc_components.css",
+      "size": 2895,
+      "sha256": "1753be358a168640d2102d6de4ab07d4d8b4605beb31068cdadb7c1050c341a9"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/manifest.json",
+      "size": 73978,
+      "sha256": "2ed591023d4b0636167bb33a7d06c7dd5ae2bc5b537b891a4200f5f12df4d350"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/do_not_dismantle_dark_hte147.svg",
+      "size": 62314,
+      "sha256": "10462368d9310033fc5e2626ba2f0934407ecabf42b740d9d1c4ba3026235d47"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_battery_charging.svg",
+      "size": 5934,
+      "sha256": "6a513fe0122fec428c55a3f840c34ed7afdea311f7f1dd9b6e6fd807d087bf55"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_electric_shock.svg",
+      "size": 4992,
+      "sha256": "a76bd208ea017906cdcb5624307cdf4b4bb092816d45ef3943a4b3367c837d3f"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_explosive_material_native_v2_3e3a39.svg",
+      "size": 5599,
+      "sha256": "d4def93f853179fe0ea0cd7c4ba461da5a70d662d33a899bc48f7a2ef5553a1d"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_keep_away_from_children.svg",
+      "size": 6300,
+      "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_li_ion_dark.svg",
+      "size": 6007,
+      "sha256": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_no_open_flame.svg",
+      "size": 5630,
+      "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_read_manual.svg",
+      "size": 4961,
+      "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_weee.png",
+      "size": 7672,
+      "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/warning_triangle_dark_hte162.svg",
+      "size": 3632,
+      "sha256": "7eee1f724544318b77f50d99896735cb11f833fde5a3e24df1a7a394b70de10e"
+    },
+    {
+      "path": "tools/asset_pipeline/__init__.py",
+      "size": 545,
+      "sha256": "6019d91fb049384c74ea00f4c0cfcedc602160412806fc7a673ed6771af5d331"
+    },
+    {
+      "path": "tools/asset_pipeline/base_inventory.py",
+      "size": 50240,
+      "sha256": "f8908034761265175121ac3558caf8e3fafbf4bdd9646581b90ed9ce0eaac481"
+    },
+    {
+      "path": "tools/asset_pipeline/base_reconcile.py",
+      "size": 10058,
+      "sha256": "fef60d41e3b2a60ab5d1b6cf305e222364b7eca3a0f97aa4ea84e6ae2a0d5931"
+    },
+    {
+      "path": "tools/asset_pipeline/extract.py",
+      "size": 33576,
+      "sha256": "634c1b53fbc38b68b5b26d53138d88ac422700d30ab6fcae507972c3c6df863e"
+    },
+    {
+      "path": "tools/asset_pipeline/leaders.py",
+      "size": 7437,
+      "sha256": "cdcafbad09e13c4dbafd582110af1f86a7fc0ea4043212ec6eb86a38fc316c5d"
+    },
+    {
+      "path": "tools/asset_pipeline/models.py",
+      "size": 7552,
+      "sha256": "76c0df2a039bb68ce57acefd11da4cda59b402438ac61864b3d3665fa128729a"
+    },
+    {
+      "path": "tools/asset_pipeline/native_svg.py",
+      "size": 9464,
+      "sha256": "cc51c407aef9dca7d95338e6c64a38ddb7e890de5a067e0dc9812100b3c86fd7"
+    },
+    {
+      "path": "tools/asset_pipeline/package.py",
+      "size": 11252,
+      "sha256": "2adba7bdadc21f0a182699c968cc95a2a82f68a67cea3b79c8ae95ce2a01ea68"
+    },
+    {
+      "path": "tools/asset_pipeline/recipe.py",
+      "size": 33788,
+      "sha256": "d82e799cfde6157ff61fa6a7668148851850f4919df4f72541c73afa48abd3d2"
+    },
+    {
+      "path": "tools/build_paths.py",
+      "size": 14639,
+      "sha256": "13b7db543794ab70a06037ceb274d028e6d75b2d4983d022e39209f70fd536f5"
+    },
+    {
+      "path": "tools/component_specs/__init__.py",
+      "size": 2388,
+      "sha256": "92949fd4505309fa00c05ab8ce47bb641e6e7ab0a973befcdccb86fdb6b3aa1e"
+    },
+    {
+      "path": "tools/component_specs/adapters.py",
+      "size": 3434,
+      "sha256": "d2473634eee20324ac3db18521520ff3af1f03dd6d45c1699bfc35379539db81"
+    },
+    {
+      "path": "tools/component_specs/app.py",
+      "size": 13511,
+      "sha256": "3cb2f3ff415ac5d0cb0cc397d6a8713cd7f409fea811f7d4d113e33f4f1bcf2e"
+    },
+    {
+      "path": "tools/component_specs/app_adapters.py",
+      "size": 2078,
+      "sha256": "c1ffc7dffd98a0842f4e361c1c1ae626c9a8e09c8218841b850a15288b1b9183"
+    },
+    {
+      "path": "tools/component_specs/app_html.py",
+      "size": 9082,
+      "sha256": "9fff02554670f2e9b3e4e6329a0cd5b3b15cb4af2281276329256d1fb4766de2"
+    },
+    {
+      "path": "tools/component_specs/app_label_source.py",
+      "size": 3347,
+      "sha256": "d0ad98835814045f0e3f13d7d38bea66be455a98e4513727e4d3a01c66995e37"
+    },
+    {
+      "path": "tools/component_specs/app_qr_source.py",
+      "size": 1399,
+      "sha256": "687d9de375af3fae3bfcdc40b46ff41baac2fea6ba3a5faadd1d9ec88b56d395"
+    },
+    {
+      "path": "tools/component_specs/authored_tables_html.py",
+      "size": 4900,
+      "sha256": "e39e06ee40622bf0a21e4945a44f00f4bc019ad6cc8b23a3a8765a2fdde2c917"
+    },
+    {
+      "path": "tools/component_specs/auto_resume.py",
+      "size": 2444,
+      "sha256": "2f1eab8d34e4c5209104d2204b1caa56d7551077e78ce3d21d900647c28564e4"
+    },
+    {
+      "path": "tools/component_specs/callout.py",
+      "size": 8691,
+      "sha256": "dbf8f9203833c299f77921eee55e12e1e7bf470080253cfd27f02fd538aa897e"
+    },
+    {
+      "path": "tools/component_specs/fcc.py",
+      "size": 8688,
+      "sha256": "b92a428d1de1265af6e2f1a8c9fcc98f84decb23de24795e457aee031edee3f0"
+    },
+    {
+      "path": "tools/component_specs/fcc_adapters.py",
+      "size": 2837,
+      "sha256": "8c18fa511ba4072c8e6a23a9a62ab265fad6ce83a9d3d45a94e8cee07b81756e"
+    },
+    {
+      "path": "tools/component_specs/fcc_declaration.py",
+      "size": 2329,
+      "sha256": "c630126d0896ef7c2298cb737bfa90efd331ff58d5ccb71df6ac9b91675f6582"
+    },
+    {
+      "path": "tools/component_specs/fcc_html.py",
+      "size": 6970,
+      "sha256": "47b2184fb1727bf0150759ed4ad247288d1360a735272768dc06401f64695e0a"
+    },
+    {
+      "path": "tools/component_specs/inbox.py",
+      "size": 7291,
+      "sha256": "c8b43521005bbc627bc34166a762cd884c869b19b0bade048b3c123a8740d2c7"
+    },
+    {
+      "path": "tools/component_specs/inbox_adapters.py",
+      "size": 2610,
+      "sha256": "28e70bd56ab4b26d02c1b0ed8920a470142b6b3a1e2ba87bd82d0e9d5d91f752"
+    },
+    {
+      "path": "tools/component_specs/inbox_html.py",
+      "size": 3732,
+      "sha256": "825274eeec31587ba7eac69055336acda5f3787997e8d7f1207523acf0eda242"
+    },
+    {
+      "path": "tools/component_specs/key_combinations.py",
+      "size": 2407,
+      "sha256": "e7371092ec249c98be54ec2c111218db188bc98fd7269fb786fac439d5adcd61"
+    },
+    {
+      "path": "tools/component_specs/lcd_mode.py",
+      "size": 4570,
+      "sha256": "77c5a92ec346a1a176868cece9aefb702862aa72cf02c566fe9599666a3718c5"
+    },
+    {
+      "path": "tools/component_specs/lcd_mode_adapters.py",
+      "size": 2398,
+      "sha256": "1f7216378bfab118300833859bb169533db081dc5dec57a3d5aec24eb296fdce"
+    },
+    {
+      "path": "tools/component_specs/lcd_mode_html.py",
+      "size": 3371,
+      "sha256": "c9de7fd1a12268ed3ac25e35e30d0dfdd0a437c46f3c325f7141577495c8c4bd"
+    },
+    {
+      "path": "tools/component_specs/lcd_mode_source.py",
+      "size": 1640,
+      "sha256": "c2bf859d75a341b8a7e2ca645e37d08e3fe85d77574d02216c262b4fa54ff576"
+    },
+    {
+      "path": "tools/component_specs/manual_table_adapters.py",
+      "size": 5386,
+      "sha256": "f04a1bf1f0b1db1426ceac767467c90181b3d2978eccc7d5d5c76b3c137603c7"
+    },
+    {
+      "path": "tools/component_specs/manual_table_html.py",
+      "size": 6606,
+      "sha256": "8477afedd23af38a21deb4c0239c7038e5da901b05b00c1e00faa13b52bf5b1e"
+    },
+    {
+      "path": "tools/component_specs/manual_tables.py",
+      "size": 10395,
+      "sha256": "c81a8950cfd2c1d6a5b8d6859a3d01af7f4964d4cd2201868cdb22a121d2f172"
+    },
+    {
+      "path": "tools/component_specs/model.py",
+      "size": 3840,
+      "sha256": "06aa31c190fc1490c99aee7646c03b006c79b4e70d1a9a7c6cc8e9a1b9c357d7"
+    },
+    {
+      "path": "tools/component_specs/operation.py",
+      "size": 7060,
+      "sha256": "875bfdcdcc20ac7276bae53bbac1c1782e9ed793cb97057c1f9bbb58471aa840"
+    },
+    {
+      "path": "tools/component_specs/operation_adapters.py",
+      "size": 5423,
+      "sha256": "866930f814195ef82766bf7434c7c60507df8c684c9fd298349678757dc3491e"
+    },
+    {
+      "path": "tools/component_specs/operation_html.py",
+      "size": 9879,
+      "sha256": "588e199ebd80135f737b740133ce520ceab7f1a11b6c387460f175d34c4d3e80"
+    },
+    {
+      "path": "tools/component_specs/operation_tables_html.py",
+      "size": 3505,
+      "sha256": "4ced355fecde5bf0f384af4124177ca068ec9b9b4461db6abe533bd68ebebd32"
+    },
+    {
+      "path": "tools/component_specs/overview.py",
+      "size": 12564,
+      "sha256": "c46fbc1c7bb15a972281cba8277763962d053e81c611f05529d25d7dfa971423"
+    },
+    {
+      "path": "tools/component_specs/overview_adapters.py",
+      "size": 6489,
+      "sha256": "522dc2f54093e9f6ed6490e96773919b8a8ee59fab9cad1de20c478403396eda"
+    },
+    {
+      "path": "tools/component_specs/overview_html.py",
+      "size": 7944,
+      "sha256": "b5e8398832a06d8a20bb5496bd278a63da1bfa85ea6d7764dd651cdea4057ba1"
+    },
+    {
+      "path": "tools/component_specs/overview_instance.py",
+      "size": 18192,
+      "sha256": "4563cc96d90085c8eab7454553a3b3c41e532b8a937744862ff7c1a3e23e1e7b"
+    },
+    {
+      "path": "tools/component_specs/overview_instance_validation.py",
+      "size": 2356,
+      "sha256": "57fe7fd4a307ea737212755edf8caa116d372b86d0bdd188c0efceb6a3f445d3"
+    },
+    {
+      "path": "tools/component_specs/plain_inventory.py",
+      "size": 2092,
+      "sha256": "27fde4d3ab4fc41007614b813f0870a6b648f4d1eef807eb7dff44dfd9616330"
+    },
+    {
+      "path": "tools/component_specs/projection.py",
+      "size": 6354,
+      "sha256": "0698f3d79e9f30e9ad18c57459afed3ab9f0511c457c6a7657cb2b1cdd75ffc1"
+    },
+    {
+      "path": "tools/component_specs/reference_figure.py",
+      "size": 10264,
+      "sha256": "cb0086034f0b21eb8473071723c8852afd5abe0639a9694b12f6d9fcb7ca69c2"
+    },
+    {
+      "path": "tools/component_specs/reference_figure_adapters.py",
+      "size": 2029,
+      "sha256": "390c42bf2784349fafdc0032da2b218e2f048cd8f358900d26f46ef4a500bafe"
+    },
+    {
+      "path": "tools/component_specs/reference_figure_html.py",
+      "size": 10115,
+      "sha256": "21b6b0beace5b76fa4da1af101145835abed241230ae8fa0e385f9eadeacf8da"
+    },
+    {
+      "path": "tools/component_specs/reference_table.py",
+      "size": 3677,
+      "sha256": "48fbda1db0a40d462f3017c252e89c5526ef683eb7e7b8e36067f4bbaa787bad"
+    },
+    {
+      "path": "tools/component_specs/registry.py",
+      "size": 21154,
+      "sha256": "7911481d9e07a2a09647dc7761633286d0f094e42a2914253cb460de75b2720f"
+    },
+    {
+      "path": "tools/component_specs/spec_table.py",
+      "size": 5651,
+      "sha256": "00396f5deb7e6da730acf8f8844745ccba6871fd0f3ecf91b7d169108d9310c1"
+    },
+    {
+      "path": "tools/component_specs/theme.py",
+      "size": 10359,
+      "sha256": "388f7319f1f6dd3afff7dbf5f46124f6c9272c2e388cd40902516fa85bcf5f2a"
+    },
+    {
+      "path": "tools/component_specs/warranty.py",
+      "size": 8641,
+      "sha256": "92c31c7f75e0af54abaa546f65a65a018ace19b78ef01f367964b4a381ff9aec"
+    },
+    {
+      "path": "tools/component_specs/warranty_adapters.py",
+      "size": 4980,
+      "sha256": "dd690dfd4435af1161bca5fe130b769082a47dc43e52f23668f3ac0275221aed"
+    },
+    {
+      "path": "tools/component_specs/warranty_html.py",
+      "size": 6881,
+      "sha256": "da903303a8371344ceea35abfab3c5a80c16025e8304b6d82acad82d2371df51"
+    },
+    {
+      "path": "tools/component_specs/web_source.py",
+      "size": 5434,
+      "sha256": "f26e265af59d5ce5c6420bca2056d8c625220e6ac63c360da49abb2d6d35f30e"
+    },
+    {
+      "path": "tools/manual_ir/__init__.py",
+      "size": 953,
+      "sha256": "b7def9b7164ee8a76f659041d19743de29712ff398e99ebc2db4cd4ecb0feb7b"
+    },
+    {
+      "path": "tools/manual_ir/builder.py",
+      "size": 5647,
+      "sha256": "95e63fe04e93e8609bcb7580509e06d3ce3cefbb5b435281583b050d9a12dba0"
+    },
+    {
+      "path": "tools/manual_ir/components.py",
+      "size": 5841,
+      "sha256": "de4fed1ee9735cdb763e65fee7125984c6140f92934b9ad351047682d0fe2f25"
+    },
+    {
+      "path": "tools/manual_ir/document.py",
+      "size": 8707,
+      "sha256": "699dd73576a4d3c1e05c3597ff96fa54aed9196f0332eb70449cc6e9d63b7e9d"
+    },
+    {
+      "path": "tools/manual_ir/external_languages.py",
+      "size": 1830,
+      "sha256": "3c50eea4ca618ce2b89de638d28bda9137874a8ab60197e448139cb2d0a5326e"
+    },
+    {
+      "path": "tools/manual_ir/flow.py",
+      "size": 21944,
+      "sha256": "36b9d1c2c3f29d3754fbb8056ccedac1ea171ef8302123eb22f989f7806444b8"
+    },
+    {
+      "path": "tools/manual_ir/hashing.py",
+      "size": 4662,
+      "sha256": "ec6b7cfe9219aaf349b194125607364ef99784aa0ef139db84a5f21fdb787fbb"
+    },
+    {
+      "path": "tools/manual_ir/model.py",
+      "size": 1439,
+      "sha256": "ab08ed0fede49aeed565c5bdd28bbd904a68cc738e957e3aee92f1656808500f"
+    },
+    {
+      "path": "tools/manual_ir/prepared_rst.py",
+      "size": 7405,
+      "sha256": "74cfb7d3b13758ece0c4842097b5f44e4ac36e4ff58164b9ca9957e28c27f0f2"
+    },
+    {
+      "path": "tools/manual_ir/serialize.py",
+      "size": 2798,
+      "sha256": "054372fd4d7c2fc166fa92115118f77fae372fbe9145f5b7b3828fddfa2c0fc4"
+    },
+    {
+      "path": "tools/manual_ir/source.py",
+      "size": 1606,
+      "sha256": "e55cdb2ae8ba181437437672703ab1c4f655867ebcf297fc312ed2a30181cd8e"
+    },
+    {
+      "path": "tools/manual_ir/validate.py",
+      "size": 17941,
+      "sha256": "51457cecb374d19bb62aae4323c8210adf2ae0fff00f751236ed9ac4da58c289"
+    },
+    {
+      "path": "tools/manual_ir/web_app_controls.py",
+      "size": 4057,
+      "sha256": "dd9d61786e58d10a091986195ae2ccc6fe86132329df6dffec36f28c31cdf861"
+    },
+    {
+      "path": "tools/manual_ir/web_app_download.py",
+      "size": 5885,
+      "sha256": "444f3639f7cfda287e653609650e19699cf611f0808ca8767020a6b33904a510"
+    },
+    {
+      "path": "tools/manual_ir/web_callouts.py",
+      "size": 3512,
+      "sha256": "dd00d890b0f707e7328de8f7e0567bac290358e62876b7080c9d39e476274f42"
+    },
+    {
+      "path": "tools/manual_ir/web_fcc.py",
+      "size": 3785,
+      "sha256": "eb787b59f6890d3c421c8f4e1224566a41f6657e84409bad00fc606eddcbdbe8"
+    },
+    {
+      "path": "tools/manual_ir/web_inbox.py",
+      "size": 3939,
+      "sha256": "8593147bc0d88e93fd29decf99430b14cf5da6ab46737b1fecc9c797c28b1c84"
+    },
+    {
+      "path": "tools/manual_ir/web_source.py",
+      "size": 1616,
+      "sha256": "865c934376f241008a4cc1f9128004ee02645b620b6b6fae464f0978c7d2949a"
+    },
+    {
+      "path": "tools/manual_ir/web_specs.py",
+      "size": 5459,
+      "sha256": "d69ea70640e77c65b0dfbcc9628fe505f7104a2a5913abeb84fa2d991e0a7bba"
+    },
+    {
+      "path": "tools/manual_ir/web_symbols.py",
+      "size": 10860,
+      "sha256": "91ffb76efd3cb5908f44acd68ec0d02693cc84a078bd239ac59e6e6a946271db"
+    },
+    {
+      "path": "tools/manual_ir/web_tables.py",
+      "size": 8938,
+      "sha256": "b99b778d061834eb4b5a37f45e1324a9865dcc7eec041f3129311fa61eca4402"
+    },
+    {
+      "path": "tools/manual_ir/whole_document_components.py",
+      "size": 37373,
+      "sha256": "bc33b0fdeb8ba21f4a5f9656bae2c3154d8608c8738043e6376075cb631fadd2"
+    },
+    {
+      "path": "tools/markdown_bundle.py",
+      "size": 10075,
+      "sha256": "187fe75dd2e7df9697b9d6b4f9627ab9b5ad78762887b214339cd9c44b9c6d90"
+    },
+    {
+      "path": "tools/utils/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tools/utils/csv_fields.py",
+      "size": 2865,
+      "sha256": "28b60075372d9eaa1a7772d85729106c9f24bd0daf6850f3035ab091c7fbc82d"
+    },
+    {
+      "path": "tools/utils/korean_josa.py",
+      "size": 4325,
+      "sha256": "411394837b70a77d3c89b032f61858d9aaa2fe77e4f824dd8fcdcc32c8900237"
+    },
+    {
+      "path": "tools/utils/log.py",
+      "size": 4459,
+      "sha256": "e57ae5f03005967ed95b8683cc6b1622fe1e50cf17824b699c952c9a23d15916"
+    },
+    {
+      "path": "tools/utils/path_utils.py",
+      "size": 14762,
+      "sha256": "80d5b8baf6c6cb03fc623c3eb684b6e5e7179d17240eb7d4edea1a44a11cce7a"
+    },
+    {
+      "path": "tools/utils/process_utils.py",
+      "size": 1545,
+      "sha256": "aec1f17a102f14aa300189ed5d8a18eb4ced93458d6f87b6b9a326ad33ca820b"
+    },
+    {
+      "path": "tools/utils/spec_footnotes.py",
+      "size": 1060,
+      "sha256": "58039fbb71b169d80082834355c6ffb806b8a447d0484f7ff6dbdd783ed90997"
+    },
+    {
+      "path": "tools/utils/spec_master.py",
+      "size": 3458,
+      "sha256": "bd2683108e211fec7e95f4115c211e718eec171c8558f12a8868935b27c3d783"
+    },
+    {
+      "path": "tools/utils/spec_master_auditing.py",
+      "size": 10749,
+      "sha256": "4f130be99357d930a7aaf6b5d65b92e689bb8732afd823dd4075876284f60966"
+    },
+    {
+      "path": "tools/utils/spec_master_lookup.py",
+      "size": 10483,
+      "sha256": "0e39e10e93e492804e4db916bdf81526b3d17f5ad9b93cc8038af194fdc3c6fa"
+    },
+    {
+      "path": "tools/utils/spec_master_mapping.py",
+      "size": 8771,
+      "sha256": "d7ebc39ea5921cd422565aa6020837e138b19dcdf9b3196fd4631cee8e11e31d"
+    },
+    {
+      "path": "tools/utils/spec_master_repairs.py",
+      "size": 6356,
+      "sha256": "65167e86b03a6791b5031be62c68ebb1b8e3e2d69c1f5f519f38833e3e0f8a0a"
+    },
+    {
+      "path": "tools/utils/spec_master_row_helpers.py",
+      "size": 27168,
+      "sha256": "f0967465f156bf4f975abb3fc4d7ea2b4c5da9d9404d3273616094196c1d0480"
+    },
+    {
+      "path": "tools/utils/spec_master_shared.py",
+      "size": 13658,
+      "sha256": "233164e720ed5d39003fdf3c165a9723d1a43bea91d9bbec8c7754529afea85a"
+    },
+    {
+      "path": "tools/utils/targets.py",
+      "size": 4889,
+      "sha256": "a495084aa2ed5fa758c7d26dc6ab9b7fe762868ab6e873cbc243e382dfbdf99f"
+    },
+    {
+      "path": "tools/utils/tex_utils.py",
+      "size": 531,
+      "sha256": "93dac4769a8b9117d276f9f45bccee5d2803549eef9b6c98fc970ca6c8f99e9b"
+    },
+    {
+      "path": "tools/utils/variable_resolver.py",
+      "size": 6454,
+      "sha256": "7042f3c7a8ad2aacb6d87b5028b68d60acefbd3c25a4a1f66223dbcf21c0260d"
+    },
+    {
+      "path": "tools/web/__init__.py",
+      "size": 34,
+      "sha256": "39cba33dc8fe560c2c3a92fc266404b14bc9df2ca50f72fd5898a18491a92d94"
+    },
+    {
+      "path": "tools/web/app_component.py",
+      "size": 9601,
+      "sha256": "4665694b4004a41340024483b7df07f3b053ccc53a4a0367280f34a53c1dfec8"
+    },
+    {
+      "path": "tools/web/app_controls.py",
+      "size": 1496,
+      "sha256": "d4a02e827bef0400310232920d609b3cfa0b41632ffdf3655bf4c84647b9c4a0"
+    },
+    {
+      "path": "tools/web/app_download.py",
+      "size": 3257,
+      "sha256": "18a7749b784f5fe9ddf28b759153998faf23136a2d07fbd02e245f665fc99903"
+    },
+    {
+      "path": "tools/web/app_qr_component.py",
+      "size": 1202,
+      "sha256": "c5345424d946d9c50d55adae0445fae49baab9c801e15af71b4ee28d19e70006"
+    },
+    {
+      "path": "tools/web/auto_resume_component.py",
+      "size": 1147,
+      "sha256": "99b7c3d1d112393c963897a24e1432d046aee90c05066c7984b14df741738d9a"
+    },
+    {
+      "path": "tools/web/base_art_operation.py",
+      "size": 15862,
+      "sha256": "1b4dd1e734255f8c9ef27ec162d6db55c0e666ed9793cfe249e4695d4154e7c8"
+    },
+    {
+      "path": "tools/web/base_art_reference.py",
+      "size": 6582,
+      "sha256": "834fb1633a783b10eaa389f49e0acba4ae3f91bdb6baa25a3fe08de2da18e1c8"
+    },
+    {
+      "path": "tools/web/callout_alignment.py",
+      "size": 2554,
+      "sha256": "92047c48facfd5156b556b008c3c0900c24a6bf8318696d498dbf08a0f72362a"
+    },
+    {
+      "path": "tools/web/callout_ir.py",
+      "size": 3739,
+      "sha256": "105e1097ce476de238a8df4da53b16f9ba83309c40b07ed3ea895b3d60486f39"
+    },
+    {
+      "path": "tools/web/caption_frame_admission.py",
+      "size": 4872,
+      "sha256": "119ededcf812f6a97f637b42edce26db7f54cc3ff6a33b0336d5767e5e06d088"
+    },
+    {
+      "path": "tools/web/component_admission.py",
+      "size": 3214,
+      "sha256": "271b50f85f1e887dc3fed6e4e94bcc19593d9e62e1b260b252e27f1bfe193f24"
+    },
+    {
+      "path": "tools/web/component_carriers.py",
+      "size": 5563,
+      "sha256": "98042be9f1abda6df1b107a21eb5779d1e6b5a14ff0cc6021f82f64f63b55a6f"
+    },
+    {
+      "path": "tools/web/composite_hashing.py",
+      "size": 1676,
+      "sha256": "ba34a9f03d5106eab12037dd0d7d84a6d87a6984943c9eda1ffbd0534c13e3a4"
+    },
+    {
+      "path": "tools/web/composite_manifest.py",
+      "size": 12260,
+      "sha256": "50183dc218f7e47b8dfa526c4710112e53438eca6042b5af1fb53a5e2a047d72"
+    },
+    {
+      "path": "tools/web/composite_presentation.py",
+      "size": 8035,
+      "sha256": "555781b6c3a1bd9127058e16ddbef36f2f0edb3ec7703948d9063f844e3583a9"
+    },
+    {
+      "path": "tools/web/document_assets.py",
+      "size": 2398,
+      "sha256": "28a8ce6981b60ce1e33d2c864077edb0708ccf030a4e7a26f0a52af4d1b18fa1"
+    },
+    {
+      "path": "tools/web/document_ir.py",
+      "size": 7707,
+      "sha256": "4fcc1787bd4ec4fee0c75923ab07162f7f5bf75182a3eb1ebec6ea1217e0a22d"
+    },
+    {
+      "path": "tools/web/document_link_actions.py",
+      "size": 4247,
+      "sha256": "5be3eeca2e2955219e0536cbb5942043eea3b5d605025023358b91555e015caf"
+    },
+    {
+      "path": "tools/web/document_link_queue.py",
+      "size": 20325,
+      "sha256": "fef4b19a06bff6bfdafe1ef727b300aff9df8ef652fabf29c578863b6f8bc513"
+    },
+    {
+      "path": "tools/web/document_source.py",
+      "size": 19186,
+      "sha256": "b5ac9539f55a0aaed45b0804cbca641ed15954e43f5e7a1046634d2d54e9fb21"
+    },
+    {
+      "path": "tools/web/embedded_components.py",
+      "size": 8140,
+      "sha256": "4028e2a4e1704f60e90abb42e902c844d7b032d26dcc4b35bda9637ff57ae540"
+    },
+    {
+      "path": "tools/web/fcc_component.py",
+      "size": 3728,
+      "sha256": "f78fc4585595b05e8a2a42aa343a6c6935030efea0f6f130a1ffd297ca67071f"
+    },
+    {
+      "path": "tools/web/fcc_markup.py",
+      "size": 2001,
+      "sha256": "16e38dd430c64b34e3dcca3e8217d9df5a7e34c09164074584d8e0a78c5447f0"
+    },
+    {
+      "path": "tools/web/figure_captions.py",
+      "size": 968,
+      "sha256": "d10cee3251ca02bfd19e72146f75c27f45217637da3304c13b4d5e56688b23d3"
+    },
+    {
+      "path": "tools/web/figure_coverage.py",
+      "size": 30995,
+      "sha256": "2f34ba91f8d97e32bc90f464acfba59ebc226568e54de35206e6571e5d9ebbc9"
+    },
+    {
+      "path": "tools/web/frozen_ai_document.py",
+      "size": 8918,
+      "sha256": "f216f3c7732c97b698b29d85ede5ddf1b3e0d3579ce66254326d2f4b411a0326"
+    },
+    {
+      "path": "tools/web/frozen_ai_flow.py",
+      "size": 4100,
+      "sha256": "cddd4ceed3cb165aec2f0f79ca6313f9f9335ebdd8e8efaa51aa7ce324b21fe2"
+    },
+    {
+      "path": "tools/web/frozen_ai_media_components.py",
+      "size": 8154,
+      "sha256": "67112d8abeff8c78a8d8d013d3daeabead6b02754ec5b068a555b5899ef7264a"
+    },
+    {
+      "path": "tools/web/frozen_ai_source.py",
+      "size": 16785,
+      "sha256": "15903a74290bca7f25e299e34ec510edadcdea959e84b3795ac410479682264f"
+    },
+    {
+      "path": "tools/web/frozen_ai_table_components.py",
+      "size": 12143,
+      "sha256": "cdd624a806a1d168eb3770439f2dbe7f8634974e5fa537b37dc5b654f3b5d04b"
+    },
+    {
+      "path": "tools/web/frozen_ai_web.py",
+      "size": 10527,
+      "sha256": "a4cea92679de3741de0e4b2a0c8751b5e61bfb2a5a1c658b47799e7a4a7910ff"
+    },
+    {
+      "path": "tools/web/frozen_package_registry.py",
+      "size": 17335,
+      "sha256": "35317d373255e5ec5732de2fe40f36668de6c28e740479468ad9da3f75024eca"
+    },
+    {
+      "path": "tools/web/frozen_pdf_app.py",
+      "size": 15401,
+      "sha256": "51c153d2bea89921b42d1d3e8fe7286e8df33b38759aa92b326b033738cca924"
+    },
+    {
+      "path": "tools/web/frozen_pdf_document.py",
+      "size": 15633,
+      "sha256": "d26886d7929d14c015dd7a53921718d6adbfbdb5311c6cbb782bbfc7f80ad773"
+    },
+    {
+      "path": "tools/web/frozen_pdf_errata.py",
+      "size": 2024,
+      "sha256": "ec936847547e9a656d57df312622f8c8dc1c5c8399093589fa686a90b21d380f"
+    },
+    {
+      "path": "tools/web/frozen_pdf_finished_overview.py",
+      "size": 4284,
+      "sha256": "8e6dee3ff11188b7e831b32f538aebd25cd204e4a5779dc899516fe4929b6916"
+    },
+    {
+      "path": "tools/web/frozen_pdf_frontmatter.py",
+      "size": 4773,
+      "sha256": "9238d292b2ade0112809a95a2937768520d8f7aaac2589684c134c9db5f70b61"
+    },
+    {
+      "path": "tools/web/frozen_pdf_glyphs.py",
+      "size": 9385,
+      "sha256": "8a87aa34fd1bc8b4b6a1d51dd4e4c87f6527bb353643b7f5327cd0b167a8bab7"
+    },
+    {
+      "path": "tools/web/frozen_pdf_intake.py",
+      "size": 29164,
+      "sha256": "84917b942f70c06d23b72c42b1b4cc70863e9804aae3db937cda55df9f439f9c"
+    },
+    {
+      "path": "tools/web/frozen_pdf_lcd.py",
+      "size": 5441,
+      "sha256": "5510d7b5605071b22e86fcde01d059aa5a827314aa0f2c9d719b0e2962d7eb70"
+    },
+    {
+      "path": "tools/web/frozen_pdf_media.py",
+      "size": 17942,
+      "sha256": "39673c0dcb8f13734c3296412388f0c4e19f1c6ab0035b0de32d9c42f139effc"
+    },
+    {
+      "path": "tools/web/frozen_pdf_reference.py",
+      "size": 6185,
+      "sha256": "257f121a75d96e8d2d3f1f21fc4c8d813032ef64dfb16553666b3526c0615585"
+    },
+    {
+      "path": "tools/web/frozen_pdf_source.py",
+      "size": 15285,
+      "sha256": "7cbf3335006d7e27826d27e35b1ab85e2f74f1e7e042280393d11b323a14ae70"
+    },
+    {
+      "path": "tools/web/frozen_pdf_web.py",
+      "size": 1637,
+      "sha256": "9a6c18feefc04b404e16d54d8079af71672fb678ca3a5bc6fe1a2883e3c9a6cd"
+    },
+    {
+      "path": "tools/web/frozen_source_evidence.py",
+      "size": 10498,
+      "sha256": "eac58d951f33206f40f888c2c0a41fd5cb4a4eaab0cfc551c69c780f7c46fca4"
+    },
+    {
+      "path": "tools/web/frozen_web_component_coverage.py",
+      "size": 5724,
+      "sha256": "40f6de3cc40b7ecca381db22b86dc26e5ca7020214501eb16dba035bc25a9db5"
+    },
+    {
+      "path": "tools/web/inbox_component.py",
+      "size": 4985,
+      "sha256": "e3c900bea7dca4ceaf05c91e752e757345a42cbec33a917aac38f3d2d79bfa55"
+    },
+    {
+      "path": "tools/web/key_combinations_component.py",
+      "size": 2102,
+      "sha256": "25df58a8cb28db1660df6f023b651ca7137ce62b5d35506aa2d2e323a65082c3"
+    },
+    {
+      "path": "tools/web/language_bundle.py",
+      "size": 14683,
+      "sha256": "af0c5c4d750ebcf5107e0d0267a90c4bad96821b22f45ad9dca8885324eca20f"
+    },
+    {
+      "path": "tools/web/language_inventory.py",
+      "size": 3984,
+      "sha256": "4148db03c31148e82c2f84166913e010802bcdfb93b4c72fd7fc1d33907e29bb"
+    },
+    {
+      "path": "tools/web/language_release_evidence.py",
+      "size": 23128,
+      "sha256": "a24b9f2780a04a741f276844fdfb1f8c90f35192a1e3dafeaa530b8851120bc6"
+    },
+    {
+      "path": "tools/web/lcd_component.py",
+      "size": 739,
+      "sha256": "f20eace9623c8bbadcff4e107545ef5aa578b05783e4c15d87beb63be0fd8e20"
+    },
+    {
+      "path": "tools/web/lcd_mode_component.py",
+      "size": 3528,
+      "sha256": "2bc5038191826f757ed537697a66791e71621cc97cafd8677422e5112569e16e"
+    },
+    {
+      "path": "tools/web/manual_table_components.py",
+      "size": 10484,
+      "sha256": "746e5e4e5cf2651b4b7acc0764101a1ade509af571c2150c378fc1efaddf2805"
+    },
+    {
+      "path": "tools/web/operation_component.py",
+      "size": 3647,
+      "sha256": "8f3183bcf5dc7ded78d3d187e81ed417fc4b5f5ace7815f5e77ca6963cb70ef0"
+    },
+    {
+      "path": "tools/web/overview_component.py",
+      "size": 5730,
+      "sha256": "60f6a9ff3562bbf5ef1383cc1c8963f5f7937e2123dd8e07633ff40895bac288"
+    },
+    {
+      "path": "tools/web/prepared_style_audit.py",
+      "size": 9128,
+      "sha256": "1600f5efaa5d512ee7434140b6eab7c07dff6a30b6a4cac27b23e763d8c77121"
+    },
+    {
+      "path": "tools/web/presentation.py",
+      "size": 65114,
+      "sha256": "619902e6a286ea17708a7b62831dda0ac0d6fe6294a2b0b7fea6af4f58d812b8"
+    },
+    {
+      "path": "tools/web/presentation_contract.py",
+      "size": 41571,
+      "sha256": "e48ba04f467b2e2cce01a884b2812f1c2536a0c2e595a3ad5de62aff185f9c51"
+    },
+    {
+      "path": "tools/web/reference_components.py",
+      "size": 5500,
+      "sha256": "273b67a7ccb1bf431d5e4e46bf519c5617a30d1c158da60125346ecd6cd8def0"
+    },
+    {
+      "path": "tools/web/reference_figure_component.py",
+      "size": 6340,
+      "sha256": "c81accfb2d13d9961c6b28d0b383fde306574f9e760fa42f9c40e1c846c4418b"
+    },
+    {
+      "path": "tools/web/reference_table_component.py",
+      "size": 1682,
+      "sha256": "5080dd59b341770d0e45dd490a5dbcd5d6738779e637cd6bf8de0c2a8fae5827"
+    },
+    {
+      "path": "tools/web/shared_symbol_assets.py",
+      "size": 1835,
+      "sha256": "b6aab8f2aa26dbd87a623b66d491d22f243e99b68659724bb7a60471c4b11ab6"
+    },
+    {
+      "path": "tools/web/spec_component.py",
+      "size": 7162,
+      "sha256": "c5bd8dae11f74ab71d851facfef0639d46a0288da59c1c4df56ef95855313895"
+    },
+    {
+      "path": "tools/web/stylesheets.py",
+      "size": 1570,
+      "sha256": "804d410de026380a89b986c89ec9772a12ad0d7eb1b204ee6b7d3ea43e948fc3"
+    },
+    {
+      "path": "tools/web/symbol_asset_admission.py",
+      "size": 13174,
+      "sha256": "43ff61808683f6ff109c7c5c7201631969b0178eaf285dc7598392ac328c7d47"
+    },
+    {
+      "path": "tools/web/symbol_components.py",
+      "size": 3757,
+      "sha256": "3c1f11c6d37e9bc567fc5643caa1a27d07c5fd46a6b525d3fe28cdc9e9535668"
+    },
+    {
+      "path": "tools/web/symbol_pairs.py",
+      "size": 4036,
+      "sha256": "d4ad4248fa57368629d9ca4645bee10dca3871e258cf617bf31ee304fc26e5b2"
+    },
+    {
+      "path": "tools/web/table_ir.py",
+      "size": 6446,
+      "sha256": "a39489f1b0991f4bcdb3e9cf571e05030bdd3a50b8a6b1df0247550cd7ea6076"
+    },
+    {
+      "path": "tools/web/troubleshooting_component.py",
+      "size": 770,
+      "sha256": "7a88f435cfe568b277ff07726a26d1499a4d1ba98c08d3282d5520b84210113a"
+    },
+    {
+      "path": "tools/web/warranty_component.py",
+      "size": 3977,
+      "sha256": "eed66266702da8942a02927d2012ccdc7410bd0a5899fe7b71abf06d5a7adb4a"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "README.md",
+      "size": 4224,
+      "sha256": "0dfc75b41cb6572d7f49a3d56264273d01c92d197b6bb2aa1d56bef0fbb79f32"
+    },
+    {
+      "path": "assets/ac-output.png",
+      "size": 94941,
+      "sha256": "42696954cd2444c2599efdc02abbf72a75c2e56f88b8638a5cab92119798f8d6"
+    },
+    {
+      "path": "assets/charging-ac.png",
+      "size": 98411,
+      "sha256": "e903ceca4754db977aa2d2b259b068d2bdb1da7c014b289040b73de943f04e40"
+    },
+    {
+      "path": "assets/charging-car.png",
+      "size": 126704,
+      "sha256": "20f5e6b4c9b8a94cbda22d02f9a27c112d49fc78baa3ba09f2b903da3b31c04d"
+    },
+    {
+      "path": "assets/charging-solar.png",
+      "size": 128298,
+      "sha256": "6bff7d2afc7d8b07057b27e755cac1810367d99505510ed8f489f9259c3addb6"
+    },
+    {
+      "path": "assets/charging-usbc.png",
+      "size": 107200,
+      "sha256": "310edc8247c14c02e6072bd6842d3db687fe0fbad8184eb4510d01ade6d9fa19"
+    },
+    {
+      "path": "assets/contact-qr.png",
+      "size": 2866,
+      "sha256": "6894fc499041b4df235b6e8465b4ce1d28dc4c0f6eed71aa7873fbfdd9379670"
+    },
+    {
+      "path": "assets/dc-input-led.png",
+      "size": 8243,
+      "sha256": "253223471260515b78e8a1548dd8f0c9d9becc213984803722d75981e3659e67"
+    },
+    {
+      "path": "assets/dc-output.png",
+      "size": 93742,
+      "sha256": "fe2d30c04e68284a040e5a504baf254699e11902199a8139d26b2e46ca91ed68"
+    },
+    {
+      "path": "assets/do_not_dismantle_dark_hte147.svg",
+      "size": 62314,
+      "sha256": "10462368d9310033fc5e2626ba2f0934407ecabf42b740d9d1c4ba3026235d47"
+    },
+    {
+      "path": "assets/energy-saving.png",
+      "size": 69502,
+      "sha256": "b8000d7885665c423374be18dd5ac3207774d06f35a0f3a4802504dde5bb3f91"
+    },
+    {
+      "path": "assets/fcc_mark.svg",
+      "size": 1927,
+      "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+    },
+    {
+      "path": "assets/inbox-ac-adapter.png",
+      "size": 6656,
+      "sha256": "f2b0ae4a001647e7e545ba349a499336c24121946338660afee1f245303fe2ab"
+    },
+    {
+      "path": "assets/inbox-car-cable.png",
+      "size": 7724,
+      "sha256": "f46de8af19a10e6a5c3a55e902a499272256d3366d7764af1fcb18b79e187031"
+    },
+    {
+      "path": "assets/inbox-unit.png",
+      "size": 15580,
+      "sha256": "108348505bf16274db845041ded8f66d080c024442a3ff67078941f8134da30b"
+    },
+    {
+      "path": "assets/inbox-user-manual.png",
+      "size": 11877,
+      "sha256": "b42e9805764da5e3d94744d42d759f5542dbbff0472f639f3a629c0fe5a00ca8"
+    },
+    {
+      "path": "assets/lcd-ac-power.svg",
+      "size": 8986,
+      "sha256": "ae74b5535c88c6f612bfc8fe4f187bb3b106b6b039ac98a809112b6584d1a7c0"
+    },
+    {
+      "path": "assets/lcd-battery-percentage.svg",
+      "size": 66427,
+      "sha256": "84d8c1e700985fc6c13bce379108ce2cc2d446e5fcf1bfed374adf2ec4a937c7"
+    },
+    {
+      "path": "assets/lcd-battery-power.svg",
+      "size": 8971,
+      "sha256": "5500242f2fe21a6b1b32d363f483f23841d34f0055c057e530eecdcfe2de0c1f"
+    },
+    {
+      "path": "assets/lcd-car-charging.svg",
+      "size": 9235,
+      "sha256": "544d91029a10f3a13f50d365ea95cc2160f0c569caadc71ed4de1d516571d9cd"
+    },
+    {
+      "path": "assets/lcd-display.png",
+      "size": 67666,
+      "sha256": "545ece691ca6918d698d1ea6cae92997961ff13bc695518f4cfaf042f68a331c"
+    },
+    {
+      "path": "assets/lcd-energy-saving.svg",
+      "size": 12021,
+      "sha256": "b0d6afa954c8196d99ad160519439590c22fcc00140cb9b04bb575b7aa927d26"
+    },
+    {
+      "path": "assets/lcd-fault-code.svg",
+      "size": 13175,
+      "sha256": "0390f59d2f20301b2f6b6400b61d589eb0e98e3a1700cf7e10e3731a7e6b35aa"
+    },
+    {
+      "path": "assets/lcd-high-temperature.svg",
+      "size": 13143,
+      "sha256": "a9f840ea0020e8b2a3717273e3e91efe7b6697fb729422766b7746326fe91158"
+    },
+    {
+      "path": "assets/lcd-input-power.svg",
+      "size": 12276,
+      "sha256": "064890bdd120a64c923b8ba6957493762ae8228de7dbbbe1698715021dc1412e"
+    },
+    {
+      "path": "assets/lcd-low-temperature.svg",
+      "size": 13100,
+      "sha256": "a4e0d1419019504d9d1406c4ac72775b12f10da60f171d60b4cdc9f130572608"
+    },
+    {
+      "path": "assets/lcd-output-power.svg",
+      "size": 13051,
+      "sha256": "42e2c1cfa5b193ddb24af2779649fdfa8126140ae81b0593d1ed5f98598ee9a5"
+    },
+    {
+      "path": "assets/lcd-output-voltage.svg",
+      "size": 10655,
+      "sha256": "07f99d87d180c223d12a3f6658e63ae23b0c2705e8d8669b8c7e707af13db77b"
+    },
+    {
+      "path": "assets/lcd-screen.png",
+      "size": 66526,
+      "sha256": "de76d0b06990c7e9b83e87c0c5d3ab3833fdea839a3134561803ba06724ed10c"
+    },
+    {
+      "path": "assets/lcd-solar-charging.svg",
+      "size": 9224,
+      "sha256": "c4e8ecbbc808bf7d20dd2147e9b066b2bb29fb6bb39cc93c7b8011e7db90ffee"
+    },
+    {
+      "path": "assets/overview-front.png",
+      "size": 120948,
+      "sha256": "bd1bb4d83b81dff1852a05239de577dd0712668e83536a9fbabae32f1a047797"
+    },
+    {
+      "path": "assets/power-on-off.png",
+      "size": 103243,
+      "sha256": "37765ec1b285c6a47ea7687951d117768caa9af632558d73f25cc3139f8748ef"
+    },
+    {
+      "path": "assets/symbol_battery_charging.svg",
+      "size": 5934,
+      "sha256": "6a513fe0122fec428c55a3f840c34ed7afdea311f7f1dd9b6e6fd807d087bf55"
+    },
+    {
+      "path": "assets/symbol_electric_shock.svg",
+      "size": 4992,
+      "sha256": "a76bd208ea017906cdcb5624307cdf4b4bb092816d45ef3943a4b3367c837d3f"
+    },
+    {
+      "path": "assets/symbol_explosive_material_native_v2_3e3a39.svg",
+      "size": 5599,
+      "sha256": "d4def93f853179fe0ea0cd7c4ba461da5a70d662d33a899bc48f7a2ef5553a1d"
+    },
+    {
+      "path": "assets/symbol_keep_away_from_children.svg",
+      "size": 6300,
+      "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899"
+    },
+    {
+      "path": "assets/symbol_li_ion_dark.svg",
+      "size": 6007,
+      "sha256": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1"
+    },
+    {
+      "path": "assets/symbol_no_open_flame.svg",
+      "size": 5630,
+      "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f"
+    },
+    {
+      "path": "assets/symbol_read_manual.svg",
+      "size": 4961,
+      "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584"
+    },
+    {
+      "path": "assets/symbol_weee.png",
+      "size": 7672,
+      "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5"
+    },
+    {
+      "path": "assets/usb-output.png",
+      "size": 91090,
+      "sha256": "ff66b572c126b0b6588d19b1e0b52d5001ef571af4dbb52a7b5e6970cae33cea"
+    },
+    {
+      "path": "assets/warning_triangle_dark_hte162.svg",
+      "size": 3632,
+      "sha256": "7eee1f724544318b77f50d99896735cb11f833fde5a3e24df1a7a394b70de10e"
+    },
+    {
+      "path": "audit/review.zh.md",
+      "size": 2107,
+      "sha256": "844fbe0e38b86eda8ff29f1b3fca8400677dbb1208b4daa1780b675df212c84b"
+    },
+    {
+      "path": "original.pdf",
+      "size": 3448702,
+      "sha256": "04bd8b90f146ff9b65a3ee4b47327d76128c3110c8ef46ac4061e6b0e77b3c8c"
+    },
+    {
+      "path": "rebuild.py",
+      "size": 8197,
+      "sha256": "4892fcb21e7d2647d83466831c97409759f9384002f06f8e1ccfe3b625eb9d6b"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 9653,
+      "sha256": "6153b824641fd2731a89dab52b9ed2745700ab0183d26b71b7d0574be96ef516"
+    },
+    {
+      "path": "source/en/content.json",
+      "size": 202092,
+      "sha256": "ff4ef03e845e1016cb36786f717a6f15ad3e6e5d759160f9a8559ad78dbcd3b8"
+    },
+    {
+      "path": "source/extract_assets.py",
+      "size": 8538,
+      "sha256": "5fbd29c51b7e1a0a96694d3bd95a77edfd3d6b623a79d0ff3bb56fe0432de030"
+    },
+    {
+      "path": "source/figures.json",
+      "size": 10251,
+      "sha256": "64735b89c8ed815f01f6c7bde158dac9b2c55eb36cc8dd292c5babfe79036ffd"
+    },
+    {
+      "path": "source/glyphs.json",
+      "size": 11096,
+      "sha256": "6ac43466e3795a55270a56dc78a4b347af3321adbfef4db0a242c03e76032612"
+    },
+    {
+      "path": "source/intake.py",
+      "size": 32632,
+      "sha256": "84875092b58f5e5306cb46111a7713410c92d3efb7fc7be522bc13d0ed7cdb21"
+    },
+    {
+      "path": "source/kit.py",
+      "size": 11217,
+      "sha256": "544b0d224dd35dc6f368a5c42ca34c7affdbcfc3dff0e8b43fea842f5869ae85"
+    },
+    {
+      "path": "source/presentation.css",
+      "size": 935,
+      "sha256": "0c2239a23a6193e8a6e719246fe883a6ef11d01ab01d5588779920f4ddb28217"
+    },
+    {
+      "path": "source/refresh_manifest.py",
+      "size": 5023,
+      "sha256": "6e9bbabcf3dd0a84cad0372b0db83e66e4087b9f3fd8285f2906d5b86e9ce057"
+    },
+    {
+      "path": "source/symbols.json",
+      "size": 18281,
+      "sha256": "3ca6ea3ef12bfa2f36789aadda2b1bafde76b4533995853171904431ac64de62"
+    },
+    {
+      "path": "web/en/_static/source_presentation.css",
+      "size": 935,
+      "sha256": "0c2239a23a6193e8a6e719246fe883a6ef11d01ab01d5588779920f4ddb28217"
+    },
+    {
+      "path": "web/en/_static/web_manual.css",
+      "size": 124849,
+      "sha256": "c3604a2e5f22b04bc745bb99cf203b50e60222af70c0aeba3d968cc28adac9ce"
+    },
+    {
+      "path": "web/en/assets/ac-output.png",
+      "size": 94941,
+      "sha256": "42696954cd2444c2599efdc02abbf72a75c2e56f88b8638a5cab92119798f8d6"
+    },
+    {
+      "path": "web/en/assets/charging-ac.png",
+      "size": 98411,
+      "sha256": "e903ceca4754db977aa2d2b259b068d2bdb1da7c014b289040b73de943f04e40"
+    },
+    {
+      "path": "web/en/assets/charging-car.png",
+      "size": 126704,
+      "sha256": "20f5e6b4c9b8a94cbda22d02f9a27c112d49fc78baa3ba09f2b903da3b31c04d"
+    },
+    {
+      "path": "web/en/assets/charging-solar.png",
+      "size": 128298,
+      "sha256": "6bff7d2afc7d8b07057b27e755cac1810367d99505510ed8f489f9259c3addb6"
+    },
+    {
+      "path": "web/en/assets/charging-usbc.png",
+      "size": 107200,
+      "sha256": "310edc8247c14c02e6072bd6842d3db687fe0fbad8184eb4510d01ade6d9fa19"
+    },
+    {
+      "path": "web/en/assets/contact-qr.png",
+      "size": 2866,
+      "sha256": "6894fc499041b4df235b6e8465b4ce1d28dc4c0f6eed71aa7873fbfdd9379670"
+    },
+    {
+      "path": "web/en/assets/dc-input-led.png",
+      "size": 8243,
+      "sha256": "253223471260515b78e8a1548dd8f0c9d9becc213984803722d75981e3659e67"
+    },
+    {
+      "path": "web/en/assets/dc-output.png",
+      "size": 93742,
+      "sha256": "fe2d30c04e68284a040e5a504baf254699e11902199a8139d26b2e46ca91ed68"
+    },
+    {
+      "path": "web/en/assets/do_not_dismantle_dark_hte147.svg",
+      "size": 62314,
+      "sha256": "10462368d9310033fc5e2626ba2f0934407ecabf42b740d9d1c4ba3026235d47"
+    },
+    {
+      "path": "web/en/assets/energy-saving.png",
+      "size": 69502,
+      "sha256": "b8000d7885665c423374be18dd5ac3207774d06f35a0f3a4802504dde5bb3f91"
+    },
+    {
+      "path": "web/en/assets/fcc_mark.svg",
+      "size": 1927,
+      "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+    },
+    {
+      "path": "web/en/assets/inbox-ac-adapter.png",
+      "size": 6656,
+      "sha256": "f2b0ae4a001647e7e545ba349a499336c24121946338660afee1f245303fe2ab"
+    },
+    {
+      "path": "web/en/assets/inbox-car-cable.png",
+      "size": 7724,
+      "sha256": "f46de8af19a10e6a5c3a55e902a499272256d3366d7764af1fcb18b79e187031"
+    },
+    {
+      "path": "web/en/assets/inbox-unit.png",
+      "size": 15580,
+      "sha256": "108348505bf16274db845041ded8f66d080c024442a3ff67078941f8134da30b"
+    },
+    {
+      "path": "web/en/assets/inbox-user-manual.png",
+      "size": 11877,
+      "sha256": "b42e9805764da5e3d94744d42d759f5542dbbff0472f639f3a629c0fe5a00ca8"
+    },
+    {
+      "path": "web/en/assets/lcd-ac-power.svg",
+      "size": 8986,
+      "sha256": "ae74b5535c88c6f612bfc8fe4f187bb3b106b6b039ac98a809112b6584d1a7c0"
+    },
+    {
+      "path": "web/en/assets/lcd-battery-percentage.svg",
+      "size": 66427,
+      "sha256": "84d8c1e700985fc6c13bce379108ce2cc2d446e5fcf1bfed374adf2ec4a937c7"
+    },
+    {
+      "path": "web/en/assets/lcd-battery-power.svg",
+      "size": 8971,
+      "sha256": "5500242f2fe21a6b1b32d363f483f23841d34f0055c057e530eecdcfe2de0c1f"
+    },
+    {
+      "path": "web/en/assets/lcd-car-charging.svg",
+      "size": 9235,
+      "sha256": "544d91029a10f3a13f50d365ea95cc2160f0c569caadc71ed4de1d516571d9cd"
+    },
+    {
+      "path": "web/en/assets/lcd-display.png",
+      "size": 67666,
+      "sha256": "545ece691ca6918d698d1ea6cae92997961ff13bc695518f4cfaf042f68a331c"
+    },
+    {
+      "path": "web/en/assets/lcd-energy-saving.svg",
+      "size": 12021,
+      "sha256": "b0d6afa954c8196d99ad160519439590c22fcc00140cb9b04bb575b7aa927d26"
+    },
+    {
+      "path": "web/en/assets/lcd-fault-code.svg",
+      "size": 13175,
+      "sha256": "0390f59d2f20301b2f6b6400b61d589eb0e98e3a1700cf7e10e3731a7e6b35aa"
+    },
+    {
+      "path": "web/en/assets/lcd-high-temperature.svg",
+      "size": 13143,
+      "sha256": "a9f840ea0020e8b2a3717273e3e91efe7b6697fb729422766b7746326fe91158"
+    },
+    {
+      "path": "web/en/assets/lcd-input-power.svg",
+      "size": 12276,
+      "sha256": "064890bdd120a64c923b8ba6957493762ae8228de7dbbbe1698715021dc1412e"
+    },
+    {
+      "path": "web/en/assets/lcd-low-temperature.svg",
+      "size": 13100,
+      "sha256": "a4e0d1419019504d9d1406c4ac72775b12f10da60f171d60b4cdc9f130572608"
+    },
+    {
+      "path": "web/en/assets/lcd-output-power.svg",
+      "size": 13051,
+      "sha256": "42e2c1cfa5b193ddb24af2779649fdfa8126140ae81b0593d1ed5f98598ee9a5"
+    },
+    {
+      "path": "web/en/assets/lcd-output-voltage.svg",
+      "size": 10655,
+      "sha256": "07f99d87d180c223d12a3f6658e63ae23b0c2705e8d8669b8c7e707af13db77b"
+    },
+    {
+      "path": "web/en/assets/lcd-screen.png",
+      "size": 66526,
+      "sha256": "de76d0b06990c7e9b83e87c0c5d3ab3833fdea839a3134561803ba06724ed10c"
+    },
+    {
+      "path": "web/en/assets/lcd-solar-charging.svg",
+      "size": 9224,
+      "sha256": "c4e8ecbbc808bf7d20dd2147e9b066b2bb29fb6bb39cc93c7b8011e7db90ffee"
+    },
+    {
+      "path": "web/en/assets/overview-front.png",
+      "size": 120948,
+      "sha256": "bd1bb4d83b81dff1852a05239de577dd0712668e83536a9fbabae32f1a047797"
+    },
+    {
+      "path": "web/en/assets/power-on-off.png",
+      "size": 103243,
+      "sha256": "37765ec1b285c6a47ea7687951d117768caa9af632558d73f25cc3139f8748ef"
+    },
+    {
+      "path": "web/en/assets/symbol_battery_charging.svg",
+      "size": 5934,
+      "sha256": "6a513fe0122fec428c55a3f840c34ed7afdea311f7f1dd9b6e6fd807d087bf55"
+    },
+    {
+      "path": "web/en/assets/symbol_electric_shock.svg",
+      "size": 4992,
+      "sha256": "a76bd208ea017906cdcb5624307cdf4b4bb092816d45ef3943a4b3367c837d3f"
+    },
+    {
+      "path": "web/en/assets/symbol_explosive_material_native_v2_3e3a39.svg",
+      "size": 5599,
+      "sha256": "d4def93f853179fe0ea0cd7c4ba461da5a70d662d33a899bc48f7a2ef5553a1d"
+    },
+    {
+      "path": "web/en/assets/symbol_keep_away_from_children.svg",
+      "size": 6300,
+      "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899"
+    },
+    {
+      "path": "web/en/assets/symbol_li_ion_dark.svg",
+      "size": 6007,
+      "sha256": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1"
+    },
+    {
+      "path": "web/en/assets/symbol_no_open_flame.svg",
+      "size": 5630,
+      "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f"
+    },
+    {
+      "path": "web/en/assets/symbol_read_manual.svg",
+      "size": 4961,
+      "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584"
+    },
+    {
+      "path": "web/en/assets/symbol_weee.png",
+      "size": 7672,
+      "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5"
+    },
+    {
+      "path": "web/en/assets/usb-output.png",
+      "size": 91090,
+      "sha256": "ff66b572c126b0b6588d19b1e0b52d5001ef571af4dbb52a7b5e6970cae33cea"
+    },
+    {
+      "path": "web/en/assets/warning_triangle_dark_hte162.svg",
+      "size": 3632,
+      "sha256": "7eee1f724544318b77f50d99896735cb11f833fde5a3e24df1a7a394b70de10e"
+    },
+    {
+      "path": "web/en/conf.py",
+      "size": 827,
+      "sha256": "997c55af155b2a6f05efab2f15c09072e387ca5a2aa04afad009fd51637d082a"
+    },
+    {
+      "path": "web/en/index.md",
+      "size": 86,
+      "sha256": "685f85b4eb60837ddfc3eebd00cdbddc593af23f478e2d2bb428d6ffd9b8ffa2"
+    },
+    {
+      "path": "web/en/manual.ir.json",
+      "size": 317495,
+      "sha256": "f5d104d57b45f9cae55dfb809d3cf88700a2b75df715b190a023712755f057f5"
+    },
+    {
+      "path": "web/en/manual_je300e_us_en.md",
+      "size": 48121,
+      "sha256": "97ee90be639dd9a1beacabfd1efdfbdb59758cd77d495fa15daec3869fd7d8cb"
+    }
+  ]
+}

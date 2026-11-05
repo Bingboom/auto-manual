@@ -1,0 +1,67 @@
+{
+  "images": 57,
+  "broken": [],
+  "uncontained": [],
+  "tableCell": [
+    {
+      "rowspan": 10,
+      "verticalAlign": "middle"
+    }
+  ],
+  "headings": [
+    {
+      "text": "TECHNICAL SPECIFICATIONS",
+      "size": "26.4px"
+    },
+    {
+      "text": "PACKAGE LIST",
+      "size": "26.4px"
+    },
+    {
+      "text": "GET TO KNOW YOUR GEAR",
+      "size": "26.4px"
+    },
+    {
+      "text": "LCD DISPLAY",
+      "size": "26.4px"
+    },
+    {
+      "text": "BASIC OPERATIONS",
+      "size": "26.4px"
+    },
+    {
+      "text": "CHARGING YOUR JACKERY EXPLORER 2000 PRO",
+      "size": "26.4px"
+    },
+    {
+      "text": "CHARGING IN THE CAR",
+      "size": "26.4px"
+    },
+    {
+      "text": "SAFETY PRECAUTIONS WHEN CHARGING",
+      "size": "26.4px"
+    },
+    {
+      "text": "SAFETY PRECAUTIONS WHEN USING",
+      "size": "26.4px"
+    },
+    {
+      "text": "INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS",
+      "size": "26.4px"
+    },
+    {
+      "text": "FAQ",
+      "size": "26.4px"
+    },
+    {
+      "text": "TROUBLESHOOTING",
+      "size": "26.4px"
+    },
+    {
+      "text": "WARRANTY",
+      "size": "26.4px"
+    }
+  ],
+  "lcd19": [],
+  "power": []
+}

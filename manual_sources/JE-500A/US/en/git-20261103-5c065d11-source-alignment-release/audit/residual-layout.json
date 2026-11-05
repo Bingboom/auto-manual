@@ -1,0 +1,55 @@
+{
+  "changes": [
+    "p4 safety source columns restored with exact first-column continuation; icon-only risk banner, no added WARNING; p5 original DANGER lockup.",
+    "p5 FCC source break before and on; original inline logo/NOTE and -- markers restored.",
+    "p8 adjacent high/low temperature entries share printed number11.",
+    "p9–14 native in-panel notes regrouped with original figures; p14 car notes no invented CAUTION label; p12 Important Notes andp15 Storage original gray panels retained.",
+    "p18 exact original contact glyphs added; native company/address/contact panel with original QR, no heading bar."
+  ],
+  "new_original_glyphs": [
+    {
+      "asset": "assets/contact-phone.png",
+      "source": "original.pdf",
+      "page": 18,
+      "bbox": [
+        34.70936351102941,
+        467.4529962713068,
+        55.10111457375919,
+        489.1344896048554
+      ],
+      "scale": 6,
+      "operation": "crop-only original finished glyph",
+      "sha256": "29d4d71fb28cb62402c53ae86a1066cccb06745ae0ae3ff059bcd96c73e55595"
+    },
+    {
+      "asset": "assets/contact-mail.png",
+      "source": "original.pdf",
+      "page": 18,
+      "bbox": [
+        206.95457993451285,
+        467.4529962713068,
+        219.53672420726105,
+        476.9928533380682
+      ],
+      "scale": 6,
+      "operation": "crop-only original finished glyph",
+      "sha256": "7a14a74e31e6e72d862a0a357364d96b57102efc64337d14ae26cb713cecfb19"
+    },
+    {
+      "asset": "assets/contact-web.png",
+      "source": "original.pdf",
+      "page": 18,
+      "bbox": [
+        206.95457993451285,
+        477.8601130714101,
+        219.97059125114887,
+        488.70085973818436
+      ],
+      "scale": 6,
+      "operation": "crop-only original finished glyph",
+      "sha256": "b3972794fb322fed8bc344ce38ffbab367ff28ef6ae0ff916fc8635ff2493b3f"
+    }
+  ],
+  "front_cover_and_toc": "excluded per operator",
+  "art": "All previous drawing assets byte-identical; shared warning glyphs match native source; no redrawing."
+}

@@ -1,0 +1,23 @@
+{
+  "model": "JHP-3600A",
+  "exact_letter_contexts_checked": 104,
+  "numeric_differences": [
+    {
+      "page": 20,
+      "source": "Bypass Mode'\" : 120V~ 60Hz, 12A Max, 1440W",
+      "web_context": "bypassmode1120v60hz12amax1440w",
+      "source_numbers": [
+        "120",
+        "60",
+        "12",
+        "1440"
+      ],
+      "web_numbers": [
+        "1120",
+        "60",
+        "12",
+        "1440"
+      ]
+    }
+  ]
+}

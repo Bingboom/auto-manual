@@ -1,0 +1,1047 @@
+{
+ "schema_version": "je76a-jp-transcription/v1",
+ "source_sha256": "d8f7d338fd208af056c0dda9991422227627ab771245e791858e1480978b013c",
+ "method": "The PDF has no text layer (every glyph is outlined). Each line was transcribed from 450 dpi page renders and ambiguous glyphs were re-checked on 500-600 dpi clips. One entry is one printed logical line or paragraph: print line wraps are joined without inserting characters; printed list bullets (・ ●) are list chrome and are not part of the text. Ids are stable keys that build_content.py binds to shared components. strong lists the spans printed in bold. Text printed inside product and LCD art stays in the artwork. The narrow wave glyph in Latin runs is recorded as U+007E, the DC symbol as U+2393, the half-width middle dot as U+FF65, and proportionally set 、。 as the standard full-width marks; outlined glyphs carry no code points, so these are the closest visual equivalents.",
+ "pages": [
+  {
+   "physical_page": 1,
+   "printed_page": null,
+   "role": "print-cover",
+   "web": false,
+   "lines": [
+    {
+     "id": "cover.brand",
+     "text": "Jackery"
+    },
+    {
+     "id": "cover.model1",
+     "text": "ブラック + オレンジ:JE-76A"
+    },
+    {
+     "id": "cover.model2",
+     "text": "ホワイト:JE-76A-WH"
+    },
+    {
+     "id": "cover.title1",
+     "text": "Jackery Power Bank"
+    },
+    {
+     "id": "cover.title2",
+     "text": "取扱説明書"
+    },
+    {
+     "id": "cover.market",
+     "text": "国内専用/For use only in Japan"
+    },
+    {
+     "id": "cover.support",
+     "text": "カスタマーサポート:jackery.jp@jackery.com"
+    },
+    {
+     "id": "cover.thanks",
+     "text": "お買い上げありがとうございます。"
+    },
+    {
+     "id": "cover.w1",
+     "text": "ご使用の前にこの「取扱説明書」をよくお読みのうえ、正しくお使いください。"
+    },
+    {
+     "id": "cover.w2",
+     "text": "特に「安全上のご注意」は、必ずお読みいただき、安全にお使いください。"
+    },
+    {
+     "id": "cover.w3",
+     "text": "お読みになったあとは、すぐに取り出せる場所に大切に保管してください。"
+    },
+    {
+     "id": "cover.w4",
+     "text": "本製品の取扱説明書は随時更新されますので、最新の取扱説明書は公式サイトページでご確認ください。"
+    }
+   ]
+  },
+  {
+   "physical_page": 2,
+   "printed_page": 1,
+   "role": "ja-body",
+   "web": true,
+   "lines": [
+    {
+     "id": "spec.h",
+     "text": "1.主な仕様"
+    },
+    {
+     "id": "spec.r1.l",
+     "text": "製品名 :"
+    },
+    {
+     "id": "spec.r1.v1",
+     "text": "Jackery Power Bank"
+    },
+    {
+     "id": "spec.r2.l",
+     "text": "色/型番 :"
+    },
+    {
+     "id": "spec.r2.v1",
+     "text": "ブラック + オレンジ : JE-76A"
+    },
+    {
+     "id": "spec.r2.v2",
+     "text": "ホワイト : JE-76A-WH"
+    },
+    {
+     "id": "spec.r3.l",
+     "text": "充電温度 :"
+    },
+    {
+     "id": "spec.r3.v1",
+     "text": "0°C~45 °C (32°F~113 °F)"
+    },
+    {
+     "id": "spec.r4.l",
+     "text": "作動温度 :"
+    },
+    {
+     "id": "spec.r4.v1",
+     "text": "-10°C~45 °C (14°F~113 °F)"
+    },
+    {
+     "id": "spec.r5.l",
+     "text": "保存温度 :"
+    },
+    {
+     "id": "spec.r5.v1",
+     "text": "1ヶ月 -20°C~45°C (-4°F~113°F);"
+    },
+    {
+     "id": "spec.r5.v2",
+     "text": "3ヶ月 0°C~45°C (32°F~113°F);"
+    },
+    {
+     "id": "spec.r5.v3",
+     "text": "12ヶ月 0°C~25°C (32°F~77°F)"
+    },
+    {
+     "id": "spec.r6.l",
+     "text": "材質 :"
+    },
+    {
+     "id": "spec.r6.v1",
+     "text": "PC+ABS"
+    },
+    {
+     "id": "spec.r7.l",
+     "text": "バッテリータイプ :"
+    },
+    {
+     "id": "spec.r7.v1",
+     "text": "LiFePO4 (リン酸鉄リチウムイオン電池)"
+    },
+    {
+     "id": "spec.r8.l",
+     "text": "定格容量 :"
+    },
+    {
+     "id": "spec.r8.v1",
+     "text": "76.8Wh"
+    },
+    {
+     "id": "spec.r9.l",
+     "text": "入力 :"
+    },
+    {
+     "id": "spec.r9.v1",
+     "text": "接点充電, USB-C1"
+    },
+    {
+     "id": "spec.r10.l",
+     "text": "USB-C1 入力 :"
+    },
+    {
+     "id": "spec.r10.v1",
+     "text": "最大 60W, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓3A"
+    },
+    {
+     "id": "spec.r11.l",
+     "text": "出力 :"
+    },
+    {
+     "id": "spec.r12.l",
+     "text": "USB-C1 出力 :"
+    },
+    {
+     "id": "spec.r12.v1",
+     "text": "最大 100W, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A"
+    },
+    {
+     "id": "spec.r13.l",
+     "text": "USB-C2 出力 :"
+    },
+    {
+     "id": "spec.r13.v1",
+     "text": "最大 65W, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓3.25A"
+    },
+    {
+     "id": "spec.r14.l",
+     "text": "USB-A 出力 :"
+    },
+    {
+     "id": "spec.r14.v1",
+     "text": "最大 18W, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A"
+    },
+    {
+     "id": "spec.r15.l",
+     "text": "同時出力(最大) :"
+    },
+    {
+     "id": "spec.r16.l",
+     "text": "USB-C1+USB-C2 出力 :"
+    },
+    {
+     "id": "spec.r16.v1",
+     "text": "65W+35W"
+    },
+    {
+     "id": "spec.r17.l",
+     "text": "USB-C1+USB-A 出力 :"
+    },
+    {
+     "id": "spec.r17.v1",
+     "text": "100W+18W"
+    },
+    {
+     "id": "spec.r18.l",
+     "text": "USB-C2+USB-A 出力 :"
+    },
+    {
+     "id": "spec.r18.v1",
+     "text": "65W+18W"
+    },
+    {
+     "id": "spec.r19.l",
+     "text": "USB-C1+USB-C2+USB-A 出力 :"
+    },
+    {
+     "id": "spec.r19.v1",
+     "text": "65W+35W+18W"
+    },
+    {
+     "id": "spec.r20.l",
+     "text": "サイズ＆重量 :"
+    },
+    {
+     "id": "spec.r20.v1",
+     "text": "約80 x 80 x 131 mm (約860g)"
+    },
+    {
+     "id": "spec.r21.l",
+     "text": "サイクル数 :"
+    },
+    {
+     "id": "spec.r21.v1",
+     "text": "3000 サイクル（3000サイクル使用後も工場出荷時の80%の電池残量を保持）"
+    },
+    {
+     "id": "spec.cond",
+     "text": "(@0.5C/0.5C&90%DOD & Ta=25°C)"
+    }
+   ]
+  },
+  {
+   "physical_page": 3,
+   "printed_page": 2,
+   "role": "ja-body",
+   "web": true,
+   "lines": [
+    {
+     "id": "cert.l",
+     "text": "認証："
+    },
+    {
+     "id": "spec.tm",
+     "text": "※USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum."
+    },
+    {
+     "id": "box.h",
+     "text": "2.同梱品"
+    },
+    {
+     "id": "box.c1",
+     "text": "Power Bank"
+    },
+    {
+     "id": "box.c2",
+     "text": "1m USB-C to USB-C 電源ケーブル"
+    },
+    {
+     "id": "box.c3",
+     "text": "取扱説明書"
+    },
+    {
+     "id": "box.c4",
+     "text": "保証案内書"
+    },
+    {
+     "id": "box.n1",
+     "text": "※付属品を故障、紛失等してしまった場合はカスタマーサポートまでご連絡ください。"
+    },
+    {
+     "id": "spec.change",
+     "text": "本機の仕様および外観は、改善のため予告なく変更することがあります。",
+     "strong": [
+      "本機の仕様および外観は、改善のため予告なく変更することがあります。"
+     ]
+    },
+    {
+     "id": "recycle.glyph",
+     "text": "Li-ion"
+    },
+    {
+     "id": "recycle.title",
+     "text": "充電式電池のリサイクルについて",
+     "strong": [
+      "充電式電池のリサイクルについて"
+     ]
+    },
+    {
+     "id": "recycle.b1",
+     "text": "本機はリサイクル可能な充電池を内蔵しています。"
+    },
+    {
+     "id": "recycle.b2",
+     "text": "この商品を廃棄する場合は、当社のカスタマーサポートにご連絡ください。"
+    },
+    {
+     "id": "recycle.b3",
+     "text": "充電池の取りはずしはお客様自身では行わないでください。"
+    }
+   ]
+  },
+  {
+   "physical_page": 4,
+   "printed_page": 3,
+   "role": "ja-body",
+   "web": true,
+   "lines": [
+    {
+     "id": "parts.h",
+     "text": "3.使用製品"
+    },
+    {
+     "id": "parts.title",
+     "text": "【Jackery Power Bank】"
+    },
+    {
+     "id": "parts.a",
+     "text": "A. USB-C1 入出力ポート 最大入力60W /最大出力100W"
+    },
+    {
+     "id": "parts.b",
+     "text": "B. USB-C2 出力ポート 最大出力65W"
+    },
+    {
+     "id": "parts.c",
+     "text": "C. ハンドル"
+    },
+    {
+     "id": "parts.d",
+     "text": "D. ランプボタン（電源オンの状態で短く押すとLEDランプが点灯し、クリックしたらSOSモードに切り替わり、再度クリックするとLEDランプが消灯します。また、ランプボタンを長押しすることでもLEDランプ消灯となります。"
+    },
+    {
+     "id": "parts.e",
+     "text": "E. メイン電源ボタン"
+    },
+    {
+     "id": "parts.e1",
+     "text": "短く押すと電源オンとなります。"
+    },
+    {
+     "id": "parts.e2",
+     "text": "電源オンの状態で３秒長押しすると電源オフとなります。"
+    },
+    {
+     "id": "parts.e3",
+     "text": "電源オンの状態でメイン電源ボタンをダブルクリックすると常時点灯となります。"
+    },
+    {
+     "id": "parts.e4",
+     "text": "電源オンの状態でバッテリー残量が0%以上の場合は、充放電しなければ２時間後に自動電源オフとなります。"
+    },
+    {
+     "id": "parts.e5",
+     "text": "バッテリー残量が 0% の場合、充放電しなければ 10 秒後に自動的に電源オフとなります。"
+    },
+    {
+     "id": "parts.f",
+     "text": "F. USB-A 出力ポート 最大出力18W"
+    },
+    {
+     "id": "parts.g",
+     "text": "G. LEDランプ"
+    }
+   ]
+  },
+  {
+   "physical_page": 5,
+   "printed_page": 4,
+   "role": "ja-body",
+   "web": true,
+   "lines": [
+    {
+     "id": "lcd.h",
+     "text": "4.LCD表示画面"
+    },
+    {
+     "id": "lcd.pct.t",
+     "text": "バッテリー残量（%）",
+     "strong": [
+      "バッテリー残量（%）"
+     ]
+    },
+    {
+     "id": "lcd.pct.b",
+     "text": "*システムにエラーが発生した場合、バッテリー残量表示の後ろの二桁が該当するエラーコード（F0/F1等）を表示します。",
+     "strong": [
+      "*システムにエラーが発生した場合、バッテリー残量表示の後ろの二桁が該当するエラーコード（F0/F1等）を表示します。"
+     ]
+    },
+    {
+     "id": "lcd.chg.t",
+     "text": "充電表示ランプ（充電中はランプが点灯し、満充電になると消灯する）",
+     "strong": [
+      "充電表示ランプ（充電中はランプが点灯し、満充電になると消灯する）"
+     ]
+    },
+    {
+     "id": "on.h",
+     "text": "LCD表示画面の立ち上げ",
+     "strong": [
+      "LCD表示画面の立ち上げ"
+     ]
+    },
+    {
+     "id": "on.th1",
+     "text": "状態"
+    },
+    {
+     "id": "on.th2",
+     "text": "操作"
+    },
+    {
+     "id": "on.th3",
+     "text": "結果"
+    },
+    {
+     "id": "on.s1",
+     "text": "オフ状態"
+    },
+    {
+     "id": "on.r1.a",
+     "text": "接続し、充電する"
+    },
+    {
+     "id": "on.r1.b",
+     "text": "画面が点灯し、充電アイコンが表示される"
+    },
+    {
+     "id": "on.r2.a",
+     "text": "オンにする"
+    },
+    {
+     "id": "on.r2.b",
+     "text": "画面が点灯する"
+    },
+    {
+     "id": "on.s2",
+     "text": "オン状態"
+    },
+    {
+     "id": "on.r3.a",
+     "text": "メイン電源/ランプボタンを短く押す"
+    },
+    {
+     "id": "on.r3.b",
+     "text": "画面が点灯する"
+    },
+    {
+     "id": "on.r4.a",
+     "text": "接続し、充電する"
+    },
+    {
+     "id": "on.r4.b",
+     "text": "画面が点灯し、充電アイコンが表示される"
+    },
+    {
+     "id": "on.r5.a",
+     "text": "メイン電源ボタンをダブルクリックする"
+    },
+    {
+     "id": "on.r5.b",
+     "text": "画面が常時点灯する"
+    }
+   ]
+  },
+  {
+   "physical_page": 6,
+   "printed_page": 5,
+   "role": "ja-body",
+   "web": true,
+   "lines": [
+    {
+     "id": "off.h",
+     "text": "LCD表示画面のシャットダウン",
+     "strong": [
+      "LCD表示画面のシャットダウン"
+     ]
+    },
+    {
+     "id": "off.th1",
+     "text": "状態"
+    },
+    {
+     "id": "off.th2",
+     "text": "操作"
+    },
+    {
+     "id": "off.th3",
+     "text": "結果"
+    },
+    {
+     "id": "off.s1",
+     "text": "画面が点灯状態"
+    },
+    {
+     "id": "off.r1.a",
+     "text": "メイン電源ボタンを短く押す"
+    },
+    {
+     "id": "off.r1.b",
+     "text": "画面が消灯する"
+    },
+    {
+     "id": "off.r2.a",
+     "text": "2分以上の充放電無し状態"
+    },
+    {
+     "id": "off.r2.b",
+     "text": "自動消灯する"
+    },
+    {
+     "id": "off.r3.a",
+     "text": "オフにする"
+    },
+    {
+     "id": "off.r3.b",
+     "text": "画面が点灯する"
+    },
+    {
+     "id": "chg.h",
+     "text": "5.充電の方法"
+    },
+    {
+     "id": "chg.st.h",
+     "text": "Power Bank を充電する"
+    },
+    {
+     "id": "chg.st",
+     "text": "Power Bank を充電ステーションに置くと自動的に充電が開始します。挿し込む時には溝にしっかりと挿さるように入れてください。なお、Power Bank の電池残量が 0%から 100%に満充電する時間は約 1.6 時間です"
+    }
+   ]
+  },
+  {
+   "physical_page": 7,
+   "printed_page": 6,
+   "role": "ja-body",
+   "web": true,
+   "lines": [
+    {
+     "id": "chg.note.h",
+     "text": "ご注意"
+    },
+    {
+     "id": "chg.note1",
+     "text": "Power Bank と充電ステーションを同時に充電すると、充電ステーションのみが充電され、Power Bank は充電されません。"
+    },
+    {
+     "id": "chg.note2",
+     "text": "Power Bank の充電中、USB-A と USB-C を使ってデバイスを充電することはできますが、バッテリーの寿命に影響を与えるリスクがあるため、長時間の使用はご遠慮ください。"
+    },
+    {
+     "id": "chg.usb.h",
+     "text": "Power Bank をUSB-Cで充電する"
+    },
+    {
+     "id": "chg.usb",
+     "text": "Power Bank は PD 充電プラグを使うことで USB-C で直接充電することができます。充電する際は USB-C1 に接続してください。"
+    }
+   ]
+  },
+  {
+   "physical_page": 8,
+   "printed_page": 7,
+   "role": "ja-body",
+   "web": true,
+   "lines": [
+    {
+     "id": "temp.h",
+     "text": "6.温度保護機能"
+    },
+    {
+     "id": "temp.p1",
+     "text": "充電中、Power Bank の内蔵バッテリーが 0°C以下または 53°C以上の場合は温度保護起動が働き、充電停止となります。一方、放電中に Power Bank の内蔵バッテリーが-12°C以下または 58°C以上の場合は温度保護機能が働き、放電停止となります。"
+    },
+    {
+     "id": "temp.p2",
+     "text": "* 上記の温度はいずれも +/-2°Cの誤差を許容します。"
+    },
+    {
+     "id": "temp.ff",
+     "text": "温度保護機能が働くとLCD表示画面にFFが表示されます。",
+     "strong": [
+      "温度保護機能が働くとLCD表示画面にFFが表示されます。"
+     ]
+    },
+    {
+     "id": "err.h",
+     "text": "7.エラーコード"
+    },
+    {
+     "id": "err.th1",
+     "text": "番号"
+    },
+    {
+     "id": "err.th2",
+     "text": "エラーの名前"
+    },
+    {
+     "id": "err.th3",
+     "text": "説明(下記は内部故障メンテナンス用のみ)"
+    },
+    {
+     "id": "err.r1.c",
+     "text": "F0"
+    },
+    {
+     "id": "err.r1.n",
+     "text": "BMS 通信エラー"
+    },
+    {
+     "id": "err.r1.d",
+     "text": "BMSとメインバード間の通信エラー"
+    },
+    {
+     "id": "err.r2.c",
+     "text": "F3"
+    },
+    {
+     "id": "err.r2.n",
+     "text": "バッテリーエラー"
+    },
+    {
+     "id": "err.r2.d",
+     "text": "BMS内部エラーまたはバッテリーエラー"
+    },
+    {
+     "id": "err.r3.c",
+     "text": "F4"
+    },
+    {
+     "id": "err.r3.n",
+     "text": "バッテリー過電圧"
+    },
+    {
+     "id": "err.r3.d",
+     "text": "バッテリー単体または全体の過電圧"
+    },
+    {
+     "id": "err.r4.c",
+     "text": "F5"
+    },
+    {
+     "id": "err.r4.n",
+     "text": "バッテリー低電圧"
+    },
+    {
+     "id": "err.r4.d1",
+     "text": "バッテリー単体または全体の低電圧"
+    },
+    {
+     "id": "err.r4.d2",
+     "text": "(充電表示がある場合は除外する)"
+    },
+    {
+     "id": "err.r5.c",
+     "text": "F8"
+    },
+    {
+     "id": "err.r5.n",
+     "text": "過電流/ショート"
+    },
+    {
+     "id": "err.r5.d",
+     "text": "BMS 過電流/ショート保護"
+    },
+    {
+     "id": "err.r6.c",
+     "text": "F9"
+    },
+    {
+     "id": "err.r6.n",
+     "text": "DC 出力過電流/ショート"
+    },
+    {
+     "id": "err.r6.d",
+     "text": "DC出力過電流またはショート"
+    },
+    {
+     "id": "err.r7.c",
+     "text": "FF"
+    },
+    {
+     "id": "err.r7.n",
+     "text": "温度保護エラー"
+    },
+    {
+     "id": "err.r7.d",
+     "text": "セルは温度が高い/低い場合に保護機能が働く"
+    }
+   ]
+  },
+  {
+   "physical_page": 9,
+   "printed_page": 8,
+   "role": "ja-body",
+   "web": true,
+   "lines": [
+    {
+     "id": "w1.band",
+     "text": "警告"
+    },
+    {
+     "id": "w1.i1.t",
+     "text": "万が一、次のような異常が発生したときはすぐに使用をやめる"
+    },
+    {
+     "id": "w1.i1.l1",
+     "text": "煙が出ている、異臭がする"
+    },
+    {
+     "id": "w1.i1.l2",
+     "text": "落としたり、破損したとき"
+    },
+    {
+     "id": "w1.i1.l3",
+     "text": "異音がする"
+    },
+    {
+     "id": "w1.i1.l4",
+     "text": "内部に水や異物が入ったとき"
+    },
+    {
+     "id": "w1.i1.l5",
+     "text": "電源コード (ACアダプター) が傷んだとき"
+    },
+    {
+     "id": "w1.i1.b1",
+     "text": "このような異常が発生したまま使用していると、火災や感電の原因になります。"
+    },
+    {
+     "id": "w1.i1.b2",
+     "text": "すぐにACアダプターをコンセントから抜いてください。また、本製品に接続されている機器もすべて外してください。"
+    },
+    {
+     "id": "w1.i1.t2",
+     "text": "万が一発煙や発火したら、大量の水で消火して煙が見えなくなるまで本製品を水浸しにしてください。"
+    },
+    {
+     "id": "w1.i1.b3",
+     "text": "煙が出なくなることを確認してからカスタマーサポートにご連絡ください。"
+    },
+    {
+     "id": "w1.i1.b4",
+     "text": "お客様による修理は危険ですので絶対におやめください。"
+    },
+    {
+     "id": "w1.i2.t",
+     "text": "分解、改造しない"
+    },
+    {
+     "id": "w1.i2.b",
+     "text": "故障、発熱、火災･感電の原因になります。"
+    },
+    {
+     "id": "w1.i3.t",
+     "text": "表示された電源電圧以外で使用しない"
+    },
+    {
+     "id": "w1.i3.b",
+     "text": "故障、発熱、火災･感電の原因になります。また、本製品を使用できるのは日本国内のみです。"
+    },
+    {
+     "id": "w1.i4.t",
+     "text": "付属品と本製品が破損した場合は、ご自身で修理をしない"
+    }
+   ]
+  },
+  {
+   "physical_page": 10,
+   "printed_page": 9,
+   "role": "ja-body",
+   "web": true,
+   "lines": [
+    {
+     "id": "w2.band",
+     "text": "警告"
+    },
+    {
+     "id": "w2.i1.t",
+     "text": "火のそばや炎天下の車内、熱器具の周辺など高温（40°C以上）になる場所で使用したり、放置しない"
+    },
+    {
+     "id": "w2.i1.b",
+     "text": "発熱や発火、破裂する原因になります。"
+    },
+    {
+     "id": "w2.i2.t",
+     "text": "強い衝撃を与えたり、投げつけたりしない"
+    },
+    {
+     "id": "w2.i2.b",
+     "text": "発熱や発火、破裂する原因になります。"
+    },
+    {
+     "id": "w2.i3.t",
+     "text": "水など、液体を入れたり、濡らしたりしない"
+    },
+    {
+     "id": "w2.i3.b",
+     "text": "発熱や発火の原因になります。"
+    },
+    {
+     "id": "w2.i4.t",
+     "text": "濡れた手で本体や接続するケーブルを触らない"
+    },
+    {
+     "id": "w2.i4.b",
+     "text": "火災や感電の原因になります。"
+    },
+    {
+     "id": "w2.i5.t",
+     "text": "端子部にケーブル以外の金属類を差し込まない"
+    },
+    {
+     "id": "w2.i5.b",
+     "text": "発熱や発火の原因になります。"
+    },
+    {
+     "id": "w2.i6.t",
+     "text": "雷が鳴りだしたら、電源プラグにふれない (充電をしない)"
+    },
+    {
+     "id": "w2.i6.b",
+     "text": "感電の原因になります。"
+    },
+    {
+     "id": "w2.i7.t",
+     "text": "各接続端子には確実に差し込む"
+    },
+    {
+     "id": "w2.i7.b",
+     "text": "差し込みが不十分だと、発熱したりほこりが付着して火災や感電の原因になります。"
+    }
+   ]
+  },
+  {
+   "physical_page": 11,
+   "printed_page": 10,
+   "role": "ja-body",
+   "web": true,
+   "lines": [
+    {
+     "id": "c1.band",
+     "text": "注意"
+    },
+    {
+     "id": "c1.i1.t",
+     "text": "本製品の上に物を載せたり、不安定な場所に置かない"
+    },
+    {
+     "id": "c1.i1.b",
+     "text": "倒れたり、落ちたりしてけがの原因になります。"
+    },
+    {
+     "id": "c1.i2.t",
+     "text": "次のような機器では、絶対に使用しないでください。万が一使用中に給電ができなくなった場合、命にかかわる被害が想定されます。"
+    },
+    {
+     "id": "c1.i2.l1",
+     "text": "医療機器や使用上、生命に関わるような機器"
+    },
+    {
+     "id": "c1.i2.l2",
+     "text": "社会的、公共的に重要な機器など"
+    },
+    {
+     "id": "c1.i2.l3",
+     "text": "重要な事業用機器など"
+    },
+    {
+     "id": "c1.i3.t",
+     "text": "心臓にペースメーカーを装着している方は使用しない"
+    },
+    {
+     "id": "c1.i3.b",
+     "text": "ペースメーカーが、本製品の影響を受ける恐れがあります。"
+    }
+   ]
+  },
+  {
+   "physical_page": 12,
+   "printed_page": 11,
+   "role": "ja-body",
+   "web": true,
+   "lines": [
+    {
+     "id": "disc.h",
+     "text": "8.免責事項"
+    },
+    {
+     "id": "disc.l1",
+     "text": "火災、地震、第三者による行為、その他の事故、お客様の故意または過失誤用・誤動作・その他の異常な条件下での使用により生じた損害に関して、当社は一切責任を負いません。"
+    },
+    {
+     "id": "disc.l2a",
+     "text": "付属品と本製品が破損した場合は、ご自身で修理を行わないでください。"
+    },
+    {
+     "id": "disc.l2b",
+     "text": "ご自身で分解・修理したことにより生じた損害に関し、当社は一切責任を負いません。"
+    },
+    {
+     "id": "disc.l3",
+     "text": "保証範囲は利用規約に適用され、記載されていない内容は当社の保証範囲外となります。"
+    },
+    {
+     "id": "disc.l4",
+     "text": "取扱説明書の記載事項が遵守されないことにより生じた不適合について当社は責任を負いかねます。"
+    },
+    {
+     "id": "disc.l5",
+     "text": "本製品の使用、または使用不能から発生する付随的な損害(事業利益損失含む)、当社が関与しない接続機器との組み合わせによる誤動作などから生じた損害に関して、当社は一切の責任を負いません。"
+    },
+    {
+     "id": "disc.l6a",
+     "text": "本製品は個人の安全に関係する製品、消費電力の大きな設備に給電できません。"
+    },
+    {
+     "id": "disc.l6b",
+     "text": "えば、医療機器、核施設設備、CPAP（シーパップ）、スペースシャトルの製造などです。上記の設備、用途で使用した結果、火災、機器故障など個人の安全を脅かす事故が生じた場合、当社は一切責任を負いません。"
+    }
+   ]
+  },
+  {
+   "physical_page": 13,
+   "printed_page": 12,
+   "role": "ja-body",
+   "web": true,
+   "lines": [
+    {
+     "id": "prec.h",
+     "text": "9.使用上のご注意"
+    },
+    {
+     "id": "prec.l1",
+     "text": "始動電力が出力上限値(定格出力)を大幅に超える可能性のある製品のご利用や、定格出力を超え給電がストップした製品を繰り返し利用することは本製品が損傷するリスクがありますのでお控えください。"
+    },
+    {
+     "id": "prec.l2",
+     "text": "本製品は防塵･防水仕様ではありませんので、ほこりや水、海水などがかからないように注意してください。"
+    },
+    {
+     "id": "prec.l3",
+     "text": "ほこりが多い場所や高温多湿の場所での充電および使用、放置をしないでください。"
+    },
+    {
+     "id": "prec.l4",
+     "text": "充電または給電中は本製品が温かくなります(故障ではありません)、周囲には物を置かないでください。"
+    },
+    {
+     "id": "prec.l5",
+     "text": "本体が汚れたらコンセントから電源プラグを抜き、柔らかい布で乾拭きしてください。汚れがひどいときは、水または薄めた中性洗剤でふきとってください。シンナーやベンジンなどは絶対に使わないでください。"
+    },
+    {
+     "id": "prec.l6",
+     "text": "異常時に電源コードを容易に抜き差しできるスペースを空けておいてください。"
+    },
+    {
+     "id": "prec.l7",
+     "text": "接続機器の入力仕様が本製品の出力値の上限を超えている場合、電源を自動的に遮断します。消費電力が仕様以下であることを確認してから出力ボタンを押してください。"
+    }
+   ]
+  },
+  {
+   "physical_page": 14,
+   "printed_page": 13,
+   "role": "ja-body",
+   "web": true,
+   "lines": [
+    {
+     "id": "prec.l8.t",
+     "text": "低/高温警報"
+    },
+    {
+     "id": "prec.l8.b1",
+     "text": "本製品は、0°C~45 °C (32°F~113 °F)の温度範囲でお使いの機器に電力を供給できます。"
+    },
+    {
+     "id": "prec.l8.b2",
+     "text": "動作温度が上記範囲外にある場合、本製品が動作しないことがあります。"
+    },
+    {
+     "id": "prec.l8.b3",
+     "text": "この製品は、0°C~45 °C (32°F~113 °F) の温度範囲内で充電してください。"
+    },
+    {
+     "id": "prec.l8.b4",
+     "text": "充電温度が上記範囲を超えると、正常に充電できない場合があります。"
+    },
+    {
+     "id": "prec.l8.b5",
+     "text": "過低温および過高温の表示があれば保護装置が動作し充電または出力が停止します。"
+    },
+    {
+     "id": "prec.l8.b6",
+     "text": "復旧は本機が規定温度になれば自然復旧します。"
+    },
+    {
+     "id": "prec.l9",
+     "text": "容量表示に関しては、あくまで参考値となり、電圧により電力が算出され、表示数値にズレが発生することがあります。"
+    },
+    {
+     "id": "prec.l9.b1",
+     "text": "保存温度：-20°C ~ 25°C (-4°F ~ 77°F)で6ヶ月；-20°C ~ 45°C (-4°F ~ 113°F)で3ヶ月"
+    },
+    {
+     "id": "prec.l9.b2",
+     "text": "ご確認：-20°C ~ 25°C (-4°F ~ 77°F)で長期保管する場合、6ヶ月に１度を目安に。"
+    },
+    {
+     "id": "prec.l9.b3",
+     "text": "ご使用の前に以下をよくお読みのうえ、正しくお使いください。"
+    },
+    {
+     "id": "prec.l9.b4",
+     "text": "充電器を湿気にさらさないでください。"
+    },
+    {
+     "id": "prec.l9.b5",
+     "text": "製品は防水ではないため、水などがついた場合はすばやく拭いてください。"
+    },
+    {
+     "id": "prec.l9.b6",
+     "text": "140Wの出力を得るためには、140W対応のケーブルをご使用ください。安全で速やかな充電のために、製品付属の充電ケーブルをお使いください。"
+    }
+   ]
+  }
+ ]
+}

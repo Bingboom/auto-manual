@@ -1,0 +1,137 @@
+{
+  "model": "JE-300D",
+  "source_package": "manual_sources/JE-300D/US/en/git-20261103-d3f47ff3-source-alignment-release",
+  "shared_css_sha256": "9ee899cc83146bc9cb7cd6228efd48e131c4c9e6f317040921f9871ba6a506fc",
+  "old_shared_css_sha256": "5519f2d75187aca34b0469657680680d3591bbc844450ea57681e26582ee337a",
+  "ir_pages_only_changed_fcc_class_to_layout_attribute": true,
+  "all_original_art_byte_identical": true,
+  "root_shared_style_gate": {
+    "profile": "prepared-document-shared-styles/v1",
+    "applicable": true,
+    "model": "JE-300D",
+    "region": "US",
+    "language": "en",
+    "declared_tables": 0,
+    "issues": []
+  },
+  "shared_style_audit_sha256": "1600f5efaa5d512ee7434140b6eab7c07dff6a30b6a4cac27b23e763d8c77121",
+  "strict_sphinx_passed": true,
+  "double_cold_rebuild_byte_identical": true,
+  "approval_current_input_bindings_verified": true,
+  "publication_eligible": true,
+  "pending_source_review": [],
+  "rowspan_preserved": true,
+  "plain_table_exceptions_unchanged": true,
+  "status": "approved_release_style_admission_passed",
+  "viewport_checks": [
+    {
+      "width": 1280,
+      "stage": "before",
+      "failures": [],
+      "bodyWidth": 1280,
+      "broken": [],
+      "components": [
+        {
+          "key": "fcc",
+          "box": {
+            "x": 431.390625,
+            "y": 40.234375,
+            "width": 657.21875,
+            "height": 538.1875
+          },
+          "table": [],
+          "scroll": 3350
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "stage": "after",
+      "failures": [],
+      "bodyWidth": 1280,
+      "broken": [],
+      "components": [
+        {
+          "key": "fcc",
+          "box": {
+            "x": 431.390625,
+            "y": 40.234375,
+            "width": 657.21875,
+            "height": 538.1875
+          },
+          "table": [],
+          "scroll": 3350
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "stage": "before",
+      "failures": [],
+      "bodyWidth": 390,
+      "broken": [],
+      "components": [
+        {
+          "key": "fcc",
+          "box": {
+            "x": 16,
+            "y": 39.96875,
+            "width": 358,
+            "height": 873.140625
+          },
+          "table": [],
+          "scroll": 4910
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "stage": "after",
+      "failures": [],
+      "bodyWidth": 390,
+      "broken": [],
+      "components": [
+        {
+          "key": "fcc",
+          "box": {
+            "x": 16,
+            "y": 39.96875,
+            "width": 358,
+            "height": 873.140625
+          },
+          "table": [],
+          "scroll": 4910
+        }
+      ]
+    }
+  ],
+  "pixel_equivalence": [
+    {
+      "before": "before-1280-fcc.png",
+      "after": "after-1280-fcc.png",
+      "dimensions": [
+        658,
+        539
+      ],
+      "rgb_pixels_identical": true
+    },
+    {
+      "before": "before-390-fcc.png",
+      "after": "after-390-fcc.png",
+      "dimensions": [
+        358,
+        875
+      ],
+      "rgb_pixels_identical": true
+    }
+  ],
+  "schema_changes": [
+    "FCC geometric wrapper presentation.html.attributes.class replaced with data-source-layout; FCC block content_sha256 and symbols-page source_sha256 recomputed. No semantic slots or native copy changed."
+  ],
+  "source_css_changes": [
+    "FCC selector now uses equal-specificity data-source-layout attribute.",
+    "JE-300C/JE-300E remove source border-right paint; unchanged source rowspan now receives its separator from the real shared table stylesheet."
+  ],
+  "shared_gate_changes": "No gate, class allowlist, baseline, or table exception change. Shared theme fix owned by root; this package pins its exact CSS hash.",
+  "source_candidate_unchanged": true
+}

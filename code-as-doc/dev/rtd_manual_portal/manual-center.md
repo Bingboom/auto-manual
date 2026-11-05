@@ -48,7 +48,7 @@ its market list from the same settings, and CN/JP display their own market notes
 
 ## Page layout
 
-Every portal page (manual library root, 知识库首页, 产品知识, 市场与政策, 系统建设, 说明书工作台, 设计规范, 产品矩阵)
+Every portal page (manual library root, 知识库首页, 定位与价值, 产品知识, 市场与政策, 系统建设, 说明书工作台, 设计规范, 产品矩阵)
 shares one site shell from `tools/rtd_portal_assets/_site_shell.html` and
 `_static/site-shell.css`. In the manuals-only public role (`RTD_SITE_ROLE=manuals`)
 the manual library root passes `internal=false` to both shell macros: its sidebar
@@ -57,7 +57,7 @@ region selector, with no internal knowledge links or 知识库 / 说明书资料
 In the combined (private) role the root gets the full internal shell, so a reader
 can return to the knowledge base: the same sidebar groups as internal pages and the
 switch, with 说明书资料库 marked selected. Internal pages add three groups
-after 说明书: 知识库 (首页), 产品与市场 (产品知识, 产品矩阵, 市场与政策) and
+after 说明书: 知识库 (首页, 定位与价值), 产品与市场 (产品知识, 产品矩阵, 市场与政策) and
 说明书生产 (说明书工作台, 系统建设, 设计规范), plus the switch. Their breadcrumb section is 知识库,
 and 工作资料 is only the brand. The root keeps 工作资料 as title, crumb and footer in
 both roles. Every sidebar entry is a page and carries
@@ -113,7 +113,10 @@ Inside the shell the root page has these bounded zones on one container width
    「配套产品」 with one section per kind (扩容电池 / 太阳能补能 / 充电器 /
    连接配件 / 保护与搬运), each with a responsive card grid. Sections with no
    visible card after filtering are hidden.
-5. **Footer** (light grey band), which also holds the Read the Docs ad placement.
+5. **网页说明书的定位与价值** (white band, after the catalog so the first screen stays search):
+   reader-facing copy in the public role; in the private role the three themes with status tags,
+   linking to the internal page. See [网页说明书的定位与价值](web-manual-value.md).
+6. **Footer** (light grey band), which also holds the Read the Docs ad placement.
 
 The need and accessory groups are product positioning, curated in
 `settings.json` → `navigation` (`needs` rows with `id`, `title`, `note`,
@@ -167,6 +170,33 @@ publication, online tables and OSS uploads are outside this change.
 The Furo `/search.html` route also has a server-rendered landing form. A bare
 visit therefore shows an actionable query field instead of an empty content
 panel; submitting it uses the existing `q` parameter and Sphinx search index.
+
+## Product short-name search (2026-11-02)
+
+The same keyword box matches the product short name (商品简称, e.g. `E300D`,
+`HP1000v2`), case-insensitively. RTD builds cannot reach Feishu, so the names come
+from the committed snapshot `tools/rtd_portal_assets/product_short_names.json`
+(`{model: short name}`, one standard name per customer model; colour variants,
+bundles, samples and custom editions are not listed). `tools/rtd/product_short_names.py`
+attaches `short_name` to each catalog product by exact model match; the card's
+`data-search`, the muted `model · short name` line on the card and every
+`portal-search-index.js` row carry it, and a short-name hit ranks like a model hit.
+A model missing from the snapshot keeps its previous search text. Several models can
+share one name (`E2000V2` = JE-2000D and JE-2000F), so one query may show several cards.
+
+Refresh, read-only (`--profile prod --as bot` lane; it never writes the Base):
+
+```bash
+python -m tools.rtd.product_short_names refresh --cli-bin "lark-cli --profile prod" --dry-run
+python -m tools.rtd.product_short_names refresh --cli-bin "lark-cli --profile prod" [--model JE-NEW]
+```
+
+It reads the spec table named in the snapshot's `source` block (发布文档管理
+`tbl1sPJU4wxTMaDH`, fields `客户型号` / `商品简称`), keeps rows whose 客户型号 equals
+the model exactly, drops names containing `+`, `样机`, `定制`, `色` or `联名`, and
+takes the most frequent name. It refreshes every listed model plus each `--model`,
+and prints `CHANGED`, `CHOSEN` (several candidates) and `MISSING` lines for review
+before the snapshot change is committed.
 
 ## Product hub rollback — 2026-09-15
 

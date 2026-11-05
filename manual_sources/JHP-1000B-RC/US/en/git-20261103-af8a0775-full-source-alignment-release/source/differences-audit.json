@@ -1,0 +1,145 @@
+{
+  "model": "JHP-1000B-RC",
+  "source_sha256": "af8a0775d0ba23a137fe024ae961c8b77f35797e1c8838a943ddbf8d418d9251",
+  "operator_scope": "No cover or paper TOC; native body and back contact retained; local review, publication candidate.",
+  "rows": [
+    {
+      "item": 1,
+      "old_statement": "Cover (p1), paper TOC (p3), back cover (p22), printed page numbers and the EN language badge beside IMPORTANT are not on the Web (`web_exclusions`).",
+      "old_statement_is_approval": false,
+      "physical_pages": [
+        1,
+        2,
+        3,
+        22
+      ],
+      "web_location": "[data-source-preface-title];[data-source-contact=\"back\"]",
+      "status": "verified",
+      "resolution": "Front cover p1 and paper TOC p3 excluded by explicit user scope. EN at IMPORTANT and own back contact/QR restored."
+    },
+    {
+      "item": 2,
+      "old_statement": "The print's two-column safety, FCC and warranty pages flow in one column; column breaks are not kept.",
+      "old_statement_is_approval": false,
+      "physical_pages": [
+        4,
+        6,
+        19
+      ],
+      "web_location": "[data-native-columns];.hb-fcc-composition;#warranty",
+      "status": "verified",
+      "resolution": "Safety and operating source columns restored with exact item boundary. FCC retains own p6 two-column split within interference sentence; ISED licence/RF two columns restored. Warranty has only years two columns, other clauses full-width."
+    },
+    {
+      "item": 3,
+      "old_statement": "Chapter title strips, ● subsection titles and bold lead-in labels use the shared h2/h3/h4 headings.",
+      "old_statement_is_approval": false,
+      "physical_pages": [
+        2,
+        4,
+        5,
+        10,
+        15,
+        18,
+        20
+      ],
+      "web_location": "[data-source-plain-lead];[data-source-safety-title];h2.hb-subbar",
+      "status": "verified",
+      "resolution": "Plain SAVE THESE INSTRUCTIONS/GROUNDING/Emergency leads preserved; full-width operating/maintenance pills, compact EN/IMPORTANT, dotted subsection marks once, original specification subgroup size restored."
+    },
+    {
+      "item": 4,
+      "old_statement": "The top WARNING strip and the WARNING precaution box on p4, the grounding WARNING, the DANGER box and every CAUTION/NOTE/WARNING side box use the shared `HB-CALLOUT-STRIP` callout; the shared signal triangle replaces the print's per-box glyph.",
+      "old_statement_is_approval": false,
+      "physical_pages": [
+        4,
+        5
+      ],
+      "web_location": "[data-native-strip];[data-source-warning];img[src$=\"source-signal-glyph.png\"]",
+      "status": "verified",
+      "resolution": "Own source p4 warning and p5 danger outlines/glyphs retain native text overlays. Warning card only wraps title/lead; native bullet columns outside. Signal table triangle is own PDF glyph. Plain grounding WARNING retained."
+    },
+    {
+      "item": 5,
+      "old_statement": "Five operation/charging panels hold body copy inside the drawing (standby time box, prerequisite pills, footer notes, energy-saving instruction, LED mode line and steps, AC charging caption). That copy is removed from the panel art by vector strip and set as native text in the shared grey `hb-text-panel` or, for the three LED steps, an ordered list beside the remaining ①②③ icons.",
+      "old_statement_is_approval": false,
+      "physical_pages": [
+        10,
+        11,
+        12,
+        15
+      ],
+      "web_location": "[data-native-panel];[data-native-copy]",
+      "status": "verified",
+      "resolution": "Native copy restored within own original power/AC/DC/LED/energy/charging panel positions. Original source frames and leader art retained, own Red Cross product artwork used throughout."
+    },
+    {
+      "item": 6,
+      "old_statement": "The LCD SCREEN mode table and its button art use the shared `HB-TABLE-LCD-MODE`; the KEY COMBINATIONS table uses `HB-TABLE-KEY-COMBINATIONS`, whose shared 44rem minimum width scrolls inside the component (also at 1280 px in the 46rem reading column).",
+      "old_statement_is_approval": false,
+      "physical_pages": [
+        12,
+        13
+      ],
+      "web_location": ".hb-lcd-mode-composition;.hb-key-combination-table",
+      "status": "verified",
+      "resolution": "LCD mode original art/table near-equal desktop widths; key combinations own button crops, four source clocks and four pluses. Desktop min-width removed, phone table internal pan retained."
+    },
+    {
+      "item": 7,
+      "old_statement": "The two Symbol/Meaning pictogram tables use one `HB-TABLE-SYMBOL-ICON` with two panels (4 + 3 rows); the signal-word table shows the shared triangle on every badge.",
+      "old_statement_is_approval": false,
+      "physical_pages": [
+        5
+      ],
+      "web_location": "#meaning-of-symbols",
+      "status": "verified",
+      "resolution": "Signal/native meaning table and original own triangle retained; own two-panel 4+3 pictogram table unchanged."
+    },
+    {
+      "item": 8,
+      "old_statement": "Specification groups use the shared `HB-TABLE-SPEC` section strips; numbered troubleshooting steps show one step per line.",
+      "old_statement_is_approval": false,
+      "physical_pages": [
+        17,
+        18
+      ],
+      "web_location": "#troubleshooting;#source-spec-g;#source-spec-i;#source-spec-o;#source-spec-t",
+      "status": "verified",
+      "resolution": "Own specification values unchanged, USB-C shared label with source two value rows; four native dotted subgroup headings; F7 solar condition preserved and V_oc rendered subscript."
+    },
+    {
+      "item": 9,
+      "old_statement": "The ISED / RF exposure panel uses the shared grey `hb-text-panel`; the FCC panel keeps a navigation-only \"FCC\" title hidden by the shared FCC style, as every published FCC section does.",
+      "old_statement_is_approval": false,
+      "physical_pages": [
+        6
+      ],
+      "web_location": ".hb-fcc-composition;[data-native-columns=\"ised\"]",
+      "status": "verified",
+      "resolution": "Own p6 ISED and RF columns restored. FCC original paragraph breaks and source mark wrapping restored within existing shared FCC ComponentSpec; own FCC RF heading separate from MODIFICATION."
+    },
+    {
+      "item": 10,
+      "old_statement": "Leader labels, button silk, step numbers and screenshot captions stay in the complete source panels; they are listed in `transcription.json` (`fig.*`) and bound to each figure's alt text and IR `embedded_labels`.",
+      "old_statement_is_approval": false,
+      "physical_pages": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        20,
+        21
+      ],
+      "web_location": "[data-reference-id];[data-native-copy]",
+      "status": "verified",
+      "resolution": "All panel labels, silk, leader lines and screenshots use this exact RC PDF. Copy removed only where restored as native positioned text; figure labels remain transcript/IR-bound. Right product view full outline restored."
+    }
+  ]
+}

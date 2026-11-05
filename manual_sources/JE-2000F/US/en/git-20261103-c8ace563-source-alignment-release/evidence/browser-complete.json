@@ -1,0 +1,260 @@
+[
+  {
+    "width": 1280,
+    "images": 79,
+    "broken": [],
+    "uncontained": [],
+    "document": {
+      "viewport": 1280,
+      "width": 1280,
+      "cover": 0
+    },
+    "layouts": [
+      {
+        "key": "inbox",
+        "columns": "auto",
+        "grid": "155.297px 155.312px 155.297px 155.312px",
+        "rectWidth": 657.21875
+      },
+      {
+        "key": "power",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 657.21875
+      },
+      {
+        "key": "led",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 657.21875
+      },
+      {
+        "key": "energy",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 657.21875
+      },
+      {
+        "key": "ac",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 657.21875
+      },
+      {
+        "key": "sourcewarning",
+        "columns": "auto",
+        "grid": "144px 367.438px",
+        "rectWidth": 552.0625
+      },
+      {
+        "key": "battery",
+        "columns": "auto",
+        "grid": "40px 601.219px",
+        "rectWidth": 657.21875
+      },
+      {
+        "key": "symbolpair",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 657.21875
+      },
+      {
+        "key": "specifications",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 657.21875
+      },
+      {
+        "key": "key",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 653.21875
+      },
+      {
+        "key": "lcd",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 657.21875
+      },
+      {
+        "key": "contactstrip",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 581.21875
+      },
+      {
+        "key": "contactpair",
+        "columns": "auto",
+        "grid": "581.219px 64px",
+        "rectWidth": 657.21875
+      },
+      {
+        "key": "warning",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 314.203125
+      },
+      {
+        "key": "back",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 657.21875
+      },
+      {
+        "key": "risk",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 657.21875
+      },
+      {
+        "key": "safety",
+        "columns": "2",
+        "grid": "none",
+        "rectWidth": 657.21875
+      },
+      {
+        "key": "operating",
+        "columns": "2",
+        "grid": "none",
+        "rectWidth": 657.21875
+      },
+      {
+        "key": "fcc",
+        "columns": "auto",
+        "grid": "282.219px 282.219px",
+        "rectWidth": 599.625
+      }
+    ],
+    "request_failures": [],
+    "background_images": []
+  },
+  {
+    "width": 390,
+    "images": 79,
+    "broken": [],
+    "uncontained": [],
+    "document": {
+      "viewport": 390,
+      "width": 390,
+      "cover": 0
+    },
+    "layouts": [
+      {
+        "key": "inbox",
+        "columns": "auto",
+        "grid": "173px 173px",
+        "rectWidth": 358
+      },
+      {
+        "key": "power",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 650
+      },
+      {
+        "key": "led",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 650
+      },
+      {
+        "key": "energy",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 650
+      },
+      {
+        "key": "ac",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 650
+      },
+      {
+        "key": "sourcewarning",
+        "columns": "auto",
+        "grid": "328.562px",
+        "rectWidth": 358
+      },
+      {
+        "key": "battery",
+        "columns": "auto",
+        "grid": "40px 302px",
+        "rectWidth": 358
+      },
+      {
+        "key": "symbolpair",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 358
+      },
+      {
+        "key": "specifications",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 358
+      },
+      {
+        "key": "key",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 704
+      },
+      {
+        "key": "lcd",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 358
+      },
+      {
+        "key": "contactstrip",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 282
+      },
+      {
+        "key": "contactpair",
+        "columns": "auto",
+        "grid": "282px 64px",
+        "rectWidth": 358
+      },
+      {
+        "key": "warning",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 358
+      },
+      {
+        "key": "back",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 358
+      },
+      {
+        "key": "risk",
+        "columns": "auto",
+        "grid": "none",
+        "rectWidth": 358
+      },
+      {
+        "key": "safety",
+        "columns": "1",
+        "grid": "none",
+        "rectWidth": 358
+      },
+      {
+        "key": "operating",
+        "columns": "1",
+        "grid": "none",
+        "rectWidth": 358
+      },
+      {
+        "key": "fcc",
+        "columns": "auto",
+        "grid": "326px",
+        "rectWidth": 326
+      }
+    ],
+    "request_failures": [],
+    "background_images": []
+  }
+]

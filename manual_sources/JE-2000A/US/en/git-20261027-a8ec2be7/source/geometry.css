@@ -1,0 +1,28 @@
+/* JE-2000A US en: page-local geometry and type size only.
+   Colours, borders and panels come from the shared Web theme (prepared-document shared-style gate). */
+
+/* Printed "·" bullet lists, as in the PDF. */
+#furo-main-content ul > li { list-style-type: "· "; }
+
+/* Complete source panels keep a readable print width; dense ones pan on phones. */
+#furo-main-content .hb-reference-figure { max-width: 48rem; margin-inline: auto; }
+#furo-main-content .hb-reference-figure[data-reference-id="ac-charge"],
+#furo-main-content .hb-reference-figure[data-reference-id="car-charge"] { max-width: 30rem; }
+#furo-main-content .hb-reference-figure[data-reference-id="cert-marks"],
+#furo-main-content .hb-reference-figure[data-reference-id="adaptor-guide"] { max-width: 36rem; }
+@media (max-width: 760px) {
+  #furo-main-content .hb-reference-figure[data-reference-id="overview-front"],
+  #furo-main-content .hb-reference-figure[data-reference-id="lcd-map"],
+  #furo-main-content .hb-reference-figure[data-reference-id="prohibited-solar"] { overflow-x: auto; }
+  #furo-main-content .hb-reference-figure[data-reference-id="overview-front"] > *,
+  #furo-main-content .hb-reference-figure[data-reference-id="lcd-map"] > *,
+  #furo-main-content .hb-reference-figure[data-reference-id="prohibited-solar"] > * { min-width: 34rem; }
+}
+
+/* Inline LCD glyphs printed inside a sentence keep text height. */
+#furo-main-content p img[src*="icons/"] { display: inline; height: 1.25em; width: auto; vertical-align: -0.25em; margin: 0 .1em; }
+
+/* LCD legend and troubleshooting icons keep their print size in the table cells. */
+#furo-main-content table img[src*="icons/lcd-"] { height: 2.2rem; width: auto; max-width: none; }
+#furo-main-content table img[src*="icons/ts-"] { height: 1.9rem; width: auto; max-width: none; vertical-align: middle; }
+#furo-main-content table td p img[src*="icons/ts-f"] { height: 1.9rem; vertical-align: middle; }

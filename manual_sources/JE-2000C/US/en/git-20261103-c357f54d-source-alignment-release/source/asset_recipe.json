@@ -1,0 +1,40 @@
+{
+  "schema_version": "je2000c-us-en-asset-recipe/v1",
+  "source_sha256": "c357f54dfed27d11d72a2a4893e485450a49c1b562e21f0f272708857f1510ab",
+  "panel_scale": 3,
+  "icon_scale": 8,
+  "panels": [
+    {"path": "assets/certifications.png", "physical_page": 2, "bbox": [20, 433, 192, 472], "role": "complete CERTIFICATIONS logo row (FCC, BC, Qualcomm Quick Charge 3.0, WEEE)"},
+    {"path": "assets/inbox-unit.png", "physical_page": 3, "bbox": [22, 80, 85, 135], "role": "package-list card art 1"},
+    {"path": "assets/inbox-car-cable.png", "physical_page": 3, "bbox": [91, 80, 127, 135], "role": "package-list card art 2"},
+    {"path": "assets/inbox-ac-cable.png", "physical_page": 3, "bbox": [145, 80, 179, 135], "role": "package-list card art 3"},
+    {"path": "assets/inbox-adaptor.png", "physical_page": 3, "bbox": [204, 80, 233, 135], "role": "package-list card art 4"},
+    {"path": "assets/inbox-manual.png", "physical_page": 3, "bbox": [251, 80, 295, 135], "role": "package-list card art 5"},
+    {"path": "assets/inbox-bag.png", "physical_page": 3, "bbox": [308, 80, 353, 135], "role": "package-list card art 6"},
+    {"path": "assets/overview-front.png", "physical_page": 3, "bbox": [21, 203, 348, 335.45], "role": "complete front view with leader labels"},
+    {"path": "assets/overview-rear.png", "physical_page": 3, "bbox": [21, 335.45, 348, 502], "role": "complete rear view with leader labels"},
+    {"path": "assets/lcd-map.png", "physical_page": 4, "bbox": [46, 44, 328, 191], "role": "complete numbered LCD map"},
+    {"path": "assets/wall-charge.png", "physical_page": 7, "bbox": [186, 93, 357, 204], "role": "complete AC wall charging panel with captions"},
+    {"path": "assets/solar-3.png", "physical_page": 7, "bbox": [21, 309, 352, 415.6], "role": "complete three-panel series connection with captions"},
+    {"path": "assets/solar-2-2.png", "physical_page": 7, "bbox": [21, 415.6, 352, 499], "role": "complete two-input 2+2 connection with captions"},
+    {"path": "assets/solar-3-3.png", "physical_page": 8, "bbox": [19, 21, 352, 128], "role": "complete two-input 3+3 connection with captions"},
+    {"path": "assets/solar-prohibited.png", "physical_page": 8, "bbox": [21, 213, 348, 500], "role": "complete framed panel of the three prohibited connections"},
+    {"path": "assets/solar-80.png", "physical_page": 9, "bbox": [22, 143, 347, 261], "role": "complete framed SolarSaga 80 parallel connection panel"},
+    {"path": "assets/solar-adaptor.png", "physical_page": 9, "bbox": [22, 364, 347, 502], "role": "complete framed DC7909 to DC8020 adaptor panel"},
+    {"path": "assets/car-charge.png", "physical_page": 10, "bbox": [178, 37, 350, 134], "role": "complete car charging panel with captions"},
+    {"path": "assets/car-solar-prohibited.png", "physical_page": 10, "bbox": [21, 220, 325, 307], "role": "complete framed prohibited car + solar panel"},
+    {"path": "assets/app-store.png", "physical_page": 13, "bbox": [21, 460, 169, 483], "role": "complete App Store / Google Play badge pair"}
+  ],
+  "native_icons": [
+    {"path": "assets/lcd-battery-power.png", "physical_page": 4, "glyph_bbox": [22.89, 363.06, 45.54, 385.7]},
+    {"path": "assets/lcd-low-battery.png", "physical_page": 4, "glyph_bbox": [23.11, 405.34, 45.32, 417.86]},
+    {"path": "assets/lcd-energy-saving.png", "physical_page": 4, "glyph_bbox": [22.0, 443.55, 46.44, 461.29]},
+    {"path": "assets/lcd-fault-code.png", "physical_page": 5, "glyph_bbox": [22.3, 167.61, 47.97, 191.34]},
+    {"path": "assets/lcd-high-temperature.png", "physical_page": 5, "glyph_bbox": [21.61, 234.34, 47.21, 258.02]},
+    {"path": "assets/lcd-low-temperature.png", "physical_page": 5, "glyph_bbox": [21.61, 263.04, 47.21, 286.72]},
+    {"path": "assets/lcd-ac-expansion.png", "physical_page": 5, "glyph_bbox": [20.18, 297.28, 50.75, 318.38]}
+  ],
+  "reused": [
+    {"path": "assets/fcc-mark.svg", "from": "docs/renderers/web/assets/shared/symbols/native-v1/fcc_mark.svg", "shared_key": "fcc/nested-c-native-dark", "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"}
+  ]
+}

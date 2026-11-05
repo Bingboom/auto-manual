@@ -1,0 +1,80 @@
+{
+  "status": "pass",
+  "findings": [],
+  "base_head": "11e191d52ddeddc87d8228c2ef8eccfee097df74",
+  "worktree_config_sha256": "4350800856089d3481b1bf5393c0486e31a070ce462132d8982392f076dbaa4b",
+  "scope": "Uncommitted three-file parent change only; no repository writes by independent reviewer.",
+  "verified_asset": {
+    "path": "/Users/hello-tech-team/.codex/worktrees/manual-reviewed-nine/auto-manual-codex/manual_sources/JHP-3600A/US/en/git-20261103-d35114d3-source-alignment-release/web/en/assets/key-clock-current.svg",
+    "bytes": 7457,
+    "sha256": "888dc723cc53ad7a51834355fe09dce051c8941a71b7eae9298dd8ca408a5e8d"
+  },
+  "semantic_config_diff": "Exactly one allowlist appended under existing generic-api-key rule; default extension and all previous rules remain byte/semantic-equivalent. AND of anchored exact IR path and anchored exact asset field plus verified full digest.",
+  "covered_paths": [
+    "manual_sources/JHP-3600A/US/en/git-20261103-d35114d3-source-alignment-release/web/en/manual.ir.json",
+    "docs/publish/sources/web/JHP-3600A/US/en/md/manual.ir.json",
+    "docs/publish/web/JHP-3600A/US/en/md/manual.ir.json"
+  ],
+  "baseline_exact_line_flagged": true,
+  "independent_controls": [
+    {
+      "case": "exact-source",
+      "expected": 0,
+      "actual": 0,
+      "finding_count": 0
+    },
+    {
+      "case": "exact-stored",
+      "expected": 0,
+      "actual": 0,
+      "finding_count": 0
+    },
+    {
+      "case": "exact-served",
+      "expected": 0,
+      "actual": 0,
+      "finding_count": 0
+    },
+    {
+      "case": "wrong-digest",
+      "expected": 1,
+      "actual": 1,
+      "finding_count": 1
+    },
+    {
+      "case": "wrong-path",
+      "expected": 1,
+      "actual": 1,
+      "finding_count": 1
+    },
+    {
+      "case": "credential-field",
+      "expected": 1,
+      "actual": 1,
+      "finding_count": 1
+    },
+    {
+      "case": "another-asset-field",
+      "expected": 1,
+      "actual": 1,
+      "finding_count": 1
+    },
+    {
+      "case": "extra-credential-same-line",
+      "expected": 1,
+      "actual": 1,
+      "finding_count": 2
+    }
+  ],
+  "scanner_version": "8.30.1",
+  "parent_whole_tree_scan": {
+    "report": "/private/tmp/manual-web-audit-20261102/PR1666-gitleaks-final-redacted.json",
+    "findings": 0,
+    "log": "/private/tmp/manual-web-audit-20261102/PR1666-gitleaks-final.log",
+    "independently_repeated": false
+  },
+  "nine_source_packages_unchanged": true,
+  "authorization_scope": "MA-381 addition permits only identical pre-existing product-navigation warnings compared individually with latest business main. No new warning or other failure accepted; target strict builds and all applicable CI green requirements explicitly retained. No workflow/gate code/baseline changed.",
+  "worktree_status_observed": " M .gitleaks.toml\n M code-as-doc/dev/merge_authorizations.md\n M code-as-doc/reviews/us-reviewed-9-release-20261103.md\n",
+  "limits": "Read-only narrow exception review and independent synthetic scanner controls; no CI rerun, publication or merge performed."
+}

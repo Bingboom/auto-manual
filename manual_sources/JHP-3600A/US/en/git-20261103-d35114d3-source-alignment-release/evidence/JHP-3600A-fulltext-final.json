@@ -1,0 +1,81 @@
+{
+  "model": "JHP-3600A",
+  "source_pages": 24,
+  "checked_lines": 514,
+  "exclusions": {
+    "1": "historically approved print cover",
+    "3": "historically approved print TOC"
+  },
+  "candidates": [
+    {
+      "page": 4,
+      "text": "Dischargiemperatre:-4°to113°F(-20°to45°()",
+      "coverage": 0.125
+    },
+    {
+      "page": 6,
+      "text": "FCoce ocops monteo peteo cho",
+      "coverage": 0.0
+    },
+    {
+      "page": 6,
+      "text": "Jocbery HomeRlower 3600 Pln",
+      "coverage": 0.176
+    },
+    {
+      "page": 8,
+      "text": "i5 nart gysilltible when the product is conmected to baittery",
+      "coverage": 0.378
+    },
+    {
+      "page": 8,
+      "text": "Sft-ipn the Jecteii ypimes, reducing electricity costs (Please",
+      "coverage": 0.511
+    },
+    {
+      "page": 12,
+      "text": "he ecDets slef automatte 2",
+      "coverage": 0.067
+    },
+    {
+      "page": 20,
+      "text": "About 77.16 Ibs/35 kg",
+      "coverage": 0.222
+    },
+    {
+      "page": 20,
+      "text": "15.2×12.2x19.3 in / 38.5×30.9×49.1cm",
+      "coverage": 0.562
+    },
+    {
+      "page": 22,
+      "text": "Bluetooth configuration",
+      "coverage": 0.4
+    },
+    {
+      "page": 22,
+      "text": "Bluetooth configuration mode",
+      "coverage": 0.316
+    },
+    {
+      "page": 22,
+      "text": "Heme mske ture the buetth ion n toitr",
+      "coverage": 0.0
+    },
+    {
+      "page": 23,
+      "text": "Please select 2.4 GHz Wi-Fi",
+      "coverage": 0.357
+    },
+    {
+      "page": 23,
+      "text": "Avalable devicels) scanned",
+      "coverage": 0.062
+    },
+    {
+      "page": 23,
+      "text": "in incarruct Wi-fi pasaond l cra of de cunmon se",
+      "coverage": 0.0
+    }
+  ]
+}

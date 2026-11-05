@@ -1,0 +1,50 @@
+{
+  "baseline": "376d04cdb0ef2d2bf7195934696ef6729abe99b5",
+  "baseline_characters": 30682,
+  "final_characters": 30683,
+  "deltas": [
+    {
+      "kind": "delete",
+      "old": "⚠",
+      "new": "",
+      "context": "cells.MEANINGOFSYMBOLSSymbolMeaning⚠WARNINGHazardouspracticesthatmayres"
+    },
+    {
+      "kind": "delete",
+      "old": "⚠",
+      "new": "",
+      "context": "einjury,death,and/orpropertydamage.⚠CAUTIONHazardouspracticesthatmayres"
+    },
+    {
+      "kind": "insert",
+      "old": "",
+      "new": "+",
+      "context": "onsOperationFunctionMainPowerButtonUSBPowerButton3sPressandholdbothfor"
+    },
+    {
+      "kind": "insert",
+      "old": "",
+      "new": "+",
+      "context": "ResetWi-Fi&BluetoothMainPowerButtonACPowerButton3sPressandholdbothfor3"
+    },
+    {
+      "kind": "insert",
+      "old": "",
+      "new": "+",
+      "context": "fftheEnergySavingModeUSBPowerButtonACPowerButton1sPressandholdbothfor1"
+    },
+    {
+      "kind": "insert",
+      "old": "",
+      "new": "+",
+      "context": "non/offWi-Fi&BluetoothDCPowerButtonACPowerButton3sPressandholdbothfor3"
+    },
+    {
+      "kind": "delete",
+      "old": "+",
+      "new": "",
+      "context": "eApp.2.Toadddevice2.1Clickthebutton+toaddyourdevice;2.2Turnontheproduct"
+    }
+  ],
+  "interpretation": "Only markup ownership of source glyphs changes: two font warnings replaced by original PDF white triangles; four CSS-generated key + signs become editable + text; App + text becomes exact original source vector. Every sentence, number, condition and table value remains unchanged."
+}

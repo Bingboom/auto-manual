@@ -1,0 +1,334 @@
+[
+  {
+    "slot": "inbox-unit",
+    "physical_page": 7,
+    "bbox": [
+      39.3,
+      125.6,
+      125.6,
+      202.8
+    ],
+    "caption": "本体",
+    "embedded_words": false,
+    "source": "manual_sources/JE-500A/US/en/git-20261028-5c065d11/assets/inbox-unit.png",
+    "reuse_review": "Inventory: the same model's US/en inbox-unit.png. The JP card drawing (p7 card ①) and the US asset were cropped to their ink bounds and compared: identical 323×264 px content, mean grey difference 4.5/255, 0.07% pixels differ by >80 (antialiasing). Text-free and identical, so the US asset is reused unchanged.",
+    "local_path": "assets/inbox-unit.png",
+    "sha256": "6e744a31be1f5f24235545f9863fabce65e216d2971b6b70801e98474edd3813",
+    "decision": "reuse the existing repository asset unchanged (reuse_review)"
+  },
+  {
+    "slot": "inbox-ac-cable",
+    "physical_page": 7,
+    "bbox": [
+      156.5,
+      127.7,
+      217.7,
+      202.0
+    ],
+    "caption": "AC充電ケーブル",
+    "embedded_words": false,
+    "reuse_review": "Cropped from this JP PDF: the US/en inbox-ac-cable.png shows a three-pin US plug with a coupler; this print draws a two-flat-pin plug with a different routing (ink bounds 191×269 vs 128×256, mean difference 38/255), so it is not the same drawing.",
+    "local_path": "assets/inbox-ac-cable.png",
+    "render_scale": 4,
+    "sha256": "68bcda8ec53bd6b3c419ed2907ce9fcc24c0d77441ace6e047d8c961b2db7b7a",
+    "source_sha256": "368d993473c2ea840d660b976448f687ce2a049e70cd07593ebc024ee2a7da34",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "inbox-user-manual",
+    "physical_page": 7,
+    "bbox": [
+      263.0,
+      127.7,
+      320.5,
+      204.6
+    ],
+    "caption": "取扱説明書",
+    "embedded_words": true,
+    "reuse_review": "Cropped from this JP PDF: the card shows this Japanese edition's own cover (Japanese title words); the US manual thumbnail is the English cover.",
+    "local_path": "assets/inbox-user-manual.png",
+    "render_scale": 4,
+    "sha256": "b4b3fc0fd66a397e1dfd69412aced895eb74cdb6fa6c24116bf4779300e0a513",
+    "source_sha256": "368d993473c2ea840d660b976448f687ce2a049e70cd07593ebc024ee2a7da34",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "overview-front",
+    "physical_page": 8,
+    "bbox": [
+      27.2,
+      78.0,
+      351.9,
+      292.5
+    ],
+    "embedded_words": true,
+    "caption": "正面：シガーソケット出力ポート 12V⎓最大10A／USB-C1出力ポート 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A, 最大100W／USB-C2出力ポート 5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A, 最大30W／USB-A出力ポート 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A, 最大18W／省エネモードスイッチ／主電源ボタン／LCDディスプレイ／LEDライトボタン／LEDライト／AC出力ポート 100V ~ 50Hz/60Hz 2ポート合計500W (瞬間最大1000W)／AC出力ボタン／DC出力ボタン",
+    "reuse_review": "Cropped from this JP PDF: Japanese part names and JP ratings are drawn in the panel; the US overview-front.png carries English labels.",
+    "local_path": "assets/overview-front.png",
+    "render_scale": 4,
+    "sha256": "bb768e6fa64860dcb3d1228bb4b811b7a7d4b8765cda52323f97772a84144f65",
+    "source_sha256": "368d993473c2ea840d660b976448f687ce2a049e70cd07593ebc024ee2a7da34",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "overview-right",
+    "physical_page": 8,
+    "bbox": [
+      27.2,
+      340.7,
+      351.9,
+      472.3
+    ],
+    "embedded_words": true,
+    "caption": "右側面：ハンドル／DC入力ポート DC8020, ソーラー入力とシガーソケット入力 PV 16V-60V⎓10.5A, 最大200W／AC入力ポート 100V-120V ~ 50Hz/60Hz, 最大15A, 最大550W±50W",
+    "reuse_review": "Cropped from this JP PDF: Japanese labels and JP ratings drawn in the panel; the US overview-right.png carries English labels.",
+    "local_path": "assets/overview-right.png",
+    "render_scale": 4,
+    "sha256": "2ae0012bf60b5333dbba5c78a8c5f0aa318b9364bcf58233263d320b48452f01",
+    "source_sha256": "368d993473c2ea840d660b976448f687ce2a049e70cd07593ebc024ee2a7da34",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "lcd-display",
+    "physical_page": 9,
+    "bbox": [
+      47.1,
+      51.8,
+      330.2,
+      186.3
+    ],
+    "embedded_words": false,
+    "caption": "液晶画面（①〜⑫）",
+    "reuse_review": "Cropped from this JP PDF: compared with the US/en lcd-display.png: the JP screen draws the 888V 88Hz field and a different callout layout (ink bounds 1114×524 vs 1114×607, mean difference 18/255), so the US drawing is not this print's screen.",
+    "local_path": "assets/lcd-display.png",
+    "render_scale": 4,
+    "sha256": "9695a5850a4611869cf008ab0bc716692ad9ebdabd5c55aafd1ce9a06a19c437",
+    "source_sha256": "368d993473c2ea840d660b976448f687ce2a049e70cd07593ebc024ee2a7da34",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "power-on-off",
+    "physical_page": 11,
+    "bbox": [
+      30.9,
+      77.5,
+      337.0,
+      222.4
+    ],
+    "embedded_words": true,
+    "caption": "主電源ボタン：オン 1回押す／オフ 3秒間長押し 3S",
+    "printed_notes": [
+      "省エネモードはオンの状態で、下記機能果たします：・ACまたはDCボタンがONの場合 6時間以内に充電・放電がない、または低出力状態が続くと、すべての出力が自動OFFになり、電源が切れる。（低出力状態の定義については、「省エネモードの項目をご参照ください。）・AC/DC出力ボタンOFF、かつLEDライトOFFの場合 デフォルトの待機時間は2時間であり、2時間以内に充電・放電がないと、自動的に電源がOFFになる。"
+    ],
+    "reuse_review": "Cropped from this JP PDF: Japanese オン/オフ labels drawn in the panel. The grey speech-bubble note overlaps the unit drawing and cannot be separated by a rectangular crop, so it stays in the panel (US power-on-off precedent) and its text is carried in printed_notes/alt.",
+    "local_path": "assets/power-on-off.png",
+    "render_scale": 4,
+    "sha256": "b90e64e0045398e3af44da7eb9e797a1915578e86bbaf292dfb65beb3dc07387",
+    "source_sha256": "368d993473c2ea840d660b976448f687ce2a049e70cd07593ebc024ee2a7da34",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "dc-usb-output",
+    "physical_page": 11,
+    "bbox": [
+      30.9,
+      251.7,
+      337.0,
+      414.7
+    ],
+    "embedded_words": true,
+    "caption": "USB/カーポート出力：* 主電源がオンになっていることを確認します。DCボタン オン 1回押す／オフ 1回押す",
+    "reuse_review": "Cropped from this JP PDF: Japanese オン/オフ labels drawn in the panel. The print's grey pill note at the top sits beside the DC button circle and cannot be cut away without cutting the drawing, so it stays in the panel (text in printed_notes/alt); the ご注意 box at the bottom is set as a shared callout outside the crop.",
+    "printed_notes": [
+      "* 主電源がオンになっていることを確認します。"
+    ],
+    "local_path": "assets/dc-usb-output.png",
+    "render_scale": 4,
+    "sha256": "389cda43bc3cdcd2270f26451e267c7c2454f2d961f497a525a1ad4961bddd93",
+    "source_sha256": "368d993473c2ea840d660b976448f687ce2a049e70cd07593ebc024ee2a7da34",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "ac-output",
+    "physical_page": 12,
+    "bbox": [
+      29.8,
+      70.1,
+      334.9,
+      222.4
+    ],
+    "embedded_words": true,
+    "caption": "AC出力：ACボタン オン 1回押す／オフ 1回押す",
+    "reuse_review": "Cropped from this JP PDF: Japanese オン/オフ labels drawn in the panel; the pill note above is set as flow.",
+    "local_path": "assets/ac-output.png",
+    "render_scale": 4,
+    "sha256": "7bcc902d9b0473666c7e1b3327b0735256a0f0723d73a27bcbda0590cd1aebfc",
+    "source_sha256": "368d993473c2ea840d660b976448f687ce2a049e70cd07593ebc024ee2a7da34",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "led-light",
+    "physical_page": 12,
+    "bbox": [
+      180.0,
+      265.6,
+      332.8,
+      341.5
+    ],
+    "embedded_words": false,
+    "caption": "LEDライト：LIGHTボタン",
+    "reuse_review": "Cropped from this JP PDF: the JP panel sets its explanation in a grey box beside the drawing (set as flow); the US led-light.png is a different composition with English notes.",
+    "local_path": "assets/led-light.png",
+    "render_scale": 4,
+    "sha256": "92035422deddb27eadbecd927a81366ed63f40e85f87f7183eecebbde35c04dc",
+    "source_sha256": "368d993473c2ea840d660b976448f687ce2a049e70cd07593ebc024ee2a7da34",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "energy-saving",
+    "physical_page": 13,
+    "bbox": [
+      28.3,
+      146.5,
+      338.1,
+      241.3
+    ],
+    "embedded_words": true,
+    "caption": "省エネモードスイッチ：オフ スイッチを左側にスライドさせてください。／オン スイッチを右側にスライドさせてください。",
+    "reuse_review": "Cropped from this JP PDF: Japanese オン/オフ instructions drawn in the panel; the grey condition box above and the ご注意 box below are set as flow/callout.",
+    "local_path": "assets/energy-saving.png",
+    "render_scale": 4,
+    "sha256": "d74bd5f7668b86b2c3a2d804087955174862f45e5bc859887ae9049f330ca267",
+    "source_sha256": "368d993473c2ea840d660b976448f687ce2a049e70cd07593ebc024ee2a7da34",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "frequency-switch",
+    "physical_page": 13,
+    "bbox": [
+      28.3,
+      387.3,
+      338.1,
+      487.2
+    ],
+    "embedded_words": false,
+    "caption": "50HZ ⇆ 60HZ（液晶画面 50Hz ⇆ 60Hz）",
+    "reuse_review": "Cropped from this JP PDF: the 50Hz/60Hz switching drawing exists only in this JP edition (the US edition is 60 Hz only).",
+    "local_path": "assets/frequency-switch.png",
+    "render_scale": 4,
+    "sha256": "93b4270adead06d71467686a08daddcb4729e77d1a91f7df7f72e56f462c3eed",
+    "source_sha256": "368d993473c2ea840d660b976448f687ce2a049e70cd07593ebc024ee2a7da34",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "ups",
+    "physical_page": 14,
+    "bbox": [
+      30.9,
+      64.4,
+      337.0,
+      209.3
+    ],
+    "embedded_words": true,
+    "caption": "UPS機能：ACボタン、AC出力ポートに接続した機器、家庭のコンセントに接続したAC入力ポート",
+    "printed_notes": [
+      "電気製品のコンセントをポータブル電源の AC 出力ポートに接続し、ポータブル電源の AC 入力ポートを家庭のコンセントにつなぐことで、停電時などにポータブル電源を予備電源として活用できます。"
+    ],
+    "reuse_review": "Cropped from this JP PDF: Japanese note bubble inside the art and a JP wall outlet; the US ups.png draws a US outlet and English text. The bubble overlaps the drawing, so it stays in the panel (US precedent) and its text is carried in printed_notes/alt.",
+    "local_path": "assets/ups.png",
+    "render_scale": 4,
+    "sha256": "047caf09874833a9b099449aa7258281d6a7751bc830494b3f386e7d391cd963",
+    "source_sha256": "368d993473c2ea840d660b976448f687ce2a049e70cd07593ebc024ee2a7da34",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "charging-ac",
+    "physical_page": 15,
+    "bbox": [
+      30.9,
+      186.3,
+      336.5,
+      287.3
+    ],
+    "embedded_words": false,
+    "caption": "AC充電ケーブルで家庭のコンセントから充電",
+    "reuse_review": "Cropped from this JP PDF: JP two-slot wall outlet; the US charging-ac.png draws a US outlet with an English note.",
+    "local_path": "assets/charging-ac.png",
+    "render_scale": 4,
+    "sha256": "6e651751199f9b331f8d2f5c03369f0e64673e4813fdfd33c02ea652d9190bb7",
+    "source_sha256": "368d993473c2ea840d660b976448f687ce2a049e70cd07593ebc024ee2a7da34",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "charging-solar-single",
+    "physical_page": 15,
+    "bbox": [
+      27.7,
+      385.2,
+      339.1,
+      494.0
+    ],
+    "embedded_words": true,
+    "caption": "ソーラーパネル1枚（SolarSaga 200）をDC入力ポートに直接接続：取り外す",
+    "reuse_review": "Cropped from this JP PDF: Japanese word 取り外す drawn in the art.",
+    "local_path": "assets/charging-solar-single.png",
+    "render_scale": 4,
+    "sha256": "53ae568db160bd61317dd7e046e724ae2cc1dfc87cdb080db4172f62a57dc6e1",
+    "source_sha256": "368d993473c2ea840d660b976448f687ce2a049e70cd07593ebc024ee2a7da34",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "charging-solar-pair",
+    "physical_page": 16,
+    "bbox": [
+      29.3,
+      50.2,
+      341.0,
+      165.6
+    ],
+    "embedded_words": true,
+    "caption": "SolarSaga 100 ×2 を SolarSaga アダプター（Pro/Plus/New専用）別売り で接続：取り外す",
+    "reuse_review": "Cropped from this JP PDF: Japanese words (取り外す, アダプター label) drawn in the art.",
+    "local_path": "assets/charging-solar-pair.png",
+    "render_scale": 4,
+    "sha256": "ee5006f0685c1b303fc80ed0d7ec261157875efdc49de828dede928a397d87a0",
+    "source_sha256": "368d993473c2ea840d660b976448f687ce2a049e70cd07593ebc024ee2a7da34",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "charging-car",
+    "physical_page": 16,
+    "bbox": [
+      29.3,
+      339.4,
+      341.0,
+      444.3
+    ],
+    "embedded_words": true,
+    "caption": "車のシガーソケットから充電：車／※ シガーソケット充電ケーブルは別売りです。",
+    "reuse_review": "Cropped from this JP PDF: Japanese words (車, ※ note) drawn in the art.",
+    "local_path": "assets/charging-car.png",
+    "render_scale": 4,
+    "sha256": "0e3bae290a3bfa801882be711d31c666764687dd8363337a48eaeeaefdc9e5dd",
+    "source_sha256": "368d993473c2ea840d660b976448f687ce2a049e70cd07593ebc024ee2a7da34",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "contact-qr",
+    "physical_page": 20,
+    "bbox": [
+      305.1,
+      461.1,
+      338.6,
+      494.0
+    ],
+    "embedded_words": false,
+    "caption": "QRコード",
+    "reuse_review": "Cropped from this JP PDF: the back-cover QR code of this JP edition; the US contact-qr.png encodes the US contact page, so it is not reused.",
+    "local_path": "assets/contact-qr.png",
+    "render_scale": 4,
+    "sha256": "ac8de28b6fc33bac1d4a19e9df72db64f373b1911e779133c3a7d87a54613838",
+    "source_sha256": "368d993473c2ea840d660b976448f687ce2a049e70cd07593ebc024ee2a7da34",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  }
+]

@@ -1,0 +1,84 @@
+[
+  {
+    "width": 1400,
+    "actualScrollY": 3575,
+    "requestedY": 3574.5,
+    "broken": [],
+    "overflow": false,
+    "images": [
+      {
+        "src": "assets/inbox-main-current-source.png",
+        "complete": true,
+        "naturalWidth": 348,
+        "naturalHeight": 292,
+        "width": 172.796875,
+        "height": 144
+      },
+      {
+        "src": "assets/inbox-cable.png",
+        "complete": true,
+        "naturalWidth": 85,
+        "naturalHeight": 146,
+        "width": 172.796875,
+        "height": 144
+      },
+      {
+        "src": "assets/inbox-usbc-source.svg",
+        "complete": true,
+        "naturalWidth": 31,
+        "naturalHeight": 39,
+        "width": 172.796875,
+        "height": 144
+      },
+      {
+        "src": "assets/inbox-manual.png",
+        "complete": true,
+        "naturalWidth": 90,
+        "naturalHeight": 119,
+        "width": 172.796875,
+        "height": 144
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "actualScrollY": 5951,
+    "requestedY": 5952.203125,
+    "broken": [],
+    "overflow": false,
+    "images": [
+      {
+        "src": "assets/inbox-main-current-source.png",
+        "complete": true,
+        "naturalWidth": 348,
+        "naturalHeight": 292,
+        "width": 172.796875,
+        "height": 112
+      },
+      {
+        "src": "assets/inbox-cable.png",
+        "complete": true,
+        "naturalWidth": 85,
+        "naturalHeight": 146,
+        "width": 172.796875,
+        "height": 112
+      },
+      {
+        "src": "assets/inbox-usbc-source.svg",
+        "complete": true,
+        "naturalWidth": 31,
+        "naturalHeight": 39,
+        "width": 172.796875,
+        "height": 112
+      },
+      {
+        "src": "assets/inbox-manual.png",
+        "complete": true,
+        "naturalWidth": 90,
+        "naturalHeight": 119,
+        "width": 172.796875,
+        "height": 112
+      }
+    ]
+  }
+]

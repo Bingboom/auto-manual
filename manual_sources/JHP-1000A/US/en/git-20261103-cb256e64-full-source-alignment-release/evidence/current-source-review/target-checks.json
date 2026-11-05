@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "applicable_target_checks": 9,
+  "initial_passed": 8,
+  "initial_dependency_error": "Asset provenance source files absent from sparse checkout; expanded original tracked source directories and reran failed asset check successfully.",
+  "resolved_assets_check": "passed",
+  "old_chapter_test": "Not applicable: hardcodes old chapters/omits contacts; current user expressly requires full body/contact scope and no cover. Full source/page/cover check recorded separately.",
+  "cold_replay": "Exact MD/IR/CSS byte parity passed in target test."
+}

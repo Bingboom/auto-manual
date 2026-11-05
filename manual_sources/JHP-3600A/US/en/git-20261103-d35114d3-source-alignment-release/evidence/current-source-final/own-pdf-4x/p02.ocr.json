@@ -1,0 +1,66 @@
+[
+  {
+    "confidence" : 1,
+    "h" : 0.018895349048432819,
+    "text" : "us IMPORTANT",
+    "w" : 0.2396694276391006,
+    "x" : 0.095041320950225369,
+    "y" : 0.91133720926938822
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013081395285470143,
+    "text" : "Congratulations on your new Jackery HomePower 3600 Plus. Please read this manual",
+    "w" : 0.73966942763910049,
+    "x" : 0.097107438935270504,
+    "y" : 0.88226744211017194
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.016800648825509246,
+    "text" : "carefully before using the product, particularly the relevant precautions to ensure proper use.",
+    "w" : 0.8038471501048019,
+    "x" : 0.097047452957332345,
+    "y" : 0.85998914722190212
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "Keep this manual in an accessible place for frequent reference.",
+    "w" : 0.54338842872681647,
+    "x" : 0.09710742947268021,
+    "y" : 0.84285714301245807
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.014534883045014824,
+    "text" : "In compliance with laws and regulations, the right of final interpretation of this document",
+    "w" : 0.7706611447217987,
+    "x" : 0.095041330566097759,
+    "y" : 0.8197674424406709
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.017171496436709344,
+    "text" : "and all related documents of this product resides with the Company.",
+    "w" : 0.59111221437531758,
+    "x" : 0.09703347508081521,
+    "y" : 0.80082025923837463
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333419,
+    "text" : "Please kindly notice that no further notifications will be given in case of any update, revision",
+    "w" : 0.78925619151211046,
+    "x" : 0.099173567002209029,
+    "y" : 0.77904761912324716
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011904761904761862,
+    "text" : "or termination.",
+    "w" : 0.12809916757309664,
+    "x" : 0.097107443141826261,
+    "y" : 0.75999999992607181
+  }
+]

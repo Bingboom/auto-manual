@@ -19,6 +19,13 @@ physical-page, drawing-index and same-row caption bindings live in that source
 package's `source/symbol_release_admission.json`. All seven retain candidate
 status in this Git library, with no live registry promotion.
 
+Before choosing a key, look up its meaning in `canonical_groups`. An
+operator-confirmed group has one `canonical`; prefer it. A `legacy_variants`
+binding still passes only within the fixed 2% tolerance; beyond it, bind the
+canonical, which is released for the group through the listed caption, see
+[canonical symbol groups](../../../../../../code-as-doc/build_doc_guide/web-component-admission.md#operator-confirmed-canonical-symbol-groups).
+Do not add a new variant for a meaning that already has a confirmed canonical.
+
 Do not re-extract an admitted matching variant for a new model, page or language.
 When the authoritative glyph differs, document the difference and add a named
 variant to this common library. Preserve native tint and group opacity; remove
@@ -39,3 +46,5 @@ glyph-comparison gate, then reused unchanged by all three locales.
 `read-manual/person-circle-jhp3000d-native` retains the JHP-3000D US p5 native person-circle paths and tint. Existing variants were compared first; the fixed glyph/alpha gate rejects them for this source. This one acquisition is reused across EN/FR/ES and remains Git-local with no live registry promotion.
 
 `no-open-flame/crossed-fire-je2000f` is the X-over-flames glyph of the JE-2000F EU batch-1465 source (`JE-2000F_修正版.ai`, pp. 117/135/153). No existing no-open-flame variant passes the fixed glyph comparison against it, so the native paths are retained once and reused by pt, nl and pl. Git-local; no live registry promotion.
+
+Nine label marks have no manual source yet: `ce/label-hte156-ink`, `ukca/label-hte156-ink`, `ua-conformity/label-hte156-ink`, `un38-3/box-label-hte156-ink`, `triman/info-tri-packaging-hte156-ink`, `triman/info-tri-device-hte156-ink`, `ec-rep/label-hte154-ink`, `uk-rep/label-hte154-ink` and `battery-weee/crossed-bin-pb-hte154-ink`. They come from the JE-3000C and JE-2000F EU/UK labels in [`data/label_sources/EU/2kwh-icon-set-20261029`](../../../../../../data/label_sources/EU/2kwh-icon-set-20261029/README.md). The labels are reverse-printed, so these are the one operator-approved exception (2026-11-02) to keeping native tint: native paths, with only the label colours mapped to `#454546` by the recorded `ink_map`. `extract_marks.py --check` in that folder replays them byte for byte. Git-local; no live registry promotion; a manual whose authoritative artwork prints a different glyph or tint still gets its own variant.

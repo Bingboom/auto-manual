@@ -1,0 +1,232 @@
+[
+  {
+    "width": 1400,
+    "n": "accharge",
+    "requested": 14591.859375,
+    "actual": 14592
+  },
+  {
+    "width": 1400,
+    "n": "fcc",
+    "requested": 3011.4375,
+    "actual": 3011
+  },
+  {
+    "width": 1400,
+    "n": "inbox",
+    "requested": 3589.5,
+    "actual": 3590
+  },
+  {
+    "width": 1400,
+    "n": "preface",
+    "requested": 11.59375,
+    "actual": 12
+  },
+  {
+    "width": 1400,
+    "n": "overview",
+    "requested": 4559.296875,
+    "actual": 4559
+  },
+  {
+    "width": 1400,
+    "n": "safety",
+    "requested": 382.640625,
+    "actual": 383
+  },
+  {
+    "width": 1400,
+    "n": "safety2",
+    "requested": 858.90625,
+    "actual": 859
+  },
+  {
+    "width": 1400,
+    "n": "warning",
+    "requested": 1543.296875,
+    "actual": 1543
+  },
+  {
+    "width": 1400,
+    "n": "symbols",
+    "requested": 2160.109375,
+    "actual": 2160
+  },
+  {
+    "width": 1400,
+    "n": "lcd",
+    "requested": 5877.703125,
+    "actual": 5878
+  },
+  {
+    "width": 1400,
+    "n": "power",
+    "requested": 8430.265625,
+    "actual": 8430
+  },
+  {
+    "width": 1400,
+    "n": "ac",
+    "requested": 8920.25,
+    "actual": 8920
+  },
+  {
+    "width": 1400,
+    "n": "dc",
+    "requested": 9516.390625,
+    "actual": 9516
+  },
+  {
+    "width": 1400,
+    "n": "mode",
+    "requested": 11701.046875,
+    "actual": 11701
+  },
+  {
+    "width": 1400,
+    "n": "car",
+    "requested": 16149.375,
+    "actual": 16149
+  },
+  {
+    "width": 1400,
+    "n": "trouble",
+    "requested": 17259.296875,
+    "actual": 17259
+  },
+  {
+    "width": 1400,
+    "n": "contact",
+    "requested": 23053.515625,
+    "actual": 22526
+  },
+  {
+    "width": 1400,
+    "n": "app",
+    "requested": 20803.328125,
+    "actual": 20803
+  },
+  {
+    "width": 1400,
+    "failed": [],
+    "broken": [],
+    "overflow": false,
+    "backgrounds": []
+  },
+  {
+    "width": 390,
+    "n": "accharge",
+    "requested": 18705.90625,
+    "actual": 18705
+  },
+  {
+    "width": 390,
+    "n": "fcc",
+    "requested": 4999.84375,
+    "actual": 5000
+  },
+  {
+    "width": 390,
+    "n": "inbox",
+    "requested": 5966.203125,
+    "actual": 5966
+  },
+  {
+    "width": 390,
+    "n": "preface",
+    "requested": 57.390625,
+    "actual": 57
+  },
+  {
+    "width": 390,
+    "n": "overview",
+    "requested": 7217.59375,
+    "actual": 7218
+  },
+  {
+    "width": 390,
+    "n": "safety",
+    "requested": 656.5,
+    "actual": 657
+  },
+  {
+    "width": 390,
+    "n": "safety2",
+    "requested": 1605,
+    "actual": 1605
+  },
+  {
+    "width": 390,
+    "n": "warning",
+    "requested": 2841.46875,
+    "actual": 2841
+  },
+  {
+    "width": 390,
+    "n": "symbols",
+    "requested": 3769.859375,
+    "actual": 3770
+  },
+  {
+    "width": 390,
+    "n": "lcd",
+    "requested": 8343.8125,
+    "actual": 8344
+  },
+  {
+    "width": 390,
+    "n": "power",
+    "requested": 11064.875,
+    "actual": 11065
+  },
+  {
+    "width": 390,
+    "n": "ac",
+    "requested": 11495.171875,
+    "actual": 11495
+  },
+  {
+    "width": 390,
+    "n": "dc",
+    "requested": 12017.65625,
+    "actual": 12018
+  },
+  {
+    "width": 390,
+    "n": "mode",
+    "requested": 14972.453125,
+    "actual": 14972
+  },
+  {
+    "width": 390,
+    "n": "car",
+    "requested": 20456.53125,
+    "actual": 20457
+  },
+  {
+    "width": 390,
+    "n": "trouble",
+    "requested": 21770.734375,
+    "actual": 21771
+  },
+  {
+    "width": 390,
+    "n": "contact",
+    "requested": 28921.046875,
+    "actual": 28481
+  },
+  {
+    "width": 390,
+    "n": "app",
+    "requested": 26266.75,
+    "actual": 26267
+  },
+  {
+    "width": 390,
+    "failed": [],
+    "broken": [],
+    "overflow": false,
+    "backgrounds": []
+  }
+]

@@ -1,0 +1,258 @@
+{
+  "scope": "Native App download, missing inline plus and two-phone responsive canvas only; EN/FR/ES original words and phone/control artwork preserved.",
+  "publication_eligible": false,
+  "asset_reuse_decisions": [
+    {
+      "slot": "store",
+      "inventoried_roots": [
+        "target package assets",
+        "same target other locales",
+        "manual_sources",
+        "data/manual_sources",
+        "docs/renderers/web/assets",
+        "docs/templates/word_template/common_assets",
+        "docs/renderers/latex/assets",
+        "data/asset_recipes",
+        "data/asset_evidence"
+      ],
+      "candidates": [
+        "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/app_store_badges.png",
+        "docs/templates/word_template/common_assets/app/download.png"
+      ],
+      "decision": "reuse byte-identical",
+      "identity_content": "Same English App Store/Google Play badge stack and complete gray outline.",
+      "extraction_reason": "not applicable",
+      "origin_path": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/app_store_badges.png",
+      "sha256": "1c7bfea9e26bbb00aff9c48d34a7742cd15ff3f0d998f32486c7248a19c9b84d",
+      "background_policy": "Keep full badge/QR frames and source white background; no recrop",
+      "quality_policy": "Preserve source pixels/vector bytes",
+      "frozen_path": "assets/shared-app-store.png"
+    },
+    {
+      "slot": "qr",
+      "inventoried_roots": [
+        "target package assets",
+        "same target other locales",
+        "manual_sources",
+        "data/manual_sources",
+        "docs/renderers/web/assets",
+        "docs/templates/word_template/common_assets",
+        "docs/renderers/latex/assets",
+        "data/asset_recipes",
+        "data/asset_evidence"
+      ],
+      "candidates": [
+        "docs/renderers/web/assets/je1000e_sil_us_en/app_qr.png",
+        "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/app_download_qr.png",
+        "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/app_download_qr.png",
+        "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/app_download_qr.png",
+        "docs/templates/word_template/common_assets/app/download.png"
+      ],
+      "decision": "reuse byte-identical",
+      "identity_content": "Dense native QR pattern, central Jackery logo and complete rounded frame match source; 1539/1560 non-logo module interiors match, residual 21 small raster-dot sampling differences. Other package QR candidates have a visibly different, less dense matrix.",
+      "extraction_reason": "not applicable",
+      "origin_path": "docs/renderers/web/assets/je1000e_sil_us_en/app_qr.png",
+      "sha256": "52d91cbea37c6c3dc07dda2a9348ceec8f624cea62825282f5777dc753e5ad87",
+      "background_policy": "Keep full badge/QR frames and source white background; no recrop",
+      "quality_policy": "QR displayed at max6.5rem (104 CSS px); existing158x161 image is adequate at this intended size.",
+      "frozen_path": "assets/shared-app-qr.png"
+    },
+    {
+      "slot": "plus",
+      "inventoried_roots": [
+        "target package assets",
+        "same target other locales",
+        "manual_sources",
+        "data/manual_sources",
+        "docs/renderers/web/assets",
+        "docs/templates/word_template/common_assets",
+        "docs/renderers/latex/assets",
+        "data/asset_recipes",
+        "data/asset_evidence"
+      ],
+      "candidates": [
+        "docs/templates/word_template/common_assets/app/add_device_plus.svg",
+        "docs/templates/word_template/common_assets/app/add_device_plus.png"
+      ],
+      "decision": "reuse byte-identical",
+      "identity_content": "Existing transparent circular plus icon has the same add-device function and circle/plus shape; shared icon face and stroke are retained unchanged.",
+      "extraction_reason": "not applicable",
+      "origin_path": "docs/templates/word_template/common_assets/app/add_device_plus.svg",
+      "sha256": "3e957c6dedf804a955232acdc40a4e3f308efbc783f189feb98bb3a69458ef52",
+      "background_policy": "Transparent standalone symbol",
+      "quality_policy": "Preserve source pixels/vector bytes",
+      "frozen_path": "assets/shared-app-plus.svg"
+    },
+    {
+      "slot": "app-add",
+      "candidates": [
+        "current target app-add-p22/p42/p62.svg",
+        "docs/templates/word_template/common_assets/app/add_device.png",
+        "docs/templates/word_template/common_assets/app/je1000f_us/add_device_je1000f_us.png",
+        "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/app_add.png",
+        "docs/renderers/web/assets/je3600a_eu_en/app_add_device_panel.png",
+        "docs/renderers/web/assets/je3000c_eu_en/setup_add_device.png"
+      ],
+      "decision": "source-native extraction after rejected reuse candidates",
+      "identity_content": "Original target SVGs preserve phones but include a strip of the next gray control panel. Japanese common screenshot has a different UI language/version. US template screenshot lacks native referral banner. Other matching UI PNGs bake step numbers or unrelated control panels, and do not retain all three native locale geometries with live labels.",
+      "extraction_reason": "No suitable byte-identical complete native phone-only asset with editable captions; remove neighboring control-panel pixels while preserving all native phone frames and UI.",
+      "background_policy": "Retain every native phone image, source frame path, status bar and bottom UI; crop ends at least1pt before next panel starts. Strip only external native text through existing native_art_svg selection.",
+      "origin_path": "authoritative frozen PDF physical22/42/62 via tools.asset_pipeline.native_svg.native_art_svg"
+    },
+    {
+      "slot": "app-controls",
+      "candidates": [
+        "current target assets in EN/FR/ES"
+      ],
+      "decision": "reuse existing target artwork unchanged",
+      "identity_content": "Native gray panel, white device face, round button frames and full leaders already match.",
+      "extraction_reason": "not applicable",
+      "background_policy": "Preserve full native artwork",
+      "origin_path": "assets/app-controls-p22.svg"
+    }
+  ],
+  "qr_identity": {
+    "method": "41x41 QR module interior sampling; grayscale threshold150; sampling center +/-22% module pitch avoids small raster dot aliasing; omit central logo only",
+    "sampled_modules": 1560,
+    "disagreeing_modules": 21,
+    "native_embedded_image_xref": 6613,
+    "candidate": "docs/renderers/web/assets/je1000e_sil_us_en/app_qr.png",
+    "native_sample_bounds": [
+      17,
+      17,
+      381,
+      381
+    ],
+    "candidate_sample_bounds": [
+      13.5,
+      14.5,
+      142,
+      143
+    ]
+  },
+  "locales": {
+    "en": {
+      "physical_page": 22,
+      "native_download_columns": [
+        {
+          "role": "store",
+          "html": "<span class=\"ht-source-line\">Search for \"Jackery\" in Google Play or App </span><span class=\"ht-source-line\">Store to install the App. After that, you can </span><span class=\"ht-source-line\">register and log in. </span>",
+          "text": "Search for \"Jackery\" in Google Play or App Store to install the App. After that, you can register and log in."
+        },
+        {
+          "role": "qr",
+          "html": "<span class=\"ht-source-line\">Alternatively, scan the QR </span><span class=\"ht-source-line\">code below to download and </span><span class=\"ht-source-line\">install the App.</span>",
+          "text": "Alternatively, scan the QR code below to download and install the App."
+        }
+      ],
+      "native_step_2_1": "2.1 Click the button          to add your device;",
+      "phone_art_ref": "assets/app-phones-native-p22.svg",
+      "phone_art_sha256": "fb99bd1e0cbf87d05a94d6bd17d8d441e9e186dd6d245a7715a2b308dc97e38c",
+      "phone_crop": [
+        107.32649230957031,
+        214.18109130859375,
+        267.46319580078125,
+        379.2
+      ],
+      "preserved_native_phone_bboxes": [
+        [
+          197.5575408935547,
+          215.9848175048828,
+          265.8700256347656,
+          363.90411376953125
+        ],
+        [
+          108.9083251953125,
+          215.8717498779297,
+          177.4247283935547,
+          364.23260498046875
+        ]
+      ]
+    },
+    "fr": {
+      "physical_page": 42,
+      "native_download_columns": [
+        {
+          "role": "store",
+          "html": "<span class=\"ht-source-line\">Recherchez « Jackery » dans Google Play </span><span class=\"ht-source-line\">ou dans l’App Store pour installer </span><span class=\"ht-source-line\">l’application. Une fois que c’est fait, vous </span><span class=\"ht-source-line\">pouvez vous inscrire et vous connecter.</span>",
+          "text": "Recherchez « Jackery » dans Google Play ou dans l’App Store pour installer l’application. Une fois que c’est fait, vous pouvez vous inscrire et vous connecter."
+        },
+        {
+          "role": "qr",
+          "html": "<span class=\"ht-source-line\">Vous pouvez également scanner le </span><span class=\"ht-source-line\">code QR ci-dessous pour télécharger et </span><span class=\"ht-source-line\">installer l'application.</span>",
+          "text": "Vous pouvez également scanner le code QR ci-dessous pour télécharger et installer l'application."
+        }
+      ],
+      "native_step_2_1": "2.1 Cliquez sur le bouton         pour ajouter un appareil.",
+      "phone_art_ref": "assets/app-phones-native-p42.svg",
+      "phone_art_sha256": "e3b04b80da814f2e22621596aec83412720ab8f51736eff83fb2d3dcbc40192b",
+      "phone_crop": [
+        106.63520050048828,
+        224.03530883789062,
+        260.46710205078125,
+        381.3
+      ],
+      "preserved_native_phone_bboxes": [
+        [
+          193.30801391601562,
+          225.80690002441406,
+          258.8966369628906,
+          367.828125
+        ],
+        [
+          108.19355773925781,
+          225.69837951660156,
+          173.97796630859375,
+          368.1435546875
+        ]
+      ]
+    },
+    "es": {
+      "physical_page": 62,
+      "native_download_columns": [
+        {
+          "role": "store",
+          "html": "<span class=\"ht-source-line\">Buscar \"Jackery\" en Google Play o en la App </span><span class=\"ht-source-line\">Store para instalar la aplicación. Después, </span><span class=\"ht-source-line\">podrá registrarte e iniciar sesión.</span>",
+          "text": "Buscar \"Jackery\" en Google Play o en la App Store para instalar la aplicación. Después, podrá registrarte e iniciar sesión."
+        },
+        {
+          "role": "qr",
+          "html": "<span class=\"ht-source-line\">Alternativamente, escanee el </span><span class=\"ht-source-line\">código QR a continuación para </span><span class=\"ht-source-line\">descargar e instalar la app.</span>",
+          "text": "Alternativamente, escanee el código QR a continuación para descargar e instalar la app."
+        }
+      ],
+      "native_step_2_1": "2.1 Haga clic en el botón Añadir dispositivo        ;",
+      "phone_art_ref": "assets/app-phones-native-p62.svg",
+      "phone_art_sha256": "c079f503daa1a5e5ac23c19b61b95af86913e32d26dc59dc9c3860c22ac4fe6e",
+      "phone_crop": [
+        98.03280639648438,
+        225.3988037109375,
+        268.978271484375,
+        384.2
+      ],
+      "preserved_native_phone_bboxes": [
+        [
+          202.46351623535156,
+          227.15464782714844,
+          267.41375732421875,
+          367.7935791015625
+        ],
+        [
+          99.58580780029297,
+          227.05543518066406,
+          164.7299346923828,
+          368.11419677734375
+        ]
+      ]
+    }
+  },
+  "layout": {
+    "download": "Native left store/right QR columns; original text flows below each complete frame.",
+    "phones": "Complete native phone-only SVGs, original native x positions and live2.1/2.2 labels; original transforms, frames and UI preserved. Next panel gray strip excluded and640px dense canvas removed.",
+    "plus": "Reuse existing shared transparent SVG in native paragraph gap; preserve all wording and punctuation."
+  },
+  "correction_evidence": {
+    "scroll_canvas": "Dense640px causes horizontal scrolling in narrow original browser; removed.",
+    "gray_strip": "Still visible after removing scrolling. Native next control panel begins at380.2437/382.3235/385.2878pt and overlaps original phone crops. Separate artwork defect."
+  }
+}

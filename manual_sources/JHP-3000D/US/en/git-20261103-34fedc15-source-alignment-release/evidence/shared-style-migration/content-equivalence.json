@@ -1,0 +1,18 @@
+{
+  "baseline": "Imported root release, retained only as regression comparison; explicitly NOT content authority",
+  "authority": "source/review-reference.pdf",
+  "source_sha256": "34fedc156d52e8a50ca65d23327d323b3647aee03bd6b6b4aa1d681723e249dc",
+  "only_added_native_body_text": "USB-C Cable (current source p6 missing item)",
+  "other_native_body_alphanumeric_sequence_equal": true,
+  "fault_code_remedies_equal": true,
+  "normalization": "NFKC alphanumeric; code table canonicalized separately. Native source dash markers also restored. Current input rows merged without text changes.",
+  "unchanged_common_asset_count": 60,
+  "replaced_rendered_assets": [
+    "power.svg -> power-source-art.svg (native source pointer)",
+    "ac-charge.svg -> ac-charge-current-source.svg (current free-plug source)"
+  ],
+  "added_assets": [
+    "app-plus-source.svg",
+    "inbox-usbc-source.svg"
+  ]
+}

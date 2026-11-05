@@ -1,0 +1,236 @@
+[
+  {
+    "slot": "overview",
+    "physical_page": 3,
+    "bbox": [
+      21.5,
+      33.6,
+      346.0,
+      287.2
+    ],
+    "caption": "各部の名称: 主電源ボタン、シガーソケット出力ポート、USB-A出力ポート、USB-C出力ポート、USB-C入力/出力ポート、DC/USB出力ボタン、LCDディスプレイ、LEDライト、LEDライトボタン、AC出力ポート、AC出力ボタン、AC入力ポート",
+    "embedded_words": true,
+    "reuse_review": "No JE-300B (Jackery ポータブル電源 300 Plus) package exists in the repo; the same-generation JE-300C/JE-300E US packages show a different product (Explorer 300 / 300D) (manual_sources/JE-300C/US/en/git-20261027-a1128b25/assets/overview-front.png has English labels and a different front panel); the panel carries Japanese callout labels, so it is cropped from this print just below the chapter heading.",
+    "local_path": "assets/overview.png",
+    "render_scale": 4,
+    "sha256": "0cced5f207084662dd37c5016fece05d89d0b1bbc850f712415768ccd3be8aff",
+    "source_sha256": "456bb360c775dce0b13f4c24cce564ebf093a371963de431340e58c8d0b7087e",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "lcd-map",
+    "physical_page": 4,
+    "bbox": [
+      21.0,
+      174.2,
+      347.0,
+      307.5
+    ],
+    "caption": "液晶画面 ①〜⑰",
+    "embedded_words": true,
+    "reuse_review": "No JE-300B (Jackery ポータブル電源 300 Plus) package exists in the repo; the same-generation JE-300C/JE-300E US packages show a different product (Explorer 300 / 300D); manual_sources/JE-300C/US/en/git-20261027-a1128b25/assets/lcd-display.png shows the JE-300C LCD (no Wi-Fi/Bluetooth, different segments), so this print's numbered LCD map is cropped.",
+    "local_path": "assets/lcd-map.png",
+    "render_scale": 4,
+    "sha256": "716ee7e2e22266a79baa6b83c578b1b56d7e9746f1c930c677613ee7da4b2257",
+    "source_sha256": "456bb360c775dce0b13f4c24cce564ebf093a371963de431340e58c8d0b7087e",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "charging-ac",
+    "physical_page": 6,
+    "bbox": [
+      120.0,
+      367.0,
+      266.5,
+      462.5
+    ],
+    "caption": "AC充電ケーブル / ポータブル電源 300 Plus",
+    "embedded_words": true,
+    "reuse_review": "No JE-300B (Jackery ポータブル電源 300 Plus) package exists in the repo; the same-generation JE-300C/JE-300E US packages show a different product (Explorer 300 / 300D); manual_sources/JE-300C/US/en/git-20261027-a1128b25/assets/charging-ac.png shows a different unit with English labels; cropped with its Japanese labels.",
+    "local_path": "assets/charging-ac.png",
+    "render_scale": 4,
+    "sha256": "78c974af29aca8a21430fbcbdb5c665f7398b77d190155f41719e4c98b60a54e",
+    "source_sha256": "456bb360c775dce0b13f4c24cce564ebf093a371963de431340e58c8d0b7087e",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "charging-solar",
+    "physical_page": 7,
+    "bbox": [
+      30.0,
+      93.0,
+      329.0,
+      168.5
+    ],
+    "caption": "DC8020→USB-C ケーブル【別売り】、DC8020ポート、USB-C入力ポート、ポータブル電源 300 Plus",
+    "embedded_words": true,
+    "reuse_review": "No JE-300B (Jackery ポータブル電源 300 Plus) package exists in the repo; the same-generation JE-300C/JE-300E US packages show a different product (Explorer 300 / 300D); manual_sources/JE-300C/US/en/git-20261027-a1128b25/assets/charging-solar.png shows the JE-300C DC8020 input and English labels; this print shows the SolarSaga 40 Mini via the USB-C input, so it is cropped.",
+    "local_path": "assets/charging-solar.png",
+    "render_scale": 4,
+    "sha256": "4aed844f14b83390e1f194f0ec00d626b9af4d0790eb0e2313db9acbec001fe2",
+    "source_sha256": "456bb360c775dce0b13f4c24cce564ebf093a371963de431340e58c8d0b7087e",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "charging-car",
+    "physical_page": 7,
+    "bbox": [
+      120.0,
+      299.5,
+      249.0,
+      374.0
+    ],
+    "caption": "ポータブル電源 300 Plus (シガーソケット充電)",
+    "embedded_words": true,
+    "reuse_review": "No JE-300B (Jackery ポータブル電源 300 Plus) package exists in the repo; the same-generation JE-300C/JE-300E US packages show a different product (Explorer 300 / 300D); manual_sources/JE-300C/US/en/git-20261027-a1128b25/assets/charging-car.png shows a different unit; cropped with its Japanese label.",
+    "local_path": "assets/charging-car.png",
+    "render_scale": 4,
+    "sha256": "eea5f7474f3febc3b4e67d408956d55eadbd23029c1fd6ff7c7e3634b60abcbb",
+    "source_sha256": "456bb360c775dce0b13f4c24cce564ebf093a371963de431340e58c8d0b7087e",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "inbox-unit",
+    "physical_page": 11,
+    "bbox": [
+      45.5,
+      397.5,
+      89.0,
+      442.0
+    ],
+    "caption": "本体",
+    "embedded_words": false,
+    "reuse_review": "No JE-300B (Jackery ポータブル電源 300 Plus) package exists in the repo; the same-generation JE-300C/JE-300E US packages show a different product (Explorer 300 / 300D); manual_sources/JE-300C/US/en/git-20261027-a1128b25/assets/inbox-unit.png is the Explorer 300 (JE-300C) body, a different product from the 300 Plus drawn here; cropped.",
+    "local_path": "assets/inbox-unit.png",
+    "render_scale": 4,
+    "sha256": "3b0666779610180e3cce1f40cfd118ad6e47bb4c3cc5a31a90108a56b313b7b4",
+    "source_sha256": "456bb360c775dce0b13f4c24cce564ebf093a371963de431340e58c8d0b7087e",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "inbox-ac-cable",
+    "physical_page": 11,
+    "bbox": [
+      129.5,
+      396.5,
+      161.0,
+      439.0
+    ],
+    "caption": "AC充電ケーブル",
+    "embedded_words": false,
+    "reuse_review": "Compared with manual_sources/JE-300C/US/en/git-20261027-a1128b25/assets/inbox-ac-cable.png (text-free): the JE-300C card shows a different cable drawing and framing, so this print's text-free panel is cropped rather than reused.",
+    "local_path": "assets/inbox-ac-cable.png",
+    "render_scale": 4,
+    "sha256": "fbab666613d6bc04561044fd4f524635dccfb36f526231cd57530a8d5e54433e",
+    "source_sha256": "456bb360c775dce0b13f4c24cce564ebf093a371963de431340e58c8d0b7087e",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "inbox-user-manual",
+    "physical_page": 11,
+    "bbox": [
+      210.0,
+      399.5,
+      242.0,
+      443.5
+    ],
+    "caption": "取扱説明書",
+    "embedded_words": true,
+    "reuse_review": "The thumbnail is this JE-300B Japanese manual cover (Japanese words); no existing asset shows it, so it is cropped.",
+    "local_path": "assets/inbox-user-manual.png",
+    "render_scale": 4,
+    "sha256": "37ac9d50ef51fbf9c91857a1d7a0bd6698c87a636cf01f50d54f02581a64834a",
+    "source_sha256": "456bb360c775dce0b13f4c24cce564ebf093a371963de431340e58c8d0b7087e",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "inbox-warranty",
+    "physical_page": 11,
+    "bbox": [
+      290.5,
+      398.0,
+      322.0,
+      441.5
+    ],
+    "caption": "保証案内書",
+    "embedded_words": true,
+    "reuse_review": "Japanese warranty-guide thumbnail (Japanese words); no existing asset shows it, so it is cropped.",
+    "local_path": "assets/inbox-warranty.png",
+    "render_scale": 4,
+    "sha256": "7943929e85aadb1b5a0bf59fcd4baa0d3d63006063c396c0af9041008a879220",
+    "source_sha256": "456bb360c775dce0b13f4c24cce564ebf093a371963de431340e58c8d0b7087e",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "app-store-badges",
+    "physical_page": 12,
+    "bbox": [
+      21.0,
+      466.0,
+      171.5,
+      491.5
+    ],
+    "caption": "App Store / Google Play",
+    "embedded_words": true,
+    "reuse_review": "Store badges printed beside the app download sentence; manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets/app-store.png is a different badge arrangement tied to a QR panel, so this print's two badges are cropped.",
+    "local_path": "assets/app-store-badges.png",
+    "render_scale": 4,
+    "sha256": "1fe61292c9f3c564644b7b942ec525167dc5f53f17fa1a9ad0f3ec1fd1ec5c1d",
+    "source_sha256": "456bb360c775dce0b13f4c24cce564ebf093a371963de431340e58c8d0b7087e",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "app-add",
+    "physical_page": 13,
+    "bbox": [
+      91.0,
+      146.0,
+      272.0,
+      315.5
+    ],
+    "caption": "2.1 / 2.2 アプリ画面",
+    "embedded_words": true,
+    "reuse_review": "App screenshot frames with Japanese UI words and step captions; manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets/app-add.png is another model's JP edition, and the reuse order crops Japanese-worded panels from this print. Phone frames kept complete.",
+    "local_path": "assets/app-add.png",
+    "render_scale": 4,
+    "sha256": "159b9c0c5094a57162032587cc442c4d1b6bdce950ed4ebe3579d44c2b6e815f",
+    "source_sha256": "456bb360c775dce0b13f4c24cce564ebf093a371963de431340e58c8d0b7087e",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "app-control",
+    "physical_page": 13,
+    "bbox": [
+      64.5,
+      355.0,
+      306.0,
+      437.0
+    ],
+    "caption": "DC/USBボタン、ACボタン、POWERボタン",
+    "embedded_words": true,
+    "reuse_review": "Control-panel callout with Japanese labels; cropped from this print (manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets/app-control.png belongs to another model's edition).",
+    "local_path": "assets/app-control.png",
+    "render_scale": 4,
+    "sha256": "d0709184dcf1d2ed59b58f1721197bf374093c56139889b75277b36623da5f1c",
+    "source_sha256": "456bb360c775dce0b13f4c24cce564ebf093a371963de431340e58c8d0b7087e",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "app-results",
+    "physical_page": 14,
+    "bbox": [
+      38.0,
+      116.5,
+      322.0,
+      287.5
+    ],
+    "caption": "2.3 / 2.4 / 2.5 アプリ画面",
+    "embedded_words": true,
+    "reuse_review": "App screenshot frames with Japanese UI words and step captions; cropped from this print with complete phone frames (manual_sources/JE-1000D/JP/ja/git-20261026-00c43a89-v2/assets/app-results.png belongs to another model's edition).",
+    "local_path": "assets/app-results.png",
+    "render_scale": 4,
+    "sha256": "ccdfae41d3cd940b4d04e1f5c50978c24880fd600b81183c8280df3904ff17e8",
+    "source_sha256": "456bb360c775dce0b13f4c24cce564ebf093a371963de431340e58c8d0b7087e",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  }
+]

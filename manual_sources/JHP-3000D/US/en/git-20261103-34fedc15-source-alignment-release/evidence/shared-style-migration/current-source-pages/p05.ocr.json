@@ -1,0 +1,434 @@
+[
+  {
+    "confidence" : 1,
+    "h" : 0.030476190476190546,
+    "text" : "A WARNING",
+    "w" : 0.18699186991869921,
+    "x" : 0.089430895347786768,
+    "y" : 0.89523809530158727
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.032380952380952399,
+    "text" : "A DANGER",
+    "w" : 0.17073170731707318,
+    "x" : 0.089430895731707288,
+    "y" : 0.81714285719047619
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "mproper connection of the equipment grounding conductor is able to result in o",
+    "w" : 0.5934959349593496,
+    "x" : 0.30081299823848268,
+    "y" : 0.92571428565079361
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571344,
+    "text" : "isk of electric shock. Check with a qualified electrician if you are in doubt as to",
+    "w" : 0.58536585365853655,
+    "x" : 0.30081299972899755,
+    "y" : 0.91619047638095241
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "whether the product is properly grounded. Do not modify the plug provided with",
+    "w" : 0.61246612466124661,
+    "x" : 0.28997288952122896,
+    "y" : 0.90285714279365081
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.00952380952380949,
+    "text" : "the product - if it will not fit the outlet, have a proper outlet installed by a",
+    "w" : 0.56097560975609762,
+    "x" : 0.29268293617886149,
+    "y" : 0.89333333336507936
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "qualified electrician.",
+    "w" : 0.15718156147778517,
+    "x" : 0.29539296171819851,
+    "y" : 0.8800000000634921
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333419,
+    "text" : "This device is intended for indoor use only (Please place this device in a similar",
+    "w" : 0.5934959349593496,
+    "x" : 0.29539295986449859,
+    "y" : 0.84190476199999997
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.015238095238095273,
+    "text" : "indoor environment when using it outdoors, e.g., Home, RVs, tents, cabins, etc.).",
+    "w" : 0.59891598915989164,
+    "x" : 0.29268291684733549,
+    "y" : 0.83047619041269838
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.00952380952380949,
+    "text" : "This device is not waterproof or dustproof. Keep away from rain and hum",
+    "w" : 0.54471544715447173,
+    "x" : 0.31707316392276436,
+    "y" : 0.81904761897619049
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.00952380952380949,
+    "text" : "vironments durina us",
+    "w" : 0.15718157181571812,
+    "x" : 0.31165311658762423,
+    "y" : 0.80952380954365077
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.017142857142857126,
+    "text" : "USER MAINTENANCE INSTRUCTIONS",
+    "w" : 0.36314363143631434,
+    "x" : 0.092140925948509395,
+    "y" : 0.75809523816666669
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "During the lifecycle of energy storage products, a certain degree of capacity and energy degradation is",
+    "w" : 0.77235772357723587,
+    "x" : 0.081300815311653021,
+    "y" : 0.73142857120634919
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "expected. As the number of charge and discharge cycles increases and storage time extends, this degradation",
+    "w" : 0.82655826558265577,
+    "x" : 0.081300811822493213,
+    "y" : 0.71619047602380959
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571344,
+    "text" : "will gradually intensify, which is a normal phenomenon consistent with the natural aging of battery cells.",
+    "w" : 0.76693766937669372,
+    "x" : 0.081300825790424178,
+    "y" : 0.70285714292063495
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.020952380952380945,
+    "text" : "MEANING OF SYMBOLS",
+    "w" : 0.35230352303523027,
+    "x" : 0.092140924345076744,
+    "y" : 0.6438095238888889
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.015545201982770651,
+    "text" : "Symbol",
+    "w" : 0.078710194202619516,
+    "x" : 0.1002112995457704,
+    "y" : 0.60175120862381903
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.01904761904761898,
+    "text" : "A WARNING",
+    "w" : 0.15718157181571818,
+    "x" : 0.10298102868757264,
+    "y" : 0.5580952380136055
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.019606811886741959,
+    "text" : "A CAUTION",
+    "w" : 0.15190156559310952,
+    "x" : 0.10291100708670396,
+    "y" : 0.51019659414720375
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.019047619047619091,
+    "text" : "A",
+    "w" : 0.027100271002710036,
+    "x" : 0.10569105710414248,
+    "y" : 0.46095238106122449
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.017142857142857126,
+    "text" : "NOTE",
+    "w" : 0.073170731707317083,
+    "x" : 0.15447154380081304,
+    "y" : 0.46095238088095236
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.017142857142857237,
+    "text" : "TIP",
+    "w" : 0.043360433604336029,
+    "x" : 0.17073170785907857,
+    "y" : 0.41523809535714284
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.014624764578683003,
+    "text" : "Meaning",
+    "w" : 0.090617999151793305,
+    "x" : 0.30021528699388433,
+    "y" : 0.60215867936571477
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "Hazardous practices that may result in severe injury, death, and\/or property",
+    "w" : 0.56368563685636852,
+    "x" : 0.30352303992773255,
+    "y" : 0.57142857150793658
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333419,
+    "text" : "damage.",
+    "w" : 0.070460704607046121,
+    "x" : 0.3008130070460705,
+    "y" : 0.55619047641269836
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "Hazardous practices that may result in personal injury and\/or property",
+    "w" : 0.5257452574525745,
+    "x" : 0.29810298628726273,
+    "y" : 0.52190476198095237
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571344,
+    "text" : "damage.",
+    "w" : 0.070460704607046065,
+    "x" : 0.29810298173441729,
+    "y" : 0.50666666674285721
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "Hazardous practices that may result in equipment damage, data loss,",
+    "w" : 0.52032520325203246,
+    "x" : 0.30081299945799495,
+    "y" : 0.47428571422222221
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "performance deterioration, or unanticipated results.",
+    "w" : 0.38482384823848237,
+    "x" : 0.30081300207768769,
+    "y" : 0.45714285692063494
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "Supplements the important information or operation tips in the text.",
+    "w" : 0.50677506775067749,
+    "x" : 0.30081301657633214,
+    "y" : 0.4171428571746032
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.017387201218378001,
+    "text" : "Symbol",
+    "w" : 0.081404424941313627,
+    "x" : 0.094799142270849499,
+    "y" : 0.36749687541067533
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.019047619047619091,
+    "text" : "Meaning",
+    "w" : 0.092140921409214094,
+    "x" : 0.19783197750677511,
+    "y" : 0.3676190478095237
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "Warning and Caution Symbols. Must",
+    "w" : 0.25745257452574521,
+    "x" : 0.19512195551038827,
+    "y" : 0.34476190485714298
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "read to alert individuals to potential",
+    "w" : 0.2547425474254742,
+    "x" : 0.19512195546522118,
+    "y" : 0.33142857158730166
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "hazards or risks.",
+    "w" : 0.11382113821138212,
+    "x" : 0.19512195264227639,
+    "y" : 0.32000000004761908
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.01904761904761898,
+    "text" : "Symbol Meaning",
+    "w" : 0.18699186991869921,
+    "x" : 0.51490514718157188,
+    "y" : 0.36761904754285712
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571344,
+    "text" : "Do not dismantle the product.",
+    "w" : 0.21138211382113825,
+    "x" : 0.61246612677506773,
+    "y" : 0.33142857150476202
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "Read the user manual before operation.",
+    "w" : 0.27913279132791324,
+    "x" : 0.19783198111111108,
+    "y" : 0.28000000007619053
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571344,
+    "text" : "Keep the product away from fire.",
+    "w" : 0.22764227642276424,
+    "x" : 0.61246612750677498,
+    "y" : 0.27809523819047621
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "Keep away from children.",
+    "w" : 0.17886178861788615,
+    "x" : 0.19512195345528449,
+    "y" : 0.22476190483333336
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "This symbol indicates that a lithium-ion",
+    "w" : 0.27371273712737132,
+    "x" : 0.19783198105691049,
+    "y" : 0.17714285721904766
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "(Li-ion) battery is inside the product",
+    "w" : 0.25203252032520329,
+    "x" : 0.19783198147018963,
+    "y" : 0.16190476202380955
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "and should be disposed of or recycled",
+    "w" : 0.26829268292682923,
+    "x" : 0.19783197420957555,
+    "y" : 0.14857142834920634
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "properly.",
+    "w" : 0.062330623306233068,
+    "x" : 0.19783197909891598,
+    "y" : 0.13714285719047625
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "This symbol indicates that the product",
+    "w" : 0.2710027100271003,
+    "x" : 0.60975609448961166,
+    "y" : 0.23428571406349208
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "shall not be disposed of as household",
+    "w" : 0.26558265582655827,
+    "x" : 0.61246612798102962,
+    "y" : 0.2228571429523809
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "waste, and should be delivered to a",
+    "w" : 0.2547425474254742,
+    "x" : 0.60975610180668471,
+    "y" : 0.20952380958730155
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.01523809478396454,
+    "text" : "designated collection facility for recycling.",
+    "w" : 0.29539295392953935,
+    "x" : 0.6097560940831076,
+    "y" : 0.19238095258111487
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "Proper disposal and recycling can help",
+    "w" : 0.2710027100271003,
+    "x" : 0.61246612737127371,
+    "y" : 0.18095238104761902
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "protect the environment. For more",
+    "w" : 0.2384823848238482,
+    "x" : 0.61246612704607051,
+    "y" : 0.16761904771428571
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.013333333333333308,
+    "text" : "information about the disposal and",
+    "w" : 0.25203252032520329,
+    "x" : 0.6097561017615174,
+    "y" : 0.15619047628571436
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571344,
+    "text" : "recycling of this product, contact your local",
+    "w" : 0.30352303523035229,
+    "x" : 0.6097560925022586,
+    "y" : 0.14095238088888895
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.011428571428571455,
+    "text" : "community, disposal service, or dealer.",
+    "w" : 0.26829268292682928,
+    "x" : 0.61246612913279119,
+    "y" : 0.12952380958730159
+  },
+  {
+    "confidence" : 1,
+    "h" : 0.017142857142857237,
+    "text" : "02",
+    "w" : 0.027100271002709952,
+    "x" : 0.90243902439024393,
+    "y" : 0.022857143071428498
+  }
+]

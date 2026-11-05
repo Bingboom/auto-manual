@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "model": "JE-500A",
+  "baseline_commit": "741d35b9",
+  "style_audit": {
+    "profile": "prepared-document-shared-styles/v1",
+    "applicable": true,
+    "model": "JE-500A",
+    "region": "US",
+    "language": "en",
+    "declared_tables": 3,
+    "issues": []
+  },
+  "audit_tool": "/Users/hello-tech-team/.codex/worktrees/manual-source-alignment/auto-manual-codex/tools/web/prepared_style_audit.py",
+  "audit_tool_sha256": "1600f5efaa5d512ee7434140b6eab7c07dff6a30b6a4cac27b23e763d8c77121",
+  "normalized_body_characters": 16454,
+  "body_text_unchanged": true,
+  "all_original_asset_bytes_unchanged": true,
+  "cold_files_identical": 49,
+  "source_approval_rebound": true,
+  "publication_eligible": true,
+  "pending_source_review": [],
+  "checks": "Strict Sphinx; exact latest shared style audit; independent cold replay; source-art hash parity; body parity excluding whitespace/heading-markup/decorative warning font character now replaced by original SVG; desktop/mobile changed-block screenshots and file request/background checks. Prior full-body content acceptance remains valid.",
+  "changes": [
+    "Layout-only safety tables replaced by native two-column and risk/warning containers on existing shared styles.",
+    "Custom style hooks moved to data attributes; source stylesheet now geometry only.",
+    "Printed signal table preserves original SVG via documented hash-bound native table exception, as shared signal component supports only a font glyph.",
+    "Existing contact company text creates a separate heading boundary outside the last warranty panel."
+  ],
+  "supersedes": "audit/release-conversion/review.json visible-byte parity describes the initial release copy before this shared-style normalization."
+}

@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="10.529999999999994" height="12.870000000000005" viewBox="59.07 268.4 10.529999999999994 12.870000000000005"><defs>
+<clipPath id="clip_1">
+<path transform="matrix(1,0,0,-1,-2698.8072,3947.325)" d="M2698.8072 3422.916H3067.311V3947.325H2698.8072Z" />
+</clipPath>
+<clipPath id="clip_2">
+<path transform="matrix(1,0,0,-1,-2698.8072,3947.325)" d="M0 0H8032.45V5167.44H0Z" />
+</clipPath>
+<clipPath id="clip_245">
+<path transform="matrix(1,0,0,-1,-2698.8072,3947.325)" d="M0 5167.443H8032.453V0H0Z" />
+</clipPath>
+</defs>
+<g><g clip-path="url(#clip_1)"><g clip-path="url(#clip_2)"><g inkscape:groupmode="layer" inkscape:label="图层 3"><g clip-path="url(#clip_245)"><path transform="matrix(1,0,0,-1,66.11084,275.08204)" d="M0 0 2.48-1.714C2.695-1.867 2.695-2.117 2.48-2.265L-1.868-5.277C-2.216-5.519-2.803-5.344-2.803-5V-1.164L-5.551-2.961C-5.59-2.989-5.652-2.984-5.692-2.958L-6.471-2.371C-6.51-2.343-6.505-2.3-6.468-2.271L-2.809 .121V.484L-6.471 2.903C-6.51 2.931-6.513 2.976-6.474 3.002L-5.692 3.588C-5.652 3.615-5.59 3.618-5.551 3.591L-2.807 1.777V5.56C-2.807 5.903-2.216 6.079-1.869 5.838L2.48 2.824C2.701 2.673 2.701 2.423 2.48 2.274L0 .556C-.216 .4-.216 .151 0 0M-1.468-.459H-1.463V-3.676L.954-1.999-1.42-.431ZM-1.468 4.233V1.019L-1.454 1.008 .934 2.569Z" fill="#49494b" fill-rule="evenodd" />
+</g></g></g></g></g></svg>

@@ -1,0 +1,9 @@
+{
+  "changes": [
+    "manual_jhp3000d_us_en.md",
+    "manual.ir.json",
+    "_static/source_presentation.css"
+  ],
+  "visible_source_change": "Trailing whitespace removed from CSS and its inline Markdown copy only. CSS tokens and native IR.pages identical; no visual/content changes.",
+  "final_output": "style-3000d-final-v2-md"
+}

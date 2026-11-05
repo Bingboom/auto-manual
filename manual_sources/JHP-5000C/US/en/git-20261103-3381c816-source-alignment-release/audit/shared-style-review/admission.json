@@ -1,0 +1,98 @@
+{
+  "styles": {
+    "profile": "prepared-document-shared-styles/v1",
+    "applicable": true,
+    "model": "JHP-5000C",
+    "region": "US",
+    "language": "en",
+    "declared_tables": 4,
+    "issues": []
+  },
+  "caption_frames": [
+    {
+      "source_ref": "native-pdf/page-10/ac-output",
+      "asset_ref": "assets/ac-output-source-framed.svg",
+      "labels": [
+        {
+          "line": 0,
+          "status": "passed",
+          "baked_fill_fraction": 0.0
+        }
+      ]
+    },
+    {
+      "source_ref": "native-pdf/page-11/usb-output",
+      "asset_ref": "assets/usb-output-source-framed.svg",
+      "labels": [
+        {
+          "line": 0,
+          "status": "passed",
+          "baked_fill_fraction": 0.0
+        }
+      ]
+    },
+    {
+      "source_ref": "native-pdf/page-11/dc-output",
+      "asset_ref": "assets/dc-output-source-framed.svg",
+      "labels": [
+        {
+          "line": 0,
+          "status": "passed",
+          "baked_fill_fraction": 0.017595
+        }
+      ]
+    },
+    {
+      "source_ref": "native-pdf/page-18/car",
+      "asset_ref": "assets/car.svg",
+      "labels": [
+        {
+          "line": 1,
+          "status": "same-tone-visual-review"
+        }
+      ]
+    }
+  ],
+  "symbol_rows": [
+    {
+      "asset_ref": "assets/symbol_warning_triangle.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.017332
+    },
+    {
+      "asset_ref": "assets/symbol_electric_shock.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.016538
+    },
+    {
+      "asset_ref": "assets/symbol_battery_charging.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.017811
+    },
+    {
+      "asset_ref": "assets/symbol_explosive_material.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "asset_ref": "assets/symbol_heavy_object.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.016753
+    },
+    {
+      "asset_ref": "assets/symbol_no_open_flame.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.008233
+    },
+    {
+      "asset_ref": "assets/symbol_keep_away_from_children.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.00784
+    },
+    {
+      "asset_ref": "assets/symbol_read_manual.svg",
+      "physical_page": 5,
+      "max_mean_channel_error": 0.009391
+    }
+  ]
+}

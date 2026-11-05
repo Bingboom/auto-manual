@@ -1,0 +1,10 @@
+[language-literal] 0 new, 67 known, 0 stale, 74 current
+[complexity] 0 new, 0 grown, 0 improved, 0 stale, 247 baselined
+[facade-patch] 0 new, 0 grown, 0 improved, 0 stale, 11 baselined patches in 4 files
+[broad-except] 0 new, 0 grown, 0 improved, 0 stale, 0 baselined handlers in 0 files
+[top-level] 183 top-level modules (baseline 183), 67 bootstrap files (baseline 67)
+[frozen-packages] NEW manual_sources/JE-2000D/US/en/git-20261028-3d50ef64: register it with its approval, `python -m tools.web.frozen_package_registry register manual_sources/JE-2000D/US/en/git-20261028-3d50ef64 --approval "MA-..."`
+[frozen-packages] NEW manual_sources/JE-2000F/US/en/git-20261028-c8ace563: register it with its approval, `python -m tools.web.frozen_package_registry register manual_sources/JE-2000F/US/en/git-20261028-c8ace563 --approval "MA-..."`
+[frozen-packages] NEW manual_sources/JE-3000B/US/en/git-20261028-bd8a8296: register it with its approval, `python -m tools.web.frozen_package_registry register manual_sources/JE-3000B/US/en/git-20261028-bd8a8296 --approval "MA-..."`
+[frozen-packages] NEW manual_sources/JE-5000A/US/en/git-20261028-804ebe78: register it with its approval, `python -m tools.web.frozen_package_registry register manual_sources/JE-5000A/US/en/git-20261028-804ebe78 --approval "MA-..."`
+[frozen-packages] 158 packages (54 pin shared inputs, 104 without pins: impact unknown); 190 known drift in 39 packages; 4 new, 0 gone, 0 new drift, 0 stale

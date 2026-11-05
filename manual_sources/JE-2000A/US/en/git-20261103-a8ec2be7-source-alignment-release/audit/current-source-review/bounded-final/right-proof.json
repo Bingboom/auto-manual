@@ -1,0 +1,50 @@
+[
+  {
+    "class": "hb-reference-figure",
+    "layout": null,
+    "width": 358,
+    "scrollLeft": 186,
+    "scrollWidth": 544,
+    "height": 338
+  },
+  {
+    "class": "hb-reference-figure",
+    "layout": null,
+    "width": 358,
+    "scrollLeft": 186,
+    "scrollWidth": 544,
+    "height": 256
+  },
+  {
+    "class": "docutils container",
+    "layout": "lcd-legend-original",
+    "width": 358,
+    "scrollLeft": 282,
+    "scrollWidth": 640,
+    "height": 647
+  },
+  {
+    "class": "table-wrapper docutils container",
+    "layout": null,
+    "width": 356,
+    "scrollLeft": 226,
+    "scrollWidth": 582,
+    "height": 171
+  },
+  {
+    "class": "hb-reference-figure",
+    "layout": null,
+    "width": 358,
+    "scrollLeft": 186,
+    "scrollWidth": 544,
+    "height": 435
+  },
+  {
+    "class": "table-wrapper docutils container",
+    "layout": "troubleshooting",
+    "width": 356,
+    "scrollLeft": 226,
+    "scrollWidth": 582,
+    "height": 910
+  }
+]

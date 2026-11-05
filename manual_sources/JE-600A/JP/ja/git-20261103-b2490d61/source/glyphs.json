@@ -1,0 +1,496 @@
+[
+  {
+    "slot": "recycle-li-ion",
+    "physical_page": 7,
+    "search_box": [
+      40,
+      418,
+      100,
+      477
+    ],
+    "local_path": "assets/recycle-li-ion.svg",
+    "reuse_candidate": "manual_sources/JE-600C-SJ/JP/ja/git-20261103-3837e9fd/assets/recycle-li-ion.svg",
+    "drawing_indices": [
+      10086,
+      10087,
+      10088,
+      10089,
+      10090,
+      10091,
+      10092,
+      10093,
+      10094,
+      10095,
+      10096
+    ],
+    "glyph_bbox": [
+      42.7359619140625,
+      423.6812438964844,
+      94.90299224853516,
+      469.55206298828125
+    ],
+    "reuse_comparison": {
+      "status": "rejected",
+      "reason": "symbol glyph/background differs from authoritative PDF"
+    },
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "8c514e13ad189aac67e833651b5b56131868fb31fef399867e8f0cfd22a40dc9"
+  },
+  {
+    "slot": "lcd-ups",
+    "physical_page": 9,
+    "search_box": [
+      51,
+      211,
+      83,
+      263
+    ],
+    "local_path": "assets/lcd-ups.svg",
+    "reuse_candidate": "manual_sources/JE-600A/US/en/git-20261028-9bf5bbb1/assets/lcd-ups.svg",
+    "drawing_indices": [
+      5953,
+      5954,
+      5955,
+      5956
+    ],
+    "glyph_bbox": [
+      56.25647735595703,
+      233.41552734375,
+      77.99347686767578,
+      243.5595245361328
+    ],
+    "reuse_comparison": {
+      "status": "passed",
+      "max_mean_channel_error": 4.2e-05
+    },
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "sha256": "0163808fd1fe991b44267a5efb30ffe510796372cdc2a87e1b03053d08ea1a66"
+  },
+  {
+    "slot": "lcd-ac-power",
+    "physical_page": 9,
+    "search_box": [
+      51,
+      265,
+      83,
+      286
+    ],
+    "local_path": "assets/lcd-ac-power.svg",
+    "reuse_candidate": "manual_sources/JE-600A/US/en/git-20261028-9bf5bbb1/assets/lcd-ac-power.svg",
+    "drawing_indices": [
+      5959,
+      5960
+    ],
+    "glyph_bbox": [
+      57.36667251586914,
+      266.85333251953125,
+      76.75566864013672,
+      283.0113220214844
+    ],
+    "reuse_comparison": {
+      "status": "passed",
+      "max_mean_channel_error": 3.5e-05
+    },
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "sha256": "ae74b5535c88c6f612bfc8fe4f187bb3b106b6b039ac98a809112b6584d1a7c0"
+  },
+  {
+    "slot": "lcd-input-power",
+    "physical_page": 9,
+    "search_box": [
+      51,
+      288,
+      83,
+      311
+    ],
+    "local_path": "assets/lcd-input-power.svg",
+    "reuse_candidate": "manual_sources/JE-600A/US/en/git-20261028-9bf5bbb1/assets/lcd-input-power.svg",
+    "drawing_indices": [
+      6019,
+      6020,
+      6021,
+      6022,
+      6023,
+      6024,
+      6025,
+      6026,
+      6027,
+      6028,
+      6029,
+      6030,
+      6031,
+      6032,
+      6033,
+      6034,
+      6035,
+      6036,
+      6037,
+      6038,
+      6039,
+      6040,
+      6041
+    ],
+    "glyph_bbox": [
+      55.77802658081055,
+      291.8941955566406,
+      78.47265625,
+      305.98345947265625
+    ],
+    "reuse_comparison": {
+      "status": "passed",
+      "max_mean_channel_error": 0.000302
+    },
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "sha256": "064890bdd120a64c923b8ba6957493762ae8228de7dbbbe1698715021dc1412e"
+  },
+  {
+    "slot": "lcd-output-power",
+    "physical_page": 9,
+    "search_box": [
+      51,
+      313,
+      83,
+      337
+    ],
+    "local_path": "assets/lcd-output-power.svg",
+    "reuse_candidate": "manual_sources/JE-600A/US/en/git-20261028-9bf5bbb1/assets/lcd-output-power.svg",
+    "drawing_indices": [
+      6072,
+      6073,
+      6074,
+      6075,
+      6076,
+      6077,
+      6078,
+      6079,
+      6080,
+      6081,
+      6082,
+      6083,
+      6084,
+      6085,
+      6086,
+      6087,
+      6088,
+      6089,
+      6090,
+      6091,
+      6092,
+      6093,
+      6094,
+      6095,
+      6096,
+      6097,
+      6098,
+      6099,
+      6100,
+      6101
+    ],
+    "glyph_bbox": [
+      55.68698501586914,
+      317.464599609375,
+      78.38098907470703,
+      331.6073913574219
+    ],
+    "reuse_comparison": {
+      "status": "passed",
+      "max_mean_channel_error": 0.000296
+    },
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "sha256": "42e2c1cfa5b193ddb24af2779649fdfa8126140ae81b0593d1ed5f98598ee9a5"
+  },
+  {
+    "slot": "lcd-ac-wall-charging",
+    "physical_page": 9,
+    "search_box": [
+      51,
+      339,
+      83,
+      363
+    ],
+    "local_path": "assets/lcd-ac-wall-charging.svg",
+    "reuse_candidate": "manual_sources/JE-600A/US/en/git-20261028-9bf5bbb1/assets/lcd-ac-wall-charging.svg",
+    "drawing_indices": [
+      6104,
+      6105,
+      6106
+    ],
+    "glyph_bbox": [
+      59.364227294921875,
+      343.198974609375,
+      75.30422973632812,
+      359.13897705078125
+    ],
+    "reuse_comparison": {
+      "status": "passed",
+      "max_mean_channel_error": 6e-05
+    },
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "sha256": "8fe4024f27f2963349cc4255a2673d88fac8a7565944ec62b5bc52337bdc284b"
+  },
+  {
+    "slot": "lcd-car-charging",
+    "physical_page": 9,
+    "search_box": [
+      51,
+      365,
+      83,
+      390
+    ],
+    "local_path": "assets/lcd-car-charging.svg",
+    "reuse_candidate": "manual_sources/JE-600A/US/en/git-20261028-9bf5bbb1/assets/lcd-car-charging.svg",
+    "drawing_indices": [
+      6177,
+      6178,
+      6179
+    ],
+    "glyph_bbox": [
+      59.364227294921875,
+      369.6680908203125,
+      75.30422973632812,
+      385.60809326171875
+    ],
+    "reuse_comparison": {
+      "status": "passed",
+      "max_mean_channel_error": 2e-05
+    },
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "sha256": "544d91029a10f3a13f50d365ea95cc2160f0c569caadc71ed4de1d516571d9cd"
+  },
+  {
+    "slot": "lcd-solar-charging",
+    "physical_page": 9,
+    "search_box": [
+      51,
+      392,
+      83,
+      417
+    ],
+    "local_path": "assets/lcd-solar-charging.svg",
+    "reuse_candidate": "manual_sources/JE-600A/US/en/git-20261028-9bf5bbb1/assets/lcd-solar-charging.svg",
+    "drawing_indices": [
+      5972,
+      5973
+    ],
+    "glyph_bbox": [
+      59.364227294921875,
+      396.2069091796875,
+      75.30422973632812,
+      412.14691162109375
+    ],
+    "reuse_comparison": {
+      "status": "passed",
+      "max_mean_channel_error": 5.6e-05
+    },
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "sha256": "c4e8ecbbc808bf7d20dd2147e9b066b2bb29fb6bb39cc93c7b8011e7db90ffee"
+  },
+  {
+    "slot": "lcd-battery-power",
+    "physical_page": 9,
+    "search_box": [
+      51,
+      419,
+      83,
+      466
+    ],
+    "local_path": "assets/lcd-battery-power.svg",
+    "reuse_candidate": "manual_sources/JE-600A/US/en/git-20261028-9bf5bbb1/assets/lcd-battery-power.svg",
+    "drawing_indices": [
+      5696
+    ],
+    "glyph_bbox": [
+      58.66075897216797,
+      432.236328125,
+      76.00775909423828,
+      449.57733154296875
+    ],
+    "reuse_comparison": {
+      "status": "passed",
+      "max_mean_channel_error": 4.6e-05
+    },
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "sha256": "5500242f2fe21a6b1b32d363f483f23841d34f0055c057e530eecdcfe2de0c1f"
+  },
+  {
+    "slot": "lcd-battery-percentage",
+    "physical_page": 9,
+    "search_box": [
+      51,
+      468,
+      83,
+      494
+    ],
+    "local_path": "assets/lcd-battery-percentage.svg",
+    "reuse_candidate": "manual_sources/JE-600A/US/en/git-20261028-9bf5bbb1/assets/lcd-battery-percentage.svg",
+    "drawing_indices": [
+      5733,
+      5734,
+      5735,
+      5736,
+      5737,
+      5738,
+      5739,
+      5740,
+      5741,
+      5742,
+      5743,
+      5744,
+      5745,
+      5746,
+      5747,
+      5748,
+      5749,
+      5750,
+      5751,
+      5752,
+      5753,
+      5754,
+      5755,
+      5756,
+      5757,
+      5758,
+      5759,
+      5760,
+      5761,
+      5762,
+      5763,
+      5764,
+      5765,
+      5766
+    ],
+    "glyph_bbox": [
+      55.54345703125,
+      475.569580078125,
+      81.1083984375,
+      487.8636474609375
+    ],
+    "reuse_comparison": {
+      "status": "rejected",
+      "reason": "symbol requires real transparent margins; opaque backdrop detected"
+    },
+    "decision": "native vector glyph from this print (transparent SVG)",
+    "sha256": "cba3211cdeea75fd9a8a7e4b02aa591fb9fc9bb9aa82e6e66c43fbaa8aa59769"
+  },
+  {
+    "slot": "lcd-fault-code",
+    "physical_page": 10,
+    "search_box": [
+      48,
+      30,
+      84,
+      67
+    ],
+    "local_path": "assets/lcd-fault-code.svg",
+    "reuse_candidate": "manual_sources/JE-600A/US/en/git-20261028-9bf5bbb1/assets/lcd-fault-code.svg",
+    "drawing_indices": [
+      4068,
+      4069,
+      4070,
+      4071
+    ],
+    "glyph_bbox": [
+      57.368614196777344,
+      40.06227493286133,
+      74.29881286621094,
+      56.009742736816406
+    ],
+    "reuse_comparison": {
+      "status": "passed",
+      "max_mean_channel_error": 8.9e-05
+    },
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "sha256": "0390f59d2f20301b2f6b6400b61d589eb0e98e3a1700cf7e10e3731a7e6b35aa"
+  },
+  {
+    "slot": "lcd-high-temperature",
+    "physical_page": 10,
+    "search_box": [
+      48,
+      69,
+      84,
+      108
+    ],
+    "local_path": "assets/lcd-high-temperature.svg",
+    "reuse_candidate": "manual_sources/JE-300C/US/en/git-20261027-a1128b25/assets/lcd-high-temperature.svg",
+    "drawing_indices": [
+      5983,
+      5984,
+      5985,
+      5986,
+      5987
+    ],
+    "glyph_bbox": [
+      57.368614196777344,
+      80.13990783691406,
+      74.29881286621094,
+      96.0873794555664
+    ],
+    "reuse_comparison": {
+      "status": "passed",
+      "max_mean_channel_error": 0.00534
+    },
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "sha256": "939775d5eb4d88852ce7699cddc75262eae7c74d412ce2ceebe3bb239fb4897c"
+  },
+  {
+    "slot": "lcd-low-temperature",
+    "physical_page": 10,
+    "search_box": [
+      48,
+      110,
+      84,
+      150
+    ],
+    "local_path": "assets/lcd-low-temperature.svg",
+    "reuse_candidate": "manual_sources/JE-300C/US/en/git-20261027-a1128b25/assets/lcd-low-temperature.svg",
+    "drawing_indices": [
+      5988,
+      5989,
+      5990,
+      5991
+    ],
+    "glyph_bbox": [
+      57.074668884277344,
+      122.13795471191406,
+      74.00486755371094,
+      138.08543395996094
+    ],
+    "reuse_comparison": {
+      "status": "passed",
+      "max_mean_channel_error": 0.00516
+    },
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "sha256": "c53c2100f60c81abcbf113e3ad307c99917ff36954b39af233881f17d69d81a7"
+  },
+  {
+    "slot": "lcd-energy-saving",
+    "physical_page": 10,
+    "search_box": [
+      48,
+      152,
+      84,
+      189
+    ],
+    "local_path": "assets/lcd-energy-saving.svg",
+    "reuse_candidate": "manual_sources/JE-600A/US/en/git-20261028-9bf5bbb1/assets/lcd-energy-saving.svg",
+    "drawing_indices": [
+      4064,
+      4065,
+      4066,
+      4067
+    ],
+    "glyph_bbox": [
+      54.944671630859375,
+      162.1590576171875,
+      76.68167114257812,
+      178.09906005859375
+    ],
+    "reuse_comparison": {
+      "status": "passed",
+      "max_mean_channel_error": 3.2e-05
+    },
+    "decision": "reuse the candidate unchanged (passes the fixed comparison against this print)",
+    "sha256": "b0d6afa954c8196d99ad160519439590c22fcc00140cb9b04bb575b7aa927d26"
+  }
+]

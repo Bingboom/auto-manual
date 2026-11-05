@@ -1,0 +1,308 @@
+[
+  {
+    "slot": "inbox-unit",
+    "physical_page": 6,
+    "bbox": [
+      33,
+      86,
+      123,
+      167
+    ],
+    "caption": "Jackery Explorer 500",
+    "embedded_words": true,
+    "local_path": "assets/inbox-unit.png",
+    "render_scale": 4,
+    "sha256": "6e744a31be1f5f24235545f9863fabce65e216d2971b6b70801e98474edd3813",
+    "source_sha256": "5c065d11c0191e7f9f5ef32ecd39fe0ca620f206c296c4eb6401a4b8215cea68",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "inbox-ac-cable",
+    "physical_page": 6,
+    "bbox": [
+      139,
+      86,
+      227,
+      167
+    ],
+    "caption": "AC Charging Cable",
+    "embedded_words": false,
+    "local_path": "assets/inbox-ac-cable.png",
+    "render_scale": 4,
+    "sha256": "8d6be587ca1b56058378c96bc5b6a24e020d9e802c01bfc2dc4a432875b530e5",
+    "source_sha256": "5c065d11c0191e7f9f5ef32ecd39fe0ca620f206c296c4eb6401a4b8215cea68",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "inbox-user-manual",
+    "physical_page": 6,
+    "bbox": [
+      242,
+      86,
+      332,
+      168
+    ],
+    "caption": "User Manual",
+    "embedded_words": true,
+    "local_path": "assets/inbox-user-manual.png",
+    "render_scale": 4,
+    "sha256": "78cd3a9612b8af337867c8adde47fa69df1cc52e7c7b4dc8fdfc5a790169da1c",
+    "source_sha256": "5c065d11c0191e7f9f5ef32ecd39fe0ca620f206c296c4eb6401a4b8215cea68",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "overview-front",
+    "physical_page": 6,
+    "bbox": [
+      26,
+      300,
+      341,
+      497
+    ],
+    "caption": "Front view of the Jackery Explorer 500: Cigarette Lighter Port, 12V⎓10A Max; USB-C1 Output, 100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A; USB-C2 Output, 30W Max, 5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A; USB-A Output, 18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A; Energy Saving Mode Switch; Main Power Button; LCD; LED Light Button; LED Light; AC Output, 120V~ 60Hz, 4.2A; AC Power Button; DC Power Button",
+    "embedded_words": true,
+    "local_path": "assets/overview-front.png",
+    "render_scale": 4,
+    "sha256": "7926426e5e4c12006f00f35c382d27a1c90e94c8a1d041d647ee51aad4af1a21",
+    "source_sha256": "5c065d11c0191e7f9f5ef32ecd39fe0ca620f206c296c4eb6401a4b8215cea68",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "overview-right",
+    "physical_page": 7,
+    "bbox": [
+      26,
+      44,
+      342,
+      176
+    ],
+    "caption": "Right side view of the Jackery Explorer 500: Handle; DC Input (8020), 1×DC8020 Port: 11V-16V⎓8A Max, 16V-60V⎓10.5A, 200W Max; AC Input, 100-120V~ 60Hz, 15A Max",
+    "embedded_words": true,
+    "local_path": "assets/overview-right.png",
+    "render_scale": 4,
+    "sha256": "daa2d3a707ea33199b443d4df4065d0e447b5a1ffd293a48f8a796cfbf28d965",
+    "source_sha256": "5c065d11c0191e7f9f5ef32ecd39fe0ca620f206c296c4eb6401a4b8215cea68",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "lcd-display",
+    "physical_page": 7,
+    "bbox": [
+      44,
+      226,
+      330,
+      384
+    ],
+    "caption": "LCD display with callouts 1 to 12",
+    "embedded_words": true,
+    "local_path": "assets/lcd-display.png",
+    "render_scale": 4,
+    "sha256": "2fcb5ed91915b6e8757318d911b84cf8148c3ceabafa548b16db888a11560dd3",
+    "source_sha256": "5c065d11c0191e7f9f5ef32ecd39fe0ca620f206c296c4eb6401a4b8215cea68",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "power-on-off",
+    "physical_page": 9,
+    "bbox": [
+      32,
+      78,
+      340,
+      218
+    ],
+    "caption": "POWER ON/OFF: On, press once; Off, press and hold for 3s",
+    "embedded_words": true,
+    "printed_notes": [
+      "Default standby time: 2 hours. If the AC power button, DC power button, and LED light button are all turned off and there is no charging input, the product will automatically shut down after 2 hours."
+    ],
+    "local_path": "assets/power-on-off.png",
+    "render_scale": 4,
+    "sha256": "d7734232a89fb4b75ba2b6e46918c3f24f3538a676de1129eb7311734d8e19ce",
+    "source_sha256": "5c065d11c0191e7f9f5ef32ecd39fe0ca620f206c296c4eb6401a4b8215cea68",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "ac-output",
+    "physical_page": 9,
+    "bbox": [
+      32,
+      321,
+      340,
+      494
+    ],
+    "caption": "AC OUTPUT ON/OFF: Prerequisite: Ensure the Main Power Button is on. On, press once; Off, press once",
+    "embedded_words": true,
+    "local_path": "assets/ac-output.png",
+    "render_scale": 4,
+    "sha256": "67ddcb1c68d432476031621da1f15ebd415abd12f0a722db858482c40dc717fe",
+    "source_sha256": "5c065d11c0191e7f9f5ef32ecd39fe0ca620f206c296c4eb6401a4b8215cea68",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "dc-usb-output",
+    "physical_page": 10,
+    "bbox": [
+      32,
+      50,
+      340,
+      220
+    ],
+    "caption": "DC/USB OUTPUT ON/OFF: Prerequisite: Ensure the Main Power Button is on. On, press once; Off, press once",
+    "embedded_words": true,
+    "local_path": "assets/dc-usb-output.png",
+    "render_scale": 4,
+    "sha256": "1cf240ecb01b6746c2db423d56f4ad294a0c9d7e5cc4147a9fadea580dc4eb95",
+    "source_sha256": "5c065d11c0191e7f9f5ef32ecd39fe0ca620f206c296c4eb6401a4b8215cea68",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "energy-saving",
+    "physical_page": 10,
+    "bbox": [
+      32,
+      393,
+      340,
+      492
+    ],
+    "caption": "Energy Saving Mode switch: Off, slide the switch to the left; On, slide the switch to the right",
+    "embedded_words": true,
+    "local_path": "assets/energy-saving.png",
+    "render_scale": 4,
+    "sha256": "66c2e2dcc6758560e4361c902135f35b3bae59539266dc187f0d82cd84486364",
+    "source_sha256": "5c065d11c0191e7f9f5ef32ecd39fe0ca620f206c296c4eb6401a4b8215cea68",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "led-light",
+    "physical_page": 11,
+    "bbox": [
+      32,
+      72,
+      340,
+      194
+    ],
+    "caption": "LED LIGHT ON/OFF: press the LIGHT button",
+    "embedded_words": true,
+    "printed_notes": [
+      "1. Press the LED Light button once to turn on the light.",
+      "2. Press it again to switch to SOS mode.",
+      "3. Press it a third time to turn off the light."
+    ],
+    "local_path": "assets/led-light.png",
+    "render_scale": 4,
+    "sha256": "e18330da6be5a97f2c78c1d7145c2581175f519e1db7829fe08c69b279f2349c",
+    "source_sha256": "5c065d11c0191e7f9f5ef32ecd39fe0ca620f206c296c4eb6401a4b8215cea68",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "ups",
+    "physical_page": 12,
+    "bbox": [
+      26,
+      108,
+      340,
+      344
+    ],
+    "caption": "UPS connection: the product is connected to a wall outlet with the AC charging cable while the AC output powers an appliance",
+    "embedded_words": true,
+    "printed_notes": [
+      "Connect the product to a wall outlet with the AC charging cable, then press the AC output button and power your appliances at the same time."
+    ],
+    "local_path": "assets/ups.png",
+    "render_scale": 4,
+    "sha256": "f1b221fac4e7ab76092997fd68269afc322bf0c6654cf34b2dba00d229e9ff64",
+    "source_sha256": "5c065d11c0191e7f9f5ef32ecd39fe0ca620f206c296c4eb6401a4b8215cea68",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "charging-ac",
+    "physical_page": 13,
+    "bbox": [
+      30,
+      180,
+      343,
+      291
+    ],
+    "caption": "Charging via an AC wall outlet",
+    "embedded_words": true,
+    "printed_notes": [
+      "Connect the AC charging cable to the AC input port of the product and a wall outlet."
+    ],
+    "local_path": "assets/charging-ac.png",
+    "render_scale": 4,
+    "sha256": "e7924b0cbdda614f7e45d898859c3d2c0571ba7f3fdaddf7484987fcce985f64",
+    "source_sha256": "5c065d11c0191e7f9f5ef32ecd39fe0ca620f206c296c4eb6401a4b8215cea68",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "charging-solar-single",
+    "physical_page": 13,
+    "bbox": [
+      30,
+      378,
+      344,
+      495
+    ],
+    "caption": "Charging with one SolarSaga 200 solar panel connected to the DC8020 input port",
+    "embedded_words": true,
+    "local_path": "assets/charging-solar-single.png",
+    "render_scale": 4,
+    "sha256": "a1932fc8a8d6557a17ad8ceb3efa0eba13b372bf3fce7969b54842f3b59de63d",
+    "source_sha256": "5c065d11c0191e7f9f5ef32ecd39fe0ca620f206c296c4eb6401a4b8215cea68",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "charging-solar-pair",
+    "physical_page": 14,
+    "bbox": [
+      26,
+      27,
+      340,
+      146
+    ],
+    "caption": "Charging with two SolarSaga 100 solar panels through a solar panel connector to the DC8020 input port",
+    "embedded_words": true,
+    "local_path": "assets/charging-solar-pair.png",
+    "render_scale": 4,
+    "sha256": "f69b72581575f2c94864fb961fe6ba84497d4d698b50aaae772997512a7f1191",
+    "source_sha256": "5c065d11c0191e7f9f5ef32ecd39fe0ca620f206c296c4eb6401a4b8215cea68",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "charging-car",
+    "physical_page": 14,
+    "bbox": [
+      26,
+      246,
+      340,
+      368
+    ],
+    "caption": "Charging with a car charger from the vehicle's cigarette lighter",
+    "embedded_words": true,
+    "printed_notes": [
+      "※ The car charging cable is sold separately."
+    ],
+    "local_path": "assets/charging-car.png",
+    "render_scale": 4,
+    "sha256": "3c670f253f37ddcda5fd63064b849c6ff96be7388ff5b2e89b5c27e5f4c83370",
+    "source_sha256": "5c065d11c0191e7f9f5ef32ecd39fe0ca620f206c296c4eb6401a4b8215cea68",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  },
+  {
+    "slot": "contact-qr",
+    "physical_page": 18,
+    "bbox": [
+      304,
+      459,
+      343,
+      497
+    ],
+    "caption": "QR code",
+    "embedded_words": false,
+    "local_path": "assets/contact-qr.png",
+    "render_scale": 4,
+    "sha256": "c92d9e67b471254a8925fdaa12b5c7148fefce48ca589154a8df09797bdf6427",
+    "source_sha256": "5c065d11c0191e7f9f5ef32ecd39fe0ca620f206c296c4eb6401a4b8215cea68",
+    "decision": "extract source panel at 4x (inside the print frame)"
+  }
+]

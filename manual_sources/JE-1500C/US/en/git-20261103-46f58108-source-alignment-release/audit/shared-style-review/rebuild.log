@@ -1,0 +1,18 @@
+{
+  "output": "/private/tmp/manual-web-audit-20261102/style-release/JE-1500C/v10/md",
+  "chapters": 16,
+  "components": {
+    "HB-CALLOUT-STRIP": 14,
+    "HB-SPECIAL-APP": 2,
+    "HB-SPECIAL-FCC": 1,
+    "HB-SPECIAL-INBOX": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE": 19,
+    "HB-TABLE-LCD-ICON": 1,
+    "HB-TABLE-LCD-MODE": 1,
+    "HB-TABLE-SPEC": 4,
+    "HB-TABLE-SYMBOL-ICON": 1,
+    "HB-WARRANTY-LEAD": 1,
+    "HB-WARRANTY-SECTION": 5,
+    "HB-WARRANTY-YEARS": 1
+  }
+}

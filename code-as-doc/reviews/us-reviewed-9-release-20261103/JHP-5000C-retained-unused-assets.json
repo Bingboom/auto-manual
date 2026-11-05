@@ -1,0 +1,110 @@
+{
+  "status": "verified",
+  "active_cold_files": 90,
+  "stored_web_files": 107,
+  "retained_unused_original_files": [
+    {
+      "path": "assets/ac-charge.svg",
+      "sha256": "55790a67d5466b090af60dc13e135267594b8de9140c4a614f86b908825851db",
+      "baseline_byte_identical": true,
+      "rendered_page_and_md_css_unreferenced": true
+    },
+    {
+      "path": "assets/ac-output.svg",
+      "sha256": "ec31ede3f1ba17a030cd8f84a028b22be634d637660c4b37bc214c7a86d90f0d",
+      "baseline_byte_identical": true,
+      "rendered_page_and_md_css_unreferenced": true
+    },
+    {
+      "path": "assets/battery-packs.svg",
+      "sha256": "5861a29e10b8c7acb46940eb52e900d7cad7b4d1979cfceaf209333f4b9372ac",
+      "baseline_byte_identical": true,
+      "rendered_page_and_md_css_unreferenced": true
+    },
+    {
+      "path": "assets/contact-qr.svg",
+      "sha256": "5eadb67da3397c6281605ffe5314f38758468d0f6ed8db30939225c49b324c5a",
+      "baseline_byte_identical": true,
+      "rendered_page_and_md_css_unreferenced": true
+    },
+    {
+      "path": "assets/dc-output.svg",
+      "sha256": "aa0d707754e508c91da40fcc432affc3be07e6497c6d40a2fbae8968932aa762",
+      "baseline_byte_identical": true,
+      "rendered_page_and_md_css_unreferenced": true
+    },
+    {
+      "path": "assets/ess.svg",
+      "sha256": "f9187f635a3876f38c29af02f70b2d88829a33687ad8fae71cae8646844d2194",
+      "baseline_byte_identical": true,
+      "rendered_page_and_md_css_unreferenced": true
+    },
+    {
+      "path": "assets/package-battery.svg",
+      "sha256": "4d4a9e75ed0b2c40d82c019232143e15abf308358a41639f965a45484cd1607e",
+      "baseline_byte_identical": true,
+      "rendered_page_and_md_css_unreferenced": true
+    },
+    {
+      "path": "assets/package-host.svg",
+      "sha256": "0a16d3ef1dd9d2bfd8a57701340449283bd4836537a5911488a08002e396d69c",
+      "baseline_byte_identical": true,
+      "rendered_page_and_md_css_unreferenced": true
+    },
+    {
+      "path": "assets/package-sts.svg",
+      "sha256": "c021aea7b816fbe98129ae3d6aabbf3f4c1cb20653e8274d365abe39e6158b2c",
+      "baseline_byte_identical": true,
+      "rendered_page_and_md_css_unreferenced": true
+    },
+    {
+      "path": "assets/power.svg",
+      "sha256": "adaab00db42c0fcc31dcc89382b80b4096c58740c7a93d25d4dc53955b383cbe",
+      "baseline_byte_identical": true,
+      "rendered_page_and_md_css_unreferenced": true
+    },
+    {
+      "path": "assets/sold-separately-cart.svg",
+      "sha256": "89744f531fea551626f23111830ea30ab3284267b1ec65997f33b83e0519db68",
+      "baseline_byte_identical": true,
+      "rendered_page_and_md_css_unreferenced": true
+    },
+    {
+      "path": "assets/sts-charge.svg",
+      "sha256": "65cc4e5c62763aa02a37272fc1a06421a62851ac28fb2c773730e38a592179b3",
+      "baseline_byte_identical": true,
+      "rendered_page_and_md_css_unreferenced": true
+    },
+    {
+      "path": "assets/sts-connect.svg",
+      "sha256": "1652057c4d8854a0f79a628a82e6566be26d14446497c4dfd1060b5a3aeaff1e",
+      "baseline_byte_identical": true,
+      "rendered_page_and_md_css_unreferenced": true
+    },
+    {
+      "path": "assets/ups.svg",
+      "sha256": "566eed6ba71eb8b55115f9890162d230b8ec575f725ebe8bb59638c4f40ca15c",
+      "baseline_byte_identical": true,
+      "rendered_page_and_md_css_unreferenced": true
+    },
+    {
+      "path": "assets/usb-output.svg",
+      "sha256": "1bea6b6dd7099b3e3845e8ad31fceea2b4dacb37514c41695ec4a1b55b09e246",
+      "baseline_byte_identical": true,
+      "rendered_page_and_md_css_unreferenced": true
+    },
+    {
+      "path": "assets/warning_triangle_dark.svg",
+      "sha256": "e1746d6937db78115fcd8e1f80a71943cb6615561e326bebe2605139a886cce5",
+      "baseline_byte_identical": true,
+      "rendered_page_and_md_css_unreferenced": true
+    },
+    {
+      "path": "assets/warning_triangle_white.svg",
+      "sha256": "5e5fc8a41e7c547ecd55ef8ffdb24df9e9b7e6b9fd4fe0d7bcc00c2eaad7cb15",
+      "baseline_byte_identical": true,
+      "rendered_page_and_md_css_unreferenced": true
+    }
+  ],
+  "note": "Retained original artifacts are part of frozen input inventory but absent from active cold output; no files were removed."
+}
