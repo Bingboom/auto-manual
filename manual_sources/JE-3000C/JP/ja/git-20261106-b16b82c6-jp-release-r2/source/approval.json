@@ -1,0 +1,42 @@
+{
+  "target": {
+    "model": "JE-3000C",
+    "region": "JP",
+    "languages": [
+      "ja"
+    ],
+    "technical_version": "git-20261106-b16b82c6-jp-release-r2",
+    "printed_manual_version": "V2"
+  },
+  "source_sha256": "b16b82c6c6b2ac86bf4dd438cd597e7d0be66344a9da3e2b7ea9c2d561d61a7b",
+  "feishu_attachment_sha256": "b01379c09e5f51ebb0d05190192272a81e4ea7a96a468d79f5f155f93d056e86",
+  "operator_quote": "2，上线提交发布：JE-3000C",
+  "authority_date": "2026-11-06",
+  "authority_context": "Said by the operator in the coordinator session (session_01Y8kaknyyfgd1ZC5Xtwthqx) after reviewing the full-page 1280/390 renders of this release and the source crop of physical page 21. Earlier in the same session: 「只转这个 16-0102-000341 竖版竖版说明书 HTE1563000A-JP-JAK.pdf」, 「是一样的文件」, 「你直接把旧草稿发布了」, 「我来做视觉验收」.",
+  "decisions": [
+    {
+      "item": "specification-footnote-1 (physical page 21)",
+      "choice": "2",
+      "effect": "Web text completes the source's 「…給電することができま」 as 「…給電することができます。」; recorded in source_errata, the PDF is unchanged."
+    },
+    {
+      "item": "symbol table",
+      "choice": "operator-confirmed shared canonicals",
+      "effect": "Six rows bind their group canonicals per SCG-20261103/SCG-20261104; the other six keep the draft's assets within the fixed 2% tolerance."
+    }
+  ],
+  "reviewed_candidate": {
+    "base_draft": "manual_sources/JE-3000C/JP/ja/git-20261019-b16b82c6-jp-native",
+    "renders": [
+      "1280 full page",
+      "390 full page"
+    ]
+  },
+  "acceptance_basis": "Operator visual acceptance of the rendered release; all other copy, layout and artwork are the reviewed draft's, verified byte-identical by cold replay apart from the approved footnote completion and the six symbol assets.",
+  "revision": {
+    "of": "manual_sources/JE-3000C/JP/ja/git-20261106-b16b82c6-jp-release",
+    "operator_quote": "这个去掉啊 其它日规说明书的 安全上のご注意 为一级标题 开头的",
+    "date": "2026-11-06",
+    "effect": "Drop the standalone document-title heading; the page opens with 安全上のご注意 as its first top-level heading. No other change."
+  }
+}
