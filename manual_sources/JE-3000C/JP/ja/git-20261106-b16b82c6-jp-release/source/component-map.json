@@ -1,0 +1,30 @@
+{
+  "reference": "JE-1000F/JP/ja reviewed structural edition",
+  "body": "All target copy and specs from JE-3000C JP V2; no inherited product data",
+  "components": {
+    "HB-CALLOUT-STRIP": 12,
+    "HB-SPECIAL-APP": 2,
+    "HB-SPECIAL-INBOX": 1,
+    "HB-SPECIAL-OPERATION": 3,
+    "HB-SPECIAL-REFERENCE-FIGURE": 13,
+    "HB-TABLE-AUTO-RESUME": 1,
+    "HB-TABLE-KEY-COMBINATIONS": 1,
+    "HB-TABLE-LCD-ICON": 1,
+    "HB-TABLE-LCD-MODE": 1,
+    "HB-TABLE-REFERENCE": 1,
+    "HB-TABLE-SPEC": 4,
+    "HB-TABLE-SYMBOL-ICON": 1,
+    "HB-TABLE-SYMBOL-SIGNAL": 1,
+    "HB-TABLE-TROUBLESHOOTING": 1,
+    "HB-WARRANTY-LEAD": 1,
+    "HB-WARRANTY-SECTION": 6,
+    "HB-WARRANTY-YEARS": 1
+  },
+  "plain_table_declarations": [
+    {
+      "id": "energy-thresholds",
+      "component": "HB-TABLE-REFERENCE/lcd-actions",
+      "reason": "Source has a three-column low-load threshold comparison; no dedicated energy-threshold component exists."
+    }
+  ]
+}
