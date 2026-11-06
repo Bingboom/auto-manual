@@ -60,14 +60,19 @@ function renderFamilies(selected, narrowed) {
 
 // The region follows the reader: the last choice is restored on the next visit; the configured
 // default applies only when nothing valid is stored (first visit, cleared or blocked storage).
+// 产品知识 (product-knowledge.js) shares the region by name; picking one here also ends its 全部区域.
 const REGION_KEY = 'hello-docs.manual-portal.region';
+const ALL_KEY = 'hello-docs.manual-portal.region-all';
 function restoreRegion() {
   let saved = null;
   try { saved = localStorage.getItem(REGION_KEY); } catch (error) { return; }
   if (saved && [...$('#region').options].some(option => option.value === saved)) $('#region').value = saved;
 }
 function rememberRegion() {
-  try { localStorage.setItem(REGION_KEY, $('#region').value); } catch (error) { /* storage blocked: keep this visit's choice only */ }
+  try {
+    localStorage.setItem(REGION_KEY, $('#region').value);
+    localStorage.removeItem(ALL_KEY);
+  } catch (error) { /* storage blocked: keep this visit's choice only */ }
 }
 
 $('#region').addEventListener('change', () => {

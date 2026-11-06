@@ -70,8 +70,33 @@
     button.closest('.pk-card').classList.add('is-open');
     button.hidden = true;
   }));
-  region.addEventListener('change', render);
+  // The region is shared with the manual library (portal.js) by its name: a region picked on either page opens
+  // on both next time. 全部区域 exists only here; it is remembered until a region is picked again on either page.
+  // The configured default applies when nothing valid is stored (first visit, cleared or blocked storage).
+  const REGION_KEY = 'hello-docs.manual-portal.region';
+  const ALL_KEY = 'hello-docs.manual-portal.region-all';
+  function restoreRegion() {
+    let saved = null;
+    let all = null;
+    try { saved = localStorage.getItem(REGION_KEY); all = localStorage.getItem(ALL_KEY); } catch (error) { return; }
+    const options = [...region.options];
+    const index = all ? options.findIndex(option => option.value === 'all')
+      : options.findIndex(option => option.value !== 'all' && option.textContent.trim() === saved);
+    if (index >= 0) region.selectedIndex = index;
+  }
+  function rememberRegion() {
+    try {
+      if (region.value === 'all') localStorage.setItem(ALL_KEY, '1');
+      else {
+        localStorage.setItem(REGION_KEY, region.selectedOptions[0].textContent.trim());
+        localStorage.removeItem(ALL_KEY);
+      }
+    } catch (error) { /* storage blocked: keep this visit's choice only */ }
+  }
+
+  region.addEventListener('change', () => { rememberRegion(); render(); });
   product.addEventListener('change', render);
   document.getElementById('learning-reset').addEventListener('click', () => { tag = 'all'; product.value = 'all'; render(); });
+  restoreRegion();
   render();
 })();
