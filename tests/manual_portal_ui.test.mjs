@@ -6,6 +6,7 @@ import vm from 'node:vm';
 // 说明书资料库 (tools/rtd_portal_assets/_static/portal.js) region memory against a minimal fake DOM.
 const script = readFileSync(new URL('../tools/rtd_portal_assets/_static/portal.js', import.meta.url), 'utf8');
 const KEY = 'hello-docs.manual-portal.region';
+const ALL_KEY = 'hello-docs.manual-portal.region-all';
 
 function node(props = {}) {
   const listeners = {};
@@ -45,7 +46,8 @@ function page(storage) {
   if (storage === 'blocked') {
     Object.defineProperty(context, 'localStorage', {get() { throw new Error('SecurityError'); }});
   } else {
-    context.localStorage = {getItem: (key) => storage.get(key) ?? null, setItem: (key, value) => { storage.set(key, String(value)); }};
+    context.localStorage = {getItem: (key) => storage.get(key) ?? null, setItem: (key, value) => { storage.set(key, String(value)); },
+      removeItem: (key) => { storage.delete(key); }};
   }
   vm.runInNewContext(script, context);
   const visible = () => cards.filter((item) => !item.hidden).map((item) => item.dataset.region);
@@ -79,12 +81,13 @@ test('a stored value that is no longer an option falls back to the default', () 
   assert.deepEqual(view.visible(), ['EU']);
 });
 
-test('changing the region remembers it', () => {
-  const storage = new Map();
+test('changing the region remembers it and ends 产品知识\'s 全部区域', () => {
+  const storage = new Map([[ALL_KEY, '1']]);
   const view = page(storage);
   view.region.value = 'US';
   view.region.fire('change');
   assert.equal(storage.get(KEY), 'US');
+  assert.equal(storage.has(ALL_KEY), false);
   assert.deepEqual(view.visible(), ['US']);
 });
 
