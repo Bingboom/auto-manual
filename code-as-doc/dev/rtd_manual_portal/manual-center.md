@@ -114,32 +114,38 @@ Inside the shell the root page has these bounded zones on one container width
 
 1. **Search hero** (light grey band): title and the cross-manual search box.
    People who already own a product search the model here.
-2. **按用电需求找说明书**: one tile per power need (随身供电 / 通用电器供电 /
-   可扩容储能 / 专用场景备电) with a one-line scenario and the products that
-   have a manual in the selected region; a tile with none there is hidden.
-   A tile click filters the catalog to that need.
-3. **Filter toolbar** (sticky below the top bar): 全部, one chip per need and
-   配套产品, plus the language filter. Chips without a manual in the selected
-   region are hidden; a hidden active chip falls back to 全部.
-4. **Catalog**: region heading and count, then one section per need, then
-   「配套产品」 with one section per kind (扩容电池 / 太阳能补能 / 充电器 /
-   连接配件 / 保护与搬运), each with a responsive card grid. Sections with no
-   visible card after filtering are hidden.
+2. **Toolbar** (sticky below the top bar): one chip per 产品类别 (便携电源 /
+   家庭备电 / 扩容电池 / 太阳能板 / 配件) with its icon and the count of
+   manuals in the selected region, linking to the category's section; a
+   category with none there turns grey. The language filter sits on the right.
+3. **Catalog**: region heading and count, then one section per 产品类别 (icon,
+   name, count) holding one group per 产品系列 (orange-ruled heading and
+   count), each a responsive card grid. A category without a manual in the
+   region keeps a grey heading and says 「<region> 暂无说明书 · 其他区域 N 款」;
+   while a search or the language filter narrows the list, empty categories
+   and series hide instead. In the private role a closing line names the
+   source (the 网页文档 table, the same grouping as 产品矩阵).
 5. **网页说明书的定位与价值** (white band, after the catalog so the first screen stays search):
    reader-facing copy in the public role; in the private role the themes with status tags,
    linking to their cards on 知识库首页. See [网页说明书的定位与价值](web-manual-value.md).
 6. **Footer** (light grey band), which also holds the Read the Docs ad placement.
 
-The need and accessory groups are product positioning, curated in
-`settings.json` → `navigation` (`needs` rows with `id`, `title`, `note`,
-`models`; `ecosystem` rows with `id`, `title`, `models`); the build never infers
-them. `tools/rtd/portal_navigation.py` rejects a model listed twice, a duplicate
-or non-lower-case id, or a row without title/models, and fails the build. Card
-order inside a group follows the table. A published model the table does not
-list yet appears under 「其他说明书」 instead of disappearing; add it to the right
-row. Capability comparison and compatibility lookup are deliberately absent until
-a confirmed data source exists. Without `navigation` the page falls back to one
-section per product type (`便携储能` / `加电包` / `太阳能板` / `配件`).
+Categories and series are the 网页文档 table's 产品类别 and 产品系列 columns
+(2026-11-06), read from the committed `product_catalog` snapshot
+(`tools/rtd_portal_assets/product_catalog.json`, written read-only by
+`python -m tools.rtd.product_catalog refresh`; see
+[产品分类 snapshot](knowledge-pages.md#产品分类-snapshot)); the build never
+infers them, and both keep the table's option order. `settings.json` →
+`catalog_categories` gives each category its anchor id and icon (a category it
+does not name gets `category-<n>` and a plain icon); `tools/rtd/portal_navigation.py`
+rejects a non-lower-case, duplicate or `other` id. Cards inside a series sort by
+the number in the model code (JE-100C before JE-1000F), and search also matches a
+card's series and category. A published model the snapshot does not list appears
+under 「其他说明书」 with a Sphinx warning (that group and its chip leave a region where it has no manual); add its 网页文档 row and refresh. Without
+a usable snapshot the page warns and falls back to one section per product type
+(`category_labels`: 便携储能 / 加电包 / 太阳能板 / 配件). `settings.json` →
+`navigation` no longer groups this page; it stays as the positioning layer that
+产品知识 reads.
 
 Cards show the product image, model, edition, a language summary (first
 published language plus the count; the full list is in the tooltip) and a
@@ -193,8 +199,10 @@ bundles, samples and custom editions are not listed). `tools/rtd/product_short_n
 attaches `short_name` to each catalog product by exact model match; the card's
 `data-search`, the muted `model · short name` line on the card and every
 `portal-search-index.js` row carry it, and a short-name hit ranks like a model hit.
-A model missing from the snapshot keeps its previous search text. Several models can
-share one name (`E2000V2` = JE-2000D and JE-2000F), so one query may show several cards.
+A model missing from the snapshot takes its 商品简称 from the 网页文档 table (the
+`product_catalog` snapshot, which also lists colour editions such as `E1000V2沙金色`);
+a model in neither keeps its previous search text. Several models can share one name
+(`E2000V2` = JE-2000D and JE-2000F), so one query may show several cards.
 
 Refresh, read-only (`--profile prod --as bot` lane; it never writes the Base):
 

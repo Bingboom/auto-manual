@@ -1,10 +1,11 @@
 'use strict';
+// 说明书资料库: manuals grouped by 产品类别 (a .family per category) and 产品系列 (a .group per series). The region,
+// the search box and the language filter decide which cards show; the category chips link to their sections and
+// count what the region shows. A category without a manual in the region keeps its heading and says so, unless a
+// search or language filter is narrowing the list.
 const $ = selector => document.querySelector(selector);
 const cards = [...document.querySelectorAll('.card')];
-let category = 'All products';
 let resultLimit = 12;
-const filtersOf = card => (card.dataset.filters || card.dataset.category).split('|');
-const modelFilters = new Map(cards.map(card => [card.querySelector('[data-manual]').dataset.model, filtersOf(card)]));
 
 function render() {
   const selected = $('#region').selectedOptions[0];
@@ -12,7 +13,6 @@ function render() {
   let count = 0;
   cards.forEach(card => {
     card.hidden = card.dataset.region !== selected.dataset.binding
-      || (category !== 'All products' && !filtersOf(card).includes(category))
       || (query && !query.split(/\s+/).every(token => card.dataset.search.includes(token)))
       || ($('#search-language').value !== 'all' && !JSON.parse(card.querySelector('[data-manual]').dataset.languages).some(item => item.url && (item.code === $('#search-language').value || (item.code === 'current' && $('#search-language').value === 'legacy'))));
     if (!card.hidden) count += 1;
@@ -26,60 +26,37 @@ function render() {
   };
   $('#market-note').textContent = marketNotes[selected.dataset.binding] || `${selected.value} 区域说明书资料。`;
   $('#count').textContent = `${count} 份说明书`;
-  document.querySelectorAll('.group').forEach(group => {
-    const visible = group.querySelectorAll('.card:not([hidden])').length;
-    group.hidden = visible === 0;
-    group.querySelector('.group-count').textContent = `${visible} 份`;
-  });
-  document.querySelectorAll('.family').forEach(family => {
-    family.hidden = !family.querySelector('.card:not([hidden])');
-  });
-  renderNeeds(selected.dataset.binding);
+  renderFamilies(selected, Boolean(query) || $('#search-language').value !== 'all');
   $('#empty').hidden = count !== 0;
   $('#clear').hidden = !$('#search').value;
   renderContent(query, selected.dataset.binding);
 }
 
-function chooseCategory(value) {
-  category = value;
-  document.querySelectorAll('button[data-category]').forEach(button => {
-    const active = button.dataset.category === category;
-    button.classList.toggle('active', active);
-    button.setAttribute('aria-pressed', String(active));
+function renderFamilies(selected, narrowed) {
+  document.querySelectorAll('.group').forEach(group => {
+    const visible = group.querySelectorAll('.card:not([hidden])').length;
+    group.hidden = visible === 0;
+    const count = group.querySelector('.group-count');
+    if (count) count.textContent = `${visible} 份`;
   });
-  render();
-}
-
-function renderNeeds(region) {
-  // Scenario tiles follow the region: hide models without a manual there, and empty tiles.
-  document.querySelectorAll('.need').forEach(tile => {
-    const names = [...tile.querySelectorAll('.need-models i')];
-    names.forEach(name => { name.hidden = name.dataset.region !== region; });
-    const shown = names.filter(name => !name.hidden).length;
-    tile.hidden = shown === 0;
-    tile.querySelector('.need-count').textContent = `${shown} 份说明书`;
-  });
-  const needs = document.querySelector('.needs');
-  if (needs) needs.hidden = !needs.querySelector('.need:not([hidden])');
-  const inRegion = cards.filter(card => card.dataset.region === region);
-  const eco = document.querySelector('.needs-eco');
-  if (eco) eco.hidden = !inRegion.some(card => filtersOf(card).includes('ecosystem'));
-  // Only offer filters that have a manual in this region.
-  document.querySelectorAll('button[data-category]').forEach(button => {
-    const value = button.dataset.category;
-    button.hidden = value !== 'All products' && !inRegion.some(card => filtersOf(card).includes(value));
+  document.querySelectorAll('.family').forEach(family => {
+    const visible = family.querySelectorAll('.card:not([hidden])').length;
+    const empty = visible === 0;
+    // 其他说明书 is not a category of its own: with nothing to show it leaves, chip included.
+    const quiet = family.dataset.family === 'other';
+    family.hidden = empty && (narrowed || quiet);
+    family.classList.toggle('is-empty', empty);
+    family.querySelector('.family-count').textContent = empty ? '' : `${visible} 份`;
+    const note = family.querySelector('.family-empty');
+    note.hidden = !empty;
+    note.textContent = empty ? `${selected.value} 暂无说明书 · 其他区域 ${family.dataset.models} 款` : '';
+    const chip = document.querySelector(`[data-chip="${CSS.escape(family.dataset.family)}"]`);
+    if (!chip) return;
+    chip.hidden = empty && quiet;
+    chip.classList.toggle('is-empty', empty);
+    chip.querySelector('.cat-chip-count').textContent = String(visible);
   });
 }
-
-document.querySelectorAll('[data-need]').forEach(link => {
-  link.addEventListener('click', event => {
-    event.preventDefault();
-    $('#search').value = '';
-    chooseCategory(link.dataset.need);
-    $('#products').scrollIntoView({block: 'start'});
-    $('#products').focus({preventScroll: true});
-  });
-});
 
 // The region follows the reader: the last choice is restored on the next visit; the configured
 // default applies only when nothing valid is stored (first visit, cleared or blocked storage).
@@ -100,9 +77,7 @@ function rememberRegion() {
 
 $('#region').addEventListener('change', () => {
   rememberRegion();
-  const chip = document.querySelector(`button[data-category="${CSS.escape(category)}"]`);
-  renderNeeds($('#region').selectedOptions[0].dataset.binding);
-  if (chip && chip.hidden) chooseCategory('All products'); else render();
+  render();
 });
 $('#search').addEventListener('input', () => { resultLimit = 12; render(); });
 $('#search-language').addEventListener('change', render);
@@ -111,13 +86,10 @@ $('#clear').addEventListener('click', () => {
   render();
   $('#search').focus();
 });
-document.querySelectorAll('button[data-category]').forEach(button => {
-  button.addEventListener('click', () => chooseCategory(button.dataset.category));
-});
 $('#reset').addEventListener('click', () => {
   $('#search').value = '';
   $('#search-language').value = 'all';
-  chooseCategory('All products');
+  render();
 });
 document.querySelectorAll('[data-manual]').forEach(link => {
   link.addEventListener('click', event => {
@@ -157,7 +129,6 @@ function renderContent(query, region) {
   const tokens = query.split(/\s+/).filter(Boolean);
   const language = $('#search-language').value;
   const hits = (window.manualSearchIndex || []).filter(item => item.region === region
-    && (category === 'All products' || (modelFilters.get(item.model) || [item.category]).includes(category))
     && (language === 'all' || language === item.lang)
     && tokens.every(t => (item.model + ' ' + item.name + ' ' + (item.short_name || '') + ' ' + item.title + ' ' + item.text).toLowerCase().includes(t)))
     .map(item => ({...item, score: tokens.reduce((score, t) => score + (item.model.toLowerCase().includes(t) || (item.short_name || '').toLowerCase().includes(t) ? 100 : 0) + (item.title.toLowerCase().includes(t) ? 20 : 0), 0)}))

@@ -272,8 +272,8 @@ have another shape. The tab loads `_static/system-data.js` and
   with at least one published 说明书 (`published_targets`, which reads the
   models off `production_evidence.publication_facts`): every region of such a
   model stays, and an unpublished model drops out. On the 2026-10-12 manifest
-  29 of 37 targets (9 of 16 models) remain. The 产品矩阵 page's 功能矩阵 is not
-  filtered; it still lists every model of the capability table.
+  29 of 37 targets (9 of 16 models) remain. The 产品矩阵 page shows a model's
+  switches only in its product's detail, so it too lists published models only.
 - **Asset counts are registry entries.** 素材登记 counts the rows of
   `data/asset_registry.csv`, not deduplicated artwork; the 资产与证据 tab's
   Artwork Assets stays Not tracked yet.
@@ -403,67 +403,110 @@ entries now link directly to the workbench statistics tab; the retired
 ## Product matrix page
 
 `/products/matrix.html` (产品矩阵) lays out the products the published Web
-manuals describe. It is listed under 产品与市场, after 产品知识; the
-public manual library does not link to it.
+manuals describe, grouped the way the 网页文档 table groups them (2026-11
+redesign). It is listed under 产品与市场, after 产品知识; the public manual
+library does not link to it.
 
+- **Products and their classes.** One product is one 商品简称 of the
+  [产品分类 snapshot](#产品分类-snapshot). A model whose 商品简称 ends in a
+  `variant_marks` word of `product_matrix.json` (沙金色, 云上白, 红十字) is that
+  product's colour edition (`E1000V2沙金色` joins `E1000V2`, and the card shows
+  「+沙金色」); a model the snapshot records as sharing another model's pages
+  (`pages_of`: JE-1000F-SG on the JE-1000F US pages) joins as a row that links
+  those pages. The product's name, capacity and tier come from its lead model
+  (own pages first, then the most markets). A published model the snapshot does
+  not list goes under a 其他 tab with a Sphinx warning.
 - **Read at build time.** `tools/rtd/product_matrix.py` reads the publish
   manifest (each model's markets, languages and routes), then one published
-  manual per model: English first, then `language_order` and `region_order` in
-  `tools/rtd_portal_assets/product_matrix.json`. From the table after its
-  SPECIFICATIONS / 仕様 / 规格 / 規格 heading it takes capacity, AC rated and
-  surge output (a Total row wins over the largest single port), cycle life,
-  weight, solar STC power, IP rating and output power, as the manual prints
-  them. Names come from the manual-center catalog without the model code or the
-  manual-type suffix; product lines come from the `navigation` groups in
-  `settings.json`; capability switches from `data/model_capabilities.csv`.
-  Nothing is snapshotted; a published manual change appears on the next build.
-- **Curated config.** `product_matrix.json` holds only what no manual states:
-  the lines and accessory groups (navigation ids, or a new title), `assign` for
-  models the navigation does not list (shown with *), `tiers` (capacity
-  columns), `names` and `notes` overrides, `companions` (products without a
-  manual of their own, cited from another manual) and `pairings` (partners a
-  manual names). A companion or pairing partner is shown only while the cited
-  manual's text still contains its `match` text (or its label).
-- **Backup lines need the manual's words.** A line marked `"evidence": true`
-  (家庭备电, 专用场景备电) takes an assigned model only as
-  `{"line": ..., "evidence": "<quote>"}`, and only while the model's source
-  manual contains that quote (case and spacing ignored). The card tooltip shows
-  the manual sentence. A product name is never the reason: HomePower 3000 and
-  HomePower 3600 Plus describe UPS like any power station but no home backup, so
-  they sit under 通用电器供电 and 可扩容储能. When a quote disappears, the model
-  moves to 其他 with a Sphinx warning. Navigation-listed models (FridgeGuard in
-  专用场景备电) are the operator's own grouping and need no quote.
-- **Operator decisions win over wording.** A manual sentence is necessary, not
-  sufficient: HomePower 5000 Plus carries a Smart Home Backup System guide, but
-  the operator ruled on 2026-10-13 that it is not a backup product, so it sits
-  under 可扩容储能. `{"same_as": "<model>"}` places one product sold in another
-  market where the operator placed it: SlimPower H1 (JE-1000E-WH, JP) is
-  FridgeGuard (JE-1000E-SIL, US) under another name, so it follows FridgeGuard
-  into 专用场景备电. `same_as` must name a navigation-listed model and takes no
-  line of its own; it is for one product's market versions, never for products
-  that merely share a platform.
-- **Sections:** headline counts (models with Web manuals, with 共 N 本网页说明书 ·
-  M 个语言版本 from `production_evidence.publication_facts`; power stations and
-  batteries; accessories; 更多型号持续维护中 when the capability
-  table has models without a Web manual), a market filter, the line × capacity
-  grid, accessory groups, the capability matrix (all / some / no regions), the
-  sortable spec table, pairings and data sources.
-- **JavaScript** (`_static/product-matrix.js`) only dims what a market has no
-  Web manual for and sorts the spec table; without it every product shows and
-  the filter stays hidden. Node tests: `tests/product_matrix_ui.test.mjs`.
-- **Failure:** without a readable publish manifest the page and its links are
-  skipped quietly (the bootstrap build has none). A config naming an unknown
-  group or tier shape, or a malformed capability CSV, skips the page with a
-  Sphinx warning. A model with no group, an unreadable manual, a missing
-  capacity or a pairing the manual no longer names is a Sphinx warning while
-  the page still renders (an unplaced model is listed under 其他).
-  `tests/test_rtd_product_matrix.py` covers the parsing and the rules.
+  manual per model: English first, then `language_order` and `region_order`.
+  From the specification table after its SPECIFICATIONS / 仕様 / 规格 / 規格
+  heading (a `<th>`/`<td>` table, or the source-layout `spec-row` lists; a label's
+  trailing colon is dropped) it takes capacity (also `Internal Battery`), AC
+  rated and surge output (a Total row wins over the largest single port; a
+  `Total Output` row counts only when it states a surge figure), cycle life,
+  weight, solar STC power, IP rating, output power and an expansion port, as the
+  manual prints them. Names come from the manual-center catalog without the
+  model code or the manual-type suffix (`names` overrides). Capability switches
+  come from `data/model_capabilities.csv`. Nothing else is snapshotted.
+- **Layout.** A tab per 产品类别 in the snapshot's order (counts of products),
+  each a grid of 产品系列 rows × the `tiers` capacity columns; a category where
+  no product states a capacity (太阳能板, 配件) has one 产品 column, and a tiered
+  category gets a 容量未注明 column only when a product lacks one. A card shows
+  the name, the 商品简称 (GTM reads products by it) with the capacity, a letter
+  per market (`markets`: 美 欧 日 中 台 韩) and any colour edition.
+- **Detail.** Clicking a card opens its product's detail directly under its
+  series row: the 商品简称, category · series · model count, then a row per model
+  with its 型号, 简称, the figures some model states (容量, AC 额定 / 峰值,
+  太阳能功率, 输出, 防护, 重量, 扩展口, 说明; a column every model lacks is left
+  out) and a link per market (`美规 ↗`, the English page first; the tooltip lists
+  the languages). A shared-pages row reads 「与 JE-1000F 共用美规说明书」.
+  Below: 功能 from the first model in the capability table (switches on in every
+  region, 部分市场 with the regions in the tooltip, then 不支持), and 搭配: what
+  the product's manuals name, and the other products whose manuals name it
+  (「DC-DC Charger 的说明书写到「Explorer 1000 v2」」). Under 600px of container
+  width each model stacks as a labelled list.
+- **Curated config.** `product_matrix.json` holds what neither the manuals nor
+  the snapshot state: `tiers`, `markets`, `variant_marks`, `names`, `notes`
+  (accessory one-liners, the 说明 column), `capability_labels` and `pairings`
+  (partners a manual names). A pairing item shows only while the manual's text
+  still contains its `match` text (or its label); it links to a product only
+  through its `product` key (that product's 商品简称), never by its label alone,
+  since 「Explorer 1000 Plus」 may mean either generation. `lines`,
+  `accessories` and `assign` stay for 产品知识 (`positioning_groups`); an
+  `evidence` assignment whose quote has left its manual still warns here.
+- **JavaScript** (`_static/product-matrix.js`) turns the tab links into a
+  switch, opens and closes a detail under its row (a second click on the card
+  closes it), and keeps the open product or category in the URL hash, so
+  `#p-E1000V2` or `#cat-accessory` links open them. Without it every category
+  shows stacked and a card's link opens its detail through `:target`. Node tests:
+  `tests/product_matrix_ui.test.mjs`.
+- **Failure:** without a readable publish manifest or a usable 产品分类 snapshot
+  the page and its links are skipped (the portal already warned about the
+  snapshot). A config with an unknown group, an open tier shape, markets without a
+  letter or label, or empty variant marks, or a malformed capability CSV, skips
+  the page with a Sphinx warning. An unlisted model, an unreadable manual or a
+  pairing the manual no longer names is a Sphinx warning while the page still
+  renders. `tests/test_rtd_product_matrix.py` covers the parsing, grouping,
+  details and the rendered page.
+
+### 产品分类 snapshot
+
+`tools/rtd/product_catalog.py` reads the 网页文档 table of the 发布文档管理 Base
+(`$FEISHU_PUBLISHED_DOCS_BASE_TOKEN`, `$FEISHU_PUBLISHED_DOCS_WEB_TABLE_ID`)
+read-only and writes `tools/rtd_portal_assets/product_catalog.json`
+(`hello-docs-product-catalog/v1`, the `product_catalog` domain of
+`source_registry.yaml`, 待复核 after 30 days):
+
+```bash
+python -m tools.rtd.product_catalog refresh --cli-bin "lark-cli --profile prod" --dry-run
+python -m tools.rtd.product_catalog refresh --cli-bin "lark-cli --profile prod"
+python -m tools.rtd.product_catalog check
+```
+
+- `categories`: the 产品类别 options in the table's order, each with the 产品系列
+  options its models use, in the table's order. Reorder options in Feishu to
+  reorder both pages.
+- `models`: every model a row's 型号 cell lists, with the row's 类别, 系列 and the
+  商品简称 at the same position of its 商品简称 cell (`JE-1000F, JE-1000F-SG` ↔
+  `E1000V2,E1000V2沙金色`). A model listed after the first one, without rows of
+  its own, also records `pages_of` and the routes it shares.
+- A row without a 类别 or 系列 is skipped and printed; rows that disagree about a
+  model, a 型号 and 商品简称 cell of different lengths, a link to another model's
+  route or a value outside the options fail the refresh and keep the previous
+  snapshot. Only 型号, 商品简称, 产品类别, 产品系列 and 超链接 are read, never a SKU or
+  project code: the snapshot sits in a public repository.
+- Classifying a model, or renaming a series, is a 网页文档 table edit (operator
+  confirmation and a read-back, per the lark-cli Bitable rules) followed by a
+  refresh PR. The 2026-11-06 snapshot came from the operator-approved fill of
+  all 206 rows plus the three JP rows the operator added the same day for
+  JA-CK01A-BK, JA-CK01A-BK-QG and JS-CONNECTION-GUIDE (209 rows, 69 models;
+  便携电源 / 家庭备电 / 扩容电池 / 太阳能板 / 配件).
 
 ## 产品知识
 
 产品知识（产品案例是其末节）、市场与政策都与说明书共用同一个 RTD 项目（2026-10-06 定为同项目发布）。2026-10-13 起 Hello-Docs 转为私有仓库，站点改由 Read the Docs for Business 托管于 `https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest/`，访问需要登录并具备项目权限；页面路径须带 `/en/latest/` 前缀，例如 `/en/latest/products/knowledge.html`。知识库可以跳转到说明书，说明书首页、侧栏和顶部不提供知识库入口；分享知识页直达链接给有权限的人。
 
-`/products/knowledge.html` 提供围绕已发布产品的最少必要技术知识，按标签、型号和区域筛选。通用功能原理、常见误区与阅读提示维护在 `tools/rtd_portal_assets/product_knowledge.json`。每项写入 `added`（首次发布日期，YYYY-MM-DD）；知识库首页的增长线读取它，有一项缺少时只显示主题数。适用产品取产品矩阵的定位层（`tools/rtd/product_matrix.py` 的 `positioning_groups`）：首页 `navigation` 分组加上 `product_matrix.json` 的产品线与 `assign`（备电线的说明书证据句只在产品矩阵页核对），导航未收录的已发布型号因此也有对应知识，型号选择只列出至少有一项知识的产品。`product_matrix.json` 缺失或格式有误时，知识页只用 `navigation` 分组并给出 Sphinx 警告，条目引用的其他分组（如 `homebackup`）按空组处理并在警告中列出，构建不中断。每项的说明书入口只从当前冻结发布目录取得，优先现有英文页，缺少英文时使用实际可用语言，不拼接或猜测型号路径。区域选择与说明书资料库共用浏览器 `localStorage` 的 `hello-docs.manual-portal.region`（按区域名，如 UK 仍显示为 UK、筛选共用的 EU 说明书）：任一页选过的区域，两页下次都从它打开；“全部区域”只在本页，记在 `hello-docs.manual-portal.region-all`，直到在任一页再选具体区域；词条链接为显示被隐藏词条而清除的区域不记住；没有有效记录（首次访问、存储被清除或禁用、记录已不是选项）时用配置的默认区域。覆盖测试见 `tests/product_knowledge_ui.test.mjs`。
+`/products/knowledge.html` 提供围绕已发布产品的最少必要技术知识，按标签、型号和区域筛选。通用功能原理、常见误区与阅读提示维护在 `tools/rtd_portal_assets/product_knowledge.json`。每项写入 `added`（首次发布日期，YYYY-MM-DD）；知识库首页的增长线读取它，有一项缺少时只显示主题数。适用产品取产品矩阵模块的定位层（`tools/rtd/product_matrix.py` 的 `positioning_groups`）：`settings.json` 的 `navigation` 分组（说明书资料库已改按产品分类分组，`navigation` 只留作这层定位）加上 `product_matrix.json` 的产品线与 `assign`（备电线的说明书证据句在产品矩阵构建时核对，原文不再出现只给出警告），导航未收录的已发布型号因此也有对应知识，型号选择只列出至少有一项知识的产品。`product_matrix.json` 缺失或格式有误时，知识页只用 `navigation` 分组并给出 Sphinx 警告，条目引用的其他分组（如 `homebackup`）按空组处理并在警告中列出，构建不中断。每项的说明书入口只从当前冻结发布目录取得，优先现有英文页，缺少英文时使用实际可用语言，不拼接或猜测型号路径。区域选择与说明书资料库共用浏览器 `localStorage` 的 `hello-docs.manual-portal.region`（按区域名，如 UK 仍显示为 UK、筛选共用的 EU 说明书）：任一页选过的区域，两页下次都从它打开；“全部区域”只在本页，记在 `hello-docs.manual-portal.region-all`，直到在任一页再选具体区域；词条链接为显示被隐藏词条而清除的区域不记住；没有有效记录（首次访问、存储被清除或禁用、记录已不是选项）时用配置的默认区域。覆盖测试见 `tests/product_knowledge_ui.test.mjs`。
 
 通用知识不构成某型号内部电路、芯片或跨产品兼容性的认定，也不把教程中的算例当作产品实测。标签和型号过滤只控制阅读范围；技术值、操作和兼容条件仍以对应地区说明书为准。未启用 JavaScript 时全部知识条目与来源链接可读。工程面的模板、交互和课程词条与业务面的 `docs/knowledge/**` 个人分享文章分别维护。
 

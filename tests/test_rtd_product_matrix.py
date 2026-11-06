@@ -9,6 +9,9 @@ from unittest.mock import patch
 
 from tools.rtd import product_matrix
 from tools.rtd.portal import ASSETS
+from bs4 import BeautifulSoup
+from jinja2 import Environment, FileSystemLoader
+
 from tools.rtd.product_matrix import (
     ProductMatrixError, display_name, evidence_excerpt, load_config, matrix_context, number, positioning_groups,
     product_matrix_page_context, read_specs, spec_pairs,
@@ -20,7 +23,22 @@ LANGUAGES = "Document_key,Project,languages,notes\nJE-A_EU,P1,en;fr,note\n"
 SETTINGS = {"navigation": {
     "needs": [{"id": "appliance", "title": "通用电器供电", "models": ["JE-A"]}],
     "ecosystem": [{"id": "solar", "title": "太阳能补能", "models": ["JS-S"]}],
-}}
+}, "catalog_categories": {"便携电源": {"id": "portable", "icon": "portable"}},
+    "language_labels": {"en": "English", "fr": "Français", "ja": "日本語"}}
+# The 产品分类 snapshot: A500 has a second market model (JE-B) and a colour edition sold on JE-A's US pages.
+CATALOG = {
+    "schema": "hello-docs-product-catalog/v1", "exported_at": "2026-11-06", "source": "网页文档",
+    "categories": [{"name": "便携电源", "series": ["标准", "Plus"]}, {"name": "家庭备电", "series": ["HomePower"]},
+                   {"name": "太阳能板", "series": ["SolarSaga"]}],
+    "models": {
+        "JE-A": {"category": "便携电源", "series": "标准", "short": "A500"},
+        "JE-B": {"category": "便携电源", "series": "标准", "short": "A500"},
+        "JE-A-SG": {"category": "便携电源", "series": "标准", "short": "A500沙金色", "pages_of": "JE-A",
+                    "routes": ["JE-A/US/en"]},
+        "JE-H": {"category": "家庭备电", "series": "HomePower", "short": "HP3600"},
+        "JS-S": {"category": "太阳能板", "series": "SolarSaga", "short": "100W"},
+    },
+}
 CONFIG = {
     "region_order": ["US", "EU", "JP"], "language_order": ["en", "ja"],
     "lines": [{"id": "appliance"}, {"id": "home", "title": "家庭备电", "evidence": True}],
@@ -29,13 +47,11 @@ CONFIG = {
     "names": {"JS-S": "Panel S"}, "notes": {},
     "tiers": [{"label": "small", "below": 800}, {"label": "large"}],
     "capability_labels": {"静音充电": "静音"},
-    "companions": [
-        {"title": "无独立说明书", "name": "Switch", "model": "JA-SW1", "spec": "约 10 kg", "source": "JE-H"},
-        {"title": "无独立说明书", "name": "Gone", "model": "JA-GONE", "spec": "约 1 kg", "source": "JE-H"},
-    ],
+    "markets": {"US": {"letter": "美", "label": "美规"}, "EU": {"letter": "欧", "label": "欧规"},
+                "JP": {"letter": "日", "label": "日规"}},
+    "variant_marks": ["沙金色"],
     "pairings": [{"model": "JE-H", "parts": ["Battery Pack 3", {"label": "Switch（JA-SW1）", "match": "JA-SW1"}],
-                  "solar": ["SolarSaga 9"]}],
-    "footnotes": ["顺序说明"],
+                  "solar": [{"label": "SolarSaga 100", "product": "100W"}, "SolarSaga 9"]}],
 }
 
 
@@ -68,6 +84,17 @@ class SpecParsingTests(unittest.TestCase):
         specs = read_specs([("定格容量", "20Ah (1024Wh)"), ("AC出力", "100V，8A，800W，瞬間最大1600W"),
                             ("サイズ＆重量", "約600 mm (約10.5 kg）")])
         self.assertEqual((specs["wh"], specs["ac"], specs["surge"], specs["kg"]), (1024.0, 800.0, 1600.0, 10.5))
+
+    def test_colon_labels_spec_rows_and_a_total_output_with_surge(self):
+        rows = '<div data-source-layout="spec-row"><p>Capacity:</p><p>Lithium-ion 20.4Ah/43.2V DC(881Wh)</p></div>'
+        self.assertEqual(spec_pairs("## TECHNICAL SPECIFICATIONS\n" + rows), [("Capacity", "Lithium-ion 20.4Ah/43.2V DC(881Wh)")])
+        specs = read_specs(spec_pairs(spec_table([("容量：", "6.2Ah / 16V DC 99.2Wh"),
+                                                  ("Total Output", "1500W Rated, 3000W Surge peak")])))
+        self.assertEqual((specs["wh"], specs["ac"], specs["surge"]), (99.2, 1500.0, 3000.0))
+        self.assertEqual(read_specs([("Internal Battery", "6.2Ah/16V 99.2Wh")])["wh"], 99.2)
+        # A Total Output row without a surge figure (a power bank's DC total) is not read as AC.
+        self.assertIsNone(read_specs([("Total Output", "100W Max")])["ac"])
+        self.assertEqual(read_specs([("3 x AC Output", "1000W rated output, 2000W peak surge")])["surge"], 2000.0)
 
     def test_accessory_figures_and_missing_ones(self):
         specs = read_specs([("Weight", "195g±5g"), ("IP Rating", "IP68"),
@@ -108,6 +135,8 @@ class ConfigTests(unittest.TestCase):
             {**CONFIG, "lines": [{"id": "not-in-navigation"}]},
             {**CONFIG, "accessories": [{"id": "appliance"}]},
             {**CONFIG, "tiers": [{"label": "only", "below": 100}]},
+            {**CONFIG, "markets": {"US": {"letter": "美"}}},
+            {**CONFIG, "variant_marks": ["沙金色", ""]},
         ]
         for config in broken:
             with self.subTest(config=config), self.assertRaises(ProductMatrixError):
@@ -144,11 +173,12 @@ class MatrixContextTests(unittest.TestCase):
         (self.assets / "product_matrix.json").write_text(json.dumps(CONFIG), encoding="utf-8")
         self.web = self.root / "docs" / "publish" / "web"
         targets = [target("JE-A", "EU", "en"), target("JE-A", "EU", "fr"), target("JE-A", "US", "en"),
-                   target("JE-A", "JP", "ja"), target("JE-H", "US", "en"), target("JS-S", "EU", "en"),
-                   target("JX-Q", "EU", "en")]
+                   target("JE-A", "JP", "ja"), target("JE-B", "JP", "ja"), target("JE-H", "US", "en"),
+                   target("JS-S", "EU", "en"), target("JX-Q", "EU", "en")]
         manuals = {
             "JE-A": [("Capacity", "512 Wh"), ("AC Output", "500W Rated, 1000W Surge"), ("Weight", "5.7 kg")],
-            "JE-H": [("Capacity", "3584 Wh"), ("Total AC Output", "4000W Rated, 8000W Surge"), ("Weight", "33.5 kg")],
+            "JE-B": [("容量：", "512Wh"), ("重量：", "約 5.5 kg")],
+            "JE-H": [("Capacity", "3584 Wh"), ("Total Output", "4000W Rated, 8000W Surge"), ("Weight", "33.5 kg")],
             "JS-S": [("Maximum Power (Pmax)", "STC*: 100 W"), ("IP Rating", "IP67"), ("Weight", "3.6 kg")],
             "JX-Q": [("Weight", "1 kg")],
         }
@@ -157,7 +187,7 @@ class MatrixContextTests(unittest.TestCase):
             folder.mkdir(parents=True)
             body = spec_table(manuals[item["model"]])
             if item["model"] == "JE-H":
-                body += ("Use Battery Pack 3 and the transfer switch JA-SW1. "
+                body += ("Use Battery Pack 3, SolarSaga 100 and the transfer switch JA-SW1. "
                          "## Home circuits\nThe unit can supply backup\npower to home circuits. Next sentence.")
             (folder / item["manual"]).write_text(body, encoding="utf-8")
         self.manifest = self.root / "docs" / "publish" / "publish_manifest.json"
@@ -168,53 +198,79 @@ class MatrixContextTests(unittest.TestCase):
             {"model": "JE-H", "region": "US", "name": "HomePower H · JE-H"},
         ]
 
-    def context(self):
-        return matrix_context(self.root, self.web, self.manifest, self.assets, SETTINGS, self.catalog)
+    def context(self, product_catalog=CATALOG):
+        return matrix_context(self.root, self.web, self.manifest, self.assets, SETTINGS, self.catalog, product_catalog)
 
-    def test_products_are_placed_by_line_and_capacity_tier(self):
+    def products(self, context=None):
+        context = context or self.context()
+        return {p["short"]: p for c in context["categories"] for row in c["rows"] for p in row["products"]}
+
+    def test_one_product_per_short_name_with_its_markets_editions_and_shared_pages(self):
         context = self.context()
-        # Six 说明书 (model × region), seven 语言版本: JE-A's EU book has two languages.
-        self.assertEqual(context["facts"], {"models": 4, "books": 6, "variants": 7, "energy": 2, "accessories": 2,
-                                            "pending": 1})
-        self.assertEqual(context["built_on"], "2026-10-12")
-        self.assertEqual(context["markets"], ["US", "EU", "JP"])
-        self.assertEqual(context["tiers"], ["small", "large"])
-        appliance, home = context["lines"]
-        card = appliance["cells"][0][0]
-        # The English US manual and its catalog name win over the Japanese one.
-        self.assertEqual((card["name"], card["regions"], card["inferred"]), ("Explorer A", ["US", "EU", "JP"], False))
-        self.assertEqual(card["facts"], ["512 Wh", "AC 500 W", "5.7 kg"])
-        self.assertEqual(card["source"], "JE-A/US/en/md（en）")
-        self.assertEqual(home["cells"][1][0]["model"], "JE-H")
-        self.assertTrue(home["cells"][1][0]["inferred"])
-        self.assertEqual(home["cells"][1][0]["name"], "HomePower H")
+        self.assertEqual(context["facts"], {"products": 4, "models": 6})
+        self.assertEqual((context["built_on"], context["classified_on"]), ("2026-10-12", "2026-11-06"))
+        a500 = self.products(context)["A500"]
+        # The model with the most markets leads; the English US manual's catalog name wins over the Japanese one.
+        self.assertEqual((a500["name"], a500["key"], a500["wh_text"]), ("Explorer A", "p-A500", "512 Wh"))
+        self.assertEqual((a500["regions"], a500["editions"]), (["US", "EU", "JP"], ["沙金色"]))
+        self.assertEqual([row["model"] for row in a500["rows"]], ["JE-A", "JE-B", "JE-A-SG"])
+        shared = a500["detail"]["rows"][2]
+        self.assertEqual((shared["short"], shared["note"]), ("A500沙金色", "与 JE-A 共用美规说明书"))
+        self.assertEqual(shared["docs"], [{"label": "美规", "doc": "JE-A/US/en/md/manual_en", "title": "美规：English"}])
 
-    def test_a_backup_line_shows_the_manual_sentence_that_places_a_model_there(self):
-        card = self.context()["lines"][1]["cells"][1][0]
-        # The quote widens to its sentence; a heading right before it stays as context.
-        self.assertEqual((card["model"], card["basis"]),
-                         ("JE-H", "Home circuits The unit can supply backup power to home circuits."))
+    def test_categories_follow_the_snapshot_with_series_rows_and_capacity_tiers(self):
+        categories = self.context()["categories"]
+        self.assertEqual([(c["id"], c["title"], c["count"]) for c in categories],
+                         [("portable", "便携电源", 1), ("category-2", "家庭备电", 1), ("category-3", "太阳能板", 1),
+                          ("other", "其他", 1)])
+        portable, home, solar, other = categories
+        self.assertEqual((portable["tiered"], portable["columns"]), (True, ["small", "large"]))
+        # A series without a product (Plus) has no row; a card sits in its capacity tier.
+        self.assertEqual([row["title"] for row in portable["rows"]], ["标准"])
+        self.assertEqual([[p["short"] for p in cell] for cell in portable["rows"][0]["cells"]], [["A500"], []])
+        self.assertEqual([[p["short"] for p in cell] for cell in home["rows"][0]["cells"]], [[], ["HP3600"]])
+        self.assertEqual((solar["tiered"], solar["columns"]), (False, ["产品"]))
+        self.assertEqual((other["rows"][0]["title"], other["rows"][0]["products"][0]["short"]), ("未分类", "JX-Q"))
+        self.assertEqual(portable["markets"], ["US", "EU", "JP"])
 
-    def test_without_its_quote_in_the_manual_a_model_leaves_the_backup_line(self):
+    def test_detail_columns_show_only_what_some_model_states(self):
+        products = self.products()
+        a500 = products["A500"]["detail"]
+        self.assertEqual(a500["columns"], ["容量", "AC 额定 / 峰值", "重量"])
+        self.assertEqual([row.get("figures") for row in a500["rows"][:2]],
+                         [["512 Wh", "500 / 1,000 W", "5.7 kg"], ["512 Wh", "—", "5.5 kg"]])
+        self.assertEqual([doc["label"] for doc in a500["rows"][0]["docs"]], ["美规", "欧规", "日规"])
+        self.assertEqual(a500["rows"][0]["docs"][1]["title"], "欧规：English、Français")
+        self.assertEqual(products["HP3600"]["detail"]["rows"][0]["figures"][1], "4,000 / 8,000 W")
+        self.assertEqual(products["100W"]["detail"]["columns"], ["太阳能功率", "防护", "重量"])
+        self.assertEqual(products["100W"]["detail"]["rows"][0]["figures"], ["STC 100 W", "IP67", "3.6 kg"])
+
+    def test_features_come_from_the_first_model_in_the_capability_table(self):
+        products = self.products()
+        features = products["A500"]["detail"]["features"]
+        self.assertEqual((features["model"], features["all"], features["none"]), ("JE-A", ["UPS功能"], []))
+        self.assertEqual(features["some"], [{"name": "静音", "tip": "US 支持；EU 不支持"}])
+        self.assertIsNone(products["HP3600"]["detail"]["features"])
+
+    def test_pairings_link_named_products_both_ways_and_drop_what_the_manual_lost(self):
+        context = self.context()
+        products = self.products(context)
+        named = products["HP3600"]["detail"]["pairing"]["named"]
+        self.assertEqual(named, [{"label": "Battery Pack 3", "key": ""}, {"label": "Switch（JA-SW1）", "key": ""},
+                                 {"label": "SolarSaga 100", "key": "p-100W"}])
+        self.assertEqual(products["100W"]["detail"]["pairing"]["named_by"],
+                         [{"key": "p-HP3600", "name": "HomePower H", "model": "JE-H", "label": "SolarSaga 100"}])
+        self.assertIsNone(products["A500"]["detail"]["pairing"])
+        self.assertTrue(any("SolarSaga 9" in message for message in context["warnings"]))
+
+    def test_unlisted_models_and_lost_evidence_warn(self):
         config = {**CONFIG, "assign": {"JE-H": {"line": "home", "evidence": "whole-home backup"}}}
         (self.assets / "product_matrix.json").write_text(json.dumps(config), encoding="utf-8")
-        context = self.context()
-        self.assertEqual(sum(len(cell) for cell in context["lines"][1]["cells"]), 0)
-        others = {group["title"]: group for group in context["accessories"]}["其他"]
-        self.assertIn("JE-H", [card["model"] for card in others["cards"]])
-        self.assertTrue(any("whole-home backup" in message for message in context["warnings"]))
-
-    def test_a_market_variant_takes_the_line_of_the_same_product(self):
-        config = {**CONFIG, "assign": {**CONFIG["assign"], "JX-Q": {"same_as": "JE-A"}}}
-        (self.assets / "product_matrix.json").write_text(json.dumps(config), encoding="utf-8")
-        specs = {row["model"]: row for row in self.context()["specs"]}
-        self.assertEqual(specs["JX-Q"]["line"], "通用电器供电")
-        loaded = load_config(self.assets, SETTINGS)
-        warnings: list[str] = []
-        products, _ = product_matrix.read_products(self.web, json.loads(self.manifest.read_text())["targets"],
-                                                   self.catalog, loaded, warnings)
-        self.assertEqual((products["JX-Q"]["group"], products["JX-Q"]["variant_of"]), ("appliance", "JE-A"))
-        self.assertEqual((products["JE-A"]["variant_of"], products["JE-H"]["variant_of"]), ("", ""))
+        warnings = self.context()["warnings"]
+        self.assertTrue(any(message.startswith("JX-Q: the 产品分类 snapshot does not list it") for message in warnings))
+        self.assertTrue(any("whole-home backup" in message for message in warnings))
+        (self.assets / "product_matrix.json").write_text(json.dumps(CONFIG), encoding="utf-8")
+        self.assertFalse(any("evidence" in message or "home circuits" in message for message in self.context()["warnings"]))
 
     def test_evidence_excerpt_keeps_the_sentence_and_ignores_case_and_spacing(self):
         text = "Intro. The unit can supply Backup  Power to home circuits. Next."
@@ -223,41 +279,14 @@ class MatrixContextTests(unittest.TestCase):
         self.assertEqual(evidence_excerpt(text, "absent"), "")
         self.assertEqual(evidence_excerpt(text, "  "), "")
 
-    def test_accessories_companions_and_unplaced_products(self):
-        context = self.context()
-        groups = {group["title"]: group for group in context["accessories"]}
-        self.assertEqual(groups["太阳能补能"]["cards"][0]["facts"], ["STC 100 W", "IP67", "3.6 kg"])
-        self.assertEqual(groups["太阳能补能"]["cards"][0]["name"], "Panel S")
-        self.assertEqual([card["model"] for card in groups["其他"]["cards"]], ["JX-Q"])
-        self.assertEqual([card["model"] for card in groups["无独立说明书"]["cards"]], ["JA-SW1"])
-        self.assertEqual(groups["无独立说明书"]["cards"][0]["facts"], ["约 10 kg", "见 HomePower H 说明书"])
-        self.assertTrue(any("JX-Q" in message for message in context["warnings"]))
-        self.assertTrue(any("JA-GONE" in message for message in context["warnings"]))
-
-    def test_pairings_keep_only_what_the_manual_still_names(self):
-        context = self.context()
-        self.assertEqual(context["pairings"], [{"model": "JE-H", "name": "HomePower H",
-                                               "parts": ["Battery Pack 3", "Switch（JA-SW1）"], "solar": []}])
-        self.assertTrue(any("SolarSaga 9" in message for message in context["warnings"]))
-
-    def test_capabilities_and_specs(self):
-        context = self.context()
-        self.assertEqual(context["capability_names"], ["UPS功能", "静音"])
-        first, pending = context["capabilities"]
-        self.assertEqual((first["model"], first["regions"]), ("JE-A", ["EU", "US"]))
-        self.assertEqual([cell["state"] for cell in first["cells"]], ["all", "some"])
-        self.assertIn("US 支持；EU 不支持", first["cells"][1]["tip"])
-        self.assertEqual((pending["model"], pending["name"], pending["published"]), ("JE-Z", "", []))
-        self.assertEqual([row["model"] for row in context["specs"]], ["JE-A", "JE-H"])
-        self.assertEqual(context["specs"][1]["figures"][1], (4000.0, "4,000"))
-
-    def test_without_a_manifest_the_page_is_skipped_quietly(self):
+    def test_without_a_manifest_or_a_snapshot_the_page_is_skipped_quietly(self):
+        self.assertIsNone(self.context(None))
         self.manifest.unlink()
         self.assertIsNone(self.context())
         app = SimpleNamespace(srcdir=str(self.web))
         with patch.object(product_matrix, "repo_root", return_value=self.root), \
                 patch("sphinx.util.logging.getLogger") as get_logger:
-            self.assertIsNone(product_matrix_page_context(app, self.assets, SETTINGS, self.catalog))
+            self.assertIsNone(product_matrix_page_context(app, self.assets, SETTINGS, self.catalog, CATALOG))
         get_logger.return_value.warning.assert_not_called()
 
     def test_drifted_config_skips_the_page_with_a_warning(self):
@@ -265,7 +294,7 @@ class MatrixContextTests(unittest.TestCase):
         app = SimpleNamespace(srcdir=str(self.web))
         with patch.object(product_matrix, "repo_root", return_value=self.root), \
                 patch("sphinx.util.logging.getLogger") as get_logger:
-            self.assertIsNone(product_matrix_page_context(app, self.assets, SETTINGS, self.catalog))
+            self.assertIsNone(product_matrix_page_context(app, self.assets, SETTINGS, self.catalog, CATALOG))
         get_logger.return_value.warning.assert_called_once()
         self.assertIn("Product matrix page skipped", get_logger.return_value.warning.call_args.args[0])
 
@@ -273,9 +302,34 @@ class MatrixContextTests(unittest.TestCase):
         app = SimpleNamespace(srcdir=str(self.web))
         with patch.object(product_matrix, "repo_root", return_value=self.root), \
                 patch("sphinx.util.logging.getLogger") as get_logger:
-            context = product_matrix_page_context(app, self.assets, SETTINGS, self.catalog)
+            context = product_matrix_page_context(app, self.assets, SETTINGS, self.catalog, CATALOG)
         self.assertIsNotNone(context)
         self.assertEqual(get_logger.return_value.warning.call_count, len(context["warnings"]))
+
+    def test_the_page_renders_tabs_cards_and_a_detail_under_each_row(self):
+        template = Environment(loader=FileSystemLoader(ASSETS)).get_template("product_matrix.html")
+        page = BeautifulSoup(template.render(**self.context(), pathto=lambda name, *args: name, site_nav={}),
+                             "html.parser")
+        self.assertEqual([(a["href"], a.get_text()) for a in page.select(".mx-tabs a")],
+                         [("#cat-portable", "便携电源1"), ("#cat-category-2", "家庭备电1"),
+                          ("#cat-category-3", "太阳能板1"), ("#cat-other", "其他1")])
+        card = page.select_one('.mx-prod[data-product="p-A500"]')
+        self.assertEqual((card["href"], card["aria-expanded"]), ("#p-A500", "false"))
+        self.assertEqual(card.select_one(".mx-code").get_text(), "A500")
+        self.assertEqual([i.get_text() for i in card.select(".mx-mks i")], ["美", "欧", "日"])
+        self.assertEqual(card.select_one("em").get_text(), "+沙金色")
+        # The detail follows its series row inside the grid, and links each market's manual.
+        detail = page.select_one(".mx-detail#p-A500")
+        self.assertIn("mx-row", detail.find_previous_sibling("div")["class"])
+        self.assertEqual([th.get_text() for th in detail.select("thead th")],
+                         ["型号", "简称", "容量", "AC 额定 / 峰值", "重量", "说明书"])
+        self.assertEqual(detail.select_one("td.is-note")["colspan"], "3")
+        self.assertEqual(detail.select_one(".mx-doc")["href"], "JE-A/US/en/md/manual_en")
+        self.assertEqual(detail.select_one("[data-close]")["href"], "#cat-portable")
+        paired = page.select_one(".mx-detail#p-100W .mx-dbox")
+        self.assertEqual(paired.select_one("a.mx-pair")["data-product"], "p-HP3600")
+        self.assertIn("HomePower H 的说明书写到「SolarSaga 100」", paired.get_text())
+        self.assertIsNone(page.select_one("#capabilities, #specs, #pairings, .pm-filter"))
 
 
 if __name__ == "__main__":

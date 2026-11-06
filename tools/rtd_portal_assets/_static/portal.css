@@ -1,5 +1,5 @@
 /* Manual library page content inside the shared site shell (site-shell.css):
-   light search hero, sticky filter toolbar, grouped catalog, footer. One container
+   light search hero, sticky toolbar of category chips, manuals grouped by 产品类别 and 产品系列, footer. One container
    width (.wrap) keeps every zone's left/right edge aligned. */
 :root {
   --orange:var(--brand);
@@ -49,32 +49,19 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible {
 .search input::-webkit-search-cancel-button {display:none}
 .search button {border:0;background:var(--surface);border-radius:50%;width:28px;height:28px;font-size:18px;line-height:1;color:var(--muted);flex-shrink:0}
 
-/* 1b. Find by power need: the product line's positioning, before the catalog */
-.needs {padding-top:36px;padding-bottom:28px}
-.needs h2 {font-size:22px;font-weight:700;margin:0}
-.needs-lead {margin:6px 0 18px;color:var(--muted);font-size:14px;line-height:1.7}
-.needs-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
-.need {display:flex;flex-direction:column;gap:6px;min-width:0;padding:18px 18px 16px;background:var(--card);border:1px solid var(--line);
-  border-radius:var(--radius);text-decoration:none;color:var(--ink);transition:border-color .15s,box-shadow .15s}
-.need:hover {border-color:#d3d6db;box-shadow:0 10px 26px #1d1f2312}
-.need strong {font-size:17px;font-weight:650}
-.need-note {font-size:13px;line-height:1.6;color:var(--muted)}
-.need-models {display:flex;flex-wrap:wrap;gap:4px 10px;margin-top:6px;padding-top:10px;border-top:1px solid var(--line)}
-.need-models i {font-style:normal;font-size:13px;color:#4a4e56}
-.need-count {margin-top:auto;padding-top:8px;font-style:normal;font-size:12.5px;color:var(--orange);font-weight:600}
-.needs-eco {margin:14px 0 0;font-size:13.5px;color:var(--muted)}
-.needs-eco a {color:var(--ink);font-weight:600;text-underline-offset:3px}
-
-/* 2. Filter toolbar */
+/* 2. Toolbar: a chip per 产品类别 (a link to its section, counting the region's manuals), and the language filter */
 .toolbar {position:sticky;top:var(--app-topbar);z-index:20;background:#fffffff2;backdrop-filter:blur(8px);
   border-bottom:1px solid var(--line);box-shadow:0 1px 0 #0000000a}
 .toolbar-inner {display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:60px}
-.categories {display:flex;gap:8px;overflow-x:auto;padding:10px 0;scrollbar-width:none}
-.categories::-webkit-scrollbar {display:none}
-.categories button {border:1px solid var(--line);background:#fff;white-space:nowrap;padding:7px 16px;
-  border-radius:999px;color:var(--muted);font-size:14px;transition:background .15s,color .15s,border-color .15s}
-.categories button:hover {border-color:#c6c9cf;color:var(--ink)}
-.categories .active,.categories .active:hover {background:var(--ink);border-color:var(--ink);color:#fff;font-weight:600}
+.cat-chips {display:flex;gap:8px;overflow-x:auto;padding:10px 0;scrollbar-width:none}
+.cat-chips::-webkit-scrollbar {display:none}
+.cat-chip {display:inline-flex;align-items:center;gap:8px;flex:none;height:38px;padding:0 14px;border-radius:12px;background:#fff;
+  border:1px solid var(--line);color:var(--ink);font-size:14px;font-weight:600;text-decoration:none;white-space:nowrap;transition:border-color .15s}
+.cat-chip:hover {border-color:#f3b98f}
+.cat-chip .cat-icon {flex:none;color:var(--orange)}
+.cat-chip-count {font-size:12px;font-weight:500;color:var(--faint)}
+.cat-chip.is-empty {color:var(--faint);font-weight:500}
+.cat-chip.is-empty .cat-icon {color:#c9cdd3}
 .language-filter {display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);white-space:nowrap}
 .language-filter select {padding:7px 10px;border:1px solid var(--line);background:#fff;border-radius:8px;font-size:14px;max-width:220px}
 
@@ -85,15 +72,24 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible {
 .market-note {margin:6px 0 0;color:var(--muted);font-size:14px;line-height:1.5}
 .count-pill {font-size:13px;font-weight:600;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px;white-space:nowrap}
 
-.group {margin-top:36px}
+.group {margin-top:28px}
 .group-head {display:flex;align-items:baseline;gap:10px;margin-bottom:16px}
 .group-head h3 {margin:0;font-size:19px;font-weight:600;padding-left:12px;border-left:3px solid var(--orange);line-height:1.2}
 .group-count {font-size:14px;color:var(--faint)}
-.group-note {margin:0;font-size:13.5px;color:var(--muted)}
-.family {margin-top:52px;padding-top:28px;border-top:1px solid var(--line)}
+/* A 产品类别 section: icon, name and the region's count, then a group per 产品系列. Without a manual in the
+   region it keeps a quiet heading and says how many products the category has elsewhere. */
+.family {margin-top:36px;scroll-margin-top:calc(var(--app-topbar) + 76px)}
+.family + .family {padding-top:32px;border-top:1px solid var(--line)}
+.family-head {display:flex;align-items:center;gap:10px}
+.family-icon {display:flex;align-items:center;justify-content:center;flex:none;width:36px;height:36px;border-radius:10px;
+  background:var(--orange-soft);color:var(--orange)}
 .family-title {margin:0;font-size:22px;font-weight:700}
-.family-title span {margin-left:12px;font-size:14px;font-weight:400;color:var(--muted)}
+.family-count {font-size:13px;color:var(--faint)}
+.family-empty {margin:10px 0 0;font-size:14px;color:var(--muted)}
+.family.is-empty .family-title {font-size:18px;color:var(--faint)}
+.family.is-empty .family-icon {background:var(--surface);color:var(--faint)}
 .family .group:first-of-type {margin-top:20px}
+.catalog-source {margin:40px 0 0;padding-top:16px;border-top:1px solid var(--line);font-size:13px;line-height:21px;color:var(--muted)}
 .grid {display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
 
 .card {position:relative;display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
@@ -202,13 +198,10 @@ dialog h2 {font-size:24px;font-weight:700;line-height:1.3;margin:0 0 6px}
   .search input {font-size:15px}
   .results-bar h2 {font-size:20px}
   .grid {grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-  .needs {padding-top:24px;padding-bottom:20px}
-  .needs-grid {grid-template-columns:minmax(0,1fr);gap:10px}
   .value {padding-top:28px;padding-bottom:32px}
   .value h2 {font-size:20px}
   .value-grid {grid-template-columns:minmax(0,1fr);gap:10px}
   .group-head {flex-wrap:wrap}
-  .family-title span {display:block;margin:4px 0 0}
   .art {height:130px;padding:12px}
   .card-body {padding:12px}
   .card h4 {font-size:15px}

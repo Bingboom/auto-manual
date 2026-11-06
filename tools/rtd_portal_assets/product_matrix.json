@@ -1,6 +1,15 @@
 {
-  "region_order": ["US", "EU", "JP", "CN", "TW"],
+  "region_order": ["US", "EU", "JP", "CN", "TW", "KR"],
   "language_order": ["en", "zh", "zh-TW", "ja", "fr", "es", "de"],
+  "markets": {
+    "US": {"letter": "美", "label": "美规"},
+    "EU": {"letter": "欧", "label": "欧规"},
+    "JP": {"letter": "日", "label": "日规"},
+    "CN": {"letter": "中", "label": "中规"},
+    "TW": {"letter": "台", "label": "台规"},
+    "KR": {"letter": "韩", "label": "韩规"}
+  },
+  "variant_marks": ["沙金色", "云上白", "红十字"],
   "lines": [
     {"id": "portable", "fallback": "USB-C 供电"},
     {"id": "appliance"},
@@ -49,22 +58,16 @@
     {"label": "≈5 kWh"}
   ],
   "capability_labels": {"AC/DC输出记忆恢复": "输出记忆恢复", "TOU/计划充电": "TOU / 计划充电"},
-  "companions": [
-    {"title": "转换开关（无独立说明书）", "name": "Transfer Switch", "model": "JA-TS05A", "spec": "约 10.5 kg", "source": "JHP-3600C"}
-  ],
   "pairings": [
-    {"model": "JE-1000H", "parts": ["Battery Pack 2000"]},
-    {"model": "JE-2000E", "parts": ["Battery Pack 2000"]},
-    {"model": "JE-3600A", "parts": ["Battery Pack 3600"], "solar": ["SolarSaga 200"]},
-    {"model": "JHP-3600C", "parts": ["Battery Pack 3600", {"label": "Transfer Switch（JA-TS05A）", "match": "JA-TS05A"}]},
-    {"model": "JHP-5000C", "parts": ["Battery Pack 5000 Plus", {"label": "Smart Transfer Switch（JA-TS02A）", "match": "JA-TS02A"}], "solar": ["SolarSaga 500", "SolarSaga 200"]},
-    {"model": "JHP-3000D", "solar": ["SolarSaga 200"]},
-    {"model": "JE-1000E-SIL", "parts": [{"label": "Battery Pack（JBP-1000B-SIL）", "match": "Battery Pack"}, {"label": "DC Input Module（JA-AD500A-SIL）", "match": "DC Input Module"}], "solar": ["SolarSaga 500"]},
-    {"model": "JE-1000E-WH", "parts": [{"label": "Battery Pack（JBP-1000B-WH）", "match": "Battery Pack"}]},
-    {"model": "JA-AD600A", "parts": ["Explorer 1000 Plus", "Explorer 1000 v2", "Explorer 2000 Plus", "Explorer 2000 v2", "Explorer 3000 Pro", "Explorer 3000 v2"]},
-    {"model": "JA-CA3SA", "parts": [{"label": "2–3 块太阳能板串联", "match": "series"}, "Explorer 2000 Pro"]}
-  ],
-  "footnotes": [
-    "欧规网页说明书最多是上线顺序的结果：欧规先上，美规说明书存量更多但网页化较晚。"
+    {"model": "JE-1000H", "parts": [{"label": "Battery Pack 2000", "product": "BP2000"}]},
+    {"model": "JE-2000E", "parts": [{"label": "Battery Pack 2000", "product": "BP2000"}]},
+    {"model": "JE-3600A", "parts": [{"label": "Battery Pack 3600", "product": "BP3600加电包"}], "solar": [{"label": "SolarSaga 200", "product": "200W"}]},
+    {"model": "JHP-3600C", "parts": [{"label": "Battery Pack 3600", "product": "BP3600加电包"}, {"label": "Transfer Switch（JA-TS05A）", "match": "JA-TS05A"}]},
+    {"model": "JHP-5000C", "parts": ["Battery Pack 5000 Plus", {"label": "Smart Transfer Switch（JA-TS02A）", "match": "JA-TS02A", "product": "智能转换开关"}], "solar": ["SolarSaga 500", {"label": "SolarSaga 200", "product": "200W"}]},
+    {"model": "JHP-3000D", "solar": [{"label": "SolarSaga 200", "product": "200W"}]},
+    {"model": "JE-1000E-SIL", "parts": [{"label": "Battery Pack（JBP-1000B-SIL）", "match": "Battery Pack", "product": "卫士1号加电包"}, {"label": "DC Input Module（JA-AD500A-SIL）", "match": "DC Input Module", "product": "卫士系列DC输入配件"}], "solar": ["SolarSaga 500"]},
+    {"model": "JE-1000E-WH", "parts": [{"label": "Battery Pack（JBP-1000B-WH）", "match": "Battery Pack", "product": "卫士1号加电包"}]},
+    {"model": "JA-AD600A", "parts": ["Explorer 1000 Plus", {"label": "Explorer 1000 v2", "product": "E1000V2"}, "Explorer 2000 Plus", {"label": "Explorer 2000 v2", "product": "E2000V2"}, {"label": "Explorer 3000 Pro", "product": "E3000Pro"}, {"label": "Explorer 3000 v2", "product": "E3000V2"}]},
+    {"model": "JA-CA3SA", "parts": [{"label": "2–3 块太阳能板串联", "match": "series"}, {"label": "Explorer 2000 Pro", "product": "E2000Pro"}]}
   ]
 }
