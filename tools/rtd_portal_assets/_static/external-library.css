@@ -1,0 +1,120 @@
+/* 外部资料库 · Demo: competitor profiles, the industry library, sources, schedule and upkeep.
+   The shell (site-shell.css) owns the sidebar, top bar and page tabs. */
+* {box-sizing:border-box}
+[hidden] {display:none!important}
+a {color:var(--brand-strong);text-underline-offset:3px}
+a:focus-visible {outline:3px solid var(--brand);outline-offset:3px}
+.skip {position:absolute;left:20px;top:-70px;z-index:100;padding:10px;background:#fff}
+.skip:focus {top:10px}
+
+.library {--ok:#28654b;--ok-bg:#edf5f0;--warn:#8a5b20;--warn-bg:#fff2dd;--late:#a03a2c;--late-bg:#fcebe8;
+  --info:#49627d;--info-bg:#eef2f7;max-width:1220px;margin:0 auto;padding:42px 38px 56px}
+.library-head {max-width:780px}
+.eyebrow {margin:0;color:var(--brand-strong);font-size:13px;font-weight:600}
+.library h1 {font-size:36px;line-height:1.3;margin:10px 0 12px}
+.library-head>p {margin:0;font-size:16px;line-height:1.8;color:var(--app-muted)}
+.head-meta {display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin-top:14px;font-size:13px;color:var(--app-muted)}
+.sample-flag {padding:2px 9px;border-radius:12px;background:var(--brand-soft);color:var(--brand-strong);font-weight:600}
+
+.library-stats {list-style:none;margin:26px 0 18px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.library-stats li {background:#fff;border:1px solid var(--app-line);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:2px}
+.library-stats strong {font-size:26px;line-height:1.2;font-variant-numeric:tabular-nums}
+.library-stats span {font-size:13px;color:var(--app-muted)}
+.library-stats li.alert {border-color:#f3c7a6;background:var(--brand-soft)}
+.library-stats li.alert strong {color:var(--brand-strong)}
+
+.tab-panel {padding-top:22px}
+.tab-panel h2 {font-size:20px;margin:30px 0 12px;display:flex;align-items:baseline;gap:10px}
+.tab-panel h2 small {font-size:13px;font-weight:500;color:var(--app-muted)}
+.panel-lead {max-width:820px;margin:0 0 16px;color:var(--app-muted);line-height:1.8}
+.empty {margin:0;color:var(--app-faint);font-size:14px}
+
+.badge {display:inline-block;padding:2px 8px;border-radius:5px;font-size:12px;font-weight:600;white-space:nowrap;
+  color:var(--app-muted);background:var(--app-bg)}
+.badge.done,.badge.in_use {color:var(--ok);background:var(--ok-bg)}
+.badge.overdue {color:var(--late);background:var(--late-bg)}
+.badge.stale,.badge.due-soon {color:var(--warn);background:var(--warn-bg)}
+.badge.pending {color:var(--info);background:var(--info-bg)}
+.badge.candidate,.badge.waiting {background:#fff;border:1px dashed #c9cdd3}
+
+.profile {background:#fff;border:1px solid var(--app-line);border-radius:12px;padding:24px;margin-bottom:18px;scroll-margin-top:120px}
+.profile-head {display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 20px;align-items:baseline}
+.profile-head h2 {margin:0;font-size:22px;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px}
+.profile-head h2 small {font-size:14px;font-weight:500;color:var(--app-muted)}
+.profile-head p {margin:0;font-size:13px;color:var(--app-muted)}
+.flow {list-style:none;margin:16px 0 18px;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.flow li {position:relative;padding:5px 12px;border-radius:16px;font-size:13px;background:var(--app-bg);color:var(--app-faint)}
+.flow li.done {background:var(--ok-bg);color:var(--ok)}
+.flow li.current {background:var(--brand-soft);color:var(--brand-strong);font-weight:650;box-shadow:inset 0 0 0 1px #f3c7a6}
+.ends {display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:14px}
+.end {border:1px solid var(--app-line);border-radius:10px;padding:16px;min-width:0}
+.end.overdue {border-color:#efc1b9}
+.end.waiting {background:#fafbfc}
+.end>header {display:flex;justify-content:space-between;align-items:center;gap:10px}
+.end h3 {margin:0;font-size:16px}
+.end-meta {margin:6px 0 12px;font-size:12.5px;color:var(--app-muted);line-height:1.6}
+.findings {margin:0;display:flex;flex-direction:column;gap:10px}
+.findings div {padding-top:10px;border-top:1px solid var(--app-line)}
+.findings dt {font-size:12px;font-weight:600;color:var(--app-muted)}
+.findings dd {margin:2px 0 0;font-size:14px;line-height:1.6}
+.cite {display:block;margin-top:2px;font-size:12px;color:var(--app-faint)}
+
+.table-wrap {overflow-x:auto;margin:0 0 6px}
+table {border-collapse:collapse;width:100%;font-size:13.5px}
+.metrics {margin-top:12px;font-size:12.5px}
+.metrics caption {text-align:left;font-size:12px;font-weight:600;color:var(--app-muted);padding-bottom:4px}
+.metrics th,.metrics td {padding:4px 6px;border-bottom:1px solid var(--app-line);text-align:right;font-variant-numeric:tabular-nums}
+.metrics th:first-child {text-align:left}
+.grid {background:#fff;border:1px solid var(--app-line);border-radius:10px;overflow:hidden}
+.grid th,.grid td {padding:11px 14px;border-bottom:1px solid var(--app-line);text-align:left;vertical-align:top;line-height:1.6}
+.grid thead th {font-size:12.5px;color:var(--app-muted);font-weight:600;background:#fafbfc;white-space:nowrap}
+.grid tbody tr:last-child th,.grid tbody tr:last-child td {border-bottom:0}
+.grid tbody th {font-weight:650;white-space:nowrap}
+.grid tbody th small {display:block;font-size:12px;font-weight:400;color:var(--app-faint)}
+.grid .num {font-variant-numeric:tabular-nums;white-space:nowrap}
+
+.doc-group h2 {margin-top:26px}
+.docs {display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.doc {background:#fff;border:1px solid var(--app-line);border-radius:10px;padding:18px;display:flex;flex-direction:column;scroll-margin-top:120px}
+.doc>header {display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.doc h3 {margin:0;font-size:16px;line-height:1.5}
+.doc-meta {margin:6px 0 10px;font-size:12.5px;color:var(--app-muted)}
+.points {margin:0 0 12px;padding-left:18px;font-size:14px;line-height:1.7}
+.doc-foot {margin:auto 0 0;padding-top:10px;border-top:1px solid var(--app-line);display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12.5px;color:var(--app-muted)}
+
+.pipeline {list-style:none;margin:0 0 12px;padding:0;display:flex;flex-wrap:wrap;gap:8px;counter-reset:step}
+.pipeline li {counter-increment:step;padding:7px 14px;background:#fff;border:1px solid var(--app-line);border-radius:18px;font-size:14px;font-weight:600}
+.pipeline li::before {content:counter(step);display:inline-grid;place-items:center;width:20px;height:20px;margin-right:8px;border-radius:50%;
+  background:var(--brand-soft);color:var(--brand-strong);font-size:12px}
+.jobs {display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:8px}
+.job {background:#fff;border:1px solid var(--app-line);border-radius:10px;padding:16px}
+.job.pending {background:#fafbfc;border-style:dashed}
+.job>header {display:flex;justify-content:space-between;align-items:center;gap:10px}
+.job h3 {margin:0;font-size:16px}
+.job-meta {margin:6px 0 10px;font-size:12.5px;color:var(--app-muted);line-height:1.6}
+.job ol {margin:0;padding-left:20px;font-size:13.5px;line-height:1.7}
+
+.todos {list-style:none;margin:0;padding:0;background:#fff;border:1px solid var(--app-line);border-radius:10px}
+.todos li {display:grid;grid-template-columns:110px minmax(0,1.4fr) minmax(0,.8fr) minmax(0,1.2fr);gap:12px;align-items:center;
+  padding:12px 16px;border-bottom:1px solid var(--app-line);font-size:14px}
+.todos li:last-child {border-bottom:0}
+.todos .badge {justify-self:start}
+.todos .who {color:var(--app-ink)}
+.todos .note {font-size:12.5px;color:var(--app-muted)}
+.flow-detail {list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;counter-reset:flow}
+.flow-detail li {counter-increment:flow;background:#fff;border:1px solid var(--app-line);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:4px}
+.flow-detail strong::before {content:counter(flow) " · ";color:var(--brand)}
+.flow-detail span {font-size:13px;color:var(--app-muted);line-height:1.6}
+.rules {margin:0;padding:16px 16px 16px 36px;background:#fff;border:1px solid var(--app-line);border-radius:10px;line-height:1.9;font-size:14.5px}
+
+.library-footer {margin-top:36px;padding-top:16px;border-top:1px solid var(--app-line);font-size:13px;color:var(--app-muted)}
+.library-footer p {margin:0}
+
+@media (min-width:1180px) {.flow-detail {grid-template-columns:repeat(6,minmax(0,1fr))}}
+@media (max-width:760px) {
+  .flow-detail {grid-template-columns:repeat(2,minmax(0,1fr))}
+  .library {padding:26px 16px 40px}
+  .library h1 {font-size:28px}
+  .profile {padding:18px}
+  .todos li {grid-template-columns:1fr;gap:4px}
+}

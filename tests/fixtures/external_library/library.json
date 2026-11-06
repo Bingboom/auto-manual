@@ -1,0 +1,168 @@
+{
+  "schema_version": "external-library/v1",
+  "sample": true,
+  "as_of": "2026-11-06",
+  "departments": {
+    "marketing": "市场部",
+    "product": "产品部",
+    "rd": "研发部",
+    "research": "行业研究"
+  },
+  "sources": [
+    {"id": "official-site", "name": "竞品官网", "kind": "public", "status": "in_use", "libraries": ["competitor"],
+     "gives": "预售期、主打功能点、定价、官网评价", "method": "定时巡检产品页，有变化才记录"},
+    {"id": "review-site", "name": "测评网站", "kind": "public", "status": "in_use", "libraries": ["competitor"],
+     "gives": "第三方测评结论、实测数据、用户讨论", "method": "检索新测评，摘录要点并附链接"},
+    {"id": "sample-unit", "name": "样品机报告", "kind": "internal", "status": "in_use", "libraries": ["competitor"],
+     "gives": "软件体验；拆解得到的技术选型、部件、供应商", "method": "走 OA 采购样机，各部门按模板交报告"},
+    {"id": "gov-portal", "name": "法规与标准网站", "kind": "public", "status": "in_use", "libraries": ["industry"],
+     "gives": "法规、标准的原文与修订", "method": "定时检索新发布与修订"},
+    {"id": "industry-report", "name": "行业报告与新闻", "kind": "public", "status": "in_use", "libraries": ["industry"],
+     "gives": "市场规模、趋势、政策与渠道动态", "method": "订阅与检索，摘要后入库"},
+    {"id": "paid-data", "name": "付费数据接口", "kind": "paid", "status": "candidate", "libraries": ["competitor"],
+     "gives": "官网流量、电商评价与价格走势", "method": "按需采购数据服务，每天自动拉取"},
+    {"id": "doc-structuring", "name": "文档结构化工具", "kind": "tool", "status": "candidate", "libraries": ["competitor", "industry"],
+     "gives": "把 PDF 报告、测评文章变成带出处的要点", "method": "开源文档解析工具抽取，人工确认后入库"}
+  ],
+  "competitor": {
+    "flow": [
+      {"name": "立项", "note": "确定要跟踪的竞品，以及要对标的我方产品"},
+      {"name": "OA 采购", "note": "发起样机采购申请，审批通过后下单"},
+      {"name": "样机到货", "note": "登记到货日期，排定各部门报告期限"},
+      {"name": "体验与拆解", "note": "产品部上手体验，研发部拆解"},
+      {"name": "提交报告", "note": "各部门按模板提交报告和照片"},
+      {"name": "审核入库", "note": "负责人审核后写入竞品档案"}
+    ],
+    "dimensions": [
+      {"id": "marketing", "name": "营销端", "department": "marketing", "deliverable": "营销监测表", "refresh_days": 7,
+       "covers": ["预售期", "主打功能点", "定价", "用户响应度"], "sources": ["official-site", "review-site", "paid-data"]},
+      {"id": "software", "name": "软件端", "department": "product", "deliverable": "软件与体验报告", "refresh_days": 30,
+       "covers": ["产品外观（ID）", "设备软件", "App 与交互", "使用体验"], "sources": ["review-site", "sample-unit"]},
+      {"id": "hardware", "name": "硬件端（拆解）", "department": "rd", "deliverable": "拆解报告", "refresh_days": 90,
+       "covers": ["技术选型", "部件基础信息", "供应商", "部件能力", "整机硬件"], "sources": ["sample-unit", "doc-structuring"]}
+    ],
+    "products": [
+      {"id": "competitor-a", "name": "竞品 A", "brand": "品牌 A", "segment": "2000W 便携储能", "stage": "审核入库",
+       "oa": {"applied_on": "2026-09-15", "arrived_on": "2026-09-26"},
+       "ends": {
+         "marketing": {"status": "done", "owner": "张三", "submitted_on": "2026-10-10", "updated_on": "2026-11-03",
+           "findings": [
+             {"label": "预售期", "value": "9 月 1 日至 21 日官网预售，早鸟价 8 折", "source": "official-site", "checked_on": "2026-11-03"},
+             {"label": "主打功能点", "value": "1 小时快充、静音模式、App 远程控制", "source": "official-site", "checked_on": "2026-11-03"},
+             {"label": "定价", "value": "首发价 7999 元，11 月起现价 7499 元", "source": "official-site", "checked_on": "2026-11-03"},
+             {"label": "用户响应度", "value": "官网评价 320 条，平均 4.6 分；差评集中在重量和风扇噪音", "source": "review-site", "checked_on": "2026-11-03"}
+           ],
+           "metrics": [
+             {"week": "10-13", "visits": 8600, "reviews": 260, "rating": 4.6},
+             {"week": "10-20", "visits": 9400, "reviews": 284, "rating": 4.6},
+             {"week": "10-27", "visits": 10200, "reviews": 301, "rating": 4.6},
+             {"week": "11-03", "visits": 11800, "reviews": 320, "rating": 4.6}
+           ]},
+         "software": {"status": "done", "owner": "李四", "submitted_on": "2026-10-20", "updated_on": "2026-10-20",
+           "findings": [
+             {"label": "产品外观（ID）", "value": "一体式提手，接口集中在前面板，屏幕显示剩余时间", "source": "sample-unit", "checked_on": "2026-10-20"},
+             {"label": "设备软件", "value": "固件可在线升级，提供三档充电速度", "source": "sample-unit", "checked_on": "2026-10-20"},
+             {"label": "App 与交互", "value": "首次配网 3 步完成，可定时开关输出", "source": "sample-unit", "checked_on": "2026-10-20"},
+             {"label": "使用体验", "value": "满载时风扇噪音明显；强光下屏幕可读性一般", "source": "review-site", "checked_on": "2026-10-20"}
+           ]},
+         "hardware": {"status": "done", "owner": "王五", "due": "2026-10-31", "submitted_on": "2026-10-28", "updated_on": "2026-10-28",
+           "findings": [
+             {"label": "技术选型", "value": "磷酸铁锂电芯，双向逆变方案", "source": "sample-unit", "checked_on": "2026-10-28"},
+             {"label": "部件基础信息", "value": "电芯 32 颗，主控板与逆变板分离", "source": "sample-unit", "checked_on": "2026-10-28"},
+             {"label": "供应商", "value": "电芯来自供应商 S1，主控芯片来自供应商 S2（代号）", "source": "sample-unit", "checked_on": "2026-10-28"},
+             {"label": "部件能力", "value": "逆变板峰值功率余量约 20%", "source": "sample-unit", "checked_on": "2026-10-28"},
+             {"label": "整机硬件", "value": "整机 22 kg，双风扇风道散热", "source": "sample-unit", "checked_on": "2026-10-28"}
+           ]}
+       }},
+      {"id": "competitor-b", "name": "竞品 B", "brand": "品牌 B", "segment": "1000W 便携储能", "stage": "体验与拆解",
+       "oa": {"applied_on": "2026-10-12", "arrived_on": "2026-10-24"},
+       "ends": {
+         "marketing": {"status": "done", "owner": "张三", "submitted_on": "2026-10-27", "updated_on": "2026-10-27",
+           "findings": [
+             {"label": "预售期", "value": "未做预售，10 月 15 日直接开售", "source": "official-site", "checked_on": "2026-10-27"},
+             {"label": "主打功能点", "value": "整机 10 kg、太阳能快充", "source": "official-site", "checked_on": "2026-10-27"},
+             {"label": "定价", "value": "3999 元", "source": "official-site", "checked_on": "2026-10-27"},
+             {"label": "用户响应度", "value": "官网评价 85 条，平均 4.3 分", "source": "official-site", "checked_on": "2026-10-27"}
+           ],
+           "metrics": [
+             {"week": "10-20", "visits": 5200, "reviews": 60, "rating": 4.4},
+             {"week": "10-27", "visits": 6100, "reviews": 85, "rating": 4.3}
+           ]},
+         "software": {"status": "in_progress", "owner": "李四", "due": "2026-11-12",
+           "findings": [
+             {"label": "产品外观（ID）", "value": "机身小巧，可单手提起", "source": "review-site", "checked_on": "2026-11-04"}
+           ]},
+         "hardware": {"status": "in_progress", "owner": "王五", "due": "2026-11-05", "findings": []}
+       }},
+      {"id": "competitor-c", "name": "竞品 C", "brand": "品牌 C", "segment": "3000W 家庭备电", "stage": "OA 采购",
+       "oa": {"applied_on": "2026-11-02"},
+       "ends": {
+         "marketing": {"status": "in_progress", "owner": "张三", "due": "2026-11-13",
+           "findings": [
+             {"label": "预售期", "value": "官网公告 11 月 20 日开启预售", "source": "official-site", "checked_on": "2026-11-02"},
+             {"label": "主打功能点", "value": "可扩展电池包，停电自动切换备电", "source": "official-site", "checked_on": "2026-11-02"},
+             {"label": "定价", "value": "预售价尚未公布", "source": "official-site", "checked_on": "2026-11-02"}
+           ]},
+         "software": {"status": "waiting", "owner": "李四", "findings": []},
+         "hardware": {"status": "waiting", "owner": "王五", "findings": []}
+       }}
+    ]
+  },
+  "industry": {
+    "department": "research",
+    "refresh_days": 90,
+    "kinds": {"policy": "政策法规", "standard": "标准认证", "report": "行业报告", "news": "行业动态"},
+    "documents": [
+      {"id": "eu-battery-regulation", "kind": "policy", "title": "欧盟电池法规 (EU) 2023/1542", "region": "欧盟", "publisher": "欧盟",
+       "published_on": "2023-07-28", "source": "gov-portal", "url": "https://eur-lex.europa.eu/eli/reg/2023/1542/oj",
+       "points": ["规定电池在可持续性、安全和标签方面的要求", "引入电池护照等新义务，各项要求分阶段生效", "适用范围与生效时间以法规原文为准"],
+       "status": "reviewed", "owner": "赵六", "review_by": "2027-01-31"},
+      {"id": "safety-standard-draft", "kind": "standard", "title": "储能电源安全标准修订征求意见稿", "region": "示例地区", "publisher": "某标准化组织",
+       "published_on": "2026-11-03", "source": "gov-portal",
+       "points": ["拟增加电池过温保护的测试项目", "征求意见截止前需评估对在售产品的影响"],
+       "status": "pending_review", "owner": "赵六"},
+      {"id": "portable-storage-report", "kind": "report", "title": "便携储能行业年度报告", "region": "全球", "publisher": "某咨询机构",
+       "published_on": "2026-07-15", "source": "industry-report",
+       "points": ["户外与家庭备电需求持续增长", "2000W 以上机型占比上升", "价格带向 3000 至 5000 元集中"],
+       "status": "reviewed", "owner": "赵六", "review_by": "2026-10-31"},
+      {"id": "backup-subsidy-news", "kind": "news", "title": "家庭备电补贴政策动态", "region": "示例地区", "publisher": "地方能源主管部门",
+       "published_on": "2026-10-20", "source": "industry-report",
+       "points": ["对购买家庭备电设备的居民给予补贴", "要求产品具备指定的安全认证"],
+       "status": "reviewed", "owner": "赵六", "review_by": "2027-02-06"},
+      {"id": "marketplace-promo-rules", "kind": "news", "title": "电商平台储能品类促销规则调整", "region": "示例地区", "publisher": "某电商平台",
+       "published_on": "2026-11-03", "source": "industry-report",
+       "points": ["大促期间储能品类须标注电池容量与认证信息"],
+       "status": "pending_review", "owner": "赵六"}
+    ]
+  },
+  "schedule": {
+    "jobs": [
+      {"id": "watch-official", "name": "竞品官网巡检", "cadence": "每周一 09:00", "library": "competitor", "status": "demo", "notify": "市场部负责人",
+       "steps": ["打开各竞品官网产品页", "比对价格、预售、主打卖点有没有变化", "有变化就生成待审核条目"]},
+      {"id": "industry-scan", "name": "行业资料检索", "cadence": "每周二 09:00", "library": "industry", "status": "demo", "notify": "行业资料维护人",
+       "steps": ["检索法规、标准和报告网站的新发布", "提取要点并分类", "生成待审核条目"]},
+      {"id": "watch-reviews", "name": "测评文章检索", "cadence": "每周三 09:00", "library": "competitor", "status": "demo", "notify": "产品部负责人",
+       "steps": ["检索测评网站的新文章", "摘录结论和实测数据", "生成待审核条目"]},
+      {"id": "report-reminder", "name": "样机报告催办", "cadence": "每周五 10:00", "library": "competitor", "status": "demo", "notify": "报告负责人，抄送部门负责人",
+       "steps": ["检查各部门报告的期限", "逾期和 7 天内到期的发提醒"]},
+      {"id": "freshness", "name": "资料复核", "cadence": "每月 1 日 08:00", "library": "both", "status": "demo", "notify": "资料维护人",
+       "steps": ["找出超过复核日期的资料", "通知维护人复核或更新"]},
+      {"id": "pull-metrics", "name": "流量与评价数据", "cadence": "每天 08:00", "library": "competitor", "status": "pending", "notify": "市场部负责人",
+       "steps": ["从付费数据接口拉取访问量、评价数和评分", "写入营销端周度快照", "波动异常时提醒"]}
+    ],
+    "runs": [
+      {"job": "report-reminder", "at": "2026-10-30 10:00", "result": "竞品 B 拆解报告 11 月 5 日到期，已提醒研发部王五"},
+      {"job": "freshness", "at": "2026-11-01 08:00", "result": "1 份行业资料超过复核日期（便携储能行业年度报告），已提醒赵六"},
+      {"job": "watch-official", "at": "2026-11-02 09:00", "result": "检查 3 个竞品官网：竞品 A 降价、竞品 C 发布预售公告，生成 2 条待审核"},
+      {"job": "industry-scan", "at": "2026-11-03 09:00", "result": "发现 2 份新资料，生成 2 条待审核"},
+      {"job": "watch-reviews", "at": "2026-11-04 09:00", "result": "找到竞品 B 的新测评 1 篇，生成 1 条待审核"}
+    ]
+  },
+  "rules": [
+    "每条资料都写明来源和核实日期，说不出出处的不入库。",
+    "竞品三端各有负责部门，按模板交报告，负责人审核后入库。",
+    "定时任务只生成待审核条目，不直接改资料库。",
+    "每类资料有复核周期：营销端 7 天、软件端 30 天、硬件端 90 天、行业资料 90 天，到期自动提醒。",
+    "每次改动都留记录：谁提交、谁审核、哪天、改了什么。"
+  ]
+}
