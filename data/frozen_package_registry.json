@@ -2006,6 +2006,11 @@
         }
       }
     },
+    "manual_sources/JE-3000C/JP/ja/git-20261106-b16b82c6-jp-release": {
+      "approval": "Operator 2026-11-06 (coordinator session session_01Y8kaknyyfgd1ZC5Xtwthqx): 「只转这个 16-0102-000341 …HTE1563000A-JP-JAK.pdf」「你直接把旧草稿发布了」, then after reviewing the 1280/390 renders 「2，上线提交发布：JE-3000C」: Git-only JP/ja release of the reviewed 2026-10-19 draft with six symbol rows on operator-confirmed canonicals and the approved footnote completion; acceptance hash-bound in source/approval.json",
+      "registered": "2026-11-06",
+      "known_drift": {}
+    },
     "manual_sources/JE-3000C/KR/ko/git-20261021-78316033": {
       "approval": "User chat 2026-10-21: supplied JE-3000C KR PDF; remove landscape first sheet and convert via Git-only; isolated worktree and complete first-use sentence approved. Candidate only; no merge or publication approval.",
       "registered": "2026-10-21",
