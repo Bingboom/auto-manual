@@ -24,6 +24,11 @@ schema: hello-docs-knowledge-updates/v1
 
 updates:
   - date: 2026-11-06
+    title: 系统建设 · 正在做与首页一致
+    note: 当前工作的「正在做」与知识库首页用同一份（网页化、多格式输出，各标所属主线）；阶段门「接下来」只数剩余台账项，不再写台账事项名
+    page: system
+    evidence: "pr:auto-manual#1683"
+  - date: 2026-11-06
     title: 产品知识 · 新版页面
     note: 先看能量流动图和主题地图，点任一环节或主题即筛出相关知识；词条卡图文并排，讲电路的词条把电路图放大到正文上方；HomePower 3600 Pro Max 备电案例按四个问题排列
     page: product-knowledge
