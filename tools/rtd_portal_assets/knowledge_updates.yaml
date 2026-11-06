@@ -24,6 +24,11 @@ schema: hello-docs-knowledge-updates/v1
 
 updates:
   - date: 2026-11-06
+    title: 产品矩阵 · 按网页文档表分类
+    note: 每个产品类别一个标签，按产品系列 × 容量排列，卡片写商品简称；点一款产品在它那一行下方展开各型号的简称、规格、各市场说明书、功能和搭配；说明书资料库也改按同一套类别与系列分组
+    page: product-matrix
+    evidence: "pr:auto-manual#1692"
+  - date: 2026-11-06
     title: 市场与政策 · 新版页面
     note: 先看两张主题卡（说明书语言与准入、电价与家庭储能）和各国标签；每条资料收成一行，点开再看政策变化、原理和对产品的影响；去掉了筛选栏
     page: market-policy
