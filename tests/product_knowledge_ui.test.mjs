@@ -26,10 +26,22 @@ function node(props = {}) {
   };
 }
 
+// Like a DOM <select>: options may share a value (UK and EU both bind EU); selectedIndex picks one of them.
 function select(value, options) {
   const element = node({value, options});
-  Object.defineProperty(element, 'selectedOptions', {get: () => options.filter((option) => option.value === element.value)});
+  let picked = null;
+  Object.defineProperty(element, 'selectedIndex', {set: (index) => { picked = options[index]; element.value = picked.value; }});
+  Object.defineProperty(element, 'selectedOptions', {get: () => (picked && picked.value === element.value
+    ? [picked] : options.filter((option) => option.value === element.value).slice(0, 1))});
   return element;
+}
+
+const REGION_KEY = 'hello-docs.manual-portal.region';
+const ALL_KEY = 'hello-docs.manual-portal.region-all';
+function memory(entries = []) {
+  const map = new Map(entries);
+  return {map, getItem: (key) => map.get(key) ?? null, setItem: (key, value) => { map.set(key, String(value)); },
+    removeItem: (key) => { map.delete(key); }};
 }
 
 // A topic card with its manual links ([region, model] pairs), its "+N" button and its manual count.
@@ -46,8 +58,9 @@ function card(id, tags, refs) {
   return {element, links, more, count};
 }
 
-function page({cards, region = 'EU', chips = ['all', 'battery', 'inverter'], flow = [], themes = [], topicLinks = []}) {
-  const regions = select(region, [{value: 'EU', textContent: 'EU'}, {value: 'US', textContent: 'US'}, {value: 'all', textContent: '全部区域'}]);
+function page({cards, region = 'EU', chips = ['all', 'battery', 'inverter'], flow = [], themes = [], topicLinks = [], storage}) {
+  const regions = select(region, [{value: 'EU', textContent: 'EU'}, {value: 'EU', textContent: 'UK'}, {value: 'US', textContent: 'US'},
+    {value: 'all', textContent: '全部区域'}]);
   const products = select('all', [['all'], ['JE-1000F', 'EU'], ['JS-100I', 'EU'], ['JE-1000F', 'US'], ['JHP-3600C', 'US']]
     .map(([value, regionCode]) => ({value, dataset: regionCode ? {region: regionCode} : {}, hidden: false, disabled: false})));
   const list = node({scrolled: 0, scrollIntoView() { this.scrolled += 1; }});
@@ -67,7 +80,7 @@ function page({cards, region = 'EU', chips = ['all', 'battery', 'inverter'], flo
       '.pk-more': cards.map((item) => item.more),
     })[selector] ?? [],
   };
-  vm.runInNewContext(script, {document});
+  vm.runInNewContext(script, storage ? {document, localStorage: storage} : {document});
   return parts;
 }
 
@@ -150,4 +163,42 @@ test('an empty selection offers a reset that clears the theme and the product', 
   assert.equal(chips[0].attributes['aria-pressed'], 'true');
   assert.equal(battery.element.hidden, false);
   assert.equal(empty.hidden, true);
+});
+
+test('a region picked on either page opens here next time, by its name', () => {
+  const watts = card('watts', ['basics'], [['EU', 'JE-1000F'], ['US', 'JE-1000F']]);
+  const us = page({cards: [watts], storage: memory([[REGION_KEY, 'US']])});
+  assert.equal(us.regions.value, 'US');
+  assert.equal(us.count.textContent, '1 项知识 · US');
+  assert.deepEqual(watts.links.map((link) => link.hidden), [true, false]);
+
+  const uk = page({cards: [watts], storage: memory([[REGION_KEY, 'UK']])});
+  assert.equal(uk.regions.value, 'EU');
+  assert.equal(uk.count.textContent, '1 项知识 · UK', 'UK keeps its name while showing the shared EU manuals');
+});
+
+test('a stored name that is not an option keeps the configured default', () => {
+  const watts = card('watts', ['basics'], [['EU', 'JE-1000F']]);
+  const {regions, count} = page({cards: [watts], storage: memory([[REGION_KEY, 'XX']])});
+  assert.equal(regions.value, 'EU');
+  assert.equal(count.textContent, '1 项知识 · EU');
+});
+
+test('全部区域 is remembered here until a region is picked again', () => {
+  const watts = card('watts', ['basics'], [['EU', 'JE-1000F'], ['US', 'JE-1000F']]);
+  const storage = memory([[REGION_KEY, 'US']]);
+  const first = page({cards: [watts], storage});
+  first.regions.value = 'all';
+  first.regions.fire('change');
+  assert.equal(storage.map.get(ALL_KEY), '1');
+  assert.equal(storage.map.get(REGION_KEY), 'US', 'the shared region stays for the manual library');
+
+  const second = page({cards: [watts], storage});
+  assert.equal(second.regions.value, 'all');
+  assert.equal(second.count.textContent, '1 项知识');
+  assert.equal(watts.count.textContent, '2', 'both regions\' manuals show');
+  second.regions.selectedIndex = 1;
+  second.regions.fire('change');
+  assert.equal(storage.map.get(REGION_KEY), 'UK');
+  assert.equal(storage.map.has(ALL_KEY), false);
 });

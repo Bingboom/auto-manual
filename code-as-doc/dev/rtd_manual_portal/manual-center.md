@@ -13,7 +13,10 @@ remembers each reader's last region in browser `localStorage`
 (`hello-docs.manual-portal.region`, written on change and restored before the
 first render); the configured `default_region` (EU) applies only on a first
 visit, when storage is cleared or blocked, or when the stored value is no longer
-an option. Covered by `tests/manual_portal_ui.test.mjs`.
+an option. The 产品知识 page shares the same key by region name (see
+[knowledge pages](knowledge-pages.md)); choosing a region here also clears its
+`hello-docs.manual-portal.region-all` (全部区域) flag. Covered by
+`tests/manual_portal_ui.test.mjs`.
 Chinese (`zh`, 简体中文) and Japanese (`ja`, 日本語) labels are registered for
 verified publications. Registering these labels does not publish a manual or
 create a language URL; unavailable editions remain disabled.
