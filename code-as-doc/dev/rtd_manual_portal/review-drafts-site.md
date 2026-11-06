@@ -5,7 +5,7 @@ Status: active (2026-10-21; issue register and row sync 2026-10-25)
 Hello-Docs-Review is the private document workbench: agents write there with the
 mirrored infrastructure, the business data, the templates and the corpus, and
 people review the result. Writing is the main production route; data-and-template
-builds are used on demand.
+builds are being phased down.
 
 Review drafts (审核稿) — for example the JHP-3600C JP draft made with the
 [`manual-review-draft`](../../../.agents/skills/manual-review-draft/SKILL.md) skill —
