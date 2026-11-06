@@ -1,5 +1,5 @@
-"""系统建设 (2026-11 layout): the 阶段门 stepper, the lane each 近期事项 row belongs to, and the lane cards'
-status, name, figures and ledger tally. The shipped page itself is rendered in test_rtd_system_workspace."""
+"""系统建设 (2026-11 layout): the 阶段门 stepper, 正在做 with its lanes, and the lane cards' status, name, figures and
+ledger tally. The shipped page itself is rendered in test_rtd_system_workspace."""
 from __future__ import annotations
 
 import unittest
@@ -13,49 +13,46 @@ LEDGER_URL = "https://github.com/o/auto-manual/blob/main/ledger.md"
 
 
 def gate_views(data: dict, ledger_text: str = LEDGER):
-    return sw._gate_and_now_views(data, sw.parse_ledger(ledger_text), data["focus"]["lanes"], LEDGER_URL)
+    return sw._gate_views(data, sw.parse_ledger(ledger_text), data["focus"]["lanes"])
 
 
 class StepperTests(unittest.TestCase):
-    def test_the_current_gate_names_its_open_rows_then_the_next_gate(self):
-        data = contract()
-        gates, _ = gate_views(data)
-        view = sw.stepper_view(gates, data["now_next"])
+    def test_the_current_gate_counts_its_open_rows_then_the_next_gate(self):
+        view = sw.stepper_view(gate_views(contract()))
         self.assertEqual([gate["id"] for gate in view["gates"]], ["G1", "G2"])
         self.assertEqual((view["current"], view["next_gate"], view["folded"]), ("G1", "G2", []))
-        self.assertEqual(view["steps"], ["在验项", "验收 G1", "开始 G2 维护试点"])
+        # The rows themselves are in the ledger and the lane cards; 正在做 says what is being done.
+        self.assertEqual(view["steps"], ["完成 G1 最后一项", "验收 G1", "开始 G2 维护试点"])
 
-    def test_unlabelled_rows_are_counted_and_a_folded_gate_leaves_the_steps(self):
+    def test_several_open_rows_are_counted_and_a_folded_gate_leaves_the_steps(self):
         data = contract()
+        data["now_next"]["gates"][0]["revs"] = ["REV-02..REV-03"]
         data["now_next"]["gates"][1]["fold"] = True
-        gates, _ = gate_views(data)
-        view = sw.stepper_view(gates, {"now_labels": {}})
-        self.assertEqual(view["steps"], ["完成 G1 剩余 1 项", "验收 G1"])
+        view = sw.stepper_view(gate_views(data))
+        self.assertEqual(view["steps"], ["完成 G1 剩余 2 项", "验收 G1"])
         self.assertEqual(([gate["id"] for gate in view["folded"]], view["next_gate"]), (["G2"], ""))
 
     def test_a_done_gate_hands_over_to_the_next(self):
-        gates, _ = gate_views(contract(), LEDGER.replace("| REV-01 | x | verifying |", "| REV-01 | x | done |"))
-        view = sw.stepper_view(gates, {"now_labels": {"REV-02": "在验项"}})
+        ledger = LEDGER.replace("| REV-01 | x | verifying |", "| REV-01 | x | done |")  # REV-02's row
+        self.assertNotEqual(ledger, LEDGER)
+        view = sw.stepper_view(gate_views(contract(), ledger))
         self.assertEqual([gate["state"] for gate in view["gates"]], ["done", "idle"])
-        self.assertEqual((view["current"], view["steps"]), ("G2", ["完成 G2 剩余 1 项", "验收 G2"]))
+        self.assertEqual((view["current"], view["steps"]), ("G2", ["完成 G2 最后一项", "验收 G2"]))
 
     def test_no_gates_no_stepper(self):
-        self.assertIsNone(sw.stepper_view([], {}))
+        self.assertIsNone(sw.stepper_view([]))
 
 
-class NowContextTests(unittest.TestCase):
-    def test_a_lane_listing_the_row_wins_over_a_gate_holding_it(self):
-        _, now = gate_views(contract())
-        self.assertEqual([(row["rev"], row["label"], row["context"]) for row in now], [("REV-02", "在验项", "语料")])
-
-    def test_a_gate_row_names_its_lane_and_place(self):
+class DoingTests(unittest.TestCase):
+    def test_each_item_keeps_its_words_and_names_its_lane_without_the_condition(self):
         data = contract()
-        data["focus"]["lanes"][1].pop("revs")
-        _, now = gate_views(data)
-        self.assertEqual(now[0]["context"], "网页化 · G1 最后一项")
-        data["now_next"]["gates"][0]["revs"] = ["REV-02..REV-03"]
-        _, now = gate_views(data)
-        self.assertEqual(now[0]["context"], "网页化 · G1 剩余 2 项")
+        data["focus"]["lanes"][0]["title"] = "网页化 · 先收口"
+        data["focus"]["doing"].append({"lead": " 语料 ", "text": "补译", "lane": "tm"})
+        self.assertEqual(sw.doing_view(data["focus"]), [
+            {"lead": "网页化", "text": "印刷版说明书持续转成网页版", "lane": "web", "lane_name": "网页化"},
+            {"lead": "语料", "text": "补译", "lane": "tm", "lane_name": "语料"},
+        ])
+        self.assertEqual(sw.doing_view({"lanes": []}), [])
 
 
 class LaneCardTests(unittest.TestCase):

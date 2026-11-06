@@ -53,6 +53,10 @@ hero:
 # lists. Publication counts (publications, regions) belong to 说明书工作台, so
 # no lane lists them; the page points there instead. The focus is the
 # operator's call: re-confirm it whenever verified_on moves.
+#
+# doing is 正在做: the one list that both this page (当前工作) and 知识库首页
+# show, in the operator's plain words, each item tied to a lane marked now.
+# The ledger's open rows stay on the 阶段门 and in the lane cards.
 focus:
   note: 资料写作在工作台进行，网页发布与维护闭环是交付主线；语料与 SSOT 随实际需求补齐。基于数据和模板的自动构建按需使用，共享与覆盖逐步扩展。
   evidence:
@@ -62,6 +66,11 @@ focus:
     - "ack:操作者 2026-10-19「REV-39 暂缓」"
     - "ack:操作者 2026-10-23「基于数据+模版 自动构建 这个过程 可以 退却为 按需使用了 我需要 把 Hello-Docs-Review工作台推出」"
     - "ack:操作者 2026-10-23「公开系统建设页的「当前重点」要不要加上工作台？ === 加」"
+    - "ack:操作者 2026-11-05「长在做 不要写这俩 就写 持续转网页文档 还有就是 基于 持续积累的语料+图标 实现基于agent的多格式输出 这种文字」"
+    - "ack:操作者 2026-11-06「这里 没和首页 统一」"
+  doing:
+    - {lead: 网页化, text: 印刷版说明书持续转成网页版, lane: web}
+    - {lead: 多格式输出, text: Agent 复用积累的语料、图片素材和设计规范，一份内容出多种格式, lane: workbench}
   lanes:
     - id: workbench
       horizon: now
@@ -519,9 +528,6 @@ now_next:
     - {id: G3, label: 网页扩展, revs: [REV-21..REV-25, REV-27]}
     - {id: IDML, label: 印刷独立验收, revs: [REV-20, REV-26], fold: true}
     - {id: G4, label: 协作与服务准备, revs: [REV-29..REV-31], fold: true}
-  now_labels:
-    REV-09: 代表目标修订、发布与恢复演练
-    REV-47: 写作规则与并行试点
 
 # Skills and hooks: read from the tree at build time (.agents/skills,
 # .claude/skills, .claude/settings.json, .githooks/pre-push); nothing is

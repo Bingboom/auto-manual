@@ -75,8 +75,8 @@ The 系统建设 and 说明书工作台 pages share the page tabs (`.page-tabs` 
 panels, so without JavaScript every panel shows; any in-page link or URL hash that
 points inside a panel opens that panel, and any collapsed section around it.
 系统建设 opens with the 阶段门 stepper (G1–G3 with the current gate filled, then a
-接下来 line and the folded gates) above three tabs: 当前工作 (近期事项 and the
-focus lanes), 能力与架构 (capability map, production flow, 工作入口, architecture,
+接下来 line and the folded gates) above three tabs: 当前工作 (正在做, the same
+list as 知识库首页, and the focus lanes), 能力与架构 (capability map, production flow, 工作入口, architecture,
 language assets, skills and engineering scale) and 来源与演变 (data sources, then
 the system's evolution). The former tab ids (`#tab-architecture`, `#tab-corpus`,
 `#tab-tooling`, `#tab-evolution`) stay on their sections. 说明书工作台 opens with

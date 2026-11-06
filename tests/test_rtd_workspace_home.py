@@ -20,16 +20,14 @@ SYSTEM = {
             {"id": "web", "title": "网页发布与维护闭环", "goal": ""},
         ]},
         {"horizon": "next", "lanes": [{"id": "corpus", "title": "语料库建设与管理", "goal": "按需补齐"}]},
-    ]},
-    "now": [{"rev": "REV-09", "label": "代表目标修订、发布与恢复演练"}],
+    ], "doing": [{"lead": "网页化", "text": "印刷版说明书持续转成网页版", "lane": "web", "lane_name": "网页发布与维护闭环"}]},
     "corpus": {"exported_at": "2026-09-24", "tiles": [
         {"key": "pairs", "label": "句对", "value": "1,372"}, {"key": "terms", "label": "术语", "value": "232"},
         {"key": "languages", "label": "语料覆盖语言", "value": "11"},
         {"key": "approved", "label": "句对已批准", "value": "71%"},
     ]},
 }
-COPY = {"assets_note": "每写一本都在积累，下一本直接复用",
-        "doing": [{"lead": "网页化", "text": "印刷版说明书持续转成网页版"}]}
+COPY = {"assets_note": "每写一本都在积累，下一本直接复用"}
 REGISTRY = ("asset_key,override_for,类别,语言维度,状态,适用机型\n"
             "a,,插图,中立,✅成品,ALL\nb,,图标,中立,✅成品,JE-1000F\nc,,插图,按语言,✅成品,JE-1000F\n"
             "d,,插图,按语言,❌缺失,JE-1000F\n")
@@ -61,30 +59,30 @@ def render(**context) -> BeautifulSoup:
 
 
 class HomeCopyTests(unittest.TestCase):
-    def test_shipped_copy_has_the_note_and_doing_items(self):
-        copy = load_home_copy(ASSETS)
-        self.assertTrue(copy["assets_note"])
-        self.assertEqual([item["lead"] for item in copy["doing"]], ["网页化", "多格式输出"])
-        self.assertNotIn("REV-", json.dumps(copy, ensure_ascii=False))
+    def test_shipped_copy_has_only_the_note(self):
+        self.assertEqual(list(load_home_copy(ASSETS)), ["assets_note"])
+        self.assertTrue(load_home_copy(ASSETS)["assets_note"])
 
-    def test_malformed_copy_fails(self):
+    def test_malformed_copy_fails_and_a_second_doing_list_is_refused(self):
         with tempfile.TemporaryDirectory() as tmp:
             assets = Path(tmp)
-            for text in ("schema: other\n", "schema: hello-docs-workspace-home/v1\nassets_note: n\ndoing: []\n",
-                         "schema: hello-docs-workspace-home/v1\nassets_note: n\ndoing:\n  - lead: x\n"):
+            for text in ("schema: other\n", "schema: hello-docs-workspace-home/v2\n",
+                         "schema: hello-docs-workspace-home/v1\nassets_note: n\n",
+                         "schema: hello-docs-workspace-home/v2\nassets_note: n\ndoing:\n  - {lead: x, text: y}\n"):
                 (assets / "workspace_home.yaml").write_text(text, encoding="utf-8")
                 with self.assertRaises(ValueError):
                     load_home_copy(assets)
 
 
 class NowViewTests(unittest.TestCase):
-    def test_main_line_titles_and_the_home_copy(self):
+    def test_main_lines_and_doing_come_from_the_system_page(self):
         view = now_view(SYSTEM, COPY)
         self.assertEqual([lane["title"] for lane in view["lanes"]], ["资料开发工作台", "网页发布与维护闭环"])
-        self.assertEqual(view["doing"], COPY["doing"])
+        self.assertEqual(view["doing"], [{"lead": "网页化", "text": "印刷版说明书持续转成网页版"}])
         self.assertEqual(view["assets_note"], COPY["assets_note"])
         self.assertTrue(view["system"])
-        self.assertEqual((now_view(None, COPY)["lanes"], now_view(None, COPY)["system"]), ([], False))
+        alone = now_view(None, COPY)
+        self.assertEqual((alone["lanes"], alone["doing"], alone["system"]), ([], [], False))
 
 
 class AssetSourceTests(unittest.TestCase):
@@ -172,6 +170,7 @@ class HomeRenderTests(unittest.TestCase):
                           system_entry=False)
         self.assertEqual([em.get_text() for em in home.select("#now .home-asset em")], ["无数据"] * 4)
         self.assertIsNone(home.select_one("#now .home-lanes"))
+        self.assertIsNone(home.select_one("#now .home-doing"))
         self.assertIsNone(home.select_one("#now .home-head a"))
 
     def test_entry_cards_carry_line_icons_not_glyphs(self):

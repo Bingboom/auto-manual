@@ -10,8 +10,9 @@ never fails the build:
 - 通用章节: the shared chapter templates under ``docs/templates/page_shared``, counted per language.
 - 产品知识: the topics in ``product_knowledge.json``, with a growth line from each topic's ``added`` date.
 
-Below them, 当前主线 lists the 系统建设 focus lanes marked ``now`` (titles only) and 正在做 comes from
-``workspace_home.yaml``: plain-language copy that only this page shows.
+Below them, 当前主线 lists the 系统建设 focus lanes marked ``now`` (titles only) and 正在做 is 系统建设's own
+list (``focus.doing`` in ``system_workspace.yaml``), so both pages say the same thing. ``workspace_home.yaml`` holds
+only the note beside the cards.
 """
 from __future__ import annotations
 
@@ -26,7 +27,7 @@ import yaml
 from tools.utils.path_utils import Paths
 
 HOME_COPY = "workspace_home.yaml"
-SCHEMA = "hello-docs-workspace-home/v1"
+SCHEMA = "hello-docs-workspace-home/v2"
 ASSET_REGISTRY_CSV = "asset_registry.csv"
 SHARED_PAGES = "page_shared"
 # Shared chapters named on the 通用章节 card, in this order, when the templates have them.
@@ -37,21 +38,19 @@ SPARK_WIDTH, SPARK_HEIGHT, SPARK_PAD = 120, 32, 4
 
 
 def load_home_copy(assets: Path) -> dict[str, Any]:
-    """The note beside the asset cards and the 正在做 items; a malformed file raises ValueError."""
+    """The note beside the asset cards; a malformed file raises ValueError.
+
+    A ``doing`` list here is refused: 正在做 is kept once, in 系统建设's contract, for both pages.
+    """
     data = yaml.safe_load((assets / HOME_COPY).read_text(encoding="utf-8"))
     if not isinstance(data, dict) or data.get("schema") != SCHEMA:
         raise ValueError(f"{HOME_COPY}: schema must be {SCHEMA}")
+    if "doing" in data:
+        raise ValueError(f"{HOME_COPY}: 正在做 lives in system_workspace.yaml (focus.doing), not here")
     note = str(data.get("assets_note") or "").strip()
-    doing = data.get("doing")
-    if not note or not isinstance(doing, list) or not doing:
-        raise ValueError(f"{HOME_COPY}: needs assets_note and at least one doing item")
-    items = []
-    for item in doing:
-        lead, text = (str(item.get(key) or "").strip() for key in ("lead", "text")) if isinstance(item, dict) else ("", "")
-        if not lead or not text:
-            raise ValueError(f"{HOME_COPY}: each doing item needs lead and text")
-        items.append({"lead": lead, "text": text})
-    return {"assets_note": note, "doing": items}
+    if not note:
+        raise ValueError(f"{HOME_COPY}: needs assets_note")
+    return {"assets_note": note}
 
 
 def _lanes(system: dict[str, Any] | None) -> list[dict[str, str]]:
@@ -63,9 +62,13 @@ def _lanes(system: dict[str, Any] | None) -> list[dict[str, str]]:
 
 
 def now_view(system: dict[str, Any] | None, copy: dict[str, Any]) -> dict[str, Any]:
-    """当前主线 (from 系统建设), 正在做 and the asset note (from the home copy)."""
-    return {"lanes": _lanes(system), "doing": copy["doing"], "assets_note": copy["assets_note"],
-            "system": system is not None}
+    """当前主线 and 正在做 (both from 系统建设, so the two pages agree) and the asset note (from the home copy).
+
+    Without the 系统建设 page neither list shows.
+    """
+    focus = (system or {}).get("focus") or {}
+    doing = [{"lead": item["lead"], "text": item["text"]} for item in focus.get("doing") or []]
+    return {"lanes": _lanes(system), "doing": doing, "assets_note": copy["assets_note"], "system": system is not None}
 
 
 def _card(card_id: str, title: str, icon: str, docname: str | None = None, anchor: str = "") -> dict[str, Any]:
