@@ -8,59 +8,117 @@
 <script defer src="{{ pathto('_static/product-knowledge.js', 1) }}"></script>
 </head>
 {% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
+{#- The 2026-11 layout: an energy-flow map and a theme map first (both set the theme filter), then one card per
+    topic with its figure beside the text, then the HomePower case. Context: tools/rtd/product_learning.py. -#}
+{%- macro icon(name) -%}
+<svg class="pk-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+{%- if name == 'basics' %}<path d="M4 16a8 8 0 0 1 16 0"/><path d="M12 16l4.5-5"/><circle cx="12" cy="16" r="1.3"/>
+{%- elif name == 'battery' %}<rect x="3" y="7" width="16" height="10" rx="2"/><path d="M21 10.5v3"/><path d="M6.5 10v4M10 10v4"/>
+{%- elif name == 'inverter' %}<circle cx="12" cy="12" r="8.5"/><path d="M9.5 9v3M14.5 9v3"/><path d="M10 15.5h4"/>
+{%- elif name == 'charging' %}<circle cx="12" cy="12" r="3.5"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6L7 7M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4"/>
+{%- elif name == 'expansion' %}<rect x="5" y="3.5" width="14" height="5.5" rx="1.6"/><rect x="5" y="10.5" width="14" height="5.5" rx="1.6"/><path d="M12 18v3M10 19.5h4"/>
+{%- elif name == 'backup' %}<path d="M4 11l8-6.5 8 6.5v8.5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M12.8 11l-2 3h2.4l-2 3"/>
+{%- elif name == 'ports' %}<rect x="4" y="9" width="16" height="6" rx="3"/><path d="M8.5 12h7"/>
+{%- elif name == 'environment' %}<path d="M10 14.5V5a2 2 0 1 1 4 0v9.5a3.5 3.5 0 1 1-4 0z"/><path d="M12 9v7"/>
+{%- elif name == 'grid' %}<path d="M9 3v5M15 3v5"/><path d="M7 8h10v3a5 5 0 0 1-10 0z"/><path d="M12 16v5"/>
+{%- elif name == 'car' %}<path d="M5 16v-4l2-4.5h10L19 12v4"/><path d="M3.5 16h17"/><circle cx="7.5" cy="17" r="1.6"/><circle cx="16.5" cy="17" r="1.6"/>
+{%- elif name == 'convert' %}<rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8.5 12h7M12.5 9l3 3-3 3"/>
+{%- elif name == 'store' %}<rect x="3" y="7" width="16" height="10" rx="2"/><path d="M21 10.5v3"/><path d="M11.5 9.5l-2.2 3h3l-2.2 3"/>
+{%- elif name == 'wave' %}<rect x="3.5" y="5" width="17" height="14" rx="3"/><path d="M6.5 12c1.2-3 2.4-3 3.6 0s2.4 3 3.6 0 2.4-3 3.6 0"/>
+{%- elif name == 'appliance' %}<rect x="6" y="3" width="12" height="18" rx="2"/><path d="M6 10h12M9 6.5v1.5M9 13v2"/>
+{%- elif name == 'product' %}<rect x="3.5" y="8.2" width="17" height="12" rx="2.4"/><path d="M8.2 8.2V5.6a1 1 0 0 1 1-1h5.6a1 1 0 0 1 1 1v2.6"/>
+{%- elif name == 'caution' %}<path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17h.01"/>
+{%- endif %}</svg>
+{%- endmacro %}
+{%- macro arrow(cls) -%}<span class="pk-arrow {{ cls }}" aria-hidden="true"><svg width="34" height="12" viewBox="0 0 34 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h28"/><path d="M26 2l4 4-4 4"/></svg></span>{%- endmacro %}
 <body class="app kb">
 <a class="skip" href="#knowledge-list">跳到知识列表</a>
 {{ site_sidebar('product-knowledge', site_nav) }}
 <div class="app-content">
 {{ site_topbar('知识库', '产品知识') }}
 <main class="learning">
-<header class="learning-head"><span class="eyebrow">从实际产品理解原理</span><h1>产品知识</h1><p>先看 AC 输出：能不能接、能不能启动、能不能同时用，以及接市电和断电时怎样供电。再了解续航、补能与扩容。按列表逐项阅读原理示意与说明，再打开对应型号的说明书核对。</p><a href="{{ pathto('index') }}">返回说明书资料库 ↗</a> <a class="sibling-page" href="{{ pathto('market/policy') }}">市场与政策 →</a></header>
-<section class="energy" aria-labelledby="energy-title"><div class="section-title"><h2 id="energy-title">先看懂能量怎样流动</h2><span>功能示意 · 具体电路以型号设计为准</span></div>
-<div class="energy-flow" aria-label="市电、太阳能或汽车补能，经充电转换向电池储能，再经逆变或直流转换为设备供电">
-<button type="button" data-topic="charging"><small>能量从哪里来</small><strong>市电 · 太阳能 · 汽车</strong><span>充电转换 / MPPT</span></button><span class="flow-arrow" aria-hidden="true">→</span>
-<button type="button" data-topic="battery"><small>能量怎样存起来</small><strong>电池＋BMS</strong><span>储能、监测与保护</span></button><span class="flow-arrow" aria-hidden="true">→</span>
-<button type="button" data-topic="inverter"><small>怎样给设备供电</small><strong>逆变 / 直流转换</strong><span>AC 家电 / USB 与 DC 设备</span></button>
-</div><p class="energy-note">交流产品通常需要逆变；直流产品走 DC/USB 路径。备电产品还涉及市电旁路与供电切换。可扩容产品增加电池和系统协调。</p></section>
-<section class="filter-section" aria-label="选择学习范围">
-<div class="selectors"><label>区域<select id="learning-region">{% for region, binding in portal.regions.items() %}<option value="{{ binding|e }}"{% if region == portal.default_region %} selected{% endif %}>{{ region|e }}</option>{% endfor %}<option value="all">全部区域</option></select></label><label>围绕产品学习<select id="learning-product"><option value="all">全部已发布产品</option>{% for product in learning_products %}<option value="{{ product.model|e }}" data-region="{{ product.region|e }}">{{ product.name|e }} · {{ product.model|e }} · {{ product.edition|e }}</option>{% endfor %}</select></label></div>
-<div class="topic-filters" role="group" aria-label="知识标签"><button type="button" class="selected" data-tag="all" aria-pressed="true">全部知识</button>{% for tag in tags %}<button type="button" data-tag="{{ tag.id|e }}" aria-pressed="false">{{ tag.title|e }}</button>{% endfor %}</div>
-<p id="learning-count" role="status" aria-live="polite">{{ topics|length }} 项知识</p>
+<header class="pk-head">
+<div><h1>产品知识</h1><p>从已发布的产品理解原理：先看 AC 输出能不能接、能不能启动、能不能同时用，再看续航、补能、扩容与备电。每一条都能打开对应型号的说明书核对。</p></div>
+<div class="pk-head-meta"><span class="pk-pill">{{ topics|length }} 个知识点 · {{ tags|length }} 个主题</span>{% if latest_added %}<span class="pk-pill"><i aria-hidden="true"></i>最近新增 {{ latest_added[5:]|e }}</span>{% endif %}<a class="sibling-page" href="{{ pathto('market/policy') }}">市场与政策 →</a></div>
+</header>
+
+<section class="pk-panel pk-energy" aria-labelledby="energy-title">
+<div class="pk-section-head"><h2 id="energy-title">先看懂能量怎样流动</h2><span>点任一环节只看相关知识 · 功能示意，具体电路以型号设计为准</span></div>
+<div class="pk-flow" aria-label="市电、太阳能或汽车补能，经充电转换向电池储能，再经逆变或直流转换为设备供电">
+<div class="pk-ends pk-src"><span class="pk-ends-label">来源</span><span class="pk-end">{{ icon('grid') }}市电</span><span class="pk-end">{{ icon('charging') }}太阳能</span><span class="pk-end">{{ icon('car') }}汽车</span></div>
+{{ arrow('pk-a1 pk-edge') }}
+<button type="button" class="pk-node pk-chg" data-flow-tag="charging"><span class="pk-node-icon">{{ icon('convert') }}</span><span class="pk-node-text"><small>能量从哪里来</small><strong>充电转换 · MPPT</strong><span>把市电、太阳能、车充转成电池能接受的电</span></span><span class="pk-node-count">{{ tag_titles.charging|e }} · {{ tag_counts.charging }} 条</span></button>
+{{ arrow('pk-a2 pk-mid') }}
+<button type="button" class="pk-node pk-bat is-core" data-flow-tag="battery"><span class="pk-node-icon">{{ icon('store') }}</span><span class="pk-node-text"><small>能量怎样存起来</small><strong>电池 + BMS</strong><span>储能，并监测电压、电流和温度来保护电池</span></span><span class="pk-node-count">{{ tag_titles.battery|e }} · {{ tag_counts.battery }} 条</span></button>
+{{ arrow('pk-a3 pk-mid') }}
+<button type="button" class="pk-node pk-inv" data-flow-tag="inverter"><span class="pk-node-icon">{{ icon('wave') }}</span><span class="pk-node-text"><small>怎样给设备供电</small><strong>逆变 · 直流转换</strong><span>交流给家电，直流给 USB 与 DC 设备</span></span><span class="pk-node-count">{{ tag_titles.inverter|e }} · {{ tag_counts.inverter }} 条</span></button>
+{{ arrow('pk-a4 pk-edge') }}
+<div class="pk-ends pk-out"><span class="pk-ends-label">设备</span><span class="pk-end">{{ icon('appliance') }}AC 家电</span><span class="pk-end">{{ icon('ports') }}USB / DC 设备</span></div>
+<div class="pk-exp"><span class="pk-dash" aria-hidden="true"></span><button type="button" data-flow-tag="expansion">＋ 扩容电池 · {{ tag_titles.expansion|e }} {{ tag_counts.expansion }} 条</button></div>
+<div class="pk-byp"><span class="pk-dash-line" aria-hidden="true"></span><button type="button" data-flow-tag="backup">旁路：有市电时直接给设备供电，停电再切到电池 · <b>{{ tag_titles.backup|e }} {{ tag_counts.backup }} 条</b></button><span class="pk-dash-line is-end" aria-hidden="true"></span></div>
+</div>
+<p class="pk-energy-note">交流产品通常需要逆变；直流产品走 DC/USB 路径。备电产品还涉及市电旁路与供电切换，可扩容产品增加电池和系统协调。</p>
 </section>
-<section id="knowledge-list" class="knowledge-list" aria-label="最少必要知识">
+
+<section class="pk-themes" aria-labelledby="themes-title">
+<div class="pk-section-head"><h2 id="themes-title">按主题找</h2><span>一条知识可以属于多个主题</span></div>
+<div class="pk-map">
+{%- for theme in themes %}
+<div class="pk-theme">
+<button type="button" class="pk-theme-head" data-theme="{{ theme.id|e }}"><span class="pk-theme-icon">{{ icon(theme.id) }}</span><strong>{{ theme.title|e }}</strong><span class="pk-theme-count"><b>{{ theme.topics|length }}</b> 条</span></button>
+<div class="pk-theme-topics">{% for item in theme.topics %}<a class="pk-topic" href="#{{ item.id|e }}" data-topic-link="{{ item.id|e }}">{{ item.label|e }}</a>{% endfor %}</div>
+</div>
+{%- endfor %}
+</div>
+</section>
+
+<section class="pk-filters filter-section" aria-label="选择学习范围">
+<div class="pk-selectors selectors"><label>区域<select id="learning-region">{% for region, binding in portal.regions.items() %}<option value="{{ binding|e }}"{% if region == portal.default_region %} selected{% endif %}>{{ region|e }}</option>{% endfor %}<option value="all">全部区域</option></select></label><label class="pk-product">围绕产品学习<select id="learning-product"><option value="all">全部已发布产品</option>{% for product in learning_products %}<option value="{{ product.model|e }}" data-region="{{ product.region|e }}">{{ product.name|e }} · {{ product.model|e }} · {{ product.edition|e }}</option>{% endfor %}</select></label><p id="learning-count" role="status" aria-live="polite">{{ topics|length }} 项知识</p></div>
+<div class="pk-chips topic-filters" role="group" aria-label="知识标签"><button type="button" class="selected" data-tag="all" aria-pressed="true">全部<span>{{ topics|length }}</span></button>{% for theme in themes %}<button type="button" data-tag="{{ theme.id|e }}" aria-pressed="false">{{ theme.title|e }}<span>{{ theme.topics|length }}</span></button>{% endfor %}</div>
+</section>
+
+<section id="knowledge-list" class="pk-list knowledge-list" aria-label="最少必要知识">
 {% for topic in topics %}
-<article class="knowledge-item{% if 'inverter' in topic.tags %} circuit-item{% endif %}" id="{{ topic.id|e }}" data-tags="{{ topic.tags|join(' ')|e }}" data-models="{{ topic.models|join(' ')|e }}">
-<div class="card-top"><span class="card-number">{{ '%02d'|format(loop.index) }}</span><div class="card-tags">{% for tag in tags if tag.id in topic.tags %}<span>{{ tag.title|e }}</span>{% endfor %}</div></div>
-<h2>{{ topic.title|e }}</h2><div class="topic-content"><figure class="principle-figure">
-{% if 'inverter' in topic.tags %}
-{% set circuit = 'circuit-transfer.svg' if topic.id == 'ups' else ('circuit-parallel.svg' if topic.id == 'ac-total' else 'circuit-inverter.svg') %}
-<img class="circuit-art" src="{{ pathto('_static/' ~ circuit, 1) }}" alt="{{ topic.title|e }}：典型电气教学电路，非产品内部原理图">
-{% else %}{% include "_knowledge_diagram.html" %}{% endif %}
-<figcaption>{% if 'inverter' in topic.tags %}典型电气教学示意 · {% endif %}{{ topic.diagram_caption|e }}</figcaption></figure>
-<div class="topic-explanation"><p class="answer">{{ topic.answer|e }}</p>
-<div class="application"><h3>放到实际产品里看</h3><p>{{ topic.application|e }}</p></div>
-<div class="boundary"><h3>别混淆</h3><p>{{ topic.boundary|e }}</p></div>
-<details class="references"><summary>查看相关产品说明书 <span class="reference-count"></span></summary><p class="read-hint">阅读位置：{{ topic.read|e }}</p><ul>{% for ref in topic.references %}<li data-region="{{ ref.region|e }}" data-model="{{ ref.model|e }}"><a href="{{ pathto(ref.url[:-5]) }}">{{ ref.name|e }} <small>{{ ref.model|e }} · {{ ref.region|e }} · {{ ref.language|e }}</small><span aria-hidden="true">↗</span></a></li>{% endfor %}</ul></details>
-</div></div></article>
+<article class="pk-card knowledge-item{% if topic.circuit %} is-circuit{% endif %}" id="{{ topic.id|e }}" data-tags="{{ topic.tags|join(' ')|e }}" data-models="{{ topic.models|join(' ')|e }}">
+<figure class="pk-figure principle-figure">
+{%- if topic.circuit %}
+<a class="pk-circuit" href="{{ pathto('_static/' ~ topic.circuit, 1) }}" target="_blank" rel="noopener" title="放大看电路"><img class="circuit-art" src="{{ pathto('_static/' ~ topic.circuit, 1) }}" alt="{{ topic.title|e }}：典型电气教学电路，非产品内部原理图"></a>
+{%- else %}
+{% include "_knowledge_diagram.html" %}
+{%- endif %}
+<figcaption>{% if topic.circuit %}典型电气教学示意 · {% endif %}{{ topic.diagram_caption|e }}</figcaption></figure>
+<div class="pk-body">
+<div class="pk-card-top"><span class="pk-num">{{ '%02d'|format(loop.index) }}</span>{% for tag in tags if tag.id in topic.tags %}<span class="pk-tag">{{ tag.title|e }}</span>{% endfor %}</div>
+<h2>{{ topic.title|e }}</h2>
+<p class="answer">{{ topic.answer|e }}</p>
+<div class="pk-two"><div class="application"><h3>{{ icon('product') }}放到实际产品里看</h3><p>{{ topic.application|e }}</p></div><div class="boundary"><h3>{{ icon('caution') }}别混淆</h3><p>{{ topic.boundary|e }}</p></div></div>
+<div class="pk-refs references"><div class="pk-ref-list"><span class="pk-ref-label">相关说明书 · <span class="reference-count">{{ topic.references|length }}</span> 本</span>{% for ref in topic.references %}<a class="pk-ref" data-region="{{ ref.region|e }}" data-model="{{ ref.model|e }}" href="{{ pathto(ref.url[:-5]) }}" title="{{ ref.model|e }} · {{ ref.region|e }} · {{ ref.language|e }}">{{ ref.name|e }}<small>{{ ref.region|e }}</small></a>{% endfor %}<button type="button" class="pk-more" hidden></button></div>
+<p class="read-hint">阅读位置：{{ topic.read|e }}</p></div>
+</div>
+</article>
 {% endfor %}
 </section>
-{% if backup_case %}<section class="backup-example" aria-labelledby="backup-example-title">
-<h2 id="backup-example-title">HomePower 3600 Pro Max：从插座备电走向家庭回路备电</h2>
-<p>来源：<a href="{{ pathto(backup_case.url[:-5]) }}">HomePower 3600 Pro Max 说明书（美规 · 英文）</a>。图仅说明典型电气关系，不还原该产品内部电路。</p>
-<ol class="backup-lessons">
-<li><h3>120V 与 240V：先看接在哪两条导线上</h3>
-<figure class="principle-figure"><img class="circuit-art" src="{{ pathto('_static/circuit-split-phase.svg', 1) }}" alt="典型中心抽头交流源，L1–N 与 L2–N 各 120V，L1–L2 为 240V"><figcaption>中心抽头绕组是解释分相电压的教学例子。说明书只声明隔离式逆变，不据此推定其内部采用图中绕组。</figcaption></figure>
-<p>说明书：两个 NEMA 5-20R 插座各 120V、2000W 每口，合计 4000W；NEMA 14-50R 为 240V、4000W 额定。整机 AC 额定合计仍为 4000W，不能把 120V 与 240V 插座功率再次相加。L1、L2 分配与每相限制需一起检查。</p></li>
-<li><h3>电池逆变与市电旁路：同一插座的限制随模式改变</h3>
-<p>电池供电由逆变系统承担；旁路受市电输入与通路限制。说明书的 120V 输入旁路上限为 1440W，并有脚注：负载超过 1440W 时由电池补能，合计负载可达 2880W。该条件不能套用到普通电源。240V 输入旁路又有独立规格，不能拿正常逆变额定功率替代旁路规格。</p>
-<p>原理要点：补能功能需要电源转换、同步与控制配合；上面的切换图只描述选择供电路径，不描绘这种混合供电内部电路。</p></li>
-<li><h3>主机切换、ATS 与 MTS：切换发生在哪一层？</h3>
-<figure class="principle-figure"><img class="circuit-art" src="{{ pathto('_static/circuit-transfer.svg', 1) }}" alt="典型市电和备电源互锁切换触点"><figcaption>联锁使负载选择一路供电；图中双极开关仅为教学例子，不作为 ATS 或家庭配电安装接线图。</figcaption></figure>
-<p>规格表标明主机 UPS ＜10ms；ATS 系统说明为启用 UPS 模式后，停电在 20ms 内转电池供电，ATS 规格为 ≤20ms。单机接 MTS 的自动备电示例要求 AC 输入持续连接、MTS 置备电位，此时自动切换由主机完成；MTS 本身仍是手动选择装置。不要把主机切换时间当作所有系统的切换时间。</p></li>
-<li><h3>扩容与主机级联：增加的是 Wh 还是 W？</h3>
-<p>增加电池主要增加储能。说明书中的两台主机级联并联连接，还要求 AC 扩展连接与专用并联通信；第二台 NEMA 14-50R 输出可达系统合计 8000W。多台交流源协同需要频率、相位、电压与功率控制，不能直接把普通 AC 插座并在一起。</p>
-<p>家庭回路备电还涉及 ATS/MTS、接地与中性线、保护和 EPO 急停。说明书声明 EPO 会停止全部 AC/DC 输入输出；具体安装与操作应阅读该系统及切换装置的完整说明书。</p></li>
+<div id="learning-empty" hidden><h2>当前筛选没有相关知识</h2><p>换一个主题，或查看全部知识。</p><button type="button" id="learning-reset">清除筛选</button></div>
+
+{% if backup_case %}<section class="backup-example pk-case" aria-labelledby="backup-example-title">
+<div class="pk-case-head"><span class="pk-eyebrow">实际产品案例 · 美规</span><h2 id="backup-example-title">HomePower 3600 Pro Max：从插座备电走向家庭回路备电</h2>
+<p>来源：<a href="{{ pathto(backup_case.url[:-5]) }}">HomePower 3600 Pro Max 说明书（美规 · 英文）</a>。按四个问题读这本说明书；图仅说明典型电气关系，不还原该产品内部电路。</p></div>
+<ol class="pk-lessons backup-lessons">
+<li><div class="pk-lesson-head"><span>1</span><h3>120V 与 240V：先看接在哪两条导线上</h3></div>
+<figure class="principle-figure"><a class="pk-circuit" href="{{ pathto('_static/circuit-split-phase.svg', 1) }}" target="_blank" rel="noopener" title="放大看电路"><img class="circuit-art" src="{{ pathto('_static/circuit-split-phase.svg', 1) }}" alt="典型中心抽头交流源，L1–N 与 L2–N 各 120V，L1–L2 为 240V"></a><figcaption>中心抽头绕组是解释分相电压的教学例子。说明书只声明隔离式逆变，不据此推定其内部采用图中绕组。</figcaption></figure>
+<div class="pk-lesson-text"><p>说明书：两个 NEMA 5-20R 插座各 120V、2000W 每口，合计 4000W；NEMA 14-50R 为 240V、4000W 额定。整机 AC 额定合计仍为 4000W，不能把 120V 与 240V 插座功率再次相加。L1、L2 分配与每相限制需一起检查。</p></div></li>
+<li><div class="pk-lesson-head"><span>2</span><h3>电池逆变与市电旁路：同一插座的限制随模式改变</h3></div>
+<div class="pk-figures"><div><small>120V 输入旁路</small><b>1440 W</b><span>超过时由电池补能</span></div><div><small>旁路 + 电池补能</small><b>2880 W</b><span>该条件不能套用到普通电源</span></div></div>
+<div class="pk-lesson-text"><p>电池供电由逆变系统承担；旁路受市电输入与通路限制。说明书的 120V 输入旁路上限为 1440W，并有脚注：负载超过 1440W 时由电池补能，合计负载可达 2880W。该条件不能套用到普通电源。240V 输入旁路又有独立规格，不能拿正常逆变额定功率替代旁路规格。</p>
+<p>原理要点：补能功能需要电源转换、同步与控制配合；切换图只描述选择供电路径，不描绘这种混合供电内部电路。</p></div></li>
+<li><div class="pk-lesson-head"><span>3</span><h3>主机切换、ATS 与 MTS：切换发生在哪一层？</h3></div>
+<figure class="principle-figure"><a class="pk-circuit" href="{{ pathto('_static/circuit-transfer.svg', 1) }}" target="_blank" rel="noopener" title="放大看电路"><img class="circuit-art" src="{{ pathto('_static/circuit-transfer.svg', 1) }}" alt="典型市电和备电源互锁切换触点"></a><figcaption>联锁使负载选择一路供电；图中双极开关仅为教学例子，不作为 ATS 或家庭配电安装接线图。</figcaption></figure>
+<div class="pk-lesson-text"><p>规格表标明主机 UPS ＜10ms；ATS 系统说明为启用 UPS 模式后，停电在 20ms 内转电池供电，ATS 规格为 ≤20ms。单机接 MTS 的自动备电示例要求 AC 输入持续连接、MTS 置备电位，此时自动切换由主机完成；MTS 本身仍是手动选择装置。不要把主机切换时间当作所有系统的切换时间。</p></div></li>
+<li><div class="pk-lesson-head"><span>4</span><h3>扩容与主机级联：增加的是 Wh 还是 W？</h3></div>
+<div class="pk-figures"><div><small>加电池</small><b>+ Wh</b><span>主要增加储能</span></div><div><small>两台主机级联</small><b>8000 W</b><span>需 AC 扩展连接与并联通信</span></div></div>
+<div class="pk-lesson-text"><p>增加电池主要增加储能。说明书中的两台主机级联并联连接，还要求 AC 扩展连接与专用并联通信；第二台 NEMA 14-50R 输出可达系统合计 8000W。多台交流源协同需要频率、相位、电压与功率控制，不能直接把普通 AC 插座并在一起。</p>
+<p>家庭回路备电还涉及 ATS/MTS、接地与中性线、保护和 EPO 急停。说明书声明 EPO 会停止全部 AC/DC 输入输出；具体安装与操作应阅读该系统及切换装置的完整说明书。</p></div></li>
 </ol></section>{% endif %}
-<div id="learning-empty" hidden><h2>当前筛选没有相关知识</h2><p>换一个标签，或查看全部知识。</p><button type="button" id="learning-reset">清除筛选</button></div>
-<footer class="learning-footer"><p>本页解释通用功能原理，不推定各型号的芯片、内部电路或未确认的兼容关系。操作、技术值和适用条件，以对应地区的已发布说明书为准。</p><noscript><p>未启用 JavaScript：全部知识条目和各区域说明书链接仍可直接阅读。</p></noscript><a href="{{ pathto('index') }}">查找完整说明书 →</a></footer>
+<footer class="learning-footer"><p>本页解释通用功能原理，不推定各型号的芯片、内部电路或未确认的兼容关系。操作、技术值和适用条件，以对应地区的已发布说明书为准。</p><noscript><p>未启用 JavaScript：全部知识条目和各区域说明书链接仍可直接阅读。</p></noscript><a href="{{ pathto('index') }}">返回说明书资料库，查找完整说明书 →</a></footer>
 </main>
 </div>{{ site_script() }}</body></html>

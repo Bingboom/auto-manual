@@ -23,6 +23,11 @@
 schema: hello-docs-knowledge-updates/v1
 
 updates:
+  - date: 2026-11-06
+    title: 产品知识 · 新版页面
+    note: 先看能量流动图和主题地图，点任一环节或主题即筛出相关知识；词条卡图文并排，讲电路的词条把电路图放大到正文上方；HomePower 3600 Pro Max 备电案例按四个问题排列
+    page: product-knowledge
+    evidence: "pr:auto-manual#1682"
   - date: 2026-11-05
     title: 设计规范 · 新版页面
     note: 说明书深色封面加五个规模数（新增 HB-* 语义样式数）；概览先看图——七张视觉基础图卡、六个组件的线上预览和图标墙，风格、内容原则、视觉基础细则和使用方式放在后面

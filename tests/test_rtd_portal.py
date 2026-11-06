@@ -348,7 +348,7 @@ class RtdPortalTests(unittest.TestCase):
         self.assertIn('href="../index.html"', knowledge_page)
         self.assertIn("返回说明书资料库", knowledge_page)
         # This frozen catalog has no JHP-3600C/US manual, so the HomePower case is left out.
-        self.assertNotIn('class="backup-example"', knowledge_page)
+        self.assertNotIn('class="backup-example', knowledge_page)
         self.assertIn("<title>产品知识</title>", knowledge_page)
         self.assertIn("知识库 <span>/</span> <b>产品知识</b>", knowledge_page)
         self.assertIn('href="../ai-share/00_打开分享.html"', workspace)
