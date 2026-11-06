@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>外部资料库 · Demo</title>
+<meta name="description" content="竞品资料库和行业资料文库：资料从哪来、谁来维护、按什么规则定时更新。">
+<link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
+<link rel="stylesheet" href="{{ pathto('_static/external-library.css', 1) }}">
+</head>
+{% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
+<body class="app">
+<a class="skip" href="#library-tabs">跳到资料库</a>
+{{ site_sidebar('external-library', site_nav) }}
+<div class="app-content">
+{{ site_topbar('知识库', '外部资料库') }}
+<main class="library">
+<header class="library-head">
+  <p class="eyebrow">Demo · 演示页面</p>
+  <h1>外部资料库</h1>
+  <p>竞品资料库和行业资料文库放在一起管理：每条资料从哪来、由谁维护、按什么规则定时更新。</p>
+  <div class="head-meta"><span>统计日期 <time datetime="{{ as_of|e }}">{{ as_of|e }}</time></span>{% if sample %}<span class="sample-flag">示例数据 · 竞品已匿名</span>{% endif %}</div>
+</header>
+<ul class="library-stats" aria-label="资料库概况">
+  <li><strong>{{ summary.competitors }}</strong><span>个竞品在跟踪</span></li>
+  <li><strong>{{ summary.ends_done }}/{{ summary.ends_total }}</strong><span>份竞品报告已入库</span></li>
+  <li><strong>{{ summary.documents }}</strong><span>份行业资料</span></li>
+  <li{% if summary.todos %} class="alert"{% endif %}><strong>{{ summary.todos }}</strong><span>项待处理</span></li>
+</ul>
+<nav class="page-tabs" id="library-tabs" role="tablist" aria-label="外部资料库分类">
+  <a role="tab" href="#tab-competitor" data-tab="tab-competitor" aria-selected="true">竞品资料库</a>
+  <a role="tab" href="#tab-industry" data-tab="tab-industry">行业资料文库</a>
+  <a role="tab" href="#tab-sources" data-tab="tab-sources">信息来源与定时运行</a>
+  <a role="tab" href="#tab-maintenance" data-tab="tab-maintenance">维护机制</a>
+</nav>
+
+<section class="tab-panel" id="tab-competitor" role="tabpanel" aria-label="竞品资料库">
+  <p class="panel-lead">一个竞品一张档案，分营销、软件、硬件三端。营销端看官网和测评，软件端要上手用，硬件端要等样机拆解，三端分别由市场部、产品部、研发部负责。</p>
+  {% for product in competitors %}
+  <article class="profile" id="{{ product.id|e }}">
+    <header class="profile-head">
+      <h2>{{ product.name|e }}<small>{{ product.brand|e }} · {{ product.segment|e }}</small></h2>
+      <p>{{ product.oa|e }}</p>
+    </header>
+    <ol class="flow" aria-label="{{ product.name|e }}的样机流程">
+      {% for step in product.steps %}<li class="{{ step.state }}"{% if step.state == 'current' %} aria-current="step"{% endif %}>{{ step.name|e }}</li>{% endfor %}
+    </ol>
+    <div class="ends">
+      {% for end in product.ends %}
+      <section class="end {{ end.state }}" aria-label="{{ product.name|e }} {{ end.name|e }}">
+        <header><h3>{{ end.name|e }}</h3><span class="badge {{ end.state }}">{{ end.label|e }}</span></header>
+        <p class="end-meta">{{ end.department|e }}{% if end.owner %} · {{ end.owner|e }}{% endif %} · {{ end.deliverable|e }}{% if end.note %}<br>{{ end.note|e }}{% endif %}</p>
+        {% if end.findings %}
+        <dl class="findings">
+          {% for finding in end.findings %}<div><dt>{{ finding.label|e }}</dt><dd>{{ finding.value|e }}<span class="cite">{{ finding.source_name|e }} · {{ finding.checked_on|e }}</span></dd></div>{% endfor %}
+        </dl>
+        {% else %}<p class="empty">{{ end.empty|e }}</p>{% endif %}
+        {% if end.metrics %}
+        <div class="table-wrap"><table class="metrics"><caption>官网周度快照</caption>
+          <thead><tr><th scope="col">周</th><th scope="col">访问量</th><th scope="col">评价数</th><th scope="col">评分</th></tr></thead>
+          <tbody>{% for row in end.metrics %}<tr><th scope="row">{{ row.week|e }}</th><td>{{ row.visits }}</td><td>{{ row.reviews }}</td><td>{{ row.rating }}</td></tr>{% endfor %}</tbody>
+        </table></div>
+        {% endif %}
+      </section>
+      {% endfor %}
+    </div>
+  </article>
+  {% endfor %}
+</section>
+
+<section class="tab-panel" id="tab-industry" role="tabpanel" aria-label="行业资料文库">
+  <p class="panel-lead">政策法规、标准认证、行业报告和行业动态。每份资料摘出要点、注明出处，由{{ industry.department|e }}审核入库，每 {{ industry.refresh_days }} 天复核一次。</p>
+  {% for group in industry.groups %}
+  <section class="doc-group">
+    <h2>{{ group.name|e }}<small>{{ group.documents|length }} 份</small></h2>
+    <div class="docs">
+    {% for doc in group.documents %}
+      <article class="doc" id="{{ doc.id|e }}">
+        <header><h3>{{ doc.title|e }}</h3><span class="badge {{ doc.state }}">{{ doc.label|e }}</span></header>
+        <p class="doc-meta">{{ doc.region|e }} · {{ doc.publisher|e }}{% if doc.published_on %} · {{ doc.published_on|e }} 发布{% endif %}</p>
+        <ul class="points">{% for point in doc.points %}<li>{{ point|e }}</li>{% endfor %}</ul>
+        <p class="doc-foot"><span>来源：{% if doc.url %}<a href="{{ doc.url|e }}">{{ doc.source_name|e }} ↗</a>{% else %}{{ doc.source_name|e }}{% endif %}</span><span>维护：{{ doc.owner|e }}</span>{% if doc.review_by %}<span>复核日期：{{ doc.review_by|e }}</span>{% endif %}</p>
+      </article>
+    {% endfor %}
+    </div>
+  </section>
+  {% endfor %}
+</section>
+
+<section class="tab-panel" id="tab-sources" role="tabpanel" aria-label="信息来源与定时运行">
+  <h2>资料从哪来</h2>
+  <p class="panel-lead">在用的渠道已经有资料；候选渠道列出能补上什么，接入后由定时任务自动采集。</p>
+  <div class="table-wrap"><table class="grid sources">
+    <thead><tr><th scope="col">来源</th><th scope="col">能拿到什么</th><th scope="col">怎么获取</th><th scope="col">用于</th><th scope="col">状态</th><th scope="col">已记录</th></tr></thead>
+    <tbody>{% for source in sources %}<tr><th scope="row">{{ source.name|e }}<small>{{ source.kind }}</small></th><td>{{ source.gives|e }}</td><td>{{ source.method|e }}</td><td>{{ source.libraries }}</td><td><span class="badge {{ source.status }}">{{ source.status_label }}</span></td><td class="num">{{ source.count }}</td></tr>{% endfor %}</tbody>
+  </table></div>
+  <h2>按规则定时运行</h2>
+  <ol class="pipeline" aria-label="每次运行的步骤">{% for step in pipeline %}<li>{{ step }}</li>{% endfor %}</ol>
+  <p class="panel-lead">定时任务只负责采集和提醒，产出都是待审核条目，维护人确认后才进资料库。</p>
+  <div class="jobs">
+    {% for job in jobs %}
+    <article class="job {{ job.status }}">
+      <header><h3>{{ job.name|e }}</h3><span class="badge {{ job.status }}">{{ job.status_label }}</span></header>
+      <p class="job-meta">{{ job.cadence|e }} · {{ job.library_label }}<br>通知：{{ job.notify|e }}</p>
+      <ol>{% for step in job.steps %}<li>{{ step|e }}</li>{% endfor %}</ol>
+    </article>
+    {% endfor %}
+  </div>
+  {% if runs %}
+  <h2>最近运行记录</h2>
+  <div class="table-wrap"><table class="grid runs">
+    <thead><tr><th scope="col">时间</th><th scope="col">任务</th><th scope="col">结果</th></tr></thead>
+    <tbody>{% for run in runs %}<tr><td class="num">{{ run.at|e }}</td><th scope="row">{{ run.job|e }}</th><td>{{ run.result|e }}</td></tr>{% endfor %}</tbody>
+  </table></div>
+  {% endif %}
+</section>
+
+<section class="tab-panel" id="tab-maintenance" role="tabpanel" aria-label="维护机制">
+  <h2>待处理<small>{{ todos|length }} 项</small></h2>
+  {% if todos %}
+  <ul class="todos">
+    {% for todo in todos %}<li class="{{ todo.state }}"><span class="badge {{ todo.state }}">{{ todo.label|e }}</span><strong>{{ todo.what|e }}</strong><span class="who">{{ todo.who|e }}</span><span class="note">{{ todo.note|e }}</span></li>{% endfor %}
+  </ul>
+  {% else %}<p class="empty">没有待处理事项。</p>{% endif %}
+  <h2>竞品样机流程</h2>
+  <ol class="flow-detail">{% for step in flow %}<li><strong>{{ step.name|e }}</strong><span>{{ step.note|e }}</span></li>{% endfor %}</ol>
+  <h2>谁负责什么</h2>
+  <div class="table-wrap"><table class="grid duties">
+    <thead><tr><th scope="col">资料</th><th scope="col">负责</th><th scope="col">交付物</th><th scope="col">覆盖内容</th><th scope="col">信息来源</th><th scope="col">更新周期</th></tr></thead>
+    <tbody>
+      {% for dimension in dimensions %}<tr><th scope="row">竞品 · {{ dimension.name|e }}</th><td>{{ dimension.department_name|e }}</td><td>{{ dimension.deliverable|e }}</td><td>{{ dimension.covers|join('、')|e }}</td><td>{{ dimension.source_names|join('、')|e }}</td><td class="num">{{ dimension.refresh_days }} 天</td></tr>{% endfor %}
+      <tr><th scope="row">行业资料</th><td>{{ industry.department|e }}</td><td>资料摘要</td><td>{{ industry.kinds|join('、')|e }}</td><td>{{ industry.source_names|join('、')|e }}</td><td class="num">{{ industry.refresh_days }} 天</td></tr>
+    </tbody>
+  </table></div>
+  <h2>维护规则</h2>
+  <ol class="rules">{% for rule in rules %}<li>{{ rule|e }}</li>{% endfor %}</ol>
+</section>
+
+<footer class="library-footer"><p>本页为演示：{% if sample %}示例数据，竞品已匿名；{% endif %}定时任务和付费数据接口尚未接入，页面上的状态按统计日期计算。</p></footer>
+</main>
+</div>{{ site_script() }}</body></html>

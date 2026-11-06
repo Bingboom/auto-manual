@@ -89,6 +89,12 @@ Operator decision: Research & Intelligence is a standalone research platform inc
 - [ ] In that repository, confirm test data custody/storage, permissions and exact targets before creating a test Base/group and running real integration. Record the new repository commit, receipts and human checks there; do not mark this PR live-tested.
 - [ ] If acceptance fails, stop live activity and preserve evidence/state, repair or return to the migration baseline there; do not retry in auto-manual. Retain the incubation branch until acceptance and any optional adapter checks pass. Detailed criteria stay in the charter and migrated runbook.
 
+## Phase 8 — External library demo page (2026-11-06)
+Operator request: show their manager how a competitor library and an industry library are gathered and kept up to date, on the private preview only; manual development is out of scope for now.
+- [x] `research/external-library` (「外部资料库 · Demo」) behind the same opt-in as the research page, read from `external-library/library.json` in the business knowledge directory: competitor profiles across marketing, software and teardown ends with the OA sample flow, the industry library, sources in use and candidate, scheduled jobs and a run log, and the maintenance rules with a to-do board computed as of the snapshot date.
+- [x] Anonymised sample data in `tests/fixtures/external_library/library.json`; nothing is fetched and no job runs.
+- [x] Carry the page and the sample into the Hello-Docs preview branch for the demo: `preview/product-intelligence-1579` at Hello-Docs `56e25dcf` carries engineering `8eb9d4f` with the sample as `docs/knowledge/external-library/library.json`; the RTD build command run locally on that tree builds 550 pages with no warnings.
+
 ## Parallel execution contract
 Agent A owns product knowledge contract + extraction tests. Agent B owns event/association module + tests. Agent C owns RTD templates/assets + UI tests. Integration owner alone changes shared builders/registration and resolves contracts. A minimal contract must be agreed first; B/C can implement against fixtures while A completes.
 

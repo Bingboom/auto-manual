@@ -181,6 +181,23 @@ def prepare_research(app) -> None:
                                            site_base_url_for(settings))
 
 
+def prepare_library(app) -> None:
+    # The external library demo shares the research opt-in; a malformed snapshot skips only this page.
+    app._rtd_library = None
+    if getattr(app.builder, "format", "") == "html" and demo_enabled(app):
+        from sphinx.util import logging as sphinx_logging
+        from tools.rtd.external_library import library_context
+
+        try:
+            app._rtd_library = library_context(workspace_content(app))
+        except ValueError as exc:
+            sphinx_logging.getLogger(__name__).warning("External library demo skipped: %s", exc)
+
+
+def library_available(app) -> bool:
+    return getattr(app, "_rtd_library", None) is not None
+
+
 def clear_catalog_cache(app, exception) -> None:
     # A later build in the same process must validate its own frozen inputs again.
     app._rtd_portal_data = None
@@ -189,11 +206,13 @@ def clear_catalog_cache(app, exception) -> None:
     app._rtd_data_context = _UNSET
     app._rtd_matrix_context = _UNSET
     app._rtd_research = None
+    app._rtd_library = None
 
 
 def page_context(app, pagename, templatename, context, doctree):
     settings, products = portal_data(app)
     context["research_entry"] = research_available(app)
+    context["library_entry"] = library_available(app)
     feedback_channels = normalize_channels(settings.get("feedback_channels", []))
     beacon_token = normalize_beacon_token(settings.get("analytics_beacon_token", ""))
     site_base_url = site_base_url_for(settings)
@@ -347,6 +366,7 @@ def site_nav(app) -> dict:
         "design": cached_design_context(app) is not None,
         "matrix": cached_matrix_context(app) is not None,
         "research": research_available(app),
+        "library": library_available(app),
     }
 
 
@@ -392,6 +412,11 @@ def collect_workspace_pages(app):
         from tools.rtd.product_research import PAGE as RESEARCH_PAGE, TEMPLATE as RESEARCH_TEMPLATE
 
         yield RESEARCH_PAGE, {**research_page(research), "site_nav": site_nav(app)}, RESEARCH_TEMPLATE
+    library = getattr(app, "_rtd_library", None)
+    if library is not None:
+        from tools.rtd.external_library import PAGE as LIBRARY_PAGE, TEMPLATE as LIBRARY_TEMPLATE
+
+        yield LIBRARY_PAGE, {**library, "site_nav": site_nav(app)}, LIBRARY_TEMPLATE
     entries, problems = load_updates(ASSETS)
     for problem in problems:
         sphinx_logging.getLogger(__name__).warning("Knowledge home update skipped: %s", problem)
@@ -468,6 +493,7 @@ def setup(app):
     app.connect("builder-inited", clear_research_outputs)
     app.connect("builder-inited", prepare_catalog)
     app.connect("builder-inited", prepare_research)
+    app.connect("builder-inited", prepare_library)
     app.connect("html-page-context", page_context)
     app.connect("html-collect-pages", collect_workspace_pages)
     # Generated conf.py copies manual assets at the default priority (500).

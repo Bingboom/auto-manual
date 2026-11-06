@@ -92,7 +92,8 @@ Prepared Web admission: `tools/web/component_admission.py` owns fresh-publicatio
 按发布变体保留市场、语言、版本及事实证据，输出只读的 `product-knowledge/v1`；
 `rtd/product_intelligence.py` 只对配置了 `product_lens` 的事件做规则关联和历史比较。
 `rtd/product_research.py` 负责页面适配，`rtd/research_build.py` 负责实验开关、
-构建缓存、降级与版本化导出；`portal.py` 只注册这些接口。
+构建缓存、降级与版本化导出；`portal.py` 只注册这些接口。`rtd/external_library.py` 用同一
+实验开关读取 `external-library/library.json`，生成「外部资料库 · Demo」演示页的上下文。
 研究结果不能写回产品源表，公开 manuals 角色禁用研究产物。见
 [Demo 契约](../product-intelligence-contract.md)。
 当前 event-first 代码与长期多来源研究方向的差别由章程定义，WeKnora 尚未接入。
