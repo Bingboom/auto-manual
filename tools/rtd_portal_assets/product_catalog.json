@@ -73,6 +73,16 @@
       "series": "保护与搬运",
       "short": "L码低温防护包"
     },
+    "JA-CK01A-BK": {
+      "category": "配件",
+      "series": "连接与配电",
+      "short": "电源线套装L14-30黑色"
+    },
+    "JA-CK01A-BK-QG": {
+      "category": "配件",
+      "series": "连接与配电",
+      "short": "电源线套装L14-30黑色"
+    },
     "JA-TS02A": {
       "category": "配件",
       "series": "连接与配电",
@@ -378,6 +388,11 @@
       "category": "太阳能板",
       "series": "SolarSaga Air",
       "short": "40Wair"
+    },
+    "JS-CONNECTION-GUIDE": {
+      "category": "配件",
+      "series": "连接与配电",
+      "short": "太阳能连接指南"
     }
   },
   "schema": "hello-docs-product-catalog/v1",

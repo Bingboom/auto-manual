@@ -498,7 +498,9 @@ python -m tools.rtd.product_catalog check
 - Classifying a model, or renaming a series, is a 网页文档 table edit (operator
   confirmation and a read-back, per the lark-cli Bitable rules) followed by a
   refresh PR. The 2026-11-06 snapshot came from the operator-approved fill of
-  all 206 rows (66 models; 便携电源 / 家庭备电 / 扩容电池 / 太阳能板 / 配件).
+  all 206 rows plus the three JP rows the operator added the same day for
+  JA-CK01A-BK, JA-CK01A-BK-QG and JS-CONNECTION-GUIDE (209 rows, 69 models;
+  便携电源 / 家庭备电 / 扩容电池 / 太阳能板 / 配件).
 
 ## 产品知识
 
