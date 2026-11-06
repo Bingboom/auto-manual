@@ -1,67 +1,34 @@
-/* Local filtering only; policy text and original evidence remain readable without JS. */
+'use strict';
+// 市场与政策 (2026-11 layout): every record is a <details> row, readable without JavaScript. This script shows
+// 「全部展开」 (it reads 「全部收起」 while every record is open) and opens the record a country chip or the URL hash
+// points to.
 (() => {
-  "use strict";
-  const controls = document.getElementById("policy-filters");
-  if (!controls) return;
-  const country = document.getElementById("policy-country");
-  const status = document.getElementById("policy-status");
-  const search = document.getElementById("policy-search");
-  const count = document.getElementById("policy-count");
-  const reset = document.getElementById("policy-reset");
-  const empty = document.getElementById("policy-empty");
-  const buttons = [...controls.querySelectorAll("[data-tag]")];
-  const entries = [...document.querySelectorAll(".policy-item")].map(element => ({
-    element,
-    country: element.dataset.country,
-    status: element.dataset.status,
-    tags: JSON.parse(element.dataset.tags),
-    text: element.textContent.toLocaleLowerCase(),
-  }));
-  let tag = "all";
-  const apply = () => {
-    const words = search.value.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
-    let visible = 0;
-    entries.forEach(entry => {
-      const show = (country.value === "all" || country.value === entry.country)
-        && (status.value === "all" || status.value === entry.status)
-        && (tag === "all" || entry.tags.includes(tag))
-        && words.every(word => entry.text.includes(word));
-      entry.element.hidden = !show;
-      if (show) visible += 1;
+  const records = [...document.querySelectorAll('.mp-record')];
+  if (!records.length) return;
+  const toggle = document.getElementById('mp-expand');
+  const sync = () => {
+    const allOpen = records.every(record => record.open);
+    toggle.textContent = allOpen ? '全部收起' : '全部展开';
+    toggle.setAttribute('aria-expanded', String(allOpen));
+  };
+  if (toggle) {
+    toggle.hidden = false;
+    toggle.addEventListener('click', () => {
+      const open = !records.every(record => record.open);
+      records.forEach(record => { record.open = open; });
+      sync();
     });
-    buttons.forEach(button => button.setAttribute("aria-pressed", String(button.dataset.tag === tag)));
-    count.textContent = `${visible} 条资料 / 共 ${entries.length} 条`;
-    reset.hidden = country.value === "all" && status.value === "all" && tag === "all" && !search.value;
-    empty.hidden = visible !== 0;
+    records.forEach(record => record.addEventListener('toggle', sync));
+    sync();
+  }
+  const open = id => {
+    const record = id ? document.getElementById(id) : null;
+    if (record && records.includes(record)) record.open = true;
   };
-  const clear = () => {
-    country.value = "all";
-    status.value = "all";
-    search.value = "";
-    tag = "all";
-    apply();
-  };
-  const revealHash = () => {
-    let target;
-    try { target = document.getElementById(decodeURIComponent(location.hash.slice(1))); }
-    catch { return; }
-    const entry = target && target.closest(".policy-item");
-    if (entry && entry.hidden) {
-      clear();
-      target.scrollIntoView({block: "start"});
-    }
-  };
-  country.addEventListener("change", apply);
-  status.addEventListener("change", apply);
-  search.addEventListener("input", apply);
-  buttons.forEach(button => button.addEventListener("click", () => {
-    tag = button.dataset.tag;
-    apply();
+  document.querySelectorAll('[data-record-link]').forEach(link => link.addEventListener('click', () => {
+    open(link.dataset.recordLink);
   }));
-  reset.addEventListener("click", clear);
-  document.getElementById("policy-empty-reset").addEventListener("click", clear);
-  window.addEventListener("hashchange", revealHash);
-  controls.hidden = false;
-  apply();
-  revealHash();
+  const fromHash = () => open(decodeURIComponent(window.location.hash.slice(1)));
+  window.addEventListener('hashchange', fromHash);
+  fromHash();
 })();
