@@ -406,9 +406,8 @@ def _now_next_findings(contract: dict[str, Any], ledger: Ledger | None, out: lis
         _error(out, "now_next.source", str(exc))
     for gate in now_next.get("gates") or []:
         _gate_findings(gate, ledger, out)
-    for rev in now_next.get("now_labels") or {}:
-        if ledger is not None and rev not in ledger.statuses:
-            _error(out, "now_labels", f"{rev} is not in the ledger")
+    if "now_labels" in now_next:
+        _error(out, "now_next.now_labels", "replaced by focus.doing: 正在做 is one list, shown here and on 知识库首页")
     return now_next
 
 
@@ -494,6 +493,7 @@ def _focus_findings(focus: object, *, card_ids: dict[str, set[str]], gate_ids: s
                 error(where, f"REV ids missing from the ledger: {unknown}")
         if _QUANTITY.search(str(lane.get("goal") or "")):
             out.append(Finding("warning", where, "goal states a quantity; counts must come from the snapshot"))
+    out += _doing_findings(focus)
     regions = focus.get("regions", {})
     if not isinstance(regions, dict) or not all(isinstance(v, str) and v for v in regions.values()):
         error("focus.regions", "must map region codes to labels")
@@ -501,6 +501,24 @@ def _focus_findings(focus: object, *, card_ids: dict[str, set[str]], gate_ids: s
     if not isinstance(families, list) or not all(
             isinstance(entry, dict) and entry.get("family") and entry.get("label") for entry in families):
         error("focus.skeleton_families", "each entry needs a family and a label")
+    return out
+
+
+def _doing_findings(focus: dict[str, Any]) -> list[Finding]:
+    """正在做 (``focus.doing``): each item has a lead and a text and names a lane marked now."""
+    doing = focus.get("doing", [])
+    if not isinstance(doing, list):
+        return [Finding("error", "focus.doing", "must be a list of {lead, text, lane}")]
+    now_lanes = {str(lane.get("id")) for lane in focus["lanes"]
+                 if isinstance(lane, dict) and lane.get("horizon") == "now"}
+    out: list[Finding] = []
+    for item in doing:
+        lead, text, lane_id = ((str(item.get(key) or "").strip() for key in ("lead", "text", "lane"))
+                               if isinstance(item, dict) else ("", "", ""))
+        if not lead or not text:
+            out.append(Finding("error", "focus.doing", f"each item needs a lead and a text: {item!r}"))
+        if lane_id not in now_lanes:
+            out.append(Finding("error", "focus.doing", f"{lead or item!r} must name a lane marked now, not {lane_id!r}"))
     return out
 
 
@@ -988,59 +1006,42 @@ def _lane_tag(lane: dict[str, Any]) -> dict[str, str]:
     return {"title": lane["title"], "horizon": lane["horizon"], "horizon_label": HORIZON_LABELS[lane["horizon"]]}
 
 
-def _gate_and_now_views(contract: dict[str, Any], ledger: Ledger | None, lanes: list[dict[str, Any]],
-                        ledger_url: str) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+def _gate_views(contract: dict[str, Any], ledger: Ledger | None, lanes: list[dict[str, Any]]) -> list[dict[str, Any]]:
     gates: list[dict[str, Any]] = []
-    now: list[dict[str, Any]] = []
     if ledger is None:
-        return gates, now
+        return gates
     for gate in contract["now_next"]["gates"]:
         revs = expand_revs(gate["revs"])
         gates.append({"id": gate["id"], "label": gate["label"], "fold": bool(gate.get("fold")),
                       "lanes": [_lane_tag(lane) for lane in lanes if gate["id"] in (lane.get("gates") or [])],
                       "remaining": [rev for rev in revs if ledger.statuses.get(rev, "planned") != "done"],
                       **_progress(revs, ledger)})
-    gates_by_id = {gate["id"]: gate for gate in gates}
-    for rev, label in (contract["now_next"].get("now_labels") or {}).items():
-        state = ledger.statuses.get(rev, "planned")
-        now.append({"rev": rev, "label": label, "status": state, "context": _now_context(rev, lanes, gates_by_id),
-                    "status_label": LEDGER_LABELS.get(state, state), "href": f"{ledger_url}#{rev.lower()}"})
-    return gates, now
+    return gates
 
 
-def _now_context(rev: str, lanes: list[dict[str, Any]], gates_by_id: dict[str, dict[str, Any]]) -> str:
-    """Which lane a 近期事项 row belongs to, and its place in that lane's gate: "网页发布与维护闭环 · G1 最后一项".
+def doing_view(focus: dict[str, Any]) -> list[dict[str, str]]:
+    """正在做: ``focus.doing`` in order, each item with its lane's id and name (the title before 「 · 」).
 
-    A lane that lists the row in its own ``revs`` wins over a lane that only holds it through a gate.
+    知识库首页 shows the same list (``workspace_home.now_view`` reads it from this page's view).
     """
-    for lane in lanes:
-        if lane.get("revs") and rev in expand_revs(lane["revs"]):
-            return str(lane["title"]).partition(" · ")[0]
-    for lane in lanes:
-        name = str(lane["title"]).partition(" · ")[0]
-        for gid in lane.get("gates") or []:
-            gate = gates_by_id.get(gid)
-            if gate is None or rev not in gate["remaining"]:
-                continue
-            left = len(gate["remaining"])
-            return f"{name} · {gid} " + ("最后一项" if left == 1 else f"剩余 {left} 项")
-    return ""
+    names = {str(lane["id"]): str(lane["title"]).partition(" · ")[0] for lane in focus.get("lanes") or []}
+    return [{"lead": str(item["lead"]).strip(), "text": str(item["text"]).strip(), "lane": str(item["lane"]),
+             "lane_name": names.get(str(item["lane"]), "")} for item in focus.get("doing") or []]
 
 
-def stepper_view(gates: list[dict[str, Any]], now_next: dict[str, Any]) -> dict[str, Any] | None:
+def stepper_view(gates: list[dict[str, Any]]) -> dict[str, Any] | None:
     """The 阶段门 stepper: the main gates in order, the current one, and the steps to the next gate.
 
-    The steps name the current gate's open ledger rows when ``now_next.now_labels`` labels all of them,
-    else count them; then 验收 the gate and start the next one.
+    The steps count the current gate's open ledger rows (「完成 G1 最后一项」), then 验收 the gate and start the
+    next one; the rows themselves are in the ledger and the lane cards, and 正在做 says what is being done.
     """
-    labels = now_next.get("now_labels") or {}
     main = [gate for gate in gates if not gate["fold"]]
     current = next((gate for gate in main if gate["state"] != "done"), None)
     steps: list[str] = []
     if current is not None:
         remaining = current["remaining"]
-        if remaining and all(rev in labels for rev in remaining):
-            steps = [labels[rev] for rev in remaining]
+        if len(remaining) == 1:
+            steps = [f"完成 {current['id']} 最后一项"]
         elif remaining:
             steps = [f"完成 {current['id']} 剩余 {len(remaining)} 项"]
         steps.append(f"验收 {current['id']}")
@@ -1155,7 +1156,7 @@ def build_context(contract: dict[str, Any], *, root: Path, ledger: Ledger | None
     flow = [{"source": link["from"], "target": link["to"], "mode": link["mode"],
              "mode_label": MODE_LABELS[link["mode"]], **entry_view(link)} for link in contract["flow"]]
 
-    gates, now = _gate_and_now_views(contract, ledger, lanes, ledger_url)
+    gates = _gate_views(contract, ledger, lanes)
 
     corpus_block = corpus_view(contract, corpus, today, int(registry["corpus"]["stale_after_days"])) if corpus else None
     gates_by_id = {gate["id"]: gate for gate in gates}
@@ -1175,6 +1176,7 @@ def build_context(contract: dict[str, Any], *, root: Path, ledger: Ledger | None
                 groups.append({"horizon": horizon, "label": label, "lanes": views})
         focus_view = {
             "note": focus.get("note") or "",
+            "doing": doing_view(focus),
             "groups": groups,
             "evidence": [evidence_view(ref, repositories, ledger_url) for ref in focus.get("evidence") or []],
             "stale": drift_reasons(focus, contract=contract, root=root, ledger=ledger, today=today,
@@ -1196,8 +1198,7 @@ def build_context(contract: dict[str, Any], *, root: Path, ledger: Ledger | None
         "cards": cards,
         "flow": flow,
         "gates": gates,
-        "stepper": stepper_view(gates, contract["now_next"]),
-        "now": now,
+        "stepper": stepper_view(gates),
         "stale_after_days": review_days,
         "verified_on": contract["verified_on"].isoformat(),
         "build_date": today.isoformat(),

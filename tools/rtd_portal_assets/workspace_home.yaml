@@ -4,14 +4,8 @@
 #   assets_note  one line beside 「已积累的可复用资产」: why the cards matter.
 #                The cards' figures are never written here: each is read from
 #                the source that owns it (see workspace_home.py).
-#   doing        「正在做」 on the home page: what the team is doing now, in
-#                plain words. `lead` is the short bold name, `text` the one-line
-#                explanation. The 系统建设 page keeps its own 正在做 list from
-#                the execution ledger (system_workspace.yaml now_next).
-schema: hello-docs-workspace-home/v1
+#
+# 「正在做」 is not here: the home page and 系统建设 show one list, kept in
+# system_workspace.yaml (focus.doing). v2 dropped this file's `doing`.
+schema: hello-docs-workspace-home/v2
 assets_note: 每写一本都在积累，下一本直接复用
-doing:
-  - lead: 网页化
-    text: 印刷版说明书持续转成网页版
-  - lead: 多格式输出
-    text: Agent 复用积累的语料、图片素材和设计规范，一份内容出多种格式

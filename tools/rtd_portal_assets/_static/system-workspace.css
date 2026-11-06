@@ -476,10 +476,12 @@ body.app.kb.system-workspace main { max-width: 1120px; padding: 40px 48px 72px; 
 .sw-recent .sw-now { margin: 0; gap: 0; }
 .sw-recent .sw-now li { flex-wrap: wrap; gap: 6px 12px; padding: 10px 0; background: none; border: 0; border-radius: 0; font-size: 14px; }
 .sw-recent .sw-now li + li { border-top: 1px solid var(--app-divider); }
-.sw-recent .sw-now a { flex: 1 1 240px; font-weight: 500; color: var(--app-ink); text-decoration: none; }
-.sw-recent .sw-now a:hover { color: var(--brand); }
-.sw-recent .sw-now small { font-size: 12px; line-height: 18px; color: var(--app-muted); }
-.sw-recent .sw-ledger { box-sizing: border-box; min-width: 44px; margin-left: 0; padding: 3px 8px; font-size: 12px; font-weight: 500; text-align: center; }
+.sw-recent .sw-now li { align-items: flex-start; }
+.sw-recent .sw-now .sw-mark { flex: none; margin-top: 5px; }
+.sw-recent .sw-doing { flex: 1 1 280px; line-height: 22px; color: var(--app-text2); }
+.sw-recent .sw-doing strong { font-weight: 600; color: var(--app-ink); }
+.sw-recent .sw-doing-lane { margin-top: 2px; font-size: 12px; line-height: 18px; font-weight: 500; color: var(--app-muted); text-decoration: none; }
+.sw-recent .sw-doing-lane:hover { color: var(--brand); }
 #focus .sw-focus-group { display: block; }
 #focus .sw-focus-group + .sw-focus-group { margin-top: 32px; }
 .sw-horizon-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin-bottom: 12px; }
@@ -538,6 +540,7 @@ body.app.kb.system-workspace main { max-width: 1120px; padding: 40px 48px 72px; 
   .sw-step-node i { display: none; }
   .sw-next-more, .sw-marks { margin-left: 0; }
   .sw-stepper, .sw-recent { padding-left: 18px; padding-right: 18px; }
+  .sw-recent .sw-doing-lane { margin: 0 0 0 24px; }
 }
 /* 工作入口 (manual_workbench.html) now sits on 系统建设 too: its tokens follow the knowledge palette on both pages. */
 body.system-workspace { --wb-green: var(--brand-strong); --wb-ink: var(--app-ink); --wb-subtle: var(--app-muted); }

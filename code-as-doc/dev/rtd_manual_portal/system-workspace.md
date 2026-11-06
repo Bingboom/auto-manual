@@ -9,20 +9,22 @@ Since the 2026-11 redesign the page has the 阶段门 stepper above three tabs.
 
 - **阶段门** (`#gates`, `stepper_view`): the unfolded gates G1–G3 in order, each with
   its count, bar and ledger tally. The first gate not yet done is 当前 and filled
-  with the accent; the next one reads 「G1 验收后开始」. A 接下来 line names the
-  current gate's open ledger rows when `now_next.now_labels` labels all of them
-  (else counts them), then 验收 the gate and starts the next; the folded gates
-  (IDML, G4) follow on the same line.
-- **「当前工作」** (`#tab-progress`, kept): the focus note, **近期事项** (`#now-next`, one
-  row per `now_labels` entry: a ledger chip such as 在做 or 待做, the item, and the
-  lane it belongs to, e.g. 「网页发布与维护闭环 · G1 最后一项」; a lane listing the
-  row in its own `revs` wins over a lane holding it through a gate), then the lanes
+  with the accent; the next one reads 「G1 验收后开始」. A 接下来 line counts the
+  current gate's open ledger rows (「完成 G1 最后一项」, 「完成 G1 剩余 2 项」), then
+  验收 the gate and starts the next; the folded gates (IDML, G4) follow on the same
+  line. The rows themselves stay in the ledger and the lane cards.
+- **「当前工作」** (`#tab-progress`, kept): the focus note, **正在做** (`#now-next`, kept
+  for links): `focus.doing` in `system_workspace.yaml`, the one list 知识库首页 shows
+  too. Each item is the operator's plain words (a bold lead and one line, such as
+  「网页化：印刷版说明书持续转成网页版」) with the in-progress mark and a link to the
+  lane it belongs to, which must be a lane marked `now`; `check` rejects any other
+  lane and the retired `now_next.now_labels`. Then the lanes
   by horizon. A lane card shows its name (the title before 「 · 」; the rest is its
   condition, shown in its footer), a status chip (its one capability item's
   status, else its card's), its goal, its figures, and a footer with its ledger
   tally and the 能力与证据 link (its card, or the card of its first item). The
-  后置 · 按需 lanes are rows of one card. Item titles in `now_labels` name the work
-  only, never the lane; REV ids stay out of the body text and remain in the links.
+  后置 · 按需 lanes are rows of one card. REV ids stay out of the body text and
+  remain in the links.
 - **「能力与架构」** (`#tab-capabilities`): the capability map and production flow,
   工作入口 (`manual_workbench.html`, moved from 说明书工作台), the system architecture
   (`#tab-architecture`), language assets (`#tab-corpus`) and skills and engineering
@@ -138,7 +140,7 @@ Maintenance contract:
   Text is escaped, not executed as HTML.
 
 
-`/workspace/system/` (系统建设) opens with the 阶段门 stepper and 当前工作: 近期事项,
+`/workspace/system/` (系统建设) opens with the 阶段门 stepper and 当前工作: 正在做,
 then the lanes ordered by delivery priority, each with its figures and ledger
 progress. Corpus statistics, capabilities and evidence sit in 能力与架构. The page is built at RTD time from
 frozen inputs only. The build never contacts Feishu or GitHub; browser version

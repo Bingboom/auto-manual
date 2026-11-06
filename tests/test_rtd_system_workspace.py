@@ -73,6 +73,7 @@ def contract() -> dict:
         "focus": {
             "note": "n",
             "evidence": ["file:auto-manual:ledger.md", "ack:someone 2026-09-24「focus」"],
+            "doing": [{"lead": "网页化", "text": "印刷版说明书持续转成网页版", "lane": "web"}],
             "lanes": [
                 {"id": "web", "horizon": "now", "title": "网页化", "goal": "g", "card": "prod",
                  "metrics": ["publications", "regions"], "gates": ["G1"]},
@@ -97,7 +98,6 @@ def contract() -> dict:
             "source": "file:auto-manual:ledger.md",
             "gates": [{"id": "G1", "label": "发布基线", "revs": ["REV-01..REV-02"]},
                       {"id": "G2", "label": "维护试点", "revs": ["REV-03"]}],
-            "now_labels": {"REV-02": "在验项"},
         },
     }
 
@@ -179,7 +179,10 @@ class SystemWorkspaceContractTests(unittest.TestCase):
             "missing from the ledger": lambda d: d["now_next"]["gates"][1].update(revs=["REV-09"]),
             "does not name": lambda d: d["now_next"]["gates"][0].update(revs=["REV-01..REV-03"]),
             "no such gate": lambda d: d["now_next"]["gates"][1].update(id="G9"),
-            "is not in the ledger": lambda d: d["now_next"].update(now_labels={"REV-99": "x"}),
+            "replaced by focus.doing": lambda d: d["now_next"].update(now_labels={"REV-02": "x"}),
+            "must name a lane marked now, not 'sk'": lambda d: d["focus"]["doing"][0].update(lane="sk"),
+            "needs a lead and a text": lambda d: d["focus"]["doing"][0].update(text=" "),
+            "must be a list of {lead, text, lane}": lambda d: d["focus"].update(doing="网页化"),
             "expected hello-docs-system-workspace": lambda d: d.update(schema="other/v0"),
         }
         for fragment, mutate in mutations.items():
@@ -383,15 +386,15 @@ class SystemWorkspaceContextTests(unittest.TestCase):
                          [("网页化", "当前主线", ["alpha"]), ("骨架", "代表试点", [])])
         self.assertEqual(view["hooks"][0]["mode_label"], "拦截")
 
-    def test_gates_and_now_items_read_the_ledger(self):
+    def test_gates_read_the_ledger_and_doing_names_its_lane(self):
         view = self.context()
         g1, g2 = view["gates"]
         self.assertEqual((g1["done"], g1["total"], g1["percent"], g1["state"], g1["tally"]),
                          (1, 2, 50, "active", "完成 1 · 在验 1"))
         self.assertEqual((g2["state"], g2["tally"]), ("idle", "待做 1"))
-        self.assertEqual(view["now"], [{"rev": "REV-02", "label": "在验项", "status": "verifying",
-                                        "status_label": "在验", "context": "语料",
-                                        "href": "https://github.com/o/auto-manual/blob/main/ledger.md#rev-02"}])
+        self.assertNotIn("now", view)
+        self.assertEqual(view["focus"]["doing"], [{"lead": "网页化", "text": "印刷版说明书持续转成网页版",
+                                                   "lane": "web", "lane_name": "网页化"}])
 
     def test_evidence_links_map_every_kind(self):
         repos = {"auto-manual": "https://github.com/o/auto-manual", "hello-docs": "https://github.com/o/Hello-Docs"}
@@ -675,6 +678,13 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
                   if f.severity == "error"]
         self.assertEqual(errors, [])
 
+    def test_shipped_doing_is_the_operators_plain_words(self):
+        # 正在做 is one list for 系统建设 and 知识库首页 (operator 2026-11-05/06): plain words, no ledger rows.
+        doing = sw.doing_view(sw.load_contract(sw.DEFAULT_CONTRACT)["focus"])
+        self.assertEqual([(item["lead"], item["lane"]) for item in doing], [("网页化", "web"), ("多格式输出", "workbench")])
+        self.assertEqual([item["lane_name"] for item in doing], ["网页发布与维护闭环", "资料开发工作台"])
+        self.assertFalse(any("REV-" in item["text"] for item in doing))
+
     def test_cli_exit_codes(self):
         with redirect_stdout(io.StringIO()) as out:
             self.assertEqual(sw.main(["check", "--today", "2026-09-24"]), 0)
@@ -741,7 +751,7 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
             page = (base / "good" / "workspace" / "system" / "index.html").read_text(encoding="utf-8")
             # The 2026-11 layout: the 阶段门 stepper above three tabs, the sections in this order.
-            headings = ("阶段门", "近期事项", "当前主线", "同期 · 持续支撑", "后置 · 按需", "能力地图", "生产流程与连接",
+            headings = ("阶段门", "正在做", "当前主线", "同期 · 持续支撑", "后置 · 按需", "能力地图", "生产流程与连接",
                         "工作入口", "语言资产", "技能与钩子", "工程规模", "数据来源")
             found = [re.search(rf"<h2[^>]*>{re.escape(h)}</h2>", page) for h in headings]
             self.assertEqual([bool(m) for m in found], [True] * len(headings))
@@ -755,6 +765,13 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             self.assertEqual(head.count('<li class="sw-step '), 3)  # G1–G3; the folded gates are one line below
             self.assertEqual(head.count(' is-current"'), 1)
             self.assertIn('<span class="sw-next-more">其他阶段门：IDML 印刷独立验收', head)
+            # 正在做 is one list: 知识库首页 shows exactly what 系统建设 does, and neither names a ledger row.
+            home = (base / "good" / "workspace" / "index.html").read_text(encoding="utf-8")
+            doing = re.compile(r"<strong>([^<]+)</strong>：([^<]+)</span>")
+            here = doing.findall(page.split('id="now-next"', 1)[1].split("</section>", 1)[0])
+            self.assertEqual(here, doing.findall(home.split('class="home-doing"', 1)[1].split("</div>", 1)[0]))
+            self.assertEqual([lead for lead, _ in here], ["网页化", "多格式输出"])
+            self.assertNotIn("代表目标修订", page + home)
             web_lane = page.split('id="lane-web"', 1)[1].split("</article>", 1)[0]
             self.assertIn('<span class="sw-chip is-available">', web_lane)
             self.assertIn("网页发布能力", web_lane)

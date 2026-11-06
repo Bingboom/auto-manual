@@ -81,10 +81,10 @@
             <h3>当前主线</h3>
             <ul>{% for lane in now.lanes %}<li>{{ lane.title|e }}</li>{% endfor %}</ul>
           </div>{% endif %}
-          <div class="home-doing">
+          {% if now.doing %}<div class="home-doing">
             <h3>正在做</h3>
             <ul>{% for item in now.doing %}<li>{{ status_mark('in_progress') }}<span><strong>{{ item.lead|e }}</strong>：{{ item.text|e }}</span></li>{% endfor %}</ul>
-          </div>
+          </div>{% endif %}
         </div>
       </div>
     </section>{% endif %}

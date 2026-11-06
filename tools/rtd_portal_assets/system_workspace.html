@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <meta name="description" content="系统建设：阶段门、近期事项与当前主线，能力与架构，数据来源与系统演变。">
+  <meta name="description" content="系统建设：阶段门、正在做与当前主线，能力与架构，数据来源与系统演变。">
   <title>系统建设</title>
   <link rel="stylesheet" href="{{ pathto('_static/workspace.css', 1) }}">
   <link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
@@ -15,7 +15,8 @@
 </head>
 {% from "_site_shell.html" import site_sidebar, site_topbar, site_script, icon with context %}
 <body class="app kb system-workspace">
-{#- 系统建设 (2026-11 design): the 阶段门 stepper, then three tabs. 当前工作 holds 近期事项 and the focus lanes;
+{#- 系统建设 (2026-11 design): the 阶段门 stepper, then three tabs. 当前工作 holds 正在做 (the same list as
+    知识库首页, from focus.doing) and the focus lanes;
     能力与架构 the capability map, flow, 工作入口 (moved from 说明书工作台), architecture, language assets and tooling;
     来源与演变 the source registry and the system's history. The old tab ids stay on their sections for links. -#}
 {%- macro badge(status, label) -%}<span class="sw-badge is-{{ status|e }}">{{ label|e }}</span>{%- endmacro -%}
@@ -161,12 +162,12 @@
     <p class="sw-focus-note">{{ focus.note|e }}</p>
     {%- endif %}
 
-    {%- if now %}
+    {%- if focus and focus.doing %}
     <section class="sw-section sw-recent" id="now-next" aria-labelledby="now-next-title">
-      <h2 id="now-next-title">近期事项</h2>
+      <h2 id="now-next-title">正在做</h2>
       <ul class="sw-now">
-        {%- for row in now %}
-        <li><span class="sw-ledger is-{{ row.status|e }}">{{ row.status_label|e }}</span><a href="{{ row.href|e }}" target="_blank" rel="noopener" title="{{ row.rev|e }}：在执行台账查看">{{ row.label|e }}</a>{% if row.context %}<small>{{ row.context|e }}</small>{% endif %}</li>
+        {%- for item in focus.doing %}
+        <li>{{ status_mark('in_progress') }}<span class="sw-doing"><strong>{{ item.lead|e }}</strong>：{{ item.text|e }}</span><a class="sw-doing-lane" href="#lane-{{ item.lane|e }}">{{ item.lane_name|e }}</a></li>
         {%- endfor %}
       </ul>
     </section>

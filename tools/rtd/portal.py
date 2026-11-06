@@ -394,7 +394,7 @@ def collect_workspace_pages(app):
         "deliverables_entry": True,
         "design_entry": design is not None,
         "matrix_entry": matrix is not None,
-        # 现在: reusable assets (each from the source that owns it), main lines and the home copy's 正在做;
+        # 现在: reusable assets (each from the source that owns it), then 当前主线 and 正在做 from 系统建设;
         # then 去哪里, 定位与价值 and the newest 5 updates.
         "now": now_view(system, load_home_copy(ASSETS)),
         "assets": reusable_assets(system, ASSETS, repo_root()),

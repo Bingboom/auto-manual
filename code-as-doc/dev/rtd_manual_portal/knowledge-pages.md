@@ -30,9 +30,11 @@ what has built up and can be reused, what is being done now, and where to go:
     one.
 
   Below the cards, 当前主线 lists the 系统建设 focus lanes marked `now` (titles
-  only). 正在做 comes from `tools/rtd_portal_assets/workspace_home.yaml`: plain
-  wording that only this page shows, while the 系统建设 page keeps its own
-  ledger-based list. A malformed `workspace_home.yaml` fails the build.
+  only) and 正在做 shows 系统建设's own list (`focus.doing` in
+  `system_workspace.yaml`), so the two pages always agree; without the 系统建设
+  page neither shows. `tools/rtd_portal_assets/workspace_home.yaml` (schema v2)
+  holds only the note beside the cards and refuses a `doing` list of its own. A
+  malformed `workspace_home.yaml` fails the build.
 - **去哪里** (`#doors`) has one card per sidebar group after 首页: 说明书
   (说明书资料库, 搜索说明书正文), 产品与市场 (产品知识, 产品矩阵, 市场与政策) and
   说明书生产 (说明书工作台, 系统建设, 设计规范). Each entry carries its sidebar
