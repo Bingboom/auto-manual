@@ -76,9 +76,10 @@ The strategic priority is to govern approved originals and reusable assets, reta
 Writing is the main production route. In the private document workbench
 (Hello-Docs-Review), agents draft with the engineering infrastructure, governed
 data, templates and corpus, and people review the drafts; automated assembly from
-data and templates is used on demand. Workbench drafting and its private review
-site exist; promoting an approved draft into Hello-Docs publication and
-traceability as an approved original is planned, not implemented. The repository
+data and templates is being phased down. Workbench drafting and its private review
+site exist; promoting a finalized draft into Hello-Docs publication and
+traceability as an approved original is the main Web route, rehearsed locally
+on 2026-11-06 and built with the first finalized draft (positioning §5.1). The repository
 roles are mapped in [the two-plane map](../../user-guide/two_plane_map.md).
 
 The five strategic objectives apply across content classes. Governance depth
