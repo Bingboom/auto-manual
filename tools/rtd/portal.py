@@ -11,7 +11,7 @@ from urllib.parse import unquote, urlsplit
 
 from tools.utils.path_utils import PathSegments, repo_root, static_dir_of
 from tools.rtd.publication_catalog import group_publications, publication_identity
-from tools.rtd.portal_navigation import navigation_view
+from tools.rtd.portal_navigation import library_view
 from tools.rtd.analytics import BEACON_SRC, beacon_attributes, beacon_markup, normalize_beacon_token
 from tools.rtd.alias_entry import alias_head_markup, alias_targets, delayed_forward_body
 from tools.rtd.deliverables import DELIVERABLES_PAGE, DELIVERABLES_TEMPLATE, deliverables_page_context
@@ -22,6 +22,7 @@ from tools.rtd.feedback import context_text, manual_feedback_markup, normalize_c
 from tools.rtd.knowledge_updates import PAGES as UPDATE_PAGES, load_updates, updates_view
 from tools.rtd.product_voc import normalize_endpoint, page_markup
 from tools.rtd.product_short_names import attach_short_names, load_short_names
+from tools.rtd.product_catalog import classify, load_catalog, short_names as catalog_short_names
 from tools.rtd.product_matrix import PAGE as MATRIX_PAGE, TEMPLATE as MATRIX_TEMPLATE, product_matrix_page_context
 from tools.rtd.page_metadata import (
     head_markup, normalize_site_base_url, page_description, page_title, portal_head_markup, SITE_NAME,
@@ -169,9 +170,28 @@ def portal_data(app) -> tuple[dict, list[dict]]:
     if cached is None:
         settings = json.loads((ASSETS / "settings.json").read_text(encoding="utf-8"))
         products = catalog(Path(app.srcdir).resolve(), settings)
-        cached = (settings, attach_short_names(products, load_short_names(ASSETS)))
+        product_catalog = classified_catalog(app, products)
+        # The spec-table short names stay first; the 网页文档 table fills the models they lack.
+        names = {**catalog_short_names(product_catalog), **load_short_names(ASSETS)}
+        cached = (settings, attach_short_names(products, names))
         app._rtd_portal_data = cached
     return cached
+
+
+def classified_catalog(app, products: list[dict]) -> dict | None:
+    """The 产品分类 snapshot, each product classified by it; None (with a warning) when unusable."""
+    from sphinx.util import logging as sphinx_logging
+
+    logger = sphinx_logging.getLogger(__name__)
+    product_catalog, problems = load_catalog(ASSETS)
+    if problems:
+        logger.warning("产品分类 snapshot unusable (%s); 说明书资料库 groups by product type, 产品矩阵 is skipped",
+                       "; ".join(problems[:3]))
+    missing = classify(products, product_catalog)
+    if product_catalog is not None and missing:
+        logger.warning("产品分类 snapshot has no 产品类别/产品系列 for %s; listed under 其他说明书", ", ".join(missing))
+    app._rtd_product_catalog = product_catalog
+    return product_catalog
 
 
 def prepare_catalog(app) -> None:
@@ -182,6 +202,7 @@ def prepare_catalog(app) -> None:
 def clear_catalog_cache(app, exception) -> None:
     # A later build in the same process must validate its own frozen inputs again.
     app._rtd_portal_data = None
+    app._rtd_product_catalog = None
     app._rtd_system_context = _UNSET
     app._rtd_design_context = _UNSET
     app._rtd_data_context = _UNSET
@@ -275,7 +296,7 @@ def page_context(app, pagename, templatename, context, doctree):
         return None
     context["portal"] = settings
     context["products"] = products
-    context["navigation"] = navigation_view(settings, products)
+    context["library"] = library_view(settings, products, getattr(app, "_rtd_product_catalog", None))
     context["site_nav"] = site_nav(app)
     context["internal_shell"] = not manuals_only(app)
     # 网页说明书的定位与价值 band: the public role gets only the reader-facing copy.
@@ -327,7 +348,8 @@ def cached_matrix_context(app):
     cached = getattr(app, "_rtd_matrix_context", _UNSET)
     if cached is _UNSET:
         settings, products = portal_data(app)
-        cached = product_matrix_page_context(app, ASSETS, settings, products)
+        cached = product_matrix_page_context(app, ASSETS, settings, products,
+                                             getattr(app, "_rtd_product_catalog", None))
         app._rtd_matrix_context = cached
     return cached
 

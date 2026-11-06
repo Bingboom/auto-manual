@@ -1,29 +1,30 @@
-"""Build-time 产品矩阵 page: the products the published Web manuals describe.
+"""Build-time 产品矩阵 page: the products the published Web manuals describe, grouped as the 网页文档 table groups them.
 
 ``/products/matrix`` reads, at build time and from the repository only:
 
-- ``docs/publish/publish_manifest.json``: the published routes, which give each
-  model its markets, languages and source manual;
-- the published manual of each model (English first, then the language order in
-  ``product_matrix.json``): its SPECIFICATIONS / 仕様 / 规格 table gives
-  capacity, AC output, cycle life, weight, solar power and IP rating, quoted as
-  the manual prints them;
-- the manual-center catalog for product names, and the ``navigation`` groups in
-  ``settings.json`` for product lines;
-- ``product_matrix.json`` for what no manual states: the line of a model the
-  navigation does not list (marked * on the page), capacity tiers, name
-  overrides, short notes, products without their own manual, and which partner
-  products a manual names. A line marked ``evidence`` (the backup lines) takes
-  an assigned model only with a quote its manual contains, or as ``same_as`` a
-  navigation-listed model when the operator confirms both are one product sold
-  in different markets: a product name such as HomePower does not make a
-  product a backup product;
-- ``data/model_capabilities.csv`` for the capability switches.
+- the ``product_catalog`` snapshot (``tools/rtd/product_catalog.py``): each model's 产品类别, 产品系列 and
+  商品简称. One product is one 商品简称; a model whose 商品简称 ends in a ``variant_marks`` word (沙金色 …) is
+  that product's colour edition, and a model the snapshot records as sharing another model's pages
+  (``pages_of``) shows as a row that links to those pages;
+- ``docs/publish/publish_manifest.json``: the published routes, which give each model its markets, languages
+  and manual pages;
+- the published manual of each model (English first, then the language order in ``product_matrix.json``): its
+  SPECIFICATIONS / 仕様 / 规格 table gives capacity, AC output, solar power, IP rating, weight and expansion,
+  quoted as the manual prints them;
+- ``product_matrix.json``: capacity tiers, market letters and labels, variant marks, name overrides, short
+  notes, and the partner products each manual names (``pairings``). An item links to a product only through
+  its ``product`` key (that product's 商品简称); a label alone never links, since "Explorer 1000 Plus" may mean
+  either generation;
+- ``data/model_capabilities.csv`` for each model's 功能.
 
-A pairing or companion product is shown only when its text still appears in the
-manual it cites; anything dropped, and any product the page cannot place, is a
-Sphinx warning. Without a readable manifest, or with a malformed config or
-capability table, the page and its sidebar entry are skipped with a warning.
+The page has a tab per 产品类别 with a grid of 产品系列 × capacity tier (one column where no product states a
+capacity) and, per product, a detail that opens under its 系列 row: every model with its 商品简称, figures and a
+link per market, the capability switches, and the partner products in both directions. A pairing shows only
+while its text still appears in the manual it cites; anything dropped, and any published model the snapshot does
+not list (shown under 其他), is a Sphinx warning. ``lines``, ``accessories`` and ``assign`` stay for the 产品知识
+page (``positioning_groups``), and an ``evidence`` assignment whose quote has left its manual still warns here.
+Without a readable manifest or a usable snapshot, or with a malformed config or capability table, the page and its
+sidebar entry are skipped.
 """
 from __future__ import annotations
 
@@ -33,29 +34,32 @@ import json
 import re
 from collections import defaultdict
 from collections.abc import Iterable
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from typing import Any
 
-from tools.rtd.production_evidence import publication_facts, read_publications
+from tools.rtd.production_evidence import read_publications
 from tools.rtd.system_data import CAPABILITIES_CSV, LANGUAGES_CSV, read_targets
 from tools.utils.path_utils import Paths, PathSegments, repo_root
 
 PAGE = "products/matrix"
 TEMPLATE = "product_matrix.html"
 CONFIG = "product_matrix.json"
-INFERRED_NOTE = "导航表未收录，按名称或同平台归入"
-OTHER_GROUP = "其他"
+OTHER = "其他"
+UNSORTED = "未分类"
+UNSTATED = "容量未注明"
 # Where a quoted manual sentence starts or ends: sentence ends and Markdown headings.
 _SENTENCE_MARKS = (". ", "。", "! ", "? ", "# ")
 
 _TAG = re.compile(r"<[^>]+>")
 _BREAK = re.compile(r"<br\s*/?>", re.I)
 _SPEC_PAIR = re.compile(r"<th[^>]*>(.*?)</th>\s*<td[^>]*>(.*?)</td>", re.S)
+# The source-layout spec lists (JE-2000A): a row of two paragraphs, label then value.
+_SPEC_ROW = re.compile(r'data-source-layout="spec-row"[^>]*>\s*<p[^>]*>(.*?)</p>\s*<p[^>]*>(.*?)</p>', re.S)
 _SPEC_HEADING = re.compile(r"^#{1,6}[^\n]*(?:SPECIFICATIONS|Specifications|仕様|规格|規格)", re.M)
 _NAME_SUFFIX = re.compile(r"\s*(?:取扱説明書|用户指南|User Manual)\s*$")
 
 # Spec-table labels, matched case-insensitively against the row header.
-CAPACITY = (r"^Capacity$", r"定格容量", r"^容量$")
+CAPACITY = (r"^Capacity$", r"^Internal Battery$", r"定格容量", r"^容量$")
 WEIGHT = (r"^Weight$", r"^重量$", r"サイズ＆重量")
 CYCLES = (r"Cycle Life", r"循環壽命", r"サイクル寿命")
 SOLAR = (r"Maximum Power \(P", r"Peak Power \(P")
@@ -63,12 +67,14 @@ IP_RATING = (r"IP Rating", r"防水防塵", r"Protection Rating")
 OUTPUT = (r"^Output Power$",)
 EXPANSION = r"Expansion|拡張"
 AC_ROW = r"AC Total|Total AC|AC Output|AC出力|AC 出力|× AC|x AC|AC 連接埠"
+# A "Total Output" row is the whole unit's AC output when it also states a surge figure (JE-1000D).
+TOTAL_OUTPUT = r"^Total Output$"
 NOT_AC_OUTPUT = r"Expansion|拡張|パススルー|Bypass|Input|入力"
 AC_TOTAL = r"Total|合計"
 AC_TOTAL_VALUE = r"in Total|rated total|rated in total"
 AC_RATED = (r"(\d[\d,]*)\s?W\s?(?:Rated|rated|in Total|Max\b)", r"額定功率\s?(\d[\d,]*)\s?W",
             r"A，\s?(\d[\d,]*)\s?W", r"(?<!瞬間)最大\s?(\d[\d,]*)\s?W")
-AC_SURGE = (r"(\d[\d,]*)\s?W\s?(?:Surge|surge)", r"突波峰值\s?(\d[\d,]*)\s?W", r"瞬間最大\s?(\d[\d,]*)\s?W")
+AC_SURGE = (r"(\d[\d,]*)\s?W\s?(?:peak\s)?(?:Surge|surge)", r"突波峰值\s?(\d[\d,]*)\s?W", r"瞬間最大\s?(\d[\d,]*)\s?W")
 
 
 class ProductMatrixError(ValueError):
@@ -86,10 +92,11 @@ def plain_text(markup: str) -> str:
 
 
 def spec_pairs(markup: str) -> list[tuple[str, str]]:
-    """Header/value rows of the specification table, from its heading on."""
+    """Header/value rows of the specification table, from its heading on; a label's trailing colon is dropped."""
     heading = _SPEC_HEADING.search(markup)
     section = markup[heading.start():] if heading else markup
-    pairs = [(_clean(label), _clean(value)) for label, value in _SPEC_PAIR.findall(section)]
+    rows = _SPEC_PAIR.findall(section) or _SPEC_ROW.findall(section)
+    pairs = [(_clean(label).rstrip(":：").strip(), _clean(value)) for label, value in rows]
     return [(label, value) for label, value in pairs if label and value and len(label) < 80]
 
 
@@ -104,14 +111,23 @@ def _number(text: str) -> float:
     return float(text.replace(",", ""))
 
 
+def _ac_row(label: str, value: str) -> bool | None:
+    """None for a row that is not AC output; else whether it states the whole unit's total."""
+    if re.search(TOTAL_OUTPUT, label, re.I) and any(re.search(pattern, value) for pattern in AC_SURGE):
+        return True
+    if not re.search(AC_ROW, label, re.I) or re.search(NOT_AC_OUTPUT, label, re.I):
+        return None
+    return bool(re.search(AC_TOTAL, label, re.I) or re.search(AC_TOTAL_VALUE, value, re.I))
+
+
 def _ac_output(pairs: list[tuple[str, str]]) -> tuple[float | None, float | None]:
     """Whole-unit AC rated and surge power: a Total row wins over the largest single port."""
     rated = surge = None
     total_seen = False
     for label, value in pairs:
-        if not re.search(AC_ROW, label, re.I) or re.search(NOT_AC_OUTPUT, label, re.I):
+        is_total = _ac_row(label, value)
+        if is_total is None:
             continue
-        is_total = bool(re.search(AC_TOTAL, label, re.I) or re.search(AC_TOTAL_VALUE, value, re.I))
         rated_match = next((m for m in (re.search(p, value) for p in AC_RATED) if m), None)
         surge_match = next((m for m in (re.search(p, value) for p in AC_SURGE) if m), None)
         if rated_match:
@@ -206,7 +222,20 @@ def load_config(assets: Path, settings: dict[str, Any]) -> dict[str, Any]:
     tiers = config["tiers"]
     if not tiers or any("below" not in tier for tier in tiers[:-1]) or "below" in tiers[-1]:
         raise ProductMatrixError(f"{CONFIG}: every tier but the last needs 'below', and the last none")
+    _check_display(config)
     return {**config, "lines": lines, "accessories": accessories, "assign": assign}
+
+
+def _check_display(config: dict[str, Any]) -> None:
+    """The page's market letters and labels, and the words that name a colour edition."""
+    markets = config.get("markets", {})
+    if not isinstance(markets, dict) or not all(
+            isinstance(m, dict) and str(m.get("letter") or "").strip() and str(m.get("label") or "").strip()
+            for m in markets.values()):
+        raise ProductMatrixError(f"{CONFIG}: markets must give each market a letter and a label")
+    marks = config.get("variant_marks", [])
+    if not isinstance(marks, list) or not all(isinstance(mark, str) and mark.strip() for mark in marks):
+        raise ProductMatrixError(f"{CONFIG}: variant_marks must list the words that name a colour edition")
 
 
 def positioning_groups(assets: Path, settings: dict[str, Any]) -> dict[str, set[str]]:
@@ -281,66 +310,10 @@ def evidence_excerpt(text: str, quote: str, limit: int = 140) -> str:
     return ("…" if clipped_start else "") + text[start:end].strip(" #") + ("…" if clipped_end else "")
 
 
-def _placement(model: str, text: str, placed: dict[str, str], config: dict[str, Any],
-               warnings: list[str]) -> tuple[str | None, str]:
-    """The model's group and, for an assigned model with a quote, the manual text that supports it."""
-    if model in placed:
-        return placed[model], ""
-    entry = config["assign"].get(model)
-    if entry is None:
-        warnings.append(f"{model}: no navigation group or {CONFIG} assignment; listed under {OTHER_GROUP}")
-        return None, ""
-    if "same_as" in entry:
-        return placed[entry["same_as"]], ""
-    quote = str(entry.get("evidence") or "").strip()
-    if not quote:
-        return entry["line"], ""
-    basis = evidence_excerpt(text, quote)
-    if not basis:
-        warnings.append(f"{model}: manual does not state {quote!r}; not placed under {entry['line']!r}, "
-                        f"listed under {OTHER_GROUP}")
-        return None, ""
-    return entry["line"], basis
-
-
 def _partner(item: str | dict[str, str]) -> tuple[str, str]:
     if isinstance(item, str):
         return item, item
     return item["label"], item.get("match") or item["label"]
-
-
-def read_products(srcdir: Path, targets: list[dict[str, Any]], catalog: list[dict[str, Any]],
-                  config: dict[str, Any], warnings: list[str]) -> tuple[dict[str, dict[str, Any]], dict[str, str]]:
-    """One row per published model, keyed by model, and each model's manual text."""
-    by_model: dict[str, list[dict[str, Any]]] = defaultdict(list)
-    for target in targets:
-        by_model[target["model"]].append(target)
-    names: dict[str, dict[str, str]] = defaultdict(dict)
-    for product in catalog:
-        names[product["model"]].setdefault(product["region"], product.get("name") or "")
-    placed = {model: group["id"] for group in config["lines"] + config["accessories"] for model in group["models"]}
-    products, texts = {}, {}
-    for model, rows in sorted(by_model.items()):
-        source = _source(rows, config)
-        markup = _manual(srcdir, source)
-        if markup is None:
-            warnings.append(f"{model}: published manual {source['route']}/{source['manual']} is not readable")
-            markup = ""
-        texts[model] = plain_text(markup)
-        regions = _order((row["region"] for row in rows), config["region_order"])
-        catalog_name = next((names[model][region] for region in [source["region"], *regions] if names[model].get(region)), "")
-        group, basis = _placement(model, texts[model], placed, config, warnings)
-        products[model] = {
-            "model": model,
-            "name": config.get("names", {}).get(model) or display_name(catalog_name, model),
-            "group": group, "inferred": model not in placed, "basis": basis,
-            "variant_of": config["assign"].get(model, {}).get("same_as", "") if model not in placed else "",
-            "regions": regions, "langs": sorted({row["lang"] for row in rows}), "routes": len(rows),
-            "source": f"{source['route']}（{source['lang']}）",
-            "note": config.get("notes", {}).get(model, ""),
-            **read_specs(spec_pairs(markup)),
-        }
-    return products, texts
 
 
 def _tier(wh: float | None, tiers: list[dict[str, Any]]) -> int | None:
@@ -349,198 +322,312 @@ def _tier(wh: float | None, tiers: list[dict[str, Any]]) -> int | None:
     return next(index for index, tier in enumerate(tiers) if "below" not in tier or wh < tier["below"])
 
 
-def _energy_facts(product: dict[str, Any], line: dict[str, Any]) -> list[str]:
-    facts = [f"{number(product['wh'])} Wh"]
-    if product["ac"]:
-        facts.append(f"AC {number(product['ac'])} W")
-    elif line.get("fallback"):
-        facts.append(line["fallback"])
-    if product["kg"]:
-        facts.append(f"{number(product['kg'])} kg")
-    return facts
 
 
-def _accessory_facts(product: dict[str, Any]) -> list[str]:
-    facts = [product["note"]] if product["note"] else []
-    if product["pv"]:
-        facts.append(f"STC {product['pv']} W")
-    if product["out"] and not product["note"]:
-        facts.append(f"输出 {product['out']} W")
-    if product["ip"]:
-        facts.append(product["ip"])
-    if product["kg"]:
-        facts.append(f"{number(product['kg'])} kg")
-    return facts
+# Figures a product detail can show, in column order; a column shows only when one of the product's models states it.
+COLUMNS = (("wh", "容量"), ("ac", "AC 额定 / 峰值"), ("pv", "太阳能功率"), ("out", "输出"), ("ip", "防护"),
+           ("kg", "重量"), ("expansion", "扩展口"), ("note", "说明"))
+_UNITS = {"wh": "{} Wh", "pv": "STC {} W", "out": "{} W", "kg": "{} kg"}
 
 
-def _card(product: dict[str, Any], facts: list[str]) -> dict[str, Any]:
-    keys = ("model", "name", "regions", "inferred", "source", "basis", "variant_of")
-    return {key: product[key] for key in keys} | {"facts": facts}
+def _figure(row: dict[str, Any], key: str) -> str:
+    """One model's figure for a detail column, or — when its manual does not state it."""
+    value = row.get(key)
+    if not value:
+        return "—"
+    if key == "ac":
+        return f"{number(value)} / {number(row['surge'])} W" if row.get("surge") else f"{number(value)} W"
+    if key in _UNITS:
+        return _UNITS[key].format(number(value))
+    return "有" if key == "expansion" else str(value)
 
 
-def positioning(products: dict[str, dict[str, Any]], config: dict[str, Any],
-                warnings: list[str]) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
-    """Energy products by line and capacity tier, and the accessory groups."""
-    tiers = config["tiers"]
-    lines = []
-    for line in config["lines"]:
-        cells: list[list[dict[str, Any]]] = [[] for _ in tiers]
-        members = sorted((p for p in products.values() if p["group"] == line["id"]), key=lambda p: (p["wh"] or 0, p["model"]))
-        for product in members:
-            tier = _tier(product["wh"], tiers)
-            if tier is None:
-                warnings.append(f"{product['model']}: the manual states no capacity; left out of the positioning grid")
-                continue
-            cells[tier].append(_card(product, _energy_facts(product, line)))
-        lines.append({"id": line["id"], "title": line["title"], "count": len(members), "cells": cells})
-    groups = []
-    for group in [*config["accessories"], {"id": None, "title": OTHER_GROUP, "models": []}]:
-        # Navigation order first (it is curated), then the assigned models.
-        rank = {model: index for index, model in enumerate(group["models"])}
-        members = sorted((p for p in products.values() if p["group"] == group["id"]),
-                         key=lambda p: (rank.get(p["model"], len(rank)), p["model"]))
-        cards = [_card(p, _accessory_facts(p)) for p in members]
-        if group["id"] is not None or cards:
-            groups.append({"title": group["title"], "cards": cards})
-    return lines, groups
+def _market(region: str, config: dict[str, Any]) -> dict[str, str]:
+    return config.get("markets", {}).get(region) or {"letter": region, "label": region}
 
 
-def companions(products: dict[str, dict[str, Any]], texts: dict[str, str], config: dict[str, Any],
-               warnings: list[str]) -> list[dict[str, Any]]:
-    """Products without a manual of their own, shown only while the manual they cite names them."""
-    groups: dict[str, list[dict[str, Any]]] = {}
-    for item in config.get("companions", []):
-        source = products.get(item["source"])
-        if source is None or item["model"].lower() not in texts.get(item["source"], "").lower():
-            warnings.append(f"{item['model']}: not named in the published {item['source']} manual; companion dropped")
-            continue
-        groups.setdefault(item["title"], []).append({
-            "model": item["model"], "name": item["name"], "regions": source["regions"], "inferred": False, "basis": "",
-            "variant_of": "",
-            "source": source["source"], "facts": [item["spec"], f"见 {source['name']} 说明书"],
-        })
-    return [{"title": title, "cards": cards, "ghost": True} for title, cards in groups.items()]
+def _pages(rows: list[dict[str, Any]], config: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    """Each market's page to link (English first, then the configured language order) and its languages."""
+    rank = {code: index for index, code in enumerate(config["language_order"])}
+    pages: dict[str, dict[str, Any]] = {}
+    for region in _order((row["region"] for row in rows), config["region_order"]):
+        editions = sorted((row for row in rows if row["region"] == region),
+                          key=lambda row: (rank.get(row["lang"], len(rank)), row["lang"]))
+        pages[region] = {"doc": f"{editions[0]['route']}/{PurePosixPath(editions[0]['manual']).stem}",
+                         "langs": [row["lang"] for row in editions]}
+    return pages
 
 
-def pairings(products: dict[str, dict[str, Any]], texts: dict[str, str], config: dict[str, Any],
-             warnings: list[str]) -> list[dict[str, Any]]:
-    """Partner products each manual names, as the config lists them and only while the text still names them."""
-    rows = []
-    for entry in config.get("pairings", []):
-        model = entry["model"]
-        if model not in products:
-            warnings.append(f"{model}: pairing listed in {CONFIG} but no published manual")
-            continue
-        text = texts.get(model, "").lower()
-        kept: dict[str, list[str]] = {"parts": [], "solar": []}
-        for kind in kept:
-            for item in entry.get(kind, []):
-                label, match = _partner(item)
-                if re.sub(r"（.*?）", "", match).strip().lower() in text:
-                    kept[kind].append(label)
-                else:
-                    warnings.append(f"{model}: manual no longer names {match!r}; pairing dropped")
-        if kept["parts"] or kept["solar"]:
-            rows.append({"model": model, "name": products[model]["name"], **kept})
-    return rows
-
-
-def capability_rows(root: Path, products: dict[str, dict[str, Any]],
-                    config: dict[str, Any]) -> tuple[list[str], list[dict[str, Any]]]:
-    """Each model in the capability table, with all/some/none per switch across its regions."""
-    paths = Paths(root)
-    names, targets = read_targets(paths.data_dir / CAPABILITIES_CSV, paths.data_dir / LANGUAGES_CSV, paths.review_dir)
+def read_models(srcdir: Path, targets: list[dict[str, Any]], catalog: list[dict[str, Any]], config: dict[str, Any],
+                warnings: list[str]) -> tuple[dict[str, dict[str, Any]], dict[str, str]]:
+    """One row per published model, keyed by model, and each model's manual text."""
     by_model: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for target in targets:
         by_model[target["model"]].append(target)
-    line_rank = {line["id"]: index for index, line in enumerate(config["lines"])}
+    names: dict[str, dict[str, str]] = defaultdict(dict)
+    for product in catalog:
+        names[product["model"]].setdefault(product["region"], product.get("name") or "")
+    models, texts = {}, {}
+    for model, rows in sorted(by_model.items()):
+        source = _source(rows, config)
+        markup = _manual(srcdir, source)
+        if markup is None:
+            warnings.append(f"{model}: published manual {source['route']}/{source['manual']} is not readable")
+            markup = ""
+        texts[model] = plain_text(markup)
+        pages = _pages(rows, config)
+        catalog_name = next((names[model][region] for region in [source["region"], *pages] if names[model].get(region)), "")
+        models[model] = {
+            "model": model, "name": config.get("names", {}).get(model) or display_name(catalog_name, model),
+            "regions": list(pages), "pages": pages, "note": config.get("notes", {}).get(model, ""),
+            **read_specs(spec_pairs(markup)),
+        }
+    return models, texts
 
-    def rank(model: str) -> tuple:
-        product = products.get(model)
-        if product is None:
-            return (len(line_rank) + 1, 0, model)
-        return (line_rank.get(product["group"], len(line_rank)), product["wh"] or 0, model)
 
-    rows = []
-    for model in sorted(by_model, key=rank):
-        regions = [target["region"] for target in by_model[model]]
-        cells = []
-        for index, name in enumerate(names):
-            supported = [target["region"] for target in by_model[model] if target["caps"][index]]
-            if supported and len(supported) == len(regions):
-                cells.append({"state": "all", "tip": f"{name}：全部 {len(regions)} 个区域"})
-            elif supported:
-                unsupported = [region for region in regions if region not in supported]
-                cells.append({"state": "some",
-                              "tip": f"{name}：{' · '.join(supported)} 支持；{' · '.join(unsupported)} 不支持"})
-            else:
-                cells.append({"state": "none", "tip": f"{name}：不支持"})
-        product = products.get(model)
-        rows.append({"model": model, "name": product["name"] if product else "", "regions": regions,
-                     "published": product["regions"] if product else [], "cells": cells})
+def _check_evidence(config: dict[str, Any], texts: dict[str, str], warnings: list[str]) -> None:
+    """产品知识 places an ``evidence`` assignment on its manual's word: warn when the manual no longer has it."""
+    for model, entry in config["assign"].items():
+        quote = str(entry.get("evidence") or "").strip()
+        if quote and model in texts and not evidence_excerpt(texts[model], quote):
+            warnings.append(f"{model}: manual does not state {quote!r} ({CONFIG} assign, read by 产品知识)")
+
+
+def _edition(short: str, marks: list[str]) -> tuple[str, str]:
+    """The product a 商品简称 belongs to and its colour edition: E1000V2沙金色 -> (E1000V2, 沙金色)."""
+    for mark in marks:
+        if short.endswith(mark) and len(short) > len(mark):
+            return short[: -len(mark)], mark
+    return short, ""
+
+
+def _rows_by_product(models: dict[str, dict[str, Any]], catalog: dict[str, Any], config: dict[str, Any],
+                     warnings: list[str]) -> dict[str, list[dict[str, Any]]]:
+    """Model rows keyed by their product's 商品简称: published models, then editions sold on another model's pages."""
+    entries, marks = catalog["models"], list(config.get("variant_marks", []))
+    grouped: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for model, row in models.items():
+        entry = entries.get(model)
+        if entry is None:
+            warnings.append(f"{model}: the 产品分类 snapshot does not list it; shown under {OTHER}")
+            entry = {"category": OTHER, "series": UNSORTED, "short": model}
+        base, edition = _edition(entry["short"], marks)
+        grouped[base].append({**row, "short": entry["short"], "edition": edition,
+                              "category": entry["category"], "series": entry["series"]})
+    for model, entry in entries.items():
+        host = models.get(entry.get("pages_of", ""))
+        if model in models or host is None:
+            continue
+        base, edition = _edition(entry["short"], marks)
+        regions = _order({route.split("/")[1] for route in entry["routes"]} & set(host["pages"]), config["region_order"])
+        grouped[base].append({"model": model, "name": host["name"], "short": entry["short"], "edition": edition,
+                              "category": entry["category"], "series": entry["series"], "shares": host["model"],
+                              "regions": regions, "pages": {region: host["pages"][region] for region in regions}})
+    return grouped
+
+
+def _anchor(short: str, taken: set[str]) -> str:
+    key = "p-" + re.sub(r"[\s#/?%]+", "-", short)
+    while key in taken:
+        key += "-"
+    taken.add(key)
+    return key
+
+
+def build_products(models: dict[str, dict[str, Any]], catalog: dict[str, Any], config: dict[str, Any],
+                   warnings: list[str]) -> list[dict[str, Any]]:
+    """One product per 商品简称, its rows in order: own pages before shared ones, most markets first."""
+    products: list[dict[str, Any]] = []
+    taken: set[str] = set()
+    for short, rows in sorted(_rows_by_product(models, catalog, config, warnings).items()):
+        rows.sort(key=lambda row: ("shares" in row, -len(row["regions"]), row["model"]))
+        primary = rows[0]
+        if "shares" in primary:
+            continue
+        if len({(row["category"], row["series"]) for row in rows}) > 1:
+            warnings.append(f"{short}: its models are classified differently; shown as "
+                            f"{primary['category']}/{primary['series']}")
+        products.append({
+            "key": _anchor(short, taken), "short": short, "name": primary["name"],
+            "category": primary["category"], "series": primary["series"], "wh": primary.get("wh"),
+            "wh_text": f"{number(primary['wh'])} Wh" if primary.get("wh") else "",
+            "regions": _order((region for row in rows for region in row["regions"]), config["region_order"]),
+            "editions": list(dict.fromkeys(row["edition"] for row in rows if row["edition"])), "rows": rows,
+        })
+    return products
+
+
+def capability_view(root: Path, config: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    """Each model in the capability table: switches on in every region, in some (with where), and off."""
+    paths = Paths(root)
+    names, targets = read_targets(paths.data_dir / CAPABILITIES_CSV, paths.data_dir / LANGUAGES_CSV, paths.review_dir)
     labels = config.get("capability_labels", {})
-    return [labels.get(name, name) for name in names], rows
+    by_model: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for target in targets:
+        by_model[target["model"]].append(target)
+    view: dict[str, dict[str, Any]] = {}
+    for model, rows in by_model.items():
+        regions = [row["region"] for row in rows]
+        entry: dict[str, Any] = {"model": model, "all": [], "some": [], "none": []}
+        for index, name in enumerate(names):
+            label = labels.get(name, name)
+            supported = [row["region"] for row in rows if row["caps"][index]]
+            if supported and len(supported) == len(regions):
+                entry["all"].append(label)
+            elif supported:
+                unsupported = " · ".join(region for region in regions if region not in supported)
+                entry["some"].append({"name": label, "tip": f"{' · '.join(supported)} 支持；{unsupported} 不支持"})
+            else:
+                entry["none"].append(label)
+        view[model] = entry
+    return view
 
 
-def spec_rows(products: dict[str, dict[str, Any]], config: dict[str, Any]) -> list[dict[str, Any]]:
-    """Energy products for the sortable spec table, smallest capacity first."""
-    titles = {line["id"]: line["title"] for line in config["lines"]}
-    energy = sorted((p for p in products.values() if p["group"] in titles), key=lambda p: (p["wh"] or 0, p["model"]))
-    return [{
-        "model": p["model"], "name": p["name"], "line": titles[p["group"]], "regions": p["regions"],
-        "figures": [(p[key] or 0, number(p[key])) for key in ("wh", "ac", "surge", "cycles", "kg")],
-        "expansion": p["expansion"], "langs": len(p["langs"]),
-    } for p in energy]
+def _linked(item: str | dict[str, str], by_short: dict[str, dict[str, Any]]) -> dict[str, Any] | None:
+    """The product a pairing item names through its ``product`` key, when that product has a published manual."""
+    short = item.get("product") if isinstance(item, dict) else None
+    return by_short.get(short) if short else None
+
+
+def pairing_index(models: dict[str, dict[str, Any]], texts: dict[str, str], products: list[dict[str, Any]],
+                  config: dict[str, Any], warnings: list[str]) -> tuple[dict[str, list[dict[str, str]]],
+                                                                       dict[str, list[dict[str, str]]]]:
+    """What each model's manual names, and per product key the other manuals that name it."""
+    by_short = {product["short"]: product for product in products}
+    owner = {row["model"]: product for product in products for row in product["rows"]}
+    named: dict[str, list[dict[str, str]]] = defaultdict(list)
+    named_by: dict[str, list[dict[str, str]]] = defaultdict(list)
+    for entry in config.get("pairings", []):
+        model = entry["model"]
+        if model not in models:
+            warnings.append(f"{model}: pairing listed in {CONFIG} but no published manual")
+            continue
+        text = texts.get(model, "").lower()
+        for item in [*entry.get("parts", []), *entry.get("solar", [])]:
+            label, match = _partner(item)
+            if re.sub(r"（.*?）", "", match).strip().lower() not in text:
+                warnings.append(f"{model}: manual no longer names {match!r}; pairing dropped")
+                continue
+            target, source = _linked(item, by_short), owner[model]
+            named[model].append({"label": label, "key": target["key"] if target else ""})
+            if target is not None and target is not source:
+                named_by[target["key"]].append({"key": source["key"], "name": source["name"], "model": model,
+                                                "label": label})
+    return named, named_by
+
+
+def _detail_rows(product: dict[str, Any], keys: list[str], config: dict[str, Any],
+                 languages: dict[str, str]) -> list[dict[str, Any]]:
+    rows = []
+    for row in product["rows"]:
+        docs = []
+        for region, page in row["pages"].items():
+            label = _market(region, config)["label"]
+            names = "、".join(languages.get(code, code) for code in page["langs"])
+            docs.append({"label": label, "doc": page["doc"], "title": f"{label}：{names}"})
+        entry = {"model": row["model"], "short": row["short"], "docs": docs}
+        if "shares" in row:
+            labels = "、".join(_market(region, config)["label"] for region in row["regions"])
+            entry["note"] = f"与 {row['shares']} 共用{labels}说明书"
+        else:
+            entry["figures"] = [_figure(row, key) for key in keys]
+        rows.append(entry)
+    return rows
+
+
+def product_detail(product: dict[str, Any], capabilities: dict[str, dict[str, Any]],
+                   named: dict[str, list[dict[str, str]]], named_by: dict[str, list[dict[str, str]]],
+                   config: dict[str, Any], languages: dict[str, str]) -> dict[str, Any]:
+    """The detail under a product's row: model rows, the first capability row, and partner products."""
+    own = [row for row in product["rows"] if "shares" not in row]
+    keys = [key for key, _ in COLUMNS if any(row.get(key) for row in own)]
+    features = next((capabilities[row["model"]] for row in own if row["model"] in capabilities), None)
+    items = list({item["label"]: item for row in own for item in named.get(row["model"], [])}.values())
+    by = named_by.get(product["key"], [])
+    return {"columns": [label for key, label in COLUMNS if key in keys],
+            "rows": _detail_rows(product, keys, config, languages), "features": features,
+            "pairing": {"named": items, "named_by": by} if items or by else None}
+
+
+def _series_rows(members: list[dict[str, Any]], series: list[str], columns: list[str],
+                 tiers: list[dict[str, Any]] | None) -> list[dict[str, Any]]:
+    """A row per 产品系列 with products, each card in its capacity tier (the last column when none is stated)."""
+    rows = []
+    for line in series:
+        in_line = sorted((p for p in members if p["series"] == line), key=lambda p: (p["wh"] or 0, p["short"]))
+        if not in_line:
+            continue
+        cells: list[list[dict[str, Any]]] = [[] for _ in columns]
+        for product in in_line:
+            tier = _tier(product["wh"], tiers) if tiers else 0
+            cells[len(columns) - 1 if tier is None else tier].append(product)
+        rows.append({"title": line, "products": in_line, "cells": cells})
+    return rows
+
+
+def category_views(products: list[dict[str, Any]], catalog: dict[str, Any], config: dict[str, Any],
+                   settings: dict[str, Any]) -> list[dict[str, Any]]:
+    """A tab per 产品类别: its 产品系列 rows × capacity tiers (one 产品 column when no product states a capacity)."""
+    styles, tiers = settings.get("catalog_categories", {}), config["tiers"]
+    order = [(item["name"], list(item["series"])) for item in catalog["categories"]] + [(OTHER, [UNSORTED])]
+    views = []
+    for index, (name, series) in enumerate(order, 1):
+        members = [product for product in products if product["category"] == name]
+        if not members:
+            continue
+        tiered = any(product["wh"] for product in members)
+        columns = [tier["label"] for tier in tiers] if tiered else ["产品"]
+        if tiered and not all(product["wh"] for product in members):
+            columns.append(UNSTATED)
+        style = styles.get(name) or {"id": "other" if name == OTHER else f"category-{index}", "icon": "other"}
+        views.append({"id": style["id"], "title": name, "icon": style["icon"], "count": len(members),
+                      "tiered": tiered, "columns": columns,
+                      "rows": _series_rows(members, series, columns, tiers if tiered else None),
+                      "markets": _order((r for p in members for r in p["regions"]), config["region_order"])})
+    return views
 
 
 def matrix_context(root: Path, srcdir: Path, manifest: Path, assets: Path, settings: dict[str, Any],
-                   catalog: list[dict[str, Any]]) -> dict[str, Any] | None:
-    """Everything the page renders, or None without a readable publish manifest."""
+                   catalog: list[dict[str, Any]], product_catalog: dict[str, Any] | None) -> dict[str, Any] | None:
+    """Everything the page renders, or None without a readable publish manifest or a usable 产品分类 snapshot."""
     targets, built_at = read_publications(manifest)
-    if targets is None:
+    if targets is None or product_catalog is None:
         return None
     config = load_config(assets, settings)
     warnings: list[str] = []
-    products, texts = read_products(srcdir, targets, catalog, config, warnings)
-    lines, accessories = positioning(products, config, warnings)
-    capability_names, capabilities = capability_rows(root, products, config)
-    line_ids = {line["id"] for line in config["lines"]}
-    pending = [row["model"] for row in capabilities if row["model"] not in products]
-    web = publication_facts(targets)
+    models, texts = read_models(srcdir, targets, catalog, config, warnings)
+    _check_evidence(config, texts, warnings)
+    products = build_products(models, product_catalog, config, warnings)
+    capabilities = capability_view(root, config)
+    named, named_by = pairing_index(models, texts, products, config, warnings)
+    languages = settings.get("language_labels", {})
+    for product in products:
+        product["detail"] = product_detail(product, capabilities, named, named_by, config, languages)
     return {
-        "built_on": built_at[:10],
-        "facts": {
-            "models": web["models"], "books": web["books"], "variants": web["variants"],
-            "energy": sum(1 for p in products.values() if p["group"] in line_ids),
-            "accessories": sum(1 for p in products.values() if p["group"] not in line_ids),
-            "pending": len(pending),
-        },
-        "markets": _order((region for p in products.values() for region in p["regions"]), config["region_order"]),
-        "tiers": [tier["label"] for tier in config["tiers"]],
-        "lines": lines, "accessories": accessories + companions(products, texts, config, warnings),
-        "capability_names": capability_names, "capabilities": capabilities,
-        "specs": spec_rows(products, config), "pairings": pairings(products, texts, config, warnings),
-        "footnotes": list(config.get("footnotes", [])), "inferred_note": INFERRED_NOTE,
+        "built_on": built_at[:10], "classified_on": product_catalog["exported_at"],
+        "facts": {"products": len(products), "models": sum(len(product["rows"]) for product in products)},
+        "markets": config.get("markets", {}), "categories": category_views(products, product_catalog, config, settings),
         "warnings": warnings,
     }
 
 
-def product_matrix_page_context(app, assets: Path, settings: dict[str, Any],
-                                catalog: list[dict[str, Any]]) -> dict[str, Any] | None:
-    """Context for PAGE, or None (with a warning) without a manifest or with drifted data."""
+def product_matrix_page_context(app, assets: Path, settings: dict[str, Any], catalog: list[dict[str, Any]],
+                                product_catalog: dict[str, Any] | None) -> dict[str, Any] | None:
+    """Context for PAGE, or None (with a warning) without a manifest or snapshot, or with drifted data."""
     from sphinx.util import logging as sphinx_logging
 
     logger = sphinx_logging.getLogger(__name__)
     srcdir = Path(app.srcdir)
     try:
         context = matrix_context(repo_root(), srcdir, srcdir.parent / PathSegments.PUBLISH_MANIFEST_JSON,
-                                 assets, settings, catalog)
+                                 assets, settings, catalog, product_catalog)
     except (ValueError, OSError, KeyError, TypeError, csv.Error) as exc:
         logger.warning("Product matrix page skipped: %s", exc)
         return None
     if context is None:
-        # Expected before the first publish snapshot (the RTD bootstrap build), so not a warning.
-        logger.info("Product matrix page skipped: no readable publish manifest")
+        # Expected before the first publish snapshot (the RTD bootstrap build); a missing 产品分类 snapshot
+        # already warned when the portal read it.
+        logger.info("Product matrix page skipped: no readable publish manifest or 产品分类 snapshot")
         return None
     for message in context["warnings"]:
         logger.warning("Product matrix: %s", message)
@@ -548,7 +635,7 @@ def product_matrix_page_context(app, assets: Path, settings: dict[str, Any],
 
 
 __all__ = [
-    "PAGE", "ProductMatrixError", "TEMPLATE", "capability_rows", "display_name", "load_config", "matrix_context",
-    "number", "pairings", "plain_text", "positioning", "positioning_groups", "product_matrix_page_context",
-    "read_products", "read_specs", "spec_pairs", "spec_rows",
+    "COLUMNS", "PAGE", "ProductMatrixError", "TEMPLATE", "build_products", "capability_view", "category_views",
+    "display_name", "evidence_excerpt", "load_config", "matrix_context", "number", "pairing_index", "plain_text",
+    "positioning_groups", "product_detail", "product_matrix_page_context", "read_models", "read_specs", "spec_pairs",
 ]

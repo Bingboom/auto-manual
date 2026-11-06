@@ -1,0 +1,385 @@
+{
+  "categories": [
+    {
+      "name": "便携电源",
+      "series": [
+        "标准",
+        "Plus",
+        "Pro",
+        "Ultra",
+        "直流与充电宝",
+        "卫士"
+      ]
+    },
+    {
+      "name": "家庭备电",
+      "series": [
+        "HomePower",
+        "HomePower Plus",
+        "HomePower Pro Max"
+      ]
+    },
+    {
+      "name": "扩容电池",
+      "series": [
+        "Battery Pack"
+      ]
+    },
+    {
+      "name": "太阳能板",
+      "series": [
+        "SolarSaga",
+        "SolarSaga Air"
+      ]
+    },
+    {
+      "name": "配件",
+      "series": [
+        "充电与输入",
+        "连接与配电",
+        "保护与搬运"
+      ]
+    }
+  ],
+  "exported_at": "2026-11-06",
+  "models": {
+    "JA-AD01A": {
+      "category": "配件",
+      "series": "充电与输入",
+      "short": "102W充电器"
+    },
+    "JA-AD500A-SIL": {
+      "category": "配件",
+      "series": "充电与输入",
+      "short": "卫士系列DC输入配件"
+    },
+    "JA-AD600A": {
+      "category": "配件",
+      "series": "充电与输入",
+      "short": "行车快充"
+    },
+    "JA-CA05B": {
+      "category": "配件",
+      "series": "连接与配电",
+      "short": "5M延长线"
+    },
+    "JA-CA3SA": {
+      "category": "配件",
+      "series": "充电与输入",
+      "short": "太阳能板串联转接器"
+    },
+    "JA-CC30A": {
+      "category": "配件",
+      "series": "保护与搬运",
+      "short": "L码低温防护包"
+    },
+    "JA-TS02A": {
+      "category": "配件",
+      "series": "连接与配电",
+      "short": "智能转换开关"
+    },
+    "JAAC-WHE-100-EUA1": {
+      "category": "配件",
+      "series": "保护与搬运",
+      "short": "折叠小推车"
+    },
+    "JBP-1000B-SIL": {
+      "category": "扩容电池",
+      "series": "Battery Pack",
+      "short": "卫士1号加电包"
+    },
+    "JBP-1000B-WH": {
+      "category": "扩容电池",
+      "series": "Battery Pack",
+      "short": "卫士1号加电包"
+    },
+    "JBP-2000B": {
+      "category": "扩容电池",
+      "series": "Battery Pack",
+      "short": "BP2000"
+    },
+    "JBP-3600A": {
+      "category": "扩容电池",
+      "series": "Battery Pack",
+      "short": "BP3600加电包"
+    },
+    "JBP-5000A": {
+      "category": "扩容电池",
+      "series": "Battery Pack",
+      "short": "E5000Plus加电包"
+    },
+    "JE-1000B": {
+      "category": "便携电源",
+      "series": "Pro",
+      "short": "E1000Pro"
+    },
+    "JE-1000C": {
+      "category": "便携电源",
+      "series": "Plus",
+      "short": "E1000Plus"
+    },
+    "JE-1000D": {
+      "category": "便携电源",
+      "series": "标准",
+      "short": "E1000V2"
+    },
+    "JE-1000E-SIL": {
+      "category": "便携电源",
+      "series": "卫士",
+      "short": "卫士1号"
+    },
+    "JE-1000E-WH": {
+      "category": "便携电源",
+      "series": "卫士",
+      "short": "卫士1号"
+    },
+    "JE-1000F": {
+      "category": "便携电源",
+      "series": "标准",
+      "short": "E1000V2"
+    },
+    "JE-1000F-SG": {
+      "category": "便携电源",
+      "pages_of": "JE-1000F",
+      "routes": [
+        "JE-1000F/US/en",
+        "JE-1000F/US/es",
+        "JE-1000F/US/fr"
+      ],
+      "series": "标准",
+      "short": "E1000V2沙金色"
+    },
+    "JE-1000G": {
+      "category": "便携电源",
+      "series": "标准",
+      "short": "E1000V3"
+    },
+    "JE-1000H": {
+      "category": "便携电源",
+      "series": "Plus",
+      "short": "E1000Plusv2"
+    },
+    "JE-100A": {
+      "category": "便携电源",
+      "series": "Plus",
+      "short": "E100Plus"
+    },
+    "JE-100C": {
+      "category": "便携电源",
+      "series": "直流与充电宝",
+      "short": "E100D"
+    },
+    "JE-1500B": {
+      "category": "便携电源",
+      "series": "Pro",
+      "short": "E1500Pro"
+    },
+    "JE-1500C": {
+      "category": "便携电源",
+      "series": "Ultra",
+      "short": "E1500Ultra"
+    },
+    "JE-1500D": {
+      "category": "便携电源",
+      "series": "标准",
+      "short": "E1500V2"
+    },
+    "JE-1800A": {
+      "category": "便携电源",
+      "series": "标准",
+      "short": "E1800"
+    },
+    "JE-1800B": {
+      "category": "便携电源",
+      "series": "标准",
+      "short": "E1800V2"
+    },
+    "JE-2000A": {
+      "category": "便携电源",
+      "series": "Pro",
+      "short": "E2000Pro"
+    },
+    "JE-2000C": {
+      "category": "便携电源",
+      "series": "Plus",
+      "short": "E2000Plus"
+    },
+    "JE-2000D": {
+      "category": "便携电源",
+      "series": "标准",
+      "short": "E2000V2"
+    },
+    "JE-2000E": {
+      "category": "便携电源",
+      "series": "Plus",
+      "short": "E2000Plusv2"
+    },
+    "JE-2000F": {
+      "category": "便携电源",
+      "series": "标准",
+      "short": "E2000V2"
+    },
+    "JE-240A": {
+      "category": "便携电源",
+      "series": "标准",
+      "short": "E240V2"
+    },
+    "JE-240B": {
+      "category": "便携电源",
+      "series": "直流与充电宝",
+      "short": "E240D"
+    },
+    "JE-3000A": {
+      "category": "便携电源",
+      "series": "Pro",
+      "short": "E3000Pro"
+    },
+    "JE-3000B": {
+      "category": "便携电源",
+      "series": "标准",
+      "short": "E3000V2"
+    },
+    "JE-3000C": {
+      "category": "便携电源",
+      "series": "标准",
+      "short": "E3000V2"
+    },
+    "JE-300B": {
+      "category": "便携电源",
+      "series": "Plus",
+      "short": "E300Plus"
+    },
+    "JE-300C": {
+      "category": "便携电源",
+      "series": "标准",
+      "short": "E300V2"
+    },
+    "JE-300D": {
+      "category": "便携电源",
+      "series": "直流与充电宝",
+      "short": "E300D"
+    },
+    "JE-300E": {
+      "category": "便携电源",
+      "series": "标准",
+      "short": "E300"
+    },
+    "JE-300E-SG": {
+      "category": "便携电源",
+      "series": "标准",
+      "short": "E300沙金色"
+    },
+    "JE-3600A": {
+      "category": "便携电源",
+      "series": "Plus",
+      "short": "E3600Plus"
+    },
+    "JE-5000A": {
+      "category": "便携电源",
+      "series": "Plus",
+      "short": "E5000Plus"
+    },
+    "JE-500A": {
+      "category": "便携电源",
+      "series": "标准",
+      "short": "E500V2"
+    },
+    "JE-600A": {
+      "category": "便携电源",
+      "series": "标准",
+      "short": "E600V2"
+    },
+    "JE-600C-SJ": {
+      "category": "便携电源",
+      "series": "Plus",
+      "short": "E600Plus沙金色"
+    },
+    "JE-76A": {
+      "category": "便携电源",
+      "series": "直流与充电宝",
+      "short": "76Wh充电宝"
+    },
+    "JE-880B": {
+      "category": "便携电源",
+      "series": "Pro",
+      "short": "E880Pro"
+    },
+    "JE-900B-WH": {
+      "category": "便携电源",
+      "series": "标准",
+      "short": "E900V2云上白"
+    },
+    "JHP-1000A": {
+      "category": "家庭备电",
+      "series": "HomePower",
+      "short": "HP1000v2"
+    },
+    "JHP-1000B": {
+      "category": "家庭备电",
+      "series": "HomePower Plus",
+      "short": "HP1000Plusv2"
+    },
+    "JHP-1000B-RC": {
+      "category": "家庭备电",
+      "series": "HomePower Plus",
+      "short": "HP1000Plusv2红十字"
+    },
+    "JHP-2000A": {
+      "category": "家庭备电",
+      "series": "HomePower Plus",
+      "short": "HP2000Plusv2"
+    },
+    "JHP-2000A-RC": {
+      "category": "家庭备电",
+      "series": "HomePower Plus",
+      "short": "HP2000Plusv2红十字"
+    },
+    "JHP-3000D": {
+      "category": "家庭备电",
+      "series": "HomePower",
+      "short": "HP3000"
+    },
+    "JHP-3600A": {
+      "category": "家庭备电",
+      "series": "HomePower Plus",
+      "short": "HP3600Plus"
+    },
+    "JHP-3600A-RC": {
+      "category": "家庭备电",
+      "series": "HomePower Plus",
+      "short": "HP3600Plus红十字"
+    },
+    "JHP-3600C": {
+      "category": "家庭备电",
+      "series": "HomePower Pro Max",
+      "short": "HP3600ProMax"
+    },
+    "JHP-5000C": {
+      "category": "家庭备电",
+      "series": "HomePower Plus",
+      "short": "HP5000Plus"
+    },
+    "JS-100F": {
+      "category": "太阳能板",
+      "series": "SolarSaga",
+      "short": "100W"
+    },
+    "JS-100I": {
+      "category": "太阳能板",
+      "series": "SolarSaga Air",
+      "short": "100Wair"
+    },
+    "JS-200E": {
+      "category": "太阳能板",
+      "series": "SolarSaga",
+      "short": "200W"
+    },
+    "JS-40C": {
+      "category": "太阳能板",
+      "series": "SolarSaga Air",
+      "short": "40Wair"
+    }
+  },
+  "schema": "hello-docs-product-catalog/v1",
+  "source": "飞书发布文档管理「网页文档」表"
+}

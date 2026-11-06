@@ -21,6 +21,14 @@
   "regions": {"US": "US", "EU": "EU", "UK": "EU", "CN": "CN", "JP": "JP", "KR": "KR", "TW": "TW"},
   "categories": ["Power stations", "Battery packs", "Solar panels", "Accessories"],
   "category_prefixes": {"JE-": "Power stations", "JBP-": "Battery packs", "JS-": "Solar panels"},
+  "category_labels": {"Power stations": "便携储能", "Battery packs": "加电包", "Solar panels": "太阳能板", "Accessories": "配件"},
+  "catalog_categories": {
+    "便携电源": {"id": "portable", "icon": "portable"},
+    "家庭备电": {"id": "home", "icon": "home"},
+    "扩容电池": {"id": "battery", "icon": "battery"},
+    "太阳能板": {"id": "solar", "icon": "solar"},
+    "配件": {"id": "accessory", "icon": "accessory"}
+  },
   "navigation": {
     "needs": [
       {"id": "portable", "title": "随身供电", "note": "手机、电脑、摄影设备", "models": ["JE-100C", "JE-300D", "JE-300E"]},

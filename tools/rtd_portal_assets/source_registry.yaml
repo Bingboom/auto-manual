@@ -66,6 +66,16 @@ domains:
     fallback: 网页进度快照当前不可读
     used_by: 说明书工作台·交付物的审核中、待转、已核对与上线进度
 
+  - id: product_catalog
+    label: 产品分类
+    authority: 飞书发布文档管理「网页文档」表的型号、商品简称、产品类别、产品系列（$FEISHU_PUBLISHED_DOCS_BASE_TOKEN、$FEISHU_PUBLISHED_DOCS_WEB_TABLE_ID）
+    read: snapshot
+    snapshot: product_catalog.json
+    refresh: python -m tools.rtd.product_catalog refresh
+    stale_after_days: 30
+    fallback: 说明书资料库按产品类型分组，产品矩阵不显示
+    used_by: 说明书资料库的类别与系列、产品矩阵
+
   - id: skeletons
     label: 骨架覆盖
     authority: "file:auto-manual:docs/manifests/skeletons"
