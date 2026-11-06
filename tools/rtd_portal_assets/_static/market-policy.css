@@ -1,68 +1,130 @@
+/* 市场与政策, the 2026-11 design: the knowledge pages' 1120px container on the cool ground of body.app.kb; a card
+   per theme with a chip per country, then the records grouped by theme as <details> rows that open to three steps.
+   Layout changes follow the container (mp), so they track the sidebar too. */
 * {box-sizing:border-box}
 [hidden] {display:none!important}
-a {color:var(--brand-strong);text-underline-offset:3px}
-button,select,input {font:inherit}
-button,a,select,input {touch-action:manipulation}
-button {cursor:pointer}
-a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible {outline:3px solid var(--brand);outline-offset:3px}
 .skip {position:absolute;left:20px;top:-70px;z-index:100;padding:10px;background:#fff}
 .skip:focus {top:10px}
-.market {max-width:1220px;margin:0 auto;padding:42px 38px 50px}
-.market-head {max-width:770px}
-.eyebrow {color:var(--brand-strong);font-size:13px;font-weight:600}
-.market h1 {font-size:36px;line-height:1.3;margin:10px 0 14px}
-.market-head>p {font-size:16px;color:var(--app-muted);line-height:1.8;margin:0}
-.head-links {display:flex;gap:24px;align-items:center;flex-wrap:wrap;margin-top:16px;font-size:13px}
-.head-links>span {color:var(--app-muted)}
-.reading-order {display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:14px;font-weight:600;padding:18px 0;margin:24px 0;border-block:1px solid var(--app-line)}
-.reading-order>span {color:var(--app-faint);font-weight:400}
-.filter-fields {display:grid;grid-template-columns:minmax(150px,1fr) minmax(180px,1fr) minmax(200px,1.6fr);gap:16px}
-.filter-fields label {display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:600;min-width:0}
-.filter-fields select,.filter-fields input {width:100%;min-width:0;min-height:42px;padding:9px 12px;border:1px solid #d5d9df;border-radius:7px;background:#fff;color:var(--app-ink);font-weight:400}
-.filter-fields input::placeholder {color:var(--app-faint)}
-.policy-tags {display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
-.policy-tags button {padding:6px 13px;border:1px solid var(--app-line);border-radius:20px;background:#fff;color:var(--app-muted);font-size:13px;min-height:34px}
-.policy-tags button[aria-pressed="true"] {background:var(--app-ink);border-color:var(--app-ink);color:#fff}
-.list-summary {display:flex;align-items:center;justify-content:space-between;gap:12px;margin:16px 0 10px;font-size:13px;color:var(--app-muted)}
-.list-summary p {margin:0}
-.list-summary button {background:transparent;border:0;padding:6px 0;color:var(--brand-strong);text-decoration:underline;text-underline-offset:3px;font-size:13px}
-.policy-list {background:#fff;padding:0 28px}
-.policy-item {padding:30px 0;border-bottom:1px solid var(--app-line);scroll-margin-top:80px}
-.policy-item:last-child {border-bottom:0}
-.item-head {display:grid;grid-template-columns:112px minmax(0,1fr);gap:22px;align-items:start}
-.item-country {display:flex;flex-direction:column;gap:4px;padding-top:1px}
-.item-number {font-size:12px;font-variant-numeric:tabular-nums;color:var(--app-faint)}
-.item-country strong {font-size:19px;font-weight:650}
-.item-status {display:flex;align-items:center;flex-wrap:wrap;gap:12px;font-size:12px}
-.verification {padding:2px 7px;border-radius:4px;font-weight:550;white-space:nowrap}
-.verification.verified {color:#28654b;background:#edf5f0}
-.verification.unverified {color:#8a5b20;background:#fff2dd}
-.verification.demand {color:#49627d;background:#eef2f7}
-.item-tags {color:var(--app-muted)}
-.policy-item h2 {font-size:22px;line-height:1.5;margin:10px 0 8px;font-weight:650}
-.item-meta {display:flex;gap:8px 20px;flex-wrap:wrap;margin:0;color:var(--app-muted);font-size:12px;line-height:1.8}
-.policy-body {margin:0}
-.policy-body>div {display:grid;grid-template-columns:112px minmax(0,1fr);gap:22px;margin-top:18px}
-.policy-body dt {font-size:13px;font-weight:650;line-height:1.8;padding-top:2px;color:#50545c}
-.policy-body dt>span {color:var(--app-faint);font-size:11px;font-weight:400;margin-right:8px}
-.policy-body dt>small {display:block;font-size:11px;font-weight:400;color:var(--app-muted);margin-left:22px}
-.policy-body dd {margin:0;min-width:0}
-.policy-body p {margin:0;line-height:1.9;font-size:15px}
-.policy-body .scope-note {margin-top:12px;padding-left:12px;border-left:2px solid #dedfe3;font-size:13px;color:var(--app-muted)}
-.scope-note strong {font-weight:600;color:#50545c}
-.policy-body .knowledge-links {display:flex;gap:8px 16px;align-items:baseline;flex-wrap:wrap;margin-top:12px;font-size:12px}
-.knowledge-links>span {color:var(--app-muted)}
-.source-row {padding-top:16px;border-top:1px solid #eeeef0}
-.sources {list-style:none;padding:0;margin:0}
-.sources li+li {margin-top:14px}
-.sources a {font-size:13px;overflow-wrap:anywhere}
+.market {max-width:1120px;margin:0 auto;padding:40px 48px 80px;container:mp / inline-size;display:flex;flex-direction:column;gap:24px}
+.market a {color:var(--brand);text-decoration:none}
+.market button {font:inherit;cursor:pointer}
+.market a:focus-visible,.market button:focus-visible,.market summary:focus-visible {outline:3px solid var(--brand);outline-offset:2px}
+.mp-icon {flex:none}
+
+/* Head: title and lead, then the counts, the review date and the sibling page. */
+.mp-head {display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 32px}
+.mp-head-text {display:flex;flex-direction:column;gap:8px;max-width:700px}
+.mp-head h1 {margin:0;font-size:30px;line-height:38px;font-weight:700}
+.mp-head p {margin:0;font-size:15px;line-height:24px;color:var(--app-text2)}
+.mp-head-meta {display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.mp-pill {display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:999px;background:#fff;
+  border:1px solid var(--app-line);font-size:12px;color:var(--app-text2);white-space:nowrap}
+.mp-pill i {width:8px;height:8px;border-radius:50%;background:var(--status-available,#1f6b4a)}
+.mp-head-meta a {margin-left:4px;font-size:13px;font-weight:500}
+
+/* Status dots: 已核实 green, 待核实 amber, 业务需求 blue. */
+.mp-dot {flex:none;display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--app-faint)}
+.mp-dot.is-verified {background:#1f6b4a}
+.mp-dot.is-unverified {background:#b07a12}
+.mp-dot.is-demand {background:#2457a6}
+
+/* Theme cards: what the theme covers and a chip per country; a chip opens that country's first record. */
+.mp-overview {display:flex;flex-direction:column;gap:12px}
+.mp-themes {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.mp-theme {display:flex;flex-direction:column;gap:14px;min-width:0;padding:22px 24px;background:#fff;border:1px solid var(--app-line);border-radius:18px}
+.market .mp-theme-head {display:flex;align-items:center;gap:12px;color:var(--app-ink)}
+.mp-theme-icon {flex:none;display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:12px;background:var(--brand-soft);color:var(--brand)}
+.mp-theme-head strong {flex:1;font-size:18px;line-height:26px;font-weight:700}
+.mp-theme-head:hover strong {color:var(--brand)}
+.mp-theme-count {font-size:13px;color:var(--app-muted);white-space:nowrap}
+.mp-theme-count b {font-size:28px;line-height:32px;font-weight:700;color:var(--app-ink);font-variant-numeric:tabular-nums}
+.mp-theme p {margin:0;font-size:14px;line-height:22px;color:var(--app-text2)}
+.mp-chips {display:flex;flex-wrap:wrap;gap:6px}
+.market .mp-chip {display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:999px;background:var(--app-bg);
+  color:var(--app-ink);font-size:13px;font-weight:500;white-space:nowrap}
+.market .mp-chip:hover {background:var(--brand-soft);color:var(--brand)}
+.mp-chip b {font-weight:600;color:var(--app-muted)}
+.mp-legend {display:flex;flex-wrap:wrap;align-items:center;gap:6px 16px;margin:0;font-size:12.5px;line-height:20px;color:var(--app-muted)}
+.mp-legend span {display:inline-flex;align-items:center;gap:6px}
+
+/* The list: one card per theme, one row per record. */
+.mp-list {display:flex;flex-direction:column;gap:14px;margin-top:8px}
+.mp-list-head {display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.mp-list-head h2 {margin:0;font-size:20px;line-height:28px;font-weight:700}
+#mp-expand {padding:0;border:0;background:none;color:var(--brand);font-size:13px;font-weight:500}
+.mp-group {display:flex;flex-direction:column;background:#fff;border:1px solid var(--app-line);border-radius:16px;overflow:hidden;
+  scroll-margin-top:calc(var(--app-topbar) + 16px)}
+.mp-group-head {display:flex;align-items:center;gap:10px;padding:16px 22px;border-bottom:1px solid var(--app-divider)}
+.mp-group-icon {display:flex;color:var(--brand)}
+.mp-group-head h3 {margin:0;font-size:16px;line-height:24px;font-weight:600}
+.mp-group-head > span:last-child {font-size:13px;color:var(--app-muted)}
+.mp-record {scroll-margin-top:calc(var(--app-topbar) + 16px)}
+.mp-record + .mp-record {border-top:1px solid var(--app-divider)}
+.mp-record[open] {background:#fbfcfd}
+.mp-row {display:grid;grid-template-columns:92px minmax(0,1fr) minmax(0,250px) 92px 18px;align-items:center;gap:16px;padding:14px 22px;
+  cursor:pointer;list-style:none}
+.mp-row::-webkit-details-marker {display:none}
+.mp-row:hover {background:#fbfcfd}
+.mp-country {font-size:13px;line-height:20px;font-weight:600;color:var(--app-text2)}
+.mp-title {font-size:15px;line-height:22px;font-weight:600;color:var(--app-ink)}
+.mp-row:hover .mp-title {color:var(--brand)}
+.mp-when {font-size:12.5px;line-height:18px;color:var(--app-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mp-status {display:inline-flex;align-items:center;gap:6px;justify-self:start;height:24px;padding:0 9px;border-radius:999px;font-size:12px;
+  font-weight:600;white-space:nowrap}
+.mp-status.is-verified {background:#e7f3ec;color:#1f6b4a}
+.mp-status.is-unverified {background:#fdf3dc;color:#8a5a00}
+.mp-status.is-demand {background:#e8effa;color:#2457a6}
+.mp-chevron {color:var(--app-muted);transition:transform .15s ease}
+.mp-record[open] .mp-chevron {transform:rotate(180deg)}
+
+/* An open record: 变化 → 原理 → 影响, the boundary, then scope, time, knowledge and sources on one line. */
+.mp-body {display:flex;flex-direction:column;gap:12px;padding:2px 22px 20px 130px}
+.mp-steps {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0;padding:0;list-style:none}
+.mp-steps li {display:flex;flex-direction:column;gap:6px;padding:14px 16px;border-radius:12px;background:var(--app-bg)}
+.mp-steps li.is-impact {background:#f8e6dc66}
+.mp-steps h4 {display:flex;align-items:center;gap:8px;margin:0;font-size:12px;line-height:18px;font-weight:600;color:var(--app-text2)}
+.mp-steps h4 b {display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:var(--app-ink);
+  color:#fff;font-size:11px}
+.mp-steps h4 small {font-size:12px;font-weight:400;color:var(--app-muted)}
+.mp-steps p {margin:0;font-size:13.5px;line-height:22px;color:var(--app-ink)}
+.mp-boundary {margin:0;padding:10px 14px;border-radius:10px;background:#fdf6e7;font-size:12.5px;line-height:20px;color:#6b4a00}
+.mp-boundary strong {margin-right:8px;font-weight:600}
+.mp-foot {display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;font-size:12.5px;line-height:20px;color:var(--app-muted)}
+.mp-links {display:inline-flex;flex-wrap:wrap;align-items:center;gap:6px}
+.market .mp-know {display:inline-flex;align-items:center;height:24px;padding:0 9px;border-radius:999px;border:1px solid var(--app-line);background:#fff;
+  color:var(--app-ink);font-size:12px}
+.market .mp-know:hover {border-color:#e9c7b6;color:var(--brand)}
+.market .mp-source {font-weight:500;overflow-wrap:anywhere}
+
 .empty-state {padding:24px 0}
-.empty-state h2 {font-size:20px}
-.empty-state p {color:var(--app-muted);font-size:14px}
-.empty-state button {padding:9px 16px;border:1px solid var(--app-line);border-radius:7px;background:#fff}
-.market-footer {margin-top:30px;border-top:1px solid var(--app-line);padding-top:16px;color:var(--app-muted);font-size:12px}
-.market-footer p {max-width:850px;line-height:1.9}
-@media(max-width:1000px){.market {padding:30px 24px}.filter-fields {grid-template-columns:1fr 1fr}.search-field {grid-column:1/-1}}
-@media(max-width:650px){.market {padding:28px 18px}.market h1 {font-size:30px}.market-head>p {font-size:14px}.reading-order {gap:6px;font-size:12px}.filter-fields {gap:12px}.filter-fields select,.filter-fields input {font-size:16px}.policy-tags {gap:7px}.policy-tags button {min-height:40px}.policy-list {padding:0 20px}.policy-item {padding:26px 0}.item-head {display:block}.item-country {flex-direction:row;align-items:baseline;gap:10px;margin-bottom:12px}.item-country strong {font-size:17px}.policy-item h2 {font-size:20px}.policy-body>div {display:block;margin-top:20px}.policy-body dt {margin-bottom:6px}.policy-body dt>small {display:inline;margin-left:8px}.policy-body p {font-size:14px}.head-links {gap:12px}.source-row {padding-top:14px}}
-@media(max-width:380px){.filter-fields {grid-template-columns:1fr}.search-field {grid-column:auto}.reading-order {display:block}.reading-order span {margin:0 3px}.policy-list {padding:0 16px}}
-@media(max-width:650px){.policy-tags {flex-wrap:nowrap;overflow-x:auto;padding:3px 2px 10px}.policy-tags button {flex-shrink:0}}
+.empty-state h2 {margin:0 0 6px;font-size:20px}
+.empty-state p {margin:0;color:var(--app-muted);font-size:14px}
+.market-footer {display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 24px;margin-top:8px;padding-top:18px;
+  border-top:1px solid var(--app-line)}
+.market-footer p {margin:0;max-width:720px;font-size:13px;line-height:21px;color:var(--app-muted)}
+.market-footer a {font-size:13px;font-weight:500}
+
+/* Narrower containers: the timeline leaves the row (it stays in the open record), the steps stack; then one column. */
+@container mp (max-width: 879px) {
+  .mp-row {grid-template-columns:84px minmax(0,1fr) 92px 18px}
+  .mp-when {display:none}
+  .mp-body {padding-left:22px}
+  .mp-steps {grid-template-columns:1fr}
+}
+@container mp (max-width: 699px) {
+  .mp-themes {grid-template-columns:1fr}
+}
+@container mp (max-width: 599px) {
+  .mp-theme {padding:18px}
+  .mp-row {grid-template-columns:minmax(0,1fr) 18px;grid-template-areas:"country chevron" "title chevron" "status chevron";gap:4px 12px;padding:14px 16px}
+  .mp-country {grid-area:country;font-size:12px}
+  .mp-title {grid-area:title}
+  .mp-status {grid-area:status;margin-top:4px}
+  .mp-chevron {grid-area:chevron}
+  .mp-body {padding:2px 16px 16px}
+  .mp-group-head {padding:14px 16px}
+}
+@media (max-width:660px) {
+  .market {padding:25px 18px 48px}
+  .mp-head h1 {font-size:26px;line-height:34px}
+}

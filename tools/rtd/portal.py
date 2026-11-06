@@ -376,7 +376,10 @@ def collect_workspace_pages(app):
         PAGE as MARKET_PAGE, TEMPLATE as MARKET_TEMPLATE, market_context, missing_knowledge_anchors,
     )
 
-    market = market_context(workspace_content(app))
+    market = market_context(workspace_content(app), ASSETS)
+    for record in market["unthemed"]:
+        sphinx_logging.getLogger(__name__).warning(
+            "Market policy record %s matches no theme in market_policy_themes.yaml; it shows under 其他", record)
     # A renamed topic strands policy links; warn only, since malformed data already fails the build.
     for record, anchor in missing_knowledge_anchors(market["records"], {t["id"] for t in learning["topics"]}):
         sphinx_logging.getLogger(__name__).warning(
