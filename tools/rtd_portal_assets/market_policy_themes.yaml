@@ -1,0 +1,25 @@
+# 市场与政策's themes (2026-11 layout). The business snapshot
+# (Hello-Docs docs/knowledge/market-policy/records.json) gives each record tags,
+# not a theme: a record joins the first theme below that lists one of its tags.
+# A record no theme claims shows under 其他 and warns at build time, so add its
+# tag here. tools/rtd/market_policy.py reads this file; a malformed file fails
+# the build.
+#
+#   cross_region  the `country` value that names no single market; it is not
+#                 counted in the page's 「国家和地区」 figure.
+#   themes        id (lower-case), title, blurb (one line on what the theme
+#                 covers, never a policy claim), icon (language | energy) and
+#                 the tags that place a record in it.
+schema: hello-docs-market-themes/v1
+cross_region: 跨地区
+themes:
+  - id: language
+    title: 说明书语言与准入
+    blurb: 各地对说明书语言和交付方式的要求：哪些已有依据，哪些还在核实。
+    icon: language
+    tags: [说明书语言, 纸质说明书, 电子说明书, 二维码, 市场准入, 渠道需求]
+  - id: energy
+    title: 电价与家庭储能
+    blurb: 电价和补贴规则的变化，如何影响自发自用与家庭储能的价值。
+    icon: energy
+    tags: [净计量, 自发自用, 家庭储能, 容量电价, 削峰, 能量管理, 时段电价, 补贴, 市场线索, 备电]
