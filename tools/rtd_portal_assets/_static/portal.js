@@ -81,7 +81,20 @@ document.querySelectorAll('[data-need]').forEach(link => {
   });
 });
 
+// The region follows the reader: the last choice is restored on the next visit; the configured
+// default applies only when nothing valid is stored (first visit, cleared or blocked storage).
+const REGION_KEY = 'hello-docs.manual-portal.region';
+function restoreRegion() {
+  let saved = null;
+  try { saved = localStorage.getItem(REGION_KEY); } catch (error) { return; }
+  if (saved && [...$('#region').options].some(option => option.value === saved)) $('#region').value = saved;
+}
+function rememberRegion() {
+  try { localStorage.setItem(REGION_KEY, $('#region').value); } catch (error) { /* storage blocked: keep this visit's choice only */ }
+}
+
 $('#region').addEventListener('change', () => {
+  rememberRegion();
   const chip = document.querySelector(`button[data-category="${CSS.escape(category)}"]`);
   renderNeeds($('#region').selectedOptions[0].dataset.binding);
   if (chip && chip.hidden) chooseCategory('All products'); else render();
@@ -164,4 +177,5 @@ function renderContent(query, region) {
 }
 $('#search').value = new URLSearchParams(location.search).get('q') || '';
 $('#more-results').addEventListener('click', () => { resultLimit += 12; render(); });
+restoreRegion();
 render();

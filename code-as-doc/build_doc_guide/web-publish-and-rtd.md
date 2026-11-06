@@ -80,8 +80,8 @@ have 768 MiB / 10,000-file budgets; all inventories keep the 32 MiB per-file lim
 
 RTD renders the frozen Web snapshot with the root-only portal extension:
 `python -m sphinx -b html -D extensions=myst_parser,tools.rtd.portal <frozen-web-source> <html-output>`.
-The default region is temporarily EU; EU/UK resolve to the same frozen EU
-publications. Nested manuals and QR aliases retain their existing rendering.
+A first visit starts on EU; later visits restore the reader's last region from
+browser storage. EU/UK resolve to the same frozen EU publications. Nested manuals and QR aliases retain their existing rendering.
 The manual library exposes only manual navigation; product knowledge (its last
 section is the HomePower 3600 Pro Max backup case) and market/policy notes use
 direct knowledge-page links in the same RTD project. Since 2026-10-13 that
@@ -135,7 +135,7 @@ Web Publish / Read the Docs note:
 - Web Publish runs [`../tools/readthedocs_source.py`](../../tools/readthedocs_source.py) indirectly through the publish-branch assembler, producing one link-only root index, collision-checked root alias pages named from each manual stem, and mirrored image assets under `docs/publish/web/_static/manual-assets/`. Each alias forwards relatively to the nested canonical page so the same frozen source works with or without RTD's `/en/latest` prefix.
 - [`../tools/publish_asset_pool.py`](../../tools/publish_asset_pool.py) pools image sources and inline CSS `url(...)` references in the assembled Markdown, including background/mask graphics that have no `<img>` element. Quoted and unquoted local URLs retain their query/fragment suffix; external, absolute and data URLs and logical artwork identity attributes remain unchanged. Its before/after reference fingerprint includes those CSS assets, so deleting a still-referenced native safety glyph fails assembly. Frozen source packages stay unchanged; image-element counts alone cannot establish complete resource loading.
 - do not point RTD at the repo-root [`../docs/`](../../docs) tree; `docs/publish/web/` is the frozen Sphinx source, while `docs/publish/sources/web/` retains each target's original MyST bundle
-- The manual-center selector includes US/EU/UK/CN/JP with independent CN/JP bindings and `zh`/`ja` labels; only verified frozen language links are enabled. EU remains the default. For the existing whole-book `cn-zh` / `jp-ja` queue families, leave `Lang` blank: their configured language is already fixed, and they do not use language-scoped output paths.
+- The manual-center selector includes US/EU/UK/CN/JP with independent CN/JP bindings and `zh`/`ja` labels; only verified frozen language links are enabled. EU is the first-visit default; afterwards the reader's last region is restored. For the existing whole-book `cn-zh` / `jp-ja` queue families, leave `Lang` blank: their configured language is already fixed, and they do not use language-scoped output paths.
 - RTD is the Web Publish presentation surface; it is not the release authority for formal IDML, LaTeX, PDF, DOCX or print Markdown outputs
 
 Manual Center 的 HTML 构建会从已发布手册生成静态章节检索索引，先于部署
