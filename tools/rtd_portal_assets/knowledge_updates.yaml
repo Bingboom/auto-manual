@@ -24,6 +24,11 @@ schema: hello-docs-knowledge-updates/v1
 
 updates:
   - date: 2026-11-06
+    title: 市场与政策 · 新版页面
+    note: 先看两张主题卡（说明书语言与准入、电价与家庭储能）和各国标签；每条资料收成一行，点开再看政策变化、原理和对产品的影响；去掉了筛选栏
+    page: market-policy
+    evidence: "pr:auto-manual#1686"
+  - date: 2026-11-06
     title: 系统建设 · 正在做与首页一致
     note: 当前工作的「正在做」与知识库首页用同一份（网页化、多格式输出，各标所属主线）；阶段门「接下来」只数剩余台账项，不再写台账事项名
     page: system
