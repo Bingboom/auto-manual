@@ -2011,6 +2011,11 @@
       "registered": "2026-11-06",
       "known_drift": {}
     },
+    "manual_sources/JE-3000C/JP/ja/git-20261106-b16b82c6-jp-release-r2": {
+      "approval": "Operator 2026-11-06 (coordinator session session_01Y8kaknyyfgd1ZC5Xtwthqx), reviewing the live JE-3000C JP page: 「这个去掉啊 其它日规说明书的 安全上のご注意 为一级标题 开头的」: revision of git-20261106-b16b82c6-jp-release that only drops the standalone document-title heading; release authority 「2，上线提交发布：JE-3000C」 carries over; hash-bound in source/approval.json",
+      "registered": "2026-11-06",
+      "known_drift": {}
+    },
     "manual_sources/JE-3000C/KR/ko/git-20261021-78316033": {
       "approval": "User chat 2026-10-21: supplied JE-3000C KR PDF; remove landscape first sheet and convert via Git-only; isolated worktree and complete first-use sentence approved. Candidate only; no merge or publication approval.",
       "registered": "2026-10-21",
