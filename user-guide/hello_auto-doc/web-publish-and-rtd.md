@@ -66,7 +66,7 @@ OpenClaw 负责入库后的分析；分析结果先供人工审核。未验证�
 商品简称来自仓库内快照，新型号发布后需按 [商品简称检索](../../code-as-doc/dev/rtd_manual_portal/manual-center.md#product-short-name-search-2026-11-02) 只读刷新再提交。
 实现与边界见 [Manual Center](../../code-as-doc/dev/rtd_manual_portal.md)。
 
-公开站的说明书资料库只提供说明书查找和阅读，不放知识库链接。按操作者的最新发布选择，“产品知识”（产品案例是其末节）和“市场与政策”在同一个 RTD 项目发布，通过直达链接访问；站点为私有的 Read the Docs for Business 项目（`https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest/`），需要登录并具备项目权限；相应内容已录入飞书知识库多维表。产品知识用列表结合典型电气示意解释实际产品；市场与政策按“政策变化 → 原理解释 → 产品影响”阅读，可筛选国家、主题、核实状态和关键词。页面不展示原始资料截图或整理过程，原始截图也不复制到网站；当前内容通过审核后的快照发布，尚未接入多维表自动同步。数据边界见[市场与政策](../../code-as-doc/dev/rtd_manual_portal/knowledge-pages.md#市场与政策)。
+公开站的说明书资料库只提供说明书查找和阅读，不放知识库链接。按操作者的最新发布选择，“产品知识”（产品案例是其末节）和“市场与政策”在同一个 RTD 项目发布，通过直达链接访问；站点为私有的 Read the Docs for Business 项目（`https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest/`），需要登录并具备项目权限；相应内容已录入飞书知识库多维表。产品知识用列表结合典型电气示意解释实际产品；市场与政策先看两类主题卡（说明书语言与准入、电价与家庭储能）和各国标签，点标签直达该国资料；下面每条资料收成一行，点开按“政策变化 → 原理解释 → 产品影响”阅读，也可以点“全部展开”。新资料的标签不属于任何主题时会显示在“其他”，需在 `tools/rtd_portal_assets/market_policy_themes.yaml` 补上标签。页面不展示原始资料截图或整理过程，原始截图也不复制到网站；当前内容通过审核后的快照发布，尚未接入多维表自动同步。数据边界见[市场与政策](../../code-as-doc/dev/rtd_manual_portal/knowledge-pages.md#市场与政策)。
 
 同一份冻结发布源可以供两个 RTD 项目构建：登记为私有的项目 `ht-docs-ht-manuals` 照常生成说明书、知识库和 AI 分享；其他任何 RTD 项目（包括公开项目 `ht-docs-ht-user-manuals`）都只生成说明书资料库、说明书、短地址和搜索，即使没设 `RTD_SITE_ROLE` 也一样，设成 `combined` 会直接构建失败。要新增能生成知识库的私有项目，须通过 PR 把项目名加进 `tools/rtd/site_role.py` 的名单。生成什么由这条规则决定，谁能打开由各项目的 Privacy level 决定：私有项目的版本要保持 Private。新项目先确认第一次构建正确，再改可见性。两个项目的规范链接各自取 RTD 提供的项目地址，公开站以后换域名不用改代码。详见[公开说明书项目](../../code-as-doc/dev/rtd_manual_portal/knowledge-pages.md#public-manuals-project-site-role)。
 
