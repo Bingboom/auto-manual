@@ -1,0 +1,23 @@
+{
+  "status": "source-archive-only",
+  "original_pdf": {
+    "bytes": 18416463,
+    "sha256": "7d179fdb0e3822657904440b17aba0a1abee22699d5c2764c178097d4240ce16",
+    "pages": 43,
+    "native_text_empty_pages": 43,
+    "user_original_untouched": true
+  },
+  "source_illustrations": 15,
+  "lcd_icon_crops": 12,
+  "lcd_source_numbers": 11,
+  "shared_symbol_files": 10,
+  "asset_hash_checks_passed": 37,
+  "exact_crop_byte_replay_checks_passed": 27,
+  "shared_byte_equality_checks_passed": 10,
+  "png_svg_checks_passed": 37,
+  "page_map_complete": true,
+  "readme_relative_links_valid": true,
+  "ocr_body_committed": false,
+  "web_conversion_completed": false,
+  "production_published": false
+}

@@ -1,0 +1,481 @@
+[
+  {
+    "slot": "in-the-box",
+    "physical_page": 6,
+    "bbox": [
+      28,
+      60,
+      343,
+      196
+    ],
+    "inventory": [
+      "data/manual_sources/JE-300E-SG",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets"
+    ],
+    "decision": "Extract source illustration",
+    "reason": "No same-model US artwork found in current main. JE-300D EU has different ports and is not this sand-gold JE-300E-SG. Source panels retain connections and controls.",
+    "alt": "Jackery Explorer 300, 65W AC Adapter, Car Charging Cable and Documents",
+    "width": 640,
+    "scope": "graphic with source labels; all meaningful labels also selectable in adjacent text/table"
+  },
+  {
+    "slot": "front-view",
+    "physical_page": 6,
+    "bbox": [
+      28,
+      281,
+      343,
+      494
+    ],
+    "inventory": [
+      "data/manual_sources/JE-300E-SG",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets"
+    ],
+    "decision": "Extract source illustration",
+    "reason": "No same-model US artwork found in current main. JE-300D EU has different ports and is not this sand-gold JE-300E-SG. Source panels retain connections and controls.",
+    "alt": "Front view: power buttons, ports, handle and LCD",
+    "width": 700,
+    "scope": "graphic with source labels; all meaningful labels also selectable in adjacent text/table"
+  },
+  {
+    "slot": "lcd-display",
+    "physical_page": 7,
+    "bbox": [
+      43,
+      57,
+      333,
+      216
+    ],
+    "inventory": [
+      "data/manual_sources/JE-300E-SG",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets"
+    ],
+    "decision": "Extract source illustration",
+    "reason": "No same-model US artwork found in current main. JE-300D EU has different ports and is not this sand-gold JE-300E-SG. Source panels retain connections and controls.",
+    "alt": "LCD display with indicators 1–11",
+    "width": 600,
+    "scope": "graphic with source labels; all meaningful labels also selectable in adjacent text/table"
+  },
+  {
+    "slot": "power-on-off",
+    "physical_page": 8,
+    "bbox": [
+      28,
+      283,
+      341,
+      415
+    ],
+    "inventory": [
+      "data/manual_sources/JE-300E-SG",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets"
+    ],
+    "decision": "Extract source illustration",
+    "reason": "No same-model US artwork found in current main. JE-300D EU has different ports and is not this sand-gold JE-300E-SG. Source panels retain connections and controls.",
+    "alt": "Main power button: press once to turn on; press and hold for 3s to turn off",
+    "width": 620,
+    "scope": "graphic with source labels; all meaningful labels also selectable in adjacent text/table"
+  },
+  {
+    "slot": "ac-output",
+    "physical_page": 9,
+    "bbox": [
+      28,
+      46,
+      341,
+      223
+    ],
+    "inventory": [
+      "data/manual_sources/JE-300E-SG",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets"
+    ],
+    "decision": "Extract source illustration",
+    "reason": "No same-model US artwork found in current main. JE-300D EU has different ports and is not this sand-gold JE-300E-SG. Source panels retain connections and controls.",
+    "alt": "AC output: prerequisite, product turned on; press AC power button once for on or off",
+    "width": 620,
+    "scope": "graphic with source labels; all meaningful labels also selectable in adjacent text/table"
+  },
+  {
+    "slot": "dc-12v-output",
+    "physical_page": 9,
+    "bbox": [
+      30,
+      257,
+      344,
+      409
+    ],
+    "inventory": [
+      "data/manual_sources/JE-300E-SG",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets"
+    ],
+    "decision": "Extract source illustration",
+    "reason": "No same-model US artwork found in current main. JE-300D EU has different ports and is not this sand-gold JE-300E-SG. Source panels retain connections and controls.",
+    "alt": "DC 12V output: press DC power button once for on or off",
+    "width": 620,
+    "scope": "graphic with source labels; all meaningful labels also selectable in adjacent text/table"
+  },
+  {
+    "slot": "usb-output",
+    "physical_page": 10,
+    "bbox": [
+      28,
+      45,
+      344,
+      190
+    ],
+    "inventory": [
+      "data/manual_sources/JE-300E-SG",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets"
+    ],
+    "decision": "Extract source illustration",
+    "reason": "No same-model US artwork found in current main. JE-300D EU has different ports and is not this sand-gold JE-300E-SG. Source panels retain connections and controls.",
+    "alt": "USB output: press USB power button once for on or off",
+    "width": 620,
+    "scope": "graphic with source labels; all meaningful labels also selectable in adjacent text/table"
+  },
+  {
+    "slot": "energy-saving",
+    "physical_page": 10,
+    "bbox": [
+      44,
+      354,
+      322,
+      442
+    ],
+    "inventory": [
+      "data/manual_sources/JE-300E-SG",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets"
+    ],
+    "decision": "Extract source illustration",
+    "reason": "No same-model US artwork found in current main. JE-300D EU has different ports and is not this sand-gold JE-300E-SG. Source panels retain connections and controls.",
+    "alt": "Energy Saving Mode: press and hold both the AC power button and main power button for 3 seconds",
+    "width": 620,
+    "scope": "graphic with source labels; all meaningful labels also selectable in adjacent text/table"
+  },
+  {
+    "slot": "lcd-screen",
+    "physical_page": 11,
+    "bbox": [
+      97,
+      49,
+      311,
+      146
+    ],
+    "inventory": [
+      "data/manual_sources/JE-300E-SG",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets"
+    ],
+    "decision": "Extract source illustration",
+    "reason": "No same-model US artwork found in current main. JE-300D EU has different ports and is not this sand-gold JE-300E-SG. Source panels retain connections and controls.",
+    "alt": "Main power button and LCD screen",
+    "width": 440,
+    "scope": "graphic with source labels; all meaningful labels also selectable in adjacent text/table"
+  },
+  {
+    "slot": "ac-charging",
+    "physical_page": 12,
+    "bbox": [
+      27,
+      56,
+      342,
+      183
+    ],
+    "inventory": [
+      "data/manual_sources/JE-300E-SG",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets"
+    ],
+    "decision": "Extract source illustration",
+    "reason": "No same-model US artwork found in current main. JE-300D EU has different ports and is not this sand-gold JE-300E-SG. Source panels retain connections and controls.",
+    "alt": "Connect the 65W AC adapter to the DC8020 input and wall outlet",
+    "width": 640,
+    "scope": "graphic with source labels; all meaningful labels also selectable in adjacent text/table"
+  },
+  {
+    "slot": "usb-c-charging",
+    "physical_page": 12,
+    "bbox": [
+      27,
+      210,
+      342,
+      336
+    ],
+    "inventory": [
+      "data/manual_sources/JE-300E-SG",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets"
+    ],
+    "decision": "Extract source illustration",
+    "reason": "No same-model US artwork found in current main. JE-300D EU has different ports and is not this sand-gold JE-300E-SG. Source panels retain connections and controls.",
+    "alt": "Charge via the USB-C input/output port, 100W Max",
+    "width": 640,
+    "scope": "graphic with source labels; all meaningful labels also selectable in adjacent text/table"
+  },
+  {
+    "slot": "dc-input-indicator",
+    "physical_page": 12,
+    "bbox": [
+      47,
+      397,
+      86,
+      463
+    ],
+    "inventory": [
+      "data/manual_sources/JE-300E-SG",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets"
+    ],
+    "decision": "Extract source illustration",
+    "reason": "No same-model US artwork found in current main. JE-300D EU has different ports and is not this sand-gold JE-300E-SG. Source panels retain connections and controls.",
+    "alt": "DC Input Indicator above the DC8020 input port",
+    "width": 100,
+    "scope": "graphic with source labels; all meaningful labels also selectable in adjacent text/table"
+  },
+  {
+    "slot": "solar-charging",
+    "physical_page": 13,
+    "bbox": [
+      29,
+      54,
+      343,
+      176
+    ],
+    "inventory": [
+      "data/manual_sources/JE-300E-SG",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets"
+    ],
+    "decision": "Extract source illustration",
+    "reason": "No same-model US artwork found in current main. JE-300D EU has different ports and is not this sand-gold JE-300E-SG. Source panels retain connections and controls.",
+    "alt": "One SolarSaga 100 solar panel connected to the DC8020 input",
+    "width": 640,
+    "scope": "graphic with source labels; all meaningful labels also selectable in adjacent text/table"
+  },
+  {
+    "slot": "car-charging",
+    "physical_page": 13,
+    "bbox": [
+      33,
+      299,
+      345,
+      419
+    ],
+    "inventory": [
+      "data/manual_sources/JE-300E-SG",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets"
+    ],
+    "decision": "Extract source illustration",
+    "reason": "No same-model US artwork found in current main. JE-300D EU has different ports and is not this sand-gold JE-300E-SG. Source panels retain connections and controls.",
+    "alt": "12V vehicle outlet connected to the DC8020 input",
+    "width": 640,
+    "scope": "graphic with source labels; all meaningful labels also selectable in adjacent text/table"
+  },
+  {
+    "slot": "contact-qr",
+    "physical_page": 43,
+    "bbox": [
+      308,
+      462,
+      343,
+      499
+    ],
+    "inventory": [
+      "data/manual_sources/JE-300E-SG",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets"
+    ],
+    "decision": "Extract source illustration",
+    "reason": "No same-model US artwork found in current main. JE-300D EU has different ports and is not this sand-gold JE-300E-SG. Source panels retain connections and controls.",
+    "alt": "Jackery contact QR code",
+    "width": 108,
+    "scope": "graphic with source labels; all meaningful labels also selectable in adjacent text/table"
+  },
+  {
+    "slot": "symbol-warning",
+    "physical_page": 5,
+    "decision": "Reuse shared bytes",
+    "source": "docs/templates/word_template/common_assets/symbols/warning_triangle.png",
+    "reason": "Standard pictogram verified by meaning and visual face. Li-ion uses native vector without the unrelated 32 suffix in the common PNG.",
+    "alt": "Warning and Caution Symbols"
+  },
+  {
+    "slot": "symbol-read-manual",
+    "physical_page": 5,
+    "decision": "Reuse shared bytes",
+    "source": "docs/templates/word_template/common_assets/symbols/read_manual_operator.png",
+    "reason": "Standard pictogram verified by meaning and visual face. Li-ion uses native vector without the unrelated 32 suffix in the common PNG.",
+    "alt": "Read the user manual"
+  },
+  {
+    "slot": "symbol-weee",
+    "physical_page": 5,
+    "decision": "Reuse shared bytes",
+    "source": "docs/templates/word_template/common_assets/symbols/weee.png",
+    "reason": "Standard pictogram verified by meaning and visual face. Li-ion uses native vector without the unrelated 32 suffix in the common PNG.",
+    "alt": "Separate collection and recycling"
+  },
+  {
+    "slot": "symbol-electric-shock",
+    "physical_page": 5,
+    "decision": "Reuse shared bytes",
+    "source": "docs/templates/word_template/common_assets/symbols/electric_shock.png",
+    "reason": "Standard pictogram verified by meaning and visual face. Li-ion uses native vector without the unrelated 32 suffix in the common PNG.",
+    "alt": "Risk of electric shock"
+  },
+  {
+    "slot": "symbol-do-not-dismantle",
+    "physical_page": 5,
+    "decision": "Reuse shared bytes",
+    "source": "docs/templates/word_template/common_assets/symbols/do_not_dismantle.png",
+    "reason": "Standard pictogram verified by meaning and visual face. Li-ion uses native vector without the unrelated 32 suffix in the common PNG.",
+    "alt": "Do not dismantle"
+  },
+  {
+    "slot": "symbol-no-open-flame",
+    "physical_page": 5,
+    "decision": "Reuse shared bytes",
+    "source": "docs/templates/word_template/common_assets/symbols/no_open_flame.png",
+    "reason": "Standard pictogram verified by meaning and visual face. Li-ion uses native vector without the unrelated 32 suffix in the common PNG.",
+    "alt": "Keep away from fire"
+  },
+  {
+    "slot": "symbol-keep-away-from-children",
+    "physical_page": 5,
+    "decision": "Reuse shared bytes",
+    "source": "docs/templates/word_template/common_assets/symbols/keep_away_from_children.png",
+    "reason": "Standard pictogram verified by meaning and visual face. Li-ion uses native vector without the unrelated 32 suffix in the common PNG.",
+    "alt": "Keep away from children"
+  },
+  {
+    "slot": "symbol-li-ion",
+    "physical_page": 5,
+    "decision": "Reuse shared bytes",
+    "source": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_li_ion.svg",
+    "reason": "Standard pictogram verified by meaning and visual face. Li-ion uses native vector without the unrelated 32 suffix in the common PNG.",
+    "alt": "Lithium-ion battery recycling"
+  },
+  {
+    "slot": "symbol-battery-charging",
+    "physical_page": 5,
+    "decision": "Reuse shared bytes",
+    "source": "docs/templates/word_template/common_assets/symbols/battery_charging.png",
+    "reason": "Standard pictogram verified by meaning and visual face. Li-ion uses native vector without the unrelated 32 suffix in the common PNG.",
+    "alt": "Battery charging"
+  },
+  {
+    "slot": "symbol-explosive-material",
+    "physical_page": 5,
+    "decision": "Reuse shared bytes",
+    "source": "docs/templates/word_template/common_assets/symbols/explosive_material.png",
+    "reason": "Standard pictogram verified by meaning and visual face. Li-ion uses native vector without the unrelated 32 suffix in the common PNG.",
+    "alt": "Explosive material"
+  },
+  {
+    "slot": "lcd-1",
+    "physical_page": 7,
+    "decision": "Extract exact source icon cell",
+    "reason": "Shared LCD inventory checked; unrelated product fault text/indicator map rejected. Preserve source-native numeric faces, including 6H and F8.",
+    "source_indicator_number": 1
+  },
+  {
+    "slot": "lcd-2",
+    "physical_page": 7,
+    "decision": "Extract exact source icon cell",
+    "reason": "Shared LCD inventory checked; unrelated product fault text/indicator map rejected. Preserve source-native numeric faces, including 6H and F8.",
+    "source_indicator_number": 2
+  },
+  {
+    "slot": "lcd-3",
+    "physical_page": 7,
+    "decision": "Extract exact source icon cell",
+    "reason": "Shared LCD inventory checked; unrelated product fault text/indicator map rejected. Preserve source-native numeric faces, including 6H and F8.",
+    "source_indicator_number": 3
+  },
+  {
+    "slot": "lcd-4",
+    "physical_page": 7,
+    "decision": "Extract exact source icon cell",
+    "reason": "Shared LCD inventory checked; unrelated product fault text/indicator map rejected. Preserve source-native numeric faces, including 6H and F8.",
+    "source_indicator_number": 4
+  },
+  {
+    "slot": "lcd-5",
+    "physical_page": 7,
+    "decision": "Extract exact source icon cell",
+    "reason": "Shared LCD inventory checked; unrelated product fault text/indicator map rejected. Preserve source-native numeric faces, including 6H and F8.",
+    "source_indicator_number": 5
+  },
+  {
+    "slot": "lcd-6",
+    "physical_page": 7,
+    "decision": "Extract exact source icon cell",
+    "reason": "Shared LCD inventory checked; unrelated product fault text/indicator map rejected. Preserve source-native numeric faces, including 6H and F8.",
+    "source_indicator_number": 6
+  },
+  {
+    "slot": "lcd-7",
+    "physical_page": 7,
+    "decision": "Extract exact source icon cell",
+    "reason": "Shared LCD inventory checked; unrelated product fault text/indicator map rejected. Preserve source-native numeric faces, including 6H and F8.",
+    "source_indicator_number": 7
+  },
+  {
+    "slot": "lcd-8",
+    "physical_page": 8,
+    "decision": "Extract exact source icon cell",
+    "reason": "Shared LCD inventory checked; unrelated product fault text/indicator map rejected. Preserve source-native numeric faces, including 6H and F8.",
+    "source_indicator_number": 8
+  },
+  {
+    "slot": "lcd-9",
+    "physical_page": 8,
+    "decision": "Extract exact source icon cell",
+    "reason": "Shared LCD inventory checked; unrelated product fault text/indicator map rejected. Preserve source-native numeric faces, including 6H and F8.",
+    "source_indicator_number": 9
+  },
+  {
+    "slot": "lcd-10",
+    "physical_page": 8,
+    "decision": "Extract exact source icon cell",
+    "reason": "Shared LCD inventory checked; unrelated product fault text/indicator map rejected. Preserve source-native numeric faces, including 6H and F8.",
+    "source_indicator_number": 10
+  },
+  {
+    "slot": "lcd-11",
+    "physical_page": 8,
+    "decision": "Extract exact source icon cell",
+    "reason": "Shared LCD inventory checked; unrelated product fault text/indicator map rejected. Preserve source-native numeric faces, including 6H and F8.",
+    "source_indicator_number": 10
+  },
+  {
+    "slot": "lcd-12",
+    "physical_page": 8,
+    "source_indicator_number": 11,
+    "decision": "Extract exact source icon cell",
+    "reason": "Energy Saving Mode 6H face; physical icon crop 12 corresponds to source indicator 11. Source indicator 10 has separate high and low temperature faces."
+  }
+]
