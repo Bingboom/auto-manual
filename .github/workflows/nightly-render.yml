@@ -13,8 +13,51 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  render-smoke:
+  changes:
     if: ${{ github.repository == 'Bingboom/auto-manual' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      actions: read
+    outputs:
+      cache_key: ${{ steps.inputs.outputs.cache_key }}
+      cache_hit: ${{ steps.previous.outputs.cache-hit }}
+      previous_ok: ${{ steps.inputs.outputs.previous_ok }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: /scripts/ci_change_gate.py
+      - name: Fingerprint engineering inputs
+        id: inputs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/ci_change_gate.py nightly
+      - name: Look up a successful render for these inputs this week
+        id: previous
+        continue-on-error: true
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ runner.temp }}/nightly-success
+          key: ${{ steps.inputs.outputs.cache_key }}-${{ runner.os }}-${{ runner.arch }}
+          lookup-only: true
+      - name: Explain render decision
+        env:
+          CACHE_HIT: ${{ steps.previous.outputs.cache-hit }}
+          EVENT: ${{ github.event_name }}
+          ATTEMPT: ${{ github.run_attempt }}
+          PREVIOUS_OK: ${{ steps.inputs.outputs.previous_ok }}
+        run: |
+          if [ "$EVENT" = schedule ] && [ "$CACHE_HIT" = true ] && [ "$PREVIOUS_OK" = true ] && [ "$ATTEMPT" = 1 ]; then
+            echo "Unchanged inputs already rendered successfully this UTC week; skipping toolchain installation." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "Render required: manual dispatch, changed inputs, weekly revalidation, missing successful cache or previous failure." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+  render-smoke:
+    needs: changes
+    if: ${{ !cancelled() && github.repository == 'Bingboom/auto-manual' && (github.event_name == 'workflow_dispatch' || github.run_attempt > 1 || needs.changes.result != 'success' || needs.changes.outputs.cache_hit != 'true' || needs.changes.outputs.previous_ok != 'true') }}
     runs-on: ubuntu-latest
     timeout-minutes: 90
     steps:
@@ -95,3 +138,17 @@ jobs:
               print(f"- Artifact: `{artifact['path']}`")
               print(f"- SHA-256: `{artifact['sha256']}`")
           PY
+
+      # A failed/cancelled render never writes a success marker. No restore-key
+      # prefix: only an exact input fingerprint can suppress the next schedule.
+      - name: Record successful render
+        if: ${{ success() && needs.changes.outputs.cache_key != '' }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/nightly-success"
+          printf '%s\n' "$GITHUB_SHA" > "$RUNNER_TEMP/nightly-success/commit"
+      - name: Save successful render marker
+        if: ${{ success() && needs.changes.outputs.cache_key != '' }}
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ runner.temp }}/nightly-success
+          key: ${{ needs.changes.outputs.cache_key }}-${{ runner.os }}-${{ runner.arch }}

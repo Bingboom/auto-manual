@@ -15,6 +15,12 @@ trusted-base script on PRs. It does not call build orchestration, queue workers,
 Feishu or deployment receipts. Engineering checks stay in auto-manual; see the
 [CI guide](../../build_doc_guide/ci-and-guardrails.md#engineering-and-mirror-validation).
 
+Engineering CI input selection is owned by
+[`scripts/ci_change_gate.py`](../../../scripts/ci_change_gate.py): a stdlib Git-diff
+classifier and nightly Git-object fingerprint/history check. Workflow YAML owns
+job dependencies, exact success-cache lookup/save and force-render conditions;
+the helper never dispatches a queue or changes business data.
+
 - [`tools/check/docs.py`](../../../tools/check/docs.py)
   - quality gate facade over bundle/reference/contract/generated-page checks
 - [`tools/check/docs_runtime.py`](../../../tools/check/docs_runtime.py)
