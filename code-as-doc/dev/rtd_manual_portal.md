@@ -16,3 +16,4 @@ task needs and put new notes on the owning page; add a row here only for a new p
 | [`web-progress.md`](rtd_manual_portal/web-progress.md) | you change 网页说明书进度 on the 交付物 tab: counts, timeline, per-market bars, the model × market matrix, or its Feishu snapshot and export |
 | [`review-drafts-site.md`](rtd_manual_portal/review-drafts-site.md) | you change the private 审核稿 site: the Hello-Docs-Review mirror, its build, the draft manifest or the workbench entry |
 | [`maintenance-and-checks.md`](rtd_manual_portal/maintenance-and-checks.md) | you work on the maintenance surface or manual feedback and publication checks, or verify the portal locally |
+| [`manual-chat.md`](rtd_manual_portal/manual-chat.md) | you enable or maintain the HT-Docs bot Q&A sidebar, its current-manual context, read-only service or deployment checks |

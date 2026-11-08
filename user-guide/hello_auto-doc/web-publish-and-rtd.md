@@ -3,6 +3,10 @@
 Part of the [workflow guide](../hello_auto-doc.md); its index lists the other topics.
 Add new notes for this topic here, not to the hub.
 
+启用网页问答的说明书页右下角有“问 HT-Docs bot”：输入问答访问密码后，可就当前说明书的规格、操作或故障处理提问，
+并打开回答所附的原文章节。当前只支持已接入的 EU 说明书；型号、市场、语言和版本会随页面带入，资料不足时会说明。
+问答访问密码由服务管理员提供，与站点访问验证分开。启用、部署和问题排查见[网页问答指南](../../code-as-doc/dev/rtd_manual_portal/manual-chat.md)。
+
 RTD catalog behavior:
 
 - RTD builds the frozen `docs/publish/web/` catalog from `Hello-Docs/main`. The generated `publish` branch is only a release candidate; `review/*` is only a build input, and neither branch is merged wholesale. The review/fixture command in [`.readthedocs.yaml`](../../.readthedocs.yaml) is only the bootstrap fallback before the first snapshot.
