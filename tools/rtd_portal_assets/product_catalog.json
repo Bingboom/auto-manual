@@ -7,16 +7,15 @@
         "Plus",
         "Pro",
         "Ultra",
-        "直流与充电宝",
+        "充电宝",
         "卫士"
       ]
     },
     {
       "name": "家庭备电",
       "series": [
-        "HomePower",
-        "HomePower Plus",
-        "HomePower Pro Max"
+        "Plus",
+        "家庭备电"
       ]
     },
     {
@@ -41,7 +40,7 @@
       ]
     }
   ],
-  "exported_at": "2026-11-06",
+  "exported_at": "2026-11-08",
   "models": {
     "JA-AD01A": {
       "category": "配件",
@@ -176,7 +175,7 @@
     },
     "JE-100C": {
       "category": "便携电源",
-      "series": "直流与充电宝",
+      "series": "充电宝",
       "short": "E100D"
     },
     "JE-1500B": {
@@ -236,7 +235,7 @@
     },
     "JE-240B": {
       "category": "便携电源",
-      "series": "直流与充电宝",
+      "series": "充电宝",
       "short": "E240D"
     },
     "JE-3000A": {
@@ -266,7 +265,7 @@
     },
     "JE-300D": {
       "category": "便携电源",
-      "series": "直流与充电宝",
+      "series": "充电宝",
       "short": "E300D"
     },
     "JE-300E": {
@@ -306,7 +305,7 @@
     },
     "JE-76A": {
       "category": "便携电源",
-      "series": "直流与充电宝",
+      "series": "充电宝",
       "short": "76Wh充电宝"
     },
     "JE-880B": {
@@ -321,52 +320,52 @@
     },
     "JHP-1000A": {
       "category": "家庭备电",
-      "series": "HomePower",
+      "series": "Plus",
       "short": "HP1000v2"
     },
     "JHP-1000B": {
       "category": "家庭备电",
-      "series": "HomePower Plus",
+      "series": "Plus",
       "short": "HP1000Plusv2"
     },
     "JHP-1000B-RC": {
       "category": "家庭备电",
-      "series": "HomePower Plus",
+      "series": "Plus",
       "short": "HP1000Plusv2红十字"
     },
     "JHP-2000A": {
       "category": "家庭备电",
-      "series": "HomePower Plus",
+      "series": "Plus",
       "short": "HP2000Plusv2"
     },
     "JHP-2000A-RC": {
       "category": "家庭备电",
-      "series": "HomePower Plus",
+      "series": "Plus",
       "short": "HP2000Plusv2红十字"
     },
     "JHP-3000D": {
       "category": "家庭备电",
-      "series": "HomePower",
+      "series": "Plus",
       "short": "HP3000"
     },
     "JHP-3600A": {
       "category": "家庭备电",
-      "series": "HomePower Plus",
+      "series": "Plus",
       "short": "HP3600Plus"
     },
     "JHP-3600A-RC": {
       "category": "家庭备电",
-      "series": "HomePower Plus",
+      "series": "Plus",
       "short": "HP3600Plus红十字"
     },
     "JHP-3600C": {
       "category": "家庭备电",
-      "series": "HomePower Pro Max",
+      "series": "家庭备电",
       "short": "HP3600ProMax"
     },
     "JHP-5000C": {
       "category": "家庭备电",
-      "series": "HomePower Plus",
+      "series": "家庭备电",
       "short": "HP5000Plus"
     },
     "JS-100F": {
