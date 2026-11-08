@@ -15,7 +15,7 @@ Hello-Docs-Review：Agent 调用现有的基础设施、数据、模板和语料
 | 仓库 | 角色 | 在那里做什么 |
 | --- | --- | --- |
 | **auto-manual**（本仓库，公开） | 工程面 | 修改代码、模板、共享组件、Skill 和文档，跑 CI；合入后同步到另外两个仓库 |
-| [Hello-Docs](https://github.com/Bingboom/Hello-Docs)（公开） | 业务面 | 存放业务数据与语料资产，发布网页说明书，按需构建 Word、PDF、IDML 等格式 |
+| [Hello-Docs](https://github.com/Bingboom/Hello-Docs)（私有） | 业务面 | 存放业务数据与语料资产，发布网页说明书，按需构建 Word、PDF、IDML 等格式 |
 | [Hello-Docs-Review](https://github.com/Bingboom/Hello-Docs-Review)（私有） | 资料开发工作台 | Agent 调用全部基础设施、数据、模板和语料写作；审核稿在私有站点审阅 |
 
 两个镜像只维护各自的内容目录，其余文件来自本仓库。它们的 README 也在这里维护，
