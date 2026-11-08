@@ -14,7 +14,6 @@
     {
       "name": "家庭备电",
       "series": [
-        "Plus",
         "家庭备电"
       ]
     },
@@ -319,42 +318,42 @@
       "short": "E900V2云上白"
     },
     "JHP-1000A": {
-      "category": "家庭备电",
+      "category": "便携电源",
       "series": "Plus",
       "short": "HP1000v2"
     },
     "JHP-1000B": {
-      "category": "家庭备电",
+      "category": "便携电源",
       "series": "Plus",
       "short": "HP1000Plusv2"
     },
     "JHP-1000B-RC": {
-      "category": "家庭备电",
+      "category": "便携电源",
       "series": "Plus",
       "short": "HP1000Plusv2红十字"
     },
     "JHP-2000A": {
-      "category": "家庭备电",
+      "category": "便携电源",
       "series": "Plus",
       "short": "HP2000Plusv2"
     },
     "JHP-2000A-RC": {
-      "category": "家庭备电",
+      "category": "便携电源",
       "series": "Plus",
       "short": "HP2000Plusv2红十字"
     },
     "JHP-3000D": {
-      "category": "家庭备电",
+      "category": "便携电源",
       "series": "Plus",
       "short": "HP3000"
     },
     "JHP-3600A": {
-      "category": "家庭备电",
+      "category": "便携电源",
       "series": "Plus",
       "short": "HP3600Plus"
     },
     "JHP-3600A-RC": {
-      "category": "家庭备电",
+      "category": "便携电源",
       "series": "Plus",
       "short": "HP3600Plus红十字"
     },
