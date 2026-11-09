@@ -1,4 +1,15 @@
 {
+  "capacity_tiers": [
+    "1度以下",
+    "1度电",
+    "1.2度电",
+    "1.5度电",
+    "1.8度电",
+    "2度电",
+    "3度电",
+    "3.6度电",
+    "5度电"
+  ],
   "categories": [
     {
       "name": "便携储能",
@@ -127,61 +138,73 @@
       "short": "折叠小推车"
     },
     "JBP-1000B-SIL": {
+      "capacity": "1度电",
       "category": "加电包",
       "series": "标准",
       "short": "卫士1号加电包"
     },
     "JBP-1000B-WH": {
+      "capacity": "1度电",
       "category": "加电包",
       "series": "标准",
       "short": "卫士1号加电包"
     },
     "JBP-2000B": {
+      "capacity": "2度电",
       "category": "加电包",
       "series": "标准",
       "short": "BP2000"
     },
     "JBP-3600A": {
+      "capacity": "3.6度电",
       "category": "加电包",
       "series": "标准",
       "short": "BP3600加电包"
     },
     "JBP-5000A": {
+      "capacity": "5度电",
       "category": "加电包",
       "series": "标准",
       "short": "E5000Plus加电包"
     },
     "JE-1000B": {
+      "capacity": "1度电",
       "category": "便携储能",
       "series": "Pro",
       "short": "E1000Pro"
     },
     "JE-1000C": {
+      "capacity": "1.2度电",
       "category": "便携储能",
       "series": "Plus",
       "short": "E1000Plus"
     },
     "JE-1000D": {
+      "capacity": "1度电",
       "category": "便携储能",
       "series": "标准",
       "short": "E1000V2"
     },
     "JE-1000E-SIL": {
+      "capacity": "1度电",
       "category": "便携储能",
       "series": "卫士",
       "short": "卫士1号"
     },
     "JE-1000E-WH": {
+      "capacity": "1度电",
       "category": "便携储能",
       "series": "卫士",
       "short": "卫士1号"
     },
     "JE-1000F": {
+      "capacity": "1度电",
       "category": "便携储能",
       "series": "标准",
       "short": "E1000V2"
     },
     "JE-1000F-SG": {
+      "capacity": "1度电",
       "category": "便携储能",
       "pages_of": "JE-1000F",
       "routes": [
@@ -193,211 +216,253 @@
       "short": "E1000V2沙金色"
     },
     "JE-1000G": {
+      "capacity": "1度电",
       "category": "便携储能",
       "series": "标准",
       "short": "E1000V3"
     },
     "JE-1000H": {
+      "capacity": "1度电",
       "category": "便携储能",
       "series": "PlusV2",
       "short": "E1000Plusv2"
     },
     "JE-100A": {
+      "capacity": "1度以下",
       "category": "便携储能",
       "series": "Plus",
       "short": "E100Plus"
     },
     "JE-100C": {
+      "capacity": "1度以下",
       "category": "便携储能",
       "series": "充电宝",
       "short": "E100D"
     },
     "JE-1500B": {
+      "capacity": "1.5度电",
       "category": "便携储能",
       "series": "Pro",
       "short": "E1500Pro"
     },
     "JE-1500C": {
+      "capacity": "1.5度电",
       "category": "便携储能",
       "series": "Ultra",
       "short": "E1500Ultra"
     },
     "JE-1500D": {
+      "capacity": "1.5度电",
       "category": "便携储能",
       "series": "标准",
       "short": "E1500V2"
     },
     "JE-1800A": {
+      "capacity": "1.8度电",
       "category": "便携储能",
       "series": "标准",
       "short": "E1800"
     },
     "JE-1800B": {
+      "capacity": "1.8度电",
       "category": "便携储能",
       "series": "标准",
       "short": "E1800V2"
     },
     "JE-2000A": {
+      "capacity": "2度电",
       "category": "便携储能",
       "series": "Pro",
       "short": "E2000Pro"
     },
     "JE-2000C": {
+      "capacity": "2度电",
       "category": "便携储能",
       "series": "Plus",
       "short": "E2000Plus"
     },
     "JE-2000D": {
+      "capacity": "2度电",
       "category": "便携储能",
       "series": "标准",
       "short": "E2000V2"
     },
     "JE-2000E": {
+      "capacity": "2度电",
       "category": "便携储能",
       "series": "PlusV2",
       "short": "E2000Plusv2"
     },
     "JE-2000F": {
+      "capacity": "2度电",
       "category": "便携储能",
       "series": "标准",
       "short": "E2000V2"
     },
     "JE-240A": {
+      "capacity": "1度以下",
       "category": "便携储能",
       "series": "标准",
       "short": "E240V2"
     },
     "JE-240B": {
+      "capacity": "1度以下",
       "category": "便携储能",
       "series": "充电宝",
       "short": "E240D"
     },
     "JE-3000A": {
+      "capacity": "3度电",
       "category": "便携储能",
       "series": "Pro",
       "short": "E3000Pro"
     },
     "JE-3000B": {
+      "capacity": "3度电",
       "category": "便携储能",
       "series": "标准",
       "short": "E3000V2"
     },
     "JE-3000C": {
+      "capacity": "3度电",
       "category": "便携储能",
       "series": "标准",
       "short": "E3000V2"
     },
     "JE-300B": {
+      "capacity": "1度以下",
       "category": "便携储能",
       "series": "Plus",
       "short": "E300Plus"
     },
     "JE-300C": {
+      "capacity": "1度以下",
       "category": "便携储能",
       "series": "标准",
       "short": "E300V2"
     },
     "JE-300D": {
+      "capacity": "1度以下",
       "category": "便携储能",
       "series": "充电宝",
       "short": "E300D"
     },
     "JE-300E": {
+      "capacity": "1度以下",
       "category": "便携储能",
       "series": "标准",
       "short": "E300"
     },
     "JE-300E-SG": {
+      "capacity": "1度以下",
       "category": "便携储能",
       "series": "标准",
       "short": "E300沙金色"
     },
     "JE-3600A": {
+      "capacity": "3.6度电",
       "category": "便携储能",
       "series": "Plus",
       "short": "E3600Plus"
     },
     "JE-5000A": {
+      "capacity": "5度电",
       "category": "家庭备电",
       "series": "Plus",
       "short": "E5000Plus"
     },
     "JE-500A": {
+      "capacity": "1度以下",
       "category": "便携储能",
       "series": "标准",
       "short": "E500V2"
     },
     "JE-600A": {
+      "capacity": "1度以下",
       "category": "便携储能",
       "series": "标准",
       "short": "E600V2"
     },
     "JE-600C-SJ": {
+      "capacity": "1度以下",
       "category": "便携储能",
       "series": "Plus",
       "short": "E600Plus沙金色"
     },
     "JE-76A": {
+      "capacity": "1度以下",
       "category": "便携储能",
       "series": "充电宝",
       "short": "76Wh充电宝"
     },
     "JE-880B": {
+      "capacity": "1度以下",
       "category": "便携储能",
       "series": "Pro",
       "short": "E880Pro"
     },
     "JE-900B-WH": {
+      "capacity": "1度以下",
       "category": "便携储能",
       "series": "标准",
       "short": "E900V2云上白"
     },
     "JHP-1000A": {
+      "capacity": "1度电",
       "category": "便携储能",
       "series": "标准",
       "short": "HP1000v2"
     },
     "JHP-1000B": {
+      "capacity": "1度电",
       "category": "便携储能",
       "series": "PlusV2",
       "short": "HP1000Plusv2"
     },
     "JHP-1000B-RC": {
+      "capacity": "1度电",
       "category": "便携储能",
       "series": "PlusV2",
       "short": "HP1000Plusv2红十字"
     },
     "JHP-2000A": {
+      "capacity": "2度电",
       "category": "便携储能",
       "series": "PlusV2",
       "short": "HP2000Plusv2"
     },
     "JHP-2000A-RC": {
+      "capacity": "2度电",
       "category": "便携储能",
       "series": "PlusV2",
       "short": "HP2000Plusv2红十字"
     },
     "JHP-3000D": {
+      "capacity": "3度电",
       "category": "便携储能",
       "series": "标准",
       "short": "HP3000"
     },
     "JHP-3600A": {
+      "capacity": "3.6度电",
       "category": "便携储能",
       "series": "Plus",
       "short": "HP3600Plus"
     },
     "JHP-3600A-RC": {
+      "capacity": "3.6度电",
       "category": "便携储能",
       "series": "Plus",
       "short": "HP3600Plus红十字"
     },
     "JHP-3600C": {
+      "capacity": "3.6度电",
       "category": "家庭备电",
       "series": "ProMax",
       "short": "HP3600ProMax"
     },
     "JHP-5000C": {
+      "capacity": "5度电",
       "category": "家庭备电",
       "series": "Plus",
       "short": "HP5000Plus"
@@ -423,6 +488,6 @@
       "short": "40Wair"
     }
   },
-  "schema": "hello-docs-product-catalog/v2",
+  "schema": "hello-docs-product-catalog/v3",
   "source": "飞书发布文档管理「网页文档」表与「项目号」表"
 }
