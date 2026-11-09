@@ -20,7 +20,7 @@ from tools.rtd.deployment_receipt import (
     DEFAULT_RTD_BASE_URL, CrossOriginRedirect, FetchSession, _without_rtd_proxy_injection,
     rtd_project_slug_from_base_url,
 )
-from tools.workspace_freshness import inventory
+from tools.workspace_freshness import SHOWN, inventory
 from tools.workspace_refresh_publish import command
 from tools.workspace_snapshot import atomic_json
 
@@ -74,7 +74,10 @@ def verify_once(root: Path, revision: str, *, fetch=None) -> dict:
         raise ValueError("online-page-bytes-mismatch")
     from bs4 import BeautifulSoup
     soup = BeautifulSoup(html, "html.parser")
+    # Only the snapshots the page shows carry a tag; the receipt above still covers every snapshot.
     for kind, value in expected.items():
+        if kind not in SHOWN:
+            continue
         tag = soup.select_one(f'[data-workspace-source="{kind}"]')
         if tag is None or tag.get("data-snapshot-sha256") != (value["snapshot_sha256"] or ""):
             raise ValueError("online-page-source-mismatch")

@@ -11,7 +11,6 @@ from urllib.parse import quote
 from tools.component_specs.overview_instance import load_overview_instance_registry, resolve_overview_instance
 from tools.component_specs.registry import load_component_registry
 from tools.utils.path_utils import Paths
-from tools.workspace_snapshot import snapshot_path
 
 NOT_TRACKED = "Not tracked yet"
 UNAVAILABLE = "Unavailable"
@@ -92,40 +91,23 @@ def publication_facts(targets: list[dict[str, Any]]) -> dict[str, Any]:
             "book_ids": sorted(books), "variant_ids": sorted(variants)}
 
 
-def production_metrics(targets: list[dict[str, Any]] | None, snapshot: dict[str, Any] | None,
-                       web_source: dict[str, str], delivery_source: dict[str, str]) -> list[dict[str, Any]]:
+def production_metrics(targets: list[dict[str, Any]] | None, web_source: dict[str, str]) -> list[dict[str, Any]]:
+    """The Web catalog's counts; the workbench counts Web manuals only (2026-11-09), not Feishu cloud documents."""
     web = publication_facts(targets or [])
-    documents = (snapshot or {}).get("documents", [])
     manual_keys = ("model", "region")
     variant_keys = (*manual_keys, "lang")
     web_ids = set(web["variant_ids"])
-    known_ids = web_ids | _identities(documents, variant_keys)
-    complete = targets is not None and snapshot is not None
     metrics = []
-    for key, label, ids, valid, sources in (
-        ("manuals", "Online Manuals", set(web["book_ids"]), targets is not None, [web_source]),
-        ("variants", "Language Variants", web_ids, targets is not None, [web_source]),
-        ("targets", "Production Targets", known_ids, complete, [web_source, delivery_source]),
-        ("published", "Published Targets", web_ids, targets is not None, [web_source]),
+    for key, label, ids in (
+        ("manuals", "Online Manuals", set(web["book_ids"])),
+        ("variants", "Language Variants", web_ids),
+        ("published", "Published Targets", web_ids),
     ):
-        metrics.append(metric(key, label, len(ids) if valid else None, unit="目标" if key != "manuals" else "本",
+        metrics.append(metric(key, label, len(ids) if targets is not None else None, unit="目标" if key != "manuals" else "本",
                               state=UNAVAILABLE, rule=" × ".join(manual_keys if key == "manuals" else variant_keys)
-                              + " 去重；忽略版本、格式、重复构建", sources=sources,
-                              scope="发布目录与交付快照的已标语言目标并集" if key == "targets" else "当前发布目录",
-                              limitation="不代表全部在制目标；未标语言整本另列" if key == "targets" else
-                              "发布目录存量；不证明首次发布时间或本次部署成功",
-                              objects=[" / ".join(row) for row in sorted(ids)] if valid else []))
-    for fmt, label in (("word", "Word Deliverables"), ("print", "Print Packages")):
-        ids = {(d["model"], d.get("region", ""), d.get("lang") or "整本（语言未标）")
-               for d in documents if fmt in d["formats"]}
-        metrics.append(metric(fmt, label, len(ids) if snapshot is not None else None, unit="目标交付链接",
-                              rule="model × region × lang/整本 × format 去重；不按版本累加",
-                              sources=[delivery_source], state=UNAVAILABLE,
-                              limitation="链接快照；未重新验证飞书访问权限或包内文件", objects=[" / ".join(i) for i in sorted(ids)]))
-    for fmt in ("IDML", "PDF"):
-        metrics.append(metric(fmt.lower(), f"{fmt} Deliverables", None, unit="已验证文件",
-                              rule=f"需要独立的目标 × 版本 × {fmt} 产物记录", sources=[delivery_source],
-                              limitation="现有印刷包链接未提供逐文件清单，不能拆算为独立交付"))
+                              + " 去重；忽略版本、格式、重复构建", sources=[web_source], scope="当前发布目录",
+                              limitation="发布目录存量；不证明首次发布时间或本次部署成功",
+                              objects=[" / ".join(row) for row in sorted(ids)] if targets is not None else []))
     return metrics
 
 
@@ -180,20 +162,14 @@ def activity_windows(today: dt.date) -> list[dict[str, Any]]:
              "metrics": list(ACTIVITIES)} for days in (7, 30)]
 
 
-def production_context(*, root: Path, assets: Path, manifest: Path, snapshot, registry, today: dt.date,
-                       delivery_stale: list[str]) -> dict[str, Any]:
+def production_context(*, root: Path, manifest: Path, today: dt.date) -> dict[str, Any]:
     targets, built_at = read_publications(manifest)
     web_source = source(manifest, root, date=built_at, business=True)
-    domain = (registry or {}).get("deliverables_feishu", {})
-    delivery_source = source(snapshot_path(assets, domain.get("snapshot", "deliverables_snapshot.json")), root,
-                             date=(snapshot or {}).get("exported_at", ""))
-    overview = production_metrics(targets, snapshot, web_source, delivery_source)
+    overview = production_metrics(targets, web_source)
     asset_rows, relationships, reference = asset_metrics(root, today)
-    alerts = list(delivery_stale)
+    alerts = []
     if targets is None:
         alerts.append("发布目录 Unavailable：不能确认当前网页目标规模。")
-    if snapshot is None:
-        alerts.append("交付快照 Unavailable：不能确认 Word / 印刷交付。")
     for item in asset_rows:
         if item["state"] == UNAVAILABLE:
             alerts.append(f"{item['label']} 来源 Unavailable，当前值未知。")

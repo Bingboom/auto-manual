@@ -106,25 +106,60 @@
     redraw();
   });
 
-  const category = document.getElementById("wp-category");
+  // 覆盖矩阵 (交付物 tab): category chips, search, 只看还有待办, the first rows of each group until 显示全部, and a
+  // row's language versions underneath it. Without JavaScript every row shows and no detail opens.
+  const table = document.querySelector(".wp-table");
+  if (!table) return;
+  const FIRST = 5;
+  const chips = [...document.querySelectorAll(".wp-cat")];
+  const find = document.getElementById("wp-find");
   const open = document.getElementById("wp-gaps");
   const empty = document.getElementById("wp-empty");
-  const groups = [...document.querySelectorAll(".wp-table tbody[data-category]")];
-  if (!category || !open || !groups.length) return;
+  const more = document.getElementById("wp-more");
+  const groups = [...table.querySelectorAll("tbody[data-category]")];
+  const state = { category: "", all: false };
+  const detailOf = (row) => document.getElementById(row.querySelector(".wp-toggle").getAttribute("aria-controls"));
   function filter() {
+    const query = (find ? find.value : "").trim().toLowerCase();
+    const narrowed = Boolean(state.category || query || (open && open.checked));
     let shown = 0;
+    let cut = 0;
     groups.forEach((group) => {
       let rows = 0;
-      group.querySelectorAll("tr[data-open]").forEach((row) => {
-        const visible = (!category.value || group.dataset.category === category.value) && (!open.checked || row.dataset.open === "1");
-        row.hidden = !visible;
-        if (visible) rows += 1;
+      group.querySelectorAll("tr.wp-row").forEach((row) => {
+        const match = (!state.category || group.dataset.category === state.category)
+          && (!open || !open.checked || row.dataset.open === "1")
+          && (!query || row.dataset.find.includes(query));
+        const folded = match && !narrowed && !state.all && Number(row.dataset.rank) > FIRST;
+        row.hidden = !match || folded;
+        if (folded) cut += 1;
+        if (!row.hidden) rows += 1;
+        const detail = detailOf(row);
+        if (detail) detail.hidden = row.hidden || row.querySelector(".wp-toggle").getAttribute("aria-expanded") !== "true";
       });
       group.hidden = rows === 0;
       shown += rows;
     });
     if (empty) empty.hidden = shown !== 0;
+    if (more) more.hidden = cut === 0;
+    chips.forEach((chip) => chip.setAttribute("aria-pressed", String(chip.dataset.cat === state.category)));
   }
-  category.addEventListener("change", filter);
-  open.addEventListener("change", filter);
+  function toggle(row) {
+    const button = row.querySelector(".wp-toggle");
+    const opened = button.getAttribute("aria-expanded") !== "true";
+    button.setAttribute("aria-expanded", String(opened));
+    row.classList.toggle("is-open", opened);
+    const detail = detailOf(row);
+    if (detail) detail.hidden = !opened;
+  }
+  chips.forEach((chip) => chip.addEventListener("click", () => { state.category = chip.dataset.cat; filter(); }));
+  if (find) find.addEventListener("input", filter);
+  if (open) open.addEventListener("change", filter);
+  if (more) more.addEventListener("click", () => { state.all = true; filter(); });
+  table.addEventListener("click", (event) => {
+    if (event.target.closest("a")) return;
+    const row = event.target.closest("tr.wp-row");
+    if (row) toggle(row);
+  });
+  filter();
 })();

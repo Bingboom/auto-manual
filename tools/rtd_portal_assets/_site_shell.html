@@ -101,7 +101,7 @@
     if (!panel) return false;
     show(panel.id);
     const target = document.getElementById(decodeURIComponent(hash.slice(1)));
-    /* A target inside a collapsed section (其他能力, 语言版本明细) opens it. */
+    /* A target inside a collapsed section (其他能力, a 生产证据 row) opens it. */
     for (let node = target; node && node !== panel; node = node.parentElement) {
       if (node.tagName === "DETAILS") node.open = true;
     }

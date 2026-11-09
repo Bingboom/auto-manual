@@ -43,7 +43,7 @@ Status: done
 | 发布目标 | Hello-Docs `docs/publish/publish_manifest.json` | 构建时读 | 随构建 | 无数据 | 系统建设页的发布数字、交付物页的网页手册列、"现在就能用" |
 | 执行进度 | `code-as-doc/dev/manual_revitalization_execution.md` | 构建时读 | 随构建 | 执行台账当前不可读 | 当前重点的进度、阶段门、"当前在做" |
 | 语料规模 | 飞书翻译记忆库（`$FEISHU_TRANSLATION_MEMORY_BASE_TOKEN`） | 快照 `system_workspace_corpus.json`，由 `corpus-export` 导出 | 45 天 | 无数据 | 语言资产 |
-| 交付物飞书链接 | 飞书文档构建表与 Document_key 表（`$FEISHU_PHASE2_*`） | 快照 `deliverables_snapshot.json`，由 `rtd_deliverables.py export` 导出 | 45 天 | 当前不可读 | 交付物页的印刷交付包、Word 云文档两列 |
+| 交付物飞书链接 | 飞书文档构建表与 Document_key 表（`$FEISHU_PHASE2_*`） | 快照 `deliverables_snapshot.json`，由 `rtd_deliverables.py export` 导出 | 45 天 | 当前不可读 | 自 2026-11-09 起不上页面（工作台只统计网页说明书） |
 | 骨架覆盖 | `docs/manifests/skeletons/*/blueprint.yaml` | 构建时读 | 随构建 | 无数据 | 当前重点·骨架拓展 |
 | 技能与钩子 | `.agents/skills`、`.claude/skills`、`.claude/settings.json`、`.githooks/pre-push` | 构建时读 | 随构建 | 不显示这一块 | 技能与钩子 |
 | 能力状态 | `system_workspace.yaml` 各条目及其证据 | 构建时读 | 30 天复核 | 待复核 | 能力地图、生产流程与连接 |

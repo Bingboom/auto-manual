@@ -24,7 +24,7 @@ domains:
     authority: "file:hello-docs:docs/publish/publish_manifest.json"
     read: build
     fallback: 发布清单当前不可读
-    used_by: 说明书工作台的网页手册列与发布规模、说明书工作台·交付物·数据统计、产品矩阵、搜索说明书正文
+    used_by: 说明书工作台的发布规模、覆盖矩阵与语言版本、说明书工作台·交付物·数据统计、产品矩阵、搜索说明书正文
 
   - id: ledger
     label: 执行进度
@@ -51,7 +51,7 @@ domains:
     refresh: python tools/workspace_refresh.py refresh deliverables
     stale_after_days: 3
     fallback: 飞书快照当前不可读
-    used_by: 说明书工作台的印刷交付包、Word 云文档两列
+    used_by: 自 2026-11-09 起不上页面（工作台只统计网页说明书）；仍可刷新，是否停用由操作者决定
 
   - id: web_progress
     label: 网页说明书进度

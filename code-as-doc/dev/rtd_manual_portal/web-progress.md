@@ -7,8 +7,9 @@ Since 2026-10-19 说明书工作台 (`/workspace/deliverables/`) shows Web manua
 to the Web until the catalog is complete enough, so the page opens with progress:
 what is online, per market, and what is still to convert. Since the 2026-11
 redesign that is its own first tab, 进度; the coverage matrix (`web_progress_matrix.html`)
-leads the 交付物 tab, followed by 语言版本明细, collapsed, which lists every language
-version (see [Deliverables page](knowledge-pages.md#deliverables-page)).
+leads the 交付物 tab, and since 2026-11-09 each of its rows opens that model's
+language versions, which replaced the former 语言版本明细 table (see
+[Deliverables page](knowledge-pages.md#deliverables-page)).
 
 Since 2026-10-23 it also shows the manuals still in review, from the 审核稿 table
 of the same Base, and links back to the Feishu rows (operator: 「既要有网页文档
@@ -48,10 +49,20 @@ it, and `_static/web-progress.js` draws the timeline and filters the matrix.
   matrix as 审核中（未上线）. A 审核稿 row whose 市场 is not a known market stays
   in the 审核中 list only. 待转 marks a market with active SKUs and no Web manual
   or draft. A blank cell means the market has no active SKU.
-  Categories come from the model prefix: JE and JHP are 电源主机, JBP is 扩容电池,
-  JS is 太阳能板, and anything else is 配件. A select filters by category, and a
-  checkbox keeps only rows with 待转, 审核中 or 语言未齐.
-- **语言版本明细.** Each language version's 飞书 link opens its row in the 网页文档 table.
+  Since 2026-11-09 the rows are grouped by the 说明书资料库's categories
+  (`regroup`, given `portal_navigation.library_view`'s categories and their
+  models), in the library's order; a model the library does not list falls
+  under 其他说明书. Without the library's categories the model prefix decides:
+  JE and JHP are 电源主机, JBP is 扩容电池, JS is 太阳能板, and anything else is
+  配件. 上线进度's 已上线型号 line counts the same categories. A row shows the
+  model and its 商品简称. Category chips, a search by model or 简称 and a
+  checkbox (只看还有待办: rows with 待转, 审核中 or 语言未齐) filter the rows;
+  without a filter each category shows its first five rows until 显示全部.
+- **语言版本.** A matrix row opens the model's language versions underneath, per
+  market: each language as its display code (en-US …) and short version (a Git
+  package's date, `1027`), linked to its page, and 飞书, which opens its row in
+  the 网页文档 table; then its drafts in review and the markets still 待转.
+  Without JavaScript every row shows and no detail opens.
 
 Markets follow the SKU codes and the Feishu table: EU editions cover the UK and
 US editions cover Canada (the table's 欧英规 and 美规). KR, AU and BR appear once

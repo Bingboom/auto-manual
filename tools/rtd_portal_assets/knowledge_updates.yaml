@@ -25,6 +25,11 @@ schema: hello-docs-knowledge-updates/v1
 
 updates:
   - date: 2026-11-09
+    title: 说明书工作台 · 只统计网页说明书
+    note: 页首改为网页说明书、语言版本、审核中、待转，不再统计飞书云文档的交付；覆盖矩阵按资料库类别分组，点一行看各语言版本；数据统计改为五张卡；资产与证据改为三张资产卡和逐问一行的生产证据
+    page: deliverables
+    evidence: "pr:auto-manual#1704"
+  - date: 2026-11-09
     title: 搜索说明书正文 · 新版页面
     note: 换成和说明书资料库一样的侧栏与中文界面；结果按产品归组，同一产品各市场的说明书放在一起，每份说明书显示一种语言（写成 en-US 这类简写）；可按区域、类别、语言筛选，搜 UPS 不再命中 upside
     page: manual-search
