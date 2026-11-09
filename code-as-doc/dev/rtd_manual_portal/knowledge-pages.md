@@ -433,7 +433,7 @@ library does not link to it.
   each a grid of 产品系列 rows × the 容量档 its products use (the snapshot's
   `capacity_tiers` order: 1度以下 … 5度电, the 项目号 table's values, since
   2026-11-09); a category where no product has a 容量档 (太阳能板, 配件) has one
-  产品 column, and a tiered category gets a 容量未注明 column only when a product
+  产品 column whose cards sit side by side in a grid (`is-flat`), and a tiered category gets a 容量未注明 column only when a product
   lacks one. A 容量档 the manual's stated capacity does not fit (「X度电」 more than a
   quarter off X kWh, or 「X度以下」 at X kWh or more) is a Sphinx warning, so a
   wrong table value shows in the build. A card shows

@@ -55,6 +55,10 @@
 .mx-col {display:flex;align-items:center;padding:10px 12px}
 .mx-cell {display:flex;flex-direction:column;gap:6px;min-width:0;padding:8px}
 .mx-cell + .mx-cell {border-left:1px dashed var(--app-divider)}
+/* A category without 容量档 (one 产品 column): a series row's cards sit side by side, not in a queue. */
+@container mx (min-width: 900px) {
+  .mx-grid.is-flat .mx-cell {display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));align-content:start}
+}
 .matrix .mx-prod {display:flex;flex-direction:column;gap:3px;padding:8px 10px;border-radius:10px;background:#fff;
   border:1px solid var(--app-line);color:var(--app-ink)}
 .matrix .mx-prod:hover {border-color:#e9c7b6}
