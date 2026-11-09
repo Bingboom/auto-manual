@@ -333,7 +333,9 @@ class RtdPortalTests(unittest.TestCase):
         self.assertIn("location.replace(target.href)", data_page)
         self.assertNotIn("system-data-json", data_page)
         workbench = (self.root / "after" / "workspace" / "deliverables" / "index.html").read_text()
-        self.assertIn('<script type="application/json" id="system-data-json">', workbench)
+        # 数据统计 is counted at build time (2026-11 design): five cards, no JSON block for the browser.
+        self.assertNotIn("system-data-json", workbench)
+        self.assertIn('id="sd-coverage-card"', workbench)
         # This tree has no publish manifest: only the publication cards are empty.
         self.assertIn("无数据：本次构建没有可读的发布清单", workbench)
         # 工程规模 moved to the 系统建设 page's 工具与工程规模 tab.

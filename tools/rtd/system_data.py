@@ -1,4 +1,4 @@
-"""Build-time 数据统计 of 说明书工作台: published manuals, model capabilities and assets, filterable by region and model.
+"""Build-time 数据统计 of 说明书工作台: published manuals, model capabilities and assets, as five cards.
 
 The 数据统计 tab of ``/workspace/deliverables/`` reads, at build time and from
 the repository only:
@@ -14,9 +14,9 @@ the repository only:
 - ``data/asset_registry.csv``: category, status, model and region of every
   registered asset.
 
-The rows travel to the browser as one JSON block; ``_static/system-data.js``
-filters them by region and model and draws the charts. Without JavaScript the
-whole-repository counts and the publication table still show. A missing
+The tab shows five cards, all counted here at build time (2026-11 design): language versions by region and by
+language, the newest publications (the full table opens below them; ``_static/system-data.js`` searches and sorts
+it), the capability coverage of the published targets and the asset registry by status and category. A missing
 publish manifest shows the publication and capability cards as 无数据, since
 the published models are unknown; an unreadable or malformed CSV is an
 authoring error that empties the tab with a Sphinx warning.
@@ -25,7 +25,6 @@ The former ``/workspace/data/`` URL redirects to the tab through ``portal.py``.
 from __future__ import annotations
 
 import csv
-import json
 import re
 from collections import Counter
 from pathlib import Path, PurePosixPath
@@ -39,8 +38,6 @@ LANGUAGES_CSV = "model_languages.csv"
 ASSET_REGISTRY_CSV = "asset_registry.csv"
 TARGET_KEY = "Document_key"
 PROJECT = "Project"
-# Asset rows whose model or region is ALL apply to every model or region.
-SHARED = "ALL"
 SWITCH = {"TRUE": 1, "FALSE": 0}
 
 _STATUS_MARK = re.compile(r"^\W+")
@@ -133,17 +130,19 @@ def read_published(manifest: Path) -> tuple[list[dict[str, str]] | None, str]:
     return rows, built_at[:10]
 
 
-def _facets(*groups: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], list[str]]:
-    regions: Counter = Counter()
-    models: set[str] = set()
-    for rows in groups:
-        for row in rows:
-            if row["region"] != SHARED:
-                regions[row["region"]] += 1
-            if row["model"] != SHARED:
-                models.add(row["model"])
-    ordered = sorted(regions.items(), key=lambda item: (-item[1], item[0]))
-    return [{"code": code, "rows": count} for code, count in ordered], sorted(models)
+def _ranked(counter: Counter) -> list[dict[str, Any]]:
+    """Largest first, then by key."""
+    return [{"key": key, "count": count} for key, count in sorted(counter.items(), key=lambda item: (-item[1], item[0]))]
+
+
+def coverage(names: list[str], targets: list[dict[str, Any]] | None) -> list[dict[str, Any]] | None:
+    """Each capability's share of the published targets that support it, largest first; None without targets."""
+    if not targets:
+        return None
+    rows = [{"name": name, "count": sum(target["caps"][index] for target in targets)} for index, name in enumerate(names)]
+    for row in rows:
+        row["share"] = round(100 * row["count"] / len(targets), 1)
+    return sorted(rows, key=lambda row: (-row["count"], names.index(row["name"])))
 
 
 def published_targets(targets: list[dict[str, Any]],
@@ -182,7 +181,8 @@ def summary(published: list[dict[str, str]] | None, targets: list[dict[str, Any]
     }
 
 
-def system_data_context(root: Path, manifest: Path, language_labels: dict[str, str]) -> dict[str, Any]:
+def system_data_context(root: Path, manifest: Path, language_codes: dict[str, str]) -> dict[str, Any]:
+    """The 数据统计 cards; ``language_codes`` maps a language to its display code (en-US …)."""
     paths = Paths(root)
     names, every_target = read_targets(
         paths.data_dir / CAPABILITIES_CSV, paths.data_dir / LANGUAGES_CSV, paths.review_dir,
@@ -190,22 +190,18 @@ def system_data_context(root: Path, manifest: Path, language_labels: dict[str, s
     assets = read_assets(paths.data_dir / ASSET_REGISTRY_CSV)
     published, built_on = read_published(manifest)
     targets = published_targets(every_target, published)
-    regions, models = _facets(published or [], targets or [], assets)
-    registered = {code for target in targets or [] for code in target["langs"]}
-    used_languages = sorted({row["lang"] for row in published or []} | registered)
-    payload = {
-        "capabilities": names,
-        "published": [{key: row[key] for key in ("model", "region", "lang")} for row in published]
-        if published is not None else None,
-        "targets": targets, "assets": assets, "regions": regions, "models": models,
-        "language_labels": {code: language_labels[code] for code in used_languages if code in language_labels},
-    }
+    variants = publication_facts(published)["variant_ids"] if published is not None else None
     return {
         "summary": summary(published, targets, assets),
-        "published": published, "built_on": built_on, "targets": targets,
-        "capability_count": len(names), "regions": regions, "models": models,
-        # Safe inside <script type="application/json">: no "<" survives to close the element.
-        "data_json": json.dumps(payload, ensure_ascii=False, separators=(",", ":")).replace("<", "\\u003c"),
+        "published": published, "built_on": built_on, "targets": targets, "capability_count": len(names),
+        # The five cards. A language version (model × region × language) counts once, as on every page.
+        "by_region": _ranked(Counter(region for _model, region, _lang in variants)) if variants is not None else None,
+        "by_language": _ranked(Counter(lang for _model, _region, lang in variants)) if variants is not None else None,
+        "recent": (published or [])[:6],
+        "coverage": coverage(names, targets),
+        "asset_status": _ranked(Counter(asset["status"] for asset in assets)),
+        "asset_categories": _ranked(Counter(asset["category"] for asset in assets)),
+        "language_codes": dict(language_codes),
     }
 
 
@@ -215,7 +211,7 @@ def system_data_page_context(app, settings: dict[str, Any]) -> dict[str, Any] | 
 
     manifest = Path(app.srcdir).parent / PathSegments.PUBLISH_MANIFEST_JSON
     try:
-        return system_data_context(repo_root(), manifest, dict(settings.get("language_labels") or {}))
+        return system_data_context(repo_root(), manifest, dict(settings.get("language_display_codes") or {}))
     except (ValueError, OSError, KeyError, csv.Error) as exc:
         sphinx_logging.getLogger(__name__).warning("Workbench statistics show no data: %s", exc)
         return None

@@ -307,6 +307,18 @@ def page_context(app, pagename, templatename, context, doctree):
     return "manual_portal.html"
 
 
+def workbench_catalog(app, settings: dict, products: list[dict]) -> dict:
+    """The 说明书工作台's view of the catalog: the library's categories, each model's 商品简称, language codes."""
+    from tools.rtd.portal_navigation import OTHER
+
+    library = library_view(settings, products, getattr(app, "_rtd_product_catalog", None))
+    groups = [(item["title"], {product["model"] for line in item["series"] for product in line["products"]})
+              for item in library["categories"]]
+    return {"groups": groups, "other": OTHER["title"],
+            "shorts": {product["model"]: product["short_name"] for product in products if product.get("short_name")},
+            "codes": dict(settings.get("language_display_codes") or {})}
+
+
 def workspace_content(app) -> Path:
     """Read business-owned content from Hello-Docs, outside mirrored tools."""
     configured = app.config.rtd_knowledge_dir
@@ -388,7 +400,8 @@ def collect_workspace_pages(app):
     matrix = cached_matrix_context(app)
     settings, products = portal_data(app)
     names = {(product["model"], product["region"]): product.get("name") or "" for product in products}
-    deliverables = deliverables_page_context(app, ASSETS, names, list(settings.get("language_labels") or {}))
+    deliverables = deliverables_page_context(app, ASSETS, names, list(settings.get("language_labels") or {}),
+                                             **workbench_catalog(app, settings, products))
     from tools.rtd.product_learning import PAGE, TEMPLATE, learning_context
 
     learning = learning_context(ASSETS, settings, products)

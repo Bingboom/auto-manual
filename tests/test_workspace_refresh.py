@@ -160,8 +160,8 @@ class ReleaseTests(unittest.TestCase):
         with TemporaryDirectory() as tmp:
             root = Path(tmp)
             expected = inventory(root)
-            html = (b'<span data-workspace-source="deliverables" data-snapshot-sha256=""></span>'
-                    b'<span data-workspace-source="corpus" data-snapshot-sha256=""></span>'
+            # The workbench page shows the corpus and Web-progress snapshots, not the Feishu delivery one.
+            html = (b'<span data-workspace-source="corpus" data-snapshot-sha256=""></span>'
                     b'<span data-workspace-source="web_progress" data-snapshot-sha256=""></span>')
             receipt = {"workspace_revision": "target", "workspace_sources": expected,
                        "files": {verify.ROUTE: hashlib.sha256(html).hexdigest()}}

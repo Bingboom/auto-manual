@@ -143,16 +143,18 @@ same private site.
 ## Deliverables page
 
 `/workspace/deliverables/` (说明书工作台) is the production navigation surface.
-The stable URL is retained. Since the 2026-11 redesign the title carries one chip
-per snapshot (交付链接, 语料, 网页进度: its date, and its state when not 有效) and a
-link to 系统建设「数据来源」. Below it the four delivery totals (网页说明书 with the
-books per region, 语言版本 with the published languages, Word 云文档 and 印刷交付包,
-which carry the 交付快照's 待复核) share one card, then the **常用入口** strip: the
-structured production data (产品与规格, 文案与变量, 翻译与术语, 插图资产) and the
-Git-native manual sources (冻结发布源, 评审稿, 来源声明), from
-`_work_links.html`. Three tabs follow: **进度** (网页说明书进度, open by default),
-**交付物** (the coverage matrix, 语言版本明细 and [数据统计](#数据统计)) and
-**资产与证据** (the production evidence and 快照与校验); see
+The stable URL is retained. The page counts Web manuals only (operator, 2026-11-09:
+「飞书云文档的交付不纳入统计了 现在只统计网页文档的」). Since the 2026-11 redesign the title
+carries one chip per shown snapshot (语料, 网页进度: its date, and its state when not
+有效; `workspace_freshness.SHOWN`) and a link to 系统建设「数据来源」. Below it four
+Web-manual totals share one card: 网页说明书 with the books per region and 语言版本
+with the published languages (the publish manifest), 审核中 and 待转 (the 网页进度
+snapshot, dated). Then the **常用入口** strip: the structured production data
+(产品与规格, 文案与变量, 翻译与术语, 插图资产) and the Git-native manual sources
+(冻结发布源, 评审稿, 来源声明), from `_work_links.html`. Three tabs follow: **进度**
+(网页说明书进度, open by default), **交付物** (the coverage matrix and
+[数据统计](#数据统计)) and **资产与证据** (the asset cards, the evidence table and
+快照与校验, see [生产与复用证据](../workspace_production_evidence.md)); see
 [Page layout](manual-center.md#page-layout).
 
 The work map **Content Authority → Source Binding → Assembly / IR → Human +
@@ -172,8 +174,8 @@ Each fact has one page. This page owns what is published or in production
 now, so the 网页说明书 key metric carries the books per region (欧规 n · 美规 n,
 largest first, labelled by the system contract's `focus.regions`); 系统建设
 shows no publication count and links here. 系统建设 owns the corpus and
-skeleton totals: the 语料库 and 模板与骨架 cards and the asset ledger keep their
-maintenance links and adoption status and point to 系统建设「语言资产」
+skeleton totals: the 语料库 and 模板与骨架 cards keep their maintenance links and
+adoption status and point to 系统建设「语言资产」
 (`#tab-corpus`) and 「骨架扩展」 (`#lane-skeletons`). The snapshot chips keep the
 `data-workspace-source` freshness marks that Workspace Data Verify reads;
 资产与证据「快照与校验」 (`#snapshots`) lists each snapshot's date, state, hash and
@@ -197,17 +199,24 @@ reuses the workspace shell. The delivery totals link to `#deliverables`, the
 
 The 进度 and 交付物 tabs show Web manuals only (2026-10-19). 进度 is
 网页说明书进度, described on [its own page](web-progress.md); 交付物 opens with its
-coverage matrix, then 语言版本明细, collapsed. That list groups the language versions by model, one row per region.
-Each chip is one language and its version, linked to its page on this site.
-Two selects filter by model and by region. On a phone each region becomes a
-card. Product names come from the manual center; a model the manual center
-does not list shows its code only.
+coverage matrix (step 8 of the 2026-11 redesign, `web_progress_matrix.html`): one line
+per converted model, its code and 商品简称, grouped by the 说明书资料库's categories
+(`web_progress.regroup` over `portal_navigation.library_view`, drafts-only models
+first). A row opens its language versions underneath: per market, each language as
+its display code (en-US …) and short version (a Git package's date, `1027`), linked
+to its page, with its 网页文档 row in Feishu; then its review versions and the
+markets still 待转. This replaces the former 语言版本明细 table. Category chips, a
+model or 简称 search and 只看还有待办 filter the rows; without a filter each group
+shows its first five rows until 显示全部 (`web-progress.js`; without JavaScript
+every row shows and no detail opens). Product names come from the manual center.
 
-The Feishu snapshot below no longer shows on this tab. It still feeds the
-page summary's Word 云文档 and 印刷交付包 counts and 资产与证据. Its links stay in
-the snapshot: the operator chose on 2026-09-25 to list them (「直接放飞书链接」),
-the site can be made public at any time, and only https Feishu or Lark links
-are accepted.
+The Feishu snapshot below feeds no page since 2026-11-09: the workbench no
+longer counts the Word 云文档 and 印刷交付包 deliveries, nor shows the snapshot's
+date or alerts on its age. It stays refreshable until the operator retires it,
+and Workspace Data Verify still compares its hash in the deployment receipt but
+no longer looks for its chip on the page. Its links stay in the snapshot: the
+operator chose on 2026-09-25 to list them (「直接放飞书链接」), the site can be
+made public at any time, and only https Feishu or Lark links are accepted.
 
 ### Refreshing the Feishu snapshot
 
@@ -234,25 +243,21 @@ fails the export instead of silently dropping a format.
 
 ### Failure behaviour
 
-- Without a publish manifest, 网页说明书进度 and 语言版本明细 say
-  发布清单当前不可读.
-- An unreadable or unsound snapshot empties the Word 云文档 and 印刷交付包 counts
-  only, with a Sphinx warning.
-- A snapshot older than the `deliverables_feishu` domain's `stale_after_days`
-  in `source_registry.yaml` shows 待复核, and
-  `check` warns about it.
+- Without a publish manifest, 网页说明书进度 says 发布清单当前不可读 and the
+  coverage matrix is left out; with an empty one the matrix says
+  发布清单里还没有网页说明书.
+- The Feishu snapshot is not read for the page, so an unsound or old one
+  changes nothing there; `check` still reports it.
 - The page always renders. Every knowledge page lists it first under 说明书生产,
   and the 知识库首页 links to it from its 说明书生产 group too.
 
 ### 数据统计
 
 数据统计 (`#statistics`, the last section of the 交付物 tab) holds what the 系统数据 page
-counted: what the repository holds about the manuals, narrowed by region and
-model. `production_statistics.html` renders it from the context that
-`tools/rtd/system_data.py` builds once per build; the page receives it as
-`statistics`, a separate key because this page's own `regions` and `models`
-have another shape. The tab loads `_static/system-data.js` and
-`_static/system-data.css`.
+counted, as five cards counted at build time (step 8 of the 2026-11 redesign):
+`tools/rtd/system_data.py` builds the context once per build and the page receives
+it as `statistics`. Per model, the coverage matrix above is the place to look, so
+the tab has no region or model filter.
 
 - **Rows are read at build time.** `tools/rtd/system_data.py` reads
   `docs/publish/publish_manifest.json` (one row per published Web route, as the
@@ -261,47 +266,32 @@ have another shape. The tab loads `_static/system-data.js` and
   `docs/_review/<model>/<region>` and `data/asset_registry.csv` (category,
   status without its leading mark, model, region). Nothing is snapshotted or
   committed for the tab; a data change appears on the next RTD build.
-- **Cards:** headline counts (models with Web manuals and their regions,
-  languages, targets with review pages, asset registry entries and their 成品
-  share; 网页说明书 and 语言版本 stay in the key-metric row above the tabs);
-  发布 (a model × language matrix, per-language and per-region bars and the
-  sortable, searchable publication table, all counted in 语言版本, one table row
-  per route); 机型能力 (the target × capability matrix and each capability's
-  coverage); 素材 (registry entries by status, category and model).
-- **Published models only.** The 机型能力 cards list the targets of models
+- **Cards:** 按区域 and 按语言 (语言版本 per region and per language, largest
+  first, languages as display codes, the eight largest drawn and the rest listed),
+  最近发布 (the six newest routes; the full table of every route opens under the
+  cards, searchable and sortable by `_static/system-data.js`), 能力覆盖率 (each
+  capability's share of the published targets, `coverage`) and 素材登记 (registry
+  entries by status, 隔离 and 缺失 marked, and by category). The bars are plain
+  elements; no chart is drawn in the browser and no JSON block is embedded.
+- **Published models only.** The capability coverage counts the targets of models
   with at least one published 说明书 (`published_targets`, which reads the
   models off `production_evidence.publication_facts`): every region of such a
-  model stays, and an unpublished model drops out. On the 2026-10-12 manifest
-  29 of 37 targets (9 of 16 models) remain. The 产品矩阵 page shows a model's
-  switches only in its product's detail, so it too lists published models only.
+  model stays, and an unpublished model drops out. The 产品矩阵 page shows a
+  model's switches in its product's detail; the coverage card links there.
 - **Asset counts are registry entries.** 素材登记 counts the rows of
   `data/asset_registry.csv`, not deduplicated artwork; the 资产与证据 tab's
   Artwork Assets stays Not tracked yet.
-- **Filters are client-side.** The rows travel as one JSON block
-  (`<` escaped) and `_static/system-data.js` filters and counts them. A region
-  dropdown, a model dropdown and clicks on a model (matrix rows, capability
-  rows, asset bars, table rows) or a region bar narrow every card; clicking the
-  same item again clears it. The selection is kept in the URL query
-  (`?region=EU&model=JE-1000F#statistics`). An asset whose model or region is
-  `ALL` counts under every model or region. The headline counts are distinct
-  models, regions and languages, so a repeated route counts once; 语言版本 and
-  说明书 stay with the key-metric row, which takes them from
-  `production_evidence.publication_facts`, the counting every page shares (see
-  [System workspace](system-workspace.md)).
-  The script fills only the tab's own counts. The tab is hidden at load, so
-  its charts first draw at a 260px fallback; a `ResizeObserver` on the panel
-  redraws them when the tab opens or its width changes.
-- **Without JavaScript** the whole-repository counts and the publication table
-  still render; the charts show a note instead.
-- **Failure:** without a readable publish manifest the 发布 cards show 无数据,
-  and so do the 机型能力 cards (无数据：发布清单当前不可读，无法确定已发布型号), since
-  the published models are unknown; the other cards still render. A CSV
-  missing a column, a capability value other than `TRUE`/`FALSE`, a target key
-  that is not `<model>_<region>`, or an asset row without status, model or
-  region leaves the tab with 机型能力表或素材登记表不可读，构建日志有告警 and the
-  Sphinx warning `Workbench statistics show no data`; the rest of the page
-  renders. `tests/test_rtd_system_data.py` fails first. The counting functions
-  have Node tests in `tests/system_data_ui.test.mjs`.
+- **Without JavaScript** every card and the full table (newest first) still render;
+  only the search box stays hidden.
+- **Failure:** without a readable publish manifest the publication cards and the
+  capability coverage show 无数据 (the published models are unknown) and the
+  素材登记 card still renders; with an empty one, 发布清单里还没有网页说明书. A CSV missing a column,
+  a capability value other than `TRUE`/`FALSE`, a target key that is not
+  `<model>_<region>`, or an asset row without status, model or region leaves the
+  tab with 机型能力表或素材登记表不可读，构建日志有告警 and the Sphinx warning
+  `Workbench statistics show no data`; the rest of the page renders.
+  `tests/test_rtd_system_data.py` fails first; the table script has Node tests in
+  `tests/system_data_ui.test.mjs`.
 
 ## Design system page
 
@@ -393,6 +383,8 @@ serve a minimal `moved_page.html` compatibility redirect. It uses
 `location.replace` to open `../deliverables/index.html#statistics`, preserving
 the complete query string (including `region`, `model`, encoding and repeated
 parameters). Old fragments are replaced by `#statistics` so the tab opens.
+Since 2026-11-09 the tab has no filters, so a carried `region` or `model`
+selects nothing; the redirect still passes the query string unchanged.
 The visible target link is updated before navigation; without JavaScript it
 remains a clickable, unfiltered fallback. The redirect has no site shell or
 data dependency and is built even if statistics are unavailable. The manuals
