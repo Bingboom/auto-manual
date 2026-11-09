@@ -53,6 +53,11 @@ def file_refs(registry: Registry) -> list[tuple[str, str, str]]:
     return refs
 
 
+def _flag_problems(domain: dict[str, Any], where: str) -> list[str]:
+    """A domain's optional flags: on_page (default true) marks a domain no page reads any more."""
+    return [] if isinstance(domain.get("on_page", True), bool) else [f"{where}: on_page must be true or false"]
+
+
 def registry_problems(data: object) -> list[str]:
     """Why the registry cannot be used; empty when it is sound."""
     if not isinstance(data, dict):
@@ -95,6 +100,7 @@ def registry_problems(data: object) -> list[str]:
                 problems.append(f"{where}: a snapshot needs stale_after_days")
         elif "snapshot" in domain or "refresh" in domain:
             problems.append(f"{where}: only snapshot domains name a snapshot or a refresh command")
+        problems += _flag_problems(domain, where)
     missing = [domain_id for domain_id in PAGE_DOMAINS if domain_id not in seen]
     if missing:
         problems.append(f"domains the pages read are not registered: {missing}")
@@ -130,6 +136,35 @@ def stale_reason(domain: dict[str, Any], exported: dt.date, today: dt.date) -> s
     return ""
 
 
+def _short(ref: str) -> str:
+    """An authority as the sources list names it: a file's path, a Feishu table without its variables."""
+    match = _FILE_REF.fullmatch(ref)
+    return match.group(2) if match else ref.split("（$", 1)[0].strip()
+
+
+def _command(refresh: str) -> str:
+    """A refresh command as the snapshot row shows it (the full command opens under the row)."""
+    words = refresh.split()
+    if words[:1] == ["python"]:
+        words = words[1:]
+    if words[:1] == ["-m"] and len(words) > 1:
+        return " ".join([words[1].rsplit(".", 1)[-1], *words[2:]])
+    if words and words[0].endswith(".py") and len(words) > 1:
+        return " ".join(words[1:])
+    return refresh
+
+
+def _state(domain: dict[str, Any], exported: dt.date | None, stale: list[str], on_page: bool) -> str:
+    """A snapshot's state on the sources list: 不上页面, 无快照, 待复核 or 有效; build-time reads have none."""
+    if domain["read"] != "snapshot":
+        return ""
+    if not on_page:
+        return "不上页面"
+    if exported is None:
+        return "无快照"
+    return "待复核" if stale else "有效"
+
+
 def sources_view(registry: Registry, *, assets: Path, today: dt.date,
                  link: Callable[[str], dict[str, str]]) -> list[dict[str, Any]]:
     """Rows for the system page's 数据来源 table, in registry order.
@@ -146,6 +181,7 @@ def sources_view(registry: Registry, *, assets: Path, today: dt.date,
             sources.append({**link(ref), "label": match.group(2)} if match
                            else {"label": ref, "href": "", "title": ref})
         stale: list[str] = []
+        exported = None
         if domain["read"] == "snapshot":
             how = f"{READ_LABELS['snapshot']} {domain['snapshot']}"
             exported = snapshot_date(assets, domain)
@@ -156,9 +192,17 @@ def sources_view(registry: Registry, *, assets: Path, today: dt.date,
         else:
             how = READ_LABELS["build"]
             freshness = f"{domain['stale_after_days']} 天复核" if domain.get("stale_after_days") else "随构建"
+        on_page = bool(domain.get("on_page", True))
         rows.append({
             "id": domain["id"], "label": domain["label"], "sources": sources, "how": how,
             "refresh": domain.get("refresh") or "", "freshness": freshness, "stale": stale,
             "fallback": domain["fallback"], "used_by": domain["used_by"],
+            # 来源与演变 (2026-11 design, step 9) lists snapshots apart from build-time reads, each with a short
+            # name for its authority; a domain no page reads (on_page: false) is marked rather than flagged stale.
+            "read": domain["read"], "snapshot": domain.get("snapshot") or "", "limit": domain.get("stale_after_days"),
+            "exported": exported.isoformat() if exported else "", "on_page": on_page,
+            "state": _state(domain, exported, stale, on_page),
+            "short": [_short(ref) for ref in authorities(domain)],
+            "command": _command(str(domain.get("refresh") or "")),
         })
     return rows

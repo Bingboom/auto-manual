@@ -19,14 +19,23 @@ function harness(missing = false) {
   return {nodes, panels};
 }
 
-test('selecting a work stage reveals only its linked panel and updates accessible state', () => {
+test('no panel is open until a work stage is chosen; it then reveals only its linked panel', () => {
   const {nodes, panels} = harness();
-  assert.deepEqual(panels.map(p => p.hidden), [false, true, true, true]);
+  assert.deepEqual(panels.map(p => p.hidden), [true, true, true, true]);
+  assert.deepEqual(nodes.map(n => n.attrs['aria-pressed']), ['false', 'false', 'false', 'false']);
   nodes[2].click();
   assert.deepEqual(panels.map(p => p.hidden), [true, true, false, true]);
   assert.deepEqual(nodes.map(n => n.attrs['aria-pressed']), ['false', 'false', 'true', 'false']);
   nodes[0].click();
   assert.deepEqual(panels.map(p => p.hidden), [false, true, true, true]);
+});
+
+test('choosing the open work stage again closes its panel', () => {
+  const {nodes, panels} = harness();
+  nodes[1].click();
+  nodes[1].click();
+  assert.deepEqual(panels.map(p => p.hidden), [true, true, true, true]);
+  assert.equal(nodes[1].attrs['aria-pressed'], 'false');
 });
 
 test('incomplete navigation falls back to visible links without hiding panels', () => {

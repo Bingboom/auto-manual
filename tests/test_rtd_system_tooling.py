@@ -56,11 +56,11 @@ class SkillFactsTests(unittest.TestCase):
         self.assertEqual([(g["title"], [r["id"] for r in g["rows"]]) for g in view["groups"]],
                          [("网页化", ["alpha"]), ("IR", []), ("其他技能", ["Bad_Name", "beta", "delta", "gamma"])])
         self.assertEqual(view["groups"][0]["rows"][0]["summary"], "Alpha runs the thing, e.g. a build.")
-        tiles = {tile["label"]: tile for tile in view["tiles"]}
-        self.assertEqual((tiles["技能"]["value"], tiles["技能"]["sub"]), ("5", "Codex 4 · Claude 2"))
+        # The section opens with these counts (2026-11 design, step 9).
+        self.assertEqual((view["skills"], view["agents"]), (5, "Codex 4 · Claude 2"))
         # Only alpha is listed in AGENTS.md, and delta's Claude copy is not in the README.
         self.assertEqual(sorted(s["id"] for s in skills if s["unregistered"]), ["Bad_Name", "beta", "delta", "gamma"])
-        self.assertEqual(tiles["未登记的技能"]["value"], "4")
+        self.assertEqual(view["unregistered"], 4)
 
 
 class HookFactsTests(unittest.TestCase):
@@ -90,7 +90,8 @@ class HookFactsTests(unittest.TestCase):
         view = tooling.tooling_view({}, [], hooks, {})
         self.assertEqual([(h["trigger"], h["mode_label"]) for h in view["hooks"]],
                          [("PostToolUse · Bash", "提醒"), ("pre-push", "提醒"), ("pre-push", "拦截")])
-        self.assertEqual({t["label"]: t["value"] for t in view["tiles"]}["没有测试的钩子"], "2")
+        self.assertEqual((view["hooks_total"], view["untested"]), (len(view["hooks"]), 2))
+
 
     def test_findings_grade_contract_errors_above_data_gaps(self) -> None:
         skills = [{"id": "alpha", "description": "d", "agents": ["Codex"], "unregistered": ["Codex"],
