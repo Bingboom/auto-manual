@@ -1,12 +1,13 @@
-"""产品分类: each published model's 产品类别, 产品系列 and 商品简称, and the 通用指南 beside them.
+"""产品分类: each published model's 产品类别, 产品系列 and 商品简称, and the guides beside them.
 
 The 说明书资料库 and 产品矩阵 pages group products by 类别, then 系列, the way the
 发布文档管理 Base classifies them. Since 2026-11-09 a product is classified once,
 on its row of the 项目号 table (single-select 产品类别 and 产品系列); each 网页文档
 row names its 项目号 and shows the two values as lookups. A 网页文档 row's
-文档类型 says whether it is a product's manual (产品说明书, also when blank) or a
-通用指南, a guide that belongs to no one product and lists the models it covers
-in 适用产品. The RTD build cannot reach Feishu, so both pages read a repository
+文档类型 says whether it is a product's manual (产品说明书, also when blank), a
+通用指南 (a guide that belongs to no one product) or a 快速指南 (a product's
+separate quick guide); a guide lists the models it covers in 适用产品, which a
+快速指南 must fill with its product. The RTD build cannot reach Feishu, so both pages read a repository
 snapshot, ``product_catalog.json`` (the ``product_catalog`` domain of
 ``source_registry.yaml``). ``refresh`` rewrites it read-only:
 
@@ -17,8 +18,8 @@ snapshot, ``product_catalog.json`` (the ``product_catalog`` domain of
   after the first one (a colour edition sold with the first model's manual, such
   as JE-1000F-SG on the JE-1000F US pages) also records ``pages_of`` and the
   routes it shares, unless it has rows of its own;
-- ``guides``: every 通用指南 by its document code (the 型号 cell, which is also the
-  first segment of its route): its 商品简称, routes and 适用产品.
+- ``guides``: every 通用指南 and 快速指南 by its document code (the 型号 cell, which
+  is also the first segment of its route): its kind, 商品简称, routes and 适用产品.
 
 A manual row without a 类别 or 系列 is skipped and reported; rows that disagree
 about a model or a guide, a 型号 and 商品简称 cell of different lengths, or a guide
@@ -50,7 +51,8 @@ PROJECT_TABLE = "项目号"
 MODEL_FIELD, SHORT_FIELD, LINK_FIELD = "型号", "商品简称", "超链接"
 CATEGORY_FIELD, SERIES_FIELD = "产品类别", "产品系列"
 DOC_TYPE_FIELD, APPLIES_FIELD = "文档类型", "适用产品"
-MANUAL, GUIDE = "产品说明书", "通用指南"
+MANUAL, GUIDE, QUICK = "产品说明书", "通用指南", "快速指南"
+KINDS = (MANUAL, GUIDE, QUICK)
 
 _SPLIT = re.compile(r"[,，、;；\n]+")
 _MODEL = re.compile(r"[A-Za-z0-9][A-Za-z0-9._-]*")
@@ -103,31 +105,34 @@ def _row(record: str, row: dict[str, Any], categories: list[str],
 def doc_type(record: str, row: dict[str, Any]) -> str:
     """A row's 文档类型; a blank cell is a product's manual."""
     kind = text_of(row.get(DOC_TYPE_FIELD)) or MANUAL
-    if kind not in (MANUAL, GUIDE):
-        raise CatalogError(f"{record}: 文档类型 {kind!r} is neither {MANUAL} nor {GUIDE}")
+    if kind not in KINDS:
+        raise CatalogError(f"{record}: 文档类型 {kind!r} is not one of {'/'.join(KINDS)}")
     return kind
 
 
-def _guide(record: str, row: dict[str, Any]) -> tuple[str, str, str, list[str]]:
-    """A 通用指南 row's document code, 商品简称, route and the models its 适用产品 cell lists."""
+def _guide(record: str, row: dict[str, Any], kind: str) -> tuple[str, str, str, list[str]]:
+    """A guide row's document code, 商品简称, route and the models its 适用产品 cell lists; a 快速指南 needs them."""
     codes, shorts = cell_list(row.get(MODEL_FIELD)), cell_list(row.get(SHORT_FIELD))
     if len(codes) != 1 or not _MODEL.fullmatch(codes[0]) or len(shorts) != 1:
-        raise CatalogError(f"{record}: a {GUIDE} needs one document code in 型号 and one 商品简称")
+        raise CatalogError(f"{record}: a {kind} needs one document code in 型号 and one 商品简称")
     route = route_of(row.get(LINK_FIELD))
     if not route or route.split("/")[0] != codes[0]:
-        raise CatalogError(f"{record}: the {GUIDE} {codes[0]} must link to its own route, not {route or 'nothing'}")
+        raise CatalogError(f"{record}: the {kind} {codes[0]} must link to its own route, not {route or 'nothing'}")
     applies = list(dict.fromkeys(cell_list(row.get(APPLIES_FIELD))))
     bad = [model for model in applies if not _MODEL.fullmatch(model)]
     if bad:
         raise CatalogError(f"{record}: 适用产品 {bad} is not a model code")
+    if kind == QUICK and not applies:
+        raise CatalogError(f"{record}: the {QUICK} {codes[0]} must name its product in 适用产品")
     return codes[0], shorts[0], route, applies
 
 
-def _add_guide(guides: dict[str, dict[str, Any]], record: str, row: dict[str, Any]) -> None:
-    code, short, route, applies = _guide(record, row)
-    entry = guides.setdefault(code, {"short": short, "routes": set(), "applies_to": []})
-    if entry["short"] != short:
-        raise CatalogError(f"{code}: rows disagree on its 商品简称 ({entry['short']} and {short})")
+def _add_guide(guides: dict[str, dict[str, Any]], record: str, row: dict[str, Any], kind: str) -> None:
+    code, short, route, applies = _guide(record, row, kind)
+    entry = guides.setdefault(code, {"kind": kind, "short": short, "routes": set(), "applies_to": []})
+    if (entry["kind"], entry["short"]) != (kind, short):
+        raise CatalogError(f"{code}: rows disagree on its 文档类型 or 商品简称 "
+                           f"({entry['kind']}/{entry['short']} and {kind}/{short})")
     entry["routes"].add(route)
     entry["applies_to"] = list(dict.fromkeys([*entry["applies_to"], *applies]))
 
@@ -142,8 +147,9 @@ def catalog_from_rows(fields: Iterable[object], rows: Iterable[tuple[str, dict[s
     guides: dict[str, dict[str, Any]] = {}
     skipped: list[str] = []
     for record, row in rows:
-        if doc_type(record, row) == GUIDE:
-            _add_guide(guides, record, row)
+        kind = doc_type(record, row)
+        if kind != MANUAL:
+            _add_guide(guides, record, row, kind)
             continue
         parsed = _row(record, row, category_order, series_order)
         if isinstance(parsed, str):
@@ -227,14 +233,15 @@ def catalog_problems(data: object) -> list[str]:
         problems += _model_problems(str(model), entry, order, models)
     guides = data.get("guides")
     if not isinstance(guides, dict):
-        return problems + found + ["guides must map each 通用指南 to its 商品简称, routes and 适用产品"]
+        return problems + found + ["guides must map each guide to its kind, 商品简称, routes and 适用产品"]
     for code, entry in guides.items():
         problems += _guide_problems(str(code), entry, models)
     return problems + found
 
 
 def _guide_problems(code: str, entry: object, models: dict[str, Any]) -> list[str]:
-    if not _MODEL.fullmatch(code) or not isinstance(entry, dict) or set(entry) != {"short", "routes", "applies_to"}:
+    if not _MODEL.fullmatch(code) or not isinstance(entry, dict) \
+            or set(entry) != {"kind", "short", "routes", "applies_to"} or entry["kind"] not in (GUIDE, QUICK):
         return [f"guides.{code} is not a guide entry"]
     if code in models:
         return [f"guides.{code} is also a model"]
@@ -244,8 +251,9 @@ def _guide_problems(code: str, entry: object, models: dict[str, Any]) -> list[st
     if not isinstance(routes, list) or not routes or not all(
             isinstance(r, str) and _ROUTE.fullmatch(r) and r.split("/")[0] == code for r in routes):
         return [f"guides.{code} needs its own routes"]
-    if not isinstance(applies, list) or not all(isinstance(m, str) and _MODEL.fullmatch(m) for m in applies):
-        return [f"guides.{code}: 适用产品 must list model codes"]
+    if not isinstance(applies, list) or not all(isinstance(m, str) and _MODEL.fullmatch(m) for m in applies) \
+            or (entry["kind"] == QUICK and not applies):
+        return [f"guides.{code}: 适用产品 must list model codes (a {QUICK} at least its product)"]
     return []
 
 
@@ -269,15 +277,16 @@ def short_names(catalog: dict[str, Any] | None) -> dict[str, str]:
 
 
 def classify(products: list[dict[str, Any]], catalog: dict[str, Any] | None) -> list[str]:
-    """Give each portal product its ``product_category`` and ``product_series``, mark the 通用指南, link each
-    product to the guides of its market that list it in 适用产品, and return the models left out."""
+    """Give each portal product its ``product_category`` and ``product_series``, mark each guide with its kind
+    (通用指南 or 快速指南), link each product to the guides of its market that list it in 适用产品, and return the
+    models left out."""
     models, guides = (catalog or {}).get("models", {}), (catalog or {}).get("guides", {})
     missing = []
     for product in products:
         entry = models.get(product["model"])
         product["product_category"] = entry["category"] if entry else ""
         product["product_series"] = entry["series"] if entry else ""
-        product["guide"] = product["model"] in guides
+        product["guide"] = guides[product["model"]]["kind"] if product["model"] in guides else ""
         product["related_guides"] = []
         if entry is None and not product["guide"] and product["model"] not in missing:
             missing.append(product["model"])
@@ -285,8 +294,9 @@ def classify(products: list[dict[str, Any]], catalog: dict[str, Any] | None) -> 
         covered = set(guides[guide["model"]]["applies_to"])
         for product in products:
             if product["model"] in covered and product["region"] == guide["region"]:
-                product["related_guides"].append({"model": guide["model"], "short": guides[guide["model"]]["short"],
-                                                  "url": guide["url"]})
+                entry = guides[guide["model"]]
+                product["related_guides"].append({"model": guide["model"], "kind": entry["kind"],
+                                                  "short": entry["short"], "url": guide["url"]})
     return missing
 
 

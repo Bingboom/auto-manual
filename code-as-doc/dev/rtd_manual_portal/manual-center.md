@@ -142,7 +142,8 @@ rejects a non-lower-case, duplicate, `guide` or `other` id. The snapshot's 通�
 (a guide that belongs to no one product, such as the JP solar connection guide)
 follow the categories in a 通用指南 group (`#cat-guide`, a book icon), and a card
 whose model a guide of the same market lists in 适用产品 adds a line
-「相关指南：<guide>」 linking to it. Cards inside a series sort by
+「相关指南：<guide>」 linking to it. A 快速指南 (a product's separate quick guide)
+has no card; its product's card links it as 「快速指南」. Cards inside a series sort by
 the number in the model code (JE-100C before JE-1000F), and search also matches a
 card's series and category. A published model the snapshot does not list appears
 under 「其他说明书」 with a Sphinx warning (that group and its chip leave a region where it has no manual); add its 网页文档 row and refresh. Without

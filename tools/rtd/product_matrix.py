@@ -20,7 +20,7 @@
 The page has a tab per 产品类别 with a grid of 产品系列 × capacity tier (one column where no product states a
 capacity) and, per product, a detail that opens under its 系列 row: every model with its 商品简称, figures and a
 link per market, the capability switches, the partner products in both directions, and the 通用指南 whose 适用产品
-lists one of its models (a guide is no product and has no card of its own). A pairing shows only
+lists one of its models, and its own 快速指南 (a guide is no product and has no card of its own). A pairing shows only
 while its text still appears in the manual it cites; anything dropped, and any published model the snapshot does
 not list (shown under 其他), is a Sphinx warning. ``lines``, ``accessories`` and ``assign`` stay for the 产品知识
 page (``positioning_groups``), and an ``evidence`` assignment whose quote has left its manual still warns here.
@@ -538,7 +538,7 @@ def _detail_rows(product: dict[str, Any], keys: list[str], config: dict[str, Any
 
 def related_guides(product: dict[str, Any], guides: dict[str, dict[str, Any]], guide_models: dict[str, dict[str, Any]],
                    config: dict[str, Any], languages: dict[str, str]) -> list[dict[str, Any]]:
-    """The 通用指南 whose 适用产品 lists one of the product's models, with a link per published market."""
+    """The guides whose 适用产品 lists one of the product's models (its 快速指南 first), a link per published market."""
     models = {row["model"] for row in product["rows"]}
     related = []
     for code, guide in guides.items():
@@ -549,8 +549,9 @@ def related_guides(product: dict[str, Any], guides: dict[str, dict[str, Any]], g
             label = _market(region, config)["label"]
             docs.append({"label": label, "doc": page["doc"],
                          "title": f"{label}：{'、'.join(languages.get(c, c) for c in page['langs'])}"})
-        related.append({"short": guide["short"], "docs": docs})
-    return related
+        quick = guide["kind"] == "快速指南"
+        related.append({"label": "快速指南" if quick else guide["short"], "quick": quick, "docs": docs})
+    return sorted(related, key=lambda item: not item["quick"])
 
 
 def product_detail(product: dict[str, Any], capabilities: dict[str, dict[str, Any]],

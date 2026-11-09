@@ -29,9 +29,9 @@ def row(models, shorts, category="便携电源", series="标准", route="", kind
             "文档类型": kind, "适用产品": applies}
 
 
-def guide(code="JS-GUIDE", short="太阳能连接指南", route="JS-GUIDE/JP/ja", applies="JE-1000F, PTB101"):
+def guide(code="JS-GUIDE", short="太阳能连接指南", route="JS-GUIDE/JP/ja", applies="JE-1000F, PTB101", kind="通用指南"):
     # lark-cli returns a single select as a one-item list; a guide's lookups are empty.
-    return row(code, short, category=None, series=None, route=route, kind=["通用指南"], applies=applies)
+    return row(code, short, category=None, series=None, route=route, kind=[kind], applies=applies)
 
 
 ROWS = [
@@ -97,11 +97,19 @@ class CatalogFromRowsTests(unittest.TestCase):
         rows = [*ROWS, ("rec8", guide(route="JS-GUIDE/US/en", applies="PTB101, JE-2000D"))]
         snapshot, skipped = catalog_from_rows(FIELDS, rows, today=TODAY)
         self.assertEqual(snapshot["guides"], {"JS-GUIDE": {
-            "short": "太阳能连接指南", "routes": ["JS-GUIDE/JP/ja", "JS-GUIDE/US/en"],
+            "kind": "通用指南", "short": "太阳能连接指南", "routes": ["JS-GUIDE/JP/ja", "JS-GUIDE/US/en"],
             "applies_to": ["JE-1000F", "PTB101", "JE-2000D"]}})
         # Without 产品类别 or 产品系列 a guide is neither a model nor a skipped row.
         self.assertNotIn("JS-GUIDE", snapshot["models"])
         self.assertEqual(skipped, ["rec5 (JE-NEW): no 产品类别 or 产品系列"])
+        self.assertEqual(catalog_problems(snapshot), [])
+
+    def test_a_quick_guide_is_its_products_second_document(self):
+        rows = [*ROWS, ("rec8", guide("JE-1000F-QG", "E1000V2", "JE-1000F-QG/US/en", "JE-1000F", kind="快速指南"))]
+        snapshot, _ = catalog_from_rows(FIELDS, rows, today=TODAY)
+        self.assertEqual(snapshot["guides"]["JE-1000F-QG"], {"kind": "快速指南", "short": "E1000V2",
+                                                            "routes": ["JE-1000F-QG/US/en"], "applies_to": ["JE-1000F"]})
+        self.assertNotIn("JE-1000F-QG", snapshot["models"])
         self.assertEqual(catalog_problems(snapshot), [])
 
     def test_broken_guides_fail_the_refresh(self):
@@ -110,8 +118,9 @@ class CatalogFromRowsTests(unittest.TestCase):
             "must link to its own route": [("r", guide(route="JE-1000F/JP/ja"))],
             "must link to its own route, not nothing": [("r", guide(route=""))],
             "适用产品 \\['JE 1'\\] is not a model code": [("r", guide(applies="JE 1"))],
-            "rows disagree on its 商品简称": [("r", guide()), ("s", guide(short="别名", route="JS-GUIDE/US/en"))],
-            "neither 产品说明书 nor 通用指南": [("r", row("JE-1", "E1", kind="快速指南"))],
+            "rows disagree on its 文档类型 or 商品简称": [("r", guide()), ("s", guide(short="别名", route="JS-GUIDE/US/en"))],
+            "is not one of 产品说明书/通用指南/快速指南": [("r", row("JE-1", "E1", kind="安装指南"))],
+            "must name its product in 适用产品": [("r", guide(applies="", kind="快速指南"))],
             "is both a model and a 通用指南": [("r", row("JS-GUIDE", "E1", route="JS-GUIDE/US/en")), ("s", guide())],
         }
         for message, rows in broken.items():
@@ -148,11 +157,18 @@ class SnapshotTests(unittest.TestCase):
             "models must": {**good, "models": {}},
             "guides must": {key: value for key, value in good.items() if key != "guides"},
             "not a guide entry": {**good, "guides": {"JS-X": {"short": "X"}}},
-            "also a model": {**good, "guides": {"JE-1000F": {"short": "X", "routes": ["JE-1000F/JP/ja"], "applies_to": []}}},
-            "own routes": {**good, "guides": {"JS-X": {"short": "X", "routes": ["JS-Y/JP/ja"], "applies_to": []}}},
-            "适用产品 must": {**good, "guides": {"JS-X": {"short": "X", "routes": ["JS-X/JP/ja"], "applies_to": ["a b"]}}},
-            "guides.JS-X needs a 商品简称": {**good, "guides": {"JS-X": {"short": "", "routes": ["JS-X/JP/ja"],
-                                                                       "applies_to": []}}},
+            "guides.JS-K is not a guide entry": {**good, "guides": {"JS-K": {
+                "kind": "安装指南", "short": "X", "routes": ["JS-K/JP/ja"], "applies_to": []}}},
+            "also a model": {**good, "guides": {"JE-1000F": {
+                "kind": "通用指南", "short": "X", "routes": ["JE-1000F/JP/ja"], "applies_to": []}}},
+            "own routes": {**good, "guides": {"JS-X": {
+                "kind": "通用指南", "short": "X", "routes": ["JS-Y/JP/ja"], "applies_to": []}}},
+            "适用产品 must": {**good, "guides": {"JS-X": {
+                "kind": "通用指南", "short": "X", "routes": ["JS-X/JP/ja"], "applies_to": ["a b"]}}},
+            "at least its product": {**good, "guides": {"JS-X": {
+                "kind": "快速指南", "short": "X", "routes": ["JS-X/JP/ja"], "applies_to": []}}},
+            "guides.JS-X needs a 商品简称": {**good, "guides": {"JS-X": {
+                "kind": "通用指南", "short": "", "routes": ["JS-X/JP/ja"], "applies_to": []}}},
         }
         for message, data in cases.items():
             with self.subTest(message=message):
@@ -178,8 +194,9 @@ class SnapshotTests(unittest.TestCase):
         self.assertEqual((products[0]["product_category"], products[0]["product_series"]), ("便携电源", "标准"))
         self.assertEqual(products[1]["product_category"], "")
         # The guide is no product and links from the covered models of its own market only.
-        self.assertEqual((products[3]["guide"], products[3]["product_category"]), (True, ""))
-        self.assertEqual(products[0]["related_guides"], [{"model": "JS-GUIDE", "short": "太阳能连接指南", "url": "g"}])
+        self.assertEqual((products[3]["guide"], products[3]["product_category"]), ("通用指南", ""))
+        self.assertEqual(products[0]["related_guides"],
+                         [{"model": "JS-GUIDE", "kind": "通用指南", "short": "太阳能连接指南", "url": "g"}])
         self.assertEqual(products[4]["related_guides"], [])
         self.assertEqual(short_names(snapshot)["JS-GUIDE"], "太阳能连接指南")
         self.assertEqual(classify([{"model": "JE-1000F", "region": "EU"}], None), ["JE-1000F"])

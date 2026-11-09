@@ -82,22 +82,27 @@ class LibraryViewTests(unittest.TestCase):
         items = guide_products()
         view = library_view(SETTINGS, items, GUIDE_CATALOG)
         self.assertEqual([c["id"] for c in view["categories"]], ["portable", "guide"])
+        # The quick guide has no card of its own: it is JE-1000F's second document.
         self.assertEqual([p["model"] for p in view["categories"][-1]["series"][0]["products"]], ["JS-GUIDE"])
         by_key = {(p["model"], p["region"]): p for p in items}
-        self.assertEqual(by_key[("JE-1000F", "JP")]["related_guides"],
-                         [{"model": "JS-GUIDE", "short": "太阳能连接指南", "url": "JS-GUIDE/JP/md/manual.html"}])
+        self.assertEqual(by_key[("JE-1000F", "JP")]["related_guides"], [
+            {"model": "JS-GUIDE", "kind": "通用指南", "short": "太阳能连接指南", "url": "JS-GUIDE/JP/md/manual.html"},
+            {"model": "JE-1000F-QG", "kind": "快速指南", "short": "E1000V2", "url": "JE-1000F-QG/JP/md/manual.html"}])
         # Only the guide's own market links to it; a covered model elsewhere does not.
         self.assertEqual(by_key[("JE-1000F", "EU")]["related_guides"], [])
         self.assertEqual(by_key[("JE-100C", "JP")]["related_guides"], [])
 
 
-GUIDE_CATALOG = {**CATALOG, "guides": {"JS-GUIDE": {"short": "太阳能连接指南", "routes": ["JS-GUIDE/JP/ja"],
-                                                 "applies_to": ["JE-1000F", "PTB101"]}}}
+GUIDE_CATALOG = {**CATALOG, "guides": {
+    "JS-GUIDE": {"kind": "通用指南", "short": "太阳能连接指南", "routes": ["JS-GUIDE/JP/ja"],
+                 "applies_to": ["JE-1000F", "PTB101"]},
+    "JE-1000F-QG": {"kind": "快速指南", "short": "E1000V2", "routes": ["JE-1000F-QG/JP/ja"], "applies_to": ["JE-1000F"]}}}
 
 
 def guide_products():
     items = [product("JE-1000F", "JP", "Explorer 1000"), product("JE-1000F", "EU", "Explorer 1000"),
-             product("JE-100C", "JP", "Explorer 100D"), product("JS-GUIDE", "JP", "Solar Generator 接続ガイド")]
+             product("JE-100C", "JP", "Explorer 100D"), product("JS-GUIDE", "JP", "Solar Generator 接続ガイド"),
+             product("JE-1000F-QG", "JP", "Explorer 1000 クイックガイド")]
     classify(items, GUIDE_CATALOG)
     return items
 
@@ -141,7 +146,9 @@ class LibraryTemplateTests(unittest.TestCase):
         guide = page.select_one("section.family#cat-guide")
         self.assertEqual([card["data-region"] for card in guide.select(".card")], ["JP"])
         links = [(a["href"], a.get_text()) for a in page.select(".card .related-guides a")]
-        self.assertEqual(links, [("JS-GUIDE/JP/md/manual.html", "太阳能连接指南")])
+        self.assertEqual(links, [("JE-1000F-QG/JP/md/manual.html", "快速指南"),
+                                 ("JS-GUIDE/JP/md/manual.html", "太阳能连接指南")])
+        self.assertIsNone(page.select_one('.card[data-search*="je-1000f-qg"]'))
 
 
 if __name__ == "__main__":

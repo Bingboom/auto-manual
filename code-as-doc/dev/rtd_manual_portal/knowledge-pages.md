@@ -497,10 +497,13 @@ python -m tools.rtd.product_catalog check
   read by the pages, whose tiers still come from the manuals). Each 网页文档 row
   names its 项目号; its 产品类别, 产品系列 and 容量档 columns are lookups of that row.
   The old per-row single select stays as 产品系列（迁移备份）, unread.
-- **文档类型** (网页文档 single select): 产品说明书 (also when blank) or 通用指南. A
-  通用指南 belongs to no one product: its 型号 is its document code, the first
-  segment of its route (`JS-CONNECTION-GUIDE`), it has no 项目号, and 适用产品 (text)
-  lists the model codes it covers, older codes such as `PTB101` included.
+- **文档类型** (网页文档 single select): 产品说明书 (also when blank), 通用指南 or
+  快速指南. A guide's 型号 is its document code, the first segment of its route,
+  and it has no 项目号; 适用产品 (text) lists the model codes it covers. A 通用指南
+  belongs to no one product (`JS-CONNECTION-GUIDE`, older codes such as `PTB101`
+  included); a 快速指南 is one product's separate quick guide and names that
+  product (`JA-CK01A-BK-QG` → `JA-CK01A-BK`; the full 取扱説明書 38-0001-000777 and
+  the クイックガイド 38-0001-000845 are two documents).
 - `categories`: the 项目号 table's 产品类别 options in their order, each with the
   产品系列 options its models use, in that field's order. Reorder options in
   Feishu to reorder both pages.
@@ -509,15 +512,16 @@ python -m tools.rtd.product_catalog check
   (`JE-1000F, JE-1000F-SG` ↔ `E1000V2,E1000V2沙金色`). A model listed after the
   first one, without rows of its own, also records `pages_of` and the routes it
   shares.
-- `guides`: each 通用指南 by its code, with its 商品简称, routes and `applies_to`
-  (the 适用产品 models, in order). The 说明书资料库 shows the guides in a 通用指南
-  group after the categories, and a product card whose model a guide of the same
-  market covers says 「相关指南：太阳能连接指南」; the 产品矩阵 lists the guide under
-  the products it covers.
+- `guides`: each guide by its code, with its `kind`, 商品简称, routes and
+  `applies_to` (the 适用产品 models, in order). The 说明书资料库 shows the 通用指南
+  in a group after the categories, and a product card whose model a 通用指南 of
+  the same market covers says 「相关指南：太阳能连接指南」; a 快速指南 has no card
+  of its own, and its product's card links it as 「快速指南」. The 产品矩阵 lists both
+  under the products they cover, the 快速指南 first.
 - A manual row without a 类别 or 系列 is skipped and printed; rows that disagree
   about a model or a guide, a 型号 and 商品简称 cell of different lengths, a link
   to another model's route, a guide whose link does not open its own route, a
-  文档类型 other than the two, or a value outside the options fail the refresh and
+  文档类型 other than the three, a 快速指南 without 适用产品, or a value outside the options fail the refresh and
   keep the previous snapshot. Only 型号, 商品简称, 产品类别, 产品系列, 超链接, 文档类型
   and 适用产品 are read; the 项目号 only joins the tables inside Feishu and, like a
   SKU, never reaches the snapshot, which sits in a public repository.
@@ -530,8 +534,9 @@ python -m tools.rtd.product_catalog check
   moved classification to the 项目号 table (60 projects) and approved the field
   changes above, written with a read-back of both tables; the refreshed snapshot
   has 67 models (便携储能 46 / 家庭备电 3 / 加电包 5 / 太阳能板 4 / 配件 9) and one
-  guide. The 网页文档 table then had no row for JA-CK01A-BK-QG (208 rows), so its
-  published quick guide shows under 其他说明书 until a row is added.
+  guide. The 网页文档 table then had no row for JA-CK01A-BK-QG (208 rows); the
+  operator chose to record it as a 快速指南 of JA-CK01A-BK, and until that row is
+  added its published quick guide shows under 其他说明书.
 
 ## 产品知识
 

@@ -6,8 +6,9 @@ products the same way; this module never infers a group. Categories and series
 keep the table's order, and each category takes the anchor id and icon that
 ``settings.json`` names under ``catalog_categories`` (a category it does not
 name gets ``category-<n>`` and a plain icon). A 通用指南 belongs to no one
-product, so the guides follow the categories in a group of their own; each
-product a guide lists in 适用产品 also links to it (``classify``). A published
+product, so the 通用指南 follow the categories in a group of their own; a 快速指南
+has no card, since it is its product's second document. Each product a guide
+lists in 适用产品 links to it (``classify``). A published
 model the snapshot does not list lands in a visible 其他说明书 group, never
 disappears. Without a usable snapshot the page falls back to the product types
 in ``categories``.
@@ -70,8 +71,8 @@ def library_view(settings: dict, products: list[dict], catalog: dict | None) -> 
 
 
 def _after_categories(products: list[dict]) -> list[dict]:
-    """The 通用指南, then the published models the snapshot does not classify."""
-    guides = [p for p in products if p.get("guide")]
+    """The 通用指南, then the published models the snapshot does not classify; a 快速指南 has no card."""
+    guides = [p for p in products if p.get("guide") == "通用指南"]
     unclassified = [p for p in products if not p.get("product_category") and not p.get("guide")]
     return [_category(group["id"], group["title"], group["icon"], [("", members)])
             for group, members in ((GUIDES, guides), (OTHER, unclassified)) if members]

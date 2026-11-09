@@ -274,21 +274,26 @@ class MatrixContextTests(unittest.TestCase):
 
     def test_a_general_guide_is_no_product_and_shows_under_the_products_it_covers(self):
         manifest = json.loads(self.manifest.read_text(encoding="utf-8"))
-        manifest["targets"].append(target("JS-G", "JP", "ja"))
+        manifest["targets"] += [target("JS-G", "JP", "ja"), target("JE-A-QG", "US", "en")]
         self.manifest.write_text(json.dumps(manifest), encoding="utf-8")
-        folder = self.web / "JS-G/JP/ja/md"
-        folder.mkdir(parents=True)
-        (folder / "manual_ja.md").write_text("# 接続ガイド\nJE-A\n", encoding="utf-8")
-        snapshot = {**CATALOG, "guides": {"JS-G": {"short": "太阳能连接指南", "routes": ["JS-G/JP/ja"],
-                                                    "applies_to": ["JE-B", "PTB101"]}}}
+        for route in ("JS-G/JP/ja/md", "JE-A-QG/US/en/md"):
+            folder = self.web / route
+            folder.mkdir(parents=True)
+            (folder / f"manual_{route.split('/')[2]}.md").write_text("# Guide\nJE-A\n", encoding="utf-8")
+        snapshot = {**CATALOG, "guides": {
+            "JS-G": {"kind": "通用指南", "short": "太阳能连接指南", "routes": ["JS-G/JP/ja"], "applies_to": ["JE-B", "PTB101"]},
+            "JE-A-QG": {"kind": "快速指南", "short": "A500", "routes": ["JE-A-QG/US/en"], "applies_to": ["JE-A"]}}}
         context = self.context(snapshot)
         self.assertEqual(context["facts"], {"products": 4, "models": 6})
-        self.assertFalse(any(message.startswith("JS-G") for message in context["warnings"]))
+        self.assertFalse(any(message.startswith(("JS-G", "JE-A-QG")) for message in context["warnings"]))
         products = self.products(context)
         self.assertNotIn("JS-G", products)
-        # A500's second market model JE-B is covered, so A500 links the guide; HP3600 is not.
-        self.assertEqual(products["A500"]["detail"]["guides"], [{"short": "太阳能连接指南", "docs": [
-            {"label": "日规", "doc": "JS-G/JP/ja/md/manual_ja", "title": "日规：日本語"}]}])
+        # A500's own quick guide comes first; its second market model JE-B is covered by the solar guide.
+        self.assertEqual(products["A500"]["detail"]["guides"], [
+            {"label": "快速指南", "quick": True, "docs": [
+                {"label": "美规", "doc": "JE-A-QG/US/en/md/manual_en", "title": "美规：English"}]},
+            {"label": "太阳能连接指南", "quick": False, "docs": [
+                {"label": "日规", "doc": "JS-G/JP/ja/md/manual_ja", "title": "日规：日本語"}]}])
         self.assertEqual(products["HP3600"]["detail"]["guides"], [])
         template = Environment(loader=FileSystemLoader(ASSETS)).get_template("product_matrix.html")
         page = BeautifulSoup(template.render(**context, pathto=lambda name, *args: name, site_nav={}), "html.parser")

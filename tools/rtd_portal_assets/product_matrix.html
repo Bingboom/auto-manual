@@ -50,8 +50,8 @@
     </section>
     {%- endif %}
     {%- if info.guides %}
-    <section class="mx-dbox"><h3>相关指南<small>通用指南的适用产品写到它</small></h3>
-      <div class="mx-fchips">{% for guide in info.guides %}{% for doc in guide.docs %}<a class="mx-pair" href="{{ pathto(doc.doc) }}" title="{{ doc.title|e }}">{{ guide.short|e }}<b>{{ doc.label|e }}</b></a>{% endfor %}{% endfor %}</div>
+    <section class="mx-dbox"><h3>相关指南<small>快速指南与写到它的通用指南</small></h3>
+      <div class="mx-fchips">{% for guide in info.guides %}{% for doc in guide.docs %}<a class="mx-pair" href="{{ pathto(doc.doc) }}" title="{{ doc.title|e }}">{{ guide.label|e }}<b>{{ doc.label|e }}</b></a>{% endfor %}{% endfor %}</div>
     </section>
     {%- endif %}
   </div>
