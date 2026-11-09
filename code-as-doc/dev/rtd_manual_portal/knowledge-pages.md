@@ -25,7 +25,7 @@ what has built up and can be reused, what is being done now, and where to go:
   - 通用章节: the shared chapter templates under `docs/templates/page_shared`,
     counted per page and language, with the warranty, troubleshooting, charging
     and storage chapters named.
-  - 产品知识: the topics in `product_knowledge.json`, with a growth line drawn
+  - 产品知识: the topics in Hello-Docs `docs/knowledge/product-knowledge/topics.json`, with a growth line drawn
     from each topic's `added` date; the line is left out while any topic lacks
     one.
 
@@ -506,13 +506,13 @@ python -m tools.rtd.product_catalog check
 
 产品知识（产品案例是其末节）、市场与政策都与说明书共用同一个 RTD 项目（2026-10-06 定为同项目发布）。2026-10-13 起 Hello-Docs 转为私有仓库，站点改由 Read the Docs for Business 托管于 `https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest/`，访问需要登录并具备项目权限；页面路径须带 `/en/latest/` 前缀，例如 `/en/latest/products/knowledge.html`。知识库可以跳转到说明书，说明书首页、侧栏和顶部不提供知识库入口；分享知识页直达链接给有权限的人。
 
-`/products/knowledge.html` 提供围绕已发布产品的最少必要技术知识，按标签、型号和区域筛选。通用功能原理、常见误区与阅读提示维护在 `tools/rtd_portal_assets/product_knowledge.json`。每项写入 `added`（首次发布日期，YYYY-MM-DD）；知识库首页的增长线读取它，有一项缺少时只显示主题数。适用产品取产品矩阵模块的定位层（`tools/rtd/product_matrix.py` 的 `positioning_groups`）：`settings.json` 的 `navigation` 分组（说明书资料库已改按产品分类分组，`navigation` 只留作这层定位）加上 `product_matrix.json` 的产品线与 `assign`（备电线的说明书证据句在产品矩阵构建时核对，原文不再出现只给出警告），导航未收录的已发布型号因此也有对应知识，型号选择只列出至少有一项知识的产品。`product_matrix.json` 缺失或格式有误时，知识页只用 `navigation` 分组并给出 Sphinx 警告，条目引用的其他分组（如 `homebackup`）按空组处理并在警告中列出，构建不中断。每项的说明书入口只从当前冻结发布目录取得，优先现有英文页，缺少英文时使用实际可用语言，不拼接或猜测型号路径。区域选择与说明书资料库共用浏览器 `localStorage` 的 `hello-docs.manual-portal.region`（按区域名，如 UK 仍显示为 UK、筛选共用的 EU 说明书）：任一页选过的区域，两页下次都从它打开；“全部区域”只在本页，记在 `hello-docs.manual-portal.region-all`，直到在任一页再选具体区域；词条链接为显示被隐藏词条而清除的区域不记住；没有有效记录（首次访问、存储被清除或禁用、记录已不是选项）时用配置的默认区域。覆盖测试见 `tests/product_knowledge_ui.test.mjs`。
+`/products/knowledge.html` 提供围绕已发布产品的最少必要技术知识，按标签、型号和区域筛选。内容属于业务面：通用功能原理、常见误区与阅读提示（标签与词条）在 Hello-Docs 的 `docs/knowledge/product-knowledge/topics.json`，词条之后的实际产品案例在同目录的 `cases.json`（两者都是 `schema_version: 1`，2026-11-09 从 auto-manual 迁出）；在 Hello-Docs 内容分支修改，只走 `docs/knowledge/**` 的内容 PR，不复制回 auto-manual。工程面的 `tools/rtd/product_learning.py` 读取这两个文件，模板、校验与 `circuit-*.svg` 电路图留在 auto-manual；本地预览用 `rtd_knowledge_dir` 指向内容目录。内容目录缺失时页面为空、不发警告（与市场政策一致，auto-manual 自身不带业务内容）；文件格式或版本错误、条目引用不存在的标签、分组或电路图时构建失败；导航或产品矩阵列出、却没有任何词条覆盖的型号在构建时以警告列出。测试只用 `tests/fixtures/rtd_product_knowledge/` 的合成样本（真实 id 与结构、占位文字）。每项写入 `added`（首次发布日期，YYYY-MM-DD）；知识库首页的增长线读取它，有一项缺少时只显示主题数。适用产品取产品矩阵模块的定位层（`tools/rtd/product_matrix.py` 的 `positioning_groups`）：`settings.json` 的 `navigation` 分组（说明书资料库已改按产品分类分组，`navigation` 只留作这层定位）加上 `product_matrix.json` 的产品线与 `assign`（备电线的说明书证据句在产品矩阵构建时核对，原文不再出现只给出警告），导航未收录的已发布型号因此也有对应知识，型号选择只列出至少有一项知识的产品。`product_matrix.json` 缺失或格式有误时，知识页只用 `navigation` 分组并给出 Sphinx 警告，条目引用的其他分组（如 `homebackup`）按空组处理并在警告中列出，构建不中断。每项的说明书入口只从当前冻结发布目录取得，优先现有英文页，缺少英文时使用实际可用语言，不拼接或猜测型号路径。区域选择与说明书资料库共用浏览器 `localStorage` 的 `hello-docs.manual-portal.region`（按区域名，如 UK 仍显示为 UK、筛选共用的 EU 说明书）：任一页选过的区域，两页下次都从它打开；“全部区域”只在本页，记在 `hello-docs.manual-portal.region-all`，直到在任一页再选具体区域；词条链接为显示被隐藏词条而清除的区域不记住；没有有效记录（首次访问、存储被清除或禁用、记录已不是选项）时用配置的默认区域。覆盖测试见 `tests/product_knowledge_ui.test.mjs`。
 
 通用知识不构成某型号内部电路、芯片或跨产品兼容性的认定，也不把教程中的算例当作产品实测。标签和型号过滤只控制阅读范围；技术值、操作和兼容条件仍以对应地区说明书为准。未启用 JavaScript 时全部知识条目与来源链接可读。工程面的模板、交互和课程词条与业务面的 `docs/knowledge/**` 个人分享文章分别维护。
 
 页面（2026-11 改版）先给两张图，再给词条卡：“先看懂能量怎样流动”把来源 → 充电转换 → 电池 → 逆变/直流转换 → 设备画成一行，扩容挂在电池下，旁路走在下方，每个环节标出对应主题的条数，点击即按该主题筛选并跳到列表；“按主题找”每个主题一张卡，列出其下词条的短名（标题全角冒号前的部分），点短名直达词条，词条被筛选隐藏时先清除主题与型号，仍不可见再清除区域。手机宽度下主题卡只留标题与条数。词条卡把示意与原理、产品应用、易混淆点和来源放在一起：一般示意由 `diagram_nodes` 生成 HTML 步骤链；`_knowledge_diagram.html` 里手绘的 SVG 示意占更宽的图列；写了 `circuit` 的词条（须是 `_static` 中已有的 `circuit-*.svg`，否则构建报错）把电路图放在正文上方，按标注可读的尺寸显示，可点开原图。每卡列出当前区域的说明书，超过 8 本时其余收进“+N”；区域选“全部”时说明书名后标出区域。示意图不代表某型号内部电路。
 
-AC 教学电路图（H 桥与 LC 滤波、插座并联、联锁切换）只用于逆变器、多口合计与 UPS 三条讲电路的词条。低压升压、隔离、体二极管与接地等未展开，不能当成实际产品原理图。JHP-3600C US 的备电案例在词条之后，按四个问题排列，每题旁边是对应的电路图或说明书中的关键数值；来源链接与知识条目一样从冻结发布目录取得，目录中没有 JHP-3600C/US 时整段不显示；分相、旁路、ATS/MTS 与级联条件按说明书描述。
+AC 教学电路图（H 桥与 LC 滤波、插座并联、联锁切换）只用于逆变器、多口合计与 UPS 三条讲电路的词条。低压升压、隔离、体二极管与接地等未展开，不能当成实际产品原理图。实际产品案例（当前为 JHP-3600C US 的备电案例）在词条之后，由 `cases.json` 逐题给出标题、电路图（`circuit`：文件、替代文字与图注）或说明书关键数值（`stats`）及正文段落；来源链接与知识条目一样从冻结发布目录取得，目录中没有案例所引型号与区域的说明书时整段不显示；分相、旁路、ATS/MTS 与级联条件按说明书描述。尚未发布的说明书（例如审核稿阶段的日规）内容在其发布后再写入案例。
 
 ## 市场与政策
 
@@ -520,4 +520,4 @@ AC 教学电路图（H 桥与 LC 滤波、插座并联、联锁切换）只用�
 
 工程面的 `tools/rtd/market_policy.py` 读取业务内容目录下的 `market-policy/records.json`（`schema_version: 1`）。默认业务目录为 Hello-Docs 的 `docs/knowledge/`，本地预览可用 `rtd_knowledge_dir` 指向临时目录。该快照及原始截图不放入 auto-manual；当前未接入飞书多维表，也不在线读取飞书。
 
-记录保留 `id`、国家/地区、标题、时间、`verified`/`unverified`/`demand` 状态、标签、变化、原理、影响和核对日期；可选 `boundary` 记录必要的适用条件，不填时页面不显示该段；`sources` 保存出处类型、标题、HTTPS 链接和核对范围，但页面只展示标题与链接。已核实记录至少需要一条官方出处，`demand` 只代表业务需求依据，其第一段显示“需求变化”。未核实线索和业务需求可用非空 `evidence_note` 保存录入依据，该字段不在页面显示，也不能代替已核实政策的官方出处。`knowledge` 关联产品知识锚点。锚点不是 `tools/rtd_portal_assets/product_knowledge.json` 中现有的条目 id 时，构建给出注明记录与锚点的 Sphinx 警告，但不因此失败。可选 `flow`、`image` 和 `image_alt` 不在页面渲染；源图只参与本地审阅校验，构建不复制到网站，本次业务快照不上传原始截图。缺少快照显示空页；记录无效则构建失败。未启用 JavaScript 时全部记录与参考链接仍可读。
+记录保留 `id`、国家/地区、标题、时间、`verified`/`unverified`/`demand` 状态、标签、变化、原理、影响和核对日期；可选 `boundary` 记录必要的适用条件，不填时页面不显示该段；`sources` 保存出处类型、标题、HTTPS 链接和核对范围，但页面只展示标题与链接。已核实记录至少需要一条官方出处，`demand` 只代表业务需求依据，其第一段显示“需求变化”。未核实线索和业务需求可用非空 `evidence_note` 保存录入依据，该字段不在页面显示，也不能代替已核实政策的官方出处。`knowledge` 关联产品知识锚点。锚点不是 Hello-Docs `docs/knowledge/product-knowledge/topics.json` 中现有的条目 id 时，构建给出注明记录与锚点的 Sphinx 警告，但不因此失败。可选 `flow`、`image` 和 `image_alt` 不在页面渲染；源图只参与本地审阅校验，构建不复制到网站，本次业务快照不上传原始截图。缺少快照显示空页；记录无效则构建失败。未启用 JavaScript 时全部记录与参考链接仍可读。

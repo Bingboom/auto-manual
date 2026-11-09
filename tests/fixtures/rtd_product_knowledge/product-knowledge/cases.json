@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "backup-example",
+      "model": "JHP-3600C",
+      "region": "US",
+      "eyebrow": "案例 · 测试",
+      "title": "测试案例",
+      "source_label": "测试说明书（美规 · 英文）",
+      "intro": "。测试导语。",
+      "lessons": [
+        {
+          "title": "测试问题一",
+          "circuit": {
+            "file": "circuit-transfer.svg",
+            "alt": "测试图",
+            "caption": "测试图注"
+          },
+          "paragraphs": [
+            "测试正文一。"
+          ]
+        },
+        {
+          "title": "测试问题二",
+          "stats": [
+            {
+              "label": "甲",
+              "value": "1 W",
+              "note": "乙"
+            }
+          ],
+          "paragraphs": [
+            "测试正文二。",
+            "测试正文三。"
+          ]
+        }
+      ]
+    }
+  ]
+}

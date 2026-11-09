@@ -1,5 +1,6 @@
 """Keep policy evidence and its verification status tied to the same snapshot."""
 import json
+import shutil
 import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -13,6 +14,9 @@ from tools.rtd import portal
 from tools.rtd.market_policy import (
     PAGE, THEMES, group_by_theme, load_themes, market_context, missing_knowledge_anchors,
 )
+
+# Synthetic stand-in for the Hello-Docs product knowledge the knowledge pages also read.
+KNOWLEDGE = Path(__file__).parent / "fixtures" / "rtd_product_knowledge"
 
 
 class MarketPolicyTests(unittest.TestCase):
@@ -79,8 +83,9 @@ class MarketPolicyTests(unittest.TestCase):
 
     def test_unknown_knowledge_anchor_warns_and_the_page_still_renders(self):
         settings = json.loads((portal.ASSETS / "settings.json").read_text(encoding="utf-8"))
-        topics = json.loads((portal.ASSETS / "product_knowledge.json").read_text(encoding="utf-8"))["topics"]
+        topics = json.loads((KNOWLEDGE / "product-knowledge" / "topics.json").read_text(encoding="utf-8"))["topics"]
         with TemporaryDirectory() as folder:
+            shutil.copytree(KNOWLEDGE / "product-knowledge", Path(folder) / "product-knowledge")
             self.snapshot(folder, sources=[{"kind": "official", "url": "https://example.org/policy"}], tags=["说明书语言"],
                           knowledge=[{"id": topics[0]["id"], "title": "Known"},
                                      {"id": "retired-topic", "title": "Renamed"}])
@@ -102,6 +107,7 @@ class MarketPolicyTests(unittest.TestCase):
     def test_a_record_no_theme_claims_warns_and_shows_under_other(self):
         settings = json.loads((portal.ASSETS / "settings.json").read_text(encoding="utf-8"))
         with TemporaryDirectory() as folder:
+            shutil.copytree(KNOWLEDGE / "product-knowledge", Path(folder) / "product-knowledge")
             self.snapshot(folder, sources=[{"kind": "official", "url": "https://example.org/policy"}])
             app = SimpleNamespace(
                 config=SimpleNamespace(rtd_site_role="combined", rtd_knowledge_dir=folder),

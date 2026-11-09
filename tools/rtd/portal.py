@@ -389,11 +389,15 @@ def collect_workspace_pages(app):
     settings, products = portal_data(app)
     names = {(product["model"], product["region"]): product.get("name") or "" for product in products}
     deliverables = deliverables_page_context(app, ASSETS, names, list(settings.get("language_labels") or {}))
+    from sphinx.util import logging as sphinx_logging
     from tools.rtd.product_learning import PAGE, TEMPLATE, learning_context
 
-    learning = learning_context(ASSETS, settings, products)
+    learning = learning_context(workspace_content(app), ASSETS, settings, products)
+    # Like market policy, missing content is an empty page: auto-manual itself carries no business content.
+    if not learning["content_missing"] and learning["uncovered_models"]:
+        sphinx_logging.getLogger(__name__).warning(
+            "Product knowledge has no topic for these placed models: %s", ", ".join(learning["uncovered_models"]))
     yield PAGE, {**learning, "site_nav": site_nav(app)}, TEMPLATE
-    from sphinx.util import logging as sphinx_logging
     from tools.rtd.market_policy import (
         PAGE as MARKET_PAGE, TEMPLATE as MARKET_TEMPLATE, market_context, missing_knowledge_anchors,
     )
@@ -422,7 +426,7 @@ def collect_workspace_pages(app):
         # 现在: reusable assets (each from the source that owns it), then 当前主线 and 正在做 from 系统建设;
         # then 去哪里, 定位与价值 and the newest 5 updates.
         "now": now_view(system, load_home_copy(ASSETS)),
-        "assets": reusable_assets(system, ASSETS, repo_root()),
+        "assets": reusable_assets(system, workspace_content(app), repo_root()),
         "value": value_page_context(load_value(ASSETS)),
         "updates": updates_view(entries, built),
     }, "workspace_portal.html"

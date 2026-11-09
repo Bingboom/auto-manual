@@ -14,6 +14,11 @@ from tools.rtd.portal import ASSETS
 from tools.rtd.product_learning import learning_context
 from tools.rtd.product_matrix import ProductMatrixError
 
+# Synthetic stand-in for Hello-Docs docs/knowledge/: the real ids and structure, placeholder text.
+KNOWLEDGE = Path(__file__).parent / "fixtures" / "rtd_product_knowledge"
+TOPICS = Path("product-knowledge") / "topics.json"
+CASES = Path("product-knowledge") / "cases.json"
+
 
 class LearningFixtures:
     """Settings, products, a changeable copy of the assets and the page renderer, for both test classes."""
@@ -28,15 +33,27 @@ class LearningFixtures:
                                       "url": f"{model}/{region}/{language}/real.html"}]}
 
     def assets(self):
-        """The shipped curriculum, product-matrix config and teaching circuits, in a folder a test may change."""
+        """The shipped product-matrix config and teaching circuits, in a folder a test may change."""
         temp = TemporaryDirectory()
         self.addCleanup(temp.cleanup)
-        for name in ("product_knowledge.json", "product_matrix.json"):
+        for name in ("product_matrix.json",):
             shutil.copy(ASSETS / name, Path(temp.name, name))
         (Path(temp.name) / "_static").mkdir()
         for circuit in (ASSETS / "_static").glob("circuit-*.svg"):
             shutil.copy(circuit, Path(temp.name, "_static", circuit.name))
         return Path(temp.name)
+
+    def knowledge(self):
+        """The knowledge fixture in a folder a test may change."""
+        temp = TemporaryDirectory()
+        self.addCleanup(temp.cleanup)
+        shutil.copytree(KNOWLEDGE, temp.name, dirs_exist_ok=True)
+        return Path(temp.name)
+
+    def edit(self, folder, name, change):
+        data = json.loads((folder / name).read_text())
+        change(data)
+        (folder / name).write_text(json.dumps(data))
 
     def render(self, context):
         template = Environment(loader=FileSystemLoader(ASSETS)).get_template("product_knowledge.html")
@@ -47,7 +64,7 @@ class ProductLearningTests(LearningFixtures, unittest.TestCase):
     def test_references_use_published_locale_and_region_only(self):
         products = [self.product("JE-1000F", "JP", "ja"), self.product("JE-1000F", "EU", "en"),
                     self.product("JS-100I", "EU", "en"), self.product("JE-NOT-LISTED", "EU", "en")]
-        context = learning_context(ASSETS, self.settings, products)
+        context = learning_context(KNOWLEDGE, ASSETS, self.settings, products)
         inverter = next(t for t in context["topics"] if t["id"] == "inverter")
         self.assertEqual([(r["region"], r["language"]) for r in inverter["references"]],
                          [("JP", "ja"), ("EU", "en")])
@@ -59,28 +76,50 @@ class ProductLearningTests(LearningFixtures, unittest.TestCase):
         for field, value in (("tags", ["missing-tag"]), ("groups", ["missing-model-group"]),
                              ("groups", []), ("tags", [])):
             with self.subTest(field=field, value=value):
-                folder = self.assets()
-                data = json.loads((folder / "product_knowledge.json").read_text())
-                data["topics"][0][field] = value
-                (folder / "product_knowledge.json").write_text(json.dumps(data))
+                folder = self.knowledge()
+                self.edit(folder, TOPICS, lambda data: data["topics"][0].__setitem__(field, value))
                 with self.assertRaises(ValueError):
-                    learning_context(folder, self.settings, [])
+                    learning_context(folder, ASSETS, self.settings, [])
 
     def test_every_model_the_navigation_or_the_matrix_places_has_knowledge(self):
         matrix = json.loads((ASSETS / "product_matrix.json").read_text())
         models = sorted({model for rows in self.settings["navigation"].values() for row in rows
                          for model in row["models"]} | set(matrix["assign"]))
-        context = learning_context(ASSETS, self.settings, [self.product(model, "US", "en") for model in models])
+        context = learning_context(KNOWLEDGE, ASSETS, self.settings, [self.product(model, "US", "en") for model in models])
         topics = {model: [t["id"] for t in context["topics"] if model in t["models"]] for model in models}
         self.assertEqual([model for model in models if not topics[model]], [])
         # Models the navigation does not list reach their topics through the matrix config.
         for model in ("JHP-3600C", "JE-1500C", "JBP-5000A"):
             self.assertGreater(len(topics[model]), 0, model)
         self.assertEqual(len(context["learning_products"]), len(models))
+        self.assertEqual(context["uncovered_models"], [])
+
+    def test_placed_models_without_a_topic_are_reported(self):
+        folder = self.knowledge()
+        self.edit(folder, TOPICS, lambda data: data.__setitem__(
+            "topics", [topic for topic in data["topics"] if "dedicated" not in topic["groups"]]))
+        context = learning_context(folder, ASSETS, self.settings, [])
+        covered = {model for topic in context["topics"] for model in topic["models"]}
+        self.assertTrue(context["uncovered_models"])
+        self.assertFalse(set(context["uncovered_models"]) & covered)
+
+    def test_missing_content_renders_an_empty_page(self):
+        context = learning_context(KNOWLEDGE / "nowhere", ASSETS, self.settings, [self.product("JHP-3600C", "US", "en")])
+        self.assertTrue(context["content_missing"])
+        self.assertEqual((context["topics"], context["cases"]), ([], []))
+        self.assertIn("当前筛选没有相关知识", self.render(context))
+
+    def test_content_needs_its_schema_version(self):
+        for name in (TOPICS, CASES):
+            with self.subTest(name=str(name)):
+                folder = self.knowledge()
+                self.edit(folder, name, lambda data: data.__setitem__("schema_version", 2))
+                with self.assertRaisesRegex(ValueError, "schema_version"):
+                    learning_context(folder, ASSETS, self.settings, [])
 
     def test_the_product_selector_offers_only_products_with_knowledge(self):
         products = [self.product("JE-1500C", "US", "en"), self.product("JE-NOT-LISTED", "EU", "en")]
-        context = learning_context(ASSETS, self.settings, products)
+        context = learning_context(KNOWLEDGE, ASSETS, self.settings, products)
         self.assertEqual([p["model"] for p in context["learning_products"]], ["JE-1500C"])
         page = self.render(context)
         self.assertIn('<option value="JE-1500C" data-region="US">', page)
@@ -100,7 +139,7 @@ class ProductLearningTests(LearningFixtures, unittest.TestCase):
                     (folder / "product_matrix.json").unlink()
                 else:
                     (folder / "product_matrix.json").write_text(config, encoding="utf-8")
-                context = learning_context(folder, self.settings, products)
+                context = learning_context(KNOWLEDGE, folder, self.settings, products)
                 warning = get_logger.return_value.warning
                 warning.assert_called_once()
                 message, error, empty = warning.call_args.args
@@ -112,18 +151,34 @@ class ProductLearningTests(LearningFixtures, unittest.TestCase):
                 self.assertEqual([r["model"] for r in inverter["references"]], ["JE-1000F"])
                 self.assertEqual([p["model"] for p in context["learning_products"]], ["JE-1000F"])
 
-    def test_the_homepower_case_renders_only_with_its_published_route(self):
+    def test_a_case_renders_only_with_its_published_route(self):
         others = [self.product("JE-1000F", "EU", "en"), self.product("JHP-3600C", "JP", "ja")]
-        context = learning_context(ASSETS, self.settings, others)
-        self.assertIsNone(context["backup_case"])
+        context = learning_context(KNOWLEDGE, ASSETS, self.settings, others)
+        self.assertEqual(context["cases"], [])
         page = self.render(context)
         self.assertNotIn('class="backup-example', page)
         self.assertNotIn("JHP-3600C/US", page)
-        context = learning_context(ASSETS, self.settings, [*others, self.product("JHP-3600C", "US", "en")])
-        self.assertEqual(context["backup_case"]["url"], "JHP-3600C/US/en/real.html")
+        context = learning_context(KNOWLEDGE, ASSETS, self.settings, [*others, self.product("JHP-3600C", "US", "en")])
+        self.assertEqual(context["cases"][0]["reference"]["url"], "JHP-3600C/US/en/real.html")
         page = self.render(context)
-        self.assertIn('class="backup-example pk-case"', page)
-        self.assertIn('<a href="JHP-3600C/US/en/real">HomePower 3600 Pro Max 说明书（美规 · 英文）</a>', page)
+        self.assertIn('<section class="backup-example pk-case" aria-labelledby="backup-example-title">', page)
+        self.assertIn('<a href="JHP-3600C/US/en/real">测试说明书（美规 · 英文）</a>。测试导语。', page)
+        self.assertIn('<span>2</span><h3>测试问题二</h3>', page)
+        self.assertIn('src="_static/circuit-transfer.svg" alt="测试图"', page)
+        self.assertIn('<div><small>甲</small><b>1 W</b><span>乙</span></div>', page)
+
+    def test_an_invalid_case_blocks_authoring(self):
+        changes = {"unknown circuit": lambda data: data["cases"][0]["lessons"][0]["circuit"].__setitem__(
+                       "file", "circuit-missing.svg"),
+                   "no text": lambda data: data["cases"][0]["lessons"][1].__setitem__("paragraphs", []),
+                   "no model": lambda data: data["cases"][0].__setitem__("model", ""),
+                   "half a figure": lambda data: data["cases"][0]["lessons"][1]["stats"][0].pop("note")}
+        for label, change in changes.items():
+            with self.subTest(label):
+                folder = self.knowledge()
+                self.edit(folder, CASES, change)
+                with self.assertRaises(ValueError):
+                    learning_context(folder, ASSETS, self.settings, [])
 
 
 class KnowledgeMapTests(LearningFixtures, unittest.TestCase):
@@ -133,7 +188,7 @@ class KnowledgeMapTests(LearningFixtures, unittest.TestCase):
         super().setUp()
         products = [self.product(model, region, "en")
                     for model, region in (("JE-1000F", "EU"), ("JE-1000F", "US"), ("JS-100I", "EU"))]
-        self.context = learning_context(ASSETS, self.settings, products)
+        self.context = learning_context(KNOWLEDGE, ASSETS, self.settings, products)
         self.page = self.render(self.context)
 
     def test_each_theme_lists_its_topics_by_short_label(self):
@@ -188,12 +243,10 @@ class KnowledgeMapTests(LearningFixtures, unittest.TestCase):
     def test_an_unknown_circuit_blocks_authoring(self):
         for circuit in ("circuit-missing.svg", "../site-shell.css", "inverter.png"):
             with self.subTest(circuit=circuit):
-                folder = self.assets()
-                data = json.loads((folder / "product_knowledge.json").read_text())
-                data["topics"][0]["circuit"] = circuit
-                (folder / "product_knowledge.json").write_text(json.dumps(data))
+                folder = self.knowledge()
+                self.edit(folder, TOPICS, lambda data: data["topics"][0].__setitem__("circuit", circuit))
                 with self.assertRaisesRegex(ValueError, "unknown circuit"):
-                    learning_context(folder, self.settings, [])
+                    learning_context(folder, ASSETS, self.settings, [])
 
     def test_each_card_lists_its_manuals_with_their_region(self):
         card = re.search(r'id="inverter".*?</article>', self.page, re.S).group(0)
