@@ -94,9 +94,9 @@ of each model's published manual, the catalog names, the `product_catalog`
 snapshot, the capability CSV and the curated
 `tools/rtd_portal_assets/product_matrix.json`. `rtd_portal` only registers the
 page. [`tools/rtd/product_catalog.py`](../../../tools/rtd/product_catalog.py)
-owns that snapshot (the 网页文档 table's 产品类别, 产品系列 and 商品简称 per model,
-refreshed read-only), and `tools/rtd/portal_navigation.py` groups the manual
-library by it. See
+owns that snapshot (产品类别, 产品系列 and 商品简称 per model from the 项目号 and
+网页文档 tables, and the 通用指南 with their 适用产品, refreshed read-only), and
+`tools/rtd/portal_navigation.py` groups the manual library by it. See
 [product matrix page](../rtd_manual_portal/knowledge-pages.md#product-matrix-page).
 
 Internal frozen Web language projection lives in
