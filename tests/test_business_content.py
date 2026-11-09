@@ -23,9 +23,10 @@ class WorkflowRoutingTests(unittest.TestCase):
         workflow = yaml.safe_load((ROOT / '.github/workflows/manual-validation.yml').read_text())
         jobs = workflow['jobs']
         engineering = set(jobs) - {'secret-scan', 'business-content'}
-        self.assertEqual(len(engineering), 16)
+        self.assertEqual(len(engineering), 17)
         for name in engineering:
-            self.assertEqual(jobs[name]['if'], ENGINEERING, name)
+            self.assertIn("github.repository == 'Bingboom/auto-manual'", jobs[name]['if'], name)
+            self.assertNotIn('Hello-Docs', jobs[name]['if'], name)
         self.assertNotIn('if', jobs['secret-scan'])
         self.assertEqual(workflow['permissions'], {'contents': 'read'})
         self.assertEqual(jobs['business-content']['if'],
@@ -33,8 +34,9 @@ class WorkflowRoutingTests(unittest.TestCase):
         self.assertEqual(set(workflow[True]), {'push', 'pull_request'})
         for name in ['nightly-render', 'review-preview', 'manifest-regenerate-diff']:
             other = yaml.safe_load((ROOT / f'.github/workflows/{name}.yml').read_text())
-            self.assertEqual(len(other['jobs']), 1)
-            self.assertEqual(next(iter(other['jobs'].values()))['if'], ENGINEERING)
+            for job in other['jobs'].values():
+                self.assertIn("github.repository == 'Bingboom/auto-manual'", job['if'])
+                self.assertNotIn('Hello-Docs', job['if'])
 
     def test_content_gate_uses_trusted_base_for_prs_and_needs_no_secrets_or_packages(self):
         workflow = yaml.safe_load((ROOT / '.github/workflows/manual-validation.yml').read_text())
