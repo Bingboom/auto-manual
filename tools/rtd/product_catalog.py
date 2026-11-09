@@ -2,8 +2,8 @@
 
 The 说明书资料库 and 产品矩阵 pages group products by 类别, then 系列, the way the
 发布文档管理 Base classifies them. Since 2026-11-09 a product is classified once,
-on its row of the 项目号 table (single-select 产品类别 and 产品系列); each 网页文档
-row names its 项目号 and shows the two values as lookups. A 网页文档 row's
+on its row of the 项目号 table (single-select 产品类别, 产品系列 and 容量档); each
+网页文档 row names its 项目号 and shows the three values as lookups. A 网页文档 row's
 文档类型 says whether it is a product's manual (产品说明书, also when blank), a
 通用指南 (a guide that belongs to no one product) or a 快速指南 (a product's
 separate quick guide); a guide lists the models it covers in 适用产品, which a
@@ -13,8 +13,11 @@ snapshot, ``product_catalog.json`` (the ``product_catalog`` domain of
 
 - ``categories``: the 项目号 table's 产品类别 options in their order, each with the
   产品系列 options its models use, in that field's order;
-- ``models``: every model a 产品说明书 row's 型号 cell lists, with the row's 类别 and
-  系列 and the 商品简称 at the same position of its 商品简称 cell. A model listed
+- ``capacity_tiers``: the 项目号 table's 容量档 options its models use, in their
+  order (1度以下 … 5度电); the 产品矩阵 lays its columns out by them;
+- ``models``: every model a 产品说明书 row's 型号 cell lists, with the row's 类别,
+  系列, any 容量档 (太阳能板 and 配件 have none) and the 商品简称 at the same
+  position of its 商品简称 cell. A model listed
   after the first one (a colour edition sold with the first model's manual, such
   as JE-1000F-SG on the JE-1000F US pages) also records ``pages_of`` and the
   routes it shares, unless it has rows of its own;
@@ -45,11 +48,11 @@ from tools.rtd.web_reviews import text_of
 
 DOMAIN = "product_catalog"
 SNAPSHOT = "product_catalog.json"
-SCHEMA = "hello-docs-product-catalog/v2"
+SCHEMA = "hello-docs-product-catalog/v3"
 SOURCE = "飞书发布文档管理「网页文档」表与「项目号」表"
 PROJECT_TABLE = "项目号"
 MODEL_FIELD, SHORT_FIELD, LINK_FIELD = "型号", "商品简称", "超链接"
-CATEGORY_FIELD, SERIES_FIELD = "产品类别", "产品系列"
+CATEGORY_FIELD, SERIES_FIELD, CAPACITY_FIELD = "产品类别", "产品系列", "容量档"
 DOC_TYPE_FIELD, APPLIES_FIELD = "文档类型", "适用产品"
 MANUAL, GUIDE, QUICK = "产品说明书", "通用指南", "快速指南"
 KINDS = (MANUAL, GUIDE, QUICK)
@@ -80,9 +83,9 @@ def field_options(fields: Iterable[object], name: str) -> list[str]:
     raise CatalogError(f"the 网页文档 table has no {name} field")
 
 
-def _row(record: str, row: dict[str, Any], categories: list[str],
-         series: list[str]) -> tuple[list[str], list[str], str, str, str] | str:
-    """A row's models, short names, 类别, 系列 and route, or why it is skipped."""
+def _row(record: str, row: dict[str, Any], categories: list[str], series: list[str],
+         tiers: list[str]) -> tuple[list[str], list[str], dict[str, str], str] | str:
+    """A row's models, short names, classification (类别, 系列 and any 容量档) and route, or why it is skipped."""
     models, shorts = cell_list(row.get(MODEL_FIELD)), cell_list(row.get(SHORT_FIELD))
     category, line = text_of(row.get(CATEGORY_FIELD)), text_of(row.get(SERIES_FIELD))
     if not models:
@@ -96,10 +99,14 @@ def _row(record: str, row: dict[str, Any], categories: list[str],
         raise CatalogError(f"{record}: 型号 lists {len(models)} models but 商品简称 {len(shorts)} names")
     if category not in categories or line not in series:
         raise CatalogError(f"{record}: {category}/{line} is not an option of {CATEGORY_FIELD}/{SERIES_FIELD}")
+    capacity = text_of(row.get(CAPACITY_FIELD))
+    if capacity and capacity not in tiers:
+        raise CatalogError(f"{record}: {CAPACITY_FIELD} {capacity!r} is not an option of the 项目号 table")
     route = route_of(row.get(LINK_FIELD))
     if route and route.split("/")[0] != models[0]:
         raise CatalogError(f"{record}: the link opens {route}, but 型号 starts with {models[0]}")
-    return models, shorts, category, line, route
+    classes = {"category": category, "series": line, **({"capacity": capacity} if capacity else {})}
+    return models, shorts, classes, route
 
 
 def doc_type(record: str, row: dict[str, Any]) -> str:
@@ -141,6 +148,7 @@ def catalog_from_rows(fields: Iterable[object], rows: Iterable[tuple[str, dict[s
                       today: dt.date) -> tuple[dict[str, Any], list[str]]:
     """The snapshot from the 项目号 table's field schema and the 网页文档 rows, and the rows it skipped."""
     category_order, series_order = field_options(fields, CATEGORY_FIELD), field_options(fields, SERIES_FIELD)
+    tier_order = field_options(fields, CAPACITY_FIELD)
     models: dict[str, dict[str, str]] = {}
     own: set[str] = set()
     shared: dict[str, dict[str, Any]] = {}
@@ -151,13 +159,13 @@ def catalog_from_rows(fields: Iterable[object], rows: Iterable[tuple[str, dict[s
         if kind != MANUAL:
             _add_guide(guides, record, row, kind)
             continue
-        parsed = _row(record, row, category_order, series_order)
+        parsed = _row(record, row, category_order, series_order, tier_order)
         if isinstance(parsed, str):
             skipped.append(parsed)
             continue
-        names, shorts, category, line, route = parsed
+        names, shorts, classes, route = parsed
         for position, (model, short) in enumerate(zip(names, shorts, strict=True)):
-            entry = {"category": category, "series": line, "short": short}
+            entry = {**classes, "short": short}
             if models.setdefault(model, entry) != entry:
                 raise CatalogError(f"{model}: rows disagree ({models[model]} and {entry})")
             if position == 0:
@@ -170,19 +178,28 @@ def catalog_from_rows(fields: Iterable[object], rows: Iterable[tuple[str, dict[s
     for model, share in shared.items():
         if model not in own:
             models[model] = {**models[model], "pages_of": share["pages_of"], "routes": sorted(share["routes"])}
+    snapshot = _snapshot(models, guides, (category_order, series_order, tier_order), today)
+    problems = catalog_problems(snapshot)
+    if problems:
+        raise CatalogError("; ".join(problems))
+    return snapshot, skipped
+
+
+def _snapshot(models: dict[str, dict[str, Any]], guides: dict[str, dict[str, Any]],
+              orders: tuple[list[str], list[str], list[str]], today: dt.date) -> dict[str, Any]:
+    """The snapshot: the used categories, series and 容量档 in the 项目号 table's option order, then the entries."""
+    category_order, series_order, tier_order = orders
     both = sorted(set(guides) & set(models))
     if both:
         raise CatalogError(f"{both} is both a model and a {GUIDE}")
     used = {(entry["category"], entry["series"]) for entry in models.values()}
     categories = [{"name": category, "series": [line for line in series_order if (category, line) in used]}
                   for category in category_order if any(cat == category for cat, _ in used)]
-    snapshot = {"schema": SCHEMA, "exported_at": today.isoformat(), "source": SOURCE,
-                "categories": categories, "models": dict(sorted(models.items())),
-                "guides": {code: {**entry, "routes": sorted(entry["routes"])} for code, entry in sorted(guides.items())}}
-    problems = catalog_problems(snapshot)
-    if problems:
-        raise CatalogError("; ".join(problems))
-    return snapshot, skipped
+    capacities = {entry.get("capacity") for entry in models.values()}
+    return {"schema": SCHEMA, "exported_at": today.isoformat(), "source": SOURCE,
+            "categories": categories, "capacity_tiers": [tier for tier in tier_order if tier in capacities],
+            "models": dict(sorted(models.items())),
+            "guides": {code: {**entry, "routes": sorted(entry["routes"])} for code, entry in sorted(guides.items())}}
 
 
 def _categories_problems(categories: object) -> tuple[list[str], dict[str, list[str]]]:
@@ -199,15 +216,18 @@ def _categories_problems(categories: object) -> tuple[list[str], dict[str, list[
     return [], order
 
 
-def _model_problems(model: str, entry: object, order: dict[str, list[str]], models: dict[str, Any]) -> list[str]:
+def _model_problems(model: str, entry: object, order: dict[str, list[str]], models: dict[str, Any],
+                    tiers: list[str]) -> list[str]:
     if not _MODEL.fullmatch(model) or not isinstance(entry, dict):
         return [f"models.{model} is not a model entry"]
     if entry.get("series") not in order.get(str(entry.get("category")), []):
         return [f"models.{model}: {entry.get('category')}/{entry.get('series')} is not a listed category and series"]
     if not isinstance(entry.get("short"), str) or not entry["short"].strip():
         return [f"models.{model} needs a 商品简称"]
-    if set(entry) - {"category", "series", "short", "pages_of", "routes"}:
+    if set(entry) - {"category", "series", "capacity", "short", "pages_of", "routes"}:
         return [f"models.{model} has unknown keys"]
+    if "capacity" in entry and entry["capacity"] not in tiers:
+        return [f"models.{model}: 容量档 {entry['capacity']!r} is not a listed capacity tier"]
     if ("pages_of" in entry) != ("routes" in entry):
         return [f"models.{model}: pages_of and routes come together"]
     if "pages_of" in entry and (entry["pages_of"] not in models or entry["pages_of"] == model or not isinstance(
@@ -226,11 +246,16 @@ def catalog_problems(data: object) -> list[str]:
     except ValueError:
         problems.append(f"exported_at {data.get('exported_at')!r} is not an ISO date")
     found, order = _categories_problems(data.get("categories"))
+    tiers = data.get("capacity_tiers")
+    if not isinstance(tiers, list) or not all(isinstance(t, str) and t.strip() for t in tiers) \
+            or len(set(tiers)) != len(tiers):
+        problems.append("capacity_tiers must list distinct 容量档 names in their order")
+        tiers = []
     models = data.get("models")
     if not isinstance(models, dict) or not models:
         return problems + found + ["models must map each model to its category, series and 商品简称"]
     for model, entry in models.items():
-        problems += _model_problems(str(model), entry, order, models)
+        problems += _model_problems(str(model), entry, order, models, tiers)
     guides = data.get("guides")
     if not isinstance(guides, dict):
         return problems + found + ["guides must map each guide to its kind, 商品简称, routes and 适用产品"]
