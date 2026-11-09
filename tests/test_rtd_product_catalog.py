@@ -19,14 +19,15 @@ FIELDS = [
     {"field_name": "产品类别", "property": {"options": [{"name": "便携电源"}, {"name": "家庭备电"}, {"name": "空类别"}]}},
     # lark-cli lists options at the top level; the Open API nests them under property.
     {"name": "产品系列", "options": [{"name": "Plus"}, {"name": "标准"}, {"name": "HomePower"}, {"name": "无人用"}]},
+    {"field_name": "容量档", "property": {"options": [{"name": "1度以下"}, {"name": "1度电"}, {"name": "3度电"}]}},
 ]
 SITE = "https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest"
 
 
-def row(models, shorts, category="便携电源", series="标准", route="", kind=None, applies=None):
+def row(models, shorts, category="便携电源", series="标准", route="", kind=None, applies=None, capacity=None):
     link = {"link": f"{SITE}/{route}/md/manual.html", "text": "manual"} if route else None
     return {"型号": models, "商品简称": shorts, "产品类别": category, "产品系列": series, "超链接": link,
-            "文档类型": kind, "适用产品": applies}
+            "文档类型": kind, "适用产品": applies, "容量档": capacity}
 
 
 def guide(code="JS-GUIDE", short="太阳能连接指南", route="JS-GUIDE/JP/ja", applies="JE-1000F, PTB101", kind="通用指南"):
@@ -38,7 +39,8 @@ ROWS = [
     ("rec1", row("JE-1000F, JE-1000F-SG", "E1000V2，E1000V2沙金色", route="JE-1000F/US/en")),
     ("rec2", row("JE-1000F", "E1000V2", route="JE-1000F/EU/en")),
     ("rec3", row("JE-1000H", "E1000Plusv2", series="Plus", route="JE-1000H/EU/en")),
-    ("rec4", row([{"text": "JHP-3000D"}], [{"text": "HP3000"}], "家庭备电", "HomePower", route="JHP-3000D/US/en")),
+    ("rec4", row([{"text": "JHP-3000D"}], [{"text": "HP3000"}], "家庭备电", "HomePower", route="JHP-3000D/US/en",
+                 capacity=["3度电"])),
     ("rec5", row("JE-NEW", "ENEW", category="", series="")),
     ("rec6", guide()),
     ("rec7", row("JE-1000H", "E1000Plusv2", series="Plus", route="JE-1000H/US/en", kind=["产品说明书"])),
@@ -67,6 +69,9 @@ class CatalogFromRowsTests(unittest.TestCase):
         # Only used categories and series, in the options' order.
         self.assertEqual(snapshot["categories"], [{"name": "便携电源", "series": ["Plus", "标准"]},
                                                   {"name": "家庭备电", "series": ["HomePower"]}])
+        # Only used 容量档, in the 项目号 table's order; a model without one records none.
+        self.assertEqual(snapshot["capacity_tiers"], ["3度电"])
+        self.assertEqual(snapshot["models"]["JHP-3000D"]["capacity"], "3度电")
         models = snapshot["models"]
         self.assertEqual(list(models), ["JE-1000F", "JE-1000F-SG", "JE-1000H", "JHP-3000D"])
         self.assertEqual(models["JE-1000F"], {"category": "便携电源", "series": "标准", "short": "E1000V2"})
@@ -87,6 +92,8 @@ class CatalogFromRowsTests(unittest.TestCase):
             "listed after both": [("r", row("JE-1, JE-9", "E1, E9")), ("s", row("JE-2, JE-9", "E2, E9"))],
             "the link opens JE-2/US/en": [("r", row("JE-1", "E1", route="JE-2/US/en"))],
             "not an option": [("r", row("JE-1", "E1", series="Ultra"))],
+            "容量档 '9度电' is not an option": [("r", row("JE-1", "E1", capacity="9度电"))],
+            "rows disagree .*capacity": [("r", row("JE-1", "E1")), ("s", row("JE-1", "E1", capacity="1度电"))],
             "not a model code": [("r", row("JE 1", "E1"))],
         }
         for message, rows in broken.items():
@@ -158,6 +165,9 @@ class SnapshotTests(unittest.TestCase):
             "another listed model": {**good, "models": {"JE-X": {"category": "家庭备电", "series": "HomePower",
                                                                  "short": "X", "pages_of": "JE-Y", "routes": []}}},
             "models must": {**good, "models": {}},
+            "capacity_tiers must": {**good, "capacity_tiers": ["3度电", "3度电"]},
+            "is not a listed capacity tier": {**good, "models": {**good["models"], "JE-X": {
+                "category": "家庭备电", "series": "HomePower", "capacity": "9度电", "short": "X"}}},
             "guides must": {key: value for key, value in good.items() if key != "guides"},
             "not a guide entry": {**good, "guides": {"JS-X": {"short": "X"}}},
             "guides.JS-K is not a guide entry": {**good, "guides": {"JS-K": {

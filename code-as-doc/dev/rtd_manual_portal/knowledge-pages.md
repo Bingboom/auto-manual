@@ -430,9 +430,13 @@ library does not link to it.
   model code or the manual-type suffix (`names` overrides). Capability switches
   come from `data/model_capabilities.csv`. Nothing else is snapshotted.
 - **Layout.** A tab per 产品类别 in the snapshot's order (counts of products),
-  each a grid of 产品系列 rows × the `tiers` capacity columns; a category where
-  no product states a capacity (太阳能板, 配件) has one 产品 column, and a tiered
-  category gets a 容量未注明 column only when a product lacks one. A card shows
+  each a grid of 产品系列 rows × the 容量档 its products use (the snapshot's
+  `capacity_tiers` order: 1度以下 … 5度电, the 项目号 table's values, since
+  2026-11-09); a category where no product has a 容量档 (太阳能板, 配件) has one
+  产品 column, and a tiered category gets a 容量未注明 column only when a product
+  lacks one. A 容量档 the manual's stated capacity does not fit (「X度电」 more than a
+  quarter off X kWh, or 「X度以下」 at X kWh or more) is a Sphinx warning, so a
+  wrong table value shows in the build. A card shows
   the name, the 商品简称 (GTM reads products by it) with the capacity, a letter
   per market (`markets`: 美 欧 日 中 台 韩) and any colour edition.
 - **Detail.** Clicking a card opens its product's detail directly under its
@@ -449,7 +453,7 @@ library does not link to it.
   guide is published in (「太阳能连接指南 日规」). Under 600px of container
   width each model stacks as a labelled list.
 - **Curated config.** `product_matrix.json` holds what neither the manuals nor
-  the snapshot state: `tiers`, `markets`, `variant_marks`, `names`, `notes`
+  the snapshot state: `markets`, `variant_marks`, `names`, `notes`
   (accessory one-liners, the 说明 column), `capability_labels` and `pairings`
   (partners a manual names). A pairing item shows only while the manual's text
   still contains its `match` text (or its label); it links to a product only
@@ -493,8 +497,8 @@ python -m tools.rtd.product_catalog check
   加电包 / 太阳能板 / 配件), 产品系列 (single select whose options each category
   uses its own of: 标准 / Plus / PlusV2 / Pro / ProMax / Ultra / 卫士 / 充电宝 for
   储能; SolarSaga / SolarSaga Air; 充电与输入 / 连接与配电 / 保护与搬运 for 配件;
-  标准 for 加电包) and 容量档 (1度以下 … 5度电, empty for 太阳能板 and 配件; not yet
-  read by the pages, whose tiers still come from the manuals). Each 网页文档 row
+  标准 for 加电包) and 容量档 (1度以下 … 5度电, empty for 太阳能板 and 配件; the
+  产品矩阵 columns, snapshot schema v3). Each 网页文档 row
   names its 项目号; its 产品类别, 产品系列 and 容量档 columns are lookups of that row.
   The old per-row single select stays as 产品系列（迁移备份）, unread.
 - **文档类型** (网页文档 single select): 产品说明书 (also when blank), 通用指南 or
