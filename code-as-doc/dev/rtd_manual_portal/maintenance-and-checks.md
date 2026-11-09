@@ -18,10 +18,9 @@ Feishu credentials or runs the receiver.
 - `.readthedocs.yaml` activates the extension for frozen and bootstrap builds.
   This is needed for old frozen configs as well as future publications.
 - The portal template renders real links before JavaScript; scripts only enhance
-  filtering and the language dialog. The search template keeps Sphinx's native
-  result container and scripts, and adds a visible query form so a direct visit
-  to `/search.html` is usable before a query is present. Alias and manual bodies
-  remain unchanged.
+  filtering and the language dialog. The search page (`/search.html`) is a portal
+  page over the portal's own section index; without JavaScript it says so and
+  links back to the library. Alias and manual bodies remain unchanged.
 - Feedback is configured by `feedback_channels` in
   `tools/rtd_portal_assets/settings.json`. The consumer-facing channel is the
   after-sales mailbox `hello@jackery.com` already printed in shipped manuals
