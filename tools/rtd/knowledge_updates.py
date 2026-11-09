@@ -33,6 +33,7 @@ PAGES: dict[str, str | None] = {
     "deliverables": "workspace/deliverables/index",
     "system": "workspace/system/index",
     "design-system": "workspace/design/index",
+    "manual-search": "search",  # 搜索说明书正文: Sphinx's search page in the site shell, built in every role
 }
 _ANCHOR = re.compile(r"[a-z][a-z0-9-]*")
 

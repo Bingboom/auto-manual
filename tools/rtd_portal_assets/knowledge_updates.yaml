@@ -13,7 +13,8 @@
 #   title     the row's bold line
 #   note      one line: what changed
 #   page      where the row links: share | home | product-knowledge |
-#             product-matrix | market-policy | deliverables | system | design-system
+#             product-matrix | market-policy | deliverables | system | design-system |
+#             manual-search
 #             (hidden while that page, or the share package, is not built)
 #   anchor    optional lower-case id on that page, such as work-map
 #   evidence  pr:<repo>#<n>, or a list of them, for reviewers; never shown

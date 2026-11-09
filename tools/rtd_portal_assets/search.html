@@ -1,47 +1,76 @@
-{% extends "page.html" %}
-
-{%- block regular_scripts -%}
-{{ super() }}
-<script src="{{ pathto('_static/searchtools.js', 1) }}"></script>
-<script src="{{ pathto('_static/language_data.js', 1) }}"></script>
-{%- endblock regular_scripts-%}
-
-{%- block htmltitle -%}
-<title>{{ _("Search") }} - {{ docstitle }}</title>
-{%- endblock htmltitle -%}
-
-{% block content %}
-<section class="manual-search-intro" aria-labelledby="manual-search-title">
-  <h1 id="manual-search-title">Search all manuals</h1>
-  <p>Enter a model, feature, or error code to search the published manuals.</p>
-  <form class="manual-search-form" method="get" role="search">
-    <label for="manual-search-query">Search query</label>
-    <div>
-      <input id="manual-search-query" name="q" type="search"
-             placeholder="Model, feature, or error code" autocomplete="off" required>
-      <button type="submit">Search</button>
-    </div>
-  </form>
-</section>
-
-<noscript>
-<div class="admonition error">
-  <p class="admonition-title">{% trans %}Error{% endtrans %}</p>
-  <p>
-    {% trans %}Please activate JavaScript to enable the search functionality.{% endtrans %}
-  </p>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>搜索说明书正文 · 说明书资料库</title>
+<link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
+<link rel="stylesheet" href="{{ pathto('_static/manual-search.css', 1) }}">
+<script defer src="{{ pathto('_static/portal-search-index.js', 1) }}"></script>
+<script defer src="{{ pathto('_static/manual-search.js', 1) }}"></script>
+{{ analytics_beacon | default('') | safe }}
+</head>
+{% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
+{% from "_category_icons.html" import category_icon %}
+{#- 搜索说明书正文 (2026-11 design): the section index the 说明书资料库 already loads (portal-search-index.js, one row
+    per manual section), searched in the browser by _static/manual-search.js. Results group by product, then by market
+    (one manual = a product in one region), each manual in one language. Filters: region, the library's categories and
+    language (display codes such as en-US). Query and filters live in the URL (?q=&region=&cat=&lang=), so manual
+    pages' search boxes land here with their query and a result link can be shared. -#}
+<body class="app">
+<a class="skip" href="#search-results">跳到搜索结果</a>
+{{ site_sidebar('search', site_nav, internal=internal_shell) }}
+<div class="app-content">
+{{ site_topbar('工作资料', '搜索说明书正文', internal=internal_shell) }}
+<main class="msearch">
+<header class="ms-head">
+  <h1>搜索说明书正文</h1>
+  <p>在已发布的网页说明书正文里查找功能、术语、故障码或参数。结果按产品归组，同一产品各市场的说明书放在一起；点章节标题直接打开原文那一节。</p>
+</header>
+<form class="ms-form" id="ms-form" method="get" role="search">
+  <label class="sr-only" for="ms-query">搜索说明书正文</label>
+  <span class="ms-box">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.4 15.4L20 20"/></svg>
+    <input id="ms-query" name="q" type="search" placeholder="输入功能、术语、故障码或参数，例如 UPS、F2、E1000V2 UPS" autocomplete="off" spellcheck="false">
+    <button type="button" class="ms-clear" id="ms-clear" aria-label="清除搜索" hidden>×</button>
+  </span>
+  <button type="submit" class="ms-submit">搜索</button>
+</form>
+<div class="ms-filters" id="ms-filters" hidden>
+  <div class="ms-frow"><span class="ms-flabel" id="ms-region-label">区域</span>
+    <div class="ms-seg" id="ms-regions" role="group" aria-labelledby="ms-region-label"><button type="button" data-region="all" aria-pressed="true">全部<b></b></button>{% for region in search.regions %}<button type="button" data-region="{{ region|e }}" aria-pressed="false">{{ region|e }}<b></b></button>{% endfor %}</div>
+  </div>
+  <div class="ms-frow"><span class="ms-flabel" id="ms-cat-label">类别</span>
+    <div class="ms-chips" id="ms-cats" role="group" aria-labelledby="ms-cat-label">{% for category in search.categories %}<button type="button" class="ms-chip" data-cat="{{ category.id|e }}" aria-pressed="false">{{ category_icon(category.icon, 15) }}{{ category.title|e }}<b></b></button>{% endfor %}</div>
+    <label class="ms-lang" for="ms-lang">语言<select id="ms-lang"><option value="all">全部语言</option>{% for language in search.languages %}<option value="{{ language.code|e }}" title="{{ language.label|e }}">{{ language.display|e }}</option>{% endfor %}<option value="legacy">{{ search.config.legacy|e }}</option></select></label>
+  </div>
 </div>
-</noscript>
-
-<div id="search-results"></div>
-{% endblock %}
-
-{% block scripts -%}
-{{ super() }}
-<script src="{{ pathto('searchindex.js', 1) }}"></script>
-{%- endblock scripts %}
-
-{% block site_meta %}
-{{ super() }}
-<meta name="robots" content="noindex" />
-{% endblock site_meta %}
+<p class="ms-status" id="ms-status" role="status" aria-live="polite">正在载入说明书正文索引…</p>
+<noscript><p class="ms-status">搜索要用到 JavaScript。也可以回到<a href="{{ pathto('index') }}">说明书资料库</a>按产品查看说明书。</p></noscript>
+<section class="ms-start" id="ms-start" aria-label="怎么搜" hidden>
+  <div class="ms-tips">
+    <section class="ms-tip"><h2>功能或术语</h2><div class="ms-qs"><a class="ms-q" href="?q=UPS" data-q="UPS">UPS<b></b></a><a class="ms-q" href="?q=parallel" data-q="parallel">parallel<b></b></a><a class="ms-q" href="?q=並列" data-q="並列">並列<b></b></a></div>
+      <p>正文以英文和日文为主：用英文或日文术语找到的最多；中文词多半只命中中规、台规说明书。</p></section>
+    <section class="ms-tip"><h2>型号或简称加关键词</h2><div class="ms-qs"><a class="ms-q" href="?q=E1000V2+UPS" data-q="E1000V2 UPS">E1000V2 UPS<b></b></a><a class="ms-q" href="?q=JHP-5000C+F2" data-q="JHP-5000C F2">JHP-5000C F2<b></b></a></div>
+      <p>先写型号或简称，再写要找的内容，只看这款产品各市场的说明书。</p></section>
+    <section class="ms-tip"><h2>故障码或参数</h2><div class="ms-qs"><a class="ms-q" href="?q=F2" data-q="F2">F2<b></b></a><a class="ms-q" href="?q=20ms" data-q="20ms">20ms<b></b></a><a class="ms-q" href="?q=IP65" data-q="IP65">IP65<b></b></a></div>
+      <p>数字和单位照说明书的写法输入，按整词匹配。</p></section>
+  </div>
+  <section class="ms-cover" aria-labelledby="ms-cover-title"><h2 id="ms-cover-title">收录范围<span>已发布的网页说明书，随每次构建更新</span></h2>
+    <div class="ms-stats" id="ms-stats"></div>
+    <div class="ms-crow"><span>区域</span><div id="ms-cover-regions"></div></div>
+    <div class="ms-crow"><span>语言</span><div id="ms-cover-langs"></div></div>
+    <p>区域数的是说明书份数（一份说明书 = 一款产品在一个区域的版本），语言数的是语言版本。</p>
+  </section>
+</section>
+<div class="ms-summary" id="ms-summary" hidden><p id="ms-summary-text"></p><span id="ms-summary-note"></span></div>
+<div class="ms-results" id="search-results" tabindex="-1"></div>
+<button type="button" class="ms-more" id="ms-more" hidden></button>
+<section class="ms-none" id="ms-none" aria-labelledby="ms-none-title" hidden><h2 id="ms-none-title"></h2><p id="ms-none-elsewhere" hidden></p><button type="button" class="ms-reset" id="ms-reset" hidden>清除筛选</button><p id="ms-none-hint"></p></section>
+<p class="ms-foot">正文取自已发布的网页说明书，每次构建时更新；类别取自产品分类快照，和说明书资料库、产品矩阵一致。英文和数字按整词匹配，中文、日文按字面匹配；图片里的文字不在检索范围内。</p>
+</main>
+</div>
+<script type="application/json" id="ms-config">{{ search.config|tojson }}</script>
+{{ site_script() }}
+</body>
+</html>
