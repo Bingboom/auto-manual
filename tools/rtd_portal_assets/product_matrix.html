@@ -80,7 +80,7 @@
     <div><h2 id="cat-{{ category.id|e }}-title">{{ category.title|e }}</h2><span>{{ category.count }} 款 · {{ category.rows|length }} 个系列{% if category.tiered %} · 系列 × 容量{% endif %}</span></div>
     <p class="mx-legend">{% for region in category.markets %}{% set market = markets.get(region, {}) %}<span><i>{{ market.get('letter', region)|e }}</i>{{ region|e }}</span>{% endfor %}</p>
   </header>
-  <div class="mx-grid" style="--mx-cols: {{ category.columns|length }}">
+  <div class="mx-grid{% if not category.tiered %} is-flat{% endif %}" style="--mx-cols: {{ category.columns|length }}">
     <div class="mx-row is-head" aria-hidden="true"><div class="mx-series">{{ '系列 \\ 容量' if category.tiered else '系列' }}</div>{% for label in category.columns %}<div class="mx-col">{{ label|e }}</div>{% endfor %}</div>
     {%- for row in category.rows %}
     <div class="mx-row"><div class="mx-series"><b>{{ row.title|e }}</b><span>{{ row.products|length }} 款</span></div>
