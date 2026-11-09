@@ -114,8 +114,8 @@ Inside the shell the root page has these bounded zones on one container width
 
 1. **Search hero** (light grey band): title and the cross-manual search box.
    People who already own a product search the model here.
-2. **Toolbar** (sticky below the top bar): one chip per 产品类别 (便携电源 /
-   家庭备电 / 扩容电池 / 太阳能板 / 配件) with its icon and the count of
+2. **Toolbar** (sticky below the top bar): one chip per 产品类别 (便携储能 /
+   家庭备电 / 加电包 / 太阳能板 / 配件, then 通用指南) with its icon and the count of
    manuals in the selected region, linking to the category's section; a
    category with none there turns grey. The language filter sits on the right.
 3. **Catalog**: region heading and count, then one section per 产品类别 (icon,
@@ -130,15 +130,20 @@ Inside the shell the root page has these bounded zones on one container width
    linking to their cards on 知识库首页. See [网页说明书的定位与价值](web-manual-value.md).
 6. **Footer** (light grey band), which also holds the Read the Docs ad placement.
 
-Categories and series are the 网页文档 table's 产品类别 and 产品系列 columns
-(2026-11-06), read from the committed `product_catalog` snapshot
+Categories and series are the 产品类别 and 产品系列 of each model's 项目号 row
+(2026-11-09; before that, the 网页文档 table's own columns), read from the committed `product_catalog` snapshot
 (`tools/rtd_portal_assets/product_catalog.json`, written read-only by
 `python -m tools.rtd.product_catalog refresh`; see
 [产品分类 snapshot](knowledge-pages.md#产品分类-snapshot)); the build never
 infers them, and both keep the table's option order. `settings.json` →
 `catalog_categories` gives each category its anchor id and icon (a category it
 does not name gets `category-<n>` and a plain icon); `tools/rtd/portal_navigation.py`
-rejects a non-lower-case, duplicate or `other` id. Cards inside a series sort by
+rejects a non-lower-case, duplicate, `guide` or `other` id. The snapshot's 通用指南
+(a guide that belongs to no one product, such as the JP solar connection guide)
+follow the categories in a 通用指南 group (`#cat-guide`, a book icon), and a card
+whose model a guide of the same market lists in 适用产品 adds a line
+「相关指南：<guide>」 linking to it. A 快速指南 (a product's separate quick guide)
+has no card; its product's card links it as 「快速指南」. Cards inside a series sort by
 the number in the model code (JE-100C before JE-1000F), and search also matches a
 card's series and category. A published model the snapshot does not list appears
 under 「其他说明书」 with a Sphinx warning (that group and its chip leave a region where it has no manual); add its 网页文档 row and refresh. Without

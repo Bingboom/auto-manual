@@ -103,6 +103,8 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible {
 .card h4 {font-size:17px;font-weight:600;line-height:1.4;margin:0}
 .model {font-size:13px;color:var(--muted);margin:2px 0 12px}
 .publication-meta {display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px;font-size:13px}
+.related-guides {margin:-8px 0 14px;font-size:13px;color:var(--muted)}
+.related-guides a {color:inherit;text-decoration:underline;text-underline-offset:2px}
 .tag {background:var(--surface);color:#4a4e56;border-radius:6px;padding:2px 9px}
 .tag-muted {background:#fff;border:1px dashed #d3d6db;color:var(--faint)}
 .view {margin-top:auto;display:flex;align-items:center;justify-content:space-between;text-decoration:none;

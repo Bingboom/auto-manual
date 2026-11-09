@@ -68,13 +68,13 @@ domains:
 
   - id: product_catalog
     label: 产品分类
-    authority: 飞书发布文档管理「网页文档」表的型号、商品简称、产品类别、产品系列（$FEISHU_PUBLISHED_DOCS_BASE_TOKEN、$FEISHU_PUBLISHED_DOCS_WEB_TABLE_ID）
+    authority: 飞书发布文档管理「项目号」表的产品类别、产品系列（选项顺序），「网页文档」表的型号、商品简称、按项目号查出的类别与系列、文档类型与适用产品（$FEISHU_PUBLISHED_DOCS_BASE_TOKEN、$FEISHU_PUBLISHED_DOCS_WEB_TABLE_ID）
     read: snapshot
     snapshot: product_catalog.json
     refresh: python -m tools.rtd.product_catalog refresh
     stale_after_days: 30
     fallback: 说明书资料库按产品类型分组，产品矩阵不显示
-    used_by: 说明书资料库的类别与系列、产品矩阵、搜索说明书正文的类别筛选
+    used_by: 说明书资料库的类别、系列与通用指南，产品矩阵，搜索说明书正文的类别筛选
 
   - id: skeletons
     label: 骨架覆盖
