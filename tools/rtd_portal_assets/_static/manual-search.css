@@ -1,58 +1,135 @@
-.manual-search-intro {
-  max-width: 44rem;
-  margin: 1rem auto 2rem;
-  text-align: start;
-}
+/* 搜索说明书正文 (search.html, the 2026-11 design) inside the shared site shell (site-shell.css): the head, the search
+   box, the region / category / language filters, then results grouped by product with one block per market. Before a
+   query: examples and what the index covers. Colours are the 说明书资料库's (body.app): neutral ground, white cards,
+   the orange --brand. */
+* {box-sizing:border-box}
+[hidden] {display:none!important}
+button,input,select {font:inherit;color:inherit}
+button {cursor:pointer}
+.sr-only {position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.skip {position:absolute;left:12px;top:-80px;z-index:50;padding:12px;border-radius:6px;background:#fff}
+.skip:focus {top:12px}
+.msearch {max-width:1180px;margin:0 auto;padding:36px 40px 64px;display:flex;flex-direction:column;gap:18px}
+.msearch a {color:var(--brand-strong);text-decoration:none}
+.msearch a:hover {text-decoration:underline}
+.msearch :focus-visible {outline:3px solid var(--brand);outline-offset:2px}
+mark {background:#ffe7cc;color:inherit;padding:0 2px;border-radius:2px}
 
-.manual-search-intro h1 {
-  margin-bottom: .75rem;
-}
+/* Head and search box */
+.ms-head {display:flex;flex-direction:column;gap:8px}
+.ms-head h1 {margin:0;font-size:30px;line-height:38px;font-weight:700}
+.ms-head p {margin:0;max-width:760px;font-size:15px;line-height:24px;color:var(--app-muted)}
+.ms-form {display:flex;gap:10px;align-items:center}
+.ms-box {flex:1;min-width:0;display:flex;align-items:center;gap:12px;height:52px;padding:0 10px 0 16px;border-radius:12px;background:#fff;
+  border:1px solid var(--app-line);box-shadow:var(--shadow-raised)}
+.ms-box:focus-within {border-color:#f3b98f}
+.ms-box svg {flex:none;color:var(--app-faint)}
+.ms-box input {flex:1;min-width:0;height:100%;border:0;outline:none;background:none;font-size:17px}
+.ms-box input::placeholder {color:var(--app-faint);font-size:15px}
+.ms-box input::-webkit-search-cancel-button {display:none}
+.ms-clear {flex:none;width:28px;height:28px;border:0;border-radius:50%;background:var(--app-bg);color:var(--app-muted);font-size:17px;line-height:1}
+.ms-submit {flex:none;height:52px;padding:0 26px;border:0;border-radius:12px;background:var(--app-ink);color:#fff;font-size:15px;font-weight:600}
+.ms-status {margin:0;font-size:14px;color:var(--app-muted)}
 
-.manual-search-form {
-  margin-top: 1.5rem;
-}
+/* Filters: the numbers are manuals the current search finds under the other two filters. */
+.ms-filters {display:flex;flex-direction:column;gap:10px;padding:14px 16px;background:#fff;border:1px solid var(--app-line);border-radius:12px}
+.ms-frow {display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+.ms-flabel {flex:none;width:36px;font-size:13px;font-weight:600;color:var(--app-muted)}
+.ms-seg {display:inline-flex;flex-wrap:wrap;gap:2px;padding:3px;background:#eceef2;border-radius:10px}
+.ms-seg button {display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px;border:0;border-radius:7px;background:none;
+  color:#50545c;font-size:13px;font-weight:500}
+.ms-seg b,.ms-chip b {font-size:12px;font-weight:500;color:var(--app-faint)}
+.ms-seg button[aria-pressed="true"] {background:#fff;color:var(--app-ink);font-weight:600;box-shadow:0 1px 2px rgba(28,26,23,.1)}
+.ms-seg button[aria-pressed="true"] b {color:var(--brand-strong)}
+.ms-chips {display:flex;flex-wrap:wrap;gap:6px}
+.ms-chip {display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px;border-radius:999px;background:#fff;
+  border:1px solid var(--app-line);color:var(--app-ink);font-size:13px;font-weight:500}
+.ms-chip svg {color:var(--brand)}
+.ms-chip:hover {border-color:#f3b98f}
+.ms-chip[aria-pressed="true"] {border-color:var(--brand);background:var(--brand-soft);color:var(--brand-strong);font-weight:600}
+.ms-seg button.is-zero,.ms-chip.is-zero {color:#b6bac1}
+.ms-chip.is-zero svg {color:#d3d6db}
+.ms-lang {margin-left:auto;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--app-muted)}
+.ms-lang select {height:32px;padding:0 8px;border:1px solid var(--app-line);border-radius:8px;background:#fff;color:var(--app-ink);
+  font-size:13px;font-weight:500}
 
-.manual-search-form label {
-  display: block;
-  margin-bottom: .5rem;
-  font-weight: 600;
-}
+/* Results */
+.ms-summary {display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 16px}
+.ms-summary p {margin:0;font-size:16px;line-height:24px}
+.ms-summary b {font-weight:700}
+.ms-summary span {font-size:13px;color:var(--app-muted)}
+.ms-results {display:flex;flex-direction:column;gap:14px}
+.ms-results:focus {outline:none}
+.ms-prod {display:flex;flex-direction:column;background:#fff;border:1px solid var(--app-line);border-radius:14px;overflow:hidden}
+.ms-phead {display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 16px;padding:14px 20px;
+  border-bottom:1px solid #eef0f3}
+.ms-pid {display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;min-width:0}
+.ms-pid b {font-size:17px;line-height:24px;font-weight:700}
+.ms-short {display:inline-flex;align-items:center;height:24px;padding:0 8px;border-radius:6px;background:var(--app-bg);font-size:13px;font-weight:600}
+.ms-name {font-size:14px;color:var(--app-muted)}
+.ms-pmeta {display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12.5px;color:var(--app-faint)}
+.ms-market {display:flex;flex-direction:column;gap:10px;padding:14px 20px 16px}
+.ms-market + .ms-market {border-top:1px dashed var(--app-line)}
+.ms-mhead {display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.ms-mk {display:inline-flex;align-items:center;height:22px;padding:0 7px;border-radius:6px;background:var(--app-ink);color:#fff;
+  font-size:12px;font-weight:600;letter-spacing:.02em}
+.ms-ml {font-size:13.5px;font-weight:600}
+.ms-mc {font-size:12.5px;color:var(--app-faint)}
+.msearch .ms-open {margin-left:auto;font-size:13px;font-weight:600}
+.ms-hits {display:flex;flex-direction:column;gap:10px;margin:0;padding:0 0 0 12px;list-style:none;border-left:2px solid #f1f2f5}
+.msearch .ms-hits a {font-size:15px;line-height:22px;font-weight:600;color:var(--app-ink)}
+.ms-hits p {margin:2px 0 0;max-width:920px;font-size:13.5px;line-height:21px;color:#50545c;overflow-wrap:anywhere;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ms-mfoot {display:flex;flex-wrap:wrap;align-items:center;gap:6px 18px;padding-left:14px;font-size:13px;color:var(--app-muted)}
+.ms-expand {padding:0;border:0;background:none;color:var(--brand-strong);font-size:13px;font-weight:500}
+.ms-others {display:inline-flex;flex-wrap:wrap;align-items:center;gap:6px}
+.msearch .ms-others a {display:inline-flex;align-items:center;height:24px;padding:0 9px;border-radius:999px;border:1px solid var(--app-line);
+  color:var(--app-ink);font-size:12.5px;font-weight:500}
+.msearch .ms-others a:hover {border-color:#f3b98f;text-decoration:none}
+.ms-more {align-self:center;height:40px;padding:0 20px;border-radius:10px;background:#fff;border:1px solid var(--app-line);font-size:14px;font-weight:600}
+.ms-none {display:flex;flex-direction:column;gap:12px;padding:24px 26px;background:#fff;border:1px dashed #d3d6db;border-radius:14px}
+.ms-none h2 {margin:0;font-size:17px;line-height:24px;font-weight:700}
+.ms-none p {margin:0;font-size:14px;line-height:22px;color:#50545c}
+.ms-none p:empty {display:none}
+.ms-reset {align-self:flex-start;height:38px;padding:0 16px;border:0;border-radius:9px;background:var(--app-ink);color:#fff;font-size:14px;font-weight:600}
 
-.manual-search-form div {
-  display: flex;
-  gap: .75rem;
-}
+/* Before a query: examples, then what the index covers */
+.ms-start {display:flex;flex-direction:column;gap:18px}
+.ms-tips {display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.ms-tip {display:flex;flex-direction:column;gap:10px;padding:18px 20px;background:#fff;border:1px solid var(--app-line);border-radius:14px}
+.ms-tip h2 {margin:0;font-size:15px;line-height:22px;font-weight:700}
+.ms-tip p {margin:0;font-size:13px;line-height:20px;color:var(--app-muted)}
+.ms-qs {display:flex;flex-wrap:wrap;gap:6px}
+.msearch .ms-q {display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 11px;border-radius:8px;background:var(--app-bg);
+  color:var(--app-ink);font-size:13.5px;font-weight:600}
+.msearch .ms-q:hover {background:var(--brand-soft);color:var(--brand-strong);text-decoration:none}
+.ms-q b {font-size:12px;font-weight:500;color:var(--app-faint)}
+.ms-cover {display:flex;flex-direction:column;gap:16px;padding:20px 22px;background:#fff;border:1px solid var(--app-line);border-radius:14px}
+.ms-cover h2 {margin:0;font-size:16px;font-weight:700}
+.ms-cover h2 span {margin-left:8px;font-size:12.5px;font-weight:400;color:var(--app-faint)}
+.ms-cover > p {margin:0;font-size:12.5px;color:var(--app-faint)}
+.ms-stats {display:flex;flex-wrap:wrap;gap:12px 40px}
+.ms-stat {display:flex;flex-direction:column;gap:2px}
+.ms-stat b {font-size:28px;line-height:34px;font-weight:700;font-variant-numeric:tabular-nums}
+.ms-stat span {font-size:12.5px;color:var(--app-muted)}
+.ms-crow {display:flex;align-items:flex-start;gap:8px}
+.ms-crow > span {flex:none;width:44px;padding-top:4px;font-size:12.5px;font-weight:600;color:var(--app-muted)}
+.ms-crow > div {display:flex;flex-wrap:wrap;gap:6px}
+.ms-pill {display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;background:var(--app-bg);font-size:12.5px}
+.ms-pill b {font-weight:600;color:var(--app-muted)}
+.ms-foot {margin:8px 0 0;padding-top:16px;border-top:1px solid var(--app-line);font-size:13px;line-height:21px;color:var(--app-muted)}
 
-.manual-search-form input {
-  min-width: 0;
-  flex: 1;
-  padding: .7rem .8rem;
-  border: 1px solid var(--color-foreground-border, #aaa);
-  border-radius: .35rem;
-  background: var(--color-background-primary, #fff);
-  color: inherit;
-  font: inherit;
+@media (max-width: 820px) {
+  .msearch {padding:28px 24px 56px}
+  .ms-lang {margin-left:0}
+  .ms-flabel {width:100%}
 }
-
-.manual-search-form button {
-  padding: .7rem 1.2rem;
-  border: 0;
-  border-radius: .35rem;
-  background: var(--color-brand-primary, #ed6b13);
-  color: #fff;
-  cursor: pointer;
-  font: inherit;
-  font-weight: 600;
-}
-
-.manual-search-form :focus-visible {
-  outline: 3px solid var(--color-brand-primary, #ed6b13);
-  outline-offset: 3px;
-}
-
-@media (max-width: 520px) {
-  .manual-search-form div {
-    align-items: stretch;
-    flex-direction: column;
-  }
+@media (max-width: 660px) {
+  .msearch {padding:24px 16px 48px;gap:16px}
+  .ms-head h1 {font-size:26px;line-height:34px}
+  .ms-box {height:48px}
+  .ms-submit {height:48px;padding:0 16px}
+  .ms-phead,.ms-market {padding-left:14px;padding-right:14px}
+  .ms-hits p {-webkit-line-clamp:3}
+  .ms-stats {gap:12px 28px}
 }

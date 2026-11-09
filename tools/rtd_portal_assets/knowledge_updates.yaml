@@ -13,7 +13,8 @@
 #   title     the row's bold line
 #   note      one line: what changed
 #   page      where the row links: share | home | product-knowledge |
-#             product-matrix | market-policy | deliverables | system | design-system
+#             product-matrix | market-policy | deliverables | system | design-system |
+#             manual-search
 #             (hidden while that page, or the share package, is not built)
 #   anchor    optional lower-case id on that page, such as work-map
 #   evidence  pr:<repo>#<n>, or a list of them, for reviewers; never shown
@@ -23,6 +24,11 @@
 schema: hello-docs-knowledge-updates/v1
 
 updates:
+  - date: 2026-11-09
+    title: 搜索说明书正文 · 新版页面
+    note: 换成和说明书资料库一样的侧栏与中文界面；结果按产品归组，同一产品各市场的说明书放在一起，每份说明书显示一种语言（写成 en-US 这类简写）；可按区域、类别、语言筛选，搜 UPS 不再命中 upside
+    page: manual-search
+    evidence: "pr:auto-manual#1700"
   - date: 2026-11-06
     title: 产品矩阵 · 按网页文档表分类
     note: 每个产品类别一个标签，按产品系列 × 容量排列，卡片写商品简称；点一款产品在它那一行下方展开各型号的简称、规格、各市场说明书、功能和搭配；说明书资料库也改按同一套类别与系列分组
