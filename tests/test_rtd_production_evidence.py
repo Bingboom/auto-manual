@@ -8,11 +8,9 @@ from tempfile import TemporaryDirectory
 import unittest
 
 from tools.rtd.production_evidence import (
-    NOT_APPLICABLE, NOT_TRACKED, UNAVAILABLE, activity_windows,
+    NOT_APPLICABLE, UNAVAILABLE, activity_windows,
     component_references, metric, production_context, production_metrics, publication_facts, read_publications,
 )
-from tools.rtd.source_registry import load_registry
-from tools.rtd.deliverables import ASSETS, load_snapshot
 from tools.utils.path_utils import Paths, repo_root
 
 
@@ -21,23 +19,20 @@ class ProductionEvidenceTests(unittest.TestCase):
         self.source = {"label": "fixture", "date": "2026-10-02", "href": "https://example.org", "sha256": "a" * 64}
         self.target = dict(model="M", region="EU", lang="en", route="M/EU/en/md", manual="manual.md")
 
-    def metrics(self, targets, snapshot):
-        return {m["id"]: m for m in production_metrics(targets, snapshot, self.source, self.source)}
+    def metrics(self, targets):
+        return {m["id"]: m for m in production_metrics(targets, self.source)}
 
-    def test_versions_formats_and_retries_do_not_multiply_identity(self):
+    def test_versions_and_retries_do_not_multiply_identity(self):
         targets = [dict(self.target, version="1"), dict(self.target, version="2"), self.target,
                    dict(self.target, lang="de"), dict(self.target, region="US")]
-        docs = [dict(self.target, formats={"word": {}, "print": {}}),
-                dict(self.target, formats={"word": {}}),
-                dict(model="M", region="EU", lang="", formats={"word": {}})]
-        results = self.metrics(targets, {"documents": docs})
+        results = self.metrics(targets)
         self.assertEqual(results["manuals"]["value"], 2)
-        for key in ("variants", "targets", "published"):
+        for key in ("variants", "published"):
             self.assertEqual(results[key]["value"], 3)
-        self.assertEqual(results["word"]["value"], 2)
-        self.assertEqual(results["print"]["value"], 1)
-        self.assertEqual(results["idml"]["display"], NOT_TRACKED)
-        self.assertEqual(results["pdf"]["display"], NOT_TRACKED)
+
+    def test_only_web_manuals_are_counted(self):
+        # The workbench no longer counts Feishu cloud-document deliveries (Word, print, IDML, PDF): 2026-11-09.
+        self.assertEqual(list(self.metrics([self.target])), ["manuals", "variants", "published"])
 
     def test_publication_facts_count_books_and_language_versions_once(self):
         # A second route of one language version (a legacy alias) counts once.
@@ -56,7 +51,7 @@ class ProductionEvidenceTests(unittest.TestCase):
         self.assertEqual((facts["books"], facts["variants"], facts["models"]), (3, 5, 2))
         self.assertEqual(facts["books_by_region"], {"EU": 2, "US": 1})
         # The workbench KPI reads the same identities.
-        results = self.metrics(catalog, None)
+        results = self.metrics(catalog)
         self.assertEqual((results["manuals"]["value"], results["variants"]["value"]), (3, 5))
         self.assertEqual(results["manuals"]["objects"], ["M / EU", "M / US", "N / EU"])
         empty = publication_facts([])
@@ -64,15 +59,13 @@ class ProductionEvidenceTests(unittest.TestCase):
                           empty["last_published"]), (0, 0, 0, {}, ""))
 
     def test_unknown_language_does_not_invent_variant(self):
-        docs = [dict(model="M", region="EU", lang="", formats={"word": {}})]
-        results = self.metrics([], {"documents": docs})
-        self.assertEqual(results["targets"]["value"], 0)
-        self.assertEqual(results["word"]["value"], 1)
+        results = self.metrics([dict(self.target, lang="")])
+        self.assertEqual((results["manuals"]["value"], results["variants"]["value"]), (1, 0))
 
     def test_zero_missing_and_not_applicable_are_distinct(self):
-        good = self.metrics([], {"documents": []})
-        bad = self.metrics(None, None)
-        for key in ("manuals", "variants", "targets", "published", "word", "print"):
+        good = self.metrics([])
+        bad = self.metrics(None)
+        for key in ("manuals", "variants", "published"):
             self.assertEqual(good[key]["display"], "0")
             self.assertEqual(bad[key]["display"], UNAVAILABLE)
             self.assertIsNone(bad[key]["value"])
@@ -91,13 +84,6 @@ class ProductionEvidenceTests(unittest.TestCase):
             path.write_text('{broken')
             self.assertIsNone(read_publications(path)[0])
 
-    def test_production_union_includes_known_unpublished_delivery_targets(self):
-        docs = [dict(model="Other", region="JP", lang="ja", formats={"word": {}})]
-        results = self.metrics([self.target], {"documents": docs})
-        self.assertEqual(results["targets"]["value"], 2)
-        self.assertEqual(results["published"]["value"], 1)
-        self.assertEqual(self.metrics([self.target], None)["targets"]["display"], UNAVAILABLE)
-
     def test_actual_instance_inheritance_yields_explicit_reference_targets(self):
         refs, total = component_references(Paths(root=repo_root()))
         self.assertGreater(total, 0)
@@ -115,15 +101,13 @@ class ProductionEvidenceTests(unittest.TestCase):
         self.assertIn("Build Retries", windows[0]["metrics"])
         self.assertIn("Repeat Publications", windows[0]["metrics"])
 
-    def test_context_exposes_staleness_missing_inputs_and_source_provenance(self):
-        registry, _ = load_registry(ASSETS)
-        snapshot, _ = load_snapshot(ASSETS / registry["deliverables_feishu"]["snapshot"])
+    def test_context_exposes_missing_inputs_and_source_provenance(self):
         with TemporaryDirectory() as temp:
             path = Path(temp) / "manifest.json"
-            context = production_context(root=repo_root(), assets=ASSETS, manifest=path, snapshot=snapshot,
-                                         registry=registry, today=dt.date(2027, 1, 1), delivery_stale=["交付快照已过期"])
-        self.assertIn("交付快照已过期", context["alerts"])
+            context = production_context(root=repo_root(), manifest=path, today=dt.date(2027, 1, 1))
         self.assertTrue(any("发布目录 Unavailable" in alert for alert in context["alerts"]))
+        # The Feishu delivery snapshot is no longer read, so it raises no alert.
+        self.assertFalse(any("交付快照" in alert for alert in context["alerts"]))
         # Corpus and skeleton totals belong to 系统建设; the workbench neither counts nor alerts on them.
         self.assertFalse(any("语料快照" in alert for alert in context["alerts"]))
         self.assertEqual([item["id"] for item in context["assets"]], ["components", "specs", "artwork"])

@@ -19,11 +19,11 @@
 {% from "_site_shell.html" import site_sidebar, site_topbar, site_script, icon with context %}
 {% import '_work_links.html' as links %}
 <body class="app kb system-workspace deliverables">
-{#- 说明书工作台 (2026-11 design): snapshot chips beside the title, the four delivery totals, the 常用入口 strip,
-    then three tabs. 进度 is 网页说明书进度; 交付物 the coverage matrix, every language version and the statistics
-    (#statistics); 资产与证据 the production evidence and the snapshot hashes. 工作入口 moved to 系统建设. -#}
-{%- set chip_names = {'deliverables': '交付链接', 'corpus': '语料', 'web_progress': '网页进度'} -%}
-{%- macro web_chips(items) -%}{% if items %}<div class="dl-chips">{% for item in items %}<a class="dl-chip" href="{{ pathto(item.docname)|e }}" title="{{ item.title|e }}"><b>{{ item.label|e }}</b>{{ item.version|e }}</a>{% set record = progress.record_links.get(item.docname) %}{% if record %}<a class="dl-feishu" href="{{ record|e }}" target="_blank" rel="noopener" title="在飞书网页文档表打开这一行">飞书</a>{% endif %}{% endfor %}</div>{% else %}<span class="dl-none">—</span>{% endif %}{%- endmacro -%}
+{#- 说明书工作台 (2026-11 design): snapshot chips beside the title, four Web-manual totals, the 常用入口 strip, then
+    three tabs. 进度 is 网页说明书进度; 交付物 the coverage matrix (a row opens its language versions) and the five
+    statistics cards (#statistics); 资产与证据 the asset cards, the evidence table and the snapshot hashes. The page
+    counts Web manuals only (2026-11-09): no Feishu cloud-document deliveries, no 交付链接 snapshot. -#}
+{%- set chip_names = {'corpus': '语料', 'web_progress': '网页进度'} -%}
 {{ site_sidebar('deliverables', {'system': system_entry, 'deliverables': True, 'design': design_entry, 'matrix': matrix_entry}) }}
 <div class="app-content">
   {{ site_topbar('知识库', '说明书工作台') }}
@@ -67,53 +67,17 @@
 
     {% include 'web_progress_matrix.html' %}
 
-    <details class="sw-section dl-details" id="deliverables-matrix">
-      <summary><span class="dl-section-title"><h2 id="deliverables-title">语言版本明细</h2><span>按型号与区域列出每个语言版本 · 点语言标签打开，「飞书」打开它在网页文档表里的行</span></span></summary>
-      <div class="dl-toolbar">
-        <label class="dl-select"><span>型号</span><select id="dl-model"><option value="">全部型号</option>{% for m in web_models %}<option value="{{ m.model|e }}">{{ m.model|e }}{% if m.name %} · {{ m.name|e }}{% endif %}</option>{% endfor %}</select></label>
-        <label class="dl-select"><span>区域</span><select id="dl-region"><option value="">全部区域</option>{% for r in web_regions %}<option value="{{ r.code|e }}">{{ r.label|e }}</option>{% endfor %}</select></label>
-        <div class="dl-meta">
-          <span>网页手册：{% if web_missing %}{{ fallbacks.publications|e }}{% else %}发布清单{% if last_published %} · 目录中最近构建 {{ last_published|e }}{% endif %}{% endif %}</span>
-        </div>
-      </div>
-      {%- if web_models %}
-      <div class="dl-table-wrap" role="region" aria-label="语言版本明细，可横向滚动" tabindex="0">
-        <table class="dl-table">
-          <caption class="wb-sr-only">按型号分组、区域分行的网页说明书语言版本</caption>
-          <thead><tr><th scope="col">区域</th><th scope="col">网页说明书<small>语言 · 版本</small></th></tr></thead>
-          {%- for m in web_models %}
-          <tbody data-model="{{ m.model|e }}">
-            <tr class="dl-model"><th colspan="2"><b>{{ m.model|e }}</b>{% if m.name %}<span>{{ m.name|e }}</span>{% endif %}</th></tr>
-            {%- for row in m.rows %}
-            <tr data-region="{{ row.region|e }}">
-              <td class="dl-region">{{ row.region_label|e }}</td>
-              <td data-label="网页说明书">{{ web_chips(row.web) }}</td>
-            </tr>
-            {%- endfor %}
-          </tbody>
-          {%- endfor %}
-        </table>
-      </div>
-      <p class="dl-empty" id="dl-empty" hidden>没有符合筛选条件的语言版本。</p>
-      {%- else %}
-      <div class="empty-state">{% if web_missing %}<h3>Unavailable</h3><p>发布清单当前不可读。</p>{% else %}<h3>0 个语言版本</h3><p>发布清单里还没有网页说明书。</p>{% endif %}</div>
-      {%- endif %}
-      <p class="dl-note">每个标签是一个语言版本和它的版本号。</p>
-    </details>
 
-    {#- The statistics moved from 系统数据; `statistics` is None when a capability or asset CSV is unreadable. #}
-    <section class="system-data" id="statistics" aria-label="数据统计">
-      {% if statistics %}{% include 'production_statistics.html' %}{% else %}<div class="empty-state"><h3>无数据</h3><p>机型能力表或素材登记表不可读，构建日志有告警。</p></div>{% endif %}
+    {#- `statistics` is None when a capability or asset CSV is unreadable. #}
+    <section class="sw-section system-data" id="statistics" aria-labelledby="statistics-title">
+      {% if statistics %}{% include 'production_statistics.html' %}{% else %}<h2 id="statistics-title">数据统计</h2><div class="empty-state"><h3>无数据</h3><p>机型能力表或素材登记表不可读，构建日志有告警。</p></div>{% endif %}
     </section>
     </div>
 
     <div class="tab-panel" id="production-evidence" role="tabpanel" aria-label="资产与证据">
       {% include 'production_evidence.html' %}
-      <details class="pe-system-entry" id="more-evidence"><summary>更多数据：周期活动、资产总览与统计口径</summary>
-        {% include 'production_evidence_details.html' %}
-      </details>
-      {#- Moved from the head: each snapshot's date, state, hash and update run. -#}
-      <details class="page-meta wb-snapshots" id="snapshots"><summary>快照与校验</summary>
+      {#- Each snapshot's date, state, hash and update run; the summary line names them. -#}
+      <details class="page-meta wb-snapshots" id="snapshots"><summary><b>快照与校验</b><span>{% for item in freshness %}{{ chip_names.get(item.kind, item.label)|e }} {{ item.date[5:] if item.hash else item.date }} · {{ item.state|e }}{% if not loop.last %}　{% endif %}{% endfor %}　页面构建 {{ build_date[5:]|e }}</span></summary>
         <p>按型号 × 区域计本数，显示当前存量，不代表本周新增。待复核表示需要重新确认，仍展示上次有效数据；页面构建不代表业务来源已刷新。</p>
         <div class="ws-update"><span>页面构建：{{ page_built_at|e }}</span><a href="https://github.com/Bingboom/Hello-Docs/actions" target="_blank" rel="noopener">查看更新记录 ↗</a></div>
         <ul class="wb-snapshot-list">{% for item in freshness %}<li><b>{{ item.label|e }}</b>：{{ item.date|e }} · {{ item.state|e }} · SHA256 <code>{{ item.hash|default('Unavailable', true)|e }}</code>{% if item.execution.startswith('https://github.com/') %} · <a href="{{ item.execution|e }}" target="_blank" rel="noopener">执行记录 ↗</a>{% endif %}</li>{% endfor %}</ul>
@@ -123,7 +87,7 @@
 
     <footer>
       <span>页面构建日期 {{ build_date|e }}</span>
-      <span>数据来源：发布清单 · 飞书网页文档表、审核稿表与文档构建表快照 · 机型能力与素材登记</span>
+      <span>数据来源：发布清单 · 飞书网页文档表与审核稿表快照 · 机型能力与素材登记</span>
     </footer>
   </main>
 </div>
@@ -144,28 +108,6 @@
     if (link && link.hash === location.hash) revealTarget(link.hash);
   });
   revealTarget();
-  const model = document.getElementById("dl-model");
-  const region = document.getElementById("dl-region");
-  const empty = document.getElementById("dl-empty");
-  const groups = [...document.querySelectorAll(".dl-table tbody")];
-  if (!model || !region || !empty) return;
-  function refresh() {
-    let shown = 0;
-    groups.forEach((group) => {
-      const modelMatch = !model.value || group.dataset.model === model.value;
-      let rows = 0;
-      group.querySelectorAll("tr[data-region]").forEach((row) => {
-        const visible = modelMatch && (!region.value || row.dataset.region === region.value);
-        row.hidden = !visible;
-        if (visible) rows += 1;
-      });
-      group.hidden = rows === 0;
-      shown += rows;
-    });
-    empty.hidden = shown !== 0;
-  }
-  model.addEventListener("change", refresh);
-  region.addEventListener("change", refresh);
 })();
 </script>
 {{ site_script() }}

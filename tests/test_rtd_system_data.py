@@ -53,7 +53,7 @@ class SystemDataTests(unittest.TestCase):
         ])
 
     def context(self, manifest_path: Path | None = None):
-        return system_data_context(self.root, manifest_path or self.manifest, {"en": "English", "ja": "日本語"})
+        return system_data_context(self.root, manifest_path or self.manifest, {"en": "en-US", "ja": "ja-JP"})
 
     def test_counts_and_rows_come_from_the_repository_files(self):
         context = self.context()
@@ -65,27 +65,33 @@ class SystemDataTests(unittest.TestCase):
         # Newest build first, each row linked to its manual page.
         self.assertEqual([row["lang"] for row in context["published"]], ["fr", "ja", "en"])
         self.assertEqual(context["published"][0]["docname"], "JE-A/EU/fr/md/manual_fr")
-        self.assertEqual([region["code"] for region in context["regions"]], ["EU", "JP", "US"])
-        self.assertEqual(context["models"], ["JE-A", "JE-B"])
-        payload = json.loads(context["data_json"])
-        self.assertEqual(payload["capabilities"], ["UPS功能", "静音充电"])
-        self.assertEqual(payload["targets"][0], {
+        self.assertEqual(context["targets"][0], {
             "key": "JE-A_EU", "model": "JE-A", "region": "EU", "project": "P1", "caps": [1, 0],
             "langs": ["en", "fr"], "review_pages": 2,
         })
-        self.assertEqual(payload["published"][0], {"model": "JE-A", "region": "EU", "lang": "fr"})
-        self.assertEqual(payload["assets"][1], {"category": "图标", "status": "隔离", "model": "ALL", "region": "ALL"})
-        self.assertEqual(payload["language_labels"], {"en": "English", "ja": "日本語"})
+
+    def test_the_five_cards_are_counted_at_build_time(self):
+        context = self.context()
+        # Language versions by region and by language, largest first, then by code.
+        self.assertEqual(context["by_region"], [{"key": "EU", "count": 2}, {"key": "JP", "count": 1}])
+        self.assertEqual(context["by_language"], [{"key": "en", "count": 1}, {"key": "fr", "count": 1},
+                                                  {"key": "ja", "count": 1}])
+        self.assertEqual([row["lang"] for row in context["recent"]], ["fr", "ja", "en"])
+        # Capability coverage over the published models' three targets, largest first.
+        self.assertEqual(context["coverage"], [{"name": "UPS功能", "count": 2, "share": 66.7},
+                                               {"name": "静音充电", "count": 1, "share": 33.3}])
+        self.assertEqual(context["asset_status"], [{"key": "临时替代", "count": 1}, {"key": "成品", "count": 1},
+                                                   {"key": "隔离", "count": 1}])
+        self.assertEqual(context["asset_categories"], [{"key": "插图", "count": 2}, {"key": "图标", "count": 1}])
+        self.assertEqual(context["language_codes"], {"en": "en-US", "ja": "ja-JP"})
 
     def test_capability_rows_list_only_published_models(self):
         # JE-C has no published 说明书, so its target drops out; JE-A keeps JE-A_US beside its published JE-A_EU.
         (self.paths.data_dir / "model_capabilities.csv").write_text(CAPABILITIES + "JE-C_EU,P3,TRUE,TRUE\n",
                                                                      encoding="utf-8")
         context = self.context()
-        self.assertEqual([row["key"] for row in json.loads(context["data_json"])["targets"]],
-                         ["JE-A_EU", "JE-A_US", "JE-B_JP"])
+        self.assertEqual([row["key"] for row in context["targets"]], ["JE-A_EU", "JE-A_US", "JE-B_JP"])
         self.assertEqual((context["summary"]["targets"], context["summary"]["review_targets"]), (3, 1))
-        self.assertNotIn("JE-C", context["models"])
         rows = [{"model": "JE-A"}, {"model": "JE-C"}]
         self.assertEqual(published_targets(rows, [target("JE-A", "EU", "en")]), [{"model": "JE-A"}])
         # An empty catalog publishes no model; no catalog leaves the published models unknown.
@@ -99,8 +105,8 @@ class SystemDataTests(unittest.TestCase):
         self.assertEqual((context["summary"]["variants"], context["summary"]["books"]), (None, None))
         self.assertEqual((context["summary"]["targets"], context["summary"]["review_targets"]), (None, None))
         self.assertEqual(context["summary"]["assets"], 3)
-        payload = json.loads(context["data_json"])
-        self.assertEqual((payload["published"], payload["targets"]), (None, None))
+        self.assertEqual((context["by_region"], context["by_language"], context["coverage"]), (None, None, None))
+        self.assertEqual(context["recent"], [])
         self.assertEqual(read_published(self.root / "missing.json"), (None, ""))
 
     def test_the_headline_counts_each_language_version_and_book_once(self):
@@ -113,13 +119,10 @@ class SystemDataTests(unittest.TestCase):
         self.assertEqual(len(context["published"]), 4)
         self.assertEqual((context["summary"]["variants"], context["summary"]["books"], context["summary"]["models"]),
                          (3, 2, 2))
-
-    def test_the_json_block_cannot_close_its_script_element(self):
-        path = self.paths.data_dir / "model_capabilities.csv"
-        path.write_text(CAPABILITIES.replace("P2", "</script><b>"), encoding="utf-8")
-        data_json = self.context()["data_json"]
-        self.assertNotIn("<", data_json)
-        self.assertEqual(json.loads(data_json)["targets"][2]["project"], "</script><b>")
+        # The 按区域 and 按语言 cards count it once too.
+        self.assertEqual(context["by_region"], [{"key": "EU", "count": 2}, {"key": "JP", "count": 1}])
+        self.assertEqual(context["by_language"], [{"key": "en", "count": 1}, {"key": "fr", "count": 1},
+                                                  {"key": "ja", "count": 1}])
 
     def test_malformed_data_fails(self):
         cases = {

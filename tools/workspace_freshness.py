@@ -8,6 +8,10 @@ from pathlib import Path
 
 from tools.workspace_snapshot import NAMES, data_dir, snapshot_path
 
+# The snapshots the 说明书工作台 shows, and so the ones its page must carry for Workspace Data Verify. Since 2026-11-09
+# the workbench counts Web manuals only, so the Feishu 交付快照 (Word, print links) is neither shown nor checked there.
+SHOWN = ("corpus", "web_progress")
+
 
 def inventory(root: Path) -> dict:
     assets = root / "tools" / "rtd_portal_assets"
