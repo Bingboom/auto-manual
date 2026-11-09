@@ -360,6 +360,8 @@ class MatrixContextTests(unittest.TestCase):
         self.assertEqual([(a["href"], a.get_text()) for a in page.select(".mx-tabs a")],
                          [("#cat-portable", "便携电源1"), ("#cat-category-2", "家庭备电1"),
                           ("#cat-category-3", "太阳能板1"), ("#cat-other", "其他1")])
+        # Only a category without 容量档 lays its cards out flat, side by side.
+        self.assertEqual([("is-flat" in grid["class"]) for grid in page.select(".mx-grid")], [False, False, True, True])
         card = page.select_one('.mx-prod[data-product="p-A500"]')
         self.assertEqual((card["href"], card["aria-expanded"]), ("#p-A500", "false"))
         self.assertEqual(card.select_one(".mx-code").get_text(), "A500")
