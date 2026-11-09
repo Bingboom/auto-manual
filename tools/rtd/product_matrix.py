@@ -19,7 +19,8 @@
 
 The page has a tab per 产品类别 with a grid of 产品系列 × capacity tier (one column where no product states a
 capacity) and, per product, a detail that opens under its 系列 row: every model with its 商品简称, figures and a
-link per market, the capability switches, and the partner products in both directions. A pairing shows only
+link per market, the capability switches, the partner products in both directions, and the 通用指南 whose 适用产品
+lists one of its models (a guide is no product and has no card of its own). A pairing shows only
 while its text still appears in the manual it cites; anything dropped, and any published model the snapshot does
 not list (shown under 其他), is a Sphinx warning. ``lines``, ``accessories`` and ``assign`` stay for the 产品知识
 page (``positioning_groups``), and an ``evidence`` assignment whose quote has left its manual still warns here.
@@ -535,10 +536,28 @@ def _detail_rows(product: dict[str, Any], keys: list[str], config: dict[str, Any
     return rows
 
 
+def related_guides(product: dict[str, Any], guides: dict[str, dict[str, Any]], guide_models: dict[str, dict[str, Any]],
+                   config: dict[str, Any], languages: dict[str, str]) -> list[dict[str, Any]]:
+    """The 通用指南 whose 适用产品 lists one of the product's models, with a link per published market."""
+    models = {row["model"] for row in product["rows"]}
+    related = []
+    for code, guide in guides.items():
+        if code not in guide_models or not models & set(guide["applies_to"]):
+            continue
+        docs = []
+        for region, page in guide_models[code]["pages"].items():
+            label = _market(region, config)["label"]
+            docs.append({"label": label, "doc": page["doc"],
+                         "title": f"{label}：{'、'.join(languages.get(c, c) for c in page['langs'])}"})
+        related.append({"short": guide["short"], "docs": docs})
+    return related
+
+
 def product_detail(product: dict[str, Any], capabilities: dict[str, dict[str, Any]],
                    named: dict[str, list[dict[str, str]]], named_by: dict[str, list[dict[str, str]]],
-                   config: dict[str, Any], languages: dict[str, str]) -> dict[str, Any]:
-    """The detail under a product's row: model rows, the first capability row, and partner products."""
+                   config: dict[str, Any], languages: dict[str, str],
+                   guides: list[dict[str, Any]] | None = None) -> dict[str, Any]:
+    """The detail under a product's row: model rows, the first capability row, partner products and guides."""
     own = [row for row in product["rows"] if "shares" not in row]
     keys = [key for key, _ in COLUMNS if any(row.get(key) for row in own)]
     features = next((capabilities[row["model"]] for row in own if row["model"] in capabilities), None)
@@ -546,7 +565,7 @@ def product_detail(product: dict[str, Any], capabilities: dict[str, dict[str, An
     by = named_by.get(product["key"], [])
     return {"columns": [label for key, label in COLUMNS if key in keys],
             "rows": _detail_rows(product, keys, config, languages), "features": features,
-            "pairing": {"named": items, "named_by": by} if items or by else None}
+            "pairing": {"named": items, "named_by": by} if items or by else None, "guides": guides or []}
 
 
 def _series_rows(members: list[dict[str, Any]], series: list[str], columns: list[str],
@@ -596,13 +615,17 @@ def matrix_context(root: Path, srcdir: Path, manifest: Path, assets: Path, setti
     config = load_config(assets, settings)
     warnings: list[str] = []
     models, texts = read_models(srcdir, targets, catalog, config, warnings)
+    # A 通用指南 is no product: its pages show under the products its 适用产品 lists.
+    guides = product_catalog.get("guides", {})
+    guide_models = {code: models.pop(code) for code in list(models) if code in guides}
     _check_evidence(config, texts, warnings)
     products = build_products(models, product_catalog, config, warnings)
     capabilities = capability_view(root, config)
     named, named_by = pairing_index(models, texts, products, config, warnings)
     languages = settings.get("language_labels", {})
     for product in products:
-        product["detail"] = product_detail(product, capabilities, named, named_by, config, languages)
+        product["detail"] = product_detail(product, capabilities, named, named_by, config, languages,
+                                           related_guides(product, guides, guide_models, config, languages))
     return {
         "built_on": built_at[:10], "classified_on": product_catalog["exported_at"],
         "facts": {"products": len(products), "models": sum(len(product["rows"]) for product in products)},

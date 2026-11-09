@@ -414,7 +414,8 @@ library does not link to it.
   「+沙金色」); a model the snapshot records as sharing another model's pages
   (`pages_of`: JE-1000F-SG on the JE-1000F US pages) joins as a row that links
   those pages. The product's name, capacity and tier come from its lead model
-  (own pages first, then the most markets). A published model the snapshot does
+  (own pages first, then the most markets). A 通用指南 of the snapshot is no
+  product and has no card (see Detail). A published model the snapshot does
   not list goes under a 其他 tab with a Sphinx warning.
 - **Read at build time.** `tools/rtd/product_matrix.py` reads the publish
   manifest (each model's markets, languages and routes), then one published
@@ -443,7 +444,9 @@ library does not link to it.
   Below: 功能 from the first model in the capability table (switches on in every
   region, 部分市场 with the regions in the tooltip, then 不支持), and 搭配: what
   the product's manuals name, and the other products whose manuals name it
-  (「DC-DC Charger 的说明书写到「Explorer 1000 v2」」). Under 600px of container
+  (「DC-DC Charger 的说明书写到「Explorer 1000 v2」」), and 相关指南: each 通用指南
+  whose 适用产品 lists one of the product's models, with a link per market the
+  guide is published in (「太阳能连接指南 日规」). Under 600px of container
   width each model stacks as a labelled list.
 - **Curated config.** `product_matrix.json` holds what neither the manuals nor
   the snapshot state: `tiers`, `markets`, `variant_marks`, `names`, `notes`
@@ -471,10 +474,12 @@ library does not link to it.
 
 ### 产品分类 snapshot
 
-`tools/rtd/product_catalog.py` reads the 网页文档 table of the 发布文档管理 Base
-(`$FEISHU_PUBLISHED_DOCS_BASE_TOKEN`, `$FEISHU_PUBLISHED_DOCS_WEB_TABLE_ID`)
+`tools/rtd/product_catalog.py` reads the 网页文档 and 项目号 tables of the
+发布文档管理 Base (`$FEISHU_PUBLISHED_DOCS_BASE_TOKEN`,
+`$FEISHU_PUBLISHED_DOCS_WEB_TABLE_ID`; the 项目号 table is found by its name, or
+pass `--project-table-id` / `$FEISHU_PUBLISHED_DOCS_PROJECT_TABLE_ID`)
 read-only and writes `tools/rtd_portal_assets/product_catalog.json`
-(`hello-docs-product-catalog/v1`, the `product_catalog` domain of
+(`hello-docs-product-catalog/v2`, the `product_catalog` domain of
 `source_registry.yaml`, 待复核 after 30 days):
 
 ```bash
@@ -483,24 +488,50 @@ python -m tools.rtd.product_catalog refresh --cli-bin "lark-cli --profile prod"
 python -m tools.rtd.product_catalog check
 ```
 
-- `categories`: the 产品类别 options in the table's order, each with the 产品系列
-  options its models use, in the table's order. Reorder options in Feishu to
-  reorder both pages.
-- `models`: every model a row's 型号 cell lists, with the row's 类别, 系列 and the
-  商品简称 at the same position of its 商品简称 cell (`JE-1000F, JE-1000F-SG` ↔
-  `E1000V2,E1000V2沙金色`). A model listed after the first one, without rows of
-  its own, also records `pages_of` and the routes it shares.
-- A row without a 类别 or 系列 is skipped and printed; rows that disagree about a
-  model, a 型号 and 商品简称 cell of different lengths, a link to another model's
-  route or a value outside the options fail the refresh and keep the previous
-  snapshot. Only 型号, 商品简称, 产品类别, 产品系列 and 超链接 are read, never a SKU or
-  project code: the snapshot sits in a public repository.
-- Classifying a model, or renaming a series, is a 网页文档 table edit (operator
+- **Where a product is classified.** Since 2026-11-09 a product is classified
+  once, on its row of the 项目号 table: 产品类别 (single select: 便携储能 / 家庭备电 /
+  加电包 / 太阳能板 / 配件), 产品系列 (single select whose options each category
+  uses its own of: 标准 / Plus / PlusV2 / Pro / ProMax / Ultra / 卫士 / 充电宝 for
+  储能; SolarSaga / SolarSaga Air; 充电与输入 / 连接与配电 / 保护与搬运 for 配件;
+  标准 for 加电包) and 容量档 (1度以下 … 5度电, empty for 太阳能板 and 配件; not yet
+  read by the pages, whose tiers still come from the manuals). Each 网页文档 row
+  names its 项目号; its 产品类别, 产品系列 and 容量档 columns are lookups of that row.
+  The old per-row single select stays as 产品系列（迁移备份）, unread.
+- **文档类型** (网页文档 single select): 产品说明书 (also when blank) or 通用指南. A
+  通用指南 belongs to no one product: its 型号 is its document code, the first
+  segment of its route (`JS-CONNECTION-GUIDE`), it has no 项目号, and 适用产品 (text)
+  lists the model codes it covers, older codes such as `PTB101` included.
+- `categories`: the 项目号 table's 产品类别 options in their order, each with the
+  产品系列 options its models use, in that field's order. Reorder options in
+  Feishu to reorder both pages.
+- `models`: every model a 产品说明书 row's 型号 cell lists, with the row's 类别, 系列
+  and the 商品简称 at the same position of its 商品简称 cell
+  (`JE-1000F, JE-1000F-SG` ↔ `E1000V2,E1000V2沙金色`). A model listed after the
+  first one, without rows of its own, also records `pages_of` and the routes it
+  shares.
+- `guides`: each 通用指南 by its code, with its 商品简称, routes and `applies_to`
+  (the 适用产品 models, in order). The 说明书资料库 shows the guides in a 通用指南
+  group after the categories, and a product card whose model a guide of the same
+  market covers says 「相关指南：太阳能连接指南」; the 产品矩阵 lists the guide under
+  the products it covers.
+- A manual row without a 类别 or 系列 is skipped and printed; rows that disagree
+  about a model or a guide, a 型号 and 商品简称 cell of different lengths, a link
+  to another model's route, a guide whose link does not open its own route, a
+  文档类型 other than the two, or a value outside the options fail the refresh and
+  keep the previous snapshot. Only 型号, 商品简称, 产品类别, 产品系列, 超链接, 文档类型
+  and 适用产品 are read; the 项目号 only joins the tables inside Feishu and, like a
+  SKU, never reaches the snapshot, which sits in a public repository.
+- Classifying a model, or renaming a series, is a 项目号 table edit (operator
   confirmation and a read-back, per the lark-cli Bitable rules) followed by a
   refresh PR. The 2026-11-06 snapshot came from the operator-approved fill of
   all 206 rows plus the three JP rows the operator added the same day for
   JA-CK01A-BK, JA-CK01A-BK-QG and JS-CONNECTION-GUIDE (209 rows, 69 models;
-  便携电源 / 家庭备电 / 扩容电池 / 太阳能板 / 配件).
+  便携电源 / 家庭备电 / 扩容电池 / 太阳能板 / 配件). On 2026-11-09 the operator
+  moved classification to the 项目号 table (60 projects) and approved the field
+  changes above, written with a read-back of both tables; the refreshed snapshot
+  has 67 models (便携储能 46 / 家庭备电 3 / 加电包 5 / 太阳能板 4 / 配件 9) and one
+  guide. The 网页文档 table then had no row for JA-CK01A-BK-QG (208 rows), so its
+  published quick guide shows under 其他说明书 until a row is added.
 
 ## 产品知识
 

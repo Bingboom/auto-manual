@@ -272,6 +272,30 @@ class MatrixContextTests(unittest.TestCase):
         (self.assets / "product_matrix.json").write_text(json.dumps(CONFIG), encoding="utf-8")
         self.assertFalse(any("evidence" in message or "home circuits" in message for message in self.context()["warnings"]))
 
+    def test_a_general_guide_is_no_product_and_shows_under_the_products_it_covers(self):
+        manifest = json.loads(self.manifest.read_text(encoding="utf-8"))
+        manifest["targets"].append(target("JS-G", "JP", "ja"))
+        self.manifest.write_text(json.dumps(manifest), encoding="utf-8")
+        folder = self.web / "JS-G/JP/ja/md"
+        folder.mkdir(parents=True)
+        (folder / "manual_ja.md").write_text("# 接続ガイド\nJE-A\n", encoding="utf-8")
+        snapshot = {**CATALOG, "guides": {"JS-G": {"short": "太阳能连接指南", "routes": ["JS-G/JP/ja"],
+                                                    "applies_to": ["JE-B", "PTB101"]}}}
+        context = self.context(snapshot)
+        self.assertEqual(context["facts"], {"products": 4, "models": 6})
+        self.assertFalse(any(message.startswith("JS-G") for message in context["warnings"]))
+        products = self.products(context)
+        self.assertNotIn("JS-G", products)
+        # A500's second market model JE-B is covered, so A500 links the guide; HP3600 is not.
+        self.assertEqual(products["A500"]["detail"]["guides"], [{"short": "太阳能连接指南", "docs": [
+            {"label": "日规", "doc": "JS-G/JP/ja/md/manual_ja", "title": "日规：日本語"}]}])
+        self.assertEqual(products["HP3600"]["detail"]["guides"], [])
+        template = Environment(loader=FileSystemLoader(ASSETS)).get_template("product_matrix.html")
+        page = BeautifulSoup(template.render(**context, pathto=lambda name, *args: name, site_nav={}), "html.parser")
+        link = page.select_one(".mx-detail#p-A500 a.mx-pair[href='JS-G/JP/ja/md/manual_ja']")
+        self.assertEqual(link.get_text(), "太阳能连接指南日规")
+        self.assertIsNone(page.select_one(".mx-detail#p-HP3600 a.mx-pair[href^='JS-G']"))
+
     def test_evidence_excerpt_keeps_the_sentence_and_ignores_case_and_spacing(self):
         text = "Intro. The unit can supply Backup  Power to home circuits. Next."
         self.assertEqual(evidence_excerpt(text, "backup power"), "The unit can supply Backup  Power to home circuits.")

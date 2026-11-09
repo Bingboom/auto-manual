@@ -5,14 +5,18 @@ snapshot (``tools/rtd/product_catalog.py``), so this page and the 产品矩阵 s
 products the same way; this module never infers a group. Categories and series
 keep the table's order, and each category takes the anchor id and icon that
 ``settings.json`` names under ``catalog_categories`` (a category it does not
-name gets ``category-<n>`` and a plain icon). A published model the snapshot
-does not list lands in a visible 其他说明书 group, never disappears. Without a
-usable snapshot the page falls back to the product types in ``categories``.
+name gets ``category-<n>`` and a plain icon). A 通用指南 belongs to no one
+product, so the guides follow the categories in a group of their own; each
+product a guide lists in 适用产品 also links to it (``classify``). A published
+model the snapshot does not list lands in a visible 其他说明书 group, never
+disappears. Without a usable snapshot the page falls back to the product types
+in ``categories``.
 """
 from __future__ import annotations
 
 import re
 
+GUIDES = {"id": "guide", "title": "通用指南", "icon": "guide"}
 OTHER = {"id": "other", "title": "其他说明书", "icon": "other"}
 _ID = re.compile(r"[a-z][a-z0-9-]*")
 _NUMBER = re.compile(r"\d+")
@@ -33,8 +37,8 @@ def _styles(settings: dict) -> dict[str, dict[str, str]]:
                 or not str(style.get("icon") or "").strip():
             raise ValueError(f"catalog_categories.{name} needs a lower-case id and an icon")
     ids = [style["id"] for style in styles.values()]
-    if len(set(ids)) != len(ids) or OTHER["id"] in ids:
-        raise ValueError("catalog_categories ids must be unique and not 'other'")
+    if len(set(ids)) != len(ids) or {GUIDES["id"], OTHER["id"]} & set(ids):
+        raise ValueError("catalog_categories ids must be unique and not 'guide' or 'other'")
     return styles
 
 
@@ -62,7 +66,12 @@ def library_view(settings: dict, products: list[dict], catalog: dict | None) -> 
                              [(line, [p for p in members if p["product_series"] == line]) for line in item["series"]])
         if category["series"]:
             categories.append(category)
-    unclassified = [p for p in products if not p.get("product_category")]
-    if unclassified:
-        categories.append(_category(OTHER["id"], OTHER["title"], OTHER["icon"], [("", unclassified)]))
-    return {"categories": categories, "classified": True}
+    return {"categories": categories + _after_categories(products), "classified": True}
+
+
+def _after_categories(products: list[dict]) -> list[dict]:
+    """The 通用指南, then the published models the snapshot does not classify."""
+    guides = [p for p in products if p.get("guide")]
+    unclassified = [p for p in products if not p.get("product_category") and not p.get("guide")]
+    return [_category(group["id"], group["title"], group["icon"], [("", members)])
+            for group, members in ((GUIDES, guides), (OTHER, unclassified)) if members]
