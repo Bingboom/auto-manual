@@ -141,6 +141,10 @@ def verify_attempt(root: Path, revision: str, api: tuple[str, str, bool] | None,
     return True
 
 
+# 30 s apart, 50 attempts wait about 25 minutes: an RTD build sometimes takes over 10 (2026-11-09).
+MAX_ATTEMPTS = 50
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=Path.cwd())
@@ -148,8 +152,8 @@ def main() -> int:
     parser.add_argument("--attempts", type=int, default=1)
     parser.add_argument("--output", type=Path, default=Path(".tmp/workspace-refresh/verification.json"))
     args = parser.parse_args()
-    if not 1 <= args.attempts <= 20:
-        parser.error("attempts must be 1..20")
+    if not 1 <= args.attempts <= MAX_ATTEMPTS:
+        parser.error(f"attempts must be 1..{MAX_ATTEMPTS}")
     report = {"status": "failed", "stage": "mainline", "revision": args.revision,
               "resume": f"python tools/workspace_refresh_verify.py --revision {args.revision}"}
     try:
