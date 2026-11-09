@@ -56,10 +56,10 @@ its market list from the same settings, and CN/JP display their own market notes
 
 ## Page layout
 
-Every portal page (manual library root, 知识库首页, 产品知识, 市场与政策, 系统建设, 说明书工作台, 设计规范, 产品矩阵)
-shares one site shell from `tools/rtd_portal_assets/_site_shell.html` and
+Every portal page (manual library root, 搜索说明书正文, 知识库首页, 产品知识, 市场与政策, 系统建设, 说明书工作台, 设计规范,
+产品矩阵) shares one site shell from `tools/rtd_portal_assets/_site_shell.html` and
 `_static/site-shell.css`. In the manuals-only public role (`RTD_SITE_ROLE=manuals`)
-the manual library root passes `internal=false` to both shell macros: its sidebar
+the manual library root and the search page pass `internal=false` to both shell macros: the sidebar
 contains only 说明书资料库 and 搜索说明书正文, and its top bar keeps the breadcrumb and
 region selector, with no internal knowledge links or 知识库 / 说明书资料库 switch.
 In the combined (private) role the root gets the full internal shell, so a reader
@@ -75,7 +75,7 @@ Optional entries follow the same rules as before: 系统建设, 设计规范 and
 产品矩阵 only when their context builds (each computed once per build and shared
 with the sidebar). Page stylesheets style only what
 sits inside `.app-content`; the brand accent is the shared `--brand` orange.
-The Furo search page and manual pages keep their theme.
+Manual pages keep their Furo theme.
 
 The 系统建设 and 说明书工作台 pages share the page tabs (`.page-tabs` /
 `.tab-panel`, wired by `site_script()`) and, since the 2026-11 redesign, the
@@ -190,9 +190,34 @@ sections and can be expanded. The operator accepted the local preview for deploy
 Deployment uses the existing engineering mirror and RTD build; manual source
 publication, online tables and OSS uploads are outside this change.
 
-The Furo `/search.html` route also has a server-rendered landing form. A bare
-visit therefore shows an actionable query field instead of an empty content
-panel; submitting it uses the existing `q` parameter and Sphinx search index.
+`/search.html` used Sphinx's own search on the Furo page until 2026-11-09; it now searches this index too
+(see [搜索说明书正文](#搜索说明书正文-2026-11-09)).
+
+## 搜索说明书正文 (2026-11-09)
+
+`/search.html` (`tools/rtd_portal_assets/search.html`, `_static/manual-search.js` and `.css`) is a portal page
+in the site shell, with 搜索说明书正文 current in the sidebar. It searches `portal-search-index.js`, the section index
+above, in the browser; Sphinx still writes `searchindex.js`, which nothing reads now.
+
+- Matching: every query token must match the product words (model, 商品简称, product name), the section title or
+  its text. A token that starts with a letter or digit matches whole words (`UPS` finds `UPS機能`, not `upside`);
+  when no section has the whole word, it matches word beginnings (`charg`). Chinese and Japanese match as written.
+- Ranking: a match in the product words counts 100, in the title 20, and each text occurrence 1 (up to 5).
+- Results group by product, then by market (a manual is a product in one region), each manual showing one edition:
+  English when it has one, otherwise its first language in the `language_labels` order. Other languages that also
+  match are listed with their section counts and link to their best section. Languages show as
+  `language_display_codes` (en-US, ja-JP …), the same codes as the library's language dialog.
+- Filters: region (the unique `regions` bindings, so UK reads EU), the library's categories (the 产品分类 snapshot
+  via `library_view`, so the three pages group alike) and language. Each count is the manuals the query finds under
+  the other two filters. Query and filters live in the URL (`?q=&region=&cat=&lang=`); manual pages' Furo search
+  boxes submit `q` here.
+- Before a query: the example queries in the template, each with the manuals it finds now (one that finds nothing
+  is hidden), and the index's coverage counted in the browser. When the filters leave nothing, the page says where
+  the matches are, offers 清除筛选 and, for a single-language region, suggests that language's terms.
+- `tools/rtd/portal_search.py` `search_page_context` gives the page its filters; the config lists languages as
+  `[code, display]` pairs because the template's `tojson` sorts mapping keys and the order picks the edition.
+- Tests: `tests/test_rtd_search_page.py`, `tests/manual_search_ui.test.mjs` and the real Sphinx builds in
+  `tests/test_rtd_portal.py` (both site roles).
 
 ## Product short-name search (2026-11-02)
 

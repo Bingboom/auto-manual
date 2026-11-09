@@ -24,7 +24,7 @@ domains:
     authority: "file:hello-docs:docs/publish/publish_manifest.json"
     read: build
     fallback: 发布清单当前不可读
-    used_by: 说明书工作台的发布规模、覆盖矩阵与语言版本、说明书工作台·交付物·数据统计、产品矩阵
+    used_by: 说明书工作台的发布规模、覆盖矩阵与语言版本、说明书工作台·交付物·数据统计、产品矩阵、搜索说明书正文
 
   - id: ledger
     label: 执行进度
@@ -74,7 +74,7 @@ domains:
     refresh: python -m tools.rtd.product_catalog refresh
     stale_after_days: 30
     fallback: 说明书资料库按产品类型分组，产品矩阵不显示
-    used_by: 说明书资料库的类别、系列与通用指南，产品矩阵
+    used_by: 说明书资料库的类别、系列与通用指南，产品矩阵，搜索说明书正文的类别筛选
 
   - id: skeletons
     label: 骨架覆盖

@@ -8,15 +8,7 @@
 {% call site_topbar('工作资料', '说明书资料库', internal=internal_shell) %}<label class="region"><span>区域</span> <select id="region" aria-label="区域">{% for region, binding in portal.regions.items() %}<option value="{{ region|e }}" data-binding="{{ binding|e }}"{% if region == portal.default_region %} selected{% endif %}>{{ region|e }}</option>{% endfor %}</select></label>{% endcall %}
 <main>
 <section class="intro"><div class="wrap intro-inner"><h1>说明书资料库</h1><p>输入型号、商品简称、产品名称或任意关键词，查找已发布的说明书。</p><div class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m16 16 5 5"></path></svg><label class="sr-only" for="search">搜索型号、商品简称、产品名称或说明书内容</label><input id="search" type="search" placeholder="搜索型号、商品简称、产品名称或说明书内容…" autocomplete="off"><button id="clear" aria-label="清除搜索" hidden>×</button></div></div></section>
-{%- macro category_icon(name, size=18) -%}<svg class="cat-icon" width="{{ size }}" height="{{ size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-{%- if name == 'portable' -%}<rect x="3" y="7" width="18" height="12" rx="2.4"/><path d="M8 7V5h8v2"/><path d="M12.6 10.5l-2.2 3.3h2.8l-2.2 3.3"/>
-{%- elif name == 'home' -%}<path d="M4 10.5L12 4l8 6.5V19a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M12.6 10.5l-2.2 3.4h2.8l-2.2 3.4"/>
-{%- elif name == 'battery' -%}<rect x="5" y="4" width="14" height="6" rx="1.6"/><rect x="5" y="12" width="14" height="6" rx="1.6"/><path d="M12 19.5v1.5"/>
-{%- elif name == 'solar' -%}<path d="M4 17l2.5-9h11L20 17z"/><path d="M9 8l-1 9M15 8l1 9M5.3 12.5h13.4"/>
-{%- elif name == 'accessory' -%}<path d="M9 3v4M15 3v4"/><path d="M7 7h10v4a5 5 0 0 1-10 0z"/><path d="M12 16v5"/>
-{%- elif name == 'guide' -%}<path d="M6 4h11a1 1 0 0 1 1 1v12H7a2 2 0 0 0-2 2V5a1 1 0 0 1 1-1z"/><path d="M5 19a2 2 0 0 0 2 2h11v-4"/><path d="M9 8h6M9 11h4"/>
-{%- else -%}<rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 12h8"/>
-{%- endif -%}</svg>{%- endmacro -%}
+{%- from "_category_icons.html" import category_icon -%}
 {#- Categories and series come from the 产品分类 snapshot (tools/rtd/portal_navigation.py); the chips link to them. -#}
 <section class="catalog" aria-label="说明书资料">
 <div class="toolbar"><div class="wrap toolbar-inner"><nav class="cat-chips" aria-label="产品类别">{% for category in library.categories %}<a class="cat-chip" href="#cat-{{ category.id|e }}" data-chip="{{ category.id|e }}">{{ category_icon(category.icon) }}<span>{{ category.title|e }}</span><b class="cat-chip-count"></b></a>{% endfor %}</nav><label class="language-filter" for="search-language"><span>语言</span><select id="search-language"><option value="all">全部已发布语言</option>{% for code, label in portal.language_labels.items() %}<option value="{{ code|e }}">{{ label|e }}</option>{% endfor %}<option value="legacy">语言范围待确认</option></select></label></div></div>

@@ -1,4 +1,10 @@
-"""Build the portal's local keyword index from rendered canonical manuals."""
+"""搜索说明书正文: the section index built from rendered canonical manuals, and the search page's filters.
+
+``write_search_index`` writes ``_static/portal-search-index.js`` (one row per manual section) after the HTML build;
+the 说明书资料库 and the search page (``search.html``, ``_static/manual-search.js``) both read it in the browser.
+``search_page_context`` gives the search page its region, category and language filters, taking categories from
+the same grouping as the 说明书资料库 (``portal_navigation.library_view``).
+"""
 from __future__ import annotations
 
 import json
@@ -82,3 +88,25 @@ def write_search_index(app, exception):
     output = static_dir_of(Path(app.outdir)) / "portal-search-index.js"
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text("window.manualSearchIndex = " + json.dumps(rows, ensure_ascii=True) + ";\n", encoding="utf-8")
+
+
+def search_page_context(settings: dict, library: dict) -> dict:
+    """Filters for the search page: regions, the library's categories with each model's category and series, language codes."""
+    regions = list(dict.fromkeys(settings["regions"].values()))
+    categories = [{"id": item["id"], "title": item["title"], "icon": item["icon"]} for item in library["categories"]]
+    models: dict[str, dict[str, str]] = {}
+    for item in library["categories"]:
+        for line in item["series"]:
+            for product in line["products"]:
+                models.setdefault(product["model"], {"category": item["id"], "series": line["title"]})
+    codes = settings.get("language_display_codes") or {}
+    labels = settings.get("language_labels") or {}
+    languages = [{"code": code, "display": codes.get(code, code), "label": label} for code, label in labels.items()]
+    return {
+        "regions": regions, "categories": categories, "languages": languages,
+        "config": {
+            "regions": regions, "categories": {item["id"]: item["title"] for item in categories}, "models": models,
+            # A list, not a mapping: the template's tojson sorts keys, and the settings order decides which edition shows.
+            "languages": [[item["code"], item["display"]] for item in languages], "legacy": "语言待确认",
+        },
+    }

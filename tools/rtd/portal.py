@@ -226,7 +226,7 @@ def page_context(app, pagename, templatename, context, doctree):
     if beacon_token:
         app.add_js_file(BEACON_SRC, loading_method="defer", **beacon_attributes(beacon_token))
     if pagename == "search":
-        app.add_css_file("manual-search.css")
+        context.update(search_page(app, settings, products, beacon_token))
         return None
     if pagename != app.config.root_doc:
         if "/" not in pagename:
@@ -317,6 +317,15 @@ def workbench_catalog(app, settings: dict, products: list[dict]) -> dict:
     return {"groups": groups, "other": OTHER["title"],
             "shorts": {product["model"]: product["short_name"] for product in products if product.get("short_name")},
             "codes": dict(settings.get("language_display_codes") or {})}
+
+
+def search_page(app, settings: dict, products: list[dict], beacon_token: str) -> dict:
+    """搜索说明书正文 in the site shell: the library's categories as filters, the same sidebar as the library root."""
+    from tools.rtd.portal_search import search_page_context
+
+    library = library_view(settings, products, getattr(app, "_rtd_product_catalog", None))
+    return {"site_nav": site_nav(app), "internal_shell": not manuals_only(app),
+            "search": search_page_context(settings, library), "analytics_beacon": beacon_markup(beacon_token)}
 
 
 def workspace_content(app) -> Path:
