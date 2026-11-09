@@ -43,6 +43,16 @@
   ],
   "exported_at": "2026-11-09",
   "guides": {
+    "JA-CK01A-BK-QG": {
+      "applies_to": [
+        "JA-CK01A-BK"
+      ],
+      "kind": "快速指南",
+      "routes": [
+        "JA-CK01A-BK-QG/JP/ja"
+      ],
+      "short": "电源线套装L14-30黑色"
+    },
     "JS-CONNECTION-GUIDE": {
       "applies_to": [
         "JE-100A",

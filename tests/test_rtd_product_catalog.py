@@ -137,6 +137,9 @@ class SnapshotTests(unittest.TestCase):
         # The solar connection guide covers models; it is no model itself.
         self.assertIn("JE-1000D", snapshot["guides"]["JS-CONNECTION-GUIDE"]["applies_to"])
         self.assertNotIn("JS-CONNECTION-GUIDE", snapshot["models"])
+        # The JA-CK01A-BK quick guide (クイックガイド) is that product's second document.
+        self.assertEqual((snapshot["guides"]["JA-CK01A-BK-QG"]["kind"], snapshot["guides"]["JA-CK01A-BK-QG"]["applies_to"]),
+                         ("快速指南", ["JA-CK01A-BK"]))
         self.assertEqual(product_catalog.main(["check"]), 0)
 
     def test_unsound_snapshots_are_reported(self):

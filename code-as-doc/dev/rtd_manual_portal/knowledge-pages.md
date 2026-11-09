@@ -534,9 +534,10 @@ python -m tools.rtd.product_catalog check
   moved classification to the 项目号 table (60 projects) and approved the field
   changes above, written with a read-back of both tables; the refreshed snapshot
   has 67 models (便携储能 46 / 家庭备电 3 / 加电包 5 / 太阳能板 4 / 配件 9) and one
-  guide. The 网页文档 table then had no row for JA-CK01A-BK-QG (208 rows); the
-  operator chose to record it as a 快速指南 of JA-CK01A-BK, and until that row is
-  added its published quick guide shows under 其他说明书.
+  通用指南. The 网页文档 table then had no row for JA-CK01A-BK-QG (208 rows); the
+  operator chose to record it as a 快速指南 of JA-CK01A-BK and approved its row
+  (read back the same day; 209 rows), so every published
+  model or guide is classified.
 
 ## 产品知识
 
