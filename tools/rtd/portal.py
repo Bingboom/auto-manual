@@ -21,6 +21,7 @@ from tools.rtd.design_system import (
 from tools.rtd.feedback import context_text, manual_feedback_markup, normalize_channels
 from tools.rtd.knowledge_updates import PAGES as UPDATE_PAGES, load_updates, updates_view
 from tools.rtd.product_voc import normalize_endpoint, page_markup
+from tools.rtd.manual_chat import chat_endpoint, page_chat
 from tools.rtd.product_short_names import attach_short_names, load_short_names
 from tools.rtd.product_catalog import classify, load_catalog, short_names as catalog_short_names
 from tools.rtd.product_matrix import PAGE as MATRIX_PAGE, TEMPLATE as MATRIX_TEMPLATE, product_matrix_page_context
@@ -129,6 +130,7 @@ def without_leading_language_label(body: str, label: str) -> str:
 
 
 def configure(app, config) -> None:
+    chat_endpoint(getattr(config, "rtd_manual_chat_url", ""))
     config.html_title = SITE_NAME
     # Absolute engineering assets are independent of the frozen source config.
     config.templates_path = [str(ASSETS), *config.templates_path]
@@ -285,6 +287,7 @@ def page_context(app, pagename, templatename, context, doctree):
                 + f'<div lang="{escape(active["lang"], quote=True)}" dir="{direction}">'
                 + without_leading_language_label(context.get("body", ""), lang_label) + '</div>'
                 + manual_feedback_markup(channels=feedback_channels, context=feedback_context)
+                + page_chat(app, active)
             )
             app.add_js_file("manual-locales.js")
             if feedback_channels and feedback_context:
@@ -485,6 +488,7 @@ def setup(app):
     from tools.rtd.workspace_revision import write_workspace_revision
 
     app.add_config_value("rtd_knowledge_dir", "", "html")
+    app.add_config_value("rtd_manual_chat_url", os.environ.get("HT_DOCS_CHAT_URL", ""), "html")
     # Empty means unset: tools/rtd/site_role.py decides, failing closed on Read the Docs.
     app.add_config_value("rtd_site_role", os.environ.get("RTD_SITE_ROLE", ""), "html")
     # ISO date for the system and deliverables pages' staleness rules; empty means the build date (UTC).

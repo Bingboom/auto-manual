@@ -95,7 +95,7 @@ python build.py check --config configs/config.us-en.yaml --model JE-1000F --regi
 | 确认日常流程和编辑位置 | [操作指南](user-guide/hello_auto-doc.md) |
 | 查命令、参数和排障方法 | [构建指南](code-as-doc/build_doc_guide.md) |
 | 查 Web 发布与冻结快照流程 | [Web 发布指南](code-as-doc/dev/web_publish_pipeline.md) |
-| 查说明书资料库、知识库与说明书工作台页 | [RTD 门户指南](code-as-doc/dev/rtd_manual_portal.md) |
+| 查说明书资料库、网页问答、知识库与说明书工作台页 | [RTD 门户指南](code-as-doc/dev/rtd_manual_portal.md) |
 | 复用样式和完整组件 | [样式与组件使用指南](code-as-doc/dev/style_component_usage_guide.md) |
 | 区分仓库、飞书 Base 和运行位置 | [双平面地图](user-guide/two_plane_map.md) |
 | 使用 AI Agent 协作开发 | [仓库操作规则](AGENTS.md) |

@@ -3,6 +3,10 @@
 Part of the [build guide](../build_doc_guide.md); its index lists the other topics.
 Add new notes for this topic here, not to the hub.
 
+网页问答按需启用：在目标 RTD 项目设置 `HT_DOCS_CHAT_URL` 为已部署问答服务的 HTTPS origin 后重建，
+单语言说明书页会显示“问 HT-Docs bot”。第一版绑定当前说明书，查询范围为 EU；构建只生成入口，
+问答服务部署在 Hello-Docs 对应的 Mac 上。服务配置、访问验证和回滚见[网页问答](../dev/rtd_manual_portal/manual-chat.md)。
+
 Frozen external Web sources can bind a source-local presentation sheet in Manual IR
 metadata as `source_stylesheet: {path, sha256}`. `replay_package` requires that file
 to remain inside the package with matching bytes and emits its CSS in the document's
