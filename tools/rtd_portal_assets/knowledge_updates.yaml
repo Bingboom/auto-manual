@@ -14,7 +14,7 @@
 #   note      one line: what changed
 #   page      where the row links: share | home | product-knowledge |
 #             product-matrix | market-policy | deliverables | system | design-system |
-#             manual-search
+#             manual-search | manual-library
 #             (hidden while that page, or the share package, is not built)
 #   anchor    optional lower-case id on that page, such as work-map
 #   evidence  pr:<repo>#<n>, or a list of them, for reviewers; never shown
@@ -24,6 +24,11 @@
 schema: hello-docs-knowledge-updates/v1
 
 updates:
+  - date: 2026-11-10
+    title: 说明书阅读页 · 章节目录和新顶栏
+    note: 已验证的单语网页说明书加了章节目录（左栏随阅读位置高亮当前章节，窄屏点顶栏的目录按钮打开）和顶栏（产品名、型号、区域、语言、版本、搜索、语言下拉框）；这些文字跟随说明书语言（日文页“目次”、英文页“Contents”）；反馈改成正文下方的一张卡；去掉查看源文件、深浅色切换和主题页脚
+    page: manual-library
+    evidence: "pr:auto-manual#1709"
   - date: 2026-11-10
     title: 设计规范 · 颜色、字体、组件、素材和印刷规格新版
     note: 颜色按用途分三张表并标对比度等级；字体一张表；组件改成可筛选的缩略图卡，点开在本行下方看大预览与用法；素材改成密排图块，点一个看语义键、用途和用在哪些组件；印刷规格按比例画出页面，常用 10 种字号先显示

@@ -1,1 +1,3 @@
 {% extends "!page.html" %}{% block htmltitle %}{% if manual_page_title %}<title>{{ manual_page_title|e }}</title>{% else %}{{ super() }}{% endif %}{% endblock %}
+{#- A verified single-language manual page reads in its own frame (manual_reader.html, 2026-11); every other page keeps Furo's layout. -#}
+{% block body %}{% if manual_reader %}{% include "manual_reader.html" %}{% else %}{{ super() }}{% endif %}{% endblock %}

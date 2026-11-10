@@ -171,8 +171,11 @@ class PublicationCatalogTests(unittest.TestCase):
         self.assertIn('id="manual-locale-select"', page)
         self.assertIn('../../fr/md/manual_fr.html', page)
         self.assertIn('value="manual_en.html" selected', page)
-        self.assertIn('JE-TEST · EUUK', page)
-        self.assertIn('manual-locales.js', page)
+        # The reading frame (2026-11) names the model, market and language in its top bar, in English here.
+        self.assertIn('<header class="mr-top">', page)
+        self.assertIn('<span>Manual library</span>', page)
+        self.assertIn('<span class="mr-tag">EU</span>', page)
+        self.assertIn('manual-reader.js', page)
         french = (output / "JE-TEST/EU/fr/md/manual_fr.html").read_text()
         self.assertIn('lang="fr"', french)
         self.assertIn('<div lang="fr" dir="ltr">', french)

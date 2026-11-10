@@ -29,10 +29,14 @@ Feishu credentials or runs the receiver.
   pages. Setting the list to `[]` disables the block. Channels are
   fixed HTTPS URLs without query strings, fragments or credentials, or a
   single plain `mailto:` address without headers or extra recipients. When
-  enabled, a single-language page shows frozen model/region/language/version
-  and relative page context for the user to copy; it never sends context or
-  adds user identity to a link. The visible text block remains the no-JS
-  fallback.
+  enabled, a single-language page shows a feedback card under the manual,
+  outside its main region ([reading frame](manual-center.md#reading-frame-2026-11)).
+  Its copy button copies the frozen model/region/language/version and relative
+  page context; it never sends context or adds user identity to a link. The
+  context itself is folded under the card's details fold: that fold is the
+  no-JS fallback and opens when copying is unavailable. The card's words follow
+  the manual's language (`manual_reader_text.yaml`), and a mailto channel reads
+  as that language's email phrase with its address.
 - Optional visit analytics is configured by `analytics_beacon_token` in
   `tools/rtd_portal_assets/settings.json` and defaults to `""` (off,
   byte-identical output). A configured token must be 32 lowercase hex

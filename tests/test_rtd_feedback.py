@@ -9,6 +9,8 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 from tools.rtd.feedback import context_text, manual_feedback_markup, normalize_channels
+from tools.rtd.manual_reader import frame_text, load_text
+from tools.rtd.portal import ASSETS
 from tests.web_language_evidence_fixture import seal_language_evidence_fixture
 
 
@@ -21,7 +23,7 @@ class RtdFeedbackTests(unittest.TestCase):
 
     def test_empty_channels_disable_markup(self) -> None:
         self.assertEqual([], normalize_channels([]))
-        self.assertEqual("", manual_feedback_markup(channels=[], context="context"))
+        self.assertEqual("", manual_feedback_markup(channels=[], context="context", text=frame_text(load_text(ASSETS), "fr")))
 
     def test_context_contains_only_frozen_publication_identity(self) -> None:
         value = context_text(model="JE-TEST", region="EU", lang="fr", version="1.2", page="JE-TEST/EU/fr/md/manual.html")
@@ -92,7 +94,7 @@ class RtdFeedbackTests(unittest.TestCase):
             self.assertIn("Model: JE-TEST", page)
             self.assertIn("Page: JE-TEST/EU/fr/md/manual.html", page)
             self.assertIn("manual-feedback.js", page)
-            self.assertIn("Copy context", page)
+            self.assertIn("Copier les informations", page)  # the French frame
             self.assertIn("https://support.example.test/report", page)
             self.assertNotIn("?model=", page)
             legacy = (output / "JE-TEST/EU/md/manual_legacy.html").read_text(encoding="utf-8")
@@ -111,11 +113,12 @@ class RtdFeedbackTests(unittest.TestCase):
             self.assertNotIn("mailto:hello@jackery.com?", page)
 
     @staticmethod
-    def _fixture(root: Path, *, channels: list[dict[str, str]] | None, include_legacy: bool = False) -> tuple[Path, Path]:
+    def _fixture(root: Path, *, channels: list[dict[str, str]] | None, include_legacy: bool = False,
+                 markdown: str = "# French manual\n") -> tuple[Path, Path]:
         source = root / "web"
         single = source / "JE-TEST/EU/fr/md"
         single.mkdir(parents=True)
-        (single / "manual.md").write_text("# French manual\n", encoding="utf-8")
+        (single / "manual.md").write_text(markdown, encoding="utf-8")
         links = ["- [Jackery French User Manual](JE-TEST/EU/fr/md/manual.md)"]
         if include_legacy:
             legacy = source / "JE-TEST/EU/md"
@@ -183,12 +186,23 @@ class RtdFeedbackTests(unittest.TestCase):
     def test_markup_has_no_js_copy_fallback_and_escapes_values(self) -> None:
         markup = manual_feedback_markup(
             channels=[{"label": "<Support>", "url": "https://support.example.test/report"}],
-            context="Page: JE-TEST/EU/fr/md/manual.html",
+            context="Page: JE-TEST/EU/fr/md/manual.html", text=frame_text(load_text(ASSETS), "fr"),
         )
         self.assertIn("manual-feedback-context", markup)
-        self.assertIn("Copy context", markup)
+        self.assertIn("Copier les informations", markup)
         self.assertIn("&lt;Support&gt;", markup)
         self.assertIn("rel=\"noreferrer\"", markup)
+
+    def test_the_card_speaks_the_manuals_language(self) -> None:
+        markup = manual_feedback_markup(
+            channels=[{"label": "Email support", "url": "mailto:hello@example.test"}],
+            context="Page: JE-TEST/JP/ja/md/manual.html", text=frame_text(load_text(ASSETS), "ja"),
+        )
+        self.assertIn('lang="ja"', markup)
+        self.assertIn(">メールで送る（hello@example.test）</a>", markup)  # a mailto channel takes the email phrase
+        self.assertIn('data-copied="コピーしました。メールに貼り付けてください。"', markup)
+        self.assertIn("<summary>フィードバック情報を表示</summary>", markup)
+        self.assertNotIn("Email support", markup)
 
 
 if __name__ == "__main__":

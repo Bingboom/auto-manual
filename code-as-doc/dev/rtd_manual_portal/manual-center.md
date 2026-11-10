@@ -219,6 +219,65 @@ above, in the browser; Sphinx still writes `searchindex.js`, which nothing reads
 - Tests: `tests/test_rtd_search_page.py`, `tests/manual_search_ui.test.mjs` and the real Sphinx builds in
   `tests/test_rtd_portal.py` (both site roles).
 
+## Reading frame (2026-11)
+
+A verified single-language manual page (`language_scope: single` in the
+publication catalog) reads in its own frame,
+[`manual_reader.html`](../../../tools/rtd_portal_assets/manual_reader.html). The
+frame's context comes from
+[`tools/rtd/manual_reader.py`](../../../tools/rtd/manual_reader.py), and
+`decorate_manual` in `tools/rtd/portal.py` assembles it. The portal's
+`page.html` includes the frame instead of Furo's layout for these pages only;
+legacy pages keep Furo's output byte for byte. Both site roles build it, so the
+public manuals project shows it too.
+
+- **Top bar** (sticky): back to the manual library, then the product name,
+  model, market, language and version date. The date comes from a
+  `git-YYYYMMDD-…` version; the footer gives the full version. The search link
+  and the language select sit on the right. Below 760px the bar keeps the back
+  arrow, the product name on one line and the contents button, and the version
+  and a second copy of the select move to a row under it. `manual-reader.js`
+  sets `--mr-top` to the bar's measured height, since a long name can wrap it.
+- **Chapter list**: the page's top-level sections and their subsections, read
+  from the rendered body (`chapters` in `tools/rtd/manual_reader.py`), so every
+  entry links to an id the page has. Raw-HTML manuals that mark chapters with
+  headings carrying their own id (`<h2 id>` inside one section) list those
+  headings too; headings outside every section, such as the product suggestion
+  form, are not listed. A name leaves out the permalink and the model label
+  (`.hb-heading-model`, `data-source-layout="model"`). A manual that puts every
+  chapter under one title lists that title's entries; fewer than two chapters
+  show no list. The titles keep the manual's language and direction.
+  - `manual-reader.js` marks the section whose heading has passed under the top
+    bar, opens that chapter's sections and keeps the entry in view. At the
+    page's end the last section in view counts.
+  - From 1,100px the list sits left of the paper. Narrower, the top bar's
+    contents button opens it as a sheet, closed by the scrim, ×, Escape or a
+    chapter.
+- **Jumps**: headings leave room for the top bar with `scroll-margin-top`,
+  outranking web_manual.css's own offset for Furo's mobile header. Images above
+  a section can load after a jump and push it down. For 2.5 seconds after a
+  jump or a deep link, the script puts the section back as images load, unless
+  the reader scrolls first.
+- **Only the manual is main**: the body stays `article#furo-main-content`, where
+  web_manual.css draws the paper, and is the page's only `role="main"` region.
+  The knowledge and search extractors therefore read the manual text alone.
+  The feedback card and the footer sit outside it, so the card's text no longer
+  reaches the search index.
+- **Removed**: Furo's sidebar, page-source button, theme switch (the page stays
+  light) and footer.
+- **Words**: the frame speaks the manual's language. Its words (top bar,
+  contents, feedback card, footer) come from
+  [`manual_reader_text.yaml`](../../../tools/rtd_portal_assets/manual_reader_text.yaml),
+  one set per language, each with every English key; `{n}` and `{address}`
+  are checked on load. A language without a set gets English, and the frame
+  then carries `lang="en"`. Chinese, Japanese and Korean frames take their own
+  font stacks. The feedback card links a mailto channel with the set's email
+  phrase and the configured address; an HTTPS channel keeps its configured
+  label. The card's copy messages ride on its `data-copied` and
+  `data-copy-failed` attributes. Chapter titles are the manual's own. The
+  language select keeps its English `Language` label and its codes; see
+  [language navigation](../rtd_locale_navigation.md).
+
 ## Product short-name search (2026-11-02)
 
 The same keyword box matches the product short name (商品简称, e.g. `E300D`,

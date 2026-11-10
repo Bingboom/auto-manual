@@ -34,7 +34,7 @@ OUTPUT_DIR = "workspace/design"
 MOBILE = "@media (max-width: 760px)"
 TYPE_PROPERTIES = ("font-size", "line-height", "font-weight", "text-transform", "letter-spacing")
 # Portal stylesheets (tools/rtd_portal_assets/_static) a preview may add.
-PORTAL_STYLESHEETS = frozenset({"manual-locales.css"})
+PORTAL_STYLESHEETS = frozenset({"manual-reader.css"})
 # A component's 样式定义 link opens its HB-* entry in the manual style contract here.
 ENGINEERING = "https://github.com/Bingboom/auto-manual"
 # The WCAG mark a colour row carries, strongest first: (minimum contrast on paper, id, label).
@@ -245,7 +245,7 @@ def design_system_context(assets: Path) -> dict[str, Any]:
     root = repo_root()
     css = live_stylesheet_text()
     rules = parse_css(css)
-    portal_rules = parse_css((assets / "_static" / "manual-locales.css").read_text(encoding="utf-8"))
+    portal_rules = parse_css((assets / "_static" / "manual-reader.css").read_text(encoding="utf-8"))
     styled = class_names(rules) | class_names(portal_rules)
     selectors = {selector for rule in rules + portal_rules for selector in rule.selectors}
     grounds = {name: _root_color(rules, token) for name, token in GROUNDS.items()}

@@ -66,21 +66,42 @@ def context_text(*, model: str, region: str, lang: str, version: str, page: str)
     )
 
 
-def manual_feedback_markup(*, channels: list[dict[str, str]], context: str) -> str:
-    """Render safe markup only when an operator configured at least one channel."""
+def channel_label(channel: dict[str, str], words: dict[str, str]) -> str:
+    """A mailto channel reads as the frame's email phrase in the page's language; an HTTPS one keeps its label."""
+    url = channel["url"]
+    if url.lower().startswith("mailto:"):
+        return words["email"].replace("{address}", url[len("mailto:"):])
+    return channel["label"]
+
+
+def manual_feedback_markup(*, channels: list[dict[str, str]], context: str,
+                           text: tuple[str, dict[str, str]]) -> str:
+    """Render safe markup only when an operator configured at least one channel.
+
+    ``text`` is the reading frame's words and the language they are in (tools/rtd/manual_reader.frame_text).
+    """
     if not channels or not context:
         return ""
+    lang, words = text
     links = " ".join(
         f'<a href="{escape(item["url"], quote=True)}" rel="noreferrer">'
-        f'{escape(item["label"])}</a>'
+        f'{escape(channel_label(item, words))}</a>'
         for item in channels
     )
+    # The card sits under the manual, outside its main region (manual_reader.html). The context stays readable
+    # without JavaScript: it is folded, not hidden, and opens when copying is unavailable. The script's two
+    # messages ride on the card, in its language.
     return (
-        '<aside class="manual-feedback" aria-label="Manual feedback">'
-        '<span>Found an issue?</span> '
-        '<button type="button" data-copy-feedback>Copy context</button> '
-        f'<pre class="manual-feedback-context">{escape(context)}</pre> '
-        f'<span class="manual-feedback-channels">{links}</span>'
+        f'<aside class="manual-feedback" aria-label="{escape(words["feedback"], quote=True)}" '
+        f'lang="{escape(lang, quote=True)}" data-copied="{escape(words["feedback_copied"], quote=True)}" '
+        f'data-copy-failed="{escape(words["feedback_failed"], quote=True)}">'
+        f'<div class="manual-feedback-text"><b>{escape(words["feedback_title"])}</b>'
+        f'<span>{escape(words["feedback_text"])}</span></div>'
+        '<div class="manual-feedback-actions">'
+        f'<button type="button" data-copy-feedback>{escape(words["feedback_copy"])}</button>'
+        f'<span class="manual-feedback-channels">{links}</span></div>'
+        f'<details class="manual-feedback-details"><summary>{escape(words["feedback_show"])}</summary>'
+        f'<pre class="manual-feedback-context" lang="en">{escape(context)}</pre></details>'
         '<span class="manual-feedback-status" aria-live="polite"></span>'
         '</aside>'
     )
