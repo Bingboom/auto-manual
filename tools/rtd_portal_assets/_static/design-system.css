@@ -6,90 +6,14 @@ body.app.kb.design-system main {max-width:1120px;padding:40px 48px 72px;containe
 .design-system code {font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.86em;
   padding:1px 5px;border-radius:5px;background:#eef0f3;color:#3a3d44;overflow-wrap:anywhere}
 
-.ds-section {margin:0 0 36px}
-.ds-section > h2 {margin:0 0 12px;font-size:20px;font-weight:650;line-height:1.4}
-.ds-section > p {margin:0 0 12px;font-size:15px;line-height:1.85;color:var(--app-ink)}
-.ds-hint {color:var(--app-muted)!important;font-size:14px!important}
-
-/* Colours */
-.ds-swatches {display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
-.ds-swatch {display:flex;flex-direction:column;overflow:hidden;background:#fff;border:1px solid var(--app-line);border-radius:12px}
-.ds-chip {height:88px;border-bottom:1px solid var(--app-line)}
-.ds-swatch-body {padding:14px 16px 16px}
-.ds-swatch h3,.ds-type h3,.ds-component h3 {margin:0 0 4px;font-size:16px;font-weight:650;line-height:1.4}
-.ds-swatch dl,.ds-type dl {display:flex;flex-wrap:wrap;gap:6px 18px;margin:10px 0;font-size:13px}
-.ds-swatch dl > div,.ds-type dl > div {display:flex;gap:6px}
-.ds-swatch dt,.ds-type dt {color:var(--app-faint)}
-.ds-swatch dd,.ds-type dd {margin:0;color:#3a3d44}
-.ds-swatch p,.ds-type p {margin:6px 0 0;font-size:13.5px;line-height:1.75;color:#50545c}
-.ds-source {font-size:12.5px!important;color:var(--app-faint)!important}
-
-/* Type */
-.ds-type-list {display:grid;gap:12px}
-.ds-type {display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:24px;align-items:center;
-  padding:18px 20px;background:#fff;border:1px solid var(--app-line);border-radius:12px}
-.ds-type-sample {color:#343031;overflow-wrap:anywhere}
-
-/* Components */
-.ds-toc {display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px}
-.ds-toc a {padding:6px 12px;border-radius:99px;background:#fff;border:1px solid var(--app-line);font-size:13.5px;color:var(--app-muted)}
-.ds-toc a:hover {color:var(--app-ink);border-color:#d3d6db}
-.ds-toc em {margin-left:6px;font-style:normal;color:var(--app-faint)}
-.ds-component {margin:0 0 18px;padding:18px 20px 20px;background:#fff;border:1px solid var(--app-line);border-radius:14px}
-.ds-component header {display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
-.ds-summary {margin:6px 0 14px;font-size:14.5px;line-height:1.75;color:#50545c}
+/* The live component previews, the footer, and JS's show/hide: no display rule below may override [hidden]. */
 .ds-frame {overflow:hidden;background:#fff;border:1px solid var(--app-line);border-radius:10px}
 .ds-preview {display:block;width:100%;border:0}
-.ds-notes {display:grid;gap:8px;margin:14px 0 0;font-size:14px;line-height:1.75}
-.ds-notes > div {display:grid;grid-template-columns:72px minmax(0,1fr);gap:12px}
-.ds-notes dt {font-weight:600;color:var(--app-faint)}
-.ds-notes dd {margin:0;color:#3a3d44}
 .ds-footer {display:block;margin:12px 0 0;padding:18px 0;border-top:1px solid var(--app-line);font-size:13px;color:var(--app-faint)}
-
-/* Assets: tile grounds come inline from the live stylesheet colours. */
-.ds-steps {display:grid;gap:8px;margin:12px 0 0;padding-left:22px;font-size:15px;line-height:1.85}
-.ds-assets {display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
-.ds-asset {display:flex;flex-direction:column;margin:0;overflow:hidden;background:#fff;border:1px solid var(--app-line);border-radius:12px}
-.ds-asset-art {box-sizing:content-box;display:flex;align-items:center;justify-content:center;height:104px;padding:14px;border-bottom:1px solid var(--app-line)}
-.ds-asset-art img {display:block;max-width:100%;max-height:104px}
-.ds-asset-art img.ds-art-svg {width:100%;height:104px;object-fit:contain}
-.ds-asset figcaption {display:grid;gap:4px;align-content:start;padding:10px 12px 12px;font-size:13px;line-height:1.6;color:#50545c}
-.ds-asset figcaption strong {font-size:13.5px;font-weight:600;color:var(--app-ink);overflow-wrap:anywhere}
-.ds-asset figcaption code {justify-self:start}
-.ds-asset figcaption em {font-style:normal;font-size:12px;color:var(--app-faint)}
-
-/* Print */
-.ds-table-wrap {overflow-x:auto;background:#fff;border:1px solid var(--app-line);border-radius:12px}
-.ds-table {width:100%;border-collapse:collapse;font-size:13.5px;line-height:1.6}
-.ds-table th,.ds-table td {padding:9px 14px;border-bottom:1px solid var(--app-line);text-align:left;vertical-align:middle}
-.ds-table thead th {font-weight:600;color:var(--app-faint);background:#fafbfc;white-space:nowrap}
-.ds-table tbody tr:last-child td {border-bottom:0}
-.ds-table td:nth-child(2) {white-space:nowrap;font-variant-numeric:tabular-nums}
-/* Wide tables keep their columns and scroll inside the frame, like the manual's own wide tables. */
-.ds-table-wide th,.ds-table-wide td {white-space:nowrap}
-.ds-table-wide code {overflow-wrap:normal}
-.ds-print-sample {color:#343031;white-space:nowrap}
-.ds-print-page {display:grid;grid-template-columns:minmax(240px,1fr) minmax(0,560px);gap:20px;align-items:start;margin:0 0 12px}
-.ds-geometry {display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
-.ds-geometry-card {padding:14px 16px 8px;background:#fff;border:1px solid var(--app-line);border-radius:12px}
-.ds-geometry-card h3 {margin:0 0 4px;font-size:16px;font-weight:650;line-height:1.4}
-.ds-table-compact td {padding:7px 10px 7px 0;border-bottom-color:#f0f1f3}
-.ds-table-compact td code {display:block;width:fit-content;max-width:100%;margin-top:3px;font-size:.78em}
-.ds-table-compact td:last-child {padding-right:0;text-align:right}
-
-@media (max-width:1100px) {
-  .ds-print-page {grid-template-columns:1fr}
-}
+.design-system [hidden] {display:none !important}
 
 @media (max-width:660px) {
   body.app.kb.design-system main {padding:25px 18px 48px}
-}
-
-@media (max-width:760px) {
-  .ds-type {grid-template-columns:1fr;gap:12px}
-  .ds-assets {grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
-  .ds-notes > div {grid-template-columns:1fr;gap:2px}
-  .ds-component {padding:14px 14px 16px}
 }
 
 /* Cover: the manual's warm near-black on a faint dot grid, no accent colour; a page rises from the bottom edge. */
@@ -406,4 +330,235 @@ body.app.kb.design-system main {max-width:1120px;padding:40px 48px 72px;containe
   .ds-style-demo {padding:20px}
   .ds-rules > summary {padding:16px 18px}
   .ds-rules dl > div {grid-template-columns:1fr;gap:6px;padding:16px 18px}
+}
+
+/* Inner tabs (2026-11 step 10): a one-line header, then rows, cards or tiles; the long text opens in place.
+   颜色 and 字体 rows are <details>; 组件 opens one card's detail under its row (grid-auto-flow: dense moves the
+   rest of the row up); 图标与素材 selects a tile into the side panel; 印刷规格 folds what is rarely read. */
+.ds-tab {display:flex;flex-direction:column;gap:14px;padding-top:4px}
+.ds-tab-head {display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:6px 16px}
+.ds-tab-head > div {display:flex;flex-direction:column;gap:4px;max-width:760px}
+.design-system .ds-tab-head h2 {margin:0;font-size:20px;line-height:28px;font-weight:650}
+.ds-tab-head p {margin:0;font-size:13.5px;line-height:21px;color:var(--app-muted)}
+.ds-tab-meta {font-size:13px;line-height:20px;color:var(--app-muted)}
+.ds-tab-meta b {font-weight:600;color:var(--app-ink);font-variant-numeric:tabular-nums}
+.ds-foot {margin:0;font-size:12.5px;line-height:19px;color:var(--app-faint)}
+.ds-fold,.ds-more::after {flex:none;width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;
+  transform:translateY(-2px) rotate(45deg);transition:transform .15s}
+.ds-fold {margin-left:auto;color:var(--app-muted)}
+details[open] > summary .ds-fold,.ds-row[open] .ds-more::after {transform:translateY(2px) rotate(-135deg)}
+.ds-tab summary {cursor:pointer;list-style:none}
+.ds-tab summary::-webkit-details-marker {display:none}
+.ds-tab summary:focus-visible,.ds-chip:focus-visible,.ds-tile:focus-visible,.ds-show-all:focus-visible,
+.ds-links :is(a,button):focus-visible {outline:3px solid var(--brand);outline-offset:-3px}
+
+/* 颜色 and 字体: grouped rows; a row opens its full use, print counterparts and where it is declared. */
+.ds-strip {display:flex;height:36px;border:1px solid var(--app-line);border-radius:10px;overflow:hidden}
+.ds-strip i {flex:1}
+.ds-list {background:#fff;border:1px solid var(--app-line);border-radius:14px;overflow:hidden}
+.design-system .ds-list > h3 {display:flex;align-items:baseline;gap:8px;margin:0;padding:12px 16px 8px;font-size:14px;line-height:20px;font-weight:600}
+.ds-list > h3 small {font-size:12px;font-weight:400;color:var(--app-faint)}
+.ds-row {border-top:1px solid var(--app-divider)}
+.ds-row > summary {display:grid;gap:12px;align-items:center;padding:9px 16px;font-size:12.5px;line-height:18px;color:var(--app-text2)}
+.ds-row > summary:hover {background:#fafbfc}
+.ds-row > summary b {font-size:13px;font-weight:600;color:var(--app-ink)}
+.ds-row > summary code {justify-self:start;max-width:100%;font-size:11px}
+.ds-more {display:inline-flex;align-items:center;justify-content:flex-end;gap:6px;color:var(--brand);font-size:12px;white-space:nowrap}
+.ds-more::before {content:"展开"}
+.ds-row[open] .ds-more::before {content:"收起"}
+.ds-row-body {display:grid;gap:6px;margin:0;padding:2px 16px 14px 72px;font-size:12.5px;line-height:19px}
+.ds-row-body > div {display:grid;grid-template-columns:72px minmax(0,1fr);gap:12px}
+.ds-row-body dt {font-weight:600;color:var(--app-faint)}
+.ds-row-body dd {margin:0;color:var(--app-text2)}
+.ds-color-row > summary {grid-template-columns:44px minmax(0,128px) 196px 84px 118px minmax(0,1fr) 52px}
+.ds-sw {width:44px;height:30px;border-radius:7px;box-shadow:inset 0 0 0 1px #0000001a}
+.ds-ratio {display:flex;align-items:center;gap:6px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.ds-grade {display:inline-flex;align-items:center;height:20px;padding:0 7px;border-radius:999px;font-style:normal;font-size:11px;font-weight:600;white-space:nowrap}
+.ds-grade.is-aaa,.ds-grade.is-aa {background:#e6f2ec;color:#1f6b4a}
+.ds-grade.is-large {background:#e8eef8;color:#2457a6}
+.ds-grade.is-decor,.ds-grade.is-alpha,.ds-grade.is-ground {background:#eef1f4;color:#5b6265}
+.ds-use {overflow:hidden;white-space:nowrap;text-overflow:ellipsis;color:var(--app-muted)}
+.ds-thead {display:grid;gap:12px;padding:8px 16px;background:#fafbfc;font-size:11.5px;line-height:16px;font-weight:600;color:var(--app-muted)}
+.ds-type-list .ds-thead,.ds-type-row > summary {grid-template-columns:minmax(0,1.3fr) minmax(0,176px) 150px 86px 48px 80px 52px}
+.ds-type-row .ds-row-body {padding-left:16px}
+.ds-type-sample {overflow:hidden;white-space:nowrap;text-overflow:ellipsis;color:#343031}
+.ds-type-name {display:flex;flex-direction:column;align-items:flex-start;gap:2px;min-width:0}
+.ds-type-mobile {color:var(--app-faint)}
+
+/* Filter bars: one group at a time, plus a search box. */
+.ds-filter {display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;padding:10px 12px;background:#fff;border:1px solid var(--app-line);border-radius:12px}
+.ds-chips {display:flex;flex-wrap:wrap;gap:4px}
+.ds-chip {display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 11px;border:0;border-radius:8px;background:transparent;
+  color:var(--app-text2);font:inherit;font-size:13px;font-weight:500;cursor:pointer}
+.ds-chip b {font-size:12px;font-weight:500;color:var(--app-faint)}
+.ds-chip:hover {background:var(--app-tile)}
+.ds-chip[aria-pressed="true"] {background:var(--app-ink);color:#fff}
+.ds-chip[aria-pressed="true"] b {color:#c9cfd1}
+.ds-search {flex:1 1 220px;display:flex;align-items:center;gap:8px;height:34px;padding:0 10px;border-radius:8px;background:var(--app-bg);color:var(--app-faint)}
+.ds-search:focus-within {box-shadow:0 0 0 2px var(--brand)}
+.ds-search input {flex:1;min-width:0;height:100%;padding:0;border:0;background:transparent;font:inherit;font-size:13px;color:var(--app-ink);outline:none}
+.ds-empty {margin:0;padding:24px;border:1px dashed var(--app-line);border-radius:12px;text-align:center;font-size:13px;color:var(--app-muted)}
+.ds-links {display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;margin:6px 0 0;font-size:13px;line-height:20px;font-weight:500}
+.ds-links a {display:inline-flex;align-items:center;gap:3px;color:var(--brand)}
+.ds-links button {padding:0;border:0;background:none;font:inherit;color:var(--app-muted);cursor:pointer}
+.ds-links button:hover {color:var(--app-ink)}
+
+/* 组件: thumbnails are the live previews scaled down (design-system.js sets --ds-shot-scale). */
+.ds-comp-group {display:flex;flex-direction:column;gap:10px}
+.design-system .ds-comp-group > h3 {display:flex;align-items:baseline;gap:8px;margin:6px 0 0;font-size:14px;line-height:20px;font-weight:600}
+.ds-comp-group > h3 small {font-size:12px;font-weight:400;color:var(--app-faint)}
+.ds-comp-grid {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-flow:row dense;gap:12px}
+.ds-comp {position:relative;display:flex;flex-direction:column;min-width:0;background:#fff;border:1px solid var(--app-line);border-radius:12px;overflow:hidden}
+.ds-comp:hover {box-shadow:0 6px 18px #15202b12}
+.ds-comp.is-open {border-color:var(--brand);box-shadow:0 0 0 2px var(--brand-soft)}
+.ds-comp:has(.ds-comp-open:focus-visible) {outline:3px solid var(--brand);outline-offset:2px}
+.ds-shot-frame.ds-thumb {height:132px}
+.ds-shot-frame.ds-thumb iframe {height:calc(132px / var(--ds-shot-scale,.34))}
+.ds-comp-text {display:flex;flex-direction:column;align-items:flex-start;gap:3px;padding:9px 12px 11px}
+.design-system .ds-comp-text h4 {margin:0;font-size:13.5px;line-height:20px;font-weight:600}
+.ds-comp-open {padding:0;border:0;background:none;font:inherit;color:var(--app-ink);text-align:left;cursor:pointer}
+.ds-comp-open::after {content:"";position:absolute;inset:0}
+.ds-comp-open:focus-visible {outline:none}
+.ds-comp-text code {max-width:100%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-size:10.5px}
+.ds-comp-text p {display:-webkit-box;margin:0;overflow:hidden;font-size:12px;line-height:17px;color:var(--app-muted);
+  -webkit-line-clamp:2;-webkit-box-orient:vertical}
+.ds-comp-detail {grid-column:1 / -1;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:18px;align-items:start;
+  padding:16px 18px;background:#fff;border:1px solid var(--brand);border-radius:12px}
+/* The open card's preview: laid out 720px wide like the thumbnails, scaled to its column; JS keeps the box as tall as
+   the scaled content (--ds-zoom-h is the preview's height before scaling). */
+.ds-zoom {position:relative;height:calc(var(--ds-zoom-h, 400px) * var(--ds-shot-scale, .75))}
+.ds-zoom iframe {position:absolute;top:0;left:0;width:720px;transform:scale(var(--ds-shot-scale, .75));transform-origin:0 0}
+.ds-comp-notes {display:flex;flex-direction:column;align-items:flex-start;gap:6px;min-width:0}
+.design-system .ds-comp-notes h4 {margin:0;font-size:16px;line-height:24px;font-weight:600}
+.ds-comp-notes > p {margin:0;font-size:13px;line-height:20px;color:var(--app-muted)}
+.ds-comp-notes dl {display:grid;gap:8px;margin:4px 0 0;font-size:13px;line-height:20px}
+.ds-comp-notes dl > div {display:grid;grid-template-columns:64px minmax(0,1fr);gap:12px}
+.ds-comp-notes dt {font-weight:600;color:var(--app-faint)}
+.ds-comp-notes dd {margin:0;color:var(--app-text2)}
+
+/* 图标与素材: the rules in one line, dense tiles, the selected tile in a side panel. */
+.ds-flow {background:#fbf6f2;border:1px solid #efd9cb;border-radius:12px}
+.ds-flow > summary {display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;padding:10px 14px;font-size:13px;line-height:20px;color:#5c3a1e}
+.ds-flow > summary b {font-weight:600}
+.ds-flow-steps {display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px}
+.ds-flow-steps i {font-style:normal;color:var(--brand)}
+.ds-flow > summary em {display:inline-flex;align-items:center;gap:6px;margin-left:auto;font-style:normal;font-size:12.5px;font-weight:500;color:var(--brand)}
+.ds-flow > summary em::after {content:"";width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;
+  transform:translateY(-2px) rotate(45deg);transition:transform .15s}
+.ds-flow[open] > summary em::after {transform:translateY(2px) rotate(-135deg)}
+.ds-flow ol {display:grid;gap:8px;margin:0;padding:2px 18px 14px 36px;font-size:13px;line-height:21px;color:var(--app-text2)}
+.ds-asset-split {display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:14px;align-items:start}
+.ds-asset-groups {display:flex;flex-direction:column;gap:10px;min-width:0}
+.ds-asset-group {background:#fff;border:1px solid var(--app-line);border-radius:12px}
+.ds-asset-group > summary {display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;padding:11px 14px;font-size:12px;line-height:18px;color:var(--app-faint)}
+.ds-asset-group > summary b {font-size:14px;line-height:20px;font-weight:600;color:var(--app-ink)}
+.ds-asset-group > summary span {flex:1 1 320px;min-width:0}
+.ds-asset-group > summary code {font-size:10.5px}
+.ds-tiles {display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:8px;padding:2px 12px 12px}
+.ds-asset-group:not(.is-all):not(.is-search) .ds-tile:nth-child(n+33) {display:none}
+.ds-tile {display:flex;flex-direction:column;align-items:center;gap:6px;min-width:0;padding:10px 6px 8px;border:1px solid var(--app-line);
+  border-radius:10px;background:#fff;font:inherit;cursor:pointer}
+.ds-tile:hover {border-color:#cfd6df}
+.ds-tile[aria-pressed="true"] {border-color:var(--brand);box-shadow:0 0 0 2px var(--brand-soft)}
+.ds-tile-art {display:flex;align-items:center;justify-content:center;width:100%;height:56px;border-radius:8px}
+.ds-tile-art img {width:44px;height:44px;object-fit:contain}
+/* Two lines, broken anywhere: batch variants share long prefixes and differ at the end. */
+.ds-tile-name {display:-webkit-box;max-width:100%;min-height:28px;overflow:hidden;word-break:break-all;text-align:center;
+  font-size:10.5px;line-height:14px;color:var(--app-muted);-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.ds-show-all {display:block;width:100%;padding:9px;border:0;border-top:1px solid var(--app-divider);border-radius:0 0 12px 12px;
+  background:transparent;font:inherit;font-size:12.5px;font-weight:500;color:var(--brand);cursor:pointer}
+.ds-show-all:hover {background:#fafbfc}
+.ds-asset-side {position:sticky;top:calc(var(--app-topbar, 60px) + 16px);display:flex;flex-direction:column;gap:12px;padding:16px;
+  background:#fff;border:1px solid var(--app-line);border-radius:12px;font-size:12.5px;line-height:19px;color:var(--app-text2)}
+.ds-side-group,.ds-side-asset {display:flex;flex-direction:column;gap:8px}
+.design-system .ds-asset-side h3 {margin:0;font-size:13.5px;line-height:20px;font-weight:600;color:var(--app-ink);overflow-wrap:anywhere}
+.ds-asset-side p {margin:0}
+.ds-side-hint {color:var(--app-faint)}
+.ds-side-art {display:flex;align-items:center;justify-content:center;height:150px;border-radius:10px;box-shadow:inset 0 0 0 1px var(--app-divider)}
+.ds-side-art img {width:110px;height:110px;object-fit:contain}
+.ds-asset-side dl {display:grid;gap:6px;margin:0}
+.ds-asset-side dl > div {display:grid;grid-template-columns:52px minmax(0,1fr);gap:10px}
+.ds-asset-side dt {color:var(--app-faint)}
+.ds-asset-side dd {margin:0;overflow-wrap:anywhere}
+
+/* 印刷规格: the page drawn to scale beside its figures; the full type table and the geometry fold away. */
+.ds-card-block {background:#fff;border:1px solid var(--app-line);border-radius:14px;overflow:hidden}
+.design-system .ds-card-block > h3 {display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;margin:0;padding:12px 16px 8px;font-size:14px;line-height:20px;font-weight:600}
+.ds-card-block > h3 small {font-size:12px;font-weight:400;color:var(--app-faint)}
+.ds-page-card {display:grid;grid-template-columns:300px minmax(0,1fr);gap:18px;padding:8px 18px 18px}
+.ds-paper-figure {margin:0;padding:22px 64px 6px 12px}
+.ds-paper {position:relative;width:100%;max-width:224px;margin:0 auto;background:#fff;border:1px solid #a7a5a6;box-shadow:0 6px 18px #15202b14}
+.ds-paper-text {position:absolute;border:1px dashed var(--brand);background:#a64e240a}
+.ds-paper-foot {position:absolute;height:1px;background:var(--app-muted)}
+.ds-paper-folio {position:absolute;transform:translateY(-100%);font-size:9px;line-height:10px;color:var(--app-muted)}
+.ds-paper-w,.ds-paper-h {position:absolute;font-style:normal;font-size:10.5px;line-height:14px;color:var(--brand);white-space:nowrap}
+.ds-paper-w {bottom:calc(100% + 6px);left:50%;transform:translateX(-50%)}
+.ds-paper-h {top:50%;left:calc(100% + 8px);transform:translateY(-50%)}
+.ds-page-figures {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 14px;align-content:start}
+.ds-figure {display:flex;flex-direction:column;align-items:flex-start;gap:1px;padding:8px 12px;border-radius:10px;background:#f8fafc}
+.ds-figure span {font-size:12px;line-height:18px;color:var(--app-muted)}
+.ds-figure strong {font-size:20px;line-height:26px;font-weight:700;color:var(--app-ink);font-variant-numeric:tabular-nums}
+.design-system .ds-figure code {padding:0;background:none;font-size:11px;color:var(--app-faint)}
+.ds-figure-note {grid-column:1 / -1;margin:0;font-size:12px;line-height:19px;color:var(--app-muted)}
+.ds-figure-link {grid-column:1 / -1;justify-self:start;display:inline-flex;align-items:center;gap:3px;font-size:13px;font-weight:500;color:var(--brand)}
+.ds-table-wrap {overflow-x:auto}
+.ds-ptable {width:100%;border-collapse:collapse;font-size:12.5px;line-height:18px;color:var(--app-text2)}
+.ds-ptable th,.ds-ptable td {padding:8px 16px;border-top:1px solid var(--app-divider);text-align:left;vertical-align:middle;white-space:nowrap}
+.ds-ptable thead th {background:#fafbfc;border-top:0;font-size:11.5px;font-weight:600;color:var(--app-muted)}
+.ds-ptable tbody th {font-weight:600;color:var(--app-ink)}
+.ds-ptable td:nth-child(2),.ds-ptable td:nth-child(3) {font-variant-numeric:tabular-nums}
+[data-ds-more]:not(.is-all) .is-more {display:none}
+.ds-psample {display:inline-block;max-width:300px;overflow:hidden;text-overflow:ellipsis;vertical-align:bottom;color:#343031}
+.ds-psample.is-upper {text-transform:uppercase}
+.ds-inks {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding:4px 16px 16px}
+.ds-ink {display:grid;grid-template-columns:40px minmax(0,1fr);gap:2px 10px;align-content:start;padding:10px 12px;border:1px solid var(--app-divider);
+  border-radius:10px;font-size:12px;line-height:18px;color:var(--app-muted)}
+.ds-ink i {grid-row:span 2;width:40px;height:40px;border-radius:8px;box-shadow:inset 0 0 0 1px #00000014}
+.ds-ink b {font-size:13px;line-height:20px;font-weight:600;color:var(--app-ink)}
+.ds-ink p {grid-column:1 / -1;margin:6px 0 0;color:var(--app-text2)}
+.ds-geometry-fold > summary {display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;padding:12px 16px;font-size:13px;line-height:20px;color:var(--app-muted)}
+.ds-geometry-fold > summary b {font-size:14px;font-weight:600;color:var(--app-ink)}
+.ds-geometry-fold > summary span {flex:1 1 320px;min-width:0}
+.ds-geometry {display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;padding:0 16px 16px}
+.ds-geometry-card {padding:12px 14px 6px;border:1px solid var(--app-divider);border-radius:12px}
+.design-system .ds-geometry-card h4 {margin:0 0 4px;font-size:14px;line-height:20px;font-weight:600}
+.ds-table {width:100%;border-collapse:collapse;font-size:13px;line-height:1.6}
+.ds-table td {padding:7px 10px 7px 0;border-bottom:1px solid #f0f1f3;text-align:left;vertical-align:middle}
+.ds-table tr:last-child td {border-bottom:0}
+.ds-table td code {display:block;width:fit-content;max-width:100%;margin-top:3px;font-size:.78em}
+.ds-table td:last-child {padding-right:0;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+
+@container ds (max-width: 879px) {
+  .ds-comp-grid {grid-template-columns:repeat(3,minmax(0,1fr))}
+  .ds-tiles {grid-template-columns:repeat(6,minmax(0,1fr))}
+  .ds-asset-split {grid-template-columns:1fr}
+  .ds-asset-side {position:static}
+  .ds-page-card {grid-template-columns:1fr}
+  .ds-inks {grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ds-color-row > summary {grid-template-columns:44px minmax(0,1fr) auto;row-gap:2px;
+    grid-template-areas:"sw name ratio" "sw label hex" "use use use"}
+  .ds-color-row .ds-sw {grid-area:sw}
+  .ds-color-row > summary > b {grid-area:name}
+  .ds-color-row > summary > code:not(.ds-hex) {grid-area:label}
+  .ds-color-row .ds-hex {grid-area:hex;justify-self:end}
+  .ds-color-row .ds-ratio {grid-area:ratio;justify-self:end}
+  .ds-color-row .ds-use {grid-area:use;white-space:normal}
+  .ds-row .ds-more {display:none}
+  .ds-row-body {padding-left:16px}
+  .ds-type-list .ds-thead {display:none}
+  .ds-type-row > summary {grid-template-columns:minmax(0,1fr) auto;row-gap:4px;
+    grid-template-areas:"sample sample" "name size" "lw case"}
+  .ds-type-sample {grid-area:sample}
+  .ds-type-name {grid-area:name}
+  .ds-type-row .ds-type-size {grid-area:size;justify-self:end}
+  .ds-type-lw {grid-area:lw}
+  .ds-type-case {grid-area:case;justify-self:end}
+  .ds-type-mobile {display:none}
+}
+@container ds (max-width: 599px) {
+  .ds-comp-grid {grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ds-comp-detail {grid-template-columns:1fr;padding:14px}
+  .ds-tiles {grid-template-columns:repeat(4,minmax(0,1fr))}
+  .ds-inks,.ds-page-figures {grid-template-columns:1fr}
+  .ds-row-body > div,.ds-comp-notes dl > div {grid-template-columns:1fr;gap:2px}
 }

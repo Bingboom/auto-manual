@@ -304,7 +304,7 @@ class RtdPortalTests(unittest.TestCase):
         self.assertIn("<title>设计规范</title>", design)
         self.assertIn('src="previews/title-l1.html"', design)
         self.assertIn('src="assets/symbols/symbol_warning_triangle.svg"', design)
-        self.assertIn('src="print/page.html"', design)
+        self.assertIn('href="print/page.html"', design)  # the actual-size page opens from the 页面 card
         # The 2026-11 cover carries the versions as one line of small text; five figures follow it, the last
         # counted from the manual style contract.
         page = BeautifulSoup(design, "html.parser")
@@ -321,6 +321,29 @@ class RtdPortalTests(unittest.TestCase):
             self.assertIsNotNone(page.select_one(shot.select_one("h3 a")["href"]), shot.h3)
         for image in page.select(".ds-cover img, #overview img"):
             self.assertTrue((design_root / image["src"]).is_file(), image["src"])
+        # The inner tabs (2026-11 step 10): grouped colour rows, one type table, cards that open a detail under their
+        # row, dense tiles with one side entry each, and the print page card with its ten lead rows.
+        counts = [int(count) for count in figures[:4]]
+        self.assertEqual(len(page.select("#colors .ds-list details.ds-color-row")), counts[0])
+        self.assertEqual(len(page.select("#colors .ds-list")), 3)
+        self.assertEqual(len(page.select("#type details.ds-type-row")), counts[1])
+        cards = page.select("#components .ds-comp")
+        self.assertEqual(len(cards), counts[2])
+        for card in cards:
+            detail = page.select_one(f'#{card["id"]}-detail')
+            self.assertTrue(detail is not None and detail.has_attr("hidden"), card["id"])
+            self.assertTrue((design_root / card.iframe["src"]).is_file(), card.iframe["src"])
+        style_links = [link["href"] for link in page.select("#components .ds-links a") if "manual_style.yaml#L" in link["href"]]
+        self.assertGreater(len(style_links), 20)
+        tiles = page.select("#assets .ds-tile")
+        self.assertEqual(len(tiles), counts[3])
+        for tile in tiles:
+            self.assertIsNotNone(page.select_one(f'#{tile["aria-controls"]}.ds-side-asset'), tile["aria-controls"])
+            self.assertTrue((design_root / tile.img["src"]).is_file(), tile.img["src"])
+        rows = page.select("#print-type .ds-ptable tbody tr")
+        self.assertEqual(len([row for row in rows if "is-more" not in row.get("class", [])]), 10)
+        self.assertEqual(len(page.select("#print-colors .ds-ink")), 6)
+        self.assertEqual(page.select_one("#print-geometry").name, "details")
         self.assertNotIn("Jackery", design)
         self.assertEqual((design_root / "web_manual.css").read_text(), live_stylesheet_text())
         self.assertIn('href="../web_manual.css"', (design_root / "previews" / "title-l1.html").read_text())

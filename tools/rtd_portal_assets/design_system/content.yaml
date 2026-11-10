@@ -2,7 +2,7 @@
 # 读取（见 tools/rtd/design_system.py）。每条 `selector` / `requires` 都必须在样式表中
 # 存在，否则单元测试失败，页面不会展示过期的规则。
 # 行内格式只有三种：`代码`、**加粗** 与 *强调*。
-schema_version: 2
+schema_version: 3
 lead: 网页版的颜色、字体与组件，共享的图标素材，以及印刷版的版式参数。每次构建都读取仓库当前的样式表、素材目录和印刷参数表，所以这里看到的就是说明书正在用的规则。
 
 # 「概览」分页（2026-11 版式，见 tools/rtd/design_overview.py）：先看图，再读文字。
@@ -111,64 +111,85 @@ showcase:
       files: [h1-jp-unplug.svg, h1-jp-no_wet_hands.svg]
 
 # 颜色：key 是概览图卡和封面取色用的名字（见 design_overview.PALETTE）。
+# 「颜色」分页按用途分三组（color_groups），每种颜色写 group；印刷对应色由下面
+# print.colors 的 screen 推出，不写进 note。
+color_groups:
+  text: 文字与品牌
+  surface: 线与面
+  lamp: 指示灯
+
 colors:
   - name: 品牌深色
+    group: text
     key: dark
     token: "--hb-brand-dark"
-    note: 唯一的品牌色：H1 深色条、H2/H3 圆点、警示徽标、装箱编号、保修标题标签与年份圆、“另售”胶囊；规格、故障排除、符号、对比和显示屏模式表格的外框与内线；链接文字。上面放白字。印刷对应 BrandDark（CMYK 0 0 0 90）。
+    note: 唯一的品牌色：H1 深色条、H2/H3 圆点、警示徽标、装箱编号、保修标题标签与年份圆、“另售”胶囊；规格、故障排除、符号、对比和显示屏模式表格的外框与内线；链接文字。上面放白字。
   - name: 正文
+    group: text
     key: text
     token: "--hb-text"
-    note: 正文、表格和标题文字。可以放在白纸、浅灰面、加深浅灰面和前提说明底色上。印刷对应 TextK90。
+    note: 正文、表格和标题文字。可以放在白纸、浅灰面、加深浅灰面和前提说明底色上。
   - name: 次要文字
+    group: text
     key: muted
     token: "--hb-text-muted"
     note: 斜体强调、规格注释与脚注、参考图图注、标题锚点链接、产品概览的引线。
   - name: 结构细线
+    group: surface
     key: line
     token: "--hb-line"
-    note: 图示区、参考表格、显示屏图标表的外框与网格、引用块竖线、链接下划线。对比度不到 3:1，源样式就是如此，所以从不单独表达含义。印刷对应 LineK40。
+    note: 图示区、参考表格、显示屏图标表的外框与网格、引用块竖线、链接下划线。对比度不到 3:1，源样式就是如此，所以从不单独表达含义。
   - name: 柔和细线
+    group: surface
     key: line_soft
     token: "--hb-line-soft"
     note: 网页纸面边框，警示框、装箱卡片和保修卡的外框，显示屏模式组合的外框。纯装饰；需要被看清的外框改用品牌深色。
   - name: 纸面
+    group: surface
     key: paper
     token: "--hb-paper"
     note: 说明书唯一的底色：纸面、表格数值单元格、警示框标签格、卡片。也是品牌深色填充上的文字颜色。
   - name: 浅灰面
+    group: surface
     key: surface
     token: "--hb-surface"
-    note: 标签与表头单元格（规格标签、故障代码、显示屏编号与名称、对比表左列、符号图标列）、警示框正文、FCC 面板、保修引言，以及手机版操作卡片。印刷对应 BgK05。
+    note: 标签与表头单元格（规格标签、故障代码、显示屏编号与名称、对比表左列、符号图标列）、警示框正文、FCC 面板、保修引言，以及手机版操作卡片。
   - name: 加深浅灰面
+    group: surface
     key: surface_strong
     token: "--hb-surface-strong"
     note: 浅灰标签的警示框变体、状态表表头、来源的安全标题和电源面板。
   - name: 前提说明底色
+    group: surface
     selector: ".hb-base-art-live-copy"
     property: "--hb-prerequisite-surface"
     note: 叠在无字操作底图上的浅灰前提说明胶囊。
   - name: 状态灯 · 绿
+    group: lamp
     key: lamp_green
     selector: "#furo-main-content :is(.hb-lamp-green, .hb-lamp-red, .hb-lamp-blinking, .hb-lamp-off)::before"
     property: background
     note: “亮”和“闪烁”行的指示灯色块。色块旁边始终写状态词，颜色从不单独表达状态。
   - name: 状态灯 · 闪烁光晕
+    group: lamp
     key: lamp_glow
     selector: "#furo-main-content .hb-lamp-blinking::before"
     property: box-shadow
     note: 绿色色块外的一圈光晕，用来标示“闪烁”。
   - name: 状态词 · 绿
+    group: lamp
     key: status_green
     selector: "#furo-main-content :is(.hb-lamp-green, .hb-lamp-blinking)"
     property: color
     note: “亮”和“闪烁”行的状态词文字，只放在白色单元格上。
   - name: 状态灯 · 红
+    group: lamp
     key: lamp_red
     selector: "#furo-main-content .hb-lamp-red::before"
     property: background
     note: 红灯色块，也是它的状态词颜色。作为文字时对比度略低于正文要求，所以一定保留色块并写出状态词。
   - name: 熄灭灯外框
+    group: lamp
     key: lamp_off
     selector: "#furo-main-content .hb-lamp-off::before"
     property: border
@@ -542,6 +563,7 @@ components:
 assets:
   intro:
     - 说明书网页版用到的共享素材，每次构建时从仓库的共享素材目录和素材清单列出，图块显示的就是仓库里的文件本身。只用这里登记的文件：按语义键和字形变体选择，原样复用字节。
+  # 每条规则以 **标题。** 开头：页面把五个标题收成一行流程，展开看全文。
   steps:
     - "**先盘点。** 按图的功能或槽位列出需求，先查目标已有的资产清单、同型号同区域其他语言的资产、共享素材与模板附件，再打开候选图核对。"
     - "**核对身份。** 核对型号、区域、接口、功能、参数、App 界面版本和图内文字的语言。文件名相似不等于可以复用。"
@@ -551,6 +573,7 @@ assets:
   groups:
     - id: symbols
       title: 通用符号
+      render: "单色 SVG，用 `<img>` 渲染，不继承 `currentColor`"
       registry: symbols
       exclude: ["h1-jp-", "_gray_jp"]
       paragraphs:
@@ -558,6 +581,7 @@ assets:
         - SVG 都是单色，通过 `<img>` 渲染，不能继承 `currentColor`，所以只放在 `hb-paper` 或 `hb-surface` 上；每个图块标出了文件里实际用到的颜色。两个 WEEE 标志是透明 PNG。显示尺寸由使用它的组件决定，见“组件”分页。
     - id: symbols-jp
       title: 日本市场符号
+      render: "日文来源的字形变体，用 `<img>` 渲染"
       registry: symbols
       include: ["h1-jp-", "_gray_jp"]
       paragraphs:
@@ -565,23 +589,27 @@ assets:
         - 部分字形内有浅灰底色；同样通过 `<img>` 渲染，只放在 `hb-paper` 或 `hb-surface` 上。
     - id: buttons
       title: 按键
+      render: "SVG，按键面以外透明；丝印已转为轮廓"
       registry: buttons
       paragraphs:
         - 与语言无关的按键插图，用于操作面板、按键组合表格和 App 控制面板。每个文件保留白色圆形按键面、开关符号、指示点和产品丝印，按键面以外透明。丝印已转为轮廓，不需要字体；它是固定的产品标记，不要翻译或重新输入。本地化的名称、组合用的“+”和长按时长放在插图旁边的网页文字里。
         - 上方丝印和下方丝印是不同的原稿，USB 也不是 DC/USB：按产品实物选择变体，不要只按功能替换。
     - id: lcd
       title: 显示屏图标
+      render: "透明 PNG，放在 `hb-surface` 上"
       folder: lcd
       ground: surface
       paragraphs:
         - 显示屏图标表（`HB-TABLE-LCD-ICON`）用的共用图标，透明 PNG，放在 `hb-surface` 上。灰底、白底或低分辨率的副本不能作为主素材；图标里画的数字（例如电池数量）是图标身份的一部分。
     - id: inbox
       title: 装箱线稿
+      render: "单一线宽的深色线稿，与语言无关"
       files: [inbox/ac_charging_cable.png, inbox/manual_icon1.png]
       paragraphs:
         - 装箱卡片和包装卡片用的线稿，与语言无关：单一线宽的深色轮廓。产品本身的图按机型提供，不属于这一组。
     - id: glyphs
       title: 小图形
+      render: "有的只用于印刷版，见各文件用途"
       files:
         - {file: marks/warning_triangle_white.svg, ground: dark}
         - marks/warning_triangle_dark.svg
@@ -639,24 +667,22 @@ assets:
 print:
   intro:
     - 印刷版（PDF 与 IDML）的版式参数集中在 `data/layout_params.csv`，LaTeX 和 IDML 两个渲染器读同一份数值，网页不读。下面的数值在每次构建时读自仓库当前的这份表。
-    - 页码、页脚和分页只属于印刷版。这里列的是基础值：`lang_fr_*`、`lang_es_*` 等语言密度覆盖只在对应语言生效，IDML 覆盖表（例如 `data/layout_params.idml-compact.csv`）只在引用它的配置里生效，这两类都以表为准。
+  overrides: 页码、页脚和分页只属于印刷版。这里列的是基础值：`lang_fr_*`、`lang_es_*` 等语言密度覆盖只在对应语言生效，IDML 覆盖表（例如 `data/layout_params.idml-compact.csv`）只在引用它的配置里生效，这两类都以表为准。
+  # 页面卡：左边按比例画出成品、正文区和页脚，右边是这四组数字（mm），参数名写在数字下方。
   page:
-    page_paperwidth: 成品宽度
-    page_paperheight: 成品高度
-    page_margin_top: 上边距
-    page_margin_right: 右边距
-    page_margin_bottom: 下边距
-    page_margin_left: 左边距
-    page_footskip: 正文区到页脚基线
-    page_footer_raise: 页码上移
+    - {label: 成品, keys: [page_paperwidth, page_paperheight], join: " × "}
+    - {label: 边距 上 · 右 · 下 · 左, keys: [page_margin_top, page_margin_right, page_margin_bottom, page_margin_left], join: " · ", param: "page_margin_*"}
+    - {label: 正文区到页脚基线, keys: [page_footskip]}
+    - {label: 页码上移, keys: [page_footer_raise]}
+  # lead: true 的十种先显示，其余在「显示全部」里。
   type:
-    - {prefix: type_h1, label: 一级标题（深色条）, sample: Charging methods}
-    - {prefix: type_title_l2, label: 二级标题, sample: Output ports}
-    - {prefix: type_title_l3, label: 三级标题, sample: Charging via a car outlet}
-    - {prefix: type_subbar, label: 安全小标题条, sample: Operating instructions}
-    - {prefix: type_rubric, label: 栏目标题, sample: Save these instructions}
-    - {prefix: type_body, label: 正文, sample: "Store the product in a dry, clean place."}
-    - {prefix: type_list, label: 列表, sample: Use the same model of solar panels.}
+    - {prefix: type_h1, lead: true, label: 一级标题（深色条）, sample: Charging methods}
+    - {prefix: type_title_l2, lead: true, label: 二级标题, sample: Output ports}
+    - {prefix: type_title_l3, lead: true, label: 三级标题, sample: Charging via a car outlet}
+    - {prefix: type_subbar, lead: true, label: 安全小标题条, sample: Operating instructions}
+    - {prefix: type_rubric, lead: true, label: 栏目标题, sample: Save these instructions}
+    - {prefix: type_body, lead: true, label: 正文, sample: "Store the product in a dry, clean place."}
+    - {prefix: type_list, lead: true, label: 列表, sample: Use the same model of solar panels.}
     - {prefix: type_safety_lead, label: 安全章节引导语, sample: SAVE THESE INSTRUCTIONS}
     - {prefix: type_warning_lead_label, label: 安全引导卡标签, sample: WARNING}
     - {prefix: type_warning_lead_body, label: 安全引导卡正文, sample: Read all instructions before use.}
@@ -664,12 +690,12 @@ print:
     - {prefix: type_tip_label, label: 提示框标签, sample: CAUTION}
     - {prefix: type_tip_body, label: 提示框正文, sample: Start the vehicle before charging.}
     - {prefix: type_spec_section, label: 规格分组标题, sample: General info}
-    - {prefix: type_spec_label, label: 规格标签, sample: Cell Chemistry}
+    - {prefix: type_spec_label, lead: true, label: 规格标签, sample: Cell Chemistry}
     - {prefix: type_spec_value, label: 规格数值, sample: LiFePO4}
     - {prefix: type_spec_note, label: 规格注释, sample: "① Tested at 25 °C."}
     - {prefix: type_data_table_header, label: 数据表表头, sample: Fault code}
     - {prefix: type_data_table, label: 数据表正文, sample: Restart the product.}
-    - {prefix: type_trouble_code, label: 故障代码, sample: F4}
+    - {prefix: type_trouble_code, lead: true, label: 故障代码, sample: F4}
     - {prefix: type_trouble_body, label: 故障排除正文, sample: Restart the product.}
     - {prefix: type_symbol_signal, label: 警示词, sample: WARNING}
     - {prefix: type_symbol_header, label: 符号表表头, sample: Symbol}
@@ -683,7 +709,7 @@ print:
     - {prefix: type_warranty_title, label: 保修标题, sample: Warranty period}
     - {prefix: type_warranty_body, label: 保修正文, sample: Keep your proof of purchase.}
     - {prefix: type_warranty_year_number, label: 保修年限数字, sample: "3"}
-    - {prefix: page_footer, label: 页码, sample: "07"}
+    - {prefix: page_footer, lead: true, label: 页码, sample: "07"}
   colors:
     brand_color_branddark:
       name: 品牌深色
