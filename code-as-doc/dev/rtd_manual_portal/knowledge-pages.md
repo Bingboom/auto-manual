@@ -320,6 +320,37 @@ library does not link to it.
 
   Layout follows the page container (`container: ds`): two columns below 880px
   of content, one below 600px.
+- **The inner tabs show rows, cards and tiles (2026-11).** Each tab opens with
+  a one-line header and its counts; the long text opens in place.
+  `_static/design-system.js` runs the filter bars, the cards and the side
+  panel; without it the rows still open and the first group shows.
+  - 颜色: a strip of every colour, then one table per `color_groups` entry.
+    A row shows the token (or `property · .class` for a selector), the value
+    and the contrast on paper with a mark: AAA from 7:1, AA from 4.5:1,
+    大字 AA from 3:1, 装饰 below, 半透明 for a translucent colour and 底色 for
+    the paper itself. It opens the full note, the print swatches whose
+    `screen` is its token (印刷对应) and the declaring selector.
+  - 字体: one table; a row opens the 760px values, the note and the selector.
+  - 组件: category chips, a name or HB code search, and a card per component
+    whose thumbnail is its live preview, laid out 720px wide and scaled.
+    Clicking a card opens its detail under its row, one at a time
+    (`grid-auto-flow: dense` keeps the row together), with the preview scaled
+    the same way, the 用法 / 需要提供 / 不要 notes and a 样式定义 link to
+    the first HB-* ID's line in `manual_style.yaml`. A `#component-<id>`
+    address opens that card.
+  - 图标与素材: the reuse rules as one line of their bold titles, chips and a
+    search over file name, semantic key and use, and tiles eight to a row
+    (four rows per group until 显示全部). A tile names its file without
+    `symbol_` and the extension, keeping the end of a name over 24
+    characters. Selecting one fills the side panel: semantic key, use, format
+    and 用在, the components whose previews show it, plus 打开文件 and
+    复制语义键. With none selected the panel shows the group's notes.
+  - 印刷规格: one card draws the paper, text block, footer baseline and
+    raised page number to scale beside the `print.page` figures, the
+    `print.overrides` note and a link to the actual-size preview. The type
+    table shows its `lead: true` rows until 显示全部; samples show case only,
+    never pt sizes on a screen. Six ink cards follow, and the component
+    geometry is folded.
 - **Values are live.** At build time `tools/rtd/design_system.py` reads the
   stylesheet that `tools/web/stylesheets.py` assembles
   (`tools/rtd/design_system_css.py`). Colours, contrast ratios, type sizes and
@@ -337,21 +368,22 @@ library does not link to it.
   groups from the shared symbol and button manifests
   (`docs/renderers/web/assets/shared/{symbols,buttons}/manifest.json`), the
   shared LCD folder, and named files from the Word and LaTeX asset folders. The
-  files are copied to `/workspace/design/assets/<group>/`; each tile shows the
-  file's format, size, PNG dimensions and alpha channel, or the colours an SVG
-  uses.
+  files are copied to `/workspace/design/assets/<group>/`; the side panel
+  gives the file's format, size, PNG dimensions and alpha channel, or the
+  colours an SVG uses.
 - **Print values are live.** `tools/rtd/design_print.py` reads
   `data/layout_params.csv` through `tools.render_contract.load_layout_tokens`:
   page geometry, type sizes and leading, CMYK swatches and component geometry.
   It shows base values only: `lang_*` density overrides and the IDML overlay
   tables a config may add are not applied. The base tokens are also written as
   CSS custom properties to `/workspace/design/print/tokens.css` for an
-  actual-size odd-page preview (`print/page.html`). Weights are not in the
-  table; the LaTeX modules and IDML styles own them.
+  actual-size odd-page preview (`print/page.html`), opened from the 页面
+  card. Weights are not in the table; the LaTeX modules and IDML styles own
+  them.
 - **Notes are data.** The Chinese text, the selectors and keys each value comes
   from, what 概览 shows and the preview markup live in
   `tools/rtd_portal_assets/design_system/` (`content.yaml` with
-  `schema_version: 2`, `previews/<id>.html`, `print_page.html`, `print_page.css`).
+  `schema_version: 3`, `previews/<id>.html`, `print_page.html`, `print_page.css`).
   Previews may use only `asset:<group>/<file>` art and `slot:<w>:<h>:<label>`
   placeholders: no remote, data or absolute URLs. The print preview may use only
   tokens the table defines.
@@ -362,6 +394,10 @@ library does not link to it.
   - a shown or copied file carries a hash the symbol manifest has withdrawn;
   - a print key, a print colour's screen token, or a token the print preview
     uses is gone;
+  - a colour names a group `color_groups` does not list, or a group lists no
+    colour;
+  - a component's HB-* style ID is not in the manual style contract;
+  - a reuse rule does not open with its **标题。**;
   - a `foundations` id the template does not draw, a colour `key` the drawings
     use, or a showcased component, file or asset group is gone
     (`tests/test_rtd_design_overview.py`).

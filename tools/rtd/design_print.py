@@ -22,6 +22,9 @@ PRINT_PAGE = "print_page"
 # Units a CSS custom property carries as written; a ratio stays unitless.
 CSS_UNITS = {"mm": "mm", "pt": "pt", "ratio": ""}
 SAMPLE = "Charging 1024 Wh"
+# The 页面 card draws the paper, the text block, the footer baseline and the raised page number from these.
+DRAWN = ("page_paperwidth", "page_paperheight", "page_margin_top", "page_margin_right", "page_margin_bottom",
+         "page_margin_left", "page_footskip", "page_footer_raise")
 
 _KEY = re.compile(r"[a-z][a-z0-9_]*")
 _NUMBER = re.compile(r"-?\d+(?:\.\d+)?")
@@ -72,20 +75,52 @@ def _rows(tokens: dict[str, LayoutToken], labels: dict[str, str]) -> list[dict]:
     return [{"label": label, "key": key, "value": value_text(_token(tokens, key))} for key, label in labels.items()]
 
 
+def _mm(tokens: dict[str, LayoutToken], key: str) -> float:
+    token = _token(tokens, key)
+    if token.unit != "mm" or not _NUMBER.fullmatch(token.value):
+        raise DesignSystemError(f"print token {key} is not a length in mm")
+    return float(token.value)
+
+
+def _percent(part: float, whole: float) -> str:
+    return f"{part / whole * 100:.2f}%"
+
+
+def page_drawing(tokens: dict[str, LayoutToken]) -> dict[str, Any]:
+    """The 页面 card's page to scale: insets as percentages of the paper, the footer baseline and page number."""
+    mm = {key: _mm(tokens, key) for key in DRAWN}
+    width, height = mm["page_paperwidth"], mm["page_paperheight"]
+    baseline = height - mm["page_margin_bottom"] + mm["page_footskip"]
+    return {
+        "ratio": f"{width:g} / {height:g}", "width": tokens["page_paperwidth"].value,
+        "height": tokens["page_paperheight"].value,
+        "text": {side: _percent(mm[f"page_margin_{side}"], width if side in ("left", "right") else height)
+                 for side in ("top", "right", "bottom", "left")},
+        "foot": _percent(baseline, height), "folio": _percent(baseline - mm["page_footer_raise"], height),
+    }
+
+
+def _page_figure(tokens: dict[str, LayoutToken], figure: dict) -> dict:
+    rows = [{"key": key, "value": value_text(_token(tokens, key))} for key in figure["keys"]]
+    units = {_token(tokens, key).unit for key in figure["keys"]}
+    if len(units) != 1:
+        raise DesignSystemError(f"print figure {figure['label']}: its tokens need one unit")
+    value = figure.get("join", " · ").join(_token(tokens, key).value for key in figure["keys"])
+    return {"label": figure["label"], "value": f"{value} {units.pop()}", "rows": rows,
+            "param": figure.get("param") or " · ".join(figure["keys"])}
+
+
 def _type_row(tokens: dict[str, LayoutToken], style: dict) -> dict:
     prefix = style["prefix"]
     size = _token(tokens, f"{prefix}_font_size")
     leading = tokens.get(f"{prefix}_font_leading")
     upper = tokens.get(f"{prefix}_force_upper")
-    sample = [f"{prop}:{token.value}{token.unit}" for prop, token in (("font-size", size), ("line-height", leading))
-              if token is not None and token.unit in ("pt", "mm") and _NUMBER.fullmatch(token.value)]
-    if upper is not None and upper.value == "1":
-        sample.append("text-transform:uppercase")
+    # The sample shows the style's case only: pt sizes on a screen would pass for print sizes they are not.
     return {
         "label": style["label"], "prefix": prefix, "size": value_text(size),
         "leading": value_text(leading) if leading else None,
         "upper": None if upper is None else upper.value == "1",
-        "sample": style.get("sample", SAMPLE), "sample_style": ";".join(sample),
+        "sample": style.get("sample", SAMPLE), "lead": bool(style.get("lead")),
     }
 
 
@@ -120,12 +155,14 @@ def print_spec(content: dict, assets: Path, root: Path, *, font_family: str, scr
     tokens = load_layout_tokens(Paths(root=root).layout_params_csv)
     base = {key: token for key, token in tokens.items() if not key.startswith("lang_")}
     css = tokens_css(base, font_family)
+    geometry = [{"title": group["title"], "rows": _rows(base, group["keys"])} for group in section["geometry"]]
     return {
         "intro": [inline(text) for text in section.get("intro", [])],
-        "page": _rows(base, section["page"]),
+        "overrides": inline(section["overrides"]) if section.get("overrides") else None,
+        "page": [_page_figure(base, figure) for figure in section["page"]], "drawing": page_drawing(base),
         "type": [_type_row(base, style) for style in section["type"]],
         "colors": _colors(base, section["colors"], screen_tokens),
-        "geometry": [{"title": group["title"], "rows": _rows(base, group["keys"])} for group in section["geometry"]],
+        "geometry": geometry, "geometry_count": sum(len(group["rows"]) for group in geometry),
         "sha256": layout_tokens_sha256(tokens), "token_count": len(base),
         "tokens_css": css, "preview": _preview(assets, set(_DEFINED.findall(css))),
     }
@@ -143,4 +180,4 @@ def print_page_document(markup: str) -> str:
     )
 
 
-__all__ = ["PRINT_PAGE", "cmyk_screen", "print_page_document", "print_spec", "tokens_css", "value_text"]
+__all__ = ["PRINT_PAGE", "cmyk_screen", "page_drawing", "print_page_document", "print_spec", "tokens_css", "value_text"]

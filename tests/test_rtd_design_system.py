@@ -13,10 +13,11 @@ from PIL import Image
 
 from tools.render_contract import load_layout_tokens
 from tools.rtd import portal as rtd_portal
-from tools.rtd.design_assets import ASSET_ROOTS, REGISTRIES, withdrawn_hashes
+from tools.rtd.design_assets import ASSET_ROOTS, REGISTRIES, tile_name, withdrawn_hashes
+from tools.rtd.design_content import load_content
 from tools.rtd.design_print import cmyk_screen, value_text
 from tools.rtd.design_system import (
-    DesignSystemError, contrast_ratio, design_page_context, design_system_context, inline,
+    DesignSystemError, contrast_grade, contrast_ratio, design_page_context, design_system_context, inline,
     preview_document, template_context, write_design_system,
 )
 from tools.rtd.design_system_css import class_names, declared, live_stylesheet_text, parse_css
@@ -200,14 +201,19 @@ class PrintSpecTests(unittest.TestCase):
         self.tokens = load_layout_tokens(Paths(root=repo_root()).layout_params_csv)
 
     def test_values_come_from_the_layout_table(self):
-        for row in self.spec["page"] + [row for group in self.spec["geometry"] for row in group["rows"]]:
+        page_rows = [row for figure in self.spec["page"] for row in figure["rows"]]
+        for row in page_rows + [row for group in self.spec["geometry"] for row in group["rows"]]:
             with self.subTest(key=row["key"]):
                 self.assertEqual(row["value"], value_text(self.tokens[row["key"]]))
+        for figure in self.spec["page"]:
+            values = [self.tokens[row["key"]].value for row in figure["rows"]]
+            self.assertTrue(figure["value"].startswith(values[0]) and figure["value"].endswith(" mm"), figure)
+            self.assertTrue(all(value in figure["value"] for value in values), figure)
         for row in self.spec["type"]:
             with self.subTest(style=row["prefix"]):
                 size = self.tokens[f"{row['prefix']}_font_size"]
                 self.assertEqual(row["size"], f"{size.value} {size.unit}")
-                self.assertIn(f"font-size:{size.value}{size.unit}", row["sample_style"])
+                self.assertNotIn("sample_style", row)  # pt sizes on a screen would pass for print sizes
         for color in self.spec["colors"]:
             self.assertEqual(color["chip"], cmyk_screen(self.tokens[color["key"]].value))
         width = self.tokens["page_paperwidth"]
@@ -249,8 +255,15 @@ class AssetAndPrintDriftTests(unittest.TestCase):
                           "marks/warning_triangle.png carries a withdrawn hash")
 
     def test_a_retired_print_token_or_screen_colour_fails(self):
-        self.assert_fails("    page_footskip: ", "    page_footskip_retired: ", "page_footskip_retired")
+        self.assert_fails("keys: [page_footskip]", "keys: [page_footskip_retired]", "page_footskip_retired")
         self.assert_fails('screen: "--hb-line"', 'screen: "--hb-line-retired"', "--hb-line-retired")
+
+    def test_an_unknown_colour_group_a_retired_style_id_or_an_untitled_rule_fails(self):
+        self.assert_fails("    group: lamp\n", "    group: lamps\n", "group must be one of")
+        self.assert_fails("  lamp: 指示灯\n", "  lamp: 指示灯\n  extra: 额外\n", "colour group extra lists no colour")
+        self.assert_fails("style_id: HB-TABLE-SPEC\n", "style_id: HB-TABLE-RETIRED\n",
+                          "HB-TABLE-RETIRED is not in the manual style contract")
+        self.assert_fails('    - "**先盘点。** ', '    - "先盘点。', "needs a")
 
     def test_the_page_preview_may_only_use_defined_tokens(self):
         css = self.assets / "design_system" / "print_page.css"
@@ -259,10 +272,102 @@ class AssetAndPrintDriftTests(unittest.TestCase):
             design_system_context(self.assets)
 
 
+class InnerTabTests(unittest.TestCase):
+    """The 2026-11 inner tabs: grouped, graded colours; linked components; asset uses; the print page card."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.context = design_system_context(rtd_portal.ASSETS)
+        cls.items = [item for group in cls.context["component_groups"] for item in group["items"]]
+        cls.tiles = [tile for group in cls.context["asset_library"]["groups"] for tile in group["items"]]
+
+    def test_colours_are_grouped_in_content_order_and_marked_on_paper(self):
+        groups = self.context["color_groups"]
+        self.assertEqual([group["id"] for group in groups], list(load_content(rtd_portal.ASSETS)["color_groups"]))
+        listed = [color for group in groups for color in group["colors"]]
+        self.assertEqual(sorted(color["index"] for color in listed), list(range(1, len(self.context["colors"]) + 1)))
+        inks: dict[str, list[str]] = {}
+        for ink in self.context["print"]["colors"]:
+            inks.setdefault(ink["screen"], []).append(ink["swatch"])
+        for color in listed:
+            with self.subTest(color=color["name"]):
+                ground = color["value"] == self.context["paper"]
+                self.assertEqual(color["grade"]["label"], "底色" if ground else contrast_grade(color["contrast"])["label"])
+                self.assertEqual([ink["swatch"] for ink in color["inks"]], inks.get(color["token"], []))
+                if color["token"].startswith("--"):
+                    self.assertEqual(color["label"], color["token"])
+                else:
+                    self.assertRegex(color["label"], rf"^{color['token']} · \.hb-[a-z-]+$")
+        named = {color["name"]: color for color in listed}
+        self.assertEqual([ink["swatch"] for ink in named["正文"]["inks"]], ["TextGray", "TextK90"])
+
+    def test_components_link_their_style_definition(self):
+        contract = Paths(root=repo_root()).manual_style_contract
+        lines = contract.read_text(encoding="utf-8").splitlines()
+        linked = 0
+        for item in self.items:
+            with self.subTest(component=item["id"]):
+                match = re.match(r"HB-[A-Z0-9-]+", item["style_id"])
+                if match is None:
+                    self.assertIsNone(item["style_href"])
+                    continue
+                page, line = item["style_href"].split("#L")
+                self.assertTrue(page.endswith("/blob/main/" + contract.relative_to(repo_root()).as_posix()), page)
+                self.assertEqual(lines[int(line) - 1], f"  {match.group(0)}:")
+                linked += 1
+        self.assertGreater(linked, 20)
+
+    def test_an_asset_lists_the_components_whose_previews_show_it(self):
+        users: dict[str, set[str]] = {}
+        for item in self.items:
+            for ref in re.findall(r'src="\.\./assets/([^"]+)"', item["markup"]):
+                users.setdefault(ref, set()).add(item["title"])
+        for tile in self.tiles:
+            with self.subTest(asset=tile["ref"]):
+                self.assertEqual(len(tile["used_in"]), len(set(tile["used_in"])))
+                self.assertEqual(set(tile["used_in"]), users.get(tile["ref"], set()))
+        self.assertTrue(any(tile["used_in"] for tile in self.tiles))
+        self.assertEqual(len({tile["slug"] for tile in self.tiles}), len(self.tiles))
+
+    def test_tiles_name_files_short_and_the_rules_keep_their_titles(self):
+        self.assertEqual(tile_name("symbol_warning_triangle.svg"), "warning_triangle")
+        self.assertEqual(tile_name("lcd_transfer-switch.png"), "lcd_transfer-switch")
+        self.assertEqual(tile_name("symbol_je2000e-eu-batch1465-pt-general_warning.svg"), "…1465-pt-general_warning")
+        self.assertTrue(all(len(tile["short"]) <= 24 for tile in self.tiles))
+        steps = self.context["asset_library"]["steps"]
+        self.assertTrue(steps)
+        for step in steps:
+            self.assertTrue(str(step["text"]).startswith(f"<strong>{step['title']}"), step["title"])
+
+    def test_the_print_page_is_drawn_to_scale_and_ten_styles_lead(self):
+        spec = self.context["print"]
+        tokens = load_layout_tokens(Paths(root=repo_root()).layout_params_csv)
+
+        def mm(key: str) -> float:
+            return float(tokens[key].value)
+
+        width, height = mm("page_paperwidth"), mm("page_paperheight")
+        drawing = spec["drawing"]
+        self.assertEqual(drawing["text"]["top"], f"{mm('page_margin_top') / height * 100:.2f}%")
+        self.assertEqual(drawing["text"]["left"], f"{mm('page_margin_left') / width * 100:.2f}%")
+        baseline = height - mm("page_margin_bottom") + mm("page_footskip")
+        self.assertEqual(drawing["foot"], f"{baseline / height * 100:.2f}%")
+        self.assertEqual(drawing["folio"], f"{(baseline - mm('page_footer_raise')) / height * 100:.2f}%")
+        lead = [row["prefix"] for row in spec["type"] if row["lead"]]
+        self.assertEqual(len(lead), 10)
+        self.assertTrue({"type_h1", "type_body", "page_footer"} <= set(lead))
+        self.assertEqual(spec["geometry_count"], sum(len(group["rows"]) for group in spec["geometry"]))
+        self.assertTrue(spec["overrides"])
+
+
 class FormattingTests(unittest.TestCase):
     def test_inline_escapes_everything_but_code_strong_and_em(self):
         html = str(inline("<b>x</b> `a<b>` **粗** *you*"))
         self.assertEqual(html, "&lt;b&gt;x&lt;/b&gt; <code>a&lt;b&gt;</code> <strong>粗</strong> <em>you</em>")
+
+    def test_contrast_grade(self):
+        self.assertEqual([contrast_grade(ratio)["label"] for ratio in (13.02, 7.0, 6.99, 4.5, 4.49, 3.0, 2.99, 1.0, None)],
+                         ["AAA", "AAA", "AA", "AA", "大字 AA", "大字 AA", "装饰", "装饰", "半透明"])
 
     def test_contrast_ratio(self):
         self.assertEqual(contrast_ratio("#343031", "#ffffff"), 13.02)

@@ -87,7 +87,7 @@ class OverviewDriftTests(unittest.TestCase):
 
     def test_a_missing_colour_key_or_old_schema_fails(self):
         self.assert_fails("    key: lamp_off\n", "", "lamp_off")
-        self.assert_fails("schema_version: 2", "schema_version: 1", "schema_version 2")
+        self.assert_fails("schema_version: 3", "schema_version: 2", "schema_version 3")
 
 
 if __name__ == "__main__":
