@@ -119,6 +119,12 @@ Optional manual feedback affordances are kept in
 HTTPS channel configuration and renders only local copyable context from the
 frozen publication identity; an empty channel list produces no markup.
 
+The reading frame around verified manual pages is built from
+[`tools/rtd/manual_reader.py`](../../../tools/rtd/manual_reader.py): the chapter list read from the
+rendered body, the version date and the language options. `decorate_manual` in `tools/rtd/portal.py`
+passes it to `manual_reader.html`; see
+[reading frame](../rtd_manual_portal/manual-center.md#reading-frame-2026-11).
+
 Product suggestion HTML and endpoint validation live in
 [`tools/rtd/product_voc.py`](../../../tools/rtd/product_voc.py). The append-only
 receiver and fixed bot adapter are isolated under

@@ -94,6 +94,9 @@ The consumer-facing feedback channel is the after-sales mailbox
 portal setting); GitHub Issues stays the internal/dealer triage board.
 Verified single-language pages expose frozen publication context for local
 copying; they do not append context, tokens or user identity to channel URLs.
+Since 2026-11 these pages read in a frame: a top bar, a chapter list and the
+feedback card under the manual, on the public manuals project too. See
+[reading frame](../dev/rtd_manual_portal/manual-center.md#reading-frame-2026-11).
 Xia Bing (`Bingboom`) owns feedback and checks local artifacts, HTTP
 accessibility and the deployed revision after every publication. First
 response within 3 business days; this configuration creates no scheduled

@@ -121,7 +121,7 @@ class DesignSystemDriftTests(unittest.TestCase):
         assets = Path(temp) / "assets"
         shutil.copytree(rtd_portal.ASSETS / "design_system", assets / "design_system")
         (assets / "_static").mkdir()
-        shutil.copyfile(rtd_portal.ASSETS / "_static" / "manual-locales.css", assets / "_static" / "manual-locales.css")
+        shutil.copyfile(rtd_portal.ASSETS / "_static" / "manual-reader.css", assets / "_static" / "manual-reader.css")
         return assets
 
     def test_a_retired_selector_fails_and_the_page_is_skipped(self):

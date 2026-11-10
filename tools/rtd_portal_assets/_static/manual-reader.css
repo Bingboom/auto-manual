@@ -1,0 +1,162 @@
+/* The reading frame around a verified manual (manual_reader.html, 2026-11): top bar, chapter list, feedback card
+   and footer. The manual's own look stays in web_manual.css on #furo-main-content; this file only draws the frame
+   and sets the paper's outer margins. The top bar's rules stand alone, so the 设计规范 preview can show it. */
+.mr {
+  --mr-top: 60px;  /* the top bar's height; manual-reader.js sets the measured one */
+  --mr-ink: #1d1f23;
+  --mr-text: #50545c;
+  --mr-muted: #686c74;
+  --mr-faint: #9a9ea6;
+  --mr-line: #e4e6ea;
+  --mr-divider: #eef0f3;
+  --mr-brand: #c4520a;
+  --mr-brand-soft: #fff1e6;
+  min-height: 100vh;
+  background: #f4f5f7;
+  color: var(--mr-ink);
+}
+/* The frame's words are in the manual's language (lang on .mr and on the card): a Latin stack, and each CJK
+   language its own fonts so its characters keep their shapes. */
+.mr, .mr-top, .mr-skip, .manual-feedback {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+:is(.mr, .mr-top, .mr-skip, .manual-feedback):lang(zh) {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei UI",
+    "Microsoft YaHei", "Noto Sans CJK SC", "Noto Sans SC", sans-serif;
+}
+:is(.mr, .mr-top, .mr-skip, .manual-feedback):lang(zh-TW) {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Microsoft JhengHei UI", "Microsoft JhengHei",
+    "Noto Sans CJK TC", "Noto Sans TC", sans-serif;
+}
+:is(.mr, .mr-top, .mr-skip, .manual-feedback):lang(ja) {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI",
+    Meiryo, "Noto Sans CJK JP", "Noto Sans JP", sans-serif;
+}
+:is(.mr, .mr-top, .mr-skip, .manual-feedback):lang(ko) {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans CJK KR",
+    "Noto Sans KR", sans-serif;
+}
+.mr-skip { position: absolute; top: 8px; left: -9999px; z-index: 50; padding: 8px 12px; border-radius: 8px; background: #1d1f23; color: #fff; }
+.mr-skip:focus { left: 8px; }
+.mr [hidden] { display: none !important; }
+
+/* Top bar: back to the library, what this manual is, search and the language. */
+.mr-top { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; gap: 14px; box-sizing: border-box;
+  min-height: 60px; padding: 8px 28px; background: #fff; border-bottom: 1px solid #e4e6ea; color: #1d1f23; }
+.mr-top a { text-decoration: none; }
+.mr-back { display: inline-flex; flex: none; align-items: center; gap: 6px; color: #686c74; font-size: 13px; font-weight: 500; white-space: nowrap; }
+.mr-back:hover { color: #1d1f23; }
+.mr-back svg { flex: none; }
+.mr-sep { flex: none; width: 1px; height: 22px; background: #e4e6ea; }
+.mr-id { display: flex; flex: 1; flex-wrap: wrap; align-items: center; gap: 4px 10px; min-width: 0; }
+.mr-id b { font-size: 16px; line-height: 22px; font-weight: 700; }
+.mr-facts { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; }
+.mr-facts code { padding: 2px 7px; border-radius: 6px; background: #f1f2f4; color: #50545c; font-size: 12px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+.mr-tag { display: inline-flex; align-items: center; height: 24px; padding: 0 9px; border-radius: 999px; background: #f4f5f7;
+  color: #50545c; font-size: 12px; font-weight: 500; white-space: nowrap; }
+.mr-ver { color: #9a9ea6; font-size: 12.5px; white-space: nowrap; }
+.mr-line { display: none; color: #9a9ea6; font-size: 11.5px; line-height: 15px; }
+.mr-search { display: inline-flex; flex: none; align-items: center; gap: 7px; height: 34px; padding: 0 12px; border-radius: 9px;
+  background: #f4f5f7; color: #686c74; font-size: 13px; white-space: nowrap; }
+.mr-search:hover { color: #1d1f23; }
+.mr-lang { display: inline-flex; flex: none; align-items: center; gap: 8px; color: #50545c; font-size: 13px; white-space: nowrap; }
+.mr-lang select { height: 32px; padding: 0 6px; border: 1px solid #cdd1d6; border-radius: 7px; background: #fff; color: #1d1f23; font: inherit; }
+.mr-toc-open { display: none; flex: none; align-items: center; gap: 6px; height: 34px; padding: 0 12px; border: 0; border-radius: 9px;
+  background: #1d1f23; color: #fff; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; }
+.mr-top :is(a, button, select):focus-visible, .mr-toc :is(a, button):focus-visible, .manual-feedback :is(a, button, summary):focus-visible {
+  outline: 3px solid #f19d70; outline-offset: 2px; }
+.mr-meta { display: none; }
+
+/* Chapter list beside the manual; it follows the reading position (manual-reader.js). */
+.mr-body { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; box-sizing: border-box; max-width: 1240px;
+  margin: 0 auto; padding: 0 28px; }
+.mr.has-toc .mr-body { grid-template-columns: 248px minmax(0, 1fr); }
+.mr-toc { position: sticky; top: calc(var(--mr-top) + 24px); display: flex; flex-direction: column; gap: 6px; align-self: start;
+  box-sizing: border-box; max-height: calc(100vh - var(--mr-top) - 48px); margin-top: 24px; padding: 14px 10px 12px; overflow: auto;
+  background: #fff; border: 1px solid var(--mr-line); border-radius: 14px; overscroll-behavior: contain; }
+.mr-toc-head { display: flex; align-items: baseline; gap: 8px; margin-bottom: 4px; padding: 0 8px 8px; border-bottom: 1px solid var(--mr-divider); }
+.mr-toc-head b { font-size: 13px; font-weight: 600; }
+.mr-toc-head span { flex: 1; color: var(--mr-faint); font-size: 12px; text-align: right; }
+.mr-toc-close { display: none; align-items: center; justify-content: center; width: 30px; height: 30px; border: 0; border-radius: 50%;
+  background: #f4f5f7; color: var(--mr-text); font-size: 18px; line-height: 1; cursor: pointer; }
+.mr-toc-list { display: flex; flex-direction: column; gap: 1px; margin: 0; padding: 0; list-style: none; }
+.mr-toc-list > li > a { display: block; padding: 6px 10px; border-radius: 8px; color: var(--mr-text); font-size: 12px; line-height: 17px;
+  font-weight: 500; letter-spacing: .01em; text-decoration: none; overflow-wrap: anywhere; }
+.mr-toc-list a:hover { color: var(--mr-ink); background: #f7f8fa; }
+.mr-toc-list > li.is-current > a { background: var(--mr-brand-soft); color: var(--mr-brand); font-weight: 600; box-shadow: inset 3px 0 0 var(--mr-brand); }
+.mr-toc-list ul { display: none; flex-direction: column; gap: 1px; margin: 2px 0 4px; padding: 0 0 0 14px; list-style: none; }
+.mr-toc-list > li.is-current > ul { display: flex; }
+.mr-toc-list ul a { display: block; padding: 4px 10px; border-left: 1px solid var(--mr-line); color: #7a7f87; font-size: 11.5px; line-height: 16px;
+  text-decoration: none; overflow-wrap: anywhere; }
+.mr-toc-list ul a[aria-current] { border-left-color: var(--mr-brand); color: var(--mr-ink); font-weight: 600; }
+.mr-totop { display: flex; align-items: center; gap: 6px; margin-top: 6px; padding: 8px 10px 0; border-top: 1px solid var(--mr-divider);
+  color: var(--mr-muted); font-size: 12px; text-decoration: none; }
+.mr-scrim { position: fixed; inset: 0; z-index: 35; background: rgba(29, 31, 35, .42); }
+
+/* The manual: the paper is web_manual.css's; here only its outer margins, and room for the top bar on jumps. */
+.mr-main { min-width: 0; }
+.mr #furo-main-content { margin: 24px auto 0; }
+/* Outranks web_manual.css's own anchor offset, which allows for Furo's mobile header (narrower than 63em). */
+.mr #furo-main-content :is(section[id], :target, h1, h2, h3, h4) { scroll-margin-top: calc(var(--mr-top) + 16px); }
+
+/* Feedback under the manual, the paper's width. */
+.manual-feedback { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; box-sizing: border-box;
+  width: min(100%, var(--hb-reading-width, 58rem)); margin: 12px auto 0; padding: 16px 18px; background: #fff;
+  border: 1px solid var(--hb-line-soft, #dedcdd); border-radius: 10px; color: #343031; }
+.manual-feedback-text { display: flex; flex-direction: column; gap: 3px; }
+.manual-feedback-text b { font-size: 14px; }
+.manual-feedback-text span { color: #666264; font-size: 12.5px; line-height: 19px; }
+.manual-feedback-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; }
+.manual-feedback-actions button { height: 34px; padding: 0 14px; border: 0; border-radius: 8px; background: #343031; color: #fff; font: inherit;
+  font-size: 13px; font-weight: 600; cursor: pointer; }
+.manual-feedback-channels a { color: #343031; font-size: 13px; text-decoration: underline; text-decoration-color: #a7a5a6; }
+.manual-feedback-details { flex-basis: 100%; color: #666264; font-size: 12px; }
+.manual-feedback-details summary { cursor: pointer; }
+.manual-feedback-details pre { margin: 8px 0 0; padding: 10px 12px; border-radius: 8px; background: #f4f3f3; white-space: pre-wrap; font-size: 12px; }
+.manual-feedback-status:empty { display: none; }
+.manual-feedback-status { flex-basis: 100%; color: #666264; font-size: 12.5px; }
+
+.mr-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 20px; box-sizing: border-box; max-width: 1240px;
+  margin: 28px auto 0; padding: 16px 28px 28px; border-top: 1px solid var(--mr-line); color: var(--mr-faint); font-size: 12px; }
+.mr-foot code { color: var(--mr-muted); font-size: 11.5px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; overflow-wrap: anywhere; }
+
+/* Below 1,100px the chapter list is a sheet that the top bar's contents button opens. */
+@media (max-width: 1099px) {
+  .mr.has-toc .mr-body { grid-template-columns: minmax(0, 1fr); }
+  .mr-toc-open { display: inline-flex; }
+  .mr-toc { position: fixed; inset: auto 0 0 0; z-index: 40; max-height: 80vh; margin: 0; padding: 10px 12px 18px;
+    border-radius: 18px 18px 0 0; box-shadow: 0 -10px 30px rgba(0, 0, 0, .18); transform: translateY(105%); visibility: hidden;
+    transition: transform .2s ease, visibility 0s linear .2s; }
+  .mr-toc.is-open { transform: none; visibility: visible; transition: transform .2s ease; }
+  .mr-toc-head { align-items: center; padding: 2px 6px 8px; }
+  .mr-toc-head b { font-size: 15px; }
+  .mr-toc-head span { text-align: left; }
+  .mr-toc-close { display: inline-flex; }
+  .mr-toc-list > li > a { padding: 9px 10px; font-size: 13px; line-height: 18px; }
+  .mr-toc-list ul a { padding: 6px 10px; font-size: 12.5px; line-height: 17px; }
+}
+@media (max-width: 760px) {
+  .mr { --mr-top: 52px; }
+  .mr-top { gap: 8px; min-height: 52px; padding: 6px 12px 6px 6px; }
+  .mr-back { justify-content: center; width: 36px; height: 36px; }
+  .mr-back span, .mr-sep, .mr-facts, .mr-search, .mr-lang-top { display: none; }
+  .mr-id { flex-direction: column; flex-wrap: nowrap; align-items: flex-start; gap: 0; }
+  .mr-id b { font-size: 15px; line-height: 19px; }
+  .mr-line { display: block; }
+  .mr-id b, .mr-line { max-width: 100%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .mr-meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 16px;
+    background: #fff; border-bottom: 1px solid var(--mr-divider); color: var(--mr-muted); font-size: 12px; }
+  .mr-body { padding: 0; }
+  .mr #furo-main-content { margin: 0 auto; }
+  .manual-feedback { margin: 0; border-width: 1px 0 0; border-radius: 0; }
+  .mr-foot { margin-top: 0; padding: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mr-toc, .mr-toc.is-open { transition: none; }
+}
+@media print {
+  .mr { background: none; }
+  .mr-skip, .mr-top, .mr-meta, .mr-toc, .mr-scrim, .manual-feedback, .mr-foot { display: none !important; }
+  .mr-body { display: block; max-width: none; padding: 0; }
+}

@@ -34,6 +34,7 @@ PAGES: dict[str, str | None] = {
     "system": "workspace/system/index",
     "design-system": "workspace/design/index",
     "manual-search": "search",  # 搜索说明书正文: Sphinx's search page in the site shell, built in every role
+    "manual-library": "index",  # 说明书资料库, where readers open the manuals; for changes to how manual pages read
 }
 _ANCHOR = re.compile(r"[a-z][a-z0-9-]*")
 

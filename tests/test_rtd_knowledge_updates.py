@@ -52,7 +52,7 @@ class LoadUpdatesTests(unittest.TestCase):
             "share": None, "home": web_manual_value.HOME,
             "product-knowledge": product_learning.PAGE, "product-matrix": product_matrix.PAGE,
             "market-policy": market_policy.PAGE, "deliverables": DELIVERABLES_PAGE, "system": SYSTEM_PAGE,
-            "design-system": design_system.PAGE, "manual-search": "search",
+            "design-system": design_system.PAGE, "manual-search": "search", "manual-library": "index",
         })
 
     def test_bad_entries_are_dropped_and_undated_ones_kept(self):
