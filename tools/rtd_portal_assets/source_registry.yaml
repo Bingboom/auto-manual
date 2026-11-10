@@ -16,6 +16,8 @@
 #   stale_after_days snapshot age, or review cycle, after which the page shows 待复核
 #   fallback         what the page shows when the source cannot be read
 #   used_by          the page blocks that show this fact
+#   on_page          false when no page reads the domain any more; it stays registered and
+#                    refreshable, and 数据来源 marks it 不上页面 (default true)
 schema: hello-docs-source-registry/v1
 
 domains:
@@ -52,6 +54,7 @@ domains:
     stale_after_days: 3
     fallback: 飞书快照当前不可读
     used_by: 自 2026-11-09 起不上页面（工作台只统计网页说明书）；仍可刷新，是否停用由操作者决定
+    on_page: false
 
   - id: web_progress
     label: 网页说明书进度
@@ -100,7 +103,7 @@ domains:
     read: build
     stale_after_days: 30
     fallback: 待复核
-    used_by: 能力地图、生产流程与连接
+    used_by: 能力地图、生产链路
 
   - id: focus
     label: 当前重点

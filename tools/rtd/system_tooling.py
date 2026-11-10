@@ -183,7 +183,7 @@ def tooling_findings(config: dict[str, Any], skills: list[dict[str, Any]],
 
 def tooling_view(config: dict[str, Any], skills: list[dict[str, Any]], hooks: list[dict[str, Any]],
                  lanes: dict[str, dict[str, str]]) -> dict[str, Any]:
-    """Page context: tiles, skills grouped by focus lane (then the rest), and the hook steps."""
+    """Page context: the counts the section opens with, skills grouped by focus lane (then the rest), the hooks."""
     by_id = {skill["id"]: skill for skill in skills}
 
     def row(skill: dict[str, Any]) -> dict[str, Any]:
@@ -205,16 +205,15 @@ def tooling_view(config: dict[str, Any], skills: list[dict[str, Any]], hooks: li
     per_layer: dict[str, int] = {}
     for hook in hooks:
         per_layer[hook["layer"]] = per_layer.get(hook["layer"], 0) + 1
+    # The section opens with these conclusions (2026-11 design, step 9): the counts, then what needs attention.
     return {
         "note": str(config.get("note") or ""),
-        "tiles": [
-            {"label": "技能", "value": str(len(skills)),
-             "sub": " · ".join(f"{agent} {count}" for agent, count in per_agent.items())},
-            {"label": "未登记的技能", "value": str(sum(1 for skill in skills if skill["unregistered"])), "sub": ""},
-            {"label": "钩子步骤", "value": str(len(hooks)),
-             "sub": " · ".join(f"{layer} {count}" for layer, count in per_layer.items())},
-            {"label": "没有测试的钩子", "value": str(sum(1 for hook in hooks if not hook["tested"])), "sub": ""},
-        ],
+        "skills": len(skills),
+        "agents": " · ".join(f"{agent} {count}" for agent, count in per_agent.items()),
+        "unregistered": sum(1 for skill in skills if skill["unregistered"]),
+        "hooks_total": len(hooks),
+        "layers": " · ".join(f"{layer} {count}" for layer, count in per_layer.items()),
+        "untested": sum(1 for hook in hooks if not hook["tested"]),
         "groups": groups,
         "hooks": [{**hook, "mode_label": "拦截" if hook["blocking"] else "提醒",
                    "trigger": f"{hook['event']} · {hook['matcher']}" if hook["matcher"] else hook["event"]}

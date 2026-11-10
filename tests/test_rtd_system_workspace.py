@@ -68,7 +68,8 @@ def contract() -> dict:
         "repositories": {"auto-manual": "https://github.com/o/auto-manual",
                          "hello-docs": "https://github.com/o/Hello-Docs"},
         "vocabulary": {"status": {name: name for name in sw.STATUS_ORDER},
-                       "mode": {"automated": "a", "manual": "m"}},
+                       "mode": {"automated": "a", "manual": "m"},
+                       "flow_group": {"produce": "生产", "operate": "运行"}},
         "hero": {"title": "T", "subtitle": "S", "evidence": ["file:auto-manual:ledger.md"]},
         "focus": {
             "note": "n",
@@ -92,7 +93,7 @@ def contract() -> dict:
                  "evidence": ["rev:REV-03=planned", "url:https://example.test/x"]},
             ],
         }],
-        "flow": [{"from": "a", "to": "b", "status": "available", "mode": "manual",
+        "flow": [{"from": "a", "to": "b", "status": "available", "mode": "manual", "group": "produce",
                   "evidence": ["pr:hello-docs#3"]}],
         "now_next": {
             "source": "file:auto-manual:ledger.md",
@@ -172,7 +173,8 @@ class SystemWorkspaceContractTests(unittest.TestCase):
             "revs must be a non-empty list": lambda d: lane(d, 1).update(revs=[]),
             "must map region codes to labels": lambda d: d["focus"].update(regions={"US": ""}),
             "needs a family and a label": lambda d: d["focus"].update(skeleton_families=[{"family": "BP"}]),
-            "fold must be true or false": lambda d: card(d).update(fold="yes"),
+            "group 'elsewhere' not in vocabulary": lambda d: d["flow"][0].update(group="elsewhere"),
+            "must map each group id to its label": lambda d: d["vocabulary"].update(flow_group={"produce": ""}),
             "focus: no evidence": lambda d: d["focus"].update(evidence=[]),
             "unknown focus lane 'nope'": lambda d: d.update(tooling={"skill_lanes": {"nope": []}}),
             "must be a list of skill names": lambda d: d.update(tooling={"skill_lanes": {"web": "alpha"}}),
@@ -355,13 +357,22 @@ class SystemWorkspaceContextTests(unittest.TestCase):
         self.assertEqual([(lane["progress"], lane["ledger_missing"]) for lane in unread.values()],
                          [([], True), ([], True), ([], False)])
 
-    def test_cards_and_gates_carry_their_lane_and_fold_flags(self):
+    def test_cards_carry_their_lane_and_status_counts_and_gates_their_fold_flag(self):
         data = contract()
-        data["capabilities"].append({**copy.deepcopy(data["capabilities"][0]), "id": "other", "fold": True})
+        data["capabilities"].append({**copy.deepcopy(data["capabilities"][0]), "id": "other"})
         data["now_next"]["gates"][1]["fold"] = True
         view = self.context(data)
-        self.assertEqual([(c["id"], c["fold"], [t["title"] for t in c["lanes"]]) for c in view["cards"]],
-                         [("prod", False, ["网页化"]), ("other", True, [])])
+        # Every card shows (2026-11 design, step 9): its lane, and its items counted by status, strongest first.
+        self.assertEqual([(c["id"], [t["title"] for t in c["lanes"]]) for c in view["cards"]],
+                         [("prod", ["网页化"]), ("other", [])])
+        self.assertEqual([(row["status"], row["count"], row["percent"]) for row in view["cards"][0]["counts"]],
+                         [("available", 1, 50.0), ("in_progress", 1, 50.0)])
+        self.assertEqual(([(row["status_label"], row["count"]) for row in view["capability_counts"]],
+                          view["capability_total"]), ([("可用", 2), ("建设中", 2)], 4))
+        # 生产链路 groups the links by the vocabulary's groups, leaving out an empty group.
+        self.assertEqual([(group["id"], group["label"], len(group["links"])) for group in view["flow_groups"]],
+                         [("produce", "生产", 1)])
+        self.assertEqual((view["flow_modes"], view["flow"][0]["mode_short"]), ({"automated": 0, "manual": 1}, "人工"))
         self.assertEqual([(g["id"], g["fold"], [t["horizon_label"] for t in g["lanes"]]) for g in view["gates"]],
                          [("G1", False, ["当前主线"]), ("G2", True, [])])
 
@@ -751,9 +762,10 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
             page = (base / "good" / "workspace" / "system" / "index.html").read_text(encoding="utf-8")
             # The 2026-11 layout: the 阶段门 stepper above three tabs, the sections in this order.
-            headings = ("阶段门", "正在做", "当前主线", "同期 · 持续支撑", "后置 · 按需", "能力地图", "生产流程与连接",
-                        "工作入口", "语言资产", "技能与钩子", "工程规模", "数据来源")
-            found = [re.search(rf"<h2[^>]*>{re.escape(h)}</h2>", page) for h in headings]
+            # Step 9: 生产链路, the architecture as a plain section, 语言资产 beside 工程规模, then 技能与钩子.
+            headings = ("阶段门", "正在做", "当前主线", "同期 · 持续支撑", "后置 · 按需", "能力地图", "生产链路",
+                        "工作入口", "系统架构", "语言资产", "工程规模", "技能与钩子", "数据来源", "系统演变")
+            found = [re.search(rf"<h2[^>]*>{re.escape(h)}(</h2>|<small>)", page) for h in headings]
             self.assertEqual([bool(m) for m in found], [True] * len(headings))
             self.assertEqual([m.start() for m in found], sorted(m.start() for m in found))
             self.assertEqual(re.findall(r'data-tab="([^"]+)"[^>]*>([^<]+)</a>', page),
@@ -800,10 +812,13 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             # The shipped contract names the manual library as the site does.
             self.assertIn("<b>说明书资料库</b>", page)
             self.assertNotIn("手册中心", page)
-            self.assertEqual(page.count('<details class="sw-more">'), 1)  # folded cards; folded gates are a line
+            # Every capability card shows (2026-11 design, step 9); none is folded away.
+            self.assertNotIn('class="sw-more"', page)
+            self.assertEqual(page.count('<article class="sw-card"'), len(sw.load_contract(assets / sw.CONTRACT_NAME)["capabilities"]))
+            self.assertIn('<details class="sw-link">', capabilities)
             # Skills and hooks come from this tree, not from the contract.
             self.assertIn('id="tooling"', page)
-            self.assertIn("<code>hardcore-task-execution</code>", page)
+            self.assertIn(">hardcore-task-execution<", page)
             self.assertIn("scripts/git_branch_guard.py", page)
             # 工程规模 shares their tab. The REPO build is a git checkout, so its bars are real.
             self.assertIn('<div class="sw-subpanel" id="tab-tooling">', capabilities)
@@ -813,7 +828,12 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             # Every registered data domain is listed publicly, snapshots with their file.
             shipped_registry, problems = load_registry(assets)
             self.assertEqual(problems, [])
-            self.assertEqual(page.count('<tr id="source-'), len(shipped_registry))
+            self.assertEqual(page.count(' id="source-'), len(shipped_registry))
+            # Snapshots are listed apart from build-time reads; a domain no page reads is marked, not flagged stale.
+            sources = page.split('id="sources"', 1)[1].split('id="tab-evolution"', 1)[0]
+            self.assertEqual(sources.count('<details class="sw-src-row"'),
+                             sum(1 for domain in shipped_registry.values() if domain["read"] == "snapshot"))
+            self.assertIn("不上页面", sources.split('id="source-deliverables_feishu"', 1)[1].split("</summary>", 1)[0])
             self.assertIn('id="tab-evolution"', page)
             self.assertIn('id="evolution-machine"', page)
             self.assertIn('id="evolution-shared_ir"', page)

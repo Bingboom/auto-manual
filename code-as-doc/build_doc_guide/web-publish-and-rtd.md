@@ -164,7 +164,7 @@ Manual Center 的 HTML 构建会从已发布手册生成静态章节检索索引
 说明书资料库首页在目录之后放「网页说明书的定位与价值」板块，首屏仍是搜索：公开站只放面向读者的精简版，私有站放各主题和状态标签并链接到知识库首页的「定位与价值」；文案与状态维护见[网页说明书的定位与价值](../dev/rtd_manual_portal/web-manual-value.md)。
 系统建设页首是阶段门进度条（G1–G3，当前门高亮，下方一行写“接下来”和其他阶段门），其下三个标签：
 「当前工作」（保留 `#tab-progress` 链接）先列“正在做”（与知识库首页同一份，每项写明所属主线），再按主线 / 同期支撑 / 后置列各线的状态、目标、数字和台账进度；阶段门下方的“接下来”只数当前门剩余的台账项（如“完成 G1 最后一项”）；
-「能力与架构」收能力地图、生产流程、工作入口、系统架构、语言资产、技能与工程规模；「来源与演变」收数据来源与系统演变，原标签锚点仍可用。「系统演变」展示历史阶段、变化原因和未排期的长期方向，
+「能力与架构」（2026-11 第 9 步改版）收能力地图（6 张同样大小的能力域卡，各项说明与证据在展开里，超期待复核的项合成一条提示）、生产链路（按生产、翻译与评审、运行与追溯分三组，组名在 `system_workspace.yaml` 的 `vocabulary.flow_group`，每条链路的组在 `flow[].group`）、工作入口（点节点才展开它的入口）、系统架构、并排的语言资产与工程规模、技能与钩子（先写是否全部登记、全部有测试）；「来源与演变」先列读快照的数据（快照日期、期限、状态与刷新命令），再分两列列构建时读取的数据，每项展开看来源与取不到时的显示，然后是系统演变（时间跨度图，每个阶段一行、展开看流程与依据），原标签锚点仍可用。「系统演变」展示历史阶段、变化原因和未排期的长期方向，
 另以贯穿全过程的横向路标记录多轮维护与重构，不重复展示当前状态概览与任务进度。
 样式组件化起点与随网页手册积累完善的整本 IR 共享分开记录；Web 整本复用已实现，
 跨格式共用整本包仍待扩展，审核经验积累独立列项。历史正文及同源 YAML 摘要只维护在
@@ -185,15 +185,15 @@ RTD 构建经来源登记读取，不手改网页。摘要区分已完成、持�
 “系统架构”（`/workspace/system/#tab-architecture`，在「能力与架构」里）展示人的入口、AI 能力入口与企业数据入口，围绕同一套可信内容和文档生产体系。现有多维表展示产品信息、内容模块、规格参数、多语言内容及业务维护与评审，经数据校验与快照进入 auto-manual；系统共用多维表、Git 原稿和批准素材，以及 Shared IR（共享底稿）与样式组件，支持文档生产、专业文件处理和内容查询。内容权威、组装、渲染与发布是其中的文档生产链路。MCP 与 PLM／ERP 同步及字段映射接入用虚线及“未来方向”标注；当前 Agent／Bot 单独列出。MCP 仅作为规划中的协议适配层，正式图稿修改保留人工批准。Shared IR（共享底稿）的 Web 整本与样式复用已有基础，机读语料目前仍从已发布 HTML 派生；已有基础按现有文件预翻译、AI 图稿与页码处理、PDF 标注、回写及构建技能列出，钩子标明触发与启用条件。架构视图也读取原有演进史摘要，不另建台账。
 
 修改状态配置后运行 `python -m tools.rtd.system_workspace check`（加 `--online` 可再核对 PR 与链接）。
-构建同时生成页面版本回执 `_static/system-workspace-revision.json`。「数据来源」内可展开「页面版本与更新」，页首与演变引言不再显示版本信息及辅助跳转提示。main 经镜像同步、RTD 成功构建后，已打开页面会检测已发布版本并提供刷新入口；提交版本属于 RTD 构建仓库，不能把镜像成功当作线上更新成功。详见 [Published version and refresh](../dev/rtd_manual_portal/system-workspace.md#published-version-and-refresh)。
+构建同时生成页面版本回执 `_static/system-workspace-revision.json`。页首的“页面版本”下方一行显示版本检查的结果（第 9 步前折叠在「数据来源」里）。main 经镜像同步、RTD 成功构建后，已打开页面会检测已发布版本并提供刷新入口；提交版本属于 RTD 构建仓库，不能把镜像成功当作线上更新成功。详见 [Published version and refresh](../dev/rtd_manual_portal/system-workspace.md#published-version-and-refresh)。
 页内“语言资产”块优先读取 Hello-Docs `docs/knowledge/workspace-data` 汇总快照，工程快照作为迁移基线。
 资产批次完成后复用 `python -m tools.rtd.system_workspace corpus-export` 的读取逻辑，通过 Workspace Data Refresh 导出并提交内容 PR；
 导出会把往月汇总数带进快照的 `history`，页面据此显示与上期的对比。
 柱状图是语料库句对覆盖（各语言有译文的句对占记忆库全部句对的比例），不是说明书翻译完成率，页面在图下写明。
 「能力与架构」里的“技能与钩子”块：构建时读取 `.agents/skills`、`.claude/skills`、`.claude/settings.json` 与 `.githooks/pre-push`，
-按重点线列出技能，标出未登记的技能和没有测试的钩子；`check` 对这些缺口给出警告。
-其后的“工程规模”块在构建时用 `git ls-files` 按顶层目录和文件类型统计代码与文档行数（行数最多的 10 个目录），拿不到 git 文件清单时显示无数据；详见 [Engineering scale](../dev/rtd_manual_portal/system-workspace.md#engineering-scale)。
-各数据的来源、快照、多少天算过期和取不到时的显示，统一登记在 `tools/rtd_portal_assets/source_registry.yaml`，系统建设页和说明书工作台都从这里读取，系统建设页底部列出“数据来源”表；详见
+先写是否全部登记、全部有测试，再按重点线列出技能名称（说明悬停可见），钩子表默认收起；`check` 对这些缺口给出警告。
+与“语言资产”并排的“工程规模”块在构建时用 `git ls-files` 按顶层目录和文件类型统计代码与文档行数（行数最多的 10 个目录），拿不到 git 文件清单时显示无数据；详见 [Engineering scale](../dev/rtd_manual_portal/system-workspace.md#engineering-scale)。
+各数据的来源、快照、多少天算过期和取不到时的显示，统一登记在 `tools/rtd_portal_assets/source_registry.yaml`，系统建设页和说明书工作台都从这里读取，系统建设页“来源与演变”标签的“数据来源”逐项列出（不再有页面读取的数据域标 `on_page: false`，显示“不上页面”）；详见
 [Source registry](../dev/rtd_manual_portal/system-workspace.md#source-registry)。
 状态配置写错时构建只跳过该页并输出警告，不影响手册站点；详见
 [System workspace page](../dev/rtd_manual_portal/system-workspace.md#system-workspace-page)。

@@ -7,11 +7,11 @@
 </article>
 {%- endmacro %}
 <section class="sw-section sw-evolution sw-architecture" aria-labelledby="architecture-title">
-  <header class="evo-head">
-    <h2 id="architecture-title">{{ architecture.title|e }}</h2>
-    <p>{{ architecture.intro|e }}</p>
-    <p class="evo-source">截至 {{ evolution.updated_on[:7]|e }} · 与<a href="#tab-evolution">系统演变</a>共用一份记录 · 实线表示已有基础，虚线表示未来方向</p>
-  </header>
+  {#- A section like the others on the tab (2026-11 design, step 9); the record's headline leads its description. -#}
+  <div class="section-header"><div>
+    <h2 id="architecture-title">系统架构</h2>
+    <p>{{ architecture.title|e }}。{{ architecture.intro|e }}</p>
+  </div><span class="sw-counts">截至 {{ evolution.updated_on[:7]|e }} · 与<a href="#tab-evolution">系统演变</a>共用一份记录</span></div>
 
   {% macro graph_box(row, x, y, width, height, title, lines) -%}
   <g class="map-box is-{{ row.status|e }}" transform="translate({{ x }},{{ y }})">
@@ -23,7 +23,7 @@
   </g>
   {%- endmacro %}
   <figure class="access-map" aria-labelledby="access-map-title">
-    <figcaption id="access-map-title">系统架构 <span>实线：已有基础 · 虚线：规划</span></figcaption>
+    <figcaption id="access-map-title">架构图 <span>实线：已有基础 · 虚线：规划</span></figcaption>
     <div class="access-map-scroll">
     <svg viewBox="0 0 1080 780" role="img" aria-labelledby="access-svg-title access-svg-desc">
       <title id="access-svg-title">Auto-Manual 系统架构：企业数据、人的入口与 AI 入口</title>
