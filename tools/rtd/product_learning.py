@@ -2,7 +2,11 @@
 
 The 2026-11 layout opens on an energy-flow map and a theme map (`themes`: each tag with its topics' short
 labels), then shows each topic as a card whose figure is a typical teaching circuit (a topic's optional
-`circuit`, one of the portal's circuit-*.svg files), a hand-drawn diagram or the chain of its nodes.
+`circuit`, one of the portal's circuit-*.svg files), a hand-drawn diagram or the chain of its nodes, and ends
+with worked product cases.
+
+The content is business-owned: Hello-Docs `docs/knowledge/product-knowledge/` holds `topics.json` (tags and
+topics) and `cases.json` (the product cases). This module, the page template and the circuits stay here.
 """
 from __future__ import annotations
 
@@ -14,8 +18,10 @@ from tools.rtd.product_matrix import ProductMatrixError, positioning_groups
 
 PAGE = "products/knowledge"
 TEMPLATE = "product_knowledge.html"
-# The HomePower case in TEMPLATE quotes this manual; it is left out while the catalog lacks it.
-BACKUP_CASE = ("JHP-3600C", "US")
+CONTENT_DIR = "product-knowledge"
+TOPICS = "topics.json"
+CASES = "cases.json"
+SCHEMA_VERSION = 1
 _ID = re.compile(r"[a-z][a-z0-9-]*")
 _DATE = re.compile(r"\d{4}-\d{2}-\d{2}")
 _CIRCUIT = re.compile(r"circuit-[a-z0-9-]+\.svg")
@@ -70,6 +76,70 @@ def _references(products: list[dict], models: set[str]) -> list[dict]:
     return references
 
 
+def _load(knowledge_root: Path, name: str) -> dict | None:
+    """One content file of the knowledge directory; None when absent, an error when malformed."""
+    path = knowledge_root / CONTENT_DIR / name
+    if not path.is_file():
+        return None
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(data, dict) or data.get("schema_version") != SCHEMA_VERSION:
+        raise ValueError(f"product knowledge {name} needs schema_version {SCHEMA_VERSION}")
+    return data
+
+
+def load_topics(knowledge_root: Path) -> dict | None:
+    """Tags and topics from the business knowledge directory, or None while it has none."""
+    return _load(knowledge_root, TOPICS)
+
+
+def _text(value) -> bool:
+    return isinstance(value, str) and bool(value.strip())
+
+
+def _validate_lesson(key: str, lesson: dict, static: Path) -> None:
+    paragraphs = lesson.get("paragraphs")
+    if not _text(lesson.get("title")) or not isinstance(paragraphs, list) or not paragraphs \
+            or not all(_text(text) for text in paragraphs):
+        raise ValueError(f"product case {key} has a lesson without a title or text")
+    circuit = lesson.get("circuit")
+    if circuit is not None:
+        known = isinstance(circuit, dict) and _CIRCUIT.fullmatch(str(circuit.get("file"))) \
+            and (static / circuit["file"]).is_file()
+        if not known or not _text(circuit.get("alt")) or not _text(circuit.get("caption")):
+            raise ValueError(f"product case {key} names an unknown circuit or lacks its alt or caption")
+    stats = lesson.get("stats", [])
+    complete = isinstance(stats, list) and all(
+        isinstance(stat, dict) and all(_text(stat.get(field)) for field in ("label", "value", "note")) for stat in stats)
+    if not complete:
+        raise ValueError(f"product case {key} has an incomplete figure")
+
+
+def _validate_case(case: dict, ids: set[str], static: Path) -> None:
+    key = case.get("id")
+    if not isinstance(key, str) or key in ids or not _ID.fullmatch(key):
+        raise ValueError("product knowledge cases need unique lower-case ids")
+    ids.add(key)
+    missing = [field for field in ("model", "region", "eyebrow", "title", "source_label") if not _text(case.get(field))]
+    if missing:
+        raise ValueError(f"product case {key} needs {', '.join(missing)}")
+    if not isinstance(case.get("intro"), str) or not isinstance(case.get("lessons"), list) or not case["lessons"]:
+        raise ValueError(f"product case {key} needs intro and lessons")
+    for lesson in case["lessons"]:
+        _validate_lesson(key, lesson, static)
+
+
+def _cases(knowledge_root: Path, static: Path, products: list[dict]) -> list[dict]:
+    """The worked product cases; a case shows only while the catalog holds the manual it quotes."""
+    cases, ids = [], set()
+    for case in (_load(knowledge_root, CASES) or {"cases": []})["cases"]:
+        _validate_case(case, ids, static)
+        reference = next((ref for ref in _references(products, {case["model"]}) if ref["region"] == case["region"]),
+                         None)
+        if reference:
+            cases.append({**case, "reference": reference})
+    return cases
+
+
 def _groups(assets: Path, settings: dict, topics: list[dict]) -> dict[str, set[str]]:
     """Group id -> models as the product matrix places them; the navigation alone if its config is unusable."""
     try:
@@ -88,8 +158,11 @@ def _groups(assets: Path, settings: dict, topics: list[dict]) -> dict[str, set[s
         return {**groups, **{group: set() for group in missing}}
 
 
-def learning_context(assets: Path, settings: dict, products: list[dict]) -> dict:
-    curriculum = json.loads((assets / "product_knowledge.json").read_text(encoding="utf-8"))
+def learning_context(knowledge_root: Path, assets: Path, settings: dict, products: list[dict]) -> dict:
+    """The page context. Missing content renders an empty page (``content_missing``) instead of failing;
+    malformed content fails the build."""
+    loaded = load_topics(knowledge_root)
+    curriculum = loaded or {"tags": [], "topics": []}
     groups = _groups(assets, settings, curriculum["topics"])
     tags = curriculum["tags"]
     tag_ids = [tag["id"] for tag in tags]
@@ -102,13 +175,14 @@ def learning_context(assets: Path, settings: dict, products: list[dict]) -> dict
         models = set().union(*(groups[group] for group in topic["groups"]))
         topics.append({**topic, "models": sorted(models), "references": _references(products, models)})
     covered = {model for topic in topics for model in topic["models"]}
-    model, region = BACKUP_CASE
-    case = next((ref for ref in _references(products, {model}) if ref["region"] == region), None)
+    cases = _cases(knowledge_root, assets / "_static", products)
+    placed = set().union(*groups.values()) if groups else set()
     # The selector offers only products some topic covers, so choosing one never empties the list.
     themes = _themes(tags, topics)
     added = [str(topic["added"]) for topic in topics if topic.get("added")]
     return {"topics": topics, "tags": tags, "themes": themes,
             "tag_counts": {theme["id"]: len(theme["topics"]) for theme in themes},
             "tag_titles": {tag["id"]: tag["title"] for tag in tags},
-            "latest_added": max(added) if added else None, "portal": settings, "backup_case": case,
+            "latest_added": max(added) if added else None, "portal": settings, "cases": cases,
+            "content_missing": loaded is None, "uncovered_models": sorted(placed - covered),
             "learning_products": [product for product in products if product["model"] in covered]}

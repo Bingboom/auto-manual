@@ -100,25 +100,16 @@
 </section>
 <div id="learning-empty" hidden><h2>当前筛选没有相关知识</h2><p>换一个主题，或查看全部知识。</p><button type="button" id="learning-reset">清除筛选</button></div>
 
-{% if backup_case %}<section class="backup-example pk-case" aria-labelledby="backup-example-title">
-<div class="pk-case-head"><span class="pk-eyebrow">实际产品案例 · 美规</span><h2 id="backup-example-title">HomePower 3600 Pro Max：从插座备电走向家庭回路备电</h2>
-<p>来源：<a href="{{ pathto(backup_case.url[:-5]) }}">HomePower 3600 Pro Max 说明书（美规 · 英文）</a>。按四个问题读这本说明书；图仅说明典型电气关系，不还原该产品内部电路。</p></div>
+{% for case in cases %}<section class="backup-example pk-case" aria-labelledby="{{ case.id }}-title">
+<div class="pk-case-head"><span class="pk-eyebrow">{{ case.eyebrow|e }}</span><h2 id="{{ case.id }}-title">{{ case.title|e }}</h2>
+<p>来源：<a href="{{ pathto(case.reference.url[:-5]) }}">{{ case.source_label|e }}</a>{{ case.intro|e }}</p></div>
 <ol class="pk-lessons backup-lessons">
-<li><div class="pk-lesson-head"><span>1</span><h3>120V 与 240V：先看接在哪两条导线上</h3></div>
-<figure class="principle-figure"><a class="pk-circuit" href="{{ pathto('_static/circuit-split-phase.svg', 1) }}" target="_blank" rel="noopener" title="放大看电路"><img class="circuit-art" src="{{ pathto('_static/circuit-split-phase.svg', 1) }}" alt="典型中心抽头交流源，L1–N 与 L2–N 各 120V，L1–L2 为 240V"></a><figcaption>中心抽头绕组是解释分相电压的教学例子。说明书只声明隔离式逆变，不据此推定其内部采用图中绕组。</figcaption></figure>
-<div class="pk-lesson-text"><p>说明书：两个 NEMA 5-20R 插座各 120V、2000W 每口，合计 4000W；NEMA 14-50R 为 240V、4000W 额定。整机 AC 额定合计仍为 4000W，不能把 120V 与 240V 插座功率再次相加。L1、L2 分配与每相限制需一起检查。</p></div></li>
-<li><div class="pk-lesson-head"><span>2</span><h3>电池逆变与市电旁路：同一插座的限制随模式改变</h3></div>
-<div class="pk-figures"><div><small>120V 输入旁路</small><b>1440 W</b><span>超过时由电池补能</span></div><div><small>旁路 + 电池补能</small><b>2880 W</b><span>该条件不能套用到普通电源</span></div></div>
-<div class="pk-lesson-text"><p>电池供电由逆变系统承担；旁路受市电输入与通路限制。说明书的 120V 输入旁路上限为 1440W，并有脚注：负载超过 1440W 时由电池补能，合计负载可达 2880W。该条件不能套用到普通电源。240V 输入旁路又有独立规格，不能拿正常逆变额定功率替代旁路规格。</p>
-<p>原理要点：补能功能需要电源转换、同步与控制配合；切换图只描述选择供电路径，不描绘这种混合供电内部电路。</p></div></li>
-<li><div class="pk-lesson-head"><span>3</span><h3>主机切换、ATS 与 MTS：切换发生在哪一层？</h3></div>
-<figure class="principle-figure"><a class="pk-circuit" href="{{ pathto('_static/circuit-transfer.svg', 1) }}" target="_blank" rel="noopener" title="放大看电路"><img class="circuit-art" src="{{ pathto('_static/circuit-transfer.svg', 1) }}" alt="典型市电和备电源互锁切换触点"></a><figcaption>联锁使负载选择一路供电；图中双极开关仅为教学例子，不作为 ATS 或家庭配电安装接线图。</figcaption></figure>
-<div class="pk-lesson-text"><p>规格表标明主机 UPS ＜10ms；ATS 系统说明为启用 UPS 模式后，停电在 20ms 内转电池供电，ATS 规格为 ≤20ms。单机接 MTS 的自动备电示例要求 AC 输入持续连接、MTS 置备电位，此时自动切换由主机完成；MTS 本身仍是手动选择装置。不要把主机切换时间当作所有系统的切换时间。</p></div></li>
-<li><div class="pk-lesson-head"><span>4</span><h3>扩容与主机级联：增加的是 Wh 还是 W？</h3></div>
-<div class="pk-figures"><div><small>加电池</small><b>+ Wh</b><span>主要增加储能</span></div><div><small>两台主机级联</small><b>8000 W</b><span>需 AC 扩展连接与并联通信</span></div></div>
-<div class="pk-lesson-text"><p>增加电池主要增加储能。说明书中的两台主机级联并联连接，还要求 AC 扩展连接与专用并联通信；第二台 NEMA 14-50R 输出可达系统合计 8000W。多台交流源协同需要频率、相位、电压与功率控制，不能直接把普通 AC 插座并在一起。</p>
-<p>家庭回路备电还涉及 ATS/MTS、接地与中性线、保护和 EPO 急停。说明书声明 EPO 会停止全部 AC/DC 输入输出；具体安装与操作应阅读该系统及切换装置的完整说明书。</p></div></li>
-</ol></section>{% endif %}
+{% for lesson in case.lessons %}<li><div class="pk-lesson-head"><span>{{ loop.index }}</span><h3>{{ lesson.title|e }}</h3></div>
+{% if lesson.circuit %}<figure class="principle-figure"><a class="pk-circuit" href="{{ pathto('_static/' ~ lesson.circuit.file, 1) }}" target="_blank" rel="noopener" title="放大看电路"><img class="circuit-art" src="{{ pathto('_static/' ~ lesson.circuit.file, 1) }}" alt="{{ lesson.circuit.alt|e }}"></a><figcaption>{{ lesson.circuit.caption|e }}</figcaption></figure>
+{% endif %}{% if lesson.stats %}<div class="pk-figures">{% for stat in lesson.stats %}<div><small>{{ stat.label|e }}</small><b>{{ stat.value|e }}</b><span>{{ stat.note|e }}</span></div>{% endfor %}</div>
+{% endif %}<div class="pk-lesson-text">{% for text in lesson.paragraphs %}<p>{{ text|e }}</p>{% if not loop.last %}
+{% endif %}{% endfor %}</div></li>
+{% endfor %}</ol></section>{% endfor %}
 <footer class="learning-footer"><p>本页解释通用功能原理，不推定各型号的芯片、内部电路或未确认的兼容关系。操作、技术值和适用条件，以对应地区的已发布说明书为准。</p><noscript><p>未启用 JavaScript：全部知识条目和各区域说明书链接仍可直接阅读。</p></noscript><a href="{{ pathto('index') }}">返回说明书资料库，查找完整说明书 →</a></footer>
 </main>
 </div>{{ site_script() }}</body></html>

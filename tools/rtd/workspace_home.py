@@ -8,7 +8,8 @@ never fails the build:
 - 图片素材: ``data/asset_registry.csv``: finished assets (状态 成品), the share without language-specific text
   (语言维度 中立) and those every model uses (适用机型 ALL).
 - 通用章节: the shared chapter templates under ``docs/templates/page_shared``, counted per language.
-- 产品知识: the topics in ``product_knowledge.json``, with a growth line from each topic's ``added`` date.
+- 产品知识: the topics in Hello-Docs ``docs/knowledge/product-knowledge/topics.json``, with a growth line from each
+  topic's ``added`` date.
 
 Below them, 当前主线 lists the 系统建设 focus lanes marked ``now`` (titles only) and 正在做 is 系统建设's own
 list (``focus.doing`` in ``system_workspace.yaml``), so both pages say the same thing. ``workspace_home.yaml`` holds
@@ -24,6 +25,7 @@ from typing import Any
 
 import yaml
 
+from tools.rtd.product_learning import CONTENT_DIR, TOPICS
 from tools.utils.path_utils import Paths
 
 HOME_COPY = "workspace_home.yaml"
@@ -154,10 +156,10 @@ def _spark(points: list[tuple[dt.date, int]]) -> dict[str, Any]:
             "x": f"{xy[-1][0]:.1f}", "y": f"{xy[-1][1]:.1f}", "width": SPARK_WIDTH, "height": SPARK_HEIGHT}
 
 
-def knowledge_growth(assets: Path) -> dict[str, Any] | None:
+def knowledge_growth(knowledge_root: Path) -> dict[str, Any] | None:
     """Topic count, and a growth line when every topic carries its ``added`` date; None when unreadable."""
     try:
-        topics = json.loads((assets / "product_knowledge.json").read_text(encoding="utf-8"))["topics"]
+        topics = json.loads((knowledge_root / CONTENT_DIR / TOPICS).read_text(encoding="utf-8"))["topics"]
         added = [str(topic.get("added") or "") for topic in topics]
         days = sorted({dt.date.fromisoformat(day) for day in added}) if all(added) else []
     except (OSError, ValueError, KeyError, TypeError, AttributeError):
@@ -183,8 +185,8 @@ def _knowledge_card(growth: dict[str, Any] | None) -> dict[str, Any]:
     return card
 
 
-def reusable_assets(system: dict[str, Any] | None, assets: Path, root: Path) -> list[dict[str, Any]]:
+def reusable_assets(system: dict[str, Any] | None, knowledge_root: Path, root: Path) -> list[dict[str, Any]]:
     """The four 「已积累的可复用资产」 cards, in display order."""
     paths = Paths(root)
     return [_corpus_card(system), _image_card(read_image_assets(paths.data_dir / ASSET_REGISTRY_CSV)),
-            _chapter_card(read_shared_chapters(paths.templates_dir)), _knowledge_card(knowledge_growth(assets))]
+            _chapter_card(read_shared_chapters(paths.templates_dir)), _knowledge_card(knowledge_growth(knowledge_root))]

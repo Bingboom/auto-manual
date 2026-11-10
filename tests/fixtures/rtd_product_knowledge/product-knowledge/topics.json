@@ -1,0 +1,632 @@
+{
+  "schema_version": 1,
+  "tags": [
+    {
+      "id": "basics",
+      "title": "标签1"
+    },
+    {
+      "id": "battery",
+      "title": "标签2"
+    },
+    {
+      "id": "inverter",
+      "title": "标签3"
+    },
+    {
+      "id": "charging",
+      "title": "标签4"
+    },
+    {
+      "id": "expansion",
+      "title": "标签5"
+    },
+    {
+      "id": "backup",
+      "title": "标签6"
+    },
+    {
+      "id": "ports",
+      "title": "标签7"
+    },
+    {
+      "id": "environment",
+      "title": "标签8"
+    }
+  ],
+  "topics": [
+    {
+      "id": "watts",
+      "added": "2026-10-08",
+      "title": "能不能启动：测试条目",
+      "tags": [
+        "basics",
+        "inverter"
+      ],
+      "groups": [
+        "appliance",
+        "expandable",
+        "homebackup",
+        "dedicated"
+      ],
+      "answer": "占位原理 watts。",
+      "application": "占位应用 watts。",
+      "boundary": "占位边界 watts。",
+      "read": "占位章节",
+      "diagram_nodes": [
+        "节点1",
+        "节点2",
+        "节点3"
+      ],
+      "diagram_caption": "占位示意说明。"
+    },
+    {
+      "id": "watt-hours",
+      "added": "2026-10-08",
+      "title": "测试2：占位标题",
+      "tags": [
+        "basics",
+        "battery"
+      ],
+      "groups": [
+        "portable",
+        "appliance",
+        "expandable",
+        "homebackup",
+        "dedicated",
+        "battery"
+      ],
+      "answer": "占位原理 watt-hours。",
+      "application": "占位应用 watt-hours。",
+      "boundary": "占位边界 watt-hours。",
+      "read": "占位章节",
+      "diagram_nodes": [
+        "节点1",
+        "节点2",
+        "节点3"
+      ],
+      "diagram_caption": "占位示意说明。"
+    },
+    {
+      "id": "bms",
+      "added": "2026-10-08",
+      "title": "测试3：占位标题",
+      "tags": [
+        "battery"
+      ],
+      "groups": [
+        "portable",
+        "appliance",
+        "expandable",
+        "homebackup",
+        "dedicated",
+        "battery"
+      ],
+      "answer": "占位原理 bms。",
+      "application": "占位应用 bms。",
+      "boundary": "占位边界 bms。",
+      "read": "占位章节",
+      "diagram_nodes": [
+        "节点1",
+        "节点2",
+        "节点3"
+      ],
+      "diagram_caption": "占位示意说明。"
+    },
+    {
+      "id": "soc-soh",
+      "added": "2026-10-08",
+      "title": "测试4：占位标题",
+      "tags": [
+        "battery"
+      ],
+      "groups": [
+        "portable",
+        "appliance",
+        "expandable",
+        "homebackup",
+        "dedicated",
+        "battery"
+      ],
+      "answer": "占位原理 soc-soh。",
+      "application": "占位应用 soc-soh。",
+      "boundary": "占位边界 soc-soh。",
+      "read": "占位章节",
+      "diagram_nodes": [
+        "节点1",
+        "节点2",
+        "节点3"
+      ],
+      "diagram_caption": "占位示意说明。"
+    },
+    {
+      "id": "inverter",
+      "added": "2026-10-08",
+      "title": "测试5：占位标题",
+      "tags": [
+        "inverter"
+      ],
+      "groups": [
+        "appliance",
+        "expandable",
+        "homebackup",
+        "dedicated"
+      ],
+      "answer": "占位原理 inverter。",
+      "application": "占位应用 inverter。",
+      "boundary": "占位边界 inverter。",
+      "read": "占位章节",
+      "diagram_nodes": [
+        "节点1",
+        "节点2",
+        "节点3"
+      ],
+      "diagram_caption": "占位示意说明。",
+      "circuit": "circuit-inverter.svg"
+    },
+    {
+      "id": "ac-total",
+      "added": "2026-10-08",
+      "title": "测试6：占位标题",
+      "tags": [
+        "basics",
+        "inverter"
+      ],
+      "groups": [
+        "appliance",
+        "expandable",
+        "homebackup",
+        "dedicated"
+      ],
+      "answer": "占位原理 ac-total。",
+      "application": "占位应用 ac-total。",
+      "boundary": "占位边界 ac-total。",
+      "read": "占位章节",
+      "diagram_nodes": [
+        "节点1",
+        "节点2",
+        "节点3"
+      ],
+      "diagram_caption": "占位示意说明。",
+      "circuit": "circuit-parallel.svg"
+    },
+    {
+      "id": "ac-match",
+      "added": "2026-10-08",
+      "title": "测试7：占位标题",
+      "tags": [
+        "inverter"
+      ],
+      "groups": [
+        "appliance",
+        "expandable",
+        "homebackup",
+        "dedicated"
+      ],
+      "answer": "占位原理 ac-match。",
+      "application": "占位应用 ac-match。",
+      "boundary": "占位边界 ac-match。",
+      "read": "占位章节",
+      "diagram_nodes": [
+        "节点1",
+        "节点2",
+        "节点3"
+      ],
+      "diagram_caption": "占位示意说明。"
+    },
+    {
+      "id": "split-phase",
+      "added": "2026-10-21",
+      "title": "测试8：占位标题",
+      "tags": [
+        "basics"
+      ],
+      "groups": [
+        "appliance",
+        "expandable",
+        "dedicated"
+      ],
+      "answer": "占位原理 split-phase。",
+      "application": "占位应用 split-phase。",
+      "boundary": "占位边界 split-phase。",
+      "read": "占位章节",
+      "diagram_nodes": [
+        "节点1",
+        "节点2",
+        "节点3"
+      ],
+      "diagram_caption": "占位示意说明。"
+    },
+    {
+      "id": "single-in-split-out",
+      "added": "2026-10-22",
+      "title": "测试9：占位标题",
+      "tags": [
+        "basics",
+        "backup"
+      ],
+      "groups": [
+        "homebackup"
+      ],
+      "answer": "占位原理 single-in-split-out。",
+      "application": "占位应用 single-in-split-out。",
+      "boundary": "占位边界 single-in-split-out。",
+      "read": "占位章节",
+      "diagram_nodes": [
+        "节点1",
+        "节点2",
+        "节点3"
+      ],
+      "diagram_caption": "占位示意说明。"
+    },
+    {
+      "id": "nema-sockets",
+      "added": "2026-10-21",
+      "title": "测试10：占位标题",
+      "tags": [
+        "basics",
+        "ports"
+      ],
+      "groups": [
+        "appliance",
+        "expandable",
+        "dedicated"
+      ],
+      "answer": "占位原理 nema-sockets。",
+      "application": "占位应用 nema-sockets。",
+      "boundary": "占位边界 nema-sockets。",
+      "read": "占位章节",
+      "diagram_nodes": [
+        "节点1",
+        "节点2",
+        "节点3"
+      ],
+      "diagram_caption": "占位示意说明。"
+    },
+    {
+      "id": "region-grid",
+      "added": "2026-10-21",
+      "title": "测试11：占位标题",
+      "tags": [
+        "basics"
+      ],
+      "groups": [
+        "appliance",
+        "expandable",
+        "dedicated"
+      ],
+      "answer": "占位原理 region-grid。",
+      "application": "占位应用 region-grid。",
+      "boundary": "占位边界 region-grid。",
+      "read": "占位章节",
+      "diagram_nodes": [
+        "节点1",
+        "节点2",
+        "节点3"
+      ],
+      "diagram_caption": "占位示意说明。"
+    },
+    {
+      "id": "ac-boost",
+      "added": "2026-10-08",
+      "title": "测试12：占位标题",
+      "tags": [
+        "inverter"
+      ],
+      "groups": [
+        "appliance",
+        "expandable",
+        "homebackup",
+        "dedicated"
+      ],
+      "answer": "占位原理 ac-boost。",
+      "application": "占位应用 ac-boost。",
+      "boundary": "占位边界 ac-boost。",
+      "read": "占位章节",
+      "diagram_nodes": [
+        "节点1",
+        "节点2",
+        "节点3"
+      ],
+      "diagram_caption": "占位示意说明。"
+    },
+    {
+      "id": "ac-protection",
+      "added": "2026-10-08",
+      "title": "测试13：占位标题",
+      "tags": [
+        "inverter"
+      ],
+      "groups": [
+        "appliance",
+        "expandable",
+        "homebackup",
+        "dedicated"
+      ],
+      "answer": "占位原理 ac-protection。",
+      "application": "占位应用 ac-protection。",
+      "boundary": "占位边界 ac-protection。",
+      "read": "占位章节",
+      "diagram_nodes": [
+        "节点1",
+        "节点2",
+        "节点3"
+      ],
+      "diagram_caption": "占位示意说明。"
+    },
+    {
+      "id": "energy-saving",
+      "added": "2026-10-22",
+      "title": "测试14：占位标题",
+      "tags": [
+        "backup",
+        "battery"
+      ],
+      "groups": [
+        "appliance",
+        "expandable",
+        "homebackup",
+        "dedicated"
+      ],
+      "answer": "占位原理 energy-saving。",
+      "application": "占位应用 energy-saving。",
+      "boundary": "占位边界 energy-saving。",
+      "read": "占位章节",
+      "diagram_nodes": [
+        "节点1",
+        "节点2",
+        "节点3"
+      ],
+      "diagram_caption": "占位示意说明。"
+    },
+    {
+      "id": "solar-mppt",
+      "added": "2026-10-08",
+      "title": "测试15：占位标题",
+      "tags": [
+        "charging"
+      ],
+      "groups": [
+        "portable",
+        "appliance",
+        "expandable",
+        "homebackup",
+        "solar"
+      ],
+      "answer": "占位原理 solar-mppt。",
+      "application": "占位应用 solar-mppt。",
+      "boundary": "占位边界 solar-mppt。",
+      "read": "占位章节",
+      "diagram_nodes": [
+        "节点1",
+        "节点2",
+        "节点3"
+      ],
+      "diagram_caption": "占位示意说明。"
+    },
+    {
+      "id": "charging-path",
+      "added": "2026-10-08",
+      "title": "测试16：占位标题",
+      "tags": [
+        "charging"
+      ],
+      "groups": [
+        "portable",
+        "appliance",
+        "expandable",
+        "homebackup",
+        "dedicated",
+        "charger"
+      ],
+      "answer": "占位原理 charging-path。",
+      "application": "占位应用 charging-path。",
+      "boundary": "占位边界 charging-path。",
+      "read": "占位章节",
+      "diagram_nodes": [
+        "节点1",
+        "节点2",
+        "节点3"
+      ],
+      "diagram_caption": "占位示意说明。"
+    },
+    {
+      "id": "battery-expansion",
+      "added": "2026-10-08",
+      "title": "测试17：占位标题",
+      "tags": [
+        "expansion",
+        "battery"
+      ],
+      "groups": [
+        "expandable",
+        "homebackup",
+        "battery"
+      ],
+      "answer": "占位原理 battery-expansion。",
+      "application": "占位应用 battery-expansion。",
+      "boundary": "占位边界 battery-expansion。",
+      "read": "占位章节",
+      "diagram_nodes": [
+        "节点1",
+        "节点2",
+        "节点3"
+      ],
+      "diagram_caption": "占位示意说明。"
+    },
+    {
+      "id": "ups",
+      "added": "2026-10-08",
+      "title": "测试18：占位标题",
+      "tags": [
+        "backup",
+        "inverter"
+      ],
+      "groups": [
+        "appliance",
+        "expandable",
+        "homebackup",
+        "dedicated"
+      ],
+      "answer": "占位原理 ups。",
+      "application": "占位应用 ups。",
+      "boundary": "占位边界 ups。",
+      "read": "占位章节",
+      "diagram_nodes": [
+        "节点1",
+        "节点2",
+        "节点3"
+      ],
+      "diagram_caption": "占位示意说明。",
+      "circuit": "circuit-transfer.svg"
+    },
+    {
+      "id": "transfer-switch",
+      "added": "2026-10-21",
+      "title": "测试19：占位标题",
+      "tags": [
+        "backup"
+      ],
+      "groups": [
+        "expandable",
+        "dedicated"
+      ],
+      "answer": "占位原理 transfer-switch。",
+      "application": "占位应用 transfer-switch。",
+      "boundary": "占位边界 transfer-switch。",
+      "read": "占位章节",
+      "diagram_nodes": [
+        "节点1",
+        "节点2",
+        "节点3"
+      ],
+      "diagram_caption": "占位示意说明。"
+    },
+    {
+      "id": "distribution-board-ats",
+      "added": "2026-10-22",
+      "title": "测试20：占位标题",
+      "tags": [
+        "backup"
+      ],
+      "groups": [
+        "expandable",
+        "homebackup"
+      ],
+      "answer": "占位原理 distribution-board-ats。",
+      "application": "占位应用 distribution-board-ats。",
+      "boundary": "占位边界 distribution-board-ats。",
+      "read": "占位章节",
+      "diagram_nodes": [
+        "节点1",
+        "节点2",
+        "节点3"
+      ],
+      "diagram_caption": "占位示意说明。"
+    },
+    {
+      "id": "ats-position-us-jp",
+      "added": "2026-10-22",
+      "title": "测试21：占位标题",
+      "tags": [
+        "backup"
+      ],
+      "groups": [
+        "expandable",
+        "homebackup"
+      ],
+      "answer": "占位原理 ats-position-us-jp。",
+      "application": "占位应用 ats-position-us-jp。",
+      "boundary": "占位边界 ats-position-us-jp。",
+      "read": "占位章节",
+      "diagram_nodes": [
+        "节点1",
+        "节点2",
+        "节点3"
+      ],
+      "diagram_caption": "占位示意说明。"
+    },
+    {
+      "id": "earth-leakage",
+      "added": "2026-10-22",
+      "title": "测试22：占位标题",
+      "tags": [
+        "backup",
+        "basics"
+      ],
+      "groups": [
+        "expandable",
+        "homebackup",
+        "dedicated"
+      ],
+      "answer": "占位原理 earth-leakage。",
+      "application": "占位应用 earth-leakage。",
+      "boundary": "占位边界 earth-leakage。",
+      "read": "占位章节",
+      "diagram_nodes": [
+        "节点1",
+        "节点2",
+        "节点3"
+      ],
+      "diagram_caption": "占位示意说明。"
+    },
+    {
+      "id": "ports-pd",
+      "added": "2026-10-08",
+      "title": "测试条目（无冒号）",
+      "tags": [
+        "ports",
+        "expansion"
+      ],
+      "groups": [
+        "portable",
+        "appliance",
+        "expandable",
+        "homebackup",
+        "dedicated",
+        "solar",
+        "charger",
+        "connect"
+      ],
+      "answer": "占位原理 ports-pd。",
+      "application": "占位应用 ports-pd。",
+      "boundary": "占位边界 ports-pd。",
+      "read": "占位章节",
+      "diagram_nodes": [
+        "节点1",
+        "节点2",
+        "节点3"
+      ],
+      "diagram_caption": "占位示意说明。"
+    },
+    {
+      "id": "environment",
+      "added": "2026-10-08",
+      "title": "测试24：占位标题",
+      "tags": [
+        "environment"
+      ],
+      "groups": [
+        "portable",
+        "appliance",
+        "expandable",
+        "homebackup",
+        "dedicated",
+        "battery",
+        "solar",
+        "charger",
+        "carry"
+      ],
+      "answer": "占位原理 environment。",
+      "application": "占位应用 environment。",
+      "boundary": "占位边界 environment。",
+      "read": "占位章节",
+      "diagram_nodes": [
+        "节点1",
+        "节点2",
+        "节点3"
+      ],
+      "diagram_caption": "占位示意说明。"
+    }
+  ]
+}

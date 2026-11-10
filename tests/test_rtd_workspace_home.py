@@ -45,10 +45,15 @@ def make_repo(root: Path, *, registry: str | None = REGISTRY, chapters: bool = T
                 (folder / f"{stem}.rst").write_text("x", encoding="utf-8")
 
 
-def make_knowledge(assets: Path, added: list[str]) -> None:
-    assets.mkdir(parents=True, exist_ok=True)
+KNOWLEDGE = Path(__file__).parent / "fixtures" / "rtd_product_knowledge"
+
+
+def make_knowledge(root: Path, added: list[str]) -> None:
+    folder = root / "product-knowledge"
+    folder.mkdir(parents=True, exist_ok=True)
     topics = [{"id": f"t{index}", **({"added": day} if day else {})} for index, day in enumerate(added)]
-    (assets / "product_knowledge.json").write_text(json.dumps({"tags": [], "topics": topics}), encoding="utf-8")
+    (folder / "topics.json").write_text(json.dumps({"schema_version": 1, "tags": [], "topics": topics}),
+                                        encoding="utf-8")
 
 
 def render(**context) -> BeautifulSoup:
@@ -112,8 +117,8 @@ class AssetSourceTests(unittest.TestCase):
             self.assertEqual((knowledge_growth(assets)["total"], knowledge_growth(assets)["spark"]), (2, None))
             self.assertIsNone(knowledge_growth(Path(tmp) / "nowhere"))
 
-    def test_shipped_topics_all_carry_their_added_date(self):
-        growth = knowledge_growth(ASSETS)
+    def test_fixture_topics_all_carry_their_added_date(self):
+        growth = knowledge_growth(KNOWLEDGE)
         self.assertIsNotNone(growth["spark"])
         self.assertGreater(growth["total"], growth["delta"])
 
