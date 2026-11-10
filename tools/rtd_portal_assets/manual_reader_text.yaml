@@ -1,0 +1,238 @@
+# The reading frame's own words around a verified manual (manual_reader.html and its feedback card), in the
+# manual's language (2026-11). tools/rtd/manual_reader.py reads this file; a manual whose language has no set
+# here gets the English one. Every language gives every key that en gives. {n} is the chapter count, always 2
+# or more; {address} is the feedback email address. Chapter titles and the manual itself are never translated.
+en:
+  skip: Skip to the manual
+  library: Manual library
+  back: Back to the manual library
+  version: Version
+  search: Search manuals
+  contents: Contents
+  chapters: "{n} chapters"
+  close: Close contents
+  top: Back to top
+  feedback: Feedback
+  feedback_title: Found a problem?
+  feedback_text: Copy the feedback details (model, region, language, version and page address) and send them to us.
+  feedback_copy: Copy feedback details
+  feedback_show: Show feedback details
+  feedback_copied: Copied. You can paste it into your email.
+  feedback_failed: Couldn't copy automatically. Please select the feedback details below.
+  email: Email {address}
+zh:
+  skip: 跳到正文
+  library: 说明书资料库
+  back: 返回说明书资料库
+  version: 版本
+  search: 搜索说明书正文
+  contents: 目录
+  chapters: 共 {n} 章
+  close: 关闭目录
+  top: 回到顶部
+  feedback: 反馈
+  feedback_title: 发现问题？
+  feedback_text: 复制反馈信息（型号、区域、语言、版本和本页地址）后发给我们。
+  feedback_copy: 复制反馈信息
+  feedback_show: 查看反馈信息
+  feedback_copied: 已复制，可以粘贴到邮件里。
+  feedback_failed: 无法自动复制，请手动选中下面的反馈信息。
+  email: 发邮件到 {address}
+zh-TW:
+  skip: 跳到正文
+  library: 說明書資料庫
+  back: 返回說明書資料庫
+  version: 版本
+  search: 搜尋說明書內文
+  contents: 目錄
+  chapters: 共 {n} 章
+  close: 關閉目錄
+  top: 回到頂端
+  feedback: 意見回饋
+  feedback_title: 發現問題？
+  feedback_text: 複製回饋資訊（型號、地區、語言、版本和本頁網址）後寄給我們。
+  feedback_copy: 複製回饋資訊
+  feedback_show: 查看回饋資訊
+  feedback_copied: 已複製，可以貼到郵件裡。
+  feedback_failed: 無法自動複製，請手動選取下方的回饋資訊。
+  email: 寄信到 {address}
+ja:
+  skip: 本文へ移動
+  library: 取扱説明書一覧
+  back: 取扱説明書一覧に戻る
+  version: バージョン
+  search: 取扱説明書を検索
+  contents: 目次
+  chapters: 全{n}章
+  close: 目次を閉じる
+  top: ページの先頭へ
+  feedback: フィードバック
+  feedback_title: 問題がありましたか？
+  feedback_text: フィードバック情報（型番、地域、言語、バージョン、このページのアドレス）をコピーしてお送りください。
+  feedback_copy: フィードバック情報をコピー
+  feedback_show: フィードバック情報を表示
+  feedback_copied: コピーしました。メールに貼り付けてください。
+  feedback_failed: 自動でコピーできませんでした。下のフィードバック情報を選択してコピーしてください。
+  email: メールで送る（{address}）
+ko:
+  skip: 본문으로 건너뛰기
+  library: 사용 설명서 목록
+  back: 사용 설명서 목록으로 돌아가기
+  version: 버전
+  search: 사용 설명서 검색
+  contents: 목차
+  chapters: 총 {n}개 장
+  close: 목차 닫기
+  top: 맨 위로
+  feedback: 피드백
+  feedback_title: 문제를 발견하셨나요?
+  feedback_text: 피드백 정보(모델, 지역, 언어, 버전, 이 페이지 주소)를 복사해서 보내 주세요.
+  feedback_copy: 피드백 정보 복사
+  feedback_show: 피드백 정보 보기
+  feedback_copied: 복사했습니다. 이메일에 붙여 넣으세요.
+  feedback_failed: 자동으로 복사하지 못했습니다. 아래 피드백 정보를 직접 선택해 주세요.
+  email: 이메일 보내기({address})
+de:
+  skip: Zur Anleitung springen
+  library: Bedienungsanleitungen
+  back: Zurück zu den Bedienungsanleitungen
+  version: Version
+  search: Anleitungen durchsuchen
+  contents: Inhalt
+  chapters: "{n} Kapitel"
+  close: Inhalt schließen
+  top: Nach oben
+  feedback: Feedback
+  feedback_title: Fehler gefunden?
+  feedback_text: Kopieren Sie die Feedback-Angaben (Modell, Region, Sprache, Version und Seitenadresse) und senden Sie sie uns.
+  feedback_copy: Feedback-Angaben kopieren
+  feedback_show: Feedback-Angaben anzeigen
+  feedback_copied: Kopiert. Sie können die Angaben in Ihre E-Mail einfügen.
+  feedback_failed: Automatisches Kopieren nicht möglich. Bitte markieren Sie die Feedback-Angaben unten.
+  email: E-Mail an {address}
+fr:
+  skip: Aller au manuel
+  library: Bibliothèque des manuels
+  back: Retour à la bibliothèque des manuels
+  version: Version
+  search: Rechercher dans les manuels
+  contents: Sommaire
+  chapters: "{n} chapitres"
+  close: Fermer le sommaire
+  top: Haut de page
+  feedback: Commentaires
+  feedback_title: Vous avez trouvé un problème ?
+  feedback_text: Copiez les informations de retour (modèle, région, langue, version et adresse de la page) et envoyez-les-nous.
+  feedback_copy: Copier les informations
+  feedback_show: Afficher les informations
+  feedback_copied: Copié. Vous pouvez le coller dans votre e-mail.
+  feedback_failed: Copie automatique impossible. Veuillez sélectionner les informations ci-dessous.
+  email: Écrire à {address}
+es:
+  skip: Ir al manual
+  library: Biblioteca de manuales
+  back: Volver a la biblioteca de manuales
+  version: Versión
+  search: Buscar en los manuales
+  contents: Índice
+  chapters: "{n} capítulos"
+  close: Cerrar el índice
+  top: Volver arriba
+  feedback: Comentarios
+  feedback_title: ¿Ha encontrado un problema?
+  feedback_text: Copie los datos de su comentario (modelo, región, idioma, versión y dirección de la página) y envíenoslos.
+  feedback_copy: Copiar los datos
+  feedback_show: Ver los datos
+  feedback_copied: Copiado. Puede pegarlo en su correo electrónico.
+  feedback_failed: No se pudo copiar automáticamente. Seleccione los datos de abajo.
+  email: Escribir a {address}
+it:
+  skip: Vai al manuale
+  library: Biblioteca dei manuali
+  back: Torna alla biblioteca dei manuali
+  version: Versione
+  search: Cerca nei manuali
+  contents: Indice
+  chapters: "{n} capitoli"
+  close: Chiudi l'indice
+  top: Torna su
+  feedback: Feedback
+  feedback_title: Hai trovato un problema?
+  feedback_text: Copia i dati per il feedback (modello, regione, lingua, versione e indirizzo della pagina) e inviaceli.
+  feedback_copy: Copia i dati
+  feedback_show: Mostra i dati
+  feedback_copied: Copiato. Puoi incollarlo nella tua e-mail.
+  feedback_failed: Impossibile copiare automaticamente. Seleziona i dati qui sotto.
+  email: Scrivi a {address}
+pt:
+  skip: Ir para o manual
+  library: Biblioteca de manuais
+  back: Voltar à biblioteca de manuais
+  version: Versão
+  search: Pesquisar nos manuais
+  contents: Índice
+  chapters: "{n} capítulos"
+  close: Fechar o índice
+  top: Voltar ao topo
+  feedback: Feedback
+  feedback_title: Encontrou um problema?
+  feedback_text: Copie os dados de feedback (modelo, região, idioma, versão e endereço da página) e envie-os por e-mail.
+  feedback_copy: Copiar os dados
+  feedback_show: Ver os dados
+  feedback_copied: Copiado. Pode colá-lo no seu e-mail.
+  feedback_failed: Não foi possível copiar automaticamente. Selecione os dados abaixo.
+  email: Escrever para {address}
+nl:
+  skip: Naar de handleiding
+  library: Alle handleidingen
+  back: Terug naar alle handleidingen
+  version: Versie
+  search: Zoeken in handleidingen
+  contents: Inhoud
+  chapters: "{n} hoofdstukken"
+  close: Inhoud sluiten
+  top: Naar boven
+  feedback: Feedback
+  feedback_title: Een probleem gevonden?
+  feedback_text: Kopieer de feedbackgegevens (model, regio, taal, versie en paginaadres) en stuur ze naar ons.
+  feedback_copy: Feedbackgegevens kopiëren
+  feedback_show: Feedbackgegevens tonen
+  feedback_copied: Gekopieerd. U kunt het in uw e-mail plakken.
+  feedback_failed: Automatisch kopiëren is niet gelukt. Selecteer de feedbackgegevens hieronder.
+  email: E-mail naar {address}
+pl:
+  skip: Przejdź do instrukcji
+  library: Biblioteka instrukcji
+  back: Wróć do biblioteki instrukcji
+  version: Wersja
+  search: Szukaj w instrukcjach
+  contents: Spis treści
+  chapters: "Rozdziały: {n}"
+  close: Zamknij spis treści
+  top: Do góry
+  feedback: Opinie
+  feedback_title: Znaleziono problem?
+  feedback_text: Skopiuj dane zgłoszenia (model, region, język, wersja i adres strony) i wyślij je do nas.
+  feedback_copy: Kopiuj dane zgłoszenia
+  feedback_show: Pokaż dane zgłoszenia
+  feedback_copied: Skopiowano. Możesz wkleić je do wiadomości e-mail.
+  feedback_failed: Nie udało się skopiować automatycznie. Zaznacz dane zgłoszenia poniżej.
+  email: Napisz na {address}
+uk:
+  skip: Перейти до інструкції
+  library: Бібліотека інструкцій
+  back: Назад до бібліотеки інструкцій
+  version: Версія
+  search: Пошук в інструкціях
+  contents: Зміст
+  chapters: "Розділи: {n}"
+  close: Закрити зміст
+  top: Догори
+  feedback: Відгук
+  feedback_title: Знайшли проблему?
+  feedback_text: Скопіюйте дані для відгуку (модель, регіон, мова, версія й адреса сторінки) та надішліть їх нам.
+  feedback_copy: Скопіювати дані
+  feedback_show: Показати дані
+  feedback_copied: Скопійовано. Вставте їх у лист.
+  feedback_failed: Не вдалося скопіювати автоматично. Виділіть дані нижче.
+  email: Написати на {address}

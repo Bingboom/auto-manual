@@ -13,7 +13,7 @@ from bs4 import BeautifulSoup
 from jinja2 import Environment, FileSystemLoader
 
 from tools.rtd.product_matrix import (
-    ProductMatrixError, display_name, evidence_excerpt, load_config, matrix_context, number, positioning_groups,
+    ProductMatrixError, capacity_mismatch, display_name, evidence_excerpt, load_config, matrix_context, number, positioning_groups,
     product_matrix_page_context, read_specs, spec_pairs,
 )
 from tools.utils.path_utils import Paths
@@ -27,15 +27,16 @@ SETTINGS = {"navigation": {
     "language_labels": {"en": "English", "fr": "Français", "ja": "日本語"}}
 # The 产品分类 snapshot: A500 has a second market model (JE-B) and a colour edition sold on JE-A's US pages.
 CATALOG = {
-    "schema": "hello-docs-product-catalog/v1", "exported_at": "2026-11-06", "source": "网页文档",
+    "schema": "hello-docs-product-catalog/v3", "exported_at": "2026-11-06", "source": "网页文档",
     "categories": [{"name": "便携电源", "series": ["标准", "Plus"]}, {"name": "家庭备电", "series": ["HomePower"]},
                    {"name": "太阳能板", "series": ["SolarSaga"]}],
+    "capacity_tiers": ["1度以下", "1度电", "3.6度电"],
     "models": {
-        "JE-A": {"category": "便携电源", "series": "标准", "short": "A500"},
-        "JE-B": {"category": "便携电源", "series": "标准", "short": "A500"},
-        "JE-A-SG": {"category": "便携电源", "series": "标准", "short": "A500沙金色", "pages_of": "JE-A",
-                    "routes": ["JE-A/US/en"]},
-        "JE-H": {"category": "家庭备电", "series": "HomePower", "short": "HP3600"},
+        "JE-A": {"category": "便携电源", "series": "标准", "capacity": "1度以下", "short": "A500"},
+        "JE-B": {"category": "便携电源", "series": "标准", "capacity": "1度以下", "short": "A500"},
+        "JE-A-SG": {"category": "便携电源", "series": "标准", "capacity": "1度以下", "short": "A500沙金色",
+                    "pages_of": "JE-A", "routes": ["JE-A/US/en"]},
+        "JE-H": {"category": "家庭备电", "series": "HomePower", "capacity": "3.6度电", "short": "HP3600"},
         "JS-S": {"category": "太阳能板", "series": "SolarSaga", "short": "100W"},
     },
 }
@@ -45,7 +46,6 @@ CONFIG = {
     "accessories": [{"id": "solar"}],
     "assign": {"JE-H": {"line": "home", "evidence": "backup power to home circuits"}},
     "names": {"JS-S": "Panel S"}, "notes": {},
-    "tiers": [{"label": "small", "below": 800}, {"label": "large"}],
     "capability_labels": {"静音充电": "静音"},
     "markets": {"US": {"letter": "美", "label": "美规"}, "EU": {"letter": "欧", "label": "欧规"},
                 "JP": {"letter": "日", "label": "日规"}},
@@ -123,7 +123,7 @@ class ConfigTests(unittest.TestCase):
         config = load_config(ASSETS, settings)
         self.assertTrue(all(line["title"] for line in config["lines"] + config["accessories"]))
 
-    def test_unknown_groups_untitled_lines_and_open_tiers_are_rejected(self):
+    def test_unknown_groups_untitled_lines_and_bad_display_settings_are_rejected(self):
         broken = [
             {**CONFIG, "assign": {"JE-H": "nowhere"}},
             # A backup line takes an assigned model only with a quote from its manual, never by name alone.
@@ -134,7 +134,6 @@ class ConfigTests(unittest.TestCase):
             {**CONFIG, "assign": {"JE-H": {"same_as": "JE-A", "line": "home"}}},
             {**CONFIG, "lines": [{"id": "not-in-navigation"}]},
             {**CONFIG, "accessories": [{"id": "appliance"}]},
-            {**CONFIG, "tiers": [{"label": "only", "below": 100}]},
             {**CONFIG, "markets": {"US": {"letter": "美"}}},
             {**CONFIG, "variant_marks": ["沙金色", ""]},
         ]
@@ -224,14 +223,33 @@ class MatrixContextTests(unittest.TestCase):
                          [("portable", "便携电源", 1), ("category-2", "家庭备电", 1), ("category-3", "太阳能板", 1),
                           ("other", "其他", 1)])
         portable, home, solar, other = categories
-        self.assertEqual((portable["tiered"], portable["columns"]), (True, ["small", "large"]))
-        # A series without a product (Plus) has no row; a card sits in its capacity tier.
+        # The columns are the 容量档 a category's products use, in the snapshot's order.
+        self.assertEqual((portable["tiered"], portable["columns"]), (True, ["1度以下"]))
+        # A series without a product (Plus) has no row; a card sits in its 容量档.
         self.assertEqual([row["title"] for row in portable["rows"]], ["标准"])
-        self.assertEqual([[p["short"] for p in cell] for cell in portable["rows"][0]["cells"]], [["A500"], []])
-        self.assertEqual([[p["short"] for p in cell] for cell in home["rows"][0]["cells"]], [[], ["HP3600"]])
+        self.assertEqual([[p["short"] for p in cell] for cell in portable["rows"][0]["cells"]], [["A500"]])
+        self.assertEqual((home["columns"], [[p["short"] for p in cell] for cell in home["rows"][0]["cells"]]),
+                         (["3.6度电"], [["HP3600"]]))
         self.assertEqual((solar["tiered"], solar["columns"]), (False, ["产品"]))
         self.assertEqual((other["rows"][0]["title"], other["rows"][0]["products"][0]["short"]), ("未分类", "JX-Q"))
         self.assertEqual(portable["markets"], ["US", "EU", "JP"])
+
+    def test_a_product_without_a_tier_goes_to_the_unstated_column(self):
+        models = {**CATALOG["models"], "JE-H": {"category": "便携电源", "series": "标准", "short": "HP3600"}}
+        portable = self.context({**CATALOG, "models": models})["categories"][0]
+        self.assertEqual(portable["columns"], ["1度以下", "容量未注明"])
+        self.assertEqual([[p["short"] for p in cell] for cell in portable["rows"][0]["cells"]], [["A500"], ["HP3600"]])
+
+    def test_a_tier_the_manual_capacity_does_not_fit_warns(self):
+        models = {**CATALOG["models"], "JE-H": {**CATALOG["models"]["JE-H"], "capacity": "1度电"}}
+        context = self.context({**CATALOG, "capacity_tiers": ["1度以下", "1度电"], "models": models})
+        self.assertIn("HP3600: 容量档 1度电 does not fit the 3,584 Wh its manual states", context["warnings"])
+        self.assertFalse(any(message.startswith("A500") for message in context["warnings"]))
+        self.assertEqual([(1000, "1度电", False), (1300, "1度电", True), (512, "1度以下", False), (1024, "1度以下", True),
+                          (3584, "3.6度电", False), (2042, "2度电", False), (None, "2度电", False), (900, "大号", False)],
+                         [(wh, tier, capacity_mismatch(tier, wh)) for wh, tier in
+                          ((1000, "1度电"), (1300, "1度电"), (512, "1度以下"), (1024, "1度以下"), (3584, "3.6度电"),
+                           (2042, "2度电"), (None, "2度电"), (900, "大号"))])
 
     def test_detail_columns_show_only_what_some_model_states(self):
         products = self.products()
@@ -271,6 +289,35 @@ class MatrixContextTests(unittest.TestCase):
         self.assertTrue(any("whole-home backup" in message for message in warnings))
         (self.assets / "product_matrix.json").write_text(json.dumps(CONFIG), encoding="utf-8")
         self.assertFalse(any("evidence" in message or "home circuits" in message for message in self.context()["warnings"]))
+
+    def test_a_general_guide_is_no_product_and_shows_under_the_products_it_covers(self):
+        manifest = json.loads(self.manifest.read_text(encoding="utf-8"))
+        manifest["targets"] += [target("JS-G", "JP", "ja"), target("JE-A-QG", "US", "en")]
+        self.manifest.write_text(json.dumps(manifest), encoding="utf-8")
+        for route in ("JS-G/JP/ja/md", "JE-A-QG/US/en/md"):
+            folder = self.web / route
+            folder.mkdir(parents=True)
+            (folder / f"manual_{route.split('/')[2]}.md").write_text("# Guide\nJE-A\n", encoding="utf-8")
+        snapshot = {**CATALOG, "guides": {
+            "JS-G": {"kind": "通用指南", "short": "太阳能连接指南", "routes": ["JS-G/JP/ja"], "applies_to": ["JE-B", "PTB101"]},
+            "JE-A-QG": {"kind": "快速指南", "short": "A500", "routes": ["JE-A-QG/US/en"], "applies_to": ["JE-A"]}}}
+        context = self.context(snapshot)
+        self.assertEqual(context["facts"], {"products": 4, "models": 6})
+        self.assertFalse(any(message.startswith(("JS-G", "JE-A-QG")) for message in context["warnings"]))
+        products = self.products(context)
+        self.assertNotIn("JS-G", products)
+        # A500's own quick guide comes first; its second market model JE-B is covered by the solar guide.
+        self.assertEqual(products["A500"]["detail"]["guides"], [
+            {"label": "快速指南", "quick": True, "docs": [
+                {"label": "美规", "doc": "JE-A-QG/US/en/md/manual_en", "title": "美规：English"}]},
+            {"label": "太阳能连接指南", "quick": False, "docs": [
+                {"label": "日规", "doc": "JS-G/JP/ja/md/manual_ja", "title": "日规：日本語"}]}])
+        self.assertEqual(products["HP3600"]["detail"]["guides"], [])
+        template = Environment(loader=FileSystemLoader(ASSETS)).get_template("product_matrix.html")
+        page = BeautifulSoup(template.render(**context, pathto=lambda name, *args: name, site_nav={}), "html.parser")
+        link = page.select_one(".mx-detail#p-A500 a.mx-pair[href='JS-G/JP/ja/md/manual_ja']")
+        self.assertEqual(link.get_text(), "太阳能连接指南日规")
+        self.assertIsNone(page.select_one(".mx-detail#p-HP3600 a.mx-pair[href^='JS-G']"))
 
     def test_evidence_excerpt_keeps_the_sentence_and_ignores_case_and_spacing(self):
         text = "Intro. The unit can supply Backup  Power to home circuits. Next."
@@ -313,6 +360,8 @@ class MatrixContextTests(unittest.TestCase):
         self.assertEqual([(a["href"], a.get_text()) for a in page.select(".mx-tabs a")],
                          [("#cat-portable", "便携电源1"), ("#cat-category-2", "家庭备电1"),
                           ("#cat-category-3", "太阳能板1"), ("#cat-other", "其他1")])
+        # Only a category without 容量档 lays its cards out flat, side by side.
+        self.assertEqual([("is-flat" in grid["class"]) for grid in page.select(".mx-grid")], [False, False, True, True])
         card = page.select_one('.mx-prod[data-product="p-A500"]')
         self.assertEqual((card["href"], card["aria-expanded"]), ("#p-A500", "false"))
         self.assertEqual(card.select_one(".mx-code").get_text(), "A500")

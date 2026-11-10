@@ -128,7 +128,7 @@ class ProductLearningTests(LearningFixtures, unittest.TestCase):
     def test_an_unusable_matrix_config_falls_back_to_the_navigation_with_a_warning(self):
         shipped = json.loads((ASSETS / "product_matrix.json").read_text())
         configs = {"missing": None, "corrupted": "{not json", "not an object": "[]",
-                   "no tiers": json.dumps({key: value for key, value in shipped.items() if key != "tiers"}),
+                   "market without a letter": json.dumps({**shipped, "markets": {"US": {"label": "美规"}}}),
                    "unknown group": json.dumps({**shipped, "assign": {"JE-1500C": "nowhere"}})}
         products = [self.product("JE-1000F", "EU", "en"), self.product("JE-1500C", "US", "en"),
                     self.product("JHP-3600C", "US", "en")]

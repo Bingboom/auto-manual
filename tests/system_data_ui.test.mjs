@@ -3,99 +3,71 @@ import {readFileSync} from 'node:fs';
 import test from 'node:test';
 import vm from 'node:vm';
 
+// 说明书工作台「数据统计」 (tools/rtd_portal_assets/_static/system-data.js): the cards are counted at build time,
+// so the script only searches and sorts the full table of published Web manuals.
 const script = readFileSync(new URL('../tools/rtd_portal_assets/_static/system-data.js', import.meta.url), 'utf8');
-function load() {
-  // No document: only the pure counting functions are set up.
-  const context = {};
+
+function load(context = {}) {
   vm.runInNewContext(script, context);
-  return context.SystemDataModel;
+  return context;
 }
 
-const data = {
-  capabilities: ['UPS', 'LED'],
-  published: [
-    {model: 'A', region: 'EU', lang: 'en'}, {model: 'A', region: 'EU', lang: 'fr'},
-    {model: 'A', region: 'US', lang: 'en'}, {model: 'B', region: 'EU', lang: 'en'},
-  ],
-  targets: [
-    {key: 'A_EU', model: 'A', region: 'EU', caps: [1, 0], review_pages: 3},
-    {key: 'A_US', model: 'A', region: 'US', caps: [1, 1], review_pages: 0},
-    {key: 'B_EU', model: 'B', region: 'EU', caps: [0, 0], review_pages: 0},
-  ],
-  assets: [
-    {category: '插图', status: '成品', model: 'A', region: 'EU'},
-    {category: '图标', status: '成品', model: 'ALL', region: 'ALL'},
-    {category: '插图', status: '缺失', model: 'B', region: 'US'},
-  ],
-};
-const all = {region: '', model: ''};
-// Results are built in the script's own realm; compare them as plain JSON.
-const plain = value => JSON.parse(JSON.stringify(value));
-
-test('without a filter the counts cover every row', () => {
-  const counts = load().summary(data, all);
-  assert.equal(counts.variants, 4);
-  assert.equal(counts.books, 3);
-  assert.equal(counts.models, 2);
-  assert.equal(counts.languages, 2);
-  assert.equal(counts.regions, 2);
-  assert.equal(counts.targets, 3);
-  assert.equal(counts.review_targets, 1);
-  assert.equal(counts.assets, 3);
-  assert.equal(counts.ready_share, 2 / 3);
+test('every word of a query must be in a row', () => {
+  const {SystemDataTable} = load();
+  assert.equal(SystemDataTable.matches('JE-1000F EU en 2026-11-02', 'je-1000f en'), true);
+  assert.equal(SystemDataTable.matches('JE-1000F EU en 2026-11-02', 'je-1000f ja'), false);
+  assert.equal(SystemDataTable.matches('anything', '  '), true);
 });
 
-test('region and model filters narrow every count; shared assets stay in', () => {
-  const model = load();
-  const counts = model.summary(data, {region: 'EU', model: 'A'});
-  assert.equal(counts.variants, 2);
-  assert.equal(counts.books, 1);
-  assert.equal(counts.targets, 1);
-  // A's EU asset plus the ALL/ALL asset; B's US asset is out.
-  assert.equal(counts.assets, 2);
-  assert.equal(model.summary(data, {region: 'US', model: ''}).assets, 2);
-  assert.equal(model.summary(data, {region: 'JP', model: ''}).variants, 0);
-  assert.equal(model.summary(data, {region: 'JP', model: ''}).books, 0);
-  assert.equal(model.summary(data, {region: 'JP', model: ''}).ready_share, 1);
+test('sorting follows one column and keeps ties in order', () => {
+  const {SystemDataTable} = load();
+  const rows = [['B', '2'], ['A', '1'], ['B', '1']];
+  const text = (row, column) => row[column];
+  assert.deepEqual(JSON.parse(JSON.stringify(SystemDataTable.sorted(rows, 0, 1, text))), [['A', '1'], ['B', '2'], ['B', '1']]);
+  assert.deepEqual(JSON.parse(JSON.stringify(SystemDataTable.sorted(rows, 1, -1, text))), [['B', '2'], ['A', '1'], ['B', '1']]);
 });
 
-test('a missing publish manifest keeps the publication and capability counts empty', () => {
-  // Targets list published models only, so without a manifest they are null as well.
-  const counts = load().summary({...data, published: null, targets: null}, all);
-  assert.equal(counts.variants, null);
-  assert.equal(counts.books, null);
-  assert.equal(counts.languages, null);
-  assert.equal(counts.targets, null);
-  assert.equal(counts.review_targets, null);
-  assert.equal(counts.assets, 3);
+function page() {
+  const listeners = {};
+  const node = (props = {}) => ({hidden: false, attributes: {}, dataset: {},
+    setAttribute(name, value) { this.attributes[name] = String(value); },
+    removeAttribute(name) { delete this.attributes[name]; },
+    addEventListener(name, callback) { (listeners[name] ||= []).push(callback); }, ...props});
+  const row = (model, region, date) => {
+    const cells = [model, region, 'en-US', '1.0', date].map(textContent => ({textContent}));
+    return node({cells, textContent: cells.map(cell => cell.textContent).join(' ')});
+  };
+  const rows = [row('JE-1000F', 'EU', '2026-11-01'), row('JE-2000F', 'US', '2026-11-04'), row('JA-TS02A', 'US', '2026-10-30')];
+  const order = [];
+  const body = {rows, append: (...items) => { order.splice(0, order.length, ...items); }};
+  const buttons = [0, 4].map(column => node({dataset: {sort: String(column)}}));
+  const table = node({tBodies: [body], querySelectorAll: () => buttons});
+  const search = node({hidden: true, value: ''});
+  const count = node({textContent: ''});
+  const document = {getElementById: id => ({'sd-table': table, 'sd-search': search, 'sd-count': count}[id] || null)};
+  load({document});
+  return {rows, order, buttons, search, count, listeners};
+}
+
+test('the search box appears with JavaScript and narrows the table', () => {
+  const view = page();
+  assert.equal(view.search.hidden, false);
+  view.search.value = 'je-2 11-04';
+  view.listeners.input.forEach(callback => callback());
+  assert.deepEqual(view.rows.map(row => row.hidden), [true, false, true]);
+  assert.equal(view.count.textContent, '1 / 3 条');
+  view.search.value = '';
+  view.listeners.input.forEach(callback => callback());
+  assert.equal(view.count.textContent, '3 条');
 });
 
-test('a repeated route counts once, and a filter recounts language versions and books together', () => {
-  const model = load();
-  const aliased = {...data, published: [...data.published, {model: 'A', region: 'EU', lang: 'en'}]};
-  const counts = model.summary(aliased, all);
-  assert.deepEqual([counts.variants, counts.books], [4, 3]);
-  const eu = model.summary(aliased, {region: 'EU', model: ''});
-  assert.deepEqual([eu.variants, eu.books], [3, 2]);
-  const a = model.summary(aliased, {region: '', model: 'A'});
-  assert.deepEqual([a.variants, a.books], [3, 2]);
-});
-
-test('the matrix keeps every model of the region and orders languages by use', () => {
-  const {languages, models} = load().matrix(data.published, {region: 'EU', model: 'B'});
-  assert.deepEqual(plain(languages), ['en', 'fr']);
-  assert.deepEqual(plain(models.map(m => [m.model, m.manuals])), [['A', 2], ['B', 1]]);
-  assert.deepEqual(plain([...models[0].cells.get('fr').regions]), ['EU']);
-});
-
-test('coverage is the supported share of the filtered targets', () => {
-  const model = load();
-  assert.deepEqual(plain(model.coverage(data, all).map(c => [c.label, c.supported, c.targets])), [['UPS', 2, 3], ['LED', 1, 3]]);
-  assert.deepEqual(plain(model.coverage(data, {region: '', model: 'A'}).map(c => c.share)), [1, 0.5]);
-  assert.deepEqual(plain(model.coverage(data, {region: 'JP', model: ''}).map(c => c.targets)), [0, 0]);
-  assert.deepEqual(plain(model.coverage({...data, targets: null}, all)), []);
-});
-
-test('counts are ordered by size, then label', () => {
-  assert.deepEqual(plain(load().countBy(data.assets, 'status').map(c => [c.label, c.n])), [['成品', 2], ['缺失', 1]]);
+test('a header click sorts by its column, a second click reverses it', () => {
+  const view = page();
+  const [model] = view.buttons;
+  view.listeners.click[0]();
+  assert.deepEqual(view.order.map(row => row.cells[0].textContent), ['JA-TS02A', 'JE-1000F', 'JE-2000F']);
+  assert.equal(model.attributes['aria-sort'], 'ascending');
+  view.listeners.click[0]();
+  assert.deepEqual(view.order.map(row => row.cells[0].textContent), ['JE-2000F', 'JE-1000F', 'JA-TS02A']);
+  assert.equal(model.attributes['aria-sort'], 'descending');
 });

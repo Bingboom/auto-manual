@@ -49,14 +49,6 @@
     "JA-CA3SA": "2–3 块太阳能板串联",
     "JA-TS02A": "家庭配电转换 · 12 路负载 · 约 11.6 kg"
   },
-  "tiers": [
-    {"label": "≈100–300 Wh", "below": 400},
-    {"label": "≈500 Wh", "below": 800},
-    {"label": "≈1 kWh", "below": 1300},
-    {"label": "≈1.5–2 kWh", "below": 2600},
-    {"label": "≈3–3.6 kWh", "below": 4000},
-    {"label": "≈5 kWh"}
-  ],
   "capability_labels": {"AC/DC输出记忆恢复": "输出记忆恢复", "TOU/计划充电": "TOU / 计划充电"},
   "pairings": [
     {"model": "JE-1000H", "parts": [{"label": "Battery Pack 2000", "product": "BP2000"}]},

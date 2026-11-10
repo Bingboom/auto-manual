@@ -82,8 +82,9 @@ table. See [design system page](../rtd_manual_portal/knowledge-pages.md#design-s
 [`tools/rtd/system_data.py`](../../../tools/rtd/system_data.py) owns the read-only
 context of 说明书工作台 数据统计 (in its 交付物 tab): it reads the publish manifest, the
 capability, language and asset CSVs and the review page counts, keeps the
-capability rows of published models only (`published_targets`), and hands the
-rows to the section as JSON for `_static/system-data.js` to filter. `rtd_portal`
+capability rows of published models only (`published_targets`), and counts the
+section's five cards at build time; `_static/system-data.js` only searches and
+sorts the full table. `rtd_portal`
 passes it to the deliverables page as `statistics` and builds a minimal
 `moved_page.html` redirect for the retired `/workspace/data/` URL; `product_matrix.py` reuses
 `read_targets`. See [数据统计](../rtd_manual_portal/knowledge-pages.md#数据统计).
@@ -94,9 +95,9 @@ of each model's published manual, the catalog names, the `product_catalog`
 snapshot, the capability CSV and the curated
 `tools/rtd_portal_assets/product_matrix.json`. `rtd_portal` only registers the
 page. [`tools/rtd/product_catalog.py`](../../../tools/rtd/product_catalog.py)
-owns that snapshot (the 网页文档 table's 产品类别, 产品系列 and 商品简称 per model,
-refreshed read-only), and `tools/rtd/portal_navigation.py` groups the manual
-library by it. See
+owns that snapshot (产品类别, 产品系列 and 商品简称 per model from the 项目号 and
+网页文档 tables, and the 通用指南 with their 适用产品, refreshed read-only), and
+`tools/rtd/portal_navigation.py` groups the manual library by it. See
 [product matrix page](../rtd_manual_portal/knowledge-pages.md#product-matrix-page).
 
 Internal frozen Web language projection lives in
@@ -117,6 +118,12 @@ Optional manual feedback affordances are kept in
 [`tools/rtd/feedback.py`](../../../tools/rtd/feedback.py). It validates fixed
 HTTPS channel configuration and renders only local copyable context from the
 frozen publication identity; an empty channel list produces no markup.
+
+The reading frame around verified manual pages is built from
+[`tools/rtd/manual_reader.py`](../../../tools/rtd/manual_reader.py): the chapter list read from the
+rendered body, the version date and the language options. `decorate_manual` in `tools/rtd/portal.py`
+passes it to `manual_reader.html`; see
+[reading frame](../rtd_manual_portal/manual-center.md#reading-frame-2026-11).
 
 Product suggestion HTML and endpoint validation live in
 [`tools/rtd/product_voc.py`](../../../tools/rtd/product_voc.py). The append-only

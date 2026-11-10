@@ -29,7 +29,9 @@ names from `language_labels`.
 
 The language picker preserves model and market edition and opens the selected
 manual from its beginning. No current chapter/query/fragment is carried across.
-Single-language manual pages receive the same picker and explicit HTML language;
+Single-language manual pages receive the same picker and explicit HTML language. Since 2026-11 the picker
+sits in the [reading frame](rtd_manual_portal/manual-center.md#reading-frame-2026-11)'s top bar, with a second
+copy under the bar below 760px;
 the configured Hebrew/Arabic options also select RTL content direction when a
 real single-language publication is supplied. This is presentation support,
 not a claim that those translations or renderer source-language bindings exist.

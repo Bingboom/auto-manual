@@ -12,7 +12,7 @@ from tempfile import TemporaryDirectory
 from types import SimpleNamespace
 import unittest
 from unittest.mock import Mock, patch
-from contextlib import redirect_stdout
+from contextlib import redirect_stderr, redirect_stdout
 
 from tools import workspace_snapshot as snap
 from tools import workspace_refresh as refresh
@@ -160,8 +160,8 @@ class ReleaseTests(unittest.TestCase):
         with TemporaryDirectory() as tmp:
             root = Path(tmp)
             expected = inventory(root)
-            html = (b'<span data-workspace-source="deliverables" data-snapshot-sha256=""></span>'
-                    b'<span data-workspace-source="corpus" data-snapshot-sha256=""></span>'
+            # The workbench page shows the corpus and Web-progress snapshots, not the Feishu delivery one.
+            html = (b'<span data-workspace-source="corpus" data-snapshot-sha256=""></span>'
                     b'<span data-workspace-source="web_progress" data-snapshot-sha256=""></span>')
             receipt = {"workspace_revision": "target", "workspace_sources": expected,
                        "files": {verify.ROUTE: hashlib.sha256(html).hexdigest()}}
@@ -578,6 +578,17 @@ class QueueBatchTests(unittest.TestCase):
             result = json.loads(output.read_text())
             self.assertEqual((result['status'], result['stage']), ('failed', 'online-verification'))
             self.assertIn(verify.API_TOKEN_ENV, result['online'])
+
+    def test_the_workflow_waits_the_longest_allowed_bounded_time(self):
+        # About 25 minutes at 30 s apart; one more attempt is refused before any check runs.
+        args = ['verify', '--revision', 'a' * 40, '--attempts', str(verify.MAX_ATTEMPTS + 1)]
+        with patch('sys.argv', args), patch.object(verify, 'command') as command, \
+                redirect_stderr(io.StringIO()), self.assertRaises(SystemExit):
+            verify.main()
+        command.assert_not_called()
+        workflow = (Path(__file__).resolve().parents[1] / '.github/workflows/workspace-data-verify.yml').read_text(encoding='utf-8')
+        self.assertIn(f'--attempts {verify.MAX_ATTEMPTS}\n', workflow)
+        self.assertEqual(verify.MAX_ATTEMPTS * 30 // 60, 25)
 
     def test_without_a_business_token_only_this_revisions_receipt_decides(self):
         with TemporaryDirectory() as tmp:

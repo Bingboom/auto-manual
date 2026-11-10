@@ -54,6 +54,12 @@
 <div class="ds-state-select"><span class="ds-select">English<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></span><span>原生下拉框<br>保留浏览器焦点框</span></div>
 {%- endif -%}
 {%- endmacro %}
+{%- macro icon_search() -%}
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+{%- endmacro %}
+{%- macro icon_out() -%}
+<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 16L17 7M9 7h8v8"/></svg>
+{%- endmacro %}
 <body class="app kb design-system">
 {{ site_sidebar('design-system', site_nav) }}
 <div class="app-content">
@@ -195,216 +201,278 @@
       </section>
     </div>
 
-    <div class="tab-panel" id="colors" role="tabpanel" aria-label="颜色">
-      <section class="ds-section">
-        <h2>颜色</h2>
-        <p class="ds-hint">取值读自仓库当前的 <code>web_manual.css</code>；对比度是与纸面 <code>{{ paper|e }}</code> 的 WCAG 对比度。</p>
-        <div class="ds-swatches">
-          {%- for color in colors %}
-          <article class="ds-swatch" id="color-{{ loop.index }}">
-            <div class="ds-chip" style="background:{{ color.value|e }}" role="img" aria-label="{{ color.name|e }} {{ color.value|e }}"></div>
-            <div class="ds-swatch-body">
-              <h3>{{ color.name|e }}</h3>
-              <code>{{ color.token|e }}</code>
-              <dl>
-                <div><dt>取值</dt><dd><code>{{ color.value|e }}</code></dd></div>
-                <div><dt>对比度</dt><dd>{% if color.contrast %}{{ color.contrast }}:1{% else %}半透明{% endif %}</dd></div>
-              </dl>
-              <p>{{ color.note }}</p>
-              {%- if color.selector != ':root' %}
-              <p class="ds-source">声明位置：<code>{{ color.selector|e }}</code></p>
-              {%- endif %}
-            </div>
-          </article>
-          {%- endfor %}
-        </div>
-      </section>
-    </div>
-
-    <div class="tab-panel" id="type" role="tabpanel" aria-label="字体">
-      <section class="ds-section">
-        <h2>字体</h2>
-        <p class="ds-hint">字体栈 <code>{{ font_family|e }}</code>。示例按样式表声明的数值渲染；没有声明的属性继承正文。</p>
-        <div class="ds-type-list">
-          {%- for style in type_styles %}
-          <article class="ds-type" id="type-{{ style.name|e }}">
-            <div class="ds-type-sample" style="font-family:{{ font_family|e }};{{ style.sample_style|e }}">{{ style.sample|e }}</div>
-            <div class="ds-type-meta">
-              <h3>{{ style.label|e }}</h3>
-              <code>{{ style.name|e }}</code>
-              <dl>
-                <div><dt>字号</dt><dd>{{ (style.desktop['font-size'] or '继承')|e }}</dd></div>
-                <div><dt>行高</dt><dd>{{ (style.desktop['line-height'] or '继承')|e }}</dd></div>
-                <div><dt>字重</dt><dd>{{ (style.desktop['font-weight'] or '继承')|e }}</dd></div>
-                {%- if style.desktop['text-transform'] %}
-                <div><dt>大小写</dt><dd>{{ style.desktop['text-transform']|e }}</dd></div>
-                {%- endif %}
-                {%- if style.mobile %}
-                <div><dt>760px 以下</dt><dd>{% for prop, value in style.mobile.items() %}{{ prop|e }} {{ value|e }}{% if not loop.last %}；{% endif %}{% endfor %}</dd></div>
-                {%- endif %}
-              </dl>
-              <p>{{ style.note }}</p>
-              <p class="ds-source"><code>{{ style.selector|e }}</code></p>
-            </div>
-          </article>
-          {%- endfor %}
-        </div>
-      </section>
-    </div>
-
-    <div class="tab-panel" id="components" role="tabpanel" aria-label="组件">
-      <nav class="ds-toc" aria-label="组件分组">
-        {%- for group in component_groups %}
-        <a href="#group-{{ group.id|e }}">{{ group.title|e }}<em>{{ group['items']|length }}</em></a>
-        {%- endfor %}
-      </nav>
-      {%- for group in component_groups %}
-      <section class="ds-section" id="group-{{ group.id|e }}">
-        <h2>{{ group.title|e }}</h2>
-        {%- for item in group['items'] %}
-        <article class="ds-component" id="component-{{ item.id|e }}">
-          <header><h3>{{ item.title|e }}</h3><code>{{ item.style_id|e }}</code></header>
-          <p class="ds-summary">{{ item.summary }}</p>
-          <div class="ds-frame"><iframe class="ds-preview" src="{{ item.preview|e }}" title="{{ item.title|e }} 预览" loading="lazy" height="{{ item.height }}"></iframe></div>
-          {%- if item.notes %}
-          <dl class="ds-notes">
-            {%- for label, text in item.notes %}
-            <div><dt>{{ label|e }}</dt><dd>{{ text }}</dd></div>
-            {%- endfor %}
+    {#- The inner tabs (2026-11 step 10): each opens with a one-line header, then the rows, cards or tiles; the long
+        text (a colour's full use, a component's rules, an asset's facts) opens in place. design-system.js filters,
+        opens and selects; without it the rows still open (they are <details>) and the first group shows. -#}
+    <div class="tab-panel ds-tab" id="colors" role="tabpanel" aria-label="颜色">
+      <header class="ds-tab-head">
+        <div><h2>颜色</h2><p>取值读自仓库当前的 <code>web_manual.css</code>；对比度是与纸面 <code>{{ paper|e }}</code> 的 WCAG 对比度。</p></div>
+        <span class="ds-tab-meta"><b>{{ colors|length }}</b> 种颜色{% for group in color_groups %} · {{ group.title|e }} {{ group.colors|length }}{% endfor %}</span>
+      </header>
+      <div class="ds-strip" aria-hidden="true">{% for color in colors %}<i style="background:{{ color.value|e }}" title="{{ color.name|e }} {{ color.value|upper|e }}"></i>{% endfor %}</div>
+      {%- for group in color_groups %}
+      <section class="ds-list" aria-labelledby="colors-{{ group.id|e }}">
+        <h3 id="colors-{{ group.id|e }}">{{ group.title|e }}<small>{{ group.colors|length }} 种</small></h3>
+        {%- for color in group.colors %}
+        <details class="ds-row ds-color-row" id="color-{{ color.index }}">
+          <summary>
+            <span class="ds-sw" style="background:{{ color.value|e }}"></span>
+            <b>{{ color.name|e }}</b>
+            <code>{{ color.label|e }}</code>
+            <code class="ds-hex">{{ color.value|upper|e }}</code>
+            <span class="ds-ratio">{% if color.contrast %}{{ color.contrast }}:1 {% endif %}<em class="ds-grade is-{{ color.grade.id }}">{{ color.grade.label }}</em></span>
+            <span class="ds-use">{{ color.note }}</span>
+            <span class="ds-more" aria-hidden="true"></span>
+          </summary>
+          <dl class="ds-row-body">
+            <div><dt>用法</dt><dd>{{ color.note }}</dd></div>
+            {%- if color.inks %}
+            <div><dt>印刷对应</dt><dd>{% for ink in color.inks %}{{ ink.swatch|e }}（{{ ink.value|e }}）{% if not loop.last %}、{% endif %}{% endfor %}</dd></div>
+            {%- endif %}
+            <div><dt>声明位置</dt><dd><code>{{ color.selector|e }}</code> 的 <code>{{ color.token|e }}: {{ color.declared|e }}</code></dd></div>
           </dl>
-          {%- endif %}
-        </article>
+        </details>
         {%- endfor %}
       </section>
       {%- endfor %}
+      <p class="ds-foot">对比度标记：AAA ≥ 7:1，AA ≥ 4.5:1，大字 AA ≥ 3:1；低于 3:1 的只作装饰，从不单独表达含义。展开一行看完整用法、印刷对应色和声明位置。</p>
     </div>
 
-    <div class="tab-panel" id="assets" role="tabpanel" aria-label="图标与素材">
-      <section class="ds-section" id="assets-reuse">
-        <h2>图标与素材</h2>
-        {%- for paragraph in asset_library.intro %}
-        <p>{{ paragraph }}</p>
+    <div class="tab-panel ds-tab" id="type" role="tabpanel" aria-label="字体">
+      <header class="ds-tab-head">
+        <div><h2>字体</h2><p>字体栈 <code>{{ font_family|e }}</code>；示例按样式表声明的数值渲染，没有声明的属性继承正文。</p></div>
+        <span class="ds-tab-meta"><b>{{ type_styles|length }}</b> 种字体样式</span>
+      </header>
+      <section class="ds-list ds-type-list" aria-label="字体样式">
+        <div class="ds-thead" aria-hidden="true"><span>示例</span><span>样式</span><span>字号</span><span>行高 · 字重</span><span>大小写</span><span>760px 以下</span><span></span></div>
+        {%- for style in type_styles %}
+        {%- set d = style.desktop %}
+        <details class="ds-row ds-type-row" id="type-{{ style.name|e }}">
+          <summary>
+            <span class="ds-type-sample" style="font-family:{{ font_family|e }};{{ style.sample_style|e }}">{{ style.sample|e }}</span>
+            <span class="ds-type-name"><b>{{ style.label|e }}</b><code>{{ style.name|e }}</code></span>
+            <code class="ds-type-size">{{ (d['font-size'] or '继承')|e }}</code>
+            <span class="ds-type-lw">{{ (d['line-height'] or '继承')|e }} · {{ (d['font-weight'] or '继承')|e }}</span>
+            <span class="ds-type-case">{% if d['text-transform'] == 'uppercase' %}大写{% elif d['text-transform'] and d['text-transform'] != 'none' %}{{ d['text-transform']|e }}{% else %}—{% endif %}</span>
+            <span class="ds-type-mobile">{% if style.mobile %}有手机字号{% else %}—{% endif %}</span>
+            <span class="ds-more" aria-hidden="true"></span>
+          </summary>
+          <dl class="ds-row-body">
+            {%- if style.mobile %}
+            <div><dt>760px 以下</dt><dd>{% for prop, value in style.mobile.items() %}{{ prop|e }} {{ value|e }}{% if not loop.last %}；{% endif %}{% endfor %}</dd></div>
+            {%- endif %}
+            {%- if d['letter-spacing'] %}
+            <div><dt>字距</dt><dd>{{ d['letter-spacing']|e }}</dd></div>
+            {%- endif %}
+            <div><dt>用法</dt><dd>{{ style.note }}</dd></div>
+            <div><dt>选择器</dt><dd><code>{{ style.selector|e }}</code></dd></div>
+          </dl>
+        </details>
         {%- endfor %}
-        {%- if asset_library.steps %}
-        <ol class="ds-steps">
-          {%- for step in asset_library.steps %}
-          <li>{{ step }}</li>
+      </section>
+      <p class="ds-foot">展开一行看 760px 以下的字号、用法说明和样式选择器。</p>
+    </div>
+
+    <div class="tab-panel ds-tab" id="components" role="tabpanel" aria-label="组件">
+      <header class="ds-tab-head">
+        <div><h2>组件</h2><p>{{ component_count }} 个组件，按类别排列。卡片上是线上样式的实时预览缩略图；点一张卡，在它下面展开大预览与用法（用法、需要提供、不要）。</p></div>
+        <span class="ds-tab-meta">{% for group in component_groups %}{{ group.title|e }} <b>{{ group['items']|length }}</b>{% if not loop.last %} · {% endif %}{% endfor %}</span>
+      </header>
+      <div class="ds-filter" data-ds-filter="components">
+        <div class="ds-chips" role="group" aria-label="按类别筛选组件">
+          <button type="button" class="ds-chip" data-group="" aria-pressed="true">全部<b>{{ component_count }}</b></button>
+          {%- for group in component_groups %}
+          <button type="button" class="ds-chip" data-group="{{ group.id|e }}" aria-pressed="false">{{ group.title|e }}<b>{{ group['items']|length }}</b></button>
+          {%- endfor %}
+        </div>
+        <label class="ds-search">{{ icon_search() }}<input type="search" placeholder="组件名或 HB 代号" aria-label="按组件名或 HB 代号搜索" autocomplete="off"></label>
+      </div>
+      {%- for group in component_groups %}
+      <section class="ds-comp-group" id="group-{{ group.id|e }}" data-group="{{ group.id|e }}" aria-labelledby="group-{{ group.id|e }}-title">
+        <h3 id="group-{{ group.id|e }}-title">{{ group.title|e }}<small>{{ group['items']|length }} 个</small></h3>
+        <div class="ds-comp-grid">
+          {%- for item in group['items'] %}
+          <article class="ds-comp" id="component-{{ item.id|e }}" data-search="{{ (item.title ~ ' ' ~ item.style_id)|lower|e }}">
+            <div class="ds-shot-frame ds-thumb" aria-hidden="true"><iframe src="{{ item.preview|e }}" title="{{ item.title|e }} 缩略图" loading="lazy" tabindex="-1"></iframe></div>
+            <div class="ds-comp-text">
+              <h4><button type="button" class="ds-comp-open" aria-expanded="false" aria-controls="component-{{ item.id|e }}-detail">{{ item.title|e }}</button></h4>
+              <code>{{ item.style_id|e }}</code>
+              <p>{{ item.summary }}</p>
+            </div>
+          </article>
+          <div class="ds-comp-detail" id="component-{{ item.id|e }}-detail" hidden>
+            <div class="ds-frame ds-zoom" style="--ds-zoom-h:{{ item.height }}px"><iframe class="ds-preview" src="{{ item.preview|e }}" title="{{ item.title|e }} 预览" loading="lazy" height="{{ item.height }}"></iframe></div>
+            <div class="ds-comp-notes">
+              <h4>{{ item.title|e }}</h4>
+              <code>{{ item.style_id|e }}</code>
+              <p>{{ item.summary }}</p>
+              {%- if item.notes %}
+              <dl>
+                {%- for label, text in item.notes %}
+                <div><dt>{{ label|e }}</dt><dd>{{ text }}</dd></div>
+                {%- endfor %}
+              </dl>
+              {%- endif %}
+              <p class="ds-links"><a href="{{ item.preview|e }}" target="_blank" rel="noopener">在新窗口打开实时预览{{ icon_out() }}</a>{% if item.style_href %}<a href="{{ item.style_href|e }}" target="_blank" rel="noopener">样式定义{{ icon_out() }}</a>{% endif %}<button type="button" class="ds-comp-close">收起</button></p>
+            </div>
+          </div>
+          {%- endfor %}
+        </div>
+      </section>
+      {%- endfor %}
+      <p class="ds-empty" hidden>没有符合条件的组件。</p>
+    </div>
+
+    <div class="tab-panel ds-tab" id="assets" role="tabpanel" aria-label="图标与素材">
+      {%- set lib = asset_library %}
+      <header class="ds-tab-head">
+        <div><h2>图标与素材</h2>{% for paragraph in lib.intro %}<p>{{ paragraph }}</p>{% endfor %}</div>
+        <span class="ds-tab-meta">{% for group in lib.groups %}{{ group.title|e }} <b>{{ group['items']|length }}</b>{% if not loop.last %} · {% endif %}{% endfor %}</span>
+      </header>
+      {%- if lib.steps %}
+      <details class="ds-flow" id="assets-reuse">
+        <summary><b>先复用，再提取</b><span class="ds-flow-steps">{% for step in lib.steps %}<span>{{ step.title|e }}</span>{% if not loop.last %}<i aria-hidden="true">→</i>{% endif %}{% endfor %}</span><em>{{ lib.steps|length }} 条规则</em></summary>
+        <ol>
+          {%- for step in lib.steps %}
+          <li>{{ step.text }}</li>
           {%- endfor %}
         </ol>
-        {%- endif %}
-      </section>
-      <nav class="ds-toc" aria-label="素材分组">
-        {%- for group in asset_library.groups %}
-        <a href="#assets-{{ group.id|e }}">{{ group.title|e }}<em>{{ group['items']|length }}</em></a>
-        {%- endfor %}
-      </nav>
-      {%- for group in asset_library.groups %}
-      <section class="ds-section" id="assets-{{ group.id|e }}">
-        <h2>{{ group.title|e }}</h2>
-        <p class="ds-hint">{{ group['items']|length }} 个文件，来自 {% for source in group.sources %}<code>{{ source|e }}</code>{% if not loop.last %}、{% endif %}{% endfor %}</p>
-        {%- for paragraph in group.paragraphs %}
-        <p>{{ paragraph }}</p>
-        {%- endfor %}
-        <div class="ds-assets">
-          {%- for item in group['items'] %}
-          <figure class="ds-asset">
-            <div class="ds-asset-art" style="background:{{ grounds[item.ground]|e }}"><img class="ds-art-{{ item.facts[0]|lower|e }}" src="assets/{{ item.ref|e }}" alt="{{ item.name|e }}" loading="lazy"></div>
-            <figcaption>
-              <strong>{{ item.name|e }}</strong>
-              {%- if item.key %}
-              <code>{{ item.key|e }}</code>
-              {%- endif %}
-              {%- if item.note %}
-              <span>{{ item.note }}</span>
-              {%- endif %}
-              <em>{{ item.facts|join(' · ')|e }}</em>
-            </figcaption>
-          </figure>
+      </details>
+      {%- endif %}
+      <div class="ds-filter" data-ds-filter="assets">
+        <div class="ds-chips" role="group" aria-label="按类别筛选素材">
+          <button type="button" class="ds-chip" data-group="" aria-pressed="true">全部<b>{{ lib.count }}</b></button>
+          {%- for group in lib.groups %}
+          <button type="button" class="ds-chip" data-group="{{ group.id|e }}" aria-pressed="false">{{ group.title|e }}<b>{{ group['items']|length }}</b></button>
           {%- endfor %}
         </div>
-      </section>
-      {%- endfor %}
+        <label class="ds-search">{{ icon_search() }}<input type="search" placeholder="文件名、语义键或用途" aria-label="按文件名、语义键或用途搜索素材" autocomplete="off"></label>
+      </div>
+      <div class="ds-asset-split">
+        <div class="ds-asset-groups">
+          {%- for group in lib.groups %}
+          <details class="ds-asset-group" id="assets-{{ group.id|e }}" data-group="{{ group.id|e }}" data-ds-more{% if loop.first %} open{% endif %}>
+            <summary><b>{{ group.title|e }}</b><span>{{ group['items']|length }} 个 · 来自 {% for source in group.sources %}<code>{{ source|e }}</code>{% if not loop.last %}、{% endif %}{% endfor %}{% if group.render %} · {{ group.render }}{% endif %}</span><em class="ds-fold" aria-hidden="true"></em></summary>
+            <div class="ds-tiles">
+              {%- for item in group['items'] %}
+              <button type="button" class="ds-tile" data-asset="{{ item.slug|e }}" aria-controls="{{ item.slug|e }}" aria-pressed="false" aria-label="{{ item.name|e }}" title="{{ item.name|e }}" data-search="{{ (item.name ~ ' ' ~ (item.key or '') ~ ' ' ~ (item.note|striptags if item.note else ''))|lower|e }}"><span class="ds-tile-art" style="background:{{ grounds[item.ground]|e }}"><img src="assets/{{ item.ref|e }}" alt="" loading="lazy"></span><span class="ds-tile-name" aria-hidden="true">{{ item.short|e }}</span></button>
+              {%- endfor %}
+            </div>
+            {%- if group['items']|length > 32 %}
+            <button type="button" class="ds-show-all" aria-expanded="false">显示全部 {{ group['items']|length }} 个</button>
+            {%- endif %}
+          </details>
+          {%- endfor %}
+          <p class="ds-empty" hidden>没有符合条件的素材。</p>
+        </div>
+        <aside class="ds-asset-side" aria-label="素材详情" aria-live="polite">
+          {%- for group in lib.groups %}
+          <section class="ds-side-group" data-group="{{ group.id|e }}"{% if not loop.first %} hidden{% endif %}>
+            <h3>{{ group.title|e }}</h3>
+            {%- for paragraph in group.paragraphs %}
+            <p>{{ paragraph }}</p>
+            {%- endfor %}
+            <p class="ds-side-hint">点一个图块，看它的语义键、用途和用在哪些组件。</p>
+          </section>
+          {%- endfor %}
+          {%- for group in lib.groups %}{% for item in group['items'] %}
+          <section class="ds-side-asset" id="{{ item.slug|e }}" data-group="{{ group.id|e }}" hidden>
+            <div class="ds-side-art" style="background:{{ grounds[item.ground]|e }}"><img src="assets/{{ item.ref|e }}" alt="{{ item.name|e }}" loading="lazy"></div>
+            <h3>{{ item.name|e }}</h3>
+            <dl>
+              {%- if item.key %}
+              <div><dt>语义键</dt><dd><code>{{ item.key|e }}</code></dd></div>
+              {%- endif %}
+              {%- if item.note %}
+              <div><dt>用途</dt><dd>{{ item.note }}</dd></div>
+              {%- endif %}
+              <div><dt>格式</dt><dd>{{ item.facts|join(' · ')|e }}</dd></div>
+              <div><dt>用在</dt><dd>{% if item.used_in %}{{ item.used_in|join('、')|e }}{% else %}组件预览里没有用到{% endif %}</dd></div>
+            </dl>
+            <p class="ds-links"><a href="assets/{{ item.ref|e }}" target="_blank" rel="noopener">打开文件{{ icon_out() }}</a>{% if item.key %}<button type="button" class="ds-copy" data-copy="{{ item.key|e }}">复制语义键</button>{% endif %}</p>
+          </section>
+          {%- endfor %}{% endfor %}
+        </aside>
+      </div>
     </div>
 
-    <div class="tab-panel" id="print" role="tabpanel" aria-label="印刷规格">
-      <section class="ds-section" id="print-intro">
-        <h2>印刷规格</h2>
-        {%- for paragraph in print.intro %}
-        <p>{{ paragraph }}</p>
-        {%- endfor %}
-        <p class="ds-hint">参数表版本 <code>{{ print.sha256[:12]|e }}</code>，共 {{ print.token_count }} 项基础参数。</p>
-      </section>
-
-      <section class="ds-section" id="print-page">
-        <h2>页面</h2>
-        <div class="ds-print-page">
-          <div class="ds-table-wrap">
-            <table class="ds-table ds-table-wide">
-              <thead><tr><th>项目</th><th>取值</th><th>参数</th></tr></thead>
-              <tbody>
-                {%- for row in print.page %}
-                <tr><td>{{ row.label|e }}</td><td>{{ row.value|e }}</td><td><code>{{ row.key|e }}</code></td></tr>
-                {%- endfor %}
-              </tbody>
-            </table>
+    <div class="tab-panel ds-tab" id="print" role="tabpanel" aria-label="印刷规格">
+      {%- set pr = print %}
+      {%- set dr = pr.drawing %}
+      <header class="ds-tab-head">
+        <div><h2>印刷规格</h2>{% for paragraph in pr.intro %}<p>{{ paragraph }}</p>{% endfor %}</div>
+        <span class="ds-tab-meta">参数表 <b title="data/layout_params.csv 的参数哈希 {{ pr.sha256|e }}">{{ pr.sha256[:8]|e }}</b> · {{ pr.token_count }} 项基础参数</span>
+      </header>
+      <section class="ds-card-block" id="print-page" aria-labelledby="print-page-title">
+        <h3 id="print-page-title">页面<small>成品尺寸、边距与页脚，按比例画</small></h3>
+        <div class="ds-page-card">
+          <figure class="ds-paper-figure">
+            <div class="ds-paper" style="aspect-ratio:{{ dr.ratio|e }}" role="img" aria-label="成品页面 {{ dr.width|e }} × {{ dr.height|e }} mm，按比例画：虚线框是正文区，底部细线是页脚基线，07 是页码">
+              <span class="ds-paper-text" style="top:{{ dr.text.top }};right:{{ dr.text.right }};bottom:{{ dr.text.bottom }};left:{{ dr.text.left }}"></span>
+              <span class="ds-paper-foot" style="top:{{ dr.foot }};right:{{ dr.text.right }};left:{{ dr.text.left }}"></span>
+              <span class="ds-paper-folio" style="top:{{ dr.folio }};right:{{ dr.text.right }}">07</span>
+              <em class="ds-paper-w">{{ dr.width|e }} mm</em>
+              <em class="ds-paper-h">{{ dr.height|e }} mm</em>
+            </div>
+          </figure>
+          <div class="ds-page-figures">
+            {%- for figure in pr.page %}
+            <div class="ds-figure"><span>{{ figure.label|e }}</span><strong>{{ figure.value|e }}</strong><code>{{ figure.param|e }}</code></div>
+            {%- endfor %}
+            {%- if pr.overrides %}
+            <p class="ds-figure-note">{{ pr.overrides }}</p>
+            {%- endif %}
+            <a class="ds-figure-link" href="print/page.html" target="_blank" rel="noopener">打开实际尺寸预览{{ icon_out() }}</a>
           </div>
-          <div class="ds-frame"><iframe class="ds-preview" src="print/page.html" title="印刷页实际尺寸预览" loading="lazy" height="760"></iframe></div>
         </div>
-        <p class="ds-hint">预览画的是一张奇数页的实际尺寸，长度、字号和颜色都取自参数表；颜色是 CMYK 的屏幕近似值，块间距是近似值。真正的页面由 LaTeX 模块和 IDML 排版器生成，它们决定精确的基线与间距。</p>
       </section>
 
-      <section class="ds-section" id="print-type">
-        <h2>字号与行距</h2>
-        <p class="ds-hint">示例按印刷字号渲染，屏幕上的实际大小取决于缩放。字重由 LaTeX 模块（<code>docs/renderers/latex/</code>）和 IDML 段落样式决定，不在参数表里。</p>
+      {%- set more = pr.type|rejectattr('lead')|list|length %}
+      <section class="ds-card-block" id="print-type" aria-labelledby="print-type-title" data-ds-more>
+        <h3 id="print-type-title">字号与行距<small>{{ pr.type|length }} 种样式 · pt；屏幕上的示例只表示样式，不按印刷尺寸</small></h3>
         <div class="ds-table-wrap">
-          <table class="ds-table ds-table-wide">
-            <thead><tr><th>样式</th><th>字号</th><th>行距</th><th>大写</th><th>示例</th><th>参数</th></tr></thead>
+          <table class="ds-ptable">
+            <thead><tr><th scope="col">样式</th><th scope="col">字号</th><th scope="col">行距</th><th scope="col">大写</th><th scope="col">示例</th><th scope="col">参数</th></tr></thead>
             <tbody>
-              {%- for row in print.type %}
-              <tr>
-                <td>{{ row.label|e }}</td><td>{{ row.size|e }}</td><td>{{ (row.leading or '—')|e }}</td>
+              {%- for row in pr.type %}
+              <tr{% if not row.lead %} class="is-more"{% endif %}>
+                <th scope="row">{{ row.label|e }}</th>
+                <td>{{ row.size|e }}</td><td>{{ (row.leading or '—')|e }}</td>
                 <td>{% if row.upper is none %}—{% elif row.upper %}是{% else %}否{% endif %}</td>
-                <td><span class="ds-print-sample" style="font-family:{{ font_family|e }};{{ row.sample_style|e }}">{{ row.sample|e }}</span></td>
+                <td><span class="ds-psample{% if row.upper %} is-upper{% endif %}" style="font-family:{{ font_family|e }}">{{ row.sample|e }}</span></td>
                 <td><code>{{ row.prefix|e }}_*</code></td>
               </tr>
               {%- endfor %}
             </tbody>
           </table>
         </div>
+        {%- if more %}
+        <button type="button" class="ds-show-all" aria-expanded="false">显示全部 {{ pr.type|length }} 种</button>
+        {%- endif %}
       </section>
 
-      <section class="ds-section" id="print-colors">
-        <h2>印刷色</h2>
-        <p class="ds-hint">色块是 CMYK 取值的屏幕近似（未做色彩管理），只用来辨认；网页用色见“颜色”分页。</p>
-        <div class="ds-swatches">
-          {%- for color in print.colors %}
-          <article class="ds-swatch" id="print-color-{{ loop.index }}">
-            <div class="ds-chip" style="background:{{ color.chip|e }}" role="img" aria-label="{{ color.name|e }} {{ color.value|e }}"></div>
-            <div class="ds-swatch-body">
-              <h3>{{ color.name|e }}</h3>
-              <code>{{ color.key|e }}</code>
-              <dl>
-                <div><dt>色板</dt><dd>{{ color.swatch|e }}</dd></div>
-                <div><dt>取值</dt><dd>{{ color.value|e }}</dd></div>
-                {%- if color.screen %}
-                <div><dt>网页对应</dt><dd><code>{{ color.screen|e }}</code></dd></div>
-                {%- endif %}
-              </dl>
-              {%- if color.note %}
-              <p>{{ color.note }}</p>
-              {%- endif %}
-            </div>
-          </article>
+      <section class="ds-card-block" id="print-colors" aria-labelledby="print-colors-title">
+        <h3 id="print-colors-title">印刷色<small>{{ pr.colors|length }} 个色板 · CMYK；色块是屏幕近似（未做色彩管理），只用来辨认</small></h3>
+        <div class="ds-inks">
+          {%- for color in pr.colors %}
+          <div class="ds-ink" id="print-color-{{ loop.index }}">
+            <i style="background:{{ color.chip|e }}" role="img" aria-label="{{ color.name|e }} {{ color.value|e }}"></i>
+            <b>{{ color.name|e }} · {{ color.swatch|e }}</b>
+            <span>{{ color.value|e }} · {% if color.screen %}网页 <code>{{ color.screen|e }}</code>{% else %}网页没有对应色{% endif %}</span>
+            {%- if color.note %}
+            <p>{{ color.note }}</p>
+            {%- endif %}
+          </div>
           {%- endfor %}
         </div>
       </section>
 
-      <section class="ds-section" id="print-geometry">
-        <h2>组件几何</h2>
+      <details class="ds-card-block ds-geometry-fold" id="print-geometry">
+        <summary><b>组件几何</b><span>{{ pr.geometry_count }} 项：{{ pr.geometry|map(attribute='title')|join('、')|e }}</span><em class="ds-fold" aria-hidden="true"></em></summary>
         <div class="ds-geometry">
-          {%- for group in print.geometry %}
+          {%- for group in pr.geometry %}
           <article class="ds-geometry-card">
-            <h3>{{ group.title|e }}</h3>
+            <h4>{{ group.title|e }}</h4>
             <table class="ds-table ds-table-compact">
               <tbody>
                 {%- for row in group.rows %}
@@ -415,7 +483,7 @@
           </article>
           {%- endfor %}
         </div>
-      </section>
+      </details>
     </div>
 
     <footer class="ds-footer">数值和预览在每次构建时由仓库当前的 <code>web_manual.css</code>、共享素材、<code>data/layout_params.csv</code> 和 <code>manual_style.yaml</code> 生成；说明文字维护在 <code>tools/rtd_portal_assets/design_system/</code>。</footer>

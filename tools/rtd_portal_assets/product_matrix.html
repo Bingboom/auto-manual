@@ -34,7 +34,7 @@
     {%- endfor %}
     </tbody>
   </table></div>
-  {%- if info.features or info.pairing %}
+  {%- if info.features or info.pairing or info.guides %}
   <div class="mx-dmore">
     {%- if info.features %}
     <section class="mx-dbox"><h3>功能<small>能力表 · {{ info.features.model|e }}</small></h3>
@@ -47,6 +47,11 @@
       {%- if info.pairing.named %}<div class="mx-fchips">{% for item in info.pairing.named %}{% if item.key %}<a class="mx-pair" href="#{{ item.key|e }}" data-product="{{ item.key|e }}">{{ item.label|e }}</a>{% else %}<span class="mx-pair">{{ item.label|e }}</span>{% endif %}{% endfor %}</div>{% endif %}
       {%- if info.pairing.named_by %}<div class="mx-fchips">{% for item in info.pairing.named_by %}<a class="mx-pair" href="#{{ item.key|e }}" data-product="{{ item.key|e }}">{{ item.name|e }}<b>{{ item.model|e }}</b></a>{% endfor %}</div>
       {%- for item in info.pairing.named_by %}<p>{{ item.name|e }} 的说明书写到「{{ item.label|e }}」。</p>{% endfor %}{% endif %}
+    </section>
+    {%- endif %}
+    {%- if info.guides %}
+    <section class="mx-dbox"><h3>相关指南<small>快速指南与写到它的通用指南</small></h3>
+      <div class="mx-fchips">{% for guide in info.guides %}{% for doc in guide.docs %}<a class="mx-pair" href="{{ pathto(doc.doc) }}" title="{{ doc.title|e }}">{{ guide.label|e }}<b>{{ doc.label|e }}</b></a>{% endfor %}{% endfor %}</div>
     </section>
     {%- endif %}
   </div>
@@ -75,7 +80,7 @@
     <div><h2 id="cat-{{ category.id|e }}-title">{{ category.title|e }}</h2><span>{{ category.count }} 款 · {{ category.rows|length }} 个系列{% if category.tiered %} · 系列 × 容量{% endif %}</span></div>
     <p class="mx-legend">{% for region in category.markets %}{% set market = markets.get(region, {}) %}<span><i>{{ market.get('letter', region)|e }}</i>{{ region|e }}</span>{% endfor %}</p>
   </header>
-  <div class="mx-grid" style="--mx-cols: {{ category.columns|length }}">
+  <div class="mx-grid{% if not category.tiered %} is-flat{% endif %}" style="--mx-cols: {{ category.columns|length }}">
     <div class="mx-row is-head" aria-hidden="true"><div class="mx-series">{{ '系列 \\ 容量' if category.tiered else '系列' }}</div>{% for label in category.columns %}<div class="mx-col">{{ label|e }}</div>{% endfor %}</div>
     {%- for row in category.rows %}
     <div class="mx-row"><div class="mx-series"><b>{{ row.title|e }}</b><span>{{ row.products|length }} 款</span></div>

@@ -176,18 +176,19 @@ class SystemEvolutionTests(unittest.TestCase):
         self.assertNotIn("内容与能力平台", architecture_panel)
         self.assertNotIn("读到内容以后", architecture_panel)
         self.assertNotIn("产品知识 · 阅读与理解", architecture_panel)
-        self.assertEqual(page.count('class="sw-evolution-details"'), 13)
+        # One row per stage (2026-11 design, step 9): its flow, principle and evidence open in place.
+        self.assertEqual(page.count('<details class="sw-stage is-'), 12)
+        self.assertEqual(page.count('class="sw-evolution-details"'), 1)
         self.assertIn('class="sw-crosscutting" id="evolution-engineering"', page)
-        chapters = page.split('<section class="evo-chapter"', 1)[1].split('<aside class="sw-crosscutting"', 1)[0]
+        chapters = page.split('<section class="sw-chapter', 1)[1].split('<aside class="sw-crosscutting"', 1)[0]
         self.assertNotIn('id="evolution-engineering"', chapters)
-        self.assertEqual(page.count('class="evo-chapter"'), len(DATA["chapters"]))
+        self.assertEqual(page.count('<section class="sw-chapter'), len(DATA["chapters"]))
         self.assertEqual(page.count('class="evo-row is-'), 13)
         self.assertEqual(page.count('class="evo-bar'), 8)
         self.assertEqual(page.count('class="evo-plan"'), 4)
         progress_panel = page.split('id="tab-progress"', 1)[1].split('id="tab-corpus"', 1)[0]
         self.assertIn('aria-label="当前工作"', progress_panel)
         self.assertNotIn('class="evo-now"', page)
-        self.assertEqual(page.count('class="sw-timeline-row '), 12)
         self.assertNotIn(payload, page)
         self.assertIn("&lt;img", page)
         self.assertIn("后半圈 · 未来建设方向", page)
@@ -196,7 +197,7 @@ class SystemEvolutionTests(unittest.TestCase):
         context["evolution"] = self.view()
         page = template.render(**context)
         self.assertIn(self.domain["fallback"], page)
-        self.assertNotIn('class="sw-timeline"', page)
+        self.assertNotIn('<section class="sw-chapter', page)
         findings = workspace._evolution_findings(contract, self.root, registry)
         self.assertTrue(findings)
         self.assertTrue(all(f.severity == "error" for f in findings))

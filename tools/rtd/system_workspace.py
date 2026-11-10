@@ -88,6 +88,7 @@ STATUS_LABELS = {
     "blocked": "受阻", "no_data": "无数据", "retired": "已停用",
 }
 MODE_LABELS = {"automated": "自动衔接", "manual": "人工衔接"}
+MODE_SHORT = {"automated": "自动", "manual": "人工"}  # 生产链路 rows; the full label is the title
 LEDGER_LABELS = {"done": "完成", "verifying": "在验", "active": "在做", "planned": "待做", "deferred": "暂缓"}
 EVIDENCE_KINDS = ("pr", "file", "url", "rev", "ack")
 CORPUS_SCHEMA = "hello-docs-tm-corpus/v1"
@@ -302,6 +303,9 @@ def _header_findings(contract: dict[str, Any], out: list[Finding]) -> tuple[set[
     vocabulary = contract.get("vocabulary") or {}
     statuses = set((vocabulary.get("status") or {}))
     modes = set((vocabulary.get("mode") or {}))
+    groups = vocabulary.get("flow_group")
+    if not isinstance(groups, dict) or not groups or not all(str(label or "").strip() for label in groups.values()):
+        _error(out, "vocabulary.flow_group", "must map each group id to its label")
     if not statuses or not statuses <= set(STATUS_ORDER):
         _error(out, "vocabulary.status", f"must be a subset of {sorted(STATUS_ORDER)}")
     if not modes or not modes <= set(MODE_LABELS):
@@ -362,8 +366,6 @@ def _card_findings(contract: dict[str, Any], statuses: set[str], out: list[Findi
         if not items:
             _error(out, cid, "card has no items")
         card_ids[cid] = {str(item.get("id")) for item in items}
-        if not isinstance(card.get("fold", False), bool):
-            _error(out, cid, "fold must be true or false")
         if card.get("status") not in statuses:
             _error(out, cid, f"card status {card.get('status')!r} not in vocabulary")
             continue
@@ -425,9 +427,12 @@ def structural_findings(contract: dict[str, Any], ledger: Ledger | None) -> list
     statuses, modes, repositories = _header_findings(contract, out)
     _entry_findings(contract, statuses, repositories, out)
     card_ids = _card_findings(contract, statuses, out)
+    flow_groups = (contract.get("vocabulary") or {}).get("flow_group")
     for index, link in enumerate(contract.get("flow") or [], 1):
         if link.get("mode") not in modes:
             _error(out, f"flow#{index}", f"mode {link.get('mode')!r} not in vocabulary")
+        if isinstance(flow_groups, dict) and link.get("group") not in flow_groups:
+            _error(out, f"flow#{index}", f"group {link.get('group')!r} not in vocabulary")
     now_next = _now_next_findings(contract, ledger, out)
     corpus = contract.get("corpus")
     if corpus is not None:
@@ -906,6 +911,30 @@ def _status_view(status: str) -> dict[str, str]:
     return {"status": status, "status_label": STATUS_LABELS[status]}
 
 
+def status_counts(entries: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """How many entries have each status, strongest first, with each one's share for a stacked bar."""
+    total = len(entries)
+    counts = [{**_status_view(status), "count": sum(1 for entry in entries if entry["status"] == status)}
+              for status in sorted(STATUS_LABELS, key=lambda s: -STATUS_ORDER[s])]
+    return [{**row, "percent": round(100 * row["count"] / total, 1)} for row in counts if row["count"]]
+
+
+def capability_summary(cards: list[dict[str, Any]]) -> dict[str, Any]:
+    """The capability map's headline (2026-11 design, step 9): items by status, and how many are past review."""
+    entries = [entry for card in cards for entry in card["entries"]]
+    return {"capability_counts": status_counts(entries), "capability_total": len(entries),
+            "capability_stale": sum(1 for entry in entries if entry["stale"])}
+
+
+def flow_summary(flow: list[dict[str, Any]], groups: dict[str, str]) -> dict[str, Any]:
+    """生产链路 (step 9): the links by group in the vocabulary's order (an empty group drops out) and its headline."""
+    grouped = [{"id": group, "label": label, "links": [link for link in flow if link["group"] == group]}
+               for group, label in groups.items()]
+    return {"flow_groups": [group for group in grouped if group["links"]], "flow_counts": status_counts(flow),
+            "flow_modes": {mode: sum(1 for link in flow if link["mode"] == mode) for mode in MODE_LABELS},
+            "flow_stale": sum(1 for link in flow if link["stale"])}
+
+
 def _progress(revs: list[str], ledger: Ledger) -> dict[str, Any]:
     """Done count, bar width, state and tally for a set of ledger rows."""
     counts: dict[str, int] = {}
@@ -1148,13 +1177,14 @@ def build_context(contract: dict[str, Any], *, root: Path, ledger: Ledger | None
             items_by_ref[f"{card['id']}.{item['id']}"] = view
             entries.append(view)
         cards.append({"id": card["id"], "title": card["title"], "en": card.get("en") or "",
-                      "summary": card.get("summary") or "", "entries": entries, "fold": bool(card.get("fold")),
+                      "summary": card.get("summary") or "", "entries": entries, "counts": status_counts(entries),
                       "lanes": [_lane_tag(lane) for lane in lanes if lane.get("card") == card["id"]],
                       **_status_view(card["status"])})
         cards_by_id[card["id"]] = cards[-1]
 
-    flow = [{"source": link["from"], "target": link["to"], "mode": link["mode"],
-             "mode_label": MODE_LABELS[link["mode"]], **entry_view(link)} for link in contract["flow"]]
+    flow = [{"source": link["from"], "target": link["to"], "mode": link["mode"], "group": link["group"],
+             "mode_label": MODE_LABELS[link["mode"]], "mode_short": MODE_SHORT[link["mode"]], **entry_view(link)}
+            for link in contract["flow"]]
 
     gates = _gate_views(contract, ledger, lanes)
 
@@ -1196,7 +1226,9 @@ def build_context(contract: dict[str, Any], *, root: Path, ledger: Ledger | None
         "legend": [{"status": s, "label": STATUS_LABELS[s], "description": status_vocabulary[s]}
                    for s in STATUS_ORDER if s in status_vocabulary and s != "retired"],
         "cards": cards,
+        **capability_summary(cards),
         "flow": flow,
+        **flow_summary(flow, contract["vocabulary"]["flow_group"]),
         "gates": gates,
         "stepper": stepper_view(gates),
         "stale_after_days": review_days,

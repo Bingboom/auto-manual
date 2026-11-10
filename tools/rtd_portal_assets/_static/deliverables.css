@@ -1,51 +1,6 @@
 /* Deliverables page; layered on workspace.css (shell, sidebar) and system-workspace.css (hero, tiles, badges). */
-.dl-toolbar { display: flex; align-items: center; gap: 10px 16px; flex-wrap: wrap; margin-bottom: 12px; }
-.dl-select { display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; color: #5d636e; }
-.dl-select select { font: inherit; font-size: 13px; color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; max-width: 280px; }
-.dl-meta { margin-left: auto; display: flex; flex-direction: column; align-items: flex-end; gap: 3px; font-size:12.5px; color: #8a8f99; }
-.dl-meta span { display: inline-flex; align-items: center; gap: 6px; }
-
 .dl-table-wrap { overflow-x: auto; background: #fff; border: 1px solid var(--line); border-radius: 11px; }
-.dl-table { width: 100%; min-width: 660px; border-collapse: collapse; font-size: 12.5px; }
-.dl-table thead th { text-align: left; font-size:13px; font-weight: 600; color: #858b96; padding: 10px 14px; border-bottom: 1px solid #f0f1f4; white-space: nowrap; }
-.dl-table thead th small { margin-left: 6px; font-size:12.5px; font-weight: 500; color: #a3a8b1; }
-.dl-table td { padding: 9px 14px; border-bottom: 1px solid #f0f1f4; vertical-align: top; }
-.dl-model th { text-align: left; padding: 12px 14px 8px; background: #fafbfc; border-bottom: 1px solid #f0f1f4; }
-.dl-model b { font-size: 13.5px; font-weight: 650; }
-.dl-model span { margin-left: 8px; font-size:13px; font-weight: 500; color: #6c727d; }
-.dl-region { width: 72px; white-space: nowrap; color: #3a3f48; }
-.dl-chips { display: flex; flex-wrap: wrap; gap: 5px; }
-/* Every chip is a link and must look like one: link colour, underline, and ↗ when it opens Feishu. */
-.dl-chip { display: inline-flex; align-items: baseline; gap: 4px; font-size:12.5px; line-height: 1.3; white-space: nowrap;
-  color: #b44a0f; background: #fdf3ec; border-radius: 5px; padding: 3px 7px;
-  text-decoration: underline; text-underline-offset: 2px; text-decoration-color: color-mix(in srgb, currentColor 45%, transparent); }
-.dl-chip b { font-size:13px; font-weight: 700; letter-spacing: .3px; }
-.dl-chip.is-feishu { color: #1f5fae; background: #eef4fb; }
-.dl-chip.is-feishu::after { content: "↗"; font-size:13px; text-decoration: none; }
-.dl-chip:hover { text-decoration-color: currentColor; background: #fbe4d5; }
-.dl-chip.is-feishu:hover { background: #dce9f8; }
-.dl-hint { margin: 0 0 10px; font-size:13px; color: #6c727d; }
-.dl-hint .dl-chip { pointer-events: none; }
-.dl-none { color: #b5b9c1; }
-.dl-empty, .dl-note { margin: 10px 0 0; font-size:12.5px; line-height: 1.7; color: #8a8f99; }
-
-/* Below 980px the sidebar leaves the table less than its 660px, so each region
-   becomes a card with the formats stacked instead of scrolling sideways. */
-@media (max-width: 980px) {
-  .dl-meta { margin-left: 0; align-items: flex-start; width: 100%; }
-  .dl-table { min-width: 0; }
-  .dl-table thead { display: none; }
-  .dl-model, .dl-model th { display: block; }
-  .dl-table tr[data-region] { display: grid; gap: 7px; padding: 10px 14px; border-bottom: 1px solid #f0f1f4; }
-  .dl-table tr[data-region] td { display: flex; gap: 10px; padding: 0; border: 0; width: auto; }
-  .dl-table td[data-label]::before { content: attr(data-label); flex: 0 0 68px; padding-top: 3px; font-size:12.5px; color: #8a8f99; }
-  .dl-region { font-weight: 600; }
-}
-@media (max-width: 660px) {
-  .dl-select { width: 100%; }
-  /* A select is as wide as its longest option unless told it may shrink. */
-  .dl-select select { flex: 1 1 0; width: 0; min-width: 0; max-width: none; }
-}
+.dl-empty { margin: 10px 0 0; font-size:12.5px; line-height: 1.7; color: #8a8f99; }
 
 /* 网页说明书进度 (web_progress.html): Web manuals only. Orange is online, its tint
    a market version short of languages, dashed grey a market with SKUs and no Web manual yet. */
@@ -53,7 +8,7 @@
 .wp-kpis { margin-top: 0; }
 .wp-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr)); gap: 14px; margin: 14px 0 22px; }
 .wp-card { background: #fff; border: 1px solid var(--line); border-radius: 11px; padding: 16px 18px; min-width: 0; display: grid; gap: 8px; align-content: start; }
-.wp-card h3, .wp-matrix h3 { margin: 0; font-size: 15px; font-weight: 600; }
+.wp-card h3 { margin: 0; font-size: 15px; font-weight: 600; }
 .wp-note { margin: 0; font-size: 12.5px; line-height: 1.6; color: #8a8f99; }
 .wp-empty { margin: 8px 0 0; font-size: 13px; color: #8a8f99; }
 .wp-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; margin: 0; padding: 0; list-style: none; font-size: 12.5px; color: #6c727d; }
@@ -81,7 +36,6 @@
 .wp-bar .is-review { background: var(--wp-review); opacity: .55; }
 .wp-bar .is-gap { background: repeating-linear-gradient(135deg, var(--wp-gap) 0 5px, #f3f4f6 5px 9px); }
 .wp-bar-value { color: #6c727d; white-space: nowrap; font-variant-numeric: tabular-nums; }
-.wp-matrix { display: grid; gap: 8px; }
 .wp-check { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; color: #5d636e; }
 .wp-table { width: 100%; min-width: 760px; border-collapse: collapse; font-size: 12.5px; font-variant-numeric: tabular-nums; }
 .wp-table thead th { text-align: center; font-size: 12.5px; font-weight: 600; color: #858b96; padding: 9px 8px; border-bottom: 1px solid #f0f1f4; white-space: nowrap; }
@@ -122,15 +76,7 @@ a.wp-chip.is-extra { margin-left: 4px; font-size: 11.5px; padding: 1px 6px; }
 .wp-links { white-space: nowrap; }
 .wp-links a { margin-right: 10px; color: var(--wp-blue); text-decoration: none; }
 .wp-links a:hover, .wp-links a:focus-visible { text-decoration: underline; text-underline-offset: 2px; }
-.dl-feishu { align-self: center; font-size: 11.5px; color: var(--wp-blue, #1f5fae); text-decoration: none; margin: 0 6px 0 -2px; }
-.dl-feishu:hover, .dl-feishu:focus-visible { text-decoration: underline; }
 .wp-table tr[hidden], .wp-table tbody[hidden] { display: none; }
-.dl-details > summary { cursor: pointer; list-style: none; }
-.dl-details > summary::-webkit-details-marker { display: none; }
-.dl-details > summary .dl-section-title { display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; margin-bottom: 12px; }
-.dl-details > summary .dl-section-title > span { color: #8a8f99; font-size: 13px; }
-.dl-details > summary h2::before { content: "▸"; display: inline-block; width: 1.1em; color: #a3a8b1; }
-.dl-details[open] > summary h2::before { content: "▾"; }
 
 /* 说明书工作台, the 2026-11 design: snapshot chips beside the title, four totals in one card, the 常用入口 strip; in
    进度, ordinal market bars (darker is further along) and one filled trend line in the accent. */
@@ -139,9 +85,9 @@ a.wp-chip.is-extra { margin-left: 4px; font-size: 11.5px; padding: 1px 6px; }
 .deliverables .wb-hero p { margin-top: 8px; font-size: 15px; color: var(--app-text2); }
 .wb-fresh { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
 .wb-fresh-chip { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border-radius: 999px; background: #fff; border: 1px solid var(--app-line); font-size: 12px; color: var(--app-text2); white-space: nowrap; text-decoration: none; }
-.wb-fresh-chip i, .wb-kpi-stale i { width: 8px; height: 8px; border-radius: 50%; background: var(--status-available); }
+.wb-fresh-chip i { width: 8px; height: 8px; border-radius: 50%; background: var(--status-available); }
 .wb-fresh-chip.is-stale { background: #fbf0da; border-color: #fbf0da; color: #7a4a00; }
-.wb-fresh-chip.is-stale i, .wb-kpi-stale i { background: #c27c0e; }
+.wb-fresh-chip.is-stale i { background: #c27c0e; }
 .wb-fresh-link { display: inline-flex; align-items: center; gap: 4px; margin-left: 4px; font-size: 13px; font-weight: 500; color: var(--brand); text-decoration: none; }
 .wb-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1px; margin: 0 0 16px; background: var(--app-line); border: 1px solid var(--app-line); border-radius: 14px; overflow: hidden; box-shadow: 0 1px 2px #1c1a170a; }
 .wb-kpi { display: flex; flex-direction: column; gap: 6px; padding: 18px 20px; background: #fff; color: inherit; text-decoration: none; }
@@ -150,7 +96,6 @@ a.wp-chip.is-extra { margin-left: 4px; font-size: 11.5px; padding: 1px 6px; }
 .wb-kpi > strong { font-size: 30px; line-height: 36px; font-weight: 700; color: var(--app-ink); font-variant-numeric: tabular-nums; }
 .wb-kpi > strong small { margin-left: 4px; font-size: 13px; font-weight: 500; color: var(--app-muted); }
 .wb-kpi > em { font-style: normal; font-size: 12px; line-height: 18px; color: var(--app-muted); }
-.wb-kpi > em.wb-kpi-stale { display: inline-flex; align-items: center; gap: 6px; color: #7a4a00; }
 .wb-entries { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin: 0 0 8px; padding: 12px 16px; background: #fff; border: 1px solid var(--app-line); border-radius: 12px; }
 .wb-entries-label { font-size: 12px; font-weight: 500; letter-spacing: .04em; color: var(--app-muted); }
 .wb-entries-links { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -161,6 +106,8 @@ a.wp-chip.is-extra { margin-left: 4px; font-size: 11.5px; padding: 1px 6px; }
 .wb-entries-note { margin-left: auto; font-size: 12px; color: var(--app-muted); }
 .wb-entries-note a { color: var(--brand); text-decoration: none; }
 .wb-snapshots { margin-top: 28px; }
+.wb-snapshots > summary b { font-weight: 600; color: var(--app-text2); }
+.wb-snapshots > summary span { margin-left: 12px; }
 .wb-snapshot-list { margin: 8px 0; padding-left: 18px; display: grid; gap: 4px; }
 .wb-snapshot-list code { overflow-wrap: anywhere; }
 
@@ -216,4 +163,60 @@ body.app.kb .wp { --wp-full: #a64e24; --wp-partial: #cf7d55; --wp-review: #e3a48
   .wb-entries-sep { display: none; }
   .wb-entries-note { margin-left: 0; }
   .wp-reviews { padding: 16px 16px 8px; }
+}
+
+/* 交付物「覆盖矩阵」, step 8 of the 2026-11 design: a tool strip (category chips, search, 只看还有待办, legend), one
+   line per model (model and 商品简称), and a row's language versions underneath it when it opens. */
+.wp-mhead { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 6px 16px; margin-bottom: 12px; }
+.wp-mhead .dl-section-title p { max-width: 760px; }
+.wp-mmeta { font-size: 13px; color: var(--app-muted); white-space: nowrap; }
+.wp-mmeta b { color: var(--app-ink); font-weight: 600; }
+.wp-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-bottom: 10px; padding: 10px 12px; background: #fff;
+  border: 1px solid var(--line); border-radius: 12px; }
+.wp-chips { display: flex; flex-wrap: wrap; gap: 4px; }
+.wp-cat { display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 11px; border: 0; border-radius: 8px; background: none;
+  font: inherit; font-size: 13px; font-weight: 500; color: var(--app-text2); cursor: pointer; }
+.wp-cat b { font-size: 12px; font-weight: 500; color: #9aa0a2; }
+.wp-cat[aria-pressed="true"] { background: var(--app-ink); color: #fff; }
+.wp-cat[aria-pressed="true"] b { color: #c9cfd1; }
+.wp-find { flex: 1 1 200px; display: flex; }
+.wp-find input { flex: 1; min-width: 0; height: 32px; padding: 0 10px; border: 1px solid transparent; border-radius: 8px; background: var(--app-bg);
+  font: inherit; font-size: 13px; color: var(--app-ink); }
+.wp-find input:focus { outline: none; border-color: var(--brand); background: #fff; }
+.wp-mlegend { display: flex; flex-wrap: wrap; gap: 4px 10px; margin-left: auto; font-size: 12px; color: var(--app-muted); }
+.wp-mlegend > span { display: inline-flex; align-items: center; gap: 5px; }
+.wp-mlegend i { font-style: normal; }
+.wp-mlegend .wp-chip { padding: 0 7px; font-size: 11.5px; }
+.wp-mlegend .wp-chip.is-full { background: #fdf3ec; color: #b44a0f; border: 1px solid #e9b896; }
+.wp-mlegend .wp-chip.is-partial { color: #b44a0f; border: 1px dashed #d98b5c; }
+.wp-mlegend .wp-chip.is-review { background: #eef3fb; color: #2a5ea8; border: 1px solid #b9cdea; }
+.wp-mlegend .wp-chip.is-gap { color: #8a8f99; border: 1px dashed #c4c8cf; }
+.wp-table tbody tr.wp-row { cursor: pointer; }
+.wp-table tbody tr.wp-row:hover > * { background: #fbfcfd; }
+.wp-table tbody tr.wp-row.is-open > * { background: #fbf6f2; }
+.wp-toggle { display: inline-flex; align-items: baseline; gap: 8px; padding: 0; border: 0; background: none; font: inherit; color: inherit;
+  cursor: pointer; text-align: left; white-space: nowrap; }
+.wp-table tbody th .wp-toggle b { display: inline; }
+.wp-table tbody th .wp-toggle span { display: inline; color: #6c727d; font-weight: 500; }
+.wp-toggle::before { content: "▸"; color: #b5b9c1; font-size: 11px; }
+.wp-toggle[aria-expanded="true"]::before { content: "▾"; color: var(--brand); }
+.wp-table tr.wp-detail > td { padding: 0; text-align: left; background: #fbf6f2; }
+.wp-det { display: grid; gap: 10px; padding: 12px 16px 16px 30px; border-left: 3px solid var(--brand); }
+.wp-mk { display: grid; grid-template-columns: 76px minmax(0, 1fr); align-items: start; gap: 10px; }
+.wp-mk > span { padding-top: 4px; font-size: 12.5px; font-weight: 600; color: #474e4e; white-space: nowrap; }
+.wp-mk > p { margin: 3px 0 0; font-size: 12.5px; color: var(--app-muted); }
+.wp-langs { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.wp-lang { display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 9px; border-radius: 999px; background: #fff;
+  border: 1px solid var(--line); color: var(--app-ink); font-size: 12.5px; font-weight: 500; text-decoration: none; white-space: nowrap; }
+.wp-lang small { font-size: 11px; font-weight: 400; color: #9aa0a2; }
+.wp-lang:hover, .wp-lang:focus-visible { border-color: #e9b896; color: var(--brand-strong); }
+.wp-lang.is-review { color: #2a5ea8; border-color: #b9cdea; background: #eef3fb; }
+.wp-fs { margin: 0 6px 0 -2px; font-size: 11.5px; color: var(--wp-blue, #1f5fae); text-decoration: none; }
+.wp-fs:hover, .wp-fs:focus-visible { text-decoration: underline; }
+.wp-more { display: block; margin: 10px auto 0; height: 36px; padding: 0 18px; border: 1px solid var(--line); border-radius: 10px; background: #fff;
+  font: inherit; font-size: 13px; font-weight: 600; color: var(--brand-strong); cursor: pointer; }
+@media (max-width: 720px) {
+  .wp-mlegend { margin-left: 0; }
+  .wp-det { padding-left: 16px; }
+  .wp-mk { grid-template-columns: 1fr; gap: 4px; }
 }

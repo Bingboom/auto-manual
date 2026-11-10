@@ -1,4 +1,6 @@
-/* Progressive enhancement: navigation links and all panels work without JS. */
+/* Progressive enhancement: navigation links and all panels work without JS.
+   With JS (2026-11 design, step 9) no panel is open until a node is chosen: a node opens its panel and
+   closes the others, and choosing the open node again closes it. */
 (() => {
   const nodes = [...document.querySelectorAll('[data-workbench-node]')];
   const panels = nodes.map((node) => document.getElementById(node.getAttribute('aria-controls')));
@@ -11,6 +13,8 @@
       panels[index].hidden = !active;
     });
   }
-  nodes.forEach((node) => node.addEventListener('click', () => select(node)));
-  select(nodes[0]);
+  nodes.forEach((node) => node.addEventListener('click', () => {
+    select(node.getAttribute('aria-pressed') === 'true' ? null : node);
+  }));
+  select(null);
 })();

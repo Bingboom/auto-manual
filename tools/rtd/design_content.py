@@ -40,7 +40,8 @@ def inline(text: str) -> Markup:
     return Markup("".join(parts))
 
 
-SCHEMA_VERSION = 2  # 2: the 概览 tab reads style, foundations, principles, usage and showcase.
+SCHEMA_VERSION = 3  # 2: the 概览 tab reads style, foundations, principles, usage and showcase.
+# 3: colours carry a group (color_groups), asset groups a render note, print an overrides note and lead rows.
 
 
 def load_content(assets: Path) -> dict[str, Any]:

@@ -25,11 +25,30 @@ Since the 2026-11 redesign the page has the 阶段门 stepper above three tabs.
   tally and the 能力与证据 link (its card, or the card of its first item). The
   后置 · 按需 lanes are rows of one card. REV ids stay out of the body text and
   remain in the links.
-- **「能力与架构」** (`#tab-capabilities`): the capability map and production flow,
-  工作入口 (`manual_workbench.html`, moved from 说明书工作台), the system architecture
-  (`#tab-architecture`), language assets (`#tab-corpus`) and skills and engineering
-  scale (`#tab-tooling`), with a row of jump links. 待复核 marks gather here.
-- **「来源与演变」** (`#tab-sources`): 数据来源, then 系统演变 (`#tab-evolution`).
+- **「能力与架构」** (`#tab-capabilities`, step 9 of the 2026-11 redesign), with a row
+  of jump links:
+  - 能力地图: every capability card at one size, three across: its status, lane
+    tag, a bar of its items counted by status (`status_counts`), and one line per
+    item (its `short` label). Each item's note, status, 待复核 mark and evidence open
+    under 各项说明与依据. The header counts all items by status; past-review items
+    are one notice (待复核 N 项), not a mark on every line.
+  - 生产链路: the flow links by `vocabulary.flow_group` (生产, 翻译与评审, 运行与追溯),
+    each a row with its path, status and 自动/人工; its note and evidence open in place.
+  - 工作入口 (`manual_workbench.html`, moved from 说明书工作台): no node's panel
+    is open until a node is chosen, and choosing it again closes it.
+  - The system architecture (`#tab-architecture`), as a section titled 系统架构.
+  - 语言资产 (`#tab-corpus`: 句对, 术语, 句对已批准 and the eight largest languages)
+    beside 工程规模 (`#codebase`).
+  - 技能与钩子 (`#tab-tooling`): first whether every skill is registered and every
+    hook tested, then the skills by lane as names (descriptions on hover), the
+    rest in one row, and the hook table folded.
+- **「来源与演变」** (`#tab-sources`): 数据来源 lists the snapshot domains as rows
+  (authority, snapshot date and limit with 有效 / 待复核 / 不上页面 / 无快照, a short
+  refresh command, used by) apart from the build-time reads (two columns); each
+  opens its references, full command and fallback. Then 系统演变 (`#tab-evolution`):
+  the month chart, one row per stage under its chapter (its flow, principle and
+  evidence open in place), the long-term chapter with a dashed number, and the
+  feedback loop and 支撑全程 side by side.
 
 Status colours follow the 知识库首页: 可用 and 已验证 green, 建设中 blue, 已规划 a
 dashed grey ring. 「系统演变」 owns the historical stages, reasons for change,
@@ -155,8 +174,8 @@ checks read only the already-published same-origin receipt.
   model × region, a 语言版本 (unit 个) one model × region × language; a
   repeated route, version or rebuild counts once, and 份 is never a unit.
   `publication_facts` in `tools/rtd/production_evidence.py` is the single
-  count for 说明书工作台 (its 数据统计 included, whose filters recount
-  distinct values in the browser) and 产品矩阵; this page wraps it for the
+  count for 说明书工作台 (its 数据统计 included, counted at build time) and
+  产品矩阵; this page wraps it for the
   `publications` and `regions` lane metrics, with `editions` = `variants`.
 - The execution ledger named by `now_next.source` supplies REV statuses, the
   gate composition and each lane's progress. The page reads them and never
@@ -228,8 +247,8 @@ A source that cannot be read shows 无数据 for that figure, never zero. The fo
 block carries evidence like any other entry, and it goes stale with
 `verified_on`, so re-confirm it with the operator at each re-check.
 
-Cards and gates outside the focus can set `fold: true`. They then render in a
-collapsed 其他能力 or 其他阶段门 group at the end of their section.
+Gates outside the focus can set `fold: true`; they then show as one 其他阶段门
+line under the stepper. Capability cards no longer fold (step 9): all show.
 
 ### Published version and refresh
 
@@ -245,8 +264,8 @@ success and served page. A webhook returning 200 is only trigger acceptance.
 `tools/rtd/workspace_revision.py` stamps the HTML and
 `_static/system-workspace-revision.json` with the same checkout SHA and UTC build
 time. On RTD the SHA belongs to the Hello-Docs checkout, not auto-manual/main.
-The system page's 「页面版本与更新」 disclosure sits inside 「数据来源」; the page
-header shows only a 页面版本 chip that links there.
+The page header shows the 页面版本 chip with the version check under it (step 9;
+it used to be a 「页面版本与更新」 disclosure inside 「数据来源」).
 The page displays that identity. Its JS probes only the same-origin deployed
 receipt on entry, every minute while visible, and on returning to the tab.
 A different, later-built receipt offers **刷新到新版本**, preserving the URL anchor
@@ -301,10 +320,11 @@ The 技能与钩子 block lists what agents can call and what runs automatically
 It is read from the tree at build time (`tools/rtd/system_tooling.py`), and
 none of it is hand-listed.
 
-- **Skills**: one row per skill directory, merging the Codex copy
+- **Skills**: one name per skill directory, merging the Codex copy
   (`.agents/skills/<name>/SKILL.md`) and the Claude Code copy
-  (`.claude/skills/<name>/SKILL.md`). The row shows the first sentence of the
-  frontmatter `description`; the full text is the tooltip.
+  (`.claude/skills/<name>/SKILL.md`); a Claude copy is tagged Claude. The
+  frontmatter `description` is the tooltip. The block opens with its conclusions
+  (step 9): every skill registered, every hook tested, or how many are not.
   - A Codex copy needs frontmatter `name` equal to its directory.
   - A Claude copy may omit `name`, because Claude Code uses the directory name.
   - Every copy needs a `description`.
@@ -312,8 +332,8 @@ none of it is hand-listed.
   Claude copy must be listed in `.claude/skills/README.md`. Unregistered copies
   show 未登记.
 - **Lanes**: `tooling.skill_lanes` in the contract maps skills to focus lanes,
-  and an empty list shows that the lane has no skill yet. Unmapped skills are
-  listed under 其他技能.
+  one box each; a lane with an empty list is named in the opening line as 暂无对应技能.
+  Unmapped skills are listed under 其他技能.
 - **Hooks**:
   - Claude Code hooks come from `.claude/settings.json`, and git hooks from the
     steps of `.githooks/pre-push`. An `exec` step blocks the push (拦截); the
@@ -328,7 +348,7 @@ and hooks without tests. A lane mapping that names a missing skill is an error.
 
 ### Engineering scale
 
-The 工程规模 block (`#codebase`) follows 技能与钩子 in 「能力与架构」.
+The 工程规模 block (`#codebase`) sits beside 语言资产 in 「能力与架构」, above 技能与钩子 (step 9).
 At build time `tools/rtd/system_tooling.py` lists the checkout with
 `git ls-files` and counts the lines of every tracked `.py`, `.md`, `.rst`,
 `.yaml`/`.yml` and `.csv` file per top-level directory and file type, as an
@@ -338,7 +358,7 @@ for it; a change appears on the next RTD build.
 
 - The block draws the 10 directories with the most lines as server-rendered
   bars split by file type, one fixed colour per type, measured against the
-  largest directory; the totals below the bars cover the whole repository.
+  largest directory; the totals above the bars cover the whole repository.
 - Git history (branches, commits) is not shown: RTD clones shallowly, so it is
   not reliable at build time; `git ls-files` lists every tracked file in a
   shallow clone too.
@@ -361,12 +381,16 @@ records:
 | `stale_after_days` | a snapshot's age limit, or an entry review cycle, after which the page shows 待复核 |
 | `fallback` | what the page shows when the source cannot be read |
 | `used_by` | the page blocks that show the fact |
+| `on_page` | optional, default true; false once no page reads the domain (it stays registered and refreshable, and 数据来源 marks it 不上页面 instead of 待复核) |
 
 - The system page and the deliverables page take snapshot names, freshness
   limits and fallback text from the registry. None of them is written in page
   code or in the status contract any more.
-- The system page lists every domain under 数据来源, with each
-  snapshot's date, and 待复核 once a snapshot is past its limit.
+- The system page lists every domain under 数据来源: the snapshot domains first,
+  each with its date, limit and state (有效, 待复核 once past its limit, 不上页面
+  when `on_page` is false, 无快照 when the file cannot be read), then the
+  build-time reads. The authority shows by its path, or by its text before the
+  environment variables, which open with the full references and the fallback.
 - `check` fails on an unsound registry, an unregistered page domain, or a
   `file:auto-manual:` authority that does not exist. It warns about a stale or
   unreadable snapshot.

@@ -35,10 +35,13 @@ REGISTRIES = {
     "buttons": ("docs/renderers/web/assets/shared/buttons/manifest.json", "asset", "semantic_key"),
 }
 FORMATS = {".svg": "SVG", ".png": "PNG"}
+# A tile shows about two lines of its file name.
+TILE_NAME = 24
 # Tile grounds and the live stylesheet colour each one shows.
 GROUNDS = {"paper": "--hb-paper", "surface": "--hb-surface", "dark": "--hb-brand-dark"}
 
 _REF = re.compile(r"([a-z]+)/([A-Za-z0-9][A-Za-z0-9._-]*)")
+_STEP = re.compile(r"\*\*([^*]+?)。?\*\*")
 _ID = re.compile(r"[a-z][a-z0-9-]*")
 _COLOR = re.compile(r"#(?:[0-9a-fA-F]{6}|[0-9a-fA-F]{3})\b")
 _PNG = b"\x89PNG\r\n\x1a\n"
@@ -169,8 +172,19 @@ def _item(root: Path, member: tuple[str, str | None, str | None], notes: dict, g
     note = notes.get(name) or (key and (notes.get(key) or notes.get(key.split("/", 1)[0])))
     if (item_ground or ground) not in GROUNDS:
         raise DesignSystemError(f"asset {ref}: ground must be one of {sorted(GROUNDS)}")
-    return {"ref": ref, "name": name, "key": key, "note": inline(note) if note else None,
-            "facts": facts, "ground": item_ground or ground, "source": source}
+    return {"ref": ref, "name": name, "short": tile_name(name),
+            "slug": "asset-" + re.sub(r"[^a-z0-9_-]+", "-", ref.lower()), "key": key,
+            "note": inline(note) if note else None, "facts": facts, "ground": item_ground or ground,
+            "source": source}
+
+
+def tile_name(name: str) -> str:
+    """A tile's caption: the file name without symbol_ and the extension, its end kept when long.
+
+    Batch variants share long prefixes (je2000e-eu-batch1465-pt-…) and differ only at the end.
+    """
+    short = name.removeprefix("symbol_").rsplit(".", 1)[0]
+    return short if len(short) <= TILE_NAME else "…" + short[1 - TILE_NAME:]
 
 
 def _note_keys(member: tuple[str, str | None, str | None]) -> set[str]:
@@ -186,9 +200,21 @@ def _group(group: dict, root: Path, notes: dict, matched: set[str]) -> dict:
         matched |= _note_keys(member)
     return {
         "id": group["id"], "title": group["title"], "sources": _source_paths(group),
+        "render": inline(group["render"]) if group.get("render") else None,
         "paragraphs": [inline(text) for text in group.get("paragraphs", [])],
         "items": [_item(root, member, notes, group.get("ground", "paper")) for member in members],
     }
+
+
+def _steps(texts: list[str]) -> list[dict]:
+    """先复用再提取: each rule opens with **标题。**; the page lines the titles up and folds the full text."""
+    steps = []
+    for text in texts:
+        match = _STEP.match(text)
+        if match is None:
+            raise DesignSystemError(f"asset rule needs a **标题。** lead: {text[:24]}")
+        steps.append({"title": match.group(1), "text": inline(text)})
+    return steps
 
 
 def asset_gallery(content: dict, root: Path, used_assets: dict[str, Path]) -> dict[str, Any]:
@@ -213,9 +239,10 @@ def asset_gallery(content: dict, root: Path, used_assets: dict[str, Path]) -> di
             used_assets[item["ref"]] = item.pop("source")
     return {
         "intro": [inline(text) for text in section.get("intro", [])],
-        "steps": [inline(text) for text in section.get("steps", [])],
+        "steps": _steps(section.get("steps", [])),
         "groups": groups, "count": sum(len(group["items"]) for group in groups),
     }
 
 
-__all__ = ["ASSET_ROOTS", "REGISTRIES", "asset_gallery", "asset_source", "check_not_withdrawn", "withdrawn_hashes"]
+__all__ = ["ASSET_ROOTS", "REGISTRIES", "asset_gallery", "asset_source", "check_not_withdrawn", "tile_name",
+           "withdrawn_hashes"]

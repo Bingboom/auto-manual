@@ -26,7 +26,7 @@ from tools.rtd.design_content import CONTENT_DIR, DesignSystemError, inline, loa
 from tools.rtd.design_overview import overview_context
 from tools.rtd.design_print import print_page_document, print_spec
 from tools.rtd.design_system_css import class_names, declared, live_stylesheet_text, parse_css
-from tools.utils.path_utils import repo_root
+from tools.utils.path_utils import Paths, repo_root
 
 PAGE = "workspace/design/index"
 TEMPLATE = "design_system.html"
@@ -34,12 +34,19 @@ OUTPUT_DIR = "workspace/design"
 MOBILE = "@media (max-width: 760px)"
 TYPE_PROPERTIES = ("font-size", "line-height", "font-weight", "text-transform", "letter-spacing")
 # Portal stylesheets (tools/rtd_portal_assets/_static) a preview may add.
-PORTAL_STYLESHEETS = frozenset({"manual-locales.css"})
+PORTAL_STYLESHEETS = frozenset({"manual-reader.css"})
+# A component's 样式定义 link opens its HB-* entry in the manual style contract here.
+ENGINEERING = "https://github.com/Bingboom/auto-manual"
+# The WCAG mark a colour row carries, strongest first: (minimum contrast on paper, id, label).
+CONTRAST_GRADES = ((7.0, "aaa", "AAA"), (4.5, "aa", "AA"), (3.0, "large", "大字 AA"), (0.0, "decor", "装饰"))
 
 _ASSET = re.compile(r'src="asset:([a-z]+)/([A-Za-z0-9][A-Za-z0-9._-]*)"')
 _SLOT = re.compile(r'src="slot:(\d{2,4}):(\d{2,4}):([^"<>&]+)"')
 _HEX = re.compile(r"#(?:[0-9a-fA-F]{8}|[0-9a-fA-F]{6}|[0-9a-fA-F]{3})\b")
 _ID = re.compile(r"[a-z][a-z0-9-]*")
+_FIRST_CLASS = re.compile(r"\.[a-z][a-z0-9-]*")
+_STYLE_ID = re.compile(r"HB-[A-Z0-9-]+")
+_STYLE_LINE = re.compile(r"  (HB-[A-Z0-9-]+):\s*")
 
 
 def _luminance(hex_color: str) -> float:
@@ -59,6 +66,19 @@ def contrast_ratio(color: str, ground: str) -> float | None:
     return round((lighter + 0.05) / (darker + 0.05), 2)
 
 
+def contrast_grade(ratio: float | None) -> dict[str, str]:
+    """AAA, AA, 大字 AA, 装饰 below 3:1, or 半透明 for a translucent colour without a ratio."""
+    if ratio is None:
+        return {"id": "alpha", "label": "半透明"}
+    return next({"id": key, "label": label} for floor, key, label in CONTRAST_GRADES if ratio >= floor)
+
+
+def _color_label(selector: str, prop: str) -> str:
+    """What a colour row names: its custom property, else `property · first class` of its selector."""
+    match = _FIRST_CLASS.search(selector)
+    return prop if prop.startswith("--") or match is None else f"{prop} · {match.group(0)}"
+
+
 def _root_color(rules: list, token: str) -> str:
     match = _HEX.search(declared(rules, ":root", token) or "")
     if match is None:
@@ -68,7 +88,7 @@ def _root_color(rules: list, token: str) -> str:
 
 def _colors(content: dict, rules: list, paper: str) -> list[dict]:
     colors = []
-    for entry in content["colors"]:
+    for index, entry in enumerate(content["colors"], start=1):
         if "token" in entry:
             selector, prop = ":root", entry["token"]
         else:
@@ -77,12 +97,33 @@ def _colors(content: dict, rules: list, paper: str) -> list[dict]:
         match = _HEX.search(raw or "")
         if match is None:
             raise DesignSystemError(f"colour {entry['name']}: {selector} no longer declares {prop}")
+        if entry.get("group") not in content["color_groups"]:
+            raise DesignSystemError(f"colour {entry['name']}: group must be one of {sorted(content['color_groups'])}")
         value = match.group(0).lower()
+        contrast = contrast_ratio(value, paper)
+        # The paper is what every ratio is measured against, not a colour on it.
+        grade = {"id": "ground", "label": "底色"} if value == paper else contrast_grade(contrast)
         colors.append({
             "name": entry["name"], "key": entry.get("key"), "token": prop, "selector": selector, "declared": raw,
-            "value": value, "contrast": contrast_ratio(value, paper), "note": inline(entry["note"]),
+            "value": value, "contrast": contrast, "grade": grade, "note": inline(entry["note"]),
+            "group": entry["group"], "index": index, "label": _color_label(selector, prop),
         })
     return colors
+
+
+def color_groups(content: dict, colors: list[dict], print_colors: list[dict]) -> list[dict]:
+    """The 颜色 tables in content order; each colour lists the print swatches whose screen colour it is."""
+    inks: dict[str, list[dict]] = {}
+    for ink in print_colors:
+        if ink["screen"]:
+            inks.setdefault(ink["screen"], []).append(ink)
+    groups = []
+    for key, title in content["color_groups"].items():
+        members = [{**color, "inks": inks.get(color["token"], [])} for color in colors if color["group"] == key]
+        if not members:
+            raise DesignSystemError(f"colour group {key} lists no colour")
+        groups.append({"id": key, "title": title, "colors": members})
+    return groups
 
 
 def _type_styles(content: dict, rules: list) -> list[dict]:
@@ -151,9 +192,12 @@ def _components(content: dict, assets: Path, root: Path, styled: set[str], selec
         if unknown:
             raise DesignSystemError(f"component {key}: unknown preview stylesheets {sorted(unknown)}")
         source = assets / CONTENT_DIR / "previews" / f"{key}.html"
-        markup = _resolve_markup(source.read_text(encoding="utf-8"), root, used_assets, slots)
+        refs: dict[str, Path] = {}
+        markup = _resolve_markup(source.read_text(encoding="utf-8"), root, refs, slots)
+        used_assets.update(refs)
         groups[entry["group"]]["items"].append({
-            "id": key, "title": entry["title"], "style_id": entry["style_id"],
+            "id": key, "group": entry["group"], "title": entry["title"], "style_id": entry["style_id"],
+            "refs": sorted(refs),
             "height": int(entry["height"]), "stage": entry.get("stage", "stage"),
             "stylesheets": list(entry.get("stylesheets", [])), "markup": markup,
             "preview": f"previews/{key}.html",
@@ -165,13 +209,43 @@ def _components(content: dict, assets: Path, root: Path, styled: set[str], selec
     return [group for group in groups.values() if group["items"]]
 
 
+def _link_styles(groups: list[dict], root: Path) -> None:
+    """Point each component's 样式定义 link at its first HB-* ID's entry in the manual style contract.
+
+    A component named by a role (页面容器, 来源状态表) has no link; an HB-* ID the contract
+    no longer defines is drift.
+    """
+    contract = Paths(root=root).manual_style_contract
+    lines: dict[str, int] = {}
+    for number, line in enumerate(contract.read_text(encoding="utf-8").splitlines(), start=1):
+        match = _STYLE_LINE.fullmatch(line)
+        if match:
+            lines.setdefault(match.group(1), number)
+    page = f"{ENGINEERING}/blob/main/{contract.relative_to(root).as_posix()}"
+    for item in (item for group in groups for item in group["items"]):
+        match = _STYLE_ID.match(item["style_id"])
+        if match and match.group(0) not in lines:
+            raise DesignSystemError(f"component {item['id']}: {match.group(0)} is not in the manual style contract")
+        item["style_href"] = f"{page}#L{lines[match.group(0)]}" if match else None
+
+
+def _mark_uses(library: dict, groups: list[dict]) -> None:
+    """Give each asset tile the components whose previews show it (用在)."""
+    users: dict[str, list[str]] = {}
+    for item in (item for group in groups for item in group["items"]):
+        for ref in item["refs"]:
+            users.setdefault(ref, []).append(item["title"])
+    for asset in (asset for group in library["groups"] for asset in group["items"]):
+        asset["used_in"] = users.get(asset["ref"], [])
+
+
 def design_system_context(assets: Path) -> dict[str, Any]:
     """Build the page context from committed notes and the live repository files."""
     content = load_content(assets)
     root = repo_root()
     css = live_stylesheet_text()
     rules = parse_css(css)
-    portal_rules = parse_css((assets / "_static" / "manual-locales.css").read_text(encoding="utf-8"))
+    portal_rules = parse_css((assets / "_static" / "manual-reader.css").read_text(encoding="utf-8"))
     styled = class_names(rules) | class_names(portal_rules)
     selectors = {selector for rule in rules + portal_rules for selector in rule.selectors}
     grounds = {name: _root_color(rules, token) for name, token in GROUNDS.items()}
@@ -179,20 +253,23 @@ def design_system_context(assets: Path) -> dict[str, Any]:
     used_assets: dict[str, Path] = {}
     slots: dict[str, str] = {}
     groups = _components(content, assets, root, styled, selectors, used_assets, slots)
+    _link_styles(groups, root)
     library = asset_gallery(content, root, used_assets)
+    _mark_uses(library, groups)
     check_not_withdrawn(used_assets, withdrawn_hashes(root))
     colors = _colors(content, rules, paper)
     type_styles = _type_styles(content, rules)
     font_family = declared(rules, ":root", "--hb-font-family") or ""
     screen_tokens = {prop for rule in rules if ":root" in rule.selectors for prop in rule.declarations}
+    printed = print_spec(content, assets, root, font_family=font_family, screen_tokens=screen_tokens)
     overview = overview_context(content, colors=colors, groups=groups, library=library, root=root,
                                 font_family=font_family)
     return {
         "lead": content["lead"], "overview": overview,
-        "colors": colors, "type_styles": type_styles, "component_groups": groups, "paper": paper, "grounds": grounds,
+        "colors": colors, "color_groups": color_groups(content, colors, printed["colors"]),
+        "type_styles": type_styles, "component_groups": groups, "paper": paper, "grounds": grounds,
         "component_count": sum(len(group["items"]) for group in groups),
-        "font_family": font_family, "asset_library": library,
-        "print": print_spec(content, assets, root, font_family=font_family, screen_tokens=screen_tokens),
+        "font_family": font_family, "asset_library": library, "print": printed,
         "stylesheet": {"sha256": hashlib.sha256(css.encode("utf-8")).hexdigest(), "text": css},
         "assets": used_assets, "slots": slots,
     }
@@ -259,6 +336,7 @@ def write_design_system(output_root: Path, assets: Path, context: dict[str, Any]
 
 
 __all__ = [
-    "DesignSystemError", "OUTPUT_DIR", "PAGE", "TEMPLATE", "contrast_ratio", "design_page_context",
-    "design_system_context", "inline", "preview_document", "template_context", "write_design_system",
+    "DesignSystemError", "OUTPUT_DIR", "PAGE", "TEMPLATE", "color_groups", "contrast_grade", "contrast_ratio",
+    "design_page_context", "design_system_context", "inline", "preview_document", "template_context",
+    "write_design_system",
 ]

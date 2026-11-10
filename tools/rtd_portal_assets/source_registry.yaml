@@ -16,6 +16,8 @@
 #   stale_after_days snapshot age, or review cycle, after which the page shows 待复核
 #   fallback         what the page shows when the source cannot be read
 #   used_by          the page blocks that show this fact
+#   on_page          false when no page reads the domain any more; it stays registered and
+#                    refreshable, and 数据来源 marks it 不上页面 (default true)
 schema: hello-docs-source-registry/v1
 
 domains:
@@ -24,7 +26,7 @@ domains:
     authority: "file:hello-docs:docs/publish/publish_manifest.json"
     read: build
     fallback: 发布清单当前不可读
-    used_by: 说明书工作台的网页手册列与发布规模、说明书工作台·交付物·数据统计、产品矩阵
+    used_by: 说明书工作台的发布规模、覆盖矩阵与语言版本、说明书工作台·交付物·数据统计、产品矩阵、搜索说明书正文
 
   - id: ledger
     label: 执行进度
@@ -51,7 +53,8 @@ domains:
     refresh: python tools/workspace_refresh.py refresh deliverables
     stale_after_days: 3
     fallback: 飞书快照当前不可读
-    used_by: 说明书工作台的印刷交付包、Word 云文档两列
+    used_by: 自 2026-11-09 起不上页面（工作台只统计网页说明书）；仍可刷新，是否停用由操作者决定
+    on_page: false
 
   - id: web_progress
     label: 网页说明书进度
@@ -68,13 +71,13 @@ domains:
 
   - id: product_catalog
     label: 产品分类
-    authority: 飞书发布文档管理「网页文档」表的型号、商品简称、产品类别、产品系列（$FEISHU_PUBLISHED_DOCS_BASE_TOKEN、$FEISHU_PUBLISHED_DOCS_WEB_TABLE_ID）
+    authority: 飞书发布文档管理「项目号」表的产品类别、产品系列（选项顺序），「网页文档」表的型号、商品简称、按项目号查出的类别与系列、文档类型与适用产品（$FEISHU_PUBLISHED_DOCS_BASE_TOKEN、$FEISHU_PUBLISHED_DOCS_WEB_TABLE_ID）
     read: snapshot
     snapshot: product_catalog.json
     refresh: python -m tools.rtd.product_catalog refresh
     stale_after_days: 30
     fallback: 说明书资料库按产品类型分组，产品矩阵不显示
-    used_by: 说明书资料库的类别与系列、产品矩阵
+    used_by: 说明书资料库的类别、系列与通用指南，产品矩阵，搜索说明书正文的类别筛选
 
   - id: skeletons
     label: 骨架覆盖
@@ -100,7 +103,7 @@ domains:
     read: build
     stale_after_days: 30
     fallback: 待复核
-    used_by: 能力地图、生产流程与连接
+    used_by: 能力地图、生产链路
 
   - id: focus
     label: 当前重点

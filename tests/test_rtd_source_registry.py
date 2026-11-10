@@ -58,6 +58,7 @@ class RegistryRulesTests(unittest.TestCase):
             "only snapshot domains name": lambda d: domain_of(d, "ledger").update(snapshot="x.json"),
             "authority must be text": lambda d: domain_of(d, "tooling").update(authority=["", "file:auto-manual:x"]),
             "not registered": lambda d: d.update(domains=[x for x in d["domains"] if x["id"] != "skeletons"]),
+            "on_page must be true or false": lambda d: domain_of(d, "corpus").update(on_page="no"),
         }
         for fragment, mutate in cases.items():
             with self.subTest(fragment):
@@ -106,6 +107,21 @@ class SourcesViewTests(unittest.TestCase):
         self.assertEqual(rows["focus"]["sources"][0], {"label": "操作者决定", "href": "", "title": "操作者决定"})
         self.assertEqual([s["label"] for s in rows["tooling"]["sources"]],
                          [".agents/skills", ".claude/skills", ".claude/settings.json", ".githooks/pre-push"])
+
+    def test_rows_carry_what_the_sources_list_shows(self):
+        # 来源与演变 (2026-11 design, step 9): short authority names, a short command, and each snapshot's state.
+        rows = self.rows()
+        corpus, catalog, deliverables = rows["corpus"], rows["product_catalog"], rows["deliverables_feishu"]
+        self.assertEqual((corpus["read"], corpus["short"], corpus["command"], corpus["exported"], corpus["limit"]),
+                         ("snapshot", ["飞书翻译记忆库"], "refresh corpus", "2026-09-25", 7))
+        self.assertEqual(catalog["command"], "product_catalog refresh")
+        self.assertEqual(rows["publications"]["short"], ["docs/publish/publish_manifest.json"])
+        self.assertEqual((rows["publications"]["state"], rows["publications"]["command"]), ("", ""))
+        self.assertEqual((corpus["state"], deliverables["state"], deliverables["on_page"]), ("有效", "不上页面", False))
+        old = self.rows(today=TODAY + dt.timedelta(days=46))
+        self.assertEqual((old["corpus"]["state"], old["deliverables_feishu"]["state"]), ("待复核", "不上页面"))
+        (self.assets / "system_workspace_corpus.json").unlink()
+        self.assertEqual(self.rows()["corpus"]["state"], "无快照")
 
     def test_old_or_unreadable_snapshots(self):
         old = self.rows(today=TODAY + dt.timedelta(days=46))

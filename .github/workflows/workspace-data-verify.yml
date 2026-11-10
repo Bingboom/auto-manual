@@ -21,7 +21,7 @@ jobs:
   verify:
     if: ${{ github.repository == 'Bingboom/Hello-Docs' && github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 35
     env:
       GH_TOKEN: ${{ github.token }}
     steps:
@@ -40,7 +40,7 @@ jobs:
           # Optional: Read the Docs for Business answers its builds API only with a token.
           # Unset, the receipt check alone decides (see tools/workspace_refresh_verify.py).
           READTHEDOCS_API_TOKEN: ${{ secrets.READTHEDOCS_API_TOKEN }}
-        run: python -m tools.workspace_refresh_verify --revision "$(git rev-parse HEAD)" --attempts 20
+        run: python -m tools.workspace_refresh_verify --revision "$(git rev-parse HEAD)" --attempts 50
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:

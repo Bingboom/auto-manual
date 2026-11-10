@@ -82,7 +82,7 @@ class RtdPageMetadataTests(unittest.TestCase):
             self.assertIn('<meta name="description"', page)
             self.assertIn(f'<link rel="canonical" href="{_BASE}/JE-TEST/EU/fr/md/manual.html" />', page)
             self.assertIn(f'<link rel="alternate" hreflang="fr" href="{_BASE}/JE-TEST/EU/fr/md/manual.html" />', page)
-            self.assertIn('<select id="manual-locale-select"><option value="manual.html" selected>fr-FR</option></select>', page)
+            self.assertIn('<select id="manual-locale-select" data-manual-locale><option value="manual.html" selected>fr-FR</option></select>', page)
             self.assertNotIn("Not yet published", page)
             index = (output / "index.html").read_text(encoding="utf-8")
             self.assertIn(f'<link rel="canonical" href="{_BASE}/" />', index)

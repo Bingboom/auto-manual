@@ -56,10 +56,10 @@ its market list from the same settings, and CN/JP display their own market notes
 
 ## Page layout
 
-Every portal page (manual library root, 知识库首页, 产品知识, 市场与政策, 系统建设, 说明书工作台, 设计规范, 产品矩阵)
-shares one site shell from `tools/rtd_portal_assets/_site_shell.html` and
+Every portal page (manual library root, 搜索说明书正文, 知识库首页, 产品知识, 市场与政策, 系统建设, 说明书工作台, 设计规范,
+产品矩阵) shares one site shell from `tools/rtd_portal_assets/_site_shell.html` and
 `_static/site-shell.css`. In the manuals-only public role (`RTD_SITE_ROLE=manuals`)
-the manual library root passes `internal=false` to both shell macros: its sidebar
+the manual library root and the search page pass `internal=false` to both shell macros: the sidebar
 contains only 说明书资料库 and 搜索说明书正文, and its top bar keeps the breadcrumb and
 region selector, with no internal knowledge links or 知识库 / 说明书资料库 switch.
 In the combined (private) role the root gets the full internal shell, so a reader
@@ -75,7 +75,7 @@ Optional entries follow the same rules as before: 系统建设, 设计规范 and
 产品矩阵 only when their context builds (each computed once per build and shared
 with the sidebar). Page stylesheets style only what
 sits inside `.app-content`; the brand accent is the shared `--brand` orange.
-The Furo search page and manual pages keep their theme.
+Manual pages keep their Furo theme.
 
 The 系统建设 and 说明书工作台 pages share the page tabs (`.page-tabs` /
 `.tab-panel`, wired by `site_script()`) and, since the 2026-11 redesign, the
@@ -114,8 +114,8 @@ Inside the shell the root page has these bounded zones on one container width
 
 1. **Search hero** (light grey band): title and the cross-manual search box.
    People who already own a product search the model here.
-2. **Toolbar** (sticky below the top bar): one chip per 产品类别 (便携电源 /
-   家庭备电 / 扩容电池 / 太阳能板 / 配件) with its icon and the count of
+2. **Toolbar** (sticky below the top bar): one chip per 产品类别 (便携储能 /
+   家庭备电 / 加电包 / 太阳能板 / 配件, then 通用指南) with its icon and the count of
    manuals in the selected region, linking to the category's section; a
    category with none there turns grey. The language filter sits on the right.
 3. **Catalog**: region heading and count, then one section per 产品类别 (icon,
@@ -130,15 +130,20 @@ Inside the shell the root page has these bounded zones on one container width
    linking to their cards on 知识库首页. See [网页说明书的定位与价值](web-manual-value.md).
 6. **Footer** (light grey band), which also holds the Read the Docs ad placement.
 
-Categories and series are the 网页文档 table's 产品类别 and 产品系列 columns
-(2026-11-06), read from the committed `product_catalog` snapshot
+Categories and series are the 产品类别 and 产品系列 of each model's 项目号 row
+(2026-11-09; before that, the 网页文档 table's own columns), read from the committed `product_catalog` snapshot
 (`tools/rtd_portal_assets/product_catalog.json`, written read-only by
 `python -m tools.rtd.product_catalog refresh`; see
 [产品分类 snapshot](knowledge-pages.md#产品分类-snapshot)); the build never
 infers them, and both keep the table's option order. `settings.json` →
 `catalog_categories` gives each category its anchor id and icon (a category it
 does not name gets `category-<n>` and a plain icon); `tools/rtd/portal_navigation.py`
-rejects a non-lower-case, duplicate or `other` id. Cards inside a series sort by
+rejects a non-lower-case, duplicate, `guide` or `other` id. The snapshot's 通用指南
+(a guide that belongs to no one product, such as the JP solar connection guide)
+follow the categories in a 通用指南 group (`#cat-guide`, a book icon), and a card
+whose model a guide of the same market lists in 适用产品 adds a line
+「相关指南：<guide>」 linking to it. A 快速指南 (a product's separate quick guide)
+has no card; its product's card links it as 「快速指南」. Cards inside a series sort by
 the number in the model code (JE-100C before JE-1000F), and search also matches a
 card's series and category. A published model the snapshot does not list appears
 under 「其他说明书」 with a Sphinx warning (that group and its chip leave a region where it has no manual); add its 网页文档 row and refresh. Without
@@ -185,9 +190,93 @@ sections and can be expanded. The operator accepted the local preview for deploy
 Deployment uses the existing engineering mirror and RTD build; manual source
 publication, online tables and OSS uploads are outside this change.
 
-The Furo `/search.html` route also has a server-rendered landing form. A bare
-visit therefore shows an actionable query field instead of an empty content
-panel; submitting it uses the existing `q` parameter and Sphinx search index.
+`/search.html` used Sphinx's own search on the Furo page until 2026-11-09; it now searches this index too
+(see [搜索说明书正文](#搜索说明书正文-2026-11-09)).
+
+## 搜索说明书正文 (2026-11-09)
+
+`/search.html` (`tools/rtd_portal_assets/search.html`, `_static/manual-search.js` and `.css`) is a portal page
+in the site shell, with 搜索说明书正文 current in the sidebar. It searches `portal-search-index.js`, the section index
+above, in the browser; Sphinx still writes `searchindex.js`, which nothing reads now.
+
+- Matching: every query token must match the product words (model, 商品简称, product name), the section title or
+  its text. A token that starts with a letter or digit matches whole words (`UPS` finds `UPS機能`, not `upside`);
+  when no section has the whole word, it matches word beginnings (`charg`). Chinese and Japanese match as written.
+- Ranking: a match in the product words counts 100, in the title 20, and each text occurrence 1 (up to 5).
+- Results group by product, then by market (a manual is a product in one region), each manual showing one edition:
+  English when it has one, otherwise its first language in the `language_labels` order. Other languages that also
+  match are listed with their section counts and link to their best section. Languages show as
+  `language_display_codes` (en-US, ja-JP …), the same codes as the library's language dialog.
+- Filters: region (the unique `regions` bindings, so UK reads EU), the library's categories (the 产品分类 snapshot
+  via `library_view`, so the three pages group alike) and language. Each count is the manuals the query finds under
+  the other two filters. Query and filters live in the URL (`?q=&region=&cat=&lang=`); manual pages' Furo search
+  boxes submit `q` here.
+- Before a query: the example queries in the template, each with the manuals it finds now (one that finds nothing
+  is hidden), and the index's coverage counted in the browser. When the filters leave nothing, the page says where
+  the matches are, offers 清除筛选 and, for a single-language region, suggests that language's terms.
+- `tools/rtd/portal_search.py` `search_page_context` gives the page its filters; the config lists languages as
+  `[code, display]` pairs because the template's `tojson` sorts mapping keys and the order picks the edition.
+- Tests: `tests/test_rtd_search_page.py`, `tests/manual_search_ui.test.mjs` and the real Sphinx builds in
+  `tests/test_rtd_portal.py` (both site roles).
+
+## Reading frame (2026-11)
+
+A verified single-language manual page (`language_scope: single` in the
+publication catalog) reads in its own frame,
+[`manual_reader.html`](../../../tools/rtd_portal_assets/manual_reader.html). The
+frame's context comes from
+[`tools/rtd/manual_reader.py`](../../../tools/rtd/manual_reader.py), and
+`decorate_manual` in `tools/rtd/portal.py` assembles it. The portal's
+`page.html` includes the frame instead of Furo's layout for these pages only;
+legacy pages keep Furo's output byte for byte. Both site roles build it, so the
+public manuals project shows it too.
+
+- **Top bar** (sticky): back to the manual library, then the product name,
+  model, market, language and version date. The date comes from a
+  `git-YYYYMMDD-…` version; the footer gives the full version. The search link
+  and the language select sit on the right. Below 760px the bar keeps the back
+  arrow, the product name on one line and the contents button, and the version
+  and a second copy of the select move to a row under it. `manual-reader.js`
+  sets `--mr-top` to the bar's measured height, since a long name can wrap it.
+- **Chapter list**: the page's top-level sections and their subsections, read
+  from the rendered body (`chapters` in `tools/rtd/manual_reader.py`), so every
+  entry links to an id the page has. Raw-HTML manuals that mark chapters with
+  headings carrying their own id (`<h2 id>` inside one section) list those
+  headings too; headings outside every section, such as the product suggestion
+  form, are not listed. A name leaves out the permalink and the model label
+  (`.hb-heading-model`, `data-source-layout="model"`). A manual that puts every
+  chapter under one title lists that title's entries; fewer than two chapters
+  show no list. The titles keep the manual's language and direction.
+  - `manual-reader.js` marks the section whose heading has passed under the top
+    bar, opens that chapter's sections and keeps the entry in view. At the
+    page's end the last section in view counts.
+  - From 1,100px the list sits left of the paper. Narrower, the top bar's
+    contents button opens it as a sheet, closed by the scrim, ×, Escape or a
+    chapter.
+- **Jumps**: headings leave room for the top bar with `scroll-margin-top`,
+  outranking web_manual.css's own offset for Furo's mobile header. Images above
+  a section can load after a jump and push it down. For 2.5 seconds after a
+  jump or a deep link, the script puts the section back as images load, unless
+  the reader scrolls first.
+- **Only the manual is main**: the body stays `article#furo-main-content`, where
+  web_manual.css draws the paper, and is the page's only `role="main"` region.
+  The knowledge and search extractors therefore read the manual text alone.
+  The feedback card and the footer sit outside it, so the card's text no longer
+  reaches the search index.
+- **Removed**: Furo's sidebar, page-source button, theme switch (the page stays
+  light) and footer.
+- **Words**: the frame speaks the manual's language. Its words (top bar,
+  contents, feedback card, footer) come from
+  [`manual_reader_text.yaml`](../../../tools/rtd_portal_assets/manual_reader_text.yaml),
+  one set per language, each with every English key; `{n}` and `{address}`
+  are checked on load. A language without a set gets English, and the frame
+  then carries `lang="en"`. Chinese, Japanese and Korean frames take their own
+  font stacks. The feedback card links a mailto channel with the set's email
+  phrase and the configured address; an HTTPS channel keeps its configured
+  label. The card's copy messages ride on its `data-copied` and
+  `data-copy-failed` attributes. Chapter titles are the manual's own. The
+  language select keeps its English `Language` label and its codes; see
+  [language navigation](../rtd_locale_navigation.md).
 
 ## Product short-name search (2026-11-02)
 

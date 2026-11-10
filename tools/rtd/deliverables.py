@@ -2,10 +2,11 @@
 """Build-time Deliverables page: one row per model and region, a link per format; no network.
 
 ``/workspace/deliverables/`` reads what the pipeline has delivered, grouped by
-model, one row per region and one column per format. Since 2026-10-19 its 交付物
-tab shows Web manuals only (operator: 「这个交付物 我现在 只想看 网页文档」):
-网页说明书进度 (``tools/rtd/web_progress.py``) and then every language version.
-The Feishu formats below still feed the page summary and 生产与资产:
+model, one row per region. Since 2026-10-19 its 交付物 tab shows Web manuals only
+(operator: 「这个交付物 我现在 只想看 网页文档」), and since 2026-11-09 the whole
+workbench counts Web manuals only (「飞书云文档的交付 不纳入统计了 现在只统计
+网页文档的」): 网页说明书进度 (``tools/rtd/web_progress.py``), its coverage matrix
+with each model's language versions, and the build-time statistics.
 
 - 网页 (Web): every target in ``docs/publish/publish_manifest.json``, linked to
   its page on this site. It is read at build time, so it is always current.
@@ -15,16 +16,18 @@ The Feishu formats below still feed the page summary and 生产与资产:
   (文档构建表). RTD never reads Feishu, so ``export`` writes these links into the
   committed snapshot registered as the ``deliverables_feishu`` domain of
   ``source_registry.yaml``, which also fixes its freshness limit and fallback
-  text; it is refreshed through a PR like the corpus snapshot. The links open
-  only for signed-in Feishu users; the operator chose to list them on this
-  page anyway (2026-09-25, while the site was public). The site has been
-  private since 2026-10-13 (Read the Docs for Business), but the operator can
-  make it public at any time, so treat these addresses as published.
+  text; it is refreshed through a PR like the corpus snapshot. No page reads
+  it since 2026-11-09; it stays refreshable until the operator retires it.
+  The links open only for signed-in Feishu users; the operator chose to list
+  them (2026-09-25, while the site was public). The site has been private
+  since 2026-10-13 (Read the Docs for Business), but the operator can make it
+  public at any time, so treat these addresses as published.
 
 Missing inputs never break the build: without a publish manifest the web
-column is empty, and an unreadable or unsound snapshot empties the Feishu
-columns with a Sphinx warning. A snapshot older than the domain's
-``stale_after_days`` renders as 待复核.
+column is empty. ``deliverables_view`` still accepts the snapshot (the
+``check`` command and the tests use it): an unreadable or unsound one empties
+the Feishu columns, and one older than the domain's ``stale_after_days`` is
+reported as stale.
 """
 from __future__ import annotations
 
@@ -334,7 +337,7 @@ def deliverables_view(targets: list[dict[str, Any]] | None, snapshot: dict[str, 
             title = f"{label} · {lang} · 版本 {item['version'] or '未标注'}"
             if item.get("date"):
                 title += f" · 构建于 {item['date']}"
-            shown.append({**item, "label": lang, "title": title})
+            shown.append({**item, "label": lang, "title": title, "short": short_version(item["version"])})
         return shown
 
     models: dict[str, dict[str, Any]] = {}
@@ -385,9 +388,22 @@ def asset_versions(assets: Path) -> dict[str, str]:
             for path in sorted(folder.iterdir()) if path.suffix in {".css", ".js"} and path.is_file()}
 
 
+def short_version(version: str) -> str:
+    """A Git package version such as ``git-20261027-36f9aa96-battery-symbol`` reads as its date, ``1027``."""
+    match = re.match(r"git-\d{4}(\d{4})-", version)
+    return match.group(1) if match else version
+
+
 def deliverables_page_context(app, assets: Path, names: dict[tuple[str, str], str],
-                              language_order: Sequence[str]) -> dict[str, Any]:
-    """Context for DELIVERABLES_PAGE; the page always renders, missing inputs show as 无数据."""
+                              language_order: Sequence[str], *, shorts: dict[str, str] | None = None,
+                              groups: list[tuple[str, set[str]]] | None = None, other: str = "其他说明书",
+                              codes: dict[str, str] | None = None) -> dict[str, Any]:
+    """Context for DELIVERABLES_PAGE; the page always renders, missing inputs show as 无数据.
+
+    The workbench counts Web manuals only (2026-11-09): the Feishu cloud-document deliveries (Word, print) are not
+    read. ``shorts`` maps a model to its 商品简称, ``groups`` lists the 说明书资料库's categories (title and models)
+    the coverage matrix groups by, and ``codes`` the language display codes (en-US …).
+    """
     from sphinx.util import logging as sphinx_logging
 
     logger = sphinx_logging.getLogger(__name__)
@@ -399,37 +415,32 @@ def deliverables_page_context(app, assets: Path, names: dict[tuple[str, str], st
         except ValueError:
             logger.warning("rtd_system_workspace_date %r is not an ISO date; using %s", configured, today)
     targets, _ = read_publications(Path(app.srcdir).parent / PathSegments.PUBLISH_MANIFEST_JSON)
-    registry, problems = load_registry(assets)
-    domain = registry[FEISHU_DOMAIN] if registry else None
-    snapshot = None
-    if domain is not None:
-        snapshot, problems = load_snapshot(snapshot_path(assets, str(domain["snapshot"])))
-    if problems:
-        logger.warning("Deliverables page shows no Feishu links: %s", "; ".join(problems[:3]))
+    registry, _problems = load_registry(assets)
     labels = region_labels(assets)
-    view = deliverables_view(targets, snapshot, names=names,
-                             labels=labels, language_order=language_order, today=today,
-                             feishu_domain=domain)
-    # The 交付物 tab shows Web manuals only: 网页说明书进度 above, then each language version.
-    from tools.rtd.web_progress import progress_page_context, web_only
+    view = deliverables_view(targets, None, names=names, labels=labels, language_order=language_order, today=today,
+                             feishu_domain=None)
+    # The 交付物 tab shows Web manuals only: the coverage matrix, each row opening its language versions.
+    from tools.rtd.web_progress import progress_page_context, regroup, web_only
     view["progress"] = progress_page_context(assets, targets, labels=labels, names=names, language_order=language_order,
                                              today=today, warn=logger.warning)
+    regroup(view["progress"], groups or [], other)
     view["web_models"], view["web_regions"] = web_only(view["models"], view["regions"])
+    view["web_details"] = {entry["model"]: entry["rows"] for entry in view["web_models"]}
+    view["shorts"] = dict(shorts or {})
+    view["language_codes"] = dict(codes or {})
     # The 网页说明书 KPI's sub-line, largest region first: this page owns the publication counts.
     books = publication_facts(targets or [])["books_by_region"]
     view["books_by_region"] = [f"{labels.get(region, region)} {books[region]}"
                                for region in sorted(books, key=lambda code: (-books[code], code))]
     # The 语言版本 KPI's sub-line: published languages, one per language code.
     view["languages"] = len({str(target["lang"]) for target in targets or [] if target.get("lang")})
-    from tools.workspace_freshness import freshness
-    view["freshness"] = freshness(repo_root(), registry or {}, today)
-    # The Word and print KPIs come from the Feishu 交付快照: they carry its state when it is not 有效.
-    view["delivery_freshness"] = next((row for row in view["freshness"] if row["kind"] == "deliverables"), None)
+    from tools.workspace_freshness import SHOWN, freshness
+    # The Feishu 交付快照 (Word, print) is no longer counted here, so its date is not shown either.
+    view["freshness"] = [row for row in freshness(repo_root(), registry or {}, today) if row["kind"] in SHOWN]
     view["page_built_at"] = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
     view["asset_v"] = asset_versions(assets)
     view["production"] = production_context(
-        root=repo_root(), assets=assets, manifest=Path(app.srcdir).parent / PathSegments.PUBLISH_MANIFEST_JSON,
-        snapshot=snapshot, registry=registry, today=today, delivery_stale=view["stale"],
+        root=repo_root(), manifest=Path(app.srcdir).parent / PathSegments.PUBLISH_MANIFEST_JSON, today=today,
     )
     # Without a usable registry the page still renders, with the generic 无数据.
     view["fallbacks"] = ({key: value["fallback"] for key, value in registry.items()} if registry
@@ -524,7 +535,7 @@ def main(argv: list[str] | None = None) -> int:
     today = args.today or _utc_today()
     reason = stale_reason(domain, dt.date.fromisoformat(snapshot["exported_at"]), today)
     if reason:
-        print(f"WARNING {path.name}: {reason}; the page marks it 待复核 — rerun export")
+        print(f"WARNING {path.name}: {reason}; no page shows it since 2026-11-09 — rerun export to keep it current")
     print(f"deliverables snapshot: exported {snapshot['exported_at']}; {_summary(snapshot)}")
     return 0
 

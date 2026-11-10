@@ -131,10 +131,14 @@ class RtdPortalTests(unittest.TestCase):
         self.assertIn("说明书资料库", (out / "index.html").read_text())
         shells = [p.relative_to(out).as_posix() for p in out.rglob("*.html")
                   if 'id="app-sidebar"' in p.read_text(errors="ignore")]
-        self.assertEqual(shells, ["index.html"])
+        self.assertEqual(sorted(shells), ["index.html", "search.html"])
         root_page = BeautifulSoup((out / "index.html").read_text(), "html.parser")
-        self.assertEqual([g.get_text() for g in root_page.select(".app-nav-group")], ["说明书"])
-        self.assertIsNone(root_page.select_one(".app-switch"))
+        search_page = BeautifulSoup((out / "search.html").read_text(), "html.parser")
+        for page in (root_page, search_page):
+            # The public shell: the 说明书 group only, no internal links and no 知识库 switch.
+            self.assertEqual([g.get_text() for g in page.select(".app-nav-group")], ["说明书"])
+            self.assertEqual([a.span.get_text() for a in page.select("a.app-nav-link")], ["说明书资料库", "搜索说明书正文"])
+            self.assertIsNone(page.select_one(".app-switch"))
         # The public band carries only the reader-facing copy: no internal wording, statuses or links.
         band = root_page.select_one("section.value")
         self.assertEqual(band.h2.get_text(), "网页说明书的定位与价值")
@@ -300,7 +304,7 @@ class RtdPortalTests(unittest.TestCase):
         self.assertIn("<title>设计规范</title>", design)
         self.assertIn('src="previews/title-l1.html"', design)
         self.assertIn('src="assets/symbols/symbol_warning_triangle.svg"', design)
-        self.assertIn('src="print/page.html"', design)
+        self.assertIn('href="print/page.html"', design)  # the actual-size page opens from the 页面 card
         # The 2026-11 cover carries the versions as one line of small text; five figures follow it, the last
         # counted from the manual style contract.
         page = BeautifulSoup(design, "html.parser")
@@ -317,6 +321,29 @@ class RtdPortalTests(unittest.TestCase):
             self.assertIsNotNone(page.select_one(shot.select_one("h3 a")["href"]), shot.h3)
         for image in page.select(".ds-cover img, #overview img"):
             self.assertTrue((design_root / image["src"]).is_file(), image["src"])
+        # The inner tabs (2026-11 step 10): grouped colour rows, one type table, cards that open a detail under their
+        # row, dense tiles with one side entry each, and the print page card with its ten lead rows.
+        counts = [int(count) for count in figures[:4]]
+        self.assertEqual(len(page.select("#colors .ds-list details.ds-color-row")), counts[0])
+        self.assertEqual(len(page.select("#colors .ds-list")), 3)
+        self.assertEqual(len(page.select("#type details.ds-type-row")), counts[1])
+        cards = page.select("#components .ds-comp")
+        self.assertEqual(len(cards), counts[2])
+        for card in cards:
+            detail = page.select_one(f'#{card["id"]}-detail')
+            self.assertTrue(detail is not None and detail.has_attr("hidden"), card["id"])
+            self.assertTrue((design_root / card.iframe["src"]).is_file(), card.iframe["src"])
+        style_links = [link["href"] for link in page.select("#components .ds-links a") if "manual_style.yaml#L" in link["href"]]
+        self.assertGreater(len(style_links), 20)
+        tiles = page.select("#assets .ds-tile")
+        self.assertEqual(len(tiles), counts[3])
+        for tile in tiles:
+            self.assertIsNotNone(page.select_one(f'#{tile["aria-controls"]}.ds-side-asset'), tile["aria-controls"])
+            self.assertTrue((design_root / tile.img["src"]).is_file(), tile.img["src"])
+        rows = page.select("#print-type .ds-ptable tbody tr")
+        self.assertEqual(len([row for row in rows if "is-more" not in row.get("class", [])]), 10)
+        self.assertEqual(len(page.select("#print-colors .ds-ink")), 6)
+        self.assertEqual(page.select_one("#print-geometry").name, "details")
         self.assertNotIn("Jackery", design)
         self.assertEqual((design_root / "web_manual.css").read_text(), live_stylesheet_text())
         self.assertIn('href="../web_manual.css"', (design_root / "previews" / "title-l1.html").read_text())
@@ -333,7 +360,9 @@ class RtdPortalTests(unittest.TestCase):
         self.assertIn("location.replace(target.href)", data_page)
         self.assertNotIn("system-data-json", data_page)
         workbench = (self.root / "after" / "workspace" / "deliverables" / "index.html").read_text()
-        self.assertIn('<script type="application/json" id="system-data-json">', workbench)
+        # 数据统计 is counted at build time (2026-11 design): five cards, no JSON block for the browser.
+        self.assertNotIn("system-data-json", workbench)
+        self.assertIn('id="sd-coverage-card"', workbench)
         # This tree has no publish manifest: only the publication cards are empty.
         self.assertIn("无数据：本次构建没有可读的发布清单", workbench)
         # 工程规模 moved to the 系统建设 page's 工具与工程规模 tab.
@@ -363,13 +392,21 @@ class RtdPortalTests(unittest.TestCase):
             (self.root / "after" / "ai-share" / "00_打开分享.html").read_bytes(),
             (share / "00_打开分享.html").read_bytes(),
         )
+        # 搜索说明书正文: the site shell with the search page current, the portal's section index and its script.
         search_page = (self.root / "after" / "search.html").read_text()
-        self.assertIn('id="manual-search-title">Search all manuals</h1>', search_page)
-        self.assertIn('id="manual-search-query" name="q" type="search"', search_page)
-        self.assertIn('id="search-results"', search_page)
-        self.assertIn('manual-search.css', search_page)
-        self.assertTrue((self.root / "after" / "_static" / "manual-search.css").is_file())
-        self.assertNotIn("manual-search-title", (self.root / "before" / "search.html").read_text())
+        search = BeautifulSoup(search_page, "html.parser")
+        self.assertEqual(search.title.text, "搜索说明书正文 · 说明书资料库")
+        self.assertEqual(search.select_one('.app-nav-link[aria-current="page"]').text.strip(), "搜索说明书正文")
+        self.assertIsNotNone(search.select_one('#ms-query[name="q"][type="search"]'))
+        self.assertIsNotNone(search.select_one("#search-results"))
+        self.assertEqual([s["src"] for s in search.select("script[src]")][:2],
+                         ["_static/portal-search-index.js", "_static/manual-search.js"])
+        config = json.loads(search.select_one("#ms-config").string)
+        self.assertEqual(config["languages"][0], ["en", "en-US"])
+        self.assertTrue(set(config["models"]) and all(item["category"] for item in config["models"].values()))
+        for asset in ("manual-search.css", "manual-search.js", "portal-search-index.js"):
+            self.assertTrue((self.root / "after" / "_static" / asset).is_file())
+        self.assertNotIn("ms-config", (self.root / "before" / "search.html").read_text())
 
     def test_real_sphinx_sidebar_links_only_pages_and_marks_the_current_one(self):
         root = self.assemble()
@@ -415,7 +452,9 @@ class RtdPortalTests(unittest.TestCase):
         # 定位与价值 folded into 知识库首页 on 2026-11-05: its old page is gone.
         self.assertFalse((out / "workspace" / "positioning").exists())
         self.assertEqual({page: outline(sidebar) for page, sidebar in sidebars.items()},
-                         {"index.html": knowledge, **dict.fromkeys(pages, knowledge)})
+                         {"index.html": knowledge, "search.html": knowledge, **dict.fromkeys(pages, knowledge)})
+        current = BeautifulSoup((out / "search.html").read_text(encoding="utf-8"), "html.parser")
+        self.assertEqual([a.span.get_text() for a in current.select('a.app-nav-link[aria-current="page"]')], ["搜索说明书正文"])
         site = "https://site.invalid/"
         home = BeautifulSoup((out / "workspace" / "index.html").read_text(encoding="utf-8"), "html.parser")
         # 知识库首页's 去哪里 cards mirror the sidebar's groups after 首页, in its order (every page is built here).

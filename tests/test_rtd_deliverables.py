@@ -284,42 +284,47 @@ class RealSphinxTests(unittest.TestCase):
 
             _, page = build("good")
             self.assertIn("<h1>说明书工作台", page)
-            self.assertIn('<tbody data-model="JE-1000F">', page)
-            # The 交付物 tab lists Web manuals only: a region or model with Feishu formats alone has no row.
-            self.assertNotIn('<tr data-region="pt-BR">', page)
-            self.assertIn('href="../../JE-1000F/US/en/md/manual_je1000f_us.html"', page)
+            # The workbench counts Web manuals only (2026-11-09): no Feishu cloud-document deliveries, no 交付链接
+            # snapshot, no Word or print totals.
             self.assertNotIn("t.feishu.cn", page)
             soup = BeautifulSoup(page, 'html.parser')
+            self.assertEqual([kpi.span.text for kpi in soup.select('.wb-kpis .wb-kpi')], ['网页说明书', '语言版本', '审核中', '待转'])
+            self.assertNotIn("Word 云文档", page)
+            self.assertNotIn("印刷交付包", page)
+            self.assertFalse(soup.select('.wb-fresh [data-workspace-source="deliverables"]'))
             # 常用入口: the structured production data and the Git manual sources; the full map is on 系统建设.
             self.assertEqual([a.contents[0] for a in soup.select('.wb-entries-links a')],
                              ['产品与规格', '文案与变量', '翻译与术语', '插图资产', '冻结发布源', '评审稿', '来源声明'])
             self.assertTrue(soup.select('.wb-entries a[href="../system/index.html#work-map"]'))
             self.assertFalse(soup.select('[data-workbench-node]'))
-            sections = [section.get('id') for section in soup.select('#production-evidence > section')]
-            self.assertLess(sections.index('production-overview'), sections.index('reuse'))
-            self.assertLess(sections.index('reuse'), sections.index('production-effort'))
-            self.assertLess(sections.index('production-effort'), sections.index('backflow'))
-            self.assertTrue(soup.select('#production-evidence > aside#attention'))
-            self.assertEqual(len(soup.select('#production-evidence > section.pe-layer')), 4)
-            self.assertTrue(soup.select('details#more-evidence #activity'))
+            # 资产与证据: the asset cards, then one row per question; a row opens its sources and lists.
+            evidence = soup.select_one('#production-evidence.tab-panel')
+            self.assertEqual([section.get('id') for section in evidence.select(':scope > section')],
+                             ['reuse', 'production-evidence-table'])
+            self.assertEqual([row['id'] for row in evidence.select('details.pe-row')],
+                             ['production-overview', 'component-usage', 'production-effort', 'backflow', 'activity',
+                              'agent-results'])
+            self.assertEqual([card['id'] for card in evidence.select('.pe-lib')],
+                             ['library-corpus', 'library-styles', 'library-templates'])
             self.assertIn('已确认配置引用', page)
-            self.assertIn('尚未证明再次复用', page)
             self.assertIn('2026-09-18 至 2026-09-25 UTC', page)
-            self.assertFalse(soup.select('.dl-tiles'))  # one authoritative summary, no legacy zero tiles
-            for card in soup.select('[data-metric]'):
-                self.assertTrue(card.select('details'))
-            self.assertTrue(soup.select('.pe-attention a[href]'))
-            # 数据统计 (from 系统数据, with its own JSON block, script and filters) sits in 交付物.
+            self.assertEqual(evidence.select_one('#production-overview .pe-state').text, '已记录')
+            self.assertEqual({row.select_one('.pe-state').text for row in evidence.select('#production-effort, #backflow, #activity, #agent-results')},
+                             {'Not tracked yet'})
+            # Only the publish manifest can raise an alert now, and this build has one.
+            self.assertFalse(soup.select('#attention'))
+            self.assertTrue(soup.select('details#snapshots .ws-update'))
+            # 数据统计 sits in 交付物 as five cards counted at build time; the full table opens under them.
             self.assertEqual([tab['data-tab'] for tab in soup.select('.page-tabs [data-tab]')],
                              ['progress', 'deliverables', 'production-evidence'])
             statistics = soup.select_one('#deliverables.tab-panel #statistics.system-data')
-            payload = json.loads(statistics.select_one('script#system-data-json').string)
-            # Capability rows list published models only: JE-1000F, in every region of the capability table.
-            self.assertTrue(payload['targets'])
-            self.assertEqual({row['model'] for row in payload['targets']}, {'JE-1000F'})
-            # The page summary above the tabs owns 网页说明书 / 语言版本; the tab counts the rest.
-            self.assertEqual([kpi.span.text for kpi in statistics.select('.kpi')],
-                             ['覆盖机型', '发布语言', '机型/区域目标', '素材登记'])
+            self.assertIsNone(statistics.select_one('script#system-data-json'))
+            self.assertEqual([card['id'] for card in statistics.select('.sd-card')],
+                             ['sd-regions-card', 'sd-langs-card', 'sd-recent-card', 'sd-coverage-card', 'sd-assets-card',
+                              'sd-table-card'])
+            self.assertEqual([bar.span.text for bar in statistics.select('#sd-regions-card .sd-bar')], ['美规'])
+            self.assertEqual([bar.span.text for bar in statistics.select('#sd-langs-card .sd-bar')], ['en-US'])
+            self.assertTrue(statistics.select('#sd-coverage-card .sd-bar'))
             self.assertEqual(len(statistics.select('#sd-table tbody tr')), 1)
             # Each stylesheet and script carries its content hash, so a cached old file never styles a new page.
             versions = dl.asset_versions(assets)
@@ -331,17 +336,20 @@ class RealSphinxTests(unittest.TestCase):
                               if not (tag.get('href') or tag.get('src')).split('?v=')[-1]])
             self.assertTrue((base / "good" / "_static" / "system-data.js").is_file())
 
-            self.assertFalse(soup.select('.dl-table a[target="_blank"]'))
-            self.assertNotIn('<option value="JE-1800B">', page)
             # 网页说明书进度 is the 进度 tab; the coverage matrix leads 交付物 and links each market version to its page.
             self.assertEqual(soup.select_one('#progress.tab-panel').find(['section', 'details'])['id'], 'web-progress')
             tab = soup.select_one('#deliverables.tab-panel')
             self.assertEqual(tab.find(['section', 'details'])['id'], 'web-progress-matrix')
-            self.assertTrue(soup.select_one('details#deliverables-matrix'))
-            rows = soup.select('#web-progress-matrix .wp-table tr[data-open]')
-            self.assertEqual([row.th.b.text for row in rows], ['JE-1000F'])
+            # The former 语言版本明细 table is each row's detail now.
+            self.assertFalse(soup.select('details#deliverables-matrix, #dl-model'))
+            rows = soup.select('#web-progress-matrix .wp-table tr.wp-row')
+            self.assertEqual([row.select_one('.wp-toggle b').text for row in rows], ['JE-1000F'])
             chip = rows[0].select_one('a.wp-chip')
             self.assertEqual((chip.text, chip['href']), ('1/1', '../../JE-1000F/US/en/md/manual_je1000f_us.html'))
+            detail = soup.select_one('#' + rows[0].select_one('.wp-toggle')['aria-controls'])
+            self.assertTrue(detail.has_attr('hidden'))
+            language = detail.select_one('a.wp-lang')
+            self.assertEqual((language.contents[0], language['href']), ('en-US', '../../JE-1000F/US/en/md/manual_je1000f_us.html'))
             self.assertTrue((base / "good" / "_static" / "web-progress.js").is_file())
             self.assertIsNotNone(soup.select_one('[data-wp-trend] script[type="application/json"]'))
             self.assertTrue((base / "good" / "_static" / "deliverables.css").is_file())
@@ -388,32 +396,34 @@ class RealSphinxTests(unittest.TestCase):
             kpis = {kpi.span.text: kpi for kpi in soup.select('.wb-kpis a.wb-kpi')}
             self.assertEqual(kpis['网页说明书'].em.text, '美规 1')
             self.assertEqual(kpis['语言版本'].em.text, '1 种发布语言')
-            # Both snapshot freshness spans stay here for Workspace Data Verify; the rules sit on 系统建设.
-            for kind in ('deliverables', 'corpus', 'web_progress'):
+            # The shown snapshots' freshness spans stay here for Workspace Data Verify; the rules sit on 系统建设.
+            for kind in ('corpus', 'web_progress'):
                 self.assertIsNotNone(soup.select_one(f'[data-workspace-source="{kind}"]'), kind)
+            self.assertIsNone(soup.select_one('[data-workspace-source="deliverables"]'))
             self.assertTrue(soup.select('.page-meta a[href="../system/index.html#sources"]'))
             # Corpus and skeleton totals belong to 系统建设: the asset cards and the ledger point there.
             for anchor in ('#tab-corpus', '#lane-skeletons'):
-                for where in ('.pe-library', '.pe-table'):
-                    self.assertTrue(soup.select(f'{where} a[href="../system/index.html{anchor}"]'), (where, anchor))
-            self.assertEqual([row.b.text for row in soup.select('#asset-growth tbody tr') if row.b],
-                             ['Shared Components', 'Structured Specs', 'Artwork Assets'])
+                self.assertTrue(soup.select(f'.pe-lib a[href="../system/index.html{anchor}"]'), anchor)
+            self.assertIn('Not tracked yet', soup.select_one('#asset-growth').text)
 
-            # An unsound snapshot empties only the Feishu columns.
+            # The page no longer reads the Feishu delivery snapshot: an unsound one changes nothing here.
             (assets / SNAPSHOT_NAME).write_text("{not json", encoding="utf-8")
             result, page = build("no-snapshot")
-            self.assertIn("Deliverables page shows no Feishu links", result.stderr)
-            self.assertIn("交付快照 Unavailable", page)
+            self.assertNotIn("Deliverables page shows no Feishu links", result.stderr)
+            self.assertNotIn("交付快照", page)
             self.assertIn('href="../../JE-1000F/US/en/md/manual_je1000f_us.html"', page)
-            self.assertNotIn("t.feishu.cn", page)
 
             # Without a publish manifest the page still renders; with neither input it says so.
             manifest.unlink()
             _, page = build("nothing")
             self.assertIn("发布清单当前不可读，构建日志有告警。", page)
-            self.assertIn("网页手册：发布清单当前不可读", page)
             self.assertIn("无数据：本次构建没有可读的发布清单", page)
-            self.assertIn("无数据：发布清单当前不可读，无法确定已发布型号。", page)
+            # Only the publication cards need the manifest: the asset registry card still shows.
+            statistics = BeautifulSoup(page, "html.parser").select_one("#statistics")
+            self.assertIsNone(statistics.select_one("#sd-regions-card"))
+            self.assertIsNone(statistics.select_one("#sd-table-card"))
+            self.assertIn("无数据：发布清单不可读，无法确定已发布型号。", statistics.select_one("#sd-coverage-card").text)
+            self.assertTrue(statistics.select("#sd-assets-card .sd-pill"))
             manifest.write_text(json.dumps({"targets": []}), encoding="utf-8")
             (assets / SNAPSHOT_NAME).write_text(json.dumps({"schema": dl.SNAPSHOT_SCHEMA,
                 "exported_at": "2026-09-25", "documents": []}), encoding="utf-8")
@@ -427,7 +437,7 @@ class RealSphinxTests(unittest.TestCase):
             result, page = build("no-statistics")
             self.assertIn("Workbench statistics show no data", result.stderr)
             self.assertIn("机型能力表或素材登记表不可读，构建日志有告警。", page)
-            self.assertNotIn("system-data-json", page)
+            self.assertFalse(BeautifulSoup(page, "html.parser").select("#statistics .sd-card"))
             self.assertIn("发布清单里还没有网页说明书", page)
             moved = BeautifulSoup(
                 (base / "no-statistics" / "workspace" / "data" / "index.html").read_text(), "html.parser")

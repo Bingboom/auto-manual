@@ -2,8 +2,8 @@
 
 ``/products/matrix`` reads, at build time and from the repository only:
 
-- the ``product_catalog`` snapshot (``tools/rtd/product_catalog.py``): each model's 产品类别, 产品系列 and
-  商品简称. One product is one 商品简称; a model whose 商品简称 ends in a ``variant_marks`` word (沙金色 …) is
+- the ``product_catalog`` snapshot (``tools/rtd/product_catalog.py``): each model's 产品类别, 产品系列, 容量档
+  and 商品简称, and the 容量档 order. One product is one 商品简称; a model whose 商品简称 ends in a ``variant_marks`` word (沙金色 …) is
   that product's colour edition, and a model the snapshot records as sharing another model's pages
   (``pages_of``) shows as a row that links to those pages;
 - ``docs/publish/publish_manifest.json``: the published routes, which give each model its markets, languages
@@ -11,17 +11,18 @@
 - the published manual of each model (English first, then the language order in ``product_matrix.json``): its
   SPECIFICATIONS / 仕様 / 规格 table gives capacity, AC output, solar power, IP rating, weight and expansion,
   quoted as the manual prints them;
-- ``product_matrix.json``: capacity tiers, market letters and labels, variant marks, name overrides, short
+- ``product_matrix.json``: market letters and labels, variant marks, name overrides, short
   notes, and the partner products each manual names (``pairings``). An item links to a product only through
   its ``product`` key (that product's 商品简称); a label alone never links, since "Explorer 1000 Plus" may mean
   either generation;
 - ``data/model_capabilities.csv`` for each model's 功能.
 
-The page has a tab per 产品类别 with a grid of 产品系列 × capacity tier (one column where no product states a
-capacity) and, per product, a detail that opens under its 系列 row: every model with its 商品简称, figures and a
-link per market, the capability switches, and the partner products in both directions. A pairing shows only
+The page has a tab per 产品类别 with a grid of 产品系列 × the 容量档 its products use (one column where none has
+a 容量档; a 容量未注明 column for a product without one beside products with one) and, per product, a detail that opens under its 系列 row: every model with its 商品简称, figures and a
+link per market, the capability switches, the partner products in both directions, and the 通用指南 whose 适用产品
+lists one of its models, and its own 快速指南 (a guide is no product and has no card of its own). A pairing shows only
 while its text still appears in the manual it cites; anything dropped, and any published model the snapshot does
-not list (shown under 其他), is a Sphinx warning. ``lines``, ``accessories`` and ``assign`` stay for the 产品知识
+not list (shown under 其他), is a Sphinx warning, as is a 容量档 the manual's stated capacity does not fit. ``lines``, ``accessories`` and ``assign`` stay for the 产品知识
 page (``positioning_groups``), and an ``evidence`` assignment whose quote has left its manual still warns here.
 Without a readable manifest or a usable snapshot, or with a malformed config or capability table, the page and its
 sidebar entry are skipped.
@@ -219,9 +220,6 @@ def load_config(assets: Path, settings: dict[str, Any]) -> dict[str, Any]:
     if len(set(ids)) != len(ids):
         raise ProductMatrixError(f"{CONFIG}: line and accessory ids must be unique")
     assign = _assignments(config.get("assign", {}), lines, accessories, ids)
-    tiers = config["tiers"]
-    if not tiers or any("below" not in tier for tier in tiers[:-1]) or "below" in tiers[-1]:
-        raise ProductMatrixError(f"{CONFIG}: every tier but the last needs 'below', and the last none")
     _check_display(config)
     return {**config, "lines": lines, "accessories": accessories, "assign": assign}
 
@@ -316,10 +314,17 @@ def _partner(item: str | dict[str, str]) -> tuple[str, str]:
     return item["label"], item.get("match") or item["label"]
 
 
-def _tier(wh: float | None, tiers: list[dict[str, Any]]) -> int | None:
-    if wh is None:
-        return None
-    return next(index for index, tier in enumerate(tiers) if "below" not in tier or wh < tier["below"])
+_TIER = re.compile(r"(\d+(?:\.\d+)?)度(电|以下)")
+
+
+def capacity_mismatch(tier: str, wh: float | None) -> bool:
+    """Whether a manual's stated capacity does not fit its 容量档: 「X度电」 within a quarter of X kWh, 「X度以下」
+    under X kWh. A tier the rule cannot read, or a manual without a capacity, is never a mismatch."""
+    match = _TIER.fullmatch(tier)
+    if wh is None or not match:
+        return False
+    kwh = float(match.group(1))
+    return wh >= kwh * 1000 if match.group(2) == "以下" else abs(wh / 1000 - kwh) > kwh / 4
 
 
 
@@ -412,8 +417,8 @@ def _rows_by_product(models: dict[str, dict[str, Any]], catalog: dict[str, Any],
             warnings.append(f"{model}: the 产品分类 snapshot does not list it; shown under {OTHER}")
             entry = {"category": OTHER, "series": UNSORTED, "short": model}
         base, edition = _edition(entry["short"], marks)
-        grouped[base].append({**row, "short": entry["short"], "edition": edition,
-                              "category": entry["category"], "series": entry["series"]})
+        grouped[base].append({**row, "short": entry["short"], "edition": edition, "category": entry["category"],
+                              "series": entry["series"], "tier": entry.get("capacity", "")})
     for model, entry in entries.items():
         host = models.get(entry.get("pages_of", ""))
         if model in models or host is None:
@@ -421,7 +426,8 @@ def _rows_by_product(models: dict[str, dict[str, Any]], catalog: dict[str, Any],
         base, edition = _edition(entry["short"], marks)
         regions = _order({route.split("/")[1] for route in entry["routes"]} & set(host["pages"]), config["region_order"])
         grouped[base].append({"model": model, "name": host["name"], "short": entry["short"], "edition": edition,
-                              "category": entry["category"], "series": entry["series"], "shares": host["model"],
+                              "category": entry["category"], "series": entry["series"],
+                              "tier": entry.get("capacity", ""), "shares": host["model"],
                               "regions": regions, "pages": {region: host["pages"][region] for region in regions}})
     return grouped
 
@@ -444,12 +450,16 @@ def build_products(models: dict[str, dict[str, Any]], catalog: dict[str, Any], c
         primary = rows[0]
         if "shares" in primary:
             continue
-        if len({(row["category"], row["series"]) for row in rows}) > 1:
+        if len({(row["category"], row["series"], row["tier"]) for row in rows}) > 1:
             warnings.append(f"{short}: its models are classified differently; shown as "
-                            f"{primary['category']}/{primary['series']}")
+                            f"{primary['category']}/{primary['series']}/{primary['tier'] or '—'}")
+        if capacity_mismatch(primary["tier"], primary.get("wh")):
+            warnings.append(f"{short}: 容量档 {primary['tier']} does not fit the {number(primary['wh'])} Wh "
+                            f"its manual states")
         products.append({
             "key": _anchor(short, taken), "short": short, "name": primary["name"],
-            "category": primary["category"], "series": primary["series"], "wh": primary.get("wh"),
+            "category": primary["category"], "series": primary["series"], "tier": primary["tier"],
+            "wh": primary.get("wh"),
             "wh_text": f"{number(primary['wh'])} Wh" if primary.get("wh") else "",
             "regions": _order((region for row in rows for region in row["regions"]), config["region_order"]),
             "editions": list(dict.fromkeys(row["edition"] for row in rows if row["edition"])), "rows": rows,
@@ -535,10 +545,29 @@ def _detail_rows(product: dict[str, Any], keys: list[str], config: dict[str, Any
     return rows
 
 
+def related_guides(product: dict[str, Any], guides: dict[str, dict[str, Any]], guide_models: dict[str, dict[str, Any]],
+                   config: dict[str, Any], languages: dict[str, str]) -> list[dict[str, Any]]:
+    """The guides whose 适用产品 lists one of the product's models (its 快速指南 first), a link per published market."""
+    models = {row["model"] for row in product["rows"]}
+    related = []
+    for code, guide in guides.items():
+        if code not in guide_models or not models & set(guide["applies_to"]):
+            continue
+        docs = []
+        for region, page in guide_models[code]["pages"].items():
+            label = _market(region, config)["label"]
+            docs.append({"label": label, "doc": page["doc"],
+                         "title": f"{label}：{'、'.join(languages.get(c, c) for c in page['langs'])}"})
+        quick = guide["kind"] == "快速指南"
+        related.append({"label": "快速指南" if quick else guide["short"], "quick": quick, "docs": docs})
+    return sorted(related, key=lambda item: not item["quick"])
+
+
 def product_detail(product: dict[str, Any], capabilities: dict[str, dict[str, Any]],
                    named: dict[str, list[dict[str, str]]], named_by: dict[str, list[dict[str, str]]],
-                   config: dict[str, Any], languages: dict[str, str]) -> dict[str, Any]:
-    """The detail under a product's row: model rows, the first capability row, and partner products."""
+                   config: dict[str, Any], languages: dict[str, str],
+                   guides: list[dict[str, Any]] | None = None) -> dict[str, Any]:
+    """The detail under a product's row: model rows, the first capability row, partner products and guides."""
     own = [row for row in product["rows"] if "shares" not in row]
     keys = [key for key, _ in COLUMNS if any(row.get(key) for row in own)]
     features = next((capabilities[row["model"]] for row in own if row["model"] in capabilities), None)
@@ -546,12 +575,11 @@ def product_detail(product: dict[str, Any], capabilities: dict[str, dict[str, An
     by = named_by.get(product["key"], [])
     return {"columns": [label for key, label in COLUMNS if key in keys],
             "rows": _detail_rows(product, keys, config, languages), "features": features,
-            "pairing": {"named": items, "named_by": by} if items or by else None}
+            "pairing": {"named": items, "named_by": by} if items or by else None, "guides": guides or []}
 
 
-def _series_rows(members: list[dict[str, Any]], series: list[str], columns: list[str],
-                 tiers: list[dict[str, Any]] | None) -> list[dict[str, Any]]:
-    """A row per 产品系列 with products, each card in its capacity tier (the last column when none is stated)."""
+def _series_rows(members: list[dict[str, Any]], series: list[str], columns: list[str]) -> list[dict[str, Any]]:
+    """A row per 产品系列 with products, each card in its 容量档 column (the last column when it has none)."""
     rows = []
     for line in series:
         in_line = sorted((p for p in members if p["series"] == line), key=lambda p: (p["wh"] or 0, p["short"]))
@@ -559,30 +587,30 @@ def _series_rows(members: list[dict[str, Any]], series: list[str], columns: list
             continue
         cells: list[list[dict[str, Any]]] = [[] for _ in columns]
         for product in in_line:
-            tier = _tier(product["wh"], tiers) if tiers else 0
-            cells[len(columns) - 1 if tier is None else tier].append(product)
+            cells[columns.index(product["tier"]) if product["tier"] in columns else len(columns) - 1].append(product)
         rows.append({"title": line, "products": in_line, "cells": cells})
     return rows
 
 
 def category_views(products: list[dict[str, Any]], catalog: dict[str, Any], config: dict[str, Any],
                    settings: dict[str, Any]) -> list[dict[str, Any]]:
-    """A tab per 产品类别: its 产品系列 rows × capacity tiers (one 产品 column when no product states a capacity)."""
-    styles, tiers = settings.get("catalog_categories", {}), config["tiers"]
+    """A tab per 产品类别: its 产品系列 rows × the 容量档 its products use (one 产品 column when none has one)."""
+    styles, tiers = settings.get("catalog_categories", {}), catalog.get("capacity_tiers", [])
     order = [(item["name"], list(item["series"])) for item in catalog["categories"]] + [(OTHER, [UNSORTED])]
     views = []
     for index, (name, series) in enumerate(order, 1):
         members = [product for product in products if product["category"] == name]
         if not members:
             continue
-        tiered = any(product["wh"] for product in members)
-        columns = [tier["label"] for tier in tiers] if tiered else ["产品"]
-        if tiered and not all(product["wh"] for product in members):
+        used = [tier for tier in tiers if any(product["tier"] == tier for product in members)]
+        tiered = bool(used)
+        columns = used or ["产品"]
+        if tiered and not all(product["tier"] in used for product in members):
             columns.append(UNSTATED)
         style = styles.get(name) or {"id": "other" if name == OTHER else f"category-{index}", "icon": "other"}
         views.append({"id": style["id"], "title": name, "icon": style["icon"], "count": len(members),
                       "tiered": tiered, "columns": columns,
-                      "rows": _series_rows(members, series, columns, tiers if tiered else None),
+                      "rows": _series_rows(members, series, columns),
                       "markets": _order((r for p in members for r in p["regions"]), config["region_order"])})
     return views
 
@@ -596,13 +624,17 @@ def matrix_context(root: Path, srcdir: Path, manifest: Path, assets: Path, setti
     config = load_config(assets, settings)
     warnings: list[str] = []
     models, texts = read_models(srcdir, targets, catalog, config, warnings)
+    # A 通用指南 is no product: its pages show under the products its 适用产品 lists.
+    guides = product_catalog.get("guides", {})
+    guide_models = {code: models.pop(code) for code in list(models) if code in guides}
     _check_evidence(config, texts, warnings)
     products = build_products(models, product_catalog, config, warnings)
     capabilities = capability_view(root, config)
     named, named_by = pairing_index(models, texts, products, config, warnings)
     languages = settings.get("language_labels", {})
     for product in products:
-        product["detail"] = product_detail(product, capabilities, named, named_by, config, languages)
+        product["detail"] = product_detail(product, capabilities, named, named_by, config, languages,
+                                           related_guides(product, guides, guide_models, config, languages))
     return {
         "built_on": built_at[:10], "classified_on": product_catalog["exported_at"],
         "facts": {"products": len(products), "models": sum(len(product["rows"]) for product in products)},
@@ -635,7 +667,8 @@ def product_matrix_page_context(app, assets: Path, settings: dict[str, Any], cat
 
 
 __all__ = [
-    "COLUMNS", "PAGE", "ProductMatrixError", "TEMPLATE", "build_products", "capability_view", "category_views",
+    "COLUMNS", "PAGE", "ProductMatrixError", "TEMPLATE", "build_products", "capacity_mismatch", "capability_view",
+    "category_views",
     "display_name", "evidence_excerpt", "load_config", "matrix_context", "number", "pairing_index", "plain_text",
     "positioning_groups", "product_detail", "product_matrix_page_context", "read_models", "read_specs", "spec_pairs",
 ]

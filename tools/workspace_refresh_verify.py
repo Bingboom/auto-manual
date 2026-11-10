@@ -20,7 +20,7 @@ from tools.rtd.deployment_receipt import (
     DEFAULT_RTD_BASE_URL, CrossOriginRedirect, FetchSession, _without_rtd_proxy_injection,
     rtd_project_slug_from_base_url,
 )
-from tools.workspace_freshness import inventory
+from tools.workspace_freshness import SHOWN, inventory
 from tools.workspace_refresh_publish import command
 from tools.workspace_snapshot import atomic_json
 
@@ -74,7 +74,10 @@ def verify_once(root: Path, revision: str, *, fetch=None) -> dict:
         raise ValueError("online-page-bytes-mismatch")
     from bs4 import BeautifulSoup
     soup = BeautifulSoup(html, "html.parser")
+    # Only the snapshots the page shows carry a tag; the receipt above still covers every snapshot.
     for kind, value in expected.items():
+        if kind not in SHOWN:
+            continue
         tag = soup.select_one(f'[data-workspace-source="{kind}"]')
         if tag is None or tag.get("data-snapshot-sha256") != (value["snapshot_sha256"] or ""):
             raise ValueError("online-page-source-mismatch")
@@ -138,6 +141,10 @@ def verify_attempt(root: Path, revision: str, api: tuple[str, str, bool] | None,
     return True
 
 
+# 30 s apart, 50 attempts wait about 25 minutes: an RTD build sometimes takes over 10 (2026-11-09).
+MAX_ATTEMPTS = 50
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=Path.cwd())
@@ -145,8 +152,8 @@ def main() -> int:
     parser.add_argument("--attempts", type=int, default=1)
     parser.add_argument("--output", type=Path, default=Path(".tmp/workspace-refresh/verification.json"))
     args = parser.parse_args()
-    if not 1 <= args.attempts <= 20:
-        parser.error("attempts must be 1..20")
+    if not 1 <= args.attempts <= MAX_ATTEMPTS:
+        parser.error(f"attempts must be 1..{MAX_ATTEMPTS}")
     report = {"status": "failed", "stage": "mainline", "revision": args.revision,
               "resume": f"python tools/workspace_refresh_verify.py --revision {args.revision}"}
     try:

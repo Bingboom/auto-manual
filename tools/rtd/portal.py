@@ -20,6 +20,7 @@ from tools.rtd.design_system import (
 )
 from tools.rtd.feedback import context_text, manual_feedback_markup, normalize_channels
 from tools.rtd.knowledge_updates import PAGES as UPDATE_PAGES, load_updates, updates_view
+from tools.rtd.manual_reader import frame_text, load_text, locale_options, reader_context
 from tools.rtd.product_voc import normalize_endpoint, page_markup
 from tools.rtd.product_short_names import attach_short_names, load_short_names
 from tools.rtd.product_catalog import classify, load_catalog, short_names as catalog_short_names
@@ -209,6 +210,47 @@ def clear_catalog_cache(app, exception) -> None:
     app._rtd_matrix_context = _UNSET
 
 
+def decorate_manual(app, context, *, settings: dict, product: dict, active: dict,
+                    channels: list[dict[str, str]], site_base_url: str) -> None:
+    """Put a verified single-language manual page in the reading frame (manual_reader.html, 2026-11).
+
+    The frame shows the product, market, language and version, the language select, the chapter list and
+    the feedback card around the manual, in the manual's language; the body keeps only the manual, wrapped
+    in its language.
+    """
+    context["language"] = active["lang"]
+    direction = "rtl" if active["lang"] in settings.get("rtl_languages", []) else "ltr"
+    lang_label = settings.get("language_labels", {}).get(active["lang"], active["lang"])
+    name, version = product.get("name") or "", active.get("version") or ""
+    derived_title = page_title(name=name, model=active["model"], region=active["region"], lang_label=lang_label)
+    context["manual_page_title"] = derived_title
+    context["metatags"] = context.get("metatags", "") + head_markup(
+        title=derived_title,
+        description=page_description(name=name, model=active["model"], region=active["region"],
+                                     lang_label=lang_label, version=version),
+        page_url=active["url"],
+        alternates=[(item["code"], item["url"]) for item in product["language_options"]
+                    if item.get("url") and item["code"] != "current"],
+        site_base_url=site_base_url,
+    )
+    feedback_context = context_text(model=active["model"], region=active["region"], lang=active["lang"],
+                                    version=version, page=active["url"])
+    body = without_leading_language_label(context.get("body", ""), lang_label)
+    context["body"] = f'<div lang="{escape(active["lang"], quote=True)}" dir="{direction}">{body}</div>'
+    pathto = context["pathto"]
+    text = frame_text(load_text(ASSETS), active["lang"])
+    context["manual_reader"] = reader_context(
+        product=product, active=active, lang_label=lang_label, direction=direction,
+        options=locale_options(product, active, pathto), body=body, text=text,
+        feedback=manual_feedback_markup(channels=channels, context=feedback_context, text=text),
+        library=pathto(app.config.root_doc), search=pathto("search"),
+    )
+    app.add_js_file("manual-reader.js")
+    if channels and feedback_context:
+        app.add_js_file("manual-feedback.js")
+    app.add_css_file("manual-reader.css")
+
+
 def page_context(app, pagename, templatename, context, doctree):
     settings, products = portal_data(app)
     feedback_channels = normalize_channels(settings.get("feedback_channels", []))
@@ -226,7 +268,7 @@ def page_context(app, pagename, templatename, context, doctree):
     if beacon_token:
         app.add_js_file(BEACON_SRC, loading_method="defer", **beacon_attributes(beacon_token))
     if pagename == "search":
-        app.add_css_file("manual-search.css")
+        context.update(search_page(app, settings, products, beacon_token))
         return None
     if pagename != app.config.root_doc:
         if "/" not in pagename:
@@ -245,51 +287,8 @@ def page_context(app, pagename, templatename, context, doctree):
                            if p["url"] == f"{pagename}.html" and p["language_scope"] == "single"), None)
             if active is None:
                 continue
-            context["language"] = active["lang"]
-            direction = "rtl" if active["lang"] in settings.get("rtl_languages", []) else "ltr"
-            options = []
-            for item in product["language_options"]:
-                url = context["pathto"](item["url"][:-5])
-                if url == "#":
-                    url = Path(item["url"]).name
-                state = ' selected' if item["url"] == active["url"] else ''
-                options.append(f'<option value="{escape(url, quote=True)}"{state}>{escape(item["display"])}</option>')
-            feedback_context = context_text(
-                model=active["model"], region=active["region"],
-                lang=active["lang"], version=active.get("version") or "",
-                page=active["url"],
-            )
-            lang_label = settings.get("language_labels", {}).get(active["lang"], active["lang"])
-            derived_title = page_title(
-                name=product.get("name") or "", model=active["model"],
-                region=active["region"], lang_label=lang_label,
-            )
-            context["manual_page_title"] = derived_title
-            context["metatags"] = context.get("metatags", "") + head_markup(
-                title=derived_title,
-                description=page_description(
-                    name=product.get("name") or "", model=active["model"],
-                    region=active["region"], lang_label=lang_label,
-                    version=active.get("version") or "",
-                ),
-                page_url=active["url"],
-                alternates=[(item["code"], item["url"]) for item in product["language_options"]
-                            if item.get("url") and item["code"] != "current"],
-                site_base_url=site_base_url,
-            )
-            context["body"] = (
-                '<nav class="manual-locale-nav" aria-label="Manual language">'
-                f'<span>{escape(product["model"])} · {escape(product["edition"])}</span> '
-                '<label for="manual-locale-select">Language </label>'
-                '<select id="manual-locale-select">' + ''.join(options) + '</select></nav>'
-                + f'<div lang="{escape(active["lang"], quote=True)}" dir="{direction}">'
-                + without_leading_language_label(context.get("body", ""), lang_label) + '</div>'
-                + manual_feedback_markup(channels=feedback_channels, context=feedback_context)
-            )
-            app.add_js_file("manual-locales.js")
-            if feedback_channels and feedback_context:
-                app.add_js_file("manual-feedback.js")
-            app.add_css_file("manual-locales.css")
+            decorate_manual(app, context, settings=settings, product=product, active=active,
+                            channels=feedback_channels, site_base_url=site_base_url)
             break
         return None
     if not products:
@@ -305,6 +304,27 @@ def page_context(app, pagename, templatename, context, doctree):
     context["portal_head_meta"] = portal_head_markup(site_base_url=site_base_url)
     context["product_voc"] = voc_markup
     return "manual_portal.html"
+
+
+def workbench_catalog(app, settings: dict, products: list[dict]) -> dict:
+    """The 说明书工作台's view of the catalog: the library's categories, each model's 商品简称, language codes."""
+    from tools.rtd.portal_navigation import OTHER
+
+    library = library_view(settings, products, getattr(app, "_rtd_product_catalog", None))
+    groups = [(item["title"], {product["model"] for line in item["series"] for product in line["products"]})
+              for item in library["categories"]]
+    return {"groups": groups, "other": OTHER["title"],
+            "shorts": {product["model"]: product["short_name"] for product in products if product.get("short_name")},
+            "codes": dict(settings.get("language_display_codes") or {})}
+
+
+def search_page(app, settings: dict, products: list[dict], beacon_token: str) -> dict:
+    """搜索说明书正文 in the site shell: the library's categories as filters, the same sidebar as the library root."""
+    from tools.rtd.portal_search import search_page_context
+
+    library = library_view(settings, products, getattr(app, "_rtd_product_catalog", None))
+    return {"site_nav": site_nav(app), "internal_shell": not manuals_only(app),
+            "search": search_page_context(settings, library), "analytics_beacon": beacon_markup(beacon_token)}
 
 
 def workspace_content(app) -> Path:
@@ -388,7 +408,8 @@ def collect_workspace_pages(app):
     matrix = cached_matrix_context(app)
     settings, products = portal_data(app)
     names = {(product["model"], product["region"]): product.get("name") or "" for product in products}
-    deliverables = deliverables_page_context(app, ASSETS, names, list(settings.get("language_labels") or {}))
+    deliverables = deliverables_page_context(app, ASSETS, names, list(settings.get("language_labels") or {}),
+                                             **workbench_catalog(app, settings, products))
     from sphinx.util import logging as sphinx_logging
     from tools.rtd.product_learning import PAGE, TEMPLATE, learning_context
 

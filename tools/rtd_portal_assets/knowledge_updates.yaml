@@ -13,7 +13,8 @@
 #   title     the row's bold line
 #   note      one line: what changed
 #   page      where the row links: share | home | product-knowledge |
-#             product-matrix | market-policy | deliverables | system | design-system
+#             product-matrix | market-policy | deliverables | system | design-system |
+#             manual-search | manual-library
 #             (hidden while that page, or the share package, is not built)
 #   anchor    optional lower-case id on that page, such as work-map
 #   evidence  pr:<repo>#<n>, or a list of them, for reviewers; never shown
@@ -23,6 +24,31 @@
 schema: hello-docs-knowledge-updates/v1
 
 updates:
+  - date: 2026-11-10
+    title: 说明书阅读页 · 章节目录和新顶栏
+    note: 已验证的单语网页说明书加了章节目录（左栏随阅读位置高亮当前章节，窄屏点顶栏的目录按钮打开）和顶栏（产品名、型号、区域、语言、版本、搜索、语言下拉框）；这些文字跟随说明书语言（日文页“目次”、英文页“Contents”）；反馈改成正文下方的一张卡；去掉查看源文件、深浅色切换和主题页脚
+    page: manual-library
+    evidence: "pr:auto-manual#1709"
+  - date: 2026-11-10
+    title: 设计规范 · 颜色、字体、组件、素材和印刷规格新版
+    note: 颜色按用途分三张表并标对比度等级；字体一张表；组件改成可筛选的缩略图卡，点开在本行下方看大预览与用法；素材改成密排图块，点一个看语义键、用途和用在哪些组件；印刷规格按比例画出页面，常用 10 种字号先显示
+    page: design-system
+    evidence: "pr:auto-manual#1707"
+  - date: 2026-11-09
+    title: 系统建设 · 能力与架构、来源与演变新版
+    note: 能力地图改成 6 张同样大小的能力域卡，说明与证据点开再看；生产链路按生产、翻译与评审、运行与追溯分组；数据来源先列快照（日期、期限、状态、刷新命令），再列构建时读取的数据；系统演变每个阶段一行
+    page: system
+    evidence: "pr:auto-manual#1706"
+  - date: 2026-11-09
+    title: 说明书工作台 · 只统计网页说明书
+    note: 页首改为网页说明书、语言版本、审核中、待转，不再统计飞书云文档的交付；覆盖矩阵按资料库类别分组，点一行看各语言版本；数据统计改为五张卡；资产与证据改为三张资产卡和逐问一行的生产证据
+    page: deliverables
+    evidence: "pr:auto-manual#1704"
+  - date: 2026-11-09
+    title: 搜索说明书正文 · 新版页面
+    note: 换成和说明书资料库一样的侧栏与中文界面；结果按产品归组，同一产品各市场的说明书放在一起，每份说明书显示一种语言（写成 en-US 这类简写）；可按区域、类别、语言筛选，搜 UPS 不再命中 upside
+    page: manual-search
+    evidence: "pr:auto-manual#1700"
   - date: 2026-11-06
     title: 产品矩阵 · 按网页文档表分类
     note: 每个产品类别一个标签，按产品系列 × 容量排列，卡片写商品简称；点一款产品在它那一行下方展开各型号的简称、规格、各市场说明书、功能和搭配；说明书资料库也改按同一套类别与系列分组

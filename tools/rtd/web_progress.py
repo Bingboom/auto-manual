@@ -489,6 +489,25 @@ def _kpis(targets: list[dict[str, Any]], snapshot: dict[str, Any] | None, models
             "latest": max((r["date"] for r in reviews if r["date"]), default="")}
 
 
+def regroup(progress: dict[str, Any], groups: list[tuple[str, set[str]]], other: str) -> None:
+    """Group the coverage matrix like the 说明书资料库: by its 产品分类 categories, in their order.
+
+    ``groups`` lists each category's title and models (``portal_navigation.library_view``). Drafts-only models keep
+    the 审核中（未上线） group, first; a model no category lists falls under ``other``.
+    """
+    if not groups or not progress.get("available"):
+        return
+    of = {model: title for title, models in groups for model in models}
+    order = list(dict.fromkeys([REVIEW_CATEGORY, *(title for title, _ in groups), other]))
+    for row in progress["rows"]:
+        if row["category"] != REVIEW_CATEGORY:
+            row["category"] = of.get(row["model"], other)
+    rank = {title: index for index, title in enumerate(order)}
+    progress["rows"].sort(key=lambda row: (rank[row["category"]], row["model"]))
+    counts = {title: sum(1 for row in progress["rows"] if row["category"] == title) for title in order}
+    progress["categories"] = [{"label": title, "count": count} for title, count in counts.items() if count]
+
+
 def _categories(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     counts = {label: sum(1 for r in rows if r["category"] == label) for label in CATEGORY_ORDER}
     return [{"label": label, "count": count} for label, count in counts.items() if count]
