@@ -52,8 +52,8 @@
     "assets/car.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "700c6651677294645acc3138715558dbe104c31c6a500755e379c39930b3bb6f",
-  "content_sha256": "d2aae32c38956ecfd3d4b7e4d11537b17deef0a25f05cafa8ab4d9f457aeabbb",
+  "bundle_sha256": "fcba6f92ca75de6e781a13ac8dc6fd74bcd899d3fa055f1cad06f8516248383e",
+  "content_sha256": "d828034fc1326aacf24b056329ab7e11deb1e3c15abd99a68b056d03bf3b27bb",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -1948,7 +1948,7 @@
     },
     "source_stylesheet": {
       "path": "_static/source_presentation.css",
-      "sha256": "11a90f298942e76fb9b937c3959cadecb3447ae73643119feb67954f4b95e49f"
+      "sha256": "430cd0153b60cea1fe2ac96e7b1871661d60c092e1849910001c4657ecf648ee"
     },
     "title": "Jackery Battery Pack — JBP-1000B-SIL",
     "web_contract": {
@@ -3867,7 +3867,7 @@
             "assets/power.png"
           ],
           "block_id": "operations:block-0003",
-          "content_sha256": "b1f6d649d26530376a73f8fabc0dec4154e7b70b3691a88eb3b3d637f8f9b591",
+          "content_sha256": "c58dfadf60df7af57f7cdcd9a4a14313689fb0f29487327409c64f9e4ea745d1",
           "kind": "flow",
           "payload": {
             "children": [
@@ -4205,8 +4205,9 @@
               "html": {
                 "attributes": {
                   "class": [
-                    "native-power-panel"
-                  ]
+                    "hb-source-operation"
+                  ],
+                  "data-layout": "power-panel"
                 }
               }
             },
@@ -4238,7 +4239,7 @@
             "assets/lcd-button.png"
           ],
           "block_id": "operations:block-0005",
-          "content_sha256": "0aa6e9a2d73a835d40224f01eadeda4f11421e4a9b3767320d2a7a9f95a58d20",
+          "content_sha256": "8298eab1fd64a23a4b00865651f1a4b9f86af31dbc32ef73859bcc5719918d7f",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -4514,7 +4515,10 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "native-lcd-actions"
+                      "class": [
+                        "container"
+                      ],
+                      "data-layout": "lcd-actions"
                     }
                   }
                 },
@@ -4613,7 +4617,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#operations",
       "source_ref": "native-pdf/operations",
-      "source_sha256": "fb966f0a048123fd06e4032698c06aa379204b2bd1d2044ff988e4b29be61dbe"
+      "source_sha256": "968e3171339a108f65e771612d907a401a9123adba98e0ffe16684a322a5f587"
     },
     {
       "blocks": [
@@ -5071,7 +5075,7 @@
             "assets/vertical-result.png"
           ],
           "block_id": "vertical:block-0002",
-          "content_sha256": "ca455377d9cee1276c0dbc113f8c422d05f0f1ca59505276fa073e93b31d320f",
+          "content_sha256": "42f47999804b0f3ca5dfda491d3d873d4f4ae0c35aebf272194eb5ec2df7c69e",
           "kind": "flow",
           "payload": {
             "children": [
@@ -5214,7 +5218,10 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "native-vertical-preparation"
+                      "class": [
+                        "container"
+                      ],
+                      "data-layout": "vertical-preparation"
                     }
                   }
                 },
@@ -5252,7 +5259,10 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "native-vertical-result"
+                      "class": [
+                        "container"
+                      ],
+                      "data-layout": "vertical-result"
                     }
                   }
                 },
@@ -5263,7 +5273,10 @@
             "presentation": {
               "html": {
                 "attributes": {
-                  "class": "native-vertical-opening"
+                  "class": [
+                    "container"
+                  ],
+                  "data-layout": "vertical-opening"
                 }
               }
             },
@@ -5279,7 +5292,7 @@
             "assets/vertical-3.png"
           ],
           "block_id": "vertical:block-0003",
-          "content_sha256": "331483e3ec171dcf9ab76ebc4d9597f87f4fd78c11e9b38414b742e6dd0c2130",
+          "content_sha256": "9370098f498897843fe5853684bab65228b74664bd2a222d4f25dd858a481726",
           "kind": "flow",
           "payload": {
             "children": [
@@ -5324,7 +5337,10 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "native-step-card"
+                      "class": [
+                        "hb-source-operation"
+                      ],
+                      "data-layout": "step-card"
                     }
                   }
                 },
@@ -5371,7 +5387,10 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "native-step-card"
+                      "class": [
+                        "hb-source-operation"
+                      ],
+                      "data-layout": "step-card"
                     }
                   }
                 },
@@ -5418,7 +5437,10 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "native-step-card"
+                      "class": [
+                        "hb-source-operation"
+                      ],
+                      "data-layout": "step-card"
                     }
                   }
                 },
@@ -5429,7 +5451,10 @@
             "presentation": {
               "html": {
                 "attributes": {
-                  "class": "native-step-grid"
+                  "class": [
+                    "container"
+                  ],
+                  "data-layout": "step-grid"
                 }
               }
             },
@@ -5444,7 +5469,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#vertical",
       "source_ref": "native-pdf/vertical",
-      "source_sha256": "7988e5828baedd225bb288649dd59bbd9f15ce0aebc8cb78725a3c15a6266530"
+      "source_sha256": "f782a3d1d4c1cb72d3aa1541bda416afa6f2c23f6b3bd6313cbdedba034a0238"
     },
     {
       "blocks": [
@@ -5508,7 +5533,7 @@
             "assets/wood-result.png"
           ],
           "block_id": "wall-mount:block-0004",
-          "content_sha256": "e5b55f305c94f2be70105a824ee484fc427e91d017cb64eaf808b317925ac1a0",
+          "content_sha256": "a14545c6be67a85c9c26bf7338b00bd679f78fe156e2cf0892d715135bf82647",
           "kind": "flow",
           "payload": {
             "children": [
@@ -5667,7 +5692,11 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "native-wood-preparation"
+                      "class": [
+                        "hb-package-panel",
+                        "hb-package-panel--optional"
+                      ],
+                      "data-layout": "wood-preparation"
                     }
                   }
                 },
@@ -5798,7 +5827,10 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "native-wood-result"
+                      "class": [
+                        "container"
+                      ],
+                      "data-layout": "wood-result"
                     }
                   }
                 },
@@ -5809,7 +5841,10 @@
             "presentation": {
               "html": {
                 "attributes": {
-                  "class": "native-wood-opening"
+                  "class": [
+                    "container"
+                  ],
+                  "data-layout": "wood-opening"
                 }
               }
             },
@@ -5828,7 +5863,7 @@
             "assets/wood-7.png"
           ],
           "block_id": "wall-mount:block-0005",
-          "content_sha256": "e33350aefc6cef0161656fb74ada76f3aaed059271419807471fb2ea13dd2d76",
+          "content_sha256": "c9746dbed3cca2d1600b07e0f92fd2a8c0bc860f7fe0684cc6da97e3a265c01a",
           "kind": "flow",
           "payload": {
             "children": [
@@ -5987,7 +6022,10 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "native-wall-panel native-wood-1-2"
+                      "class": [
+                        "hb-source-operation"
+                      ],
+                      "data-layout": "wall-panel wood-1-2"
                     }
                   }
                 },
@@ -6118,7 +6156,10 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "native-wall-panel native-wood-3"
+                      "class": [
+                        "hb-source-operation"
+                      ],
+                      "data-layout": "wall-panel wood-3"
                     }
                   }
                 },
@@ -6279,7 +6320,10 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "native-wall-panel native-wood-4"
+                      "class": [
+                        "hb-source-operation"
+                      ],
+                      "data-layout": "wall-panel wood-4"
                     }
                   }
                 },
@@ -6560,7 +6604,10 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "native-wall-panel native-wood-5"
+                      "class": [
+                        "hb-source-operation"
+                      ],
+                      "data-layout": "wall-panel wood-5"
                     }
                   }
                 },
@@ -6781,7 +6828,10 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "native-wall-panel native-wood-6"
+                      "class": [
+                        "hb-source-operation"
+                      ],
+                      "data-layout": "wall-panel wood-6"
                     }
                   }
                 },
@@ -6912,7 +6962,10 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "native-wall-panel native-wood-7"
+                      "class": [
+                        "hb-source-operation"
+                      ],
+                      "data-layout": "wall-panel wood-7"
                     }
                   }
                 },
@@ -6923,7 +6976,10 @@
             "presentation": {
               "html": {
                 "attributes": {
-                  "class": "native-wall-wood-steps"
+                  "class": [
+                    "container"
+                  ],
+                  "data-layout": "wall-wood-steps"
                 }
               }
             },
@@ -6956,7 +7012,7 @@
             "assets/concrete-result.png"
           ],
           "block_id": "wall-mount:block-0007",
-          "content_sha256": "d7ad375070df63a7e470963c1c3b59380a9c7519adaa6008c10a6c01a1f3fcbf",
+          "content_sha256": "fa280af4bb21c03a448687a117e5f4f6f35b06151c5235b755f3f9fd967451e9",
           "kind": "flow",
           "payload": {
             "children": [
@@ -7115,7 +7171,11 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "native-concrete-preparation"
+                      "class": [
+                        "hb-package-panel",
+                        "hb-package-panel--optional"
+                      ],
+                      "data-layout": "concrete-preparation"
                     }
                   }
                 },
@@ -7153,7 +7213,10 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "native-concrete-result"
+                      "class": [
+                        "container"
+                      ],
+                      "data-layout": "concrete-result"
                     }
                   }
                 },
@@ -7164,7 +7227,10 @@
             "presentation": {
               "html": {
                 "attributes": {
-                  "class": "native-concrete-opening"
+                  "class": [
+                    "container"
+                  ],
+                  "data-layout": "concrete-opening"
                 }
               }
             },
@@ -7182,7 +7248,7 @@
             "assets/concrete-8-9.png"
           ],
           "block_id": "wall-mount:block-0008",
-          "content_sha256": "42751a207f64547784b20e4e855fc56c3b3c393cf3defd5306fccb5a249f3ad3",
+          "content_sha256": "c89132009b5e188e7a7a8fce85c0d3cd586eb0f6f81f1ed694a7c4831f16d6f4",
           "kind": "flow",
           "payload": {
             "children": [
@@ -7341,7 +7407,10 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "native-wall-panel native-concrete-1-2"
+                      "class": [
+                        "hb-source-operation"
+                      ],
+                      "data-layout": "wall-panel concrete-1-2"
                     }
                   }
                 },
@@ -7472,7 +7541,10 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "native-wall-panel native-concrete-3"
+                      "class": [
+                        "hb-source-operation"
+                      ],
+                      "data-layout": "wall-panel concrete-3"
                     }
                   }
                 },
@@ -7813,7 +7885,10 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "native-wall-panel native-wall-pair native-concrete-4-5"
+                      "class": [
+                        "hb-source-operation"
+                      ],
+                      "data-layout": "wall-panel wall-pair concrete-4-5"
                     }
                   }
                 },
@@ -8034,7 +8109,10 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "native-wall-panel native-wall-pair native-concrete-6-7"
+                      "class": [
+                        "hb-source-operation"
+                      ],
+                      "data-layout": "wall-panel wall-pair concrete-6-7"
                     }
                   }
                 },
@@ -8195,7 +8273,10 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "native-wall-panel native-wall-pair native-concrete-8-9"
+                      "class": [
+                        "hb-source-operation"
+                      ],
+                      "data-layout": "wall-panel wall-pair concrete-8-9"
                     }
                   }
                 },
@@ -8206,7 +8287,10 @@
             "presentation": {
               "html": {
                 "attributes": {
-                  "class": "native-wall-concrete-steps"
+                  "class": [
+                    "container"
+                  ],
+                  "data-layout": "wall-concrete-steps"
                 }
               }
             },
@@ -8221,7 +8305,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#wall-mount",
       "source_ref": "native-pdf/wall-mount",
-      "source_sha256": "1c72d8c104102c845da21ae419aa619818d7802233c9e1e03ef9ba7a9db2584c"
+      "source_sha256": "8bf3cfa683028725f1ae84815dd8a57eba6b6273f59c31b026bed5527efac41d"
     },
     {
       "blocks": [
@@ -8399,7 +8483,7 @@
             "assets/connection-icon.svg"
           ],
           "block_id": "connections:block-0005",
-          "content_sha256": "d2b12343a8c7345fbd93ed807ca3aa984e9b45d20bbc15d659ae9a3a0b85ecbf",
+          "content_sha256": "eb0d3b10484ca00fdb8a935996119f62e1084e6f5b00f5a88042b72273e8611d",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -8440,7 +8524,10 @@
                                     "presentation": {
                                       "html": {
                                         "attributes": {
-                                          "class": "native-inline-pack"
+                                          "class": [
+                                            "container"
+                                          ],
+                                          "data-layout": "inline-pack"
                                         }
                                       }
                                     },
@@ -8516,7 +8603,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#connections",
       "source_ref": "native-pdf/connections",
-      "source_sha256": "07c78f75856a0d9aebf545a366b6726da34722d7a3203300d9d4bc0ca7f00d43"
+      "source_sha256": "b32b7e64b2c7e9f644225e47f5ada9986e10087d695943a30dcbc9d82dea938e"
     },
     {
       "blocks": [

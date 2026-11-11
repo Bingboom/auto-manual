@@ -30,6 +30,7 @@ from tools.markdown_bundle import _write_myst_sphinx_scaffold  # noqa: E402
 from tools.utils.path_utils import PathSegments  # noqa: E402
 from tools.web.frozen_ai_web import replay_package  # noqa: E402
 from tools.web.presentation import load_web_manual_contract  # noqa: E402
+from tools.web.prepared_style_audit import require_prepared_document_styles  # noqa: E402
 
 
 def check_inventory(base: Path, rows: list[dict]) -> None:
@@ -114,6 +115,10 @@ def rebuild(output: Path, language: str) -> None:
         metadata=metadata, schema_version=V2_SCHEMA_VERSION,
     ))
     validate_document(ir)
+    require_prepared_document_styles(
+        ir.to_dict(), stylesheet=source_css.read_text(encoding="utf-8"),
+        exceptions=manifest.get("shared_component_exceptions", ()),
+    )
     write_manual_ir(ir, output / PathSegments.MANUAL_IR_JSON)
     replay_package(output)
     print(json.dumps({"output": str(output), "chapters": len(pages),

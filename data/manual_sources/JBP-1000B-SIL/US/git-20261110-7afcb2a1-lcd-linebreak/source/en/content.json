@@ -1576,8 +1576,9 @@
             "html": {
               "attributes": {
                 "class": [
-                  "native-power-panel"
-                ]
+                  "hb-source-operation"
+                ],
+                "data-layout": "power-panel"
               }
             }
           },
@@ -2015,7 +2016,10 @@
               "presentation": {
                 "html": {
                   "attributes": {
-                    "class": "native-lcd-actions"
+                    "class": [
+                      "container"
+                    ],
+                    "data-layout": "lcd-actions"
                   }
                 }
               },
@@ -2647,7 +2651,10 @@
           "presentation": {
             "html": {
               "attributes": {
-                "class": "native-vertical-opening"
+                "class": [
+                  "container"
+                ],
+                "data-layout": "vertical-opening"
               }
             }
           },
@@ -2658,7 +2665,10 @@
               "presentation": {
                 "html": {
                   "attributes": {
-                    "class": "native-vertical-preparation"
+                    "class": [
+                      "container"
+                    ],
+                    "data-layout": "vertical-preparation"
                   }
                 }
               },
@@ -2803,7 +2813,10 @@
               "presentation": {
                 "html": {
                   "attributes": {
-                    "class": "native-vertical-result"
+                    "class": [
+                      "container"
+                    ],
+                    "data-layout": "vertical-result"
                   }
                 }
               },
@@ -2843,7 +2856,10 @@
           "presentation": {
             "html": {
               "attributes": {
-                "class": "native-step-grid"
+                "class": [
+                  "container"
+                ],
+                "data-layout": "step-grid"
               }
             }
           },
@@ -2854,7 +2870,10 @@
               "presentation": {
                 "html": {
                   "attributes": {
-                    "class": "native-step-card"
+                    "class": [
+                      "hb-source-operation"
+                    ],
+                    "data-layout": "step-card"
                   }
                 }
               },
@@ -2901,7 +2920,10 @@
               "presentation": {
                 "html": {
                   "attributes": {
-                    "class": "native-step-card"
+                    "class": [
+                      "hb-source-operation"
+                    ],
+                    "data-layout": "step-card"
                   }
                 }
               },
@@ -2948,7 +2970,10 @@
               "presentation": {
                 "html": {
                   "attributes": {
-                    "class": "native-step-card"
+                    "class": [
+                      "hb-source-operation"
+                    ],
+                    "data-layout": "step-card"
                   }
                 }
               },
@@ -3038,7 +3063,10 @@
           "presentation": {
             "html": {
               "attributes": {
-                "class": "native-wood-opening"
+                "class": [
+                  "container"
+                ],
+                "data-layout": "wood-opening"
               }
             }
           },
@@ -3049,7 +3077,11 @@
               "presentation": {
                 "html": {
                   "attributes": {
-                    "class": "native-wood-preparation"
+                    "class": [
+                      "hb-package-panel",
+                      "hb-package-panel--optional"
+                    ],
+                    "data-layout": "wood-preparation"
                   }
                 }
               },
@@ -3210,7 +3242,10 @@
               "presentation": {
                 "html": {
                   "attributes": {
-                    "class": "native-wood-result"
+                    "class": [
+                      "container"
+                    ],
+                    "data-layout": "wood-result"
                   }
                 }
               },
@@ -3344,7 +3379,10 @@
           "presentation": {
             "html": {
               "attributes": {
-                "class": "native-wall-wood-steps"
+                "class": [
+                  "container"
+                ],
+                "data-layout": "wall-wood-steps"
               }
             }
           },
@@ -3355,7 +3393,10 @@
               "presentation": {
                 "html": {
                   "attributes": {
-                    "class": "native-wall-panel native-wood-1-2"
+                    "class": [
+                      "hb-source-operation"
+                    ],
+                    "data-layout": "wall-panel wood-1-2"
                   }
                 }
               },
@@ -3516,7 +3557,10 @@
               "presentation": {
                 "html": {
                   "attributes": {
-                    "class": "native-wall-panel native-wood-3"
+                    "class": [
+                      "hb-source-operation"
+                    ],
+                    "data-layout": "wall-panel wood-3"
                   }
                 }
               },
@@ -3647,7 +3691,10 @@
               "presentation": {
                 "html": {
                   "attributes": {
-                    "class": "native-wall-panel native-wood-4"
+                    "class": [
+                      "hb-source-operation"
+                    ],
+                    "data-layout": "wall-panel wood-4"
                   }
                 }
               },
@@ -3808,7 +3855,10 @@
               "presentation": {
                 "html": {
                   "attributes": {
-                    "class": "native-wall-panel native-wood-5"
+                    "class": [
+                      "hb-source-operation"
+                    ],
+                    "data-layout": "wall-panel wood-5"
                   }
                 }
               },
@@ -4089,7 +4139,10 @@
               "presentation": {
                 "html": {
                   "attributes": {
-                    "class": "native-wall-panel native-wood-6"
+                    "class": [
+                      "hb-source-operation"
+                    ],
+                    "data-layout": "wall-panel wood-6"
                   }
                 }
               },
@@ -4310,7 +4363,10 @@
               "presentation": {
                 "html": {
                   "attributes": {
-                    "class": "native-wall-panel native-wood-7"
+                    "class": [
+                      "hb-source-operation"
+                    ],
+                    "data-layout": "wall-panel wood-7"
                   }
                 }
               },
@@ -4455,7 +4511,10 @@
           "presentation": {
             "html": {
               "attributes": {
-                "class": "native-concrete-opening"
+                "class": [
+                  "container"
+                ],
+                "data-layout": "concrete-opening"
               }
             }
           },
@@ -4466,7 +4525,11 @@
               "presentation": {
                 "html": {
                   "attributes": {
-                    "class": "native-concrete-preparation"
+                    "class": [
+                      "hb-package-panel",
+                      "hb-package-panel--optional"
+                    ],
+                    "data-layout": "concrete-preparation"
                   }
                 }
               },
@@ -4627,7 +4690,10 @@
               "presentation": {
                 "html": {
                   "attributes": {
-                    "class": "native-concrete-result"
+                    "class": [
+                      "container"
+                    ],
+                    "data-layout": "concrete-result"
                   }
                 }
               },
@@ -4668,7 +4734,10 @@
           "presentation": {
             "html": {
               "attributes": {
-                "class": "native-wall-concrete-steps"
+                "class": [
+                  "container"
+                ],
+                "data-layout": "wall-concrete-steps"
               }
             }
           },
@@ -4679,7 +4748,10 @@
               "presentation": {
                 "html": {
                   "attributes": {
-                    "class": "native-wall-panel native-concrete-1-2"
+                    "class": [
+                      "hb-source-operation"
+                    ],
+                    "data-layout": "wall-panel concrete-1-2"
                   }
                 }
               },
@@ -4840,7 +4912,10 @@
               "presentation": {
                 "html": {
                   "attributes": {
-                    "class": "native-wall-panel native-concrete-3"
+                    "class": [
+                      "hb-source-operation"
+                    ],
+                    "data-layout": "wall-panel concrete-3"
                   }
                 }
               },
@@ -4971,7 +5046,10 @@
               "presentation": {
                 "html": {
                   "attributes": {
-                    "class": "native-wall-panel native-wall-pair native-concrete-4-5"
+                    "class": [
+                      "hb-source-operation"
+                    ],
+                    "data-layout": "wall-panel wall-pair concrete-4-5"
                   }
                 }
               },
@@ -5312,7 +5390,10 @@
               "presentation": {
                 "html": {
                   "attributes": {
-                    "class": "native-wall-panel native-wall-pair native-concrete-6-7"
+                    "class": [
+                      "hb-source-operation"
+                    ],
+                    "data-layout": "wall-panel wall-pair concrete-6-7"
                   }
                 }
               },
@@ -5533,7 +5614,10 @@
               "presentation": {
                 "html": {
                   "attributes": {
-                    "class": "native-wall-panel native-wall-pair native-concrete-8-9"
+                    "class": [
+                      "hb-source-operation"
+                    ],
+                    "data-layout": "wall-panel wall-pair concrete-8-9"
                   }
                 }
               },
@@ -5920,7 +6004,10 @@
                                   "presentation": {
                                     "html": {
                                       "attributes": {
-                                        "class": "native-inline-pack"
+                                        "class": [
+                                          "container"
+                                        ],
+                                        "data-layout": "inline-pack"
                                       }
                                     }
                                   }

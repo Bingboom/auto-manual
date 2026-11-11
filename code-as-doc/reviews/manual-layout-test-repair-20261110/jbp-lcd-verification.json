@@ -9,8 +9,36 @@
   "strict_sphinx_passed": true,
   "publication_eligible": false,
   "browser": {
-    "br_count": 1,
-    "on_y": 554.078125,
-    "off_y": 571.796875
-  }
+    "desktop": {
+      "viewport": 1280,
+      "documentWidth": 1265,
+      "loadedImages": 50
+    },
+    "mobile": {
+      "documentWidth": 375,
+      "loadedImages": 50,
+      "viewport": 390
+    },
+    "lcd": {
+      "breaks": 1,
+      "labels": [
+        {
+          "text": "On:",
+          "top": 331.71875
+        },
+        {
+          "text": "Off:",
+          "top": 349.4375
+        }
+      ]
+    }
+  },
+  "shared_style_admission": {
+    "issues": 0,
+    "repository_gate_tests_passed": 10,
+    "migrated_presentations": 29,
+    "source_paint": false,
+    "rebuild_enforces_admission": true
+  },
+  "native_semantic_content_identical": true
 }

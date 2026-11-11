@@ -8,8 +8,8 @@
     },
     {
       "path": "README.md",
-      "size": 1377,
-      "sha256": "2cee7ad72494cfe1bca35d65ee922e53969813dceae086fe7e2a3445b51b6a32"
+      "size": 1821,
+      "sha256": "bac5698eefaaf9d45608c5ac72b5506b9c171fd2909b3a89b9f126618a12fb20"
     },
     {
       "path": "assets/ac.png",
@@ -263,8 +263,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 6337,
-      "sha256": "52ec9632c8c2e854ea1774a7fb96ac833e6779c9e668ad5abb34da420ada0eaa"
+      "size": 6612,
+      "sha256": "e53b6eca56790e581d16cad2b4b563cd86d1139b9cfd46597d45b26d4e4d6056"
     },
     {
       "path": "source/asset_decisions.json",
@@ -273,13 +273,13 @@
     },
     {
       "path": "source/component_map.json",
-      "size": 634,
-      "sha256": "6815c97452abf61332bdbffbe6df9d436986da00bf9d77b90248c08a04e5b13b"
+      "size": 6881,
+      "sha256": "7b5855a4973fe8e14c7f6181652ece01c20ff00e3077bea9ee7b4d9da6410d45"
     },
     {
       "path": "source/en/content.json",
-      "size": 279349,
-      "sha256": "8a68f23203f36e3d89cea28128be88748ee09ca9ea16c632d2e7d2922a53b0fa"
+      "size": 281980,
+      "sha256": "329fae88b630464392507ea76b0184cd585c828ef8bbf4a6b31b52954ea6b514"
     },
     {
       "path": "source/en/coverage.json",
@@ -303,8 +303,8 @@
     },
     {
       "path": "source/presentation.css",
-      "size": 15739,
-      "sha256": "11a90f298942e76fb9b937c3959cadecb3447ae73643119feb67954f4b95e49f"
+      "size": 14288,
+      "sha256": "430cd0153b60cea1fe2ac96e7b1871661d60c092e1849910001c4657ecf648ee"
     },
     {
       "path": "source/retired_assets.json",
@@ -1237,6 +1237,10 @@
       "path": "data/asset_recipes/manual_jbp1000b_sil_us_wall_panels.json",
       "size": 23307,
       "sha256": "ebd9e0420de388c940d645dcf164896693d7ddfc28c76bf492d5028fb4f792f2"
+    },
+    {
+      "path": "tools/web/prepared_style_audit.py",
+      "sha256": "1600f5efaa5d512ee7434140b6eab7c07dff6a30b6a4cac27b23e763d8c77121"
     }
   ],
   "target": {
@@ -1508,7 +1512,7 @@
   "phase2_enrolled": false,
   "source_acceptance": {
     "status": "pending-operator-review",
-    "scope": "one English LCD description line break"
+    "scope": "English LCD line break and inherited-group shared-style migration"
   },
   "publication_eligible": false,
   "publication_status": "candidate-pending-operator-review",
@@ -1520,7 +1524,8 @@
     "field": "LCD row 6 description_html",
     "change": "one br before existing Off label",
     "native_copy_changed": false,
-    "artwork_changed": false
+    "artwork_changed": false,
+    "style_migration": "generic geometry containers and existing shared operation/optional-accessory skins; no source paint or private classes"
   },
   "retired_parent_dependencies": [
     {

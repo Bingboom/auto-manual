@@ -1,6 +1,6 @@
 # Manual layout regression repair
 
-Status: final local verification passed; prepared for PR review. No merge or publication authorization.
+Status: PR #1711 CI follow-up; source/style repair checks recorded below. Latest head CI is the completion authority. No merge or publication authorization.
 
 ## Discovery and plan
 
@@ -51,3 +51,11 @@ The final screenshot identifies the English `DC Input` LCD row of the existing `
 The LCD candidate passed source parity (exactly one HTML field gains one `<br />`), identical native rendered words, all 50 unchanged artwork bytes, strict Sphinx and two cold builds with 56 identical files. The browser confirms `Off:` on the following line. See [LCD verification](jbp-lcd-verification.json) and [screenshot](jbp-lcd-linebreak-fixed.png). Its two retired parent language-navigation dependencies are recorded explicitly, following upstream #1469. The candidate is registered with no release authorization.
 
 Final machine-readable results: [verification.json](verification.json). The generated root `docs/index.rst` from the US check was restored to its prior bytes and is excluded from the patch. No old source package was rewritten.
+
+## PR #1711 CI follow-up (2026-11-10)
+
+The first CI run executed 6,253 tests and found one failure: `RepositoryGateTests.test_every_prepared_locale_passes_or_is_an_unchanged_baseline_entry`. The late-added JBP LCD candidate inherited 41 private grouping classes and four categories of source paint from its old pre-gate parent. The earlier local discovery had already run this repository-wide scanner before that candidate was added; its green result did not cover the late artifact.
+
+Repair plan: keep all registered component instances, prose, drawing bytes and measured geometry; map the existing outer groups to generic layout containers and the theme's existing `hb-source-operation` / optional `hb-package-panel` skins. Geometry anchors use data attributes, while package CSS loses all paint declarations and synthetic frame drawing. Preserve the LCD `<br />`. Add shared-style admission to this candidate's real rebuild, regenerate its exact inventory/output and run the repository-wide style test before the next full discovery. No baseline increase, gate relaxation, new shared style or old-package edit is involved.
+
+The CI repair maps 29 existing group/carrier presentations to generic geometry containers and existing shared theme skins, removes all source paint and adds fail-closed prepared-style admission to the real rebuild. The ten repository-wide style tests pass. Full native semantic content, registered component inventory and all 50 artwork bytes match the parent; two rebuilt trees have 56 identical files. Strict Sphinx passes. Browser validation loads all 50 images at 1280px and 390px with no document overflow; the LCD retains one break before `Off:`. See [operation](ci-shared-operation-fixed.png), [installation](ci-shared-installation-fixed.png), [mobile vertical stand](ci-shared-style-mobile.png), [LCD](ci-shared-lcd-fixed.png) and [metrics](ci-shared-style-browser.json). The shared theme owns panel paint, including whole paired-installation cards; no package-specific subframes are redrawn.

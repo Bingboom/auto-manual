@@ -165,3 +165,5 @@ JHP-2000A retains its prior published snapshot and derives a separate [layout ca
 Historical replay tests supply hash-checked pre-change shared-input fixtures; they still compare immutable output bytes and reject mutated package inputs. Derivation replay runs in temporary copies. Use CI's Python 3.12 and unchanged `requirements.lock` for exception/help characterizations, and put that environment on `PATH` for subprocess tests. See the [test-repair record](../reviews/manual-layout-test-repair-20261110/README.md).
 
 The screenshot-directed JBP-1000B-SIL US English LCD line break is a separate [pending source candidate](../../data/manual_sources/JBP-1000B-SIL/US/git-20261110-7afcb2a1-lcd-linebreak/README.md). It reuses the parent's shared component flow, native words and 50 artwork files; only the DC Input description adds a semantic break before `Off:`. The prior multilingual package remains frozen.
+
+The JBP LCD derivative migrates inherited private grouping styles to existing shared operation/accessory skins; its real rebuild enforces prepared-document shared-style admission. Package CSS retains geometry only.
