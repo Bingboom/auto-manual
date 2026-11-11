@@ -85,7 +85,7 @@ def _lead_nodes(soup: BeautifulSoup, source_path: Path) -> tuple[Tag, list[Tag],
     sections = [
         node for node in soup.find_all("section", recursive=False) if isinstance(node, Tag)
     ]
-    if not isinstance(heading, Tag) or len(paragraphs) < 2:
+    if not isinstance(heading, Tag) or len(paragraphs) == 1:
         raise ValueError(f"{source_path}: warranty lead structure changed")
     root_nodes = [node for node in soup.children if isinstance(node, Tag)]
     # A lead can contain several authored paragraphs. Only the contiguous
@@ -109,8 +109,9 @@ def parse_warranty_html(
             f"{source_path}: expected {expected_sections} warranty sections; "
             f"found {len(sections)}"
         )
-    claims: list[tuple[ComponentSpec, tuple[Tag, ...]]] = [
-        (
+    claims: list[tuple[ComponentSpec, tuple[Tag, ...]]] = []
+    if paragraphs:
+        claims.append((
             warranty_lead_component_spec(
                 accessibility_label=heading.get_text(" ", strip=True),
                 lead_html="\n".join(str(node) for node in paragraphs[:-1]),
@@ -119,8 +120,7 @@ def parse_warranty_html(
                 language=language,
             ),
             tuple(paragraphs),
-        )
-    ]
+        ))
     period_count = 0
     for index, section in enumerate(sections, start=1):
         title = section.find("h2", recursive=False)

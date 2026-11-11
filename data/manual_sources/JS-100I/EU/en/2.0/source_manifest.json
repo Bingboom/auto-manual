@@ -50,10 +50,12 @@
     "legacy_recipe": "data/asset_recipes/manual_js100i_eu_en_web.json",
     "legacy_recipe_sha256": "45755c66d4d98ec356d120b5dd14a535b9633c17191e90de0285fd1bb8910c14",
     "illustration_manifest": "docs/renderers/web/js100i_eu_en_illustrations.json",
-    "illustration_manifest_sha256": "67d7dc6d55edd7bb1eca78f81dc4bcdcef405085fe1be06ac1ce4aa933a10227",
+    "illustration_manifest_sha256": "560cc2bcb93d44288f97b95b35fbbe1452214b9f71f26b5d011f262d0a136adf",
     "semantic_asset_count": 22,
     "text_policy": "selectable operation copy with native shared drawings; legacy labelled product view",
-    "source_note": "English structured facts and prose retain published authority; operation layout and figures use the pinned nine-language native master."
+    "source_note": "English structured facts and prose retain published authority; operation layout and figures use the pinned nine-language native master.",
+    "layout_repair_recipe": "data/asset_recipes/manual_js100i_eu_layout_repairs.json",
+    "layout_repair_recipe_sha256": "ed9c4f5da4d594f5cd723f649b9d06b85b6282e4d37f2c90e1b9b9d5ae595b15"
   },
   "online_dependencies": {
     "bitable_read_required": false,

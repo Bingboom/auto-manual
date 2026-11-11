@@ -146,3 +146,9 @@ constraint；封底仍是 source-driven 可编辑文案。IDML folio 不再通�
 | 封面 / 封底 | `HBPageTemplateCover`、`HBBackCoverPage` | `HB Cover Page` | 封面是置入的成品美术；封底几何为 InDesign 原生，文案来自共享 IR |
 
 Web 投影没有页的概念，这三条不参与。
+
+### Native source-layout wrappers
+
+`hb-step-panel` opts a native `manual-step-figure` into the shared outline and top instruction placement. `hb-finished-source-panel` retains a complete own-source panel and hides only duplicate selectable figcaptions; dense panels scroll inside their phone figure. `hb-source-comparison` keeps two finished examples side by side on desktop and in source order on phones. These boundaries survive Pandoc export.
+
+An Inbox native table may declare `hb-inbox-three-column-layout`; its ComponentSpec records `desktop_columns: 3`, and Web renders `data-inbox-columns="3"` for three-plus-two rows. Unmarked Inbox components keep their existing layout. Warranty pages without introductory paragraphs may start directly with their declared source sections; a single incomplete lead paragraph remains invalid. Existing shared year and section cards own the visual presentation.

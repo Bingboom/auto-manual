@@ -1,0 +1,663 @@
+{
+  "summary": "6250 tests; 84 failures, 46 errors, 96 skipped",
+  "failures": [
+    {
+      "module": "tests.test_explorer_jp_ja_web",
+      "test": "ERROR: test_cold_replay_matches_stored_candidate (tests.test_explorer_jp_ja_web.ExplorerJpJaWebTests.test_cold_replay_matches_stored_candidate) (model='JE-100A')",
+      "cause": ""
+    },
+    {
+      "module": "tests.test_explorer_jp_ja_web",
+      "test": "ERROR: test_cold_replay_matches_stored_candidate (tests.test_explorer_jp_ja_web.ExplorerJpJaWebTests.test_cold_replay_matches_stored_candidate) (model='JE-100C')",
+      "cause": ""
+    },
+    {
+      "module": "tests.test_explorer_us_en_web",
+      "test": "ERROR: test_cold_replay_matches_stored_candidate (tests.test_explorer_us_en_web.ExplorerUsEnWebTests.test_cold_replay_matches_stored_candidate) (model='JE-240B')",
+      "cause": ""
+    },
+    {
+      "module": "tests.test_explorer_us_en_web",
+      "test": "ERROR: test_cold_replay_matches_stored_candidate (tests.test_explorer_us_en_web.ExplorerUsEnWebTests.test_cold_replay_matches_stored_candidate) (model='JE-240A')",
+      "cause": ""
+    },
+    {
+      "module": "tests.test_ja_ck01a_bk_jp_web",
+      "test": "ERROR: test_cold_replay_matches_stored_candidate (tests.test_ja_ck01a_bk_jp_web.JaCk01aBkJpWebTests.test_cold_replay_matches_stored_candidate)",
+      "cause": "ValueError: repository input changed: docs/renderers/contracts/web_presentation/target_overlays.json"
+    },
+    {
+      "module": "tests.test_ja_ck01a_bk_qg_jp_web",
+      "test": "ERROR: test_changed_or_unlisted_inputs_are_rejected_before_output (tests.test_ja_ck01a_bk_qg_jp_web.JACK01ABKQuickGuideWebTest.test_changed_or_unlisted_inputs_are_rejected_before_output) (relative='source/prese",
+      "cause": ""
+    },
+    {
+      "module": "tests.test_ja_ck01a_bk_qg_jp_web",
+      "test": "ERROR: test_changed_or_unlisted_inputs_are_rejected_before_output (tests.test_ja_ck01a_bk_qg_jp_web.JACK01ABKQuickGuideWebTest.test_changed_or_unlisted_inputs_are_rejected_before_output) (relative='assets/site-",
+      "cause": ""
+    },
+    {
+      "module": "tests.test_ja_ck01a_bk_qg_jp_web",
+      "test": "ERROR: test_changed_or_unlisted_inputs_are_rejected_before_output (tests.test_ja_ck01a_bk_qg_jp_web.JACK01ABKQuickGuideWebTest.test_changed_or_unlisted_inputs_are_rejected_before_output)",
+      "cause": ""
+    },
+    {
+      "module": "tests.test_ja_ck01a_bk_qg_jp_web",
+      "test": "ERROR: test_cold_render_matches_committed_web (tests.test_ja_ck01a_bk_qg_jp_web.JACK01ABKQuickGuideWebTest.test_cold_render_matches_committed_web)",
+      "cause": "ValueError: repository input changed: docs/renderers/contracts/web_presentation/target_overlays.json"
+    },
+    {
+      "module": "tests.test_ja_ts02a_us_en_web",
+      "test": "ERROR: test_changed_inputs_are_rejected_before_output (tests.test_ja_ts02a_us_en_web.JaTs02aUsEnWebTests.test_changed_inputs_are_rejected_before_output) (relative='assets/symbol_warning_triangle_yellow.svg')",
+      "cause": ""
+    },
+    {
+      "module": "tests.test_ja_ts02a_us_en_web",
+      "test": "ERROR: test_changed_inputs_are_rejected_before_output (tests.test_ja_ts02a_us_en_web.JaTs02aUsEnWebTests.test_changed_inputs_are_rejected_before_output) (relative='source/presentation.css')",
+      "cause": ""
+    },
+    {
+      "module": "tests.test_ja_ts02a_us_fr_es_web",
+      "test": "ERROR: test_changed_inputs_are_rejected_before_output (tests.test_ja_ts02a_us_fr_es_web.JaTs02aUsFrEsWebTests.test_changed_inputs_are_rejected_before_output) (relative='assets/symbol_grounding-print.svg')",
+      "cause": ""
+    },
+    {
+      "module": "tests.test_ja_ts02a_us_fr_es_web",
+      "test": "ERROR: test_changed_inputs_are_rejected_before_output (tests.test_ja_ts02a_us_fr_es_web.JaTs02aUsFrEsWebTests.test_changed_inputs_are_rejected_before_output) (relative='source/presentation.css')",
+      "cause": ""
+    },
+    {
+      "module": "tests.test_jaad500a_sil_jp_web_layout",
+      "test": "ERROR: test_changed_or_unlisted_inputs_are_rejected_before_output (tests.test_jaad500a_sil_jp_web_layout.WebLayoutEditionTests.test_changed_or_unlisted_inputs_are_rejected_before_output) (relative='source/prese",
+      "cause": ""
+    },
+    {
+      "module": "tests.test_jaad500a_sil_jp_web_layout",
+      "test": "ERROR: test_changed_or_unlisted_inputs_are_rejected_before_output (tests.test_jaad500a_sil_jp_web_layout.WebLayoutEditionTests.test_changed_or_unlisted_inputs_are_rejected_before_output) (relative='assets/solar",
+      "cause": ""
+    },
+    {
+      "module": "tests.test_jaad500a_sil_jp_web_layout",
+      "test": "ERROR: test_changed_or_unlisted_inputs_are_rejected_before_output (tests.test_jaad500a_sil_jp_web_layout.WebLayoutEditionTests.test_changed_or_unlisted_inputs_are_rejected_before_output)",
+      "cause": ""
+    },
+    {
+      "module": "tests.test_jaad500a_sil_jp_web_layout",
+      "test": "ERROR: test_cold_render_matches_committed_web (tests.test_jaad500a_sil_jp_web_layout.WebLayoutEditionTests.test_cold_render_matches_committed_web)",
+      "cause": "ValueError: repository input changed: docs/renderers/contracts/web_presentation/target_overlays.json"
+    },
+    {
+      "module": "tests.test_jaad500a_sil_us_fr_spec",
+      "test": "ERROR: test_cold_render_matches_committed_web (tests.test_jaad500a_sil_us_fr_spec.FrenchSpecLabelEditionTests.test_cold_render_matches_committed_web)",
+      "cause": "ValueError: repository input changed: docs/renderers/contracts/web_presentation/target_overlays.json"
+    },
+    {
+      "module": "tests.test_jaad500a_sil_us_solar_voc",
+      "test": "ERROR: test_cold_render_matches_committed_web (tests.test_jaad500a_sil_us_solar_voc.SolarVocEditionTests.test_cold_render_matches_committed_web) (edition='en', language='en')",
+      "cause": "ValueError: repository input changed: docs/renderers/contracts/web_presentation/target_overlays.json"
+    },
+    {
+      "module": "tests.test_jaad500a_sil_us_solar_voc",
+      "test": "ERROR: test_cold_render_matches_committed_web (tests.test_jaad500a_sil_us_solar_voc.SolarVocEditionTests.test_cold_render_matches_committed_web) (edition='fr-es', language='fr')",
+      "cause": "ValueError: repository input changed: docs/renderers/contracts/web_presentation/target_overlays.json"
+    },
+    {
+      "module": "tests.test_jaad500a_sil_us_solar_voc",
+      "test": "ERROR: test_cold_render_matches_committed_web (tests.test_jaad500a_sil_us_solar_voc.SolarVocEditionTests.test_cold_render_matches_committed_web) (edition='fr-es', language='es')",
+      "cause": "ValueError: repository input changed: docs/renderers/contracts/web_presentation/target_overlays.json"
+    },
+    {
+      "module": "tests.test_jbp3600a_jp_ja_web",
+      "test": "ERROR: test_changed_inputs_are_rejected_before_output (tests.test_jbp3600a_jp_ja_web.Jbp3600aJpJaWebTests.test_changed_inputs_are_rejected_before_output) (relative='assets/signal-triangle.svg')",
+      "cause": ""
+    },
+    {
+      "module": "tests.test_jbp3600a_jp_ja_web",
+      "test": "ERROR: test_changed_inputs_are_rejected_before_output (tests.test_jbp3600a_jp_ja_web.Jbp3600aJpJaWebTests.test_changed_inputs_are_rejected_before_output) (relative='source/presentation.css')",
+      "cause": ""
+    },
+    {
+      "module": "tests.test_je2000e_jp_web",
+      "test": "ERROR: test_cold_replay_matches_stored_candidate (tests.test_je2000e_jp_web.Je2000eJpWebTests.test_cold_replay_matches_stored_candidate)",
+      "cause": "ValueError: shared input drift: docs/renderers/contracts/web_inbox_components.css"
+    },
+    {
+      "module": "tests.test_je300e_eu_en_web",
+      "test": "ERROR: test_changed_inputs_are_rejected_before_output (tests.test_je300e_eu_en_web.Je300eEuEnWebTests.test_changed_inputs_are_rejected_before_output) (relative='assets/symbol_weee.png')",
+      "cause": ""
+    },
+    {
+      "module": "tests.test_je300e_eu_en_web",
+      "test": "ERROR: test_changed_inputs_are_rejected_before_output (tests.test_je300e_eu_en_web.Je300eEuEnWebTests.test_changed_inputs_are_rejected_before_output) (relative='source/presentation.css')",
+      "cause": ""
+    },
+    {
+      "module": "tests.test_je3600a_cn_jp_shared",
+      "test": "ERROR: test_changed_inputs_are_rejected_before_output (tests.test_je3600a_cn_jp_shared.SharedComponentEditionTests.test_changed_inputs_are_rejected_before_output) (region='JP', relative='assets/lcd-wifi.png')",
+      "cause": ""
+    },
+    {
+      "module": "tests.test_je3600a_cn_jp_shared",
+      "test": "ERROR: test_changed_inputs_are_rejected_before_output (tests.test_je3600a_cn_jp_shared.SharedComponentEditionTests.test_changed_inputs_are_rejected_before_output) (region='JP', relative='source/presentation.css",
+      "cause": ""
+    },
+    {
+      "module": "tests.test_je3600a_cn_jp_shared",
+      "test": "ERROR: test_changed_inputs_are_rejected_before_output (tests.test_je3600a_cn_jp_shared.SharedComponentEditionTests.test_changed_inputs_are_rejected_before_output) (region='CN', relative='assets/lcd-wifi.png')",
+      "cause": ""
+    },
+    {
+      "module": "tests.test_je3600a_cn_jp_shared",
+      "test": "ERROR: test_changed_inputs_are_rejected_before_output (tests.test_je3600a_cn_jp_shared.SharedComponentEditionTests.test_changed_inputs_are_rejected_before_output) (region='CN', relative='source/presentation.css",
+      "cause": ""
+    },
+    {
+      "module": "tests.test_je3600a_cn_jp_web_layout",
+      "test": "ERROR: test_changed_inputs_are_rejected_before_output (tests.test_je3600a_cn_jp_web_layout.WebLayoutEditionTests.test_changed_inputs_are_rejected_before_output) (region='JP', relative='assets/lcd-wifi.png')",
+      "cause": ""
+    },
+    {
+      "module": "tests.test_je3600a_cn_jp_web_layout",
+      "test": "ERROR: test_changed_inputs_are_rejected_before_output (tests.test_je3600a_cn_jp_web_layout.WebLayoutEditionTests.test_changed_inputs_are_rejected_before_output) (region='JP', relative='source/presentation.css')",
+      "cause": ""
+    },
+    {
+      "module": "tests.test_je3600a_cn_jp_web_layout",
+      "test": "ERROR: test_changed_inputs_are_rejected_before_output (tests.test_je3600a_cn_jp_web_layout.WebLayoutEditionTests.test_changed_inputs_are_rejected_before_output) (region='CN', relative='assets/lcd-wifi.png')",
+      "cause": ""
+    },
+    {
+      "module": "tests.test_je3600a_cn_jp_web_layout",
+      "test": "ERROR: test_changed_inputs_are_rejected_before_output (tests.test_je3600a_cn_jp_web_layout.WebLayoutEditionTests.test_changed_inputs_are_rejected_before_output) (region='CN', relative='source/presentation.css')",
+      "cause": ""
+    },
+    {
+      "module": "tests.test_jhp3000d_us_web_layout",
+      "test": "ERROR: test_changed_inputs_are_rejected_before_output (tests.test_jhp3000d_us_web_layout.WebLayoutEditionTests.test_changed_inputs_are_rejected_before_output) (relative='assets/button-power-p13.svg')",
+      "cause": ""
+    },
+    {
+      "module": "tests.test_jhp3000d_us_web_layout",
+      "test": "ERROR: test_changed_inputs_are_rejected_before_output (tests.test_jhp3000d_us_web_layout.WebLayoutEditionTests.test_changed_inputs_are_rejected_before_output) (relative='source/presentation.css')",
+      "cause": ""
+    },
+    {
+      "module": "tests.test_jhp5000c_us_web_layout",
+      "test": "ERROR: test_changed_inputs_are_rejected_before_output (tests.test_jhp5000c_us_web_layout.WebLayoutEditionTests.test_changed_inputs_are_rejected_before_output) (relative='assets/power.svg')",
+      "cause": ""
+    },
+    {
+      "module": "tests.test_jhp5000c_us_web_layout",
+      "test": "ERROR: test_changed_inputs_are_rejected_before_output (tests.test_jhp5000c_us_web_layout.WebLayoutEditionTests.test_changed_inputs_are_rejected_before_output) (relative='source/presentation.css')",
+      "cause": ""
+    },
+    {
+      "module": "tests.test_jp_solar_voc",
+      "test": "ERROR: test_ad500a_cold_render_matches_committed_web (tests.test_jp_solar_voc.JapaneseSolarVocEditionTests.test_ad500a_cold_render_matches_committed_web)",
+      "cause": "ValueError: repository input changed: docs/renderers/contracts/web_presentation/target_overlays.json"
+    },
+    {
+      "module": "tests.test_js100i_jp_web",
+      "test": "ERROR: test_cold_replay_matches_stored_edition (tests.test_js100i_jp_web.Js100iJpSpecTableEditionTests.test_cold_replay_matches_stored_edition)",
+      "cause": "ValueError: repository input changed: docs/renderers/contracts/web_presentation/target_overlays.json"
+    },
+    {
+      "module": "tests.test_js100i_jp_web",
+      "test": "ERROR: test_cold_replay_matches_stored_candidate (tests.test_js100i_jp_web.Js100iJpWebTests.test_cold_replay_matches_stored_candidate)",
+      "cause": "ValueError: repository input changed: docs/renderers/contracts/web_presentation/target_overlays.json"
+    },
+    {
+      "module": "tests.test_js_connection_guide_jp_web",
+      "test": "ERROR: test_changed_or_unlisted_inputs_are_rejected_before_output (tests.test_js_connection_guide_jp_web.JSConnectionGuideJPWebTest.test_changed_or_unlisted_inputs_are_rejected_before_output) (relative='source/",
+      "cause": ""
+    },
+    {
+      "module": "tests.test_js_connection_guide_jp_web",
+      "test": "ERROR: test_changed_or_unlisted_inputs_are_rejected_before_output (tests.test_js_connection_guide_jp_web.JSConnectionGuideJPWebTest.test_changed_or_unlisted_inputs_are_rejected_before_output) (relative='assets/",
+      "cause": ""
+    },
+    {
+      "module": "tests.test_js_connection_guide_jp_web",
+      "test": "ERROR: test_changed_or_unlisted_inputs_are_rejected_before_output (tests.test_js_connection_guide_jp_web.JSConnectionGuideJPWebTest.test_changed_or_unlisted_inputs_are_rejected_before_output)",
+      "cause": ""
+    },
+    {
+      "module": "tests.test_js_connection_guide_jp_web",
+      "test": "ERROR: test_cold_render_matches_committed_web (tests.test_js_connection_guide_jp_web.JSConnectionGuideJPWebTest.test_cold_render_matches_committed_web)",
+      "cause": "ValueError: repository input changed: docs/renderers/contracts/web_presentation/target_overlays.json"
+    },
+    {
+      "module": "tests.test_manual_knowledge",
+      "test": "ERROR: test_provenance_names_release_path_from_frozen_files_only (tests.test_manual_knowledge.IdentityProvenanceTests.test_provenance_names_release_path_from_frozen_files_only)",
+      "cause": "ValueError: '/var/folders/47/nh9jbvqs2pqd85f9fcx8w55h0000gn/T/tmpyegvid5y/web/M/EU/md/manual.md' is not in the subpath of '/private/var/folders/47/nh9jbvqs2pqd85f9fcx8w55h0000gn/T/tmpyegvid5y/web'"
+    },
+    {
+      "module": "tests.test_bitable_schema_cli",
+      "test": "FAIL: test_all_command_help_and_offline_failures_match_frozen_contract (tests.test_bitable_schema_cli.BitableSchemaCliTests.test_all_command_help_and_offline_failures_match_frozen_contract)",
+      "cause": "AssertionError: {'hel[136 chars]mote} ...\\n\\nExport / apply Feishu Bitable sch[14492 chars]\\n'}} != {'hel[136 chars]mote}\\n                         ...\\n\\nExport [14544 chars]\\n'}}"
+    },
+    {
+      "module": "tests.test_business_content",
+      "test": "FAIL: test_workflow_shell_fetches_missing_base_in_a_shallow_content_checkout (tests.test_business_content.ContentChecksTests.test_workflow_shell_fetches_missing_base_in_a_shallow_content_checkout)",
+      "cause": "AssertionError: 127 != 0 : From file:///var/folders/47/nh9jbvqs2pqd85f9fcx8w55h0000gn/T/tmpe673i_pt"
+    },
+    {
+      "module": "tests.test_config_pages_characterization",
+      "test": "FAIL: test_pages_issues_and_exceptions_match_golden (tests.test_config_pages_characterization.ConfigPagesCharacterizationTest.test_pages_issues_and_exceptions_match_golden)",
+      "cause": "AssertionError: {'var[89 chars]l': 'e3141bbde8834e372275a33d9c0d462c10538d30f[8725 chars]c0'}} != {'var[89 chars]l': 'a5744939015a4522d984fba0aff47ebfaa7529eec[8725 chars]7a'}}"
+    },
+    {
+      "module": "tests.test_explorer_jp_ja_web",
+      "test": "FAIL: test_cold_replay_matches_stored_candidate (tests.test_explorer_jp_ja_web.ExplorerJpJaWebTests.test_cold_replay_matches_stored_candidate)",
+      "cause": "AssertionError: b'{\\n[67990 chars]6\": \"75c0eac1fad5c3ebba269bdeee2f43a34870d28bf[296987 chars]n}\\n' != b'{\\n[67990 chars]6\": \"c3604a2e5f22b04bc745bb99cf203b50e60222af7[296987 chars]n}\\n' : manual.ir.json"
+    },
+    {
+      "module": "tests.test_explorer_us_en_web",
+      "test": "FAIL: test_cold_replay_matches_stored_candidate (tests.test_explorer_us_en_web.ExplorerUsEnWebTests.test_cold_replay_matches_stored_candidate)",
+      "cause": "AssertionError: b'{\\n[70396 chars]6\": \"3360f72b25bff221c8730796d396ce8d9d5c7ec8c[252189 chars]n}\\n' != b'{\\n[70396 chars]6\": \"c3604a2e5f22b04bc745bb99cf203b50e60222af7[252189 chars]n}\\n' : manual.ir.json"
+    },
+    {
+      "module": "tests.test_idml_composition_data_characterization",
+      "test": "FAIL: test_issue_lists_match_golden (tests.test_idml_composition_data_characterization.CompositionDataCharacterizationTest.test_issue_lists_match_golden)",
+      "cause": "AssertionError: Lists differ: [] != ['01 page/lcd_display_en.rst', '02 page/co[1955 chars]rst']"
+    },
+    {
+      "module": "tests.test_ja_ck01a_bk_jp_web",
+      "test": "FAIL: test_changed_source_copy_is_rejected (tests.test_ja_ck01a_bk_jp_web.JaCk01aBkJpWebTests.test_changed_source_copy_is_rejected)",
+      "cause": "ValueError: repository input changed: docs/renderers/contracts/web_presentation/target_overlays.json"
+    },
+    {
+      "module": "tests.test_ja_ck01a_bk_qg_jp_web",
+      "test": "FAIL: test_acceptance_cannot_cover_resealed_changed_source (tests.test_ja_ck01a_bk_qg_jp_web.JACK01ABKQuickGuideWebTest.test_acceptance_cannot_cover_resealed_changed_source)",
+      "cause": "ValueError: repository input changed: docs/renderers/contracts/web_presentation/target_overlays.json"
+    },
+    {
+      "module": "tests.test_ja_ck01a_bk_qg_jp_web",
+      "test": "FAIL: test_changed_or_unlisted_inputs_are_rejected_before_output (tests.test_ja_ck01a_bk_qg_jp_web.JACK01ABKQuickGuideWebTest.test_changed_or_unlisted_inputs_are_rejected_before_output) (relative='source/page/0",
+      "cause": "ValueError: repository input changed: docs/renderers/contracts/web_presentation/target_overlays.json"
+    },
+    {
+      "module": "tests.test_ja_ts02a_us_en_web",
+      "test": "FAIL: test_an_acceptance_that_misses_an_input_is_refused_before_output (tests.test_ja_ts02a_us_en_web.JaTs02aUsEnWebTests.test_an_acceptance_that_misses_an_input_is_refused_before_output)",
+      "cause": "ValueError: input escapes its pinned root"
+    },
+    {
+      "module": "tests.test_ja_ts02a_us_en_web",
+      "test": "FAIL: test_changed_inputs_are_rejected_before_output (tests.test_ja_ts02a_us_en_web.JaTs02aUsEnWebTests.test_changed_inputs_are_rejected_before_output) (relative='source/en/content.json')",
+      "cause": "ValueError: input escapes its pinned root"
+    },
+    {
+      "module": "tests.test_ja_ts02a_us_fr_es_web",
+      "test": "FAIL: test_an_acceptance_that_misses_an_input_is_refused_before_output (tests.test_ja_ts02a_us_fr_es_web.JaTs02aUsFrEsWebTests.test_an_acceptance_that_misses_an_input_is_refused_before_output) (language='fr')",
+      "cause": "ValueError: input escapes its pinned root"
+    },
+    {
+      "module": "tests.test_ja_ts02a_us_fr_es_web",
+      "test": "FAIL: test_an_acceptance_that_misses_an_input_is_refused_before_output (tests.test_ja_ts02a_us_fr_es_web.JaTs02aUsFrEsWebTests.test_an_acceptance_that_misses_an_input_is_refused_before_output) (language='es')",
+      "cause": "ValueError: input escapes its pinned root"
+    },
+    {
+      "module": "tests.test_ja_ts02a_us_fr_es_web",
+      "test": "FAIL: test_changed_inputs_are_rejected_before_output (tests.test_ja_ts02a_us_fr_es_web.JaTs02aUsFrEsWebTests.test_changed_inputs_are_rejected_before_output) (relative='source/fr/content.json')",
+      "cause": "ValueError: input escapes its pinned root"
+    },
+    {
+      "module": "tests.test_jaad500a_sil_jp_web_layout",
+      "test": "FAIL: test_acceptance_cannot_cover_resealed_changed_source (tests.test_jaad500a_sil_jp_web_layout.WebLayoutEditionTests.test_acceptance_cannot_cover_resealed_changed_source)",
+      "cause": "ValueError: repository input changed: docs/renderers/contracts/web_presentation/target_overlays.json"
+    },
+    {
+      "module": "tests.test_jaad500a_sil_jp_web_layout",
+      "test": "FAIL: test_changed_or_unlisted_inputs_are_rejected_before_output (tests.test_jaad500a_sil_jp_web_layout.WebLayoutEditionTests.test_changed_or_unlisted_inputs_are_rejected_before_output) (relative='source/page/w",
+      "cause": "ValueError: repository input changed: docs/renderers/contracts/web_presentation/target_overlays.json"
+    },
+    {
+      "module": "tests.test_jaad500a_sil_jp_web_layout",
+      "test": "FAIL: test_derivation_is_reproducible (tests.test_jaad500a_sil_jp_web_layout.WebLayoutEditionTests.test_derivation_is_reproducible)",
+      "cause": "AssertionError: {Posi[168 chars]): 'f6c7c1174acd557ff981324ae54d6ccbb0fa4c1ad4[12042 chars]cfa'} != {Posi[168 chars]): 'f4383e1663f480246b76216b05b89c5df3aa8e3687[12042 chars]cfa'}"
+    },
+    {
+      "module": "tests.test_jaad500a_sil_us_fr_spec",
+      "test": "FAIL: test_derivation_is_reproducible (tests.test_jaad500a_sil_us_fr_spec.FrenchSpecLabelEditionTests.test_derivation_is_reproducible)",
+      "cause": "AssertionError: {'der[105 chars]n': '9a3ee75c89a6d8621ce9a47b49f55b9f1a05bcc31[3579 chars]290'} != {'der[105 chars]n': '5815987cca2d1f819ef3d0a2b95022ade5f274efe[3579 chars]290'}"
+    },
+    {
+      "module": "tests.test_jaad500a_sil_us_solar_voc",
+      "test": "FAIL: test_changed_or_unlisted_inputs_are_rejected_before_output (tests.test_jaad500a_sil_us_solar_voc.SolarVocEditionTests.test_changed_or_unlisted_inputs_are_rejected_before_output) (edition='en', relative='s",
+      "cause": "ValueError: repository input changed: docs/renderers/contracts/web_presentation/target_overlays.json"
+    },
+    {
+      "module": "tests.test_jaad500a_sil_us_solar_voc",
+      "test": "FAIL: test_changed_or_unlisted_inputs_are_rejected_before_output (tests.test_jaad500a_sil_us_solar_voc.SolarVocEditionTests.test_changed_or_unlisted_inputs_are_rejected_before_output) (edition='en', relative='a",
+      "cause": "ValueError: repository input changed: docs/renderers/contracts/web_presentation/target_overlays.json"
+    },
+    {
+      "module": "tests.test_jaad500a_sil_us_solar_voc",
+      "test": "FAIL: test_changed_or_unlisted_inputs_are_rejected_before_output (tests.test_jaad500a_sil_us_solar_voc.SolarVocEditionTests.test_changed_or_unlisted_inputs_are_rejected_before_output) (edition='en', relative='u",
+      "cause": "ValueError: repository input changed: docs/renderers/contracts/web_presentation/target_overlays.json"
+    },
+    {
+      "module": "tests.test_jaad500a_sil_us_solar_voc",
+      "test": "FAIL: test_changed_or_unlisted_inputs_are_rejected_before_output (tests.test_jaad500a_sil_us_solar_voc.SolarVocEditionTests.test_changed_or_unlisted_inputs_are_rejected_before_output) (edition='fr-es', relative",
+      "cause": "ValueError: repository input changed: docs/renderers/contracts/web_presentation/target_overlays.json"
+    },
+    {
+      "module": "tests.test_jaad500a_sil_us_solar_voc",
+      "test": "FAIL: test_changed_or_unlisted_inputs_are_rejected_before_output (tests.test_jaad500a_sil_us_solar_voc.SolarVocEditionTests.test_changed_or_unlisted_inputs_are_rejected_before_output) (edition='fr-es', relative",
+      "cause": "ValueError: repository input changed: docs/renderers/contracts/web_presentation/target_overlays.json"
+    },
+    {
+      "module": "tests.test_jaad500a_sil_us_solar_voc",
+      "test": "FAIL: test_changed_or_unlisted_inputs_are_rejected_before_output (tests.test_jaad500a_sil_us_solar_voc.SolarVocEditionTests.test_changed_or_unlisted_inputs_are_rejected_before_output) (edition='fr-es', relative",
+      "cause": "ValueError: repository input changed: docs/renderers/contracts/web_presentation/target_overlays.json"
+    },
+    {
+      "module": "tests.test_jaad500a_sil_us_solar_voc",
+      "test": "FAIL: test_derivation_is_reproducible (tests.test_jaad500a_sil_us_solar_voc.SolarVocEditionTests.test_derivation_is_reproducible) (edition='en')",
+      "cause": "AssertionError: {Posi[166 chars]'): 'bd8bcf1b91253acfcefc57813520c366af6c3a949[9521 chars]290'} != {Posi[166 chars]'): '18f7a8095f712e3b70468622b6da2a8ff362fa038[9521 chars]290'}"
+    },
+    {
+      "module": "tests.test_jaad500a_sil_us_solar_voc",
+      "test": "FAIL: test_derivation_is_reproducible (tests.test_jaad500a_sil_us_solar_voc.SolarVocEditionTests.test_derivation_is_reproducible) (edition='fr-es')",
+      "cause": "AssertionError: {Posi[169 chars]'): '820e4e06f7c35499dc4d17ef02d365000bbf16c7f[13306 chars]290'} != {Posi[169 chars]'): '547f1ef29c9956717a15e0b60031bfe8f305749ea[13306 chars]290'}"
+    },
+    {
+      "module": "tests.test_jbp1000b_wh_jp_native_web",
+      "test": "FAIL: test_cold_rebuild_without_pdf_is_deterministic (tests.test_jbp1000b_wh_jp_native_web.NativePackWebTests.test_cold_rebuild_without_pdf_is_deterministic)",
+      "cause": "AssertionError: {'con[457 chars]n': '9ba044c4c9f7ad2e3d13322b58afba86d7d347cd2[5592 chars]162'} != {'con[457 chars]n': 'c8b05d7726991952541cf63d01731657e1cf36a3b[5592 chars]162'}"
+    },
+    {
+      "module": "tests.test_jbp1000b_wh_jp_web_layout",
+      "test": "FAIL: test_cold_rebuild_matches_frozen_web_and_carries_acceptance (tests.test_jbp1000b_wh_jp_web_layout.WebLayoutEditionTests.test_cold_rebuild_matches_frozen_web_and_carries_acceptance)",
+      "cause": "AssertionError: {'con[457 chars]n': 'dcb159faafa25afbd10f5949a1c6126ed63e0bbeb[5139 chars]162'} != {'con[457 chars]n': 'b7384f0db0360588d49d75eb24b0afd030e226ff0[5139 chars]162'}"
+    },
+    {
+      "module": "tests.test_jbp3600a_jp_ja_web",
+      "test": "FAIL: test_an_acceptance_that_misses_an_input_is_refused_before_output (tests.test_jbp3600a_jp_ja_web.Jbp3600aJpJaWebTests.test_an_acceptance_that_misses_an_input_is_refused_before_output)",
+      "cause": "ValueError: input escapes its pinned root"
+    },
+    {
+      "module": "tests.test_jbp3600a_jp_ja_web",
+      "test": "FAIL: test_changed_inputs_are_rejected_before_output (tests.test_jbp3600a_jp_ja_web.Jbp3600aJpJaWebTests.test_changed_inputs_are_rejected_before_output) (relative='source/ja/content.json')",
+      "cause": "ValueError: input escapes its pinned root"
+    },
+    {
+      "module": "tests.test_jbp3600a_us_web",
+      "test": "FAIL: test_an_acceptance_that_misses_an_input_is_refused_before_output (tests.test_jbp3600a_us_web.JbpUsWebTests.test_an_acceptance_that_misses_an_input_is_refused_before_output) (language='en')",
+      "cause": "ValueError: input escapes its pinned root"
+    },
+    {
+      "module": "tests.test_jbp3600a_us_web",
+      "test": "FAIL: test_an_acceptance_that_misses_an_input_is_refused_before_output (tests.test_jbp3600a_us_web.JbpUsWebTests.test_an_acceptance_that_misses_an_input_is_refused_before_output) (language='fr')",
+      "cause": "ValueError: input escapes its pinned root"
+    },
+    {
+      "module": "tests.test_jbp3600a_us_web",
+      "test": "FAIL: test_an_acceptance_that_misses_an_input_is_refused_before_output (tests.test_jbp3600a_us_web.JbpUsWebTests.test_an_acceptance_that_misses_an_input_is_refused_before_output) (language='es')",
+      "cause": "ValueError: input escapes its pinned root"
+    },
+    {
+      "module": "tests.test_je1000c_jp_web",
+      "test": "FAIL: test_cold_replay_matches_stored_candidate (tests.test_je1000c_jp_web.Je1000cJpWebTests.test_cold_replay_matches_stored_candidate)",
+      "cause": "AssertionError: b'{\\n[69855 chars]6\": \"036a8183d434fa53948087cc1a208de433241946c[433680 chars]n}\\n' != b'{\\n[69855 chars]6\": \"c3604a2e5f22b04bc745bb99cf203b50e60222af7[433680 chars]n}\\n' : manual.ir.json"
+    },
+    {
+      "module": "tests.test_je1000d_jp_web",
+      "test": "FAIL: test_cold_replay_matches_stored_candidate (tests.test_je1000d_jp_web.Je1000dJpWebTests.test_cold_replay_matches_stored_candidate)",
+      "cause": "AssertionError: b'{\\n[68415 chars]6\": \"036a8183d434fa53948087cc1a208de433241946c[500179 chars]n}\\n' != b'{\\n[68415 chars]6\": \"c3604a2e5f22b04bc745bb99cf203b50e60222af7[500179 chars]n}\\n' : manual.ir.json"
+    },
+    {
+      "module": "tests.test_je1000d_us_web",
+      "test": "FAIL: test_cold_replay_matches_stored_candidate (tests.test_je1000d_us_web.Je1000dUsWebTests.test_cold_replay_matches_stored_candidate)",
+      "cause": "AssertionError: b'{\\n[66783 chars]6\": \"66a9fbca33b372878843f3775233e01d415232a84[253965 chars]n}\\n' != b'{\\n[66783 chars]6\": \"c3604a2e5f22b04bc745bb99cf203b50e60222af7[253965 chars]n}\\n' : manual.ir.json"
+    },
+    {
+      "module": "tests.test_je1000g_jp_shared_symbols_web",
+      "test": "FAIL: test_cold_replay_matches_stored_candidate (tests.test_je1000g_jp_shared_symbols_web.Je1000gJpSharedSymbolsWebTests.test_cold_replay_matches_stored_candidate)",
+      "cause": "AssertionError: b'{\\n[95876 chars]6\": \"036a8183d434fa53948087cc1a208de433241946c[726929 chars]n}\\n' != b'{\\n[95876 chars]6\": \"c3604a2e5f22b04bc745bb99cf203b50e60222af7[726929 chars]n}\\n' : manual.ir.json"
+    },
+    {
+      "module": "tests.test_je1000g_jp_web",
+      "test": "FAIL: test_cold_replay_matches_stored_candidate (tests.test_je1000g_jp_web.Je1000gJpWebTests.test_cold_replay_matches_stored_candidate)",
+      "cause": "AssertionError: b'{\\n[93280 chars]6\": \"036a8183d434fa53948087cc1a208de433241946c[726020 chars]n}\\n' != b'{\\n[93280 chars]6\": \"c3604a2e5f22b04bc745bb99cf203b50e60222af7[726020 chars]n}\\n' : manual.ir.json"
+    },
+    {
+      "module": "tests.test_je1000h_jp_shared_symbols_web",
+      "test": "FAIL: test_cold_replay_matches_stored_candidate (tests.test_je1000h_jp_shared_symbols_web.Je1000hJpSharedSymbolsWebTests.test_cold_replay_matches_stored_candidate)",
+      "cause": "AssertionError: b'{\\n[103216 chars]6\": \"036a8183d434fa53948087cc1a208de433241946c[778143 chars]n}\\n' != b'{\\n[103216 chars]6\": \"c3604a2e5f22b04bc745bb99cf203b50e60222af7[778143 chars]n}\\n' : manual.ir.json"
+    },
+    {
+      "module": "tests.test_je1000h_jp_web",
+      "test": "FAIL: test_cold_replay_matches_stored_candidate (tests.test_je1000h_jp_web.Je1000hJpWebTests.test_cold_replay_matches_stored_candidate)",
+      "cause": "AssertionError: b'{\\n[100238 chars]6\": \"036a8183d434fa53948087cc1a208de433241946c[776131 chars]n}\\n' != b'{\\n[100238 chars]6\": \"c3604a2e5f22b04bc745bb99cf203b50e60222af7[776131 chars]n}\\n' : manual.ir.json"
+    },
+    {
+      "module": "tests.test_je1500b_jp_shared_symbols",
+      "test": "FAIL: test_cold_replay_matches_stored_candidate (tests.test_je1500b_jp_shared_symbols.Je1500bJpSharedSymbolTests.test_cold_replay_matches_stored_candidate)",
+      "cause": "AssertionError: b'{\\n[82372 chars]6\": \"036a8183d434fa53948087cc1a208de433241946c[384983 chars]n}\\n' != b'{\\n[82372 chars]6\": \"c3604a2e5f22b04bc745bb99cf203b50e60222af7[384983 chars]n}\\n' : manual.ir.json"
+    },
+    {
+      "module": "tests.test_je1500b_jp_web",
+      "test": "FAIL: test_cold_replay_matches_stored_candidate (tests.test_je1500b_jp_web.Je1500bJpWebTests.test_cold_replay_matches_stored_candidate)",
+      "cause": "AssertionError: b'{\\n[71632 chars]6\": \"036a8183d434fa53948087cc1a208de433241946c[375094 chars]n}\\n' != b'{\\n[71632 chars]6\": \"c3604a2e5f22b04bc745bb99cf203b50e60222af7[375094 chars]n}\\n' : manual.ir.json"
+    },
+    {
+      "module": "tests.test_je1500b_us_web",
+      "test": "FAIL: test_cold_replay_matches_stored_candidate (tests.test_je1500b_us_web.Je1500bUsWebTests.test_cold_replay_matches_stored_candidate)",
+      "cause": "AssertionError: b'{\\n[59415 chars]6\": \"66a9fbca33b372878843f3775233e01d415232a84[201853 chars]n}\\n' != b'{\\n[59415 chars]6\": \"c3604a2e5f22b04bc745bb99cf203b50e60222af7[201853 chars]n}\\n' : manual.ir.json"
+    },
+    {
+      "module": "tests.test_je1500d_us_web",
+      "test": "FAIL: test_cold_replay_matches_stored_candidate (tests.test_je1500d_us_web.Je1500dUsWebTests.test_cold_replay_matches_stored_candidate)",
+      "cause": "AssertionError: b'{\\n[83494 chars]6\": \"66a9fbca33b372878843f3775233e01d415232a84[382269 chars]n}\\n' != b'{\\n[83494 chars]6\": \"c3604a2e5f22b04bc745bb99cf203b50e60222af7[382269 chars]n}\\n' : manual.ir.json"
+    },
+    {
+      "module": "tests.test_je1800a_jp_web",
+      "test": "FAIL: test_cold_replay_matches_stored_candidate (tests.test_je1800a_jp_web.Je1800aJpWebTests.test_cold_replay_matches_stored_candidate)",
+      "cause": "AssertionError: b'{\\n[76265 chars]6\": \"036a8183d434fa53948087cc1a208de433241946c[448057 chars]n}\\n' != b'{\\n[76265 chars]6\": \"c3604a2e5f22b04bc745bb99cf203b50e60222af7[448057 chars]n}\\n' : manual.ir.json"
+    },
+    {
+      "module": "tests.test_je1800b_jp_web",
+      "test": "FAIL: test_cold_replay_matches_stored_candidate (tests.test_je1800b_jp_web.Je1800bJpWebTests.test_cold_replay_matches_stored_candidate)",
+      "cause": "AssertionError: b'{\\n[98272 chars]6\": \"036a8183d434fa53948087cc1a208de433241946c[738520 chars]n}\\n' != b'{\\n[98272 chars]6\": \"c3604a2e5f22b04bc745bb99cf203b50e60222af7[738520 chars]n}\\n' : manual.ir.json"
+    },
+    {
+      "module": "tests.test_je2000a_us_web",
+      "test": "FAIL: test_cold_replay_matches_stored_candidate (tests.test_je2000a_us_web.Je2000aUsWebTests.test_cold_replay_matches_stored_candidate)",
+      "cause": "AssertionError: b'{\\n[70245 chars]6\": \"66a9fbca33b372878843f3775233e01d415232a84[318933 chars]n}\\n' != b'{\\n[70245 chars]6\": \"c3604a2e5f22b04bc745bb99cf203b50e60222af7[318933 chars]n}\\n' : manual.ir.json"
+    },
+    {
+      "module": "tests.test_je2000c_jp_web",
+      "test": "FAIL: test_cold_replay_matches_stored_candidate (tests.test_je2000c_jp_web.Je2000cJpWebTests.test_cold_replay_matches_stored_candidate)",
+      "cause": "AssertionError: b'{\\n[73980 chars]6\": \"036a8183d434fa53948087cc1a208de433241946c[453793 chars]n}\\n' != b'{\\n[73980 chars]6\": \"c3604a2e5f22b04bc745bb99cf203b50e60222af7[453793 chars]n}\\n' : manual.ir.json"
+    },
+    {
+      "module": "tests.test_je2000c_us_web",
+      "test": "FAIL: test_cold_replay_matches_stored_candidate (tests.test_je2000c_us_web.Je2000cUsWebTests.test_cold_replay_matches_stored_candidate)",
+      "cause": "AssertionError: b'{\\n[58003 chars]6\": \"66a9fbca33b372878843f3775233e01d415232a84[256381 chars]n}\\n' != b'{\\n[58003 chars]6\": \"c3604a2e5f22b04bc745bb99cf203b50e60222af7[256381 chars]n}\\n' : manual.ir.json"
+    },
+    {
+      "module": "tests.test_je2000d_jp_web",
+      "test": "FAIL: test_cold_replay_matches_stored_candidate (tests.test_je2000d_jp_web.Je2000dJpWebTests.test_cold_replay_matches_stored_candidate)",
+      "cause": "AssertionError: b'{\\n[84491 chars]6\": \"036a8183d434fa53948087cc1a208de433241946c[446407 chars]n}\\n' != b'{\\n[84491 chars]6\": \"c3604a2e5f22b04bc745bb99cf203b50e60222af7[446407 chars]n}\\n' : manual.ir.json"
+    },
+    {
+      "module": "tests.test_je2000d_us_web",
+      "test": "FAIL: test_cold_replay_matches_stored_candidate (tests.test_je2000d_us_web.Je2000dUsWebTests.test_cold_replay_matches_stored_candidate)",
+      "cause": "AssertionError: b'{\\n[73743 chars]6\": \"66a9fbca33b372878843f3775233e01d415232a84[242072 chars]n}\\n' != b'{\\n[73743 chars]6\": \"c3604a2e5f22b04bc745bb99cf203b50e60222af7[242072 chars]n}\\n' : manual.ir.json"
+    },
+    {
+      "module": "tests.test_je2000f_jp_web",
+      "test": "FAIL: test_cold_replay_matches_stored_candidate (tests.test_je2000f_jp_web.Je2000fJpWebTests.test_cold_replay_matches_stored_candidate)",
+      "cause": "AssertionError: b'{\\n[105969 chars]6\": \"036a8183d434fa53948087cc1a208de433241946c[729436 chars]n}\\n' != b'{\\n[105969 chars]6\": \"c3604a2e5f22b04bc745bb99cf203b50e60222af7[729436 chars]n}\\n' : manual.ir.json"
+    },
+    {
+      "module": "tests.test_je2000f_us_web",
+      "test": "FAIL: test_cold_replay_matches_stored_candidate (tests.test_je2000f_us_web.Je2000fUsWebTests.test_cold_replay_matches_stored_candidate)",
+      "cause": "AssertionError: b'{\\n[88958 chars]6\": \"66a9fbca33b372878843f3775233e01d415232a84[429825 chars]n}\\n' != b'{\\n[88958 chars]6\": \"c3604a2e5f22b04bc745bb99cf203b50e60222af7[429825 chars]n}\\n' : manual.ir.json"
+    },
+    {
+      "module": "tests.test_je3000a_jp_web",
+      "test": "FAIL: test_cold_replay_matches_stored_candidate (tests.test_je3000a_jp_web.Je3000aJpWebTests.test_cold_replay_matches_stored_candidate)",
+      "cause": "AssertionError: b'{\\n[81685 chars]6\": \"036a8183d434fa53948087cc1a208de433241946c[391064 chars]n}\\n' != b'{\\n[81685 chars]6\": \"c3604a2e5f22b04bc745bb99cf203b50e60222af7[391064 chars]n}\\n' : manual.ir.json"
+    },
+    {
+      "module": "tests.test_je3000b_jp_web",
+      "test": "FAIL: test_cold_replay_matches_stored_candidate (tests.test_je3000b_jp_web.Je3000bJpWebTests.test_cold_replay_matches_stored_candidate)",
+      "cause": "AssertionError: b'{\\n[81055 chars]6\": \"036a8183d434fa53948087cc1a208de433241946c[450708 chars]n}\\n' != b'{\\n[81055 chars]6\": \"c3604a2e5f22b04bc745bb99cf203b50e60222af7[450708 chars]n}\\n' : manual.ir.json"
+    },
+    {
+      "module": "tests.test_je3000b_us_web",
+      "test": "FAIL: test_cold_replay_matches_stored_candidate (tests.test_je3000b_us_web.Je3000bUsWebTests.test_cold_replay_matches_stored_candidate)",
+      "cause": "AssertionError: b'{\\n[82826 chars]6\": \"66a9fbca33b372878843f3775233e01d415232a84[361611 chars]n}\\n' != b'{\\n[82826 chars]6\": \"c3604a2e5f22b04bc745bb99cf203b50e60222af7[361611 chars]n}\\n' : manual.ir.json"
+    },
+    {
+      "module": "tests.test_je300e_eu_en_web",
+      "test": "FAIL: test_an_acceptance_that_misses_an_input_is_refused_before_output (tests.test_je300e_eu_en_web.Je300eEuEnWebTests.test_an_acceptance_that_misses_an_input_is_refused_before_output)",
+      "cause": "ValueError: input escapes its pinned root"
+    },
+    {
+      "module": "tests.test_je300e_eu_en_web",
+      "test": "FAIL: test_changed_inputs_are_rejected_before_output (tests.test_je300e_eu_en_web.Je300eEuEnWebTests.test_changed_inputs_are_rejected_before_output) (relative='source/en/content.json')",
+      "cause": "ValueError: input escapes its pinned root"
+    },
+    {
+      "module": "tests.test_je3600a_cn_jp_shared",
+      "test": "FAIL: test_changed_inputs_are_rejected_before_output (tests.test_je3600a_cn_jp_shared.SharedComponentEditionTests.test_changed_inputs_are_rejected_before_output) (region='JP', relative='source/ja/content.json')",
+      "cause": "ValueError: input escapes its pinned root"
+    },
+    {
+      "module": "tests.test_je3600a_cn_jp_shared",
+      "test": "FAIL: test_changed_inputs_are_rejected_before_output (tests.test_je3600a_cn_jp_shared.SharedComponentEditionTests.test_changed_inputs_are_rejected_before_output) (region='CN', relative='source/zh/content.json')",
+      "cause": "ValueError: input escapes its pinned root"
+    },
+    {
+      "module": "tests.test_je3600a_cn_jp_web_layout",
+      "test": "FAIL: test_changed_inputs_are_rejected_before_output (tests.test_je3600a_cn_jp_web_layout.WebLayoutEditionTests.test_changed_inputs_are_rejected_before_output) (region='JP', relative='source/ja/content.json')",
+      "cause": "ValueError: input escapes its pinned root"
+    },
+    {
+      "module": "tests.test_je3600a_cn_jp_web_layout",
+      "test": "FAIL: test_changed_inputs_are_rejected_before_output (tests.test_je3600a_cn_jp_web_layout.WebLayoutEditionTests.test_changed_inputs_are_rejected_before_output) (region='CN', relative='source/zh/content.json')",
+      "cause": "ValueError: input escapes its pinned root"
+    },
+    {
+      "module": "tests.test_je5000a_us_web",
+      "test": "FAIL: test_cold_replay_matches_stored_candidate (tests.test_je5000a_us_web.Je5000aUsWebTests.test_cold_replay_matches_stored_candidate)",
+      "cause": "AssertionError: b'{\\n[113120 chars]6\": \"66a9fbca33b372878843f3775233e01d415232a84[600762 chars]n}\\n' != b'{\\n[113120 chars]6\": \"c3604a2e5f22b04bc745bb99cf203b50e60222af7[600762 chars]n}\\n' : manual.ir.json"
+    },
+    {
+      "module": "tests.test_jhp1000a_us_web",
+      "test": "FAIL: test_cold_replay_matches_stored_candidate (tests.test_jhp1000a_us_web.Jhp1000aUsWebTests.test_cold_replay_matches_stored_candidate)",
+      "cause": "AssertionError: b'{\\n[78711 chars]6\": \"66a9fbca33b372878843f3775233e01d415232a84[423454 chars]n}\\n' != b'{\\n[78711 chars]6\": \"c3604a2e5f22b04bc745bb99cf203b50e60222af7[423454 chars]n}\\n' : manual.ir.json"
+    },
+    {
+      "module": "tests.test_jhp1000b_us_web",
+      "test": "FAIL: test_cold_replay_matches_stored_candidate (tests.test_jhp1000b_us_web.Jhp1000bUsWebTests.test_cold_replay_matches_stored_candidate)",
+      "cause": "AssertionError: b'{\\n[77752 chars]6\": \"66a9fbca33b372878843f3775233e01d415232a84[450713 chars]n}\\n' != b'{\\n[77752 chars]6\": \"c3604a2e5f22b04bc745bb99cf203b50e60222af7[450713 chars]n}\\n' : manual.ir.json"
+    },
+    {
+      "module": "tests.test_jhp1000brc_us_web",
+      "test": "FAIL: test_cold_replay_matches_stored_candidate (tests.test_jhp1000brc_us_web.Jhp1000brcUsWebTests.test_cold_replay_matches_stored_candidate)",
+      "cause": "AssertionError: b'{\\n[77752 chars]6\": \"66a9fbca33b372878843f3775233e01d415232a84[455431 chars]n}\\n' != b'{\\n[77752 chars]6\": \"c3604a2e5f22b04bc745bb99cf203b50e60222af7[455431 chars]n}\\n' : manual.ir.json"
+    },
+    {
+      "module": "tests.test_jhp2000a_us_web",
+      "test": "FAIL: test_cold_replay_matches_stored_candidate (tests.test_jhp2000a_us_web.Jhp2000aUsWebTests.test_cold_replay_matches_stored_candidate)",
+      "cause": "AssertionError: b'{\\n[83685 chars]6\": \"66a9fbca33b372878843f3775233e01d415232a84[441778 chars]n}\\n' != b'{\\n[83685 chars]6\": \"c3604a2e5f22b04bc745bb99cf203b50e60222af7[441778 chars]n}\\n' : manual.ir.json"
+    },
+    {
+      "module": "tests.test_jhp2000arc_us_web",
+      "test": "FAIL: test_cold_replay_matches_stored_candidate (tests.test_jhp2000arc_us_web.Jhp2000arcUsWebTests.test_cold_replay_matches_stored_candidate)",
+      "cause": "AssertionError: b'{\\n[82559 chars]6\": \"66a9fbca33b372878843f3775233e01d415232a84[461564 chars]n}\\n' != b'{\\n[82559 chars]6\": \"c3604a2e5f22b04bc745bb99cf203b50e60222af7[461564 chars]n}\\n' : manual.ir.json"
+    },
+    {
+      "module": "tests.test_jhp3000d_us_web_layout",
+      "test": "FAIL: test_changed_inputs_are_rejected_before_output (tests.test_jhp3000d_us_web_layout.WebLayoutEditionTests.test_changed_inputs_are_rejected_before_output) (relative='source/en/content.json')",
+      "cause": "ValueError: input escapes its pinned root"
+    },
+    {
+      "module": "tests.test_jhp3600arc_us_web",
+      "test": "FAIL: test_cold_replay_matches_stored_candidate (tests.test_jhp3600arc_us_web.Jhp3600arcUsWebTests.test_cold_replay_matches_stored_candidate)",
+      "cause": "AssertionError: b'{\\n[80390 chars]6\": \"66a9fbca33b372878843f3775233e01d415232a84[454163 chars]n}\\n' != b'{\\n[80390 chars]6\": \"c3604a2e5f22b04bc745bb99cf203b50e60222af7[454163 chars]n}\\n' : manual.ir.json"
+    },
+    {
+      "module": "tests.test_jhp5000c_us_web_layout",
+      "test": "FAIL: test_changed_inputs_are_rejected_before_output (tests.test_jhp5000c_us_web_layout.WebLayoutEditionTests.test_changed_inputs_are_rejected_before_output) (relative='source/en/content.json')",
+      "cause": "ValueError: input escapes its pinned root"
+    },
+    {
+      "module": "tests.test_jp_solar_voc",
+      "test": "FAIL: test_changed_or_unlisted_inputs_are_rejected (tests.test_jp_solar_voc.JapaneseSolarVocEditionTests.test_changed_or_unlisted_inputs_are_rejected) (edition='ad500a', relative='source/page/charging_ja.rst')",
+      "cause": "ValueError: repository input changed: docs/renderers/contracts/web_presentation/target_overlays.json"
+    },
+    {
+      "module": "tests.test_jp_solar_voc",
+      "test": "FAIL: test_changed_or_unlisted_inputs_are_rejected (tests.test_jp_solar_voc.JapaneseSolarVocEditionTests.test_changed_or_unlisted_inputs_are_rejected) (edition='ad500a', relative='source/presentation.css')",
+      "cause": "ValueError: repository input changed: docs/renderers/contracts/web_presentation/target_overlays.json"
+    },
+    {
+      "module": "tests.test_jp_solar_voc",
+      "test": "FAIL: test_derivation_is_reproducible (tests.test_jp_solar_voc.JapaneseSolarVocEditionTests.test_derivation_is_reproducible) (edition='ad500a')",
+      "cause": "AssertionError: {'sou[16 chars]n': '0f4bbda63f7ab784f11f3c763e8aa6dd490748eec[3968 chars]cfa'} != {'sou[16 chars]n': 'ca8f46845a203a07684d451afac512770c417ed56[3968 chars]cfa'}"
+    },
+    {
+      "module": "tests.test_jp_solar_voc",
+      "test": "FAIL: test_h1_cold_replay_matches_committed_web (tests.test_jp_solar_voc.JapaneseSolarVocEditionTests.test_h1_cold_replay_matches_committed_web)",
+      "cause": "AssertionError: {'con[250 chars]n': '4b48021f93e5a6d9736b70b0aa7c24ecc2a386805[5814 chars]ca1'} != {'con[250 chars]n': 'fd1b5999a586b5be63fe754f766475f979d060611[5814 chars]ca1'}"
+    },
+    {
+      "module": "tests.test_js100i_jp_web",
+      "test": "FAIL: test_changed_source_copy_is_rejected (tests.test_js100i_jp_web.Js100iJpWebTests.test_changed_source_copy_is_rejected)",
+      "cause": "ValueError: repository input changed: docs/renderers/contracts/web_presentation/target_overlays.json"
+    },
+    {
+      "module": "tests.test_js_connection_guide_jp_web",
+      "test": "FAIL: test_acceptance_cannot_cover_resealed_changed_source (tests.test_js_connection_guide_jp_web.JSConnectionGuideJPWebTest.test_acceptance_cannot_cover_resealed_changed_source)",
+      "cause": "ValueError: repository input changed: docs/renderers/contracts/web_presentation/target_overlays.json"
+    },
+    {
+      "module": "tests.test_js_connection_guide_jp_web",
+      "test": "FAIL: test_changed_or_unlisted_inputs_are_rejected_before_output (tests.test_js_connection_guide_jp_web.JSConnectionGuideJPWebTest.test_changed_or_unlisted_inputs_are_rejected_before_output) (relative='source/p",
+      "cause": "ValueError: repository input changed: docs/renderers/contracts/web_presentation/target_overlays.json"
+    },
+    {
+      "module": "tests.test_manual_ir_payload_characterization",
+      "test": "FAIL: test_issue_lists_and_exceptions_match_golden (tests.test_manual_ir_payload_characterization.ManualIRPayloadCharacterizationTests.test_issue_lists_and_exceptions_match_golden)",
+      "cause": "AssertionError: {'var[163 chars]2': '22072abfd9c419af9d159332dc9b8fee56d470e91[21 chars]26'}} != {'var[163 chars]2': '0236ae45b3c37170eef56d8ffef5ef95d2a0ddb19[21 chars]9f'}}"
+    },
+    {
+      "module": "tests.test_readthedocs_source",
+      "test": "FAIL: test_assemble_rtd_source_should_create_home_index_for_generated_manuals (tests.test_readthedocs_source.ReadTheDocsSourceTests.test_assemble_rtd_source_should_create_home_index_for_generated_manuals)",
+      "cause": "AssertionError: '.hb-inbox-composition[data-card-count=\"5\"] .hb-inbox-grid' not found in '/*\\n * Responsive web projection of the approved IDML visual language.\\n *\\n * Gilroy is a commercial font and is intentionally not redistributed by the\\n * pub"
+    },
+    {
+      "module": "tests.test_reference_layout_plan_characterization",
+      "test": "FAIL: test_issue_lists_and_exceptions_match_golden (tests.test_reference_layout_plan_characterization.ReferenceLayoutPlanCharacterizationTests.test_issue_lists_and_exceptions_match_golden)",
+      "cause": "AssertionError: {'var[67 chars]d': '0c7013dfde0dcd8cba3e664750ac71e59ea7086a4[116 chars]24'}} != {'var[67 chars]d': '3d6b3549dc41945782e9a62451795309b491027f0[116 chars]0e'}}"
+    },
+    {
+      "module": "tests.test_rtd_portal",
+      "test": "FAIL: test_real_sphinx_sidebar_links_only_pages_and_marks_the_current_one (tests.test_rtd_portal.RtdPortalTests.test_real_sphinx_sidebar_links_only_pages_and_marks_the_current_one)",
+      "cause": "AssertionError: False is not true : ('index.html', '#')"
+    },
+    {
+      "module": "tests.test_template_structure_parity",
+      "test": "FAIL: test_every_carrier_groups_exactly_as_pinned (tests.test_template_structure_parity.TheStructureGroupingIsPinned.test_every_carrier_groups_exactly_as_pinned) (tree='page_solar')",
+      "cause": "AssertionError: {'01_[23 chars]', 'en', 'es', 'fr', 'it', 'nl', 'pl', 'pt', '[581 chars]n']]} != {'01_[23 chars]', 'es', 'fr', 'it', 'nl', 'pl', 'pt', 'uk'], [585 chars]n']]}"
+    },
+    {
+      "module": "tests.test_validate_config_characterization",
+      "test": "FAIL: test_outputs_and_exceptions_match_golden (tests.test_validate_config_characterization.ValidateConfigCharacterizationTest.test_outputs_and_exceptions_match_golden)",
+      "cause": "AssertionError: {'var[2710 chars]s': 'f05398807e87e05d42bea106d7b7aa34d019c64d1[660 chars]9b'}} != {'var[2710 chars]s': '99232d795becf6f8d9d66c4fbd3ef3449deda39b7[660 chars]b1'}}"
+    }
+  ],
+  "follow_up": "Full-suite failures remain outside this repair. Two directly related CSS-selector/template-grouping failures were corrected; the final direct regression suite passes 77 tests. Ten representative remaining failures reproduce on a clean origin/main checkout under this local Python 3.14 environment.",
+  "clean_main_reproductions": {
+    "tests": 10,
+    "failures": 9,
+    "errors": 1,
+    "result": "same named tests fail on clean origin/main",
+    "commit": "8364aa16b52ccdf99f17194a34b4a1192d313ed4"
+  }
+}

@@ -10,6 +10,11 @@
           "handling": "keep-frozen",
           "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
           "since": "2026-10-19"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -51,6 +56,46 @@
           "handling": "keep-frozen",
           "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -92,6 +137,46 @@
           "handling": "keep-frozen",
           "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -163,6 +248,41 @@
           "handling": "keep-frozen",
           "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -204,6 +324,46 @@
           "handling": "keep-frozen",
           "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -245,6 +405,46 @@
           "handling": "keep-frozen",
           "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -291,6 +491,46 @@
           "handling": "keep-frozen",
           "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -337,6 +577,46 @@
           "handling": "keep-frozen",
           "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -373,13 +653,24 @@
           "handling": "keep-frozen",
           "reason": "由 git-20261104-9d3b811e 取代：CONNECTIONS 小标题改用 raw html h2 后按当前输入重建重发（操作者 2026-11-04「A」）；本包已发布字节不变，留作历史版本",
           "since": "2026-11-04"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
     "data/manual_sources/JE-1000E-SIL/US/en/git-20261104-9d3b811e": {
       "approval": "Operator 2026-11-04 (this session): 「上线提交发布」 after reviewing the 1280/390 CONNECTIONS renders beside the live edition (MyST differs from the live page only by the restored CONNECT TO BATTERY PACK (SOLD SEPARATELY) subheading; reviewed MyST sha256 ff1d64c2513e5a6a78f918f30a315c6546f7cc34d3fa0698ad2614d01678e347); merge and Hello-Docs publish under MA-397",
       "registered": "2026-11-04",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        }
+      }
     },
     "data/manual_sources/JE-1000E-SIL/US/es/git-20261002-537939d0": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
@@ -409,6 +700,11 @@
           "handling": "keep-frozen",
           "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
           "since": "2026-10-19"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -440,6 +736,11 @@
           "handling": "keep-frozen",
           "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
           "since": "2026-10-19"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -491,6 +792,46 @@
           "handling": "keep-frozen",
           "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -542,6 +883,46 @@
           "handling": "keep-frozen",
           "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -588,6 +969,46 @@
           "handling": "keep-frozen",
           "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -651,6 +1072,46 @@
           "handling": "keep-frozen",
           "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -714,6 +1175,46 @@
           "handling": "keep-frozen",
           "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -760,6 +1261,46 @@
           "handling": "keep-frozen",
           "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -806,6 +1347,46 @@
           "handling": "keep-frozen",
           "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -877,6 +1458,41 @@
           "handling": "keep-frozen",
           "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -918,6 +1534,46 @@
           "handling": "keep-frozen",
           "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -1025,6 +1681,36 @@
           "handling": "keep-frozen",
           "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -1121,6 +1807,36 @@
           "handling": "keep-frozen",
           "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -1192,6 +1908,41 @@
           "handling": "keep-frozen",
           "reason": "Shared symbol canonical groups (SCG-20261103) and native_svg mapping fixes: frozen packages keep their sealed bytes and evidence; canonical rules apply only at fresh sealing, and native_symbol_svg output is byte-identical for every previously exportable row.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -1238,6 +1989,46 @@
           "handling": "keep-frozen",
           "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -1299,22 +2090,46 @@
     "manual_sources/JA-AD500A-SIL/JP/ja/git-20261008-ac3a1f82": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        }
+      }
     },
     "manual_sources/JA-AD500A-SIL/JP/ja/git-20261008-ac3a1f82-reviewed": {
       "approval": "MA-272（见 approval.json）",
       "registered": "2026-10-19",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        }
+      }
     },
     "manual_sources/JA-AD500A-SIL/JP/ja/git-20261009-ac3a1f82-web-layout": {
       "approval": "操作者「上线提交发布」2026-10-09，经工程 PR 审核合入（见 source/approval.json）",
       "registered": "2026-10-19",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed English layout repairs; historical packages remain byte-identical after restoring test side effects, and no historic approval is rebound.",
+          "since": "2026-11-10"
+        }
+      }
     },
     "manual_sources/JA-AD500A-SIL/JP/ja/git-20261016-ac3a1f82-solar-voc": {
       "approval": "MA-312（见 source/approval.json）",
       "registered": "2026-10-19",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        }
+      }
     },
     "manual_sources/JA-AD500A-SIL/US/en/git-20261005-a6d1659e": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
@@ -1341,7 +2156,13 @@
     "manual_sources/JA-AD500A-SIL/US/en/git-20261016-a6d1659e-solar-voc": {
       "approval": "MA-312（见 source/approval.json）",
       "registered": "2026-10-19",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed English layout repairs; historical packages remain byte-identical after restoring test side effects, and no historic approval is rebound.",
+          "since": "2026-11-10"
+        }
+      }
     },
     "manual_sources/JA-AD500A-SIL/US/fr-es/git-20261007-28c58312-native": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
@@ -1368,22 +2189,46 @@
     "manual_sources/JA-AD500A-SIL/US/fr-es/git-20261016-28c58312-solar-voc": {
       "approval": "MA-312（见 source/approval.json）",
       "registered": "2026-10-19",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed English layout repairs; historical packages remain byte-identical after restoring test side effects, and no historic approval is rebound.",
+          "since": "2026-11-10"
+        }
+      }
     },
     "manual_sources/JA-AD500A-SIL/US/fr-es/git-20261019-28c58312-fr-spec": {
       "approval": "MA-319（见 source/approval.json）",
       "registered": "2026-10-19",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed English layout repairs; historical packages remain byte-identical after restoring test side effects, and no historic approval is rebound.",
+          "since": "2026-11-10"
+        }
+      }
     },
     "manual_sources/JA-CK01A-BK-QG/JP/ja/git-20261023-e67d2460-quick-guide": {
       "approval": "Operator request 2026-10-23 (「开两个窗口 把这俩说明书 走git only转网页文档」); renamed from HTO862A-QG on operator decision 「改用 JA-CK01A-BK-QG」; operator accepted candidate 8e39af0 for release 2026-10-23 (「上线提交发布」); acceptance hash-bound in source/approval.json",
       "registered": "2026-10-23",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        }
+      }
     },
     "manual_sources/JA-CK01A-BK/JP/ja/git-20261023-3ea84ec6-manual": {
       "approval": "User request 2026-10-23: Git-only JP Web candidate (「开两个窗口 把这俩说明书 走git only转网页文档」), JE-1000F JP structure; operator 「上线提交发布」 2026-10-23, merged by operator PR review (see source/approval.json)",
       "registered": "2026-10-23",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        }
+      }
     },
     "manual_sources/JBP-1000B-WH/JP/ja/git-20261008-3aa6c003-native": {
       "approval": "MA-275（见 source/approval.json）",
@@ -1443,6 +2288,46 @@
           "handling": "keep-frozen",
           "reason": "SCG-20261104 confirms the remaining shared symbol groups and lets reviewed glyph waivers cover legacy variants; frozen packages keep their sealed bytes and evidence, and every replayed symbol row still passes (legacy bindings within the fixed tolerance or their waiver).",
           "since": "2026-11-05"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -1719,6 +2604,46 @@
           "handling": "keep-frozen",
           "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -1745,6 +2670,46 @@
           "handling": "keep-frozen",
           "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -1791,6 +2756,46 @@
           "handling": "keep-frozen",
           "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -1877,6 +2882,26 @@
           "handling": "keep-frozen",
           "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -2003,18 +3028,80 @@
           "handling": "keep-frozen",
           "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
     "manual_sources/JE-3000C/JP/ja/git-20261106-b16b82c6-jp-release": {
       "approval": "Operator 2026-11-06 (coordinator session session_01Y8kaknyyfgd1ZC5Xtwthqx): 「只转这个 16-0102-000341 …HTE1563000A-JP-JAK.pdf」「你直接把旧草稿发布了」, then after reviewing the 1280/390 renders 「2，上线提交发布：JE-3000C」: Git-only JP/ja release of the reviewed 2026-10-19 draft with six symbol rows on operator-confirmed canonicals and the approved footnote completion; acceptance hash-bound in source/approval.json",
       "registered": "2026-11-06",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        }
+      }
     },
     "manual_sources/JE-3000C/JP/ja/git-20261106-b16b82c6-jp-release-r2": {
       "approval": "Operator 2026-11-06 (coordinator session session_01Y8kaknyyfgd1ZC5Xtwthqx), reviewing the live JE-3000C JP page: 「这个去掉啊 其它日规说明书的 安全上のご注意 为一级标题 开头的」: revision of git-20261106-b16b82c6-jp-release that only drops the standalone document-title heading; release authority 「2，上线提交发布：JE-3000C」 carries over; hash-bound in source/approval.json",
       "registered": "2026-11-06",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        }
+      }
     },
     "manual_sources/JE-3000C/KR/ko/git-20261021-78316033": {
       "approval": "User chat 2026-10-21: supplied JE-3000C KR PDF; remove landscape first sheet and convert via Git-only; isolated worktree and complete first-use sentence approved. Candidate only; no merge or publication approval.",
@@ -2029,6 +3116,26 @@
           "handling": "keep-frozen",
           "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -2050,6 +3157,46 @@
           "handling": "keep-frozen",
           "reason": "SCG-20261104 confirms the remaining shared symbol groups and lets reviewed glyph waivers cover legacy variants; frozen packages keep their sealed bytes and evidence, and every replayed symbol row still passes (legacy bindings within the fixed tolerance or their waiver).",
           "since": "2026-11-05"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -2071,6 +3218,46 @@
           "handling": "keep-frozen",
           "reason": "SCG-20261104 confirms the remaining shared symbol groups and lets reviewed glyph waivers cover legacy variants; frozen packages keep their sealed bytes and evidence, and every replayed symbol row still passes (legacy bindings within the fixed tolerance or their waiver).",
           "since": "2026-11-05"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -2107,6 +3294,46 @@
           "handling": "keep-frozen",
           "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -2133,6 +3360,46 @@
           "handling": "keep-frozen",
           "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -2159,6 +3426,46 @@
           "handling": "keep-frozen",
           "reason": "SCG-20261104 confirms the remaining shared symbol groups and lets reviewed glyph waivers cover legacy variants; frozen packages keep their sealed bytes and evidence, and every replayed symbol row still passes (legacy bindings within the fixed tolerance or their waiver).",
           "since": "2026-11-05"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -2195,6 +3502,46 @@
           "handling": "keep-frozen",
           "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -2221,6 +3568,46 @@
           "handling": "keep-frozen",
           "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -2257,6 +3644,46 @@
           "handling": "keep-frozen",
           "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -2293,6 +3720,46 @@
           "handling": "keep-frozen",
           "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -2319,6 +3786,46 @@
           "handling": "keep-frozen",
           "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -2460,6 +3967,46 @@
           "handling": "keep-frozen",
           "reason": "SCG-20261104 confirms the remaining shared symbol groups and lets reviewed glyph waivers cover legacy variants; frozen packages keep their sealed bytes and evidence, and every replayed symbol row still passes (legacy bindings within the fixed tolerance or their waiver).",
           "since": "2026-11-05"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -2496,6 +4043,46 @@
           "handling": "keep-frozen",
           "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -2527,6 +4114,46 @@
           "handling": "keep-frozen",
           "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -2548,6 +4175,46 @@
           "handling": "keep-frozen",
           "reason": "SCG-20261104 confirms the remaining shared symbol groups and lets reviewed glyph waivers cover legacy variants; frozen packages keep their sealed bytes and evidence, and every replayed symbol row still passes (legacy bindings within the fixed tolerance or their waiver).",
           "since": "2026-11-05"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -2584,6 +4251,46 @@
           "handling": "keep-frozen",
           "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -2615,6 +4322,46 @@
           "handling": "keep-frozen",
           "reason": "MA-381 ordinary main integration: the already-reviewed JE-600A and JE-880B release snapshots retain their exact approved frozen runtime and HTML. The source-only shared rowspan CSS correction is not replayed into these packages; only its newly observed runtime drift is registered. All source, original art and frozen outputs remain byte-identical to engineering PR1665.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -2636,6 +4383,46 @@
           "handling": "keep-frozen",
           "reason": "SCG-20261104 confirms the remaining shared symbol groups and lets reviewed glyph waivers cover legacy variants; frozen packages keep their sealed bytes and evidence, and every replayed symbol row still passes (legacy bindings within the fixed tolerance or their waiver).",
           "since": "2026-11-05"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -2677,6 +4464,46 @@
           "handling": "keep-frozen",
           "reason": "MA-381 selected27 follow-up: shared troubleshooting CSS retains code/measures dividers across real rowspans. Existing frozen outputs and pins stay unchanged. New source snapshots retain their exact approved cold-replay runtime; historical symbol-utility drift is preserved, not rebound. Current shared-style gate, strict build, body/original-art parity and actual desktop/mobile views pass; no gate or baseline is relaxed.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -2708,6 +4535,46 @@
           "handling": "keep-frozen",
           "reason": "MA-381 ordinary main integration: the already-reviewed JE-600A and JE-880B release snapshots retain their exact approved frozen runtime and HTML. The source-only shared rowspan CSS correction is not replayed into these packages; only its newly observed runtime drift is registered. All source, original art and frozen outputs remain byte-identical to engineering PR1665.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -2729,6 +4596,46 @@
           "handling": "keep-frozen",
           "reason": "SCG-20261104 confirms the remaining shared symbol groups and lets reviewed glyph waivers cover legacy variants; frozen packages keep their sealed bytes and evidence, and every replayed symbol row still passes (legacy bindings within the fixed tolerance or their waiver).",
           "since": "2026-11-05"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -2787,6 +4694,11 @@
       "registered": "2026-11-03",
       "known_drift": {}
     },
+    "manual_sources/JHP-2000A/US/en/git-20261110-5b60448e-layout-fixes": {
+      "approval": "Operator screenshot-directed layout repair 2026-11-10; review candidate only, no merge or publication grant",
+      "registered": "2026-11-10",
+      "known_drift": {}
+    },
     "manual_sources/JHP-3000D/US/en/git-20261103-34fedc15-source-alignment-release": {
       "approval": "MA-381: current single-language full source/content/layout review plus independent coordinator strict/cold/art/approval verification; old full-PASS superseded.",
       "registered": "2026-11-03",
@@ -2815,6 +4727,46 @@
           "handling": "keep-frozen",
           "reason": "MA-381 current-reference HomePower repair: preserve real approved cold-replay runtime and frozen outputs. Original pins remain; only JHP-3600A adds the exact actually used shared-rowspan CSS pin. Current source-bound original art, native copy, prepared-style audit, strict build and actual full desktop/mobile coverage verified; no gate or baseline relaxed.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -2867,6 +4819,46 @@
           "handling": "keep-frozen",
           "reason": "MA-381 JHP-3600C exact approved cold-replay runtime preserved; all original pins remain. Root independently verified all body text and original art unchanged, all83839 restored frame-band pixels match the current own-PDF crop-origin render, nonframe pixels unchanged, strict Sphinx and current prepared-style admission pass.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
@@ -2898,23 +4890,81 @@
           "handling": "keep-frozen",
           "reason": "MA-381 selected27 release: retain the exact hash-bound reviewed runtime and source outputs; approval cold rebuild and all visible MD/CSS/art/IR.pages equivalence verified. Current main shared changes do not re-render frozen output; final source-bound symbol/caption and release admission remain required.",
           "since": "2026-11-03"
+        },
+        "docs/renderers/contracts/web_inbox_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_safety_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/inbox_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/component_specs/warranty_html.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/inbox_component.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        },
+        "tools/web/presentation.py": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
         }
       }
     },
     "manual_sources/JS-100I/JP/ja/git-20261026-cc8b3421": {
       "approval": "User request 2026-10-26 (「分几个窗口把这个目录下面的文档都转成网页文档」「韩语文档除外」): Git-only JS-100I JP Web conversion; operator 「全部照录，版式都接受，上线提交发布，保留疑点后续纠正」 2026-10-27, merged by operator PR review (see source/approval.json)",
       "registered": "2026-10-26",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        }
+      }
     },
     "manual_sources/JS-100I/JP/ja/git-20261027-cc8b3421-spec-table": {
       "approval": "Operator live-page review 2026-10-27 (「这个表格样式不对吧」) then 「按新版本包发布」: Git-only spec-table edition of git-20261026-cc8b3421 (電気データ on the shared spec-table frame, copy unchanged); acceptance hash-bound in source/approval.json",
       "registered": "2026-10-27",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        }
+      }
     },
     "manual_sources/JS-CONNECTION-GUIDE/JP/ja/git-20261026-bc35fd65-connection-guide": {
       "approval": "User request 2026-10-26 (「分几个窗口把这个目录下面的文档都转成网页文档」「韩语文档除外」; operator chose Japanese side only and route JS-CONNECTION-GUIDE): Git-only JS-CONNECTION-GUIDE JP Web conversion; operator accepted candidate eb61b66 for release 2026-10-27 (「上线提交发布」), merged by operator PR review; acceptance hash-bound in source/approval.json",
       "registered": "2026-10-26",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+          "since": "2026-11-10"
+        }
+      }
     }
   },
   "drift_log": [
@@ -3189,6 +5239,33 @@
       "handling": "keep-frozen",
       "reason": "SCG-20261104 confirms the remaining shared symbol groups and lets reviewed glyph waivers cover legacy variants; frozen packages keep their sealed bytes and evidence, and every replayed symbol row still passes (legacy bindings within the fixed tolerance or their waiver).",
       "minutes": 10
+    },
+    {
+      "date": "2026-11-10",
+      "files": [
+        "docs/renderers/contracts/web_inbox_components.css",
+        "docs/renderers/contracts/web_presentation/target_overlays.json",
+        "docs/renderers/contracts/web_safety_components.css",
+        "docs/renderers/contracts/web_source_panels.css",
+        "tools/component_specs/inbox_html.py",
+        "tools/component_specs/warranty_html.py",
+        "tools/web/inbox_component.py",
+        "tools/web/presentation.py"
+      ],
+      "packages": 65,
+      "handling": "keep-frozen",
+      "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
+      "minutes": 0
+    },
+    {
+      "date": "2026-11-10",
+      "files": [
+        "docs/renderers/contracts/web_presentation/target_overlays.json"
+      ],
+      "packages": 4,
+      "handling": "keep-frozen",
+      "reason": "Screenshot-directed English layout repairs; historical packages remain byte-identical after restoring test side effects, and no historic approval is rebound.",
+      "minutes": 0
     }
   ]
 }

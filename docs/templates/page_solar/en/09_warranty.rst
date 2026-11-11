@@ -4,15 +4,20 @@ WARRANTY
 Warranty Period
 ---------------
 
-1 YEAR — Standard Warranty
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. list-table::
+   :header-rows: 0
+   :widths: 60 40
 
-The product is covered by a limited warranty from Jackery for the original purchaser that covers the product from defects in workmanship and materials for 12 months from the date of purchase (damages from normal wear and tear, alteration, misuse, neglect, accident, service by anyone other than authorized service center, or act of God are not included). During the warranty period and upon verification of defects, this product will be replaced when returned with proper proof of purchase.
+   * - **1 YEAR**
 
-2 YEARS — Extended Warranty
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+       **Standard Warranty**
 
-To activate the Warranty Extension, you must register your product online or contact our customer service team at hello.eu@jackery.com to extend the standard warranty runtime.
+       The product is covered by a limited warranty from Jackery for the original purchaser that covers the product from defects in workmanship and materials for 12 months from the date of purchase (damages from normal wear and tear, alteration, misuse, neglect, accident, service by anyone other than authorized service center, or act of God are not included). During the warranty period and upon verification of defects, this product will be replaced when returned with proper proof of purchase.
+     - **2 YEARS**
+
+       **Extended Warranty**
+
+       To activate the Warranty Extension, you must register your product online or contact our customer service team at hello.eu@jackery.com to extend the standard warranty runtime.
 
 Contact Us
 ----------

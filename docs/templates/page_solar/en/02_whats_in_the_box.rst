@@ -2,6 +2,7 @@ WHAT'S IN THE BOX
 =================
 
 .. list-table::
+   :class: hb-inbox-three-column-layout
    :header-rows: 0
    :widths: 20 20 20 20 20
 

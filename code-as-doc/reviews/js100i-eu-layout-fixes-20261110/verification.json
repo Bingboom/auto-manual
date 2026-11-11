@@ -1,0 +1,73 @@
+{
+  "scope": "JS-100I / EU / English",
+  "native_copy_canonical_equal": true,
+  "canonical_alphanumeric_length": 5715,
+  "specification_csv_changed": false,
+  "artwork_pipeline_exports": 11,
+  "legacy_english_recipe_changed": false,
+  "legacy_shared_recipe_changed": false,
+  "desktop": {
+    "width": 1280,
+    "safety_columns": 2,
+    "inbox_row_counts": [
+      3,
+      2
+    ],
+    "step_panels": 7,
+    "all_step_captions_above_art": true,
+    "comparison_columns": 2,
+    "note_components": 2,
+    "warranty_components": 3,
+    "document_overflow": false
+  },
+  "phone": {
+    "width": 390,
+    "safety_columns": 1,
+    "inbox_columns": 1,
+    "comparison_columns": 1,
+    "warranty_columns": 1,
+    "dense_panel_client_width": 343,
+    "dense_panel_scroll_width": 576,
+    "document_overflow": false
+  },
+  "checks": {
+    "strict_sphinx": "passed",
+    "ruff": "passed",
+    "docs_links": "passed",
+    "maintainability": "passed",
+    "targeted_solar_and_web_tests": {
+      "count": 68,
+      "status": "passed"
+    },
+    "full_unittest": {
+      "tests": 6250,
+      "failures": 84,
+      "errors": 46,
+      "skipped": 96,
+      "elapsed_seconds": 1032.544,
+      "status": "failed; two directly related selector/structure expectations corrected and all 77 direct regressions passed; 10 representative residual failures reproduce on clean origin/main"
+    },
+    "direct_regressions_final": {
+      "count": 77,
+      "status": "passed"
+    },
+    "generic_us_quality_gate": {
+      "status": "passed",
+      "data_root": "existing original checkout data/phase2 (read-only)"
+    },
+    "clean_main_subset": {
+      "tests": 10,
+      "failures": 9,
+      "errors": 1
+    },
+    "shared_js40c_regressions": {
+      "count": 7,
+      "status": "passed"
+    },
+    "pinned_asset_pipeline_replay": {
+      "status": "passed",
+      "byte_identical_exports": 11,
+      "source_sha256": "3c13c944a37ea2b4433e4dbe1e9116c3d8c77091da1a6a93f0b27d61c48ea907"
+    }
+  }
+}

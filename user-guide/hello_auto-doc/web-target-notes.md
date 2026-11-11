@@ -114,3 +114,7 @@ JE-3600A / CN（zh）与 JP（ja）的 Web 版式版本（[CN](../../data/manual
 台湾原生 Git-only Web 原稿使用 `zh-TW`（别名 `zh_tw` / `zh-Hant`），显示为繁體中文。共享语言注册将它设为 `sync_enabled=False`，与简体 `zh` 分开；离线整本 Manual IR 回放不会新增在线同步字段。
 
 JE-2000F / EU / pt, nl, pl 的 [批次 1465 Web 版本](../../manual_sources/JE-2000F/EU/nine-language/git-20261010-1465-web/three-language/README.md) 补入六条安全提示。操作者审阅 1280/390 渲染后指示“按波兰语的顺序调，译文直接用，上线提交发布”：pt/nl 的 UPS 章节改为与 pl 相同的先注意（CAUTION）后警告（WARNING），六条译文按交付稿发布。操作者提供批次 1465 修正版原稿 `JE-2000F_修正版.ai` 作为发布准入依据：三种语言共 24 个安全符号逐行绑定原稿矢量与说明像素，改用通过比对的共用图标（新增共用变体 `no-open-flame/crossed-fire-je2000f`，线上原有的火源、儿童两个错误图标随之更正）。包内 `finalize_release.py` 只调整块顺序、不改可见文字，并以 `approval.json` 绑定批准、将 IR 标为可发布；工程 PR 由操作者审核合入后，按 Git-only 流程封存证据并提交 Hello-Docs 发布 PR。
+
+### 截图反馈中的源稿版式恢复
+
+JS-100I EU 英文的安全双栏、3+2 清单、步骤框与上置说明、完整灰底插图、正反例并排和保修卡片均由现有 Solar@INTL 构建入口维护。按截图修复时先区分素材裁切与组件结构：裁切修复放入独立配方并保留历史哈希；版式接回共享组件。JHP-2000A US 的 LED 对齐及二维码上框修复另存为候选版本，不能覆盖已发布的冻结快照。来源、实际检查与候选位置见[修复记录](../../code-as-doc/reviews/js100i-eu-layout-fixes-20261110/README.md)。

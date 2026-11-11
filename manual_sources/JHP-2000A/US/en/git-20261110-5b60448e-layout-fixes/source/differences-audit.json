@@ -1,0 +1,87 @@
+{
+  "source_sha256": "5b60448e69a76d5a8386227bc800ffc83309c837dfc32f5b3fb1f0901bd3d738",
+  "old_declarations": [
+    {
+      "item": 1,
+      "old_declaration": "Cover (p1), paper table of contents (p3) and back cover (p24) are not on the Web page; printed page numbers and the US language badge beside IMPORTANT are dropped.",
+      "disposition": "Exclude only cover1 and paper TOC3; retain US IMPORTANT badge and all original p24 contact/QR information. Printed folios omitted."
+    },
+    {
+      "item": 2,
+      "old_declaration": "Chapter titles are shared h2 strips; subsection bullets (FRONT VIEW, POWER ON/OFF …) are shared h3 headings.",
+      "disposition": "Retain original major dark strips and ordinary small bullet headings. Operating and maintenance source full-width pills restored; App titles retain original hierarchy."
+    },
+    {
+      "item": 3,
+      "old_declaration": "The FCC panel is HB-SPECIAL-FCC in its own section; the shared theme hides that section's navigation-only \"FCC\" title (the print has no title).",
+      "disposition": "Keep own source FCC panel without invented visible heading; restore native logo wrap, NOTE separate These limits paragraph, exact own column continuation."
+    },
+    {
+      "item": 4,
+      "old_declaration": "The WARNING / DANGER boxes and every CAUTION / NOTE side-label box become HB-CALLOUT-STRIP with the printed label; bullets inside them are list items.",
+      "disposition": "Restore original risk/grounding/DANGER frames and glyphs with native original-coordinate text. Other source side-label boxes retain native wording and matching source order."
+    },
+    {
+      "item": 5,
+      "old_declaration": "The signal table (WARNING, CAUTION, NOTE, TIP) is HB-TABLE-SYMBOL-SIGNAL; the printed badge icons are drawn by the shared badge. The pictogram tables are HB-TABLE-SYMBOL-ICON in the printed 6 + 5 panel order.",
+      "disposition": "Signal glyphs restored from own PDF; WARNING/CAUTION have original white glyph, NOTE/TIP have no glyph. Pictograms retain original source11 rows/6+5 panels, admission checks passed."
+    },
+    {
+      "item": 6,
+      "old_declaration": "The 26 LCD descriptions are one numbered HB-TABLE-LCD-ICON in printed order across the three printed pages; ㉓ prints two icons (high/low temperature) and keeps the number on both rows.",
+      "disposition": "Keep LCD1–26 source order. Original circled23 spans high/low temperature rows once; both icons and all words remain, source Blink regular-weight retained."
+    },
+    {
+      "item": 7,
+      "old_declaration": "In operation panels, the callout bubble, prerequisite pills, explanatory text boxes, LED step texts, UPS explanation and AC charging caption are native text (hb-text-panel or ordered list) placed after or before the art; the panel art keeps its leader labels (On / Off / Press once …), which are listed as embedded labels in the IR.",
+      "disposition": "All stripped panel body text returned to original positions over its own original frame, bubbles, arrows and backgrounds: power/standby/AC/DC/ECO/LED/UPS/AC charging. No invented drawing."
+    },
+    {
+      "item": 8,
+      "old_declaration": "LCD SCREEN is HB-TABLE-LCD-MODE with its artwork; KEY COMBINATION is HB-TABLE-KEY-COMBINATIONS with the shared button carrier; AC AND DC OUTPUT RESUME FUNCTION (printed at the top of page 12, above the UPS chapter title) is HB-TABLE-AUTO-RESUME and stays the last OPERATIONS subsection. These shared tables keep a fixed minimum width and scroll inside the component when the column is narrower.",
+      "disposition": "Restore original LCD image/matrix proportions; four key rows retain exact original button silk, four plus signs and own clock. Auto-resume is on actual own p15; no sibling copy. Dense mobile table can pan fully."
+    },
+    {
+      "item": 9,
+      "old_declaration": "\"SOLD SEPARATELY\" pills use the shared hb-sold-separately label (beside the title in h3.hb-heading-label-pair for solar and car charging; alone under the battery-pack title).",
+      "disposition": "Restore source ordinary solar/car bullet headings beside independent SOLD SEPARATELY badge; battery badge remains under its major title."
+    },
+    {
+      "item": 10,
+      "old_declaration": "\"Fully charge the product before its first use.\" (a dark pill in print) is a bold paragraph; \"Emergency Charging Mode\" (a pill) is an h4.",
+      "disposition": "Restore source dark rounded first-charge and Emergency Charging Mode pills."
+    },
+    {
+      "item": 11,
+      "old_declaration": "Specification groups are HB-TABLE-SPEC tables; multi-value cells keep the printed line order.",
+      "disposition": "Preserve every own spec cell. AC input and DC8020 input each have two distinct value rows with label rowspan2; group headings small; all numbers/units/qualifiers verified."
+    },
+    {
+      "item": 12,
+      "old_declaration": "Troubleshooting is HB-TABLE-TROUBLESHOOTING; numbered steps keep their printed numbers and line breaks.",
+      "disposition": "Fault F0–FE rows preserved, including separate duplicate restart conditions and full numbered steps; original frame and column proportions retained."
+    },
+    {
+      "item": 13,
+      "old_declaration": "Warranty: lead box HB-WARRANTY-LEAD, titled cards are a heading (the printed pill) plus HB-WARRANTY-SECTION, the 3/2 YEARS cards HB-WARRANTY-YEARS.",
+      "disposition": "Warranty six original cards/paragraphs retained; 3+2year source panels side-by-side on desktop, source mobile reading order retained."
+    },
+    {
+      "item": 14,
+      "old_declaration": "App: download badges and QR are HB-SPECIAL-APP/download; the 2.1 「+」 glyph is native text in HB-SPECIAL-APP/inline-control; screenshots and the control-panel diagram are complete panels.",
+      "disposition": "Own original App stores/QR/screens/controller retained; native headings1–4 and4.1–4.3 match original scale and numbering; inline + original source."
+    },
+    {
+      "item": 15,
+      "old_declaration": "On phones, the overview views, LCD map and control-panel diagram pan sideways inside the figure.",
+      "disposition": "Original overview/LCD/controller and dense native panels use horizontal phone containers. Each right edge is measured reachable, no document overflow."
+    },
+    {
+      "item": 16,
+      "old_declaration": "The full-width colon of 「4.3 To reset Wi-Fi & Bluetooth：」 is kept as printed (U+FF1A).",
+      "disposition": "Original fullwidth colon and all recorded source technical concerns retained verbatim; no unapproved editorial correction."
+    }
+  ],
+  "unresolved": [],
+  "historical_approval": "Old conversion declarations are not operator approval. User excludes front cover and paper TOC only."
+}

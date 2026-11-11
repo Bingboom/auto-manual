@@ -144,6 +144,7 @@ def protect_web_figures_for_pandoc(html_text: str) -> tuple[str, dict[str, str]]
     source_classes = {
         "hb-device-actions", "hb-source-operation", "hb-source-warranty",
         "hb-source-purchase", "hb-source-safety-heading",
+        "hb-safety-columns", "hb-source-comparison",
     }
     blocks = soup.find_all("div", class_=lambda value: value in source_classes)
     for node in blocks:

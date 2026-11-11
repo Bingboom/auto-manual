@@ -40,6 +40,12 @@ def _table_rows(table: Tag) -> list[list[Tag]]:
     return rows
 
 
+def _source_layout_metadata(table: Tag) -> dict[str, int]:
+    if "hb-inbox-three-column-layout" in table.get("class", []):
+        return {"desktop_columns": 3}
+    return {}
+
+
 def parse_inbox_html(
     soup: BeautifulSoup,
     *,
@@ -101,6 +107,7 @@ def parse_inbox_html(
             source_ref=source_path.as_posix(),
             language=language,
             require_tip=tip_table is not None,
+            metadata=_source_layout_metadata(inbox_table),
         )
     except Exception as exc:
         raise error_type(f"{source_path}: {exc}") from exc

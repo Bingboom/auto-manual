@@ -759,3 +759,25 @@ figure:has(> img.hb-readable-diagram) {
 }
 #furo-main-content .hb-preface-heading .headerlink { color: var(--hb-text-muted); }
 #furo-main-content .hb-preface-prose p { margin: 0.45rem 0; line-height: 1.45; }
+
+/* Native step copy stays above the illustration inside a shared source panel. */
+#furo-main-content figure.hb-step-panel {
+  display:flex;flex-direction:column;box-sizing:border-box;max-width:none;
+  padding:1rem;border-radius:var(--hb-panel-radius);
+}
+#furo-main-content figure.hb-step-panel {border:1px solid var(--hb-line);}
+#furo-main-content figure.hb-step-panel figcaption {order:-1;margin:0 0 .7rem;}
+#furo-main-content figure.hb-step-panel figcaption p {margin:0;}
+#furo-main-content figure.hb-step-panel img {margin:0;}
+
+/* Complete own-source panels retain their printed fill and labels. */
+#furo-main-content figure.hb-finished-source-panel {max-width:none;}
+#furo-main-content figure.hb-finished-source-panel figcaption {position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;}
+#furo-main-content .hb-source-comparison {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.6rem;}
+#furo-main-content .hb-source-comparison > figure {min-width:0;margin:0;}
+@media (max-width:760px) {
+  #furo-main-content .hb-source-comparison {grid-template-columns:1fr;}
+  #furo-main-content figure.hb-finished-source-panel {overflow-x:auto;}
+  #furo-main-content figure.hb-finished-source-panel > img {min-width:36rem;}
+  #furo-main-content .hb-source-comparison figure.hb-finished-source-panel > img {min-width:0;}
+}
