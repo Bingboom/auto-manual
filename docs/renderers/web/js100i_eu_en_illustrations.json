@@ -25,17 +25,17 @@
       "replaces": [
         "inbox_bag.png"
       ],
-      "path": "assets/js100i_eu_en/inbox_bag.png",
-      "sha256": "7995365a1852cadaa0a34a5d758a299a6e0415179c657fe6a57166b515f3c515",
-      "source_page": 2,
+      "path": "assets/js100i_eu_layout_repairs/inbox_bag_complete.png",
+      "sha256": "22c646f370939c669dff4573e97a38b98cca4e1e5921dc78a5a0024b91b954cc",
+      "source_page": 5,
       "bbox_pt": [
         155,
-        252,
-        215,
+        254,
+        217,
         328
       ],
-      "source_master_sha256": "5d7ded6ba7810505cfb4c91b128a71cbef16a0e11aae720cdbd887559224b96a",
-      "recipe": "data/asset_recipes/manual_js100i_eu_en_web.json"
+      "source_master_sha256": "3c13c944a37ea2b4433e4dbe1e9116c3d8c77091da1a6a93f0b27d61c48ea907",
+      "recipe": "data/asset_recipes/manual_js100i_eu_layout_repairs.json"
     },
     {
       "replaces": [

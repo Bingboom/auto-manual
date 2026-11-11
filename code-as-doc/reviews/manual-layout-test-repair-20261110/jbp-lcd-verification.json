@@ -1,0 +1,16 @@
+{
+  "model": "JBP-1000B-SIL",
+  "region": "US",
+  "lang": "en",
+  "one_html_field_changed": true,
+  "native_words_identical": true,
+  "unchanged_artwork_count": 50,
+  "cold_replay_files_identical": 56,
+  "strict_sphinx_passed": true,
+  "publication_eligible": false,
+  "browser": {
+    "br_count": 1,
+    "on_y": 554.078125,
+    "off_y": 571.796875
+  }
+}

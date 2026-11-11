@@ -22,7 +22,7 @@ SAFETY TIPS
 
       * Do not drop the product, as this may cause internal damage and render it unusable.
       * The solar panel is not intended for permanent installation. Please store the solar panels during strong winds, hail or other severe weather to avoid damage or potential hazards.
-      * Under normal circumstances, solar panels may be exposed to higher currents or voltages than those under standard test conditions. When calculating the rated voltage of components, the rated current of conductors, and the size of the control device connected to the PV output, multiply the short-circuit current (Iₛ꜀) and open-circuit voltage (Vₒ꜀) values indicated on the panel nameplate by a factor of 1.25.
+      * Under normal circumstances, solar panels may be exposed to higher currents or voltages than those under standard test conditions. When calculating the rated voltage of components, the rated current of conductors, and the size of the control device connected to the PV output, multiply the short-circuit current (I\ :sub:`sc`) and open-circuit voltage (V\ :sub:`oc`) values indicated on the panel nameplate by a factor of 1.25.
       * Any damage to the product may lead to electric shock or fire.
       * Do not expose the solar panels to artificial spotlight.
       * Do not connect the solar panel to other solar panels or power sources unless the combination includes protection against reverse current and overvoltage.

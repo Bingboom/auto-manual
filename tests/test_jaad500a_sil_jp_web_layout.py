@@ -11,6 +11,8 @@ import subprocess
 import tempfile
 import unittest
 
+from tests.historical_web_inputs import historical_shared_inputs, temporary_derivation
+
 from bs4 import BeautifulSoup
 
 from tests.historical_app_styles import pre_four_control_styles
@@ -58,11 +60,12 @@ def reseal(source: Path) -> None:
     path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
 
 
+@historical_shared_inputs
 class WebLayoutEditionTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
-        self.root = Path(self.temp.name)
+        self.root = Path(self.temp.name).resolve()
 
     def fixture(self):
         dest = self.root / 'source'
@@ -90,9 +93,12 @@ class WebLayoutEditionTests(unittest.TestCase):
                 if r['path'].startswith(('source/', 'assets/')) and r['path'] != 'source/approval.json'])
 
     def test_derivation_is_reproducible(self):
-        before = {p: file_sha256(p) for p in PACKAGE.rglob('*') if p.is_file() and '__pycache__' not in p.parts}
-        derive_module.main()
-        after = {p: file_sha256(p) for p in PACKAGE.rglob('*') if p.is_file() and '__pycache__' not in p.parts}
+        before = {p.relative_to(PACKAGE): file_sha256(p) for p in PACKAGE.rglob('*')
+                  if p.is_file() and '__pycache__' not in p.parts}
+        with temporary_derivation(derive_module) as destination:
+            derive_module.main()
+            after = {p.relative_to(destination): file_sha256(p) for p in destination.rglob('*')
+                     if p.is_file() and '__pycache__' not in p.parts}
         self.assertEqual(before, after)
 
     def test_artwork_is_the_approved_artwork_except_the_inbox_manual_recrop(self):

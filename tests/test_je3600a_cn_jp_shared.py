@@ -11,6 +11,8 @@ import re
 import shutil
 import tempfile
 import unittest
+
+from tests.historical_web_inputs import historical_shared_inputs
 from unittest import mock
 
 from bs4 import BeautifulSoup
@@ -111,11 +113,12 @@ def components(content: dict) -> Counter:
     return Counter(re.findall(r'"component_id": "([A-Z0-9-]+)"', json.dumps(content)))
 
 
+@historical_shared_inputs
 class SharedComponentEditionTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
-        self.root = Path(self.temp.name)
+        self.root = Path(self.temp.name).resolve()
 
     def require_pinned_shared_inputs(self, region: str):
         drifted = shared_inputs_drifted(EDITIONS[region]['package'])

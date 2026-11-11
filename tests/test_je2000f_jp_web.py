@@ -10,6 +10,8 @@ import subprocess
 import tempfile
 import unittest
 
+from tests.historical_web_inputs import historical_shared_inputs
+
 from bs4 import BeautifulSoup
 import fitz
 
@@ -58,6 +60,7 @@ def web_lines() -> list[dict]:
     return [line for page in transcription()["pages"] if page["web"] for line in page["lines"]]
 
 
+@historical_shared_inputs
 class Je2000fJpWebTests(unittest.TestCase):
     def test_identity_and_candidate_status(self):
         manifest = read(PACKAGE / "source_manifest.json")

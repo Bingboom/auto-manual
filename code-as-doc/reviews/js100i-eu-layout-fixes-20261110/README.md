@@ -33,3 +33,5 @@ The `page_solar` structure grouping baseline changes deliberately for English on
 Shared-carrier impact: JS-40C EU English also consumes `page_solar/en/01_safety_tips.rst`, so a future fresh JS-40C build receives the same responsive safety columns. Its published snapshot, product figures, inventory, warranty and wording are not changed. The JS-40C target regression is checked as the existing shared-template consumer; other solar targets use their own safety carrier.
 
 The seven JS-40C shared-consumer tests passed. The final pinned `asset_intake` replay reproduced all eleven committed correction PNGs byte-identically.
+
+Follow-up: the [test repair and additional screenshot corrections](../manual-layout-test-repair-20261110/README.md) supersede the non-green status above. CI-Python full regression now passes all 6,253 tests (92 conditional skips), with zero failures/errors. The complete bag crop and semantic safety subscripts are included; the correction recipe now replays twelve PNGs byte-identically. The original failed run remains recorded for traceability.

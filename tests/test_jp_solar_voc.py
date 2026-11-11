@@ -9,6 +9,8 @@ import subprocess
 import sys
 import tempfile
 import unittest
+
+from tests.historical_web_inputs import historical_shared_inputs, temporary_derivation
 from unittest import mock
 
 from tests.historical_app_styles import pre_four_control_styles
@@ -81,11 +83,12 @@ def visible_copy(ir_path: Path) -> str:
     return squeeze(''.join(t for page in raw['pages'] for block in page['blocks'] for t in texts(block['payload'])))
 
 
+@historical_shared_inputs
 class JapaneseSolarVocEditionTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
-        self.root = Path(self.temp.name)
+        self.root = Path(self.temp.name).resolve()
 
     def fixture(self, package: Path) -> Path:
         dest = self.root / 'source'
@@ -117,8 +120,9 @@ class JapaneseSolarVocEditionTests(unittest.TestCase):
         for key, edition in EDITIONS.items():
             with self.subTest(edition=key):
                 before = tree(edition['package'])
-                edition['derive'].main()
-                self.assertEqual(before, tree(edition['package']))
+                with temporary_derivation(edition['derive']) as destination:
+                    edition['derive'].main()
+                    self.assertEqual(before, tree(destination))
 
     def test_ad500a_only_the_declared_page_differs_from_the_base(self):
         base = {p: h for p, h in tree(AD500A_BASE).items() if p.startswith(('source/', 'assets/'))}

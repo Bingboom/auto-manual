@@ -9,6 +9,8 @@ import subprocess
 import tempfile
 import unittest
 
+from tests.historical_web_inputs import historical_shared_inputs
+
 from bs4 import BeautifulSoup
 
 from tools.manual_ir.hashing import file_sha256
@@ -81,6 +83,7 @@ def visible_text(markdown: str) -> str:
     return squash(soup.get_text(""))
 
 
+@historical_shared_inputs
 class ExplorerJpJaWebTests(unittest.TestCase):
     def each(self):
         for model, case in PACKAGES.items():

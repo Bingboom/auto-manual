@@ -1,0 +1,25 @@
+{
+  "python": "3.12.13",
+  "dependency_policy": "unchanged requirements.lock (47 packages)",
+  "full_suite": {
+    "command": "PATH=/tmp/manual-layout-python312/bin:$PATH python -m unittest -v",
+    "tests": 6253,
+    "seconds": 1161.413,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 92,
+    "exit_code": 0,
+    "execution": "loopback-enabled local environment"
+  },
+  "targeted_local_http_tests": 23,
+  "node_ui_tests": 86,
+  "ruff": "passed",
+  "maintainability": "passed",
+  "doc_links": "passed",
+  "reference_layout_pins": "passed",
+  "us_quality_check": "passed with tests/fixtures/phase2",
+  "js100i_strict_sphinx": "passed",
+  "js100i_asset_replay": "12 PNGs byte-identical",
+  "jhp_candidate_cold_replay": "4 stored artifacts byte-identical",
+  "jbp_lcd_candidate": "56 cold-build files byte-identical; unchanged words and 50 artwork files; strict Sphinx passed"
+}

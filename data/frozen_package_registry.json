@@ -286,6 +286,11 @@
         }
       }
     },
+    "data/manual_sources/JBP-1000B-SIL/US/git-20261110-7afcb2a1-lcd-linebreak": {
+      "approval": "2026-11-10 screenshot-directed English LCD Off line break; separate candidate only, pending operator review; no merge or publication authorization.",
+      "registered": "2026-11-10",
+      "known_drift": {}
+    },
     "data/manual_sources/JBP-3600A/JP/ja/git-20261014-56860f2f": {
       "approval": "MA-303（见 source/approval.json）",
       "registered": "2026-10-19",

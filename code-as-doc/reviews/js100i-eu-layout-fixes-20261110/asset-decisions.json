@@ -185,5 +185,22 @@
       121
     ],
     "source_sha256": "3c13c944a37ea2b4433e4dbe1e9116c3d8c77091da1a6a93f0b27d61c48ea907"
+  },
+  {
+    "slot": "inbox_bag",
+    "superseded_path": "assets/js100i_eu_en/inbox_bag.png",
+    "superseded_sha256": "7995365a1852cadaa0a34a5d758a299a6e0415179c657fe6a57166b515f3c515",
+    "status": "superseded-do-not-reuse",
+    "reason": "2026-11-10 follow-up screenshot: old right edge x=215 clips the outer bag stroke at x=215.182; complete own-source bag reused with padding.",
+    "path": "assets/js100i_eu_layout_repairs/inbox_bag_complete.png",
+    "sha256": "22c646f370939c669dff4573e97a38b98cca4e1e5921dc78a5a0024b91b954cc",
+    "source_page": 5,
+    "bbox_pt": [
+      155,
+      254,
+      217,
+      328
+    ],
+    "source_sha256": "3c13c944a37ea2b4433e4dbe1e9116c3d8c77091da1a6a93f0b27d61c48ea907"
   }
 ]

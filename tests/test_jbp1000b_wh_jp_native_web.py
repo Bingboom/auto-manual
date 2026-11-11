@@ -8,6 +8,8 @@ import shutil
 import tempfile
 import unittest
 
+from tests.historical_web_inputs import historical_shared_inputs
+
 from tests.historical_app_styles import pre_four_control_styles
 from tools.manual_ir.hashing import file_sha256
 from tools.web.frozen_ai_web import replay_package
@@ -41,11 +43,12 @@ def reseal_fixture(source):
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n')
 
 
+@historical_shared_inputs
 class NativePackWebTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
-        self.root = Path(self.temp.name)
+        self.root = Path(self.temp.name).resolve()
 
     def fixture(self):
         dest = self.root / 'source'

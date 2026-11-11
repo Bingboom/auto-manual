@@ -9,6 +9,10 @@ import subprocess
 import tempfile
 import unittest
 
+from tests.historical_web_inputs import historical_shared_inputs
+
+from tests.historical_app_styles import pre_rowspan_divider_styles
+
 from bs4 import BeautifulSoup
 
 from tools.manual_ir.hashing import file_sha256
@@ -58,6 +62,7 @@ def web_lines() -> list[dict]:
     return [line for page in pages if page["web"] for line in page["lines"] if line["id"] not in PRINT_ONLY]
 
 
+@historical_shared_inputs
 class Je3000bUsWebTests(unittest.TestCase):
     def test_identity_and_candidate_status(self):
         manifest = read(PACKAGE / "source_manifest.json")
@@ -161,6 +166,7 @@ class Je3000bUsWebTests(unittest.TestCase):
         self.assertEqual([(e["page_id"], e["kind"]) for e in exceptions], [("troubleshooting", "table")])
         self.assertTrue(all(e["reason"] for e in exceptions))
 
+    @pre_rowspan_divider_styles
     def test_cold_replay_matches_stored_candidate(self):
         try:
             subprocess.run([resolve_pandoc_binary(None), "--version"], check=True, capture_output=True)

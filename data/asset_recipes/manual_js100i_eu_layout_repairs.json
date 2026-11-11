@@ -1572,6 +1572,50 @@
         ]
       },
       "risk_tags": []
+    },
+    {
+      "asset_key": "web/js100i/eu/en/layout-repair/inbox_bag_complete",
+      "page": 5,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100I"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            155,
+            254,
+            217,
+            328
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/js100i_eu_layout_repairs/inbox_bag_complete.png",
+          "scale": 4,
+          "expected_sha256": "22c646f370939c669dff4573e97a38b98cca4e1e5921dc78a5a0024b91b954cc"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "2026-11-10 operator screenshot-directed own-source panel restoration; no registry promotion"
+        ]
+      },
+      "risk_tags": []
     }
   ]
 }

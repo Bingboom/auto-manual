@@ -1,0 +1,173 @@
+/* Shared Manual IR owns typography and components. Native geometry only. */
+.hb-reference-figure { max-width: 720px; margin: 1rem auto; }
+.native-step-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1rem; margin: 1rem 0; }
+.native-step-card { border: 1px solid var(--hb-border-color,#dedede); border-radius: 12px; padding: 1rem; min-width: 0; }
+.native-step-card p { margin: 0 0 .75rem; }
+.native-step-card .hb-reference-figure { margin: 0; }
+.native-step-card .hb-reference-live-label { font-size: max(10px, 2.8cqw) !important; }
+[data-reference-id="wood-prep"] .hb-reference-art-panel::before,
+[data-reference-id="concrete-prep"] .hb-reference-art-panel::before { content: ""; position:absolute; border:1px dashed #858585; border-radius:12px; left:31%; top:10%; width:47%; height:82%; }
+[data-reference-id="wood-prep"] .hb-reference-live-label,
+[data-reference-id="concrete-prep"] .hb-reference-live-label { font-weight:700; }
+[data-reference-id="overview"] .hb-reference-live-label { font-size:max(10px,2.2cqw) !important; }
+[data-reference-id="power"] .hb-reference-live-label:nth-of-type(odd) { font-weight:700; }
+.hb-inbox-card-art { max-height:180px; object-fit:contain; }
+@media(max-width:760px) {
+ .native-step-grid { grid-template-columns: minmax(0,1fr); }
+}
+
+.native-step-card:has(img[src*="-result"]) .hb-reference-figure { max-width:120px; margin-inline:auto; }
+[data-reference-id="wood-prep"] .hb-reference-art-panel::before { top:23%; height:69%; }
+[data-reference-id="concrete-prep"] .hb-reference-art-panel::before { left:28%; top:23%; width:49%; height:69%; }
+.native-step-card [data-reference-id="wood-prep"] .hb-reference-live-label,
+.native-step-card [data-reference-id="concrete-prep"] .hb-reference-live-label { font-size:9px !important; }
+[data-reference-id="overview"] [data-source-line="1"] { font-size:max(8px,1.65cqw) !important; }
+[data-reference-id="overview"] [data-source-line="0"],
+[data-reference-id="overview"] [data-source-line="2"],
+[data-reference-id="overview"] [data-source-line="3"] { font-weight:700; }
+
+@media(max-width:760px) { .hb-reference-figure:not([data-reference-id="lcd"]) .hb-reference-live-label { font-size:10px; } }
+
+[data-reference-id="overview"] [data-source-line="2"] { font-size:max(8px,1.65cqw) !important; font-weight:400; }
+[data-reference-id="overview"] [data-source-line="4"] { font-weight:700; }
+
+.native-inline-pack { display:inline-block; width:11px; height:15px; vertical-align:middle; margin:0 3px; }
+
+/* Native FCC geometry: compact mark above the left copy; shared panel/breakpoints. */
+#furo-main-content .hb-fcc-opening { display:block; }
+#furo-main-content .hb-fcc-mark { width:2.6rem !important; margin:0 0 .4rem !important; }
+
+/* Native LCD glyphs need a larger cell footprint, including stacked readouts. */
+#furo-main-content .hb-lcd-col-icon { width:14%; }
+#furo-main-content .hb-lcd-col-name { width:26%; }
+#furo-main-content .hb-lcd-col-description { width:54%; }
+#furo-main-content table.hb-lcd-icon-table td.hb-lcd-icon { padding-inline:.35rem !important; }
+#furo-main-content .hb-lcd-icon-art { width:4.5rem !important; height:auto !important; }
+
+/* CSS owns the native power panel and its inset live Note, never the base art. */
+.native-power-panel { position:relative; border:2px solid var(--hb-line-soft); border-radius:var(--hb-panel-radius); padding:.6rem; margin:.6rem 0 1.35rem; }
+.native-power-panel .hb-reference-figure { max-width:none; margin:0; }
+#furo-main-content .native-power-panel table.manual-callout-table { position:absolute; right:3%; bottom:5%; width:60% !important; margin:0 !important; font-size:.85rem; line-height:1.3; }
+#furo-main-content .native-power-panel .manual-callout-label { width:18% !important; padding:.7rem .5rem !important; background:var(--hb-surface) !important; }
+#furo-main-content .native-power-panel .manual-callout-body { padding:.7rem !important; background:var(--hb-paper) !important; }
+#furo-main-content [data-reference-id="power"] .hb-reference-live-label[data-source-line="0"],
+#furo-main-content [data-reference-id="power"] .hb-reference-live-label[data-source-line="2"] { font-size:max(10px,3.2cqw) !important; }
+@media(max-width:760px) {
+ #furo-main-content .native-power-panel table.manual-callout-table { position:static; width:100% !important; margin:.4rem 0 0 !important; }
+}
+
+@media(max-width:760px) {
+ #furo-main-content [data-reference-id="power"] .hb-reference-live-label { font-size:.88rem !important; }
+ #furo-main-content [data-reference-id="power"] .hb-reference-live-label[data-source-line="0"],
+ #furo-main-content [data-reference-id="power"] .hb-reference-live-label[data-source-line="2"] { font-size:1rem !important; margin-top:.7rem; }
+}
+
+/* Native portrait and the shared state table fill the same desktop row. */
+.hb-lcd-mode-composition.hb-lcd-mode-portrait { grid-template-columns:minmax(0,1.4fr) minmax(0,3fr); align-items:stretch; }
+.hb-lcd-mode-portrait .hb-lcd-mode-art-panel { position:relative; aspect-ratio:246/477; }
+#furo-main-content .hb-lcd-mode-portrait .hb-lcd-mode-art { position:absolute; left:0; top:0; width:auto !important; height:100% !important; max-width:none; max-height:none; }
+#furo-main-content .hb-lcd-mode-portrait .hb-lcd-mode-state { font-weight:400; }
+#furo-main-content .hb-lcd-mode-portrait .hb-lcd-mode-action { font-weight:600; }
+@media(max-width:760px) {
+ .hb-lcd-mode-composition.hb-lcd-mode-portrait { grid-template-columns:minmax(0,1fr); }
+ .hb-lcd-mode-portrait .hb-lcd-mode-art-panel { aspect-ratio:auto; }
+ #furo-main-content .hb-lcd-mode-portrait .hb-lcd-mode-art { position:static; width:9rem !important; height:auto !important; max-width:100%; }
+}
+
+/* Native vertical-stand opening: plain heading, live inset caption, unframed result. */
+#furo-main-content :is(#vertical-stand,#support-vertical,#soporte-vertical,#jackery-wall-mounted-bracket-sold-separately,#jackery-wall-mounted-bracket-vendus-separement,#jackery-wall-mounted-bracket-se-vende-por-separado) > h1 { background:transparent; color:var(--hb-brand-dark); border:0; border-radius:0; padding:0; font-size:1.15rem; line-height:1.3; margin-bottom:.35rem; }
+.native-vertical-opening { display:grid; grid-template-columns:minmax(0,2.7fr) minmax(0,1fr); gap:2.6rem; align-items:end; margin-bottom:1rem; }
+.native-vertical-preparation { min-width:0; }
+#furo-main-content .native-vertical-preparation > p { margin:0 0 .35rem; }
+.native-vertical-opening .hb-reference-figure { margin:0; max-width:none; }
+.native-vertical-result .hb-reference-figure { position:static; }
+.native-vertical-result { position:relative; align-self:stretch; margin-top:-2.2rem; }
+#furo-main-content .native-vertical-result img { position:absolute; right:0; top:0; height:100% !important; width:auto !important; max-width:none !important; }
+#furo-main-content [data-reference-id="vertical-prep"] .hb-reference-live-label { font-size:.95rem !important; line-height:1.25; }
+@media(max-width:760px) {
+ .native-vertical-opening { grid-template-columns:minmax(0,1fr); gap:1rem; }
+ .native-vertical-result { width:7.5rem; margin:0 auto; }
+ #furo-main-content .native-vertical-result img { position:static; width:100% !important; height:auto !important; max-width:100%; }
+ #furo-main-content [data-reference-id="vertical-prep"] .hb-reference-live-label { font-size:.85rem !important; }
+}
+
+/* Native vertical-stand installation: each step occupies a full-width row. */
+#furo-main-content :is(#vertical-stand,#support-vertical,#soporte-vertical) .native-step-grid { grid-template-columns:minmax(0,1fr); }
+
+/* Native wall-mount title and compact introduction/subsection spacing. */
+#furo-main-content :is(#jackery-wall-mounted-bracket-sold-separately,#jackery-wall-mounted-bracket-vendus-separement,#jackery-wall-mounted-bracket-se-vende-por-separado) > h1 .headerlink { color:inherit; }
+#furo-main-content :is(#jackery-wall-mounted-bracket-sold-separately,#jackery-wall-mounted-bracket-vendus-separement,#jackery-wall-mounted-bracket-se-vende-por-separado) > p { margin:0; line-height:1.5; }
+#furo-main-content :is(#jackery-wall-mounted-bracket-sold-separately,#jackery-wall-mounted-bracket-vendus-separement,#jackery-wall-mounted-bracket-se-vende-por-separado) > section { margin-top:.65rem; }
+#furo-main-content :is(#jackery-wall-mounted-bracket-sold-separately,#jackery-wall-mounted-bracket-vendus-separement,#jackery-wall-mounted-bracket-se-vende-por-separado) > section > h2 { margin:0 0 .65rem; }
+#furo-main-content :is(#jackery-wall-mounted-bracket-sold-separately,#jackery-wall-mounted-bracket-vendus-separement,#jackery-wall-mounted-bracket-se-vende-por-separado) > section > h2::before { display:none; }
+
+/* Native wooden-wall opening reuses the admitted base art with live inset copy. */
+.native-wood-opening .hb-reference-figure { margin:0; max-width:none; }
+#furo-main-content .native-wood-preparation .hb-reference-art-panel { background:#f7f7f7; border-radius:var(--hb-panel-radius); overflow:hidden; }
+#furo-main-content .native-wood-preparation .hb-reference-art { mix-blend-mode:multiply; }
+#furo-main-content [data-reference-id="wood-prep"] .hb-reference-live-label[data-source-line="0"] { font-size:.9rem !important; font-weight:400; line-height:1.2; }
+#furo-main-content [data-reference-id="wood-prep"] .hb-reference-live-label[data-source-line="1"] { font-size:max(10px,3cqw) !important; }
+#furo-main-content .native-wood-result .hb-reference-figure { max-width:none; }
+#furo-main-content .native-wood-result img { width:100% !important; height:auto !important; max-width:100% !important; }
+@media(min-width:761px) {
+ #furo-main-content :is(#jackery-wall-mounted-bracket-sold-separately,#jackery-wall-mounted-bracket-vendus-separement,#jackery-wall-mounted-bracket-se-vende-por-separado) { display:grid; grid-template-columns:minmax(0,2.05fr) minmax(0,1fr); column-gap:2rem; }
+ #furo-main-content :is(#jackery-wall-mounted-bracket-sold-separately,#jackery-wall-mounted-bracket-vendus-separement,#jackery-wall-mounted-bracket-se-vende-por-separado) > h1 { grid-column:1; grid-row:1; }
+ #furo-main-content :is(#jackery-wall-mounted-bracket-sold-separately,#jackery-wall-mounted-bracket-vendus-separement,#jackery-wall-mounted-bracket-se-vende-por-separado) > p { grid-column:1; grid-row:2; }
+ #furo-main-content :is(#on-wooden-walls,#sur-les-murs-en-bois,#en-paredes-de-madera), .native-wood-opening { display:contents; }
+ #furo-main-content :is(#jackery-wall-mounted-bracket-sold-separately,#jackery-wall-mounted-bracket-vendus-separement,#jackery-wall-mounted-bracket-se-vende-por-separado) :is(#on-wooden-walls,#sur-les-murs-en-bois,#en-paredes-de-madera) > h2 { grid-column:1; grid-row:3; margin:.65rem 0; }
+ .native-wood-preparation { grid-column:1; grid-row:4; min-width:0; }
+ .native-wood-result { grid-column:2; grid-row:1 / span 4; align-self:start; min-width:0; }
+ #furo-main-content :is(#on-wooden-walls,#sur-les-murs-en-bois,#en-paredes-de-madera) > .native-wall-wood-steps { grid-column:1 / -1; grid-row:5; }
+ #furo-main-content :is(#jackery-wall-mounted-bracket-sold-separately,#jackery-wall-mounted-bracket-vendus-separement,#jackery-wall-mounted-bracket-se-vende-por-separado) > section:not(:is(#on-wooden-walls,#sur-les-murs-en-bois,#en-paredes-de-madera)) { grid-column:1 / -1; }
+}
+@media(max-width:760px) {
+ .native-wood-opening { display:grid; grid-template-columns:minmax(0,1fr); gap:1rem; }
+ .native-wood-result { width:8.5rem; margin-inline:auto; }
+ #furo-main-content [data-reference-id="wood-prep"] .hb-reference-live-label[data-source-line="0"] { font-size:.85rem !important; }
+}
+
+/* Wall installation preserves native panels and cross-panel drawing groups. */
+.native-wall-wood-steps { display:grid; grid-template-columns:minmax(0,1.8fr) minmax(0,1fr); gap:1rem; margin:1rem 0; }
+.native-wall-wood-steps > :is(.native-wood-1-2,.native-wood-5,.native-wood-6,.native-wood-7) { grid-column:1 / -1; }
+.native-wall-concrete-steps { display:grid; grid-template-columns:minmax(0,1fr); gap:1rem; margin:1rem 0; }
+.native-wall-panel { position:relative; min-width:0; }
+.native-wall-panel .hb-reference-figure { max-width:none; margin:0; }
+.native-wall-panel:not(.native-wall-pair) { border:2px solid var(--hb-line-soft); border-radius:var(--hb-panel-radius); overflow:hidden; }
+.native-wall-panel .hb-reference-art-panel::before,.native-wall-panel .hb-reference-art-panel::after { pointer-events:none; }
+.native-wall-pair .hb-reference-art-panel::before,.native-wall-pair .hb-reference-art-panel::after { content:""; position:absolute; top:.5%; height:98%; border:2px solid var(--hb-line-soft); border-radius:var(--hb-panel-radius); z-index:0; box-sizing:border-box; }
+.native-concrete-4-5 .hb-reference-art-panel::before { left:.5%; width:54.6%; }
+.native-concrete-4-5 .hb-reference-art-panel::after { left:57%; width:41.6%; }
+.native-concrete-6-7 .hb-reference-art-panel::before { left:.5%; width:39.6%; }
+.native-concrete-6-7 .hb-reference-art-panel::after { left:42.4%; width:56.4%; }
+.native-concrete-8-9 .hb-reference-art-panel::before { left:1.1%; width:33.6%; }
+.native-concrete-8-9 .hb-reference-art-panel::after { left:36.6%; width:62%; }
+#furo-main-content .native-wall-panel .hb-reference-live-label { font-size:max(10px,1.92cqw) !important; line-height:1.2; font-weight:400; }
+#furo-main-content :is(.native-wood-3,.native-wood-4) .hb-reference-live-label { font-size:max(10px,3cqw) !important; }
+.native-concrete-opening { display:grid; grid-template-columns:minmax(0,2.35fr) minmax(0,1fr); gap:1.2rem; align-items:end; }
+.native-concrete-opening .hb-reference-figure { max-width:none; margin:0; }
+#furo-main-content .native-concrete-preparation .hb-reference-art-panel { background:#f7f7f7; border-radius:var(--hb-panel-radius); }
+#furo-main-content .native-concrete-preparation .hb-reference-art { mix-blend-mode:multiply; }
+#furo-main-content [data-reference-id="concrete-prep"] [data-source-line="0"] { font-size:.9rem !important; font-weight:400; }
+#furo-main-content [data-reference-id="concrete-prep"] [data-source-line="1"] { font-size:max(10px,3cqw) !important; }
+@media(max-width:760px) {
+ .native-wall-wood-steps,.native-concrete-opening { grid-template-columns:minmax(0,1fr); }
+ .native-concrete-result { width:8.5rem; margin-inline:auto; }
+ #furo-main-content .native-wall-panel .hb-reference-live-label { font-size:.85rem !important; line-height:1.4; }
+ .native-wall-panel:not(.native-wall-pair) { padding:.4rem; }
+}
+
+/* Native translation density must not collide with the measurement labels. */
+@media(min-width:761px) {
+ #furo-main-content .native-concrete-4-5 .hb-reference-live-label { font-size:max(10px,1.8cqw) !important; }
+ #furo-main-content .native-wood-5 .hb-reference-live-label { font-size:max(10px,1.6cqw) !important; }
+}
+@media(max-width:760px) {
+ .native-concrete-4-5 .hb-reference-art-panel::before,.native-concrete-4-5 .hb-reference-art-panel::after { height:calc(100cqw * 228 / 316 * .98); }
+ .native-concrete-6-7 .hb-reference-art-panel::before,.native-concrete-6-7 .hb-reference-art-panel::after { height:calc(100cqw * 232 / 316 * .98); }
+ .native-concrete-8-9 .hb-reference-art-panel::before,.native-concrete-8-9 .hb-reference-art-panel::after { height:calc(100cqw * 189 / 316 * .98); }
+}
+
+/* Native solar diagram labels are smaller than prose and stay inside the art. */
+#furo-main-content [data-reference-id="solar"] .hb-reference-live-label[data-source-line="0"],
+#furo-main-content [data-reference-id="solar"] .hb-reference-live-label[data-source-line="1"] { font-size:max(8px,1.45cqw) !important; white-space:nowrap; line-height:1.2; }
+#furo-main-content [data-reference-id="solar"] .hb-reference-live-label[data-source-line="2"] { font-size:max(9px,1.89cqw) !important; line-height:1.2; }

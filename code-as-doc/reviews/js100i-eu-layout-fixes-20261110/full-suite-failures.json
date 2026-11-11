@@ -652,12 +652,22 @@
       "cause": "AssertionError: {'var[2710 chars]s': 'f05398807e87e05d42bea106d7b7aa34d019c64d1[660 chars]9b'}} != {'var[2710 chars]s': '99232d795becf6f8d9d66c4fbd3ef3449deda39b7[660 chars]b1'}}"
     }
   ],
-  "follow_up": "Full-suite failures remain outside this repair. Two directly related CSS-selector/template-grouping failures were corrected; the final direct regression suite passes 77 tests. Ten representative remaining failures reproduce on a clean origin/main checkout under this local Python 3.14 environment.",
+  "follow_up": "Resolved by the subsequent CI-Python test repair; see ../manual-layout-test-repair-20261110/README.md. The original failure inventory is retained as diagnostic history.",
   "clean_main_reproductions": {
     "tests": 10,
     "failures": 9,
     "errors": 1,
     "result": "same named tests fail on clean origin/main",
     "commit": "8364aa16b52ccdf99f17194a34b4a1192d313ed4"
+  },
+  "resolution": {
+    "command": "PATH=/tmp/manual-layout-python312/bin:$PATH python -m unittest -v",
+    "tests": 6253,
+    "seconds": 1161.413,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 92,
+    "exit_code": 0,
+    "execution": "loopback-enabled local environment"
   }
 }

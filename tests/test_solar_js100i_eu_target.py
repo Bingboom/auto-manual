@@ -242,6 +242,8 @@ class SolarJs100iEuTargetTests(unittest.TestCase):
         columns = soup.select_one(".hb-safety-columns")
         self.assertIsNotNone(columns)
         self.assertEqual([12, 6], [len(c.select("li")) for c in columns.find_all("div", recursive=False)])
+        self.assertEqual(["sc", "oc"], [sub.get_text() for sub in columns.select("sub")])
+        self.assertNotIn("꜀", columns.get_text())
         self.assertEqual(soup.select_one(".hb-inbox-composition")["data-inbox-columns"], "3")
         self.assertEqual(len(soup.select("figure.hb-step-panel")), 7)
         self.assertEqual(len(soup.select(".hb-source-comparison > figure")), 2)

@@ -9,6 +9,8 @@ import subprocess
 import tempfile
 import unittest
 
+from tests.historical_web_inputs import historical_shared_inputs, temporary_derivation
+
 from tests.historical_app_styles import pre_four_control_styles
 from tools.manual_ir.hashing import file_sha256
 from tools.web.prepared_style_audit import audit_prepared_package_locale
@@ -60,6 +62,7 @@ def visible_copy(ir_path: Path) -> str:
     return squeeze(''.join(t for page in raw['pages'] for block in page['blocks'] for t in texts(block['payload'])))
 
 
+@historical_shared_inputs
 class FrenchSpecLabelEditionTests(unittest.TestCase):
     def test_identity_lineage_and_acceptance(self):
         manifest = read(PACKAGE / 'source_manifest.json')
@@ -79,8 +82,9 @@ class FrenchSpecLabelEditionTests(unittest.TestCase):
 
     def test_derivation_is_reproducible(self):
         before = tree(PACKAGE)
-        derive.main()
-        self.assertEqual(before, tree(PACKAGE))
+        with temporary_derivation(derive) as destination:
+            derive.main()
+            self.assertEqual(before, tree(destination))
 
     def test_only_the_declared_french_files_differ_from_the_base(self):
         base = {p: h for p, h in tree(BASE).items()
