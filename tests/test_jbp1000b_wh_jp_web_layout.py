@@ -10,6 +10,8 @@ import shutil
 import tempfile
 import unittest
 
+from tests.historical_web_inputs import historical_shared_inputs
+
 from bs4 import BeautifulSoup
 
 from tests.historical_app_styles import pre_four_control_styles
@@ -69,11 +71,12 @@ def headings(markdown: str):
     return [(len(m.group(1)), m.group(2)) for m in re.finditer(r'^(#+) (.+)$', markdown, re.M)]
 
 
+@historical_shared_inputs
 class WebLayoutEditionTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
-        self.root = Path(self.temp.name)
+        self.root = Path(self.temp.name).resolve()
 
     def fixture(self):
         dest = self.root / 'source'

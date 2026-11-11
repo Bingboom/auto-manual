@@ -9,6 +9,8 @@ import subprocess
 import tempfile
 import unittest
 
+from tests.historical_web_inputs import historical_shared_inputs
+
 from bs4 import BeautifulSoup
 
 from tools.manual_ir.hashing import file_sha256
@@ -59,6 +61,7 @@ def expected_text() -> str:
     return "".join("".join(body + tail).split())
 
 
+@historical_shared_inputs
 class JaCk01aBkJpWebTests(unittest.TestCase):
     def test_identity_and_candidate_status(self):
         manifest = read(PACKAGE / "source_manifest.json")

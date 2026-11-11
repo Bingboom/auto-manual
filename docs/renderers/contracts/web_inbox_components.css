@@ -1,5 +1,4 @@
 /* HB-SPECIAL-INBOX: responsive card composition plus editable tip. */
-
 .hb-inbox-composition {
   --hb-inbox-card-radius: 0.82rem;
   width: 100%;
@@ -32,6 +31,7 @@
 
 @media (min-width: 901px) {
   #furo-main-content .hb-inbox-composition[data-card-count="5"] .hb-inbox-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  #furo-main-content .hb-inbox-composition[data-inbox-columns="3"] .hb-inbox-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 .hb-inbox-card {
   position: relative;

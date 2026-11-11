@@ -157,3 +157,13 @@ JE-3600A / CN（zh）与 JP（ja）的 Web 版式版本（[CN](../../data/manual
 台湾原生 Git-only Web 原稿使用 `zh-TW`（别名 `zh_tw` / `zh-Hant`），显示为繁體中文。共享语言注册将它设为 `sync_enabled=False`，与简体 `zh` 分开；离线整本 Manual IR 回放不会新增在线同步字段。
 
 JE-2000F / EU / pt, nl, pl 的 [批次 1465 Web 版本](../../manual_sources/JE-2000F/EU/nine-language/git-20261010-1465-web/three-language/README.md) 补入六条安全提示。操作者审阅 1280/390 渲染后指示“按波兰语的顺序调，译文直接用，上线提交发布”：pt/nl 的 UPS 章节改为与 pl 相同的先注意（CAUTION）后警告（WARNING），六条译文按交付稿发布。操作者提供批次 1465 修正版原稿 `JE-2000F_修正版.ai` 作为发布准入依据：三种语言共 24 个安全符号逐行绑定原稿矢量与说明像素，改用通过比对的共用图标（新增共用变体 `no-open-flame/crossed-fire-je2000f`，线上原有的火源、儿童两个错误图标随之更正）。包内 `finalize_release.py` 只调整块顺序、不改可见文字，并以 `approval.json` 绑定批准、将 IR 标为可发布；工程 PR 由操作者审核合入后，按 Git-only 流程封存证据并提交 Hello-Docs 发布 PR。
+
+### JHP-2000A US / JS-100I EU English screenshot corrections
+
+JHP-2000A retains its prior published snapshot and derives a separate [layout candidate](../../manual_sources/JHP-2000A/US/en/git-20261110-5b60448e-layout-fixes/README.md): each LED step is centered independently; the contact crop grows by one source point to recover the QR top border. JS-100I English uses the existing Solar@INTL route with source safety columns, opt-in three-column Inbox, outlined step panels with top copy, complete own-source gray figures, paired angle examples and shared warranty cards. See the [bounded review and provenance record](../reviews/js100i-eu-layout-fixes-20261110/README.md). Historical recipes, published snapshots, native wording and live source tables are preserved.
+
+Historical replay tests supply hash-checked pre-change shared-input fixtures; they still compare immutable output bytes and reject mutated package inputs. Derivation replay runs in temporary copies. Use CI's Python 3.12 and unchanged `requirements.lock` for exception/help characterizations, and put that environment on `PATH` for subprocess tests. See the [test-repair record](../reviews/manual-layout-test-repair-20261110/README.md).
+
+The screenshot-directed JBP-1000B-SIL US English LCD line break is a separate [pending source candidate](../../data/manual_sources/JBP-1000B-SIL/US/git-20261110-7afcb2a1-lcd-linebreak/README.md). It reuses the parent's shared component flow, native words and 50 artwork files; only the DC Input description adds a semantic break before `Off:`. The prior multilingual package remains frozen.
+
+The JBP LCD derivative migrates inherited private grouping styles to existing shared operation/accessory skins; its real rebuild enforces prepared-document shared-style admission. Package CSS retains geometry only.

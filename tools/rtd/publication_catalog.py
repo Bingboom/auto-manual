@@ -11,7 +11,8 @@ from tools.web.frozen_source_evidence import SOURCE_FILENAME
 
 def publication_identity(root: Path, source: Path, *, model: str, region: str) -> dict:
     """Read metadata next to the frozen publish tree, never from a live source."""
-    relative = source.relative_to(root.resolve())
+    root, source = root.resolve(), source.resolve()
+    relative = source.relative_to(root)
     meta_root = root.parent / "sources" / PathSegments.WEB
     metadata = meta_root / relative.parent / PathSegments.PUBLISH_META_JSON
     legacy = {"lang": None, "language_scope": "legacy_unspecified", "version": None, "legacy_default": None,

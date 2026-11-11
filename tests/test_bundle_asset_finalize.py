@@ -422,8 +422,8 @@ class TestBundleAssetFinalize(unittest.TestCase):
         "APFS Data-volume alias is only available on macOS",
     )
     def test_finalizer_accepts_equivalent_apfs_manifest_path(self) -> None:
-        with tempfile.TemporaryDirectory(dir=Path.home()) as td:
-            repo_root, docs_dir, bundle_dir = self._workspace(Path(td))
+        with tempfile.TemporaryDirectory() as td:
+            repo_root, docs_dir, bundle_dir = self._workspace(Path(td).resolve())
             page_dir = bundle_dir / "page"
             page_dir.mkdir()
             page = page_dir / "plain.rst"

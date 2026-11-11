@@ -9,6 +9,10 @@ import subprocess
 import tempfile
 import unittest
 
+from tests.historical_web_inputs import historical_shared_inputs
+
+from tests.historical_app_styles import pre_rowspan_divider_styles
+
 from bs4 import BeautifulSoup
 
 from tools.manual_ir.hashing import file_sha256
@@ -80,6 +84,7 @@ def visible_text(markdown: str) -> str:
     return squash(soup.get_text(""))
 
 
+@historical_shared_inputs
 class ExplorerUsEnWebTests(unittest.TestCase):
     def each(self):
         for model, case in PACKAGES.items():
@@ -168,6 +173,7 @@ class ExplorerUsEnWebTests(unittest.TestCase):
             built = json.loads(json.dumps(builder.build(), ensure_ascii=False))
             self.assertEqual(built, read(package / "source/en/content.json"))
 
+    @pre_rowspan_divider_styles
     def test_cold_replay_matches_stored_candidate(self):
         try:
             subprocess.run([resolve_pandoc_binary(None), "--version"], check=True, capture_output=True)

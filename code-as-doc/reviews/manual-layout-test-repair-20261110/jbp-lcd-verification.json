@@ -1,0 +1,44 @@
+{
+  "model": "JBP-1000B-SIL",
+  "region": "US",
+  "lang": "en",
+  "one_html_field_changed": true,
+  "native_words_identical": true,
+  "unchanged_artwork_count": 50,
+  "cold_replay_files_identical": 56,
+  "strict_sphinx_passed": true,
+  "publication_eligible": false,
+  "browser": {
+    "desktop": {
+      "viewport": 1280,
+      "documentWidth": 1265,
+      "loadedImages": 50
+    },
+    "mobile": {
+      "documentWidth": 375,
+      "loadedImages": 50,
+      "viewport": 390
+    },
+    "lcd": {
+      "breaks": 1,
+      "labels": [
+        {
+          "text": "On:",
+          "top": 331.71875
+        },
+        {
+          "text": "Off:",
+          "top": 349.4375
+        }
+      ]
+    }
+  },
+  "shared_style_admission": {
+    "issues": 0,
+    "repository_gate_tests_passed": 10,
+    "migrated_presentations": 29,
+    "source_paint": false,
+    "rebuild_enforces_admission": true
+  },
+  "native_semantic_content_identical": true
+}

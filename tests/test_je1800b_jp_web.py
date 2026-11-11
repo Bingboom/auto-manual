@@ -9,6 +9,8 @@ import subprocess
 import tempfile
 import unittest
 
+from tests.historical_web_inputs import historical_shared_inputs
+
 from bs4 import BeautifulSoup
 
 from tools.manual_ir.hashing import file_sha256
@@ -53,6 +55,7 @@ def lines() -> dict[str, dict]:
     return {line["id"]: line for page in pages if page["web"] for line in page["lines"]}
 
 
+@historical_shared_inputs
 class Je1800bJpWebTests(unittest.TestCase):
     def test_identity_and_candidate_status(self):
         manifest = read(PACKAGE / "source_manifest.json")

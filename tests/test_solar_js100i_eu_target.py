@@ -188,7 +188,7 @@ class SolarJs100iEuTargetTests(unittest.TestCase):
             "SUN ANGLE INDICATOR",
             "STC*: 100 W ± 5% / BNPI*: 110 W ± 5%",
             "IEC TS 63163 Consumer Product Category 2",
-            "2 YEARS --- Extended Warranty",
+            "Extended Warranty",
             "hello.eu@jackery.com",
         ):
             self.assertIn(required, self.markdown)
@@ -207,6 +207,7 @@ class SolarJs100iEuTargetTests(unittest.TestCase):
             {
                 "5d7ded6ba7810505cfb4c91b128a71cbef16a0e11aae720cdbd887559224b96a",
                 "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+                "3c13c944a37ea2b4433e4dbe1e9116c3d8c77091da1a6a93f0b27d61c48ea907",
             },
             {source["master_sha256"] for source in payload["sources"]},
         )
@@ -233,6 +234,23 @@ class SolarJs100iEuTargetTests(unittest.TestCase):
                 s["master_sha256"]
                 for s in self.ir.metadata["illustration_provenance"]["sources"]
             })
+
+    def test_reported_source_layouts_survive_build_and_replay(self) -> None:
+        from bs4 import BeautifulSoup
+
+        soup = BeautifulSoup(self.markdown, "html.parser")
+        columns = soup.select_one(".hb-safety-columns")
+        self.assertIsNotNone(columns)
+        self.assertEqual([12, 6], [len(c.select("li")) for c in columns.find_all("div", recursive=False)])
+        self.assertEqual(["sc", "oc"], [sub.get_text() for sub in columns.select("sub")])
+        self.assertNotIn("꜀", columns.get_text())
+        self.assertEqual(soup.select_one(".hb-inbox-composition")["data-inbox-columns"], "3")
+        self.assertEqual(len(soup.select("figure.hb-step-panel")), 7)
+        self.assertEqual(len(soup.select(".hb-source-comparison > figure")), 2)
+        self.assertEqual(len(soup.select("figure[data-component-id='HB-WARRANTY-YEARS']")), 1)
+        self.assertEqual(len(soup.select("figure[data-component-id='HB-WARRANTY-SECTION']")), 2)
+        self.assertIn("1 YEAR Standard Warranty", soup.get_text(" ", strip=True))
+        self.assertIn("2 YEARS Extended Warranty", soup.get_text(" ", strip=True))
 
     def test_public_ir_cold_replays_without_rst_or_csv_reads(self) -> None:
         relocated = Path(self.temp.name) / "relocated"

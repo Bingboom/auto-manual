@@ -486,9 +486,11 @@ class RtdPortalTests(unittest.TestCase):
             for link in links:
                 # Entries are pages; a page's sections (知识库首页's 分享资料, 最近更新) are not sidebar links.
                 self.assertEqual(urlsplit(link["href"]).fragment, "", (page, link["href"]))
-                self.assertTrue((out / urljoin(site + page, link["href"]).removeprefix(site)).is_file(),
+                resolved = urlsplit(urljoin(site + page, link["href"]))
+                self.assertTrue((out / resolved.path.removeprefix("/")).is_file(),
                                 (page, link["href"]))
-            to_self = [link.get_text() for link in links if urljoin(site + page, link["href"]) == site + page]
+            to_self = [link.get_text() for link in links
+                       if urlsplit(urljoin(site + page, link["href"])).path == "/" + page]
             current = [link.get_text() for link in links if link.get("aria-current") == "page"]
             self.assertEqual(len(to_self), 1, (page, to_self))
             self.assertEqual(current, to_self, page)

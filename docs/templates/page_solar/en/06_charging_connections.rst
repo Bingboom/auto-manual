@@ -10,7 +10,7 @@ Compatible with Jackery portable power stations with DC8020 input port(s). Conne
 
 .. figure:: renderers/web/assets/js100i_eu_shared/dc8020.png
    :alt: DC8020 Male
-   :figclass: manual-step-figure
+   :figclass: manual-step-figure hb-finished-source-panel
    :width: 100%
 
    DC8020 Male
@@ -22,7 +22,7 @@ Compatible with Jackery portable power stations with DC7909 input port(s). Fit t
 
 .. figure:: renderers/web/assets/js100i_eu_shared/dc7909.png
    :alt: DC8020–DC7909 Adapter
-   :figclass: manual-step-figure
+   :figclass: manual-step-figure hb-finished-source-panel
    :width: 100%
 
    DC8020–DC7909 Adapter
@@ -34,7 +34,7 @@ Compatible with Jackery portable power stations with USB-C input port(s).
 
 .. figure:: renderers/web/assets/js100i_eu_shared/usbc.png
    :alt: DC8020 to USB-C adapter cable
-   :figclass: manual-step-figure
+   :figclass: manual-step-figure hb-finished-source-panel
    :width: 100%
 
    DC8020 to USB-C adapter cable
@@ -50,7 +50,7 @@ Connect the two solar panels to the solar panel connector respectively and then 
 
 .. figure:: renderers/web/assets/js100i_eu_shared/parallel.png
    :alt: DC8020 Male · Solar Panel Connector
-   :figclass: manual-step-figure
+   :figclass: manual-step-figure hb-finished-source-panel
    :width: 100%
 
    DC8020 Male · Solar Panel Connector

@@ -9,6 +9,8 @@ import subprocess
 import tempfile
 import unittest
 
+from tests.historical_web_inputs import historical_shared_inputs
+
 from bs4 import BeautifulSoup
 
 from tools.manual_ir.hashing import file_sha256
@@ -44,6 +46,7 @@ def markdown() -> str:
     return (PACKAGE / "web/ja" / MARKDOWN).read_text(encoding="utf-8")
 
 
+@historical_shared_inputs
 class Je2000eJpWebTests(unittest.TestCase):
     def test_identity_and_candidate_status(self):
         manifest = read(PACKAGE / "source_manifest.json")

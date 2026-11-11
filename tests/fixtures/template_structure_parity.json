@@ -474,7 +474,6 @@
     "01_safety_tips.rst": [
       [
         "de",
-        "en",
         "es",
         "fr",
         "it",
@@ -482,12 +481,14 @@
         "pl",
         "pt",
         "uk"
+      ],
+      [
+        "en"
       ]
     ],
     "02_whats_in_the_box.rst": [
       [
         "de",
-        "en",
         "es",
         "fr",
         "it",
@@ -495,6 +496,9 @@
         "pl",
         "pt",
         "uk"
+      ],
+      [
+        "en"
       ]
     ],
     "03_product_views.rst": [

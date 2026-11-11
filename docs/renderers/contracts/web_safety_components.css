@@ -132,3 +132,11 @@
     padding: 0 !important;
   }
 }
+
+/* Explicit source column groups keep their native list order on phones. */
+#furo-main-content .hb-safety-columns {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.5rem;}
+#furo-main-content .hb-safety-columns > div {min-width:0;}
+#furo-main-content .hb-safety-columns ul {margin-top:0;}
+@media (max-width:760px) {
+  #furo-main-content .hb-safety-columns {grid-template-columns:1fr;gap:0;}
+}

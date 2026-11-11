@@ -1,0 +1,27 @@
+{
+  "native_copy_changed": false,
+  "other_assets_changed": false,
+  "corrected_asset": "assets/source-contact-frame.png",
+  "qr_modules_changed": false,
+  "contact_added_top_rows_at_5x": 5,
+  "old_edge_pixel_difference": "One antialiasing pixel on the old clipped first row; all existing rows below it match exactly.",
+  "desktop_1280_led_center_error_px": [
+    -0.01892,
+    -0.02701,
+    -0.01674
+  ],
+  "phone_390_led_center_error_px": [
+    -0.02879,
+    -0.03226,
+    -0.03479
+  ],
+  "phone_panel_scroll_width": 704,
+  "document_overflow": false,
+  "strict_sphinx": "passed",
+  "cold_replay": [
+    "manual_jhp2000a_us_en.md",
+    "manual.ir.json",
+    "_static/source_geometry.css",
+    "_static/web_manual.css"
+  ]
+}

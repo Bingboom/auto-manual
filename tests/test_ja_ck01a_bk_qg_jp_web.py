@@ -10,6 +10,8 @@ import subprocess
 import tempfile
 import unittest
 
+from tests.historical_web_inputs import historical_shared_inputs
+
 from bs4 import BeautifulSoup
 
 from tools.manual_ir.hashing import file_sha256
@@ -47,6 +49,7 @@ def visible_text(markdown: str) -> str:
     return soup.get_text('\n')
 
 
+@historical_shared_inputs
 class JACK01ABKQuickGuideWebTest(unittest.TestCase):
     def setUp(self):
         self.root = Path(tempfile.mkdtemp())

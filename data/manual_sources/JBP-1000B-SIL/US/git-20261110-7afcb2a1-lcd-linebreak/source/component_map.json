@@ -1,0 +1,370 @@
+{
+  "parent": "data/manual_sources/JBP-1000B-SIL/US/git-20261008-7afcb2a1",
+  "policy": "Existing registered component flow and shared theme skins; source data-layout anchors carry geometry only. No private style class or source paint.",
+  "components": {
+    "HB-CALLOUT-STRIP": 5,
+    "HB-SPECIAL-FCC": 1,
+    "HB-SPECIAL-INBOX": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE": 20,
+    "HB-TABLE-LCD-ICON": 1,
+    "HB-TABLE-LCD-MODE": 1,
+    "HB-TABLE-SPEC": 3,
+    "HB-TABLE-SYMBOL-ICON": 1,
+    "HB-TABLE-SYMBOL-SIGNAL": 1,
+    "HB-TABLE-TROUBLESHOOTING": 1,
+    "HB-WARRANTY-LEAD": 1,
+    "HB-WARRANTY-SECTION": 5,
+    "HB-WARRANTY-YEARS": 1
+  },
+  "group_migrations": [
+    {
+      "from": [
+        "native-power-panel"
+      ],
+      "shared_classes": [
+        "hb-source-operation"
+      ],
+      "geometry_anchors": [
+        "power-panel"
+      ]
+    },
+    {
+      "from": [
+        "native-lcd-actions"
+      ],
+      "shared_classes": [
+        "container"
+      ],
+      "geometry_anchors": [
+        "lcd-actions"
+      ]
+    },
+    {
+      "from": [
+        "native-vertical-opening"
+      ],
+      "shared_classes": [
+        "container"
+      ],
+      "geometry_anchors": [
+        "vertical-opening"
+      ]
+    },
+    {
+      "from": [
+        "native-vertical-preparation"
+      ],
+      "shared_classes": [
+        "container"
+      ],
+      "geometry_anchors": [
+        "vertical-preparation"
+      ]
+    },
+    {
+      "from": [
+        "native-vertical-result"
+      ],
+      "shared_classes": [
+        "container"
+      ],
+      "geometry_anchors": [
+        "vertical-result"
+      ]
+    },
+    {
+      "from": [
+        "native-step-grid"
+      ],
+      "shared_classes": [
+        "container"
+      ],
+      "geometry_anchors": [
+        "step-grid"
+      ]
+    },
+    {
+      "from": [
+        "native-step-card"
+      ],
+      "shared_classes": [
+        "hb-source-operation"
+      ],
+      "geometry_anchors": [
+        "step-card"
+      ]
+    },
+    {
+      "from": [
+        "native-step-card"
+      ],
+      "shared_classes": [
+        "hb-source-operation"
+      ],
+      "geometry_anchors": [
+        "step-card"
+      ]
+    },
+    {
+      "from": [
+        "native-step-card"
+      ],
+      "shared_classes": [
+        "hb-source-operation"
+      ],
+      "geometry_anchors": [
+        "step-card"
+      ]
+    },
+    {
+      "from": [
+        "native-wood-opening"
+      ],
+      "shared_classes": [
+        "container"
+      ],
+      "geometry_anchors": [
+        "wood-opening"
+      ]
+    },
+    {
+      "from": [
+        "native-wood-preparation"
+      ],
+      "shared_classes": [
+        "hb-package-panel",
+        "hb-package-panel--optional"
+      ],
+      "geometry_anchors": [
+        "wood-preparation"
+      ]
+    },
+    {
+      "from": [
+        "native-wood-result"
+      ],
+      "shared_classes": [
+        "container"
+      ],
+      "geometry_anchors": [
+        "wood-result"
+      ]
+    },
+    {
+      "from": [
+        "native-wall-wood-steps"
+      ],
+      "shared_classes": [
+        "container"
+      ],
+      "geometry_anchors": [
+        "wall-wood-steps"
+      ]
+    },
+    {
+      "from": [
+        "native-wall-panel",
+        "native-wood-1-2"
+      ],
+      "shared_classes": [
+        "hb-source-operation"
+      ],
+      "geometry_anchors": [
+        "wall-panel",
+        "wood-1-2"
+      ]
+    },
+    {
+      "from": [
+        "native-wall-panel",
+        "native-wood-3"
+      ],
+      "shared_classes": [
+        "hb-source-operation"
+      ],
+      "geometry_anchors": [
+        "wall-panel",
+        "wood-3"
+      ]
+    },
+    {
+      "from": [
+        "native-wall-panel",
+        "native-wood-4"
+      ],
+      "shared_classes": [
+        "hb-source-operation"
+      ],
+      "geometry_anchors": [
+        "wall-panel",
+        "wood-4"
+      ]
+    },
+    {
+      "from": [
+        "native-wall-panel",
+        "native-wood-5"
+      ],
+      "shared_classes": [
+        "hb-source-operation"
+      ],
+      "geometry_anchors": [
+        "wall-panel",
+        "wood-5"
+      ]
+    },
+    {
+      "from": [
+        "native-wall-panel",
+        "native-wood-6"
+      ],
+      "shared_classes": [
+        "hb-source-operation"
+      ],
+      "geometry_anchors": [
+        "wall-panel",
+        "wood-6"
+      ]
+    },
+    {
+      "from": [
+        "native-wall-panel",
+        "native-wood-7"
+      ],
+      "shared_classes": [
+        "hb-source-operation"
+      ],
+      "geometry_anchors": [
+        "wall-panel",
+        "wood-7"
+      ]
+    },
+    {
+      "from": [
+        "native-concrete-opening"
+      ],
+      "shared_classes": [
+        "container"
+      ],
+      "geometry_anchors": [
+        "concrete-opening"
+      ]
+    },
+    {
+      "from": [
+        "native-concrete-preparation"
+      ],
+      "shared_classes": [
+        "hb-package-panel",
+        "hb-package-panel--optional"
+      ],
+      "geometry_anchors": [
+        "concrete-preparation"
+      ]
+    },
+    {
+      "from": [
+        "native-concrete-result"
+      ],
+      "shared_classes": [
+        "container"
+      ],
+      "geometry_anchors": [
+        "concrete-result"
+      ]
+    },
+    {
+      "from": [
+        "native-wall-concrete-steps"
+      ],
+      "shared_classes": [
+        "container"
+      ],
+      "geometry_anchors": [
+        "wall-concrete-steps"
+      ]
+    },
+    {
+      "from": [
+        "native-wall-panel",
+        "native-concrete-1-2"
+      ],
+      "shared_classes": [
+        "hb-source-operation"
+      ],
+      "geometry_anchors": [
+        "wall-panel",
+        "concrete-1-2"
+      ]
+    },
+    {
+      "from": [
+        "native-wall-panel",
+        "native-concrete-3"
+      ],
+      "shared_classes": [
+        "hb-source-operation"
+      ],
+      "geometry_anchors": [
+        "wall-panel",
+        "concrete-3"
+      ]
+    },
+    {
+      "from": [
+        "native-wall-panel",
+        "native-wall-pair",
+        "native-concrete-4-5"
+      ],
+      "shared_classes": [
+        "hb-source-operation"
+      ],
+      "geometry_anchors": [
+        "wall-panel",
+        "wall-pair",
+        "concrete-4-5"
+      ]
+    },
+    {
+      "from": [
+        "native-wall-panel",
+        "native-wall-pair",
+        "native-concrete-6-7"
+      ],
+      "shared_classes": [
+        "hb-source-operation"
+      ],
+      "geometry_anchors": [
+        "wall-panel",
+        "wall-pair",
+        "concrete-6-7"
+      ]
+    },
+    {
+      "from": [
+        "native-wall-panel",
+        "native-wall-pair",
+        "native-concrete-8-9"
+      ],
+      "shared_classes": [
+        "hb-source-operation"
+      ],
+      "geometry_anchors": [
+        "wall-panel",
+        "wall-pair",
+        "concrete-8-9"
+      ]
+    },
+    {
+      "from": [
+        "native-inline-pack"
+      ],
+      "shared_classes": [
+        "container"
+      ],
+      "geometry_anchors": [
+        "inline-pack"
+      ]
+    }
+  ]
+}

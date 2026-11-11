@@ -36,6 +36,7 @@ def render_inbox_component(
             "data-component-id": COMPONENT_ID,
             "data-inbox-variant": spec.variant,
             "data-card-count": str(len(projection["cards"])),
+            **({"data-inbox-columns": "3"} if spec.metadata.get("desktop_columns") == 3 else {}),
         },
     )
     grid = soup.new_tag("ol", attrs={"class": projection["grid_class"]})
@@ -62,7 +63,6 @@ def render_inbox_component(
         card.append(image)
         card.append(label)
         grid.append(card)
-
     composition.append(grid)
     if tip_cells:
         tip = soup.new_tag("div", attrs={"class": projection["tip_class"], "role": "note"})

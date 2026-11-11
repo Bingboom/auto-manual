@@ -1,0 +1,25 @@
+{
+  "desktop": {
+    "viewport": 1280,
+    "documentWidth": 1265,
+    "loadedImages": 50
+  },
+  "mobile": {
+    "documentWidth": 375,
+    "loadedImages": 50,
+    "viewport": 390
+  },
+  "lcd": {
+    "breaks": 1,
+    "labels": [
+      {
+        "text": "On:",
+        "top": 331.71875
+      },
+      {
+        "text": "Off:",
+        "top": 349.4375
+      }
+    ]
+  }
+}

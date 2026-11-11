@@ -12,6 +12,8 @@ import shutil
 import sys
 import tempfile
 import unittest
+
+from tests.historical_web_inputs import historical_shared_inputs
 from unittest import mock
 
 from bs4 import BeautifulSoup
@@ -84,11 +86,12 @@ def pymupdf_pinned() -> bool:
     return tuple(pymupdf.version[:2]) == ('1.28.0', '1.29.0')
 
 
+@historical_shared_inputs
 class Jbp3600aJpJaWebTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
-        self.root = Path(self.temp.name)
+        self.root = Path(self.temp.name).resolve()
 
     def require_pinned_shared_inputs(self):
         drifted = shared_inputs_drifted()

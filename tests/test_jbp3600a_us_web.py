@@ -11,6 +11,8 @@ import shutil
 import sys
 import tempfile
 import unittest
+
+from tests.historical_web_inputs import historical_shared_inputs
 from unittest import mock
 
 from bs4 import BeautifulSoup
@@ -98,11 +100,12 @@ def page(language: str) -> BeautifulSoup:
     return BeautifulSoup(markdown(language).read_text(encoding='utf-8'), 'html.parser')
 
 
+@historical_shared_inputs
 class JbpUsWebTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
-        self.root = Path(self.temp.name)
+        self.root = Path(self.temp.name).resolve()
 
     def require_pinned_shared_inputs(self):
         drifted = shared_inputs_drifted()

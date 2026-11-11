@@ -1,0 +1,31 @@
+{
+  "revision": "8364aa16b52ccdf99f17194a34b4a1192d313ed4",
+  "reason": "Historical replay dependencies before JS-100I layout repairs; immutable output and approval bytes remain unchanged.",
+  "inputs": [
+    {
+      "repository_path": "docs/renderers/contracts/web_inbox_components.css",
+      "fixture": "web_inbox_components.css",
+      "sha256": "6290fca45ef5509f510947957ecc1108c4eae848434215459179a53c7175dfa1"
+    },
+    {
+      "repository_path": "docs/renderers/contracts/web_safety_components.css",
+      "fixture": "web_safety_components.css",
+      "sha256": "a8d40a22cfbf58e92b3cccf8488400f7af2f6dd5153cb7c71bc489183fc76025"
+    },
+    {
+      "repository_path": "docs/renderers/contracts/web_source_panels.css",
+      "fixture": "web_source_panels.css",
+      "sha256": "cab398c74bf0cd9610336c422d9129a9257f26edeb3d83579fbd44de567d1719"
+    },
+    {
+      "repository_path": "docs/renderers/contracts/web_presentation/target_overlays.json",
+      "fixture": "target_overlays.json",
+      "sha256": "6337f537ac3b8b7248e00632d9f3d899a410fbadad4319a718b0e39905717a9d"
+    },
+    {
+      "repository_path": "tools/web/presentation.py",
+      "fixture": "presentation.py",
+      "sha256": "619902e6a286ea17708a7b62831dda0ac0d6fe6294a2b0b7fea6af4f58d812b8"
+    }
+  ]
+}

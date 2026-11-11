@@ -9,6 +9,8 @@ import subprocess
 import tempfile
 import unittest
 
+from tests.historical_web_inputs import historical_shared_inputs, temporary_derivation
+
 from tests.historical_app_styles import pre_four_control_styles
 from tools.manual_ir.hashing import file_sha256
 from tools.word.bundle_docx_pandoc import resolve_pandoc_binary
@@ -74,11 +76,12 @@ def pandoc_available() -> bool:
     return True
 
 
+@historical_shared_inputs
 class SolarVocEditionTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
-        self.root = Path(self.temp.name)
+        self.root = Path(self.temp.name).resolve()
 
     def fixture(self, edition: dict) -> Path:
         dest = self.root / 'source'
@@ -119,11 +122,12 @@ class SolarVocEditionTests(unittest.TestCase):
         for key, edition in EDITIONS.items():
             with self.subTest(edition=key):
                 package = edition['package']
-                before = {p: file_sha256(p) for p in package.rglob('*')
+                before = {p.relative_to(package): file_sha256(p) for p in package.rglob('*')
                           if p.is_file() and '__pycache__' not in p.parts}
-                edition['derive'].main()
-                after = {p: file_sha256(p) for p in package.rglob('*')
-                         if p.is_file() and '__pycache__' not in p.parts}
+                with temporary_derivation(edition['derive']) as destination:
+                    edition['derive'].main()
+                    after = {p.relative_to(destination): file_sha256(p) for p in destination.rglob('*')
+                             if p.is_file() and '__pycache__' not in p.parts}
                 self.assertEqual(before, after)
 
     def test_only_the_declared_pages_differ_from_the_approved_inputs(self):

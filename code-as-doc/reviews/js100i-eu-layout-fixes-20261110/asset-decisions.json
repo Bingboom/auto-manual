@@ -1,0 +1,206 @@
+[
+  {
+    "slot": "product_views",
+    "superseded_path": "assets/js100i_eu_en/product_views.png",
+    "superseded_sha256": "966069f8f78c491f61bc00ef7a2dca50c0a8aab780b2062c47c549b57d904298",
+    "status": "superseded-do-not-reuse",
+    "reason": "Screenshot-directed complete own-source panel / crop restoration",
+    "path": "assets/js100i_eu_layout_repairs/product_views_complete.png",
+    "sha256": "77eefb34064888c6fe421cd7c6562992ff224ee04be7d0ae1344507044dcbbff",
+    "source_page": 6,
+    "bbox_pt": [
+      27,
+      57,
+      341,
+      403
+    ],
+    "source_sha256": "3c13c944a37ea2b4433e4dbe1e9116c3d8c77091da1a6a93f0b27d61c48ea907"
+  },
+  {
+    "slot": "fold_3",
+    "superseded_path": "assets/js100i_eu_shared/fold_3.webp",
+    "superseded_sha256": "288e5f59b6beefb7e2c1e6909b0ad475097bb4978e979141407f766292312393",
+    "status": "superseded-do-not-reuse",
+    "reason": "Screenshot-directed complete own-source panel / crop restoration",
+    "path": "assets/js100i_eu_layout_repairs/fold_3_complete.png",
+    "sha256": "0a0f571483eb2c3442bcd2ee876d39c3e95ef593bf0b134121bef919613c29ee",
+    "source_page": 8,
+    "bbox_pt": [
+      34,
+      405,
+      334,
+      484
+    ],
+    "source_sha256": "3c13c944a37ea2b4433e4dbe1e9116c3d8c77091da1a6a93f0b27d61c48ea907"
+  },
+  {
+    "slot": "dc8020",
+    "superseded_path": "assets/js100i_eu_shared/dc8020.webp",
+    "superseded_sha256": "a88db73d9e99e88dff32b6b26a379e7d9274aa225a4fe536adce1247ff9dfe3c",
+    "status": "superseded-do-not-reuse",
+    "reason": "Screenshot-directed complete own-source panel / crop restoration",
+    "path": "assets/js100i_eu_layout_repairs/dc8020_complete.png",
+    "sha256": "d6d8911835e316b795c7b8a3ca0321b919370df9223f3fd92ec8caab62392958",
+    "source_page": 9,
+    "bbox_pt": [
+      27,
+      90,
+      342,
+      248
+    ],
+    "source_sha256": "3c13c944a37ea2b4433e4dbe1e9116c3d8c77091da1a6a93f0b27d61c48ea907"
+  },
+  {
+    "slot": "dc7909",
+    "superseded_path": "assets/js100i_eu_shared/dc7909.webp",
+    "superseded_sha256": "a776ae4cd9c75049e1a7c90af46d9f7c516405a22db9673e7d241244c1b6dc54",
+    "status": "superseded-do-not-reuse",
+    "reason": "Screenshot-directed complete own-source panel / crop restoration",
+    "path": "assets/js100i_eu_layout_repairs/dc7909_complete.png",
+    "sha256": "0c0aff5b73bbf9b0e6f34c920c6789178105c3b94ea383ffd38f762b74b09faf",
+    "source_page": 9,
+    "bbox_pt": [
+      27,
+      301,
+      342,
+      439
+    ],
+    "source_sha256": "3c13c944a37ea2b4433e4dbe1e9116c3d8c77091da1a6a93f0b27d61c48ea907"
+  },
+  {
+    "slot": "usbc",
+    "superseded_path": "assets/js100i_eu_shared/usbc.webp",
+    "superseded_sha256": "1ac48d98ab994ed7dfdfaa77293a39cb7944cd14274a0621e9edb17302bd823d",
+    "status": "superseded-do-not-reuse",
+    "reason": "Screenshot-directed complete own-source panel / crop restoration",
+    "path": "assets/js100i_eu_layout_repairs/usbc_complete.png",
+    "sha256": "15b3d1d1a08f153a6d0309cf1c44b763c09ab4ae10778a7d931413cf1eebdcff",
+    "source_page": 10,
+    "bbox_pt": [
+      27,
+      54,
+      342,
+      192
+    ],
+    "source_sha256": "3c13c944a37ea2b4433e4dbe1e9116c3d8c77091da1a6a93f0b27d61c48ea907"
+  },
+  {
+    "slot": "parallel",
+    "superseded_path": "assets/js100i_eu_shared/parallel.webp",
+    "superseded_sha256": "2977a072c670a6a493bcdc26a6361550a9cc150d415408b7e8708ed1dbbbe6a6",
+    "status": "superseded-do-not-reuse",
+    "reason": "Screenshot-directed complete own-source panel / crop restoration",
+    "path": "assets/js100i_eu_layout_repairs/parallel_complete.png",
+    "sha256": "c8078ec49c521cfbc0ad9ce826f649443a3d2555445658039db3dd8a0aad5eca",
+    "source_page": 10,
+    "bbox_pt": [
+      27,
+      276,
+      342,
+      433
+    ],
+    "source_sha256": "3c13c944a37ea2b4433e4dbe1e9116c3d8c77091da1a6a93f0b27d61c48ea907"
+  },
+  {
+    "slot": "angle",
+    "superseded_path": "assets/js100i_eu_shared/angle.webp",
+    "superseded_sha256": "bedd52c58091deb67341f02b59de719cdbe76c05bfa97d0abd3a38d14d1d86ef",
+    "status": "superseded-do-not-reuse",
+    "reason": "Screenshot-directed complete own-source panel / crop restoration",
+    "path": "assets/js100i_eu_layout_repairs/angle_complete.png",
+    "sha256": "2713b4e54ec8760be39a31632f43edead4362b8a60a713e30d2a0c1af80c3400",
+    "source_page": 11,
+    "bbox_pt": [
+      27,
+      67,
+      342,
+      185
+    ],
+    "source_sha256": "3c13c944a37ea2b4433e4dbe1e9116c3d8c77091da1a6a93f0b27d61c48ea907"
+  },
+  {
+    "slot": "angle_choice_1",
+    "superseded_path": "assets/js100i_eu_shared/angle_choice_1.webp",
+    "superseded_sha256": "8caee0f50e73788f656225a957b2ba572e70ac7a2596f7a07fcdaf4b9f306cd4",
+    "status": "superseded-do-not-reuse",
+    "reason": "Screenshot-directed complete own-source panel / crop restoration",
+    "path": "assets/js100i_eu_layout_repairs/angle_choice_1_complete.png",
+    "sha256": "05ed80c7f1bde15ad07f4d6de05ed18ad0ab1a47430a7ce63e735a248f6dbf7e",
+    "source_page": 11,
+    "bbox_pt": [
+      27,
+      216,
+      181,
+      269
+    ],
+    "source_sha256": "3c13c944a37ea2b4433e4dbe1e9116c3d8c77091da1a6a93f0b27d61c48ea907"
+  },
+  {
+    "slot": "angle_choice_2",
+    "superseded_path": "assets/js100i_eu_shared/angle_choice_2.webp",
+    "superseded_sha256": "74f035fcc2e1a639e0509050180749e9f96dfbb088c3bc03a44c6d452f4dc300",
+    "status": "superseded-do-not-reuse",
+    "reason": "Screenshot-directed complete own-source panel / crop restoration",
+    "path": "assets/js100i_eu_layout_repairs/angle_choice_2_complete.png",
+    "sha256": "f0520db6886e653d22671b9281d7f322708b97f2d71fd6e3d0aa04a3b1276123",
+    "source_page": 11,
+    "bbox_pt": [
+      184,
+      216,
+      341,
+      269
+    ],
+    "source_sha256": "3c13c944a37ea2b4433e4dbe1e9116c3d8c77091da1a6a93f0b27d61c48ea907"
+  },
+  {
+    "slot": "device",
+    "superseded_path": "assets/js100i_eu_shared/device.webp",
+    "superseded_sha256": "0ce34b25f210e2f613d02065d94c38a6da5486c8a2489ff8d56b68a76050f964",
+    "status": "superseded-do-not-reuse",
+    "reason": "Screenshot-directed complete own-source panel / crop restoration",
+    "path": "assets/js100i_eu_layout_repairs/device_complete.png",
+    "sha256": "7f9f1366574f2ac4368050363084ac41cf1931037cd3f86b2ac2d7497e611d25",
+    "source_page": 11,
+    "bbox_pt": [
+      27,
+      339,
+      342,
+      483
+    ],
+    "source_sha256": "3c13c944a37ea2b4433e4dbe1e9116c3d8c77091da1a6a93f0b27d61c48ea907"
+  },
+  {
+    "slot": "dust",
+    "superseded_path": "assets/js100i_eu_shared/dust.webp",
+    "superseded_sha256": "0997cc2b9e06f3c1918f9642ae4584aa414b048e2390ae60aded8ae9838cb3c0",
+    "status": "superseded-do-not-reuse",
+    "reason": "Screenshot-directed complete own-source panel / crop restoration",
+    "path": "assets/js100i_eu_layout_repairs/dust_complete.png",
+    "sha256": "c0bff8eaf1dba177f6ab36806838caa2901b32e1c8f96c66becf3a20ab8f0206",
+    "source_page": 12,
+    "bbox_pt": [
+      27,
+      27,
+      341,
+      121
+    ],
+    "source_sha256": "3c13c944a37ea2b4433e4dbe1e9116c3d8c77091da1a6a93f0b27d61c48ea907"
+  },
+  {
+    "slot": "inbox_bag",
+    "superseded_path": "assets/js100i_eu_en/inbox_bag.png",
+    "superseded_sha256": "7995365a1852cadaa0a34a5d758a299a6e0415179c657fe6a57166b515f3c515",
+    "status": "superseded-do-not-reuse",
+    "reason": "2026-11-10 follow-up screenshot: old right edge x=215 clips the outer bag stroke at x=215.182; complete own-source bag reused with padding.",
+    "path": "assets/js100i_eu_layout_repairs/inbox_bag_complete.png",
+    "sha256": "22c646f370939c669dff4573e97a38b98cca4e1e5921dc78a5a0024b91b954cc",
+    "source_page": 5,
+    "bbox_pt": [
+      155,
+      254,
+      217,
+      328
+    ],
+    "source_sha256": "3c13c944a37ea2b4433e4dbe1e9116c3d8c77091da1a6a93f0b27d61c48ea907"
+  }
+]
