@@ -45,6 +45,8 @@ Status: active
 
 最终全量单测使用Python3.12.13和`requirements.lock`：6257项，0失败、0错误，92项按条件跳过。七包在同一环境独立重建，IR/MyST/素材逐字节一致，冷回放及素材/CSS篡改拒绝、严格Sphinx全部通过；最终HTML与已核验的1280/390页面字节一致。四处回收图均与公共canonical文件逐字节一致，并验证真实透明通道。Shell子进程的PATH指向同一Python环境，本机HTTP用例在允许loopback的环境执行。
 
+CI首次扫描的12处匹配逐项核对为当前附件的`file_token` / `source_file_token`资源ID；原字段和值保留。扫描配置为这两个精确键增加独立完整行规则，限定20–32位字母数字和单独字段行；认证字段、附加后缀字段、长度边界以及资源ID与凭据同行的紧凑JSON，以实际Gitleaks负对照核验，整棵提交树按CI相同版本扫描。
+
 本批回归入口：
 
 ```bash
