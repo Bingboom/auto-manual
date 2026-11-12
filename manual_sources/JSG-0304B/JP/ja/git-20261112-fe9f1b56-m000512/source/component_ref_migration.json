@@ -1,0 +1,381 @@
+[
+  {
+    "chapter": "solar_unfolding",
+    "node": 2,
+    "legacy_reference_source_ref": "transcribed-pdf/page-4/unfold-1",
+    "target_physical_pages": [
+      4
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "solar_unfolding",
+    "node": 4,
+    "legacy_reference_source_ref": "transcribed-pdf/page-4/unfold-2",
+    "target_physical_pages": [
+      4
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "solar_unfolding",
+    "node": 6,
+    "legacy_reference_source_ref": "transcribed-pdf/page-4/unfold-3",
+    "target_physical_pages": [
+      4
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "solar_unfolding",
+    "node": 8,
+    "legacy_reference_source_ref": "transcribed-pdf/page-5/unfold-4",
+    "target_physical_pages": [
+      5
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "solar_unfolding",
+    "node": 10,
+    "legacy_reference_source_ref": "transcribed-pdf/page-5/unfold-5",
+    "target_physical_pages": [
+      5
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "specifications",
+    "node": 1,
+    "legacy_reference_source_ref": "transcribed-pdf/specifications/1",
+    "target_physical_pages": [
+      6
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "specifications",
+    "node": 3,
+    "legacy_reference_source_ref": "transcribed-pdf/solar_specification/1",
+    "target_physical_pages": [
+      6
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "product_overview",
+    "node": 1,
+    "legacy_reference_source_ref": "transcribed-pdf/page-7/overview",
+    "target_physical_pages": [
+      7
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "lcd_display",
+    "node": 1,
+    "legacy_reference_source_ref": "transcribed-pdf/page-4/lcd-map",
+    "target_physical_pages": [
+      8
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "lcd_display",
+    "node": 2,
+    "legacy_reference_source_ref": "transcribed-pdf/lcd_display/2",
+    "target_physical_pages": [
+      9
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "lcd_display",
+    "node": 4,
+    "legacy_reference_source_ref": "transcribed-pdf/lcd_display/3",
+    "target_physical_pages": [
+      9
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "lcd_display",
+    "node": 13,
+    "legacy_reference_source_ref": "transcribed-pdf/lcd_display/4",
+    "target_physical_pages": [
+      10
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "charging",
+    "node": 2,
+    "legacy_reference_source_ref": "transcribed-pdf/charging/caution-5",
+    "target_physical_pages": [
+      11
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "charging",
+    "node": 5,
+    "legacy_reference_source_ref": "transcribed-pdf/page-6/charging-ac",
+    "target_physical_pages": [
+      11
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "charging",
+    "node": 9,
+    "legacy_reference_source_ref": "transcribed-pdf/page-11/charging-solar",
+    "target_physical_pages": [
+      11
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "charging",
+    "node": 12,
+    "legacy_reference_source_ref": "transcribed-pdf/page-7/charging-car",
+    "target_physical_pages": [
+      12
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "safety",
+    "node": 5,
+    "legacy_reference_source_ref": "transcribed-pdf/safety/6",
+    "target_physical_pages": [
+      13
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "safety",
+    "node": 7,
+    "legacy_reference_source_ref": "transcribed-pdf/safety/7",
+    "target_physical_pages": [
+      13
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "safety",
+    "node": 8,
+    "legacy_reference_source_ref": "transcribed-pdf/safety/warning-8",
+    "target_physical_pages": [
+      13
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "safety",
+    "node": 9,
+    "legacy_reference_source_ref": "transcribed-pdf/safety/warning-9",
+    "target_physical_pages": [
+      13
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "safety",
+    "node": 10,
+    "legacy_reference_source_ref": "transcribed-pdf/safety/warning-10",
+    "target_physical_pages": [
+      13
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "safety",
+    "node": 11,
+    "legacy_reference_source_ref": "transcribed-pdf/safety/warning-11",
+    "target_physical_pages": [
+      13
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "safety",
+    "node": 12,
+    "legacy_reference_source_ref": "transcribed-pdf/safety/warning-12",
+    "target_physical_pages": [
+      14
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "safety",
+    "node": 13,
+    "legacy_reference_source_ref": "transcribed-pdf/safety/warning-13",
+    "target_physical_pages": [
+      14
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "safety",
+    "node": 14,
+    "legacy_reference_source_ref": "transcribed-pdf/safety/warning-14",
+    "target_physical_pages": [
+      14
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "safety",
+    "node": 15,
+    "legacy_reference_source_ref": "transcribed-pdf/safety/warning-15",
+    "target_physical_pages": [
+      14
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "safety",
+    "node": 16,
+    "legacy_reference_source_ref": "transcribed-pdf/safety/warning-16",
+    "target_physical_pages": [
+      14
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "safety",
+    "node": 17,
+    "legacy_reference_source_ref": "transcribed-pdf/safety/warning-17",
+    "target_physical_pages": [
+      14
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "safety",
+    "node": 18,
+    "legacy_reference_source_ref": "transcribed-pdf/safety/warning-18",
+    "target_physical_pages": [
+      14
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "safety",
+    "node": 19,
+    "legacy_reference_source_ref": "transcribed-pdf/safety/caution-19",
+    "target_physical_pages": [
+      14
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "safety",
+    "node": 20,
+    "legacy_reference_source_ref": "transcribed-pdf/safety/caution-20",
+    "target_physical_pages": [
+      14
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "safety",
+    "node": 21,
+    "legacy_reference_source_ref": "transcribed-pdf/safety/caution-21",
+    "target_physical_pages": [
+      14
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "in_the_box",
+    "node": 1,
+    "legacy_reference_source_ref": "transcribed-pdf/in_the_box/2",
+    "target_physical_pages": [
+      17
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "app_setup",
+    "node": 4,
+    "legacy_reference_source_ref": "transcribed-pdf/app_setup/24",
+    "target_physical_pages": [
+      18
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "app_setup",
+    "node": 6,
+    "legacy_reference_source_ref": "transcribed-pdf/page-13/app-add",
+    "target_physical_pages": [
+      18
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "app_setup",
+    "node": 7,
+    "legacy_reference_source_ref": "transcribed-pdf/app_setup/note-25",
+    "target_physical_pages": [
+      18
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "app_setup",
+    "node": 8,
+    "legacy_reference_source_ref": "transcribed-pdf/page-13/app-control",
+    "target_physical_pages": [
+      18
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "app_setup",
+    "node": 10,
+    "legacy_reference_source_ref": "transcribed-pdf/app_setup/note-26",
+    "target_physical_pages": [
+      18,
+      19
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "app_setup",
+    "node": 12,
+    "legacy_reference_source_ref": "transcribed-pdf/app_setup/note-27",
+    "target_physical_pages": [
+      19
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "app_setup",
+    "node": 14,
+    "legacy_reference_source_ref": "transcribed-pdf/page-14/app-results",
+    "target_physical_pages": [
+      19
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "app_setup",
+    "node": 25,
+    "legacy_reference_source_ref": "transcribed-pdf/back_cover_app/3",
+    "target_physical_pages": [
+      20
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  },
+  {
+    "chapter": "app_setup",
+    "node": 26,
+    "legacy_reference_source_ref": "transcribed-pdf/page-20/app-qr",
+    "target_physical_pages": [
+      20
+    ],
+    "decision": "legacy constructor reference is retained only in this donor audit; emitted ComponentSpec binds actual bundle original.pdf pages"
+  }
+]

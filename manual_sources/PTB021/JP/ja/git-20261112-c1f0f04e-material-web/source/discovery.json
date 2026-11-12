@@ -1,0 +1,33 @@
+{
+  "material": "38-0001-000034",
+  "model": "PTB021",
+  "title": "Jackery ポータブル電源 240",
+  "source_pages": 12,
+  "source_sha256": "c1f0f04e5ee672bb1c82f3d0b5ca009dc4459db3a6152d74a96acd489caff67c",
+  "native_text_chars": 0,
+  "illustrator_text_frames": 0,
+  "source_identity": "printed cover model; JVC file variant BN-RB15-C is not substituted for printed BN-RB15",
+  "route": "PTB021/JP/ja/md",
+  "reuse_inventory": [
+    {
+      "searched": "manual_sources and data/manual_sources model/family identities PTB021, PTB041, PTB071, BN-RB15; docs/renderers/web/assets; docs/templates/word_template/common_assets; docs/renderers/latex/assets",
+      "found": "JS-CONNECTION-GUIDE contains connector compatibility names PTB041/PTB071, but no exact product overview or complete artwork for these target models",
+      "decision": "reuse shared symbols and existing components; derive only target-specific device and charging illustrations from exact source"
+    },
+    {
+      "searched": "shared native Japanese prepared-document packages JS-CONNECTION-GUIDE, JA-CK01A-BK, JS-100I",
+      "decision": "Reuse the existing neutral SourcePage → ManualIR → frozen shared-theme renderer and governed components; do not copy legacy package-local RST/HTML styles."
+    },
+    {
+      "searched": "docs/renderers/web/assets/shared/symbols/manifest.json canonical_groups/li-ion",
+      "found": {
+        "key": "li-ion/recycle-li-ion",
+        "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_li_ion.svg",
+        "sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e"
+      },
+      "decision": "Use public canonical unchanged per explicit 2026-11-12 operator reuse instruction; source Li-ion 20 is provenance, not a reason for another private symbol."
+    }
+  ],
+  "scope": "original Japanese only; complete native text and structured tables; cover wordmark and production furniture excluded from body; operator review and release remain separate",
+  "extraction_policy": "Full dense overview figures retain all leader labels. Inbox cutouts exclude numbers and captions, which remain native. No body text or table becomes a screenshot."
+}

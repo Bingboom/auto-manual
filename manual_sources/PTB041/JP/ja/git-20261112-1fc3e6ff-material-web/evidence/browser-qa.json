@@ -1,0 +1,70 @@
+{
+  "model": "PTB041",
+  "source_sha256": "1fc3e6fffee4d29b3c6ecba999def59a9526722af8c2dfb87025254a62a743ef",
+  "viewports": [
+    {
+      "width": 1280,
+      "scrollWidth": 1280,
+      "height": 11923,
+      "badImages": [],
+      "componentIds": [
+        "HB-SPECIAL-REFERENCE-FIGURE",
+        "HB-SPECIAL-INBOX",
+        "HB-TABLE-SYMBOL-SIGNAL",
+        "HB-TABLE-SYMBOL-ICON"
+      ],
+      "h1": [
+        "お買い上げありがとうございます¶",
+        "主な仕様¶",
+        "各部の名称¶",
+        "使用機器への給電の目安¶",
+        "液晶画面¶",
+        "同梱品¶",
+        "よくある質問¶",
+        "安全上のご注意¶",
+        "使用上のご注意¶",
+        "使いかた¶",
+        "免責事項¶"
+      ],
+      "tableCount": 11,
+      "errors": [],
+      "recycle": {
+        "width": 153,
+        "height": 169.5625,
+        "source": "assets/recycle.svg"
+      }
+    },
+    {
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 15535,
+      "badImages": [],
+      "componentIds": [
+        "HB-SPECIAL-REFERENCE-FIGURE",
+        "HB-SPECIAL-INBOX",
+        "HB-TABLE-SYMBOL-SIGNAL",
+        "HB-TABLE-SYMBOL-ICON"
+      ],
+      "h1": [
+        "お買い上げありがとうございます¶",
+        "主な仕様¶",
+        "各部の名称¶",
+        "使用機器への給電の目安¶",
+        "液晶画面¶",
+        "同梱品¶",
+        "よくある質問¶",
+        "安全上のご注意¶",
+        "使用上のご注意¶",
+        "使いかた¶",
+        "免責事項¶"
+      ],
+      "tableCount": 11,
+      "errors": [],
+      "recycle": {
+        "width": 153,
+        "height": 169.5625,
+        "source": "assets/recycle.svg"
+      }
+    }
+  ]
+}

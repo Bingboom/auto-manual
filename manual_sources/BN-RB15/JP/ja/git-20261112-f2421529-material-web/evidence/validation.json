@@ -1,0 +1,58 @@
+{
+  "schema_version": "frozen-japanese-web-validation/v1",
+  "model": "BN-RB15",
+  "source_sha256": "f24215296cf4a3544d48dbbce5df3c6cf489ec829ad4b2a192926d94afaff670",
+  "strict_sphinx": {
+    "passed": true,
+    "command": "python -m sphinx -n -W --keep-going -b html manual_sources/BN-RB15/JP/ja/git-20261112-f2421529-material-web/web/ja /tmp/bn-rb15-jp-html",
+    "log": "strict-sphinx.log"
+  },
+  "cold_replay": {
+    "passed": true,
+    "method": "Copy only web/ja, delete generated Markdown, reconstruct through tools.web.frozen_ai_web.replay_package without PDF/OCR/source inputs",
+    "reconstructed_markdown_sha256": "6dcf48f5d44db01acd9b17901755d71a9d27b412890fed473180b08f29557ff4"
+  },
+  "tamper_rejection": {
+    "asset": "document asset missing or changed: assets/recycle.svg",
+    "stylesheet": "frozen Web stylesheet changed"
+  },
+  "shared_style_admission": {
+    "profile": "prepared-document-shared-styles/v1",
+    "applicable": true,
+    "model": "BN-RB15",
+    "region": "JP",
+    "language": "ja",
+    "declared_tables": 5,
+    "issues": []
+  },
+  "component_inventory": {
+    "HB-CALLOUT-STRIP": 8,
+    "HB-SPECIAL-INBOX": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE": 6,
+    "HB-TABLE-REFERENCE": 1,
+    "HB-TABLE-SPEC": 2,
+    "HB-TABLE-SYMBOL-ICON": 1,
+    "HB-TABLE-SYMBOL-SIGNAL": 1,
+    "HB-TABLE-TROUBLESHOOTING": 1,
+    "HB-WARRANTY-SECTION": 6
+  },
+  "physical_page_coverage": 16,
+  "publication_eligible": false,
+  "pending": "Operator source review and publication authorization remain separate",
+  "canonical_recycle_reuse": {
+    "status": "current-public-canonical",
+    "shared_symbol_key": "li-ion/recycle-li-ion",
+    "canonical_group": "li-ion",
+    "canonical_decision": "SCG-20261104",
+    "sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e",
+    "byte_identical_to_shared": true,
+    "scope": "Only four standalone recycling marks; all technical body text and other artwork bytes unchanged.",
+    "operator_instruction": "独立回收标志不是有公共图吗；复用啊 (2026-11-12)",
+    "source_normalization": "Printed source Li-ion 20 -> common graphic Li-ion with neither 20 nor 32. Original 20 remains in PDF/source-review provenance; accurate generic alt, no new visible 20 body copy.",
+    "extraction": "none; private extraction and source-specific shape veto removed",
+    "edges": "Current public canonical checked at 12x on white/checkerboard; see recycle-transparency-12x.png",
+    "browser": "1280/390 full document and focused recycle-*.png; no overflow, missing images or JS errors",
+    "superseded": "Earlier private Li-ion20 SVG and source-match comparison claims are not current artwork evidence.",
+    "registry": "No shared library, global registry or promotion approval changed"
+  }
+}

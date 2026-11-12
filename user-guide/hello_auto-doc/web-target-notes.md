@@ -3,6 +3,10 @@
 Part of the [workflow guide](../hello_auto-doc.md); its index lists the other topics.
 Add new notes for this topic here, not to the hub.
 
+### 七本日语说明书候选（2026-11）
+
+本批7本的物料/型号映射、JS-40A选版、原稿差异、并排审阅和验证边界见[日语Web候选记录](../../code-as-doc/reviews/jp_selected_seven_web_2026-11.md)。工程审阅、正式发布和线上验收分阶段确认。
+
 ### JBP-3600A 欧规英文概览与 LCD
 
 JBP-3600A EU/en 概览使用不含标题的独立正面/侧面插图，LCD 使用带引线插图和原生两列说明；见[版面修复记录](../../code-as-doc/reviews/jbp3600a-overview-lcd-20260916.md)。

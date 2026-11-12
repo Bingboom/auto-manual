@@ -1,0 +1,22 @@
+{
+  "kit": {
+    "path": "manual_sources/JE-300C/JP/ja/git-20261103-890abb4a/source/kit.py",
+    "size": 11501,
+    "sha256": "3634e533938f5b9aa2f3e8a32d7cc7ead8143ab0199d6f59f7ef463e4fcffa17"
+  },
+  "content": {
+    "path": "manual_sources/JE-240A/JP/ja/git-20261103-e227d165/source/ja/content.json",
+    "size": 163948,
+    "sha256": "a8cb3a19e4a4d828d2fde00f000f834b836523cad3f9520b79a3eac96adc1945"
+  },
+  "app_content": {
+    "path": "manual_sources/JE-300B/JP/ja/git-20261103-456bb360/source/ja/content.json",
+    "size": 209232,
+    "sha256": "5e1f73bf95265c7818c253e85eac587b6542a95b2786cbbaffbe39c7d9660f25"
+  },
+  "rebuild": {
+    "path": "manual_sources/JE-300C/JP/ja/git-20261103-890abb4a/rebuild.py",
+    "size": 8200,
+    "sha256": "d1ee618a2d771b6efd58975dbe233a6f1a0361c19a78ca74ac31bdd93c497d7d"
+  }
+}

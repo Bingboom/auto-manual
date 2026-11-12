@@ -2092,6 +2092,11 @@
       "registered": "2026-10-19",
       "known_drift": {}
     },
+    "manual_sources/BN-RB15/JP/ja/git-20261112-f2421529-material-web": {
+      "approval": "Operator request 2026-11-12: convert the selected Japanese material manuals with three agents; seven final candidates after excluding material000348. Review conversion only; no release or merge approval.",
+      "registered": "2026-11-12",
+      "known_drift": {}
+    },
     "manual_sources/JA-AD500A-SIL/JP/ja/git-20261008-ac3a1f82": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",
@@ -4960,6 +4965,11 @@
         }
       }
     },
+    "manual_sources/JS-40A/JP/ja/git-20261112-1a96bf34-m000464": {
+      "approval": "Operator request 2026-11-12: convert the selected Japanese material manuals with three agents; later narrowed JS-40A to material000464 only. Review candidate only; no release or merge approval.",
+      "registered": "2026-11-12",
+      "known_drift": {}
+    },
     "manual_sources/JS-CONNECTION-GUIDE/JP/ja/git-20261026-bc35fd65-connection-guide": {
       "approval": "User request 2026-10-26 (「分几个窗口把这个目录下面的文档都转成网页文档」「韩语文档除外」; operator chose Japanese side only and route JS-CONNECTION-GUIDE): Git-only JS-CONNECTION-GUIDE JP Web conversion; operator accepted candidate eb61b66 for release 2026-10-27 (「上线提交发布」), merged by operator PR review; acceptance hash-bound in source/approval.json",
       "registered": "2026-10-26",
@@ -4970,6 +4980,31 @@
           "since": "2026-11-10"
         }
       }
+    },
+    "manual_sources/JSG-0304B/JP/ja/git-20261112-fe9f1b56-m000512": {
+      "approval": "Operator request 2026-11-12: convert the selected Japanese material manuals with three agents; seven final candidates after excluding material000348. Review conversion only; no release or merge approval.",
+      "registered": "2026-11-12",
+      "known_drift": {}
+    },
+    "manual_sources/JSG-2404A/JP/ja/git-20261112-e59cc1bc-m000491": {
+      "approval": "Operator request 2026-11-12: convert the selected Japanese material manuals with three agents; seven final candidates after excluding material000348. Review conversion only; no release or merge approval.",
+      "registered": "2026-11-12",
+      "known_drift": {}
+    },
+    "manual_sources/PTB021/JP/ja/git-20261112-c1f0f04e-material-web": {
+      "approval": "Operator request 2026-11-12: convert the selected Japanese material manuals with three agents; seven final candidates after excluding material000348. Review conversion only; no release or merge approval.",
+      "registered": "2026-11-12",
+      "known_drift": {}
+    },
+    "manual_sources/PTB041/JP/ja/git-20261112-1fc3e6ff-material-web": {
+      "approval": "Operator request 2026-11-12: convert the selected Japanese material manuals with three agents; seven final candidates after excluding material000348. Review conversion only; no release or merge approval.",
+      "registered": "2026-11-12",
+      "known_drift": {}
+    },
+    "manual_sources/PTB071/JP/ja/git-20261112-ab6bd123-material-web": {
+      "approval": "Operator request 2026-11-12: convert the selected Japanese material manuals with three agents; seven final candidates after excluding material000348. Review conversion only; no release or merge approval.",
+      "registered": "2026-11-12",
+      "known_drift": {}
     }
   },
   "drift_log": [

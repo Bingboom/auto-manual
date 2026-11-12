@@ -1,0 +1,31 @@
+{
+  "asset_key": "recycle",
+  "status": "current-public-canonical",
+  "shared_symbol_key": "li-ion/recycle-li-ion",
+  "canonical_group": "li-ion",
+  "canonical_decision": "SCG-20261104",
+  "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_li_ion.svg",
+  "asset_path": "assets/recycle.svg",
+  "sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e",
+  "byte_identical_to_shared": true,
+  "extraction": "none; shared SVG copied without modification",
+  "scale": 12,
+  "rendered_size": [
+    242,
+    268
+  ],
+  "mode": "RGBA",
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "opaque_border_pixels": 0,
+  "border_pixels": 1020,
+  "source_printed_label": "Li-ion 20",
+  "actual_shared_label": "Li-ion; neither 20 nor 32",
+  "source_rgb_crop": "evidence/recycle-before.png (source-only historical comparison; not active artwork)",
+  "previous_private_candidate": "superseded; historical source-comparison receipts no longer describe active artwork",
+  "decision_basis": "Explicit 2026-11-12 operator instruction to reuse the public canonical; source-specific 2% shape matching does not override this standardization.",
+  "product_and_panel_scope": "Only standalone recycle mark standardized; all other artwork bytes unchanged",
+  "publication_eligible": false
+}

@@ -1,0 +1,433 @@
+[
+  {
+    "slot": "power-device",
+    "searched": [
+      "manual_sources/JS-40A (absent at intake)",
+      "docs/renderers/web/assets/js40c_eu_en",
+      "manual_sources/JS-100I/JP/ja",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate_check": "JS-40C is SolarSaga40Air with an angle indicator and different panel/device geometry; JS-100I is100Air with different panel and ports. Their finished illustrations cannot substitute for JS-40A Mini. Pouch candidate JS40C carries an adjacent source cell edge. QR/manual cover must match this source.",
+    "decision": "new-extraction",
+    "reason": "No matching clean asset for this exact JS-40A product/view/edition; no recrop solely for language",
+    "original_source": "source/original.pdf",
+    "source_sha256": "1a96bf348255cc47caf18b3df296ced0ccbc28269b1863c442e9e98d8d631b4c",
+    "physical_page": 26,
+    "crop_pt": [
+      18,
+      28,
+      244,
+      200
+    ],
+    "background_policy": "Complete product/artwork silhouette and arrows retained on original white paper; decorative source panels excluded. Reviewed source-white regions clear only burned caption glyphs below/away from the product; no empty text frame remains. Shared Web components own captions/frame.",
+    "candidate_gate": "quarantine-awaiting-operator-review",
+    "sha256": "5dcb13ee8b6224a48b64311d91af17c5c38bad005af5ae3b4ae36480fb5cd17b",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          18,
+          28,
+          244,
+          200
+        ]
+      },
+      {
+        "op": "whiteout",
+        "bbox_pt": [
+          113,
+          103.6,
+          150,
+          109.5
+        ]
+      },
+      {
+        "op": "whiteout",
+        "bbox_pt": [
+          111,
+          130,
+          150,
+          136.8
+        ]
+      },
+      {
+        "op": "whiteout",
+        "bbox_pt": [
+          170,
+          138.5,
+          186,
+          144.5
+        ]
+      },
+      {
+        "op": "whiteout",
+        "bbox_pt": [
+          168,
+          144.3,
+          244,
+          152.5
+        ]
+      },
+      {
+        "op": "whiteout",
+        "bbox_pt": [
+          72,
+          192.6,
+          104,
+          199.5
+        ]
+      },
+      {
+        "op": "whiteout",
+        "bbox_pt": [
+          113,
+          192.6,
+          154,
+          199.5
+        ]
+      },
+      {
+        "op": "whiteout",
+        "bbox_pt": [
+          165,
+          192.6,
+          190,
+          199.5
+        ]
+      }
+    ]
+  },
+  {
+    "slot": "inbox-panel",
+    "searched": [
+      "manual_sources/JS-40A (absent at intake)",
+      "docs/renderers/web/assets/js40c_eu_en",
+      "manual_sources/JS-100I/JP/ja",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate_check": "JS-40C is SolarSaga40Air with an angle indicator and different panel/device geometry; JS-100I is100Air with different panel and ports. Their finished illustrations cannot substitute for JS-40A Mini. Pouch candidate JS40C carries an adjacent source cell edge. QR/manual cover must match this source.",
+    "decision": "new-extraction",
+    "reason": "No matching clean asset for this exact JS-40A product/view/edition; no recrop solely for language",
+    "original_source": "source/original.pdf",
+    "source_sha256": "1a96bf348255cc47caf18b3df296ced0ccbc28269b1863c442e9e98d8d631b4c",
+    "physical_page": 26,
+    "crop_pt": [
+      36,
+      241,
+      143,
+      275
+    ],
+    "background_policy": "Complete product/artwork silhouette and arrows retained on original white paper; decorative source panels excluded. Reviewed source-white regions clear only burned caption glyphs below/away from the product; no empty text frame remains. Shared Web components own captions/frame.",
+    "candidate_gate": "quarantine-awaiting-operator-review",
+    "sha256": "39f9ab6b4f6ca7dceef39bf435a736e9a196075704a0aea4c11c1fc529fe328b",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          36,
+          241,
+          143,
+          275
+        ]
+      }
+    ]
+  },
+  {
+    "slot": "inbox-pouch",
+    "searched": [
+      "manual_sources/JS-40A (absent at intake)",
+      "docs/renderers/web/assets/js40c_eu_en",
+      "manual_sources/JS-100I/JP/ja",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate_check": "JS-40C is SolarSaga40Air with an angle indicator and different panel/device geometry; JS-100I is100Air with different panel and ports. Their finished illustrations cannot substitute for JS-40A Mini. Pouch candidate JS40C carries an adjacent source cell edge. QR/manual cover must match this source.",
+    "decision": "new-extraction",
+    "reason": "No matching clean asset for this exact JS-40A product/view/edition; no recrop solely for language",
+    "original_source": "source/original.pdf",
+    "source_sha256": "1a96bf348255cc47caf18b3df296ced0ccbc28269b1863c442e9e98d8d631b4c",
+    "physical_page": 26,
+    "crop_pt": [
+      165,
+      240,
+      201,
+      281
+    ],
+    "background_policy": "Complete product/artwork silhouette and arrows retained on original white paper; decorative source panels excluded. Reviewed source-white regions clear only burned caption glyphs below/away from the product; no empty text frame remains. Shared Web components own captions/frame.",
+    "candidate_gate": "quarantine-awaiting-operator-review",
+    "sha256": "5177e1008dd7deeb039856c474e802eeb04819752316a511a4281f8c808cf9ad",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          165,
+          240,
+          201,
+          281
+        ]
+      },
+      {
+        "op": "whiteout",
+        "bbox_pt": [
+          165,
+          276,
+          190,
+          281
+        ]
+      }
+    ]
+  },
+  {
+    "slot": "inbox-adapter",
+    "searched": [
+      "manual_sources/JS-40A (absent at intake)",
+      "docs/renderers/web/assets/js40c_eu_en",
+      "manual_sources/JS-100I/JP/ja",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate_check": "JS-40C is SolarSaga40Air with an angle indicator and different panel/device geometry; JS-100I is100Air with different panel and ports. Their finished illustrations cannot substitute for JS-40A Mini. Pouch candidate JS40C carries an adjacent source cell edge. QR/manual cover must match this source.",
+    "decision": "new-extraction",
+    "reason": "No matching clean asset for this exact JS-40A product/view/edition; no recrop solely for language",
+    "original_source": "source/original.pdf",
+    "source_sha256": "1a96bf348255cc47caf18b3df296ced0ccbc28269b1863c442e9e98d8d631b4c",
+    "physical_page": 26,
+    "crop_pt": [
+      42,
+      288,
+      59,
+      321
+    ],
+    "background_policy": "Complete product/artwork silhouette and arrows retained on original white paper; decorative source panels excluded. Reviewed source-white regions clear only burned caption glyphs below/away from the product; no empty text frame remains. Shared Web components own captions/frame.",
+    "candidate_gate": "quarantine-awaiting-operator-review",
+    "sha256": "aaee5b981b57667e8730171153c37e0da81c95f10e02e1398b9b12414979990d",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          42,
+          288,
+          59,
+          321
+        ]
+      }
+    ]
+  },
+  {
+    "slot": "inbox-manual",
+    "searched": [
+      "manual_sources/JS-40A (absent at intake)",
+      "docs/renderers/web/assets/js40c_eu_en",
+      "manual_sources/JS-100I/JP/ja",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate_check": "JS-40C is SolarSaga40Air with an angle indicator and different panel/device geometry; JS-100I is100Air with different panel and ports. Their finished illustrations cannot substitute for JS-40A Mini. Pouch candidate JS40C carries an adjacent source cell edge. QR/manual cover must match this source.",
+    "decision": "new-extraction",
+    "reason": "No matching clean asset for this exact JS-40A product/view/edition; no recrop solely for language",
+    "original_source": "source/original.pdf",
+    "source_sha256": "1a96bf348255cc47caf18b3df296ced0ccbc28269b1863c442e9e98d8d631b4c",
+    "physical_page": 26,
+    "crop_pt": [
+      166,
+      290,
+      190,
+      324
+    ],
+    "background_policy": "Complete product/artwork silhouette and arrows retained on original white paper; decorative source panels excluded. Reviewed source-white regions clear only burned caption glyphs below/away from the product; no empty text frame remains. Shared Web components own captions/frame.",
+    "candidate_gate": "quarantine-awaiting-operator-review",
+    "sha256": "5614a0dca59a649c1e9e8d519ff6f1586b704b3c53325e5d1deff29ff005e4a2",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          166,
+          290,
+          190,
+          324
+        ]
+      }
+    ]
+  },
+  {
+    "slot": "contact-qr",
+    "searched": [
+      "manual_sources/JS-40A (absent at intake)",
+      "docs/renderers/web/assets/js40c_eu_en",
+      "manual_sources/JS-100I/JP/ja",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate_check": "JS-40C is SolarSaga40Air with an angle indicator and different panel/device geometry; JS-100I is100Air with different panel and ports. Their finished illustrations cannot substitute for JS-40A Mini. Pouch candidate JS40C carries an adjacent source cell edge. QR/manual cover must match this source.",
+    "decision": "new-extraction",
+    "reason": "No matching clean asset for this exact JS-40A product/view/edition; no recrop solely for language",
+    "original_source": "source/original.pdf",
+    "source_sha256": "1a96bf348255cc47caf18b3df296ced0ccbc28269b1863c442e9e98d8d631b4c",
+    "physical_page": 28,
+    "crop_pt": [
+      201,
+      315,
+      241,
+      354
+    ],
+    "background_policy": "Complete product/artwork silhouette and arrows retained on original white paper; decorative source panels excluded. Reviewed source-white regions clear only burned caption glyphs below/away from the product; no empty text frame remains. Shared Web components own captions/frame.",
+    "candidate_gate": "quarantine-awaiting-operator-review",
+    "sha256": "f3f93e2e4d804293d4ac3028969eb1bd47c3411e95fafca22a4107647d14f63f",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          201,
+          315,
+          241,
+          354
+        ]
+      }
+    ]
+  },
+  {
+    "slot": "unfold-1",
+    "decision": "reuse-donor",
+    "source_path": "source/art-donor-000348.pdf",
+    "sha256": "d4f192fb0e8b2e6c6fe9f62b4cfc00bc59ad12606ebc48b1b7b55c274b623a1a",
+    "identity_evidence": "Same printed JS-40A Mini silhouette, hands, magnetic buckle and arrows as the shared 000464 quick-start artwork; only multilingual explanatory copy/number furniture differs and is replaced by target Japanese live text. Both source page crops inspected at full scale.",
+    "background_policy": "Byte-identical to sibling candidate; no recrop/rescale",
+    "gate": "candidate-quarantine; donor supplies artwork only, no textual/specification authority",
+    "source_pdf_sha256": "482191d208d902c4e18181b04fe7460387b4b013b4c5cf2484209a96311588ca",
+    "source_material": "38-0001-000348",
+    "source_physical_page": 2,
+    "source_crop_pt": [
+      29,
+      82,
+      105,
+      164
+    ],
+    "derivation_recipe": "source/art-donor-000348-recipe.json",
+    "target_comparison": {
+      "authoritative_target_pdf": "source/original.pdf",
+      "target_material": "38-0001-000464",
+      "physical_page": 3,
+      "evidence": "Exact JS-40A Mini folding silhouette, hand poses, magnetic latch and arrows inspected against native target quick-guide images; donor explanatory text/frames were excluded. The matched clean candidate PNG bytes are retained unchanged."
+    }
+  },
+  {
+    "slot": "unfold-2",
+    "decision": "reuse-donor",
+    "source_path": "source/art-donor-000348.pdf",
+    "sha256": "a71fb0738c120520516984c3d99cffffcaa1b1ad0f2f65c31771c9ee45404a60",
+    "identity_evidence": "Same printed JS-40A Mini silhouette, hands, magnetic buckle and arrows as the shared 000464 quick-start artwork; only multilingual explanatory copy/number furniture differs and is replaced by target Japanese live text. Both source page crops inspected at full scale.",
+    "background_policy": "Byte-identical to sibling candidate; no recrop/rescale",
+    "gate": "candidate-quarantine; donor supplies artwork only, no textual/specification authority",
+    "source_pdf_sha256": "482191d208d902c4e18181b04fe7460387b4b013b4c5cf2484209a96311588ca",
+    "source_material": "38-0001-000348",
+    "source_physical_page": 2,
+    "source_crop_pt": [
+      137,
+      79,
+      231,
+      169
+    ],
+    "derivation_recipe": "source/art-donor-000348-recipe.json",
+    "target_comparison": {
+      "authoritative_target_pdf": "source/original.pdf",
+      "target_material": "38-0001-000464",
+      "physical_page": 4,
+      "evidence": "Exact JS-40A Mini folding silhouette, hand poses, magnetic latch and arrows inspected against native target quick-guide images; donor explanatory text/frames were excluded. The matched clean candidate PNG bytes are retained unchanged."
+    }
+  },
+  {
+    "slot": "unfold-3",
+    "decision": "reuse-donor",
+    "source_path": "source/art-donor-000348.pdf",
+    "sha256": "cc3bce48031cc93f8bde2651c84aa7052231a26214c2e7de88ee247b1b047331",
+    "identity_evidence": "Same printed JS-40A Mini silhouette, hands, magnetic buckle and arrows as the shared 000464 quick-start artwork; only multilingual explanatory copy/number furniture differs and is replaced by target Japanese live text. Both source page crops inspected at full scale.",
+    "background_policy": "Byte-identical to sibling candidate; no recrop/rescale",
+    "gate": "candidate-quarantine; donor supplies artwork only, no textual/specification authority",
+    "source_pdf_sha256": "482191d208d902c4e18181b04fe7460387b4b013b4c5cf2484209a96311588ca",
+    "source_material": "38-0001-000348",
+    "source_physical_page": 2,
+    "source_crop_pt": [
+      68,
+      223,
+      192,
+      341
+    ],
+    "derivation_recipe": "source/art-donor-000348-recipe.json",
+    "target_comparison": {
+      "authoritative_target_pdf": "source/original.pdf",
+      "target_material": "38-0001-000464",
+      "physical_page": 4,
+      "evidence": "Exact JS-40A Mini folding silhouette, hand poses, magnetic latch and arrows inspected against native target quick-guide images; donor explanatory text/frames were excluded. The matched clean candidate PNG bytes are retained unchanged."
+    }
+  },
+  {
+    "slot": "unfold-4",
+    "decision": "reuse-donor",
+    "source_path": "source/art-donor-000348.pdf",
+    "sha256": "7159f9d8bddb88c5d2a7b4ab3e8e3ec349bf3f86ab7cc53fec58208576911570",
+    "identity_evidence": "Same printed JS-40A Mini silhouette, hands, magnetic buckle and arrows as the shared 000464 quick-start artwork; only multilingual explanatory copy/number furniture differs and is replaced by target Japanese live text. Both source page crops inspected at full scale.",
+    "background_policy": "Byte-identical to sibling candidate; no recrop/rescale",
+    "gate": "candidate-quarantine; donor supplies artwork only, no textual/specification authority",
+    "source_pdf_sha256": "482191d208d902c4e18181b04fe7460387b4b013b4c5cf2484209a96311588ca",
+    "source_material": "38-0001-000348",
+    "source_physical_page": 3,
+    "source_crop_pt": [
+      29,
+      71,
+      229,
+      143
+    ],
+    "derivation_recipe": "source/art-donor-000348-recipe.json",
+    "target_comparison": {
+      "authoritative_target_pdf": "source/original.pdf",
+      "target_material": "38-0001-000464",
+      "physical_page": 5,
+      "evidence": "Exact JS-40A Mini folding silhouette, hand poses, magnetic latch and arrows inspected against native target quick-guide images; donor explanatory text/frames were excluded. The matched clean candidate PNG bytes are retained unchanged."
+    }
+  },
+  {
+    "slot": "unfold-5",
+    "decision": "reuse-donor",
+    "source_path": "source/art-donor-000348.pdf",
+    "sha256": "fd032a9605fc5e4e0c48e554410daec72cee1a8bbdfc6bca41439ac286e91266",
+    "identity_evidence": "Same printed JS-40A Mini silhouette, hands, magnetic buckle and arrows as the shared 000464 quick-start artwork; only multilingual explanatory copy/number furniture differs and is replaced by target Japanese live text. Both source page crops inspected at full scale.",
+    "background_policy": "Byte-identical to sibling candidate; no recrop/rescale",
+    "gate": "candidate-quarantine; donor supplies artwork only, no textual/specification authority",
+    "source_pdf_sha256": "482191d208d902c4e18181b04fe7460387b4b013b4c5cf2484209a96311588ca",
+    "source_material": "38-0001-000348",
+    "source_physical_page": 3,
+    "source_crop_pt": [
+      24,
+      229,
+      233,
+      331
+    ],
+    "derivation_recipe": "source/art-donor-000348-recipe.json",
+    "target_comparison": {
+      "authoritative_target_pdf": "source/original.pdf",
+      "target_material": "38-0001-000464",
+      "physical_page": 5,
+      "evidence": "Exact JS-40A Mini folding silhouette, hand poses, magnetic latch and arrows inspected against native target quick-guide images; donor explanatory text/frames were excluded. The matched clean candidate PNG bytes are retained unchanged."
+    }
+  },
+  {
+    "slot": "inbox-cable",
+    "decision": "reuse",
+    "source_path": "docs/renderers/web/assets/js40c_eu_en/inbox_cable.png",
+    "sha256": "d9c356d52b20e072dec01d8fab552c9efbb652927da9ff9c659b74c1d7bfa780",
+    "identity_evidence": "Standalone matching multifunctional cable / carabiner drawing, verified directly against000464p26; these accessories have the same shape/ports/markings. No solar-panel artwork or unrelated product facts reused.",
+    "background_policy": "Byte-identical frozen source; shared inbox owns layout",
+    "gate": "existing-shared-art"
+  },
+  {
+    "slot": "inbox-carabiner",
+    "decision": "reuse",
+    "source_path": "docs/renderers/web/assets/js40c_eu_en/inbox_carabiner.png",
+    "sha256": "41c5a19e743bd847fcae671c137989d2970c5ce5448e6eb42e4106f5c2cf1f79",
+    "identity_evidence": "Standalone matching multifunctional cable / carabiner drawing, verified directly against000464p26; these accessories have the same shape/ports/markings. No solar-panel artwork or unrelated product facts reused.",
+    "background_policy": "Byte-identical frozen source; shared inbox owns layout",
+    "gate": "existing-shared-art"
+  }
+]

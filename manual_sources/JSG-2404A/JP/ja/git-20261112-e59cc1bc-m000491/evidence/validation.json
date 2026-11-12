@@ -1,0 +1,453 @@
+{
+  "status": "passed-engineering-candidate",
+  "publication_eligible": false,
+  "operator_acceptance": false,
+  "strict_sphinx": {
+    "command": "python -m sphinx -b html -n -W --keep-going <fresh-replay> <fresh-html>",
+    "status": "passed, zero warnings"
+  },
+  "source_replay": {
+    "model": "JSG-2404A",
+    "cold_replay": "byte-identical",
+    "matched_files": 42,
+    "manual_ir_sha256": "93af9f40f8c1730b84ce228690e4c9364971183abb7b5ea871383726f30d69f9",
+    "tampered_source": "rejected before rendering",
+    "rejection": "input changed: assets/inbox-unit.png"
+  },
+  "gates": {
+    "prepared_document_shared_style": "passed",
+    "fresh_source_bound_symbol_admission": "6/6",
+    "source_input_hashes": "78/78 matched",
+    "source_original": "20physical pages, exact live attachment SHA-256"
+  },
+  "scoped_ruff": {
+    "command": "python -m ruff check --no-cache manual_sources/JSG-2404A/JP/ja/git-20261112-e59cc1bc-m000491/*.py",
+    "status": "passed"
+  },
+  "browser": {
+    "engine": "system GoogleChrome via isolated Playwright Chromium profile",
+    "flags": [
+      "--disable-gpu"
+    ],
+    "viewports": [
+      {
+        "key": "491",
+        "width": 1280,
+        "scrollWidth": 1280,
+        "height": 22737,
+        "imageCount": 40,
+        "brokenImages": [],
+        "headings": [
+          "1 マグネットバックルを外す",
+          "2 両側に広げる",
+          "3 真ん中の隠しボタンを外す",
+          "4 広げる",
+          "5 太陽に向かい、ポータブル電源に接続する",
+          "【JACKERY SOLARSAGA 40 MINI】",
+          "出力オン/オフ",
+          "AC充電ケーブル",
+          "ソーラー充電",
+          "シガーソケット充電",
+          "充電に関する安全上のご注意",
+          "絵表示について",
+          "絵表示の説明",
+          "使用上のご注意 (SOLARSAGA 40 MINI)",
+          "1. アプリをダウンロードしてログインするには",
+          "2. デバイスを追加するには",
+          "3. デバイスのバインドを解除するには",
+          "4. ご確認"
+        ],
+        "inbox": [
+          {
+            "class": "hb-inbox-composition",
+            "width": 657.21875
+          }
+        ],
+        "tables": [
+          {
+            "class": "manual-table manual-spec-table hb-spec-table",
+            "width": 653.21875,
+            "scroll": 653
+          },
+          {
+            "class": "manual-table manual-spec-table hb-spec-table",
+            "width": 653.21875,
+            "scroll": 653
+          },
+          {
+            "class": "manual-table",
+            "width": 648.84375,
+            "scroll": 649
+          },
+          {
+            "class": "hb-reference-table",
+            "width": 655.21875,
+            "scroll": 655
+          },
+          {
+            "class": "hb-lcd-icon-table",
+            "width": 653.21875,
+            "scroll": 653
+          },
+          {
+            "class": "manual-table",
+            "width": 648.84375,
+            "scroll": 649
+          },
+          {
+            "class": "hb-lcd-icon-table",
+            "width": 653.21875,
+            "scroll": 653
+          },
+          {
+            "class": "manual-callout-table manual-callout-table",
+            "width": 657.21875,
+            "scroll": 653
+          },
+          {
+            "class": "hb-symbol-signal-table",
+            "width": 653.21875,
+            "scroll": 653
+          },
+          {
+            "class": "hb-symbol-panel-table",
+            "width": 316.609375,
+            "scroll": 317
+          },
+          {
+            "class": "hb-symbol-panel-table",
+            "width": 316.609375,
+            "scroll": 317
+          },
+          {
+            "class": "manual-callout-table manual-callout-table",
+            "width": 657.21875,
+            "scroll": 653
+          },
+          {
+            "class": "manual-callout-table manual-callout-table",
+            "width": 657.21875,
+            "scroll": 653
+          },
+          {
+            "class": "manual-callout-table manual-callout-table",
+            "width": 657.21875,
+            "scroll": 653
+          },
+          {
+            "class": "manual-callout-table manual-callout-table",
+            "width": 657.21875,
+            "scroll": 653
+          },
+          {
+            "class": "manual-callout-table manual-callout-table",
+            "width": 657.21875,
+            "scroll": 653
+          },
+          {
+            "class": "manual-callout-table manual-callout-table",
+            "width": 657.21875,
+            "scroll": 653
+          },
+          {
+            "class": "manual-callout-table manual-callout-table",
+            "width": 657.21875,
+            "scroll": 653
+          },
+          {
+            "class": "manual-callout-table manual-callout-table",
+            "width": 657.21875,
+            "scroll": 653
+          },
+          {
+            "class": "manual-callout-table manual-callout-table",
+            "width": 657.21875,
+            "scroll": 653
+          },
+          {
+            "class": "manual-callout-table manual-callout-table",
+            "width": 657.21875,
+            "scroll": 653
+          },
+          {
+            "class": "manual-callout-table manual-callout-table",
+            "width": 657.21875,
+            "scroll": 653
+          },
+          {
+            "class": "manual-callout-table manual-callout-table",
+            "width": 657.21875,
+            "scroll": 653
+          },
+          {
+            "class": "manual-callout-table manual-callout-table",
+            "width": 657.21875,
+            "scroll": 653
+          },
+          {
+            "class": "manual-callout-table manual-callout-table",
+            "width": 657.21875,
+            "scroll": 653
+          },
+          {
+            "class": "manual-callout-table manual-callout-table",
+            "width": 657.21875,
+            "scroll": 653
+          },
+          {
+            "class": "manual-callout-table manual-callout-table",
+            "width": 657.21875,
+            "scroll": 653
+          },
+          {
+            "class": "manual-callout-table manual-callout-table",
+            "width": 657.21875,
+            "scroll": 653
+          }
+        ]
+      },
+      {
+        "key": "491",
+        "width": 390,
+        "scrollWidth": 390,
+        "height": 26471,
+        "imageCount": 40,
+        "brokenImages": [],
+        "headings": [
+          "1 マグネットバックルを外す",
+          "2 両側に広げる",
+          "3 真ん中の隠しボタンを外す",
+          "4 広げる",
+          "5 太陽に向かい、ポータブル電源に接続する",
+          "【JACKERY SOLARSAGA 40 MINI】",
+          "出力オン/オフ",
+          "AC充電ケーブル",
+          "ソーラー充電",
+          "シガーソケット充電",
+          "充電に関する安全上のご注意",
+          "絵表示について",
+          "絵表示の説明",
+          "使用上のご注意 (SOLARSAGA 40 MINI)",
+          "1. アプリをダウンロードしてログインするには",
+          "2. デバイスを追加するには",
+          "3. デバイスのバインドを解除するには",
+          "4. ご確認"
+        ],
+        "inbox": [
+          {
+            "class": "hb-inbox-composition",
+            "width": 358
+          }
+        ],
+        "tables": [
+          {
+            "class": "manual-table manual-spec-table hb-spec-table",
+            "width": 354,
+            "scroll": 354
+          },
+          {
+            "class": "manual-table manual-spec-table hb-spec-table",
+            "width": 354,
+            "scroll": 354
+          },
+          {
+            "class": "manual-table",
+            "width": 576,
+            "scroll": 576
+          },
+          {
+            "class": "hb-reference-table",
+            "width": 356,
+            "scroll": 356
+          },
+          {
+            "class": "hb-lcd-icon-table",
+            "width": 640,
+            "scroll": 640
+          },
+          {
+            "class": "manual-table",
+            "width": 576,
+            "scroll": 576
+          },
+          {
+            "class": "hb-lcd-icon-table",
+            "width": 640,
+            "scroll": 640
+          },
+          {
+            "class": "manual-callout-table manual-callout-table",
+            "width": 358,
+            "scroll": 354
+          },
+          {
+            "class": "hb-symbol-signal-table",
+            "width": 354,
+            "scroll": 354
+          },
+          {
+            "class": "hb-symbol-panel-table",
+            "width": 354,
+            "scroll": 354
+          },
+          {
+            "class": "hb-symbol-panel-table",
+            "width": 354,
+            "scroll": 354
+          },
+          {
+            "class": "manual-callout-table manual-callout-table",
+            "width": 358,
+            "scroll": 354
+          },
+          {
+            "class": "manual-callout-table manual-callout-table",
+            "width": 358,
+            "scroll": 354
+          },
+          {
+            "class": "manual-callout-table manual-callout-table",
+            "width": 358,
+            "scroll": 354
+          },
+          {
+            "class": "manual-callout-table manual-callout-table",
+            "width": 358,
+            "scroll": 354
+          },
+          {
+            "class": "manual-callout-table manual-callout-table",
+            "width": 358,
+            "scroll": 354
+          },
+          {
+            "class": "manual-callout-table manual-callout-table",
+            "width": 358,
+            "scroll": 354
+          },
+          {
+            "class": "manual-callout-table manual-callout-table",
+            "width": 358,
+            "scroll": 354
+          },
+          {
+            "class": "manual-callout-table manual-callout-table",
+            "width": 358,
+            "scroll": 354
+          },
+          {
+            "class": "manual-callout-table manual-callout-table",
+            "width": 358,
+            "scroll": 354
+          },
+          {
+            "class": "manual-callout-table manual-callout-table",
+            "width": 358,
+            "scroll": 354
+          },
+          {
+            "class": "manual-callout-table manual-callout-table",
+            "width": 358,
+            "scroll": 354
+          },
+          {
+            "class": "manual-callout-table manual-callout-table",
+            "width": 358,
+            "scroll": 354
+          },
+          {
+            "class": "manual-callout-table manual-callout-table",
+            "width": 358,
+            "scroll": 354
+          },
+          {
+            "class": "manual-callout-table manual-callout-table",
+            "width": 358,
+            "scroll": 354
+          },
+          {
+            "class": "manual-callout-table manual-callout-table",
+            "width": 358,
+            "scroll": 354
+          },
+          {
+            "class": "manual-callout-table manual-callout-table",
+            "width": 358,
+            "scroll": 354
+          },
+          {
+            "class": "manual-callout-table manual-callout-table",
+            "width": 358,
+            "scroll": 354
+          }
+        ]
+      }
+    ],
+    "full_page_capture_note": "GPU-disabled capture avoids this Mac Chromium compositor repetition above16384px; real DOM and visible-scroll text were independently checked. No product CSS is altered for QA.",
+    "narrow_tables": "shared overflow containers retain wide LCD/threshold tables; document itself has no horizontal overflow"
+  },
+  "source_text_spot_checks": {
+    "welcome_notice_count": 1,
+    "back_cover_app_notice_count": 1,
+    "unsupported_機器共有_sentence_count": 0,
+    "source_40C_warning": true,
+    "old_600Plus_handle_clause_count": 0,
+    "energy_default_ON_cells": 3,
+    "unsupported_UPS_added_paragraph": false
+  },
+  "peer_review": "source/peer_review.json; confirmed3discrepancies fixed and independently reread, no further paragraph differences reported for491",
+  "screenshots": [
+    {
+      "path": "evidence/screenshots/1280-full.png",
+      "sha256": "9215afbdc6db336f5e7a47e9ad20a68da2953a65143d6cd36c84f9765dea757a",
+      "viewport_width": 1280
+    },
+    {
+      "path": "evidence/screenshots/1280-inbox.png",
+      "sha256": "6207fde3a7d98734708c18c65b8c029968c0b6866596100f39763754ebb62c2d",
+      "viewport_width": 1280
+    },
+    {
+      "path": "evidence/screenshots/1280-spec.png",
+      "sha256": "ebf3d39cb1d192ad57f2205a9c1d3d9a020a6783f2b0a0d9be8d0e314bddbbf7",
+      "viewport_width": 1280
+    },
+    {
+      "path": "evidence/screenshots/1280-unfold-5.png",
+      "sha256": "161c36170c239d1807508f6a61d4c8748d8d0b0ccfd0672ffe3f7876b6ccf621",
+      "viewport_width": 1280
+    },
+    {
+      "path": "evidence/screenshots/1280-charging-solar.png",
+      "sha256": "7615f5c014fe27325817f192d354329c359b24e6e8cf4540a0cd4c1ea5248df3",
+      "viewport_width": 1280
+    },
+    {
+      "path": "evidence/screenshots/390-full.png",
+      "sha256": "8bbe7639f01a5d2697b2512fb5df8400399449950616708eb4f980e29a6b9df4",
+      "viewport_width": 390
+    },
+    {
+      "path": "evidence/screenshots/390-inbox.png",
+      "sha256": "520f1b00610c45751ba831a7db0ac3705504bfb72aed83150815d9a847c571a6",
+      "viewport_width": 390
+    },
+    {
+      "path": "evidence/screenshots/390-spec.png",
+      "sha256": "072142ec5e40a9fb90bbb14634ffcd371a5671d84baf5bdb71a40743aeb1023a",
+      "viewport_width": 390
+    },
+    {
+      "path": "evidence/screenshots/390-unfold-5.png",
+      "sha256": "1777f61ac2c31aacfbb6b2bb52cd5e8066d5b50d7d76231830b31ffeaf6b946d",
+      "viewport_width": 390
+    },
+    {
+      "path": "evidence/screenshots/390-charging-solar.png",
+      "sha256": "a9b9c79acdf1e716502458d54744c1f2b0f5f002c3eeb0c563a269a6b31e88a0",
+      "viewport_width": 390
+    }
+  ],
+  "root_integration_boundary": "Root agent owns full regression, maintainability/frozen registry, reference-edition review assembly and PR. This package has no publication approval.",
+  "ocr_whitespace_hygiene": "Only OCR draft whitespace/evidence hashes changed after browser capture; all41rendered source/style/assets files are byte-identical, onlyManualIR frozen-source metadata differs. Current strict Sphinx and42-file cold replay were rerun."
+}

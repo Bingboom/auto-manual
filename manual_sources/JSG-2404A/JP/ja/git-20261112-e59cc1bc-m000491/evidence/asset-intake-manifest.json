@@ -1,0 +1,1061 @@
+{
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 20
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "default_scale": 1.0,
+      "page_scale": {},
+      "path_pattern": "archive/previews/page-{page:04d}.png"
+    }
+  },
+  "artifacts": [
+    {
+      "build_eligible": false,
+      "byte_size": 3577265,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0001.pdf",
+      "sha256": "4ec26572cad657d1e42f0d55595d55897540e8abaad9a8a52c72fc7d31885061",
+      "source_page": 1,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 3577265,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0002.pdf",
+      "sha256": "a8ccb60ecf93e25df2407ac4d8e05e70a09b575d8fb75da045773a75fec2f8a5",
+      "source_page": 2,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 3577265,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0003.pdf",
+      "sha256": "15fcd1dbc5ba545b32c75e3ba6c60e7941b65bbfe8f240cc2ed86a1fc1e86eec",
+      "source_page": 3,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 3577266,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0004.pdf",
+      "sha256": "af4b003b247ad02b68a0b7f039884ca45c1dd5ff7bf7932d203533a2707305fd",
+      "source_page": 4,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 3577266,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0005.pdf",
+      "sha256": "65556a333777d001ba3e095e33de85205df2cab11b6699245d33c5d355963d32",
+      "source_page": 5,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 3577265,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0006.pdf",
+      "sha256": "f626a4a6233f3711d9999e963ea8ac28bbb0e7491fcc3941aee94fe1c9a62540",
+      "source_page": 6,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 3577266,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0007.pdf",
+      "sha256": "3e1723b90dcc473f0f1b41ef033b8e42559319182afe682130f736cdf051a7b0",
+      "source_page": 7,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 3577266,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0008.pdf",
+      "sha256": "362cedb7a8abfa16a4b5eaf18bf9447efd0da269c2dcd18ab547f587b6926d7c",
+      "source_page": 8,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 3577267,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0009.pdf",
+      "sha256": "0f16b68e041f54de446e31f2727db9349ad9401b7fe000f622764e22e765ed40",
+      "source_page": 9,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 3577266,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0010.pdf",
+      "sha256": "bfd51a2628469761ee98ea732a84a176ca681bbeeb5987778bc793023f4630bc",
+      "source_page": 10,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 3577267,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0011.pdf",
+      "sha256": "6aaf8741e7d6bf06342da171dda10807c8c94ac091cfc5cbd7876c3c96669a86",
+      "source_page": 11,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 3577265,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0012.pdf",
+      "sha256": "bf171e5116301258f2026f3b26c3f06859b12fc804427e0f6b91e84a54c68776",
+      "source_page": 12,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 3577263,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0013.pdf",
+      "sha256": "4a9767d7f65df1ab604fda25e6e5fa2ddda629d72a6cc334e5d67b29db58c655",
+      "source_page": 13,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 3577266,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0014.pdf",
+      "sha256": "81f87e2bd9f7180bacc84102a85140ba8f6f81a0a53a5d93de23ed7c649e4bae",
+      "source_page": 14,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 3577265,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0015.pdf",
+      "sha256": "9974c5370ab6e0c524a2127a2078f331a9486bde98d8cc100c6210df00cf6528",
+      "source_page": 15,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 3577265,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0016.pdf",
+      "sha256": "3c2436f0d98c51b77e98adeeb992cb9db623607200acb7215bee243fccba899a",
+      "source_page": 16,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 3577265,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0017.pdf",
+      "sha256": "b3602b623267c776e134790e0fbda7916a88adbbbe2d0b734afdeb8453cb0d4c",
+      "source_page": 17,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 3577266,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0018.pdf",
+      "sha256": "2ba81fb71478c0a139b0a0ef29704b576c13467e1b84091ca4f2cdbe9b459fb1",
+      "source_page": 18,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 3577262,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0019.pdf",
+      "sha256": "d6ef79813167d210ae208fa040318164420a1e65c434fface398da7ca13eafcb",
+      "source_page": 19,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 3577266,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0020.pdf",
+      "sha256": "096c646527140ce8ffd95bf5ab02b938c04ca905168005a0233a4e4ffd3e04ad",
+      "source_page": 20,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 33302,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0001.png",
+      "sha256": "c1d47a63ab7b80ccf5ed690c707fb0347eff014515750557a547dbfe9b22032d",
+      "source_page": 1,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 1703,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0002.png",
+      "sha256": "9fecc837a08054a4a2a6a0131095e48db5b6a63fa254322fad5027878e830205",
+      "source_page": 2,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 1703,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0003.png",
+      "sha256": "9fecc837a08054a4a2a6a0131095e48db5b6a63fa254322fad5027878e830205",
+      "source_page": 3,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 29748,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0004.png",
+      "sha256": "0a41faf0f09f84ca97479bf14c2250a3352ea452701a81f62f07f9be297e804f",
+      "source_page": 4,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 32839,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0005.png",
+      "sha256": "fd7d67782b61b45e5be22b1a70fa6867b983ecea4e590b957588548c248fe312",
+      "source_page": 5,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 52595,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0006.png",
+      "sha256": "148ff0c249946a44047f7e579f2e767e6935ab032c8d00ada5e693fc007aeb22",
+      "source_page": 6,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 35664,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0007.png",
+      "sha256": "f4d59ac7f47df84ff6ef407dfc08c3608de2aa8a017f5f376edf07c9574388c0",
+      "source_page": 7,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 55945,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0008.png",
+      "sha256": "ae2c1a61745b8204704ba12729a4ec58e5f218f6181c771647a762b1b5326624",
+      "source_page": 8,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 68017,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0009.png",
+      "sha256": "0ad491cf289bfa93e7d19a72fefca713597551bab3fbb09799a73692e74283d1",
+      "source_page": 9,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 59578,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0010.png",
+      "sha256": "48d77ee999435d8f3ff3569016fc7c5b825e35626e4900aea416ed4c5afb8b6d",
+      "source_page": 10,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 38359,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0011.png",
+      "sha256": "b409434020948db132ab24efe5f9c518e80bfb150c50544265abfd7f412951a8",
+      "source_page": 11,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 59264,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0012.png",
+      "sha256": "6524264ae53dada2b4ebc58934cc24020941a583715fa261c1b313aa7773146d",
+      "source_page": 12,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 38105,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0013.png",
+      "sha256": "aa152094f7f5a98a6f968db0dc9e166a138419fcee27ea5a7e859100933e5155",
+      "source_page": 13,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 39799,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0014.png",
+      "sha256": "35b987dee3da5870a53a99e8750a9dc902c65951928dcbd51a545cd5bfbebeb3",
+      "source_page": 14,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 70394,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0015.png",
+      "sha256": "feee109785d151cc22feb08cb47db971467e87fedbec868fd96305acbef02616",
+      "source_page": 15,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 61808,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0016.png",
+      "sha256": "41868b1ecd007bbe472ef2f4712820f813af4d7b55b617cd6bcf4fd3a789a5ca",
+      "source_page": 16,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 54191,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0017.png",
+      "sha256": "72b2e3e38345671418b63405fae357904c19ac6ca2a5801dd94e63754532ca3f",
+      "source_page": 17,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 49809,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0018.png",
+      "sha256": "783b4db3c0dc3eb0fd150291ab3de931dc4a19984ec658f3c78261c6a73db896",
+      "source_page": 18,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 56061,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0019.png",
+      "sha256": "411627cbfabe136eb25cf8daf79000f81ad768d1e0348cd553e71fc65869136f",
+      "source_page": 19,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 11615,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0020.png",
+      "sha256": "242a3fa9a03afba9d71eca802b3378f3e0a3021768db8b272e9bfcc8a1fcf5e1",
+      "source_page": 20,
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "web/jsg-2404a/jp/m000491/app-qr",
+      "build_eligible": false,
+      "byte_size": 3199,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "asset_export",
+      "path": "artifacts/assets/app-qr.png",
+      "repo_path": "assets/app-qr.png",
+      "sha256": "cc314efddd474256a7e30ce418d8ff9d57f6c9a3841ba74d5bc9af12c864b798",
+      "source_page": 20,
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "web/jsg-2404a/jp/m000491/charging-solar",
+      "build_eligible": false,
+      "byte_size": 70633,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "asset_export",
+      "path": "artifacts/assets/charging-solar.png",
+      "repo_path": "assets/charging-solar.png",
+      "sha256": "d1c8067857210ab6a5b10b5b8ada060ceb752d3757c2c7663402a4ccd4d66565",
+      "source_page": 11,
+      "text_policy": "localized-full-page",
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "web/jsg-2404a/jp/m000491/inbox-user-manual",
+      "build_eligible": false,
+      "byte_size": 11633,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "asset_export",
+      "path": "artifacts/assets/inbox-user-manual.png",
+      "repo_path": "assets/inbox-user-manual.png",
+      "sha256": "25f8bb6f61958c8f4a64436bfd5c6a42d477a036b56b1a79d514a9cacfd39c51",
+      "source_page": 17,
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "web/jsg-2404a/jp/m000491/overview",
+      "build_eligible": false,
+      "byte_size": 188902,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "asset_export",
+      "path": "artifacts/assets/overview.png",
+      "repo_path": "assets/overview.png",
+      "sha256": "f24516ddbdcf3182852da61aa2629c6a275a969864edde38af55d924b4878cd4",
+      "source_page": 7,
+      "text_policy": "localized-full-page",
+      "visual_review_required": true
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "web/jsg-2404a/jp/m000491/overview",
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Web review candidate; no operator pixel approval or registry promotion"
+        ],
+        "status": "quarantine"
+      },
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/overview.png",
+          "scale": 6.0
+        }
+      ],
+      "page": 7,
+      "risk_tags": [
+        "region-locked-art"
+      ],
+      "scope": {
+        "locales": [
+          "ja"
+        ],
+        "models": [
+          "JSG-2404A"
+        ],
+        "regions": [
+          "JP"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "transforms": [
+        {
+          "bbox_pt": [
+            21.0,
+            166.0,
+            346.0,
+            495.0
+          ],
+          "op": "crop"
+        }
+      ],
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "web/jsg-2404a/jp/m000491/charging-solar",
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Web review candidate; no operator pixel approval or registry promotion"
+        ],
+        "status": "quarantine"
+      },
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/charging-solar.png",
+          "scale": 6.0
+        }
+      ],
+      "page": 11,
+      "risk_tags": [
+        "region-locked-art"
+      ],
+      "scope": {
+        "locales": [
+          "ja"
+        ],
+        "models": [
+          "JSG-2404A"
+        ],
+        "regions": [
+          "JP"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "transforms": [
+        {
+          "bbox_pt": [
+            22.0,
+            375.0,
+            326.0,
+            453.0
+          ],
+          "op": "crop"
+        }
+      ],
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "web/jsg-2404a/jp/m000491/inbox-user-manual",
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Web review candidate; no operator pixel approval or registry promotion"
+        ],
+        "status": "quarantine"
+      },
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/inbox-user-manual.png",
+          "scale": 6.0
+        }
+      ],
+      "page": 17,
+      "risk_tags": [
+        "region-locked-art"
+      ],
+      "scope": {
+        "locales": [
+          "ja"
+        ],
+        "models": [
+          "JSG-2404A"
+        ],
+        "regions": [
+          "JP"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "transforms": [
+        {
+          "bbox_pt": [
+            293.0,
+            146.0,
+            325.0,
+            189.0
+          ],
+          "op": "crop"
+        }
+      ],
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "web/jsg-2404a/jp/m000491/app-qr",
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Web review candidate; no operator pixel approval or registry promotion"
+        ],
+        "status": "quarantine"
+      },
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/app-qr.png",
+          "scale": 6.0
+        }
+      ],
+      "page": 20,
+      "risk_tags": [
+        "region-locked-art"
+      ],
+      "scope": {
+        "locales": [
+          "ja"
+        ],
+        "models": [
+          "JSG-2404A"
+        ],
+        "regions": [
+          "JP"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "transforms": [
+        {
+          "bbox_pt": [
+            304.0,
+            467.0,
+            343.0,
+            505.0
+          ],
+          "op": "crop"
+        }
+      ],
+      "visual_review_required": true
+    }
+  ],
+  "coordinate_contract": {
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page",
+    "bbox_units": "pt",
+    "page_numbering": "pdf-1-based"
+  },
+  "indexes": {
+    "artifacts_csv": {
+      "path": "artifacts.csv",
+      "sha256": "4499a7feb7876cb066f21a6daaac2e9e3cf397d6743803a33eb274f4ae31dfab"
+    }
+  },
+  "manifest_version": 1,
+  "normalization": {
+    "engine": "pymupdf",
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 40000000,
+    "pdf_save": {
+      "clean": true,
+      "deflate": true,
+      "garbage": 4,
+      "no_new_id": true
+    },
+    "validated_mupdf_version": "1.29.0",
+    "validated_version": "1.28.0"
+  },
+  "page_catalog": [
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "ja",
+      "page": 1,
+      "page_key": "page-01",
+      "risk_tags": [
+        "localized-source"
+      ],
+      "role": "source-page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "ja",
+      "page": 2,
+      "page_key": "page-02",
+      "risk_tags": [
+        "localized-source"
+      ],
+      "role": "source-page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "ja",
+      "page": 3,
+      "page_key": "page-03",
+      "risk_tags": [
+        "localized-source"
+      ],
+      "role": "source-page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "ja",
+      "page": 4,
+      "page_key": "page-04",
+      "risk_tags": [
+        "localized-source"
+      ],
+      "role": "source-page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "ja",
+      "page": 5,
+      "page_key": "page-05",
+      "risk_tags": [
+        "localized-source"
+      ],
+      "role": "source-page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "ja",
+      "page": 6,
+      "page_key": "page-06",
+      "risk_tags": [
+        "localized-source"
+      ],
+      "role": "source-page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "ja",
+      "page": 7,
+      "page_key": "page-07",
+      "risk_tags": [
+        "localized-source"
+      ],
+      "role": "source-page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "ja",
+      "page": 8,
+      "page_key": "page-08",
+      "risk_tags": [
+        "localized-source"
+      ],
+      "role": "source-page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "ja",
+      "page": 9,
+      "page_key": "page-09",
+      "risk_tags": [
+        "localized-source"
+      ],
+      "role": "source-page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "ja",
+      "page": 10,
+      "page_key": "page-10",
+      "risk_tags": [
+        "localized-source"
+      ],
+      "role": "source-page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "ja",
+      "page": 11,
+      "page_key": "page-11",
+      "risk_tags": [
+        "localized-source"
+      ],
+      "role": "source-page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "ja",
+      "page": 12,
+      "page_key": "page-12",
+      "risk_tags": [
+        "localized-source"
+      ],
+      "role": "source-page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "ja",
+      "page": 13,
+      "page_key": "page-13",
+      "risk_tags": [
+        "localized-source"
+      ],
+      "role": "source-page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "ja",
+      "page": 14,
+      "page_key": "page-14",
+      "risk_tags": [
+        "localized-source"
+      ],
+      "role": "source-page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "ja",
+      "page": 15,
+      "page_key": "page-15",
+      "risk_tags": [
+        "localized-source"
+      ],
+      "role": "source-page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "ja",
+      "page": 16,
+      "page_key": "page-16",
+      "risk_tags": [
+        "localized-source"
+      ],
+      "role": "source-page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "ja",
+      "page": 17,
+      "page_key": "page-17",
+      "risk_tags": [
+        "localized-source"
+      ],
+      "role": "source-page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "ja",
+      "page": 18,
+      "page_key": "page-18",
+      "risk_tags": [
+        "localized-source"
+      ],
+      "role": "source-page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "ja",
+      "page": 19,
+      "page_key": "page-19",
+      "risk_tags": [
+        "localized-source"
+      ],
+      "role": "source-page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "ja",
+      "page": 20,
+      "page_key": "page-20",
+      "risk_tags": [
+        "localized-source"
+      ],
+      "role": "source-page"
+    }
+  ],
+  "recipe_sha256": "2254032ca287719929d87189f1d4db3f3ef16050bae55385692ffdca1928aa5b",
+  "runtime": {
+    "mupdf_version": "1.29.0",
+    "pymupdf_version": "1.28.0"
+  },
+  "source": {
+    "ai_metadata_count": 0,
+    "ai_private_data_count": 0,
+    "page_count": 20,
+    "piece_info_count": 0,
+    "sha256": "e59cc1bc778eb5cea4ec0b77f3d3598d2703dc94a809108c8b4336709519bdb7",
+    "source_key": "source/jsg2404a_jp_m000491"
+  }
+}

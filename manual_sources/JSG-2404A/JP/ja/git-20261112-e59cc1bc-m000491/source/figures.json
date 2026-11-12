@@ -1,0 +1,183 @@
+[
+  {
+    "slot": "unfold-1",
+    "physical_page": 4,
+    "caption": "マグネットバックルを外す",
+    "embedded_words": false,
+    "local_path": "assets/unfold-1.png",
+    "source_package": "manual_sources/JS-40A/JP/ja/git-20261112-1a96bf34-m000464",
+    "sha256": "d4f192fb0e8b2e6c6fe9f62b4cfc00bc59ad12606ebc48b1b7b55c274b623a1a",
+    "decision": "reuse byte-identical complete illustration held in the selected JS-40A 000464 candidate; actual art donor 000348 p2/p3, matched to this bundle p4/p5; assets are self-contained and no other source package is required to replay",
+    "donor_material": "38-0001-000348",
+    "donor_physical_page": 2,
+    "donor_source_sha256": "482191d208d902c4e18181b04fe7460387b4b013b4c5cf2484209a96311588ca",
+    "source_dependency": false
+  },
+  {
+    "slot": "unfold-2",
+    "physical_page": 4,
+    "caption": "両側に広げる",
+    "embedded_words": false,
+    "local_path": "assets/unfold-2.png",
+    "source_package": "manual_sources/JS-40A/JP/ja/git-20261112-1a96bf34-m000464",
+    "sha256": "a71fb0738c120520516984c3d99cffffcaa1b1ad0f2f65c31771c9ee45404a60",
+    "decision": "reuse byte-identical complete illustration held in the selected JS-40A 000464 candidate; actual art donor 000348 p2/p3, matched to this bundle p4/p5; assets are self-contained and no other source package is required to replay",
+    "donor_material": "38-0001-000348",
+    "donor_physical_page": 2,
+    "donor_source_sha256": "482191d208d902c4e18181b04fe7460387b4b013b4c5cf2484209a96311588ca",
+    "source_dependency": false
+  },
+  {
+    "slot": "unfold-3",
+    "physical_page": 4,
+    "caption": "真ん中の隠しボタンを外す",
+    "embedded_words": false,
+    "local_path": "assets/unfold-3.png",
+    "source_package": "manual_sources/JS-40A/JP/ja/git-20261112-1a96bf34-m000464",
+    "sha256": "cc3bce48031cc93f8bde2651c84aa7052231a26214c2e7de88ee247b1b047331",
+    "decision": "reuse byte-identical complete illustration held in the selected JS-40A 000464 candidate; actual art donor 000348 p2/p3, matched to this bundle p4/p5; assets are self-contained and no other source package is required to replay",
+    "donor_material": "38-0001-000348",
+    "donor_physical_page": 2,
+    "donor_source_sha256": "482191d208d902c4e18181b04fe7460387b4b013b4c5cf2484209a96311588ca",
+    "source_dependency": false
+  },
+  {
+    "slot": "unfold-4",
+    "physical_page": 5,
+    "caption": "広げる",
+    "embedded_words": false,
+    "local_path": "assets/unfold-4.png",
+    "source_package": "manual_sources/JS-40A/JP/ja/git-20261112-1a96bf34-m000464",
+    "sha256": "7159f9d8bddb88c5d2a7b4ab3e8e3ec349bf3f86ab7cc53fec58208576911570",
+    "decision": "reuse byte-identical complete illustration held in the selected JS-40A 000464 candidate; actual art donor 000348 p2/p3, matched to this bundle p4/p5; assets are self-contained and no other source package is required to replay",
+    "donor_material": "38-0001-000348",
+    "donor_physical_page": 3,
+    "donor_source_sha256": "482191d208d902c4e18181b04fe7460387b4b013b4c5cf2484209a96311588ca",
+    "source_dependency": false
+  },
+  {
+    "slot": "unfold-5",
+    "physical_page": 5,
+    "caption": "太陽に向かい、ポータブル電源に接続する",
+    "embedded_words": false,
+    "local_path": "assets/unfold-5.png",
+    "sha256": "e3b03378fceedcf643cb9e030c3cbaa3a7ad9da0f7c8822d6f12d1ff3e4f0773",
+    "source_dependency": false,
+    "source_package": "manual_sources/JSG-0304B/JP/ja/git-20261112-fe9f1b56-m000512",
+    "source_sha256": "fe9f1b561a9f75af52e1af738f9da00492302a55f43ddc0122e366744fb9e452",
+    "donor_physical_page": 5,
+    "decision": "reuse complete bundle512 p5 art unchanged after independent comparison against bundle491 p5; native bounds differ less than0.002pt and same handled-station drawing; reject100Plus reference"
+  },
+  {
+    "slot": "overview",
+    "physical_page": 7,
+    "bbox": [
+      21,
+      166,
+      346,
+      495
+    ],
+    "caption": "本体とSolarSaga 40 Mini。各部：主電源ボタン、シガーソケット出力ポート、USB-A出力ポート、USB-C出力ポート、USB-C入力/出力ポート、DC/USB出力ボタン、LCDディスプレイ、LEDライト、LEDライトボタン、AC出力ポート、AC出力ボタン、AC入力ポート。",
+    "embedded_words": true,
+    "local_path": "assets/overview.png",
+    "decision": "new source crop candidate after reuse review",
+    "reuse_review": "Current bundle panel additionally shows the unfolded SolarSaga40Mini; single-station overview lacks that complete composition.",
+    "sha256": "f24516ddbdcf3182852da61aa2629c6a275a969864edde38af55d924b4878cd4"
+  },
+  {
+    "slot": "charging-solar",
+    "physical_page": 11,
+    "bbox": [
+      26,
+      375,
+      326,
+      492
+    ],
+    "caption": "DC8020→USB-C ケーブル、DC8020ポート、USB-C入力ポート、ポータブル電源 240",
+    "embedded_words": true,
+    "local_path": "assets/charging-solar.png",
+    "decision": "new source crop candidate after reuse review",
+    "reuse_review": "300Plus reference has an unprinted 別売り label; JE240A reference shows a different solar panel and connector. Target bundle must retain own 40Mini connection and included-cable labels.",
+    "sha256": "d1c8067857210ab6a5b10b5b8ada060ceb752d3757c2c7663402a4ccd4d66565"
+  },
+  {
+    "slot": "inbox-usbc",
+    "physical_page": 17,
+    "caption": "DC8020→USB-C ケーブル",
+    "embedded_words": false,
+    "local_path": "assets/inbox-usbc.png",
+    "decision": "reuse identical complete 40Mini accessory illustration from current sibling bundle after comparing source physical17; no recrop",
+    "reuse_review": "Bundle-only included accessory absent from matching single-station inbox; source item identity and all edges retained.",
+    "sha256": "158a14c1316216408d54c7734141b1f928f2984efe54fbb307262df247adba0e",
+    "source_package": "manual_sources/JSG-0304B/JP/ja/git-20261112-fe9f1b56-m000512",
+    "source_sha256": "fe9f1b561a9f75af52e1af738f9da00492302a55f43ddc0122e366744fb9e452"
+  },
+  {
+    "slot": "inbox-pouch",
+    "physical_page": 17,
+    "caption": "収納ポーチ",
+    "embedded_words": false,
+    "local_path": "assets/inbox-pouch.png",
+    "decision": "reuse identical complete 40Mini accessory illustration from current sibling bundle after comparing source physical17; no recrop",
+    "reuse_review": "Bundle-only included accessory absent from matching single-station inbox; source item identity and all edges retained.",
+    "sha256": "9eddf744be243717bd1191ecbbcb1cf021c444a0e35e9607092faa1f60357cea",
+    "source_package": "manual_sources/JSG-0304B/JP/ja/git-20261112-fe9f1b56-m000512",
+    "source_sha256": "fe9f1b561a9f75af52e1af738f9da00492302a55f43ddc0122e366744fb9e452"
+  },
+  {
+    "slot": "inbox-panel",
+    "physical_page": 17,
+    "caption": "SolarSaga 40 Mini",
+    "embedded_words": false,
+    "local_path": "assets/inbox-panel.png",
+    "decision": "reuse identical complete 40Mini accessory illustration from current sibling bundle after comparing source physical17; no recrop",
+    "reuse_review": "Bundle-only included accessory absent from matching single-station inbox; source item identity and all edges retained.",
+    "sha256": "22c8fcc36d3c9edf278dcefeb83011b3aacdb572a4292647a80c4603dd553c1c",
+    "source_package": "manual_sources/JSG-0304B/JP/ja/git-20261112-fe9f1b56-m000512",
+    "source_sha256": "fe9f1b561a9f75af52e1af738f9da00492302a55f43ddc0122e366744fb9e452"
+  },
+  {
+    "slot": "inbox-extension",
+    "physical_page": 17,
+    "caption": "接続ケーブル＋トランスジャック",
+    "embedded_words": false,
+    "local_path": "assets/inbox-extension.png",
+    "decision": "reuse identical complete 40Mini accessory illustration from current sibling bundle after comparing source physical17; no recrop",
+    "reuse_review": "Bundle-only included accessory absent from matching single-station inbox; source item identity and all edges retained.",
+    "sha256": "a44fdc10ad13f1d32edd05254c29c5c21154723fd7d2389d0dde729698c38ba5",
+    "source_package": "manual_sources/JSG-0304B/JP/ja/git-20261112-fe9f1b56-m000512",
+    "source_sha256": "fe9f1b561a9f75af52e1af738f9da00492302a55f43ddc0122e366744fb9e452"
+  },
+  {
+    "slot": "inbox-user-manual",
+    "physical_page": 17,
+    "bbox": [
+      297,
+      153,
+      328,
+      205
+    ],
+    "caption": "取扱説明書",
+    "embedded_words": false,
+    "local_path": "assets/inbox-user-manual.png",
+    "decision": "new source crop candidate after reuse review",
+    "reuse_review": "Target cover illustration is the JSG bundle, not the JE single-station booklet.",
+    "sha256": "25f8bb6f61958c8f4a64436bfd5c6a42d477a036b56b1a79d514a9cacfd39c51"
+  },
+  {
+    "slot": "app-qr",
+    "physical_page": 20,
+    "bbox": [
+      304,
+      467,
+      343,
+      505
+    ],
+    "caption": "Jackery アプリ QRコード",
+    "embedded_words": false,
+    "local_path": "assets/app-qr.png",
+    "decision": "new source crop candidate after reuse review",
+    "reuse_review": "No identical QR is registered for this bundle; preserve its actual printed matrix.",
+    "sha256": "cc314efddd474256a7e30ce418d8ff9d57f6c9a3841ba74d5bc9af12c864b798"
+  }
+]

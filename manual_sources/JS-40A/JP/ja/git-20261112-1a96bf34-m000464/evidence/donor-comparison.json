@@ -1,0 +1,93 @@
+{
+  "target_material": "38-0001-000464",
+  "donor_material": "38-0001-000348",
+  "donor_role": "artwork only",
+  "all_five_graphics_compared": true,
+  "rows": [
+    {
+      "step": 1,
+      "target_source": "source/original.pdf",
+      "target_page": 3,
+      "target_comparison_clip_pt": [
+        122,
+        208,
+        223,
+        312
+      ],
+      "donor_source": "source/art-donor-000348.pdf",
+      "donor_page": 2,
+      "donor_recipe": "source/art-donor-000348-recipe.json",
+      "asset": "assets/unfold-1.png",
+      "decision": "Same model, folding pose, latch, hand shapes and arrows; reuse unchanged candidate bytes. No donor prose/specification carried into target.",
+      "review_image": "evidence/donor-comparison/step-1.png"
+    },
+    {
+      "step": 2,
+      "target_source": "source/original.pdf",
+      "target_page": 4,
+      "target_comparison_clip_pt": [
+        129,
+        45,
+        230,
+        147
+      ],
+      "donor_source": "source/art-donor-000348.pdf",
+      "donor_page": 2,
+      "donor_recipe": "source/art-donor-000348-recipe.json",
+      "asset": "assets/unfold-2.png",
+      "decision": "Same model, folding pose, latch, hand shapes and arrows; reuse unchanged candidate bytes. No donor prose/specification carried into target.",
+      "review_image": "evidence/donor-comparison/step-2.png"
+    },
+    {
+      "step": 3,
+      "target_source": "source/original.pdf",
+      "target_page": 4,
+      "target_comparison_clip_pt": [
+        124,
+        242,
+        231,
+        343
+      ],
+      "donor_source": "source/art-donor-000348.pdf",
+      "donor_page": 2,
+      "donor_recipe": "source/art-donor-000348-recipe.json",
+      "asset": "assets/unfold-3.png",
+      "decision": "Same model, folding pose, latch, hand shapes and arrows; reuse unchanged candidate bytes. No donor prose/specification carried into target.",
+      "review_image": "evidence/donor-comparison/step-3.png"
+    },
+    {
+      "step": 4,
+      "target_source": "source/original.pdf",
+      "target_page": 5,
+      "target_comparison_clip_pt": [
+        32,
+        84,
+        228,
+        153
+      ],
+      "donor_source": "source/art-donor-000348.pdf",
+      "donor_page": 3,
+      "donor_recipe": "source/art-donor-000348-recipe.json",
+      "asset": "assets/unfold-4.png",
+      "decision": "Same model, folding pose, latch, hand shapes and arrows; reuse unchanged candidate bytes. No donor prose/specification carried into target.",
+      "review_image": "evidence/donor-comparison/step-4.png"
+    },
+    {
+      "step": 5,
+      "target_source": "source/original.pdf",
+      "target_page": 5,
+      "target_comparison_clip_pt": [
+        25,
+        248,
+        239,
+        340
+      ],
+      "donor_source": "source/art-donor-000348.pdf",
+      "donor_page": 3,
+      "donor_recipe": "source/art-donor-000348-recipe.json",
+      "asset": "assets/unfold-5.png",
+      "decision": "Same model, folding pose, latch, hand shapes and arrows; reuse unchanged candidate bytes. No donor prose/specification carried into target.",
+      "review_image": "evidence/donor-comparison/step-5.png"
+    }
+  ]
+}

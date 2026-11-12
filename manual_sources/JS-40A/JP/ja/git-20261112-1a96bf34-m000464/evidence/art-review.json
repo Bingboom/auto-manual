@@ -1,0 +1,125 @@
+{
+  "method": "Native12x PDF source crops and matching-geometry candidate pairs; bare-art and edge strips, followed by desktop/mobile component inspection. Operator pixel approval remains pending.",
+  "assets": [
+    {
+      "slot": "power-device",
+      "source_page": 26,
+      "crop_pt": [
+        18,
+        28,
+        244,
+        200
+      ],
+      "source_zoom": 12,
+      "candidate_png_scale": 8,
+      "four_edges_checked": true,
+      "bare_art_checked": true,
+      "source_caption_only_whiteout": true,
+      "empty_caption_frame": false,
+      "new_orphan_caption_fragments": false,
+      "complete_product_hands_arrows_straps": true,
+      "candidate_sha256": "5dcb13ee8b6224a48b64311d91af17c5c38bad005af5ae3b4ae36480fb5cd17b",
+      "pair": "evidence/art-review/power-device-pair.png"
+    },
+    {
+      "slot": "inbox-panel",
+      "source_page": 26,
+      "crop_pt": [
+        36,
+        241,
+        143,
+        275
+      ],
+      "source_zoom": 12,
+      "candidate_png_scale": 8,
+      "four_edges_checked": true,
+      "bare_art_checked": true,
+      "source_caption_only_whiteout": false,
+      "empty_caption_frame": false,
+      "new_orphan_caption_fragments": false,
+      "complete_product_hands_arrows_straps": true,
+      "candidate_sha256": "39f9ab6b4f6ca7dceef39bf435a736e9a196075704a0aea4c11c1fc529fe328b",
+      "pair": "evidence/art-review/inbox-panel-pair.png"
+    },
+    {
+      "slot": "inbox-pouch",
+      "source_page": 26,
+      "crop_pt": [
+        165,
+        240,
+        201,
+        281
+      ],
+      "source_zoom": 12,
+      "candidate_png_scale": 8,
+      "four_edges_checked": true,
+      "bare_art_checked": true,
+      "source_caption_only_whiteout": true,
+      "empty_caption_frame": false,
+      "new_orphan_caption_fragments": false,
+      "complete_product_hands_arrows_straps": true,
+      "candidate_sha256": "5177e1008dd7deeb039856c474e802eeb04819752316a511a4281f8c808cf9ad",
+      "pair": "evidence/art-review/inbox-pouch-pair.png"
+    },
+    {
+      "slot": "inbox-adapter",
+      "source_page": 26,
+      "crop_pt": [
+        42,
+        288,
+        59,
+        321
+      ],
+      "source_zoom": 12,
+      "candidate_png_scale": 8,
+      "four_edges_checked": true,
+      "bare_art_checked": true,
+      "source_caption_only_whiteout": false,
+      "empty_caption_frame": false,
+      "new_orphan_caption_fragments": false,
+      "complete_product_hands_arrows_straps": true,
+      "candidate_sha256": "aaee5b981b57667e8730171153c37e0da81c95f10e02e1398b9b12414979990d",
+      "pair": "evidence/art-review/inbox-adapter-pair.png"
+    },
+    {
+      "slot": "inbox-manual",
+      "source_page": 26,
+      "crop_pt": [
+        166,
+        290,
+        190,
+        324
+      ],
+      "source_zoom": 12,
+      "candidate_png_scale": 8,
+      "four_edges_checked": true,
+      "bare_art_checked": true,
+      "source_caption_only_whiteout": false,
+      "empty_caption_frame": false,
+      "new_orphan_caption_fragments": false,
+      "complete_product_hands_arrows_straps": true,
+      "candidate_sha256": "5614a0dca59a649c1e9e8d519ff6f1586b704b3c53325e5d1deff29ff005e4a2",
+      "pair": "evidence/art-review/inbox-manual-pair.png"
+    },
+    {
+      "slot": "contact-qr",
+      "source_page": 28,
+      "crop_pt": [
+        201,
+        315,
+        241,
+        354
+      ],
+      "source_zoom": 12,
+      "candidate_png_scale": 8,
+      "four_edges_checked": true,
+      "bare_art_checked": true,
+      "source_caption_only_whiteout": false,
+      "empty_caption_frame": false,
+      "new_orphan_caption_fragments": false,
+      "complete_product_hands_arrows_straps": true,
+      "candidate_sha256": "f3f93e2e4d804293d4ac3028969eb1bd47c3411e95fafca22a4107647d14f63f",
+      "pair": "evidence/art-review/contact-qr-pair.png"
+    }
+  ]
+}
