@@ -1,0 +1,434 @@
+{
+  "source_sha256": "e59cc1bc778eb5cea4ec0b77f3d3598d2703dc94a809108c8b4336709519bdb7",
+  "specifications": [
+    {
+      "physical_page": 6,
+      "section_title": "【Jackery ポータブル電源 240】",
+      "rows": [
+        {
+          "label": "製品の名称 :",
+          "label_rowspan": 1,
+          "values": [
+            {
+              "text": "Jackery ポータブル電源240",
+              "references": []
+            }
+          ],
+          "references": []
+        },
+        {
+          "label": "型番 :",
+          "label_rowspan": 1,
+          "values": [
+            {
+              "text": "JE-240A",
+              "references": []
+            }
+          ],
+          "references": []
+        },
+        {
+          "label": "バッテリータイプ :",
+          "label_rowspan": 1,
+          "values": [
+            {
+              "text": "LiFePO4（リン酸鉄リチウムイオン電池）",
+              "references": []
+            }
+          ],
+          "references": []
+        },
+        {
+          "label": "サイズ＆重量 :",
+          "label_rowspan": 1,
+          "values": [
+            {
+              "text": "約23.1 x 15.3 x 16.8 cm (約3.6kg)",
+              "references": []
+            }
+          ],
+          "references": []
+        },
+        {
+          "label": "定格容量 :",
+          "label_rowspan": 1,
+          "values": [
+            {
+              "text": "20Ah/12.8V DC (256Wh)",
+              "references": []
+            }
+          ],
+          "references": []
+        },
+        {
+          "label": "AC入力 :",
+          "label_rowspan": 1,
+          "values": [
+            {
+              "text": "100V-120V~ 50Hz/60Hz, 最大10A",
+              "references": []
+            }
+          ],
+          "references": []
+        },
+        {
+          "label": "AC出力 :",
+          "label_rowspan": 1,
+          "values": [
+            {
+              "text": "100V~ 50Hz/60Hz, 3A, 300W (瞬間最大600W)",
+              "references": []
+            }
+          ],
+          "references": []
+        },
+        {
+          "label": "USB-A出力 :",
+          "label_rowspan": 1,
+          "values": [
+            {
+              "text": "5V⎓3A, 最大15W",
+              "references": []
+            }
+          ],
+          "references": []
+        },
+        {
+          "label": "USB-C(OUT) 出力 :",
+          "label_rowspan": 1,
+          "values": [
+            {
+              "text": "5V⎓3A, 最大15W",
+              "references": []
+            }
+          ],
+          "references": []
+        },
+        {
+          "label": "USB-C(IN/OUT) 出力 :",
+          "label_rowspan": 1,
+          "values": [
+            {
+              "text": "5V⎓3A, 9V ⎓3A, 12V ⎓3A, 15V ⎓3A, 20V ⎓5A, 最大100W",
+              "references": []
+            }
+          ],
+          "references": []
+        },
+        {
+          "label": "USB-C(IN/OUT) 入力 :",
+          "label_rowspan": 1,
+          "values": [
+            {
+              "text": "9V ⎓3A, 12V ⎓3A, 15V ⎓3A, 20V ⎓5A, 最大100W",
+              "references": []
+            }
+          ],
+          "references": []
+        },
+        {
+          "label": "USB総出力 :",
+          "label_rowspan": 1,
+          "values": [
+            {
+              "text": "USB-C(IN/OUT): 100W Max, USB-C(OUT)+USB-A: 最大24W",
+              "references": []
+            }
+          ],
+          "references": []
+        },
+        {
+          "label": "シガーソケット出力 :",
+          "label_rowspan": 1,
+          "values": [
+            {
+              "text": "12V⎓10A",
+              "references": []
+            }
+          ],
+          "references": []
+        },
+        {
+          "label": "充電温度 :",
+          "label_rowspan": 1,
+          "values": [
+            {
+              "text": "0°C~45 °C (32°F~113 °F)",
+              "references": []
+            }
+          ],
+          "references": []
+        },
+        {
+          "label": "動作温度 :",
+          "label_rowspan": 1,
+          "values": [
+            {
+              "text": "-10°C~45 °C (14°F~113 °F)",
+              "references": []
+            }
+          ],
+          "references": []
+        },
+        {
+          "label": "保存温度 :",
+          "label_rowspan": 1,
+          "values": [
+            {
+              "text": "3ヶ月の場合: -20°C ~45°C (4°F ~113°F )\n6ヶ月の場合: -10°C ~25°C (14°F ~77°F )",
+              "references": []
+            }
+          ],
+          "references": []
+        },
+        {
+          "label": "認証：",
+          "label_rowspan": 1,
+          "values": [
+            {
+              "text": "UN38.3",
+              "references": []
+            }
+          ],
+          "references": []
+        }
+      ],
+      "review": "every label/value visually compared with the selected bundle original.pdf physical6; no cross-bundle harmonization"
+    },
+    {
+      "physical_page": 6,
+      "section_title": "【Jackery SolarSaga 40 Mini】",
+      "rows": [
+        {
+          "label": "製品名称:",
+          "label_rowspan": 1,
+          "values": [
+            {
+              "text": "SolarSaga 40 Mini",
+              "references": []
+            }
+          ],
+          "references": []
+        },
+        {
+          "label": "型番:",
+          "label_rowspan": 1,
+          "values": [
+            {
+              "text": "JS-40A",
+              "references": []
+            }
+          ],
+          "references": []
+        },
+        {
+          "label": "最大出力 (Pmax):",
+          "label_rowspan": 1,
+          "values": [
+            {
+              "text": "40W±5%",
+              "references": []
+            }
+          ],
+          "references": []
+        },
+        {
+          "label": "開放電圧 (Voc):",
+          "label_rowspan": 1,
+          "values": [
+            {
+              "text": "25V±5%",
+              "references": []
+            }
+          ],
+          "references": []
+        },
+        {
+          "label": "短絡電流 (Isc):",
+          "label_rowspan": 1,
+          "values": [
+            {
+              "text": "2.07A±5%",
+              "references": []
+            }
+          ],
+          "references": []
+        },
+        {
+          "label": "動作電圧 (Vmp):",
+          "label_rowspan": 1,
+          "values": [
+            {
+              "text": "20.9V±5%",
+              "references": []
+            }
+          ],
+          "references": []
+        },
+        {
+          "label": "動作電流 (Imp):",
+          "label_rowspan": 1,
+          "values": [
+            {
+              "text": "1.91A±5%",
+              "references": []
+            }
+          ],
+          "references": []
+        },
+        {
+          "label": "正味重量:",
+          "label_rowspan": 1,
+          "values": [
+            {
+              "text": "約1.2kg",
+              "references": []
+            }
+          ],
+          "references": []
+        },
+        {
+          "label": "収納サイズ:",
+          "label_rowspan": 1,
+          "values": [
+            {
+              "text": "約252*300*30mm",
+              "references": []
+            }
+          ],
+          "references": []
+        },
+        {
+          "label": "展開サイズ:",
+          "label_rowspan": 1,
+          "values": [
+            {
+              "text": "約1020*300*18.5mm",
+              "references": []
+            }
+          ],
+          "references": []
+        },
+        {
+          "label": "動作温度範囲:",
+          "label_rowspan": 1,
+          "values": [
+            {
+              "text": "-20°C~65°C（-4°F~149°F）",
+              "references": []
+            }
+          ],
+          "references": []
+        },
+        {
+          "label": "最大システム電圧:",
+          "label_rowspan": 1,
+          "values": [
+            {
+              "text": "30V",
+              "references": []
+            }
+          ],
+          "references": []
+        },
+        {
+          "label": "最大逆電流:",
+          "label_rowspan": 1,
+          "values": [
+            {
+              "text": "6A",
+              "references": []
+            }
+          ],
+          "references": []
+        },
+        {
+          "label": "感電保護クラス:",
+          "label_rowspan": 1,
+          "values": [
+            {
+              "text": "クラスⅢ",
+              "references": []
+            }
+          ],
+          "references": []
+        },
+        {
+          "label": "防水規格:",
+          "label_rowspan": 1,
+          "values": [
+            {
+              "text": "IP68",
+              "references": []
+            }
+          ],
+          "references": []
+        },
+        {
+          "label": "電圧温度係数:",
+          "label_rowspan": 1,
+          "values": [
+            {
+              "text": "-0.3%/°C",
+              "references": []
+            }
+          ],
+          "references": []
+        },
+        {
+          "label": "出力温度係数:",
+          "label_rowspan": 1,
+          "values": [
+            {
+              "text": "-0.39%/°C",
+              "references": []
+            }
+          ],
+          "references": []
+        },
+        {
+          "label": "最大直列接続数:",
+          "label_rowspan": 1,
+          "values": [
+            {
+              "text": "1",
+              "references": []
+            }
+          ],
+          "references": []
+        },
+        {
+          "label": "最大並列接続数:",
+          "label_rowspan": 1,
+          "values": [
+            {
+              "text": "3",
+              "references": []
+            }
+          ],
+          "references": []
+        },
+        {
+          "label": "消費財カテゴリー:",
+          "label_rowspan": 1,
+          "values": [
+            {
+              "text": "IEC TS 63163、消費財タイプI",
+              "references": []
+            }
+          ],
+          "references": []
+        }
+      ],
+      "review": "every label/value visually compared with the selected bundle original.pdf physical6; no cross-bundle harmonization"
+    }
+  ],
+  "body_numeric_checks": [
+    "40°C warning p14",
+    "300W rated/600W surge p6",
+    "12V only and24V not allowed p12",
+    "5cm ventilation p15",
+    "2.4GHz supported/5GHz not supported,3sec reset,5minute timeout p18–19"
+  ],
+  "cross_bundle_difference": "51240Mini970*300*2.5mm,20mm folded;4911020*300*18.5mm,30mm folded + extra IEC/temperature/system values retained independently"
+}

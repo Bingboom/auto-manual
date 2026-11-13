@@ -1,0 +1,204 @@
+{
+  "source_sha256": "c1f0f04e5ee672bb1c82f3d0b5ca009dc4459db3a6152d74a96acd489caff67c",
+  "assets": {
+    "overview": {
+      "mode": "source-crop",
+      "physical_page": 3,
+      "clip_fraction": [
+        0.052,
+        0.088,
+        0.947,
+        0.405
+      ],
+      "path": "assets/overview.png",
+      "reason": "No existing exact product/region artwork found in inventories recorded in discovery.json. Dense labels or complete diagram retained; inbox caption and number excluded.",
+      "boundary_strategy": "complete illustration, all four edges checked; original white backdrop"
+    },
+    "lcd-panel": {
+      "mode": "source-crop",
+      "physical_page": 4,
+      "clip_fraction": [
+        0.058,
+        0.154,
+        0.943,
+        0.31
+      ],
+      "path": "assets/lcd-panel.png",
+      "reason": "No existing exact product/region artwork found in inventories recorded in discovery.json. Dense labels or complete diagram retained; inbox caption and number excluded.",
+      "boundary_strategy": "complete illustration, all four edges checked; original white backdrop"
+    },
+    "charging": {
+      "mode": "source-crop",
+      "physical_page": 10,
+      "clip_fraction": [
+        0.052,
+        0.548,
+        0.935,
+        0.884
+      ],
+      "path": "assets/charging.png",
+      "reason": "No existing exact product/region artwork found in inventories recorded in discovery.json. Dense labels or complete diagram retained; inbox caption and number excluded.",
+      "boundary_strategy": "complete illustration, all four edges checked; original white backdrop"
+    },
+    "inbox-main": {
+      "mode": "source-crop",
+      "physical_page": 4,
+      "clip_fraction": [
+        0.07,
+        0.538,
+        0.211,
+        0.63
+      ],
+      "path": "assets/inbox-main.png",
+      "reason": "No existing exact product/region artwork found in inventories recorded in discovery.json. Dense labels or complete diagram retained; inbox caption and number excluded.",
+      "boundary_strategy": "complete illustration, all four edges checked; original white backdrop",
+      "clip_points": [
+        28,
+        281,
+        71,
+        327
+      ]
+    },
+    "inbox-car": {
+      "mode": "source-crop",
+      "physical_page": 4,
+      "clip_fraction": [
+        0.235,
+        0.538,
+        0.355,
+        0.63
+      ],
+      "path": "assets/inbox-car.png",
+      "reason": "No existing exact product/region artwork found in inventories recorded in discovery.json. Dense labels or complete diagram retained; inbox caption and number excluded.",
+      "boundary_strategy": "complete illustration, all four edges checked; original white backdrop",
+      "clip_points": [
+        95,
+        280.5,
+        125,
+        327
+      ]
+    },
+    "inbox-adapter": {
+      "mode": "source-crop",
+      "physical_page": 4,
+      "clip_fraction": [
+        0.421,
+        0.538,
+        0.542,
+        0.63
+      ],
+      "path": "assets/inbox-adapter.png",
+      "reason": "No existing exact product/region artwork found in inventories recorded in discovery.json. Dense labels or complete diagram retained; inbox caption and number excluded.",
+      "boundary_strategy": "complete illustration, all four edges checked; original white backdrop",
+      "clip_points": [
+        157,
+        280.5,
+        202,
+        328
+      ]
+    },
+    "inbox-manual": {
+      "mode": "source-crop",
+      "physical_page": 4,
+      "clip_fraction": [
+        0.607,
+        0.538,
+        0.695,
+        0.63
+      ],
+      "path": "assets/inbox-manual.png",
+      "reason": "No existing exact product/region artwork found in inventories recorded in discovery.json. Dense labels or complete diagram retained; inbox caption and number excluded.",
+      "boundary_strategy": "complete illustration, all four edges checked; original white backdrop",
+      "clip_points": [
+        232,
+        282,
+        266,
+        327
+      ]
+    },
+    "inbox-pouch": {
+      "mode": "source-crop",
+      "physical_page": 4,
+      "clip_fraction": [
+        0.757,
+        0.548,
+        0.919,
+        0.63
+      ],
+      "path": "assets/inbox-pouch.png",
+      "reason": "No existing exact product/region artwork found in inventories recorded in discovery.json. Dense labels or complete diagram retained; inbox caption and number excluded.",
+      "boundary_strategy": "complete illustration, all four edges checked; original white backdrop",
+      "clip_points": [
+        284,
+        289,
+        334,
+        323
+      ]
+    },
+    "unplug": {
+      "mode": "shared-reuse",
+      "path": "assets/symbol-unplug.svg",
+      "repo_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-unplug.svg",
+      "repo_sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf",
+      "shared_symbol_key": "unplug/h1-jp-native",
+      "reason": "Existing Japanese semantic symbol in the governed shared library; copied byte-for-byte, no re-extraction.",
+      "boundary_strategy": "native transparent vector edges preserved"
+    },
+    "dismantle": {
+      "mode": "shared-reuse",
+      "path": "assets/symbol-dismantle.svg",
+      "repo_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-do_not_dismantle.svg",
+      "repo_sha256": "1e600dc9623481ec1950e4cee277d32620bdf1e82a99984ddfce91353ffb173b",
+      "shared_symbol_key": "do-not-dismantle/h1-jp-native",
+      "reason": "Existing Japanese semantic symbol in the governed shared library; copied byte-for-byte, no re-extraction.",
+      "boundary_strategy": "native transparent vector edges preserved"
+    },
+    "keep-dry": {
+      "mode": "shared-reuse",
+      "path": "assets/symbol-keep-dry.svg",
+      "repo_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-keep_dry.svg",
+      "repo_sha256": "fbd39d4686c3a26a73fa4c2dfec299d8055d9b9446edd973a397ce6d4e21a836",
+      "shared_symbol_key": "keep-dry/h1-jp-native",
+      "reason": "Existing Japanese semantic symbol in the governed shared library; copied byte-for-byte, no re-extraction.",
+      "boundary_strategy": "native transparent vector edges preserved"
+    },
+    "mandatory": {
+      "mode": "shared-reuse",
+      "path": "assets/symbol-mandatory.svg",
+      "repo_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-mandatory.svg",
+      "repo_sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2",
+      "shared_symbol_key": "mandatory/h1-jp-native",
+      "reason": "Existing Japanese semantic symbol in the governed shared library; copied byte-for-byte, no re-extraction.",
+      "boundary_strategy": "native transparent vector edges preserved"
+    },
+    "prohibited": {
+      "mode": "shared-reuse",
+      "path": "assets/symbol-prohibited.svg",
+      "repo_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-prohibited.svg",
+      "repo_sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d",
+      "shared_symbol_key": "prohibited/h1-jp-native",
+      "reason": "Existing Japanese semantic symbol in the governed shared library; copied byte-for-byte, no re-extraction.",
+      "boundary_strategy": "native transparent vector edges preserved"
+    },
+    "no-wet-hands": {
+      "mode": "shared-reuse",
+      "path": "assets/symbol-no-wet-hands.svg",
+      "repo_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-no_wet_hands.svg",
+      "repo_sha256": "d14a9720367b40d5a498a03d92ad0417bbc70d64fd0cea99c8891e0eb9725450",
+      "shared_symbol_key": "no-wet-hands/h1-jp-native",
+      "reason": "Existing Japanese semantic symbol in the governed shared library; copied byte-for-byte, no re-extraction.",
+      "boundary_strategy": "native transparent vector edges preserved"
+    },
+    "recycle": {
+      "mode": "shared-reuse",
+      "path": "assets/recycle.svg",
+      "repo_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_li_ion.svg",
+      "repo_sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e",
+      "shared_symbol_key": "li-ion/recycle-li-ion",
+      "canonical_group": "li-ion",
+      "canonical_decision": "SCG-20261104",
+      "reason": "Explicit operator reuse instruction; copy the operator-confirmed shared canonical bytes unchanged. See source/page_review.json artwork_standardizations for the printed 20 difference.",
+      "background_policy": "Native transparent shared SVG, unchanged; no backdrop removal, recoloring, private vector extraction or style blending."
+    }
+  }
+}

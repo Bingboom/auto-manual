@@ -1,0 +1,370 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 40000000
+  },
+  "source": {
+    "source_key": "source/js40a_jp_m000348_unfold_art_donor",
+    "expected_sha256": "482191d208d902c4e18181b04fe7460387b4b013b4c5cf2484209a96311588ca",
+    "expected_page_count": 6
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 6
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 1,
+      "page_scale": {}
+    }
+  },
+  "page_catalog": [
+    {
+      "page": 1,
+      "page_key": "page-01",
+      "role": "source-page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 2,
+      "page_key": "page-02",
+      "role": "source-page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 3,
+      "page_key": "page-03",
+      "role": "source-page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 4,
+      "page_key": "page-04",
+      "role": "source-page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 5,
+      "page_key": "page-05",
+      "role": "source-page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 6,
+      "page_key": "page-06",
+      "role": "source-page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "web/js40a/jp/m000348/unfold-1",
+      "page": 2,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-40A"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            29,
+            82,
+            105,
+            164
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/unfold-1.png",
+          "scale": 8
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Web review candidate; operator pixel acceptance is pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/js40a/jp/m000348/unfold-2",
+      "page": 2,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-40A"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            137,
+            79,
+            231,
+            169
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/unfold-2.png",
+          "scale": 8
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Web review candidate; operator pixel acceptance is pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/js40a/jp/m000348/unfold-3",
+      "page": 2,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-40A"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            68,
+            223,
+            192,
+            341
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/unfold-3.png",
+          "scale": 8
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Web review candidate; operator pixel acceptance is pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/js40a/jp/m000348/unfold-4",
+      "page": 3,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-40A"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            29,
+            71,
+            229,
+            143
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/unfold-4.png",
+          "scale": 8
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Web review candidate; operator pixel acceptance is pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/js40a/jp/m000348/unfold-5",
+      "page": 3,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-40A"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            24,
+            229,
+            233,
+            331
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/unfold-5.png",
+          "scale": 8
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Web review candidate; operator pixel acceptance is pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    }
+  ]
+}

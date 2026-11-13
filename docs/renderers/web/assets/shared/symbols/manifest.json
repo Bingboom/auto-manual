@@ -2620,6 +2620,60 @@
         "caption": "Battery bin with Pb",
         "decision": "battery-weee/crossed-bin-no-bar has no Pb mark. JE-2000F EU/UK representative label HTE1542000A only; whether Pb belongs on this product is pending compliance review. Inked for white manual pages: operator-approved exception to the no-recolour rule (2026-11-02, 「形状照原稿，改深灰」): native label paths kept; only the label colours are mapped."
       }
+    },
+    {
+      "key": "native/bnrb15-jp-f2421529-prohibited",
+      "path": "native-v1/bnrb15-jp-f2421529-prohibited.svg",
+      "sha256": "42ba4ebda3d7c0c897b8651deb3d31a93bd165a522fb4f41fe3f96fc66993446",
+      "status": "source-bound native variant",
+      "provenance": {
+        "source": "manual_sources/BN-RB15/JP/ja/git-20261112-f2421529-material-web/source/original.pdf",
+        "source_sha256": "f24215296cf4a3544d48dbbce5df3c6cf489ec829ad4b2a192926d94afaff670",
+        "physical_page": 4,
+        "glyph_bbox": [
+          41.8,
+          170.4,
+          57.1,
+          185.6
+        ],
+        "decision": "PR #1712 release review: existing shared candidates fail fixed 2% comparison for this exact printed JVC glyph. Keep native paths, transforms and real transparent outer margins; no redraw, no changed canonical group or admission rule. Full source binding is in the release package source/symbol-bindings.json."
+      }
+    },
+    {
+      "key": "native/bnrb15-jp-f2421529-mandatory",
+      "path": "native-v1/bnrb15-jp-f2421529-mandatory.svg",
+      "sha256": "fb1c265cc895619f08c3f0a8eed6386efb90b7f7c77cfa5675fe3551a2310558",
+      "status": "source-bound native variant",
+      "provenance": {
+        "source": "manual_sources/BN-RB15/JP/ja/git-20261112-f2421529-material-web/source/original.pdf",
+        "source_sha256": "f24215296cf4a3544d48dbbce5df3c6cf489ec829ad4b2a192926d94afaff670",
+        "physical_page": 4,
+        "glyph_bbox": [
+          32,
+          193.5,
+          47.5,
+          209
+        ],
+        "decision": "PR #1712 release review: existing shared candidates fail fixed 2% comparison for this exact printed JVC glyph. Keep native paths, transforms and real transparent outer margins; no redraw, no changed canonical group or admission rule. Full source binding is in the release package source/symbol-bindings.json."
+      }
+    },
+    {
+      "key": "native/bnrb15-jp-f2421529-unplug",
+      "path": "native-v1/bnrb15-jp-f2421529-unplug.svg",
+      "sha256": "64e995743992b8b2ec534f535804dacaaff704131ad551d4ef31a90ef6b5a376",
+      "status": "source-bound native variant",
+      "provenance": {
+        "source": "manual_sources/BN-RB15/JP/ja/git-20261112-f2421529-material-web/source/original.pdf",
+        "source_sha256": "f24215296cf4a3544d48dbbce5df3c6cf489ec829ad4b2a192926d94afaff670",
+        "physical_page": 4,
+        "glyph_bbox": [
+          52.1,
+          193.5,
+          66.8,
+          209
+        ],
+        "decision": "PR #1712 release review: existing shared candidates fail fixed 2% comparison for this exact printed JVC glyph. Keep native paths, transforms and real transparent outer margins; no redraw, no changed canonical group or admission rule. Full source binding is in the release package source/symbol-bindings.json."
+      }
     }
   ],
   "withdrawn": [
@@ -2749,7 +2803,8 @@
       "canonical": "unplug/h1-jp-native",
       "legacy_variants": [
         "native/je1500d-jp-6ddeef54-05",
-        "native/je1000d-jp-00c43a89-01"
+        "native/je1000d-jp-00c43a89-01",
+        "native/bnrb15-jp-f2421529-unplug"
       ],
       "captions": {
         "ja": [
@@ -2856,7 +2911,8 @@
       "status": "operator-confirmed",
       "canonical": "prohibited/h1-jp-native",
       "legacy_variants": [
-        "native/je1000d-jp-00c43a89-06"
+        "native/je1000d-jp-00c43a89-06",
+        "native/bnrb15-jp-f2421529-prohibited"
       ],
       "captions": {
         "ja": [
@@ -2880,7 +2936,9 @@
       "meaning": "行为指示（通用）",
       "status": "operator-confirmed",
       "canonical": "mandatory/h1-jp-native",
-      "legacy_variants": [],
+      "legacy_variants": [
+        "native/bnrb15-jp-f2421529-mandatory"
+      ],
       "captions": {
         "ja": [
           "各接続端子には確実に差し込む 差し込みが不十分だと、発熱したりほこりが付着して火災や感電の原因になります。",

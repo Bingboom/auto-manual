@@ -1,0 +1,86 @@
+{
+  "model": "BN-RB15",
+  "source_sha256": "f24215296cf4a3544d48dbbce5df3c6cf489ec829ad4b2a192926d94afaff670",
+  "viewports": [
+    {
+      "width": 1280,
+      "scrollWidth": 1280,
+      "height": 23819,
+      "badImages": [],
+      "componentIds": [
+        "HB-SPECIAL-INBOX",
+        "HB-TABLE-SYMBOL-SIGNAL",
+        "HB-TABLE-SYMBOL-ICON",
+        "HB-SPECIAL-REFERENCE-FIGURE",
+        "HB-TABLE-REFERENCE",
+        "HB-TABLE-TROUBLESHOOTING",
+        "HB-WARRANTY-SECTION"
+      ],
+      "h1": [
+        "お買い上げありがとうございます¶",
+        "基本的な使い方¶",
+        "本書の見かた¶",
+        "付属品について¶",
+        "別売アクセサリーのご案内¶",
+        "安全上のご注意（必ずお読みください）¶",
+        "各部の名称とはたらき¶",
+        "液晶画面表示¶",
+        "充電する¶",
+        "接続機器に給電する¶",
+        "使用上のご注意¶",
+        "故障かな？と思ったら¶",
+        "FAQ（よくあるご質問）¶",
+        "主な仕様¶",
+        "保証とアフターサービス¶",
+        "保証書（持込修理）¶"
+      ],
+      "tableCount": 20,
+      "errors": [],
+      "recycle": {
+        "width": 121,
+        "height": 134.09375,
+        "source": "assets/recycle.svg"
+      }
+    },
+    {
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 25799,
+      "badImages": [],
+      "componentIds": [
+        "HB-SPECIAL-INBOX",
+        "HB-TABLE-SYMBOL-SIGNAL",
+        "HB-TABLE-SYMBOL-ICON",
+        "HB-SPECIAL-REFERENCE-FIGURE",
+        "HB-TABLE-REFERENCE",
+        "HB-TABLE-TROUBLESHOOTING",
+        "HB-WARRANTY-SECTION"
+      ],
+      "h1": [
+        "お買い上げありがとうございます¶",
+        "基本的な使い方¶",
+        "本書の見かた¶",
+        "付属品について¶",
+        "別売アクセサリーのご案内¶",
+        "安全上のご注意（必ずお読みください）¶",
+        "各部の名称とはたらき¶",
+        "液晶画面表示¶",
+        "充電する¶",
+        "接続機器に給電する¶",
+        "使用上のご注意¶",
+        "故障かな？と思ったら¶",
+        "FAQ（よくあるご質問）¶",
+        "主な仕様¶",
+        "保証とアフターサービス¶",
+        "保証書（持込修理）¶"
+      ],
+      "tableCount": 20,
+      "errors": [],
+      "recycle": {
+        "width": 121,
+        "height": 134.09375,
+        "source": "assets/recycle.svg"
+      }
+    }
+  ]
+}

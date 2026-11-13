@@ -1,0 +1,235 @@
+{
+  "schema_version": "auto-manual-symbol-asset-admission/v1",
+  "source_sha256": "ab6bd12341101e45dbb6b57f03132bc8b55a6ecb57533c282ec9779c2c5b9ba3",
+  "review": "Source glyph and caption rectangles visually reviewed; outlined caption text is transcription, its pixels are independently hashed.",
+  "rows": [
+    {
+      "asset_ref": "assets/symbol-unplug.svg",
+      "asset_sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf",
+      "shared_symbol_key": "unplug/h1-jp-native",
+      "physical_page": 7,
+      "drawing_indices": [
+        3033,
+        3034,
+        3035,
+        3036,
+        3037
+      ],
+      "glyph_bbox": [
+        21.5,
+        218.4,
+        39,
+        235.9
+      ],
+      "caption_bbox": [
+        43.5,
+        221,
+        170,
+        232
+      ],
+      "row_bbox": [
+        21.4,
+        218.29999389648438,
+        170.1,
+        235.99999389648437
+      ],
+      "caption_text": "コンセントから電源プラグを抜く記号",
+      "caption_sha256": "f6ca47d03353ac950e26f25ca70982e011fcaa623066f5855ff1dc83157eb8a2",
+      "max_mean_channel_error": 0.375119,
+      "canonical_group": "unplug",
+      "canonical_decision": "SCG-20261103"
+    },
+    {
+      "asset_ref": "assets/symbol-dismantle.svg",
+      "asset_sha256": "0766a51f9ad7d433bed62a7c1ddbacc19ad7c7b68bf55938d5cdbab902b9ea04",
+      "shared_symbol_key": "native/je1000d-jp-00c43a89-02",
+      "physical_page": 7,
+      "drawing_indices": [
+        3077,
+        3078,
+        3079,
+        3080,
+        3081,
+        3082,
+        3083,
+        3084,
+        3085,
+        3086,
+        3087,
+        3088,
+        3089,
+        3090,
+        3091,
+        3092,
+        3093
+      ],
+      "glyph_bbox": [
+        21.5,
+        239.2,
+        39.2,
+        256.5
+      ],
+      "caption_bbox": [
+        43.5,
+        241,
+        173,
+        253
+      ],
+      "row_bbox": [
+        21.4,
+        239.0999969482422,
+        173.1,
+        256.6
+      ],
+      "caption_text": "製品を分解、改造をを禁止する記号",
+      "caption_sha256": "9918b0047afb6cc950e3abe4bb076bb4650fe021bb8f94b0d18ad6d75dbce587",
+      "max_mean_channel_error": 0.009028
+    },
+    {
+      "asset_ref": "assets/symbol-keep-dry.svg",
+      "asset_sha256": "4728b4a0ab80e8376ff756d9af98d92c1906d3461e44eb4905899b6212cc003c",
+      "shared_symbol_key": "native/je1000d-jp-00c43a89-05",
+      "physical_page": 7,
+      "drawing_indices": [
+        3141,
+        3142,
+        3143,
+        3144,
+        3145,
+        3146,
+        3147,
+        3148,
+        3149,
+        3150,
+        3151
+      ],
+      "glyph_bbox": [
+        21.5,
+        260,
+        39.2,
+        277.4
+      ],
+      "caption_bbox": [
+        43.5,
+        262,
+        173,
+        274
+      ],
+      "row_bbox": [
+        21.4,
+        259.9,
+        173.1,
+        277.4999938964844
+      ],
+      "caption_text": "製品を濡らすことを禁止する記号",
+      "caption_sha256": "60853bcfa22883dd3ac702da3420f110c4061fd5ec7a8a4e4ad868b2d2e89cc7",
+      "max_mean_channel_error": 0.014875
+    },
+    {
+      "asset_ref": "assets/symbol-mandatory.svg",
+      "asset_sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2",
+      "shared_symbol_key": "mandatory/h1-jp-native",
+      "physical_page": 7,
+      "drawing_indices": [
+        3055
+      ],
+      "glyph_bbox": [
+        177.2,
+        218.4,
+        194.8,
+        236
+      ],
+      "caption_bbox": [
+        199,
+        221,
+        340,
+        232
+      ],
+      "row_bbox": [
+        177.0999969482422,
+        218.29999389648438,
+        340.1,
+        236.1
+      ],
+      "caption_text": "行為を指示する記号",
+      "caption_sha256": "d2e0a60b8fe08823de36d149034c00a1aeb0905c487c9d722b55fc33e0a925f1",
+      "max_mean_channel_error": 0.01551
+    },
+    {
+      "asset_ref": "assets/symbol-prohibited.svg",
+      "asset_sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d",
+      "shared_symbol_key": "prohibited/h1-jp-native",
+      "physical_page": 7,
+      "drawing_indices": [
+        3065,
+        3066,
+        3067
+      ],
+      "glyph_bbox": [
+        177.2,
+        239.2,
+        194.8,
+        256.6
+      ],
+      "caption_bbox": [
+        199,
+        241,
+        340,
+        253
+      ],
+      "row_bbox": [
+        177.0999969482422,
+        239.0999969482422,
+        340.1,
+        256.70000610351565
+      ],
+      "caption_text": "行為を禁止する記号",
+      "caption_sha256": "0c0403e712ba78409b5581e2f17ecc624428eb4aee7b340cc956315dfe1298fc",
+      "max_mean_channel_error": 0.06291,
+      "canonical_group": "prohibited",
+      "canonical_decision": "SCG-20261103"
+    },
+    {
+      "asset_ref": "assets/symbol-no-wet-hands.svg",
+      "asset_sha256": "585a0c72abdb9fc1d69d31554d249730f1361dfc49a501423dd0204e0637a387",
+      "shared_symbol_key": "native/je1000d-jp-00c43a89-03",
+      "physical_page": 7,
+      "drawing_indices": [
+        3110,
+        3111,
+        3112,
+        3113,
+        3114,
+        3115,
+        3116,
+        3117,
+        3118,
+        3119,
+        3120
+      ],
+      "glyph_bbox": [
+        177.2,
+        260,
+        194.8,
+        277.5
+      ],
+      "caption_bbox": [
+        199,
+        262,
+        345,
+        274
+      ],
+      "row_bbox": [
+        177.0999969482422,
+        259.9,
+        345.1,
+        277.6
+      ],
+      "caption_text": "製品に濡れた手で触れることを禁止する記号",
+      "caption_sha256": "8bf24f6938b1cc073ffa2d5f0d8d82a754e294ea4bf7b585984832bff906e926",
+      "max_mean_channel_error": 0.027325,
+      "canonical_group": "no-wet-hands",
+      "canonical_decision": "SCG-20261103"
+    }
+  ]
+}

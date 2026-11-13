@@ -1,0 +1,72 @@
+{
+  "material": "38-0001-000464",
+  "source_sha256": "1a96bf348255cc47caf18b3df296ced0ccbc28269b1863c442e9e98d8d631b4c",
+  "component_shared_style_admission": "passed",
+  "strict_sphinx": "passed (-n -W --keep-going)",
+  "all_live_transcription_rows_present_in_desktop_and_mobile_DOM": true,
+  "every_nonexcluded_transcription_row_bound_once": true,
+  "cold_rebuild_byte_identity": [
+    "manual.ir.json",
+    "manual_js40a_jp_ja.md"
+  ],
+  "asset_tamper_rejected": "document asset missing or changed: assets/inbox-adapter.png",
+  "artwork_reproduced_byte_exact": true,
+  "source_visual_review": "native source3.5x/5x text +12x bare-art pairs/edges, figures/inbox/specification source comparison",
+  "browser": [
+    {
+      "material": "464",
+      "width": 1280,
+      "errors": [],
+      "viewport": 1280,
+      "scrollWidth": 1280,
+      "brokenImages": [],
+      "figures": 7,
+      "inboxes": 1,
+      "specs": 2
+    },
+    {
+      "material": "464",
+      "width": 390,
+      "errors": [],
+      "viewport": 390,
+      "scrollWidth": 390,
+      "brokenImages": [],
+      "figures": 7,
+      "inboxes": 1,
+      "specs": 2
+    }
+  ],
+  "publication_eligible": false,
+  "operator_review_pending": true,
+  "scope": "Only material38-0001-000464 is a deliverable; donor348 is artwork-only",
+  "included_source_physical_pages": [
+    3,
+    4,
+    5,
+    25,
+    26,
+    27,
+    28
+  ],
+  "source_rows": 102,
+  "bound_rows": 102,
+  "required_shared_components": {
+    "HB-SPECIAL-REFERENCE-FIGURE": 7,
+    "HB-SPECIAL-INBOX": 1,
+    "HB-TABLE-SPEC": 2
+  },
+  "source_specification_check": {
+    "unfolded_dimensions": "約1020*300*18.5mm",
+    "no_348_970_value_in_target_body": true,
+    "physical_page": 25
+  },
+  "artwork_donor": {
+    "source": "source/art-donor-000348.pdf",
+    "sha256": "482191d208d902c4e18181b04fe7460387b4b013b4c5cf2484209a96311588ca",
+    "role": "five text-free unfolding drawings only",
+    "target_comparison": "evidence/donor-comparison.json",
+    "standalone_recipe_reproduction_passed": true
+  },
+  "target_asset_recipe_reproduction_passed": true,
+  "operator_pixel_approval": false
+}

@@ -91,6 +91,7 @@ class PublishBranchAssemblyTests(unittest.TestCase):
         if language_scope == "single":
             (md_root / "manual.ir.json").write_text('{"schema": "manual-ir/v2"}\n', encoding="utf-8")
             (md_root / "manual_bundle.html").write_text("<article>Manual</article>\n", encoding="utf-8")
+            (md_root / "shared-style-admission.json").write_text('{"issues": []}\n', encoding="utf-8")
             receipt, receipt_sha256 = seal_language_evidence_fixture(
                 markdown_dir=md_root,
                 markdown_name=markdown_path.name,
@@ -866,7 +867,7 @@ class PublishBranchAssemblyTests(unittest.TestCase):
                         (output_dir / "publish_manifest.json").read_text(encoding="utf-8")
                     )
                     inventory = {entry["path"] for entry in manifest["files"]}
-                    for filename in ("manual.ir.json", "manual_bundle.html"):
+                    for filename in ("manual.ir.json", "manual_bundle.html", "shared-style-admission.json"):
                         self.assertIn(
                             (metadata.parent / filename).relative_to(output_dir).as_posix(),
                             inventory,

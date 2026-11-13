@@ -1,0 +1,692 @@
+[
+  {
+    "language": "ja",
+    "physical_page": 13,
+    "family": "unplug/",
+    "meaning": "コンセントから電源プラグを抜く記号",
+    "glyph_search_box": [
+      27,
+      196,
+      47,
+      217
+    ],
+    "caption_search_box": [
+      50,
+      200,
+      196,
+      213
+    ],
+    "also_try_families": [
+      "native/je1000d-jp",
+      "native/je1500d-jp"
+    ],
+    "drawing_indices": [
+      1967,
+      1968,
+      1969,
+      1970,
+      1971
+    ],
+    "glyph_bbox": [
+      28.349489212036133,
+      198.44805908203125,
+      44.928489685058594,
+      215.89125061035156
+    ],
+    "caption_bbox": [
+      50.6853,
+      203.1151,
+      170.184,
+      211.5241
+    ],
+    "row_bbox": [
+      27.3495,
+      197.4481,
+      171.184,
+      216.8913
+    ],
+    "caption_text": "コンセントから電源プラグを抜く記号",
+    "caption_mode": "outlined-manual-transcription",
+    "caption_sha256": "dacc7c8592c6869b4321a88131185e1b1f17624a12a727233f917e804d08b589",
+    "shared_symbol_key": "unplug/h1-jp-native",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-unplug.svg",
+    "local_path": "assets/h1-jp-unplug.svg",
+    "decision": "reuse the operator-confirmed canonical of group unplug (SCG-20261103) unchanged",
+    "candidates": [
+      {
+        "shared_symbol_key": "unplug/h1-jp-native",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1500d-jp-6ddeef54-01",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1500d-jp-6ddeef54-02",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1500d-jp-6ddeef54-04",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1500d-jp-6ddeef54-05",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1500d-jp-6ddeef54-07",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1500d-jp-6ddeef54-09",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1000d-jp-00c43a89-01",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1000d-jp-00c43a89-02",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1000d-jp-00c43a89-03",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1000d-jp-00c43a89-05",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1000d-jp-00c43a89-06",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "unplug/h1-jp-native",
+        "status": "canonical-release",
+        "max_mean_channel_error": 0.38651,
+        "canonical_group": "unplug",
+        "canonical_decision": "SCG-20261103"
+      }
+    ],
+    "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf"
+  },
+  {
+    "language": "ja",
+    "physical_page": 13,
+    "family": "do-not-dismantle/",
+    "meaning": "製品を分解、改造を禁止する記号",
+    "glyph_search_box": [
+      27,
+      219,
+      47,
+      240
+    ],
+    "caption_search_box": [
+      50,
+      223,
+      196,
+      236
+    ],
+    "also_try_families": [
+      "native/je1000d-jp",
+      "native/je1500d-jp"
+    ],
+    "drawing_indices": [
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026,
+      2027
+    ],
+    "glyph_bbox": [
+      28.348976135253906,
+      221.086669921875,
+      44.928977966308594,
+      237.6669464111328
+    ],
+    "caption_bbox": [
+      49.8451,
+      225.4765,
+      156.184,
+      233.8864
+    ],
+    "row_bbox": [
+      27.349,
+      220.0867,
+      157.184,
+      238.6669
+    ],
+    "caption_text": "製品を分解、改造を禁止する記号",
+    "caption_mode": "outlined-manual-transcription",
+    "caption_sha256": "dc38aa919116dfd4ec1aa51033ab5bed023077f97ece770f4f0f9411a2e5dd14",
+    "shared_symbol_key": "native/je1000d-jp-00c43a89-02",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/je1000d-jp-00c43a89-symbol-02.svg",
+    "local_path": "assets/je1000d-jp-00c43a89-symbol-02.svg",
+    "decision": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)",
+    "candidates": [
+      {
+        "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited-native-dark",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "do-not-dismantle/h1-jp-native",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "do-not-dismantle/screwdriver-circle-gray",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "do_not_dismantle/je2000e-eu-pt-batch1465-native",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "do_not_dismantle/je2000e-eu-nl-batch1465-native",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited-tw-477dfbd7",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1500d-jp-6ddeef54-01",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1500d-jp-6ddeef54-02",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1500d-jp-6ddeef54-04",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1500d-jp-6ddeef54-05",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1500d-jp-6ddeef54-07",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1500d-jp-6ddeef54-09",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1000d-jp-00c43a89-01",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1000d-jp-00c43a89-02",
+        "status": "passed",
+        "max_mean_channel_error": 0.014286
+      }
+    ],
+    "sha256": "0766a51f9ad7d433bed62a7c1ddbacc19ad7c7b68bf55938d5cdbab902b9ea04"
+  },
+  {
+    "language": "ja",
+    "physical_page": 13,
+    "family": "no-wet-hands/",
+    "meaning": "製品に濡れた手で触れることを禁止する記号",
+    "glyph_search_box": [
+      27,
+      243,
+      47,
+      264
+    ],
+    "caption_search_box": [
+      50,
+      247,
+      196,
+      260
+    ],
+    "also_try_families": [
+      "native/je1000d-jp",
+      "native/je1500d-jp"
+    ],
+    "drawing_indices": [
+      2043,
+      2044,
+      2045,
+      2046,
+      2047,
+      2048,
+      2049,
+      2050,
+      2051,
+      2052,
+      2053
+    ],
+    "glyph_bbox": [
+      28.814002990722656,
+      244.71914672851562,
+      45.394004821777344,
+      261.29815673828125
+    ],
+    "caption_bbox": [
+      50.31,
+      249.1093,
+      191.649,
+      257.5109
+    ],
+    "row_bbox": [
+      27.814,
+      243.7191,
+      192.649,
+      262.2982
+    ],
+    "caption_text": "製品に濡れた手で触れることを禁止する記号",
+    "caption_mode": "outlined-manual-transcription",
+    "caption_sha256": "d24e028dd365a0709a41c07b2f9448d7bea0355f0f5c0376473f61e2ccd65f45",
+    "shared_symbol_key": "native/je1000d-jp-00c43a89-03",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/je1000d-jp-00c43a89-symbol-03.svg",
+    "local_path": "assets/je1000d-jp-00c43a89-symbol-03.svg",
+    "decision": "reuse the operator-confirmed canonical of group no-wet-hands (SCG-20261103) unchanged",
+    "candidates": [
+      {
+        "shared_symbol_key": "no-wet-hands/h1-jp-native",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1500d-jp-6ddeef54-01",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1500d-jp-6ddeef54-02",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1500d-jp-6ddeef54-04",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1500d-jp-6ddeef54-05",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1500d-jp-6ddeef54-07",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1500d-jp-6ddeef54-09",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1000d-jp-00c43a89-01",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1000d-jp-00c43a89-02",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1000d-jp-00c43a89-03",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1000d-jp-00c43a89-05",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1000d-jp-00c43a89-06",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1000d-jp-00c43a89-03",
+        "status": "canonical-release",
+        "max_mean_channel_error": 0.02178,
+        "canonical_group": "no-wet-hands",
+        "canonical_decision": "SCG-20261103"
+      }
+    ],
+    "sha256": "585a0c72abdb9fc1d69d31554d249730f1361dfc49a501423dd0204e0637a387"
+  },
+  {
+    "language": "ja",
+    "physical_page": 13,
+    "family": "mandatory/",
+    "meaning": "行為を指示する記号",
+    "glyph_search_box": [
+      200,
+      196,
+      220,
+      217
+    ],
+    "caption_search_box": [
+      222,
+      200,
+      343,
+      213
+    ],
+    "also_try_families": [
+      "native/je1000d-jp",
+      "native/je1500d-jp"
+    ],
+    "drawing_indices": [
+      1989
+    ],
+    "glyph_bbox": [
+      201.2298126220703,
+      198.7892608642578,
+      217.809814453125,
+      215.3922576904297
+    ],
+    "caption_bbox": [
+      221.478,
+      202.7809,
+      285.9009,
+      211.1829
+    ],
+    "row_bbox": [
+      200.2298,
+      197.7893,
+      286.9009,
+      216.3923
+    ],
+    "caption_text": "行為を指示する記号",
+    "caption_mode": "outlined-manual-transcription",
+    "caption_sha256": "dced6f86f907d49beff2e41eed934ebbf62df344a7d2d7e613aafa93ba30acbe",
+    "shared_symbol_key": "mandatory/h1-jp-native",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-mandatory.svg",
+    "local_path": "assets/h1-jp-mandatory.svg",
+    "decision": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)",
+    "candidates": [
+      {
+        "shared_symbol_key": "mandatory/h1-jp-native",
+        "status": "passed",
+        "max_mean_channel_error": 0.007394
+      }
+    ],
+    "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2"
+  },
+  {
+    "language": "ja",
+    "physical_page": 13,
+    "family": "keep-dry/",
+    "meaning": "製品を濡らすことを禁止する記号",
+    "glyph_search_box": [
+      200,
+      219,
+      220,
+      240
+    ],
+    "caption_search_box": [
+      222,
+      223,
+      343,
+      236
+    ],
+    "also_try_families": [
+      "native/je1000d-jp",
+      "native/je1500d-jp"
+    ],
+    "drawing_indices": [
+      2074,
+      2075,
+      2076,
+      2077,
+      2078,
+      2079,
+      2080,
+      2081,
+      2082,
+      2083,
+      2084,
+      2085
+    ],
+    "glyph_bbox": [
+      201.22940063476562,
+      221.6900634765625,
+      217.8094024658203,
+      238.26956176757812
+    ],
+    "caption_bbox": [
+      221.5624,
+      225.6825,
+      327.9009,
+      234.0839
+    ],
+    "row_bbox": [
+      200.2294,
+      220.6901,
+      328.9009,
+      239.2696
+    ],
+    "caption_text": "製品を濡らすことを禁止する記号",
+    "caption_mode": "outlined-manual-transcription",
+    "caption_sha256": "5a09652099ce185872702630f568f94bb266ea5ec9e570fdef9e214e02475556",
+    "shared_symbol_key": "native/je1000d-jp-00c43a89-05",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/je1000d-jp-00c43a89-symbol-05.svg",
+    "local_path": "assets/je1000d-jp-00c43a89-symbol-05.svg",
+    "decision": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)",
+    "candidates": [
+      {
+        "shared_symbol_key": "keep-dry/h1-jp-native",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1500d-jp-6ddeef54-01",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1500d-jp-6ddeef54-02",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1500d-jp-6ddeef54-04",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1500d-jp-6ddeef54-05",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1500d-jp-6ddeef54-07",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1500d-jp-6ddeef54-09",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1000d-jp-00c43a89-01",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1000d-jp-00c43a89-02",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1000d-jp-00c43a89-03",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1000d-jp-00c43a89-05",
+        "status": "passed",
+        "max_mean_channel_error": 0.011403
+      }
+    ],
+    "sha256": "4728b4a0ab80e8376ff756d9af98d92c1906d3461e44eb4905899b6212cc003c"
+  },
+  {
+    "language": "ja",
+    "physical_page": 13,
+    "family": "prohibited/",
+    "meaning": "行為を禁止する記号",
+    "glyph_search_box": [
+      200,
+      243,
+      220,
+      264
+    ],
+    "caption_search_box": [
+      222,
+      247,
+      343,
+      260
+    ],
+    "also_try_families": [
+      "native/je1000d-jp",
+      "native/je1500d-jp"
+    ],
+    "drawing_indices": [
+      1999,
+      2000,
+      2001
+    ],
+    "glyph_bbox": [
+      201.2296142578125,
+      245.5908203125,
+      217.8096160888672,
+      262.17108154296875
+    ],
+    "caption_bbox": [
+      221.478,
+      249.3056,
+      285.9009,
+      257.707
+    ],
+    "row_bbox": [
+      200.2296,
+      244.5908,
+      286.9009,
+      263.1711
+    ],
+    "caption_text": "行為を禁止する記号",
+    "caption_mode": "outlined-manual-transcription",
+    "caption_sha256": "698ca73d6e3d932c4a278eac04ab24927a86bf058b81a6315335555058617b39",
+    "shared_symbol_key": "native/je1000d-jp-00c43a89-06",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/je1000d-jp-00c43a89-symbol-06.svg",
+    "local_path": "assets/je1000d-jp-00c43a89-symbol-06.svg",
+    "decision": "reuse shared Web symbol unchanged (fixed glyph comparison against the print)",
+    "candidates": [
+      {
+        "shared_symbol_key": "prohibited/h1-jp-native",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1500d-jp-6ddeef54-01",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1500d-jp-6ddeef54-02",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1500d-jp-6ddeef54-04",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1500d-jp-6ddeef54-05",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1500d-jp-6ddeef54-07",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1500d-jp-6ddeef54-09",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1000d-jp-00c43a89-01",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1000d-jp-00c43a89-02",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1000d-jp-00c43a89-03",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1000d-jp-00c43a89-05",
+        "status": "rejected",
+        "reason": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "shared_symbol_key": "native/je1000d-jp-00c43a89-06",
+        "status": "passed",
+        "max_mean_channel_error": 0.008052
+      }
+    ],
+    "sha256": "a5390e01e5ed9ba225377ba6b13de7523f86b8139e4686cf4534ebb2c1048641"
+  }
+]

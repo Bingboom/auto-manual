@@ -1,0 +1,6 @@
+/* Geometry only. Paint, type and responsive behavior belong to the shared Web theme. */
+.hb-text-panel .hb-reference-figure { margin: .65rem auto 0; }
+.hb-text-panel .hb-reference-figure[data-reference-id="unfold-1"],
+.hb-text-panel .hb-reference-figure[data-reference-id="unfold-2"],
+.hb-text-panel .hb-reference-figure[data-reference-id="unfold-3"] { max-width: 26rem; }
+.hb-reference-figure[data-reference-id="contact-qr"] { max-width: 12rem; margin: 1.2rem auto; }

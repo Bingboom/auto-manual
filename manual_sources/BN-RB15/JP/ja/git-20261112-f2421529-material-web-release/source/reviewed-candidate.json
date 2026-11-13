@@ -1,0 +1,152 @@
+{
+  "candidate": {
+    "path": "manual_sources/BN-RB15/JP/ja/git-20261112-f2421529-material-web",
+    "git_ref": "6abe1128c27a186228185390d26f87adc9d3e2c9",
+    "manifest_sha256": "c0183c567246cd4a8e94073fb5ea74e2657ed7ec1e167c93e623eecf34413d82",
+    "manual_ir_sha256": "dc68e79afdfe07b6146c134619fa16670ed4c289159b1a154b8cb495b9f7f17d"
+  },
+  "source_web_files": [
+    {
+      "path": "_static/web_manual.css",
+      "size": 126890,
+      "sha256": "5afdc1947b423c52850852eccc5bc0f398c820c45909690ff6e5cc7bb266dfdf"
+    },
+    {
+      "path": "assets/charging-ac.png",
+      "size": 49919,
+      "sha256": "5ce739984f60f81ca4c01a861853f5cc14d7227c90bb5f253d910691d216bcae"
+    },
+    {
+      "path": "assets/charging-car.png",
+      "size": 74694,
+      "sha256": "b3dcca66dd132b40698038301e922c10e38677616a7349d4def777757100ef00"
+    },
+    {
+      "path": "assets/charging-solar.png",
+      "size": 73571,
+      "sha256": "c33c5f1904b783095ab77222a6c7d19e4d15b1aa88497e150b20117e5dab9d56"
+    },
+    {
+      "path": "assets/inbox-adapter.png",
+      "size": 5930,
+      "sha256": "9b87f0197f7cfecf16432941a8f887765e5be0da4e78cda1b6890a22a5124f05"
+    },
+    {
+      "path": "assets/inbox-car.png",
+      "size": 11720,
+      "sha256": "69c88067f0051278b9d684709fc31a08b255f96287160db91bdaf694524bde25"
+    },
+    {
+      "path": "assets/inbox-pouch.png",
+      "size": 6143,
+      "sha256": "e6023618760d85bd192d88db906a9a000a8355ebe8012efacc84c2280a27edac"
+    },
+    {
+      "path": "assets/inbox-power-cord.png",
+      "size": 12131,
+      "sha256": "51443555cf1c8e3710bf0f691da834e20c00a73d9ab1d3d744549eecb48ca685"
+    },
+    {
+      "path": "assets/inbox-solar-adapter.png",
+      "size": 6119,
+      "sha256": "8c57e4c33c398cdd6ae2f1b2b023683186910df65a0304438272b551abed2941"
+    },
+    {
+      "path": "assets/lcd-map.png",
+      "size": 47401,
+      "sha256": "c03043906085a594eed8b3f5350938abcfb057b007422e4928e1d4b06eab5e29"
+    },
+    {
+      "path": "assets/overview.png",
+      "size": 62608,
+      "sha256": "7a825b657227ad63dc4a0e040c169f815047e037b2bd99bbad29f857afe7831f"
+    },
+    {
+      "path": "assets/qr-faq.png",
+      "size": 3649,
+      "sha256": "e869bb198c6fa0df2db3fe64e9bdef2de98610bdaad3479b5d5f0c1b0c99940d"
+    },
+    {
+      "path": "assets/qr-manual.png",
+      "size": 3543,
+      "sha256": "b5810e9d8abb0bb0a0a5df80562ba2e57308263917cfbaaba73c0018321bd076"
+    },
+    {
+      "path": "assets/qr-registration.png",
+      "size": 3383,
+      "sha256": "98bea3f0cfcbfab85d523383c3fe2ee924810d13178c704d329b57909fd84cae"
+    },
+    {
+      "path": "assets/qr-repair.png",
+      "size": 2846,
+      "sha256": "ceba8df83521eaa81f40bab2826a80e074503b98108b1c0dd144ad906f54e6c5"
+    },
+    {
+      "path": "assets/qr-website.png",
+      "size": 3628,
+      "sha256": "1c5e0bc1c4655f20e7f71e322f2af6bacb9a431cac018bd62ac20f6c8aa96cec"
+    },
+    {
+      "path": "assets/rating-label.png",
+      "size": 33944,
+      "sha256": "df63ee427bdba05e30ca1f8c8ff63783af1de7968555fff707505e9b9665d615"
+    },
+    {
+      "path": "assets/recycle.svg",
+      "size": 7306,
+      "sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e"
+    },
+    {
+      "path": "assets/symbol-mandatory.svg",
+      "size": 1292,
+      "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2"
+    },
+    {
+      "path": "assets/symbol-prohibited.svg",
+      "size": 1452,
+      "sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d"
+    },
+    {
+      "path": "conf.py",
+      "size": 828,
+      "sha256": "0c97380c4e1905ad49e5249d99a279eb38a3eaddccfcbb4a1a26db45581ac06e"
+    },
+    {
+      "path": "index.md",
+      "size": 88,
+      "sha256": "1102f9248e57997deda14413d46cef9a5cc3950a5e54c16bf6226076f26bcbba"
+    },
+    {
+      "path": "manual.ir.json",
+      "size": 365461,
+      "sha256": "dc68e79afdfe07b6146c134619fa16670ed4c289159b1a154b8cb495b9f7f17d"
+    },
+    {
+      "path": "manual_bnrb15_jp_ja.md",
+      "size": 50748,
+      "sha256": "6dcf48f5d44db01acd9b17901755d71a9d27b412890fed473180b08f29557ff4"
+    },
+    {
+      "path": "shared-style-admission.json",
+      "size": 176,
+      "sha256": "25e416b0178ed22f2bb09d647272b8b7e80987de2107e42b9298664406c15531"
+    }
+  ],
+  "allowed_release_differences": [
+    "assets/symbol-mandatory.svg",
+    "assets/symbol-prohibited.svg",
+    "assets/symbol-unplug.svg",
+    "manual.ir.json",
+    "manual_bnrb15_jp_ja.md"
+  ],
+  "body_or_artwork_edits": [
+    "Restore the printed unplug glyph alongside the mandatory glyph; all three JVC symbol glyphs use hash-bound native PDF paths because existing shared candidates failed the fixed comparison. Wrap the unchanged native notation/accessory/control/FAQ/warranty tables in the existing shared responsive table container so portal mobile layouts scroll inside the panel."
+  ],
+  "actual_web_changes": [
+    "assets/symbol-mandatory.svg",
+    "assets/symbol-prohibited.svg",
+    "assets/symbol-unplug.svg",
+    "manual.ir.json",
+    "manual_bnrb15_jp_ja.md"
+  ]
+}

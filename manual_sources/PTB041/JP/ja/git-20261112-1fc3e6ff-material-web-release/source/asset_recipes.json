@@ -1,0 +1,166 @@
+{
+  "source_sha256": "1fc3e6fffee4d29b3c6ecba999def59a9526722af8c2dfb87025254a62a743ef",
+  "assets": {
+    "overview": {
+      "mode": "source-crop",
+      "physical_page": 3,
+      "clip_fraction": [
+        0.052,
+        0.088,
+        0.947,
+        0.405
+      ],
+      "path": "assets/overview.png",
+      "reason": "No existing exact product/region artwork found in inventories recorded in discovery.json. Dense labels or complete diagram retained; inbox caption and number excluded.",
+      "boundary_strategy": "complete illustration, all four edges checked; original white backdrop"
+    },
+    "lcd-panel": {
+      "mode": "shared-reuse",
+      "path": "assets/lcd-panel.png",
+      "repo_path": "manual_sources/PTB021/JP/ja/git-20261112-c1f0f04e-material-web/assets/lcd-panel.png",
+      "repo_sha256": "f683a8fa3ad533f013bd792c0cfdd43f25d32849f9930b961234f05eec84f227",
+      "reason": "Source physical page4 independently compared: same generic LCD map/labels or unmarked accessory drawing; the exact PTB021 frozen bytes are reused. Device and manual cover artwork remain target-specific.",
+      "boundary_strategy": "byte-identical reuse of the complete prior crop; not re-cropped"
+    },
+    "charging": {
+      "mode": "source-crop",
+      "physical_page": 10,
+      "clip_fraction": [
+        0.052,
+        0.548,
+        0.935,
+        0.884
+      ],
+      "path": "assets/charging.png",
+      "reason": "No existing exact product/region artwork found in inventories recorded in discovery.json. Dense labels or complete diagram retained; inbox caption and number excluded.",
+      "boundary_strategy": "complete illustration, all four edges checked; original white backdrop"
+    },
+    "inbox-main": {
+      "mode": "source-crop",
+      "physical_page": 4,
+      "clip_fraction": [
+        0.07,
+        0.538,
+        0.211,
+        0.63
+      ],
+      "path": "assets/inbox-main.png",
+      "reason": "No existing exact product/region artwork found in inventories recorded in discovery.json. Dense labels or complete diagram retained; inbox caption and number excluded.",
+      "boundary_strategy": "complete illustration, all four edges checked; original white backdrop",
+      "clip_points": [
+        32,
+        282,
+        73,
+        327
+      ]
+    },
+    "inbox-car": {
+      "mode": "shared-reuse",
+      "path": "assets/inbox-car.png",
+      "repo_path": "manual_sources/PTB021/JP/ja/git-20261112-c1f0f04e-material-web/assets/inbox-car.png",
+      "repo_sha256": "5f2330abe7a0b70bbef902a150382725eeb491e4844b9ac89a9a0ea33f369407",
+      "reason": "Source physical page4 independently compared: same generic LCD map/labels or unmarked accessory drawing; the exact PTB021 frozen bytes are reused. Device and manual cover artwork remain target-specific.",
+      "boundary_strategy": "byte-identical reuse of the complete prior crop; not re-cropped"
+    },
+    "inbox-adapter": {
+      "mode": "shared-reuse",
+      "path": "assets/inbox-adapter.png",
+      "repo_path": "manual_sources/PTB021/JP/ja/git-20261112-c1f0f04e-material-web/assets/inbox-adapter.png",
+      "repo_sha256": "8061195f92647dd85c6a4da3cd977e3b6d3ff2cac688299b675868e7c3925965",
+      "reason": "Source physical page4 independently compared: same generic LCD map/labels or unmarked accessory drawing; the exact PTB021 frozen bytes are reused. Device and manual cover artwork remain target-specific.",
+      "boundary_strategy": "byte-identical reuse of the complete prior crop; not re-cropped"
+    },
+    "inbox-manual": {
+      "mode": "source-crop",
+      "physical_page": 4,
+      "clip_fraction": [
+        0.607,
+        0.538,
+        0.695,
+        0.63
+      ],
+      "path": "assets/inbox-manual.png",
+      "reason": "No existing exact product/region artwork found in inventories recorded in discovery.json. Dense labels or complete diagram retained; inbox caption and number excluded.",
+      "boundary_strategy": "complete illustration, all four edges checked; original white backdrop",
+      "clip_points": [
+        233,
+        281,
+        269,
+        329
+      ]
+    },
+    "inbox-pouch": {
+      "mode": "shared-reuse",
+      "path": "assets/inbox-pouch.png",
+      "repo_path": "manual_sources/PTB021/JP/ja/git-20261112-c1f0f04e-material-web/assets/inbox-pouch.png",
+      "repo_sha256": "72403f52d8bc37ed21df1c51e0e94c6797aa49e7539a829f897342e4fb2b21b9",
+      "reason": "Source physical page4 independently compared: same generic LCD map/labels or unmarked accessory drawing; the exact PTB021 frozen bytes are reused. Device and manual cover artwork remain target-specific.",
+      "boundary_strategy": "byte-identical reuse of the complete prior crop; not re-cropped"
+    },
+    "unplug": {
+      "mode": "shared-reuse",
+      "path": "assets/symbol-unplug.svg",
+      "repo_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-unplug.svg",
+      "repo_sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf",
+      "shared_symbol_key": "unplug/h1-jp-native",
+      "reason": "Existing Japanese semantic symbol in the governed shared library; copied byte-for-byte, no re-extraction.",
+      "boundary_strategy": "native transparent vector edges preserved"
+    },
+    "dismantle": {
+      "mode": "shared-reuse",
+      "path": "assets/symbol-dismantle.svg",
+      "repo_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-do_not_dismantle.svg",
+      "repo_sha256": "1e600dc9623481ec1950e4cee277d32620bdf1e82a99984ddfce91353ffb173b",
+      "shared_symbol_key": "do-not-dismantle/h1-jp-native",
+      "reason": "Existing Japanese semantic symbol in the governed shared library; copied byte-for-byte, no re-extraction.",
+      "boundary_strategy": "native transparent vector edges preserved"
+    },
+    "keep-dry": {
+      "mode": "shared-reuse",
+      "path": "assets/symbol-keep-dry.svg",
+      "repo_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-keep_dry.svg",
+      "repo_sha256": "fbd39d4686c3a26a73fa4c2dfec299d8055d9b9446edd973a397ce6d4e21a836",
+      "shared_symbol_key": "keep-dry/h1-jp-native",
+      "reason": "Existing Japanese semantic symbol in the governed shared library; copied byte-for-byte, no re-extraction.",
+      "boundary_strategy": "native transparent vector edges preserved"
+    },
+    "mandatory": {
+      "mode": "shared-reuse",
+      "path": "assets/symbol-mandatory.svg",
+      "repo_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-mandatory.svg",
+      "repo_sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2",
+      "shared_symbol_key": "mandatory/h1-jp-native",
+      "reason": "Existing Japanese semantic symbol in the governed shared library; copied byte-for-byte, no re-extraction.",
+      "boundary_strategy": "native transparent vector edges preserved"
+    },
+    "prohibited": {
+      "mode": "shared-reuse",
+      "path": "assets/symbol-prohibited.svg",
+      "repo_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-prohibited.svg",
+      "repo_sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d",
+      "shared_symbol_key": "prohibited/h1-jp-native",
+      "reason": "Existing Japanese semantic symbol in the governed shared library; copied byte-for-byte, no re-extraction.",
+      "boundary_strategy": "native transparent vector edges preserved"
+    },
+    "no-wet-hands": {
+      "mode": "shared-reuse",
+      "path": "assets/symbol-no-wet-hands.svg",
+      "repo_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-no_wet_hands.svg",
+      "repo_sha256": "d14a9720367b40d5a498a03d92ad0417bbc70d64fd0cea99c8891e0eb9725450",
+      "shared_symbol_key": "no-wet-hands/h1-jp-native",
+      "reason": "Existing Japanese semantic symbol in the governed shared library; copied byte-for-byte, no re-extraction.",
+      "boundary_strategy": "native transparent vector edges preserved"
+    },
+    "recycle": {
+      "mode": "shared-reuse",
+      "path": "assets/recycle.svg",
+      "repo_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_li_ion.svg",
+      "repo_sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e",
+      "shared_symbol_key": "li-ion/recycle-li-ion",
+      "canonical_group": "li-ion",
+      "canonical_decision": "SCG-20261104",
+      "reason": "Explicit operator reuse instruction; copy the operator-confirmed shared canonical bytes unchanged. See source/page_review.json artwork_standardizations for the printed 20 difference.",
+      "background_policy": "Native transparent shared SVG, unchanged; no backdrop removal, recoloring, private vector extraction or style blending."
+    }
+  }
+}

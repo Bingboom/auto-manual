@@ -1,0 +1,112 @@
+{
+  "candidate": {
+    "path": "manual_sources/JS-40A/JP/ja/git-20261112-1a96bf34-m000464",
+    "git_ref": "6abe1128c27a186228185390d26f87adc9d3e2c9",
+    "manifest_sha256": "4fb43439d40a7dcf9a0bfc2c7967bfb00546d38fa1fb042dd3ac8ce302040648",
+    "manual_ir_sha256": "51da085646b44204eeec0e82fabf843b71d6b4e52db1b5f46f42b7968f69b084"
+  },
+  "source_web_files": [
+    {
+      "path": "_static/source_geometry.css",
+      "size": 470,
+      "sha256": "160467577e3ea022ff14aaac6dc839efdfd86c049e8c085a07482cf43540510f"
+    },
+    {
+      "path": "_static/web_manual.css",
+      "size": 126890,
+      "sha256": "5afdc1947b423c52850852eccc5bc0f398c820c45909690ff6e5cc7bb266dfdf"
+    },
+    {
+      "path": "assets/contact-qr.png",
+      "size": 4243,
+      "sha256": "f3f93e2e4d804293d4ac3028969eb1bd47c3411e95fafca22a4107647d14f63f"
+    },
+    {
+      "path": "assets/inbox-adapter.png",
+      "size": 2576,
+      "sha256": "aaee5b981b57667e8730171153c37e0da81c95f10e02e1398b9b12414979990d"
+    },
+    {
+      "path": "assets/inbox-cable.png",
+      "size": 9574,
+      "sha256": "d9c356d52b20e072dec01d8fab552c9efbb652927da9ff9c659b74c1d7bfa780"
+    },
+    {
+      "path": "assets/inbox-carabiner.png",
+      "size": 8639,
+      "sha256": "41c5a19e743bd847fcae671c137989d2970c5ce5448e6eb42e4106f5c2cf1f79"
+    },
+    {
+      "path": "assets/inbox-manual.png",
+      "size": 5913,
+      "sha256": "5614a0dca59a649c1e9e8d519ff6f1586b704b3c53325e5d1deff29ff005e4a2"
+    },
+    {
+      "path": "assets/inbox-panel.png",
+      "size": 11959,
+      "sha256": "39f9ab6b4f6ca7dceef39bf435a736e9a196075704a0aea4c11c1fc529fe328b"
+    },
+    {
+      "path": "assets/inbox-pouch.png",
+      "size": 8450,
+      "sha256": "5177e1008dd7deeb039856c474e802eeb04819752316a511a4281f8c808cf9ad"
+    },
+    {
+      "path": "assets/power-device.png",
+      "size": 107738,
+      "sha256": "5dcb13ee8b6224a48b64311d91af17c5c38bad005af5ae3b4ae36480fb5cd17b"
+    },
+    {
+      "path": "assets/unfold-1.png",
+      "size": 19693,
+      "sha256": "d4f192fb0e8b2e6c6fe9f62b4cfc00bc59ad12606ebc48b1b7b55c274b623a1a"
+    },
+    {
+      "path": "assets/unfold-2.png",
+      "size": 94931,
+      "sha256": "a71fb0738c120520516984c3d99cffffcaa1b1ad0f2f65c31771c9ee45404a60"
+    },
+    {
+      "path": "assets/unfold-3.png",
+      "size": 151475,
+      "sha256": "cc3bce48031cc93f8bde2651c84aa7052231a26214c2e7de88ee247b1b047331"
+    },
+    {
+      "path": "assets/unfold-4.png",
+      "size": 173773,
+      "sha256": "7159f9d8bddb88c5d2a7b4ab3e8e3ec349bf3f86ab7cc53fec58208576911570"
+    },
+    {
+      "path": "assets/unfold-5.png",
+      "size": 155332,
+      "sha256": "fd032a9605fc5e4e0c48e554410daec72cee1a8bbdfc6bca41439ac286e91266"
+    },
+    {
+      "path": "conf.py",
+      "size": 837,
+      "sha256": "e8841a740c5ac5ad1850efd7ebd46258d90cc548f26b286abbc3b9408ba2b0d6"
+    },
+    {
+      "path": "index.md",
+      "size": 95,
+      "sha256": "f6185e0ff7927c2c95281b1089a1caf07abb6a5066d36c0da0b0941f46a0b07e"
+    },
+    {
+      "path": "manual.ir.json",
+      "size": 160823,
+      "sha256": "51da085646b44204eeec0e82fabf843b71d6b4e52db1b5f46f42b7968f69b084"
+    },
+    {
+      "path": "manual_js40a_jp_ja.md",
+      "size": 13580,
+      "sha256": "ba7f4eb0de536da67d30b2711ae3d76c33a2565579cf1db0264cad00581871a8"
+    }
+  ],
+  "allowed_release_differences": [
+    "manual.ir.json"
+  ],
+  "body_or_artwork_edits": [],
+  "actual_web_changes": [
+    "manual.ir.json"
+  ]
+}

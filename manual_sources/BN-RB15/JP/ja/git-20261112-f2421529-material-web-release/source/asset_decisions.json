@@ -1,0 +1,386 @@
+{
+  "reuse_inventory": [
+    {
+      "searched": "manual_sources and data/manual_sources model/family identities PTB021, PTB041, PTB071, BN-RB15; docs/renderers/web/assets; docs/templates/word_template/common_assets; docs/renderers/latex/assets",
+      "found": "JS-CONNECTION-GUIDE contains connector compatibility names PTB041/PTB071, but no exact product overview or complete artwork for these target models",
+      "decision": "reuse shared symbols and existing components; derive only target-specific device and charging illustrations from exact source"
+    },
+    {
+      "searched": "shared native Japanese prepared-document packages JS-CONNECTION-GUIDE, JA-CK01A-BK, JS-100I",
+      "decision": "reuse existing prepared RST -> ManualIR -> shared theme renderer, not copy legacy local styles"
+    }
+  ],
+  "assets": {
+    "mandatory": {
+      "mode": "shared-reuse",
+      "path": "assets/symbol-mandatory.svg",
+      "repo_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-mandatory.svg",
+      "repo_sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2",
+      "shared_symbol_key": "mandatory/h1-jp-native",
+      "reason": "Existing Japanese semantic symbol in the governed shared library; copied byte-for-byte, no re-extraction.",
+      "boundary_strategy": "native transparent vector edges preserved",
+      "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2",
+      "bytes": 1292
+    },
+    "prohibited": {
+      "mode": "shared-reuse",
+      "path": "assets/symbol-prohibited.svg",
+      "repo_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-prohibited.svg",
+      "repo_sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d",
+      "shared_symbol_key": "prohibited/h1-jp-native",
+      "reason": "Existing Japanese semantic symbol in the governed shared library; copied byte-for-byte, no re-extraction.",
+      "boundary_strategy": "native transparent vector edges preserved",
+      "sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d",
+      "bytes": 1452
+    },
+    "overview": {
+      "mode": "source-crop",
+      "physical_page": 6,
+      "clip_fraction": [
+        0.145,
+        0.112,
+        0.865,
+        0.466
+      ],
+      "path": "assets/overview.png",
+      "reason": "No existing exact JVC BN-RB15 region/brand artwork in recorded inventories. Preserve exact original diagram or standalone QR; no prose or table screenshot.",
+      "boundary_strategy": "complete drawing/callout leaders; all four edges checked; original backdrop",
+      "resolved_clip_points": [
+        52.611025085449214,
+        57.78141796875,
+        313.8519772338867,
+        240.41197119140625
+      ],
+      "sha256": "7a825b657227ad63dc4a0e040c169f815047e037b2bd99bbad29f857afe7831f",
+      "bytes": 62608
+    },
+    "rating-label": {
+      "mode": "source-crop",
+      "physical_page": 6,
+      "clip_fraction": [
+        0.1,
+        0.794,
+        0.86,
+        0.933
+      ],
+      "path": "assets/rating-label.png",
+      "reason": "No existing exact JVC BN-RB15 region/brand artwork in recorded inventories. Preserve exact original diagram or standalone QR; no prose or table screenshot.",
+      "boundary_strategy": "complete drawing/callout leaders; all four edges checked; original backdrop",
+      "resolved_clip_points": [
+        36.28346557617188,
+        409.6289809570313,
+        312.0378039550781,
+        481.3398479003906
+      ],
+      "sha256": "df63ee427bdba05e30ca1f8c8ff63783af1de7968555fff707505e9b9665d615",
+      "bytes": 33944
+    },
+    "lcd-map": {
+      "mode": "source-crop",
+      "physical_page": 7,
+      "clip_fraction": [
+        0.165,
+        0.098,
+        0.805,
+        0.342
+      ],
+      "path": "assets/lcd-map.png",
+      "reason": "No existing exact JVC BN-RB15 region/brand artwork in recorded inventories. Preserve exact original diagram or standalone QR; no prose or table screenshot.",
+      "boundary_strategy": "complete drawing/callout leaders; all four edges checked; original backdrop",
+      "resolved_clip_points": [
+        59.8677182006836,
+        50.55874072265625,
+        292.0818978881836,
+        176.43968701171877
+      ],
+      "sha256": "c03043906085a594eed8b3f5350938abcfb057b007422e4928e1d4b06eab5e29",
+      "bytes": 47401
+    },
+    "charging-ac": {
+      "mode": "source-crop",
+      "physical_page": 8,
+      "clip_fraction": [
+        0.14,
+        0.408,
+        0.88,
+        0.602
+      ],
+      "path": "assets/charging-ac.png",
+      "reason": "No existing exact JVC BN-RB15 region/brand artwork in recorded inventories. Preserve exact original diagram or standalone QR; no prose or table screenshot.",
+      "boundary_strategy": "complete drawing/callout leaders; all four edges checked; original backdrop",
+      "resolved_clip_points": [
+        50.79685180664063,
+        210.48945117187498,
+        319.2944970703125,
+        310.5751215820312
+      ],
+      "sha256": "5ce739984f60f81ca4c01a861853f5cc14d7227c90bb5f253d910691d216bcae",
+      "bytes": 49919
+    },
+    "charging-car": {
+      "mode": "source-crop",
+      "physical_page": 9,
+      "clip_fraction": [
+        0.095,
+        0.215,
+        0.855,
+        0.388
+      ],
+      "path": "assets/charging-car.png",
+      "reason": "No existing exact JVC BN-RB15 region/brand artwork in recorded inventories. Preserve exact original diagram or standalone QR; no prose or table screenshot.",
+      "boundary_strategy": "complete drawing/callout leaders; all four edges checked; original backdrop",
+      "resolved_clip_points": [
+        34.46929229736328,
+        110.91968627929687,
+        310.2236306762695,
+        200.1713408203125
+      ],
+      "sha256": "b3dcca66dd132b40698038301e922c10e38677616a7349d4def777757100ef00",
+      "bytes": 74694
+    },
+    "charging-solar": {
+      "mode": "source-crop",
+      "physical_page": 9,
+      "clip_fraction": [
+        0.138,
+        0.65,
+        0.84,
+        0.81
+      ],
+      "path": "assets/charging-solar.png",
+      "reason": "No existing exact JVC BN-RB15 region/brand artwork in recorded inventories. Preserve exact original diagram or standalone QR; no prose or table screenshot.",
+      "boundary_strategy": "complete drawing/callout leaders; all four edges checked; original backdrop",
+      "resolved_clip_points": [
+        50.07118249511719,
+        335.3385864257813,
+        304.78111083984373,
+        417.8834692382813
+      ],
+      "sha256": "c33c5f1904b783095ab77222a6c7d19e4d15b1aa88497e150b20117e5dab9d56",
+      "bytes": 73571
+    },
+    "inbox-adapter": {
+      "mode": "source-crop",
+      "physical_page": 3,
+      "clip_fraction": [
+        0.14,
+        0.39,
+        0.25,
+        0.467
+      ],
+      "path": "assets/inbox-adapter.png",
+      "reason": "No existing exact JVC BN-RB15 region/brand artwork in recorded inventories. Preserve exact original diagram or standalone QR; no prose or table screenshot.",
+      "boundary_strategy": "complete drawing/callout leaders; all four edges checked; original backdrop",
+      "resolved_clip_points": [
+        50.79685180664063,
+        201.20315185546875,
+        90.70866394042969,
+        240.9278767089844
+      ],
+      "sha256": "9b87f0197f7cfecf16432941a8f887765e5be0da4e78cda1b6890a22a5124f05",
+      "bytes": 5930
+    },
+    "inbox-power-cord": {
+      "mode": "source-crop",
+      "physical_page": 3,
+      "clip_fraction": [
+        0.42,
+        0.395,
+        0.567,
+        0.486
+      ],
+      "path": "assets/inbox-power-cord.png",
+      "reason": "No existing exact JVC BN-RB15 region/brand artwork in recorded inventories. Preserve exact original diagram or standalone QR; no prose or table screenshot.",
+      "boundary_strategy": "complete drawing/callout leaders; all four edges checked; original backdrop",
+      "resolved_clip_points": [
+        152.39055541992187,
+        203.78267944335937,
+        205.7272498168945,
+        250.73008154296875
+      ],
+      "sha256": "51443555cf1c8e3710bf0f691da834e20c00a73d9ab1d3d744549eecb48ca685",
+      "bytes": 12131
+    },
+    "inbox-car": {
+      "mode": "source-crop",
+      "physical_page": 3,
+      "clip_fraction": [
+        0.7,
+        0.39,
+        0.88,
+        0.49
+      ],
+      "path": "assets/inbox-car.png",
+      "reason": "No existing exact JVC BN-RB15 region/brand artwork in recorded inventories. Preserve exact original diagram or standalone QR; no prose or table screenshot.",
+      "boundary_strategy": "complete drawing/callout leaders; all four edges checked; original backdrop",
+      "resolved_clip_points": [
+        253.9842590332031,
+        201.20315185546875,
+        319.2944970703125,
+        252.79370361328125
+      ],
+      "sha256": "69c88067f0051278b9d684709fc31a08b255f96287160db91bdaf694524bde25",
+      "bytes": 11720
+    },
+    "inbox-solar-adapter": {
+      "mode": "source-crop",
+      "physical_page": 3,
+      "clip_fraction": [
+        0.099,
+        0.544,
+        0.265,
+        0.606
+      ],
+      "path": "assets/inbox-solar-adapter.png",
+      "reason": "No existing exact JVC BN-RB15 region/brand artwork in recorded inventories. Preserve exact original diagram or standalone QR; no prose or table screenshot.",
+      "boundary_strategy": "complete drawing/callout leaders; all four edges checked; original backdrop",
+      "resolved_clip_points": [
+        35.92063092041016,
+        280.6526015625,
+        96.15118377685548,
+        312.63874365234375
+      ],
+      "sha256": "8c57e4c33c398cdd6ae2f1b2b023683186910df65a0304438272b551abed2941",
+      "bytes": 6119
+    },
+    "inbox-pouch": {
+      "mode": "source-crop",
+      "physical_page": 3,
+      "clip_fraction": [
+        0.423,
+        0.529,
+        0.58,
+        0.61
+      ],
+      "path": "assets/inbox-pouch.png",
+      "reason": "No existing exact JVC BN-RB15 region/brand artwork in recorded inventories. Preserve exact original diagram or standalone QR; no prose or table screenshot.",
+      "boundary_strategy": "complete drawing/callout leaders; all four edges checked; original backdrop",
+      "resolved_clip_points": [
+        153.47905938720703,
+        272.9140187988281,
+        210.44410034179685,
+        314.7023657226562
+      ],
+      "sha256": "e6023618760d85bd192d88db906a9a000a8355ebe8012efacc84c2280a27edac",
+      "bytes": 6143
+    },
+    "qr-faq": {
+      "mode": "source-crop",
+      "physical_page": 1,
+      "clip_fraction": [
+        0.777,
+        0.678,
+        0.89,
+        0.753
+      ],
+      "path": "assets/qr-faq.png",
+      "reason": "No existing exact JVC BN-RB15 region/brand artwork in recorded inventories. Preserve exact original diagram or standalone QR; no prose or table screenshot.",
+      "boundary_strategy": "complete drawing/callout leaders; all four edges checked; original backdrop",
+      "resolved_clip_points": [
+        281.9225275268555,
+        349.7839409179688,
+        322.9228436279297,
+        388.4768547363281
+      ],
+      "sha256": "e869bb198c6fa0df2db3fe64e9bdef2de98610bdaad3479b5d5f0c1b0c99940d",
+      "bytes": 3649
+    },
+    "qr-registration": {
+      "mode": "source-crop",
+      "physical_page": 1,
+      "clip_fraction": [
+        0.778,
+        0.805,
+        0.89,
+        0.884
+      ],
+      "path": "assets/qr-registration.png",
+      "reason": "No existing exact JVC BN-RB15 region/brand artwork in recorded inventories. Preserve exact original diagram or standalone QR; no prose or table screenshot.",
+      "boundary_strategy": "complete drawing/callout leaders; all four edges checked; original backdrop",
+      "resolved_clip_points": [
+        282.2853621826172,
+        415.30394165039064,
+        322.9228436279297,
+        456.0604775390625
+      ],
+      "sha256": "98bea3f0cfcbfab85d523383c3fe2ee924810d13178c704d329b57909fd84cae",
+      "bytes": 3383
+    },
+    "qr-manual": {
+      "mode": "source-crop",
+      "physical_page": 13,
+      "clip_fraction": [
+        0.786,
+        0.584,
+        0.886,
+        0.654
+      ],
+      "path": "assets/qr-manual.png",
+      "reason": "No existing exact JVC BN-RB15 region/brand artwork in recorded inventories. Preserve exact original diagram or standalone QR; no prose or table screenshot.",
+      "boundary_strategy": "complete drawing/callout leaders; all four edges checked; original backdrop",
+      "resolved_clip_points": [
+        285.18803942871097,
+        301.28882226562496,
+        321.47150500488283,
+        337.40220849609375
+      ],
+      "sha256": "b5810e9d8abb0bb0a0a5df80562ba2e57308263917cfbaaba73c0018321bd076",
+      "bytes": 3543
+    },
+    "qr-repair": {
+      "mode": "source-crop",
+      "physical_page": 15,
+      "clip_fraction": [
+        0.785,
+        0.851,
+        0.882,
+        0.92
+      ],
+      "path": "assets/qr-repair.png",
+      "reason": "No existing exact JVC BN-RB15 region/brand artwork in recorded inventories. Preserve exact original diagram or standalone QR; no prose or table screenshot.",
+      "boundary_strategy": "complete drawing/callout leaders; all four edges checked; original backdrop",
+      "resolved_clip_points": [
+        284.82520477294923,
+        439.03559545898435,
+        320.02016638183596,
+        474.633076171875
+      ],
+      "sha256": "ceba8df83521eaa81f40bab2826a80e074503b98108b1c0dd144ad906f54e6c5",
+      "bytes": 2846
+    },
+    "qr-website": {
+      "mode": "source-crop",
+      "physical_page": 3,
+      "clip_fraction": [
+        0.787,
+        0.254,
+        0.891,
+        0.333
+      ],
+      "path": "assets/qr-website.png",
+      "reason": "One original official website QR reused for both identical source destinations on physical page 3; preserve complete functional code and quiet zone.",
+      "boundary_strategy": "complete drawing/callout leaders; all four edges checked; original backdrop",
+      "resolved_clip_points": [
+        285.5508740844727,
+        131.04000146484375,
+        323.2856782836914,
+        171.79653735351565
+      ],
+      "sha256": "1c5e0bc1c4655f20e7f71e322f2af6bacb9a431cac018bd62ac20f6c8aa96cec",
+      "bytes": 3628
+    },
+    "recycle": {
+      "mode": "shared-reuse",
+      "path": "assets/recycle.svg",
+      "repo_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_li_ion.svg",
+      "repo_sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e",
+      "shared_symbol_key": "li-ion/recycle-li-ion",
+      "canonical_group": "li-ion",
+      "canonical_decision": "SCG-20261104",
+      "reason": "Explicit operator reuse instruction; copy the operator-confirmed shared canonical bytes unchanged. See source/page_review.json artwork_standardizations for the printed 20 difference.",
+      "background_policy": "Native transparent shared SVG, unchanged; no backdrop removal, recoloring, private vector extraction or style blending.",
+      "sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e",
+      "bytes": 7306
+    }
+  }
+}

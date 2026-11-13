@@ -1,0 +1,29 @@
+{
+  "artifact_count": 62,
+  "artifact_kinds": {
+    "archive_page": 28,
+    "archive_preview": 28,
+    "asset_export": 6
+  },
+  "artifacts_csv": "artifacts.csv",
+  "artifacts_csv_sha256": "97b55b16a89c347762f7ce309b9d8e445dcc6ca4b6ddc148b05a5b62c5b7b32e",
+  "manifest": "manifest.json",
+  "manifest_sha256": "197b2703e0b9185819727c09a7baede7fb3ab9990e5a83fd599f230607291d2a",
+  "package": "asset-package.zip",
+  "package_sha256": "efb40fb80bcd917af4a25614cba04ae832842e388fdbe5b59d436cdf30ba5aaa"
+}
+{
+  "artifact_count": 17,
+  "artifact_kinds": {
+    "archive_page": 6,
+    "archive_preview": 6,
+    "asset_export": 5
+  },
+  "artifacts_csv": "artifacts.csv",
+  "artifacts_csv_sha256": "e40a5611ee7105d20084725524b7af6167595a41453c14002862631889445cc3",
+  "manifest": "manifest.json",
+  "manifest_sha256": "883bc988c5c5e929711a92ef2bd1d85bf3dad333fb4b862809917dce73629344",
+  "package": "asset-package.zip",
+  "package_sha256": "741c48e2468be7cd81a16db561fae3f7439a31f3e6258cd702c084a5efcb7f8c"
+}
+{"assets_verified": 13, "gate": "quarantine; operator pixel review pending"}

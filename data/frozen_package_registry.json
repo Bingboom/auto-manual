@@ -289,7 +289,13 @@
     "data/manual_sources/JBP-1000B-SIL/US/git-20261110-7afcb2a1-lcd-linebreak": {
       "approval": "2026-11-10 screenshot-directed English LCD Off line break; separate candidate only, pending operator review; no merge or publication authorization.",
       "registered": "2026-11-10",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-432: append three source-bound BN-RB15 glyph variants only; existing symbol bytes, canonical groups, captions and admission rules unchanged. Historical packages and original candidates remain frozen.",
+          "since": "2026-11-12"
+        }
+      }
     },
     "data/manual_sources/JBP-3600A/JP/ja/git-20261014-56860f2f": {
       "approval": "MA-303（见 source/approval.json）",
@@ -2090,6 +2096,16 @@
     "data/manual_sources/jaac_whe100_eu_en": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/BN-RB15/JP/ja/git-20261112-f2421529-material-web": {
+      "approval": "Operator request 2026-11-12: convert the selected Japanese material manuals with three agents; seven final candidates after excluding material000348. Review conversion only; no release or merge approval.",
+      "registered": "2026-11-12",
+      "known_drift": {}
+    },
+    "manual_sources/BN-RB15/JP/ja/git-20261112-f2421529-material-web-release": {
+      "approval": "MA-433: operator delegated review, merge and Git-only publication of seven JP/ja manuals; immutable candidates retained",
+      "registered": "2026-11-12",
       "known_drift": {}
     },
     "manual_sources/JA-AD500A-SIL/JP/ja/git-20261008-ac3a1f82": {
@@ -4990,6 +5006,16 @@
       "registered": "2026-11-12",
       "known_drift": {}
     },
+    "manual_sources/JS-40A/JP/ja/git-20261112-1a96bf34-m000464": {
+      "approval": "Operator request 2026-11-12: convert the selected Japanese material manuals with three agents; later narrowed JS-40A to material000464 only. Review candidate only; no release or merge approval.",
+      "registered": "2026-11-12",
+      "known_drift": {}
+    },
+    "manual_sources/JS-40A/JP/ja/git-20261112-1a96bf34-m000464-release": {
+      "approval": "MA-433: operator delegated review, merge and Git-only publication of seven JP/ja manuals; immutable candidates retained",
+      "registered": "2026-11-12",
+      "known_drift": {}
+    },
     "manual_sources/JS-40A/US/en/git-20261112-95e0f1c8-m000717": {
       "approval": "2026-11-12 operator explicitly requested continuation of six US Y manuals; JS-40A complete review candidate only, no release authorization",
       "registered": "2026-11-12",
@@ -5043,6 +5069,68 @@
     },
     "manual_sources/JS-CONNECTION-GUIDE/US/en/git-20261112-899cb3dd-m000716-release-r2": {
       "approval": "MA-432",
+      "registered": "2026-11-12",
+      "known_drift": {}
+    },
+    "manual_sources/JSG-0304B/JP/ja/git-20261112-fe9f1b56-m000512": {
+      "approval": "Operator request 2026-11-12: convert the selected Japanese material manuals with three agents; seven final candidates after excluding material000348. Review conversion only; no release or merge approval.",
+      "registered": "2026-11-12",
+      "known_drift": {
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-432: append three source-bound BN-RB15 glyph variants only; existing symbol bytes, canonical groups, captions and admission rules unchanged. Historical packages and original candidates remain frozen.",
+          "since": "2026-11-12"
+        }
+      }
+    },
+    "manual_sources/JSG-0304B/JP/ja/git-20261112-fe9f1b56-m000512-release": {
+      "approval": "MA-433: operator delegated review, merge and Git-only publication of seven JP/ja manuals; immutable candidates retained",
+      "registered": "2026-11-12",
+      "known_drift": {}
+    },
+    "manual_sources/JSG-2404A/JP/ja/git-20261112-e59cc1bc-m000491": {
+      "approval": "Operator request 2026-11-12: convert the selected Japanese material manuals with three agents; seven final candidates after excluding material000348. Review conversion only; no release or merge approval.",
+      "registered": "2026-11-12",
+      "known_drift": {
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-432: append three source-bound BN-RB15 glyph variants only; existing symbol bytes, canonical groups, captions and admission rules unchanged. Historical packages and original candidates remain frozen.",
+          "since": "2026-11-12"
+        }
+      }
+    },
+    "manual_sources/JSG-2404A/JP/ja/git-20261112-e59cc1bc-m000491-release": {
+      "approval": "MA-433: operator delegated review, merge and Git-only publication of seven JP/ja manuals; immutable candidates retained",
+      "registered": "2026-11-12",
+      "known_drift": {}
+    },
+    "manual_sources/PTB021/JP/ja/git-20261112-c1f0f04e-material-web": {
+      "approval": "Operator request 2026-11-12: convert the selected Japanese material manuals with three agents; seven final candidates after excluding material000348. Review conversion only; no release or merge approval.",
+      "registered": "2026-11-12",
+      "known_drift": {}
+    },
+    "manual_sources/PTB021/JP/ja/git-20261112-c1f0f04e-material-web-release": {
+      "approval": "MA-433: operator delegated review, merge and Git-only publication of seven JP/ja manuals; immutable candidates retained",
+      "registered": "2026-11-12",
+      "known_drift": {}
+    },
+    "manual_sources/PTB041/JP/ja/git-20261112-1fc3e6ff-material-web": {
+      "approval": "Operator request 2026-11-12: convert the selected Japanese material manuals with three agents; seven final candidates after excluding material000348. Review conversion only; no release or merge approval.",
+      "registered": "2026-11-12",
+      "known_drift": {}
+    },
+    "manual_sources/PTB041/JP/ja/git-20261112-1fc3e6ff-material-web-release": {
+      "approval": "MA-433: operator delegated review, merge and Git-only publication of seven JP/ja manuals; immutable candidates retained",
+      "registered": "2026-11-12",
+      "known_drift": {}
+    },
+    "manual_sources/PTB071/JP/ja/git-20261112-ab6bd123-material-web": {
+      "approval": "Operator request 2026-11-12: convert the selected Japanese material manuals with three agents; seven final candidates after excluding material000348. Review conversion only; no release or merge approval.",
+      "registered": "2026-11-12",
+      "known_drift": {}
+    },
+    "manual_sources/PTB071/JP/ja/git-20261112-ab6bd123-material-web-release": {
+      "approval": "MA-433: operator delegated review, merge and Git-only publication of seven JP/ja manuals; immutable candidates retained",
       "registered": "2026-11-12",
       "known_drift": {}
     }
@@ -5345,6 +5433,16 @@
       "packages": 4,
       "handling": "keep-frozen",
       "reason": "Screenshot-directed English layout repairs; historical packages remain byte-identical after restoring test side effects, and no historic approval is rebound.",
+      "minutes": 0
+    },
+    {
+      "date": "2026-11-12",
+      "files": [
+        "docs/renderers/web/assets/shared/symbols/manifest.json"
+      ],
+      "packages": 3,
+      "handling": "keep-frozen",
+      "reason": "MA-433: append three source-bound BN-RB15 glyph variants only; existing symbol bytes, canonical groups, captions and admission rules unchanged. Historical packages and original candidates remain frozen.",
       "minutes": 0
     }
   ]

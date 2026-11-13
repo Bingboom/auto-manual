@@ -1,0 +1,322 @@
+[
+  {
+    "physical_page": 1,
+    "printed_page": null,
+    "disposition": "retained",
+    "chapter_ids": [
+      "preface"
+    ],
+    "source_sha256": "fe9f1b561a9f75af52e1af738f9da00492302a55f43ddc0122e366744fb9e452",
+    "ocr_draft": "source/ocr/page-001.txt",
+    "ocr_draft_sha256": "912d9590d70cf91e2e8a2e24a423f9e1509752b5b5e2ef92aae00703c68f6c5d",
+    "review_render_dpi": 350,
+    "review_render_sha256": "5c46e42567e7e9c0b5d6983200e0f30da751f0be78d878fef94a0040a3f365a5",
+    "review_method": "manual reading of outlined source rendered at350dpi; OCR used only to locate paragraphs,5x source clips for ambiguousI/1/temperature/asset edges",
+    "review_result": "Substantive cover copy retained in native preface; cover identity repeated by Web title. Logo/art/duplicate title only omitted.",
+    "operator_acceptance": false
+  },
+  {
+    "physical_page": 2,
+    "printed_page": null,
+    "disposition": "omitted-original-blank",
+    "chapter_ids": [],
+    "source_sha256": "fe9f1b561a9f75af52e1af738f9da00492302a55f43ddc0122e366744fb9e452",
+    "ocr_draft": "source/ocr/page-002.txt",
+    "ocr_draft_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "review_render_dpi": 350,
+    "review_render_sha256": "5621abffc5bc87e55f7e25dda8a92a3c7f66950676caff2f134d8b5e912af8c5",
+    "review_method": "manual reading of outlined source rendered at350dpi; OCR used only to locate paragraphs,5x source clips for ambiguousI/1/temperature/asset edges",
+    "review_result": "Original blank page.",
+    "operator_acceptance": false
+  },
+  {
+    "physical_page": 3,
+    "printed_page": null,
+    "disposition": "omitted-original-blank",
+    "chapter_ids": [],
+    "source_sha256": "fe9f1b561a9f75af52e1af738f9da00492302a55f43ddc0122e366744fb9e452",
+    "ocr_draft": "source/ocr/page-003.txt",
+    "ocr_draft_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "review_render_dpi": 350,
+    "review_render_sha256": "1d2173ecb52f392a3938bb052c0963e86f5aaa07dc1e1072291f4ea029bd811d",
+    "review_method": "manual reading of outlined source rendered at350dpi; OCR used only to locate paragraphs,5x source clips for ambiguousI/1/temperature/asset edges",
+    "review_result": "Original blank page.",
+    "operator_acceptance": false
+  },
+  {
+    "physical_page": 4,
+    "printed_page": "01",
+    "disposition": "retained",
+    "chapter_ids": [
+      "solar_unfolding"
+    ],
+    "source_sha256": "fe9f1b561a9f75af52e1af738f9da00492302a55f43ddc0122e366744fb9e452",
+    "ocr_draft": "source/ocr/page-004.txt",
+    "ocr_draft_sha256": "0cf965c6af434269a4f0124de8cb6091ef84eaa52d3ded0476bb0c1185172a9e",
+    "review_render_dpi": 350,
+    "review_render_sha256": "b3e2b8524f35f302913bececdde631430680efb3ebf35d30a78eb0bf9059efc5",
+    "review_method": "manual reading of outlined source rendered at350dpi; OCR used only to locate paragraphs,5x source clips for ambiguousI/1/temperature/asset edges",
+    "review_result": "First3 numbered unfolding steps; labels native, complete hands/arrows/panel artwork reused.",
+    "operator_acceptance": false
+  },
+  {
+    "physical_page": 5,
+    "printed_page": "02",
+    "disposition": "retained",
+    "chapter_ids": [
+      "solar_unfolding"
+    ],
+    "source_sha256": "fe9f1b561a9f75af52e1af738f9da00492302a55f43ddc0122e366744fb9e452",
+    "ocr_draft": "source/ocr/page-005.txt",
+    "ocr_draft_sha256": "24556fd80d78e2945b39bcdd81e66d71a7036aa9dc73499c5483c03f4bee16a7",
+    "review_render_dpi": 350,
+    "review_render_sha256": "43eb534dc22a0a7bb30d2ddf44b3801f2a744b46b4db7d20aaa37b81a148580e",
+    "review_method": "manual reading of outlined source rendered at350dpi; OCR used only to locate paragraphs,5x source clips for ambiguousI/1/temperature/asset edges",
+    "review_result": "Remaining2 unfolding steps; labels native, source illustration retained.",
+    "operator_acceptance": false
+  },
+  {
+    "physical_page": 6,
+    "printed_page": "03",
+    "disposition": "retained",
+    "chapter_ids": [
+      "specifications"
+    ],
+    "source_sha256": "fe9f1b561a9f75af52e1af738f9da00492302a55f43ddc0122e366744fb9e452",
+    "ocr_draft": "source/ocr/page-006.txt",
+    "ocr_draft_sha256": "bb0617d0e0abf6c3ad27d5dd112212d4d0d534127d9c91d78637f876116c9f35",
+    "review_render_dpi": 350,
+    "review_render_sha256": "e8b4af167e9c9ba205956fde3e9724f93c113013c69cfff377208a7e078380f9",
+    "review_method": "manual reading of outlined source rendered at350dpi; OCR used only to locate paragraphs,5x source clips for ambiguousI/1/temperature/asset edges",
+    "review_result": "Station+solar specifications, units/signs/subscript fields/STC/trademark manually compared; independent parameter review below.",
+    "operator_acceptance": false
+  },
+  {
+    "physical_page": 7,
+    "printed_page": "04",
+    "disposition": "retained",
+    "chapter_ids": [
+      "specifications",
+      "product_overview",
+      "usage"
+    ],
+    "source_sha256": "fe9f1b561a9f75af52e1af738f9da00492302a55f43ddc0122e366744fb9e452",
+    "ocr_draft": "source/ocr/page-007.txt",
+    "ocr_draft_sha256": "6fda46e8f018d6ca8d09cb20edabffdb3b52b827fa2c5ea4ff65ff17d52a7da7",
+    "review_render_dpi": 350,
+    "review_render_sha256": "7d923265457ba52c371f1a1c2d594875ceed8ebc66aeeac24f4f7406d22357b3",
+    "review_method": "manual reading of outlined source rendered at350dpi; OCR used only to locate paragraphs,5x source clips for ambiguousI/1/temperature/asset edges",
+    "review_result": "Change notice/recycling paragraph and complete bundle overview;512 usage paragraph continues at p8.",
+    "operator_acceptance": false
+  },
+  {
+    "physical_page": 8,
+    "printed_page": "05",
+    "disposition": "retained",
+    "chapter_ids": [
+      "usage",
+      "lcd_display"
+    ],
+    "source_sha256": "fe9f1b561a9f75af52e1af738f9da00492302a55f43ddc0122e366744fb9e452",
+    "ocr_draft": "source/ocr/page-008.txt",
+    "ocr_draft_sha256": "c12bf4c264d001d44806522e9bef56b22991c0262db53a420c56fd492e5c5902",
+    "review_render_dpi": 350,
+    "review_render_sha256": "0d245c7a405eb2cbe97887b9ec35bbc27f4858a093c988fb6061cb9c14d8d776",
+    "review_method": "manual reading of outlined source rendered at350dpi; OCR used only to locate paragraphs,5x source clips for ambiguousI/1/temperature/asset edges",
+    "review_result": "512 usage continuation and LCD artwork;491 LCD artwork/17legend items/battery/threshold table.",
+    "operator_acceptance": false
+  },
+  {
+    "physical_page": 9,
+    "printed_page": "06",
+    "disposition": "retained",
+    "chapter_ids": [
+      "lcd_display"
+    ],
+    "source_sha256": "fe9f1b561a9f75af52e1af738f9da00492302a55f43ddc0122e366744fb9e452",
+    "ocr_draft": "source/ocr/page-009.txt",
+    "ocr_draft_sha256": "541b048082fb8edcccdf9c48de0e8da95b8acfd2bb73bfdc0360963798c634a9",
+    "review_render_dpi": 350,
+    "review_render_sha256": "ebe4673652bbcc3772d48b647f6a83cc5d6419eefb4b2fc97d64e5024a171892",
+    "review_method": "manual reading of outlined source rendered at350dpi; OCR used only to locate paragraphs,5x source clips for ambiguousI/1/temperature/asset edges",
+    "review_result": "51217legend+EPS+charge warning+energy-mode lead;491 energy-mode toggle/fault/temperature then operation lead.",
+    "operator_acceptance": false
+  },
+  {
+    "physical_page": 10,
+    "printed_page": "07",
+    "disposition": "retained",
+    "chapter_ids": [
+      "lcd_display"
+    ],
+    "source_sha256": "fe9f1b561a9f75af52e1af738f9da00492302a55f43ddc0122e366744fb9e452",
+    "ocr_draft": "source/ocr/page-010.txt",
+    "ocr_draft_sha256": "911a4300f93d55597330f2a1e0ee0bc1f77f169fd8bef581584a4817457d7579",
+    "review_render_dpi": 350,
+    "review_render_sha256": "9dca108fde1ab4e9199365675ee1ca99ce9c6dd80f82898b26fc0c256059e106",
+    "review_method": "manual reading of outlined source rendered at350dpi; OCR used only to locate paragraphs,5x source clips for ambiguousI/1/temperature/asset edges",
+    "review_result": "512threshold/mode/frequency/fault/temperature;491 operation display+App connection+charging lead/caution.",
+    "operator_acceptance": false
+  },
+  {
+    "physical_page": 11,
+    "printed_page": "08",
+    "disposition": "retained",
+    "chapter_ids": [
+      "charging"
+    ],
+    "source_sha256": "fe9f1b561a9f75af52e1af738f9da00492302a55f43ddc0122e366744fb9e452",
+    "ocr_draft": "source/ocr/page-011.txt",
+    "ocr_draft_sha256": "c1393315ee316ccc26a4f9533f607bc77818627c6566e84a6af3d3d44361989e",
+    "review_render_dpi": 350,
+    "review_render_sha256": "4959edd4bfe2451f71b3f6e7d841f1a4957ee400adc62f6801c8815d9bfb43c4",
+    "review_method": "manual reading of outlined source rendered at350dpi; OCR used only to locate paragraphs,5x source clips for ambiguousI/1/temperature/asset edges",
+    "review_result": "AC and correct40Mini USB-C charging panels/copy;491 also emergency-mode and wall-outlet warning.",
+    "operator_acceptance": false
+  },
+  {
+    "physical_page": 12,
+    "printed_page": "09",
+    "disposition": "retained",
+    "chapter_ids": [
+      "charging"
+    ],
+    "source_sha256": "fe9f1b561a9f75af52e1af738f9da00492302a55f43ddc0122e366744fb9e452",
+    "ocr_draft": "source/ocr/page-012.txt",
+    "ocr_draft_sha256": "2024948faf734aecc7986638182609e47c6789fa1fe4ab51e37bdf8286bca4a0",
+    "review_render_dpi": 350,
+    "review_render_sha256": "294117f22ce2ce0f95f7e874fb3634b53d62a963deaed0ac80992eeeb15c48f4",
+    "review_method": "manual reading of outlined source rendered at350dpi; OCR used only to locate paragraphs,5x source clips for ambiguousI/1/temperature/asset edges",
+    "review_result": "Car charging and two safety notes;491 also safety lead+signal definitions.",
+    "operator_acceptance": false
+  },
+  {
+    "physical_page": 13,
+    "printed_page": "10",
+    "disposition": "retained",
+    "chapter_ids": [
+      "safety"
+    ],
+    "source_sha256": "fe9f1b561a9f75af52e1af738f9da00492302a55f43ddc0122e366744fb9e452",
+    "ocr_draft": "source/ocr/page-013.txt",
+    "ocr_draft_sha256": "3eef4671d08bcbdcca65ee1cfc4ffeed7d8da57b67ae9f5cc4e966240a22cea4",
+    "review_render_dpi": 350,
+    "review_render_sha256": "586a94c88a4a2892d70d70e9c4db2aa0eaa8730cf2139f91c190d8b5ed5aeb84",
+    "review_method": "manual reading of outlined source rendered at350dpi; OCR used only to locate paragraphs,5x source clips for ambiguousI/1/temperature/asset edges",
+    "review_result": "Six source-bound pictograms/meanings and warning statements;512 also safety lead+signal definitions.",
+    "operator_acceptance": false
+  },
+  {
+    "physical_page": 14,
+    "printed_page": "11",
+    "disposition": "retained",
+    "chapter_ids": [
+      "safety"
+    ],
+    "source_sha256": "fe9f1b561a9f75af52e1af738f9da00492302a55f43ddc0122e366744fb9e452",
+    "ocr_draft": "source/ocr/page-014.txt",
+    "ocr_draft_sha256": "efda1ec8ce7e0ebb992ef7348a094f7ab5e96f69a36037e74968669c4c170ad0",
+    "review_render_dpi": 350,
+    "review_render_sha256": "7ed0cff0738accf909f3a53c13a7f10b994914d28aeef58e539c78a8541461e2",
+    "review_method": "manual reading of outlined source rendered at350dpi; OCR used only to locate paragraphs,5x source clips for ambiguousI/1/temperature/asset edges",
+    "review_result": "Seven remaining warnings and three cautions; source40°C and original medical prohibition retained. No600Plus handle clause.",
+    "operator_acceptance": false
+  },
+  {
+    "physical_page": 15,
+    "printed_page": "12",
+    "disposition": "retained",
+    "chapter_ids": [
+      "usage_precautions"
+    ],
+    "source_sha256": "fe9f1b561a9f75af52e1af738f9da00492302a55f43ddc0122e366744fb9e452",
+    "ocr_draft": "source/ocr/page-015.txt",
+    "ocr_draft_sha256": "f1787ae3eab0b416c5449a7ec1c2aef500aaca71db57ccb7ffcb9349cde49560",
+    "review_render_dpi": 350,
+    "review_render_sha256": "5c40985a39ab27b4fe19e40f619d8cefbf4242012e165c7e609196597af0e6b9",
+    "review_method": "manual reading of outlined source rendered at350dpi; OCR used only to locate paragraphs,5x source clips for ambiguousI/1/temperature/asset edges",
+    "review_result": "Station usage precautions; separate300Plus/240 wording, startup load examples and5cm ventilation unchanged.",
+    "operator_acceptance": false
+  },
+  {
+    "physical_page": 16,
+    "printed_page": "13",
+    "disposition": "retained",
+    "chapter_ids": [
+      "usage_precautions"
+    ],
+    "source_sha256": "fe9f1b561a9f75af52e1af738f9da00492302a55f43ddc0122e366744fb9e452",
+    "ocr_draft": "source/ocr/page-016.txt",
+    "ocr_draft_sha256": "f689f45ec68a8d5ea35dfa6a28cb5b7a871f64aa06e7f5f6e8f4c855eac4de83",
+    "review_render_dpi": 350,
+    "review_render_sha256": "46dab847d1ca77803648d4acc84a1dc464dbe336aea95638a41373943fd07770",
+    "review_method": "manual reading of outlined source rendered at350dpi; OCR used only to locate paragraphs,5x source clips for ambiguousI/1/temperature/asset edges",
+    "review_result": "Temperature/power/capacity station precautions +11solar precautions. Source-specific storage/temperature wording retained.",
+    "operator_acceptance": false
+  },
+  {
+    "physical_page": 17,
+    "printed_page": "14",
+    "disposition": "retained",
+    "chapter_ids": [
+      "in_the_box",
+      "disclaimer"
+    ],
+    "source_sha256": "fe9f1b561a9f75af52e1af738f9da00492302a55f43ddc0122e366744fb9e452",
+    "ocr_draft": "source/ocr/page-017.txt",
+    "ocr_draft_sha256": "66075d89e0f4cd1e0ea9e7b6b10c0e25d52dcd0d7041b680b7d782416daf24e6",
+    "review_render_dpi": 350,
+    "review_render_sha256": "8ee122b74f2a27e9f7faf72d2b62094e80aeaed58e34d8db3539076c42fa3072",
+    "review_method": "manual reading of outlined source rendered at350dpi; OCR used only to locate paragraphs,5x source clips for ambiguousI/1/temperature/asset edges",
+    "review_result": "Eight inbox cards+accessory-support note+six disclaimer bullets;491 source duplicate8heading and10disclaimer retained.",
+    "operator_acceptance": false
+  },
+  {
+    "physical_page": 18,
+    "printed_page": "15",
+    "disposition": "retained",
+    "chapter_ids": [
+      "app_setup"
+    ],
+    "source_sha256": "fe9f1b561a9f75af52e1af738f9da00492302a55f43ddc0122e366744fb9e452",
+    "ocr_draft": "source/ocr/page-018.txt",
+    "ocr_draft_sha256": "976140ddf6f26449dc0d19a45a82c29e0531b4c1bab7bf14fc801756b932b3c6",
+    "review_render_dpi": 350,
+    "review_render_sha256": "f6637511b4c01e58a070cde9df5dcbfe4472eacafa3cc81f094ab5ed19848c76",
+    "review_method": "manual reading of outlined source rendered at350dpi; OCR used only to locate paragraphs,5x source clips for ambiguousI/1/temperature/asset edges",
+    "review_result": "App download/login+2.1–2.3+binding notes; full phone frames and button diagram retained.",
+    "operator_acceptance": false
+  },
+  {
+    "physical_page": 19,
+    "printed_page": "16",
+    "disposition": "retained",
+    "chapter_ids": [
+      "app_setup"
+    ],
+    "source_sha256": "fe9f1b561a9f75af52e1af738f9da00492302a55f43ddc0122e366744fb9e452",
+    "ocr_draft": "source/ocr/page-019.txt",
+    "ocr_draft_sha256": "934f62afd2cc0b6beb705210d04d5cc371ac017e2dd3007a17e83cb9f7196b37",
+    "review_render_dpi": 350,
+    "review_render_sha256": "0d7c55dd387f84d991597df4ffbfc04ba41ba5ad8385aa5f1295fafb8f4a0b1e",
+    "review_method": "manual reading of outlined source rendered at350dpi; OCR used only to locate paragraphs,5x source clips for ambiguousI/1/temperature/asset edges",
+    "review_result": "App reset/binding2.4–2.5/unbind/4.1–4.3; original screenshots3000Pro/typoくだい retained.",
+    "operator_acceptance": false
+  },
+  {
+    "physical_page": 20,
+    "printed_page": null,
+    "disposition": "retained",
+    "chapter_ids": [
+      "app_setup"
+    ],
+    "source_sha256": "fe9f1b561a9f75af52e1af738f9da00492302a55f43ddc0122e366744fb9e452",
+    "ocr_draft": "source/ocr/page-020.txt",
+    "ocr_draft_sha256": "0f4889c3733111e7f073cf9de596fb164c0ea318eed4f8b0a2deafab998510ec",
+    "review_render_dpi": 350,
+    "review_render_sha256": "104cd330d89fc20495059d44c77530788132bb27d370cd7a2fcd9aa33e98406a",
+    "review_method": "manual reading of outlined source rendered at350dpi; OCR used only to locate paragraphs,5x source clips for ambiguousI/1/temperature/asset edges",
+    "review_result": "Substantive smart-control/download notice+storebadges+exact QR retained.",
+    "operator_acceptance": false
+  }
+]

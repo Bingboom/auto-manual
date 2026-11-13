@@ -1,0 +1,840 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 40000000
+  },
+  "source": {
+    "source_key": "source/js40a_jp_m000464",
+    "expected_sha256": "1a96bf348255cc47caf18b3df296ced0ccbc28269b1863c442e9e98d8d631b4c",
+    "expected_page_count": 28
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 28
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 1,
+      "page_scale": {}
+    }
+  },
+  "page_catalog": [
+    {
+      "page": 1,
+      "page_key": "page-01",
+      "role": "source-page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 2,
+      "page_key": "page-02",
+      "role": "source-page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 3,
+      "page_key": "page-03",
+      "role": "source-page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 4,
+      "page_key": "page-04",
+      "role": "source-page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 5,
+      "page_key": "page-05",
+      "role": "source-page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 6,
+      "page_key": "page-06",
+      "role": "source-page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 7,
+      "page_key": "page-07",
+      "role": "source-page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 8,
+      "page_key": "page-08",
+      "role": "source-page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 9,
+      "page_key": "page-09",
+      "role": "source-page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 10,
+      "page_key": "page-10",
+      "role": "source-page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 11,
+      "page_key": "page-11",
+      "role": "source-page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 12,
+      "page_key": "page-12",
+      "role": "source-page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 13,
+      "page_key": "page-13",
+      "role": "source-page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 14,
+      "page_key": "page-14",
+      "role": "source-page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 15,
+      "page_key": "page-15",
+      "role": "source-page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 16,
+      "page_key": "page-16",
+      "role": "source-page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 17,
+      "page_key": "page-17",
+      "role": "source-page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 18,
+      "page_key": "page-18",
+      "role": "source-page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 19,
+      "page_key": "page-19",
+      "role": "source-page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 20,
+      "page_key": "page-20",
+      "role": "source-page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 21,
+      "page_key": "page-21",
+      "role": "source-page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 22,
+      "page_key": "page-22",
+      "role": "source-page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 23,
+      "page_key": "page-23",
+      "role": "source-page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 24,
+      "page_key": "page-24",
+      "role": "source-page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 25,
+      "page_key": "page-25",
+      "role": "source-page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 26,
+      "page_key": "page-26",
+      "role": "source-page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 27,
+      "page_key": "page-27",
+      "role": "source-page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 28,
+      "page_key": "page-28",
+      "role": "source-page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "web/js40a/jp/m000464/power-device",
+      "page": 26,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-40A"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            18,
+            28,
+            244,
+            200
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            113,
+            103.6,
+            150,
+            109.5
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            111,
+            130,
+            150,
+            136.8
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            170,
+            138.5,
+            186,
+            144.5
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            168,
+            144.3,
+            244,
+            152.5
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            72,
+            192.6,
+            104,
+            199.5
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            113,
+            192.6,
+            154,
+            199.5
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            165,
+            192.6,
+            190,
+            199.5
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/power-device.png",
+          "scale": 8
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Web review candidate; operator pixel acceptance is pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/js40a/jp/m000464/inbox-panel",
+      "page": 26,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-40A"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            36,
+            241,
+            143,
+            275
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/inbox-panel.png",
+          "scale": 8
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Web review candidate; operator pixel acceptance is pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/js40a/jp/m000464/inbox-pouch",
+      "page": 26,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-40A"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            165,
+            240,
+            201,
+            281
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            165,
+            276,
+            190,
+            281
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/inbox-pouch.png",
+          "scale": 8
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Web review candidate; operator pixel acceptance is pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/js40a/jp/m000464/inbox-adapter",
+      "page": 26,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-40A"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            42,
+            288,
+            59,
+            321
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/inbox-adapter.png",
+          "scale": 8
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Web review candidate; operator pixel acceptance is pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/js40a/jp/m000464/inbox-manual",
+      "page": 26,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-40A"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            166,
+            290,
+            190,
+            324
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/inbox-manual.png",
+          "scale": 8
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Web review candidate; operator pixel acceptance is pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/js40a/jp/m000464/contact-qr",
+      "page": 28,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-40A"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            201,
+            315,
+            241,
+            354
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/contact-qr.png",
+          "scale": 8
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Web review candidate; operator pixel acceptance is pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art",
+        "qr"
+      ]
+    }
+  ]
+}

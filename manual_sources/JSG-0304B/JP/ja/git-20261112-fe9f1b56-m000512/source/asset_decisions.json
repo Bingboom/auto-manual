@@ -1,0 +1,727 @@
+[
+  {
+    "asset_ref": "assets/app-add.png",
+    "sha256": "159b9c0c5094a57162032587cc442c4d1b6bdce950ed4ebe3579d44c2b6e815f",
+    "checked_against_bundle_physical_pages": [
+      18,
+      19,
+      20
+    ],
+    "searched": [
+      "shared Web assets",
+      "same included station JP source package",
+      "current JS-40A candidate",
+      "master common assets"
+    ],
+    "approval": "candidate intake; no new operator pixel approval",
+    "decision": "reuse complete matching artwork bytes unchanged; source facts are transcribed separately",
+    "source": "manual_sources/JE-300B/JP/ja/git-20261103-456bb360/assets/app-add.png"
+  },
+  {
+    "asset_ref": "assets/app-control.png",
+    "sha256": "d0709184dcf1d2ed59b58f1721197bf374093c56139889b75277b36623da5f1c",
+    "checked_against_bundle_physical_pages": [
+      18,
+      19,
+      20
+    ],
+    "searched": [
+      "shared Web assets",
+      "same included station JP source package",
+      "current JS-40A candidate",
+      "master common assets"
+    ],
+    "approval": "candidate intake; no new operator pixel approval",
+    "decision": "reuse complete matching artwork bytes unchanged; source facts are transcribed separately",
+    "source": "manual_sources/JE-300B/JP/ja/git-20261103-456bb360/assets/app-control.png"
+  },
+  {
+    "asset_ref": "assets/app-qr.png",
+    "sha256": "b50ad04be3e69729fece5997bdfd59eaf1dfee150551b53065d1c5474ab1cf57",
+    "checked_against_bundle_physical_pages": [
+      18,
+      19,
+      20
+    ],
+    "searched": [
+      "shared Web assets",
+      "same included station JP source package",
+      "current JS-40A candidate",
+      "master common assets"
+    ],
+    "approval": "candidate intake; no new operator pixel approval",
+    "decision": "extract only after existing assets rejected for bundle identity/content",
+    "source": "original.pdf",
+    "physical_page": 20,
+    "bbox_pt": [
+      304,
+      467,
+      343,
+      505
+    ],
+    "pipeline": "tools/asset_intake.py + source/asset_recipe.json",
+    "rejected_reference": "station-only overview lacks included panel, old solar panel/cable/別売り differs, or this source-specific manual cover/accessory/QR has no matching complete selected asset"
+  },
+  {
+    "asset_ref": "assets/app-results.png",
+    "sha256": "ccdfae41d3cd940b4d04e1f5c50978c24880fd600b81183c8280df3904ff17e8",
+    "checked_against_bundle_physical_pages": [
+      18,
+      19,
+      20
+    ],
+    "searched": [
+      "shared Web assets",
+      "same included station JP source package",
+      "current JS-40A candidate",
+      "master common assets"
+    ],
+    "approval": "candidate intake; no new operator pixel approval",
+    "decision": "reuse complete matching artwork bytes unchanged; source facts are transcribed separately",
+    "source": "manual_sources/JE-300B/JP/ja/git-20261103-456bb360/assets/app-results.png"
+  },
+  {
+    "asset_ref": "assets/app-store-badges.png",
+    "sha256": "1fe61292c9f3c564644b7b942ec525167dc5f53f17fa1a9ad0f3ec1fd1ec5c1d",
+    "checked_against_bundle_physical_pages": [
+      18,
+      19,
+      20
+    ],
+    "searched": [
+      "shared Web assets",
+      "same included station JP source package",
+      "current JS-40A candidate",
+      "master common assets"
+    ],
+    "approval": "candidate intake; no new operator pixel approval",
+    "decision": "reuse complete matching artwork bytes unchanged; source facts are transcribed separately",
+    "source": "manual_sources/JE-300B/JP/ja/git-20261103-456bb360/assets/app-store-badges.png"
+  },
+  {
+    "asset_ref": "assets/charging-ac.png",
+    "sha256": "78c974af29aca8a21430fbcbdb5c665f7398b77d190155f41719e4c98b60a54e",
+    "checked_against_bundle_physical_pages": [
+      11,
+      12
+    ],
+    "searched": [
+      "shared Web assets",
+      "same included station JP source package",
+      "current JS-40A candidate",
+      "master common assets"
+    ],
+    "approval": "candidate intake; no new operator pixel approval",
+    "decision": "reuse complete matching artwork bytes unchanged; source facts are transcribed separately",
+    "source": "manual_sources/JE-300B/JP/ja/git-20261103-456bb360/assets/charging-ac.png"
+  },
+  {
+    "asset_ref": "assets/charging-car.png",
+    "sha256": "eea5f7474f3febc3b4e67d408956d55eadbd23029c1fd6ff7c7e3634b60abcbb",
+    "checked_against_bundle_physical_pages": [
+      11,
+      12
+    ],
+    "searched": [
+      "shared Web assets",
+      "same included station JP source package",
+      "current JS-40A candidate",
+      "master common assets"
+    ],
+    "approval": "candidate intake; no new operator pixel approval",
+    "decision": "reuse complete matching artwork bytes unchanged; source facts are transcribed separately",
+    "source": "manual_sources/JE-300B/JP/ja/git-20261103-456bb360/assets/charging-car.png"
+  },
+  {
+    "asset_ref": "assets/charging-solar.png",
+    "sha256": "3e6db8c3bb95e12e48b5ddbb28d43af387bbe24a9c612eb6e29cc02fc755bad9",
+    "checked_against_bundle_physical_pages": [
+      11,
+      12
+    ],
+    "searched": [
+      "shared Web assets",
+      "same included station JP source package",
+      "current JS-40A candidate",
+      "master common assets"
+    ],
+    "approval": "candidate intake; no new operator pixel approval",
+    "decision": "extract only after existing assets rejected for bundle identity/content",
+    "source": "original.pdf",
+    "physical_page": 11,
+    "bbox_pt": [
+      30,
+      415,
+      333,
+      493
+    ],
+    "pipeline": "tools/asset_intake.py + source/asset_recipe.json",
+    "rejected_reference": "station-only overview lacks included panel, old solar panel/cable/別売り differs, or this source-specific manual cover/accessory/QR has no matching complete selected asset"
+  },
+  {
+    "asset_ref": "assets/h1-jp-mandatory.svg",
+    "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2",
+    "checked_against_bundle_physical_pages": [
+      13,
+      14
+    ],
+    "searched": [
+      "shared Web assets",
+      "same included station JP source package",
+      "current JS-40A candidate",
+      "master common assets"
+    ],
+    "approval": "candidate intake; no new operator pixel approval",
+    "decision": "reuse source-bound shared symbol unchanged; independent admission6/6",
+    "source": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-mandatory.svg",
+    "physical_page": 13,
+    "shared_symbol_key": "mandatory/h1-jp-native"
+  },
+  {
+    "asset_ref": "assets/h1-jp-unplug.svg",
+    "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf",
+    "checked_against_bundle_physical_pages": [
+      13,
+      14
+    ],
+    "searched": [
+      "shared Web assets",
+      "same included station JP source package",
+      "current JS-40A candidate",
+      "master common assets"
+    ],
+    "approval": "candidate intake; no new operator pixel approval",
+    "decision": "reuse source-bound shared symbol unchanged; independent admission6/6",
+    "source": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-unplug.svg",
+    "physical_page": 13,
+    "shared_symbol_key": "unplug/h1-jp-native"
+  },
+  {
+    "asset_ref": "assets/inbox-ac-cable.png",
+    "sha256": "fbab666613d6bc04561044fd4f524635dccfb36f526231cd57530a8d5e54433e",
+    "checked_against_bundle_physical_pages": [
+      17
+    ],
+    "searched": [
+      "shared Web assets",
+      "same included station JP source package",
+      "current JS-40A candidate",
+      "master common assets"
+    ],
+    "approval": "candidate intake; no new operator pixel approval",
+    "decision": "reuse complete matching artwork bytes unchanged; source facts are transcribed separately",
+    "source": "manual_sources/JE-300B/JP/ja/git-20261103-456bb360/assets/inbox-ac-cable.png"
+  },
+  {
+    "asset_ref": "assets/inbox-extension.png",
+    "sha256": "a44fdc10ad13f1d32edd05254c29c5c21154723fd7d2389d0dde729698c38ba5",
+    "checked_against_bundle_physical_pages": [
+      17
+    ],
+    "searched": [
+      "shared Web assets",
+      "same included station JP source package",
+      "current JS-40A candidate",
+      "master common assets"
+    ],
+    "approval": "candidate intake; no new operator pixel approval",
+    "decision": "extract only after existing assets rejected for bundle identity/content",
+    "source": "original.pdf",
+    "physical_page": 17,
+    "bbox_pt": [
+      138,
+      159,
+      191,
+      191
+    ],
+    "pipeline": "tools/asset_intake.py + source/asset_recipe.json",
+    "rejected_reference": "station-only overview lacks included panel, old solar panel/cable/別売り differs, or this source-specific manual cover/accessory/QR has no matching complete selected asset"
+  },
+  {
+    "asset_ref": "assets/inbox-panel.png",
+    "sha256": "22c8fcc36d3c9edf278dcefeb83011b3aacdb572a4292647a80c4603dd553c1c",
+    "checked_against_bundle_physical_pages": [
+      17
+    ],
+    "searched": [
+      "shared Web assets",
+      "same included station JP source package",
+      "current JS-40A candidate",
+      "master common assets"
+    ],
+    "approval": "candidate intake; no new operator pixel approval",
+    "decision": "extract only after existing assets rejected for bundle identity/content",
+    "source": "original.pdf",
+    "physical_page": 17,
+    "bbox_pt": [
+      37,
+      159,
+      124,
+      191
+    ],
+    "pipeline": "tools/asset_intake.py + source/asset_recipe.json",
+    "rejected_reference": "station-only overview lacks included panel, old solar panel/cable/別売り differs, or this source-specific manual cover/accessory/QR has no matching complete selected asset"
+  },
+  {
+    "asset_ref": "assets/inbox-pouch.png",
+    "sha256": "9eddf744be243717bd1191ecbbcb1cf021c444a0e35e9607092faa1f60357cea",
+    "checked_against_bundle_physical_pages": [
+      17
+    ],
+    "searched": [
+      "shared Web assets",
+      "same included station JP source package",
+      "current JS-40A candidate",
+      "master common assets"
+    ],
+    "approval": "candidate intake; no new operator pixel approval",
+    "decision": "extract only after existing assets rejected for bundle identity/content",
+    "source": "original.pdf",
+    "physical_page": 17,
+    "bbox_pt": [
+      287,
+      67,
+      338,
+      101
+    ],
+    "pipeline": "tools/asset_intake.py + source/asset_recipe.json",
+    "rejected_reference": "station-only overview lacks included panel, old solar panel/cable/別売り differs, or this source-specific manual cover/accessory/QR has no matching complete selected asset"
+  },
+  {
+    "asset_ref": "assets/inbox-unit.png",
+    "sha256": "3b0666779610180e3cce1f40cfd118ad6e47bb4c3cc5a31a90108a56b313b7b4",
+    "checked_against_bundle_physical_pages": [
+      17
+    ],
+    "searched": [
+      "shared Web assets",
+      "same included station JP source package",
+      "current JS-40A candidate",
+      "master common assets"
+    ],
+    "approval": "candidate intake; no new operator pixel approval",
+    "decision": "reuse complete matching artwork bytes unchanged; source facts are transcribed separately",
+    "source": "manual_sources/JE-300B/JP/ja/git-20261103-456bb360/assets/inbox-unit.png"
+  },
+  {
+    "asset_ref": "assets/inbox-usbc.png",
+    "sha256": "158a14c1316216408d54c7734141b1f928f2984efe54fbb307262df247adba0e",
+    "checked_against_bundle_physical_pages": [
+      17
+    ],
+    "searched": [
+      "shared Web assets",
+      "same included station JP source package",
+      "current JS-40A candidate",
+      "master common assets"
+    ],
+    "approval": "candidate intake; no new operator pixel approval",
+    "decision": "extract only after existing assets rejected for bundle identity/content",
+    "source": "original.pdf",
+    "physical_page": 17,
+    "bbox_pt": [
+      218,
+      61,
+      241,
+      102
+    ],
+    "pipeline": "tools/asset_intake.py + source/asset_recipe.json",
+    "rejected_reference": "station-only overview lacks included panel, old solar panel/cable/別売り differs, or this source-specific manual cover/accessory/QR has no matching complete selected asset"
+  },
+  {
+    "asset_ref": "assets/inbox-user-manual.png",
+    "sha256": "9003f0d34da4d86998cf2cc047b9baf81f04de08cb9214e361cd6db45c7c289a",
+    "checked_against_bundle_physical_pages": [
+      17
+    ],
+    "searched": [
+      "shared Web assets",
+      "same included station JP source package",
+      "current JS-40A candidate",
+      "master common assets"
+    ],
+    "approval": "candidate intake; no new operator pixel approval",
+    "decision": "extract only after existing assets rejected for bundle identity/content",
+    "source": "original.pdf",
+    "physical_page": 17,
+    "bbox_pt": [
+      298,
+      153,
+      329,
+      196
+    ],
+    "pipeline": "tools/asset_intake.py + source/asset_recipe.json",
+    "rejected_reference": "station-only overview lacks included panel, old solar panel/cable/別売り differs, or this source-specific manual cover/accessory/QR has no matching complete selected asset"
+  },
+  {
+    "asset_ref": "assets/inbox-warranty.png",
+    "sha256": "7943929e85aadb1b5a0bf59fcd4baa0d3d63006063c396c0af9041008a879220",
+    "checked_against_bundle_physical_pages": [
+      17
+    ],
+    "searched": [
+      "shared Web assets",
+      "same included station JP source package",
+      "current JS-40A candidate",
+      "master common assets"
+    ],
+    "approval": "candidate intake; no new operator pixel approval",
+    "decision": "reuse complete matching artwork bytes unchanged; source facts are transcribed separately",
+    "source": "manual_sources/JE-300B/JP/ja/git-20261103-456bb360/assets/inbox-warranty.png"
+  },
+  {
+    "asset_ref": "assets/je1000d-jp-00c43a89-symbol-02.svg",
+    "sha256": "0766a51f9ad7d433bed62a7c1ddbacc19ad7c7b68bf55938d5cdbab902b9ea04",
+    "checked_against_bundle_physical_pages": [
+      13,
+      14
+    ],
+    "searched": [
+      "shared Web assets",
+      "same included station JP source package",
+      "current JS-40A candidate",
+      "master common assets"
+    ],
+    "approval": "candidate intake; no new operator pixel approval",
+    "decision": "reuse source-bound shared symbol unchanged; independent admission6/6",
+    "source": "docs/renderers/web/assets/shared/symbols/native-v1/je1000d-jp-00c43a89-symbol-02.svg",
+    "physical_page": 13,
+    "shared_symbol_key": "native/je1000d-jp-00c43a89-02"
+  },
+  {
+    "asset_ref": "assets/je1000d-jp-00c43a89-symbol-03.svg",
+    "sha256": "585a0c72abdb9fc1d69d31554d249730f1361dfc49a501423dd0204e0637a387",
+    "checked_against_bundle_physical_pages": [
+      13,
+      14
+    ],
+    "searched": [
+      "shared Web assets",
+      "same included station JP source package",
+      "current JS-40A candidate",
+      "master common assets"
+    ],
+    "approval": "candidate intake; no new operator pixel approval",
+    "decision": "reuse source-bound shared symbol unchanged; independent admission6/6",
+    "source": "docs/renderers/web/assets/shared/symbols/native-v1/je1000d-jp-00c43a89-symbol-03.svg",
+    "physical_page": 13,
+    "shared_symbol_key": "native/je1000d-jp-00c43a89-03"
+  },
+  {
+    "asset_ref": "assets/je1000d-jp-00c43a89-symbol-05.svg",
+    "sha256": "4728b4a0ab80e8376ff756d9af98d92c1906d3461e44eb4905899b6212cc003c",
+    "checked_against_bundle_physical_pages": [
+      13,
+      14
+    ],
+    "searched": [
+      "shared Web assets",
+      "same included station JP source package",
+      "current JS-40A candidate",
+      "master common assets"
+    ],
+    "approval": "candidate intake; no new operator pixel approval",
+    "decision": "reuse source-bound shared symbol unchanged; independent admission6/6",
+    "source": "docs/renderers/web/assets/shared/symbols/native-v1/je1000d-jp-00c43a89-symbol-05.svg",
+    "physical_page": 13,
+    "shared_symbol_key": "native/je1000d-jp-00c43a89-05"
+  },
+  {
+    "asset_ref": "assets/je1000d-jp-00c43a89-symbol-06.svg",
+    "sha256": "a5390e01e5ed9ba225377ba6b13de7523f86b8139e4686cf4534ebb2c1048641",
+    "checked_against_bundle_physical_pages": [
+      13,
+      14
+    ],
+    "searched": [
+      "shared Web assets",
+      "same included station JP source package",
+      "current JS-40A candidate",
+      "master common assets"
+    ],
+    "approval": "candidate intake; no new operator pixel approval",
+    "decision": "reuse source-bound shared symbol unchanged; independent admission6/6",
+    "source": "docs/renderers/web/assets/shared/symbols/native-v1/je1000d-jp-00c43a89-symbol-06.svg",
+    "physical_page": 13,
+    "shared_symbol_key": "native/je1000d-jp-00c43a89-06"
+  },
+  {
+    "asset_ref": "assets/je3000c-kr-78316033-06.svg",
+    "sha256": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5",
+    "checked_against_bundle_physical_pages": [
+      6,
+      7
+    ],
+    "searched": [
+      "shared Web assets",
+      "same included station JP source package",
+      "current JS-40A candidate",
+      "master common assets"
+    ],
+    "approval": "candidate intake; no new operator pixel approval",
+    "decision": "reuse complete matching artwork bytes unchanged; source facts are transcribed separately",
+    "source": "docs/renderers/web/assets/shared/symbols/native-v1/je3000c-kr-78316033-06.svg"
+  },
+  {
+    "asset_ref": "assets/lcd-battery-icon.svg",
+    "sha256": "5500242f2fe21a6b1b32d363f483f23841d34f0055c057e530eecdcfe2de0c1f",
+    "checked_against_bundle_physical_pages": [
+      8,
+      9,
+      10
+    ],
+    "searched": [
+      "shared Web assets",
+      "same included station JP source package",
+      "current JS-40A candidate",
+      "master common assets"
+    ],
+    "approval": "candidate intake; no new operator pixel approval",
+    "decision": "reuse complete matching artwork bytes unchanged; source facts are transcribed separately",
+    "source": "manual_sources/JE-300B/JP/ja/git-20261103-456bb360/assets/lcd-battery-icon.svg"
+  },
+  {
+    "asset_ref": "assets/lcd-energy-saving.svg",
+    "sha256": "2ec35ee3a80d112ade030bb54c29bd877804cfbd0848cd9ef5fcf7f4250e124b",
+    "checked_against_bundle_physical_pages": [
+      8,
+      9,
+      10
+    ],
+    "searched": [
+      "shared Web assets",
+      "same included station JP source package",
+      "current JS-40A candidate",
+      "master common assets"
+    ],
+    "approval": "candidate intake; no new operator pixel approval",
+    "decision": "reuse complete matching artwork bytes unchanged; source facts are transcribed separately",
+    "source": "manual_sources/JE-300B/JP/ja/git-20261103-456bb360/assets/lcd-energy-saving.svg"
+  },
+  {
+    "asset_ref": "assets/lcd-fault-code.svg",
+    "sha256": "9c59ce4d35a1805714ce1c314f6ffbaa738a561d91a7de6dda8ca204b053458c",
+    "checked_against_bundle_physical_pages": [
+      8,
+      9,
+      10
+    ],
+    "searched": [
+      "shared Web assets",
+      "same included station JP source package",
+      "current JS-40A candidate",
+      "master common assets"
+    ],
+    "approval": "candidate intake; no new operator pixel approval",
+    "decision": "reuse complete matching artwork bytes unchanged; source facts are transcribed separately",
+    "source": "manual_sources/JE-300B/JP/ja/git-20261103-456bb360/assets/lcd-fault-code.svg"
+  },
+  {
+    "asset_ref": "assets/lcd-high-temperature.svg",
+    "sha256": "613c3b10afbb7fd46e65dfe6000e49cd5e6217dccfdb7024ddb5fd2efdf6218e",
+    "checked_against_bundle_physical_pages": [
+      8,
+      9,
+      10
+    ],
+    "searched": [
+      "shared Web assets",
+      "same included station JP source package",
+      "current JS-40A candidate",
+      "master common assets"
+    ],
+    "approval": "candidate intake; no new operator pixel approval",
+    "decision": "reuse complete matching artwork bytes unchanged; source facts are transcribed separately",
+    "source": "manual_sources/JE-300B/JP/ja/git-20261103-456bb360/assets/lcd-high-temperature.svg"
+  },
+  {
+    "asset_ref": "assets/lcd-low-battery.svg",
+    "sha256": "3f15994f7d22feb032b891d8eaa35a29296153084e4f0337a5db67375fb52862",
+    "checked_against_bundle_physical_pages": [
+      8,
+      9,
+      10
+    ],
+    "searched": [
+      "shared Web assets",
+      "same included station JP source package",
+      "current JS-40A candidate",
+      "master common assets"
+    ],
+    "approval": "candidate intake; no new operator pixel approval",
+    "decision": "reuse complete matching artwork bytes unchanged; source facts are transcribed separately",
+    "source": "manual_sources/JE-300B/JP/ja/git-20261103-456bb360/assets/lcd-low-battery.svg"
+  },
+  {
+    "asset_ref": "assets/lcd-low-temperature.svg",
+    "sha256": "d084b5c7071a68212dcaeacc4b130ccaee40ec01e8f61e6ddd0e894f6534575f",
+    "checked_against_bundle_physical_pages": [
+      8,
+      9,
+      10
+    ],
+    "searched": [
+      "shared Web assets",
+      "same included station JP source package",
+      "current JS-40A candidate",
+      "master common assets"
+    ],
+    "approval": "candidate intake; no new operator pixel approval",
+    "decision": "reuse complete matching artwork bytes unchanged; source facts are transcribed separately",
+    "source": "manual_sources/JE-300B/JP/ja/git-20261103-456bb360/assets/lcd-low-temperature.svg"
+  },
+  {
+    "asset_ref": "assets/lcd-map.png",
+    "sha256": "716ee7e2e22266a79baa6b83c578b1b56d7e9746f1c930c677613ee7da4b2257",
+    "checked_against_bundle_physical_pages": [
+      8,
+      9,
+      10
+    ],
+    "searched": [
+      "shared Web assets",
+      "same included station JP source package",
+      "current JS-40A candidate",
+      "master common assets"
+    ],
+    "approval": "candidate intake; no new operator pixel approval",
+    "decision": "reuse complete matching artwork bytes unchanged; source facts are transcribed separately",
+    "source": "manual_sources/JE-300B/JP/ja/git-20261103-456bb360/assets/lcd-map.png"
+  },
+  {
+    "asset_ref": "assets/overview.png",
+    "sha256": "2064a83cb175121e12ad5d7ddf68ba02dd21a75059c1887510e9c616ff83b25a",
+    "checked_against_bundle_physical_pages": [
+      7
+    ],
+    "searched": [
+      "shared Web assets",
+      "same included station JP source package",
+      "current JS-40A candidate",
+      "master common assets"
+    ],
+    "approval": "candidate intake; no new operator pixel approval",
+    "decision": "extract only after existing assets rejected for bundle identity/content",
+    "source": "original.pdf",
+    "physical_page": 7,
+    "bbox_pt": [
+      21,
+      163,
+      346,
+      425
+    ],
+    "pipeline": "tools/asset_intake.py + source/asset_recipe.json",
+    "rejected_reference": "station-only overview lacks included panel, old solar panel/cable/別売り differs, or this source-specific manual cover/accessory/QR has no matching complete selected asset"
+  },
+  {
+    "asset_ref": "assets/unfold-1.png",
+    "sha256": "d4f192fb0e8b2e6c6fe9f62b4cfc00bc59ad12606ebc48b1b7b55c274b623a1a",
+    "checked_against_bundle_physical_pages": [
+      4,
+      5
+    ],
+    "searched": [
+      "shared Web assets",
+      "same included station JP source package",
+      "current JS-40A candidate",
+      "master common assets"
+    ],
+    "approval": "candidate intake; no new operator pixel approval",
+    "decision": "reuse byte-identical complete illustration held in the selected JS-40A 000464 candidate; actual art donor 000348 p2/p3, matched to this bundle p4/p5; assets are self-contained and no other source package is required to replay",
+    "source_package": "manual_sources/JS-40A/JP/ja/git-20261112-1a96bf34-m000464",
+    "donor_material": "38-0001-000348",
+    "donor_physical_page": 2,
+    "donor_source_sha256": "482191d208d902c4e18181b04fe7460387b4b013b4c5cf2484209a96311588ca",
+    "source_dependency": false
+  },
+  {
+    "asset_ref": "assets/unfold-2.png",
+    "sha256": "a71fb0738c120520516984c3d99cffffcaa1b1ad0f2f65c31771c9ee45404a60",
+    "checked_against_bundle_physical_pages": [
+      4,
+      5
+    ],
+    "searched": [
+      "shared Web assets",
+      "same included station JP source package",
+      "current JS-40A candidate",
+      "master common assets"
+    ],
+    "approval": "candidate intake; no new operator pixel approval",
+    "decision": "reuse byte-identical complete illustration held in the selected JS-40A 000464 candidate; actual art donor 000348 p2/p3, matched to this bundle p4/p5; assets are self-contained and no other source package is required to replay",
+    "source_package": "manual_sources/JS-40A/JP/ja/git-20261112-1a96bf34-m000464",
+    "donor_material": "38-0001-000348",
+    "donor_physical_page": 2,
+    "donor_source_sha256": "482191d208d902c4e18181b04fe7460387b4b013b4c5cf2484209a96311588ca",
+    "source_dependency": false
+  },
+  {
+    "asset_ref": "assets/unfold-3.png",
+    "sha256": "cc3bce48031cc93f8bde2651c84aa7052231a26214c2e7de88ee247b1b047331",
+    "checked_against_bundle_physical_pages": [
+      4,
+      5
+    ],
+    "searched": [
+      "shared Web assets",
+      "same included station JP source package",
+      "current JS-40A candidate",
+      "master common assets"
+    ],
+    "approval": "candidate intake; no new operator pixel approval",
+    "decision": "reuse byte-identical complete illustration held in the selected JS-40A 000464 candidate; actual art donor 000348 p2/p3, matched to this bundle p4/p5; assets are self-contained and no other source package is required to replay",
+    "source_package": "manual_sources/JS-40A/JP/ja/git-20261112-1a96bf34-m000464",
+    "donor_material": "38-0001-000348",
+    "donor_physical_page": 2,
+    "donor_source_sha256": "482191d208d902c4e18181b04fe7460387b4b013b4c5cf2484209a96311588ca",
+    "source_dependency": false
+  },
+  {
+    "asset_ref": "assets/unfold-4.png",
+    "sha256": "7159f9d8bddb88c5d2a7b4ab3e8e3ec349bf3f86ab7cc53fec58208576911570",
+    "checked_against_bundle_physical_pages": [
+      4,
+      5
+    ],
+    "searched": [
+      "shared Web assets",
+      "same included station JP source package",
+      "current JS-40A candidate",
+      "master common assets"
+    ],
+    "approval": "candidate intake; no new operator pixel approval",
+    "decision": "reuse byte-identical complete illustration held in the selected JS-40A 000464 candidate; actual art donor 000348 p2/p3, matched to this bundle p4/p5; assets are self-contained and no other source package is required to replay",
+    "source_package": "manual_sources/JS-40A/JP/ja/git-20261112-1a96bf34-m000464",
+    "donor_material": "38-0001-000348",
+    "donor_physical_page": 3,
+    "donor_source_sha256": "482191d208d902c4e18181b04fe7460387b4b013b4c5cf2484209a96311588ca",
+    "source_dependency": false
+  },
+  {
+    "asset_ref": "assets/unfold-5.png",
+    "sha256": "e3b03378fceedcf643cb9e030c3cbaa3a7ad9da0f7c8822d6f12d1ff3e4f0773",
+    "checked_against_bundle_physical_pages": [
+      4,
+      5
+    ],
+    "searched": [
+      "shared Web assets",
+      "same included station JP source package",
+      "current JS-40A candidate",
+      "master common assets"
+    ],
+    "approval": "candidate intake; no new operator pixel approval",
+    "decision": "extract complete actual bundle p5 sun/arrows/panel/cable/handled-station art; reject100Plus reference, shared theme owns layout",
+    "source": "original.pdf",
+    "physical_page": 5,
+    "bbox_pt": [
+      39,
+      333,
+      333,
+      465
+    ],
+    "pipeline": "tools/asset_intake.py + source/asset_recipe.json",
+    "rejected_reference": "station-only overview lacks included panel, old solar panel/cable/別売り differs, or this source-specific manual cover/accessory/QR has no matching complete selected asset",
+    "donor_source_sha256": "fe9f1b561a9f75af52e1af738f9da00492302a55f43ddc0122e366744fb9e452"
+  }
+]
