@@ -6,6 +6,6 @@ Derived from [git-20261112-e59cc1bc-m000491](../git-20261112-e59cc1bc-m000491/RE
 
 `source/approval.json` binds the exact original SHA-256, candidate commit and independent replay result. `source/reviewed-candidate.json` inventories the original Web tree and lists every release difference. Only the Manual IR authorization metadata differs from the candidate Web tree.
 
-Cold replay uses `tools.web.frozen_ai_web.replay_package` against `web/ja/`, without reopening the PDF or transcribing content. Source-bound symbol rows are checked by `require_symbol_asset_admission` at fresh sealing; the existing comparison tolerance, canonical groups and captions are unchanged.
+Cold replay uses `tools.web.frozen_ai_web.replay_package` against `web/ja/`, without reopening the PDF or transcribing content. Source-bound symbol rows are checked by `require_symbol_asset_admission` at fresh sealing; the existing comparison tolerance, canonical choices, existing group members and captions are unchanged.
 
 Publication must seal `source_manifest.json` at its committed Git ref, assemble only `docs/publish/**` in Hello-Docs and verify the actual RTD deployment. No live source, queue, asset-registry or HTML-link write is part of this Git-only release.

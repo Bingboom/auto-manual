@@ -2803,7 +2803,8 @@
       "canonical": "unplug/h1-jp-native",
       "legacy_variants": [
         "native/je1500d-jp-6ddeef54-05",
-        "native/je1000d-jp-00c43a89-01"
+        "native/je1000d-jp-00c43a89-01",
+        "native/bnrb15-jp-f2421529-unplug"
       ],
       "captions": {
         "ja": [
@@ -2910,7 +2911,8 @@
       "status": "operator-confirmed",
       "canonical": "prohibited/h1-jp-native",
       "legacy_variants": [
-        "native/je1000d-jp-00c43a89-06"
+        "native/je1000d-jp-00c43a89-06",
+        "native/bnrb15-jp-f2421529-prohibited"
       ],
       "captions": {
         "ja": [
@@ -2934,7 +2936,9 @@
       "meaning": "行为指示（通用）",
       "status": "operator-confirmed",
       "canonical": "mandatory/h1-jp-native",
-      "legacy_variants": [],
+      "legacy_variants": [
+        "native/bnrb15-jp-f2421529-mandatory"
+      ],
       "captions": {
         "ja": [
           "各接続端子には確実に差し込む 差し込みが不十分だと、発熱したりほこりが付着して火災や感電の原因になります。",

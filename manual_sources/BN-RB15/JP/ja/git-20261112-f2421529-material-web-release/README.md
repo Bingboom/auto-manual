@@ -6,6 +6,6 @@ Derived from [git-20261112-f2421529-material-web](../git-20261112-f2421529-mater
 
 `source/approval.json` binds the exact original SHA-256, candidate commit and independent replay result. `source/reviewed-candidate.json` inventories the original Web tree and lists every release difference. Restore the printed unplug glyph alongside the mandatory glyph; all three JVC symbol glyphs use hash-bound native PDF paths because existing shared candidates failed the fixed comparison.
 
-Cold replay uses `tools.web.frozen_ai_web.replay_package` against `web/ja/`, without reopening the PDF or transcribing content. Source-bound symbol rows are checked by `require_symbol_asset_admission` at fresh sealing; the existing comparison tolerance, canonical groups and captions are unchanged.
+Cold replay uses `tools.web.frozen_ai_web.replay_package` against `web/ja/`, without reopening the PDF or transcribing content. Source-bound symbol rows are checked by `require_symbol_asset_admission` at fresh sealing; the existing comparison tolerance, canonical choices, existing group members and captions are unchanged.
 
 Publication must seal `source_manifest.json` at its committed Git ref, assemble only `docs/publish/**` in Hello-Docs and verify the actual RTD deployment. No live source, queue, asset-registry or HTML-link write is part of this Git-only release.

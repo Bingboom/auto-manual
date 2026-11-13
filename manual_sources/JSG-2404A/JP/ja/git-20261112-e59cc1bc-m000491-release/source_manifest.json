@@ -605,12 +605,12 @@
       "decision": "5x glyph review: final character is a plain RomanI, distinguish from source numeral1 with hook and foot"
     }
   ],
-  "validation_boundary": "MA-432 delegates review then release. Candidate adapters independently rebuilt byte-identical Web trees and passed strict Sphinx. Release differences are enumerated in source/reviewed-candidate.json: authorization metadata, source-matching/existing canonical PTB glyphs, native source-bound JVC glyphs and the restored printed unplug row. Japanese wording, specifications and source concerns are unchanged. The fixed symbol admission rule and existing shared groups are unchanged. No separate operator pixel inspection is claimed.",
+  "validation_boundary": "MA-432 delegates review then release. Candidate adapters independently rebuilt byte-identical Web trees and passed strict Sphinx. Release differences are enumerated in source/reviewed-candidate.json: authorization metadata, source-matching/existing canonical PTB glyphs, native source-bound JVC glyphs and the restored printed unplug row. Japanese wording, specifications and source concerns are unchanged. The fixed symbol admission rule and existing canonical choices and captions are unchanged. No separate operator pixel inspection is claimed.",
   "inputs": [
     {
       "path": "README.md",
-      "size": 1296,
-      "sha256": "2b9e093e317f5b6eb69e43d912cbe0cb109921e5bd803f12f3546e87f497c442"
+      "size": 1321,
+      "sha256": "d752101e2b717be74aca6789f2e8d7f7d80b2a845cffadbeb3da72fbfe975c49"
     },
     {
       "path": "assets/17_Battery_Power_Indicator_VLufb9exvoVLfgxz47pcfnRGnaf.png",
@@ -1387,7 +1387,7 @@
     {
       "path": "docs/renderers/web/assets/shared/symbols/manifest.json",
       "size": 140027,
-      "sha256": "6eb3e75c6d3688c35a48a45c572f52807b5fb9ac11acc8d9f52984609172e329"
+      "sha256": "d81f8f2a543b8d5cedf99e9a33314f492e4ba30607f67ab05f527b5da2c451ca"
     },
     {
       "path": "manual_sources/JE-240A/JP/ja/git-20261103-e227d165/source/ja/content.json",

@@ -56,8 +56,8 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 1413,
-      "sha256": "fb72e8f3442d7af70d942b034fa42142b7215544c026f9560867b019d5410a06"
+      "size": 1438,
+      "sha256": "8d87105f814fb2841439e2cffc00796cc0a2641bf2c85c57f0767bac5f273dc0"
     },
     {
       "path": "assets/charging-ac.png",
@@ -630,5 +630,5 @@
     "manifest_sha256": "c0183c567246cd4a8e94073fb5ea74e2657ed7ec1e167c93e623eecf34413d82",
     "manual_ir_sha256": "dc68e79afdfe07b6146c134619fa16670ed4c289159b1a154b8cb495b9f7f17d"
   },
-  "validation_boundary": "MA-432 delegates review then release. Candidate adapters independently rebuilt byte-identical Web trees and passed strict Sphinx. Release differences are enumerated in source/reviewed-candidate.json: authorization metadata, source-matching/existing canonical PTB glyphs, native source-bound JVC glyphs and the restored printed unplug row. Japanese wording, specifications and source concerns are unchanged. The fixed symbol admission rule and existing shared groups are unchanged. No separate operator pixel inspection is claimed."
+  "validation_boundary": "MA-432 delegates review then release. Candidate adapters independently rebuilt byte-identical Web trees and passed strict Sphinx. Release differences are enumerated in source/reviewed-candidate.json: authorization metadata, source-matching/existing canonical PTB glyphs, native source-bound JVC glyphs and the restored printed unplug row. Japanese wording, specifications and source concerns are unchanged. The fixed symbol admission rule and existing canonical choices and captions are unchanged. No separate operator pixel inspection is claimed."
 }

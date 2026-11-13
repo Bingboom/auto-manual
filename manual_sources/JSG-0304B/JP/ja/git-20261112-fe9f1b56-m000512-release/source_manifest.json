@@ -569,12 +569,12 @@
       "decision": "preserve the original illustrative App screens and Japanese wording; no model transplant"
     }
   ],
-  "validation_boundary": "MA-432 delegates review then release. Candidate adapters independently rebuilt byte-identical Web trees and passed strict Sphinx. Release differences are enumerated in source/reviewed-candidate.json: authorization metadata, source-matching/existing canonical PTB glyphs, native source-bound JVC glyphs and the restored printed unplug row. Japanese wording, specifications and source concerns are unchanged. The fixed symbol admission rule and existing shared groups are unchanged. No separate operator pixel inspection is claimed.",
+  "validation_boundary": "MA-432 delegates review then release. Candidate adapters independently rebuilt byte-identical Web trees and passed strict Sphinx. Release differences are enumerated in source/reviewed-candidate.json: authorization metadata, source-matching/existing canonical PTB glyphs, native source-bound JVC glyphs and the restored printed unplug row. Japanese wording, specifications and source concerns are unchanged. The fixed symbol admission rule and existing canonical choices and captions are unchanged. No separate operator pixel inspection is claimed.",
   "inputs": [
     {
       "path": "README.md",
-      "size": 1296,
-      "sha256": "f5e01ddf2661179387b6ca4cd682c30e41754f15adb9de387c3111821a1c3c91"
+      "size": 1321,
+      "sha256": "8bf3d45543d2da36533d6e860e287ac5eb1696add365896a8869a2d2766060f6"
     },
     {
       "path": "assets/app-add.png",
@@ -1351,7 +1351,7 @@
     {
       "path": "docs/renderers/web/assets/shared/symbols/manifest.json",
       "size": 140027,
-      "sha256": "6eb3e75c6d3688c35a48a45c572f52807b5fb9ac11acc8d9f52984609172e329"
+      "sha256": "d81f8f2a543b8d5cedf99e9a33314f492e4ba30607f67ab05f527b5da2c451ca"
     },
     {
       "path": "manual_sources/JE-300B/JP/ja/git-20261103-456bb360/source/ja/content.json",
