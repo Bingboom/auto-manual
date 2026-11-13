@@ -1,0 +1,39 @@
+{
+  "authorization": "MA-432",
+  "model": "JS-40A",
+  "candidate_git_ref": "846f94fb9e4bc16edd926d9fd499a1381c5ec3c2",
+  "candidate_path": "manual_sources/JS-40A/US/en/git-20261112-95e0f1c8-m000717",
+  "approved_path": "manual_sources/JS-40A/US/en/git-20261112-95e0f1c8-m000717-release",
+  "native_pages_identical": true,
+  "content_sha256": "2554afcefca5bb364ac451e47b4ac4f67f07cac8bb45beffbaf6deb6e8f7317b",
+  "source_pdf_identical": true,
+  "artwork_identical": true,
+  "non_IR_web_files_byte_identical": [
+    "_static/web_manual.css",
+    "assets/contact-qr.png",
+    "assets/inbox-adapter.png",
+    "assets/inbox-cable.png",
+    "assets/inbox-carabiner.png",
+    "assets/inbox-manual.png",
+    "assets/inbox-panel.png",
+    "assets/inbox-pouch.png",
+    "assets/inbox-usbc.png",
+    "assets/power-device.png",
+    "assets/unfold-1.png",
+    "assets/unfold-2.png",
+    "assets/unfold-3.png",
+    "assets/unfold-4.png",
+    "assets/unfold-5.png",
+    "conf.py",
+    "index.md",
+    "manual_js40a_us_en.md",
+    "shared-style-admission.json"
+  ],
+  "approved_IR_sha256": "fb5cd1c6364a263e9c66393e3eeead9fd3ced16b735a4af5614e66442f5ea689",
+  "metadata_changes_only": [
+    "approval provenance",
+    "publication eligibility",
+    "pending review resolution",
+    "technical snapshot identity"
+  ]
+}

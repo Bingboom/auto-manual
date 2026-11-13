@@ -1,0 +1,47 @@
+{
+  "method": "Chromium actual strict-Sphinx manual HTML; 1280/390; software rendering",
+  "results": [
+    {
+      "title": "Jackery Solar Generator Connection Guide - Jackery Solar Generator Connection Guide",
+      "viewport": 1280,
+      "documentWidth": 1280,
+      "missingImages": [],
+      "images": 7,
+      "subscripts": [],
+      "tableContainers": [
+        {
+          "width": 649,
+          "parentWidth": 655,
+          "parentScroll": 655,
+          "parentOverflow": "auto"
+        }
+      ],
+      "bodyTextChars": 893,
+      "headers": [
+        "Jackery Solar Generator Connection Guide¶"
+      ],
+      "pass": true
+    },
+    {
+      "title": "Jackery Solar Generator Connection Guide - Jackery Solar Generator Connection Guide",
+      "viewport": 390,
+      "documentWidth": 390,
+      "missingImages": [],
+      "images": 7,
+      "subscripts": [],
+      "tableContainers": [
+        {
+          "width": 576,
+          "parentWidth": 356,
+          "parentScroll": 582,
+          "parentOverflow": "auto"
+        }
+      ],
+      "bodyTextChars": 893,
+      "headers": [
+        "Jackery Solar Generator Connection Guide¶"
+      ],
+      "pass": true
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "reviewer": "us_power independent readonly",
+  "status": "native-body-source-fidelity-clear",
+  "target": {
+    "model": "JS-40A",
+    "region": "US",
+    "language": "en",
+    "material": "38-0001-000717"
+  },
+  "source_sha256": "95e0f1c8f544920b6709403d5c6e9c82d5779de42a9cbc928d5164f0a80a6047",
+  "transcription_sha256": "c46188f8ec0ba5c4a91377cabe9c438c876720aa2e5b766897d242e4109841bb",
+  "page_map_sha256": "dfac0fcb2de9d8dd0e1e331148ede7110376d1efbe644a925d786ea7d106dbb7",
+  "physical_page_count": 9,
+  "reviewed_source_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "review_method": "Readall9sourcepageOCRsandfullnativeJSON;visualsource1–4,6–9readbackconfirmedtitles,steps,specs,inbox/safety/warranty/contacts. Source5TOConly.",
+  "checks": {
+    "identity_and_printed_version": "JS-40A;SolarSaga40Mini;JAK-UM-V2.0;checkedsource1and6.",
+    "quick_start": "Fiveoriginalsteps onsource2–4,eachnativeinstructionbeforeart;allpresentandcorrectsequence.",
+    "panel_spec_rows": "All20rowscomparedwithsource6;1020×300×18.5unfolded;252×300×30folded;1.2kg;40W;25V;2.07A;20.9V;1.91A;30Vmax;6Areverse;ClassIII;IP68;−0.3/−0.39coefficients;series1/parallel3;IEC63163Category1.",
+    "adapter_specs": "USB-A5VDC2.4A;USB-C5VDC3A.",
+    "power_device": "CompletefinishedEnglishdiagramdeclared;nativeadapterNoteconfinesUSB-CadaptertoJackerypowerstations.",
+    "package_list": "Sevenitemsinoriginalorder;carabinerquantity2;all3sourcecablecompatibilitywarningsand12Explorerlistentriesretained;5AadapterrestrictionagainstSolarSaga200retained.",
+    "safety": "All11source8safetyitems retained;nogap/shortcircuitwordingmeaningpreserved,andoriginalgrammarconcernrecorded.",
+    "warranty": "36MONTHSstandard+2YEARSregisteredextension;originalcoverage/exclusionsandreplacementwithproof;supportandcontactretained.",
+    "contacts": "USaddress5310BuncheDrFremontCA94538,phone,email,website,QRretained.",
+    "scope": "PrintedTOConphysical5omittedfornativeWebnavigationonly;coverwordmark/decorativeunitomittedwithtitle/model/version/contactretained."
+  },
+  "findings": [],
+  "boundary": "No authoring/edit in owner worktree. This is source/bodyQC, not browser/imagepixelapproval, operatoracceptance orpublicationauthorization."
+}

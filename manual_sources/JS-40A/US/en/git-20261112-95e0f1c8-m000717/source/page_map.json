@@ -1,0 +1,67 @@
+{
+  "source_physical_page_count": 9,
+  "chapters": [
+    {
+      "id": "introduction",
+      "source_pages": [
+        1
+      ]
+    },
+    {
+      "id": "quick_start",
+      "source_pages": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "specifications",
+      "source_pages": [
+        6
+      ]
+    },
+    {
+      "id": "power_your_device",
+      "source_pages": [
+        7
+      ]
+    },
+    {
+      "id": "in_the_box",
+      "source_pages": [
+        7
+      ]
+    },
+    {
+      "id": "safety",
+      "source_pages": [
+        8
+      ]
+    },
+    {
+      "id": "warranty",
+      "source_pages": [
+        8
+      ]
+    },
+    {
+      "id": "contacts",
+      "source_pages": [
+        1,
+        9
+      ]
+    }
+  ],
+  "omissions": [
+    {
+      "physical_page": 5,
+      "reason": "Printed one-language contents locator is replaced by native Web navigation; no manual instruction omitted."
+    },
+    {
+      "physical_page": 1,
+      "reason": "Decorative cover product image and wordmark omitted; title/model/version/contact content retained."
+    }
+  ],
+  "full_substantive_source_coverage": true
+}

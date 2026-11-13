@@ -1,0 +1,127 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "target": {
+    "model": "JS-45A",
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "technical_version": "git-20261112-2198a1b7-m000912-release-r2"
+  },
+  "web_title": "Jackery Solar Curved Tile Obsidian",
+  "original_source": {
+    "filename": "38-0001-000912_Jackery_Solar_Curved_Tile_Obsidian_EN.pdf",
+    "path": "source/original.pdf",
+    "sha256": "2198a1b781b9e62748d19e896e1032e3caeedb458b2556c06918ff0087dce7bf",
+    "size": 1728020,
+    "physical_page_count": 7
+  },
+  "material": "38-0001-000912",
+  "feishu_source": {
+    "conversion_record_id": "reczz28SlRGJiDkp",
+    "source_table_id": "tbl2tXQk8LnM2JKi",
+    "source_record_id": "reczz28Vph3XbYq0",
+    "source_field": "单语言说明书 -英语",
+    "source_file_token": "ELznbGnaMoI3HAxxviwc3ZQ4nBd"
+  },
+  "source_authority": "Operator selected US-region Y-marked unconverted manuals in the live publishing table on 2026-11-12; current single-language English attachment downloaded from the parent-child source mapping and SHA256 locked. This original source governs all copy; no review acceptance or release approval inferred.",
+  "printed_manual_version": "JAK-UM-V1.0",
+  "language_scope": "single",
+  "publication_status": "operator-approved-git-only-release",
+  "publication_eligible": true,
+  "pending_source_review": [],
+  "web_roots": {
+    "en": "web/en"
+  },
+  "component_map": {
+    "native_copy": "Semantic headings, paragraphs and lists",
+    "specifications": "HB-TABLE-SPEC",
+    "inbox": "HB-SPECIAL-INBOX",
+    "warranty": "HB-WARRANTY-SECTION; HB-WARRANTY-YEARS where the source has numeric periods",
+    "illustrations": "HB-SPECIAL-REFERENCE-FIGURE; port photographs remain in native declared compatibility cells",
+    "compatibility_table": "not present",
+    "lcd_buttons_app_symbols": "Not present in these source roles; no synthetic components added."
+  },
+  "normalizations": [
+    "Join printed paragraph line wraps; preserve numbers, labels, conditions and proper names.",
+    "Source subscripts/superscripts transcribed as selectable Unicode; source multiplication/temperature glyphs normalized without changing values.",
+    "Printed decorative cover/TOC/page furniture omitted; source title/model/printed version and all substantive copy remain.",
+    "Reuse source-independent port photos and common tile silhouette byte-identically; product/model-specific specification thumbnails and complete source-labelled English diagrams remain source-specific."
+  ],
+  "inputs": [
+    {
+      "path": "assets/contact-qr.png",
+      "size": 3793,
+      "sha256": "5787ae07771102d93c7bee19a1bc66671688eaec9c7e4fd6903904edd979948f"
+    },
+    {
+      "path": "assets/inbox-product.png",
+      "size": 30787,
+      "sha256": "98a55016d5e015ce562d67881927ee1758d640a38268be3b8bc3aa5dfd9d6b9c"
+    },
+    {
+      "path": "assets/inbox-sheet.png",
+      "size": 9997,
+      "sha256": "bd1a16079d9550a0e8f9b40e8741cedd151b535af6fb9f5318e71f8084ac6025"
+    },
+    {
+      "path": "derive_assets.py",
+      "size": 1762,
+      "sha256": "d188723cc9795080182c68eb445668c407cdf2598eb13e6dfece31dbb9602783"
+    },
+    {
+      "path": "refresh_manifest.py",
+      "size": 2265,
+      "sha256": "9f99224ccc96ea88be42e8a660371d28bbee9a9da238cbd329e538b589ae5aae"
+    },
+    {
+      "path": "render.py",
+      "size": 16425,
+      "sha256": "0d6fcd01820c6ea9379802e2e1254978992172253bd5a4b5a7fe53941138f0e5"
+    },
+    {
+      "path": "source/asset_decisions.json",
+      "size": 3407,
+      "sha256": "03a06fd05dd81e11d965c0dc28e2eff5bd4a4b74cdd90ed1c39ca41b2381c36a"
+    },
+    {
+      "path": "source/asset_recipes.json",
+      "size": 2204,
+      "sha256": "e514ddb46c932eae2be410c6d0b11c57e1d32046471cd888009b31a36aa575c3"
+    },
+    {
+      "path": "source/original.pdf",
+      "size": 1728020,
+      "sha256": "2198a1b781b9e62748d19e896e1032e3caeedb458b2556c06918ff0087dce7bf"
+    },
+    {
+      "path": "source/page_map.json",
+      "size": 812,
+      "sha256": "6233a91208ec6f0a68e7490396113d8b04444c6a889567a1d7957405dbb9b823"
+    },
+    {
+      "path": "source/release_approval.json",
+      "size": 1077,
+      "sha256": "01d7fe012081232516daf36fe6242ae26e8f60becf6b7f0eeabae83aa5fd6796"
+    },
+    {
+      "path": "source/transcription.json",
+      "size": 14220,
+      "sha256": "f5bca2a8b48e50ba6c5be6a7e277f0c7ea9dc5cf8942d7d3f4492ba0122822be"
+    }
+  ],
+  "repo_inputs": [
+    {
+      "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
+      "sha256": "a2773f7e96849e176a9909e8221e37c20eb9005cd2639415bf6a112d7c86527f"
+    }
+  ],
+  "shared_component_exceptions": [],
+  "revision_of": "manual_sources/JS-45A/US/en/git-20261112-2198a1b7-m000912",
+  "operator_release_approval": {
+    "path": "source/release_approval.json",
+    "sha256": "01d7fe012081232516daf36fe6242ae26e8f60becf6b7f0eeabae83aa5fd6796",
+    "authorization": "MA-432"
+  },
+  "publication_packaging_of": "manual_sources/JS-45A/US/en/git-20261112-2198a1b7-m000912-release"
+}

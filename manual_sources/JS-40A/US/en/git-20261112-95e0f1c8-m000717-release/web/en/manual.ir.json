@@ -1,0 +1,5090 @@
+{
+  "asset_refs": [
+    "assets/unfold-1.png",
+    "assets/unfold-2.png",
+    "assets/unfold-3.png",
+    "assets/unfold-4.png",
+    "assets/unfold-5.png",
+    "assets/power-device.png",
+    "assets/inbox-panel.png",
+    "assets/inbox-cable.png",
+    "assets/inbox-adapter.png",
+    "assets/inbox-usbc.png",
+    "assets/inbox-pouch.png",
+    "assets/inbox-manual.png",
+    "assets/inbox-carabiner.png",
+    "assets/contact-qr.png"
+  ],
+  "bundle_root": "frozen-source",
+  "bundle_sha256": "562cef0eeaa68a3c728368391286fbeea3dd3bd1c71f9ec98911fd34092e8609",
+  "content_sha256": "2554afcefca5bb364ac451e47b4ac4f67f07cac8bb45beffbaf6deb6e8f7317b",
+  "language": "en",
+  "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
+  "metadata": {
+    "asset_sha256": {
+      "assets/contact-qr.png": "5bd8cff49238202778718385d034ef457400243751dba96b1b18ac6fe5e8bf47",
+      "assets/inbox-adapter.png": "60f5ba1e4ca461dcdf1d3b599d128c8520ca03633ea37b6e3959b753faae91d0",
+      "assets/inbox-cable.png": "d9c356d52b20e072dec01d8fab552c9efbb652927da9ff9c659b74c1d7bfa780",
+      "assets/inbox-carabiner.png": "41c5a19e743bd847fcae671c137989d2970c5ce5448e6eb42e4106f5c2cf1f79",
+      "assets/inbox-manual.png": "5614a0dca59a649c1e9e8d519ff6f1586b704b3c53325e5d1deff29ff005e4a2",
+      "assets/inbox-panel.png": "39f9ab6b4f6ca7dceef39bf435a736e9a196075704a0aea4c11c1fc529fe328b",
+      "assets/inbox-pouch.png": "55d8c3c3d6f88252dbd98a9d6f09b70577458275924e8d89c2d41286bcc73161",
+      "assets/inbox-usbc.png": "511ad02dfaa56121f3b664217628956a9109d43fb7b2dff19e5795cb78ce82d9",
+      "assets/power-device.png": "0706ccc6053cf25026edd1aa8264c8b144db8873730ce365aed9359633874e78",
+      "assets/unfold-1.png": "d4f192fb0e8b2e6c6fe9f62b4cfc00bc59ad12606ebc48b1b7b55c274b623a1a",
+      "assets/unfold-2.png": "a71fb0738c120520516984c3d99cffffcaa1b1ad0f2f65c31771c9ee45404a60",
+      "assets/unfold-3.png": "cc3bce48031cc93f8bde2651c84aa7052231a26214c2e7de88ee247b1b047331",
+      "assets/unfold-4.png": "7159f9d8bddb88c5d2a7b4ab3e8e3ec349bf3f86ab7cc53fec58208576911570",
+      "assets/unfold-5.png": "fd032a9605fc5e4e0c48e554410daec72cee1a8bbdfc6bca41439ac286e91266"
+    },
+    "block_count": 37,
+    "component_inventory": {
+      "HB-CALLOUT-STRIP": 1,
+      "HB-SPECIAL-INBOX": 1,
+      "HB-SPECIAL-REFERENCE-FIGURE": 6,
+      "HB-TABLE-SPEC": 2,
+      "HB-WARRANTY-SECTION": 2,
+      "HB-WARRANTY-YEARS": 1
+    },
+    "component_registry": {
+      "components": {
+        "HB-CALLOUT-STRIP": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_notice"
+            },
+            "latex": {
+              "capability": "rendered",
+              "key": "hb_latex_callout"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "manual_callout_table"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_manual_callout_table"
+            }
+          },
+          "asset_roles": {},
+          "slots": {
+            "body": {
+              "content_kinds": [
+                "rich_text"
+              ],
+              "required": true
+            },
+            "items": {
+              "content_kinds": [
+                "list_items"
+              ],
+              "required": false
+            },
+            "label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "callout_strip",
+            "notice"
+          ],
+          "style_id": "HB-CALLOUT-STRIP",
+          "token_roles": [
+            "component.callout"
+          ],
+          "variants": [
+            "warning",
+            "danger",
+            "caution",
+            "note",
+            "tip"
+          ]
+        },
+        "HB-SPECIAL-APP": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_app"
+            },
+            "latex": {
+              "capability": "rendered",
+              "key": "hb_latex_app"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_app"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_app"
+            }
+          },
+          "asset_roles": {
+            "control_art": {
+              "locale_policies": [
+                "shared"
+              ],
+              "required": false
+            },
+            "phone_art": {
+              "locale_policies": [
+                "shared"
+              ],
+              "required": false
+            },
+            "qr_art": {
+              "locale_policies": [
+                "shared"
+              ],
+              "required": false
+            },
+            "source_art": {
+              "locale_policies": [
+                "exact"
+              ],
+              "required": false
+            },
+            "store_art": {
+              "locale_policies": [
+                "shared"
+              ],
+              "required": false
+            }
+          },
+          "slots": {
+            "accessibility_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "columns": {
+              "content_kinds": [
+                "ordered_columns"
+              ],
+              "required": false
+            },
+            "interstitial_note": {
+              "content_kinds": [
+                "rich_text"
+              ],
+              "required": false
+            },
+            "labels": {
+              "content_kinds": [
+                "ordered_labels"
+              ],
+              "required": false
+            },
+            "paragraph": {
+              "content_kinds": [
+                "rich_text"
+              ],
+              "required": false
+            },
+            "reference_id": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": false
+            },
+            "step_captions": {
+              "content_kinds": [
+                "ordered_labels"
+              ],
+              "required": false
+            }
+          },
+          "source_kinds": [
+            "app_download",
+            "app_inline_control",
+            "app_add_device"
+          ],
+          "style_id": "HB-SPECIAL-APP",
+          "token_roles": [
+            "component.special.app"
+          ],
+          "variant_adapters": {
+            "download-qr-only": {
+              "idml": {
+                "capability": "not-applicable",
+                "key": "idml_app"
+              },
+              "latex": {
+                "capability": "not-applicable",
+                "key": "hb_latex_app"
+              },
+              "web": {
+                "capability": "rendered",
+                "key": "hb_app"
+              },
+              "word": {
+                "capability": "not-applicable",
+                "key": "word_app"
+              }
+            }
+          },
+          "variants": [
+            "download",
+            "download-qr-only",
+            "inline-control",
+            "add-device"
+          ]
+        },
+        "HB-SPECIAL-FCC": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_fcc"
+            },
+            "latex": {
+              "capability": "rendered",
+              "key": "hb_latex_fcc"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_fcc"
+            },
+            "word": {
+              "capability": "rendered",
+              "key": "word_fcc"
+            }
+          },
+          "asset_roles": {
+            "compliance_mark": {
+              "locale_policies": [
+                "shared"
+              ],
+              "required": true
+            }
+          },
+          "slots": {
+            "accessibility_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "body_blocks": {
+              "content_kinds": [
+                "ordered_blocks"
+              ],
+              "required": true
+            },
+            "column_break": {
+              "content_kinds": [
+                "block_index"
+              ],
+              "required": true
+            },
+            "opening_copy": {
+              "content_kinds": [
+                "line_items"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "fcc"
+          ],
+          "style_id": "HB-SPECIAL-FCC",
+          "token_roles": [
+            "component.special.fcc"
+          ],
+          "variants": [
+            "two-column"
+          ]
+        },
+        "HB-SPECIAL-INBOX": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_inbox"
+            },
+            "latex": {
+              "capability": "rendered",
+              "key": "hb_latex_inbox"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_inbox"
+            },
+            "word": {
+              "capability": "rendered",
+              "key": "word_inbox"
+            }
+          },
+          "asset_roles": {
+            "card_1_art": {
+              "locale_policies": [
+                "shared"
+              ],
+              "required": false
+            },
+            "card_2_art": {
+              "locale_policies": [
+                "shared"
+              ],
+              "required": false
+            },
+            "card_3_art": {
+              "locale_policies": [
+                "shared"
+              ],
+              "required": false
+            },
+            "card_art": {
+              "locale_policies": [
+                "shared"
+              ],
+              "multiple": true,
+              "required": false
+            }
+          },
+          "slots": {
+            "accessibility_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "cards": {
+              "content_kinds": [
+                "ordered_cards"
+              ],
+              "required": true
+            },
+            "tip_body": {
+              "content_kinds": [
+                "rich_text"
+              ],
+              "required": true
+            },
+            "tip_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "inbox"
+          ],
+          "style_id": "HB-SPECIAL-INBOX",
+          "token_roles": [
+            "component.special.inbox"
+          ],
+          "variant_adapters": {
+            "responsive-card-grid": {
+              "idml": {
+                "capability": "not-applicable",
+                "key": "idml_inbox"
+              },
+              "latex": {
+                "capability": "not-applicable",
+                "key": "hb_latex_inbox"
+              },
+              "web": {
+                "capability": "rendered",
+                "key": "hb_inbox"
+              },
+              "word": {
+                "capability": "not-applicable",
+                "key": "word_inbox"
+              }
+            }
+          },
+          "variants": [
+            "three-card-responsive",
+            "responsive-card-grid"
+          ]
+        },
+        "HB-SPECIAL-OPERATION": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_operation"
+            },
+            "latex": {
+              "capability": "projection-only",
+              "key": "hb_latex_operation"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_operation"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_operation"
+            }
+          },
+          "asset_roles": {
+            "artwork": {
+              "locale_policies": [
+                "shared",
+                "exact"
+              ],
+              "required": true
+            }
+          },
+          "slots": {
+            "accessibility_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "mode_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": false
+            },
+            "operation_id": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "prerequisite": {
+              "content_kinds": [
+                "rich_text"
+              ],
+              "required": false
+            },
+            "sos_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": false
+            },
+            "steps": {
+              "content_kinds": [
+                "ordered_steps"
+              ],
+              "required": true
+            },
+            "supporting_copy": {
+              "content_kinds": [
+                "line_items"
+              ],
+              "required": false
+            }
+          },
+          "source_kinds": [
+            "operation_panel"
+          ],
+          "style_id": "HB-SPECIAL-OPERATION",
+          "token_roles": [
+            "component.special.operation"
+          ],
+          "variants": [
+            "status-right",
+            "footer-overlay",
+            "footer-panel"
+          ]
+        },
+        "HB-SPECIAL-OVERVIEW": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_overview"
+            },
+            "latex": {
+              "capability": "projection-only",
+              "key": "hb_latex_overview"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_overview"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_overview"
+            }
+          },
+          "asset_roles": {
+            "front_art": {
+              "locale_policies": [
+                "shared"
+              ],
+              "required": true
+            },
+            "right_art": {
+              "locale_policies": [
+                "shared"
+              ],
+              "required": true
+            }
+          },
+          "slots": {
+            "accessibility_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "geometry_ref": {
+              "content_kinds": [
+                "instance_ref"
+              ],
+              "required": true
+            },
+            "views": {
+              "content_kinds": [
+                "ordered_views"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "overview"
+          ],
+          "style_id": "HB-SPECIAL-OVERVIEW",
+          "token_roles": [
+            "component.special.overview"
+          ],
+          "variants": [
+            "annotated-live",
+            "approved-composite"
+          ]
+        },
+        "HB-SPECIAL-REFERENCE-FIGURE": {
+          "adapters": {
+            "idml": {
+              "capability": "projection-only",
+              "key": "idml_reference_figure"
+            },
+            "latex": {
+              "capability": "projection-only",
+              "key": "hb_latex_reference_figure"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_reference_figure"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_reference_figure"
+            }
+          },
+          "asset_roles": {
+            "approved_composite": {
+              "locale_policies": [
+                "exact",
+                "shared"
+              ],
+              "required": false
+            },
+            "source_art": {
+              "locale_policies": [
+                "exact",
+                "shared"
+              ],
+              "required": true
+            }
+          },
+          "slots": {
+            "accessibility_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "adjacent_copy": {
+              "content_kinds": [
+                "rich_text"
+              ],
+              "required": false
+            },
+            "caption_layout": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "caption_mode": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "captions": {
+              "content_kinds": [
+                "ordered_labels"
+              ],
+              "required": false
+            },
+            "reference_id": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "reference_figure"
+          ],
+          "style_id": "HB-SPECIAL-REFERENCE-FIGURE",
+          "token_roles": [
+            "component.special.reference-figure"
+          ],
+          "variants": [
+            "semantic-fallback",
+            "approved-composite"
+          ]
+        },
+        "HB-TABLE-AUTO-RESUME": {
+          "adapters": {
+            "idml": {
+              "capability": "projection-only",
+              "key": "idml_auto_resume"
+            },
+            "latex": {
+              "capability": "projection-only",
+              "key": "hb_latex_auto_resume"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_auto_resume"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_auto_resume"
+            }
+          },
+          "asset_roles": {},
+          "slots": {
+            "conditions": {
+              "content_kinds": [
+                "ordered_columns"
+              ],
+              "required": true
+            },
+            "headers": {
+              "content_kinds": [
+                "ordered_headers"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "table_auto_resume"
+          ],
+          "style_id": "HB-TABLE-AUTO-RESUME",
+          "token_roles": [
+            "component.table.auto-resume"
+          ],
+          "variants": [
+            "two-column-middle-span"
+          ]
+        },
+        "HB-TABLE-KEY-COMBINATIONS": {
+          "adapters": {
+            "idml": {
+              "capability": "projection-only",
+              "key": "idml_key_combinations"
+            },
+            "latex": {
+              "capability": "projection-only",
+              "key": "hb_latex_key_combinations"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_key_combinations"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_key_combinations"
+            }
+          },
+          "asset_roles": {},
+          "slots": {
+            "headers": {
+              "content_kinds": [
+                "ordered_headers"
+              ],
+              "required": true
+            },
+            "rows": {
+              "content_kinds": [
+                "ordered_rows"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "table_key_combinations"
+          ],
+          "style_id": "HB-TABLE-KEY-COMBINATIONS",
+          "token_roles": [
+            "component.table.key-combinations"
+          ],
+          "variants": [
+            "three-column"
+          ]
+        },
+        "HB-TABLE-LCD-ICON": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_lcd_icon"
+            },
+            "latex": {
+              "capability": "rendered",
+              "key": "hb_latex_lcd_icon"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_lcd_icon"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_lcd_icon"
+            }
+          },
+          "asset_roles": {
+            "icons": {
+              "locale_policies": [
+                "shared",
+                "exact"
+              ],
+              "multiple": true,
+              "required": true
+            }
+          },
+          "slots": {
+            "accessibility_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "rows": {
+              "content_kinds": [
+                "ordered_rows"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "table_lcd_icon",
+            "lcd-icons"
+          ],
+          "style_id": "HB-TABLE-LCD-ICON",
+          "token_roles": [
+            "component.table.lcd-icon"
+          ],
+          "variants": [
+            "icon-catalog",
+            "icon-catalog-unnumbered"
+          ]
+        },
+        "HB-TABLE-LCD-MODE": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_lcd_mode"
+            },
+            "latex": {
+              "capability": "rendered",
+              "key": "hb_latex_lcd_mode"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_lcd_mode"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_lcd_mode"
+            }
+          },
+          "asset_roles": {
+            "artwork": {
+              "locale_policies": [
+                "shared",
+                "exact"
+              ],
+              "required": true
+            }
+          },
+          "slots": {
+            "accessibility_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "groups": {
+              "content_kinds": [
+                "ordered_groups"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "table_lcd_mode"
+          ],
+          "style_id": "HB-TABLE-LCD-MODE",
+          "token_roles": [
+            "component.table.lcd-mode"
+          ],
+          "variants": [
+            "two-state-three-action"
+          ]
+        },
+        "HB-TABLE-REFERENCE": {
+          "adapters": {
+            "idml": {
+              "capability": "projection-only",
+              "key": "idml_reference_table"
+            },
+            "latex": {
+              "capability": "projection-only",
+              "key": "latex_reference_table"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "web_reference_table"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_reference_table"
+            }
+          },
+          "asset_roles": {},
+          "slots": {
+            "accessibility_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "headers": {
+              "content_kinds": [
+                "ordered_headers"
+              ],
+              "required": true
+            },
+            "rows": {
+              "content_kinds": [
+                "ordered_rows"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "table_reference"
+          ],
+          "style_id": "HB-TABLE-REFERENCE",
+          "token_roles": [
+            "component.table.reference"
+          ],
+          "variants": [
+            "lcd-descriptions",
+            "lcd-legend",
+            "lcd-actions",
+            "lcd-actions-compact",
+            "symbol-meanings",
+            "plain-inventory"
+          ]
+        },
+        "HB-TABLE-SPEC": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_spec_table"
+            },
+            "latex": {
+              "capability": "rendered",
+              "key": "hb_latex_spec_table"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_spec_table"
+            },
+            "word": {
+              "capability": "rendered",
+              "key": "word_spec_table"
+            }
+          },
+          "asset_roles": {},
+          "slots": {
+            "rows": {
+              "content_kinds": [
+                "structured_rows"
+              ],
+              "required": true
+            },
+            "section_title": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "table_spec",
+            "spec-table"
+          ],
+          "style_id": "HB-TABLE-SPEC",
+          "token_roles": [
+            "component.table.spec"
+          ],
+          "variants": [
+            "vertical"
+          ]
+        },
+        "HB-TABLE-SYMBOL-ICON": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_symbol_icon"
+            },
+            "latex": {
+              "capability": "rendered",
+              "key": "hb_latex_symbol_icon"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_symbol_icon"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_symbol_icon"
+            }
+          },
+          "asset_roles": {
+            "icons": {
+              "locale_policies": [
+                "shared",
+                "exact"
+              ],
+              "multiple": true,
+              "required": true
+            }
+          },
+          "slots": {
+            "accessibility_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "headers": {
+              "content_kinds": [
+                "ordered_headers"
+              ],
+              "required": true
+            },
+            "panels": {
+              "content_kinds": [
+                "ordered_panels"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "table_symbol_icon",
+            "symbols"
+          ],
+          "style_id": "HB-TABLE-SYMBOL-ICON",
+          "token_roles": [
+            "component.table.symbol-icon"
+          ],
+          "variants": [
+            "two-panel-responsive"
+          ]
+        },
+        "HB-TABLE-SYMBOL-SIGNAL": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_symbol_signal"
+            },
+            "latex": {
+              "capability": "rendered",
+              "key": "hb_latex_symbol_signal"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_symbol_signal"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_symbol_signal"
+            }
+          },
+          "asset_roles": {},
+          "slots": {
+            "accessibility_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "headers": {
+              "content_kinds": [
+                "ordered_headers"
+              ],
+              "required": true
+            },
+            "rows": {
+              "content_kinds": [
+                "ordered_rows"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "table_symbol_signal"
+          ],
+          "style_id": "HB-TABLE-SYMBOL-SIGNAL",
+          "token_roles": [
+            "component.table.symbol-signal"
+          ],
+          "variants": [
+            "localized-badges"
+          ]
+        },
+        "HB-TABLE-TROUBLESHOOTING": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_troubleshooting"
+            },
+            "latex": {
+              "capability": "rendered",
+              "key": "hb_latex_troubleshooting"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_troubleshooting"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_troubleshooting"
+            }
+          },
+          "asset_roles": {},
+          "slots": {
+            "headers": {
+              "content_kinds": [
+                "ordered_headers"
+              ],
+              "required": true
+            },
+            "rows": {
+              "content_kinds": [
+                "ordered_rows"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "table_troubleshooting",
+            "troubleshooting"
+          ],
+          "style_id": "HB-TABLE-TROUBLESHOOTING",
+          "token_roles": [
+            "component.table.troubleshooting"
+          ],
+          "variants": [
+            "two-column"
+          ]
+        },
+        "HB-WARRANTY-LEAD": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_warranty_lead"
+            },
+            "latex": {
+              "capability": "rendered",
+              "key": "hb_latex_warranty_lead"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_warranty_lead"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_warranty_lead"
+            }
+          },
+          "asset_roles": {},
+          "slots": {
+            "accessibility_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "lead": {
+              "content_kinds": [
+                "rich_text"
+              ],
+              "required": true
+            },
+            "local_note": {
+              "content_kinds": [
+                "rich_text"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "warranty_lead"
+          ],
+          "style_id": "HB-WARRANTY-LEAD",
+          "token_roles": [
+            "component.warranty.lead"
+          ],
+          "variants": [
+            "intro-panel"
+          ]
+        },
+        "HB-WARRANTY-SECTION": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_warranty_section"
+            },
+            "latex": {
+              "capability": "rendered",
+              "key": "hb_latex_warranty_section"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_warranty_section"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_warranty_section"
+            }
+          },
+          "asset_roles": {},
+          "slots": {
+            "blocks": {
+              "content_kinds": [
+                "ordered_blocks"
+              ],
+              "required": true
+            },
+            "section_index": {
+              "content_kinds": [
+                "block_index"
+              ],
+              "required": true
+            },
+            "title": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "warranty_section"
+          ],
+          "style_id": "HB-WARRANTY-SECTION",
+          "token_roles": [
+            "component.warranty.section"
+          ],
+          "variants": [
+            "rounded-card"
+          ]
+        },
+        "HB-WARRANTY-YEARS": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_warranty_years"
+            },
+            "latex": {
+              "capability": "rendered",
+              "key": "hb_latex_warranty_years"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_warranty_years"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_warranty_years"
+            }
+          },
+          "asset_roles": {},
+          "slots": {
+            "periods": {
+              "content_kinds": [
+                "ordered_periods"
+              ],
+              "required": true
+            },
+            "title": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "warranty_years"
+          ],
+          "style_id": "HB-WARRANTY-YEARS",
+          "token_roles": [
+            "component.warranty.years"
+          ],
+          "variants": [
+            "numeric-badges"
+          ]
+        }
+      },
+      "registry_id": "hb-component-registry",
+      "schema_version": "component-registry/v1"
+    },
+    "component_registry_sha256": "9275f1facc80873cdbf74f4f3c91c29f87ebc26fd6056eb37e69e13f96639a8f",
+    "composites": [],
+    "declared_languages": [
+      "en"
+    ],
+    "frozen_figure_inventory": [
+      {
+        "asset_ref": "assets/unfold-1.png",
+        "physical_page": 2,
+        "presentation": "complete-source-illustration",
+        "section": "quick_start",
+        "sha256": "d4f192fb0e8b2e6c6fe9f62b4cfc00bc59ad12606ebc48b1b7b55c274b623a1a",
+        "slug": "unfold-1"
+      },
+      {
+        "asset_ref": "assets/unfold-2.png",
+        "physical_page": 3,
+        "presentation": "complete-source-illustration",
+        "section": "quick_start",
+        "sha256": "a71fb0738c120520516984c3d99cffffcaa1b1ad0f2f65c31771c9ee45404a60",
+        "slug": "unfold-2"
+      },
+      {
+        "asset_ref": "assets/unfold-3.png",
+        "physical_page": 3,
+        "presentation": "complete-source-illustration",
+        "section": "quick_start",
+        "sha256": "cc3bce48031cc93f8bde2651c84aa7052231a26214c2e7de88ee247b1b047331",
+        "slug": "unfold-3"
+      },
+      {
+        "asset_ref": "assets/unfold-4.png",
+        "physical_page": 4,
+        "presentation": "complete-source-illustration",
+        "section": "quick_start",
+        "sha256": "7159f9d8bddb88c5d2a7b4ab3e8e3ec349bf3f86ab7cc53fec58208576911570",
+        "slug": "unfold-4"
+      },
+      {
+        "asset_ref": "assets/unfold-5.png",
+        "physical_page": 4,
+        "presentation": "complete-source-illustration",
+        "section": "quick_start",
+        "sha256": "fd032a9605fc5e4e0c48e554410daec72cee1a8bbdfc6bca41439ac286e91266",
+        "slug": "unfold-5"
+      },
+      {
+        "asset_ref": "assets/power-device.png",
+        "physical_page": 7,
+        "presentation": "complete-source-illustration",
+        "section": "power_your_device",
+        "sha256": "0706ccc6053cf25026edd1aa8264c8b144db8873730ce365aed9359633874e78",
+        "slug": "power-device"
+      }
+    ],
+    "frozen_source_manifest": {
+      "component_map": {
+        "contact_qr": "Source QR as a native inline contact image with bounded width; all four source code/frame edges preserved",
+        "inbox": "HB-SPECIAL-INBOX with seven native labels and byte-bound product images",
+        "native_copy": "Native selectable headings, paragraphs and safety list",
+        "note": "HB-CALLOUT-STRIP",
+        "power_illustration": "HB-SPECIAL-REFERENCE-FIGURE, complete source-English labels once; no duplicated visible caption list",
+        "quick_start": "Five native step captions above nested HB-SPECIAL-REFERENCE-FIGURE components inside shared hb-text-panel groups",
+        "specifications": "HB-TABLE-SPEC for main specifications and multifunctional adapter",
+        "symbols_lcd_app": "Not printed as independent source sections; none added",
+        "warranty": "HB-WARRANTY-YEARS plus HB-WARRANTY-SECTION for service/contact"
+      },
+      "feishu_source": {
+        "conversion_record_id": "reczz28SlRGJiQvW",
+        "source_field": "单语言说明书 -英语",
+        "source_file_token": "DQWQbmh58oGraSxmhRXcJzpWn1b",
+        "source_record_id": "reczz28Vph3XbXT0",
+        "source_table_id": "tbl2tXQk8LnM2JKi"
+      },
+      "inputs": [
+        {
+          "path": "assets/contact-qr.png",
+          "sha256": "5bd8cff49238202778718385d034ef457400243751dba96b1b18ac6fe5e8bf47",
+          "size": 7004
+        },
+        {
+          "path": "assets/inbox-adapter.png",
+          "sha256": "60f5ba1e4ca461dcdf1d3b599d128c8520ca03633ea37b6e3959b753faae91d0",
+          "size": 5709
+        },
+        {
+          "path": "assets/inbox-cable.png",
+          "sha256": "d9c356d52b20e072dec01d8fab552c9efbb652927da9ff9c659b74c1d7bfa780",
+          "size": 9574
+        },
+        {
+          "path": "assets/inbox-carabiner.png",
+          "sha256": "41c5a19e743bd847fcae671c137989d2970c5ce5448e6eb42e4106f5c2cf1f79",
+          "size": 8639
+        },
+        {
+          "path": "assets/inbox-manual.png",
+          "sha256": "5614a0dca59a649c1e9e8d519ff6f1586b704b3c53325e5d1deff29ff005e4a2",
+          "size": 5913
+        },
+        {
+          "path": "assets/inbox-panel.png",
+          "sha256": "39f9ab6b4f6ca7dceef39bf435a736e9a196075704a0aea4c11c1fc529fe328b",
+          "size": 11959
+        },
+        {
+          "path": "assets/inbox-pouch.png",
+          "sha256": "55d8c3c3d6f88252dbd98a9d6f09b70577458275924e8d89c2d41286bcc73161",
+          "size": 8758
+        },
+        {
+          "path": "assets/inbox-usbc.png",
+          "sha256": "511ad02dfaa56121f3b664217628956a9109d43fb7b2dff19e5795cb78ce82d9",
+          "size": 6739
+        },
+        {
+          "path": "assets/power-device.png",
+          "sha256": "0706ccc6053cf25026edd1aa8264c8b144db8873730ce365aed9359633874e78",
+          "size": 177236
+        },
+        {
+          "path": "assets/unfold-1.png",
+          "sha256": "d4f192fb0e8b2e6c6fe9f62b4cfc00bc59ad12606ebc48b1b7b55c274b623a1a",
+          "size": 19693
+        },
+        {
+          "path": "assets/unfold-2.png",
+          "sha256": "a71fb0738c120520516984c3d99cffffcaa1b1ad0f2f65c31771c9ee45404a60",
+          "size": 94931
+        },
+        {
+          "path": "assets/unfold-3.png",
+          "sha256": "cc3bce48031cc93f8bde2651c84aa7052231a26214c2e7de88ee247b1b047331",
+          "size": 151475
+        },
+        {
+          "path": "assets/unfold-4.png",
+          "sha256": "7159f9d8bddb88c5d2a7b4ab3e8e3ec349bf3f86ab7cc53fec58208576911570",
+          "size": 173773
+        },
+        {
+          "path": "assets/unfold-5.png",
+          "sha256": "fd032a9605fc5e4e0c48e554410daec72cee1a8bbdfc6bca41439ac286e91266",
+          "size": 155332
+        },
+        {
+          "path": "derive_assets.py",
+          "sha256": "710b4369afe4a34ac8012f740542408bbe86d1a7cd0e0889085e733ed63a3236",
+          "size": 2087
+        },
+        {
+          "path": "refresh_manifest.py",
+          "sha256": "80bde6d5126aa5d0aaed9353a745aa50b1bcc8592612794a3b4bbd8b92a95261",
+          "size": 2267
+        },
+        {
+          "path": "render.py",
+          "sha256": "4ce69b29b13ffe2c2209f0eb9517abec3251e892d36b35dd78de2bcc369ca5af",
+          "size": 16954
+        },
+        {
+          "path": "source/asset_decisions.json",
+          "sha256": "436b2dc6860d8c0d8c5922597c9dcde77c176448b642cc43307c36dda1452fd6",
+          "size": 17838
+        },
+        {
+          "path": "source/asset_decisions.preparation.json",
+          "sha256": "33f9829c9673cb3829b1be4eaeb9ba3bef0715b0b34cefbb912e8aa29b7dc015",
+          "size": 14766
+        },
+        {
+          "path": "source/asset_recipe.json",
+          "sha256": "e13ef6ad5b06c4f8ca3427b65efdd8688721c45302e6d6c8ae0bf7c2999f9a7c",
+          "size": 8692
+        },
+        {
+          "path": "source/discovery.md",
+          "sha256": "4a341514b42425d9352b948278000d4c0c6b21dbe8422c887dfa69458fddbeb5",
+          "size": 1987
+        },
+        {
+          "path": "source/intake-source.json",
+          "sha256": "b899348dee7014b1ffc2e1aaa68b4de622f9d4c8ae50e271013751837561197e",
+          "size": 1781
+        },
+        {
+          "path": "source/original.pdf",
+          "sha256": "95e0f1c8f544920b6709403d5c6e9c82d5779de42a9cbc928d5164f0a80a6047",
+          "size": 1576156
+        },
+        {
+          "path": "source/page_map.json",
+          "sha256": "dfac0fcb2de9d8dd0e1e331148ede7110376d1efbe644a925d786ea7d106dbb7",
+          "size": 1130
+        },
+        {
+          "path": "source/release_approval.json",
+          "sha256": "412062586ddddeb2334c462fe28ab90c936959f5bf4421f0667126338b2ad5d5",
+          "size": 1077
+        },
+        {
+          "path": "source/transcription.json",
+          "sha256": "c46188f8ec0ba5c4a91377cabe9c438c876720aa2e5b766897d242e4109841bb",
+          "size": 13275
+        }
+      ],
+      "language_scope": "single",
+      "material": "38-0001-000717",
+      "normalizations": [
+        "Join PDF outline line wraps; normalize word spacing and multiplication/temperature glyphs without changing values.",
+        "Omit only decorative cover product image, wordmarks, printed page numbers and printed TOC; title/model/version and all substantive copy remain native.",
+        "Five quick-start source step numbers become native numbered captions above byte-identical matching diagrams, within the shared panel style.",
+        "Seven source inbox items reflow through the shared responsive grid; item order, names and counts remain exact.",
+        "Warranty uses source-authored 36 MONTHS and 2 YEARS periods; no different-edition warranty imported.",
+        "Nine matching JP candidate donor art files reused byte-identically; wrong straight adapter and differently drawn case rejected in favor of exact current source geometry."
+      ],
+      "operator_release_approval": {
+        "authorization": "MA-432",
+        "path": "source/release_approval.json",
+        "sha256": "412062586ddddeb2334c462fe28ab90c936959f5bf4421f0667126338b2ad5d5"
+      },
+      "original_source": {
+        "filename": "38-0001-000717_Jackery_SolarSaga_40_Mini_EN.pdf",
+        "path": "source/original.pdf",
+        "physical_page_count": 9,
+        "sha256": "95e0f1c8f544920b6709403d5c6e9c82d5779de42a9cbc928d5164f0a80a6047",
+        "size": 1576156
+      },
+      "pending_source_review": [],
+      "printed_manual_version": "JAK-UM-V2.0",
+      "publication_eligible": true,
+      "publication_status": "operator-approved-git-only-release",
+      "repo_inputs": [
+        {
+          "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
+          "sha256": "a2773f7e96849e176a9909e8221e37c20eb9005cd2639415bf6a112d7c86527f"
+        }
+      ],
+      "revision_of": "manual_sources/JS-40A/US/en/git-20261112-95e0f1c8-m000717",
+      "schema_version": "auto-manual-frozen-web-source/v1",
+      "shared_component_exceptions": [],
+      "source_authority": "Operator selected US-region Y-marked unconverted manuals in the live publishing table on 2026-11-12; current single-language English attachment downloaded from the parent-child source mapping and SHA256 locked. This original source governs all copy; no review acceptance or release approval inferred.",
+      "target": {
+        "languages": [
+          "en"
+        ],
+        "model": "JS-40A",
+        "region": "US",
+        "technical_version": "git-20261112-95e0f1c8-m000717-release"
+      },
+      "web_roots": {
+        "en": "web/en"
+      },
+      "web_title": "Jackery SolarSaga 40 Mini"
+    },
+    "frozen_stylesheet_sha256": "5afdc1947b423c52850852eccc5bc0f398c820c45909690ff6e5cc7bb266dfdf",
+    "manual_theme": {
+      "component_roles": {
+        "component.callout": {
+          "component_ids": [
+            "HB-CALLOUT-STRIP"
+          ],
+          "theme_roles": [
+            "surface.brand",
+            "surface.paper",
+            "border.strong",
+            "width.component-band"
+          ]
+        },
+        "component.special.app": {
+          "component_ids": [
+            "HB-SPECIAL-APP"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.special.fcc": {
+          "component_ids": [
+            "HB-SPECIAL-FCC"
+          ],
+          "theme_roles": [
+            "surface.fcc",
+            "radius.fcc",
+            "type.fcc.body",
+            "width.component-band"
+          ]
+        },
+        "component.special.inbox": {
+          "component_ids": [
+            "HB-SPECIAL-INBOX"
+          ],
+          "theme_roles": [
+            "surface.brand",
+            "surface.paper",
+            "surface.muted",
+            "border.inbox",
+            "radius.inbox",
+            "type.inbox.label",
+            "width.component-band"
+          ]
+        },
+        "component.special.operation": {
+          "component_ids": [
+            "HB-SPECIAL-OPERATION"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.special.overview": {
+          "component_ids": [
+            "HB-SPECIAL-OVERVIEW"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "line.overview.leader",
+            "type.overview.label",
+            "width.component-band"
+          ]
+        },
+        "component.special.reference-figure": {
+          "component_ids": [
+            "HB-SPECIAL-REFERENCE-FIGURE"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "border.strong",
+            "radius.panel",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.table.auto-resume": {
+          "component_ids": [
+            "HB-TABLE-AUTO-RESUME"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.table.key-combinations": {
+          "component_ids": [
+            "HB-TABLE-KEY-COMBINATIONS"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.table.lcd-icon": {
+          "component_ids": [
+            "HB-TABLE-LCD-ICON"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.table.lcd-mode": {
+          "component_ids": [
+            "HB-TABLE-LCD-MODE"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.table.reference": {
+          "component_ids": [
+            "HB-TABLE-REFERENCE"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.table.spec": {
+          "component_ids": [
+            "HB-TABLE-SPEC"
+          ],
+          "theme_roles": [
+            "surface.brand",
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.table.symbol-icon": {
+          "component_ids": [
+            "HB-TABLE-SYMBOL-ICON"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.table.symbol-signal": {
+          "component_ids": [
+            "HB-TABLE-SYMBOL-SIGNAL"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.table.troubleshooting": {
+          "component_ids": [
+            "HB-TABLE-TROUBLESHOOTING"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.warranty.lead": {
+          "component_ids": [
+            "HB-WARRANTY-LEAD"
+          ],
+          "theme_roles": [
+            "surface.muted",
+            "radius.panel",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.warranty.section": {
+          "component_ids": [
+            "HB-WARRANTY-SECTION"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.warranty.years": {
+          "component_ids": [
+            "HB-WARRANTY-YEARS"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        }
+      },
+      "roles": {
+        "border.inbox": {
+          "bindings": {
+            "idml": {
+              "kind": "color",
+              "name": "Color/HB Line K40"
+            },
+            "latex": {
+              "kind": "layout-token",
+              "name": "comp_table_outer_rule"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-line-soft"
+            },
+            "word": {
+              "kind": "html-class",
+              "name": "hb-inbox-word-card"
+            }
+          }
+        },
+        "border.strong": {
+          "bindings": {
+            "idml": {
+              "kind": "layout-token",
+              "name": "comp_table_outer_rule"
+            },
+            "latex": {
+              "kind": "layout-token",
+              "name": "comp_table_outer_rule"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-brand-dark"
+            },
+            "word": {
+              "kind": "property-adapter",
+              "name": "_set_spec_table_borders"
+            }
+          }
+        },
+        "line.overview.leader": {
+          "bindings": {
+            "idml": {
+              "kind": "color",
+              "name": "Color/HB Brand Dark"
+            },
+            "latex": {
+              "kind": "color",
+              "name": "HBTextBlack"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-brand-dark"
+            },
+            "word": {
+              "kind": "style",
+              "name": "BodyText"
+            }
+          }
+        },
+        "radius.fcc": {
+          "bindings": {
+            "idml": {
+              "kind": "layout-token",
+              "name": "comp_fcc_arc"
+            },
+            "latex": {
+              "kind": "layout-token",
+              "name": "comp_fcc_arc"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-fcc-radius"
+            },
+            "word": {
+              "kind": "property-adapter",
+              "name": "transform_word_fcc_html"
+            }
+          }
+        },
+        "radius.inbox": {
+          "bindings": {
+            "idml": {
+              "kind": "object-style",
+              "name": "HB Inbox Card"
+            },
+            "latex": {
+              "kind": "layout-token",
+              "name": "comp_inbox_card_arc"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-inbox-card-radius"
+            },
+            "word": {
+              "kind": "property-adapter",
+              "name": "transform_word_inbox_html"
+            }
+          }
+        },
+        "radius.panel": {
+          "bindings": {
+            "idml": {
+              "kind": "object-style",
+              "name": "HB Rounded Table Outer"
+            },
+            "latex": {
+              "kind": "layout-token",
+              "name": "comp_table_outer_arc"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-panel-radius"
+            },
+            "word": {
+              "kind": "property-adapter",
+              "name": "_set_spec_table_layout"
+            }
+          }
+        },
+        "surface.brand": {
+          "bindings": {
+            "idml": {
+              "kind": "color",
+              "name": "Color/HB Brand Dark"
+            },
+            "latex": {
+              "kind": "color",
+              "name": "HBSharedTableFrameColor"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-brand-dark"
+            },
+            "word": {
+              "kind": "property-adapter",
+              "name": "_set_spec_table_borders"
+            }
+          }
+        },
+        "surface.fcc": {
+          "bindings": {
+            "idml": {
+              "kind": "color",
+              "name": "Color/HB Bg K05"
+            },
+            "latex": {
+              "kind": "color",
+              "name": "BgK05"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-surface"
+            },
+            "word": {
+              "kind": "html-class",
+              "name": "hb-fcc-word-table"
+            }
+          }
+        },
+        "surface.muted": {
+          "bindings": {
+            "idml": {
+              "kind": "paragraph-style",
+              "name": "HB Spec Label"
+            },
+            "latex": {
+              "kind": "color",
+              "name": "HBSharedTableLeftBg"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-surface"
+            },
+            "word": {
+              "kind": "html-class",
+              "name": "manual-spec-label"
+            }
+          }
+        },
+        "surface.paper": {
+          "bindings": {
+            "idml": {
+              "kind": "color",
+              "name": "Color/Paper"
+            },
+            "latex": {
+              "kind": "color",
+              "name": "white"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-paper"
+            },
+            "word": {
+              "kind": "table-style",
+              "name": "tableHeader"
+            }
+          }
+        },
+        "type.fcc.body": {
+          "bindings": {
+            "idml": {
+              "kind": "paragraph-style",
+              "name": "HB FCC Text"
+            },
+            "latex": {
+              "kind": "macro",
+              "name": "HBTypeFccText"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-font-family"
+            },
+            "word": {
+              "kind": "html-class",
+              "name": "hb-fcc-word-table"
+            }
+          }
+        },
+        "type.inbox.label": {
+          "bindings": {
+            "idml": {
+              "kind": "paragraph-style",
+              "name": "HB InBox Label"
+            },
+            "latex": {
+              "kind": "macro",
+              "name": "HBtype_inbox_label_font_size"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-font-family"
+            },
+            "word": {
+              "kind": "html-class",
+              "name": "hb-inbox-word-card"
+            }
+          }
+        },
+        "type.overview.label": {
+          "bindings": {
+            "idml": {
+              "kind": "paragraph-style",
+              "name": "HB Body"
+            },
+            "latex": {
+              "kind": "macro",
+              "name": "HBOverviewPanel"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-font-family"
+            },
+            "word": {
+              "kind": "style",
+              "name": "BodyText"
+            }
+          }
+        },
+        "type.table.label": {
+          "bindings": {
+            "idml": {
+              "kind": "paragraph-style",
+              "name": "HB Spec Label"
+            },
+            "latex": {
+              "kind": "macro",
+              "name": "HBTypeSpecLabel"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-font-family"
+            },
+            "word": {
+              "kind": "html-class",
+              "name": "manual-spec-label"
+            }
+          }
+        },
+        "type.table.value": {
+          "bindings": {
+            "idml": {
+              "kind": "paragraph-style",
+              "name": "HB Spec Value"
+            },
+            "latex": {
+              "kind": "macro",
+              "name": "HBTypeSpecValue"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-font-family"
+            },
+            "word": {
+              "kind": "html-class",
+              "name": "manual-spec-value"
+            }
+          }
+        },
+        "width.component-band": {
+          "bindings": {
+            "idml": {
+              "kind": "property-adapter",
+              "name": "spec_table_body_width"
+            },
+            "latex": {
+              "kind": "macro",
+              "name": "linewidth"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-component-band-max"
+            },
+            "word": {
+              "kind": "property-adapter",
+              "name": "_set_spec_table_cell_widths"
+            }
+          }
+        }
+      },
+      "schema_version": "manual-theme/v1",
+      "theme_id": "hb-manual-default"
+    },
+    "manual_theme_sha256": "e8fc88458d239edef85f2cfb0b26b71df2e83859c8e51e9c093e5abc2982b47d",
+    "markdown_filename": "manual_js40a_us_en.md",
+    "operator_release_approval": {
+      "authorization": "MA-432",
+      "path": "source/release_approval.json",
+      "sha256": "412062586ddddeb2334c462fe28ab90c936959f5bf4421f0667126338b2ad5d5"
+    },
+    "page_count": 8,
+    "page_declarations": {},
+    "pdf_intake_provenance": {
+      "artwork_standardizations": [],
+      "intake_method": "outlined-source-agent-checked-transcription",
+      "operator_release_approval": {
+        "authorization": "MA-432",
+        "path": "source/release_approval.json",
+        "sha256": "412062586ddddeb2334c462fe28ab90c936959f5bf4421f0667126338b2ad5d5"
+      },
+      "pending_source_review": []
+    },
+    "pending_source_review": [],
+    "projection": "whole-document-components/v1",
+    "publication_eligible": true,
+    "rendered_source_figure_count": 6,
+    "skipped_raw": 0,
+    "source_errata": {
+      "source_concerns": [
+        "Source grammar, including 'Prevent corrosive substances to damage solar panels' and the safety instruction about short-circuiting poles, is retained rather than silently technically rewritten.",
+        "The warranty states 36 months plus a 2 Years Extended Warranty registration paragraph. These exact periods are preserved; no other edition's warranty is imported."
+      ]
+    },
+    "title": "Jackery SolarSaga 40 Mini",
+    "web_contract": {
+      "app_download": {
+        "source_patterns": []
+      },
+      "app_inline_controls": {
+        "source_patterns": []
+      },
+      "fcc": {
+        "mark_asset_ref": "mark/fcc",
+        "mark_path": "docs/renderers/latex/assets/fcc_mark.png",
+        "right_column_markers": [
+          {
+            "language": "en",
+            "marker": "If this equipment does cause harmful interference",
+            "source_patterns": [
+              "01_fcc"
+            ]
+          },
+          {
+            "language": "fr",
+            "marker": "Si cet équipement trouble la réception",
+            "source_patterns": [
+              "p22_01_fcc"
+            ]
+          },
+          {
+            "language": "es",
+            "marker": "Si este aparato causa interferencias dañinas",
+            "source_patterns": [
+              "p38_01_fcc"
+            ]
+          },
+          {
+            "language": "pt-BR",
+            "marker": "Se este equipamento causar interferência prejudicial",
+            "source_patterns": [
+              "01_fcc"
+            ]
+          }
+        ],
+        "source_patterns": [
+          "*01_fcc"
+        ]
+      },
+      "figure_coverage": {
+        "requirements": []
+      },
+      "figure_targets": [],
+      "in_the_box": {
+        "semantic_source_patterns": [
+          "box_contents_*"
+        ],
+        "source_patterns": [
+          "*02_whats_in_the_box"
+        ]
+      },
+      "meaning_symbols": {
+        "signal_row_count": 4,
+        "source_patterns": [
+          "symbols_*",
+          "symbols"
+        ]
+      },
+      "operations": {
+        "auto_resume_table": {
+          "body_rows": 4
+        },
+        "key_combination_table": {
+          "minimum_body_rows": 3
+        },
+        "lcd_mode_table": {
+          "body_rows": 6,
+          "image_key": "operation/lcd_mode"
+        },
+        "source_patterns": [
+          "*05_operation_guide_placeholder",
+          "*05_operation_guide_je2000e"
+        ]
+      },
+      "preface": {
+        "source_patterns": [
+          "00_preface*"
+        ],
+        "targets": []
+      },
+      "presentation_layers": {
+        "base": "shared-manual-semantics-v1",
+        "skeleton_profile": null,
+        "target_overlay": null
+      },
+      "product_overview": {
+        "source_patterns": [
+          "*03_product_overview_placeholder"
+        ]
+      },
+      "profiles": {
+        "document": {
+          "description": "Complete paginated manual for DOCX and ordinary Markdown exports."
+        },
+        "web": {
+          "entry_source_pattern": "00_preface*",
+          "excluded_source_patterns": [
+            "cover*",
+            "00_toc*",
+            "99_back_cover*"
+          ]
+        }
+      },
+      "reference_figures": {
+        "figures": [
+          {
+            "asset_scope": "shared",
+            "captions_embedded": true,
+            "capture_following_lines": 3,
+            "control_artwork": "docs/renderers/latex/assets/app_control_panel.png",
+            "id": "app-add-device",
+            "image_key": "app/add_device",
+            "label_roles": [
+              "main-power",
+              "dc-usb",
+              "ac-power"
+            ],
+            "phone_artwork": "docs/renderers/contracts/assets/app/app_add_device_steps.png",
+            "presentation": "shared-art-live-labels",
+            "source_patterns": [
+              "*12_app_setup_placeholder"
+            ]
+          }
+        ],
+        "source_patterns": [
+          "*12_app_setup_placeholder"
+        ]
+      },
+      "schema_version": "web-manual-presentation/v2",
+      "specifications": {
+        "circled_reference_count": 2,
+        "section_count": 4,
+        "source_patterns": [
+          "spec_*"
+        ]
+      },
+      "troubleshooting_table": {
+        "source_patterns": [
+          "troubleshooting_*"
+        ]
+      },
+      "warranty": {
+        "period_years": [
+          "3",
+          "2"
+        ],
+        "section_count": 6,
+        "source_patterns": [
+          "*11_warranty"
+        ]
+      }
+    },
+    "web_source_normalization": "preface-auto-resume/v1"
+  },
+  "model": "JS-40A",
+  "pages": [
+    {
+      "blocks": [
+        {
+          "asset_refs": [],
+          "block_id": "introduction:block-0001",
+          "content_sha256": "af5ad0278d67742b64ad9af3c5ed069e3635e0fd1d68889173b4214fe07b98df",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "USER MANUAL"
+              }
+            ],
+            "kind": "heading",
+            "level": 1,
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#introduction#block-1"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "introduction:block-0002",
+          "content_sha256": "eb9d50fa06caffc8b4251345183f8307f4836818e1034be5cd7aa3c9cd78ac1f",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "Jackery SolarSaga 40 Mini"
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#introduction#block-2"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "introduction:block-0003",
+          "content_sha256": "a286d60a4dcb0a4c03932df4da67453eb5210acbdbe7781c661b2312a19921fc",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "Model: JS-40A"
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#introduction#block-3"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "introduction:block-0004",
+          "content_sha256": "ac9535d3f2d833fe7d58422a2d163d340166788583de49416ef457d38b7baeed",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "Version: JAK-UM-V2.0"
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#introduction#block-4"
+        }
+      ],
+      "language": "en",
+      "page_id": "introduction",
+      "skipped_raw": 0,
+      "source_path": "source/transcription.json",
+      "source_ref": "source/transcription.json#introduction",
+      "source_sha256": "93504e119a26a4aee9bbe147875beeb26088a56ad5df8f3bd58c46937ff60abb"
+    },
+    {
+      "blocks": [
+        {
+          "asset_refs": [],
+          "block_id": "quick_start:block-0001",
+          "content_sha256": "044b0644909f845a7094d0e9b378111969154b763caca9692f1f99f7b9e27250",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "SOLAR PANEL QUICK START GUIDE"
+              }
+            ],
+            "kind": "heading",
+            "level": 1,
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#quick_start#block-1"
+        },
+        {
+          "asset_refs": [
+            "assets/unfold-1.png"
+          ],
+          "block_id": "quick_start:block-0002",
+          "content_sha256": "3f00a7d718d90fd5b6cd3224627f84bbce5674674b2973e423e3384f09f80350",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "1. Release the magnetic buckle."
+                  }
+                ],
+                "kind": "paragraph"
+              },
+              {
+                "carrier_flow": [
+                  {
+                    "alt": "Release the magnetic buckle; the complete panel, buckle and rotation arrow are shown.",
+                    "kind": "image",
+                    "source": "assets/unfold-1.png"
+                  }
+                ],
+                "component_spec": {
+                  "assets": [
+                    {
+                      "asset_ref": "assets/unfold-1.png",
+                      "locale_policy": "exact",
+                      "role": "source_art"
+                    },
+                    {
+                      "asset_ref": "assets/unfold-1.png",
+                      "locale_policy": "exact",
+                      "role": "approved_composite"
+                    }
+                  ],
+                  "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                  "language": "en",
+                  "metadata": {
+                    "approved_composite": {
+                      "asset_key": "frozen-source/unfold-1",
+                      "content_sha256": "d4f192fb0e8b2e6c6fe9f62b4cfc00bc59ad12606ebc48b1b7b55c274b623a1a",
+                      "locale": "en",
+                      "source_fragment_sha256": "d2f9e466eed37f0202e7741df11e93e8ae4e29b7d2584c4fdb348f750f4517c0"
+                    },
+                    "artwork_origin": "unchanged-approved-source-crop",
+                    "image_key": "unfold-1",
+                    "source_fragment_sha256": "d2f9e466eed37f0202e7741df11e93e8ae4e29b7d2584c4fdb348f750f4517c0",
+                    "web_replace_key": "reference.unfold-1"
+                  },
+                  "schema_version": "component-spec/v1",
+                  "slots": [
+                    {
+                      "content": "unfold-1",
+                      "content_kind": "inline_text",
+                      "role": "reference_id"
+                    },
+                    {
+                      "content": "Release the magnetic buckle; the complete panel, buckle and rotation arrow are shown.",
+                      "content_kind": "inline_text",
+                      "role": "accessibility_label"
+                    },
+                    {
+                      "content": "embedded",
+                      "content_kind": "inline_text",
+                      "role": "caption_mode"
+                    },
+                    {
+                      "content": "equal",
+                      "content_kind": "inline_text",
+                      "role": "caption_layout"
+                    }
+                  ],
+                  "source_ref": "source/transcription.json#quick_start/1",
+                  "token_roles": [
+                    "component.special.reference-figure"
+                  ],
+                  "variant": "approved-composite"
+                },
+                "kind": "component"
+              }
+            ],
+            "kind": "group",
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": "hb-text-panel"
+                }
+              }
+            },
+            "role": "container",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#quick_start#block-2"
+        },
+        {
+          "asset_refs": [
+            "assets/unfold-2.png"
+          ],
+          "block_id": "quick_start:block-0003",
+          "content_sha256": "5a0c7e5bf7ab7137d18ab2346342628ad227c4b9cc61d9fa903d74c85aa5265f",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "2. Extend both sides of the panel."
+                  }
+                ],
+                "kind": "paragraph"
+              },
+              {
+                "carrier_flow": [
+                  {
+                    "alt": "Extend both sides of the panel; both hands, outward arrows and the complete hinged panels are shown.",
+                    "kind": "image",
+                    "source": "assets/unfold-2.png"
+                  }
+                ],
+                "component_spec": {
+                  "assets": [
+                    {
+                      "asset_ref": "assets/unfold-2.png",
+                      "locale_policy": "exact",
+                      "role": "source_art"
+                    },
+                    {
+                      "asset_ref": "assets/unfold-2.png",
+                      "locale_policy": "exact",
+                      "role": "approved_composite"
+                    }
+                  ],
+                  "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                  "language": "en",
+                  "metadata": {
+                    "approved_composite": {
+                      "asset_key": "frozen-source/unfold-2",
+                      "content_sha256": "a71fb0738c120520516984c3d99cffffcaa1b1ad0f2f65c31771c9ee45404a60",
+                      "locale": "en",
+                      "source_fragment_sha256": "a480e14c79380fd5e2317f1c694bee1f203c70bbe9398deeea81847cf079495e"
+                    },
+                    "artwork_origin": "unchanged-approved-source-crop",
+                    "image_key": "unfold-2",
+                    "source_fragment_sha256": "a480e14c79380fd5e2317f1c694bee1f203c70bbe9398deeea81847cf079495e",
+                    "web_replace_key": "reference.unfold-2"
+                  },
+                  "schema_version": "component-spec/v1",
+                  "slots": [
+                    {
+                      "content": "unfold-2",
+                      "content_kind": "inline_text",
+                      "role": "reference_id"
+                    },
+                    {
+                      "content": "Extend both sides of the panel; both hands, outward arrows and the complete hinged panels are shown.",
+                      "content_kind": "inline_text",
+                      "role": "accessibility_label"
+                    },
+                    {
+                      "content": "embedded",
+                      "content_kind": "inline_text",
+                      "role": "caption_mode"
+                    },
+                    {
+                      "content": "equal",
+                      "content_kind": "inline_text",
+                      "role": "caption_layout"
+                    }
+                  ],
+                  "source_ref": "source/transcription.json#quick_start/101",
+                  "token_roles": [
+                    "component.special.reference-figure"
+                  ],
+                  "variant": "approved-composite"
+                },
+                "kind": "component"
+              }
+            ],
+            "kind": "group",
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": "hb-text-panel"
+                }
+              }
+            },
+            "role": "container",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#quick_start#block-3"
+        },
+        {
+          "asset_refs": [
+            "assets/unfold-3.png"
+          ],
+          "block_id": "quick_start:block-0004",
+          "content_sha256": "e324850722bb268eac5c6565540861234c4571421ccc1f7b5ff631bbdea57394",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "3. Pull the concealed latch from the center to release it."
+                  }
+                ],
+                "kind": "paragraph"
+              },
+              {
+                "carrier_flow": [
+                  {
+                    "alt": "Pull the concealed center latch to release it; both hands, arrows, latch and panels remain complete.",
+                    "kind": "image",
+                    "source": "assets/unfold-3.png"
+                  }
+                ],
+                "component_spec": {
+                  "assets": [
+                    {
+                      "asset_ref": "assets/unfold-3.png",
+                      "locale_policy": "exact",
+                      "role": "source_art"
+                    },
+                    {
+                      "asset_ref": "assets/unfold-3.png",
+                      "locale_policy": "exact",
+                      "role": "approved_composite"
+                    }
+                  ],
+                  "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                  "language": "en",
+                  "metadata": {
+                    "approved_composite": {
+                      "asset_key": "frozen-source/unfold-3",
+                      "content_sha256": "cc3bce48031cc93f8bde2651c84aa7052231a26214c2e7de88ee247b1b047331",
+                      "locale": "en",
+                      "source_fragment_sha256": "b52ae4d8ef0f9815f227793f213cc1c6189942ab98f760b98acc2b321578119c"
+                    },
+                    "artwork_origin": "unchanged-approved-source-crop",
+                    "image_key": "unfold-3",
+                    "source_fragment_sha256": "b52ae4d8ef0f9815f227793f213cc1c6189942ab98f760b98acc2b321578119c",
+                    "web_replace_key": "reference.unfold-3"
+                  },
+                  "schema_version": "component-spec/v1",
+                  "slots": [
+                    {
+                      "content": "unfold-3",
+                      "content_kind": "inline_text",
+                      "role": "reference_id"
+                    },
+                    {
+                      "content": "Pull the concealed center latch to release it; both hands, arrows, latch and panels remain complete.",
+                      "content_kind": "inline_text",
+                      "role": "accessibility_label"
+                    },
+                    {
+                      "content": "embedded",
+                      "content_kind": "inline_text",
+                      "role": "caption_mode"
+                    },
+                    {
+                      "content": "equal",
+                      "content_kind": "inline_text",
+                      "role": "caption_layout"
+                    }
+                  ],
+                  "source_ref": "source/transcription.json#quick_start/201",
+                  "token_roles": [
+                    "component.special.reference-figure"
+                  ],
+                  "variant": "approved-composite"
+                },
+                "kind": "component"
+              }
+            ],
+            "kind": "group",
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": "hb-text-panel"
+                }
+              }
+            },
+            "role": "container",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#quick_start#block-4"
+        },
+        {
+          "asset_refs": [
+            "assets/unfold-4.png"
+          ],
+          "block_id": "quick_start:block-0005",
+          "content_sha256": "9f2db1b4ffa3b60404094b12b9eca229a99f957ca488e457a64faec0a805be6d",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "4. Unfold the panel completely."
+                  }
+                ],
+                "kind": "paragraph"
+              },
+              {
+                "carrier_flow": [
+                  {
+                    "alt": "The four sections of the SolarSaga 40 Mini unfolded completely.",
+                    "kind": "image",
+                    "source": "assets/unfold-4.png"
+                  }
+                ],
+                "component_spec": {
+                  "assets": [
+                    {
+                      "asset_ref": "assets/unfold-4.png",
+                      "locale_policy": "exact",
+                      "role": "source_art"
+                    },
+                    {
+                      "asset_ref": "assets/unfold-4.png",
+                      "locale_policy": "exact",
+                      "role": "approved_composite"
+                    }
+                  ],
+                  "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                  "language": "en",
+                  "metadata": {
+                    "approved_composite": {
+                      "asset_key": "frozen-source/unfold-4",
+                      "content_sha256": "7159f9d8bddb88c5d2a7b4ab3e8e3ec349bf3f86ab7cc53fec58208576911570",
+                      "locale": "en",
+                      "source_fragment_sha256": "f2b001873dac8922a1b574fc22305192843a29f7cf6fb3bc5a5bbc1deb8eda38"
+                    },
+                    "artwork_origin": "unchanged-approved-source-crop",
+                    "image_key": "unfold-4",
+                    "source_fragment_sha256": "f2b001873dac8922a1b574fc22305192843a29f7cf6fb3bc5a5bbc1deb8eda38",
+                    "web_replace_key": "reference.unfold-4"
+                  },
+                  "schema_version": "component-spec/v1",
+                  "slots": [
+                    {
+                      "content": "unfold-4",
+                      "content_kind": "inline_text",
+                      "role": "reference_id"
+                    },
+                    {
+                      "content": "The four sections of the SolarSaga 40 Mini unfolded completely.",
+                      "content_kind": "inline_text",
+                      "role": "accessibility_label"
+                    },
+                    {
+                      "content": "embedded",
+                      "content_kind": "inline_text",
+                      "role": "caption_mode"
+                    },
+                    {
+                      "content": "equal",
+                      "content_kind": "inline_text",
+                      "role": "caption_layout"
+                    }
+                  ],
+                  "source_ref": "source/transcription.json#quick_start/301",
+                  "token_roles": [
+                    "component.special.reference-figure"
+                  ],
+                  "variant": "approved-composite"
+                },
+                "kind": "component"
+              }
+            ],
+            "kind": "group",
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": "hb-text-panel"
+                }
+              }
+            },
+            "role": "container",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#quick_start#block-5"
+        },
+        {
+          "asset_refs": [
+            "assets/unfold-5.png"
+          ],
+          "block_id": "quick_start:block-0006",
+          "content_sha256": "9cc6139f35b36e8e75b9a8859bc7da86a7aba106295746a513f2d6da67ed32e4",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "5. Position it towards the sun and connect it to a portable power station."
+                  }
+                ],
+                "kind": "paragraph"
+              },
+              {
+                "carrier_flow": [
+                  {
+                    "alt": "Position the complete SolarSaga 40 Mini toward the sun and connect its cable to the portable power station.",
+                    "kind": "image",
+                    "source": "assets/unfold-5.png"
+                  }
+                ],
+                "component_spec": {
+                  "assets": [
+                    {
+                      "asset_ref": "assets/unfold-5.png",
+                      "locale_policy": "exact",
+                      "role": "source_art"
+                    },
+                    {
+                      "asset_ref": "assets/unfold-5.png",
+                      "locale_policy": "exact",
+                      "role": "approved_composite"
+                    }
+                  ],
+                  "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                  "language": "en",
+                  "metadata": {
+                    "approved_composite": {
+                      "asset_key": "frozen-source/unfold-5",
+                      "content_sha256": "fd032a9605fc5e4e0c48e554410daec72cee1a8bbdfc6bca41439ac286e91266",
+                      "locale": "en",
+                      "source_fragment_sha256": "365c7659b7dcb1afb2c1953fcd612c8c794768f6e6b19a3d26cb4b66962b9737"
+                    },
+                    "artwork_origin": "unchanged-approved-source-crop",
+                    "image_key": "unfold-5",
+                    "source_fragment_sha256": "365c7659b7dcb1afb2c1953fcd612c8c794768f6e6b19a3d26cb4b66962b9737",
+                    "web_replace_key": "reference.unfold-5"
+                  },
+                  "schema_version": "component-spec/v1",
+                  "slots": [
+                    {
+                      "content": "unfold-5",
+                      "content_kind": "inline_text",
+                      "role": "reference_id"
+                    },
+                    {
+                      "content": "Position the complete SolarSaga 40 Mini toward the sun and connect its cable to the portable power station.",
+                      "content_kind": "inline_text",
+                      "role": "accessibility_label"
+                    },
+                    {
+                      "content": "embedded",
+                      "content_kind": "inline_text",
+                      "role": "caption_mode"
+                    },
+                    {
+                      "content": "equal",
+                      "content_kind": "inline_text",
+                      "role": "caption_layout"
+                    }
+                  ],
+                  "source_ref": "source/transcription.json#quick_start/401",
+                  "token_roles": [
+                    "component.special.reference-figure"
+                  ],
+                  "variant": "approved-composite"
+                },
+                "kind": "component"
+              }
+            ],
+            "kind": "group",
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": "hb-text-panel"
+                }
+              }
+            },
+            "role": "container",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#quick_start#block-6"
+        }
+      ],
+      "language": "en",
+      "page_id": "quick_start",
+      "skipped_raw": 0,
+      "source_path": "source/transcription.json",
+      "source_ref": "source/transcription.json#quick_start",
+      "source_sha256": "036afc909faaff580360a645b3b03f8d0cd4e925c23f41ae6373953d35af596f"
+    },
+    {
+      "blocks": [
+        {
+          "asset_refs": [],
+          "block_id": "specifications:block-0001",
+          "content_sha256": "e851c1fec24bfa25ff1049fe0f25cfe6d5713b3dd32e9d0caab8c92d73be7bd4",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "TECHNICAL SPECIFICATIONS"
+              }
+            ],
+            "kind": "heading",
+            "level": 1,
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#specifications#block-1"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "specifications:block-0002",
+          "content_sha256": "452e9ca0b2e2959ace2dca2c656fd29bf9033d0c3781c4273655fb4424f4a3ae",
+          "kind": "flow",
+          "payload": {
+            "carrier_flow": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "SolarSaga 40 Mini"
+                      }
+                    ],
+                    "kind": "inline_group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": "hb-spec-section-text"
+                        }
+                      }
+                    }
+                  }
+                ],
+                "kind": "heading",
+                "level": 2,
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "hb-spec-section"
+                    }
+                  }
+                }
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Product Name"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "SolarSaga 40 Mini"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Model"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "JS-40A"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Maximum Power (P"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "max"
+                                  }
+                                ],
+                                "kind": "subscript"
+                              },
+                              {
+                                "kind": "text",
+                                "text": ")"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "40W±5%"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Unfolded Size"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Around 1020×300×18.5mm"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Folded Size"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Around 252×300×30mm"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Weight"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Around 2.6 lbs / 1.2 kg"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Open circuit voltage (V"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "oc"
+                                  }
+                                ],
+                                "kind": "subscript"
+                              },
+                              {
+                                "kind": "text",
+                                "text": ")"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "25V±5%"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Short circuit current (I"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "sc"
+                                  }
+                                ],
+                                "kind": "subscript"
+                              },
+                              {
+                                "kind": "text",
+                                "text": ")"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "2.07A±5%"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Optimum Operating Voltage (V"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "mp"
+                                  }
+                                ],
+                                "kind": "subscript"
+                              },
+                              {
+                                "kind": "text",
+                                "text": ")"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "20.9V±5%"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Optimum Operating Current (I"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "mp"
+                                  }
+                                ],
+                                "kind": "subscript"
+                              },
+                              {
+                                "kind": "text",
+                                "text": ")"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "1.91A±5%"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Operating Temperature Range"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "−4°F~149°F (−20°C~65°C)"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Maximum System Voltage"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "30V"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Maximum Reverse Current"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "6A"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Protection Class Against Electric Shock"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Class III"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Waterproof Level"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "IP68"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Voltage Temperature Coefficient"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "−0.3%/°C"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Power Temperature Coefficient"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "−0.39%/°C"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Maximum Number of Series Connections"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "1"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Maximum Number of Parallel Connections"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "3"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Consumer Goods Category"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "IEC TS 63163 Consumer Product Category 1"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      }
+                    ],
+                    "kind": "table_body"
+                  }
+                ],
+                "kind": "table",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "manual-table"
+                    }
+                  }
+                }
+              }
+            ],
+            "component_spec": {
+              "assets": [],
+              "component_id": "HB-TABLE-SPEC",
+              "language": "en",
+              "metadata": {},
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "SolarSaga 40 Mini",
+                  "content_kind": "inline_text",
+                  "role": "section_title"
+                },
+                {
+                  "content": [
+                    {
+                      "label": "Product Name",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "SolarSaga 40 Mini"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Model",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "JS-40A"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Maximum Power (P\nmax\n)",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "40W±5%"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Unfolded Size",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "Around 1020×300×18.5mm"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Folded Size",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "Around 252×300×30mm"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Weight",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "Around 2.6 lbs / 1.2 kg"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Open circuit voltage (V\noc\n)",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "25V±5%"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Short circuit current (I\nsc\n)",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "2.07A±5%"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Optimum Operating Voltage (V\nmp\n)",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "20.9V±5%"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Optimum Operating Current (I\nmp\n)",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "1.91A±5%"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Operating Temperature Range",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "−4°F~149°F (−20°C~65°C)"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Maximum System Voltage",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "30V"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Maximum Reverse Current",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "6A"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Protection Class Against Electric Shock",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "Class III"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Waterproof Level",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "IP68"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Voltage Temperature Coefficient",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "−0.3%/°C"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Power Temperature Coefficient",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "−0.39%/°C"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Maximum Number of Series Connections",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "1"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Maximum Number of Parallel Connections",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "3"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Consumer Goods Category",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "IEC TS 63163 Consumer Product Category 1"
+                        }
+                      ]
+                    }
+                  ],
+                  "content_kind": "structured_rows",
+                  "role": "rows"
+                }
+              ],
+              "source_ref": "source/transcription.json#specifications/0",
+              "token_roles": [
+                "component.table.spec"
+              ],
+              "variant": "vertical"
+            },
+            "kind": "component",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#specifications#block-2"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "specifications:block-0003",
+          "content_sha256": "10a0a827729027ebad363829c6db3ec3620069f9262534fcfd7469eb78cc5c3a",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "STC (1000W/m², 25°C, AM 1.5)."
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#specifications#block-3"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "specifications:block-0004",
+          "content_sha256": "6aab313d94e47471ccbb15bb30cd54ddbdbfd10facf1185798fa4c20c1fc39e9",
+          "kind": "flow",
+          "payload": {
+            "carrier_flow": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "Multifunctional Adapter"
+                      }
+                    ],
+                    "kind": "inline_group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": "hb-spec-section-text"
+                        }
+                      }
+                    }
+                  }
+                ],
+                "kind": "heading",
+                "level": 2,
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "hb-spec-section"
+                    }
+                  }
+                }
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "USB-A Output"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "5V⎓2.4A"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "USB-C Output"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "5V⎓3A"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      }
+                    ],
+                    "kind": "table_body"
+                  }
+                ],
+                "kind": "table",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "manual-table"
+                    }
+                  }
+                }
+              }
+            ],
+            "component_spec": {
+              "assets": [],
+              "component_id": "HB-TABLE-SPEC",
+              "language": "en",
+              "metadata": {},
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "Multifunctional Adapter",
+                  "content_kind": "inline_text",
+                  "role": "section_title"
+                },
+                {
+                  "content": [
+                    {
+                      "label": "USB-A Output",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "5V⎓2.4A"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "USB-C Output",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "5V⎓3A"
+                        }
+                      ]
+                    }
+                  ],
+                  "content_kind": "structured_rows",
+                  "role": "rows"
+                }
+              ],
+              "source_ref": "source/transcription.json#specifications/2",
+              "token_roles": [
+                "component.table.spec"
+              ],
+              "variant": "vertical"
+            },
+            "kind": "component",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#specifications#block-4"
+        }
+      ],
+      "language": "en",
+      "page_id": "specifications",
+      "skipped_raw": 0,
+      "source_path": "source/transcription.json",
+      "source_ref": "source/transcription.json#specifications",
+      "source_sha256": "10d07557ea5eb3002cdb41db3beeaabd06d659be4e5ede0d7d5efe2041fa7a9a"
+    },
+    {
+      "blocks": [
+        {
+          "asset_refs": [],
+          "block_id": "power_your_device:block-0001",
+          "content_sha256": "e446e9bec23890d232b3c61987acdbb9f387295b63e5e0fdc7c14d261e45a8f6",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "POWER YOUR DEVICE"
+              }
+            ],
+            "kind": "heading",
+            "level": 1,
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#power_your_device#block-1"
+        },
+        {
+          "asset_refs": [
+            "assets/power-device.png"
+          ],
+          "block_id": "power_your_device:block-0002",
+          "content_sha256": "9f59723923c351e5e0b4a45a163436db2f574783e321bf84f31d082a713c8789",
+          "kind": "flow",
+          "payload": {
+            "carrier_flow": [
+              {
+                "alt": "SolarSaga 40 Mini and Multifunctional Adapter: USB-C, LED, USB-A; DC8020; DC8020 to USB-C Adapter Cable; Cell Phone, Power Bank and Tablet. Complete source-labelled English connection diagram.",
+                "kind": "image",
+                "source": "assets/power-device.png"
+              }
+            ],
+            "component_spec": {
+              "assets": [
+                {
+                  "asset_ref": "assets/power-device.png",
+                  "locale_policy": "exact",
+                  "role": "source_art"
+                },
+                {
+                  "asset_ref": "assets/power-device.png",
+                  "locale_policy": "exact",
+                  "role": "approved_composite"
+                }
+              ],
+              "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+              "language": "en",
+              "metadata": {
+                "approved_composite": {
+                  "asset_key": "frozen-source/power-device",
+                  "content_sha256": "0706ccc6053cf25026edd1aa8264c8b144db8873730ce365aed9359633874e78",
+                  "locale": "en",
+                  "source_fragment_sha256": "8176205f9b6a8dcb2d6d7641cf3456e7e80f54103492a8c684d28e280f255c07"
+                },
+                "artwork_origin": "unchanged-approved-source-crop",
+                "image_key": "power-device",
+                "source_fragment_sha256": "8176205f9b6a8dcb2d6d7641cf3456e7e80f54103492a8c684d28e280f255c07",
+                "web_replace_key": "reference.power-device"
+              },
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "power-device",
+                  "content_kind": "inline_text",
+                  "role": "reference_id"
+                },
+                {
+                  "content": "SolarSaga 40 Mini and Multifunctional Adapter: USB-C, LED, USB-A; DC8020; DC8020 to USB-C Adapter Cable; Cell Phone, Power Bank and Tablet. Complete source-labelled English connection diagram.",
+                  "content_kind": "inline_text",
+                  "role": "accessibility_label"
+                },
+                {
+                  "content": "embedded",
+                  "content_kind": "inline_text",
+                  "role": "caption_mode"
+                },
+                {
+                  "content": "equal",
+                  "content_kind": "inline_text",
+                  "role": "caption_layout"
+                }
+              ],
+              "source_ref": "source/transcription.json#power_your_device/0",
+              "token_roles": [
+                "component.special.reference-figure"
+              ],
+              "variant": "approved-composite"
+            },
+            "kind": "component",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#power_your_device#block-2"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "power_your_device:block-0003",
+          "content_sha256": "6194fd3c221cd4f364b2032dd28923c3d6582dbc2c7a6ace801bf58b7aa249dc",
+          "kind": "flow",
+          "payload": {
+            "carrier_flow": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Note"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "manual-callout-label"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "children": [
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "The DC8020 to USB-C adapter is only for charging Jackery power station; please do not use it for charging other devices."
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "manual-callout-body"
+                                }
+                              }
+                            }
+                          }
+                        ],
+                        "kind": "table_row"
+                      }
+                    ],
+                    "kind": "table_body"
+                  }
+                ],
+                "kind": "table",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "manual-callout-table manual-callout-table"
+                    }
+                  }
+                }
+              }
+            ],
+            "component_spec": {
+              "assets": [],
+              "component_id": "HB-CALLOUT-STRIP",
+              "language": "en",
+              "metadata": {},
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "Note",
+                  "content_kind": "inline_text",
+                  "role": "label"
+                },
+                {
+                  "content": "The DC8020 to USB-C adapter is only for charging Jackery power station; please do not use it for charging other devices.",
+                  "content_kind": "rich_text",
+                  "role": "body"
+                }
+              ],
+              "source_ref": "source/transcription.json#power_your_device/1",
+              "token_roles": [
+                "component.callout"
+              ],
+              "variant": "note"
+            },
+            "kind": "component",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#power_your_device#block-3"
+        }
+      ],
+      "language": "en",
+      "page_id": "power_your_device",
+      "skipped_raw": 0,
+      "source_path": "source/transcription.json",
+      "source_ref": "source/transcription.json#power_your_device",
+      "source_sha256": "14e55f8b9f3e009daa4cb076588d0e469d8a9b4c5799c3ded37a423d2dec7b03"
+    },
+    {
+      "blocks": [
+        {
+          "asset_refs": [],
+          "block_id": "in_the_box:block-0001",
+          "content_sha256": "ab8fdb997c5e540904e4e0ee22812ef3b186b6f723d28b563c82238ed7ae649b",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "PACKAGE LIST"
+              }
+            ],
+            "kind": "heading",
+            "level": 1,
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#in_the_box#block-1"
+        },
+        {
+          "asset_refs": [
+            "assets/inbox-panel.png",
+            "assets/inbox-cable.png",
+            "assets/inbox-adapter.png",
+            "assets/inbox-usbc.png",
+            "assets/inbox-pouch.png",
+            "assets/inbox-manual.png",
+            "assets/inbox-carabiner.png"
+          ],
+          "block_id": "in_the_box:block-0002",
+          "content_sha256": "bd46a5841fe2217480438074e6d8e1582d080a5f3fcd0bb9acfc682b6e1b9d5f",
+          "kind": "flow",
+          "payload": {
+            "carrier_flow": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "alt": "SolarSaga 40 Mini",
+                                "kind": "image",
+                                "source": "assets/inbox-panel.png"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "SolarSaga 40 Mini"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "alt": "Multifunctional Solar Charging Cable",
+                                "kind": "image",
+                                "source": "assets/inbox-cable.png"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Multifunctional Solar Charging Cable"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "alt": "DC8020 to DC7909 Adapter",
+                                "kind": "image",
+                                "source": "assets/inbox-adapter.png"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "DC8020 to DC7909 Adapter"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "alt": "DC8020 to USB-C Adapter Cable",
+                                "kind": "image",
+                                "source": "assets/inbox-usbc.png"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "DC8020 to USB-C Adapter Cable"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "alt": "Accessories Bag",
+                                "kind": "image",
+                                "source": "assets/inbox-pouch.png"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Accessories Bag"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "alt": "User Manual",
+                                "kind": "image",
+                                "source": "assets/inbox-manual.png"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "User Manual"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "alt": "Carabiner X2",
+                                "kind": "image",
+                                "source": "assets/inbox-carabiner.png"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Carabiner X2"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      }
+                    ],
+                    "kind": "table_body"
+                  }
+                ],
+                "kind": "table",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "manual-table"
+                    }
+                  }
+                }
+              }
+            ],
+            "component_spec": {
+              "assets": [
+                {
+                  "asset_ref": "assets/inbox-panel.png",
+                  "locale_policy": "shared",
+                  "role": "card_art"
+                },
+                {
+                  "asset_ref": "assets/inbox-cable.png",
+                  "locale_policy": "shared",
+                  "role": "card_art"
+                },
+                {
+                  "asset_ref": "assets/inbox-adapter.png",
+                  "locale_policy": "shared",
+                  "role": "card_art"
+                },
+                {
+                  "asset_ref": "assets/inbox-usbc.png",
+                  "locale_policy": "shared",
+                  "role": "card_art"
+                },
+                {
+                  "asset_ref": "assets/inbox-pouch.png",
+                  "locale_policy": "shared",
+                  "role": "card_art"
+                },
+                {
+                  "asset_ref": "assets/inbox-manual.png",
+                  "locale_policy": "shared",
+                  "role": "card_art"
+                },
+                {
+                  "asset_ref": "assets/inbox-carabiner.png",
+                  "locale_policy": "shared",
+                  "role": "card_art"
+                }
+              ],
+              "component_id": "HB-SPECIAL-INBOX",
+              "language": "en",
+              "metadata": {
+                "desktop_columns": 3
+              },
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "PACKAGE LIST",
+                  "content_kind": "inline_text",
+                  "role": "accessibility_label"
+                },
+                {
+                  "content": [
+                    {
+                      "alt": "SolarSaga 40 Mini",
+                      "image_asset_role": "card_art",
+                      "label": "SolarSaga 40 Mini",
+                      "number": 1
+                    },
+                    {
+                      "alt": "Multifunctional Solar Charging Cable",
+                      "image_asset_role": "card_art",
+                      "label": "Multifunctional Solar Charging Cable",
+                      "number": 2
+                    },
+                    {
+                      "alt": "DC8020 to DC7909 Adapter",
+                      "image_asset_role": "card_art",
+                      "label": "DC8020 to DC7909 Adapter",
+                      "number": 3
+                    },
+                    {
+                      "alt": "DC8020 to USB-C Adapter Cable",
+                      "image_asset_role": "card_art",
+                      "label": "DC8020 to USB-C Adapter Cable",
+                      "number": 4
+                    },
+                    {
+                      "alt": "Accessories Bag",
+                      "image_asset_role": "card_art",
+                      "label": "Accessories Bag",
+                      "number": 5
+                    },
+                    {
+                      "alt": "User Manual",
+                      "image_asset_role": "card_art",
+                      "label": "User Manual",
+                      "number": 6
+                    },
+                    {
+                      "alt": "Carabiner X2",
+                      "image_asset_role": "card_art",
+                      "label": "Carabiner X2",
+                      "number": 7
+                    }
+                  ],
+                  "content_kind": "ordered_cards",
+                  "role": "cards"
+                },
+                {
+                  "content": "",
+                  "content_kind": "inline_text",
+                  "role": "tip_label"
+                },
+                {
+                  "content": "",
+                  "content_kind": "rich_text",
+                  "role": "tip_body"
+                }
+              ],
+              "source_ref": "source/transcription.json#in_the_box/0",
+              "token_roles": [
+                "component.special.inbox"
+              ],
+              "variant": "responsive-card-grid"
+            },
+            "kind": "component",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#in_the_box#block-2"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "in_the_box:block-0003",
+          "content_sha256": "668614df360bd2964fa92422389fb88626019dd3f513dfa227b27e178aa09e7a",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "This multifunctional solar charging cable is only suitable for charging the Jackery SolarSaga 40 Mini and should not be used with other solar panels."
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#in_the_box#block-3"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "in_the_box:block-0004",
+          "content_sha256": "906366fc2746474076c6ae6f09cbb180df7e6bdee9c59043dccdf2b10dc921db",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "As the maximum current of the DC8020 to USB-C Adapter Cable is 5A, please do not use it together with the Jackery SolarSaga 200."
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#in_the_box#block-4"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "in_the_box:block-0005",
+          "content_sha256": "3f7efd4baa44134e3d19c67e464868bcbab9c93ec7d5dd1067101aa4f6360854",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "The DC8020 to DC7909 adapter is required if you need to recharge the devices listed below with SolarSaga 40 Mini."
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#in_the_box#block-5"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "in_the_box:block-0006",
+          "content_sha256": "9185516df5aa724861f7de9c4533e17931f2fffc5158f38af13c9bc2b348d0c5",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "Jackery Explorer 160/240/290/300/400/500/550/600/700/708/880/1000"
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#in_the_box#block-6"
+        }
+      ],
+      "language": "en",
+      "page_id": "in_the_box",
+      "skipped_raw": 0,
+      "source_path": "source/transcription.json",
+      "source_ref": "source/transcription.json#in_the_box",
+      "source_sha256": "91f3752ffe10f909d752f260dddd103a4f4f1ea88c498008916afd7d995e460c"
+    },
+    {
+      "blocks": [
+        {
+          "asset_refs": [],
+          "block_id": "safety:block-0001",
+          "content_sha256": "929201b947215d33ab394f45807c5b61b5c728dad7745228326e5f2d9f1cce04",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "SAFETY PRECAUTIONS WHEN USING"
+              }
+            ],
+            "kind": "heading",
+            "level": 1,
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#safety#block-1"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "safety:block-0002",
+          "content_sha256": "afda33db50f71704a0b22bb4851343001045691310b4b6ee57a884c8fb6a3df2",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "Solar Panel Safety Tips"
+              }
+            ],
+            "kind": "heading",
+            "level": 2,
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#safety#block-2"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "safety:block-0003",
+          "content_sha256": "f77cfc5df18b3aa7f5e78808a22ef0b5821f0d2d1530b401fdbe76ff0c9d4425",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "Do not flex or bend the folding solar panels."
+                      }
+                    ],
+                    "kind": "paragraph"
+                  }
+                ],
+                "kind": "list_item"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "Do not place folding solar panels in shading places, while tree shades, buildings, and any other obstructions should be minimized."
+                      }
+                    ],
+                    "kind": "paragraph"
+                  }
+                ],
+                "kind": "list_item"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "Do not soak the solar panels in water or other liquid."
+                      }
+                    ],
+                    "kind": "paragraph"
+                  }
+                ],
+                "kind": "list_item"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "Do not clean the solar panel with water, please gently wipe it with a damp cloth."
+                      }
+                    ],
+                    "kind": "paragraph"
+                  }
+                ],
+                "kind": "list_item"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "Do not use or store solar panels near open flames or flammable materials."
+                      }
+                    ],
+                    "kind": "paragraph"
+                  }
+                ],
+                "kind": "list_item"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "Do not scratch the surface of solar panels with sharp objects."
+                      }
+                    ],
+                    "kind": "paragraph"
+                  }
+                ],
+                "kind": "list_item"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "Prevent corrosive substances to damage solar panels."
+                      }
+                    ],
+                    "kind": "paragraph"
+                  }
+                ],
+                "kind": "list_item"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "Do not step on or place heavy objects on the solar panels."
+                      }
+                    ],
+                    "kind": "paragraph"
+                  }
+                ],
+                "kind": "list_item"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "Do not disassemble the solar panels."
+                      }
+                    ],
+                    "kind": "paragraph"
+                  }
+                ],
+                "kind": "list_item"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "The output circuit of the solar panels must be correctly connected to the equipment. Please do not short-circuit the positive and negative poles. Ensure that there is no gap between the connector and the insulated connector. If there is a gap, sparks or electrical shocks will occur."
+                      }
+                    ],
+                    "kind": "paragraph"
+                  }
+                ],
+                "kind": "list_item"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "Check the connection status of each component, including cables, wires and plugs."
+                      }
+                    ],
+                    "kind": "paragraph"
+                  }
+                ],
+                "kind": "list_item"
+              }
+            ],
+            "kind": "list",
+            "ordered": false,
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#safety#block-3"
+        }
+      ],
+      "language": "en",
+      "page_id": "safety",
+      "skipped_raw": 0,
+      "source_path": "source/transcription.json",
+      "source_ref": "source/transcription.json#safety",
+      "source_sha256": "a80abc23662f3a247718c22eaa1e678ddc2e3b147aaf0112107f7431bc708027"
+    },
+    {
+      "blocks": [
+        {
+          "asset_refs": [],
+          "block_id": "warranty:block-0001",
+          "content_sha256": "4a3a9611dbb19ce5adca574e42c2d3ef344e93c28f3fa03922c16e5731496687",
+          "kind": "flow",
+          "payload": {
+            "component_spec": {
+              "assets": [],
+              "component_id": "HB-WARRANTY-YEARS",
+              "language": "en",
+              "metadata": {},
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "WARRANTY",
+                  "content_kind": "inline_text",
+                  "role": "title"
+                },
+                {
+                  "content": [
+                    {
+                      "body_html": "<p>The product is covered by a limited warranty from Jackery for the original purchaser that covers the product from defects in workmanship and materials for 36 months from the date of purchase (damages from normal wear and tear, alteration, misuse, neglect, accident, service by anyone other than authorized service center, or act of God are not included). During the warranty period and upon verification of defects, this product will be replaced when returned with proper proof of purchase.</p>",
+                      "body_text": "The product is covered by a limited warranty from Jackery for the original purchaser that covers the product from defects in workmanship and materials for 36 months from the date of purchase (damages from normal wear and tear, alteration, misuse, neglect, accident, service by anyone other than authorized service center, or act of God are not included). During the warranty period and upon verification of defects, this product will be replaced when returned with proper proof of purchase.",
+                      "label": "Limited Warranty",
+                      "number": "36",
+                      "unit": "MONTHS"
+                    },
+                    {
+                      "body_html": "<p>To activate the Warranty Extension, you must register your product online or contact our customer service team at hello@jackery.com to extend the standard warranty runtime.</p>",
+                      "body_text": "To activate the Warranty Extension, you must register your product online or contact our customer service team at hello@jackery.com to extend the standard warranty runtime.",
+                      "label": "Extended Warranty",
+                      "number": "2",
+                      "unit": "YEARS"
+                    }
+                  ],
+                  "content_kind": "ordered_periods",
+                  "role": "periods"
+                }
+              ],
+              "source_ref": "source/transcription.json#warranty/0",
+              "token_roles": [
+                "component.warranty.years"
+              ],
+              "variant": "numeric-badges"
+            },
+            "kind": "component",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#warranty#block-1"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "warranty:block-0002",
+          "content_sha256": "a9d0a8aad6472e48b9e90f89f35f05fbec6fa07e50b61f66280b41507f6294ac",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "CUSTOMER SERVICE"
+              }
+            ],
+            "kind": "heading",
+            "level": 2,
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#warranty#block-2"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "warranty:block-0003",
+          "content_sha256": "a4c3fe26c2bad1729f6d4c1a6571a0b5caf4794f8122d256c0efe3b240c25221",
+          "kind": "flow",
+          "payload": {
+            "component_spec": {
+              "assets": [],
+              "component_id": "HB-WARRANTY-SECTION",
+              "language": "en",
+              "metadata": {},
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "CUSTOMER SERVICE",
+                  "content_kind": "inline_text",
+                  "role": "title"
+                },
+                {
+                  "content": 2,
+                  "content_kind": "block_index",
+                  "role": "section_index"
+                },
+                {
+                  "content": [
+                    {
+                      "html": "<p>36-month limited warranty</p>",
+                      "kind": "paragraph",
+                      "text": "36-month limited warranty"
+                    },
+                    {
+                      "html": "<p>Lifetime technical support</p>",
+                      "kind": "paragraph",
+                      "text": "Lifetime technical support"
+                    },
+                    {
+                      "html": "<p>hello@jackery.com</p>",
+                      "kind": "paragraph",
+                      "text": "hello@jackery.com"
+                    }
+                  ],
+                  "content_kind": "ordered_blocks",
+                  "role": "blocks"
+                }
+              ],
+              "source_ref": "source/transcription.json#warranty/1",
+              "token_roles": [
+                "component.warranty.section"
+              ],
+              "variant": "rounded-card"
+            },
+            "kind": "component",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#warranty#block-3"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "warranty:block-0004",
+          "content_sha256": "3c1038fa5ab13e5a85313846b1fd1d7901497187aa72efc2848165127d3385bc",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "CONTACT US"
+              }
+            ],
+            "kind": "heading",
+            "level": 2,
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#warranty#block-4"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "warranty:block-0005",
+          "content_sha256": "dd761b1224745f354684444c28ef609f8ccf12fd1e1242b0a79bbc87f456306f",
+          "kind": "flow",
+          "payload": {
+            "component_spec": {
+              "assets": [],
+              "component_id": "HB-WARRANTY-SECTION",
+              "language": "en",
+              "metadata": {},
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "CONTACT US",
+                  "content_kind": "inline_text",
+                  "role": "title"
+                },
+                {
+                  "content": 3,
+                  "content_kind": "block_index",
+                  "role": "section_index"
+                },
+                {
+                  "content": [
+                    {
+                      "html": "<p>For any inquiries or comments concerning our products, please send an email to hello@jackery.com, and we will respond to you as soon as possible. If there is any quality-related issue with the product, you may request a replacement or refund by submitting a request form at www.jackery.com.</p>",
+                      "kind": "paragraph",
+                      "text": "For any inquiries or comments concerning our products, please send an email to hello@jackery.com, and we will respond to you as soon as possible. If there is any quality-related issue with the product, you may request a replacement or refund by submitting a request form at www.jackery.com."
+                    }
+                  ],
+                  "content_kind": "ordered_blocks",
+                  "role": "blocks"
+                }
+              ],
+              "source_ref": "source/transcription.json#warranty/2",
+              "token_roles": [
+                "component.warranty.section"
+              ],
+              "variant": "rounded-card"
+            },
+            "kind": "component",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#warranty#block-5"
+        }
+      ],
+      "language": "en",
+      "page_id": "warranty",
+      "skipped_raw": 0,
+      "source_path": "source/transcription.json",
+      "source_ref": "source/transcription.json#warranty",
+      "source_sha256": "1da355c171f3280a69e1890bc7b327ece113e3094268c82847cc2f0e44cd8a25"
+    },
+    {
+      "blocks": [
+        {
+          "asset_refs": [],
+          "block_id": "contacts:block-0001",
+          "content_sha256": "5f84bcc2c97623ac655fdbbeacdda00cb6a7cfacb5d58df31bb8453afda3b71e",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "JACKERY INC."
+              }
+            ],
+            "kind": "heading",
+            "level": 1,
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#contacts#block-1"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "contacts:block-0002",
+          "content_sha256": "e89eac96cb871e503ac27b86eaa8b2e75fc230ba5d574d784a17d5cc5e888eb6",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "5310 Bunche Dr, Fremont, CA 94538"
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#contacts#block-2"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "contacts:block-0003",
+          "content_sha256": "98d8054ebf6d29466b576ad2f67e3625e5bd8d3c9024210bdf3d85221684f7e7",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "Tel: 1-888-502-2236(US)"
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#contacts#block-3"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "contacts:block-0004",
+          "content_sha256": "7eb0101d088d1ca7ccfa03dfa90dcadcad7af519f670b4fdb73aa13a912cb33c",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "E-mail: hello@jackery.com"
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#contacts#block-4"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "contacts:block-0005",
+          "content_sha256": "6f0b9614e39de01ae47dc1d872578804c1bae736082e315eab7d5fce30c7f645",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "Website: "
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "https://www.jackery.com"
+                  }
+                ],
+                "kind": "link",
+                "target": "https://www.jackery.com"
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#contacts#block-5"
+        },
+        {
+          "asset_refs": [
+            "assets/contact-qr.png"
+          ],
+          "block_id": "contacts:block-0006",
+          "content_sha256": "66aefb0a343522babf3698339846643b019605406095593bc89a90db29bead90",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "alt": "Jackery contact QR code; complete source code and all four frame edges.",
+                "kind": "image",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "width": "160"
+                    }
+                  }
+                },
+                "source": "assets/contact-qr.png"
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#contacts#block-6"
+        }
+      ],
+      "language": "en",
+      "page_id": "contacts",
+      "skipped_raw": 0,
+      "source_path": "source/transcription.json",
+      "source_ref": "source/transcription.json#contacts",
+      "source_sha256": "44fdce648aff7e14b21483e3516a06bcbbde909b4c2c4fd671ca4440446e8b8a"
+    }
+  ],
+  "region": "US",
+  "schema_version": "manual-ir/v2",
+  "snapshot_sha256": null,
+  "source": "prepared-document",
+  "style_contract_sha256": "92906316ba7586310924c9eb3b50b372bd129692d81bc37f9587374de2a993f4"
+}

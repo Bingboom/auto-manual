@@ -1,0 +1,24 @@
+{
+  "status": "review-candidate-no-release-authorization",
+  "publication_eligible": false,
+  "source_sha256": "899cb3dd395903c4fa41ddbee282e70480e6ce39605107407cb1da295289bece",
+  "all_physical_pages_covered": [
+    1
+  ],
+  "cold_replay_markdown_identical": true,
+  "second_adapter_render_all_files_identical": true,
+  "asset_tamper_rejected": "document asset missing or changed: assets/connection-dc7909.png",
+  "stylesheet_tamper_rejected": "frozen Web stylesheet changed",
+  "strict_sphinx": "passed -n -W --keep-going",
+  "shared_style_issues": [],
+  "component_inventory": {
+    "HB-SPECIAL-REFERENCE-FIGURE": 2
+  },
+  "python": "3.12.13 / requirements.lock",
+  "package_python_ruff": "pass",
+  "source_qc": "independent 19-page read-only QC by us_power; exact evidence attached in evidence/independent-source-qc.json",
+  "visual_pending": null,
+  "browser_acceptance": "1280 and 390 actual strict-Sphinx manual HTML; zero missing images; table containers inspected and scroll locally; no document overflow",
+  "artwork_review": "12x source crop rendering and all four edges checked; evidence/artwork-review.json",
+  "transcription_sha256": "c25435e5bdd2e6d9a0acb12dfb7b656f4d4156ecd499801b117ff29e81d2c61e"
+}

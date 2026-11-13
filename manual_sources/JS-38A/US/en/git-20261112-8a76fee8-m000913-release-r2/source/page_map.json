@@ -1,0 +1,52 @@
+{
+  "source_physical_page_count": 7,
+  "chapters": [
+    {
+      "id": "introduction",
+      "source_pages": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "specifications",
+      "source_pages": [
+        3
+      ]
+    },
+    {
+      "id": "in_the_box",
+      "source_pages": [
+        4
+      ]
+    },
+    {
+      "id": "warranty",
+      "source_pages": [
+        4
+      ]
+    },
+    {
+      "id": "disclaimer",
+      "source_pages": [
+        5
+      ]
+    },
+    {
+      "id": "after_sales",
+      "source_pages": [
+        6
+      ]
+    },
+    {
+      "id": "contacts",
+      "source_pages": [
+        7
+      ]
+    }
+  ],
+  "omissions": [
+    "Repeated wordmark, page numerals, printed TOC dots and decorative cover layout only; title/model/version/contact facts remain native."
+  ]
+}

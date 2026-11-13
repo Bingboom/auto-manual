@@ -2235,6 +2235,21 @@
         }
       }
     },
+    "manual_sources/JA-IB07A-SO/US/en/git-20261112-e1f2a5fa-m000156": {
+      "approval": "2026-11-12 operator requested US Y-marked conversion with deduplication and three parallel agents; review candidates only, no release authorization",
+      "registered": "2026-11-12",
+      "known_drift": {}
+    },
+    "manual_sources/JA-IB07A-SO/US/en/git-20261112-e1f2a5fa-m000156-release": {
+      "approval": "MA-432",
+      "registered": "2026-11-12",
+      "known_drift": {}
+    },
+    "manual_sources/JA-IB07A-SO/US/en/git-20261112-e1f2a5fa-m000156-release-r2": {
+      "approval": "MA-432",
+      "registered": "2026-11-12",
+      "known_drift": {}
+    },
     "manual_sources/JBP-1000B-WH/JP/ja/git-20261008-3aa6c003-native": {
       "approval": "MA-275（见 source/approval.json）",
       "registered": "2026-10-19",
@@ -4960,6 +4975,51 @@
         }
       }
     },
+    "manual_sources/JS-38A/US/en/git-20261112-8a76fee8-m000913": {
+      "approval": "2026-11-12 operator requested US Y-marked conversion with deduplication and three parallel agents; review candidates only, no release authorization",
+      "registered": "2026-11-12",
+      "known_drift": {}
+    },
+    "manual_sources/JS-38A/US/en/git-20261112-8a76fee8-m000913-release": {
+      "approval": "MA-432",
+      "registered": "2026-11-12",
+      "known_drift": {}
+    },
+    "manual_sources/JS-38A/US/en/git-20261112-8a76fee8-m000913-release-r2": {
+      "approval": "MA-432",
+      "registered": "2026-11-12",
+      "known_drift": {}
+    },
+    "manual_sources/JS-40A/US/en/git-20261112-95e0f1c8-m000717": {
+      "approval": "2026-11-12 operator explicitly requested continuation of six US Y manuals; JS-40A complete review candidate only, no release authorization",
+      "registered": "2026-11-12",
+      "known_drift": {}
+    },
+    "manual_sources/JS-40A/US/en/git-20261112-95e0f1c8-m000717-release": {
+      "approval": "MA-432",
+      "registered": "2026-11-12",
+      "known_drift": {}
+    },
+    "manual_sources/JS-40A/US/en/git-20261112-95e0f1c8-m000717-release-r2": {
+      "approval": "MA-432",
+      "registered": "2026-11-12",
+      "known_drift": {}
+    },
+    "manual_sources/JS-45A/US/en/git-20261112-2198a1b7-m000912": {
+      "approval": "2026-11-12 operator requested US Y-marked conversion with deduplication and three parallel agents; review candidates only, no release authorization",
+      "registered": "2026-11-12",
+      "known_drift": {}
+    },
+    "manual_sources/JS-45A/US/en/git-20261112-2198a1b7-m000912-release": {
+      "approval": "MA-432",
+      "registered": "2026-11-12",
+      "known_drift": {}
+    },
+    "manual_sources/JS-45A/US/en/git-20261112-2198a1b7-m000912-release-r2": {
+      "approval": "MA-432",
+      "registered": "2026-11-12",
+      "known_drift": {}
+    },
     "manual_sources/JS-CONNECTION-GUIDE/JP/ja/git-20261026-bc35fd65-connection-guide": {
       "approval": "User request 2026-10-26 (「分几个窗口把这个目录下面的文档都转成网页文档」「韩语文档除外」; operator chose Japanese side only and route JS-CONNECTION-GUIDE): Git-only JS-CONNECTION-GUIDE JP Web conversion; operator accepted candidate eb61b66 for release 2026-10-27 (「上线提交发布」), merged by operator PR review; acceptance hash-bound in source/approval.json",
       "registered": "2026-10-26",
@@ -4970,6 +5030,21 @@
           "since": "2026-11-10"
         }
       }
+    },
+    "manual_sources/JS-CONNECTION-GUIDE/US/en/git-20261112-899cb3dd-m000716": {
+      "approval": "2026-11-12 operator requested US Y-marked conversion with deduplication and three parallel agents; review candidates only, no release authorization",
+      "registered": "2026-11-12",
+      "known_drift": {}
+    },
+    "manual_sources/JS-CONNECTION-GUIDE/US/en/git-20261112-899cb3dd-m000716-release": {
+      "approval": "MA-432",
+      "registered": "2026-11-12",
+      "known_drift": {}
+    },
+    "manual_sources/JS-CONNECTION-GUIDE/US/en/git-20261112-899cb3dd-m000716-release-r2": {
+      "approval": "MA-432",
+      "registered": "2026-11-12",
+      "known_drift": {}
     }
   },
   "drift_log": [

@@ -1,0 +1,203 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "target": {
+    "model": "JA-IB07A-SO",
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "technical_version": "git-20261112-e1f2a5fa-m000156"
+  },
+  "web_title": "Jackery Explorer Insulated Bottle 24oz/710ml",
+  "original_source": {
+    "filename": "16-0102-000156_Jackery_Explorer_Insulated_Bottle_EN.pdf",
+    "path": "source/original.pdf",
+    "sha256": "e1f2a5fad81afdca636bfcf7f619389caf9d367712be208664aa5e85bf2a1ca0",
+    "size": 134654,
+    "physical_page_count": 4
+  },
+  "material": "16-0102-000156",
+  "feishu_source": {
+    "conversion_record_id": "reczz28YjyfRIFbS",
+    "source_table_id": "tbl2tXQk8LnM2JKi",
+    "source_record_id": "reczz28Vph3XbheW",
+    "source_field": "单语言说明书 -英语",
+    "source_file_token": "Gm3Mb0uzrozbiPxEH2zcsqqVnTg"
+  },
+  "source_authority": "Operator selected US-region Y-marked unconverted manuals in the live publishing table on 2026-11-12; current single-language English attachment downloaded from the parent-child source mapping and SHA256 locked. This original source governs all copy; no review acceptance or release approval inferred.",
+  "printed_manual_version": null,
+  "language_scope": "single",
+  "publication_status": "review-candidate-no-release-authorization",
+  "publication_eligible": false,
+  "pending_source_review": [
+    "Operator review of outlined-source English transcription, source concerns and artwork; no publication authorization granted."
+  ],
+  "web_roots": {
+    "en": "web/en"
+  },
+  "component_map": {
+    "native_copy": "Semantic headings, paragraphs and lists",
+    "specifications": "HB-TABLE-SPEC",
+    "inbox": "not present",
+    "warranty": "HB-WARRANTY-SECTION; HB-WARRANTY-YEARS where the source has numeric periods",
+    "illustrations": "HB-SPECIAL-REFERENCE-FIGURE; port photographs remain in native declared compatibility cells",
+    "compatibility_table": "not present",
+    "lcd_buttons_app_symbols": "Not present in these source roles; no synthetic components added."
+  },
+  "normalizations": [
+    "Join printed paragraph line wraps; preserve numbers, labels, conditions and proper names.",
+    "Source subscripts/superscripts transcribed as selectable Unicode; source multiplication/temperature glyphs normalized without changing values.",
+    "Printed decorative cover/TOC/page furniture omitted; source title/model/printed version and all substantive copy remain.",
+    "Reuse source-independent port photos and common tile silhouette byte-identically; product/model-specific specification thumbnails and complete source-labelled English diagrams remain source-specific.",
+    "The 1/5-year cards repeat each source warranty scope for shared numeric-card presentation. Both complete original common-condition paragraphs remain together in a following common warranty card and apply to both periods."
+  ],
+  "inputs": [
+    {
+      "path": "README.md",
+      "size": 963,
+      "sha256": "967168c1ef035063938af1a316d71df45b2f4313d12c0a20da1768f122fbf310"
+    },
+    {
+      "path": "assets/bottle.png",
+      "size": 19261,
+      "sha256": "734f2a16a9ada96a233a4c302f815c7c87555de0b2e12517596e21a7cc964206"
+    },
+    {
+      "path": "assets/contact-qr.png",
+      "size": 3521,
+      "sha256": "8fb509da2c7585f78e70db0c8656ad36a549217571fc93830c4bd530af13666f"
+    },
+    {
+      "path": "derive_assets.py",
+      "size": 1762,
+      "sha256": "d188723cc9795080182c68eb445668c407cdf2598eb13e6dfece31dbb9602783"
+    },
+    {
+      "path": "evidence/artwork-review.json",
+      "size": 1389,
+      "sha256": "11f846538fc3591b6db9c6432f3a102ce06bd5fa99a93bae618eaac9b5b50e68"
+    },
+    {
+      "path": "evidence/artwork-source-crops.png",
+      "size": 30927,
+      "sha256": "f34c4f98396e35382a91e4d45edd0e6634cceb058ea3ce8a1766631189e7c498"
+    },
+    {
+      "path": "evidence/browser-acceptance.json",
+      "size": 1711,
+      "sha256": "abf3fcd800113f5674f7400ab264f850c844f9886e674a1ec4900c64eb053ecc"
+    },
+    {
+      "path": "evidence/desktop-full.png",
+      "size": 341464,
+      "sha256": "f5126b748e8e81cd9a7d2b6b804f38def9f03649c42ae65b5b95b59b3ea97198"
+    },
+    {
+      "path": "evidence/independent-source-qc.json",
+      "size": 5597,
+      "sha256": "f5aa85a4a7b9de256c8ff42e164c530100da5c8c225c7f87dd471f661b8fb1a7"
+    },
+    {
+      "path": "evidence/mobile-full.png",
+      "size": 271808,
+      "sha256": "efcaca35e6895d587e7e829bd0d9653c772423e2b37b8665cfa02735f51d9280"
+    },
+    {
+      "path": "evidence/strict-sphinx.log",
+      "size": 2099,
+      "sha256": "1f501956b01d23a7dd52f17ebd05de95f028c5edcc3900f32d99423e853f6c57"
+    },
+    {
+      "path": "evidence/validation.json",
+      "size": 1271,
+      "sha256": "f459ede54decbb9af771729ff45678162682d9d6cdeef692bcac3faa72dfd9e2"
+    },
+    {
+      "path": "refresh_manifest.py",
+      "size": 2265,
+      "sha256": "9f99224ccc96ea88be42e8a660371d28bbee9a9da238cbd329e538b589ae5aae"
+    },
+    {
+      "path": "render.py",
+      "size": 16425,
+      "sha256": "0d6fcd01820c6ea9379802e2e1254978992172253bd5a4b5a7fe53941138f0e5"
+    },
+    {
+      "path": "source/asset_decisions.json",
+      "size": 2499,
+      "sha256": "0693065a38dd23bb966fadd4a9126a82704f6845600e4946c3cec4db782f9f7f"
+    },
+    {
+      "path": "source/asset_recipes.json",
+      "size": 1492,
+      "sha256": "91c3c01fcacae6a980cd1b10e4e4f609735e72a1513a70517f2f058baac9ca2b"
+    },
+    {
+      "path": "source/original.pdf",
+      "size": 134654,
+      "sha256": "e1f2a5fad81afdca636bfcf7f619389caf9d367712be208664aa5e85bf2a1ca0"
+    },
+    {
+      "path": "source/page_map.json",
+      "size": 709,
+      "sha256": "4ce91503b9ba9c82b0ba30c047c6e6ee13e0d1efd014b9b4299fc65a4a60a0b9"
+    },
+    {
+      "path": "source/transcription.json",
+      "size": 6293,
+      "sha256": "57d2be9f0007370124bfae9205bade0ca701d32ae4a1d3bc242a6a0a334b420e"
+    },
+    {
+      "path": "source_manifest.json",
+      "size": 4686,
+      "sha256": "17c864b09d9a1ed852ed9867b91bb54670b84abf814d502a48ad7460bf5714bf"
+    },
+    {
+      "path": "web/en/_static/web_manual.css",
+      "size": 126890,
+      "sha256": "5afdc1947b423c52850852eccc5bc0f398c820c45909690ff6e5cc7bb266dfdf"
+    },
+    {
+      "path": "web/en/assets/bottle.png",
+      "size": 19261,
+      "sha256": "734f2a16a9ada96a233a4c302f815c7c87555de0b2e12517596e21a7cc964206"
+    },
+    {
+      "path": "web/en/assets/contact-qr.png",
+      "size": 3521,
+      "sha256": "8fb509da2c7585f78e70db0c8656ad36a549217571fc93830c4bd530af13666f"
+    },
+    {
+      "path": "web/en/conf.py",
+      "size": 839,
+      "sha256": "e897e9ea4debc61fb3841ed8391d8c37aa5ee81887e5cbe8217d4d057127a7d0"
+    },
+    {
+      "path": "web/en/index.md",
+      "size": 102,
+      "sha256": "7c5392acc2f44639a6c4a8dcf84066effbc6bffe9f51eb25f5d892d1fc2cc584"
+    },
+    {
+      "path": "web/en/manual.ir.json",
+      "size": 96472,
+      "sha256": "ed22e8a21afadbe9189f3cf1a4749a312d366db1f04f16c5e79daa6613f0c675"
+    },
+    {
+      "path": "web/en/manual_jaib07aso_us_en.md",
+      "size": 5234,
+      "sha256": "e5891bfc015c133b71722aecc066c3d85a37bfa37dd59f3b9ecb5bd42e85df97"
+    },
+    {
+      "path": "web/en/shared-style-admission.json",
+      "size": 180,
+      "sha256": "9780a3b356440091e80f78d14952fa57320f6adefe827da34876e3ad04dc9388"
+    }
+  ],
+  "repo_inputs": [
+    {
+      "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
+      "sha256": "a2773f7e96849e176a9909e8221e37c20eb9005cd2639415bf6a112d7c86527f"
+    }
+  ],
+  "shared_component_exceptions": []
+}

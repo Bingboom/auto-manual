@@ -1,0 +1,19 @@
+{
+  "status": "operator-authorized-five-complete-manual-publication",
+  "client_date": "2026-11-12",
+  "directive": "「已完成的先推送上去发布」2026-11-12（本会话；仅已明确完整的五份候选）",
+  "merge_authorization": "MA-432",
+  "candidate_git_ref": "846f94fb9e4bc16edd926d9fd499a1381c5ec3c2",
+  "candidate_path": "manual_sources/JS-CONNECTION-GUIDE/US/en/git-20261112-899cb3dd-m000716",
+  "candidate_frozen_manifest_sha256": "c8d052539d47bfa0ed7710be149f74163ccad1179825d610f56aa0d6dbdac52f",
+  "candidate_IR_sha256": "0c83520315393d5829c9e410896f8291006e0907895a74adcaa4adbfe6060ac2",
+  "candidate_content_sha256": "16d6214429297ef56c9565fc8e55374798a043ca7cedc9bb5480c2234a4d996b",
+  "candidate_source_pdf_sha256": "899cb3dd395903c4fa41ddbee282e70480e6ce39605107407cb1da295289bece",
+  "scope": {
+    "model": "JS-CONNECTION-GUIDE",
+    "region": "US",
+    "language": "en"
+  },
+  "human_attestation_boundary": "Explicit release instruction after complete candidate/QC reports; no separate per-image human pixel signature is invented.",
+  "global_asset_promotion": false
+}

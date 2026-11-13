@@ -1,0 +1,27 @@
+{
+  "authorization": "MA-432",
+  "model": "JA-IB07A-SO",
+  "candidate_git_ref": "846f94fb9e4bc16edd926d9fd499a1381c5ec3c2",
+  "candidate_path": "manual_sources/JA-IB07A-SO/US/en/git-20261112-e1f2a5fa-m000156",
+  "approved_path": "manual_sources/JA-IB07A-SO/US/en/git-20261112-e1f2a5fa-m000156-release",
+  "native_pages_identical": true,
+  "content_sha256": "1fa5bcdfbc81a69e2a35fc0089e28755191672a69f5ce4099bf379c4ba8ae686",
+  "source_pdf_identical": true,
+  "artwork_identical": true,
+  "non_IR_web_files_byte_identical": [
+    "_static/web_manual.css",
+    "assets/bottle.png",
+    "assets/contact-qr.png",
+    "conf.py",
+    "index.md",
+    "manual_jaib07aso_us_en.md",
+    "shared-style-admission.json"
+  ],
+  "approved_IR_sha256": "764cfc9b92f9dafda00fa0d6edefad36303a09f25559c927e14641ba13be4de7",
+  "metadata_changes_only": [
+    "approval provenance",
+    "publication eligibility",
+    "pending review resolution",
+    "technical snapshot identity"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "source_physical_page_count": 4,
+  "chapters": [
+    {
+      "id": "introduction",
+      "source_pages": [
+        1
+      ]
+    },
+    {
+      "id": "before_use",
+      "source_pages": [
+        2
+      ]
+    },
+    {
+      "id": "precautions",
+      "source_pages": [
+        2
+      ]
+    },
+    {
+      "id": "specifications",
+      "source_pages": [
+        2
+      ]
+    },
+    {
+      "id": "warranty",
+      "source_pages": [
+        3
+      ]
+    },
+    {
+      "id": "contacts",
+      "source_pages": [
+        4
+      ]
+    }
+  ],
+  "omissions": [
+    "Repeated wordmark, page numerals, printed TOC dots and decorative cover layout only; title/model/version/contact facts remain native."
+  ]
+}

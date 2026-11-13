@@ -1,0 +1,209 @@
+{
+  "model": "JA-IB07A-SO",
+  "language": "en",
+  "chapters": [
+    {
+      "id": "introduction",
+      "title": "USER MANUAL",
+      "source_pages": [
+        1
+      ],
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Jackery Explorer Insulated Bottle 24oz/710ml"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Model: JA-IB07A-SO"
+        },
+        {
+          "kind": "image",
+          "asset": "bottle",
+          "alt": "Jackery Explorer Insulated Bottle with complete lid, carrying strap and base",
+          "source_page": 1,
+          "width": 200
+        },
+        {
+          "kind": "heading",
+          "text": "CONTACT US:",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "hello@jackery.com (US) · jackery.jp@jackery.com (JP)"
+        }
+      ]
+    },
+    {
+      "id": "before_use",
+      "title": "BEFORE USE",
+      "source_pages": [
+        2
+      ],
+      "blocks": [
+        {
+          "kind": "list",
+          "items": [
+            "Please wash your bottle with mild detergent and rinse. To remove stubborn stains, use two teaspoons of baking soda mixed with warm water.",
+            "Allow all parts to air dry completely before assembly or storage.",
+            "For better insulation, it is recommended to pre-heat or pre-cool your bottle before use."
+          ],
+          "ordered": false
+        }
+      ]
+    },
+    {
+      "id": "precautions",
+      "title": "PRECAUTIONS",
+      "source_pages": [
+        2
+      ],
+      "blocks": [
+        {
+          "kind": "list",
+          "items": [
+            "Keep away from children when filled with hot beverages.",
+            "Do not place the bottle in the microwave.",
+            "Avoid strong impacts or drops to prevent damage.",
+            "Consume perishable drinks (e.g., milk) promptly and clean the bottle immediately after.",
+            "Ensure the lid and stopper are securely fastened to prevent leaks."
+          ],
+          "ordered": false
+        }
+      ]
+    },
+    {
+      "id": "specifications",
+      "title": "GENERAL INFORMATION",
+      "source_pages": [
+        2
+      ],
+      "blocks": [
+        {
+          "kind": "specification",
+          "title": "GENERAL INFORMATION",
+          "rows": [
+            [
+              "Product Name",
+              "Jackery Explorer Insulated Bottle 24oz/710ml"
+            ],
+            [
+              "Model No.",
+              "JA-IB07A-SO"
+            ],
+            [
+              "Capacity",
+              "24 Fluid Ounces"
+            ],
+            [
+              "Material",
+              "18/8 Stainless Steel"
+            ],
+            [
+              "Dimensions",
+              "3.15\"W x 10\"H"
+            ],
+            [
+              "Special Feature",
+              "Vacuum Insulated"
+            ]
+          ]
+        }
+      ],
+      "heading_from_first_component": true
+    },
+    {
+      "id": "warranty",
+      "title": "WARRANTY",
+      "source_pages": [
+        3
+      ],
+      "blocks": [
+        {
+          "kind": "years",
+          "title": "Warranty Period",
+          "periods": [
+            {
+              "number": "1",
+              "unit": "YEARS",
+              "label": "general warranty",
+              "body": "1-year general warranty against defects in workmanship and materials"
+            },
+            {
+              "number": "5",
+              "unit": "YEARS",
+              "label": "warranty for insulation failure of the stainless steel vacuum layer",
+              "body": "5-year warranty against insulation failure of the stainless steel vacuum layer"
+            }
+          ]
+        },
+        {
+          "kind": "warranty",
+          "title": "Warranty coverage",
+          "paragraphs": [
+            "The product is covered by a limited warranty from Jackery for the original purchaser. It includes a 1-year general warranty against defects in workmanship and materials, and a 5-year warranty against insulation failure of the stainless steel vacuum layer, both starting from the date of purchase. Damages from normal wear and tear, alteration, misuse, neglect, accident, service by anyone other than an authorized service center, or act of God are not included.",
+            "During the warranty period and upon verification of defects, this product will be replaced when returned with proper proof of purchase."
+          ]
+        },
+        {
+          "kind": "warranty",
+          "title": "Contact Us",
+          "paragraphs": [
+            "For any inquiries or comments concerning our products, please send an email to hello@jackery.com, and we will respond to you as soon as possible. If there is any quality-related issue with the product, you may request a replacement or refund by submitting a request form at www.jackery.com."
+          ]
+        },
+        {
+          "kind": "warranty",
+          "title": "Customer Service",
+          "paragraphs": [
+            "hello@jackery.com",
+            "Lifetime technical support"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "contacts",
+      "title": "CONTACT INFORMATION",
+      "source_pages": [
+        4
+      ],
+      "blocks": [
+        {
+          "kind": "heading",
+          "text": "JACKERY INC.",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "5310 Bunche Dr., Fremont, CA 94538-8301"
+        },
+        {
+          "kind": "heading",
+          "text": "株式会社 JACKERY JAPAN",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "郵便番号:〒104-6003"
+        },
+        {
+          "kind": "paragraph",
+          "text": "住所:東京都中央区晴海1-8-10トリトンスクエア X棟 3階"
+        },
+        {
+          "kind": "image",
+          "asset": "contact-qr",
+          "alt": "Jackery Japan QR code, with complete rounded printed frame",
+          "source_page": 4,
+          "width": 110
+        }
+      ]
+    }
+  ],
+  "source_concerns": [
+    "Printed warranty label uses 1 YEARS; kept rather than correcting the source grammar.",
+    "Japanese legal contact remains from this English source file; it is not a Japanese-language body or an additional Web route."
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "authorization": "MA-432",
+  "publication_packaging_of": "manual_sources/JS-CONNECTION-GUIDE/US/en/git-20261112-899cb3dd-m000716-release",
+  "v1_frozen_manifest_sha256": "d938055137c3aa6c0d27c3ba2bd73a9845103b1506a6c24dfedf6ffe02e9d87e",
+  "change": "Move shared-style audit JSON from serving root to evidence; preserve its bytes.",
+  "relocated_from": "web/en/shared-style-admission.json",
+  "relocated_to": "evidence/publish_shared_style_admission.json",
+  "relocated_file_sha256": "2ae60b86106840ef478abba58dfef8dde1547b4935bfb4d90c806d6bbb83ed53",
+  "native_pages_and_content_identical": true,
+  "body_artwork_CSS_and_remaining_web_files_identical": [
+    "_static/web_manual.css",
+    "assets/connection-dc7909.png",
+    "assets/connection-dc8020.png",
+    "assets/port-dc7909.png",
+    "assets/port-dc8020.png",
+    "assets/port-usb-c.png",
+    "conf.py",
+    "index.md",
+    "manual_jsconnectionguide_us_en.md"
+  ],
+  "existing_assembler_copy_inventory_exact": true,
+  "approved_IR_sha256": "bfcc8206b037b49fd19c10696dc200eeb6c77b6b5a5b8a7affdc191ae9370f6d"
+}
