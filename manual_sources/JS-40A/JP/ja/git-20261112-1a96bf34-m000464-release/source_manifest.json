@@ -138,7 +138,7 @@
     {
       "path": "README.md",
       "size": 1318,
-      "sha256": "394ba6389ff08551a81cc059c53626edfd7c1679edf1d32880db369de9ecfebc"
+      "sha256": "e1bec9c4228720bd9f7acca5cafed84d770f946bf9a5be1a6346a9c1d3a7023e"
     },
     {
       "path": "assets/contact-qr.png",
@@ -208,7 +208,7 @@
     {
       "path": "source/approval.json",
       "size": 1668,
-      "sha256": "37338474c55b3313ed581fca96b6e50233d6b7d0adcabd8e90652bad377ab1c3"
+      "sha256": "01d6d24206b95356195aff3826c19502d1e4e93dd15303a9e9d377f26345ae34"
     },
     {
       "path": "source/art-donor-000348-recipe.json",
@@ -363,7 +363,7 @@
     {
       "path": "web/ja/manual.ir.json",
       "size": 162455,
-      "sha256": "ca9d8398b80d9772b3acb65f8855e5f2413e13b136bdccfcf405d2800f83339a"
+      "sha256": "efc6503d055456f1d6bba3cd739f5cc98fc0e06c97548df512af3c0cd3590c74"
     },
     {
       "path": "web/ja/manual_js40a_jp_ja.md",
@@ -399,5 +399,5 @@
     "manifest_sha256": "4fb43439d40a7dcf9a0bfc2c7967bfb00546d38fa1fb042dd3ac8ce302040648",
     "manual_ir_sha256": "51da085646b44204eeec0e82fabf843b71d6b4e52db1b5f46f42b7968f69b084"
   },
-  "validation_boundary": "MA-432 delegates review then release. Candidate adapters independently rebuilt byte-identical Web trees and passed strict Sphinx. Release differences are enumerated in source/reviewed-candidate.json: authorization metadata, source-matching/existing canonical PTB glyphs, native source-bound JVC glyphs, restored printed unplug row and the existing responsive wrapper around the unchanged JVC warranty table. Japanese wording, specifications and source concerns are unchanged. The fixed symbol admission rule and existing canonical choices and captions are unchanged. No separate operator pixel inspection is claimed."
+  "validation_boundary": "MA-433 delegates review then release. Candidate adapters independently rebuilt byte-identical Web trees and passed strict Sphinx. Release differences are enumerated in source/reviewed-candidate.json: authorization metadata, source-matching/existing canonical PTB glyphs, native source-bound JVC glyphs, restored printed unplug row and the existing responsive wrapper around the unchanged JVC warranty table. Japanese wording, specifications and source concerns are unchanged. The fixed symbol admission rule and existing canonical choices and captions are unchanged. No separate operator pixel inspection is claimed."
 }

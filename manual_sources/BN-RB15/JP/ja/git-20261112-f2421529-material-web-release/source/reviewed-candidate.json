@@ -140,7 +140,7 @@
     "manual_bnrb15_jp_ja.md"
   ],
   "body_or_artwork_edits": [
-    "Restore the printed unplug glyph alongside the mandatory glyph; all three JVC symbol glyphs use hash-bound native PDF paths because existing shared candidates failed the fixed comparison. Wrap the unchanged warranty form table in the existing shared responsive table container so portal mobile layouts scroll inside the panel."
+    "Restore the printed unplug glyph alongside the mandatory glyph; all three JVC symbol glyphs use hash-bound native PDF paths because existing shared candidates failed the fixed comparison. Wrap the unchanged native notation/accessory/control/FAQ/warranty tables in the existing shared responsive table container so portal mobile layouts scroll inside the panel."
   ],
   "actual_web_changes": [
     "assets/symbol-mandatory.svg",

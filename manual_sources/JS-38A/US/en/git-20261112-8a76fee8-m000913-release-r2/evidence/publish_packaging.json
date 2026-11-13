@@ -1,0 +1,21 @@
+{
+  "authorization": "MA-432",
+  "publication_packaging_of": "manual_sources/JS-38A/US/en/git-20261112-8a76fee8-m000913-release",
+  "v1_frozen_manifest_sha256": "bfa72fa5a4fac46b35c2397c239c2117d322f5270e0e026216cb08a89c7d3fa5",
+  "change": "Move shared-style audit JSON from serving root to evidence; preserve its bytes.",
+  "relocated_from": "web/en/shared-style-admission.json",
+  "relocated_to": "evidence/publish_shared_style_admission.json",
+  "relocated_file_sha256": "4024032ade3f34fc03b770acc67e3e1f158bc9cc7f0763eb029095e4c5c566bb",
+  "native_pages_and_content_identical": true,
+  "body_artwork_CSS_and_remaining_web_files_identical": [
+    "_static/web_manual.css",
+    "assets/contact-qr.png",
+    "assets/inbox-product.png",
+    "assets/inbox-sheet.png",
+    "conf.py",
+    "index.md",
+    "manual_js38a_us_en.md"
+  ],
+  "existing_assembler_copy_inventory_exact": true,
+  "approved_IR_sha256": "117e57f57ea7c4f32dbf7f4082f2e3f881441434b5f0c7718122c47613435dc5"
+}

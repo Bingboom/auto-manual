@@ -1,0 +1,280 @@
+[
+  {
+    "slot": "power-device",
+    "decision": "new-extraction",
+    "searched": [
+      "manual_sources/JS-40A",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Jackery SolarSaga 40 Mini; exact source physical page 7",
+    "reason": "Current US power diagram has different localized labels/connector arrangement, adapter inclusion or QR destination from JP donor; reuse other compatible unlabeled illustrations.",
+    "source_path": "source/original.pdf",
+    "source_pdf_sha256": "95e0f1c8f544920b6709403d5c6e9c82d5779de42a9cbc928d5164f0a80a6047",
+    "physical_page": 7,
+    "bbox_pt": [
+      26.6667,
+      30.0,
+      333.3333,
+      273.3333
+    ],
+    "background_policy": "Complete artwork or dense annotated diagram; retain all native leaders and product surfaces. Outside prose stays native HTML. QR preserves four edges.",
+    "review_status": "art-preparation-qc-pass-awaiting-operator-and-Web-review",
+    "sha256": "0706ccc6053cf25026edd1aa8264c8b144db8873730ce365aed9359633874e78",
+    "superseded_initial_sha256": "f01522f57bf512fc0083d41c0ad1f63d1416c38a58f9a5868119f063c934b9c9",
+    "superseded_initial_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          25.796,
+          31.486,
+          339.036,
+          288.62
+        ]
+      }
+    ],
+    "repair_reason": "Initial source crop failed completeness audit; remeasured against exact 3x full-page source with complete art edges and no neighboring prose.",
+    "measurement_render_scale": 3,
+    "removed_exterior_heading": "Only exterior POWER YOUR DEVICE heading removed from white page area; sun and all artwork remain; heading belongs to native Web flow."
+  },
+  {
+    "slot": "inbox-usbc",
+    "decision": "new-extraction",
+    "searched": [
+      "manual_sources/JS-40A",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Jackery SolarSaga 40 Mini; exact source physical page 7",
+    "reason": "Current US power diagram has different localized labels/connector arrangement, adapter inclusion or QR destination from JP donor; reuse other compatible unlabeled illustrations.",
+    "source_path": "source/original.pdf",
+    "source_pdf_sha256": "95e0f1c8f544920b6709403d5c6e9c82d5779de42a9cbc928d5164f0a80a6047",
+    "physical_page": 7,
+    "bbox_pt": [
+      50.0,
+      388.3333,
+      74.0,
+      432.3333
+    ],
+    "background_policy": "Complete artwork or dense annotated diagram; retain all native leaders and product surfaces. Outside prose stays native HTML. QR preserves four edges.",
+    "review_status": "art-preparation-qc-pass-awaiting-operator-and-Web-review",
+    "sha256": "511ad02dfaa56121f3b664217628956a9109d43fb7b2dff19e5795cb78ce82d9",
+    "superseded_initial_sha256": "b0faee35956261c28c1f7bb69ef80e7cd7c07f7b7ee05c243ad988523c3f1137",
+    "superseded_initial_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          36.852,
+          377.83,
+          66.333,
+          419.812
+        ]
+      }
+    ],
+    "repair_reason": "Initial source crop failed completeness audit; remeasured against exact 3x full-page source with complete art edges and no neighboring prose.",
+    "measurement_render_scale": 3
+  },
+  {
+    "slot": "contact-qr",
+    "decision": "new-extraction",
+    "searched": [
+      "manual_sources/JS-40A",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Jackery SolarSaga 40 Mini; exact source physical page 9",
+    "reason": "Current US power diagram has different localized labels/connector arrangement, adapter inclusion or QR destination from JP donor; reuse other compatible unlabeled illustrations.",
+    "source_path": "source/original.pdf",
+    "source_pdf_sha256": "95e0f1c8f544920b6709403d5c6e9c82d5779de42a9cbc928d5164f0a80a6047",
+    "physical_page": 9,
+    "bbox_pt": [
+      302.6667,
+      466.3333,
+      342.0,
+      506.3333
+    ],
+    "background_policy": "Complete artwork or dense annotated diagram; retain all native leaders and product surfaces. Outside prose stays native HTML. QR preserves four edges.",
+    "review_status": "art-preparation-qc-pass-awaiting-operator-and-Web-review",
+    "sha256": "5bd8cff49238202778718385d034ef457400243751dba96b1b18ac6fe5e8bf47",
+    "superseded_initial_sha256": "f526f5b41db2f11ad1fd5a85f20d2fa8043e5153b99a4c639951a9b84496c052",
+    "superseded_initial_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          316.925,
+          456.545,
+          357.462,
+          503.774
+        ]
+      }
+    ],
+    "repair_reason": "Initial source crop failed completeness audit; remeasured against exact 3x full-page source with complete art edges and no neighboring prose.",
+    "measurement_render_scale": 3
+  },
+  {
+    "slot": "inbox-adapter",
+    "decision": "new-extraction",
+    "searched": [
+      "manual_sources/JS-40A/JP/ja/git-20261112-1a96bf34-m000464/assets/inbox-adapter.png"
+    ],
+    "rejected_reuse_candidate": {
+      "slot": "inbox-adapter",
+      "decision": "reuse-packaged-donor",
+      "source_git_ref": "6abe1128c27a186228185390d26f87adc9d3e2c9",
+      "source_path": "manual_sources/JS-40A/JP/ja/git-20261112-1a96bf34-m000464/assets/inbox-adapter.png",
+      "sha256": "aaee5b981b57667e8730171153c37e0da81c95f10e02e1398b9b12414979990d",
+      "identity_check": "Same JS-40A unlabeled native linework; hands, panel folds, USB cable and complete power station inspected against English source.",
+      "reason": "Exact matching geometry; no recrop or resizing",
+      "background_policy": "Byte-identical existing illustration"
+    },
+    "identity_check": "US source includes a right-angle cable adapter; pending JP source donor is a straight rigid adapter and cannot be substituted.",
+    "reason": "US source includes a right-angle cable adapter; pending JP source donor is a straight rigid adapter and cannot be substituted.",
+    "source_path": "source/original.pdf",
+    "source_pdf_sha256": "95e0f1c8f544920b6709403d5c6e9c82d5779de42a9cbc928d5164f0a80a6047",
+    "physical_page": 7,
+    "bbox_pt": [
+      297.3333,
+      321.6667,
+      321.6667,
+      364.6667
+    ],
+    "background_policy": "Retain complete source product silhouette; exclude printed item number and exterior caption.",
+    "review_status": "art-preparation-qc-pass-awaiting-operator-and-Web-review",
+    "sha256": "60f5ba1e4ca461dcdf1d3b599d128c8520ca03633ea37b6e3959b753faae91d0"
+  },
+  {
+    "slot": "inbox-pouch",
+    "decision": "new-extraction",
+    "searched": [
+      "manual_sources/JS-40A/JP/ja/git-20261112-1a96bf34-m000464/assets/inbox-pouch.png"
+    ],
+    "rejected_reuse_candidate": {
+      "slot": "inbox-pouch",
+      "decision": "reuse-packaged-donor",
+      "source_git_ref": "6abe1128c27a186228185390d26f87adc9d3e2c9",
+      "source_path": "manual_sources/JS-40A/JP/ja/git-20261112-1a96bf34-m000464/assets/inbox-pouch.png",
+      "sha256": "5177e1008dd7deeb039856c474e802eeb04819752316a511a4281f8c808cf9ad",
+      "identity_check": "Same JS-40A unlabeled native linework; hands, panel folds, USB cable and complete power station inspected against English source.",
+      "reason": "Exact matching geometry; no recrop or resizing",
+      "background_policy": "Byte-identical existing illustration"
+    },
+    "identity_check": "US source case has different seam/zipper orientation and squarer outline; pending JP donor is not the same source illustration.",
+    "reason": "US source case has different seam/zipper orientation and squarer outline; pending JP donor is not the same source illustration.",
+    "source_path": "source/original.pdf",
+    "source_pdf_sha256": "95e0f1c8f544920b6709403d5c6e9c82d5779de42a9cbc928d5164f0a80a6047",
+    "physical_page": 7,
+    "bbox_pt": [
+      132.3333,
+      388.3333,
+      186.6667,
+      438.3333
+    ],
+    "background_policy": "Retain complete source product silhouette; exclude printed item number and exterior caption.",
+    "review_status": "art-preparation-qc-pass-awaiting-operator-and-Web-review",
+    "sha256": "55d8c3c3d6f88252dbd98a9d6f09b70577458275924e8d89c2d41286bcc73161",
+    "exterior_copy_removal": "Only exterior item caption below verified strap endpoint y1313px removed; complete strap preserved.",
+    "final_edge_adjustment": "Expanded to preserve complete native art and remove only fully enclosed neighboring source prose."
+  },
+  {
+    "slot": "unfold-4",
+    "decision": "reuse-packaged-donor",
+    "source_git_ref": "6abe1128c27a186228185390d26f87adc9d3e2c9",
+    "source_path": "manual_sources/JS-40A/JP/ja/git-20261112-1a96bf34-m000464/assets/unfold-4.png",
+    "sha256": "7159f9d8bddb88c5d2a7b4ab3e8e3ec349bf3f86ab7cc53fec58208576911570",
+    "identity_check": "Same JS-40A unlabeled native linework; hands, panel folds, USB cable and complete power station inspected against English source.",
+    "reason": "Exact matching geometry; no recrop or resizing",
+    "background_policy": "Byte-identical existing illustration",
+    "review_status": "art-preparation-qc-pass-awaiting-operator-and-Web-review"
+  },
+  {
+    "slot": "unfold-5",
+    "decision": "reuse-packaged-donor",
+    "source_git_ref": "6abe1128c27a186228185390d26f87adc9d3e2c9",
+    "source_path": "manual_sources/JS-40A/JP/ja/git-20261112-1a96bf34-m000464/assets/unfold-5.png",
+    "sha256": "fd032a9605fc5e4e0c48e554410daec72cee1a8bbdfc6bca41439ac286e91266",
+    "identity_check": "Same JS-40A unlabeled native linework; hands, panel folds, USB cable and complete power station inspected against English source.",
+    "reason": "Exact matching geometry; no recrop or resizing",
+    "background_policy": "Byte-identical existing illustration",
+    "review_status": "art-preparation-qc-pass-awaiting-operator-and-Web-review"
+  },
+  {
+    "slot": "unfold-1",
+    "decision": "reuse-packaged-donor",
+    "source_git_ref": "6abe1128c27a186228185390d26f87adc9d3e2c9",
+    "source_path": "manual_sources/JS-40A/JP/ja/git-20261112-1a96bf34-m000464/assets/unfold-1.png",
+    "sha256": "d4f192fb0e8b2e6c6fe9f62b4cfc00bc59ad12606ebc48b1b7b55c274b623a1a",
+    "identity_check": "Same JS-40A unlabeled native linework; hands, panel folds, USB cable and complete power station inspected against English source.",
+    "reason": "Exact matching geometry; no recrop or resizing",
+    "background_policy": "Byte-identical existing illustration",
+    "review_status": "art-preparation-qc-pass-awaiting-operator-and-Web-review"
+  },
+  {
+    "slot": "inbox-manual",
+    "decision": "reuse-packaged-donor",
+    "source_git_ref": "6abe1128c27a186228185390d26f87adc9d3e2c9",
+    "source_path": "manual_sources/JS-40A/JP/ja/git-20261112-1a96bf34-m000464/assets/inbox-manual.png",
+    "sha256": "5614a0dca59a649c1e9e8d519ff6f1586b704b3c53325e5d1deff29ff005e4a2",
+    "identity_check": "Same JS-40A unlabeled native linework; hands, panel folds, USB cable and complete power station inspected against English source.",
+    "reason": "Exact matching geometry; no recrop or resizing",
+    "background_policy": "Byte-identical existing illustration",
+    "review_status": "art-preparation-qc-pass-awaiting-operator-and-Web-review"
+  },
+  {
+    "slot": "unfold-2",
+    "decision": "reuse-packaged-donor",
+    "source_git_ref": "6abe1128c27a186228185390d26f87adc9d3e2c9",
+    "source_path": "manual_sources/JS-40A/JP/ja/git-20261112-1a96bf34-m000464/assets/unfold-2.png",
+    "sha256": "a71fb0738c120520516984c3d99cffffcaa1b1ad0f2f65c31771c9ee45404a60",
+    "identity_check": "Same JS-40A unlabeled native linework; hands, panel folds, USB cable and complete power station inspected against English source.",
+    "reason": "Exact matching geometry; no recrop or resizing",
+    "background_policy": "Byte-identical existing illustration",
+    "review_status": "art-preparation-qc-pass-awaiting-operator-and-Web-review"
+  },
+  {
+    "slot": "unfold-3",
+    "decision": "reuse-packaged-donor",
+    "source_git_ref": "6abe1128c27a186228185390d26f87adc9d3e2c9",
+    "source_path": "manual_sources/JS-40A/JP/ja/git-20261112-1a96bf34-m000464/assets/unfold-3.png",
+    "sha256": "cc3bce48031cc93f8bde2651c84aa7052231a26214c2e7de88ee247b1b047331",
+    "identity_check": "Same JS-40A unlabeled native linework; hands, panel folds, USB cable and complete power station inspected against English source.",
+    "reason": "Exact matching geometry; no recrop or resizing",
+    "background_policy": "Byte-identical existing illustration",
+    "review_status": "art-preparation-qc-pass-awaiting-operator-and-Web-review"
+  },
+  {
+    "slot": "inbox-panel",
+    "decision": "reuse-packaged-donor",
+    "source_git_ref": "6abe1128c27a186228185390d26f87adc9d3e2c9",
+    "source_path": "manual_sources/JS-40A/JP/ja/git-20261112-1a96bf34-m000464/assets/inbox-panel.png",
+    "sha256": "39f9ab6b4f6ca7dceef39bf435a736e9a196075704a0aea4c11c1fc529fe328b",
+    "identity_check": "Same JS-40A unlabeled native linework; hands, panel folds, USB cable and complete power station inspected against English source.",
+    "reason": "Exact matching geometry; no recrop or resizing",
+    "background_policy": "Byte-identical existing illustration",
+    "review_status": "art-preparation-qc-pass-awaiting-operator-and-Web-review"
+  },
+  {
+    "slot": "inbox-cable",
+    "decision": "reuse-packaged-donor",
+    "source_git_ref": "6abe1128c27a186228185390d26f87adc9d3e2c9",
+    "source_path": "manual_sources/JS-40A/JP/ja/git-20261112-1a96bf34-m000464/assets/inbox-cable.png",
+    "sha256": "d9c356d52b20e072dec01d8fab552c9efbb652927da9ff9c659b74c1d7bfa780",
+    "identity_check": "Same JS-40A unlabeled native linework; hands, panel folds, USB cable and complete power station inspected against English source.",
+    "reason": "Exact matching geometry; no recrop or resizing",
+    "background_policy": "Byte-identical existing illustration",
+    "review_status": "art-preparation-qc-pass-awaiting-operator-and-Web-review"
+  },
+  {
+    "slot": "inbox-carabiner",
+    "decision": "reuse-packaged-donor",
+    "source_git_ref": "6abe1128c27a186228185390d26f87adc9d3e2c9",
+    "source_path": "manual_sources/JS-40A/JP/ja/git-20261112-1a96bf34-m000464/assets/inbox-carabiner.png",
+    "sha256": "41c5a19e743bd847fcae671c137989d2970c5ce5448e6eb42e4106f5c2cf1f79",
+    "identity_check": "Same JS-40A unlabeled native linework; hands, panel folds, USB cable and complete power station inspected against English source.",
+    "reason": "Exact matching geometry; no recrop or resizing",
+    "background_policy": "Byte-identical existing illustration",
+    "review_status": "art-preparation-qc-pass-awaiting-operator-and-Web-review"
+  }
+]

@@ -1,0 +1,236 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "target": {
+    "model": "JS-38A",
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "technical_version": "git-20261112-8a76fee8-m000913-release-r2"
+  },
+  "web_title": "Jackery Solar Curved Tile TerraCotta",
+  "original_source": {
+    "filename": "38-0001-000913_Jackery_Solar_Curved_Tile_TerraCotta_EN.pdf",
+    "path": "source/original.pdf",
+    "sha256": "8a76fee8450bd436eabdaae9caa1df1319a13a5d281b4c9557dbc36c2575b518",
+    "size": 1726768,
+    "physical_page_count": 7
+  },
+  "material": "38-0001-000913",
+  "feishu_source": {
+    "conversion_record_id": "reczz28SlRGJiRaw",
+    "source_table_id": "tbl2tXQk8LnM2JKi",
+    "source_record_id": "reczz28Vph3XbZP4",
+    "source_field": "单语言说明书 -英语",
+    "source_file_token": "CeTwbymRGoZvX5xohh3cl2wonlb"
+  },
+  "source_authority": "Operator selected US-region Y-marked unconverted manuals in the live publishing table on 2026-11-12; current single-language English attachment downloaded from the parent-child source mapping and SHA256 locked. This original source governs all copy; no review acceptance or release approval inferred.",
+  "printed_manual_version": "JAK-UM-V1.0",
+  "language_scope": "single",
+  "publication_status": "operator-approved-git-only-release",
+  "publication_eligible": true,
+  "pending_source_review": [],
+  "web_roots": {
+    "en": "web/en"
+  },
+  "component_map": {
+    "native_copy": "Semantic headings, paragraphs and lists",
+    "specifications": "HB-TABLE-SPEC",
+    "inbox": "HB-SPECIAL-INBOX",
+    "warranty": "HB-WARRANTY-SECTION; HB-WARRANTY-YEARS where the source has numeric periods",
+    "illustrations": "HB-SPECIAL-REFERENCE-FIGURE; port photographs remain in native declared compatibility cells",
+    "compatibility_table": "not present",
+    "lcd_buttons_app_symbols": "Not present in these source roles; no synthetic components added."
+  },
+  "normalizations": [
+    "Join printed paragraph line wraps; preserve numbers, labels, conditions and proper names.",
+    "Source subscripts/superscripts transcribed as selectable Unicode; source multiplication/temperature glyphs normalized without changing values.",
+    "Printed decorative cover/TOC/page furniture omitted; source title/model/printed version and all substantive copy remain.",
+    "Reuse source-independent port photos and common tile silhouette byte-identically; product/model-specific specification thumbnails and complete source-labelled English diagrams remain source-specific."
+  ],
+  "inputs": [
+    {
+      "path": "README.md",
+      "size": 1473,
+      "sha256": "13cc4a36d55f192cf50b64f246d391ddb214d1efde7a334033f6841c35fd509d"
+    },
+    {
+      "path": "assets/contact-qr.png",
+      "size": 3650,
+      "sha256": "b297ef1ed1ffb9b11e4ffd75390bf6ae2f38e883f93c820a39c0f4816211360c"
+    },
+    {
+      "path": "assets/inbox-product.png",
+      "size": 30787,
+      "sha256": "98a55016d5e015ce562d67881927ee1758d640a38268be3b8bc3aa5dfd9d6b9c"
+    },
+    {
+      "path": "assets/inbox-sheet.png",
+      "size": 9960,
+      "sha256": "93dec9c3d1289f4f369897fd985075c008d4fbf0032d1268bcb9e752764baec1"
+    },
+    {
+      "path": "derive_assets.py",
+      "size": 1762,
+      "sha256": "d188723cc9795080182c68eb445668c407cdf2598eb13e6dfece31dbb9602783"
+    },
+    {
+      "path": "evidence/artwork-review.json",
+      "size": 1711,
+      "sha256": "674a0c3b9cd641055f7a06b7389421c7b847476c848ce5e1dd2dad17752acc09"
+    },
+    {
+      "path": "evidence/artwork-source-crops.png",
+      "size": 35239,
+      "sha256": "7a0b58420024938b73da5ecf76e30de98d95726390f5ab36c7b20576b751f79c"
+    },
+    {
+      "path": "evidence/browser-acceptance.json",
+      "size": 2211,
+      "sha256": "2fcff1c33691b5d310d34282f65c4239fca1669fd5ff7b69bc9897a16f8ac7aa"
+    },
+    {
+      "path": "evidence/desktop-full.png",
+      "size": 754659,
+      "sha256": "818910c7e0bbf713e53c9e060cbf8e9f4004c0724a30954b67a20e6d78a1a306"
+    },
+    {
+      "path": "evidence/independent-source-qc.json",
+      "size": 5597,
+      "sha256": "f5aa85a4a7b9de256c8ff42e164c530100da5c8c225c7f87dd471f661b8fb1a7"
+    },
+    {
+      "path": "evidence/mobile-full.png",
+      "size": 617908,
+      "sha256": "7409599cab61ab383e327a1679bc1509f0965cd3b3e0f1fbb4662edc2c441224"
+    },
+    {
+      "path": "evidence/publish_packaging.json",
+      "size": 976,
+      "sha256": "2e4454af6acfe8da936a593f9330d770c5388fcabde4801b8ba5b1879911512b"
+    },
+    {
+      "path": "evidence/publish_shared_style_admission.json",
+      "size": 175,
+      "sha256": "4024032ade3f34fc03b770acc67e3e1f158bc9cc7f0763eb029095e4c5c566bb"
+    },
+    {
+      "path": "evidence/release_derivation.json",
+      "size": 1996,
+      "sha256": "75aa3dd00ed27e63bbd9ef9c1a95f83d19bc1035f13b3b9d7c3feaa840841757"
+    },
+    {
+      "path": "evidence/strict-sphinx.log",
+      "size": 2071,
+      "sha256": "5f7656cf88744f636cffdd8f2ea64c246c72d92a0faa5a37412c75c58482dbfb"
+    },
+    {
+      "path": "evidence/validation.json",
+      "size": 1295,
+      "sha256": "89ba37759583f00686f8e55d742e8a7cfb329486da132719387e5e8ba23ebb4e"
+    },
+    {
+      "path": "refresh_manifest.py",
+      "size": 2265,
+      "sha256": "9f99224ccc96ea88be42e8a660371d28bbee9a9da238cbd329e538b589ae5aae"
+    },
+    {
+      "path": "render.py",
+      "size": 16425,
+      "sha256": "0d6fcd01820c6ea9379802e2e1254978992172253bd5a4b5a7fe53941138f0e5"
+    },
+    {
+      "path": "source/asset_decisions.json",
+      "size": 3349,
+      "sha256": "72c8e6988632fbb654735eeadf2bca85c15a60aa2b348052161da7cb6cb639eb"
+    },
+    {
+      "path": "source/asset_recipes.json",
+      "size": 2118,
+      "sha256": "ce95b8ed8d79c2d771e01628be95603dadddf941da07c348fecf4263e5908a6f"
+    },
+    {
+      "path": "source/original.pdf",
+      "size": 1726768,
+      "sha256": "8a76fee8450bd436eabdaae9caa1df1319a13a5d281b4c9557dbc36c2575b518"
+    },
+    {
+      "path": "source/page_map.json",
+      "size": 812,
+      "sha256": "6233a91208ec6f0a68e7490396113d8b04444c6a889567a1d7957405dbb9b823"
+    },
+    {
+      "path": "source/release_approval.json",
+      "size": 1077,
+      "sha256": "3f262175fa3702b0fc1ca3679c2c41e2fdfc9aa2d250e9a3bb2649b889b3f42c"
+    },
+    {
+      "path": "source/transcription.json",
+      "size": 14227,
+      "sha256": "5ecf4e43789deb5ee9454dff7f754250b88e84724e2e5330db1b3ba16abb4095"
+    },
+    {
+      "path": "source_manifest.json",
+      "size": 5226,
+      "sha256": "3a88dc134557bbacbb3315535f36fdf13eff99196c248464800b3ed46fead4a9"
+    },
+    {
+      "path": "web/en/_static/web_manual.css",
+      "size": 126890,
+      "sha256": "5afdc1947b423c52850852eccc5bc0f398c820c45909690ff6e5cc7bb266dfdf"
+    },
+    {
+      "path": "web/en/assets/contact-qr.png",
+      "size": 3650,
+      "sha256": "b297ef1ed1ffb9b11e4ffd75390bf6ae2f38e883f93c820a39c0f4816211360c"
+    },
+    {
+      "path": "web/en/assets/inbox-product.png",
+      "size": 30787,
+      "sha256": "98a55016d5e015ce562d67881927ee1758d640a38268be3b8bc3aa5dfd9d6b9c"
+    },
+    {
+      "path": "web/en/assets/inbox-sheet.png",
+      "size": 9960,
+      "sha256": "93dec9c3d1289f4f369897fd985075c008d4fbf0032d1268bcb9e752764baec1"
+    },
+    {
+      "path": "web/en/conf.py",
+      "size": 831,
+      "sha256": "30af45da8ab7daf05508d3bd920fa8ccf8e83535ce02de92ecb87f4b7f0e5e8f"
+    },
+    {
+      "path": "web/en/index.md",
+      "size": 90,
+      "sha256": "9215fcb43ba66a78fd1533320b4439cb4c4f6115fa762fd8d45ea009f568f963"
+    },
+    {
+      "path": "web/en/manual.ir.json",
+      "size": 143755,
+      "sha256": "117e57f57ea7c4f32dbf7f4082f2e3f881441434b5f0c7718122c47613435dc5"
+    },
+    {
+      "path": "web/en/manual_js38a_us_en.md",
+      "size": 12312,
+      "sha256": "6ac929843a1d04db5812111bff21cfe619da279520e18ed0fc9716d77adc7b49"
+    }
+  ],
+  "repo_inputs": [
+    {
+      "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
+      "sha256": "a2773f7e96849e176a9909e8221e37c20eb9005cd2639415bf6a112d7c86527f"
+    },
+    {
+      "path": "manual_sources/JS-45A/US/en/git-20261112-2198a1b7-m000912/assets/inbox-product.png",
+      "sha256": "98a55016d5e015ce562d67881927ee1758d640a38268be3b8bc3aa5dfd9d6b9c"
+    }
+  ],
+  "shared_component_exceptions": [],
+  "revision_of": "manual_sources/JS-38A/US/en/git-20261112-8a76fee8-m000913",
+  "operator_release_approval": {
+    "path": "source/release_approval.json",
+    "sha256": "3f262175fa3702b0fc1ca3679c2c41e2fdfc9aa2d250e9a3bb2649b889b3f42c",
+    "authorization": "MA-432"
+  },
+  "publication_packaging_of": "manual_sources/JS-38A/US/en/git-20261112-8a76fee8-m000913-release"
+}

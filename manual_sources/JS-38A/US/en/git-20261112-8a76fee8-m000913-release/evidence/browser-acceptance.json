@@ -1,0 +1,91 @@
+{
+  "method": "Chromium actual strict-Sphinx manual HTML; 1280/390; software rendering",
+  "results": [
+    {
+      "title": "SPECIFICATION SHEET - Jackery Solar Curved Tile TerraCotta",
+      "viewport": 1280,
+      "documentWidth": 1280,
+      "missingImages": [],
+      "images": 3,
+      "subscripts": [
+        "max",
+        "mp",
+        "mp",
+        "sc",
+        "oc",
+        "nmot",
+        "c"
+      ],
+      "tableContainers": [
+        {
+          "width": 653,
+          "parentWidth": 653,
+          "parentScroll": 653,
+          "parentOverflow": "auto"
+        }
+      ],
+      "bodyTextChars": 7506,
+      "headers": [
+        "SPECIFICATION SHEET¶",
+        "TECHNICAL PARAMETER¶",
+        "PACKAGE LIST¶",
+        "WARRANTY¶",
+        "LIMITED PRODUCT WARRANTY¶",
+        "LIMITED POWER WARRANTY¶",
+        "DISCLAIMER¶",
+        "AFTER-SALES WARRANTY¶",
+        "RIGHT OF INTERPRETATION¶",
+        "CONTACT US¶",
+        "CONTACT INFORMATION¶",
+        "JACKERY INC.¶",
+        "JACKERY TECHNOLOGY GMBH.¶",
+        "JACKERY UK LTD.¶",
+        "Shenzhen Hello Tech Energy Co.,Ltd.¶"
+      ],
+      "pass": true
+    },
+    {
+      "title": "SPECIFICATION SHEET - Jackery Solar Curved Tile TerraCotta",
+      "viewport": 390,
+      "documentWidth": 390,
+      "missingImages": [],
+      "images": 3,
+      "subscripts": [
+        "max",
+        "mp",
+        "mp",
+        "sc",
+        "oc",
+        "nmot",
+        "c"
+      ],
+      "tableContainers": [
+        {
+          "width": 354,
+          "parentWidth": 354,
+          "parentScroll": 354,
+          "parentOverflow": "auto"
+        }
+      ],
+      "bodyTextChars": 7506,
+      "headers": [
+        "SPECIFICATION SHEET¶",
+        "TECHNICAL PARAMETER¶",
+        "PACKAGE LIST¶",
+        "WARRANTY¶",
+        "LIMITED PRODUCT WARRANTY¶",
+        "LIMITED POWER WARRANTY¶",
+        "DISCLAIMER¶",
+        "AFTER-SALES WARRANTY¶",
+        "RIGHT OF INTERPRETATION¶",
+        "CONTACT US¶",
+        "CONTACT INFORMATION¶",
+        "JACKERY INC.¶",
+        "JACKERY TECHNOLOGY GMBH.¶",
+        "JACKERY UK LTD.¶",
+        "Shenzhen Hello Tech Energy Co.,Ltd.¶"
+      ],
+      "pass": true
+    }
+  ]
+}

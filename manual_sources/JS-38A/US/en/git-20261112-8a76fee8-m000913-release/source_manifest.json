@@ -1,0 +1,130 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "target": {
+    "model": "JS-38A",
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "technical_version": "git-20261112-8a76fee8-m000913-release"
+  },
+  "web_title": "Jackery Solar Curved Tile TerraCotta",
+  "original_source": {
+    "filename": "38-0001-000913_Jackery_Solar_Curved_Tile_TerraCotta_EN.pdf",
+    "path": "source/original.pdf",
+    "sha256": "8a76fee8450bd436eabdaae9caa1df1319a13a5d281b4c9557dbc36c2575b518",
+    "size": 1726768,
+    "physical_page_count": 7
+  },
+  "material": "38-0001-000913",
+  "feishu_source": {
+    "conversion_record_id": "reczz28SlRGJiRaw",
+    "source_table_id": "tbl2tXQk8LnM2JKi",
+    "source_record_id": "reczz28Vph3XbZP4",
+    "source_field": "单语言说明书 -英语",
+    "source_file_token": "CeTwbymRGoZvX5xohh3cl2wonlb"
+  },
+  "source_authority": "Operator selected US-region Y-marked unconverted manuals in the live publishing table on 2026-11-12; current single-language English attachment downloaded from the parent-child source mapping and SHA256 locked. This original source governs all copy; no review acceptance or release approval inferred.",
+  "printed_manual_version": "JAK-UM-V1.0",
+  "language_scope": "single",
+  "publication_status": "operator-approved-git-only-release",
+  "publication_eligible": true,
+  "pending_source_review": [],
+  "web_roots": {
+    "en": "web/en"
+  },
+  "component_map": {
+    "native_copy": "Semantic headings, paragraphs and lists",
+    "specifications": "HB-TABLE-SPEC",
+    "inbox": "HB-SPECIAL-INBOX",
+    "warranty": "HB-WARRANTY-SECTION; HB-WARRANTY-YEARS where the source has numeric periods",
+    "illustrations": "HB-SPECIAL-REFERENCE-FIGURE; port photographs remain in native declared compatibility cells",
+    "compatibility_table": "not present",
+    "lcd_buttons_app_symbols": "Not present in these source roles; no synthetic components added."
+  },
+  "normalizations": [
+    "Join printed paragraph line wraps; preserve numbers, labels, conditions and proper names.",
+    "Source subscripts/superscripts transcribed as selectable Unicode; source multiplication/temperature glyphs normalized without changing values.",
+    "Printed decorative cover/TOC/page furniture omitted; source title/model/printed version and all substantive copy remain.",
+    "Reuse source-independent port photos and common tile silhouette byte-identically; product/model-specific specification thumbnails and complete source-labelled English diagrams remain source-specific."
+  ],
+  "inputs": [
+    {
+      "path": "assets/contact-qr.png",
+      "size": 3650,
+      "sha256": "b297ef1ed1ffb9b11e4ffd75390bf6ae2f38e883f93c820a39c0f4816211360c"
+    },
+    {
+      "path": "assets/inbox-product.png",
+      "size": 30787,
+      "sha256": "98a55016d5e015ce562d67881927ee1758d640a38268be3b8bc3aa5dfd9d6b9c"
+    },
+    {
+      "path": "assets/inbox-sheet.png",
+      "size": 9960,
+      "sha256": "93dec9c3d1289f4f369897fd985075c008d4fbf0032d1268bcb9e752764baec1"
+    },
+    {
+      "path": "derive_assets.py",
+      "size": 1762,
+      "sha256": "d188723cc9795080182c68eb445668c407cdf2598eb13e6dfece31dbb9602783"
+    },
+    {
+      "path": "refresh_manifest.py",
+      "size": 2265,
+      "sha256": "9f99224ccc96ea88be42e8a660371d28bbee9a9da238cbd329e538b589ae5aae"
+    },
+    {
+      "path": "render.py",
+      "size": 16425,
+      "sha256": "0d6fcd01820c6ea9379802e2e1254978992172253bd5a4b5a7fe53941138f0e5"
+    },
+    {
+      "path": "source/asset_decisions.json",
+      "size": 3349,
+      "sha256": "72c8e6988632fbb654735eeadf2bca85c15a60aa2b348052161da7cb6cb639eb"
+    },
+    {
+      "path": "source/asset_recipes.json",
+      "size": 2118,
+      "sha256": "ce95b8ed8d79c2d771e01628be95603dadddf941da07c348fecf4263e5908a6f"
+    },
+    {
+      "path": "source/original.pdf",
+      "size": 1726768,
+      "sha256": "8a76fee8450bd436eabdaae9caa1df1319a13a5d281b4c9557dbc36c2575b518"
+    },
+    {
+      "path": "source/page_map.json",
+      "size": 812,
+      "sha256": "6233a91208ec6f0a68e7490396113d8b04444c6a889567a1d7957405dbb9b823"
+    },
+    {
+      "path": "source/release_approval.json",
+      "size": 1077,
+      "sha256": "3f262175fa3702b0fc1ca3679c2c41e2fdfc9aa2d250e9a3bb2649b889b3f42c"
+    },
+    {
+      "path": "source/transcription.json",
+      "size": 14227,
+      "sha256": "5ecf4e43789deb5ee9454dff7f754250b88e84724e2e5330db1b3ba16abb4095"
+    }
+  ],
+  "repo_inputs": [
+    {
+      "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
+      "sha256": "a2773f7e96849e176a9909e8221e37c20eb9005cd2639415bf6a112d7c86527f"
+    },
+    {
+      "path": "manual_sources/JS-45A/US/en/git-20261112-2198a1b7-m000912/assets/inbox-product.png",
+      "sha256": "98a55016d5e015ce562d67881927ee1758d640a38268be3b8bc3aa5dfd9d6b9c"
+    }
+  ],
+  "shared_component_exceptions": [],
+  "revision_of": "manual_sources/JS-38A/US/en/git-20261112-8a76fee8-m000913",
+  "operator_release_approval": {
+    "path": "source/release_approval.json",
+    "sha256": "3f262175fa3702b0fc1ca3679c2c41e2fdfc9aa2d250e9a3bb2649b889b3f42c",
+    "authorization": "MA-432"
+  }
+}

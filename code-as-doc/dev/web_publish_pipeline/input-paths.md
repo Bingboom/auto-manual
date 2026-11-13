@@ -130,6 +130,8 @@ create synthetic queue rows or write `HTML_link`.
    publish metadata at that receipt and its SHA-256. This evidence mode is
    distinct from the phase2 projection receipt; neither can be substituted
    for the other.
+   Keep non-serving machine audit reports outside each locale Web root (for example, under the source package evidence directory). The frozen receipt inventories the complete locale root, while the assembler copies only the recognized serving files, IR/bundle sidecars and sealed evidence. A report left inside the locale root would be omitted and correctly fail stored-inventory verification. Retain the report bytes in the immutable source evidence rather than relaxing the receipt comparison.
+
 4. Start from current `Hello-Docs/main:docs/publish/**` in an isolated checkout
    so previously published targets remain present. Assemble and verify the
    candidate with:

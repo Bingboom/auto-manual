@@ -1,0 +1,258 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "target": {
+    "model": "JS-CONNECTION-GUIDE",
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "technical_version": "git-20261112-899cb3dd-m000716"
+  },
+  "web_title": "Jackery Solar Generator Connection Guide",
+  "original_source": {
+    "filename": "38-0001-000716_Jackery_Solar_Generator_Connection_Guide_EN.pdf",
+    "path": "source/original.pdf",
+    "sha256": "899cb3dd395903c4fa41ddbee282e70480e6ce39605107407cb1da295289bece",
+    "size": 2463040,
+    "physical_page_count": 1
+  },
+  "material": "38-0001-000716",
+  "feishu_source": {
+    "conversion_record_id": "reczz28YjyfRHdXi",
+    "source_table_id": "tbl2tXQk8LnM2JKi",
+    "source_record_id": "reczz28Vph3Xaujq",
+    "source_field": "单语言说明书 -英语",
+    "source_file_token": "PNx8bf7Piop0flxMSSvc7aRPnRf"
+  },
+  "source_authority": "Operator selected US-region Y-marked unconverted manuals in the live publishing table on 2026-11-12; current single-language English attachment downloaded from the parent-child source mapping and SHA256 locked. This original source governs all copy; no review acceptance or release approval inferred.",
+  "printed_manual_version": null,
+  "language_scope": "single",
+  "publication_status": "review-candidate-no-release-authorization",
+  "publication_eligible": false,
+  "pending_source_review": [
+    "Operator review of outlined-source English transcription, source concerns and artwork; no publication authorization granted."
+  ],
+  "web_roots": {
+    "en": "web/en"
+  },
+  "component_map": {
+    "native_copy": "Semantic headings, paragraphs and lists",
+    "specifications": "not present",
+    "inbox": "not present",
+    "warranty": "HB-WARRANTY-SECTION; HB-WARRANTY-YEARS where the source has numeric periods",
+    "illustrations": "HB-SPECIAL-REFERENCE-FIGURE; port photographs remain in native declared compatibility cells",
+    "compatibility_table": "Declared shared-themed native table exception; not an LCD/specification semantic table",
+    "lcd_buttons_app_symbols": "Not present in these source roles; no synthetic components added."
+  },
+  "normalizations": [
+    "Join printed paragraph line wraps; preserve numbers, labels, conditions and proper names.",
+    "Source subscripts/superscripts transcribed as selectable Unicode; source multiplication/temperature glyphs normalized without changing values.",
+    "Printed decorative cover/TOC/page furniture omitted; source title/model/printed version and all substantive copy remain.",
+    "Reuse source-independent port photos and common tile silhouette byte-identically; product/model-specific specification thumbnails and complete source-labelled English diagrams remain source-specific."
+  ],
+  "inputs": [
+    {
+      "path": "README.md",
+      "size": 967,
+      "sha256": "3fa15eb148256c1b9d7ed9d58187b93b14f6f82df9ed9d0ad7b9d3d4822282bc"
+    },
+    {
+      "path": "assets/connection-dc7909.png",
+      "size": 244770,
+      "sha256": "d09e58e6ebb9c700448940f15430bd52dda03a85a585d4d84290f6ac20910ae5"
+    },
+    {
+      "path": "assets/connection-dc8020.png",
+      "size": 266725,
+      "sha256": "1a517fea783aefb850acf5ec1b58c52e12f6994fe5f5d513525a431b2104bb4a"
+    },
+    {
+      "path": "assets/port-dc7909.png",
+      "size": 126764,
+      "sha256": "2ee981d5176fab8f58a6839465b3a52fdc0eebef4328391ebea3926769afeea8"
+    },
+    {
+      "path": "assets/port-dc8020.png",
+      "size": 123005,
+      "sha256": "ac5ec92cf0865d45fd453f9f8b7fe43c435c6e4a5da0399952a9c2e254340e8c"
+    },
+    {
+      "path": "assets/port-usb-c.png",
+      "size": 114269,
+      "sha256": "253e6efc97b0505d7b966ececf0f6ad074e293eaeeae985316ae6ac574e1289f"
+    },
+    {
+      "path": "derive_assets.py",
+      "size": 1762,
+      "sha256": "d188723cc9795080182c68eb445668c407cdf2598eb13e6dfece31dbb9602783"
+    },
+    {
+      "path": "evidence/artwork-review.json",
+      "size": 2412,
+      "sha256": "0fcc945e255f63be4bfc82b08d513b2c4a65b12860d2a60acef63761d6892778"
+    },
+    {
+      "path": "evidence/artwork-source-crops.png",
+      "size": 118055,
+      "sha256": "12c1d69c884a48f701cf6fc67fc218209605df6a57e95c7cab5ce0c81546bcb2"
+    },
+    {
+      "path": "evidence/browser-acceptance.json",
+      "size": 1191,
+      "sha256": "e8037d4201569fcb2f29756efed4e0ee123f6d1940279228d6ed32fc39f9be07"
+    },
+    {
+      "path": "evidence/desktop-full.png",
+      "size": 299928,
+      "sha256": "e22aff389db1c51a32308d329d4e57eef9eca0f2295f9b57e36181f548c7b687"
+    },
+    {
+      "path": "evidence/independent-source-qc.json",
+      "size": 5597,
+      "sha256": "f5aa85a4a7b9de256c8ff42e164c530100da5c8c225c7f87dd471f661b8fb1a7"
+    },
+    {
+      "path": "evidence/mobile-full.png",
+      "size": 129529,
+      "sha256": "31437eb1e4837f67f0a83ba1d2d6dfc2908e001f84825c9bfce5d0f54c5e32fc"
+    },
+    {
+      "path": "evidence/strict-sphinx.log",
+      "size": 2147,
+      "sha256": "5d8ae8c209cdb5c85956db55fe1178724d96e69ba74a631ea6cd5888342ca272"
+    },
+    {
+      "path": "evidence/validation.json",
+      "size": 1217,
+      "sha256": "90d26d969197d9e57632990158b715c65abff1d9f79b1c2296e9f8f907fcdf25"
+    },
+    {
+      "path": "refresh_manifest.py",
+      "size": 2265,
+      "sha256": "9f99224ccc96ea88be42e8a660371d28bbee9a9da238cbd329e538b589ae5aae"
+    },
+    {
+      "path": "render.py",
+      "size": 16425,
+      "sha256": "0d6fcd01820c6ea9379802e2e1254978992172253bd5a4b5a7fe53941138f0e5"
+    },
+    {
+      "path": "source/asset_decisions.json",
+      "size": 4590,
+      "sha256": "18ab78a764817d245b5cd5d12bcbc791fbbe4c0ca55448453ad673019be69d88"
+    },
+    {
+      "path": "source/asset_recipes.json",
+      "size": 3257,
+      "sha256": "32d442c46abc6e9b8b5da6e5da2987893997446d2c38c30c21834bd734467b34"
+    },
+    {
+      "path": "source/original.pdf",
+      "size": 2463040,
+      "sha256": "899cb3dd395903c4fa41ddbee282e70480e6ce39605107407cb1da295289bece"
+    },
+    {
+      "path": "source/page_map.json",
+      "size": 307,
+      "sha256": "ad9e05b463c017bf8c03c479cc7deca222ceff0c4a526836f8af1cdc9730d809"
+    },
+    {
+      "path": "source/transcription.json",
+      "size": 2665,
+      "sha256": "c25435e5bdd2e6d9a0acb12dfb7b656f4d4156ecd499801b117ff29e81d2c61e"
+    },
+    {
+      "path": "source_manifest.json",
+      "size": 6480,
+      "sha256": "179c658a7796cf0c6762151bc8e1928c35768d97ac2f70e86a49727771318986"
+    },
+    {
+      "path": "web/en/_static/web_manual.css",
+      "size": 126890,
+      "sha256": "5afdc1947b423c52850852eccc5bc0f398c820c45909690ff6e5cc7bb266dfdf"
+    },
+    {
+      "path": "web/en/assets/connection-dc7909.png",
+      "size": 244770,
+      "sha256": "d09e58e6ebb9c700448940f15430bd52dda03a85a585d4d84290f6ac20910ae5"
+    },
+    {
+      "path": "web/en/assets/connection-dc8020.png",
+      "size": 266725,
+      "sha256": "1a517fea783aefb850acf5ec1b58c52e12f6994fe5f5d513525a431b2104bb4a"
+    },
+    {
+      "path": "web/en/assets/port-dc7909.png",
+      "size": 126764,
+      "sha256": "2ee981d5176fab8f58a6839465b3a52fdc0eebef4328391ebea3926769afeea8"
+    },
+    {
+      "path": "web/en/assets/port-dc8020.png",
+      "size": 123005,
+      "sha256": "ac5ec92cf0865d45fd453f9f8b7fe43c435c6e4a5da0399952a9c2e254340e8c"
+    },
+    {
+      "path": "web/en/assets/port-usb-c.png",
+      "size": 114269,
+      "sha256": "253e6efc97b0505d7b966ececf0f6ad074e293eaeeae985316ae6ac574e1289f"
+    },
+    {
+      "path": "web/en/conf.py",
+      "size": 835,
+      "sha256": "37ba8989f8eef9611c889330a66c8795a834f1a58fa2c2e64acd608e98fa6160"
+    },
+    {
+      "path": "web/en/index.md",
+      "size": 106,
+      "sha256": "9a530ab45a58f7d542fd8e9619c4e239b536fa2183c85254340d6403d5e888f3"
+    },
+    {
+      "path": "web/en/manual.ir.json",
+      "size": 84584,
+      "sha256": "0c83520315393d5829c9e410896f8291006e0907895a74adcaa4adbfe6060ac2"
+    },
+    {
+      "path": "web/en/manual_jsconnectionguide_us_en.md",
+      "size": 3305,
+      "sha256": "06b61f63ccc2af66a470797fc86f8e7977c06a0bb02edb00b96371e579ea114d"
+    },
+    {
+      "path": "web/en/shared-style-admission.json",
+      "size": 188,
+      "sha256": "2ae60b86106840ef478abba58dfef8dde1547b4935bfb4d90c806d6bbb83ed53"
+    }
+  ],
+  "repo_inputs": [
+    {
+      "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
+      "sha256": "a2773f7e96849e176a9909e8221e37c20eb9005cd2639415bf6a112d7c86527f"
+    },
+    {
+      "path": "manual_sources/JS-CONNECTION-GUIDE/JP/ja/git-20261026-bc35fd65-connection-guide/assets/port-usb-c.png",
+      "sha256": "253e6efc97b0505d7b966ececf0f6ad074e293eaeeae985316ae6ac574e1289f"
+    },
+    {
+      "path": "manual_sources/JS-CONNECTION-GUIDE/JP/ja/git-20261026-bc35fd65-connection-guide/assets/port-dc7909.png",
+      "sha256": "2ee981d5176fab8f58a6839465b3a52fdc0eebef4328391ebea3926769afeea8"
+    },
+    {
+      "path": "manual_sources/JS-CONNECTION-GUIDE/JP/ja/git-20261026-bc35fd65-connection-guide/assets/port-dc8020.png",
+      "sha256": "ac5ec92cf0865d45fd453f9f8b7fe43c435c6e4a5da0399952a9c2e254340e8c"
+    }
+  ],
+  "identity": {
+    "record_model_lookup": "JE-100C",
+    "printed_model": null,
+    "route_model": "JS-CONNECTION-GUIDE",
+    "reason": "The same generic guide attachment is mapped to many SKU rows. Count once by material/source hash, matching existing JP guide identity; never create a JE-100C manual from this leaflet."
+  },
+  "shared_component_exceptions": [
+    {
+      "language": "en",
+      "page_id": "connection_guide",
+      "kind": "table",
+      "text_sha256": "c94eb12de9f89210944d05d8c8d9693e104e542980ca9587220d6e15fbf021ce",
+      "reason": "This is the original two-column product-to-input compatibility matrix with photographic port faces; the LCD, symbol and specification component schemas do not express this cross-model connector mapping. Use native table cells and the shared manual-table theme."
+    }
+  ]
+}

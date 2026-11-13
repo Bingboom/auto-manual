@@ -605,12 +605,12 @@
       "decision": "5x glyph review: final character is a plain RomanI, distinguish from source numeral1 with hook and foot"
     }
   ],
-  "validation_boundary": "MA-432 delegates review then release. Candidate adapters independently rebuilt byte-identical Web trees and passed strict Sphinx. Release differences are enumerated in source/reviewed-candidate.json: authorization metadata, source-matching/existing canonical PTB glyphs, native source-bound JVC glyphs, restored printed unplug row and the existing responsive wrapper around the unchanged JVC warranty table. Japanese wording, specifications and source concerns are unchanged. The fixed symbol admission rule and existing canonical choices and captions are unchanged. No separate operator pixel inspection is claimed.",
+  "validation_boundary": "MA-433 delegates review then release. Candidate adapters independently rebuilt byte-identical Web trees and passed strict Sphinx. Release differences are enumerated in source/reviewed-candidate.json: authorization metadata, source-matching/existing canonical PTB glyphs, native source-bound JVC glyphs, restored printed unplug row and the existing responsive wrapper around the unchanged JVC warranty table. Japanese wording, specifications and source concerns are unchanged. The fixed symbol admission rule and existing canonical choices and captions are unchanged. No separate operator pixel inspection is claimed.",
   "inputs": [
     {
       "path": "README.md",
       "size": 1321,
-      "sha256": "d752101e2b717be74aca6789f2e8d7f7d80b2a845cffadbeb3da72fbfe975c49"
+      "sha256": "724fcc3c81b05b587e49f4e0d8e4ee6d2fddb65e184124c1d27922b56c002e89"
     },
     {
       "path": "assets/17_Battery_Power_Indicator_VLufb9exvoVLfgxz47pcfnRGnaf.png",
@@ -805,7 +805,7 @@
     {
       "path": "source/approval.json",
       "size": 1680,
-      "sha256": "8cf5e6339db6ff6b24746952ffc96104b2ee261512f7af3e19c2e7fc35a21cf0"
+      "sha256": "c7b351a2dd3b979bd8f563481f4b7734c70a6cb6b5837f69062ff6be177b4de5"
     },
     {
       "path": "source/asset_decisions.json",
@@ -1195,7 +1195,7 @@
     {
       "path": "web/ja/manual.ir.json",
       "size": 468016,
-      "sha256": "9b4eee422f0addd5b862dc111bf456820afcd7aaa74a74f9ca088535b4dfa8d7"
+      "sha256": "4af836ec30d479c4973175b9aeea9db003918d202274b50f46ba57c575d5e884"
     },
     {
       "path": "web/ja/manual_jsg2404a_jp_ja.md",

@@ -1,6 +1,6 @@
 # PTB021 JP Japanese Web release
 
-Approved under MA-432, operator request 2026-11-12: 「审核一下 然后合入 上线发布文档」 for PR #1712.
+Approved under MA-433, operator request 2026-11-12: 「审核一下 然后合入 上线发布文档」 for PR #1712.
 
 Derived from [git-20261112-c1f0f04e-material-web](../git-20261112-c1f0f04e-material-web/README.md) at `6abe1128c27a186228185390d26f87adc9d3e2c9`; the original candidate is immutable. Japanese wording, specifications, revision differences, source concerns and the approved recycle-glyph standardization are retained.
 

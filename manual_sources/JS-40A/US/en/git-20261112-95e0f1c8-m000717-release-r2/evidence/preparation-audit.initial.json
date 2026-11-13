@@ -1,0 +1,169 @@
+{
+  "status": "INCOMPLETE_SOURCE_PREPARATION_NOT_CONVERTED",
+  "material": "38-0001-000717",
+  "source_sha256": "95e0f1c8f544920b6709403d5c6e9c82d5779de42a9cbc928d5164f0a80a6047",
+  "source_pages_observed": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "all_page_ocr_available": true,
+  "asset_intake_completed": true,
+  "operator_pixel_approval": false,
+  "native_web_body_authored": false,
+  "content_generation_blocked": true,
+  "block_reason": "Content filter blocked scratch content-generation helper call; no safety category supplied. Do not retry or route around.",
+  "asset_results": [
+    {
+      "slot": "power-device",
+      "sha256": "f01522f57bf512fc0083d41c0ad1f63d1416c38a58f9a5868119f063c934b9c9",
+      "size": [
+        1568,
+        1287
+      ],
+      "status": "rejected-initial-crop",
+      "finding": "Contains source heading/note; needs tighter art boundary before native Web composition."
+    },
+    {
+      "slot": "inbox-usbc",
+      "sha256": "b0faee35956261c28c1f7bb69ef80e7cd7c07f7b7ee05c243ad988523c3f1137",
+      "size": [
+        148,
+        211
+      ],
+      "status": "rejected-initial-crop",
+      "finding": "Cable is clipped at right and bottom; reject initial crop."
+    },
+    {
+      "slot": "contact-qr",
+      "sha256": "f526f5b41db2f11ad1fd5a85f20d2fa8043e5153b99a4c639951a9b84496c052",
+      "size": [
+        204,
+        237
+      ],
+      "status": "rejected-initial-crop",
+      "finding": "Left side of QR is clipped; reject initial crop."
+    },
+    {
+      "slot": "inbox-adapter",
+      "sha256": "aaee5b981b57667e8730171153c37e0da81c95f10e02e1398b9b12414979990d",
+      "size": [
+        136,
+        264
+      ],
+      "status": "preliminary-visual-pass-not-operator-approved",
+      "finding": "Contact-sheet comparison with source checked; 12x edge audit and real Web composition still pending."
+    },
+    {
+      "slot": "inbox-pouch",
+      "sha256": "5177e1008dd7deeb039856c474e802eeb04819752316a511a4281f8c808cf9ad",
+      "size": [
+        288,
+        328
+      ],
+      "status": "preliminary-visual-pass-not-operator-approved",
+      "finding": "Contact-sheet comparison with source checked; 12x edge audit and real Web composition still pending."
+    },
+    {
+      "slot": "unfold-4",
+      "sha256": "7159f9d8bddb88c5d2a7b4ab3e8e3ec349bf3f86ab7cc53fec58208576911570",
+      "size": [
+        1600,
+        576
+      ],
+      "status": "preliminary-visual-pass-not-operator-approved",
+      "finding": "Contact-sheet comparison with source checked; 12x edge audit and real Web composition still pending."
+    },
+    {
+      "slot": "unfold-5",
+      "sha256": "fd032a9605fc5e4e0c48e554410daec72cee1a8bbdfc6bca41439ac286e91266",
+      "size": [
+        1672,
+        816
+      ],
+      "status": "preliminary-visual-pass-not-operator-approved",
+      "finding": "Contact-sheet comparison with source checked; 12x edge audit and real Web composition still pending."
+    },
+    {
+      "slot": "unfold-1",
+      "sha256": "d4f192fb0e8b2e6c6fe9f62b4cfc00bc59ad12606ebc48b1b7b55c274b623a1a",
+      "size": [
+        608,
+        656
+      ],
+      "status": "preliminary-visual-pass-not-operator-approved",
+      "finding": "Contact-sheet comparison with source checked; 12x edge audit and real Web composition still pending."
+    },
+    {
+      "slot": "inbox-manual",
+      "sha256": "5614a0dca59a649c1e9e8d519ff6f1586b704b3c53325e5d1deff29ff005e4a2",
+      "size": [
+        192,
+        272
+      ],
+      "status": "preliminary-visual-pass-not-operator-approved",
+      "finding": "Contact-sheet comparison with source checked; 12x edge audit and real Web composition still pending."
+    },
+    {
+      "slot": "unfold-2",
+      "sha256": "a71fb0738c120520516984c3d99cffffcaa1b1ad0f2f65c31771c9ee45404a60",
+      "size": [
+        752,
+        720
+      ],
+      "status": "preliminary-visual-pass-not-operator-approved",
+      "finding": "Contact-sheet comparison with source checked; 12x edge audit and real Web composition still pending."
+    },
+    {
+      "slot": "unfold-3",
+      "sha256": "cc3bce48031cc93f8bde2651c84aa7052231a26214c2e7de88ee247b1b047331",
+      "size": [
+        992,
+        944
+      ],
+      "status": "preliminary-visual-pass-not-operator-approved",
+      "finding": "Contact-sheet comparison with source checked; 12x edge audit and real Web composition still pending."
+    },
+    {
+      "slot": "inbox-panel",
+      "sha256": "39f9ab6b4f6ca7dceef39bf435a736e9a196075704a0aea4c11c1fc529fe328b",
+      "size": [
+        856,
+        272
+      ],
+      "status": "preliminary-visual-pass-not-operator-approved",
+      "finding": "Contact-sheet comparison with source checked; 12x edge audit and real Web composition still pending."
+    },
+    {
+      "slot": "inbox-cable",
+      "sha256": "d9c356d52b20e072dec01d8fab552c9efbb652927da9ff9c659b74c1d7bfa780",
+      "size": [
+        486,
+        294
+      ],
+      "status": "preliminary-visual-pass-not-operator-approved",
+      "finding": "Contact-sheet comparison with source checked; 12x edge audit and real Web composition still pending."
+    },
+    {
+      "slot": "inbox-carabiner",
+      "sha256": "41c5a19e743bd847fcae671c137989d2970c5ce5448e6eb42e4106f5c2cf1f79",
+      "size": [
+        336,
+        252
+      ],
+      "status": "preliminary-visual-pass-not-operator-approved",
+      "finding": "Contact-sheet comparison with source checked; 12x edge audit and real Web composition still pending."
+    }
+  ],
+  "next_required": [
+    "Reject flagged initial art crops until repaired and all four edges/12x verified",
+    "Native selectable text and shared component conversion not done",
+    "Cold replay, tamper, Sphinx and browser acceptance not run"
+  ]
+}

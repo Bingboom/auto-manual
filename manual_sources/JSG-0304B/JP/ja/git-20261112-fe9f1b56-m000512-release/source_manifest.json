@@ -569,12 +569,12 @@
       "decision": "preserve the original illustrative App screens and Japanese wording; no model transplant"
     }
   ],
-  "validation_boundary": "MA-432 delegates review then release. Candidate adapters independently rebuilt byte-identical Web trees and passed strict Sphinx. Release differences are enumerated in source/reviewed-candidate.json: authorization metadata, source-matching/existing canonical PTB glyphs, native source-bound JVC glyphs, restored printed unplug row and the existing responsive wrapper around the unchanged JVC warranty table. Japanese wording, specifications and source concerns are unchanged. The fixed symbol admission rule and existing canonical choices and captions are unchanged. No separate operator pixel inspection is claimed.",
+  "validation_boundary": "MA-433 delegates review then release. Candidate adapters independently rebuilt byte-identical Web trees and passed strict Sphinx. Release differences are enumerated in source/reviewed-candidate.json: authorization metadata, source-matching/existing canonical PTB glyphs, native source-bound JVC glyphs, restored printed unplug row and the existing responsive wrapper around the unchanged JVC warranty table. Japanese wording, specifications and source concerns are unchanged. The fixed symbol admission rule and existing canonical choices and captions are unchanged. No separate operator pixel inspection is claimed.",
   "inputs": [
     {
       "path": "README.md",
       "size": 1321,
-      "sha256": "8bf3d45543d2da36533d6e860e287ac5eb1696add365896a8869a2d2766060f6"
+      "sha256": "cac01c14d28cd8a4dd3cb81e275c76a5a9bf863f20984ff854d7d449c52cc272"
     },
     {
       "path": "assets/app-add.png",
@@ -769,7 +769,7 @@
     {
       "path": "source/approval.json",
       "size": 1680,
-      "sha256": "4b70ffb8480f3bed6f213b41342c6b75da0288f42bbcf2bd67486907285498aa"
+      "sha256": "7cde06af57250e72c3b78ee42bd27615546c9b63fa9e2a4ab54568b1d2c627de"
     },
     {
       "path": "source/asset_decisions.json",
@@ -1159,7 +1159,7 @@
     {
       "path": "web/ja/manual.ir.json",
       "size": 450029,
-      "sha256": "9c94bc6e24c21730524ec53314735b742ef9c361dbaf64cdaf87e3eeb8648fff"
+      "sha256": "1960736171ebfc09edb66ca12895bab3f0b4b7be39749478b92015205488b253"
     },
     {
       "path": "web/ja/manual_jsg0304b_jp_ja.md",

@@ -1,0 +1,28 @@
+{
+  "authorization": "MA-432",
+  "model": "JS-45A",
+  "candidate_git_ref": "846f94fb9e4bc16edd926d9fd499a1381c5ec3c2",
+  "candidate_path": "manual_sources/JS-45A/US/en/git-20261112-2198a1b7-m000912",
+  "approved_path": "manual_sources/JS-45A/US/en/git-20261112-2198a1b7-m000912-release",
+  "native_pages_identical": true,
+  "content_sha256": "a6f1c12505cd5a8d2de069e073d0572457eeee220c55480f93f06eb07ca29433",
+  "source_pdf_identical": true,
+  "artwork_identical": true,
+  "non_IR_web_files_byte_identical": [
+    "_static/web_manual.css",
+    "assets/contact-qr.png",
+    "assets/inbox-product.png",
+    "assets/inbox-sheet.png",
+    "conf.py",
+    "index.md",
+    "manual_js45a_us_en.md",
+    "shared-style-admission.json"
+  ],
+  "approved_IR_sha256": "57c500c3c7b8546a1ad46851a4397df0540e43d105badf2914800a2ec4371081",
+  "metadata_changes_only": [
+    "approval provenance",
+    "publication eligibility",
+    "pending review resolution",
+    "technical snapshot identity"
+  ]
+}

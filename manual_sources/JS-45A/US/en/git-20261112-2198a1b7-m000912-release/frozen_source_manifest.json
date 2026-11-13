@@ -1,0 +1,226 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "target": {
+    "model": "JS-45A",
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "technical_version": "git-20261112-2198a1b7-m000912-release"
+  },
+  "web_title": "Jackery Solar Curved Tile Obsidian",
+  "original_source": {
+    "filename": "38-0001-000912_Jackery_Solar_Curved_Tile_Obsidian_EN.pdf",
+    "path": "source/original.pdf",
+    "sha256": "2198a1b781b9e62748d19e896e1032e3caeedb458b2556c06918ff0087dce7bf",
+    "size": 1728020,
+    "physical_page_count": 7
+  },
+  "material": "38-0001-000912",
+  "feishu_source": {
+    "conversion_record_id": "reczz28SlRGJiDkp",
+    "source_table_id": "tbl2tXQk8LnM2JKi",
+    "source_record_id": "reczz28Vph3XbYq0",
+    "source_field": "单语言说明书 -英语",
+    "source_file_token": "ELznbGnaMoI3HAxxviwc3ZQ4nBd"
+  },
+  "source_authority": "Operator selected US-region Y-marked unconverted manuals in the live publishing table on 2026-11-12; current single-language English attachment downloaded from the parent-child source mapping and SHA256 locked. This original source governs all copy; no review acceptance or release approval inferred.",
+  "printed_manual_version": "JAK-UM-V1.0",
+  "language_scope": "single",
+  "publication_status": "operator-approved-git-only-release",
+  "publication_eligible": true,
+  "pending_source_review": [],
+  "web_roots": {
+    "en": "web/en"
+  },
+  "component_map": {
+    "native_copy": "Semantic headings, paragraphs and lists",
+    "specifications": "HB-TABLE-SPEC",
+    "inbox": "HB-SPECIAL-INBOX",
+    "warranty": "HB-WARRANTY-SECTION; HB-WARRANTY-YEARS where the source has numeric periods",
+    "illustrations": "HB-SPECIAL-REFERENCE-FIGURE; port photographs remain in native declared compatibility cells",
+    "compatibility_table": "not present",
+    "lcd_buttons_app_symbols": "Not present in these source roles; no synthetic components added."
+  },
+  "normalizations": [
+    "Join printed paragraph line wraps; preserve numbers, labels, conditions and proper names.",
+    "Source subscripts/superscripts transcribed as selectable Unicode; source multiplication/temperature glyphs normalized without changing values.",
+    "Printed decorative cover/TOC/page furniture omitted; source title/model/printed version and all substantive copy remain.",
+    "Reuse source-independent port photos and common tile silhouette byte-identically; product/model-specific specification thumbnails and complete source-labelled English diagrams remain source-specific."
+  ],
+  "inputs": [
+    {
+      "path": "README.md",
+      "size": 1051,
+      "sha256": "ca8543a7c081a4f489696b60d57a1d863f9ac8ddc10dac5be40a552b6bdf8eb2"
+    },
+    {
+      "path": "assets/contact-qr.png",
+      "size": 3793,
+      "sha256": "5787ae07771102d93c7bee19a1bc66671688eaec9c7e4fd6903904edd979948f"
+    },
+    {
+      "path": "assets/inbox-product.png",
+      "size": 30787,
+      "sha256": "98a55016d5e015ce562d67881927ee1758d640a38268be3b8bc3aa5dfd9d6b9c"
+    },
+    {
+      "path": "assets/inbox-sheet.png",
+      "size": 9997,
+      "sha256": "bd1a16079d9550a0e8f9b40e8741cedd151b535af6fb9f5318e71f8084ac6025"
+    },
+    {
+      "path": "derive_assets.py",
+      "size": 1762,
+      "sha256": "d188723cc9795080182c68eb445668c407cdf2598eb13e6dfece31dbb9602783"
+    },
+    {
+      "path": "evidence/artwork-review.json",
+      "size": 1990,
+      "sha256": "d4fea855c76fe641da8f7f2bff0758be6fc978ecd4eb94f747f834b667cfcc5f"
+    },
+    {
+      "path": "evidence/artwork-source-crops.png",
+      "size": 67832,
+      "sha256": "44a2bc4601ca89bf59b80f2c1c3fa16d56cd8e71c040388b246ab90e960a79b4"
+    },
+    {
+      "path": "evidence/browser-acceptance.json",
+      "size": 2207,
+      "sha256": "73f85640d0ce21fac500db9c0dc561c385ad4bcdc6f002609891c7df6161772c"
+    },
+    {
+      "path": "evidence/desktop-full.png",
+      "size": 753940,
+      "sha256": "162582c14757fe106fbbf2b313551ded57a537a3816ebbbfd9c4efaaaf53ca4f"
+    },
+    {
+      "path": "evidence/independent-source-qc.json",
+      "size": 5597,
+      "sha256": "f5aa85a4a7b9de256c8ff42e164c530100da5c8c225c7f87dd471f661b8fb1a7"
+    },
+    {
+      "path": "evidence/mobile-full.png",
+      "size": 617981,
+      "sha256": "836fac37dbe1208eb6134d058929babf4cde09732c322a5830d3781892a8e00a"
+    },
+    {
+      "path": "evidence/release_derivation.json",
+      "size": 982,
+      "sha256": "8d1c174b34897ad02cc1a217046938c87fe3afba62ea6c1860d6de74bd62803c"
+    },
+    {
+      "path": "evidence/strict-sphinx.log",
+      "size": 2071,
+      "sha256": "3de842f8438a275975f97d3ad6a51fbea7d4ecc5761c16c1d84f043876bb3349"
+    },
+    {
+      "path": "evidence/validation.json",
+      "size": 1295,
+      "sha256": "b0a2d93b86d1941d1e99f6cd577c91e8e564898d8894de52779e37b279c6402b"
+    },
+    {
+      "path": "refresh_manifest.py",
+      "size": 2265,
+      "sha256": "9f99224ccc96ea88be42e8a660371d28bbee9a9da238cbd329e538b589ae5aae"
+    },
+    {
+      "path": "render.py",
+      "size": 16425,
+      "sha256": "0d6fcd01820c6ea9379802e2e1254978992172253bd5a4b5a7fe53941138f0e5"
+    },
+    {
+      "path": "source/asset_decisions.json",
+      "size": 3407,
+      "sha256": "03a06fd05dd81e11d965c0dc28e2eff5bd4a4b74cdd90ed1c39ca41b2381c36a"
+    },
+    {
+      "path": "source/asset_recipes.json",
+      "size": 2204,
+      "sha256": "e514ddb46c932eae2be410c6d0b11c57e1d32046471cd888009b31a36aa575c3"
+    },
+    {
+      "path": "source/original.pdf",
+      "size": 1728020,
+      "sha256": "2198a1b781b9e62748d19e896e1032e3caeedb458b2556c06918ff0087dce7bf"
+    },
+    {
+      "path": "source/page_map.json",
+      "size": 812,
+      "sha256": "6233a91208ec6f0a68e7490396113d8b04444c6a889567a1d7957405dbb9b823"
+    },
+    {
+      "path": "source/release_approval.json",
+      "size": 1077,
+      "sha256": "01d7fe012081232516daf36fe6242ae26e8f60becf6b7f0eeabae83aa5fd6796"
+    },
+    {
+      "path": "source/transcription.json",
+      "size": 14220,
+      "sha256": "f5bca2a8b48e50ba6c5be6a7e277f0c7ea9dc5cf8942d7d3f4492ba0122822be"
+    },
+    {
+      "path": "source_manifest.json",
+      "size": 4924,
+      "sha256": "3ef22e4464b552be5e1545b357b55e30f319e43d3501560e348a4f09722afb2e"
+    },
+    {
+      "path": "web/en/_static/web_manual.css",
+      "size": 126890,
+      "sha256": "5afdc1947b423c52850852eccc5bc0f398c820c45909690ff6e5cc7bb266dfdf"
+    },
+    {
+      "path": "web/en/assets/contact-qr.png",
+      "size": 3793,
+      "sha256": "5787ae07771102d93c7bee19a1bc66671688eaec9c7e4fd6903904edd979948f"
+    },
+    {
+      "path": "web/en/assets/inbox-product.png",
+      "size": 30787,
+      "sha256": "98a55016d5e015ce562d67881927ee1758d640a38268be3b8bc3aa5dfd9d6b9c"
+    },
+    {
+      "path": "web/en/assets/inbox-sheet.png",
+      "size": 9997,
+      "sha256": "bd1a16079d9550a0e8f9b40e8741cedd151b535af6fb9f5318e71f8084ac6025"
+    },
+    {
+      "path": "web/en/conf.py",
+      "size": 829,
+      "sha256": "4d597f59504875f8a8c6ec5da326565da1001454f878d3ce6907b2585e359b97"
+    },
+    {
+      "path": "web/en/index.md",
+      "size": 88,
+      "sha256": "729314b7e5e52e0674330a3978d69f755c5f84aae0167590bdf8700851232071"
+    },
+    {
+      "path": "web/en/manual.ir.json",
+      "size": 143417,
+      "sha256": "57c500c3c7b8546a1ad46851a4397df0540e43d105badf2914800a2ec4371081"
+    },
+    {
+      "path": "web/en/manual_js45a_us_en.md",
+      "size": 12303,
+      "sha256": "b95d8384b6a2bd94504a4ae0ec25fe497b6aa6d4ad1430b94feda8822b6f9984"
+    },
+    {
+      "path": "web/en/shared-style-admission.json",
+      "size": 175,
+      "sha256": "b8eaad8c4ebbf88a9c1a09ac6d5c81299629a5e60300800f6c3a9abe1501d620"
+    }
+  ],
+  "repo_inputs": [
+    {
+      "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
+      "sha256": "a2773f7e96849e176a9909e8221e37c20eb9005cd2639415bf6a112d7c86527f"
+    }
+  ],
+  "shared_component_exceptions": [],
+  "revision_of": "manual_sources/JS-45A/US/en/git-20261112-2198a1b7-m000912",
+  "operator_release_approval": {
+    "path": "source/release_approval.json",
+    "sha256": "01d7fe012081232516daf36fe6242ae26e8f60becf6b7f0eeabae83aa5fd6796",
+    "authorization": "MA-432"
+  }
+}

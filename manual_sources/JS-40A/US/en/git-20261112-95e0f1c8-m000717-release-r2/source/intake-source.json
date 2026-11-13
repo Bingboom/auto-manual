@@ -1,0 +1,71 @@
+{
+  "material": "38-0001-000717",
+  "conversion_record_id": "reczz28SlRGJiQvW",
+  "record_model": "JS-40A",
+  "source_field": "单语言说明书 -英语",
+  "source_table_id": "tbl2tXQk8LnM2JKi",
+  "source_record_id": "reczz28Vph3XbXT0",
+  "file_token": "DQWQbmh58oGraSxmhRXcJzpWn1b",
+  "name": "38-0001-000717_Jackery_SolarSaga_40_Mini_EN.pdf",
+  "size": 1576156,
+  "source_file_token": "DQWQbmh58oGraSxmhRXcJzpWn1b",
+  "source": "/tmp/us-y-web-20261112/sources/38-0001-000717/source.pdf",
+  "source_sha256": "95e0f1c8f544920b6709403d5c6e9c82d5779de42a9cbc928d5164f0a80a6047",
+  "physical_pages": 9,
+  "pages": [
+    {
+      "physical_page": 1,
+      "width": 368.5173034667969,
+      "height": 524.764404296875,
+      "text_chars": 0
+    },
+    {
+      "physical_page": 2,
+      "width": 368.5173034667969,
+      "height": 524.764404296875,
+      "text_chars": 0
+    },
+    {
+      "physical_page": 3,
+      "width": 368.5173034667969,
+      "height": 524.764404296875,
+      "text_chars": 0
+    },
+    {
+      "physical_page": 4,
+      "width": 368.5173034667969,
+      "height": 524.764404296875,
+      "text_chars": 0
+    },
+    {
+      "physical_page": 5,
+      "width": 368.5173034667969,
+      "height": 524.764404296875,
+      "text_chars": 0
+    },
+    {
+      "physical_page": 6,
+      "width": 368.5173034667969,
+      "height": 524.764404296875,
+      "text_chars": 0
+    },
+    {
+      "physical_page": 7,
+      "width": 368.5173034667969,
+      "height": 524.764404296875,
+      "text_chars": 0
+    },
+    {
+      "physical_page": 8,
+      "width": 368.5173034667969,
+      "height": 524.764404296875,
+      "text_chars": 0
+    },
+    {
+      "physical_page": 9,
+      "width": 368.5173034667969,
+      "height": 524.764404296875,
+      "text_chars": 0
+    }
+  ]
+}

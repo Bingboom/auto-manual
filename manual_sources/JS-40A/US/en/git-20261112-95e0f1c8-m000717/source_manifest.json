@@ -1,0 +1,191 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "target": {
+    "model": "JS-40A",
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "technical_version": "git-20261112-95e0f1c8-m000717"
+  },
+  "web_title": "Jackery SolarSaga 40 Mini",
+  "original_source": {
+    "filename": "38-0001-000717_Jackery_SolarSaga_40_Mini_EN.pdf",
+    "path": "source/original.pdf",
+    "sha256": "95e0f1c8f544920b6709403d5c6e9c82d5779de42a9cbc928d5164f0a80a6047",
+    "size": 1576156,
+    "physical_page_count": 9
+  },
+  "material": "38-0001-000717",
+  "feishu_source": {
+    "conversion_record_id": "reczz28SlRGJiQvW",
+    "source_table_id": "tbl2tXQk8LnM2JKi",
+    "source_record_id": "reczz28Vph3XbXT0",
+    "source_field": "单语言说明书 -英语",
+    "source_file_token": "DQWQbmh58oGraSxmhRXcJzpWn1b"
+  },
+  "source_authority": "Operator selected US-region Y-marked unconverted manuals in the live publishing table on 2026-11-12; current single-language English attachment downloaded from the parent-child source mapping and SHA256 locked. This original source governs all copy; no review acceptance or release approval inferred.",
+  "printed_manual_version": "JAK-UM-V2.0",
+  "language_scope": "single",
+  "publication_status": "review-candidate-no-release-authorization",
+  "publication_eligible": false,
+  "pending_source_review": [
+    "Operator review of outlined-source English transcription, source concerns and artwork; no publication authorization granted."
+  ],
+  "web_roots": {
+    "en": "web/en"
+  },
+  "component_map": {
+    "native_copy": "Native selectable headings, paragraphs and safety list",
+    "quick_start": "Five native step captions above nested HB-SPECIAL-REFERENCE-FIGURE components inside shared hb-text-panel groups",
+    "specifications": "HB-TABLE-SPEC for main specifications and multifunctional adapter",
+    "inbox": "HB-SPECIAL-INBOX with seven native labels and byte-bound product images",
+    "note": "HB-CALLOUT-STRIP",
+    "warranty": "HB-WARRANTY-YEARS plus HB-WARRANTY-SECTION for service/contact",
+    "power_illustration": "HB-SPECIAL-REFERENCE-FIGURE, complete source-English labels once; no duplicated visible caption list",
+    "contact_qr": "Source QR as a native inline contact image with bounded width; all four source code/frame edges preserved",
+    "symbols_lcd_app": "Not printed as independent source sections; none added"
+  },
+  "normalizations": [
+    "Join PDF outline line wraps; normalize word spacing and multiplication/temperature glyphs without changing values.",
+    "Omit only decorative cover product image, wordmarks, printed page numbers and printed TOC; title/model/version and all substantive copy remain native.",
+    "Five quick-start source step numbers become native numbered captions above byte-identical matching diagrams, within the shared panel style.",
+    "Seven source inbox items reflow through the shared responsive grid; item order, names and counts remain exact.",
+    "Warranty uses source-authored 36 MONTHS and 2 YEARS periods; no different-edition warranty imported.",
+    "Nine matching JP candidate donor art files reused byte-identically; wrong straight adapter and differently drawn case rejected in favor of exact current source geometry."
+  ],
+  "inputs": [
+    {
+      "path": "assets/contact-qr.png",
+      "size": 7004,
+      "sha256": "5bd8cff49238202778718385d034ef457400243751dba96b1b18ac6fe5e8bf47"
+    },
+    {
+      "path": "assets/inbox-adapter.png",
+      "size": 5709,
+      "sha256": "60f5ba1e4ca461dcdf1d3b599d128c8520ca03633ea37b6e3959b753faae91d0"
+    },
+    {
+      "path": "assets/inbox-cable.png",
+      "size": 9574,
+      "sha256": "d9c356d52b20e072dec01d8fab552c9efbb652927da9ff9c659b74c1d7bfa780"
+    },
+    {
+      "path": "assets/inbox-carabiner.png",
+      "size": 8639,
+      "sha256": "41c5a19e743bd847fcae671c137989d2970c5ce5448e6eb42e4106f5c2cf1f79"
+    },
+    {
+      "path": "assets/inbox-manual.png",
+      "size": 5913,
+      "sha256": "5614a0dca59a649c1e9e8d519ff6f1586b704b3c53325e5d1deff29ff005e4a2"
+    },
+    {
+      "path": "assets/inbox-panel.png",
+      "size": 11959,
+      "sha256": "39f9ab6b4f6ca7dceef39bf435a736e9a196075704a0aea4c11c1fc529fe328b"
+    },
+    {
+      "path": "assets/inbox-pouch.png",
+      "size": 8758,
+      "sha256": "55d8c3c3d6f88252dbd98a9d6f09b70577458275924e8d89c2d41286bcc73161"
+    },
+    {
+      "path": "assets/inbox-usbc.png",
+      "size": 6739,
+      "sha256": "511ad02dfaa56121f3b664217628956a9109d43fb7b2dff19e5795cb78ce82d9"
+    },
+    {
+      "path": "assets/power-device.png",
+      "size": 177236,
+      "sha256": "0706ccc6053cf25026edd1aa8264c8b144db8873730ce365aed9359633874e78"
+    },
+    {
+      "path": "assets/unfold-1.png",
+      "size": 19693,
+      "sha256": "d4f192fb0e8b2e6c6fe9f62b4cfc00bc59ad12606ebc48b1b7b55c274b623a1a"
+    },
+    {
+      "path": "assets/unfold-2.png",
+      "size": 94931,
+      "sha256": "a71fb0738c120520516984c3d99cffffcaa1b1ad0f2f65c31771c9ee45404a60"
+    },
+    {
+      "path": "assets/unfold-3.png",
+      "size": 151475,
+      "sha256": "cc3bce48031cc93f8bde2651c84aa7052231a26214c2e7de88ee247b1b047331"
+    },
+    {
+      "path": "assets/unfold-4.png",
+      "size": 173773,
+      "sha256": "7159f9d8bddb88c5d2a7b4ab3e8e3ec349bf3f86ab7cc53fec58208576911570"
+    },
+    {
+      "path": "assets/unfold-5.png",
+      "size": 155332,
+      "sha256": "fd032a9605fc5e4e0c48e554410daec72cee1a8bbdfc6bca41439ac286e91266"
+    },
+    {
+      "path": "source/asset_decisions.json",
+      "size": 17838,
+      "sha256": "436b2dc6860d8c0d8c5922597c9dcde77c176448b642cc43307c36dda1452fd6"
+    },
+    {
+      "path": "source/asset_decisions.preparation.json",
+      "size": 14766,
+      "sha256": "33f9829c9673cb3829b1be4eaeb9ba3bef0715b0b34cefbb912e8aa29b7dc015"
+    },
+    {
+      "path": "source/asset_recipe.json",
+      "size": 8692,
+      "sha256": "e13ef6ad5b06c4f8ca3427b65efdd8688721c45302e6d6c8ae0bf7c2999f9a7c"
+    },
+    {
+      "path": "source/discovery.md",
+      "size": 1987,
+      "sha256": "4a341514b42425d9352b948278000d4c0c6b21dbe8422c887dfa69458fddbeb5"
+    },
+    {
+      "path": "source/intake-source.json",
+      "size": 1781,
+      "sha256": "b899348dee7014b1ffc2e1aaa68b4de622f9d4c8ae50e271013751837561197e"
+    },
+    {
+      "path": "source/original.pdf",
+      "size": 1576156,
+      "sha256": "95e0f1c8f544920b6709403d5c6e9c82d5779de42a9cbc928d5164f0a80a6047"
+    },
+    {
+      "path": "source/page_map.json",
+      "size": 1130,
+      "sha256": "dfac0fcb2de9d8dd0e1e331148ede7110376d1efbe644a925d786ea7d106dbb7"
+    },
+    {
+      "path": "source/transcription.json",
+      "size": 13275,
+      "sha256": "c46188f8ec0ba5c4a91377cabe9c438c876720aa2e5b766897d242e4109841bb"
+    },
+    {
+      "path": "render.py",
+      "size": 16954,
+      "sha256": "4ce69b29b13ffe2c2209f0eb9517abec3251e892d36b35dd78de2bcc369ca5af"
+    },
+    {
+      "path": "derive_assets.py",
+      "size": 2087,
+      "sha256": "710b4369afe4a34ac8012f740542408bbe86d1a7cd0e0889085e733ed63a3236"
+    },
+    {
+      "path": "refresh_manifest.py",
+      "size": 2267,
+      "sha256": "80bde6d5126aa5d0aaed9353a745aa50b1bcc8592612794a3b4bbd8b92a95261"
+    }
+  ],
+  "repo_inputs": [
+    {
+      "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
+      "sha256": "a2773f7e96849e176a9909e8221e37c20eb9005cd2639415bf6a112d7c86527f"
+    }
+  ],
+  "shared_component_exceptions": []
+}

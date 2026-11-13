@@ -1,0 +1,432 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 40000000
+  },
+  "source": {
+    "source_key": "source/js-40a_us_m000717",
+    "expected_sha256": "95e0f1c8f544920b6709403d5c6e9c82d5779de42a9cbc928d5164f0a80a6047",
+    "expected_page_count": 9
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 9
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 1,
+      "page_scale": {}
+    }
+  },
+  "page_catalog": [
+    {
+      "page": 1,
+      "page_key": "p001",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 2,
+      "page_key": "p002",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 3,
+      "page_key": "p003",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 4,
+      "page_key": "p004",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 5,
+      "page_key": "p005",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 6,
+      "page_key": "p006",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 7,
+      "page_key": "p007",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 8,
+      "page_key": "p008",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 9,
+      "page_key": "p009",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "web/js-40a/us/m000717/power-device",
+      "page": 7,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-40A"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.6667,
+            30.0,
+            333.3333,
+            273.3333
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            26.666666666666668,
+            30.0,
+            159.33333333333334,
+            45.333333333333336
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/power-device.png",
+          "scale": 5
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/js-40a/us/m000717/inbox-usbc",
+      "page": 7,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-40A"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            50.0,
+            388.3333,
+            74.0,
+            432.3333
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/inbox-usbc.png",
+          "scale": 5
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/js-40a/us/m000717/contact-qr",
+      "page": 9,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-40A"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            302.6667,
+            466.3333,
+            342.0,
+            506.3333
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/contact-qr.png",
+          "scale": 5
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/js-40a/us/m000717/inbox-adapter",
+      "page": 7,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-40A"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            297.3333,
+            321.6667,
+            321.6667,
+            364.6667
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/inbox-adapter.png",
+          "scale": 5
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/js-40a/us/m000717/inbox-pouch",
+      "page": 7,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-40A"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            132.3333,
+            388.3333,
+            186.6667,
+            438.3333
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/inbox-pouch.png",
+          "scale": 5
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    }
+  ]
+}

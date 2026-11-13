@@ -11,7 +11,7 @@
   "source_sha256": "1fc3e6fffee4d29b3c6ecba999def59a9526722af8c2dfb87025254a62a743ef",
   "operator_quote": "审核一下 然后合入 上线发布文档",
   "authority_date": "2026-11-12",
-  "merge_authorization": "MA-432",
+  "merge_authorization": "MA-433",
   "authority_context": "Operator explicitly requested review, merge and publication of auto-manual PR #1712 in this chat. Source/text/layout checks were delegated to the agent; no claim of a separate operator pixel inspection is made.",
   "reviewed_candidate": {
     "path": "manual_sources/PTB041/JP/ja/git-20261112-1fc3e6ff-material-web",

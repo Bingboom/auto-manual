@@ -1,0 +1,69 @@
+{
+  "method": "Chromium actual strict-Sphinx manual HTML; 1280/390; software rendering",
+  "results": [
+    {
+      "title": "USER MANUAL - Jackery Explorer Insulated Bottle 24oz/710ml",
+      "viewport": 1280,
+      "documentWidth": 1280,
+      "missingImages": [],
+      "images": 2,
+      "subscripts": [],
+      "tableContainers": [
+        {
+          "width": 653,
+          "parentWidth": 653,
+          "parentScroll": 653,
+          "parentOverflow": "auto"
+        }
+      ],
+      "bodyTextChars": 2379,
+      "headers": [
+        "USER MANUAL¶",
+        "CONTACT US:¶",
+        "BEFORE USE¶",
+        "PRECAUTIONS¶",
+        "GENERAL INFORMATION¶",
+        "WARRANTY¶",
+        "Warranty coverage¶",
+        "Contact Us¶",
+        "Customer Service¶",
+        "CONTACT INFORMATION¶",
+        "JACKERY INC.¶",
+        "株式会社 JACKERY JAPAN¶"
+      ],
+      "pass": true
+    },
+    {
+      "title": "USER MANUAL - Jackery Explorer Insulated Bottle 24oz/710ml",
+      "viewport": 390,
+      "documentWidth": 390,
+      "missingImages": [],
+      "images": 2,
+      "subscripts": [],
+      "tableContainers": [
+        {
+          "width": 354,
+          "parentWidth": 354,
+          "parentScroll": 354,
+          "parentOverflow": "auto"
+        }
+      ],
+      "bodyTextChars": 2379,
+      "headers": [
+        "USER MANUAL¶",
+        "CONTACT US:¶",
+        "BEFORE USE¶",
+        "PRECAUTIONS¶",
+        "GENERAL INFORMATION¶",
+        "WARRANTY¶",
+        "Warranty coverage¶",
+        "Contact Us¶",
+        "Customer Service¶",
+        "CONTACT INFORMATION¶",
+        "JACKERY INC.¶",
+        "株式会社 JACKERY JAPAN¶"
+      ],
+      "pass": true
+    }
+  ]
+}

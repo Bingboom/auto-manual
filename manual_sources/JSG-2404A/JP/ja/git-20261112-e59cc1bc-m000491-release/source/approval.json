@@ -11,7 +11,7 @@
   "source_sha256": "e59cc1bc778eb5cea4ec0b77f3d3598d2703dc94a809108c8b4336709519bdb7",
   "operator_quote": "审核一下 然后合入 上线发布文档",
   "authority_date": "2026-11-12",
-  "merge_authorization": "MA-432",
+  "merge_authorization": "MA-433",
   "authority_context": "Operator explicitly requested review, merge and publication of auto-manual PR #1712 in this chat. Source/text/layout checks were delegated to the agent; no claim of a separate operator pixel inspection is made.",
   "reviewed_candidate": {
     "path": "manual_sources/JSG-2404A/JP/ja/git-20261112-e59cc1bc-m000491",

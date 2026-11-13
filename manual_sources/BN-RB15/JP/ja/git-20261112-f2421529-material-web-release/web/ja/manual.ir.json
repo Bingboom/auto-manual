@@ -23,7 +23,7 @@
   ],
   "bundle_root": "frozen-source",
   "bundle_sha256": "e3d8a793bc029ae3b33d8a7b0abb40a011d1ecbad8837ff5ea1a344ccedfd2d2",
-  "content_sha256": "89ca0f17e5d7c6bedfd07e496ce5ca556b9cc5fbb0c1c25d709a954df64173ef",
+  "content_sha256": "4b03487dcb99720ce220ed28baf4578dd96918d994f83c0b6cb7b4b122e2d189",
   "language": "ja",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -2533,7 +2533,7 @@
       "source_sha256": "f24215296cf4a3544d48dbbce5df3c6cf489ec829ad4b2a192926d94afaff670",
       "operator_quote": "审核一下 然后合入 上线发布文档",
       "authority_date": "2026-11-12",
-      "merge_authorization": "MA-432",
+      "merge_authorization": "MA-433",
       "authority_context": "Operator explicitly requested review, merge and publication of auto-manual PR #1712 in this chat. Source/text/layout checks were delegated to the agent; no claim of a separate operator pixel inspection is made.",
       "reviewed_candidate": {
         "path": "manual_sources/BN-RB15/JP/ja/git-20261112-f2421529-material-web",
@@ -2551,7 +2551,7 @@
       },
       "scope": "Review and publish this derivative of the exact candidate. Japanese wording, technical facts, printed variant differences, source concerns and recycle-glyph standardization are retained. Only the recorded source-bound symbol repairs are applied; no live-table write.",
       "release_review_changes": [
-        "Restore the printed unplug glyph alongside the mandatory glyph; all three JVC symbol glyphs use hash-bound native PDF paths because existing shared candidates failed the fixed comparison. Wrap the unchanged warranty form table in the existing shared responsive table container so portal mobile layouts scroll inside the panel."
+        "Restore the printed unplug glyph alongside the mandatory glyph; all three JVC symbol glyphs use hash-bound native PDF paths because existing shared candidates failed the fixed comparison. Wrap the unchanged native notation/accessory/control/FAQ/warranty tables in the existing shared responsive table container so portal mobile layouts scroll inside the panel."
       ]
     }
   },
@@ -3130,9 +3130,19 @@
         {
           "asset_refs": [],
           "block_id": "manual_notation:block-0002",
-          "content_sha256": "6984765c1bb373a3336b54c401aa986236e8038ef47e97a142bbc33fe48215a8",
+          "content_sha256": "89a4ed6ffd9a923af3b9879156e094dc70154f38d75926b210be63bbcddfe864",
           "kind": "flow",
           "payload": {
+            "schema_version": "manual-flow/v2",
+            "kind": "group",
+            "role": "container",
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": "table-wrapper docutils"
+                }
+              }
+            },
             "children": [
               {
                 "children": [
@@ -3141,114 +3151,117 @@
                       {
                         "children": [
                           {
-                            "kind": "text",
-                            "text": "表記"
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "表記"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "説明"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
                           }
                         ],
-                        "header": true,
-                        "kind": "table_cell"
+                        "kind": "table_row"
                       },
                       {
                         "children": [
                           {
-                            "kind": "text",
-                            "text": "説明"
-                          }
-                        ],
-                        "header": true,
-                        "kind": "table_cell"
-                      }
-                    ],
-                    "kind": "table_row"
-                  },
-                  {
-                    "children": [
-                      {
-                        "children": [
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "（→P.8）"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
                           {
-                            "kind": "text",
-                            "text": "（→P.8）"
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "本書の参照するページを表しています。"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
                           }
                         ],
-                        "header": false,
-                        "kind": "table_cell"
+                        "kind": "table_row"
                       },
                       {
                         "children": [
                           {
-                            "kind": "text",
-                            "text": "本書の参照するページを表しています。"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      }
-                    ],
-                    "kind": "table_row"
-                  },
-                  {
-                    "children": [
-                      {
-                        "children": [
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "［ディスプレイ］"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
                           {
-                            "kind": "text",
-                            "text": "［ディスプレイ］"
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "本機のボタン名を表しています。"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
                           }
                         ],
-                        "header": false,
-                        "kind": "table_cell"
+                        "kind": "table_row"
                       },
                       {
                         "children": [
                           {
-                            "kind": "text",
-                            "text": "本機のボタン名を表しています。"
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "補足説明"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "手順の補足説明や制限事項について説明しています。"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
                           }
                         ],
-                        "header": false,
-                        "kind": "table_cell"
+                        "kind": "table_row"
                       }
                     ],
-                    "kind": "table_row"
-                  },
-                  {
-                    "children": [
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "補足説明"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      },
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "手順の補足説明や制限事項について説明しています。"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      }
-                    ],
-                    "kind": "table_row"
+                    "kind": "table_body"
                   }
                 ],
-                "kind": "table_body"
-              }
-            ],
-            "kind": "table",
-            "presentation": {
-              "html": {
-                "attributes": {
-                  "class": "manual-table"
+                "kind": "table",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "manual-table"
+                    }
+                  }
                 }
               }
-            },
-            "schema_version": "manual-flow/v2"
+            ]
           },
           "source_ref": "source/transcription.json#manual_notation#block-2"
         },
@@ -3636,9 +3649,19 @@
         {
           "asset_refs": [],
           "block_id": "optional_accessories:block-0003",
-          "content_sha256": "06bb067711bc2e21966dbc350decf64c3fc110c4e7eb2104802a1dc1aa626fc1",
+          "content_sha256": "fb8a7867f029feb009abe85a3c42d4a41f368888a2731999f2138558488a2c09",
           "kind": "flow",
           "payload": {
+            "schema_version": "manual-flow/v2",
+            "kind": "group",
+            "role": "container",
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": "table-wrapper docutils"
+                }
+              }
+            },
             "children": [
               {
                 "children": [
@@ -3647,194 +3670,197 @@
                       {
                         "children": [
                           {
-                            "kind": "text",
-                            "text": "品名"
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "品名"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "ブランド"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "型名"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "説明"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
                           }
                         ],
-                        "header": true,
-                        "kind": "table_cell"
+                        "kind": "table_row"
                       },
                       {
                         "children": [
                           {
-                            "kind": "text",
-                            "text": "ブランド"
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "ACアダプター"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "JVC"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "BH-AD15"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "付属のACアダプターと同時にお使いになることで、充電時間を短縮できます。"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
                           }
                         ],
-                        "header": true,
-                        "kind": "table_cell"
+                        "kind": "table_row"
                       },
                       {
                         "children": [
                           {
-                            "kind": "text",
-                            "text": "型名"
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "ポータブルソーラーパネル"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "JVC"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "BH-SP100A-H／BH-SP68A-H"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "コンセントが使えない環境でも、太陽光を利用してクリーンに本機やスマートフォンの充電、USB機器への給電が可能です。"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
                           }
                         ],
-                        "header": true,
-                        "kind": "table_cell"
+                        "kind": "table_row"
                       },
                       {
                         "children": [
                           {
-                            "kind": "text",
-                            "text": "説明"
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "延長ケーブル"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "JVC"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "BH-SC5"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "ポータブルソーラーパネル用の延長ケーブル（5m）です。"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
                           }
                         ],
-                        "header": true,
-                        "kind": "table_cell"
+                        "kind": "table_row"
                       }
                     ],
-                    "kind": "table_row"
-                  },
-                  {
-                    "children": [
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "ACアダプター"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      },
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "JVC"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      },
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "BH-AD15"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      },
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "付属のACアダプターと同時にお使いになることで、充電時間を短縮できます。"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      }
-                    ],
-                    "kind": "table_row"
-                  },
-                  {
-                    "children": [
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "ポータブルソーラーパネル"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      },
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "JVC"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      },
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "BH-SP100A-H／BH-SP68A-H"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      },
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "コンセントが使えない環境でも、太陽光を利用してクリーンに本機やスマートフォンの充電、USB機器への給電が可能です。"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      }
-                    ],
-                    "kind": "table_row"
-                  },
-                  {
-                    "children": [
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "延長ケーブル"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      },
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "JVC"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      },
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "BH-SC5"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      },
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "ポータブルソーラーパネル用の延長ケーブル（5m）です。"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      }
-                    ],
-                    "kind": "table_row"
+                    "kind": "table_body"
                   }
                 ],
-                "kind": "table_body"
-              }
-            ],
-            "kind": "table",
-            "presentation": {
-              "html": {
-                "attributes": {
-                  "class": "manual-table"
+                "kind": "table",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "manual-table"
+                    }
+                  }
                 }
               }
-            },
-            "schema_version": "manual-flow/v2"
+            ]
           },
           "source_ref": "source/transcription.json#optional_accessories#block-3"
         },
@@ -4691,9 +4717,19 @@
         {
           "asset_refs": [],
           "block_id": "product_overview:block-0004",
-          "content_sha256": "f88883cc1324e20e5f4461bdac4925b8928fd3a24a4ab7b6f8ff50237aea8485",
+          "content_sha256": "03d1ab09f0a39842d18be6d41172db6d9f69b0b11af9add852fa8eff28e99baa",
           "kind": "flow",
           "payload": {
+            "schema_version": "manual-flow/v2",
+            "kind": "group",
+            "role": "container",
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": "table-wrapper docutils"
+                }
+              }
+            },
             "children": [
               {
                 "children": [
@@ -4702,294 +4738,297 @@
                       {
                         "children": [
                           {
-                            "kind": "text",
-                            "text": "番号"
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "番号"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "名称"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "はたらき"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
                           }
                         ],
-                        "header": true,
-                        "kind": "table_cell"
+                        "kind": "table_row"
                       },
                       {
                         "children": [
                           {
-                            "kind": "text",
-                            "text": "名称"
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "①"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "入／切ボタン"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "各出力をオン／オフします。（→P.10）"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
                           }
                         ],
-                        "header": true,
-                        "kind": "table_cell"
+                        "kind": "table_row"
                       },
                       {
                         "children": [
                           {
-                            "kind": "text",
-                            "text": "はたらき"
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "②"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "DC入力"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "付属のACアダプターとシガーアダプターを接続します。（→P.8～9）\n別売のソーラーパネルを接続します。（→P.9）"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
                           }
                         ],
-                        "header": true,
-                        "kind": "table_cell"
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "③"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "液晶画面"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "入出力電力や電池残量、各種警告を表示します。（→P.7）"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "④"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "ディスプレイボタン"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "液晶画面が消灯しているときに点灯にします。"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "⑤"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "シガーソケット"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "車載機器用のDC12Vを出力します。（→P.10）"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "⑥"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "USB出力"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "USB機器用のDC出力をします。（→P.10）"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "⑦"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "AC出力"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "一般家電用のAC100V 60Hzを出力します。（→P.10）"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
                       }
                     ],
-                    "kind": "table_row"
-                  },
-                  {
-                    "children": [
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "①"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      },
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "入／切ボタン"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      },
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "各出力をオン／オフします。（→P.10）"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      }
-                    ],
-                    "kind": "table_row"
-                  },
-                  {
-                    "children": [
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "②"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      },
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "DC入力"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      },
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "付属のACアダプターとシガーアダプターを接続します。（→P.8～9）\n別売のソーラーパネルを接続します。（→P.9）"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      }
-                    ],
-                    "kind": "table_row"
-                  },
-                  {
-                    "children": [
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "③"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      },
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "液晶画面"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      },
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "入出力電力や電池残量、各種警告を表示します。（→P.7）"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      }
-                    ],
-                    "kind": "table_row"
-                  },
-                  {
-                    "children": [
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "④"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      },
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "ディスプレイボタン"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      },
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "液晶画面が消灯しているときに点灯にします。"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      }
-                    ],
-                    "kind": "table_row"
-                  },
-                  {
-                    "children": [
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "⑤"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      },
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "シガーソケット"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      },
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "車載機器用のDC12Vを出力します。（→P.10）"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      }
-                    ],
-                    "kind": "table_row"
-                  },
-                  {
-                    "children": [
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "⑥"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      },
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "USB出力"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      },
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "USB機器用のDC出力をします。（→P.10）"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      }
-                    ],
-                    "kind": "table_row"
-                  },
-                  {
-                    "children": [
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "⑦"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      },
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "AC出力"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      },
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "一般家電用のAC100V 60Hzを出力します。（→P.10）"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      }
-                    ],
-                    "kind": "table_row"
+                    "kind": "table_body"
                   }
                 ],
-                "kind": "table_body"
-              }
-            ],
-            "kind": "table",
-            "presentation": {
-              "html": {
-                "attributes": {
-                  "class": "manual-table"
+                "kind": "table",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "manual-table"
+                    }
+                  }
                 }
               }
-            },
-            "schema_version": "manual-flow/v2"
+            ]
           },
           "source_ref": "source/transcription.json#product_overview#block-4"
         },
@@ -7560,9 +7599,19 @@
         {
           "asset_refs": [],
           "block_id": "faq:block-0004",
-          "content_sha256": "66107ff948a11205986bae8c8a384d111d861c83dbb996747f85ed8ed7734edc",
+          "content_sha256": "41368d3dc137f474cc72ea0cbe0b648c09c70a557cbf2245719457d7424bfe7d",
           "kind": "flow",
           "payload": {
+            "schema_version": "manual-flow/v2",
+            "kind": "group",
+            "role": "container",
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": "table-wrapper docutils"
+                }
+              }
+            },
             "children": [
               {
                 "children": [
@@ -7571,189 +7620,192 @@
                       {
                         "children": [
                           {
-                            "kind": "text",
-                            "text": "Q：質問"
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Q：質問"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "A：回答"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
                           }
                         ],
-                        "header": true,
-                        "kind": "table_cell"
+                        "kind": "table_row"
                       },
                       {
                         "children": [
                           {
-                            "kind": "text",
-                            "text": "A：回答"
-                          }
-                        ],
-                        "header": true,
-                        "kind": "table_cell"
-                      }
-                    ],
-                    "kind": "table_row"
-                  },
-                  {
-                    "children": [
-                      {
-                        "children": [
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "防塵、防水仕様ですか？"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
                           {
-                            "kind": "text",
-                            "text": "防塵、防水仕様ですか？"
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "本機は防塵、防水仕様ではありませんので、ほこりや水、海水などがかからないように注意してください。また火災や感電の原因となりますので、ぬれた手で本機をさわらないでください。"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
                           }
                         ],
-                        "header": false,
-                        "kind": "table_cell"
+                        "kind": "table_row"
                       },
                       {
                         "children": [
                           {
-                            "kind": "text",
-                            "text": "本機は防塵、防水仕様ではありませんので、ほこりや水、海水などがかからないように注意してください。また火災や感電の原因となりますので、ぬれた手で本機をさわらないでください。"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      }
-                    ],
-                    "kind": "table_row"
-                  },
-                  {
-                    "children": [
-                      {
-                        "children": [
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "AC出力の波形は正弦波ですか？"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
                           {
-                            "kind": "text",
-                            "text": "AC出力の波形は正弦波ですか？"
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "家庭用コンセントと同じ正弦波です。さまざまな電気製品に安心してご使用になれます。ただし、本機はオーディオ用としての音質向上を目的とした設計はされておりません。"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
                           }
                         ],
-                        "header": false,
-                        "kind": "table_cell"
+                        "kind": "table_row"
                       },
                       {
                         "children": [
                           {
-                            "kind": "text",
-                            "text": "家庭用コンセントと同じ正弦波です。さまざまな電気製品に安心してご使用になれます。ただし、本機はオーディオ用としての音質向上を目的とした設計はされておりません。"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      }
-                    ],
-                    "kind": "table_row"
-                  },
-                  {
-                    "children": [
-                      {
-                        "children": [
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "バッテリーがあがった車の始動に使えますか？"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
                           {
-                            "kind": "text",
-                            "text": "バッテリーがあがった車の始動に使えますか？"
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "本機にはエンジン始動に対応した機能（ジャンプスターター機能）はありません。"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
                           }
                         ],
-                        "header": false,
-                        "kind": "table_cell"
+                        "kind": "table_row"
                       },
                       {
                         "children": [
                           {
-                            "kind": "text",
-                            "text": "本機にはエンジン始動に対応した機能（ジャンプスターター機能）はありません。"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      }
-                    ],
-                    "kind": "table_row"
-                  },
-                  {
-                    "children": [
-                      {
-                        "children": [
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "使える電気器具を調べるには？"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
                           {
-                            "kind": "text",
-                            "text": "使える電気器具を調べるには？"
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "電気器具の定格消費電力を製品の表示などで確認してください。AC出力に接続する機器の合計が1,800W以下であれば使用できます。"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
                           }
                         ],
-                        "header": false,
-                        "kind": "table_cell"
+                        "kind": "table_row"
                       },
                       {
                         "children": [
                           {
-                            "kind": "text",
-                            "text": "電気器具の定格消費電力を製品の表示などで確認してください。AC出力に接続する機器の合計が1,800W以下であれば使用できます。"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      }
-                    ],
-                    "kind": "table_row"
-                  },
-                  {
-                    "children": [
-                      {
-                        "children": [
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "AC出力の「瞬間最大3,600W」とはどのような意味ですか？"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
                           {
-                            "kind": "text",
-                            "text": "AC出力の「瞬間最大3,600W」とはどのような意味ですか？"
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "接続した機器の動力の起動や熱源の投入時に、大きな電力が必要となることがあるため、ごく短い時間であれば本機の定格出力1,800Wを超えた3,600Wまでの出力をすることができます。"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
                           }
                         ],
-                        "header": false,
-                        "kind": "table_cell"
+                        "kind": "table_row"
                       },
                       {
                         "children": [
                           {
-                            "kind": "text",
-                            "text": "接続した機器の動力の起動や熱源の投入時に、大きな電力が必要となることがあるため、ごく短い時間であれば本機の定格出力1,800Wを超えた3,600Wまでの出力をすることができます。"
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "99%～100%の充電に時間がかかる"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "正常な動作です。充電残量に応じて充電の電流を調整しています。"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
                           }
                         ],
-                        "header": false,
-                        "kind": "table_cell"
+                        "kind": "table_row"
                       }
                     ],
-                    "kind": "table_row"
-                  },
-                  {
-                    "children": [
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "99%～100%の充電に時間がかかる"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      },
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "正常な動作です。充電残量に応じて充電の電流を調整しています。"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      }
-                    ],
-                    "kind": "table_row"
+                    "kind": "table_body"
                   }
                 ],
-                "kind": "table_body"
-              }
-            ],
-            "kind": "table",
-            "presentation": {
-              "html": {
-                "attributes": {
-                  "class": "manual-table"
+                "kind": "table",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "manual-table"
+                    }
+                  }
                 }
               }
-            },
-            "schema_version": "manual-flow/v2"
+            ]
           },
           "source_ref": "source/transcription.json#faq#block-4"
         },

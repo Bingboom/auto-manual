@@ -11,7 +11,7 @@
   "source_sha256": "1a96bf348255cc47caf18b3df296ced0ccbc28269b1863c442e9e98d8d631b4c",
   "operator_quote": "审核一下 然后合入 上线发布文档",
   "authority_date": "2026-11-12",
-  "merge_authorization": "MA-432",
+  "merge_authorization": "MA-433",
   "authority_context": "Operator explicitly requested review, merge and publication of auto-manual PR #1712 in this chat. Source/text/layout checks were delegated to the agent; no claim of a separate operator pixel inspection is made.",
   "reviewed_candidate": {
     "path": "manual_sources/JS-40A/JP/ja/git-20261112-1a96bf34-m000464",

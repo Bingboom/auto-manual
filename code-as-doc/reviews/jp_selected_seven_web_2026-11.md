@@ -8,7 +8,7 @@ Status: active
 
 沿用[项目定位§5.1](../architecture/Hello_Docs_Positioning.md#51-网页说明书的三条路线)的存量PDF/AI接入路线和[Web发布契约](../dev/web_publish_pipeline/input-paths.md)。来源是发布文档管理「说明书转网页」表JP记录中当前「竖版说明书」附件；原件逐一下载并锁定字节数/SHA-256。原稿全部转曲，正文按页转录、日语OCR交叉检查与视觉核对，原稿是事实依据。
 
-原候选保持`review-candidate-no-release-authorization`、`publication_eligible=false`。操作者在本会话明确要求「审核一下 然后合入 上线发布文档」，授权登记为MA-432；经独立复现与来源复核后，另建同名加`-release`的批准快照，最终合入后在真实Git提交上封存凭据、提交Hello-Docs发布PR并核验RTD。该授权委托agent审核后发布，不声称操作者另做过逐像素验收。
+原候选保持`review-candidate-no-release-authorization`、`publication_eligible=false`。操作者在本会话明确要求「审核一下 然后合入 上线发布文档」，授权登记为MA-433；经独立复现与来源复核后，另建同名加`-release`的批准快照，最终合入后在真实Git提交上封存凭据、提交Hello-Docs发布PR并核验RTD。该授权委托agent审核后发布，不声称操作者另做过逐像素验收。
 
 | 物料 | 印刷身份/标题 | 原稿页数 | 冻结源候选 |
 | --- | --- | --- | --- |

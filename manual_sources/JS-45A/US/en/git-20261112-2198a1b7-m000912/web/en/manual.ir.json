@@ -1,0 +1,4337 @@
+{
+  "asset_refs": [
+    "assets/inbox-product.png",
+    "assets/inbox-sheet.png",
+    "assets/contact-qr.png"
+  ],
+  "bundle_root": "frozen-source",
+  "bundle_sha256": "771f3aa22a20a6d32555d97bc984f44b92603351a3ee7511f658928409236ff5",
+  "content_sha256": "a6f1c12505cd5a8d2de069e073d0572457eeee220c55480f93f06eb07ca29433",
+  "language": "en",
+  "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
+  "metadata": {
+    "asset_sha256": {
+      "assets/contact-qr.png": "5787ae07771102d93c7bee19a1bc66671688eaec9c7e4fd6903904edd979948f",
+      "assets/inbox-product.png": "98a55016d5e015ce562d67881927ee1758d640a38268be3b8bc3aa5dfd9d6b9c",
+      "assets/inbox-sheet.png": "bd1a16079d9550a0e8f9b40e8741cedd151b535af6fb9f5318e71f8084ac6025"
+    },
+    "block_count": 40,
+    "component_inventory": {
+      "HB-SPECIAL-INBOX": 1,
+      "HB-TABLE-SPEC": 1,
+      "HB-WARRANTY-SECTION": 5
+    },
+    "component_registry": {
+      "components": {
+        "HB-CALLOUT-STRIP": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_notice"
+            },
+            "latex": {
+              "capability": "rendered",
+              "key": "hb_latex_callout"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "manual_callout_table"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_manual_callout_table"
+            }
+          },
+          "asset_roles": {},
+          "slots": {
+            "body": {
+              "content_kinds": [
+                "rich_text"
+              ],
+              "required": true
+            },
+            "items": {
+              "content_kinds": [
+                "list_items"
+              ],
+              "required": false
+            },
+            "label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "callout_strip",
+            "notice"
+          ],
+          "style_id": "HB-CALLOUT-STRIP",
+          "token_roles": [
+            "component.callout"
+          ],
+          "variants": [
+            "warning",
+            "danger",
+            "caution",
+            "note",
+            "tip"
+          ]
+        },
+        "HB-SPECIAL-APP": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_app"
+            },
+            "latex": {
+              "capability": "rendered",
+              "key": "hb_latex_app"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_app"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_app"
+            }
+          },
+          "asset_roles": {
+            "control_art": {
+              "locale_policies": [
+                "shared"
+              ],
+              "required": false
+            },
+            "phone_art": {
+              "locale_policies": [
+                "shared"
+              ],
+              "required": false
+            },
+            "qr_art": {
+              "locale_policies": [
+                "shared"
+              ],
+              "required": false
+            },
+            "source_art": {
+              "locale_policies": [
+                "exact"
+              ],
+              "required": false
+            },
+            "store_art": {
+              "locale_policies": [
+                "shared"
+              ],
+              "required": false
+            }
+          },
+          "slots": {
+            "accessibility_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "columns": {
+              "content_kinds": [
+                "ordered_columns"
+              ],
+              "required": false
+            },
+            "interstitial_note": {
+              "content_kinds": [
+                "rich_text"
+              ],
+              "required": false
+            },
+            "labels": {
+              "content_kinds": [
+                "ordered_labels"
+              ],
+              "required": false
+            },
+            "paragraph": {
+              "content_kinds": [
+                "rich_text"
+              ],
+              "required": false
+            },
+            "reference_id": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": false
+            },
+            "step_captions": {
+              "content_kinds": [
+                "ordered_labels"
+              ],
+              "required": false
+            }
+          },
+          "source_kinds": [
+            "app_download",
+            "app_inline_control",
+            "app_add_device"
+          ],
+          "style_id": "HB-SPECIAL-APP",
+          "token_roles": [
+            "component.special.app"
+          ],
+          "variant_adapters": {
+            "download-qr-only": {
+              "idml": {
+                "capability": "not-applicable",
+                "key": "idml_app"
+              },
+              "latex": {
+                "capability": "not-applicable",
+                "key": "hb_latex_app"
+              },
+              "web": {
+                "capability": "rendered",
+                "key": "hb_app"
+              },
+              "word": {
+                "capability": "not-applicable",
+                "key": "word_app"
+              }
+            }
+          },
+          "variants": [
+            "download",
+            "download-qr-only",
+            "inline-control",
+            "add-device"
+          ]
+        },
+        "HB-SPECIAL-FCC": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_fcc"
+            },
+            "latex": {
+              "capability": "rendered",
+              "key": "hb_latex_fcc"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_fcc"
+            },
+            "word": {
+              "capability": "rendered",
+              "key": "word_fcc"
+            }
+          },
+          "asset_roles": {
+            "compliance_mark": {
+              "locale_policies": [
+                "shared"
+              ],
+              "required": true
+            }
+          },
+          "slots": {
+            "accessibility_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "body_blocks": {
+              "content_kinds": [
+                "ordered_blocks"
+              ],
+              "required": true
+            },
+            "column_break": {
+              "content_kinds": [
+                "block_index"
+              ],
+              "required": true
+            },
+            "opening_copy": {
+              "content_kinds": [
+                "line_items"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "fcc"
+          ],
+          "style_id": "HB-SPECIAL-FCC",
+          "token_roles": [
+            "component.special.fcc"
+          ],
+          "variants": [
+            "two-column"
+          ]
+        },
+        "HB-SPECIAL-INBOX": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_inbox"
+            },
+            "latex": {
+              "capability": "rendered",
+              "key": "hb_latex_inbox"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_inbox"
+            },
+            "word": {
+              "capability": "rendered",
+              "key": "word_inbox"
+            }
+          },
+          "asset_roles": {
+            "card_1_art": {
+              "locale_policies": [
+                "shared"
+              ],
+              "required": false
+            },
+            "card_2_art": {
+              "locale_policies": [
+                "shared"
+              ],
+              "required": false
+            },
+            "card_3_art": {
+              "locale_policies": [
+                "shared"
+              ],
+              "required": false
+            },
+            "card_art": {
+              "locale_policies": [
+                "shared"
+              ],
+              "multiple": true,
+              "required": false
+            }
+          },
+          "slots": {
+            "accessibility_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "cards": {
+              "content_kinds": [
+                "ordered_cards"
+              ],
+              "required": true
+            },
+            "tip_body": {
+              "content_kinds": [
+                "rich_text"
+              ],
+              "required": true
+            },
+            "tip_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "inbox"
+          ],
+          "style_id": "HB-SPECIAL-INBOX",
+          "token_roles": [
+            "component.special.inbox"
+          ],
+          "variant_adapters": {
+            "responsive-card-grid": {
+              "idml": {
+                "capability": "not-applicable",
+                "key": "idml_inbox"
+              },
+              "latex": {
+                "capability": "not-applicable",
+                "key": "hb_latex_inbox"
+              },
+              "web": {
+                "capability": "rendered",
+                "key": "hb_inbox"
+              },
+              "word": {
+                "capability": "not-applicable",
+                "key": "word_inbox"
+              }
+            }
+          },
+          "variants": [
+            "three-card-responsive",
+            "responsive-card-grid"
+          ]
+        },
+        "HB-SPECIAL-OPERATION": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_operation"
+            },
+            "latex": {
+              "capability": "projection-only",
+              "key": "hb_latex_operation"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_operation"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_operation"
+            }
+          },
+          "asset_roles": {
+            "artwork": {
+              "locale_policies": [
+                "shared",
+                "exact"
+              ],
+              "required": true
+            }
+          },
+          "slots": {
+            "accessibility_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "mode_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": false
+            },
+            "operation_id": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "prerequisite": {
+              "content_kinds": [
+                "rich_text"
+              ],
+              "required": false
+            },
+            "sos_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": false
+            },
+            "steps": {
+              "content_kinds": [
+                "ordered_steps"
+              ],
+              "required": true
+            },
+            "supporting_copy": {
+              "content_kinds": [
+                "line_items"
+              ],
+              "required": false
+            }
+          },
+          "source_kinds": [
+            "operation_panel"
+          ],
+          "style_id": "HB-SPECIAL-OPERATION",
+          "token_roles": [
+            "component.special.operation"
+          ],
+          "variants": [
+            "status-right",
+            "footer-overlay",
+            "footer-panel"
+          ]
+        },
+        "HB-SPECIAL-OVERVIEW": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_overview"
+            },
+            "latex": {
+              "capability": "projection-only",
+              "key": "hb_latex_overview"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_overview"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_overview"
+            }
+          },
+          "asset_roles": {
+            "front_art": {
+              "locale_policies": [
+                "shared"
+              ],
+              "required": true
+            },
+            "right_art": {
+              "locale_policies": [
+                "shared"
+              ],
+              "required": true
+            }
+          },
+          "slots": {
+            "accessibility_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "geometry_ref": {
+              "content_kinds": [
+                "instance_ref"
+              ],
+              "required": true
+            },
+            "views": {
+              "content_kinds": [
+                "ordered_views"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "overview"
+          ],
+          "style_id": "HB-SPECIAL-OVERVIEW",
+          "token_roles": [
+            "component.special.overview"
+          ],
+          "variants": [
+            "annotated-live",
+            "approved-composite"
+          ]
+        },
+        "HB-SPECIAL-REFERENCE-FIGURE": {
+          "adapters": {
+            "idml": {
+              "capability": "projection-only",
+              "key": "idml_reference_figure"
+            },
+            "latex": {
+              "capability": "projection-only",
+              "key": "hb_latex_reference_figure"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_reference_figure"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_reference_figure"
+            }
+          },
+          "asset_roles": {
+            "approved_composite": {
+              "locale_policies": [
+                "exact",
+                "shared"
+              ],
+              "required": false
+            },
+            "source_art": {
+              "locale_policies": [
+                "exact",
+                "shared"
+              ],
+              "required": true
+            }
+          },
+          "slots": {
+            "accessibility_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "adjacent_copy": {
+              "content_kinds": [
+                "rich_text"
+              ],
+              "required": false
+            },
+            "caption_layout": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "caption_mode": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "captions": {
+              "content_kinds": [
+                "ordered_labels"
+              ],
+              "required": false
+            },
+            "reference_id": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "reference_figure"
+          ],
+          "style_id": "HB-SPECIAL-REFERENCE-FIGURE",
+          "token_roles": [
+            "component.special.reference-figure"
+          ],
+          "variants": [
+            "semantic-fallback",
+            "approved-composite"
+          ]
+        },
+        "HB-TABLE-AUTO-RESUME": {
+          "adapters": {
+            "idml": {
+              "capability": "projection-only",
+              "key": "idml_auto_resume"
+            },
+            "latex": {
+              "capability": "projection-only",
+              "key": "hb_latex_auto_resume"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_auto_resume"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_auto_resume"
+            }
+          },
+          "asset_roles": {},
+          "slots": {
+            "conditions": {
+              "content_kinds": [
+                "ordered_columns"
+              ],
+              "required": true
+            },
+            "headers": {
+              "content_kinds": [
+                "ordered_headers"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "table_auto_resume"
+          ],
+          "style_id": "HB-TABLE-AUTO-RESUME",
+          "token_roles": [
+            "component.table.auto-resume"
+          ],
+          "variants": [
+            "two-column-middle-span"
+          ]
+        },
+        "HB-TABLE-KEY-COMBINATIONS": {
+          "adapters": {
+            "idml": {
+              "capability": "projection-only",
+              "key": "idml_key_combinations"
+            },
+            "latex": {
+              "capability": "projection-only",
+              "key": "hb_latex_key_combinations"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_key_combinations"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_key_combinations"
+            }
+          },
+          "asset_roles": {},
+          "slots": {
+            "headers": {
+              "content_kinds": [
+                "ordered_headers"
+              ],
+              "required": true
+            },
+            "rows": {
+              "content_kinds": [
+                "ordered_rows"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "table_key_combinations"
+          ],
+          "style_id": "HB-TABLE-KEY-COMBINATIONS",
+          "token_roles": [
+            "component.table.key-combinations"
+          ],
+          "variants": [
+            "three-column"
+          ]
+        },
+        "HB-TABLE-LCD-ICON": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_lcd_icon"
+            },
+            "latex": {
+              "capability": "rendered",
+              "key": "hb_latex_lcd_icon"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_lcd_icon"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_lcd_icon"
+            }
+          },
+          "asset_roles": {
+            "icons": {
+              "locale_policies": [
+                "shared",
+                "exact"
+              ],
+              "multiple": true,
+              "required": true
+            }
+          },
+          "slots": {
+            "accessibility_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "rows": {
+              "content_kinds": [
+                "ordered_rows"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "table_lcd_icon",
+            "lcd-icons"
+          ],
+          "style_id": "HB-TABLE-LCD-ICON",
+          "token_roles": [
+            "component.table.lcd-icon"
+          ],
+          "variants": [
+            "icon-catalog",
+            "icon-catalog-unnumbered"
+          ]
+        },
+        "HB-TABLE-LCD-MODE": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_lcd_mode"
+            },
+            "latex": {
+              "capability": "rendered",
+              "key": "hb_latex_lcd_mode"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_lcd_mode"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_lcd_mode"
+            }
+          },
+          "asset_roles": {
+            "artwork": {
+              "locale_policies": [
+                "shared",
+                "exact"
+              ],
+              "required": true
+            }
+          },
+          "slots": {
+            "accessibility_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "groups": {
+              "content_kinds": [
+                "ordered_groups"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "table_lcd_mode"
+          ],
+          "style_id": "HB-TABLE-LCD-MODE",
+          "token_roles": [
+            "component.table.lcd-mode"
+          ],
+          "variants": [
+            "two-state-three-action"
+          ]
+        },
+        "HB-TABLE-REFERENCE": {
+          "adapters": {
+            "idml": {
+              "capability": "projection-only",
+              "key": "idml_reference_table"
+            },
+            "latex": {
+              "capability": "projection-only",
+              "key": "latex_reference_table"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "web_reference_table"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_reference_table"
+            }
+          },
+          "asset_roles": {},
+          "slots": {
+            "accessibility_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "headers": {
+              "content_kinds": [
+                "ordered_headers"
+              ],
+              "required": true
+            },
+            "rows": {
+              "content_kinds": [
+                "ordered_rows"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "table_reference"
+          ],
+          "style_id": "HB-TABLE-REFERENCE",
+          "token_roles": [
+            "component.table.reference"
+          ],
+          "variants": [
+            "lcd-descriptions",
+            "lcd-legend",
+            "lcd-actions",
+            "lcd-actions-compact",
+            "symbol-meanings",
+            "plain-inventory"
+          ]
+        },
+        "HB-TABLE-SPEC": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_spec_table"
+            },
+            "latex": {
+              "capability": "rendered",
+              "key": "hb_latex_spec_table"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_spec_table"
+            },
+            "word": {
+              "capability": "rendered",
+              "key": "word_spec_table"
+            }
+          },
+          "asset_roles": {},
+          "slots": {
+            "rows": {
+              "content_kinds": [
+                "structured_rows"
+              ],
+              "required": true
+            },
+            "section_title": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "table_spec",
+            "spec-table"
+          ],
+          "style_id": "HB-TABLE-SPEC",
+          "token_roles": [
+            "component.table.spec"
+          ],
+          "variants": [
+            "vertical"
+          ]
+        },
+        "HB-TABLE-SYMBOL-ICON": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_symbol_icon"
+            },
+            "latex": {
+              "capability": "rendered",
+              "key": "hb_latex_symbol_icon"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_symbol_icon"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_symbol_icon"
+            }
+          },
+          "asset_roles": {
+            "icons": {
+              "locale_policies": [
+                "shared",
+                "exact"
+              ],
+              "multiple": true,
+              "required": true
+            }
+          },
+          "slots": {
+            "accessibility_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "headers": {
+              "content_kinds": [
+                "ordered_headers"
+              ],
+              "required": true
+            },
+            "panels": {
+              "content_kinds": [
+                "ordered_panels"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "table_symbol_icon",
+            "symbols"
+          ],
+          "style_id": "HB-TABLE-SYMBOL-ICON",
+          "token_roles": [
+            "component.table.symbol-icon"
+          ],
+          "variants": [
+            "two-panel-responsive"
+          ]
+        },
+        "HB-TABLE-SYMBOL-SIGNAL": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_symbol_signal"
+            },
+            "latex": {
+              "capability": "rendered",
+              "key": "hb_latex_symbol_signal"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_symbol_signal"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_symbol_signal"
+            }
+          },
+          "asset_roles": {},
+          "slots": {
+            "accessibility_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "headers": {
+              "content_kinds": [
+                "ordered_headers"
+              ],
+              "required": true
+            },
+            "rows": {
+              "content_kinds": [
+                "ordered_rows"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "table_symbol_signal"
+          ],
+          "style_id": "HB-TABLE-SYMBOL-SIGNAL",
+          "token_roles": [
+            "component.table.symbol-signal"
+          ],
+          "variants": [
+            "localized-badges"
+          ]
+        },
+        "HB-TABLE-TROUBLESHOOTING": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_troubleshooting"
+            },
+            "latex": {
+              "capability": "rendered",
+              "key": "hb_latex_troubleshooting"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_troubleshooting"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_troubleshooting"
+            }
+          },
+          "asset_roles": {},
+          "slots": {
+            "headers": {
+              "content_kinds": [
+                "ordered_headers"
+              ],
+              "required": true
+            },
+            "rows": {
+              "content_kinds": [
+                "ordered_rows"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "table_troubleshooting",
+            "troubleshooting"
+          ],
+          "style_id": "HB-TABLE-TROUBLESHOOTING",
+          "token_roles": [
+            "component.table.troubleshooting"
+          ],
+          "variants": [
+            "two-column"
+          ]
+        },
+        "HB-WARRANTY-LEAD": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_warranty_lead"
+            },
+            "latex": {
+              "capability": "rendered",
+              "key": "hb_latex_warranty_lead"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_warranty_lead"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_warranty_lead"
+            }
+          },
+          "asset_roles": {},
+          "slots": {
+            "accessibility_label": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            },
+            "lead": {
+              "content_kinds": [
+                "rich_text"
+              ],
+              "required": true
+            },
+            "local_note": {
+              "content_kinds": [
+                "rich_text"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "warranty_lead"
+          ],
+          "style_id": "HB-WARRANTY-LEAD",
+          "token_roles": [
+            "component.warranty.lead"
+          ],
+          "variants": [
+            "intro-panel"
+          ]
+        },
+        "HB-WARRANTY-SECTION": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_warranty_section"
+            },
+            "latex": {
+              "capability": "rendered",
+              "key": "hb_latex_warranty_section"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_warranty_section"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_warranty_section"
+            }
+          },
+          "asset_roles": {},
+          "slots": {
+            "blocks": {
+              "content_kinds": [
+                "ordered_blocks"
+              ],
+              "required": true
+            },
+            "section_index": {
+              "content_kinds": [
+                "block_index"
+              ],
+              "required": true
+            },
+            "title": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "warranty_section"
+          ],
+          "style_id": "HB-WARRANTY-SECTION",
+          "token_roles": [
+            "component.warranty.section"
+          ],
+          "variants": [
+            "rounded-card"
+          ]
+        },
+        "HB-WARRANTY-YEARS": {
+          "adapters": {
+            "idml": {
+              "capability": "rendered",
+              "key": "idml_warranty_years"
+            },
+            "latex": {
+              "capability": "rendered",
+              "key": "hb_latex_warranty_years"
+            },
+            "web": {
+              "capability": "rendered",
+              "key": "hb_warranty_years"
+            },
+            "word": {
+              "capability": "projection-only",
+              "key": "word_warranty_years"
+            }
+          },
+          "asset_roles": {},
+          "slots": {
+            "periods": {
+              "content_kinds": [
+                "ordered_periods"
+              ],
+              "required": true
+            },
+            "title": {
+              "content_kinds": [
+                "inline_text"
+              ],
+              "required": true
+            }
+          },
+          "source_kinds": [
+            "warranty_years"
+          ],
+          "style_id": "HB-WARRANTY-YEARS",
+          "token_roles": [
+            "component.warranty.years"
+          ],
+          "variants": [
+            "numeric-badges"
+          ]
+        }
+      },
+      "registry_id": "hb-component-registry",
+      "schema_version": "component-registry/v1"
+    },
+    "component_registry_sha256": "9275f1facc80873cdbf74f4f3c91c29f87ebc26fd6056eb37e69e13f96639a8f",
+    "composites": [],
+    "declared_languages": [
+      "en"
+    ],
+    "frozen_figure_inventory": [],
+    "frozen_source_manifest": {
+      "component_map": {
+        "compatibility_table": "not present",
+        "illustrations": "HB-SPECIAL-REFERENCE-FIGURE; port photographs remain in native declared compatibility cells",
+        "inbox": "HB-SPECIAL-INBOX",
+        "lcd_buttons_app_symbols": "Not present in these source roles; no synthetic components added.",
+        "native_copy": "Semantic headings, paragraphs and lists",
+        "specifications": "HB-TABLE-SPEC",
+        "warranty": "HB-WARRANTY-SECTION; HB-WARRANTY-YEARS where the source has numeric periods"
+      },
+      "feishu_source": {
+        "conversion_record_id": "reczz28SlRGJiDkp",
+        "source_field": "单语言说明书 -英语",
+        "source_file_token": "ELznbGnaMoI3HAxxviwc3ZQ4nBd",
+        "source_record_id": "reczz28Vph3XbYq0",
+        "source_table_id": "tbl2tXQk8LnM2JKi"
+      },
+      "inputs": [
+        {
+          "path": "assets/contact-qr.png",
+          "sha256": "5787ae07771102d93c7bee19a1bc66671688eaec9c7e4fd6903904edd979948f",
+          "size": 3793
+        },
+        {
+          "path": "assets/inbox-product.png",
+          "sha256": "98a55016d5e015ce562d67881927ee1758d640a38268be3b8bc3aa5dfd9d6b9c",
+          "size": 30787
+        },
+        {
+          "path": "assets/inbox-sheet.png",
+          "sha256": "bd1a16079d9550a0e8f9b40e8741cedd151b535af6fb9f5318e71f8084ac6025",
+          "size": 9997
+        },
+        {
+          "path": "source/asset_decisions.json",
+          "sha256": "03a06fd05dd81e11d965c0dc28e2eff5bd4a4b74cdd90ed1c39ca41b2381c36a",
+          "size": 3407
+        },
+        {
+          "path": "source/asset_recipes.json",
+          "sha256": "e514ddb46c932eae2be410c6d0b11c57e1d32046471cd888009b31a36aa575c3",
+          "size": 2204
+        },
+        {
+          "path": "source/original.pdf",
+          "sha256": "2198a1b781b9e62748d19e896e1032e3caeedb458b2556c06918ff0087dce7bf",
+          "size": 1728020
+        },
+        {
+          "path": "source/page_map.json",
+          "sha256": "6233a91208ec6f0a68e7490396113d8b04444c6a889567a1d7957405dbb9b823",
+          "size": 812
+        },
+        {
+          "path": "source/transcription.json",
+          "sha256": "f5bca2a8b48e50ba6c5be6a7e277f0c7ea9dc5cf8942d7d3f4492ba0122822be",
+          "size": 14220
+        },
+        {
+          "path": "render.py",
+          "sha256": "0d6fcd01820c6ea9379802e2e1254978992172253bd5a4b5a7fe53941138f0e5",
+          "size": 16425
+        },
+        {
+          "path": "derive_assets.py",
+          "sha256": "d188723cc9795080182c68eb445668c407cdf2598eb13e6dfece31dbb9602783",
+          "size": 1762
+        },
+        {
+          "path": "refresh_manifest.py",
+          "sha256": "9f99224ccc96ea88be42e8a660371d28bbee9a9da238cbd329e538b589ae5aae",
+          "size": 2265
+        }
+      ],
+      "language_scope": "single",
+      "material": "38-0001-000912",
+      "normalizations": [
+        "Join printed paragraph line wraps; preserve numbers, labels, conditions and proper names.",
+        "Source subscripts/superscripts transcribed as selectable Unicode; source multiplication/temperature glyphs normalized without changing values.",
+        "Printed decorative cover/TOC/page furniture omitted; source title/model/printed version and all substantive copy remain.",
+        "Reuse source-independent port photos and common tile silhouette byte-identically; product/model-specific specification thumbnails and complete source-labelled English diagrams remain source-specific."
+      ],
+      "original_source": {
+        "filename": "38-0001-000912_Jackery_Solar_Curved_Tile_Obsidian_EN.pdf",
+        "path": "source/original.pdf",
+        "physical_page_count": 7,
+        "sha256": "2198a1b781b9e62748d19e896e1032e3caeedb458b2556c06918ff0087dce7bf",
+        "size": 1728020
+      },
+      "pending_source_review": [
+        "Operator review of outlined-source English transcription, source concerns and artwork; no publication authorization granted."
+      ],
+      "printed_manual_version": "JAK-UM-V1.0",
+      "publication_eligible": false,
+      "publication_status": "review-candidate-no-release-authorization",
+      "repo_inputs": [
+        {
+          "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
+          "sha256": "a2773f7e96849e176a9909e8221e37c20eb9005cd2639415bf6a112d7c86527f"
+        }
+      ],
+      "schema_version": "auto-manual-frozen-web-source/v1",
+      "shared_component_exceptions": [],
+      "source_authority": "Operator selected US-region Y-marked unconverted manuals in the live publishing table on 2026-11-12; current single-language English attachment downloaded from the parent-child source mapping and SHA256 locked. This original source governs all copy; no review acceptance or release approval inferred.",
+      "target": {
+        "languages": [
+          "en"
+        ],
+        "model": "JS-45A",
+        "region": "US",
+        "technical_version": "git-20261112-2198a1b7-m000912"
+      },
+      "web_roots": {
+        "en": "web/en"
+      },
+      "web_title": "Jackery Solar Curved Tile Obsidian"
+    },
+    "frozen_stylesheet_sha256": "5afdc1947b423c52850852eccc5bc0f398c820c45909690ff6e5cc7bb266dfdf",
+    "manual_theme": {
+      "component_roles": {
+        "component.callout": {
+          "component_ids": [
+            "HB-CALLOUT-STRIP"
+          ],
+          "theme_roles": [
+            "surface.brand",
+            "surface.paper",
+            "border.strong",
+            "width.component-band"
+          ]
+        },
+        "component.special.app": {
+          "component_ids": [
+            "HB-SPECIAL-APP"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.special.fcc": {
+          "component_ids": [
+            "HB-SPECIAL-FCC"
+          ],
+          "theme_roles": [
+            "surface.fcc",
+            "radius.fcc",
+            "type.fcc.body",
+            "width.component-band"
+          ]
+        },
+        "component.special.inbox": {
+          "component_ids": [
+            "HB-SPECIAL-INBOX"
+          ],
+          "theme_roles": [
+            "surface.brand",
+            "surface.paper",
+            "surface.muted",
+            "border.inbox",
+            "radius.inbox",
+            "type.inbox.label",
+            "width.component-band"
+          ]
+        },
+        "component.special.operation": {
+          "component_ids": [
+            "HB-SPECIAL-OPERATION"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.special.overview": {
+          "component_ids": [
+            "HB-SPECIAL-OVERVIEW"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "line.overview.leader",
+            "type.overview.label",
+            "width.component-band"
+          ]
+        },
+        "component.special.reference-figure": {
+          "component_ids": [
+            "HB-SPECIAL-REFERENCE-FIGURE"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "border.strong",
+            "radius.panel",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.table.auto-resume": {
+          "component_ids": [
+            "HB-TABLE-AUTO-RESUME"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.table.key-combinations": {
+          "component_ids": [
+            "HB-TABLE-KEY-COMBINATIONS"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.table.lcd-icon": {
+          "component_ids": [
+            "HB-TABLE-LCD-ICON"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.table.lcd-mode": {
+          "component_ids": [
+            "HB-TABLE-LCD-MODE"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.table.reference": {
+          "component_ids": [
+            "HB-TABLE-REFERENCE"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.table.spec": {
+          "component_ids": [
+            "HB-TABLE-SPEC"
+          ],
+          "theme_roles": [
+            "surface.brand",
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.table.symbol-icon": {
+          "component_ids": [
+            "HB-TABLE-SYMBOL-ICON"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.table.symbol-signal": {
+          "component_ids": [
+            "HB-TABLE-SYMBOL-SIGNAL"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.table.troubleshooting": {
+          "component_ids": [
+            "HB-TABLE-TROUBLESHOOTING"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.warranty.lead": {
+          "component_ids": [
+            "HB-WARRANTY-LEAD"
+          ],
+          "theme_roles": [
+            "surface.muted",
+            "radius.panel",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.warranty.section": {
+          "component_ids": [
+            "HB-WARRANTY-SECTION"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.warranty.years": {
+          "component_ids": [
+            "HB-WARRANTY-YEARS"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        }
+      },
+      "roles": {
+        "border.inbox": {
+          "bindings": {
+            "idml": {
+              "kind": "color",
+              "name": "Color/HB Line K40"
+            },
+            "latex": {
+              "kind": "layout-token",
+              "name": "comp_table_outer_rule"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-line-soft"
+            },
+            "word": {
+              "kind": "html-class",
+              "name": "hb-inbox-word-card"
+            }
+          }
+        },
+        "border.strong": {
+          "bindings": {
+            "idml": {
+              "kind": "layout-token",
+              "name": "comp_table_outer_rule"
+            },
+            "latex": {
+              "kind": "layout-token",
+              "name": "comp_table_outer_rule"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-brand-dark"
+            },
+            "word": {
+              "kind": "property-adapter",
+              "name": "_set_spec_table_borders"
+            }
+          }
+        },
+        "line.overview.leader": {
+          "bindings": {
+            "idml": {
+              "kind": "color",
+              "name": "Color/HB Brand Dark"
+            },
+            "latex": {
+              "kind": "color",
+              "name": "HBTextBlack"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-brand-dark"
+            },
+            "word": {
+              "kind": "style",
+              "name": "BodyText"
+            }
+          }
+        },
+        "radius.fcc": {
+          "bindings": {
+            "idml": {
+              "kind": "layout-token",
+              "name": "comp_fcc_arc"
+            },
+            "latex": {
+              "kind": "layout-token",
+              "name": "comp_fcc_arc"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-fcc-radius"
+            },
+            "word": {
+              "kind": "property-adapter",
+              "name": "transform_word_fcc_html"
+            }
+          }
+        },
+        "radius.inbox": {
+          "bindings": {
+            "idml": {
+              "kind": "object-style",
+              "name": "HB Inbox Card"
+            },
+            "latex": {
+              "kind": "layout-token",
+              "name": "comp_inbox_card_arc"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-inbox-card-radius"
+            },
+            "word": {
+              "kind": "property-adapter",
+              "name": "transform_word_inbox_html"
+            }
+          }
+        },
+        "radius.panel": {
+          "bindings": {
+            "idml": {
+              "kind": "object-style",
+              "name": "HB Rounded Table Outer"
+            },
+            "latex": {
+              "kind": "layout-token",
+              "name": "comp_table_outer_arc"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-panel-radius"
+            },
+            "word": {
+              "kind": "property-adapter",
+              "name": "_set_spec_table_layout"
+            }
+          }
+        },
+        "surface.brand": {
+          "bindings": {
+            "idml": {
+              "kind": "color",
+              "name": "Color/HB Brand Dark"
+            },
+            "latex": {
+              "kind": "color",
+              "name": "HBSharedTableFrameColor"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-brand-dark"
+            },
+            "word": {
+              "kind": "property-adapter",
+              "name": "_set_spec_table_borders"
+            }
+          }
+        },
+        "surface.fcc": {
+          "bindings": {
+            "idml": {
+              "kind": "color",
+              "name": "Color/HB Bg K05"
+            },
+            "latex": {
+              "kind": "color",
+              "name": "BgK05"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-surface"
+            },
+            "word": {
+              "kind": "html-class",
+              "name": "hb-fcc-word-table"
+            }
+          }
+        },
+        "surface.muted": {
+          "bindings": {
+            "idml": {
+              "kind": "paragraph-style",
+              "name": "HB Spec Label"
+            },
+            "latex": {
+              "kind": "color",
+              "name": "HBSharedTableLeftBg"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-surface"
+            },
+            "word": {
+              "kind": "html-class",
+              "name": "manual-spec-label"
+            }
+          }
+        },
+        "surface.paper": {
+          "bindings": {
+            "idml": {
+              "kind": "color",
+              "name": "Color/Paper"
+            },
+            "latex": {
+              "kind": "color",
+              "name": "white"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-paper"
+            },
+            "word": {
+              "kind": "table-style",
+              "name": "tableHeader"
+            }
+          }
+        },
+        "type.fcc.body": {
+          "bindings": {
+            "idml": {
+              "kind": "paragraph-style",
+              "name": "HB FCC Text"
+            },
+            "latex": {
+              "kind": "macro",
+              "name": "HBTypeFccText"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-font-family"
+            },
+            "word": {
+              "kind": "html-class",
+              "name": "hb-fcc-word-table"
+            }
+          }
+        },
+        "type.inbox.label": {
+          "bindings": {
+            "idml": {
+              "kind": "paragraph-style",
+              "name": "HB InBox Label"
+            },
+            "latex": {
+              "kind": "macro",
+              "name": "HBtype_inbox_label_font_size"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-font-family"
+            },
+            "word": {
+              "kind": "html-class",
+              "name": "hb-inbox-word-card"
+            }
+          }
+        },
+        "type.overview.label": {
+          "bindings": {
+            "idml": {
+              "kind": "paragraph-style",
+              "name": "HB Body"
+            },
+            "latex": {
+              "kind": "macro",
+              "name": "HBOverviewPanel"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-font-family"
+            },
+            "word": {
+              "kind": "style",
+              "name": "BodyText"
+            }
+          }
+        },
+        "type.table.label": {
+          "bindings": {
+            "idml": {
+              "kind": "paragraph-style",
+              "name": "HB Spec Label"
+            },
+            "latex": {
+              "kind": "macro",
+              "name": "HBTypeSpecLabel"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-font-family"
+            },
+            "word": {
+              "kind": "html-class",
+              "name": "manual-spec-label"
+            }
+          }
+        },
+        "type.table.value": {
+          "bindings": {
+            "idml": {
+              "kind": "paragraph-style",
+              "name": "HB Spec Value"
+            },
+            "latex": {
+              "kind": "macro",
+              "name": "HBTypeSpecValue"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-font-family"
+            },
+            "word": {
+              "kind": "html-class",
+              "name": "manual-spec-value"
+            }
+          }
+        },
+        "width.component-band": {
+          "bindings": {
+            "idml": {
+              "kind": "property-adapter",
+              "name": "spec_table_body_width"
+            },
+            "latex": {
+              "kind": "macro",
+              "name": "linewidth"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-component-band-max"
+            },
+            "word": {
+              "kind": "property-adapter",
+              "name": "_set_spec_table_cell_widths"
+            }
+          }
+        }
+      },
+      "schema_version": "manual-theme/v1",
+      "theme_id": "hb-manual-default"
+    },
+    "manual_theme_sha256": "e8fc88458d239edef85f2cfb0b26b71df2e83859c8e51e9c093e5abc2982b47d",
+    "markdown_filename": "manual_js45a_us_en.md",
+    "page_count": 7,
+    "page_declarations": {},
+    "pdf_intake_provenance": {
+      "artwork_standardizations": [],
+      "intake_method": "outlined-source-agent-checked-transcription",
+      "pending_source_review": [
+        "Operator review of outlined-source English transcription, source concerns and artwork; no publication authorization granted."
+      ]
+    },
+    "pending_source_review": [
+      "Operator review of outlined-source English transcription, source concerns and artwork; no publication authorization granted."
+    ],
+    "projection": "whole-document-components/v1",
+    "publication_eligible": false,
+    "rendered_source_figure_count": 0,
+    "skipped_raw": 0,
+    "source_errata": {
+      "source_concerns": [
+        "The printed Nominal Module Operating Temperature row gives −40°C~85°C; the heading/value combination is preserved, not technically corrected.",
+        "The source warranty exclusion item 10 states the product has been proven free of defects; preserved literally."
+      ]
+    },
+    "title": "Jackery Solar Curved Tile Obsidian",
+    "web_contract": {
+      "app_download": {
+        "source_patterns": []
+      },
+      "app_inline_controls": {
+        "source_patterns": []
+      },
+      "fcc": {
+        "mark_asset_ref": "mark/fcc",
+        "mark_path": "docs/renderers/latex/assets/fcc_mark.png",
+        "right_column_markers": [
+          {
+            "language": "en",
+            "marker": "If this equipment does cause harmful interference",
+            "source_patterns": [
+              "01_fcc"
+            ]
+          },
+          {
+            "language": "fr",
+            "marker": "Si cet équipement trouble la réception",
+            "source_patterns": [
+              "p22_01_fcc"
+            ]
+          },
+          {
+            "language": "es",
+            "marker": "Si este aparato causa interferencias dañinas",
+            "source_patterns": [
+              "p38_01_fcc"
+            ]
+          },
+          {
+            "language": "pt-BR",
+            "marker": "Se este equipamento causar interferência prejudicial",
+            "source_patterns": [
+              "01_fcc"
+            ]
+          }
+        ],
+        "source_patterns": [
+          "*01_fcc"
+        ]
+      },
+      "figure_coverage": {
+        "requirements": []
+      },
+      "figure_targets": [],
+      "in_the_box": {
+        "semantic_source_patterns": [
+          "box_contents_*"
+        ],
+        "source_patterns": [
+          "*02_whats_in_the_box"
+        ]
+      },
+      "meaning_symbols": {
+        "signal_row_count": 4,
+        "source_patterns": [
+          "symbols_*",
+          "symbols"
+        ]
+      },
+      "operations": {
+        "auto_resume_table": {
+          "body_rows": 4
+        },
+        "key_combination_table": {
+          "minimum_body_rows": 3
+        },
+        "lcd_mode_table": {
+          "body_rows": 6,
+          "image_key": "operation/lcd_mode"
+        },
+        "source_patterns": [
+          "*05_operation_guide_placeholder",
+          "*05_operation_guide_je2000e"
+        ]
+      },
+      "preface": {
+        "source_patterns": [
+          "00_preface*"
+        ],
+        "targets": []
+      },
+      "presentation_layers": {
+        "base": "shared-manual-semantics-v1",
+        "skeleton_profile": null,
+        "target_overlay": null
+      },
+      "product_overview": {
+        "source_patterns": [
+          "*03_product_overview_placeholder"
+        ]
+      },
+      "profiles": {
+        "document": {
+          "description": "Complete paginated manual for DOCX and ordinary Markdown exports."
+        },
+        "web": {
+          "entry_source_pattern": "00_preface*",
+          "excluded_source_patterns": [
+            "cover*",
+            "00_toc*",
+            "99_back_cover*"
+          ]
+        }
+      },
+      "reference_figures": {
+        "figures": [
+          {
+            "asset_scope": "shared",
+            "captions_embedded": true,
+            "capture_following_lines": 3,
+            "control_artwork": "docs/renderers/latex/assets/app_control_panel.png",
+            "id": "app-add-device",
+            "image_key": "app/add_device",
+            "label_roles": [
+              "main-power",
+              "dc-usb",
+              "ac-power"
+            ],
+            "phone_artwork": "docs/renderers/contracts/assets/app/app_add_device_steps.png",
+            "presentation": "shared-art-live-labels",
+            "source_patterns": [
+              "*12_app_setup_placeholder"
+            ]
+          }
+        ],
+        "source_patterns": [
+          "*12_app_setup_placeholder"
+        ]
+      },
+      "schema_version": "web-manual-presentation/v2",
+      "specifications": {
+        "circled_reference_count": 2,
+        "section_count": 4,
+        "source_patterns": [
+          "spec_*"
+        ]
+      },
+      "troubleshooting_table": {
+        "source_patterns": [
+          "troubleshooting_*"
+        ]
+      },
+      "warranty": {
+        "period_years": [
+          "3",
+          "2"
+        ],
+        "section_count": 6,
+        "source_patterns": [
+          "*11_warranty"
+        ]
+      }
+    },
+    "web_source_normalization": "preface-auto-resume/v1"
+  },
+  "model": "JS-45A",
+  "pages": [
+    {
+      "blocks": [
+        {
+          "asset_refs": [],
+          "block_id": "introduction:block-0001",
+          "content_sha256": "bf3fc4b0522e87297ddb73cf01d762807288eabd2045a98fcc7f1993fc4ff2f8",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "SPECIFICATION SHEET"
+              }
+            ],
+            "kind": "heading",
+            "level": 1,
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#introduction#block-1"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "introduction:block-0002",
+          "content_sha256": "04514e03bd0c63332d03b86cadb5639abaf1437f57495dde639f8c90e210366e",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "Jackery Solar Curved Tile Obsidian"
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#introduction#block-2"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "introduction:block-0003",
+          "content_sha256": "dc0ab28f8d6f47dc58a3bc43ab1a327434c5671944e80ead9dce78c55242053f",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "Model: JS-45A"
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#introduction#block-3"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "introduction:block-0004",
+          "content_sha256": "e2d5f820fd20a74b72dd175d64b29889663d9e2e726975489b62cedff6b384a0",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "Version: JAK-UM-V1.0"
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#introduction#block-4"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "introduction:block-0005",
+          "content_sha256": "33d35c56b6b5ee952f27ed6d12054e3558fc021c00281e7d2b9896ca6dc229c2",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "Congratulations on your new Jackery Solar Curved Tile Obsidian. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for frequent reference."
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#introduction#block-5"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "introduction:block-0006",
+          "content_sha256": "002f7dd4d5fb11d284aeebe196e624cebb462bd7569be8d13a92bd2c2edb104d",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "In compliance with laws and regulations, the right to the final interpretation of this document and all related documents of this product reside with the Company."
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#introduction#block-6"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "introduction:block-0007",
+          "content_sha256": "5b09ea6e4e1083446965d79873d68db36e1581673b72b8082b9d651b0b89831d",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "Please kindly note that no further notifications will be given in case of any update, revision, or termination."
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#introduction#block-7"
+        }
+      ],
+      "language": "en",
+      "page_id": "introduction",
+      "skipped_raw": 0,
+      "source_path": "source/transcription.json",
+      "source_ref": "source/transcription.json#introduction",
+      "source_sha256": "b43c5ea319c7b5749dc0c1575c9853887a6c9e46d60544fd575a35cb65ef1902"
+    },
+    {
+      "blocks": [
+        {
+          "asset_refs": [],
+          "block_id": "specifications:block-0001",
+          "content_sha256": "64970ff63e565af4ac0976122241219f0f583540a7b07276bfee1aad138479bd",
+          "kind": "flow",
+          "payload": {
+            "carrier_flow": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "TECHNICAL PARAMETER"
+                      }
+                    ],
+                    "kind": "inline_group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": "hb-spec-section-text"
+                        }
+                      }
+                    }
+                  }
+                ],
+                "kind": "heading",
+                "level": 2,
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "hb-spec-section"
+                    }
+                  }
+                }
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Product Name"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Jackery Solar Curved Tile Obsidian"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Model Number"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "JS-45A"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Rated Maximum Power (P"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "max"
+                                  }
+                                ],
+                                "kind": "subscript"
+                              },
+                              {
+                                "kind": "text",
+                                "text": ")"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "45W±5%"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Rated Operating Current (I"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "mp"
+                                  }
+                                ],
+                                "kind": "subscript"
+                              },
+                              {
+                                "kind": "text",
+                                "text": ")"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "9.93A±5%"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Rated Operating Voltage (V"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "mp"
+                                  }
+                                ],
+                                "kind": "subscript"
+                              },
+                              {
+                                "kind": "text",
+                                "text": ")"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "4.53V±5%"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Short Circuit Current (I"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "sc"
+                                  }
+                                ],
+                                "kind": "subscript"
+                              },
+                              {
+                                "kind": "text",
+                                "text": ")"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "10.36A±5%"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Open Circuit Voltage (V"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "oc"
+                                  }
+                                ],
+                                "kind": "subscript"
+                              },
+                              {
+                                "kind": "text",
+                                "text": ")"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "5.54V±5%"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Nominal Module Operating Temperature (T"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "nmot"
+                                  }
+                                ],
+                                "kind": "subscript"
+                              },
+                              {
+                                "kind": "text",
+                                "text": ")"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "−40°C~85°C"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Weight"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "4.5kg"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Dimensions"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "720mm x 430mm x 35mm"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Maximum System Voltage"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "1000V"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Maximum Series Fuse Rating"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "20A"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Ingress Protection"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "IP68"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Fire Rating"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Class C"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Impact Resistance Class"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Class 3"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Cell Technology"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "IBC"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Application Class"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Class A"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Min.Design Load"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "+3600Pa/−1600Pa"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Module [T98]max"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "70°C"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Connector Manufacturer"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "QC Solar (Suzhou)"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Connector Type"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "QC4.10-cds"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "All Technical Data at Standard"
+                              }
+                            ],
+                            "header": true,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "AM1.5, E=1000W/m², T"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "c"
+                                  }
+                                ],
+                                "kind": "subscript"
+                              },
+                              {
+                                "kind": "text",
+                                "text": "=25°C"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      }
+                    ],
+                    "kind": "table_body"
+                  }
+                ],
+                "kind": "table",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "manual-table"
+                    }
+                  }
+                }
+              }
+            ],
+            "component_spec": {
+              "assets": [],
+              "component_id": "HB-TABLE-SPEC",
+              "language": "en",
+              "metadata": {},
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "TECHNICAL PARAMETER",
+                  "content_kind": "inline_text",
+                  "role": "section_title"
+                },
+                {
+                  "content": [
+                    {
+                      "label": "Product Name",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "Jackery Solar Curved Tile Obsidian"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Model Number",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "JS-45A"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Rated Maximum Power (P\nmax\n)",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "45W±5%"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Rated Operating Current (I\nmp\n)",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "9.93A±5%"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Rated Operating Voltage (V\nmp\n)",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "4.53V±5%"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Short Circuit Current (I\nsc\n)",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "10.36A±5%"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Open Circuit Voltage (V\noc\n)",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "5.54V±5%"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Nominal Module Operating Temperature (T\nnmot\n)",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "−40°C~85°C"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Weight",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "4.5kg"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Dimensions",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "720mm x 430mm x 35mm"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Maximum System Voltage",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "1000V"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Maximum Series Fuse Rating",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "20A"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Ingress Protection",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "IP68"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Fire Rating",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "Class C"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Impact Resistance Class",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "Class 3"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Cell Technology",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "IBC"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Application Class",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "Class A"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Min.Design Load",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "+3600Pa/−1600Pa"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Module [T98]max",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "70°C"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Connector Manufacturer",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "QC Solar (Suzhou)"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Connector Type",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "QC4.10-cds"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "All Technical Data at Standard",
+                      "label_rowspan": 1,
+                      "references": [],
+                      "values": [
+                        {
+                          "references": [],
+                          "text": "AM1.5, E=1000W/m², T\nc\n=25°C"
+                        }
+                      ]
+                    }
+                  ],
+                  "content_kind": "structured_rows",
+                  "role": "rows"
+                }
+              ],
+              "source_ref": "source/transcription.json#specifications/0",
+              "token_roles": [
+                "component.table.spec"
+              ],
+              "variant": "vertical"
+            },
+            "kind": "component",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#specifications#block-1"
+        }
+      ],
+      "language": "en",
+      "page_id": "specifications",
+      "skipped_raw": 0,
+      "source_path": "source/transcription.json",
+      "source_ref": "source/transcription.json#specifications",
+      "source_sha256": "50bd454c080a0efa8f1b4163873f5d37860a458c7f1ea1da4e88f2dc59c51bb7"
+    },
+    {
+      "blocks": [
+        {
+          "asset_refs": [],
+          "block_id": "in_the_box:block-0001",
+          "content_sha256": "ab8fdb997c5e540904e4e0ee22812ef3b186b6f723d28b563c82238ed7ae649b",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "PACKAGE LIST"
+              }
+            ],
+            "kind": "heading",
+            "level": 1,
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#in_the_box#block-1"
+        },
+        {
+          "asset_refs": [
+            "assets/inbox-product.png",
+            "assets/inbox-sheet.png"
+          ],
+          "block_id": "in_the_box:block-0002",
+          "content_sha256": "5055f949e827d16e66c68fc88e1ad232290cb75279fe8342c559bca4c7d07d38",
+          "kind": "flow",
+          "payload": {
+            "carrier_flow": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "alt": "Jackery Solar Curved Tile Obsidian",
+                                "kind": "image",
+                                "source": "assets/inbox-product.png"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Jackery Solar Curved Tile Obsidian"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "alt": "Specification Sheet",
+                                "kind": "image",
+                                "source": "assets/inbox-sheet.png"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Specification Sheet"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          }
+                        ],
+                        "kind": "table_row"
+                      }
+                    ],
+                    "kind": "table_body"
+                  }
+                ],
+                "kind": "table",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "manual-table"
+                    }
+                  }
+                }
+              }
+            ],
+            "component_spec": {
+              "assets": [
+                {
+                  "asset_ref": "assets/inbox-product.png",
+                  "locale_policy": "shared",
+                  "role": "card_art"
+                },
+                {
+                  "asset_ref": "assets/inbox-sheet.png",
+                  "locale_policy": "shared",
+                  "role": "card_art"
+                }
+              ],
+              "component_id": "HB-SPECIAL-INBOX",
+              "language": "en",
+              "metadata": {},
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "PACKAGE LIST",
+                  "content_kind": "inline_text",
+                  "role": "accessibility_label"
+                },
+                {
+                  "content": [
+                    {
+                      "alt": "Jackery Solar Curved Tile Obsidian",
+                      "image_asset_role": "card_art",
+                      "label": "Jackery Solar Curved Tile Obsidian",
+                      "number": 1
+                    },
+                    {
+                      "alt": "Specification Sheet",
+                      "image_asset_role": "card_art",
+                      "label": "Specification Sheet",
+                      "number": 2
+                    }
+                  ],
+                  "content_kind": "ordered_cards",
+                  "role": "cards"
+                },
+                {
+                  "content": "",
+                  "content_kind": "inline_text",
+                  "role": "tip_label"
+                },
+                {
+                  "content": "",
+                  "content_kind": "rich_text",
+                  "role": "tip_body"
+                }
+              ],
+              "source_ref": "source/transcription.json#in_the_box/0",
+              "token_roles": [
+                "component.special.inbox"
+              ],
+              "variant": "responsive-card-grid"
+            },
+            "kind": "component",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#in_the_box#block-2"
+        }
+      ],
+      "language": "en",
+      "page_id": "in_the_box",
+      "skipped_raw": 0,
+      "source_path": "source/transcription.json",
+      "source_ref": "source/transcription.json#in_the_box",
+      "source_sha256": "da22ceb8b21f2c8761ab929d2a0248ecfdf55cdc6f68620ae8d7d90287772af9"
+    },
+    {
+      "blocks": [
+        {
+          "asset_refs": [],
+          "block_id": "warranty:block-0001",
+          "content_sha256": "b8ee05e906b539549ebde23820e096a59dd3077da0e7577f53a5fc7b594da6fb",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "WARRANTY"
+              }
+            ],
+            "kind": "heading",
+            "level": 1,
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#warranty#block-1"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "warranty:block-0002",
+          "content_sha256": "a06c13b67d541c4175531cd24dc100b1f6768a89643aac3ffb32ecdcbd34d059",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "LIMITED PRODUCT WARRANTY"
+              }
+            ],
+            "kind": "heading",
+            "level": 2,
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#warranty#block-2"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "warranty:block-0003",
+          "content_sha256": "3ced6d20cfe1ce34c3e71d1ed713eb90a9de0ae2d848822b5f1406c4fe7f81d0",
+          "kind": "flow",
+          "payload": {
+            "component_spec": {
+              "assets": [],
+              "component_id": "HB-WARRANTY-SECTION",
+              "language": "en",
+              "metadata": {},
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "LIMITED PRODUCT WARRANTY",
+                  "content_kind": "inline_text",
+                  "role": "title"
+                },
+                {
+                  "content": 1,
+                  "content_kind": "block_index",
+                  "role": "section_index"
+                },
+                {
+                  "content": [
+                    {
+                      "html": "<p>Within 10 years from the date of installation, Jackery guarantees that the solar roof system it supplies, under the condition that it is installed, used, and maintained in accordance with the installation manual, will not experience product component failures caused by material or process defects that affect the normal installation or use of the product. (Except as otherwise specified in other clauses)</p>",
+                      "kind": "paragraph",
+                      "text": "Within 10 years from the date of installation, Jackery guarantees that the solar roof system it supplies, under the condition that it is installed, used, and maintained in accordance with the installation manual, will not experience product component failures caused by material or process defects that affect the normal installation or use of the product. (Except as otherwise specified in other clauses)"
+                    }
+                  ],
+                  "content_kind": "ordered_blocks",
+                  "role": "blocks"
+                }
+              ],
+              "source_ref": "source/transcription.json#warranty/0",
+              "token_roles": [
+                "component.warranty.section"
+              ],
+              "variant": "rounded-card"
+            },
+            "kind": "component",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#warranty#block-3"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "warranty:block-0004",
+          "content_sha256": "36ed9f26cdcb0b94f2648452763a2ac88f541371da45a2323d3342fd2bc291ee",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "LIMITED POWER WARRANTY"
+              }
+            ],
+            "kind": "heading",
+            "level": 2,
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#warranty#block-4"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "warranty:block-0005",
+          "content_sha256": "8b510d7f0e3b0b1bc25aeaece3ccb2f6f496d7deac3b461d8fe73038c0a3c584",
+          "kind": "flow",
+          "payload": {
+            "component_spec": {
+              "assets": [],
+              "component_id": "HB-WARRANTY-SECTION",
+              "language": "en",
+              "metadata": {},
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "LIMITED POWER WARRANTY",
+                  "content_kind": "inline_text",
+                  "role": "title"
+                },
+                {
+                  "content": 2,
+                  "content_kind": "block_index",
+                  "role": "section_index"
+                },
+                {
+                  "content": [
+                    {
+                      "html": "<p>Jackery offers a 25-year power output warranty starting from the date of installation, with the following terms:</p>",
+                      "kind": "paragraph",
+                      "text": "Jackery offers a 25-year power output warranty starting from the date of installation, with the following terms:"
+                    },
+                    {
+                      "html": "<p>Years 1–10: Actual power output shall not be less than 90% of the nameplate rating</p>",
+                      "kind": "paragraph",
+                      "text": "Years 1–10: Actual power output shall not be less than 90% of the nameplate rating"
+                    },
+                    {
+                      "html": "<p>Years 11–25: Actual power output shall not be less than 80% of the nameplate rating</p>",
+                      "kind": "paragraph",
+                      "text": "Years 11–25: Actual power output shall not be less than 80% of the nameplate rating"
+                    },
+                    {
+                      "html": "<p>Power output must be measured only under Standard Test Conditions (STC: Air Mass 1.5, Irradiance 1000W/m², Module Temperature 25°C).</p>",
+                      "kind": "paragraph",
+                      "text": "Power output must be measured only under Standard Test Conditions (STC: Air Mass 1.5, Irradiance 1000W/m², Module Temperature 25°C)."
+                    },
+                    {
+                      "html": "<p>All measurements must be performed by a third-party measurement institution approved either by the supplier or mutually by both parties.</p>",
+                      "kind": "paragraph",
+                      "text": "All measurements must be performed by a third-party measurement institution approved either by the supplier or mutually by both parties."
+                    },
+                    {
+                      "html": "<p>In accordance with IEC 60904, test uncertainty must be taken into account in all output measurements.</p>",
+                      "kind": "paragraph",
+                      "text": "In accordance with IEC 60904, test uncertainty must be taken into account in all output measurements."
+                    }
+                  ],
+                  "content_kind": "ordered_blocks",
+                  "role": "blocks"
+                }
+              ],
+              "source_ref": "source/transcription.json#warranty/1",
+              "token_roles": [
+                "component.warranty.section"
+              ],
+              "variant": "rounded-card"
+            },
+            "kind": "component",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#warranty#block-5"
+        }
+      ],
+      "language": "en",
+      "page_id": "warranty",
+      "skipped_raw": 0,
+      "source_path": "source/transcription.json",
+      "source_ref": "source/transcription.json#warranty",
+      "source_sha256": "ddb872b97c9cdb28d6b995e2a487c18871d1fd43c7648e30b16966f4d6d27a72"
+    },
+    {
+      "blocks": [
+        {
+          "asset_refs": [],
+          "block_id": "disclaimer:block-0001",
+          "content_sha256": "447b1933ae294a2c22f9f8c497c67326b19231baf8b85b168b901b9c186f1f44",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "DISCLAIMER"
+              }
+            ],
+            "kind": "heading",
+            "level": 1,
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#disclaimer#block-1"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "disclaimer:block-0002",
+          "content_sha256": "22205b954817e8b4a743fbe9f132ace10facafcc0b7153f6f0b2972a1385f918",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "Jackery’s warranty does not apply to:"
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#disclaimer#block-2"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "disclaimer:block-0003",
+          "content_sha256": "3f7663bc9ec1f63c195a9789f6a80e42cf6dc1d0b99d6962c586897f201bef8a",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "Misuse, abuse, modification, accidental damage, or for any purpose other than normal consumer use as authorized by Jackery’s current product literature."
+                      }
+                    ],
+                    "kind": "paragraph"
+                  }
+                ],
+                "kind": "list_item"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "Repaired by anyone other than an authorized agency."
+                      }
+                    ],
+                    "kind": "paragraph"
+                  }
+                ],
+                "kind": "list_item"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "Any product purchased from an unauthorized distributor or other source."
+                      }
+                    ],
+                    "kind": "paragraph"
+                  }
+                ],
+                "kind": "list_item"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "Deformation, cracking, or other failure or movement of the walls or foundation of the roof deck or the building itself for the applicable product."
+                      }
+                    ],
+                    "kind": "paragraph"
+                  }
+                ],
+                "kind": "list_item"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "Shading, staining, or discoloration of the product caused by external sources including, but not limited to, algae, fungi, moss, lichen, or other vegetation, mold, or paint, chemicals, or other similar materials."
+                      }
+                    ],
+                    "kind": "paragraph"
+                  }
+                ],
+                "kind": "list_item"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "Damage caused by installation in an unsuitable location, such as a corrosive environment or a location exposed to damaging chemicals."
+                      }
+                    ],
+                    "kind": "paragraph"
+                  }
+                ],
+                "kind": "list_item"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "Damage caused by acts of God, power surges, lightning strikes, hurricanes, tornadoes, hail, earthquakes, floods, fires, vandalism, tampering, accidental damage, or other circumstances beyond the control of the Company."
+                      }
+                    ],
+                    "kind": "paragraph"
+                  }
+                ],
+                "kind": "list_item"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "Damage due to improper installation, storage, operation, or maintenance, or failure to comply with the product documentation or any local laws, regulations, codes, and requirements."
+                      }
+                    ],
+                    "kind": "paragraph"
+                  }
+                ],
+                "kind": "list_item"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "Any marked modification or removal, reverse engineering or alteration of the original Jackery product or its original identification and serial number."
+                      }
+                    ],
+                    "kind": "paragraph"
+                  }
+                ],
+                "kind": "list_item"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "This product has been proven to be free from any defects in quality after all the corresponding tests have been carried out by Jackery and Jackery’s authorized repair facilities."
+                      }
+                    ],
+                    "kind": "paragraph"
+                  }
+                ],
+                "kind": "list_item"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "Force Majeure: \"Force Majeure\" means any unforeseen, unavoidable, or insurmountable event beyond the control of the parties to this Agreement that makes the performance of this Limited Liability partially or totally impossible."
+                      }
+                    ],
+                    "kind": "paragraph"
+                  }
+                ],
+                "kind": "list_item"
+              }
+            ],
+            "kind": "list",
+            "ordered": true,
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#disclaimer#block-3"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "disclaimer:block-0004",
+          "content_sha256": "22bdb062ee8397bac87ea58ee325a7efdd389b4bc6b9dbec177bb8c29e8064b1",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "Such events include, but are not limited to, earthquakes, hurricanes, floods, fires, wars, strikes, epidemics, riots, acts of government, changes in laws and regulations or the application thereof, or any other events that cannot be foreseen, avoided or controlled, including events that are generally regarded as Force Majeure in business practice."
+                      }
+                    ],
+                    "kind": "paragraph"
+                  }
+                ],
+                "kind": "list_item"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "If a Force Majeure Event occurs, the obligations of any party affected by the Force Majeure Event under this Limited Warranty shall be automatically suspended for the duration of the delay caused by the Force Majeure Event and the period of performance shall be automatically extended. The extended period shall be the suspension period, and the other party shall not be liable for breach of contract. The party claiming to be affected by the Force Majeure shall promptly notify the other party in writing and provide the other party with sufficient evidence of the occurrence and duration of the Force Majeure within 15 days after the occurrence of the Force Majeure."
+                      }
+                    ],
+                    "kind": "paragraph"
+                  }
+                ],
+                "kind": "list_item"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "The party claiming to be affected by the Force Majeure shall also make all reasonable efforts to eliminate the Force Majeure, otherwise, the other party shall not compensate for the increased losses caused by the Force Majeure. In the event of Force Majeure, both parties shall immediately negotiate a fair solution and make all reasonable efforts to minimize the impact of Force Majeure."
+                      }
+                    ],
+                    "kind": "paragraph"
+                  }
+                ],
+                "kind": "list_item"
+              }
+            ],
+            "kind": "list",
+            "ordered": false,
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#disclaimer#block-4"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "disclaimer:block-0005",
+          "content_sha256": "60b33bc41d28577fda68b8557d8a996cd3bfa571eb0117f8673aa7c3dcfa63d0",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "12. Other circumstances not covered by this policy but for which Jackery has sufficient evidence to refuse."
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#disclaimer#block-5"
+        }
+      ],
+      "language": "en",
+      "page_id": "disclaimer",
+      "skipped_raw": 0,
+      "source_path": "source/transcription.json",
+      "source_ref": "source/transcription.json#disclaimer",
+      "source_sha256": "f246e5cfe10660c7c0059d168af0ff7d067f58c4a81fa8cc69945e4a2d4d7352"
+    },
+    {
+      "blocks": [
+        {
+          "asset_refs": [],
+          "block_id": "after_sales:block-0001",
+          "content_sha256": "cacba4610a65fbf3d370ccf5ba10c3e0e926c362bd9ad5ee9472f4d9dcda6024",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "AFTER-SALES WARRANTY"
+              }
+            ],
+            "kind": "heading",
+            "level": 2,
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#after_sales#block-1"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "after_sales:block-0002",
+          "content_sha256": "923ce0ab8aaf58ad965850dd296c3443728062cded83d341a2d505374eed77e4",
+          "kind": "flow",
+          "payload": {
+            "component_spec": {
+              "assets": [],
+              "component_id": "HB-WARRANTY-SECTION",
+              "language": "en",
+              "metadata": {},
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "AFTER-SALES WARRANTY",
+                  "content_kind": "inline_text",
+                  "role": "title"
+                },
+                {
+                  "content": 1,
+                  "content_kind": "block_index",
+                  "role": "section_index"
+                },
+                {
+                  "content": [
+                    {
+                      "html": "<p>If the product does not work properly within the warranty period, you can contact our customer service team at hello@jackery.com for after-sales service. You will need to provide a valid proof of purchase, proof of warranty, product serial number, photographic or video proof of failure, and other information required by our customer support team for after-sales service.</p>",
+                      "kind": "paragraph",
+                      "text": "If the product does not work properly within the warranty period, you can contact our customer service team at hello@jackery.com for after-sales service. You will need to provide a valid proof of purchase, proof of warranty, product serial number, photographic or video proof of failure, and other information required by our customer support team for after-sales service."
+                    },
+                    {
+                      "html": "<p>Jackery will be responsible for the repair or replacement (at Jackery’s expense) of any Jackery product that fails to operate during the applicable warranty period due to defective workmanship or materials. The repaired or replaced product will carry the remaining warranty period of the original purchase date.</p>",
+                      "kind": "paragraph",
+                      "text": "Jackery will be responsible for the repair or replacement (at Jackery’s expense) of any Jackery product that fails to operate during the applicable warranty period due to defective workmanship or materials. The repaired or replaced product will carry the remaining warranty period of the original purchase date."
+                    }
+                  ],
+                  "content_kind": "ordered_blocks",
+                  "role": "blocks"
+                }
+              ],
+              "source_ref": "source/transcription.json#after_sales/0",
+              "token_roles": [
+                "component.warranty.section"
+              ],
+              "variant": "rounded-card"
+            },
+            "kind": "component",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#after_sales#block-2"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "after_sales:block-0003",
+          "content_sha256": "75a214e9c5baa330913ba0be67b8af749e5246496b89abd0bdcf41e55201725b",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "RIGHT OF INTERPRETATION"
+              }
+            ],
+            "kind": "heading",
+            "level": 2,
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#after_sales#block-3"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "after_sales:block-0004",
+          "content_sha256": "e9aeae018caceb4405d5a3173426cd111e2663ff0fe9a48bb63748f461beb956",
+          "kind": "flow",
+          "payload": {
+            "component_spec": {
+              "assets": [],
+              "component_id": "HB-WARRANTY-SECTION",
+              "language": "en",
+              "metadata": {},
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "RIGHT OF INTERPRETATION",
+                  "content_kind": "inline_text",
+                  "role": "title"
+                },
+                {
+                  "content": 2,
+                  "content_kind": "block_index",
+                  "role": "section_index"
+                },
+                {
+                  "content": [
+                    {
+                      "html": "<p>Jackery reserves the right of final interpretation of the above Customer After-Sales Policy.</p>",
+                      "kind": "paragraph",
+                      "text": "Jackery reserves the right of final interpretation of the above Customer After-Sales Policy."
+                    }
+                  ],
+                  "content_kind": "ordered_blocks",
+                  "role": "blocks"
+                }
+              ],
+              "source_ref": "source/transcription.json#after_sales/1",
+              "token_roles": [
+                "component.warranty.section"
+              ],
+              "variant": "rounded-card"
+            },
+            "kind": "component",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#after_sales#block-4"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "after_sales:block-0005",
+          "content_sha256": "3c1038fa5ab13e5a85313846b1fd1d7901497187aa72efc2848165127d3385bc",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "CONTACT US"
+              }
+            ],
+            "kind": "heading",
+            "level": 2,
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#after_sales#block-5"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "after_sales:block-0006",
+          "content_sha256": "585cce87f405082391607fe03b04d45b80e8fb9353c12969c373ea0ef3587fd9",
+          "kind": "flow",
+          "payload": {
+            "component_spec": {
+              "assets": [],
+              "component_id": "HB-WARRANTY-SECTION",
+              "language": "en",
+              "metadata": {},
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "CONTACT US",
+                  "content_kind": "inline_text",
+                  "role": "title"
+                },
+                {
+                  "content": 3,
+                  "content_kind": "block_index",
+                  "role": "section_index"
+                },
+                {
+                  "content": [
+                    {
+                      "html": "<p>hello@jackery.com (US)</p>",
+                      "kind": "paragraph",
+                      "text": "hello@jackery.com (US)"
+                    },
+                    {
+                      "html": "<p>hello.eu@jackery.com (EU)</p>",
+                      "kind": "paragraph",
+                      "text": "hello.eu@jackery.com (EU)"
+                    },
+                    {
+                      "html": "<p>jackery.jp@jackery.com (JP)</p>",
+                      "kind": "paragraph",
+                      "text": "jackery.jp@jackery.com (JP)"
+                    }
+                  ],
+                  "content_kind": "ordered_blocks",
+                  "role": "blocks"
+                }
+              ],
+              "source_ref": "source/transcription.json#after_sales/2",
+              "token_roles": [
+                "component.warranty.section"
+              ],
+              "variant": "rounded-card"
+            },
+            "kind": "component",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#after_sales#block-6"
+        }
+      ],
+      "language": "en",
+      "page_id": "after_sales",
+      "skipped_raw": 0,
+      "source_path": "source/transcription.json",
+      "source_ref": "source/transcription.json#after_sales",
+      "source_sha256": "5ae101c22e138b29adbedacd2db388c6c4bdeb05bbf786400b5271511a78f9bf"
+    },
+    {
+      "blocks": [
+        {
+          "asset_refs": [],
+          "block_id": "contacts:block-0001",
+          "content_sha256": "539293b808bb779935e173569eabeef58f715ac5433fa0ce1dcea7d14a235877",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "CONTACT INFORMATION"
+              }
+            ],
+            "kind": "heading",
+            "level": 1,
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#contacts#block-1"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "contacts:block-0002",
+          "content_sha256": "a54de1fc1b9956712e09e4b594e8c7d56b1b75d69d74da1af51c7951e4aa846e",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "JACKERY INC."
+              }
+            ],
+            "kind": "heading",
+            "level": 2,
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#contacts#block-2"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "contacts:block-0003",
+          "content_sha256": "203c3770b713d11bb9f0f23db73df11e78f47b6f33a3cec7e3b1f1e4672d2185",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "5310 Bunche Dr., Fremont, CA 94538-8301"
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#contacts#block-3"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "contacts:block-0004",
+          "content_sha256": "621e728b1b5457c1400b810e00258e63ce161fd67f4b0c79ca266987d8bd3004",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "hello@jackery.com · 1-888-502-2236 · www.jackery.com"
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#contacts#block-4"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "contacts:block-0005",
+          "content_sha256": "966c34ca363b5b27a1618d72a2e0b79a704449c1448c17d7043e2f3041f652d9",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "JACKERY TECHNOLOGY GMBH."
+              }
+            ],
+            "kind": "heading",
+            "level": 2,
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#contacts#block-5"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "contacts:block-0006",
+          "content_sha256": "8e1b0130ee749ad1d847c95a864d6056240f71db98a12012238e95876ca91716",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "Address: Bahnstraße 9, 40212 Düsseldorf, Germany"
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#contacts#block-6"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "contacts:block-0007",
+          "content_sha256": "8612c7be03df43fe5577921b3ee98bb93bb09ce663dc7a9a44e99c41d89c2077",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "hello.eu@jackery.com · +49 800 028 0208 · www.jackery.com"
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#contacts#block-7"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "contacts:block-0008",
+          "content_sha256": "d012a4a2c0517eb24e3c9a504b15e5fac1234903ab36701662e4e27fa78bc042",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "JACKERY UK LTD."
+              }
+            ],
+            "kind": "heading",
+            "level": 2,
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#contacts#block-8"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "contacts:block-0009",
+          "content_sha256": "5f23024eaa365367b4883fbff72c95599b83868c4e6100f6306923a16665ddce",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "Address: Suite B Fairgate House, 205 Kings Road Tyseley Birmingham B11 2AA, GB"
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#contacts#block-9"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "contacts:block-0010",
+          "content_sha256": "47347335a8cf6deace37d756d203c5110ab61a13030784c9539308def1a75813",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "hello.eu@jackery.com · +44 808 164 2377 · www.jackery.com"
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#contacts#block-10"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "contacts:block-0011",
+          "content_sha256": "a32de9068bc92f114934c2d7f69260c909f623c51acf0dfc3517acdee8dc637c",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "Shenzhen Hello Tech Energy Co.,Ltd."
+              }
+            ],
+            "kind": "heading",
+            "level": 2,
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#contacts#block-11"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "contacts:block-0012",
+          "content_sha256": "760279e291119e84c34f6a0beacf7e1fbe52a60f10e44c07eb8ad66f46a5eb73",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "Address: F2-3, Bldg. 7, Jiaanda Science and technology industrial park factory, the east side of Huafan Road, Tongsheng Community, Dalang Street, Longhua District, Shenzhen, Guangdong, China"
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#contacts#block-12"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "contacts:block-0013",
+          "content_sha256": "6e6577c83f6cb390150208ecac8f38a85512c16435b19531c658ef6ecc53dad4",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "sales@hello-tech.com · +86 400 668 9293 · http://www.hello-tech.com"
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#contacts#block-13"
+        },
+        {
+          "asset_refs": [
+            "assets/contact-qr.png"
+          ],
+          "block_id": "contacts:block-0014",
+          "content_sha256": "135ef963598edcf2db99978e443332986d3c820a160e80fb75e4afea16d64fff",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "alt": "Shenzhen Hello Tech contact QR code, complete printed frame",
+                "kind": "image",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "width": "110"
+                    }
+                  }
+                },
+                "source": "assets/contact-qr.png"
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#contacts#block-14"
+        }
+      ],
+      "language": "en",
+      "page_id": "contacts",
+      "skipped_raw": 0,
+      "source_path": "source/transcription.json",
+      "source_ref": "source/transcription.json#contacts",
+      "source_sha256": "dc2920bb92f23729e846d0f200c45c7e32e5360a7d4f2dc46e8cead960fb44a1"
+    }
+  ],
+  "region": "US",
+  "schema_version": "manual-ir/v2",
+  "snapshot_sha256": null,
+  "source": "prepared-document",
+  "style_contract_sha256": "92906316ba7586310924c9eb3b50b372bd129692d81bc37f9587374de2a993f4"
+}
