@@ -1,0 +1,104 @@
+[
+  {
+    "slot": "connection-adapters",
+    "mode": "new-extraction",
+    "sha256": "f530a0a8aa3404ef0c85047b1071847e235aee94123cddc69da3d182bdb949f9",
+    "size": [
+      1206,
+      530
+    ],
+    "edge_ink_pixels_threshold235": {
+      "top": 0,
+      "bottom": 0,
+      "left": 0,
+      "right": 0
+    },
+    "operator_pixel_approval": false
+  },
+  {
+    "slot": "solar-panel-connector",
+    "mode": "new-extraction",
+    "sha256": "bb384b2a117b9e426c01b70d3e6e8e9223cc8d0401c94573264e568c95168f11",
+    "size": [
+      1199,
+      305
+    ],
+    "edge_ink_pixels_threshold235": {
+      "top": 0,
+      "bottom": 0,
+      "left": 0,
+      "right": 0
+    },
+    "operator_pixel_approval": false
+  },
+  {
+    "slot": "sun-angle-indicator",
+    "mode": "new-extraction",
+    "sha256": "28e370c7c095866612fa4200b649bf031959e23148b4a24a784fcc3beb164f47",
+    "size": [
+      1060,
+      565
+    ],
+    "edge_ink_pixels_threshold235": {
+      "top": 0,
+      "bottom": 0,
+      "left": 0,
+      "right": 0
+    },
+    "operator_pixel_approval": false
+  },
+  {
+    "slot": "power-device",
+    "mode": "new-extraction",
+    "sha256": "9d2020b3bdc3290a5c666674670827b1d81e7bc42a7fa171d73a1dfd78878375",
+    "size": [
+      1262,
+      558
+    ],
+    "edge_ink_pixels_threshold235": {
+      "top": 0,
+      "bottom": 0,
+      "left": 0,
+      "right": 0
+    },
+    "operator_pixel_approval": false
+  },
+  {
+    "slot": "nom-mark",
+    "mode": "new-extraction",
+    "sha256": "abfc750371ee7fa28dd08cbf51fa85f7f512081fcfc949baeb559657e23d5f5b",
+    "size": [
+      110,
+      96
+    ],
+    "edge_ink_pixels_threshold235": {
+      "top": 0,
+      "bottom": 0,
+      "left": 0,
+      "right": 0
+    },
+    "operator_pixel_approval": false
+  },
+  {
+    "slot": "contact-qr",
+    "mode": "new-extraction",
+    "sha256": "df902144c2fb20d58290fa8f261af34abe6c221d67e2ea904a2ce733156e2a41",
+    "size": [
+      196,
+      195
+    ],
+    "edge_ink_pixels_threshold235": {
+      "top": 0,
+      "bottom": 0,
+      "left": 0,
+      "right": 0
+    },
+    "operator_pixel_approval": false
+  },
+  {
+    "slot": "fcc-mark",
+    "mode": "shared-reuse",
+    "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe",
+    "operator_pixel_approval": false
+  }
+]

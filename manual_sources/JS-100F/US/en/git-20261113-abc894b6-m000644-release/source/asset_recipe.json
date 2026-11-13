@@ -1,0 +1,437 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 40000000
+  },
+  "source": {
+    "source_key": "source/js-100f_us_m000644",
+    "expected_sha256": "abc894b6497212570b70e8683c52cbf23c94e573916776b1bfe9812a1a752dc5",
+    "expected_page_count": 7
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 7
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 1,
+      "page_scale": {}
+    }
+  },
+  "page_catalog": [
+    {
+      "page": 1,
+      "page_key": "p001",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 2,
+      "page_key": "p002",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 3,
+      "page_key": "p003",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 4,
+      "page_key": "p004",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 5,
+      "page_key": "p005",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 6,
+      "page_key": "p006",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 7,
+      "page_key": "p007",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "web/js-100f/us/m000644/connection-adapters",
+      "page": 4,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100F"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            31.86,
+            143.7,
+            320.94,
+            270.54
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/connection-adapters.png",
+          "scale": 4.1667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/js-100f/us/m000644/solar-panel-connector",
+      "page": 4,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100F"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            32.34,
+            340.5,
+            319.74,
+            413.34
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/solar-panel-connector.png",
+          "scale": 4.1667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/js-100f/us/m000644/sun-angle-indicator",
+      "page": 5,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100F"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            56.58,
+            24.66,
+            310.62,
+            159.9
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/sun-angle-indicator.png",
+          "scale": 4.1667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/js-100f/us/m000644/power-device",
+      "page": 5,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100F"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            32.58,
+            192.66,
+            335.1,
+            326.22
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/power-device.png",
+          "scale": 4.1667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/js-100f/us/m000644/nom-mark",
+      "page": 5,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100F"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            55.86,
+            328.02,
+            81.9,
+            350.7
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/nom-mark.png",
+          "scale": 4.1667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/js-100f/us/m000644/contact-qr",
+      "page": 7,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100F"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            296.82,
+            456.18,
+            343.5,
+            502.62
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/contact-qr.png",
+          "scale": 4.1667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    }
+  ]
+}

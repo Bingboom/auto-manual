@@ -1,0 +1,71 @@
+{
+  "authorization": "MA-438",
+  "model": "JS-100F",
+  "candidate_git_ref": "11b78216576176b73edea8b8caaf89cbf891e253",
+  "candidate_path": "manual_sources/JS-100F/US/en/git-20261113-abc894b6-m000644",
+  "approved_path": "manual_sources/JS-100F/US/en/git-20261113-abc894b6-m000644-release",
+  "native_pages_identical": true,
+  "content_sha256": "7f7b98450737fe876d5ccd5c16664285b622f9d22ea8f6616675b03ce050c259",
+  "source_pdf_identical": true,
+  "transcription_identical": true,
+  "artwork_identical": true,
+  "non_IR_web_files_byte_identical": [
+    "_static/web_manual.css",
+    "assets/connection-adapters.png",
+    "assets/contact-qr.png",
+    "assets/fcc-mark.svg",
+    "assets/nom-mark.png",
+    "assets/power-device.png",
+    "assets/solar-panel-connector.png",
+    "assets/sun-angle-indicator.png",
+    "conf.py",
+    "index.md",
+    "manual_js100f_us_en.md"
+  ],
+  "approved_IR_sha256": "66da38dc17bb127c5a616b72bdf394312bb11a00c881985de7d07b1813a2d915",
+  "metadata_changes_only": [
+    "approval provenance",
+    "publication eligibility",
+    "pending review resolution",
+    "technical snapshot identity"
+  ],
+  "audit_report_relocation": {
+    "authorization": "MA-438",
+    "publication_packaging": "r2 form of #1713: the non-serving shared-style audit JSON is kept outside the locale delivery root.",
+    "change": "Move shared-style audit JSON from serving root to evidence; preserve its bytes.",
+    "relocated_from": "web/en/shared-style-admission.json",
+    "relocated_to": "evidence/publish_shared_style_admission.json",
+    "relocated_file_sha256": "dac96202be7b5f16dc31944f4f3e249d328339134f273508f1f25bef3441af8d",
+    "native_pages_and_content_identical": true,
+    "body_artwork_CSS_and_remaining_web_files_identical": [
+      "_static/web_manual.css",
+      "assets/connection-adapters.png",
+      "assets/contact-qr.png",
+      "assets/fcc-mark.svg",
+      "assets/nom-mark.png",
+      "assets/power-device.png",
+      "assets/solar-panel-connector.png",
+      "assets/sun-angle-indicator.png",
+      "conf.py",
+      "index.md",
+      "manual_js100f_us_en.md"
+    ],
+    "serving_inventory": [
+      "_static/web_manual.css",
+      "assets/connection-adapters.png",
+      "assets/contact-qr.png",
+      "assets/fcc-mark.svg",
+      "assets/nom-mark.png",
+      "assets/power-device.png",
+      "assets/solar-panel-connector.png",
+      "assets/sun-angle-indicator.png",
+      "conf.py",
+      "index.md",
+      "manual.ir.json",
+      "manual_js100f_us_en.md"
+    ],
+    "approved_IR_sha256": "66da38dc17bb127c5a616b72bdf394312bb11a00c881985de7d07b1813a2d915"
+  },
+  "replay": "tools.web.frozen_ai_web.replay_package(web/en) passed",
+  "seal_gate": "tools.web.language_release_evidence.require_publishable_manual_ir(web/en) passed"
+}

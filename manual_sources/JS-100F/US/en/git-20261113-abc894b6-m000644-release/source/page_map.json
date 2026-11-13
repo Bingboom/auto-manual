@@ -1,0 +1,66 @@
+{
+  "source_physical_page_count": 7,
+  "chapters": [
+    {
+      "id": "specifications",
+      "source_pages": [
+        3
+      ]
+    },
+    {
+      "id": "safety",
+      "source_pages": [
+        3,
+        4
+      ]
+    },
+    {
+      "id": "how_to_use",
+      "source_pages": [
+        4,
+        5
+      ]
+    },
+    {
+      "id": "power_your_device",
+      "source_pages": [
+        5
+      ]
+    },
+    {
+      "id": "compliance",
+      "source_pages": [
+        5
+      ]
+    },
+    {
+      "id": "warranty",
+      "source_pages": [
+        6
+      ]
+    },
+    {
+      "id": "contacts_mexico",
+      "source_pages": [
+        7
+      ]
+    },
+    {
+      "id": "contacts",
+      "source_pages": [
+        7
+      ]
+    }
+  ],
+  "omissions": [
+    {
+      "physical_page": 2,
+      "reason": "Printed one-language contents locator (US English 01-04) is replaced by native Web navigation; no instruction omitted."
+    },
+    {
+      "physical_page": 1,
+      "reason": "Cover page is not rendered. Operator rule 2026-11-13 「封面信息 不用放进网页呀 直接从这个开始」: no cover information on the Web page; the page starts at the first body chapter. Title, product, model, V2 badge and cover contact lines are kept in transcription cover_facts, the manifest and the README; the contact details also appear in the body/back cover."
+    }
+  ],
+  "full_substantive_source_coverage": true
+}

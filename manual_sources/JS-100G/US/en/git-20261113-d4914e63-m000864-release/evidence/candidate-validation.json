@@ -1,0 +1,66 @@
+{
+  "target": "JS-100G/US/en",
+  "material": "38-0001-000864",
+  "technical_version": "git-20261113-d4914e63-m000864",
+  "status": "local-conversion-complete-review-candidate",
+  "publication_eligible": false,
+  "operator_source_acceptance": null,
+  "operator_pixel_acceptance": null,
+  "source_sha256": "d4914e638ea930c6cf99d3de2af19c2b924b6f0db730b8ab4c9895957d276fa2",
+  "source_physical_pages": 17,
+  "declared_omissions": [
+    {
+      "physical_page": 2,
+      "reason": "Printed table of contents (US English 01-14) is replaced by native Web navigation; no instruction omitted."
+    },
+    {
+      "physical_page": 1,
+      "reason": "Cover page is not rendered. Operator rule 2026-11-13 「封面信息 不用放进网页呀 直接从这个开始」: no cover information on the Web page; the page starts at the first body chapter. Title, product, model and cover contact lines are kept in transcription cover_facts, the manifest and the README; the contact details also appear in the body/back cover."
+    }
+  ],
+  "transcription_sha256": "c8d8859f0f151a2c38d18205a8b1678e2714c753db8d632b942c465c9f0381cd",
+  "page_map_sha256": "b1caf7dd135e02b1d51a1bfda0739f6bd4ba41b32b5e75cf8adb70eca391280c",
+  "manual_ir_sha256": "93d74c318f8658ca52aebd013c9dfeeb5bbd793e44214a54376e1a2c92b19110",
+  "markdown_sha256": "b8b1c0387e76ccdd0bb863d2bebe33d9e7d9c7642f328ae334759d0dddd7e3f1",
+  "shared_style_admission": [],
+  "shared_component_exceptions": [
+    {
+      "language": "en",
+      "page_id": "specifications",
+      "kind": "table",
+      "text_sha256": "f55cea7e4d451d4e988d671caaac5ba48950c91bbb38ffca66375b6f28184e47",
+      "reason": "Electrical Data STC/BNPI table: three columns with a header row and single values spanning both test conditions; HB-TABLE-SPEC is a two-column label/value table without header or column spans (precedent: JS-100I JP spec-table exception)."
+    }
+  ],
+  "browser": [
+    {
+      "viewport": 1280,
+      "page_overflow": false,
+      "images": 51,
+      "broken_images": 0,
+      "tables": [
+        {
+          "scrollWidth": 655,
+          "clientWidth": 655
+        }
+      ]
+    },
+    {
+      "viewport": 390,
+      "page_overflow": false,
+      "images": 51,
+      "broken_images": 0,
+      "tables": [
+        {
+          "scrollWidth": 582,
+          "clientWidth": 356
+        }
+      ]
+    }
+  ],
+  "strict_sphinx": "evidence/strict-sphinx.log (build succeeded, -n -W --keep-going)",
+  "cold_rebuild_and_tamper": "evidence/replay-and-tamper.json",
+  "independent_body_qc": "evidence/independent-body-qc.json",
+  "python": "3.13 (requirements.lock minus oss2/aliyun-python-sdk-core/crcmod)",
+  "cover_rule": "Operator rule 2026-11-13: cover/contents not rendered; first Web chapter is the first body chapter."
+}

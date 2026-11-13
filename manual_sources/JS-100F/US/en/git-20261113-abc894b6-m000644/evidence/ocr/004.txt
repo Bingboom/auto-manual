@@ -1,0 +1,55 @@
+* Under normal circumstances, PV modules may be exposed to higher currents or voltages than under
+standard test conditions. Therefore, when calculating the rated voltage of component, the rated
+current of conductor, and the size of the control device connected to the PV output, it is required to
+multiply the short-circuit current (Isc) and open circuit voltage (Voc) values marked on the component
+by a factor of 1.25.
+
+* Any damage to the product may lead to electric shock or fire.
+
+* Do not let artificial spotlight shine directly on the solar modules or panels.
+
+HOW TO USE
+
+Connect the cable to the solar panel and the DC input port of the portable power station.
+
+Tip: The cable comes with an adapter that allows it to connect to Jackery portable power station.
+1. DC8020 connector: suitable for the DC input port of Jackery portable power station (diameter: 8.1mm).
+2. DC8020-DC7909 adapter: suitable for the DC input port of Jackery portable power station (diameter: 8.0 mm).
+
+DC8020-DC7909 Adapter
+
+HEH EHH :
+JOCO co
+(on
+IOC CC —
+
+This multifunctional solar charging cable is only suitable for charging the Jackery SolarSaga 100 and
+should not be used with other solar panels.
+
+When using the Solar Panel Connector
+Connect the two solar panels to the solar panel connector respectively and then connect the solar panel
+connector to the DC input port of the portable power station.
+
+A 8
+DC8020 Male
+1 [ i
+|
+6 J—-—trrey —____, i
+6 Qa ——
+U Solar Panel Connector
+1 |
+DC8020 Male
+
+>< To maximize the power generation, adjust the orientation of SolarSaga 100 throughout the day to
+ensure full exposure of the panel surface to direct sunlight.
+
+Sun Angle Indicator
+
+The carry handle has a sun angle indicator. When sunlight hits its surface, a shadow will appear at its
+bottom.
+
+If the shadow falls on the white inner circle at its bottom, it means that the solar panel is facing directly
+towards sun and you can get optimal power generation; if not, it is suggested to adjust its angle until it
+does.
+
+02

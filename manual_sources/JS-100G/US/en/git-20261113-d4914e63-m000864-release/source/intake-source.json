@@ -1,0 +1,223 @@
+{
+  "material": "38-0001-000864",
+  "conversion_record_id": "reczz28SlRGJgrv1",
+  "record_model": "JS-100G",
+  "source_field": "单语言",
+  "source_table_id": "tbljbjaXaTD6V9PO",
+  "source_view_id": "vewy95Gdrv",
+  "source_field_id": "fldy7Xrarm",
+  "file_token": "PTEPb1FIbowKPJx6wLdcRLf3nZf",
+  "name": "38-0001-000864_Jackery_SolarSaga_100_Light_EN.pdf",
+  "size": 3363521,
+  "source_sha256": "d4914e638ea930c6cf99d3de2af19c2b924b6f0db730b8ab4c9895957d276fa2",
+  "physical_pages": 17,
+  "print_spec": "HTS017A-US-JAK 尺寸：130x185mm,材质:80g书纸,装订方式:胶装 RoHS REACH",
+  "finished_goods_spec": "HTS017A-US/CA-JAK Jackery 美加规（JS-100G）Solar Panel 100W 轻质柔性 黑橙色 成品 RoHS REACH",
+  "project": "HTS017",
+  "pages": [
+    {
+      "physical_page": 1,
+      "width": 367.2666931152344,
+      "height": 525.4827270507812,
+      "text_chars": 0,
+      "raster": [
+        [
+          1531,
+          2191
+        ]
+      ]
+    },
+    {
+      "physical_page": 2,
+      "width": 370.5023498535156,
+      "height": 525.4827270507812,
+      "text_chars": 0,
+      "raster": [
+        [
+          1545,
+          2191
+        ]
+      ]
+    },
+    {
+      "physical_page": 3,
+      "width": 370.5023498535156,
+      "height": 525.4827270507812,
+      "text_chars": 0,
+      "raster": [
+        [
+          1545,
+          2190
+        ]
+      ]
+    },
+    {
+      "physical_page": 4,
+      "width": 367.2666931152344,
+      "height": 525.4827270507812,
+      "text_chars": 0,
+      "raster": [
+        [
+          1531,
+          2190
+        ]
+      ]
+    },
+    {
+      "physical_page": 5,
+      "width": 370.5023498535156,
+      "height": 525.4827270507812,
+      "text_chars": 0,
+      "raster": [
+        [
+          1545,
+          2190
+        ]
+      ]
+    },
+    {
+      "physical_page": 6,
+      "width": 370.5023498535156,
+      "height": 525.4827270507812,
+      "text_chars": 0,
+      "raster": [
+        [
+          1545,
+          2190
+        ]
+      ]
+    },
+    {
+      "physical_page": 7,
+      "width": 370.5023498535156,
+      "height": 525.4827270507812,
+      "text_chars": 0,
+      "raster": [
+        [
+          1545,
+          2190
+        ]
+      ]
+    },
+    {
+      "physical_page": 8,
+      "width": 370.5023498535156,
+      "height": 525.4827270507812,
+      "text_chars": 0,
+      "raster": [
+        [
+          1545,
+          2190
+        ]
+      ]
+    },
+    {
+      "physical_page": 9,
+      "width": 370.5023498535156,
+      "height": 525.4827270507812,
+      "text_chars": 0,
+      "raster": [
+        [
+          1545,
+          2190
+        ]
+      ]
+    },
+    {
+      "physical_page": 10,
+      "width": 367.2666931152344,
+      "height": 525.4827270507812,
+      "text_chars": 0,
+      "raster": [
+        [
+          1531,
+          2190
+        ]
+      ]
+    },
+    {
+      "physical_page": 11,
+      "width": 370.5023498535156,
+      "height": 525.4827270507812,
+      "text_chars": 0,
+      "raster": [
+        [
+          1544,
+          2190
+        ]
+      ]
+    },
+    {
+      "physical_page": 12,
+      "width": 370.5023498535156,
+      "height": 525.4827270507812,
+      "text_chars": 0,
+      "raster": [
+        [
+          1545,
+          2190
+        ]
+      ]
+    },
+    {
+      "physical_page": 13,
+      "width": 367.2666931152344,
+      "height": 525.4827270507812,
+      "text_chars": 0,
+      "raster": [
+        [
+          1531,
+          2190
+        ]
+      ]
+    },
+    {
+      "physical_page": 14,
+      "width": 367.2666931152344,
+      "height": 525.4827270507812,
+      "text_chars": 0,
+      "raster": [
+        [
+          1531,
+          2190
+        ]
+      ]
+    },
+    {
+      "physical_page": 15,
+      "width": 367.2666931152344,
+      "height": 525.4827270507812,
+      "text_chars": 0,
+      "raster": [
+        [
+          1531,
+          2190
+        ]
+      ]
+    },
+    {
+      "physical_page": 16,
+      "width": 370.5023498535156,
+      "height": 525.4827270507812,
+      "text_chars": 0,
+      "raster": [
+        [
+          1545,
+          2190
+        ]
+      ]
+    },
+    {
+      "physical_page": 17,
+      "width": 367.2666931152344,
+      "height": 525.4827270507812,
+      "text_chars": 0,
+      "raster": [
+        [
+          1532,
+          2191
+        ]
+      ]
+    }
+  ]
+}

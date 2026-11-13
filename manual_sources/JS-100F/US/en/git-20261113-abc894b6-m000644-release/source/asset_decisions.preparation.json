@@ -1,0 +1,183 @@
+[
+  {
+    "slot": "fcc-mark",
+    "decision": "shared-reuse",
+    "repo_path": "docs/renderers/web/assets/shared/symbols/native-v1/fcc_mark.svg",
+    "repo_sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe",
+    "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe",
+    "identity_check": "Shared nested-C FCC mark (fcc/nested-c-native-dark) matches the printed FC glyph; same reuse as JE-1000D/JE-100A US packages.",
+    "reason": "Shared icon first; no source crop",
+    "background_policy": "Byte-identical shared SVG",
+    "review_status": "shared candidate; registry promotion pending",
+    "path": "assets/fcc-mark.svg",
+    "mode": "shared-reuse"
+  },
+  {
+    "slot": "connection-adapters",
+    "decision": "new-extraction",
+    "searched": [
+      "manual_sources/JS-100F",
+      "data/manual_sources/JS-100F/EU/en/1.0",
+      "docs/renderers/web/assets/js100f_eu_en",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Jackery SolarSaga 100 (JS-100F, V2 US booklet); exact source physical page 4",
+    "reason": "EU donor connection_adapters.png rejected: the EU V1 drawing shows blank two-fold panels, the US V2 page shows the 3x3 cell grid on each half; label text and layout otherwise match. Concrete geometry difference → new extraction.",
+    "source_path": "source/original.pdf",
+    "source_pdf_sha256": "abc894b6497212570b70e8683c52cbf23c94e573916776b1bfe9812a1a752dc5",
+    "physical_page": 4,
+    "bbox_pt": [
+      31.86,
+      143.7,
+      320.94,
+      270.54
+    ],
+    "background_policy": "Complete artwork or annotated diagram with all native leaders and embedded labels; surrounding prose stays native HTML; QR keeps four edges.",
+    "measurement_render_scale": 4.1667,
+    "review_status": "art-preparation-decision-before-extraction",
+    "path": "assets/connection-adapters.png",
+    "mode": "new-extraction"
+  },
+  {
+    "slot": "solar-panel-connector",
+    "decision": "new-extraction",
+    "searched": [
+      "manual_sources/JS-100F",
+      "data/manual_sources/JS-100F/EU/en/1.0",
+      "docs/renderers/web/assets/js100f_eu_en",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Jackery SolarSaga 100 (JS-100F, V2 US booklet); exact source physical page 4",
+    "reason": "EU donor solar_panel_connector.png rejected: blank panels in the EU V1 art versus gridded panels in the US V2 page.",
+    "source_path": "source/original.pdf",
+    "source_pdf_sha256": "abc894b6497212570b70e8683c52cbf23c94e573916776b1bfe9812a1a752dc5",
+    "physical_page": 4,
+    "bbox_pt": [
+      32.34,
+      340.5,
+      319.74,
+      413.34
+    ],
+    "background_policy": "Complete artwork or annotated diagram with all native leaders and embedded labels; surrounding prose stays native HTML; QR keeps four edges.",
+    "measurement_render_scale": 4.1667,
+    "review_status": "art-preparation-decision-before-extraction",
+    "path": "assets/solar-panel-connector.png",
+    "mode": "new-extraction"
+  },
+  {
+    "slot": "sun-angle-indicator",
+    "decision": "new-extraction",
+    "searched": [
+      "manual_sources/JS-100F",
+      "data/manual_sources/JS-100F/EU/en/1.0",
+      "docs/renderers/web/assets/js100f_eu_en",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Jackery SolarSaga 100 (JS-100F, V2 US booklet); exact source physical page 5",
+    "reason": "EU donor sun_angle_indicator.png rejected: blank two-fold panel in the EU V1 art versus gridded panel in the US V2 page.",
+    "source_path": "source/original.pdf",
+    "source_pdf_sha256": "abc894b6497212570b70e8683c52cbf23c94e573916776b1bfe9812a1a752dc5",
+    "physical_page": 5,
+    "bbox_pt": [
+      56.58,
+      24.66,
+      310.62,
+      159.9
+    ],
+    "background_policy": "Complete artwork or annotated diagram with all native leaders and embedded labels; surrounding prose stays native HTML; QR keeps four edges.",
+    "measurement_render_scale": 4.1667,
+    "review_status": "art-preparation-decision-before-extraction",
+    "path": "assets/sun-angle-indicator.png",
+    "mode": "new-extraction"
+  },
+  {
+    "slot": "power-device",
+    "decision": "new-extraction",
+    "searched": [
+      "manual_sources/JS-100F",
+      "data/manual_sources/JS-100F/EU/en/1.0",
+      "docs/renderers/web/assets/js100f_eu_en",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Jackery SolarSaga 100 (JS-100F, V2 US booklet); exact source physical page 5",
+    "reason": "EU donor power_device.png rejected: blank panel in the EU V1 art versus gridded panel in the US V2 page; labels identical. The FCC/NOM heading row below the diagram is excluded and stays native.",
+    "source_path": "source/original.pdf",
+    "source_pdf_sha256": "abc894b6497212570b70e8683c52cbf23c94e573916776b1bfe9812a1a752dc5",
+    "physical_page": 5,
+    "bbox_pt": [
+      32.58,
+      192.66,
+      335.1,
+      326.22
+    ],
+    "background_policy": "Complete artwork or annotated diagram with all native leaders and embedded labels; surrounding prose stays native HTML; QR keeps four edges.",
+    "measurement_render_scale": 4.1667,
+    "review_status": "art-preparation-decision-before-extraction",
+    "path": "assets/power-device.png",
+    "mode": "new-extraction"
+  },
+  {
+    "slot": "nom-mark",
+    "decision": "new-extraction",
+    "searched": [
+      "manual_sources/JS-100F",
+      "data/manual_sources/JS-100F/EU/en/1.0",
+      "docs/renderers/web/assets/js100f_eu_en",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Jackery SolarSaga 100 (JS-100F, V2 US booklet); exact source physical page 5",
+    "reason": "No shared NOM mark exists; the printed NOM logo is cropped once as a small inline mark (the adjacent FC glyph uses the shared FCC SVG).",
+    "source_path": "source/original.pdf",
+    "source_pdf_sha256": "abc894b6497212570b70e8683c52cbf23c94e573916776b1bfe9812a1a752dc5",
+    "physical_page": 5,
+    "bbox_pt": [
+      55.86,
+      328.02,
+      81.9,
+      350.7
+    ],
+    "background_policy": "Complete artwork or annotated diagram with all native leaders and embedded labels; surrounding prose stays native HTML; QR keeps four edges.",
+    "measurement_render_scale": 4.1667,
+    "review_status": "art-preparation-decision-before-extraction",
+    "path": "assets/nom-mark.png",
+    "mode": "new-extraction"
+  },
+  {
+    "slot": "contact-qr",
+    "decision": "new-extraction",
+    "searched": [
+      "manual_sources/JS-100F",
+      "data/manual_sources/JS-100F/EU/en/1.0",
+      "docs/renderers/web/assets/js100f_eu_en",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Jackery SolarSaga 100 (JS-100F, V2 US booklet); exact source physical page 7",
+    "reason": "Back-cover QR; no shared asset for this destination.",
+    "source_path": "source/original.pdf",
+    "source_pdf_sha256": "abc894b6497212570b70e8683c52cbf23c94e573916776b1bfe9812a1a752dc5",
+    "physical_page": 7,
+    "bbox_pt": [
+      296.82,
+      456.18,
+      343.5,
+      502.62
+    ],
+    "background_policy": "Complete artwork or annotated diagram with all native leaders and embedded labels; surrounding prose stays native HTML; QR keeps four edges.",
+    "measurement_render_scale": 4.1667,
+    "review_status": "art-preparation-decision-before-extraction",
+    "path": "assets/contact-qr.png",
+    "mode": "new-extraction"
+  }
+]

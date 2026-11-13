@@ -1,0 +1,35 @@
+{
+  "cold_rebuild": {
+    "files_identical": 13,
+    "ir_sha256": "d7b50e8f4b0f8bbe3e8098cbe2e9fc5768e2ffb4c394d2c2b6174e402098df04",
+    "markdown_sha256": "3df345b18266c2b6dcba1f5989c4eaca78b78e0e54a2919353edf2d70893f9bc"
+  },
+  "frozen_replay": "tools.web.frozen_ai_web.replay_package(web/en) passed",
+  "tamper_rejections": [
+    {
+      "kind": "artwork",
+      "rejected": true,
+      "message": "document asset missing or changed: assets/connection-adapters.png"
+    },
+    {
+      "kind": "shared_css",
+      "rejected": true,
+      "message": "frozen Web stylesheet changed"
+    },
+    {
+      "kind": "source_pdf",
+      "rejected": true,
+      "message": "ValueError: frozen input changed: source/original.pdf"
+    },
+    {
+      "kind": "native_body",
+      "rejected": true,
+      "message": "ValueError: frozen input changed: source/transcription.json"
+    },
+    {
+      "kind": "source_artwork",
+      "rejected": true,
+      "message": "ValueError: frozen input changed: assets/connection-adapters.png"
+    }
+  ]
+}

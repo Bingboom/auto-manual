@@ -1,0 +1,35 @@
+{
+  "cold_rebuild": {
+    "files_identical": 36,
+    "ir_sha256": "93d74c318f8658ca52aebd013c9dfeeb5bbd793e44214a54376e1a2c92b19110",
+    "markdown_sha256": "b8b1c0387e76ccdd0bb863d2bebe33d9e7d9c7642f328ae334759d0dddd7e3f1"
+  },
+  "frozen_replay": "tools.web.frozen_ai_web.replay_package(web/en) passed",
+  "tamper_rejections": [
+    {
+      "kind": "artwork",
+      "rejected": true,
+      "message": "document asset missing or changed: assets/adhesive-step-1.png"
+    },
+    {
+      "kind": "shared_css",
+      "rejected": true,
+      "message": "frozen Web stylesheet changed"
+    },
+    {
+      "kind": "source_pdf",
+      "rejected": true,
+      "message": "ValueError: frozen input changed: source/original.pdf"
+    },
+    {
+      "kind": "native_body",
+      "rejected": true,
+      "message": "ValueError: frozen input changed: source/transcription.json"
+    },
+    {
+      "kind": "source_artwork",
+      "rejected": true,
+      "message": "ValueError: frozen input changed: assets/adhesive-step-1.png"
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "material": "38-0001-000644",
+  "conversion_record_id": "reczz28YjyfRFKNV",
+  "record_model": "JS-100F",
+  "source_field": "单语言",
+  "source_table_id": "tbljbjaXaTD6V9PO",
+  "source_view_id": "vewy95Gdrv",
+  "source_field_id": "fldy7Xrarm",
+  "file_token": "IbiqbzHsGoPd2axS0vlctnTTnkc",
+  "name": "38-0001-000644_Jackery_SolarSaga_100_EN.pdf",
+  "size": 1682163,
+  "source_sha256": "abc894b6497212570b70e8683c52cbf23c94e573916776b1bfe9812a1a752dc5",
+  "physical_pages": 7,
+  "print_spec": "HTO587H-MX-JAK 尺寸：130*185mm,材质：80g双面印刷书纸,颜色：90%   RoHS REACH",
+  "finished_goods_spec": "HTO587H-US-JAK Jackery 美规 (JS-100F) Solar Panel 100W 黄河水电 黑橙色 成品 RoHS REACH",
+  "project": "HTO587",
+  "pages": [
+    {
+      "physical_page": 1,
+      "width": 365.3798828125,
+      "height": 523.4793701171875,
+      "text_chars": 0,
+      "raster": [
+        [
+          1523,
+          2183
+        ]
+      ]
+    },
+    {
+      "physical_page": 2,
+      "width": 367.383056640625,
+      "height": 523.4793701171875,
+      "text_chars": 0,
+      "raster": [
+        [
+          1532,
+          2183
+        ]
+      ]
+    },
+    {
+      "physical_page": 3,
+      "width": 367.383056640625,
+      "height": 521.4767456054688,
+      "text_chars": 0,
+      "raster": [
+        [
+          1532,
+          2174
+        ]
+      ]
+    },
+    {
+      "physical_page": 4,
+      "width": 367.383056640625,
+      "height": 521.4767456054688,
+      "text_chars": 0,
+      "raster": [
+        [
+          1531,
+          2174
+        ]
+      ]
+    },
+    {
+      "physical_page": 5,
+      "width": 367.383056640625,
+      "height": 521.4767456054688,
+      "text_chars": 0,
+      "raster": [
+        [
+          1532,
+          2174
+        ]
+      ]
+    },
+    {
+      "physical_page": 6,
+      "width": 367.383056640625,
+      "height": 521.4767456054688,
+      "text_chars": 0,
+      "raster": [
+        [
+          1532,
+          2174
+        ]
+      ]
+    },
+    {
+      "physical_page": 7,
+      "width": 365.3798828125,
+      "height": 523.4793701171875,
+      "text_chars": 0,
+      "raster": [
+        [
+          1524,
+          2182
+        ]
+      ]
+    }
+  ]
+}
