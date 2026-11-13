@@ -99,6 +99,10 @@ owns that snapshot (产品类别, 产品系列 and 商品简称 per model from t
 网页文档 tables, and the 通用指南 with their 适用产品, refreshed read-only), and
 `tools/rtd/portal_navigation.py` groups the manual library by it. See
 [product matrix page](../rtd_manual_portal/knowledge-pages.md#product-matrix-page).
+[`tools/product_facts/`](../../../tools/product_facts/) reuses the matrix's spec
+reading for the read-only own-product facts export (one record per model and
+market, each figure with its source row); it is a CLI, not part of the RTD
+build. See [product facts export](../product_facts_export.md).
 
 Internal frozen Web language projection lives in
 [`tools/web/language_bundle.py`](../../../tools/web/language_bundle.py); it projects
