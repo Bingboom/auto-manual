@@ -1,0 +1,24 @@
+TECHNICAL PARAMETERS
+
+(~ Product Name Jackery SolarSaga 100 Light >)
+Model JS-100G
+Electrical Data STC* BNPI*
+Maximum Power (Pmax) 1OOW+5% TlOW+5%
+Open-Circuit Voltage (Voc) 24.8V5% 27.1V5%
+Short-Circuit Current (Isc) 5.1SA#5% S.I1At5%
+Maximum Power Voltage (Vmp) 21.1V£5% 22.7V+5%
+Maximum Power Current (Imp) 4.85A+5% 5.47A+5%
+Maximum System Voltage 600V
+Maximum Reverse Current 15A
+Protection Class Against Electric Shock Class II
+IP Rating IP68
+Operating Temperature Range -40°C~85°C (-40°F~185°F )
+Dimensions 1060 x 560 x 16mm
+Weight 2.05 kgt0.5 kg
+Bifaciality Coefficient (back/front) 70%
+Voltage Temperature Coefficient -0.268%/°C
+
+LL Power Temperature Coefficient -0.3%/°C /)
+
+* STC (Standard Test Conditions, IOOOW/m?, 25°C, AM 1.5)
+* BNPI (Bifacial Nameplate Irradiance, Front OOOW/m’, Rear 135W/m?, 25°C, AM 1.5)

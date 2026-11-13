@@ -1,0 +1,67 @@
+{
+  "source_physical_page_count": 7,
+  "chapters": [
+    {
+      "id": "introduction",
+      "source_pages": [
+        1
+      ]
+    },
+    {
+      "id": "specifications",
+      "source_pages": [
+        3
+      ]
+    },
+    {
+      "id": "safety",
+      "source_pages": [
+        3,
+        4
+      ]
+    },
+    {
+      "id": "how_to_use",
+      "source_pages": [
+        4,
+        5
+      ]
+    },
+    {
+      "id": "power_your_device",
+      "source_pages": [
+        5
+      ]
+    },
+    {
+      "id": "compliance",
+      "source_pages": [
+        5
+      ]
+    },
+    {
+      "id": "warranty",
+      "source_pages": [
+        6
+      ]
+    },
+    {
+      "id": "contacts",
+      "source_pages": [
+        1,
+        7
+      ]
+    }
+  ],
+  "omissions": [
+    {
+      "physical_page": 2,
+      "reason": "Printed one-language contents locator (US English 01-04) is replaced by native Web navigation; no instruction omitted."
+    },
+    {
+      "physical_page": 1,
+      "reason": "Decorative cover product drawing, its 'The image is for reference only.' note and the wordmark are omitted; title, product name, model, V2 badge and cover contact lines are retained."
+    }
+  ],
+  "full_substantive_source_coverage": true
+}

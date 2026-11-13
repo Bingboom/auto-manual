@@ -1,0 +1,229 @@
+{
+  "model": "JS-100F",
+  "language": "en",
+  "source_sha256": "abc894b6497212570b70e8683c52cbf23c94e573916776b1bfe9812a1a752dc5",
+  "method": "Tesseract 5.3.4 OCR of each 300-dpi page raster (evidence/ocr), every line hand-corrected against the page pixels.",
+  "chapters": [
+    {
+      "id": "introduction",
+      "title": "USER GUIDE",
+      "source_pages": [1],
+      "blocks": [
+        {"kind": "paragraph", "text": "SolarSaga 100"},
+        {"kind": "paragraph", "text": "Model: JS-100F"},
+        {"kind": "paragraph", "text": "Version: V2"}
+      ]
+    },
+    {
+      "id": "specifications",
+      "title": "TECHNICAL PARAMETERS",
+      "source_pages": [3],
+      "blocks": [
+        {
+          "kind": "plain_table",
+          "reason": "Electrical Data STC/BNPI table: three columns with a header row and single values spanning both test conditions; HB-TABLE-SPEC is a two-column label/value table without header or column spans (precedent: JS-100I JP spec-table exception).",
+          "rows": [
+            ["Product Name:", {"text": "SolarSaga 100", "colspan": 2}],
+            ["Model No.:", {"text": "JS-100F", "colspan": 2}],
+            [{"text": "Electrical Data", "header": true}, {"text": "STC", "header": true}, {"text": "BNPI", "header": true}],
+            ["Peak Power (Pmax)", "100W±5W", "104W±5W"],
+            ["Open Circuit Voltage (Voc)", "24.8V±5%", "25V±5%"],
+            ["Short Circuit Current (Isc)", "5.4A±5%", "5.8A±5%"],
+            ["Power Voltage (Vmp)", "20.0V±5%", "20.1V±5%"],
+            ["Power Current (Imp)", "5.0A±5%", "5.2A±5%"],
+            ["Maximum System Voltage", {"text": "60V", "colspan": 2}],
+            ["Maximum Reverse Current", {"text": "15A", "colspan": 2}],
+            ["Protection Class Against Electric Shock", {"text": "Class II", "colspan": 2}],
+            ["Waterproof Level", {"text": "IP68", "colspan": 2}],
+            ["Operating Temperature Range", {"text": "-20°C~65°C (-4°F~149°F)", "colspan": 2}],
+            ["Dimensions (unfolded)", {"text": "1220x552x20mm", "colspan": 2}],
+            ["Dimensions (folded)", {"text": "610x552x35mm", "colspan": 2}],
+            ["Weight", {"text": "3.6 kg±0.3 kg", "colspan": 2}],
+            ["Bifaciality Coefficient (back/front)", {"text": "Pmax>30%, Voc>95%, Isc>32%", "colspan": 2}],
+            ["Voltage Temperature Coefficient", {"text": "-0.268%/°C", "colspan": 2}],
+            ["Power Temperature Coefficient", {"text": "-0.29%/°C", "colspan": 2}],
+            ["Photovoltaic Consumer Products", {"text": "IEC TS 63163 Consumer Product Category 2", "colspan": 2}]
+          ]
+        },
+        {"kind": "paragraph", "text": "STC (1000W/m², 25°C, AM 1.5). BNPI (Front 1000W/m², Rear 135W/m², 25°C, AM 1.5)."},
+        {"kind": "paragraph", "text": "Unfold the bracket and place it on a flat surface. The design load is 1600Pa, and the safety factor is 1.5 times."},
+        {
+          "kind": "specification",
+          "title": "Multifunctional Adapter",
+          "rows": [
+            ["USB-A Output", "5V⎓2.4A"],
+            ["USB-C Output", "5V⎓3A"]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "safety",
+      "title": "SAFETY TIPS",
+      "source_pages": [3, 4],
+      "blocks": [
+        {
+          "kind": "list",
+          "items": [
+            "Please read the user guide first before using this product.",
+            "Do not bend the folding solar panels.",
+            "Do not place the folding solar panels in trees, buildings or other shaded areas for use.",
+            "Do not immerse the folding solar panels in water or any other liquid.",
+            "Do not put solar panels in water directly, and use a damp cloth to gently wipe them when cleaning.",
+            "Do not use or store the folding solar panels near open flames or flammable materials.",
+            "Do not scratch the folding solar panels with sharp objects.",
+            "Do not put corrosive substances on the folding solar panels.",
+            "Do not step on or place heavy objects on the folding solar panels.",
+            "Do not disassemble the folding solar panels.",
+            "The output circuit of folding solar panel package must be connected to the equipment properly, and reverse connection of positive and negative poles is strictly prohibited.",
+            "Check the connection status of various components, wires, and plugs before use.",
+            "It is strictly prohibited to drop the products due to the nature of the material. Otherwise, it may cause internal damage to the solar panel, rendering the product unusable.",
+            "This product cannot be fixed for installation. Please put away the portable folding solar panels in case of strong winds, hail and other severe weather to avoid product damage or other hazards.",
+            "Under normal circumstances, PV modules may be exposed to higher currents or voltages than under standard test conditions. Therefore, when calculating the rated voltage of component, the rated current of conductor, and the size of the control device connected to the PV output, it is required to multiply the short-circuit current (Isc) and open circuit voltage (Voc) values marked on the component by a factor of 1.25.",
+            "Any damage to the product may lead to electric shock or fire.",
+            "Do not let artificial spotlight shine directly on the solar modules or panels."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "how_to_use",
+      "title": "HOW TO USE",
+      "source_pages": [4, 5],
+      "blocks": [
+        {"kind": "paragraph", "text": "Connect the cable to the solar panel and the DC input port of the portable power station."},
+        {
+          "kind": "callout",
+          "label": "Tip",
+          "variant": "tip",
+          "paragraphs": [
+            "The cable comes with an adapter that allows it to connect to Jackery portable power station.",
+            "1. DC8020 connector: suitable for the DC input port of Jackery portable power station (diameter: 8.1 mm).",
+            "2. DC8020-DC7909 adapter: suitable for the DC input port of Jackery portable power station (diameter: 8.0 mm)."
+          ]
+        },
+        {
+          "kind": "figure",
+          "asset": "connection-adapters",
+          "source_page": 4,
+          "alt": "SolarSaga 100 connected through its cable to a portable power station, once with the DC8020-DC7909 Adapter and once directly with the DC8020 Male connector."
+        },
+        {"kind": "paragraph", "text": "This multifunctional solar charging cable is only suitable for charging the Jackery SolarSaga 100 and should not be used with other solar panels."},
+        {"kind": "heading", "level": 2, "text": "When using the Solar Panel Connector"},
+        {"kind": "paragraph", "text": "Connect the two solar panels to the solar panel connector respectively and then connect the solar panel connector to the DC input port of the portable power station."},
+        {
+          "kind": "figure",
+          "asset": "solar-panel-connector",
+          "source_page": 4,
+          "alt": "Two SolarSaga 100 panels with DC8020 Male connectors joined by the Solar Panel Connector to the DC input port of a portable power station."
+        },
+        {"kind": "paragraph", "text": "※ To maximize the power generation, adjust the orientation of SolarSaga 100 throughout the day to ensure full exposure of the panel surface to direct sunlight."},
+        {"kind": "heading", "level": 2, "text": "Sun Angle Indicator"},
+        {"kind": "paragraph", "text": "The carry handle has a sun angle indicator. When sunlight hits its surface, a shadow will appear at its bottom."},
+        {"kind": "paragraph", "text": "If the shadow falls on the white inner circle at its bottom, it means that the solar panel is facing directly towards sun and you can get optimal power generation; if not, it is suggested to adjust its angle until it does."},
+        {
+          "kind": "figure",
+          "asset": "sun-angle-indicator",
+          "source_page": 5,
+          "alt": "Sun Angle Indicator: indicator point and shadow; shadow falls in the white inner circle (correct) or does not fall in the white inner circle (incorrect)."
+        }
+      ]
+    },
+    {
+      "id": "power_your_device",
+      "title": "POWER YOUR DEVICE",
+      "source_pages": [5],
+      "blocks": [
+        {
+          "kind": "figure",
+          "asset": "power-device",
+          "source_page": 5,
+          "alt": "SolarSaga 100 with the Multifunctional Adapter (USB-C, LED, USB-A) charging a portable power station through the DC8020 to DC7909 Adapter or DC8020, and a cell phone, power bank or tablet."
+        }
+      ]
+    },
+    {
+      "id": "compliance",
+      "title": "CAN ICES-003(B)/NMB-003(B)",
+      "source_pages": [5],
+      "blocks": [
+        {"kind": "image", "asset": "fcc-mark", "source_page": 5, "alt": "FCC mark", "width": 48},
+        {"kind": "image", "asset": "nom-mark", "source_page": 5, "alt": "NOM mark", "width": 48},
+        {"kind": "paragraph", "text": "NOTE: This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules. These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to radio communications. However, there is no guarantee that interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:"},
+        {
+          "kind": "list",
+          "items": [
+            "Reorient or relocate the receiving antenna.",
+            "Increase the separation between the equipment and receiver.",
+            "Connect the equipment into an outlet on a circuit different from that to which the receiver is connected.",
+            "Consult the dealer or an experienced radio/TV technician for help."
+          ]
+        },
+        {"kind": "paragraph", "text": "MODIFICATION: Any changes or modifications not expressly approved by the grantee of this device could void the user’s authority to operate the device."}
+      ]
+    },
+    {
+      "id": "warranty",
+      "title": "WARRANTY",
+      "source_pages": [6],
+      "blocks": [
+        {
+          "kind": "warranty",
+          "title": "WARRANTY",
+          "paragraphs": [
+            "The product is covered by a limited warranty from Jackery for the original purchaser that covers the product from defects in workmanship and materials for 36 months from the date of purchase ( damages from normal wear and tear, alteration, misuse, neglect, accident, service by anyone other than authorized service center, or act of God are not included ).",
+            "During the warranty period and upon verification of defects, this product will be replaced when returned with proper proof of purchase.",
+            "2 Years Extended Warranty: To activate the Warranty Extension, you must register your product online or contact our customer service team at hello@jackery.com to extend the standard warranty runtime."
+          ]
+        },
+        {
+          "kind": "warranty",
+          "title": "CONTACT US",
+          "paragraphs": [
+            "For any inquiries or comments concerning our products, please send an email to hello@jackery.com, and we will respond to you as soon as possible. If there is any quality-related issue with the product, you may request a replacement or refund by submitting a request form at www.jackery.com."
+          ]
+        },
+        {
+          "kind": "warranty",
+          "title": "CUSTOMER SERVICE",
+          "paragraphs": [
+            "3-year limited warranty",
+            "Lifetime technical support",
+            "hello@jackery.com",
+            "hello.mx@jackery.com (For Mexico only)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "contacts",
+      "title": "Contact us",
+      "source_pages": [1, 7],
+      "blocks": [
+        {"kind": "heading", "level": 2, "text": "JACKERY MEXICO S.A. DE C.V."},
+        {"kind": "paragraph", "text": "Calle Poseidón 18 PB, Crédito Constructor, Benito Juárez, C.P. 03940, Ciudad de México, México"},
+        {"kind": "heading", "level": 2, "text": "JACKERY INC."},
+        {"kind": "paragraph", "text": "5310 Bunche Dr, Fremont, CA 94538-8301"},
+        {"kind": "paragraph", "text": "1-888-502-2236"},
+        {"kind": "paragraph", "text": "hello@jackery.com"},
+        {"kind": "paragraph", "text": "hello.mx@jackery.com(For Mexico only)"},
+        {"kind": "link", "label": "", "url": "https://www.jackery.com", "text": "www.jackery.com"},
+        {
+          "kind": "image",
+          "asset": "contact-qr",
+          "source_page": 7,
+          "alt": "Jackery contact QR code",
+          "width": 160
+        }
+      ]
+    }
+  ],
+  "source_concerns": [
+    "Market identity: the print spec is HTO587H-MX-JAK and the booklet carries Mexico content (NOM mark, hello.mx@jackery.com 'For Mexico only', JACKERY MEXICO S.A. DE C.V. address), while the Feishu finished-goods spec is HTO587H-US-JAK. Transcribed as printed; route kept US.",
+    "Peak Power tolerance is printed as ±5W (100W±5W / 104W±5W) while every other electrical value uses ±5%. Retained as printed.",
+    "Maximum System Voltage is printed as 60V. Retained as printed; not cross-checked against another edition.",
+    "Source grammar is retained, e.g. 'the rated voltage of component, the rated current of conductor', 'facing directly towards sun', 'It is strictly prohibited to drop the products', '( damages ... included )' spacing.",
+    "The only printed manual version is the cover badge 'V2'; it is shown as 'Version: V2'. No JAK-UM version string is printed and none is inferred.",
+    "Cover and back-cover contact lines are printed as 'hello.mx@jackery.com (For Mexico only)' and 'hello.mx@jackery.com(For Mexico only)' respectively; each is kept as printed where it appears."
+  ]
+}

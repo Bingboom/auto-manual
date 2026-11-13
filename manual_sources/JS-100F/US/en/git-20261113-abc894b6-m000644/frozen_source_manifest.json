@@ -1,0 +1,208 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "target": {
+    "model": "JS-100F",
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "technical_version": "git-20261113-abc894b6-m000644"
+  },
+  "web_title": "Jackery SolarSaga 100",
+  "original_source": {
+    "filename": "38-0001-000644_Jackery_SolarSaga_100_EN.pdf",
+    "path": "source/original.pdf",
+    "sha256": "abc894b6497212570b70e8683c52cbf23c94e573916776b1bfe9812a1a752dc5",
+    "size": 1682163,
+    "physical_page_count": 7
+  },
+  "material": "38-0001-000644",
+  "feishu_source": {
+    "conversion_record_id": "reczz28YjyfRFKNV",
+    "source_table_id": "tbljbjaXaTD6V9PO",
+    "source_view_id": "vewy95Gdrv",
+    "source_field": "单语言",
+    "source_field_id": "fldy7Xrarm",
+    "source_file_token": "IbiqbzHsGoPd2axS0vlctnTTnkc"
+  },
+  "source_authority": "Operator request 2026-11-13 「把这几本说明书 转网页版」 for rows marked 是否要转网页文档 = Y-待转 in 发布文档管理 › 说明书网页 › 美规. The current 单语言 English attachment was downloaded read-only and SHA-256 locked. This image-only source governs all copy; no review acceptance or release approval inferred.",
+  "printed_manual_version": "V2 (cover badge; no JAK-UM version string printed)",
+  "language_scope": "single",
+  "publication_status": "review-candidate-no-release-authorization",
+  "publication_eligible": false,
+  "pending_source_review": [
+    "Operator review of the OCR-assisted English transcription, source concerns, decision items and artwork; no publication authorization granted."
+  ],
+  "web_roots": {
+    "en": "web/en"
+  },
+  "reference_edition": "JS-100F/EU/en/md — same product, older V1 data/template edition (data/manual_sources/JS-100F/EU/en/1.0, docs/templates/page_solar/js100f/en); used for structure comparison and artwork-reuse inventory only, no text copied.",
+  "component_map": {
+    "native_copy": "Native headings, paragraphs, safety and FCC bullet lists",
+    "specifications": "Printed STC/BNPI parameter table as a declared plain table (three columns with spans; HB-TABLE-SPEC has two); Multifunctional Adapter uses HB-TABLE-SPEC",
+    "tip": "HB-CALLOUT-STRIP variant tip with the printed 'Tip' label and both numbered connector lines",
+    "diagrams": "Four HB-SPECIAL-REFERENCE-FIGURE source diagrams with their embedded English labels (connection adapters, solar panel connector, sun angle indicator, power your device)",
+    "compliance": "Shared FCC SVG and source NOM mark as bounded inline marks; CAN ICES-003(B)/NMB-003(B) as the native heading",
+    "warranty": "HB-WARRANTY-SECTION for WARRANTY, CONTACT US and CUSTOMER SERVICE (printed as prose, so no years graphic is synthesized)",
+    "contact_qr": "Source QR as a bounded native contact image with all four edges",
+    "inbox_lcd_app_symbols": "Not printed; none added"
+  },
+  "normalizations": [
+    "Join raster line wraps; keep wording, case, punctuation and values as printed.",
+    "Omit cover drawing, wordmark, printed page numbers, US/English page badges and the printed contents page.",
+    "The cover badge 'V2' is shown as 'Version: V2'.",
+    "Customer Service icons (wrench, person, envelope) are carried by the shared warranty component styling rather than cropped.",
+    "Back-cover contact icons (phone, envelope, house) are dropped; the contact lines remain native text."
+  ],
+  "inputs": [
+    {
+      "path": "assets/connection-adapters.png",
+      "size": 83244,
+      "sha256": "f530a0a8aa3404ef0c85047b1071847e235aee94123cddc69da3d182bdb949f9"
+    },
+    {
+      "path": "assets/contact-qr.png",
+      "size": 6400,
+      "sha256": "df902144c2fb20d58290fa8f261af34abe6c221d67e2ea904a2ce733156e2a41"
+    },
+    {
+      "path": "assets/fcc-mark.svg",
+      "size": 1927,
+      "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+    },
+    {
+      "path": "assets/nom-mark.png",
+      "size": 2822,
+      "sha256": "abfc750371ee7fa28dd08cbf51fa85f7f512081fcfc949baeb559657e23d5f5b"
+    },
+    {
+      "path": "assets/power-device.png",
+      "size": 150186,
+      "sha256": "9d2020b3bdc3290a5c666674670827b1d81e7bc42a7fa171d73a1dfd78878375"
+    },
+    {
+      "path": "assets/solar-panel-connector.png",
+      "size": 45094,
+      "sha256": "bb384b2a117b9e426c01b70d3e6e8e9223cc8d0401c94573264e568c95168f11"
+    },
+    {
+      "path": "assets/sun-angle-indicator.png",
+      "size": 147091,
+      "sha256": "28e370c7c095866612fa4200b649bf031959e23148b4a24a784fcc3beb164f47"
+    },
+    {
+      "path": "derive_assets.py",
+      "size": 2288,
+      "sha256": "5504bd92f7c9f8bbb8d228efd55806d7347cd2629f97096d0943b740b1f94b27"
+    },
+    {
+      "path": "evidence/asset-intake.log",
+      "size": 497,
+      "sha256": "e0c954b32690062afbfca26f06cae3fa07010164b3170a5a1dbed4712cda12e3"
+    },
+    {
+      "path": "evidence/ocr/001.txt",
+      "size": 169,
+      "sha256": "3f7a0263441462ff7e2ef3324d26abd95c6cbb88de5db3b00ba4f832fcc84293"
+    },
+    {
+      "path": "evidence/ocr/002.txt",
+      "size": 32,
+      "sha256": "267673fad61c9984957f9df8db99b6da2f6bb99823558526af53f927a036a1a4"
+    },
+    {
+      "path": "evidence/ocr/003.txt",
+      "size": 2449,
+      "sha256": "40ffe49038b2e932c6fe0dda6209d4f968827c10fc56ebaa1f47d695c911a087"
+    },
+    {
+      "path": "evidence/ocr/004.txt",
+      "size": 2022,
+      "sha256": "699107cf91edf5e4c4d1518b6fa8d54670ea75f85a565510c30bb97d5df2a2fe"
+    },
+    {
+      "path": "evidence/ocr/005.txt",
+      "size": 1532,
+      "sha256": "daa80377c1cb9362c8ed695e1132016a7b1c6625073cb3e3708f4f5943cca819"
+    },
+    {
+      "path": "evidence/ocr/006.txt",
+      "size": 1151,
+      "sha256": "ab086bb3c63c4d4668b98718d42cbab6b89c101f7365d36b0210d049443c9e8d"
+    },
+    {
+      "path": "evidence/ocr/007.txt",
+      "size": 286,
+      "sha256": "ef65f87cf285d45a37fe9a2ccf0094fe79324aa3f39b9488d2b4cf8f8ee901ae"
+    },
+    {
+      "path": "refresh_manifest.py",
+      "size": 2267,
+      "sha256": "80bde6d5126aa5d0aaed9353a745aa50b1bcc8592612794a3b4bbd8b92a95261"
+    },
+    {
+      "path": "render.py",
+      "size": 17549,
+      "sha256": "d646fb792905ba0d4dbac999da927f6697b8307da634fdfe4c6fedf968f6050c"
+    },
+    {
+      "path": "source/asset_decisions.json",
+      "size": 10055,
+      "sha256": "0ed2350999dd34d243fa3f2af11baffbefd91be71f48eef7cdda9c3412429943"
+    },
+    {
+      "path": "source/asset_decisions.preparation.json",
+      "size": 7904,
+      "sha256": "7e32d86108fc4ac00995d68607d8088760421c3e1f963f6825d40dc04b4fcbdd"
+    },
+    {
+      "path": "source/asset_recipe.json",
+      "size": 8838,
+      "sha256": "d5f5b943594f3127770c8f514d4c361353167ea1b3bd4009ff1a13ae02b21e61"
+    },
+    {
+      "path": "source/intake-source.json",
+      "size": 2205,
+      "sha256": "32cf4f1a3d4449f5ff4d2b0d93a31fc8b1cf375c0bd7b91930d474768b958dba"
+    },
+    {
+      "path": "source/original.pdf",
+      "size": 1682163,
+      "sha256": "abc894b6497212570b70e8683c52cbf23c94e573916776b1bfe9812a1a752dc5"
+    },
+    {
+      "path": "source/page_map.json",
+      "size": 1225,
+      "sha256": "a142003c1471b540813a1c401820dcd18ee373e7abadc885cb62948dcb9d17e0"
+    },
+    {
+      "path": "source/transcription.json",
+      "size": 14301,
+      "sha256": "4ae6f9f6576c79fc0ed94fe871bf767c88c8550b11ddec3ba464cc3d0faf49d3"
+    },
+    {
+      "path": "source_manifest.json",
+      "size": 6955,
+      "sha256": "2ee272db96571f191e43303d840c5a06ad54e89384dd8b63c69a6aa828745d93"
+    }
+  ],
+  "repo_inputs": [
+    {
+      "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
+      "sha256": "a2773f7e96849e176a9909e8221e37c20eb9005cd2639415bf6a112d7c86527f"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/fcc_mark.svg",
+      "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+    }
+  ],
+  "shared_component_exceptions": [
+    {
+      "language": "en",
+      "page_id": "specifications",
+      "kind": "table",
+      "text_sha256": "c387174d07495a463ab9d74aba4cfb977940f023fe61ec70ff4d74398c9fadd7",
+      "reason": "Electrical Data STC/BNPI table: three columns with a header row and single values spanning both test conditions; HB-TABLE-SPEC is a two-column label/value table without header or column spans (precedent: JS-100I JP spec-table exception)."
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "source_physical_page_count": 17,
+  "chapters": [
+    {
+      "id": "introduction",
+      "source_pages": [
+        1
+      ]
+    },
+    {
+      "id": "warnings",
+      "source_pages": [
+        3
+      ]
+    },
+    {
+      "id": "fcc",
+      "source_pages": [
+        4
+      ]
+    },
+    {
+      "id": "in_the_box",
+      "source_pages": [
+        5
+      ]
+    },
+    {
+      "id": "installation",
+      "source_pages": [
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "id": "suspension_mounting",
+      "source_pages": [
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    },
+    {
+      "id": "multiple_panels",
+      "source_pages": [
+        13,
+        14
+      ]
+    },
+    {
+      "id": "specifications",
+      "source_pages": [
+        15
+      ]
+    },
+    {
+      "id": "warranty",
+      "source_pages": [
+        16
+      ]
+    },
+    {
+      "id": "contacts",
+      "source_pages": [
+        1,
+        17
+      ]
+    }
+  ],
+  "omissions": [
+    {
+      "physical_page": 2,
+      "reason": "Printed table of contents (US English 01-14) is replaced by native Web navigation; no instruction omitted."
+    },
+    {
+      "physical_page": 1,
+      "reason": "Decorative cover product drawing, its 'The image is for reference only.' note and the wordmark are omitted; title, product name, model and cover contact box are retained."
+    }
+  ],
+  "full_substantive_source_coverage": true
+}

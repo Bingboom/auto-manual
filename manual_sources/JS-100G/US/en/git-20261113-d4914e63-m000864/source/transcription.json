@@ -1,0 +1,313 @@
+{
+  "model": "JS-100G",
+  "language": "en",
+  "source_sha256": "d4914e638ea930c6cf99d3de2af19c2b924b6f0db730b8ab4c9895957d276fa2",
+  "method": "Tesseract 5.3.4 OCR of each 300-dpi page raster (evidence/ocr), every line hand-corrected against the page pixels.",
+  "chapters": [
+    {
+      "id": "introduction",
+      "title": "USER MANUAL",
+      "source_pages": [1],
+      "blocks": [
+        {"kind": "paragraph", "text": "Jackery SolarSaga 100 Light"},
+        {"kind": "paragraph", "text": "Model: JS-100G"}
+      ]
+    },
+    {
+      "id": "warnings",
+      "title": "WARNINGS",
+      "source_pages": [3],
+      "blocks": [
+        {
+          "kind": "list",
+          "items": [
+            "Read the user guide before using this product.",
+            "Do not place the solar panels under trees, buildings or in other shaded areas for use.",
+            "Do not submerge the solar panels in water or any other liquid for extended periods.",
+            "Use a damp cloth to gently wipe them clean.",
+            "Keep away from open flames or any flammable materials.",
+            "Do not scratch the solar panels with sharp objects.",
+            "Keep corrosive substances away from the solar panels.",
+            "Do not step on or place heavy objects on the solar panels.",
+            "Do not disassemble the solar panels.",
+            "The output circuit of the solar panel must be connected to the equipment correctly. Reverse connection of the positive and negative poles is strictly prohibited.",
+            "Check the connection status of all components, wires, and plugs before use.",
+            "Dropping the product is strictly prohibited due to the material's nature, as it may cause internal damage to the solar panel and render the product unusable.",
+            "Check and secure the solar panels ahead of strong winds, hail, or extreme weather to prevent damage.",
+            "Under normal circumstances, PV modules may be exposed to higher currents or voltages than under standard test conditions. Therefore, when calculating the rated voltage of the component, the rated current of the conductor, and the size of the control device connected to the PV output, it is required to multiply the short-circuit current (Isc) and open circuit voltage (Voc) values marked on the component by a factor of 1.25.",
+            "Any damage to the product may lead to electric shock or fire.",
+            "Avoid direct exposure of the solar modules or panels to artificial spotlights.",
+            "Do not place anything on the solar panel to avoid any residues that may damage or soil the surface.",
+            "If the front sheet is broken or the back panel is damaged, contact with any surface or frame of the panel could result in an electric shock.",
+            "Protect unconnected connectors before installation. Ensure they are kept free from contamination (e.g., dust, foreign objects, moisture), and do not expose unprotected connectors to the environment."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fcc",
+      "title": "FCC",
+      "source_pages": [4],
+      "blocks": [
+        {"kind": "image", "asset": "fcc-mark", "source_page": 4, "alt": "FCC mark", "width": 48},
+        {"kind": "paragraph", "text": "This device complies with part 15 of the FCC Rules. Operation is subject to the following two conditions:"},
+        {"kind": "paragraph", "text": "(1) This device may not cause harmful interference, and (2) this device must accept any interference received, including interference that may cause undesired operation."},
+        {"kind": "paragraph", "text": "NOTE: This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules."},
+        {"kind": "paragraph", "text": "These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to radio communications. However, there is no guarantee that interference will not occur in a particular installation."},
+        {"kind": "paragraph", "text": "If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:"},
+        {
+          "kind": "list",
+          "items": [
+            "Reorient or relocate the receiving antenna.",
+            "Increase the separation between the equipment and receiver.",
+            "Connect the equipment into an outlet on a circuit different from that to which the receiver is connected.",
+            "Consult the dealer or an experienced radio/TV technician for help."
+          ]
+        },
+        {"kind": "paragraph", "text": "MODIFICATION: Any changes or modifications not expressly approved by the grantee of this device could void the user’s authority to operate the device."}
+      ]
+    },
+    {
+      "id": "in_the_box",
+      "title": "WHAT'S IN THE BOX",
+      "source_pages": [5],
+      "blocks": [
+        {
+          "kind": "inbox",
+          "desktop_columns": 4,
+          "cards": [
+            ["inbox-panel", "Jackery SolarSaga 100 Light x 1"],
+            ["inbox-dc8020-adapter", "Anderson to DC8020 Adapter x 1"],
+            ["inbox-dc7909-adapter", "Anderson to DC7909 Adapter x 1"],
+            ["inbox-manual", "User Manual"]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "installation",
+      "title": "INSTALLATION",
+      "source_pages": [5, 6, 7],
+      "blocks": [
+        {
+          "kind": "figure",
+          "asset": "front-rear-view",
+          "source_page": 5,
+          "alt": "Front View of the SolarSaga 100 Light with the junction box circled, and Rear View with three adhesive strips."
+        },
+        {"kind": "paragraph", "text": "The Jackery SolarSaga 100 Light supports both adhesive mounting and suspension mounting."},
+        {"kind": "heading", "level": 2, "text": "Adhesive Mounting"},
+        {"kind": "callout", "label": "Note", "variant": "note", "paragraphs": ["Adhesive is not included. Please purchase a suitable adhesive separately."]},
+        {
+          "kind": "callout",
+          "label": "⚠",
+          "variant": "warning",
+          "paragraphs": [
+            "* Do not attach this product to walls using adhesive methods.",
+            "* This type of adhesive installation is suitable only for low and smooth surfaces, such as the exterior surfaces of vehicles like cars or yachts. Strictly avoid sticking or mounting this product onto the exterior walls of high-rise buildings, as it may create serious safety risks."
+          ]
+        },
+        {
+          "kind": "callout",
+          "label": "⚠",
+          "variant": "warning",
+          "paragraphs": [
+            "* Ensure both the substrate and the back of the solar panel are clean before applying the adhesive.",
+            "* Avoid applying excessive pressure or stepping on the solar panel to prevent damage.",
+            "* Clean the solar panel and installation surface immediately after installation.",
+            "* Avoid the adhesive covering the front of the solar panel."
+          ]
+        },
+        {"kind": "heading", "level": 3, "text": "Step-by-Step Instructions"},
+        {"kind": "panel", "blocks": [
+          {"kind": "paragraph", "text": "1. Place the solar panel face down on a flat surface."},
+          {"kind": "figure", "asset": "adhesive-step-1", "source_page": 6, "alt": "The solar panel lying face down on a flat surface."}
+        ]},
+        {"kind": "panel", "blocks": [
+          {"kind": "paragraph", "text": "2. Mark about every 20 cm (8 inches) on the back of the solar panel."},
+          {"kind": "figure", "asset": "adhesive-step-2", "source_page": 6, "alt": "Marks every 20cm/8in along the back edge of the panel, with an enlarged detail of the pen at a 20cm mark."}
+        ]},
+        {"kind": "panel", "blocks": [
+          {"kind": "paragraph", "text": "3. Apply adhesive evenly along the marked positions."},
+          {"kind": "paragraph", "text": "* It is recommended to use silicone sealant or high-bond double-sided tape to secure the solar panel. Please note that this is a permanent installation method. Removing the tape after installation may cause structural damage to the product and affect its normal operation."},
+          {"kind": "figure", "asset": "adhesive-step-3", "source_page": 6, "alt": "Adhesive applied with a caulking gun along the marked lines on the back of the panel, with an enlarged detail."}
+        ]},
+        {"kind": "panel", "blocks": [
+          {"kind": "paragraph", "text": "4. Carefully flip the solar panel and press it gently onto the installation surface."},
+          {"kind": "figure", "asset": "adhesive-step-4", "source_page": 7, "alt": "The panel flipped over and pressed onto the installation surface."}
+        ]},
+        {"kind": "panel", "blocks": [
+          {"kind": "paragraph", "text": "5. Add adhesive to the gap between the solar panel and the installation surface."},
+          {"kind": "figure", "asset": "adhesive-step-5", "source_page": 7, "alt": "Adhesive added with a caulking gun to the gap around the mounted panel, with an enlarged detail."}
+        ]},
+        {"kind": "panel", "blocks": [
+          {"kind": "paragraph", "text": "6. Let it sit for 24 hours to allow the adhesive to cure."},
+          {"kind": "figure", "asset": "adhesive-step-6", "source_page": 7, "alt": "The mounted panel with a 24H curing symbol."}
+        ]}
+      ]
+    },
+    {
+      "id": "suspension_mounting",
+      "title": "Suspension Mounting",
+      "source_pages": [8, 9, 10, 11, 12],
+      "blocks": [
+        {"kind": "callout", "label": "Note", "variant": "note", "paragraphs": ["For suspension mounting, please purchase the Jackery Suspension Wire Kit separately."]},
+        {
+          "kind": "inbox",
+          "label": "Jackery Suspension Wire Kit (Sold Separately)",
+          "desktop_columns": 3,
+          "cards": [
+            ["kit-rope", "Rope × 2"],
+            ["kit-rope-tensioner", "Rope tensioner × 2"],
+            ["kit-rope-clamp", "Rope clamp × 2"]
+          ]
+        },
+        {"kind": "heading", "level": 2, "text": "1. How to Use Rope Clamp"},
+        {"kind": "figure", "asset": "rope-clamp-use", "source_page": 8, "alt": "Rope clamp use in three steps: ① loosen the wing nut, ② slide the rope through the clamp, ③ tighten the wing nut."},
+        {"kind": "heading", "level": 2, "text": "2. How to Use Rope tensioner"},
+        {"kind": "paragraph", "text": "Thread the rope through the rope tensioner."},
+        {"kind": "figure", "asset": "tensioner-thread", "source_page": 8, "alt": "Threading the rope through the rope tensioner in two steps ① and ②."},
+        {"kind": "paragraph", "text": "Release the rope from the rope tensioner."},
+        {"kind": "figure", "asset": "tensioner-release", "source_page": 8, "alt": "Releasing the rope from the rope tensioner in two steps ① and ②."},
+        {"kind": "heading", "level": 2, "text": "Step-by-Step Instructions"},
+        {"kind": "heading", "level": 3, "text": "Step 1: Prepare and Thread the Ropes Through the Solar Panel."},
+        {"kind": "panel", "blocks": [
+          {"kind": "paragraph", "text": "1. Tighten the rope clamp 20 cm to 30 cm from the end of each rope."},
+          {"kind": "figure", "asset": "suspension-1-1", "source_page": 9, "alt": "Rope clamp tightened on the rope 20 cm to 30 cm from its end."}
+        ]},
+        {"kind": "panel", "blocks": [
+          {"kind": "paragraph", "text": "2. Thread the rope through the eyelets."},
+          {"kind": "figure", "asset": "suspension-1-2", "source_page": 9, "alt": "The rope threaded through the panel eyelets in order ①, ② and ③, with enlarged details."}
+        ]},
+        {"kind": "panel", "blocks": [
+          {"kind": "paragraph", "text": "3. Thread the rope through one inlet port of the tensioner."},
+          {"kind": "paragraph", "text": "TIP: Ensure that the rope is threaded from the correct side of the tensioner."},
+          {"kind": "figure", "asset": "suspension-1-3", "source_page": 9, "alt": "About 2cm of rope threaded into one inlet port of the tensioner, shown at the top corner of the panel."}
+        ]},
+        {"kind": "heading", "level": 3, "text": "Step 2: Fix the upper ends of the ropes to the railing beam."},
+        {"kind": "panel", "blocks": [
+          {"kind": "paragraph", "text": "1. Pass the upper rope end over the railing beam."},
+          {"kind": "figure", "asset": "suspension-2-1", "source_page": 10, "alt": "The upper rope end passed over the railing beam, with an enlarged detail."}
+        ]},
+        {"kind": "panel", "blocks": [
+          {"kind": "paragraph", "text": "2. Pass the rope end through the tensioner's other inlet port."},
+          {"kind": "figure", "asset": "suspension-2-2", "source_page": 10, "alt": "The rope end passed through the tensioner's other inlet port, with an enlarged detail."}
+        ]},
+        {"kind": "panel", "blocks": [
+          {"kind": "paragraph", "text": "3. Turn the solar panel over the hand railing to place it outside the balcony."},
+          {"kind": "figure", "asset": "suspension-2-3", "source_page": 11, "alt": "The solar panel turned over the hand railing to the outside of the balcony."}
+        ]},
+        {"kind": "heading", "level": 3, "text": "Step 3: Fix the bottom ends of the ropes to the railing beam."},
+        {"kind": "panel", "blocks": [
+          {"kind": "paragraph", "text": "1. Wrap the lower rope end around the railing beam."},
+          {"kind": "figure", "asset": "suspension-3-1", "source_page": 11, "alt": "The lower rope end wrapped around the railing beam, with an enlarged detail."}
+        ]},
+        {"kind": "panel", "blocks": [
+          {"kind": "paragraph", "text": "2. Loosen the wing nut of the rope clamp, thread the rope through, and then tighten the wing nut."},
+          {"kind": "figure", "asset": "suspension-3-2", "source_page": 12, "alt": "The rope threaded through the loosened rope clamp at the lower railing beam, with an enlarged detail."}
+        ]},
+        {"kind": "callout", "label": "⚠", "variant": "warning", "paragraphs": ["Do not loosen two wing nuts simultaneously to prevent the solar panel from slipping off."]},
+        {"kind": "panel", "blocks": [
+          {"kind": "paragraph", "text": "3.Pull the upper rope end to tighten it securely."},
+          {"kind": "figure", "asset": "suspension-3-3", "source_page": 12, "alt": "The solar panel suspended securely on the outside of the balcony railing."}
+        ]}
+      ]
+    },
+    {
+      "id": "multiple_panels",
+      "title": "How to Connect Multiple Solar Panels",
+      "source_pages": [13, 14],
+      "blocks": [
+        {"kind": "paragraph", "text": "Multiple Jackery SolarSaga 100 Light panels can be connected in series or parallel using the Jackery Anderson Y Series Connector or Jackery Anderson Y Parallel Connector. The Jackery Anderson Y Parallel Connector and Jackery Anderson Y Series Connector can be purchased on the official Jackery website."},
+        {"kind": "heading", "level": 2, "text": "Important Notes:"},
+        {"kind": "paragraph", "text": "* The two solar panels connected to the input ports of the connector must have the same specifications."},
+        {"kind": "paragraph", "text": "* The output voltage in series connection is the sum of the input voltages, while the output current in parallel connection is the sum of the input currents."},
+        {"kind": "paragraph", "text": "For the solar generator connection guide, please visit the Jackery official website or contact Jackery customer service."},
+        {"kind": "paragraph", "text": "* Jackery SolarSaga 100 Light panels can be connected in various series and/or parallel configurations for different models of power generators. Please refer to the Jackery website for details."},
+        {"kind": "figure", "asset": "series-connection", "source_page": 13, "alt": "Series connection: two SolarSaga 100 Light panels joined by the Anderson Y Series Connector (marked S)."},
+        {"kind": "figure", "asset": "parallel-connection", "source_page": 14, "alt": "Parallel connection: two SolarSaga 100 Light panels joined by the Anderson Y Parallel Connector (marked P)."}
+      ]
+    },
+    {
+      "id": "specifications",
+      "title": "TECHNICAL PARAMETERS",
+      "source_pages": [15],
+      "blocks": [
+        {
+          "kind": "plain_table",
+          "reason": "Electrical Data STC/BNPI table: three columns with a header row and single values spanning both test conditions; HB-TABLE-SPEC is a two-column label/value table without header or column spans (precedent: JS-100I JP spec-table exception).",
+          "rows": [
+            ["Product Name", {"text": "Jackery SolarSaga 100 Light", "colspan": 2}],
+            ["Model", {"text": "JS-100G", "colspan": 2}],
+            [{"text": "Electrical Data", "header": true}, {"text": "STC*", "header": true}, {"text": "BNPI*", "header": true}],
+            ["Maximum Power (Pmax)", "100W±5%", "110W±5%"],
+            ["Open-Circuit Voltage (Voc)", "24.8V±5%", "27.1V±5%"],
+            ["Short-Circuit Current (Isc)", "5.15A±5%", "5.91A±5%"],
+            ["Maximum Power Voltage (Vmp)", "21.1V±5%", "22.7V±5%"],
+            ["Maximum Power Current (Imp)", "4.85A±5%", "5.47A±5%"],
+            ["Maximum System Voltage", {"text": "600V", "colspan": 2}],
+            ["Maximum Reverse Current", {"text": "15A", "colspan": 2}],
+            ["Protection Class Against Electric Shock", {"text": "Class II", "colspan": 2}],
+            ["IP Rating", {"text": "IP68", "colspan": 2}],
+            ["Operating Temperature Range", {"text": "-40°C~85°C (-40°F~185°F)", "colspan": 2}],
+            ["Dimensions", {"text": "1060 x 560 x 16mm", "colspan": 2}],
+            ["Weight", {"text": "2.05 kg±0.5 kg", "colspan": 2}],
+            ["Bifaciality Coefficient (back/front)", {"text": "70%", "colspan": 2}],
+            ["Voltage Temperature Coefficient", {"text": "-0.268%/°C", "colspan": 2}],
+            ["Power Temperature Coefficient", {"text": "-0.3%/°C", "colspan": 2}]
+          ]
+        },
+        {"kind": "paragraph", "text": "* STC (Standard Test Conditions, 1000W/m², 25°C, AM 1.5)"},
+        {"kind": "paragraph", "text": "* BNPI (Bifacial Nameplate Irradiance, Front 1000W/m², Rear 135W/m², 25°C, AM 1.5)"}
+      ]
+    },
+    {
+      "id": "warranty",
+      "title": "WARRANTY",
+      "source_pages": [16],
+      "blocks": [
+        {"kind": "heading", "level": 2, "text": "Warranty Period"},
+        {
+          "kind": "years",
+          "title": "Warranty Period",
+          "periods": [
+            {
+              "number": "5",
+              "unit": "YEARS",
+              "label": "Standard Warranty",
+              "body": [
+                "The product is covered by a limited warranty from Jackery for the original purchaser that covers the product from defects in workmanship and materials for 5 years from the date of purchase (damages from normal wear and tear, alteration, misuse, neglect, accident, service by anyone other than authorized service center, or act of God are not included).",
+                "During the warranty period and upon verification of defects, this product will be replaced when returned with proper proof of purchase."
+              ]
+            }
+          ]
+        },
+        {"kind": "warranty", "title": "Interpretation Rights", "paragraphs": ["Jackery Inc. reserves the right to final interpretation of the above customers' after-sales policy."]},
+        {"kind": "warranty", "title": "Contact Us", "paragraphs": ["For any inquiries or comments concerning our products, please send an email to hello@jackery.com, and we will respond to you as soon as possible. If there is any quality-related issue with the product, you may request a replacement or refund by submitting a request form at www.jackery.com."]},
+        {"kind": "warranty", "title": "Customer Service", "paragraphs": ["5 years limited warranty", "hello@jackery.com", "Lifetime technical support"]}
+      ]
+    },
+    {
+      "id": "contacts",
+      "title": "Jackery Inc.",
+      "source_pages": [1, 17],
+      "blocks": [
+        {"kind": "paragraph", "text": "5310 Bunche Dr, Fremont, CA 94538-8301"},
+        {"kind": "paragraph", "text": "Tel:1-888-502-2236(US)"},
+        {"kind": "paragraph", "text": "E-mail:hello@jackery.com"},
+        {"kind": "link", "label": "Website:", "url": "https://www.jackery.com", "text": "www.jackery.com"},
+        {"kind": "image", "asset": "contact-qr", "source_page": 17, "alt": "Jackery contact QR code", "width": 160}
+      ]
+    }
+  ],
+  "source_concerns": [
+    "No manual version is printed anywhere in the booklet (cover shows only 'Model: JS-100G'); none is inferred.",
+    "Maximum System Voltage is printed as 600V for a panel with Voc 24.8V/27.1V (JS-100F prints 60V). Retained as printed; flagged for the product owner.",
+    "Weight is printed as '2.05 kg±0.5 kg' (a ±24% tolerance). Retained as printed.",
+    "Bifaciality Coefficient (back/front) is a single '70%' value (JS-100F prints separate Pmax/Voc/Isc ratios). Retained as printed.",
+    "Typography retained as printed: '3.Pull' (no space after the step number), '2. How to Use Rope tensioner' (lower-case t), kit quantities use '×' while the box list uses 'x', 'above customers' after-sales policy'.",
+    "In 'Important Notes:' the line 'For the solar generator connection guide, please visit ...' is printed without an asterisk between two asterisked notes; kept as a separate unstarred paragraph.",
+    "Printed table of contents lists INSTALLATION as one section (pages 03-12) containing Adhesive Mounting, Suspension Mounting and How to Connect Multiple Solar Panels; the Web splits these into three navigation pages without changing their copy or order.",
+    "Icon-only warning boxes (triangle, no signal word) are rendered with the printed ⚠ glyph as the shared callout label; no WARNING word is added."
+  ]
+}
