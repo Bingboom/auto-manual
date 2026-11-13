@@ -1,0 +1,170 @@
+[
+ {
+  "viewport": 1280,
+  "bodyWidth": 1280,
+  "overflow": false,
+  "images": [
+   {
+    "src": "assets/connection-adapters.png",
+    "loaded": true,
+    "renderedWidth": 657
+   },
+   {
+    "src": "assets/connection-adapters.png",
+    "loaded": true,
+    "renderedWidth": 1
+   },
+   {
+    "src": "assets/solar-panel-connector.png",
+    "loaded": true,
+    "renderedWidth": 657
+   },
+   {
+    "src": "assets/solar-panel-connector.png",
+    "loaded": true,
+    "renderedWidth": 1
+   },
+   {
+    "src": "assets/sun-angle-indicator.png",
+    "loaded": true,
+    "renderedWidth": 657
+   },
+   {
+    "src": "assets/sun-angle-indicator.png",
+    "loaded": true,
+    "renderedWidth": 1
+   },
+   {
+    "src": "assets/power-device.png",
+    "loaded": true,
+    "renderedWidth": 657
+   },
+   {
+    "src": "assets/power-device.png",
+    "loaded": true,
+    "renderedWidth": 1
+   },
+   {
+    "src": "assets/fcc-mark.svg",
+    "loaded": true,
+    "renderedWidth": 48
+   },
+   {
+    "src": "assets/nom-mark.png",
+    "loaded": true,
+    "renderedWidth": 48
+   },
+   {
+    "src": "assets/contact-qr.png",
+    "loaded": true,
+    "renderedWidth": 160
+   }
+  ],
+  "wideElements": [],
+  "tables": [
+   {
+    "scrollWidth": 655,
+    "clientWidth": 655
+   }
+  ],
+  "headings": [
+   "H1 TECHNICAL PARAMETERS¶",
+   "H2 Multifunctional Adapter¶",
+   "H1 SAFETY TIPS¶",
+   "H1 HOW TO USE¶",
+   "H2 When using the Solar Panel Connector¶",
+   "H2 Sun Angle Indicator¶",
+   "H1 POWER YOUR DEVICE¶",
+   "H1 CAN ICES-003(B)/NMB-003(B)¶",
+   "H1 WARRANTY¶",
+   "H2 CONTACT US¶",
+   "H2 CUSTOMER SERVICE¶",
+   "H1 JACKERY MEXICO S.A. DE C.V.¶",
+   "H1 JACKERY INC.¶"
+  ]
+ },
+ {
+  "viewport": 390,
+  "bodyWidth": 390,
+  "overflow": false,
+  "images": [
+   {
+    "src": "assets/connection-adapters.png",
+    "loaded": true,
+    "renderedWidth": 358
+   },
+   {
+    "src": "assets/connection-adapters.png",
+    "loaded": true,
+    "renderedWidth": 1
+   },
+   {
+    "src": "assets/solar-panel-connector.png",
+    "loaded": true,
+    "renderedWidth": 358
+   },
+   {
+    "src": "assets/solar-panel-connector.png",
+    "loaded": true,
+    "renderedWidth": 1
+   },
+   {
+    "src": "assets/sun-angle-indicator.png",
+    "loaded": true,
+    "renderedWidth": 358
+   },
+   {
+    "src": "assets/sun-angle-indicator.png",
+    "loaded": true,
+    "renderedWidth": 1
+   },
+   {
+    "src": "assets/power-device.png",
+    "loaded": true,
+    "renderedWidth": 358
+   },
+   {
+    "src": "assets/power-device.png",
+    "loaded": true,
+    "renderedWidth": 1
+   },
+   {
+    "src": "assets/fcc-mark.svg",
+    "loaded": true,
+    "renderedWidth": 48
+   },
+   {
+    "src": "assets/nom-mark.png",
+    "loaded": true,
+    "renderedWidth": 48
+   },
+   {
+    "src": "assets/contact-qr.png",
+    "loaded": true,
+    "renderedWidth": 160
+   }
+  ],
+  "wideElements": [],
+  "tables": [
+   {
+    "scrollWidth": 582,
+    "clientWidth": 356
+   }
+  ],
+  "headings": [
+   "H1 TECHNICAL PARAMETERS¶",
+   "H2 Multifunctional Adapter¶",
+   "H1 SAFETY TIPS¶",
+   "H1 HOW TO USE¶",
+   "H2 When using the Solar Panel Connector¶",
+   "H2 Sun Angle Indicator¶",
+   "H1 POWER YOUR DEVICE¶",
+   "H1 CAN ICES-003(B)/NMB-003(B)¶",
+   "H1 WARRANTY¶",
+   "H2 CONTACT US¶",
+   "H2 CUSTOMER SERVICE¶",
+   "H1 JACKERY MEXICO S.A. DE C.V.¶",
+   "H1 JACKERY INC.¶"
+  ]
+ }
+]

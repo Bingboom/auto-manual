@@ -1,0 +1,21 @@
+{
+  "status": "operator-authorized-us-y-batch2-publication",
+  "client_date": "2026-11-13",
+  "directive": "「全部你都照写上线 问题可以记录在pr里」2026-11-13（本会话；回答审核页的决定项与是否直接发布）",
+  "merge_authorization": "MA-438",
+  "candidate_git_ref": "11b78216576176b73edea8b8caaf89cbf891e253",
+  "candidate_path": "manual_sources/JS-100F/US/en/git-20261113-abc894b6-m000644",
+  "candidate_frozen_manifest_sha256": "680533ba9d1c3d46b705e94455bbca38f76396964c8457296810b2b0c9de709e",
+  "candidate_IR_sha256": "d7b50e8f4b0f8bbe3e8098cbe2e9fc5768e2ffb4c394d2c2b6174e402098df04",
+  "candidate_content_sha256": "7f7b98450737fe876d5ccd5c16664285b622f9d22ea8f6616675b03ce050c259",
+  "candidate_source_pdf_sha256": "abc894b6497212570b70e8683c52cbf23c94e573916776b1bfe9812a1a752dc5",
+  "scope": {
+    "model": "JS-100F",
+    "region": "US",
+    "language": "en"
+  },
+  "decisions": "Every review decision item kept at its candidate default; copy as printed. Source issues are recorded in the PR body and in transcription source_concerns.",
+  "human_attestation_boundary": "Explicit release instruction after the candidate review page and decision items; no separate per-image human pixel signature is invented.",
+  "global_asset_promotion": false,
+  "related_directive": "Operator 2026-11-13: 「JS-100F：这本是墨西哥版= 和美规共用」."
+}

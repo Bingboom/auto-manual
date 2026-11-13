@@ -1,0 +1,118 @@
+{
+  "reviewer": "independent read-only sub-agent (separate context, given only the source page renders, the built HTML and the conversion rules)",
+  "target": {
+    "model": "JS-100F",
+    "region": "US",
+    "language": "en",
+    "material": "38-0001-000644"
+  },
+  "source_sha256": "abc894b6497212570b70e8683c52cbf23c94e573916776b1bfe9812a1a752dc5",
+  "reviewed_html": "pre-fix candidate render; fixes re-verified against the sealed web/en render by text extraction and screenshots",
+  "initial_verdict": "pass",
+  "checked": {
+    "pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "web_blocks": 66,
+    "table_cells": 50,
+    "images": 7
+  },
+  "findings": [
+    {
+      "id": "F1",
+      "severity": "minor",
+      "source_page": 1,
+      "web_location": "#user-guide (cover section) and H1 'Contact us' (#id2) before JACKERY MEXICO block",
+      "printed": "Contact us:\nhello@jackery.com\nhello.mx@jackery.com (For Mexico only)",
+      "web": "Cover section has only 'USER GUIDE / SolarSaga 100 / Model: JS-100F / Version: V2'; a heading 'Contact us' (no colon) appears instead above the page-7 address block, which on page 7 has no such heading",
+      "comment": "Cover contact block is not in the intended-omission list. Its heading was moved to the back page and the colon dropped. The two cover email lines are not rendered there. The same words still appear on p6 (CUSTOMER SERVICE) and p7, so no unique wording is lost, but the block is relocated or omitted.",
+      "resolution": "operator-rule",
+      "resolution_note": "Superseded by operator rule 2026-11-13 「封面信息 不用放进网页呀 直接从这个开始」: no cover content on the Web page; cover facts kept in transcription cover_facts and the manifest. Back-cover entities are their own pages in printed order."
+    },
+    {
+      "id": "F2",
+      "severity": "minor",
+      "source_page": 7,
+      "web_location": "Contact us > JACKERY INC. > last link paragraph",
+      "printed": "www.jackery.com",
+      "web": "https://www.jackery.com",
+      "comment": "The visible text adds the 'https://' scheme. Printed text is 'www.jackery.com'; keep that as the link text (href may stay https).",
+      "resolution": "fixed",
+      "resolution_note": "Visible link text is the printed \"www.jackery.com\"."
+    },
+    {
+      "id": "F3",
+      "severity": "minor",
+      "source_page": 4,
+      "web_location": "HOW TO USE > callout table label cell",
+      "printed": "Tip: The cable comes with...",
+      "web": "Tip | The cable comes with...",
+      "comment": "The colon after 'Tip' is dropped in the callout label. This is acceptable if the callout component's label convention allows it; otherwise restore 'Tip:'.",
+      "resolution": "kept-shared-behaviour",
+      "resolution_note": "The shared callout normalizes its label without the trailing colon (display_label); recorded in normalizations, no shared change."
+    },
+    {
+      "id": "F4",
+      "severity": "note",
+      "source_page": 6,
+      "web_location": "H1 'WARRANTY' + H2 'WARRANTY'",
+      "printed": "WARRANTY (once)",
+      "web": "WARRANTY heading appears twice (section H1 and sub-H2)",
+      "comment": "Duplicated heading added by sectioning; no text lost.",
+      "resolution": "fixed",
+      "resolution_note": "The package render no longer emits a second WARRANTY heading when a warranty section repeats the chapter title."
+    },
+    {
+      "id": "F5",
+      "severity": "note",
+      "source_page": 5,
+      "web_location": "H1 'CAN ICES-003(B)/NMB-003(B)'",
+      "printed": "FC NOM logos followed by 'CAN ICES-003(B)/NMB-003(B)' on one line above NOTE paragraph",
+      "web": "Text promoted to an H1 section heading; FCC/NOM marks follow it as separate images",
+      "comment": "Text is exact. The heading promotion and logo order (logos now after the text) are only a presentation change.",
+      "resolution": "kept",
+      "resolution_note": "Logos follow the native heading; heading text is the only printed text on that line. Recorded as a decision item."
+    },
+    {
+      "id": "F6",
+      "severity": "minor",
+      "source_page": 7,
+      "web_location": "img assets/contact-qr.png alt",
+      "printed": "(QR code, no text)",
+      "web": "alt='Jackery contact QR code; complete source code and all four frame edges.'",
+      "comment": "The alt text contains internal QC or extraction wording ('complete source code and all four frame edges'). Use 'Jackery contact QR code'. The image itself is complete and has all four frame edges.",
+      "resolution": "fixed",
+      "resolution_note": "QR alt text is now \"Jackery contact QR code\"."
+    },
+    {
+      "id": "F7",
+      "severity": "note",
+      "source_page": 5,
+      "web_location": "img assets/fcc-mark.svg",
+      "printed": "FCC logo",
+      "web": "SVG 'FCC mark'",
+      "comment": "No SVG rasteriser was available, so the image was not checked visually. The SVG is well-formed and has a correct alt. NOM mark PNG checked: complete.",
+      "resolution": "verified",
+      "resolution_note": "FCC mark is the byte-identical shared SVG used by the JE-1000D/JE-100A US packages; it rendered in the 1280/390 Chromium screenshots."
+    },
+    {
+      "id": "F8",
+      "severity": "note",
+      "source_page": 4,
+      "web_location": "figures connection-adapters / solar-panel-connector / sun-angle-indicator / power-device",
+      "printed": "diagrams",
+      "web": "each figure contains the same PNG twice (aria-hidden composite stage with alt='' plus semantic img with alt)",
+      "comment": "Each diagram was checked against the source. All are complete: no truncation, no prose bleed, and every label is intact (DC8020-DC7909 Adapter, DC8020 Male x3, Solar Panel Connector, Indicator point, Shadow, Sun Angle Indicator, Shadow falls in the / white inner circle, Shadow does not fall in / the white inner circle, DC8020 to DC7909 Adapter, DC8020, Multifunctional Adapter, USB-C/LED/USB-A, SolarSaga 100, Cell Phone, Power Bank, Tablet). The duplicate img is a component pattern, not a defect, if CSS shows only one.",
+      "resolution": "kept-shared-behaviour",
+      "resolution_note": "Shared HB-SPECIAL-REFERENCE-FIGURE carrier pattern; one visible copy per figure in the screenshots."
+    }
+  ],
+  "open_findings": [],
+  "status": "native-body-source-fidelity-clear-after-fixes"
+}

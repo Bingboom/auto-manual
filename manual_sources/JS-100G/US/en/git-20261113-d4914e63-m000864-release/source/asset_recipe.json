@@ -1,0 +1,1655 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 40000000
+  },
+  "source": {
+    "source_key": "source/js-100g_us_m000864",
+    "expected_sha256": "d4914e638ea930c6cf99d3de2af19c2b924b6f0db730b8ab4c9895957d276fa2",
+    "expected_page_count": 17
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 17
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 1,
+      "page_scale": {}
+    }
+  },
+  "page_catalog": [
+    {
+      "page": 1,
+      "page_key": "p001",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 2,
+      "page_key": "p002",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 3,
+      "page_key": "p003",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 4,
+      "page_key": "p004",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 5,
+      "page_key": "p005",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 6,
+      "page_key": "p006",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 7,
+      "page_key": "p007",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 8,
+      "page_key": "p008",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 9,
+      "page_key": "p009",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 10,
+      "page_key": "p010",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 11,
+      "page_key": "p011",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 12,
+      "page_key": "p012",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 13,
+      "page_key": "p013",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 14,
+      "page_key": "p014",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 15,
+      "page_key": "p015",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 16,
+      "page_key": "p016",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 17,
+      "page_key": "p017",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "web/js-100g/us/m000864/inbox-panel",
+      "page": 5,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100G"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            49.62,
+            109.38,
+            86.46,
+            178.86
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/inbox-panel.png",
+          "scale": 4.1667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/js-100g/us/m000864/inbox-dc8020-adapter",
+      "page": 5,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100G"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            138.9,
+            124.74,
+            155.1,
+            168.54
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/inbox-dc8020-adapter.png",
+          "scale": 4.1667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/js-100g/us/m000864/inbox-dc7909-adapter",
+      "page": 5,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100G"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            217.86,
+            124.74,
+            234.3,
+            168.54
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/inbox-dc7909-adapter.png",
+          "scale": 4.1667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/js-100g/us/m000864/inbox-manual",
+      "page": 5,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100G"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            290.1,
+            127.38,
+            319.98,
+            168.3
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/inbox-manual.png",
+          "scale": 4.1667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/js-100g/us/m000864/front-rear-view",
+      "page": 5,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100G"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            39.54,
+            268.98,
+            333.42,
+            355.5
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/front-rear-view.png",
+          "scale": 4.1667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/js-100g/us/m000864/adhesive-step-1",
+      "page": 6,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100G"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            99.06,
+            146.0,
+            277.74,
+            231.9
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/adhesive-step-1.png",
+          "scale": 4.1667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/js-100g/us/m000864/adhesive-step-2",
+      "page": 6,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100G"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            61.62,
+            264.18,
+            310.86,
+            351.66
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/adhesive-step-2.png",
+          "scale": 4.1667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/js-100g/us/m000864/adhesive-step-3",
+      "page": 6,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100G"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            56.34,
+            407.0,
+            304.62,
+            497.1
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/adhesive-step-3.png",
+          "scale": 4.1667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/js-100g/us/m000864/adhesive-step-4",
+      "page": 7,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100G"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            65.7,
+            70.26,
+            313.5,
+            147.42
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/adhesive-step-4.png",
+          "scale": 4.1667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/js-100g/us/m000864/adhesive-step-5",
+      "page": 7,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100G"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            58.26,
+            233.7,
+            304.14,
+            320.94
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/adhesive-step-5.png",
+          "scale": 4.1667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/js-100g/us/m000864/adhesive-step-6",
+      "page": 7,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100G"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            59.22,
+            414.66,
+            309.9,
+            480.3
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/adhesive-step-6.png",
+          "scale": 4.1667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/js-100g/us/m000864/kit-rope",
+      "page": 8,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100G"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            52.5,
+            124.98,
+            107.82,
+            158.7
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/kit-rope.png",
+          "scale": 4.1667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/js-100g/us/m000864/kit-rope-tensioner",
+      "page": 8,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100G"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            163.62,
+            127.62,
+            194.46,
+            152.22
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/kit-rope-tensioner.png",
+          "scale": 4.1667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/js-100g/us/m000864/kit-rope-clamp",
+      "page": 8,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100G"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            246.18,
+            123.3,
+            277.02,
+            155.58
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/kit-rope-clamp.png",
+          "scale": 4.1667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/js-100g/us/m000864/rope-clamp-use",
+      "page": 8,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100G"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            54.66,
+            206.34,
+            320.46,
+            266.46
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/rope-clamp-use.png",
+          "scale": 4.1667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/js-100g/us/m000864/tensioner-thread",
+      "page": 8,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100G"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            45.3,
+            310.02,
+            323.58,
+            385.5
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/tensioner-thread.png",
+          "scale": 4.1667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/js-100g/us/m000864/tensioner-release",
+      "page": 8,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100G"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            48.18,
+            410.58,
+            323.34,
+            496.14
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/tensioner-release.png",
+          "scale": 4.1667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/js-100g/us/m000864/suspension-1-1",
+      "page": 9,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100G"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            116.82,
+            79.14,
+            269.82,
+            151.26
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/suspension-1-1.png",
+          "scale": 4.1667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/js-100g/us/m000864/suspension-1-2",
+      "page": 9,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100G"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            50.1,
+            202.02,
+            317.58,
+            324.54
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/suspension-1-2.png",
+          "scale": 4.1667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/js-100g/us/m000864/suspension-1-3",
+      "page": 9,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100G"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            43.86,
+            376.74,
+            298.86,
+            493.74
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/suspension-1-3.png",
+          "scale": 4.1667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/js-100g/us/m000864/suspension-2-1",
+      "page": 10,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100G"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            29.46,
+            62.1,
+            336.54,
+            216.78
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/suspension-2-1.png",
+          "scale": 4.1667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/js-100g/us/m000864/suspension-2-2",
+      "page": 10,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100G"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28.74,
+            298.5,
+            335.82,
+            452.46
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/suspension-2-2.png",
+          "scale": 4.1667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/js-100g/us/m000864/suspension-2-3",
+      "page": 11,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100G"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            29.7,
+            77.22,
+            336.78,
+            204.78
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/suspension-2-3.png",
+          "scale": 4.1667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/js-100g/us/m000864/suspension-3-1",
+      "page": 11,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100G"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            30.9,
+            324.18,
+            337.74,
+            472.62
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/suspension-3-1.png",
+          "scale": 4.1667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/js-100g/us/m000864/suspension-3-2",
+      "page": 12,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100G"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            33.3,
+            77.46,
+            340.14,
+            215.82
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/suspension-3-2.png",
+          "scale": 4.1667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/js-100g/us/m000864/suspension-3-3",
+      "page": 12,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100G"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            35.22,
+            311.7,
+            340.62,
+            471.18
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/suspension-3-3.png",
+          "scale": 4.1667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/js-100g/us/m000864/series-connection",
+      "page": 13,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100G"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.1,
+            239.22,
+            341.58,
+            427.74
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/series-connection.png",
+          "scale": 4.1667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/js-100g/us/m000864/parallel-connection",
+      "page": 14,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100G"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.34,
+            36.42,
+            341.82,
+            224.94
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/parallel-connection.png",
+          "scale": 4.1667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/js-100g/us/m000864/contact-qr",
+      "page": 17,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100G"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            304.02,
+            462.18,
+            341.82,
+            499.98
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/contact-qr.png",
+          "scale": 4.1667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    }
+  ]
+}

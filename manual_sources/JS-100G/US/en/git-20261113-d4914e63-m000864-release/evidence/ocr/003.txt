@@ -1,0 +1,53 @@
+WARNINGS
+
+* Read the user guide before using this product.
+
+*Do not place the solar panels under trees, buildings or in other shaded areas for use.
+*Do not submerge the solar panels in water or any other liquid for extended periods.
+*Use a damp cloth to gently wipe them clean.
+
+* Keep away from open flames or any flammable materials.
+
+* Do not scratch the solar panels with sharp objects.
+
+“Keep corrosive substances away from the solar panels.
+
+“Do not step on or place heavy objects on the solar panels.
+
+*Do not disassemble the solar panels.
+
+*The output circuit of the solar panel must be connected to the equipment correctly.
+Reverse connection of the positive and negative poles is strictly prohibited.
+
+“Check the connection status of all components, wires, and plugs before use.
+
+* Dropping the product is strictly prohibited due to the material's nature, as it may
+cause internal damage to the solar panel and render the product unusable.
+
+“Check and secure the solar panels ahead of strong winds, hail, or extreme weather
+to prevent damage.
+
+* Under normal circumstances, PV modules may be exposed to higher currents or
+voltages than under standard test conditions. Therefore, when calculating the rated
+voltage of the component, the rated current of the conductor, and the size of the
+control device connected to the PV output, it is required to multiply the short-circuit
+current (Isc) and open circuit voltage (Voc) values marked on the component by a
+factor of 1.25.
+
+* Any damage to the product may lead to electric shock or fire.
+
+* Avoid direct exposure of the solar modules or panels to artificial spotlights.
+
+*Do not place anything on the solar panel to avoid any residues that may damage or
+soil the surface.
+
+“If the front sheet is broken or the back panel is damaged, contact with any surface
+or frame of the panel could result in an electric shock.
+
+* Protect unconnected connectors before installation. Ensure they are kept free from
+contamination (eg., dust, foreign objects, moisture), and do not expose unprotected
+
+connectors to the environment.
+
+01
+

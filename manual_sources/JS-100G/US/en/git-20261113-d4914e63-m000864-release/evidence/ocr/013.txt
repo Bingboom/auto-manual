@@ -1,0 +1,25 @@
+@ How to Connect Multiple Solar Panels
+
+Multiple Jackery SolarSaga 100 Light panels can be connected in series or parallel
+using the Jackery Anderson Y Series Connector or Jackery Anderson Y Parallel
+Connector. The Jackery Anderson Y Parallel Connector and Jackery Anderson Y
+Series Connector can be purchased on the official Jackery website.
+
+Important Notes:
+
+“The two solar panels connected to the input ports of the connector must have the
+same specifications.
+
+* The output voltage in series connection is the sum of the input voltages, while the
+output current in parallel connection is the sum of the input currents.
+
+For the solar generator connection guide, please visit the Jackery official website or
+contact Jackery customer service.
+
+* Jackery SolarSaga 100 Light panels can be connected in various series and/or
+parallel configurations for different models of power generators. Please refer to the
+
+Jackery website for details.
+
+Series connection
+

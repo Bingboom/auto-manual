@@ -4979,8 +4979,18 @@
       "registered": "2026-11-13",
       "known_drift": {}
     },
+    "manual_sources/JS-100F/US/en/git-20261113-abc894b6-m000644-release": {
+      "approval": "MA-438",
+      "registered": "2026-11-13",
+      "known_drift": {}
+    },
     "manual_sources/JS-100G/US/en/git-20261113-d4914e63-m000864": {
       "approval": "review candidate; no release authorization",
+      "registered": "2026-11-13",
+      "known_drift": {}
+    },
+    "manual_sources/JS-100G/US/en/git-20261113-d4914e63-m000864-release": {
+      "approval": "MA-438",
       "registered": "2026-11-13",
       "known_drift": {}
     },

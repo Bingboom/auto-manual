@@ -1,0 +1,99 @@
+US english Model: JS-100F
+
+TECHNICAL PARAMETERS
+
+Product Name: SolarSaga 100
+
+Model No.: JS-100F
+
+Electrical Data sTC BNPI
+Peak Power (Pmax) 100W+5W 104W+5Ww
+Open Circuit Voltage (Voc) 24.8V5% 25V+5%
+Short Circuit Current (Isc) 5.4A+5% 5.8A+5%
+Power Voltage (Vmp) 20.0V+5% 20.1V£5%
+Power Current (Imp) 5.0A+5% S.2A+5%
+Maximum System Voltage 60V
+
+Maximum Reverse Current 15A
+
+Protection Class Against Electric Shock Class Il
+
+Waterproof Level IP68
+
+Operating Temperature Range -20°C~65°C (-4°F ~149°F)
+Dimensions (unfolded) 1220x552x20mm
+Dimensions (folded) 610x552x35mm
+
+Weight 3.6 kgt0.3 kg
+
+Bifaciality Coefficient (back/front) Pmax>30%, Voc>95%, Isc>32%
+Voltage Temperature Coefficient -0.268%/°C
+
+Power Temperature Coefficient -0.29%/°C
+
+Photovoltaic Consumer Products IEC TS 63163 Consumer Product Category 2
+
+STC (1000W/m”, 25°C, AM 1.5). BNPI (Front IOOOW/m”, Rear 135W/m?, 25°C, AM 1.5).
+Unfold the bracket and place it on a flat surface. The design load is 1600Pa,
+and the safety factor is 1.5 times.
+
+Multifunctional Adapter
+USB-A Output SV=2.4A
+USB-C Output 5SV=3A
+
+SAFETY TIPS
+
+Please read the user guide first before using this product.
+
+Do not bend the folding solar panels.
+
+Do not place the folding solar panels in trees, buildings or other shaded areas for use.
+
+Do not immerse the folding solar panels in water or any other liquid.
+
+Do not put solar panels in water directly, and use a damp cloth to gently wipe them when cleaning.
+
+Do not use or store the folding solar panels near open flames or flammable materials.
+
+Do not scratch the folding solar panels with sharp objects.
+
+Do not put corrosive substances on the folding solar panels.
+
+Do not step on or place heavy objects on the folding solar panels.
+
+Do not disassemble the folding solar panels.
+
+The output circuit of folding solar panel package must be connected to the equipment properly, and
+reverse connection of positive and negative poles is strictly prohibited.
+
+Check the connection status of various components, wires, and plugs before use.
+
+It is strictly prohibited to drop the products due to the nature of the material. Otherwise, it may cause
+internal damage to the solar panel, rendering the product unusable.
+
+This product cannot be fixed for installation. Please put away the portable folding solar panels in case
+of strong winds, hail and other severe weather to avoid product damage or other hazards.
+
+*
+
+*
+
+*
+
+*
+
+*
+
+*
+
+*
+
+*
+
+*
+
+*
+
+*
+
+01
