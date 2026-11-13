@@ -278,6 +278,16 @@ public manuals project shows it too.
   language select keeps its English `Language` label and its codes; see
   [language navigation](../rtd_locale_navigation.md).
 
+## Shared-manual model labels
+
+When colour variants share one manual, `settings.json` can set
+`product_model_labels["MODEL/MARKET"]` to the combined model label. The card's
+model line, model text in its title, accessible artwork label and filter keywords
+use that label. For example, `JE-300E/US` displays `JE-300E / JE-300E-SG`.
+The catalog identity, URL, language editions and card count remain those of the
+canonical model; this display setting neither creates nor restores a publication.
+Other markets keep their existing labels unless explicitly configured.
+
 ## Product short-name search (2026-11-02)
 
 The same keyword box matches the product short name (商品简称, e.g. `E300D`,
