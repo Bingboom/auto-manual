@@ -1,5 +1,6 @@
 {
   "default_region": "EU",
+  "product_model_labels": {"JE-300E/US": "JE-300E / JE-300E-SG"},
   "product_image_fallbacks": {
     "JA-CA05B/EU": "_static/portal-products/ja-ca05b.png",
     "JA-CA3SA/EU": "_static/portal-products/ja-ca3sa.png"
