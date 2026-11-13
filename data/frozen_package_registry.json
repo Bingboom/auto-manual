@@ -3865,6 +3865,11 @@
         }
       }
     },
+    "manual_sources/JE-300E/US/en/git-20261112-04bd8b90-color-models-release": {
+      "approval": "MA-436 explicit operator model-cell amendment; original PDF/assets unchanged",
+      "registered": "2026-11-12",
+      "known_drift": {}
+    },
     "manual_sources/JE-3600A/EU/de/git-20261004-47a346dc": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",

@@ -1,0 +1,16 @@
+{
+  "operator": "夏冰",
+  "date": "2026-11-12",
+  "quote": "这里 要补上 对应颜色的型号 在JE-300E说明书里",
+  "section": "SPECIFICATIONS / GENERAL INFO",
+  "label": "Model No.",
+  "before": "JE-300E",
+  "after": "JE-300E / JE-300E-SG",
+  "native_paths": [
+    "chapters/10/nodes/1/component_spec/slots/1/content/1/values/0/text",
+    "chapters/10/nodes/1/carrier_flow/1/children/0/children/1/children/1/children/0/text"
+  ],
+  "basis": "Operator confirmed these are colour editions differing only by model and explicitly requested the SG model in this cell. Original PDF remains unchanged.",
+  "route_identity": "JE-300E/US/en/md",
+  "separate_sg_publication": "remains withdrawn under MA-434"
+}
