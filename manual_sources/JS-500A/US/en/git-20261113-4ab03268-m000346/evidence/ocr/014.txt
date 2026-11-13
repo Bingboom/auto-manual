@@ -1,0 +1,32 @@
+Installation Requirements
+
+* Non-permanent installation only
+
+“Fasteners: straps, screws, ropes, etc.
+
+* Locations: balconies, railings, carports, or other permitted structures with sufficient
+sunlight
+
+Not permitted
+
+* Rooftop installation on residential buildings
+* Use in grid-connected solar systems
+* Use in solar systems with a voltage greater than 60 V
+
+Compliance
+
+* All installations must follow local laws, regulations, and building codes.
+* Installation sites must meet applicable requirements.
+
+Illustrations
+
+* Balcony railing installation (example)
+* Carport or similar non-residential structure installation (example)
+
+Disclaimer
+
+* Illustrations are for reference only.
+
+* Warranty and service apply only when installation and use comply with this manual.
+* Installations outside these instructions are at the user's own risk and not covered by
+warranty.

@@ -1,0 +1,1104 @@
+[
+  {
+    "viewport": 1280,
+    "documentScrollWidth": 1280,
+    "pageOverflow": false,
+    "images": [
+      {
+        "src": "assets/inbox-panel.png",
+        "loaded": true,
+        "natural": [
+          406,
+          218
+        ],
+        "shown": [
+          167,
+          144
+        ]
+      },
+      {
+        "src": "assets/inbox-cable.png",
+        "loaded": true,
+        "natural": [
+          292,
+          178
+        ],
+        "shown": [
+          167,
+          144
+        ]
+      },
+      {
+        "src": "assets/inbox-bag.png",
+        "loaded": true,
+        "natural": [
+          347,
+          224
+        ],
+        "shown": [
+          167,
+          144
+        ]
+      },
+      {
+        "src": "assets/inbox-manual.png",
+        "loaded": true,
+        "natural": [
+          140,
+          190
+        ],
+        "shown": [
+          167,
+          144
+        ]
+      },
+      {
+        "src": "assets/hinge.png",
+        "loaded": true,
+        "natural": [
+          210,
+          283
+        ],
+        "shown": [
+          167,
+          144
+        ]
+      },
+      {
+        "src": "assets/inbox-stake.png",
+        "loaded": true,
+        "natural": [
+          82,
+          284
+        ],
+        "shown": [
+          167,
+          144
+        ]
+      },
+      {
+        "src": "assets/inbox-hex-tool.png",
+        "loaded": true,
+        "natural": [
+          53,
+          207
+        ],
+        "shown": [
+          167,
+          144
+        ]
+      },
+      {
+        "src": "assets/inbox-screw.png",
+        "loaded": true,
+        "natural": [
+          90,
+          111
+        ],
+        "shown": [
+          167,
+          144
+        ]
+      },
+      {
+        "src": "assets/inbox-plug.png",
+        "loaded": true,
+        "natural": [
+          123,
+          106
+        ],
+        "shown": [
+          167,
+          144
+        ]
+      },
+      {
+        "src": "assets/inbox-carabiner.png",
+        "loaded": true,
+        "natural": [
+          126,
+          235
+        ],
+        "shown": [
+          167,
+          144
+        ]
+      },
+      {
+        "src": "assets/panel-front-back.png",
+        "loaded": true,
+        "natural": [
+          640,
+          645
+        ],
+        "shown": [
+          657,
+          662
+        ]
+      },
+      {
+        "src": "assets/panel-front-back.png",
+        "loaded": true,
+        "natural": [
+          640,
+          645
+        ],
+        "shown": [
+          1,
+          1
+        ]
+      },
+      {
+        "src": "assets/connection.png",
+        "loaded": true,
+        "natural": [
+          1177,
+          686
+        ],
+        "shown": [
+          657,
+          383
+        ]
+      },
+      {
+        "src": "assets/connection.png",
+        "loaded": true,
+        "natural": [
+          1177,
+          686
+        ],
+        "shown": [
+          1,
+          1
+        ]
+      },
+      {
+        "src": "assets/mounting-holes.png",
+        "loaded": true,
+        "natural": [
+          1017,
+          509
+        ],
+        "shown": [
+          657,
+          329
+        ]
+      },
+      {
+        "src": "assets/mounting-holes.png",
+        "loaded": true,
+        "natural": [
+          1017,
+          509
+        ],
+        "shown": [
+          1,
+          1
+        ]
+      },
+      {
+        "src": "assets/balcony-railing.png",
+        "loaded": true,
+        "natural": [
+          1323,
+          542
+        ],
+        "shown": [
+          657,
+          269
+        ]
+      },
+      {
+        "src": "assets/balcony-railing.png",
+        "loaded": true,
+        "natural": [
+          1323,
+          542
+        ],
+        "shown": [
+          1,
+          0
+        ]
+      },
+      {
+        "src": "assets/carport-roof.png",
+        "loaded": true,
+        "natural": [
+          969,
+          543
+        ],
+        "shown": [
+          657,
+          368
+        ]
+      },
+      {
+        "src": "assets/carport-roof.png",
+        "loaded": true,
+        "natural": [
+          969,
+          543
+        ],
+        "shown": [
+          1,
+          1
+        ]
+      },
+      {
+        "src": "assets/hinge.png",
+        "loaded": true,
+        "natural": [
+          210,
+          283
+        ],
+        "shown": [
+          110,
+          148
+        ]
+      },
+      {
+        "src": "assets/hinge-pair.png",
+        "loaded": true,
+        "natural": [
+          1117,
+          419
+        ],
+        "shown": [
+          657,
+          247
+        ]
+      },
+      {
+        "src": "assets/hinge-pair.png",
+        "loaded": true,
+        "natural": [
+          1117,
+          419
+        ],
+        "shown": [
+          1,
+          0
+        ]
+      },
+      {
+        "src": "assets/hinge-step1.png",
+        "loaded": true,
+        "natural": [
+          1148,
+          551
+        ],
+        "shown": [
+          657,
+          315
+        ]
+      },
+      {
+        "src": "assets/hinge-step1.png",
+        "loaded": true,
+        "natural": [
+          1148,
+          551
+        ],
+        "shown": [
+          1,
+          0
+        ]
+      },
+      {
+        "src": "assets/hinge-step2.png",
+        "loaded": true,
+        "natural": [
+          1281,
+          553
+        ],
+        "shown": [
+          657,
+          284
+        ]
+      },
+      {
+        "src": "assets/hinge-step2.png",
+        "loaded": true,
+        "natural": [
+          1281,
+          553
+        ],
+        "shown": [
+          1,
+          0
+        ]
+      },
+      {
+        "src": "assets/six-panels.png",
+        "loaded": true,
+        "natural": [
+          1274,
+          1099
+        ],
+        "shown": [
+          657,
+          567
+        ]
+      },
+      {
+        "src": "assets/six-panels.png",
+        "loaded": true,
+        "natural": [
+          1274,
+          1099
+        ],
+        "shown": [
+          1,
+          1
+        ]
+      },
+      {
+        "src": "assets/wiring.png",
+        "loaded": true,
+        "natural": [
+          1148,
+          607
+        ],
+        "shown": [
+          657,
+          348
+        ]
+      },
+      {
+        "src": "assets/wiring.png",
+        "loaded": true,
+        "natural": [
+          1148,
+          607
+        ],
+        "shown": [
+          1,
+          1
+        ]
+      },
+      {
+        "src": "assets/final-angle.png",
+        "loaded": true,
+        "natural": [
+          1137,
+          235
+        ],
+        "shown": [
+          657,
+          136
+        ]
+      },
+      {
+        "src": "assets/final-angle.png",
+        "loaded": true,
+        "natural": [
+          1137,
+          235
+        ],
+        "shown": [
+          1,
+          0
+        ]
+      },
+      {
+        "src": "assets/ground-stake.png",
+        "loaded": true,
+        "natural": [
+          1129,
+          480
+        ],
+        "shown": [
+          657,
+          279
+        ]
+      },
+      {
+        "src": "assets/ground-stake.png",
+        "loaded": true,
+        "natural": [
+          1129,
+          480
+        ],
+        "shown": [
+          1,
+          0
+        ]
+      },
+      {
+        "src": "assets/stake-locations.png",
+        "loaded": true,
+        "natural": [
+          1086,
+          519
+        ],
+        "shown": [
+          657,
+          314
+        ]
+      },
+      {
+        "src": "assets/stake-locations.png",
+        "loaded": true,
+        "natural": [
+          1086,
+          519
+        ],
+        "shown": [
+          1,
+          0
+        ]
+      },
+      {
+        "src": "assets/storage-fold.png",
+        "loaded": true,
+        "natural": [
+          1166,
+          379
+        ],
+        "shown": [
+          657,
+          214
+        ]
+      },
+      {
+        "src": "assets/storage-fold.png",
+        "loaded": true,
+        "natural": [
+          1166,
+          379
+        ],
+        "shown": [
+          1,
+          0
+        ]
+      },
+      {
+        "src": "assets/array-to-station.png",
+        "loaded": true,
+        "natural": [
+          1109,
+          490
+        ],
+        "shown": [
+          657,
+          290
+        ]
+      },
+      {
+        "src": "assets/array-to-station.png",
+        "loaded": true,
+        "natural": [
+          1109,
+          490
+        ],
+        "shown": [
+          1,
+          0
+        ]
+      },
+      {
+        "src": "assets/fcc-mark.svg",
+        "loaded": true,
+        "natural": [
+          16,
+          11
+        ],
+        "shown": [
+          93,
+          66
+        ]
+      },
+      {
+        "src": "assets/contact-qr.png",
+        "loaded": true,
+        "natural": [
+          169,
+          168
+        ],
+        "shown": [
+          120,
+          119
+        ]
+      }
+    ],
+    "brokenImages": 0,
+    "tablesScrollingInsideSharedWrapper": [
+      {
+        "scrollWidth": 655,
+        "clientWidth": 655
+      },
+      {
+        "scrollWidth": 655,
+        "clientWidth": 655
+      }
+    ],
+    "h1": [
+      "TECHNICAL PARAMETERS (Jackery SolarSaga 85)¶",
+      "TECHNICAL PARAMETERS (Jackery SolarSaga 500 X)¶",
+      "PACKAGE LIST¶",
+      "HOW TO USE¶",
+      "STORAGE AND TRANSPORTATION¶",
+      "SAFETY INSTRUCTIONS¶",
+      "WARRANTY¶",
+      "CONTACT US¶",
+      "CUSTOMER SERVICE¶",
+      "Installation Requirements¶",
+      "Not permitted¶",
+      "Compliance¶",
+      "Illustrations¶",
+      "Disclaimer¶",
+      "Jackery Inc.¶"
+    ]
+  },
+  {
+    "viewport": 390,
+    "documentScrollWidth": 390,
+    "pageOverflow": false,
+    "images": [
+      {
+        "src": "assets/inbox-panel.png",
+        "loaded": true,
+        "natural": [
+          406,
+          218
+        ],
+        "shown": [
+          173,
+          112
+        ]
+      },
+      {
+        "src": "assets/inbox-cable.png",
+        "loaded": true,
+        "natural": [
+          292,
+          178
+        ],
+        "shown": [
+          173,
+          112
+        ]
+      },
+      {
+        "src": "assets/inbox-bag.png",
+        "loaded": true,
+        "natural": [
+          347,
+          224
+        ],
+        "shown": [
+          173,
+          112
+        ]
+      },
+      {
+        "src": "assets/inbox-manual.png",
+        "loaded": true,
+        "natural": [
+          140,
+          190
+        ],
+        "shown": [
+          173,
+          112
+        ]
+      },
+      {
+        "src": "assets/hinge.png",
+        "loaded": true,
+        "natural": [
+          210,
+          283
+        ],
+        "shown": [
+          173,
+          112
+        ]
+      },
+      {
+        "src": "assets/inbox-stake.png",
+        "loaded": true,
+        "natural": [
+          82,
+          284
+        ],
+        "shown": [
+          173,
+          112
+        ]
+      },
+      {
+        "src": "assets/inbox-hex-tool.png",
+        "loaded": true,
+        "natural": [
+          53,
+          207
+        ],
+        "shown": [
+          173,
+          112
+        ]
+      },
+      {
+        "src": "assets/inbox-screw.png",
+        "loaded": true,
+        "natural": [
+          90,
+          111
+        ],
+        "shown": [
+          173,
+          112
+        ]
+      },
+      {
+        "src": "assets/inbox-plug.png",
+        "loaded": true,
+        "natural": [
+          123,
+          106
+        ],
+        "shown": [
+          173,
+          112
+        ]
+      },
+      {
+        "src": "assets/inbox-carabiner.png",
+        "loaded": true,
+        "natural": [
+          126,
+          235
+        ],
+        "shown": [
+          173,
+          112
+        ]
+      },
+      {
+        "src": "assets/panel-front-back.png",
+        "loaded": true,
+        "natural": [
+          640,
+          645
+        ],
+        "shown": [
+          358,
+          361
+        ]
+      },
+      {
+        "src": "assets/panel-front-back.png",
+        "loaded": true,
+        "natural": [
+          640,
+          645
+        ],
+        "shown": [
+          1,
+          1
+        ]
+      },
+      {
+        "src": "assets/connection.png",
+        "loaded": true,
+        "natural": [
+          1177,
+          686
+        ],
+        "shown": [
+          358,
+          209
+        ]
+      },
+      {
+        "src": "assets/connection.png",
+        "loaded": true,
+        "natural": [
+          1177,
+          686
+        ],
+        "shown": [
+          1,
+          1
+        ]
+      },
+      {
+        "src": "assets/mounting-holes.png",
+        "loaded": true,
+        "natural": [
+          1017,
+          509
+        ],
+        "shown": [
+          358,
+          179
+        ]
+      },
+      {
+        "src": "assets/mounting-holes.png",
+        "loaded": true,
+        "natural": [
+          1017,
+          509
+        ],
+        "shown": [
+          1,
+          1
+        ]
+      },
+      {
+        "src": "assets/balcony-railing.png",
+        "loaded": true,
+        "natural": [
+          1323,
+          542
+        ],
+        "shown": [
+          358,
+          147
+        ]
+      },
+      {
+        "src": "assets/balcony-railing.png",
+        "loaded": true,
+        "natural": [
+          1323,
+          542
+        ],
+        "shown": [
+          1,
+          0
+        ]
+      },
+      {
+        "src": "assets/carport-roof.png",
+        "loaded": true,
+        "natural": [
+          969,
+          543
+        ],
+        "shown": [
+          358,
+          201
+        ]
+      },
+      {
+        "src": "assets/carport-roof.png",
+        "loaded": true,
+        "natural": [
+          969,
+          543
+        ],
+        "shown": [
+          1,
+          1
+        ]
+      },
+      {
+        "src": "assets/hinge.png",
+        "loaded": true,
+        "natural": [
+          210,
+          283
+        ],
+        "shown": [
+          110,
+          148
+        ]
+      },
+      {
+        "src": "assets/hinge-pair.png",
+        "loaded": true,
+        "natural": [
+          1117,
+          419
+        ],
+        "shown": [
+          358,
+          134
+        ]
+      },
+      {
+        "src": "assets/hinge-pair.png",
+        "loaded": true,
+        "natural": [
+          1117,
+          419
+        ],
+        "shown": [
+          1,
+          0
+        ]
+      },
+      {
+        "src": "assets/hinge-step1.png",
+        "loaded": true,
+        "natural": [
+          1148,
+          551
+        ],
+        "shown": [
+          358,
+          172
+        ]
+      },
+      {
+        "src": "assets/hinge-step1.png",
+        "loaded": true,
+        "natural": [
+          1148,
+          551
+        ],
+        "shown": [
+          1,
+          0
+        ]
+      },
+      {
+        "src": "assets/hinge-step2.png",
+        "loaded": true,
+        "natural": [
+          1281,
+          553
+        ],
+        "shown": [
+          358,
+          155
+        ]
+      },
+      {
+        "src": "assets/hinge-step2.png",
+        "loaded": true,
+        "natural": [
+          1281,
+          553
+        ],
+        "shown": [
+          1,
+          0
+        ]
+      },
+      {
+        "src": "assets/six-panels.png",
+        "loaded": true,
+        "natural": [
+          1274,
+          1099
+        ],
+        "shown": [
+          358,
+          309
+        ]
+      },
+      {
+        "src": "assets/six-panels.png",
+        "loaded": true,
+        "natural": [
+          1274,
+          1099
+        ],
+        "shown": [
+          1,
+          1
+        ]
+      },
+      {
+        "src": "assets/wiring.png",
+        "loaded": true,
+        "natural": [
+          1148,
+          607
+        ],
+        "shown": [
+          358,
+          189
+        ]
+      },
+      {
+        "src": "assets/wiring.png",
+        "loaded": true,
+        "natural": [
+          1148,
+          607
+        ],
+        "shown": [
+          1,
+          1
+        ]
+      },
+      {
+        "src": "assets/final-angle.png",
+        "loaded": true,
+        "natural": [
+          1137,
+          235
+        ],
+        "shown": [
+          358,
+          74
+        ]
+      },
+      {
+        "src": "assets/final-angle.png",
+        "loaded": true,
+        "natural": [
+          1137,
+          235
+        ],
+        "shown": [
+          1,
+          0
+        ]
+      },
+      {
+        "src": "assets/ground-stake.png",
+        "loaded": true,
+        "natural": [
+          1129,
+          480
+        ],
+        "shown": [
+          358,
+          152
+        ]
+      },
+      {
+        "src": "assets/ground-stake.png",
+        "loaded": true,
+        "natural": [
+          1129,
+          480
+        ],
+        "shown": [
+          1,
+          0
+        ]
+      },
+      {
+        "src": "assets/stake-locations.png",
+        "loaded": true,
+        "natural": [
+          1086,
+          519
+        ],
+        "shown": [
+          358,
+          171
+        ]
+      },
+      {
+        "src": "assets/stake-locations.png",
+        "loaded": true,
+        "natural": [
+          1086,
+          519
+        ],
+        "shown": [
+          1,
+          0
+        ]
+      },
+      {
+        "src": "assets/storage-fold.png",
+        "loaded": true,
+        "natural": [
+          1166,
+          379
+        ],
+        "shown": [
+          358,
+          116
+        ]
+      },
+      {
+        "src": "assets/storage-fold.png",
+        "loaded": true,
+        "natural": [
+          1166,
+          379
+        ],
+        "shown": [
+          1,
+          0
+        ]
+      },
+      {
+        "src": "assets/array-to-station.png",
+        "loaded": true,
+        "natural": [
+          1109,
+          490
+        ],
+        "shown": [
+          358,
+          158
+        ]
+      },
+      {
+        "src": "assets/array-to-station.png",
+        "loaded": true,
+        "natural": [
+          1109,
+          490
+        ],
+        "shown": [
+          1,
+          0
+        ]
+      },
+      {
+        "src": "assets/fcc-mark.svg",
+        "loaded": true,
+        "natural": [
+          16,
+          11
+        ],
+        "shown": [
+          93,
+          66
+        ]
+      },
+      {
+        "src": "assets/contact-qr.png",
+        "loaded": true,
+        "natural": [
+          169,
+          168
+        ],
+        "shown": [
+          120,
+          119
+        ]
+      }
+    ],
+    "brokenImages": 0,
+    "tablesScrollingInsideSharedWrapper": [
+      {
+        "scrollWidth": 582,
+        "clientWidth": 356
+      },
+      {
+        "scrollWidth": 582,
+        "clientWidth": 356
+      }
+    ],
+    "h1": [
+      "TECHNICAL PARAMETERS (Jackery SolarSaga 85)¶",
+      "TECHNICAL PARAMETERS (Jackery SolarSaga 500 X)¶",
+      "PACKAGE LIST¶",
+      "HOW TO USE¶",
+      "STORAGE AND TRANSPORTATION¶",
+      "SAFETY INSTRUCTIONS¶",
+      "WARRANTY¶",
+      "CONTACT US¶",
+      "CUSTOMER SERVICE¶",
+      "Installation Requirements¶",
+      "Not permitted¶",
+      "Compliance¶",
+      "Illustrations¶",
+      "Disclaimer¶",
+      "Jackery Inc.¶"
+    ]
+  }
+]

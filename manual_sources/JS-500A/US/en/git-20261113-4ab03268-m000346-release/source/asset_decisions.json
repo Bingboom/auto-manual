@@ -1,0 +1,427 @@
+{
+  "schema_version": "source-bound-web-asset-decisions/v1",
+  "inventory_checked": [
+    "manual_sources/** searched by model (JS-500A, JS-85A), title (SolarSaga 85, SolarSaga 500X / 500 X) and material 16-0102-000346: no earlier package for this target or for JS-85A in any region/language.",
+    "docs/renderers/web/assets/** (all target folders and shared buttons/lcd/symbols), docs/templates/word_template/common_assets, docs/renderers/latex/assets: no SolarSaga 85 / 500X artwork.",
+    "Closest solar-panel candidates inspected and rejected: docs/renderers/web/assets/js200e_eu_en/* (SolarSaga 200W: different kickstand panel, DC8020 cable with inline box, Explorer body, rubber-plug callout drawn for a USB junction box) and manual_sources/JS-40A/US/en/git-20261112-95e0f1c8-m000717/assets/* (folding 40 Mini, different carabiner/cable/pouch). Neither shows the JS-85A rigid frame, Anderson connector, hinge, ground stake, hex key or the Explorer drawn in this booklet.",
+    "Shared symbol library docs/renderers/web/assets/shared/symbols/manifest.json: fcc/nested-c-native-dark matches the printed FCC mark and is reused byte-identically.",
+    "Within this booklet the package-list hinge (p.5) and the Assembly hinge (p.7) are the same drawing; one crop (assets/hinge.png, the larger p.7 rendering) serves both slots instead of extracting the same art twice."
+  ],
+  "reuse_order": "existing target -> same model other region/language -> shared assets -> necessary current-source crop (docs/renderers/contracts/STYLE_DEFINITION/web-artwork-reuse.md)",
+  "background_policy": "Line drawings and complete multi-part diagrams keep their white source page ground and all four edges; no transparency treatment (not small standalone icons). The shared FCC SVG keeps its own transparent ground.",
+  "decorative_omissions": [
+    "Cover product image and Jackery wordmark (p.1), printed contents locator (p.2), US language tab, page numbers.",
+    "Package-list circled item numbers 1-10 (order is preserved by card order).",
+    "Three Customer Service list-marker icons (shield, headset, envelope) on p.13; the three service lines remain native text."
+  ],
+  "assets": {
+    "inbox-panel": {
+      "mode": "source-crop",
+      "physical_page": 5,
+      "image_px_box": [
+        134,
+        300,
+        540,
+        518
+      ],
+      "path": "assets/inbox-panel.png",
+      "reason": "No matching finished JS-500A/JS-85A artwork exists in the recorded inventories (see inventory_checked); this booklet's SolarSaga 85 panel, Anderson connector, hinge set and Explorer power-station drawings differ from every candidate inspected, so the current source drawing is extracted once at native 300 dpi.",
+      "boundary_strategy": "Package-list item drawing; native label and quantity stay in the shared inbox card.",
+      "sha256": "12b984d315d598835378256cdf0c4861a1fa2b91ead0dbef4a952a29a8a27357",
+      "bytes": 12556
+    },
+    "inbox-cable": {
+      "mode": "source-crop",
+      "physical_page": 5,
+      "image_px_box": [
+        560,
+        302,
+        852,
+        480
+      ],
+      "path": "assets/inbox-cable.png",
+      "reason": "No matching finished JS-500A/JS-85A artwork exists in the recorded inventories (see inventory_checked); this booklet's SolarSaga 85 panel, Anderson connector, hinge set and Explorer power-station drawings differ from every candidate inspected, so the current source drawing is extracted once at native 300 dpi.",
+      "boundary_strategy": "Package-list item drawing; native label and quantity stay in the shared inbox card.",
+      "sha256": "41a41a29c104f5ca1e3ba20420f1d4327b2b1ffc47824c5f7952e80036de6b62",
+      "bytes": 16032
+    },
+    "inbox-bag": {
+      "mode": "source-crop",
+      "physical_page": 5,
+      "image_px_box": [
+        888,
+        272,
+        1235,
+        496
+      ],
+      "path": "assets/inbox-bag.png",
+      "reason": "No matching finished JS-500A/JS-85A artwork exists in the recorded inventories (see inventory_checked); this booklet's SolarSaga 85 panel, Anderson connector, hinge set and Explorer power-station drawings differ from every candidate inspected, so the current source drawing is extracted once at native 300 dpi.",
+      "boundary_strategy": "Package-list item drawing; native label and quantity stay in the shared inbox card.",
+      "sha256": "b72b4e49bb02c8ac36cc06748dc8546b2f563bbee1bec1a47604d9b9318211b9",
+      "bytes": 8753
+    },
+    "inbox-manual": {
+      "mode": "source-crop",
+      "physical_page": 5,
+      "image_px_box": [
+        1256,
+        299,
+        1396,
+        489
+      ],
+      "path": "assets/inbox-manual.png",
+      "reason": "No matching finished JS-500A/JS-85A artwork exists in the recorded inventories (see inventory_checked); this booklet's SolarSaga 85 panel, Anderson connector, hinge set and Explorer power-station drawings differ from every candidate inspected, so the current source drawing is extracted once at native 300 dpi.",
+      "boundary_strategy": "Package-list item drawing; native label and quantity stay in the shared inbox card.",
+      "sha256": "b44ab3bbb6764b7c20b948d0b69a6fd5506f30f34829c8dfbf9de3b5e56ff622",
+      "bytes": 9435
+    },
+    "inbox-stake": {
+      "mode": "source-crop",
+      "physical_page": 5,
+      "image_px_box": [
+        426,
+        711,
+        508,
+        995
+      ],
+      "path": "assets/inbox-stake.png",
+      "reason": "No matching finished JS-500A/JS-85A artwork exists in the recorded inventories (see inventory_checked); this booklet's SolarSaga 85 panel, Anderson connector, hinge set and Explorer power-station drawings differ from every candidate inspected, so the current source drawing is extracted once at native 300 dpi.",
+      "boundary_strategy": "Package-list item drawing; native label and quantity stay in the shared inbox card.",
+      "sha256": "96a8d2b3596db0deb4ab382ef92cb869156b8a7797f3d0c7d2479a19a56923ed",
+      "bytes": 6453
+    },
+    "inbox-hex-tool": {
+      "mode": "source-crop",
+      "physical_page": 5,
+      "image_px_box": [
+        648,
+        753,
+        701,
+        960
+      ],
+      "path": "assets/inbox-hex-tool.png",
+      "reason": "No matching finished JS-500A/JS-85A artwork exists in the recorded inventories (see inventory_checked); this booklet's SolarSaga 85 panel, Anderson connector, hinge set and Explorer power-station drawings differ from every candidate inspected, so the current source drawing is extracted once at native 300 dpi.",
+      "boundary_strategy": "Package-list item drawing; native label and quantity stay in the shared inbox card.",
+      "sha256": "460157617c69e96ea301b7e281727ecad24b986119857ac057b70a497993254c",
+      "bytes": 6650
+    },
+    "inbox-screw": {
+      "mode": "source-crop",
+      "physical_page": 5,
+      "image_px_box": [
+        793,
+        804,
+        883,
+        915
+      ],
+      "path": "assets/inbox-screw.png",
+      "reason": "No matching finished JS-500A/JS-85A artwork exists in the recorded inventories (see inventory_checked); this booklet's SolarSaga 85 panel, Anderson connector, hinge set and Explorer power-station drawings differ from every candidate inspected, so the current source drawing is extracted once at native 300 dpi.",
+      "boundary_strategy": "Package-list item drawing; native label and quantity stay in the shared inbox card.",
+      "sha256": "7689164bbed305190bddaf8f27663ca50b4fa83dcc150691ad050642c677d60e",
+      "bytes": 7654
+    },
+    "inbox-plug": {
+      "mode": "source-crop",
+      "physical_page": 5,
+      "image_px_box": [
+        1001,
+        804,
+        1124,
+        910
+      ],
+      "path": "assets/inbox-plug.png",
+      "reason": "No matching finished JS-500A/JS-85A artwork exists in the recorded inventories (see inventory_checked); this booklet's SolarSaga 85 panel, Anderson connector, hinge set and Explorer power-station drawings differ from every candidate inspected, so the current source drawing is extracted once at native 300 dpi.",
+      "boundary_strategy": "Package-list item drawing; native label and quantity stay in the shared inbox card.",
+      "sha256": "5c7161d6021bd2eb3678782e2b7911824e2957127affc1bc5f24c38868c36b39",
+      "bytes": 8097
+    },
+    "inbox-carabiner": {
+      "mode": "source-crop",
+      "physical_page": 5,
+      "image_px_box": [
+        1232,
+        751,
+        1358,
+        986
+      ],
+      "path": "assets/inbox-carabiner.png",
+      "reason": "No matching finished JS-500A/JS-85A artwork exists in the recorded inventories (see inventory_checked); this booklet's SolarSaga 85 panel, Anderson connector, hinge set and Explorer power-station drawings differ from every candidate inspected, so the current source drawing is extracted once at native 300 dpi.",
+      "boundary_strategy": "Package-list item drawing; native label and quantity stay in the shared inbox card.",
+      "sha256": "afd97797892099453da88e9e48a3159d60e7991032a7aad0c875454906c2654f",
+      "bytes": 12640
+    },
+    "panel-front-back": {
+      "mode": "source-crop",
+      "physical_page": 5,
+      "image_px_box": [
+        445,
+        1326,
+        1085,
+        1971
+      ],
+      "path": "assets/panel-front-back.png",
+      "reason": "No matching finished JS-500A/JS-85A artwork exists in the recorded inventories (see inventory_checked); this booklet's SolarSaga 85 panel, Anderson connector, hinge set and Explorer power-station drawings differ from every candidate inspected, so the current source drawing is extracted once at native 300 dpi.",
+      "boundary_strategy": "Complete source illustration (panels, arrows, magnifier circles, angle marks and any in-art labels retained); surrounding prose stays native HTML.",
+      "sha256": "bb939cf37d52005757181a473c2184ba15dc8f03f48fef926f6ed95afbf9299d",
+      "bytes": 50496
+    },
+    "connection": {
+      "mode": "source-crop",
+      "physical_page": 6,
+      "image_px_box": [
+        177,
+        266,
+        1354,
+        952
+      ],
+      "path": "assets/connection.png",
+      "reason": "No matching finished JS-500A/JS-85A artwork exists in the recorded inventories (see inventory_checked); this booklet's SolarSaga 85 panel, Anderson connector, hinge set and Explorer power-station drawings differ from every candidate inspected, so the current source drawing is extracted once at native 300 dpi.",
+      "boundary_strategy": "Complete source illustration (panels, arrows, magnifier circles, angle marks and any in-art labels retained); surrounding prose stays native HTML.",
+      "sha256": "2d53a30547156d395c29bc5e7751ef7d988b502543400d40be91bcaeb578bcde",
+      "bytes": 108689
+    },
+    "mounting-holes": {
+      "mode": "source-crop",
+      "physical_page": 6,
+      "image_px_box": [
+        257,
+        1329,
+        1274,
+        1838
+      ],
+      "path": "assets/mounting-holes.png",
+      "reason": "No matching finished JS-500A/JS-85A artwork exists in the recorded inventories (see inventory_checked); this booklet's SolarSaga 85 panel, Anderson connector, hinge set and Explorer power-station drawings differ from every candidate inspected, so the current source drawing is extracted once at native 300 dpi.",
+      "boundary_strategy": "Complete source illustration (panels, arrows, magnifier circles, angle marks and any in-art labels retained); surrounding prose stays native HTML.",
+      "sha256": "477e17a04a784c0e03c6b6740fdaa1776be75c8fafd95679119e3a8e845f2e89",
+      "bytes": 44986
+    },
+    "balcony-railing": {
+      "mode": "source-crop",
+      "physical_page": 7,
+      "image_px_box": [
+        104,
+        519,
+        1427,
+        1061
+      ],
+      "path": "assets/balcony-railing.png",
+      "reason": "No matching finished JS-500A/JS-85A artwork exists in the recorded inventories (see inventory_checked); this booklet's SolarSaga 85 panel, Anderson connector, hinge set and Explorer power-station drawings differ from every candidate inspected, so the current source drawing is extracted once at native 300 dpi.",
+      "boundary_strategy": "Complete source illustration (panels, arrows, magnifier circles, angle marks and any in-art labels retained); surrounding prose stays native HTML.",
+      "sha256": "d46077aefd7df0e0fc9cb759dd834851eeeeeafce9e66f9cc780c150bce720e2",
+      "bytes": 64583
+    },
+    "carport-roof": {
+      "mode": "source-crop",
+      "physical_page": 7,
+      "image_px_box": [
+        238,
+        1178,
+        1207,
+        1721
+      ],
+      "path": "assets/carport-roof.png",
+      "reason": "No matching finished JS-500A/JS-85A artwork exists in the recorded inventories (see inventory_checked); this booklet's SolarSaga 85 panel, Anderson connector, hinge set and Explorer power-station drawings differ from every candidate inspected, so the current source drawing is extracted once at native 300 dpi.",
+      "boundary_strategy": "Complete source illustration (panels, arrows, magnifier circles, angle marks and any in-art labels retained); surrounding prose stays native HTML.",
+      "sha256": "56259dc4f740080ea7461af855c4a4bfa5a0052605f5dbd67707a1fbff0b457c",
+      "bytes": 194371
+    },
+    "hinge": {
+      "mode": "source-crop",
+      "physical_page": 7,
+      "image_px_box": [
+        1038,
+        1779,
+        1248,
+        2062
+      ],
+      "path": "assets/hinge.png",
+      "reason": "No matching finished JS-500A/JS-85A artwork exists in the recorded inventories (see inventory_checked); this booklet's SolarSaga 85 panel, Anderson connector, hinge set and Explorer power-station drawings differ from every candidate inspected, so the current source drawing is extracted once at native 300 dpi.",
+      "boundary_strategy": "Complete source illustration (panels, arrows, magnifier circles, angle marks and any in-art labels retained); surrounding prose stays native HTML.",
+      "sha256": "d90f6d2e22c6a6c0eedfb6f87db38e50140ece28081c561db69c62700914f4a8",
+      "bytes": 25644
+    },
+    "hinge-pair": {
+      "mode": "source-crop",
+      "physical_page": 8,
+      "image_px_box": [
+        218,
+        106,
+        1335,
+        525
+      ],
+      "path": "assets/hinge-pair.png",
+      "reason": "No matching finished JS-500A/JS-85A artwork exists in the recorded inventories (see inventory_checked); this booklet's SolarSaga 85 panel, Anderson connector, hinge set and Explorer power-station drawings differ from every candidate inspected, so the current source drawing is extracted once at native 300 dpi.",
+      "boundary_strategy": "Complete source illustration (panels, arrows, magnifier circles, angle marks and any in-art labels retained); surrounding prose stays native HTML.",
+      "sha256": "2f3c16513853335343c2881125d8dd81ec56a7b56f8b4ef186b8b4c97b7ea358",
+      "bytes": 71968
+    },
+    "hinge-step1": {
+      "mode": "source-crop",
+      "physical_page": 8,
+      "image_px_box": [
+        181,
+        876,
+        1329,
+        1427
+      ],
+      "path": "assets/hinge-step1.png",
+      "reason": "No matching finished JS-500A/JS-85A artwork exists in the recorded inventories (see inventory_checked); this booklet's SolarSaga 85 panel, Anderson connector, hinge set and Explorer power-station drawings differ from every candidate inspected, so the current source drawing is extracted once at native 300 dpi.",
+      "boundary_strategy": "Complete source illustration (panels, arrows, magnifier circles, angle marks and any in-art labels retained); surrounding prose stays native HTML.",
+      "sha256": "cebbf5db07e61ac617a1f14fc6e597287a6af3b657238602e44716fa4e4bf19d",
+      "bytes": 552607
+    },
+    "hinge-step2": {
+      "mode": "source-crop",
+      "physical_page": 8,
+      "image_px_box": [
+        130,
+        1527,
+        1411,
+        2080
+      ],
+      "path": "assets/hinge-step2.png",
+      "reason": "No matching finished JS-500A/JS-85A artwork exists in the recorded inventories (see inventory_checked); this booklet's SolarSaga 85 panel, Anderson connector, hinge set and Explorer power-station drawings differ from every candidate inspected, so the current source drawing is extracted once at native 300 dpi.",
+      "boundary_strategy": "Complete source illustration (panels, arrows, magnifier circles, angle marks and any in-art labels retained); surrounding prose stays native HTML.",
+      "sha256": "ca4c030d729ba1e28b7bd36a59780041015053956afb1b43cf3b15eb7a0748c4",
+      "bytes": 675348
+    },
+    "six-panels": {
+      "mode": "source-crop",
+      "physical_page": 9,
+      "image_px_box": [
+        128,
+        239,
+        1402,
+        1338
+      ],
+      "path": "assets/six-panels.png",
+      "reason": "No matching finished JS-500A/JS-85A artwork exists in the recorded inventories (see inventory_checked); this booklet's SolarSaga 85 panel, Anderson connector, hinge set and Explorer power-station drawings differ from every candidate inspected, so the current source drawing is extracted once at native 300 dpi.",
+      "boundary_strategy": "Complete source illustration (panels, arrows, magnifier circles, angle marks and any in-art labels retained); surrounding prose stays native HTML.",
+      "sha256": "9cdef5eb70f180f8d3e5d5ad18bb4965ebad437ecfeace44007d9604dd0df8ad",
+      "bytes": 1345500
+    },
+    "wiring": {
+      "mode": "source-crop",
+      "physical_page": 9,
+      "image_px_box": [
+        220,
+        1464,
+        1368,
+        2071
+      ],
+      "path": "assets/wiring.png",
+      "reason": "No matching finished JS-500A/JS-85A artwork exists in the recorded inventories (see inventory_checked); this booklet's SolarSaga 85 panel, Anderson connector, hinge set and Explorer power-station drawings differ from every candidate inspected, so the current source drawing is extracted once at native 300 dpi.",
+      "boundary_strategy": "Complete source illustration (panels, arrows, magnifier circles, angle marks and any in-art labels retained); surrounding prose stays native HTML.",
+      "sha256": "4a6455cb391964a1c2ce4df099569218c86506242560eba67be5c083116c5d79",
+      "bytes": 473542
+    },
+    "final-angle": {
+      "mode": "source-crop",
+      "physical_page": 10,
+      "image_px_box": [
+        196,
+        392,
+        1333,
+        627
+      ],
+      "path": "assets/final-angle.png",
+      "reason": "No matching finished JS-500A/JS-85A artwork exists in the recorded inventories (see inventory_checked); this booklet's SolarSaga 85 panel, Anderson connector, hinge set and Explorer power-station drawings differ from every candidate inspected, so the current source drawing is extracted once at native 300 dpi.",
+      "boundary_strategy": "Complete source illustration (panels, arrows, magnifier circles, angle marks and any in-art labels retained); surrounding prose stays native HTML.",
+      "sha256": "67e484c25e121fde458749bab09de570ae06d368120e56f76a5fd92252dcb92e",
+      "bytes": 134252
+    },
+    "ground-stake": {
+      "mode": "source-crop",
+      "physical_page": 10,
+      "image_px_box": [
+        188,
+        1257,
+        1317,
+        1737
+      ],
+      "path": "assets/ground-stake.png",
+      "reason": "No matching finished JS-500A/JS-85A artwork exists in the recorded inventories (see inventory_checked); this booklet's SolarSaga 85 panel, Anderson connector, hinge set and Explorer power-station drawings differ from every candidate inspected, so the current source drawing is extracted once at native 300 dpi.",
+      "boundary_strategy": "Complete source illustration (panels, arrows, magnifier circles, angle marks and any in-art labels retained); surrounding prose stays native HTML.",
+      "sha256": "dceff5e1abd7e33ff641add2e53c0939b069ea35403140e100b031e6b6849c59",
+      "bytes": 422756
+    },
+    "stake-locations": {
+      "mode": "source-crop",
+      "physical_page": 11,
+      "image_px_box": [
+        222,
+        200,
+        1308,
+        719
+      ],
+      "path": "assets/stake-locations.png",
+      "reason": "No matching finished JS-500A/JS-85A artwork exists in the recorded inventories (see inventory_checked); this booklet's SolarSaga 85 panel, Anderson connector, hinge set and Explorer power-station drawings differ from every candidate inspected, so the current source drawing is extracted once at native 300 dpi.",
+      "boundary_strategy": "Complete source illustration (panels, arrows, magnifier circles, angle marks and any in-art labels retained); surrounding prose stays native HTML.",
+      "sha256": "7031f2fcbc75f40f04ed68215cc15c5036c91246dc86c4068d5152da6558c3d9",
+      "bytes": 217760
+    },
+    "storage-fold": {
+      "mode": "source-crop",
+      "physical_page": 11,
+      "image_px_box": [
+        166,
+        1016,
+        1332,
+        1395
+      ],
+      "path": "assets/storage-fold.png",
+      "reason": "No matching finished JS-500A/JS-85A artwork exists in the recorded inventories (see inventory_checked); this booklet's SolarSaga 85 panel, Anderson connector, hinge set and Explorer power-station drawings differ from every candidate inspected, so the current source drawing is extracted once at native 300 dpi.",
+      "boundary_strategy": "Complete source illustration (panels, arrows, magnifier circles, angle marks and any in-art labels retained); surrounding prose stays native HTML.",
+      "whiteout_px": [
+        [
+          100,
+          995,
+          420,
+          1052
+        ]
+      ],
+      "whiteout_reason": "Only the exterior prose line 'illustration below.' (white page area left of the storage-bag drawing) is blanked; it remains native Web text. No artwork pixel lies in the blanked box.",
+      "sha256": "d5f8844adc9e7a3eda4dca115284422c571286fe707ac4edf887c6d96628d537",
+      "bytes": 222216
+    },
+    "array-to-station": {
+      "mode": "source-crop",
+      "physical_page": 11,
+      "image_px_box": [
+        179,
+        1542,
+        1288,
+        2032
+      ],
+      "path": "assets/array-to-station.png",
+      "reason": "No matching finished JS-500A/JS-85A artwork exists in the recorded inventories (see inventory_checked); this booklet's SolarSaga 85 panel, Anderson connector, hinge set and Explorer power-station drawings differ from every candidate inspected, so the current source drawing is extracted once at native 300 dpi.",
+      "boundary_strategy": "Complete source illustration (panels, arrows, magnifier circles, angle marks and any in-art labels retained); surrounding prose stays native HTML.",
+      "sha256": "f5adde87fe11fefa828e746c43ac6c75a26dbdde27b9015c7abdbacd65617887",
+      "bytes": 388567
+    },
+    "contact-qr": {
+      "mode": "source-crop",
+      "physical_page": 15,
+      "image_px_box": [
+        1259,
+        1911,
+        1428,
+        2079
+      ],
+      "path": "assets/contact-qr.png",
+      "reason": "No matching finished JS-500A/JS-85A artwork exists in the recorded inventories (see inventory_checked); this booklet's SolarSaga 85 panel, Anderson connector, hinge set and Explorer power-station drawings differ from every candidate inspected, so the current source drawing is extracted once at native 300 dpi.",
+      "boundary_strategy": "Back-cover QR code; all four code/frame edges preserved.",
+      "sha256": "30f8fa684b893e6050e0429411b451686b711e7c4f6d167a37de9036ff2a4dee",
+      "bytes": 5729
+    },
+    "fcc-mark": {
+      "mode": "shared-reuse",
+      "repo_path": "docs/renderers/web/assets/shared/symbols/native-v1/fcc_mark.svg",
+      "path": "assets/fcc-mark.svg",
+      "repo_sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe",
+      "reason": "Page 13 prints the standard nested-C FCC mark; the shared symbol fcc/nested-c-native-dark is the same glyph and is bound byte-identically (as JE-100A US/en does). No recrop of the raster mark.",
+      "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe",
+      "bytes": 1927
+    }
+  }
+}

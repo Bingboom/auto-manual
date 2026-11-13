@@ -1,0 +1,38 @@
+TECHNICAL PARAMETERS (Jackery SolarSaga 85)
+
+Product Name
+
+Jackery SolarSaga 85
+
+Model No. JS-85A
+
+Electrical Data STC BNPI
+Peak Power (Pmax) 85W+5% 93W+5%
+Open Circuit Voltage (Voc) 494Vt5% 50.2V+5%
+Short Circuit Current (Isc) 2.17A+5% 2.31A+5%
+Power Voltage (Vmp) 42.5V25% 43.3Vt5%
+Power Current (Imp) 2.0A£5% 2.14At5%
+Maximum System Voltage 9O0V DC
+
+Maximum Reverse Current 15A
+
+Protection Class Against Electric Shock Class II
+Waterproof Level IP68
+
+Operating Temperature Range
+
+-40°C~85°C (-40°F ~185°F )
+
+Dimensions 977 x 493 x 14mm
+
+Weight 1.4 kg+0.2 kg
+Bifaciality Coefficient (back/front) Pmax>80%, Voc>97%, Isc>80%
+Voltage Temperature Coefficient -0.26%/°C
+
+Power Temperature Coefficient -0.32%/°C
+
+STC (JOOOW/ ni, 25°C, AM 1.5). BNPI (Front IOOOW/m, Rear 135W/ 1m, 25°C, AM 1.5).
+
+The above are the technical specifications for a single solar panel.
+
+01

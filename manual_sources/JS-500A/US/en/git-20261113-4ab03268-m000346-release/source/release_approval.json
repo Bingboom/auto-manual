@@ -1,0 +1,20 @@
+{
+  "status": "operator-authorized-git-only-publication",
+  "client_date": "2026-11-13",
+  "directive": "「全部你都照写上线 问题可以记录在pr里」2026-11-13（操作者经协调会话转达；全部 D1–D9 按默认，问题记录在 PR #1718）",
+  "merge_authorization": "MA-438",
+  "candidate_git_ref": "da55cd0b57a02d46012d748b0016983c244a5c23",
+  "candidate_path": "manual_sources/JS-500A/US/en/git-20261113-4ab03268-m000346",
+  "candidate_frozen_manifest_sha256": "c7715ae2fe78743321f4100909be2083478b0e74c665f6d64f65b87385b6df27",
+  "candidate_IR_sha256": "e122ae919b8ef349585c50821cd805cb0cc0d3d9a189341daaa1057e511f3381",
+  "candidate_content_sha256": "1d6560a26477c806b7673222a4ecd04dc9d146a309e20ff762182865f9cbaff0",
+  "candidate_source_pdf_sha256": "4ab03268f8f1390459cd20aeb77ec6efdc175775b73267fe861e453a24bcc7fc",
+  "scope": {
+    "model": "JS-500A",
+    "region": "US",
+    "language": "en"
+  },
+  "operator_decisions": "D1-D9 kept at their defaults; copy as printed; decisions and source issues recorded in PR #1718.",
+  "human_attestation_boundary": "Explicit release instruction after complete candidate/QC reports; no separate per-image human pixel signature is invented.",
+  "global_asset_promotion": false
+}

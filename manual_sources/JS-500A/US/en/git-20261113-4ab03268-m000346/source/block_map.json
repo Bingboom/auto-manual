@@ -1,0 +1,660 @@
+{
+  "schema": "printed-block-to-shared-component-map/v1",
+  "rule": "AGENTS.md §3: every printed block mapped to a shared component; unmappable blocks are declared plain tables with a reason; no package colour, border or ht-* class.",
+  "omitted_page_furniture": [
+    "p.1 whole cover (image, caption, wordmark, title, model, version, contact lines) — operator rule 2026-11-13; facts in transcription.cover_facts",
+    "p.2 contents",
+    "US language tab",
+    "page numbers",
+    "package-list circled numbers (shown as inbox badges)",
+    "Customer Service marker icons"
+  ],
+  "blocks": [
+    {
+      "chapter": "specifications_85",
+      "printed_title": "TECHNICAL PARAMETERS (Jackery SolarSaga 85)",
+      "source_pages": [
+        3
+      ],
+      "block": "chapter heading",
+      "component": "native h1 (shared theme)"
+    },
+    {
+      "chapter": "specifications_85",
+      "index": 0,
+      "kind": "plain_table",
+      "first_words": "plain_table",
+      "component": "declared plain table (shared table wrapper) — shared_component_exceptions"
+    },
+    {
+      "chapter": "specifications_85",
+      "index": 1,
+      "kind": "paragraph",
+      "first_words": "STC (1000W/m², 25°C, AM 1.5). BNPI (Front 1000W/m², Rear 135",
+      "component": "native paragraph"
+    },
+    {
+      "chapter": "specifications_85",
+      "index": 2,
+      "kind": "paragraph",
+      "first_words": "The above are the technical specifications for a single sola",
+      "component": "native paragraph"
+    },
+    {
+      "chapter": "specifications_500x",
+      "printed_title": "TECHNICAL PARAMETERS (Jackery SolarSaga 500 X)",
+      "source_pages": [
+        4
+      ],
+      "block": "chapter heading",
+      "component": "native h1 (shared theme)"
+    },
+    {
+      "chapter": "specifications_500x",
+      "index": 0,
+      "kind": "plain_table",
+      "first_words": "plain_table",
+      "component": "declared plain table (shared table wrapper) — shared_component_exceptions"
+    },
+    {
+      "chapter": "specifications_500x",
+      "index": 1,
+      "kind": "paragraph",
+      "first_words": "STC (1000W/m², 25°C, AM 1.5). BNPI (Front 1000W/m², Rear 135",
+      "component": "native paragraph"
+    },
+    {
+      "chapter": "specifications_500x",
+      "index": 2,
+      "kind": "paragraph",
+      "first_words": "The above are the technical specifications for six solar pan",
+      "component": "native paragraph"
+    },
+    {
+      "chapter": "in_the_box",
+      "printed_title": "PACKAGE LIST",
+      "source_pages": [
+        5
+      ],
+      "block": "chapter heading",
+      "component": "native h1 (shared theme)"
+    },
+    {
+      "chapter": "in_the_box",
+      "index": 0,
+      "kind": "inbox",
+      "first_words": "inbox",
+      "component": "HB-SPECIAL-INBOX"
+    },
+    {
+      "chapter": "how_to_use",
+      "printed_title": "HOW TO USE",
+      "source_pages": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "block": "chapter heading",
+      "component": "native h1 (shared theme)"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 0,
+      "kind": "heading",
+      "first_words": "Single Solar Panel",
+      "component": "native heading"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 1,
+      "kind": "figure",
+      "first_words": "panel-front-back",
+      "component": "HB-SPECIAL-REFERENCE-FIGURE"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 2,
+      "kind": "paragraph",
+      "first_words": "The side with the junction box is the front of the solar pan",
+      "component": "native paragraph"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 3,
+      "kind": "paragraph",
+      "first_words": "As shown in the diagram, a single solar panel uses an Anders",
+      "component": "native paragraph"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 4,
+      "kind": "figure",
+      "first_words": "connection",
+      "component": "HB-SPECIAL-REFERENCE-FIGURE"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 5,
+      "kind": "paragraph",
+      "first_words": "When the Anderson connector’s female socket is not in use, b",
+      "component": "native paragraph"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 6,
+      "kind": "heading",
+      "first_words": "Installation and Mounting:",
+      "component": "native heading"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 7,
+      "kind": "paragraph",
+      "first_words": "To secure a single solar panel, use the mounting holes locat",
+      "component": "native paragraph"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 8,
+      "kind": "figure",
+      "first_words": "mounting-holes",
+      "component": "HB-SPECIAL-REFERENCE-FIGURE"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 9,
+      "kind": "paragraph",
+      "first_words": "The panel can be fastened with straps, screws or ropes in a ",
+      "component": "native paragraph"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 10,
+      "kind": "callout",
+      "first_words": "Note",
+      "component": "HB-CALLOUT-STRIP (note)"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 11,
+      "kind": "paragraph",
+      "first_words": "The following illustration shows solar panel installation on",
+      "component": "native paragraph"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 12,
+      "kind": "figure",
+      "first_words": "balcony-railing",
+      "component": "HB-SPECIAL-REFERENCE-FIGURE"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 13,
+      "kind": "paragraph",
+      "first_words": "The following illustration shows solar panel installation on",
+      "component": "native paragraph"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 14,
+      "kind": "figure",
+      "first_words": "carport-roof",
+      "component": "HB-SPECIAL-REFERENCE-FIGURE"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 15,
+      "kind": "heading",
+      "first_words": "Multiple Solar Panels",
+      "component": "native heading"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 16,
+      "kind": "heading",
+      "first_words": "Assembly",
+      "component": "native heading"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 17,
+      "kind": "paragraph",
+      "first_words": "Multiple solar panels can be connected using hinges.",
+      "component": "native paragraph"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 18,
+      "kind": "paragraph",
+      "first_words": "Note: The hinges have a specific range of motion. To avoid d",
+      "component": "native paragraph"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 19,
+      "kind": "image",
+      "first_words": "hinge",
+      "component": "native bounded inline image"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 20,
+      "kind": "figure",
+      "first_words": "hinge-pair",
+      "component": "HB-SPECIAL-REFERENCE-FIGURE"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 21,
+      "kind": "paragraph",
+      "first_words": "As shown in the diagram, two hinges are required to connect ",
+      "component": "native paragraph"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 22,
+      "kind": "html",
+      "first_words": "html",
+      "component": "native paragraph (printed bold/line breaks kept)"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 23,
+      "kind": "paragraph",
+      "first_words": "Step 1: When connecting the first and second solar panels, s",
+      "component": "native paragraph"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 24,
+      "kind": "figure",
+      "first_words": "hinge-step1",
+      "component": "HB-SPECIAL-REFERENCE-FIGURE"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 25,
+      "kind": "paragraph",
+      "first_words": "Step 2: When connecting the third panel, ensure the hinge is",
+      "component": "native paragraph"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 26,
+      "kind": "figure",
+      "first_words": "hinge-step2",
+      "component": "HB-SPECIAL-REFERENCE-FIGURE"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 27,
+      "kind": "paragraph",
+      "first_words": "Repeat the above steps to complete the installation of all s",
+      "component": "native paragraph"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 28,
+      "kind": "figure",
+      "first_words": "six-panels",
+      "component": "HB-SPECIAL-REFERENCE-FIGURE"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 29,
+      "kind": "heading",
+      "first_words": "Wiring",
+      "component": "native heading"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 30,
+      "kind": "paragraph",
+      "first_words": "The solar panels are connected to each other through Anderso",
+      "component": "native paragraph"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 31,
+      "kind": "figure",
+      "first_words": "wiring",
+      "component": "HB-SPECIAL-REFERENCE-FIGURE"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 32,
+      "kind": "paragraph",
+      "first_words": "The final installation result is displayed in the diagram.",
+      "component": "native paragraph"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 33,
+      "kind": "paragraph",
+      "first_words": "Jackery SolarSaga 85W solar panels are designed for parallel",
+      "component": "native paragraph"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 34,
+      "kind": "figure",
+      "first_words": "final-angle",
+      "component": "HB-SPECIAL-REFERENCE-FIGURE"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 35,
+      "kind": "paragraph",
+      "first_words": "Note: When the hinge is fully opened, the angle between the ",
+      "component": "native paragraph"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 36,
+      "kind": "paragraph",
+      "first_words": "Avoid applying pressure to the solar panels after installati",
+      "component": "native paragraph"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 37,
+      "kind": "heading",
+      "first_words": "Securing with Ground Stakes",
+      "component": "native heading"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 38,
+      "kind": "paragraph",
+      "first_words": "If you plan to use the SolarSaga 500 X in a fixed location f",
+      "component": "native paragraph"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 39,
+      "kind": "paragraph",
+      "first_words": "Note: When driving in the stakes, it is recommended to inser",
+      "component": "native paragraph"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 40,
+      "kind": "figure",
+      "first_words": "ground-stake",
+      "component": "HB-SPECIAL-REFERENCE-FIGURE"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 41,
+      "kind": "paragraph",
+      "first_words": "It is suggested to secure the solar panels at the eight loca",
+      "component": "native paragraph"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 42,
+      "kind": "figure",
+      "first_words": "stake-locations",
+      "component": "HB-SPECIAL-REFERENCE-FIGURE"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 43,
+      "kind": "paragraph",
+      "first_words": "To maximize power generation, it is recommended to orient th",
+      "component": "native paragraph"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 44,
+      "kind": "heading",
+      "first_words": "Storing the Product",
+      "component": "native heading"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 45,
+      "kind": "paragraph",
+      "first_words": "You can fold the solar panels and place them in the storage ",
+      "component": "native paragraph"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 46,
+      "kind": "figure",
+      "first_words": "storage-fold",
+      "component": "HB-SPECIAL-REFERENCE-FIGURE"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 47,
+      "kind": "paragraph",
+      "first_words": "The photovoltaic array formed by connecting multiple solar p",
+      "component": "native paragraph"
+    },
+    {
+      "chapter": "how_to_use",
+      "index": 48,
+      "kind": "figure",
+      "first_words": "array-to-station",
+      "component": "HB-SPECIAL-REFERENCE-FIGURE"
+    },
+    {
+      "chapter": "storage_transportation",
+      "printed_title": "STORAGE AND TRANSPORTATION",
+      "source_pages": [
+        12
+      ],
+      "block": "chapter heading",
+      "component": "native h1 (shared theme)"
+    },
+    {
+      "chapter": "storage_transportation",
+      "index": 0,
+      "kind": "list",
+      "first_words": "Avoid Contact with Corrosive Substances: Do not expose the p",
+      "component": "native list (shared list markers)"
+    },
+    {
+      "chapter": "safety",
+      "printed_title": "SAFETY INSTRUCTIONS",
+      "source_pages": [
+        12,
+        13
+      ],
+      "block": "chapter heading",
+      "component": "native h1 (shared theme)"
+    },
+    {
+      "chapter": "safety",
+      "index": 0,
+      "kind": "list",
+      "first_words": "Please read the user manual carefully before using this prod",
+      "component": "native list (shared list markers)"
+    },
+    {
+      "chapter": "safety",
+      "index": 1,
+      "kind": "fcc",
+      "first_words": "fcc-mark",
+      "component": "HB-SPECIAL-FCC + shared fcc/nested-c-native-dark mark"
+    },
+    {
+      "chapter": "warranty",
+      "printed_title": "WARRANTY",
+      "source_pages": [
+        13
+      ],
+      "block": "chapter heading",
+      "component": "native h1 (shared theme)"
+    },
+    {
+      "chapter": "warranty",
+      "index": 0,
+      "kind": "warranty",
+      "first_words": "WARRANTY",
+      "component": "HB-WARRANTY-SECTION"
+    },
+    {
+      "chapter": "contact_us",
+      "printed_title": "CONTACT US",
+      "source_pages": [
+        13
+      ],
+      "block": "chapter heading",
+      "component": "native h1 (shared theme)"
+    },
+    {
+      "chapter": "contact_us",
+      "index": 0,
+      "kind": "warranty",
+      "first_words": "CONTACT US",
+      "component": "HB-WARRANTY-SECTION"
+    },
+    {
+      "chapter": "customer_service",
+      "printed_title": "CUSTOMER SERVICE",
+      "source_pages": [
+        13
+      ],
+      "block": "chapter heading",
+      "component": "native h1 (shared theme)"
+    },
+    {
+      "chapter": "customer_service",
+      "index": 0,
+      "kind": "warranty",
+      "first_words": "CUSTOMER SERVICE",
+      "component": "HB-WARRANTY-SECTION"
+    },
+    {
+      "chapter": "installation_requirements",
+      "printed_title": "Installation Requirements",
+      "source_pages": [
+        14
+      ],
+      "block": "chapter heading",
+      "component": "native h1 (shared theme)"
+    },
+    {
+      "chapter": "installation_requirements",
+      "index": 0,
+      "kind": "list",
+      "first_words": "Non-permanent installation only",
+      "component": "native list (shared list markers)"
+    },
+    {
+      "chapter": "not_permitted",
+      "printed_title": "Not permitted",
+      "source_pages": [
+        14
+      ],
+      "block": "chapter heading",
+      "component": "native h1 (shared theme)"
+    },
+    {
+      "chapter": "not_permitted",
+      "index": 0,
+      "kind": "list",
+      "first_words": "Rooftop installation on residential buildings",
+      "component": "native list (shared list markers)"
+    },
+    {
+      "chapter": "compliance",
+      "printed_title": "Compliance",
+      "source_pages": [
+        14
+      ],
+      "block": "chapter heading",
+      "component": "native h1 (shared theme)"
+    },
+    {
+      "chapter": "compliance",
+      "index": 0,
+      "kind": "list",
+      "first_words": "All installations must follow local laws, regulations, and b",
+      "component": "native list (shared list markers)"
+    },
+    {
+      "chapter": "illustrations",
+      "printed_title": "Illustrations",
+      "source_pages": [
+        14
+      ],
+      "block": "chapter heading",
+      "component": "native h1 (shared theme)"
+    },
+    {
+      "chapter": "illustrations",
+      "index": 0,
+      "kind": "list",
+      "first_words": "Balcony railing installation (example)",
+      "component": "native list (shared list markers)"
+    },
+    {
+      "chapter": "disclaimer",
+      "printed_title": "Disclaimer",
+      "source_pages": [
+        14
+      ],
+      "block": "chapter heading",
+      "component": "native h1 (shared theme)"
+    },
+    {
+      "chapter": "disclaimer",
+      "index": 0,
+      "kind": "list",
+      "first_words": "Illustrations are for reference only.",
+      "component": "native list (shared list markers)"
+    },
+    {
+      "chapter": "contacts",
+      "printed_title": "Jackery Inc.",
+      "source_pages": [
+        15
+      ],
+      "block": "chapter heading",
+      "component": "native h1 (shared theme)"
+    },
+    {
+      "chapter": "contacts",
+      "index": 0,
+      "kind": "paragraph",
+      "first_words": "5310 Bunche Dr, Fremont, CA 94538-8301",
+      "component": "native paragraph"
+    },
+    {
+      "chapter": "contacts",
+      "index": 1,
+      "kind": "paragraph",
+      "first_words": "Tel:1-888-502-2236(US)",
+      "component": "native paragraph"
+    },
+    {
+      "chapter": "contacts",
+      "index": 2,
+      "kind": "paragraph",
+      "first_words": "E-mail:hello@jackery.com",
+      "component": "native paragraph"
+    },
+    {
+      "chapter": "contacts",
+      "index": 3,
+      "kind": "paragraph",
+      "first_words": "Website:www.jackery.com",
+      "component": "native paragraph"
+    },
+    {
+      "chapter": "contacts",
+      "index": 4,
+      "kind": "image",
+      "first_words": "contact-qr",
+      "component": "native bounded inline image"
+    }
+  ]
+}

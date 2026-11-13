@@ -1,0 +1,151 @@
+{
+  "reviewer": "independent sub-agent",
+  "method": "Viewed all 15 source PNGs (300 dpi) in full and cropped character-critical regions at native scale with PIL (dimension cells p3/p4, FCC NOTE/MODIFICATION, apostrophes p6/p13/p14, safety list p12). Extracted the built HTML text (tags stripped, img alt kept) and compared line-by-line with the source pixels and the Markdown. Located every PNG asset in the source pages with OpenCV matchTemplate (TM_CCOEFF_NORMED, multi-scale) and pixel-diffed each against its page region; checked a 40 px ring outside each crop for cut-off art (hits verified as neighbouring text/badges). Reviewed full-1280 and full-390 screenshots in slices for rendering (spans, bold header row, inbox badges, FCC, cards, back cover).",
+  "source_pages_checked": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "blocks_checked": 121,
+  "table_cells_checked": 86,
+  "figures_checked": 29,
+  "findings": [
+    {
+      "id": "F1",
+      "page": 13,
+      "web_location": "FCC statement, right column list",
+      "source_text_or_pixels": "-- Reorient or relocate the receiving antenna. (no bullet; '--' is the only marker)",
+      "web_text": "• -- Reorient or relocate the receiving antenna. (and the other 3 items)",
+      "severity": "concern",
+      "detail": "The '--' markers are kept as text, as the convention says, but the <ul class=\"simple\"> still draws a disc bullet, so each item has two markers ('• --'). The convention is applied only halfway: either remove the list bullet or drop the '--'.",
+      "resolution": "fixed: FCC '--' markers now become the shared list marker only (normalization recorded); no doubled marker."
+    },
+    {
+      "id": "F2",
+      "page": 13,
+      "web_location": "FCC statement, 'NOTE:' and 'MODIFICATION:' lead-ins",
+      "source_text_or_pixels": "NOTE: / MODIFICATION: printed in the same regular weight as the body text",
+      "web_text": "<strong>NOTE:</strong> / <strong>MODIFICATION:</strong>",
+      "severity": "concern",
+      "detail": "The web page adds bold that is not in the source. This is acceptable only if the shared HB-SPECIAL-FCC component requires it; it is not in the list of known conventions.",
+      "resolution": "accepted: label emphasis is drawn by the shared HB-SPECIAL-FCC component; not a package style."
+    },
+    {
+      "id": "F3",
+      "page": 12,
+      "web_location": "SAFETY INSTRUCTIONS, item 10",
+      "source_text_or_pixels": "'Do not step on or place heavy objects on the solar panels.' printed with no leading '*', directly after '* Do not put corrosive substance on the solar panels' (which has no full stop)",
+      "web_text": "Separate bullet: 'Do not step on or place heavy objects on the solar panels.'",
+      "severity": "concern",
+      "detail": "The source line has no bullet marker. The web page promotes it to its own list item. This is probably the intended reading (a missing '*' in print), but it is an editorial change and should be recorded. The missing full stop on item 9 is correctly kept verbatim.",
+      "resolution": "recorded as operator decision D6 and in source_concerns."
+    },
+    {
+      "id": "F4",
+      "page": 5,
+      "web_location": "PACKAGE LIST card 5 'Hinge x 10' image (assets/hinge.png)",
+      "source_text_or_pixels": "Package-list hinge drawing at about p5 (150-310, 740-960)",
+      "web_text": "assets/hinge.png = exact crop from p7 (1038,1779) (the Assembly-section hinge), also reused for the 'One hinge.' image",
+      "severity": "concern",
+      "detail": "The drawing is the same, but the asset comes from page 7 at a larger scale, not from the package-list artwork. Visually equivalent; the provenance differs from the other nine inbox crops, which all come from p5.",
+      "resolution": "recorded in asset_decisions.inventory_checked and decision D9-class presentation note; same drawing reused once."
+    },
+    {
+      "id": "F5",
+      "page": 5,
+      "web_location": "PACKAGE LIST card labels at 1280 px",
+      "source_text_or_pixels": "'Jackery SolarSaga 85 x 6' on one line; 'Anderson Rubber / Plug x 2' breaks before 'Plug'",
+      "web_text": "'Jackery SolarSaga 85 x' / '6' and 'Anderson Rubber Plug x' / '2' (the quantity wraps alone)",
+      "severity": "concern",
+      "detail": "There is no non-breaking space between 'x' and the quantity, so the number is orphaned on its own line. Use U+00A0 around 'x', or nowrap the 'x N' span.",
+      "resolution": "fixed: non-breaking spaces bind each quantity to its item label (normalization recorded)."
+    },
+    {
+      "id": "F6",
+      "page": 5,
+      "web_location": "h2 'Single Solar Panel' / 'Multiple Solar Panels'",
+      "source_text_or_pixels": "Title case: 'Single Solar Panel', 'Multiple Solar Panels'",
+      "web_text": "Rendered 'SINGLE SOLAR PANEL', 'MULTIPLE SOLAR PANELS' (text is title case in the DOM)",
+      "severity": "ok-note",
+      "detail": "The theme also upper-cases h2, not only h1. The DOM text is correct. Noted only because the stated convention mentions h1.",
+      "resolution": "no action: note confirms intended convention"
+    },
+    {
+      "id": "F7",
+      "page": 14,
+      "web_location": "h1 'Installation Requirements', 'Not permitted', 'Compliance', 'Illustrations', 'Disclaimer'; p15 'Jackery Inc.'",
+      "source_text_or_pixels": "Mixed/sentence case headings (e.g. 'Not permitted')",
+      "web_text": "DOM text verbatim; displayed upper-cased by theme ('NOT PERMITTED', 'JACKERY INC.')",
+      "severity": "ok-note",
+      "detail": "Covered by the h1 upper-case theme convention. In print, these appear as same-level headings. Text verbatim.",
+      "resolution": "no action: note confirms intended convention"
+    },
+    {
+      "id": "F8",
+      "page": 3,
+      "web_location": "JS-85A table, Dimensions",
+      "source_text_or_pixels": "977 x 493 x 14mm (letter x)",
+      "web_text": "977 x 493 x 14mm in DOM (letter x); the font draws it like ×",
+      "severity": "ok-note",
+      "detail": "Correct. The DOM keeps letter x as in the source, while the p4 Unfolded/Folded Size cells correctly use × as printed. The visual similarity comes from the font (known convention).",
+      "resolution": "no action: note confirms intended convention"
+    },
+    {
+      "id": "F9",
+      "page": 1,
+      "web_location": "Cover block",
+      "source_text_or_pixels": "Caption 'The image is for reference only.' under the cover product image",
+      "web_text": "(omitted)",
+      "severity": "ok-note",
+      "detail": "The caption goes with the omitted cover product image, so its omission is consistent with the cover convention. Recorded for completeness.",
+      "resolution": "no action: note confirms intended convention"
+    },
+    {
+      "id": "F10",
+      "page": 15,
+      "web_location": "Back cover",
+      "source_text_or_pixels": "Tel:1-888-502-2236(US)   E-mail:hello@jackery.com   Website:www.jackery.com on one line",
+      "web_text": "Three separate paragraphs, text verbatim (no space after colons, as printed)",
+      "severity": "ok-note",
+      "detail": "Reflowed from one line to three. Characters match exactly. The QR crop matches the source exactly and all four edges are intact.",
+      "resolution": "no action: note confirms intended convention"
+    },
+    {
+      "id": "F11",
+      "page": 11,
+      "web_location": "storage-fold figure",
+      "source_text_or_pixels": "Crop box overlaps the end of the text line 'illustration below.'",
+      "web_text": "assets/storage-fold.png: pixel-identical to source except a whited-out top-left patch (x 0-207, y 0-22)",
+      "severity": "ok-note",
+      "detail": "The neighbouring text was correctly masked, not included. The art is complete on all four sides (the bag stack top is intact).",
+      "resolution": "no action: note confirms intended convention"
+    },
+    {
+      "id": "F12",
+      "page": 3,
+      "web_location": "Both technical-parameter tables at 390 px",
+      "source_text_or_pixels": "n/a (layout)",
+      "web_text": "full-390 screenshot shows the STC/BNPI/value columns clipped at the right edge of the table wrapper",
+      "severity": "concern",
+      "detail": "The tables scroll horizontally inside the wrapper (there is no page-level horizontal scroll), so on a phone the values are hidden until the reader scrolls. Not a text-fidelity defect, but readers may miss the values.",
+      "resolution": "recorded as operator decision D3 (three-column table cannot use two-column HB-TABLE-SPEC; shared wrapper scrolls)."
+    }
+  ],
+  "verdict": "pass",
+  "post_fix_source": {
+    "transcription_sha256": "070fb853e4e1ba6a830404566c099d4c941fdf3f2a2b6edf9f7c36cb53e45f37",
+    "note": "Reviewed against the pre-fix render; the two fixes (F1, F5) only change list markers and space characters and were re-checked in the final 1280/390 render by the author."
+  }
+}

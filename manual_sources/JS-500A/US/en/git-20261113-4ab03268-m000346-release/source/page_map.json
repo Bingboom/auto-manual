@@ -1,0 +1,169 @@
+{
+  "source_physical_page_count": 15,
+  "pages": {
+    "1": [],
+    "2": [],
+    "3": [
+      "specifications_85"
+    ],
+    "4": [
+      "specifications_500x"
+    ],
+    "5": [
+      "in_the_box",
+      "how_to_use"
+    ],
+    "6": [
+      "how_to_use"
+    ],
+    "7": [
+      "how_to_use"
+    ],
+    "8": [
+      "how_to_use"
+    ],
+    "9": [
+      "how_to_use"
+    ],
+    "10": [
+      "how_to_use"
+    ],
+    "11": [
+      "how_to_use"
+    ],
+    "12": [
+      "storage_transportation",
+      "safety"
+    ],
+    "13": [
+      "safety",
+      "warranty",
+      "contact_us",
+      "customer_service"
+    ],
+    "14": [
+      "installation_requirements",
+      "not_permitted",
+      "compliance",
+      "illustrations",
+      "disclaimer"
+    ],
+    "15": [
+      "contacts"
+    ]
+  },
+  "chapters": [
+    {
+      "id": "specifications_85",
+      "source_pages": [
+        3
+      ]
+    },
+    {
+      "id": "specifications_500x",
+      "source_pages": [
+        4
+      ]
+    },
+    {
+      "id": "in_the_box",
+      "source_pages": [
+        5
+      ]
+    },
+    {
+      "id": "how_to_use",
+      "source_pages": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "id": "storage_transportation",
+      "source_pages": [
+        12
+      ]
+    },
+    {
+      "id": "safety",
+      "source_pages": [
+        12,
+        13
+      ]
+    },
+    {
+      "id": "warranty",
+      "source_pages": [
+        13
+      ]
+    },
+    {
+      "id": "contact_us",
+      "source_pages": [
+        13
+      ]
+    },
+    {
+      "id": "customer_service",
+      "source_pages": [
+        13
+      ]
+    },
+    {
+      "id": "installation_requirements",
+      "source_pages": [
+        14
+      ]
+    },
+    {
+      "id": "not_permitted",
+      "source_pages": [
+        14
+      ]
+    },
+    {
+      "id": "compliance",
+      "source_pages": [
+        14
+      ]
+    },
+    {
+      "id": "illustrations",
+      "source_pages": [
+        14
+      ]
+    },
+    {
+      "id": "disclaimer",
+      "source_pages": [
+        14
+      ]
+    },
+    {
+      "id": "contacts",
+      "source_pages": [
+        15
+      ]
+    }
+  ],
+  "omissions": [
+    {
+      "physical_page": 2,
+      "reason": "Printed contents page (one-language locator 'US English 01-12') replaced by native Web navigation; no instruction omitted (operator rule: cover and contents are not Web body)."
+    },
+    {
+      "physical_page": 1,
+      "reason": "Whole cover omitted from the Web body (operator rule 2026-11-13 「封面信息 不用放进网页呀 直接从这个开始」): image, caption, wordmark, title, model JS-85A, version JAK-UM-V1.0 and cover contact lines. Model/version kept in transcription.cover_facts, source_manifest and README only; the same contact details appear on the back cover (Jackery Inc.)."
+    },
+    {
+      "physical_page": "3-14",
+      "reason": "US language tab and printed page numbers 01-12 are page furniture."
+    }
+  ],
+  "full_substantive_source_coverage": true
+}

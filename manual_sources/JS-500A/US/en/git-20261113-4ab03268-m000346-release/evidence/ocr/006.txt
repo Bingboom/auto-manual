@@ -1,0 +1,17 @@
+As shown in the diagram, a single solar panel uses an Anderson connector as its
+output port. To connect the solar panel to a power station, use the DC8020 output
+port on the 5m charging cable.
+
+--- Solar Charging Cable
+- DC8020
+
+if Jackery |
+
+When the Anderson connector’s female socket is not in use, be sure to seal it with the
+rubber plug to ensure it remains waterproof and dustproof.
+
+Installation and Mounting:
+
+To secure a single solar panel, use the mounting holes located at the four corners.
+
+O04

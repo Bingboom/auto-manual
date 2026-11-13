@@ -1,0 +1,883 @@
+{
+  "model": "JS-500A",
+  "language": "en",
+  "source_sha256": "4ab03268f8f1390459cd20aeb77ec6efdc175775b73267fe861e453a24bcc7fc",
+  "transcription_method": "Tesseract 5.3.4 OCR at 300 dpi (raw output in evidence/ocr/NNN.txt) then every line hand-corrected against the 300-dpi page pixels; OCR-illegible art-heavy pages 8, 9 and 11 transcribed from pixels.",
+  "cover_facts": {
+    "rendered": false,
+    "source_page": 1,
+    "note": "Operator rule 2026-11-13 「封面信息 不用放进网页呀 直接从这个开始」: cover and contents are not Web body; facts kept here for traceability only.",
+    "title": "USER MANUAL",
+    "product": "Jackery SolarSaga 85",
+    "model": "JS-85A",
+    "version": "JAK-UM-V1.0",
+    "caption": "The image is for reference only.",
+    "contact": [
+      "Contact us:",
+      "hello@jackery.com",
+      "1-888-502-2236(US)"
+    ]
+  },
+  "chapters": [
+    {
+      "id": "specifications_85",
+      "title": "TECHNICAL PARAMETERS (Jackery SolarSaga 85)",
+      "source_pages": [
+        3
+      ],
+      "blocks": [
+        {
+          "kind": "plain_table",
+          "rows": [
+            [
+              "Product Name",
+              {
+                "text": "Jackery SolarSaga 85",
+                "colspan": 2
+              }
+            ],
+            [
+              "Model No.",
+              {
+                "text": "JS-85A",
+                "colspan": 2
+              }
+            ],
+            [
+              {
+                "text": "Electrical Data",
+                "header": true
+              },
+              {
+                "text": "STC",
+                "header": true
+              },
+              {
+                "text": "BNPI",
+                "header": true
+              }
+            ],
+            [
+              "Peak Power (Pmax)",
+              "85W±5%",
+              "93W±5%"
+            ],
+            [
+              "Open Circuit Voltage (Voc)",
+              "49.4V±5%",
+              "50.2V±5%"
+            ],
+            [
+              "Short Circuit Current (Isc)",
+              "2.17A±5%",
+              "2.31A±5%"
+            ],
+            [
+              "Power Voltage (Vmp)",
+              "42.5V±5%",
+              "43.3V±5%"
+            ],
+            [
+              "Power Current (Imp)",
+              "2.0A±5%",
+              "2.14A±5%"
+            ],
+            [
+              "Maximum System Voltage",
+              {
+                "text": "90V DC",
+                "colspan": 2
+              }
+            ],
+            [
+              "Maximum Reverse Current",
+              {
+                "text": "15A",
+                "colspan": 2
+              }
+            ],
+            [
+              "Protection Class Against Electric Shock",
+              {
+                "text": "Class II",
+                "colspan": 2
+              }
+            ],
+            [
+              "Waterproof Level",
+              {
+                "text": "IP68",
+                "colspan": 2
+              }
+            ],
+            [
+              "Operating Temperature Range",
+              {
+                "text": "-40°C~85°C (-40°F~185°F)",
+                "colspan": 2
+              }
+            ],
+            [
+              "Dimensions",
+              {
+                "text": "977 x 493 x 14mm",
+                "colspan": 2
+              }
+            ],
+            [
+              "Weight",
+              {
+                "text": "1.4 kg±0.2 kg",
+                "colspan": 2
+              }
+            ],
+            [
+              "Bifaciality Coefficient (back/front)",
+              {
+                "text": "Pmax>80%, Voc>97%, Isc>80%",
+                "colspan": 2
+              }
+            ],
+            [
+              "Voltage Temperature Coefficient",
+              {
+                "text": "-0.26%/°C",
+                "colspan": 2
+              }
+            ],
+            [
+              "Power Temperature Coefficient",
+              {
+                "text": "-0.32%/°C",
+                "colspan": 2
+              }
+            ]
+          ],
+          "reason": "HB-TABLE-SPEC is a two-column label/value component; this printed table has a third column (an in-table 'Electrical Data | STC | BNPI' header row with two value columns, and single values spanning both columns). It is kept as one native shared-wrapper table with the printed row order, column spans and header row instead of splitting or re-shaping the source table."
+        },
+        {
+          "kind": "paragraph",
+          "text": "STC (1000W/m², 25°C, AM 1.5). BNPI (Front 1000W/m², Rear 135W/m², 25°C, AM 1.5)."
+        },
+        {
+          "kind": "paragraph",
+          "text": "The above are the technical specifications for a single solar panel."
+        }
+      ]
+    },
+    {
+      "id": "specifications_500x",
+      "title": "TECHNICAL PARAMETERS (Jackery SolarSaga 500 X)",
+      "source_pages": [
+        4
+      ],
+      "blocks": [
+        {
+          "kind": "plain_table",
+          "rows": [
+            [
+              "Product Name",
+              {
+                "text": "Jackery SolarSaga 500 X",
+                "colspan": 2
+              }
+            ],
+            [
+              "Model No.",
+              {
+                "text": "JS-500A",
+                "colspan": 2
+              }
+            ],
+            [
+              {
+                "text": "Electrical Data",
+                "header": true
+              },
+              {
+                "text": "STC",
+                "header": true
+              },
+              {
+                "text": "BNPI",
+                "header": true
+              }
+            ],
+            [
+              "Peak Power (Pmax)",
+              "500W±5%",
+              "545W±5%"
+            ],
+            [
+              "Open Circuit Voltage (Voc)",
+              "48.5V±5%",
+              "49.2V±5%"
+            ],
+            [
+              "Short Circuit Current (Isc)",
+              "13.02A±5%",
+              "13.86A±5%"
+            ],
+            [
+              "Power Voltage (Vmp)",
+              "41.7V±5%",
+              "42.5V±5%"
+            ],
+            [
+              "Power Current (Imp)",
+              "12.0A±5%",
+              "12.84A±5%"
+            ],
+            [
+              "Maximum System Voltage",
+              {
+                "text": "90V DC",
+                "colspan": 2
+              }
+            ],
+            [
+              "Maximum Reverse Current",
+              {
+                "text": "15A",
+                "colspan": 2
+              }
+            ],
+            [
+              "Protection Class Against Electric Shock",
+              {
+                "text": "Class II",
+                "colspan": 2
+              }
+            ],
+            [
+              "Waterproof Level",
+              {
+                "text": "IP68",
+                "colspan": 2
+              }
+            ],
+            [
+              "Operating Temperature Range",
+              {
+                "text": "-40°C~85°C (-40°F~185°F)",
+                "colspan": 2
+              }
+            ],
+            [
+              "Unfolded Size",
+              {
+                "text": "Around 2493 × 996 × 294mm",
+                "colspan": 2
+              }
+            ],
+            [
+              "Folded Size",
+              {
+                "text": "Around 996 × 526 × 97mm",
+                "colspan": 2
+              }
+            ],
+            [
+              "Weight",
+              {
+                "text": "9.3 kg±0.5 kg",
+                "colspan": 2
+              }
+            ],
+            [
+              "Bifaciality Coefficient (back/front)",
+              {
+                "text": "Pmax>80%, Voc>97%, Isc>80%",
+                "colspan": 2
+              }
+            ],
+            [
+              "Voltage Temperature Coefficient",
+              {
+                "text": "-0.26%/°C",
+                "colspan": 2
+              }
+            ],
+            [
+              "Power Temperature Coefficient",
+              {
+                "text": "-0.32%/°C",
+                "colspan": 2
+              }
+            ]
+          ],
+          "reason": "HB-TABLE-SPEC is a two-column label/value component; this printed table has a third column (an in-table 'Electrical Data | STC | BNPI' header row with two value columns, and single values spanning both columns). It is kept as one native shared-wrapper table with the printed row order, column spans and header row instead of splitting or re-shaping the source table."
+        },
+        {
+          "kind": "paragraph",
+          "text": "STC (1000W/m², 25°C, AM 1.5). BNPI (Front 1000W/m², Rear 135W/m², 25°C, AM 1.5)."
+        },
+        {
+          "kind": "paragraph",
+          "text": "The above are the technical specifications for six solar panels connected in parallel."
+        }
+      ]
+    },
+    {
+      "id": "in_the_box",
+      "title": "PACKAGE LIST",
+      "source_pages": [
+        5
+      ],
+      "blocks": [
+        {
+          "kind": "inbox",
+          "cards": [
+            [
+              "inbox-panel",
+              "Jackery SolarSaga 85 x 6"
+            ],
+            [
+              "inbox-cable",
+              "Solar Charging Cable"
+            ],
+            [
+              "inbox-bag",
+              "Storage Bag"
+            ],
+            [
+              "inbox-manual",
+              "User Manual"
+            ],
+            [
+              "hinge",
+              "Hinge x 10"
+            ],
+            [
+              "inbox-stake",
+              "Ground Stakes x 8"
+            ],
+            [
+              "inbox-hex-tool",
+              "Hex Key"
+            ],
+            [
+              "inbox-screw",
+              "Screw x 40"
+            ],
+            [
+              "inbox-plug",
+              "Anderson Rubber Plug x 2"
+            ],
+            [
+              "inbox-carabiner",
+              "Compass Carabiner"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "how_to_use",
+      "title": "HOW TO USE",
+      "source_pages": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "blocks": [
+        {
+          "kind": "heading",
+          "text": "Single Solar Panel",
+          "level": 2
+        },
+        {
+          "kind": "figure",
+          "asset": "panel-front-back",
+          "source_page": 5,
+          "alt": "Front and back of one SolarSaga 85 panel; the junction box on the front is circled. Labels: Front, Back."
+        },
+        {
+          "kind": "paragraph",
+          "text": "The side with the junction box is the front of the solar panel."
+        },
+        {
+          "kind": "paragraph",
+          "text": "As shown in the diagram, a single solar panel uses an Anderson connector as its output port. To connect the solar panel to a power station, use the DC8020 output port on the 5m charging cable."
+        },
+        {
+          "kind": "figure",
+          "asset": "connection",
+          "source_page": 6,
+          "alt": "One solar panel connected to a Jackery power station; a magnifier shows the Anderson connector. Labels: Solar Charging Cable, DC8020, Anderson Connector."
+        },
+        {
+          "kind": "paragraph",
+          "text": "When the Anderson connector’s female socket is not in use, be sure to seal it with the rubber plug to ensure it remains waterproof and dustproof."
+        },
+        {
+          "kind": "heading",
+          "text": "Installation and Mounting:",
+          "level": 3
+        },
+        {
+          "kind": "paragraph",
+          "text": "To secure a single solar panel, use the mounting holes located at the four corners."
+        },
+        {
+          "kind": "figure",
+          "asset": "mounting-holes",
+          "source_page": 6,
+          "alt": "A solar panel with a magnified corner showing the round mounting hole."
+        },
+        {
+          "kind": "paragraph",
+          "text": "The panel can be fastened with straps, screws or ropes in a location that receives ample sunlight, such as a balcony or rooftop."
+        },
+        {
+          "kind": "callout",
+          "label": "Note",
+          "variant": "note",
+          "paragraphs": [
+            "1. The panel is not intended for permanent installation.",
+            "2. Before installing a rooftop solar system, check your local building codes and obtain all required permits from the appropriate city or county authority."
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "The following illustration shows solar panel installation on a balcony railing."
+        },
+        {
+          "kind": "figure",
+          "asset": "balcony-railing",
+          "source_page": 7,
+          "alt": "Six solar panels tied side by side to a balcony railing."
+        },
+        {
+          "kind": "paragraph",
+          "text": "The following illustration shows solar panel installation on a carport roof."
+        },
+        {
+          "kind": "figure",
+          "asset": "carport-roof",
+          "source_page": 7,
+          "alt": "Six solar panels laid side by side on a carport roof."
+        },
+        {
+          "kind": "heading",
+          "text": "Multiple Solar Panels",
+          "level": 2
+        },
+        {
+          "kind": "heading",
+          "text": "Assembly",
+          "level": 3
+        },
+        {
+          "kind": "paragraph",
+          "text": "Multiple solar panels can be connected using hinges."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Note: The hinges have a specific range of motion. To avoid damaging the product, do not apply excessive force."
+        },
+        {
+          "kind": "image",
+          "asset": "hinge",
+          "alt": "One hinge.",
+          "source_page": 7,
+          "width": 110
+        },
+        {
+          "kind": "figure",
+          "asset": "hinge-pair",
+          "source_page": 8,
+          "alt": "Two solar panels side by side with two hinges between them; an arrow leads to a magnified hinge fastened across the gap with screws."
+        },
+        {
+          "kind": "paragraph",
+          "text": "As shown in the diagram, two hinges are required to connect each pair of solar panels. Each hinge should be fastened to both sides of the panels using hex screws."
+        },
+        {
+          "kind": "html",
+          "html": "<p><strong>We recommend standing the solar panel vertically before hinge installation.</strong></p>"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Step 1: When connecting the first and second solar panels, secure the hinge on the back side of the panels, and install the screws on the front side. Refer to the diagram below for detailed instructions."
+        },
+        {
+          "kind": "figure",
+          "asset": "hinge-step1",
+          "source_page": 8,
+          "alt": "Step 1: two panels standing in a V; an arrow leads to a magnified hinge on the back side with screws inserted from the front."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Step 2: When connecting the third panel, ensure the hinge is secured on the front side, and install the screws on the back. Refer to the diagram below for detailed instructions."
+        },
+        {
+          "kind": "figure",
+          "asset": "hinge-step2",
+          "source_page": 8,
+          "alt": "Step 2: three panels standing in a zigzag; an arrow leads to a magnified hinge on the front side with screws inserted from the back."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Repeat the above steps to complete the installation of all six solar panels. For installations involving six solar panels, refer to the diagram below."
+        },
+        {
+          "kind": "figure",
+          "asset": "six-panels",
+          "source_page": 9,
+          "alt": "Six panels hinged in a zigzag; dotted leaders link each hinge position to two magnifiers showing the hinge from the front and from the back."
+        },
+        {
+          "kind": "heading",
+          "text": "Wiring",
+          "level": 3
+        },
+        {
+          "kind": "paragraph",
+          "text": "The solar panels are connected to each other through Anderson ports."
+        },
+        {
+          "kind": "figure",
+          "asset": "wiring",
+          "source_page": 9,
+          "alt": "Two hinged panels; dotted arrows lead from the lower corners to magnifiers showing the Anderson cable connection and the mating connector."
+        },
+        {
+          "kind": "paragraph",
+          "text": "The final installation result is displayed in the diagram."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Jackery SolarSaga 85W solar panels are designed for parallel connection only, with a maximum of six panels connected in parallel. Exceeding this limit may pose safety hazards. Jackery will not provide warranty service for incorrect installation or misuse."
+        },
+        {
+          "kind": "figure",
+          "asset": "final-angle",
+          "source_page": 10,
+          "alt": "Side view of the six hinged panels opened in a zigzag on the ground; the angle to the ground is marked 35°."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Note: When the hinge is fully opened, the angle between the solar panel and the ground is approximately 35°."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Avoid applying pressure to the solar panels after installation, as this may cause damage."
+        },
+        {
+          "kind": "heading",
+          "text": "Securing with Ground Stakes",
+          "level": 3
+        },
+        {
+          "kind": "paragraph",
+          "text": "If you plan to use the SolarSaga 500 X in a fixed location for an extended period, we recommend securing the panels with ground stakes."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Note: When driving in the stakes, it is recommended to insert them at a 90° angle to the solar panel."
+        },
+        {
+          "kind": "figure",
+          "asset": "ground-stake",
+          "source_page": 10,
+          "alt": "Opened panels secured by a ground stake driven at a 90° angle to the panel."
+        },
+        {
+          "kind": "paragraph",
+          "text": "It is suggested to secure the solar panels at the eight locations indicated in the diagram."
+        },
+        {
+          "kind": "figure",
+          "asset": "stake-locations",
+          "source_page": 11,
+          "alt": "Top view of six connected panels with eight ground stakes: four along the top edge and four along the bottom edge."
+        },
+        {
+          "kind": "paragraph",
+          "text": "To maximize power generation, it is recommended to orient the solar panel array in an east-west direction. In the event of strong winds or adverse weather, we advise retracting the solar panels."
+        },
+        {
+          "kind": "heading",
+          "text": "Storing the Product",
+          "level": 3
+        },
+        {
+          "kind": "paragraph",
+          "text": "You can fold the solar panels and place them in the storage bag, as shown in the illustration below."
+        },
+        {
+          "kind": "figure",
+          "asset": "storage-fold",
+          "source_page": 11,
+          "alt": "Folding sequence: the zigzag array is folded flat into a stack, then slid into the Jackery storage bag."
+        },
+        {
+          "kind": "paragraph",
+          "text": "The photovoltaic array formed by connecting multiple solar panels can be used to charge the power station via the 5m DC charging cable."
+        },
+        {
+          "kind": "figure",
+          "asset": "array-to-station",
+          "source_page": 11,
+          "alt": "The opened multi-panel array connected by cable to a Jackery power station."
+        }
+      ]
+    },
+    {
+      "id": "storage_transportation",
+      "title": "STORAGE AND TRANSPORTATION",
+      "source_pages": [
+        12
+      ],
+      "blocks": [
+        {
+          "kind": "list",
+          "items": [
+            "Avoid Contact with Corrosive Substances: Do not expose the product to highly corrosive materials.",
+            "Prevent Physical Damage: Avoid impacts and scratches on the surface during use.",
+            "Avoid Bending Stress: Do not subject the product to bending stress during transportation and assembly.",
+            "Proper Storage Conditions: Store the product within a temperature range of 0°C to 60°C(32°F to 140°F) and a humidity range of 0% to 60%."
+          ],
+          "ordered": true
+        }
+      ]
+    },
+    {
+      "id": "safety",
+      "title": "SAFETY INSTRUCTIONS",
+      "source_pages": [
+        12,
+        13
+      ],
+      "blocks": [
+        {
+          "kind": "list",
+          "items": [
+            "Please read the user manual carefully before using this product.",
+            "Do not bend the solar panels during use or transport.",
+            "Avoid dropping solar panels from high places. Any damage of product may lead to electric shock or fire.",
+            "Do not place the solar panels in trees, buildings or other shaded areas for use.",
+            "Do not immerse the solar panels in water or any other liquid.",
+            "Do not put solar panels in water directly, and use a damp cloth to gently wipe them when cleaning.",
+            "Do not use or store the solar panels near open flames or flammable materials.",
+            "Do not scratch the solar panels with sharp objects.",
+            "Do not put corrosive substance on the solar panels",
+            "Do not step on or place heavy objects on the solar panels.",
+            "Do not disassemble the solar panels. Damage to the product may result in a risk of electric shock.",
+            "The output circuit of solar panel package must be connected to the equipment properly, and reverse connection of positive and negative poles is strictly prohibited.",
+            "Check the connection status of various components, wires, and plugs before use.",
+            "Please put away the solar panels in case of strong winds, hail and other severe weather to avoid product damage or other hazards.",
+            "Under normal circumstances, PV modules may be exposed to higher currents or voltages than under standard test conditions. Therefore, when calculating the rated voltage of component, the rated current of conductor, and the size of the control device connected to the PV output, it is required to multiply the short-circuit current (Isc) and open circuit voltage (Voc) values marked on the component by a factor of 1.25."
+          ],
+          "ordered": false
+        },
+        {
+          "kind": "fcc",
+          "asset": "fcc-mark",
+          "source_page": 13,
+          "note": "This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules. These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to radio communications. However, there is no guarantee that interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:",
+          "items": [
+            "Reorient or relocate the receiving antenna.",
+            "Increase the separation between the equipment and receiver.",
+            "Connect the equipment into an outlet on a circuit different from that to which the receiver is connected.",
+            "Consult the dealer or an experienced radio/TV technician for help."
+          ],
+          "modification": "Any changes or modifications not expressly approved by the grantee of this device could void the user’s authority to operate the device."
+        }
+      ]
+    },
+    {
+      "id": "warranty",
+      "title": "WARRANTY",
+      "source_pages": [
+        13
+      ],
+      "blocks": [
+        {
+          "kind": "warranty",
+          "title": "WARRANTY",
+          "show_heading": false,
+          "paragraphs": [
+            "The product comes with a limited 5-year warranty from Jackery, valid for the original purchaser. This warranty covers defects in workmanship and materials from the date of purchase.",
+            "Since solar panels are outdoor products, sunlight, and ultraviolet rays can affect their appearance, such as causing fabric discoloration, plastic casing discoloration, and surface discoloration of the solar panels. Fabric deterioration can occur after more than one year. These issues are excluded from warranty coverage. The warranty only covers the normal power generation of the solar panel itself (Damages from normal wear and tear, alteration, misuse, neglect, accident, service by anyone other than the authorized service center, or act of God are not included ).",
+            "During the warranty period and upon verification of defects, this product will be replaced when returned with proper proof of purchase."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "contact_us",
+      "title": "CONTACT US",
+      "source_pages": [
+        13
+      ],
+      "blocks": [
+        {
+          "kind": "warranty",
+          "title": "CONTACT US",
+          "show_heading": false,
+          "paragraphs": [
+            "For any inquiries or comments concerning our products, please send an email to hello@jackery.com, and we will respond to you as soon as possible. If there is any quality-related issue with the product, you may request a replacement or refund by submitting a request form at www.jackery.com."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "customer_service",
+      "title": "CUSTOMER SERVICE",
+      "source_pages": [
+        13
+      ],
+      "blocks": [
+        {
+          "kind": "warranty",
+          "title": "CUSTOMER SERVICE",
+          "show_heading": false,
+          "paragraphs": [
+            "5 years limited warranty",
+            "Lifetime technical support",
+            "hello@jackery.com"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "installation_requirements",
+      "title": "Installation Requirements",
+      "source_pages": [
+        14
+      ],
+      "blocks": [
+        {
+          "kind": "list",
+          "items": [
+            "Non-permanent installation only",
+            "Fasteners: straps, screws, ropes, etc.",
+            "Locations: balconies, railings, carports, or other permitted structures with sufficient sunlight"
+          ],
+          "ordered": false
+        }
+      ]
+    },
+    {
+      "id": "not_permitted",
+      "title": "Not permitted",
+      "source_pages": [
+        14
+      ],
+      "blocks": [
+        {
+          "kind": "list",
+          "items": [
+            "Rooftop installation on residential buildings",
+            "Use in grid-connected solar systems",
+            "Use in solar systems with a voltage greater than 60 V"
+          ],
+          "ordered": false
+        }
+      ]
+    },
+    {
+      "id": "compliance",
+      "title": "Compliance",
+      "source_pages": [
+        14
+      ],
+      "blocks": [
+        {
+          "kind": "list",
+          "items": [
+            "All installations must follow local laws, regulations, and building codes.",
+            "Installation sites must meet applicable requirements."
+          ],
+          "ordered": false
+        }
+      ]
+    },
+    {
+      "id": "illustrations",
+      "title": "Illustrations",
+      "source_pages": [
+        14
+      ],
+      "blocks": [
+        {
+          "kind": "list",
+          "items": [
+            "Balcony railing installation (example)",
+            "Carport or similar non-residential structure installation (example)"
+          ],
+          "ordered": false
+        }
+      ]
+    },
+    {
+      "id": "disclaimer",
+      "title": "Disclaimer",
+      "source_pages": [
+        14
+      ],
+      "blocks": [
+        {
+          "kind": "list",
+          "items": [
+            "Illustrations are for reference only.",
+            "Warranty and service apply only when installation and use comply with this manual.",
+            "Installations outside these instructions are at the user's own risk and not covered by warranty."
+          ],
+          "ordered": false
+        }
+      ]
+    },
+    {
+      "id": "contacts",
+      "title": "Jackery Inc.",
+      "source_pages": [
+        15
+      ],
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "5310 Bunche Dr, Fremont, CA 94538-8301"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Tel:1-888-502-2236(US)"
+        },
+        {
+          "kind": "paragraph",
+          "text": "E-mail:hello@jackery.com"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Website:www.jackery.com"
+        },
+        {
+          "kind": "image",
+          "asset": "contact-qr",
+          "alt": "Jackery QR code from the back cover, all four edges preserved.",
+          "source_page": 15,
+          "width": 120
+        }
+      ]
+    }
+  ],
+  "source_concerns": [
+    "D1 model identity: the booklet is shared. Cover prints 'Model: JS-85A' / 'Jackery SolarSaga 85' / 'Version: JAK-UM-V1.0'; p.4 prints a second table for 'Jackery SolarSaga 500 X', Model No. JS-500A; the package list is 'Jackery SolarSaga 85 x 6'. The Feishu row is JS-500A (finished goods HTS021500A-US/CA-JAK). Built as one JS-500A edition containing the whole booklet body; per operator rule 2026-11-13 the cover is not Web body, so the cover facts (JS-85A, JAK-UM-V1.0) are kept only in transcription.cover_facts, the manifest and README; no JS-85A target created.",
+    "Product-name spelling differs by source: booklet 'SolarSaga 500 X' (with a space, p.4 and p.10); Feishu attachment name '500X'; Feishu finished-goods spec 'SolarSaga 500W'. The printed '500 X' is kept; web_title uses the printed product name.",
+    "p.10 refers to 'Jackery SolarSaga 85W solar panels' while the cover and spec table say 'Jackery SolarSaga 85'. Kept as printed.",
+    "p.7 says the panel suits 'a balcony or rooftop' and Note 2 covers rooftop permits, but p.14 'Not permitted' lists 'Rooftop installation on residential buildings'. Both kept as printed; the conflict is for the operator.",
+    "Spec tables print 'Maximum System Voltage 90V DC' while p.14 'Not permitted' lists 'Use in solar systems with a voltage greater than 60 V'. Both kept as printed; not reconciled.",
+    "p.12 safety list: the line 'Do not step on or place heavy objects on the solar panels.' has no leading '*' marker and the preceding item 'Do not put corrosive substance on the solar panels' has no full stop. Rendered as its own bullet with the wording unchanged; the missing full stop is kept.",
+    "Source grammar kept as printed: 'Any damage of product may lead to...', 'rated voltage of component, the rated current of conductor', 'output circuit of solar panel package', '...act of God are not included )' (space before the parenthesis), '60°C(32°F' (no space), 'Tel:'/'E-mail:'/'Website:' with no space after the colon.",
+    "Dimension separators differ between tables as printed: SolarSaga 85 'Dimensions 977 x 493 x 14mm' uses a letter x; SolarSaga 500 X sizes use ×. Kept.",
+    "Apostrophes differ as printed: curly in 'connector’s' (p.6) and 'user’s authority' (p.13 FCC); straight in 'user's own risk' (p.14). Kept.",
+    "FCC Part 15 Class B digital-device statement is printed for a passive solar-panel kit. Kept as printed; applicability is for the operator.",
+    "Printed manual version is JAK-UM-V1.0 (cover). No other version is inferred."
+  ]
+}

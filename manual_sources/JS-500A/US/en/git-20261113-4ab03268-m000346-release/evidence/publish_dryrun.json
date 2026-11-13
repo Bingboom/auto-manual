@@ -1,0 +1,15 @@
+{
+  "authorization": "MA-438",
+  "purpose": "Pre-merge proof that the release copy is accepted by the existing Git-only publish path (input-paths.md §2.2 step 3); not a publication.",
+  "source_git_ref": "3a6cbfae08dd247ef6a3cf131c087fafd8d0c7cc",
+  "isolated_release_root": "scratch (outside the repository), discarded",
+  "layout": "<releases>/JS-500A/US/en/versions/git-20261113-4ab03268-m000346-release/web/{md,html,evidence}; <releases>/JS-500A/US/en/latest/web/publish_meta.json",
+  "steps": [
+    "copied web/en to web/md; strict Sphinx -n -W --keep-going built web/html",
+    "tools.web.frozen_source_evidence.seal_frozen_web_evidence(source_manifest_path=frozen_source_manifest.json, language=en): accepted, receipt written",
+    "tools.publish_locale_identity.load_web_publish_target(publish_meta.json, language_scope=single): accepted (WebPublishTarget)",
+    "tools.web.frozen_ai_web.replay_package(web/en): accepted, 15 pages"
+  ],
+  "result": "accepted",
+  "note": "The real publish run re-seals at the merged source commit; this record only shows the package shape is accepted."
+}
