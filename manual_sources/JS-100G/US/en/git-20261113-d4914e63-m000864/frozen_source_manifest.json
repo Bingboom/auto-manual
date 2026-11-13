@@ -55,13 +55,21 @@
     "INSTALLATION (printed pages 03-12) is split into three Web pages: INSTALLATION (overview and Adhesive Mounting), Suspension Mounting and How to Connect Multiple Solar Panels; copy and order unchanged.",
     "The FCC page has only the FC logo as its heading; the Web page title is 'FCC'.",
     "Omit cover drawing, wordmark, printed page numbers and the printed table of contents.",
-    "Customer Service icons are carried by the shared warranty component styling rather than cropped."
+    "Customer Service icons are carried by the shared warranty component styling rather than cropped.",
+    "Shared callout labels drop a trailing colon ('Note:' → 'Note'); shared Sphinx typography renders the heading apostrophe in WHAT'S as ’.",
+    "Cover CONTACT US box stays in the introduction; printed 'www.jackery.com' is the visible link text of https://www.jackery.com.",
+    "Adhesive step 1 crop starts below the neighbouring step text; the open-ended wall-corner line loses its top 2.7 pt."
   ],
   "inputs": [
     {
+      "path": "README.md",
+      "size": 3491,
+      "sha256": "cd04ad820a79e63690558fc6bac589fc073a1c877139282508413091f0235961"
+    },
+    {
       "path": "assets/adhesive-step-1.png",
-      "size": 36341,
-      "sha256": "6cddbe01f8991cb8e9664a37dd23cce89ff5aed96f5ec76c31d10f6a84ff0bb0"
+      "size": 35498,
+      "sha256": "e8ff096e09b639e46f10a838e93c697bdc26c49149c9d1af053095d0d0ade962"
     },
     {
       "path": "assets/adhesive-step-2.png",
@@ -214,9 +222,49 @@
       "sha256": "5504bd92f7c9f8bbb8d228efd55806d7347cd2629f97096d0943b740b1f94b27"
     },
     {
+      "path": "evidence/art-edge-inventory.json",
+      "size": 10197,
+      "sha256": "c94276fde53b2b7b60d70c51ef0425f0314b2eb297bc10585887afdc42a71d2f"
+    },
+    {
+      "path": "evidence/art-reproduction.log",
+      "size": 577,
+      "sha256": "e1dcb42f84419054404ac79912618091439c215f4f2c568fb4aa24389cabbddc"
+    },
+    {
       "path": "evidence/asset-intake.log",
       "size": 500,
-      "sha256": "99be46a941ed0f2e2302ec8235e520197fbb42fdcf2b08392b0fb474294bddad"
+      "sha256": "0cc42e11011009f41b14e7b145d474edd40d3542ecf300420b94a53e6368226a"
+    },
+    {
+      "path": "evidence/browser-validation.json",
+      "size": 11947,
+      "sha256": "b99712eeefd059ead1e42a536635706ab1e88ce4417e58688cc4ce5425e7a795"
+    },
+    {
+      "path": "evidence/candidate-validation.json",
+      "size": 2447,
+      "sha256": "01fb65170041debbb864b4db223998f2087f79924864789a03b60de3277ee950"
+    },
+    {
+      "path": "evidence/cold-source-rebuild.log",
+      "size": 424,
+      "sha256": "0f3293bd64422e4c4266dbefb9d487843ae42f94e43b50ea71ba2eab01c25a28"
+    },
+    {
+      "path": "evidence/full-1280.png",
+      "size": 1924370,
+      "sha256": "9521c2019ab4ebaa150ddcb610b3cd5930f9fb48d33e23ffe7a943131d53b19b"
+    },
+    {
+      "path": "evidence/full-390.png",
+      "size": 1189565,
+      "sha256": "12f05f09045603ae83a9626c5838b37c77f5ae52b0ac9df7cf25e1313f288739"
+    },
+    {
+      "path": "evidence/independent-body-qc.json",
+      "size": 6050,
+      "sha256": "77489edff3438e55d3945f210b7698ee5dbeeaac16873fb857b582d8c8751132"
     },
     {
       "path": "evidence/ocr/001.txt",
@@ -304,29 +352,44 @@
       "sha256": "7b2878b9cebda6fe376b9c2fd2a5d3a2daec76ebd2fe347e4940b37a5b8cc022"
     },
     {
+      "path": "evidence/replay-and-tamper.json",
+      "size": 1024,
+      "sha256": "abca0ae33e0e9f5fb16301435e694a65328a45e46a584d5912e51461b4c05c8b"
+    },
+    {
+      "path": "evidence/strict-sphinx.log",
+      "size": 1920,
+      "sha256": "c07dd98c89b47090823e095a8c07b400810b01c4da4795f85fdbdf9d22a7b7f6"
+    },
+    {
       "path": "refresh_manifest.py",
       "size": 2267,
       "sha256": "80bde6d5126aa5d0aaed9353a745aa50b1bcc8592612794a3b4bbd8b92a95261"
     },
     {
       "path": "render.py",
-      "size": 17549,
-      "sha256": "d646fb792905ba0d4dbac999da927f6697b8307da634fdfe4c6fedf968f6050c"
+      "size": 17731,
+      "sha256": "49b2c47ce25fa78da6c369704e15899de05a4214e24206ea643b16b0a46804d8"
     },
     {
       "path": "source/asset_decisions.json",
-      "size": 42276,
-      "sha256": "37a34099d3c1a38ce0a5f64c5d3f1e5698bfbc5c6b7c75d3c55775d275059cae"
+      "size": 42269,
+      "sha256": "9094c69b3e570153b92526fce6b3209779b8674983f28794954c686d9dfca955"
     },
     {
       "path": "source/asset_decisions.preparation.json",
-      "size": 34841,
-      "sha256": "977f41ebddbdc5776383ccffb879853b62c14406aec6a3a882d3d17caeb8e91e"
+      "size": 34836,
+      "sha256": "c91b3d47abc8e73dea63682f4fa6490e22f92c62dcdf6a133375a6a36dc82d75"
     },
     {
       "path": "source/asset_recipe.json",
-      "size": 33538,
-      "sha256": "1c461025bc17c8876c76b5964958a8b22bcab0feefbaf1395151030f974136ef"
+      "size": 33379,
+      "sha256": "348b5a6b4fa98d89630a6d0cf63e0229c6c40839702682034dad15ed4c27b15a"
+    },
+    {
+      "path": "source/discovery.md",
+      "size": 1565,
+      "sha256": "8c02987ba58e429510719a7fc53662e5f932e9d3f380d8aaa4043b06d667519e"
     },
     {
       "path": "source/intake-source.json",
@@ -340,18 +403,198 @@
     },
     {
       "path": "source/page_map.json",
-      "size": 1431,
-      "sha256": "26bf3219ce9e27864108150c4b131fc35c52076c196a4f515dd753189294a711"
+      "size": 1420,
+      "sha256": "006ccca89221b61468ce624a592e7eb401e45af570eb018a351c8d5d41db74ec"
     },
     {
       "path": "source/transcription.json",
-      "size": 22344,
-      "sha256": "291a9a8cbfae038f6e990bf06c3d5960bb7ae996a42a9594a1709d483fc0ae1e"
+      "size": 22707,
+      "sha256": "27f65eefb2442139b968277b3b9fd04c18e9cc5efb98d8ffcca81d27f7aa8149"
     },
     {
       "path": "source_manifest.json",
-      "size": 10903,
-      "sha256": "c1c7c71eda7872050660cc0a544fd7a230c1058b4b915422835f87d750c31135"
+      "size": 11460,
+      "sha256": "f3bb2a39b9ae44608fe8390a509790abbb710ab13c9efc059a25ab184e29eb17"
+    },
+    {
+      "path": "web/en/_static/web_manual.css",
+      "size": 126890,
+      "sha256": "5afdc1947b423c52850852eccc5bc0f398c820c45909690ff6e5cc7bb266dfdf"
+    },
+    {
+      "path": "web/en/assets/adhesive-step-1.png",
+      "size": 35498,
+      "sha256": "e8ff096e09b639e46f10a838e93c697bdc26c49149c9d1af053095d0d0ade962"
+    },
+    {
+      "path": "web/en/assets/adhesive-step-2.png",
+      "size": 47571,
+      "sha256": "96acd4d35f092eb35be5bad3b89aed762fb404f20986da373f16f69dc1dedbad"
+    },
+    {
+      "path": "web/en/assets/adhesive-step-3.png",
+      "size": 63817,
+      "sha256": "a9667cf766773a5f868cc61cb3b9f78ccb8610b0959505aea7c55911e46d7d78"
+    },
+    {
+      "path": "web/en/assets/adhesive-step-4.png",
+      "size": 60491,
+      "sha256": "32e431145aaf8a3077e294410b21bfe5bcb8e7813dc3eb220266e50134a230be"
+    },
+    {
+      "path": "web/en/assets/adhesive-step-5.png",
+      "size": 64376,
+      "sha256": "f3dd4dc89d9cb034b6f4a56a7d164b192611af39aa2d72c0d2dad6c6ebedffde"
+    },
+    {
+      "path": "web/en/assets/adhesive-step-6.png",
+      "size": 46875,
+      "sha256": "40f6ed6ef4457b33eda286809ca47b82c96ab80dd592f359ea9536b7c9bb9c30"
+    },
+    {
+      "path": "web/en/assets/contact-qr.png",
+      "size": 6282,
+      "sha256": "223a614b8aa4cf9b01280cfb7890c5a9be3464d83984b5d9267f6c8c1509c7b5"
+    },
+    {
+      "path": "web/en/assets/fcc-mark.svg",
+      "size": 1927,
+      "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+    },
+    {
+      "path": "web/en/assets/front-rear-view.png",
+      "size": 23403,
+      "sha256": "7d7917be5bc1928914d74026d026344b41d76535b2bc9046edc1bdfdb8fa1ab3"
+    },
+    {
+      "path": "web/en/assets/inbox-dc7909-adapter.png",
+      "size": 2656,
+      "sha256": "3de0d16dfe0e0dca7836ede0a52bac41cb19501c6a01c0a2b7712afa9083b996"
+    },
+    {
+      "path": "web/en/assets/inbox-dc8020-adapter.png",
+      "size": 2554,
+      "sha256": "3c13a6a719d837d16481e47c31741e261db2a70ce8f276c9ace8cfa11380ce6f"
+    },
+    {
+      "path": "web/en/assets/inbox-manual.png",
+      "size": 6147,
+      "sha256": "63bdfbf3ca33b7a0c178045adb96ded9b3e337aaa2b605cbae47fd061c310a87"
+    },
+    {
+      "path": "web/en/assets/inbox-panel.png",
+      "size": 5934,
+      "sha256": "4891d2788066e1dacefb1a4efe27548aa18b931d684b5a89c973ee5746ab1c2e"
+    },
+    {
+      "path": "web/en/assets/kit-rope-clamp.png",
+      "size": 9548,
+      "sha256": "53ca411248affaef3e1342c7f92d237060b02ed9acf56e61b35d9826720cce71"
+    },
+    {
+      "path": "web/en/assets/kit-rope-tensioner.png",
+      "size": 6440,
+      "sha256": "8cf0ac3cbfced3c8ec1f14dfb10779c17a27fc30c828608303bcf7f758d79d4e"
+    },
+    {
+      "path": "web/en/assets/kit-rope.png",
+      "size": 19291,
+      "sha256": "41b4ef0e9117dba48a59d254578705675ff5f4b84610cf3b8b8929fbc901ea55"
+    },
+    {
+      "path": "web/en/assets/parallel-connection.png",
+      "size": 41532,
+      "sha256": "4590a2f07dc9d9e507890485eb4dfaf4fc5602927959c7699495b76acbc45485"
+    },
+    {
+      "path": "web/en/assets/rope-clamp-use.png",
+      "size": 44397,
+      "sha256": "0502707d96d41807a2647fccde4881aa1c5d2d559dcfab99a12024e74128efbd"
+    },
+    {
+      "path": "web/en/assets/series-connection.png",
+      "size": 39567,
+      "sha256": "738a06953a7df976a505ec8448439137d4bee02d6d636e5e39b2951803a45ba7"
+    },
+    {
+      "path": "web/en/assets/suspension-1-1.png",
+      "size": 24015,
+      "sha256": "c287a745c118f3d9f5aa8ea78260124c25bc1f380d0916f92d4e3c634a369da4"
+    },
+    {
+      "path": "web/en/assets/suspension-1-2.png",
+      "size": 83352,
+      "sha256": "097a78ffc72631a515b29cda606303b36a81a7cd51c726fba7d1795fbe0c93df"
+    },
+    {
+      "path": "web/en/assets/suspension-1-3.png",
+      "size": 59974,
+      "sha256": "5776cb8443ee9af23331cec8fc1ca18100fea790e77d46842773be89c641cfef"
+    },
+    {
+      "path": "web/en/assets/suspension-2-1.png",
+      "size": 70191,
+      "sha256": "68d3ef46634aa76982c45169fc8d61d4ae91b9fbad47d903637fb3c84ffec6ae"
+    },
+    {
+      "path": "web/en/assets/suspension-2-2.png",
+      "size": 66952,
+      "sha256": "02ba7e5cd06efae3a077a3ed3c905a7179df87922b2b2ee1941c71cb97481661"
+    },
+    {
+      "path": "web/en/assets/suspension-2-3.png",
+      "size": 67847,
+      "sha256": "07b87defed3c2354b3340795d392cd41b1194dbaf5b4c271d3e23f7cd77f81a0"
+    },
+    {
+      "path": "web/en/assets/suspension-3-1.png",
+      "size": 83461,
+      "sha256": "0163c069116bda33111575db741a0289d47730b9ebfcd0fac5e7530b487a4a02"
+    },
+    {
+      "path": "web/en/assets/suspension-3-2.png",
+      "size": 94634,
+      "sha256": "7db6ffeb094cd7032926a35c61fbf3ad86ad9a53801666afb53d7abd3326b8ad"
+    },
+    {
+      "path": "web/en/assets/suspension-3-3.png",
+      "size": 77505,
+      "sha256": "b0123d8cbcacf843b1873c71d5e201856d3778937db720283a72cb609775b4ca"
+    },
+    {
+      "path": "web/en/assets/tensioner-release.png",
+      "size": 67756,
+      "sha256": "fccc231c757c947fdd51e60c2fbdc5cc39b0b78cd85723b2eafe22b2fc9f7cc9"
+    },
+    {
+      "path": "web/en/assets/tensioner-thread.png",
+      "size": 75742,
+      "sha256": "37c1bc79b22aaca07a6c34408e52136678e09d338ddb555f67504d028137a253"
+    },
+    {
+      "path": "web/en/conf.py",
+      "size": 822,
+      "sha256": "f16f661e2ad9bac85029ef2576cbd22787a52441c95cf40d3c167429d67dfcfb"
+    },
+    {
+      "path": "web/en/index.md",
+      "size": 82,
+      "sha256": "02081907c4e651391e097ec9152acea3a37b3a7a5a5b179a8b9f122c01508587"
+    },
+    {
+      "path": "web/en/manual.ir.json",
+      "size": 268398,
+      "sha256": "b41d9f462249fd5753e220ed609b84dbc5ee485e986664ad5e01c2fa7700c0cd"
+    },
+    {
+      "path": "web/en/manual_js100g_us_en.md",
+      "size": 34600,
+      "sha256": "6b12bf2ccf8b5dc96a4b3b303f9da6384c3b7247170b9145fe4d8cf141ddcd62"
+    },
+    {
+      "path": "web/en/shared-style-admission.json",
+      "size": 176,
+      "sha256": "f0332d0b181d555776be75e2a6737d89cecad3c82d5d499e719836abc6eca188"
     }
   ],
   "repo_inputs": [
@@ -369,7 +612,7 @@
       "language": "en",
       "page_id": "specifications",
       "kind": "table",
-      "text_sha256": "c9c1a3cf9cef52f8c51242fb0dbe087c3d5af269f1e696eeb973e182f0c4a459",
+      "text_sha256": "f55cea7e4d451d4e988d671caaac5ba48950c91bbb38ffca66375b6f28184e47",
       "reason": "Electrical Data STC/BNPI table: three columns with a header row and single values spanning both test conditions; HB-TABLE-SPEC is a two-column label/value table without header or column spans (precedent: JS-100I JP spec-table exception)."
     }
   ]

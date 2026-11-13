@@ -6,6 +6,12 @@
 
 <p>Version: V2</p>
 
+## Contact us:
+
+<p>hello@jackery.com</p>
+
+<p>hello.mx@jackery.com (For Mexico only)</p>
+
 # TECHNICAL PARAMETERS
 
 <div class="table-wrapper docutils container"><table class="manual-table"><tbody><tr><td>Product Name:</td><td colspan="2">SolarSaga 100</td></tr><tr><td>Model No.:</td><td colspan="2">JS-100F</td></tr><tr><th>Electrical Data</th><th>STC</th><th>BNPI</th></tr><tr><td>Peak Power (Pmax)</td><td>100W±5W</td><td>104W±5W</td></tr><tr><td>Open Circuit Voltage (Voc)</td><td>24.8V±5%</td><td>25V±5%</td></tr><tr><td>Short Circuit Current (Isc)</td><td>5.4A±5%</td><td>5.8A±5%</td></tr><tr><td>Power Voltage (Vmp)</td><td>20.0V±5%</td><td>20.1V±5%</td></tr><tr><td>Power Current (Imp)</td><td>5.0A±5%</td><td>5.2A±5%</td></tr><tr><td>Maximum System Voltage</td><td colspan="2">60V</td></tr><tr><td>Maximum Reverse Current</td><td colspan="2">15A</td></tr><tr><td>Protection Class Against Electric Shock</td><td colspan="2">Class II</td></tr><tr><td>Waterproof Level</td><td colspan="2">IP68</td></tr><tr><td>Operating Temperature Range</td><td colspan="2">-20°C~65°C (-4°F~149°F)</td></tr><tr><td>Dimensions (unfolded)</td><td colspan="2">1220x552x20mm</td></tr><tr><td>Dimensions (folded)</td><td colspan="2">610x552x35mm</td></tr><tr><td>Weight</td><td colspan="2">3.6 kg±0.3 kg</td></tr><tr><td>Bifaciality Coefficient (back/front)</td><td colspan="2">Pmax&gt;30%, Voc&gt;95%, Isc&gt;32%</td></tr><tr><td>Voltage Temperature Coefficient</td><td colspan="2">-0.268%/°C</td></tr><tr><td>Power Temperature Coefficient</td><td colspan="2">-0.29%/°C</td></tr><tr><td>Photovoltaic Consumer Products</td><td colspan="2">IEC TS 63163 Consumer Product Category 2</td></tr></tbody></table></div>
@@ -66,8 +72,6 @@
 
 # WARRANTY
 
-## WARRANTY
-
 <figure aria-label="WARRANTY" class="hb-warranty-card" data-component-id="HB-WARRANTY-SECTION" data-warranty-card-index="1"><p>The product is covered by a limited warranty from Jackery for the original purchaser that covers the product from defects in workmanship and materials for 36 months from the date of purchase ( damages from normal wear and tear, alteration, misuse, neglect, accident, service by anyone other than authorized service center, or act of God are not included ).</p><p>During the warranty period and upon verification of defects, this product will be replaced when returned with proper proof of purchase.</p><p>2 Years Extended Warranty: To activate the Warranty Extension, you must register your product online or contact our customer service team at hello@jackery.com to extend the standard warranty runtime.</p></figure>
 
 ## CONTACT US
@@ -78,13 +82,11 @@
 
 <figure aria-label="CUSTOMER SERVICE" class="hb-warranty-card" data-component-id="HB-WARRANTY-SECTION" data-warranty-card-index="3"><p>3-year limited warranty</p><p>Lifetime technical support</p><p>hello@jackery.com</p><p>hello.mx@jackery.com (For Mexico only)</p></figure>
 
-# Contact us
-
-## JACKERY MEXICO S.A. DE C.V.
+# JACKERY MEXICO S.A. DE C.V.
 
 <p>Calle Poseidón 18 PB, Crédito Constructor, Benito Juárez, C.P. 03940, Ciudad de México, México</p>
 
-## JACKERY INC.
+# JACKERY INC.
 
 <p>5310 Bunche Dr, Fremont, CA 94538-8301</p>
 
@@ -94,6 +96,6 @@
 
 <p>hello.mx@jackery.com(For Mexico only)</p>
 
-<p> <a href="https://www.jackery.com">https://www.jackery.com</a></p>
+<p><a href="https://www.jackery.com">www.jackery.com</a></p>
 
-<p><img alt="Jackery contact QR code; complete source code and all four frame edges." src="assets/contact-qr.png" width="160"/></p>
+<p><img alt="Jackery contact QR code" src="assets/contact-qr.png" width="160"/></p>

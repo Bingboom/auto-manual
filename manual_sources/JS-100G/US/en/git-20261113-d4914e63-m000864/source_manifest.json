@@ -55,13 +55,16 @@
     "INSTALLATION (printed pages 03-12) is split into three Web pages: INSTALLATION (overview and Adhesive Mounting), Suspension Mounting and How to Connect Multiple Solar Panels; copy and order unchanged.",
     "The FCC page has only the FC logo as its heading; the Web page title is 'FCC'.",
     "Omit cover drawing, wordmark, printed page numbers and the printed table of contents.",
-    "Customer Service icons are carried by the shared warranty component styling rather than cropped."
+    "Customer Service icons are carried by the shared warranty component styling rather than cropped.",
+    "Shared callout labels drop a trailing colon ('Note:' → 'Note'); shared Sphinx typography renders the heading apostrophe in WHAT'S as ’.",
+    "Cover CONTACT US box stays in the introduction; printed 'www.jackery.com' is the visible link text of https://www.jackery.com.",
+    "Adhesive step 1 crop starts below the neighbouring step text; the open-ended wall-corner line loses its top 2.7 pt."
   ],
   "inputs": [
     {
       "path": "assets/adhesive-step-1.png",
-      "size": 36341,
-      "sha256": "6cddbe01f8991cb8e9664a37dd23cce89ff5aed96f5ec76c31d10f6a84ff0bb0"
+      "size": 35498,
+      "sha256": "e8ff096e09b639e46f10a838e93c697bdc26c49149c9d1af053095d0d0ade962"
     },
     {
       "path": "assets/adhesive-step-2.png",
@@ -210,18 +213,23 @@
     },
     {
       "path": "source/asset_decisions.json",
-      "size": 42276,
-      "sha256": "37a34099d3c1a38ce0a5f64c5d3f1e5698bfbc5c6b7c75d3c55775d275059cae"
+      "size": 42269,
+      "sha256": "9094c69b3e570153b92526fce6b3209779b8674983f28794954c686d9dfca955"
     },
     {
       "path": "source/asset_decisions.preparation.json",
-      "size": 34841,
-      "sha256": "977f41ebddbdc5776383ccffb879853b62c14406aec6a3a882d3d17caeb8e91e"
+      "size": 34836,
+      "sha256": "c91b3d47abc8e73dea63682f4fa6490e22f92c62dcdf6a133375a6a36dc82d75"
     },
     {
       "path": "source/asset_recipe.json",
-      "size": 33538,
-      "sha256": "1c461025bc17c8876c76b5964958a8b22bcab0feefbaf1395151030f974136ef"
+      "size": 33379,
+      "sha256": "348b5a6b4fa98d89630a6d0cf63e0229c6c40839702682034dad15ed4c27b15a"
+    },
+    {
+      "path": "source/discovery.md",
+      "size": 1565,
+      "sha256": "8c02987ba58e429510719a7fc53662e5f932e9d3f380d8aaa4043b06d667519e"
     },
     {
       "path": "source/intake-source.json",
@@ -235,18 +243,18 @@
     },
     {
       "path": "source/page_map.json",
-      "size": 1431,
-      "sha256": "26bf3219ce9e27864108150c4b131fc35c52076c196a4f515dd753189294a711"
+      "size": 1420,
+      "sha256": "006ccca89221b61468ce624a592e7eb401e45af570eb018a351c8d5d41db74ec"
     },
     {
       "path": "source/transcription.json",
-      "size": 22344,
-      "sha256": "291a9a8cbfae038f6e990bf06c3d5960bb7ae996a42a9594a1709d483fc0ae1e"
+      "size": 22707,
+      "sha256": "27f65eefb2442139b968277b3b9fd04c18e9cc5efb98d8ffcca81d27f7aa8149"
     },
     {
       "path": "render.py",
-      "size": 17549,
-      "sha256": "d646fb792905ba0d4dbac999da927f6697b8307da634fdfe4c6fedf968f6050c"
+      "size": 17731,
+      "sha256": "49b2c47ce25fa78da6c369704e15899de05a4214e24206ea643b16b0a46804d8"
     },
     {
       "path": "derive_assets.py",
@@ -274,7 +282,7 @@
       "language": "en",
       "page_id": "specifications",
       "kind": "table",
-      "text_sha256": "c9c1a3cf9cef52f8c51242fb0dbe087c3d5af269f1e696eeb973e182f0c4a459",
+      "text_sha256": "f55cea7e4d451d4e988d671caaac5ba48950c91bbb38ffca66375b6f28184e47",
       "reason": "Electrical Data STC/BNPI table: three columns with a header row and single values spanning both test conditions; HB-TABLE-SPEC is a two-column label/value table without header or column spans (precedent: JS-100I JP spec-table exception)."
     }
   ]

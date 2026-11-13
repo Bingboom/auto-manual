@@ -11,7 +11,10 @@
       "blocks": [
         {"kind": "paragraph", "text": "SolarSaga 100"},
         {"kind": "paragraph", "text": "Model: JS-100F"},
-        {"kind": "paragraph", "text": "Version: V2"}
+        {"kind": "paragraph", "text": "Version: V2"},
+        {"kind": "heading", "level": 2, "text": "Contact us:"},
+        {"kind": "paragraph", "text": "hello@jackery.com"},
+        {"kind": "paragraph", "text": "hello.mx@jackery.com (For Mexico only)"}
       ]
     },
     {
@@ -196,13 +199,18 @@
       ]
     },
     {
-      "id": "contacts",
-      "title": "Contact us",
-      "source_pages": [1, 7],
+      "id": "contacts_mexico",
+      "title": "JACKERY MEXICO S.A. DE C.V.",
+      "source_pages": [7],
       "blocks": [
-        {"kind": "heading", "level": 2, "text": "JACKERY MEXICO S.A. DE C.V."},
-        {"kind": "paragraph", "text": "Calle Poseidón 18 PB, Crédito Constructor, Benito Juárez, C.P. 03940, Ciudad de México, México"},
-        {"kind": "heading", "level": 2, "text": "JACKERY INC."},
+        {"kind": "paragraph", "text": "Calle Poseidón 18 PB, Crédito Constructor, Benito Juárez, C.P. 03940, Ciudad de México, México"}
+      ]
+    },
+    {
+      "id": "contacts",
+      "title": "JACKERY INC.",
+      "source_pages": [7],
+      "blocks": [
         {"kind": "paragraph", "text": "5310 Bunche Dr, Fremont, CA 94538-8301"},
         {"kind": "paragraph", "text": "1-888-502-2236"},
         {"kind": "paragraph", "text": "hello@jackery.com"},

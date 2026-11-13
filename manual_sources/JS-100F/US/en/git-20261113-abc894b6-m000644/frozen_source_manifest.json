@@ -52,9 +52,17 @@
     "Omit cover drawing, wordmark, printed page numbers, US/English page badges and the printed contents page.",
     "The cover badge 'V2' is shown as 'Version: V2'.",
     "Customer Service icons (wrench, person, envelope) are carried by the shared warranty component styling rather than cropped.",
-    "Back-cover contact icons (phone, envelope, house) are dropped; the contact lines remain native text."
+    "Back-cover contact icons (phone, envelope, house) are dropped; the contact lines remain native text.",
+    "Shared callout labels drop a trailing colon ('Tip:' → 'Tip'); shared Sphinx typography may render straight apostrophes as typographic ones.",
+    "Cover 'Contact us:' lines stay in the introduction; the back-cover entities are two pages, JACKERY MEXICO S.A. DE C.V. then JACKERY INC., in printed order.",
+    "Printed 'www.jackery.com' is the visible link text of https://www.jackery.com."
   ],
   "inputs": [
+    {
+      "path": "README.md",
+      "size": 3499,
+      "sha256": "3f4cff785d2c916964c5fdecf2064bde456ec824deaa0a22afddf76fa2ca179d"
+    },
     {
       "path": "assets/connection-adapters.png",
       "size": 83244,
@@ -96,9 +104,49 @@
       "sha256": "5504bd92f7c9f8bbb8d228efd55806d7347cd2629f97096d0943b740b1f94b27"
     },
     {
+      "path": "evidence/art-edge-inventory.json",
+      "size": 2255,
+      "sha256": "0b4118d886032e899f9dd62e869dc444ef5d770889786e445da9bf2cd242f763"
+    },
+    {
+      "path": "evidence/art-reproduction.log",
+      "size": 573,
+      "sha256": "36e6189bf60939a0eda9e578ce2306b01892a7936b22a794ba4cd42b457385e7"
+    },
+    {
       "path": "evidence/asset-intake.log",
       "size": 497,
       "sha256": "e0c954b32690062afbfca26f06cae3fa07010164b3170a5a1dbed4712cda12e3"
+    },
+    {
+      "path": "evidence/browser-validation.json",
+      "size": 3400,
+      "sha256": "062c302c0068af8d7d92579d4f901571169d00f47af4f4cb889c362d2a98db66"
+    },
+    {
+      "path": "evidence/candidate-validation.json",
+      "size": 2470,
+      "sha256": "90fe311d5c155ac93e4de2a4cafefa7324f0e993c023721d955d587d3adfef87"
+    },
+    {
+      "path": "evidence/cold-source-rebuild.log",
+      "size": 391,
+      "sha256": "86e31079d3d8df390412a6c12c6415ea8eaa0c4eb1c3b37ea794a3a579cd9d79"
+    },
+    {
+      "path": "evidence/full-1280.png",
+      "size": 1038662,
+      "sha256": "a134a07ec29e9c5aa0b3bf88e8553bad195b676aee1aca5178542fdba7f9a9c5"
+    },
+    {
+      "path": "evidence/full-390.png",
+      "size": 722012,
+      "sha256": "b2ba9048c17a1f6eeedc38520ea829b901c85c55834b8e3a0dd6cbf541386444"
+    },
+    {
+      "path": "evidence/independent-body-qc.json",
+      "size": 6225,
+      "sha256": "912f533fd0e34acee1eea0185d093bc3a9a4582ec19eb4c261db338a3d608ca6"
     },
     {
       "path": "evidence/ocr/001.txt",
@@ -136,14 +184,24 @@
       "sha256": "ef65f87cf285d45a37fe9a2ccf0094fe79324aa3f39b9488d2b4cf8f8ee901ae"
     },
     {
+      "path": "evidence/replay-and-tamper.json",
+      "size": 1032,
+      "sha256": "ef4b501c89d74275259c79565ac21555abaf5697d390e035feff7455201579e0"
+    },
+    {
+      "path": "evidence/strict-sphinx.log",
+      "size": 1920,
+      "sha256": "97b827dcd5e26d8bd3ad225706316bbe9dcf52da7affed884f138b1bec6362be"
+    },
+    {
       "path": "refresh_manifest.py",
       "size": 2267,
       "sha256": "80bde6d5126aa5d0aaed9353a745aa50b1bcc8592612794a3b4bbd8b92a95261"
     },
     {
       "path": "render.py",
-      "size": 17549,
-      "sha256": "d646fb792905ba0d4dbac999da927f6697b8307da634fdfe4c6fedf968f6050c"
+      "size": 17731,
+      "sha256": "49b2c47ce25fa78da6c369704e15899de05a4214e24206ea643b16b0a46804d8"
     },
     {
       "path": "source/asset_decisions.json",
@@ -161,6 +219,11 @@
       "sha256": "d5f5b943594f3127770c8f514d4c361353167ea1b3bd4009ff1a13ae02b21e61"
     },
     {
+      "path": "source/discovery.md",
+      "size": 1402,
+      "sha256": "ed6e4064f0a65ac09b209d6efdc42c653694252c87da556b88d5a5983359c0e7"
+    },
+    {
       "path": "source/intake-source.json",
       "size": 2205,
       "sha256": "32cf4f1a3d4449f5ff4d2b0d93a31fc8b1cf375c0bd7b91930d474768b958dba"
@@ -172,18 +235,83 @@
     },
     {
       "path": "source/page_map.json",
-      "size": 1225,
-      "sha256": "a142003c1471b540813a1c401820dcd18ee373e7abadc885cb62948dcb9d17e0"
+      "size": 1300,
+      "sha256": "7ced0c1aa1766e440ea86cfb2c4465b977cbc0eed521474efbc5b68085c3ca19"
     },
     {
       "path": "source/transcription.json",
-      "size": 14301,
-      "sha256": "4ae6f9f6576c79fc0ed94fe871bf767c88c8550b11ddec3ba464cc3d0faf49d3"
+      "size": 14481,
+      "sha256": "59d7cab98a0232f92f18facbc2a195bbef3e2177f8225798933e3453097792dd"
     },
     {
       "path": "source_manifest.json",
-      "size": 6955,
-      "sha256": "2ee272db96571f191e43303d840c5a06ad54e89384dd8b63c69a6aa828745d93"
+      "size": 7506,
+      "sha256": "ae15e82722c3eaf7574d34c72586178dea3f57c5789cb90c4420a03a458837f3"
+    },
+    {
+      "path": "web/en/_static/web_manual.css",
+      "size": 126890,
+      "sha256": "5afdc1947b423c52850852eccc5bc0f398c820c45909690ff6e5cc7bb266dfdf"
+    },
+    {
+      "path": "web/en/assets/connection-adapters.png",
+      "size": 83244,
+      "sha256": "f530a0a8aa3404ef0c85047b1071847e235aee94123cddc69da3d182bdb949f9"
+    },
+    {
+      "path": "web/en/assets/contact-qr.png",
+      "size": 6400,
+      "sha256": "df902144c2fb20d58290fa8f261af34abe6c221d67e2ea904a2ce733156e2a41"
+    },
+    {
+      "path": "web/en/assets/fcc-mark.svg",
+      "size": 1927,
+      "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+    },
+    {
+      "path": "web/en/assets/nom-mark.png",
+      "size": 2822,
+      "sha256": "abfc750371ee7fa28dd08cbf51fa85f7f512081fcfc949baeb559657e23d5f5b"
+    },
+    {
+      "path": "web/en/assets/power-device.png",
+      "size": 150186,
+      "sha256": "9d2020b3bdc3290a5c666674670827b1d81e7bc42a7fa171d73a1dfd78878375"
+    },
+    {
+      "path": "web/en/assets/solar-panel-connector.png",
+      "size": 45094,
+      "sha256": "bb384b2a117b9e426c01b70d3e6e8e9223cc8d0401c94573264e568c95168f11"
+    },
+    {
+      "path": "web/en/assets/sun-angle-indicator.png",
+      "size": 147091,
+      "sha256": "28e370c7c095866612fa4200b649bf031959e23148b4a24a784fcc3beb164f47"
+    },
+    {
+      "path": "web/en/conf.py",
+      "size": 816,
+      "sha256": "0ea2877c332538171cb3508132629a024fc5e80fee8f8dc777337150101106e6"
+    },
+    {
+      "path": "web/en/index.md",
+      "size": 76,
+      "sha256": "e3191c9e417c654a5df64b7ce991f1db7e014321a6071ea8dc666237b93eb67d"
+    },
+    {
+      "path": "web/en/manual.ir.json",
+      "size": 156879,
+      "sha256": "f875d893922a84ee808460361ac04856af2ea64437c249bcf152cf6ccb9a1f50"
+    },
+    {
+      "path": "web/en/manual_js100f_us_en.md",
+      "size": 13787,
+      "sha256": "84b74aeb0cf4e78612720622776c7767a29cac718c3f6badf58ca58ade707f75"
+    },
+    {
+      "path": "web/en/shared-style-admission.json",
+      "size": 176,
+      "sha256": "dac96202be7b5f16dc31944f4f3e249d328339134f273508f1f25bef3441af8d"
     }
   ],
   "repo_inputs": [

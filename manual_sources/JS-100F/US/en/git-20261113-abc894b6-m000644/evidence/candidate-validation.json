@@ -1,0 +1,65 @@
+{
+  "target": "JS-100F/US/en",
+  "material": "38-0001-000644",
+  "technical_version": "git-20261113-abc894b6-m000644",
+  "status": "local-conversion-complete-review-candidate",
+  "publication_eligible": false,
+  "operator_source_acceptance": null,
+  "operator_pixel_acceptance": null,
+  "source_sha256": "abc894b6497212570b70e8683c52cbf23c94e573916776b1bfe9812a1a752dc5",
+  "source_physical_pages": 7,
+  "declared_omissions": [
+    {
+      "physical_page": 2,
+      "reason": "Printed one-language contents locator (US English 01-04) is replaced by native Web navigation; no instruction omitted."
+    },
+    {
+      "physical_page": 1,
+      "reason": "Decorative cover product drawing, its 'The image is for reference only.' note and the wordmark are omitted; title, product name, model, V2 badge and cover contact lines are retained."
+    }
+  ],
+  "transcription_sha256": "59d7cab98a0232f92f18facbc2a195bbef3e2177f8225798933e3453097792dd",
+  "page_map_sha256": "7ced0c1aa1766e440ea86cfb2c4465b977cbc0eed521474efbc5b68085c3ca19",
+  "manual_ir_sha256": "f875d893922a84ee808460361ac04856af2ea64437c249bcf152cf6ccb9a1f50",
+  "markdown_sha256": "84b74aeb0cf4e78612720622776c7767a29cac718c3f6badf58ca58ade707f75",
+  "shared_style_admission": [],
+  "shared_component_exceptions": [
+    {
+      "language": "en",
+      "page_id": "specifications",
+      "kind": "table",
+      "text_sha256": "c387174d07495a463ab9d74aba4cfb977940f023fe61ec70ff4d74398c9fadd7",
+      "reason": "Electrical Data STC/BNPI table: three columns with a header row and single values spanning both test conditions; HB-TABLE-SPEC is a two-column label/value table without header or column spans (precedent: JS-100I JP spec-table exception)."
+    }
+  ],
+  "browser": [
+    {
+      "viewport": 1280,
+      "page_overflow": false,
+      "images": 11,
+      "broken_images": 0,
+      "tables": [
+        {
+          "scrollWidth": 655,
+          "clientWidth": 655
+        }
+      ]
+    },
+    {
+      "viewport": 390,
+      "page_overflow": false,
+      "images": 11,
+      "broken_images": 0,
+      "tables": [
+        {
+          "scrollWidth": 582,
+          "clientWidth": 356
+        }
+      ]
+    }
+  ],
+  "strict_sphinx": "evidence/strict-sphinx.log (build succeeded, -n -W --keep-going)",
+  "cold_rebuild_and_tamper": "evidence/replay-and-tamper.json",
+  "independent_body_qc": "evidence/independent-body-qc.json",
+  "python": "3.13 (requirements.lock minus oss2/aliyun-python-sdk-core/crcmod)"
+}

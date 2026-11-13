@@ -9,8 +9,8 @@
     "assets/contact-qr.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "0be4332330417eaf108a7ee53f99046d652f3164cbc68d1330bebc6904ef29fe",
-  "content_sha256": "121f8d6bba80930860f7879cc896026c8cf17cd41f1ae4fb7dced85c6cdf4a8f",
+  "bundle_sha256": "17a0c2b2d4ec2f1ce5cf0a1aaac1e3b163aac95eec42140ac77ab867ec02e79f",
+  "content_sha256": "03450221bdf22a8c61c4287476c74abf02e5e1b03df587f6d8adda8dbe5a3793",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -23,7 +23,7 @@
       "assets/solar-panel-connector.png": "bb384b2a117b9e426c01b70d3e6e8e9223cc8d0401c94573264e568c95168f11",
       "assets/sun-angle-indicator.png": "28e370c7c095866612fa4200b649bf031959e23148b4a24a784fcc3beb164f47"
     },
-    "block_count": 49,
+    "block_count": 50,
     "component_inventory": {
       "HB-CALLOUT-STRIP": 1,
       "HB-SPECIAL-REFERENCE-FIGURE": 4,
@@ -1342,6 +1342,11 @@
           "size": 8838
         },
         {
+          "path": "source/discovery.md",
+          "sha256": "ed6e4064f0a65ac09b209d6efdc42c653694252c87da556b88d5a5983359c0e7",
+          "size": 1402
+        },
+        {
           "path": "source/intake-source.json",
           "sha256": "32cf4f1a3d4449f5ff4d2b0d93a31fc8b1cf375c0bd7b91930d474768b958dba",
           "size": 2205
@@ -1353,18 +1358,18 @@
         },
         {
           "path": "source/page_map.json",
-          "sha256": "a142003c1471b540813a1c401820dcd18ee373e7abadc885cb62948dcb9d17e0",
-          "size": 1225
+          "sha256": "7ced0c1aa1766e440ea86cfb2c4465b977cbc0eed521474efbc5b68085c3ca19",
+          "size": 1300
         },
         {
           "path": "source/transcription.json",
-          "sha256": "4ae6f9f6576c79fc0ed94fe871bf767c88c8550b11ddec3ba464cc3d0faf49d3",
-          "size": 14301
+          "sha256": "59d7cab98a0232f92f18facbc2a195bbef3e2177f8225798933e3453097792dd",
+          "size": 14481
         },
         {
           "path": "render.py",
-          "sha256": "d646fb792905ba0d4dbac999da927f6697b8307da634fdfe4c6fedf968f6050c",
-          "size": 17549
+          "sha256": "49b2c47ce25fa78da6c369704e15899de05a4214e24206ea643b16b0a46804d8",
+          "size": 17731
         },
         {
           "path": "derive_assets.py",
@@ -1384,7 +1389,10 @@
         "Omit cover drawing, wordmark, printed page numbers, US/English page badges and the printed contents page.",
         "The cover badge 'V2' is shown as 'Version: V2'.",
         "Customer Service icons (wrench, person, envelope) are carried by the shared warranty component styling rather than cropped.",
-        "Back-cover contact icons (phone, envelope, house) are dropped; the contact lines remain native text."
+        "Back-cover contact icons (phone, envelope, house) are dropped; the contact lines remain native text.",
+        "Shared callout labels drop a trailing colon ('Tip:' → 'Tip'); shared Sphinx typography may render straight apostrophes as typographic ones.",
+        "Cover 'Contact us:' lines stay in the introduction; the back-cover entities are two pages, JACKERY MEXICO S.A. DE C.V. then JACKERY INC., in printed order.",
+        "Printed 'www.jackery.com' is the visible link text of https://www.jackery.com."
       ],
       "original_source": {
         "filename": "38-0001-000644_Jackery_SolarSaga_100_EN.pdf",
@@ -2014,7 +2022,7 @@
     },
     "manual_theme_sha256": "e8fc88458d239edef85f2cfb0b26b71df2e83859c8e51e9c093e5abc2982b47d",
     "markdown_filename": "manual_js100f_us_en.md",
-    "page_count": 8,
+    "page_count": 9,
     "page_declarations": {},
     "pdf_intake_provenance": {
       "artwork_standardizations": [],
@@ -2272,6 +2280,58 @@
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "source/transcription.json#introduction#block-4"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "introduction:block-0005",
+          "content_sha256": "83b1faf0c7dbfb58d1bd6601a0ccf0933d41b16c6d002ff73856f2b0826d14ba",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "Contact us:"
+              }
+            ],
+            "kind": "heading",
+            "level": 2,
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#introduction#block-5"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "introduction:block-0006",
+          "content_sha256": "68f7e970a125b13e048c39e300dc11d80da4953359a66c8fdf60cd438e48969e",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "hello@jackery.com"
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#introduction#block-6"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "introduction:block-0007",
+          "content_sha256": "5e138d4038d5e6793862aa7a713ba3ea2854eb345f47f5408fb70ba32da0ff33",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "hello.mx@jackery.com (For Mexico only)"
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "source/transcription.json#introduction#block-7"
         }
       ],
       "language": "en",
@@ -2279,7 +2339,7 @@
       "skipped_raw": 0,
       "source_path": "source/transcription.json",
       "source_ref": "source/transcription.json#introduction",
-      "source_sha256": "43aff78ac6bf7c22af21c966a1bbbd22477fa2b38293371fce5f89f44d17f736"
+      "source_sha256": "8e777f9e28e39068bb11daacf25cca386eeb3a431a442af0309bbc317c9c015c"
     },
     {
       "blocks": [
@@ -4214,24 +4274,6 @@
         {
           "asset_refs": [],
           "block_id": "warranty:block-0002",
-          "content_sha256": "3699c7af406a8647a809bb8cbe40fbb1758a2a4d23da83c5f35796912f998a42",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "WARRANTY"
-              }
-            ],
-            "kind": "heading",
-            "level": 2,
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "source/transcription.json#warranty#block-2"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "warranty:block-0003",
           "content_sha256": "d4b5a22823445c52cfae876fdd76a53058a9eb1d92bfea35e8ba7f66e1b85240",
           "kind": "flow",
           "payload": {
@@ -4283,11 +4325,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "source/transcription.json#warranty#block-3"
+          "source_ref": "source/transcription.json#warranty#block-2"
         },
         {
           "asset_refs": [],
-          "block_id": "warranty:block-0004",
+          "block_id": "warranty:block-0003",
           "content_sha256": "3c1038fa5ab13e5a85313846b1fd1d7901497187aa72efc2848165127d3385bc",
           "kind": "flow",
           "payload": {
@@ -4301,11 +4343,11 @@
             "level": 2,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "source/transcription.json#warranty#block-4"
+          "source_ref": "source/transcription.json#warranty#block-3"
         },
         {
           "asset_refs": [],
-          "block_id": "warranty:block-0005",
+          "block_id": "warranty:block-0004",
           "content_sha256": "99153e2ea44103b1fae1be9e6231ef47cf740cd85fddce4aa8b09e3a47545b21",
           "kind": "flow",
           "payload": {
@@ -4347,11 +4389,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "source/transcription.json#warranty#block-5"
+          "source_ref": "source/transcription.json#warranty#block-4"
         },
         {
           "asset_refs": [],
-          "block_id": "warranty:block-0006",
+          "block_id": "warranty:block-0005",
           "content_sha256": "a9d0a8aad6472e48b9e90f89f35f05fbec6fa07e50b61f66280b41507f6294ac",
           "kind": "flow",
           "payload": {
@@ -4365,11 +4407,11 @@
             "level": 2,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "source/transcription.json#warranty#block-6"
+          "source_ref": "source/transcription.json#warranty#block-5"
         },
         {
           "asset_refs": [],
-          "block_id": "warranty:block-0007",
+          "block_id": "warranty:block-0006",
           "content_sha256": "56c3289632bcac8845e1b30e247a5b9aefe70eb104a346cfe3cfbefb5457a7e1",
           "kind": "flow",
           "payload": {
@@ -4426,7 +4468,7 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "source/transcription.json#warranty#block-7"
+          "source_ref": "source/transcription.json#warranty#block-6"
         }
       ],
       "language": "en",
@@ -4440,26 +4482,8 @@
       "blocks": [
         {
           "asset_refs": [],
-          "block_id": "contacts:block-0001",
-          "content_sha256": "29ef73a726cf021b06c3768aecf68af91484497520a8ea4884672e7215b944cd",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "Contact us"
-              }
-            ],
-            "kind": "heading",
-            "level": 1,
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "source/transcription.json#contacts#block-1"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "contacts:block-0002",
-          "content_sha256": "2642997c662aeea6cce23eae8530d2dbfb7723ad14a26d9bf28061d9b9023e9c",
+          "block_id": "contacts_mexico:block-0001",
+          "content_sha256": "9b1a2c2591df101f17260a85fdbb4d6b173ae20dca0ab2963b8fd6c78bf0679d",
           "kind": "flow",
           "payload": {
             "children": [
@@ -4469,14 +4493,14 @@
               }
             ],
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "source/transcription.json#contacts#block-2"
+          "source_ref": "source/transcription.json#contacts_mexico#block-1"
         },
         {
           "asset_refs": [],
-          "block_id": "contacts:block-0003",
+          "block_id": "contacts_mexico:block-0002",
           "content_sha256": "a578c2f27cd777f6d0818d5dffd61037bb4fcdc275538b34f71aef85cace7f3f",
           "kind": "flow",
           "payload": {
@@ -4489,12 +4513,22 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "source/transcription.json#contacts#block-3"
-        },
+          "source_ref": "source/transcription.json#contacts_mexico#block-2"
+        }
+      ],
+      "language": "en",
+      "page_id": "contacts_mexico",
+      "skipped_raw": 0,
+      "source_path": "source/transcription.json",
+      "source_ref": "source/transcription.json#contacts_mexico",
+      "source_sha256": "a61fa6a6f3d6e83ea42da4e093639a1f668e5a206c4bcc07c1c0f939823798b4"
+    },
+    {
+      "blocks": [
         {
           "asset_refs": [],
-          "block_id": "contacts:block-0004",
-          "content_sha256": "a54de1fc1b9956712e09e4b594e8c7d56b1b75d69d74da1af51c7951e4aa846e",
+          "block_id": "contacts:block-0001",
+          "content_sha256": "5f84bcc2c97623ac655fdbbeacdda00cb6a7cfacb5d58df31bb8453afda3b71e",
           "kind": "flow",
           "payload": {
             "children": [
@@ -4504,14 +4538,14 @@
               }
             ],
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "source/transcription.json#contacts#block-4"
+          "source_ref": "source/transcription.json#contacts#block-1"
         },
         {
           "asset_refs": [],
-          "block_id": "contacts:block-0005",
+          "block_id": "contacts:block-0002",
           "content_sha256": "71a3990413c92d24f4534de81e8b7a0329065fd1da061a410887e3107414d359",
           "kind": "flow",
           "payload": {
@@ -4524,11 +4558,11 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "source/transcription.json#contacts#block-5"
+          "source_ref": "source/transcription.json#contacts#block-2"
         },
         {
           "asset_refs": [],
-          "block_id": "contacts:block-0006",
+          "block_id": "contacts:block-0003",
           "content_sha256": "3fd672524c2923461ed11d569aca4496ec106cf9ea6e0f46673f19d3d15802c8",
           "kind": "flow",
           "payload": {
@@ -4541,11 +4575,11 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "source/transcription.json#contacts#block-6"
+          "source_ref": "source/transcription.json#contacts#block-3"
         },
         {
           "asset_refs": [],
-          "block_id": "contacts:block-0007",
+          "block_id": "contacts:block-0004",
           "content_sha256": "68f7e970a125b13e048c39e300dc11d80da4953359a66c8fdf60cd438e48969e",
           "kind": "flow",
           "payload": {
@@ -4558,11 +4592,11 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "source/transcription.json#contacts#block-7"
+          "source_ref": "source/transcription.json#contacts#block-4"
         },
         {
           "asset_refs": [],
-          "block_id": "contacts:block-0008",
+          "block_id": "contacts:block-0005",
           "content_sha256": "87fa47f34a7dbdb58d10554b8c58a1a923a26d32f88db51b06863926bb82f965",
           "kind": "flow",
           "payload": {
@@ -4575,24 +4609,20 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "source/transcription.json#contacts#block-8"
+          "source_ref": "source/transcription.json#contacts#block-5"
         },
         {
           "asset_refs": [],
-          "block_id": "contacts:block-0009",
-          "content_sha256": "ea2f0beb4865c0e1b364ae54f10df7673b3917b881b40fb7e7796deaf5ccadf1",
+          "block_id": "contacts:block-0006",
+          "content_sha256": "71d119a89ecc672610625850a8511a27f2b6e61ab6d9cab43df9967cb49735df",
           "kind": "flow",
           "payload": {
             "children": [
               {
-                "kind": "text",
-                "text": " "
-              },
-              {
                 "children": [
                   {
                     "kind": "text",
-                    "text": "https://www.jackery.com"
+                    "text": "www.jackery.com"
                   }
                 ],
                 "kind": "link",
@@ -4602,19 +4632,19 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "source/transcription.json#contacts#block-9"
+          "source_ref": "source/transcription.json#contacts#block-6"
         },
         {
           "asset_refs": [
             "assets/contact-qr.png"
           ],
-          "block_id": "contacts:block-0010",
-          "content_sha256": "66aefb0a343522babf3698339846643b019605406095593bc89a90db29bead90",
+          "block_id": "contacts:block-0007",
+          "content_sha256": "6aace93eb1ea542dc0df230727f5c037657cc94feecfe4df930910910944eff0",
           "kind": "flow",
           "payload": {
             "children": [
               {
-                "alt": "Jackery contact QR code; complete source code and all four frame edges.",
+                "alt": "Jackery contact QR code",
                 "kind": "image",
                 "presentation": {
                   "html": {
@@ -4629,7 +4659,7 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "source/transcription.json#contacts#block-10"
+          "source_ref": "source/transcription.json#contacts#block-7"
         }
       ],
       "language": "en",
@@ -4637,7 +4667,7 @@
       "skipped_raw": 0,
       "source_path": "source/transcription.json",
       "source_ref": "source/transcription.json#contacts",
-      "source_sha256": "0030d15ccc0344290210e3ee54d71e0ec4ee92deb62d85676e5395144b8a1343"
+      "source_sha256": "9b96fbe9462375de63f4e3d0bf22cb2c0af26bc38d40fcca413d3e6e2d42110f"
     }
   ],
   "region": "US",

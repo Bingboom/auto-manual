@@ -169,13 +169,13 @@
         "docs/renderers/latex/assets"
       ],
       "identity_check": "Jackery SolarSaga 100 Light (JS-100G); exact source physical page 6",
-      "reason": "No existing art. The wall-corner line rises beside the step text, so the crop starts 4 pt higher and only the neighbouring text pixels are whited out; the line stays complete.",
+      "reason": "No existing art. The crop starts just below the neighbouring step text (text ends at 145.3 pt); the open-ended wall-corner line, which rises beside the text from 143.3 pt, loses its top 2.7 pt. A whiteout was tried and rejected because it left anti-aliased text residue on the crop edge.",
       "source_path": "source/original.pdf",
       "source_pdf_sha256": "d4914e638ea930c6cf99d3de2af19c2b924b6f0db730b8ab4c9895957d276fa2",
       "physical_page": 6,
       "bbox_pt": [
         99.06,
-        142.0,
+        146.0,
         277.74,
         231.9
       ],
@@ -184,9 +184,8 @@
       "review_status": "agent-source-edge-and-browser-verified; operator pixel approval and global promotion pending",
       "path": "assets/adhesive-step-1.png",
       "mode": "new-extraction",
-      "whiteout": "Only neighbouring native step text is whited out inside the crop rectangle; all linework remains.",
-      "sha256": "6cddbe01f8991cb8e9664a37dd23cce89ff5aed96f5ec76c31d10f6a84ff0bb0",
-      "bytes": 36341
+      "sha256": "e8ff096e09b639e46f10a838e93c697bdc26c49149c9d1af053095d0d0ade962",
+      "bytes": 35498
     },
     "adhesive-step-2": {
       "slot": "adhesive-step-2",

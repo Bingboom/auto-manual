@@ -202,7 +202,7 @@ def render(output: Path) -> dict:
         if kind == "heading":
             return [root(heading(block["text"], level=block.get("level", 2)))]
         if kind == "link":
-            html = f'<p>{escape(block.get("label", ""))} <a href="{escape(block["url"], quote=True)}">{escape(block.get("text", block["url"]))}</a></p>'
+            html = f'<p>{escape(block.get("label", ""))}<a href="{escape(block["url"], quote=True)}">{escape(block.get("text", block["url"]))}</a></p>'
             return [root(v) for v in html_to_flow_nodes(html)]
         if kind == "figure":
             key = block["asset"]

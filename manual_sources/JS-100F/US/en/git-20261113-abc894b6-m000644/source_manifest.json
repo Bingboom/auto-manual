@@ -52,7 +52,10 @@
     "Omit cover drawing, wordmark, printed page numbers, US/English page badges and the printed contents page.",
     "The cover badge 'V2' is shown as 'Version: V2'.",
     "Customer Service icons (wrench, person, envelope) are carried by the shared warranty component styling rather than cropped.",
-    "Back-cover contact icons (phone, envelope, house) are dropped; the contact lines remain native text."
+    "Back-cover contact icons (phone, envelope, house) are dropped; the contact lines remain native text.",
+    "Shared callout labels drop a trailing colon ('Tip:' → 'Tip'); shared Sphinx typography may render straight apostrophes as typographic ones.",
+    "Cover 'Contact us:' lines stay in the introduction; the back-cover entities are two pages, JACKERY MEXICO S.A. DE C.V. then JACKERY INC., in printed order.",
+    "Printed 'www.jackery.com' is the visible link text of https://www.jackery.com."
   ],
   "inputs": [
     {
@@ -106,6 +109,11 @@
       "sha256": "d5f5b943594f3127770c8f514d4c361353167ea1b3bd4009ff1a13ae02b21e61"
     },
     {
+      "path": "source/discovery.md",
+      "size": 1402,
+      "sha256": "ed6e4064f0a65ac09b209d6efdc42c653694252c87da556b88d5a5983359c0e7"
+    },
+    {
       "path": "source/intake-source.json",
       "size": 2205,
       "sha256": "32cf4f1a3d4449f5ff4d2b0d93a31fc8b1cf375c0bd7b91930d474768b958dba"
@@ -117,18 +125,18 @@
     },
     {
       "path": "source/page_map.json",
-      "size": 1225,
-      "sha256": "a142003c1471b540813a1c401820dcd18ee373e7abadc885cb62948dcb9d17e0"
+      "size": 1300,
+      "sha256": "7ced0c1aa1766e440ea86cfb2c4465b977cbc0eed521474efbc5b68085c3ca19"
     },
     {
       "path": "source/transcription.json",
-      "size": 14301,
-      "sha256": "4ae6f9f6576c79fc0ed94fe871bf767c88c8550b11ddec3ba464cc3d0faf49d3"
+      "size": 14481,
+      "sha256": "59d7cab98a0232f92f18facbc2a195bbef3e2177f8225798933e3453097792dd"
     },
     {
       "path": "render.py",
-      "size": 17549,
-      "sha256": "d646fb792905ba0d4dbac999da927f6697b8307da634fdfe4c6fedf968f6050c"
+      "size": 17731,
+      "sha256": "49b2c47ce25fa78da6c369704e15899de05a4214e24206ea643b16b0a46804d8"
     },
     {
       "path": "derive_assets.py",

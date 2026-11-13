@@ -10,7 +10,11 @@
       "source_pages": [1],
       "blocks": [
         {"kind": "paragraph", "text": "Jackery SolarSaga 100 Light"},
-        {"kind": "paragraph", "text": "Model: JS-100G"}
+        {"kind": "paragraph", "text": "Model: JS-100G"},
+        {"kind": "heading", "level": 2, "text": "CONTACT US:"},
+        {"kind": "paragraph", "text": "1-888-502-2236 (US)"},
+        {"kind": "paragraph", "text": "hello@jackery.com"},
+        {"kind": "link", "label": "", "url": "https://www.jackery.com", "text": "www.jackery.com"}
       ]
     },
     {
@@ -152,6 +156,7 @@
       "source_pages": [8, 9, 10, 11, 12],
       "blocks": [
         {"kind": "callout", "label": "Note", "variant": "note", "paragraphs": ["For suspension mounting, please purchase the Jackery Suspension Wire Kit separately."]},
+        {"kind": "heading", "level": 2, "text": "Jackery Suspension Wire Kit (Sold Separately)"},
         {
           "kind": "inbox",
           "label": "Jackery Suspension Wire Kit (Sold Separately)",
@@ -249,7 +254,7 @@
             ["Maximum Reverse Current", {"text": "15A", "colspan": 2}],
             ["Protection Class Against Electric Shock", {"text": "Class II", "colspan": 2}],
             ["IP Rating", {"text": "IP68", "colspan": 2}],
-            ["Operating Temperature Range", {"text": "-40°C~85°C (-40°F~185°F)", "colspan": 2}],
+            ["Operating Temperature Range", {"text": "-40°C~85°C（-40°F~185°F）", "colspan": 2}],
             ["Dimensions", {"text": "1060 x 560 x 16mm", "colspan": 2}],
             ["Weight", {"text": "2.05 kg±0.5 kg", "colspan": 2}],
             ["Bifaciality Coefficient (back/front)", {"text": "70%", "colspan": 2}],
@@ -290,7 +295,7 @@
     {
       "id": "contacts",
       "title": "Jackery Inc.",
-      "source_pages": [1, 17],
+      "source_pages": [17],
       "blocks": [
         {"kind": "paragraph", "text": "5310 Bunche Dr, Fremont, CA 94538-8301"},
         {"kind": "paragraph", "text": "Tel:1-888-502-2236(US)"},
