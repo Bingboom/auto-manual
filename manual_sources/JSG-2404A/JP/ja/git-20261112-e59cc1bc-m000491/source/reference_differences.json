@@ -1,0 +1,97 @@
+[
+  {
+    "area": "inbox",
+    "source_pages": [
+      17
+    ],
+    "decision": "replace station-only4items with this bundle’s8items; station-specific manual cover retained"
+  },
+  {
+    "area": "solar",
+    "source_pages": [
+      4,
+      5,
+      6,
+      7,
+      11,
+      16
+    ],
+    "decision": "add source40Mini unfolded instruction/art/spec/precautions; reject station-only solar art carrying別売り or60/100W panel"
+  },
+  {
+    "area": "source-cover/back",
+    "source_pages": [
+      1,
+      20
+    ],
+    "decision": "retain substantive cover and App back-cover content, omit only duplicate title/logo/cover picture/folios"
+  },
+  {
+    "area": "safety",
+    "source_pages": [
+      12,
+      13,
+      14
+    ],
+    "rejected_reference": "45°C amended warning;「本文をお読みください」; extra600Plus retractable-handle warning; revised medical-data-server clause",
+    "selected_source": "40°C;「本機をご使用ください」; no600Plus handle paragraph; original「次のような機器では、絶対に使用しないでください」with3bullets",
+    "decision": "source-matched current common safety flow, preserving7.安全上のご注意"
+  },
+  {
+    "area": "usage",
+    "source_pages": [
+      9,
+      10
+    ],
+    "rejected_reference": "UPS機能 paragraph with20ms(0.020秒)",
+    "selected_source": "source491 contains no UPS paragraph between常時点灯注意and5.アプリの接続",
+    "decision": "exclude old station-only UPS addition"
+  },
+  {
+    "area": "charging",
+    "source_pages": [
+      10,
+      11,
+      12
+    ],
+    "rejected_reference": "60/100W solar sections;60%以上 storage;3 safety notes",
+    "selected_source": "40Mini DC8020→USB-C;満充電 storage possible/60%–80% recommended;2safety notes",
+    "decision": "replace with current bundle transcriptions"
+  },
+  {
+    "area": "disclaimer",
+    "source_pages": [
+      17
+    ],
+    "rejected_reference": "hospitalCPAP/ECMO/pacemaker revised paragraph",
+    "selected_source": "6original bullets including個人の安全に関係する製品...医療機器/核施設/CPAP/スペースシャトル",
+    "decision": "replace with source-matched current6bullet text; preserve10.免責事項"
+  },
+  {
+    "area": "App owner sharing",
+    "source_pages": [
+      18
+    ],
+    "rejected_reference": "詳細は、「機器共有」をご参照ください。",
+    "selected_source": "source ends after他のユーザーと共有します。",
+    "decision": "remove unsupported reference addition from semantic body/items/carrier"
+  },
+  {
+    "area": "energy default table",
+    "source_pages": [
+      8
+    ],
+    "rejected_reference": "old reference three cellsOFF（dispalyに[88H]がある）",
+    "selected_source": "three cellsON（dispalyに[88H]がある）",
+    "decision": "transcribe sourceON exactly and retain originaldispaly typo; refresh onlythis newly reviewed plain-table exception hash"
+  },
+  {
+    "area": "unfold step5 artwork",
+    "source_pages": [
+      5
+    ],
+    "rejected_reference": "independent000464/000348 picture showing the small handleless100Plus station",
+    "selected_source": "current bundle p5 complete illustration with handled station; same source art in512and491",
+    "decision": "extract actual512 bundle panel throughasset_intake, reuse identical complete bytes for491; first4steps remain existing-art reuse"
+  }
+]

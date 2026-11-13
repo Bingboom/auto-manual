@@ -1,0 +1,67 @@
+{
+  "model": "JS-CONNECTION-GUIDE",
+  "language": "en",
+  "chapters": [
+    {
+      "id": "connection_guide",
+      "title": "Jackery Solar Generator Connection Guide",
+      "source_pages": [
+        1
+      ],
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Please refer to the official Jackery website or customer support for the detailed solar generator connection guide."
+        },
+        {
+          "kind": "paragraph",
+          "text": "For the connection issues shown in the diagram, please consider the following solutions. *The DC7909 male connector can be inserted into the DC8020 female port, but it is incompatible and does not allow current to flow."
+        },
+        {
+          "kind": "plain_table",
+          "headers": [
+            "Portable Power Station",
+            "DC Input"
+          ],
+          "rows": [
+            [
+              "Explorer 240 V2\nExplorer 100 Plus\nExplorer 280 Plus\nExplorer 300 Plus",
+              {
+                "image": "assets/port-usb-c.png",
+                "text": "USB-C"
+              }
+            ],
+            [
+              "Explorer 160\nExplorer 290 Plus\nExplorer 1000\nExplorer 880\nExplorer 550\nExplorer 500\nExplorer 300\nExplorer 290\nExplorer 240",
+              {
+                "image": "assets/port-dc7909.png",
+                "text": "0.9mm · DC7909"
+              }
+            ],
+            [
+              "Explorer 5000 Plus\nExplorer 1000 V2\nExplorer 2000 V2\nExplorer 3000 Pro\nExplorer 2000 Pro\nExplorer 1500 Pro\nExplorer 1000 Pro\nExplorer 880 Pro\nExplorer 2000 Plus\nExplorer 1000 Plus\nExplorer 700 Plus\nExplorer 600 Plus\nExplorer 1500\nNew Arrivals",
+              {
+                "image": "assets/port-dc8020.png",
+                "text": "2.0mm · DC8020"
+              }
+            ]
+          ],
+          "reason": "This is the original two-column product-to-input compatibility matrix with photographic port faces; the LCD, symbol and specification component schemas do not express this cross-model connector mapping. Use native table cells and the shared manual-table theme."
+        },
+        {
+          "kind": "figure",
+          "asset": "connection-dc7909",
+          "alt": "DC7909 connection alternatives 1 and 2; Black Plastic, DC7909 and DC8020 labels, complete source diagram",
+          "source_page": 1
+        },
+        {
+          "kind": "figure",
+          "asset": "connection-dc8020",
+          "alt": "DC8020 connection alternatives 1 and 2; Locking Groove, DC8020 and DC7909 labels, complete source diagram",
+          "source_page": 1
+        }
+      ]
+    }
+  ],
+  "source_concerns": []
+}

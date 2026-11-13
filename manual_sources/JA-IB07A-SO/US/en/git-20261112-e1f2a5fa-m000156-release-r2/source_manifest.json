@@ -1,0 +1,123 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "target": {
+    "model": "JA-IB07A-SO",
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "technical_version": "git-20261112-e1f2a5fa-m000156-release-r2"
+  },
+  "web_title": "Jackery Explorer Insulated Bottle 24oz/710ml",
+  "original_source": {
+    "filename": "16-0102-000156_Jackery_Explorer_Insulated_Bottle_EN.pdf",
+    "path": "source/original.pdf",
+    "sha256": "e1f2a5fad81afdca636bfcf7f619389caf9d367712be208664aa5e85bf2a1ca0",
+    "size": 134654,
+    "physical_page_count": 4
+  },
+  "material": "16-0102-000156",
+  "feishu_source": {
+    "conversion_record_id": "reczz28YjyfRIFbS",
+    "source_table_id": "tbl2tXQk8LnM2JKi",
+    "source_record_id": "reczz28Vph3XbheW",
+    "source_field": "单语言说明书 -英语",
+    "source_file_token": "Gm3Mb0uzrozbiPxEH2zcsqqVnTg"
+  },
+  "source_authority": "Operator selected US-region Y-marked unconverted manuals in the live publishing table on 2026-11-12; current single-language English attachment downloaded from the parent-child source mapping and SHA256 locked. This original source governs all copy; no review acceptance or release approval inferred.",
+  "printed_manual_version": null,
+  "language_scope": "single",
+  "publication_status": "operator-approved-git-only-release",
+  "publication_eligible": true,
+  "pending_source_review": [],
+  "web_roots": {
+    "en": "web/en"
+  },
+  "component_map": {
+    "native_copy": "Semantic headings, paragraphs and lists",
+    "specifications": "HB-TABLE-SPEC",
+    "inbox": "not present",
+    "warranty": "HB-WARRANTY-SECTION; HB-WARRANTY-YEARS where the source has numeric periods",
+    "illustrations": "HB-SPECIAL-REFERENCE-FIGURE; port photographs remain in native declared compatibility cells",
+    "compatibility_table": "not present",
+    "lcd_buttons_app_symbols": "Not present in these source roles; no synthetic components added."
+  },
+  "normalizations": [
+    "Join printed paragraph line wraps; preserve numbers, labels, conditions and proper names.",
+    "Source subscripts/superscripts transcribed as selectable Unicode; source multiplication/temperature glyphs normalized without changing values.",
+    "Printed decorative cover/TOC/page furniture omitted; source title/model/printed version and all substantive copy remain.",
+    "Reuse source-independent port photos and common tile silhouette byte-identically; product/model-specific specification thumbnails and complete source-labelled English diagrams remain source-specific.",
+    "The 1/5-year cards repeat each source warranty scope for shared numeric-card presentation. Both complete original common-condition paragraphs remain together in a following common warranty card and apply to both periods."
+  ],
+  "inputs": [
+    {
+      "path": "assets/bottle.png",
+      "size": 19261,
+      "sha256": "734f2a16a9ada96a233a4c302f815c7c87555de0b2e12517596e21a7cc964206"
+    },
+    {
+      "path": "assets/contact-qr.png",
+      "size": 3521,
+      "sha256": "8fb509da2c7585f78e70db0c8656ad36a549217571fc93830c4bd530af13666f"
+    },
+    {
+      "path": "derive_assets.py",
+      "size": 1762,
+      "sha256": "d188723cc9795080182c68eb445668c407cdf2598eb13e6dfece31dbb9602783"
+    },
+    {
+      "path": "refresh_manifest.py",
+      "size": 2265,
+      "sha256": "9f99224ccc96ea88be42e8a660371d28bbee9a9da238cbd329e538b589ae5aae"
+    },
+    {
+      "path": "render.py",
+      "size": 16425,
+      "sha256": "0d6fcd01820c6ea9379802e2e1254978992172253bd5a4b5a7fe53941138f0e5"
+    },
+    {
+      "path": "source/asset_decisions.json",
+      "size": 2499,
+      "sha256": "0693065a38dd23bb966fadd4a9126a82704f6845600e4946c3cec4db782f9f7f"
+    },
+    {
+      "path": "source/asset_recipes.json",
+      "size": 1492,
+      "sha256": "91c3c01fcacae6a980cd1b10e4e4f609735e72a1513a70517f2f058baac9ca2b"
+    },
+    {
+      "path": "source/original.pdf",
+      "size": 134654,
+      "sha256": "e1f2a5fad81afdca636bfcf7f619389caf9d367712be208664aa5e85bf2a1ca0"
+    },
+    {
+      "path": "source/page_map.json",
+      "size": 709,
+      "sha256": "4ce91503b9ba9c82b0ba30c047c6e6ee13e0d1efd014b9b4299fc65a4a60a0b9"
+    },
+    {
+      "path": "source/release_approval.json",
+      "size": 1087,
+      "sha256": "33fc972c6add2a446418265659eddea93dffe6ce9431e508187cebc81dcd3211"
+    },
+    {
+      "path": "source/transcription.json",
+      "size": 6293,
+      "sha256": "57d2be9f0007370124bfae9205bade0ca701d32ae4a1d3bc242a6a0a334b420e"
+    }
+  ],
+  "repo_inputs": [
+    {
+      "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
+      "sha256": "a2773f7e96849e176a9909e8221e37c20eb9005cd2639415bf6a112d7c86527f"
+    }
+  ],
+  "shared_component_exceptions": [],
+  "revision_of": "manual_sources/JA-IB07A-SO/US/en/git-20261112-e1f2a5fa-m000156",
+  "operator_release_approval": {
+    "path": "source/release_approval.json",
+    "sha256": "33fc972c6add2a446418265659eddea93dffe6ce9431e508187cebc81dcd3211",
+    "authorization": "MA-432"
+  },
+  "publication_packaging_of": "manual_sources/JA-IB07A-SO/US/en/git-20261112-e1f2a5fa-m000156-release"
+}

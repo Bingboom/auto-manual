@@ -1,0 +1,33 @@
+{
+  "source_sha256": "e1f2a5fad81afdca636bfcf7f619389caf9d367712be208664aa5e85bf2a1ca0",
+  "assets": {
+    "bottle": {
+      "mode": "source-crop",
+      "physical_page": 1,
+      "clip_points": [
+        59,
+        58,
+        128,
+        239
+      ],
+      "path": "assets/bottle.png",
+      "reason": "No existing matching finished source-language/model illustration in the recorded inventories; full native illustration or item only, excluding external headings/numbers/body cells. ",
+      "boundary_strategy": "Keep all four illustration edges and source product surfaces; native external titles/body remain selectable. Complete English labelled connection diagrams retain their caption frame together with text; no text stripping or empty caption frames.",
+      "scale": 3
+    },
+    "contact-qr": {
+      "mode": "source-crop",
+      "physical_page": 4,
+      "clip_points": [
+        139,
+        295,
+        167,
+        324
+      ],
+      "path": "assets/contact-qr.png",
+      "reason": "No existing matching finished source-language/model illustration in the recorded inventories; full native illustration or item only, excluding external headings/numbers/body cells. ",
+      "boundary_strategy": "Keep all four illustration edges and source product surfaces; native external titles/body remain selectable. Complete English labelled connection diagrams retain their caption frame together with text; no text stripping or empty caption frames.",
+      "scale": 3
+    }
+  }
+}

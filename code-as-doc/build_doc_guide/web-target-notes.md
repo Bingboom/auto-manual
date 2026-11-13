@@ -3,6 +3,10 @@
 Part of the [build guide](../build_doc_guide.md); its index lists the other topics.
 Add new notes for this topic here, not to the hub.
 
+### 七本日语存量说明书（2026-11）
+
+套装JSG-0304B/JSG-2404A、JS-40A（仅物料000464）、PTB021/PTB041/PTB071及JVC BN-RB15的来源、重放入口和共享组件见[本批候选记录](../reviews/jp_selected_seven_web_2026-11.md)。
+
 ### JE-100C/EU nine-language Web source
 
 JE-100C/EU has authored Web sources for `en/fr/es/de/it/uk/pt/nl/pl`. Use the

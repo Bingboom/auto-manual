@@ -1,0 +1,32 @@
+{
+  "status": "review-candidate-no-release-authorization",
+  "publication_eligible": false,
+  "source_sha256": "8a76fee8450bd436eabdaae9caa1df1319a13a5d281b4c9557dbc36c2575b518",
+  "all_physical_pages_covered": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "cold_replay_markdown_identical": true,
+  "second_adapter_render_all_files_identical": true,
+  "asset_tamper_rejected": "document asset missing or changed: assets/contact-qr.png",
+  "stylesheet_tamper_rejected": "frozen Web stylesheet changed",
+  "strict_sphinx": "passed -n -W --keep-going",
+  "shared_style_issues": [],
+  "component_inventory": {
+    "HB-SPECIAL-INBOX": 1,
+    "HB-TABLE-SPEC": 1,
+    "HB-WARRANTY-SECTION": 5
+  },
+  "python": "3.12.13 / requirements.lock",
+  "package_python_ruff": "pass",
+  "source_qc": "independent 19-page read-only QC by us_power; exact evidence attached in evidence/independent-source-qc.json",
+  "visual_pending": null,
+  "browser_acceptance": "1280 and 390 actual strict-Sphinx manual HTML; zero missing images; table containers inspected and scroll locally; no document overflow",
+  "artwork_review": "12x source crop rendering and all four edges checked; evidence/artwork-review.json",
+  "transcription_sha256": "5ecf4e43789deb5ee9454dff7f754250b88e84724e2e5330db1b3ba16abb4095"
+}

@@ -1,0 +1,441 @@
+{
+  "model": "JS-40A",
+  "language": "en",
+  "source_sha256": "95e0f1c8f544920b6709403d5c6e9c82d5779de42a9cbc928d5164f0a80a6047",
+  "chapters": [
+    {
+      "id": "introduction",
+      "title": "USER MANUAL",
+      "source_pages": [
+        1
+      ],
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Jackery SolarSaga 40 Mini"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Model: JS-40A"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Version: JAK-UM-V2.0"
+        }
+      ]
+    },
+    {
+      "id": "quick_start",
+      "title": "SOLAR PANEL QUICK START GUIDE",
+      "source_pages": [
+        2,
+        3,
+        4
+      ],
+      "blocks": [
+        {
+          "kind": "panel",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "1. Release the magnetic buckle."
+            },
+            {
+              "kind": "figure",
+              "asset": "unfold-1",
+              "source_page": 2,
+              "alt": "Release the magnetic buckle; the complete panel, buckle and rotation arrow are shown."
+            }
+          ]
+        },
+        {
+          "kind": "panel",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "2. Extend both sides of the panel."
+            },
+            {
+              "kind": "figure",
+              "asset": "unfold-2",
+              "source_page": 3,
+              "alt": "Extend both sides of the panel; both hands, outward arrows and the complete hinged panels are shown."
+            }
+          ]
+        },
+        {
+          "kind": "panel",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "3. Pull the concealed latch from the center to release it."
+            },
+            {
+              "kind": "figure",
+              "asset": "unfold-3",
+              "source_page": 3,
+              "alt": "Pull the concealed center latch to release it; both hands, arrows, latch and panels remain complete."
+            }
+          ]
+        },
+        {
+          "kind": "panel",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "4. Unfold the panel completely."
+            },
+            {
+              "kind": "figure",
+              "asset": "unfold-4",
+              "source_page": 4,
+              "alt": "The four sections of the SolarSaga 40 Mini unfolded completely."
+            }
+          ]
+        },
+        {
+          "kind": "panel",
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "5. Position it towards the sun and connect it to a portable power station."
+            },
+            {
+              "kind": "figure",
+              "asset": "unfold-5",
+              "source_page": 4,
+              "alt": "Position the complete SolarSaga 40 Mini toward the sun and connect its cable to the portable power station."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "specifications",
+      "title": "TECHNICAL SPECIFICATIONS",
+      "source_pages": [
+        6
+      ],
+      "blocks": [
+        {
+          "kind": "specification",
+          "title": "SolarSaga 40 Mini",
+          "rows": [
+            [
+              "Product Name",
+              "SolarSaga 40 Mini"
+            ],
+            [
+              "Model",
+              "JS-40A"
+            ],
+            [
+              {
+                "before": "Maximum Power (P",
+                "subscript": "max",
+                "after": ")"
+              },
+              "40W±5%"
+            ],
+            [
+              "Unfolded Size",
+              "Around 1020×300×18.5mm"
+            ],
+            [
+              "Folded Size",
+              "Around 252×300×30mm"
+            ],
+            [
+              "Weight",
+              "Around 2.6 lbs / 1.2 kg"
+            ],
+            [
+              {
+                "before": "Open circuit voltage (V",
+                "subscript": "oc",
+                "after": ")"
+              },
+              "25V±5%"
+            ],
+            [
+              {
+                "before": "Short circuit current (I",
+                "subscript": "sc",
+                "after": ")"
+              },
+              "2.07A±5%"
+            ],
+            [
+              {
+                "before": "Optimum Operating Voltage (V",
+                "subscript": "mp",
+                "after": ")"
+              },
+              "20.9V±5%"
+            ],
+            [
+              {
+                "before": "Optimum Operating Current (I",
+                "subscript": "mp",
+                "after": ")"
+              },
+              "1.91A±5%"
+            ],
+            [
+              "Operating Temperature Range",
+              "−4°F~149°F (−20°C~65°C)"
+            ],
+            [
+              "Maximum System Voltage",
+              "30V"
+            ],
+            [
+              "Maximum Reverse Current",
+              "6A"
+            ],
+            [
+              "Protection Class Against Electric Shock",
+              "Class III"
+            ],
+            [
+              "Waterproof Level",
+              "IP68"
+            ],
+            [
+              "Voltage Temperature Coefficient",
+              "−0.3%/°C"
+            ],
+            [
+              "Power Temperature Coefficient",
+              "−0.39%/°C"
+            ],
+            [
+              "Maximum Number of Series Connections",
+              "1"
+            ],
+            [
+              "Maximum Number of Parallel Connections",
+              "3"
+            ],
+            [
+              "Consumer Goods Category",
+              "IEC TS 63163 Consumer Product Category 1"
+            ]
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "STC (1000W/m², 25°C, AM 1.5)."
+        },
+        {
+          "kind": "specification",
+          "title": "Multifunctional Adapter",
+          "rows": [
+            [
+              "USB-A Output",
+              "5V⎓2.4A"
+            ],
+            [
+              "USB-C Output",
+              "5V⎓3A"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "power_your_device",
+      "title": "POWER YOUR DEVICE",
+      "source_pages": [
+        7
+      ],
+      "blocks": [
+        {
+          "kind": "figure",
+          "asset": "power-device",
+          "source_page": 7,
+          "alt": "SolarSaga 40 Mini and Multifunctional Adapter: USB-C, LED, USB-A; DC8020; DC8020 to USB-C Adapter Cable; Cell Phone, Power Bank and Tablet. Complete source-labelled English connection diagram."
+        },
+        {
+          "kind": "callout",
+          "label": "Note",
+          "variant": "note",
+          "paragraphs": [
+            "The DC8020 to USB-C adapter is only for charging Jackery power station; please do not use it for charging other devices."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "in_the_box",
+      "title": "PACKAGE LIST",
+      "source_pages": [
+        7
+      ],
+      "blocks": [
+        {
+          "kind": "inbox",
+          "desktop_columns": 4,
+          "cards": [
+            [
+              "inbox-panel",
+              "SolarSaga 40 Mini"
+            ],
+            [
+              "inbox-cable",
+              "Multifunctional Solar Charging Cable"
+            ],
+            [
+              "inbox-adapter",
+              "DC8020 to DC7909 Adapter"
+            ],
+            [
+              "inbox-usbc",
+              "DC8020 to USB-C Adapter Cable"
+            ],
+            [
+              "inbox-pouch",
+              "Accessories Bag"
+            ],
+            [
+              "inbox-manual",
+              "User Manual"
+            ],
+            [
+              "inbox-carabiner",
+              "Carabiner X2"
+            ]
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "This multifunctional solar charging cable is only suitable for charging the Jackery SolarSaga 40 Mini and should not be used with other solar panels."
+        },
+        {
+          "kind": "paragraph",
+          "text": "As the maximum current of the DC8020 to USB-C Adapter Cable is 5A, please do not use it together with the Jackery SolarSaga 200."
+        },
+        {
+          "kind": "paragraph",
+          "text": "The DC8020 to DC7909 adapter is required if you need to recharge the devices listed below with SolarSaga 40 Mini."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Jackery Explorer 160/240/290/300/400/500/550/600/700/708/880/1000"
+        }
+      ]
+    },
+    {
+      "id": "safety",
+      "title": "SAFETY PRECAUTIONS WHEN USING",
+      "source_pages": [
+        8
+      ],
+      "blocks": [
+        {
+          "kind": "heading",
+          "level": 2,
+          "text": "Solar Panel Safety Tips"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Do not flex or bend the folding solar panels.",
+            "Do not place folding solar panels in shading places, while tree shades, buildings, and any other obstructions should be minimized.",
+            "Do not soak the solar panels in water or other liquid.",
+            "Do not clean the solar panel with water, please gently wipe it with a damp cloth.",
+            "Do not use or store solar panels near open flames or flammable materials.",
+            "Do not scratch the surface of solar panels with sharp objects.",
+            "Prevent corrosive substances to damage solar panels.",
+            "Do not step on or place heavy objects on the solar panels.",
+            "Do not disassemble the solar panels.",
+            "The output circuit of the solar panels must be correctly connected to the equipment. Please do not short-circuit the positive and negative poles. Ensure that there is no gap between the connector and the insulated connector. If there is a gap, sparks or electrical shocks will occur.",
+            "Check the connection status of each component, including cables, wires and plugs."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "warranty",
+      "title": "WARRANTY",
+      "source_pages": [
+        8
+      ],
+      "heading_from_first_component": true,
+      "blocks": [
+        {
+          "kind": "years",
+          "title": "WARRANTY",
+          "periods": [
+            {
+              "number": "36",
+              "unit": "MONTHS",
+              "label": "Limited Warranty",
+              "body": "The product is covered by a limited warranty from Jackery for the original purchaser that covers the product from defects in workmanship and materials for 36 months from the date of purchase (damages from normal wear and tear, alteration, misuse, neglect, accident, service by anyone other than authorized service center, or act of God are not included). During the warranty period and upon verification of defects, this product will be replaced when returned with proper proof of purchase."
+            },
+            {
+              "number": "2",
+              "unit": "YEARS",
+              "label": "Extended Warranty",
+              "body": "To activate the Warranty Extension, you must register your product online or contact our customer service team at hello@jackery.com to extend the standard warranty runtime."
+            }
+          ]
+        },
+        {
+          "kind": "warranty",
+          "title": "CUSTOMER SERVICE",
+          "paragraphs": [
+            "36-month limited warranty",
+            "Lifetime technical support",
+            "hello@jackery.com"
+          ]
+        },
+        {
+          "kind": "warranty",
+          "title": "CONTACT US",
+          "paragraphs": [
+            "For any inquiries or comments concerning our products, please send an email to hello@jackery.com, and we will respond to you as soon as possible. If there is any quality-related issue with the product, you may request a replacement or refund by submitting a request form at www.jackery.com."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "contacts",
+      "title": "JACKERY INC.",
+      "source_pages": [
+        1,
+        9
+      ],
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "5310 Bunche Dr, Fremont, CA 94538"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Tel: 1-888-502-2236(US)"
+        },
+        {
+          "kind": "paragraph",
+          "text": "E-mail: hello@jackery.com"
+        },
+        {
+          "kind": "link",
+          "label": "Website:",
+          "url": "https://www.jackery.com"
+        },
+        {
+          "kind": "image",
+          "asset": "contact-qr",
+          "source_page": 9,
+          "alt": "Jackery contact QR code; complete source code and all four frame edges.",
+          "width": 160
+        }
+      ]
+    }
+  ],
+  "source_concerns": [
+    "Source grammar, including 'Prevent corrosive substances to damage solar panels' and the safety instruction about short-circuiting poles, is retained rather than silently technically rewritten.",
+    "The warranty states 36 months plus a 2 Years Extended Warranty registration paragraph. These exact periods are preserved; no other edition's warranty is imported."
+  ]
+}

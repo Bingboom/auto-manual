@@ -1,0 +1,32 @@
+{
+  "target": {
+    "model": "JSG-0304B",
+    "region": "JP",
+    "languages": [
+      "ja"
+    ],
+    "technical_version": "git-20261112-fe9f1b56-m000512-release"
+  },
+  "original_source_sha256": "fe9f1b561a9f75af52e1af738f9da00492302a55f43ddc0122e366744fb9e452",
+  "source_sha256": "fe9f1b561a9f75af52e1af738f9da00492302a55f43ddc0122e366744fb9e452",
+  "operator_quote": "审核一下 然后合入 上线发布文档",
+  "authority_date": "2026-11-12",
+  "merge_authorization": "MA-433",
+  "authority_context": "Operator explicitly requested review, merge and publication of auto-manual PR #1712 in this chat. Source/text/layout checks were delegated to the agent; no claim of a separate operator pixel inspection is made.",
+  "reviewed_candidate": {
+    "path": "manual_sources/JSG-0304B/JP/ja/git-20261112-fe9f1b56-m000512",
+    "git_ref": "6abe1128c27a186228185390d26f87adc9d3e2c9",
+    "manifest_sha256": "db7270aa206587fb843f10ff6cbf6dd04e6aefefe0251962bb8fe1c28e38502d",
+    "manual_ir_sha256": "bc551851e61074085cfdb11b6076444029c82673df56e9ca26dc05feb5f49dd9"
+  },
+  "review": {
+    "model": "JSG-0304B",
+    "package": "manual_sources/JSG-0304B/JP/ja/git-20261112-fe9f1b56-m000512",
+    "identical_files": 42,
+    "cold_replay": "pass",
+    "strict_sphinx": "pass",
+    "web_sha256": "bc551851e61074085cfdb11b6076444029c82673df56e9ca26dc05feb5f49dd9"
+  },
+  "scope": "Review and publish this derivative of the exact candidate. Japanese wording, technical facts, printed variant differences, source concerns and recycle-glyph standardization are retained. Only the recorded source-bound symbol repairs are applied; no live-table write.",
+  "release_review_changes": []
+}

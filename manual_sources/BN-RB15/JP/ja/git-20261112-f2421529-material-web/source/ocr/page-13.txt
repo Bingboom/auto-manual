@@ -1,0 +1,56 @@
+主 な 仕様
+
+充電 池 タ イプ リチウム イオ ン 充 電池 ( 三 元 系 )
+
+充電 池 容 量 1,534Wh (60.9Ah/25.2V) 426,300mAh
+
+入力 【DCx ら 5】 12-24V DC 264W
+【ACx3】100V AC 18A 60Hz
+
+AO 出力 合計 1.800W (瞬間 最大 3.600W)
+
+[USB Type-C™] 5V DC 3A/ 9V DC 3A/ 12V DC 3A/
+15V DC 8A/ 20V DC 3A
+
+USB 出 力 [USB Type-A】 5V DC 2.4A
+
+[USB Type-A Qualcomm® Quick Charge™3.0)
+
+SV-6.5V DC 3A/6.5V-9V DC 2A/ 9V-12V DC 1.5A
+
+DC 出力 【 シ ガー ソケット 】 12V DC 120W
+
+= AC ア ダ プ ター 使用 時 : 約 6.5 時 間
+充電 時 間 シガー アダ プター 使用 時 : 約 13 時 間
+
+充電 温度 0C~40
+動作 温度 -100~40T
+
+最大 外形 填 法 : = -
+
+( 八 シ ンド ル 収 納 時 ) 幅 355mmx 高 さ ら 65mmx BWiyy2538mm
+
+質量 16kg
+
+これ ら の 仕様 お よび デザ イン は 、 技 術 開発 に と も な い 予 告 な く 変更 に な る 場合 が あり ます 。
+
+本 書 の 内 容 を オン ライ ン で ご 覧 いた だ け ま す
+
+本 機 を アウ トド ア に 持ち 出す 際 な ど に ご 活用 くだ さい 。
+http://www3 ら .jvckenwood.com/jvC/System/Manual/Search/
+
+商標 に つい て
+
+・USB_Type- C™B KUUSB-C™l& USB Implementers Forum の 商標 また は 登録 商標 で
+す 。
+
+・Qualcomm は 、 米 国 お よび その 他 の 国々 で 登録 され た QualcommS Technologies,
+Inc. の 商標 で す 。
+
+* Qualcomm® Quick Charge™l&, Qualcomm® Technologies, Inc. お よび プン また は
+その 子会社 の 製品 で あり 、 米 国 お よび その 他 の 国々 で 登録 され た Qualcomm ぷ
+Technologies, Inc. の 商標 で す 。
+・ そ の 他 、 記載 し て いる 会 社名 、 製品 名 は 各社 の 商標 また は 登録 商標 で す 。 な お 、 本 文中 で は 、
+TM マー ク と ぷ マ ー ク を 明記 し て いま せん 。
+
+13

@@ -1,0 +1,3150 @@
+[
+  {
+    "chapter": "preface",
+    "flow_node_index": 0,
+    "source_pages": [
+      1
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "国内専用/For use only in Japan",
+    "flow_sha256": "77e992c5234d6bccc07e9912ed31efe7179048a9050f17a40c3d430886dc4620",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "preface",
+    "flow_node_index": 1,
+    "source_pages": [
+      1
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "カスタマーサポート:jackery.jp@jackery.com",
+    "flow_sha256": "133723eff03afe739ba2766e7c8974d05e8ad5053bfb86cfd07628247c7d3e0a",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "preface",
+    "flow_node_index": 2,
+    "source_pages": [
+      1
+    ],
+    "kind": "heading",
+    "component_id": null,
+    "text": "お買い上げありがとうございます。",
+    "flow_sha256": "36f7e8ace1895d4affe2a780ad32ac15c85e08ff5e30c3847f814e41ce72a14c",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "preface",
+    "flow_node_index": 3,
+    "source_pages": [
+      1
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "ご使用の前にこの「取扱説明書」をよくお読みのうえ、正しくお使いください。",
+    "flow_sha256": "7195b62389314ea613ca0b025157a4b75869f9a5c63413dd714b869a0d29bc81",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "preface",
+    "flow_node_index": 4,
+    "source_pages": [
+      1
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "特に「安全上のご注意」は、必ずお読みいただき、安全にお使いください。",
+    "flow_sha256": "ca69f865c698bfbf7ee171a5ce2cdb0b51db3716ee1408d551d1ffac07019ec1",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "preface",
+    "flow_node_index": 5,
+    "source_pages": [
+      1
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "お読みになったあとは、すぐに取り出せる場所に大切に保管してください。",
+    "flow_sha256": "bcfc0f904bd8cf4c40388a8e837721a9274fe736f6f1c16b28f019d4f03b1267",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "preface",
+    "flow_node_index": 6,
+    "source_pages": [
+      1
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "本製品の取扱説明書は随時更新されますので、最新の取扱説明書は公式サイトページでご確認ください。",
+    "flow_sha256": "a690fb48efde05960b3fc0b4f3fb348ded4ee7899d658c113540ecbda8f4bb40",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "solar_unfolding",
+    "flow_node_index": 0,
+    "source_pages": [
+      4
+    ],
+    "kind": "heading",
+    "component_id": null,
+    "text": "ソーラーパネル取扱説明書：",
+    "flow_sha256": "7ee9640cdbae973ce067798da269dc12b8baeee3bcf93b0074a02fbde49c3d7f",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "solar_unfolding",
+    "flow_node_index": 1,
+    "source_pages": [
+      4
+    ],
+    "kind": "heading",
+    "component_id": null,
+    "text": "1 マグネットバックルを外す",
+    "flow_sha256": "4db46d50b8d5cf4a86fc25cfac4edcc08c2c39827d97e44afed62ae3c539181f",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "solar_unfolding",
+    "flow_node_index": 2,
+    "source_pages": [
+      4
+    ],
+    "kind": "component",
+    "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+    "text": "",
+    "flow_sha256": "c3e717d3f83f333fdfabe12f09dd851f0f1cc47ab34aec24c7df13231a3c78d6",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "unfold-1"
+      },
+      {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "マグネットバックルを外す"
+      },
+      {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "none"
+      },
+      {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+      }
+    ]
+  },
+  {
+    "chapter": "solar_unfolding",
+    "flow_node_index": 3,
+    "source_pages": [
+      4
+    ],
+    "kind": "heading",
+    "component_id": null,
+    "text": "2 両側に広げる",
+    "flow_sha256": "199f9e3df3024687ad623e4778d91375c837dc1e9691b15d2062e0dff5e2d691",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "solar_unfolding",
+    "flow_node_index": 4,
+    "source_pages": [
+      4
+    ],
+    "kind": "component",
+    "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+    "text": "",
+    "flow_sha256": "b39ce7b0a40c80fdc4c8b1bf77ea2744706c9c26e0aceb644cb612304bebaa5b",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "unfold-2"
+      },
+      {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "両側に広げる"
+      },
+      {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "none"
+      },
+      {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+      }
+    ]
+  },
+  {
+    "chapter": "solar_unfolding",
+    "flow_node_index": 5,
+    "source_pages": [
+      4
+    ],
+    "kind": "heading",
+    "component_id": null,
+    "text": "3 真ん中の隠しボタンを外す",
+    "flow_sha256": "212325a6faf8940ec27d5d33675130a3cd866449bd199cb1d3f77f906657864d",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "solar_unfolding",
+    "flow_node_index": 6,
+    "source_pages": [
+      4
+    ],
+    "kind": "component",
+    "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+    "text": "",
+    "flow_sha256": "0a82fc60ae652ef95dd9314c1a4566b9823ff1fe7860f3ad38f50d3a09dd31cf",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "unfold-3"
+      },
+      {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "真ん中の隠しボタンを外す"
+      },
+      {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "none"
+      },
+      {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+      }
+    ]
+  },
+  {
+    "chapter": "solar_unfolding",
+    "flow_node_index": 7,
+    "source_pages": [
+      5
+    ],
+    "kind": "heading",
+    "component_id": null,
+    "text": "4 広げる",
+    "flow_sha256": "1f53e4b7c329818d0b13ca286ae8ac0eb3396fd7fee45faf814658619f71099b",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "solar_unfolding",
+    "flow_node_index": 8,
+    "source_pages": [
+      5
+    ],
+    "kind": "component",
+    "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+    "text": "",
+    "flow_sha256": "b1b2f99a99464eefe757dc29a027b7ca5782a4ceec731c19d967baf09071b2a0",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "unfold-4"
+      },
+      {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "広げる"
+      },
+      {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "none"
+      },
+      {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+      }
+    ]
+  },
+  {
+    "chapter": "solar_unfolding",
+    "flow_node_index": 9,
+    "source_pages": [
+      5
+    ],
+    "kind": "heading",
+    "component_id": null,
+    "text": "5 太陽に向かい、ポータブル電源に接続する",
+    "flow_sha256": "4bd3b43140ebf9fae097a503097196a322ce5213ea66093fd62d4904c0535911",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "solar_unfolding",
+    "flow_node_index": 10,
+    "source_pages": [
+      5
+    ],
+    "kind": "component",
+    "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+    "text": "",
+    "flow_sha256": "a5cb2867b6ed1310023217e38e987b353e88c7c0671e6bda929b840da2c5c451",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "unfold-5"
+      },
+      {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "太陽に向かい、ポータブル電源に接続する"
+      },
+      {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "none"
+      },
+      {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+      }
+    ]
+  },
+  {
+    "chapter": "specifications",
+    "flow_node_index": 0,
+    "source_pages": [
+      6
+    ],
+    "kind": "heading",
+    "component_id": null,
+    "text": "1.主な仕様",
+    "flow_sha256": "9078ef41a17e3bfdf98b0a2062fc275ade898344f31b959055845f7858afa477",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "specifications",
+    "flow_node_index": 1,
+    "source_pages": [
+      6
+    ],
+    "kind": "component",
+    "component_id": "HB-TABLE-SPEC",
+    "text": "【Jackery ポータブル電源 240】 製品の名称 : Jackery ポータブル電源240 型番 : JE-240A バッテリータイプ : LiFePO4（リン酸鉄リチウムイオン電池） サイズ＆重量 : 約23.1 x 15.3 x 16.8 cm (約3.6kg) 定格容量 : 20Ah/12.8V DC (256Wh) AC入力 : 100V-120V~ 50Hz/60Hz, 最大10A AC出力 : 100V~ 50Hz/60Hz, 3A, 300W (瞬間最大600W) USB-A出力 : 5V⎓3A, 最大15W USB-C(OUT) 出力 : 5V⎓3A, 最大15W USB-C(IN/OUT) 出力 : 5V⎓3A, 9V ⎓3A, 12V ⎓3A, 15V ⎓3A, 20V ⎓5A, 最大100W USB-C(IN/OUT) 入力 : 9V ⎓3A, 12V ⎓3A, 15V ⎓3A, 20V ⎓5A, 最大100W USB総出力 : USB-C(IN/OUT): 100W Max, USB-C(OUT)+USB-A: 最大24W シガーソケット出力 : 12V⎓10A 充電温度 : 0°C~45 °C (32°F~113 °F) 動作温度 : -10°C~45 °C (14°F~113 °F) 保存温度 : 3ヶ月の場合: -20°C ~45°C (4°F ~113°F ) 6ヶ月の場合: -10°C ~25°C (14°F ~77°F ) 認証： UN38.3",
+    "flow_sha256": "8e2287080be17d9066e7787cf0fc373192a65b7a342da585b8db5121cb66dc40",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "section_title",
+        "content_kind": "inline_text",
+        "content": "【Jackery ポータブル電源 240】"
+      },
+      {
+        "role": "rows",
+        "content_kind": "structured_rows",
+        "content": [
+          {
+            "label": "製品の名称 :",
+            "label_rowspan": 1,
+            "values": [
+              {
+                "text": "Jackery ポータブル電源240",
+                "references": []
+              }
+            ],
+            "references": []
+          },
+          {
+            "label": "型番 :",
+            "label_rowspan": 1,
+            "values": [
+              {
+                "text": "JE-240A",
+                "references": []
+              }
+            ],
+            "references": []
+          },
+          {
+            "label": "バッテリータイプ :",
+            "label_rowspan": 1,
+            "values": [
+              {
+                "text": "LiFePO4（リン酸鉄リチウムイオン電池）",
+                "references": []
+              }
+            ],
+            "references": []
+          },
+          {
+            "label": "サイズ＆重量 :",
+            "label_rowspan": 1,
+            "values": [
+              {
+                "text": "約23.1 x 15.3 x 16.8 cm (約3.6kg)",
+                "references": []
+              }
+            ],
+            "references": []
+          },
+          {
+            "label": "定格容量 :",
+            "label_rowspan": 1,
+            "values": [
+              {
+                "text": "20Ah/12.8V DC (256Wh)",
+                "references": []
+              }
+            ],
+            "references": []
+          },
+          {
+            "label": "AC入力 :",
+            "label_rowspan": 1,
+            "values": [
+              {
+                "text": "100V-120V~ 50Hz/60Hz, 最大10A",
+                "references": []
+              }
+            ],
+            "references": []
+          },
+          {
+            "label": "AC出力 :",
+            "label_rowspan": 1,
+            "values": [
+              {
+                "text": "100V~ 50Hz/60Hz, 3A, 300W (瞬間最大600W)",
+                "references": []
+              }
+            ],
+            "references": []
+          },
+          {
+            "label": "USB-A出力 :",
+            "label_rowspan": 1,
+            "values": [
+              {
+                "text": "5V⎓3A, 最大15W",
+                "references": []
+              }
+            ],
+            "references": []
+          },
+          {
+            "label": "USB-C(OUT) 出力 :",
+            "label_rowspan": 1,
+            "values": [
+              {
+                "text": "5V⎓3A, 最大15W",
+                "references": []
+              }
+            ],
+            "references": []
+          },
+          {
+            "label": "USB-C(IN/OUT) 出力 :",
+            "label_rowspan": 1,
+            "values": [
+              {
+                "text": "5V⎓3A, 9V ⎓3A, 12V ⎓3A, 15V ⎓3A, 20V ⎓5A, 最大100W",
+                "references": []
+              }
+            ],
+            "references": []
+          },
+          {
+            "label": "USB-C(IN/OUT) 入力 :",
+            "label_rowspan": 1,
+            "values": [
+              {
+                "text": "9V ⎓3A, 12V ⎓3A, 15V ⎓3A, 20V ⎓5A, 最大100W",
+                "references": []
+              }
+            ],
+            "references": []
+          },
+          {
+            "label": "USB総出力 :",
+            "label_rowspan": 1,
+            "values": [
+              {
+                "text": "USB-C(IN/OUT): 100W Max, USB-C(OUT)+USB-A: 最大24W",
+                "references": []
+              }
+            ],
+            "references": []
+          },
+          {
+            "label": "シガーソケット出力 :",
+            "label_rowspan": 1,
+            "values": [
+              {
+                "text": "12V⎓10A",
+                "references": []
+              }
+            ],
+            "references": []
+          },
+          {
+            "label": "充電温度 :",
+            "label_rowspan": 1,
+            "values": [
+              {
+                "text": "0°C~45 °C (32°F~113 °F)",
+                "references": []
+              }
+            ],
+            "references": []
+          },
+          {
+            "label": "動作温度 :",
+            "label_rowspan": 1,
+            "values": [
+              {
+                "text": "-10°C~45 °C (14°F~113 °F)",
+                "references": []
+              }
+            ],
+            "references": []
+          },
+          {
+            "label": "保存温度 :",
+            "label_rowspan": 1,
+            "values": [
+              {
+                "text": "3ヶ月の場合: -20°C ~45°C (4°F ~113°F )\n6ヶ月の場合: -10°C ~25°C (14°F ~77°F )",
+                "references": []
+              }
+            ],
+            "references": []
+          },
+          {
+            "label": "認証：",
+            "label_rowspan": 1,
+            "values": [
+              {
+                "text": "UN38.3",
+                "references": []
+              }
+            ],
+            "references": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": "specifications",
+    "flow_node_index": 2,
+    "source_pages": [
+      6
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "※USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.",
+    "flow_sha256": "7689b0cc7964c496c96b41cbb8b19babd5c2ffd7bf90b276cfba25f24f0ba095",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "specifications",
+    "flow_node_index": 3,
+    "source_pages": [
+      6
+    ],
+    "kind": "component",
+    "component_id": "HB-TABLE-SPEC",
+    "text": "【Jackery SolarSaga 40 Mini】 製品名称: SolarSaga 40 Mini 型番: JS-40A 最大出力 (Pmax): 40W±5% 開放電圧 (Voc): 25V±5% 短絡電流 (Isc): 2.07A±5% 動作電圧 (Vmp): 20.9V±5% 動作電流 (Imp): 1.91A±5% 正味重量: 約1.2kg 収納サイズ: 約252*300*30mm 展開サイズ: 約1020*300*18.5mm 動作温度範囲: -20°C~65°C（-4°F~149°F） 最大システム電圧: 30V 最大逆電流: 6A 感電保護クラス: クラスⅢ 防水規格: IP68 電圧温度係数: -0.3%/°C 出力温度係数: -0.39%/°C 最大直列接続数: 1 最大並列接続数: 3 消費財カテゴリー: IEC TS 63163、消費財タイプI",
+    "flow_sha256": "2a32be6c65ff1fe76ba82a2b2470774bfab77ee01d5dbf3231deadd5e45406d0",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "section_title",
+        "content_kind": "inline_text",
+        "content": "【Jackery SolarSaga 40 Mini】"
+      },
+      {
+        "role": "rows",
+        "content_kind": "structured_rows",
+        "content": [
+          {
+            "label": "製品名称:",
+            "label_rowspan": 1,
+            "values": [
+              {
+                "text": "SolarSaga 40 Mini",
+                "references": []
+              }
+            ],
+            "references": []
+          },
+          {
+            "label": "型番:",
+            "label_rowspan": 1,
+            "values": [
+              {
+                "text": "JS-40A",
+                "references": []
+              }
+            ],
+            "references": []
+          },
+          {
+            "label": "最大出力 (Pmax):",
+            "label_rowspan": 1,
+            "values": [
+              {
+                "text": "40W±5%",
+                "references": []
+              }
+            ],
+            "references": []
+          },
+          {
+            "label": "開放電圧 (Voc):",
+            "label_rowspan": 1,
+            "values": [
+              {
+                "text": "25V±5%",
+                "references": []
+              }
+            ],
+            "references": []
+          },
+          {
+            "label": "短絡電流 (Isc):",
+            "label_rowspan": 1,
+            "values": [
+              {
+                "text": "2.07A±5%",
+                "references": []
+              }
+            ],
+            "references": []
+          },
+          {
+            "label": "動作電圧 (Vmp):",
+            "label_rowspan": 1,
+            "values": [
+              {
+                "text": "20.9V±5%",
+                "references": []
+              }
+            ],
+            "references": []
+          },
+          {
+            "label": "動作電流 (Imp):",
+            "label_rowspan": 1,
+            "values": [
+              {
+                "text": "1.91A±5%",
+                "references": []
+              }
+            ],
+            "references": []
+          },
+          {
+            "label": "正味重量:",
+            "label_rowspan": 1,
+            "values": [
+              {
+                "text": "約1.2kg",
+                "references": []
+              }
+            ],
+            "references": []
+          },
+          {
+            "label": "収納サイズ:",
+            "label_rowspan": 1,
+            "values": [
+              {
+                "text": "約252*300*30mm",
+                "references": []
+              }
+            ],
+            "references": []
+          },
+          {
+            "label": "展開サイズ:",
+            "label_rowspan": 1,
+            "values": [
+              {
+                "text": "約1020*300*18.5mm",
+                "references": []
+              }
+            ],
+            "references": []
+          },
+          {
+            "label": "動作温度範囲:",
+            "label_rowspan": 1,
+            "values": [
+              {
+                "text": "-20°C~65°C（-4°F~149°F）",
+                "references": []
+              }
+            ],
+            "references": []
+          },
+          {
+            "label": "最大システム電圧:",
+            "label_rowspan": 1,
+            "values": [
+              {
+                "text": "30V",
+                "references": []
+              }
+            ],
+            "references": []
+          },
+          {
+            "label": "最大逆電流:",
+            "label_rowspan": 1,
+            "values": [
+              {
+                "text": "6A",
+                "references": []
+              }
+            ],
+            "references": []
+          },
+          {
+            "label": "感電保護クラス:",
+            "label_rowspan": 1,
+            "values": [
+              {
+                "text": "クラスⅢ",
+                "references": []
+              }
+            ],
+            "references": []
+          },
+          {
+            "label": "防水規格:",
+            "label_rowspan": 1,
+            "values": [
+              {
+                "text": "IP68",
+                "references": []
+              }
+            ],
+            "references": []
+          },
+          {
+            "label": "電圧温度係数:",
+            "label_rowspan": 1,
+            "values": [
+              {
+                "text": "-0.3%/°C",
+                "references": []
+              }
+            ],
+            "references": []
+          },
+          {
+            "label": "出力温度係数:",
+            "label_rowspan": 1,
+            "values": [
+              {
+                "text": "-0.39%/°C",
+                "references": []
+              }
+            ],
+            "references": []
+          },
+          {
+            "label": "最大直列接続数:",
+            "label_rowspan": 1,
+            "values": [
+              {
+                "text": "1",
+                "references": []
+              }
+            ],
+            "references": []
+          },
+          {
+            "label": "最大並列接続数:",
+            "label_rowspan": 1,
+            "values": [
+              {
+                "text": "3",
+                "references": []
+              }
+            ],
+            "references": []
+          },
+          {
+            "label": "消費財カテゴリー:",
+            "label_rowspan": 1,
+            "values": [
+              {
+                "text": "IEC TS 63163、消費財タイプI",
+                "references": []
+              }
+            ],
+            "references": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": "specifications",
+    "flow_node_index": 4,
+    "source_pages": [
+      6
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "STC (1000W/m², 25°C, AM 1.5).",
+    "flow_sha256": "0db3934396faa79f9b3ae5f4a8f8c76dffa91674197851ebc4a01e6fb8c2d204",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "specifications",
+    "flow_node_index": 5,
+    "source_pages": [
+      7
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "■ 本機の仕様および外観は、改善のため予告なく変更することがあります。",
+    "flow_sha256": "fb3084980f911fd5ba024f990fbb9bdf05062610c2f667d9b366a144f706b0e2",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "specifications",
+    "flow_node_index": 6,
+    "source_pages": [
+      7
+    ],
+    "kind": "group",
+    "component_id": null,
+    "text": "充電式電池のリサイクルについて 本機はリサイクル可能な充電池を内蔵しています。 この商品を廃棄する場合は、当社のカスタマーサポートにご連絡ください。 充電池の取りはずしはお客様自身では行わないでください。",
+    "flow_sha256": "24957f37cf1c7311d9a83675d6f60527ef5e33d01967b86ec6c464ad4fff045e",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "product_overview",
+    "flow_node_index": 0,
+    "source_pages": [
+      7
+    ],
+    "kind": "heading",
+    "component_id": null,
+    "text": "2.各部の名称",
+    "flow_sha256": "8b8c6324df2f41392c8d7f51e05a6a77fa35ae0c70d7b504c927daecf8cf7799",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "product_overview",
+    "flow_node_index": 1,
+    "source_pages": [
+      7
+    ],
+    "kind": "component",
+    "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+    "text": "",
+    "flow_sha256": "0534e2fda3b0b48449f47570922be865580e18895ce4257475dccad5e2c4084e",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "overview"
+      },
+      {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "本体とSolarSaga 40 Mini。各部：主電源ボタン、シガーソケット出力ポート、USB-A出力ポート、USB-C出力ポート、USB-C入力/出力ポート、DC/USB出力ボタン、LCDディスプレイ、LEDライト、LEDライトボタン、AC出力ポート、AC出力ボタン、AC入力ポート。"
+      },
+      {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "embedded"
+      },
+      {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+      }
+    ]
+  },
+  {
+    "chapter": "lcd_display",
+    "flow_node_index": 0,
+    "source_pages": [
+      8
+    ],
+    "kind": "heading",
+    "component_id": null,
+    "text": "3.液晶画面",
+    "flow_sha256": "b81d3289ea6ff9d74f580612622712d92bad722c39093c72ac29b5036a660aef",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "lcd_display",
+    "flow_node_index": 1,
+    "source_pages": [
+      8
+    ],
+    "kind": "component",
+    "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+    "text": "",
+    "flow_sha256": "034551dca184ec2e82587ae0d3f804b3323bd4722d87e2fd0ae57806935d857a",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "lcd-map"
+      },
+      {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "3.液晶画面"
+      },
+      {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "embedded"
+      },
+      {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+      }
+    ]
+  },
+  {
+    "chapter": "lcd_display",
+    "flow_node_index": 2,
+    "source_pages": [
+      8
+    ],
+    "kind": "component",
+    "component_id": "HB-TABLE-REFERENCE",
+    "text": "",
+    "flow_sha256": "cb0507ec9b5f548029b6a5bd642f4fcba643d3b44a7af9d17fdf80db3bbcca4d",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "3.液晶画面"
+      },
+      {
+        "role": "headers",
+        "content_kind": "ordered_headers",
+        "content": []
+      },
+      {
+        "role": "rows",
+        "content_kind": "ordered_rows",
+        "content": [
+          [
+            {
+              "html": "①",
+              "text": "①"
+            },
+            {
+              "html": "入力電力表示",
+              "text": "入力電力表示"
+            }
+          ],
+          [
+            {
+              "html": "②",
+              "text": "②"
+            },
+            {
+              "html": "充電残り時間",
+              "text": "充電残り時間"
+            }
+          ],
+          [
+            {
+              "html": "③",
+              "text": "③"
+            },
+            {
+              "html": "AC入力電力表示",
+              "text": "AC入力電力表示"
+            }
+          ],
+          [
+            {
+              "html": "④",
+              "text": "④"
+            },
+            {
+              "html": "シガーソケット入力電力表示",
+              "text": "シガーソケット入力電力表示"
+            }
+          ],
+          [
+            {
+              "html": "⑤",
+              "text": "⑤"
+            },
+            {
+              "html": "ソーラー(グリーンエネルギー)充電接続",
+              "text": "ソーラー(グリーンエネルギー)充電接続"
+            }
+          ],
+          [
+            {
+              "html": "⑥",
+              "text": "⑥"
+            },
+            {
+              "html": "バッテリー残量警告灯",
+              "text": "バッテリー残量警告灯"
+            }
+          ],
+          [
+            {
+              "html": "⑦",
+              "text": "⑦"
+            },
+            {
+              "html": "バッテリーレベルパーセントタグ",
+              "text": "バッテリーレベルパーセントタグ"
+            }
+          ],
+          [
+            {
+              "html": "⑧",
+              "text": "⑧"
+            },
+            {
+              "html": "エラーコード",
+              "text": "エラーコード"
+            }
+          ],
+          [
+            {
+              "html": "⑨",
+              "text": "⑨"
+            },
+            {
+              "html": "高温インジケーター",
+              "text": "高温インジケーター"
+            }
+          ],
+          [
+            {
+              "html": "⑩",
+              "text": "⑩"
+            },
+            {
+              "html": "低温インジケーター",
+              "text": "低温インジケーター"
+            }
+          ],
+          [
+            {
+              "html": "⑪",
+              "text": "⑪"
+            },
+            {
+              "html": "バッテリー使用可能時間",
+              "text": "バッテリー使用可能時間"
+            }
+          ],
+          [
+            {
+              "html": "⑫",
+              "text": "⑫"
+            },
+            {
+              "html": "消費電力パワー",
+              "text": "消費電力パワー"
+            }
+          ],
+          [
+            {
+              "html": "⑬",
+              "text": "⑬"
+            },
+            {
+              "html": "省エネモード",
+              "text": "省エネモード"
+            }
+          ],
+          [
+            {
+              "html": "⑭",
+              "text": "⑭"
+            },
+            {
+              "html": "交流電源による出力マーク",
+              "text": "交流電源による出力マーク"
+            }
+          ],
+          [
+            {
+              "html": "⑮",
+              "text": "⑮"
+            },
+            {
+              "html": "バッテリーアイコン",
+              "text": "バッテリーアイコン"
+            }
+          ],
+          [
+            {
+              "html": "⑯",
+              "text": "⑯"
+            },
+            {
+              "html": "Wi-Fi",
+              "text": "Wi-Fi"
+            }
+          ],
+          [
+            {
+              "html": "⑰",
+              "text": "⑰"
+            },
+            {
+              "html": "Bluetooth",
+              "text": "Bluetooth"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": "lcd_display",
+    "flow_node_index": 3,
+    "source_pages": [
+      8
+    ],
+    "kind": "component",
+    "component_id": "HB-TABLE-LCD-ICON",
+    "text": "",
+    "flow_sha256": "3070975a007d2ad9ec64c50cd6febf68e832ae64298bb5e261cf3df2bfbabac6",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "バッテリーアイコン"
+      },
+      {
+        "role": "rows",
+        "content_kind": "ordered_rows",
+        "content": [
+          {
+            "name_html": "バッテリーアイコン",
+            "name_text": "バッテリーアイコン",
+            "description_html": "本製品の充電時、アイコンは時計回りに回転します。本製品の放電時、アイコンは現在の電力を表示します。",
+            "description_text": "本製品の充電時、アイコンは時計回りに回転します。本製品の放電時、アイコンは現在の電力を表示します。",
+            "icon_alt": "バッテリーアイコン",
+            "asset_index": 0
+          },
+          {
+            "name_html": "バッテリー残量警告灯",
+            "name_text": "バッテリー残量警告灯",
+            "description_html": "バッテリー残量が20%未満の場合は、ローバッテリーランプが表示されます。バッテリー残量が5%未満の場合は、ローバッテリーランプが点滅します。バッテリー充電中は、ランプは表示されません。",
+            "description_text": "バッテリー残量が20%未満の場合は、ローバッテリーランプが表示されます。バッテリー残量が5%未満の場合は、ローバッテリーランプが点滅します。バッテリー充電中は、ランプは表示されません。",
+            "icon_alt": "バッテリー残量警告灯",
+            "asset_index": 1
+          },
+          {
+            "name_html": "省エネモード",
+            "name_text": "省エネモード",
+            "description_html": "電池の消費につながる出力の切り忘れを防ぐため、本製品は、初期設定で省エネモードをオンにします。これは接続しているデバイスがない場合、または接続しているデバイスがある値以下の場合に起動します。（詳しくは以下の表をご参照ください）、12時間たつと本デバイスは自動的にすべての出力をオフにします。",
+            "description_text": "電池の消費につながる出力の切り忘れを防ぐため、本製品は、初期設定で省エネモードをオンにします。これは接続しているデバイスがない場合、または接続しているデバイスがある値以下の場合に起動します。（詳しくは以下の表をご参照ください）、12時間たつと本デバイスは自動的にすべての出力をオフにします。",
+            "icon_alt": "省エネモード",
+            "asset_index": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": "lcd_display",
+    "flow_node_index": 4,
+    "source_pages": [
+      8
+    ],
+    "kind": "group",
+    "component_id": null,
+    "text": "出力ポートタイプ 電力設定値 デフォルト設定 省エネモード  AC出力ポート ≤25W 12時間後に自動的にシャットダウンします ON（dispalyに がある） USB出力ポート ≤2W 12時間後に自動的にシャットダウンします ON（dispalyに がある） シガーソケット出力ポート ≤2W 12時間後に自動的にシャットダウンします ON（dispalyに がある）",
+    "flow_sha256": "10659a60a41423c78f64afe143573558beb01dc36290bef5e7c9b6f5b937ad50",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "lcd_display",
+    "flow_node_index": 5,
+    "source_pages": [
+      9
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "省エネモードをOFFにするため:  ACまたはDCいずれかの出力ボタンがオンになっている状態で、画面に省エネモードのアイコンが消えるまで、「AC出力ボタン+主電源ボタン」を長押しします。」省エネモードがOFFの場合、出力の切り忘れによる電力不足を防ぐため、製品を使用しない時は電源を切るよう注意してください。",
+    "flow_sha256": "6d9c3c992f663907fee9bbac25180d63e56aae7a280fcc6061e3c28efdc12f85",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "lcd_display",
+    "flow_node_index": 6,
+    "source_pages": [
+      9
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "省エネモードをONにするため:  ACまたはDCいずれかの出力ボタンをオンの状態で、画面に省エネモードのアイコンが表示されるまで、「AC出力ボタン+主電源ボタン」を長押ししてください。",
+    "flow_sha256": "c25789591b81fd889283e20b0a03a817d03a3360ab91b9fea49a1753568d87da",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "lcd_display",
+    "flow_node_index": 7,
+    "source_pages": [
+      9
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "50Hz/60Hz周波数の切り替え:",
+    "flow_sha256": "0e1934021a60112ad6a89dce0016b5909fba2007c49d591da035cf3b6ca2189a",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "lcd_display",
+    "flow_node_index": 8,
+    "source_pages": [
+      9
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "自動識別:  お客様のお住まいの地域に応じて周波数を自動的に識別し、対応する出力に自動調整されます。",
+    "flow_sha256": "56621fcbaa25d2e54402eafaa62ed0db85c57841b67e51c1cfc10476336d1a7d",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "lcd_display",
+    "flow_node_index": 9,
+    "source_pages": [
+      9
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "手動調整:  AC出力ボタンを長押しすることで周波数を切り替えることができ、対応する周波数が画面に表示されます。なお、工場出荷時のデフォルト設定は60Hzに設定されています。",
+    "flow_sha256": "3cdc5e1421e2cc0239eb9faa875a6183abb04774c273af5098c7f5c6be94760a",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "lcd_display",
+    "flow_node_index": 10,
+    "source_pages": [
+      9
+    ],
+    "kind": "component",
+    "component_id": "HB-TABLE-LCD-ICON",
+    "text": "",
+    "flow_sha256": "86e31acae8b006af25e7361a369cf086c44463e2fd3610cac9c46f27b5cf54fb",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "故障コード"
+      },
+      {
+        "role": "rows",
+        "content_kind": "ordered_rows",
+        "content": [
+          {
+            "name_html": "故障コード",
+            "name_text": "故障コード",
+            "description_html": "フィードバックに迅速に対応するため、システムに一般的な障害コード F0-FE を設定しています。<br/>F8コード: 給電を停止するか、充電プラグを抜いてください。本製品は自動的に回復します。<br/>F9コード: 給電を停止してください。製品は自動的に回復します。<br/>F8とF9コードにつき、上記の処理で回復しない場合、またはその他のコードが表示された場合は、カスタマーサポートにご連絡ください。",
+            "description_text": "フィードバックに迅速に対応するため、システムに一般的な障害コード F0-FE を設定しています。F8コード: 給電を停止するか、充電プラグを抜いてください。本製品は自動的に回復します。F9コード: 給電を停止してください。製品は自動的に回復します。F8とF9コードにつき、上記の処理で回復しない場合、またはその他のコードが表示された場合は、カスタマーサポートにご連絡ください。",
+            "icon_alt": "故障コード",
+            "asset_index": 0
+          },
+          {
+            "name_html": "高温警告",
+            "name_text": "高温警告",
+            "description_html": "環境温度が高温時に表示されます。直射日光などが当たっている場合は移動してください。電池が冷めたら、自動的に表示がオフになります。",
+            "description_text": "環境温度が高温時に表示されます。直射日光などが当たっている場合は移動してください。電池が冷めたら、自動的に表示がオフになります。",
+            "icon_alt": "高温警告",
+            "asset_index": 1
+          },
+          {
+            "name_html": "低温警告",
+            "name_text": "低温警告",
+            "description_html": "環境温度が低い場合に表示されます。温度が通常になれば自動的に回復します。",
+            "description_text": "環境温度が低い場合に表示されます。温度が通常になれば自動的に回復します。",
+            "icon_alt": "低温警告",
+            "asset_index": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": "usage",
+    "flow_node_index": 0,
+    "source_pages": [
+      9
+    ],
+    "kind": "heading",
+    "component_id": null,
+    "text": "4.使用について",
+    "flow_sha256": "5582d6d5a922bc31308869c6e308de02c66a96a9767730a1b87922142cb5ea6f",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "usage",
+    "flow_node_index": 1,
+    "source_pages": [
+      9
+    ],
+    "kind": "heading",
+    "component_id": null,
+    "text": "出力オン/オフ",
+    "flow_sha256": "002c7ba040153751b4433b09d1ae919728b762e0a710cfb79a601a2af9cf90eb",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "usage",
+    "flow_node_index": 2,
+    "source_pages": [
+      9
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "主電源ボタン/オフ:  「主電源ボタン」を押すと、作動インジケータが点灯し、LCD ディスプレイの明かりがつきます。 本製品は 2 分間操作しない場合、休止状態に入り、ディスプレイが自動的にオフになります。主電源を切る必要がある場合は、作動インジケータが消灯するまで「主電源ボタン」を長押ししてください。この製品の初期設定の待機時間は2時間です。他の出力スイッチがオンになっていない、または製品に充電入力がない場合、本製品は 2 時間後に自動的にシャットダウンします。 自動シャットダウン時間は、Jackery アプリで設定できます。",
+    "flow_sha256": "de836a9f8ddfd413e0033434ef272af24540eb49bb9b7cc0ad65e132e3f3106e",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "usage",
+    "flow_node_index": 3,
+    "source_pages": [
+      9
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "省エネモード設置後、DC/AC出力ボタンがオンの状態であるとしても、以下の場合12時間後電源が自動オフになります。",
+    "flow_sha256": "21b9eed19b43e53901f18751728bce9c36d90b153570932ef52776dad2aa5a3f",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "usage",
+    "flow_node_index": 4,
+    "source_pages": [
+      9
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "1.電源本体が無充電、無放電",
+    "flow_sha256": "8129021924a3f1f432bbc8ea1b8a33d4a47968ef5f72e8cfa79319303b893014",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "usage",
+    "flow_node_index": 5,
+    "source_pages": [
+      9
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "2.充放電の出力が既定値以下(詳細は省エネモードの説明をご参照)",
+    "flow_sha256": "7cbfe8ce1e86bce19a04c8cbe2152dabbf5d729dd7feaceef776046ec2d2ffc7",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "usage",
+    "flow_node_index": 6,
+    "source_pages": [
+      9
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "AC出力のオン/オフ:  主電源ボタンがオンになっていることを確認します。 AC ボタンを押すと、AC 出力作動インジケータが点灯します。この後、AC充電が必要な機器を接続できます。再度ACボタンを押すと、AC 出力がオフになります。",
+    "flow_sha256": "e24bc4afe58682f102309cbff94349a52f1f76603425b51e801285f09b21bee2",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "usage",
+    "flow_node_index": 7,
+    "source_pages": [
+      10
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "USB/カーポート出力オン/オフ:",
+    "flow_sha256": "e6bcd3291074662705178490c023f82aabbcb9a8249e1f84fb36cb440db57b9e",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "usage",
+    "flow_node_index": 8,
+    "source_pages": [
+      10
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "主電源がオンになっていることを確認します。DCボタンを押すと、DC出力作動インジケータが点灯します。この後、USB/カーポート出力ポートを外部負荷デバイスに接続できます。再度DC ボタンを押すと、USB/カーポート出力がオフになります。",
+    "flow_sha256": "e51ba0448143a0eba55339a92a745baf591b0e8f5196df38fae42aa9dfda1c9f",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "usage",
+    "flow_node_index": 9,
+    "source_pages": [
+      10
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "電源ボタンまたは任意出力ボタンを押す、あるいは充電が入力されれば、ディスプレイが点灯します。再び押せば、ディスプレイが消灯します。2分間操作しないと、製品はスリープ状態に入り、ディスプレイも自動的に消灯します。充電時及び放電時に、ディスプレイの常時点灯が必要な場合の操作手順は以下の通り: ディスプレイが点灯した後、「主電源ボタン」を2回押せば常時点灯になります。ディスプレイの常時点灯をOFFにする操作手順は以下の通り：「主電源ボタン」を押せば、ディスプレイが消灯します。",
+    "flow_sha256": "c50aa89f142821d19fd0bee3f489280def230135aa042765c7615ddad43034b1",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "usage",
+    "flow_node_index": 10,
+    "source_pages": [
+      10
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "注意:  ディスプレイの常時点灯モードにおいて、充電または設備への接続をしない場合、2時間後にディスプレイが自動的に消灯します。",
+    "flow_sha256": "92505b4be847648f5d392ae98c7725cd257105ca7f4b68fc19c6cbb8a161277d",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "app_connection",
+    "flow_node_index": 0,
+    "source_pages": [
+      10
+    ],
+    "kind": "heading",
+    "component_id": null,
+    "text": "5.アプリの接続",
+    "flow_sha256": "8b0f7af1f9a56a51c778e3d2fdc940d8d9015d180de4647c30203f7313862375",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "app_connection",
+    "flow_node_index": 1,
+    "source_pages": [
+      10
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "本製品は、Jackeryアプリのリモート接続に対応します。ユーザーは、App Storeまたはgoogle playからJackeryアプリをダウンロードできます。接続手順の詳細については、Jackery アプリのユーザー マニュアルをご参照ください。",
+    "flow_sha256": "ef3a5db29e923c2a82974d56eb9f59466f04e04fe1fd04dcbcc666c67d1df9d4",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "charging",
+    "flow_node_index": 0,
+    "source_pages": [
+      10
+    ],
+    "kind": "heading",
+    "component_id": null,
+    "text": "6.充電方法",
+    "flow_sha256": "8cbe82bba9130bab33c472a0a3d692d3604b6e41f78b53f47e78ba97904f7646",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "charging",
+    "flow_node_index": 1,
+    "source_pages": [
+      10
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "グリーンエネルギー優先モード:",
+    "flow_sha256": "5b80aa5b79794995b21ac076057221f6b630075a7dc3b320b5a6d7910c14b68d",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "charging",
+    "flow_node_index": 2,
+    "source_pages": [
+      10
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "本製品はグリーンエネルギー優先モードを搭載していますが、ソーラーパネルとAC充電ケーブルを使って同時に充電できます。同時に充電すると、ソーラーが優先されますが、バッテリーの最大許容電力で同時に充電されます。",
+    "flow_sha256": "a0d2efc4fa14222b7f33a857608bcaf24e25e69a4b7d8ead17514c4083e2f8a6",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "charging",
+    "flow_node_index": 3,
+    "source_pages": [
+      10
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "1. 製品の推奨充電温度は0°Cから45°C（32°Fから113°F）で、放電温度は-10°Cから45°C(14°Fから113°F)です。この温度範囲外で製品を使用すると、充電および放電の能力が制限される可能性があり、充電や放電ができなくなることさえあります。",
+    "flow_sha256": "c4169edc30f54418095b543aa36c78fdef0ed58ec819c8df4d3d953c8a1ae5a2",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "charging",
+    "flow_node_index": 4,
+    "source_pages": [
+      10
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "2. 製品の充電パワーとバッテリー容量は、温度の変動により異なる場合があります。",
+    "flow_sha256": "5ec242a344647613db1fd66278994f2b1342cac7721b99f0dba8f3a019181d5b",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "charging",
+    "flow_node_index": 5,
+    "source_pages": [
+      10
+    ],
+    "kind": "component",
+    "component_id": "HB-CALLOUT-STRIP",
+    "text": "ご注意 はじめてお使いになるときは、本製品をフル充電してからご使用ください。 充電池は空の状態で長期保管(3カ月～6カ月）すると、性能が劣化したり、充電できなくなる場合があります。 本機を長期保管する場合には、3ヵ月に１度を目安に本体にACアダプターやソーラーパネルを通して蓄電が可能か、他製品に給電可能かなど動作確認をお願い致します。 保管の際は、満充電状態でも保管可能ですが、バッテリー残量を60%～80%程度で保管する事を推奨します。",
+    "flow_sha256": "5c7082734090077f60196b3485caa63b5b06b60cfb86847150275bcada15d5e5",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "label",
+        "content_kind": "inline_text",
+        "content": "ご注意"
+      },
+      {
+        "role": "body",
+        "content_kind": "rich_text",
+        "content": "はじめてお使いになるときは、本製品をフル充電してからご使用ください。\n充電池は空の状態で長期保管(3カ月～6カ月）すると、性能が劣化したり、充電できなくなる場合があります。\n本機を長期保管する場合には、3ヵ月に１度を目安に本体にACアダプターやソーラーパネルを通して蓄電が可能か、他製品に給電可能かなど動作確認をお願い致します。\n保管の際は、満充電状態でも保管可能ですが、バッテリー残量を60%～80%程度で保管する事を推奨します。"
+      },
+      {
+        "role": "items",
+        "content_kind": "list_items",
+        "content": [
+          "はじめてお使いになるときは、本製品をフル充電してからご使用ください。",
+          "充電池は空の状態で長期保管(3カ月～6カ月）すると、性能が劣化したり、充電できなくなる場合があります。",
+          "本機を長期保管する場合には、3ヵ月に１度を目安に本体にACアダプターやソーラーパネルを通して蓄電が可能か、他製品に給電可能かなど動作確認をお願い致します。",
+          "保管の際は、満充電状態でも保管可能ですが、バッテリー残量を60%～80%程度で保管する事を推奨します。"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": "charging",
+    "flow_node_index": 6,
+    "source_pages": [
+      11
+    ],
+    "kind": "heading",
+    "component_id": null,
+    "text": "AC充電ケーブル",
+    "flow_sha256": "2c85be94ccc543e5992ed182f2517ef755fd799c52f727844d3c54618e231703",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "charging",
+    "flow_node_index": 7,
+    "source_pages": [
+      11
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "付属のAC充電ケーブルをご使用ください。",
+    "flow_sha256": "a79e9d328775db268984362091843c7a0d53708e78558b77b422232a0eb68754",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "charging",
+    "flow_node_index": 8,
+    "source_pages": [
+      11
+    ],
+    "kind": "component",
+    "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+    "text": "",
+    "flow_sha256": "8a6914492e352dc519f61199e0588d0995f9419bced4d1e5dd95a45533fd5d5b",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "ac-charge"
+      },
+      {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "AC充電ケーブル / ポータブル電源 240"
+      },
+      {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "embedded"
+      },
+      {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+      }
+    ]
+  },
+  {
+    "chapter": "charging",
+    "flow_node_index": 9,
+    "source_pages": [
+      11
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "緊急充電モード： ACコンセントからの充電時、お急ぎの場合には緊急充電モードを使って充電することができます。使用するには「Jackery App」でこの機能を「有効」または「無効」に設定してください。緊急充電モードでは、バッテリーの残量(SOC)を示す円形のライトの点滅速度が速くなります。",
+    "flow_sha256": "b1e5046351fffb8c5adab8e44ff0359809805b5982d2079afcb8ff89f8adc6db",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "charging",
+    "flow_node_index": 10,
+    "source_pages": [
+      11
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "※バッテリーは通常の速度で充電することでバッテリーを最大限に保護できるよう設計されているため、緊急充電は必要な場合にのみ使用し、常時使用することはお勧めしません。",
+    "flow_sha256": "d40a9a728be78a6c7d4b18f6e2863c0857fca2458af8a83dbbefb0634bb416f2",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "charging",
+    "flow_node_index": 11,
+    "source_pages": [
+      11
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "コンセントよりJackery ポータブル電源 240本体に充電する場合、電流容量が大きいため、他機器と併用したり途中接続をすると、コンセントの電流上限値を超え充電停止したり、配線やコンセント・接続部が発熱し、火災の原因となる恐れがあります。必ず電源タップなどを介して他の電気製品と併用しないでください。",
+    "flow_sha256": "e35286fe94c00a1bf5d43a7d37864f46782b305ece443a8624ccc99fc14fa822",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "charging",
+    "flow_node_index": 12,
+    "source_pages": [
+      11
+    ],
+    "kind": "heading",
+    "component_id": null,
+    "text": "ソーラー充電",
+    "flow_sha256": "013b7d07fda15401a6c24f2aa9eb214497179e506d72464ad7a62994b9df6e46",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "charging",
+    "flow_node_index": 13,
+    "source_pages": [
+      11
+    ],
+    "kind": "heading",
+    "component_id": null,
+    "text": "Jackery SolarSaga 40 Mini 接続説明",
+    "flow_sha256": "42def9dc03917721065259682d6dcc6166a887da61d3790d6578d1865cfef42e",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "charging",
+    "flow_node_index": 14,
+    "source_pages": [
+      11
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "ソーラーパネル40Wの接続ケーブルのDC8020⇒ケーブル (DC8020-USB-C)⇒ポータブル電源 240のUSB-Cポートの順で接続ください。",
+    "flow_sha256": "155a4be8b0b1b80c89f03b9d4a62a07d8c04c9788f034f8eda717a7315083d09",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "charging",
+    "flow_node_index": 15,
+    "source_pages": [
+      11
+    ],
+    "kind": "component",
+    "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+    "text": "",
+    "flow_sha256": "a73fd6c6a58a79fff1c65ccd08f2f8880887037fcf28c9009dedd51fb2a96bb8",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "charging-solar"
+      },
+      {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "DC8020→USB-C ケーブル、DC8020ポート、USB-C入力ポート、ポータブル電源 240"
+      },
+      {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "embedded"
+      },
+      {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+      }
+    ]
+  },
+  {
+    "chapter": "charging",
+    "flow_node_index": 16,
+    "source_pages": [
+      12
+    ],
+    "kind": "heading",
+    "component_id": null,
+    "text": "シガーソケット充電",
+    "flow_sha256": "f5639da01bd7885eb5839e97dc69b87535bee5fd2ac8f0c947797add4f9e33a3",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "charging",
+    "flow_node_index": 17,
+    "source_pages": [
+      12
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "本製品は12Vの車のシガーソケットに対応し、充電ができます。車のバッテリーが上がってしまわないように、エンジンを始動してから、シガーソケットを使用してください。使用の際は車の充電ポートと入力ケーブルのシガーライターの接触に問題がないことを確認し、シガーソケットの所定の場所に差し込めることを確認してください。道路状況が悪くて、車の振動が多い場合は、充電が接触不良になりますので、接触部分が焼損するのを防ぐために、シガーソケット充電を中止してください。本製品の誤った取り扱いによる損害が発生しましても当社は一切の責任を負いかねます。",
+    "flow_sha256": "ba0806b0f69eefc5b913cd1a752fb975f89b33dddcd6f1176e63061e85ce95cf",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "charging",
+    "flow_node_index": 18,
+    "source_pages": [
+      12
+    ],
+    "kind": "component",
+    "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+    "text": "",
+    "flow_sha256": "45a475a0b6bc9bf1b50038713a7c64d6fe54a0a659bc0b0b254abcaae98e70b7",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "car-charge"
+      },
+      {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "ポータブル電源 240"
+      },
+      {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "embedded"
+      },
+      {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+      }
+    ]
+  },
+  {
+    "chapter": "charging",
+    "flow_node_index": 19,
+    "source_pages": [
+      12
+    ],
+    "kind": "heading",
+    "component_id": null,
+    "text": "充電に関する安全上のご注意",
+    "flow_sha256": "240f7c77fc0dc3b3c923299ea5cbb9a0a68634cacd174de8d0e91f7d717c8fa8",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "charging",
+    "flow_node_index": 20,
+    "source_pages": [
+      12
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "1) シガーソケット充電は12Vの車専用であり、24Vの車では充電できません。人身傷害や物的損害を避けるため、本製品の充電に24Vを使用しないでください。",
+    "flow_sha256": "6a99f6bbe0633983525e1b58d47e3e7656575d5909d00667f10794f7aa862317",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "charging",
+    "flow_node_index": 21,
+    "source_pages": [
+      12
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "2) Jackery 製品以外の付属品を使用して充電しないでください。特に、ソーラーパネルで充電する際は、Jackeryのソーラーパネルを使用することをお勧めします。他社ソーラーパネルで充電することによる損失について、当社は一切の責任を負いません。",
+    "flow_sha256": "e5e292e2383eca59654b46058801d4371dc2636609225c9a2755209952602bc1",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "safety",
+    "flow_node_index": 0,
+    "source_pages": [
+      12
+    ],
+    "kind": "heading",
+    "component_id": null,
+    "text": "7.安全上のご注意",
+    "flow_sha256": "29d286b0ffe638108418a22f9915d017bec8991769ce67bcf3881ffec1aa524b",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "safety",
+    "flow_node_index": 1,
+    "source_pages": [
+      12
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "ご使用の前にこの「安全上のご注意」をよくお読みのうえ、正しくお使いください。",
+    "flow_sha256": "52b3eed72bf280ea6e187e6c03c3da085383025217456f5c9b7568571759522c",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "safety",
+    "flow_node_index": 2,
+    "source_pages": [
+      12
+    ],
+    "kind": "heading",
+    "component_id": null,
+    "text": "絵表示について",
+    "flow_sha256": "886e5bc1f842e43703e4bac290a92e521f9cd6867fdaec6f74211c83f9c45f3f",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "safety",
+    "flow_node_index": 3,
+    "source_pages": [
+      12
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "製品を安全に正しくお使いいただき、お客様や他の方々への危害や財産への損害を未然に防止するための表示です。",
+    "flow_sha256": "da8f0d2103fa1f84234f912bc697293a811d4e43b978a337d904dda888219131",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "safety",
+    "flow_node_index": 4,
+    "source_pages": [
+      12
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "内容をよく理解してから本機をご使用ください。",
+    "flow_sha256": "b415bfd34dc98561eee0d0ac9cf23343d8d7ca21efe5ef57dbec842989c4881a",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "safety",
+    "flow_node_index": 5,
+    "source_pages": [
+      12
+    ],
+    "kind": "component",
+    "component_id": "HB-TABLE-SYMBOL-SIGNAL",
+    "text": "",
+    "flow_sha256": "00a72169f756ecf1e582d95502b92fd70eea0fa0a9ed8c207d73c85166c707e9",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "絵表示について"
+      },
+      {
+        "role": "headers",
+        "content_kind": "ordered_headers",
+        "content": [
+          {
+            "content_html": "表示",
+            "content_text": "表示"
+          },
+          {
+            "content_html": "意味",
+            "content_text": "意味"
+          }
+        ]
+      },
+      {
+        "role": "rows",
+        "content_kind": "ordered_rows",
+        "content": [
+          {
+            "label": "警告",
+            "show_icon": true,
+            "meaning_html": "この表示を無視して、誤った取り扱いをすると、人が死亡または重傷を負う可能性が想定される内容を示しています。",
+            "meaning_text": "この表示を無視して、誤った取り扱いをすると、人が死亡または重傷を負う可能性が想定される内容を示しています。"
+          },
+          {
+            "label": "注意",
+            "show_icon": true,
+            "meaning_html": "この表示を無視して、誤った取り扱いをすると、人が傷害を負う可能性が想定される内容または物的損害の発生が想定される内容を示しています。",
+            "meaning_text": "この表示を無視して、誤った取り扱いをすると、人が傷害を負う可能性が想定される内容または物的損害の発生が想定される内容を示しています。"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": "safety",
+    "flow_node_index": 6,
+    "source_pages": [
+      13
+    ],
+    "kind": "heading",
+    "component_id": null,
+    "text": "絵表示の説明",
+    "flow_sha256": "6c05618057dfc40718f18703887103e88d7c9803020602e29194a8b77af04df4",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "safety",
+    "flow_node_index": 7,
+    "source_pages": [
+      13
+    ],
+    "kind": "component",
+    "component_id": "HB-TABLE-SYMBOL-ICON",
+    "text": "",
+    "flow_sha256": "39eac353c6502575563211920a094e8458f8777b488c1dcb210083566bea1bf3",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "絵表示の説明"
+      },
+      {
+        "role": "headers",
+        "content_kind": "ordered_headers",
+        "content": [
+          {
+            "content_html": "記号",
+            "content_text": "記号"
+          },
+          {
+            "content_html": "意味",
+            "content_text": "意味"
+          },
+          {
+            "content_html": "記号",
+            "content_text": "記号"
+          },
+          {
+            "content_html": "意味",
+            "content_text": "意味"
+          }
+        ]
+      },
+      {
+        "role": "panels",
+        "content_kind": "ordered_panels",
+        "content": [
+          [
+            {
+              "asset_index": 0,
+              "icon_alt": "コンセントから電源プラグを抜く記号",
+              "meaning_html": "コンセントから電源プラグを抜く記号",
+              "meaning_text": "コンセントから電源プラグを抜く記号"
+            },
+            {
+              "asset_index": 1,
+              "icon_alt": "製品を分解、改造を禁止する記号",
+              "meaning_html": "製品を分解、改造を禁止する記号",
+              "meaning_text": "製品を分解、改造を禁止する記号"
+            },
+            {
+              "asset_index": 2,
+              "icon_alt": "製品に濡れた手で触れることを禁止する記号",
+              "meaning_html": "製品に濡れた手で触れることを禁止する記号",
+              "meaning_text": "製品に濡れた手で触れることを禁止する記号"
+            }
+          ],
+          [
+            {
+              "asset_index": 3,
+              "icon_alt": "行為を指示する記号",
+              "meaning_html": "行為を指示する記号",
+              "meaning_text": "行為を指示する記号"
+            },
+            {
+              "asset_index": 4,
+              "icon_alt": "製品を濡らすことを禁止する記号",
+              "meaning_html": "製品を濡らすことを禁止する記号",
+              "meaning_text": "製品を濡らすことを禁止する記号"
+            },
+            {
+              "asset_index": 5,
+              "icon_alt": "行為を禁止する記号",
+              "meaning_html": "行為を禁止する記号",
+              "meaning_text": "行為を禁止する記号"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": "safety",
+    "flow_node_index": 8,
+    "source_pages": [
+      13
+    ],
+    "kind": "component",
+    "component_id": "HB-CALLOUT-STRIP",
+    "text": "警告 万が一、次のような異常が発生したときはすぐに使用をやめる 煙が出ている、異臭がする 落としたり、破損したとき 異音がする 内部に水や異物が入ったとき 電源コード (ACアダプター) が傷んだとき このような異常が発生したまま使用していると、火災や感電の原因になります。 すぐにACアダプターをコンセントから抜いてください。また、本製品に接続されている機器もすべて外してください。 万が一発煙や発火したら、大量の水で消火して煙が見えなくなるまで本製品を水浸しにしてください。 煙が出なくなることを確認してからカスタマーサポートにご連絡ください。 お客様による修理は危険ですので絶対におやめください。",
+    "flow_sha256": "c6f435359edd63319a8ad20a282c40c99f9dd3dd62a75cb72fdcc84b78909cda",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "label",
+        "content_kind": "inline_text",
+        "content": "警告"
+      },
+      {
+        "role": "body",
+        "content_kind": "rich_text",
+        "content": "万が一、次のような異常が発生したときはすぐに使用をやめる\n煙が出ている、異臭がする\n落としたり、破損したとき\n異音がする\n内部に水や異物が入ったとき\n電源コード (ACアダプター) が傷んだとき\nこのような異常が発生したまま使用していると、火災や感電の原因になります。\nすぐにACアダプターをコンセントから抜いてください。また、本製品に接続されている機器もすべて外してください。\n万が一発煙や発火したら、大量の水で消火して煙が見えなくなるまで本製品を水浸しにしてください。\n煙が出なくなることを確認してからカスタマーサポートにご連絡ください。\nお客様による修理は危険ですので絶対におやめください。"
+      },
+      {
+        "role": "items",
+        "content_kind": "list_items",
+        "content": [
+          "煙が出ている、異臭がする",
+          "落としたり、破損したとき",
+          "異音がする",
+          "内部に水や異物が入ったとき",
+          "電源コード (ACアダプター) が傷んだとき"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": "safety",
+    "flow_node_index": 9,
+    "source_pages": [
+      13
+    ],
+    "kind": "component",
+    "component_id": "HB-CALLOUT-STRIP",
+    "text": "警告 分解、改造しない 故障、発熱、火災･感電の原因になります。",
+    "flow_sha256": "8bc8d72942b4b5118424e7b949cb9fff7c66e562457ed272852ebc5b3cd94cec",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "label",
+        "content_kind": "inline_text",
+        "content": "警告"
+      },
+      {
+        "role": "body",
+        "content_kind": "rich_text",
+        "content": "分解、改造しない\n故障、発熱、火災･感電の原因になります。"
+      }
+    ]
+  },
+  {
+    "chapter": "safety",
+    "flow_node_index": 10,
+    "source_pages": [
+      13
+    ],
+    "kind": "component",
+    "component_id": "HB-CALLOUT-STRIP",
+    "text": "警告 表示された電源電圧以外で使用しない 故障、発熱、火災･感電の原因になります。また、本製品を使用できるのは日本国内のみです。",
+    "flow_sha256": "30729a86f426feac9716b0b93ba77ee980c5299a68a9c5ef6b1abf1c10f45bd3",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "label",
+        "content_kind": "inline_text",
+        "content": "警告"
+      },
+      {
+        "role": "body",
+        "content_kind": "rich_text",
+        "content": "表示された電源電圧以外で使用しない\n故障、発熱、火災･感電の原因になります。また、本製品を使用できるのは日本国内のみです。"
+      }
+    ]
+  },
+  {
+    "chapter": "safety",
+    "flow_node_index": 11,
+    "source_pages": [
+      13
+    ],
+    "kind": "component",
+    "component_id": "HB-CALLOUT-STRIP",
+    "text": "警告 付属品と本製品が破損した場合は、ご自身で修理をしない",
+    "flow_sha256": "1da7c8e66c74102c064761b23616fa95a0b8f035b48b7eb50d50359fd5b2fd78",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "label",
+        "content_kind": "inline_text",
+        "content": "警告"
+      },
+      {
+        "role": "body",
+        "content_kind": "rich_text",
+        "content": "付属品と本製品が破損した場合は、ご自身で修理をしない"
+      }
+    ]
+  },
+  {
+    "chapter": "safety",
+    "flow_node_index": 12,
+    "source_pages": [
+      14
+    ],
+    "kind": "component",
+    "component_id": "HB-CALLOUT-STRIP",
+    "text": "警告 火のそばや炎天下の車内、熱器具の周辺など高温（40°C以上）になる場所で使用したり、放置しない 発熱や発火、破裂する原因になります。",
+    "flow_sha256": "e2ab203b022763fcac2f94910e4cb28130b5bf5940125fb14e1ed7484e7156e1",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "label",
+        "content_kind": "inline_text",
+        "content": "警告"
+      },
+      {
+        "role": "body",
+        "content_kind": "rich_text",
+        "content": "火のそばや炎天下の車内、熱器具の周辺など高温（40°C以上）になる場所で使用したり、放置しない\n発熱や発火、破裂する原因になります。"
+      }
+    ]
+  },
+  {
+    "chapter": "safety",
+    "flow_node_index": 13,
+    "source_pages": [
+      14
+    ],
+    "kind": "component",
+    "component_id": "HB-CALLOUT-STRIP",
+    "text": "警告 強い衝撃を与えたり、投げつけたりしない 発熱や発火、破裂する原因になります。",
+    "flow_sha256": "84b4db8d860478af5bcbcd76eeda93817338c8b27d1e0ba65c9b9fb8a318499b",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "label",
+        "content_kind": "inline_text",
+        "content": "警告"
+      },
+      {
+        "role": "body",
+        "content_kind": "rich_text",
+        "content": "強い衝撃を与えたり、投げつけたりしない\n発熱や発火、破裂する原因になります。"
+      }
+    ]
+  },
+  {
+    "chapter": "safety",
+    "flow_node_index": 14,
+    "source_pages": [
+      14
+    ],
+    "kind": "component",
+    "component_id": "HB-CALLOUT-STRIP",
+    "text": "警告 水など、液体を入れたり、濡らしたりしない 発熱や発火の原因になります。",
+    "flow_sha256": "d03b3b58caeae51d8e88764f86c5549c4c3dd9873d550ded1ac962578cc0b37e",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "label",
+        "content_kind": "inline_text",
+        "content": "警告"
+      },
+      {
+        "role": "body",
+        "content_kind": "rich_text",
+        "content": "水など、液体を入れたり、濡らしたりしない\n発熱や発火の原因になります。"
+      }
+    ]
+  },
+  {
+    "chapter": "safety",
+    "flow_node_index": 15,
+    "source_pages": [
+      14
+    ],
+    "kind": "component",
+    "component_id": "HB-CALLOUT-STRIP",
+    "text": "警告 濡れた手で本体や接続するケーブルを触らない 火災や感電の原因になります。",
+    "flow_sha256": "d3be900bac5be8e576d64c8f641fdef74a631f5b737bcd42f2f304905bfdfe58",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "label",
+        "content_kind": "inline_text",
+        "content": "警告"
+      },
+      {
+        "role": "body",
+        "content_kind": "rich_text",
+        "content": "濡れた手で本体や接続するケーブルを触らない\n火災や感電の原因になります。"
+      }
+    ]
+  },
+  {
+    "chapter": "safety",
+    "flow_node_index": 16,
+    "source_pages": [
+      14
+    ],
+    "kind": "component",
+    "component_id": "HB-CALLOUT-STRIP",
+    "text": "警告 端子部にケーブル以外の金属類を差し込まない 発熱や発火の原因になります。",
+    "flow_sha256": "4d07b8e55a34d24b5f152e1e3176a72e37f9a48f27a6ce9613170e6296ba7401",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "label",
+        "content_kind": "inline_text",
+        "content": "警告"
+      },
+      {
+        "role": "body",
+        "content_kind": "rich_text",
+        "content": "端子部にケーブル以外の金属類を差し込まない\n発熱や発火の原因になります。"
+      }
+    ]
+  },
+  {
+    "chapter": "safety",
+    "flow_node_index": 17,
+    "source_pages": [
+      14
+    ],
+    "kind": "component",
+    "component_id": "HB-CALLOUT-STRIP",
+    "text": "警告 雷が鳴りだしたら、電源プラグにふれない (充電をしない) 感電の原因になります。",
+    "flow_sha256": "53c5b384499f24a3f4a7fdf775aceda04ae95b1378745455348bd9cc05af7b50",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "label",
+        "content_kind": "inline_text",
+        "content": "警告"
+      },
+      {
+        "role": "body",
+        "content_kind": "rich_text",
+        "content": "雷が鳴りだしたら、電源プラグにふれない (充電をしない)\n感電の原因になります。"
+      }
+    ]
+  },
+  {
+    "chapter": "safety",
+    "flow_node_index": 18,
+    "source_pages": [
+      14
+    ],
+    "kind": "component",
+    "component_id": "HB-CALLOUT-STRIP",
+    "text": "警告 各接続端子には確実に差し込む 差し込みが不十分だと、発熱したりほこりが付着して火災や感電の原因になります。",
+    "flow_sha256": "7931eb09770668609d9571d09bd63ab7a45700e97424431d97485f3d9cff670b",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "label",
+        "content_kind": "inline_text",
+        "content": "警告"
+      },
+      {
+        "role": "body",
+        "content_kind": "rich_text",
+        "content": "各接続端子には確実に差し込む\n差し込みが不十分だと、発熱したりほこりが付着して火災や感電の原因になります。"
+      }
+    ]
+  },
+  {
+    "chapter": "safety",
+    "flow_node_index": 19,
+    "source_pages": [
+      14
+    ],
+    "kind": "component",
+    "component_id": "HB-CALLOUT-STRIP",
+    "text": "注意 本製品の上に物を載せたり、不安定な場所に置かない 倒れたり、落ちたりしてけがの原因になります。",
+    "flow_sha256": "8b171a61fd53cc0d07bc9255bc27b155180f9c6d43cc1300c6076a9f686edd51",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "label",
+        "content_kind": "inline_text",
+        "content": "注意"
+      },
+      {
+        "role": "body",
+        "content_kind": "rich_text",
+        "content": "本製品の上に物を載せたり、不安定な場所に置かない\n倒れたり、落ちたりしてけがの原因になります。"
+      }
+    ]
+  },
+  {
+    "chapter": "safety",
+    "flow_node_index": 20,
+    "source_pages": [
+      14
+    ],
+    "kind": "component",
+    "component_id": "HB-CALLOUT-STRIP",
+    "text": "注意 次のような機器では、絶対に使用しないでください。万が一使用中に給電ができなくなった場合、命にかかわる被害が想定されます。 医療機器や使用上、生命に関わるような機器 社会的、公共的に重要な機器など 重要な事業用機器など",
+    "flow_sha256": "507b40d4013d04ff152fd509fe014a4f2b5ab36627123118b5a95c050e8352e6",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "label",
+        "content_kind": "inline_text",
+        "content": "注意"
+      },
+      {
+        "role": "body",
+        "content_kind": "rich_text",
+        "content": "次のような機器では、絶対に使用しないでください。万が一使用中に給電ができなくなった場合、命にかかわる被害が想定されます。\n医療機器や使用上、生命に関わるような機器\n社会的、公共的に重要な機器など\n重要な事業用機器など"
+      },
+      {
+        "role": "items",
+        "content_kind": "list_items",
+        "content": [
+          "医療機器や使用上、生命に関わるような機器",
+          "社会的、公共的に重要な機器など",
+          "重要な事業用機器など"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": "safety",
+    "flow_node_index": 21,
+    "source_pages": [
+      14
+    ],
+    "kind": "component",
+    "component_id": "HB-CALLOUT-STRIP",
+    "text": "注意 心臓にペースメーカーを装着している方は使用しない ペースメーカーが、本製品の影響を受ける恐れがあります。",
+    "flow_sha256": "e9eb0a7d4290cd5dc18cc6f7e2bd6de53d390dbfc9b44a511289377b0817ea37",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "label",
+        "content_kind": "inline_text",
+        "content": "注意"
+      },
+      {
+        "role": "body",
+        "content_kind": "rich_text",
+        "content": "心臓にペースメーカーを装着している方は使用しない\nペースメーカーが、本製品の影響を受ける恐れがあります。"
+      }
+    ]
+  },
+  {
+    "chapter": "usage_precautions",
+    "flow_node_index": 0,
+    "source_pages": [
+      15
+    ],
+    "kind": "heading",
+    "component_id": null,
+    "text": "8.使用上のご注意",
+    "flow_sha256": "a5f7e8218dbfaa2eac5ea5de80448ac3989806bf48ef9d5a59939ea58e0cc943",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "usage_precautions",
+    "flow_node_index": 1,
+    "source_pages": [
+      15,
+      16
+    ],
+    "kind": "list",
+    "component_id": null,
+    "text": "Jackery ポータブル電源 240は、定格出力300Wです。通常時で消費電力が300Wまでの機器に給電ができるため、多くの電化製品や端末に対応可能です。ただし、電気モーターを搭載している製品については、例(掃除機、ポンプ、冷蔵庫、電動丸ノコ、エアコン、洗濯機、電子レンジ、ドライヤーなど)起動時に「誘導負荷」が発生し、公称電力の3～7倍の電力が必要となります。定格出力300Wは、一定の電力で動く機器への出力可能範囲を指しています。 300Wの出力を超えた場合は、電気回路が自動的に調整され、電力が低減、または保護機能が作動し自動で遮断することがあります。 またAC出力ポート2つ搭載されておりますが、2つ同時にご利用頂く場合、合計して300W以内であることをご確認の上ご利用ください。 ご注意：始動電力が出力上限値(定格出力)を大幅に超える可能性のある製品のご利用や、定格出力を超え給電がストップした製品を繰り返し利用することはポータブル電源のバッテリーが損傷するリスクがありますのでお控えください。 出力上限値を超えた電化製品を利用しない(始動電力が公称電力3倍～7倍の誘導負荷の掃除機、冷蔵庫、エアコン、電子レンジ、洗濯機、電動丸、ポンプなどは特にご注意下さい) 。 本製品は防塵･防水仕様ではありませんので、ほこりや水、海水などがかからないように注意してください。 ほこりが多い場所や高温多湿の場所での充電および使用、放置をしないでください。 本製品を不安定な場所に置かないでください。必ず、平坦で安定した場所に置いて使用してください。 本製品の通風孔は、安全上絶対にふさがないでください。また、本製品の各面から5cm以上スペースを空けてください。 充電または給電中は本製品が温かくなります(故障ではありません)、周囲には物を置かないでください。 本製品接続機器のケーブルを差すときは、真っすぐな向きに差してください。 接続機器のケーブルを抜くときは、必ずプラグ部分を持って抜いてください。ケーブルを引っ張ったり折り曲げると、断線などの原因となります。 給電する機器の充電制御や充電状況、環境などにより給電できない、または急速充電にならない場合があります。 充電または給電中はラジオやチューナー、テレビなどに雑音が入る場合があります。雑音が入る場合には、それらの製品から離れた場所でお使いください。 本体が汚れたらコンセントから電源プラグを抜き、柔らかい布で乾拭きしてください。汚れがひどいときは、水または薄めた中性洗剤でふきとってください。シンナーやベンジンなどは絶対に使わないでください。 入出力の電力(W) 接続機器の消費電力が本製品の出力上限値を超えている場合、電源を自動的に遮断します。消費電力が仕様以下であることを確認してから出力ボタンを押してください。 低/高温警報 本機は-10°C～45°C(14～113°F)の温度範囲でお使いの機器に電力供給が可能となり、本機への蓄電は0°C～45°C°C(32～113°F)で行えます。 動作温度が上記範囲外にある場合、本製品が温度異常マークが表示され動作しない可能性がございます。 温度異常マークを解除するには、動作温度範囲内の環境に2時間以上置くようにお願い致します。 容量表示に関しては、あくまで参考値となり、電圧により電力が算出され、表示数値にズレが発生することがあります。",
+    "flow_sha256": "4f182084d17390308b6ac5a1fb9b5530781a3e9771ae6907f5b19ef0387f4091",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "usage_precautions",
+    "flow_node_index": 2,
+    "source_pages": [
+      16
+    ],
+    "kind": "heading",
+    "component_id": null,
+    "text": "使用上のご注意 (SolarSaga 40 Mini)",
+    "flow_sha256": "f63bc51d0d59140dd5d04bbb5dfd63a030752b486b2b6f25b74fda76f96e9a8c",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "usage_precautions",
+    "flow_node_index": 3,
+    "source_pages": [
+      16
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "※ご使用の前に取扱説明書をよくお読みになり正しくお使いください。",
+    "flow_sha256": "d0165f9c913fb6f7abe51c8f622006d89264fcc7348467ed931ab2b6faec7a7b",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "usage_precautions",
+    "flow_node_index": 4,
+    "source_pages": [
+      16
+    ],
+    "kind": "list",
+    "component_id": null,
+    "text": "ソーラーパネルが太陽光発電をしている間は、ポータブル電源を直射日光下に長時間放置することは避け、常に乾いた日陰に置いてください。 破損する恐れがあるため、本製品を曲げないでください。 ケーブルが折れ曲がった状態で使用しないで下さい。 落下や衝撃により破損する恐れがありますので十分ご注意ください。 本製品を釘や他の鋭い物体で突き刺したり、ハンマーで割ったり踏んだりしないでください。 本製品を火気、腐食剤の近くに置かないでください。 水中や常に水につかるような場所に設置しないで下さい。感電や漏電、事故の原因になります。 分解や改造を行わないで下さい。感電や火災、事故の原因になります。 ソーラーパネル充電用ケーブルが確実に接続されている事を確認してください。不完全の場合、感電や漏電、事故の原因になります。 本製品は固定設置しての使用はできません。風、雨、雹などの悪天候の際は、製品の損傷やその他の危険を避けるため、ポータブルソーラーパネルをしまってください。 製品の損傷により、感電の危険があります。",
+    "flow_sha256": "3989a530ff81b5c2875d475369592b2918ea7aa902a6a4471144852fd554b8e7",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "in_the_box",
+    "flow_node_index": 0,
+    "source_pages": [
+      17
+    ],
+    "kind": "heading",
+    "component_id": null,
+    "text": "8.同梱品",
+    "flow_sha256": "46a3461745db1b403f8007605e25695b9096bf659bb1c1b80b0d3f636924a58a",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "in_the_box",
+    "flow_node_index": 1,
+    "source_pages": [
+      17
+    ],
+    "kind": "component",
+    "component_id": "HB-SPECIAL-INBOX",
+    "text": "本体 AC充電ケーブル DC8020→USB-C ケーブル 収納ポーチ SolarSaga 40 Mini 接続ケーブル＋\nトランスジャック 保証案内書 取扱説明書",
+    "flow_sha256": "713c3c003ae2fcf84c7daa8da6fe6b7e16d446a2e385eae56b32858f941e6fef",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "8.同梱品"
+      },
+      {
+        "role": "cards",
+        "content_kind": "ordered_cards",
+        "content": [
+          {
+            "number": 1,
+            "image_asset_role": "card_art",
+            "alt": "本体",
+            "label": "本体"
+          },
+          {
+            "number": 2,
+            "image_asset_role": "card_art",
+            "alt": "AC充電ケーブル",
+            "label": "AC充電ケーブル"
+          },
+          {
+            "number": 3,
+            "image_asset_role": "card_art",
+            "alt": "DC8020→USB-C ケーブル",
+            "label": "DC8020→USB-C ケーブル"
+          },
+          {
+            "number": 4,
+            "image_asset_role": "card_art",
+            "alt": "収納ポーチ",
+            "label": "収納ポーチ"
+          },
+          {
+            "number": 5,
+            "image_asset_role": "card_art",
+            "alt": "SolarSaga 40 Mini",
+            "label": "SolarSaga 40 Mini"
+          },
+          {
+            "number": 6,
+            "image_asset_role": "card_art",
+            "alt": "接続ケーブル＋\nトランスジャック",
+            "label": "接続ケーブル＋\nトランスジャック"
+          },
+          {
+            "number": 7,
+            "image_asset_role": "card_art",
+            "alt": "保証案内書",
+            "label": "保証案内書"
+          },
+          {
+            "number": 8,
+            "image_asset_role": "card_art",
+            "alt": "取扱説明書",
+            "label": "取扱説明書"
+          }
+        ]
+      },
+      {
+        "role": "tip_label",
+        "content_kind": "inline_text",
+        "content": ""
+      },
+      {
+        "role": "tip_body",
+        "content_kind": "rich_text",
+        "content": ""
+      }
+    ]
+  },
+  {
+    "chapter": "in_the_box",
+    "flow_node_index": 2,
+    "source_pages": [
+      17
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "※付属品を故障、紛失等してしまった場合はカスタマーサポートまでご連絡ください。",
+    "flow_sha256": "cda839c1e88901edabb179b25a7171a9857a62ff5a0afc72da9371372506d867",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "disclaimer",
+    "flow_node_index": 0,
+    "source_pages": [
+      17
+    ],
+    "kind": "heading",
+    "component_id": null,
+    "text": "10.免責事項",
+    "flow_sha256": "65283c7839c195a612b6cc56e738bb1f6a04630d4e1e69fbf4c26550d3d8e261",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "disclaimer",
+    "flow_node_index": 1,
+    "source_pages": [
+      17
+    ],
+    "kind": "list",
+    "component_id": null,
+    "text": "火災、地震、第三者による行為、その他の事故、お客様の故意または過失 誤用・誤動作・その他の異常な条件下での使用により生じた損害に関して、当社は一切責任を負いません。 付属品と本製品が破損した場合は、ご自身で修理を行わないでください。 ご自身で分解・修理したことにより生じた損害に関し、当社は一切責任を負いません。 保証範囲は利用規約に適用され、記載されていない内容は当社の保証範囲外となります。 取扱説明書の記載事項が遵守されないことにより生じた不適合について当社は責任を負いかねます。 本製品の使用、または使用不能から発生する付随的な損害(事業利益損失含む)、当社が関与しない接続機器との組み合わせによる誤動作などから生じた損害に関して、当社は一切の責任を負いません。 本製品は個人の安全に関係する製品、消費電力の大きな設備に給電できません。例えば、医療機器、核施設設備、CPAP（シーパップ） 、スペースシャトルの製造などです。 上記の設備、用途で使用した結果、火災、機器故障など個人の安全を脅かす事故が生じた場合、当社は一切責任を負いません。",
+    "flow_sha256": "4c671fe693c81fcd140abd93f27b505e0233add880b263580efc177192c3e279",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "app_setup",
+    "flow_node_index": 0,
+    "source_pages": [
+      18
+    ],
+    "kind": "heading",
+    "component_id": null,
+    "text": "Jackeryアプリ ユーザーマニュアル",
+    "flow_sha256": "4ec7567fa674f4c9979d6769b77dab58e8a22effaceb450db324692dad093032",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "app_setup",
+    "flow_node_index": 1,
+    "source_pages": [
+      18
+    ],
+    "kind": "heading",
+    "component_id": null,
+    "text": "1. アプリをダウンロードしてログインするには",
+    "flow_sha256": "2ecc26c0393a2bb4d4f4dfdef143d06ebe6a6b2929f71fe311b7764f54016ee2",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "app_setup",
+    "flow_node_index": 2,
+    "source_pages": [
+      18
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "Google  PlayまたはApp  Storeで「Jackery」と検索し、アプリをインストールしてください。その後、登録とログインを行ってください。",
+    "flow_sha256": "2b6e8962e029421369b75913aec7da94c18882481751b017acbd3ed2de63a553",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "app_setup",
+    "flow_node_index": 3,
+    "source_pages": [
+      18
+    ],
+    "kind": "heading",
+    "component_id": null,
+    "text": "2. デバイスを追加するには",
+    "flow_sha256": "ce256494d9de041e612269e32e27b3710b97ca6267d25babf32cde6002aab8bb",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "app_setup",
+    "flow_node_index": 4,
+    "source_pages": [
+      18
+    ],
+    "kind": "component",
+    "component_id": "HB-SPECIAL-APP",
+    "text": "2.1  APPの右上にあるデバイス追加ボタン  +  をクリックします。",
+    "flow_sha256": "6bb222d8473d6508c63f0cf24f736bf48514888046ef30adc9c9af0113176302",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "+"
+      },
+      {
+        "role": "paragraph",
+        "content_kind": "rich_text",
+        "content": {
+          "html": "2.1  APPの右上にあるデバイス追加ボタン <strong>+</strong> をクリックします。",
+          "text": "2.1  APPの右上にあるデバイス追加ボタン + をクリックします。"
+        }
+      }
+    ]
+  },
+  {
+    "chapter": "app_setup",
+    "flow_node_index": 5,
+    "source_pages": [
+      18
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "2.2　デバイスの主電源ボタンを長押しして電源をいれると、ディスプレー画面にWi-FiとBluetoothのアイコンが点滅し、デバイスがネットワーク設定モードに入ったことを示します。アイコン点滅中ボタンをクリックし、アプリが近くのデバイスに接続し、Bluetoothのアクセス許可を開くことを許可します。",
+    "flow_sha256": "87052bc958c86170913e46201a27e1b9a42f90bd5dead7ea1ebab07640556ab6",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "app_setup",
+    "flow_node_index": 6,
+    "source_pages": [
+      18
+    ],
+    "kind": "component",
+    "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+    "text": "",
+    "flow_sha256": "fedd8fc799258e9d749b8c6b481858d58c60bc368e9a243c46138a295115f1fe",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "app-add"
+      },
+      {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "2.1 / 2.2 アプリ画面"
+      },
+      {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "embedded"
+      },
+      {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+      }
+    ]
+  },
+  {
+    "chapter": "app_setup",
+    "flow_node_index": 7,
+    "source_pages": [
+      18
+    ],
+    "kind": "component",
+    "component_id": "HB-CALLOUT-STRIP",
+    "text": "備考 電源を入れた後、アプリが5分以内接続されていないと、デバイスは自動的にWi-FiとBluetoothをオフにします。再度Wi-FiとBluetoothをオンにするには、「DC/USBボタン」と「ACボタン」を同時長押しする必要があります。",
+    "flow_sha256": "5dea542011b8a36d81e0190bd8f668289ac987dcc878ff51904bb5dae4f83ad9",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "label",
+        "content_kind": "inline_text",
+        "content": "備考"
+      },
+      {
+        "role": "body",
+        "content_kind": "rich_text",
+        "content": "電源を入れた後、アプリが5分以内接続されていないと、デバイスは自動的にWi-FiとBluetoothをオフにします。再度Wi-FiとBluetoothをオンにするには、「DC/USBボタン」と「ACボタン」を同時長押しする必要があります。"
+      }
+    ]
+  },
+  {
+    "chapter": "app_setup",
+    "flow_node_index": 8,
+    "source_pages": [
+      18
+    ],
+    "kind": "component",
+    "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+    "text": "",
+    "flow_sha256": "3489f935fc05810dabfab4c8c4cbf89ce2679a2849ebed646e445728f8ab2fa6",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "app-control"
+      },
+      {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "DC/USBボタン、ACボタン、POWERボタン"
+      },
+      {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "embedded"
+      },
+      {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+      }
+    ]
+  },
+  {
+    "chapter": "app_setup",
+    "flow_node_index": 9,
+    "source_pages": [
+      18
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "2.3 検出されたデバイスアイコンをクリックすると、アプリは自動的にBluetoothでデバイスを接続します。",
+    "flow_sha256": "9a2cc03495ea2299b7ac0651681a4ca8e598afa271b7276da222f2f1d567319d",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "app_setup",
+    "flow_node_index": 10,
+    "source_pages": [
+      18,
+      19
+    ],
+    "kind": "component",
+    "component_id": "HB-CALLOUT-STRIP",
+    "text": "備考 バインド処理中に「デバイスがバインドされました」と表示された場合は、以下の2つの方法で接続できます： デバイス所有者は、アプリを通じてこのデバイスを他のユーザーと共有します。 「POWERボタン」と「DC/USBボタン」を3秒間長押ししてデバイスをリセットし、再度バインドしてくだい。",
+    "flow_sha256": "ce2655ab40601da946206e8117dc5f6470413fb6a3587967020b40a8fd3670c2",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "label",
+        "content_kind": "inline_text",
+        "content": "備考"
+      },
+      {
+        "role": "body",
+        "content_kind": "rich_text",
+        "content": "バインド処理中に「デバイスがバインドされました」と表示された場合は、以下の2つの方法で接続できます：\nデバイス所有者は、アプリを通じてこのデバイスを他のユーザーと共有します。\n「POWERボタン」と「DC/USBボタン」を3秒間長押ししてデバイスをリセットし、再度バインドしてくだい。"
+      },
+      {
+        "role": "items",
+        "content_kind": "list_items",
+        "content": [
+          "デバイス所有者は、アプリを通じてこのデバイスを他のユーザーと共有します。",
+          "「POWERボタン」と「DC/USBボタン」を3秒間長押ししてデバイスをリセットし、再度バインドしてくだい。"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": "app_setup",
+    "flow_node_index": 11,
+    "source_pages": [
+      19
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "2.4  デバイスが正常に接続されると、デバイスが接続するWi-Fiの名前とパスワードを入力する必要があり、デバイスは自動的にWi-Fiネットワークに接続します。",
+    "flow_sha256": "ae126a6d4a628e6e52ae84a5620cf7d0862458ac3f21254c5ec645ecce932dfd",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "app_setup",
+    "flow_node_index": 12,
+    "source_pages": [
+      19
+    ],
+    "kind": "component",
+    "component_id": "HB-CALLOUT-STRIP",
+    "text": "備考 2.4GHz帯のWi-Fiネットワークを選択してください。デバイスは、5GHz帯のWi-Fiネットワークには対応していません。",
+    "flow_sha256": "5ed1c45d23cc86b81e8090bbd11eb0d6fc6ba86cbcc257357ee90f2fbf84ca1b",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "label",
+        "content_kind": "inline_text",
+        "content": "備考"
+      },
+      {
+        "role": "body",
+        "content_kind": "rich_text",
+        "content": "2.4GHz帯のWi-Fiネットワークを選択してください。デバイスは、5GHz帯のWi-Fiネットワークには対応していません。"
+      }
+    ]
+  },
+  {
+    "chapter": "app_setup",
+    "flow_node_index": 13,
+    "source_pages": [
+      19
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "2.5 デバイスのホーム画面でデバイスが正常に追加されると、デバイスのWi-Fi アイコンは常にオンになります。",
+    "flow_sha256": "147cbf78cd2af0ad19cb2f0e58c70f1e9ca064123f3f32e87af66d1f9f14db0e",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "app_setup",
+    "flow_node_index": 14,
+    "source_pages": [
+      19
+    ],
+    "kind": "component",
+    "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+    "text": "",
+    "flow_sha256": "2120d4967c268bb62fdfc9e556c1b87b32b76bbd5b82738e4bcd284b24569bdd",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "app-results"
+      },
+      {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "2.3 / 2.4 / 2.5 アプリ画面"
+      },
+      {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "embedded"
+      },
+      {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+      }
+    ]
+  },
+  {
+    "chapter": "app_setup",
+    "flow_node_index": 15,
+    "source_pages": [
+      19
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "上記のスクリーンショットはご参考まで。",
+    "flow_sha256": "ab82216a007bf210ff978794fb06808133b1b6f152706117d9dc809638ef1d75",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "app_setup",
+    "flow_node_index": 16,
+    "source_pages": [
+      19
+    ],
+    "kind": "heading",
+    "component_id": null,
+    "text": "3. デバイスのバインドを解除するには",
+    "flow_sha256": "a6949db6e6f2a1b602f0f7eab0968b5d73eee5e9342845982854b333075dcbe1",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "app_setup",
+    "flow_node_index": 17,
+    "source_pages": [
+      19
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "デバイスのメインインターフェースの右上隅にある「設定」ボタンをクリックして設定ページに入り、ページの下部にある「バインド解除」ボタンをクリックしてデバイスのバインドを解除します。",
+    "flow_sha256": "813904d7e34808ecba5731589f93eb06a4625ad6092919e9b857d8d7092407be",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "app_setup",
+    "flow_node_index": 18,
+    "source_pages": [
+      19
+    ],
+    "kind": "heading",
+    "component_id": null,
+    "text": "4. ご確認",
+    "flow_sha256": "51aa33e46da3ab867c60341c91d4f8486ff1829b869f2adfca3056fb90351076",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "app_setup",
+    "flow_node_index": 19,
+    "source_pages": [
+      19
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "4.1 Wi-FiとBluetoothをオンにするには（ディスプレーにWi-FiとBluetoothのアイコンが点灯）：",
+    "flow_sha256": "f0cf0ceaa4c94bb9997eae6f609983b7183a1a66057e6e7c851b7d3fa8620608",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "app_setup",
+    "flow_node_index": 20,
+    "source_pages": [
+      19
+    ],
+    "kind": "list",
+    "component_id": null,
+    "text": "デバイスがオンになれば自動的にオンになり、ディスプレーにWi-FiとBluetoothのアイコンが点灯します。 上記アイコンが点灯しない場合、ディスプレーにWi-FiとBluetoothのアイコンが点灯するまで、DC/USB出力ボタンとAC出力ボタンを同時長押しします。",
+    "flow_sha256": "f542dd1bf6d345487e0e4c958b985693b1af593e0e0af6d4e58dbce43bf02a61",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "app_setup",
+    "flow_node_index": 21,
+    "source_pages": [
+      19
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "4.2 Wi-FiとBluetoothをオフにするには（ディスプレーにWi-FiとBluetoothのアイコンが消える）：",
+    "flow_sha256": "221f6e1cae2573ead3790565d63ce0993917d9005075fd50578e3f0142d5e855",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "app_setup",
+    "flow_node_index": 22,
+    "source_pages": [
+      19
+    ],
+    "kind": "list",
+    "component_id": null,
+    "text": "ディスプレーにWi-FiとBluetoothのアイコンが消えるまで、DC/USB出力ボタンとAC出力ボタンを同時長押しします。 5分以内にデバイスが接続されない場合、Wi-FiとBluetooth は自動的にオフになります。",
+    "flow_sha256": "faa6212efa5e7cf9ea60f2a8bb1cf907a56fa50af50cc5ba378aba1f36a32600",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "app_setup",
+    "flow_node_index": 23,
+    "source_pages": [
+      19
+    ],
+    "kind": "paragraph",
+    "component_id": null,
+    "text": "4.3 Wi-FiとBluetoothをリセットするには：",
+    "flow_sha256": "192bfac9970bb3679e1968b81921db83ed089609861787faba32ba562457afff",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "app_setup",
+    "flow_node_index": 24,
+    "source_pages": [
+      19
+    ],
+    "kind": "list",
+    "component_id": null,
+    "text": "主電源ボタンとDC/USBボタンを同時に3秒間押すと、Wi-FiとBluetoothが初期化され、システムが再起動します。接続されているアプリアカウントはバインド解除されます。",
+    "flow_sha256": "9c7431a068abed9794f8d5eeaf72fb0e1f47e5f6fe7676da49954f94ea3f18ed",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": []
+  },
+  {
+    "chapter": "app_setup",
+    "flow_node_index": 25,
+    "source_pages": [
+      20
+    ],
+    "kind": "component",
+    "component_id": "HB-SPECIAL-APP",
+    "text": "本製品はJackeryアプリケーションによるスマートコントロールに対応しています。ご利用いただくには、下記のアプリストアより「Jackery」で検索して「Jackery APP」をダウンロードしてください。",
+    "flow_sha256": "a0cf0f2b60f2f0dab7790c94ed895138edb7f167dd36518ee5a8a2d74f716e12",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "App Store / Google Play"
+      },
+      {
+        "role": "paragraph",
+        "content_kind": "rich_text",
+        "content": {
+          "text": "本製品はJackeryアプリケーションによるスマートコントロールに対応しています。ご利用いただくには、下記のアプリストアより「Jackery」で検索して「Jackery APP」をダウンロードしてください。",
+          "html": "本製品はJackeryアプリケーションによるスマートコントロールに対応しています。ご利用いただくには、下記のアプリストアより「Jackery」で検索して「Jackery APP」をダウンロードしてください。"
+        }
+      }
+    ]
+  },
+  {
+    "chapter": "app_setup",
+    "flow_node_index": 26,
+    "source_pages": [
+      20
+    ],
+    "kind": "component",
+    "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+    "text": "",
+    "flow_sha256": "edd023c95a22c5cbaa38a67ff761bca0b7d256598363d96389a91ce033ae0e04",
+    "review": "Japanese paragraphs/labels/table rows read against these exact current-source pages; line wrapping is normalized. Text inside finished source figure panels is covered by the figure and asset review.",
+    "component_text_slots": [
+      {
+        "role": "reference_id",
+        "content_kind": "inline_text",
+        "content": "app-qr"
+      },
+      {
+        "role": "accessibility_label",
+        "content_kind": "inline_text",
+        "content": "Jackery アプリ QRコード"
+      },
+      {
+        "role": "caption_mode",
+        "content_kind": "inline_text",
+        "content": "none"
+      },
+      {
+        "role": "caption_layout",
+        "content_kind": "inline_text",
+        "content": "equal"
+      }
+    ]
+  }
+]

@@ -1,0 +1,897 @@
+{
+  "schema_version": "source-page-review/v1",
+  "reviewer": "Codex agent; operator acceptance pending",
+  "source_sha256": "c1f0f04e5ee672bb1c82f3d0b5ca009dc4459db3a6152d74a96acd489caff67c",
+  "physical_pages": 12,
+  "source_of_truth": "source/original.pdf; source/ocr/*.txt are uncorrected fallible OCR drafts, not inputs to the renderer",
+  "pages": [
+    {
+      "physical_page": 1,
+      "native_pdf_characters": 0,
+      "chapters": [
+        "preface"
+      ],
+      "transcribed_blocks": [
+        {
+          "chapter": "preface",
+          "source_ref": "source/transcription.json#preface/0",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "preface",
+          "source_ref": "source/transcription.json#preface/1",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "preface",
+          "source_ref": "source/transcription.json#preface/2",
+          "kind": "paragraph",
+          "component": "native copy"
+        }
+      ],
+      "new_original_crops": [],
+      "review": "Compared original physical-page rendering with the curated Japanese source. OCR is a draft only; native parameter rows, reading order and complete figure boundaries are checked.",
+      "omissions": [
+        "printed folio",
+        "cover wordmark, repeated 取扱説明書 label and decorative cover unit; substantive welcome, domestic restriction and support retained"
+      ]
+    },
+    {
+      "physical_page": 2,
+      "native_pdf_characters": 0,
+      "chapters": [
+        "specifications"
+      ],
+      "transcribed_blocks": [
+        {
+          "chapter": "specifications",
+          "source_ref": "source/transcription.json#specifications/0",
+          "kind": "specification",
+          "component": "HB-TABLE-SPEC"
+        },
+        {
+          "chapter": "specifications",
+          "source_ref": "source/transcription.json#specifications/1",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "specifications",
+          "source_ref": "source/transcription.json#specifications/2",
+          "kind": "heading",
+          "component": "native heading"
+        },
+        {
+          "chapter": "specifications",
+          "source_ref": "source/transcription.json#specifications/3",
+          "kind": "image",
+          "component": "standalone functional image with native alt"
+        },
+        {
+          "chapter": "specifications",
+          "source_ref": "source/transcription.json#specifications/4",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "specifications",
+          "source_ref": "source/transcription.json#specifications/5",
+          "kind": "paragraph",
+          "component": "native copy"
+        }
+      ],
+      "new_original_crops": [
+        "recycle"
+      ],
+      "review": "Compared original physical-page rendering with the curated Japanese source. OCR is a draft only; native parameter rows, reading order and complete figure boundaries are checked.",
+      "omissions": [
+        "printed folio"
+      ]
+    },
+    {
+      "physical_page": 3,
+      "native_pdf_characters": 0,
+      "chapters": [
+        "product_overview",
+        "runtime"
+      ],
+      "transcribed_blocks": [
+        {
+          "chapter": "product_overview",
+          "source_ref": "source/transcription.json#product_overview/0",
+          "kind": "figure",
+          "component": "HB-SPECIAL-REFERENCE-FIGURE"
+        },
+        {
+          "chapter": "runtime",
+          "source_ref": "source/transcription.json#runtime/0",
+          "kind": "specification",
+          "component": "HB-TABLE-SPEC"
+        },
+        {
+          "chapter": "runtime",
+          "source_ref": "source/transcription.json#runtime/1",
+          "kind": "specification",
+          "component": "HB-TABLE-SPEC"
+        },
+        {
+          "chapter": "runtime",
+          "source_ref": "source/transcription.json#runtime/2",
+          "kind": "specification",
+          "component": "HB-TABLE-SPEC"
+        },
+        {
+          "chapter": "runtime",
+          "source_ref": "source/transcription.json#runtime/3",
+          "kind": "paragraph",
+          "component": "native copy"
+        }
+      ],
+      "new_original_crops": [
+        "overview"
+      ],
+      "review": "Compared original physical-page rendering with the curated Japanese source. OCR is a draft only; native parameter rows, reading order and complete figure boundaries are checked.",
+      "omissions": [
+        "printed folio"
+      ]
+    },
+    {
+      "physical_page": 4,
+      "native_pdf_characters": 0,
+      "chapters": [
+        "lcd_display",
+        "in_the_box",
+        "faq"
+      ],
+      "transcribed_blocks": [
+        {
+          "chapter": "lcd_display",
+          "source_ref": "source/transcription.json#lcd_display/0",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "lcd_display",
+          "source_ref": "source/transcription.json#lcd_display/1",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "lcd_display",
+          "source_ref": "source/transcription.json#lcd_display/2",
+          "kind": "figure",
+          "component": "HB-SPECIAL-REFERENCE-FIGURE"
+        },
+        {
+          "chapter": "lcd_display",
+          "source_ref": "source/transcription.json#lcd_display/3",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "lcd_display",
+          "source_ref": "source/transcription.json#lcd_display/4",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "in_the_box",
+          "source_ref": "source/transcription.json#in_the_box/0",
+          "kind": "inbox",
+          "component": "HB-SPECIAL-INBOX"
+        },
+        {
+          "chapter": "in_the_box",
+          "source_ref": "source/transcription.json#in_the_box/1",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "faq",
+          "source_ref": "source/transcription.json#faq/0",
+          "kind": "heading",
+          "component": "native heading"
+        },
+        {
+          "chapter": "faq",
+          "source_ref": "source/transcription.json#faq/1",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "faq",
+          "source_ref": "source/transcription.json#faq/2",
+          "kind": "heading",
+          "component": "native heading"
+        },
+        {
+          "chapter": "faq",
+          "source_ref": "source/transcription.json#faq/3",
+          "kind": "paragraph",
+          "component": "native copy"
+        }
+      ],
+      "new_original_crops": [
+        "lcd-panel",
+        "inbox-main",
+        "inbox-car",
+        "inbox-adapter",
+        "inbox-manual",
+        "inbox-pouch"
+      ],
+      "review": "Compared original physical-page rendering with the curated Japanese source. OCR is a draft only; native parameter rows, reading order and complete figure boundaries are checked.",
+      "omissions": [
+        "printed folio"
+      ]
+    },
+    {
+      "physical_page": 5,
+      "native_pdf_characters": 0,
+      "chapters": [
+        "faq"
+      ],
+      "transcribed_blocks": [
+        {
+          "chapter": "faq",
+          "source_ref": "source/transcription.json#faq/4",
+          "kind": "heading",
+          "component": "native heading"
+        },
+        {
+          "chapter": "faq",
+          "source_ref": "source/transcription.json#faq/5",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "faq",
+          "source_ref": "source/transcription.json#faq/6",
+          "kind": "heading",
+          "component": "native heading"
+        },
+        {
+          "chapter": "faq",
+          "source_ref": "source/transcription.json#faq/7",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "faq",
+          "source_ref": "source/transcription.json#faq/8",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "faq",
+          "source_ref": "source/transcription.json#faq/9",
+          "kind": "heading",
+          "component": "native heading"
+        },
+        {
+          "chapter": "faq",
+          "source_ref": "source/transcription.json#faq/10",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "faq",
+          "source_ref": "source/transcription.json#faq/11",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "faq",
+          "source_ref": "source/transcription.json#faq/12",
+          "kind": "heading",
+          "component": "native heading"
+        },
+        {
+          "chapter": "faq",
+          "source_ref": "source/transcription.json#faq/13",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "faq",
+          "source_ref": "source/transcription.json#faq/14",
+          "kind": "heading",
+          "component": "native heading"
+        },
+        {
+          "chapter": "faq",
+          "source_ref": "source/transcription.json#faq/15",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "faq",
+          "source_ref": "source/transcription.json#faq/16",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "faq",
+          "source_ref": "source/transcription.json#faq/17",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "faq",
+          "source_ref": "source/transcription.json#faq/18",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "faq",
+          "source_ref": "source/transcription.json#faq/19",
+          "kind": "paragraph",
+          "component": "native copy"
+        }
+      ],
+      "new_original_crops": [],
+      "review": "Compared original physical-page rendering with the curated Japanese source. OCR is a draft only; native parameter rows, reading order and complete figure boundaries are checked.",
+      "omissions": [
+        "printed folio"
+      ]
+    },
+    {
+      "physical_page": 6,
+      "native_pdf_characters": 0,
+      "chapters": [
+        "faq"
+      ],
+      "transcribed_blocks": [
+        {
+          "chapter": "faq",
+          "source_ref": "source/transcription.json#faq/20",
+          "kind": "heading",
+          "component": "native heading"
+        },
+        {
+          "chapter": "faq",
+          "source_ref": "source/transcription.json#faq/21",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "faq",
+          "source_ref": "source/transcription.json#faq/22",
+          "kind": "heading",
+          "component": "native heading"
+        },
+        {
+          "chapter": "faq",
+          "source_ref": "source/transcription.json#faq/23",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "faq",
+          "source_ref": "source/transcription.json#faq/24",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "faq",
+          "source_ref": "source/transcription.json#faq/25",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "faq",
+          "source_ref": "source/transcription.json#faq/26",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "faq",
+          "source_ref": "source/transcription.json#faq/27",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "faq",
+          "source_ref": "source/transcription.json#faq/28",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "faq",
+          "source_ref": "source/transcription.json#faq/29",
+          "kind": "heading",
+          "component": "native heading"
+        },
+        {
+          "chapter": "faq",
+          "source_ref": "source/transcription.json#faq/30",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "faq",
+          "source_ref": "source/transcription.json#faq/31",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "faq",
+          "source_ref": "source/transcription.json#faq/32",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "faq",
+          "source_ref": "source/transcription.json#faq/33",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "faq",
+          "source_ref": "source/transcription.json#faq/34",
+          "kind": "heading",
+          "component": "native heading"
+        },
+        {
+          "chapter": "faq",
+          "source_ref": "source/transcription.json#faq/35",
+          "kind": "paragraph",
+          "component": "native copy"
+        }
+      ],
+      "new_original_crops": [],
+      "review": "Compared original physical-page rendering with the curated Japanese source. OCR is a draft only; native parameter rows, reading order and complete figure boundaries are checked.",
+      "omissions": [
+        "printed folio"
+      ]
+    },
+    {
+      "physical_page": 7,
+      "native_pdf_characters": 0,
+      "chapters": [
+        "safety"
+      ],
+      "transcribed_blocks": [
+        {
+          "chapter": "safety",
+          "source_ref": "source/transcription.json#safety/0",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "safety",
+          "source_ref": "source/transcription.json#safety/1",
+          "kind": "heading",
+          "component": "native heading"
+        },
+        {
+          "chapter": "safety",
+          "source_ref": "source/transcription.json#safety/2",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "safety",
+          "source_ref": "source/transcription.json#safety/3",
+          "kind": "signals",
+          "component": "HB-TABLE-SYMBOL-SIGNAL"
+        },
+        {
+          "chapter": "safety",
+          "source_ref": "source/transcription.json#safety/4",
+          "kind": "heading",
+          "component": "native heading"
+        },
+        {
+          "chapter": "safety",
+          "source_ref": "source/transcription.json#safety/5",
+          "kind": "pictograms",
+          "component": "HB-TABLE-SYMBOL-ICON"
+        },
+        {
+          "chapter": "safety",
+          "source_ref": "source/transcription.json#safety/6",
+          "kind": "callout",
+          "component": "HB-CALLOUT-STRIP"
+        }
+      ],
+      "new_original_crops": [],
+      "review": "Compared original physical-page rendering with the curated Japanese source. OCR is a draft only; native parameter rows, reading order and complete figure boundaries are checked.",
+      "omissions": [
+        "printed folio"
+      ]
+    },
+    {
+      "physical_page": 8,
+      "native_pdf_characters": 0,
+      "chapters": [
+        "safety"
+      ],
+      "transcribed_blocks": [
+        {
+          "chapter": "safety",
+          "source_ref": "source/transcription.json#safety/7",
+          "kind": "callout",
+          "component": "HB-CALLOUT-STRIP"
+        }
+      ],
+      "new_original_crops": [],
+      "review": "Compared original physical-page rendering with the curated Japanese source. OCR is a draft only; native parameter rows, reading order and complete figure boundaries are checked.",
+      "omissions": [
+        "printed folio"
+      ]
+    },
+    {
+      "physical_page": 9,
+      "native_pdf_characters": 0,
+      "chapters": [
+        "precautions"
+      ],
+      "transcribed_blocks": [
+        {
+          "chapter": "precautions",
+          "source_ref": "source/transcription.json#precautions/0",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "precautions",
+          "source_ref": "source/transcription.json#precautions/1",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "precautions",
+          "source_ref": "source/transcription.json#precautions/2",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "precautions",
+          "source_ref": "source/transcription.json#precautions/3",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "precautions",
+          "source_ref": "source/transcription.json#precautions/4",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "precautions",
+          "source_ref": "source/transcription.json#precautions/5",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "precautions",
+          "source_ref": "source/transcription.json#precautions/6",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "precautions",
+          "source_ref": "source/transcription.json#precautions/7",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "precautions",
+          "source_ref": "source/transcription.json#precautions/8",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "precautions",
+          "source_ref": "source/transcription.json#precautions/9",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "precautions",
+          "source_ref": "source/transcription.json#precautions/10",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "precautions",
+          "source_ref": "source/transcription.json#precautions/11",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "precautions",
+          "source_ref": "source/transcription.json#precautions/12",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "precautions",
+          "source_ref": "source/transcription.json#precautions/13",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "precautions",
+          "source_ref": "source/transcription.json#precautions/14",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "precautions",
+          "source_ref": "source/transcription.json#precautions/15",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "precautions",
+          "source_ref": "source/transcription.json#precautions/16",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "precautions",
+          "source_ref": "source/transcription.json#precautions/17",
+          "kind": "paragraph",
+          "component": "native copy"
+        }
+      ],
+      "new_original_crops": [],
+      "review": "Compared original physical-page rendering with the curated Japanese source. OCR is a draft only; native parameter rows, reading order and complete figure boundaries are checked.",
+      "omissions": [
+        "printed folio"
+      ]
+    },
+    {
+      "physical_page": 10,
+      "native_pdf_characters": 0,
+      "chapters": [
+        "operations"
+      ],
+      "transcribed_blocks": [
+        {
+          "chapter": "operations",
+          "source_ref": "source/transcription.json#operations/0",
+          "kind": "callout",
+          "component": "HB-CALLOUT-STRIP"
+        },
+        {
+          "chapter": "operations",
+          "source_ref": "source/transcription.json#operations/1",
+          "kind": "heading",
+          "component": "native heading"
+        },
+        {
+          "chapter": "operations",
+          "source_ref": "source/transcription.json#operations/2",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "operations",
+          "source_ref": "source/transcription.json#operations/3",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "operations",
+          "source_ref": "source/transcription.json#operations/4",
+          "kind": "figure",
+          "component": "HB-SPECIAL-REFERENCE-FIGURE"
+        }
+      ],
+      "new_original_crops": [
+        "charging"
+      ],
+      "review": "Compared original physical-page rendering with the curated Japanese source. OCR is a draft only; native parameter rows, reading order and complete figure boundaries are checked.",
+      "omissions": [
+        "printed folio"
+      ]
+    },
+    {
+      "physical_page": 11,
+      "native_pdf_characters": 0,
+      "chapters": [
+        "operations"
+      ],
+      "transcribed_blocks": [
+        {
+          "chapter": "operations",
+          "source_ref": "source/transcription.json#operations/5",
+          "kind": "specification",
+          "component": "HB-TABLE-SPEC"
+        },
+        {
+          "chapter": "operations",
+          "source_ref": "source/transcription.json#operations/6",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "operations",
+          "source_ref": "source/transcription.json#operations/7",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "operations",
+          "source_ref": "source/transcription.json#operations/8",
+          "kind": "heading",
+          "component": "native heading"
+        },
+        {
+          "chapter": "operations",
+          "source_ref": "source/transcription.json#operations/9",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "operations",
+          "source_ref": "source/transcription.json#operations/10",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "operations",
+          "source_ref": "source/transcription.json#operations/11",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "operations",
+          "source_ref": "source/transcription.json#operations/12",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "operations",
+          "source_ref": "source/transcription.json#operations/13",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "operations",
+          "source_ref": "source/transcription.json#operations/14",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "operations",
+          "source_ref": "source/transcription.json#operations/15",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "operations",
+          "source_ref": "source/transcription.json#operations/16",
+          "kind": "paragraph",
+          "component": "native copy"
+        }
+      ],
+      "new_original_crops": [],
+      "review": "Compared original physical-page rendering with the curated Japanese source. OCR is a draft only; native parameter rows, reading order and complete figure boundaries are checked.",
+      "omissions": [
+        "printed folio"
+      ]
+    },
+    {
+      "physical_page": 12,
+      "native_pdf_characters": 0,
+      "chapters": [
+        "disclaimer"
+      ],
+      "transcribed_blocks": [
+        {
+          "chapter": "disclaimer",
+          "source_ref": "source/transcription.json#disclaimer/0",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "disclaimer",
+          "source_ref": "source/transcription.json#disclaimer/1",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "disclaimer",
+          "source_ref": "source/transcription.json#disclaimer/2",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "disclaimer",
+          "source_ref": "source/transcription.json#disclaimer/3",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "disclaimer",
+          "source_ref": "source/transcription.json#disclaimer/4",
+          "kind": "paragraph",
+          "component": "native copy"
+        },
+        {
+          "chapter": "disclaimer",
+          "source_ref": "source/transcription.json#disclaimer/5",
+          "kind": "paragraph",
+          "component": "native copy"
+        }
+      ],
+      "new_original_crops": [],
+      "review": "Compared original physical-page rendering with the curated Japanese source. OCR is a draft only; native parameter rows, reading order and complete figure boundaries are checked.",
+      "omissions": [
+        "printed folio"
+      ]
+    }
+  ],
+  "source_concerns": [
+    {
+      "source_page": 7,
+      "text": "製品を分解、改造をを禁止する記号",
+      "note": "The repeated を is printed in the source; retained, not silently rewritten."
+    },
+    {
+      "source_page": 12,
+      "text": "スペースシャトルの製造",
+      "note": "Unusual source example retained verbatim; no new safety wording supplied."
+    },
+    {
+      "physical_page": 6,
+      "quote": "電動丸",
+      "decision": "The source lifespan bullet prints 電動丸 without ノコ, whereas physical page 5 prints 電動丸ノコ; keep the two source forms separately."
+    }
+  ],
+  "figure_policy": "Complete source device/finished panels and dense labelled overview drawings are retained. Semantic prose/tables are native. Ordinary runtime device silhouettes and charging-method glyphs repeat the adjacent native labels and are omitted as decoration.",
+  "shared_reference": "JS-CONNECTION-GUIDE/JP/ja/git-20261026-bc35fd65-connection-guide: existing governed Japanese ManualIR/theme edition; no same-model Web edition exists.",
+  "artwork_standardizations": [
+    {
+      "asset_key": "recycle",
+      "shared_symbol_key": "li-ion/recycle-li-ion",
+      "canonical_group": "li-ion",
+      "canonical_decision": "SCG-20261104",
+      "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_li_ion.svg",
+      "sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e",
+      "operator_instruction": {
+        "date": "2026-11-12",
+        "quotes": [
+          "独立回收标志不是有公共图吗",
+          "复用啊"
+        ],
+        "decision": "Use the shared canonical recycling artwork instead of another source-specific glyph; no new extraction and no 2% shape veto for this explicit standardization."
+      },
+      "printed_source": {
+        "physical_page": 2,
+        "label": "Li-ion 20",
+        "glyph_bbox": [
+          28.634114685058595,
+          439.327587890625,
+          79.29447143554687,
+          486.3984008789063
+        ],
+        "drawing_indices": [
+          569,
+          570,
+          571,
+          572,
+          573,
+          574,
+          575,
+          576,
+          577,
+          578,
+          579
+        ]
+      },
+      "normalization_difference": "The shared canonical graphic reads Li-ion and contains neither 20 nor 32. Original Li-ion 20 is preserved in the authoritative PDF and this source-review record. The visible technical body is unchanged, and the alt describes the actual shared graphic without claiming an embedded 20.",
+      "superseded_private_variant": {
+        "path": "assets/recycle.svg",
+        "sha256": "53f12c0b2167cdcea0d1cb1bc6fbe1ded818f437ef0785426f0d2c31f517e802",
+        "status": "superseded-private-variant-do-not-reuse"
+      },
+      "scope": "Only four standalone recycling marks; no product, LCD or inbox artwork changes."
+    }
+  ]
+}

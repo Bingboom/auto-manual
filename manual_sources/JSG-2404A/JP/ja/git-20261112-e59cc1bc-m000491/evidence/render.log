@@ -1,0 +1,16 @@
+{
+  "output": "/private/tmp/jp-bundles-discovery/491-web-v4",
+  "chapters": 13,
+  "components": {
+    "HB-CALLOUT-STRIP": 18,
+    "HB-SPECIAL-APP": 2,
+    "HB-SPECIAL-INBOX": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE": 14,
+    "HB-TABLE-LCD-ICON": 2,
+    "HB-TABLE-REFERENCE": 1,
+    "HB-TABLE-SPEC": 2,
+    "HB-TABLE-SYMBOL-ICON": 1,
+    "HB-TABLE-SYMBOL-SIGNAL": 1
+  }
+}
+{"symbol_asset_admission_rows": 6, "model": "JSG-2404A", "language": "ja", "chapters": 13, "shared_style_admission": "passed", "publication_eligible": false, "original_source_sha256": "e59cc1bc778eb5cea4ec0b77f3d3598d2703dc94a809108c8b4336709519bdb7"}

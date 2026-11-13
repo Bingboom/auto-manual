@@ -1,0 +1,55 @@
+{
+  "schema_version": "frozen-japanese-web-validation/v1",
+  "model": "PTB021",
+  "source_sha256": "c1f0f04e5ee672bb1c82f3d0b5ca009dc4459db3a6152d74a96acd489caff67c",
+  "strict_sphinx": {
+    "passed": true,
+    "command": "python -m sphinx -n -W --keep-going -b html manual_sources/PTB021/JP/ja/git-20261112-c1f0f04e-material-web/web/ja /tmp/ptb021-jp-html",
+    "log": "strict-sphinx.log"
+  },
+  "cold_replay": {
+    "passed": true,
+    "method": "Copy only web/ja, delete generated Markdown, reconstruct through tools.web.frozen_ai_web.replay_package without PDF/OCR/source inputs",
+    "reconstructed_markdown_sha256": "ef0e0917603080353a29bba69cbacb3f566dde943f699e3d6d70232bbac57d2d"
+  },
+  "tamper_rejection": {
+    "asset": "document asset missing or changed: assets/recycle.svg",
+    "stylesheet": "frozen Web stylesheet changed"
+  },
+  "shared_style_admission": {
+    "profile": "prepared-document-shared-styles/v1",
+    "applicable": true,
+    "model": "PTB021",
+    "region": "JP",
+    "language": "ja",
+    "declared_tables": 0,
+    "issues": []
+  },
+  "component_inventory": {
+    "HB-CALLOUT-STRIP": 3,
+    "HB-SPECIAL-INBOX": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE": 3,
+    "HB-TABLE-SPEC": 5,
+    "HB-TABLE-SYMBOL-ICON": 1,
+    "HB-TABLE-SYMBOL-SIGNAL": 1
+  },
+  "physical_page_coverage": 12,
+  "publication_eligible": false,
+  "pending": "Operator source review and publication authorization remain separate",
+  "canonical_recycle_reuse": {
+    "status": "current-public-canonical",
+    "shared_symbol_key": "li-ion/recycle-li-ion",
+    "canonical_group": "li-ion",
+    "canonical_decision": "SCG-20261104",
+    "sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e",
+    "byte_identical_to_shared": true,
+    "scope": "Only four standalone recycling marks; all technical body text and other artwork bytes unchanged.",
+    "operator_instruction": "独立回收标志不是有公共图吗；复用啊 (2026-11-12)",
+    "source_normalization": "Printed source Li-ion 20 -> common graphic Li-ion with neither 20 nor 32. Original 20 remains in PDF/source-review provenance; accurate generic alt, no new visible 20 body copy.",
+    "extraction": "none; private extraction and source-specific shape veto removed",
+    "edges": "Current public canonical checked at 12x on white/checkerboard; see recycle-transparency-12x.png",
+    "browser": "1280/390 full document and focused recycle-*.png; no overflow, missing images or JS errors",
+    "superseded": "Earlier private Li-ion20 SVG and source-match comparison claims are not current artwork evidence.",
+    "registry": "No shared library, global registry or promotion approval changed"
+  }
+}

@@ -1,0 +1,337 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "target": {
+    "model": "PTB071",
+    "region": "JP",
+    "languages": [
+      "ja"
+    ],
+    "technical_version": "git-20261112-ab6bd123-material-web"
+  },
+  "web_title": "Jackery ポータブル電源 708",
+  "original_source": {
+    "filename": "【Jackery ポータブル電源 708】说明书-JP.pdf",
+    "path": "source/original.pdf",
+    "sha256": "ab6bd12341101e45dbb6b57f03132bc8b55a6ecb57533c282ec9779c2c5b9ba3",
+    "size": 2111000,
+    "physical_page_count": 12
+  },
+  "material": "38-0001-000036",
+  "source_authority": "Operator selected this material in the Feishu publishing table for Japanese Web conversion on 2026-11-12; the current portrait attachment was downloaded and hash-locked. Original Japanese content governs.",
+  "printed_manual_version": null,
+  "language_scope": "single",
+  "publication_status": "review-candidate-no-release-authorization",
+  "publication_eligible": false,
+  "pending_source_review": [
+    "Operator review of the new outlined-source Japanese Web transcription and layout; no publication approval granted"
+  ],
+  "web_roots": {
+    "ja": "web/ja"
+  },
+  "component_map": {
+    "native_copy": "headings / paragraphs / lists in semantic flow",
+    "specifications_and_original_label_value_tables": "HB-TABLE-SPEC",
+    "inbox": "HB-SPECIAL-INBOX",
+    "signals": "HB-TABLE-SYMBOL-SIGNAL",
+    "symbol_meanings": "HB-TABLE-SYMBOL-ICON",
+    "dense_overview_and_complete_source_illustrations": "HB-SPECIAL-REFERENCE-FIGURE",
+    "notices": "HB-CALLOUT-STRIP",
+    "standalone_functional_marks": "Native inline image using byte-identical shared canonical li-ion/recycle-li-ion; accurate alt describes generic Li-ion. Printed 20 is preserved in source-review provenance, not added to the shared graphic."
+  },
+  "normalizations": [
+    "Join printed line wraps within the same Japanese paragraph; remove OCR-inserted inter-character spaces, while keeping Latin names and source numerical values.",
+    "Use × for the printed multiplication cross and ⎓ for the printed DC line/dash symbol; use ℃ and ～ for the source temperature/range glyphs. Japanese bracket width and whitespace are normalized for selectable text, without changing words or values.",
+    "Printed signal/icon matrices receive the structural headers 表示/意味 and 図記号/説明 for the shared table component; the source pictogram meanings remain unchanged.",
+    "Runtime example-device silhouettes are decorative: retain the exact native device names, powers, output-group titles and estimates in shared label/value tables.",
+    "Preserve substantive cover welcome, domestic-use restriction, compliance and support text; omit wordmarks, repeated cover 取扱説明書 label, decorative cover unit and printed page numerals.",
+    "Use the printed introductory thanks once as the native chapter heading, rather than duplicate it as a following paragraph.",
+    "Standalone recycling artwork follows the explicit operator reuse instruction: use shared canonical li-ion/recycle-li-ion unchanged, preserve the original Li-ion 20 in source-review provenance, and keep the technical body unchanged."
+  ],
+  "inputs": [
+    {
+      "path": "assets/charging.png",
+      "size": 100285,
+      "sha256": "2d6fb7ffa3cd0d53d1b658a820db38eadc408efc0d4c704495b2e8dc7de7da45"
+    },
+    {
+      "path": "assets/inbox-adapter.png",
+      "size": 3752,
+      "sha256": "8061195f92647dd85c6a4da3cd977e3b6d3ff2cac688299b675868e7c3925965"
+    },
+    {
+      "path": "assets/inbox-car.png",
+      "size": 4245,
+      "sha256": "5f2330abe7a0b70bbef902a150382725eeb491e4844b9ac89a9a0ea33f369407"
+    },
+    {
+      "path": "assets/inbox-main.png",
+      "size": 11328,
+      "sha256": "bb09f2e1d8a29bfdca2cb154118954422de03a0a09fa4470f54483a39004dcfc"
+    },
+    {
+      "path": "assets/inbox-manual.png",
+      "size": 5491,
+      "sha256": "7db6569065c8a15c227dae0b98a85677d0551e9885924c1387f562419e7bdc91"
+    },
+    {
+      "path": "assets/inbox-pouch.png",
+      "size": 2014,
+      "sha256": "72403f52d8bc37ed21df1c51e0e94c6797aa49e7539a829f897342e4fb2b21b9"
+    },
+    {
+      "path": "assets/lcd-panel.png",
+      "size": 19564,
+      "sha256": "f683a8fa3ad533f013bd792c0cfdd43f25d32849f9930b961234f05eec84f227"
+    },
+    {
+      "path": "assets/overview.png",
+      "size": 61079,
+      "sha256": "d8cdf4fe7f6ead97f14cfa9e976045477d94cc5ee08d965754f4b097815a7d7c"
+    },
+    {
+      "path": "assets/recycle.svg",
+      "size": 7306,
+      "sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e"
+    },
+    {
+      "path": "assets/symbol-dismantle.svg",
+      "size": 4358,
+      "sha256": "1e600dc9623481ec1950e4cee277d32620bdf1e82a99984ddfce91353ffb173b"
+    },
+    {
+      "path": "assets/symbol-keep-dry.svg",
+      "size": 5105,
+      "sha256": "fbd39d4686c3a26a73fa4c2dfec299d8055d9b9446edd973a397ce6d4e21a836"
+    },
+    {
+      "path": "assets/symbol-mandatory.svg",
+      "size": 1292,
+      "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2"
+    },
+    {
+      "path": "assets/symbol-no-wet-hands.svg",
+      "size": 3972,
+      "sha256": "d14a9720367b40d5a498a03d92ad0417bbc70d64fd0cea99c8891e0eb9725450"
+    },
+    {
+      "path": "assets/symbol-prohibited.svg",
+      "size": 1452,
+      "sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d"
+    },
+    {
+      "path": "assets/symbol-unplug.svg",
+      "size": 2569,
+      "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf"
+    },
+    {
+      "path": "source/asset_decisions.json",
+      "size": 11441,
+      "sha256": "d5e1b633b063a9611eb026e811bb499f335e7892d0cc12065aebb5deb7c080db"
+    },
+    {
+      "path": "source/asset_recipes.json",
+      "size": 8662,
+      "sha256": "73f6529e5b22e18f33a205e4d2127c2919b23c3a86db44c9f1a437ffaabbad31"
+    },
+    {
+      "path": "source/discovery.json",
+      "size": 2188,
+      "sha256": "bd0d43c89eb059a9d854dcb61bfdd5a5b5b0ec876896657ba7ede730f65b0760"
+    },
+    {
+      "path": "source/ocr/page-01.txt",
+      "size": 683,
+      "sha256": "b0aed36e10e852ab2f4c0a872eba0fac01040aa58ad88d00c6f42d04b63903d2"
+    },
+    {
+      "path": "source/ocr/page-02.txt",
+      "size": 1451,
+      "sha256": "926b0fb1f575ba055e32b6c9568a9972bf54fc6eb56ab475bc0c022a3a37c115"
+    },
+    {
+      "path": "source/ocr/page-03.txt",
+      "size": 931,
+      "sha256": "277d52c171428928ba2a49054fc7c462fc79ffb83690ce29629d253710c56c55"
+    },
+    {
+      "path": "source/ocr/page-04.txt",
+      "size": 1760,
+      "sha256": "f5dcd5228e9e58c8eb6a0dec434c0388a2da90fb4e3e8e002a4adf0f31a2d3d7"
+    },
+    {
+      "path": "source/ocr/page-05.txt",
+      "size": 3659,
+      "sha256": "7c765e273f49f35e8608c27b60f7396c23c29a30db3d63115f31f3d6cf188dfb"
+    },
+    {
+      "path": "source/ocr/page-06.txt",
+      "size": 3159,
+      "sha256": "71024f5f94383bb205f4e12b2f4b37e62b615efabc7d90dc58cccf44419476c3"
+    },
+    {
+      "path": "source/ocr/page-07.txt",
+      "size": 2849,
+      "sha256": "c21b2cc24286cbf4486cf56d597d47ff02dcf3089dcd0ea0aefe43ef423e5eb8"
+    },
+    {
+      "path": "source/ocr/page-08.txt",
+      "size": 2584,
+      "sha256": "32334160e2d9362ed6c7e2c830badc8a678afae29031f9588a1e5040091df45e"
+    },
+    {
+      "path": "source/ocr/page-09.txt",
+      "size": 3542,
+      "sha256": "d70e3dd4225ed8d90065537f71d2542bd05b3d9c8d27f5add6759b41355f765d"
+    },
+    {
+      "path": "source/ocr/page-10.txt",
+      "size": 1154,
+      "sha256": "dd0296ea3562ac9722f1dfc8b26e3030d57dbed0f4fb54b969244f6e19f32db3"
+    },
+    {
+      "path": "source/ocr/page-11.txt",
+      "size": 3020,
+      "sha256": "094f95977560a3160d53ae191f7a222641ecb884e56d3fe2e2b10a56bc350a62"
+    },
+    {
+      "path": "source/ocr/page-12.txt",
+      "size": 1689,
+      "sha256": "f469f8848cf8f3be00f73602abf9f48970998436d9f8e379e2152fdd186b387c"
+    },
+    {
+      "path": "source/original.pdf",
+      "size": 2111000,
+      "sha256": "ab6bd12341101e45dbb6b57f03132bc8b55a6ecb57533c282ec9779c2c5b9ba3"
+    },
+    {
+      "path": "source/page_review.json",
+      "size": 28927,
+      "sha256": "0cf7dacdd26df358904b0d9c6cae771ddbe82d76f6be103c4ef25715f2f4d047"
+    },
+    {
+      "path": "source/source-info.json",
+      "size": 356,
+      "sha256": "6ce14b2b75f96088a5d4e905d5010c0c3ba1e478a21b33ed0d9adca030c972de"
+    },
+    {
+      "path": "source/transcription.json",
+      "size": 38617,
+      "sha256": "b7eae7f767eaffce6e9291ccd4e072d88afba436a7ad6470794ab335fddcd6ee"
+    },
+    {
+      "path": "render.py",
+      "size": 12816,
+      "sha256": "343f14a15dcdd7218196cc89fa4794ca303aff34a39587b87d6b9f33cdeb068d"
+    },
+    {
+      "path": "derive_assets.py",
+      "size": 1762,
+      "sha256": "d188723cc9795080182c68eb445668c407cdf2598eb13e6dfece31dbb9602783"
+    },
+    {
+      "path": "refresh_manifest.py",
+      "size": 2265,
+      "sha256": "9f99224ccc96ea88be42e8a660371d28bbee9a9da238cbd329e538b589ae5aae"
+    }
+  ],
+  "repo_inputs": [
+    {
+      "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
+      "sha256": "a2773f7e96849e176a9909e8221e37c20eb9005cd2639415bf6a112d7c86527f"
+    },
+    {
+      "path": "manual_sources/PTB021/JP/ja/git-20261112-c1f0f04e-material-web/assets/lcd-panel.png",
+      "sha256": "f683a8fa3ad533f013bd792c0cfdd43f25d32849f9930b961234f05eec84f227"
+    },
+    {
+      "path": "manual_sources/PTB021/JP/ja/git-20261112-c1f0f04e-material-web/assets/inbox-car.png",
+      "sha256": "5f2330abe7a0b70bbef902a150382725eeb491e4844b9ac89a9a0ea33f369407"
+    },
+    {
+      "path": "manual_sources/PTB021/JP/ja/git-20261112-c1f0f04e-material-web/assets/inbox-adapter.png",
+      "sha256": "8061195f92647dd85c6a4da3cd977e3b6d3ff2cac688299b675868e7c3925965"
+    },
+    {
+      "path": "manual_sources/PTB021/JP/ja/git-20261112-c1f0f04e-material-web/assets/inbox-pouch.png",
+      "sha256": "72403f52d8bc37ed21df1c51e0e94c6797aa49e7539a829f897342e4fb2b21b9"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-unplug.svg",
+      "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-do_not_dismantle.svg",
+      "sha256": "1e600dc9623481ec1950e4cee277d32620bdf1e82a99984ddfce91353ffb173b"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-keep_dry.svg",
+      "sha256": "fbd39d4686c3a26a73fa4c2dfec299d8055d9b9446edd973a397ce6d4e21a836"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-mandatory.svg",
+      "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-prohibited.svg",
+      "sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-no_wet_hands.svg",
+      "sha256": "d14a9720367b40d5a498a03d92ad0417bbc70d64fd0cea99c8891e0eb9725450"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_li_ion.svg",
+      "sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e"
+    }
+  ],
+  "printed_document_code": "Jackery-UM-004",
+  "shared_component_exceptions": [],
+  "artwork_standardizations": [
+    {
+      "asset_key": "recycle",
+      "shared_symbol_key": "li-ion/recycle-li-ion",
+      "canonical_group": "li-ion",
+      "canonical_decision": "SCG-20261104",
+      "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_li_ion.svg",
+      "sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e",
+      "operator_instruction": {
+        "date": "2026-11-12",
+        "quotes": [
+          "独立回收标志不是有公共图吗",
+          "复用啊"
+        ],
+        "decision": "Use the shared canonical recycling artwork instead of another source-specific glyph; no new extraction and no 2% shape veto for this explicit standardization."
+      },
+      "printed_source": {
+        "physical_page": 2,
+        "label": "Li-ion 20",
+        "glyph_bbox": [
+          28.634114685058595,
+          439.327587890625,
+          79.29447143554687,
+          486.3984008789063
+        ],
+        "drawing_indices": [
+          1465,
+          1466,
+          1467,
+          1468,
+          1469,
+          1470,
+          1471,
+          1472,
+          1473,
+          1474,
+          1475
+        ]
+      },
+      "normalization_difference": "The shared canonical graphic reads Li-ion and contains neither 20 nor 32. Original Li-ion 20 is preserved in the authoritative PDF and this source-review record. The visible technical body is unchanged, and the alt describes the actual shared graphic without claiming an embedded 20.",
+      "superseded_private_variant": {
+        "path": "assets/recycle.svg",
+        "sha256": "53f12c0b2167cdcea0d1cb1bc6fbe1ded818f437ef0785426f0d2c31f517e802",
+        "status": "superseded-private-variant-do-not-reuse"
+      },
+      "scope": "Only four standalone recycling marks; no product, LCD or inbox artwork changes."
+    }
+  ]
+}

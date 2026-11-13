@@ -130,6 +130,8 @@ create synthetic queue rows or write `HTML_link`.
    publish metadata at that receipt and its SHA-256. This evidence mode is
    distinct from the phase2 projection receipt; neither can be substituted
    for the other.
+   Keep non-serving machine audit reports outside each locale Web root (for example, under the source package evidence directory). The frozen receipt inventories the complete locale root, while the assembler copies only the recognized serving files, IR/bundle sidecars and sealed evidence. A report left inside the locale root would be omitted and correctly fail stored-inventory verification. Retain the report bytes in the immutable source evidence rather than relaxing the receipt comparison.
+
 4. Start from current `Hello-Docs/main:docs/publish/**` in an isolated checkout
    so previously published targets remain present. Assemble and verify the
    candidate with:
@@ -146,7 +148,7 @@ create synthetic queue rows or write `HTML_link`.
    the query corpus and seals the deployment receipt, including the bounded
    frozen-source inventory. A plain Sphinx build without the extension cannot
    validate those production callbacks.
-   The frozen-input inventory is bounded at 1536 MiB: it includes both the
+   The frozen-input inventory is bounded at 1600 MiB: it includes both the
    self-contained source packages and their assembled Web copies. JE-5000A JP
    brings the reviewed library from 1,057,291,744 to 1,093,933,355 bytes,
    exceeding the previous 1 GiB source budget. Served-output and network
@@ -165,7 +167,12 @@ create synthetic queue rows or write `HTML_link`.
    served-output, network, per-file or file-count limits. The JBP-3600A US and
    JP release (2026-10-14) left the library at 1,322,851,592 bytes
    (1,261.6 MiB) in 10,966 files, 18.4 MiB under that cap, so the source budget
-   is now 1536 MiB; the other limits are unchanged.
+   was raised to 1536 MiB at that release; the other limits were unchanged.
+   On 2026-11-12, the seven JP additions grow the 210-target source tree from
+   1,598,881,965 to 1,613,577,831 bytes in preflight (217 targets), exceeding the
+   previous 1536 MiB cap. Source storage is now bounded at 1600 MiB; served,
+   network, per-file and file-count limits remain unchanged.
+
 5. Commit that candidate on the normal Hello-Docs release branch and open the
    usual `docs/publish/**`-only PR. Do not include engineering code, review
    branches, print artifacts, or unrelated targets.

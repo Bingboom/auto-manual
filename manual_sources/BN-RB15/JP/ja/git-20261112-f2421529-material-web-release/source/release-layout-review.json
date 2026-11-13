@@ -1,0 +1,16 @@
+{
+  "issue": "Portal mobile warranty form table expanded the page to 592px at a 390px viewport; standalone Sphinx did not activate portal-scoped minimum-width styles.",
+  "change": "Use the existing shared table-wrapper docutils container for every plain native table outside registered components; all original rows, wording and blank fields remain unchanged, with no model CSS.",
+  "page_id": "warranty_form",
+  "source_physical_page": 16,
+  "before": {
+    "viewport": 390,
+    "document_scroll_width": 592
+  },
+  "additional_unwrapped_table_pages": [
+    "manual_notation",
+    "optional_accessories",
+    "product_overview",
+    "faq"
+  ]
+}

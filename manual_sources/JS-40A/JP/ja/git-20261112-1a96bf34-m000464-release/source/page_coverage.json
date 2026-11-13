@@ -1,0 +1,363 @@
+[
+  {
+    "physical_page": 1,
+    "included": false,
+    "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+    "line_ids": [],
+    "live_rows": 0,
+    "in_art_rows": 0,
+    "source_ocr_note": "Other-language/blank/contents/cover identity deliberately omitted"
+  },
+  {
+    "physical_page": 2,
+    "included": false,
+    "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+    "line_ids": [],
+    "live_rows": 0,
+    "in_art_rows": 0,
+    "source_ocr_note": "Other-language/blank/contents/cover identity deliberately omitted"
+  },
+  {
+    "physical_page": 3,
+    "included": true,
+    "disposition": "selected Japanese / common figure and legal material",
+    "line_ids": [
+      "guide.h",
+      "guide.s1",
+      "guide.art1"
+    ],
+    "live_rows": 2,
+    "in_art_rows": 1,
+    "source_ocr_note": "Independent jpn+eng OCR stored in evidence for included page; reviewed against 3.5x/5x native renders"
+  },
+  {
+    "physical_page": 4,
+    "included": true,
+    "disposition": "selected Japanese / common figure and legal material",
+    "line_ids": [
+      "guide.s2",
+      "guide.art2",
+      "guide.s3",
+      "guide.art3"
+    ],
+    "live_rows": 2,
+    "in_art_rows": 2,
+    "source_ocr_note": "Independent jpn+eng OCR stored in evidence for included page; reviewed against 3.5x/5x native renders"
+  },
+  {
+    "physical_page": 5,
+    "included": true,
+    "disposition": "selected Japanese / common figure and legal material",
+    "line_ids": [
+      "guide.s4",
+      "guide.art4",
+      "guide.s5",
+      "guide.art5"
+    ],
+    "live_rows": 2,
+    "in_art_rows": 2,
+    "source_ocr_note": "Independent jpn+eng OCR stored in evidence for included page; reviewed against 3.5x/5x native renders"
+  },
+  {
+    "physical_page": 6,
+    "included": false,
+    "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+    "line_ids": [],
+    "live_rows": 0,
+    "in_art_rows": 0,
+    "source_ocr_note": "Other-language/blank/contents/cover identity deliberately omitted"
+  },
+  {
+    "physical_page": 7,
+    "included": false,
+    "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+    "line_ids": [],
+    "live_rows": 0,
+    "in_art_rows": 0,
+    "source_ocr_note": "Other-language/blank/contents/cover identity deliberately omitted"
+  },
+  {
+    "physical_page": 8,
+    "included": false,
+    "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+    "line_ids": [],
+    "live_rows": 0,
+    "in_art_rows": 0,
+    "source_ocr_note": "Other-language/blank/contents/cover identity deliberately omitted"
+  },
+  {
+    "physical_page": 9,
+    "included": false,
+    "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+    "line_ids": [],
+    "live_rows": 0,
+    "in_art_rows": 0,
+    "source_ocr_note": "Other-language/blank/contents/cover identity deliberately omitted"
+  },
+  {
+    "physical_page": 10,
+    "included": false,
+    "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+    "line_ids": [],
+    "live_rows": 0,
+    "in_art_rows": 0,
+    "source_ocr_note": "Other-language/blank/contents/cover identity deliberately omitted"
+  },
+  {
+    "physical_page": 11,
+    "included": false,
+    "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+    "line_ids": [],
+    "live_rows": 0,
+    "in_art_rows": 0,
+    "source_ocr_note": "Other-language/blank/contents/cover identity deliberately omitted"
+  },
+  {
+    "physical_page": 12,
+    "included": false,
+    "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+    "line_ids": [],
+    "live_rows": 0,
+    "in_art_rows": 0,
+    "source_ocr_note": "Other-language/blank/contents/cover identity deliberately omitted"
+  },
+  {
+    "physical_page": 13,
+    "included": false,
+    "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+    "line_ids": [],
+    "live_rows": 0,
+    "in_art_rows": 0,
+    "source_ocr_note": "Other-language/blank/contents/cover identity deliberately omitted"
+  },
+  {
+    "physical_page": 14,
+    "included": false,
+    "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+    "line_ids": [],
+    "live_rows": 0,
+    "in_art_rows": 0,
+    "source_ocr_note": "Other-language/blank/contents/cover identity deliberately omitted"
+  },
+  {
+    "physical_page": 15,
+    "included": false,
+    "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+    "line_ids": [],
+    "live_rows": 0,
+    "in_art_rows": 0,
+    "source_ocr_note": "Other-language/blank/contents/cover identity deliberately omitted"
+  },
+  {
+    "physical_page": 16,
+    "included": false,
+    "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+    "line_ids": [],
+    "live_rows": 0,
+    "in_art_rows": 0,
+    "source_ocr_note": "Other-language/blank/contents/cover identity deliberately omitted"
+  },
+  {
+    "physical_page": 17,
+    "included": false,
+    "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+    "line_ids": [],
+    "live_rows": 0,
+    "in_art_rows": 0,
+    "source_ocr_note": "Other-language/blank/contents/cover identity deliberately omitted"
+  },
+  {
+    "physical_page": 18,
+    "included": false,
+    "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+    "line_ids": [],
+    "live_rows": 0,
+    "in_art_rows": 0,
+    "source_ocr_note": "Other-language/blank/contents/cover identity deliberately omitted"
+  },
+  {
+    "physical_page": 19,
+    "included": false,
+    "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+    "line_ids": [],
+    "live_rows": 0,
+    "in_art_rows": 0,
+    "source_ocr_note": "Other-language/blank/contents/cover identity deliberately omitted"
+  },
+  {
+    "physical_page": 20,
+    "included": false,
+    "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+    "line_ids": [],
+    "live_rows": 0,
+    "in_art_rows": 0,
+    "source_ocr_note": "Other-language/blank/contents/cover identity deliberately omitted"
+  },
+  {
+    "physical_page": 21,
+    "included": false,
+    "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+    "line_ids": [],
+    "live_rows": 0,
+    "in_art_rows": 0,
+    "source_ocr_note": "Other-language/blank/contents/cover identity deliberately omitted"
+  },
+  {
+    "physical_page": 22,
+    "included": false,
+    "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+    "line_ids": [],
+    "live_rows": 0,
+    "in_art_rows": 0,
+    "source_ocr_note": "Other-language/blank/contents/cover identity deliberately omitted"
+  },
+  {
+    "physical_page": 23,
+    "included": false,
+    "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+    "line_ids": [],
+    "live_rows": 0,
+    "in_art_rows": 0,
+    "source_ocr_note": "Other-language/blank/contents/cover identity deliberately omitted"
+  },
+  {
+    "physical_page": 24,
+    "included": false,
+    "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+    "line_ids": [],
+    "live_rows": 0,
+    "in_art_rows": 0,
+    "source_ocr_note": "Other-language/blank/contents/cover identity deliberately omitted"
+  },
+  {
+    "physical_page": 25,
+    "included": true,
+    "disposition": "selected Japanese / common figure and legal material",
+    "line_ids": [
+      "spec.h",
+      "spec.product.h",
+      "spec.r1.l",
+      "spec.r1.v",
+      "spec.r2.l",
+      "spec.r2.v",
+      "spec.r3.l",
+      "spec.r3.v",
+      "spec.r4.l",
+      "spec.r4.v",
+      "spec.r5.l",
+      "spec.r5.v",
+      "spec.r6.l",
+      "spec.r6.v",
+      "spec.r7.l",
+      "spec.r7.v",
+      "spec.r8.l",
+      "spec.r8.v",
+      "spec.r9.l",
+      "spec.r9.v",
+      "spec.r10.l",
+      "spec.r10.v",
+      "spec.r11.l",
+      "spec.r11.v",
+      "spec.r12.l",
+      "spec.r12.v",
+      "spec.r13.l",
+      "spec.r13.v",
+      "spec.r14.l",
+      "spec.r14.v",
+      "spec.r15.l",
+      "spec.r15.v",
+      "spec.r16.l",
+      "spec.r16.v",
+      "spec.r17.l",
+      "spec.r17.v",
+      "spec.r18.l",
+      "spec.r18.v",
+      "spec.r19.l",
+      "spec.r19.v",
+      "spec.r20.l",
+      "spec.r20.v",
+      "spec.stc",
+      "adapter.h",
+      "adapter.r1.l",
+      "adapter.r1.v",
+      "adapter.r2.l",
+      "adapter.r2.v"
+    ],
+    "live_rows": 48,
+    "in_art_rows": 0,
+    "source_ocr_note": "Independent jpn+eng OCR stored in evidence for included page; reviewed against 3.5x/5x native renders"
+  },
+  {
+    "physical_page": 26,
+    "included": true,
+    "disposition": "selected Japanese / common figure and legal material",
+    "line_ids": [
+      "power.h",
+      "power.panel",
+      "power.adapter",
+      "power.dc",
+      "power.jack",
+      "power.phone",
+      "power.bank",
+      "power.tablet",
+      "power.ports",
+      "power.note",
+      "box.h",
+      "box.c1",
+      "box.c2",
+      "box.c3",
+      "box.c4",
+      "box.c5",
+      "box.c6",
+      "box.note"
+    ],
+    "live_rows": 17,
+    "in_art_rows": 1,
+    "source_ocr_note": "Independent jpn+eng OCR stored in evidence for included page; reviewed against 3.5x/5x native renders"
+  },
+  {
+    "physical_page": 27,
+    "included": true,
+    "disposition": "selected Japanese / common figure and legal material",
+    "line_ids": [
+      "safety.h",
+      "safety.lead",
+      "safety.i1",
+      "safety.i2",
+      "safety.i3",
+      "safety.i4",
+      "safety.i5",
+      "safety.i6",
+      "safety.i7",
+      "safety.i8",
+      "safety.i9",
+      "safety.i10",
+      "safety.i11",
+      "contact.h",
+      "contact.body",
+      "service.h",
+      "service.warranty",
+      "service.support",
+      "service.mail",
+      "service.web",
+      "company.h",
+      "company.copy"
+    ],
+    "live_rows": 22,
+    "in_art_rows": 0,
+    "source_ocr_note": "Independent jpn+eng OCR stored in evidence for included page; reviewed against 3.5x/5x native renders"
+  },
+  {
+    "physical_page": 28,
+    "included": true,
+    "disposition": "selected Japanese / common figure and legal material",
+    "line_ids": [
+      "manufacturer.h",
+      "manufacturer.address",
+      "qr"
+    ],
+    "live_rows": 2,
+    "in_art_rows": 1,
+    "source_ocr_note": "Independent jpn+eng OCR stored in evidence for included page; reviewed against 3.5x/5x native renders"
+  }
+]

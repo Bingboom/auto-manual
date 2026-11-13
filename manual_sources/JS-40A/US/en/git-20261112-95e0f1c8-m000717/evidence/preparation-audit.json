@@ -1,0 +1,317 @@
+{
+  "status": "SOURCE_PREPARATION_PHASE_COMPLETE_SEE_CANDIDATE_VALIDATION",
+  "material": "38-0001-000717",
+  "source_sha256": "95e0f1c8f544920b6709403d5c6e9c82d5779de42a9cbc928d5164f0a80a6047",
+  "source_pages_observed": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "all_page_ocr_available": true,
+  "asset_intake_completed": true,
+  "operator_pixel_approval": false,
+  "native_web_body_authored": true,
+  "content_generation_blocked": true,
+  "block_reason": "Content filter blocked scratch content-generation helper call; no safety category supplied. Do not retry or route around.",
+  "asset_results": [
+    {
+      "slot": "power-device",
+      "sha256": "0706ccc6053cf25026edd1aa8264c8b144db8873730ce365aed9359633874e78",
+      "size": [
+        1534,
+        1217
+      ],
+      "edge_ink_pixels_threshold235": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "edge_evidence": "evidence/art-review/power-device-edges-12x.png",
+      "classification": "complete diagram/product illustration or QR; not standalone status icon",
+      "operator_pixel_approval": false,
+      "status": "art-preparation-qc-pass-review-only",
+      "native_12x_reviewer": "us_solar",
+      "finding": "Complete product/diagram/label boundaries checked against source; all four edges retained. No operator pixel acceptance or production promotion."
+    },
+    {
+      "slot": "inbox-usbc",
+      "sha256": "511ad02dfaa56121f3b664217628956a9109d43fb7b2dff19e5795cb78ce82d9",
+      "size": [
+        120,
+        221
+      ],
+      "edge_ink_pixels_threshold235": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "edge_evidence": "evidence/art-review/inbox-usbc-edges-12x.png",
+      "classification": "complete diagram/product illustration or QR; not standalone status icon",
+      "operator_pixel_approval": false,
+      "status": "art-preparation-qc-pass-review-only",
+      "native_12x_reviewer": "us_solar",
+      "finding": "Complete product/diagram/label boundaries checked against source; all four edges retained. No operator pixel acceptance or production promotion."
+    },
+    {
+      "slot": "contact-qr",
+      "sha256": "5bd8cff49238202778718385d034ef457400243751dba96b1b18ac6fe5e8bf47",
+      "size": [
+        197,
+        201
+      ],
+      "edge_ink_pixels_threshold235": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "edge_evidence": "evidence/art-review/contact-qr-edges-12x.png",
+      "classification": "complete diagram/product illustration or QR; not standalone status icon",
+      "operator_pixel_approval": false,
+      "status": "art-preparation-qc-pass-review-only",
+      "native_12x_reviewer": "us_solar",
+      "finding": "Complete product/diagram/label boundaries checked against source; all four edges retained. No operator pixel acceptance or production promotion."
+    },
+    {
+      "slot": "inbox-adapter",
+      "sha256": "60f5ba1e4ca461dcdf1d3b599d128c8520ca03633ea37b6e3959b753faae91d0",
+      "size": [
+        123,
+        216
+      ],
+      "edge_ink_pixels_threshold235": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "edge_evidence": "evidence/art-review/inbox-adapter-edges-12x.png",
+      "classification": "complete diagram/product illustration or QR; not standalone status icon",
+      "operator_pixel_approval": false,
+      "status": "art-preparation-qc-pass-review-only",
+      "native_12x_reviewer": "us_solar",
+      "finding": "Complete product/diagram/label boundaries checked against source; all four edges retained. No operator pixel acceptance or production promotion."
+    },
+    {
+      "slot": "inbox-pouch",
+      "sha256": "55d8c3c3d6f88252dbd98a9d6f09b70577458275924e8d89c2d41286bcc73161",
+      "size": [
+        273,
+        251
+      ],
+      "edge_ink_pixels_threshold235": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "edge_evidence": "evidence/art-review/inbox-pouch-edges-12x.png",
+      "classification": "complete diagram/product illustration or QR; not standalone status icon",
+      "operator_pixel_approval": false,
+      "status": "art-preparation-qc-pass-review-only",
+      "native_12x_reviewer": "us_solar",
+      "finding": "Complete product/diagram/label boundaries checked against source; all four edges retained. No operator pixel acceptance or production promotion."
+    },
+    {
+      "slot": "unfold-4",
+      "sha256": "7159f9d8bddb88c5d2a7b4ab3e8e3ec349bf3f86ab7cc53fec58208576911570",
+      "size": [
+        1600,
+        576
+      ],
+      "edge_ink_pixels_threshold235": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "edge_evidence": "evidence/art-review/unfold-4-edges-12x.png",
+      "classification": "complete diagram/product illustration or QR; not standalone status icon",
+      "operator_pixel_approval": false,
+      "status": "art-preparation-qc-pass-review-only",
+      "native_12x_reviewer": "us_solar",
+      "finding": "Complete product/diagram/label boundaries checked against source; all four edges retained. No operator pixel acceptance or production promotion."
+    },
+    {
+      "slot": "unfold-5",
+      "sha256": "fd032a9605fc5e4e0c48e554410daec72cee1a8bbdfc6bca41439ac286e91266",
+      "size": [
+        1672,
+        816
+      ],
+      "edge_ink_pixels_threshold235": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "edge_evidence": "evidence/art-review/unfold-5-edges-12x.png",
+      "classification": "complete diagram/product illustration or QR; not standalone status icon",
+      "operator_pixel_approval": false,
+      "status": "art-preparation-qc-pass-review-only",
+      "native_12x_reviewer": "us_solar",
+      "finding": "Complete product/diagram/label boundaries checked against source; all four edges retained. No operator pixel acceptance or production promotion."
+    },
+    {
+      "slot": "unfold-1",
+      "sha256": "d4f192fb0e8b2e6c6fe9f62b4cfc00bc59ad12606ebc48b1b7b55c274b623a1a",
+      "size": [
+        608,
+        656
+      ],
+      "edge_ink_pixels_threshold235": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "edge_evidence": "evidence/art-review/unfold-1-edges-12x.png",
+      "classification": "complete diagram/product illustration or QR; not standalone status icon",
+      "operator_pixel_approval": false,
+      "status": "art-preparation-qc-pass-review-only",
+      "native_12x_reviewer": "us_solar",
+      "finding": "Complete product/diagram/label boundaries checked against source; all four edges retained. No operator pixel acceptance or production promotion."
+    },
+    {
+      "slot": "inbox-manual",
+      "sha256": "5614a0dca59a649c1e9e8d519ff6f1586b704b3c53325e5d1deff29ff005e4a2",
+      "size": [
+        192,
+        272
+      ],
+      "edge_ink_pixels_threshold235": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "edge_evidence": "evidence/art-review/inbox-manual-edges-12x.png",
+      "classification": "complete diagram/product illustration or QR; not standalone status icon",
+      "operator_pixel_approval": false,
+      "status": "art-preparation-qc-pass-review-only",
+      "native_12x_reviewer": "us_solar",
+      "finding": "Complete product/diagram/label boundaries checked against source; all four edges retained. No operator pixel acceptance or production promotion."
+    },
+    {
+      "slot": "unfold-2",
+      "sha256": "a71fb0738c120520516984c3d99cffffcaa1b1ad0f2f65c31771c9ee45404a60",
+      "size": [
+        752,
+        720
+      ],
+      "edge_ink_pixels_threshold235": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "edge_evidence": "evidence/art-review/unfold-2-edges-12x.png",
+      "classification": "complete diagram/product illustration or QR; not standalone status icon",
+      "operator_pixel_approval": false,
+      "status": "art-preparation-qc-pass-review-only",
+      "native_12x_reviewer": "us_solar",
+      "finding": "Complete product/diagram/label boundaries checked against source; all four edges retained. No operator pixel acceptance or production promotion."
+    },
+    {
+      "slot": "unfold-3",
+      "sha256": "cc3bce48031cc93f8bde2651c84aa7052231a26214c2e7de88ee247b1b047331",
+      "size": [
+        992,
+        944
+      ],
+      "edge_ink_pixels_threshold235": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "edge_evidence": "evidence/art-review/unfold-3-edges-12x.png",
+      "classification": "complete diagram/product illustration or QR; not standalone status icon",
+      "operator_pixel_approval": false,
+      "status": "art-preparation-qc-pass-review-only",
+      "native_12x_reviewer": "us_solar",
+      "finding": "Complete product/diagram/label boundaries checked against source; all four edges retained. No operator pixel acceptance or production promotion."
+    },
+    {
+      "slot": "inbox-panel",
+      "sha256": "39f9ab6b4f6ca7dceef39bf435a736e9a196075704a0aea4c11c1fc529fe328b",
+      "size": [
+        856,
+        272
+      ],
+      "edge_ink_pixels_threshold235": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "edge_evidence": "evidence/art-review/inbox-panel-edges-12x.png",
+      "classification": "complete diagram/product illustration or QR; not standalone status icon",
+      "operator_pixel_approval": false,
+      "status": "art-preparation-qc-pass-review-only",
+      "native_12x_reviewer": "us_solar",
+      "finding": "Complete product/diagram/label boundaries checked against source; all four edges retained. No operator pixel acceptance or production promotion."
+    },
+    {
+      "slot": "inbox-cable",
+      "sha256": "d9c356d52b20e072dec01d8fab552c9efbb652927da9ff9c659b74c1d7bfa780",
+      "size": [
+        486,
+        294
+      ],
+      "edge_ink_pixels_threshold235": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "edge_evidence": "evidence/art-review/inbox-cable-edges-12x.png",
+      "classification": "complete diagram/product illustration or QR; not standalone status icon",
+      "operator_pixel_approval": false,
+      "status": "art-preparation-qc-pass-review-only",
+      "native_12x_reviewer": "us_solar",
+      "finding": "Complete product/diagram/label boundaries checked against source; all four edges retained. No operator pixel acceptance or production promotion."
+    },
+    {
+      "slot": "inbox-carabiner",
+      "sha256": "41c5a19e743bd847fcae671c137989d2970c5ce5448e6eb42e4106f5c2cf1f79",
+      "size": [
+        336,
+        252
+      ],
+      "edge_ink_pixels_threshold235": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "edge_evidence": "evidence/art-review/inbox-carabiner-edges-12x.png",
+      "classification": "complete diagram/product illustration or QR; not standalone status icon",
+      "operator_pixel_approval": false,
+      "status": "art-preparation-qc-pass-review-only",
+      "native_12x_reviewer": "us_solar",
+      "finding": "Complete product/diagram/label boundaries checked against source; all four edges retained. No operator pixel acceptance or production promotion."
+    }
+  ],
+  "next_required": [
+    "Operator source/pixel approval remains pending; candidate validation now records local source, replay and browser checks."
+  ],
+  "artwork_preparation_complete": true,
+  "web_browser_acceptance": "not-run-no-Web-body",
+  "artwork_summary": {
+    "total": 14,
+    "new_source_crops": 5,
+    "byte_identical_donor_reuse": 9,
+    "bare_art_source_comparison": "passed",
+    "four_edge_native_12x_review": "passed",
+    "new_global_asset_promotion": false
+  }
+}
