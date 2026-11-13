@@ -142,7 +142,7 @@
       "sha256": "afd97797892099453da88e9e48a3159d60e7991032a7aad0c875454906c2654f"
     },
     {
-      "path": "assets/inbox-hexkey.png",
+      "path": "assets/inbox-hex-tool.png",
       "size": 6650,
       "sha256": "460157617c69e96ea301b7e281727ecad24b986119857ac057b70a497993254c"
     },
@@ -203,13 +203,13 @@
     },
     {
       "path": "source/asset_decisions.json",
-      "size": 23808,
-      "sha256": "09367636e2430aa1fe93e200aa012356f77116f40b8c654f380d65df1aea4b66"
+      "size": 23812,
+      "sha256": "9c3b376c9290e70480c6074b254ab29b292cc02fa5f183812aa1d4f70924f15b"
     },
     {
       "path": "source/asset_recipes.json",
-      "size": 19141,
-      "sha256": "66fd1198114cac0896679da3256f9790fdc56599bf18ca1d357e9c697bc3389c"
+      "size": 19145,
+      "sha256": "82e146193ce7221d178f3ab130b94564916ee835abaea8db4599f0bc54552a1e"
     },
     {
       "path": "source/block_map.json",
@@ -228,8 +228,8 @@
     },
     {
       "path": "source/transcription.json",
-      "size": 32017,
-      "sha256": "070fb853e4e1ba6a830404566c099d4c941fdf3f2a2b6edf9f7c36cb53e45f37"
+      "size": 32019,
+      "sha256": "ff3dae34be33af9a84cfbcf55372e0e2e59100fd591c943a48a47e03970eecd9"
     },
     {
       "path": "render.py",

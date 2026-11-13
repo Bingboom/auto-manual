@@ -90,7 +90,7 @@
       "sha256": "96a8d2b3596db0deb4ab382ef92cb869156b8a7797f3d0c7d2479a19a56923ed",
       "bytes": 6453
     },
-    "inbox-hexkey": {
+    "inbox-hex-tool": {
       "mode": "source-crop",
       "physical_page": 5,
       "image_px_box": [
@@ -99,7 +99,7 @@
         701,
         960
       ],
-      "path": "assets/inbox-hexkey.png",
+      "path": "assets/inbox-hex-tool.png",
       "reason": "No matching finished JS-500A/JS-85A artwork exists in the recorded inventories (see inventory_checked); this booklet's SolarSaga 85 panel, Anderson connector, hinge set and Explorer power-station drawings differ from every candidate inspected, so the current source drawing is extracted once at native 300 dpi.",
       "boundary_strategy": "Package-list item drawing; native label and quantity stay in the shared inbox card.",
       "sha256": "460157617c69e96ea301b7e281727ecad24b986119857ac057b70a497993254c",

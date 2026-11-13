@@ -6,7 +6,7 @@
     "assets/inbox-manual.png",
     "assets/hinge.png",
     "assets/inbox-stake.png",
-    "assets/inbox-hexkey.png",
+    "assets/inbox-hex-tool.png",
     "assets/inbox-screw.png",
     "assets/inbox-plug.png",
     "assets/inbox-carabiner.png",
@@ -29,8 +29,8 @@
     "assets/contact-qr.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "f2fe04f4c095dac13c6fc534c1617e74b24a8b4e2d0b9653e8a12eaf0b367901",
-  "content_sha256": "5517ec7e10cb29cd7b4f5312c8f6f781dbac1c48d216b3931481fb3924d38279",
+  "bundle_sha256": "35bbbd1a3164558c3e7d03c86aa4fb52d779cc9703bfd55a56a95909d22b65b7",
+  "content_sha256": "f96ba62079a123becd700c9df8ff17d6829c4904eda38448ffb1e224b0ae450f",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -50,7 +50,7 @@
       "assets/inbox-bag.png": "b72b4e49bb02c8ac36cc06748dc8546b2f563bbee1bec1a47604d9b9318211b9",
       "assets/inbox-cable.png": "41a41a29c104f5ca1e3ba20420f1d4327b2b1ffc47824c5f7952e80036de6b62",
       "assets/inbox-carabiner.png": "afd97797892099453da88e9e48a3159d60e7991032a7aad0c875454906c2654f",
-      "assets/inbox-hexkey.png": "460157617c69e96ea301b7e281727ecad24b986119857ac057b70a497993254c",
+      "assets/inbox-hex-tool.png": "460157617c69e96ea301b7e281727ecad24b986119857ac057b70a497993254c",
       "assets/inbox-manual.png": "b44ab3bbb6764b7c20b948d0b69a6fd5506f30f34829c8dfbf9de3b5e56ff622",
       "assets/inbox-panel.png": "12b984d315d598835378256cdf0c4861a1fa2b91ead0dbef4a952a29a8a27357",
       "assets/inbox-plug.png": "5c7161d6021bd2eb3678782e2b7911824e2957127affc1bc5f24c38868c36b39",
@@ -1503,7 +1503,7 @@
           "size": 12640
         },
         {
-          "path": "assets/inbox-hexkey.png",
+          "path": "assets/inbox-hex-tool.png",
           "sha256": "460157617c69e96ea301b7e281727ecad24b986119857ac057b70a497993254c",
           "size": 6650
         },
@@ -1564,13 +1564,13 @@
         },
         {
           "path": "source/asset_decisions.json",
-          "sha256": "09367636e2430aa1fe93e200aa012356f77116f40b8c654f380d65df1aea4b66",
-          "size": 23808
+          "sha256": "9c3b376c9290e70480c6074b254ab29b292cc02fa5f183812aa1d4f70924f15b",
+          "size": 23812
         },
         {
           "path": "source/asset_recipes.json",
-          "sha256": "66fd1198114cac0896679da3256f9790fdc56599bf18ca1d357e9c697bc3389c",
-          "size": 19141
+          "sha256": "82e146193ce7221d178f3ab130b94564916ee835abaea8db4599f0bc54552a1e",
+          "size": 19145
         },
         {
           "path": "source/block_map.json",
@@ -1589,8 +1589,8 @@
         },
         {
           "path": "source/transcription.json",
-          "sha256": "070fb853e4e1ba6a830404566c099d4c941fdf3f2a2b6edf9f7c36cb53e45f37",
-          "size": 32017
+          "sha256": "ff3dae34be33af9a84cfbcf55372e0e2e59100fd591c943a48a47e03970eecd9",
+          "size": 32019
         },
         {
           "path": "render.py",
@@ -3862,13 +3862,13 @@
             "assets/inbox-manual.png",
             "assets/hinge.png",
             "assets/inbox-stake.png",
-            "assets/inbox-hexkey.png",
+            "assets/inbox-hex-tool.png",
             "assets/inbox-screw.png",
             "assets/inbox-plug.png",
             "assets/inbox-carabiner.png"
           ],
           "block_id": "in_the_box:block-0002",
-          "content_sha256": "6d71ac4528278a73a3e849818b3eba703a1ca5e1a13bd09389a7b21887acc48a",
+          "content_sha256": "6a0fd3887dd983ab8a52724fef143531fe76eda1fbb7721f752b33e8fa0cd6b9",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -4003,7 +4003,7 @@
                               {
                                 "alt": "Hex Key",
                                 "kind": "image",
-                                "source": "assets/inbox-hexkey.png"
+                                "source": "assets/inbox-hex-tool.png"
                               },
                               {
                                 "children": [
@@ -4128,7 +4128,7 @@
                   "role": "card_art"
                 },
                 {
-                  "asset_ref": "assets/inbox-hexkey.png",
+                  "asset_ref": "assets/inbox-hex-tool.png",
                   "locale_policy": "shared",
                   "role": "card_art"
                 },
@@ -4254,7 +4254,7 @@
       "skipped_raw": 0,
       "source_path": "source/transcription.json",
       "source_ref": "source/transcription.json#in_the_box",
-      "source_sha256": "c2e932e606657e69049194b875b84984fc6b47db36acd386f18406c57b3b761b"
+      "source_sha256": "c2e110ad8ef40848e988776ea5dea68d2b9d9620eec45e53403628641f7a0090"
     },
     {
       "blocks": [
