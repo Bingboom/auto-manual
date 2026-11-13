@@ -58,11 +58,12 @@
   "normalizations": [
     "Join printed line wraps; preserve wording, case, numbers and printed grammar.",
     "Full-width punctuation in the spec tables normalized to ASCII without changing values: '，' -> ', ' and '（…）' -> ' (…)'; 'W/㎡' -> 'W/m²'; '℃' -> '°C'.",
-    "Printed '*' bullet markers and '1.'-'4.' numbering become shared list markers; FCC '--' measure markers are kept as printed text.",
+    "Printed '*' bullet markers, '1.'-'4.' numbering and the FCC '--' measure markers become shared list markers (not doubled).",
     "The printed callout label 'Note:' is carried by the shared HB-CALLOUT-STRIP label 'Note' (the shared component draws the label; colon dropped as in JS-40A US/en).",
     "Omit decorative cover image and wordmark, contents page, US language tab, page numbers, package-list circled numbers and the three Customer Service marker icons; all substantive copy remains native.",
     "The medium-weight sentence 'We recommend standing the solar panel vertically before hinge installation.' is rendered bold to keep its printed emphasis.",
-    "The package-list hinge reuses the identical p.7 hinge drawing (one crop for both slots)."
+    "The package-list hinge reuses the identical p.7 hinge drawing (one crop for both slots).",
+    "Package-list quantities ('x 6', 'x 10', 'x 8', 'x 40', 'x 2') are joined to their item name with non-breaking spaces so a quantity never wraps onto its own line; characters are otherwise unchanged."
   ],
   "inputs": [
     {
@@ -222,13 +223,18 @@
     },
     {
       "path": "evidence/full-1280.png",
-      "size": 1159598,
-      "sha256": "7d9156384b8d8a29e3087dfaf43814e6ddac6e821d212232120ab949a40e79cd"
+      "size": 1155429,
+      "sha256": "bf4c38c9e2ed76f30cb33ccf134e5cad0f1363adf2f3c3952abe40cf3395e2ce"
     },
     {
       "path": "evidence/full-390.png",
-      "size": 619785,
-      "sha256": "702957a6bee2db0a80ddc968fed5854fc789501e00009f57e473bd84c87efcf7"
+      "size": 617549,
+      "sha256": "106071ede487ad1e936e4c00ed2091faee11c11b98d24109e9daeb3e945d2998"
+    },
+    {
+      "path": "evidence/independent-body-qc.json",
+      "size": 8928,
+      "sha256": "70a1df2bc59ec2251109ffa3e8b8fa4da779ed585e2ca6c65a1fd127cd868cd5"
     },
     {
       "path": "evidence/ocr/001.txt",
@@ -308,7 +314,7 @@
     {
       "path": "evidence/replay-and-tamper.json",
       "size": 1237,
-      "sha256": "ebf83326253d0dd4767932cfaa2518b47a9e07fe1e314517d4e703cfab9e4fe3"
+      "sha256": "706d5f45be898df59634516c8ffd045ce2332b7532611a39c3e7588e1c84370f"
     },
     {
       "path": "evidence/strict-sphinx.log",
@@ -352,13 +358,13 @@
     },
     {
       "path": "source/transcription.json",
-      "size": 32019,
-      "sha256": "dac8aee4f5b6313d008a586b8c85b5ad3722421485ba14c68992632b680bf86d"
+      "size": 32017,
+      "sha256": "070fb853e4e1ba6a830404566c099d4c941fdf3f2a2b6edf9f7c36cb53e45f37"
     },
     {
       "path": "source_manifest.json",
-      "size": 11864,
-      "sha256": "45ebd972ab480d058f620fb5eb9db738325b03228d8523cd299dbaadaac77921"
+      "size": 12062,
+      "sha256": "37461d35988662e8431b58ea35c43a8295d946d6dac84c015b165ada9f0961cd"
     },
     {
       "path": "web/en/_static/web_manual.css",
@@ -512,13 +518,13 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 263370,
-      "sha256": "57c4c30776a05c5feefa491450b0f1f0b62c0f7a6039e44697b31681ce8b3730"
+      "size": 263588,
+      "sha256": "17fa124aaa4d8d135df7b4ec821e90c26b831ca0759367ce4cc60a5dce4b3a6a"
     },
     {
       "path": "web/en/manual_js500a_us_en.md",
-      "size": 30665,
-      "sha256": "e368d6a4e9a1c8b4d3b2e291042b77b4efd65d9c75d9812447e9f3569d69d727"
+      "size": 30673,
+      "sha256": "21cc5a326edb923f447e81e2295701d09222fb87b4e01ec10f48d5b0b325b0bc"
     },
     {
       "path": "web/en/shared-style-admission.json",

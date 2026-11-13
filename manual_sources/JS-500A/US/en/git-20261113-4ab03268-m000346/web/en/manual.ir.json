@@ -29,8 +29,8 @@
     "assets/contact-qr.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "9586b507b30836c313fa3e4643547dc3189e20438da1ccb681164039eec8e018",
-  "content_sha256": "559000b3861ded060027d57575d614eccf74ec982b41ee0b07d9384b2cd33028",
+  "bundle_sha256": "f2fe04f4c095dac13c6fc534c1617e74b24a8b4e2d0b9653e8a12eaf0b367901",
+  "content_sha256": "5517ec7e10cb29cd7b4f5312c8f6f781dbac1c48d216b3931481fb3924d38279",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -1589,8 +1589,8 @@
         },
         {
           "path": "source/transcription.json",
-          "sha256": "dac8aee4f5b6313d008a586b8c85b5ad3722421485ba14c68992632b680bf86d",
-          "size": 32019
+          "sha256": "070fb853e4e1ba6a830404566c099d4c941fdf3f2a2b6edf9f7c36cb53e45f37",
+          "size": 32017
         },
         {
           "path": "render.py",
@@ -1614,11 +1614,12 @@
       "normalizations": [
         "Join printed line wraps; preserve wording, case, numbers and printed grammar.",
         "Full-width punctuation in the spec tables normalized to ASCII without changing values: '，' -> ', ' and '（…）' -> ' (…)'; 'W/㎡' -> 'W/m²'; '℃' -> '°C'.",
-        "Printed '*' bullet markers and '1.'-'4.' numbering become shared list markers; FCC '--' measure markers are kept as printed text.",
+        "Printed '*' bullet markers, '1.'-'4.' numbering and the FCC '--' measure markers become shared list markers (not doubled).",
         "The printed callout label 'Note:' is carried by the shared HB-CALLOUT-STRIP label 'Note' (the shared component draws the label; colon dropped as in JS-40A US/en).",
         "Omit decorative cover image and wordmark, contents page, US language tab, page numbers, package-list circled numbers and the three Customer Service marker icons; all substantive copy remains native.",
         "The medium-weight sentence 'We recommend standing the solar panel vertically before hinge installation.' is rendered bold to keep its printed emphasis.",
-        "The package-list hinge reuses the identical p.7 hinge drawing (one crop for both slots)."
+        "The package-list hinge reuses the identical p.7 hinge drawing (one crop for both slots).",
+        "Package-list quantities ('x 6', 'x 10', 'x 8', 'x 40', 'x 2') are joined to their item name with non-breaking spaces so a quantity never wraps onto its own line; characters are otherwise unchanged."
       ],
       "original_source": {
         "filename": "16-0102-000346_Jackery_SolarSaga_85_500X_EN.pdf",
@@ -3867,7 +3868,7 @@
             "assets/inbox-carabiner.png"
           ],
           "block_id": "in_the_box:block-0002",
-          "content_sha256": "2d8fb6c97ea8d51efaffb5f3c667312f7df97bbd1bcf5596ca0f3f58789c5df2",
+          "content_sha256": "6d71ac4528278a73a3e849818b3eba703a1ca5e1a13bd09389a7b21887acc48a",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -3880,7 +3881,7 @@
                           {
                             "children": [
                               {
-                                "alt": "Jackery SolarSaga 85 x 6",
+                                "alt": "Jackery SolarSaga 85 x 6",
                                 "kind": "image",
                                 "source": "assets/inbox-panel.png"
                               },
@@ -3888,7 +3889,7 @@
                                 "children": [
                                   {
                                     "kind": "text",
-                                    "text": "Jackery SolarSaga 85 x 6"
+                                    "text": "Jackery SolarSaga 85 x 6"
                                   }
                                 ],
                                 "kind": "paragraph"
@@ -3960,7 +3961,7 @@
                           {
                             "children": [
                               {
-                                "alt": "Hinge x 10",
+                                "alt": "Hinge x 10",
                                 "kind": "image",
                                 "source": "assets/hinge.png"
                               },
@@ -3968,7 +3969,7 @@
                                 "children": [
                                   {
                                     "kind": "text",
-                                    "text": "Hinge x 10"
+                                    "text": "Hinge x 10"
                                   }
                                 ],
                                 "kind": "paragraph"
@@ -3980,7 +3981,7 @@
                           {
                             "children": [
                               {
-                                "alt": "Ground Stakes x 8",
+                                "alt": "Ground Stakes x 8",
                                 "kind": "image",
                                 "source": "assets/inbox-stake.png"
                               },
@@ -3988,7 +3989,7 @@
                                 "children": [
                                   {
                                     "kind": "text",
-                                    "text": "Ground Stakes x 8"
+                                    "text": "Ground Stakes x 8"
                                   }
                                 ],
                                 "kind": "paragraph"
@@ -4020,7 +4021,7 @@
                           {
                             "children": [
                               {
-                                "alt": "Screw x 40",
+                                "alt": "Screw x 40",
                                 "kind": "image",
                                 "source": "assets/inbox-screw.png"
                               },
@@ -4028,7 +4029,7 @@
                                 "children": [
                                   {
                                     "kind": "text",
-                                    "text": "Screw x 40"
+                                    "text": "Screw x 40"
                                   }
                                 ],
                                 "kind": "paragraph"
@@ -4040,7 +4041,7 @@
                           {
                             "children": [
                               {
-                                "alt": "Anderson Rubber Plug x 2",
+                                "alt": "Anderson Rubber Plug x 2",
                                 "kind": "image",
                                 "source": "assets/inbox-plug.png"
                               },
@@ -4048,7 +4049,7 @@
                                 "children": [
                                   {
                                     "kind": "text",
-                                    "text": "Anderson Rubber Plug x 2"
+                                    "text": "Anderson Rubber Plug x 2"
                                   }
                                 ],
                                 "kind": "paragraph"
@@ -4162,9 +4163,9 @@
                 {
                   "content": [
                     {
-                      "alt": "Jackery SolarSaga 85 x 6",
+                      "alt": "Jackery SolarSaga 85 x 6",
                       "image_asset_role": "card_art",
-                      "label": "Jackery SolarSaga 85 x 6",
+                      "label": "Jackery SolarSaga 85 x 6",
                       "number": 1
                     },
                     {
@@ -4186,15 +4187,15 @@
                       "number": 4
                     },
                     {
-                      "alt": "Hinge x 10",
+                      "alt": "Hinge x 10",
                       "image_asset_role": "card_art",
-                      "label": "Hinge x 10",
+                      "label": "Hinge x 10",
                       "number": 5
                     },
                     {
-                      "alt": "Ground Stakes x 8",
+                      "alt": "Ground Stakes x 8",
                       "image_asset_role": "card_art",
-                      "label": "Ground Stakes x 8",
+                      "label": "Ground Stakes x 8",
                       "number": 6
                     },
                     {
@@ -4204,15 +4205,15 @@
                       "number": 7
                     },
                     {
-                      "alt": "Screw x 40",
+                      "alt": "Screw x 40",
                       "image_asset_role": "card_art",
-                      "label": "Screw x 40",
+                      "label": "Screw x 40",
                       "number": 8
                     },
                     {
-                      "alt": "Anderson Rubber Plug x 2",
+                      "alt": "Anderson Rubber Plug x 2",
                       "image_asset_role": "card_art",
-                      "label": "Anderson Rubber Plug x 2",
+                      "label": "Anderson Rubber Plug x 2",
                       "number": 9
                     },
                     {
@@ -4253,7 +4254,7 @@
       "skipped_raw": 0,
       "source_path": "source/transcription.json",
       "source_ref": "source/transcription.json#in_the_box",
-      "source_sha256": "02b728f4ade73ac9c65d4f04c1b488c7f8c77938dfc6b425380093c2440a516a"
+      "source_sha256": "c2e932e606657e69049194b875b84984fc6b47db36acd386f18406c57b3b761b"
     },
     {
       "blocks": [
@@ -6460,7 +6461,7 @@
             "assets/fcc-mark.svg"
           ],
           "block_id": "safety:block-0003",
-          "content_sha256": "d861ad25718ed0db7c53415cd6422d6c445a56e9b0296651ffef974c1747c06d",
+          "content_sha256": "c6f0fcd86037ae691274f3013c20a828f1fceefe33fffd8b78ce7b0f0022ef0d",
           "kind": "flow",
           "payload": {
             "children": [
@@ -6481,7 +6482,7 @@
                         "children": [
                           {
                             "kind": "text",
-                            "text": "-- Reorient or relocate the receiving antenna."
+                            "text": "Reorient or relocate the receiving antenna."
                           }
                         ],
                         "kind": "list_item"
@@ -6490,7 +6491,7 @@
                         "children": [
                           {
                             "kind": "text",
-                            "text": "-- Increase the separation between the equipment and receiver."
+                            "text": "Increase the separation between the equipment and receiver."
                           }
                         ],
                         "kind": "list_item"
@@ -6499,7 +6500,7 @@
                         "children": [
                           {
                             "kind": "text",
-                            "text": "-- Connect the equipment into an outlet on a circuit different from that to which the receiver is connected."
+                            "text": "Connect the equipment into an outlet on a circuit different from that to which the receiver is connected."
                           }
                         ],
                         "kind": "list_item"
@@ -6508,7 +6509,7 @@
                         "children": [
                           {
                             "kind": "text",
-                            "text": "-- Consult the dealer or an experienced radio/TV technician for help."
+                            "text": "Consult the dealer or an experienced radio/TV technician for help."
                           }
                         ],
                         "kind": "list_item"
@@ -6559,10 +6560,10 @@
                         },
                         {
                           "items": [
-                            "-- Reorient or relocate the receiving antenna.",
-                            "-- Increase the separation between the equipment and receiver.",
-                            "-- Connect the equipment into an outlet on a circuit different from that to which the receiver is connected.",
-                            "-- Consult the dealer or an experienced radio/TV technician for help."
+                            "Reorient or relocate the receiving antenna.",
+                            "Increase the separation between the equipment and receiver.",
+                            "Connect the equipment into an outlet on a circuit different from that to which the receiver is connected.",
+                            "Consult the dealer or an experienced radio/TV technician for help."
                           ],
                           "kind": "list"
                         },
@@ -6609,7 +6610,7 @@
       "skipped_raw": 0,
       "source_path": "source/transcription.json",
       "source_ref": "source/transcription.json#safety",
-      "source_sha256": "258667334607bd4b05707d6958ebae2260202c7ecb19afc706e6cd232ad9aac9"
+      "source_sha256": "5b3dcb831a5446217736f73b1661311d7ef12ddbae96b56f99d5bf40ce6c8171"
     },
     {
       "blocks": [

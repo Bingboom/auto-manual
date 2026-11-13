@@ -58,11 +58,12 @@
   "normalizations": [
     "Join printed line wraps; preserve wording, case, numbers and printed grammar.",
     "Full-width punctuation in the spec tables normalized to ASCII without changing values: '，' -> ', ' and '（…）' -> ' (…)'; 'W/㎡' -> 'W/m²'; '℃' -> '°C'.",
-    "Printed '*' bullet markers and '1.'-'4.' numbering become shared list markers; FCC '--' measure markers are kept as printed text.",
+    "Printed '*' bullet markers, '1.'-'4.' numbering and the FCC '--' measure markers become shared list markers (not doubled).",
     "The printed callout label 'Note:' is carried by the shared HB-CALLOUT-STRIP label 'Note' (the shared component draws the label; colon dropped as in JS-40A US/en).",
     "Omit decorative cover image and wordmark, contents page, US language tab, page numbers, package-list circled numbers and the three Customer Service marker icons; all substantive copy remains native.",
     "The medium-weight sentence 'We recommend standing the solar panel vertically before hinge installation.' is rendered bold to keep its printed emphasis.",
-    "The package-list hinge reuses the identical p.7 hinge drawing (one crop for both slots)."
+    "The package-list hinge reuses the identical p.7 hinge drawing (one crop for both slots).",
+    "Package-list quantities ('x 6', 'x 10', 'x 8', 'x 40', 'x 2') are joined to their item name with non-breaking spaces so a quantity never wraps onto its own line; characters are otherwise unchanged."
   ],
   "inputs": [
     {
@@ -227,8 +228,8 @@
     },
     {
       "path": "source/transcription.json",
-      "size": 32019,
-      "sha256": "dac8aee4f5b6313d008a586b8c85b5ad3722421485ba14c68992632b680bf86d"
+      "size": 32017,
+      "sha256": "070fb853e4e1ba6a830404566c099d4c941fdf3f2a2b6edf9f7c36cb53e45f37"
     },
     {
       "path": "render.py",
