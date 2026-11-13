@@ -91,19 +91,21 @@ def _applies(attribute: dict[str, Any], category: str | None) -> bool:
 
 def read_facts(markup: str, attributes: list[dict[str, Any]], category: str | None
                ) -> tuple[dict[str, dict[str, Any]], list[str]]:
-    """The figures a manual's table states, each with its row; the applicable attributes it does not state."""
+    """Every figure a manual's table states, each with its row; the attributes its category states that it does not.
+
+    ``applies_to`` only decides which missing figures are gaps: a stated figure is exported whatever the category.
+    """
     pairs = matrix.spec_pairs(markup)
     figures = matrix.read_specs(pairs)
     rows = [(label, text, matrix.read_specs([(label, text)])) for label, text in pairs]
     facts: dict[str, dict[str, Any]] = {}
     unknown: list[str] = []
     for attribute in attributes:
-        if not _applies(attribute, category):
-            continue
         key, field, kind = attribute["key"], attribute["field"], attribute["type"]
         value = _value(figures[field], kind)
         if value is None:
-            unknown.append(key)
+            if _applies(attribute, category):
+                unknown.append(key)
             continue
         quotes = [f"{label}: {text}" for label, text, parsed in rows if _value(parsed[field], kind) == value]
         facts[key] = {"value": value, "unit": attribute.get("unit"), "quote": quotes[0] if quotes else ""}
@@ -132,6 +134,27 @@ def _product(entry: dict[str, Any] | None, marks: list[str]) -> dict[str, Any] |
     base, edition = _edition(entry["short"], marks)
     return {"short": entry["short"], "product": base, "edition": edition, "category": entry["category"],
             "series": entry["series"], "capacity_tier": entry.get("capacity", "")}
+
+
+def _names(products: list[dict[str, Any]]) -> dict[str, dict[str, str]]:
+    """Each model's catalog name per market, from the portal's manual catalog (``tools/rtd/portal.py``)."""
+    names: dict[str, dict[str, str]] = defaultdict(dict)
+    for product in products:
+        names[product["model"]].setdefault(product["region"], product.get("name") or "")
+    return names
+
+
+def _name(model: str, market: str, context: dict[str, Any]) -> str:
+    """The 产品矩阵's name: a ``names`` override, else this market's catalog name, else another market's, else the code."""
+    override = context["config_names"].get(model)
+    if override:
+        return override
+    by_market = context["names"].get(model, {})
+    rank = {code: index for index, code in enumerate(context["market_order"])}
+    for region in [market, *sorted(by_market, key=lambda code: (rank.get(code, len(rank)), code))]:
+        if by_market.get(region):
+            return matrix.display_name(by_market[region], model)
+    return model
 
 
 def _capabilities(root: Path) -> tuple[list[str], dict[tuple[str, str], list[bool]], dict[str, Any]]:
@@ -174,7 +197,8 @@ def _record(srcdir: Path, rows: list[dict[str, Any]], context: dict[str, Any], p
     page = _page(target)
     switches = context["switches"].get((model, region))
     return {
-        "id": f"{model}/{region}", "model": model, "market": region, "product": product,
+        "id": f"{model}/{region}", "model": model, "market": region, "name": _name(model, region, context),
+        "product": product,
         "manual": {"language": target["lang"], "version": target.get("version") or None,
                    "published_at": target.get("built_at") or None, "page": page,
                    "url": f"{context['site']}/{page}" if context["site"] else None,
@@ -221,8 +245,12 @@ def _inputs(manifest: Path, catalog: dict[str, Any], registry: dict[str, Any], a
             "attributes": {"schema": ATTRIBUTES_SCHEMA, "sha256": _sha256(attributes_path.read_bytes())}}
 
 
-def build_export(root: Path, assets: Path = ASSETS, attributes_path: Path = ATTRIBUTES) -> dict[str, Any]:
-    """The export for the frozen Web publication under ``root``'s docs directory."""
+def build_export(root: Path, assets: Path = ASSETS, attributes_path: Path = ATTRIBUTES,
+                 products: list[dict[str, Any]] | None = None) -> dict[str, Any]:
+    """The export for the frozen Web publication under ``root``'s docs directory.
+
+    ``products`` is the manual catalog the names come from; by default the portal reads it from the Web source.
+    """
     docs = Paths(root).docs_dir
     manifest = docs_publish_of(docs) / PathSegments.PUBLISH_MANIFEST_JSON
     targets, _built_at = read_publications(manifest)
@@ -234,10 +262,16 @@ def build_export(root: Path, assets: Path = ASSETS, attributes_path: Path = ATTR
     settings = json.loads((assets / SETTINGS).read_text(encoding="utf-8"))
     config = json.loads((assets / matrix.CONFIG).read_text(encoding="utf-8"))
     attributes = load_attributes(attributes_path)
-    names, switches, registry = _capabilities(root)
+    capability_names, switches, registry = _capabilities(root)
+    if products is None:
+        from tools.rtd.portal import catalog as manual_catalog
+
+        products = manual_catalog(docs_publish_web_of(docs), settings)
     context = {"catalog": catalog, "marks": list(config.get("variant_marks", [])), "attributes": attributes,
-               "site": str(settings.get("site_base_url") or "").rstrip("/"), "capability_names": names,
-               "switches": switches, "language_order": list(config.get("language_order", []))}
+               "site": str(settings.get("site_base_url") or "").rstrip("/"), "capability_names": capability_names,
+               "switches": switches, "language_order": list(config.get("language_order", [])),
+               "market_order": list(config.get("region_order", [])), "names": _names(products),
+               "config_names": dict(config.get("names", {}))}
     problems: list[str] = []
     ordered = sorted(targets, key=lambda t: (t["model"], t["region"], t["lang"], t["route"]))
     markets: dict[tuple[str, str], list[dict[str, Any]]] = defaultdict(list)
@@ -246,11 +280,12 @@ def build_export(root: Path, assets: Path = ASSETS, attributes_path: Path = ATTR
             markets[(target["model"], target["region"])].append(target)
     records = [_record(docs_publish_web_of(docs), rows, context, problems) for _key, rows in sorted(markets.items())]
     return _document(records, _guides(ordered, catalog), attributes, problems,
-                     _inputs(manifest, catalog, registry, attributes_path), config)
+                     _inputs(manifest, catalog, registry, attributes_path), config, catalog)
 
 
 def _document(records: list[dict[str, Any]], guides: list[dict[str, Any]], attributes: list[dict[str, Any]],
-              problems: list[str], inputs: dict[str, Any], config: dict[str, Any]) -> dict[str, Any]:
+              problems: list[str], inputs: dict[str, Any], config: dict[str, Any],
+              catalog: dict[str, Any]) -> dict[str, Any]:
     found = differences(records, attributes)
     products = {record["product"]["product"] for record in records if record["product"]}
     summary = {"records": len(records), "products": len(products), "models": len({r["model"] for r in records}),
@@ -258,6 +293,9 @@ def _document(records: list[dict[str, Any]], guides: list[dict[str, Any]], attri
                "differences": len(found), "problems": len(problems)}
     return {"schema": SCHEMA, "basis": BASIS,
             "inputs": inputs, "attributes": attributes,
+            "classes": {"categories": catalog["categories"], "capacity_tiers": catalog.get("capacity_tiers", [])},
+            "market_order": list(config.get("region_order", [])),
+            "language_order": list(config.get("language_order", [])),
             "capability_labels": config.get("capability_labels", {}), "summary": summary,
             "records": records, "guides": guides, "differences": found, "problems": problems}
 

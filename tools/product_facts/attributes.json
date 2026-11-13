@@ -1,6 +1,6 @@
 {
   "schema": "hello-docs-product-attributes/v1",
-  "note": "Each figure the product-facts export reads from a published manual's specification table, defined once. `field` is the 产品矩阵 reading it comes from (tools/rtd/product_matrix.py read_specs); `applies_to` lists the 产品类别 that state it (absent: every category).",
+  "note": "Each figure the product-facts export reads from a published manual's specification table, defined once. `field` is the 产品矩阵 reading it comes from (tools/rtd/product_matrix.py read_specs). `applies_to` lists the 产品类别 whose manuals are expected to state it (absent: every category); it only decides which missing figures are gaps, since a stated figure is exported whatever the category.",
   "attributes": [
     {
       "key": "capacity_wh",

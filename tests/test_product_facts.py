@@ -16,7 +16,12 @@ CAPABILITIES = "Document_key,Project,UPS功能,静音充电\nJE-A_US,P-SECRET-1,
 LANGUAGES = "Document_key,Project,languages,notes\nJE-A_US,P-SECRET-1,en;fr,note\n"
 SETTINGS = {"site_base_url": "https://docs.example.test/en/latest/", "navigation": {}}
 CONFIG = {"region_order": ["US", "EU", "JP"], "language_order": ["en", "ja"], "variant_marks": ["沙金色"],
-          "capability_labels": {"静音充电": "静音"}}
+          "capability_labels": {"静音充电": "静音"}, "names": {"JS-S": "Panel S"}}
+# The portal's manual catalog: the names the 产品矩阵 shows.
+PRODUCTS = [{"model": "JE-A", "region": "US", "name": "Explorer 500 User Manual"},
+            {"model": "JE-A", "region": "EU", "name": ""},
+            {"model": "JE-B", "region": "JP", "name": "ポータブル電源 500 取扱説明書"},
+            {"model": "JS-S", "region": "US", "name": "SolarSaga 100"}]
 # A500 is sold as JE-A (US, EU) and JE-B (JP); 100W is a solar panel; HP3600's manual is missing; JX-Q is unclassified.
 CATALOG = {
     "schema": "hello-docs-product-catalog/v3", "exported_at": "2026-11-12", "source": "网页文档",
@@ -100,6 +105,16 @@ class ProductFactsTest(unittest.TestCase):
         self.assertEqual(record["manual"]["url"], "https://docs.example.test/en/latest/JE-A/US/en/md/manual_en.html")
         self.assertEqual([e["language"] for e in record["editions"]], ["en", "fr"])
         self.assertEqual(len(record["manual"]["sha256"]), 64)
+
+    def test_names_come_from_the_manual_catalog_and_the_header_carries_the_orders(self):
+        document = build_export(self.root, self.assets, products=PRODUCTS)
+        names = {record["id"]: record["name"] for record in document["records"]}
+        # Another market's name stands in for a market without one; an override wins; else the code.
+        self.assertEqual(names, {"JE-A/EU": "Explorer 500", "JE-A/US": "Explorer 500", "JE-B/JP": "ポータブル電源 500",
+                                 "JE-H/US": "JE-H", "JS-S/US": "Panel S", "JX-Q/US": "JX-Q"})
+        self.assertEqual((document["market_order"], document["language_order"]), (["US", "EU", "JP"], ["en", "ja"]))
+        self.assertEqual(document["classes"], {"categories": CATALOG["categories"],
+                                               "capacity_tiers": CATALOG["capacity_tiers"]})
 
     def test_each_figure_keeps_the_row_it_was_read_from(self):
         facts = self.records()["JE-A/US"]["facts"]
@@ -193,6 +208,14 @@ class AttributeDictionaryTest(unittest.TestCase):
                 path.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
                 with self.subTest(data=str(data)[:60]), self.assertRaises(ProductFactsError):
                     load_attributes(path)
+
+    def test_a_stated_figure_is_kept_outside_its_categories_and_only_gaps_follow_them(self):
+        attributes = load_attributes(ATTRIBUTES)
+        facts, unknown = read_facts(spec_table([("Capacity", "1512Wh"), ("IP Rating", "IP65 (All lids closed)")]),
+                                    attributes, "便携储能")
+        self.assertEqual(facts["ip_rating"], {"value": "IP65", "unit": None, "quote": "IP Rating: IP65 (All lids closed)"})
+        self.assertNotIn("ip_rating", unknown)
+        self.assertNotIn("panel_power_w", unknown)
 
     def test_a_table_without_a_figure_states_nothing(self):
         attributes = load_attributes(ATTRIBUTES)

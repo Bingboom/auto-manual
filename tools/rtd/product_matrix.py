@@ -57,7 +57,7 @@ _SPEC_PAIR = re.compile(r"<th[^>]*>(.*?)</th>\s*<td[^>]*>(.*?)</td>", re.S)
 # The source-layout spec lists (JE-2000A): a row of two paragraphs, label then value.
 _SPEC_ROW = re.compile(r'data-source-layout="spec-row"[^>]*>\s*<p[^>]*>(.*?)</p>\s*<p[^>]*>(.*?)</p>', re.S)
 _SPEC_HEADING = re.compile(r"^#{1,6}[^\n]*(?:SPECIFICATIONS|Specifications|仕様|规格|規格)", re.M)
-_NAME_SUFFIX = re.compile(r"\s*(?:取扱説明書|用户指南|User Manual)\s*$")
+_NAME_SUFFIX = re.compile(r"\s*(?:取扱説明書|用户指南|User Manual)\s*$", re.I)
 
 # Spec-table labels, matched case-insensitively against the row header.
 CAPACITY = (r"^Capacity$", r"^Internal Battery$", r"定格容量", r"^容量$")

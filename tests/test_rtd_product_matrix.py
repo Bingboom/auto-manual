@@ -114,6 +114,7 @@ class SpecParsingTests(unittest.TestCase):
         self.assertEqual(display_name("SlimPower H1（JE-WH）取扱説明書", "JE-WH"), "SlimPower H1")
         self.assertEqual(display_name("Battery Pack — JBP-1", "JBP-1"), "Battery Pack")
         self.assertEqual(display_name("", "JE-X"), "JE-X")
+        self.assertEqual(display_name("Explorer 1000 USER MANUAL", "JE-1000D"), "Explorer 1000")
 
 
 class ConfigTests(unittest.TestCase):
