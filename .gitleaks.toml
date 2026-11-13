@@ -20,6 +20,10 @@ regexes = [
   '''(?i)[A-Z_]*(BASE_TOKEN|WIKI_TOKEN|WIKI_NODE|NODE_TOKEN|OBJ_TOKEN)[A-Z_]*\s*[=:]''',
   # json/yaml resource-token fields (asset_base_bindings.json, lark-cli --params)
   '''"(base_token|wiki_node_token|wiki_token|obj_token|token)"\s*:\s*"[A-Za-z0-9]{20,32}"''',
+  # Feishu attachment resource IDs in pretty-printed intake evidence.
+  # Match the complete field line: regexTarget=line must not exempt a
+  # credential that shares a compact JSON line with a valid attachment ID.
+  '''^\s*"(?:file_token|source_file_token)"\s*:\s*"[A-Za-z0-9]{20,32}"\s*,?\s*$''',
   # domain vocabulary: business keys are identifiers, not credentials.
   # The optional closing quote matters: without it this rule only ever matched
   # env / python / doc assignments, never the JSON form ("asset_key": "..."),

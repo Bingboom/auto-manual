@@ -1,0 +1,47 @@
+{
+  "source_sha256": "2198a1b781b9e62748d19e896e1032e3caeedb458b2556c06918ff0087dce7bf",
+  "assets": {
+    "inbox-product": {
+      "mode": "source-crop",
+      "physical_page": 4,
+      "clip_points": [
+        54,
+        57,
+        191,
+        169
+      ],
+      "path": "assets/inbox-product.png",
+      "reason": "No existing matching finished source-language/model illustration in the recorded inventories; full native illustration or item only, excluding external headings/numbers/body cells. ",
+      "boundary_strategy": "Keep all four illustration edges and source product surfaces; native external titles/body remain selectable. Complete English labelled connection diagrams retain their caption frame together with text; no text stripping or empty caption frames.",
+      "scale": 3
+    },
+    "inbox-sheet": {
+      "mode": "source-crop",
+      "physical_page": 4,
+      "clip_points": [
+        249,
+        83,
+        305,
+        159
+      ],
+      "path": "assets/inbox-sheet.png",
+      "reason": "No existing matching finished source-language/model illustration in the recorded inventories; full native illustration or item only, excluding external headings/numbers/body cells. ",
+      "boundary_strategy": "Keep all four illustration edges and source product surfaces; native external titles/body remain selectable. Complete English labelled connection diagrams retain their caption frame together with text; no text stripping or empty caption frames.",
+      "scale": 3
+    },
+    "contact-qr": {
+      "mode": "source-crop",
+      "physical_page": 7,
+      "path": "assets/contact-qr.png",
+      "reason": "No existing matching finished source-language/model illustration in the recorded inventories; full native illustration or item only, excluding external headings/numbers/body cells. ",
+      "boundary_strategy": "Keep all four illustration edges and source product surfaces; native external titles/body remain selectable. Complete English labelled connection diagrams retain their caption frame together with text; no text stripping or empty caption frames.",
+      "scale": 3,
+      "clip_points": [
+        302,
+        460,
+        342,
+        501
+      ]
+    }
+  }
+}

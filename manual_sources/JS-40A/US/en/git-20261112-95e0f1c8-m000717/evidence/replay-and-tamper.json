@@ -1,0 +1,29 @@
+{
+  "cold_rebuild": {
+    "files_identical": 20,
+    "ir_sha256": "b3efde4cbc955b16f3f0592b710d4b60a5bf614d139cc96b500d0bed1cb7851d",
+    "markdown_sha256": "acf1b1d84bae3f0337bedee770a06a60acf7ff2be81497d210041714a857707a"
+  },
+  "tamper_rejections": [
+    {
+      "kind": "artwork",
+      "rejected": true,
+      "message": "document asset missing or changed: assets/power-device.png"
+    },
+    {
+      "kind": "shared_css",
+      "rejected": true,
+      "message": "frozen Web stylesheet changed"
+    },
+    {
+      "kind": "source_pdf",
+      "rejected": true,
+      "message": "frozen input changed: source/original.pdf"
+    },
+    {
+      "kind": "native_body",
+      "rejected": true,
+      "message": "frozen input changed: source/transcription.json"
+    }
+  ]
+}

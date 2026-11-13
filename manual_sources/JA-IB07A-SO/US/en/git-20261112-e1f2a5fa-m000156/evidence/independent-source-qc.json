@@ -1,0 +1,122 @@
+{
+  "reviewer": "us_power independent readonly QC",
+  "targets": [
+    {
+      "model": "JS-45A",
+      "material": "38-0001-000912",
+      "physical_pages": 7,
+      "reviewed_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "transcription_path": "manual_sources/JS-45A/US/en/git-20261112-2198a1b7-m000912/source/transcription.json",
+      "transcription_sha256": "f5bca2a8b48e50ba6c5be6a7e277f0c7ea9dc5cf8942d7d3f4492ba0122822be",
+      "declared_source_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "scope": "independent native body/source identity coverage only; asset edges/browser acceptance remain owner/coordinator gates",
+      "substantive_omissions_found": []
+    },
+    {
+      "model": "JS-38A",
+      "material": "38-0001-000913",
+      "physical_pages": 7,
+      "reviewed_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "transcription_path": "manual_sources/JS-38A/US/en/git-20261112-8a76fee8-m000913/source/transcription.json",
+      "transcription_sha256": "5ecf4e43789deb5ee9454dff7f754250b88e84724e2e5330db1b3ba16abb4095",
+      "declared_source_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "scope": "independent native body/source identity coverage only; asset edges/browser acceptance remain owner/coordinator gates",
+      "substantive_omissions_found": []
+    },
+    {
+      "model": "JS-CONNECTION-GUIDE",
+      "material": "38-0001-000716",
+      "physical_pages": 1,
+      "reviewed_pages": [
+        1
+      ],
+      "transcription_path": "manual_sources/JS-CONNECTION-GUIDE/US/en/git-20261112-899cb3dd-m000716/source/transcription.json",
+      "transcription_sha256": "c25435e5bdd2e6d9a0acb12dfb7b656f4d4156ecd499801b117ff29e81d2c61e",
+      "declared_source_pages": [
+        1
+      ],
+      "scope": "independent native body/source identity coverage only; asset edges/browser acceptance remain owner/coordinator gates",
+      "substantive_omissions_found": []
+    },
+    {
+      "model": "JA-IB07A-SO",
+      "material": "16-0102-000156",
+      "physical_pages": 4,
+      "reviewed_pages": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "transcription_path": "manual_sources/JA-IB07A-SO/US/en/git-20261112-e1f2a5fa-m000156/source/transcription.json",
+      "transcription_sha256": "57d2be9f0007370124bfae9205bade0ca701d32ae4a1d3bc242a6a0a334b420e",
+      "declared_source_pages": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "scope": "independent native body/source identity coverage only; asset edges/browser acceptance remain owner/coordinator gates",
+      "substantive_omissions_found": []
+    }
+  ],
+  "source_basis": "All19physical English source pages rendered by owner and visually read; OCR cross-check, exact native transcription readback. SourcePDFs officialliveEnglishattachments fromthecoordinator intake.",
+  "confirmed_checks": [
+    "JS45A:45W±5%,9.93A±5%,4.53V±5%,10.36A±5%,5.54V±5%;JS38A:38W±5%,8.38A±5%,4.53V±5%,9.14A±5%,5.54V±5%.",
+    "Both tiles:4.5kg;720×430×35mm;1000V;20A;IP68;ClassCfire,Class3impact;IBC;ClassA;design+3600/−1600Pa;70°C;QCSolarSuzhou/QC4.10-cds;AM1.5/1000Wm2/25°C. Printed unusual NominalModuleOperatingTemperature−40–85°C preservedasconcern.",
+    "10yearproductwarrantyfrominstallation;25yearpowerwarranty,1–10years90%,11–25years80%;STC/thirdparty/IEC60904conditionspreserved.",
+    "Both tiles sourcep5:12numberedexclusions,threeForceMajeuresubclausesincluding15-daynotice; no automatic rewriting of odd sourceitem10.",
+    "Both tiles sourcep6:proofrequirements,repair-or-replace,interpretation,US/EU/JPemailcontacts;sourcep7:US/Germany/UK/Shenzhencompanies,address,email,phone/weballretained.",
+    "Guideonepage:26namedmodelsplusNewArrivals:USB-C4models;DC7909group9models;DC8020group13namedmodelsandNewArrivals;originalphysicalinsertionbutno-currentwarningretained. GenericJS-CONNECTION-GUIDEidentitycorrect,notsourceSKUJE100C.",
+    "Bottle:24oz/710ml,18/8stainlesssteel,3.15W×10H,24FluidOunces;3before-useand5precautionitems;1yeargeneral/5yearvacuuminsulationwarranties;email/website/lifetimetechsupport retained.",
+    "BottleJapaneselegalcontact〒104-6003and東京都中央区晴海1-8-10トリトンスクエアX棟3階readbackagainstsource4;notanadditionalJapaneseroute."
+  ],
+  "notes_to_owner": [
+    {
+      "target": "JA-IB07A-SO",
+      "block": "chapters[id=warranty].blocks[kind=years].periods",
+      "severity": "presentation semantics",
+      "finding": "Common warranty body is split over two periodcards:period1containscommoncoverage/exclusionsforboth1+5years,andperiod5hascommonreplacementclause. Sourcebothparagraphsapplybothterms. Keepcommonapplicationclear;ownerinformed.",
+      "status": "resolved: owner moved full original common paragraphs into separate shared Warranty coverage section following 1/5-year scope cards; independent native-json readback confirms both conditions remain common."
+    }
+  ],
+  "non_claims": [
+    "Not a source-authority approval or publication authorization.",
+    "Not a browser/image edge QA.",
+    "Hash-bound to the transcriptions captured here; material edits require readback."
+  ],
+  "final_readback": "Native warranty delta reviewed; source facts remain unchanged. All19pagebodyQC remains clear. Owner geometric/browser validations still apply separately.",
+  "path_normalization": "Evidence paths are repository-relative for relocation; source transcription hashes unchanged."
+}

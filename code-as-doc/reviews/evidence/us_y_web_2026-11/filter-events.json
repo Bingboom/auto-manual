@@ -1,0 +1,69 @@
+{
+  "schema_version": "manual-conversion-tool-events/v1",
+  "client_date": "2026-11-12",
+  "specific_filter_reason": null,
+  "blocked_response_bodies_saved": false,
+  "blocked_calls_retried": false,
+  "successful_continuation": {
+    "model": "JS-40A",
+    "material": "38-0001-000717",
+    "status": "complete-review-candidate"
+  },
+  "native_body_calls": [
+    {
+      "model": "JBP-1000A",
+      "material": "38-0001-000575",
+      "operation": "write source/transcription.json through the normal tool interface",
+      "result": "content-filter-blocked-before-execution",
+      "observed_exception": "SyntaxError: Invalid or unexpected token",
+      "specific_reason": null,
+      "native_body_file_created": false
+    },
+    {
+      "model": "JS-100G",
+      "material": "38-0001-000864",
+      "operation": "write source/transcription.json through the normal tool interface",
+      "result": "content-filter-blocked-before-execution",
+      "observed_exception": "SyntaxError: Invalid or unexpected token",
+      "specific_reason": null,
+      "native_body_file_created": false
+    },
+    {
+      "model": "JS-100F",
+      "material": "38-0001-000644",
+      "operation": "write source/transcription.json through the normal tool interface",
+      "result": "content-filter-blocked-before-execution",
+      "observed_exception": "SyntaxError: Invalid or unexpected token",
+      "specific_reason": null,
+      "native_body_file_created": false
+    }
+  ],
+  "dependent_books": [
+    {
+      "model": "JBP-2000A",
+      "material": "38-0001-000574",
+      "separate_body_attempted": false,
+      "depends_on_blocked_content_from": "JBP-1000A",
+      "shared_sections": [
+        "introduction",
+        "LCD descriptions",
+        "power and LCD operations"
+      ],
+      "status": "not-converted"
+    },
+    {
+      "model": "JS-85A",
+      "covered_models": [
+        "JS-85A",
+        "JS-500A"
+      ],
+      "material": "16-0102-000346",
+      "separate_body_attempted": false,
+      "depends_on_blocked_content_from": "JS-100F",
+      "source_page": 12,
+      "shared_warning_spans": 9,
+      "longest_overlap_tokens": 69,
+      "status": "not-converted"
+    }
+  ]
+}

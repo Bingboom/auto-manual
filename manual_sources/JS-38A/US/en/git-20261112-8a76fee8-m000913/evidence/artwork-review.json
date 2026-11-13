@@ -1,0 +1,43 @@
+{
+  "method": "Source crops rendered at 12x for boundary inspection; full source pages and desktop/mobile HTML checked separately. Agent visual QC is not operator acceptance.",
+  "assets": [
+    {
+      "asset": "inbox-product",
+      "reuse": "byte-identical existing artwork",
+      "source_path": "manual_sources/JS-45A/US/en/git-20261112-2198a1b7-m000912/assets/inbox-product.png",
+      "sha256": "98a55016d5e015ce562d67881927ee1758d640a38268be3b8bc3aa5dfd9d6b9c",
+      "byte_match": true
+    },
+    {
+      "asset": "inbox-sheet",
+      "physical_page": 4,
+      "clip_points": [
+        249,
+        83,
+        305,
+        159
+      ],
+      "source_render_scale": 12,
+      "all_four_edges": "visually compared against the complete physical source page; connector tips, QR frame, lid/strap/base and panel leaders retained",
+      "bare_art": "no text stripped; no empty caption boxes created; complete English diagram boxes retain their captions",
+      "path": "assets/inbox-sheet.png",
+      "sha256": "93dec9c3d1289f4f369897fd985075c008d4fbf0032d1268bcb9e752764baec1"
+    },
+    {
+      "asset": "contact-qr",
+      "physical_page": 7,
+      "clip_points": [
+        302,
+        460,
+        342,
+        501
+      ],
+      "source_render_scale": 12,
+      "all_four_edges": "visually compared against the complete physical source page; connector tips, QR frame, lid/strap/base and panel leaders retained",
+      "bare_art": "no text stripped; no empty caption boxes created; complete English diagram boxes retain their captions",
+      "path": "assets/contact-qr.png",
+      "sha256": "b297ef1ed1ffb9b11e4ffd75390bf6ae2f38e883f93c820a39c0f4816211360c"
+    }
+  ],
+  "release_authorized": false
+}
