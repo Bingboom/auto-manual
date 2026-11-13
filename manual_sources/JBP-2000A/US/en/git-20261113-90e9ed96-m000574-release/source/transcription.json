@@ -1,0 +1,571 @@
+{
+  "model": "JBP-2000A",
+  "language": "en",
+  "source_sha256": "90e9ed96c7128d4849825ef8179e6e79a677f9c3a709b19cc78c3cffa6d7b050",
+  "printed_manual_version": "JAK-UM-V1.0",
+  "cover_facts": {
+    "source_page": 1,
+    "rendered": false,
+    "product": "Jackery Battery Pack 2000 Plus",
+    "model_line": "Model: JBP-2000A",
+    "version_line": "Version: JAK-UM-V1.0",
+    "contact": [
+      "Contact us:",
+      "hello@jackery.com",
+      "1-888-502-2236(US)"
+    ]
+  },
+  "chapters": [
+    {
+      "id": "introduction",
+      "title": "INTRODUCTION",
+      "source_pages": [
+        3
+      ],
+      "heading_from_first_component": true,
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Congratulations on your new Jackery Battery Pack 2000 Plus. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for frequent reference."
+        },
+        {
+          "kind": "paragraph",
+          "text": "In compliance with laws and regulations, the right of final interpretation of this document and all related documents of this product resides with the Company."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Please kindly notice that no further notifications will be given in case of any update, revision or termination."
+        }
+      ]
+    },
+    {
+      "id": "specifications",
+      "title": "TECHNICAL SPECIFICATIONS",
+      "source_pages": [
+        3
+      ],
+      "blocks": [
+        {
+          "kind": "specification",
+          "title": "GENERAL INFO",
+          "rows": [
+            [
+              "Product Name",
+              "Jackery Battery Pack 2000 Plus"
+            ],
+            [
+              "Model No.",
+              "JBP-2000A"
+            ],
+            [
+              "Capacity",
+              "Lithium-ion 45.6Ah / 44.8V DC (2042.8Wh)"
+            ],
+            [
+              "Cell Chemistry",
+              "LiFePO4"
+            ],
+            [
+              "Weight",
+              "About 41.9 lbs / About 19 kg"
+            ],
+            [
+              "Dimensions",
+              "18.5 x 13 x 9.1 in / 47 x 33.1 x 23.1 cm"
+            ],
+            [
+              "Cycle Life",
+              "4000 cycles to 70%+ capacity"
+            ]
+          ]
+        },
+        {
+          "kind": "specification",
+          "title": "INPUT PORTS",
+          "rows": [
+            [
+              "DC input",
+              "2 x DC 8mm Ports: 11-17.5V (Working Voltage)⎓8A Max, Double to 8A Max; 17.5-60V (Working Voltage)⎓12A Max, Double to 24A/1400W Max"
+            ],
+            [
+              "2 x DC Expansion Port",
+              "32.2V-50.4V⎓97A Max"
+            ]
+          ]
+        },
+        {
+          "kind": "specification",
+          "title": "ENVIRONMENTAL OPERATING TEMPERATURE",
+          "rows": [
+            [
+              "Charge Temperature",
+              "0°C~45°C (32°F~113°F)"
+            ],
+            [
+              "Discharge Temperature",
+              "-10°C~45°C (14°F~113°F)"
+            ]
+          ]
+        },
+        {
+          "kind": "heading",
+          "text": "CERTIFICATIONS",
+          "level": 2
+        },
+        {
+          "kind": "figure",
+          "asset": "certifications",
+          "source_page": 3,
+          "alt": "Certification marks as printed: FCC, TÜV Rheinland C-US, NOM, NYCE and SGS Energy Efficiency."
+        },
+        {
+          "kind": "paragraph",
+          "text": "CAN ICES-003(B)/NMB-003(B)"
+        }
+      ]
+    },
+    {
+      "id": "in_the_box",
+      "title": "PACKAGE LIST",
+      "source_pages": [
+        4
+      ],
+      "blocks": [
+        {
+          "kind": "inbox",
+          "cards": [
+            [
+              "inbox-unit",
+              "Jackery Battery Pack 2000 Plus"
+            ],
+            [
+              "inbox-cable",
+              "Expansion Cable"
+            ],
+            [
+              "inbox-manual",
+              "User Manual"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "overview",
+      "title": "GET TO KNOW YOUR GEAR",
+      "source_pages": [
+        4
+      ],
+      "blocks": [
+        {
+          "kind": "heading",
+          "text": "Product Appearance",
+          "level": 2
+        },
+        {
+          "kind": "figure",
+          "asset": "overview-front",
+          "source_page": 4,
+          "alt": "Front of the Jackery Battery Pack 2000 Plus with source labels LCD Display and Main Power Button."
+        },
+        {
+          "kind": "figure",
+          "asset": "overview-rear",
+          "source_page": 4,
+          "alt": "Rear of the battery pack with source labels DC Input (2×8020), DC Expansion Port A (Connect to Expansion Cable Terminal A) and DC Expansion Port B (Connect to Expansion Cable Terminal B)."
+        }
+      ]
+    },
+    {
+      "id": "lcd_display",
+      "title": "LCD DISPLAY",
+      "source_pages": [
+        5
+      ],
+      "blocks": [
+        {
+          "kind": "figure",
+          "asset": "lcd",
+          "source_page": 5,
+          "alt": "LCD showing 100 % with source labels Power Percentage/Fault Code and Charging Indicator."
+        },
+        {
+          "kind": "reference_table",
+          "variant": "lcd-descriptions",
+          "rows": [
+            [
+              "Power Percentage/Fault Code:",
+              "The power display percentage of the current power value. When the system fails, it will be displayed as the corresponding fault code F0-FF. If the FF code appears, please remove the load and the product can recover by itself, if not, please contact after-sales service. In case of any other code appears, please contact our after-sales service."
+            ],
+            [
+              "Charging Indicator:",
+              "The indicator is displayed when charging and disappears when it is fully charged."
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "basic_operations",
+      "title": "BASIC OPERATIONS",
+      "source_pages": [
+        5
+      ],
+      "blocks": [
+        {
+          "kind": "heading",
+          "text": "Power on/off",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "Press the \"Main Power Button\" and the LCD display is illuminated. If you want to turn off the main power, please press and hold the \"Main Power Button\" until it turns off."
+        },
+        {
+          "kind": "figure",
+          "asset": "power-on-off",
+          "source_page": 5,
+          "alt": "A finger presses the Main Power Button beside the LCD on the battery pack front; enlarged detail of the button."
+        },
+        {
+          "kind": "callout",
+          "label": "Notes",
+          "variant": "note",
+          "paragraphs": [
+            "1. When using with Jackery Explorer 2000 Plus, you can control the power on or off of Jackery Battery Pack 2000 Plus through the \"Main Power Button\" of Jackery Explorer 2000 Plus.",
+            "2. If there is no discharge output or charging input, the product will automatically shut down after 2 hours."
+          ]
+        },
+        {
+          "kind": "heading",
+          "text": "LCD Display On/Off",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "When you press the \"Main Power Button\" or when charging the product, the LCD display is illuminated, and when you press it again, the display will turn off."
+        }
+      ]
+    },
+    {
+      "id": "usage_mode",
+      "title": "USAGE MODE",
+      "source_pages": [
+        6,
+        7
+      ],
+      "blocks": [
+        {
+          "kind": "heading",
+          "text": "USED TOGETHER WITH THE JACKERY EXPLORER 2000 PLUS",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "Jackery Explorer 2000 Plus Up to 10 sets of these products can be used together to meet the capacity needs of larger users."
+        },
+        {
+          "kind": "figure",
+          "asset": "usage-chain",
+          "source_page": 6,
+          "alt": "Two Jackery Explorer 2000 Plus units, each chained by Expansion line to five Jackery Battery Pack 2000 Plus units, joined by a Jackery Connector (Sold Separately). Complete source-labelled diagram."
+        },
+        {
+          "kind": "figure",
+          "asset": "usage-tree",
+          "source_page": 7,
+          "alt": "One Jackery Explorer 2000 Plus connected by Expansion Cable to five Jackery Battery Pack 2000 Plus units in a branching arrangement. Complete source-labelled diagram."
+        },
+        {
+          "kind": "heading",
+          "text": "SAFETY PRECAUTIONS WHEN USING",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "1. When this product is connected to the power station for AC discharge, it will switch to AC wall charging to charge the product and supply power to the connected equipment when it is connected to the grid."
+        },
+        {
+          "kind": "html",
+          "html": "<p>2. Make sure Jackery Explorer 2000 Plus and Jackery Battery Pack 2000 Plus are not in operation when connecting or disconnecting them.After the product is connected to the power station, the LCD display <img src=\"assets/inline-connection.png\" alt=\"connection icon x8 (as printed)\" width=\"33\"/> of the power station will light up before you can start charging or discharging.</p>"
+        },
+        {
+          "kind": "paragraph",
+          "text": "3. When using the battery pack, please do not stack more than two battery packs on top of the Jackery Explorer 2000 Plus to prevent it from falling off and causing injury."
+        }
+      ]
+    },
+    {
+      "id": "charging",
+      "title": "CHARGING YOUR JACKERY BATTERY PACK 2000 PLUS",
+      "source_pages": [
+        8
+      ],
+      "blocks": [
+        {
+          "kind": "heading",
+          "text": "CHARGING FROM THE WALL",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "When charging from the wall, this product must be used with Jackery Explorer 2000 Plus."
+        },
+        {
+          "kind": "figure",
+          "asset": "wall-charging",
+          "source_page": 8,
+          "alt": "Wall outlet to Jackery Explorer 2000 Plus by AC Cable; Jackery Explorer 2000 Plus to Jackery Battery Pack 2000 Plus by Expansion Cable. Complete source-labelled diagram."
+        },
+        {
+          "kind": "heading",
+          "text": "SAFETY PRECAUTIONS WHEN USING",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "Make sure Jackery Explorer 2000 Plus and Jackery Battery Pack 2000 Plus are not in operation when connecting or disconnecting them."
+        },
+        {
+          "kind": "heading",
+          "text": "SOLAR CHARGING",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "This product supports solar charging. You can refer to the user manual of Jackery Explorer 2000 Plus to know how to connect the solar panel."
+        },
+        {
+          "kind": "heading",
+          "text": "CHARGING IN THE CAR",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "This product can be charged with a 12V car charger. The car charger cable of Jackery Explorer 2000 Plus should be used for connection when charging. Please refer to the Jackery Explorer 2000 Plus user manual for precautions."
+        },
+        {
+          "kind": "figure",
+          "asset": "car-charging",
+          "source_page": 8,
+          "alt": "Jackery Battery Pack 2000 Plus connected to the Vehicle car outlet. Complete source-labelled diagram."
+        }
+      ]
+    },
+    {
+      "id": "safety",
+      "title": "SAFETY PRECAUTIONS WHEN USING",
+      "source_pages": [
+        9
+      ],
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "The basic safety precautions should be followed when using this product, including:"
+        },
+        {
+          "kind": "paragraph",
+          "text": "a. Please read all instructions before using this product."
+        },
+        {
+          "kind": "paragraph",
+          "text": "b. Close supervision is required when using this product near children to reduce the risk."
+        },
+        {
+          "kind": "paragraph",
+          "text": "c. Risk of electric shock may occur if using accessories recommended or sold by non-professional product manufacturers."
+        },
+        {
+          "kind": "paragraph",
+          "text": "d. When the product is not in use, please unplug the power plug from the product's socket."
+        },
+        {
+          "kind": "paragraph",
+          "text": "e. Do not dismantle the product, which may lead to unpredictable risks such as fire, explosion or electric shock."
+        },
+        {
+          "kind": "paragraph",
+          "text": "f. Do not use the product through damaged cords or plugs, or damaged output cables, which may cause electric shock."
+        },
+        {
+          "kind": "paragraph",
+          "text": "g. Charge the product in a well ventilated area and do not restrict ventilation in any way."
+        },
+        {
+          "kind": "paragraph",
+          "text": "h. Please put the product in a ventilated and dry place to avoid rain and water to cause electric shock."
+        },
+        {
+          "kind": "paragraph",
+          "text": "i. Do not expose the product to fire or high temperature (under direct sunlight or in vehicle under high heat), which may cause accidents such as fire and explosion."
+        },
+        {
+          "kind": "paragraph",
+          "text": "j. When using it for the first time, please fully charge the device before use. If this product is stored for a long period of time (3 months - 6 months) with the power depleted, its performance will deteriorate and may even become unchargeable."
+        },
+        {
+          "kind": "fcc",
+          "note": "This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules. These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to radio communications. However, there is no guarantee that interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:",
+          "measures": [
+            "Reorient or relocate the receiving antenna.",
+            "Increase the separation between the equipment and receiver.",
+            "Connect the equipment into an outlet on a circuit different from that to which the receiver is connected.",
+            "Consult the dealer or an experienced radio/TV technician for help."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "warranty",
+      "title": "WARRANTY",
+      "source_pages": [
+        10
+      ],
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "We only provide our warranty to customers who purchase from the official Jackery website, Jackery-branded third-party platforms, or local authorized dealers."
+        },
+        {
+          "kind": "paragraph",
+          "text": "*Warranty period and details may vary according to local laws, regulations, and authorized dealers."
+        },
+        {
+          "kind": "warranty",
+          "title": "Limited Warranty",
+          "paragraphs": [
+            "Jackery Inc. warrants to the original consumer purchaser that the Jackery product will be free from defects in workmanship and material under normal consumer use during the applicable warranty period identified in the 'Warranty Period' section below, subject to the exclusions set forth below.",
+            "This warranty statement sets forth Jackery's total and exclusive warranty obligation. We will not assume, nor authorize any person to assume for us, any other liability in connection with the sale of our products."
+          ]
+        },
+        {
+          "kind": "heading",
+          "text": "Warranty Period",
+          "level": 2
+        },
+        {
+          "kind": "years",
+          "title": "Warranty Period",
+          "periods": [
+            {
+              "number": "3",
+              "unit": "Years",
+              "label": "Standard Warranty",
+              "body": "The standard warranty period for Jackery Battery Pack 2000 Plus is 36 months. In each case, the warranty period is measured starting on the date of purchase by the original consumer purchaser. The sales receipt from the first consumer purchase, or other reasonable documentary proof, is required in order to establish the start date of the warranty period."
+            },
+            {
+              "number": "2",
+              "unit": "Years",
+              "label": "Extended Warranty",
+              "body": "To activate the Warranty Extension, you must register your product online or contact our customer service team at hello@jackery.com to extend the standard warranty runtime."
+            }
+          ]
+        },
+        {
+          "kind": "warranty",
+          "title": "Exchange",
+          "paragraphs": [
+            "Jackery will replace (at Jackery's expense) any Jackery product that fails to operate during the applicable warranty period due to defect in workmanship or material. A replacement product assumes the remaining warranty of the original product."
+          ]
+        },
+        {
+          "kind": "warranty",
+          "title": "Limited to Original Consumer Buyer",
+          "paragraphs": [
+            "The warranty on Jackery's product is limited to the original consumer purchaser and is not transferable to any subsequent owner."
+          ]
+        },
+        {
+          "kind": "warranty",
+          "title": "Exclusions",
+          "paragraphs": [
+            "Jackery's warranty does not apply to:",
+            "Misused, abused, modified, damaged by accident, or used for anything other than normal consumer use as authorized in Jackery's current product literature.",
+            "Attempted repair by anyone other than an authorized facility.",
+            "Any product purchased through an online auction house.",
+            "Jackery's warranty does not apply to the battery cell unless the battery cell is fully charged by you within seven days after you purchase the product and at least once every 6 months thereafter."
+          ]
+        },
+        {
+          "kind": "warranty",
+          "title": "Interpretation Rights",
+          "paragraphs": [
+            "Jackery Inc. reserves the right to final interpretation of the above customers' after-sales policy."
+          ]
+        },
+        {
+          "kind": "heading",
+          "text": "Download the Jackery Mobile App",
+          "level": 2
+        },
+        {
+          "kind": "figure",
+          "asset": "app-badges",
+          "source_page": 10,
+          "alt": "Available on the App Store; Get it on Google Play. Complete source store badges."
+        }
+      ]
+    },
+    {
+      "id": "mexico",
+      "title": "JACKERY MEXICO S.A. DE C.V.",
+      "source_pages": [
+        11
+      ],
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Calle Poseidón 18 PB, Crédito Constructor, Benito Juárez,"
+        },
+        {
+          "kind": "paragraph",
+          "text": "C.P. 03940, Ciudad de México, México"
+        }
+      ]
+    },
+    {
+      "id": "contacts",
+      "title": "JACKERY INC.",
+      "source_pages": [
+        11
+      ],
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "5310 Bunche Dr, Fremont, CA 94538"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Tel:1-888-502-2236(US)"
+        },
+        {
+          "kind": "paragraph",
+          "text": "E-mail:hello@jackery.com"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Website:www.jackery.com"
+        },
+        {
+          "kind": "image",
+          "asset": "contact-qr",
+          "source_page": 11,
+          "width": 160,
+          "alt": "Source back-cover QR code; complete code and all four frame edges."
+        }
+      ]
+    }
+  ],
+  "source_concerns": [
+    "INPUT PORTS / DC input prints '11-17.5V (Working Voltage)⎓8A Max, Double to 8A Max'; the doubled value equals the single-port value. Kept exactly as printed; not corrected.",
+    "Capacity prints 45.6Ah / 44.8V DC (2042.8Wh); 45.6 × 44.8 = 2042.88. Kept as printed.",
+    "Rear overview label prints 'DC Input (2×8020)' while the specification row prints '2 x DC 8mm Ports'. Both kept as printed.",
+    "Usage-mode sentence 'Jackery Explorer 2000 Plus Up to 10 sets of these products can be used together to meet the capacity needs of larger users.' kept with its source capitalization and grammar.",
+    "Page 6 diagram labels say 'Expansion line' while page 7 and the charging diagrams say 'Expansion Cable'; labels are inside the source art and unchanged.",
+    "Usage-mode safety item 2 prints 'them.After' without a space; kept as printed.",
+    "Usage-mode safety item 2 shows an inline power-station display icon followed by 'x8'; its meaning is not explained in the booklet. Reproduced as the source glyph image.",
+    "FCC section prints the NOTE paragraph and four '--' measures only; no part-15 compliance opening statement and no MODIFICATION paragraph (the JBP-1000A booklet prints MODIFICATION). Nothing added.",
+    "The back-cover QR code decodes to '380001000574' (the material number), not a URL. Kept as the printed image.",
+    "Cover prints 'Version: JAK-UM-V1.0'; kept as printed."
+  ]
+}

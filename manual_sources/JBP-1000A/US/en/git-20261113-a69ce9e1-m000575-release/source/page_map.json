@@ -1,0 +1,97 @@
+{
+  "source_physical_page_count": 11,
+  "chapters": [
+    {
+      "id": "introduction",
+      "source_pages": [
+        3
+      ]
+    },
+    {
+      "id": "specifications",
+      "source_pages": [
+        3
+      ]
+    },
+    {
+      "id": "in_the_box",
+      "source_pages": [
+        4
+      ]
+    },
+    {
+      "id": "overview",
+      "source_pages": [
+        4
+      ]
+    },
+    {
+      "id": "lcd_display",
+      "source_pages": [
+        5
+      ]
+    },
+    {
+      "id": "basic_operations",
+      "source_pages": [
+        5
+      ]
+    },
+    {
+      "id": "usage_mode",
+      "source_pages": [
+        6,
+        7
+      ]
+    },
+    {
+      "id": "charging",
+      "source_pages": [
+        7,
+        8
+      ]
+    },
+    {
+      "id": "safety",
+      "source_pages": [
+        8,
+        9
+      ]
+    },
+    {
+      "id": "warranty",
+      "source_pages": [
+        9,
+        10
+      ]
+    },
+    {
+      "id": "mexico",
+      "source_pages": [
+        11
+      ]
+    },
+    {
+      "id": "contacts",
+      "source_pages": [
+        11
+      ]
+    }
+  ],
+  "omissions": [
+    {
+      "physical_page": 1,
+      "reason": "Cover is not Web body (operator rules 2026-11-13: 「封面和目录 不用体现在web版面上」, 「封面信息 不用放进网页呀 直接从这个开始」). Product name, model line, printed version and cover contacts are kept only in transcription cover_facts, the manifest and README."
+    },
+    {
+      "physical_page": 2,
+      "reason": "Printed contents page (US English 01-08) is replaced by native Web navigation; no instruction omitted."
+    },
+    {
+      "physical_page": 11,
+      "reason": "Back cover blank area only; Jackery Mexico, Jackery Inc. and QR retained."
+    }
+  ],
+  "page_furniture_omitted": "Printed page numbers, 'US' / 'US English' language tabs and the 'Model:' header tab on page 3.",
+  "full_substantive_source_coverage": true
+}

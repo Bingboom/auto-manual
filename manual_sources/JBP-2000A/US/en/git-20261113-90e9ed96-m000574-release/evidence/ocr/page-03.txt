@@ -1,0 +1,51 @@
+US english Model: JBP-2000A
+
+Congratulations on your new Jackery Battery Pack 2000 Plus. Please read this manual carefully
+before using the product, particularly the relevant precautions to ensure proper use. Keep this
+manual in an accessible place for frequent reference.
+
+In compliance with laws and regulations, the right of final interpretation of this document and all
+related documents of this product resides with the Company.
+
+Please kindly notice that no further notifications will be given in case of any update, revision or
+termination.
+
+TECHNICAL SPECIFICATIONS
+GENERAL INFO
+
+Product Name Jackery Battery Pack 2000 Plus
+
+Model No. JBP-2000A
+
+Capacity Lithium-ion 45.6Ah / 44.8V DC (2042.8Wh)
+
+Cell Chemistry LiFePO4
+
+Weight About 419 lbs / About 19 kg
+
+Dimensions 18.5 x 13 x Q1in / 47 x 33.1x 23.1cm
+
+Cycle Life 4000 cycles to 70%+ capacity
+
+INPUT PORTS
+
+DC input 2 x DC 8mm Ports: T1-175V (Working Voltage)=8A Max,
+Double to 8A Max;
+
+17.5-60V (Working Voltage)=12A Max, Double to 24A/1400W Max
+2 x DC Expansion Port $2.2V-50.4V=97A Max
+
+ENVIRONMENTAL OPERATING TEMPERATURE
+
+Charge Temperature O°C~45°C (32°F ~113°F)
+Discharge Temperature -10°C~45°C (14°F ~113°F)
+
+CERTIFICATIONS 7 ee
+4e1l GQ overs evenor
+=p EFFICIENCY
+NYCE x
+
+CAN ICES-003(B)/NMB-003(B)
+
+o1
+

@@ -1,0 +1,924 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 40000000
+  },
+  "source": {
+    "source_key": "source/jbp-2000a_us_m000574",
+    "expected_sha256": "90e9ed96c7128d4849825ef8179e6e79a677f9c3a709b19cc78c3cffa6d7b050",
+    "expected_page_count": 11
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 11
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 1,
+      "page_scale": {}
+    }
+  },
+  "page_catalog": [
+    {
+      "page": 1,
+      "page_key": "p001",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 2,
+      "page_key": "p002",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 3,
+      "page_key": "p003",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 4,
+      "page_key": "p004",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 5,
+      "page_key": "p005",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 6,
+      "page_key": "p006",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 7,
+      "page_key": "p007",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 8,
+      "page_key": "p008",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 9,
+      "page_key": "p009",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 10,
+      "page_key": "p010",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 11,
+      "page_key": "p011",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "web/jbp-2000a/us/m000574/certifications",
+      "page": 3,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JBP-2000A"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            131.04,
+            439.2,
+            342.48,
+            477.12
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/certifications.png",
+          "scale": 4.166666666666667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/jbp-2000a/us/m000574/inbox-unit",
+      "page": 4,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JBP-2000A"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.6,
+            68.4,
+            141.12,
+            126.96
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/inbox-unit.png",
+          "scale": 4.166666666666667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/jbp-2000a/us/m000574/inbox-cable",
+      "page": 4,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JBP-2000A"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            187.44,
+            66.0,
+            223.92,
+            126.96
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/inbox-cable.png",
+          "scale": 4.166666666666667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/jbp-2000a/us/m000574/inbox-manual",
+      "page": 4,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JBP-2000A"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            281.76,
+            68.88,
+            325.68,
+            129.12
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/inbox-manual.png",
+          "scale": 4.166666666666667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/jbp-2000a/us/m000574/overview-front",
+      "page": 4,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JBP-2000A"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            72.0,
+            195.6,
+            342.72,
+            329.76
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            72.0,
+            195.6,
+            112.8,
+            203.04
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/overview-front.png",
+          "scale": 4.166666666666667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/jbp-2000a/us/m000574/overview-rear",
+      "page": 4,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JBP-2000A"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            71.76,
+            328.8,
+            342.72,
+            497.52
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/overview-rear.png",
+          "scale": 4.166666666666667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/jbp-2000a/us/m000574/lcd",
+      "page": 5,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JBP-2000A"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            53.04,
+            48.96,
+            323.28,
+            119.52
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/lcd.png",
+          "scale": 4.166666666666667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/jbp-2000a/us/m000574/power-on-off",
+      "page": 5,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JBP-2000A"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            84.96,
+            311.28,
+            284.88,
+            377.28
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/power-on-off.png",
+          "scale": 4.166666666666667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/jbp-2000a/us/m000574/usage-chain",
+      "page": 6,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JBP-2000A"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            36.72,
+            94.8,
+            326.64,
+            498.24
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/usage-chain.png",
+          "scale": 4.166666666666667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/jbp-2000a/us/m000574/usage-tree",
+      "page": 7,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JBP-2000A"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            25.44,
+            29.04,
+            341.04,
+            270.96
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/usage-tree.png",
+          "scale": 4.166666666666667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/jbp-2000a/us/m000574/inline-connection",
+      "page": 7,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JBP-2000A"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            66.96,
+            366.48,
+            82.56,
+            377.52
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/inline-connection.png",
+          "scale": 4.166666666666667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/jbp-2000a/us/m000574/wall-charging",
+      "page": 8,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JBP-2000A"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            39.36,
+            80.88,
+            309.6,
+            197.76
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/wall-charging.png",
+          "scale": 4.166666666666667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/jbp-2000a/us/m000574/car-charging",
+      "page": 8,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JBP-2000A"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            90.96,
+            383.76,
+            256.08,
+            479.52
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/car-charging.png",
+          "scale": 4.166666666666667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/jbp-2000a/us/m000574/app-badges",
+      "page": 10,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JBP-2000A"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            25.92,
+            471.36,
+            178.08,
+            497.52
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/app-badges.png",
+          "scale": 4.166666666666667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/jbp-2000a/us/m000574/contact-qr",
+      "page": 11,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JBP-2000A"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            303.36,
+            460.56,
+            342.96,
+            500.16
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/contact-qr.png",
+          "scale": 4.166666666666667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    }
+  ]
+}

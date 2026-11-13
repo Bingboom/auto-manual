@@ -1,0 +1,961 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 40000000
+  },
+  "source": {
+    "source_key": "source/jbp-1000a_us_m000575",
+    "expected_sha256": "a69ce9e14ba0c83a762b9b6530f7bb2652f1cb771d595ffc251cd960c10662ec",
+    "expected_page_count": 11
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 11
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 1,
+      "page_scale": {}
+    }
+  },
+  "page_catalog": [
+    {
+      "page": 1,
+      "page_key": "p001",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 2,
+      "page_key": "p002",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 3,
+      "page_key": "p003",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 4,
+      "page_key": "p004",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 5,
+      "page_key": "p005",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 6,
+      "page_key": "p006",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 7,
+      "page_key": "p007",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 8,
+      "page_key": "p008",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 9,
+      "page_key": "p009",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 10,
+      "page_key": "p010",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    },
+    {
+      "page": 11,
+      "page_key": "p011",
+      "role": "source-page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Candidate source only"
+        ]
+      },
+      "risk_tags": [
+        "source-bound"
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "web/jbp-1000a/us/m000575/certifications",
+      "page": 3,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JBP-1000A"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            22.08,
+            426.48,
+            229.68,
+            457.92
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/certifications.png",
+          "scale": 4.166666666666667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/jbp-1000a/us/m000575/inbox-unit",
+      "page": 4,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JBP-1000A"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            30.96,
+            65.28,
+            135.84,
+            126.72
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/inbox-unit.png",
+          "scale": 4.166666666666667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/jbp-1000a/us/m000575/inbox-cable",
+      "page": 4,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JBP-1000A"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            194.88,
+            67.92,
+            230.88,
+            128.88
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/inbox-cable.png",
+          "scale": 4.166666666666667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/jbp-1000a/us/m000575/inbox-manual",
+      "page": 4,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JBP-1000A"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            295.92,
+            69.12,
+            338.88,
+            128.64
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/inbox-manual.png",
+          "scale": 4.166666666666667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/jbp-1000a/us/m000575/overview-front",
+      "page": 4,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JBP-1000A"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            44.16,
+            204.96,
+            343.92,
+            335.52
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/overview-front.png",
+          "scale": 4.166666666666667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/jbp-1000a/us/m000575/overview-rear",
+      "page": 4,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JBP-1000A"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            42.24,
+            360.96,
+            344.4,
+            477.12
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/overview-rear.png",
+          "scale": 4.166666666666667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/jbp-1000a/us/m000575/lcd",
+      "page": 5,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JBP-1000A"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            37.68,
+            42.24,
+            316.56,
+            113.04
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/lcd.png",
+          "scale": 4.166666666666667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/jbp-1000a/us/m000575/power-on-off",
+      "page": 5,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JBP-1000A"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            87.36,
+            301.68,
+            293.52,
+            379.44
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/power-on-off.png",
+          "scale": 4.166666666666667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/jbp-1000a/us/m000575/usage-chain",
+      "page": 6,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JBP-1000A"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            21.6,
+            89.04,
+            350.64,
+            282.48
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/usage-chain.png",
+          "scale": 4.166666666666667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/jbp-1000a/us/m000575/heat-dissipation",
+      "page": 6,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JBP-1000A"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            24.48,
+            336.0,
+            347.28,
+            463.44
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/heat-dissipation.png",
+          "scale": 4.166666666666667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/jbp-1000a/us/m000575/inline-connection",
+      "page": 7,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JBP-1000A"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            150.96,
+            96.48,
+            173.28,
+            111.12
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/inline-connection.png",
+          "scale": 4.166666666666667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/jbp-1000a/us/m000575/wall-charging",
+      "page": 7,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JBP-1000A"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.16,
+            198.72,
+            333.12,
+            310.56
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/wall-charging.png",
+          "scale": 4.166666666666667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/jbp-1000a/us/m000575/solar-charging",
+      "page": 7,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JBP-1000A"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            18.96,
+            401.04,
+            348.72,
+            498.96
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/solar-charging.png",
+          "scale": 4.166666666666667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/jbp-1000a/us/m000575/car-charging",
+      "page": 8,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JBP-1000A"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            23.04,
+            82.8,
+            342.24,
+            183.84
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/car-charging.png",
+          "scale": 4.166666666666667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/jbp-1000a/us/m000575/app-badges",
+      "page": 10,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JBP-1000A"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            21.6,
+            350.4,
+            173.76,
+            376.56
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/app-badges.png",
+          "scale": 4.166666666666667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    },
+    {
+      "asset_key": "web/jbp-1000a/us/m000575/contact-qr",
+      "page": 11,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JBP-1000A"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            304.56,
+            467.28,
+            343.92,
+            506.64
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/contact-qr.png",
+          "scale": 4.166666666666667
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Review candidate only; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "source-bound",
+        "candidate"
+      ]
+    }
+  ]
+}

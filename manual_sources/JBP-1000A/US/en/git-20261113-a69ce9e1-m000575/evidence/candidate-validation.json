@@ -1,0 +1,53 @@
+{
+ "target": "JBP-1000A/US/en",
+ "material": "38-0001-000575",
+ "technical_version": "git-20261113-a69ce9e1-m000575",
+ "status": "local-conversion-complete-review-candidate",
+ "publication_eligible": false,
+ "operator_source_acceptance": null,
+ "operator_pixel_acceptance": null,
+ "source_sha256": "a69ce9e14ba0c83a762b9b6530f7bb2652f1cb771d595ffc251cd960c10662ec",
+ "source_physical_pages": 11,
+ "declared_omissions": {
+  "1": "cover art (facts kept)",
+  "2": "printed contents",
+  "11": "blank back-cover area"
+ },
+ "transcription_sha256": "f4f4d99262ccf1310a800c3aae0d68aa6c8b46429e55ecdd7830e0a655a9f275",
+ "page_map_sha256": "245a0a6c367b04d487f4843b175d96463c91d446339c19960fa271b233f03e4f",
+ "manual_ir_sha256": "41fb093938df0e1e2c91c9b468c04d5262baf5697d1154e1c58066fc194673d3",
+ "markdown_sha256": "cee571992e9a22df4e1305810dec6ca62916b8f2c58d2059ca87c51cd8c65214",
+ "artwork": {
+  "files": 17,
+  "new_source_specific": 16,
+  "unchanged_donor_reuse": 1,
+  "byte_reproduction": "passed"
+ },
+ "component_inventory": {
+  "HB-CALLOUT-STRIP": 1,
+  "HB-SPECIAL-FCC": 1,
+  "HB-SPECIAL-INBOX": 1,
+  "HB-SPECIAL-REFERENCE-FIGURE": 11,
+  "HB-TABLE-REFERENCE": 1,
+  "HB-TABLE-SPEC": 3,
+  "HB-WARRANTY-SECTION": 5,
+  "HB-WARRANTY-YEARS": 1
+ },
+ "shared_style_issues": [],
+ "strict_sphinx": "passed",
+ "cold_rebuild_identical_files": 23,
+ "browser": [
+  {
+   "viewport": 1280,
+   "images": 28,
+   "broken": 0,
+   "page_overflow": false
+  },
+  {
+   "viewport": 390,
+   "images": 28,
+   "broken": 0,
+   "page_overflow": false
+  }
+ ]
+}

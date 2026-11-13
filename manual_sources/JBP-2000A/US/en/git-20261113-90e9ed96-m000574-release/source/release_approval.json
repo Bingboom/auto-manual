@@ -1,0 +1,20 @@
+{
+  "status": "operator-authorized-us-y-second-batch-publication",
+  "client_date": "2026-11-13",
+  "directive": "「全部你都照写上线 问题可以记录在pr里」2026-11-13（本会话；回答五本审核页的决定项与是否直接发布）",
+  "merge_authorization": "MA-438",
+  "candidate_git_ref": "56028e920418b3c7174a046f7dff575dce5d2765",
+  "candidate_path": "manual_sources/JBP-2000A/US/en/git-20261113-90e9ed96-m000574",
+  "candidate_frozen_manifest_sha256": "91a4994b366a7626a832c039ee53321c391cfbaa7028219a2df29eb304a74591",
+  "candidate_IR_sha256": "b9825a4ab056e0bd5389e72b5eab0d50447d87e0255b9e2be5e7cc66d81e3d3c",
+  "candidate_content_sha256": "a2a7c673741c399f5c2a986525c663b5fc2db6a3582fbd4278427484c85d092a",
+  "candidate_source_pdf_sha256": "90e9ed96c7128d4849825ef8179e6e79a677f9c3a709b19cc78c3cffa6d7b050",
+  "scope": {
+    "model": "JBP-2000A",
+    "region": "US",
+    "language": "en"
+  },
+  "decisions": "Every operator decision item (D1-D12) stays at its candidate default; copy is kept as printed. Source issues are recorded in the PR body and transcription source_concerns.",
+  "human_attestation_boundary": "Explicit release instruction after complete candidate/QC reports; no separate per-image human pixel signature is invented.",
+  "global_asset_promotion": false
+}

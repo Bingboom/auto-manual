@@ -1,0 +1,95 @@
+{
+  "material": "38-0001-000574",
+  "conversion_record_id": "reczz28SlRGJjq1u",
+  "record_model": "JBP-2000A",
+  "project": "HTP002",
+  "region": "US+CA",
+  "feishu_wiki_node": "QKNGwHFwPiY7J7kZ0bzcximKnyb",
+  "table_id": "tbljbjaXaTD6V9PO",
+  "view_id": "vewy95Gdrv",
+  "source_field": "单语言",
+  "name": "38-0001-000574_Jackery_Battery_Pack_2000_Plus_EN.pdf",
+  "size": 2639174,
+  "source_sha256": "90e9ed96c7128d4849825ef8179e6e79a677f9c3a709b19cc78c3cffa6d7b050",
+  "download": "GET /open-apis/drive/v1/medias/{attachmentToken}/download?extra=<extra>, read-only, tenant token; no Base writes",
+  "physical_pages": 11,
+  "pages": [
+    {
+      "physical_page": 1,
+      "width": 368.8022766113281,
+      "height": 526.8419799804688,
+      "text_chars": 0,
+      "images": 1
+    },
+    {
+      "physical_page": 2,
+      "width": 368.8022766113281,
+      "height": 524.4828491210938,
+      "text_chars": 0,
+      "images": 1
+    },
+    {
+      "physical_page": 3,
+      "width": 368.8022766113281,
+      "height": 524.4828491210938,
+      "text_chars": 0,
+      "images": 1
+    },
+    {
+      "physical_page": 4,
+      "width": 368.8022766113281,
+      "height": 524.4828491210938,
+      "text_chars": 0,
+      "images": 1
+    },
+    {
+      "physical_page": 5,
+      "width": 368.8022766113281,
+      "height": 524.4828491210938,
+      "text_chars": 0,
+      "images": 1
+    },
+    {
+      "physical_page": 6,
+      "width": 368.8022766113281,
+      "height": 524.4828491210938,
+      "text_chars": 0,
+      "images": 1
+    },
+    {
+      "physical_page": 7,
+      "width": 368.8022766113281,
+      "height": 524.4828491210938,
+      "text_chars": 0,
+      "images": 1
+    },
+    {
+      "physical_page": 8,
+      "width": 368.8022766113281,
+      "height": 524.4828491210938,
+      "text_chars": 0,
+      "images": 1
+    },
+    {
+      "physical_page": 9,
+      "width": 368.8022766113281,
+      "height": 524.4828491210938,
+      "text_chars": 0,
+      "images": 1
+    },
+    {
+      "physical_page": 10,
+      "width": 368.8022766113281,
+      "height": 524.4828491210938,
+      "text_chars": 0,
+      "images": 1
+    },
+    {
+      "physical_page": 11,
+      "width": 368.8022766113281,
+      "height": 526.8419799804688,
+      "text_chars": 0,
+      "images": 1
+    }
+  ]
+}

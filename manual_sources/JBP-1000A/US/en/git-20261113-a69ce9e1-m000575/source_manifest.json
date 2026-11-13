@@ -1,0 +1,218 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "target": {
+    "model": "JBP-1000A",
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "technical_version": "git-20261113-a69ce9e1-m000575"
+  },
+  "web_title": "Jackery Battery Pack 1000 Plus",
+  "original_source": {
+    "filename": "38-0001-000575_Jackery_Battery_Pack_1000_Plus_EN.pdf",
+    "path": "source/original.pdf",
+    "sha256": "a69ce9e14ba0c83a762b9b6530f7bb2652f1cb771d595ffc251cd960c10662ec",
+    "size": 2753254,
+    "physical_page_count": 11
+  },
+  "material": "38-0001-000575",
+  "feishu_source": {
+    "conversion_record_id": "reczz28SlRGJga17",
+    "wiki_node": "QKNGwHFwPiY7J7kZ0bzcximKnyb",
+    "table_id": "tbljbjaXaTD6V9PO",
+    "view_id": "vewy95Gdrv",
+    "source_field": "单语言",
+    "project": "HTP003",
+    "region": "US+CA"
+  },
+  "source_authority": "Operator request 2026-11-13 「把这几本说明书 转网页版」 for 发布文档管理 › 说明书网页 › 美规 rows marked 是否要转网页文档 = Y-待转. The 单语言 English attachment was downloaded read-only and SHA-256 locked. It is an image-only 300-dpi booklet; text is Tesseract 5 OCR hand-corrected against the page pixels. This original source governs all copy; no review acceptance or release approval inferred.",
+  "printed_manual_version": "JAK-UM-V5.0",
+  "language_scope": "single",
+  "publication_status": "review-candidate-no-release-authorization",
+  "publication_eligible": false,
+  "pending_source_review": [
+    "Operator review of the OCR-derived hand-corrected English transcription, source concerns and artwork; no publication authorization granted."
+  ],
+  "web_roots": {
+    "en": "web/en"
+  },
+  "reference_editions": [
+    "JBP-2000B/EU/en/md",
+    "JBP-1000B-SIL/US/en/md",
+    "JBP-3600A/US/en/md"
+  ],
+  "component_map": {
+    "native_copy": "Native headings, paragraphs and printed a.–j. / 1.–3. item markers kept as text",
+    "specifications": "HB-TABLE-SPEC for GENERAL INFO, INPUT PORTS and ENVIRONMENTAL OPERATING TEMPERATURE",
+    "certifications": "HB-SPECIAL-REFERENCE-FIGURE for the complete printed certification-mark row; CAN ICES-003(B)/NMB-003(B) native text",
+    "inbox": "HB-SPECIAL-INBOX with three native labels and source-bound images",
+    "overview": "HB-SPECIAL-REFERENCE-FIGURE x2 (front and rear) with complete source-English leader labels",
+    "lcd": "HB-SPECIAL-REFERENCE-FIGURE for the LCD panel plus HB-TABLE-REFERENCE lcd-descriptions for the two printed definitions (fault codes F0-FF in the definition)",
+    "buttons": "Power on/off and LCD on/off as native headings/paragraphs plus HB-SPECIAL-REFERENCE-FIGURE; printed Notes as HB-CALLOUT-STRIP (note)",
+    "usage_and_charging_diagrams": "HB-SPECIAL-REFERENCE-FIGURE, complete source-labelled diagrams; no duplicate caption lists",
+    "inline_glyph": "Source power-station display glyph ('x8') as a bounded inline image inside the native paragraph",
+    "fcc": "HB-SPECIAL-FCC inside the shared hb-fcc-balanced-flow group; FC mark reused byte-identically from JBP-3600A US",
+    "warranty": "HB-WARRANTY-SECTION cards and HB-WARRANTY-YEARS for the printed 3 Years Standard / 2 Years Extended periods",
+    "app": "Printed App Store / Google Play badges as HB-SPECIAL-REFERENCE-FIGURE; HB-APP download not used because the booklet prints no App QR or link",
+    "contacts": "Native paragraphs for Jackery Mexico S.A. de C.V. and Jackery Inc. as printed; source QR as a bounded native image",
+    "troubleshooting_symbols": "Not printed as independent sections; none added"
+  },
+  "normalizations": [
+    "Join printed line wraps (including the unhyphenated 'connec'/'tion' split) and collapse doubled spaces; no word, case or value changes.",
+    "Omit the cover and printed contents page entirely from the Web body (operator rules 2026-11-13); cover facts stay in transcription cover_facts and this manifest. Page numbers and US / US English / Model: tabs are furniture. The page starts at the intro text.",
+    "FCC '--' measure markers become the shared FCC list; printed NOTE:/MODIFICATION: labels kept.",
+    "Warranty Period '3 Years Standard Warranty:' / '2 Years Extended Warranty:' prefixes become HB-WARRANTY-YEARS number, unit and label; body text unchanged.",
+    "Printed '⎓' DC symbol, degree signs and 'x' multiplication letters kept; '2×8020' kept only inside source art.",
+    "Artwork is new source-bound extraction at the source's native 300 dpi after a recorded donor inventory (no donor matched this product geometry), except the standard FC mark reused byte-for-byte."
+  ],
+  "inputs": [
+    {
+      "path": "assets/app-badges.png",
+      "size": 13210,
+      "sha256": "cefcf163f1a41e28d02c8dfb8c7f0ed3f808f59a851157d5ce5c15ee9639aec7"
+    },
+    {
+      "path": "assets/car-charging.png",
+      "size": 80559,
+      "sha256": "5e483f4bbcffadfe06ff3042cc816219c3e3482c2cae29445ed85ca9bd803110"
+    },
+    {
+      "path": "assets/certifications.png",
+      "size": 24609,
+      "sha256": "3b0e0566aae3e347c94ad6d4d9229beda0488ec4d877441ff8084c6cc2ba0268"
+    },
+    {
+      "path": "assets/contact-qr.png",
+      "size": 6614,
+      "sha256": "db9f63a1e3f5a16adfd63a24572d45d3dd9107463e169a671f6a6c4543850671"
+    },
+    {
+      "path": "assets/fcc-mark.svg",
+      "size": 1927,
+      "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+    },
+    {
+      "path": "assets/heat-dissipation.png",
+      "size": 158560,
+      "sha256": "4b54bc963dec0dfabbd5fc7c96f216ffa79123044cf777bbb2a4af7181b7376b"
+    },
+    {
+      "path": "assets/inbox-cable.png",
+      "size": 8140,
+      "sha256": "0a73172bc7165da1073eb8aea61444f058c14a69282daf88d9206f29018591c6"
+    },
+    {
+      "path": "assets/inbox-manual.png",
+      "size": 9285,
+      "sha256": "f4b9278369e17648d8052fac174ca0bb46c6d63132a747be2ebc5c08f4c41961"
+    },
+    {
+      "path": "assets/inbox-unit.png",
+      "size": 13307,
+      "sha256": "aa724bf11668f3c808f13d0fed3855f37afde5e074cd4a5d71dbb22c7006a583"
+    },
+    {
+      "path": "assets/inline-connection.png",
+      "size": 3451,
+      "sha256": "68cbcdc7b387fdc61a4dfe534ae242acbe3e68a01679981f8e440a9f9d773d4d"
+    },
+    {
+      "path": "assets/lcd.png",
+      "size": 20074,
+      "sha256": "edd440dfbf048f47f7ea0011cad593b7ce0636a76af8407784aa8df7d3ce8d0f"
+    },
+    {
+      "path": "assets/overview-front.png",
+      "size": 42496,
+      "sha256": "ae4b2192ad8c5c9468105b793efc11023e15b80acd7e800ca3f9b6ad2ff71a82"
+    },
+    {
+      "path": "assets/overview-rear.png",
+      "size": 43096,
+      "sha256": "5094534c279baffff3cf93aec2ba128c48ed3d5c7247f1b89b20f479d9a47113"
+    },
+    {
+      "path": "assets/power-on-off.png",
+      "size": 21228,
+      "sha256": "55bd9fc38ff5320cad03142021384f3344195e3ed837e1ae0a1d5432da223669"
+    },
+    {
+      "path": "assets/solar-charging.png",
+      "size": 112551,
+      "sha256": "bf492b6362c46af0474c56a2de37df8ce619601cf2ed07d03cf43c42d106ce9e"
+    },
+    {
+      "path": "assets/usage-chain.png",
+      "size": 96522,
+      "sha256": "d16a97313656c9ecfcc1d45f8e6e282cbfc61f58231a7191ebe358935c5f191d"
+    },
+    {
+      "path": "assets/wall-charging.png",
+      "size": 70649,
+      "sha256": "04c35c7dbf9350b3d8077de3ff5e14881ff8669db903f810c911f0367b101f76"
+    },
+    {
+      "path": "source/asset_decisions.json",
+      "size": 26385,
+      "sha256": "433ae72dd21e86994e4538ab5d30f11a53f959acab5cd330428e13aeea18a233"
+    },
+    {
+      "path": "source/asset_decisions.preparation.json",
+      "size": 22953,
+      "sha256": "e4fb11ff87b46d366d975fa777f20cc6b7d4f32c024c9581e4d195ef78bf595b"
+    },
+    {
+      "path": "source/asset_recipe.json",
+      "size": 19559,
+      "sha256": "3db54db270484103ee97aec9e6187113e130611518a53d06a3e61f0248271315"
+    },
+    {
+      "path": "source/discovery.md",
+      "size": 1930,
+      "sha256": "022417168314276749b68198897aa9705243cce88952e13684fda1dec6df106b"
+    },
+    {
+      "path": "source/intake-source.json",
+      "size": 2293,
+      "sha256": "f57b17272a3361f30d45d883b6827341798b186925b18d01e3dad03cc935e2f8"
+    },
+    {
+      "path": "source/original.pdf",
+      "size": 2753254,
+      "sha256": "a69ce9e14ba0c83a762b9b6530f7bb2652f1cb771d595ffc251cd960c10662ec"
+    },
+    {
+      "path": "source/page_map.json",
+      "size": 1911,
+      "sha256": "245a0a6c367b04d487f4843b175d96463c91d446339c19960fa271b233f03e4f"
+    },
+    {
+      "path": "source/transcription.json",
+      "size": 22265,
+      "sha256": "f4f4d99262ccf1310a800c3aae0d68aa6c8b46429e55ecdd7830e0a655a9f275"
+    },
+    {
+      "path": "render.py",
+      "size": 18405,
+      "sha256": "08854c440b63239ad8d58df68fcc98c668ce59e7568cd700c942a8bd608c7bd0"
+    },
+    {
+      "path": "derive_assets.py",
+      "size": 2087,
+      "sha256": "710b4369afe4a34ac8012f740542408bbe86d1a7cd0e0889085e733ed63a3236"
+    },
+    {
+      "path": "refresh_manifest.py",
+      "size": 2267,
+      "sha256": "80bde6d5126aa5d0aaed9353a745aa50b1bcc8592612794a3b4bbd8b92a95261"
+    }
+  ],
+  "repo_inputs": [
+    {
+      "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
+      "sha256": "a2773f7e96849e176a9909e8221e37c20eb9005cd2639415bf6a112d7c86527f"
+    }
+  ],
+  "shared_component_exceptions": []
+}
