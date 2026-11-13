@@ -148,7 +148,8 @@ def read_specs(pairs: list[tuple[str, str]]) -> dict[str, Any]:
     weight = _value(pairs, WEIGHT)
     kilograms = re.search(r"([\d.]+)\s?kg", weight)
     grams = re.search(r"(\d+)\s?g\b", weight)
-    cycles = re.search(r"(\d{3,5})", _value(pairs, CYCLES))
+    # 「3,000回」 and 「4000 cycles」: a thousands separator is part of the count, never its end.
+    cycles = re.search(r"(\d{1,2}(?:,\d{3})+|\d{3,5})", _value(pairs, CYCLES))
     solar = re.search(r"STC\*?:\s*(\d+)\s?W", _value(pairs, SOLAR))
     ip_rating = re.search(r"IP\d\d", _value(pairs, IP_RATING))
     output = re.search(r"(\d+)\s?W", _value(pairs, OUTPUT))
@@ -156,7 +157,7 @@ def read_specs(pairs: list[tuple[str, str]]) -> dict[str, Any]:
     return {
         "wh": _number(capacity.group(1)) if capacity else None,
         "kg": float(kilograms.group(1)) if kilograms else (round(int(grams.group(1)) / 1000, 2) if grams else None),
-        "cycles": int(cycles.group(1)) if cycles else None,
+        "cycles": int(cycles.group(1).replace(",", "")) if cycles else None,
         "ac": rated, "surge": surge,
         "pv": int(solar.group(1)) if solar else None,
         "ip": ip_rating.group(0) if ip_rating else "",

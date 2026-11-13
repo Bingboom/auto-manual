@@ -1,0 +1,104 @@
+{
+  "schema": "hello-docs-product-attributes/v1",
+  "note": "Each figure the product-facts export reads from a published manual's specification table, defined once. `field` is the 产品矩阵 reading it comes from (tools/rtd/product_matrix.py read_specs); `applies_to` lists the 产品类别 that state it (absent: every category).",
+  "attributes": [
+    {
+      "key": "capacity_wh",
+      "label": "标称容量",
+      "label_en": "Capacity",
+      "unit": "Wh",
+      "type": "number",
+      "dimension": "hardware",
+      "field": "wh",
+      "applies_to": ["便携储能", "家庭备电", "加电包"],
+      "definition": "规格表 Capacity / Internal Battery / 定格容量 / 容量 行写的电池能量（Wh）。"
+    },
+    {
+      "key": "ac_rated_w",
+      "label": "AC 额定输出",
+      "label_en": "AC rated output",
+      "unit": "W",
+      "type": "number",
+      "dimension": "hardware",
+      "field": "ac",
+      "applies_to": ["便携储能", "家庭备电"],
+      "definition": "整机 AC 额定输出功率：有合计行取合计行，否则取单个 AC 口的最大额定值。"
+    },
+    {
+      "key": "ac_surge_w",
+      "label": "AC 峰值输出",
+      "label_en": "AC surge output",
+      "unit": "W",
+      "type": "number",
+      "dimension": "hardware",
+      "field": "surge",
+      "applies_to": ["便携储能", "家庭备电"],
+      "definition": "规格表写的 AC 瞬间峰值功率（Surge / 瞬間最大 / 突波峰值）。"
+    },
+    {
+      "key": "weight_kg",
+      "label": "重量",
+      "label_en": "Weight",
+      "unit": "kg",
+      "type": "number",
+      "dimension": "hardware",
+      "field": "kg",
+      "definition": "规格表写的重量，统一换算成 kg；“约”等限定词见原文摘录。"
+    },
+    {
+      "key": "cycle_life",
+      "label": "循环寿命",
+      "label_en": "Cycle life",
+      "unit": "次",
+      "type": "integer",
+      "dimension": "hardware",
+      "field": "cycles",
+      "applies_to": ["便携储能", "家庭备电", "加电包"],
+      "definition": "规格表写的循环次数；容量保持率等条件只在原文摘录里。"
+    },
+    {
+      "key": "panel_power_w",
+      "label": "太阳能板 STC 功率",
+      "label_en": "Solar panel power (STC)",
+      "unit": "W",
+      "type": "integer",
+      "dimension": "hardware",
+      "field": "pv",
+      "applies_to": ["太阳能板"],
+      "definition": "太阳能板在 STC 条件下的额定功率。不是储能电源的太阳能输入上限。"
+    },
+    {
+      "key": "ip_rating",
+      "label": "防护等级",
+      "label_en": "IP rating",
+      "unit": null,
+      "type": "text",
+      "dimension": "hardware",
+      "field": "ip",
+      "applies_to": ["太阳能板", "配件"],
+      "definition": "规格表写的 IP 防护等级，如 IP68。"
+    },
+    {
+      "key": "output_w",
+      "label": "输出功率",
+      "label_en": "Output power",
+      "unit": "W",
+      "type": "integer",
+      "dimension": "hardware",
+      "field": "out",
+      "applies_to": ["配件"],
+      "definition": "配件（如充电器）规格表的 Output Power。"
+    },
+    {
+      "key": "expansion_port",
+      "label": "扩展电池接口",
+      "label_en": "Expansion battery port",
+      "unit": null,
+      "type": "boolean",
+      "dimension": "hardware",
+      "field": "expansion",
+      "applies_to": ["便携储能", "家庭备电"],
+      "definition": "规格表有扩展口（Expansion / 拡張）一行。规格表没写只算未知，不算没有。"
+    }
+  ]
+}
