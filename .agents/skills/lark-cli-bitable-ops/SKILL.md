@@ -33,6 +33,10 @@ CLI and fix this skill in the same change.
   rows and values, get explicit confirmation (「确认/入库」, numbered picks
   count), then write. This repo has zero tolerance for unapproved source-table
   writes.
+- Removing a form question (`+form-questions-delete` **or** the form UI)
+  deletes the underlying field and its data. Never use it to "hide" a
+  question; see `references/cli-recipes.md` § Building tables, forms, views
+  and dashboards.
 
 **After writing — no exceptions:**
 
