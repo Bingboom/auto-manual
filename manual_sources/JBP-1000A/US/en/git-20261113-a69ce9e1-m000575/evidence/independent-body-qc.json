@@ -56,8 +56,8 @@
    "web_reads": "## Contact us / hello@jackery.com / 1-888-502-2236 (US)",
    "severity": "concern",
    "note": "Colon dropped and the block is relocated under the back-cover JACKERY INC. heading. Values match.",
-   "resolution": "fixed",
-   "resolution_note": "Cover contact lead-in now a native paragraph \"Contact us:\" with its colon."
+   "resolution": "superseded",
+   "resolution_note": "Operator rule 2026-11-13 「封面信息 不用放进网页呀 直接从这个开始」: the cover contact block, product name, model and version lines were removed from the Web body and kept only in transcription cover_facts. The Web body now starts at the intro text."
   },
   {
    "id": "F5",
@@ -98,5 +98,9 @@
  "reviewer": "independent read-only sub-agent (separate context; given pixels, Markdown, HTML and transcription, not the author's conclusions)",
  "post_fix_status": "no open text errors; three shared-component typography items left to the operator",
  "source_sha256": "a69ce9e14ba0c83a762b9b6530f7bb2652f1cb771d595ffc251cd960c10662ec",
- "transcription_sha256_after_fixes": "f8134d16b3392f268d2380516ee4acf1aebbe042302fbdc66c8321f633c58a82"
+ "transcription_sha256_after_fixes": "f4f4d99262ccf1310a800c3aae0d68aa6c8b46429e55ecdd7830e0a655a9f275",
+ "post_review_changes": [
+  "Website line restored as printed (F1).",
+  "Cover-derived blocks removed from the Web body per operator rule; no other body text changed after QC."
+ ]
 }

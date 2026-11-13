@@ -88,6 +88,19 @@ class JbpPlusUsSourceIntakeTests(unittest.TestCase):
                 self.assertIn("C.P. 03940, Ciudad de México, México", mexico)
                 self.assertEqual(chapters["contacts"]["title"], "JACKERY INC.")
 
+    def test_cover_facts_stay_out_of_the_web_body(self):
+        for model, (_, _, version) in CASES.items():
+            with self.subTest(model=model):
+                data = transcription(model)
+                self.assertEqual(data["cover_facts"]["version_line"], "Version: " + version)
+                first = data["chapters"][0]
+                self.assertTrue(first["heading_from_first_component"])
+                self.assertTrue(first["blocks"][0]["text"].startswith("Congratulations on your new"))
+                markdown = next((package(model) / "web/en").glob("manual_*.md")).read_text()
+                self.assertTrue(markdown.startswith("<p>Congratulations on your new"))
+                for cover_only in ("USER MANUAL", "Version: JAK-UM", "Model: " + model, "Contact us"):
+                    self.assertNotIn(cover_only, markdown)
+
     def test_artwork_is_source_bound(self):
         for model in CASES:
             with self.subTest(model=model):

@@ -13,10 +13,10 @@
   "2": "printed contents",
   "11": "blank back-cover area"
  },
- "transcription_sha256": "f8134d16b3392f268d2380516ee4acf1aebbe042302fbdc66c8321f633c58a82",
- "page_map_sha256": "b643f7eacfc40b24243031f801e4a35bb476e8126df14662cc8320ce05990de2",
- "manual_ir_sha256": "1015939f79eec396d87117ce4247783f9b99a24ce4c70a7350f39e34ade88aae",
- "markdown_sha256": "60ce06ac457b80ba127963fecc2265ec4903475b73d7d1a63dd012b191038425",
+ "transcription_sha256": "f4f4d99262ccf1310a800c3aae0d68aa6c8b46429e55ecdd7830e0a655a9f275",
+ "page_map_sha256": "245a0a6c367b04d487f4843b175d96463c91d446339c19960fa271b233f03e4f",
+ "manual_ir_sha256": "41fb093938df0e1e2c91c9b468c04d5262baf5697d1154e1c58066fc194673d3",
+ "markdown_sha256": "cee571992e9a22df4e1305810dec6ca62916b8f2c58d2059ca87c51cd8c65214",
  "artwork": {
   "files": 17,
   "new_source_specific": 16,

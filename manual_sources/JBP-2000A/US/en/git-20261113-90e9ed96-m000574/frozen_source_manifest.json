@@ -60,7 +60,7 @@
   },
   "normalizations": [
     "Join printed line wraps (including the unhyphenated 'connec'/'tion' split) and collapse doubled spaces; no word, case or value changes.",
-    "Omit cover art, wordmarks, printed contents page, page numbers and US/US English tab bars; product name, model, printed version and cover contacts stay native.",
+    "Omit the cover and printed contents page entirely from the Web body (operator rules 2026-11-13); cover facts stay in transcription cover_facts and this manifest. Page numbers and US / US English / Model: tabs are furniture. The page starts at the intro text.",
     "FCC '--' measure markers become the shared FCC list; printed NOTE:/MODIFICATION: labels kept.",
     "Warranty Period '3 Years Standard Warranty:' / '2 Years Extended Warranty:' prefixes become HB-WARRANTY-YEARS number, unit and label; body text unchanged.",
     "Printed '⎓' DC symbol, degree signs and 'x' multiplication letters kept; '2×8020' kept only inside source art.",
@@ -69,8 +69,8 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 3002,
-      "sha256": "9f2c0672ba35a4f3da4b5cb8ceea80eeefdb1b3bb6912f470a1bc5044671b6ed"
+      "size": 3145,
+      "sha256": "10a2141a4477344cd5515b0d31b1c3a04f06e802867d23ba7f720e7967460949"
     },
     {
       "path": "assets/app-badges.png",
@@ -170,7 +170,7 @@
     {
       "path": "evidence/candidate-validation.json",
       "size": 1529,
-      "sha256": "6c4154e7ac1726423bbe688deffaeadfe21a037044091b0ef9fd898f52e0dcb4"
+      "sha256": "b8e65f310b589bf148ce513d21d7a01cda1f3e9d9698f48ebd0a2cb5c587c0c1"
     },
     {
       "path": "evidence/cold-source-rebuild.log",
@@ -179,18 +179,18 @@
     },
     {
       "path": "evidence/full-1280.png",
-      "size": 1643713,
-      "sha256": "5407e94edb42ac1f3bb161119ccb7d7d33b6a95059ae7f123113ba9079c721f4"
+      "size": 1618954,
+      "sha256": "71b037f28f35ad6438110b45390f566128472d438f8dd2a578a6d8b722e0d088"
     },
     {
       "path": "evidence/full-390.png",
-      "size": 1089009,
-      "sha256": "6374bb5502052db5b995fe49911cb010415d21adc2a28c44ceb85a99e09f2b98"
+      "size": 1067969,
+      "sha256": "c65caaf2eaaa5dde148fa571e404611359b6ffdbfe74fccb661dcf07e3a0d691"
     },
     {
       "path": "evidence/independent-body-qc.json",
-      "size": 4501,
-      "sha256": "90f3b0785cfc25ac561c5bfddd6e5926265ce8efd43e2d4789d5a79ebfc544a4"
+      "size": 4880,
+      "sha256": "5a2c98a858be8ee507aa01b0b75fa4f5955d88145b835ca6eac493302f2fa195"
     },
     {
       "path": "evidence/ocr/page-01.txt",
@@ -250,7 +250,7 @@
     {
       "path": "evidence/replay-and-tamper.json",
       "size": 933,
-      "sha256": "66b117261b6f2653835d736253c37fb809d80472d285fefc6d85d5cd6d2f2b12"
+      "sha256": "38bbb8ca94b6fbd08640d2c1b48f73ab807a17ee9f16bf86a66e3ed59341c88d"
     },
     {
       "path": "evidence/strict-sphinx.log",
@@ -284,8 +284,8 @@
     },
     {
       "path": "source/discovery.md",
-      "size": 1865,
-      "sha256": "02e4897f462e1ec2ffcccf7d42583dc7376f9c70a603bdb48fc36e2edc723a6d"
+      "size": 1921,
+      "sha256": "dbc6c03974dff4450f57614b0e97a51eaefa30dfe109dbf47b033158181d32b5"
     },
     {
       "path": "source/intake-source.json",
@@ -299,18 +299,18 @@
     },
     {
       "path": "source/page_map.json",
-      "size": 1770,
-      "sha256": "34f0d1d194eb8ffed16ff5eefeaa069da213f25d3c2c0aaf3debda1ff823065f"
+      "size": 1878,
+      "sha256": "2c16c45045aa61af7d572efc0d9dcc3b46795b9c6b99007274626c2967941b1c"
     },
     {
       "path": "source/transcription.json",
-      "size": 22290,
-      "sha256": "d2ebf06b1f9d962198cef4b9c0288f6487a3686a902b09d5f8507b6ef6005e7d"
+      "size": 22061,
+      "sha256": "007bab1ac8530ada24bacb461e42fdd099054d2f884c58feb43ca6a5c4cb7050"
     },
     {
       "path": "source_manifest.json",
-      "size": 8987,
-      "sha256": "11b5d335d443e01c71e52c8063045fff302f0b8da3feab4be747aa0e823bf4b1"
+      "size": 9086,
+      "sha256": "217563a324e6d62e6da78a5f283fb5a0e8c80e8d4bae7a09aa13e1a0a6960224"
     },
     {
       "path": "web/en/_static/web_manual.css",
@@ -409,13 +409,13 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 205032,
-      "sha256": "a5a4491f0c07216aef05e4a71a741a6a8ccbe464e95fed8c2780cd0387d0b6bc"
+      "size": 201223,
+      "sha256": "b9825a4ab056e0bd5389e72b5eab0d50447d87e0255b9e2be5e7cc66d81e3d3c"
     },
     {
       "path": "web/en/manual_jbp2000a_us_en.md",
-      "size": 24804,
-      "sha256": "9e5e65161b4e67565f3b6330d51d9220eb60fc1f699e4729d4cc454dd0823c34"
+      "size": 24623,
+      "sha256": "95408e0164ad2754c7fa09dda97d78f3375aa3ea3909deda67e773959f38c4de"
     },
     {
       "path": "web/en/shared-style-admission.json",

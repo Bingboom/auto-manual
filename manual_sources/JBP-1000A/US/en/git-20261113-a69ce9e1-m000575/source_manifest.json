@@ -60,7 +60,7 @@
   },
   "normalizations": [
     "Join printed line wraps (including the unhyphenated 'connec'/'tion' split) and collapse doubled spaces; no word, case or value changes.",
-    "Omit cover art, wordmarks, printed contents page, page numbers and US/US English tab bars; product name, model, printed version and cover contacts stay native.",
+    "Omit the cover and printed contents page entirely from the Web body (operator rules 2026-11-13); cover facts stay in transcription cover_facts and this manifest. Page numbers and US / US English / Model: tabs are furniture. The page starts at the intro text.",
     "FCC '--' measure markers become the shared FCC list; printed NOTE:/MODIFICATION: labels kept.",
     "Warranty Period '3 Years Standard Warranty:' / '2 Years Extended Warranty:' prefixes become HB-WARRANTY-YEARS number, unit and label; body text unchanged.",
     "Printed '⎓' DC symbol, degree signs and 'x' multiplication letters kept; '2×8020' kept only inside source art.",
@@ -169,8 +169,8 @@
     },
     {
       "path": "source/discovery.md",
-      "size": 1874,
-      "sha256": "1f57f0f2307f81c89bfb88d68afb6eb28f73e92b0c19c1a8bca500ef2d739042"
+      "size": 1930,
+      "sha256": "022417168314276749b68198897aa9705243cce88952e13684fda1dec6df106b"
     },
     {
       "path": "source/intake-source.json",
@@ -184,13 +184,13 @@
     },
     {
       "path": "source/page_map.json",
-      "size": 1803,
-      "sha256": "b643f7eacfc40b24243031f801e4a35bb476e8126df14662cc8320ce05990de2"
+      "size": 1911,
+      "sha256": "245a0a6c367b04d487f4843b175d96463c91d446339c19960fa271b233f03e4f"
     },
     {
       "path": "source/transcription.json",
-      "size": 22494,
-      "sha256": "f8134d16b3392f268d2380516ee4acf1aebbe042302fbdc66c8321f633c58a82"
+      "size": 22265,
+      "sha256": "f4f4d99262ccf1310a800c3aae0d68aa6c8b46429e55ecdd7830e0a655a9f275"
     },
     {
       "path": "render.py",

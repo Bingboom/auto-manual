@@ -1,11 +1,3 @@
-# USER MANUAL
-
-<p>Jackery Battery Pack 1000 Plus</p>
-
-<p>Model: JBP-1000A</p>
-
-<p>Version: JAK-UM-V5.0</p>
-
 <p>Congratulations on your new Jackery Battery Pack 1000 Plus. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for frequent reference.</p>
 
 <p>In compliance with laws and regulations, the right of final interpretation of this document and all related documents of this product resides with the Company.</p>
@@ -185,9 +177,3 @@
 <p>Website: www.jackery.com</p>
 
 <p><img alt="Source back-cover QR code; complete code and all four frame edges." src="assets/contact-qr.png" width="160"/></p>
-
-<p>Contact us:</p>
-
-<p>hello@jackery.com</p>
-
-<p>1-888-502-2236 (US)</p>

@@ -3,27 +3,27 @@
   "language": "en",
   "source_sha256": "90e9ed96c7128d4849825ef8179e6e79a677f9c3a709b19cc78c3cffa6d7b050",
   "printed_manual_version": "JAK-UM-V1.0",
+  "cover_facts": {
+    "source_page": 1,
+    "rendered": false,
+    "product": "Jackery Battery Pack 2000 Plus",
+    "model_line": "Model: JBP-2000A",
+    "version_line": "Version: JAK-UM-V1.0",
+    "contact": [
+      "Contact us:",
+      "hello@jackery.com",
+      "1-888-502-2236(US)"
+    ]
+  },
   "chapters": [
     {
       "id": "introduction",
-      "title": "USER MANUAL",
+      "title": "INTRODUCTION",
       "source_pages": [
-        1,
         3
       ],
+      "heading_from_first_component": true,
       "blocks": [
-        {
-          "kind": "paragraph",
-          "text": "Jackery Battery Pack 2000 Plus"
-        },
-        {
-          "kind": "paragraph",
-          "text": "Model: JBP-2000A"
-        },
-        {
-          "kind": "paragraph",
-          "text": "Version: JAK-UM-V1.0"
-        },
         {
           "kind": "paragraph",
           "text": "Congratulations on your new Jackery Battery Pack 2000 Plus. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for frequent reference."
@@ -527,7 +527,6 @@
       "id": "contacts",
       "title": "JACKERY INC.",
       "source_pages": [
-        1,
         11
       ],
       "blocks": [
@@ -553,18 +552,6 @@
           "source_page": 11,
           "width": 160,
           "alt": "Source back-cover QR code; complete code and all four frame edges."
-        },
-        {
-          "kind": "paragraph",
-          "text": "Contact us:"
-        },
-        {
-          "kind": "paragraph",
-          "text": "hello@jackery.com"
-        },
-        {
-          "kind": "paragraph",
-          "text": "1-888-502-2236(US)"
         }
       ]
     }

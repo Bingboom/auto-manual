@@ -18,8 +18,8 @@
     "assets/contact-qr.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "b9d575cc382ccf42f9b349142a1c2a66eef7283560b9dc01d16cd9434fc53e86",
-  "content_sha256": "5148b6b1cb0b91c48fcc581cd3bf163f182c06c9d8f56aaa8e06e18742b81dba",
+  "bundle_sha256": "e07e02f280b2982d45dc3d6f8bd15cd5999be2e68c57cdf54058d1f1241e7484",
+  "content_sha256": "a2a7c673741c399f5c2a986525c663b5fc2db6a3582fbd4278427484c85d092a",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -41,7 +41,7 @@
       "assets/usage-tree.png": "88adaf01479a42a58b937823f2908af51bf3ecdc278ab1814ebce568dbe1ce28",
       "assets/wall-charging.png": "5059e4d3ca9efcc7298dabd3bd4cd0a86bc5f1f2aa072b3bc1c183080d72b19d"
     },
-    "block_count": 92,
+    "block_count": 85,
     "component_inventory": {
       "HB-CALLOUT-STRIP": 1,
       "HB-SPECIAL-FCC": 1,
@@ -1480,13 +1480,13 @@
         },
         {
           "path": "source/page_map.json",
-          "sha256": "34f0d1d194eb8ffed16ff5eefeaa069da213f25d3c2c0aaf3debda1ff823065f",
-          "size": 1770
+          "sha256": "2c16c45045aa61af7d572efc0d9dcc3b46795b9c6b99007274626c2967941b1c",
+          "size": 1878
         },
         {
           "path": "source/transcription.json",
-          "sha256": "d2ebf06b1f9d962198cef4b9c0288f6487a3686a902b09d5f8507b6ef6005e7d",
-          "size": 22290
+          "sha256": "007bab1ac8530ada24bacb461e42fdd099054d2f884c58feb43ca6a5c4cb7050",
+          "size": 22061
         },
         {
           "path": "render.py",
@@ -1508,7 +1508,7 @@
       "material": "38-0001-000574",
       "normalizations": [
         "Join printed line wraps (including the unhyphenated 'connec'/'tion' split) and collapse doubled spaces; no word, case or value changes.",
-        "Omit cover art, wordmarks, printed contents page, page numbers and US/US English tab bars; product name, model, printed version and cover contacts stay native.",
+        "Omit the cover and printed contents page entirely from the Web body (operator rules 2026-11-13); cover facts stay in transcription cover_facts and this manifest. Page numbers and US / US English / Model: tabs are furniture. The page starts at the intro text.",
         "FCC '--' measure markers become the shared FCC list; printed NOTE:/MODIFICATION: labels kept.",
         "Warranty Period '3 Years Standard Warranty:' / '2 Years Extended Warranty:' prefixes become HB-WARRANTY-YEARS number, unit and label; body text unchanged.",
         "Printed '⎓' DC symbol, degree signs and 'x' multiplication letters kept; '2×8020' kept only inside source art.",
@@ -2331,75 +2331,6 @@
         {
           "asset_refs": [],
           "block_id": "introduction:block-0001",
-          "content_sha256": "af5ad0278d67742b64ad9af3c5ed069e3635e0fd1d68889173b4214fe07b98df",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "USER MANUAL"
-              }
-            ],
-            "kind": "heading",
-            "level": 1,
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "source/transcription.json#introduction#block-1"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "introduction:block-0002",
-          "content_sha256": "75968f52fac0c24bb933b594b8797f00b6a7db0b56fa916f3b5a9613315e2b2f",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "Jackery Battery Pack 2000 Plus"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "source/transcription.json#introduction#block-2"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "introduction:block-0003",
-          "content_sha256": "815d82eeb4f39b62fe9c423adaa5d0229430b8cf2c410b52c0afa34ce7045112",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "Model: JBP-2000A"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "source/transcription.json#introduction#block-3"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "introduction:block-0004",
-          "content_sha256": "e2d5f820fd20a74b72dd175d64b29889663d9e2e726975489b62cedff6b384a0",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "Version: JAK-UM-V1.0"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "source/transcription.json#introduction#block-4"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "introduction:block-0005",
           "content_sha256": "92356fa4bc3c2865c63b322c59310965159f5f92d87df2bc9d6e45fd5b61f678",
           "kind": "flow",
           "payload": {
@@ -2412,11 +2343,11 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "source/transcription.json#introduction#block-5"
+          "source_ref": "source/transcription.json#introduction#block-1"
         },
         {
           "asset_refs": [],
-          "block_id": "introduction:block-0006",
+          "block_id": "introduction:block-0002",
           "content_sha256": "c0e7780f3843ff23ced83c9e28e75eb58ab5d06c70df6db4bf863e61ca95785a",
           "kind": "flow",
           "payload": {
@@ -2429,11 +2360,11 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "source/transcription.json#introduction#block-6"
+          "source_ref": "source/transcription.json#introduction#block-2"
         },
         {
           "asset_refs": [],
-          "block_id": "introduction:block-0007",
+          "block_id": "introduction:block-0003",
           "content_sha256": "f460363725e122f621a7cbc3a072cffe70b431966cf7b466b8ba7833bc497da1",
           "kind": "flow",
           "payload": {
@@ -2446,7 +2377,7 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "source/transcription.json#introduction#block-7"
+          "source_ref": "source/transcription.json#introduction#block-3"
         }
       ],
       "language": "en",
@@ -2454,7 +2385,7 @@
       "skipped_raw": 0,
       "source_path": "source/transcription.json",
       "source_ref": "source/transcription.json#introduction",
-      "source_sha256": "88e290b5e72558c6289c855ba959ed1b5ad6cd4621481ae52450717f641b6bbe"
+      "source_sha256": "4ed0078bba8dabaa9b726c4f4808702fc8b15abb7f34d94156628ac56ddada5a"
     },
     {
       "blocks": [
@@ -5795,57 +5726,6 @@
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "source/transcription.json#contacts#block-6"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "contacts:block-0007",
-          "content_sha256": "5e449ee0db855444dc9d6af496ef22e7f954b4c14f29ba6deb4b23c12629e8f0",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "Contact us:"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "source/transcription.json#contacts#block-7"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "contacts:block-0008",
-          "content_sha256": "68f7e970a125b13e048c39e300dc11d80da4953359a66c8fdf60cd438e48969e",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "hello@jackery.com"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "source/transcription.json#contacts#block-8"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "contacts:block-0009",
-          "content_sha256": "51971bae376fbdfe36c95abefa2ed015a5dde4359804e0c5df7bc1463d86a2d8",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "1-888-502-2236(US)"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "source/transcription.json#contacts#block-9"
         }
       ],
       "language": "en",
@@ -5853,7 +5733,7 @@
       "skipped_raw": 0,
       "source_path": "source/transcription.json",
       "source_ref": "source/transcription.json#contacts",
-      "source_sha256": "b57f9741b8087a6870f7889c8c7a9c83e1c7c48c5f71f3fc00e2e5ed967cccff"
+      "source_sha256": "71c2497f9fd631776796b976714d65af069c7159bcc064118d7a85bbf3c3af46"
     }
   ],
   "region": "US",
