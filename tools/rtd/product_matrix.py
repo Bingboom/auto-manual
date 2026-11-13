@@ -57,7 +57,7 @@ _SPEC_PAIR = re.compile(r"<th[^>]*>(.*?)</th>\s*<td[^>]*>(.*?)</td>", re.S)
 # The source-layout spec lists (JE-2000A): a row of two paragraphs, label then value.
 _SPEC_ROW = re.compile(r'data-source-layout="spec-row"[^>]*>\s*<p[^>]*>(.*?)</p>\s*<p[^>]*>(.*?)</p>', re.S)
 _SPEC_HEADING = re.compile(r"^#{1,6}[^\n]*(?:SPECIFICATIONS|Specifications|仕様|规格|規格)", re.M)
-_NAME_SUFFIX = re.compile(r"\s*(?:取扱説明書|用户指南|User Manual)\s*$")
+_NAME_SUFFIX = re.compile(r"\s*(?:取扱説明書|用户指南|User Manual)\s*$", re.I)
 
 # Spec-table labels, matched case-insensitively against the row header.
 CAPACITY = (r"^Capacity$", r"^Internal Battery$", r"定格容量", r"^容量$")
@@ -148,7 +148,8 @@ def read_specs(pairs: list[tuple[str, str]]) -> dict[str, Any]:
     weight = _value(pairs, WEIGHT)
     kilograms = re.search(r"([\d.]+)\s?kg", weight)
     grams = re.search(r"(\d+)\s?g\b", weight)
-    cycles = re.search(r"(\d{3,5})", _value(pairs, CYCLES))
+    # 「3,000回」 and 「4000 cycles」: a thousands separator is part of the count, never its end.
+    cycles = re.search(r"(\d{1,2}(?:,\d{3})+|\d{3,5})", _value(pairs, CYCLES))
     solar = re.search(r"STC\*?:\s*(\d+)\s?W", _value(pairs, SOLAR))
     ip_rating = re.search(r"IP\d\d", _value(pairs, IP_RATING))
     output = re.search(r"(\d+)\s?W", _value(pairs, OUTPUT))
@@ -156,7 +157,7 @@ def read_specs(pairs: list[tuple[str, str]]) -> dict[str, Any]:
     return {
         "wh": _number(capacity.group(1)) if capacity else None,
         "kg": float(kilograms.group(1)) if kilograms else (round(int(grams.group(1)) / 1000, 2) if grams else None),
-        "cycles": int(cycles.group(1)) if cycles else None,
+        "cycles": int(cycles.group(1).replace(",", "")) if cycles else None,
         "ac": rated, "surge": surge,
         "pv": int(solar.group(1)) if solar else None,
         "ip": ip_rating.group(0) if ip_rating else "",
