@@ -1,0 +1,102 @@
+{
+  "schema_version": "auto-manual-symbol-asset-admission/v1",
+  "source_sha256": "f24215296cf4a3544d48dbbce5df3c6cf489ec829ad4b2a192926d94afaff670",
+  "review": "Source glyph and caption rectangles visually reviewed; outlined caption text is transcription, its pixels are independently hashed.",
+  "rows": [
+    {
+      "asset_ref": "assets/symbol-prohibited.svg",
+      "asset_sha256": "42ba4ebda3d7c0c897b8651deb3d31a93bd165a522fb4f41fe3f96fc66993446",
+      "shared_symbol_key": "native/bnrb15-jp-f2421529-prohibited",
+      "physical_page": 4,
+      "drawing_indices": [
+        289,
+        290
+      ],
+      "glyph_bbox": [
+        41.8,
+        170.4,
+        57.1,
+        185.6
+      ],
+      "caption_bbox": [
+        80,
+        171,
+        280,
+        184
+      ],
+      "row_bbox": [
+        41.699999237060545,
+        170.29999389648438,
+        280.1,
+        185.70000610351562
+      ],
+      "caption_text": "禁止（してはいけない）の内容です。",
+      "caption_sha256": "21ddd53c111ceaf621911460a04adecb9deff51339d53c2885dd1faf9d681475",
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "asset_ref": "assets/symbol-mandatory.svg",
+      "asset_sha256": "fb1c265cc895619f08c3f0a8eed6386efb90b7f7c77cfa5675fe3551a2310558",
+      "shared_symbol_key": "native/bnrb15-jp-f2421529-mandatory",
+      "physical_page": 4,
+      "drawing_indices": [
+        308,
+        309,
+        310
+      ],
+      "glyph_bbox": [
+        32,
+        193.5,
+        47.5,
+        209
+      ],
+      "caption_bbox": [
+        80,
+        195,
+        310,
+        207
+      ],
+      "row_bbox": [
+        31.9,
+        193.4,
+        310.1,
+        209.1
+      ],
+      "caption_text": "実行（必ず行っていただく）の内容です。",
+      "caption_sha256": "998d114fe8c46a968d4e79da42f112343cc397f438c9b555a5d98a54f401b0a4",
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "asset_ref": "assets/symbol-unplug.svg",
+      "asset_sha256": "64e995743992b8b2ec534f535804dacaaff704131ad551d4ef31a90ef6b5a376",
+      "shared_symbol_key": "native/bnrb15-jp-f2421529-unplug",
+      "physical_page": 4,
+      "drawing_indices": [
+        311,
+        312,
+        313
+      ],
+      "glyph_bbox": [
+        52.1,
+        193.5,
+        66.8,
+        209
+      ],
+      "caption_bbox": [
+        80,
+        195,
+        310,
+        207
+      ],
+      "row_bbox": [
+        51.99999847412109,
+        193.4,
+        310.1,
+        209.1
+      ],
+      "caption_text": "実行（必ず行っていただく）の内容です。",
+      "caption_sha256": "998d114fe8c46a968d4e79da42f112343cc397f438c9b555a5d98a54f401b0a4",
+      "max_mean_channel_error": 0.0
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "target": {
+    "model": "JS-40A",
+    "region": "JP",
+    "languages": [
+      "ja"
+    ],
+    "technical_version": "git-20261112-1a96bf34-m000464-release"
+  },
+  "original_source_sha256": "1a96bf348255cc47caf18b3df296ced0ccbc28269b1863c442e9e98d8d631b4c",
+  "source_sha256": "1a96bf348255cc47caf18b3df296ced0ccbc28269b1863c442e9e98d8d631b4c",
+  "operator_quote": "审核一下 然后合入 上线发布文档",
+  "authority_date": "2026-11-12",
+  "merge_authorization": "MA-432",
+  "authority_context": "Operator explicitly requested review, merge and publication of auto-manual PR #1712 in this chat. Source/text/layout checks were delegated to the agent; no claim of a separate operator pixel inspection is made.",
+  "reviewed_candidate": {
+    "path": "manual_sources/JS-40A/JP/ja/git-20261112-1a96bf34-m000464",
+    "git_ref": "6abe1128c27a186228185390d26f87adc9d3e2c9",
+    "manifest_sha256": "4fb43439d40a7dcf9a0bfc2c7967bfb00546d38fa1fb042dd3ac8ce302040648",
+    "manual_ir_sha256": "51da085646b44204eeec0e82fabf843b71d6b4e52db1b5f46f42b7968f69b084"
+  },
+  "review": {
+    "model": "JS-40A",
+    "package": "manual_sources/JS-40A/JP/ja/git-20261112-1a96bf34-m000464",
+    "identical_files": 19,
+    "cold_replay": "pass",
+    "strict_sphinx": "pass",
+    "web_sha256": "51da085646b44204eeec0e82fabf843b71d6b4e52db1b5f46f42b7968f69b084"
+  },
+  "scope": "Review and publish this derivative of the exact candidate. Japanese wording, technical facts, printed variant differences, source concerns and recycle-glyph standardization are retained. Only the recorded source-bound symbol repairs are applied; no live-table write.",
+  "release_review_changes": []
+}

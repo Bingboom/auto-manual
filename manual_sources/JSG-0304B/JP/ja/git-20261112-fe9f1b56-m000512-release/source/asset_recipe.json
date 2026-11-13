@@ -1,0 +1,774 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 40000000
+  },
+  "source": {
+    "source_key": "source/jsg0304b_jp_m000512",
+    "expected_sha256": "fe9f1b561a9f75af52e1af738f9da00492302a55f43ddc0122e366744fb9e452",
+    "expected_page_count": 20
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 20
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 1,
+      "page_scale": {}
+    }
+  },
+  "page_catalog": [
+    {
+      "page": 1,
+      "page_key": "page-01",
+      "role": "source-page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 2,
+      "page_key": "page-02",
+      "role": "source-page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 3,
+      "page_key": "page-03",
+      "role": "source-page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 4,
+      "page_key": "page-04",
+      "role": "source-page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 5,
+      "page_key": "page-05",
+      "role": "source-page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 6,
+      "page_key": "page-06",
+      "role": "source-page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 7,
+      "page_key": "page-07",
+      "role": "source-page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 8,
+      "page_key": "page-08",
+      "role": "source-page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 9,
+      "page_key": "page-09",
+      "role": "source-page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 10,
+      "page_key": "page-10",
+      "role": "source-page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 11,
+      "page_key": "page-11",
+      "role": "source-page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 12,
+      "page_key": "page-12",
+      "role": "source-page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 13,
+      "page_key": "page-13",
+      "role": "source-page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 14,
+      "page_key": "page-14",
+      "role": "source-page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 15,
+      "page_key": "page-15",
+      "role": "source-page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 16,
+      "page_key": "page-16",
+      "role": "source-page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 17,
+      "page_key": "page-17",
+      "role": "source-page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 18,
+      "page_key": "page-18",
+      "role": "source-page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 19,
+      "page_key": "page-19",
+      "role": "source-page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    },
+    {
+      "page": 20,
+      "page_key": "page-20",
+      "role": "source-page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator-designated source archive; candidate only, not release approved"
+        ]
+      },
+      "risk_tags": [
+        "localized-source"
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "web/jsg-0304b/jp/m000512/overview",
+      "page": 7,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JSG-0304B"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            21,
+            163,
+            346,
+            425
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/overview.png",
+          "scale": 6
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Web review candidate; no operator pixel approval or registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/jsg-0304b/jp/m000512/charging-solar",
+      "page": 11,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JSG-0304B"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            30,
+            415,
+            333,
+            493
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/charging-solar.png",
+          "scale": 6
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Web review candidate; no operator pixel approval or registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/jsg-0304b/jp/m000512/inbox-usbc",
+      "page": 17,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JSG-0304B"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            218,
+            61,
+            241,
+            102
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/inbox-usbc.png",
+          "scale": 6
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Web review candidate; no operator pixel approval or registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/jsg-0304b/jp/m000512/inbox-pouch",
+      "page": 17,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JSG-0304B"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            287,
+            67,
+            338,
+            101
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/inbox-pouch.png",
+          "scale": 6
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Web review candidate; no operator pixel approval or registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/jsg-0304b/jp/m000512/inbox-panel",
+      "page": 17,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JSG-0304B"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            37,
+            159,
+            124,
+            191
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/inbox-panel.png",
+          "scale": 6
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Web review candidate; no operator pixel approval or registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/jsg-0304b/jp/m000512/inbox-extension",
+      "page": 17,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JSG-0304B"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            138,
+            159,
+            191,
+            191
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/inbox-extension.png",
+          "scale": 6
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Web review candidate; no operator pixel approval or registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/jsg-0304b/jp/m000512/inbox-user-manual",
+      "page": 17,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JSG-0304B"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            298,
+            153,
+            329,
+            196
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/inbox-user-manual.png",
+          "scale": 6
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Web review candidate; no operator pixel approval or registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/jsg-0304b/jp/m000512/app-qr",
+      "page": 20,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JSG-0304B"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            304,
+            467,
+            343,
+            505
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/app-qr.png",
+          "scale": 6
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Web review candidate; no operator pixel approval or registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/jsg-0304b/jp/m000512/unfold-5",
+      "page": 5,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JSG-0304B"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            39,
+            333,
+            333,
+            465
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/unfold-5.png",
+          "scale": 6
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Web review candidate; no operator pixel approval or registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    }
+  ]
+}

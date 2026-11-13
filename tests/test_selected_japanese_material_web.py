@@ -115,5 +115,46 @@ class SelectedJapaneseAttachmentTests(unittest.TestCase):
                     self.assertNotIn("45°C以上", compact)
 
 
+class ApprovedJapaneseReleaseTests(unittest.TestCase):
+    def test_release_snapshots_keep_candidates_and_bind_every_input(self) -> None:
+        for material, model, version, digest, _ in CASES:
+            with self.subTest(material=material):
+                candidate = package_path(model, version)
+                release = package_path(model, version + "-release")
+                manifest = manifest_at(release)
+                self.assertFalse(manifest_at(candidate)["publication_eligible"])
+                self.assertTrue(manifest["publication_eligible"])
+                self.assertFalse(manifest["pending_source_review"])
+                self.assertEqual(manifest["original_source"]["sha256"], digest)
+                approval = json.loads((release / "source" / "approval.json").read_text())
+                self.assertEqual(approval["original_source_sha256"], digest)
+                self.assertEqual(approval["reviewed_candidate"]["manifest_sha256"],
+                                 hashlib.sha256((candidate / "source_manifest.json").read_bytes()).hexdigest())
+                for row in manifest["inputs"]:
+                    self.assertEqual(hashlib.sha256((release / row["path"]).read_bytes()).hexdigest(),
+                                     row["sha256"], row["path"])
+
+    def test_old_power_station_symbol_tables_have_complete_source_bindings(self) -> None:
+        library = ROOT / "docs" / "renderers" / "web" / "assets" / "shared" / "symbols"
+        catalog = json.loads((library / "manifest.json").read_text())
+        symbols = {row["key"]: row for row in catalog["assets"]}
+        for model, count in (("PTB021", 6), ("PTB041", 6), ("PTB071", 6), ("BN-RB15", 3)):
+            version = next(case[2] for case in CASES if case[1] == model)
+            package = package_path(model, version + "-release")
+            manifest = manifest_at(package)
+            rows = manifest["symbol_asset_admission"]["locales"]["ja"]
+            self.assertEqual(len(rows), count, model)
+            for row in rows:
+                shared = symbols[row["shared_symbol_key"]]
+                self.assertEqual(row["asset_sha256"], shared["sha256"])
+                self.assertEqual((package / "web" / "ja" / row["asset_ref"]).read_bytes(),
+                                 (library / shared["path"]).read_bytes())
+                self.assertTrue(row["drawing_indices"])
+                self.assertEqual(len(row["caption_sha256"]), 64)
+            if model == "BN-RB15":
+                self.assertEqual([row["asset_ref"] for row in rows], [
+                    "assets/symbol-prohibited.svg", "assets/symbol-mandatory.svg", "assets/symbol-unplug.svg"])
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ns1="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="15.300000000000004" height="15.199999999999989" viewBox="41.8 170.4 15.300000000000004 15.199999999999989"><defs>
+<clipPath id="clip_1">
+<path transform="matrix(1,0,0,-1,0,515.9055)" d="M0 0H362.83467V515.9055H0Z" />
+</clipPath>
+<clipPath id="clip_2">
+<path transform="matrix(1,0,0,-1,-36.850179,552.7559)" d="M0 0H436.535V589.605H0Z" />
+</clipPath>
+<clipPath id="clip_3">
+<path transform="matrix(1,0,0,-1,-36.850179,552.7559)" d="M28.346 28.346H408.18803V561.25906H28.346Z" />
+</clipPath>
+<clipPath id="clip_4">
+<path transform="matrix(1,0,0,-1,-36.850179,552.7559)" d="M0 0H436.535V589.605H0Z" />
+</clipPath>
+<clipPath id="clip_5">
+<path transform="matrix(1,0,0,-1,-36.850179,552.7559)" d="M68.406 432.191H103.798999V444.363H68.406Z" />
+</clipPath>
+<clipPath id="clip_6">
+<path transform="matrix(1,0,0,-1,-36.850179,552.7559)" d="M0 0H436.535V589.605H0Z" />
+</clipPath>
+<clipPath id="clip_7">
+<path transform="matrix(1,0,0,-1,-36.850179,552.7559)" d="M68.401 408.202H103.806V420.374H68.401Z" />
+</clipPath>
+<clipPath id="clip_8">
+<path transform="matrix(1,0,0,-1,-36.850179,552.7559)" d="M0 0H436.535V589.605H0Z" />
+</clipPath>
+<clipPath id="clip_9">
+<path transform="matrix(1,0,0,-1,-36.850179,552.7559)" d="M79.2 367.544H93.35899V381.945H79.2Z" />
+</clipPath>
+<clipPath id="clip_10">
+<path transform="matrix(1,0,0,-1,-36.850179,552.7559)" d="M0 0H436.535V589.605H0Z" />
+</clipPath>
+<clipPath id="clip_11">
+<path transform="matrix(1,0,0,-1,-36.850179,552.7559)" d="M69.399 344.284H83.885V358.77H69.399Z" />
+</clipPath>
+<clipPath id="clip_12">
+<path transform="matrix(1,0,0,-1,-36.850179,552.7559)" d="M0 0H436.535V589.605H0Z" />
+</clipPath>
+<clipPath id="clip_13">
+<path transform="matrix(1,0,0,-1,-36.850179,552.7559)" d="M89.44 344.302H103.159008V358.683H89.44Z" />
+</clipPath>
+<clipPath id="clip_14">
+<path transform="matrix(1,0,0,-1,-36.850179,552.7559)" d="M0 0H436.535V589.605H0Z" />
+</clipPath>
+<clipPath id="clip_15">
+<path transform="matrix(1,0,0,-1,-36.850179,552.7559)" d="M201.128 271.807H241.07501V284.739H201.128Z" />
+</clipPath>
+<clipPath id="clip_16">
+<path transform="matrix(1,0,0,-1,-36.850179,552.7559)" d="M0 0H436.535V589.605H0Z" />
+</clipPath>
+<clipPath id="clip_17">
+<path transform="matrix(1,0,0,-1,-36.850179,552.7559)" d="M71.929 239.72H90.708V259.407H71.929Z" />
+</clipPath>
+<clipPath id="clip_18">
+<path transform="matrix(1,0,0,-1,-36.850179,552.7559)" d="M0 0H436.535V589.605H0Z" />
+</clipPath>
+<clipPath id="clip_19">
+<path transform="matrix(1,0,0,-1,-36.850179,552.7559)" d="M72.049 137.071H90.234V155.567H72.049Z" />
+</clipPath>
+<clipPath id="clip_20">
+<path transform="matrix(1,0,0,-1,-36.850179,552.7559)" d="M0 0H436.535V589.605H0Z" />
+</clipPath>
+<clipPath id="clip_21">
+<path transform="matrix(1,0,0,-1,-36.850179,552.7559)" d="M72.049 109.434H90.234V127.929H72.049Z" />
+</clipPath>
+<clipPath id="clip_22">
+<path transform="matrix(1,0,0,-1,-36.850179,552.7559)" d="M0 0H436.535V589.605H0Z" />
+</clipPath>
+<clipPath id="clip_23">
+<path transform="matrix(1,0,0,-1,-36.850179,552.7559)" d="M72.049 81.087H90.234V99.582H72.049Z" />
+</clipPath>
+<clipPath id="clip_24">
+<path transform="matrix(1,0,0,-1,-36.850179,552.7559)" d="M0 0H436.535V589.605H0Z" />
+</clipPath>
+</defs>
+<g clip-path="url(#clip_1)"><g clip-path="url(#clip_2)"><g ns1:groupmode="layer" ns1:label="图层 1"><g clip-path="url(#clip_9)"><path transform="matrix(1,0,0,-1,56.67172,178.01172)" d="M0 0C0-3.925-3.243-7.107-7.243-7.107-11.243-7.107-14.486-3.925-14.486 0-14.486 3.925-11.243 7.107-7.243 7.107-3.243 7.107 0 3.925 0 0" fill="#ffffff" />
+<path transform="matrix(1,0,0,-1,53.87382,181.65692)" d="M0 0-8.104 8.106C-5.842 9.959-2.498 9.83-.386 7.719 1.725 5.607 1.854 2.264 0 0M-8.532-.428C-10.644 1.684-10.773 5.028-8.919 7.291L-.814-.814C-3.076-2.668-6.421-2.539-8.532-.428M-4.459 10.846C-8.436 10.846-11.659 7.622-11.659 3.646-11.659-.331-8.436-3.555-4.459-3.555-.483-3.555 2.741-.331 2.741 3.646 2.741 7.622-.483 10.846-4.459 10.846" fill="#2c292a" />
+</g></g></g></g></svg>

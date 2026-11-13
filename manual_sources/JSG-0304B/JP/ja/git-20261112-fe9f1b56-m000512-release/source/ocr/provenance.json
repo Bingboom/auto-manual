@@ -1,0 +1,9 @@
+{
+  "source_sha256": "fe9f1b561a9f75af52e1af738f9da00492302a55f43ddc0122e366744fb9e452",
+  "engine": "Tesseract 5 jpn+eng tessdata_best",
+  "render_dpi": 350,
+  "psm": 3,
+  "status": "uncorrected draft; not copy authority",
+  "reading_contract": "Outlined vectors require visual review. OCR segmentation, lost minus signs and character substitutions are not carried into the native Japanese text.",
+  "whitespace_normalization": "Trailing whitespace, page-file terminal formfeed and excess blank lines at EOF removed for repository hygiene; no OCR character/word correction."
+}

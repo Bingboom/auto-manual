@@ -1,0 +1,2507 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "target": {
+    "model": "JSG-0304B",
+    "region": "JP",
+    "languages": [
+      "ja"
+    ],
+    "technical_version": "git-20261112-fe9f1b56-m000512-release"
+  },
+  "document_identity": {
+    "printed_model": "JSG-0304B",
+    "product_name": "Jackery Solar Generator 300 Plus 40W Mini",
+    "document_kind": "取扱説明書",
+    "material_number": "38-0001-000512",
+    "station_model": "JE-300B",
+    "document_code": "Jackery-UM-001"
+  },
+  "original_source": {
+    "filename": "original.pdf",
+    "supplied_filename": "38-0001-000512 说明书 HTC001095B-JP-JAK 套装 RoHS REACH Q_竖版.pdf",
+    "sha256": "fe9f1b561a9f75af52e1af738f9da00492302a55f43ddc0122e366744fb9e452",
+    "size_bytes": 3683943,
+    "physical_page_count": 20,
+    "format": "outlined PDF, original finished proportions preserved",
+    "source_record_id": "reczz28SfbsHcLpf",
+    "source_field": "竖版说明书",
+    "file_token": "J7IRbst4foWqO8xFWT5cNciNnFe"
+  },
+  "printed_manual_version": null,
+  "language_scope": "single",
+  "publication_status": "operator-authorized-after-agent-review-git-only-release",
+  "publication_eligible": true,
+  "pending_source_review": [],
+  "included_pages": {
+    "ja": {
+      "physical_pages": [
+        1,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "printed_pages": [
+        "01",
+        "16"
+      ],
+      "omitted_blank_pages": [
+        2,
+        3
+      ]
+    }
+  },
+  "source_authority": "User-selected material in live Feishu 发布文档管理; current 竖版说明书 attachment downloaded read-only and SHA-256 locked. This exact Japanese booklet governs copy and figures.",
+  "source_role": "Japanese solar generator bundle intake candidate; does not register a phase2 or print target",
+  "live_bitable_dependency": false,
+  "reference_edition": {
+    "package": "manual_sources/JE-300B/JP/ja/git-20261103-456bb360",
+    "role": "shared component/style and same included station reference only; each retained source block is checked against the selected bundle original"
+  },
+  "web_roots": {
+    "ja": "web/ja"
+  },
+  "shared_component_exceptions": [
+    {
+      "language": "ja",
+      "page_id": "lcd_display",
+      "kind": "table",
+      "text_sha256": "45cb3d49a8162f412696ccfe0f10b270b1ab32fa6f3afb427ac7802b677cee53",
+      "reason": "省エネモード port / 電力設定値 / デフォルト設定 table (source physical9–10): no shared component carries an output-port threshold table (HB-TABLE-KEY-COMBINATIONS is button combinations, HB-TABLE-LCD-MODE is screen states); a plain table on the shared manual-table wrapper (JE-1000D JP V2 precedent for the same table)"
+    },
+    {
+      "language": "ja",
+      "page_id": "lcd_display",
+      "kind": "table",
+      "text_sha256": "ce29e197ab9031527c6e24fc512b5b81797f8d8b7606ba42c8d617903cc96bf0",
+      "reason": "省エネモード機能 OFF/ON four-column behaviour table (source physical9–10): HB-TABLE-AUTO-RESUME needs a 3/4 condition geometry and HB-TABLE-LCD-MODE needs state/action/description groups; neither fits four printed columns, so a plain table on the shared manual-table wrapper"
+    }
+  ],
+  "component_map": [
+    {
+      "chapter": "solar_unfolding",
+      "physical_pages": [
+        4,
+        5
+      ],
+      "printed": "ソーラーパネル取扱説明書：",
+      "shared": "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback",
+      "source_ref": "original.pdf#physical-pages=4&block=solar_unfolding/2"
+    },
+    {
+      "chapter": "solar_unfolding",
+      "physical_pages": [
+        4,
+        5
+      ],
+      "printed": "ソーラーパネル取扱説明書：",
+      "shared": "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback",
+      "source_ref": "original.pdf#physical-pages=4&block=solar_unfolding/4"
+    },
+    {
+      "chapter": "solar_unfolding",
+      "physical_pages": [
+        4,
+        5
+      ],
+      "printed": "ソーラーパネル取扱説明書：",
+      "shared": "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback",
+      "source_ref": "original.pdf#physical-pages=4&block=solar_unfolding/6"
+    },
+    {
+      "chapter": "solar_unfolding",
+      "physical_pages": [
+        4,
+        5
+      ],
+      "printed": "ソーラーパネル取扱説明書：",
+      "shared": "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback",
+      "source_ref": "original.pdf#physical-pages=5&block=solar_unfolding/8"
+    },
+    {
+      "chapter": "solar_unfolding",
+      "physical_pages": [
+        4,
+        5
+      ],
+      "printed": "ソーラーパネル取扱説明書：",
+      "shared": "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback",
+      "source_ref": "original.pdf#physical-pages=5&block=solar_unfolding/10"
+    },
+    {
+      "chapter": "specifications",
+      "physical_pages": [
+        6,
+        7
+      ],
+      "printed": "1.主な仕様",
+      "shared": "HB-TABLE-SPEC/vertical",
+      "source_ref": "original.pdf#physical-pages=6&block=specifications/1"
+    },
+    {
+      "chapter": "specifications",
+      "physical_pages": [
+        6,
+        7
+      ],
+      "printed": "1.主な仕様",
+      "shared": "HB-TABLE-SPEC/vertical",
+      "source_ref": "original.pdf#physical-pages=6&block=specifications/3"
+    },
+    {
+      "chapter": "product_overview",
+      "physical_pages": [
+        7
+      ],
+      "printed": "2.各部の名称",
+      "shared": "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback",
+      "source_ref": "original.pdf#physical-pages=7&block=product_overview/1"
+    },
+    {
+      "chapter": "lcd_display",
+      "physical_pages": [
+        8,
+        9,
+        10
+      ],
+      "printed": "4.液晶画面",
+      "shared": "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback",
+      "source_ref": "original.pdf#physical-pages=8&block=lcd_display/1"
+    },
+    {
+      "chapter": "lcd_display",
+      "physical_pages": [
+        8,
+        9,
+        10
+      ],
+      "printed": "4.液晶画面",
+      "shared": "HB-TABLE-REFERENCE/lcd-descriptions",
+      "source_ref": "original.pdf#physical-pages=9&block=lcd_display/2"
+    },
+    {
+      "chapter": "lcd_display",
+      "physical_pages": [
+        8,
+        9,
+        10
+      ],
+      "printed": "4.液晶画面",
+      "shared": "HB-TABLE-LCD-ICON/icon-catalog-unnumbered",
+      "source_ref": "original.pdf#physical-pages=9&block=lcd_display/4"
+    },
+    {
+      "chapter": "lcd_display",
+      "physical_pages": [
+        8,
+        9,
+        10
+      ],
+      "printed": "4.液晶画面",
+      "shared": "HB-TABLE-LCD-ICON/icon-catalog-unnumbered",
+      "source_ref": "original.pdf#physical-pages=10&block=lcd_display/13"
+    },
+    {
+      "chapter": "charging",
+      "physical_pages": [
+        11,
+        12
+      ],
+      "printed": "5.充電方法",
+      "shared": "HB-CALLOUT-STRIP/caution",
+      "source_ref": "original.pdf#physical-pages=11&block=charging/2"
+    },
+    {
+      "chapter": "charging",
+      "physical_pages": [
+        11,
+        12
+      ],
+      "printed": "5.充電方法",
+      "shared": "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback",
+      "source_ref": "original.pdf#physical-pages=11&block=charging/5"
+    },
+    {
+      "chapter": "charging",
+      "physical_pages": [
+        11,
+        12
+      ],
+      "printed": "5.充電方法",
+      "shared": "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback",
+      "source_ref": "original.pdf#physical-pages=11&block=charging/9"
+    },
+    {
+      "chapter": "charging",
+      "physical_pages": [
+        11,
+        12
+      ],
+      "printed": "5.充電方法",
+      "shared": "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback",
+      "source_ref": "original.pdf#physical-pages=12&block=charging/12"
+    },
+    {
+      "chapter": "safety",
+      "physical_pages": [
+        13,
+        14
+      ],
+      "printed": "6.安全上のご注意",
+      "shared": "HB-TABLE-SYMBOL-SIGNAL/localized-badges",
+      "source_ref": "original.pdf#physical-pages=13&block=safety/5"
+    },
+    {
+      "chapter": "safety",
+      "physical_pages": [
+        13,
+        14
+      ],
+      "printed": "6.安全上のご注意",
+      "shared": "HB-TABLE-SYMBOL-ICON/two-panel-responsive",
+      "source_ref": "original.pdf#physical-pages=13&block=safety/7"
+    },
+    {
+      "chapter": "safety",
+      "physical_pages": [
+        13,
+        14
+      ],
+      "printed": "6.安全上のご注意",
+      "shared": "HB-CALLOUT-STRIP/warning",
+      "source_ref": "original.pdf#physical-pages=13&block=safety/8"
+    },
+    {
+      "chapter": "safety",
+      "physical_pages": [
+        13,
+        14
+      ],
+      "printed": "6.安全上のご注意",
+      "shared": "HB-CALLOUT-STRIP/warning",
+      "source_ref": "original.pdf#physical-pages=13&block=safety/9"
+    },
+    {
+      "chapter": "safety",
+      "physical_pages": [
+        13,
+        14
+      ],
+      "printed": "6.安全上のご注意",
+      "shared": "HB-CALLOUT-STRIP/warning",
+      "source_ref": "original.pdf#physical-pages=13&block=safety/10"
+    },
+    {
+      "chapter": "safety",
+      "physical_pages": [
+        13,
+        14
+      ],
+      "printed": "6.安全上のご注意",
+      "shared": "HB-CALLOUT-STRIP/warning",
+      "source_ref": "original.pdf#physical-pages=13&block=safety/11"
+    },
+    {
+      "chapter": "safety",
+      "physical_pages": [
+        13,
+        14
+      ],
+      "printed": "6.安全上のご注意",
+      "shared": "HB-CALLOUT-STRIP/warning",
+      "source_ref": "original.pdf#physical-pages=14&block=safety/12"
+    },
+    {
+      "chapter": "safety",
+      "physical_pages": [
+        13,
+        14
+      ],
+      "printed": "6.安全上のご注意",
+      "shared": "HB-CALLOUT-STRIP/warning",
+      "source_ref": "original.pdf#physical-pages=14&block=safety/13"
+    },
+    {
+      "chapter": "safety",
+      "physical_pages": [
+        13,
+        14
+      ],
+      "printed": "6.安全上のご注意",
+      "shared": "HB-CALLOUT-STRIP/warning",
+      "source_ref": "original.pdf#physical-pages=14&block=safety/14"
+    },
+    {
+      "chapter": "safety",
+      "physical_pages": [
+        13,
+        14
+      ],
+      "printed": "6.安全上のご注意",
+      "shared": "HB-CALLOUT-STRIP/warning",
+      "source_ref": "original.pdf#physical-pages=14&block=safety/15"
+    },
+    {
+      "chapter": "safety",
+      "physical_pages": [
+        13,
+        14
+      ],
+      "printed": "6.安全上のご注意",
+      "shared": "HB-CALLOUT-STRIP/warning",
+      "source_ref": "original.pdf#physical-pages=14&block=safety/16"
+    },
+    {
+      "chapter": "safety",
+      "physical_pages": [
+        13,
+        14
+      ],
+      "printed": "6.安全上のご注意",
+      "shared": "HB-CALLOUT-STRIP/warning",
+      "source_ref": "original.pdf#physical-pages=14&block=safety/17"
+    },
+    {
+      "chapter": "safety",
+      "physical_pages": [
+        13,
+        14
+      ],
+      "printed": "6.安全上のご注意",
+      "shared": "HB-CALLOUT-STRIP/warning",
+      "source_ref": "original.pdf#physical-pages=14&block=safety/18"
+    },
+    {
+      "chapter": "safety",
+      "physical_pages": [
+        13,
+        14
+      ],
+      "printed": "6.安全上のご注意",
+      "shared": "HB-CALLOUT-STRIP/caution",
+      "source_ref": "original.pdf#physical-pages=14&block=safety/19"
+    },
+    {
+      "chapter": "safety",
+      "physical_pages": [
+        13,
+        14
+      ],
+      "printed": "6.安全上のご注意",
+      "shared": "HB-CALLOUT-STRIP/caution",
+      "source_ref": "original.pdf#physical-pages=14&block=safety/20"
+    },
+    {
+      "chapter": "safety",
+      "physical_pages": [
+        13,
+        14
+      ],
+      "printed": "6.安全上のご注意",
+      "shared": "HB-CALLOUT-STRIP/caution",
+      "source_ref": "original.pdf#physical-pages=14&block=safety/21"
+    },
+    {
+      "chapter": "in_the_box",
+      "physical_pages": [
+        17
+      ],
+      "printed": "8.同梱品",
+      "shared": "HB-SPECIAL-INBOX/responsive-card-grid",
+      "source_ref": "original.pdf#physical-pages=17&block=in_the_box/1"
+    },
+    {
+      "chapter": "app_setup",
+      "physical_pages": [
+        18,
+        19,
+        20
+      ],
+      "printed": "Jackeryアプリ ユーザーマニュアル",
+      "shared": "HB-SPECIAL-APP/inline-control",
+      "source_ref": "original.pdf#physical-pages=18&block=app_setup/4"
+    },
+    {
+      "chapter": "app_setup",
+      "physical_pages": [
+        18,
+        19,
+        20
+      ],
+      "printed": "Jackeryアプリ ユーザーマニュアル",
+      "shared": "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback",
+      "source_ref": "original.pdf#physical-pages=18&block=app_setup/6"
+    },
+    {
+      "chapter": "app_setup",
+      "physical_pages": [
+        18,
+        19,
+        20
+      ],
+      "printed": "Jackeryアプリ ユーザーマニュアル",
+      "shared": "HB-CALLOUT-STRIP/note",
+      "source_ref": "original.pdf#physical-pages=18&block=app_setup/7"
+    },
+    {
+      "chapter": "app_setup",
+      "physical_pages": [
+        18,
+        19,
+        20
+      ],
+      "printed": "Jackeryアプリ ユーザーマニュアル",
+      "shared": "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback",
+      "source_ref": "original.pdf#physical-pages=18&block=app_setup/8"
+    },
+    {
+      "chapter": "app_setup",
+      "physical_pages": [
+        18,
+        19,
+        20
+      ],
+      "printed": "Jackeryアプリ ユーザーマニュアル",
+      "shared": "HB-CALLOUT-STRIP/note",
+      "source_ref": "original.pdf#physical-pages=18,19&block=app_setup/10"
+    },
+    {
+      "chapter": "app_setup",
+      "physical_pages": [
+        18,
+        19,
+        20
+      ],
+      "printed": "Jackeryアプリ ユーザーマニュアル",
+      "shared": "HB-CALLOUT-STRIP/note",
+      "source_ref": "original.pdf#physical-pages=19&block=app_setup/12"
+    },
+    {
+      "chapter": "app_setup",
+      "physical_pages": [
+        18,
+        19,
+        20
+      ],
+      "printed": "Jackeryアプリ ユーザーマニュアル",
+      "shared": "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback",
+      "source_ref": "original.pdf#physical-pages=19&block=app_setup/14"
+    },
+    {
+      "chapter": "app_setup",
+      "physical_pages": [
+        18,
+        19,
+        20
+      ],
+      "printed": "Jackeryアプリ ユーザーマニュアル",
+      "shared": "HB-SPECIAL-APP/download-qr-only",
+      "source_ref": "original.pdf#physical-pages=20&block=app_setup/25"
+    },
+    {
+      "chapter": "app_setup",
+      "physical_pages": [
+        18,
+        19,
+        20
+      ],
+      "printed": "Jackeryアプリ ユーザーマニュアル",
+      "shared": "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback",
+      "source_ref": "original.pdf#physical-pages=20&block=app_setup/26"
+    },
+    {
+      "chapter": "all",
+      "printed": "native chapter/subhead/body/numbered steps/bullet lists",
+      "shared": "shared Manual Flow headings, paragraphs, lists; no package style"
+    },
+    {
+      "chapter": "preface",
+      "printed": "cover domestic-use/support/welcome/read/storage/update notice",
+      "shared": "native preface paragraphs"
+    },
+    {
+      "chapter": "specifications",
+      "printed": "recycling notice with Li-ion32 artwork",
+      "shared": "native image + strong paragraph + prose"
+    },
+    {
+      "chapter": "lcd_display",
+      "printed": "port/threshold/behaviour tables",
+      "shared": "shared manual-table; reasons and text hashes in shared_component_exceptions"
+    }
+  ],
+  "normalizations": [
+    "Original Japanese wording and each bundle’s own figures/specifications govern. OCR is only a draft. Body paragraphs and all tables are native Manual IR; no prose/table is a screenshot.",
+    "Cover logo, duplicate product title and station picture are omitted; Japanese domestic-use/support/welcome/safety-reading/storage/update notice remain in preface. Blank physical2–3 and print folios are omitted. There is no printed contents page.",
+    "Print line wrapping, numbered instruction layout and decorative boxes become shared flow headings/lists/components. Table labels and values remain native, including subscript semantics; the two-column printed solar table of491 is read down its left column then right column.",
+    "Solar unfolding5steps retain hands, movement arrows and complete panel edges; their captions are native headings. First4 donor348 illustrations are copied locally and match both this bundle p4–5 and selected independent464 p3–5. Rendering requires no348 package.",
+    "Finished overview/charging panels keep Japanese leader labels and device markings in complete source art; complete frames of App screenshots are retained. Alt text carries visible leader labels; no invented device features or title labels are added.",
+    "Warning/caution pictograms appear in the shared six-row symbol table; each warning statement uses shared callout chrome with its source severity/title/body.",
+    "Eight inbox items use shared composition numbering once. Their native labels are outside the complete accessory illustrations; embedded print captions/partial neighboring text are excluded.",
+    "Back-cover App download paragraph, original store badges and exact QR matrix remain at the end of app_setup.",
+    "SolarSaga 40 Mini is a structural HB-TABLE-SPEC section title taken from the source model-name value; source512 does not print a separate solar subtitle. This normalizes structure and does not claim an original printed subtitle."
+  ],
+  "source_concerns": [
+    {
+      "physical_page": 6,
+      "text": "3ヶ月の場合: -20~45°C (4~113°F)",
+      "decision": "preserve printed positive4°F; a minus sign is suspected missing, but no correction is authorized"
+    },
+    {
+      "physical_pages": [
+        18,
+        19
+      ],
+      "text": "Explorer3000Pro screenshot example and source typo「再度バインドしてくだい」",
+      "decision": "preserve the original illustrative App screens and Japanese wording; no model transplant"
+    }
+  ],
+  "validation_boundary": "MA-432 delegates review then release. Candidate adapters independently rebuilt byte-identical Web trees and passed strict Sphinx. Release differences are enumerated in source/reviewed-candidate.json: authorization metadata, source-matching/existing canonical PTB glyphs, native source-bound JVC glyphs and the restored printed unplug row. Japanese wording, specifications and source concerns are unchanged. The fixed symbol admission rule and existing shared groups are unchanged. No separate operator pixel inspection is claimed.",
+  "inputs": [
+    {
+      "path": "README.md",
+      "size": 1296,
+      "sha256": "f5e01ddf2661179387b6ca4cd682c30e41754f15adb9de387c3111821a1c3c91"
+    },
+    {
+      "path": "assets/app-add.png",
+      "size": 108620,
+      "sha256": "159b9c0c5094a57162032587cc442c4d1b6bdce950ed4ebe3579d44c2b6e815f"
+    },
+    {
+      "path": "assets/app-control.png",
+      "size": 29643,
+      "sha256": "d0709184dcf1d2ed59b58f1721197bf374093c56139889b75277b36623da5f1c"
+    },
+    {
+      "path": "assets/app-qr.png",
+      "size": 3126,
+      "sha256": "b50ad04be3e69729fece5997bdfd59eaf1dfee150551b53065d1c5474ab1cf57"
+    },
+    {
+      "path": "assets/app-results.png",
+      "size": 101176,
+      "sha256": "ccdfae41d3cd940b4d04e1f5c50978c24880fd600b81183c8280df3904ff17e8"
+    },
+    {
+      "path": "assets/app-store-badges.png",
+      "size": 12776,
+      "sha256": "1fe61292c9f3c564644b7b942ec525167dc5f53f17fa1a9ad0f3ec1fd1ec5c1d"
+    },
+    {
+      "path": "assets/charging-ac.png",
+      "size": 17054,
+      "sha256": "78c974af29aca8a21430fbcbdb5c665f7398b77d190155f41719e4c98b60a54e"
+    },
+    {
+      "path": "assets/charging-car.png",
+      "size": 33766,
+      "sha256": "eea5f7474f3febc3b4e67d408956d55eadbd23029c1fd6ff7c7e3634b60abcbb"
+    },
+    {
+      "path": "assets/charging-solar.png",
+      "size": 69609,
+      "sha256": "3e6db8c3bb95e12e48b5ddbb28d43af387bbe24a9c612eb6e29cc02fc755bad9"
+    },
+    {
+      "path": "assets/h1-jp-mandatory.svg",
+      "size": 1292,
+      "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2"
+    },
+    {
+      "path": "assets/h1-jp-unplug.svg",
+      "size": 2569,
+      "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf"
+    },
+    {
+      "path": "assets/inbox-ac-cable.png",
+      "size": 3903,
+      "sha256": "fbab666613d6bc04561044fd4f524635dccfb36f526231cd57530a8d5e54433e"
+    },
+    {
+      "path": "assets/inbox-extension.png",
+      "size": 13835,
+      "sha256": "a44fdc10ad13f1d32edd05254c29c5c21154723fd7d2389d0dde729698c38ba5"
+    },
+    {
+      "path": "assets/inbox-panel.png",
+      "size": 5746,
+      "sha256": "22c8fcc36d3c9edf278dcefeb83011b3aacdb572a4292647a80c4603dd553c1c"
+    },
+    {
+      "path": "assets/inbox-pouch.png",
+      "size": 6633,
+      "sha256": "9eddf744be243717bd1191ecbbcb1cf021c444a0e35e9607092faa1f60357cea"
+    },
+    {
+      "path": "assets/inbox-unit.png",
+      "size": 7399,
+      "sha256": "3b0666779610180e3cce1f40cfd118ad6e47bb4c3cc5a31a90108a56b313b7b4"
+    },
+    {
+      "path": "assets/inbox-usbc.png",
+      "size": 4496,
+      "sha256": "158a14c1316216408d54c7734141b1f928f2984efe54fbb307262df247adba0e"
+    },
+    {
+      "path": "assets/inbox-user-manual.png",
+      "size": 11708,
+      "sha256": "9003f0d34da4d86998cf2cc047b9baf81f04de08cb9214e361cd6db45c7c289a"
+    },
+    {
+      "path": "assets/inbox-warranty.png",
+      "size": 13034,
+      "sha256": "7943929e85aadb1b5a0bf59fcd4baa0d3d63006063c396c0af9041008a879220"
+    },
+    {
+      "path": "assets/je1000d-jp-00c43a89-symbol-02.svg",
+      "size": 12347,
+      "sha256": "0766a51f9ad7d433bed62a7c1ddbacc19ad7c7b68bf55938d5cdbab902b9ea04"
+    },
+    {
+      "path": "assets/je1000d-jp-00c43a89-symbol-03.svg",
+      "size": 11954,
+      "sha256": "585a0c72abdb9fc1d69d31554d249730f1361dfc49a501423dd0204e0637a387"
+    },
+    {
+      "path": "assets/je1000d-jp-00c43a89-symbol-05.svg",
+      "size": 13550,
+      "sha256": "4728b4a0ab80e8376ff756d9af98d92c1906d3461e44eb4905899b6212cc003c"
+    },
+    {
+      "path": "assets/je1000d-jp-00c43a89-symbol-06.svg",
+      "size": 9416,
+      "sha256": "a5390e01e5ed9ba225377ba6b13de7523f86b8139e4686cf4534ebb2c1048641"
+    },
+    {
+      "path": "assets/je3000c-kr-78316033-06.svg",
+      "size": 6314,
+      "sha256": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5"
+    },
+    {
+      "path": "assets/lcd-battery-icon.svg",
+      "size": 8971,
+      "sha256": "5500242f2fe21a6b1b32d363f483f23841d34f0055c057e530eecdcfe2de0c1f"
+    },
+    {
+      "path": "assets/lcd-energy-saving.svg",
+      "size": 11424,
+      "sha256": "2ec35ee3a80d112ade030bb54c29bd877804cfbd0848cd9ef5fcf7f4250e124b"
+    },
+    {
+      "path": "assets/lcd-fault-code.svg",
+      "size": 9924,
+      "sha256": "9c59ce4d35a1805714ce1c314f6ffbaa738a561d91a7de6dda8ca204b053458c"
+    },
+    {
+      "path": "assets/lcd-high-temperature.svg",
+      "size": 10380,
+      "sha256": "613c3b10afbb7fd46e65dfe6000e49cd5e6217dccfdb7024ddb5fd2efdf6218e"
+    },
+    {
+      "path": "assets/lcd-low-battery.svg",
+      "size": 7970,
+      "sha256": "3f15994f7d22feb032b891d8eaa35a29296153084e4f0337a5db67375fb52862"
+    },
+    {
+      "path": "assets/lcd-low-temperature.svg",
+      "size": 10343,
+      "sha256": "d084b5c7071a68212dcaeacc4b130ccaee40ec01e8f61e6ddd0e894f6534575f"
+    },
+    {
+      "path": "assets/lcd-map.png",
+      "size": 83148,
+      "sha256": "716ee7e2e22266a79baa6b83c578b1b56d7e9746f1c930c677613ee7da4b2257"
+    },
+    {
+      "path": "assets/overview.png",
+      "size": 179290,
+      "sha256": "2064a83cb175121e12ad5d7ddf68ba02dd21a75059c1887510e9c616ff83b25a"
+    },
+    {
+      "path": "assets/unfold-1.png",
+      "size": 19693,
+      "sha256": "d4f192fb0e8b2e6c6fe9f62b4cfc00bc59ad12606ebc48b1b7b55c274b623a1a"
+    },
+    {
+      "path": "assets/unfold-2.png",
+      "size": 94931,
+      "sha256": "a71fb0738c120520516984c3d99cffffcaa1b1ad0f2f65c31771c9ee45404a60"
+    },
+    {
+      "path": "assets/unfold-3.png",
+      "size": 151475,
+      "sha256": "cc3bce48031cc93f8bde2651c84aa7052231a26214c2e7de88ee247b1b047331"
+    },
+    {
+      "path": "assets/unfold-4.png",
+      "size": 173773,
+      "sha256": "7159f9d8bddb88c5d2a7b4ab3e8e3ec349bf3f86ab7cc53fec58208576911570"
+    },
+    {
+      "path": "assets/unfold-5.png",
+      "size": 176563,
+      "sha256": "e3b03378fceedcf643cb9e030c3cbaa3a7ad9da0f7c8822d6f12d1ff3e4f0773"
+    },
+    {
+      "path": "original.pdf",
+      "size": 3683943,
+      "sha256": "fe9f1b561a9f75af52e1af738f9da00492302a55f43ddc0122e366744fb9e452"
+    },
+    {
+      "path": "source/additions.json",
+      "size": 6328,
+      "sha256": "f3ee4516ead18ef291ba9ba0066b18c53d0bd414824e57c83c22f26ddaf382a5"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 1680,
+      "sha256": "4b70ffb8480f3bed6f213b41342c6b75da0288f42bbcf2bd67486907285498aa"
+    },
+    {
+      "path": "source/asset_decisions.json",
+      "size": 27512,
+      "sha256": "006d6d16c09689c51ae44a0ffc45220fb870d485cb24752b63201f8cd04a64aa"
+    },
+    {
+      "path": "source/asset_recipe.json",
+      "size": 16781,
+      "sha256": "155a1a2af8e07c019e7497cda1bb96a0b07763fbc1fca60d3fbea077f84d77c6"
+    },
+    {
+      "path": "source/block_pages.json",
+      "size": 3183,
+      "sha256": "34e9cb984011d6e328595e2cdc63d8ba73ad3381ae2f29461cc97a989cfda321"
+    },
+    {
+      "path": "source/component_ref_migration.json",
+      "size": 13293,
+      "sha256": "aef85f0c79997ed9536d8f5ea396026616a871c8267f190a7141dfe3f7cd05b6"
+    },
+    {
+      "path": "source/figures.json",
+      "size": 8360,
+      "sha256": "35509c27f9c20f489512f3e7b834d9ece544585879edcea58592ff0991964ea9"
+    },
+    {
+      "path": "source/ja/content.json",
+      "size": 250564,
+      "sha256": "bba58f99c274c9d5707f7ab41dcf892f6cafc20111b0c8e31bf5399bad37310d"
+    },
+    {
+      "path": "source/ocr/page-001.txt",
+      "size": 884,
+      "sha256": "912d9590d70cf91e2e8a2e24a423f9e1509752b5b5e2ef92aae00703c68f6c5d"
+    },
+    {
+      "path": "source/ocr/page-002.txt",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "source/ocr/page-003.txt",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "source/ocr/page-004.txt",
+      "size": 176,
+      "sha256": "0cf965c6af434269a4f0124de8cb6091ef84eaa52d3ded0476bb0c1185172a9e"
+    },
+    {
+      "path": "source/ocr/page-005.txt",
+      "size": 85,
+      "sha256": "24556fd80d78e2945b39bcdd81e66d71a7036aa9dc73499c5483c03f4bee16a7"
+    },
+    {
+      "path": "source/ocr/page-006.txt",
+      "size": 1441,
+      "sha256": "bb0617d0e0abf6c3ad27d5dd112212d4d0d534127d9c91d78637f876116c9f35"
+    },
+    {
+      "path": "source/ocr/page-007.txt",
+      "size": 1233,
+      "sha256": "6fda46e8f018d6ca8d09cb20edabffdb3b52b827fa2c5ea4ff65ff17d52a7da7"
+    },
+    {
+      "path": "source/ocr/page-008.txt",
+      "size": 2491,
+      "sha256": "c12bf4c264d001d44806522e9bef56b22991c0262db53a420c56fd492e5c5902"
+    },
+    {
+      "path": "source/ocr/page-009.txt",
+      "size": 3071,
+      "sha256": "541b048082fb8edcccdf9c48de0e8da95b8acfd2bb73bfdc0360963798c634a9"
+    },
+    {
+      "path": "source/ocr/page-010.txt",
+      "size": 3228,
+      "sha256": "911a4300f93d55597330f2a1e0ee0bc1f77f169fd8bef581584a4817457d7579"
+    },
+    {
+      "path": "source/ocr/page-011.txt",
+      "size": 1718,
+      "sha256": "c1393315ee316ccc26a4f9533f607bc77818627c6566e84a6af3d3d44361989e"
+    },
+    {
+      "path": "source/ocr/page-012.txt",
+      "size": 1776,
+      "sha256": "2024948faf734aecc7986638182609e47c6789fa1fe4ab51e37bdf8286bca4a0"
+    },
+    {
+      "path": "source/ocr/page-013.txt",
+      "size": 2825,
+      "sha256": "3eef4671d08bcbdcca65ee1cfc4ffeed7d8da57b67ae9f5cc4e966240a22cea4"
+    },
+    {
+      "path": "source/ocr/page-014.txt",
+      "size": 1909,
+      "sha256": "efda1ec8ce7e0ebb992ef7348a094f7ab5e96f69a36037e74968669c4c170ad0"
+    },
+    {
+      "path": "source/ocr/page-015.txt",
+      "size": 3780,
+      "sha256": "f1787ae3eab0b416c5449a7ec1c2aef500aaca71db57ccb7ffcb9349cde49560"
+    },
+    {
+      "path": "source/ocr/page-016.txt",
+      "size": 3571,
+      "sha256": "f689f45ec68a8d5ea35dfa6a28cb5b7a871f64aa06e7f5f6e8f4c855eac4de83"
+    },
+    {
+      "path": "source/ocr/page-017.txt",
+      "size": 2139,
+      "sha256": "66075d89e0f4cd1e0ea9e7b6b10c0e25d52dcd0d7041b680b7d782416daf24e6"
+    },
+    {
+      "path": "source/ocr/page-018.txt",
+      "size": 2146,
+      "sha256": "976140ddf6f26449dc0d19a45a82c29e0531b4c1bab7bf14fc801756b932b3c6"
+    },
+    {
+      "path": "source/ocr/page-019.txt",
+      "size": 3175,
+      "sha256": "934f62afd2cc0b6beb705210d04d5cc371ac017e2dd3007a17e83cb9f7196b37"
+    },
+    {
+      "path": "source/ocr/page-020.txt",
+      "size": 409,
+      "sha256": "0f4889c3733111e7f073cf9de596fb164c0ea318eed4f8b0a2deafab998510ec"
+    },
+    {
+      "path": "source/ocr/provenance.json",
+      "size": 578,
+      "sha256": "faa200e97a7146edc840b5041bf737011b08ff51ab010dc52d60fb2b4978a046"
+    },
+    {
+      "path": "source/page_review.json",
+      "size": 16250,
+      "sha256": "963d89a89f441b72320c83b910c8d40086196cfb12c40cb7e26bb039c903f676"
+    },
+    {
+      "path": "source/paragraph_review.json",
+      "size": 135618,
+      "sha256": "a9b7859463bb0f4de5315f61707302dd0f2b6b21dacebd1f0c0d6ef333b439d2"
+    },
+    {
+      "path": "source/parameter_review.json",
+      "size": 8604,
+      "sha256": "bb24fc5d28fe5e34f387ce605d019cd6219c6d19815b81461ca359c806db7110"
+    },
+    {
+      "path": "source/peer_review.json",
+      "size": 751,
+      "sha256": "d416dbc8960b0e7d278ca08b7934f7f927eb7056ed9fdffcc616e04d0b806e3f"
+    },
+    {
+      "path": "source/presentation.css",
+      "size": 650,
+      "sha256": "530e034d000cba6ff37a74d1cc1560f7553e79ace7c09391f1e03a5636eb8525"
+    },
+    {
+      "path": "source/reference.json",
+      "size": 819,
+      "sha256": "27753fee2992b69caa94d3915a2895688c45954085aef0f227463c1c8ac2942b"
+    },
+    {
+      "path": "source/reference_differences.json",
+      "size": 1441,
+      "sha256": "411e467622b84cda4d407f00ecaf55388e047f12b50e1218cd91bcd635cd9013"
+    },
+    {
+      "path": "source/reviewed-candidate.json",
+      "size": 7186,
+      "sha256": "28597ea7110f02f3d8396d96a08103dd505b7e4dd77671a7b5639378bc4a3bd2"
+    },
+    {
+      "path": "source/source-info.json",
+      "size": 2826,
+      "sha256": "767c3f3d35236649afea1ef3977ad31b8e46ab912a4550d22baf0162e9e0dfa7"
+    },
+    {
+      "path": "source/symbols.json",
+      "size": 20693,
+      "sha256": "ddb24e1b092461f760254bb73fe80ae092021c5ded5996a7a3b32e8bc3f3e5ab"
+    },
+    {
+      "path": "web/ja/_static/source_presentation.css",
+      "size": 650,
+      "sha256": "530e034d000cba6ff37a74d1cc1560f7553e79ace7c09391f1e03a5636eb8525"
+    },
+    {
+      "path": "web/ja/_static/web_manual.css",
+      "size": 126890,
+      "sha256": "5afdc1947b423c52850852eccc5bc0f398c820c45909690ff6e5cc7bb266dfdf"
+    },
+    {
+      "path": "web/ja/assets/app-add.png",
+      "size": 108620,
+      "sha256": "159b9c0c5094a57162032587cc442c4d1b6bdce950ed4ebe3579d44c2b6e815f"
+    },
+    {
+      "path": "web/ja/assets/app-control.png",
+      "size": 29643,
+      "sha256": "d0709184dcf1d2ed59b58f1721197bf374093c56139889b75277b36623da5f1c"
+    },
+    {
+      "path": "web/ja/assets/app-qr.png",
+      "size": 3126,
+      "sha256": "b50ad04be3e69729fece5997bdfd59eaf1dfee150551b53065d1c5474ab1cf57"
+    },
+    {
+      "path": "web/ja/assets/app-results.png",
+      "size": 101176,
+      "sha256": "ccdfae41d3cd940b4d04e1f5c50978c24880fd600b81183c8280df3904ff17e8"
+    },
+    {
+      "path": "web/ja/assets/app-store-badges.png",
+      "size": 12776,
+      "sha256": "1fe61292c9f3c564644b7b942ec525167dc5f53f17fa1a9ad0f3ec1fd1ec5c1d"
+    },
+    {
+      "path": "web/ja/assets/charging-ac.png",
+      "size": 17054,
+      "sha256": "78c974af29aca8a21430fbcbdb5c665f7398b77d190155f41719e4c98b60a54e"
+    },
+    {
+      "path": "web/ja/assets/charging-car.png",
+      "size": 33766,
+      "sha256": "eea5f7474f3febc3b4e67d408956d55eadbd23029c1fd6ff7c7e3634b60abcbb"
+    },
+    {
+      "path": "web/ja/assets/charging-solar.png",
+      "size": 69609,
+      "sha256": "3e6db8c3bb95e12e48b5ddbb28d43af387bbe24a9c612eb6e29cc02fc755bad9"
+    },
+    {
+      "path": "web/ja/assets/h1-jp-mandatory.svg",
+      "size": 1292,
+      "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2"
+    },
+    {
+      "path": "web/ja/assets/h1-jp-unplug.svg",
+      "size": 2569,
+      "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf"
+    },
+    {
+      "path": "web/ja/assets/inbox-ac-cable.png",
+      "size": 3903,
+      "sha256": "fbab666613d6bc04561044fd4f524635dccfb36f526231cd57530a8d5e54433e"
+    },
+    {
+      "path": "web/ja/assets/inbox-extension.png",
+      "size": 13835,
+      "sha256": "a44fdc10ad13f1d32edd05254c29c5c21154723fd7d2389d0dde729698c38ba5"
+    },
+    {
+      "path": "web/ja/assets/inbox-panel.png",
+      "size": 5746,
+      "sha256": "22c8fcc36d3c9edf278dcefeb83011b3aacdb572a4292647a80c4603dd553c1c"
+    },
+    {
+      "path": "web/ja/assets/inbox-pouch.png",
+      "size": 6633,
+      "sha256": "9eddf744be243717bd1191ecbbcb1cf021c444a0e35e9607092faa1f60357cea"
+    },
+    {
+      "path": "web/ja/assets/inbox-unit.png",
+      "size": 7399,
+      "sha256": "3b0666779610180e3cce1f40cfd118ad6e47bb4c3cc5a31a90108a56b313b7b4"
+    },
+    {
+      "path": "web/ja/assets/inbox-usbc.png",
+      "size": 4496,
+      "sha256": "158a14c1316216408d54c7734141b1f928f2984efe54fbb307262df247adba0e"
+    },
+    {
+      "path": "web/ja/assets/inbox-user-manual.png",
+      "size": 11708,
+      "sha256": "9003f0d34da4d86998cf2cc047b9baf81f04de08cb9214e361cd6db45c7c289a"
+    },
+    {
+      "path": "web/ja/assets/inbox-warranty.png",
+      "size": 13034,
+      "sha256": "7943929e85aadb1b5a0bf59fcd4baa0d3d63006063c396c0af9041008a879220"
+    },
+    {
+      "path": "web/ja/assets/je1000d-jp-00c43a89-symbol-02.svg",
+      "size": 12347,
+      "sha256": "0766a51f9ad7d433bed62a7c1ddbacc19ad7c7b68bf55938d5cdbab902b9ea04"
+    },
+    {
+      "path": "web/ja/assets/je1000d-jp-00c43a89-symbol-03.svg",
+      "size": 11954,
+      "sha256": "585a0c72abdb9fc1d69d31554d249730f1361dfc49a501423dd0204e0637a387"
+    },
+    {
+      "path": "web/ja/assets/je1000d-jp-00c43a89-symbol-05.svg",
+      "size": 13550,
+      "sha256": "4728b4a0ab80e8376ff756d9af98d92c1906d3461e44eb4905899b6212cc003c"
+    },
+    {
+      "path": "web/ja/assets/je1000d-jp-00c43a89-symbol-06.svg",
+      "size": 9416,
+      "sha256": "a5390e01e5ed9ba225377ba6b13de7523f86b8139e4686cf4534ebb2c1048641"
+    },
+    {
+      "path": "web/ja/assets/je3000c-kr-78316033-06.svg",
+      "size": 6314,
+      "sha256": "83b49811778d889402a1e4abb2915f55014304d15b69f72be8d2d005986d7cd5"
+    },
+    {
+      "path": "web/ja/assets/lcd-battery-icon.svg",
+      "size": 8971,
+      "sha256": "5500242f2fe21a6b1b32d363f483f23841d34f0055c057e530eecdcfe2de0c1f"
+    },
+    {
+      "path": "web/ja/assets/lcd-energy-saving.svg",
+      "size": 11424,
+      "sha256": "2ec35ee3a80d112ade030bb54c29bd877804cfbd0848cd9ef5fcf7f4250e124b"
+    },
+    {
+      "path": "web/ja/assets/lcd-fault-code.svg",
+      "size": 9924,
+      "sha256": "9c59ce4d35a1805714ce1c314f6ffbaa738a561d91a7de6dda8ca204b053458c"
+    },
+    {
+      "path": "web/ja/assets/lcd-high-temperature.svg",
+      "size": 10380,
+      "sha256": "613c3b10afbb7fd46e65dfe6000e49cd5e6217dccfdb7024ddb5fd2efdf6218e"
+    },
+    {
+      "path": "web/ja/assets/lcd-low-battery.svg",
+      "size": 7970,
+      "sha256": "3f15994f7d22feb032b891d8eaa35a29296153084e4f0337a5db67375fb52862"
+    },
+    {
+      "path": "web/ja/assets/lcd-low-temperature.svg",
+      "size": 10343,
+      "sha256": "d084b5c7071a68212dcaeacc4b130ccaee40ec01e8f61e6ddd0e894f6534575f"
+    },
+    {
+      "path": "web/ja/assets/lcd-map.png",
+      "size": 83148,
+      "sha256": "716ee7e2e22266a79baa6b83c578b1b56d7e9746f1c930c677613ee7da4b2257"
+    },
+    {
+      "path": "web/ja/assets/overview.png",
+      "size": 179290,
+      "sha256": "2064a83cb175121e12ad5d7ddf68ba02dd21a75059c1887510e9c616ff83b25a"
+    },
+    {
+      "path": "web/ja/assets/unfold-1.png",
+      "size": 19693,
+      "sha256": "d4f192fb0e8b2e6c6fe9f62b4cfc00bc59ad12606ebc48b1b7b55c274b623a1a"
+    },
+    {
+      "path": "web/ja/assets/unfold-2.png",
+      "size": 94931,
+      "sha256": "a71fb0738c120520516984c3d99cffffcaa1b1ad0f2f65c31771c9ee45404a60"
+    },
+    {
+      "path": "web/ja/assets/unfold-3.png",
+      "size": 151475,
+      "sha256": "cc3bce48031cc93f8bde2651c84aa7052231a26214c2e7de88ee247b1b047331"
+    },
+    {
+      "path": "web/ja/assets/unfold-4.png",
+      "size": 173773,
+      "sha256": "7159f9d8bddb88c5d2a7b4ab3e8e3ec349bf3f86ab7cc53fec58208576911570"
+    },
+    {
+      "path": "web/ja/assets/unfold-5.png",
+      "size": 176563,
+      "sha256": "e3b03378fceedcf643cb9e030c3cbaa3a7ad9da0f7c8822d6f12d1ff3e4f0773"
+    },
+    {
+      "path": "web/ja/conf.py",
+      "size": 850,
+      "sha256": "f69aaae03565c26c0702169f81fdcfed9dd0ea1e5f62f91d5d243ee31566af82"
+    },
+    {
+      "path": "web/ja/index.md",
+      "size": 111,
+      "sha256": "af16cc2b80265e333d6c04548f558d13c9d7f64b50cdd1d58779aa7389cce370"
+    },
+    {
+      "path": "web/ja/manual.ir.json",
+      "size": 450029,
+      "sha256": "9c94bc6e24c21730524ec53314735b742ef9c361dbaf64cdaf87e3eeb8648fff"
+    },
+    {
+      "path": "web/ja/manual_jsg0304b_jp_ja.md",
+      "size": 52408,
+      "sha256": "c0b77d25670256fb1869a5af7e0a596692db0c671d9b9512a3528e2559320c04"
+    }
+  ],
+  "repo_inputs": [
+    {
+      "path": "docs/renderers/contracts/component_registry.yaml",
+      "size": 15821,
+      "sha256": "8c2313fc7382808efd5fd59e57a14adcd41423fb873498dd6033637647bd6795"
+    },
+    {
+      "path": "docs/renderers/contracts/manual_style.yaml",
+      "size": 54018,
+      "sha256": "aa2e008e56a284224882177cced938824e4265f9b8ebf8afcf436044c0021818"
+    },
+    {
+      "path": "docs/renderers/contracts/manual_theme.yaml",
+      "size": 8700,
+      "sha256": "8dd02bb2897cfc1982eb144fdb05d7a2267f2a7c97581c455eb408c2b20a0537"
+    },
+    {
+      "path": "docs/renderers/contracts/overview_component_instances.json",
+      "size": 19981,
+      "sha256": "98e00b04a92702e3e7c060790688e4ce3231b93552c05de0183c7a13fd6592a3"
+    },
+    {
+      "path": "docs/renderers/contracts/prepared_component_admission.json",
+      "size": 329614,
+      "sha256": "e14062442cbe8269226e8003f864f5bd440b7ea79cda348bc5b58879fb6d4a0d"
+    },
+    {
+      "path": "docs/renderers/contracts/prepared_style_baseline.json",
+      "size": 25894,
+      "sha256": "320e428e070944a2cc757f3354011a1a16824c7b493ae752ad3c88a97175b57e"
+    },
+    {
+      "path": "docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json",
+      "size": 26001,
+      "sha256": "dc9aa7b4137120e43cd5c1eddd8609827e655f18c54d1cf09132edcc5ee15a8f"
+    },
+    {
+      "path": "docs/renderers/contracts/reference_layout_registry.json",
+      "size": 587,
+      "sha256": "3ac4af5d3b9ff6a074d835597bc2b2bc8aeabab935eb0fb9dc631d89075fdd44"
+    },
+    {
+      "path": "docs/renderers/contracts/symbol_caption_errata.json",
+      "size": 1040,
+      "sha256": "5e6eb78ea050810c2fc0dfef12b3084d72843dcbe07c14b0199e8ba1b0092d5b"
+    },
+    {
+      "path": "docs/renderers/contracts/symbol_glyph_waivers.json",
+      "size": 6555,
+      "sha256": "4172114e00f59e4f46791de92e34618af9b868eec5fadb3126c228882a1484d0"
+    },
+    {
+      "path": "docs/renderers/contracts/symbol_web_only_rows.json",
+      "size": 4538,
+      "sha256": "5252726e2da8d344d775afff3430e0759c39baa3d7d1f20347678e95d237abf7"
+    },
+    {
+      "path": "docs/renderers/contracts/target_assembly/jbp2000b_eu_v1_candidate.json",
+      "size": 35709,
+      "sha256": "0a5ca273a27a13fd8e1f6f3ebeaab693f05b65b54f34fbcbbab6ccc97910361e"
+    },
+    {
+      "path": "docs/renderers/contracts/target_assembly/jbp2000b_jp_v1_candidate.json",
+      "size": 5961,
+      "sha256": "1d0d6e803802085fe6603e3cdad106adb96d3b2643d76ee1e15f00e644a7dcf2"
+    },
+    {
+      "path": "docs/renderers/contracts/target_assembly/jbp2000b_us_v1_candidate.json",
+      "size": 16745,
+      "sha256": "4c61eb8384dd63859560a19e8d8b50a829c3452baacda5b620d8e7f449278f48"
+    },
+    {
+      "path": "docs/renderers/contracts/target_assembly/je3000c_kr_v1_candidate.json",
+      "size": 11030,
+      "sha256": "9a349b53da9e6a4c8ff634cef9157c11d230dfde0d5dfefa793015b6a314c390"
+    },
+    {
+      "path": "docs/renderers/contracts/web_app_components.css",
+      "size": 3442,
+      "sha256": "24b5364d0ca23552344685c782db270ddec9e727014aa71441f8a3170b311e6d"
+    },
+    {
+      "path": "docs/renderers/contracts/web_app_control_labels.css",
+      "size": 1225,
+      "sha256": "21d1efd3ad4a65196518c6a8ea787d68f45dd22be28cb989e4195cd91758ee94"
+    },
+    {
+      "path": "docs/renderers/contracts/web_base_art_components.css",
+      "size": 20333,
+      "sha256": "a9d5fad3dcb9a104ac10daef583be0c8c93a1818296c604e855e349a66985a6d"
+    },
+    {
+      "path": "docs/renderers/contracts/web_battery_pack_components.css",
+      "size": 10570,
+      "sha256": "a36844c9c4beaa9ea9f93b90ac602d9b62fc44924dff52eb52a0e0dffdf6d7e3"
+    },
+    {
+      "path": "docs/renderers/contracts/web_fcc_components.css",
+      "size": 3224,
+      "sha256": "f293ec637ef164e78c793d998d93cfeafe8fae9ef40adf6c1fe36cd0d456e83f"
+    },
+    {
+      "path": "docs/renderers/contracts/web_fcc_statement.css",
+      "size": 960,
+      "sha256": "34cf40b5b37310ec2f44c560a2ab65a2465211221f75f0b746eb83752e7f361c"
+    },
+    {
+      "path": "docs/renderers/contracts/web_inbox_components.css",
+      "size": 4431,
+      "sha256": "e9343d659c4a423ac2bdc2b58005ffbf7e3b2e84424d1d37c574c803322532c3"
+    },
+    {
+      "path": "docs/renderers/contracts/web_manual.css",
+      "size": 47843,
+      "sha256": "9ee899cc83146bc9cb7cd6228efd48e131c4c9e6f317040921f9871ba6a506fc"
+    },
+    {
+      "path": "docs/renderers/contracts/web_manual.json",
+      "size": 603,
+      "sha256": "f4d0628d8655402d2db30d9e92158290ad0f1c1e5a1f2690f9fb726cf93e1280"
+    },
+    {
+      "path": "docs/renderers/contracts/web_operation_clock.css",
+      "size": 649,
+      "sha256": "8b5229d556bfc4accdcb71f14eb46f88cdab2ff9c31571894e04c18d6a02eabd"
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/battery_pack_v1.json",
+      "size": 110,
+      "sha256": "8029edd4b59d5fd220f0fa139b65e8290fd2d78845db8949bb02778ae0718dd4"
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/charger_v1.json",
+      "size": 307,
+      "sha256": "3cd1160ce052d979d2774834bb779f35774694d11a69d674a820cf636b5830b0"
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/figure_debt_baseline.json",
+      "size": 2844,
+      "sha256": "e082c63df83cc4f2a09c6d21e9d0679079075f82e717447fdae3aec8950294a5"
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/portable_power_station_v1.json",
+      "size": 9656,
+      "sha256": "d51fcdefb468da99b1e8d8c174382810ef9cdb8dd2f967d2f26a68198452c7a2"
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/shared_base.json",
+      "size": 3643,
+      "sha256": "30293c328bfbbe4424321265b2bb52935c9cb0f782b36bb46ec204e6e2488298"
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/solar_v1.json",
+      "size": 305,
+      "sha256": "75daf185a72e20bc3011e063a53c035a5fbe07719783ffa841b98987fdf4822f"
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
+      "size": 52858,
+      "sha256": "a2773f7e96849e176a9909e8221e37c20eb9005cd2639415bf6a112d7c86527f"
+    },
+    {
+      "path": "docs/renderers/contracts/web_registration_components.css",
+      "size": 916,
+      "sha256": "a112dd88a80191254f946e91947a265680d8a99239f1cb60198e37f2e7acb23c"
+    },
+    {
+      "path": "docs/renderers/contracts/web_safety_components.css",
+      "size": 4211,
+      "sha256": "62cf2db468aa672bdd7ef5b8e6264f4905b0d79614c205e2b470a3e5c8807914"
+    },
+    {
+      "path": "docs/renderers/contracts/web_source_panels.css",
+      "size": 26179,
+      "sha256": "56dd2c89df20ebea5db2468349c8c6c5ebe97e0987ad2b7367f94029ce918477"
+    },
+    {
+      "path": "docs/renderers/contracts/web_symbols_fcc_components.css",
+      "size": 2895,
+      "sha256": "1753be358a168640d2102d6de4ab07d4d8b4605beb31068cdadb7c1050c341a9"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/manifest.json",
+      "size": 140027,
+      "sha256": "6eb3e75c6d3688c35a48a45c572f52807b5fb9ac11acc8d9f52984609172e329"
+    },
+    {
+      "path": "manual_sources/JE-300B/JP/ja/git-20261103-456bb360/source/ja/content.json",
+      "size": 209232,
+      "sha256": "5e1f73bf95265c7818c253e85eac587b6542a95b2786cbbaffbe39c7d9660f25"
+    },
+    {
+      "path": "manual_sources/JE-300C/JP/ja/git-20261103-890abb4a/rebuild.py",
+      "size": 8200,
+      "sha256": "d1ee618a2d771b6efd58975dbe233a6f1a0361c19a78ca74ac31bdd93c497d7d"
+    },
+    {
+      "path": "manual_sources/JE-300C/JP/ja/git-20261103-890abb4a/source/kit.py",
+      "size": 11501,
+      "sha256": "3634e533938f5b9aa2f3e8a32d7cc7ead8143ab0199d6f59f7ef463e4fcffa17"
+    },
+    {
+      "path": "tools/asset_pipeline/__init__.py",
+      "size": 545,
+      "sha256": "6019d91fb049384c74ea00f4c0cfcedc602160412806fc7a673ed6771af5d331"
+    },
+    {
+      "path": "tools/asset_pipeline/base_inventory.py",
+      "size": 50240,
+      "sha256": "f8908034761265175121ac3558caf8e3fafbf4bdd9646581b90ed9ce0eaac481"
+    },
+    {
+      "path": "tools/asset_pipeline/base_reconcile.py",
+      "size": 10058,
+      "sha256": "fef60d41e3b2a60ab5d1b6cf305e222364b7eca3a0f97aa4ea84e6ae2a0d5931"
+    },
+    {
+      "path": "tools/asset_pipeline/extract.py",
+      "size": 33576,
+      "sha256": "634c1b53fbc38b68b5b26d53138d88ac422700d30ab6fcae507972c3c6df863e"
+    },
+    {
+      "path": "tools/asset_pipeline/leaders.py",
+      "size": 7437,
+      "sha256": "cdcafbad09e13c4dbafd582110af1f86a7fc0ea4043212ec6eb86a38fc316c5d"
+    },
+    {
+      "path": "tools/asset_pipeline/models.py",
+      "size": 7552,
+      "sha256": "76c0df2a039bb68ce57acefd11da4cda59b402438ac61864b3d3665fa128729a"
+    },
+    {
+      "path": "tools/asset_pipeline/native_svg.py",
+      "size": 10550,
+      "sha256": "6f778d16e3108fe81a17925528e755ae37645ba7691033f3417718593727985b"
+    },
+    {
+      "path": "tools/asset_pipeline/package.py",
+      "size": 11252,
+      "sha256": "2adba7bdadc21f0a182699c968cc95a2a82f68a67cea3b79c8ae95ce2a01ea68"
+    },
+    {
+      "path": "tools/asset_pipeline/recipe.py",
+      "size": 33788,
+      "sha256": "d82e799cfde6157ff61fa6a7668148851850f4919df4f72541c73afa48abd3d2"
+    },
+    {
+      "path": "tools/build_paths.py",
+      "size": 14639,
+      "sha256": "13b7db543794ab70a06037ceb274d028e6d75b2d4983d022e39209f70fd536f5"
+    },
+    {
+      "path": "tools/component_specs/__init__.py",
+      "size": 2388,
+      "sha256": "92949fd4505309fa00c05ab8ce47bb641e6e7ab0a973befcdccb86fdb6b3aa1e"
+    },
+    {
+      "path": "tools/component_specs/adapters.py",
+      "size": 3434,
+      "sha256": "d2473634eee20324ac3db18521520ff3af1f03dd6d45c1699bfc35379539db81"
+    },
+    {
+      "path": "tools/component_specs/app.py",
+      "size": 13511,
+      "sha256": "3cb2f3ff415ac5d0cb0cc397d6a8713cd7f409fea811f7d4d113e33f4f1bcf2e"
+    },
+    {
+      "path": "tools/component_specs/app_adapters.py",
+      "size": 2078,
+      "sha256": "c1ffc7dffd98a0842f4e361c1c1ae626c9a8e09c8218841b850a15288b1b9183"
+    },
+    {
+      "path": "tools/component_specs/app_html.py",
+      "size": 9082,
+      "sha256": "9fff02554670f2e9b3e4e6329a0cd5b3b15cb4af2281276329256d1fb4766de2"
+    },
+    {
+      "path": "tools/component_specs/app_label_source.py",
+      "size": 3347,
+      "sha256": "d0ad98835814045f0e3f13d7d38bea66be455a98e4513727e4d3a01c66995e37"
+    },
+    {
+      "path": "tools/component_specs/app_qr_source.py",
+      "size": 1399,
+      "sha256": "687d9de375af3fae3bfcdc40b46ff41baac2fea6ba3a5faadd1d9ec88b56d395"
+    },
+    {
+      "path": "tools/component_specs/authored_tables_html.py",
+      "size": 4900,
+      "sha256": "e39e06ee40622bf0a21e4945a44f00f4bc019ad6cc8b23a3a8765a2fdde2c917"
+    },
+    {
+      "path": "tools/component_specs/auto_resume.py",
+      "size": 2444,
+      "sha256": "2f1eab8d34e4c5209104d2204b1caa56d7551077e78ce3d21d900647c28564e4"
+    },
+    {
+      "path": "tools/component_specs/callout.py",
+      "size": 8691,
+      "sha256": "dbf8f9203833c299f77921eee55e12e1e7bf470080253cfd27f02fd538aa897e"
+    },
+    {
+      "path": "tools/component_specs/fcc.py",
+      "size": 8688,
+      "sha256": "b92a428d1de1265af6e2f1a8c9fcc98f84decb23de24795e457aee031edee3f0"
+    },
+    {
+      "path": "tools/component_specs/fcc_adapters.py",
+      "size": 2837,
+      "sha256": "8c18fa511ba4072c8e6a23a9a62ab265fad6ce83a9d3d45a94e8cee07b81756e"
+    },
+    {
+      "path": "tools/component_specs/fcc_declaration.py",
+      "size": 2329,
+      "sha256": "c630126d0896ef7c2298cb737bfa90efd331ff58d5ccb71df6ac9b91675f6582"
+    },
+    {
+      "path": "tools/component_specs/fcc_html.py",
+      "size": 6970,
+      "sha256": "47b2184fb1727bf0150759ed4ad247288d1360a735272768dc06401f64695e0a"
+    },
+    {
+      "path": "tools/component_specs/inbox.py",
+      "size": 7291,
+      "sha256": "c8b43521005bbc627bc34166a762cd884c869b19b0bade048b3c123a8740d2c7"
+    },
+    {
+      "path": "tools/component_specs/inbox_adapters.py",
+      "size": 2610,
+      "sha256": "28e70bd56ab4b26d02c1b0ed8920a470142b6b3a1e2ba87bd82d0e9d5d91f752"
+    },
+    {
+      "path": "tools/component_specs/inbox_html.py",
+      "size": 3969,
+      "sha256": "22f1dd195f093e856ddddc1b9a320f96516f1a7e6aa098f6a9317574cc7fcc66"
+    },
+    {
+      "path": "tools/component_specs/key_combinations.py",
+      "size": 2407,
+      "sha256": "e7371092ec249c98be54ec2c111218db188bc98fd7269fb786fac439d5adcd61"
+    },
+    {
+      "path": "tools/component_specs/lcd_mode.py",
+      "size": 4570,
+      "sha256": "77c5a92ec346a1a176868cece9aefb702862aa72cf02c566fe9599666a3718c5"
+    },
+    {
+      "path": "tools/component_specs/lcd_mode_adapters.py",
+      "size": 2398,
+      "sha256": "1f7216378bfab118300833859bb169533db081dc5dec57a3d5aec24eb296fdce"
+    },
+    {
+      "path": "tools/component_specs/lcd_mode_html.py",
+      "size": 3371,
+      "sha256": "c9de7fd1a12268ed3ac25e35e30d0dfdd0a437c46f3c325f7141577495c8c4bd"
+    },
+    {
+      "path": "tools/component_specs/lcd_mode_source.py",
+      "size": 1640,
+      "sha256": "c2bf859d75a341b8a7e2ca645e37d08e3fe85d77574d02216c262b4fa54ff576"
+    },
+    {
+      "path": "tools/component_specs/manual_table_adapters.py",
+      "size": 5386,
+      "sha256": "f04a1bf1f0b1db1426ceac767467c90181b3d2978eccc7d5d5c76b3c137603c7"
+    },
+    {
+      "path": "tools/component_specs/manual_table_html.py",
+      "size": 6606,
+      "sha256": "8477afedd23af38a21deb4c0239c7038e5da901b05b00c1e00faa13b52bf5b1e"
+    },
+    {
+      "path": "tools/component_specs/manual_tables.py",
+      "size": 10395,
+      "sha256": "c81a8950cfd2c1d6a5b8d6859a3d01af7f4964d4cd2201868cdb22a121d2f172"
+    },
+    {
+      "path": "tools/component_specs/model.py",
+      "size": 3840,
+      "sha256": "06aa31c190fc1490c99aee7646c03b006c79b4e70d1a9a7c6cc8e9a1b9c357d7"
+    },
+    {
+      "path": "tools/component_specs/operation.py",
+      "size": 7060,
+      "sha256": "875bfdcdcc20ac7276bae53bbac1c1782e9ed793cb97057c1f9bbb58471aa840"
+    },
+    {
+      "path": "tools/component_specs/operation_adapters.py",
+      "size": 5423,
+      "sha256": "866930f814195ef82766bf7434c7c60507df8c684c9fd298349678757dc3491e"
+    },
+    {
+      "path": "tools/component_specs/operation_html.py",
+      "size": 9879,
+      "sha256": "588e199ebd80135f737b740133ce520ceab7f1a11b6c387460f175d34c4d3e80"
+    },
+    {
+      "path": "tools/component_specs/operation_tables_html.py",
+      "size": 3505,
+      "sha256": "4ced355fecde5bf0f384af4124177ca068ec9b9b4461db6abe533bd68ebebd32"
+    },
+    {
+      "path": "tools/component_specs/overview.py",
+      "size": 12564,
+      "sha256": "c46fbc1c7bb15a972281cba8277763962d053e81c611f05529d25d7dfa971423"
+    },
+    {
+      "path": "tools/component_specs/overview_adapters.py",
+      "size": 6489,
+      "sha256": "522dc2f54093e9f6ed6490e96773919b8a8ee59fab9cad1de20c478403396eda"
+    },
+    {
+      "path": "tools/component_specs/overview_html.py",
+      "size": 7944,
+      "sha256": "b5e8398832a06d8a20bb5496bd278a63da1bfa85ea6d7764dd651cdea4057ba1"
+    },
+    {
+      "path": "tools/component_specs/overview_instance.py",
+      "size": 18192,
+      "sha256": "4563cc96d90085c8eab7454553a3b3c41e532b8a937744862ff7c1a3e23e1e7b"
+    },
+    {
+      "path": "tools/component_specs/overview_instance_validation.py",
+      "size": 2356,
+      "sha256": "57fe7fd4a307ea737212755edf8caa116d372b86d0bdd188c0efceb6a3f445d3"
+    },
+    {
+      "path": "tools/component_specs/plain_inventory.py",
+      "size": 2092,
+      "sha256": "27fde4d3ab4fc41007614b813f0870a6b648f4d1eef807eb7dff44dfd9616330"
+    },
+    {
+      "path": "tools/component_specs/projection.py",
+      "size": 6354,
+      "sha256": "0698f3d79e9f30e9ad18c57459afed3ab9f0511c457c6a7657cb2b1cdd75ffc1"
+    },
+    {
+      "path": "tools/component_specs/reference_figure.py",
+      "size": 10264,
+      "sha256": "cb0086034f0b21eb8473071723c8852afd5abe0639a9694b12f6d9fcb7ca69c2"
+    },
+    {
+      "path": "tools/component_specs/reference_figure_adapters.py",
+      "size": 2029,
+      "sha256": "390c42bf2784349fafdc0032da2b218e2f048cd8f358900d26f46ef4a500bafe"
+    },
+    {
+      "path": "tools/component_specs/reference_figure_html.py",
+      "size": 10115,
+      "sha256": "21b6b0beace5b76fa4da1af101145835abed241230ae8fa0e385f9eadeacf8da"
+    },
+    {
+      "path": "tools/component_specs/reference_table.py",
+      "size": 3677,
+      "sha256": "48fbda1db0a40d462f3017c252e89c5526ef683eb7e7b8e36067f4bbaa787bad"
+    },
+    {
+      "path": "tools/component_specs/registry.py",
+      "size": 21154,
+      "sha256": "7911481d9e07a2a09647dc7761633286d0f094e42a2914253cb460de75b2720f"
+    },
+    {
+      "path": "tools/component_specs/spec_table.py",
+      "size": 5651,
+      "sha256": "00396f5deb7e6da730acf8f8844745ccba6871fd0f3ecf91b7d169108d9310c1"
+    },
+    {
+      "path": "tools/component_specs/theme.py",
+      "size": 10359,
+      "sha256": "388f7319f1f6dd3afff7dbf5f46124f6c9272c2e388cd40902516fa85bcf5f2a"
+    },
+    {
+      "path": "tools/component_specs/warranty.py",
+      "size": 8641,
+      "sha256": "92c31c7f75e0af54abaa546f65a65a018ace19b78ef01f367964b4a381ff9aec"
+    },
+    {
+      "path": "tools/component_specs/warranty_adapters.py",
+      "size": 4980,
+      "sha256": "dd690dfd4435af1161bca5fe130b769082a47dc43e52f23668f3ac0275221aed"
+    },
+    {
+      "path": "tools/component_specs/warranty_html.py",
+      "size": 6911,
+      "sha256": "06b9e446794c65fad05c2f25c1ee5198e6eb8164d7e8f1e6512c94fce4157bb2"
+    },
+    {
+      "path": "tools/component_specs/web_source.py",
+      "size": 5434,
+      "sha256": "f26e265af59d5ce5c6420bca2056d8c625220e6ac63c360da49abb2d6d35f30e"
+    },
+    {
+      "path": "tools/manual_ir/__init__.py",
+      "size": 953,
+      "sha256": "b7def9b7164ee8a76f659041d19743de29712ff398e99ebc2db4cd4ecb0feb7b"
+    },
+    {
+      "path": "tools/manual_ir/builder.py",
+      "size": 5647,
+      "sha256": "95e63fe04e93e8609bcb7580509e06d3ce3cefbb5b435281583b050d9a12dba0"
+    },
+    {
+      "path": "tools/manual_ir/components.py",
+      "size": 5841,
+      "sha256": "de4fed1ee9735cdb763e65fee7125984c6140f92934b9ad351047682d0fe2f25"
+    },
+    {
+      "path": "tools/manual_ir/document.py",
+      "size": 8707,
+      "sha256": "699dd73576a4d3c1e05c3597ff96fa54aed9196f0332eb70449cc6e9d63b7e9d"
+    },
+    {
+      "path": "tools/manual_ir/external_languages.py",
+      "size": 1830,
+      "sha256": "3c50eea4ca618ce2b89de638d28bda9137874a8ab60197e448139cb2d0a5326e"
+    },
+    {
+      "path": "tools/manual_ir/flow.py",
+      "size": 21944,
+      "sha256": "36b9d1c2c3f29d3754fbb8056ccedac1ea171ef8302123eb22f989f7806444b8"
+    },
+    {
+      "path": "tools/manual_ir/hashing.py",
+      "size": 4662,
+      "sha256": "ec6b7cfe9219aaf349b194125607364ef99784aa0ef139db84a5f21fdb787fbb"
+    },
+    {
+      "path": "tools/manual_ir/model.py",
+      "size": 1439,
+      "sha256": "ab08ed0fede49aeed565c5bdd28bbd904a68cc738e957e3aee92f1656808500f"
+    },
+    {
+      "path": "tools/manual_ir/prepared_rst.py",
+      "size": 7405,
+      "sha256": "74cfb7d3b13758ece0c4842097b5f44e4ac36e4ff58164b9ca9957e28c27f0f2"
+    },
+    {
+      "path": "tools/manual_ir/serialize.py",
+      "size": 2798,
+      "sha256": "054372fd4d7c2fc166fa92115118f77fae372fbe9145f5b7b3828fddfa2c0fc4"
+    },
+    {
+      "path": "tools/manual_ir/source.py",
+      "size": 1606,
+      "sha256": "e55cdb2ae8ba181437437672703ab1c4f655867ebcf297fc312ed2a30181cd8e"
+    },
+    {
+      "path": "tools/manual_ir/validate.py",
+      "size": 17941,
+      "sha256": "51457cecb374d19bb62aae4323c8210adf2ae0fff00f751236ed9ac4da58c289"
+    },
+    {
+      "path": "tools/manual_ir/web_app_controls.py",
+      "size": 4057,
+      "sha256": "dd9d61786e58d10a091986195ae2ccc6fe86132329df6dffec36f28c31cdf861"
+    },
+    {
+      "path": "tools/manual_ir/web_app_download.py",
+      "size": 5885,
+      "sha256": "444f3639f7cfda287e653609650e19699cf611f0808ca8767020a6b33904a510"
+    },
+    {
+      "path": "tools/manual_ir/web_callouts.py",
+      "size": 3512,
+      "sha256": "dd00d890b0f707e7328de8f7e0567bac290358e62876b7080c9d39e476274f42"
+    },
+    {
+      "path": "tools/manual_ir/web_fcc.py",
+      "size": 3785,
+      "sha256": "eb787b59f6890d3c421c8f4e1224566a41f6657e84409bad00fc606eddcbdbe8"
+    },
+    {
+      "path": "tools/manual_ir/web_inbox.py",
+      "size": 3939,
+      "sha256": "8593147bc0d88e93fd29decf99430b14cf5da6ab46737b1fecc9c797c28b1c84"
+    },
+    {
+      "path": "tools/manual_ir/web_source.py",
+      "size": 1616,
+      "sha256": "865c934376f241008a4cc1f9128004ee02645b620b6b6fae464f0978c7d2949a"
+    },
+    {
+      "path": "tools/manual_ir/web_specs.py",
+      "size": 5459,
+      "sha256": "d69ea70640e77c65b0dfbcc9628fe505f7104a2a5913abeb84fa2d991e0a7bba"
+    },
+    {
+      "path": "tools/manual_ir/web_symbols.py",
+      "size": 10860,
+      "sha256": "91ffb76efd3cb5908f44acd68ec0d02693cc84a078bd239ac59e6e6a946271db"
+    },
+    {
+      "path": "tools/manual_ir/web_tables.py",
+      "size": 8938,
+      "sha256": "b99b778d061834eb4b5a37f45e1324a9865dcc7eec041f3129311fa61eca4402"
+    },
+    {
+      "path": "tools/manual_ir/whole_document_components.py",
+      "size": 37373,
+      "sha256": "bc33b0fdeb8ba21f4a5f9656bae2c3154d8608c8738043e6376075cb631fadd2"
+    },
+    {
+      "path": "tools/markdown_bundle.py",
+      "size": 10075,
+      "sha256": "187fe75dd2e7df9697b9d6b4f9627ab9b5ad78762887b214339cd9c44b9c6d90"
+    },
+    {
+      "path": "tools/utils/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tools/utils/csv_fields.py",
+      "size": 2865,
+      "sha256": "28b60075372d9eaa1a7772d85729106c9f24bd0daf6850f3035ab091c7fbc82d"
+    },
+    {
+      "path": "tools/utils/korean_josa.py",
+      "size": 4325,
+      "sha256": "411394837b70a77d3c89b032f61858d9aaa2fe77e4f824dd8fcdcc32c8900237"
+    },
+    {
+      "path": "tools/utils/log.py",
+      "size": 4459,
+      "sha256": "e57ae5f03005967ed95b8683cc6b1622fe1e50cf17824b699c952c9a23d15916"
+    },
+    {
+      "path": "tools/utils/path_utils.py",
+      "size": 14762,
+      "sha256": "80d5b8baf6c6cb03fc623c3eb684b6e5e7179d17240eb7d4edea1a44a11cce7a"
+    },
+    {
+      "path": "tools/utils/process_utils.py",
+      "size": 1545,
+      "sha256": "aec1f17a102f14aa300189ed5d8a18eb4ced93458d6f87b6b9a326ad33ca820b"
+    },
+    {
+      "path": "tools/utils/spec_footnotes.py",
+      "size": 1060,
+      "sha256": "58039fbb71b169d80082834355c6ffb806b8a447d0484f7ff6dbdd783ed90997"
+    },
+    {
+      "path": "tools/utils/spec_master.py",
+      "size": 3458,
+      "sha256": "bd2683108e211fec7e95f4115c211e718eec171c8558f12a8868935b27c3d783"
+    },
+    {
+      "path": "tools/utils/spec_master_auditing.py",
+      "size": 10749,
+      "sha256": "4f130be99357d930a7aaf6b5d65b92e689bb8732afd823dd4075876284f60966"
+    },
+    {
+      "path": "tools/utils/spec_master_lookup.py",
+      "size": 10483,
+      "sha256": "0e39e10e93e492804e4db916bdf81526b3d17f5ad9b93cc8038af194fdc3c6fa"
+    },
+    {
+      "path": "tools/utils/spec_master_mapping.py",
+      "size": 8771,
+      "sha256": "d7ebc39ea5921cd422565aa6020837e138b19dcdf9b3196fd4631cee8e11e31d"
+    },
+    {
+      "path": "tools/utils/spec_master_repairs.py",
+      "size": 6356,
+      "sha256": "65167e86b03a6791b5031be62c68ebb1b8e3e2d69c1f5f519f38833e3e0f8a0a"
+    },
+    {
+      "path": "tools/utils/spec_master_row_helpers.py",
+      "size": 27168,
+      "sha256": "f0967465f156bf4f975abb3fc4d7ea2b4c5da9d9404d3273616094196c1d0480"
+    },
+    {
+      "path": "tools/utils/spec_master_shared.py",
+      "size": 13658,
+      "sha256": "233164e720ed5d39003fdf3c165a9723d1a43bea91d9bbec8c7754529afea85a"
+    },
+    {
+      "path": "tools/utils/targets.py",
+      "size": 4889,
+      "sha256": "a495084aa2ed5fa758c7d26dc6ab9b7fe762868ab6e873cbc243e382dfbdf99f"
+    },
+    {
+      "path": "tools/utils/tex_utils.py",
+      "size": 531,
+      "sha256": "93dac4769a8b9117d276f9f45bccee5d2803549eef9b6c98fc970ca6c8f99e9b"
+    },
+    {
+      "path": "tools/utils/variable_resolver.py",
+      "size": 6454,
+      "sha256": "7042f3c7a8ad2aacb6d87b5028b68d60acefbd3c25a4a1f66223dbcf21c0260d"
+    },
+    {
+      "path": "tools/web/__init__.py",
+      "size": 34,
+      "sha256": "39cba33dc8fe560c2c3a92fc266404b14bc9df2ca50f72fd5898a18491a92d94"
+    },
+    {
+      "path": "tools/web/app_component.py",
+      "size": 9601,
+      "sha256": "4665694b4004a41340024483b7df07f3b053ccc53a4a0367280f34a53c1dfec8"
+    },
+    {
+      "path": "tools/web/app_controls.py",
+      "size": 1496,
+      "sha256": "d4a02e827bef0400310232920d609b3cfa0b41632ffdf3655bf4c84647b9c4a0"
+    },
+    {
+      "path": "tools/web/app_download.py",
+      "size": 3257,
+      "sha256": "18a7749b784f5fe9ddf28b759153998faf23136a2d07fbd02e245f665fc99903"
+    },
+    {
+      "path": "tools/web/app_qr_component.py",
+      "size": 1202,
+      "sha256": "c5345424d946d9c50d55adae0445fae49baab9c801e15af71b4ee28d19e70006"
+    },
+    {
+      "path": "tools/web/auto_resume_component.py",
+      "size": 1147,
+      "sha256": "99b7c3d1d112393c963897a24e1432d046aee90c05066c7984b14df741738d9a"
+    },
+    {
+      "path": "tools/web/base_art_operation.py",
+      "size": 15862,
+      "sha256": "1b4dd1e734255f8c9ef27ec162d6db55c0e666ed9793cfe249e4695d4154e7c8"
+    },
+    {
+      "path": "tools/web/base_art_reference.py",
+      "size": 6582,
+      "sha256": "834fb1633a783b10eaa389f49e0acba4ae3f91bdb6baa25a3fe08de2da18e1c8"
+    },
+    {
+      "path": "tools/web/callout_alignment.py",
+      "size": 2554,
+      "sha256": "92047c48facfd5156b556b008c3c0900c24a6bf8318696d498dbf08a0f72362a"
+    },
+    {
+      "path": "tools/web/callout_ir.py",
+      "size": 3739,
+      "sha256": "105e1097ce476de238a8df4da53b16f9ba83309c40b07ed3ea895b3d60486f39"
+    },
+    {
+      "path": "tools/web/caption_frame_admission.py",
+      "size": 4872,
+      "sha256": "119ededcf812f6a97f637b42edce26db7f54cc3ff6a33b0336d5767e5e06d088"
+    },
+    {
+      "path": "tools/web/component_admission.py",
+      "size": 3214,
+      "sha256": "271b50f85f1e887dc3fed6e4e94bcc19593d9e62e1b260b252e27f1bfe193f24"
+    },
+    {
+      "path": "tools/web/component_carriers.py",
+      "size": 5563,
+      "sha256": "98042be9f1abda6df1b107a21eb5779d1e6b5a14ff0cc6021f82f64f63b55a6f"
+    },
+    {
+      "path": "tools/web/composite_hashing.py",
+      "size": 1676,
+      "sha256": "ba34a9f03d5106eab12037dd0d7d84a6d87a6984943c9eda1ffbd0534c13e3a4"
+    },
+    {
+      "path": "tools/web/composite_manifest.py",
+      "size": 12260,
+      "sha256": "50183dc218f7e47b8dfa526c4710112e53438eca6042b5af1fb53a5e2a047d72"
+    },
+    {
+      "path": "tools/web/composite_presentation.py",
+      "size": 8035,
+      "sha256": "555781b6c3a1bd9127058e16ddbef36f2f0edb3ec7703948d9063f844e3583a9"
+    },
+    {
+      "path": "tools/web/document_assets.py",
+      "size": 2398,
+      "sha256": "28a8ce6981b60ce1e33d2c864077edb0708ccf030a4e7a26f0a52af4d1b18fa1"
+    },
+    {
+      "path": "tools/web/document_ir.py",
+      "size": 7707,
+      "sha256": "4fcc1787bd4ec4fee0c75923ab07162f7f5bf75182a3eb1ebec6ea1217e0a22d"
+    },
+    {
+      "path": "tools/web/document_link_actions.py",
+      "size": 4247,
+      "sha256": "5be3eeca2e2955219e0536cbb5942043eea3b5d605025023358b91555e015caf"
+    },
+    {
+      "path": "tools/web/document_link_queue.py",
+      "size": 20325,
+      "sha256": "fef4b19a06bff6bfdafe1ef727b300aff9df8ef652fabf29c578863b6f8bc513"
+    },
+    {
+      "path": "tools/web/document_source.py",
+      "size": 19186,
+      "sha256": "b5ac9539f55a0aaed45b0804cbca641ed15954e43f5e7a1046634d2d54e9fb21"
+    },
+    {
+      "path": "tools/web/embedded_components.py",
+      "size": 8140,
+      "sha256": "4028e2a4e1704f60e90abb42e902c844d7b032d26dcc4b35bda9637ff57ae540"
+    },
+    {
+      "path": "tools/web/fcc_component.py",
+      "size": 3728,
+      "sha256": "f78fc4585595b05e8a2a42aa343a6c6935030efea0f6f130a1ffd297ca67071f"
+    },
+    {
+      "path": "tools/web/fcc_markup.py",
+      "size": 2001,
+      "sha256": "16e38dd430c64b34e3dcca3e8217d9df5a7e34c09164074584d8e0a78c5447f0"
+    },
+    {
+      "path": "tools/web/figure_captions.py",
+      "size": 968,
+      "sha256": "d10cee3251ca02bfd19e72146f75c27f45217637da3304c13b4d5e56688b23d3"
+    },
+    {
+      "path": "tools/web/figure_coverage.py",
+      "size": 30995,
+      "sha256": "2f34ba91f8d97e32bc90f464acfba59ebc226568e54de35206e6571e5d9ebbc9"
+    },
+    {
+      "path": "tools/web/frozen_ai_document.py",
+      "size": 8918,
+      "sha256": "f216f3c7732c97b698b29d85ede5ddf1b3e0d3579ce66254326d2f4b411a0326"
+    },
+    {
+      "path": "tools/web/frozen_ai_flow.py",
+      "size": 4100,
+      "sha256": "cddd4ceed3cb165aec2f0f79ca6313f9f9335ebdd8e8efaa51aa7ce324b21fe2"
+    },
+    {
+      "path": "tools/web/frozen_ai_media_components.py",
+      "size": 8154,
+      "sha256": "67112d8abeff8c78a8d8d013d3daeabead6b02754ec5b068a555b5899ef7264a"
+    },
+    {
+      "path": "tools/web/frozen_ai_source.py",
+      "size": 16785,
+      "sha256": "15903a74290bca7f25e299e34ec510edadcdea959e84b3795ac410479682264f"
+    },
+    {
+      "path": "tools/web/frozen_ai_table_components.py",
+      "size": 12143,
+      "sha256": "cdd624a806a1d168eb3770439f2dbe7f8634974e5fa537b37dc5b654f3b5d04b"
+    },
+    {
+      "path": "tools/web/frozen_ai_web.py",
+      "size": 10527,
+      "sha256": "a4cea92679de3741de0e4b2a0c8751b5e61bfb2a5a1c658b47799e7a4a7910ff"
+    },
+    {
+      "path": "tools/web/frozen_package_registry.py",
+      "size": 17335,
+      "sha256": "35317d373255e5ec5732de2fe40f36668de6c28e740479468ad9da3f75024eca"
+    },
+    {
+      "path": "tools/web/frozen_pdf_app.py",
+      "size": 15401,
+      "sha256": "51c153d2bea89921b42d1d3e8fe7286e8df33b38759aa92b326b033738cca924"
+    },
+    {
+      "path": "tools/web/frozen_pdf_document.py",
+      "size": 15633,
+      "sha256": "d26886d7929d14c015dd7a53921718d6adbfbdb5311c6cbb782bbfc7f80ad773"
+    },
+    {
+      "path": "tools/web/frozen_pdf_errata.py",
+      "size": 2024,
+      "sha256": "ec936847547e9a656d57df312622f8c8dc1c5c8399093589fa686a90b21d380f"
+    },
+    {
+      "path": "tools/web/frozen_pdf_finished_overview.py",
+      "size": 4284,
+      "sha256": "8e6dee3ff11188b7e831b32f538aebd25cd204e4a5779dc899516fe4929b6916"
+    },
+    {
+      "path": "tools/web/frozen_pdf_frontmatter.py",
+      "size": 4773,
+      "sha256": "9238d292b2ade0112809a95a2937768520d8f7aaac2589684c134c9db5f70b61"
+    },
+    {
+      "path": "tools/web/frozen_pdf_glyphs.py",
+      "size": 9385,
+      "sha256": "8a87aa34fd1bc8b4b6a1d51dd4e4c87f6527bb353643b7f5327cd0b167a8bab7"
+    },
+    {
+      "path": "tools/web/frozen_pdf_intake.py",
+      "size": 29164,
+      "sha256": "84917b942f70c06d23b72c42b1b4cc70863e9804aae3db937cda55df9f439f9c"
+    },
+    {
+      "path": "tools/web/frozen_pdf_lcd.py",
+      "size": 5441,
+      "sha256": "5510d7b5605071b22e86fcde01d059aa5a827314aa0f2c9d719b0e2962d7eb70"
+    },
+    {
+      "path": "tools/web/frozen_pdf_media.py",
+      "size": 17942,
+      "sha256": "39673c0dcb8f13734c3296412388f0c4e19f1c6ab0035b0de32d9c42f139effc"
+    },
+    {
+      "path": "tools/web/frozen_pdf_reference.py",
+      "size": 6185,
+      "sha256": "257f121a75d96e8d2d3f1f21fc4c8d813032ef64dfb16553666b3526c0615585"
+    },
+    {
+      "path": "tools/web/frozen_pdf_source.py",
+      "size": 15285,
+      "sha256": "7cbf3335006d7e27826d27e35b1ab85e2f74f1e7e042280393d11b323a14ae70"
+    },
+    {
+      "path": "tools/web/frozen_pdf_web.py",
+      "size": 1637,
+      "sha256": "9a6c18feefc04b404e16d54d8079af71672fb678ca3a5bc6fe1a2883e3c9a6cd"
+    },
+    {
+      "path": "tools/web/frozen_source_evidence.py",
+      "size": 10498,
+      "sha256": "eac58d951f33206f40f888c2c0a41fd5cb4a4eaab0cfc551c69c780f7c46fca4"
+    },
+    {
+      "path": "tools/web/frozen_web_component_coverage.py",
+      "size": 5724,
+      "sha256": "40f6de3cc40b7ecca381db22b86dc26e5ca7020214501eb16dba035bc25a9db5"
+    },
+    {
+      "path": "tools/web/inbox_component.py",
+      "size": 5082,
+      "sha256": "e70ac1440aaff9a65adb4a40c978d7e288ff5fa671b49f5d74f03155f391cfc7"
+    },
+    {
+      "path": "tools/web/key_combinations_component.py",
+      "size": 2102,
+      "sha256": "25df58a8cb28db1660df6f023b651ca7137ce62b5d35506aa2d2e323a65082c3"
+    },
+    {
+      "path": "tools/web/language_bundle.py",
+      "size": 14683,
+      "sha256": "af0c5c4d750ebcf5107e0d0267a90c4bad96821b22f45ad9dca8885324eca20f"
+    },
+    {
+      "path": "tools/web/language_inventory.py",
+      "size": 3984,
+      "sha256": "4148db03c31148e82c2f84166913e010802bcdfb93b4c72fd7fc1d33907e29bb"
+    },
+    {
+      "path": "tools/web/language_release_evidence.py",
+      "size": 23128,
+      "sha256": "a24b9f2780a04a741f276844fdfb1f8c90f35192a1e3dafeaa530b8851120bc6"
+    },
+    {
+      "path": "tools/web/lcd_component.py",
+      "size": 739,
+      "sha256": "f20eace9623c8bbadcff4e107545ef5aa578b05783e4c15d87beb63be0fd8e20"
+    },
+    {
+      "path": "tools/web/lcd_mode_component.py",
+      "size": 3528,
+      "sha256": "2bc5038191826f757ed537697a66791e71621cc97cafd8677422e5112569e16e"
+    },
+    {
+      "path": "tools/web/manual_table_components.py",
+      "size": 10484,
+      "sha256": "746e5e4e5cf2651b4b7acc0764101a1ade509af571c2150c378fc1efaddf2805"
+    },
+    {
+      "path": "tools/web/operation_component.py",
+      "size": 3647,
+      "sha256": "8f3183bcf5dc7ded78d3d187e81ed417fc4b5f5ace7815f5e77ca6963cb70ef0"
+    },
+    {
+      "path": "tools/web/overview_component.py",
+      "size": 5730,
+      "sha256": "60f6a9ff3562bbf5ef1383cc1c8963f5f7937e2123dd8e07633ff40895bac288"
+    },
+    {
+      "path": "tools/web/prepared_style_audit.py",
+      "size": 9128,
+      "sha256": "1600f5efaa5d512ee7434140b6eab7c07dff6a30b6a4cac27b23e763d8c77121"
+    },
+    {
+      "path": "tools/web/presentation.py",
+      "size": 65167,
+      "sha256": "da05fc9c4d35646b0a557c0f312e2fd2eeac4a65a07e48180c9cbcc9a0f3283e"
+    },
+    {
+      "path": "tools/web/presentation_contract.py",
+      "size": 41571,
+      "sha256": "e48ba04f467b2e2cce01a884b2812f1c2536a0c2e595a3ad5de62aff185f9c51"
+    },
+    {
+      "path": "tools/web/reference_components.py",
+      "size": 5500,
+      "sha256": "273b67a7ccb1bf431d5e4e46bf519c5617a30d1c158da60125346ecd6cd8def0"
+    },
+    {
+      "path": "tools/web/reference_figure_component.py",
+      "size": 6340,
+      "sha256": "c81accfb2d13d9961c6b28d0b383fde306574f9e760fa42f9c40e1c846c4418b"
+    },
+    {
+      "path": "tools/web/reference_table_component.py",
+      "size": 1682,
+      "sha256": "5080dd59b341770d0e45dd490a5dbcd5d6738779e637cd6bf8de0c2a8fae5827"
+    },
+    {
+      "path": "tools/web/shared_symbol_assets.py",
+      "size": 4215,
+      "sha256": "ba211428ab26a54f77b13d012e98ec7dc7ff7e464b897074982116b35ba77d2a"
+    },
+    {
+      "path": "tools/web/spec_component.py",
+      "size": 7162,
+      "sha256": "c5bd8dae11f74ab71d851facfef0639d46a0288da59c1c4df56ef95855313895"
+    },
+    {
+      "path": "tools/web/stylesheets.py",
+      "size": 1570,
+      "sha256": "804d410de026380a89b986c89ec9772a12ad0d7eb1b204ee6b7d3ea43e948fc3"
+    },
+    {
+      "path": "tools/web/symbol_asset_admission.py",
+      "size": 18962,
+      "sha256": "8fcc2e4c35e86b2b35945ed4fedf4bb5ce422838c23f3b66a8c1a9c61fb12899"
+    },
+    {
+      "path": "tools/web/symbol_components.py",
+      "size": 3757,
+      "sha256": "3c1f11c6d37e9bc567fc5643caa1a27d07c5fd46a6b525d3fe28cdc9e9535668"
+    },
+    {
+      "path": "tools/web/symbol_pairs.py",
+      "size": 4036,
+      "sha256": "d4ad4248fa57368629d9ca4645bee10dca3871e258cf617bf31ee304fc26e5b2"
+    },
+    {
+      "path": "tools/web/table_ir.py",
+      "size": 6446,
+      "sha256": "a39489f1b0991f4bcdb3e9cf571e05030bdd3a50b8a6b1df0247550cd7ea6076"
+    },
+    {
+      "path": "tools/web/troubleshooting_component.py",
+      "size": 770,
+      "sha256": "7a88f435cfe568b277ff07726a26d1499a4d1ba98c08d3282d5520b84210113a"
+    },
+    {
+      "path": "tools/web/warranty_component.py",
+      "size": 3977,
+      "sha256": "eed66266702da8942a02927d2012ccdc7410bd0a5899fe7b71abf06d5a7adb4a"
+    }
+  ],
+  "chapter_source_pages": {
+    "preface": [
+      1
+    ],
+    "solar_unfolding": [
+      4,
+      5
+    ],
+    "specifications": [
+      6,
+      7
+    ],
+    "product_overview": [
+      7
+    ],
+    "usage": [
+      7,
+      8
+    ],
+    "lcd_display": [
+      8,
+      9,
+      10
+    ],
+    "charging": [
+      11,
+      12
+    ],
+    "safety": [
+      13,
+      14
+    ],
+    "usage_precautions": [
+      15,
+      16
+    ],
+    "in_the_box": [
+      17
+    ],
+    "disclaimer": [
+      17
+    ],
+    "app_setup": [
+      18,
+      19,
+      20
+    ]
+  },
+  "symbol_asset_admission": {
+    "schema_version": "auto-manual-symbol-asset-admission/v1",
+    "locales": {
+      "ja": [
+        {
+          "asset_ref": "assets/h1-jp-unplug.svg",
+          "asset_sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf",
+          "shared_symbol_key": "unplug/h1-jp-native",
+          "physical_page": 13,
+          "drawing_indices": [
+            1967,
+            1968,
+            1969,
+            1970,
+            1971
+          ],
+          "glyph_bbox": [
+            28.349489212036133,
+            198.44805908203125,
+            44.928489685058594,
+            215.89125061035156
+          ],
+          "caption_bbox": [
+            50.6853,
+            203.1151,
+            170.184,
+            211.5241
+          ],
+          "row_bbox": [
+            27.3495,
+            197.4481,
+            171.184,
+            216.8913
+          ],
+          "caption_text": "コンセントから電源プラグを抜く記号",
+          "caption_sha256": "dacc7c8592c6869b4321a88131185e1b1f17624a12a727233f917e804d08b589",
+          "caption_mode": "outlined-manual-transcription"
+        },
+        {
+          "asset_ref": "assets/je1000d-jp-00c43a89-symbol-02.svg",
+          "asset_sha256": "0766a51f9ad7d433bed62a7c1ddbacc19ad7c7b68bf55938d5cdbab902b9ea04",
+          "shared_symbol_key": "native/je1000d-jp-00c43a89-02",
+          "physical_page": 13,
+          "drawing_indices": [
+            2011,
+            2012,
+            2013,
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026,
+            2027
+          ],
+          "glyph_bbox": [
+            28.348976135253906,
+            221.086669921875,
+            44.928977966308594,
+            237.6669464111328
+          ],
+          "caption_bbox": [
+            49.8451,
+            225.4765,
+            156.184,
+            233.8864
+          ],
+          "row_bbox": [
+            27.349,
+            220.0867,
+            157.184,
+            238.6669
+          ],
+          "caption_text": "製品を分解、改造を禁止する記号",
+          "caption_sha256": "dc38aa919116dfd4ec1aa51033ab5bed023077f97ece770f4f0f9411a2e5dd14",
+          "caption_mode": "outlined-manual-transcription"
+        },
+        {
+          "asset_ref": "assets/je1000d-jp-00c43a89-symbol-03.svg",
+          "asset_sha256": "585a0c72abdb9fc1d69d31554d249730f1361dfc49a501423dd0204e0637a387",
+          "shared_symbol_key": "native/je1000d-jp-00c43a89-03",
+          "physical_page": 13,
+          "drawing_indices": [
+            2043,
+            2044,
+            2045,
+            2046,
+            2047,
+            2048,
+            2049,
+            2050,
+            2051,
+            2052,
+            2053
+          ],
+          "glyph_bbox": [
+            28.814002990722656,
+            244.71914672851562,
+            45.394004821777344,
+            261.29815673828125
+          ],
+          "caption_bbox": [
+            50.31,
+            249.1093,
+            191.649,
+            257.5109
+          ],
+          "row_bbox": [
+            27.814,
+            243.7191,
+            192.649,
+            262.2982
+          ],
+          "caption_text": "製品に濡れた手で触れることを禁止する記号",
+          "caption_sha256": "d24e028dd365a0709a41c07b2f9448d7bea0355f0f5c0376473f61e2ccd65f45",
+          "caption_mode": "outlined-manual-transcription"
+        },
+        {
+          "asset_ref": "assets/h1-jp-mandatory.svg",
+          "asset_sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2",
+          "shared_symbol_key": "mandatory/h1-jp-native",
+          "physical_page": 13,
+          "drawing_indices": [
+            1989
+          ],
+          "glyph_bbox": [
+            201.2298126220703,
+            198.7892608642578,
+            217.809814453125,
+            215.3922576904297
+          ],
+          "caption_bbox": [
+            221.478,
+            202.7809,
+            285.9009,
+            211.1829
+          ],
+          "row_bbox": [
+            200.2298,
+            197.7893,
+            286.9009,
+            216.3923
+          ],
+          "caption_text": "行為を指示する記号",
+          "caption_sha256": "dced6f86f907d49beff2e41eed934ebbf62df344a7d2d7e613aafa93ba30acbe",
+          "caption_mode": "outlined-manual-transcription"
+        },
+        {
+          "asset_ref": "assets/je1000d-jp-00c43a89-symbol-05.svg",
+          "asset_sha256": "4728b4a0ab80e8376ff756d9af98d92c1906d3461e44eb4905899b6212cc003c",
+          "shared_symbol_key": "native/je1000d-jp-00c43a89-05",
+          "physical_page": 13,
+          "drawing_indices": [
+            2074,
+            2075,
+            2076,
+            2077,
+            2078,
+            2079,
+            2080,
+            2081,
+            2082,
+            2083,
+            2084,
+            2085
+          ],
+          "glyph_bbox": [
+            201.22940063476562,
+            221.6900634765625,
+            217.8094024658203,
+            238.26956176757812
+          ],
+          "caption_bbox": [
+            221.5624,
+            225.6825,
+            327.9009,
+            234.0839
+          ],
+          "row_bbox": [
+            200.2294,
+            220.6901,
+            328.9009,
+            239.2696
+          ],
+          "caption_text": "製品を濡らすことを禁止する記号",
+          "caption_sha256": "5a09652099ce185872702630f568f94bb266ea5ec9e570fdef9e214e02475556",
+          "caption_mode": "outlined-manual-transcription"
+        },
+        {
+          "asset_ref": "assets/je1000d-jp-00c43a89-symbol-06.svg",
+          "asset_sha256": "a5390e01e5ed9ba225377ba6b13de7523f86b8139e4686cf4534ebb2c1048641",
+          "shared_symbol_key": "native/je1000d-jp-00c43a89-06",
+          "physical_page": 13,
+          "drawing_indices": [
+            1999,
+            2000,
+            2001
+          ],
+          "glyph_bbox": [
+            201.2296142578125,
+            245.5908203125,
+            217.8096160888672,
+            262.17108154296875
+          ],
+          "caption_bbox": [
+            221.478,
+            249.3056,
+            285.9009,
+            257.707
+          ],
+          "row_bbox": [
+            200.2296,
+            244.5908,
+            286.9009,
+            263.1711
+          ],
+          "caption_text": "行為を禁止する記号",
+          "caption_sha256": "698ca73d6e3d932c4a278eac04ab24927a86bf058b81a6315335555058617b39",
+          "caption_mode": "outlined-manual-transcription"
+        }
+      ]
+    }
+  },
+  "operator_approval": "source/approval.json",
+  "reviewed_candidate": {
+    "path": "manual_sources/JSG-0304B/JP/ja/git-20261112-fe9f1b56-m000512",
+    "git_ref": "6abe1128c27a186228185390d26f87adc9d3e2c9",
+    "manifest_sha256": "db7270aa206587fb843f10ff6cbf6dd04e6aefefe0251962bb8fe1c28e38502d",
+    "manual_ir_sha256": "bc551851e61074085cfdb11b6076444029c82673df56e9ca26dc05feb5f49dd9"
+  }
+}

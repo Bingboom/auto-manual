@@ -1,0 +1,2436 @@
+{
+  "model": "JS-40A",
+  "region": "JP",
+  "language": "ja",
+  "title": "Jackery SolarSaga 40 Mini 取扱説明書",
+  "source_sha256": "1a96bf348255cc47caf18b3df296ced0ccbc28269b1863c442e9e98d8d631b4c",
+  "material": "38-0001-000464",
+  "chapters": [
+    {
+      "id": "guide",
+      "nodes": [
+        {
+          "kind": "heading",
+          "level": 1,
+          "children": [
+            {
+              "kind": "text",
+              "text": "ソーラーパネル取扱説明書"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "hb-text-panel"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "paragraph",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "マグネットバックルを外す"
+                }
+              ]
+            },
+            {
+              "kind": "component",
+              "component_spec": {
+                "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                "variant": "semantic-fallback",
+                "source_ref": "source/transcription.json#unfold-1",
+                "language": "ja",
+                "slots": [
+                  {
+                    "role": "reference_id",
+                    "content_kind": "inline_text",
+                    "content": "unfold-1"
+                  },
+                  {
+                    "role": "accessibility_label",
+                    "content_kind": "inline_text",
+                    "content": "JS-40A Mini 展開手順1の図"
+                  },
+                  {
+                    "role": "caption_mode",
+                    "content_kind": "inline_text",
+                    "content": "embedded"
+                  },
+                  {
+                    "role": "caption_layout",
+                    "content_kind": "inline_text",
+                    "content": "equal"
+                  }
+                ],
+                "assets": [
+                  {
+                    "role": "source_art",
+                    "asset_ref": "assets/unfold-1.png",
+                    "locale_policy": "exact"
+                  }
+                ],
+                "token_roles": [
+                  "component.special.reference-figure"
+                ],
+                "metadata": {
+                  "artwork_origin": "source-bound-candidate-crop",
+                  "candidate_only": true,
+                  "image_key": "unfold-1",
+                  "web_replace_key": "",
+                  "source_fragment_sha256": "b7539144a7d57afcbebe77ffa28d19c5683cc2e6450f2f668018f9b27eb74b97"
+                },
+                "schema_version": "component-spec/v1"
+              },
+              "carrier_flow": [
+                {
+                  "kind": "image",
+                  "source": "assets/unfold-1.png",
+                  "alt": "JS-40A Mini 展開手順1の図"
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "hb-text-panel"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "paragraph",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "両側に広げる"
+                }
+              ]
+            },
+            {
+              "kind": "component",
+              "component_spec": {
+                "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                "variant": "semantic-fallback",
+                "source_ref": "source/transcription.json#unfold-2",
+                "language": "ja",
+                "slots": [
+                  {
+                    "role": "reference_id",
+                    "content_kind": "inline_text",
+                    "content": "unfold-2"
+                  },
+                  {
+                    "role": "accessibility_label",
+                    "content_kind": "inline_text",
+                    "content": "JS-40A Mini 展開手順2の図"
+                  },
+                  {
+                    "role": "caption_mode",
+                    "content_kind": "inline_text",
+                    "content": "embedded"
+                  },
+                  {
+                    "role": "caption_layout",
+                    "content_kind": "inline_text",
+                    "content": "equal"
+                  }
+                ],
+                "assets": [
+                  {
+                    "role": "source_art",
+                    "asset_ref": "assets/unfold-2.png",
+                    "locale_policy": "exact"
+                  }
+                ],
+                "token_roles": [
+                  "component.special.reference-figure"
+                ],
+                "metadata": {
+                  "artwork_origin": "source-bound-candidate-crop",
+                  "candidate_only": true,
+                  "image_key": "unfold-2",
+                  "web_replace_key": "",
+                  "source_fragment_sha256": "3ccbd9d0a7749b37b780efe28ed681447bf05848d07376b125f0f5e4fd359267"
+                },
+                "schema_version": "component-spec/v1"
+              },
+              "carrier_flow": [
+                {
+                  "kind": "image",
+                  "source": "assets/unfold-2.png",
+                  "alt": "JS-40A Mini 展開手順2の図"
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "hb-text-panel"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "paragraph",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "真ん中の隠しボタンを外す"
+                }
+              ]
+            },
+            {
+              "kind": "component",
+              "component_spec": {
+                "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                "variant": "semantic-fallback",
+                "source_ref": "source/transcription.json#unfold-3",
+                "language": "ja",
+                "slots": [
+                  {
+                    "role": "reference_id",
+                    "content_kind": "inline_text",
+                    "content": "unfold-3"
+                  },
+                  {
+                    "role": "accessibility_label",
+                    "content_kind": "inline_text",
+                    "content": "JS-40A Mini 展開手順3の図"
+                  },
+                  {
+                    "role": "caption_mode",
+                    "content_kind": "inline_text",
+                    "content": "embedded"
+                  },
+                  {
+                    "role": "caption_layout",
+                    "content_kind": "inline_text",
+                    "content": "equal"
+                  }
+                ],
+                "assets": [
+                  {
+                    "role": "source_art",
+                    "asset_ref": "assets/unfold-3.png",
+                    "locale_policy": "exact"
+                  }
+                ],
+                "token_roles": [
+                  "component.special.reference-figure"
+                ],
+                "metadata": {
+                  "artwork_origin": "source-bound-candidate-crop",
+                  "candidate_only": true,
+                  "image_key": "unfold-3",
+                  "web_replace_key": "",
+                  "source_fragment_sha256": "7c62cfcc2c75143d944d5d58e2209d082e457ad29699f071aad2d7312b99cdc5"
+                },
+                "schema_version": "component-spec/v1"
+              },
+              "carrier_flow": [
+                {
+                  "kind": "image",
+                  "source": "assets/unfold-3.png",
+                  "alt": "JS-40A Mini 展開手順3の図"
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "hb-text-panel"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "paragraph",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "広げる"
+                }
+              ]
+            },
+            {
+              "kind": "component",
+              "component_spec": {
+                "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                "variant": "semantic-fallback",
+                "source_ref": "source/transcription.json#unfold-4",
+                "language": "ja",
+                "slots": [
+                  {
+                    "role": "reference_id",
+                    "content_kind": "inline_text",
+                    "content": "unfold-4"
+                  },
+                  {
+                    "role": "accessibility_label",
+                    "content_kind": "inline_text",
+                    "content": "JS-40A Mini 展開手順4の図"
+                  },
+                  {
+                    "role": "caption_mode",
+                    "content_kind": "inline_text",
+                    "content": "embedded"
+                  },
+                  {
+                    "role": "caption_layout",
+                    "content_kind": "inline_text",
+                    "content": "equal"
+                  }
+                ],
+                "assets": [
+                  {
+                    "role": "source_art",
+                    "asset_ref": "assets/unfold-4.png",
+                    "locale_policy": "exact"
+                  }
+                ],
+                "token_roles": [
+                  "component.special.reference-figure"
+                ],
+                "metadata": {
+                  "artwork_origin": "source-bound-candidate-crop",
+                  "candidate_only": true,
+                  "image_key": "unfold-4",
+                  "web_replace_key": "",
+                  "source_fragment_sha256": "3c5316e416038274ba0fd44615dbbccbfd50c79f93398f7fe437155c09039d2f"
+                },
+                "schema_version": "component-spec/v1"
+              },
+              "carrier_flow": [
+                {
+                  "kind": "image",
+                  "source": "assets/unfold-4.png",
+                  "alt": "JS-40A Mini 展開手順4の図"
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "hb-text-panel"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "paragraph",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "太陽に向かい、ポータブル電源に接続する"
+                }
+              ]
+            },
+            {
+              "kind": "component",
+              "component_spec": {
+                "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                "variant": "semantic-fallback",
+                "source_ref": "source/transcription.json#unfold-5",
+                "language": "ja",
+                "slots": [
+                  {
+                    "role": "reference_id",
+                    "content_kind": "inline_text",
+                    "content": "unfold-5"
+                  },
+                  {
+                    "role": "accessibility_label",
+                    "content_kind": "inline_text",
+                    "content": "JS-40A Mini 展開手順5の図"
+                  },
+                  {
+                    "role": "caption_mode",
+                    "content_kind": "inline_text",
+                    "content": "embedded"
+                  },
+                  {
+                    "role": "caption_layout",
+                    "content_kind": "inline_text",
+                    "content": "equal"
+                  }
+                ],
+                "assets": [
+                  {
+                    "role": "source_art",
+                    "asset_ref": "assets/unfold-5.png",
+                    "locale_policy": "exact"
+                  }
+                ],
+                "token_roles": [
+                  "component.special.reference-figure"
+                ],
+                "metadata": {
+                  "artwork_origin": "source-bound-candidate-crop",
+                  "candidate_only": true,
+                  "image_key": "unfold-5",
+                  "web_replace_key": "",
+                  "source_fragment_sha256": "8545970b1c83bb8e423b05309b0dacc64a396a3cff6d7724211d5a36926da011"
+                },
+                "schema_version": "component-spec/v1"
+              },
+              "carrier_flow": [
+                {
+                  "kind": "image",
+                  "source": "assets/unfold-5.png",
+                  "alt": "JS-40A Mini 展開手順5の図"
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        }
+      ]
+    },
+    {
+      "id": "specifications",
+      "nodes": [
+        {
+          "kind": "heading",
+          "level": 1,
+          "children": [
+            {
+              "kind": "text",
+              "text": "1.主な仕様"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-TABLE-SPEC",
+            "variant": "vertical",
+            "source_ref": "source/transcription.json#specification-main",
+            "language": "ja",
+            "slots": [
+              {
+                "role": "section_title",
+                "content_kind": "inline_text",
+                "content": "SolarSaga 40 Mini"
+              },
+              {
+                "role": "rows",
+                "content_kind": "structured_rows",
+                "content": [
+                  {
+                    "label": "製品名称:",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "SolarSaga 40 Mini",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "型番:",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "JS-40A",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "最大出力 (Pmax):",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "40W±5%",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "開放電圧 (Voc):",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "25V±5%",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "短絡電流 (Isc):",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "2.07A±5%",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "動作電圧 (Vmp):",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "20.9V±5%",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "動作電流 (Imp) :",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "1.91A±5%",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "正味重量:",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "約1.2kg",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "収納サイズ:",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "約252*300*30mm",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "展開サイズ:",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "約1020*300*18.5mm",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "動作温度範囲:",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "-20°C~65°C（-4°F~149°F）",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "最大システム電圧:",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "30V",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "最大逆電流:",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "6A",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "感電保護クラス:",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "クラス III",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "防水規格:",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "IP68",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "電圧温度係数:",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "-0.3%/°C",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "出力温度係数:",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "-0.39%/°C",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "最大直列接続数:",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "1",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "最大並列接続数:",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "3",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "消費財カテゴリー:",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "IEC TS 63163、消費財タイプ I",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  }
+                ]
+              }
+            ],
+            "assets": [],
+            "token_roles": [
+              "component.table.spec"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "heading",
+              "level": 2,
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": [
+                      "hb-spec-section"
+                    ]
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "inline_group",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": [
+                          "hb-spec-section-text"
+                        ]
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "SolarSaga 40 Mini"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "table",
+              "children": [
+                {
+                  "kind": "table_body",
+                  "children": [
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "製品名称:"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "SolarSaga 40 Mini"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "型番:"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "JS-40A"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "最大出力 (Pmax):"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "40W±5%"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "開放電圧 (Voc):"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "25V±5%"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "短絡電流 (Isc):"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "2.07A±5%"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "動作電圧 (Vmp):"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "20.9V±5%"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "動作電流 (Imp) :"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "1.91A±5%"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "正味重量:"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "約1.2kg"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "収納サイズ:"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "約252*300*30mm"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "展開サイズ:"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "約1020*300*18.5mm"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "動作温度範囲:"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "-20°C~65°C（-4°F~149°F）"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "最大システム電圧:"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "30V"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "最大逆電流:"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "6A"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "感電保護クラス:"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "クラス III"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "防水規格:"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "IP68"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "電圧温度係数:"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "-0.3%/°C"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "出力温度係数:"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "-0.39%/°C"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "最大直列接続数:"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "1"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "最大並列接続数:"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "3"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "消費財カテゴリー:"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "IEC TS 63163、消費財タイプ I"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "STC (1000W/m², 25°C, AM 1.5)."
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-TABLE-SPEC",
+            "variant": "vertical",
+            "source_ref": "source/transcription.json#specification-adapter",
+            "language": "ja",
+            "slots": [
+              {
+                "role": "section_title",
+                "content_kind": "inline_text",
+                "content": "多機能アダプター"
+              },
+              {
+                "role": "rows",
+                "content_kind": "structured_rows",
+                "content": [
+                  {
+                    "label": "USB-A出力:",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "5V⎓2.4A",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "USB-C出力:",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "5V⎓3A",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  }
+                ]
+              }
+            ],
+            "assets": [],
+            "token_roles": [
+              "component.table.spec"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "heading",
+              "level": 2,
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": [
+                      "hb-spec-section"
+                    ]
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "inline_group",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": [
+                          "hb-spec-section-text"
+                        ]
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "多機能アダプター"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "table",
+              "children": [
+                {
+                  "kind": "table_body",
+                  "children": [
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "USB-A出力:"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "5V⎓2.4A"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "USB-C出力:"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "5V⎓3A"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "power_your_device",
+      "nodes": [
+        {
+          "kind": "heading",
+          "level": 1,
+          "children": [
+            {
+              "kind": "text",
+              "text": "2.デバイスに電力を供給する"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+            "variant": "semantic-fallback",
+            "source_ref": "ja/pdf-page-26#reference-power-device",
+            "language": "ja",
+            "slots": [
+              {
+                "role": "reference_id",
+                "content_kind": "inline_text",
+                "content": "power-device"
+              },
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "content": "power-device"
+              },
+              {
+                "role": "caption_mode",
+                "content_kind": "inline_text",
+                "content": "live"
+              },
+              {
+                "role": "caption_layout",
+                "content_kind": "inline_text",
+                "content": "equal"
+              },
+              {
+                "role": "captions",
+                "content_kind": "ordered_labels",
+                "content": [
+                  {
+                    "html": "SolarSaga 40 Mini",
+                    "text": "SolarSaga 40 Mini"
+                  },
+                  {
+                    "html": "多機能アダプター",
+                    "text": "多機能アダプター"
+                  },
+                  {
+                    "html": "DC8020",
+                    "text": "DC8020"
+                  },
+                  {
+                    "html": "トランスジャック（DC8020→USB-C）",
+                    "text": "トランスジャック（DC8020→USB-C）"
+                  },
+                  {
+                    "html": "スマートフォン",
+                    "text": "スマートフォン"
+                  },
+                  {
+                    "html": "モバイルバッテリー",
+                    "text": "モバイルバッテリー"
+                  },
+                  {
+                    "html": "タブレット",
+                    "text": "タブレット"
+                  }
+                ]
+              }
+            ],
+            "assets": [
+              {
+                "role": "source_art",
+                "asset_ref": "assets/power-device.png",
+                "locale_policy": "shared"
+              }
+            ],
+            "token_roles": [
+              "component.special.reference-figure"
+            ],
+            "metadata": {
+              "capture_following_lines": 7,
+              "captions_embedded": false,
+              "captions_origin": "carrier",
+              "caption_centers_pct": null,
+              "composite_locale": "",
+              "presentation_mode": "base-art-live-copy",
+              "base_art_layout": {
+                "art_sha256": "5dcb13ee8b6224a48b64311d91af17c5c38bad005af5ae3b4ae36480fb5cd17b",
+                "panel_top": 0,
+                "panel_fill": "#ffffff",
+                "preserve_frame": false,
+                "labels": [
+                  {
+                    "line": 0,
+                    "rect": [
+                      42.0353982300885,
+                      43.95348837209302,
+                      22.123893805309734,
+                      4.011627906976748
+                    ]
+                  },
+                  {
+                    "line": 1,
+                    "rect": [
+                      41.150442477876105,
+                      59.30232558139535,
+                      17.25663716814159,
+                      3.9534883720930303
+                    ]
+                  },
+                  {
+                    "line": 2,
+                    "rect": [
+                      67.2566371681416,
+                      64.24418604651163,
+                      7.079646017699115,
+                      3.488372093023256
+                    ]
+                  },
+                  {
+                    "line": 3,
+                    "rect": [
+                      60.17699115044248,
+                      67.61627906976744,
+                      39.823008849557525,
+                      7.383720930232551
+                    ]
+                  },
+                  {
+                    "line": 4,
+                    "rect": [
+                      23.893805309734514,
+                      95.69767441860465,
+                      14.15929203539823,
+                      4.011627906976748
+                    ]
+                  },
+                  {
+                    "line": 5,
+                    "rect": [
+                      42.0353982300885,
+                      95.69767441860465,
+                      18.141592920353983,
+                      4.011627906976748
+                    ]
+                  },
+                  {
+                    "line": 6,
+                    "rect": [
+                      65.04424778761062,
+                      95.69767441860465,
+                      11.061946902654867,
+                      4.011627906976748
+                    ]
+                  }
+                ]
+              },
+              "image_key": "power-device",
+              "web_replace_key": "",
+              "source_fragment_sha256": "0add634e74dd017e061b1bb281c97fa74111434dfa347b0bab327667c1de452c",
+              "retained_fixed_port_markings": "USB-C / LED / USB-A"
+            },
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "image",
+              "source": "assets/power-device.png",
+              "alt": "power-device"
+            },
+            {
+              "kind": "group",
+              "role": "container",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "line-block"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "line"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "SolarSaga 40 Mini"
+                    }
+                  ]
+                },
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "line"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "多機能アダプター"
+                    }
+                  ]
+                },
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "line"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "DC8020"
+                    }
+                  ]
+                },
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "line"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "トランスジャック（DC8020→USB-C）"
+                    }
+                  ]
+                },
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "line"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "スマートフォン"
+                    }
+                  ]
+                },
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "line"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "モバイルバッテリー"
+                    }
+                  ]
+                },
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "line"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "タブレット"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "hb-text-panel"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "paragraph",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "*本アダプターは、Jackeryポータブル電源の充電のみ使用することができます。スマホなど、他のデバイスの充電にはご使用いただけませんので、ご注意ください。"
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        }
+      ]
+    },
+    {
+      "id": "in_the_box",
+      "nodes": [
+        {
+          "kind": "heading",
+          "level": 1,
+          "children": [
+            {
+              "kind": "text",
+              "text": "3.同梱品"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-SPECIAL-INBOX",
+            "variant": "responsive-card-grid",
+            "source_ref": "source/transcription.json#inbox",
+            "language": "ja",
+            "slots": [
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "content": "3.同梱品"
+              },
+              {
+                "role": "cards",
+                "content_kind": "ordered_cards",
+                "content": [
+                  {
+                    "number": 1,
+                    "image_asset_role": "card_art",
+                    "alt": "SolarSaga 40 Mini",
+                    "label": "SolarSaga 40 Mini"
+                  },
+                  {
+                    "number": 2,
+                    "image_asset_role": "card_art",
+                    "alt": "収納ポーチ",
+                    "label": "収納ポーチ"
+                  },
+                  {
+                    "number": 3,
+                    "image_asset_role": "card_art",
+                    "alt": "トランスジャック（DC8020→USB-C）",
+                    "label": "トランスジャック（DC8020→USB-C）"
+                  },
+                  {
+                    "number": 4,
+                    "image_asset_role": "card_art",
+                    "alt": "多機能ソーラー充電ケーブル",
+                    "label": "多機能ソーラー充電ケーブル"
+                  },
+                  {
+                    "number": 5,
+                    "image_asset_role": "card_art",
+                    "alt": "取扱説明書",
+                    "label": "取扱説明書"
+                  },
+                  {
+                    "number": 6,
+                    "image_asset_role": "card_art",
+                    "alt": "カラビナ X2",
+                    "label": "カラビナ X2"
+                  }
+                ]
+              },
+              {
+                "role": "tip_label",
+                "content_kind": "inline_text",
+                "content": ""
+              },
+              {
+                "role": "tip_body",
+                "content_kind": "rich_text",
+                "content": ""
+              }
+            ],
+            "assets": [
+              {
+                "role": "card_art",
+                "asset_ref": "assets/inbox-panel.png",
+                "locale_policy": "shared"
+              },
+              {
+                "role": "card_art",
+                "asset_ref": "assets/inbox-pouch.png",
+                "locale_policy": "shared"
+              },
+              {
+                "role": "card_art",
+                "asset_ref": "assets/inbox-adapter.png",
+                "locale_policy": "shared"
+              },
+              {
+                "role": "card_art",
+                "asset_ref": "assets/inbox-cable.png",
+                "locale_policy": "shared"
+              },
+              {
+                "role": "card_art",
+                "asset_ref": "assets/inbox-manual.png",
+                "locale_policy": "shared"
+              },
+              {
+                "role": "card_art",
+                "asset_ref": "assets/inbox-carabiner.png",
+                "locale_policy": "shared"
+              }
+            ],
+            "token_roles": [
+              "component.special.inbox"
+            ],
+            "metadata": {
+              "desktop_columns": 3
+            },
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "table",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "manual-table"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "table_body",
+                  "children": [
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "image",
+                              "source": "assets/inbox-panel.png",
+                              "alt": "SolarSaga 40 Mini"
+                            },
+                            {
+                              "kind": "paragraph",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "SolarSaga 40 Mini"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "image",
+                              "source": "assets/inbox-pouch.png",
+                              "alt": "収納ポーチ"
+                            },
+                            {
+                              "kind": "paragraph",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "収納ポーチ"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "image",
+                              "source": "assets/inbox-adapter.png",
+                              "alt": "トランスジャック（DC8020→USB-C）"
+                            },
+                            {
+                              "kind": "paragraph",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "トランスジャック（DC8020→USB-C）"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "image",
+                              "source": "assets/inbox-cable.png",
+                              "alt": "多機能ソーラー充電ケーブル"
+                            },
+                            {
+                              "kind": "paragraph",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "多機能ソーラー充電ケーブル"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "image",
+                              "source": "assets/inbox-manual.png",
+                              "alt": "取扱説明書"
+                            },
+                            {
+                              "kind": "paragraph",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "取扱説明書"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "image",
+                              "source": "assets/inbox-carabiner.png",
+                              "alt": "カラビナ X2"
+                            },
+                            {
+                              "kind": "paragraph",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "カラビナ X2"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "hb-text-panel"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "paragraph",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "*この多機能充電ケーブルは、SolarSaga 40 Miniにのみ対応しており、他のモデルのソーラーパネルには使用しないでください。"
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        }
+      ]
+    },
+    {
+      "id": "safety",
+      "nodes": [
+        {
+          "kind": "heading",
+          "level": 1,
+          "children": [
+            {
+              "kind": "text",
+              "text": "4.使用上のご注意"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "hb-text-panel"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "paragraph",
+              "children": [
+                {
+                  "kind": "strong",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "※ご使用の前に取扱説明書をよくお読みになり正しくお使いください。"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "list",
+          "ordered": false,
+          "children": [
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "paragraph",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "ソーラーパネルが太陽光発電をしている間は、ポータブル電源を直射日光下に長時間放置することは避け、常に乾いた日陰に置いてください。"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "paragraph",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "破損する恐れがあるため、本製品を曲げないでください。"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "paragraph",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "ケーブルが折れ曲がった状態で使用しないで下さい。"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "paragraph",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "落下や衝撃により破損する恐れがありますので十分ご注意ください。"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "paragraph",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "本製品を釘や他の鋭い物体で突き刺したり、ハンマーで割ったり踏んだりしないでください。"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "paragraph",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "本製品を火気、腐食剤の近くに置かないでください。"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "paragraph",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "水中や常に水につかるような場所に設置しないで下さい。感電や漏電、事故の原因になります。"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "paragraph",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "分解や改造を行わないで下さい。感電や火災、事故の原因になります。"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "paragraph",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "ソーラーパネル充電用ケーブルが確実に接続されている事を確認してください。不完全の場合、感電や漏電、事故の原因になります。"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "paragraph",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "本製品は固定設置しての使用はできません。風、雨、雹などの悪天候の際は、製品の損傷やその他の危険を避けるため、ポータブルソーラーパネルをしまってください。"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "paragraph",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "製品の損傷により感電の危険があります。"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        }
+      ]
+    },
+    {
+      "id": "contact",
+      "nodes": [
+        {
+          "kind": "heading",
+          "level": 1,
+          "children": [
+            {
+              "kind": "text",
+              "text": "5.お問い合わせ"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "hb-text-panel"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "paragraph",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "弊社製品に関するご質問やご意見などがございましたら、jackery.jp@jackery.comまで遠慮なくお問い合わせください。"
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "heading",
+          "level": 1,
+          "children": [
+            {
+              "kind": "text",
+              "text": "6.サービス"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "hb-text-panel"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "paragraph",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "正規3年間保証"
+                }
+              ]
+            },
+            {
+              "kind": "paragraph",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "テクニカルサポート"
+                }
+              ]
+            },
+            {
+              "kind": "paragraph",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "jackery.jp@jackery.com"
+                }
+              ]
+            },
+            {
+              "kind": "paragraph",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "www.jackery.jp"
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "heading",
+          "level": 1,
+          "children": [
+            {
+              "kind": "text",
+              "text": "株式会社Jackery Japan"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "© 株式会社Jackery Japanは全ての権利を留保します。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "hb-text-panel"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "paragraph",
+              "children": [
+                {
+                  "kind": "strong",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "Manufacturer/Factory: Shenzhen Hello Tech Energy Co.,Ltd."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "paragraph",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "Jianda Science  and technology industrial park,the east side of Huafan Road, Tongsheng Community, Dalang Street,Longhua District,Shenzhen,Guangdong,China."
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+            "variant": "semantic-fallback",
+            "source_ref": "source/transcription.json#contact-qr",
+            "language": "ja",
+            "slots": [
+              {
+                "role": "reference_id",
+                "content_kind": "inline_text",
+                "content": "contact-qr"
+              },
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "content": "製造元情報QRコード"
+              },
+              {
+                "role": "caption_mode",
+                "content_kind": "inline_text",
+                "content": "embedded"
+              },
+              {
+                "role": "caption_layout",
+                "content_kind": "inline_text",
+                "content": "equal"
+              }
+            ],
+            "assets": [
+              {
+                "role": "source_art",
+                "asset_ref": "assets/contact-qr.png",
+                "locale_policy": "exact"
+              }
+            ],
+            "token_roles": [
+              "component.special.reference-figure"
+            ],
+            "metadata": {
+              "artwork_origin": "source-bound-candidate-crop",
+              "candidate_only": true,
+              "image_key": "contact-qr",
+              "web_replace_key": "",
+              "source_fragment_sha256": "3801597694f4d62b106a3138620312bcaf6bdded227f73d5c8197b5780212ba7"
+            },
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "image",
+              "source": "assets/contact-qr.png",
+              "alt": "製造元情報QRコード"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

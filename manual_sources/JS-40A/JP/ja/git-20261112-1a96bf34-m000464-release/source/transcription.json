@@ -1,0 +1,809 @@
+{
+  "source_sha256": "1a96bf348255cc47caf18b3df296ced0ccbc28269b1863c442e9e98d8d631b4c",
+  "method": "Manual transcription of fully outlined Japanese source at 3.5x/5x renders; independent jpn OCR cross-check; print tracking and line wrapping normalized without translating or correcting copy",
+  "material": "38-0001-000464",
+  "pages": [
+    {
+      "physical_page": 1,
+      "included": false,
+      "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+      "lines": []
+    },
+    {
+      "physical_page": 2,
+      "included": false,
+      "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+      "lines": []
+    },
+    {
+      "physical_page": 3,
+      "included": true,
+      "disposition": "selected Japanese / common figure and legal material",
+      "lines": [
+        {
+          "id": "guide.h",
+          "physical_page": 3,
+          "text": "ソーラーパネル取扱説明書",
+          "disposition": "live"
+        },
+        {
+          "id": "guide.s1",
+          "physical_page": 3,
+          "text": "マグネットバックルを外す",
+          "disposition": "live"
+        },
+        {
+          "id": "guide.art1",
+          "physical_page": 3,
+          "text": "JS-40A Mini 展開手順1の図",
+          "disposition": "in-art",
+          "asset": "unfold-1.png"
+        }
+      ]
+    },
+    {
+      "physical_page": 4,
+      "included": true,
+      "disposition": "selected Japanese / common figure and legal material",
+      "lines": [
+        {
+          "id": "guide.s2",
+          "physical_page": 4,
+          "text": "両側に広げる",
+          "disposition": "live"
+        },
+        {
+          "id": "guide.art2",
+          "physical_page": 4,
+          "text": "JS-40A Mini 展開手順2の図",
+          "disposition": "in-art",
+          "asset": "unfold-2.png"
+        },
+        {
+          "id": "guide.s3",
+          "physical_page": 4,
+          "text": "真ん中の隠しボタンを外す",
+          "disposition": "live"
+        },
+        {
+          "id": "guide.art3",
+          "physical_page": 4,
+          "text": "JS-40A Mini 展開手順3の図",
+          "disposition": "in-art",
+          "asset": "unfold-3.png"
+        }
+      ]
+    },
+    {
+      "physical_page": 5,
+      "included": true,
+      "disposition": "selected Japanese / common figure and legal material",
+      "lines": [
+        {
+          "id": "guide.s4",
+          "physical_page": 5,
+          "text": "広げる",
+          "disposition": "live"
+        },
+        {
+          "id": "guide.art4",
+          "physical_page": 5,
+          "text": "JS-40A Mini 展開手順4の図",
+          "disposition": "in-art",
+          "asset": "unfold-4.png"
+        },
+        {
+          "id": "guide.s5",
+          "physical_page": 5,
+          "text": "太陽に向かい、ポータブル電源に接続する",
+          "disposition": "live"
+        },
+        {
+          "id": "guide.art5",
+          "physical_page": 5,
+          "text": "JS-40A Mini 展開手順5の図",
+          "disposition": "in-art",
+          "asset": "unfold-5.png"
+        }
+      ]
+    },
+    {
+      "physical_page": 6,
+      "included": false,
+      "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+      "lines": []
+    },
+    {
+      "physical_page": 7,
+      "included": false,
+      "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+      "lines": []
+    },
+    {
+      "physical_page": 8,
+      "included": false,
+      "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+      "lines": []
+    },
+    {
+      "physical_page": 9,
+      "included": false,
+      "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+      "lines": []
+    },
+    {
+      "physical_page": 10,
+      "included": false,
+      "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+      "lines": []
+    },
+    {
+      "physical_page": 11,
+      "included": false,
+      "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+      "lines": []
+    },
+    {
+      "physical_page": 12,
+      "included": false,
+      "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+      "lines": []
+    },
+    {
+      "physical_page": 13,
+      "included": false,
+      "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+      "lines": []
+    },
+    {
+      "physical_page": 14,
+      "included": false,
+      "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+      "lines": []
+    },
+    {
+      "physical_page": 15,
+      "included": false,
+      "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+      "lines": []
+    },
+    {
+      "physical_page": 16,
+      "included": false,
+      "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+      "lines": []
+    },
+    {
+      "physical_page": 17,
+      "included": false,
+      "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+      "lines": []
+    },
+    {
+      "physical_page": 18,
+      "included": false,
+      "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+      "lines": []
+    },
+    {
+      "physical_page": 19,
+      "included": false,
+      "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+      "lines": []
+    },
+    {
+      "physical_page": 20,
+      "included": false,
+      "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+      "lines": []
+    },
+    {
+      "physical_page": 21,
+      "included": false,
+      "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+      "lines": []
+    },
+    {
+      "physical_page": 22,
+      "included": false,
+      "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+      "lines": []
+    },
+    {
+      "physical_page": 23,
+      "included": false,
+      "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+      "lines": []
+    },
+    {
+      "physical_page": 24,
+      "included": false,
+      "disposition": "blank, cover identity, printed contents, or other-language body excluded from JP Web",
+      "lines": []
+    },
+    {
+      "physical_page": 25,
+      "included": true,
+      "disposition": "selected Japanese / common figure and legal material",
+      "lines": [
+        {
+          "id": "spec.h",
+          "physical_page": 25,
+          "text": "1.主な仕様",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.product.h",
+          "physical_page": 25,
+          "text": "SolarSaga 40 Mini",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r1.l",
+          "physical_page": 25,
+          "text": "製品名称:",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r1.v",
+          "physical_page": 25,
+          "text": "SolarSaga 40 Mini",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r2.l",
+          "physical_page": 25,
+          "text": "型番:",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r2.v",
+          "physical_page": 25,
+          "text": "JS-40A",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r3.l",
+          "physical_page": 25,
+          "text": "最大出力 (Pmax):",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r3.v",
+          "physical_page": 25,
+          "text": "40W±5%",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r4.l",
+          "physical_page": 25,
+          "text": "開放電圧 (Voc):",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r4.v",
+          "physical_page": 25,
+          "text": "25V±5%",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r5.l",
+          "physical_page": 25,
+          "text": "短絡電流 (Isc):",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r5.v",
+          "physical_page": 25,
+          "text": "2.07A±5%",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r6.l",
+          "physical_page": 25,
+          "text": "動作電圧 (Vmp):",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r6.v",
+          "physical_page": 25,
+          "text": "20.9V±5%",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r7.l",
+          "physical_page": 25,
+          "text": "動作電流 (Imp) :",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r7.v",
+          "physical_page": 25,
+          "text": "1.91A±5%",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r8.l",
+          "physical_page": 25,
+          "text": "正味重量:",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r8.v",
+          "physical_page": 25,
+          "text": "約1.2kg",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r9.l",
+          "physical_page": 25,
+          "text": "収納サイズ:",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r9.v",
+          "physical_page": 25,
+          "text": "約252*300*30mm",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r10.l",
+          "physical_page": 25,
+          "text": "展開サイズ:",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r10.v",
+          "physical_page": 25,
+          "text": "約1020*300*18.5mm",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r11.l",
+          "physical_page": 25,
+          "text": "動作温度範囲:",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r11.v",
+          "physical_page": 25,
+          "text": "-20°C~65°C（-4°F~149°F）",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r12.l",
+          "physical_page": 25,
+          "text": "最大システム電圧:",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r12.v",
+          "physical_page": 25,
+          "text": "30V",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r13.l",
+          "physical_page": 25,
+          "text": "最大逆電流:",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r13.v",
+          "physical_page": 25,
+          "text": "6A",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r14.l",
+          "physical_page": 25,
+          "text": "感電保護クラス:",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r14.v",
+          "physical_page": 25,
+          "text": "クラス III",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r15.l",
+          "physical_page": 25,
+          "text": "防水規格:",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r15.v",
+          "physical_page": 25,
+          "text": "IP68",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r16.l",
+          "physical_page": 25,
+          "text": "電圧温度係数:",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r16.v",
+          "physical_page": 25,
+          "text": "-0.3%/°C",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r17.l",
+          "physical_page": 25,
+          "text": "出力温度係数:",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r17.v",
+          "physical_page": 25,
+          "text": "-0.39%/°C",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r18.l",
+          "physical_page": 25,
+          "text": "最大直列接続数:",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r18.v",
+          "physical_page": 25,
+          "text": "1",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r19.l",
+          "physical_page": 25,
+          "text": "最大並列接続数:",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r19.v",
+          "physical_page": 25,
+          "text": "3",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r20.l",
+          "physical_page": 25,
+          "text": "消費財カテゴリー:",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.r20.v",
+          "physical_page": 25,
+          "text": "IEC TS 63163、消費財タイプ I",
+          "disposition": "live"
+        },
+        {
+          "id": "spec.stc",
+          "physical_page": 25,
+          "text": "STC (1000W/m², 25°C, AM 1.5).",
+          "disposition": "live"
+        },
+        {
+          "id": "adapter.h",
+          "physical_page": 25,
+          "text": "多機能アダプター",
+          "disposition": "live"
+        },
+        {
+          "id": "adapter.r1.l",
+          "physical_page": 25,
+          "text": "USB-A出力:",
+          "disposition": "live"
+        },
+        {
+          "id": "adapter.r1.v",
+          "physical_page": 25,
+          "text": "5V⎓2.4A",
+          "disposition": "live"
+        },
+        {
+          "id": "adapter.r2.l",
+          "physical_page": 25,
+          "text": "USB-C出力:",
+          "disposition": "live"
+        },
+        {
+          "id": "adapter.r2.v",
+          "physical_page": 25,
+          "text": "5V⎓3A",
+          "disposition": "live"
+        }
+      ]
+    },
+    {
+      "physical_page": 26,
+      "included": true,
+      "disposition": "selected Japanese / common figure and legal material",
+      "lines": [
+        {
+          "id": "power.h",
+          "physical_page": 26,
+          "text": "2.デバイスに電力を供給する",
+          "disposition": "live"
+        },
+        {
+          "id": "power.panel",
+          "physical_page": 26,
+          "text": "SolarSaga 40 Mini",
+          "disposition": "live"
+        },
+        {
+          "id": "power.adapter",
+          "physical_page": 26,
+          "text": "多機能アダプター",
+          "disposition": "live"
+        },
+        {
+          "id": "power.dc",
+          "physical_page": 26,
+          "text": "DC8020",
+          "disposition": "live"
+        },
+        {
+          "id": "power.jack",
+          "physical_page": 26,
+          "text": "トランスジャック（DC8020→USB-C）",
+          "disposition": "live"
+        },
+        {
+          "id": "power.phone",
+          "physical_page": 26,
+          "text": "スマートフォン",
+          "disposition": "live"
+        },
+        {
+          "id": "power.bank",
+          "physical_page": 26,
+          "text": "モバイルバッテリー",
+          "disposition": "live"
+        },
+        {
+          "id": "power.tablet",
+          "physical_page": 26,
+          "text": "タブレット",
+          "disposition": "live"
+        },
+        {
+          "id": "power.ports",
+          "physical_page": 26,
+          "text": "USB-C / LED / USB-A",
+          "disposition": "in-art",
+          "asset": "power-device.png",
+          "reason": "Fixed markings on the magnified product port face, retained intact"
+        },
+        {
+          "id": "power.note",
+          "physical_page": 26,
+          "text": "*本アダプターは、Jackeryポータブル電源の充電のみ使用することができます。スマホなど、他のデバイスの充電にはご使用いただけませんので、ご注意ください。",
+          "disposition": "live"
+        },
+        {
+          "id": "box.h",
+          "physical_page": 26,
+          "text": "3.同梱品",
+          "disposition": "live"
+        },
+        {
+          "id": "box.c1",
+          "physical_page": 26,
+          "text": "SolarSaga 40 Mini",
+          "disposition": "live",
+          "asset": "inbox-panel.png"
+        },
+        {
+          "id": "box.c2",
+          "physical_page": 26,
+          "text": "収納ポーチ",
+          "disposition": "live",
+          "asset": "inbox-pouch.png"
+        },
+        {
+          "id": "box.c3",
+          "physical_page": 26,
+          "text": "トランスジャック（DC8020→USB-C）",
+          "disposition": "live",
+          "asset": "inbox-adapter.png"
+        },
+        {
+          "id": "box.c4",
+          "physical_page": 26,
+          "text": "多機能ソーラー充電ケーブル",
+          "disposition": "live",
+          "asset": "inbox-cable.png"
+        },
+        {
+          "id": "box.c5",
+          "physical_page": 26,
+          "text": "取扱説明書",
+          "disposition": "live",
+          "asset": "inbox-manual.png"
+        },
+        {
+          "id": "box.c6",
+          "physical_page": 26,
+          "text": "カラビナ X2",
+          "disposition": "live",
+          "asset": "inbox-carabiner.png"
+        },
+        {
+          "id": "box.note",
+          "physical_page": 26,
+          "text": "*この多機能充電ケーブルは、SolarSaga 40 Miniにのみ対応しており、他のモデルのソーラーパネルには使用しないでください。",
+          "disposition": "live"
+        }
+      ]
+    },
+    {
+      "physical_page": 27,
+      "included": true,
+      "disposition": "selected Japanese / common figure and legal material",
+      "lines": [
+        {
+          "id": "safety.h",
+          "physical_page": 27,
+          "text": "4.使用上のご注意",
+          "disposition": "live"
+        },
+        {
+          "id": "safety.lead",
+          "physical_page": 27,
+          "text": "※ご使用の前に取扱説明書をよくお読みになり正しくお使いください。",
+          "disposition": "live",
+          "strong": true
+        },
+        {
+          "id": "safety.i1",
+          "physical_page": 27,
+          "text": "ソーラーパネルが太陽光発電をしている間は、ポータブル電源を直射日光下に長時間放置することは避け、常に乾いた日陰に置いてください。",
+          "disposition": "live"
+        },
+        {
+          "id": "safety.i2",
+          "physical_page": 27,
+          "text": "破損する恐れがあるため、本製品を曲げないでください。",
+          "disposition": "live"
+        },
+        {
+          "id": "safety.i3",
+          "physical_page": 27,
+          "text": "ケーブルが折れ曲がった状態で使用しないで下さい。",
+          "disposition": "live"
+        },
+        {
+          "id": "safety.i4",
+          "physical_page": 27,
+          "text": "落下や衝撃により破損する恐れがありますので十分ご注意ください。",
+          "disposition": "live"
+        },
+        {
+          "id": "safety.i5",
+          "physical_page": 27,
+          "text": "本製品を釘や他の鋭い物体で突き刺したり、ハンマーで割ったり踏んだりしないでください。",
+          "disposition": "live"
+        },
+        {
+          "id": "safety.i6",
+          "physical_page": 27,
+          "text": "本製品を火気、腐食剤の近くに置かないでください。",
+          "disposition": "live"
+        },
+        {
+          "id": "safety.i7",
+          "physical_page": 27,
+          "text": "水中や常に水につかるような場所に設置しないで下さい。感電や漏電、事故の原因になります。",
+          "disposition": "live"
+        },
+        {
+          "id": "safety.i8",
+          "physical_page": 27,
+          "text": "分解や改造を行わないで下さい。感電や火災、事故の原因になります。",
+          "disposition": "live"
+        },
+        {
+          "id": "safety.i9",
+          "physical_page": 27,
+          "text": "ソーラーパネル充電用ケーブルが確実に接続されている事を確認してください。不完全の場合、感電や漏電、事故の原因になります。",
+          "disposition": "live"
+        },
+        {
+          "id": "safety.i10",
+          "physical_page": 27,
+          "text": "本製品は固定設置しての使用はできません。風、雨、雹などの悪天候の際は、製品の損傷やその他の危険を避けるため、ポータブルソーラーパネルをしまってください。",
+          "disposition": "live"
+        },
+        {
+          "id": "safety.i11",
+          "physical_page": 27,
+          "text": "製品の損傷により感電の危険があります。",
+          "disposition": "live"
+        },
+        {
+          "id": "contact.h",
+          "physical_page": 27,
+          "text": "5.お問い合わせ",
+          "disposition": "live"
+        },
+        {
+          "id": "contact.body",
+          "physical_page": 27,
+          "text": "弊社製品に関するご質問やご意見などがございましたら、jackery.jp@jackery.comまで遠慮なくお問い合わせください。",
+          "disposition": "live"
+        },
+        {
+          "id": "service.h",
+          "physical_page": 27,
+          "text": "6.サービス",
+          "disposition": "live"
+        },
+        {
+          "id": "service.warranty",
+          "physical_page": 27,
+          "text": "正規3年間保証",
+          "disposition": "live"
+        },
+        {
+          "id": "service.support",
+          "physical_page": 27,
+          "text": "テクニカルサポート",
+          "disposition": "live"
+        },
+        {
+          "id": "service.mail",
+          "physical_page": 27,
+          "text": "jackery.jp@jackery.com",
+          "disposition": "live"
+        },
+        {
+          "id": "service.web",
+          "physical_page": 27,
+          "text": "www.jackery.jp",
+          "disposition": "live"
+        },
+        {
+          "id": "company.h",
+          "physical_page": 27,
+          "text": "株式会社Jackery Japan",
+          "disposition": "live"
+        },
+        {
+          "id": "company.copy",
+          "physical_page": 27,
+          "text": "© 株式会社Jackery Japanは全ての権利を留保します。",
+          "disposition": "live"
+        }
+      ]
+    },
+    {
+      "physical_page": 28,
+      "included": true,
+      "disposition": "selected Japanese / common figure and legal material",
+      "lines": [
+        {
+          "id": "manufacturer.h",
+          "physical_page": 28,
+          "text": "Manufacturer/Factory: Shenzhen Hello Tech Energy Co.,Ltd.",
+          "disposition": "live"
+        },
+        {
+          "id": "manufacturer.address",
+          "physical_page": 28,
+          "text": "Jianda Science  and technology industrial park,the east side of Huafan Road, Tongsheng Community, Dalang Street,Longhua District,Shenzhen,Guangdong,China.",
+          "disposition": "live"
+        },
+        {
+          "id": "qr",
+          "physical_page": 28,
+          "text": "製造元情報QRコード",
+          "disposition": "in-art",
+          "asset": "contact-qr.png"
+        }
+      ]
+    }
+  ]
+}

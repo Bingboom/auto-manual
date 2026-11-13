@@ -1,4 +1,4 @@
-# 七本日语存量说明书 Web 候选（2026-11-12）
+# 七本日语存量说明书 Web 审核与发布（2026-11-12）
 
 Status: active
 
@@ -8,7 +8,7 @@ Status: active
 
 沿用[项目定位§5.1](../architecture/Hello_Docs_Positioning.md#51-网页说明书的三条路线)的存量PDF/AI接入路线和[Web发布契约](../dev/web_publish_pipeline/input-paths.md)。来源是发布文档管理「说明书转网页」表JP记录中当前「竖版说明书」附件；原件逐一下载并锁定字节数/SHA-256。原稿全部转曲，正文按页转录、日语OCR交叉检查与视觉核对，原稿是事实依据。
 
-当前状态为`review-candidate-no-release-authorization`、`publication_eligible=false`。工程PR供审阅；接受原稿与像素后再封存发布凭据、提交Hello-Docs发布PR及核验RTD。
+原候选保持`review-candidate-no-release-authorization`、`publication_eligible=false`。操作者在本会话明确要求「审核一下 然后合入 上线发布文档」，授权登记为MA-432；经独立复现与来源复核后，另建同名加`-release`的批准快照，最终合入后在真实Git提交上封存凭据、提交Hello-Docs发布PR并核验RTD。该授权委托agent审核后发布，不声称操作者另做过逐像素验收。
 
 | 物料 | 印刷身份/标题 | 原稿页数 | 冻结源候选 |
 | --- | --- | --- | --- |
@@ -43,7 +43,7 @@ Status: active
 
 各包`evidence/`保存逐页映射、文字/参数复核、资产复现和篡改拒绝、冷回放、严格Sphinx及1280/390浏览器证据。审阅页面把原PDF、候选和共享参考版并列。参考JE-300B/JE-240A/JE-300C取自Hello-Docs提交`4fff0818de768039dbe972cb077d801c46e73c1c`冻结发布源，127个文件按发布清单哈希核对；太阳能对照JS-100I JP共享版。参考用于组件与呈现，源稿决定文字和事实。
 
-最终全量单测使用Python3.12.13和`requirements.lock`：6257项，0失败、0错误，92项按条件跳过。七包在同一环境独立重建，IR/MyST/素材逐字节一致，冷回放及素材/CSS篡改拒绝、严格Sphinx全部通过；最终HTML与已核验的1280/390页面字节一致。四处回收图均与公共canonical文件逐字节一致，并验证真实透明通道。Shell子进程的PATH指向同一Python环境，本机HTTP用例在允许loopback的环境执行。
+候选提交`6abe1128`的制作阶段全量单测使用Python3.12.13和`requirements.lock`：6257项，0失败、0错误，92项按条件跳过。七包在同一环境独立重建，IR/MyST/素材逐字节一致，冷回放及素材/CSS篡改拒绝、严格Sphinx全部通过；最终HTML与已核验的1280/390页面字节一致。四处回收图均与公共canonical文件逐字节一致，并验证真实透明通道。Shell子进程的PATH指向同一Python环境，本机HTTP用例在允许loopback的环境执行。
 
 CI首次扫描的12处匹配逐项核对为当前附件的`file_token` / `source_file_token`资源ID；原字段和值保留。扫描配置为这两个精确键增加独立完整行规则，限定20–32位字母数字和单独字段行；认证字段、附加后缀字段、长度边界以及资源ID与凭据同行的紧凑JSON，以实际Gitleaks负对照核验，整棵提交树按CI相同版本扫描。
 
@@ -62,3 +62,20 @@ python build.py check --config configs/config.ja.yaml --model JE-1000F --region 
 最后一项仅是既有日规产线的fixture回归，不验证七本外部正文；正文由各包输入检查、转录核对、独立冷重建、共享样式准入、`sphinx -n -W --keep-going`及浏览器核验覆盖。`tests/test_selected_japanese_material_web.py`单独锁定七个附件身份、JS-40A选择、套装关键差异及回收标志公共图字节绑定，防止同名规格/参考文案串入和重复提图。
 
 首次额外基线在缺少本地phase2快照时失败，已按本次缺失路径恢复生成目录，随后以测试快照和隔离输出通过；未更改产品快照或放宽门禁。分支wrapper因另一窗口占用main而拒绝切换，保留失败后从干净、与origin/main一致的隔离checkout创建功能分支，不触碰外部main。
+
+## 本次独立审核与发布修复
+
+审核起点为PR #1712的`6abe1128c27a186228185390d26f87adc9d3e2c9`。七个适配器在隔离目录独立生成的IR/MyST/素材均与候选逐字节一致，严格Sphinx通过；附件身份、原始SHA-256、页数、套装与独立版尺寸差异及回收图复用通过定向测试。原候选、原PDF、全部来源疑点继续保留。
+
+正式封存检查发现旧款电源四包缺少符号表的原稿来源绑定，批准快照补齐物理页、图形索引、图形/说明/行矩形及说明像素SHA-256，逐行调用既有`require_symbol_asset_admission`，不放宽固定阈值、不新增豁免。
+
+| 目标 | 原候选问题 | 发布修复与来源 |
+| --- | --- | --- |
+| PTB021 / PTB041 / PTB071 | 缺6行来源绑定，部分旧图标未通过正式源图比较 | 禁止拆解改复用现有`native/je1000d-jp-00c43a89-02`（PTB021误差0.009126，低于0.02）；防水/湿手复用既有已确认canonical。原稿重复字继续保留，6行实际图形和说明均绑定原PDF物理第7页。 |
+| BN-RB15 | 缺来源绑定；原稿“実行”行含指示与拔插头两图，候选漏后一图；现有共用图与本机原印图形不在固定误差内 | 补回拔插头图，共3行绑定物理第4页。先盘点并比较既有共用图；无合格图后，将本机三枚原生矢量按来源哈希登记为独立variant并逐字节复用，未改现有图标、canonical分组、说明别名或准入规则。 |
+
+逐文件差异在每个发布包的`source/reviewed-candidate.json`，授权与原稿/候选哈希在`source/approval.json`。JSG两包和JS-40A的Web树仅IR授权元数据改变；PTB另有3枚共享图标替换；JVC另有3枚图标、补图后的MyST及相应IR引用/内容哈希变化。日语文字与技术事实不改写。
+
+自动审批曾拒绝扩展全局canonical说明别名，原因是影响其它项目；该方案未落地。最终采用上述来源限定的既有variant/原生variant方案，并通过审批。共享库增量仅为3条BN-RB15素材及其文件，历史冻结包按既有登记规则保持冻结。
+
+发布快照本地验证：6项定向测试、Ruff、维护性门禁、文档链接检查、239包冻结登记和既有JP fixture回归通过。七份最终发布Web均通过严格Sphinx及1280/390浏览器检查，零图片丢失、脚本/资源错误和横向溢出；Gitleaks8.30.1整树脱敏扫描通过。完整CI在最终head上全部适用项通过后才合入。

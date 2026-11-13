@@ -1,0 +1,32 @@
+{
+  "target": {
+    "model": "JSG-2404A",
+    "region": "JP",
+    "languages": [
+      "ja"
+    ],
+    "technical_version": "git-20261112-e59cc1bc-m000491-release"
+  },
+  "original_source_sha256": "e59cc1bc778eb5cea4ec0b77f3d3598d2703dc94a809108c8b4336709519bdb7",
+  "source_sha256": "e59cc1bc778eb5cea4ec0b77f3d3598d2703dc94a809108c8b4336709519bdb7",
+  "operator_quote": "审核一下 然后合入 上线发布文档",
+  "authority_date": "2026-11-12",
+  "merge_authorization": "MA-432",
+  "authority_context": "Operator explicitly requested review, merge and publication of auto-manual PR #1712 in this chat. Source/text/layout checks were delegated to the agent; no claim of a separate operator pixel inspection is made.",
+  "reviewed_candidate": {
+    "path": "manual_sources/JSG-2404A/JP/ja/git-20261112-e59cc1bc-m000491",
+    "git_ref": "6abe1128c27a186228185390d26f87adc9d3e2c9",
+    "manifest_sha256": "7f8aad70fb8ab830148451477af7342ec3d5593a88c7174a2d51967019e30c8d",
+    "manual_ir_sha256": "93af9f40f8c1730b84ce228690e4c9364971183abb7b5ea871383726f30d69f9"
+  },
+  "review": {
+    "model": "JSG-2404A",
+    "package": "manual_sources/JSG-2404A/JP/ja/git-20261112-e59cc1bc-m000491",
+    "identical_files": 42,
+    "cold_replay": "pass",
+    "strict_sphinx": "pass",
+    "web_sha256": "93af9f40f8c1730b84ce228690e4c9364971183abb7b5ea871383726f30d69f9"
+  },
+  "scope": "Review and publish this derivative of the exact candidate. Japanese wording, technical facts, printed variant differences, source concerns and recycle-glyph standardization are retained. Only the recorded source-bound symbol repairs are applied; no live-table write.",
+  "release_review_changes": []
+}

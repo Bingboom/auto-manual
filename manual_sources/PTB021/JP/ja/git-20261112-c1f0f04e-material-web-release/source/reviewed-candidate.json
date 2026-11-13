@@ -1,0 +1,130 @@
+{
+  "candidate": {
+    "path": "manual_sources/PTB021/JP/ja/git-20261112-c1f0f04e-material-web",
+    "git_ref": "6abe1128c27a186228185390d26f87adc9d3e2c9",
+    "manifest_sha256": "679b0efd0a1dafb55c3f5a523f5cc489f1d7151cbb62d88640c58bf5b0486546",
+    "manual_ir_sha256": "1578db5b5690c421c40630c4e7bf444a9a38336e8bdacfba7527d36b198439eb"
+  },
+  "source_web_files": [
+    {
+      "path": "_static/web_manual.css",
+      "size": 126890,
+      "sha256": "5afdc1947b423c52850852eccc5bc0f398c820c45909690ff6e5cc7bb266dfdf"
+    },
+    {
+      "path": "assets/charging.png",
+      "size": 83038,
+      "sha256": "e11b3b639952a0351b4ab703c958e67ff45ade76105a0fb4cdee6db02d03b06d"
+    },
+    {
+      "path": "assets/inbox-adapter.png",
+      "size": 3752,
+      "sha256": "8061195f92647dd85c6a4da3cd977e3b6d3ff2cac688299b675868e7c3925965"
+    },
+    {
+      "path": "assets/inbox-car.png",
+      "size": 4245,
+      "sha256": "5f2330abe7a0b70bbef902a150382725eeb491e4844b9ac89a9a0ea33f369407"
+    },
+    {
+      "path": "assets/inbox-main.png",
+      "size": 9602,
+      "sha256": "bc8080e0eae31b1b9097e0b5c81609e84a0111bdaa594a96d45f66674f6e020a"
+    },
+    {
+      "path": "assets/inbox-manual.png",
+      "size": 5446,
+      "sha256": "f9a632c690546d235a5274b9b1d1fc51194161d534c4718e3dc9d41587a1005c"
+    },
+    {
+      "path": "assets/inbox-pouch.png",
+      "size": 2014,
+      "sha256": "72403f52d8bc37ed21df1c51e0e94c6797aa49e7539a829f897342e4fb2b21b9"
+    },
+    {
+      "path": "assets/lcd-panel.png",
+      "size": 19564,
+      "sha256": "f683a8fa3ad533f013bd792c0cfdd43f25d32849f9930b961234f05eec84f227"
+    },
+    {
+      "path": "assets/overview.png",
+      "size": 47511,
+      "sha256": "0c48b7f594c12ca4daf5f5c054eb594ed3ee4fc96c478f7a52e94afffcab01d7"
+    },
+    {
+      "path": "assets/recycle.svg",
+      "size": 7306,
+      "sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e"
+    },
+    {
+      "path": "assets/symbol-dismantle.svg",
+      "size": 4358,
+      "sha256": "1e600dc9623481ec1950e4cee277d32620bdf1e82a99984ddfce91353ffb173b"
+    },
+    {
+      "path": "assets/symbol-keep-dry.svg",
+      "size": 5105,
+      "sha256": "fbd39d4686c3a26a73fa4c2dfec299d8055d9b9446edd973a397ce6d4e21a836"
+    },
+    {
+      "path": "assets/symbol-mandatory.svg",
+      "size": 1292,
+      "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2"
+    },
+    {
+      "path": "assets/symbol-no-wet-hands.svg",
+      "size": 3972,
+      "sha256": "d14a9720367b40d5a498a03d92ad0417bbc70d64fd0cea99c8891e0eb9725450"
+    },
+    {
+      "path": "assets/symbol-prohibited.svg",
+      "size": 1452,
+      "sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d"
+    },
+    {
+      "path": "assets/symbol-unplug.svg",
+      "size": 2569,
+      "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf"
+    },
+    {
+      "path": "conf.py",
+      "size": 828,
+      "sha256": "69a053d277bf486f86d44acefaa055139ebddcc28c16fbd73cd3727faa5d5166"
+    },
+    {
+      "path": "index.md",
+      "size": 88,
+      "sha256": "70bc82f3f8536f1d435761f444e950f2d6cf2548791ff3be2103cbfe181983dd"
+    },
+    {
+      "path": "manual.ir.json",
+      "size": 240275,
+      "sha256": "1578db5b5690c421c40630c4e7bf444a9a38336e8bdacfba7527d36b198439eb"
+    },
+    {
+      "path": "manual_ptb021_jp_ja.md",
+      "size": 32714,
+      "sha256": "ef0e0917603080353a29bba69cbacb3f566dde943f699e3d6d70232bbac57d2d"
+    },
+    {
+      "path": "shared-style-admission.json",
+      "size": 175,
+      "sha256": "b7ff47b8884c3aacb6a574d54b5d28a6356b51b6ac0bd91c80d2cdd740075efe"
+    }
+  ],
+  "allowed_release_differences": [
+    "assets/symbol-dismantle.svg",
+    "assets/symbol-keep-dry.svg",
+    "assets/symbol-no-wet-hands.svg",
+    "manual.ir.json"
+  ],
+  "body_or_artwork_edits": [
+    "Existing source-matching shared dismantle glyph (fixed 2% tolerance, no waiver); existing confirmed canonical keep-dry and no-wet-hands glyphs."
+  ],
+  "actual_web_changes": [
+    "assets/symbol-dismantle.svg",
+    "assets/symbol-keep-dry.svg",
+    "assets/symbol-no-wet-hands.svg",
+    "manual.ir.json"
+  ]
+}

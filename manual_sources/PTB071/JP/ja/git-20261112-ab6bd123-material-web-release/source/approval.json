@@ -1,0 +1,34 @@
+{
+  "target": {
+    "model": "PTB071",
+    "region": "JP",
+    "languages": [
+      "ja"
+    ],
+    "technical_version": "git-20261112-ab6bd123-material-web-release"
+  },
+  "original_source_sha256": "ab6bd12341101e45dbb6b57f03132bc8b55a6ecb57533c282ec9779c2c5b9ba3",
+  "source_sha256": "ab6bd12341101e45dbb6b57f03132bc8b55a6ecb57533c282ec9779c2c5b9ba3",
+  "operator_quote": "审核一下 然后合入 上线发布文档",
+  "authority_date": "2026-11-12",
+  "merge_authorization": "MA-432",
+  "authority_context": "Operator explicitly requested review, merge and publication of auto-manual PR #1712 in this chat. Source/text/layout checks were delegated to the agent; no claim of a separate operator pixel inspection is made.",
+  "reviewed_candidate": {
+    "path": "manual_sources/PTB071/JP/ja/git-20261112-ab6bd123-material-web",
+    "git_ref": "6abe1128c27a186228185390d26f87adc9d3e2c9",
+    "manifest_sha256": "fdb66ca9a2927bdfcf9718932df4625cc0d3a07cd3f9aa0199ae09c2657ecd27",
+    "manual_ir_sha256": "f346abaa06d877af1d24a3d7adea95d417add00f36073baf8c8c4a9671912543"
+  },
+  "review": {
+    "model": "PTB071",
+    "package": "manual_sources/PTB071/JP/ja/git-20261112-ab6bd123-material-web",
+    "identical_files": 21,
+    "cold_replay": "pass",
+    "strict_sphinx": "pass",
+    "web_sha256": "f346abaa06d877af1d24a3d7adea95d417add00f36073baf8c8c4a9671912543"
+  },
+  "scope": "Review and publish this derivative of the exact candidate. Japanese wording, technical facts, printed variant differences, source concerns and recycle-glyph standardization are retained. Only the recorded source-bound symbol repairs are applied; no live-table write.",
+  "release_review_changes": [
+    "Existing source-matching shared dismantle glyph (fixed 2% tolerance, no waiver); existing confirmed canonical keep-dry and no-wet-hands glyphs."
+  ]
+}

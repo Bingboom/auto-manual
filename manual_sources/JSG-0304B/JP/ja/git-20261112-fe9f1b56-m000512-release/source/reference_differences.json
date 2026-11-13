@@ -1,0 +1,47 @@
+[
+  {
+    "area": "inbox",
+    "source_pages": [
+      17
+    ],
+    "decision": "replace station-only4items with this bundle’s8items; station-specific manual cover retained"
+  },
+  {
+    "area": "solar",
+    "source_pages": [
+      4,
+      5,
+      6,
+      7,
+      11,
+      16
+    ],
+    "decision": "add source40Mini unfolded instruction/art/spec/precautions; reject station-only solar art carrying別売り or60/100W panel"
+  },
+  {
+    "area": "source-cover/back",
+    "source_pages": [
+      1,
+      20
+    ],
+    "decision": "retain substantive cover and App back-cover content, omit only duplicate title/logo/cover picture/folios"
+  },
+  {
+    "area": "App owner sharing",
+    "source_pages": [
+      18
+    ],
+    "rejected_reference": "詳細は、「機器共有」をご参照ください。",
+    "selected_source": "source ends after他のユーザーと共有します。",
+    "decision": "remove unsupported reference addition from semantic body/items/carrier"
+  },
+  {
+    "area": "unfold step5 artwork",
+    "source_pages": [
+      5
+    ],
+    "rejected_reference": "independent000464/000348 picture showing the small handleless100Plus station",
+    "selected_source": "current bundle p5 complete illustration with handled station; same source art in512and491",
+    "decision": "extract actual512 bundle panel throughasset_intake, reuse identical complete bytes for491; first4steps remain existing-art reuse"
+  }
+]

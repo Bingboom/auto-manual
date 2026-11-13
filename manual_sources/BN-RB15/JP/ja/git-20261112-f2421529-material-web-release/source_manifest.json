@@ -1,0 +1,634 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "target": {
+    "model": "BN-RB15",
+    "region": "JP",
+    "languages": [
+      "ja"
+    ],
+    "technical_version": "git-20261112-f2421529-material-web-release"
+  },
+  "web_title": "JVC ポータブル電源 BN-RB15",
+  "original_source": {
+    "filename": "source/original.pdf",
+    "path": "source/original.pdf",
+    "sha256": "f24215296cf4a3544d48dbbce5df3c6cf489ec829ad4b2a192926d94afaff670",
+    "size": 2532309,
+    "physical_page_count": 16,
+    "display_filename": "38-0001-000027 说明书 HTE0821500B-JP-JVC(BN-RB15-C) 说明书 RoHS REACH_竖版.pdf"
+  },
+  "material": "38-0001-000027",
+  "source_authority": "Operator selected this material in the Feishu publishing table for Japanese Web conversion on 2026-11-12; the current portrait attachment was downloaded and hash-locked. Original Japanese content governs.",
+  "printed_manual_version": null,
+  "language_scope": "single",
+  "publication_status": "operator-authorized-after-agent-review-git-only-release",
+  "publication_eligible": true,
+  "pending_source_review": [],
+  "web_roots": {
+    "ja": "web/ja"
+  },
+  "component_map": {
+    "native_copy": "headings / paragraphs / lists in semantic flow",
+    "specifications_and_original_label_value_tables": "HB-TABLE-SPEC",
+    "inbox": "HB-SPECIAL-INBOX",
+    "signals": "HB-TABLE-SYMBOL-SIGNAL",
+    "symbol_meanings": "HB-TABLE-SYMBOL-ICON",
+    "dense_overview_and_complete_source_illustrations": "HB-SPECIAL-REFERENCE-FIGURE",
+    "notices": "HB-CALLOUT-STRIP",
+    "lcd_glossary": "HB-TABLE-REFERENCE / lcd-legend",
+    "troubleshooting": "HB-TABLE-TROUBLESHOOTING",
+    "warranty_sections": "HB-WARRANTY-SECTION",
+    "other_native_tables": "explicitly justified shared_component_exceptions",
+    "standalone_functional_marks": "Native inline image using byte-identical shared canonical li-ion/recycle-li-ion; accurate alt describes generic Li-ion. Printed 20 is preserved in source-review provenance, not added to the shared graphic."
+  },
+  "normalizations": [
+    "Join printed line wraps within the same Japanese paragraph; remove OCR-inserted inter-character spaces, while keeping Latin names and source numerical values.",
+    "Use × for the printed multiplication cross and ⎓ for the printed DC line/dash symbol; use ℃ and ～ for the source temperature/range glyphs. Japanese bracket width and whitespace are normalized for selectable text, without changing words or values.",
+    "Printed signal/icon matrices receive the structural headers 表示/意味 and 図記号/説明 for the shared table component; the source pictogram meanings remain unchanged.",
+    "Runtime example-device silhouettes are decorative: retain the exact native device names, powers, output-group titles and estimates in shared label/value tables.",
+    "Preserve substantive cover welcome, domestic-use restriction, compliance and support text; omit wordmarks, repeated cover 取扱説明書 label, decorative cover unit and printed page numerals.",
+    "Keep printed model BN-RB15. Attachment variant BN-RB15-C is provenance only.",
+    "Source troubleshooting cause and remedy columns become labeled 原因／対処方法 paragraphs in the existing two-column shared troubleshooting component.",
+    "The source notation bubble is represented by the structural text 補足説明; printed page cross-references are retained as original source references.",
+    "The shared specification component requires a group heading: use printed model BN-RB15 beneath the original 主な仕様 chapter heading, avoiding a second 主な仕様 heading.",
+    "Standalone recycling artwork follows the explicit operator reuse instruction: use shared canonical li-ion/recycle-li-ion unchanged, preserve the original Li-ion 20 in source-review provenance, and keep the technical body unchanged."
+  ],
+  "inputs": [
+    {
+      "path": "README.md",
+      "size": 1413,
+      "sha256": "fb72e8f3442d7af70d942b034fa42142b7215544c026f9560867b019d5410a06"
+    },
+    {
+      "path": "assets/charging-ac.png",
+      "size": 49919,
+      "sha256": "5ce739984f60f81ca4c01a861853f5cc14d7227c90bb5f253d910691d216bcae"
+    },
+    {
+      "path": "assets/charging-car.png",
+      "size": 74694,
+      "sha256": "b3dcca66dd132b40698038301e922c10e38677616a7349d4def777757100ef00"
+    },
+    {
+      "path": "assets/charging-solar.png",
+      "size": 73571,
+      "sha256": "c33c5f1904b783095ab77222a6c7d19e4d15b1aa88497e150b20117e5dab9d56"
+    },
+    {
+      "path": "assets/inbox-adapter.png",
+      "size": 5930,
+      "sha256": "9b87f0197f7cfecf16432941a8f887765e5be0da4e78cda1b6890a22a5124f05"
+    },
+    {
+      "path": "assets/inbox-car.png",
+      "size": 11720,
+      "sha256": "69c88067f0051278b9d684709fc31a08b255f96287160db91bdaf694524bde25"
+    },
+    {
+      "path": "assets/inbox-pouch.png",
+      "size": 6143,
+      "sha256": "e6023618760d85bd192d88db906a9a000a8355ebe8012efacc84c2280a27edac"
+    },
+    {
+      "path": "assets/inbox-power-cord.png",
+      "size": 12131,
+      "sha256": "51443555cf1c8e3710bf0f691da834e20c00a73d9ab1d3d744549eecb48ca685"
+    },
+    {
+      "path": "assets/inbox-solar-adapter.png",
+      "size": 6119,
+      "sha256": "8c57e4c33c398cdd6ae2f1b2b023683186910df65a0304438272b551abed2941"
+    },
+    {
+      "path": "assets/lcd-map.png",
+      "size": 47401,
+      "sha256": "c03043906085a594eed8b3f5350938abcfb057b007422e4928e1d4b06eab5e29"
+    },
+    {
+      "path": "assets/overview.png",
+      "size": 62608,
+      "sha256": "7a825b657227ad63dc4a0e040c169f815047e037b2bd99bbad29f857afe7831f"
+    },
+    {
+      "path": "assets/qr-faq.png",
+      "size": 3649,
+      "sha256": "e869bb198c6fa0df2db3fe64e9bdef2de98610bdaad3479b5d5f0c1b0c99940d"
+    },
+    {
+      "path": "assets/qr-manual.png",
+      "size": 3543,
+      "sha256": "b5810e9d8abb0bb0a0a5df80562ba2e57308263917cfbaaba73c0018321bd076"
+    },
+    {
+      "path": "assets/qr-registration.png",
+      "size": 3383,
+      "sha256": "98bea3f0cfcbfab85d523383c3fe2ee924810d13178c704d329b57909fd84cae"
+    },
+    {
+      "path": "assets/qr-repair.png",
+      "size": 2846,
+      "sha256": "ceba8df83521eaa81f40bab2826a80e074503b98108b1c0dd144ad906f54e6c5"
+    },
+    {
+      "path": "assets/qr-website.png",
+      "size": 3628,
+      "sha256": "1c5e0bc1c4655f20e7f71e322f2af6bacb9a431cac018bd62ac20f6c8aa96cec"
+    },
+    {
+      "path": "assets/rating-label.png",
+      "size": 33944,
+      "sha256": "df63ee427bdba05e30ca1f8c8ff63783af1de7968555fff707505e9b9665d615"
+    },
+    {
+      "path": "assets/recycle.svg",
+      "size": 7306,
+      "sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e"
+    },
+    {
+      "path": "assets/symbol-mandatory.svg",
+      "size": 1292,
+      "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2"
+    },
+    {
+      "path": "assets/symbol-prohibited.svg",
+      "size": 1452,
+      "sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 1884,
+      "sha256": "4337c772ea9490ed8643f64d4413125f0072c157bf4bc090d44e850316396a56"
+    },
+    {
+      "path": "source/asset_decisions.json",
+      "size": 14957,
+      "sha256": "d1e15668bb192e5f1043e2705d228c2c8ab104457190e3553a491a6bd804cad9"
+    },
+    {
+      "path": "source/asset_recipes.json",
+      "size": 9847,
+      "sha256": "7938d4c3d26ca9a450d8ce4997a4a7cd22fcac2bb3bddbe74edd881d9fa76699"
+    },
+    {
+      "path": "source/discovery.json",
+      "size": 2190,
+      "sha256": "de8190a1baaced03b20fb49441a21fdc4108d0341738203d5d7b702b6fe6c801"
+    },
+    {
+      "path": "source/ocr/page-01.txt",
+      "size": 1168,
+      "sha256": "71ee2a79ce15bd1e588e7807440ed94dcaaa99e658354c954f76c4626078e784"
+    },
+    {
+      "path": "source/ocr/page-02.txt",
+      "size": 2052,
+      "sha256": "366428ef098ebbf01acf34cabd542aac77fc1d02c198865b7ebcb113475ef21a"
+    },
+    {
+      "path": "source/ocr/page-03.txt",
+      "size": 1944,
+      "sha256": "75fc4336585f81a4bcdf63b7090f1fa627f4924548293bf25c7545603c80b77c"
+    },
+    {
+      "path": "source/ocr/page-04.txt",
+      "size": 3693,
+      "sha256": "a3415d0b4224c36dddcd0183d07d21d1e18e71a5266ffafc5a9fa30e5ce2c4a1"
+    },
+    {
+      "path": "source/ocr/page-05.txt",
+      "size": 2699,
+      "sha256": "f021e11b36375723f1202fc08a69eeab21d23a79677b4f1d614f2d153790f349"
+    },
+    {
+      "path": "source/ocr/page-06.txt",
+      "size": 750,
+      "sha256": "3f8e052b3f8b1ae48da6a12b0d2dbb876ead39c86d0e408fb740f120debdaed1"
+    },
+    {
+      "path": "source/ocr/page-07.txt",
+      "size": 1378,
+      "sha256": "eb6ff130977919f4d8930d7d45e185bc1b80f6a0d2a5f39ded34655dc37a37ad"
+    },
+    {
+      "path": "source/ocr/page-08.txt",
+      "size": 2138,
+      "sha256": "70735a0d60a1d04e89f04e334180b7dd7b5e1619b4ee034b404822ba8d798580"
+    },
+    {
+      "path": "source/ocr/page-09.txt",
+      "size": 1545,
+      "sha256": "c491c218bb0e0bd7382e79ae3e5dbb7d8125986d437202eff3d737b91eb8a9d2"
+    },
+    {
+      "path": "source/ocr/page-10.txt",
+      "size": 3649,
+      "sha256": "c6d79dfec91926e052b173c55dc53792bab78e919079d1aab9c3cc15b5037f0e"
+    },
+    {
+      "path": "source/ocr/page-11.txt",
+      "size": 3344,
+      "sha256": "7cc13ed772365e540489fa785286ce8f28f0adcf7716b2cb3f6af5a77397e0c2"
+    },
+    {
+      "path": "source/ocr/page-12.txt",
+      "size": 2702,
+      "sha256": "828fea1b47c39308e23ec8e5575dfdc15406f16c51de71591ee9c1ac5ef44d60"
+    },
+    {
+      "path": "source/ocr/page-13.txt",
+      "size": 1934,
+      "sha256": "91aebf4bab711faef4b3e60b638be22945f84f3cd70aae12fa06d19d99f2c967"
+    },
+    {
+      "path": "source/ocr/page-14.txt",
+      "size": 2780,
+      "sha256": "47cf642a7f0df2cbc40ecf6b0e7ebdde912393a1d46d3283ab2278a9a14ab524"
+    },
+    {
+      "path": "source/ocr/page-15.txt",
+      "size": 3750,
+      "sha256": "1aacf4b344981baa1569ebc99e0334ac140a337c32b1ab5786e9b3acb02bdf58"
+    },
+    {
+      "path": "source/ocr/page-16.txt",
+      "size": 757,
+      "sha256": "8d1c0af6fd145cb27fb9b91acdce825f088c471afbd86d402477fb7afb5e7697"
+    },
+    {
+      "path": "source/original.pdf",
+      "size": 2532309,
+      "sha256": "f24215296cf4a3544d48dbbce5df3c6cf489ec829ad4b2a192926d94afaff670"
+    },
+    {
+      "path": "source/page_review.json",
+      "size": 39709,
+      "sha256": "e34a10fe6896cf03152a73c6a9207ffed77a0d1465ebc0b4e10ae21b93f9a7ab"
+    },
+    {
+      "path": "source/reviewed-candidate.json",
+      "size": 4869,
+      "sha256": "b5f2238e0473920abd4e7511e0d6515c61df2f9732e5886aaf52d911f716ff41"
+    },
+    {
+      "path": "source/source-info.json",
+      "size": 387,
+      "sha256": "c883105d6b66301e03d235db98f40d07edab601d44aad9b4632297153b8cffd0"
+    },
+    {
+      "path": "source/symbol-bindings.json",
+      "size": 2702,
+      "sha256": "38937622cd58cf425de7a2f30239c0e890c9a138b69ff34c9009600bfbc0ee77"
+    },
+    {
+      "path": "source/transcription.json",
+      "size": 59766,
+      "sha256": "49da7a28f9fe3a52c925d27dd21db92e015194b260801f4533029bfb5c3f28c8"
+    },
+    {
+      "path": "web/ja/_static/web_manual.css",
+      "size": 126890,
+      "sha256": "5afdc1947b423c52850852eccc5bc0f398c820c45909690ff6e5cc7bb266dfdf"
+    },
+    {
+      "path": "web/ja/assets/charging-ac.png",
+      "size": 49919,
+      "sha256": "5ce739984f60f81ca4c01a861853f5cc14d7227c90bb5f253d910691d216bcae"
+    },
+    {
+      "path": "web/ja/assets/charging-car.png",
+      "size": 74694,
+      "sha256": "b3dcca66dd132b40698038301e922c10e38677616a7349d4def777757100ef00"
+    },
+    {
+      "path": "web/ja/assets/charging-solar.png",
+      "size": 73571,
+      "sha256": "c33c5f1904b783095ab77222a6c7d19e4d15b1aa88497e150b20117e5dab9d56"
+    },
+    {
+      "path": "web/ja/assets/inbox-adapter.png",
+      "size": 5930,
+      "sha256": "9b87f0197f7cfecf16432941a8f887765e5be0da4e78cda1b6890a22a5124f05"
+    },
+    {
+      "path": "web/ja/assets/inbox-car.png",
+      "size": 11720,
+      "sha256": "69c88067f0051278b9d684709fc31a08b255f96287160db91bdaf694524bde25"
+    },
+    {
+      "path": "web/ja/assets/inbox-pouch.png",
+      "size": 6143,
+      "sha256": "e6023618760d85bd192d88db906a9a000a8355ebe8012efacc84c2280a27edac"
+    },
+    {
+      "path": "web/ja/assets/inbox-power-cord.png",
+      "size": 12131,
+      "sha256": "51443555cf1c8e3710bf0f691da834e20c00a73d9ab1d3d744549eecb48ca685"
+    },
+    {
+      "path": "web/ja/assets/inbox-solar-adapter.png",
+      "size": 6119,
+      "sha256": "8c57e4c33c398cdd6ae2f1b2b023683186910df65a0304438272b551abed2941"
+    },
+    {
+      "path": "web/ja/assets/lcd-map.png",
+      "size": 47401,
+      "sha256": "c03043906085a594eed8b3f5350938abcfb057b007422e4928e1d4b06eab5e29"
+    },
+    {
+      "path": "web/ja/assets/overview.png",
+      "size": 62608,
+      "sha256": "7a825b657227ad63dc4a0e040c169f815047e037b2bd99bbad29f857afe7831f"
+    },
+    {
+      "path": "web/ja/assets/qr-faq.png",
+      "size": 3649,
+      "sha256": "e869bb198c6fa0df2db3fe64e9bdef2de98610bdaad3479b5d5f0c1b0c99940d"
+    },
+    {
+      "path": "web/ja/assets/qr-manual.png",
+      "size": 3543,
+      "sha256": "b5810e9d8abb0bb0a0a5df80562ba2e57308263917cfbaaba73c0018321bd076"
+    },
+    {
+      "path": "web/ja/assets/qr-registration.png",
+      "size": 3383,
+      "sha256": "98bea3f0cfcbfab85d523383c3fe2ee924810d13178c704d329b57909fd84cae"
+    },
+    {
+      "path": "web/ja/assets/qr-repair.png",
+      "size": 2846,
+      "sha256": "ceba8df83521eaa81f40bab2826a80e074503b98108b1c0dd144ad906f54e6c5"
+    },
+    {
+      "path": "web/ja/assets/qr-website.png",
+      "size": 3628,
+      "sha256": "1c5e0bc1c4655f20e7f71e322f2af6bacb9a431cac018bd62ac20f6c8aa96cec"
+    },
+    {
+      "path": "web/ja/assets/rating-label.png",
+      "size": 33944,
+      "sha256": "df63ee427bdba05e30ca1f8c8ff63783af1de7968555fff707505e9b9665d615"
+    },
+    {
+      "path": "web/ja/assets/recycle.svg",
+      "size": 7306,
+      "sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e"
+    },
+    {
+      "path": "web/ja/assets/symbol-mandatory.svg",
+      "size": 4154,
+      "sha256": "fb1c265cc895619f08c3f0a8eed6386efb90b7f7c77cfa5675fe3551a2310558"
+    },
+    {
+      "path": "web/ja/assets/symbol-prohibited.svg",
+      "size": 4143,
+      "sha256": "42ba4ebda3d7c0c897b8651deb3d31a93bd165a522fb4f41fe3f96fc66993446"
+    },
+    {
+      "path": "web/ja/assets/symbol-unplug.svg",
+      "size": 5095,
+      "sha256": "64e995743992b8b2ec534f535804dacaaff704131ad551d4ef31a90ef6b5a376"
+    },
+    {
+      "path": "web/ja/conf.py",
+      "size": 828,
+      "sha256": "0c97380c4e1905ad49e5249d99a279eb38a3eaddccfcbb4a1a26db45581ac06e"
+    },
+    {
+      "path": "web/ja/index.md",
+      "size": 88,
+      "sha256": "1102f9248e57997deda14413d46cef9a5cc3950a5e54c16bf6226076f26bcbba"
+    },
+    {
+      "path": "web/ja/manual.ir.json",
+      "size": 367990,
+      "sha256": "f74080681cbc1749e16e28ca624c4025109d601c6e4fcd130610c7fec66068e5"
+    },
+    {
+      "path": "web/ja/manual_bnrb15_jp_ja.md",
+      "size": 51004,
+      "sha256": "43ac2770bec29c3b31bedecdab9a58d07459b89a1f4ae48d1460bfbbdb2873a4"
+    },
+    {
+      "path": "web/ja/shared-style-admission.json",
+      "size": 176,
+      "sha256": "25e416b0178ed22f2bb09d647272b8b7e80987de2107e42b9298664406c15531"
+    }
+  ],
+  "repo_inputs": [
+    {
+      "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
+      "sha256": "a2773f7e96849e176a9909e8221e37c20eb9005cd2639415bf6a112d7c86527f"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-mandatory.svg",
+      "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-prohibited.svg",
+      "sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_li_ion.svg",
+      "sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e"
+    }
+  ],
+  "printed_document_code": "JD8506-000D",
+  "shared_component_exceptions": [
+    {
+      "language": "ja",
+      "page_id": "manual_notation",
+      "kind": "table",
+      "text_sha256": "82d17e6cf1ac12bcd94e3c43b19159766454627babb8df7127b2f50897d9f068",
+      "reason": "Source notation glossary, including a speech-bubble mark represented by its accessible role; no shared notation-table component fits."
+    },
+    {
+      "language": "ja",
+      "page_id": "optional_accessories",
+      "kind": "table",
+      "text_sha256": "52ce44af041fba29a6943da2723a88aced5dbadf96853b5c9419a20b3d97cb58",
+      "reason": "Four-column optional-accessory catalogue (name/brand/model/description). No shared ComponentSpec accepts this source geometry without losing fields."
+    },
+    {
+      "language": "ja",
+      "page_id": "product_overview",
+      "kind": "table",
+      "text_sha256": "fb3bff92b09236ed086f89b60fe84911c6f768d18a7f5ffcfe3fe9b0776ea7c2",
+      "reason": "Three-column numbered physical-control glossary. Shared Overview card composition does not accept this source table; keep native cells and exact source wording."
+    },
+    {
+      "language": "ja",
+      "page_id": "faq",
+      "kind": "table",
+      "text_sha256": "7266bd3e887ad8e722511a8b81167aec76f7ef165d883813019c7dff416f7da4",
+      "reason": "Source question/answer table. No shared FAQ ComponentSpec exists; native two-column text cells preserve the source."
+    },
+    {
+      "language": "ja",
+      "page_id": "warranty_form",
+      "kind": "table",
+      "text_sha256": "e82a611585843c7a46e72acddbc40ed9621698170ddbcc1df227a901218056f5",
+      "reason": "Unfilled printed warranty form: native text cells retain its blank customer fields. Shared specification/warranty components require nonempty values and cannot represent this source form."
+    }
+  ],
+  "artwork_standardizations": [
+    {
+      "asset_key": "recycle",
+      "shared_symbol_key": "li-ion/recycle-li-ion",
+      "canonical_group": "li-ion",
+      "canonical_decision": "SCG-20261104",
+      "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_li_ion.svg",
+      "sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e",
+      "operator_instruction": {
+        "date": "2026-11-12",
+        "quotes": [
+          "独立回收标志不是有公共图吗",
+          "复用啊"
+        ],
+        "decision": "Use the shared canonical recycling artwork instead of another source-specific glyph; no new extraction and no 2% shape veto for this explicit standardization."
+      },
+      "printed_source": {
+        "physical_page": 14,
+        "label": "Li-ion 20",
+        "glyph_bbox": [
+          42.088820068359375,
+          364.74520092773434,
+          82.00063220214844,
+          400.85858715820314
+        ],
+        "drawing_indices": [
+          669,
+          670,
+          671,
+          672,
+          673,
+          674,
+          675,
+          676,
+          677,
+          678,
+          679,
+          680,
+          681
+        ]
+      },
+      "normalization_difference": "The shared canonical graphic reads Li-ion and contains neither 20 nor 32. Original Li-ion 20 is preserved in the authoritative PDF and this source-review record. The visible technical body is unchanged, and the alt describes the actual shared graphic without claiming an embedded 20.",
+      "superseded_private_variant": {
+        "path": "assets/recycle.svg",
+        "sha256": "d99cb77344180e9a5850c2ca120da2a4f54c3c880a7a40d9fced78654ef930dc",
+        "status": "superseded-private-variant-do-not-reuse"
+      },
+      "scope": "Only four standalone recycling marks; no product, LCD or inbox artwork changes."
+    }
+  ],
+  "symbol_asset_admission": {
+    "schema_version": "auto-manual-symbol-asset-admission/v1",
+    "locales": {
+      "ja": [
+        {
+          "asset_ref": "assets/symbol-prohibited.svg",
+          "asset_sha256": "42ba4ebda3d7c0c897b8651deb3d31a93bd165a522fb4f41fe3f96fc66993446",
+          "shared_symbol_key": "native/bnrb15-jp-f2421529-prohibited",
+          "physical_page": 4,
+          "drawing_indices": [
+            289,
+            290
+          ],
+          "glyph_bbox": [
+            41.8,
+            170.4,
+            57.1,
+            185.6
+          ],
+          "caption_bbox": [
+            80,
+            171,
+            280,
+            184
+          ],
+          "row_bbox": [
+            41.699999237060545,
+            170.29999389648438,
+            280.1,
+            185.70000610351562
+          ],
+          "caption_text": "禁止（してはいけない）の内容です。",
+          "caption_sha256": "21ddd53c111ceaf621911460a04adecb9deff51339d53c2885dd1faf9d681475",
+          "max_mean_channel_error": 0.0
+        },
+        {
+          "asset_ref": "assets/symbol-mandatory.svg",
+          "asset_sha256": "fb1c265cc895619f08c3f0a8eed6386efb90b7f7c77cfa5675fe3551a2310558",
+          "shared_symbol_key": "native/bnrb15-jp-f2421529-mandatory",
+          "physical_page": 4,
+          "drawing_indices": [
+            308,
+            309,
+            310
+          ],
+          "glyph_bbox": [
+            32,
+            193.5,
+            47.5,
+            209
+          ],
+          "caption_bbox": [
+            80,
+            195,
+            310,
+            207
+          ],
+          "row_bbox": [
+            31.9,
+            193.4,
+            310.1,
+            209.1
+          ],
+          "caption_text": "実行（必ず行っていただく）の内容です。",
+          "caption_sha256": "998d114fe8c46a968d4e79da42f112343cc397f438c9b555a5d98a54f401b0a4",
+          "max_mean_channel_error": 0.0
+        },
+        {
+          "asset_ref": "assets/symbol-unplug.svg",
+          "asset_sha256": "64e995743992b8b2ec534f535804dacaaff704131ad551d4ef31a90ef6b5a376",
+          "shared_symbol_key": "native/bnrb15-jp-f2421529-unplug",
+          "physical_page": 4,
+          "drawing_indices": [
+            311,
+            312,
+            313
+          ],
+          "glyph_bbox": [
+            52.1,
+            193.5,
+            66.8,
+            209
+          ],
+          "caption_bbox": [
+            80,
+            195,
+            310,
+            207
+          ],
+          "row_bbox": [
+            51.99999847412109,
+            193.4,
+            310.1,
+            209.1
+          ],
+          "caption_text": "実行（必ず行っていただく）の内容です。",
+          "caption_sha256": "998d114fe8c46a968d4e79da42f112343cc397f438c9b555a5d98a54f401b0a4",
+          "max_mean_channel_error": 0.0
+        }
+      ]
+    }
+  },
+  "operator_approval": "source/approval.json",
+  "reviewed_candidate": {
+    "path": "manual_sources/BN-RB15/JP/ja/git-20261112-f2421529-material-web",
+    "git_ref": "6abe1128c27a186228185390d26f87adc9d3e2c9",
+    "manifest_sha256": "c0183c567246cd4a8e94073fb5ea74e2657ed7ec1e167c93e623eecf34413d82",
+    "manual_ir_sha256": "dc68e79afdfe07b6146c134619fa16670ed4c289159b1a154b8cb495b9f7f17d"
+  },
+  "validation_boundary": "MA-432 delegates review then release. Candidate adapters independently rebuilt byte-identical Web trees and passed strict Sphinx. Release differences are enumerated in source/reviewed-candidate.json: authorization metadata, source-matching/existing canonical PTB glyphs, native source-bound JVC glyphs and the restored printed unplug row. Japanese wording, specifications and source concerns are unchanged. The fixed symbol admission rule and existing shared groups are unchanged. No separate operator pixel inspection is claimed."
+}

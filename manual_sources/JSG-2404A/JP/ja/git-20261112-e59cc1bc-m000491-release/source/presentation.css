@@ -1,0 +1,5 @@
+/* Geometry only. Shared theme owns every color, border and breakpoint. */
+#furo-main-content .hb-reference-figure:is([data-reference-id="unfold-1"],[data-reference-id="unfold-2"],[data-reference-id="unfold-3"],[data-reference-id="unfold-4"]) { max-width: 620px; }
+#furo-main-content .hb-reference-figure[data-reference-id="app-qr"] { max-width: 135px; }
+#furo-main-content .hb-reference-figure:is([data-reference-id="charging-ac"],[data-reference-id="ac-charge"],[data-reference-id="charging-car"],[data-reference-id="car-charge"]) { max-width: 440px; }
+#furo-main-content .hb-reference-figure[data-reference-id="app-control"] { max-width: 620px; }

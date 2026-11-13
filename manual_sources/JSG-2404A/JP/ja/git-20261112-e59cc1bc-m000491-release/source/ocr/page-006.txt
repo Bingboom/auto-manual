@@ -1,0 +1,71 @@
+1. 主 な 仕様
+
+【Jackery ポー タブ ル 電 源 240】
+
+製品 の 名 称 : Jackery ポー タブ ル 電 源 240
+
+型番 : JE-240A
+
+バッ テリ ー タ イプ : LiFePO4 (リン 酸 鉄 リチウム イオ ン 電 池 )
+サイ ズ & 重 量 : 約 23.1 x 15.3 x 16.8 cm ( 約 3.6kg)
+
+定格 容量 : 20Ah/12.8V DC (256Wh)
+
+AC 入 力 : 100V-120V~ 50Hz/60Hz, 最大 10A
+
+AC 出 力 : 100V~ 50Hz/60Hz, 3A, 300W (瞬間 最大 600W)
+USB-A 出 力 : 5V=3A, 最大 15W
+
+USB-C(OUT) HA: 5V=3A, 最大 15W
+
+USB-C(IN/OUT) 出力 :
+
+5V= 3A, 9V =3A, 12V =3A, 15V =3A, 20V =5A, 最大 100W
+
+USB-C(IN/OUT) 入力 :
+
+OV =3A, 12V =3A, 15V =3A, 20V =5A, 最大 100W
+
+USB 総 出力 :
+
+USB-C(IN/OUT): 100W Max, USB-C(OUT)+USB-A: 最大 24W
+
+シガー ソケット 出力 :
+
+12V=10A
+
+充電 温度 : 0?C~45 "C (322Fv113 "F)
+
+動作 温度 : -10?C~45 ?C (145F~113 2F)
+
+保存 温度 : 3 ヶ月 の 場合 : -20*C~45?C (4?F~113<F )
+6 ヶ月 の 場合 : -10*C~25"C (14?F~777F)
+
+認証 : UN38.3
+
+※USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.
+
+(Jackery SolarSaga 40 Mini]
+
+製品 名 称 : SolarSaga 40 Mini 動作 温度 範囲: -20?C~65?C_(-4?F~149"F)
+ue OS: JS-40A 最大 シス テム 電圧 : 30V
+
+最大 出力 (Pmax): 40w+5% 最大 逆 電流 : 6A
+
+開放 電圧 (Voc): 25V 土 5% 感電 保護 クラ ス : DSI
+
+短絡 電流 (lsc): 2.07A 土 59% 防水 規格 : IP68
+
+動作 電圧 (Vmp): 20.9V 土 5% 電圧 温度 係数 : -0.3%/"C
+
+動作 電流 (Imp) : 1.91A 土 5% 出力 温度 係数 : -0.39%/?C
+
+正味 重量 : 約 1.2kg RAB TBA: 1
+
+収納 サイ ズ : 約 252*300*30mm 最大 並列 接続 数 . 3
+
+展開 サイ ズ : 約 1020*300*18.5mm | 消費 財 カ テ ゴ リ ー: ECTS 63163、 消 費 財 タイ プ |
+
+STC (1000W/ni, 25?C, AM 1.5).
+
+03
