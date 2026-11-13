@@ -1,0 +1,17 @@
+{
+  "model": "JBP-2000A",
+  "pages": 12,
+  "components": {
+    "HB-CALLOUT-STRIP": 1,
+    "HB-SPECIAL-FCC": 1,
+    "HB-SPECIAL-INBOX": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE": 10,
+    "HB-TABLE-REFERENCE": 1,
+    "HB-TABLE-SPEC": 3,
+    "HB-WARRANTY-SECTION": 5,
+    "HB-WARRANTY-YEARS": 1
+  },
+  "publication_eligible": false,
+  "shared_style_issues": [],
+  "output": "<unused-output-directory>"
+}

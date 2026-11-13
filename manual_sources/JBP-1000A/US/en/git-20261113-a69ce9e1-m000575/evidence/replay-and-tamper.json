@@ -1,0 +1,35 @@
+{
+ "cold_rebuild": {
+  "files_identical": 23,
+  "ir_sha256": "1015939f79eec396d87117ce4247783f9b99a24ce4c70a7350f39e34ade88aae",
+  "markdown_sha256": "60ce06ac457b80ba127963fecc2265ec4903475b73d7d1a63dd012b191038425"
+ },
+ "replay_package": "passed (frozen IR, assets and shared stylesheet hashes)",
+ "tamper_rejections": [
+  {
+   "kind": "artwork",
+   "rejected": true,
+   "message": "document asset missing or changed: assets/inbox-manual.png"
+  },
+  {
+   "kind": "shared_css",
+   "rejected": true,
+   "message": "frozen Web stylesheet changed"
+  },
+  {
+   "kind": "source_pdf",
+   "rejected": true,
+   "message": "ValueError: frozen input changed: source/original.pdf"
+  },
+  {
+   "kind": "native_body",
+   "rejected": true,
+   "message": "ValueError: frozen input changed: source/transcription.json"
+  },
+  {
+   "kind": "artwork_input",
+   "rejected": true,
+   "message": "ValueError: frozen input changed: assets/lcd.png"
+  }
+ ]
+}

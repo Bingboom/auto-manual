@@ -1,0 +1,80 @@
+{
+ "reviewed_source_pages": [
+  1,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11
+ ],
+ "blocks_checked": 101,
+ "table_cells_checked": 31,
+ "images_checked": 16,
+ "findings": [
+  {
+   "id": "F1",
+   "page": 11,
+   "web_location": "# JACKERY INC. > 'Website:' line",
+   "source_reads": "Website:www.jackery.com",
+   "web_reads": "Website: https://www.jackery.com (link text and href)",
+   "severity": "error",
+   "note": "Visible link text changed: 'https://' scheme added and a space inserted after 'Website:'. Tel:/E-mail: on the same printed line correctly keep no space, so this row is inconsistent with the as-printed rule. Keep href if needed but show 'www.jackery.com' and no space.",
+   "resolution": "fixed",
+   "resolution_note": "Website line now native text exactly as printed; no https:// and printed spacing kept."
+  },
+  {
+   "id": "F2",
+   "page": 9,
+   "web_location": "FCC block, first paragraph",
+   "source_reads": "NOTE: This equipment has been tested ... (NOTE: in regular weight, same as body)",
+   "web_reads": "<strong>NOTE:</strong> This equipment has been tested ...",
+   "severity": "warning",
+   "note": "Bold emphasis added that the source does not print. Wording itself matches.",
+   "resolution": "operator-decision",
+   "resolution_note": "Bold NOTE:/MODIFICATION: labels are the shared HB-SPECIAL-FCC label style; no package styling allowed. Listed as operator decision."
+  },
+  {
+   "id": "F3",
+   "page": 9,
+   "web_location": "# SAFETY PRECAUTIONS WHEN USING, lead-in paragraph",
+   "source_reads": "The basic safety precautions should be followed when using this product, including: (printed bold)",
+   "web_reads": "plain <p> The basic safety precautions should be followed when using this product, including:</p>",
+   "severity": "concern",
+   "note": "Source bold emphasis dropped; wording matches.",
+   "resolution": "operator-decision",
+   "resolution_note": "Lead-in kept as a native paragraph; bold emphasis not reproduced (no package styling). Listed as operator decision."
+  },
+  {
+   "id": "F4",
+   "page": 1,
+   "web_location": "end of document, '## Contact us' under '# JACKERY INC.'",
+   "source_reads": "Cover bottom-left: 'Contact us:' (bold, with colon) / hello@jackery.com / 1-888-502-2236(US)",
+   "web_reads": "## Contact us / hello@jackery.com / 1-888-502-2236(US)",
+   "severity": "concern",
+   "note": "Colon dropped and the cover contact block is relocated to the end, nested as a subsection of JACKERY INC. (back-cover company). Values match. Check that this placement and the colon loss are intended.",
+   "resolution": "fixed",
+   "resolution_note": "Cover contact lead-in now a native paragraph \"Contact us:\" with its colon."
+  },
+  {
+   "id": "F5",
+   "page": 5,
+   "web_location": "Power on/off notes callout label",
+   "source_reads": "Notes:",
+   "web_reads": "Notes (callout label cell)",
+   "severity": "concern",
+   "note": "Colon dropped by the callout component; the note text matches exactly.",
+   "resolution": "operator-decision",
+   "resolution_note": "Callout label \"Notes\" is the shared HB-CALLOUT-STRIP label form; colon dropped by the component. Listed as operator decision."
+  }
+ ],
+ "verified_ok": "Cover product name/model/version; 3 intro paragraphs; all 11 spec rows (pixel-zoomed: 45.6Ah / 44.8V DC (2042.8Wh), About 41.9 lbs / About 19 kg, 18.5 x 13 x 9.1 in / 47 x 33.1 x 23.1 cm, DC input with ⎓ and 'Double to 8A Max;', 32.2V-50.4V⎓97A Max, temperatures with ° and ~); CAN ICES line; inbox labels; LCD description table; power on/off and LCD on/off text; usage sentence 'Up to 10 sets' as printed; safety items 1-3 incl. 'them.After'; charging section texts; safety a-j; FCC measures (4 items, no MODIFICATION, correct for this booklet); warranty texts and 3/2-year badges; Mexico and Inc. addresses; Tel:/E-mail: spacing. All 16 assets (15 PNG + fcc-mark.svg) opened: complete panels, leader lines/labels intact, ~10 px clean margins, no neighbouring prose, alts accurate.",
+ "status": "pass-with-findings: 1 error (website link text), 1 warning, 3 concerns",
+ "reviewer": "independent read-only sub-agent (separate context; given pixels, Markdown, HTML and transcription, not the author's conclusions)",
+ "post_fix_status": "no open text errors; three shared-component typography items left to the operator",
+ "source_sha256": "90e9ed96c7128d4849825ef8179e6e79a677f9c3a709b19cc78c3cffa6d7b050",
+ "transcription_sha256_after_fixes": "d2ebf06b1f9d962198cef4b9c0288f6487a3686a902b09d5f8507b6ef6005e7d"
+}

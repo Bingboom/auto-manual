@@ -2266,6 +2266,11 @@
       "registered": "2026-11-12",
       "known_drift": {}
     },
+    "manual_sources/JBP-1000A/US/en/git-20261113-a69ce9e1-m000575": {
+      "approval": "review candidate; no release authorization",
+      "registered": "2026-11-13",
+      "known_drift": {}
+    },
     "manual_sources/JBP-1000B-WH/JP/ja/git-20261008-3aa6c003-native": {
       "approval": "MA-275（见 source/approval.json）",
       "registered": "2026-10-19",
@@ -2274,6 +2279,11 @@
     "manual_sources/JBP-1000B-WH/JP/ja/git-20261009-3aa6c003-web-layout": {
       "approval": "操作者「上线提交发布」2026-10-09，经工程 PR 审核合入（见 source/approval.json）",
       "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JBP-2000A/US/en/git-20261113-90e9ed96-m000574": {
+      "approval": "review candidate; no release authorization",
+      "registered": "2026-11-13",
       "known_drift": {}
     },
     "manual_sources/JBP-2000B/EU/batch1465-candidate": {

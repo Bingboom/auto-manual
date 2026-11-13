@@ -1,0 +1,45 @@
+US english Model: JBP-1000A
+
+Congratulations on your new Jackery Battery Pack 1000 Plus. Please read this manual
+carefully before using the product, particularly the relevant precautions to ensure proper
+use. Keep this manual in an accessible place for frequent reference.
+
+In compliance with laws and regulations, the right of final interpretation of this document
+and all related documents of this product resides with the Company.
+
+Please kindly notice that no further notifications will be given in case of any update,
+revision or termination.
+
+TECHNICAL SPECIFICATIONS
+GENERAL INFO
+
+Product Name Jackery Battery Pack 1000 Plus
+
+Model No. JBP-1000A
+
+Capacity Lithium-ion 30.4Ah/41.6V DC (1264.64Wh)
+Cell Chemistry LiFePO4
+
+Weight About 22.5 lbs/10.2 kg
+
+Dimensions 14 x 10.24 x 7.8 in/35.6 x 26 x 19.8 cm
+Cycle Life 4000 cycles to 70%+ capacity
+
+INPUT PORTS
+
+2x DC Expansion Port 32.5V-46.8V=68A Max
+
+ENVIRONMENTAL OPERATING TEMPERATURE
+
+Charge Temperature O°C~45°C (32°F ~113°F)
+Discharge Temperature -10°C~45°C (14°F ~113°F)
+CERTIFICATIONS
+
+—
+NOM
+
+[=P CAN ICES-003(B)/NMB-003(B)
+¢ us NYCE
+
+01
+

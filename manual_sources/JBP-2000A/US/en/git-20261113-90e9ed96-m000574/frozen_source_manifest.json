@@ -1,0 +1,433 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "target": {
+    "model": "JBP-2000A",
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "technical_version": "git-20261113-90e9ed96-m000574"
+  },
+  "web_title": "Jackery Battery Pack 2000 Plus",
+  "original_source": {
+    "filename": "38-0001-000574_Jackery_Battery_Pack_2000_Plus_EN.pdf",
+    "path": "source/original.pdf",
+    "sha256": "90e9ed96c7128d4849825ef8179e6e79a677f9c3a709b19cc78c3cffa6d7b050",
+    "size": 2639174,
+    "physical_page_count": 11
+  },
+  "material": "38-0001-000574",
+  "feishu_source": {
+    "conversion_record_id": "reczz28SlRGJjq1u",
+    "wiki_node": "QKNGwHFwPiY7J7kZ0bzcximKnyb",
+    "table_id": "tbljbjaXaTD6V9PO",
+    "view_id": "vewy95Gdrv",
+    "source_field": "单语言",
+    "project": "HTP002",
+    "region": "US+CA"
+  },
+  "source_authority": "Operator request 2026-11-13 「把这几本说明书 转网页版」 for 发布文档管理 › 说明书网页 › 美规 rows marked 是否要转网页文档 = Y-待转. The 单语言 English attachment was downloaded read-only and SHA-256 locked. It is an image-only 300-dpi booklet; text is Tesseract 5 OCR hand-corrected against the page pixels. This original source governs all copy; no review acceptance or release approval inferred.",
+  "printed_manual_version": "JAK-UM-V1.0",
+  "language_scope": "single",
+  "publication_status": "review-candidate-no-release-authorization",
+  "publication_eligible": false,
+  "pending_source_review": [
+    "Operator review of the OCR-derived hand-corrected English transcription, source concerns and artwork; no publication authorization granted."
+  ],
+  "web_roots": {
+    "en": "web/en"
+  },
+  "reference_editions": [
+    "JBP-2000B/EU/en/md",
+    "JBP-1000B-SIL/US/en/md",
+    "JBP-3600A/US/en/md"
+  ],
+  "component_map": {
+    "native_copy": "Native headings, paragraphs and printed a.–j. / 1.–3. item markers kept as text",
+    "specifications": "HB-TABLE-SPEC for GENERAL INFO, INPUT PORTS and ENVIRONMENTAL OPERATING TEMPERATURE",
+    "certifications": "HB-SPECIAL-REFERENCE-FIGURE for the complete printed certification-mark row; CAN ICES-003(B)/NMB-003(B) native text",
+    "inbox": "HB-SPECIAL-INBOX with three native labels and source-bound images",
+    "overview": "HB-SPECIAL-REFERENCE-FIGURE x2 (front and rear) with complete source-English leader labels",
+    "lcd": "HB-SPECIAL-REFERENCE-FIGURE for the LCD panel plus HB-TABLE-REFERENCE lcd-descriptions for the two printed definitions (fault codes F0-FF in the definition)",
+    "buttons": "Power on/off and LCD on/off as native headings/paragraphs plus HB-SPECIAL-REFERENCE-FIGURE; printed Notes as HB-CALLOUT-STRIP (note)",
+    "usage_and_charging_diagrams": "HB-SPECIAL-REFERENCE-FIGURE, complete source-labelled diagrams; no duplicate caption lists",
+    "inline_glyph": "Source power-station display glyph ('x8') as a bounded inline image inside the native paragraph",
+    "fcc": "HB-SPECIAL-FCC inside the shared hb-fcc-balanced-flow group; FC mark reused byte-identically from JBP-3600A US",
+    "warranty": "HB-WARRANTY-SECTION cards and HB-WARRANTY-YEARS for the printed 3 Years Standard / 2 Years Extended periods",
+    "app": "Printed App Store / Google Play badges as HB-SPECIAL-REFERENCE-FIGURE; HB-APP download not used because the booklet prints no App QR or link",
+    "contacts": "Native paragraphs for Jackery Mexico S.A. de C.V. and Jackery Inc. as printed; source QR as a bounded native image",
+    "troubleshooting_symbols": "Not printed as independent sections; none added"
+  },
+  "normalizations": [
+    "Join printed line wraps (including the unhyphenated 'connec'/'tion' split) and collapse doubled spaces; no word, case or value changes.",
+    "Omit cover art, wordmarks, printed contents page, page numbers and US/US English tab bars; product name, model, printed version and cover contacts stay native.",
+    "FCC '--' measure markers become the shared FCC list; printed NOTE:/MODIFICATION: labels kept.",
+    "Warranty Period '3 Years Standard Warranty:' / '2 Years Extended Warranty:' prefixes become HB-WARRANTY-YEARS number, unit and label; body text unchanged.",
+    "Printed '⎓' DC symbol, degree signs and 'x' multiplication letters kept; '2×8020' kept only inside source art.",
+    "Artwork is new source-bound extraction at the source's native 300 dpi after a recorded donor inventory (no donor matched this product geometry), except the standard FC mark reused byte-for-byte."
+  ],
+  "inputs": [
+    {
+      "path": "README.md",
+      "size": 3002,
+      "sha256": "9f2c0672ba35a4f3da4b5cb8ceea80eeefdb1b3bb6912f470a1bc5044671b6ed"
+    },
+    {
+      "path": "assets/app-badges.png",
+      "size": 20473,
+      "sha256": "c5f18a1d4ecb7856287b4ba5b3433e4cd1082eb1ba7a7ce0528fbe4a47d3d7b7"
+    },
+    {
+      "path": "assets/car-charging.png",
+      "size": 48526,
+      "sha256": "9f9434c2dc45f9ad0a09f89710726675ba238f58c1c676449912724202c2a9d9"
+    },
+    {
+      "path": "assets/certifications.png",
+      "size": 36387,
+      "sha256": "1576ec1e513916121669bbdaae6fbe5fb97f2c7728cae6c5010beeebfd568c46"
+    },
+    {
+      "path": "assets/contact-qr.png",
+      "size": 8510,
+      "sha256": "b8d7d6c23747fd98ec725a181ad8a5fb5ee3c137a6f24dd0ca921f5fc3d96279"
+    },
+    {
+      "path": "assets/fcc-mark.svg",
+      "size": 1927,
+      "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+    },
+    {
+      "path": "assets/inbox-cable.png",
+      "size": 8570,
+      "sha256": "a07d2a85876fb89bf5f9270879cc19d3040ad445826c8a578dbb0af43d9eabc1"
+    },
+    {
+      "path": "assets/inbox-manual.png",
+      "size": 9747,
+      "sha256": "f19bdd9f047efeb83d07e82801d533689eefd211c43586087a2fcd9334a509fb"
+    },
+    {
+      "path": "assets/inbox-unit.png",
+      "size": 16750,
+      "sha256": "1ed2a449478a5c835d41277029286d4733f085c6f20f4fa8417a997ebcf6fab5"
+    },
+    {
+      "path": "assets/inline-connection.png",
+      "size": 2285,
+      "sha256": "74ed1ff055c822fac2ce094f5119a7a9938ed1a8866f460df7cebeadbd5e1108"
+    },
+    {
+      "path": "assets/lcd.png",
+      "size": 26913,
+      "sha256": "b545cc2cc7797853066a45ec1a252f1c44b61a027a2256715bf396fe719cb401"
+    },
+    {
+      "path": "assets/overview-front.png",
+      "size": 51587,
+      "sha256": "6a5f4007480dd116f187852e068e1f57b22872512b8e500551ed4e0e45b8185a"
+    },
+    {
+      "path": "assets/overview-rear.png",
+      "size": 90701,
+      "sha256": "7f380e6f7662c4ca1bfef1c7f28191e41294035cd7e6bacb4b8766fd42e303dd"
+    },
+    {
+      "path": "assets/power-on-off.png",
+      "size": 29318,
+      "sha256": "a979b9ebf3a984619d5f5fbd1a527a8092c58b25d29e59036f5660f54fa6263f"
+    },
+    {
+      "path": "assets/usage-chain.png",
+      "size": 366490,
+      "sha256": "386885dfc160a7551e29fc2c64a695f2ffb9ec30f68650ae08f6fcbe2db6b178"
+    },
+    {
+      "path": "assets/usage-tree.png",
+      "size": 184213,
+      "sha256": "88adaf01479a42a58b937823f2908af51bf3ecdc278ab1814ebce568dbe1ce28"
+    },
+    {
+      "path": "assets/wall-charging.png",
+      "size": 53313,
+      "sha256": "5059e4d3ca9efcc7298dabd3bd4cd0a86bc5f1f2aa072b3bc1c183080d72b19d"
+    },
+    {
+      "path": "derive_assets.py",
+      "size": 2087,
+      "sha256": "710b4369afe4a34ac8012f740542408bbe86d1a7cd0e0889085e733ed63a3236"
+    },
+    {
+      "path": "evidence/art-reproduction.log",
+      "size": 577,
+      "sha256": "bcd709b4430da03fcf296255914c8bd3548575597318bdd1c3b0f1140eb8ee05"
+    },
+    {
+      "path": "evidence/browser-validation.json",
+      "size": 4485,
+      "sha256": "67766de8173d4396011bd16a31b164b391294e69fafa2049fe054d9af3b60698"
+    },
+    {
+      "path": "evidence/candidate-validation.json",
+      "size": 1529,
+      "sha256": "6c4154e7ac1726423bbe688deffaeadfe21a037044091b0ef9fd898f52e0dcb4"
+    },
+    {
+      "path": "evidence/cold-source-rebuild.log",
+      "size": 396,
+      "sha256": "1f611583e9d88353221eb6f29abfb4d74c188742f3fc88a7088e31b497d62042"
+    },
+    {
+      "path": "evidence/full-1280.png",
+      "size": 1643713,
+      "sha256": "5407e94edb42ac1f3bb161119ccb7d7d33b6a95059ae7f123113ba9079c721f4"
+    },
+    {
+      "path": "evidence/full-390.png",
+      "size": 1089009,
+      "sha256": "6374bb5502052db5b995fe49911cb010415d21adc2a28c44ceb85a99e09f2b98"
+    },
+    {
+      "path": "evidence/independent-body-qc.json",
+      "size": 4501,
+      "sha256": "90f3b0785cfc25ac561c5bfddd6e5926265ce8efd43e2d4789d5a79ebfc544a4"
+    },
+    {
+      "path": "evidence/ocr/page-01.txt",
+      "size": 79,
+      "sha256": "44f50e7cf2e974035348c7aabaaae20aa952931fa8d03dd4bd33d042e4d3c1c9"
+    },
+    {
+      "path": "evidence/ocr/page-02.txt",
+      "size": 92,
+      "sha256": "afaa43f68393a4df28c67968f4255c914792fbdbf483f6688c0e525ba600cc73"
+    },
+    {
+      "path": "evidence/ocr/page-03.txt",
+      "size": 1281,
+      "sha256": "53b1008922200d2c90d23931c184f094bdf82e8d3cd2921c940c6fbcde9af9f0"
+    },
+    {
+      "path": "evidence/ocr/page-04.txt",
+      "size": 377,
+      "sha256": "7cfcc798a2f2be5fbad84744632af0cb0ded804bbefd411b0bc8b2da24c45de7"
+    },
+    {
+      "path": "evidence/ocr/page-05.txt",
+      "size": 1259,
+      "sha256": "6f568020fe8ac5b157289290db59637b31c37b9f41f6af3a4cb0e6eb6bfff3fa"
+    },
+    {
+      "path": "evidence/ocr/page-06.txt",
+      "size": 825,
+      "sha256": "639e038c128f746e411aa3b7ffb75f2f7b4f250208faebc10059304314774a08"
+    },
+    {
+      "path": "evidence/ocr/page-07.txt",
+      "size": 1018,
+      "sha256": "326721d70fd467037309c66ecaafcdef53d87e25fc8fc3b1ab44fd529a9b47bd"
+    },
+    {
+      "path": "evidence/ocr/page-08.txt",
+      "size": 877,
+      "sha256": "04609f9e61a6a8b42aad06c4c6537c6e8ae13504f525e6b736f8556ca56a585e"
+    },
+    {
+      "path": "evidence/ocr/page-09.txt",
+      "size": 2417,
+      "sha256": "b299118e258e3779436e0eae02285356902ce7f4beaf9d475d5ae656003c09bb"
+    },
+    {
+      "path": "evidence/ocr/page-10.txt",
+      "size": 2565,
+      "sha256": "e3ef08075dc38e4224db5dae12bec794de09c552ee8eb6f0b29b68de00801dc7"
+    },
+    {
+      "path": "evidence/ocr/page-11.txt",
+      "size": 250,
+      "sha256": "ba43ae50545c1403ae1154f9e67fe55cdba002df272654fca728035298516d31"
+    },
+    {
+      "path": "evidence/replay-and-tamper.json",
+      "size": 933,
+      "sha256": "66b117261b6f2653835d736253c37fb809d80472d285fefc6d85d5cd6d2f2b12"
+    },
+    {
+      "path": "evidence/strict-sphinx.log",
+      "size": 1960,
+      "sha256": "a2da4f93f28f06695d83fcd7fdb162f31048f3809f5592fabe58f5904175a9b1"
+    },
+    {
+      "path": "refresh_manifest.py",
+      "size": 2267,
+      "sha256": "80bde6d5126aa5d0aaed9353a745aa50b1bcc8592612794a3b4bbd8b92a95261"
+    },
+    {
+      "path": "render.py",
+      "size": 18405,
+      "sha256": "08854c440b63239ad8d58df68fcc98c668ce59e7568cd700c942a8bd608c7bd0"
+    },
+    {
+      "path": "source/asset_decisions.json",
+      "size": 25027,
+      "sha256": "0ff49c96f658b8e46fec8ac44c4dcd824df610a8225b8af6fa6c0119845a0a04"
+    },
+    {
+      "path": "source/asset_decisions.preparation.json",
+      "size": 21776,
+      "sha256": "069debfe8afef3627617ea9ddf4ebbe6b00bc55988e738b9c7dd77974c71a46b"
+    },
+    {
+      "path": "source/asset_recipe.json",
+      "size": 18757,
+      "sha256": "b4952d43339ba74106dfcd24272bd9b0a573e6df941c2a99a5f231ae1088fc30"
+    },
+    {
+      "path": "source/discovery.md",
+      "size": 1865,
+      "sha256": "02e4897f462e1ec2ffcccf7d42583dc7376f9c70a603bdb48fc36e2edc723a6d"
+    },
+    {
+      "path": "source/intake-source.json",
+      "size": 2285,
+      "sha256": "d4028c643daf40501e3b1c857807ff078b16a2c21ba04824fa354ad3b4e01568"
+    },
+    {
+      "path": "source/original.pdf",
+      "size": 2639174,
+      "sha256": "90e9ed96c7128d4849825ef8179e6e79a677f9c3a709b19cc78c3cffa6d7b050"
+    },
+    {
+      "path": "source/page_map.json",
+      "size": 1770,
+      "sha256": "34f0d1d194eb8ffed16ff5eefeaa069da213f25d3c2c0aaf3debda1ff823065f"
+    },
+    {
+      "path": "source/transcription.json",
+      "size": 22290,
+      "sha256": "d2ebf06b1f9d962198cef4b9c0288f6487a3686a902b09d5f8507b6ef6005e7d"
+    },
+    {
+      "path": "source_manifest.json",
+      "size": 8987,
+      "sha256": "11b5d335d443e01c71e52c8063045fff302f0b8da3feab4be747aa0e823bf4b1"
+    },
+    {
+      "path": "web/en/_static/web_manual.css",
+      "size": 126890,
+      "sha256": "5afdc1947b423c52850852eccc5bc0f398c820c45909690ff6e5cc7bb266dfdf"
+    },
+    {
+      "path": "web/en/assets/app-badges.png",
+      "size": 20473,
+      "sha256": "c5f18a1d4ecb7856287b4ba5b3433e4cd1082eb1ba7a7ce0528fbe4a47d3d7b7"
+    },
+    {
+      "path": "web/en/assets/car-charging.png",
+      "size": 48526,
+      "sha256": "9f9434c2dc45f9ad0a09f89710726675ba238f58c1c676449912724202c2a9d9"
+    },
+    {
+      "path": "web/en/assets/certifications.png",
+      "size": 36387,
+      "sha256": "1576ec1e513916121669bbdaae6fbe5fb97f2c7728cae6c5010beeebfd568c46"
+    },
+    {
+      "path": "web/en/assets/contact-qr.png",
+      "size": 8510,
+      "sha256": "b8d7d6c23747fd98ec725a181ad8a5fb5ee3c137a6f24dd0ca921f5fc3d96279"
+    },
+    {
+      "path": "web/en/assets/fcc-mark.svg",
+      "size": 1927,
+      "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+    },
+    {
+      "path": "web/en/assets/inbox-cable.png",
+      "size": 8570,
+      "sha256": "a07d2a85876fb89bf5f9270879cc19d3040ad445826c8a578dbb0af43d9eabc1"
+    },
+    {
+      "path": "web/en/assets/inbox-manual.png",
+      "size": 9747,
+      "sha256": "f19bdd9f047efeb83d07e82801d533689eefd211c43586087a2fcd9334a509fb"
+    },
+    {
+      "path": "web/en/assets/inbox-unit.png",
+      "size": 16750,
+      "sha256": "1ed2a449478a5c835d41277029286d4733f085c6f20f4fa8417a997ebcf6fab5"
+    },
+    {
+      "path": "web/en/assets/inline-connection.png",
+      "size": 2285,
+      "sha256": "74ed1ff055c822fac2ce094f5119a7a9938ed1a8866f460df7cebeadbd5e1108"
+    },
+    {
+      "path": "web/en/assets/lcd.png",
+      "size": 26913,
+      "sha256": "b545cc2cc7797853066a45ec1a252f1c44b61a027a2256715bf396fe719cb401"
+    },
+    {
+      "path": "web/en/assets/overview-front.png",
+      "size": 51587,
+      "sha256": "6a5f4007480dd116f187852e068e1f57b22872512b8e500551ed4e0e45b8185a"
+    },
+    {
+      "path": "web/en/assets/overview-rear.png",
+      "size": 90701,
+      "sha256": "7f380e6f7662c4ca1bfef1c7f28191e41294035cd7e6bacb4b8766fd42e303dd"
+    },
+    {
+      "path": "web/en/assets/power-on-off.png",
+      "size": 29318,
+      "sha256": "a979b9ebf3a984619d5f5fbd1a527a8092c58b25d29e59036f5660f54fa6263f"
+    },
+    {
+      "path": "web/en/assets/usage-chain.png",
+      "size": 366490,
+      "sha256": "386885dfc160a7551e29fc2c64a695f2ffb9ec30f68650ae08f6fcbe2db6b178"
+    },
+    {
+      "path": "web/en/assets/usage-tree.png",
+      "size": 184213,
+      "sha256": "88adaf01479a42a58b937823f2908af51bf3ecdc278ab1814ebce568dbe1ce28"
+    },
+    {
+      "path": "web/en/assets/wall-charging.png",
+      "size": 53313,
+      "sha256": "5059e4d3ca9efcc7298dabd3bd4cd0a86bc5f1f2aa072b3bc1c183080d72b19d"
+    },
+    {
+      "path": "web/en/conf.py",
+      "size": 825,
+      "sha256": "d92a8f3196e94f73447e755fb57404c683585334a99d7ef2b61356af65efd486"
+    },
+    {
+      "path": "web/en/index.md",
+      "size": 87,
+      "sha256": "5a5e31d111f9e7e76a08a2f84c5fee508717760faf6b0a173a2da4f1025ff93e"
+    },
+    {
+      "path": "web/en/manual.ir.json",
+      "size": 205032,
+      "sha256": "a5a4491f0c07216aef05e4a71a741a6a8ccbe464e95fed8c2780cd0387d0b6bc"
+    },
+    {
+      "path": "web/en/manual_jbp2000a_us_en.md",
+      "size": 24804,
+      "sha256": "9e5e65161b4e67565f3b6330d51d9220eb60fc1f699e4729d4cc454dd0823c34"
+    },
+    {
+      "path": "web/en/shared-style-admission.json",
+      "size": 178,
+      "sha256": "f77c17c9e5186fae57aaa2d6d9b2fe2270ab515c6e8329b1c95f559949ceac99"
+    }
+  ],
+  "repo_inputs": [
+    {
+      "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
+      "sha256": "a2773f7e96849e176a9909e8221e37c20eb9005cd2639415bf6a112d7c86527f"
+    }
+  ],
+  "shared_component_exceptions": []
+}

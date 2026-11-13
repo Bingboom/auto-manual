@@ -1,0 +1,439 @@
+[
+  {
+    "slot": "certifications",
+    "decision": "new-extraction",
+    "searched": [
+      "manual_sources/JBP-2000B/EU (HTP017 EU edition, all locales)",
+      "docs/renderers/web/assets/jbp2000b_eu_en",
+      "docs/renderers/web/assets/jbp3600a_eu_en",
+      "data/manual_sources/JBP-1000B-SIL/US",
+      "data/manual_sources/JBP-3600A/US",
+      "data/manual_sources/JA-TS02A/US (App store badges)",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Jackery Battery Pack 2000 Plus; exact source physical page 3",
+    "reason": "Certification mark row is booklet-specific (the two booklets print different marks); keep the complete printed row.",
+    "source_path": "source/original.pdf",
+    "source_pdf_sha256": "90e9ed96c7128d4849825ef8179e6e79a677f9c3a709b19cc78c3cffa6d7b050",
+    "physical_page": 3,
+    "bbox_pt": [
+      131.04,
+      439.2,
+      342.48,
+      477.12
+    ],
+    "background_policy": "Complete panel with all native leaders, labels, frames and product surfaces; image-only 300-dpi source rendered 1:1 (scale 300/72). Outside prose stays native HTML. QR keeps four edges.",
+    "review_status": "art-preparation-decided-before-extraction; operator pixel approval and global promotion pending",
+    "sha256": "1576ec1e513916121669bbdaae6fbe5fb97f2c7728cae6c5010beeebfd568c46"
+  },
+  {
+    "slot": "inbox-unit",
+    "decision": "new-extraction",
+    "searched": [
+      "manual_sources/JBP-2000B/EU (HTP017 EU edition, all locales)",
+      "docs/renderers/web/assets/jbp2000b_eu_en",
+      "docs/renderers/web/assets/jbp3600a_eu_en",
+      "data/manual_sources/JBP-1000B-SIL/US",
+      "data/manual_sources/JBP-3600A/US",
+      "data/manual_sources/JA-TS02A/US (App store badges)",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Jackery Battery Pack 2000 Plus; exact source physical page 4",
+    "reason": "No donor draws this HTP002/HTP003 front: JBP-2000B/3600A units have different badges, handles and port panels; JBP-1000B-SIL is a different flat product.",
+    "source_path": "source/original.pdf",
+    "source_pdf_sha256": "90e9ed96c7128d4849825ef8179e6e79a677f9c3a709b19cc78c3cffa6d7b050",
+    "physical_page": 4,
+    "bbox_pt": [
+      27.6,
+      68.4,
+      141.12,
+      126.96
+    ],
+    "background_policy": "Complete panel with all native leaders, labels, frames and product surfaces; image-only 300-dpi source rendered 1:1 (scale 300/72). Outside prose stays native HTML. QR keeps four edges.",
+    "review_status": "art-preparation-decided-before-extraction; operator pixel approval and global promotion pending",
+    "sha256": "1ed2a449478a5c835d41277029286d4733f085c6f20f4fa8417a997ebcf6fab5"
+  },
+  {
+    "slot": "inbox-cable",
+    "decision": "new-extraction",
+    "searched": [
+      "manual_sources/JBP-2000B/EU (HTP017 EU edition, all locales)",
+      "docs/renderers/web/assets/jbp2000b_eu_en",
+      "docs/renderers/web/assets/jbp3600a_eu_en",
+      "data/manual_sources/JBP-1000B-SIL/US",
+      "data/manual_sources/JBP-3600A/US",
+      "data/manual_sources/JA-TS02A/US (App store badges)",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Jackery Battery Pack 2000 Plus; exact source physical page 4",
+    "reason": "Donor expansion cables (JBP-2000B, JBP-3600A) have different connector heads and loop; current source cable geometry differs.",
+    "source_path": "source/original.pdf",
+    "source_pdf_sha256": "90e9ed96c7128d4849825ef8179e6e79a677f9c3a709b19cc78c3cffa6d7b050",
+    "physical_page": 4,
+    "bbox_pt": [
+      187.44,
+      66.0,
+      223.92,
+      126.96
+    ],
+    "background_policy": "Complete panel with all native leaders, labels, frames and product surfaces; image-only 300-dpi source rendered 1:1 (scale 300/72). Outside prose stays native HTML. QR keeps four edges.",
+    "review_status": "art-preparation-decided-before-extraction; operator pixel approval and global promotion pending",
+    "sha256": "a07d2a85876fb89bf5f9270879cc19d3040ad445826c8a578dbb0af43d9eabc1"
+  },
+  {
+    "slot": "inbox-manual",
+    "decision": "new-extraction",
+    "searched": [
+      "manual_sources/JBP-2000B/EU (HTP017 EU edition, all locales)",
+      "docs/renderers/web/assets/jbp2000b_eu_en",
+      "docs/renderers/web/assets/jbp3600a_eu_en",
+      "data/manual_sources/JBP-1000B-SIL/US",
+      "data/manual_sources/JBP-3600A/US",
+      "data/manual_sources/JA-TS02A/US (App store badges)",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Jackery Battery Pack 2000 Plus; exact source physical page 4",
+    "reason": "Donor manual thumbnails show other covers (Battery Pack 3600 / generic page icon); this card shows this booklet's own cover.",
+    "source_path": "source/original.pdf",
+    "source_pdf_sha256": "90e9ed96c7128d4849825ef8179e6e79a677f9c3a709b19cc78c3cffa6d7b050",
+    "physical_page": 4,
+    "bbox_pt": [
+      281.76,
+      68.88,
+      325.68,
+      129.12
+    ],
+    "background_policy": "Complete panel with all native leaders, labels, frames and product surfaces; image-only 300-dpi source rendered 1:1 (scale 300/72). Outside prose stays native HTML. QR keeps four edges.",
+    "review_status": "art-preparation-decided-before-extraction; operator pixel approval and global promotion pending",
+    "sha256": "f19bdd9f047efeb83d07e82801d533689eefd211c43586087a2fcd9334a509fb"
+  },
+  {
+    "slot": "overview-front",
+    "decision": "new-extraction",
+    "searched": [
+      "manual_sources/JBP-2000B/EU (HTP017 EU edition, all locales)",
+      "docs/renderers/web/assets/jbp2000b_eu_en",
+      "docs/renderers/web/assets/jbp3600a_eu_en",
+      "data/manual_sources/JBP-1000B-SIL/US",
+      "data/manual_sources/JBP-3600A/US",
+      "data/manual_sources/JA-TS02A/US (App store badges)",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Jackery Battery Pack 2000 Plus; exact source physical page 4",
+    "reason": "Donor overviews draw other products and carry other-language or differently placed labels; keep the complete current source panel with its native English leaders.",
+    "source_path": "source/original.pdf",
+    "source_pdf_sha256": "90e9ed96c7128d4849825ef8179e6e79a677f9c3a709b19cc78c3cffa6d7b050",
+    "physical_page": 4,
+    "bbox_pt": [
+      72.0,
+      195.6,
+      342.72,
+      329.76
+    ],
+    "background_policy": "Complete panel with all native leaders, labels, frames and product surfaces; image-only 300-dpi source rendered 1:1 (scale 300/72). Outside prose stays native HTML. QR keeps four edges.",
+    "review_status": "art-preparation-decided-before-extraction; operator pixel approval and global promotion pending",
+    "removed_exterior_heading": "Only the exterior 'Product Appearance' subheading in the white band left of the art is whited out; it is a native Web heading. All art and the LCD Display label remain.",
+    "sha256": "6a5f4007480dd116f187852e068e1f57b22872512b8e500551ed4e0e45b8185a"
+  },
+  {
+    "slot": "overview-rear",
+    "decision": "new-extraction",
+    "searched": [
+      "manual_sources/JBP-2000B/EU (HTP017 EU edition, all locales)",
+      "docs/renderers/web/assets/jbp2000b_eu_en",
+      "docs/renderers/web/assets/jbp3600a_eu_en",
+      "data/manual_sources/JBP-1000B-SIL/US",
+      "data/manual_sources/JBP-3600A/US",
+      "data/manual_sources/JA-TS02A/US (App store badges)",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Jackery Battery Pack 2000 Plus; exact source physical page 4",
+    "reason": "Rear port panel and labels are specific to this booklet; no donor matches.",
+    "source_path": "source/original.pdf",
+    "source_pdf_sha256": "90e9ed96c7128d4849825ef8179e6e79a677f9c3a709b19cc78c3cffa6d7b050",
+    "physical_page": 4,
+    "bbox_pt": [
+      71.76,
+      328.8,
+      342.72,
+      497.52
+    ],
+    "background_policy": "Complete panel with all native leaders, labels, frames and product surfaces; image-only 300-dpi source rendered 1:1 (scale 300/72). Outside prose stays native HTML. QR keeps four edges.",
+    "review_status": "art-preparation-decided-before-extraction; operator pixel approval and global promotion pending",
+    "sha256": "7f380e6f7662c4ca1bfef1c7f28191e41294035cd7e6bacb4b8766fd42e303dd"
+  },
+  {
+    "slot": "lcd",
+    "decision": "new-extraction",
+    "searched": [
+      "manual_sources/JBP-2000B/EU (HTP017 EU edition, all locales)",
+      "docs/renderers/web/assets/jbp2000b_eu_en",
+      "docs/renderers/web/assets/jbp3600a_eu_en",
+      "data/manual_sources/JBP-1000B-SIL/US",
+      "data/manual_sources/JBP-3600A/US",
+      "data/manual_sources/JA-TS02A/US (App store badges)",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Jackery Battery Pack 2000 Plus; exact source physical page 5",
+    "reason": "JBP-3600A US lcd-display carries the same two label words but a different composition (labels inline, bold) and JBP-2000B is Ukrainian/other locale; keep the current complete panel with leaders.",
+    "source_path": "source/original.pdf",
+    "source_pdf_sha256": "90e9ed96c7128d4849825ef8179e6e79a677f9c3a709b19cc78c3cffa6d7b050",
+    "physical_page": 5,
+    "bbox_pt": [
+      53.04,
+      48.96,
+      323.28,
+      119.52
+    ],
+    "background_policy": "Complete panel with all native leaders, labels, frames and product surfaces; image-only 300-dpi source rendered 1:1 (scale 300/72). Outside prose stays native HTML. QR keeps four edges.",
+    "review_status": "art-preparation-decided-before-extraction; operator pixel approval and global promotion pending",
+    "sha256": "b545cc2cc7797853066a45ec1a252f1c44b61a027a2256715bf396fe719cb401"
+  },
+  {
+    "slot": "power-on-off",
+    "decision": "new-extraction",
+    "searched": [
+      "manual_sources/JBP-2000B/EU (HTP017 EU edition, all locales)",
+      "docs/renderers/web/assets/jbp2000b_eu_en",
+      "docs/renderers/web/assets/jbp3600a_eu_en",
+      "data/manual_sources/JBP-1000B-SIL/US",
+      "data/manual_sources/JBP-3600A/US",
+      "data/manual_sources/JA-TS02A/US (App store badges)",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Jackery Battery Pack 2000 Plus; exact source physical page 5",
+    "reason": "Donor power-on images (JBP-2000B/3600A) draw other units and a different hand/zoom bubble.",
+    "source_path": "source/original.pdf",
+    "source_pdf_sha256": "90e9ed96c7128d4849825ef8179e6e79a677f9c3a709b19cc78c3cffa6d7b050",
+    "physical_page": 5,
+    "bbox_pt": [
+      84.96,
+      311.28,
+      284.88,
+      377.28
+    ],
+    "background_policy": "Complete panel with all native leaders, labels, frames and product surfaces; image-only 300-dpi source rendered 1:1 (scale 300/72). Outside prose stays native HTML. QR keeps four edges.",
+    "review_status": "art-preparation-decided-before-extraction; operator pixel approval and global promotion pending",
+    "sha256": "a979b9ebf3a984619d5f5fbd1a527a8092c58b25d29e59036f5660f54fa6263f"
+  },
+  {
+    "slot": "usage-chain",
+    "decision": "new-extraction",
+    "searched": [
+      "manual_sources/JBP-2000B/EU (HTP017 EU edition, all locales)",
+      "docs/renderers/web/assets/jbp2000b_eu_en",
+      "docs/renderers/web/assets/jbp3600a_eu_en",
+      "data/manual_sources/JBP-1000B-SIL/US",
+      "data/manual_sources/JBP-3600A/US",
+      "data/manual_sources/JA-TS02A/US (App store badges)",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Jackery Battery Pack 2000 Plus; exact source physical page 6",
+    "reason": "Product-specific multi-unit connection diagram with native English labels; no donor.",
+    "source_path": "source/original.pdf",
+    "source_pdf_sha256": "90e9ed96c7128d4849825ef8179e6e79a677f9c3a709b19cc78c3cffa6d7b050",
+    "physical_page": 6,
+    "bbox_pt": [
+      36.72,
+      94.8,
+      326.64,
+      498.24
+    ],
+    "background_policy": "Complete panel with all native leaders, labels, frames and product surfaces; image-only 300-dpi source rendered 1:1 (scale 300/72). Outside prose stays native HTML. QR keeps four edges.",
+    "review_status": "art-preparation-decided-before-extraction; operator pixel approval and global promotion pending",
+    "sha256": "386885dfc160a7551e29fc2c64a695f2ffb9ec30f68650ae08f6fcbe2db6b178"
+  },
+  {
+    "slot": "usage-tree",
+    "decision": "new-extraction",
+    "searched": [
+      "manual_sources/JBP-2000B/EU (HTP017 EU edition, all locales)",
+      "docs/renderers/web/assets/jbp2000b_eu_en",
+      "docs/renderers/web/assets/jbp3600a_eu_en",
+      "data/manual_sources/JBP-1000B-SIL/US",
+      "data/manual_sources/JBP-3600A/US",
+      "data/manual_sources/JA-TS02A/US (App store badges)",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Jackery Battery Pack 2000 Plus; exact source physical page 7",
+    "reason": "Product-specific branching connection diagram with native English labels; no donor.",
+    "source_path": "source/original.pdf",
+    "source_pdf_sha256": "90e9ed96c7128d4849825ef8179e6e79a677f9c3a709b19cc78c3cffa6d7b050",
+    "physical_page": 7,
+    "bbox_pt": [
+      25.44,
+      29.04,
+      341.04,
+      270.96
+    ],
+    "background_policy": "Complete panel with all native leaders, labels, frames and product surfaces; image-only 300-dpi source rendered 1:1 (scale 300/72). Outside prose stays native HTML. QR keeps four edges.",
+    "review_status": "art-preparation-decided-before-extraction; operator pixel approval and global promotion pending",
+    "sha256": "88adaf01479a42a58b937823f2908af51bf3ecdc278ab1814ebce568dbe1ce28"
+  },
+  {
+    "slot": "inline-connection",
+    "decision": "new-extraction",
+    "searched": [
+      "manual_sources/JBP-2000B/EU (HTP017 EU edition, all locales)",
+      "docs/renderers/web/assets/jbp2000b_eu_en",
+      "docs/renderers/web/assets/jbp3600a_eu_en",
+      "data/manual_sources/JBP-1000B-SIL/US",
+      "data/manual_sources/JBP-3600A/US",
+      "data/manual_sources/JA-TS02A/US (App store badges)",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Jackery Battery Pack 2000 Plus; exact source physical page 7",
+    "reason": "Inline power-station display glyph with 'x8'. JBP-1000B-SIL connection-icon.svg is a different glyph and JBP-3600A inline-connection-icon.svg renders as a filled block; neither matches.",
+    "source_path": "source/original.pdf",
+    "source_pdf_sha256": "90e9ed96c7128d4849825ef8179e6e79a677f9c3a709b19cc78c3cffa6d7b050",
+    "physical_page": 7,
+    "bbox_pt": [
+      66.96,
+      366.48,
+      82.56,
+      377.52
+    ],
+    "background_policy": "Complete panel with all native leaders, labels, frames and product surfaces; image-only 300-dpi source rendered 1:1 (scale 300/72). Outside prose stays native HTML. QR keeps four edges.",
+    "review_status": "art-preparation-decided-before-extraction; operator pixel approval and global promotion pending",
+    "sha256": "74ed1ff055c822fac2ce094f5119a7a9938ed1a8866f460df7cebeadbd5e1108"
+  },
+  {
+    "slot": "wall-charging",
+    "decision": "new-extraction",
+    "searched": [
+      "manual_sources/JBP-2000B/EU (HTP017 EU edition, all locales)",
+      "docs/renderers/web/assets/jbp2000b_eu_en",
+      "docs/renderers/web/assets/jbp3600a_eu_en",
+      "data/manual_sources/JBP-1000B-SIL/US",
+      "data/manual_sources/JBP-3600A/US",
+      "data/manual_sources/JA-TS02A/US (App store badges)",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Jackery Battery Pack 2000 Plus; exact source physical page 8",
+    "reason": "Product-specific charging diagram with native English labels; donors draw other units.",
+    "source_path": "source/original.pdf",
+    "source_pdf_sha256": "90e9ed96c7128d4849825ef8179e6e79a677f9c3a709b19cc78c3cffa6d7b050",
+    "physical_page": 8,
+    "bbox_pt": [
+      39.36,
+      80.88,
+      309.6,
+      197.76
+    ],
+    "background_policy": "Complete panel with all native leaders, labels, frames and product surfaces; image-only 300-dpi source rendered 1:1 (scale 300/72). Outside prose stays native HTML. QR keeps four edges.",
+    "review_status": "art-preparation-decided-before-extraction; operator pixel approval and global promotion pending",
+    "sha256": "5059e4d3ca9efcc7298dabd3bd4cd0a86bc5f1f2aa072b3bc1c183080d72b19d"
+  },
+  {
+    "slot": "car-charging",
+    "decision": "new-extraction",
+    "searched": [
+      "manual_sources/JBP-2000B/EU (HTP017 EU edition, all locales)",
+      "docs/renderers/web/assets/jbp2000b_eu_en",
+      "docs/renderers/web/assets/jbp3600a_eu_en",
+      "data/manual_sources/JBP-1000B-SIL/US",
+      "data/manual_sources/JBP-3600A/US",
+      "data/manual_sources/JA-TS02A/US (App store badges)",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Jackery Battery Pack 2000 Plus; exact source physical page 8",
+    "reason": "Product-specific car charging diagram with native English labels; no donor.",
+    "source_path": "source/original.pdf",
+    "source_pdf_sha256": "90e9ed96c7128d4849825ef8179e6e79a677f9c3a709b19cc78c3cffa6d7b050",
+    "physical_page": 8,
+    "bbox_pt": [
+      90.96,
+      383.76,
+      256.08,
+      479.52
+    ],
+    "background_policy": "Complete panel with all native leaders, labels, frames and product surfaces; image-only 300-dpi source rendered 1:1 (scale 300/72). Outside prose stays native HTML. QR keeps four edges.",
+    "review_status": "art-preparation-decided-before-extraction; operator pixel approval and global promotion pending",
+    "sha256": "9f9434c2dc45f9ad0a09f89710726675ba238f58c1c676449912724202c2a9d9"
+  },
+  {
+    "slot": "app-badges",
+    "decision": "new-extraction",
+    "searched": [
+      "manual_sources/JBP-2000B/EU (HTP017 EU edition, all locales)",
+      "docs/renderers/web/assets/jbp2000b_eu_en",
+      "docs/renderers/web/assets/jbp3600a_eu_en",
+      "data/manual_sources/JBP-1000B-SIL/US",
+      "data/manual_sources/JBP-3600A/US",
+      "data/manual_sources/JA-TS02A/US (App store badges)",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Jackery Battery Pack 2000 Plus; exact source physical page 10",
+    "reason": "JA-TS02A US app-store-badges.png has a colour Google Play mark; this source prints both badges in greyscale. Keep the source badges.",
+    "source_path": "source/original.pdf",
+    "source_pdf_sha256": "90e9ed96c7128d4849825ef8179e6e79a677f9c3a709b19cc78c3cffa6d7b050",
+    "physical_page": 10,
+    "bbox_pt": [
+      25.92,
+      471.36,
+      178.08,
+      497.52
+    ],
+    "background_policy": "Complete panel with all native leaders, labels, frames and product surfaces; image-only 300-dpi source rendered 1:1 (scale 300/72). Outside prose stays native HTML. QR keeps four edges.",
+    "review_status": "art-preparation-decided-before-extraction; operator pixel approval and global promotion pending",
+    "sha256": "c5f18a1d4ecb7856287b4ba5b3433e4cd1082eb1ba7a7ce0528fbe4a47d3d7b7"
+  },
+  {
+    "slot": "contact-qr",
+    "decision": "new-extraction",
+    "searched": [
+      "manual_sources/JBP-2000B/EU (HTP017 EU edition, all locales)",
+      "docs/renderers/web/assets/jbp2000b_eu_en",
+      "docs/renderers/web/assets/jbp3600a_eu_en",
+      "data/manual_sources/JBP-1000B-SIL/US",
+      "data/manual_sources/JBP-3600A/US",
+      "data/manual_sources/JA-TS02A/US (App store badges)",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Jackery Battery Pack 2000 Plus; exact source physical page 11",
+    "reason": "Source QR (encodes this booklet's material number); never substitute another code.",
+    "source_path": "source/original.pdf",
+    "source_pdf_sha256": "90e9ed96c7128d4849825ef8179e6e79a677f9c3a709b19cc78c3cffa6d7b050",
+    "physical_page": 11,
+    "bbox_pt": [
+      303.36,
+      460.56,
+      342.96,
+      500.16
+    ],
+    "background_policy": "Complete panel with all native leaders, labels, frames and product surfaces; image-only 300-dpi source rendered 1:1 (scale 300/72). Outside prose stays native HTML. QR keeps four edges.",
+    "review_status": "art-preparation-decided-before-extraction; operator pixel approval and global promotion pending",
+    "sha256": "b8d7d6c23747fd98ec725a181ad8a5fb5ee3c137a6f24dd0ca921f5fc3d96279"
+  },
+  {
+    "slot": "fcc-mark",
+    "decision": "reuse-packaged-donor",
+    "source_git_ref": "e9dac843",
+    "source_path": "data/manual_sources/JBP-3600A/US/git-20261014-16ae12b0/assets/fcc_mark.svg",
+    "identity_check": "Standard FC mark printed above the FCC NOTE; same mark used by the same-family JBP-3600A US Web edition.",
+    "reason": "Exact standard mark; byte-identical reuse for HB-SPECIAL-FCC mark_asset_ref; no crop.",
+    "searched": [
+      "tools/component_specs/fcc.py (default mark/fcc is not a package asset)",
+      "data/manual_sources/JBP-3600A/US/git-20261014-16ae12b0/assets/fcc_mark.svg",
+      "data/manual_sources/JBP-1000B-SIL/US assets/fcc-mark.svg (same rendering)"
+    ],
+    "background_policy": "Byte-identical existing vector mark",
+    "review_status": "art-preparation-decided-before-extraction; operator pixel approval pending",
+    "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+  }
+]

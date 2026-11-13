@@ -1,0 +1,9 @@
+# JBP-2000A source discovery and component plan
+
+Material 38-0001-000574 is the current English JBP-2000A / Jackery Battery Pack 2000 Plus single-language attachment (project HTP002, US+CA), printed JAK-UM-V1.0, eleven physical pages. Source bytes and live attachment coordinates are in intake-source.json. The PDF has no text layer and the print master is outlined, so all copy comes from Tesseract 5 OCR at 300 dpi, hand-corrected line by line against the page pixels. All pages were viewed.
+
+Chapter map: p[1, 3] USER MANUAL; p[3] TECHNICAL SPECIFICATIONS; p[4] PACKAGE LIST; p[4] GET TO KNOW YOUR GEAR; p[5] LCD DISPLAY; p[5] BASIC OPERATIONS; p[6, 7] USAGE MODE; p[8] CHARGING YOUR JACKERY BATTERY PACK 2000 PLUS; p[9] SAFETY PRECAUTIONS WHEN USING; p[10] WARRANTY; p[11] JACKERY MEXICO S.A. DE C.V.; p[1, 11] JACKERY INC.. Page 2 is the printed contents locator, replaced by Web navigation. The cover image and wordmarks are decorative; page numbers and US tab bars are furniture.
+
+Component plan: specification groups use HB-TABLE-SPEC; three inbox cards use HB-SPECIAL-INBOX; front/rear overview, LCD, power-button, usage and charging diagrams keep their complete source-English labels as HB-SPECIAL-REFERENCE-FIGURE with no duplicated caption lists; the two LCD definitions use HB-TABLE-REFERENCE lcd-descriptions; printed Notes use HB-CALLOUT-STRIP; the FCC block uses HB-SPECIAL-FCC; warranty uses HB-WARRANTY-SECTION and HB-WARRANTY-YEARS. Store badges and certification marks are printed rows kept as complete figures; the booklet has no App QR or link, so HB-APP download is not used. The inline power-station glyph ('x8') in usage-mode safety item 2 is a bounded inline image. No troubleshooting table or symbol table is printed; none is added.
+
+Source concerns (typos, unclear values, identity) are listed in transcription.json and kept as printed.
