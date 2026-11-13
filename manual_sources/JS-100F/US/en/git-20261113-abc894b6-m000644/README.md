@@ -2,7 +2,7 @@
 
 Material **38-0001-000644**, model **JS-100F**, cover badge **V2** (no JAK-UM version string is printed). The original seven-page English 单语言 attachment and its SHA-256 are fixed in [source_manifest.json](source_manifest.json). The original PDF is [source/original.pdf](source/original.pdf). It is image-only, one 300-dpi raster per page with no text layer. All native text and the source-page mapping are in [source/transcription.json](source/transcription.json) and [source/page_map.json](source/page_map.json). The transcription was made with Tesseract 5 OCR ([evidence/ocr](evidence/ocr)), then every line was hand-corrected against the page pixels.
 
-**Market identity is an open decision.** The print spec is HTO587H-**MX**-JAK, and the booklet prints the NOM mark, hello.mx@jackery.com and the JACKERY MEXICO S.A. DE C.V. address. The Feishu finished-goods spec is HTO587H-US-JAK. The route stays US/en, and the copy is kept exactly as printed. See `source_concerns`.
+**Shared US/MX edition.** The print spec is HTO587H-**MX**-JAK, and the booklet prints the NOM mark, hello.mx@jackery.com and the JACKERY MEXICO S.A. DE C.V. address; the Feishu finished-goods spec is HTO587H-US-JAK. The operator confirmed on 2026-11-13 「JS-100F：这本是墨西哥版= 和美规共用」: this is the Mexico edition shared with the US. It is published as US/en with the copy exactly as printed. See `source_concerns`.
 
 **Cover:** by operator rule (2026-11-13, 「封面信息 不用放进网页呀 直接从这个开始」) the Web page carries no cover or contents information and starts at its first body chapter. The cover facts (USER GUIDE, SolarSaga 100, Model: JS-100F, V2 badge, cover contact lines) are kept in `cover_facts` in the transcription, in the manifest and here.
 

@@ -228,7 +228,7 @@
     }
   ],
   "source_concerns": [
-    "Market identity: the print spec is HTO587H-MX-JAK and the booklet carries Mexico content (NOM mark, hello.mx@jackery.com 'For Mexico only', JACKERY MEXICO S.A. DE C.V. address), while the Feishu finished-goods spec is HTO587H-US-JAK. Transcribed as printed; route kept US.",
+    "Market identity: the print spec is HTO587H-MX-JAK and the booklet carries Mexico content (NOM mark, hello.mx@jackery.com 'For Mexico only', JACKERY MEXICO S.A. DE C.V. address), while the Feishu finished-goods spec is HTO587H-US-JAK. Transcribed as printed; route kept US. Operator 2026-11-13: 「JS-100F：这本是墨西哥版= 和美规共用」 — a shared US/MX edition, published as US/en with the copy as printed.",
     "Peak Power tolerance is printed as ±5W (100W±5W / 104W±5W) while every other electrical value uses ±5%. Retained as printed.",
     "Maximum System Voltage is printed as 60V. Retained as printed; not cross-checked against another edition.",
     "Source grammar is retained, e.g. 'the rated voltage of component, the rated current of conductor', 'facing directly towards sun', 'It is strictly prohibited to drop the products', '( damages ... included )' spacing.",

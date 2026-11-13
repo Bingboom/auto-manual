@@ -9,7 +9,7 @@
     "assets/contact-qr.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "5979ed9a527710bc95730ea1a5a0d6583589400dea28fdd6250094080e3501d4",
+  "bundle_sha256": "fd4621610702fe0c8b8326f77f0c31273ab88f1b0bf396ecb7dcf19c4bb9adc9",
   "content_sha256": "7f7b98450737fe876d5ccd5c16664285b622f9d22ea8f6616675b03ce050c259",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
@@ -1363,8 +1363,8 @@
         },
         {
           "path": "source/transcription.json",
-          "sha256": "5a30699f7437cf3fa27fa3c5e028a950156fb422bf800cecb4b61a42d15c9de8",
-          "size": 14439
+          "sha256": "5083b7b15458dc1539043887eba530551f3b5fddfdbcb4dd29e1c67db1002fbb",
+          "size": 14588
         },
         {
           "path": "render.py",
@@ -2038,7 +2038,7 @@
     "skipped_raw": 0,
     "source_errata": {
       "source_concerns": [
-        "Market identity: the print spec is HTO587H-MX-JAK and the booklet carries Mexico content (NOM mark, hello.mx@jackery.com 'For Mexico only', JACKERY MEXICO S.A. DE C.V. address), while the Feishu finished-goods spec is HTO587H-US-JAK. Transcribed as printed; route kept US.",
+        "Market identity: the print spec is HTO587H-MX-JAK and the booklet carries Mexico content (NOM mark, hello.mx@jackery.com 'For Mexico only', JACKERY MEXICO S.A. DE C.V. address), while the Feishu finished-goods spec is HTO587H-US-JAK. Transcribed as printed; route kept US. Operator 2026-11-13: 「JS-100F：这本是墨西哥版= 和美规共用」 — a shared US/MX edition, published as US/en with the copy as printed.",
         "Peak Power tolerance is printed as ±5W (100W±5W / 104W±5W) while every other electrical value uses ±5%. Retained as printed.",
         "Maximum System Voltage is printed as 60V. Retained as printed; not cross-checked against another edition.",
         "Source grammar is retained, e.g. 'the rated voltage of component, the rated current of conductor', 'facing directly towards sun', 'It is strictly prohibited to drop the products', '( damages ... included )' spacing.",

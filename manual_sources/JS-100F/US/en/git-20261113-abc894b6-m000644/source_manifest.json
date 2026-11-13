@@ -128,8 +128,8 @@
     },
     {
       "path": "source/transcription.json",
-      "size": 14439,
-      "sha256": "5a30699f7437cf3fa27fa3c5e028a950156fb422bf800cecb4b61a42d15c9de8"
+      "size": 14588,
+      "sha256": "5083b7b15458dc1539043887eba530551f3b5fddfdbcb4dd29e1c67db1002fbb"
     },
     {
       "path": "render.py",

@@ -58,8 +58,8 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 3862,
-      "sha256": "68537d754e949825c52b7ada220308df21378798b60afa6f666c7ffbd56957ad"
+      "size": 3982,
+      "sha256": "8bd28b381b587ec0a2e563e05ef4f913086ccac37cd95901bedfb40363712084"
     },
     {
       "path": "assets/connection-adapters.png",
@@ -124,12 +124,12 @@
     {
       "path": "evidence/candidate-validation.json",
       "size": 2784,
-      "sha256": "6987e4d5f209eac4b89b50f16486e91fd0a3b1fa803883d16e5908917e7e6bcc"
+      "sha256": "edfc88bc514638ead57acfa191c1dc94e7b03cb63bbecb03a0e8493fc4be2afb"
     },
     {
       "path": "evidence/cold-source-rebuild.log",
       "size": 391,
-      "sha256": "ea974488e660b7a0051b25ef80f55b77e75f88b27e929333195c03838dd7e5dd"
+      "sha256": "c4b06aa4e2dab4c9a6efcf89d8d8b724ecf3fb6967b7dbf4bdb2227dfd919fad"
     },
     {
       "path": "evidence/full-1280.png",
@@ -184,7 +184,7 @@
     {
       "path": "evidence/replay-and-tamper.json",
       "size": 1032,
-      "sha256": "4a0a3d756e6e458fe67cf7d8e53baacaaccf79dc90bc2a537e93ecf5f7ab0778"
+      "sha256": "b7bd0c18f6dc821afde4123bbc2e05af12f2a1c7fb8a8fd2b199da7023086f54"
     },
     {
       "path": "evidence/strict-sphinx.log",
@@ -238,13 +238,13 @@
     },
     {
       "path": "source/transcription.json",
-      "size": 14439,
-      "sha256": "5a30699f7437cf3fa27fa3c5e028a950156fb422bf800cecb4b61a42d15c9de8"
+      "size": 14588,
+      "sha256": "5083b7b15458dc1539043887eba530551f3b5fddfdbcb4dd29e1c67db1002fbb"
     },
     {
       "path": "source_manifest.json",
       "size": 7325,
-      "sha256": "7a903699d053c98559ed4448ee826ba3aabc61a1652e23dc5858bf3580563dcc"
+      "sha256": "e73919495b87401d0e9d914fc6fb2e2ea35a434aedbb410f0866eb5e37de2cdf"
     },
     {
       "path": "web/en/_static/web_manual.css",
@@ -298,8 +298,8 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 152413,
-      "sha256": "58695356d75d34ab7e98949d9e5badd0b92315cc5a7c891dd884260588c66aa5"
+      "size": 152562,
+      "sha256": "d7b50e8f4b0f8bbe3e8098cbe2e9fc5768e2ffb4c394d2c2b6174e402098df04"
     },
     {
       "path": "web/en/manual_js100f_us_en.md",
