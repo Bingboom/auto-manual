@@ -80,6 +80,11 @@ class SpecParsingTests(unittest.TestCase):
         self.assertEqual((specs["wh"], specs["ac"], specs["surge"]), (3072.0, 3600.0, 7200.0))
         self.assertEqual((specs["cycles"], specs["kg"], specs["expansion"]), (4000, 27.0, True))
 
+    def test_a_cycle_count_with_a_thousands_separator_is_read_whole(self):
+        self.assertEqual(read_specs([("サイクル寿命", "3,000回の充放電後も容量の80%以上を維持")])["cycles"], 3000)
+        self.assertEqual(read_specs([("Cycle Life", "6000 cycles to 70%+ capacity")])["cycles"], 6000)
+        self.assertIsNone(read_specs([("Cycle Life", "long")])["cycles"])
+
     def test_japanese_surge_is_not_read_as_the_rated_output(self):
         specs = read_specs([("定格容量", "20Ah (1024Wh)"), ("AC出力", "100V，8A，800W，瞬間最大1600W"),
                             ("サイズ＆重量", "約600 mm (約10.5 kg）")])
@@ -109,6 +114,7 @@ class SpecParsingTests(unittest.TestCase):
         self.assertEqual(display_name("SlimPower H1（JE-WH）取扱説明書", "JE-WH"), "SlimPower H1")
         self.assertEqual(display_name("Battery Pack — JBP-1", "JBP-1"), "Battery Pack")
         self.assertEqual(display_name("", "JE-X"), "JE-X")
+        self.assertEqual(display_name("Explorer 1000 USER MANUAL", "JE-1000D"), "Explorer 1000")
 
 
 class ConfigTests(unittest.TestCase):

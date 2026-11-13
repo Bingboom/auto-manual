@@ -1,0 +1,13 @@
+{
+  "scope": "Exactly one Model No. value and its matching native carrier changed.",
+  "parent_package": "manual_sources/JE-300E/US/en/git-20261103-04bd8b90-source-alignment-release",
+  "parent_markdown_sha256": "648008dd3dccd547a91b0804b64b2406a2bd567491c503f842d987bdd3eb56ba",
+  "amended_markdown_sha256": "aa2f72bbe9d08259237448ed8f1796edd257e26d0b840aec18fbec58c80e858e",
+  "markdown_outside_model_cell_identical": true,
+  "assets_unchanged": 46,
+  "source_css_unchanged": true,
+  "shared_css_matches_already_deployed": true,
+  "original_pdf_unchanged": true,
+  "original_pdf_sha256": "04bd8b90f146ff9b65a3ee4b47327d76128c3110c8ef46ac4061e6b0e77b3c8c",
+  "runtime_pin_reason": "Rebuild the new revision on current verified repository inputs rather than mutate or silently reuse the historical package pins."
+}
