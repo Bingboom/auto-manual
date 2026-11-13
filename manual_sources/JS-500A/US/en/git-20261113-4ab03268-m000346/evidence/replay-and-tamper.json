@@ -1,0 +1,44 @@
+{
+  "cold_rebuild": {
+    "frozen_files": 33,
+    "rebuilt_files": 33,
+    "files_identical": 33,
+    "identical": true,
+    "ir_sha256": "ce74bcd4baba87aa88509060832fedaba2943980d5591aa6baa3ba1a087c17e4",
+    "markdown_sha256": "e368d6a4e9a1c8b4d3b2e291042b77b4efd65d9c75d9812447e9f3569d69d727"
+  },
+  "frozen_replay": "replay_package(web/en) accepted",
+  "tamper_rejections": [
+    {
+      "kind": "artwork",
+      "rejected": true,
+      "message": "document asset missing or changed: assets/connection.png"
+    },
+    {
+      "kind": "shared_css",
+      "rejected": true,
+      "message": "frozen Web stylesheet changed"
+    },
+    {
+      "kind": "source_pdf",
+      "rejected": true,
+      "message": "ValueError: frozen input changed: source/original.pdf"
+    },
+    {
+      "kind": "native_body",
+      "rejected": true,
+      "message": "ValueError: frozen input changed: source/transcription.json"
+    },
+    {
+      "kind": "source_artwork",
+      "rejected": true,
+      "message": "ValueError: frozen input changed: assets/hinge.png"
+    },
+    {
+      "kind": "asset_recipe",
+      "rejected": true,
+      "message": "ValueError: frozen input changed: source/asset_recipes.json"
+    }
+  ],
+  "all_tampers_rejected": true
+}
