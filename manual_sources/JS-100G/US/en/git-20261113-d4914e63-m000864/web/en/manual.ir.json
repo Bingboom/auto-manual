@@ -32,8 +32,8 @@
     "assets/contact-qr.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "1f7f9823d2b9af42e32b9c446625a02985b28a29622c4fc1020857e40fb9c47c",
-  "content_sha256": "f3760eea5adf0269495dcbdea506e0480c225b54b58149474402204dbbd137fc",
+  "bundle_sha256": "350f4b3d5047e31c95ac7d0dbf520d01dbf2414e18d1d2d78a531577282a1846",
+  "content_sha256": "429b76b4ad9ad6fc07395ceff09b692d8d4b6aea8992417aa784be70625f0ddb",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -69,7 +69,7 @@
       "assets/tensioner-release.png": "fccc231c757c947fdd51e60c2fbdc5cc39b0b78cd85723b2eafe22b2fc9f7cc9",
       "assets/tensioner-thread.png": "37c1bc79b22aaca07a6c34408e52136678e09d338ddb555f67504d028137a253"
     },
-    "block_count": 87,
+    "block_count": 80,
     "component_inventory": {
       "HB-CALLOUT-STRIP": 5,
       "HB-SPECIAL-INBOX": 2,
@@ -1644,8 +1644,8 @@
         },
         {
           "path": "source/discovery.md",
-          "sha256": "8c02987ba58e429510719a7fc53662e5f932e9d3f380d8aaa4043b06d667519e",
-          "size": 1565
+          "sha256": "f097beba325c844af8ecc530488fa045bdeee98790384bcadbc0cfc3c577620c",
+          "size": 1645
         },
         {
           "path": "source/intake-source.json",
@@ -1659,13 +1659,13 @@
         },
         {
           "path": "source/page_map.json",
-          "sha256": "006ccca89221b61468ce624a592e7eb401e45af570eb018a351c8d5d41db74ec",
-          "size": 1420
+          "sha256": "b1caf7dd135e02b1d51a1bfda0739f6bd4ba41b32b5e75cf8adb70eca391280c",
+          "size": 1534
         },
         {
           "path": "source/transcription.json",
-          "sha256": "27f65eefb2442139b968277b3b9fd04c18e9cc5efb98d8ffcca81d27f7aa8149",
-          "size": 22707
+          "sha256": "c8d8859f0f151a2c38d18205a8b1678e2714c753db8d632b942c465c9f0381cd",
+          "size": 22648
         },
         {
           "path": "render.py",
@@ -1690,11 +1690,11 @@
         "Leading '* ' bullet marks of the WARNINGS page become a native list; '* ' inside callouts, notes and steps is kept as printed.",
         "INSTALLATION (printed pages 03-12) is split into three Web pages: INSTALLATION (overview and Adhesive Mounting), Suspension Mounting and How to Connect Multiple Solar Panels; copy and order unchanged.",
         "The FCC page has only the FC logo as its heading; the Web page title is 'FCC'.",
-        "Omit cover drawing, wordmark, printed page numbers and the printed table of contents.",
         "Customer Service icons are carried by the shared warranty component styling rather than cropped.",
         "Shared callout labels drop a trailing colon ('Note:' → 'Note'); shared Sphinx typography renders the heading apostrophe in WHAT'S as ’.",
-        "Cover CONTACT US box stays in the introduction; printed 'www.jackery.com' is the visible link text of https://www.jackery.com.",
-        "Adhesive step 1 crop starts below the neighbouring step text; the open-ended wall-corner line loses its top 2.7 pt."
+        "Adhesive step 1 crop starts below the neighbouring step text; the open-ended wall-corner line loses its top 2.7 pt.",
+        "Cover and contents pages are not rendered (operator rule 2026-11-13); printed language tabs ('US English') are page furniture.",
+        "Printed 'www.jackery.com' is the visible link text of https://www.jackery.com."
       ],
       "original_source": {
         "filename": "38-0001-000864_Jackery_SolarSaga_100_Light_EN.pdf",
@@ -2323,7 +2323,7 @@
     },
     "manual_theme_sha256": "e8fc88458d239edef85f2cfb0b26b71df2e83859c8e51e9c093e5abc2982b47d",
     "markdown_filename": "manual_js100g_us_en.md",
-    "page_count": 10,
+    "page_count": 9,
     "page_declarations": {},
     "pdf_intake_provenance": {
       "artwork_standardizations": [],
@@ -2513,143 +2513,6 @@
   },
   "model": "JS-100G",
   "pages": [
-    {
-      "blocks": [
-        {
-          "asset_refs": [],
-          "block_id": "introduction:block-0001",
-          "content_sha256": "af5ad0278d67742b64ad9af3c5ed069e3635e0fd1d68889173b4214fe07b98df",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "USER MANUAL"
-              }
-            ],
-            "kind": "heading",
-            "level": 1,
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "source/transcription.json#introduction#block-1"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "introduction:block-0002",
-          "content_sha256": "ede23469cf01e28bcb9e4f8177852a888635254da6626b0ae7a453c88478edc0",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "Jackery SolarSaga 100 Light"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "source/transcription.json#introduction#block-2"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "introduction:block-0003",
-          "content_sha256": "49fd0366a75bc3a63a66f38c6780cced497a26c30b42bb51f7a26fcea77a2974",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "Model: JS-100G"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "source/transcription.json#introduction#block-3"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "introduction:block-0004",
-          "content_sha256": "bda1631039067a22a755db060cf0e541048fca213410e697ff11100f6d9cfacd",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "CONTACT US:"
-              }
-            ],
-            "kind": "heading",
-            "level": 2,
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "source/transcription.json#introduction#block-4"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "introduction:block-0005",
-          "content_sha256": "2b89b694a79fc5eddfc1577d048b28ca8a0f55558c2a7ddb9ed53544bf31c15b",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "1-888-502-2236 (US)"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "source/transcription.json#introduction#block-5"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "introduction:block-0006",
-          "content_sha256": "68f7e970a125b13e048c39e300dc11d80da4953359a66c8fdf60cd438e48969e",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "hello@jackery.com"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "source/transcription.json#introduction#block-6"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "introduction:block-0007",
-          "content_sha256": "71d119a89ecc672610625850a8511a27f2b6e61ab6d9cab43df9967cb49735df",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "www.jackery.com"
-                  }
-                ],
-                "kind": "link",
-                "target": "https://www.jackery.com"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "source/transcription.json#introduction#block-7"
-        }
-      ],
-      "language": "en",
-      "page_id": "introduction",
-      "skipped_raw": 0,
-      "source_path": "source/transcription.json",
-      "source_ref": "source/transcription.json#introduction",
-      "source_sha256": "bd04815a98705254091c5ce4fb66d36f45249bd0f3a45d8703855b6a9f7c805d"
-    },
     {
       "blocks": [
         {

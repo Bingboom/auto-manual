@@ -1,17 +1,3 @@
-# USER GUIDE
-
-<p>SolarSaga 100</p>
-
-<p>Model: JS-100F</p>
-
-<p>Version: V2</p>
-
-## Contact us:
-
-<p>hello@jackery.com</p>
-
-<p>hello.mx@jackery.com (For Mexico only)</p>
-
 # TECHNICAL PARAMETERS
 
 <div class="table-wrapper docutils container"><table class="manual-table"><tbody><tr><td>Product Name:</td><td colspan="2">SolarSaga 100</td></tr><tr><td>Model No.:</td><td colspan="2">JS-100F</td></tr><tr><th>Electrical Data</th><th>STC</th><th>BNPI</th></tr><tr><td>Peak Power (Pmax)</td><td>100W±5W</td><td>104W±5W</td></tr><tr><td>Open Circuit Voltage (Voc)</td><td>24.8V±5%</td><td>25V±5%</td></tr><tr><td>Short Circuit Current (Isc)</td><td>5.4A±5%</td><td>5.8A±5%</td></tr><tr><td>Power Voltage (Vmp)</td><td>20.0V±5%</td><td>20.1V±5%</td></tr><tr><td>Power Current (Imp)</td><td>5.0A±5%</td><td>5.2A±5%</td></tr><tr><td>Maximum System Voltage</td><td colspan="2">60V</td></tr><tr><td>Maximum Reverse Current</td><td colspan="2">15A</td></tr><tr><td>Protection Class Against Electric Shock</td><td colspan="2">Class II</td></tr><tr><td>Waterproof Level</td><td colspan="2">IP68</td></tr><tr><td>Operating Temperature Range</td><td colspan="2">-20°C~65°C (-4°F~149°F)</td></tr><tr><td>Dimensions (unfolded)</td><td colspan="2">1220x552x20mm</td></tr><tr><td>Dimensions (folded)</td><td colspan="2">610x552x35mm</td></tr><tr><td>Weight</td><td colspan="2">3.6 kg±0.3 kg</td></tr><tr><td>Bifaciality Coefficient (back/front)</td><td colspan="2">Pmax&gt;30%, Voc&gt;95%, Isc&gt;32%</td></tr><tr><td>Voltage Temperature Coefficient</td><td colspan="2">-0.268%/°C</td></tr><tr><td>Power Temperature Coefficient</td><td colspan="2">-0.29%/°C</td></tr><tr><td>Photovoltaic Consumer Products</td><td colspan="2">IEC TS 63163 Consumer Product Category 2</td></tr></tbody></table></div>

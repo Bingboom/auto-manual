@@ -26,7 +26,7 @@
     "source_file_token": "IbiqbzHsGoPd2axS0vlctnTTnkc"
   },
   "source_authority": "Operator request 2026-11-13 「把这几本说明书 转网页版」 for rows marked 是否要转网页文档 = Y-待转 in 发布文档管理 › 说明书网页 › 美规. The current 单语言 English attachment was downloaded read-only and SHA-256 locked. This image-only source governs all copy; no review acceptance or release approval inferred.",
-  "printed_manual_version": "V2 (cover badge; no JAK-UM version string printed)",
+  "printed_manual_version": "V2 (cover badge; kept in metadata only, not displayed; no JAK-UM version string printed)",
   "language_scope": "single",
   "publication_status": "review-candidate-no-release-authorization",
   "publication_eligible": false,
@@ -49,19 +49,17 @@
   },
   "normalizations": [
     "Join raster line wraps; keep wording, case, punctuation and values as printed.",
-    "Omit cover drawing, wordmark, printed page numbers, US/English page badges and the printed contents page.",
-    "The cover badge 'V2' is shown as 'Version: V2'.",
     "Customer Service icons (wrench, person, envelope) are carried by the shared warranty component styling rather than cropped.",
-    "Back-cover contact icons (phone, envelope, house) are dropped; the contact lines remain native text.",
     "Shared callout labels drop a trailing colon ('Tip:' → 'Tip'); shared Sphinx typography may render straight apostrophes as typographic ones.",
-    "Cover 'Contact us:' lines stay in the introduction; the back-cover entities are two pages, JACKERY MEXICO S.A. DE C.V. then JACKERY INC., in printed order.",
+    "Printed 'www.jackery.com' is the visible link text of https://www.jackery.com.",
+    "Cover and contents pages are not rendered (operator rule 2026-11-13); printed language tabs ('US English') are page furniture.",
     "Printed 'www.jackery.com' is the visible link text of https://www.jackery.com."
   ],
   "inputs": [
     {
       "path": "README.md",
-      "size": 3499,
-      "sha256": "3f4cff785d2c916964c5fdecf2064bde456ec824deaa0a22afddf76fa2ca179d"
+      "size": 3862,
+      "sha256": "68537d754e949825c52b7ada220308df21378798b60afa6f666c7ffbd56957ad"
     },
     {
       "path": "assets/connection-adapters.png",
@@ -120,33 +118,33 @@
     },
     {
       "path": "evidence/browser-validation.json",
-      "size": 3400,
-      "sha256": "062c302c0068af8d7d92579d4f901571169d00f47af4f4cb889c362d2a98db66"
+      "size": 3310,
+      "sha256": "f5672d69d1819ce868d2b7b5f7dd25099fd3523be4db6b26c167b3ebe7eb7d04"
     },
     {
       "path": "evidence/candidate-validation.json",
-      "size": 2470,
-      "sha256": "90fe311d5c155ac93e4de2a4cafefa7324f0e993c023721d955d587d3adfef87"
+      "size": 2784,
+      "sha256": "6987e4d5f209eac4b89b50f16486e91fd0a3b1fa803883d16e5908917e7e6bcc"
     },
     {
       "path": "evidence/cold-source-rebuild.log",
       "size": 391,
-      "sha256": "86e31079d3d8df390412a6c12c6415ea8eaa0c4eb1c3b37ea794a3a579cd9d79"
+      "sha256": "ea974488e660b7a0051b25ef80f55b77e75f88b27e929333195c03838dd7e5dd"
     },
     {
       "path": "evidence/full-1280.png",
-      "size": 1038662,
-      "sha256": "a134a07ec29e9c5aa0b3bf88e8553bad195b676aee1aca5178542fdba7f9a9c5"
+      "size": 1017318,
+      "sha256": "e09a999533163dd6be0ba117b7eefbf453483bb20038df39fb0d0978c2faad96"
     },
     {
       "path": "evidence/full-390.png",
-      "size": 722012,
-      "sha256": "b2ba9048c17a1f6eeedc38520ea829b901c85c55834b8e3a0dd6cbf541386444"
+      "size": 702076,
+      "sha256": "1a273b13182b72a211ed2ef89c7f0a8fd333bb98b6d9d86c82bdb22e713ed569"
     },
     {
       "path": "evidence/independent-body-qc.json",
-      "size": 6225,
-      "sha256": "912f533fd0e34acee1eea0185d093bc3a9a4582ec19eb4c261db338a3d608ca6"
+      "size": 6373,
+      "sha256": "d8d4d717a2ce8771ee7a0d48397d35741d907d6cee8962096c1405e925c42a66"
     },
     {
       "path": "evidence/ocr/001.txt",
@@ -186,7 +184,7 @@
     {
       "path": "evidence/replay-and-tamper.json",
       "size": 1032,
-      "sha256": "ef4b501c89d74275259c79565ac21555abaf5697d390e035feff7455201579e0"
+      "sha256": "4a0a3d756e6e458fe67cf7d8e53baacaaccf79dc90bc2a537e93ecf5f7ab0778"
     },
     {
       "path": "evidence/strict-sphinx.log",
@@ -220,8 +218,8 @@
     },
     {
       "path": "source/discovery.md",
-      "size": 1402,
-      "sha256": "ed6e4064f0a65ac09b209d6efdc42c653694252c87da556b88d5a5983359c0e7"
+      "size": 1513,
+      "sha256": "003d77c2322df6e5b67a5bc582494a88183985d5f6ad479a6500d368d8cbc1d0"
     },
     {
       "path": "source/intake-source.json",
@@ -235,18 +233,18 @@
     },
     {
       "path": "source/page_map.json",
-      "size": 1300,
-      "sha256": "7ced0c1aa1766e440ea86cfb2c4465b977cbc0eed521474efbc5b68085c3ca19"
+      "size": 1412,
+      "sha256": "9c24aed14f1fb693db283a86753f2c7d4e15cdd06c02e68a971881b9668b8416"
     },
     {
       "path": "source/transcription.json",
-      "size": 14481,
-      "sha256": "59d7cab98a0232f92f18facbc2a195bbef3e2177f8225798933e3453097792dd"
+      "size": 14439,
+      "sha256": "5a30699f7437cf3fa27fa3c5e028a950156fb422bf800cecb4b61a42d15c9de8"
     },
     {
       "path": "source_manifest.json",
-      "size": 7506,
-      "sha256": "ae15e82722c3eaf7574d34c72586178dea3f57c5789cb90c4420a03a458837f3"
+      "size": 7325,
+      "sha256": "7a903699d053c98559ed4448ee826ba3aabc61a1652e23dc5858bf3580563dcc"
     },
     {
       "path": "web/en/_static/web_manual.css",
@@ -300,13 +298,13 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 156879,
-      "sha256": "f875d893922a84ee808460361ac04856af2ea64437c249bcf152cf6ccb9a1f50"
+      "size": 152413,
+      "sha256": "58695356d75d34ab7e98949d9e5badd0b92315cc5a7c891dd884260588c66aa5"
     },
     {
       "path": "web/en/manual_js100f_us_en.md",
-      "size": 13787,
-      "sha256": "84b74aeb0cf4e78612720622776c7767a29cac718c3f6badf58ca58ade707f75"
+      "size": 13619,
+      "sha256": "3df345b18266c2b6dcba1f5989c4eaca78b78e0e54a2919353edf2d70893f9bc"
     },
     {
       "path": "web/en/shared-style-admission.json",

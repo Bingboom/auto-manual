@@ -4,6 +4,8 @@ Material **38-0001-000644**, model **JS-100F**, cover badge **V2** (no JAK-UM ve
 
 **Market identity is an open decision.** The print spec is HTO587H-**MX**-JAK, and the booklet prints the NOM mark, hello.mx@jackery.com and the JACKERY MEXICO S.A. DE C.V. address. The Feishu finished-goods spec is HTO587H-US-JAK. The route stays US/en, and the copy is kept exactly as printed. See `source_concerns`.
 
+**Cover:** by operator rule (2026-11-13, 「封面信息 不用放进网页呀 直接从这个开始」) the Web page carries no cover or contents information and starts at its first body chapter. The cover facts (USER GUIDE, SolarSaga 100, Model: JS-100F, V2 badge, cover contact lines) are kept in `cover_facts` in the transcription, in the manifest and here.
+
 ## Conversion
 
 The manual goes through the existing shared ManualIR Web pipeline. The block-to-component map is `component_map` in the manifest:

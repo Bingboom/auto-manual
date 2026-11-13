@@ -2,6 +2,8 @@
 
 Material **38-0001-000864**, model **JS-100G**, project HTS017, finished goods US/CA. No manual version is printed, and none is inferred. The original seventeen-page English 单语言 attachment and its SHA-256 are fixed in [source_manifest.json](source_manifest.json). The original PDF is [source/original.pdf](source/original.pdf). It is image-only, one 300-dpi raster per page with no text layer. All native text and the source-page mapping are in [source/transcription.json](source/transcription.json) and [source/page_map.json](source/page_map.json). The transcription was made with Tesseract 5 OCR ([evidence/ocr](evidence/ocr)), then every line was hand-corrected against the page pixels.
 
+**Cover:** by operator rule (2026-11-13, 「封面信息 不用放进网页呀 直接从这个开始」) the Web page carries no cover or contents information and starts at its first body chapter. The cover facts (USER MANUAL, Jackery SolarSaga 100 Light, Model: JS-100G, cover CONTACT US box; no version printed) are kept in `cover_facts` in the transcription, in the manifest and here.
+
 ## Conversion
 
 The manual goes through the existing shared ManualIR Web pipeline. The block-to-component map is `component_map` in the manifest:

@@ -3,20 +3,21 @@
   "language": "en",
   "source_sha256": "abc894b6497212570b70e8683c52cbf23c94e573916776b1bfe9812a1a752dc5",
   "method": "Tesseract 5.3.4 OCR of each 300-dpi page raster (evidence/ocr), every line hand-corrected against the page pixels.",
+  "cover_facts": {
+    "source_page": 1,
+    "title": "USER GUIDE",
+    "product": "SolarSaga 100",
+    "model": "JS-100F",
+    "version_badge": "V2",
+    "contact": [
+      "Contact us:",
+      "hello@jackery.com",
+      "hello.mx@jackery.com (For Mexico only)"
+    ],
+    "note": "The image is for reference only.",
+    "web": "Not rendered: operator rule 2026-11-13 「封面信息 不用放进网页呀 直接从这个开始」; kept in metadata only."
+  },
   "chapters": [
-    {
-      "id": "introduction",
-      "title": "USER GUIDE",
-      "source_pages": [1],
-      "blocks": [
-        {"kind": "paragraph", "text": "SolarSaga 100"},
-        {"kind": "paragraph", "text": "Model: JS-100F"},
-        {"kind": "paragraph", "text": "Version: V2"},
-        {"kind": "heading", "level": 2, "text": "Contact us:"},
-        {"kind": "paragraph", "text": "hello@jackery.com"},
-        {"kind": "paragraph", "text": "hello.mx@jackery.com (For Mexico only)"}
-      ]
-    },
     {
       "id": "specifications",
       "title": "TECHNICAL PARAMETERS",
@@ -231,7 +232,7 @@
     "Peak Power tolerance is printed as ±5W (100W±5W / 104W±5W) while every other electrical value uses ±5%. Retained as printed.",
     "Maximum System Voltage is printed as 60V. Retained as printed; not cross-checked against another edition.",
     "Source grammar is retained, e.g. 'the rated voltage of component, the rated current of conductor', 'facing directly towards sun', 'It is strictly prohibited to drop the products', '( damages ... included )' spacing.",
-    "The only printed manual version is the cover badge 'V2'; it is shown as 'Version: V2'. No JAK-UM version string is printed and none is inferred.",
-    "Cover and back-cover contact lines are printed as 'hello.mx@jackery.com (For Mexico only)' and 'hello.mx@jackery.com(For Mexico only)' respectively; each is kept as printed where it appears."
+    "The only printed manual version is the cover badge 'V2'; it is kept in cover_facts and the manifest only (cover not rendered). No JAK-UM version string is printed and none is inferred.",
+    "The back cover prints 'hello.mx@jackery.com(For Mexico only)' without a space (the cover and page 6 print it with a space); kept as printed."
   ]
 }

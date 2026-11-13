@@ -3,20 +3,22 @@
   "language": "en",
   "source_sha256": "d4914e638ea930c6cf99d3de2af19c2b924b6f0db730b8ab4c9895957d276fa2",
   "method": "Tesseract 5.3.4 OCR of each 300-dpi page raster (evidence/ocr), every line hand-corrected against the page pixels.",
+  "cover_facts": {
+    "source_page": 1,
+    "title": "USER MANUAL",
+    "product": "Jackery SolarSaga 100 Light",
+    "model": "JS-100G",
+    "version": null,
+    "contact": [
+      "CONTACT US:",
+      "1-888-502-2236 (US)",
+      "hello@jackery.com",
+      "www.jackery.com"
+    ],
+    "note": "The image is for reference only.",
+    "web": "Not rendered: operator rule 2026-11-13 「封面信息 不用放进网页呀 直接从这个开始」; kept in metadata only."
+  },
   "chapters": [
-    {
-      "id": "introduction",
-      "title": "USER MANUAL",
-      "source_pages": [1],
-      "blocks": [
-        {"kind": "paragraph", "text": "Jackery SolarSaga 100 Light"},
-        {"kind": "paragraph", "text": "Model: JS-100G"},
-        {"kind": "heading", "level": 2, "text": "CONTACT US:"},
-        {"kind": "paragraph", "text": "1-888-502-2236 (US)"},
-        {"kind": "paragraph", "text": "hello@jackery.com"},
-        {"kind": "link", "label": "", "url": "https://www.jackery.com", "text": "www.jackery.com"}
-      ]
-    },
     {
       "id": "warnings",
       "title": "WARNINGS",

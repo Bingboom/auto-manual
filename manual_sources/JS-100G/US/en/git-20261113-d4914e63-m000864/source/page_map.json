@@ -2,12 +2,6 @@
   "source_physical_page_count": 17,
   "chapters": [
     {
-      "id": "introduction",
-      "source_pages": [
-        1
-      ]
-    },
-    {
       "id": "warnings",
       "source_pages": [
         3
@@ -76,7 +70,7 @@
     },
     {
       "physical_page": 1,
-      "reason": "Decorative cover product drawing, its 'The image is for reference only.' note and the wordmark are omitted; title, product name, model and cover contact box are retained."
+      "reason": "Cover page is not rendered. Operator rule 2026-11-13 「封面信息 不用放进网页呀 直接从这个开始」: no cover information on the Web page; the page starts at the first body chapter. Title, product, model and cover contact lines are kept in transcription cover_facts, the manifest and the README; the contact details also appear in the body/back cover."
     }
   ],
   "full_substantive_source_coverage": true

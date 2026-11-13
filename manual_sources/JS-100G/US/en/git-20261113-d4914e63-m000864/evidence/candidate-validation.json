@@ -15,13 +15,13 @@
     },
     {
       "physical_page": 1,
-      "reason": "Decorative cover product drawing, its 'The image is for reference only.' note and the wordmark are omitted; title, product name, model and cover contact box are retained."
+      "reason": "Cover page is not rendered. Operator rule 2026-11-13 「封面信息 不用放进网页呀 直接从这个开始」: no cover information on the Web page; the page starts at the first body chapter. Title, product, model and cover contact lines are kept in transcription cover_facts, the manifest and the README; the contact details also appear in the body/back cover."
     }
   ],
-  "transcription_sha256": "27f65eefb2442139b968277b3b9fd04c18e9cc5efb98d8ffcca81d27f7aa8149",
-  "page_map_sha256": "006ccca89221b61468ce624a592e7eb401e45af570eb018a351c8d5d41db74ec",
-  "manual_ir_sha256": "b41d9f462249fd5753e220ed609b84dbc5ee485e986664ad5e01c2fa7700c0cd",
-  "markdown_sha256": "6b12bf2ccf8b5dc96a4b3b303f9da6384c3b7247170b9145fe4d8cf141ddcd62",
+  "transcription_sha256": "c8d8859f0f151a2c38d18205a8b1678e2714c753db8d632b942c465c9f0381cd",
+  "page_map_sha256": "b1caf7dd135e02b1d51a1bfda0739f6bd4ba41b32b5e75cf8adb70eca391280c",
+  "manual_ir_sha256": "93d74c318f8658ca52aebd013c9dfeeb5bbd793e44214a54376e1a2c92b19110",
+  "markdown_sha256": "b8b1c0387e76ccdd0bb863d2bebe33d9e7d9c7642f328ae334759d0dddd7e3f1",
   "shared_style_admission": [],
   "shared_component_exceptions": [
     {
@@ -61,5 +61,6 @@
   "strict_sphinx": "evidence/strict-sphinx.log (build succeeded, -n -W --keep-going)",
   "cold_rebuild_and_tamper": "evidence/replay-and-tamper.json",
   "independent_body_qc": "evidence/independent-body-qc.json",
-  "python": "3.13 (requirements.lock minus oss2/aliyun-python-sdk-core/crcmod)"
+  "python": "3.13 (requirements.lock minus oss2/aliyun-python-sdk-core/crcmod)",
+  "cover_rule": "Operator rule 2026-11-13: cover/contents not rendered; first Web chapter is the first body chapter."
 }

@@ -32,8 +32,8 @@
       "printed": "Contact us:\nhello@jackery.com\nhello.mx@jackery.com (For Mexico only)",
       "web": "Cover section has only 'USER GUIDE / SolarSaga 100 / Model: JS-100F / Version: V2'; a heading 'Contact us' (no colon) appears instead above the page-7 address block, which on page 7 has no such heading",
       "comment": "Cover contact block is not in the intended-omission list. Its heading was moved to the back page and the colon dropped. The two cover email lines are not rendered there. The same words still appear on p6 (CUSTOMER SERVICE) and p7, so no unique wording is lost, but the block is relocated or omitted.",
-      "resolution": "fixed",
-      "resolution_note": "Cover \"Contact us:\" lines moved into the introduction; back-cover entities are now their own pages in printed order."
+      "resolution": "operator-rule",
+      "resolution_note": "Superseded by operator rule 2026-11-13 「封面信息 不用放进网页呀 直接从这个开始」: no cover content on the Web page; cover facts kept in transcription cover_facts and the manifest. Back-cover entities are their own pages in printed order."
     },
     {
       "id": "F2",

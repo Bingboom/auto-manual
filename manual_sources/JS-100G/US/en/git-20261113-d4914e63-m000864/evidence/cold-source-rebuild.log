@@ -1,6 +1,6 @@
 {
   "model": "JS-100G",
-  "pages": 10,
+  "pages": 9,
   "components": {
     "HB-CALLOUT-STRIP": 5,
     "HB-SPECIAL-INBOX": 2,
@@ -10,5 +10,5 @@
   },
   "publication_eligible": false,
   "shared_style_issues": [],
-  "output": "/tmp/claude-0/-home-user-auto-manual/d73c0502-8ed3-5c2b-be57-8f07d9e24bb2/scratchpad/ev/git-20261113-d4914e63-m000864-1794554571/cold"
+  "output": "/tmp/claude-0/-home-user-auto-manual/d73c0502-8ed3-5c2b-be57-8f07d9e24bb2/scratchpad/ev/git-20261113-d4914e63-m000864-1794555751/cold"
 }

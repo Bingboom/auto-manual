@@ -54,17 +54,17 @@
     "Leading '* ' bullet marks of the WARNINGS page become a native list; '* ' inside callouts, notes and steps is kept as printed.",
     "INSTALLATION (printed pages 03-12) is split into three Web pages: INSTALLATION (overview and Adhesive Mounting), Suspension Mounting and How to Connect Multiple Solar Panels; copy and order unchanged.",
     "The FCC page has only the FC logo as its heading; the Web page title is 'FCC'.",
-    "Omit cover drawing, wordmark, printed page numbers and the printed table of contents.",
     "Customer Service icons are carried by the shared warranty component styling rather than cropped.",
     "Shared callout labels drop a trailing colon ('Note:' → 'Note'); shared Sphinx typography renders the heading apostrophe in WHAT'S as ’.",
-    "Cover CONTACT US box stays in the introduction; printed 'www.jackery.com' is the visible link text of https://www.jackery.com.",
-    "Adhesive step 1 crop starts below the neighbouring step text; the open-ended wall-corner line loses its top 2.7 pt."
+    "Adhesive step 1 crop starts below the neighbouring step text; the open-ended wall-corner line loses its top 2.7 pt.",
+    "Cover and contents pages are not rendered (operator rule 2026-11-13); printed language tabs ('US English') are page furniture.",
+    "Printed 'www.jackery.com' is the visible link text of https://www.jackery.com."
   ],
   "inputs": [
     {
       "path": "README.md",
-      "size": 3491,
-      "sha256": "cd04ad820a79e63690558fc6bac589fc073a1c877139282508413091f0235961"
+      "size": 3880,
+      "sha256": "4f5abdb9206fd4defb010d95d9a345f2f6b7ece0fdd20670fdacec917393588f"
     },
     {
       "path": "assets/adhesive-step-1.png",
@@ -238,33 +238,33 @@
     },
     {
       "path": "evidence/browser-validation.json",
-      "size": 11947,
-      "sha256": "b99712eeefd059ead1e42a536635706ab1e88ce4417e58688cc4ce5425e7a795"
+      "size": 11855,
+      "sha256": "7e54272f190fc3671bf597bd61c6cac1341fcf4836f7a13bc804f77a56f7a8ea"
     },
     {
       "path": "evidence/candidate-validation.json",
-      "size": 2447,
-      "sha256": "01fb65170041debbb864b4db223998f2087f79924864789a03b60de3277ee950"
+      "size": 2763,
+      "sha256": "24615d168fcb6b5a4d9491b710acbf2c8d617fd6e9a253fce49e0c684eb190c4"
     },
     {
       "path": "evidence/cold-source-rebuild.log",
-      "size": 424,
-      "sha256": "0f3293bd64422e4c4266dbefb9d487843ae42f94e43b50ea71ba2eab01c25a28"
+      "size": 423,
+      "sha256": "2e72a65d478f366dae83f629e0a979b985fd83d24235c880c865cbb8867008fa"
     },
     {
       "path": "evidence/full-1280.png",
-      "size": 1924370,
-      "sha256": "9521c2019ab4ebaa150ddcb610b3cd5930f9fb48d33e23ffe7a943131d53b19b"
+      "size": 1894975,
+      "sha256": "5f9cb7ea9dabe57e118ff5a3ad2b6c68bb1f6c1945cfbc5e31a86bc0baae90c1"
     },
     {
       "path": "evidence/full-390.png",
-      "size": 1189565,
-      "sha256": "12f05f09045603ae83a9626c5838b37c77f5ae52b0ac9df7cf25e1313f288739"
+      "size": 1171546,
+      "sha256": "6dfc2d2024d92f7a56bd39858dbe107579e9f8547272ccab8c27c886ec1420b7"
     },
     {
       "path": "evidence/independent-body-qc.json",
-      "size": 6050,
-      "sha256": "77489edff3438e55d3945f210b7698ee5dbeeaac16873fb857b582d8c8751132"
+      "size": 6237,
+      "sha256": "b46880bbc7319564330490aa5a599da9f32a0967c319bd0ac27b41473f4c3e32"
     },
     {
       "path": "evidence/ocr/001.txt",
@@ -354,7 +354,7 @@
     {
       "path": "evidence/replay-and-tamper.json",
       "size": 1024,
-      "sha256": "abca0ae33e0e9f5fb16301435e694a65328a45e46a584d5912e51461b4c05c8b"
+      "sha256": "f35525db8a3bfe42c3b5f6b6fafe2a5cbc09b6cd969cc136e4398333bdac1bd3"
     },
     {
       "path": "evidence/strict-sphinx.log",
@@ -388,8 +388,8 @@
     },
     {
       "path": "source/discovery.md",
-      "size": 1565,
-      "sha256": "8c02987ba58e429510719a7fc53662e5f932e9d3f380d8aaa4043b06d667519e"
+      "size": 1645,
+      "sha256": "f097beba325c844af8ecc530488fa045bdeee98790384bcadbc0cfc3c577620c"
     },
     {
       "path": "source/intake-source.json",
@@ -403,18 +403,18 @@
     },
     {
       "path": "source/page_map.json",
-      "size": 1420,
-      "sha256": "006ccca89221b61468ce624a592e7eb401e45af570eb018a351c8d5d41db74ec"
+      "size": 1534,
+      "sha256": "b1caf7dd135e02b1d51a1bfda0739f6bd4ba41b32b5e75cf8adb70eca391280c"
     },
     {
       "path": "source/transcription.json",
-      "size": 22707,
-      "sha256": "27f65eefb2442139b968277b3b9fd04c18e9cc5efb98d8ffcca81d27f7aa8149"
+      "size": 22648,
+      "sha256": "c8d8859f0f151a2c38d18205a8b1678e2714c753db8d632b942c465c9f0381cd"
     },
     {
       "path": "source_manifest.json",
-      "size": 11460,
-      "sha256": "f3bb2a39b9ae44608fe8390a509790abbb710ab13c9efc059a25ab184e29eb17"
+      "size": 11453,
+      "sha256": "e9acb54945890d44b7940f9b497e495f4d66af6eda75705f8c754a479fd2f4aa"
     },
     {
       "path": "web/en/_static/web_manual.css",
@@ -583,13 +583,13 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 268398,
-      "sha256": "b41d9f462249fd5753e220ed609b84dbc5ee485e986664ad5e01c2fa7700c0cd"
+      "size": 263942,
+      "sha256": "93d74c318f8658ca52aebd013c9dfeeb5bbd793e44214a54376e1a2c92b19110"
     },
     {
       "path": "web/en/manual_js100g_us_en.md",
-      "size": 34600,
-      "sha256": "6b12bf2ccf8b5dc96a4b3b303f9da6384c3b7247170b9145fe4d8cf141ddcd62"
+      "size": 34394,
+      "sha256": "b8b1c0387e76ccdd0bb863d2bebe33d9e7d9c7642f328ae334759d0dddd7e3f1"
     },
     {
       "path": "web/en/shared-style-admission.json",

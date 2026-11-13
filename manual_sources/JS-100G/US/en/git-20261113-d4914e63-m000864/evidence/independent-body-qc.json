@@ -98,8 +98,8 @@
       "printed": "CONTACT US: 1-888-502-2236 (US) | hello@jackery.com | www.jackery.com",
       "web": "(absent)",
       "comment": "The cover contact bar is not on the intentional-omission list (that list covers only the drawing, the reference note and the wordmark). The same phone and email appear in the back-page block, but the 'CONTACT US:' label and this rendering are dropped. Please confirm the omission is intended.",
-      "resolution": "fixed",
-      "resolution_note": "Cover CONTACT US box (phone, email, website) added to the introduction."
+      "resolution": "operator-rule",
+      "resolution_note": "Superseded by operator rule 2026-11-13 「封面信息 不用放进网页呀 直接从这个开始」: the cover CONTACT US box is not rendered; the same phone, email and website appear on the back page. Cover facts kept in transcription cover_facts."
     },
     {
       "id": "G7",

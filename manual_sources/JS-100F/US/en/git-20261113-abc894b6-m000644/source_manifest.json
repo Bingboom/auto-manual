@@ -26,7 +26,7 @@
     "source_file_token": "IbiqbzHsGoPd2axS0vlctnTTnkc"
   },
   "source_authority": "Operator request 2026-11-13 「把这几本说明书 转网页版」 for rows marked 是否要转网页文档 = Y-待转 in 发布文档管理 › 说明书网页 › 美规. The current 单语言 English attachment was downloaded read-only and SHA-256 locked. This image-only source governs all copy; no review acceptance or release approval inferred.",
-  "printed_manual_version": "V2 (cover badge; no JAK-UM version string printed)",
+  "printed_manual_version": "V2 (cover badge; kept in metadata only, not displayed; no JAK-UM version string printed)",
   "language_scope": "single",
   "publication_status": "review-candidate-no-release-authorization",
   "publication_eligible": false,
@@ -49,12 +49,10 @@
   },
   "normalizations": [
     "Join raster line wraps; keep wording, case, punctuation and values as printed.",
-    "Omit cover drawing, wordmark, printed page numbers, US/English page badges and the printed contents page.",
-    "The cover badge 'V2' is shown as 'Version: V2'.",
     "Customer Service icons (wrench, person, envelope) are carried by the shared warranty component styling rather than cropped.",
-    "Back-cover contact icons (phone, envelope, house) are dropped; the contact lines remain native text.",
     "Shared callout labels drop a trailing colon ('Tip:' → 'Tip'); shared Sphinx typography may render straight apostrophes as typographic ones.",
-    "Cover 'Contact us:' lines stay in the introduction; the back-cover entities are two pages, JACKERY MEXICO S.A. DE C.V. then JACKERY INC., in printed order.",
+    "Printed 'www.jackery.com' is the visible link text of https://www.jackery.com.",
+    "Cover and contents pages are not rendered (operator rule 2026-11-13); printed language tabs ('US English') are page furniture.",
     "Printed 'www.jackery.com' is the visible link text of https://www.jackery.com."
   ],
   "inputs": [
@@ -110,8 +108,8 @@
     },
     {
       "path": "source/discovery.md",
-      "size": 1402,
-      "sha256": "ed6e4064f0a65ac09b209d6efdc42c653694252c87da556b88d5a5983359c0e7"
+      "size": 1513,
+      "sha256": "003d77c2322df6e5b67a5bc582494a88183985d5f6ad479a6500d368d8cbc1d0"
     },
     {
       "path": "source/intake-source.json",
@@ -125,13 +123,13 @@
     },
     {
       "path": "source/page_map.json",
-      "size": 1300,
-      "sha256": "7ced0c1aa1766e440ea86cfb2c4465b977cbc0eed521474efbc5b68085c3ca19"
+      "size": 1412,
+      "sha256": "9c24aed14f1fb693db283a86753f2c7d4e15cdd06c02e68a971881b9668b8416"
     },
     {
       "path": "source/transcription.json",
-      "size": 14481,
-      "sha256": "59d7cab98a0232f92f18facbc2a195bbef3e2177f8225798933e3453097792dd"
+      "size": 14439,
+      "sha256": "5a30699f7437cf3fa27fa3c5e028a950156fb422bf800cecb4b61a42d15c9de8"
     },
     {
       "path": "render.py",

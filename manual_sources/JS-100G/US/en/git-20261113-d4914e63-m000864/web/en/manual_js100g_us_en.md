@@ -1,17 +1,3 @@
-# USER MANUAL
-
-<p>Jackery SolarSaga 100 Light</p>
-
-<p>Model: JS-100G</p>
-
-## CONTACT US:
-
-<p>1-888-502-2236 (US)</p>
-
-<p>hello@jackery.com</p>
-
-<p><a href="https://www.jackery.com">www.jackery.com</a></p>
-
 # WARNINGS
 
 <ul><li><p>Read the user guide before using this product.</p></li><li><p>Do not place the solar panels under trees, buildings or in other shaded areas for use.</p></li><li><p>Do not submerge the solar panels in water or any other liquid for extended periods.</p></li><li><p>Use a damp cloth to gently wipe them clean.</p></li><li><p>Keep away from open flames or any flammable materials.</p></li><li><p>Do not scratch the solar panels with sharp objects.</p></li><li><p>Keep corrosive substances away from the solar panels.</p></li><li><p>Do not step on or place heavy objects on the solar panels.</p></li><li><p>Do not disassemble the solar panels.</p></li><li><p>The output circuit of the solar panel must be connected to the equipment correctly. Reverse connection of the positive and negative poles is strictly prohibited.</p></li><li><p>Check the connection status of all components, wires, and plugs before use.</p></li><li><p>Dropping the product is strictly prohibited due to the material's nature, as it may cause internal damage to the solar panel and render the product unusable.</p></li><li><p>Check and secure the solar panels ahead of strong winds, hail, or extreme weather to prevent damage.</p></li><li><p>Under normal circumstances, PV modules may be exposed to higher currents or voltages than under standard test conditions. Therefore, when calculating the rated voltage of the component, the rated current of the conductor, and the size of the control device connected to the PV output, it is required to multiply the short-circuit current (Isc) and open circuit voltage (Voc) values marked on the component by a factor of 1.25.</p></li><li><p>Any damage to the product may lead to electric shock or fire.</p></li><li><p>Avoid direct exposure of the solar modules or panels to artificial spotlights.</p></li><li><p>Do not place anything on the solar panel to avoid any residues that may damage or soil the surface.</p></li><li><p>If the front sheet is broken or the back panel is damaged, contact with any surface or frame of the panel could result in an electric shock.</p></li><li><p>Protect unconnected connectors before installation. Ensure they are kept free from contamination (e.g., dust, foreign objects, moisture), and do not expose unprotected connectors to the environment.</p></li></ul>

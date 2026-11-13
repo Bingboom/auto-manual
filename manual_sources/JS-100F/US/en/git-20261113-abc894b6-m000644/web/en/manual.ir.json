@@ -9,8 +9,8 @@
     "assets/contact-qr.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "17a0c2b2d4ec2f1ce5cf0a1aaac1e3b163aac95eec42140ac77ab867ec02e79f",
-  "content_sha256": "03450221bdf22a8c61c4287476c74abf02e5e1b03df587f6d8adda8dbe5a3793",
+  "bundle_sha256": "5979ed9a527710bc95730ea1a5a0d6583589400dea28fdd6250094080e3501d4",
+  "content_sha256": "7f7b98450737fe876d5ccd5c16664285b622f9d22ea8f6616675b03ce050c259",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -23,7 +23,7 @@
       "assets/solar-panel-connector.png": "bb384b2a117b9e426c01b70d3e6e8e9223cc8d0401c94573264e568c95168f11",
       "assets/sun-angle-indicator.png": "28e370c7c095866612fa4200b649bf031959e23148b4a24a784fcc3beb164f47"
     },
-    "block_count": 50,
+    "block_count": 43,
     "component_inventory": {
       "HB-CALLOUT-STRIP": 1,
       "HB-SPECIAL-REFERENCE-FIGURE": 4,
@@ -1343,8 +1343,8 @@
         },
         {
           "path": "source/discovery.md",
-          "sha256": "ed6e4064f0a65ac09b209d6efdc42c653694252c87da556b88d5a5983359c0e7",
-          "size": 1402
+          "sha256": "003d77c2322df6e5b67a5bc582494a88183985d5f6ad479a6500d368d8cbc1d0",
+          "size": 1513
         },
         {
           "path": "source/intake-source.json",
@@ -1358,13 +1358,13 @@
         },
         {
           "path": "source/page_map.json",
-          "sha256": "7ced0c1aa1766e440ea86cfb2c4465b977cbc0eed521474efbc5b68085c3ca19",
-          "size": 1300
+          "sha256": "9c24aed14f1fb693db283a86753f2c7d4e15cdd06c02e68a971881b9668b8416",
+          "size": 1412
         },
         {
           "path": "source/transcription.json",
-          "sha256": "59d7cab98a0232f92f18facbc2a195bbef3e2177f8225798933e3453097792dd",
-          "size": 14481
+          "sha256": "5a30699f7437cf3fa27fa3c5e028a950156fb422bf800cecb4b61a42d15c9de8",
+          "size": 14439
         },
         {
           "path": "render.py",
@@ -1386,12 +1386,10 @@
       "material": "38-0001-000644",
       "normalizations": [
         "Join raster line wraps; keep wording, case, punctuation and values as printed.",
-        "Omit cover drawing, wordmark, printed page numbers, US/English page badges and the printed contents page.",
-        "The cover badge 'V2' is shown as 'Version: V2'.",
         "Customer Service icons (wrench, person, envelope) are carried by the shared warranty component styling rather than cropped.",
-        "Back-cover contact icons (phone, envelope, house) are dropped; the contact lines remain native text.",
         "Shared callout labels drop a trailing colon ('Tip:' → 'Tip'); shared Sphinx typography may render straight apostrophes as typographic ones.",
-        "Cover 'Contact us:' lines stay in the introduction; the back-cover entities are two pages, JACKERY MEXICO S.A. DE C.V. then JACKERY INC., in printed order.",
+        "Printed 'www.jackery.com' is the visible link text of https://www.jackery.com.",
+        "Cover and contents pages are not rendered (operator rule 2026-11-13); printed language tabs ('US English') are page furniture.",
         "Printed 'www.jackery.com' is the visible link text of https://www.jackery.com."
       ],
       "original_source": {
@@ -1404,7 +1402,7 @@
       "pending_source_review": [
         "Operator review of the OCR-assisted English transcription, source concerns, decision items and artwork; no publication authorization granted."
       ],
-      "printed_manual_version": "V2 (cover badge; no JAK-UM version string printed)",
+      "printed_manual_version": "V2 (cover badge; kept in metadata only, not displayed; no JAK-UM version string printed)",
       "publication_eligible": false,
       "publication_status": "review-candidate-no-release-authorization",
       "reference_edition": "JS-100F/EU/en/md — same product, older V1 data/template edition (data/manual_sources/JS-100F/EU/en/1.0, docs/templates/page_solar/js100f/en); used for structure comparison and artwork-reuse inventory only, no text copied.",
@@ -2022,7 +2020,7 @@
     },
     "manual_theme_sha256": "e8fc88458d239edef85f2cfb0b26b71df2e83859c8e51e9c093e5abc2982b47d",
     "markdown_filename": "manual_js100f_us_en.md",
-    "page_count": 9,
+    "page_count": 8,
     "page_declarations": {},
     "pdf_intake_provenance": {
       "artwork_standardizations": [],
@@ -2044,8 +2042,8 @@
         "Peak Power tolerance is printed as ±5W (100W±5W / 104W±5W) while every other electrical value uses ±5%. Retained as printed.",
         "Maximum System Voltage is printed as 60V. Retained as printed; not cross-checked against another edition.",
         "Source grammar is retained, e.g. 'the rated voltage of component, the rated current of conductor', 'facing directly towards sun', 'It is strictly prohibited to drop the products', '( damages ... included )' spacing.",
-        "The only printed manual version is the cover badge 'V2'; it is shown as 'Version: V2'. No JAK-UM version string is printed and none is inferred.",
-        "Cover and back-cover contact lines are printed as 'hello.mx@jackery.com (For Mexico only)' and 'hello.mx@jackery.com(For Mexico only)' respectively; each is kept as printed where it appears."
+        "The only printed manual version is the cover badge 'V2'; it is kept in cover_facts and the manifest only (cover not rendered). No JAK-UM version string is printed and none is inferred.",
+        "The back cover prints 'hello.mx@jackery.com(For Mexico only)' without a space (the cover and page 6 print it with a space); kept as printed."
       ]
     },
     "title": "Jackery SolarSaga 100",
@@ -2210,137 +2208,6 @@
   },
   "model": "JS-100F",
   "pages": [
-    {
-      "blocks": [
-        {
-          "asset_refs": [],
-          "block_id": "introduction:block-0001",
-          "content_sha256": "11e4cbf8c3433ff3baebff729da1abe0a8c87188ee6ddf3552c1cc9320a441dc",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "USER GUIDE"
-              }
-            ],
-            "kind": "heading",
-            "level": 1,
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "source/transcription.json#introduction#block-1"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "introduction:block-0002",
-          "content_sha256": "13bfd47637e54907f3841e794574d9ea018ad1ed08fbaf0b421a547fb1cdfc03",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "SolarSaga 100"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "source/transcription.json#introduction#block-2"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "introduction:block-0003",
-          "content_sha256": "247ef1c0b879b982cf74b0947f3dc6a9137d6a384c83ebd2016c578b5a3d06fb",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "Model: JS-100F"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "source/transcription.json#introduction#block-3"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "introduction:block-0004",
-          "content_sha256": "b60d14d788f1d669fb99d4ce08a4fa06448c5eac76aa7c861b105e15d6c9227b",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "Version: V2"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "source/transcription.json#introduction#block-4"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "introduction:block-0005",
-          "content_sha256": "83b1faf0c7dbfb58d1bd6601a0ccf0933d41b16c6d002ff73856f2b0826d14ba",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "Contact us:"
-              }
-            ],
-            "kind": "heading",
-            "level": 2,
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "source/transcription.json#introduction#block-5"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "introduction:block-0006",
-          "content_sha256": "68f7e970a125b13e048c39e300dc11d80da4953359a66c8fdf60cd438e48969e",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "hello@jackery.com"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "source/transcription.json#introduction#block-6"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "introduction:block-0007",
-          "content_sha256": "5e138d4038d5e6793862aa7a713ba3ea2854eb345f47f5408fb70ba32da0ff33",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "hello.mx@jackery.com (For Mexico only)"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "source/transcription.json#introduction#block-7"
-        }
-      ],
-      "language": "en",
-      "page_id": "introduction",
-      "skipped_raw": 0,
-      "source_path": "source/transcription.json",
-      "source_ref": "source/transcription.json#introduction",
-      "source_sha256": "8e777f9e28e39068bb11daacf25cca386eeb3a431a442af0309bbc317c9c015c"
-    },
     {
       "blocks": [
         {

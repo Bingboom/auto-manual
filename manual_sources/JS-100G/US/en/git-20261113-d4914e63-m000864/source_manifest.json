@@ -54,11 +54,11 @@
     "Leading '* ' bullet marks of the WARNINGS page become a native list; '* ' inside callouts, notes and steps is kept as printed.",
     "INSTALLATION (printed pages 03-12) is split into three Web pages: INSTALLATION (overview and Adhesive Mounting), Suspension Mounting and How to Connect Multiple Solar Panels; copy and order unchanged.",
     "The FCC page has only the FC logo as its heading; the Web page title is 'FCC'.",
-    "Omit cover drawing, wordmark, printed page numbers and the printed table of contents.",
     "Customer Service icons are carried by the shared warranty component styling rather than cropped.",
     "Shared callout labels drop a trailing colon ('Note:' → 'Note'); shared Sphinx typography renders the heading apostrophe in WHAT'S as ’.",
-    "Cover CONTACT US box stays in the introduction; printed 'www.jackery.com' is the visible link text of https://www.jackery.com.",
-    "Adhesive step 1 crop starts below the neighbouring step text; the open-ended wall-corner line loses its top 2.7 pt."
+    "Adhesive step 1 crop starts below the neighbouring step text; the open-ended wall-corner line loses its top 2.7 pt.",
+    "Cover and contents pages are not rendered (operator rule 2026-11-13); printed language tabs ('US English') are page furniture.",
+    "Printed 'www.jackery.com' is the visible link text of https://www.jackery.com."
   ],
   "inputs": [
     {
@@ -228,8 +228,8 @@
     },
     {
       "path": "source/discovery.md",
-      "size": 1565,
-      "sha256": "8c02987ba58e429510719a7fc53662e5f932e9d3f380d8aaa4043b06d667519e"
+      "size": 1645,
+      "sha256": "f097beba325c844af8ecc530488fa045bdeee98790384bcadbc0cfc3c577620c"
     },
     {
       "path": "source/intake-source.json",
@@ -243,13 +243,13 @@
     },
     {
       "path": "source/page_map.json",
-      "size": 1420,
-      "sha256": "006ccca89221b61468ce624a592e7eb401e45af570eb018a351c8d5d41db74ec"
+      "size": 1534,
+      "sha256": "b1caf7dd135e02b1d51a1bfda0739f6bd4ba41b32b5e75cf8adb70eca391280c"
     },
     {
       "path": "source/transcription.json",
-      "size": 22707,
-      "sha256": "27f65eefb2442139b968277b3b9fd04c18e9cc5efb98d8ffcca81d27f7aa8149"
+      "size": 22648,
+      "sha256": "c8d8859f0f151a2c38d18205a8b1678e2714c753db8d632b942c465c9f0381cd"
     },
     {
       "path": "render.py",

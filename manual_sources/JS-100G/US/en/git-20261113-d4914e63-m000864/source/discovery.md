@@ -7,7 +7,7 @@ Two pages are not body content and are declared omissions:
 - page 2 is the printed table of contents;
 - the cover drawing and wordmark are decorative.
 
-The model and the cover contact box are retained.
+The model and the cover contact box are kept in transcription cover_facts and the manifest only; the Web page starts at WARNINGS.
 
 Mappings to shared components:
 

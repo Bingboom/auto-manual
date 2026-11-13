@@ -7,7 +7,7 @@ Two pages are not body content and are declared omissions:
 - page 2 is the printed contents locator;
 - the cover drawing and wordmark are decorative.
 
-The model, the V2 badge and the contact lines are retained.
+The model, the V2 badge and the cover contact lines are kept in transcription cover_facts, the manifest and this README only; the Web page starts at TECHNICAL PARAMETERS.
 
 The parameters page prints a three-column STC/BNPI table with values that span both conditions. It stays one declared plain table, as the JS-100I JP spec-table edition does, and the Multifunctional Adapter rows use HB-TABLE-SPEC. Other mappings:
 
