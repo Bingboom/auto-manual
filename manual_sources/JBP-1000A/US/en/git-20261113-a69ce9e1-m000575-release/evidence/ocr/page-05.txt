@@ -1,0 +1,39 @@
+LCD DISPLAY
+
+Power Percentage/Fault Code Charging Indicator
+
+Power Percentage/Fault Code:
+
+The power display percentage of the current power value. When the system fails, it will
+be displayed as the corresponding fault code FO-FF. If the FF code appears, please
+remove the load and the product can recover by itself, if not, please contact after-sales
+service. In case of any other code appears, please contact our after-sales service.
+
+Charging Indicator:
+
+The indicator is displayed when charging and disappears when it is fully charged.
+
+BASIC OPERATIONS
+POWER ON/OFF
+
+Press the "Main Power Button" and the LCD display is illuminated. If you want to turn off
+the main power, please press and hold the "Main Power Button" until it turns off.
+
+=~
+( Jackery LE J) °
+
+Notes:
+
+1. When using with Jackery Explorer 1000 Plus, you can control the power on or off of
+Jackery Battery Pack 1000 Plus through the "Main Power Button" of Jackery Explorer
+1000 Plus.
+
+2. If there is no discharge output or charging input, the product will automatically shut
+down after 2 hours.
+
+LCD DISPLAY ON/OFF
+
+When you press the "Main Power Button" or when charging the product, the LCD display
+is illuminated, and when you press it again, the display will turn off.
+
+03

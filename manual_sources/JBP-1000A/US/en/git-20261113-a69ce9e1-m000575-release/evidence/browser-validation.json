@@ -1,0 +1,298 @@
+[
+ {
+  "bodyWidth": 1280,
+  "viewport": 1280,
+  "images": [
+   {
+    "src": "assets/certifications.png",
+    "loaded": true,
+    "w": 657.21875
+   },
+   {
+    "src": "assets/certifications.png",
+    "loaded": true,
+    "w": 1
+   },
+   {
+    "src": "assets/inbox-unit.png",
+    "loaded": true,
+    "w": 156.109375
+   },
+   {
+    "src": "assets/inbox-cable.png",
+    "loaded": true,
+    "w": 156.125
+   },
+   {
+    "src": "assets/inbox-manual.png",
+    "loaded": true,
+    "w": 156.125
+   },
+   {
+    "src": "assets/overview-front.png",
+    "loaded": true,
+    "w": 657.21875
+   },
+   {
+    "src": "assets/overview-front.png",
+    "loaded": true,
+    "w": 1
+   },
+   {
+    "src": "assets/overview-rear.png",
+    "loaded": true,
+    "w": 657.21875
+   },
+   {
+    "src": "assets/overview-rear.png",
+    "loaded": true,
+    "w": 1
+   },
+   {
+    "src": "assets/lcd.png",
+    "loaded": true,
+    "w": 657.21875
+   },
+   {
+    "src": "assets/lcd.png",
+    "loaded": true,
+    "w": 1
+   },
+   {
+    "src": "assets/power-on-off.png",
+    "loaded": true,
+    "w": 657.21875
+   },
+   {
+    "src": "assets/power-on-off.png",
+    "loaded": true,
+    "w": 1
+   },
+   {
+    "src": "assets/usage-chain.png",
+    "loaded": true,
+    "w": 657.21875
+   },
+   {
+    "src": "assets/usage-chain.png",
+    "loaded": true,
+    "w": 1
+   },
+   {
+    "src": "assets/heat-dissipation.png",
+    "loaded": true,
+    "w": 657.21875
+   },
+   {
+    "src": "assets/heat-dissipation.png",
+    "loaded": true,
+    "w": 1
+   },
+   {
+    "src": "assets/inline-connection.png",
+    "loaded": true,
+    "w": 33
+   },
+   {
+    "src": "assets/wall-charging.png",
+    "loaded": true,
+    "w": 657.21875
+   },
+   {
+    "src": "assets/wall-charging.png",
+    "loaded": true,
+    "w": 1
+   },
+   {
+    "src": "assets/solar-charging.png",
+    "loaded": true,
+    "w": 657.21875
+   },
+   {
+    "src": "assets/solar-charging.png",
+    "loaded": true,
+    "w": 1
+   },
+   {
+    "src": "assets/car-charging.png",
+    "loaded": true,
+    "w": 657.21875
+   },
+   {
+    "src": "assets/car-charging.png",
+    "loaded": true,
+    "w": 1
+   },
+   {
+    "src": "assets/fcc-mark.svg",
+    "loaded": true,
+    "w": 60.796875
+   },
+   {
+    "src": "assets/app-badges.png",
+    "loaded": true,
+    "w": 657.21875
+   },
+   {
+    "src": "assets/app-badges.png",
+    "loaded": true,
+    "w": 1
+   },
+   {
+    "src": "assets/contact-qr.png",
+    "loaded": true,
+    "w": 160
+   }
+  ],
+  "overflowing": [],
+  "broken": 0
+ },
+ {
+  "bodyWidth": 390,
+  "viewport": 390,
+  "images": [
+   {
+    "src": "assets/certifications.png",
+    "loaded": true,
+    "w": 358
+   },
+   {
+    "src": "assets/certifications.png",
+    "loaded": true,
+    "w": 1
+   },
+   {
+    "src": "assets/inbox-unit.png",
+    "loaded": true,
+    "w": 91.46875
+   },
+   {
+    "src": "assets/inbox-cable.png",
+    "loaded": true,
+    "w": 91.46875
+   },
+   {
+    "src": "assets/inbox-manual.png",
+    "loaded": true,
+    "w": 91.46875
+   },
+   {
+    "src": "assets/overview-front.png",
+    "loaded": true,
+    "w": 358
+   },
+   {
+    "src": "assets/overview-front.png",
+    "loaded": true,
+    "w": 1
+   },
+   {
+    "src": "assets/overview-rear.png",
+    "loaded": true,
+    "w": 358
+   },
+   {
+    "src": "assets/overview-rear.png",
+    "loaded": true,
+    "w": 1
+   },
+   {
+    "src": "assets/lcd.png",
+    "loaded": true,
+    "w": 358
+   },
+   {
+    "src": "assets/lcd.png",
+    "loaded": true,
+    "w": 1
+   },
+   {
+    "src": "assets/power-on-off.png",
+    "loaded": true,
+    "w": 358
+   },
+   {
+    "src": "assets/power-on-off.png",
+    "loaded": true,
+    "w": 1
+   },
+   {
+    "src": "assets/usage-chain.png",
+    "loaded": true,
+    "w": 358
+   },
+   {
+    "src": "assets/usage-chain.png",
+    "loaded": true,
+    "w": 1
+   },
+   {
+    "src": "assets/heat-dissipation.png",
+    "loaded": true,
+    "w": 358
+   },
+   {
+    "src": "assets/heat-dissipation.png",
+    "loaded": true,
+    "w": 1
+   },
+   {
+    "src": "assets/inline-connection.png",
+    "loaded": true,
+    "w": 33
+   },
+   {
+    "src": "assets/wall-charging.png",
+    "loaded": true,
+    "w": 358
+   },
+   {
+    "src": "assets/wall-charging.png",
+    "loaded": true,
+    "w": 1
+   },
+   {
+    "src": "assets/solar-charging.png",
+    "loaded": true,
+    "w": 358
+   },
+   {
+    "src": "assets/solar-charging.png",
+    "loaded": true,
+    "w": 1
+   },
+   {
+    "src": "assets/car-charging.png",
+    "loaded": true,
+    "w": 358
+   },
+   {
+    "src": "assets/car-charging.png",
+    "loaded": true,
+    "w": 1
+   },
+   {
+    "src": "assets/fcc-mark.svg",
+    "loaded": true,
+    "w": 65.1875
+   },
+   {
+    "src": "assets/app-badges.png",
+    "loaded": true,
+    "w": 358
+   },
+   {
+    "src": "assets/app-badges.png",
+    "loaded": true,
+    "w": 1
+   },
+   {
+    "src": "assets/contact-qr.png",
+    "loaded": true,
+    "w": 160
+   }
+  ],
+  "overflowing": [],
+  "broken": 0
+ }
+]

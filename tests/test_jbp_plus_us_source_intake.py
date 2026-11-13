@@ -117,3 +117,36 @@ class JbpPlusUsSourceIntakeTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class JbpPlusUsReleaseCopyTests(unittest.TestCase):
+    def test_release_copy_changes_metadata_only(self):
+        for model in CASES:
+            with self.subTest(model=model):
+                candidate = package(model)
+                release = candidate.parent / (candidate.name + "-release")
+                approval = json.loads((release / "source/release_approval.json").read_text())
+                self.assertEqual(approval["merge_authorization"], "MA-438")
+                self.assertEqual(approval["candidate_path"], candidate.relative_to(ROOT).as_posix())
+                self.assertEqual(
+                    approval["candidate_IR_sha256"],
+                    hashlib.sha256((candidate / "web/en/manual.ir.json").read_bytes()).hexdigest(),
+                )
+                manifest = json.loads((release / "source_manifest.json").read_text())
+                self.assertTrue(manifest["publication_eligible"])
+                self.assertEqual(manifest["publication_status"], "operator-approved-git-only-release")
+                self.assertEqual(manifest["revision_of"], approval["candidate_path"])
+                served = sorted(p.relative_to(release / "web/en").as_posix()
+                                for p in (release / "web/en").rglob("*") if p.is_file())
+                self.assertNotIn("shared-style-admission.json", served)
+                for name in served:
+                    if name != "manual.ir.json":
+                        self.assertEqual((release / "web/en" / name).read_bytes(),
+                                         (candidate / "web/en" / name).read_bytes(), name)
+                self.assertEqual((release / "evidence/publish_shared_style_admission.json").read_bytes(),
+                                 (candidate / "web/en/shared-style-admission.json").read_bytes())
+                release_ir = json.loads((release / "web/en/manual.ir.json").read_text())
+                candidate_ir = json.loads((candidate / "web/en/manual.ir.json").read_text())
+                self.assertEqual(release_ir["content_sha256"], candidate_ir["content_sha256"])
+                self.assertEqual(release_ir["pages"], candidate_ir["pages"])
+                self.assertEqual(release_ir["metadata"]["pending_source_review"], [])

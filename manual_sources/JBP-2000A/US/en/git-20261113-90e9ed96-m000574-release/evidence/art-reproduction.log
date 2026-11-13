@@ -1,0 +1,15 @@
+{
+  "artifact_count": 37,
+  "artifact_kinds": {
+    "archive_page": 11,
+    "archive_preview": 11,
+    "asset_export": 15
+  },
+  "artifacts_csv": "artifacts.csv",
+  "artifacts_csv_sha256": "fff5419bcf156a4b234e0e556830a269bb6b337f5ad0a38f481cb19dbdb9a812",
+  "manifest": "manifest.json",
+  "manifest_sha256": "0ca9ddee6e4975bf184ad9a64de1fe2ad2cc881ebfe767066719df66821d74a7",
+  "package": "asset-package.zip",
+  "package_sha256": "2566730e7cf4d4a53767297dc4e816aee30a36a99ec29e8414b2bb30eb26da65"
+}
+{"assets_verified": 16, "gate": "quarantine; operator pixel review pending"}
