@@ -1,0 +1,95 @@
+{
+  "target": "JS-40A/US/en",
+  "material": "38-0001-000717",
+  "technical_version": "git-20261112-95e0f1c8-m000717",
+  "status": "local-conversion-complete-review-candidate",
+  "publication_eligible": false,
+  "operator_source_acceptance": null,
+  "operator_pixel_acceptance": null,
+  "source_sha256": "95e0f1c8f544920b6709403d5c6e9c82d5779de42a9cbc928d5164f0a80a6047",
+  "source_physical_pages": 9,
+  "declared_toc_only_omission": [
+    5
+  ],
+  "transcription_sha256": "c46188f8ec0ba5c4a91377cabe9c438c876720aa2e5b766897d242e4109841bb",
+  "page_map_sha256": "dfac0fcb2de9d8dd0e1e331148ede7110376d1efbe644a925d786ea7d106dbb7",
+  "manual_ir_sha256": "b3efde4cbc955b16f3f0592b710d4b60a5bf614d139cc96b500d0bed1cb7851d",
+  "markdown_sha256": "acf1b1d84bae3f0337bedee770a06a60acf7ff2be81497d210041714a857707a",
+  "actual_browser_html_sha256": "3b0190afb8d001ca7be43ccdde18df71bef524227235831fb56b5252384d30fd",
+  "final_html_byte_identical_to_browser_verified_html": true,
+  "artwork": {
+    "files": 14,
+    "unchanged_donor_reuse": 9,
+    "new_source_specific": 5,
+    "source_pair_and_native_12x_edges": "passed",
+    "byte_reproduction": "passed"
+  },
+  "component_inventory": {
+    "HB-CALLOUT-STRIP": 1,
+    "HB-SPECIAL-INBOX": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE": 6,
+    "HB-TABLE-SPEC": 2,
+    "HB-WARRANTY-SECTION": 2,
+    "HB-WARRANTY-YEARS": 1
+  },
+  "shared_style_admission": {
+    "profile": "prepared-document-shared-styles/v1",
+    "applicable": true,
+    "model": "JS-40A",
+    "region": "US",
+    "language": "en",
+    "declared_tables": 0,
+    "issues": []
+  },
+  "cold_and_tamper": {
+    "cold_rebuild": {
+      "files_identical": 20,
+      "ir_sha256": "b3efde4cbc955b16f3f0592b710d4b60a5bf614d139cc96b500d0bed1cb7851d",
+      "markdown_sha256": "acf1b1d84bae3f0337bedee770a06a60acf7ff2be81497d210041714a857707a"
+    },
+    "tamper_rejections": [
+      {
+        "kind": "artwork",
+        "rejected": true,
+        "message": "document asset missing or changed: assets/power-device.png"
+      },
+      {
+        "kind": "shared_css",
+        "rejected": true,
+        "message": "frozen Web stylesheet changed"
+      },
+      {
+        "kind": "source_pdf",
+        "rejected": true,
+        "message": "frozen input changed: source/original.pdf"
+      },
+      {
+        "kind": "native_body",
+        "rejected": true,
+        "message": "frozen input changed: source/transcription.json"
+      }
+    ]
+  },
+  "strict_sphinx": "passed: -n -W --keep-going",
+  "browser": {
+    "viewports": [
+      1280,
+      390
+    ],
+    "missing_images": 0,
+    "document_overflow": false,
+    "step_captions_above_own_art": 5,
+    "inbox_cards": 7,
+    "page_errors": [],
+    "lazy_images_scrolled_and_decoded": true
+  },
+  "independent_reviews": [
+    "independent-body-qc.json",
+    "independent-source-browser-qc.json"
+  ],
+  "checks": {
+    "targeted_ruff": "passed",
+    "prepared_document_shared_styles": "10 tests passed"
+  },
+  "scope_note": "No production sealing, Base completion write, source acceptance or release authorization; coordinator owns package registry/global checks/PR."
+}

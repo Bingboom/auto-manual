@@ -1,0 +1,30 @@
+{
+  "authorization": "MA-432",
+  "model": "JS-CONNECTION-GUIDE",
+  "candidate_git_ref": "846f94fb9e4bc16edd926d9fd499a1381c5ec3c2",
+  "candidate_path": "manual_sources/JS-CONNECTION-GUIDE/US/en/git-20261112-899cb3dd-m000716",
+  "approved_path": "manual_sources/JS-CONNECTION-GUIDE/US/en/git-20261112-899cb3dd-m000716-release",
+  "native_pages_identical": true,
+  "content_sha256": "16d6214429297ef56c9565fc8e55374798a043ca7cedc9bb5480c2234a4d996b",
+  "source_pdf_identical": true,
+  "artwork_identical": true,
+  "non_IR_web_files_byte_identical": [
+    "_static/web_manual.css",
+    "assets/connection-dc7909.png",
+    "assets/connection-dc8020.png",
+    "assets/port-dc7909.png",
+    "assets/port-dc8020.png",
+    "assets/port-usb-c.png",
+    "conf.py",
+    "index.md",
+    "manual_jsconnectionguide_us_en.md",
+    "shared-style-admission.json"
+  ],
+  "approved_IR_sha256": "044dc2afe403067ac2c122aa348b838d9fd7ec484bfc68efc718422a1a800e50",
+  "metadata_changes_only": [
+    "approval provenance",
+    "publication eligibility",
+    "pending review resolution",
+    "technical snapshot identity"
+  ]
+}

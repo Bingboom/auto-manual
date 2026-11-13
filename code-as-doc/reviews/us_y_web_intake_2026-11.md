@@ -34,3 +34,17 @@ Status: active
 | JS-45A | 38-0001-000912 | [source](../../manual_sources/JS-45A/US/en/git-20261112-2198a1b7-m000912/README.md) | `2198a1b781b9e62748d19e896e1032e3caeedb458b2556c06918ff0087dce7bf` |
 | JS-CONNECTION-GUIDE | 38-0001-000716 | [source](../../manual_sources/JS-CONNECTION-GUIDE/US/en/git-20261112-899cb3dd-m000716/README.md) | `899cb3dd395903c4fa41ddbee282e70480e6ce39605107407cb1da295289bece` |
 | JS-40A | 38-0001-000717 | [source](../../manual_sources/JS-40A/US/en/git-20261112-95e0f1c8-m000717/README.md) | `95e0f1c8f544920b6709403d5c6e9c82d5779de42a9cbc928d5164f0a80a6047` |
+
+## Approved immutable release inputs
+
+The five operator-authorized copies preserve native pages, original PDFs, all artwork, CSS and all 52 non-IR Web files byte-for-byte. Independent derivation audit verified all 223 frozen bindings; the original candidates remain unchanged. Fresh strict HTML and complete article-text parity passed for each target. No per-image human signature was fabricated.
+
+| Model | Approved source |
+| --- | --- |
+| JA-IB07A-SO | [source](../../manual_sources/JA-IB07A-SO/US/en/git-20261112-e1f2a5fa-m000156-release/README.md) |
+| JS-38A | [source](../../manual_sources/JS-38A/US/en/git-20261112-8a76fee8-m000913-release/README.md) |
+| JS-45A | [source](../../manual_sources/JS-45A/US/en/git-20261112-2198a1b7-m000912-release/README.md) |
+| JS-CONNECTION-GUIDE | [source](../../manual_sources/JS-CONNECTION-GUIDE/US/en/git-20261112-899cb3dd-m000716-release/README.md) |
+| JS-40A | [source](../../manual_sources/JS-40A/US/en/git-20261112-95e0f1c8-m000717-release/README.md) |
+
+Formal release receipts must bind the actual source merge SHA. CI, engineering merge, Hello-Docs release merge, RTD deployment and online verification remain separate facts. The approved package inventories and derivation records are committed here; post-publication receipt authority is the Hello-Docs publish manifest.

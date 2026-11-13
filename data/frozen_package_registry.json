@@ -2240,6 +2240,11 @@
       "registered": "2026-11-12",
       "known_drift": {}
     },
+    "manual_sources/JA-IB07A-SO/US/en/git-20261112-e1f2a5fa-m000156-release": {
+      "approval": "MA-432",
+      "registered": "2026-11-12",
+      "known_drift": {}
+    },
     "manual_sources/JBP-1000B-WH/JP/ja/git-20261008-3aa6c003-native": {
       "approval": "MA-275（见 source/approval.json）",
       "registered": "2026-10-19",
@@ -4970,13 +4975,28 @@
       "registered": "2026-11-12",
       "known_drift": {}
     },
+    "manual_sources/JS-38A/US/en/git-20261112-8a76fee8-m000913-release": {
+      "approval": "MA-432",
+      "registered": "2026-11-12",
+      "known_drift": {}
+    },
     "manual_sources/JS-40A/US/en/git-20261112-95e0f1c8-m000717": {
       "approval": "2026-11-12 operator explicitly requested continuation of six US Y manuals; JS-40A complete review candidate only, no release authorization",
       "registered": "2026-11-12",
       "known_drift": {}
     },
+    "manual_sources/JS-40A/US/en/git-20261112-95e0f1c8-m000717-release": {
+      "approval": "MA-432",
+      "registered": "2026-11-12",
+      "known_drift": {}
+    },
     "manual_sources/JS-45A/US/en/git-20261112-2198a1b7-m000912": {
       "approval": "2026-11-12 operator requested US Y-marked conversion with deduplication and three parallel agents; review candidates only, no release authorization",
+      "registered": "2026-11-12",
+      "known_drift": {}
+    },
+    "manual_sources/JS-45A/US/en/git-20261112-2198a1b7-m000912-release": {
+      "approval": "MA-432",
       "registered": "2026-11-12",
       "known_drift": {}
     },
@@ -4993,6 +5013,11 @@
     },
     "manual_sources/JS-CONNECTION-GUIDE/US/en/git-20261112-899cb3dd-m000716": {
       "approval": "2026-11-12 operator requested US Y-marked conversion with deduplication and three parallel agents; review candidates only, no release authorization",
+      "registered": "2026-11-12",
+      "known_drift": {}
+    },
+    "manual_sources/JS-CONNECTION-GUIDE/US/en/git-20261112-899cb3dd-m000716-release": {
+      "approval": "MA-432",
       "registered": "2026-11-12",
       "known_drift": {}
     }

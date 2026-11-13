@@ -1,0 +1,162 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "target": {
+    "model": "JS-CONNECTION-GUIDE",
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "technical_version": "git-20261112-899cb3dd-m000716-release"
+  },
+  "web_title": "Jackery Solar Generator Connection Guide",
+  "original_source": {
+    "filename": "38-0001-000716_Jackery_Solar_Generator_Connection_Guide_EN.pdf",
+    "path": "source/original.pdf",
+    "sha256": "899cb3dd395903c4fa41ddbee282e70480e6ce39605107407cb1da295289bece",
+    "size": 2463040,
+    "physical_page_count": 1
+  },
+  "material": "38-0001-000716",
+  "feishu_source": {
+    "conversion_record_id": "reczz28YjyfRHdXi",
+    "source_table_id": "tbl2tXQk8LnM2JKi",
+    "source_record_id": "reczz28Vph3Xaujq",
+    "source_field": "单语言说明书 -英语",
+    "source_file_token": "PNx8bf7Piop0flxMSSvc7aRPnRf"
+  },
+  "source_authority": "Operator selected US-region Y-marked unconverted manuals in the live publishing table on 2026-11-12; current single-language English attachment downloaded from the parent-child source mapping and SHA256 locked. This original source governs all copy; no review acceptance or release approval inferred.",
+  "printed_manual_version": null,
+  "language_scope": "single",
+  "publication_status": "operator-approved-git-only-release",
+  "publication_eligible": true,
+  "pending_source_review": [],
+  "web_roots": {
+    "en": "web/en"
+  },
+  "component_map": {
+    "native_copy": "Semantic headings, paragraphs and lists",
+    "specifications": "not present",
+    "inbox": "not present",
+    "warranty": "HB-WARRANTY-SECTION; HB-WARRANTY-YEARS where the source has numeric periods",
+    "illustrations": "HB-SPECIAL-REFERENCE-FIGURE; port photographs remain in native declared compatibility cells",
+    "compatibility_table": "Declared shared-themed native table exception; not an LCD/specification semantic table",
+    "lcd_buttons_app_symbols": "Not present in these source roles; no synthetic components added."
+  },
+  "normalizations": [
+    "Join printed paragraph line wraps; preserve numbers, labels, conditions and proper names.",
+    "Source subscripts/superscripts transcribed as selectable Unicode; source multiplication/temperature glyphs normalized without changing values.",
+    "Printed decorative cover/TOC/page furniture omitted; source title/model/printed version and all substantive copy remain.",
+    "Reuse source-independent port photos and common tile silhouette byte-identically; product/model-specific specification thumbnails and complete source-labelled English diagrams remain source-specific."
+  ],
+  "inputs": [
+    {
+      "path": "assets/connection-dc7909.png",
+      "size": 244770,
+      "sha256": "d09e58e6ebb9c700448940f15430bd52dda03a85a585d4d84290f6ac20910ae5"
+    },
+    {
+      "path": "assets/connection-dc8020.png",
+      "size": 266725,
+      "sha256": "1a517fea783aefb850acf5ec1b58c52e12f6994fe5f5d513525a431b2104bb4a"
+    },
+    {
+      "path": "assets/port-dc7909.png",
+      "size": 126764,
+      "sha256": "2ee981d5176fab8f58a6839465b3a52fdc0eebef4328391ebea3926769afeea8"
+    },
+    {
+      "path": "assets/port-dc8020.png",
+      "size": 123005,
+      "sha256": "ac5ec92cf0865d45fd453f9f8b7fe43c435c6e4a5da0399952a9c2e254340e8c"
+    },
+    {
+      "path": "assets/port-usb-c.png",
+      "size": 114269,
+      "sha256": "253e6efc97b0505d7b966ececf0f6ad074e293eaeeae985316ae6ac574e1289f"
+    },
+    {
+      "path": "derive_assets.py",
+      "size": 1762,
+      "sha256": "d188723cc9795080182c68eb445668c407cdf2598eb13e6dfece31dbb9602783"
+    },
+    {
+      "path": "refresh_manifest.py",
+      "size": 2265,
+      "sha256": "9f99224ccc96ea88be42e8a660371d28bbee9a9da238cbd329e538b589ae5aae"
+    },
+    {
+      "path": "render.py",
+      "size": 16425,
+      "sha256": "0d6fcd01820c6ea9379802e2e1254978992172253bd5a4b5a7fe53941138f0e5"
+    },
+    {
+      "path": "source/asset_decisions.json",
+      "size": 4590,
+      "sha256": "18ab78a764817d245b5cd5d12bcbc791fbbe4c0ca55448453ad673019be69d88"
+    },
+    {
+      "path": "source/asset_recipes.json",
+      "size": 3257,
+      "sha256": "32d442c46abc6e9b8b5da6e5da2987893997446d2c38c30c21834bd734467b34"
+    },
+    {
+      "path": "source/original.pdf",
+      "size": 2463040,
+      "sha256": "899cb3dd395903c4fa41ddbee282e70480e6ce39605107407cb1da295289bece"
+    },
+    {
+      "path": "source/page_map.json",
+      "size": 307,
+      "sha256": "ad9e05b463c017bf8c03c479cc7deca222ceff0c4a526836f8af1cdc9730d809"
+    },
+    {
+      "path": "source/release_approval.json",
+      "size": 1103,
+      "sha256": "64d834bf7ed96fde4c64a83b4c8e83c83c11a1f3261e9c11159aaac0f8fbf66e"
+    },
+    {
+      "path": "source/transcription.json",
+      "size": 2665,
+      "sha256": "c25435e5bdd2e6d9a0acb12dfb7b656f4d4156ecd499801b117ff29e81d2c61e"
+    }
+  ],
+  "repo_inputs": [
+    {
+      "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
+      "sha256": "a2773f7e96849e176a9909e8221e37c20eb9005cd2639415bf6a112d7c86527f"
+    },
+    {
+      "path": "manual_sources/JS-CONNECTION-GUIDE/JP/ja/git-20261026-bc35fd65-connection-guide/assets/port-usb-c.png",
+      "sha256": "253e6efc97b0505d7b966ececf0f6ad074e293eaeeae985316ae6ac574e1289f"
+    },
+    {
+      "path": "manual_sources/JS-CONNECTION-GUIDE/JP/ja/git-20261026-bc35fd65-connection-guide/assets/port-dc7909.png",
+      "sha256": "2ee981d5176fab8f58a6839465b3a52fdc0eebef4328391ebea3926769afeea8"
+    },
+    {
+      "path": "manual_sources/JS-CONNECTION-GUIDE/JP/ja/git-20261026-bc35fd65-connection-guide/assets/port-dc8020.png",
+      "sha256": "ac5ec92cf0865d45fd453f9f8b7fe43c435c6e4a5da0399952a9c2e254340e8c"
+    }
+  ],
+  "identity": {
+    "record_model_lookup": "JE-100C",
+    "printed_model": null,
+    "route_model": "JS-CONNECTION-GUIDE",
+    "reason": "The same generic guide attachment is mapped to many SKU rows. Count once by material/source hash, matching existing JP guide identity; never create a JE-100C manual from this leaflet."
+  },
+  "shared_component_exceptions": [
+    {
+      "language": "en",
+      "page_id": "connection_guide",
+      "kind": "table",
+      "text_sha256": "c94eb12de9f89210944d05d8c8d9693e104e542980ca9587220d6e15fbf021ce",
+      "reason": "This is the original two-column product-to-input compatibility matrix with photographic port faces; the LCD, symbol and specification component schemas do not express this cross-model connector mapping. Use native table cells and the shared manual-table theme."
+    }
+  ],
+  "revision_of": "manual_sources/JS-CONNECTION-GUIDE/US/en/git-20261112-899cb3dd-m000716",
+  "operator_release_approval": {
+    "path": "source/release_approval.json",
+    "sha256": "64d834bf7ed96fde4c64a83b4c8e83c83c11a1f3261e9c11159aaac0f8fbf66e",
+    "authorization": "MA-432"
+  }
+}

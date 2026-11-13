@@ -1,0 +1,89 @@
+{
+  "reviewer": "us_accessories independent read-only JS-40A visual QC",
+  "status": "pass-agent-qc-not-operator-acceptance",
+  "target": "JS-40A/US/en",
+  "material": "38-0001-000717",
+  "source_pdf_sha256": "95e0f1c8f544920b6709403d5c6e9c82d5779de42a9cbc928d5164f0a80a6047",
+  "source_manifest_sha256": "7e42e9ee803b0d74c05ea84caf69d2573f6af01b433e8cc1ff988f2138f451e4",
+  "transcription_sha256": "c46188f8ec0ba5c4a91377cabe9c438c876720aa2e5b766897d242e4109841bb",
+  "candidate_html_sha256": "3b0190afb8d001ca7be43ccdde18df71bef524227235831fb56b5252384d30fd",
+  "independent_html_sha256": "3b0190afb8d001ca7be43ccdde18df71bef524227235831fb56b5252384d30fd",
+  "independent_article_text_identical": true,
+  "independent_strict_sphinx": "pass -n -W --keep-going",
+  "reviewed_source_physical_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "source_pages_native": [
+    1,
+    2,
+    3,
+    4,
+    6,
+    7,
+    8,
+    9
+  ],
+  "declared_omissions": [
+    {
+      "page": 5,
+      "reason": "printed TOC replaced by native navigation"
+    },
+    {
+      "page": 1,
+      "reason": "cover decoration only; identity/version/contact copy kept"
+    }
+  ],
+  "asset_hashes": {
+    "power-device": "0706ccc6053cf25026edd1aa8264c8b144db8873730ce365aed9359633874e78",
+    "inbox-usbc": "511ad02dfaa56121f3b664217628956a9109d43fb7b2dff19e5795cb78ce82d9",
+    "contact-qr": "5bd8cff49238202778718385d034ef457400243751dba96b1b18ac6fe5e8bf47",
+    "inbox-adapter": "60f5ba1e4ca461dcdf1d3b599d128c8520ca03633ea37b6e3959b753faae91d0",
+    "inbox-pouch": "55d8c3c3d6f88252dbd98a9d6f09b70577458275924e8d89c2d41286bcc73161",
+    "unfold-4": "7159f9d8bddb88c5d2a7b4ab3e8e3ec349bf3f86ab7cc53fec58208576911570",
+    "unfold-5": "fd032a9605fc5e4e0c48e554410daec72cee1a8bbdfc6bca41439ac286e91266",
+    "unfold-1": "d4f192fb0e8b2e6c6fe9f62b4cfc00bc59ad12606ebc48b1b7b55c274b623a1a",
+    "inbox-manual": "5614a0dca59a649c1e9e8d519ff6f1586b704b3c53325e5d1deff29ff005e4a2",
+    "unfold-2": "a71fb0738c120520516984c3d99cffffcaa1b1ad0f2f65c31771c9ee45404a60",
+    "unfold-3": "cc3bce48031cc93f8bde2651c84aa7052231a26214c2e7de88ee247b1b047331",
+    "inbox-panel": "39f9ab6b4f6ca7dceef39bf435a736e9a196075704a0aea4c11c1fc529fe328b",
+    "inbox-cable": "d9c356d52b20e072dec01d8fab552c9efbb652927da9ff9c659b74c1d7bfa780",
+    "inbox-carabiner": "41c5a19e743bd847fcae671c137989d2970c5ce5448e6eb42e4106f5c2cf1f79"
+  },
+  "asset_identity_checks": {
+    "right_angle_adapter": "Current US-source right-angle cable drawing, not rejected JP rigid straight adapter. Both source plug ends and bend retained.",
+    "pouch": "Current US source square zippered case, with complete wrist strap; rejected JP case not consumed.",
+    "fifth_step": "Correct same-source power-station silhouette, cable path and panel orientation; no unrelated handled device transplanted.",
+    "common_symbols": "This source prints no FCC statement/mark or independent icon glossary; none fabricated. Canonical FCC requirement not applicable to this source.",
+    "qr": "All four printed frame edges and quiet region retained."
+  },
+  "desktop_mobile": {
+    "viewports": [
+      1280,
+      390
+    ],
+    "all_five_native_step_captions_above_full_figures": true,
+    "step_order": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "seven_inbox_items_correct_order_and_counts": true,
+    "image_edges_inside_components": true,
+    "missing_images": 0,
+    "document_overflow": false,
+    "wide_table_local_scroll_checked": true,
+    "locator_screenshot_caveat": "Local element screenshots can include Furo fixed-header overlays; full-1280.png and full-390.png were captured from page top and are the presentation evidence."
+  },
+  "issues": [],
+  "owner_workspace_edited": false
+}

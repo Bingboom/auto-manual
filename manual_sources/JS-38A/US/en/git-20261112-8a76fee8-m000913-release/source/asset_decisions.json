@@ -1,0 +1,65 @@
+{
+  "schema_version": "source-bound-web-asset-decisions/v1",
+  "inventory_checked": [
+    "manual_sources/** by exact target/model/material/English title (no earlier US/en package for this target)",
+    "docs/renderers/web/assets/**, shared symbols/buttons/LCD, docs/templates/word_template/common_assets and source package registries by model/title/slot",
+    "Existing JS-CONNECTION-GUIDE/JP/ja guide (port photographs reusable; connection figure has Japanese or and a different power-station body/AC sockets, so its finished diagram cannot be reused as English source art)",
+    "JS-45A/US/en same batch: common tile silhouette matches, specification-sheet cover thumbnail is model-specific"
+  ],
+  "reuse_order": "existing target → same model/other region → shared assets → necessary source illustration crop",
+  "assets": {
+    "inbox-product": {
+      "mode": "shared-reuse",
+      "repo_path": "manual_sources/JS-45A/US/en/git-20261112-2198a1b7-m000912/assets/inbox-product.png",
+      "path": "assets/inbox-product.png",
+      "reason": "Both native source pages depict the same monochrome curved-tile outline, cable layout and dimensions; Obsidian/TerraCotta colour distinction is not encoded in this line drawing. Reuse the 912 crop byte-identically, keeping this edition’s title, electrical ratings and specification-sheet thumbnail.",
+      "repo_sha256": "98a55016d5e015ce562d67881927ee1758d640a38268be3b8bc3aa5dfd9d6b9c",
+      "sha256": "98a55016d5e015ce562d67881927ee1758d640a38268be3b8bc3aa5dfd9d6b9c",
+      "bytes": 30787
+    },
+    "inbox-sheet": {
+      "mode": "source-crop",
+      "physical_page": 4,
+      "clip_points": [
+        249,
+        83,
+        305,
+        159
+      ],
+      "path": "assets/inbox-sheet.png",
+      "reason": "No existing matching finished source-language/model illustration in the recorded inventories; full native illustration or item only, excluding external headings/numbers/body cells. ",
+      "boundary_strategy": "Keep all four illustration edges and source product surfaces; native external titles/body remain selectable. Complete English labelled connection diagrams retain their caption frame together with text; no text stripping or empty caption frames.",
+      "scale": 3,
+      "resolved_clip_points": [
+        249,
+        83,
+        305,
+        159
+      ],
+      "sha256": "93dec9c3d1289f4f369897fd985075c008d4fbf0032d1268bcb9e752764baec1",
+      "bytes": 9960
+    },
+    "contact-qr": {
+      "mode": "source-crop",
+      "physical_page": 7,
+      "path": "assets/contact-qr.png",
+      "reason": "No existing matching finished source-language/model illustration in the recorded inventories; full native illustration or item only, excluding external headings/numbers/body cells. ",
+      "boundary_strategy": "Keep all four illustration edges and source product surfaces; native external titles/body remain selectable. Complete English labelled connection diagrams retain their caption frame together with text; no text stripping or empty caption frames.",
+      "scale": 3,
+      "clip_points": [
+        302,
+        460,
+        342,
+        501
+      ],
+      "resolved_clip_points": [
+        302,
+        460,
+        342,
+        501
+      ],
+      "sha256": "b297ef1ed1ffb9b11e4ffd75390bf6ae2f38e883f93c820a39c0f4816211360c",
+      "bytes": 3650
+    }
+  }
+}

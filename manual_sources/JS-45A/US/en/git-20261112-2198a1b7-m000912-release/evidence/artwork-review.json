@@ -1,0 +1,51 @@
+{
+  "method": "Source crops rendered at 12x for boundary inspection; full source pages and desktop/mobile HTML checked separately. Agent visual QC is not operator acceptance.",
+  "assets": [
+    {
+      "asset": "inbox-product",
+      "physical_page": 4,
+      "clip_points": [
+        54,
+        57,
+        191,
+        169
+      ],
+      "source_render_scale": 12,
+      "all_four_edges": "visually compared against the complete physical source page; connector tips, QR frame, lid/strap/base and panel leaders retained",
+      "bare_art": "no text stripped; no empty caption boxes created; complete English diagram boxes retain their captions",
+      "path": "assets/inbox-product.png",
+      "sha256": "98a55016d5e015ce562d67881927ee1758d640a38268be3b8bc3aa5dfd9d6b9c"
+    },
+    {
+      "asset": "inbox-sheet",
+      "physical_page": 4,
+      "clip_points": [
+        249,
+        83,
+        305,
+        159
+      ],
+      "source_render_scale": 12,
+      "all_four_edges": "visually compared against the complete physical source page; connector tips, QR frame, lid/strap/base and panel leaders retained",
+      "bare_art": "no text stripped; no empty caption boxes created; complete English diagram boxes retain their captions",
+      "path": "assets/inbox-sheet.png",
+      "sha256": "bd1a16079d9550a0e8f9b40e8741cedd151b535af6fb9f5318e71f8084ac6025"
+    },
+    {
+      "asset": "contact-qr",
+      "physical_page": 7,
+      "clip_points": [
+        302,
+        460,
+        342,
+        501
+      ],
+      "source_render_scale": 12,
+      "all_four_edges": "visually compared against the complete physical source page; connector tips, QR frame, lid/strap/base and panel leaders retained",
+      "bare_art": "no text stripped; no empty caption boxes created; complete English diagram boxes retain their captions",
+      "path": "assets/contact-qr.png",
+      "sha256": "5787ae07771102d93c7bee19a1bc66671688eaec9c7e4fd6903904edd979948f"
+    }
+  ],
+  "release_authorized": false
+}

@@ -1,0 +1,55 @@
+{
+  "schema_version": "source-bound-web-asset-decisions/v1",
+  "inventory_checked": [
+    "manual_sources/** by exact target/model/material/English title (no earlier US/en package for this target)",
+    "docs/renderers/web/assets/**, shared symbols/buttons/LCD, docs/templates/word_template/common_assets and source package registries by model/title/slot",
+    "Existing JS-CONNECTION-GUIDE/JP/ja guide (port photographs reusable; connection figure has Japanese or and a different power-station body/AC sockets, so its finished diagram cannot be reused as English source art)"
+  ],
+  "reuse_order": "existing target → same model/other region → shared assets → necessary source illustration crop",
+  "assets": {
+    "bottle": {
+      "mode": "source-crop",
+      "physical_page": 1,
+      "clip_points": [
+        59,
+        58,
+        128,
+        239
+      ],
+      "path": "assets/bottle.png",
+      "reason": "No existing matching finished source-language/model illustration in the recorded inventories; full native illustration or item only, excluding external headings/numbers/body cells. ",
+      "boundary_strategy": "Keep all four illustration edges and source product surfaces; native external titles/body remain selectable. Complete English labelled connection diagrams retain their caption frame together with text; no text stripping or empty caption frames.",
+      "scale": 3,
+      "resolved_clip_points": [
+        59,
+        58,
+        128,
+        239
+      ],
+      "sha256": "734f2a16a9ada96a233a4c302f815c7c87555de0b2e12517596e21a7cc964206",
+      "bytes": 19261
+    },
+    "contact-qr": {
+      "mode": "source-crop",
+      "physical_page": 4,
+      "clip_points": [
+        139,
+        295,
+        167,
+        324
+      ],
+      "path": "assets/contact-qr.png",
+      "reason": "No existing matching finished source-language/model illustration in the recorded inventories; full native illustration or item only, excluding external headings/numbers/body cells. ",
+      "boundary_strategy": "Keep all four illustration edges and source product surfaces; native external titles/body remain selectable. Complete English labelled connection diagrams retain their caption frame together with text; no text stripping or empty caption frames.",
+      "scale": 3,
+      "resolved_clip_points": [
+        139,
+        295,
+        167,
+        324
+      ],
+      "sha256": "8fb509da2c7585f78e70db0c8656ad36a549217571fc93830c4bd530af13666f",
+      "bytes": 3521
+    }
+  }
+}
