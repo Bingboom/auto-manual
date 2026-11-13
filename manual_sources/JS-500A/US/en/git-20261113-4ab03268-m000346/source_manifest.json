@@ -45,7 +45,7 @@
   },
   "component_map": {
     "native_copy": "Native selectable headings, paragraphs and lists (storage numbered list; safety, installation-requirement, not-permitted, compliance, illustration and disclaimer bullet lists)",
-    "cover_facts": "Printed title, cover model JS-85A, version JAK-UM-V1.0 and cover contact lines as native paragraphs in the introduction",
+    "cover_facts": "Not rendered (operator rule 2026-11-13: Web body starts at TECHNICAL PARAMETERS). Cover title, model JS-85A, version JAK-UM-V1.0 and contact lines are kept in transcription.cover_facts and this manifest only.",
     "technical_parameters": "Declared plain native table per printed table (shared table wrapper, printed column spans and bold Electrical Data | STC | BNPI header row); HB-TABLE-SPEC is two-column only — see shared_component_exceptions",
     "inbox": "HB-SPECIAL-INBOX with ten native labels and quantities in printed order",
     "how_to_use_figures": "HB-SPECIAL-REFERENCE-FIGURE for every complete source illustration (15 complete illustrations; the small standalone Assembly hinge is a bounded inline image so it is not upscaled; in-art labels Front/Back, Solar Charging Cable/DC8020/Anderson Connector, 35°, 90° kept inside the art)",
@@ -60,7 +60,7 @@
     "Full-width punctuation in the spec tables normalized to ASCII without changing values: '，' -> ', ' and '（…）' -> ' (…)'; 'W/㎡' -> 'W/m²'; '℃' -> '°C'.",
     "Printed '*' bullet markers, '1.'-'4.' numbering and the FCC '--' measure markers become shared list markers (not doubled).",
     "The printed callout label 'Note:' is carried by the shared HB-CALLOUT-STRIP label 'Note' (the shared component draws the label; colon dropped as in JS-40A US/en).",
-    "Omit decorative cover image and wordmark, contents page, US language tab, page numbers, package-list circled numbers and the three Customer Service marker icons; all substantive copy remains native.",
+    "Omit the whole cover (image, caption, wordmark, title, model, version, contact lines) and the contents page per operator rule 2026-11-13, plus US language tab, page numbers, package-list circled numbers and the three Customer Service marker icons; all substantive copy remains native.",
     "The medium-weight sentence 'We recommend standing the solar panel vertically before hinge installation.' is rendered bold to keep its printed emphasis.",
     "The package-list hinge reuses the identical p.7 hinge drawing (one crop for both slots).",
     "Package-list quantities ('x 6', 'x 10', 'x 8', 'x 40', 'x 2') are joined to their item name with non-breaking spaces so a quantity never wraps onto its own line; characters are otherwise unchanged."
@@ -213,8 +213,8 @@
     },
     {
       "path": "source/block_map.json",
-      "size": 18654,
-      "sha256": "a132df8fe27963e57ca2fb879f37206a8440778c7ff584fd13573a60aabeaf4b"
+      "size": 17864,
+      "sha256": "babf036ba211432a9bd9404a83ca1cefa28060c8bceae8a5a0b6b42a79148c9d"
     },
     {
       "path": "source/original.pdf",
@@ -223,13 +223,13 @@
     },
     {
       "path": "source/page_map.json",
-      "size": 2957,
-      "sha256": "45b9b8d5af2a278b1077188fe87b65fd85af3f61bf6b43b606f1e13d67796f2b"
+      "size": 3018,
+      "sha256": "c899e61589b5d0f3f22f297d8b61004651b35ffa68be78b78d5dbcd922b56230"
     },
     {
       "path": "source/transcription.json",
-      "size": 32019,
-      "sha256": "ff3dae34be33af9a84cfbcf55372e0e2e59100fd591c943a48a47e03970eecd9"
+      "size": 32120,
+      "sha256": "65ec0b3233a43aa52ec7a5c84b646beca20dbc07330f0bfa785feba655e30f37"
     },
     {
       "path": "render.py",
@@ -272,5 +272,6 @@
       "text_sha256": "42f1efcb60ece396c3877aea71780f9685f6c003318f8d3c6f35956b47d13661",
       "reason": "HB-TABLE-SPEC is a two-column label/value component; this printed table has a third column (an in-table 'Electrical Data | STC | BNPI' header row with two value columns, and single values spanning both columns). It is kept as one native shared-wrapper table with the printed row order, column spans and header row instead of splitting or re-shaping the source table."
     }
-  ]
+  ],
+  "printed_cover_title": "USER MANUAL / Jackery SolarSaga 85"
 }

@@ -29,8 +29,8 @@
     "assets/contact-qr.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "35bbbd1a3164558c3e7d03c86aa4fb52d779cc9703bfd55a56a95909d22b65b7",
-  "content_sha256": "f96ba62079a123becd700c9df8ff17d6829c4904eda38448ffb1e224b0ae450f",
+  "bundle_sha256": "5ab71811cb70d6eb96ba544811d8f449b572d7d42e31d1ca47ffe8334dd0c1de",
+  "content_sha256": "1d6560a26477c806b7673222a4ecd04dc9d146a309e20ff762182865f9cbaff0",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -63,7 +63,7 @@
       "assets/storage-fold.png": "d5f8844adc9e7a3eda4dca115284422c571286fe707ac4edf887c6d96628d537",
       "assets/wiring.png": "4a6455cb391964a1c2ce4df099569218c86506242560eba67be5c083116c5d79"
     },
-    "block_count": 92,
+    "block_count": 87,
     "component_inventory": {
       "HB-CALLOUT-STRIP": 1,
       "HB-SPECIAL-FCC": 1,
@@ -1403,7 +1403,7 @@
     "frozen_source_manifest": {
       "component_map": {
         "contact_qr": "Back-cover QR as a bounded native inline image",
-        "cover_facts": "Printed title, cover model JS-85A, version JAK-UM-V1.0 and cover contact lines as native paragraphs in the introduction",
+        "cover_facts": "Not rendered (operator rule 2026-11-13: Web body starts at TECHNICAL PARAMETERS). Cover title, model JS-85A, version JAK-UM-V1.0 and contact lines are kept in transcription.cover_facts and this manifest only.",
         "fcc": "HB-SPECIAL-FCC with the shared fcc/nested-c-native-dark mark",
         "how_to_use_figures": "HB-SPECIAL-REFERENCE-FIGURE for every complete source illustration (15 complete illustrations; the small standalone Assembly hinge is a bounded inline image so it is not upscaled; in-art labels Front/Back, Solar Charging Cable/DC8020/Anderson Connector, 35°, 90° kept inside the art)",
         "inbox": "HB-SPECIAL-INBOX with ten native labels and quantities in printed order",
@@ -1574,8 +1574,8 @@
         },
         {
           "path": "source/block_map.json",
-          "sha256": "a132df8fe27963e57ca2fb879f37206a8440778c7ff584fd13573a60aabeaf4b",
-          "size": 18654
+          "sha256": "babf036ba211432a9bd9404a83ca1cefa28060c8bceae8a5a0b6b42a79148c9d",
+          "size": 17864
         },
         {
           "path": "source/original.pdf",
@@ -1584,13 +1584,13 @@
         },
         {
           "path": "source/page_map.json",
-          "sha256": "45b9b8d5af2a278b1077188fe87b65fd85af3f61bf6b43b606f1e13d67796f2b",
-          "size": 2957
+          "sha256": "c899e61589b5d0f3f22f297d8b61004651b35ffa68be78b78d5dbcd922b56230",
+          "size": 3018
         },
         {
           "path": "source/transcription.json",
-          "sha256": "ff3dae34be33af9a84cfbcf55372e0e2e59100fd591c943a48a47e03970eecd9",
-          "size": 32019
+          "sha256": "65ec0b3233a43aa52ec7a5c84b646beca20dbc07330f0bfa785feba655e30f37",
+          "size": 32120
         },
         {
           "path": "render.py",
@@ -1616,7 +1616,7 @@
         "Full-width punctuation in the spec tables normalized to ASCII without changing values: '，' -> ', ' and '（…）' -> ' (…)'; 'W/㎡' -> 'W/m²'; '℃' -> '°C'.",
         "Printed '*' bullet markers, '1.'-'4.' numbering and the FCC '--' measure markers become shared list markers (not doubled).",
         "The printed callout label 'Note:' is carried by the shared HB-CALLOUT-STRIP label 'Note' (the shared component draws the label; colon dropped as in JS-40A US/en).",
-        "Omit decorative cover image and wordmark, contents page, US language tab, page numbers, package-list circled numbers and the three Customer Service marker icons; all substantive copy remains native.",
+        "Omit the whole cover (image, caption, wordmark, title, model, version, contact lines) and the contents page per operator rule 2026-11-13, plus US language tab, page numbers, package-list circled numbers and the three Customer Service marker icons; all substantive copy remains native.",
         "The medium-weight sentence 'We recommend standing the solar panel vertically before hinge installation.' is rendered bold to keep its printed emphasis.",
         "The package-list hinge reuses the identical p.7 hinge drawing (one crop for both slots).",
         "Package-list quantities ('x 6', 'x 10', 'x 8', 'x 40', 'x 2') are joined to their item name with non-breaking spaces so a quantity never wraps onto its own line; characters are otherwise unchanged."
@@ -1632,6 +1632,7 @@
         "Operator review of the OCR + hand-corrected English transcription, source concerns, model identity (D1) and artwork; no publication authorization granted."
       ],
       "printed_cover_model": "JS-85A",
+      "printed_cover_title": "USER MANUAL / Jackery SolarSaga 85",
       "printed_manual_version": "JAK-UM-V1.0",
       "publication_eligible": false,
       "publication_status": "review-candidate-no-release-authorization",
@@ -2256,7 +2257,7 @@
     },
     "manual_theme_sha256": "e8fc88458d239edef85f2cfb0b26b71df2e83859c8e51e9c093e5abc2982b47d",
     "markdown_filename": "manual_js500a_us_en.md",
-    "page_count": 16,
+    "page_count": 15,
     "page_declarations": {},
     "pdf_intake_provenance": {
       "artwork_standardizations": [],
@@ -2274,7 +2275,7 @@
     "skipped_raw": 0,
     "source_errata": {
       "source_concerns": [
-        "D1 model identity: the booklet is shared. Cover prints 'Model: JS-85A' / 'Jackery SolarSaga 85' / 'Version: JAK-UM-V1.0'; p.4 prints a second table for 'Jackery SolarSaga 500 X', Model No. JS-500A; the package list is 'Jackery SolarSaga 85 x 6'. The Feishu row is JS-500A (finished goods HTS021500A-US/CA-JAK). Built as one JS-500A edition containing the whole booklet; cover facts kept as printed; no JS-85A target created.",
+        "D1 model identity: the booklet is shared. Cover prints 'Model: JS-85A' / 'Jackery SolarSaga 85' / 'Version: JAK-UM-V1.0'; p.4 prints a second table for 'Jackery SolarSaga 500 X', Model No. JS-500A; the package list is 'Jackery SolarSaga 85 x 6'. The Feishu row is JS-500A (finished goods HTS021500A-US/CA-JAK). Built as one JS-500A edition containing the whole booklet body; per operator rule 2026-11-13 the cover is not Web body, so the cover facts (JS-85A, JAK-UM-V1.0) are kept only in transcription.cover_facts, the manifest and README; no JS-85A target created.",
         "Product-name spelling differs by source: booklet 'SolarSaga 500 X' (with a space, p.4 and p.10); Feishu attachment name '500X'; Feishu finished-goods spec 'SolarSaga 500W'. The printed '500 X' is kept; web_title uses the printed product name.",
         "p.10 refers to 'Jackery SolarSaga 85W solar panels' while the cover and spec table say 'Jackery SolarSaga 85'. Kept as printed.",
         "p.7 says the panel suits 'a balcony or rooftop' and Note 2 covers rooftop permits, but p.14 'Not permitted' lists 'Rooftop installation on residential buildings'. Both kept as printed; the conflict is for the operator.",
@@ -2449,121 +2450,6 @@
   },
   "model": "JS-500A",
   "pages": [
-    {
-      "blocks": [
-        {
-          "asset_refs": [],
-          "block_id": "introduction:block-0001",
-          "content_sha256": "af5ad0278d67742b64ad9af3c5ed069e3635e0fd1d68889173b4214fe07b98df",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "USER MANUAL"
-              }
-            ],
-            "kind": "heading",
-            "level": 1,
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "source/transcription.json#introduction#block-1"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "introduction:block-0002",
-          "content_sha256": "82747b064400f3ccf76344234656337777a215769dfa4123afec80921555394a",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "Jackery SolarSaga 85"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "source/transcription.json#introduction#block-2"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "introduction:block-0003",
-          "content_sha256": "29b4e79d9b5b2144523fed48ec8ea87aa0e0e67c1150517228857ecbb672effc",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "Model: JS-85A"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "source/transcription.json#introduction#block-3"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "introduction:block-0004",
-          "content_sha256": "e2d5f820fd20a74b72dd175d64b29889663d9e2e726975489b62cedff6b384a0",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "Version: JAK-UM-V1.0"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "source/transcription.json#introduction#block-4"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "introduction:block-0005",
-          "content_sha256": "3924ab8c22234ca076fad5d5a89cd8dae00ec7d0850f272517fc61ec29ab1dc3",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "Contact us:"
-                  }
-                ],
-                "kind": "strong"
-              },
-              {
-                "kind": "line_break"
-              },
-              {
-                "kind": "text",
-                "text": "hello@jackery.com"
-              },
-              {
-                "kind": "line_break"
-              },
-              {
-                "kind": "text",
-                "text": "1-888-502-2236(US)"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "source/transcription.json#introduction#block-5"
-        }
-      ],
-      "language": "en",
-      "page_id": "introduction",
-      "skipped_raw": 0,
-      "source_path": "source/transcription.json",
-      "source_ref": "source/transcription.json#introduction",
-      "source_sha256": "5da2ff32107822a5a71dbbb8a4af86de43cd57a24b6c89de8ad0f8c961d3cb24"
-    },
     {
       "blocks": [
         {

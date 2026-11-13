@@ -3,32 +3,22 @@
   "language": "en",
   "source_sha256": "4ab03268f8f1390459cd20aeb77ec6efdc175775b73267fe861e453a24bcc7fc",
   "transcription_method": "Tesseract 5.3.4 OCR at 300 dpi (raw output in evidence/ocr/NNN.txt) then every line hand-corrected against the 300-dpi page pixels; OCR-illegible art-heavy pages 8, 9 and 11 transcribed from pixels.",
+  "cover_facts": {
+    "rendered": false,
+    "source_page": 1,
+    "note": "Operator rule 2026-11-13 「封面信息 不用放进网页呀 直接从这个开始」: cover and contents are not Web body; facts kept here for traceability only.",
+    "title": "USER MANUAL",
+    "product": "Jackery SolarSaga 85",
+    "model": "JS-85A",
+    "version": "JAK-UM-V1.0",
+    "caption": "The image is for reference only.",
+    "contact": [
+      "Contact us:",
+      "hello@jackery.com",
+      "1-888-502-2236(US)"
+    ]
+  },
   "chapters": [
-    {
-      "id": "introduction",
-      "title": "USER MANUAL",
-      "source_pages": [
-        1
-      ],
-      "blocks": [
-        {
-          "kind": "paragraph",
-          "text": "Jackery SolarSaga 85"
-        },
-        {
-          "kind": "paragraph",
-          "text": "Model: JS-85A"
-        },
-        {
-          "kind": "paragraph",
-          "text": "Version: JAK-UM-V1.0"
-        },
-        {
-          "kind": "html",
-          "html": "<p><strong>Contact us:</strong><br/>hello@jackery.com<br/>1-888-502-2236(US)</p>"
-        }
-      ]
-    },
     {
       "id": "specifications_85",
       "title": "TECHNICAL PARAMETERS (Jackery SolarSaga 85)",
@@ -878,7 +868,7 @@
     }
   ],
   "source_concerns": [
-    "D1 model identity: the booklet is shared. Cover prints 'Model: JS-85A' / 'Jackery SolarSaga 85' / 'Version: JAK-UM-V1.0'; p.4 prints a second table for 'Jackery SolarSaga 500 X', Model No. JS-500A; the package list is 'Jackery SolarSaga 85 x 6'. The Feishu row is JS-500A (finished goods HTS021500A-US/CA-JAK). Built as one JS-500A edition containing the whole booklet; cover facts kept as printed; no JS-85A target created.",
+    "D1 model identity: the booklet is shared. Cover prints 'Model: JS-85A' / 'Jackery SolarSaga 85' / 'Version: JAK-UM-V1.0'; p.4 prints a second table for 'Jackery SolarSaga 500 X', Model No. JS-500A; the package list is 'Jackery SolarSaga 85 x 6'. The Feishu row is JS-500A (finished goods HTS021500A-US/CA-JAK). Built as one JS-500A edition containing the whole booklet body; per operator rule 2026-11-13 the cover is not Web body, so the cover facts (JS-85A, JAK-UM-V1.0) are kept only in transcription.cover_facts, the manifest and README; no JS-85A target created.",
     "Product-name spelling differs by source: booklet 'SolarSaga 500 X' (with a space, p.4 and p.10); Feishu attachment name '500X'; Feishu finished-goods spec 'SolarSaga 500W'. The printed '500 X' is kept; web_title uses the printed product name.",
     "p.10 refers to 'Jackery SolarSaga 85W solar panels' while the cover and spec table say 'Jackery SolarSaga 85'. Kept as printed.",
     "p.7 says the panel suits 'a balcony or rooftop' and Note 2 covers rooftop permits, but p.14 'Not permitted' lists 'Rooftop installation on residential buildings'. Both kept as printed; the conflict is for the operator.",

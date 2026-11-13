@@ -2,7 +2,7 @@
   "schema": "printed-block-to-shared-component-map/v1",
   "rule": "AGENTS.md §3: every printed block mapped to a shared component; unmappable blocks are declared plain tables with a reason; no package colour, border or ht-* class.",
   "omitted_page_furniture": [
-    "p.1 cover image and wordmark",
+    "p.1 whole cover (image, caption, wordmark, title, model, version, contact lines) — operator rule 2026-11-13; facts in transcription.cover_facts",
     "p.2 contents",
     "US language tab",
     "page numbers",
@@ -10,43 +10,6 @@
     "Customer Service marker icons"
   ],
   "blocks": [
-    {
-      "chapter": "introduction",
-      "printed_title": "USER MANUAL",
-      "source_pages": [
-        1
-      ],
-      "block": "chapter heading",
-      "component": "native h1 (shared theme)"
-    },
-    {
-      "chapter": "introduction",
-      "index": 0,
-      "kind": "paragraph",
-      "first_words": "Jackery SolarSaga 85",
-      "component": "native paragraph"
-    },
-    {
-      "chapter": "introduction",
-      "index": 1,
-      "kind": "paragraph",
-      "first_words": "Model: JS-85A",
-      "component": "native paragraph"
-    },
-    {
-      "chapter": "introduction",
-      "index": 2,
-      "kind": "paragraph",
-      "first_words": "Version: JAK-UM-V1.0",
-      "component": "native paragraph"
-    },
-    {
-      "chapter": "introduction",
-      "index": 3,
-      "kind": "html",
-      "first_words": "html",
-      "component": "native paragraph (printed bold/line breaks kept)"
-    },
     {
       "chapter": "specifications_85",
       "printed_title": "TECHNICAL PARAMETERS (Jackery SolarSaga 85)",

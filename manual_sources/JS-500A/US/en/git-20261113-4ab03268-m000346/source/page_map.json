@@ -1,9 +1,7 @@
 {
   "source_physical_page_count": 15,
   "pages": {
-    "1": [
-      "introduction"
-    ],
+    "1": [],
     "2": [],
     "3": [
       "specifications_85"
@@ -55,12 +53,6 @@
     ]
   },
   "chapters": [
-    {
-      "id": "introduction",
-      "source_pages": [
-        1
-      ]
-    },
     {
       "id": "specifications_85",
       "source_pages": [
@@ -166,7 +158,7 @@
     },
     {
       "physical_page": 1,
-      "reason": "Decorative cover product image (with its 'The image is for reference only.' caption) and Jackery wordmark omitted; printed model, title, version and cover contact lines retained in the introduction."
+      "reason": "Whole cover omitted from the Web body (operator rule 2026-11-13 「封面信息 不用放进网页呀 直接从这个开始」): image, caption, wordmark, title, model JS-85A, version JAK-UM-V1.0 and cover contact lines. Model/version kept in transcription.cover_facts, source_manifest and README only; the same contact details appear on the back cover (Jackery Inc.)."
     },
     {
       "physical_page": "3-14",

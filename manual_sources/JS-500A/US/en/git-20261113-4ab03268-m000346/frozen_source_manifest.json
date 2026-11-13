@@ -45,7 +45,7 @@
   },
   "component_map": {
     "native_copy": "Native selectable headings, paragraphs and lists (storage numbered list; safety, installation-requirement, not-permitted, compliance, illustration and disclaimer bullet lists)",
-    "cover_facts": "Printed title, cover model JS-85A, version JAK-UM-V1.0 and cover contact lines as native paragraphs in the introduction",
+    "cover_facts": "Not rendered (operator rule 2026-11-13: Web body starts at TECHNICAL PARAMETERS). Cover title, model JS-85A, version JAK-UM-V1.0 and contact lines are kept in transcription.cover_facts and this manifest only.",
     "technical_parameters": "Declared plain native table per printed table (shared table wrapper, printed column spans and bold Electrical Data | STC | BNPI header row); HB-TABLE-SPEC is two-column only — see shared_component_exceptions",
     "inbox": "HB-SPECIAL-INBOX with ten native labels and quantities in printed order",
     "how_to_use_figures": "HB-SPECIAL-REFERENCE-FIGURE for every complete source illustration (15 complete illustrations; the small standalone Assembly hinge is a bounded inline image so it is not upscaled; in-art labels Front/Back, Solar Charging Cable/DC8020/Anderson Connector, 35°, 90° kept inside the art)",
@@ -60,7 +60,7 @@
     "Full-width punctuation in the spec tables normalized to ASCII without changing values: '，' -> ', ' and '（…）' -> ' (…)'; 'W/㎡' -> 'W/m²'; '℃' -> '°C'.",
     "Printed '*' bullet markers, '1.'-'4.' numbering and the FCC '--' measure markers become shared list markers (not doubled).",
     "The printed callout label 'Note:' is carried by the shared HB-CALLOUT-STRIP label 'Note' (the shared component draws the label; colon dropped as in JS-40A US/en).",
-    "Omit decorative cover image and wordmark, contents page, US language tab, page numbers, package-list circled numbers and the three Customer Service marker icons; all substantive copy remains native.",
+    "Omit the whole cover (image, caption, wordmark, title, model, version, contact lines) and the contents page per operator rule 2026-11-13, plus US language tab, page numbers, package-list circled numbers and the three Customer Service marker icons; all substantive copy remains native.",
     "The medium-weight sentence 'We recommend standing the solar panel vertically before hinge installation.' is rendered bold to keep its printed emphasis.",
     "The package-list hinge reuses the identical p.7 hinge drawing (one crop for both slots).",
     "Package-list quantities ('x 6', 'x 10', 'x 8', 'x 40', 'x 2') are joined to their item name with non-breaking spaces so a quantity never wraps onto its own line; characters are otherwise unchanged."
@@ -68,8 +68,8 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 2406,
-      "sha256": "a4cc5faa2ecc8ed851eb1f13f3cf4a74e1faff3126e30780073bd7e88f25bfee"
+      "size": 2758,
+      "sha256": "97cb22261ffc9b98c73b842d87838ca1a0a6e3cf66c57ab15adb7efeb7a8cc0d"
     },
     {
       "path": "assets/array-to-station.png",
@@ -218,23 +218,28 @@
     },
     {
       "path": "evidence/browser-validation.json",
-      "size": 18896,
-      "sha256": "5ebb7e91d400a294de7b876c3717309395697be62b5f7f34838bd0caff2296d6"
+      "size": 18850,
+      "sha256": "ed162cbefea8c7c1e5774d13a81a4213ffe899ae75651828b9cbde9e64ef0649"
     },
     {
       "path": "evidence/full-1280.png",
-      "size": 1155371,
-      "sha256": "bfe8a6abddf20f2ec821a41bee488ba8499f581a37634396ac0bef5a6a0ee900"
+      "size": 1142089,
+      "sha256": "d380fc04c32befe00a2ab0dffbefc5efa6d3543085a568fbc227448c309b33c9"
     },
     {
       "path": "evidence/full-390.png",
-      "size": 617760,
-      "sha256": "45208e9b2aca6d88f7ff4e87ad653881b4ea3467bb0d234af88b1badcac8ab33"
+      "size": 610523,
+      "sha256": "4de1da76b0ccffb4bae91f2173bde4de6a6a467b2e29aebe44911c4710f76197"
     },
     {
       "path": "evidence/independent-body-qc.json",
       "size": 8928,
       "sha256": "70a1df2bc59ec2251109ffa3e8b8fa4da779ed585e2ca6c65a1fd127cd868cd5"
+    },
+    {
+      "path": "evidence/independent-delta-qc-cover-removal.json",
+      "size": 1764,
+      "sha256": "376b476991b999085068296fe9bc52a11f2150af9e6f35ddc2ce50f7fa26dc6e"
     },
     {
       "path": "evidence/ocr/001.txt",
@@ -314,7 +319,7 @@
     {
       "path": "evidence/replay-and-tamper.json",
       "size": 1237,
-      "sha256": "aa1e0e189d83dbbfb0befa6fbbc6e18b5ba18c50d3b1a41afe41f16c1d88ef43"
+      "sha256": "4a3c4e7d3ea7e9d391e9a32513c1fdc77beb3dc7ad798589232a50ce5f5cfd65"
     },
     {
       "path": "evidence/strict-sphinx.log",
@@ -343,8 +348,8 @@
     },
     {
       "path": "source/block_map.json",
-      "size": 18654,
-      "sha256": "a132df8fe27963e57ca2fb879f37206a8440778c7ff584fd13573a60aabeaf4b"
+      "size": 17864,
+      "sha256": "babf036ba211432a9bd9404a83ca1cefa28060c8bceae8a5a0b6b42a79148c9d"
     },
     {
       "path": "source/original.pdf",
@@ -353,18 +358,18 @@
     },
     {
       "path": "source/page_map.json",
-      "size": 2957,
-      "sha256": "45b9b8d5af2a278b1077188fe87b65fd85af3f61bf6b43b606f1e13d67796f2b"
+      "size": 3018,
+      "sha256": "c899e61589b5d0f3f22f297d8b61004651b35ffa68be78b78d5dbcd922b56230"
     },
     {
       "path": "source/transcription.json",
-      "size": 32019,
-      "sha256": "ff3dae34be33af9a84cfbcf55372e0e2e59100fd591c943a48a47e03970eecd9"
+      "size": 32120,
+      "sha256": "65ec0b3233a43aa52ec7a5c84b646beca20dbc07330f0bfa785feba655e30f37"
     },
     {
       "path": "source_manifest.json",
-      "size": 12064,
-      "sha256": "b9fd19fa11d1529e13c83a98ee9f12a8515a9e26dc47949df540d2f58097b631"
+      "size": 12302,
+      "sha256": "9bf532585cb199b057116f95657b72cd05f1cc9679124b3dcc83c5190740f980"
     },
     {
       "path": "web/en/_static/web_manual.css",
@@ -518,13 +523,13 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 263600,
-      "sha256": "a2ca71d38186a58060ed2b6500eed804fe69ce3194265441c9759ca46ca9a854"
+      "size": 260371,
+      "sha256": "e122ae919b8ef349585c50821cd805cb0cc0d3d9a189341daaa1057e511f3381"
     },
     {
       "path": "web/en/manual_js500a_us_en.md",
-      "size": 30675,
-      "sha256": "da86fc5e39e3dbe2090bd080075f514b1d998a6ff33667329b7a0ce5f6ba46cd"
+      "size": 30498,
+      "sha256": "fe0774819e94e22ab171f42ce71571688e75975031d905e7586eb6b37f142249"
     },
     {
       "path": "web/en/shared-style-admission.json",
@@ -557,5 +562,6 @@
       "text_sha256": "42f1efcb60ece396c3877aea71780f9685f6c003318f8d3c6f35956b47d13661",
       "reason": "HB-TABLE-SPEC is a two-column label/value component; this printed table has a third column (an in-table 'Electrical Data | STC | BNPI' header row with two value columns, and single values spanning both columns). It is kept as one native shared-wrapper table with the printed row order, column spans and header row instead of splitting or re-shaping the source table."
     }
-  ]
+  ],
+  "printed_cover_title": "USER MANUAL / Jackery SolarSaga 85"
 }

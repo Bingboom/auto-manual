@@ -1,13 +1,3 @@
-# USER MANUAL
-
-<p>Jackery SolarSaga 85</p>
-
-<p>Model: JS-85A</p>
-
-<p>Version: JAK-UM-V1.0</p>
-
-<p><strong>Contact us:</strong><br/>hello@jackery.com<br/>1-888-502-2236(US)</p>
-
 # TECHNICAL PARAMETERS (Jackery SolarSaga 85)
 
 <div class="table-wrapper docutils container"><table class="manual-table"><tbody><tr><td>Product Name</td><td colspan="2">Jackery SolarSaga 85</td></tr><tr><td>Model No.</td><td colspan="2">JS-85A</td></tr><tr><th>Electrical Data</th><th>STC</th><th>BNPI</th></tr><tr><td>Peak Power (Pmax)</td><td>85W±5%</td><td>93W±5%</td></tr><tr><td>Open Circuit Voltage (Voc)</td><td>49.4V±5%</td><td>50.2V±5%</td></tr><tr><td>Short Circuit Current (Isc)</td><td>2.17A±5%</td><td>2.31A±5%</td></tr><tr><td>Power Voltage (Vmp)</td><td>42.5V±5%</td><td>43.3V±5%</td></tr><tr><td>Power Current (Imp)</td><td>2.0A±5%</td><td>2.14A±5%</td></tr><tr><td>Maximum System Voltage</td><td colspan="2">90V DC</td></tr><tr><td>Maximum Reverse Current</td><td colspan="2">15A</td></tr><tr><td>Protection Class Against Electric Shock</td><td colspan="2">Class II</td></tr><tr><td>Waterproof Level</td><td colspan="2">IP68</td></tr><tr><td>Operating Temperature Range</td><td colspan="2">-40°C~85°C (-40°F~185°F)</td></tr><tr><td>Dimensions</td><td colspan="2">977 x 493 x 14mm</td></tr><tr><td>Weight</td><td colspan="2">1.4 kg±0.2 kg</td></tr><tr><td>Bifaciality Coefficient (back/front)</td><td colspan="2">Pmax&gt;80%, Voc&gt;97%, Isc&gt;80%</td></tr><tr><td>Voltage Temperature Coefficient</td><td colspan="2">-0.26%/°C</td></tr><tr><td>Power Temperature Coefficient</td><td colspan="2">-0.32%/°C</td></tr></tbody></table></div>
